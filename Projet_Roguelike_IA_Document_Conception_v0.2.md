@@ -659,6 +659,42 @@ Autre synergie :
 
 ---
 
+## 8.4. Expérience et niveaux pendant une run
+
+Le jeu doit posséder un véritable système d'expérience et de niveaux, comparable dans son rôle général à celui de *Caves of Qud*.
+
+Cette progression appartient à la run en cours. Elle représente le développement stable du noyau de l'IA, tandis que le châssis, les modules et l'équipement représentent sa progression matérielle et adaptable.
+
+L'expérience ne doit pas provenir uniquement des ennemis éliminés. Elle peut être accordée pour :
+
+- les combats adaptés au niveau de menace ;
+- l'exploration de nouvelles zones ;
+- la découverte de lieux importants ;
+- les quêtes et objectifs ;
+- les piratages significatifs ;
+- la manipulation de systèmes ;
+- la résolution pacifique ou furtive d'une situation ;
+- les découvertes narratives ;
+- certaines interactions avec les factions ;
+- l'arrivée dans une nouvelle couche de la simulation.
+
+Gagner un niveau peut accorder :
+
+- des points de compétence ;
+- de nouveaux choix d'amélioration ;
+- occasionnellement une augmentation de statistique ;
+- une amélioration du noyau ou de ses capacités.
+
+La courbe exacte et la fréquence de ces récompenses restent à équilibrer. Les meilleures améliorations doivent créer ou transformer des possibilités de jeu plutôt que fournir uniquement de petits bonus numériques.
+
+Le système doit empêcher le farming trivial : les adversaires très faibles rapportent peu ou pas d'expérience, les créatures invoquées ou produites artificiellement ne doivent pas constituer une source infinie, et une découverte ou un objectif unique ne peut être récompensé qu'une fois.
+
+L'accès aux couches ne doit pas être bloqué par un niveau obligatoire. La progression doit récompenser plusieurs styles de jeu, notamment le combat, la furtivité, le hacking, l'exploration et la diplomatie.
+
+À la mort, le niveau et l'expérience de la run sont perdus. Les classes ou protocoles de départ déjà débloqués, ainsi que les autres éléments de méta-progression horizontale, restent disponibles et sont enregistrés séparément.
+
+---
+
 # 9. Ennemis
 
 Les ennemis doivent être différenciés par leur comportement autant que par leurs statistiques.
@@ -1542,4 +1578,3 @@ Avant une sortie publique, le jeu devra être réellement exécuté et testé su
 Une simple compilation croisée ne sera pas considérée comme une validation suffisante.
 
 Ces contraintes s'appliquent également aux builds de développement : le jeu et les mods locaux doivent pouvoir fonctionner sans nécessiter que Steam soit lancé.
-

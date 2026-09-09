@@ -1,0 +1,152 @@
+use std::collections::{BTreeMap, btree_map::Entry};
+
+use crate::entity::EntityId;
+
+use super::{StatusDefinition, StatusId, StatusStacking};
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct StatusInstance {
+    pub definition: StatusId,
+    pub stacks: u16,
+    pub remaining_turns: Option<u16>,
+    pub source: Option<EntityId>,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct StatusApplyOutcome {
+    pub previous_stacks: u16,
+    pub stacks: u16,
+    pub remaining_turns: Option<u16>,
+}
+
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+pub struct StatusSet {
+    instances: BTreeMap<StatusId, StatusInstance>,
+}
+
+impl StatusSet {
+    pub fn get(&self, id: &StatusId) -> Option<&StatusInstance> {
+        self.instances.get(id)
+    }
+
+    pub fn iter(&self) -> impl Iterator<Item = &StatusInstance> {
+        self.instances.values()
+    }
+
+    pub fn apply(
+        &mut self,
+        definition: &StatusDefinition,
+        incoming_stacks: u16,
+        source: Option<EntityId>,
+    ) -> StatusApplyOutcome {
+        let incoming_stacks = incoming_stacks.max(1);
+        let maximum_stacks = definition.stacking().maximum_stacks();
+        let initial_stacks = incoming_stacks.min(maximum_stacks);
+        let instance = match self.instances.entry(definition.id().clone()) {
+            Entry::Vacant(entry) => {
+                let instance = entry.insert(StatusInstance {
+                    definition: definition.id().clone(),
+                    stacks: initial_stacks,
+                    remaining_turns: definition.duration_turns(),
+                    source,
+                });
+                return StatusApplyOutcome {
+                    previous_stacks: 0,
+                    stacks: instance.stacks,
+                    remaining_turns: instance.remaining_turns,
+                };
+            }
+            Entry::Occupied(entry) => entry.into_mut(),
+        };
+        let previous_stacks = instance.stacks;
+
+        match definition.stacking() {
+            StatusStacking::Replace => {
+                instance.stacks = initial_stacks;
+                instance.remaining_turns = definition.duration_turns();
+                instance.source = source;
+            }
+            StatusStacking::RefreshDuration => {
+                instance.remaining_turns = definition.duration_turns();
+                instance.source = source;
+            }
+            StatusStacking::AddStacks {
+                maximum_stacks,
+                refresh_duration,
+            } => {
+                instance.stacks = instance
+                    .stacks
+                    .saturating_add(incoming_stacks)
+                    .min(maximum_stacks);
+                if refresh_duration {
+                    instance.remaining_turns = definition.duration_turns();
+                }
+                instance.source = source;
+            }
+        }
+
+        StatusApplyOutcome {
+            previous_stacks,
+            stacks: instance.stacks,
+            remaining_turns: instance.remaining_turns,
+        }
+    }
+
+    /// Decrements one finite duration and removes the instance on zero.
+    pub(crate) fn elapse_one_turn(&mut self, id: &StatusId) -> bool {
+        let should_expire = self.instances.get_mut(id).is_some_and(|instance| {
+            let Some(remaining) = &mut instance.remaining_turns else {
+                return false;
+            };
+            *remaining = remaining.saturating_sub(1);
+            *remaining == 0
+        });
+        if should_expire {
+            self.instances.remove(id);
+        }
+        should_expire
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::status::{StatusHook, StatusStacking};
+
+    fn definition(stacking: StatusStacking) -> StatusDefinition {
+        let id = "core:test"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid status ID rejected: {error}"));
+        StatusDefinition::new(id, Some(3), stacking, Vec::<StatusHook>::new())
+            .unwrap_or_else(|error| panic!("valid definition rejected: {error}"))
+    }
+
+    #[test]
+    fn stacks_are_capped_and_duration_is_refreshed_by_policy() {
+        let definition = definition(StatusStacking::AddStacks {
+            maximum_stacks: 3,
+            refresh_duration: true,
+        });
+        let mut statuses = StatusSet::default();
+
+        statuses.apply(&definition, 2, None);
+        assert!(!statuses.elapse_one_turn(definition.id()));
+        let reapplied = statuses.apply(&definition, 2, None);
+
+        assert_eq!(reapplied.previous_stacks, 2);
+        assert_eq!(reapplied.stacks, 3);
+        assert_eq!(reapplied.remaining_turns, Some(3));
+    }
+
+    #[test]
+    fn finite_status_expires_after_its_exact_number_of_ticks() {
+        let definition = definition(StatusStacking::RefreshDuration);
+        let mut statuses = StatusSet::default();
+        statuses.apply(&definition, 1, None);
+
+        assert!(!statuses.elapse_one_turn(definition.id()));
+        assert!(!statuses.elapse_one_turn(definition.id()));
+        assert!(statuses.elapse_one_turn(definition.id()));
+        assert!(statuses.get(definition.id()).is_none());
+    }
+}

@@ -625,6 +625,64 @@ Do not create arbitrary hard-coded fields for every status.
 
 ---
 
+# 17.5. Experience and level progression
+
+The game requires run-local experience and level progression.
+
+Keep these progression layers separate:
+
+```text
+META PROGRESSION
+    -> unlocked starting classes / protocols and horizontal options
+
+RUN PROGRESSION
+    -> experience, levels, skills and stable core growth
+
+MATERIAL ADAPTATION
+    -> chassis, equipment and replaceable modules
+
+SOCIAL PROGRESSION
+    -> faction reputation and individual relationships
+```
+
+Experience sources must support multiple play styles. Valid sources may include:
+
+- defeating an appropriate threat;
+- first-time exploration of a zone or important location;
+- quest and objective completion;
+- significant hacking outcomes;
+- meaningful systemic interactions;
+- peaceful, diplomatic or stealth resolutions;
+- narrative discoveries;
+- faction-related accomplishments;
+- reaching a new simulation layer.
+
+Do not make enemy kills the only practical source of experience.
+
+Level rewards may include:
+
+- skill points;
+- new upgrade choices;
+- occasional attribute points;
+- core or ability improvements.
+
+Do not hard-code the final experience curve or reward cadence before playtesting. Thresholds and standard reward values should be centralized and data-driven where practical.
+
+Requirements:
+
+- experience awards are deterministic simulation outcomes;
+- the simulation emits explicit experience-awarded and level-gained events;
+- one-time rewards use stable keys and cannot be granted repeatedly;
+- trivial threats grant reduced or no experience;
+- summoned, fabricated or infinitely reproducible entities cannot become an experience farm;
+- level must not be a mandatory gate for entering a simulation layer;
+- death resets run experience and level;
+- meta unlocks, including unlocked starting classes, are stored separately from run progression.
+
+Rendering and UI must never calculate or mutate experience directly.
+
+---
+
 # 18. Content architecture
 
 The runtime must not repeatedly parse raw content files.
@@ -1378,6 +1436,9 @@ Priority tests:
 - damage;
 - resistance;
 - status duration;
+- experience thresholds and multi-level gains;
+- one-time experience reward deduplication;
+- run progression reset versus preserved meta unlocks;
 - content ID parsing;
 - manifest dependency resolution;
 - content validation;
@@ -1767,29 +1828,30 @@ Do not add large frameworks to solve small problems.
 36. equipment.
 37. abilities.
 38. statuses.
-39. biome definitions.
-40. content placement.
-41. exit / next zone.
-42. run seed.
+39. experience and level progression.
+40. biome definitions.
+41. content placement.
+42. exit / next zone.
+43. run seed.
 
 ## Phase 6 — UX
 
-43. HUD.
-44. inspect.
-45. inventory UI.
-46. event log.
-47. settings.
-48. key remapping.
-49. localization.
+44. HUD.
+45. inspect.
+46. inventory UI.
+47. event log.
+48. settings.
+49. key remapping.
+50. localization.
 
 ## Phase 7 — persistence and mod UX
 
-50. save/load.
-51. save version.
-52. mod list in saves.
-53. mod manager.
-54. mod error screen.
-55. mod documentation.
+51. save/load.
+52. save version.
+53. mod list in saves.
+54. mod manager.
+55. mod error screen.
+56. mod documentation.
 
 ## Phase 8 — advanced systems
 
@@ -2071,4 +2133,3 @@ For major UI/render changes, verify at minimum:
 ```
 
 Where practical, use automated viewport/layout tests in addition to manual visual validation.
-

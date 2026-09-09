@@ -4,4 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+json5 = "0.4"
 macroquad = "0.4.16"
+semver = "1"
+serde = { version = "1", features = ["derive"] }
+toml = "0.9"

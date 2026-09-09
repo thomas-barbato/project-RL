@@ -1,0 +1,16 @@
+{
+  id: "core:integrity_blade",
+  name_key: "weapon.integrity_blade.name",
+  description_key: "weapon.integrity_blade.description",
+
+  attack: {
+    range: 1,
+    distance_metric: "chebyshev",
+    requires_line_of_sight: false,
+    damage: {
+      amount: 5,
+      damage_type: "kinetic",
+      penetration: 0,
+    },
+  },
+}
