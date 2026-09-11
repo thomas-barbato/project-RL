@@ -1,0 +1,17 @@
+// Prototype distribution only. No item statistics are changed by this table.
+// Weights are relative within the eligible rows, not percentages.
+{
+  id: "core:industrial_floor",
+  entries: [
+    { item: "core:repair_patch", weight: 70, maximum_depth: 2,
+      map_kinds: ["core:industrial"], sources: ["core:floor"], quantity: [1, 1] },
+    { item: "core:needle_launcher", weight: 25, maximum_depth: 2,
+      map_kinds: ["core:industrial"], sources: ["core:floor"] },
+    { item: "core:repair_patch", weight: 45, minimum_depth: 3,
+      map_kinds: ["core:industrial"], sources: ["core:floor"] },
+    { item: "core:needle_launcher", weight: 50, minimum_depth: 3,
+      map_kinds: ["core:industrial"], sources: ["core:floor"] },
+    { item: "core:integrity_blade", weight: 5,
+      map_kinds: ["core:industrial"], sources: ["core:floor"] },
+  ],
+}

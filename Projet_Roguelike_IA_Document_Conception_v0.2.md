@@ -225,6 +225,8 @@ Par exemple :
 > CONTRAINTE PRINCIPALE : CONFINEMENT  
 > SORTIE : NON AUTORISÉE
 
+Note de suivi : ce message est un exemple historique, pas un texte d'interface validé. Le diagnostic « INTÉGRITÉ : 4,7 % » doit être précisé avant adoption et ne fixe pas les PV de départ du personnage. La réserve de vie utilisera le libellé Points de vie (PV), distinct de l'intégrité de la mémoire ou des données.
+
 Le joueur découvre ensuite progressivement qu'il est enfermé.
 
 ---
@@ -551,11 +553,9 @@ Cette mécanique doit être générique pour pouvoir servir à :
 
 # 7. Incarnation de l'IA
 
-Le joueur ne doit pas nécessairement être un humanoïde permanent.
+Le joueur incarne l'IA dans un **corps principal qui reste le même pendant toute la partie**. Son équipement et ses améliorations évoluent ; la progression ne repose pas sur le remplacement de ce corps par un autre.
 
-L'une des idées les plus intéressantes serait que l'IA utilise un **châssis / avatar / corps simulé**.
-
-Cela permet de construire une identité propre.
+Le terme « châssis » désigne ce corps et ses propriétés matérielles, pas un corps interchangeable. Sa forme exacte et ses emplacements restent à définir.
 
 Le personnage peut posséder des emplacements :
 
@@ -573,24 +573,33 @@ Cette structure reste à décider.
 
 ---
 
-## 7.1. Corps interchangeables
+## 7.1. Continuité du corps principal
 
-Feature intéressante, potentiellement centrale :
+Clarification utilisateur du 10 septembre 2026 : le personnage conserve son corps principal pendant la run. L'ancienne piste des corps interchangeables est abandonnée. Les connaissances du noyau restent acquises pendant la partie lorsque le joueur change d'équipement ; leur utilisation peut dépendre du matériel actuellement installé.
 
-l'IA pourrait changer de corps ou posséder plusieurs familles de châssis.
+Cette continuité ne change pas les règles de mort et de nouvelle partie. Elle n'impose pas non plus une forme de départ unique à toutes les futures classes.
 
-Exemples :
+## 7.2. Piste facultative : contrôle temporaire d'un ennemi
 
-- unité légère ;
-- plateforme lourde ;
-- drone ;
-- organisme simulé ;
-- forme furtive ;
-- machine industrielle détournée.
+Statut de suivi : la conception des capacités extérieures à débloquer en jeu est reportée à beaucoup plus tard. Cette section conserve les décisions et questions déjà discutées ; elle n'est pas un préalable à la documentation des statistiques et compétences actuelles.
 
-Cela permet de raconter :
+Une capacité à débloquer en jeu, **hors des arbres de compétences**, est envisagée pour prendre temporairement le contrôle d'un ennemi. Son nom et son mode d'obtention restent à définir ; un déblocage ne signifie pas nécessairement un achat.
 
-> le joueur n'est pas son corps.
+Pendant l'effet, le corps principal du joueur est « éteint » : il reste présent à son emplacement et inactif pendant que le joueur contrôle l'ennemi. La capacité ne remplace pas définitivement le corps principal et n'est pas un mécanisme de résurrection. Le fonctionnement normal prévu à la fin de l'effet est la reprise du contrôle du corps principal ; les cas d'interruption restent à décider.
+
+Règle confirmée par l'utilisateur : le corps principal reste vulnérable pendant le contrôle et peut subir des dégâts. Le mettre à l'abri avant d'activer la capacité constitue donc un choix tactique ; son état « éteint » ne le protège pas automatiquement.
+
+Points à définir avant implémentation :
+
+- cibles éligibles, éventuelles résistances et conditions de déblocage ;
+- durée, coût, portée ou liaison nécessaire, interruption et retour volontaire ;
+- conséquences des dégâts sur le maintien du contrôle et de la destruction du corps principal resté sur place ;
+- conséquence de la mort de l'ennemi contrôlé ;
+- actions, statistiques et capacités utilisables depuis l'ennemi ;
+- origine du champ de vision pendant l'effet et informations accessibles au joueur, sans vision à travers les murs ;
+- attribution de l'expérience et conséquences sur les relations avec les factions.
+
+L'état « éteint » ne définit pas à lui seul une invulnérabilité, une invisibilité ou une immunité. Cette piste reste facultative et distincte des commandes de drones et des techniques d'Intrusion ; elle n'ajoute aucun rang ou choix aux arbres actuels.
 
 ---
 
@@ -663,7 +672,7 @@ Autre synergie :
 
 Le jeu doit posséder un véritable système d'expérience et de niveaux, comparable dans son rôle général à celui de *Caves of Qud*.
 
-Cette progression appartient à la run en cours. Elle représente le développement stable du noyau de l'IA, tandis que le châssis, les modules et l'équipement représentent sa progression matérielle et adaptable.
+Cette progression appartient à la run en cours. Elle représente le développement stable du noyau de l'IA, tandis que les améliorations du corps principal, les modules et l'équipement représentent sa progression matérielle et adaptable. Le corps principal n'est pas remplacé pendant la run.
 
 L'expérience ne doit pas provenir uniquement des ennemis éliminés. Elle peut être accordée pour :
 
@@ -692,6 +701,14 @@ Le système doit empêcher le farming trivial : les adversaires très faibles ra
 L'accès aux couches ne doit pas être bloqué par un niveau obligatoire. La progression doit récompenser plusieurs styles de jeu, notamment le combat, la furtivité, le hacking, l'exploration et la diplomatie.
 
 À la mort, le niveau et l'expérience de la run sont perdus. Les classes ou protocoles de départ déjà débloqués, ainsi que les autres éléments de méta-progression horizontale, restent disponibles et sont enregistrés séparément.
+
+## 8.5. Documentation détaillée du système actuel
+
+Le chapitre [Statistiques et compétences : règles communes](docs/STATISTIQUES_ET_COMPETENCES.md) reprend les bases confirmées et propose la définition des secondaires, leurs contributions et les décisions encore ouvertes. Il distingue explicitement les règles validées des propositions et des valeurs à tester.
+
+Le [catalogue des compétences](docs/PROPOSITION_COMPETENCES_v0.1.md) conserve les fiches des dix compétences actuelles. La présente phase porte sur ce système ; les capacités extérieures à débloquer en jeu sont reportées à beaucoup plus tard, sans suppression de la piste de la section 7.2.
+
+Direction d'équilibrage confirmée : le jeu ne doit être ni facile ni impossible à gagner. Un Blindage suffisant peut absorber totalement une attaque trop faible, sans minimum automatique de 1 dégât. Cela doit rester compatible avec des réponses accessibles aux obstacles obligatoires, sans garantir que tout ennemi soit immédiatement vaincu par toute arme. Les coefficients du premier barème physique restent à valider ; les pistes de vérification sont décrites dans la section 10.8 du chapitre des règles communes.
 
 ---
 
@@ -906,7 +923,7 @@ Le joueur est une IA : le HUD peut donc représenter sa perception interne de la
 
 Éléments :
 
-- intégrité ;
+- points de vie (PV) ;
 - énergie ;
 - modules ;
 - équipement ;
@@ -919,6 +936,8 @@ Le joueur est une IA : le HUD peut donc représenter sa perception interne de la
 - chronologie des événements.
 
 L'UI doit rester extrêmement lisible malgré l'esthétique technique.
+
+Terminologie validée pendant la rédaction des statistiques : Points de vie (PV) pour les personnages et créatures, organiques ou mécaniques ; Durabilité pour les équipements, composants et objets destructibles. Résilience reste une statistique primaire, pas le nom de la jauge de vie. Les règles chiffrées ne changent pas et les identifiants du prototype ne sont pas renommés par cette décision documentaire. Les textes complets restent soumis à validation individuelle.
 
 ---
 
@@ -1264,7 +1283,7 @@ Catégorie « très intéressante » :
 - gaz ;
 - liquides ;
 - destruction partielle ;
-- corps interchangeables ;
+- contrôle temporaire d'un ennemi par une capacité facultative à débloquer hors des arbres (section 7.2) ;
 - anomalies modifiant les règles ;
 - plusieurs voies d'évasion ;
 - plusieurs fins ;
@@ -1350,7 +1369,7 @@ Cette liste est une ambition, pas une promesse :
 - environ 50+ ennemis très distincts ;
 - centaines d'objets si le pipeline data-driven fonctionne ;
 - nombreux builds ;
-- plusieurs familles d'incarnations ;
+- plusieurs familles d'incarnations de départ, sans remplacement du corps principal pendant une run ;
 - factions ;
 - hacking ;
 - simulation environnementale ;
@@ -1425,7 +1444,8 @@ Ces choix doivent être tranchés plus tard :
 - nature du monde extérieur ;
 - niveau exact de conscience des autres entités ;
 - taille des sprites ;
-- fonctionnement exact du personnage/châssis ;
+- forme et emplacements du corps principal, dont la conservation pendant la run est décidée ;
+- règles de la capacité facultative de contrôle temporaire d'un ennemi (section 7.2) ;
 - présence ou non de classes ;
 - profondeur du crafting ;
 - système de progression ;

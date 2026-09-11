@@ -1,18 +1,46 @@
 use std::collections::BTreeMap;
 use std::error::Error;
-use std::fmt::{Display, Formatter};
+use std::fmt::{Debug, Display, Formatter};
 
-use crate::combat::AttackProfile;
-use crate::content::ContentId;
+use crate::combat::{AttackProfile, ConeAttackError};
+use crate::content::{ContentId, ContentIdError};
+use crate::effects::{
+    ApplyStatusEffect, ApplyStatusEffectError, GroundEffectSpec, GroundEffectSpecError,
+};
+use crate::status::StatusId;
 
 pub type WeaponId = ContentId;
 
 #[derive(Clone, Debug, PartialEq, Eq)]
+pub enum WeaponEffect {
+    ApplyStatus(ApplyStatusEffect),
+    CreateGroundEffect(GroundEffectSpec),
+}
+
+#[derive(Clone, PartialEq, Eq)]
 pub struct WeaponDefinition {
     id: WeaponId,
     name_key: String,
     description_key: String,
     attack: AttackProfile,
+    effects: Vec<WeaponEffect>,
+}
+
+// Empty effects are intentionally omitted to preserve the exact historical
+// Debug representation used by suspension rules fingerprints.
+impl Debug for WeaponDefinition {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut weapon = formatter.debug_struct("WeaponDefinition");
+        weapon
+            .field("id", &self.id)
+            .field("name_key", &self.name_key)
+            .field("description_key", &self.description_key)
+            .field("attack", &self.attack);
+        if !self.effects.is_empty() {
+            weapon.field("effects", &self.effects);
+        }
+        weapon.finish()
+    }
 }
 
 impl WeaponDefinition {
@@ -39,7 +67,13 @@ impl WeaponDefinition {
             name_key,
             description_key,
             attack,
+            effects: Vec::new(),
         })
+    }
+
+    pub fn with_effects(mut self, effects: impl IntoIterator<Item = WeaponEffect>) -> Self {
+        self.effects.extend(effects);
+        self
     }
 
     pub const fn id(&self) -> &WeaponId {
@@ -57,14 +91,23 @@ impl WeaponDefinition {
     pub const fn attack(&self) -> AttackProfile {
         self.attack
     }
+
+    pub fn effects(&self) -> &[WeaponEffect] {
+        &self.effects
+    }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub enum WeaponDefinitionError {
     EmptyNameKey,
     EmptyDescriptionKey,
     ZeroRange,
     ZeroDamage,
+    InvalidCone(ConeAttackError),
+    InvalidEffectId(ContentIdError),
+    InvalidStatusEffect(ApplyStatusEffectError),
+    InvalidGroundEffect(GroundEffectSpecError),
+    UnknownStatus(StatusId),
 }
 
 impl Display for WeaponDefinitionError {
@@ -76,6 +119,17 @@ impl Display for WeaponDefinitionError {
             }
             Self::ZeroRange => write!(formatter, "weapon attack range must be positive"),
             Self::ZeroDamage => write!(formatter, "weapon attack damage must be positive"),
+            Self::InvalidCone(error) => write!(formatter, "invalid cone attack: {error}"),
+            Self::InvalidEffectId(error) => write!(formatter, "invalid weapon effect ID: {error}"),
+            Self::InvalidStatusEffect(error) => {
+                write!(formatter, "invalid weapon status effect: {error}")
+            }
+            Self::InvalidGroundEffect(error) => {
+                write!(formatter, "invalid weapon ground effect: {error}")
+            }
+            Self::UnknownStatus(status) => {
+                write!(formatter, "weapon references unknown status '{status}'")
+            }
         }
     }
 }
@@ -103,6 +157,12 @@ impl WeaponCatalog {
 
     pub fn iter(&self) -> impl Iterator<Item = (&WeaponId, &WeaponDefinition)> {
         self.definitions.iter()
+    }
+
+    pub fn without_id(&self, excluded: &WeaponId) -> Self {
+        let mut definitions = self.definitions.clone();
+        definitions.remove(excluded);
+        Self { definitions }
     }
 }
 

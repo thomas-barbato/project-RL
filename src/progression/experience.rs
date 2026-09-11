@@ -145,6 +145,7 @@ impl Error for ExperienceCurveError {}
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct ProgressionRules {
     pub curve: ExperienceCurve,
+    pub starting_skill_points: u16,
     pub skill_points_per_level: u16,
     pub trivial_threat_level_gap: u16,
     pub trivial_reward_percent: u8,
@@ -196,6 +197,7 @@ impl Default for ProgressionRules {
     fn default() -> Self {
         Self {
             curve: ExperienceCurve::default(),
+            starting_skill_points: 2,
             skill_points_per_level: 1,
             trivial_threat_level_gap: 3,
             trivial_reward_percent: 0,
@@ -323,22 +325,29 @@ pub struct ExperienceAwardOutcome {
 pub struct RunProgression {
     experience: u64,
     level: u16,
+    skill_points_earned: u32,
     unspent_skill_points: u32,
     claimed_one_time_rewards: BTreeSet<RewardKey>,
 }
 
 impl Default for RunProgression {
     fn default() -> Self {
-        Self {
-            experience: 0,
-            level: 1,
-            unspent_skill_points: 0,
-            claimed_one_time_rewards: BTreeSet::new(),
-        }
+        Self::with_starting_skill_points(0)
     }
 }
 
 impl RunProgression {
+    pub fn with_starting_skill_points(starting_skill_points: u16) -> Self {
+        let starting_skill_points = u32::from(starting_skill_points);
+        Self {
+            experience: 0,
+            level: 1,
+            skill_points_earned: starting_skill_points,
+            unspent_skill_points: starting_skill_points,
+            claimed_one_time_rewards: BTreeSet::new(),
+        }
+    }
+
     pub const fn experience(&self) -> u64 {
         self.experience
     }
@@ -349,6 +358,72 @@ impl RunProgression {
 
     pub const fn unspent_skill_points(&self) -> u32 {
         self.unspent_skill_points
+    }
+
+    pub const fn skill_points_earned(&self) -> u32 {
+        self.skill_points_earned
+    }
+
+    pub fn claimed_one_time_rewards(&self) -> impl Iterator<Item = &RewardKey> {
+        self.claimed_one_time_rewards.iter()
+    }
+
+    pub fn spend_skill_points(&mut self, amount: u16) -> Result<(), SkillPointSpendError> {
+        let required = u32::from(amount);
+        if self.unspent_skill_points < required {
+            return Err(SkillPointSpendError {
+                required: amount,
+                available: self.unspent_skill_points,
+            });
+        }
+        self.unspent_skill_points -= required;
+        Ok(())
+    }
+
+    pub(crate) fn from_saved_parts(
+        experience: u64,
+        level: u16,
+        skill_points_earned: u32,
+        unspent_skill_points: u32,
+        claimed_one_time_rewards: impl IntoIterator<Item = RewardKey>,
+        rules: &ProgressionRules,
+    ) -> Result<Self, RunProgressionRestoreError> {
+        let expected_level = rules.curve.level_for_experience(experience);
+        if level != expected_level {
+            return Err(RunProgressionRestoreError::LevelMismatch {
+                saved: level,
+                expected: expected_level,
+            });
+        }
+        if unspent_skill_points > skill_points_earned {
+            return Err(RunProgressionRestoreError::UnspentPointsExceedEarned {
+                unspent: unspent_skill_points,
+                earned: skill_points_earned,
+            });
+        }
+        let expected_skill_points = u32::from(rules.starting_skill_points).saturating_add(
+            u32::from(level.saturating_sub(1))
+                .saturating_mul(u32::from(rules.skill_points_per_level)),
+        );
+        if skill_points_earned != expected_skill_points {
+            return Err(RunProgressionRestoreError::EarnedSkillPointsMismatch {
+                saved: skill_points_earned,
+                expected: expected_skill_points,
+            });
+        }
+        let mut claimed = BTreeSet::new();
+        for key in claimed_one_time_rewards {
+            if !claimed.insert(key.clone()) {
+                return Err(RunProgressionRestoreError::DuplicateRewardKey(key));
+            }
+        }
+        Ok(Self {
+            experience,
+            level,
+            skill_points_earned,
+            unspent_skill_points,
+            claimed_one_time_rewards: claimed,
+        })
     }
 
     pub fn has_claimed(&self, key: &RewardKey) -> bool {
@@ -384,6 +459,7 @@ impl RunProgression {
         let total_skill_points = u32::from(rules.skill_points_per_level)
             .saturating_mul(u32::try_from(level_gains.len()).unwrap_or(u32::MAX));
         self.unspent_skill_points = self.unspent_skill_points.saturating_add(total_skill_points);
+        self.skill_points_earned = self.skill_points_earned.saturating_add(total_skill_points);
         self.level = new_level;
 
         ExperienceAwardOutcome {
@@ -396,6 +472,56 @@ impl RunProgression {
     }
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct SkillPointSpendError {
+    pub required: u16,
+    pub available: u32,
+}
+
+impl Display for SkillPointSpendError {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(
+            formatter,
+            "requires {} skill points but only {} are available",
+            self.required, self.available
+        )
+    }
+}
+
+impl Error for SkillPointSpendError {}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum RunProgressionRestoreError {
+    LevelMismatch { saved: u16, expected: u16 },
+    UnspentPointsExceedEarned { unspent: u32, earned: u32 },
+    EarnedSkillPointsMismatch { saved: u32, expected: u32 },
+    DuplicateRewardKey(RewardKey),
+}
+
+impl Display for RunProgressionRestoreError {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::LevelMismatch { saved, expected } => write!(
+                formatter,
+                "saved level {saved} does not match level {expected} derived from experience"
+            ),
+            Self::UnspentPointsExceedEarned { unspent, earned } => write!(
+                formatter,
+                "saved unspent skill points {unspent} exceed earned points {earned}"
+            ),
+            Self::EarnedSkillPointsMismatch { saved, expected } => write!(
+                formatter,
+                "saved earned skill points {saved} do not match {expected} expected from progression rules"
+            ),
+            Self::DuplicateRewardKey(key) => {
+                write!(formatter, "duplicate claimed reward key '{}'", key.as_str())
+            }
+        }
+    }
+}
+
+impl Error for RunProgressionRestoreError {}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -404,6 +530,7 @@ mod tests {
         ProgressionRules {
             curve: ExperienceCurve::new(vec![10, 25, 50])
                 .unwrap_or_else(|error| panic!("valid curve rejected: {error}")),
+            starting_skill_points: 0,
             skill_points_per_level: 2,
             trivial_threat_level_gap: 3,
             trivial_reward_percent: 0,
@@ -438,6 +565,27 @@ mod tests {
                 },
             ]
         );
+    }
+
+    #[test]
+    fn configured_starting_points_and_failed_spending_preserve_the_budget() {
+        let mut progression = RunProgression::with_starting_skill_points(2);
+
+        assert_eq!(progression.skill_points_earned(), 2);
+        assert_eq!(progression.unspent_skill_points(), 2);
+        assert_eq!(
+            progression.spend_skill_points(3),
+            Err(SkillPointSpendError {
+                required: 3,
+                available: 2,
+            })
+        );
+        assert_eq!(progression.unspent_skill_points(), 2);
+        progression
+            .spend_skill_points(1)
+            .unwrap_or_else(|error| panic!("available point could not be spent: {error}"));
+        assert_eq!(progression.skill_points_earned(), 2);
+        assert_eq!(progression.unspent_skill_points(), 1);
     }
 
     #[test]

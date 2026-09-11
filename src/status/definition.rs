@@ -150,6 +150,12 @@ impl StatusCatalog {
     pub fn contains(&self, id: &StatusId) -> bool {
         self.definitions.contains_key(id)
     }
+
+    pub fn without_id(&self, excluded: &StatusId) -> Self {
+        let mut definitions = self.definitions.clone();
+        definitions.remove(excluded);
+        Self { definitions }
+    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]

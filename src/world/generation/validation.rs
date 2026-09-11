@@ -2,7 +2,87 @@ use std::collections::{BTreeSet, VecDeque};
 use std::error::Error;
 use std::fmt::{Display, Formatter};
 
-use crate::world::{GridPos, Map};
+use crate::world::{DoorState, GridPos, Map, Terrain};
+
+/// Potential navigation after ordinary doors are opened and reachable consoles
+/// used. A locked door cannot validate its own control from behind itself.
+/// Does not mutate the live map or claim that closed doors are walkable now.
+pub fn validate_interactive_map(
+    map: &Map,
+    start: GridPos,
+    exit: GridPos,
+    required: &[GridPos],
+    rules: MapValidationRules,
+) -> Result<(), MapValidationError> {
+    struct Navigation<'a> {
+        map: &'a Map,
+        unlocked: BTreeSet<GridPos>,
+    }
+    impl WalkabilityQuery for Navigation<'_> {
+        fn width(&self) -> usize {
+            self.map.width()
+        }
+        fn height(&self) -> usize {
+            self.map.height()
+        }
+        fn is_walkable(&self, p: GridPos) -> bool {
+            self.map.tile(p).is_some_and(|t| match t.terrain {
+                Terrain::Door(DoorState::Closed | DoorState::Open) => true,
+                Terrain::Door(DoorState::Locked) => self.unlocked.contains(&p),
+                other => !other.blocks_movement(),
+            })
+        }
+    }
+    let mut controls = Vec::new();
+    for y in 0..map.height() as i32 {
+        for x in 0..map.width() as i32 {
+            let at = GridPos::new(x, y);
+            if let Some(Terrain::ControlPanel { door, activated }) = map.tile(at).map(|t| t.terrain)
+            {
+                if !matches!(map.tile(door).map(|t| t.terrain), Some(Terrain::Door(_))) {
+                    return Err(MapValidationError::InvalidControlLink(at));
+                }
+                controls.push((at, door, activated));
+            }
+        }
+    }
+    let mut view = Navigation {
+        map,
+        unlocked: BTreeSet::new(),
+    };
+    loop {
+        let reachable = flood_fill(&view, start);
+        let mut changed = false;
+        for (at, door, activated) in &controls {
+            if !activated
+                && at
+                    .cardinal_neighbors()
+                    .iter()
+                    .any(|p| reachable.contains(p))
+            {
+                changed |= view.unlocked.insert(*door);
+            }
+        }
+        if !changed {
+            break;
+        }
+    }
+    validate_playable_map(&view, start, exit, required, rules)?;
+    let reachable = flood_fill(&view, start);
+    for (index, (at, _, _)) in controls.iter().enumerate() {
+        if !at
+            .cardinal_neighbors()
+            .iter()
+            .any(|p| reachable.contains(p))
+        {
+            return Err(MapValidationError::UnreachableRequiredPosition {
+                index,
+                position: *at,
+            });
+        }
+    }
+    Ok(())
+}
 
 /// Navigation view consumed by validation. A future decorated-level wrapper can
 /// include blocking props or actors without changing the validator.
@@ -149,6 +229,7 @@ fn grid_position(x: usize, y: usize) -> Option<GridPos> {
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum MapValidationError {
+    InvalidControlLink(GridPos),
     EmptyMap,
     DimensionsExceedGridCoordinates,
     BlockedPlayerStart(GridPos),
@@ -163,6 +244,9 @@ pub enum MapValidationError {
 impl Display for MapValidationError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::InvalidControlLink(position) => {
+                write!(formatter, "control at {position:?} has no valid door")
+            }
             Self::EmptyMap => write!(formatter, "generated map is empty"),
             Self::DimensionsExceedGridCoordinates => {
                 write!(

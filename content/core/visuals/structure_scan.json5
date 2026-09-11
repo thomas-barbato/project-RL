@@ -1,0 +1,10 @@
+{
+  id: "core:structure_scan",
+  terminal: {
+    frames: ["dot", "burst"],
+    color: [104, 226, 214, 255],
+    frame_millis: 120,
+    step_millis: 0,
+    linger_millis: 1200,
+  },
+}

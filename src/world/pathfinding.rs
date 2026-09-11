@@ -38,7 +38,32 @@ pub fn find_path<F>(
 where
     F: Fn(GridPos) -> bool,
 {
-    if !map.is_walkable(start) || !map.is_walkable(goal) {
+    find_path_with(
+        map,
+        start,
+        goal,
+        maximum_visited,
+        |map, position| map.is_walkable(position),
+        can_enter,
+    )
+}
+
+/// Deterministic A* with a caller-provided terrain traversal policy. This lets
+/// actors plan through terrain they can change (for example an ordinary closed
+/// door) without weakening the default pathfinder used by combat AI.
+pub fn find_path_with<T, F>(
+    map: &Map,
+    start: GridPos,
+    goal: GridPos,
+    maximum_visited: usize,
+    can_traverse: T,
+    can_enter: F,
+) -> Option<Vec<GridPos>>
+where
+    T: Fn(&Map, GridPos) -> bool,
+    F: Fn(GridPos) -> bool,
+{
+    if !can_traverse(map, start) || !can_traverse(map, goal) {
         return None;
     }
 
@@ -62,7 +87,7 @@ where
         visited += 1;
 
         for neighbor in current.position.cardinal_neighbors() {
-            if !map.is_walkable(neighbor) || (neighbor != goal && !can_enter(neighbor)) {
+            if !can_traverse(map, neighbor) || (neighbor != goal && !can_enter(neighbor)) {
                 continue;
             }
 
@@ -151,5 +176,38 @@ mod tests {
         );
 
         assert_eq!(path, None);
+    }
+
+    #[test]
+    fn custom_terrain_policy_can_plan_through_a_closed_door() {
+        let mut map = parse_map("#####\n#...#\n#####");
+        map.set_terrain(
+            GridPos::new(2, 1),
+            super::super::Terrain::Door(super::super::DoorState::Closed),
+        )
+        .unwrap();
+        let path = find_path_with(
+            &map,
+            GridPos::new(1, 1),
+            GridPos::new(3, 1),
+            100,
+            |map, position| {
+                map.is_walkable(position)
+                    || matches!(
+                        map.tile(position).map(|tile| tile.terrain),
+                        Some(super::super::Terrain::Door(super::super::DoorState::Closed))
+                    )
+            },
+            |_| true,
+        );
+
+        assert_eq!(
+            path,
+            Some(vec![
+                GridPos::new(1, 1),
+                GridPos::new(2, 1),
+                GridPos::new(3, 1),
+            ])
+        );
     }
 }

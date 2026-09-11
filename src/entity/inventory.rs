@@ -1,9 +1,8 @@
 use std::error::Error;
-use std::fmt::{Display, Formatter};
+use std::fmt::{Debug, Display, Formatter};
 
-use crate::content::ContentId;
-
-pub type ItemId = ContentId;
+pub use crate::item::ItemId;
+use crate::social::SocialGroupId;
 
 /// Stable identity of one inventory stack during a run.
 ///
@@ -18,11 +17,26 @@ impl ItemInstanceId {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
 pub struct InventoryEntry {
     instance: ItemInstanceId,
     item: ItemId,
     quantity: u16,
+    owner: Option<SocialGroupId>,
+}
+
+impl Debug for InventoryEntry {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut entry = formatter.debug_struct("InventoryEntry");
+        entry
+            .field("instance", &self.instance)
+            .field("item", &self.item)
+            .field("quantity", &self.quantity);
+        if let Some(owner) = &self.owner {
+            entry.field("owner", owner);
+        }
+        entry.finish()
+    }
 }
 
 impl InventoryEntry {
@@ -36,6 +50,10 @@ impl InventoryEntry {
 
     pub const fn quantity(&self) -> u16 {
         self.quantity
+    }
+
+    pub const fn owner(&self) -> Option<&SocialGroupId> {
+        self.owner.as_ref()
     }
 }
 
@@ -90,6 +108,18 @@ impl Inventory {
         quantity: u16,
         maximum_stack: u16,
     ) -> Result<Vec<ItemInstanceId>, InventoryError> {
+        self.add_with_owner(item, quantity, maximum_stack, None)
+    }
+
+    /// Owned and unowned lots never merge: provenance remains attached to the
+    /// exact quantity through pickup, stacking and dropping.
+    pub fn add_with_owner(
+        &mut self,
+        item: ItemId,
+        quantity: u16,
+        maximum_stack: u16,
+        owner: Option<SocialGroupId>,
+    ) -> Result<Vec<ItemInstanceId>, InventoryError> {
         if quantity == 0 {
             return Err(InventoryError::ZeroQuantity);
         }
@@ -100,7 +130,7 @@ impl Inventory {
         let reusable_capacity: u32 = self
             .entries
             .iter()
-            .filter(|entry| entry.item == item)
+            .filter(|entry| entry.item == item && entry.owner == owner)
             .map(|entry| u32::from(maximum_stack.saturating_sub(entry.quantity)))
             .sum();
         let remaining_after_reuse = u32::from(quantity).saturating_sub(reusable_capacity);
@@ -128,7 +158,11 @@ impl Inventory {
 
         let mut remaining = quantity;
         let mut affected = Vec::new();
-        for entry in self.entries.iter_mut().filter(|entry| entry.item == item) {
+        for entry in self
+            .entries
+            .iter_mut()
+            .filter(|entry| entry.item == item && entry.owner == owner)
+        {
             if remaining == 0 {
                 break;
             }
@@ -147,6 +181,7 @@ impl Inventory {
                 instance,
                 item: item.clone(),
                 quantity: stacked,
+                owner: owner.clone(),
             });
             affected.push(instance);
             remaining -= stacked;
@@ -303,5 +338,21 @@ mod tests {
             inventory.get(second).map(InventoryEntry::item),
             Some(&item("core:second"))
         );
+    }
+
+    #[test]
+    fn differently_owned_lots_never_merge() {
+        let mut inventory = Inventory::new(3);
+        let definition = item("core:component");
+        let owner: SocialGroupId = "core:maintainers".parse().unwrap();
+        let unowned = inventory.add(definition.clone(), 2, 4).unwrap()[0];
+        let owned = inventory
+            .add_with_owner(definition, 2, 4, Some(owner.clone()))
+            .unwrap()[0];
+
+        assert_ne!(unowned, owned);
+        assert_eq!(inventory.get(unowned).unwrap().owner(), None);
+        assert_eq!(inventory.get(owned).unwrap().owner(), Some(&owner));
+        assert_eq!(inventory.len(), 2);
     }
 }

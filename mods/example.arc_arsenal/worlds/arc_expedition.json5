@@ -1,0 +1,26 @@
+// Alternate expedition supplied entirely by a mod. The current test client
+// still selects core:starter_expedition, but the engine loads and validates
+// this definition alongside core content without any Rust registration.
+{
+  id: "example.arc_arsenal:arc_expedition",
+  hub: {
+    id: "core:starter_city",
+    name: "Ville de départ / Friches",
+    kind: "core:surface",
+    depth: 0,
+  },
+  destination: {
+    id: "example.arc_arsenal:arc_salvage_sector",
+    name: "Dépôt d'armes effondré",
+    kind: "core:industrial",
+    depth: 1,
+  },
+  passage: [67, 21],
+  width: 58,
+  height: 40,
+  rooms: 9,
+  seed_salt: 30191,
+  loot_table: "example.arc_arsenal:industrial_floor",
+  loot_source: "core:floor",
+  loot_draws: 2,
+}

@@ -1,7 +1,7 @@
 use std::cmp::Ordering;
 use std::collections::{BTreeMap, BinaryHeap};
 
-use super::{GridPos, Map, Terrain};
+use super::{GridPos, Map};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum NeighborMode {
@@ -48,9 +48,10 @@ impl TerrainPropagationPolicy {
 
 impl PropagationPolicy for TerrainPropagationPolicy {
     fn traversal_cost(&self, map: &Map, _from: GridPos, to: GridPos) -> Option<u16> {
-        match map.tile(to)?.terrain {
-            Terrain::Floor => self.floor_cost,
-            Terrain::Wall => self.wall_cost,
+        if map.tile(to)?.terrain.blocks_movement() {
+            self.wall_cost
+        } else {
+            self.floor_cost
         }
     }
 }

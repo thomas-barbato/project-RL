@@ -98,6 +98,22 @@ impl Map {
         self.index(position).is_some()
     }
 
+    pub fn is_protected(&self, position: GridPos) -> bool {
+        self.tile(position).is_some_and(|tile| tile.protected)
+    }
+
+    pub fn set_protected(
+        &mut self,
+        position: GridPos,
+        protected: bool,
+    ) -> Result<(), MapBuildError> {
+        let index = self
+            .index(position)
+            .ok_or(MapBuildError::PositionOutsideMap(position))?;
+        self.tiles[index].protected = protected;
+        Ok(())
+    }
+
     pub fn is_walkable(&self, position: GridPos) -> bool {
         self.tile(position)
             .is_some_and(|tile| !tile.terrain.blocks_movement())

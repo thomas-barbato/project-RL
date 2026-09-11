@@ -1,0 +1,41 @@
+{
+  id: "core:flamethrower",
+  name_key: "weapon.flamethrower.name",
+  description_key: "weapon.flamethrower.description",
+
+  attack: {
+    range: 7,
+    distance_metric: "euclidean",
+    requires_line_of_sight: true,
+    area: {
+      type: "cone",
+      narrow_length: 2,
+      maximum_half_width: 2,
+      widen_every: 3,
+    },
+    damage: {
+      // Prototype values, deliberately kept in content data.
+      amount: 4,
+      damage_type: "thermal",
+      penetration: 0,
+    },
+  },
+
+  effects: [
+    {
+      type: "apply_status",
+      status: "core:burning",
+      stacks: 1,
+    },
+    {
+      type: "create_ground_effect",
+      id: "core:burning_ground",
+      duration_turns: 3,
+      damage_each_turn: {
+        amount: 1,
+        damage_type: "thermal",
+        penetration: 0,
+      },
+    },
+  ],
+}

@@ -34,6 +34,10 @@ pub struct VisibilityState {
 }
 
 impl VisibilityState {
+    pub(crate) fn clear_visible(&mut self) {
+        self.visible.clear();
+    }
+
     pub fn recompute(&mut self, map: &Map, origin: GridPos, rules: FieldOfViewRules) {
         self.visible = compute_visible_tiles(map, origin, rules);
         self.explored.extend(self.visible.iter().copied());

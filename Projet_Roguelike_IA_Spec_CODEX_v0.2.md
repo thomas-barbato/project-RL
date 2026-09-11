@@ -639,7 +639,7 @@ RUN PROGRESSION
     -> experience, levels, skills and stable core growth
 
 MATERIAL ADAPTATION
-    -> chassis, equipment and replaceable modules
+    -> improvements to the same main body, equipment and replaceable modules
 
 SOCIAL PROGRESSION
     -> faction reputation and individual relationships
@@ -680,6 +680,32 @@ Requirements:
 - meta unlocks, including unlocked starting classes, are stored separately from run progression.
 
 Rendering and UI must never calculate or mutate experience directly.
+
+Detailed design work is tracked in [Stats and skills: shared rules](docs/STATISTIQUES_ET_COMPETENCES.md) and the [skill catalogue](docs/PROPOSITION_COMPETENCES_v0.1.md). Their confirmed decisions, proposals awaiting approval and provisional tuning values have distinct statuses. The current documentation scope is the existing attribute and skill system; independent abilities unlocked in the world are deferred until much later and are not a prerequisite for this work.
+
+---
+
+# 17.6. Main body continuity and optional enemy control
+
+Scope update: the user has deferred independent unlockable abilities until much later. Retain the notes below for continuity; do not expand their design as part of the current stats and skill documentation.
+
+User clarification, 10 September 2026: the player's main body remains the same throughout a run. Equipment and improvements may change; permanent body swapping is not part of the progression design. Learned core abilities persist across equipment changes, while their usability may require compatible equipment. This does not change run death/restart rules.
+
+A future optional ability may temporarily place an enemy under direct player control. It is unlocked in the game world, outside the existing skill trees; its name and acquisition method are not decided. During the effect, the main body stays at its location, present but switched off and inactive. The intended normal end of the effect returns control to the main body; interruption and destruction cases are unresolved. This is neither a permanent body replacement nor a resurrection mechanic, and it does not add a rank or choice to an existing tree.
+
+User-confirmed rule: the inactive main body remains vulnerable and can take damage during control. Placing it in shelter before activation is a tactical choice; being switched off grants no automatic protection.
+
+Before implementing this ability, define:
+
+- eligible targets, resistance and unlock requirements;
+- duration, costs, range/link requirements and voluntary or forced termination;
+- whether damage to the main body interrupts control, and the consequences of its destruction;
+- consequences of the controlled enemy's death;
+- available actions and the source of effective attributes, resources and abilities;
+- the perception origin during control, preserving wall occlusion and explicit information boundaries rather than implicitly merging both actors' views;
+- experience attribution and faction consequences.
+
+Do not infer invulnerability, invisibility or immunity from the word "inactive". The ability is a future design option, separate from ordinary drone orders or device hacking; it is not specified as implemented by this document.
 
 ---
 

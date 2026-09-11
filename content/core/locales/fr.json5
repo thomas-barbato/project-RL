@@ -1,0 +1,26 @@
+{
+  locale: "fr",
+  entries: {
+    "discipline.reconnaissance.name": "Reconnaissance",
+    "item.power_regulator.name": "Régulateur de puissance",
+    "item.power_regulator.description": "Composant de distribution destiné aux relais et mécanismes alimentés.",
+    "weapon.flamethrower.name": "Lance-flammes industriel",
+    "weapon.flamethrower.description": "Projette un long cône de feu qui brûle les cibles et embrase temporairement le sol.",
+    "technique.rec_01.name": "Analyse de cible",
+    "technique.rec_02.name": "Lecture de traces",
+    "technique.rec_03.name": "Inspection minutieuse",
+    "technique.rec_04.name": "Repérage des parois fragiles",
+    "technique.rec_05.name": "Profil de menace",
+    "technique.rec_08.name": "Diagnostic énergétique",
+    "technique.rec_09.name": "Analyse multiple",
+    // Descriptions issues des textes joueur ; l'écran précise séparément
+    // les limites des primitives actuellement simulées dans le prototype.
+    "technique.rec_01.description": "Examine une cible perçue pour préciser son état, son matériel observable et les résistances ou faiblesses identifiables.",
+    "technique.rec_02.description": "Examine les traces locales pour en déduire une direction et une ancienneté approximative.",
+    "technique.rec_03.description": "Recherche les indices de pièges, caches, commandes dissimulées ou passages secrets dans les cases observables.",
+    "technique.rec_04.description": "Examine les parois observables pour identifier un matériau peu résistant ou une dégradation exploitable.",
+    "technique.rec_05.description": "Précise les possibilités offensives et défensives d’un adversaire à partir de ce qui est observable ou documenté.",
+    "technique.rec_08.description": "Examine la chaleur, l’alimentation et le stockage d’énergie accessibles d’une machine pour guider vos choix.",
+    "technique.rec_09.description": "Applique Analyse de cible à plusieurs cibles perçues au cours d’une même action.",
+  },
+}

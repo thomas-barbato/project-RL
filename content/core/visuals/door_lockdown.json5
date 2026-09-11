@@ -1,0 +1,10 @@
+{
+  id: "core:door_lockdown",
+  terminal: {
+    frames: ["dot", "alarm", "spark"],
+    color: [255, 175, 83, 255],
+    frame_millis: 90,
+    step_millis: 0,
+    linger_millis: 200,
+  },
+}

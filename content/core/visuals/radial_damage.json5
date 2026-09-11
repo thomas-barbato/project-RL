@@ -1,0 +1,10 @@
+{
+  id: "core:radial_damage",
+  terminal: {
+    frames: ["dot", "spark", "burst"],
+    color: [255, 173, 66, 255],
+    frame_millis: 65,
+    step_millis: 55,
+    linger_millis: 80,
+  },
+}

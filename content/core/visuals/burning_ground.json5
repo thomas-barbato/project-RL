@@ -1,0 +1,14 @@
+{
+  id: "core:burning_ground",
+  terminal: {
+    frames: ["flame_small", "flame"],
+    color: [173, 50, 19, 210],
+    accent_colors: [
+      [246, 108, 22, 230],
+      [255, 205, 68, 250],
+    ],
+    frame_millis: 90,
+    step_millis: 0,
+    linger_millis: 80,
+  },
+}

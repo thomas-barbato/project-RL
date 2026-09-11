@@ -134,6 +134,24 @@ pub struct GeneratedMap {
 }
 
 impl GeneratedMap {
+    /// Accept an authored layout through the same navigation contract as a
+    /// procedural level. Validation runs on the final, decorated terrain.
+    pub fn from_layout(
+        map: Map,
+        player_start: GridPos,
+        exit: GridPos,
+        required_positions: &[GridPos],
+        validation: MapValidationRules,
+    ) -> Result<Self, MapValidationError> {
+        super::validate_interactive_map(&map, player_start, exit, required_positions, validation)?;
+        Ok(Self {
+            map,
+            player_start,
+            exit,
+            rooms: Vec::new(),
+        })
+    }
+
     pub const fn map(&self) -> &Map {
         &self.map
     }

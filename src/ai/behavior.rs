@@ -24,7 +24,9 @@ pub struct AiSituation<'a> {
 }
 
 pub fn decide_action(situation: AiSituation<'_>) -> AiAction {
-    if situation.profile.behavior == AiBehavior::Idle {
+    if situation.profile.behavior == AiBehavior::Idle
+        || situation.map.is_protected(situation.target_position)
+    {
         return AiAction::Wait;
     }
 
@@ -66,7 +68,10 @@ pub fn decide_action(situation: AiSituation<'_>) -> AiAction {
         situation.actor_position,
         situation.target_position,
         situation.profile.maximum_path_search,
-        |position| !situation.occupied_positions.contains(&position),
+        |position| {
+            !situation.occupied_positions.contains(&position)
+                && !situation.map.is_protected(position)
+        },
     );
     let Some(next_position) = path.and_then(|path| path.get(1).copied()) else {
         return AiAction::Wait;
@@ -91,6 +96,7 @@ fn retreat_direction(situation: &AiSituation<'_>) -> Option<Direction> {
     ] {
         let destination = situation.actor_position.step(direction);
         if !situation.map.is_walkable(destination)
+            || situation.map.is_protected(destination)
             || situation.occupied_positions.contains(&destination)
         {
             continue;

@@ -1,0 +1,24 @@
+{
+  id: "core:burning",
+  duration_turns: 3,
+
+  stacking: {
+    mode: "refresh_duration",
+  },
+
+  hooks: [
+    {
+      trigger: "turn_end",
+      effects: [
+        {
+          type: "deal_damage",
+          // Prototype value: balance will be handled separately.
+          amount: 2,
+          damage_type: "thermal",
+          penetration: 0,
+          multiply_by_stacks: false,
+        },
+      ],
+    },
+  ],
+}

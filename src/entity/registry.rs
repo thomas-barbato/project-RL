@@ -22,6 +22,15 @@ impl Default for ActorRegistry {
 }
 
 impl ActorRegistry {
+    pub(crate) fn synchronize_ids(&mut self, other: &Self) {
+        self.next_id = self.next_id.max(other.next_id);
+    }
+
+    pub(crate) fn insert_existing(&mut self, id: EntityId, actor: Actor) {
+        assert!(!self.actors.contains_key(&id), "entity ID already present");
+        self.actors.insert(id, actor);
+    }
+
     pub fn spawn(&mut self, actor: Actor) -> Result<EntityId, RegistryError> {
         let following_id = self
             .next_id

@@ -1,0 +1,56 @@
+// Pure documentary model, not the Rust progression system.
+// Check every reachable prefix after a version mask and optional ordered class grants.
+export function inspectProgression(pool, parents, disabled = new Set(), initial = []) {
+  const byId = new Map(pool.map((entry) => [entry.id, entry]));
+  const invalid = (reason) => ({ validInitial: false, reason, allPathsComplete: false,
+    countsByRank: Array(6).fill(0), deadEnds: [], reachedIds: [], availableIds: [], unavailableIds: [] });
+  if (byId.size !== pool.length || pool.some((e) => !Number.isInteger(e.rank) || e.rank < 1 || e.rank > 5)) {
+    return invalid('invalid-catalogue');
+  }
+  const available = new Set(pool.filter((e) => !disabled.has(e.id)).map((e) => e.id));
+  let changed;
+  do {
+    changed = false;
+    for (const id of available) {
+      const parent = parents.get(id);
+      if (parent && !available.has(parent)) { available.delete(id); changed = true; }
+    }
+  } while (changed);
+  if (initial.length > 5) return invalid('too-many-initial-choices');
+  const learned = new Set();
+  for (const [index, id] of initial.entries()) {
+    if (!available.has(id)) return invalid('initial-choice-unavailable');
+    if (learned.has(id)) return invalid('duplicate-initial-choice');
+    if (byId.get(id).rank > index + 1) return invalid('initial-rank-too-low');
+    if (parents.has(id) && !learned.has(parents.get(id))) return invalid('initial-prerequisite-missing');
+    learned.add(id);
+  }
+  const key = (state) => [...state].sort().join(',');
+  const levels = Array.from({ length: 6 }, () => new Map());
+  levels[learned.size].set(key(learned), learned);
+  const deadEnds = [];
+  const reached = new Set(learned);
+  for (let rank = learned.size; rank < 5; rank += 1) {
+    for (const state of levels[rank].values()) {
+      let successors = 0;
+      for (const id of available) {
+        if (state.has(id) || byId.get(id).rank > rank + 1) continue;
+        if (parents.has(id) && !state.has(parents.get(id))) continue;
+        const next = new Set([...state, id]);
+        levels[rank + 1].set(key(next), next);
+        reached.add(id);
+        successors += 1;
+      }
+      if (successors === 0) deadEnds.push([...state].sort());
+    }
+  }
+  return {
+    validInitial: true,
+    allPathsComplete: deadEnds.length === 0 && levels[5].size > 0,
+    countsByRank: levels.map((states) => states.size),
+    deadEnds,
+    reachedIds: [...reached].sort(),
+    availableIds: [...available].sort(),
+    unavailableIds: pool.filter((e) => !available.has(e.id)).map((e) => e.id).sort(),
+  };
+}

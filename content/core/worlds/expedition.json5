@@ -1,0 +1,107 @@
+// First playable expedition. Metadata and generation parameters are data,
+// not decisions made by the terminal renderer. New providers can supply further
+// ZoneBlueprints and reciprocal links through the headless WorldState API.
+{
+  id: "core:starter_expedition",
+  hub: { id: "core:starter_city", name: "Ville de départ / Friches", kind: "core:surface", depth: 0 },
+  destination: { id: "core:industrial_sector", name: "Secteur industriel", kind: "core:industrial", depth: 1 },
+  passage: [67, 21],
+  width: 64,
+  height: 44,
+  rooms: 10,
+  seed_salt: 91827,
+  loot_table: "core:industrial_floor",
+  loot_source: "core:floor",
+  loot_draws: 2,
+
+  // First autonomous material circuit. Coordinates belong to the fixed hub;
+  // the headless facility system itself is reusable by other content providers.
+  hub_facility: {
+    // Technical group ID only; its final player-facing name remains undecided.
+    owner: "core:maintenance_collective",
+    installations: [
+      {
+        id: "core:maintenance_relay",
+        // External access prevents a circular dependency: this relay can be
+        // serviced even while the checkpoint door it powers is unpowered.
+        position: [46, 32],
+        maximum_integrity: 12,
+        integrity: 0,
+        capabilities: [{ type: "power_relay" }],
+      },
+      {
+        id: "core:service_door_actuator",
+        position: [50, 35],
+        maximum_integrity: 8,
+        integrity: 8,
+        capabilities: [{ type: "door_actuator", door: [52, 28] }],
+        dependencies: ["core:maintenance_relay"],
+      },
+      {
+        id: "core:checkpoint_sensor",
+        position: [52, 35],
+        maximum_integrity: 8,
+        integrity: 8,
+        capabilities: [{ type: "security_sensor" }],
+        dependencies: ["core:maintenance_relay"],
+        // Installed alarms are separate from individual witness reactions.
+        // This sensor only sees through its declared field of view while its
+        // power dependency is operational.
+        security_alarm: {
+          radius: 8,
+          duration_turns: 8,
+          // Response primitives refer to stable installation IDs; the engine
+          // resolves the actuator's door and refuses unsafe confinement.
+          responses: [
+            { type: "lock_doors", actuator: "core:service_door_actuator" },
+          ],
+        },
+      },
+      {
+        id: "core:maintenance_depot",
+        position: [28, 31],
+        maximum_integrity: 16,
+        integrity: 16,
+        capabilities: [{ type: "storage" }],
+      },
+    ],
+    depot: "core:maintenance_depot",
+    workers: [
+      {
+        position: [24, 32],
+        role: "retriever",
+        maximum_integrity: 12,
+        affiliation: "core:maintenance_collective",
+        witness: { radius: 10, memory_capacity: 16 },
+        // Prototype duration; mods can tune or omit this individual reaction.
+        local_alert: { duration_turns: 8 },
+      },
+      {
+        position: [44, 32],
+        role: "technician",
+        maximum_integrity: 12,
+        affiliation: "core:maintenance_collective",
+        witness: { radius: 10, memory_capacity: 16 },
+        local_alert: { duration_turns: 8 },
+      },
+    ],
+    repair_orders: [
+      {
+        id: "core:restore_checkpoint_power",
+        target: "core:maintenance_relay",
+        required_item: "core:power_regulator",
+        required_quantity: 1,
+        work_turns: 5,
+      },
+    ],
+    materials: [
+      {
+        position: [16, 23],
+        item: "core:power_regulator",
+        quantity: 1,
+        owner: "core:maintenance_collective",
+      },
+    ],
+    maximum_path_search: 15000,
+  },
+}
