@@ -13,6 +13,22 @@ use crate::world::{DistanceMetric, FieldOfViewRules, GridPos};
 
 pub type SocialGroupId = ContentId;
 
+/// Authored combat disposition toward the player and their controlled allies.
+///
+/// This deliberately remains separate from social affiliation: sharing a
+/// community is not sufficient to infer friendship, and having an AI is not
+/// sufficient to infer hostility. A later diplomacy layer can resolve this
+/// value from reputation and witnessed acts without changing combat callers.
+/// The first consumer is autonomous companion target acquisition; this is not
+/// yet a complete actor-to-actor diplomacy simulation.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub enum PlayerRelation {
+    Allied,
+    #[default]
+    Neutral,
+    Hostile,
+}
+
 pub const MAX_WITNESS_RANGE: u16 = 64;
 pub const MAX_WITNESS_MEMORIES: u16 = 256;
 pub const MAX_LOCAL_ALERT_DURATION_TURNS: u16 = 10_000;

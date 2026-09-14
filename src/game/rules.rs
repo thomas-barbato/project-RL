@@ -82,6 +82,12 @@ pub struct GameRules {
     /// Enables the timeless, replayable four-behavior companion command.
     /// Drones are the first actor type implementing this generic contract.
     pub player_companion_behaviors: bool,
+    /// Makes companion routines respect the actual control link and records
+    /// link transitions without granting remote knowledge of the controller.
+    pub player_drone_link_awareness: bool,
+    /// Makes autonomous companion targeting use explicit combat relations.
+    /// Disabled legacy rules retain the historical `has AI == hostile` rule.
+    pub player_relation_targeting: bool,
     pub enabled_system_features: SystemFeatureSet,
     pub movement_traces: MovementTraceRules,
     pub skills: SkillCatalog,
@@ -144,6 +150,15 @@ impl Debug for GameRules {
                 "player_companion_behaviors",
                 &self.player_companion_behaviors,
             );
+        }
+        if self.player_drone_link_awareness {
+            rules.field(
+                "player_drone_link_awareness",
+                &self.player_drone_link_awareness,
+            );
+        }
+        if self.player_relation_targeting {
+            rules.field("player_relation_targeting", &self.player_relation_targeting);
         }
         if let Some(resources) = self.player_system_resources {
             rules.field("player_system_resources", &resources);
@@ -257,6 +272,8 @@ impl Default for GameRules {
             player_drone_default_support: true,
             player_drone_expires_without_energy: true,
             player_companion_behaviors: true,
+            player_drone_link_awareness: true,
+            player_relation_targeting: true,
             enabled_system_features: SystemFeatureSet::default(),
             movement_traces: MovementTraceRules::default(),
             skills: SkillCatalog::default(),

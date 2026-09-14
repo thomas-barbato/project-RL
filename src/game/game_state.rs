@@ -224,6 +224,14 @@ struct DigitalInterfaceProfile {
     controlled_door: Option<GridPos>,
 }
 
+type AttackDetails = (
+    Actor,
+    AttackProfile,
+    Option<WeaponId>,
+    Vec<WeaponEffect>,
+    Option<PreparedModuleUse>,
+);
+
 // Historical preparations did not capture a weapon slot. Keep their Debug
 // representation stable because suspension state fingerprints use it.
 impl Debug for PreparedTechniquePayload {
@@ -1732,6 +1740,9 @@ impl GameState {
             .expect("the built-in drone electronic profile is valid"),
         );
         let visual_profile = drone.profile().visual_profile().clone();
+        if self.rules.player_relation_targeting {
+            actor = actor.with_player_relation(crate::social::PlayerRelation::Allied);
+        }
         let entity = self
             .spawn_actor(actor.with_drone(drone))
             .map_err(DroneSpawnError::Spawn)?;
@@ -9255,9 +9266,11 @@ impl GameState {
             .player_active_camouflage
             .as_ref()
             .map_or(0, |camouflage| {
-                (camouflage.channel == SignatureChannel::Optical)
-                    .then_some(camouflage.optical_difficulty_bonus)
-                    .unwrap_or(0)
+                if camouflage.channel == SignatureChannel::Optical {
+                    camouflage.optical_difficulty_bonus
+                } else {
+                    0
+                }
             });
         let distance = grid_distance(actor.position(), player_position);
         let optical_jamming = self.electronic_jamming_penalty_at(
@@ -10025,20 +10038,7 @@ impl GameState {
         })
     }
 
-    fn attack_details(
-        &self,
-        attacker: EntityId,
-        slot: u8,
-    ) -> Result<
-        (
-            Actor,
-            AttackProfile,
-            Option<WeaponId>,
-            Vec<WeaponEffect>,
-            Option<PreparedModuleUse>,
-        ),
-        AttackError,
-    > {
+    fn attack_details(&self, attacker: EntityId, slot: u8) -> Result<AttackDetails, AttackError> {
         let attacker_state = self
             .actors
             .get(attacker)
@@ -12816,6 +12816,28 @@ impl GameState {
                 ),
             )
         });
+        if self.rules.player_drone_link_awareness {
+            let previous = self
+                .actors
+                .get_mut(entity)
+                .and_then(Actor::drone_mut)
+                .and_then(|drone| drone.replace_link_active(linked));
+            match (previous, linked) {
+                (Some(true) | None, false) => {
+                    self.events.push(GameEvent::DroneLinkLost {
+                        entity,
+                        at: position,
+                    });
+                }
+                (Some(false), true) => {
+                    self.events.push(GameEvent::DroneLinkRestored {
+                        entity,
+                        at: position,
+                    });
+                }
+                _ => {}
+            }
+        }
         if linked {
             let pending_report =
                 if let Some(drone) = self.actors.get_mut(entity).and_then(Actor::drone_mut) {
@@ -12841,6 +12863,16 @@ impl GameState {
         }
         if let Some(actor) = self.actors.get_mut(entity) {
             let _ = actor.begin_normal_action();
+        }
+        if self.rules.player_drone_link_awareness
+            && !linked
+            && matches!(
+                &order,
+                DroneOrder::Companion { .. } | DroneOrder::Escort { .. }
+            )
+        {
+            self.events.push(GameEvent::EntityWaited { entity });
+            return;
         }
 
         match order {
@@ -13287,7 +13319,14 @@ impl GameState {
             return;
         };
         let controller_position = self.actors.get(controller).map(Actor::position);
-        let explicit_target = self.player_drone_support_target_this_action;
+        let explicit_target = self
+            .player_drone_support_target_this_action
+            .filter(|target| {
+                !self.rules.player_relation_targeting
+                    || self.actors.get(*target).is_some_and(|actor| {
+                        actor.player_relation() != crate::social::PlayerRelation::Allied
+                    })
+            });
         let autonomous_target = match behavior {
             CompanionBehavior::Defensive | CompanionBehavior::Aggressive => self
                 .actors
@@ -13295,7 +13334,11 @@ impl GameState {
                 .filter(|(candidate, actor)| {
                     *candidate != entity
                         && *candidate != controller
-                        && actor.ai().is_some()
+                        && if self.rules.player_relation_targeting {
+                            actor.player_relation() == crate::social::PlayerRelation::Hostile
+                        } else {
+                            actor.ai().is_some()
+                        }
                         && self.drone_perceives_actor(entity, *candidate)
                 })
                 .filter(|(_, actor)| match behavior {
@@ -16366,7 +16409,6 @@ mod tests {
                 heat_alert_threshold: 500,
                 heat_critical_threshold: 600,
                 heat_dissipation_per_phase: 0,
-                ..super::super::SystemResourceRules::default()
             }),
             player_inventory_capacity: 20,
             player_starting_items: starting_items.to_vec(),
@@ -24413,6 +24455,86 @@ mod tests {
     }
 
     #[test]
+    fn companion_waits_without_a_link_then_resumes_its_doctrine_after_reconnection() {
+        let mut game = GameState::new_with_rules(
+            parse_map("##########\n#........#\n##########"),
+            GridPos::new(1, 1),
+            14,
+            GameRules {
+                player_system_resources: Some(super::super::SystemResourceRules::default()),
+                ..GameRules::default()
+            },
+        )
+        .unwrap();
+        let profile = DroneProfile::new(
+            "core:link_test_drone".parse().unwrap(),
+            2,
+            50,
+            40,
+            1,
+            3,
+            5,
+            1,
+            1,
+            crate::drone::DroneCapabilities::default(),
+        )
+        .unwrap();
+        let drone = game
+            .spawn_manifested_player_drone(
+                Actor::new(GridPos::new(2, 1), 10).unwrap(),
+                profile,
+                10,
+                10,
+            )
+            .unwrap();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        game.drain_events();
+
+        game.actors
+            .move_to(game.player, GridPos::new(7, 1))
+            .unwrap();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors.get(drone).unwrap().position(),
+            GridPos::new(2, 1)
+        );
+        assert_eq!(
+            game.actors
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(|drone| drone.energy().available()),
+            Some(10)
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DroneLinkLost { entity, .. } if *entity == drone
+        )));
+        game.drain_events();
+
+        game.actors
+            .move_to(game.player, GridPos::new(4, 1))
+            .unwrap();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors.get(drone).unwrap().position(),
+            GridPos::new(3, 1)
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DroneLinkRestored { entity, .. } if *entity == drone
+        )));
+    }
+
+    #[test]
     fn companion_behaviors_are_timeless_replayable_and_change_drone_engagement() {
         let mut game = game_with_core_drones(
             "###########\n#.........#\n#.........#\n#.........#\n###########",
@@ -24433,6 +24555,14 @@ mod tests {
         let target = game
             .spawn_actor(
                 Actor::new(GridPos::new(5, 3), 20)
+                    .unwrap()
+                    .with_player_relation(crate::social::PlayerRelation::Hostile)
+                    .with_ai(AiProfile::hunter(8, 0)),
+            )
+            .unwrap();
+        let neutral = game
+            .spawn_actor(
+                Actor::new(GridPos::new(4, 2), 20)
                     .unwrap()
                     .with_ai(AiProfile::hunter(8, 0)),
             )
@@ -24484,6 +24614,14 @@ mod tests {
                 target: Some(attacked),
                 ..
             } if *attacker == drone && *attacked == target
+        )));
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed {
+                attacker,
+                target: Some(attacked),
+                ..
+            } if *attacker == drone && *attacked == neutral
         )));
 
         for behavior in [CompanionBehavior::Defensive, CompanionBehavior::Follow] {

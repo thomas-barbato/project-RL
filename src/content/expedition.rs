@@ -13,6 +13,7 @@ use crate::facility::{
 use crate::item::{ItemCatalog, ItemId, ItemKind};
 use crate::loot::{LootCatalog, LootTableId, MAX_DRAWS};
 use crate::progression::DefeatReward;
+use crate::social::PlayerRelation;
 use crate::social::{LocalAlertProfileError, SocialGroupId, WitnessProfileError};
 use crate::stats::{
     BodyProfile, PhysicalRulesError, PrimaryAttributeRules, PrimaryAttributes,
@@ -95,6 +96,7 @@ pub struct PopulationGroupDefinition {
     body_profile: Option<BodyProfile>,
     body_components: Vec<BodyComponentProfile>,
     electronic_system: Option<ElectronicSystemProfile>,
+    player_relation: PlayerRelation,
 }
 
 // Optional v32 attributes are omitted so catalogs stripped for older
@@ -120,6 +122,9 @@ impl Debug for PopulationGroupDefinition {
         }
         if let Some(electronic_system) = self.electronic_system {
             group.field("electronic_system", &electronic_system);
+        }
+        if self.player_relation != PlayerRelation::Neutral {
+            group.field("player_relation", &self.player_relation);
         }
         group.finish()
     }
@@ -181,6 +186,7 @@ impl PopulationGroupDefinition {
             body_profile: None,
             body_components: Vec::new(),
             electronic_system: None,
+            player_relation: PlayerRelation::Neutral,
         })
     }
 
@@ -210,6 +216,11 @@ impl PopulationGroupDefinition {
 
     pub const fn with_electronic_system(mut self, profile: ElectronicSystemProfile) -> Self {
         self.electronic_system = Some(profile);
+        self
+    }
+
+    pub const fn with_player_relation(mut self, relation: PlayerRelation) -> Self {
+        self.player_relation = relation;
         self
     }
 
@@ -253,6 +264,10 @@ impl PopulationGroupDefinition {
         self.electronic_system
     }
 
+    pub const fn player_relation(&self) -> PlayerRelation {
+        self.player_relation
+    }
+
     pub(crate) fn remove_pursuit_lifecycle(&mut self) {
         self.ai = self.ai.without_pursuit_lifecycle();
     }
@@ -281,6 +296,10 @@ impl PopulationGroupDefinition {
 
     pub(crate) fn remove_electronic_system_metadata(&mut self) {
         self.electronic_system = None;
+    }
+
+    pub(crate) fn remove_player_relation_metadata(&mut self) {
+        self.player_relation = PlayerRelation::Neutral;
     }
 
     pub(crate) fn remove_preparation_disruption_metadata(&mut self) {
@@ -740,6 +759,23 @@ impl ExpeditionCatalog {
                 let mut definition = definition.clone();
                 for group in &mut definition.destination.population {
                     group.remove_primary_attributes();
+                }
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes explicit v60 combat dispositions while retaining every older
+    /// population field and its historical catalogue fingerprint.
+    pub fn without_player_relation_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                for group in &mut definition.destination.population {
+                    group.remove_player_relation_metadata();
                 }
                 (id.clone(), definition)
             })

@@ -141,6 +141,14 @@ pub enum GameEvent {
         entity: EntityId,
         at: GridPos,
     },
+    DroneLinkLost {
+        entity: EntityId,
+        at: GridPos,
+    },
+    DroneLinkRestored {
+        entity: EntityId,
+        at: GridPos,
+    },
     CompanionBehaviorChanged {
         entities: Vec<EntityId>,
         behavior: crate::companion::CompanionBehavior,

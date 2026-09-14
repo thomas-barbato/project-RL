@@ -453,6 +453,8 @@ Les résultats ci-dessous ne sont émis que pour les événements connus de l'ob
 | MSG-RESULTAT-SUSPENSION | Réservation interrompue après baisse de capacité. | {processus} suspendu : capacité de contrôle insuffisante. |
 | MSG-RESULTAT-DRONE-PERDU | Perte du contact, sans preuve de destruction. | Contact perdu avec {drone}. Dernière confirmation : {date}. |
 | MSG-RESULTAT-DRONE-FIN-VIE | Batterie d'un drone manifesté épuisée. | Fin de vie du drone : manifestation dissipée. Drone spectral sera de nouveau utilisable après sa recharge. |
+| MSG-RESULTAT-DRONE-LIAISON-PERDUE | Liaison de contrôle interrompue. | Liaison du drone perdue. Sa consigne locale reste active. |
+| MSG-RESULTAT-DRONE-LIAISON-RETABLIE | Liaison de contrôle de nouveau valide. | Liaison du drone rétablie. Sa doctrine reprend automatiquement. |
 | MSG-RESULTAT-DRONE-RAPPORT | Rapport réellement transmis au retour ou à la reconnexion. | Rapport reçu de {drone} : observations du {date}. |
 | MSG-RESULTAT-COLLECTE | Échec rapporté par le drone seulement après contact valide. | Le drone n’a pas pu rapporter l’objet demandé. |
 | MSG-RESULTAT-APPRENTISSAGE | Achat atomique complet confirmé. | Technique apprise : {technique}. |

@@ -42,7 +42,7 @@ use crate::skills::{
     TechniqueEngagementRequirement, TechniqueImprovement, TechniqueKind, TechniqueMaterialCost,
     TechniqueOnHitEffect, TechniqueTargetRequirement,
 };
-use crate::social::{LocalAlertProfile, WitnessProfile};
+use crate::social::{LocalAlertProfile, PlayerRelation, WitnessProfile};
 use crate::stats::{PrimaryAttribute, PrimaryAttributes};
 use crate::status::{
     StatusCatalog, StatusCatalogError, StatusDefinition, StatusDefinitionError,
@@ -1189,6 +1189,8 @@ struct RawRegionThreatProfile {
     #[serde(default)]
     components: Vec<RawBodyComponentProfile>,
     electronic_system: Option<RawElectronicSystemProfile>,
+    #[serde(default)]
+    player_relation: RawPlayerRelation,
 }
 
 impl RawRegionThreatProfile {
@@ -1216,6 +1218,7 @@ impl RawRegionThreatProfile {
             attack,
             ai,
         )?;
+        profile = profile.with_player_relation(self.player_relation.into_runtime());
         if let Some(attributes) = self.primary_attributes {
             profile = profile.with_primary_attributes(attributes.into_runtime())?;
         }
@@ -1277,6 +1280,8 @@ struct RawRegionPopulationRule {
     #[serde(default)]
     components: Vec<RawBodyComponentProfile>,
     electronic_system: Option<RawElectronicSystemProfile>,
+    #[serde(default)]
+    player_relation: RawPlayerRelation,
 }
 
 impl RawRegionPopulationRule {
@@ -1300,6 +1305,7 @@ impl RawRegionPopulationRule {
             ai,
             self.defeat_reward.map(RawDefeatReward::into_runtime),
         )?;
+        rule = rule.with_player_relation(self.player_relation.into_runtime());
         if let Some(attributes) = self.primary_attributes {
             rule = rule.with_primary_attributes(attributes.into_runtime())?;
         }
@@ -1693,6 +1699,8 @@ struct RawPopulationGroup {
     #[serde(default)]
     components: Vec<RawBodyComponentProfile>,
     electronic_system: Option<RawElectronicSystemProfile>,
+    #[serde(default)]
+    player_relation: RawPlayerRelation,
 }
 
 impl RawPopulationGroup {
@@ -1710,6 +1718,7 @@ impl RawPopulationGroup {
             ai,
             self.defeat_reward.map(RawDefeatReward::into_runtime),
         )?;
+        group = group.with_player_relation(self.player_relation.into_runtime());
         if let Some(attributes) = self.primary_attributes {
             group = group.with_primary_attributes(attributes.into_runtime())?;
         }
@@ -1736,6 +1745,25 @@ impl RawPopulationGroup {
             );
         }
         Ok(group)
+    }
+}
+
+#[derive(Clone, Copy, Debug, Default, Deserialize)]
+#[serde(rename_all = "snake_case")]
+enum RawPlayerRelation {
+    Allied,
+    #[default]
+    Neutral,
+    Hostile,
+}
+
+impl RawPlayerRelation {
+    const fn into_runtime(self) -> PlayerRelation {
+        match self {
+            Self::Allied => PlayerRelation::Allied,
+            Self::Neutral => PlayerRelation::Neutral,
+            Self::Hostile => PlayerRelation::Hostile,
+        }
     }
 }
 

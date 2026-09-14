@@ -34,6 +34,7 @@
           {
             weight: 70, count: [1, 2], minimum_passage_distance: 8,
             maximum_integrity: 7,
+            player_relation: "hostile",
             primary_attributes: { power: 6, coordination: 6, resilience: 5, perception: 6, processing: 4 },
             body: { base_hit_points: 7, mass_grams: 65000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 7, failure_effect: { type: "disable_movement" } }],
@@ -53,6 +54,7 @@
           {
             weight: 30, count: [1, 1], minimum_passage_distance: 10,
             maximum_integrity: 8,
+            player_relation: "hostile",
             primary_attributes: { power: 4, coordination: 7, resilience: 4, perception: 7, processing: 6 },
             body: { base_hit_points: 8, mass_grams: 70000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
@@ -76,6 +78,7 @@
           {
             weight: 70, count: [1, 2], minimum_passage_distance: 8,
             maximum_integrity: 7,
+            player_relation: "hostile",
             primary_attributes: { power: 6, coordination: 6, resilience: 5, perception: 6, processing: 4 },
             body: { base_hit_points: 7, mass_grams: 65000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
@@ -93,6 +96,7 @@
           {
             weight: 30, count: [1, 1], minimum_passage_distance: 10,
             maximum_integrity: 8,
+            player_relation: "hostile",
             primary_attributes: { power: 4, coordination: 7, resilience: 4, perception: 7, processing: 6 },
             body: { base_hit_points: 8, mass_grams: 70000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
@@ -130,6 +134,7 @@
       threats: {
         interval_turns: 32, maximum_active: 2, maximum_total: 4,
         maximum_integrity: 7,
+        player_relation: "hostile",
         primary_attributes: { power: 6, coordination: 6, resilience: 5, perception: 6, processing: 4 },
         body: { base_hit_points: 7, mass_grams: 65000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
         attack: {
@@ -161,6 +166,7 @@
           {
             weight: 65, count: [1, 2], minimum_passage_distance: 8,
             maximum_integrity: 8,
+            player_relation: "hostile",
             primary_attributes: { power: 7, coordination: 7, resilience: 6, perception: 7, processing: 4 },
             body: { base_hit_points: 8, mass_grams: 70000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 8, failure_effect: { type: "disable_movement" } }],
@@ -180,6 +186,7 @@
           {
             weight: 35, count: [1, 1], minimum_passage_distance: 10,
             maximum_integrity: 9,
+            player_relation: "hostile",
             primary_attributes: { power: 5, coordination: 7, resilience: 5, perception: 8, processing: 6 },
             body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
@@ -201,6 +208,7 @@
           {
             weight: 65, count: [1, 2], minimum_passage_distance: 8,
             maximum_integrity: 8,
+            player_relation: "hostile",
             primary_attributes: { power: 7, coordination: 7, resilience: 6, perception: 7, processing: 4 },
             body: { base_hit_points: 8, mass_grams: 70000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
@@ -218,6 +226,7 @@
           {
             weight: 35, count: [1, 1], minimum_passage_distance: 10,
             maximum_integrity: 9,
+            player_relation: "hostile",
             primary_attributes: { power: 5, coordination: 7, resilience: 5, perception: 8, processing: 6 },
             body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
@@ -255,6 +264,7 @@
       threats: {
         interval_turns: 28, maximum_active: 2, maximum_total: 5,
         maximum_integrity: 8,
+        player_relation: "hostile",
         primary_attributes: { power: 7, coordination: 7, resilience: 6, perception: 7, processing: 4 },
         body: { base_hit_points: 8, mass_grams: 70000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
         attack: {
@@ -286,6 +296,7 @@
           {
             weight: 70, count: [1, 2], minimum_passage_distance: 9,
             maximum_integrity: 9,
+            player_relation: "hostile",
             primary_attributes: { power: 6, coordination: 6, resilience: 7, perception: 6, processing: 5 },
             body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 9, failure_effect: { type: "disable_movement" } }],
@@ -305,6 +316,7 @@
           {
             weight: 30, count: [1, 1], minimum_passage_distance: 11,
             maximum_integrity: 9,
+            player_relation: "hostile",
             primary_attributes: { power: 5, coordination: 7, resilience: 6, perception: 7, processing: 7 },
             body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
@@ -326,6 +338,7 @@
           {
             weight: 70, count: [1, 2], minimum_passage_distance: 9,
             maximum_integrity: 9,
+            player_relation: "hostile",
             primary_attributes: { power: 6, coordination: 6, resilience: 7, perception: 6, processing: 5 },
             body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
@@ -343,6 +356,7 @@
           {
             weight: 30, count: [1, 1], minimum_passage_distance: 11,
             maximum_integrity: 9,
+            player_relation: "hostile",
             primary_attributes: { power: 5, coordination: 7, resilience: 6, perception: 7, processing: 7 },
             body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
@@ -390,6 +404,7 @@
           {
             weight: 60, count: [1, 2], minimum_passage_distance: 9,
             maximum_integrity: 10,
+            player_relation: "hostile",
             primary_attributes: { power: 7, coordination: 7, resilience: 7, perception: 7, processing: 5 },
             body: { base_hit_points: 10, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 10, failure_effect: { type: "disable_movement" } }],
@@ -409,6 +424,7 @@
           {
             weight: 40, count: [1, 1], minimum_passage_distance: 11,
             maximum_integrity: 10,
+            player_relation: "hostile",
             primary_attributes: { power: 5, coordination: 7, resilience: 6, perception: 8, processing: 7 },
             body: { base_hit_points: 10, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
@@ -430,6 +446,7 @@
           {
             weight: 60, count: [1, 2], minimum_passage_distance: 9,
             maximum_integrity: 10,
+            player_relation: "hostile",
             primary_attributes: { power: 7, coordination: 7, resilience: 7, perception: 7, processing: 5 },
             body: { base_hit_points: 10, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
@@ -447,6 +464,7 @@
           {
             weight: 40, count: [1, 1], minimum_passage_distance: 11,
             maximum_integrity: 10,
+            player_relation: "hostile",
             primary_attributes: { power: 5, coordination: 7, resilience: 6, perception: 8, processing: 7 },
             body: { base_hit_points: 10, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {

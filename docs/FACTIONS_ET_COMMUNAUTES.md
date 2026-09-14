@@ -1,10 +1,10 @@
 # Factions et communautés — première base de conception
 
-Version 0.3 — 11 septembre 2026.
+Version 0.4 — 14 septembre 2026.
 
 ## 1. Statut et périmètre
 
-L'utilisateur a approuvé la proposition des quatre premiers groupes, avec une exigence explicite : leurs caractéristiques doivent se refléter dans le jeu et rester plausibles à programmer. Ce document consigne cette base de conception. Depuis la version 0.2, le premier circuit matériel du Collectif et des Récupérateurs est jouable. Une première propriété des lots, affiliation technique, mémoire individuelle des prises observées, réaction d'alerte locale, alarme de capteur visible et intervention bornée vers un incident enregistré sont maintenant implémentées ; les factions, réputations et sociétés complètes restent documentaires.
+L'utilisateur a approuvé la proposition des quatre premiers groupes, avec une exigence explicite : leurs caractéristiques doivent se refléter dans le jeu et rester plausibles à programmer. Ce document consigne cette base de conception. Depuis la version 0.2, le premier circuit matériel du Collectif et des Récupérateurs est jouable. Une première propriété des lots, affiliation technique, mémoire individuelle des prises observées, réaction d'alerte locale, alarme de capteur visible et intervention bornée vers un incident enregistré sont maintenant implémentées. Une disposition de combat déclarative distingue aussi allié, neutre et hostile pour le ciblage autonome des compagnons ; les factions, réputations et sociétés complètes restent documentaires.
 
 Les noms des groupes restent provisoires. Leur identité, leurs besoins et les comportements décrits ci-dessous sont la direction retenue. Les quantités, durées, seuils de réputation, lieux exacts, personnages et formats techniques restent à définir. Les pistes d'implémentation ne sont pas présentées comme des systèmes déjà disponibles.
 
@@ -87,7 +87,7 @@ Cette relation de dépendance n'impose pas encore de score diplomatique, de guer
 | Élément | Base réutilisable | Travail encore nécessaire |
 |---|---|---|
 | Déplacements et perception | Acteurs, recherche de chemin déterministe, occupation des cases et vision bloquée par les obstacles. Les agents de maintenance savent ouvrir une porte ordinaire sur leur trajet ; une porte verrouillée ou sans alimentation reste infranchissable. | Refuge, mémoire des observations et politiques de trajet propres aux futures factions. |
-| Décisions des acteurs | Profils d'IA produisant attente, mouvement ou attaque. | L'IA active cible aujourd'hui le joueur ; affinités, choix de cible, entraide et combat autonome entre PNJ ne sont pas implémentés. |
+| Décisions des acteurs | Profils d'IA produisant attente, mouvement ou attaque. Une relation de combat immédiate, distincte de l'affiliation, empêche les compagnons autonomes de prendre un acteur neutre ou allié pour une menace. | L'IA hostile active cible aujourd'hui le joueur ; résolution dynamique des relations, choix de cible général, entraide et combat autonome entre PNJ ne sont pas implémentés. |
 | Objets | Piles au sol persistantes, prélèvement partiel, propriété éventuelle conservée au sol et dans l'inventaire, autorisations initiales de prise indépendantes de la propriété, cargaison exclusive des récupérateurs, stock de dépôt et consommation par un travail. | Acquisition ou révocation dynamique des autorisations, commerce et transferts entre zones. |
 | Installations | Intégrité, capacités et dépendances déclaratives ; relais, actionneur de porte, capteur et dépôt. Une réparation rétablit les sorties réellement liées. | Dégâts provoqués par le joueur, réparations libres de tout décor, réseaux plus riches et effets autres que les capacités enregistrées. |
 | Vie hors écran | Les zones visitées avancent sur les tours consommés ; patrouilles, statuts et travaux de maintenance y continuent sans produire d'information visuelle distante. | Poursuite, livraison ou migration entre zones. |
@@ -127,4 +127,4 @@ La première aide matérielle directe, la propriété, l'autorisation initiale, 
 
 Hors première preuve : économie mondiale, démographie, faim et sommeil universels, diplomatie de conquête, migrations entre toutes les couches, dialogues générés par un modèle de langage, reconstruction libre de tout le décor et pouvoirs exclusifs de faction. Aucun de ces systèmes n'est nécessaire pour valider le premier circuit de vie locale. Leur éventuel ajout demanderait sa propre conception.
 
-Cette annexe et son complément sur les peuplades ne définissent encore ni faction jouable, ni réputation, ni commerce. Seuls le circuit matériel et le témoignage local décrit dans la section 6 sont implémentés ; ils ne modifient pas le système de statistiques et compétences.
+Cette annexe et son complément sur les peuplades ne définissent encore ni faction jouable, ni réputation, ni commerce. Le circuit matériel, le témoignage local décrit dans la section 6 et la première disposition de combat déclarative sont implémentés ; ils ne modifient pas le système de statistiques et compétences.

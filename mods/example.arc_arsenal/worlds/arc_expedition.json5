@@ -28,6 +28,7 @@
       count: 2,
       minimum_entrance_distance: 16,
       maximum_integrity: 11,
+      player_relation: "hostile",
       primary_attributes: { power: 5, coordination: 7, resilience: 6, perception: 8, processing: 8 },
       body: { base_hit_points: 11, mass_grams: 85000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
       attack: {

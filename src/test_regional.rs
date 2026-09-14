@@ -51,6 +51,7 @@ pub struct RegionalGenerationFeatures {
     pub threat_renewal: bool,
     pub destructibles: bool,
     pub electronic_systems: bool,
+    pub player_relations: bool,
 }
 
 pub fn zone_id(
@@ -147,6 +148,7 @@ pub fn generate(
                 primary_attributes: features.primary_attributes,
                 physical_profiles: features.physical_profiles,
                 electronic_systems: features.electronic_systems,
+                player_relations: features.player_relations,
             },
         )
         .map_err(|error| error.to_string())?
@@ -259,6 +261,7 @@ pub fn generate(
                 primary_attributes: features.primary_attributes,
                 physical_profiles: features.physical_profiles,
                 electronic_systems: features.electronic_systems,
+                player_relations: features.player_relations,
             },
         )
         .map_err(|error| error.to_string())?;
@@ -337,6 +340,9 @@ pub fn generate(
                         })
                         .with_ai(profile.ai())
                         .with_defeat_reward(DefeatReward::summoned(0, 0));
+                    if features.player_relations {
+                        actor = actor.with_player_relation(profile.player_relation());
+                    }
                     if features.primary_attributes
                         && let Some(attributes) = profile.primary_attributes()
                     {
@@ -717,6 +723,7 @@ mod tests {
                 threat_renewal: false,
                 destructibles: false,
                 electronic_systems: true,
+                player_relations: true,
             },
         )
         .unwrap();
@@ -789,6 +796,7 @@ mod tests {
                         threat_renewal: true,
                         destructibles: true,
                         electronic_systems: true,
+                        player_relations: true,
                     },
                 )
                 .unwrap();
@@ -878,6 +886,7 @@ mod tests {
                                 threat_renewal: true,
                                 destructibles: false,
                                 electronic_systems: true,
+                                player_relations: true,
                             },
                         )
                         .unwrap();
@@ -929,6 +938,7 @@ mod tests {
                                 threat_renewal: true,
                                 destructibles: false,
                                 electronic_systems: true,
+                                player_relations: true,
                             },
                         )
                         .unwrap();
@@ -1008,6 +1018,7 @@ mod tests {
             threat_renewal: true,
             destructibles: true,
             electronic_systems: true,
+            player_relations: true,
         };
         let upper_coordinate = RegionCoord::new(-1, 0, 0);
         let lower_coordinate = RegionCoord::new(-1, 0, 1);

@@ -427,6 +427,7 @@ pub struct DroneState {
     last_confirmed_position: GridPos,
     last_confirmed_turn: u64,
     lifecycle: DroneLifecycle,
+    link_active: Option<bool>,
 }
 
 impl Debug for DroneState {
@@ -444,6 +445,9 @@ impl Debug for DroneState {
             .field("last_confirmed_turn", &self.last_confirmed_turn);
         if self.lifecycle == DroneLifecycle::Manifested {
             debug.field("lifecycle", &self.lifecycle);
+        }
+        if self.link_active.is_some() {
+            debug.field("link_active", &self.link_active);
         }
         debug.finish()
     }
@@ -469,6 +473,7 @@ impl DroneState {
             last_confirmed_position: position,
             last_confirmed_turn: turn,
             lifecycle: DroneLifecycle::Persistent,
+            link_active: None,
         })
     }
 
@@ -479,6 +484,14 @@ impl DroneState {
 
     pub const fn lifecycle(&self) -> DroneLifecycle {
         self.lifecycle
+    }
+
+    pub const fn link_active(&self) -> Option<bool> {
+        self.link_active
+    }
+
+    pub fn replace_link_active(&mut self, active: bool) -> Option<bool> {
+        self.link_active.replace(active)
     }
 
     pub const fn profile(&self) -> &DroneProfile {

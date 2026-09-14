@@ -10,6 +10,7 @@ use crate::facility::{
     MAX_NAVIGATION_BEACON_RANGE, SecurityAlarmProfile, SecurityAlarmProfileError,
 };
 use crate::progression::DefeatReward;
+use crate::social::PlayerRelation;
 use crate::stats::PrimaryAttributes;
 use crate::world::DistanceMetric;
 
@@ -297,7 +298,7 @@ impl RegionTerrainProfile {
     }
 }
 
-/// One weighted hostile group available to a regional biome. The existing
+/// One weighted actor group available to a regional biome. The existing
 /// population definition owns combat and AI validation; this wrapper adds the
 /// variable count and selection weight needed by procedural regions.
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -373,6 +374,11 @@ impl RegionPopulationRule {
         self
     }
 
+    pub fn with_player_relation(mut self, relation: PlayerRelation) -> Self {
+        self.group = self.group.with_player_relation(relation);
+        self
+    }
+
     pub const fn weight(&self) -> u32 {
         self.weight
     }
@@ -421,6 +427,10 @@ impl RegionPopulationRule {
         &self,
     ) -> Option<crate::electronic_warfare::ElectronicSystemProfile> {
         self.group.electronic_system()
+    }
+
+    pub const fn player_relation(&self) -> PlayerRelation {
+        self.group.player_relation()
     }
 }
 
@@ -1036,6 +1046,11 @@ impl RegionThreatProfile {
         self
     }
 
+    pub fn with_player_relation(mut self, relation: PlayerRelation) -> Self {
+        self.actor = self.actor.with_player_relation(relation);
+        self
+    }
+
     pub const fn interval_turns(&self) -> u16 {
         self.interval_turns.get()
     }
@@ -1076,6 +1091,10 @@ impl RegionThreatProfile {
         &self,
     ) -> Option<crate::electronic_warfare::ElectronicSystemProfile> {
         self.actor.electronic_system()
+    }
+
+    pub const fn player_relation(&self) -> PlayerRelation {
+        self.actor.player_relation()
     }
 }
 
@@ -1776,6 +1795,26 @@ impl RegionalWorldCatalog {
                 }
                 if let Some(threats) = &mut biome.threats {
                     threats.actor.remove_primary_attributes();
+                }
+            }
+        }
+        catalog
+    }
+
+    /// Removes explicit v60 combat dispositions from every generated actor
+    /// source so older regional catalogue fingerprints remain unchanged.
+    pub fn without_player_relation_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            for biome in &mut definition.biomes {
+                for rule in &mut biome.population.rules {
+                    rule.group.remove_player_relation_metadata();
+                }
+                for rule in &mut biome.encounters.rules {
+                    rule.group.remove_player_relation_metadata();
+                }
+                if let Some(threats) = &mut biome.threats {
+                    threats.actor.remove_player_relation_metadata();
                 }
             }
         }

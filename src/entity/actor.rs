@@ -11,7 +11,8 @@ use crate::progression::DefeatReward;
 use crate::reaction::{ActionOrigin, PreparedReaction, ReactionState, ReactionTrigger};
 use crate::skills::TechniqueId;
 use crate::social::{
-    LocalAlert, LocalAlertProfile, ObservedPropertyTake, SocialGroupId, WitnessProfile,
+    LocalAlert, LocalAlertProfile, ObservedPropertyTake, PlayerRelation, SocialGroupId,
+    WitnessProfile,
 };
 use crate::stats::{
     BodyProfile, DisplacementProfile, HitPointRules, LocomotionProfile, PrimaryAttributes,
@@ -47,6 +48,7 @@ pub struct Actor {
     can_evade: bool,
     evasion_modifier: i16,
     affiliation: Option<SocialGroupId>,
+    player_relation: PlayerRelation,
     property_take_authorizations: BTreeSet<SocialGroupId>,
     witness_profile: Option<WitnessProfile>,
     observed_property_takes: Vec<ObservedPropertyTake>,
@@ -76,6 +78,9 @@ impl Debug for Actor {
             .field("primary_attributes", &self.primary_attributes);
         if let Some(affiliation) = &self.affiliation {
             actor.field("affiliation", affiliation);
+        }
+        if self.player_relation != PlayerRelation::Neutral {
+            actor.field("player_relation", &self.player_relation);
         }
         if let Some(home) = self.ai_home {
             actor.field("ai_home", &home);
@@ -166,6 +171,7 @@ impl Actor {
             can_evade: true,
             evasion_modifier: 0,
             affiliation: None,
+            player_relation: PlayerRelation::Neutral,
             property_take_authorizations: BTreeSet::new(),
             witness_profile: None,
             observed_property_takes: Vec::new(),
@@ -276,6 +282,11 @@ impl Actor {
 
     pub fn with_affiliation(mut self, affiliation: SocialGroupId) -> Self {
         self.affiliation = Some(affiliation);
+        self
+    }
+
+    pub const fn with_player_relation(mut self, relation: PlayerRelation) -> Self {
+        self.player_relation = relation;
         self
     }
 
@@ -563,6 +574,10 @@ impl Actor {
 
     pub const fn affiliation(&self) -> Option<&SocialGroupId> {
         self.affiliation.as_ref()
+    }
+
+    pub const fn player_relation(&self) -> PlayerRelation {
+        self.player_relation
     }
 
     pub fn may_take_property_of(&self, owner: &SocialGroupId) -> bool {

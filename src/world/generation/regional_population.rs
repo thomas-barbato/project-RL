@@ -16,6 +16,7 @@ pub struct RegionalPopulationFeatures {
     pub primary_attributes: bool,
     pub physical_profiles: bool,
     pub electronic_systems: bool,
+    pub player_relations: bool,
 }
 
 /// Creates persistent actors only when a regional zone is materialized. A
@@ -131,6 +132,9 @@ fn generate_population_layer(
                     rule.attack().without_melee_impact()
                 })
                 .with_ai(ai);
+            if features.player_relations {
+                actor = actor.with_player_relation(rule.player_relation());
+            }
             if features.primary_attributes
                 && let Some(attributes) = rule.primary_attributes()
             {
@@ -264,6 +268,7 @@ mod tests {
         primary_attributes: true,
         physical_profiles: true,
         electronic_systems: true,
+        player_relations: true,
     };
 
     fn profile() -> RegionPopulationProfile {

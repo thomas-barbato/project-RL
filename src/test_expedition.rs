@@ -32,6 +32,7 @@ pub struct ExpeditionGenerationFeatures {
     pub physical_profiles: bool,
     pub electronic_systems: bool,
     pub preparation_disruption: bool,
+    pub player_relations: bool,
 }
 
 pub fn attach(
@@ -161,6 +162,7 @@ pub fn generate_destination(
             features.physical_profiles,
             features.electronic_systems,
             features.preparation_disruption,
+            features.player_relations,
         )?
     } else {
         legacy_population(&cells, entrance)?
@@ -244,6 +246,7 @@ fn defined_population(
     use_physical_profiles: bool,
     use_electronic_systems: bool,
     use_preparation_disruption: bool,
+    use_player_relations: bool,
 ) -> Result<Vec<Actor>, String> {
     let mut requests = definition
         .destination
@@ -300,6 +303,9 @@ fn defined_population(
             .map_err(|error| error.to_string())?
             .with_attack(attack)
             .with_ai(ai);
+        if use_player_relations {
+            actor = actor.with_player_relation(group.player_relation());
+        }
         if use_primary_attributes && let Some(attributes) = group.primary_attributes() {
             actor = actor.with_primary_attributes(attributes);
         }

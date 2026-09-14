@@ -58,6 +58,7 @@ use project_rl::skills::{
     TechniqueAction, TechniqueEffectResistance, TechniqueEngagementRequirement, TechniqueId,
     TechniqueImprovement, TechniqueKind, TechniqueTargetRequirement,
 };
+use project_rl::social::PlayerRelation;
 use project_rl::stats::{
     BodyProfile, DisplacementProfile, LocomotionProfile, PhysicalRules, PrimaryAttribute,
     PrimaryAttributes, StabilityRules,
@@ -123,7 +124,9 @@ const PREPARATION_DISRUPTION_GENERATION_VERSION: u8 =
     WAIT_CONTINUES_PREPARATION_GENERATION_VERSION + 1;
 const DRONE_DEFAULT_SUPPORT_GENERATION_VERSION: u8 = PREPARATION_DISRUPTION_GENERATION_VERSION + 1;
 const DRONE_ENERGY_LIFETIME_GENERATION_VERSION: u8 = DRONE_DEFAULT_SUPPORT_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = DRONE_ENERGY_LIFETIME_GENERATION_VERSION;
+const DRONE_LINK_AWARENESS_GENERATION_VERSION: u8 = DRONE_ENERGY_LIFETIME_GENERATION_VERSION + 1;
+const PLAYER_RELATIONS_GENERATION_VERSION: u8 = DRONE_LINK_AWARENESS_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = PLAYER_RELATIONS_GENERATION_VERSION;
 const _: () = assert!(CURRENT_GENERATION_VERSION == suspension::MAX_GENERATION_VERSION);
 const LOG_CAPACITY: usize = 6;
 const FLOATING_MESSAGE_CAPACITY: usize = 32;
@@ -2781,6 +2784,8 @@ impl AsciiApp {
                         >= ELECTRONIC_WARFARE_SKILLS_GENERATION_VERSION,
                     preparation_disruption: self.generation_version
                         >= PREPARATION_DISRUPTION_GENERATION_VERSION,
+                    player_relations: self.generation_version
+                        >= PLAYER_RELATIONS_GENERATION_VERSION,
                 },
             )?
         };
@@ -3166,6 +3171,9 @@ impl AsciiApp {
                     )
                     .expect("prototype electronic profile is valid"),
                 );
+            }
+            if generation_version >= PLAYER_RELATIONS_GENERATION_VERSION {
+                enemy = enemy.with_player_relation(PlayerRelation::Hostile);
             }
             let id = game.spawn_actor(enemy).map_err(|error| error.to_string())?;
             actor_glyphs.insert(id, glyph);
@@ -3758,6 +3766,7 @@ impl AsciiApp {
                     >= ELECTRONIC_WARFARE_SKILLS_GENERATION_VERSION,
                 preparation_disruption: self.generation_version
                     >= PREPARATION_DISRUPTION_GENERATION_VERSION,
+                player_relations: self.generation_version >= PLAYER_RELATIONS_GENERATION_VERSION,
             },
         )?;
         self.game
@@ -3823,6 +3832,7 @@ impl AsciiApp {
                 destructibles: self.generation_version >= REGIONAL_DESTRUCTIBLES_GENERATION_VERSION,
                 electronic_systems: self.generation_version
                     >= ELECTRONIC_WARFARE_SKILLS_GENERATION_VERSION,
+                player_relations: self.generation_version >= PLAYER_RELATIONS_GENERATION_VERSION,
             },
         )?;
         let mut connections = Vec::new();
@@ -4609,6 +4619,30 @@ impl AsciiApp {
                         "Fin de vie du drone · manifestation dissipée. Drone spectral sera de nouveau utilisable après sa recharge."
                             .to_owned(),
                     );
+                }
+                GameEvent::DroneLinkLost { at, .. } => {
+                    if self.game.player_visibility().is_visible(at) {
+                        self.push_floating_message(
+                            "LIAISON PERDUE",
+                            at,
+                            FloatingMessageTone::Alert,
+                            visual_time,
+                        );
+                    }
+                    self.push_log(
+                        "Liaison du drone perdue · consigne locale maintenue.".to_owned(),
+                    );
+                }
+                GameEvent::DroneLinkRestored { at, .. } => {
+                    if self.game.player_visibility().is_visible(at) {
+                        self.push_floating_message(
+                            "LIAISON RÉTABLIE",
+                            at,
+                            FloatingMessageTone::Status,
+                            visual_time,
+                        );
+                    }
+                    self.push_log("Liaison du drone rétablie · doctrine reprise.".to_owned());
                 }
                 GameEvent::CompanionBehaviorChanged { behavior, .. } => {
                     self.push_log(format!(
@@ -13121,10 +13155,15 @@ fn rules_fingerprint_for_version(rules: &GameRules, version: u8) -> u64 {
 }
 
 fn expedition_fingerprint_for_version(expeditions: &ExpeditionCatalog, version: u8) -> u64 {
-    let disruption_compatible = if version >= PREPARATION_DISRUPTION_GENERATION_VERSION {
+    let relation_compatible = if version >= PLAYER_RELATIONS_GENERATION_VERSION {
         expeditions.clone()
     } else {
-        expeditions.without_preparation_disruption_metadata()
+        expeditions.without_player_relation_metadata()
+    };
+    let disruption_compatible = if version >= PREPARATION_DISRUPTION_GENERATION_VERSION {
+        relation_compatible
+    } else {
+        relation_compatible.without_preparation_disruption_metadata()
     };
     let electronic_compatible = if version >= ELECTRONIC_WARFARE_SKILLS_GENERATION_VERSION {
         disruption_compatible
@@ -13190,10 +13229,15 @@ fn world_fingerprint_for_version(
     if version < REGIONAL_TRAVEL_GENERATION_VERSION {
         return expedition_fingerprint_for_version(expeditions, version);
     }
-    let disruption_compatible = if version >= PREPARATION_DISRUPTION_GENERATION_VERSION {
+    let relation_compatible = if version >= PLAYER_RELATIONS_GENERATION_VERSION {
         expeditions.clone()
     } else {
-        expeditions.without_preparation_disruption_metadata()
+        expeditions.without_player_relation_metadata()
+    };
+    let disruption_compatible = if version >= PREPARATION_DISRUPTION_GENERATION_VERSION {
+        relation_compatible
+    } else {
+        relation_compatible.without_preparation_disruption_metadata()
     };
     let electronic_compatible = if version >= ELECTRONIC_WARFARE_SKILLS_GENERATION_VERSION {
         disruption_compatible
@@ -13231,6 +13275,9 @@ fn world_fingerprint_for_version(
         terminal_compatible
     };
     let mut compatible_regions = regional_worlds.clone();
+    if version < PLAYER_RELATIONS_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_player_relation_metadata();
+    }
     if version < ELECTRONIC_WARFARE_SKILLS_GENERATION_VERSION {
         compatible_regions = compatible_regions.without_electronic_system_metadata();
     }
@@ -13325,6 +13372,8 @@ const fn prototype_enemy_attributes(index: usize) -> PrimaryAttributes {
 fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules {
     rules.player_drone_expires_without_energy = version >= DRONE_ENERGY_LIFETIME_GENERATION_VERSION;
     rules.player_companion_behaviors = version >= DRONE_ENERGY_LIFETIME_GENERATION_VERSION;
+    rules.player_drone_link_awareness = version >= DRONE_LINK_AWARENESS_GENERATION_VERSION;
+    rules.player_relation_targeting = version >= PLAYER_RELATIONS_GENERATION_VERSION;
     rules.player_drone_default_support = version >= DRONE_DEFAULT_SUPPORT_GENERATION_VERSION;
     if version < PREPARATION_DISRUPTION_GENERATION_VERSION {
         rules.player_base_attacks = rules
@@ -17944,6 +17993,7 @@ mod tests {
             saved.world_rules,
             Some(suspension::fingerprint(&(
                 app.expeditions
+                    .without_player_relation_metadata()
                     .without_preparation_disruption_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
@@ -17951,6 +18001,7 @@ mod tests {
                     .without_primary_attribute_metadata()
                     .without_electronic_system_metadata(),
                 app.regional_worlds
+                    .without_player_relation_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
                     .without_physical_metadata()
@@ -18016,6 +18067,7 @@ mod tests {
             saved.world_rules,
             Some(suspension::fingerprint(&(
                 app.expeditions
+                    .without_player_relation_metadata()
                     .without_preparation_disruption_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
@@ -18023,6 +18075,7 @@ mod tests {
                     .without_primary_attribute_metadata()
                     .without_electronic_system_metadata(),
                 app.regional_worlds
+                    .without_player_relation_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
                     .without_physical_metadata()
@@ -18119,6 +18172,7 @@ mod tests {
             saved.world_rules,
             Some(suspension::fingerprint(&(
                 app.expeditions
+                    .without_player_relation_metadata()
                     .without_preparation_disruption_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
@@ -18127,6 +18181,7 @@ mod tests {
                     .without_electronic_system_metadata()
                     .without_data_terminal_metadata(),
                 app.regional_worlds
+                    .without_player_relation_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
                     .without_physical_metadata()
@@ -18179,6 +18234,7 @@ mod tests {
             saved.world_rules,
             Some(suspension::fingerprint(&(
                 app.expeditions
+                    .without_player_relation_metadata()
                     .without_preparation_disruption_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
@@ -18187,6 +18243,7 @@ mod tests {
                     .without_electronic_system_metadata()
                     .without_data_terminal_metadata(),
                 app.regional_worlds
+                    .without_player_relation_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
                     .without_physical_metadata()
@@ -18240,6 +18297,7 @@ mod tests {
             saved.world_rules,
             Some(suspension::fingerprint(&(
                 app.expeditions
+                    .without_player_relation_metadata()
                     .without_preparation_disruption_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
@@ -18248,6 +18306,7 @@ mod tests {
                     .without_electronic_system_metadata()
                     .without_data_terminal_metadata(),
                 app.regional_worlds
+                    .without_player_relation_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
                     .without_physical_metadata()
@@ -18336,6 +18395,7 @@ mod tests {
             saved.world_rules,
             Some(suspension::fingerprint(&(
                 app.expeditions
+                    .without_player_relation_metadata()
                     .without_preparation_disruption_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
@@ -18344,6 +18404,7 @@ mod tests {
                     .without_electronic_system_metadata()
                     .without_data_terminal_metadata(),
                 app.regional_worlds
+                    .without_player_relation_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
                     .without_physical_metadata()
@@ -18396,6 +18457,7 @@ mod tests {
             saved.world_rules,
             Some(suspension::fingerprint(&(
                 app.expeditions
+                    .without_player_relation_metadata()
                     .without_preparation_disruption_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
@@ -18404,6 +18466,7 @@ mod tests {
                     .without_electronic_system_metadata()
                     .without_data_terminal_metadata(),
                 app.regional_worlds
+                    .without_player_relation_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
                     .without_physical_metadata()
@@ -18457,6 +18520,7 @@ mod tests {
             saved.world_rules,
             Some(suspension::fingerprint(&(
                 app.expeditions
+                    .without_player_relation_metadata()
                     .without_preparation_disruption_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
@@ -18464,6 +18528,7 @@ mod tests {
                     .without_primary_attribute_metadata()
                     .without_electronic_system_metadata(),
                 app.regional_worlds
+                    .without_player_relation_metadata()
                     .without_ranged_skill_body_metadata()
                     .without_melee_skill_body_metadata()
                     .without_physical_metadata()
@@ -18579,6 +18644,7 @@ mod tests {
         );
         assert!(enemies.iter().all(|actor| {
             actor.body_profile().is_some()
+                && actor.player_relation() == PlayerRelation::Hostile
                 && actor
                     .attack(0)
                     .is_some_and(|attack| attack.damage().raw_total() == 3)
@@ -18645,6 +18711,7 @@ mod tests {
                 physical_profiles: true,
                 electronic_systems: true,
                 preparation_disruption: false,
+                player_relations: false,
             },
         )
         .unwrap();
@@ -18660,7 +18727,11 @@ mod tests {
                 &expeditions,
                 WAIT_CONTINUES_PREPARATION_GENERATION_VERSION,
             ),
-            suspension::fingerprint(&expeditions.without_preparation_disruption_metadata())
+            suspension::fingerprint(
+                &expeditions
+                    .without_player_relation_metadata()
+                    .without_preparation_disruption_metadata(),
+            )
         );
     }
 
@@ -18672,17 +18743,51 @@ mod tests {
             rules_for_generation_version(rules.clone(), PREPARATION_DISRUPTION_GENERATION_VERSION);
         let version_fifty_seven =
             rules_for_generation_version(rules.clone(), DRONE_DEFAULT_SUPPORT_GENERATION_VERSION);
+        let version_fifty_eight =
+            rules_for_generation_version(rules.clone(), DRONE_ENERGY_LIFETIME_GENERATION_VERSION);
+        let version_fifty_nine =
+            rules_for_generation_version(rules.clone(), DRONE_LINK_AWARENESS_GENERATION_VERSION);
         let current = rules_for_generation_version(rules, CURRENT_GENERATION_VERSION);
 
         assert!(!version_fifty_six.player_drone_default_support);
         assert!(!version_fifty_six.player_drone_expires_without_energy);
         assert!(!version_fifty_six.player_companion_behaviors);
+        assert!(!version_fifty_six.player_drone_link_awareness);
         assert!(version_fifty_seven.player_drone_default_support);
         assert!(!version_fifty_seven.player_drone_expires_without_energy);
         assert!(!version_fifty_seven.player_companion_behaviors);
+        assert!(!version_fifty_seven.player_drone_link_awareness);
+        assert!(version_fifty_eight.player_drone_default_support);
+        assert!(version_fifty_eight.player_drone_expires_without_energy);
+        assert!(version_fifty_eight.player_companion_behaviors);
+        assert!(!version_fifty_eight.player_drone_link_awareness);
+        assert!(!version_fifty_eight.player_relation_targeting);
+        assert!(version_fifty_nine.player_drone_link_awareness);
+        assert!(!version_fifty_nine.player_relation_targeting);
         assert!(current.player_drone_default_support);
         assert!(current.player_drone_expires_without_energy);
         assert!(current.player_companion_behaviors);
+        assert!(current.player_drone_link_awareness);
+        assert!(current.player_relation_targeting);
+    }
+
+    #[test]
+    fn version_fifty_nine_omits_authored_player_relations_from_world_fingerprints() {
+        let (_, _, _, expeditions) = ascii_game_content().unwrap();
+        assert_eq!(
+            expedition_fingerprint_for_version(
+                &expeditions,
+                DRONE_LINK_AWARENESS_GENERATION_VERSION,
+            ),
+            suspension::fingerprint(&expeditions.without_player_relation_metadata())
+        );
+        assert_ne!(
+            expedition_fingerprint_for_version(&expeditions, CURRENT_GENERATION_VERSION),
+            expedition_fingerprint_for_version(
+                &expeditions,
+                DRONE_LINK_AWARENESS_GENERATION_VERSION,
+            )
+        );
     }
 
     #[test]

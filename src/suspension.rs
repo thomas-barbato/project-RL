@@ -20,7 +20,7 @@ use std::{
 };
 
 pub const MAX_COMMANDS: usize = 50_000;
-pub const MAX_GENERATION_VERSION: u8 = 58;
+pub const MAX_GENERATION_VERSION: u8 = 60;
 const MAX_BYTES: u64 = 16 * 1024 * 1024;
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
