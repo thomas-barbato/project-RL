@@ -15099,6 +15099,7 @@ fn read_movement_command(
         if let Some(target) = game.actors().entity_at(destination)
             && target != game.player_id()
             && game.active_worker_role(target).is_none()
+            && !game.is_player_controlled_companion(target)
         {
             return Some(GameCommand::Attack {
                 slot: attack_slot,
@@ -15477,6 +15478,31 @@ mod tests {
             app.floating_messages
                 .iter()
                 .any(|message| message.text == "SUIVI ACTIF")
+        );
+    }
+
+    #[test]
+    fn movement_input_treats_a_controlled_drone_as_a_passable_companion() {
+        let mut app = app_with_test_controls();
+        app.character_creation = None;
+        let drone = spawn_ui_test_drone(&mut app, 4);
+        let player = app.game.player_position().unwrap();
+        let companion = app.game.actors().get(drone).unwrap().position();
+        let direction = Direction::from_delta(companion.x - player.x, companion.y - player.y)
+            .expect("the UI companion fixture is cardinally adjacent");
+        let action = match direction {
+            Direction::North => Action::MoveNorth,
+            Direction::East => Action::MoveEast,
+            Direction::South => Action::MoveSouth,
+            Direction::West => Action::MoveWest,
+        };
+        let binding = app.controls.binding(action).clone();
+        let mut frame = InputFrame::default();
+        frame.pressed.insert(binding);
+
+        assert_eq!(
+            read_movement_command(&app.game, app.active_weapon_slot, &app.controls, &frame),
+            Some(GameCommand::Move(direction))
         );
     }
 

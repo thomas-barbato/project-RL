@@ -1774,13 +1774,18 @@ impl GameState {
     pub fn player_controlled_companions(&self) -> Vec<EntityId> {
         self.actors
             .iter()
-            .filter_map(|(entity, actor)| {
-                actor
-                    .drone()
-                    .is_some_and(|drone| drone.controller() == self.player)
+            .filter_map(|(entity, _)| {
+                self.is_player_controlled_companion(entity)
                     .then_some(entity)
             })
             .collect()
+    }
+
+    pub fn is_player_controlled_companion(&self, entity: EntityId) -> bool {
+        self.actors
+            .get(entity)
+            .and_then(Actor::drone)
+            .is_some_and(|drone| drone.controller() == self.player)
     }
 
     pub fn player_companion_is_linked(&self, entity: EntityId) -> bool {
@@ -9466,7 +9471,10 @@ impl GameState {
         {
             return Err(MovementError::BlockedByTerrain(destination));
         }
-        if self.actors.entity_at(destination).is_some() {
+        let occupant = self.actors.entity_at(destination);
+        let swaps_with_companion = entity == self.player
+            && occupant.is_some_and(|occupant| self.is_player_controlled_companion(occupant));
+        if occupant.is_some() && !swaps_with_companion {
             return Err(MovementError::Occupied(destination));
         }
 
@@ -9479,6 +9487,16 @@ impl GameState {
             return Ok(origin);
         }
 
+        if let Some(companion) = occupant.filter(|_| swaps_with_companion) {
+            self.actors
+                .move_to(companion, origin)
+                .map_err(|_| MovementError::MissingEntity(companion))?;
+            self.events.push(GameEvent::EntityMoved {
+                entity: companion,
+                from: destination,
+                to: origin,
+            });
+        }
         self.actors
             .move_to(entity, destination)
             .map_err(|_| MovementError::MissingEntity(entity))?;
@@ -24839,6 +24857,89 @@ mod tests {
         assert_ne!(drone_position, drone_origin);
         assert!(game.map().is_protected(drone_position));
         assert!(game.player_companion_is_linked(drone));
+    }
+
+    #[test]
+    fn player_swaps_with_a_controlled_companion_instead_of_attacking_or_being_blocked() {
+        let mut map = parse_map("#####\n#...#\n#####");
+        for x in 1..=3 {
+            map.set_protected(GridPos::new(x, 1), true).unwrap();
+        }
+        let mut game = GameState::new_with_rules(
+            map,
+            GridPos::new(2, 1),
+            34,
+            GameRules {
+                player_system_resources: Some(super::super::SystemResourceRules::default()),
+                ..GameRules::default()
+            },
+        )
+        .unwrap();
+        let profile = DroneProfile::new(
+            "core:test_swappable_companion".parse().unwrap(),
+            6,
+            50,
+            40,
+            1,
+            3,
+            4,
+            1,
+            1,
+            crate::drone::DroneCapabilities::default(),
+        )
+        .unwrap();
+        let drone = game
+            .spawn_manifested_player_drone(
+                Actor::new(GridPos::new(1, 1), 10).unwrap(),
+                profile,
+                10,
+                10,
+            )
+            .unwrap();
+        let player_integrity = game.actors().get(game.player_id()).unwrap().integrity();
+        let drone_integrity = game.actors().get(drone).unwrap().integrity();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::West)),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.player_position(), Some(GridPos::new(1, 1)));
+        assert_eq!(
+            game.actors().get(drone).map(Actor::position),
+            Some(GridPos::new(2, 1))
+        );
+        assert_eq!(
+            game.actors().get(game.player_id()).unwrap().integrity(),
+            player_integrity
+        );
+        assert_eq!(
+            game.actors().get(drone).unwrap().integrity(),
+            drone_integrity
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed { attacker, .. } if *attacker == game.player_id()
+        )));
+
+        for x in 1..=3 {
+            game.map.set_protected(GridPos::new(x, 1), false).unwrap();
+        }
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_position(), Some(GridPos::new(2, 1)));
+        assert_eq!(
+            game.actors().get(drone).map(Actor::position),
+            Some(GridPos::new(1, 1))
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed { attacker, .. } if *attacker == game.player_id()
+        )));
     }
 
     #[test]
