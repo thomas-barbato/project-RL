@@ -14,6 +14,8 @@ L'interface normale ne montre jamais les informations de mise au point du dével
 
 Les composants interactifs partagent un langage visuel de jeu commun : surface légèrement surélevée, ombre courte, angles adoucis et accent discret plutôt que cadres complets systématiques. Le texte d'un bouton est centré à partir des limites réellement rendues par la police, horizontalement et verticalement. Les actions principales, secondaires et destructrices sont distinguées par leur forme d'accentuation, leur libellé et leur couleur ; le survol, le focus clavier et l'état désactivé restent cohérents dans tous les écrans.
 
+Une famille commune d'icônes vectorielles dessinées par l'interface accompagne les actions des menus, du HUD, de l'inventaire et des écrans contextuels. Elle reste nette quelle que soit l'échelle choisie et ne dépend ni du mode Terminal ni du futur mode texturé. Une action importante conserve son libellé et, lorsque cela aide, son raccourci : l'icône améliore le repérage sans devenir un code à mémoriser. Les boutons à icône seule sont réservés aux palettes très compactes ou répétitives et possèdent alors une infobulle. La forme, le texte et l'état visuel continuent de porter le sens sans dépendre uniquement de la couleur.
+
 L'échelle choisie dans les options est combinée à une augmentation automatique prudente sur les grands écrans. Elle reste plafonnée après un redimensionnement afin que le contenu et les boutons soient toujours atteignables. Le plein écran fenêtré demeure la valeur par défaut.
 
 ## Confort d'utilisation

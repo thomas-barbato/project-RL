@@ -6,8 +6,9 @@
 use std::sync::OnceLock;
 
 use macroquad::prelude::{
-    Color, Font, Rect, TextDimensions, TextParams, draw_circle, draw_rectangle, draw_text_ex,
-    load_ttf_font_from_bytes,
+    Color, Font, Rect, TextDimensions, TextParams, draw_circle, draw_circle_lines, draw_line,
+    draw_rectangle, draw_rectangle_lines, draw_text_ex, draw_triangle, load_ttf_font_from_bytes,
+    vec2,
 };
 
 static REGULAR_FONT: OnceLock<Font> = OnceLock::new();
@@ -139,6 +140,62 @@ pub enum ButtonTone {
     Secondary,
     Primary,
     Danger,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct ButtonState {
+    focused: bool,
+    active: bool,
+    enabled: bool,
+    tone: ButtonTone,
+}
+
+impl ButtonState {
+    pub const fn new(focused: bool, active: bool, enabled: bool, tone: ButtonTone) -> Self {
+        Self {
+            focused,
+            active,
+            enabled,
+            tone,
+        }
+    }
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum UiIcon {
+    Play,
+    Add,
+    Settings,
+    Power,
+    Save,
+    Abandon,
+    Controls,
+    Display,
+    Back,
+    Confirm,
+    Cancel,
+    Reset,
+    Interact,
+    Attack,
+    Techniques,
+    Inventory,
+    Help,
+    Menu,
+    Sort,
+    All,
+    Weapon,
+    Armor,
+    Consumable,
+    Material,
+    Equip,
+    Use,
+    Drop,
+    Character,
+    Window,
+    Grid,
+    Contrast,
+    Motion,
+    Wait,
 }
 
 #[derive(Clone, Copy, Debug, Default)]
@@ -319,6 +376,445 @@ impl UiTheme {
                 self.text()
             },
         );
+    }
+
+    pub fn button_with_icon(self, rect: Rect, label: &str, icon: UiIcon, state: ButtonState) {
+        self.button(
+            rect,
+            "",
+            state.focused,
+            state.active,
+            state.enabled,
+            state.tone,
+        );
+        let color = button_foreground(self, state.focused, state.active, state.enabled, state.tone);
+        let compact = rect.w < 140.0;
+        let icon_size = if compact {
+            (rect.h - 14.0).clamp(12.0, 15.0)
+        } else {
+            (rect.h - 13.0).clamp(13.0, 22.0)
+        };
+        let icon_margin = if compact { 5.0 } else { 12.0 };
+        draw_ui_icon(
+            icon,
+            Rect::new(
+                rect.x + icon_margin,
+                rect.y + (rect.h - icon_size) * 0.5,
+                icon_size,
+                icon_size,
+            ),
+            color,
+        );
+        let label_start = if compact {
+            icon_size + 9.0
+        } else {
+            icon_size + 24.0
+        };
+        let label_end_margin = if compact { 4.0 } else { 12.0 };
+        let label_rect = Rect::new(
+            rect.x + label_start,
+            rect.y,
+            (rect.w - label_start - label_end_margin).max(20.0),
+            rect.h - 1.0,
+        );
+        let mut font_size = 16_u16;
+        while font_size > 12 && measure_text_bold(label, font_size).width > label_rect.w - 8.0 {
+            font_size -= 1;
+        }
+        draw_text_bold_centered(label, label_rect, font_size, color);
+    }
+}
+
+fn button_foreground(
+    theme: UiTheme,
+    focused: bool,
+    active: bool,
+    enabled: bool,
+    tone: ButtonTone,
+) -> Color {
+    if !enabled {
+        if tone == ButtonTone::Danger {
+            theme.danger()
+        } else {
+            Color::new(0.42, 0.49, 0.50, 1.0)
+        }
+    } else if focused || active {
+        match tone {
+            ButtonTone::Secondary => theme.accent(),
+            ButtonTone::Primary => theme.focus(),
+            ButtonTone::Danger => theme.danger(),
+        }
+    } else {
+        theme.text()
+    }
+}
+
+pub fn draw_ui_icon(icon: UiIcon, rect: Rect, color: Color) {
+    let size = rect.w.min(rect.h);
+    let cx = rect.x + rect.w * 0.5;
+    let cy = rect.y + rect.h * 0.5;
+    let radius = size * 0.34;
+    let line = (size * 0.095).clamp(1.2, 2.2);
+    let left = cx - radius;
+    let right = cx + radius;
+    let top = cy - radius;
+    let bottom = cy + radius;
+    match icon {
+        UiIcon::Play | UiIcon::Use => draw_triangle(
+            vec2(cx - radius * 0.55, top),
+            vec2(right, cy),
+            vec2(cx - radius * 0.55, bottom),
+            color,
+        ),
+        UiIcon::Add => {
+            draw_circle_lines(cx, cy, radius, line, color);
+            draw_line(
+                left + radius * 0.45,
+                cy,
+                right - radius * 0.45,
+                cy,
+                line,
+                color,
+            );
+            draw_line(
+                cx,
+                top + radius * 0.45,
+                cx,
+                bottom - radius * 0.45,
+                line,
+                color,
+            );
+        }
+        UiIcon::Settings => {
+            draw_circle_lines(cx, cy, radius * 0.48, line, color);
+            for (dx, dy) in [(0.0, -1.0), (1.0, 0.0), (0.0, 1.0), (-1.0, 0.0)] {
+                draw_line(
+                    cx + dx * radius * 0.58,
+                    cy + dy * radius * 0.58,
+                    cx + dx * radius,
+                    cy + dy * radius,
+                    line,
+                    color,
+                );
+            }
+        }
+        UiIcon::Power => {
+            draw_circle_lines(cx, cy + radius * 0.12, radius * 0.82, line, color);
+            draw_line(cx, top, cx, cy, line, color);
+        }
+        UiIcon::Save => {
+            draw_rectangle_lines(left, top, radius * 2.0, radius * 2.0, line, color);
+            draw_rectangle_lines(
+                cx - radius * 0.45,
+                top,
+                radius * 0.9,
+                radius * 0.65,
+                line,
+                color,
+            );
+            draw_rectangle_lines(
+                cx - radius * 0.5,
+                cy + radius * 0.18,
+                radius,
+                radius * 0.62,
+                line,
+                color,
+            );
+        }
+        UiIcon::Abandon | UiIcon::Cancel => {
+            draw_line(left, top, right, bottom, line, color);
+            draw_line(right, top, left, bottom, line, color);
+        }
+        UiIcon::Controls => {
+            draw_rectangle_lines(
+                left,
+                cy - radius * 0.72,
+                radius * 2.0,
+                radius * 1.44,
+                line,
+                color,
+            );
+            for column in 0..3 {
+                let x = left + radius * (0.45 + column as f32 * 0.55);
+                draw_circle(x, cy - radius * 0.25, line * 0.72, color);
+            }
+            draw_line(
+                left + radius * 0.35,
+                cy + radius * 0.28,
+                right - radius * 0.35,
+                cy + radius * 0.28,
+                line,
+                color,
+            );
+        }
+        UiIcon::Display | UiIcon::Window => {
+            draw_rectangle_lines(left, top, radius * 2.0, radius * 1.45, line, color);
+            draw_line(cx, cy + radius * 0.45, cx, bottom, line, color);
+            draw_line(
+                cx - radius * 0.5,
+                bottom,
+                cx + radius * 0.5,
+                bottom,
+                line,
+                color,
+            );
+        }
+        UiIcon::Back => {
+            draw_line(right, cy, left, cy, line, color);
+            draw_line(left, cy, cx - radius * 0.25, top, line, color);
+            draw_line(left, cy, cx - radius * 0.25, bottom, line, color);
+        }
+        UiIcon::Confirm | UiIcon::Equip => {
+            draw_line(left, cy, cx - radius * 0.15, bottom, line, color);
+            draw_line(cx - radius * 0.15, bottom, right, top, line, color);
+        }
+        UiIcon::Reset => {
+            draw_circle_lines(cx, cy, radius * 0.82, line, color);
+            draw_triangle(
+                vec2(left - line, cy - radius * 0.2),
+                vec2(left + radius * 0.55, cy - radius * 0.55),
+                vec2(left + radius * 0.45, cy + radius * 0.1),
+                color,
+            );
+        }
+        UiIcon::Interact => {
+            draw_circle_lines(cx, cy, radius * 0.34, line, color);
+            for (dx, dy) in [(0.0, -1.0), (1.0, 0.0), (0.0, 1.0), (-1.0, 0.0)] {
+                draw_line(
+                    cx + dx * radius * 0.55,
+                    cy + dy * radius * 0.55,
+                    cx + dx * radius,
+                    cy + dy * radius,
+                    line,
+                    color,
+                );
+            }
+        }
+        UiIcon::Attack => {
+            draw_circle_lines(cx, cy, radius * 0.55, line, color);
+            draw_line(left, cy, cx - radius * 0.25, cy, line, color);
+            draw_line(cx + radius * 0.25, cy, right, cy, line, color);
+            draw_line(cx, top, cx, cy - radius * 0.25, line, color);
+            draw_line(cx, cy + radius * 0.25, cx, bottom, line, color);
+        }
+        UiIcon::Techniques => {
+            let points = [
+                vec2(cx + radius * 0.05, top),
+                vec2(left + radius * 0.35, cy + radius * 0.08),
+                vec2(cx - radius * 0.05, cy + radius * 0.08),
+                vec2(cx - radius * 0.18, bottom),
+                vec2(right - radius * 0.2, cy - radius * 0.12),
+                vec2(cx + radius * 0.15, cy - radius * 0.12),
+            ];
+            for edge in points.windows(2) {
+                draw_line(edge[0].x, edge[0].y, edge[1].x, edge[1].y, line, color);
+            }
+        }
+        UiIcon::Inventory => {
+            draw_rectangle_lines(
+                left,
+                cy - radius * 0.52,
+                radius * 2.0,
+                radius * 1.5,
+                line,
+                color,
+            );
+            draw_line(
+                cx - radius * 0.4,
+                cy - radius * 0.52,
+                cx - radius * 0.18,
+                top,
+                line,
+                color,
+            );
+            draw_line(
+                cx + radius * 0.4,
+                cy - radius * 0.52,
+                cx + radius * 0.18,
+                top,
+                line,
+                color,
+            );
+        }
+        UiIcon::Help => {
+            draw_circle_lines(cx, cy, radius, line, color);
+            draw_line(cx, top + radius * 0.38, cx, cy + radius * 0.1, line, color);
+            draw_circle(cx, bottom - radius * 0.28, line * 0.72, color);
+        }
+        UiIcon::Menu => {
+            for offset in [-0.62, 0.0, 0.62] {
+                draw_line(
+                    left,
+                    cy + radius * offset,
+                    right,
+                    cy + radius * offset,
+                    line,
+                    color,
+                );
+            }
+        }
+        UiIcon::Sort => {
+            for (index, width) in [1.0, 0.72, 0.44].into_iter().enumerate() {
+                let y = top + radius * (0.25 + index as f32 * 0.72);
+                draw_line(left, y, left + radius * 2.0 * width, y, line, color);
+            }
+        }
+        UiIcon::All | UiIcon::Grid => {
+            let cell = radius * 0.72;
+            for row in 0..2 {
+                for column in 0..2 {
+                    draw_rectangle_lines(
+                        cx - radius + column as f32 * radius * 1.08,
+                        cy - radius + row as f32 * radius * 1.08,
+                        cell,
+                        cell,
+                        line,
+                        color,
+                    );
+                }
+            }
+        }
+        UiIcon::Weapon => {
+            draw_line(left, bottom, right, top, line * 1.25, color);
+            draw_line(
+                left,
+                bottom - radius * 0.55,
+                left + radius * 0.55,
+                bottom,
+                line,
+                color,
+            );
+            draw_line(
+                left,
+                bottom,
+                left + radius * 0.25,
+                bottom - radius * 0.25,
+                line,
+                color,
+            );
+        }
+        UiIcon::Armor => {
+            let points = [
+                vec2(cx, top),
+                vec2(right, top + radius * 0.42),
+                vec2(right - radius * 0.2, bottom - radius * 0.25),
+                vec2(cx, bottom),
+                vec2(left + radius * 0.2, bottom - radius * 0.25),
+                vec2(left, top + radius * 0.42),
+                vec2(cx, top),
+            ];
+            for edge in points.windows(2) {
+                draw_line(edge[0].x, edge[0].y, edge[1].x, edge[1].y, line, color);
+            }
+        }
+        UiIcon::Consumable => {
+            draw_line(
+                cx - radius * 0.34,
+                top,
+                cx + radius * 0.34,
+                top,
+                line,
+                color,
+            );
+            draw_rectangle_lines(
+                cx - radius * 0.52,
+                top + radius * 0.38,
+                radius * 1.04,
+                radius * 1.52,
+                line,
+                color,
+            );
+            draw_line(
+                cx - radius * 0.45,
+                cy + radius * 0.25,
+                cx + radius * 0.45,
+                cy + radius * 0.25,
+                line,
+                color,
+            );
+        }
+        UiIcon::Material => {
+            draw_circle_lines(cx, cy, radius, line, color);
+            draw_circle_lines(cx, cy, radius * 0.38, line, color);
+        }
+        UiIcon::Drop => {
+            draw_line(cx, top, cx, bottom - radius * 0.35, line, color);
+            draw_line(
+                cx,
+                bottom,
+                left + radius * 0.25,
+                cy + radius * 0.2,
+                line,
+                color,
+            );
+            draw_line(
+                cx,
+                bottom,
+                right - radius * 0.25,
+                cy + radius * 0.2,
+                line,
+                color,
+            );
+        }
+        UiIcon::Character => {
+            draw_circle(cx, top + radius * 0.48, radius * 0.36, color);
+            draw_circle_lines(cx, bottom, radius * 0.78, line, color);
+        }
+        UiIcon::Contrast => {
+            draw_circle_lines(cx, cy, radius, line, color);
+            draw_line(cx, top, cx, bottom, line, color);
+            draw_circle(cx - radius * 0.42, cy, radius * 0.23, color);
+        }
+        UiIcon::Motion => {
+            draw_line(
+                left,
+                cy - radius * 0.38,
+                right,
+                cy - radius * 0.38,
+                line,
+                color,
+            );
+            draw_line(
+                left,
+                cy + radius * 0.38,
+                right,
+                cy + radius * 0.38,
+                line,
+                color,
+            );
+            draw_triangle(
+                vec2(right, cy - radius * 0.38),
+                vec2(right - radius * 0.48, top),
+                vec2(right - radius * 0.48, cy),
+                color,
+            );
+            draw_triangle(
+                vec2(left, cy + radius * 0.38),
+                vec2(left + radius * 0.48, cy),
+                vec2(left + radius * 0.48, bottom),
+                color,
+            );
+        }
+        UiIcon::Wait => {
+            draw_line(left, top, right, top, line, color);
+            draw_line(left, bottom, right, bottom, line, color);
+            draw_line(
+                left + line,
+                top + line,
+                right - line,
+                bottom - line,
+                line,
+                color,
+            );
+            draw_line(
+                right - line,
+                top + line,
+                left + line,
+                bottom - line,
+                line,
+                color,
+            );
+        }
     }
 }
 

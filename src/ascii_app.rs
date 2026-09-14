@@ -10,8 +10,8 @@ use crate::terminal_view::{
 };
 use crate::test_sector::TestSector;
 use crate::ui_theme::{
-    ButtonTone, UiTheme, draw_text, draw_text_bold, draw_text_bold_centered, measure_text,
-    measure_text_bold,
+    ButtonState, ButtonTone, UiIcon, UiTheme, draw_text, draw_text_bold, draw_text_bold_centered,
+    draw_ui_icon, measure_text, measure_text_bold,
 };
 
 use macroquad::prelude::*;
@@ -371,14 +371,15 @@ impl InventoryLayout {
             )
         });
         let filter_gap = 5.0;
-        let filter_width = (left_width - 20.0 - filter_gap * 4.0) / 5.0;
+        let filter_available = left_width - 20.0 - filter_gap * 4.0;
+        let filter_weights = [0.78_f32, 1.08, 1.18, 1.02, 1.24];
+        let weight_total = filter_weights.iter().sum::<f32>();
+        let mut filter_x = margin + 10.0;
         let filters = std::array::from_fn(|index| {
-            Rect::new(
-                margin + 10.0 + index as f32 * (filter_width + filter_gap),
-                top + 68.0,
-                filter_width,
-                29.0,
-            )
+            let filter_width = filter_available * filter_weights[index] / weight_total;
+            let rect = Rect::new(filter_x, top + 68.0, filter_width, 29.0);
+            filter_x += filter_width + filter_gap;
+            rect
         });
         let sort = Rect::new(margin + left_width - 100.0, top + 101.0, 90.0, 25.0);
         let stats_panel = stats_width.map(|stats_width| {
@@ -2516,17 +2517,24 @@ impl AsciiApp {
             .zip(["UTILISER", "ANNULER"])
             .enumerate()
         {
-            theme.button(
+            theme.button_with_icon(
                 *button,
                 label,
-                self.menu_focus.hovered == Some(techniques.len() + index),
-                false,
-                true,
                 if index == 0 {
-                    ButtonTone::Primary
+                    UiIcon::Use
                 } else {
-                    ButtonTone::Secondary
+                    UiIcon::Cancel
                 },
+                ButtonState::new(
+                    self.menu_focus.hovered == Some(techniques.len() + index),
+                    false,
+                    true,
+                    if index == 0 {
+                        ButtonTone::Primary
+                    } else {
+                        ButtonTone::Secondary
+                    },
+                ),
             );
         }
     }
@@ -2631,21 +2639,27 @@ impl AsciiApp {
             );
         }
 
-        theme.button(
+        theme.button_with_icon(
             cancel,
             "ANNULER",
-            self.menu_focus.hovered == Some(selection.components.len()),
-            false,
-            true,
-            ButtonTone::Secondary,
+            UiIcon::Cancel,
+            ButtonState::new(
+                self.menu_focus.hovered == Some(selection.components.len()),
+                false,
+                true,
+                ButtonTone::Secondary,
+            ),
         );
-        theme.button(
+        theme.button_with_icon(
             confirm,
             "CONFIRMER",
-            self.menu_focus.hovered == Some(selection.components.len() + 1),
-            false,
-            true,
-            ButtonTone::Primary,
+            UiIcon::Confirm,
+            ButtonState::new(
+                self.menu_focus.hovered == Some(selection.components.len() + 1),
+                false,
+                true,
+                ButtonTone::Primary,
+            ),
         );
     }
 
@@ -8486,7 +8500,15 @@ impl AsciiApp {
                 (self.controls.label(Action::Legend), "Aide"),
                 ("ÉCHAP".to_owned(), "Menu"),
             ] {
-                hint_x = draw_control_hint(hint_x, hint_y, &binding, label);
+                let icon = match label {
+                    "Interagir" => UiIcon::Interact,
+                    "Attaquer" => UiIcon::Attack,
+                    "Techniques" => UiIcon::Techniques,
+                    "Inventaire" => UiIcon::Inventory,
+                    "Aide" => UiIcon::Help,
+                    _ => UiIcon::Menu,
+                };
+                hint_x = draw_control_hint(hint_x, hint_y, &binding, label, icon);
             }
         }
 
@@ -9299,22 +9321,28 @@ impl AsciiApp {
         );
 
         for (index, (rect, filter)) in layout.filters.iter().zip(InventoryFilter::ALL).enumerate() {
-            theme.button(
+            theme.button_with_icon(
                 *rect,
                 filter.label(),
-                self.menu_focus.hovered == Some(entries.len() + 6 + index),
-                filter == self.inventory_filter,
-                true,
-                ButtonTone::Secondary,
+                inventory_filter_icon(filter),
+                ButtonState::new(
+                    self.menu_focus.hovered == Some(entries.len() + 6 + index),
+                    filter == self.inventory_filter,
+                    true,
+                    ButtonTone::Secondary,
+                ),
             );
         }
-        theme.button(
+        theme.button_with_icon(
             layout.sort,
             &format!("Tri : {}", self.inventory_sort.label()),
-            self.menu_focus.hovered == Some(entries.len() + 11),
-            false,
-            true,
-            ButtonTone::Secondary,
+            UiIcon::Sort,
+            ButtonState::new(
+                self.menu_focus.hovered == Some(entries.len() + 11),
+                false,
+                true,
+                ButtonTone::Secondary,
+            ),
         );
         for (index, row) in &layout.rows {
             let Some(entry) = entries.get(*index).copied() else {
@@ -9788,13 +9816,22 @@ impl AsciiApp {
             ])
             .enumerate()
         {
-            theme.button(
+            let icon = match index {
+                0..=2 => UiIcon::Equip,
+                3 => UiIcon::Use,
+                4 => UiIcon::Drop,
+                _ => UiIcon::Cancel,
+            };
+            theme.button_with_icon(
                 *rect,
                 label,
-                self.menu_focus.hovered == Some(entries.len() + index),
-                false,
-                enabled,
-                ButtonTone::Secondary,
+                icon,
+                ButtonState::new(
+                    self.menu_focus.hovered == Some(entries.len() + index),
+                    false,
+                    enabled,
+                    ButtonTone::Secondary,
+                ),
             );
         }
         if !self.inventory_message.is_empty() {
@@ -9983,16 +10020,19 @@ impl AsciiApp {
             );
         }
 
-        theme.button(
+        theme.button_with_icon(
             details_button,
             &format!(
                 "Fiche détaillée · {}",
                 self.controls.label(Action::Character)
             ),
-            self.menu_focus.hovered == Some(focus_index),
-            false,
-            true,
-            ButtonTone::Secondary,
+            UiIcon::Character,
+            ButtonState::new(
+                self.menu_focus.hovered == Some(focus_index),
+                false,
+                true,
+                ButtonTone::Secondary,
+            ),
         );
     }
 
@@ -10684,13 +10724,21 @@ impl AsciiApp {
             .zip(["Inventaire", "Compétences", "Fermer"])
             .enumerate()
         {
-            theme.button(
+            let icon = match index {
+                0 => UiIcon::Inventory,
+                1 => UiIcon::Techniques,
+                _ => UiIcon::Cancel,
+            };
+            theme.button_with_icon(
                 *rect,
                 label,
-                self.menu_focus.hovered == Some(PrimaryAttribute::ALL.len() + index),
-                false,
-                true,
-                ButtonTone::Secondary,
+                icon,
+                ButtonState::new(
+                    self.menu_focus.hovered == Some(PrimaryAttribute::ALL.len() + index),
+                    false,
+                    true,
+                    ButtonTone::Secondary,
+                ),
             );
         }
     }
@@ -12593,13 +12641,16 @@ impl AsciiApp {
         for (index, (label, rect)) in buttons.iter().zip(&layout.buttons).enumerate() {
             let enabled = self.menu_row_enabled(index);
             let selected = enabled && self.menu_focus.highlighted(index, self.menu_selection);
-            theme.button(
+            theme.button_with_icon(
                 *rect,
                 label,
-                selected,
-                false,
-                enabled,
-                menu_button_tone(self.menu, index, self.has_suspension()),
+                menu_button_icon(self.menu, index),
+                ButtonState::new(
+                    selected,
+                    false,
+                    enabled,
+                    menu_button_tone(self.menu, index, self.has_suspension()),
+                ),
             );
         }
         if menu_error {
@@ -13139,13 +13190,16 @@ impl AsciiApp {
             theme.accent(),
         );
         let close = Rect::new(x + width - 100.0, 50.0, 80.0, 31.0);
-        theme.button(
+        theme.button_with_icon(
             close,
             "Fermer",
-            self.menu_focus.hovered == Some(0),
-            false,
-            true,
-            ButtonTone::Secondary,
+            UiIcon::Cancel,
+            ButtonState::new(
+                self.menu_focus.hovered == Some(0),
+                false,
+                true,
+                ButtonTone::Secondary,
+            ),
         );
         draw_line(x + 20.0, 119.0, x + width - 20.0, 119.0, 1.0, theme.muted());
         let bottom = 40.0 + height - 65.0;
@@ -14194,7 +14248,7 @@ fn draw_hud_card(rect: Rect, label: &str, value: &str, accent: Color, high_contr
     );
 }
 
-fn draw_control_hint(x: f32, y: f32, binding: &str, label: &str) -> f32 {
+fn draw_control_hint(x: f32, y: f32, binding: &str, label: &str, icon: UiIcon) -> f32 {
     let (key_width, label_width) = control_hint_widths(binding, label);
     draw_rectangle(x, y, key_width, 24.0, UiTheme.surface_raised());
     draw_rectangle_lines(x, y, key_width, 24.0, 1.0, UiTheme.accent());
@@ -14204,8 +14258,13 @@ fn draw_control_hint(x: f32, y: f32, binding: &str, label: &str) -> f32 {
         13,
         UiTheme.text(),
     );
-    draw_text(label, x + key_width + 7.0, y + 17.0, 14.0, UiTheme.muted());
-    x + key_width + label_width + 25.0
+    draw_ui_icon(
+        icon,
+        Rect::new(x + key_width + 6.0, y + 5.0, 14.0, 14.0),
+        UiTheme.accent(),
+    );
+    draw_text(label, x + key_width + 24.0, y + 17.0, 14.0, UiTheme.muted());
+    x + key_width + label_width + 36.0
 }
 
 fn control_hint_widths(binding: &str, label: &str) -> (f32, f32) {
@@ -14230,38 +14289,9 @@ fn draw_wait_action_button(rect: Rect, binding: &str, hovered: bool) {
     } else {
         UiTheme.text()
     };
-    let center_y = rect.y + rect.h * 0.5;
-    let icon_x = rect.x + 16.0;
-    draw_line(
-        icon_x - 5.0,
-        center_y - 7.0,
-        icon_x + 5.0,
-        center_y - 7.0,
-        1.5,
-        color,
-    );
-    draw_line(
-        icon_x - 5.0,
-        center_y + 7.0,
-        icon_x + 5.0,
-        center_y + 7.0,
-        1.5,
-        color,
-    );
-    draw_line(
-        icon_x - 4.0,
-        center_y - 6.0,
-        icon_x + 4.0,
-        center_y + 6.0,
-        1.5,
-        color,
-    );
-    draw_line(
-        icon_x + 4.0,
-        center_y - 6.0,
-        icon_x - 4.0,
-        center_y + 6.0,
-        1.5,
+    draw_ui_icon(
+        UiIcon::Wait,
+        Rect::new(rect.x + 8.0, rect.y + 7.0, 16.0, 16.0),
         color,
     );
     draw_text_bold("Attendre", rect.x + 31.0, rect.y + 20.0, 14.0, color);
@@ -14541,6 +14571,45 @@ const fn menu_button_tone(menu: MenuScreen, index: usize, has_suspension: bool) 
         MenuScreen::ConfirmGraphics if index == 1 => ButtonTone::Primary,
         MenuScreen::ConfirmAbandon | MenuScreen::ConfirmNewRun if index == 1 => ButtonTone::Danger,
         _ => ButtonTone::Secondary,
+    }
+}
+
+const fn menu_button_icon(menu: MenuScreen, index: usize) -> UiIcon {
+    match (menu, index) {
+        (MenuScreen::Main, 0) | (MenuScreen::Pause, 0) => UiIcon::Play,
+        (MenuScreen::Main, 1) => UiIcon::Add,
+        (MenuScreen::Main, 2) | (MenuScreen::Pause, 1) => UiIcon::Settings,
+        (MenuScreen::Main, 3) => UiIcon::Power,
+        (MenuScreen::Pause, 2) => UiIcon::Save,
+        (MenuScreen::Pause, 3) => UiIcon::Abandon,
+        (MenuScreen::Options, 0) => UiIcon::Controls,
+        (MenuScreen::Options, 1) => UiIcon::Display,
+        (MenuScreen::Options, 2) => UiIcon::Back,
+        (MenuScreen::Graphics, 0) => UiIcon::Window,
+        (MenuScreen::Graphics, 1 | 3) => UiIcon::Display,
+        (MenuScreen::Graphics, 2) => UiIcon::Character,
+        (MenuScreen::Graphics, 4) => UiIcon::Grid,
+        (MenuScreen::Graphics, 5) => UiIcon::Contrast,
+        (MenuScreen::Graphics, 6) => UiIcon::Motion,
+        (MenuScreen::Graphics, 7) => UiIcon::Reset,
+        (MenuScreen::Graphics, 8) => UiIcon::Confirm,
+        (MenuScreen::Graphics, 9) => UiIcon::Back,
+        (MenuScreen::ConfirmGraphics, 0) => UiIcon::Reset,
+        (MenuScreen::ConfirmGraphics, 1) => UiIcon::Confirm,
+        (MenuScreen::ConfirmAbandon, 0) | (MenuScreen::ConfirmNewRun, 0) => UiIcon::Cancel,
+        (MenuScreen::ConfirmAbandon, 1) => UiIcon::Abandon,
+        (MenuScreen::ConfirmNewRun, 1) => UiIcon::Add,
+        _ => UiIcon::Menu,
+    }
+}
+
+const fn inventory_filter_icon(filter: InventoryFilter) -> UiIcon {
+    match filter {
+        InventoryFilter::All => UiIcon::All,
+        InventoryFilter::Weapons => UiIcon::Weapon,
+        InventoryFilter::Armor => UiIcon::Armor,
+        InventoryFilter::Consumables => UiIcon::Consumable,
+        InventoryFilter::Materials => UiIcon::Material,
     }
 }
 
@@ -16377,6 +16446,23 @@ mod tests {
                     .iter()
                     .all(|(_, row)| contains(layout.technique_panel, *row))
             );
+        }
+    }
+
+    #[test]
+    fn inventory_category_bar_stays_ordered_and_inside_its_panel() {
+        for (width, height) in [(960.0, 540.0), (1280.0, 800.0), (1920.0, 1080.0)] {
+            let layout = InventoryLayout::new(width, height, 0, 12);
+            let left_edge = 42.0;
+            let right_edge = 32.0 + layout.left_width - 10.0;
+
+            assert!((layout.filters[0].x - left_edge).abs() < f32::EPSILON);
+            assert!(layout.filters.windows(2).all(|pair| {
+                pair[0].x + pair[0].w < pair[1].x && (pair[0].y - pair[1].y).abs() < f32::EPSILON
+            }));
+            assert!(layout.filters[4].x + layout.filters[4].w <= right_edge + f32::EPSILON);
+            assert!(layout.filters[4].w > layout.filters[0].w);
+            assert!(layout.filters[2].w > layout.filters[1].w);
         }
     }
 
