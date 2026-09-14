@@ -85,6 +85,10 @@ pub struct GameRules {
     /// Makes companion routines respect the actual control link and records
     /// link transitions without granting remote knowledge of the controller.
     pub player_drone_link_awareness: bool,
+    /// Lets a disconnected companion move only toward the controller position
+    /// last confirmed while the link was active. It never reads a live remote
+    /// position and stops when that bounded local recovery target is reached.
+    pub player_drone_link_recovery: bool,
     /// Makes autonomous companion targeting use explicit combat relations.
     /// Disabled legacy rules retain the historical `has AI == hostile` rule.
     pub player_relation_targeting: bool,
@@ -155,6 +159,12 @@ impl Debug for GameRules {
             rules.field(
                 "player_drone_link_awareness",
                 &self.player_drone_link_awareness,
+            );
+        }
+        if self.player_drone_link_recovery {
+            rules.field(
+                "player_drone_link_recovery",
+                &self.player_drone_link_recovery,
             );
         }
         if self.player_relation_targeting {
@@ -273,6 +283,7 @@ impl Default for GameRules {
             player_drone_expires_without_energy: true,
             player_companion_behaviors: true,
             player_drone_link_awareness: true,
+            player_drone_link_recovery: true,
             player_relation_targeting: true,
             enabled_system_features: SystemFeatureSet::default(),
             movement_traces: MovementTraceRules::default(),

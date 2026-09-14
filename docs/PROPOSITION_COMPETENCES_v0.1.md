@@ -440,7 +440,7 @@ Un drone possède sa propre perception pour agir localement. L'interface du joue
 
 Chaque drone est une entité physique placée sur sa propre case du monde : il se déplace, occupe l'espace, peut bloquer ou être bloqué, subir des attaques et être détruit. Le mode terminal lui attribue provisoirement un glyphe propre ; le futur mode graphique remplacera ce rendu par l'image du drone sur cette même case, sans changer sa simulation ni le transformer en simple bonus attaché au joueur.
 
-Pour cette version, un drone hors liaison poursuit seulement une routine déjà donnée. Un rapport d'exploration devient un souvenir daté lorsqu'il peut être transmis ou rapporté ; il ne maintient pas une icône d'ennemi actualisée à travers un mur. La position affichée d'un drone hors contact reste sa dernière position confirmée, clairement distinguée d'une position actuelle.
+Pour cette version, un drone hors liaison poursuit seulement une routine déjà donnée. Une doctrine de compagnon peut rejoindre la dernière position confirmée de son contrôleur, puis y attendre ; elle ne reçoit jamais sa position distante actuelle. Un rapport d'exploration devient un souvenir daté lorsqu'il peut être transmis ou rapporté ; il ne maintient pas une icône d'ennemi actualisée à travers un mur. La position affichée d'un drone hors contact reste sa dernière position confirmée, clairement distinguée d'une position actuelle.
 
 Une future vue déportée ou un pilotage direct pourrait constituer un choix de conception distinct, avec ses limites propres. Cette possibilité reste ouverte à l'avis de l'utilisateur ; elle n'est pas introduite implicitement par Éclaireur autonome.
 
@@ -448,7 +448,7 @@ Les ordres actifs consomment du temps. Une routine ne donne pas un nouvel acte �
 
 La doctrine de base d'une nouvelle unité contrôlée est une escorte rapprochée : elle suit son propriétaire avec ses déplacements ordinaires et, si celui-ci attaque explicitement une cible pendant son action, elle tente à son tour une attaque ordinaire contre cette cible. Le drone ne triche pas sur sa perception, sa portée, sa ligne de tir, son énergie ni sa précision. `DRN-05` reste distinct : il permet de désigner une cible sans devoir soi-même l'attaquer et de coordonner plusieurs unités compatibles.
 
-Le panneau d'allié permet de remplacer cette consigne sans dépenser de tour : **Suivre** assiste seulement la cible attaquée par le joueur, **Défensif** n'engage que les menaces arrivées près du groupe, **Agressif** recherche et poursuit une menace perçue dans une laisse bornée, et **Passif** suit sans attaquer. Ces doctrines sont des comportements ordinaires de compagnon, pas des techniques à acheter ; une technique avancée peut ensuite les remplacer par un ordre plus précis.
+La palette flottante commune aux alliés permet de remplacer cette consigne sans dépenser de tour : **Suivre** assiste seulement la cible attaquée par le joueur, **Défensif** n'engage que les menaces arrivées près du groupe, **Agressif** recherche et poursuit une menace perçue dans une laisse bornée, et **Passif** suit sans attaquer. Ses boutons à icônes expliquent leur doctrine au survol et signalent en rouge une liaison indisponible. La commande s'applique actuellement au groupe contrôlé ; une sélection individuelle pourra être ajoutée sans changer le contrat des comportements. Ces doctrines sont des comportements ordinaires de compagnon, pas des techniques à acheter ; une technique avancée peut ensuite les remplacer par un ordre plus précis.
 
 #### Obtention des drones
 

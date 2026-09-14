@@ -241,7 +241,11 @@ impl UiTheme {
             ButtonTone::Danger => self.danger(),
         };
         let fill = if !enabled {
-            Color::new(0.035, 0.06, 0.07, 0.9)
+            if tone == ButtonTone::Danger {
+                Color::new(0.16, 0.045, 0.045, 0.94)
+            } else {
+                Color::new(0.035, 0.06, 0.07, 0.9)
+            }
         } else if focused || active {
             match tone {
                 ButtonTone::Secondary => self.surface_selected(),
@@ -252,7 +256,11 @@ impl UiTheme {
             self.surface_raised()
         };
         let outline = if !enabled {
-            Color::new(0.22, 0.27, 0.28, 0.55)
+            if tone == ButtonTone::Danger {
+                subdued(self.danger(), 0.78)
+            } else {
+                Color::new(0.22, 0.27, 0.28, 0.55)
+            }
         } else if focused || active {
             semantic
         } else {
@@ -300,7 +308,11 @@ impl UiTheme {
             Rect::new(rect.x + 8.0, rect.y, rect.w - 16.0, rect.h - 1.0),
             font_size,
             if !enabled {
-                Color::new(0.42, 0.49, 0.50, 1.0)
+                if tone == ButtonTone::Danger {
+                    self.danger()
+                } else {
+                    Color::new(0.42, 0.49, 0.50, 1.0)
+                }
             } else if focused || active {
                 semantic
             } else {

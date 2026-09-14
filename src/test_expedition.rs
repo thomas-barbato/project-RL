@@ -152,18 +152,7 @@ pub fn generate_destination(
         legacy
     };
     let actors = if features.defined_population {
-        defined_population(
-            definition,
-            &cells,
-            entrance,
-            features.pursuit_limits,
-            features.pursuit_lifecycle,
-            features.primary_attributes,
-            features.physical_profiles,
-            features.electronic_systems,
-            features.preparation_disruption,
-            features.player_relations,
-        )?
+        defined_population(definition, &cells, entrance, features)?
     } else {
         legacy_population(&cells, entrance)?
     };
@@ -240,13 +229,7 @@ fn defined_population(
     definition: &ExpeditionDefinition,
     cells: &[GridPos],
     entrance: GridPos,
-    use_pursuit_limits: bool,
-    use_pursuit_lifecycle: bool,
-    use_primary_attributes: bool,
-    use_physical_profiles: bool,
-    use_electronic_systems: bool,
-    use_preparation_disruption: bool,
-    use_player_relations: bool,
+    features: ExpeditionGenerationFeatures,
 ) -> Result<Vec<Actor>, String> {
     let mut requests = definition
         .destination
@@ -281,20 +264,20 @@ fn defined_population(
             })?;
         occupied.insert(position);
         let group = &definition.destination.population[group_index];
-        let mut ai = if use_pursuit_limits {
+        let mut ai = if features.pursuit_limits {
             group.ai()
         } else {
             group.ai().without_pursuit_limit()
         };
-        if !use_pursuit_lifecycle {
+        if !features.pursuit_lifecycle {
             ai = ai.without_pursuit_lifecycle();
         }
-        let attack = if use_physical_profiles {
+        let attack = if features.physical_profiles {
             group.attack()
         } else {
             group.attack().without_melee_impact()
         };
-        let attack = if use_preparation_disruption {
+        let attack = if features.preparation_disruption {
             attack
         } else {
             attack.without_preparation_disruption()
@@ -303,19 +286,25 @@ fn defined_population(
             .map_err(|error| error.to_string())?
             .with_attack(attack)
             .with_ai(ai);
-        if use_player_relations {
+        if features.player_relations {
             actor = actor.with_player_relation(group.player_relation());
         }
-        if use_primary_attributes && let Some(attributes) = group.primary_attributes() {
+        if features.primary_attributes
+            && let Some(attributes) = group.primary_attributes()
+        {
             actor = actor.with_primary_attributes(attributes);
         }
-        if use_physical_profiles && let Some(body) = group.body_profile() {
+        if features.physical_profiles
+            && let Some(body) = group.body_profile()
+        {
             actor = actor.with_body_profile(body);
         }
-        if use_physical_profiles && !group.body_components().is_empty() {
+        if features.physical_profiles && !group.body_components().is_empty() {
             actor = actor.with_body_components(group.body_components().iter().cloned());
         }
-        if use_electronic_systems && let Some(profile) = group.electronic_system() {
+        if features.electronic_systems
+            && let Some(profile) = group.electronic_system()
+        {
             actor = actor.with_electronic_system(profile);
         }
         if let Some(reward) = group.defeat_reward() {

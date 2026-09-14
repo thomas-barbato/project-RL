@@ -3498,17 +3498,20 @@ enum RawTechniqueEffectResistance {
 #[derive(Clone, Copy, Deserialize)]
 #[serde(rename_all = "snake_case")]
 enum RawTechniqueTargetRequirement {
-    HasArmor,
-    HasCompatibleLocomotion,
-    HasCompatibleSuppressionResponse,
+    #[serde(rename = "has_armor")]
+    Armor,
+    #[serde(rename = "has_compatible_locomotion")]
+    CompatibleLocomotion,
+    #[serde(rename = "has_compatible_suppression_response")]
+    CompatibleSuppressionResponse,
 }
 
 impl RawTechniqueTargetRequirement {
     const fn into_runtime(self) -> TechniqueTargetRequirement {
         match self {
-            Self::HasArmor => TechniqueTargetRequirement::HasArmor,
-            Self::HasCompatibleLocomotion => TechniqueTargetRequirement::HasCompatibleLocomotion,
-            Self::HasCompatibleSuppressionResponse => {
+            Self::Armor => TechniqueTargetRequirement::HasArmor,
+            Self::CompatibleLocomotion => TechniqueTargetRequirement::HasCompatibleLocomotion,
+            Self::CompatibleSuppressionResponse => {
                 TechniqueTargetRequirement::HasCompatibleSuppressionResponse
             }
         }

@@ -79,7 +79,8 @@ use crate::weapon::{
 use crate::world::generation::GeneratedMap;
 use crate::world::{
     Direction, DistanceMetric, DoorState, FieldOfViewRules, GridPos, Map, MovementTraceMap,
-    MovementTraceRulesError, Terrain, VisibilityState, compute_visible_tiles, has_line_of_sight,
+    MovementTraceRulesError, Terrain, VisibilityState, compute_visible_tiles, find_path_with,
+    has_line_of_sight,
 };
 
 use super::{
@@ -1728,6 +1729,20 @@ impl GameState {
                 DroneOrder::escort(self.player, 1)
                     .expect("the baseline close-escort distance is valid"),
             );
+        }
+        if self.rules.player_drone_link_recovery
+            && let Some(controller_position) = self.player_position()
+            && drone.profile().link_reaches(
+                &self.map,
+                controller_position,
+                position,
+                self.electronic_jamming_penalty_at(
+                    crate::electronic_warfare::ElectronicChannel::ControlLink,
+                    position,
+                ),
+            )
+        {
+            drone.confirm_controller_position(controller_position);
         }
         actor.ensure_electronic_system(
             crate::electronic_warfare::ElectronicSystemProfile::new(
@@ -9438,8 +9453,16 @@ impl GameState {
         }
         let destination = origin.step(direction);
 
+        let is_player_controlled_drone = self.rules.player_drone_link_recovery
+            && self
+                .actors
+                .get(entity)
+                .and_then(Actor::drone)
+                .is_some_and(|drone| drone.controller() == self.player);
         if !self.map.is_walkable(destination)
-            || (entity != self.player && self.map.is_protected(destination))
+            || (entity != self.player
+                && self.map.is_protected(destination)
+                && !is_player_controlled_drone)
         {
             return Err(MovementError::BlockedByTerrain(destination));
         }
@@ -12585,6 +12608,15 @@ impl GameState {
                 (id != self.player && actor.ai().is_some() && actor.drone().is_none()).then_some(id)
             })
             .collect();
+        // Build occupancy once for the whole phase. Rebuilding it for every
+        // actor made a populated turn allocate and scan the registry O(n²).
+        // The set is updated after each resolved action so later actors retain
+        // exactly the same view of earlier movements as before.
+        let mut occupied_positions: BTreeSet<GridPos> = self
+            .actors
+            .iter()
+            .map(|(_, actor)| actor.position())
+            .collect();
 
         for entity in actors_to_resolve {
             if self.status != RunStatus::Active {
@@ -12651,11 +12683,7 @@ impl GameState {
                     incident,
                 });
             }
-            let occupied_positions: BTreeSet<GridPos> = self
-                .actors
-                .iter()
-                .filter_map(|(id, other)| (id != entity).then_some(other.position()))
-                .collect();
+            occupied_positions.remove(&actor.position());
             let situation = AiSituation {
                 map: &self.map,
                 actor_position: actor.position(),
@@ -12722,6 +12750,9 @@ impl GameState {
             }
             if was_recovering {
                 self.advance_action_recovery(entity);
+            }
+            if let Some(position) = self.actors.get(entity).map(Actor::position) {
+                occupied_positions.insert(position);
             }
         }
     }
@@ -12805,10 +12836,11 @@ impl GameState {
         };
         let controller = drone.controller();
         let order = drone.order().clone();
-        let linked = self.actors.get(controller).is_some_and(|owner| {
+        let controller_position = self.actors.get(controller).map(Actor::position);
+        let linked = controller_position.is_some_and(|controller_position| {
             drone.profile().link_reaches(
                 &self.map,
-                owner.position(),
+                controller_position,
                 position,
                 self.electronic_jamming_penalty_at(
                     crate::electronic_warfare::ElectronicChannel::ControlLink,
@@ -12839,9 +12871,13 @@ impl GameState {
             }
         }
         if linked {
+            let track_controller = self.rules.player_drone_link_recovery;
             let pending_report =
                 if let Some(drone) = self.actors.get_mut(entity).and_then(Actor::drone_mut) {
                     drone.confirm_position(position, self.turn);
+                    if track_controller && let Some(controller_position) = controller_position {
+                        drone.confirm_controller_position(controller_position);
+                    }
                     drone.replace_pending_report(None)
                 } else {
                     None
@@ -12864,15 +12900,27 @@ impl GameState {
         if let Some(actor) = self.actors.get_mut(entity) {
             let _ = actor.begin_normal_action();
         }
-        if self.rules.player_drone_link_awareness
-            && !linked
-            && matches!(
+        if self.rules.player_drone_link_awareness && !linked {
+            let has_autonomous_return = matches!(
                 &order,
                 DroneOrder::Companion { .. } | DroneOrder::Escort { .. }
-            )
-        {
-            self.events.push(GameEvent::EntityWaited { entity });
-            return;
+            );
+            if has_autonomous_return {
+                // The local failsafe knows only the controller position last
+                // confirmed while linked. It cannot follow live remote movement
+                // or acquire targets until the real link becomes valid again.
+                let returned = self.rules.player_drone_link_recovery
+                    && self
+                        .actors
+                        .get(entity)
+                        .and_then(Actor::drone)
+                        .and_then(DroneState::last_confirmed_controller_position)
+                        .is_some_and(|destination| self.move_drone_toward(entity, destination));
+                if !returned {
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+                return;
+            }
         }
 
         match order {
@@ -13327,6 +13375,15 @@ impl GameState {
                         actor.player_relation() != crate::social::PlayerRelation::Allied
                     })
             });
+        let visible_tiles = if explicit_target.is_some()
+            || matches!(
+                behavior,
+                CompanionBehavior::Defensive | CompanionBehavior::Aggressive
+            ) {
+            self.drone_visible_tiles(entity).unwrap_or_default()
+        } else {
+            BTreeSet::new()
+        };
         let autonomous_target = match behavior {
             CompanionBehavior::Defensive | CompanionBehavior::Aggressive => self
                 .actors
@@ -13339,7 +13396,7 @@ impl GameState {
                         } else {
                             actor.ai().is_some()
                         }
-                        && self.drone_perceives_actor(entity, *candidate)
+                        && visible_tiles.contains(&actor.position())
                 })
                 .filter(|(_, actor)| match behavior {
                     CompanionBehavior::Defensive => {
@@ -13369,7 +13426,10 @@ impl GameState {
         };
 
         if let Some(target) = target {
-            let perceived = self.drone_perceives_actor(entity, target);
+            let perceived = self
+                .actors
+                .get(target)
+                .is_some_and(|actor| visible_tiles.contains(&actor.position()));
             if perceived && self.perform_attack(entity, 0, target).is_ok() {
                 return;
             }
@@ -13382,10 +13442,13 @@ impl GameState {
             }
         }
 
-        if controller_position.is_none_or(|destination| {
-            grid_distance(position, destination) <= 1
-                || !self.move_drone_toward(entity, destination)
-        }) {
+        // Attempting the path even from diagonal adjacency lets the companion
+        // take the controller's freshly vacated cell. Stopping on every
+        // Chebyshev-adjacent cell made an equal-speed follower lose one turn
+        // and then remain permanently two cells behind a moving player.
+        if controller_position
+            .is_none_or(|destination| !self.move_drone_toward(entity, destination))
+        {
             self.events.push(GameEvent::EntityWaited { entity });
         }
     }
@@ -13418,16 +13481,17 @@ impl GameState {
     }
 
     fn drone_perceives_actor(&self, drone: EntityId, target: EntityId) -> bool {
-        let Some(drone_actor) = self.actors.get(drone) else {
-            return false;
-        };
-        let Some(drone_state) = drone_actor.drone() else {
-            return false;
-        };
         let Some(target_position) = self.actors.get(target).map(Actor::position) else {
             return false;
         };
-        compute_visible_tiles(
+        self.drone_visible_tiles(drone)
+            .is_some_and(|visible| visible.contains(&target_position))
+    }
+
+    fn drone_visible_tiles(&self, drone: EntityId) -> Option<BTreeSet<GridPos>> {
+        let drone_actor = self.actors.get(drone)?;
+        let drone_state = drone_actor.drone()?;
+        Some(compute_visible_tiles(
             &self.map,
             drone_actor.position(),
             FieldOfViewRules {
@@ -13435,8 +13499,7 @@ impl GameState {
                 distance_metric: DistanceMetric::Euclidean,
                 block_closed_corners: true,
             },
-        )
-        .contains(&target_position)
+        ))
     }
 
     fn collect_drone_sensor_report(&mut self, entity: EntityId) {
@@ -13564,11 +13627,20 @@ impl GameState {
             .filter_map(|(other, actor)| (other != entity).then_some(actor.position()))
             .collect::<BTreeSet<_>>();
         let maximum_visited = self.map.width().saturating_mul(self.map.height()).max(1);
-        let Some(path) = crate::world::find_path(
+        let can_open_ordinary_doors = self.rules.player_drone_link_recovery;
+        let Some(path) = find_path_with(
             &self.map,
             origin,
             destination,
             maximum_visited,
+            |map, position| {
+                map.is_walkable(position)
+                    || (can_open_ordinary_doors
+                        && matches!(
+                            map.tile(position).map(|tile| tile.terrain),
+                            Some(Terrain::Door(DoorState::Closed))
+                        ))
+            },
             |position| !occupied.contains(&position),
         ) else {
             return false;
@@ -13576,6 +13648,21 @@ impl GameState {
         let Some(next) = path.get(1).copied() else {
             return false;
         };
+        if matches!(
+            self.map.tile(next).map(|tile| tile.terrain),
+            Some(Terrain::Door(DoorState::Closed))
+        ) {
+            self.map
+                .set_terrain(next, Terrain::Door(DoorState::Open))
+                .expect("a planned door remains mapped");
+            self.events.push(GameEvent::TerrainInteracted {
+                entity,
+                at: next,
+                terrain: Terrain::Door(DoorState::Open),
+            });
+            self.refresh_player_visibility();
+            return true;
+        }
         let direction = if next.x > origin.x {
             Direction::East
         } else if next.x < origin.x {
@@ -24368,12 +24455,6 @@ mod tests {
             game.process_player_command(GameCommand::Move(Direction::East)),
             CommandOutcome::Applied
         );
-        assert!(game.actors().get(drone).is_some());
-        assert_eq!(
-            game.process_player_command(GameCommand::Move(Direction::East)),
-            CommandOutcome::Applied
-        );
-
         assert!(game.actors().get(drone).is_none());
         assert_eq!(game.player_bandwidth().unwrap().occupied(), 0);
         assert!(game.events().iter().any(|event| matches!(
@@ -24395,6 +24476,17 @@ mod tests {
                 game.map().is_walkable(*position) && game.actors().entity_at(*position).is_none()
             })
             .unwrap();
+        assert!(matches!(
+            use_drone_technique(&mut game, "drn_01", DroneDirective::Manifest { position }),
+            CommandOutcome::Rejected(CommandRejection::TechniqueOnCooldown {
+                remaining_phases: 2,
+                ..
+            })
+        ));
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
         assert!(matches!(
             use_drone_technique(&mut game, "drn_01", DroneDirective::Manifest { position }),
             CommandOutcome::Rejected(CommandRejection::TechniqueOnCooldown {
@@ -24455,7 +24547,7 @@ mod tests {
     }
 
     #[test]
-    fn companion_waits_without_a_link_then_resumes_its_doctrine_after_reconnection() {
+    fn companion_returns_to_last_known_position_then_resumes_after_reconnection() {
         let mut game = GameState::new_with_rules(
             parse_map("##########\n#........#\n##########"),
             GridPos::new(1, 1),
@@ -24502,14 +24594,14 @@ mod tests {
         );
         assert_eq!(
             game.actors.get(drone).unwrap().position(),
-            GridPos::new(2, 1)
+            GridPos::new(1, 1)
         );
         assert_eq!(
             game.actors
                 .get(drone)
                 .and_then(Actor::drone)
                 .map(|drone| drone.energy().available()),
-            Some(10)
+            Some(9)
         );
         assert!(game.events().iter().any(|event| matches!(
             event,
@@ -24518,7 +24610,7 @@ mod tests {
         game.drain_events();
 
         game.actors
-            .move_to(game.player, GridPos::new(4, 1))
+            .move_to(game.player, GridPos::new(3, 1))
             .unwrap();
         assert_eq!(
             game.process_player_command(GameCommand::Wait),
@@ -24526,12 +24618,18 @@ mod tests {
         );
         assert_eq!(
             game.actors.get(drone).unwrap().position(),
-            GridPos::new(3, 1)
+            GridPos::new(2, 1)
         );
         assert!(game.events().iter().any(|event| matches!(
             event,
             GameEvent::DroneLinkRestored { entity, .. } if *entity == drone
         )));
+        assert_eq!(
+            game.process_player_command(GameCommand::SetCompanionBehavior {
+                behavior: CompanionBehavior::Defensive,
+            }),
+            CommandOutcome::AppliedWithoutTime
+        );
     }
 
     #[test]
@@ -24630,6 +24728,189 @@ mod tests {
                 CommandOutcome::AppliedWithoutTime
             );
         }
+    }
+
+    #[test]
+    fn follow_doctrine_keeps_a_linked_companion_close_as_the_player_moves() {
+        let mut game = GameState::new_with_rules(
+            parse_map("##########\n#........#\n#........#\n##########"),
+            GridPos::new(1, 1),
+            31,
+            GameRules {
+                player_system_resources: Some(super::super::SystemResourceRules::default()),
+                ..GameRules::default()
+            },
+        )
+        .unwrap();
+        let profile = DroneProfile::new(
+            "core:test_following_companion".parse().unwrap(),
+            2,
+            50,
+            40,
+            1,
+            3,
+            4,
+            1,
+            1,
+            crate::drone::DroneCapabilities::default(),
+        )
+        .unwrap();
+        let drone = game
+            .spawn_manifested_player_drone(
+                Actor::new(GridPos::new(1, 2), 10).unwrap(),
+                profile,
+                10,
+                10,
+            )
+            .unwrap();
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::SetCompanionBehavior {
+                behavior: CompanionBehavior::Follow,
+            }),
+            CommandOutcome::AppliedWithoutTime
+        );
+
+        for player_x in 2..=6 {
+            assert_eq!(
+                game.process_player_command(GameCommand::Move(Direction::East)),
+                CommandOutcome::Applied
+            );
+            assert_eq!(game.player_position(), Some(GridPos::new(player_x, 1)));
+            assert!(
+                grid_distance(
+                    game.actors().get(drone).unwrap().position(),
+                    game.player_position().unwrap()
+                ) <= 1,
+                "the companion fell behind after the player reached x={player_x}"
+            );
+            assert!(game.player_companion_is_linked(drone));
+            game.drain_events();
+        }
+    }
+
+    #[test]
+    fn player_companion_can_follow_across_protected_city_tiles() {
+        let mut map = parse_map("######\n#....#\n#....#\n######");
+        for y in 1..=2 {
+            for x in 1..=4 {
+                map.set_protected(GridPos::new(x, y), true).unwrap();
+            }
+        }
+        let mut game = GameState::new_with_rules(
+            map,
+            GridPos::new(1, 1),
+            32,
+            GameRules {
+                player_system_resources: Some(super::super::SystemResourceRules::default()),
+                ..GameRules::default()
+            },
+        )
+        .unwrap();
+        let profile = DroneProfile::new(
+            "core:test_city_companion".parse().unwrap(),
+            6,
+            50,
+            40,
+            1,
+            3,
+            4,
+            1,
+            1,
+            crate::drone::DroneCapabilities::default(),
+        )
+        .unwrap();
+        let drone = game
+            .spawn_manifested_player_drone(
+                Actor::new(GridPos::new(1, 2), 10).unwrap(),
+                profile,
+                10,
+                10,
+            )
+            .unwrap();
+        let drone_origin = game.actors().get(drone).unwrap().position();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+
+        let drone_position = game.actors().get(drone).unwrap().position();
+        assert_ne!(drone_position, drone_origin);
+        assert!(game.map().is_protected(drone_position));
+        assert!(game.player_companion_is_linked(drone));
+    }
+
+    #[test]
+    fn following_companion_opens_an_ordinary_closed_door_then_crosses_it() {
+        let mut map = parse_map("#######\n#.....#\n#######");
+        map.set_terrain(GridPos::new(3, 1), Terrain::Door(DoorState::Closed))
+            .unwrap();
+        let mut game = GameState::new_with_rules(
+            map,
+            GridPos::new(5, 1),
+            33,
+            GameRules {
+                player_system_resources: Some(super::super::SystemResourceRules::default()),
+                ..GameRules::default()
+            },
+        )
+        .unwrap();
+        let profile = DroneProfile::new(
+            "core:test_door_companion".parse().unwrap(),
+            6,
+            50,
+            40,
+            1,
+            3,
+            4,
+            1,
+            1,
+            crate::drone::DroneCapabilities::default(),
+        )
+        .unwrap();
+        let drone = game
+            .spawn_manifested_player_drone(
+                Actor::new(GridPos::new(1, 1), 10).unwrap(),
+                profile,
+                10,
+                10,
+            )
+            .unwrap();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors().get(drone).unwrap().position(),
+            GridPos::new(2, 1)
+        );
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.map().tile(GridPos::new(3, 1)).unwrap().terrain,
+            Terrain::Door(DoorState::Open)
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::TerrainInteracted {
+                entity,
+                at,
+                terrain: Terrain::Door(DoorState::Open),
+            } if *entity == drone && *at == GridPos::new(3, 1)
+        )));
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors().get(drone).unwrap().position(),
+            GridPos::new(3, 1)
+        );
     }
 
     #[test]

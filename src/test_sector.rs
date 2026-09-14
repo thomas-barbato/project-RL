@@ -195,7 +195,9 @@ impl TestSector {
     pub const GATE: GridPos = GridPos::new(62, 21);
     pub const LOCKED_DOOR: GridPos = GridPos::new(52, 15);
     pub const CONTROL: GridPos = GridPos::new(50, 17);
+    #[cfg(any(debug_assertions, test))]
     pub const ARCHIVE_TERMINAL: GridPos = GridPos::new(48, 7);
+    #[cfg(any(debug_assertions, test))]
     pub const LEGACY_EXPEDITION_PASSAGE: GridPos = GridPos::new(67, 21);
     pub const EXPANDED_EXPEDITION_PASSAGE: GridPos = GridPos::new(176, 108);
     pub const EXPANDED_REGIONAL_PASSAGES: [(Direction, GridPos); 4] = [

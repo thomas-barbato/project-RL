@@ -1208,8 +1208,14 @@ impl WorldState {
             .iter()
             .filter_map(|(entity, actor)| {
                 let drone = actor.drone()?;
-                let DroneOrder::Escort { controller, .. } = drone.order() else {
-                    return None;
+                let controller = match drone.order() {
+                    DroneOrder::Escort { controller, .. } => controller,
+                    DroneOrder::Companion { controller, .. }
+                        if self.active.rules.player_drone_link_recovery =>
+                    {
+                        controller
+                    }
+                    _ => return None,
                 };
                 (*controller == self.active.player
                     && drone.controller() == self.active.player
@@ -1708,6 +1714,8 @@ mod tests {
     use super::*;
     use crate::ai::AiProfile;
     use crate::combat::{DamagePacket, DamageType};
+    use crate::companion::CompanionBehavior;
+    use crate::drone::{DroneCapabilities, DroneProfile, DroneState};
     use crate::effects::GroundEffectSpec;
     use crate::facility::{
         FacilityBlueprint, InstallationBlueprint, InstallationCapability, RepairOrderBlueprint,
@@ -1964,6 +1972,56 @@ mod tests {
         assert!(world.player_inventory().get(item).is_some());
         assert_eq!(world.visited_zone_count(), 2);
         assert_eq!(world.turn(), 6);
+    }
+
+    #[test]
+    fn following_companion_travels_with_the_player_between_zones() {
+        let mut world = world();
+        let profile = DroneProfile::new(
+            id("travelling_companion"),
+            6,
+            50,
+            40,
+            1,
+            3,
+            4,
+            1,
+            1,
+            DroneCapabilities::default(),
+        )
+        .unwrap();
+        let player = world.player_id();
+        let mut state =
+            DroneState::new(profile, player, 10, 10, GridPos::new(1, 3), world.turn()).unwrap();
+        state.replace_order(DroneOrder::Companion {
+            controller: player,
+            behavior: CompanionBehavior::Follow,
+        });
+        let drone = world
+            .spawn_actor(
+                Actor::new(GridPos::new(1, 3), 10)
+                    .unwrap()
+                    .with_drone(state),
+            )
+            .unwrap();
+        assert!(matches!(
+            world
+                .actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(|drone| drone.order()),
+            Some(DroneOrder::Companion {
+                behavior: CompanionBehavior::Follow,
+                ..
+            })
+        ));
+
+        outward(&mut world);
+
+        assert_eq!(world.current_zone().unwrap().id, id("b"));
+        assert!(world.actors().get(drone).is_some());
+        assert!(world.inactive[&id("a")].actors.get(drone).is_none());
+        assert!(world.player_companion_is_linked(drone));
     }
 
     #[test]

@@ -126,7 +126,8 @@ const DRONE_DEFAULT_SUPPORT_GENERATION_VERSION: u8 = PREPARATION_DISRUPTION_GENE
 const DRONE_ENERGY_LIFETIME_GENERATION_VERSION: u8 = DRONE_DEFAULT_SUPPORT_GENERATION_VERSION + 1;
 const DRONE_LINK_AWARENESS_GENERATION_VERSION: u8 = DRONE_ENERGY_LIFETIME_GENERATION_VERSION + 1;
 const PLAYER_RELATIONS_GENERATION_VERSION: u8 = DRONE_LINK_AWARENESS_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = PLAYER_RELATIONS_GENERATION_VERSION;
+const DRONE_LINK_RECOVERY_GENERATION_VERSION: u8 = PLAYER_RELATIONS_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = DRONE_LINK_RECOVERY_GENERATION_VERSION;
 const _: () = assert!(CURRENT_GENERATION_VERSION == suspension::MAX_GENERATION_VERSION);
 const LOG_CAPACITY: usize = 6;
 const FLOATING_MESSAGE_CAPACITY: usize = 32;
@@ -493,17 +494,21 @@ struct CompanionBarLayout {
 
 impl CompanionBarLayout {
     fn new(width: f32, height: f32) -> Self {
-        let panel = Rect::new(12.0, height - 158.0, (width - 24.0).max(440.0), 54.0);
-        let info_width = (panel.w * 0.34).clamp(235.0, 360.0);
-        let gap = 6.0;
-        let button_x = panel.x + info_width;
-        let button_width = ((panel.w - info_width - gap * 4.0) / 4.0).max(72.0);
+        // Companion orders are a contextual segmented control, not a second
+        // full-width HUD. Keeping the panel bounded leaves the world visible
+        // even on wide screens while retaining comfortable mouse targets.
+        let panel_width = (width - 24.0).clamp(420.0, 460.0);
+        let panel = Rect::new(12.0, height - 153.0, panel_width, 48.0);
+        let gap = 4.0;
+        let button_width = 38.0;
+        let controls_width = button_width * 4.0 + gap * 3.0;
+        let button_x = panel.x + panel.w - controls_width - 9.0;
         let behavior_buttons = std::array::from_fn(|index| {
             Rect::new(
                 button_x + index as f32 * (button_width + gap),
-                panel.y + 9.0,
+                panel.y + 8.0,
                 button_width,
-                36.0,
+                32.0,
             )
         });
         Self {
@@ -804,6 +809,8 @@ pub struct AsciiApp {
     skills_open: bool,
     skill_discipline_selection: usize,
     skill_technique_selection: usize,
+    skill_disciplines_cache: Vec<DisciplineId>,
+    skill_techniques_cache: BTreeMap<DisciplineId, Vec<TechniqueId>>,
     skill_availability_cache: BTreeMap<DisciplineId, DisciplineAvailability>,
     skill_message: String,
     technique_menu_open: bool,
@@ -953,6 +960,61 @@ impl AsciiApp {
                     FloatingMessageTone::Progression,
                     now,
                 );
+            }
+            "drone-controls" | "drone-controls-unlinked" => {
+                let player = app
+                    .game
+                    .player_position()
+                    .ok_or("Joueur de diagnostic absent.")?;
+                let linked = scene == "drone-controls";
+                let position = if linked {
+                    player.cardinal_neighbors().into_iter().find(|position| {
+                        app.game.map().is_walkable(*position)
+                            && app.game.actors().entity_at(*position).is_none()
+                    })
+                } else {
+                    (0..app.game.map().height()).find_map(|y| {
+                        (0..app.game.map().width())
+                            .map(|x| GridPos::new(x as i32, y as i32))
+                            .find(|position| {
+                                app.game.map().is_walkable(*position)
+                                    && app.game.actors().entity_at(*position).is_none()
+                                    && position
+                                        .x
+                                        .abs_diff(player.x)
+                                        .max(position.y.abs_diff(player.y))
+                                        > 3
+                            })
+                    })
+                }
+                .ok_or("Aucune case libre pour le drone de diagnostic.")?;
+                let profile = DroneProfile::new(
+                    "core:diagnostic_companion"
+                        .parse()
+                        .map_err(|error: project_rl::content::ContentIdError| error.to_string())?,
+                    if linked { 6 } else { 2 },
+                    50,
+                    40,
+                    1,
+                    3,
+                    6,
+                    1,
+                    1,
+                    DroneCapabilities::default(),
+                )
+                .map_err(|error| error.to_string())?;
+                app.game
+                    .spawn_manifested_player_drone(
+                        Actor::new(position, 10).map_err(|error| error.to_string())?,
+                        profile,
+                        10,
+                        10,
+                    )
+                    .map_err(|error| error.to_string())?;
+                app.capture_events_at(Some(get_time() - 5.0));
+                if linked {
+                    app.menu_focus.hovered = Some(COMPANION_ACTION_FOCUS_BASE);
+                }
             }
             "level-up" => app.open_level_up_screen(LevelUpNotice {
                 level: 2,
@@ -1815,6 +1877,7 @@ impl AsciiApp {
         Err("Trajet de contrôle trop long".to_owned())
     }
 
+    #[cfg(any(debug_assertions, test))]
     fn update_input(&mut self, input: &InputFrame) {
         self.update_input_at(input, None);
     }
@@ -2118,7 +2181,7 @@ impl AsciiApp {
         let wait_button = if self.game.player_technique_preparation().is_some() {
             preparation_continue_rect(width, height)
         } else {
-            wait_turn_rect(height, &self.controls.label(Action::Wait))
+            wait_turn_rect(height)
         };
         let wait_hovered = input
             .pointer
@@ -3281,18 +3344,24 @@ impl AsciiApp {
         // Discipline availability depends only on the immutable ruleset and
         // enabled system features. Its exhaustive path analysis belongs at
         // run construction, never in the per-frame renderer.
-        let skill_availability_cache = game
-            .rules()
-            .skills
-            .disciplines()
-            .map(|(discipline, _)| {
-                game.discipline_availability(discipline)
-                    .map(|availability| (discipline.clone(), availability))
-                    .map_err(|error| {
-                        format!("Analyse de la discipline {discipline} impossible : {error}")
-                    })
-            })
-            .collect::<Result<BTreeMap<_, _>, _>>()?;
+        let mut skill_disciplines_cache = Vec::new();
+        let mut skill_techniques_cache = BTreeMap::new();
+        let mut skill_availability_cache = BTreeMap::new();
+        for (discipline, _) in game.rules().skills.disciplines() {
+            let techniques = game
+                .rules()
+                .skills
+                .techniques()
+                .filter(|(_, technique)| technique.discipline() == discipline)
+                .map(|(id, _)| id.clone())
+                .collect();
+            let availability = game.discipline_availability(discipline).map_err(|error| {
+                format!("Analyse de la discipline {discipline} impossible : {error}")
+            })?;
+            skill_disciplines_cache.push(discipline.clone());
+            skill_techniques_cache.insert(discipline.clone(), techniques);
+            skill_availability_cache.insert(discipline.clone(), availability);
+        }
         let terminal = TerminalView::new(sector.decor, game.map(), game.player_visibility());
 
         Ok(Self {
@@ -3336,6 +3405,8 @@ impl AsciiApp {
             skills_open: false,
             skill_discipline_selection: 0,
             skill_technique_selection: 0,
+            skill_disciplines_cache,
+            skill_techniques_cache,
             skill_availability_cache,
             skill_message: String::new(),
             technique_menu_open: false,
@@ -4644,11 +4715,34 @@ impl AsciiApp {
                     }
                     self.push_log("Liaison du drone rétablie · doctrine reprise.".to_owned());
                 }
-                GameEvent::CompanionBehaviorChanged { behavior, .. } => {
+                GameEvent::CompanionBehaviorChanged { entities, behavior } => {
+                    for entity in entities {
+                        if let Some(at) = self.game.actors().get(entity).map(Actor::position)
+                            && self.game.player_visibility().is_visible(at)
+                        {
+                            self.push_floating_message(
+                                companion_behavior_confirmation(behavior),
+                                at,
+                                FloatingMessageTone::Status,
+                                visual_time,
+                            );
+                        }
+                    }
                     self.push_log(format!(
                         "Comportement des alliés · {}.",
                         companion_behavior_label(behavior)
                     ));
+                }
+                GameEvent::EntityWaited { entity } if entity == self.game.player_id() => {
+                    if let Some(at) = self.game.player_position() {
+                        self.push_floating_message(
+                            "ATTENTE",
+                            at,
+                            FloatingMessageTone::Information,
+                            visual_time,
+                        );
+                    }
+                    self.push_log(format!("Vous attendez · tour {}.", self.game.turn()));
                 }
                 GameEvent::EntityDied { entity, at } if entity != self.game.player_id() => {
                     self.actor_glyphs.remove(&entity);
@@ -7287,9 +7381,7 @@ impl AsciiApp {
                 DroneDirective::Collect { drone: first, item }
             }
             TechniqueAction::DroneCoordinateFire { maximum_drones, .. } => {
-                let Some(target) = self.ensure_visible_target() else {
-                    return None;
-                };
+                let target = self.ensure_visible_target()?;
                 DroneDirective::CoordinateFire {
                     drones: drones
                         .iter()
@@ -7823,7 +7915,7 @@ impl AsciiApp {
         viewport: (f32, f32),
         count: usize,
     ) -> (Rect, Vec<Rect>, Rect, Rect) {
-        let panel_width = viewport.0.min(620.0).max(420.0);
+        let panel_width = viewport.0.clamp(420.0, 620.0);
         let row_height = 42.0;
         let panel_height = (122.0 + count as f32 * row_height).min(viewport.1 - 48.0);
         let panel = Rect::new(
@@ -8209,15 +8301,15 @@ impl AsciiApp {
             _ => None,
         };
         let title = if companions.len() == 1 {
-            "ALLIÉ · DRONE".to_owned()
+            "DRONE".to_owned()
         } else {
-            format!("ALLIÉS · {} UNITÉS", companions.len())
+            format!("DRONES · {}", companions.len())
         };
         draw_text_bold(
             &title,
-            layout.panel.x + 12.0,
-            layout.panel.y + 21.0,
-            15.0,
+            layout.panel.x + 10.0,
+            layout.panel.y + 19.0,
+            14.0,
             if linked {
                 UiTheme.success()
             } else {
@@ -8226,27 +8318,53 @@ impl AsciiApp {
         );
         draw_text(
             format!(
-                "PV {}/{}  ·  BAT {}/{}  ·  {}",
+                "PV {}/{} · BAT {}/{} · {}",
                 actor.integrity(),
                 actor.maximum_integrity(),
                 drone.energy().available(),
                 drone.energy().capacity(),
-                if linked { "LIAISON OK" } else { "HORS LIAISON" }
+                if linked { "LIÉ" } else { "RETOUR AUTO" }
             ),
-            layout.panel.x + 12.0,
-            layout.panel.y + 42.0,
-            14.0,
-            UiTheme.text(),
+            layout.panel.x + 10.0,
+            layout.panel.y + 38.0,
+            13.0,
+            if linked {
+                UiTheme.text()
+            } else {
+                UiTheme.danger()
+            },
         );
         for (index, behavior) in CompanionBehavior::ALL.into_iter().enumerate() {
+            let focused = self.menu_focus.hovered == Some(COMPANION_ACTION_FOCUS_BASE + index);
+            let active = active_behavior == Some(behavior);
             UiTheme.button(
                 layout.behavior_buttons[index],
-                companion_behavior_label(behavior),
-                self.menu_focus.hovered == Some(COMPANION_ACTION_FOCUS_BASE + index),
-                active_behavior == Some(behavior),
+                "",
+                focused,
+                active,
                 linked,
-                ButtonTone::Secondary,
+                companion_button_tone(linked),
             );
+            draw_companion_behavior_icon(
+                layout.behavior_buttons[index],
+                behavior,
+                if !linked {
+                    UiTheme.danger()
+                } else if active {
+                    UiTheme.focus()
+                } else if focused {
+                    UiTheme.accent()
+                } else {
+                    UiTheme.text()
+                },
+            );
+        }
+        if let Some((index, behavior)) = CompanionBehavior::ALL
+            .into_iter()
+            .enumerate()
+            .find(|(index, _)| self.menu_focus.hovered == Some(COMPANION_ACTION_FOCUS_BASE + index))
+        {
+            draw_companion_behavior_tooltip(layout.behavior_buttons[index], behavior);
         }
     }
 
@@ -8355,8 +8473,11 @@ impl AsciiApp {
             );
         } else {
             let wait_binding = self.controls.label(Action::Wait);
+            let wait_button = wait_turn_rect(self.ui_height());
+            let wait_hovered = self.menu_focus.hovered == Some(WAIT_ACTION_FOCUS);
+            draw_wait_action_button(wait_button, &wait_binding, wait_hovered);
             let hint_y = self.ui_height() - 94.0;
-            let mut hint_x = draw_control_hint(20.0, hint_y, &wait_binding, "Attendre");
+            let mut hint_x = wait_button.x + wait_button.w + 14.0;
             for (binding, label) in [
                 (self.controls.label(Action::Interact), "Interagir"),
                 (self.controls.label(Action::Attack), "Attaquer"),
@@ -8415,13 +8536,8 @@ impl AsciiApp {
         self.inventory_selection = self.inventory_selection.min(count.saturating_sub(1));
     }
 
-    fn skill_disciplines(&self) -> Vec<DisciplineId> {
-        self.game
-            .rules()
-            .skills
-            .disciplines()
-            .map(|(id, _)| id.clone())
-            .collect()
+    fn skill_disciplines(&self) -> &[DisciplineId] {
+        &self.skill_disciplines_cache
     }
 
     fn discipline_name(&self, id: &DisciplineId) -> String {
@@ -8530,35 +8646,34 @@ impl AsciiApp {
                     || self.inventory_category(entry) == self.inventory_filter
             })
             .collect::<Vec<_>>();
-        entries.sort_by(|left, right| {
-            let left_name = self.item_name(left.item());
-            let right_name = self.item_name(right.item());
+        entries.sort_by_cached_key(|entry| {
+            let name = self.item_name(entry.item());
             match self.inventory_sort {
-                InventorySort::Name => left_name.cmp(&right_name),
-                InventorySort::Type => inventory_category_order(self.inventory_category(left))
-                    .cmp(&inventory_category_order(self.inventory_category(right)))
-                    .then_with(|| left_name.cmp(&right_name)),
+                InventorySort::Name => (0, name),
+                InventorySort::Type => (
+                    inventory_category_order(self.inventory_category(entry)),
+                    name,
+                ),
             }
         });
         entries
     }
 
-    fn selected_skill_techniques(&self) -> Vec<TechniqueId> {
-        let disciplines = self.skill_disciplines();
-        let Some(discipline) = disciplines.get(self.skill_discipline_selection) else {
-            return Vec::new();
+    fn selected_skill_techniques(&self) -> &[TechniqueId] {
+        let Some(discipline) = self
+            .skill_disciplines_cache
+            .get(self.skill_discipline_selection)
+        else {
+            return &[];
         };
-        self.game
-            .rules()
-            .skills
-            .techniques()
-            .filter(|(_, technique)| technique.discipline() == discipline)
-            .map(|(id, _)| id.clone())
-            .collect()
+        self.skill_techniques_cache
+            .get(discipline)
+            .map(Vec::as_slice)
+            .unwrap_or_default()
     }
 
     fn clamp_skill_selection(&mut self) {
-        let discipline_count = self.game.rules().skills.disciplines().count();
+        let discipline_count = self.skill_disciplines_cache.len();
         self.skill_discipline_selection = self
             .skill_discipline_selection
             .min(discipline_count.saturating_sub(1));
@@ -8706,14 +8821,14 @@ impl AsciiApp {
         if discipline_count == 0 {
             return;
         }
-        let initial_techniques = self.selected_skill_techniques();
+        let initial_technique_count = self.selected_skill_techniques().len();
         let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
         let layout = SkillsLayout::new(
             width,
             height,
             discipline_count,
             self.skill_technique_selection,
-            initial_techniques.len(),
+            initial_technique_count,
         );
         let hovered_discipline = input.pointer.and_then(|point| {
             layout
@@ -8737,7 +8852,7 @@ impl AsciiApp {
         self.menu_focus.hovered = hovered_discipline
             .or_else(|| hovered_technique.map(|index| discipline_count + index))
             .or_else(|| {
-                hovered_action.map(|index| discipline_count + initial_techniques.len() + index)
+                hovered_action.map(|index| discipline_count + initial_technique_count + index)
             });
         let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
         if clicked && hovered_action == Some(2) {
@@ -8754,7 +8869,7 @@ impl AsciiApp {
             && input
                 .pointer
                 .is_some_and(|point| layout.technique_panel.contains(point.into()))
-            && !initial_techniques.is_empty()
+            && initial_technique_count > 0
         {
             let steps = wheel_steps(input.wheel_y);
             self.skill_technique_selection = if input.wheel_y > 0.0 {
@@ -8762,7 +8877,7 @@ impl AsciiApp {
             } else {
                 self.skill_technique_selection
                     .saturating_add(steps)
-                    .min(initial_techniques.len() - 1)
+                    .min(initial_technique_count - 1)
             };
             return;
         }
@@ -8813,10 +8928,7 @@ impl AsciiApp {
                     CommandOutcome::AppliedWithoutTime => {}
                 }
                 self.capture_events();
-            } else if self.attack_aim.is_some() {
-                self.skills_open = false;
-                self.level_up_notice = None;
-            } else if self.component_selection.is_some() {
+            } else if self.attack_aim.is_some() || self.component_selection.is_some() {
                 self.skills_open = false;
                 self.level_up_notice = None;
             } else {
@@ -10979,11 +11091,11 @@ impl AsciiApp {
                             physical_damage_percentage.map_or_else(String::new, |percentage| {
                                 format!(" {percentage} % des dégâts physiques après Impact.")
                             });
-                        let penetration = (armor_penetration_bonus > 0)
-                            .then(|| {
-                                format!(" Pénétration de Blindage +{armor_penetration_bonus}.")
-                            })
-                            .unwrap_or_default();
+                        let penetration = if armor_penetration_bonus > 0 {
+                            format!(" Pénétration de Blindage +{armor_penetration_bonus}.")
+                        } else {
+                            String::new()
+                        };
                         let displacement = forced_movement.map_or_else(String::new, |movement| {
                         let modifier = match movement.impact_modifier().cmp(&0) {
                             std::cmp::Ordering::Greater => {
@@ -11464,9 +11576,11 @@ impl AsciiApp {
                         bandwidth_required,
                     }) => format!(
                         "A1 / {energy_cost} E, +{heat_generated} H{}{}. {} de rayon {radius} : {damage} dégâts électriques aux systèmes compatibles ; interruption d'intensité {disruption_intensity}. Les parois bloquent la propagation.",
-                        (bandwidth_required > 0)
-                            .then(|| format!(", {bandwidth_required} B pendant l'émission"))
-                            .unwrap_or_default(),
+                        if bandwidth_required > 0 {
+                            format!(", {bandwidth_required} B pendant l'émission")
+                        } else {
+                            String::new()
+                        },
                         if filter_identified_allies {
                             ", alliés identifiés filtrés"
                         } else {
@@ -13373,6 +13487,7 @@ fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules 
     rules.player_drone_expires_without_energy = version >= DRONE_ENERGY_LIFETIME_GENERATION_VERSION;
     rules.player_companion_behaviors = version >= DRONE_ENERGY_LIFETIME_GENERATION_VERSION;
     rules.player_drone_link_awareness = version >= DRONE_LINK_AWARENESS_GENERATION_VERSION;
+    rules.player_drone_link_recovery = version >= DRONE_LINK_RECOVERY_GENERATION_VERSION;
     rules.player_relation_targeting = version >= PLAYER_RELATIONS_GENERATION_VERSION;
     rules.player_drone_default_support = version >= DRONE_DEFAULT_SUPPORT_GENERATION_VERSION;
     if version < PREPARATION_DISRUPTION_GENERATION_VERSION {
@@ -14104,13 +14219,76 @@ fn preparation_continue_rect(width: f32, height: f32) -> Rect {
     Rect::new((width - 294.0).max(20.0), height - 101.0, 274.0, 38.0)
 }
 
-fn wait_turn_rect(height: f32, binding: &str) -> Rect {
-    // Input tests and headless adapters have no Macroquad text context. Keep
-    // the clickable area deterministic and slightly generous while the
-    // renderer continues to use the exact measured glyph widths.
-    let key_width = (binding.chars().count() as f32 * 7.5 + 14.0).max(27.0);
-    let label_width = "Attendre".chars().count() as f32 * 8.0;
-    Rect::new(20.0, height - 94.0, key_width + label_width + 18.0, 24.0)
+fn wait_turn_rect(height: f32) -> Rect {
+    Rect::new(20.0, height - 97.0, 174.0, 30.0)
+}
+
+fn draw_wait_action_button(rect: Rect, binding: &str, hovered: bool) {
+    UiTheme.button(rect, "", hovered, false, true, ButtonTone::Secondary);
+    let color = if hovered {
+        UiTheme.focus()
+    } else {
+        UiTheme.text()
+    };
+    let center_y = rect.y + rect.h * 0.5;
+    let icon_x = rect.x + 16.0;
+    draw_line(
+        icon_x - 5.0,
+        center_y - 7.0,
+        icon_x + 5.0,
+        center_y - 7.0,
+        1.5,
+        color,
+    );
+    draw_line(
+        icon_x - 5.0,
+        center_y + 7.0,
+        icon_x + 5.0,
+        center_y + 7.0,
+        1.5,
+        color,
+    );
+    draw_line(
+        icon_x - 4.0,
+        center_y - 6.0,
+        icon_x + 4.0,
+        center_y + 6.0,
+        1.5,
+        color,
+    );
+    draw_line(
+        icon_x + 4.0,
+        center_y - 6.0,
+        icon_x - 4.0,
+        center_y + 6.0,
+        1.5,
+        color,
+    );
+    draw_text_bold("Attendre", rect.x + 31.0, rect.y + 20.0, 14.0, color);
+
+    let binding = binding.to_uppercase();
+    let key_width = (measure_text_bold(&binding, 11).width + 12.0).max(34.0);
+    let key = Rect::new(
+        rect.x + rect.w - key_width - 6.0,
+        rect.y + 5.0,
+        key_width,
+        20.0,
+    );
+    draw_rectangle(key.x, key.y, key.w, key.h, UiTheme.surface_raised());
+    draw_rectangle_lines(key.x, key.y, key.w, key.h, 1.0, UiTheme.accent());
+    draw_text_bold_centered(&binding, key, 11, color);
+
+    if hovered {
+        let tooltip = Rect::new(rect.x, rect.y - 39.0, 224.0, 31.0);
+        UiTheme.card(tooltip, false);
+        draw_text(
+            "Passe un tour sans vous déplacer.",
+            tooltip.x + 9.0,
+            tooltip.y + 20.0,
+            13.0,
+            UiTheme.text(),
+        );
+    }
 }
 
 fn draw_recommended_profile(rect: Rect, profile: PrimaryAttributes, minimum: u8, maximum: u8) {
@@ -14712,6 +14890,151 @@ const fn companion_behavior_label(behavior: CompanionBehavior) -> &'static str {
     }
 }
 
+const fn companion_behavior_confirmation(behavior: CompanionBehavior) -> &'static str {
+    match behavior {
+        CompanionBehavior::Follow => "SUIVI ACTIF",
+        CompanionBehavior::Defensive => "MODE DÉFENSIF",
+        CompanionBehavior::Aggressive => "MODE AGRESSIF",
+        CompanionBehavior::Passive => "MODE PASSIF",
+    }
+}
+
+const fn companion_button_tone(linked: bool) -> ButtonTone {
+    if linked {
+        ButtonTone::Secondary
+    } else {
+        ButtonTone::Danger
+    }
+}
+
+fn draw_companion_behavior_icon(rect: Rect, behavior: CompanionBehavior, color: Color) {
+    let center_x = rect.x + rect.w * 0.5;
+    let center_y = rect.y + rect.h * 0.5 - 1.0;
+    match behavior {
+        CompanionBehavior::Follow => {
+            draw_line(
+                center_x - 9.0,
+                center_y,
+                center_x + 6.0,
+                center_y,
+                2.0,
+                color,
+            );
+            draw_triangle(
+                vec2(center_x + 9.0, center_y),
+                vec2(center_x + 3.0, center_y - 5.0),
+                vec2(center_x + 3.0, center_y + 5.0),
+                color,
+            );
+        }
+        CompanionBehavior::Defensive => {
+            let points = [
+                (center_x, center_y - 9.0),
+                (center_x + 7.0, center_y - 5.0),
+                (center_x + 5.0, center_y + 5.0),
+                (center_x, center_y + 9.0),
+                (center_x - 5.0, center_y + 5.0),
+                (center_x - 7.0, center_y - 5.0),
+            ];
+            for edge in points.windows(2) {
+                draw_line(edge[0].0, edge[0].1, edge[1].0, edge[1].1, 2.0, color);
+            }
+            draw_line(
+                points[5].0,
+                points[5].1,
+                points[0].0,
+                points[0].1,
+                2.0,
+                color,
+            );
+        }
+        CompanionBehavior::Aggressive => {
+            draw_circle_lines(center_x, center_y, 6.0, 2.0, color);
+            draw_line(
+                center_x - 10.0,
+                center_y,
+                center_x - 4.0,
+                center_y,
+                2.0,
+                color,
+            );
+            draw_line(
+                center_x + 4.0,
+                center_y,
+                center_x + 10.0,
+                center_y,
+                2.0,
+                color,
+            );
+            draw_line(
+                center_x,
+                center_y - 10.0,
+                center_x,
+                center_y - 4.0,
+                2.0,
+                color,
+            );
+            draw_line(
+                center_x,
+                center_y + 4.0,
+                center_x,
+                center_y + 10.0,
+                2.0,
+                color,
+            );
+        }
+        CompanionBehavior::Passive => {
+            draw_line(
+                center_x - 4.0,
+                center_y - 8.0,
+                center_x - 4.0,
+                center_y + 8.0,
+                3.0,
+                color,
+            );
+            draw_line(
+                center_x + 4.0,
+                center_y - 8.0,
+                center_x + 4.0,
+                center_y + 8.0,
+                3.0,
+                color,
+            );
+        }
+    }
+}
+
+fn draw_companion_behavior_tooltip(anchor: Rect, behavior: CompanionBehavior) {
+    let description = match behavior {
+        CompanionBehavior::Follow => "Reste proche et appuie votre cible.",
+        CompanionBehavior::Defensive => "Protège le groupe des menaces proches.",
+        CompanionBehavior::Aggressive => "Engage et poursuit les hostiles proches.",
+        CompanionBehavior::Passive => "Reste proche sans ouvrir le feu.",
+    };
+    let width = 286.0;
+    let rect = Rect::new(
+        (anchor.x + anchor.w * 0.5 - width * 0.5).max(12.0),
+        anchor.y - 51.0,
+        width,
+        43.0,
+    );
+    UiTheme.card(rect, false);
+    draw_text_bold(
+        companion_behavior_label(behavior),
+        rect.x + 10.0,
+        rect.y + 17.0,
+        14.0,
+        UiTheme.focus(),
+    );
+    draw_text(
+        description,
+        rect.x + 10.0,
+        rect.y + 35.0,
+        13.0,
+        UiTheme.text(),
+    );
+}
+
 fn attack_preview_rejection_label(reason: &CommandRejection) -> &'static str {
     match reason {
         CommandRejection::ProtectedZone => "ZONE PROTÉGÉE",
@@ -15057,12 +15380,39 @@ mod tests {
         app.character_creation = None;
         let position_before = app.game.player_position();
         let turn_before = app.game.turn();
-        let wait_binding = app.controls.label(Action::Wait);
 
-        app.update_input(&rect_pointer(wait_turn_rect(800.0, &wait_binding), 0.0));
+        app.update_input(&rect_pointer(wait_turn_rect(800.0), 0.0));
 
         assert_eq!(app.game.turn(), turn_before + 1);
         assert_eq!(app.game.player_position(), position_before);
+        assert!(
+            app.floating_messages
+                .iter()
+                .any(|message| message.text == "ATTENTE")
+        );
+        assert!(
+            app.log
+                .iter()
+                .any(|message| message.contains("Vous attendez"))
+        );
+    }
+
+    #[test]
+    fn configured_wait_key_uses_the_same_visible_turn_action_as_the_button() {
+        let mut app = app_with_test_controls();
+        app.character_creation = None;
+        let position_before = app.game.player_position();
+        let turn_before = app.game.turn();
+
+        app.update_input(&input("Space"));
+
+        assert_eq!(app.game.turn(), turn_before + 1);
+        assert_eq!(app.game.player_position(), position_before);
+        assert!(
+            app.floating_messages
+                .iter()
+                .any(|message| message.text == "ATTENTE")
+        );
     }
 
     #[test]
@@ -15076,6 +15426,15 @@ mod tests {
                 .any(|message| message.text == "+ DRONE")
         );
         let layout = CompanionBarLayout::new(1280.0, 800.0);
+        assert_eq!(companion_button_tone(true), ButtonTone::Secondary);
+        assert_eq!(companion_button_tone(false), ButtonTone::Danger);
+        assert!(layout.panel.w <= 460.0);
+        assert!(layout.behavior_buttons.iter().all(|button| {
+            button.x >= layout.panel.x
+                && button.x + button.w <= layout.panel.x + layout.panel.w
+                && button.w == 38.0
+                && button.h == 32.0
+        }));
         let turn_before = app.game.turn();
 
         app.update_input(&rect_pointer(layout.behavior_buttons[2], 0.0));
@@ -15099,6 +15458,26 @@ mod tests {
             })
         ));
         assert!(app.log.iter().any(|line| line.contains("Agressif")));
+
+        app.update_input(&rect_pointer(layout.behavior_buttons[0], 0.0));
+
+        assert_eq!(app.game.turn(), turn_before);
+        assert!(matches!(
+            app.game
+                .actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(|drone| drone.order()),
+            Some(DroneOrder::Companion {
+                behavior: CompanionBehavior::Follow,
+                ..
+            })
+        ));
+        assert!(
+            app.floating_messages
+                .iter()
+                .any(|message| message.text == "SUIVI ACTIF")
+        );
     }
 
     #[test]
@@ -15976,14 +16355,36 @@ mod tests {
     }
 
     #[test]
-    fn skill_availability_is_precomputed_once_for_the_renderer() {
+    fn skill_catalog_indexes_and_availability_are_precomputed_once_for_the_renderer() {
         let app = app_with_test_controls();
 
+        assert_eq!(
+            app.skill_disciplines_cache,
+            app.game
+                .rules()
+                .skills
+                .disciplines()
+                .map(|(discipline, _)| discipline.clone())
+                .collect::<Vec<_>>()
+        );
         assert_eq!(
             app.skill_availability_cache.len(),
             app.game.rules().skills.disciplines().count()
         );
         for (discipline, _) in app.game.rules().skills.disciplines() {
+            assert_eq!(
+                app.skill_techniques_cache.get(discipline),
+                Some(
+                    &app.game
+                        .rules()
+                        .skills
+                        .techniques()
+                        .filter(|(_, technique)| technique.discipline() == discipline)
+                        .map(|(technique, _)| technique.clone())
+                        .collect::<Vec<_>>()
+                ),
+                "cached technique index drifted for {discipline}"
+            );
             let expected = app.game.discipline_availability(discipline).unwrap();
             assert_eq!(
                 app.skill_availability_cache.get(discipline),

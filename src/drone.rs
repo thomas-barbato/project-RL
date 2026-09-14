@@ -426,6 +426,7 @@ pub struct DroneState {
     pending_report: Option<DroneExplorationReport>,
     last_confirmed_position: GridPos,
     last_confirmed_turn: u64,
+    last_confirmed_controller_position: Option<GridPos>,
     lifecycle: DroneLifecycle,
     link_active: Option<bool>,
 }
@@ -448,6 +449,12 @@ impl Debug for DroneState {
         }
         if self.link_active.is_some() {
             debug.field("link_active", &self.link_active);
+        }
+        if self.last_confirmed_controller_position.is_some() {
+            debug.field(
+                "last_confirmed_controller_position",
+                &self.last_confirmed_controller_position,
+            );
         }
         debug.finish()
     }
@@ -472,6 +479,7 @@ impl DroneState {
             pending_report: None,
             last_confirmed_position: position,
             last_confirmed_turn: turn,
+            last_confirmed_controller_position: None,
             lifecycle: DroneLifecycle::Persistent,
             link_active: None,
         })
@@ -539,13 +547,21 @@ impl DroneState {
         self.last_confirmed_turn = turn;
     }
 
+    pub const fn last_confirmed_controller_position(&self) -> Option<GridPos> {
+        self.last_confirmed_controller_position
+    }
+
+    pub fn confirm_controller_position(&mut self, position: GridPos) {
+        self.last_confirmed_controller_position = Some(position);
+    }
+
     pub const fn cargo(&self) -> Option<&DroneCargo> {
         self.cargo.as_ref()
     }
 
-    pub fn load_cargo(&mut self, cargo: DroneCargo) -> Result<(), DroneCargo> {
+    pub fn load_cargo(&mut self, cargo: DroneCargo) -> Result<(), Box<DroneCargo>> {
         if self.cargo.is_some() {
-            return Err(cargo);
+            return Err(Box::new(cargo));
         }
         self.cargo = Some(cargo);
         Ok(())

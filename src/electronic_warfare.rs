@@ -462,6 +462,10 @@ impl ElectronicWarfareState {
             .any(|program| predicate(program.kind))
     }
 
+    // These arguments are the complete immutable program record. Keeping them
+    // explicit makes installation auditable at each caller and avoids a second
+    // transient builder that would merely duplicate the domain type.
+    #[allow(clippy::too_many_arguments)]
     pub(crate) fn add_program(
         &mut self,
         source: EntityId,
@@ -494,6 +498,8 @@ impl ElectronicWarfareState {
         id
     }
 
+    // As above, this is the complete bounded campaign record at creation.
+    #[allow(clippy::too_many_arguments)]
     pub(crate) fn add_infection_campaign(
         &mut self,
         source: EntityId,
@@ -623,6 +629,13 @@ impl Display for ElectronicSystemError {
 impl Error for ElectronicSystemError {}
 
 #[cfg(test)]
+impl InfectionCampaignId {
+    const fn from_raw_for_test(value: u64) -> Self {
+        Self(NonZeroU64::new(value).expect("test campaign ID is positive"))
+    }
+}
+
+#[cfg(test)]
 mod tests {
     use super::*;
 
@@ -651,12 +664,5 @@ mod tests {
         assert!(campaign.was_attempted(failed));
         assert_eq!(campaign.hosts().collect::<Vec<_>>(), vec![first, second]);
         assert!(campaign.may_add_host());
-    }
-}
-
-#[cfg(test)]
-impl InfectionCampaignId {
-    const fn from_raw_for_test(value: u64) -> Self {
-        Self(NonZeroU64::new(value).expect("test campaign ID is positive"))
     }
 }
