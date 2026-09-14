@@ -3,8 +3,8 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
 
 use macroquad::prelude::{
-    KeyCode, MouseButton, get_keys_pressed, is_mouse_button_pressed, mouse_position, mouse_wheel,
-    screen_height, screen_width,
+    KeyCode, MouseButton, get_keys_pressed, is_key_down, is_mouse_button_pressed, mouse_position,
+    mouse_wheel, screen_height, screen_width,
 };
 use serde::{Deserialize, Serialize};
 
@@ -22,6 +22,12 @@ macro_rules! actions {
         pub enum Action { $($id,)* }
         impl Action {
             pub const ALL: &'static [Self] = &[$(Self::$id,)*];
+            pub const MOVEMENT: &'static [Self] = &[
+                Self::MoveNorth,
+                Self::MoveEast,
+                Self::MoveSouth,
+                Self::MoveWest,
+            ];
             pub fn name(self) -> &'static str { match self { $(Self::$id => $label,)* } }
             fn default_key(self) -> &'static str { match self { $(Self::$id => $key,)* } }
             fn contexts(self) -> u8 { match self { $(Self::$id => $contexts,)* } }
@@ -34,14 +40,16 @@ actions! {
     MoveSouth, "Se déplacer vers le sud", "S", GAME;
     MoveWest, "Se déplacer vers l'ouest", "A", GAME;
     MoveEast, "Se déplacer vers l'est", "D", GAME;
-    Wait, "Attendre", "Space", GAME;
+    Wait, "Attendre un tour", "Space", GAME;
     Attack, "Attaquer la cible", "F", GAME;
     CycleTarget, "Cible suivante", "Tab", GAME;
     PickUp, "Ramasser", "E", GAME;
     Interact, "Interagir : porte / console", "V", GAME;
     Inventory, "Ouvrir / fermer l'inventaire", "I", ALL;
+    Character, "Ouvrir / fermer le personnage", "J", ALL;
     Skills, "Ouvrir / fermer les compétences", "K", ALL;
-    Report, "Ouvrir / fermer le rapport", "O", ALL;
+    QuickTechniques, "Ouvrir les techniques actives", "U", GAME;
+    Report, "Ouvrir / fermer le dossier", "O", ALL;
     Legend, "Afficher / masquer la légende", "F1", GAME;
     Restart, "Nouvelle partie", "R", GAME;
     Analyze, "Analyse de cible", "C", GAME;
@@ -54,8 +62,8 @@ actions! {
     Slot1, "Canal 1 : sélectionner / équiper", "Key1", GAME | INVENTORY;
     Slot2, "Canal 2 : sélectionner / équiper", "Key2", GAME | INVENTORY;
     Slot3, "Canal 3 : sélectionner / équiper", "Key3", GAME | INVENTORY;
-    MenuUp, "Menus / rapport : ligne précédente", "Up", INVENTORY | SKILLS | REPORT | SETTINGS;
-    MenuDown, "Menus / rapport : ligne suivante", "Down", INVENTORY | SKILLS | REPORT | SETTINGS;
+    MenuUp, "Menus / dossier : ligne précédente", "Up", INVENTORY | SKILLS | REPORT | SETTINGS;
+    MenuDown, "Menus / dossier : ligne suivante", "Down", INVENTORY | SKILLS | REPORT | SETTINGS;
     MenuLeft, "Valeur / discipline précédente", "Left", SKILLS | SETTINGS;
     MenuRight, "Valeur / discipline suivante", "Right", SKILLS | SETTINGS;
     Learn, "Apprendre / réattribuer une commande", "Enter", SKILLS | SETTINGS;
@@ -341,6 +349,9 @@ impl Controls {
     pub fn pressed(&self, action: Action, frame: &InputFrame) -> bool {
         frame.pressed.contains(self.binding(action))
     }
+    pub fn held(&self, action: Action, frame: &InputFrame) -> bool {
+        frame.held.contains(self.binding(action))
+    }
     pub fn rebind(&mut self, action: Action, binding: Binding) -> Result<(), String> {
         if !binding.valid() {
             return Err(
@@ -390,7 +401,12 @@ impl Controls {
         // custom bindings. Prefer each new default, then the first free key.
         // Loading a legacy file never writes it back automatically.
         let defaults = Self::preset(result.layout, result.semantics);
-        for action in [Action::Interact, Action::Legend] {
+        for action in [
+            Action::Interact,
+            Action::Legend,
+            Action::Character,
+            Action::QuickTechniques,
+        ] {
             if result.bindings.contains_key(&action) {
                 continue;
             }
@@ -460,6 +476,9 @@ impl Controls {
 #[derive(Default)]
 pub struct InputFrame {
     pub pressed: BTreeSet<Binding>,
+    /// Keyboard bindings currently held. Mouse buttons deliberately remain
+    /// edge-triggered: holding a click must never manufacture repeated actions.
+    pub held: BTreeSet<Binding>,
     pub pause: bool,
     pub pointer: Option<(f32, f32)>,
     pub viewport: Option<(f32, f32)>,
@@ -474,6 +493,11 @@ impl InputFrame {
             .filter(|(_, key)| keys.contains(key))
             .map(|(name, _)| Binding::key(name))
             .collect();
+        let held = KEYS
+            .iter()
+            .filter(|(_, key)| is_key_down(*key))
+            .map(|(name, _)| Binding::key(name))
+            .collect();
         for (button, binding) in [
             (MouseButton::Left, Binding::MouseLeft),
             (MouseButton::Right, Binding::MouseRight),
@@ -485,11 +509,56 @@ impl InputFrame {
         }
         Self {
             pressed,
+            held,
             pause: keys.contains(&KeyCode::Escape),
             pointer: Some(mouse_position()),
             viewport: Some((screen_width(), screen_height())),
             wheel_y: mouse_wheel().1,
         }
+    }
+}
+
+/// Turns a held movement binding into paced movement intents. The engine still
+/// receives one ordinary command per returned action, preserving turn order,
+/// collisions and deterministic replay.
+#[derive(Clone, Copy, Debug, Default)]
+pub struct MovementRepeater {
+    active: Option<Action>,
+    repeat_at: f64,
+}
+
+impl MovementRepeater {
+    pub const INITIAL_DELAY_SECONDS: f64 = 0.28;
+    pub const INTERVAL_SECONDS: f64 = 0.085;
+
+    pub fn clear(&mut self) {
+        self.active = None;
+        self.repeat_at = 0.0;
+    }
+
+    /// The initial press remains in `InputFrame::pressed`, so this only returns
+    /// subsequent repeats. At most one action is produced per rendered frame.
+    pub fn poll(&mut self, controls: &Controls, frame: &InputFrame, now: f64) -> Option<Action> {
+        if let Some(action) = Action::MOVEMENT
+            .iter()
+            .copied()
+            .find(|action| controls.pressed(*action, frame))
+        {
+            self.active = Some(action);
+            self.repeat_at = now + Self::INITIAL_DELAY_SECONDS;
+            return None;
+        }
+
+        let action = self.active?;
+        if !controls.held(action, frame) {
+            self.clear();
+            return None;
+        }
+        if now < self.repeat_at {
+            return None;
+        }
+        self.repeat_at = now + Self::INTERVAL_SECONDS;
+        Some(action)
     }
 }
 
@@ -562,6 +631,58 @@ mod tests {
                 assert_eq!(controls.binding(Action::Legend), &Binding::key("F1"));
             }
         }
+    }
+
+    #[test]
+    fn held_movement_repeats_after_a_delay_and_respects_rebinding() {
+        let mut controls = Controls::preset(Layout::Azerty, KeySemantics::Physical);
+        controls
+            .rebind(Action::MoveNorth, Binding::key("Up"))
+            .unwrap();
+        let held = InputFrame {
+            pressed: [Binding::key("Up")].into(),
+            held: [Binding::key("Up")].into(),
+            ..Default::default()
+        };
+        let mut repeat = MovementRepeater::default();
+        assert_eq!(repeat.poll(&controls, &held, 10.0), None);
+
+        let held = InputFrame {
+            held: [Binding::key("Up")].into(),
+            ..Default::default()
+        };
+        assert_eq!(repeat.poll(&controls, &held, 10.27), None);
+        assert_eq!(
+            repeat.poll(&controls, &held, 10.28),
+            Some(Action::MoveNorth)
+        );
+        assert_eq!(repeat.poll(&controls, &held, 10.30), None);
+        assert_eq!(
+            repeat.poll(&controls, &held, 10.365),
+            Some(Action::MoveNorth)
+        );
+
+        repeat.clear();
+        assert_eq!(repeat.poll(&controls, &held, 20.0), None);
+    }
+
+    #[test]
+    fn movement_repeat_stops_as_soon_as_the_binding_is_released() {
+        let controls = Controls::preset(Layout::Qwerty, KeySemantics::Physical);
+        let pressed = InputFrame {
+            pressed: [Binding::key("D")].into(),
+            held: [Binding::key("D")].into(),
+            ..Default::default()
+        };
+        let mut repeat = MovementRepeater::default();
+        assert_eq!(repeat.poll(&controls, &pressed, 1.0), None);
+        assert_eq!(repeat.poll(&controls, &InputFrame::default(), 2.0), None);
+
+        let held_again = InputFrame {
+            held: [Binding::key("D")].into(),
+            ..Default::default()
+        };
+        assert_eq!(repeat.poll(&controls, &held_again, 3.0), None);
     }
 
     #[test]
@@ -691,6 +812,39 @@ mod tests {
         let migrated = Controls::decode(&document.to_string()).unwrap();
         assert_eq!(migrated.binding(Action::Report), &Binding::key("F1"));
         assert_ne!(migrated.binding(Action::Legend), &Binding::key("F1"));
+        migrated.validate().unwrap();
+    }
+
+    #[test]
+    fn legacy_controls_gain_character_without_overwriting_a_custom_j_binding() {
+        let mut document =
+            serde_json::to_value(Controls::preset(Layout::Azerty, KeySemantics::native())).unwrap();
+        document["bindings"]
+            .as_object_mut()
+            .unwrap()
+            .remove("character");
+        document["bindings"]["report"] = serde_json::json!({"type":"key", "value":"J"});
+        let migrated = Controls::decode(&document.to_string()).unwrap();
+        assert_eq!(migrated.binding(Action::Report), &Binding::key("J"));
+        assert_ne!(migrated.binding(Action::Character), &Binding::key("J"));
+        migrated.validate().unwrap();
+    }
+
+    #[test]
+    fn legacy_controls_gain_quick_techniques_without_overwriting_a_custom_u_binding() {
+        let mut document =
+            serde_json::to_value(Controls::preset(Layout::Azerty, KeySemantics::native())).unwrap();
+        document["bindings"]
+            .as_object_mut()
+            .unwrap()
+            .remove("quick_techniques");
+        document["bindings"]["attack"] = serde_json::json!({"type":"key", "value":"U"});
+        let migrated = Controls::decode(&document.to_string()).unwrap();
+        assert_eq!(migrated.binding(Action::Attack), &Binding::key("U"));
+        assert_ne!(
+            migrated.binding(Action::QuickTechniques),
+            &Binding::key("U")
+        );
         migrated.validate().unwrap();
     }
 }

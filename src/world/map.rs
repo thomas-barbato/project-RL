@@ -262,4 +262,18 @@ mod tests {
             Err(MapBuildError::PositionOutsideMap(GridPos::new(3, 1)))
         );
     }
+
+    #[test]
+    fn water_keeps_movement_and_vision_rules_distinct() {
+        let mut map = Map::filled(3, 3, Terrain::Floor).unwrap();
+        let shallow = GridPos::new(1, 1);
+        let deep = GridPos::new(2, 1);
+        map.set_terrain(shallow, Terrain::ShallowWater).unwrap();
+        map.set_terrain(deep, Terrain::DeepWater).unwrap();
+
+        assert!(map.is_walkable(shallow));
+        assert!(!map.blocks_vision(shallow));
+        assert!(!map.is_walkable(deep));
+        assert!(!map.blocks_vision(deep));
+    }
 }

@@ -3,10 +3,19 @@
   name_key: "weapon.integrity_blade.name",
   description_key: "weapon.integrity_blade.description",
 
+  capabilities: {
+    melee_parry: true,
+  },
+
   attack: {
     range: 1,
     distance_metric: "chebyshev",
     requires_line_of_sight: false,
+    impact: {
+      // Reference damage is defined at Impact 10; this prototype transmits up
+      // to 14 so Power can matter without bypassing the weapon's construction.
+      material_cap: 14,
+    },
     damage: {
       amount: 5,
       damage_type: "kinetic",

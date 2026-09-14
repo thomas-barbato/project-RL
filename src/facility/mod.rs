@@ -28,15 +28,44 @@ pub const MAX_WORKERS: usize = 128;
 pub const MAX_WORK_ORDERS: usize = 256;
 pub const MAX_PATH_SEARCH: usize = 100_000;
 pub const MAX_SECURITY_SENSOR_RANGE: u16 = 64;
+pub const MAX_NAVIGATION_BEACON_RANGE: u16 = 1_024;
 pub const MAX_SECURITY_ALARM_DURATION_TURNS: u16 = 10_000;
 pub const MAX_SECURITY_ALARM_RESPONSES: usize = 32;
+pub const MAX_SECURITY_REINFORCEMENT_DELAY_TURNS: u16 = 10_000;
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum InstallationCapability {
     PowerRelay,
-    DoorActuator { door: GridPos },
+    DoorActuator {
+        door: GridPos,
+    },
     SecuritySensor,
+    /// Emits an approximate, wall-independent navigation signal while the
+    /// installation and all of its dependencies are operational.
+    NavigationBeacon {
+        range: u16,
+    },
+    /// Exposes a stable, content-defined record when the installation and all
+    /// of its dependencies are operational. Interpretation and localization
+    /// remain presentation concerns.
+    DataTerminal {
+        record: ContentId,
+    },
     Storage,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct DetectedNavigationSignal {
+    pub installation: InstallationId,
+    pub position: GridPos,
+    pub distance: u32,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct DataTerminalAccess {
+    pub installation: InstallationId,
+    pub record: ContentId,
+    pub first_access: bool,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -44,6 +73,14 @@ pub enum SecurityAlarmResponse {
     /// Locks every door controlled by the referenced actuator. Referencing an
     /// installation ID keeps the rule stable when a map layout moves.
     LockDoors { actuator: InstallationId },
+    /// Requests an accelerated spawn from an existing, finite threat source.
+    /// The facility never creates an actor itself: the world simulation keeps
+    /// the source's active and lifetime quotas authoritative.
+    CallReinforcements { source: GridPos, delay_turns: u16 },
+    /// Requests the same bounded reinforcement, but also transmits the
+    /// recorded incident position. Spawned responders investigate that fixed
+    /// location; this never grants the player's live position.
+    CallInvestigatingReinforcements { source: GridPos, delay_turns: u16 },
 }
 
 #[derive(Clone, PartialEq, Eq)]
@@ -98,6 +135,17 @@ impl SecurityAlarmProfile {
         if responses.len() > MAX_SECURITY_ALARM_RESPONSES {
             return Err(SecurityAlarmProfileError::TooManyResponses(responses.len()));
         }
+        if let Some(delay) = responses.iter().find_map(|response| match response {
+            SecurityAlarmResponse::CallReinforcements { delay_turns, .. }
+            | SecurityAlarmResponse::CallInvestigatingReinforcements { delay_turns, .. }
+                if *delay_turns == 0 || *delay_turns > MAX_SECURITY_REINFORCEMENT_DELAY_TURNS =>
+            {
+                Some(*delay_turns)
+            }
+            _ => None,
+        }) {
+            return Err(SecurityAlarmProfileError::InvalidReinforcementDelay(delay));
+        }
         self.responses = responses;
         Ok(self)
     }
@@ -126,6 +174,7 @@ pub enum SecurityAlarmProfileError {
     InvalidRange(u16),
     InvalidDuration(u16),
     TooManyResponses(usize),
+    InvalidReinforcementDelay(u16),
 }
 
 impl Display for SecurityAlarmProfileError {
@@ -142,6 +191,10 @@ impl Display for SecurityAlarmProfileError {
             Self::TooManyResponses(value) => write!(
                 formatter,
                 "security alarm response count cannot exceed {MAX_SECURITY_ALARM_RESPONSES}, got {value}"
+            ),
+            Self::InvalidReinforcementDelay(value) => write!(
+                formatter,
+                "security reinforcement delay must be between 1 and {MAX_SECURITY_REINFORCEMENT_DELAY_TURNS}, got {value}"
             ),
         }
     }
@@ -391,6 +444,13 @@ pub enum FacilityEvent {
         item: ItemId,
         quantity: u16,
     },
+    DataTerminalAccessed {
+        player: EntityId,
+        installation: InstallationId,
+        at: GridPos,
+        record: ContentId,
+        first_access: bool,
+    },
     RepairAssigned {
         order: WorkOrderId,
         worker: EntityId,
@@ -409,6 +469,22 @@ pub enum FacilityEvent {
         owner: SocialGroupId,
         at: GridPos,
         duration_turns: u16,
+    },
+    ReinforcementsRequested {
+        installation: InstallationId,
+        source: GridPos,
+        delay_turns: u16,
+    },
+    InvestigatingReinforcementsRequested {
+        installation: InstallationId,
+        source: GridPos,
+        incident: GridPos,
+        delay_turns: u16,
+    },
+    ReinforcementsUnavailable {
+        installation: InstallationId,
+        source: GridPos,
+        reason: ReinforcementRequestFailure,
     },
     DoorLockdownStarted {
         installation: InstallationId,
@@ -468,6 +544,12 @@ pub enum DoorLockdownPrevention {
     NoSafeEgress,
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum ReinforcementRequestFailure {
+    SourceInactive,
+    QuotaExhausted,
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct SecurityDoorLockdown {
     pub installation: InstallationId,
@@ -504,6 +586,7 @@ pub struct FacilityState {
     workers: BTreeMap<EntityId, WorkerState>,
     repair_orders: BTreeMap<WorkOrderId, RepairOrderState>,
     ground_reservations: BTreeMap<GroundItemId, EntityId>,
+    accessed_data_terminals: BTreeSet<InstallationId>,
     security_alarms: BTreeMap<InstallationId, SecurityAlarm>,
     security_door_lockdowns: BTreeMap<GridPos, SecurityDoorLockdown>,
     maximum_path_search: usize,
@@ -523,6 +606,9 @@ impl Debug for FacilityState {
             .field("workers", &self.workers)
             .field("repair_orders", &self.repair_orders)
             .field("ground_reservations", &self.ground_reservations);
+        if !self.accessed_data_terminals.is_empty() {
+            facility.field("accessed_data_terminals", &self.accessed_data_terminals);
+        }
         if !self.security_alarms.is_empty() {
             facility.field("security_alarms", &self.security_alarms);
         }
@@ -552,6 +638,30 @@ impl FacilityState {
             }
             if installation.capabilities.is_empty() {
                 return Err(FacilityBuildError::InvalidInstallation(
+                    installation.id.clone(),
+                ));
+            }
+            if installation.capabilities.iter().any(|capability| {
+                matches!(
+                    capability,
+                    InstallationCapability::NavigationBeacon { range }
+                        if *range == 0 || *range > MAX_NAVIGATION_BEACON_RANGE
+                )
+            }) {
+                return Err(FacilityBuildError::InvalidNavigationBeaconRange(
+                    installation.id.clone(),
+                ));
+            }
+            if installation
+                .capabilities
+                .iter()
+                .filter(|capability| {
+                    matches!(capability, InstallationCapability::DataTerminal { .. })
+                })
+                .count()
+                > 1
+            {
+                return Err(FacilityBuildError::MultipleDataTerminalRecords(
                     installation.id.clone(),
                 ));
             }
@@ -608,27 +718,44 @@ impl FacilityState {
             }
             if let Some(profile) = &installation.security_alarm_profile {
                 let mut targets = BTreeSet::new();
+                let mut reinforcement_sources = BTreeSet::new();
                 for response in profile.responses() {
-                    let SecurityAlarmResponse::LockDoors { actuator } = response;
-                    if !targets.insert(actuator.clone()) {
-                        return Err(FacilityBuildError::DuplicateAlarmResponse {
-                            installation: installation.id.clone(),
-                            actuator: Box::new(actuator.clone()),
-                        });
-                    }
-                    let Some(target) = installations.get(actuator) else {
-                        return Err(FacilityBuildError::UnknownAlarmResponseTarget {
-                            installation: installation.id.clone(),
-                            actuator: Box::new(actuator.clone()),
-                        });
-                    };
-                    if !target.capabilities.iter().any(|capability| {
-                        matches!(capability, InstallationCapability::DoorActuator { .. })
-                    }) {
-                        return Err(FacilityBuildError::AlarmResponseTargetWithoutDoorActuator {
-                            installation: installation.id.clone(),
-                            actuator: Box::new(actuator.clone()),
-                        });
+                    match response {
+                        SecurityAlarmResponse::LockDoors { actuator } => {
+                            if !targets.insert(actuator.clone()) {
+                                return Err(FacilityBuildError::DuplicateAlarmResponse {
+                                    installation: installation.id.clone(),
+                                    actuator: Box::new(actuator.clone()),
+                                });
+                            }
+                            let Some(target) = installations.get(actuator) else {
+                                return Err(FacilityBuildError::UnknownAlarmResponseTarget {
+                                    installation: installation.id.clone(),
+                                    actuator: Box::new(actuator.clone()),
+                                });
+                            };
+                            if !target.capabilities.iter().any(|capability| {
+                                matches!(capability, InstallationCapability::DoorActuator { .. })
+                            }) {
+                                return Err(
+                                    FacilityBuildError::AlarmResponseTargetWithoutDoorActuator {
+                                        installation: installation.id.clone(),
+                                        actuator: Box::new(actuator.clone()),
+                                    },
+                                );
+                            }
+                        }
+                        SecurityAlarmResponse::CallReinforcements { source, .. }
+                        | SecurityAlarmResponse::CallInvestigatingReinforcements {
+                            source, ..
+                        } => {
+                            if !reinforcement_sources.insert(*source) {
+                                return Err(FacilityBuildError::DuplicateReinforcementResponse {
+                                    installation: installation.id.clone(),
+                                    source: *source,
+                                });
+                            }
+                        }
                     }
                 }
             }
@@ -780,6 +907,7 @@ impl FacilityState {
             workers,
             repair_orders,
             ground_reservations: BTreeMap::new(),
+            accessed_data_terminals: BTreeSet::new(),
             security_alarms: BTreeMap::new(),
             security_door_lockdowns: BTreeMap::new(),
             maximum_path_search: blueprint.maximum_path_search,
@@ -834,6 +962,42 @@ impl FacilityState {
                 .then(|| self.installations.get(id).map(|source| (source, alarm)))
                 .flatten()
         })
+    }
+
+    /// Returns only signals which the observer can currently receive. This is
+    /// simulation knowledge, not map visibility: navigation beacons explicitly
+    /// broadcast through opaque terrain and stop broadcasting when inoperable.
+    pub fn detected_navigation_signals(&self, observer: GridPos) -> Vec<DetectedNavigationSignal> {
+        let mut signals = self
+            .installations
+            .iter()
+            .filter_map(|(id, installation)| {
+                let range = installation
+                    .capabilities
+                    .iter()
+                    .filter_map(|capability| match capability {
+                        InstallationCapability::NavigationBeacon { range } => Some(*range),
+                        _ => None,
+                    })
+                    .max()?;
+                if !self.is_operational(id) {
+                    return None;
+                }
+                let distance = observer
+                    .x
+                    .abs_diff(installation.position.x)
+                    .max(observer.y.abs_diff(installation.position.y));
+                (distance <= u32::from(range)).then(|| DetectedNavigationSignal {
+                    installation: id.clone(),
+                    position: installation.position,
+                    distance,
+                })
+            })
+            .collect::<Vec<_>>();
+        signals.sort_by(|first, second| {
+            (first.distance, &first.installation).cmp(&(second.distance, &second.installation))
+        });
+        signals
     }
 
     pub fn security_door_lockdown_at(
@@ -938,7 +1102,32 @@ impl FacilityState {
                 continue;
             };
             for response in profile.responses() {
-                let SecurityAlarmResponse::LockDoors { actuator } = response;
+                let actuator = match response {
+                    SecurityAlarmResponse::CallReinforcements {
+                        source: reinforcement_source,
+                        delay_turns,
+                    } => {
+                        events.push(FacilityEvent::ReinforcementsRequested {
+                            installation: source.clone(),
+                            source: *reinforcement_source,
+                            delay_turns: *delay_turns,
+                        });
+                        continue;
+                    }
+                    SecurityAlarmResponse::CallInvestigatingReinforcements {
+                        source: reinforcement_source,
+                        delay_turns,
+                    } => {
+                        events.push(FacilityEvent::InvestigatingReinforcementsRequested {
+                            installation: source.clone(),
+                            source: *reinforcement_source,
+                            incident: alarm.incident.at,
+                            delay_turns: *delay_turns,
+                        });
+                        continue;
+                    }
+                    SecurityAlarmResponse::LockDoors { actuator } => actuator,
+                };
                 let doors: Vec<_> = self
                     .installations
                     .get(actuator)
@@ -1077,6 +1266,60 @@ impl FacilityState {
         self.installations
             .get(&self.depot)
             .is_some_and(|depot| depot.position == position)
+    }
+
+    pub fn data_terminal_record_at(&self, position: GridPos) -> Option<&ContentId> {
+        self.installation_at(position)?
+            .capabilities
+            .iter()
+            .find_map(|capability| match capability {
+                InstallationCapability::DataTerminal { record } => Some(record),
+                _ => None,
+            })
+    }
+
+    pub fn is_player_interactive_at(&self, position: GridPos) -> bool {
+        self.is_depot_at(position) || self.data_terminal_record_at(position).is_some()
+    }
+
+    /// Reads a terminal through the real installation graph. Re-reading is
+    /// allowed so the player never loses a discovered text; `first_access`
+    /// remains available to progression and quest adapters without coupling
+    /// those systems to the facility simulation.
+    pub fn access_data_terminal(&mut self, position: GridPos) -> Option<DataTerminalAccess> {
+        let installation = self.installation_at(position)?.id.clone();
+        let record = self.data_terminal_record_at(position)?.clone();
+        if !self.is_operational(&installation) {
+            return None;
+        }
+        let first_access = self.accessed_data_terminals.insert(installation.clone());
+        Some(DataTerminalAccess {
+            installation,
+            record,
+            first_access,
+        })
+    }
+
+    pub fn data_terminal_was_accessed(&self, installation: &InstallationId) -> bool {
+        self.accessed_data_terminals.contains(installation)
+    }
+
+    /// Returns the records actually read through this facility. The records
+    /// remain derived from terminal state so suspension replay has one source
+    /// of truth and presentation never needs its own discovery registry.
+    pub fn accessed_data_terminal_records(&self) -> impl Iterator<Item = &ContentId> {
+        self.accessed_data_terminals
+            .iter()
+            .filter_map(|installation| self.installations.get(installation))
+            .filter_map(|installation| {
+                installation
+                    .capabilities
+                    .iter()
+                    .find_map(|capability| match capability {
+                        InstallationCapability::DataTerminal { record } => Some(record),
+                        _ => None,
+                    })
+            })
     }
 
     /// Deposits the first complete missing material request the inventory can
@@ -1799,6 +2042,8 @@ pub enum FacilityBuildError {
     BudgetExceeded,
     InvalidIntegrity(InstallationId),
     InvalidInstallation(InstallationId),
+    InvalidNavigationBeaconRange(InstallationId),
+    MultipleDataTerminalRecords(InstallationId),
     DuplicateInstallation(InstallationId),
     DuplicateInstallationPosition(GridPos),
     InvalidControlledDoor {
@@ -1810,6 +2055,10 @@ pub enum FacilityBuildError {
     DuplicateAlarmResponse {
         installation: InstallationId,
         actuator: Box<InstallationId>,
+    },
+    DuplicateReinforcementResponse {
+        installation: InstallationId,
+        source: GridPos,
     },
     UnknownAlarmResponseTarget {
         installation: InstallationId,
@@ -2342,6 +2591,67 @@ mod tests {
     }
 
     #[test]
+    fn alarm_reinforcement_response_emits_only_a_bounded_source_request() {
+        assert_eq!(
+            SecurityAlarmProfile::new(8, DistanceMetric::Euclidean, true, 8)
+                .unwrap()
+                .with_responses(vec![SecurityAlarmResponse::CallReinforcements {
+                    source: GridPos::new(6, 3),
+                    delay_turns: 0,
+                }]),
+            Err(SecurityAlarmProfileError::InvalidReinforcementDelay(0))
+        );
+        let profile = SecurityAlarmProfile::new(8, DistanceMetric::Euclidean, true, 8)
+            .unwrap()
+            .with_responses(vec![SecurityAlarmResponse::CallReinforcements {
+                source: GridPos::new(6, 3),
+                delay_turns: 3,
+            }])
+            .unwrap();
+        let technician = GridPos::new(3, 3);
+        let mut definition = blueprint(&[], technician);
+        definition.owner = Some(id("collective"));
+        definition.installations[0].integrity = 10;
+        definition.installations[2].security_alarm_profile = Some(profile);
+        let mut map = map();
+        let actors = actors(&[], technician);
+        let ground = GroundItemRegistry::default();
+        let mut facility = FacilityState::instantiate(definition, &mut map, &actors).unwrap();
+        facility.observe_unauthorized_property_take(
+            &map,
+            &ObservedPropertyTake {
+                turn: 4,
+                taker: actors.entity_at(technician).unwrap(),
+                owner: id("collective"),
+                item: id("regulator"),
+                quantity: 1,
+                at: GridPos::new(8, 1),
+            },
+        );
+
+        assert_eq!(
+            facility
+                .activate_security_alarm_responses(
+                    &[id("sensor")],
+                    &mut map,
+                    SecurityAlarmResponseContext {
+                        actors: &actors,
+                        ground: &ground,
+                        protected_position: Some(GridPos::new(8, 1)),
+                        egresses: &[],
+                        turn: 5,
+                    },
+                )
+                .unwrap(),
+            vec![FacilityEvent::ReinforcementsRequested {
+                installation: id("sensor"),
+                source: GridPos::new(6, 3),
+                delay_turns: 3,
+            }]
+        );
+    }
+
+    #[test]
     fn security_alarm_profiles_require_a_sensor_and_facility_owner() {
         let profile = SecurityAlarmProfile::new(8, DistanceMetric::Euclidean, true, 8).unwrap();
         let mut no_sensor = blueprint(&[], GridPos::new(3, 3));
@@ -2425,6 +2735,123 @@ mod tests {
         assert!(matches!(
             FacilityState::instantiate(mismatch, &mut map, &actors),
             Err(FacilityBuildError::WorkerIntegrityMismatch { .. })
+        ));
+    }
+
+    #[test]
+    fn operational_navigation_beacons_are_detected_without_revealing_other_installations() {
+        let mut definition = blueprint(&[], GridPos::new(3, 3));
+        definition.installations[0].integrity = 10;
+        definition.installations[2]
+            .capabilities
+            .push(InstallationCapability::NavigationBeacon { range: 6 });
+        let sensor = definition.installations[2].id.clone();
+        let mut map = map();
+        let actors = actors(&[], GridPos::new(3, 3));
+        let mut facility = FacilityState::instantiate(definition, &mut map, &actors).unwrap();
+
+        assert_eq!(
+            facility.detected_navigation_signals(GridPos::new(3, 3)),
+            vec![DetectedNavigationSignal {
+                installation: sensor.clone(),
+                position: GridPos::new(9, 1),
+                distance: 6,
+            }]
+        );
+        assert!(
+            facility
+                .detected_navigation_signals(GridPos::new(2, 3))
+                .is_empty()
+        );
+
+        facility.apply_damage(&sensor, 10, &mut map).unwrap();
+        assert!(
+            facility
+                .detected_navigation_signals(GridPos::new(3, 3))
+                .is_empty()
+        );
+    }
+
+    #[test]
+    fn data_terminals_remember_first_access_and_follow_power_dependencies() {
+        let mut definition = blueprint(&[], GridPos::new(3, 3));
+        definition.installations[0].integrity = 10;
+        let relay = definition.installations[0].id.clone();
+        let terminal = id("archive_terminal");
+        let record = id("archive_record");
+        definition.installations.push(InstallationBlueprint {
+            id: terminal.clone(),
+            position: GridPos::new(4, 1),
+            maximum_integrity: 10,
+            integrity: 10,
+            capabilities: vec![InstallationCapability::DataTerminal {
+                record: record.clone(),
+            }],
+            dependencies: vec![relay.clone()],
+            security_alarm_profile: None,
+        });
+        let mut map = map();
+        let actors = actors(&[], GridPos::new(3, 3));
+        let mut facility = FacilityState::instantiate(definition, &mut map, &actors).unwrap();
+
+        assert!(facility.is_player_interactive_at(GridPos::new(4, 1)));
+        assert_eq!(
+            facility.access_data_terminal(GridPos::new(4, 1)),
+            Some(DataTerminalAccess {
+                installation: terminal.clone(),
+                record: record.clone(),
+                first_access: true,
+            })
+        );
+        assert_eq!(
+            facility.access_data_terminal(GridPos::new(4, 1)),
+            Some(DataTerminalAccess {
+                installation: terminal.clone(),
+                record: record.clone(),
+                first_access: false,
+            })
+        );
+        assert!(facility.data_terminal_was_accessed(&terminal));
+        assert_eq!(
+            facility
+                .accessed_data_terminal_records()
+                .collect::<Vec<_>>(),
+            vec![&record]
+        );
+
+        facility.apply_damage(&relay, 10, &mut map).unwrap();
+        assert_eq!(facility.access_data_terminal(GridPos::new(4, 1)), None);
+        assert!(facility.is_player_interactive_at(GridPos::new(4, 1)));
+    }
+
+    #[test]
+    fn navigation_beacon_ranges_are_bounded_at_content_validation() {
+        for range in [0, MAX_NAVIGATION_BEACON_RANGE + 1] {
+            let mut definition = blueprint(&[], GridPos::new(3, 3));
+            definition.installations[2]
+                .capabilities
+                .push(InstallationCapability::NavigationBeacon { range });
+            assert!(matches!(
+                FacilityState::validate_blueprint(&definition),
+                Err(FacilityBuildError::InvalidNavigationBeaconRange(_))
+            ));
+        }
+    }
+
+    #[test]
+    fn one_installation_cannot_silently_discard_a_second_terminal_record() {
+        let mut definition = blueprint(&[], GridPos::new(3, 3));
+        definition.installations[2].capabilities.extend([
+            InstallationCapability::DataTerminal {
+                record: id("record_a"),
+            },
+            InstallationCapability::DataTerminal {
+                record: id("record_b"),
+            },
+        ]);
+        assert!(matches!(
+            FacilityState::validate_blueprint(&definition),
+            Err(FacilityBuildError::MultipleDataTerminalRecords(_))
         ));
     }
 }

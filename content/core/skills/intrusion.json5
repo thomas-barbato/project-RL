@@ -1,0 +1,98 @@
+{
+  disciplines: [
+    {
+      id: "core:intrusion",
+      name_key: "discipline.intrusion.name",
+      description_key: "discipline.intrusion.description",
+    },
+  ],
+
+  techniques: [
+    {
+      id: "core:int_01", discipline: "core:intrusion",
+      name_key: "technique.int_01.name", description_key: "technique.int_01.description",
+      minimum_level: 1, kind: "action", required_features: ["core:intrusion"],
+      action: { type: "probe_interface", range: 4, analysis_bonus: 15, energy_cost: 2, audit_delay: 5 },
+    },
+    {
+      id: "core:int_02", discipline: "core:intrusion",
+      name_key: "technique.int_02.name", description_key: "technique.int_02.description",
+      minimum_level: 1, kind: "procedure", preparation_time_units: 1,
+      required_features: ["core:intrusion"],
+      action: {
+        type: "force_electronic_lock", range: 4, energy_cost: 6,
+        bandwidth_required: 1, failure_hardening_duration: 4, audit_delay: 5,
+      },
+    },
+    {
+      id: "core:int_03", discipline: "core:intrusion",
+      name_key: "technique.int_03.name", description_key: "technique.int_03.description",
+      minimum_level: 2, kind: "procedure", preparation_time_units: 1,
+      required_features: ["core:intrusion"],
+      action: { type: "extract_data", range: 4, energy_cost: 4 },
+    },
+    {
+      id: "core:int_04", discipline: "core:intrusion",
+      name_key: "technique.int_04.name", description_key: "technique.int_04.description",
+      minimum_level: 2, kind: "action", required_features: ["core:intrusion"],
+      action: { type: "spoof_authorization", range: 4, energy_cost: 4, duration_time_units: 4 },
+    },
+    {
+      id: "core:int_05", discipline: "core:intrusion",
+      name_key: "technique.int_05.name", description_key: "technique.int_05.description",
+      minimum_level: 3, kind: "action", required_features: ["core:intrusion"],
+      action: {
+        type: "divert_device", range: 4, energy_cost: 4,
+        additional_bandwidth: 1, duration_time_units: 3,
+      },
+    },
+    {
+      id: "core:int_06", discipline: "core:intrusion",
+      name_key: "technique.int_06.name", description_key: "technique.int_06.description",
+      minimum_level: 3, kind: "action", cooldown_turns: 3,
+      required_features: ["core:intrusion"],
+      action: {
+        type: "suspend_digital_routine", range: 4, energy_cost: 6,
+        duration_time_units: 2, repeat_protection_time_units: 1,
+      },
+    },
+    {
+      id: "core:int_07", discipline: "core:intrusion",
+      name_key: "technique.int_07.name", description_key: "technique.int_07.description",
+      minimum_level: 4, kind: "procedure", preparation_time_units: 1,
+      required_features: ["core:intrusion"],
+      action: {
+        type: "maintain_backdoor", range: 4, installation_energy_cost: 8,
+        reconnection_energy_cost: 2, maximum_backdoors: 2,
+        session_duration_time_units: 6,
+      },
+    },
+    {
+      id: "core:int_08", discipline: "core:intrusion",
+      name_key: "technique.int_08.name", description_key: "technique.int_08.description",
+      minimum_level: 4, kind: "procedure", preparation_time_units: 1,
+      required_features: ["core:intrusion", "core:active_security"],
+      action: { type: "falsify_security_trace", range: 4, energy_cost: 6 },
+    },
+    {
+      id: "core:int_09", discipline: "core:intrusion",
+      name_key: "technique.int_09.name", description_key: "technique.int_09.description",
+      minimum_level: 5, kind: "procedure", preparation_time_units: 2,
+      required_features: ["core:intrusion"],
+      action: {
+        type: "divert_subnet", range: 4, maximum_devices: 3, energy_cost: 12,
+        bandwidth_per_device: 1, duration_time_units: 3,
+      },
+    },
+    {
+      id: "core:int_10", discipline: "core:intrusion",
+      name_key: "technique.int_10.name", description_key: "technique.int_10.description",
+      minimum_level: 5, kind: "action", cooldown_turns: 4,
+      required_features: ["core:intrusion", "core:active_security"],
+      action: {
+        type: "lock_device_control", range: 4, energy_cost: 8,
+        additional_bandwidth: 1, duration_time_units: 3,
+      },
+    },
+  ],
+}

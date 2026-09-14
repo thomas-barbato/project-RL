@@ -1,0 +1,9 @@
+{
+  id: "core:suppressed",
+  duration_turns: 1,
+  stacking: { mode: "keep_existing" },
+  family: "core:suppression",
+  modifiers: [
+    { type: "accuracy", amount: -20 },
+  ],
+}

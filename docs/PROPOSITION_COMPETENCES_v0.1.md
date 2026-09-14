@@ -2,9 +2,11 @@
 
 Version 0.1 révisée, annexe technique 0.6 — 10 septembre 2026 — Cinq corrections du point 8 validées et appliquées ; autres barèmes d'essai conservés.
 
+**Décision postérieure du 13 septembre 2026 :** les rangs de compétence sont retirés. Une technique est accessible selon son niveau minimal, ses éventuels seuils d'attributs et les techniques déjà apprises. Les nombres de 1 à 5 conservés dans les tableaux historiques deviennent des niveaux minimaux. La courbe de prix des cinq premiers apprentissages reste à tester et son dernier tarif s'applique aux suivants, sans plafond de techniques apprises.
+
 Ce document rassemble les compétences discutées et les simplifications approuvées après relecture. Il décrit un objectif de conception ; il ne signifie pas que ces systèmes sont déjà programmés. Les dépendances techniques et les réglages encore ouverts sont identifiés avant consolidation des documents fondateurs.
 
-Le catalogue couvre cinq catégories et dix compétences conservant cinq rangs de progression : 94 entrées principales de techniques ou d'améliorations, complétées par 10 variantes électroniques. Reconnaissance comprend sept entrées ; Manœuvre en comprend neuf après fusion de Retraite méthodique dans Pas de dégagement. Le rang 5 de Reconnaissance permet un choix parmi les techniques antérieures. Pour une première lecture, les sections 4 à 8 contiennent les fiches, la section 11 donne le jugement critique et la section 13 distingue les directions retenues des réglages à tester. Un personnage ne reçoit jamais automatiquement tout ce catalogue.
+Le catalogue couvre cinq catégories et dix compétences : 94 entrées principales de techniques ou d'améliorations, complétées par 10 variantes électroniques. Reconnaissance comprend sept entrées ; Manœuvre en comprend neuf après fusion de Retraite méthodique dans Pas de dégagement. Pour une première lecture, les sections 4 à 8 contiennent les fiches, la section 11 donne le jugement critique et la section 13 distingue les directions retenues des réglages à tester. Un personnage ne reçoit jamais automatiquement tout ce catalogue.
 
 Suite demandée par l'utilisateur : l'annexe 16 complète chacune des 104 entrées actives par un profil technique d'essai, en lien avec les sections 13 à 19 des [règles communes](STATISTIQUES_ET_COMPETENCES.md). Les anciennes mentions de paramètres à définir sont complétées par cette annexe, sans transformer tous les chiffres proposés en décisions validées. Après l'étape 7, l'accord explicite sur les cinq corrections du point 8 autorise les changements ciblés de la révision 0.6 : historique en section 15.7. Les [textes joueur](TEXTES_JOUEUR_STATISTIQUES_COMPETENCES.md) suivent ces corrections ; aucune intégration au jeu n'est effectuée.
 
@@ -17,7 +19,7 @@ Après les explications du 10 septembre, l'utilisateur a autorisé l'application
 - Cinq statistiques primaires : Puissance, Coordination, Résilience, Perception et Traitement. Influence est retirée.
 - Le corps principal reste le même pendant toute la partie ; son équipement et ses améliorations évoluent. Les aptitudes du noyau IA restent acquises lors d'un changement d'équipement. Les capacités matérielles proviennent du corps, des modules et des équipements.
 - Échelle primaire de 1 à 10, valeur ordinaire de 5, budget de création de 28 points, valeurs de création entre 3 et 8, plafond absolu de 10.
-- Cinq rangs par compétence ; chaque rang acheté donne un choix de technique ou d'amélioration. Les choix des rangs antérieurs restent accessibles.
+- Chaque technique ou amélioration s'apprend séparément ; son accès dépend de conditions explicites, jamais du nombre de choix déjà effectués dans la discipline.
 - Les connaissances acquises sont conservées lors d'un changement d'équipement, mais leur utilisation peut demander un équipement compatible. La prise de contrôle temporaire d'un ennemi est une piste facultative hors des arbres, décrite en section 15.6, et non un remplacement du corps principal.
 - Expérience et progression du noyau propres à la partie ; classes de départ débloquées séparément et favorisant la variété des builds.
 - Progressions de Combat rapproché, Tir et Guerre électronique discutées et acceptées. Leurs noms et leurs effets centraux sont repris ci-dessous.
@@ -29,10 +31,10 @@ Après les explications du 10 septembre, l'utilisateur a autorisé l'application
 - Organisation en dix compétences : Reconnaissance regroupe l'ancienne Reconnaissance et Analyse tactique ; Ingénierie regroupe Maintenance et Ingénierie modulaire.
 - Catalogue de Démolition, Manœuvre, Furtivité, Ingénierie et Contrôle de drones retenu comme direction de travail ; Reconnaissance et Intrusion révisées dans ce document.
 - Préparations, prérequis, interruptions et contre-mesures conservés comme base des essais, avec la limite commune des réactions.
-- Variantes électroniques et leurs compromis conservés ; chiffres et rangs susceptibles d'ajustement après essais.
+- Variantes électroniques et leurs compromis conservés ; chiffres, niveaux minimaux et seuils d'attributs susceptibles d'ajustement après essais.
 - Drones hors perception limités aux routines et rapports datés ; jeu solo signifiant un seul joueur humain, avec PNJ alliés, drones ou familiers/pets possibles.
 - Traces et secrets localisés ; repérage des parois fragiles ; analyses regroupées ; sécurité active nécessaire à la falsification des registres et à la protection d'un contrôle piraté.
-- Cinq choix par compétence comme base de travail. L'achat de choix supplémentaires après maîtrise, la réattribution et les extensions de liaison restent à définir séparément.
+- Aucun maximum de techniques apprises par discipline. La réattribution et les extensions de liaison restent à définir séparément.
 
 Les dégâts, probabilités, portées, réserves, durées et courbes d'expérience restent à équilibrer. Les noms des nouvelles techniques peuvent tous être changés. Aucune classe nouvelle n'est déclarée définitive par ce rapport.
 
@@ -48,32 +50,30 @@ Les dégâts, probabilités, portées, réserves, durées et courbes d'expérien
 
 ## 2. Progression commune
 
-### 2.1. Rang, technique, amélioration et matériel
+### 2.1. Conditions d'accès, technique, amélioration et matériel
 
-Le rang mesure l'investissement dans une compétence. Une technique est une action, une posture, une procédure ou un comportement appris. Une amélioration modifie une technique connue et demande cette technique en prérequis. Le matériel fournit les moyens physiques ou logiciels de l'exécuter.
+Une technique est une action, une posture, une procédure ou un comportement appris. Une amélioration modifie une technique connue et demande cette technique en prérequis. Le matériel fournit les moyens physiques ou logiciels de l'exécuter.
 
-À chaque rang, le joueur choisit une entrée dont le rang minimal est atteint. Il peut revenir à une entrée d'un rang précédent. Il n'obtient pas automatiquement toutes les techniques du palier. Une entrée non répétable ne peut être achetée qu'une fois ; aucune entrée de ce catalogue ne donne un empilement illimité de bonus.
+Le joueur peut apprendre toute entrée dont il remplit les conditions : niveau du personnage, valeurs d'attributs et techniques prérequises. Toutes ne demandent pas les trois types de conditions. Une entrée non répétable ne peut être achetée qu'une fois ; aucune entrée de ce catalogue ne donne un empilement illimité de bonus.
 
-Exemple : atteindre le rang 3 de Tir permet d'avoir Tir visé, Surveillance et Tir localisé, ou Rafale contrôlée, Tir de suppression et Rafale répartie. Le rang seul ne donne pas les six techniques.
+Exemple : une technique avancée de Tir peut demander le niveau 3 et Rafale contrôlée, tandis qu'une autre peut demander le niveau 3 et une Coordination minimale. Le nombre de techniques déjà apprises ne remplace aucune de ces conditions.
 
-Base retenue pour cette version : une compétence maîtrisée représente cinq choix au total, y compris les choix accordés par une classe au départ. Acheter d'autres techniques après le rang 5 ou réattribuer un choix n'est pas encore défini ; ce point figure dans le suivi des décisions. Une classe ne crée donc pas implicitement des choix supplémentaires au-delà de ce plafond.
-
-Un rang ne doit pas obligatoirement ouvrir une technique inédite : il peut permettre de choisir une technique antérieure encore non apprise. C'est le fonctionnement du rang 5 de Reconnaissance après simplification. Son tarif élevé devra être confronté à cette fonction pendant les essais.
+Les classes peuvent accorder des techniques au départ, mais ces acquis ne créent ni palier implicite ni plafond. La réattribution reste une décision séparée.
 
 La découverte d'un équipement ou d'un programme spécialisé apporte des fonctions natives et des variantes matérielles. Elle ne vaut pas automatiquement achat d'une connaissance du noyau. Inversement, apprendre une technique doit suffire à en connaître la procédure standard : il faut éviter de réclamer aussi un livre rarissime pour chaque action de base. Une fonction native d'un objet reste utilisable selon les règles de cet objet, même si une technique peut ensuite l'améliorer.
 
-### 2.2. Coûts de progression à tester
+### 2.2. Coûts d'apprentissage à tester
 
-| Rang | Nom | Coût proposé du rang | Coût cumulé | Nombre cumulé de choix |
+| Apprentissage dans la discipline | Repère historique | Coût proposé | Coût cumulé | Nombre cumulé de choix |
 |---|---|---:|---:|---:|
-| 0 | Non formé | 0 | 0 | 0 |
+| 0 | Aucun | 0 | 0 | 0 |
 | 1 | Initié | 1 | 1 | 1 |
 | 2 | Opérationnel | 1 | 2 | 2 |
 | 3 | Spécialiste | 2 | 4 | 3 |
 | 4 | Expert | 2 | 6 | 4 |
 | 5 | Maîtrise | 3 | 9 | 5 |
 
-La proposition initiale d'un point de compétence par niveau et les tarifs ci-dessus restent provisoires. Avec ce barème, deux compétences au rang 3 coûtent 8 points ; une compétence au rang 5 coûte 9 points. Maîtriser trois compétences coûte 27 points, hors acquis de départ. Il faut confronter ce rythme au nombre de niveaux réellement atteints pendant une partie ordinaire.
+La proposition initiale d'un point de compétence par niveau et les tarifs ci-dessus restent provisoires. Avec ce barème, trois apprentissages dans deux disciplines coûtent 8 points ; cinq apprentissages dans une discipline coûtent 9 points. Il faut confronter ce rythme au nombre de niveaux réellement atteints pendant une partie ordinaire. À partir du sixième apprentissage d'une même discipline, le coût reste actuellement fixé à 3 points.
 
 Les compétences progressent par dépense des points gagnés avec l'expérience. Répéter un tir, une réparation ou un piratage ne fait pas monter directement la compétence. Les récompenses d'exploration, de quête, d'infiltration et d'objectifs doivent permettre de progresser sans rendre l'élimination systématique obligatoire.
 
@@ -108,6 +108,7 @@ La section 12 formalise ensuite les résistances thermique, électrique et chimi
 - Un échec ne doit pas servir à tester gratuitement l'existence d'une cible cachée. Les tentatives sur une case sans information fiable ne confirment pas implicitement une présence.
 - Viser, armer un piège, poser une balise, réparer et commander activement une unité sont des actions de jeu. Les manipulations d'interface seules n'en sont pas.
 - Une préparation longue est découpée en étapes annoncées et interruptibles. Le joueur doit comprendre le temps investi et le risque d'interruption.
+- Pendant une préparation, `Attendre` investit une UT supplémentaire dans la commande déjà mémorisée et déclenche automatiquement son exécution à la fin. La même commande peut également être répétée. Se déplacer, attaquer autrement ou entreprendre une autre action acceptée annule explicitement la préparation ; l'interface affiche cette conséquence et propose un bouton de continuation.
 - Un déplacement sur plusieurs cases résout les cases successivement : collision, pièges, danger et surveillance. Il ne traverse pas gratuitement un couloir couvert.
 - Les techniques décrites comme lentes ou exigeant une récupération nécessiteront une représentation du temps adaptée. Dans le premier moteur à phases simples, elles peuvent être représentées par des étapes ou un état de récupération explicite, avant toute éventuelle initiative plus fine.
 
@@ -116,6 +117,12 @@ La limite acceptée est une réaction de combat par personnage entre deux action
 Une réaction ne rétablit pas ce droit, ne déclenche pas une autre réaction et consomme les ressources de l'action produite. Une posture de Surveillance ou de Parade expire au début de la prochaine action normale de son propriétaire, ou après son déclenchement. Une riposte préparée appartient à cette fenêtre ; elle n'ouvre pas un tour gratuit.
 
 Pour les drones, PNJ et autres compagnons, la base des essais applique la même limite à chaque acteur. Le nombre d'unités reste un paramètre d'équilibrage majeur ; l'énergie et la bande passante s'appliquent aux unités électroniques concernées, sans être imposées aux familiers par cette règle. Les destructions environnementales peuvent se propager selon leurs propres règles, avec un nombre fini d'objets et sans récursion infinie.
+
+### 3.1 bis. Compétences intrinsèques et équipement
+
+Décision retenue : une compétence apprise fournit toujours son effet de base. Une charge, une mine, un leurre, une balise, un drone ou une réparation créés par une technique ne demandent donc ni consommable, ni outil, ni châssis préalable dans l'inventaire. Leur coût porte sur le temps, l'énergie, la chaleur, la bande passante, la recharge et le nombre d'instances actives. La bande passante d'un dispositif persistant reste réservée jusqu'à sa disparition, sa récupération ou sa destruction.
+
+Les objets correspondants restent dans le monde pour la fabrication, le commerce et les améliorations futures : ils pourront renforcer, spécialiser ou transformer l'effet, jamais autoriser seuls l'usage d'une compétence déjà apprise. Un drone acheté ou construit sera ainsi une variante persistante et personnalisable ; `DRN-01` garantit néanmoins un drone utilitaire de base. Cette règle remplace les mentions plus anciennes de matériau obligatoire ou d'objet consommé dans les tableaux de ce document.
 
 ### 3.2. Perception, ciblage et information
 
@@ -142,7 +149,7 @@ Chaque technique cherche un compromis principal : temps, exposition, énergie/ch
 
 ### 3.4. Lecture des fiches
 
-Les codes tels que MEL-01 sont des repères de relecture, pas des noms à afficher au joueur. La colonne Rang indique le rang minimal. Les prérequis écrits sont obligatoires dans la proposition ; les synergies ne le sont pas. Une amélioration indiquant une technique par son code demande de l'avoir apprise.
+Les codes tels que MEL-01 sont des repères de relecture, pas des noms à afficher au joueur. La colonne Niveau indique le niveau minimal du personnage. Les prérequis écrits sont obligatoires dans la proposition ; les synergies ne le sont pas. Une amélioration indiquant une technique par son code demande de l'avoir apprise.
 
 Les choix acceptés sont conservés dans leur compétence, sous leur forme révisée lorsqu'une simplification a été approuvée. Les précisions opérationnelles constituent la base des essais ; leur paramétrage reste à éprouver.
 
@@ -154,9 +161,9 @@ Une entrée dépendant d'un système absent de la version jouable n'est pas prop
 
 Statut : progression et noms validés ; précisions de résolution retenues comme base des essais.
 
-Rôle : frapper fort, frapper précisément, contrôler le contact. Primaires principales : Puissance et Coordination ; Résilience peut aider à supporter une perturbation pendant une préparation. Matériel : arme de mêlée, manipulateur ou corps adapté. Au rang 0, une attaque ordinaire reste possible.
+Rôle : frapper fort, frapper précisément, contrôler le contact. Primaires principales : Puissance et Coordination ; Résilience peut aider à supporter une perturbation pendant une préparation. Matériel : arme de mêlée, manipulateur ou corps adapté. Sans technique apprise, une attaque ordinaire reste possible.
 
-| Code | Rang | Technique | Fonctionnement | Conditions, coût et réponse possible |
+| Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
 | MEL-01 | 1 | Frappe puissante | Renforce une attaque de mêlée, avec une récupération plus longue. | Arme/actuateurs adaptés ; davantage de temps laissé aux adversaires. Une cible peut exploiter la récupération. |
 | MEL-02 | 1 | Frappe précise | Prépare une attaque pour améliorer les chances de toucher une cible difficile. | Préparation sur une cible perçue ; perte du contact ou changement de cible fait perdre la préparation. |
@@ -177,9 +184,9 @@ Exemple : Repoussement peut envoyer un adversaire dans un Champ de saturation. L
 
 Statut : progression et noms validés ; précisions de résolution retenues comme base des essais.
 
-Rôle : précision, rafales et contrôle d'un passage. Primaire principale : Coordination ; Perception intervient dans le ciblage et l'exploitation des indices. Puissance peut aider certains équipements lourds sans devenir une exigence universelle. Au rang 0, le tir ordinaire et les modes natifs de l'arme restent disponibles.
+Rôle : précision, rafales et contrôle d'un passage. Primaire principale : Coordination ; Perception intervient dans le ciblage et l'exploitation des indices. Puissance peut aider certains équipements lourds sans devenir une exigence universelle. Sans technique apprise, le tir ordinaire et les modes natifs de l'arme restent disponibles.
 
-| Code | Rang | Technique | Fonctionnement | Conditions, coût et réponse possible |
+| Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
 | TIR-01 | 1 | Tir visé | Consacre une action à préparer le prochain tir sur une cible visible pour améliorer sa précision. | Bouger, changer de cible ou perdre le contact annule la préparation. La cible peut chercher un couvert. |
 | TIR-02 | 1 | Rafale contrôlée | Limite les projectiles d'une rafale pour réduire la dispersion. | Arme dotée d'un mode compatible ; moins de volume de feu. Ne crée pas de mode automatique sur une arme à un coup. |
@@ -200,9 +207,9 @@ Exemple : Surveillance contrôle l'entrée d'une salle. Un ennemi peut rester à
 
 Statut : direction retenue après relecture ; chiffres à tester et effondrements conditionnés à leur système dédié.
 
-Rôle : explosifs, mines, brèches et préparation du terrain. Coordination aide à placer ou lancer ; Perception à lire une structure ; Traitement à programmer un dispositif. Aucun attribut unique ne pilote toutes ces opérations. Au rang 0, utiliser une grenade ou un explosif simple selon son mode natif reste possible.
+Rôle : explosifs, mines, brèches et préparation du terrain. Coordination aide à placer ou lancer ; Perception à lire une structure ; Traitement à programmer un dispositif. Aucun attribut unique ne pilote toutes ces opérations. Sans technique apprise, utiliser une grenade ou un explosif simple selon son mode natif reste possible.
 
-| Code | Rang | Technique | Fonctionnement | Conditions, coût et réponse possible |
+| Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
 | DEM-01 | 1 | Lancer ajusté | Prépare un lancer d'explosif pour réduire l'écart à la case visée. | Consomme du temps de préparation ; trajectoire et explosif réels. Une cible mobile peut quitter la zone. |
 | DEM-02 | 1 | Désamorçage | Neutralise le déclencheur d'un piège identifié après une intervention. | Outils, proximité et temps ; conditions d'échec annoncées. Pas de tests gratuits répétés pour découvrir une mine cachée. |
@@ -225,9 +232,9 @@ Exemple : ouvrir une issue latérale avec une Charge de brèche peut éviter une
 
 Statut : direction retenue après relecture ; temps, coûts et déplacements à éprouver en jeu.
 
-Rôle : se déplacer sous pression, franchir un obstacle et choisir sa position. Coordination est centrale ; Puissance, masse, ancrage et propulsion interviennent selon le geste. Résilience aide au maintien opérationnel sous perturbation, sans rendre le déplacement invulnérable. Au rang 0, déplacement, retraite et franchissements ordinaires autorisés par le corps restent possibles.
+Rôle : se déplacer sous pression, franchir un obstacle et choisir sa position. Coordination est centrale ; Puissance, masse, ancrage et propulsion interviennent selon le geste. Résilience aide au maintien opérationnel sous perturbation, sans rendre le déplacement invulnérable. Sans technique apprise, déplacement, retraite et franchissements ordinaires autorisés par le corps restent possibles.
 
-| Code | Rang | Technique | Fonctionnement | Conditions, coût et réponse possible |
+| Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
 | MAN-01 | 1 | Pas de dégagement | Effectue un pas prudent réduisant la vulnérabilité à une interception de mêlée lors du retrait. La consigne peut être maintenue pour les pas de retraite suivants sans achat supplémentaire. | Chaque pas consomme son action et exige une destination accessible. Attaquer ou changer de posture rompt la consigne, sans cumul du bonus. Ne neutralise pas les zones dangereuses ni les tirs couvrant l'arrivée. |
 | MAN-02 | 1 | Appui stable | Prépare un ancrage temporaire pour mieux résister aux poussées et déséquilibres. | Sol et corps compatibles ; rester en place. Consomme du temps et ne protège pas des autres dégâts. |
@@ -247,9 +254,9 @@ Exemple : Esquive préparée peut éviter un projectile si une case sûre existe
 
 Statut : direction retenue après relecture ; détection, signatures et comportements de recherche à éprouver en jeu.
 
-Rôle : choisir ses engagements, exploiter les couverts et rompre une poursuite. Coordination et les signatures du châssis dominent ; les équipements définissent les émissions, la chaleur et les possibilités de camouflage. Au rang 0, profiter d'un mur, d'un couvert ou de l'absence de témoin fonctionne déjà.
+Rôle : choisir ses engagements, exploiter les couverts et rompre une poursuite. Coordination et les signatures du châssis dominent ; les équipements définissent les émissions, la chaleur et les possibilités de camouflage. Sans technique apprise, profiter d'un mur, d'un couvert ou de l'absence de témoin fonctionne déjà.
 
-| Code | Rang | Technique | Fonctionnement | Conditions, coût et réponse possible |
+| Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
 | FUR-01 | 1 | Pas feutrés | Réduit le bruit des déplacements en adoptant une marche plus lente. | Corps et surface comptent ; baisse de vitesse de déplacement. Un capteur visuel peut toujours détecter le personnage. |
 | FUR-02 | 1 | Approche couverte | Exploite mieux les occultations partielles pendant un déplacement proche d'un couvert. | Nécessite un couvert réel ; aucun avantage équivalent en terrain ouvert. Les angles observés par les ennemis restent déterminants. |
@@ -272,9 +279,9 @@ Exemple : un Leurre sonore attire une patrouille dans une autre pièce. Le perso
 
 Statut : catalogue simplifié après accord, incluant la fusion avec Analyse tactique. Sept techniques sont retenues ; l'historique des trois entrées sorties du catalogue figure en section 6.2.
 
-Rôle : transformer des observations en décisions, avant ou pendant un engagement. Perception est principale ; Traitement, capteurs et bases de données interviennent dans l'interprétation. Au rang 0, le joueur voit les informations évidentes : cible perçue, attitude connue, équipement clairement visible et annonce compréhensible des dangers.
+Rôle : transformer des observations en décisions, avant ou pendant un engagement. Perception est principale ; Traitement, capteurs et bases de données interviennent dans l'interprétation. Sans technique apprise, le joueur voit les informations évidentes : cible perçue, attitude connue, équipement clairement visible et annonce compréhensible des dangers.
 
-| Code | Rang | Technique | Fonctionnement | Conditions, coût et réponse possible |
+| Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
 | REC-01 | 1 | Analyse de cible | Consacre une action à examiner une entité perçue : état, matériel observable et résistances ou vulnérabilités identifiables. Ces informations aident le personnage ou ses alliés à choisir une action adaptée. | Capteurs et données disponibles déterminent ce qui peut être identifié. Aucun bonus d'attaque automatique, inventaire fermé révélé ou seconde analyse obligatoire pour obtenir les résistances accessibles. |
 | REC-02 | 1 | Lecture de traces | Détecte ou interprète les indices locaux laissés par certains déplacements : empreintes, chenilles, huile, direction et ancienneté approximative. | Traces réellement enregistrées selon le corps et le terrain, avec durée et nombre par case bornés. Les indices évidents restent accessibles à tous ; aucune position actuelle garantie de leur auteur ni mise à jour visible hors perception. |
@@ -284,19 +291,19 @@ Rôle : transformer des observations en décisions, avant ou pendant un engageme
 | REC-09 | 3 | Analyse multiple | Améliore REC-01 : applique une même action d'analyse à plusieurs cibles simultanément perçues, avec un nombre limité. | Demande Analyse de cible ; mêmes restrictions de connaissance pour chaque cible. Économise des actions d'analyse sans révéler les ennemis cachés ni supposer des équipements identiques. |
 | REC-08 | 4 | Diagnostic énergétique | Examine l'alimentation, la chaleur, les propriétés conductrices connues ou le stockage d'énergie compatible d'une machine perçue pour guider l'emploi de Surchauffe, Implosion ou d'autres outils. | Capteurs adaptés et états effectivement simulés. Aucun relevé des installations cachées ni simulation continue du réseau exigée ; l'entrée devient disponible avec les systèmes qu'elle analyse. |
 
-Les identifiants sont conservés ; les lignes suivent le rang minimal plutôt que l'ordre des anciens codes. Les informations physiques et résistances relèvent d'Analyse de cible ; Profil de menace précise les possibilités de combat observables ; Diagnostic énergétique traite les états d'énergie et de chaleur. L'analyse donne de l'information, pas un bonus abstrait supplémentaire à activer avant le tir.
+Les identifiants sont conservés ; les lignes suivent le niveau minimal plutôt que l'ordre des anciens codes. Les informations physiques et résistances relèvent d'Analyse de cible ; Profil de menace précise les possibilités de combat observables ; Diagnostic énergétique traite les états d'énergie et de chaleur. L'analyse donne de l'information, pas un bonus abstrait supplémentaire à activer avant le tir.
 
-| Rang de Reconnaissance | Nouvelles possibilités | Choix effectué à ce rang |
+| Niveau du personnage | Nouvelles possibilités | Exemple de choix à ce niveau |
 |---|---|---|
 | 1 | Analyse de cible, Lecture de traces. | Une technique accessible. |
-| 2 | Inspection minutieuse, Repérage des parois fragiles. | Une technique accessible, y compris du rang 1. |
+| 2 | Inspection minutieuse, Repérage des parois fragiles. | Une technique accessible, y compris parmi celles ouvertes au niveau 1. |
 | 3 | Profil de menace, Analyse multiple. | Une technique accessible ; Analyse multiple demande REC-01. |
-| 4 | Diagnostic énergétique, une fois ses états disponibles. | Une technique accessible parmi les rangs 1 à 4. |
-| 5 | Aucune technique exclusive supplémentaire. | Un cinquième choix parmi les techniques antérieures non apprises. |
+| 4 | Diagnostic énergétique, une fois ses états disponibles. | Une technique accessible parmi celles ouvertes jusqu'au niveau 4. |
+| 5 | Aucune technique exclusive supplémentaire. | Les techniques antérieures encore inconnues restent apprenables. |
 
-Ainsi, un spécialiste peut choisir Analyse de cible, Lecture de traces, Analyse multiple, Diagnostic énergétique puis Inspection minutieuse. Si le diagnostic énergétique n'est pas encore disponible dans une version du jeu, les six autres entrées permettent toujours cinq choix valides. Le coût du dernier rang reste à éprouver puisqu'il complète le répertoire au lieu d'ouvrir un nouveau pouvoir de maîtrise.
+Ainsi, un spécialiste peut choisir Analyse de cible, Lecture de traces, Analyse multiple, Diagnostic énergétique puis Inspection minutieuse. Si le diagnostic énergétique n'est pas encore disponible dans une version du jeu, les autres entrées restent accessibles selon leurs propres conditions. Le coût croissant de la spécialisation reste à éprouver puisqu'il complète le répertoire au lieu d'ouvrir artificiellement un pouvoir de maîtrise.
 
-Frontière : l'inspection de base et les informations nécessaires à une mort compréhensible ne sont pas des récompenses de haut rang. Une connaissance détaillée crée un avantage préparé. Reconnaissance n'exécute ni le piratage ni la démolition qu'elle peut aider à choisir.
+Frontière : l'inspection de base et les informations nécessaires à une mort compréhensible ne sont pas des récompenses de haut niveau. Une connaissance détaillée crée un avantage préparé. Reconnaissance n'exécute ni le piratage ni la démolition qu'elle peut aider à choisir.
 
 Exemple : Repérage des parois fragiles révèle qu'une cloison corrodée est moins résistante que les murs renforcés voisins. Le personnage peut y préparer une brèche pour contourner une salle défendue. Le repérage décrit la cloison existante et ne fait pas apparaître une faiblesse sur commande.
 
@@ -318,9 +325,9 @@ Ces identifiants sont réservés pour retrouver les commentaires précédents. I
 
 Statut : direction retenue après relecture, incluant la fusion de Maintenance et Ingénierie modulaire ; économie des réparations à éprouver en jeu.
 
-Rôle : préserver et adapter les moyens matériels. Coordination compte dans la manipulation ; Traitement dans le diagnostic et les procédures. La quantité de matière, les outils et le lieu d'intervention restent déterminants. Au rang 0, employer un consommable de réparation, installer un module compatible et effectuer une récupération ordinaire restent possibles.
+Rôle : préserver et adapter les moyens matériels. Coordination compte dans la manipulation ; Traitement dans le diagnostic et les procédures. La quantité de matière, les outils et le lieu d'intervention restent déterminants. Sans technique apprise, employer un consommable de réparation, installer un module compatible et effectuer une récupération ordinaire restent possibles.
 
-| Code | Rang | Technique | Fonctionnement | Conditions, coût et réponse possible |
+| Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
 | ING-01 | 1 | Réparation ciblée | Oriente une intervention vers une fonction ou un composant endommagé précis. | Pièces compatibles, outils et temps ; ne restaure pas gratuitement la durabilité. La réparation ordinaire doit rester viable sans cet achat. |
 | ING-02 | 1 | Démontage soigneux | Privilégie la conservation d'un composant choisi lors de la récupération d'une carcasse. | Intervention plus longue ; choix entre pièce conservée et ressources extraites du même objet. Les dommages subis limitent le résultat. |
@@ -345,9 +352,9 @@ Point de vigilance : si tous les builds prennent Réparation ciblée ou Démonta
 
 Statut : direction retenue après relecture ; falsification et verrouillage précisés et conditionnés à des comportements de sécurité actifs.
 
-Rôle : obtenir des accès, récupérer des informations et détourner les fonctions d'un système. Traitement domine ; interfaces, programmes, droits déjà obtenus et sécurité de la cible déterminent les possibilités. Au rang 0, utiliser une console autorisée, une clé ou une fonction native d'un outil reste possible.
+Rôle : obtenir des accès, récupérer des informations et détourner les fonctions d'un système. Traitement domine ; interfaces, programmes, droits déjà obtenus et sécurité de la cible déterminent les possibilités. Sans technique apprise, utiliser une console autorisée, une clé ou une fonction native d'un outil reste possible.
 
-| Code | Rang | Technique | Fonctionnement | Conditions, coût et réponse possible |
+| Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
 | INT-01 | 1 | Sondage d'accès | Examine les interfaces et protections accessibles d'un système pour préciser les actions envisageables. | Interface compatible et temps ; certains systèmes détectent la sonde. Ne révèle pas tout le réseau ni tous les mots de passe. |
 | INT-02 | 1 | Ouverture forcée | Tente de commander un verrou électronique local sans autorisation normale. | Accès technique et sécurité franchissable ; temps, risque de trace et d'alarme. Un verrou purement mécanique exige une autre solution. |
@@ -370,11 +377,11 @@ Point de vigilance : un échec valide consomme son temps et peut laisser une tra
 
 ### 8.2. Guerre électronique
 
-Statut : progression, effets centraux et six noms offensifs validés. Brouillage et Purge font partie de la progression acceptée. Les variantes constituent la base retenue ; coûts et rangs restent à éprouver.
+Statut : progression, effets centraux et six noms offensifs validés. Brouillage et Purge font partie de la progression acceptée. Les variantes constituent la base retenue ; coûts et conditions d'apprentissage restent à éprouver.
 
 Rôle : dégâts électroniques, attaques logicielles, propagation, contrôle de zone et contre-mesures. Traitement améliore l'exploitation des procédures ; Perception aide au ciblage. La puissance d'émission, les réserves et la dissipation viennent du matériel. Un programme offensif logiciel exige une cible compatible ; une décharge physique exige un émetteur.
 
-| Code | Rang | Technique | Fonctionnement | Conditions, coût et réponse possible |
+| Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
 | GEL-01 | 1 | Surcharge | Produit une impulsion de dégâts électroniques autour du personnage, avec une perturbation éventuelle selon l'équipement. | Émetteur adapté, courte portée et forte dépense ; murs et portes fermées bloquent l'émission. Les alliés exposés peuvent être touchés. |
 | GEL-02 | 1 | Surchauffe | Sabote la gestion thermique d'une machine : la température augmente, puis des dégâts surviennent si les limites sont dépassées. | Cible compatible et attaque logicielle réussie ; pas d'achat obligatoire en Intrusion pour sa procédure standard. Refroidissement, purge ou rupture du processus peuvent répondre. |
@@ -389,9 +396,9 @@ Implosion conserve l'effet de destruction locale accepté avant le changement de
 
 #### Variantes de techniques
 
-Chaque variante ci-dessous représente un choix supplémentaire de rang, demande sa technique et n'est pas acquise automatiquement. Les noms et rangs minimaux sont conservés comme base de travail. Par défaut, une seule variante d'une même technique est appliquée à une exécution ; acheter les deux demande deux choix et permet de choisir le profil utilisé.
+Chaque variante ci-dessous représente un apprentissage supplémentaire, demande sa technique et n'est pas acquise automatiquement. Les noms et niveaux minimaux sont conservés comme base de travail. Par défaut, une seule variante d'une même technique est appliquée à une exécution ; acheter les deux demande deux choix et permet de choisir le profil utilisé.
 
-| Code | Rang | Variante | Prérequis | Transformation et compromis |
+| Code | Niveau | Variante | Prérequis | Transformation et compromis |
 |---|---:|---|---|---|
 | GEL-V01 | 2 | Impulsion directionnelle | GEL-01 | Oriente Surcharge en cône ; couvre moins de directions pour mieux choisir la zone exposée. Ne rajoute pas gratuitement de portée. |
 | GEL-V02 | 2 | Filtrage allié | GEL-01 | Améliore le filtrage pour épargner les alliés identifiés par le matériel ; complexité et coût accrus, sans lecture des intentions inconnues. |
@@ -404,7 +411,7 @@ Chaque variante ci-dessous représente un choix supplémentaire de rang, demande
 | GEL-V09 | 5 | Saturation persistante | GEL-07 | Prolonge le champ, avec une dépense totale supérieure ou une intensité réduite. La balise reste destructible. |
 | GEL-V10 | 5 | Activation manuelle | GEL-07 | Permet de poser la balise inactive puis de lancer le champ au moment choisi ; exige une commande, une liaison valide et laisse la balise vulnérable avant activation. |
 
-Guerre électronique dispose ici de davantage d'options décrites que les autres compétences, car ses variantes avaient déjà été discutées. Cela ne donne pas davantage de choix de rang. Des variantes supplémentaires pour les autres compétences pourront être conçues après avis ; leur nombre ne doit pas être gonflé pour une simple symétrie.
+Guerre électronique dispose ici de davantage d'options décrites que les autres compétences, car ses variantes avaient déjà été discutées. Des variantes supplémentaires pour les autres compétences pourront être conçues après avis ; leur nombre ne doit pas être gonflé pour une simple symétrie.
 
 Exemple : Surchauffe menace un adversaire utilisant une arme énergivore ; celui-ci peut réduire sa cadence pour refroidir. Surcharge en cascade récompense un regroupement, tandis qu'un Champ de saturation prépare une zone où Repoussement devient intéressant.
 
@@ -412,11 +419,11 @@ Exemple : Surchauffe menace un adversaire utilisant une arme énergivore ; celui
 
 Statut : direction retenue après relecture ; routines, nombre d'unités et limites de perception à éprouver en jeu.
 
-Rôle : obtenir des comportements utiles de machines alliées sans créer une multitude d'actions gratuites. Traitement intervient dans la complexité des ordres ; les contrôleurs, canaux et réserves limitent le nombre et l'activité des unités. Au rang 0, un drone possédé et équipé de son contrôleur accepte des ordres simples tels que suivre, attendre, attaquer une cible connue ou revenir par un trajet autorisé.
+Rôle : obtenir des comportements utiles de machines alliées sans créer une multitude d'actions gratuites. Traitement intervient dans la complexité des ordres ; les contrôleurs, canaux et réserves limitent le nombre et l'activité des unités. Sans technique apprise, un drone possédé et équipé de son contrôleur accepte des ordres simples tels que suivre, attendre, attaquer une cible connue ou revenir par un trajet autorisé.
 
-| Code | Rang | Technique | Fonctionnement | Conditions, coût et réponse possible |
+| Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
-| DRN-01 | 1 | Escorte active | Donne une consigne d'escorte tenant compte de la position du propriétaire et d'une distance choisie. | Contrôleur et liaison ; le drone utilise ses propres actions. L'escorte ne lui révèle pas les dangers inconnus du propriétaire ou de ses capteurs. |
+| DRN-01 | 1 | Drone spectral | Manifeste un drone utilitaire de base sur une case adjacente libre. Sa doctrine initiale est de suivre le joueur et de tenter d'attaquer la cible que celui-ci vient d'attaquer. | 10 E, +3 H, 1 B réservée par le drone, recharge 3 ; une seule manifestation active. À batterie vide, la manifestation se dissipe, libère sa bande passante et redevient disponible après la recharge ordinaire. Le drone possède ses propres actions, capteurs, composants et position : son tir d'assistance exige donc perception, portée et ligne de tir. |
 | DRN-02 | 1 | Patrouille bornée | Programme un trajet court dans une zone connue, avec une condition d'arrêt ou de retour. | Temps de programmation et navigation compatible ; obstacles nouveaux ou danger peuvent interrompre la routine. |
 | DRN-03 | 2 | Leurre mobile | Coordonne un drone équipé pour produire une signature attirant l'attention depuis une position choisie. | Dispositif de leurre, énergie et exposition de l'unité ; l'ennemi peut l'ignorer ou la détruire. |
 | DRN-04 | 2 | Collecte ciblée | Envoie une unité dotée d'un manipulateur récupérer un objet connu et le rapporter. | Capacité de charge, trajet et ordres ; l'objet peut avoir disparu. Aucun inventaire distant instantané ni déplacement gratuit des ressources. |
@@ -431,13 +438,25 @@ Rôle : obtenir des comportements utiles de machines alliées sans créer une mu
 
 Un drone possède sa propre perception pour agir localement. L'interface du joueur ne reçoit pas automatiquement la somme des champs de vision de tous les drones : cela élargirait fortement l'information tactique et changerait la règle actuelle du projet.
 
+Chaque drone est une entité physique placée sur sa propre case du monde : il se déplace, occupe l'espace, peut bloquer ou être bloqué, subir des attaques et être détruit. Le mode terminal lui attribue provisoirement un glyphe propre ; le futur mode graphique remplacera ce rendu par l'image du drone sur cette même case, sans changer sa simulation ni le transformer en simple bonus attaché au joueur.
+
 Pour cette version, un drone hors liaison poursuit seulement une routine déjà donnée. Un rapport d'exploration devient un souvenir daté lorsqu'il peut être transmis ou rapporté ; il ne maintient pas une icône d'ennemi actualisée à travers un mur. La position affichée d'un drone hors contact reste sa dernière position confirmée, clairement distinguée d'une position actuelle.
 
 Une future vue déportée ou un pilotage direct pourrait constituer un choix de conception distinct, avec ses limites propres. Cette possibilité reste ouverte à l'avis de l'utilisateur ; elle n'est pas introduite implicitement par Éclaireur autonome.
 
-Les ordres actifs consomment du temps. Une routine ne donne pas un nouvel acte à chaque ouverture de menu. Le nombre de drones dépend du matériel ; l'inventaire, l'énergie, les liaisons et les réactions par unité doivent être équilibrés ensemble.
+Les ordres actifs consomment du temps. Une routine ne donne pas un nouvel acte à chaque ouverture de menu. Le nombre de drones dépend de la bande passante, des limites actives et des châssis persistants éventuels ; l'énergie, les liaisons et les réactions par unité doivent être équilibrées ensemble.
 
-Frontière : Ingénierie peut fabriquer une unité ; Intrusion peut obtenir le contrôle initial d'une machine compatible ; Contrôle de drones améliore les consignes et la coordination. Un seul drone basique peut être utilisé sans acheter ces trois compétences.
+La doctrine de base d'une nouvelle unité contrôlée est une escorte rapprochée : elle suit son propriétaire avec ses déplacements ordinaires et, si celui-ci attaque explicitement une cible pendant son action, elle tente à son tour une attaque ordinaire contre cette cible. Le drone ne triche pas sur sa perception, sa portée, sa ligne de tir, son énergie ni sa précision. `DRN-05` reste distinct : il permet de désigner une cible sans devoir soi-même l'attaquer et de coordonner plusieurs unités compatibles.
+
+Le panneau d'allié permet de remplacer cette consigne sans dépenser de tour : **Suivre** assiste seulement la cible attaquée par le joueur, **Défensif** n'engage que les menaces arrivées près du groupe, **Agressif** recherche et poursuit une menace perçue dans une laisse bornée, et **Passif** suit sans attaquer. Ces doctrines sont des comportements ordinaires de compagnon, pas des techniques à acheter ; une technique avancée peut ensuite les remplacer par un ordre plus précis.
+
+#### Obtention des drones
+
+Trois voies d'obtention doivent coexister : acheter un châssis assemblé dans un magasin compatible, en construire un à partir d'un plan, de composants et d'outils, ou manifester l'unité utilitaire de base avec `DRN-01`. Un drone acheté ou construit persiste jusqu'à sa destruction ou sa perte et pourra recevoir des spécialisations matérielles. Le drone manifesté reste borné par sa recharge, sa limite active, sa réserve énergétique et la bande passante occupée ; sa réserve vide provoque sa dissipation explicite et libère la possibilité d'une nouvelle manifestation après recharge. Quelle que soit sa provenance, le drone obtenu devient une entité physique sur sa propre case et reste soumis aux mêmes règles de liaison, énergie, actions, dégâts et destruction.
+
+Le drone de test automatiquement placé près du joueur a été retiré des nouvelles parties avec la génération 54. Les suspensions plus anciennes le conservent uniquement pour garantir leur rejeu historique.
+
+Frontière : Ingénierie peut fabriquer une unité ; une technique dédiée peut en appeler ou déployer une selon ses coûts ; Intrusion peut obtenir le contrôle initial d'une machine compatible ; Contrôle de drones améliore les consignes et la coordination. Acheter et utiliser un drone basique ne demande pas d'investir dans ces trois disciplines.
 
 Exemple : un drone leurre attire une sentinelle tandis qu'un récupérateur rapporte un objet connu. Le joueur doit protéger les unités, disposer des canaux nécessaires et accepter que leurs déplacements prennent du temps et puissent échouer.
 
@@ -462,7 +481,7 @@ Les combinaisons ci-dessous illustrent des possibilités. Elles ne créent pas d
 
 ## 10. Exemples de builds et coût de spécialisation
 
-Ces exemples décrivent des répartitions, pas de nouvelles classes verrouillées. Ils supposent le tarif provisoire et aucun rang offert à la création.
+Ces exemples décrivent des répartitions, pas de nouvelles classes verrouillées. Ils supposent le tarif provisoire et aucun apprentissage gratuit hors des techniques explicitement accordées par la classe.
 
 | Profil | Répartition | Coût | Manière de jouer et faiblesse |
 |---|---|---:|---|
@@ -471,8 +490,8 @@ Ces exemples décrivent des répartitions, pas de nouvelles classes verrouillée
 | Démolisseur discret | Démolition 3 + Furtivité 3 | 8 points | Prépare mines, leurres et brèches ; dépend de ses consommables et peut provoquer des conséquences locales importantes. |
 | Saboteur électronique | Guerre électronique 3 + Intrusion 3 | 8 points | Combine accès et attaques de systèmes ; doit prévoir une réponse aux cibles incompatibles et aux coupures. |
 | Opérateur de drones | Contrôle de drones 3 + Ingénierie 3 | 8 points | Coordonne et préserve du matériel ; plus exposé aux pertes, au brouillage et au manque de pièces. |
-| Spécialiste confirmé | Une compétence 5 + une compétence 2 | 11 points | Obtient cinq choix dans sa spécialité et deux en soutien ; selon la compétence, le rang 5 ouvre une technique de maîtrise ou complète le répertoire antérieur. |
-| Généraliste | Quatre compétences 2 | 8 points | Dispose de huit choix accessibles mais d'aucune technique de rang 3 à 5. |
+| Spécialiste confirmé | Cinq techniques d'une compétence + deux d'une autre | 11 points | Obtient cinq choix dans sa spécialité et deux en soutien ; leurs niveaux, attributs et prérequis doivent rester satisfaits individuellement. |
+| Généraliste | Deux techniques dans quatre compétences | 8 points | Dispose de huit choix variés, sous réserve des conditions propres à chacun. |
 
 Chaque équipement important doit pouvoir être exploité à un niveau ordinaire par un corps compatible. Les techniques renforcent les orientations sans rendre inutiles toutes les trouvailles hors spécialisation. Une classe de départ peut garantir le matériel minimal de son concept, tandis que les trouvailles pendant la partie permettent de bifurquer.
 
@@ -502,8 +521,8 @@ Chaque équipement important doit pouvoir être exploité à un niveau ordinaire
 | Verrouillages répétés | Entrave, neutralisation ou purge/offensive répétées peuvent supprimer toute réponse. | Une politique commune de durée, de résistance et de protection contre le maintien permanent. Éviter une exception différente et invisible pour chaque boss. |
 | Doubles ou triples achats obligatoires | Ciblage, piratage et appareil pourraient chacun demander une compétence pour une action banale. | Procédure standard utilisable avec la compétence principale et son matériel ; les autres compétences apportent de la préparation ou de l'efficacité. |
 | Blocage du build par l'équipement trouvé | Un spécialiste peut perdre son seul matériel compatible. | Garantir plusieurs familles d'outils compatibles et des fonctions ordinaires utiles ; prévoir une disponibilité raisonnable du matériel d'entrée, sans garantir chaque objet rare. |
-| Saturation des options | Cinq choix face à beaucoup d'entrées peuvent produire des erreurs de lecture irréversibles. | Afficher les prérequis, l'aperçu de la progression et les dépendances matérielles avant achat ; discuter d'une réattribution limitée ou d'un apprentissage après maîtrise. |
-| Coût de la maîtrise de Reconnaissance | Le rang 5 donne un cinquième choix antérieur, sans ouvrir de technique exclusive. | Tester l'intérêt du dernier choix à son tarif actuel avant de fixer le coût ; conserver une liste courte plutôt qu'ajouter une capacité uniquement pour remplir le palier. |
+| Saturation des options | Un grand catalogue peut produire des erreurs de lecture irréversibles. | Afficher les prérequis, les dépendances et l'effet concret avant achat ; discuter séparément d'une éventuelle réattribution limitée. |
+| Coût d'une forte spécialisation en Reconnaissance | Les achats tardifs coûtent davantage sans ouvrir automatiquement de pouvoir exclusif. | Tester l'intérêt de ces choix à leur tarif actuel ; conserver une liste courte plutôt qu'ajouter une capacité uniquement pour remplir un palier artificiel. |
 | Guerres de statistiques obligatoires | La même action pourrait compter la primaire, deux secondaires et plusieurs compétences redondantes. | Écrire une chaîne de calcul courte par action ; un rôle distinct par contribution et une prévisualisation intelligible. |
 
 ### 11.3. Limites propres au catalogue actuel
@@ -514,7 +533,7 @@ Ingénierie et Reconnaissance ont besoin d'essais plus attentifs : leur intérê
 
 La révision de Reconnaissance regroupe les renseignements d'une cible et conserve des traces, secrets et parois fragiles définis dans le monde. L'interprétation des faux contacts reste différée. Le diagnostic énergétique attend les états qu'il lit, et Intrusion attend des règles de sécurité observables pour proposer ses actions sur les registres et la reprise de contrôle.
 
-La liste complète sert à examiner la cohérence du jeu. Elle ne constitue pas une obligation d'implémenter toutes les entrées dans la première version jouable. Les améliorations de haut rang supposent souvent des systèmes encore à construire.
+La liste complète sert à examiner la cohérence du jeu. Elle ne constitue pas une obligation d'implémenter toutes les entrées dans la première version jouable. Les techniques avancées supposent souvent des systèmes encore à construire.
 
 ## 12. Faisabilité et ordre de mise à l'épreuve
 
@@ -528,7 +547,7 @@ L'acteur consulté expose notamment une réserve de PV (`integrity` dans le prot
 
 | Famille de règles | Techniques qui en dépendent | Premier essai utile |
 |---|---|---|
-| Catalogue d'apprentissages, prérequis et sauvegarde | Toutes les compétences. | Acheter un rang, choisir une technique, refuser un prérequis absent, conserver le choix après changement d'équipement et chargement. |
+| Catalogue d'apprentissages, prérequis et sauvegarde | Toutes les compétences. | Choisir une technique, refuser un niveau, un attribut ou un prérequis absent, conserver le choix après changement d'équipement et chargement. |
 | Temps de préparation, récupération et réaction | Parade, Riposte, Tir visé, Surveillance, Esquive préparée. | Deux acteurs, une préparation et une interruption ; une seule réaction entre actions normales. |
 | Mouvement forcé et collisions | Repoussement, Charge, Percée, Extraction. | Petite salle avec obstacle, unité lourde, case dangereuse et trajet bloqué. |
 | Projectiles, précision et modes de tir | Tir, certains explosifs et drones. | Trajectoires multiples, couvert, consommation réelle de munitions et absence de cibles cachées dans l'aperçu. |
@@ -549,7 +568,7 @@ Ces scénarios sont des critères pour le développement futur ; ils n'ont pas �
 
 1. Un personnage sans compétence utilise une arme récupérée, une réparation ordinaire et un module compatible.
 2. Un personnage conserve son corps principal et ses apprentissages après changement d'équipement ; une technique sans matériel compatible devient indisponible avec une explication claire.
-3. Le choix d'un rang ne donne qu'une entrée ; une amélioration sans parent est refusée et ne consomme pas de points.
+3. Un apprentissage ne donne qu'une entrée ; une amélioration sans parent est refusée et ne consomme pas de points.
 4. Parade, Interception, Surveillance et Esquive préparée ne contournent pas la réaction commune. Une commande annulée ou un menu n'en restitue pas une.
 5. Une unité repoussée traverse la résolution prévue de la case, sans déclencher une infinité de réactions ou de dégâts de champ pendant une seule phase.
 6. Une animation accélérée, un autre mode de fenêtre ou un écran plus large ne changent ni les résultats ni les cibles connues.
@@ -561,7 +580,7 @@ Ces scénarios sont des critères pour le développement futur ; ils n'ont pas �
 12. Un drone hors contact ne fournit pas des positions ennemies en direct. Son rapport devient une information datée et sa routine ne consulte pas des données cachées.
 13. Les issues essentielles d'une carte restent accessibles par les moyens prévus ; aucune technique rare unique n'est rendue indispensable par hasard sans alternative conçue.
 14. Une alerte, un coût, une incompatibilité ou une zone dangereuse possède une indication textuelle ou symbolique et fonctionne au clavier comme à la souris, sans dépendre de la couleur seule.
-15. Reconnaissance permet cinq choix valides parmi ses sept entrées ; Analyse multiple exige Analyse de cible. Aucun achat ni prérequis ne pointe vers une entrée fusionnée, différée ou retirée.
+15. Chaque technique de Reconnaissance proposée possède un parcours d'accès valide ; Analyse multiple exige Analyse de cible. Aucun achat ni prérequis ne pointe vers une entrée fusionnée, différée ou retirée.
 16. Les traces expirent selon les règles locales et n'actualisent pas une case hors perception. Une inspection découvre un secret déjà placé sans en créer un et sans ouvrir automatiquement le passage correspondant.
 17. Une version sans audit des registres, reprise de contrôle adverse ou états énergétiques n'offre pas les techniques qui en dépendent. Leur activation future apporte un effet observable, tout en préservant témoins, alertes déjà transmises et limites de connaissance.
 
@@ -572,20 +591,20 @@ Les recommandations de direction ont été acceptées. Le tableau conserve leurs
 | Repère | Décision | Base retenue | Suite à prévoir |
 |---|---|---|---|
 | AVIS-01 | Organisation générale. | Dix compétences ; fusions de Reconnaissance et Ingénierie, et sept entrées dans Reconnaissance révisée. | Éprouver leur utilité et leurs différences dans des situations jouables. |
-| AVIS-02 | Apprentissage après le rang 5. | Cinq choix au total pour cette version. | Achat supplémentaire après maîtrise et réattribution restent à définir si le besoin apparaît. |
+| AVIS-02 | Nombre maximal d'apprentissages. | Aucun plafond par discipline. | Éprouver la courbe de prix ; traiter la réattribution comme une décision séparée. |
 | AVIS-03 | Information donnée par les drones. | Routines autonomes et rapports datés ; aucune vue déportée en direct hors perception du noyau par défaut. | Toute extension de vision déportée ferait l'objet d'une décision distincte. |
 | AVIS-04 | Liaisons à travers un obstacle. | Liaison directe comme base ; un ordre distant n'accorde pas de vision supplémentaire. | Définir séparément les éventuels câbles et réseaux autorisés. |
 | AVIS-05 | Réactions des unités alliées. | Même limite par acteur. | Tester le nombre d'unités et leur économie avant d'augmenter la taille du groupe. |
 | AVIS-06 | Ciblage des fonctions. | Tir localisé et réparation de composants dans la direction cible. | Proposer ces techniques seulement quand les fonctions correspondantes existent. |
 | AVIS-07 | Ambition de la destruction. | Brèches, dispositifs et propriétés des parois en priorité. | Effondrements structuraux comme extension avec son propre système. |
 | AVIS-08 | Variantes et spécialisation. | Une variante électronique appliquée à la fois. | Vérifier les compromis et la valeur de chaque choix. |
-| AVIS-09 | Budget d'une partie. | Base d'essai à 1 point par niveau et 9 points pour maîtriser une compétence. | Comparer avec la durée réelle des parties ; examiner notamment le dernier rang de Reconnaissance. |
+| AVIS-09 | Budget d'une partie. | Base d'essai à 1 point par niveau et coût croissant des choix successifs. | Comparer avec la durée réelle des parties ; examiner notamment les achats tardifs de Reconnaissance. |
 
 Pour commenter, les codes permettent de viser une entrée précise : par exemple « FUR-09 trop puissant », « renommer DEM-03 » ou « AVIS-03 : je préfère un autre fonctionnement ». Un retour sur l'intérêt des situations et la clarté des noms sera plus utile à ce stade que le choix d'un pourcentage de dégâts définitif.
 
 ## 14. Références et portée du travail
 
-- Conversation de conception : décisions sur les primaires, secondaires, rangs et trois premières compétences. Source prioritaire pour ces décisions récentes.
+- Conversation de conception : décisions sur les primaires, secondaires, conditions d'apprentissage et trois premières compétences. Source prioritaire pour ces décisions récentes.
 - [Document de conception v0.2](C:/Users/User/Desktop/project-RL/Projet_Roguelike_IA_Document_Conception_v0.2.md), sections 5 à 8 : monde, perception, combat, incarnation et progression.
 - [Spécification CODEX v0.2](C:/Users/User/Desktop/project-RL/Projet_Roguelike_IA_Spec_CODEX_v0.2.md), sections 8, 14 à 17.5 : temps, propagation, combat et expérience.
 - [Documentation du moteur](C:/Users/User/Desktop/project-RL/docs/MOTEUR.md), consultée pour les contrats de simulation et l'état décrit de la progression et des effets.
@@ -608,18 +627,18 @@ Les mots « groupe », « allié » et « commandes adverses » désignent les a
 
 | Repère conservé | Décision appliquée | Effet et condition |
 |---|---|---|
-| REC-01 | Renommée Analyse de cible et enrichie par la fusion de REC-07 ; rang 1. | Une même analyse peut renseigner l'état, l'équipement observable et les résistances identifiables d'une cible perçue. |
-| REC-02 | Lecture de traces conservée ; rang 1. | Indices de déplacement réellement présents, locaux et datés ; certains visibles à tous, d'autres à détecter ou interpréter. |
-| REC-03 | Inspection minutieuse précisée ; rang 2. | Recherche de pièges, caches, commandes dissimulées et passages secrets déjà placés dans le monde ; découverte distincte de leur activation. |
-| REC-04 | Renommée Repérage des parois fragiles ; rang 2. | Matériau, résistance et état de cloisons, portes et parois observables. Aucun calcul de stabilité d'un bâtiment entier requis. |
-| REC-05 | Profil de menace conservé ; rang 3. | Possibilités de combat observables, distinctes des propriétés matérielles identifiées par REC-01. |
+| REC-01 | Renommée Analyse de cible et enrichie par la fusion de REC-07 ; niveau 1. | Une même analyse peut renseigner l'état, l'équipement observable et les résistances identifiables d'une cible perçue. |
+| REC-02 | Lecture de traces conservée ; niveau 1. | Indices de déplacement réellement présents, locaux et datés ; certains visibles à tous, d'autres à détecter ou interpréter. |
+| REC-03 | Inspection minutieuse précisée ; niveau 2. | Recherche de pièges, caches, commandes dissimulées et passages secrets déjà placés dans le monde ; découverte distincte de leur activation. |
+| REC-04 | Renommée Repérage des parois fragiles ; niveau 2. | Matériau, résistance et état de cloisons, portes et parois observables. Aucun calcul de stabilité du bâtiment entier requis. |
+| REC-05 | Profil de menace conservé ; niveau 3. | Possibilités de combat observables, distinctes des propriétés matérielles identifiées par REC-01. |
 | REC-06 | Différée ; hors catalogue d'apprentissage. | Discrimination des signaux sera réexaminée seulement si les faux contacts ont un rôle éprouvé. |
 | REC-07 | Fusionnée ; hors catalogue d'apprentissage. | L'ancienne Analyse de faille ne demande plus de second achat ni d'action d'analyse supplémentaire ; son information rejoint REC-01. |
-| REC-08 | Renommée Diagnostic énergétique ; rang 4. | États énergétiques, thermiques et propriétés réellement simulés de machines perçues ; disponibilité avec ces systèmes. |
-| REC-09 | Renommée Analyse multiple et avancée au rang 3. | Amélioration de REC-01 appliquée à plusieurs cibles perçues en une action ; limites d'information conservées pour chacune. |
+| REC-08 | Renommée Diagnostic énergétique ; niveau 4. | États énergétiques, thermiques et propriétés réellement simulés de machines perçues ; disponibilité avec ces systèmes. |
+| REC-09 | Renommée Analyse multiple et avancée au niveau 3. | Amélioration de REC-01 appliquée à plusieurs cibles perçues en une action ; limites d'information conservées pour chacune. |
 | REC-10 | Retirée de la première version ; hors catalogue d'apprentissage. | L'ancien bonus préparé d'Exploitation tactique faisait doublon avec l'analyse et les techniques d'attaque. Aucun remplacement ajouté. |
-| INT-08 | Falsification de registre précisée ; rang 4. | Agit sur une preuve locale avant une inspection ou transmission effective de sécurité ; indisponible sans cette boucle. |
-| INT-10 | Renommée Verrouillage de contrôle ; rang 5. | Empêche temporairement la reprise d'un dispositif piraté par ses contrôleurs adverses ; indisponible si aucun comportement adverse ne tente cette reprise. |
+| INT-08 | Falsification de registre précisée ; niveau 4. | Agit sur une preuve locale avant une inspection ou transmission effective de sécurité ; indisponible sans cette boucle. |
+| INT-10 | Renommée Verrouillage de contrôle ; niveau 5. | Empêche temporairement la reprise d'un dispositif piraté par ses contrôleurs adverses ; indisponible si aucun comportement adverse ne tente cette reprise. |
 
 Les identifiants conservés permettent de retrouver les retours précédents. Cette révision historique avait ramené le catalogue à 95 entrées principales et 10 variantes ; les trois anciennes entrées de Reconnaissance ont leur statut propre en section 6.2. La fusion ultérieure de MAN-07, suivie en section 15.7, porte le total actuel à 94 entrées principales et 10 variantes.
 
@@ -633,7 +652,7 @@ Le repérage des parois lit des propriétés définies sur le terrain : matéria
 
 Les résistances par type de dégâts sont représentées dans le moteur consulté par `ResistanceProfile`. La découverte de ces informations par une compétence, les états thermiques et le diagnostic du stockage d'énergie nécessitent leurs propres règles. Leur évocation ici ne démontre pas leur fonctionnement actuel en jeu.
 
-La progression de Reconnaissance conserve cinq choix sur cinq rangs avec sept techniques. Le rang 5 complète les choix antérieurs ; il ne crée pas un pouvoir supplémentaire de remplissage. Le coût de ce dernier choix et le nombre de cibles de l'analyse multiple seront éprouvés en jeu.
+Reconnaissance conserve sept techniques accessibles selon leurs conditions individuelles, sans palier abstrait à remplir. Le coût de ses achats tardifs et le nombre de cibles de l'analyse multiple seront éprouvés en jeu.
 
 ### 15.4. Sécurité active : conditions d'Intrusion retenues
 
@@ -661,7 +680,7 @@ L'utilisateur propose de prévoir une capacité facultative à débloquer en jeu
 
 L'utilisateur a confirmé que le corps principal reste vulnérable et peut subir des dégâts pendant cet effet. Le mettre à l'abri est un choix tactique ; l'extinction n'accorde pas de protection automatique. Une éventuelle interruption sur dégâts et les conséquences de sa destruction restent à décider.
 
-La capacité n'est pas ajoutée à Intrusion, Guerre électronique ou Contrôle de drones et ne modifie ni leurs rangs ni leurs cinq choix. Elle relève de la future famille des capacités indépendantes. Son déblocage peut être distinct d'un achat : nom, mode d'obtention, coût d'apprentissage et éventuelle limite de capacités indépendantes restent ouverts.
+La capacité n'est pas ajoutée à Intrusion, Guerre électronique ou Contrôle de drones et ne modifie pas leurs catalogues. Elle relève de la future famille des capacités indépendantes. Son déblocage peut être distinct d'un achat : nom, mode d'obtention, coût d'apprentissage et éventuelle limite de capacités indépendantes restent ouverts.
 
 La section 7.2 du document de conception recense les décisions restantes : cibles, durée et coûts, liaison, retour volontaire, conséquences des dégâts et de la destruction du corps principal, mort de l'ennemi contrôlé, statistiques et actions disponibles, perception, expérience et factions. Aucune invulnérabilité ou vision combinée n'est accordée implicitement. Cette capacité ne doit pas dépendre d'un champ de vision passant à travers les murs.
 
@@ -671,7 +690,7 @@ Cette clarification est synchronisée avec les sections 7 et 8.4 du document de 
 
 Après la revue finale, l'utilisateur a accepté les cinq corrections de principe (« oui :) »). Leur application est définie en sections 13.3, 15.3, 16.2 et 17.4 des règles communes. L'audit de référence passe à 5 UT ; les retardateurs annoncés excluent leur cycle d'armement ; les actions non chauffantes ne sont pas bloquées par le seul dépassement thermique ; une discipline incomplète reste différée jusqu'à garantir cinq choix légaux sur toute suite d'apprentissage.
 
-Retraite méthodique est fusionnée dans Pas de dégagement : neuf entrées de Manœuvre restent actives, sans changement des cinq rangs ni de leurs coûts. La consigne maintenue n'exécute pas une suite de mouvements instantanés : chaque pas conserve son temps, ses dangers, sa validation et ses fenêtres adverses.
+Retraite méthodique est fusionnée dans Pas de dégagement : neuf entrées de Manœuvre restent actives, sans modifier leur prix relatif. La consigne maintenue n'exécute pas une suite de mouvements instantanés : chaque pas conserve son temps, ses dangers, sa validation et ses fenêtres adverses.
 
 | Ancien code | Statut | Décision appliquée |
 |---|---|---|
@@ -688,11 +707,11 @@ Statut : profils de travail, avec cinq corrections de principe validées au poin
 - Toutes les règles de [Statistiques et compétences](STATISTIQUES_ET_COMPETENCES.md), notamment sections 10–17, s'appliquent : légalité, perception, défenses, temps, coûts engagés, réactions, réservations, non-cumul et progression.
 - A1, P1+A1, R1, E/H/B et UT sont définis dans les règles communes. « Arme » signifie les coûts natifs de l'attaque, puis les suppléments indiqués ; un montant autonome sans « Arme » donne le coût total de la technique pour le matériel de référence. Les variantes indiquent ce qu'elles remplacent ou ajoutent au coût de leur mère.
 - Sauf mention : une cible ; durée instantanée ; CD 0 ; portée égale au minimum de celle indiquée et de la limite matérielle ; aucune pénétration ajoutée ; pas de jet hors celui de la touche ordinaire ou de l'opposition explicitement nommée. Les procédures sur un objet coopératif sont certaines une fois leurs préconditions remplies. Une amélioration passive ne consomme pas d'action à l'achat et ne déclenche rien seule.
-- Les prérequis d'apprentissage sont exactement ceux des lignes qualitatives ; le rang seul ne les remplace pas. Une dépendance à composants, supports, audits, reprise de contrôle, énergie, traces ou routines rend l'entrée indisponible à l'achat si le système manque. Ce n'est pas une exigence de compétence supplémentaire.
-- Retirer une entrée de la version retire aussi ses améliorations sans prérequis disponible. Une discipline est ouverte seulement si toutes ses suites légales peuvent atteindre cinq choix ; sinon son ouverture est différée, sans rang vide ni plafond temporaire inventé. Les acquis de classe et sauvegardes passent ce contrôle selon les règles communes §17.4.
+- Les prérequis d'apprentissage sont exactement ceux des lignes qualitatives : niveau, attributs et techniques déjà apprises. Une dépendance à composants, supports, audits, reprise de contrôle, énergie, traces ou routines rend l'entrée indisponible à l'achat si le système manque. Ce n'est pas une exigence de compétence supplémentaire.
+- Retirer une entrée de la version retire aussi ses améliorations sans prérequis disponible. Une discipline est ouverte lorsqu'elle offre un parcours d'apprentissage cohérent ; sinon son ouverture est différée, sans palier vide ni plafond temporaire inventé. Les acquis de classe et sauvegardes passent ce contrôle selon les règles communes §17.4.
 - Chaleur volontaire : le refus thermique concerne uniquement un apport positif dépassant la limite du mode (§15.3). Retardateurs annoncés : exclure le cycle d'armement ; les tics, cooldowns et audits gardent leurs calendriers distincts (§§13.3 et 16.2).
 - Action invalide connue : aucun coût. Tentative légale manquée : coûts engagés conservés. Préparation interrompue : aucun effet final ni coût d'étape future ; objets déjà posés restent dans le monde. Le CD éventuel suit la section 16.2 des règles communes. Un effet actif du même type n'est pas renouvelé indéfiniment.
-- Sauf prélèvement explicitement situé dans la ligne : E payé à la première étape, B réservé dès la première étape jusqu'à la fin du processus concerné, H ajouté à l'exécution de l'effet énergivore, objets consommés à la pose/tir/assemblage final. Un entretien par UT est payé avant son effet périodique ; faute de réserve, l'effet s'arrête. La chaleur de maintien suit chaque paiement réel. Les dépenses de l'arme restent celles de son tir/frappe effectifs.
+- Sauf prélèvement explicitement situé dans une interaction de fabrication ou de commerce : E payé à la première étape, B réservée dès la première étape jusqu'à la fin du processus concerné et H ajoutée à l'exécution de l'effet énergivore. Une compétence ne consomme aucun objet pour produire son effet de base. Un entretien par UT est payé avant son effet périodique ; faute de réserve, l'effet s'arrête. La chaleur de maintien suit chaque paiement réel. Les dépenses de l'arme restent celles de son tir ou de sa frappe effectifs.
 - Les multiplications des dégâts physiques se font après calcul de l'Impact autorisé, puis arrondi inférieur, avant Parade/Blindage. Le bonus d'Impact n'est pas ajouté une seconde fois à chaque composante. Un tir n'utilise pas l'Impact.
 - Les paramètres des armes restent matériels. Référence pour les exemples : mêlée 12 dégâts physiques à Impact 10 ; frappe de service sans arme 5 ; projectile simple 10, portée 6, une munition ; rafale native 3 projectiles avec −15 de Précision chacun ; tir simple sans cette dispersion. Un profil énergétique remplace ses munitions par son coût propre, il n'est pas rendu gratuit.
 - Émetteur électrique de référence : puissance 16, portée 4. Explosif de référence : 24 physiques + 12 thermiques, rayon 2 ; mine : 20 physiques, rayon 1 ; charge de brèche : 60 physiques à l'obstacle ciblé, 12 physiques sur les autres cases du rayon 1. Ce sont des profils de laboratoire, pas de nouveaux objets ajoutés au jeu.
@@ -856,7 +875,7 @@ Implosion : les 20 E sont prélevés et placés dans le stockage armé lors de l
 
 ### 16.11. Guerre électronique — 10 variantes
 
-Chacune coûte **un choix de rang** supplémentaire et demande sa mère, selon la table qualitative. Une seule variante par exécution ; toutes les restrictions de la mère restent présentes. Les profils ci-dessous ne sont pas dix nouveaux pouvoirs autonomes.
+Chacune coûte **un apprentissage** supplémentaire et demande sa mère, selon la table qualitative. Une seule variante par exécution ; toutes les restrictions de la mère restent présentes. Les profils ci-dessous ne sont pas dix nouveaux pouvoirs autonomes.
 
 | Code | Mère | Temps | Coûts modifiés | Transformation chiffrée | Contrepartie / fin |
 |---|---|---|---|---|---|
@@ -879,7 +898,7 @@ Un ordre transmis coûte l'action du donneur. Son exécution consomme les action
 
 | Code | Temps / type | Coûts | Portée / cibles | Effet chiffré proposé | Échec, fin et contre-mesure |
 |---|---|---|---|---|---|
-| DRN-01 | A1 de commande | 2 E, 1 B de l'unité déjà réservé | Un drone connu en liaison ≤6 | Routine d'escorte, distance choisie de 1 à 3 cases ; utilise déplacement/actions propres. | Obstacles/dangers observés localement ; aucune connaissance de dangers cachés du propriétaire. |
+| DRN-01 | A1 | 10 E, +3 H, 1 B réservée ; CD 3 | Une case adjacente libre ; une manifestation active | Manifeste le drone utilitaire de base avec une escorte à distance 1 et un tir d'assistance sur la cible attaquée par le joueur. | Déplacement et attaque utilisent ses actions propres ; perception, portée, ligne de tir, énergie et précision normales. À 0 énergie, il se dissipe, libère B et peut être manifesté de nouveau après le CD. |
 | DRN-02 | P1+A1 | 3 E, 1 B unité | Un drone, trajet connu de 6 points maximum | Routine de patrouille ; arrêt ou retour fixé à la préparation. | Obstacle nouveau : arrêter/revenir suivant règle, pas de navigation omnisciente ; routine continue hors liaison. |
 | DRN-03 | A1 de commande | 2 E donneur ; dispositif drone 3 E/UT, maximum 3 UT | Un drone avec leurre, destination connue ≤6 à la commande | Émet bruit/signature 30 à la position atteinte ; pas de déplacement instantané. | L'ennemi choisit sa réponse ; drone exposé, arrêt si énergie insuffisante. |
 | DRN-04 | A1 de commande | 2 E, 1 B unité | Un objet connu, trajet autorisé | Ramassage A1 du drone puis retour ; masse et capacité réelles. | Objet disparu : rapport daté au prochain contact ; aucune téléportation vers l'inventaire joueur. |
@@ -894,6 +913,6 @@ Un ordre transmis coûte l'action du donneur. Son exécution consomme les action
 
 Les coefficients sont centralisables en contenu lors de l'implémentation ; le texte de cette annexe n'est pas un format à parser directement dans le jeu. Le contrôle documentaire vérifie sa couverture et ses références. Le rapport séparé compare les budgets et quelques résultats arithmétiques, puis énumère les scénarios jouables à exécuter : cela ne prouve ni l'équilibrage du catalogue ni la présence des systèmes dans le prototype.
 
-Points sensibles restant à éprouver : récupération et préparation de mêlée, coût du rang 5 de Reconnaissance, pression thermique de Surchauffe, petits dégâts périodiques d'Infection, rendement de fabrication et multiplication des réactions par les drones. Le seul gain ergonomique de MAN-07 est désormais fusionné dans MAN-01 par accord utilisateur ; son ancienne faiblesse ne constitue plus un achat à équilibrer.
+Points sensibles restant à éprouver : récupération et préparation de mêlée, coût des achats tardifs de Reconnaissance, pression thermique de Surchauffe, petits dégâts périodiques d'Infection, rendement de fabrication et multiplication des réactions par les drones. Le seul gain ergonomique de MAN-07 est désormais fusionné dans MAN-01 par accord utilisateur ; son ancienne faiblesse ne constitue plus un achat à équilibrer.
 
 **Étape 7 terminée au niveau rédactionnel :** cette annexe reste la référence technique, pas le texte d'interface. Les quinze validations individuelles figurent en section 19.1 des [règles communes](STATISTIQUES_ET_COMPETENCES.md) ; la délégation explicite autorisant la rédaction du reste est suivie en section 19.3. Les [textes joueur](TEXTES_JOUEUR_STATISTIQUES_COMPETENCES.md) fournissent les descriptions, infobulles, refus et notifications complémentaires. Ni les coefficients ni les capacités extérieures ne sont modifiés par cette rédaction ; aucun texte n'est intégré automatiquement au jeu.

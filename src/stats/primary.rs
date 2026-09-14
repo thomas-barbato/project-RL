@@ -69,6 +69,15 @@ impl PrimaryAttributes {
         self.values[attribute as usize]
     }
 
+    pub fn with_value(mut self, attribute: PrimaryAttribute, value: u8) -> Self {
+        self.values[attribute as usize] = value;
+        self
+    }
+
+    pub const fn values(self) -> [u8; PRIMARY_ATTRIBUTE_COUNT] {
+        self.values
+    }
+
     pub fn iter(self) -> impl Iterator<Item = (PrimaryAttribute, u8)> {
         PrimaryAttribute::ALL
             .into_iter()

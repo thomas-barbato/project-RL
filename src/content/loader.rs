@@ -7,15 +7,26 @@ use std::path::{Path, PathBuf};
 use semver::Version;
 use serde::Deserialize;
 
-use crate::combat::{AttackArea, ConeAttack, DamagePacket, DamageType};
-use crate::effects::{ApplyStatusEffect, GroundEffectSpec};
+use crate::ai::{AiBehavior, AiProfile};
+use crate::character_class::{
+    CharacterClassCatalog, CharacterClassCatalogError, CharacterClassDefinition,
+    CharacterClassDefinitionError, ClassStartingItem,
+};
+use crate::combat::{
+    AttackArea, AttackDelivery, ConeAttack, DamageComponent, DamageImpact, DamagePacket,
+    DamageType, MeleeArc, MeleeArcError,
+};
+use crate::effects::{
+    ApplyStatusEffect, DamageFalloff, DestructionEffect, GroundEffectSpec, RadialDamageEffect,
+};
+use crate::explosive::{ExplosiveAreaProfile, ExplosivePayloadProfile};
 use crate::facility::{
     FacilityBlueprint, InstallationBlueprint, InstallationCapability, RepairOrderBlueprint,
     SecurityAlarmProfile, SecurityAlarmResponse, WorkerBlueprint, WorkerRole,
 };
 use crate::item::{
-    ItemCatalog, ItemCatalogError, ItemDefinition, ItemDefinitionError, ItemEffect, ItemId,
-    ItemKind,
+    EquipmentProfile, ItemCatalog, ItemCatalogError, ItemDefinition, ItemDefinitionError,
+    ItemEffect, ItemId, ItemKind,
 };
 use crate::localization::{TextCatalog, TextCatalogError};
 use crate::loot::{LootCatalog, LootEntry, LootError, LootTable};
@@ -23,26 +34,40 @@ use crate::presentation::{
     TerminalCueStyle, TerminalCueStyleError, TerminalEffectGlyph, VisualCueCatalog,
     VisualCueCatalogError, VisualCueDefinition, VisualCueId,
 };
+use crate::progression::{DefeatReward, ExperienceRewardOrigin};
 use crate::skills::{
-    DisciplineDefinition, SkillCatalog, SkillCatalogError, SkillDefinitionError, TechniqueAction,
-    TechniqueDefinition, TechniqueKind,
+    DisciplineDefinition, ExplosiveDeployment, ExplosivePlacementTarget, ForcedMovement,
+    SecondaryExplosivePayload, SkillCatalog, SkillCatalogError, SkillDefinitionError,
+    TechniqueAction, TechniqueActivationCost, TechniqueAttributeRequirement, TechniqueDefinition,
+    TechniqueEngagementRequirement, TechniqueImprovement, TechniqueKind, TechniqueMaterialCost,
+    TechniqueOnHitEffect, TechniqueTargetRequirement,
 };
 use crate::social::{LocalAlertProfile, WitnessProfile};
+use crate::stats::{PrimaryAttribute, PrimaryAttributes};
 use crate::status::{
     StatusCatalog, StatusCatalogError, StatusDefinition, StatusDefinitionError,
-    StatusEffectPrimitive, StatusHook, StatusId, StatusStacking, StatusTrigger,
+    StatusEffectPrimitive, StatusHook, StatusId, StatusModifier, StatusStacking, StatusTransition,
+    StatusTrigger,
 };
+use crate::stealth::SignatureChannel;
+use crate::time::{ActionKind, TimeUnits};
 use crate::weapon::{
     WeaponCatalog, WeaponCatalogError, WeaponDefinition, WeaponDefinitionError, WeaponEffect,
-    WeaponId,
+    WeaponEffectTrigger, WeaponId,
 };
-use crate::world::DistanceMetric;
 use crate::world::generation::{MapValidationRules, RoomsGeneratorConfig};
+use crate::world::{DistanceMetric, GridPos, NeighborMode, TerrainPropagationPolicy};
 
 use super::{
-    ContentIdError, ExpeditionCatalog, ExpeditionDefinition, ExpeditionDefinitionError,
-    FacilityDefinition, FacilityMaterialSpawn, GeneratedZoneDefinition, ManifestError, PackageId,
-    PackageManifest, PackageResolutionError, ZoneDefinition, resolve_package_order,
+    ContentId, ContentIdError, ExpandedWorldDefinition, ExpeditionCatalog, ExpeditionDefinition,
+    ExpeditionDefinitionError, FacilityDefinition, FacilityMaterialSpawn, GeneratedZoneDefinition,
+    ManifestError, PackageId, PackageManifest, PackageResolutionError, PopulationGroupDefinition,
+    RegionBiomeRule, RegionBounds, RegionCoord, RegionDestructibleProfile, RegionLandmarkProfile,
+    RegionLootProfile, RegionMapSize, RegionPopulationProfile, RegionPopulationRule,
+    RegionSiteEntranceProfile, RegionSiteProfile, RegionSiteSecurityProfile,
+    RegionSiteTerminalProfile, RegionTerrain, RegionTerrainProfile, RegionTerrainRule,
+    RegionThreatProfile, RegionVerticalLink, RegionalWorldCatalog, RegionalWorldDefinition,
+    RegionalWorldError, ZoneDefinition, resolve_package_order,
 };
 
 const MAX_MANIFEST_BYTES: u64 = 256 * 1024;
@@ -68,10 +93,12 @@ impl ContentLoader {
         let mut statuses = StatusCatalog::default();
         let mut weapons = WeaponCatalog::default();
         let mut items = ItemCatalog::default();
+        let mut character_classes = CharacterClassCatalog::default();
         let mut skills = SkillCatalog::default();
         let mut texts = TextCatalog::default();
         let mut loot = LootCatalog::default();
         let mut expeditions = ExpeditionCatalog::default();
+        let mut regional_worlds = RegionalWorldCatalog::default();
         let mut visual_cues = VisualCueCatalog::default();
 
         for package_id in &order {
@@ -84,17 +111,38 @@ impl ContentLoader {
             load_text_definitions(package, &mut texts)?;
             load_visual_cue_definitions(package, &mut visual_cues)?;
         }
+        statuses.validate_references().map_err(|error| {
+            ContentLoadError::StatusCatalogValidation {
+                error: Box::new(error),
+            }
+        })?;
         for package_id in &order {
             let package = packages
                 .get(package_id)
                 .ok_or_else(|| ContentLoadError::ResolvedPackageMissing(package_id.clone()))?;
             load_item_definitions(package, &weapons, &mut items)?;
         }
+        for package_id in &order {
+            let package = packages
+                .get(package_id)
+                .ok_or_else(|| ContentLoadError::ResolvedPackageMissing(package_id.clone()))?;
+            load_character_class_definitions(package, &weapons, &items, &mut character_classes)?;
+        }
         skills
             .validate_structure()
             .map_err(|error| ContentLoadError::SkillCatalogValidation {
                 error: Box::new(error),
             })?;
+        skills
+            .validate_status_references(&statuses)
+            .map_err(|error| ContentLoadError::SkillCatalogValidation {
+                error: Box::new(error),
+            })?;
+        skills.validate_item_references(&items).map_err(|error| {
+            ContentLoadError::SkillCatalogValidation {
+                error: Box::new(error),
+            }
+        })?;
 
         // Resolve loot only once every package's weapon/item catalog is known.
         for package_id in &order {
@@ -108,6 +156,7 @@ impl ContentLoader {
                 .get(package_id)
                 .ok_or_else(|| ContentLoadError::ResolvedPackageMissing(package_id.clone()))?;
             load_expedition_definitions(package, &loot, &items, &mut expeditions)?;
+            load_regional_world_definitions(package, &loot, &mut regional_worlds)?;
         }
 
         Ok(LoadedContent {
@@ -115,10 +164,12 @@ impl ContentLoader {
             statuses,
             weapons,
             items,
+            character_classes,
             skills,
             texts,
             loot,
             expeditions,
+            regional_worlds,
             visual_cues,
         })
     }
@@ -130,10 +181,12 @@ pub struct LoadedContent {
     statuses: StatusCatalog,
     weapons: WeaponCatalog,
     items: ItemCatalog,
+    character_classes: CharacterClassCatalog,
     skills: SkillCatalog,
     texts: TextCatalog,
     loot: LootCatalog,
     expeditions: ExpeditionCatalog,
+    regional_worlds: RegionalWorldCatalog,
     visual_cues: VisualCueCatalog,
 }
 
@@ -144,6 +197,10 @@ impl LoadedContent {
 
     pub const fn expeditions(&self) -> &ExpeditionCatalog {
         &self.expeditions
+    }
+
+    pub const fn regional_worlds(&self) -> &RegionalWorldCatalog {
+        &self.regional_worlds
     }
 
     pub const fn visual_cues(&self) -> &VisualCueCatalog {
@@ -164,6 +221,10 @@ impl LoadedContent {
 
     pub const fn items(&self) -> &ItemCatalog {
         &self.items
+    }
+
+    pub const fn character_classes(&self) -> &CharacterClassCatalog {
+        &self.character_classes
     }
 
     pub const fn skills(&self) -> &SkillCatalog {
@@ -282,14 +343,39 @@ fn load_status_definitions(
                 content: Box::new(id.clone()),
             });
         }
-        let definition =
-            raw.into_runtime(id.clone())
-                .map_err(|error| ContentLoadError::StatusDefinition {
-                    package: package.manifest.id.clone(),
-                    path: path.clone(),
-                    content: Box::new(id),
-                    error,
-                })?;
+        let family = raw
+            .family
+            .as_deref()
+            .map(|value| parse_content_id(package, &path, value))
+            .transpose()?;
+        let blocked_families = raw
+            .blocked_families
+            .iter()
+            .map(|value| parse_content_id(package, &path, value))
+            .collect::<Result<Vec<_>, _>>()?;
+        let expiration_transition = if let Some(transition) = &raw.expiration_transition {
+            let target = parse_content_id(package, &path, &transition.status)?;
+            Some(
+                StatusTransition::new(target, transition.stacks).map_err(|error| {
+                    ContentLoadError::StatusDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    }
+                })?,
+            )
+        } else {
+            None
+        };
+        let definition = raw
+            .into_runtime(id.clone(), family, blocked_families, expiration_transition)
+            .map_err(|error| ContentLoadError::StatusDefinition {
+                package: package.manifest.id.clone(),
+                path: path.clone(),
+                content: Box::new(id),
+                error,
+            })?;
         catalog
             .register(definition)
             .map_err(|error| ContentLoadError::StatusCatalog {
@@ -493,17 +579,104 @@ fn load_item_definitions(
                 content: Box::new(id),
             });
         }
-        let definition =
-            raw.into_runtime(id.clone())
-                .map_err(|error| ContentLoadError::ItemDefinition {
-                    package: package.manifest.id.clone(),
-                    path: path.clone(),
-                    content: Box::new(id),
-                    error,
-                })?;
+        let equipment = raw
+            .equipment
+            .as_ref()
+            .map(|equipment| {
+                let slot = parse_content_id(package, &path, &equipment.slot)?;
+                EquipmentProfile::new(slot, equipment.armor).map_err(|error| {
+                    ContentLoadError::ItemDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    }
+                })
+            })
+            .transpose()?;
+        let definition = raw.into_runtime(id.clone(), equipment).map_err(|error| {
+            ContentLoadError::ItemDefinition {
+                package: package.manifest.id.clone(),
+                path: path.clone(),
+                content: Box::new(id),
+                error,
+            }
+        })?;
         catalog
             .register(definition)
             .map_err(|error| ContentLoadError::ItemCatalog {
+                package: package.manifest.id.clone(),
+                path,
+                error: Box::new(error),
+            })?;
+    }
+    Ok(())
+}
+
+fn load_character_class_definitions(
+    package: &DiscoveredPackage,
+    weapons: &WeaponCatalog,
+    items: &ItemCatalog,
+    catalog: &mut CharacterClassCatalog,
+) -> Result<(), ContentLoadError> {
+    for path in definition_paths(package, "classes")? {
+        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let raw: RawCharacterClassDefinition =
+            json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
+                package: package.manifest.id.clone(),
+                path: path.clone(),
+                definition_kind: "character class",
+                explanation: error.to_string(),
+            })?;
+        let id = parse_content_id(package, &path, &raw.id)?;
+        ensure_local_namespace(package, &path, &id)?;
+        let starting_weapons = raw
+            .starting_weapons
+            .iter()
+            .map(|value| parse_content_id(package, &path, value))
+            .collect::<Result<Vec<_>, _>>()?;
+        let starting_items = raw
+            .starting_items
+            .iter()
+            .map(|entry| {
+                parse_content_id(package, &path, &entry.item)
+                    .map(|item| ClassStartingItem::new(item, entry.quantity))
+            })
+            .collect::<Result<Vec<_>, _>>()?;
+        let starting_equipment = raw
+            .starting_equipment
+            .iter()
+            .map(|entry| {
+                entry
+                    .as_deref()
+                    .map(|value| parse_content_id(package, &path, value))
+                    .transpose()
+            })
+            .collect::<Result<Vec<_>, _>>()?;
+        let definition = CharacterClassDefinition::new(
+            id.clone(),
+            raw.name_key,
+            raw.role_key,
+            raw.description_key,
+            raw.recommended_attributes.into_runtime(),
+            starting_weapons,
+            starting_items,
+            starting_equipment,
+        )
+        .and_then(|definition| {
+            definition
+                .validate_references(weapons, items)
+                .map(|()| definition)
+        })
+        .map_err(|error| ContentLoadError::CharacterClassDefinition {
+            package: package.manifest.id.clone(),
+            path: path.clone(),
+            content: Box::new(id),
+            error: Box::new(error),
+        })?;
+        catalog
+            .register(definition)
+            .map_err(|error| ContentLoadError::CharacterClassCatalog {
                 package: package.manifest.id.clone(),
                 path,
                 error: Box::new(error),
@@ -591,6 +764,626 @@ fn one_loot_item() -> [u16; 2] {
     [1, 1]
 }
 
+fn load_regional_world_definitions(
+    package: &DiscoveredPackage,
+    loot_catalog: &LootCatalog,
+    catalog: &mut RegionalWorldCatalog,
+) -> Result<(), ContentLoadError> {
+    for path in definition_paths(package, "regional_worlds")? {
+        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let raw: RawRegionalWorld =
+            json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
+                package: package.manifest.id.clone(),
+                path: path.clone(),
+                definition_kind: "regional world",
+                explanation: error.to_string(),
+            })?;
+        let parse = |value: &str| parse_content_id(package, &path, value);
+        let id = parse(&raw.id)?;
+        ensure_local_namespace(package, &path, &id)?;
+        let failure = |error| ContentLoadError::RegionalWorldDefinition {
+            package: package.manifest.id.clone(),
+            path: path.clone(),
+            error: Box::new(error),
+        };
+        let bounds = RegionBounds::new(
+            raw.bounds.minimum_x,
+            raw.bounds.maximum_x,
+            raw.bounds.minimum_y,
+            raw.bounds.maximum_y,
+            raw.bounds.maximum_depth,
+        )
+        .map_err(&failure)?;
+        let local_map_size =
+            RegionMapSize::new(raw.local_map.width, raw.local_map.height).map_err(&failure)?;
+        let vertical_links = raw
+            .vertical_links
+            .iter()
+            .map(|link| {
+                let coordinate = |raw: [i32; 3]| {
+                    let depth = u16::try_from(raw[2])
+                        .map_err(|_| failure(RegionalWorldError::InvalidVerticalLink))?;
+                    Ok(RegionCoord::new(raw[0], raw[1], depth))
+                };
+                RegionVerticalLink::new(coordinate(link.upper)?, coordinate(link.lower)?)
+                    .map_err(&failure)
+            })
+            .collect::<Result<Vec<_>, ContentLoadError>>()?;
+        let biomes = raw
+            .biomes
+            .into_iter()
+            .map(|biome| {
+                let id = parse(&biome.id)?;
+                let features = biome
+                    .terrain
+                    .features
+                    .into_iter()
+                    .map(|feature| {
+                        RegionTerrainRule::new(feature.kind.into_runtime(), feature.weight)
+                            .map_err(&failure)
+                    })
+                    .collect::<Result<Vec<_>, ContentLoadError>>()?;
+                let terrain = RegionTerrainProfile::new(
+                    biome.terrain.ground.into_runtime(),
+                    biome.terrain.patch_count,
+                    biome.terrain.minimum_patch_radius,
+                    biome.terrain.maximum_patch_radius,
+                    features,
+                )
+                .map_err(&failure)?;
+                let population_rules = biome
+                    .population
+                    .groups
+                    .into_iter()
+                    .map(RawRegionPopulationRule::into_runtime)
+                    .collect::<Result<Vec<_>, RegionalWorldError>>()
+                    .map_err(&failure)?;
+                let population = RegionPopulationProfile::new(
+                    biome.population.group_rolls[0],
+                    biome.population.group_rolls[1],
+                    population_rules,
+                )
+                .map_err(&failure)?;
+                let encounter_rules = biome
+                    .encounters
+                    .groups
+                    .into_iter()
+                    .map(RawRegionPopulationRule::into_runtime)
+                    .collect::<Result<Vec<_>, RegionalWorldError>>()
+                    .map_err(&failure)?;
+                let encounters = RegionPopulationProfile::new(
+                    biome.encounters.group_rolls[0],
+                    biome.encounters.group_rolls[1],
+                    encounter_rules,
+                )
+                .map_err(&failure)?;
+                let loot = biome
+                    .loot
+                    .map(|loot| {
+                        let table = parse(&loot.table)?;
+                        if loot_catalog.get(&table).is_none() {
+                            return Err(failure(RegionalWorldError::UnknownLootTable(table)));
+                        }
+                        RegionLootProfile::new(
+                            table,
+                            parse(&loot.source)?,
+                            loot.draws[0],
+                            loot.draws[1],
+                        )
+                        .map_err(&failure)
+                    })
+                    .transpose()?;
+                let landmarks = RegionLandmarkProfile::new(
+                    biome.landmarks.caches[0],
+                    biome.landmarks.caches[1],
+                    biome.landmarks.threat_camps[0],
+                    biome.landmarks.threat_camps[1],
+                    biome.landmarks.minimum_passage_distance,
+                )
+                .map_err(&failure)?;
+                let sites = RegionSiteProfile::new(
+                    biome.sites.compounds[0],
+                    biome.sites.compounds[1],
+                    biome.sites.width,
+                    biome.sites.height,
+                )
+                .map_err(&failure)?
+                .with_entrances(RegionSiteEntranceProfile::new(
+                    biome.sites.entrances.open,
+                    biome.sites.entrances.closed_door,
+                    biome.sites.entrances.locked_console,
+                ))
+                .map_err(&failure)?;
+                let site_security = biome
+                    .sites
+                    .security
+                    .map(|security| {
+                        let mut profile = RegionSiteSecurityProfile::new(
+                            parse(&security.owner)?,
+                            security.radius,
+                            security.distance_metric.into_runtime(),
+                            security.block_closed_corners,
+                            security.duration_turns,
+                            security.reinforcement_delay_turns,
+                        )
+                        .map_err(&failure)?;
+                        if let Some(range) = security.navigation_signal_range {
+                            profile = profile
+                                .with_navigation_signal_range(range)
+                                .map_err(&failure)?;
+                        }
+                        Ok(profile)
+                    })
+                    .transpose()?;
+                let site_terminals = biome
+                    .sites
+                    .terminals
+                    .map(|terminals| {
+                        let records = terminals
+                            .records
+                            .iter()
+                            .map(|record| parse(record))
+                            .collect::<Result<Vec<_>, ContentLoadError>>()?;
+                        RegionSiteTerminalProfile::new(
+                            terminals.count[0],
+                            terminals.count[1],
+                            records,
+                        )
+                        .map_err(&failure)
+                    })
+                    .transpose()?;
+                let threats = biome
+                    .threats
+                    .map(RawRegionThreatProfile::into_runtime)
+                    .transpose()
+                    .map_err(&failure)?;
+                let destructibles = biome
+                    .destructibles
+                    .map(|raw| {
+                        let ground_effect = raw
+                            .ground_effect
+                            .as_ref()
+                            .map(|effect| {
+                                GroundEffectSpec::new(
+                                    parse(&effect.id)?,
+                                    effect.duration_turns,
+                                    effect.damage_each_turn.into_runtime(),
+                                )
+                                .map_err(|_| failure(RegionalWorldError::InvalidDestructionEffect))
+                            })
+                            .transpose()?;
+                        raw.into_runtime(ground_effect).map_err(&failure)
+                    })
+                    .transpose()?;
+                let mut runtime = RegionBiomeRule::new(
+                    id,
+                    biome.weight,
+                    biome.minimum_depth,
+                    biome.maximum_depth,
+                    terrain,
+                )
+                .map_err(&failure)?
+                .with_population(population)
+                .with_encounters(encounters)
+                .with_landmarks(landmarks)
+                .with_sites(sites);
+                if let Some(loot) = loot {
+                    runtime = runtime.with_loot(loot);
+                }
+                if let Some(threats) = threats {
+                    runtime = runtime.with_threats(threats);
+                }
+                if let Some(site_security) = site_security {
+                    runtime = runtime.with_site_security(site_security);
+                }
+                if let Some(site_terminals) = site_terminals {
+                    runtime = runtime.with_site_terminals(site_terminals);
+                }
+                if let Some(destructibles) = destructibles {
+                    runtime = runtime.with_destructibles(destructibles);
+                }
+                Ok(runtime)
+            })
+            .collect::<Result<Vec<_>, ContentLoadError>>()?;
+        let definition =
+            RegionalWorldDefinition::new(id, bounds, raw.province_size, local_map_size, biomes)
+                .map_err(&failure)?
+                .with_vertical_links(vertical_links)
+                .map_err(&failure)?;
+        catalog.register(definition).map_err(failure)?;
+    }
+    Ok(())
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionalWorld {
+    id: String,
+    bounds: RawRegionBounds,
+    province_size: u16,
+    local_map: RawRegionMap,
+    #[serde(default)]
+    vertical_links: Vec<RawRegionVerticalLink>,
+    biomes: Vec<RawRegionBiomeRule>,
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionVerticalLink {
+    upper: [i32; 3],
+    lower: [i32; 3],
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionMap {
+    width: u16,
+    height: u16,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionBounds {
+    minimum_x: i32,
+    maximum_x: i32,
+    minimum_y: i32,
+    maximum_y: i32,
+    maximum_depth: u16,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionBiomeRule {
+    id: String,
+    weight: u32,
+    #[serde(default)]
+    minimum_depth: u16,
+    maximum_depth: Option<u16>,
+    terrain: RawRegionTerrainProfile,
+    #[serde(default)]
+    population: RawRegionPopulationProfile,
+    #[serde(default)]
+    encounters: RawRegionPopulationProfile,
+    loot: Option<RawRegionLootProfile>,
+    #[serde(default)]
+    landmarks: RawRegionLandmarkProfile,
+    #[serde(default)]
+    sites: RawRegionSiteProfile,
+    threats: Option<RawRegionThreatProfile>,
+    destructibles: Option<RawRegionDestructibleProfile>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionDestructibleProfile {
+    count: [u16; 2],
+    #[serde(default)]
+    minimum_passage_distance: u16,
+    maximum_integrity: u16,
+    explosion: RawRegionExplosion,
+    ground_effect: Option<RawRegionGroundEffect>,
+}
+
+impl RawRegionDestructibleProfile {
+    fn into_runtime(
+        self,
+        ground_effect: Option<GroundEffectSpec>,
+    ) -> Result<RegionDestructibleProfile, RegionalWorldError> {
+        let mut destruction_effect = DestructionEffect::new(RadialDamageEffect {
+            maximum_cost: self.explosion.radius,
+            neighbor_mode: NeighborMode::CardinalAndDiagonal,
+            propagation_policy: TerrainPropagationPolicy::blocked_by_walls(1),
+            damage: self.explosion.damage.into_runtime(),
+            falloff: self
+                .explosion
+                .falloff_per_cost
+                .map_or(DamageFalloff::None, DamageFalloff::PerPropagationCost),
+        });
+        if let Some(ground_effect) = ground_effect {
+            destruction_effect = destruction_effect.with_ground_effect(ground_effect);
+        }
+        RegionDestructibleProfile::new(
+            self.count[0],
+            self.count[1],
+            self.minimum_passage_distance,
+            self.maximum_integrity,
+            destruction_effect,
+        )
+    }
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionExplosion {
+    radius: u16,
+    damage: RawWeaponDamage,
+    falloff_per_cost: Option<u16>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionGroundEffect {
+    id: String,
+    duration_turns: u16,
+    damage_each_turn: RawWeaponDamage,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionLootProfile {
+    table: String,
+    source: String,
+    draws: [u16; 2],
+}
+
+#[derive(Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionLandmarkProfile {
+    #[serde(default)]
+    caches: [u16; 2],
+    #[serde(default)]
+    threat_camps: [u16; 2],
+    #[serde(default)]
+    minimum_passage_distance: u16,
+}
+
+#[derive(Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionSiteProfile {
+    #[serde(default)]
+    compounds: [u16; 2],
+    #[serde(default)]
+    width: u16,
+    #[serde(default)]
+    height: u16,
+    #[serde(default)]
+    entrances: RawRegionSiteEntranceProfile,
+    terminals: Option<RawRegionSiteTerminalProfile>,
+    security: Option<RawRegionSiteSecurityProfile>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionSiteTerminalProfile {
+    count: [u16; 2],
+    records: Vec<String>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionSiteSecurityProfile {
+    owner: String,
+    radius: u16,
+    #[serde(default = "default_witness_distance_metric")]
+    distance_metric: RawDistanceMetric,
+    #[serde(default = "default_block_closed_corners")]
+    block_closed_corners: bool,
+    duration_turns: u16,
+    reinforcement_delay_turns: u16,
+    #[serde(default)]
+    navigation_signal_range: Option<u16>,
+}
+
+#[derive(Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionSiteEntranceProfile {
+    #[serde(default)]
+    open: u16,
+    #[serde(default)]
+    closed_door: u16,
+    #[serde(default)]
+    locked_console: u16,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionThreatProfile {
+    interval_turns: u16,
+    maximum_active: u16,
+    maximum_total: u16,
+    maximum_integrity: u16,
+    attack: RawWeaponAttack,
+    ai: RawAiProfile,
+    primary_attributes: Option<RawPrimaryAttributes>,
+    body: Option<RawBodyProfile>,
+    #[serde(default)]
+    components: Vec<RawBodyComponentProfile>,
+    electronic_system: Option<RawElectronicSystemProfile>,
+}
+
+impl RawRegionThreatProfile {
+    fn into_runtime(self) -> Result<RegionThreatProfile, RegionalWorldError> {
+        let interval_turns = std::num::NonZeroU16::new(self.interval_turns)
+            .ok_or(RegionalWorldError::InvalidThreatLimits)?;
+        let maximum_active = std::num::NonZeroU16::new(self.maximum_active)
+            .ok_or(RegionalWorldError::InvalidThreatLimits)?;
+        let maximum_total = std::num::NonZeroU16::new(self.maximum_total)
+            .ok_or(RegionalWorldError::InvalidThreatLimits)?;
+        let attack = self.attack.into_runtime().map_err(|error| {
+            RegionalWorldError::InvalidPopulation(Box::new(
+                ExpeditionDefinitionError::InvalidPopulationAttackDefinition(error),
+            ))
+        })?;
+        let ai = self
+            .ai
+            .into_runtime()
+            .map_err(|error| RegionalWorldError::InvalidPopulation(Box::new(error)))?;
+        let mut profile = RegionThreatProfile::new(
+            interval_turns,
+            maximum_active,
+            maximum_total,
+            self.maximum_integrity,
+            attack,
+            ai,
+        )?;
+        if let Some(attributes) = self.primary_attributes {
+            profile = profile.with_primary_attributes(attributes.into_runtime())?;
+        }
+        if let Some(body) = self.body {
+            profile = profile.with_body_profile(body.into_runtime().map_err(|error| {
+                RegionalWorldError::InvalidPopulation(Box::new(
+                    ExpeditionDefinitionError::InvalidPopulationBody(error),
+                ))
+            })?);
+        }
+        if !self.components.is_empty() {
+            let components = self
+                .components
+                .into_iter()
+                .map(RawBodyComponentProfile::into_runtime)
+                .collect::<Result<Vec<_>, _>>()
+                .map_err(|error| {
+                    RegionalWorldError::InvalidPopulation(Box::new(
+                        ExpeditionDefinitionError::InvalidPopulationComponent(error),
+                    ))
+                })?;
+            profile = profile.with_body_components(components);
+        }
+        if let Some(electronic_system) = self.electronic_system {
+            profile = profile.with_electronic_system(electronic_system.into_runtime().map_err(
+                |error| {
+                    RegionalWorldError::InvalidPopulation(Box::new(
+                        ExpeditionDefinitionError::InvalidPopulationElectronicSystem(error),
+                    ))
+                },
+            )?);
+        }
+        Ok(profile)
+    }
+}
+
+#[derive(Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionPopulationProfile {
+    #[serde(default)]
+    group_rolls: [u16; 2],
+    #[serde(default)]
+    groups: Vec<RawRegionPopulationRule>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionPopulationRule {
+    weight: u32,
+    count: [u16; 2],
+    #[serde(default)]
+    minimum_passage_distance: u16,
+    maximum_integrity: u16,
+    attack: RawWeaponAttack,
+    ai: RawAiProfile,
+    defeat_reward: Option<RawDefeatReward>,
+    primary_attributes: Option<RawPrimaryAttributes>,
+    body: Option<RawBodyProfile>,
+    #[serde(default)]
+    components: Vec<RawBodyComponentProfile>,
+    electronic_system: Option<RawElectronicSystemProfile>,
+}
+
+impl RawRegionPopulationRule {
+    fn into_runtime(self) -> Result<RegionPopulationRule, RegionalWorldError> {
+        let attack = self.attack.into_runtime().map_err(|error| {
+            RegionalWorldError::InvalidPopulation(Box::new(
+                ExpeditionDefinitionError::InvalidPopulationAttackDefinition(error),
+            ))
+        })?;
+        let ai = self
+            .ai
+            .into_runtime()
+            .map_err(|error| RegionalWorldError::InvalidPopulation(Box::new(error)))?;
+        let mut rule = RegionPopulationRule::new(
+            self.weight,
+            self.count[0],
+            self.count[1],
+            self.minimum_passage_distance,
+            self.maximum_integrity,
+            attack,
+            ai,
+            self.defeat_reward.map(RawDefeatReward::into_runtime),
+        )?;
+        if let Some(attributes) = self.primary_attributes {
+            rule = rule.with_primary_attributes(attributes.into_runtime())?;
+        }
+        if let Some(body) = self.body {
+            rule = rule.with_body_profile(body.into_runtime().map_err(|error| {
+                RegionalWorldError::InvalidPopulation(Box::new(
+                    ExpeditionDefinitionError::InvalidPopulationBody(error),
+                ))
+            })?);
+        }
+        if !self.components.is_empty() {
+            let components = self
+                .components
+                .into_iter()
+                .map(RawBodyComponentProfile::into_runtime)
+                .collect::<Result<Vec<_>, _>>()
+                .map_err(|error| {
+                    RegionalWorldError::InvalidPopulation(Box::new(
+                        ExpeditionDefinitionError::InvalidPopulationComponent(error),
+                    ))
+                })?;
+            rule = rule.with_body_components(components);
+        }
+        if let Some(electronic_system) = self.electronic_system {
+            rule =
+                rule.with_electronic_system(electronic_system.into_runtime().map_err(|error| {
+                    RegionalWorldError::InvalidPopulation(Box::new(
+                        ExpeditionDefinitionError::InvalidPopulationElectronicSystem(error),
+                    ))
+                })?);
+        }
+        Ok(rule)
+    }
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionTerrainProfile {
+    ground: RawRegionTerrain,
+    patch_count: u16,
+    minimum_patch_radius: u16,
+    maximum_patch_radius: u16,
+    features: Vec<RawRegionTerrainRule>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionTerrainRule {
+    kind: RawRegionTerrain,
+    weight: u32,
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(rename_all = "snake_case")]
+enum RawRegionTerrain {
+    Gravel,
+    Grass,
+    Scrub,
+    Mud,
+    ShallowWater,
+    DeepWater,
+    Tree,
+    Boulder,
+    RuinFloor,
+    RuinWall,
+}
+
+impl RawRegionTerrain {
+    const fn into_runtime(self) -> RegionTerrain {
+        match self {
+            Self::Gravel => RegionTerrain::Gravel,
+            Self::Grass => RegionTerrain::Grass,
+            Self::Scrub => RegionTerrain::Scrub,
+            Self::Mud => RegionTerrain::Mud,
+            Self::ShallowWater => RegionTerrain::ShallowWater,
+            Self::DeepWater => RegionTerrain::DeepWater,
+            Self::Tree => RegionTerrain::Tree,
+            Self::Boulder => RegionTerrain::Boulder,
+            Self::RuinFloor => RegionTerrain::RuinFloor,
+            Self::RuinWall => RegionTerrain::RuinWall,
+        }
+    }
+}
+
 fn load_expedition_definitions(
     package: &DiscoveredPackage,
     loot: &LootCatalog,
@@ -609,6 +1402,11 @@ fn load_expedition_definitions(
         let parse = |value: &str| parse_content_id(package, &path, value);
         let id = parse(&raw.id)?;
         ensure_local_namespace(package, &path, &id)?;
+        let failure = |error| ContentLoadError::ExpeditionDefinition {
+            package: package.manifest.id.clone(),
+            path: path.clone(),
+            error: Box::new(error),
+        };
         let resolve_zone = |zone: RawZoneDefinition| -> Result<ZoneDefinition, ContentLoadError> {
             Ok(ZoneDefinition {
                 id: parse(&zone.id)?,
@@ -617,6 +1415,12 @@ fn load_expedition_definitions(
                 depth: zone.depth,
             })
         };
+        let population = raw
+            .population
+            .into_iter()
+            .map(RawPopulationGroup::into_runtime)
+            .collect::<Result<Vec<_>, _>>()
+            .map_err(&failure)?;
         let destination = GeneratedZoneDefinition {
             zone: resolve_zone(raw.destination)?,
             generator: RoomsGeneratorConfig {
@@ -634,11 +1438,7 @@ fn load_expedition_definitions(
             loot_table: raw.loot_table.as_deref().map(parse).transpose()?,
             loot_source: parse(&raw.loot_source)?,
             loot_draws: raw.loot_draws,
-        };
-        let failure = |error| ContentLoadError::ExpeditionDefinition {
-            package: package.manifest.id.clone(),
-            path: path.clone(),
-            error: Box::new(error),
+            population,
         };
         let mut definition = ExpeditionDefinition::new(
             id,
@@ -647,6 +1447,14 @@ fn load_expedition_definitions(
             crate::world::GridPos::new(raw.passage[0], raw.passage[1]),
         )
         .map_err(&failure)?;
+        if let Some(expanded) = raw.expanded_world {
+            definition = definition
+                .with_expanded_world(ExpandedWorldDefinition {
+                    hub_passage: grid_position(expanded.passage),
+                    destination_generator: expanded.generator(),
+                })
+                .map_err(&failure)?;
+        }
         definition = definition
             .with_player_property_take_authorizations(
                 raw.player_property_take_authorizations
@@ -672,6 +1480,20 @@ fn load_expedition_definitions(
                                         actuator: parse(actuator)?,
                                     })
                                 }
+                                RawSecurityAlarmResponse::CallReinforcements {
+                                    source,
+                                    delay_turns,
+                                } => Ok(SecurityAlarmResponse::CallReinforcements {
+                                    source: GridPos::new(source[0], source[1]),
+                                    delay_turns: *delay_turns,
+                                }),
+                                RawSecurityAlarmResponse::CallInvestigatingReinforcements {
+                                    source,
+                                    delay_turns,
+                                } => Ok(SecurityAlarmResponse::CallInvestigatingReinforcements {
+                                    source: GridPos::new(source[0], source[1]),
+                                    delay_turns: *delay_turns,
+                                }),
                             })
                             .collect::<Result<Vec<_>, ContentLoadError>>()?;
                         Some(
@@ -699,8 +1521,8 @@ fn load_expedition_definitions(
                         capabilities: installation
                             .capabilities
                             .into_iter()
-                            .map(RawInstallationCapability::into_runtime)
-                            .collect(),
+                            .map(|capability| capability.into_runtime(package, &path))
+                            .collect::<Result<_, _>>()?,
                         dependencies: installation
                             .dependencies
                             .iter()
@@ -811,8 +1633,375 @@ struct RawExpeditionDefinition {
     #[serde(default)]
     loot_draws: u16,
     #[serde(default)]
+    population: Vec<RawPopulationGroup>,
+    expanded_world: Option<RawExpandedWorldDefinition>,
+    #[serde(default)]
     player_property_take_authorizations: Vec<String>,
     hub_facility: Option<RawFacilityDefinition>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawExpandedWorldDefinition {
+    passage: [i32; 2],
+    width: usize,
+    height: usize,
+    rooms: usize,
+    #[serde(default = "default_minimum_room_width")]
+    minimum_room_width: usize,
+    #[serde(default = "default_maximum_room_width")]
+    maximum_room_width: usize,
+    #[serde(default = "default_minimum_room_height")]
+    minimum_room_height: usize,
+    #[serde(default = "default_maximum_room_height")]
+    maximum_room_height: usize,
+    #[serde(default = "default_placement_attempts")]
+    placement_attempts: usize,
+}
+
+impl RawExpandedWorldDefinition {
+    const fn generator(&self) -> RoomsGeneratorConfig {
+        RoomsGeneratorConfig {
+            width: self.width,
+            height: self.height,
+            room_count: self.rooms,
+            minimum_room_width: self.minimum_room_width,
+            maximum_room_width: self.maximum_room_width,
+            minimum_room_height: self.minimum_room_height,
+            maximum_room_height: self.maximum_room_height,
+            placement_attempts: self.placement_attempts,
+            validation: MapValidationRules {
+                require_sealed_border: true,
+                require_all_walkable_connected: true,
+            },
+        }
+    }
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawPopulationGroup {
+    count: u16,
+    #[serde(default)]
+    minimum_entrance_distance: u16,
+    maximum_integrity: u16,
+    attack: RawWeaponAttack,
+    ai: RawAiProfile,
+    defeat_reward: Option<RawDefeatReward>,
+    primary_attributes: Option<RawPrimaryAttributes>,
+    body: Option<RawBodyProfile>,
+    #[serde(default)]
+    components: Vec<RawBodyComponentProfile>,
+    electronic_system: Option<RawElectronicSystemProfile>,
+}
+
+impl RawPopulationGroup {
+    fn into_runtime(self) -> Result<PopulationGroupDefinition, ExpeditionDefinitionError> {
+        let attack = self
+            .attack
+            .into_runtime()
+            .map_err(ExpeditionDefinitionError::InvalidPopulationAttackDefinition)?;
+        let ai = self.ai.into_runtime()?;
+        let mut group = PopulationGroupDefinition::new(
+            self.count,
+            self.minimum_entrance_distance,
+            self.maximum_integrity,
+            attack,
+            ai,
+            self.defeat_reward.map(RawDefeatReward::into_runtime),
+        )?;
+        if let Some(attributes) = self.primary_attributes {
+            group = group.with_primary_attributes(attributes.into_runtime())?;
+        }
+        if let Some(body) = self.body {
+            group = group.with_body_profile(
+                body.into_runtime()
+                    .map_err(ExpeditionDefinitionError::InvalidPopulationBody)?,
+            );
+        }
+        if !self.components.is_empty() {
+            let components = self
+                .components
+                .into_iter()
+                .map(RawBodyComponentProfile::into_runtime)
+                .collect::<Result<Vec<_>, _>>()
+                .map_err(ExpeditionDefinitionError::InvalidPopulationComponent)?;
+            group = group.with_body_components(components);
+        }
+        if let Some(electronic_system) = self.electronic_system {
+            group = group.with_electronic_system(
+                electronic_system
+                    .into_runtime()
+                    .map_err(ExpeditionDefinitionError::InvalidPopulationElectronicSystem)?,
+            );
+        }
+        Ok(group)
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawElectronicSystemProfile {
+    digital_defense: u16,
+    heat_alert_threshold: u16,
+    heat_critical_threshold: u16,
+    heat_dissipation_per_phase: u16,
+    stored_energy: u16,
+}
+
+impl RawElectronicSystemProfile {
+    fn into_runtime(self) -> Result<crate::electronic_warfare::ElectronicSystemProfile, String> {
+        crate::electronic_warfare::ElectronicSystemProfile::new(
+            self.digital_defense,
+            self.heat_alert_threshold,
+            self.heat_critical_threshold,
+            self.heat_dissipation_per_phase,
+            self.stored_energy,
+        )
+        .map_err(|error| error.to_string())
+    }
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawBodyComponentProfile {
+    id: String,
+    name_key: String,
+    maximum_durability: u16,
+    #[serde(default)]
+    failure_threshold: u16,
+    failure_effect: RawComponentFailureEffect,
+}
+
+impl RawBodyComponentProfile {
+    fn into_runtime(self) -> Result<crate::entity::BodyComponentProfile, String> {
+        crate::entity::BodyComponentProfile::new(
+            self.id
+                .parse()
+                .map_err(|error| format!("invalid component ID '{}': {error}", self.id))?,
+            self.name_key,
+            self.maximum_durability,
+            self.failure_threshold,
+            self.failure_effect.into_runtime(),
+        )
+        .map_err(|error| error.to_string())
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawComponentFailureEffect {
+    DisableMovement,
+    DisableAttackSlot { slot: u8 },
+    ReduceArmor { amount: u16 },
+    ReducePerception { amount: u16 },
+}
+
+impl RawComponentFailureEffect {
+    const fn into_runtime(self) -> crate::entity::ComponentFailureEffect {
+        match self {
+            Self::DisableMovement => crate::entity::ComponentFailureEffect::DisableMovement,
+            Self::DisableAttackSlot { slot } => {
+                crate::entity::ComponentFailureEffect::DisableAttackSlot(slot)
+            }
+            Self::ReduceArmor { amount } => {
+                crate::entity::ComponentFailureEffect::ReduceArmor(amount)
+            }
+            Self::ReducePerception { amount } => {
+                crate::entity::ComponentFailureEffect::ReducePerception(amount)
+            }
+        }
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawBodyProfile {
+    base_hit_points: u16,
+    #[serde(default)]
+    material_bonus: i16,
+    #[serde(default)]
+    base_armor: u16,
+    mass_grams: Option<u32>,
+    #[serde(default)]
+    anchoring: u16,
+    #[serde(default)]
+    fixed: bool,
+    locomotion: Option<RawLocomotionProfile>,
+    #[serde(default)]
+    suppression_compatible: bool,
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawLocomotionProfile {
+    hindrance_compatible: bool,
+}
+
+impl RawBodyProfile {
+    fn into_runtime(self) -> Result<crate::stats::BodyProfile, crate::stats::PhysicalRulesError> {
+        let mut body = crate::stats::BodyProfile::new(self.base_hit_points, self.material_bonus)?
+            .with_base_armor(self.base_armor);
+        match self.mass_grams {
+            Some(mass_grams) => {
+                let mut displacement =
+                    crate::stats::DisplacementProfile::new(mass_grams, self.anchoring)?;
+                if self.fixed {
+                    displacement = displacement.fixed();
+                }
+                body = body.with_displacement_profile(displacement);
+            }
+            None if self.anchoring > 0 || self.fixed => {
+                return Err(crate::stats::PhysicalRulesError::DisplacementPropertiesWithoutMass);
+            }
+            None => {}
+        }
+        if let Some(locomotion) = self.locomotion {
+            body = body.with_locomotion_profile(crate::stats::LocomotionProfile::new(
+                locomotion.hindrance_compatible,
+            ));
+        }
+        body = body.with_suppression_compatibility(self.suppression_compatible);
+        Ok(body)
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawPrimaryAttributes {
+    power: u8,
+    coordination: u8,
+    resilience: u8,
+    perception: u8,
+    processing: u8,
+}
+
+impl RawPrimaryAttributes {
+    const fn into_runtime(self) -> PrimaryAttributes {
+        PrimaryAttributes::new(
+            self.power,
+            self.coordination,
+            self.resilience,
+            self.perception,
+            self.processing,
+        )
+    }
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawAiProfile {
+    behavior: RawAiBehavior,
+    perception_radius: u16,
+    #[serde(default)]
+    preferred_attack_slot: u8,
+    #[serde(default = "default_ai_path_search")]
+    maximum_path_search: usize,
+    #[serde(default)]
+    preferred_minimum_distance: u16,
+    maximum_pursuit_distance: Option<u16>,
+    pursuit_lifecycle: Option<RawPursuitLifecycle>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawPursuitLifecycle {
+    maximum_turns: u16,
+    search_turns: u16,
+    cooldown_turns: u16,
+}
+
+impl RawAiProfile {
+    fn into_runtime(self) -> Result<AiProfile, ExpeditionDefinitionError> {
+        let mut profile = AiProfile::new(
+            self.behavior.into_runtime(),
+            self.perception_radius,
+            self.preferred_attack_slot,
+            self.maximum_path_search,
+            self.preferred_minimum_distance,
+        );
+        if let Some(distance) = self.maximum_pursuit_distance {
+            let distance = std::num::NonZeroU16::new(distance)
+                .ok_or(ExpeditionDefinitionError::ZeroPopulationPursuitDistance)?;
+            profile = profile.with_maximum_pursuit_distance(distance);
+        }
+        if let Some(lifecycle) = self.pursuit_lifecycle {
+            let maximum_turns = std::num::NonZeroU16::new(lifecycle.maximum_turns)
+                .ok_or(ExpeditionDefinitionError::InvalidPopulationPursuitLifecycle)?;
+            let search_turns = std::num::NonZeroU16::new(lifecycle.search_turns)
+                .ok_or(ExpeditionDefinitionError::InvalidPopulationPursuitLifecycle)?;
+            let cooldown_turns = std::num::NonZeroU16::new(lifecycle.cooldown_turns)
+                .ok_or(ExpeditionDefinitionError::InvalidPopulationPursuitLifecycle)?;
+            profile = profile.with_pursuit_lifecycle(crate::ai::PursuitLifecycle::new(
+                maximum_turns,
+                search_turns,
+                cooldown_turns,
+            ));
+        }
+        Ok(profile)
+    }
+}
+
+const fn default_ai_path_search() -> usize {
+    2_048
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(rename_all = "snake_case")]
+enum RawAiBehavior {
+    Idle,
+    Hunter,
+    Sentry,
+    Skirmisher,
+}
+
+impl RawAiBehavior {
+    const fn into_runtime(self) -> AiBehavior {
+        match self {
+            Self::Idle => AiBehavior::Idle,
+            Self::Hunter => AiBehavior::Hunter,
+            Self::Sentry => AiBehavior::Sentry,
+            Self::Skirmisher => AiBehavior::Skirmisher,
+        }
+    }
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawDefeatReward {
+    base_experience: u64,
+    threat_level: u16,
+    #[serde(default)]
+    origin: RawExperienceRewardOrigin,
+}
+
+impl RawDefeatReward {
+    const fn into_runtime(self) -> DefeatReward {
+        DefeatReward {
+            base_experience: self.base_experience,
+            threat_level: self.threat_level,
+            origin: self.origin.into_runtime(),
+        }
+    }
+}
+
+#[derive(Clone, Copy, Default, Deserialize)]
+#[serde(rename_all = "snake_case")]
+enum RawExperienceRewardOrigin {
+    #[default]
+    Persistent,
+    Summoned,
+    Fabricated,
+}
+
+impl RawExperienceRewardOrigin {
+    const fn into_runtime(self) -> ExperienceRewardOrigin {
+        match self {
+            Self::Persistent => ExperienceRewardOrigin::Persistent,
+            Self::Summoned => ExperienceRewardOrigin::Summoned,
+            Self::Fabricated => ExperienceRewardOrigin::Fabricated,
+        }
+    }
 }
 
 #[derive(Deserialize)]
@@ -848,19 +2037,29 @@ enum RawInstallationCapability {
     PowerRelay,
     DoorActuator { door: [i32; 2] },
     SecuritySensor,
+    NavigationBeacon { range: u16 },
+    DataTerminal { record: String },
     Storage,
 }
 
 impl RawInstallationCapability {
-    fn into_runtime(self) -> InstallationCapability {
-        match self {
+    fn into_runtime(
+        self,
+        package: &DiscoveredPackage,
+        path: &Path,
+    ) -> Result<InstallationCapability, ContentLoadError> {
+        Ok(match self {
             Self::PowerRelay => InstallationCapability::PowerRelay,
             Self::DoorActuator { door } => InstallationCapability::DoorActuator {
                 door: grid_position(door),
             },
             Self::SecuritySensor => InstallationCapability::SecuritySensor,
+            Self::NavigationBeacon { range } => InstallationCapability::NavigationBeacon { range },
+            Self::DataTerminal { record } => InstallationCapability::DataTerminal {
+                record: parse_content_id(package, path, &record)?,
+            },
             Self::Storage => InstallationCapability::Storage,
-        }
+        })
     }
 }
 
@@ -927,6 +2126,8 @@ struct RawSecurityAlarmProfile {
 #[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
 enum RawSecurityAlarmResponse {
     LockDoors { actuator: String },
+    CallReinforcements { source: [i32; 2], delay_turns: u16 },
+    CallInvestigatingReinforcements { source: [i32; 2], delay_turns: u16 },
 }
 
 #[derive(Deserialize)]
@@ -1060,12 +2261,43 @@ fn load_skill_definitions(
                 .iter()
                 .map(|value| parse_content_id(package, &path, value))
                 .collect::<Result<Vec<_>, _>>()?;
+            let engagement_requirement = match technique.engagement_requirement.as_ref() {
+                Some(RawTechniqueEngagementRequirement::TargetHasAnyStatusFamily { families }) => {
+                    let families = families
+                        .iter()
+                        .map(|value| parse_content_id(package, &path, value))
+                        .collect::<Result<Vec<_>, _>>()?;
+                    Some(
+                        TechniqueEngagementRequirement::target_has_any_status_family(families)
+                            .map_err(|error| ContentLoadError::SkillDefinition {
+                                package: package.manifest.id.clone(),
+                                path: path.clone(),
+                                content: Box::new(id.clone()),
+                                error,
+                            })?,
+                    )
+                }
+                Some(RawTechniqueEngagementRequirement::TargetHasKnownPhysicalWeakness) => {
+                    Some(TechniqueEngagementRequirement::TargetHasKnownPhysicalWeakness)
+                }
+                None => None,
+            };
+            let minimum_attributes =
+                technique
+                    .minimum_attributes
+                    .into_runtime()
+                    .map_err(|error| ContentLoadError::SkillDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    })?;
             let mut definition = TechniqueDefinition::new(
                 id.clone(),
                 discipline,
                 technique.name_key,
                 technique.description_key,
-                technique.minimum_rank,
+                technique.minimum_level,
                 technique.kind.into_runtime(),
                 prerequisite,
                 required_features,
@@ -1075,16 +2307,176 @@ fn load_skill_definitions(
                 path: path.clone(),
                 content: Box::new(id.clone()),
                 error,
+            })?
+            .with_attribute_requirements(minimum_attributes)
+            .map_err(|error| ContentLoadError::SkillDefinition {
+                package: package.manifest.id.clone(),
+                path: path.clone(),
+                content: Box::new(id.clone()),
+                error,
             })?;
             if let Some(action) = technique.action {
                 definition = definition
-                    .with_action(action.into_runtime())
+                    .with_action(action.into_runtime().map_err(|error| {
+                        ContentLoadError::SkillDefinition {
+                            package: package.manifest.id.clone(),
+                            path: path.clone(),
+                            content: Box::new(id.clone()),
+                            error,
+                        }
+                    })?)
                     .map_err(|error| ContentLoadError::SkillDefinition {
                         package: package.manifest.id.clone(),
                         path: path.clone(),
                         content: Box::new(id.clone()),
                         error,
                     })?;
+            }
+            if let Some(cost) = technique.activation_cost {
+                definition = definition.with_activation_cost(
+                    TechniqueActivationCost::new(
+                        cost.energy,
+                        cost.heat,
+                        cost.persistent_bandwidth,
+                        cost.active_limit,
+                    )
+                    .map_err(|error| ContentLoadError::SkillDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    })?,
+                );
+            }
+            if let Some(item) = technique.manifestation_item {
+                definition =
+                    definition.with_manifestation_item(parse_content_id(package, &path, &item)?);
+            }
+            if let Some(profile) = technique.manifestation_profile {
+                definition = definition
+                    .with_manifestation_profile(parse_content_id(package, &path, &profile)?);
+            }
+            if let Some(cost) = technique.material_cost {
+                let item = parse_content_id(package, &path, &cost.item)?;
+                definition = definition
+                    .with_material_cost(TechniqueMaterialCost::new(item, cost.quantity).map_err(
+                        |error| ContentLoadError::SkillDefinition {
+                            package: package.manifest.id.clone(),
+                            path: path.clone(),
+                            content: Box::new(id.clone()),
+                            error,
+                        },
+                    )?)
+                    .map_err(|error| ContentLoadError::SkillDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    })?;
+            }
+            for cost in technique.additional_material_costs {
+                let item = parse_content_id(package, &path, &cost.item)?;
+                definition = definition
+                    .with_additional_material_cost(
+                        TechniqueMaterialCost::new(item, cost.quantity).map_err(|error| {
+                            ContentLoadError::SkillDefinition {
+                                package: package.manifest.id.clone(),
+                                path: path.clone(),
+                                content: Box::new(id.clone()),
+                                error,
+                            }
+                        })?,
+                    )
+                    .map_err(|error| ContentLoadError::SkillDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    })?;
+            }
+            if let Some(tool) = technique.required_tool {
+                definition =
+                    definition.with_required_tool(parse_content_id(package, &path, &tool)?);
+            }
+            if let Some(item) = technique.produced_item {
+                definition =
+                    definition.with_produced_item(parse_content_id(package, &path, &item)?);
+            }
+            if let Some(requirement) = engagement_requirement {
+                definition = definition
+                    .with_engagement_requirement(requirement)
+                    .map_err(|error| ContentLoadError::SkillDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    })?;
+            }
+            if let Some(effect) = technique.on_hit_effect {
+                let status = parse_content_id(package, &path, effect.status())?;
+                if effect.stacks() == 0 {
+                    return Err(ContentLoadError::SkillDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error: SkillDefinitionError::ZeroOnHitStatusStacks,
+                    });
+                }
+                definition = definition
+                    .with_on_hit_effect(effect.into_runtime(status).map_err(|error| {
+                        ContentLoadError::SkillDefinition {
+                            package: package.manifest.id.clone(),
+                            path: path.clone(),
+                            content: Box::new(id.clone()),
+                            error,
+                        }
+                    })?)
+                    .map_err(|error| ContentLoadError::SkillDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    })?;
+            }
+            if let Some(improvement) = technique.improvement {
+                definition = definition
+                    .with_improvement(improvement.into_runtime())
+                    .map_err(|error| ContentLoadError::SkillDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    })?;
+            }
+            if let Some(action_kind) = technique.action_kind {
+                definition = definition
+                    .with_action_kind(action_kind.into_runtime())
+                    .map_err(|error| ContentLoadError::SkillDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    })?;
+            }
+            if let Some(preparation_steps) = technique.preparation_time_units {
+                definition = definition
+                    .with_preparation_steps(preparation_steps)
+                    .map_err(|error| ContentLoadError::SkillDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    })?;
+            }
+            if let Some(cooldown_turns) = technique.cooldown_turns {
+                definition = definition.with_cooldown(cooldown_turns).map_err(|error| {
+                    ContentLoadError::SkillDefinition {
+                        package: package.manifest.id.clone(),
+                        path: path.clone(),
+                        content: Box::new(id.clone()),
+                        error,
+                    }
+                })?;
             }
             catalog.register_technique(definition).map_err(|error| {
                 ContentLoadError::SkillCatalog {
@@ -1220,22 +2612,57 @@ struct RawStatusDefinition {
     stacking: RawStatusStacking,
     #[serde(default)]
     hooks: Vec<RawStatusHook>,
+    #[serde(default)]
+    modifiers: Vec<RawStatusModifier>,
+    family: Option<String>,
+    #[serde(default)]
+    blocked_families: Vec<String>,
+    expiration_transition: Option<RawStatusTransition>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawStatusTransition {
+    status: String,
+    #[serde(default = "one_u16")]
+    stacks: u16,
 }
 
 impl RawStatusDefinition {
-    fn into_runtime(self, id: StatusId) -> Result<StatusDefinition, StatusDefinitionError> {
+    fn into_runtime(
+        self,
+        id: StatusId,
+        family: Option<ContentId>,
+        blocked_families: Vec<ContentId>,
+        expiration_transition: Option<StatusTransition>,
+    ) -> Result<StatusDefinition, StatusDefinitionError> {
         let hooks = self
             .hooks
             .into_iter()
             .map(RawStatusHook::into_runtime)
             .collect();
-        StatusDefinition::new(id, self.duration_turns, self.stacking.into_runtime(), hooks)
+        let mut definition =
+            StatusDefinition::new(id, self.duration_turns, self.stacking.into_runtime(), hooks)?
+                .with_modifiers(
+                    self.modifiers
+                        .into_iter()
+                        .map(RawStatusModifier::into_runtime),
+                )?;
+        if let Some(family) = family {
+            definition = definition.with_family(family);
+        }
+        definition = definition.with_blocked_families(blocked_families);
+        if let Some(transition) = expiration_transition {
+            definition = definition.with_expiration_transition(transition);
+        }
+        Ok(definition)
     }
 }
 
 #[derive(Deserialize)]
 #[serde(tag = "mode", rename_all = "snake_case", deny_unknown_fields)]
 enum RawStatusStacking {
+    KeepExisting,
     Replace,
     RefreshDuration,
     AddStacks {
@@ -1247,6 +2674,7 @@ enum RawStatusStacking {
 impl RawStatusStacking {
     const fn into_runtime(self) -> StatusStacking {
         match self {
+            Self::KeepExisting => StatusStacking::KeepExisting,
             Self::Replace => StatusStacking::Replace,
             Self::RefreshDuration => StatusStacking::RefreshDuration,
             Self::AddStacks {
@@ -1256,6 +2684,28 @@ impl RawStatusStacking {
                 maximum_stacks,
                 refresh_duration,
             },
+        }
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawStatusModifier {
+    ArmorFragilization { amount: u16 },
+    Stability { amount: i16 },
+    MovementTimeMinimum { time_units: u16 },
+    Accuracy { amount: i16 },
+}
+
+impl RawStatusModifier {
+    const fn into_runtime(self) -> StatusModifier {
+        match self {
+            Self::ArmorFragilization { amount } => StatusModifier::ArmorFragilization { amount },
+            Self::Stability { amount } => StatusModifier::Stability { amount },
+            Self::MovementTimeMinimum { time_units } => {
+                StatusModifier::MovementTimeMinimum { time_units }
+            }
+            Self::Accuracy { amount } => StatusModifier::Accuracy { amount },
         }
     }
 }
@@ -1352,9 +2802,14 @@ struct RawWeaponDefinition {
     id: String,
     name_key: String,
     description_key: String,
+    mass_grams: Option<u32>,
+    ammunition_capacity: Option<u16>,
+    power_draw: Option<u16>,
     attack: RawWeaponAttack,
     #[serde(default)]
     effects: Vec<RawWeaponEffect>,
+    #[serde(default)]
+    capabilities: RawWeaponCapabilities,
 }
 
 impl RawWeaponDefinition {
@@ -1363,14 +2818,56 @@ impl RawWeaponDefinition {
         id: WeaponId,
         statuses: &StatusCatalog,
     ) -> Result<WeaponDefinition, WeaponDefinitionError> {
+        let mass_grams = self.mass_grams;
+        let ammunition_capacity = self.ammunition_capacity;
+        let power_draw = self.power_draw;
         let attack = self.attack.into_runtime()?;
         let effects = self
             .effects
             .into_iter()
             .map(|effect| effect.into_runtime(statuses))
             .collect::<Result<Vec<_>, _>>()?;
-        WeaponDefinition::new(id, self.name_key, self.description_key, attack)
-            .map(|definition| definition.with_effects(effects))
+        WeaponDefinition::new(id, self.name_key, self.description_key, attack).and_then(
+            |definition| {
+                let definition = definition
+                    .with_effects(effects)
+                    .with_capabilities(self.capabilities.into_runtime());
+                let definition = match mass_grams {
+                    Some(mass_grams) => definition.with_mass_grams(mass_grams),
+                    None => Ok(definition),
+                }?;
+                let definition = match ammunition_capacity {
+                    Some(capacity) => definition.with_ammunition_capacity(capacity),
+                    None => Ok(definition),
+                }?;
+                match power_draw {
+                    Some(power_draw) => definition.with_power_draw(power_draw),
+                    None => Ok(definition),
+                }
+            },
+        )
+    }
+}
+
+#[derive(Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawWeaponCapabilities {
+    #[serde(default)]
+    melee_parry: bool,
+    #[serde(default)]
+    automatic_fire: bool,
+}
+
+impl RawWeaponCapabilities {
+    const fn into_runtime(self) -> crate::weapon::WeaponCapabilities {
+        let mut capabilities = crate::weapon::WeaponCapabilities::new();
+        if self.melee_parry {
+            capabilities = capabilities.with_melee_parry();
+        }
+        if self.automatic_fire {
+            capabilities = capabilities.with_automatic_fire();
+        }
+        capabilities
     }
 }
 
@@ -1380,21 +2877,60 @@ struct RawWeaponAttack {
     range: u16,
     distance_metric: RawDistanceMetric,
     requires_line_of_sight: bool,
-    damage: RawWeaponDamage,
+    damage: RawAttackDamage,
+    #[serde(default)]
+    delivery: Option<RawAttackDelivery>,
+    #[serde(default)]
+    accuracy_modifier: i16,
     #[serde(default)]
     area: RawAttackArea,
+    impact: Option<RawMeleeImpactProfile>,
+    recovery_time_units: Option<u16>,
+    preparation_disruption: Option<RawPreparationDisruption>,
 }
 
 impl RawWeaponAttack {
     fn into_runtime(self) -> Result<crate::combat::AttackProfile, WeaponDefinitionError> {
-        let attack = crate::combat::AttackProfile::new(
+        let damage = self
+            .damage
+            .into_runtime()
+            .map_err(WeaponDefinitionError::InvalidDamage)?;
+        let primary = damage.primary_component();
+        let mut attack = crate::combat::AttackProfile::new(
             self.range,
             self.distance_metric.into_runtime(),
             self.requires_line_of_sight,
-            self.damage.damage_type.into_runtime(),
-            self.damage.amount,
-            self.damage.penetration,
-        );
+            primary.damage_type,
+            primary.amount,
+            primary.penetration,
+        )
+        .with_damage(damage)
+        .with_accuracy_modifier(self.accuracy_modifier);
+        if let Some(delivery) = self.delivery {
+            attack = attack.with_delivery(delivery.into_runtime());
+        }
+        if let Some(impact) = self.impact {
+            attack = attack
+                .with_melee_impact(crate::combat::MeleeImpactProfile::new(
+                    impact.material_cap,
+                    impact.modifier,
+                ))
+                .map_err(WeaponDefinitionError::InvalidImpact)?;
+        }
+        if let Some(recovery) = self.recovery_time_units {
+            attack = attack.with_recovery_after_attack(
+                TimeUnits::new(recovery).map_err(WeaponDefinitionError::InvalidRecovery)?,
+            );
+        }
+        if let Some(disruption) = self.preparation_disruption {
+            attack = attack.with_preparation_disruption(
+                crate::combat::PreparationDisruption::new(
+                    disruption.family.into_runtime(),
+                    disruption.intensity,
+                )
+                .map_err(WeaponDefinitionError::InvalidImpact)?,
+            );
+        }
         Ok(match self.area {
             RawAttackArea::Single => attack,
             RawAttackArea::Cone {
@@ -1406,6 +2942,108 @@ impl RawWeaponAttack {
                     .map_err(WeaponDefinitionError::InvalidCone)?,
             )),
         })
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawPreparationDisruption {
+    family: RawPreparationDisruptionFamily,
+    intensity: u16,
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(rename_all = "snake_case")]
+enum RawPreparationDisruptionFamily {
+    SystemShock,
+}
+
+impl RawPreparationDisruptionFamily {
+    const fn into_runtime(self) -> crate::combat::PreparationDisruptionFamily {
+        match self {
+            Self::SystemShock => crate::combat::PreparationDisruptionFamily::SystemShock,
+        }
+    }
+}
+
+#[derive(Deserialize)]
+#[serde(untagged)]
+enum RawAttackDamage {
+    Single(RawWeaponDamage),
+    Mixed(RawMixedDamage),
+}
+
+impl RawAttackDamage {
+    fn into_runtime(self) -> Result<DamageImpact, crate::combat::DamageImpactError> {
+        match self {
+            Self::Single(damage) => Ok(DamageImpact::single(damage.into_runtime())),
+            Self::Mixed(damage) => damage.into_runtime(),
+        }
+    }
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawMixedDamage {
+    components: Vec<RawDamageComponent>,
+    #[serde(default)]
+    armor_penetration: u16,
+    #[serde(default)]
+    resistance_penetrations: Vec<RawResistancePenetration>,
+}
+
+impl RawMixedDamage {
+    fn into_runtime(self) -> Result<DamageImpact, crate::combat::DamageImpactError> {
+        DamageImpact::mixed(
+            self.components.into_iter().map(|component| {
+                DamageComponent::new(component.amount, component.damage_type.into_runtime())
+            }),
+            self.armor_penetration,
+            self.resistance_penetrations.into_iter().map(|penetration| {
+                (
+                    penetration.damage_type.into_runtime(),
+                    penetration.percentage_points,
+                )
+            }),
+        )
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawDamageComponent {
+    amount: u16,
+    damage_type: RawDamageType,
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawResistancePenetration {
+    damage_type: RawDamageType,
+    percentage_points: u16,
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawMeleeImpactProfile {
+    material_cap: u16,
+    #[serde(default)]
+    modifier: i16,
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(rename_all = "snake_case")]
+enum RawAttackDelivery {
+    Melee,
+    Ranged,
+}
+
+impl RawAttackDelivery {
+    const fn into_runtime(self) -> AttackDelivery {
+        match self {
+            Self::Melee => AttackDelivery::Melee,
+            Self::Ranged => AttackDelivery::Ranged,
+        }
     }
 }
 
@@ -1428,35 +3066,71 @@ enum RawWeaponEffect {
         status: String,
         #[serde(default = "one_u16")]
         stacks: u16,
+        #[serde(default)]
+        trigger: Option<RawWeaponEffectTrigger>,
     },
     CreateGroundEffect {
         id: String,
         duration_turns: u16,
         damage_each_turn: RawWeaponDamage,
+        #[serde(default)]
+        trigger: Option<RawWeaponEffectTrigger>,
     },
+}
+
+#[derive(Clone, Copy, Deserialize)]
+enum RawWeaponEffectTrigger {
+    #[serde(rename = "on_attack")]
+    Attack,
+    #[serde(rename = "on_hit")]
+    Hit,
+    #[serde(rename = "on_damage")]
+    Damage,
+    #[serde(rename = "on_target_destroyed")]
+    TargetDestroyed,
+}
+
+impl RawWeaponEffectTrigger {
+    const fn into_runtime(self) -> WeaponEffectTrigger {
+        match self {
+            Self::Attack => WeaponEffectTrigger::OnAttack,
+            Self::Hit => WeaponEffectTrigger::OnHit,
+            Self::Damage => WeaponEffectTrigger::OnDamage,
+            Self::TargetDestroyed => WeaponEffectTrigger::OnTargetDestroyed,
+        }
+    }
 }
 
 impl RawWeaponEffect {
     fn into_runtime(self, statuses: &StatusCatalog) -> Result<WeaponEffect, WeaponDefinitionError> {
         match self {
-            Self::ApplyStatus { status, stacks } => {
+            Self::ApplyStatus {
+                status,
+                stacks,
+                trigger,
+            } => {
                 let status: StatusId = status
                     .parse()
                     .map_err(WeaponDefinitionError::InvalidEffectId)?;
                 if !statuses.contains(&status) {
                     return Err(WeaponDefinitionError::UnknownStatus(status));
                 }
-                ApplyStatusEffect::new(status, stacks)
-                    .map(WeaponEffect::ApplyStatus)
-                    .map_err(WeaponDefinitionError::InvalidStatusEffect)
+                let effect = ApplyStatusEffect::new(status, stacks)
+                    .map_err(WeaponDefinitionError::InvalidStatusEffect)?;
+                match trigger {
+                    Some(trigger) => WeaponEffect::apply_status(effect, trigger.into_runtime())
+                        .map_err(WeaponDefinitionError::InvalidEffectTrigger),
+                    None => Ok(WeaponEffect::legacy_apply_status(effect)),
+                }
             }
             Self::CreateGroundEffect {
                 id,
                 duration_turns,
                 damage_each_turn,
+                trigger,
             } => {
                 let id = id.parse().map_err(WeaponDefinitionError::InvalidEffectId)?;
-                GroundEffectSpec::new(
+                let effect = GroundEffectSpec::new(
                     id,
                     duration_turns,
                     DamagePacket::new(
@@ -1465,8 +3139,13 @@ impl RawWeaponEffect {
                         damage_each_turn.penetration,
                     ),
                 )
-                .map(WeaponEffect::CreateGroundEffect)
-                .map_err(WeaponDefinitionError::InvalidGroundEffect)
+                .map_err(WeaponDefinitionError::InvalidGroundEffect)?;
+                Ok(match trigger {
+                    Some(trigger) => {
+                        WeaponEffect::create_ground_effect(effect, trigger.into_runtime())
+                    }
+                    None => WeaponEffect::legacy_create_ground_effect(effect),
+                })
             }
         }
     }
@@ -1476,13 +3155,23 @@ const fn one_u16() -> u16 {
     1
 }
 
-#[derive(Deserialize)]
+#[derive(Clone, Copy, Deserialize)]
 #[serde(deny_unknown_fields)]
 struct RawWeaponDamage {
     amount: u16,
     damage_type: RawDamageType,
     #[serde(default)]
     penetration: u16,
+}
+
+impl RawWeaponDamage {
+    const fn into_runtime(self) -> DamagePacket {
+        DamagePacket::new(
+            self.amount,
+            self.damage_type.into_runtime(),
+            self.penetration,
+        )
+    }
 }
 
 #[derive(Clone, Copy, Deserialize)]
@@ -1524,29 +3213,71 @@ struct RawItemDefinition {
     description_key: String,
     maximum_stack: u16,
     kind: RawItemKind,
+    mass_grams: Option<u32>,
+    equipment: Option<RawEquipmentProfile>,
     #[serde(default)]
     effects: Vec<RawItemEffect>,
 }
 
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawEquipmentProfile {
+    slot: String,
+    armor: u16,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawCharacterClassDefinition {
+    id: String,
+    name_key: String,
+    role_key: String,
+    description_key: String,
+    recommended_attributes: RawPrimaryAttributes,
+    starting_weapons: Vec<String>,
+    #[serde(default)]
+    starting_items: Vec<RawClassStartingItem>,
+    #[serde(default)]
+    starting_equipment: Vec<Option<String>>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawClassStartingItem {
+    item: String,
+    quantity: u16,
+}
+
 impl RawItemDefinition {
-    fn into_runtime(self, id: ItemId) -> Result<ItemDefinition, ItemDefinitionError> {
-        ItemDefinition::new(
+    fn into_runtime(
+        self,
+        id: ItemId,
+        equipment: Option<EquipmentProfile>,
+    ) -> Result<ItemDefinition, ItemDefinitionError> {
+        let mass_grams = self.mass_grams;
+        let definition = ItemDefinition::new(
             id,
             self.name_key,
             self.description_key,
             self.maximum_stack,
             self.kind.into_runtime(),
+            equipment,
             self.effects
                 .into_iter()
                 .map(RawItemEffect::into_runtime)
                 .collect(),
-        )
+        )?;
+        match mass_grams {
+            Some(mass_grams) => definition.with_mass_grams(mass_grams),
+            None => Ok(definition),
+        }
     }
 }
 
 #[derive(Clone, Copy, Deserialize)]
 #[serde(rename_all = "snake_case")]
 enum RawItemKind {
+    Armor,
     Consumable,
     Material,
 }
@@ -1554,6 +3285,7 @@ enum RawItemKind {
 impl RawItemKind {
     const fn into_runtime(self) -> ItemKind {
         match self {
+            Self::Armor => ItemKind::Armor,
             Self::Consumable => ItemKind::Consumable,
             Self::Material => ItemKind::Material,
         }
@@ -1605,12 +3337,234 @@ struct RawTechniqueDefinition {
     discipline: String,
     name_key: String,
     description_key: String,
-    minimum_rank: u8,
+    #[serde(alias = "minimum_rank")]
+    minimum_level: u16,
+    #[serde(default)]
+    minimum_attributes: RawTechniqueMinimumAttributes,
     kind: RawTechniqueKind,
     prerequisite: Option<String>,
     #[serde(default)]
     required_features: Vec<String>,
     action: Option<RawTechniqueAction>,
+    activation_cost: Option<RawTechniqueActivationCost>,
+    manifestation_item: Option<String>,
+    manifestation_profile: Option<String>,
+    material_cost: Option<RawTechniqueMaterialCost>,
+    #[serde(default)]
+    additional_material_costs: Vec<RawTechniqueMaterialCost>,
+    required_tool: Option<String>,
+    produced_item: Option<String>,
+    improvement: Option<RawTechniqueImprovement>,
+    on_hit_effect: Option<RawTechniqueOnHitEffect>,
+    engagement_requirement: Option<RawTechniqueEngagementRequirement>,
+    action_kind: Option<RawActionKind>,
+    preparation_time_units: Option<u16>,
+    cooldown_turns: Option<u16>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawTechniqueActivationCost {
+    #[serde(default)]
+    energy: u16,
+    #[serde(default)]
+    heat: u16,
+    #[serde(default)]
+    persistent_bandwidth: u16,
+    active_limit: Option<u8>,
+}
+
+#[derive(Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawTechniqueMinimumAttributes {
+    power: Option<u8>,
+    coordination: Option<u8>,
+    resilience: Option<u8>,
+    perception: Option<u8>,
+    processing: Option<u8>,
+}
+
+impl RawTechniqueMinimumAttributes {
+    fn into_runtime(self) -> Result<Vec<TechniqueAttributeRequirement>, SkillDefinitionError> {
+        [
+            (PrimaryAttribute::Power, self.power),
+            (PrimaryAttribute::Coordination, self.coordination),
+            (PrimaryAttribute::Resilience, self.resilience),
+            (PrimaryAttribute::Perception, self.perception),
+            (PrimaryAttribute::Processing, self.processing),
+        ]
+        .into_iter()
+        .filter_map(|(attribute, minimum)| minimum.map(|minimum| (attribute, minimum)))
+        .map(|(attribute, minimum)| TechniqueAttributeRequirement::new(attribute, minimum))
+        .collect()
+    }
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawTechniqueMaterialCost {
+    item: String,
+    quantity: u16,
+}
+
+#[derive(Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawTechniqueEngagementRequirement {
+    TargetHasAnyStatusFamily { families: Vec<String> },
+    TargetHasKnownPhysicalWeakness,
+}
+
+#[derive(Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawTechniqueOnHitEffect {
+    ApplyStatus {
+        status: String,
+        #[serde(default = "one_u16")]
+        stacks: u16,
+        target_requirement: RawTechniqueTargetRequirement,
+        resistance: Option<RawTechniqueEffectResistance>,
+    },
+}
+
+impl RawTechniqueOnHitEffect {
+    fn status(&self) -> &str {
+        match self {
+            Self::ApplyStatus { status, .. } => status,
+        }
+    }
+
+    const fn stacks(&self) -> u16 {
+        match self {
+            Self::ApplyStatus { stacks, .. } => *stacks,
+        }
+    }
+
+    fn into_runtime(self, status: StatusId) -> Result<TechniqueOnHitEffect, SkillDefinitionError> {
+        match self {
+            Self::ApplyStatus {
+                stacks,
+                target_requirement,
+                resistance,
+                ..
+            } => {
+                let mut effect = TechniqueOnHitEffect::new(
+                    ApplyStatusEffect::new(status, stacks)
+                        .expect("positive on-hit status stacks were validated"),
+                    target_requirement.into_runtime(),
+                );
+                if let Some(RawTechniqueEffectResistance::Stability { intensity }) = resistance {
+                    effect = effect.with_stability_resistance(intensity)?;
+                }
+                Ok(effect)
+            }
+        }
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawTechniqueEffectResistance {
+    Stability { intensity: u16 },
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(rename_all = "snake_case")]
+enum RawTechniqueTargetRequirement {
+    HasArmor,
+    HasCompatibleLocomotion,
+    HasCompatibleSuppressionResponse,
+}
+
+impl RawTechniqueTargetRequirement {
+    const fn into_runtime(self) -> TechniqueTargetRequirement {
+        match self {
+            Self::HasArmor => TechniqueTargetRequirement::HasArmor,
+            Self::HasCompatibleLocomotion => TechniqueTargetRequirement::HasCompatibleLocomotion,
+            Self::HasCompatibleSuppressionResponse => {
+                TechniqueTargetRequirement::HasCompatibleSuppressionResponse
+            }
+        }
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawTechniqueImprovement {
+    MeleeCounterattack,
+    ExtendedRangedOverwatch,
+    PersistentRangedAim {
+        retained_accuracy_modifier: i16,
+    },
+    ControlledChargeInertia,
+    CoveredApproach {
+        optical_difficulty_bonus: i16,
+    },
+    SilentNeutralization {
+        physical_damage_percentage: u16,
+        #[serde(default)]
+        extra_energy_cost: u16,
+        #[serde(default)]
+        noise_reduction: u16,
+    },
+    DroneAutonomousScout {
+        maximum_unknown_steps: u8,
+        energy_cost_override: u16,
+        additional_bandwidth: u16,
+    },
+}
+
+impl RawTechniqueImprovement {
+    const fn into_runtime(self) -> TechniqueImprovement {
+        match self {
+            Self::MeleeCounterattack => TechniqueImprovement::MeleeCounterattack,
+            Self::ExtendedRangedOverwatch => TechniqueImprovement::ExtendedRangedOverwatch,
+            Self::PersistentRangedAim {
+                retained_accuracy_modifier,
+            } => TechniqueImprovement::PersistentRangedAim {
+                retained_accuracy_modifier,
+            },
+            Self::ControlledChargeInertia => TechniqueImprovement::ControlledChargeInertia,
+            Self::CoveredApproach {
+                optical_difficulty_bonus,
+            } => TechniqueImprovement::CoveredApproach {
+                optical_difficulty_bonus,
+            },
+            Self::SilentNeutralization {
+                physical_damage_percentage,
+                extra_energy_cost,
+                noise_reduction,
+            } => TechniqueImprovement::SilentNeutralization {
+                physical_damage_percentage,
+                extra_energy_cost,
+                noise_reduction,
+            },
+            Self::DroneAutonomousScout {
+                maximum_unknown_steps,
+                energy_cost_override,
+                additional_bandwidth,
+            } => TechniqueImprovement::DroneAutonomousScout {
+                maximum_unknown_steps,
+                energy_cost_override,
+                additional_bandwidth,
+            },
+        }
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(rename_all = "snake_case")]
+enum RawActionKind {
+    Offensive,
+    Support,
+}
+
+impl RawActionKind {
+    const fn into_runtime(self) -> ActionKind {
+        match self {
+            Self::Offensive => ActionKind::Offensive,
+            Self::Support => ActionKind::Support,
+        }
+    }
 }
 
 #[derive(Clone, Copy, Deserialize)]
@@ -1626,6 +3580,10 @@ enum RawTechniqueAction {
     ReadMovementTraces {
         radius: u16,
     },
+    InspectNearbySecrets {
+        radius: u16,
+        detection_bonus: i16,
+    },
     AnalyzeNearbyWalls {
         radius: u16,
         maximum_tiles: u8,
@@ -1633,11 +3591,438 @@ enum RawTechniqueAction {
     AnalyzeThreat {
         range: u16,
     },
+    DiagnoseEnergy {
+        range: u16,
+        analysis_bonus: i16,
+        energy_cost: u16,
+    },
+    RepairComponent {
+        durability_restored: u16,
+        #[serde(default)]
+        energy_cost: u16,
+    },
+    SalvageComponent,
+    DiagnoseComponent {
+        analysis_bonus: i16,
+        #[serde(default)]
+        energy_cost: u16,
+    },
+    TuneModule {
+        economy_output_percentage: u16,
+        economy_energy_percentage: u16,
+        power_output_percentage: u16,
+        power_energy_percentage: u16,
+    },
+    EmergencyRepairComponent {
+        durability_restored: u16,
+    },
+    OverclockModule {
+        output_percentage: u16,
+        usage_energy_percentage: u16,
+        heat_per_use: u16,
+        safe_heat_threshold: u16,
+        maximum_heat_threshold: u16,
+        duration_time_units: u16,
+        activation_energy: u16,
+        durability_damage_when_hot: u16,
+    },
+    BypassComponent {
+        restored_output_percentage: u16,
+        #[serde(default)]
+        energy_cost: u16,
+    },
+    ReconditionModule {
+        durability_restored: u16,
+    },
+    AssembleFieldBeacon {
+        integrity: u16,
+        battery_energy: u16,
+        energy_per_phase: u16,
+        noise_intensity: u16,
+    },
+    WeaponAttack {
+        required_delivery: RawAttackDelivery,
+        #[serde(default)]
+        physical_damage_percentage: Option<u16>,
+        #[serde(default)]
+        armor_penetration_bonus: u16,
+        #[serde(default)]
+        accuracy_modifier: i16,
+        #[serde(default)]
+        energy_cost: u16,
+        recovery_time_units: Option<u16>,
+        forced_movement: Option<RawForcedMovement>,
+        melee_arc: Option<RawMeleeArc>,
+    },
+    WeaponVolley {
+        projectiles: u8,
+        maximum_targets: u8,
+        #[serde(default)]
+        maximum_target_separation: Option<u16>,
+        #[serde(default)]
+        accuracy_modifier: i16,
+        #[serde(default)]
+        energy_cost: u16,
+        #[serde(default)]
+        requires_automatic_fire: bool,
+    },
+    WeaponComponentAttack {
+        required_delivery: RawAttackDelivery,
+        #[serde(default)]
+        accuracy_modifier: i16,
+        #[serde(default)]
+        energy_cost: u16,
+    },
+    WeaponBarrage {
+        stages: u8,
+        cells: u8,
+        #[serde(default)]
+        accuracy_modifier: i16,
+        #[serde(default)]
+        energy_cost_per_stage: u16,
+        #[serde(default)]
+        requires_automatic_fire: bool,
+    },
+    PrepareRangedOverwatch {
+        maximum_line_cells: u8,
+    },
+    PrepareMeleeParry {
+        physical_reduction_percentage: u8,
+        #[serde(default)]
+        trigger_energy_cost: u16,
+    },
+    PrepareMeleeInterception,
+    DeployExplosive {
+        deployment: RawExplosiveDeployment,
+        primary_payload: RawExplosivePayload,
+        secondary_payload: Option<RawSecondaryExplosivePayload>,
+    },
+    NeutralizeExplosive {
+        range: u16,
+        #[serde(default)]
+        analysis_bonus: i16,
+        #[serde(default)]
+        energy_cost: u16,
+    },
+    RecoverNeutralizedExplosive {
+        range: u16,
+    },
+    TriggerRemoteExplosive {
+        range: u16,
+        #[serde(default)]
+        energy_cost: u16,
+        #[serde(default)]
+        bandwidth_required: u16,
+    },
+    ProgramExplosives {
+        range: u16,
+        maximum_devices: u8,
+        minimum_delay: u16,
+        maximum_delay: u16,
+        #[serde(default)]
+        energy_cost: u16,
+        #[serde(default)]
+        bandwidth_required: u16,
+    },
+    CautiousMove {
+        interception_evasion_modifier: i16,
+    },
+    PrepareAnchor {
+        displacement_resistance_bonus: u16,
+    },
+    TraverseSingleObstacle {
+        maximum_distance: u16,
+        #[serde(default)]
+        energy_cost: u16,
+    },
+    ChargeAttack {
+        minimum_advance: u8,
+        maximum_advance: u8,
+        physical_damage_percentage: u16,
+        energy_per_step: u16,
+        recovery_time_units: u16,
+    },
+    PrepareEvasiveStep {
+        #[serde(default)]
+        trigger_energy_cost: u16,
+    },
+    PropelledMove {
+        distance: u8,
+        #[serde(default)]
+        energy_cost: u16,
+        #[serde(default)]
+        heat_generated: u16,
+    },
+    Breakthrough {
+        #[serde(default)]
+        impact_modifier: i16,
+        #[serde(default)]
+        energy_cost: u16,
+        recovery_time_units: u16,
+    },
+    ExtractAlly {
+        #[serde(default)]
+        energy_cost: u16,
+    },
+    SilentMove {
+        #[serde(default)]
+        noise_reduction: u16,
+        minimum_time_units: u16,
+    },
+    ToggleEmissionSilence {
+        channel: RawSignatureChannel,
+    },
+    ToggleLowProfile {
+        optical_difficulty_bonus: i16,
+        minimum_movement_time_units: u16,
+    },
+    AmbushAttack {
+        accuracy_modifier: i16,
+        physical_damage_percentage: u16,
+    },
+    DeploySoundDecoy {
+        range: u16,
+        intensity: u16,
+        duration_phases: u16,
+        integrity: u16,
+    },
+    BreakTrail {
+        #[serde(default)]
+        energy_cost: u16,
+        maximum_steps: u8,
+        maximum_duration: u16,
+    },
+    CamouflageExplosive {
+        range: u16,
+        optical_difficulty_bonus: i16,
+    },
+    ToggleActiveCamouflage {
+        channel: RawSignatureChannel,
+        optical_difficulty_bonus: i16,
+        maximum_duration: u16,
+        activation_energy: u16,
+        upkeep_energy: u16,
+        heat_per_phase: u16,
+    },
+    ManifestDrone {
+        integrity: u16,
+        energy_capacity: u16,
+        starting_energy: u16,
+        link_range: u16,
+        link_power: u16,
+        link_difficulty: u16,
+        link_attenuation_per_cell: u16,
+        link_wall_attenuation_multiplier: u16,
+        sensor_radius: u16,
+        bandwidth_required: u16,
+        movement_energy_cost: u16,
+        manipulator_capacity_grams: u32,
+        decoy_intensity: u16,
+        attack_range: u16,
+        attack_damage: u16,
+    },
+    DroneEscort {
+        link_range: u16,
+        minimum_distance: u8,
+        maximum_distance: u8,
+        energy_cost: u16,
+    },
+    DronePatrol {
+        link_range: u16,
+        maximum_waypoints: u8,
+        energy_cost: u16,
+    },
+    DroneMobileDecoy {
+        link_range: u16,
+        controller_energy_cost: u16,
+        drone_energy_per_phase: u16,
+        intensity: u16,
+        maximum_duration: u16,
+    },
+    DroneCollect {
+        link_range: u16,
+        energy_cost: u16,
+    },
+    DroneCoordinateFire {
+        link_range: u16,
+        maximum_drones: u8,
+        energy_cost: u16,
+        transmission_bandwidth: u16,
+    },
+    DroneInterpose {
+        link_range: u16,
+        controller_energy_cost: u16,
+        drone_trigger_energy_cost: u16,
+    },
+    DroneConditionalRoutine {
+        link_range: u16,
+        energy_cost: u16,
+        additional_bandwidth: u16,
+    },
+    DroneCoordinatedDeployment {
+        link_range: u16,
+        maximum_drones: u8,
+        energy_cost: u16,
+        transmission_bandwidth: u16,
+    },
+    DroneEmergencyReturn {
+        link_range: u16,
+        maximum_drones: u8,
+        energy_cost: u16,
+        transmission_bandwidth: u16,
+        duration_phases: u16,
+    },
+    ProbeInterface {
+        range: u16,
+        analysis_bonus: i16,
+        energy_cost: u16,
+        audit_delay: u16,
+    },
+    ForceElectronicLock {
+        range: u16,
+        energy_cost: u16,
+        bandwidth_required: u16,
+        failure_hardening_duration: u16,
+        audit_delay: u16,
+    },
+    ExtractData {
+        range: u16,
+        energy_cost: u16,
+    },
+    SpoofAuthorization {
+        range: u16,
+        energy_cost: u16,
+        duration_time_units: u16,
+    },
+    DivertDevice {
+        range: u16,
+        energy_cost: u16,
+        additional_bandwidth: u16,
+        duration_time_units: u16,
+    },
+    SuspendDigitalRoutine {
+        range: u16,
+        energy_cost: u16,
+        duration_time_units: u16,
+        repeat_protection_time_units: u16,
+    },
+    MaintainBackdoor {
+        range: u16,
+        installation_energy_cost: u16,
+        reconnection_energy_cost: u16,
+        maximum_backdoors: u8,
+        session_duration_time_units: u16,
+    },
+    FalsifySecurityTrace {
+        range: u16,
+        energy_cost: u16,
+    },
+    DivertSubnet {
+        range: u16,
+        maximum_devices: u8,
+        energy_cost: u16,
+        bandwidth_per_device: u16,
+        duration_time_units: u16,
+    },
+    LockDeviceControl {
+        range: u16,
+        energy_cost: u16,
+        additional_bandwidth: u16,
+        duration_time_units: u16,
+    },
+    ElectronicPulse {
+        radius: u16,
+        damage: u16,
+        energy_cost: u16,
+        heat_generated: u16,
+        #[serde(default)]
+        disruption_intensity: u16,
+        #[serde(default)]
+        directional: bool,
+        #[serde(default)]
+        filter_identified_allies: bool,
+        #[serde(default)]
+        bandwidth_required: u16,
+    },
+    ImplantOverheat {
+        range: u16,
+        energy_cost: u16,
+        heat_generated: u16,
+        bandwidth_required: u16,
+        heat_per_tick: u16,
+        dissipation_penalty: u16,
+        duration_time_units: u16,
+        audit_delay: u16,
+    },
+    MaintainJamming {
+        radius: u16,
+        penalty: u16,
+        activation_energy: u16,
+        energy_per_phase: u16,
+        heat_per_phase: u16,
+        bandwidth_required: u16,
+        maximum_duration: u16,
+    },
+    PurgeHostileProgram {
+        range: u16,
+        energy_cost: u16,
+        intrusion_bonus: i16,
+    },
+    ElectronicCascade {
+        range: u16,
+        jump_range: u16,
+        maximum_targets: u8,
+        damage_by_target: [u16; 4],
+        energy_cost: u16,
+        heat_generated: u16,
+    },
+    ImplantInfection {
+        range: u16,
+        propagation_range: u16,
+        energy_cost: u16,
+        heat_generated: u16,
+        bandwidth_required: u16,
+        thermal_damage_per_tick: u16,
+        ticks_per_host: u16,
+        maximum_hosts: u8,
+        transmissions_per_host: u8,
+        campaign_duration: u16,
+        audit_delay: u16,
+    },
+    DeploySaturationBeacon {
+        radius: u16,
+        damage: u16,
+        duration_time_units: u16,
+        integrity: u16,
+        battery_energy: u16,
+        energy_per_phase: u16,
+        #[serde(default)]
+        manual_activation: bool,
+        #[serde(default)]
+        activation_energy: u16,
+        #[serde(default)]
+        activation_bandwidth: u16,
+        #[serde(default)]
+        activation_link_range: u16,
+    },
+    ImplantImplosion {
+        range: u16,
+        energy_cost: u16,
+        heat_generated: u16,
+        bandwidth_required: u16,
+        minimum_stored_energy: u16,
+        reserved_energy: u16,
+        delay_time_units: u16,
+        radius: u16,
+        physical_damage: u16,
+        thermal_damage: u16,
+        audit_delay: u16,
+    },
 }
 
 impl RawTechniqueAction {
-    const fn into_runtime(self) -> TechniqueAction {
-        match self {
+    fn into_runtime(self) -> Result<TechniqueAction, SkillDefinitionError> {
+        Ok(match self {
             Self::AnalyzeTarget { range } => TechniqueAction::AnalyzeTarget { range },
             Self::AnalyzeMultipleTargets {
                 maximum_targets,
@@ -1647,6 +4032,13 @@ impl RawTechniqueAction {
                 energy_cost,
             },
             Self::ReadMovementTraces { radius } => TechniqueAction::ReadMovementTraces { radius },
+            Self::InspectNearbySecrets {
+                radius,
+                detection_bonus,
+            } => TechniqueAction::InspectNearbySecrets {
+                radius,
+                detection_bonus,
+            },
             Self::AnalyzeNearbyWalls {
                 radius,
                 maximum_tiles,
@@ -1655,7 +4047,908 @@ impl RawTechniqueAction {
                 maximum_tiles,
             },
             Self::AnalyzeThreat { range } => TechniqueAction::AnalyzeThreat { range },
+            Self::DiagnoseEnergy {
+                range,
+                analysis_bonus,
+                energy_cost,
+            } => TechniqueAction::DiagnoseEnergy {
+                range,
+                analysis_bonus,
+                energy_cost,
+            },
+            Self::RepairComponent {
+                durability_restored,
+                energy_cost,
+            } => TechniqueAction::RepairComponent {
+                durability_restored,
+                energy_cost,
+            },
+            Self::SalvageComponent => TechniqueAction::SalvageComponent,
+            Self::DiagnoseComponent {
+                analysis_bonus,
+                energy_cost,
+            } => TechniqueAction::DiagnoseComponent {
+                analysis_bonus,
+                energy_cost,
+            },
+            Self::TuneModule {
+                economy_output_percentage,
+                economy_energy_percentage,
+                power_output_percentage,
+                power_energy_percentage,
+            } => TechniqueAction::TuneModule {
+                economy_output_percentage,
+                economy_energy_percentage,
+                power_output_percentage,
+                power_energy_percentage,
+            },
+            Self::EmergencyRepairComponent {
+                durability_restored,
+            } => TechniqueAction::EmergencyRepairComponent {
+                durability_restored,
+            },
+            Self::OverclockModule {
+                output_percentage,
+                usage_energy_percentage,
+                heat_per_use,
+                safe_heat_threshold,
+                maximum_heat_threshold,
+                duration_time_units,
+                activation_energy,
+                durability_damage_when_hot,
+            } => TechniqueAction::OverclockModule {
+                output_percentage,
+                usage_energy_percentage,
+                heat_per_use,
+                safe_heat_threshold,
+                maximum_heat_threshold,
+                duration_time_units,
+                activation_energy,
+                durability_damage_when_hot,
+            },
+            Self::BypassComponent {
+                restored_output_percentage,
+                energy_cost,
+            } => TechniqueAction::BypassComponent {
+                restored_output_percentage,
+                energy_cost,
+            },
+            Self::ReconditionModule {
+                durability_restored,
+            } => TechniqueAction::ReconditionModule {
+                durability_restored,
+            },
+            Self::AssembleFieldBeacon {
+                integrity,
+                battery_energy,
+                energy_per_phase,
+                noise_intensity,
+            } => TechniqueAction::AssembleFieldBeacon {
+                integrity,
+                battery_energy,
+                energy_per_phase,
+                noise_intensity,
+            },
+            Self::WeaponAttack {
+                required_delivery,
+                physical_damage_percentage,
+                armor_penetration_bonus,
+                accuracy_modifier,
+                energy_cost,
+                recovery_time_units,
+                forced_movement,
+                melee_arc,
+            } => TechniqueAction::WeaponAttack {
+                required_delivery: required_delivery.into_runtime(),
+                physical_damage_percentage,
+                armor_penetration_bonus,
+                accuracy_modifier,
+                energy_cost,
+                recovery_time_units,
+                forced_movement: forced_movement.map(RawForcedMovement::into_runtime),
+                melee_arc: match melee_arc {
+                    Some(arc) => Some(MeleeArc::new(arc.maximum_cells).map_err(
+                        |error| match error {
+                            MeleeArcError::ZeroMaximumCells => {
+                                SkillDefinitionError::ZeroMeleeArcCells
+                            }
+                            MeleeArcError::TooManyCells(cells) => {
+                                SkillDefinitionError::TooManyMeleeArcCells(cells)
+                            }
+                        },
+                    )?),
+                    None => None,
+                },
+            },
+            Self::WeaponVolley {
+                projectiles,
+                maximum_targets,
+                maximum_target_separation,
+                accuracy_modifier,
+                energy_cost,
+                requires_automatic_fire,
+            } => TechniqueAction::WeaponVolley {
+                projectiles,
+                maximum_targets,
+                maximum_target_separation,
+                accuracy_modifier,
+                energy_cost,
+                requires_automatic_fire,
+            },
+            Self::WeaponComponentAttack {
+                required_delivery,
+                accuracy_modifier,
+                energy_cost,
+            } => TechniqueAction::WeaponComponentAttack {
+                required_delivery: required_delivery.into_runtime(),
+                accuracy_modifier,
+                energy_cost,
+            },
+            Self::WeaponBarrage {
+                stages,
+                cells,
+                accuracy_modifier,
+                energy_cost_per_stage,
+                requires_automatic_fire,
+            } => TechniqueAction::WeaponBarrage {
+                stages,
+                cells,
+                accuracy_modifier,
+                energy_cost_per_stage,
+                requires_automatic_fire,
+            },
+            Self::PrepareRangedOverwatch { maximum_line_cells } => {
+                TechniqueAction::PrepareRangedOverwatch { maximum_line_cells }
+            }
+            Self::PrepareMeleeParry {
+                physical_reduction_percentage,
+                trigger_energy_cost,
+            } => TechniqueAction::PrepareMeleeParry {
+                physical_reduction_percentage,
+                trigger_energy_cost,
+            },
+            Self::PrepareMeleeInterception => TechniqueAction::PrepareMeleeInterception,
+            Self::DeployExplosive {
+                deployment,
+                primary_payload,
+                secondary_payload,
+            } => TechniqueAction::DeployExplosive {
+                deployment: deployment.into_runtime()?,
+                primary_payload: primary_payload.into_runtime()?,
+                secondary_payload: secondary_payload
+                    .map(RawSecondaryExplosivePayload::into_runtime)
+                    .transpose()?,
+            },
+            Self::NeutralizeExplosive {
+                range,
+                analysis_bonus,
+                energy_cost,
+            } => TechniqueAction::NeutralizeExplosive {
+                range,
+                analysis_bonus,
+                energy_cost,
+            },
+            Self::RecoverNeutralizedExplosive { range } => {
+                TechniqueAction::RecoverNeutralizedExplosive { range }
+            }
+            Self::TriggerRemoteExplosive {
+                range,
+                energy_cost,
+                bandwidth_required,
+            } => TechniqueAction::TriggerRemoteExplosive {
+                range,
+                energy_cost,
+                bandwidth_required,
+            },
+            Self::ProgramExplosives {
+                range,
+                maximum_devices,
+                minimum_delay,
+                maximum_delay,
+                energy_cost,
+                bandwidth_required,
+            } => TechniqueAction::ProgramExplosives {
+                range,
+                maximum_devices,
+                minimum_delay,
+                maximum_delay,
+                energy_cost,
+                bandwidth_required,
+            },
+            Self::CautiousMove {
+                interception_evasion_modifier,
+            } => TechniqueAction::CautiousMove {
+                interception_evasion_modifier,
+            },
+            Self::PrepareAnchor {
+                displacement_resistance_bonus,
+            } => TechniqueAction::PrepareAnchor {
+                displacement_resistance_bonus,
+            },
+            Self::TraverseSingleObstacle {
+                maximum_distance,
+                energy_cost,
+            } => TechniqueAction::TraverseSingleObstacle {
+                maximum_distance,
+                energy_cost,
+            },
+            Self::ChargeAttack {
+                minimum_advance,
+                maximum_advance,
+                physical_damage_percentage,
+                energy_per_step,
+                recovery_time_units,
+            } => TechniqueAction::ChargeAttack {
+                minimum_advance,
+                maximum_advance,
+                physical_damage_percentage,
+                energy_per_step,
+                recovery_time_units,
+            },
+            Self::PrepareEvasiveStep {
+                trigger_energy_cost,
+            } => TechniqueAction::PrepareEvasiveStep {
+                trigger_energy_cost,
+            },
+            Self::PropelledMove {
+                distance,
+                energy_cost,
+                heat_generated,
+            } => TechniqueAction::PropelledMove {
+                distance,
+                energy_cost,
+                heat_generated,
+            },
+            Self::Breakthrough {
+                impact_modifier,
+                energy_cost,
+                recovery_time_units,
+            } => TechniqueAction::Breakthrough {
+                impact_modifier,
+                energy_cost,
+                recovery_time_units,
+            },
+            Self::ExtractAlly { energy_cost } => TechniqueAction::ExtractAlly { energy_cost },
+            Self::SilentMove {
+                noise_reduction,
+                minimum_time_units,
+            } => TechniqueAction::SilentMove {
+                noise_reduction,
+                minimum_time_units,
+            },
+            Self::ToggleEmissionSilence { channel } => TechniqueAction::ToggleEmissionSilence {
+                channel: channel.into_runtime(),
+            },
+            Self::ToggleLowProfile {
+                optical_difficulty_bonus,
+                minimum_movement_time_units,
+            } => TechniqueAction::ToggleLowProfile {
+                optical_difficulty_bonus,
+                minimum_movement_time_units,
+            },
+            Self::AmbushAttack {
+                accuracy_modifier,
+                physical_damage_percentage,
+            } => TechniqueAction::AmbushAttack {
+                accuracy_modifier,
+                physical_damage_percentage,
+            },
+            Self::DeploySoundDecoy {
+                range,
+                intensity,
+                duration_phases,
+                integrity,
+            } => TechniqueAction::DeploySoundDecoy {
+                range,
+                intensity,
+                duration_phases,
+                integrity,
+            },
+            Self::BreakTrail {
+                energy_cost,
+                maximum_steps,
+                maximum_duration,
+            } => TechniqueAction::BreakTrail {
+                energy_cost,
+                maximum_steps,
+                maximum_duration,
+            },
+            Self::CamouflageExplosive {
+                range,
+                optical_difficulty_bonus,
+            } => TechniqueAction::CamouflageExplosive {
+                range,
+                optical_difficulty_bonus,
+            },
+            Self::ToggleActiveCamouflage {
+                channel,
+                optical_difficulty_bonus,
+                maximum_duration,
+                activation_energy,
+                upkeep_energy,
+                heat_per_phase,
+            } => TechniqueAction::ToggleActiveCamouflage {
+                channel: channel.into_runtime(),
+                optical_difficulty_bonus,
+                maximum_duration,
+                activation_energy,
+                upkeep_energy,
+                heat_per_phase,
+            },
+            Self::ManifestDrone {
+                integrity,
+                energy_capacity,
+                starting_energy,
+                link_range,
+                link_power,
+                link_difficulty,
+                link_attenuation_per_cell,
+                link_wall_attenuation_multiplier,
+                sensor_radius,
+                bandwidth_required,
+                movement_energy_cost,
+                manipulator_capacity_grams,
+                decoy_intensity,
+                attack_range,
+                attack_damage,
+            } => TechniqueAction::ManifestDrone {
+                integrity,
+                energy_capacity,
+                starting_energy,
+                link_range,
+                link_power,
+                link_difficulty,
+                link_attenuation_per_cell,
+                link_wall_attenuation_multiplier,
+                sensor_radius,
+                bandwidth_required,
+                movement_energy_cost,
+                manipulator_capacity_grams,
+                decoy_intensity,
+                attack_range,
+                attack_damage,
+            },
+            Self::DroneEscort {
+                link_range,
+                minimum_distance,
+                maximum_distance,
+                energy_cost,
+            } => TechniqueAction::DroneEscort {
+                link_range,
+                minimum_distance,
+                maximum_distance,
+                energy_cost,
+            },
+            Self::DronePatrol {
+                link_range,
+                maximum_waypoints,
+                energy_cost,
+            } => TechniqueAction::DronePatrol {
+                link_range,
+                maximum_waypoints,
+                energy_cost,
+            },
+            Self::DroneMobileDecoy {
+                link_range,
+                controller_energy_cost,
+                drone_energy_per_phase,
+                intensity,
+                maximum_duration,
+            } => TechniqueAction::DroneMobileDecoy {
+                link_range,
+                controller_energy_cost,
+                drone_energy_per_phase,
+                intensity,
+                maximum_duration,
+            },
+            Self::DroneCollect {
+                link_range,
+                energy_cost,
+            } => TechniqueAction::DroneCollect {
+                link_range,
+                energy_cost,
+            },
+            Self::DroneCoordinateFire {
+                link_range,
+                maximum_drones,
+                energy_cost,
+                transmission_bandwidth,
+            } => TechniqueAction::DroneCoordinateFire {
+                link_range,
+                maximum_drones,
+                energy_cost,
+                transmission_bandwidth,
+            },
+            Self::DroneInterpose {
+                link_range,
+                controller_energy_cost,
+                drone_trigger_energy_cost,
+            } => TechniqueAction::DroneInterpose {
+                link_range,
+                controller_energy_cost,
+                drone_trigger_energy_cost,
+            },
+            Self::DroneConditionalRoutine {
+                link_range,
+                energy_cost,
+                additional_bandwidth,
+            } => TechniqueAction::DroneConditionalRoutine {
+                link_range,
+                energy_cost,
+                additional_bandwidth,
+            },
+            Self::DroneCoordinatedDeployment {
+                link_range,
+                maximum_drones,
+                energy_cost,
+                transmission_bandwidth,
+            } => TechniqueAction::DroneCoordinatedDeployment {
+                link_range,
+                maximum_drones,
+                energy_cost,
+                transmission_bandwidth,
+            },
+            Self::DroneEmergencyReturn {
+                link_range,
+                maximum_drones,
+                energy_cost,
+                transmission_bandwidth,
+                duration_phases,
+            } => TechniqueAction::DroneEmergencyReturn {
+                link_range,
+                maximum_drones,
+                energy_cost,
+                transmission_bandwidth,
+                duration_phases,
+            },
+            Self::ProbeInterface {
+                range,
+                analysis_bonus,
+                energy_cost,
+                audit_delay,
+            } => TechniqueAction::ProbeInterface {
+                range,
+                analysis_bonus,
+                energy_cost,
+                audit_delay,
+            },
+            Self::ForceElectronicLock {
+                range,
+                energy_cost,
+                bandwidth_required,
+                failure_hardening_duration,
+                audit_delay,
+            } => TechniqueAction::ForceElectronicLock {
+                range,
+                energy_cost,
+                bandwidth_required,
+                failure_hardening_duration,
+                audit_delay,
+            },
+            Self::ExtractData { range, energy_cost } => {
+                TechniqueAction::ExtractData { range, energy_cost }
+            }
+            Self::SpoofAuthorization {
+                range,
+                energy_cost,
+                duration_time_units,
+            } => TechniqueAction::SpoofAuthorization {
+                range,
+                energy_cost,
+                duration_time_units,
+            },
+            Self::DivertDevice {
+                range,
+                energy_cost,
+                additional_bandwidth,
+                duration_time_units,
+            } => TechniqueAction::DivertDevice {
+                range,
+                energy_cost,
+                additional_bandwidth,
+                duration_time_units,
+            },
+            Self::SuspendDigitalRoutine {
+                range,
+                energy_cost,
+                duration_time_units,
+                repeat_protection_time_units,
+            } => TechniqueAction::SuspendDigitalRoutine {
+                range,
+                energy_cost,
+                duration_time_units,
+                repeat_protection_time_units,
+            },
+            Self::MaintainBackdoor {
+                range,
+                installation_energy_cost,
+                reconnection_energy_cost,
+                maximum_backdoors,
+                session_duration_time_units,
+            } => TechniqueAction::MaintainBackdoor {
+                range,
+                installation_energy_cost,
+                reconnection_energy_cost,
+                maximum_backdoors,
+                session_duration_time_units,
+            },
+            Self::FalsifySecurityTrace { range, energy_cost } => {
+                TechniqueAction::FalsifySecurityTrace { range, energy_cost }
+            }
+            Self::DivertSubnet {
+                range,
+                maximum_devices,
+                energy_cost,
+                bandwidth_per_device,
+                duration_time_units,
+            } => TechniqueAction::DivertSubnet {
+                range,
+                maximum_devices,
+                energy_cost,
+                bandwidth_per_device,
+                duration_time_units,
+            },
+            Self::LockDeviceControl {
+                range,
+                energy_cost,
+                additional_bandwidth,
+                duration_time_units,
+            } => TechniqueAction::LockDeviceControl {
+                range,
+                energy_cost,
+                additional_bandwidth,
+                duration_time_units,
+            },
+            Self::ElectronicPulse {
+                radius,
+                damage,
+                energy_cost,
+                heat_generated,
+                disruption_intensity,
+                directional,
+                filter_identified_allies,
+                bandwidth_required,
+            } => TechniqueAction::ElectronicPulse {
+                radius,
+                damage,
+                energy_cost,
+                heat_generated,
+                disruption_intensity,
+                directional,
+                filter_identified_allies,
+                bandwidth_required,
+            },
+            Self::ImplantOverheat {
+                range,
+                energy_cost,
+                heat_generated,
+                bandwidth_required,
+                heat_per_tick,
+                dissipation_penalty,
+                duration_time_units,
+                audit_delay,
+            } => TechniqueAction::ImplantOverheat {
+                range,
+                energy_cost,
+                heat_generated,
+                bandwidth_required,
+                heat_per_tick,
+                dissipation_penalty,
+                duration_time_units,
+                audit_delay,
+            },
+            Self::MaintainJamming {
+                radius,
+                penalty,
+                activation_energy,
+                energy_per_phase,
+                heat_per_phase,
+                bandwidth_required,
+                maximum_duration,
+            } => TechniqueAction::MaintainJamming {
+                radius,
+                penalty,
+                activation_energy,
+                energy_per_phase,
+                heat_per_phase,
+                bandwidth_required,
+                maximum_duration,
+            },
+            Self::PurgeHostileProgram {
+                range,
+                energy_cost,
+                intrusion_bonus,
+            } => TechniqueAction::PurgeHostileProgram {
+                range,
+                energy_cost,
+                intrusion_bonus,
+            },
+            Self::ElectronicCascade {
+                range,
+                jump_range,
+                maximum_targets,
+                damage_by_target,
+                energy_cost,
+                heat_generated,
+            } => TechniqueAction::ElectronicCascade {
+                range,
+                jump_range,
+                maximum_targets,
+                damage_by_target,
+                energy_cost,
+                heat_generated,
+            },
+            Self::ImplantInfection {
+                range,
+                propagation_range,
+                energy_cost,
+                heat_generated,
+                bandwidth_required,
+                thermal_damage_per_tick,
+                ticks_per_host,
+                maximum_hosts,
+                transmissions_per_host,
+                campaign_duration,
+                audit_delay,
+            } => TechniqueAction::ImplantInfection {
+                range,
+                propagation_range,
+                energy_cost,
+                heat_generated,
+                bandwidth_required,
+                thermal_damage_per_tick,
+                ticks_per_host,
+                maximum_hosts,
+                transmissions_per_host,
+                campaign_duration,
+                audit_delay,
+            },
+            Self::DeploySaturationBeacon {
+                radius,
+                damage,
+                duration_time_units,
+                integrity,
+                battery_energy,
+                energy_per_phase,
+                manual_activation,
+                activation_energy,
+                activation_bandwidth,
+                activation_link_range,
+            } => TechniqueAction::DeploySaturationBeacon {
+                radius,
+                damage,
+                duration_time_units,
+                integrity,
+                battery_energy,
+                energy_per_phase,
+                manual_activation,
+                activation_energy,
+                activation_bandwidth,
+                activation_link_range,
+            },
+            Self::ImplantImplosion {
+                range,
+                energy_cost,
+                heat_generated,
+                bandwidth_required,
+                minimum_stored_energy,
+                reserved_energy,
+                delay_time_units,
+                radius,
+                physical_damage,
+                thermal_damage,
+                audit_delay,
+            } => TechniqueAction::ImplantImplosion {
+                range,
+                energy_cost,
+                heat_generated,
+                bandwidth_required,
+                minimum_stored_energy,
+                reserved_energy,
+                delay_time_units,
+                radius,
+                physical_damage,
+                thermal_damage,
+                audit_delay,
+            },
+        })
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(rename_all = "snake_case")]
+enum RawSignatureChannel {
+    Optical,
+    Acoustic,
+    ActiveEmission,
+}
+
+impl RawSignatureChannel {
+    const fn into_runtime(self) -> SignatureChannel {
+        match self {
+            Self::Optical => SignatureChannel::Optical,
+            Self::Acoustic => SignatureChannel::Acoustic,
+            Self::ActiveEmission => SignatureChannel::ActiveEmission,
         }
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawExplosiveDeployment {
+    ThrownImpact {
+        range: u16,
+        #[serde(default)]
+        exact_placement_modifier: i16,
+    },
+    AdjacentTimed {
+        delay_turns: u16,
+        target: RawExplosivePlacementTarget,
+    },
+    AdjacentProximity {
+        arming_delay_turns: u16,
+        trigger_radius: u16,
+    },
+    AdjacentRemote {
+        maximum_link_range: u16,
+        target: RawExplosivePlacementTarget,
+    },
+}
+
+impl RawExplosiveDeployment {
+    fn into_runtime(self) -> Result<ExplosiveDeployment, SkillDefinitionError> {
+        Ok(match self {
+            Self::ThrownImpact {
+                range,
+                exact_placement_modifier,
+            } => ExplosiveDeployment::ThrownImpact {
+                range,
+                exact_placement_modifier,
+            },
+            Self::AdjacentTimed {
+                delay_turns,
+                target,
+            } => ExplosiveDeployment::AdjacentTimed {
+                delay_turns,
+                target: target.into_runtime(),
+            },
+            Self::AdjacentProximity {
+                arming_delay_turns,
+                trigger_radius,
+            } => ExplosiveDeployment::AdjacentProximity {
+                arming_delay_turns,
+                trigger_radius,
+            },
+            Self::AdjacentRemote {
+                maximum_link_range,
+                target,
+            } => ExplosiveDeployment::AdjacentRemote {
+                maximum_link_range,
+                target: target.into_runtime(),
+            },
+        })
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawExplosivePlacementTarget {
+    KnownCell,
+    FreeCell,
+    DestructibleOccupant,
+    StructuralSupport { maximum_cells: u8 },
+}
+
+impl RawExplosivePlacementTarget {
+    const fn into_runtime(self) -> ExplosivePlacementTarget {
+        match self {
+            Self::KnownCell => ExplosivePlacementTarget::KnownCell,
+            Self::FreeCell => ExplosivePlacementTarget::FreeCell,
+            Self::DestructibleOccupant => ExplosivePlacementTarget::DestructibleOccupant,
+            Self::StructuralSupport { maximum_cells } => {
+                ExplosivePlacementTarget::StructuralSupport { maximum_cells }
+            }
+        }
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawSecondaryExplosivePayload {
+    delay_after_first: u16,
+    payload: RawExplosivePayload,
+}
+
+impl RawSecondaryExplosivePayload {
+    fn into_runtime(self) -> Result<SecondaryExplosivePayload, SkillDefinitionError> {
+        Ok(SecondaryExplosivePayload::new(
+            self.delay_after_first,
+            self.payload.into_runtime()?,
+        ))
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawExplosivePayload {
+    area: RawExplosiveArea,
+    damage: RawWeaponDamage,
+    center_damage: Option<RawWeaponDamage>,
+    #[serde(default)]
+    terrain_breach_cells: u8,
+}
+
+impl RawExplosivePayload {
+    fn into_runtime(self) -> Result<ExplosivePayloadProfile, SkillDefinitionError> {
+        let area = match self.area {
+            RawExplosiveArea::Radial {
+                radius,
+                falloff_per_step,
+            } => ExplosiveAreaProfile::Radial {
+                radius,
+                falloff_per_step,
+            },
+            RawExplosiveArea::Directional {
+                range,
+                narrow_length,
+                maximum_half_width,
+                widen_every,
+            } => ExplosiveAreaProfile::Directional {
+                range,
+                cone: ConeAttack::new(narrow_length, maximum_half_width, widen_every).map_err(
+                    |error| match error {
+                        crate::combat::ConeAttackError::ZeroMaximumHalfWidth => {
+                            SkillDefinitionError::ZeroMaximumTargets
+                        }
+                        crate::combat::ConeAttackError::ZeroWidenEvery => {
+                            SkillDefinitionError::ZeroActionRange
+                        }
+                    },
+                )?,
+            },
+        };
+        let mut profile = ExplosivePayloadProfile::new(area, self.damage.into_runtime())
+            .with_terrain_breach_cells(self.terrain_breach_cells);
+        if let Some(damage) = self.center_damage {
+            profile = profile.with_center_damage(damage.into_runtime());
+        }
+        Ok(profile)
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawExplosiveArea {
+    Radial {
+        radius: u16,
+        #[serde(default)]
+        falloff_per_step: u16,
+    },
+    Directional {
+        range: u16,
+        narrow_length: u16,
+        maximum_half_width: u16,
+        widen_every: u16,
+    },
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawMeleeArc {
+    maximum_cells: u8,
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawForcedMovement {
+    distance: u8,
+    #[serde(default)]
+    impact_modifier: i16,
+}
+
+impl RawForcedMovement {
+    const fn into_runtime(self) -> ForcedMovement {
+        ForcedMovement::new(self.distance, self.impact_modifier)
     }
 }
 
@@ -1683,6 +4976,22 @@ impl RawTechniqueKind {
 
 #[derive(Debug)]
 pub enum ContentLoadError {
+    CharacterClassDefinition {
+        package: PackageId,
+        path: PathBuf,
+        content: Box<ContentId>,
+        error: Box<CharacterClassDefinitionError>,
+    },
+    CharacterClassCatalog {
+        package: PackageId,
+        path: PathBuf,
+        error: Box<CharacterClassCatalogError>,
+    },
+    RegionalWorldDefinition {
+        package: PackageId,
+        path: PathBuf,
+        error: Box<RegionalWorldError>,
+    },
     ExpeditionDefinition {
         package: PackageId,
         path: PathBuf,
@@ -1736,6 +5045,9 @@ pub enum ContentLoadError {
     StatusCatalog {
         package: PackageId,
         path: PathBuf,
+        error: Box<StatusCatalogError>,
+    },
+    StatusCatalogValidation {
         error: Box<StatusCatalogError>,
     },
     WeaponDefinition {
@@ -1802,6 +5114,26 @@ pub enum ContentLoadError {
 impl Display for ContentLoadError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::CharacterClassDefinition {
+                package,
+                path,
+                content,
+                error,
+            } => write!(
+                formatter,
+                "[{package}]\n{}\n{content}\ninvalid character class definition: {error}",
+                path.display()
+            ),
+            Self::CharacterClassCatalog {
+                package,
+                path,
+                error,
+            } => write!(formatter, "[{package}]\n{}\n{error}", path.display()),
+            Self::RegionalWorldDefinition {
+                package,
+                path,
+                error,
+            } => write!(formatter, "[{package}]\n{}\n{error}", path.display()),
             Self::ExpeditionDefinition {
                 package,
                 path,
@@ -1881,6 +5213,9 @@ impl Display for ContentLoadError {
                 path,
                 error,
             } => write!(formatter, "[{package}]\n{}\n{error}", path.display()),
+            Self::StatusCatalogValidation { error } => {
+                write!(formatter, "invalid status catalog: {error}")
+            }
             Self::WeaponDefinition {
                 package,
                 path,
@@ -1980,6 +5315,237 @@ mod tests {
     use crate::content::{ContentId, ExpeditionId};
 
     #[test]
+    fn weapon_content_can_override_delivery_and_accuracy_without_a_code_branch() {
+        let raw: RawWeaponAttack = json5::from_str(
+            r#"{
+                range: 1,
+                distance_metric: "chebyshev",
+                requires_line_of_sight: true,
+                delivery: "ranged",
+                accuracy_modifier: -7,
+                damage: { amount: 2, damage_type: "piercing" },
+            }"#,
+        )
+        .unwrap();
+
+        let attack = raw.into_runtime().unwrap();
+
+        assert_eq!(attack.delivery(), AttackDelivery::Ranged);
+        assert_eq!(attack.accuracy_modifier(), -7);
+    }
+
+    #[test]
+    fn item_and_weapon_content_can_declare_positive_unit_mass() {
+        let raw_weapon: RawWeaponDefinition = json5::from_str(
+            r#"{
+                id: "core:weighted_blade",
+                name_key: "weapon.weighted_blade.name",
+                description_key: "weapon.weighted_blade.description",
+                mass_grams: 3500,
+                attack: {
+                    range: 1,
+                    distance_metric: "chebyshev",
+                    requires_line_of_sight: false,
+                    damage: { amount: 3, damage_type: "kinetic" },
+                },
+            }"#,
+        )
+        .unwrap();
+        let weapon = raw_weapon
+            .into_runtime(
+                "core:weighted_blade".parse().unwrap(),
+                &StatusCatalog::default(),
+            )
+            .unwrap();
+        assert_eq!(weapon.mass_grams(), Some(3_500));
+
+        let raw_item: RawItemDefinition = json5::from_str(
+            r#"{
+                id: "core:weighted_part",
+                name_key: "item.weighted_part.name",
+                description_key: "item.weighted_part.description",
+                maximum_stack: 4,
+                kind: "material",
+                mass_grams: 1250,
+            }"#,
+        )
+        .unwrap();
+        let item = raw_item
+            .into_runtime("core:weighted_part".parse().unwrap(), None)
+            .unwrap();
+        assert_eq!(item.mass_grams(), Some(1_250));
+
+        let invalid: RawItemDefinition = json5::from_str(
+            r#"{
+                id: "core:massless_part",
+                name_key: "item.massless_part.name",
+                description_key: "item.massless_part.description",
+                maximum_stack: 1,
+                kind: "material",
+                mass_grams: 0,
+            }"#,
+        )
+        .unwrap();
+        assert_eq!(
+            invalid.into_runtime("core:massless_part".parse().unwrap(), None),
+            Err(ItemDefinitionError::ZeroMass)
+        );
+    }
+
+    #[test]
+    fn weapon_content_supports_typed_mixed_damage_without_legacy_ambiguity() {
+        let raw: RawWeaponAttack = json5::from_str(
+            r#"{
+                range: 5,
+                distance_metric: "euclidean",
+                requires_line_of_sight: true,
+                damage: {
+                    components: [
+                        { amount: 6, damage_type: "kinetic" },
+                        { amount: 4, damage_type: "piercing" },
+                        { amount: 8, damage_type: "electrical" },
+                    ],
+                    armor_penetration: 2,
+                    resistance_penetrations: [
+                        { damage_type: "electrical", percentage_points: 10 },
+                    ],
+                },
+            }"#,
+        )
+        .unwrap();
+
+        let damage = raw.into_runtime().unwrap().damage();
+
+        assert_eq!(damage.raw_total(), 18);
+        assert_eq!(damage.raw_amount(DamageType::Kinetic), 6);
+        assert_eq!(damage.raw_amount(DamageType::Piercing), 4);
+        assert_eq!(damage.raw_amount(DamageType::Electrical), 8);
+        assert_eq!(damage.armor_penetration(), 2);
+        assert_eq!(damage.resistance_penetration(DamageType::Electrical), 10);
+        assert!(!damage.is_legacy_single());
+    }
+
+    #[test]
+    fn weapon_content_rejects_ungrouped_mixed_components() {
+        let raw: RawWeaponAttack = json5::from_str(
+            r#"{
+                range: 5,
+                distance_metric: "euclidean",
+                requires_line_of_sight: true,
+                damage: {
+                    components: [
+                        { amount: 3, damage_type: "kinetic" },
+                        { amount: 2, damage_type: "kinetic" },
+                    ],
+                },
+            }"#,
+        )
+        .unwrap();
+
+        assert!(matches!(
+            raw.into_runtime(),
+            Err(WeaponDefinitionError::InvalidDamage(
+                crate::combat::DamageImpactError::DuplicateComponent(DamageType::Kinetic)
+            ))
+        ));
+    }
+
+    #[test]
+    fn weapon_content_declares_positive_recovery_without_code_ids() {
+        let raw: RawWeaponAttack = json5::from_str(
+            r#"{
+                range: 1,
+                distance_metric: "chebyshev",
+                requires_line_of_sight: false,
+                damage: { amount: 3, damage_type: "kinetic" },
+                recovery_time_units: 1,
+            }"#,
+        )
+        .unwrap();
+        assert_eq!(
+            raw.into_runtime().unwrap().recovery_after_attack(),
+            Some(TimeUnits::ONE)
+        );
+
+        let invalid: RawWeaponAttack = json5::from_str(
+            r#"{
+                range: 1,
+                distance_metric: "chebyshev",
+                requires_line_of_sight: false,
+                damage: { amount: 3, damage_type: "kinetic" },
+                recovery_time_units: 0,
+            }"#,
+        )
+        .unwrap();
+        assert_eq!(
+            invalid.into_runtime(),
+            Err(WeaponDefinitionError::InvalidRecovery(
+                crate::time::TimeUnitsError::Zero
+            ))
+        );
+    }
+
+    #[test]
+    fn weapon_effect_content_supports_explicit_triggers_and_legacy_defaults() {
+        let explicit: RawWeaponEffect = json5::from_str(
+            r#"{
+                type: "create_ground_effect",
+                id: "core:test_ground",
+                duration_turns: 2,
+                damage_each_turn: { amount: 1, damage_type: "thermal" },
+                trigger: "on_attack",
+            }"#,
+        )
+        .unwrap();
+        let legacy: RawWeaponEffect = json5::from_str(
+            r#"{
+                type: "create_ground_effect",
+                id: "core:test_ground",
+                duration_turns: 2,
+                damage_each_turn: { amount: 1, damage_type: "thermal" },
+            }"#,
+        )
+        .unwrap();
+
+        let explicit = explicit.into_runtime(&StatusCatalog::default()).unwrap();
+        let legacy = legacy.into_runtime(&StatusCatalog::default()).unwrap();
+
+        assert_eq!(explicit.trigger(), Some(WeaponEffectTrigger::OnAttack));
+        assert_eq!(legacy.trigger(), None);
+    }
+
+    #[test]
+    fn body_content_can_declare_armor_mass_and_anchoring_without_a_code_branch() {
+        let raw: RawBodyProfile = json5::from_str(
+            r#"{
+                base_hit_points: 12,
+                material_bonus: 3,
+                base_armor: 4,
+                mass_grams: 80000,
+                anchoring: 10,
+            }"#,
+        )
+        .unwrap();
+
+        let body = raw.into_runtime().unwrap();
+
+        assert_eq!(body.base_hit_points, 12);
+        assert_eq!(body.material_bonus, 3);
+        assert_eq!(body.base_armor, 4);
+        let displacement = body.displacement_profile().unwrap();
+        assert_eq!(displacement.mass_grams(), 80_000);
+        assert_eq!(displacement.anchoring(), 10);
+        assert_eq!(displacement.resistance(0), 18);
+
+        let invalid: RawBodyProfile =
+            json5::from_str(r#"{ base_hit_points: 12, anchoring: 2 }"#).unwrap();
+        assert_eq!(
+            invalid.into_runtime(),
+            Err(crate::stats::PhysicalRulesError::DisplacementPropertiesWithoutMass)
+        );
+    }
+
+    #[test]
     fn core_package_loads_external_catalogs() {
         let content_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
 
@@ -2003,6 +5569,30 @@ mod tests {
         let reconnaissance: crate::skills::DisciplineId = "core:reconnaissance"
             .parse()
             .unwrap_or_else(|error| panic!("valid discipline ID rejected: {error}"));
+        let melee: crate::skills::DisciplineId = "core:combat_rapproche"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid discipline ID rejected: {error}"));
+        let drone_control: crate::skills::DisciplineId = "core:controle_drones"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid discipline ID rejected: {error}"));
+        let engineering: crate::skills::DisciplineId = "core:ingenierie"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid discipline ID rejected: {error}"));
+        let intrusion: crate::skills::DisciplineId = "core:intrusion"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid discipline ID rejected: {error}"));
+        let electronic_warfare: crate::skills::DisciplineId = "core:guerre_electronique"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid discipline ID rejected: {error}"));
+        let parry: crate::skills::TechniqueId = "core:mel_04"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid technique ID rejected: {error}"));
+        let crushing: crate::skills::TechniqueId = "core:mel_09"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid technique ID rejected: {error}"));
+        let interception: crate::skills::TechniqueId = "core:mel_10"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid technique ID rejected: {error}"));
         let multiple_analysis: crate::skills::TechniqueId = "core:rec_09"
             .parse()
             .unwrap_or_else(|error| panic!("valid technique ID rejected: {error}"));
@@ -2012,6 +5602,12 @@ mod tests {
         let starter_expedition: ExpeditionId = "core:starter_expedition"
             .parse()
             .unwrap_or_else(|error| panic!("valid expedition ID rejected: {error}"));
+        let regional_world: ContentId = "core:simulation_overworld"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid regional world ID rejected: {error}"));
+        let breach: ContentId = "core:breche"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid class ID rejected: {error}"));
 
         assert_eq!(
             loaded
@@ -2022,7 +5618,28 @@ mod tests {
             vec!["core"]
         );
         assert!(loaded.statuses().contains(&corrosion));
-        assert!(loaded.weapons().get(&blade).is_some());
+        assert_eq!(loaded.character_classes().iter().count(), 3);
+        assert_eq!(
+            loaded
+                .character_classes()
+                .get(&breach)
+                .map(|definition| definition.recommended_attributes()),
+            Some(PrimaryAttributes::new(8, 5, 7, 4, 4))
+        );
+        assert_eq!(
+            loaded
+                .weapons()
+                .get(&blade)
+                .and_then(|weapon| weapon.attack().melee_impact())
+                .map(|impact| impact.material_cap),
+            Some(14)
+        );
+        assert!(
+            loaded
+                .weapons()
+                .get(&blade)
+                .is_some_and(|weapon| weapon.capabilities().can_melee_parry())
+        );
         let flame = loaded
             .weapons()
             .get(&flamethrower)
@@ -2035,14 +5652,17 @@ mod tests {
                     && cone.widen_every() == 3
         ));
         assert!(flame.effects().iter().any(|effect| matches!(
-            effect,
-            WeaponEffect::ApplyStatus(effect) if effect.status().as_str() == "core:burning"
+            effect.kind(),
+            crate::weapon::WeaponEffectKind::ApplyStatus(status)
+                if status.status().as_str() == "core:burning"
+                    && effect.trigger() == Some(WeaponEffectTrigger::OnHit)
         )));
         assert!(flame.effects().iter().any(|effect| matches!(
-            effect,
-            WeaponEffect::CreateGroundEffect(effect)
-                if effect.id().as_str() == "core:burning_ground"
-                    && effect.duration_turns() == 3
+            effect.kind(),
+            crate::weapon::WeaponEffectKind::CreateGroundEffect(ground)
+                if ground.id().as_str() == "core:burning_ground"
+                    && ground.duration_turns() == 3
+                    && effect.trigger() == Some(WeaponEffectTrigger::OnAttack)
         )));
         assert_eq!(
             loaded
@@ -2087,6 +5707,77 @@ mod tests {
             Some(ItemKind::Material)
         );
         assert!(loaded.skills().discipline(&reconnaissance).is_some());
+        assert!(loaded.skills().discipline(&melee).is_some());
+        assert!(loaded.skills().discipline(&drone_control).is_some());
+        assert!(loaded.skills().discipline(&engineering).is_some());
+        assert!(loaded.skills().discipline(&intrusion).is_some());
+        assert!(loaded.skills().discipline(&electronic_warfare).is_some());
+        assert_eq!(
+            loaded
+                .skills()
+                .techniques()
+                .filter(|(_, definition)| definition.discipline() == &melee)
+                .count(),
+            10
+        );
+        assert_eq!(
+            loaded
+                .skills()
+                .techniques()
+                .filter(|(_, definition)| definition.discipline() == &drone_control)
+                .count(),
+            10
+        );
+        assert_eq!(
+            loaded
+                .skills()
+                .techniques()
+                .filter(|(_, definition)| definition.discipline() == &engineering)
+                .count(),
+            10
+        );
+        assert_eq!(
+            loaded
+                .skills()
+                .techniques()
+                .filter(|(_, definition)| definition.discipline() == &intrusion)
+                .count(),
+            10
+        );
+        assert_eq!(
+            loaded
+                .skills()
+                .techniques()
+                .filter(|(_, definition)| definition.discipline() == &electronic_warfare)
+                .count(),
+            18
+        );
+        assert_eq!(
+            loaded
+                .skills()
+                .technique(&parry)
+                .and_then(TechniqueDefinition::action),
+            Some(TechniqueAction::PrepareMeleeParry {
+                physical_reduction_percentage: 50,
+                trigger_energy_cost: 2,
+            })
+        );
+        assert!(matches!(
+            loaded
+                .skills()
+                .technique(&crushing)
+                .and_then(TechniqueDefinition::engagement_requirement),
+            Some(TechniqueEngagementRequirement::TargetHasAnyStatusFamily(families))
+                if families.iter().map(ContentId::as_str).collect::<Vec<_>>()
+                    == ["core:immobilization", "core:locomotion_hindrance"]
+        ));
+        assert_eq!(
+            loaded
+                .skills()
+                .technique(&interception)
+                .and_then(TechniqueDefinition::action),
+            Some(TechniqueAction::PrepareMeleeInterception)
+        );
         assert_eq!(
             loaded.texts().resolve("fr", "technique.rec_01.name"),
             Some("Analyse de cible")
@@ -2154,11 +5845,95 @@ mod tests {
                 .map(ContentId::as_str),
             Some("core:industrial_floor")
         );
+        assert_eq!(expedition.destination.population.len(), 3);
+        assert_eq!(
+            expedition.destination.population[0].primary_attributes(),
+            Some(PrimaryAttributes::new(6, 6, 5, 6, 4))
+        );
+        assert_eq!(
+            expedition.destination.population[0]
+                .body_profile()
+                .map(|body| body.base_hit_points),
+            Some(9)
+        );
+        assert_eq!(
+            expedition.destination.population[0]
+                .body_profile()
+                .and_then(|body| body.displacement_profile())
+                .map(|profile| profile.mass_grams()),
+            Some(75_000)
+        );
+        assert_eq!(
+            expedition.destination.population[0]
+                .body_profile()
+                .and_then(|body| body.locomotion_profile())
+                .map(|profile| profile.hindrance_compatible()),
+            Some(true)
+        );
+        assert_eq!(
+            expedition.destination.population[0]
+                .attack()
+                .melee_impact()
+                .map(|impact| impact.material_cap),
+            Some(12)
+        );
+        assert_eq!(
+            expedition.destination.population[0]
+                .attack()
+                .preparation_disruption()
+                .map(|disruption| (disruption.family(), disruption.intensity())),
+            Some((crate::combat::PreparationDisruptionFamily::SystemShock, 55))
+        );
+        let expanded = expedition
+            .expanded_world
+            .as_ref()
+            .expect("starter expedition should expose its expanded layout");
+        assert_eq!(expanded.hub_passage, crate::world::GridPos::new(176, 108));
+        assert_eq!(expanded.destination_generator.width, 128);
+        assert_eq!(expanded.destination_generator.height, 88);
+        assert_eq!(expanded.destination_generator.room_count, 24);
+        assert_eq!(
+            expedition.destination.population[0].ai().behavior,
+            AiBehavior::Hunter
+        );
+        assert_eq!(
+            expedition.destination.population[0]
+                .ai()
+                .maximum_pursuit_distance(),
+            Some(14)
+        );
+        assert_eq!(
+            expedition.destination.population[1].ai().behavior,
+            AiBehavior::Sentry
+        );
+        assert_eq!(
+            expedition.destination.population[1]
+                .ai()
+                .maximum_pursuit_distance(),
+            None
+        );
+        assert_eq!(expedition.destination.population[0].count(), 1);
+        assert_eq!(
+            expedition.destination.population[0]
+                .defeat_reward()
+                .map(|reward| reward.base_experience),
+            Some(8)
+        );
         let facility = expedition
             .hub_facility
             .as_ref()
             .expect("core hub facility was not loaded");
-        assert_eq!(facility.blueprint.installations.len(), 4);
+        assert_eq!(facility.blueprint.installations.len(), 5);
+        assert!(facility.blueprint.installations.iter().any(|installation| {
+            installation.id.as_str() == "core:starter_city_archive_terminal"
+                && installation.capabilities.iter().any(|capability| {
+                    matches!(
+                        capability,
+                        InstallationCapability::DataTerminal { record }
+                            if record.as_str() == "core:starter_city_archive_record"
+                    )
+                })
+        }));
         assert_eq!(
             facility
                 .blueprint
@@ -2210,6 +5985,418 @@ mod tests {
             facility.materials[0].owner.as_ref().map(ContentId::as_str),
             Some("core:maintenance_collective")
         );
+        let regional_world = loaded
+            .regional_worlds()
+            .get(&regional_world)
+            .expect("core regional world was not loaded");
+        assert_eq!(
+            regional_world.bounds().addressable_region_count(),
+            8_388_608
+        );
+        assert_eq!(regional_world.province_size(), 4);
+        assert_eq!(regional_world.biomes().len(), 8);
+        assert!(
+            regional_world
+                .biomes()
+                .iter()
+                .filter(|biome| biome.maximum_depth() == Some(0))
+                .all(|biome| {
+                    !biome.population().is_empty()
+                        && !biome.encounters().is_empty()
+                        && biome.encounters().minimum_group_rolls() >= 3
+                })
+        );
+        assert!(
+            regional_world
+                .biomes()
+                .iter()
+                .filter(|biome| biome.maximum_depth() == Some(0))
+                .all(|biome| {
+                    biome.loot().is_some()
+                        && !biome.landmarks().is_empty()
+                        && !biome.sites().is_empty()
+                        && biome.site_terminals().is_some()
+                        && biome.threats().is_some()
+                        && biome.population().rules().iter().all(|rule| {
+                            rule.ai().pursuit_lifecycle().is_some()
+                                && rule.primary_attributes().is_some()
+                        })
+                        && biome
+                            .threats()
+                            .is_some_and(|threats| threats.primary_attributes().is_some())
+                })
+        );
+        assert!(matches!(
+            regional_world
+                .region(42, crate::content::RegionCoord::new(0, 0, 0))
+                .unwrap()
+                .biome
+                .as_str(),
+            "core:human_habitat" | "core:surface_wilds"
+        ));
+        assert!(
+            regional_world
+                .biomes()
+                .iter()
+                .filter(|biome| biome.minimum_depth() == 1)
+                .all(|biome| biome.destructibles().is_some_and(|profile| {
+                    profile
+                        .destruction_effect()
+                        .ground_effect()
+                        .is_some_and(|effect| {
+                            effect.id().as_str() == "core:burning_ground"
+                                && effect.duration_turns() == 3
+                        })
+                }))
+        );
+    }
+
+    #[test]
+    fn technique_content_can_prepare_a_bounded_melee_parry() {
+        let raw: RawTechniqueAction = json5::from_str(
+            r#"{
+                type: "prepare_melee_parry",
+                physical_reduction_percentage: 50,
+            }"#,
+        )
+        .unwrap();
+
+        assert_eq!(
+            raw.into_runtime(),
+            Ok(TechniqueAction::PrepareMeleeParry {
+                physical_reduction_percentage: 50,
+                trigger_energy_cost: 0,
+            })
+        );
+    }
+
+    #[test]
+    fn status_content_can_declare_non_refreshing_armor_fragilization() {
+        let raw: RawStatusDefinition = json5::from_str(
+            r#"{
+                id: "test.mod:armor_fracture",
+                duration_turns: 3,
+                stacking: { mode: "keep_existing" },
+                modifiers: [
+                    { type: "armor_fragilization", amount: 4 },
+                ],
+            }"#,
+        )
+        .unwrap();
+        let status = raw
+            .into_runtime(
+                "test.mod:armor_fracture".parse().unwrap(),
+                None,
+                Vec::new(),
+                None,
+            )
+            .unwrap();
+
+        assert_eq!(status.duration_turns(), Some(3));
+        assert_eq!(status.stacking(), StatusStacking::KeepExisting);
+        assert_eq!(
+            status.modifiers(),
+            [StatusModifier::ArmorFragilization { amount: 4 }]
+        );
+    }
+
+    #[test]
+    fn technique_content_can_apply_a_status_only_to_an_armored_hit_target() {
+        let raw: RawTechniqueDefinition = json5::from_str(
+            r#"{
+                id: "test.mod:armor_break",
+                discipline: "test.mod:melee",
+                name_key: "technique.armor_break.name",
+                description_key: "technique.armor_break.description",
+                minimum_level: 1,
+                kind: "action",
+                prerequisite: null,
+                action: {
+                    type: "weapon_attack",
+                    required_delivery: "melee",
+                    physical_damage_percentage: 60,
+                    energy_cost: 3,
+                },
+                on_hit_effect: {
+                    type: "apply_status",
+                    status: "test.mod:armor_fracture",
+                    target_requirement: "has_armor",
+                },
+            }"#,
+        )
+        .unwrap();
+        let effect = raw
+            .on_hit_effect
+            .unwrap()
+            .into_runtime("test.mod:armor_fracture".parse().unwrap())
+            .unwrap();
+
+        assert_eq!(
+            effect.target_requirement(),
+            TechniqueTargetRequirement::HasArmor
+        );
+        assert_eq!(
+            effect.application().status().as_str(),
+            "test.mod:armor_fracture"
+        );
+        assert_eq!(effect.application().stacks(), 1);
+    }
+
+    #[test]
+    fn content_can_declare_stability_resisted_locomotion_hindrance_and_cooldown() {
+        let raw_status: RawStatusDefinition = json5::from_str(
+            r#"{
+                id: "test.mod:hindered",
+                duration_turns: 2,
+                stacking: { mode: "keep_existing" },
+                family: "test.mod:locomotion_hindrance",
+                expiration_transition: {
+                    status: "test.mod:hindrance_protection",
+                    stacks: 1,
+                },
+                modifiers: [
+                    { type: "movement_time_minimum", time_units: 2 },
+                ],
+            }"#,
+        )
+        .unwrap();
+        let transition = StatusTransition::new(
+            raw_status
+                .expiration_transition
+                .as_ref()
+                .unwrap()
+                .status
+                .parse()
+                .unwrap(),
+            1,
+        )
+        .unwrap();
+        let status = raw_status
+            .into_runtime(
+                "test.mod:hindered".parse().unwrap(),
+                Some("test.mod:locomotion_hindrance".parse().unwrap()),
+                Vec::new(),
+                Some(transition),
+            )
+            .unwrap();
+        assert_eq!(
+            status.modifiers(),
+            [StatusModifier::MovementTimeMinimum { time_units: 2 }]
+        );
+
+        let raw: RawTechniqueDefinition = json5::from_str(
+            r#"{
+                id: "test.mod:hindrance",
+                discipline: "test.mod:melee",
+                name_key: "technique.hindrance.name",
+                description_key: "technique.hindrance.description",
+                minimum_level: 4,
+                kind: "action",
+                prerequisite: null,
+                cooldown_turns: 2,
+                action: {
+                    type: "weapon_attack",
+                    required_delivery: "melee",
+                    physical_damage_percentage: 50,
+                    energy_cost: 3,
+                },
+                on_hit_effect: {
+                    type: "apply_status",
+                    status: "test.mod:hindered",
+                    target_requirement: "has_compatible_locomotion",
+                    resistance: { type: "stability", intensity: 60 },
+                },
+            }"#,
+        )
+        .unwrap();
+        assert_eq!(raw.cooldown_turns, Some(2));
+        let effect = raw
+            .on_hit_effect
+            .unwrap()
+            .into_runtime("test.mod:hindered".parse().unwrap())
+            .unwrap();
+        assert_eq!(
+            effect.target_requirement(),
+            TechniqueTargetRequirement::HasCompatibleLocomotion
+        );
+        assert_eq!(
+            effect.resistance(),
+            Some(crate::skills::TechniqueEffectResistance::Stability { intensity: 60 })
+        );
+    }
+
+    #[test]
+    fn technique_content_can_declare_a_passive_melee_counterattack() {
+        let raw: RawTechniqueDefinition = json5::from_str(
+            r#"{
+                id: "test.mod:riposte",
+                discipline: "test.mod:melee",
+                name_key: "technique.riposte.name",
+                description_key: "technique.riposte.description",
+                minimum_level: 2,
+                kind: "improvement",
+                prerequisite: "test.mod:parry",
+                improvement: { type: "melee_counterattack" },
+            }"#,
+        )
+        .unwrap();
+
+        assert_eq!(
+            raw.improvement.map(RawTechniqueImprovement::into_runtime),
+            Some(TechniqueImprovement::MeleeCounterattack)
+        );
+        assert!(raw.action.is_none());
+    }
+
+    #[test]
+    fn technique_content_can_modify_a_selected_weapon_attack() {
+        let raw: RawTechniqueAction = json5::from_str(
+            r#"{
+                type: "weapon_attack",
+                required_delivery: "melee",
+                physical_damage_percentage: 150,
+                accuracy_modifier: 20,
+                recovery_time_units: 1,
+            }"#,
+        )
+        .unwrap();
+
+        assert_eq!(
+            raw.into_runtime(),
+            Ok(TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: Some(150),
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 20,
+                energy_cost: 0,
+                recovery_time_units: Some(1),
+                forced_movement: None,
+                melee_arc: None,
+            })
+        );
+
+        let accuracy_only: RawTechniqueAction = json5::from_str(
+            r#"{
+                type: "weapon_attack",
+                required_delivery: "melee",
+                accuracy_modifier: 20,
+            }"#,
+        )
+        .unwrap();
+        assert_eq!(
+            accuracy_only.into_runtime(),
+            Ok(TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: None,
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 20,
+                energy_cost: 0,
+                recovery_time_units: None,
+                forced_movement: None,
+                melee_arc: None,
+            })
+        );
+
+        let push: RawTechniqueAction = json5::from_str(
+            r#"{
+                type: "weapon_attack",
+                required_delivery: "melee",
+                physical_damage_percentage: 50,
+                forced_movement: { distance: 1, impact_modifier: 0 },
+            }"#,
+        )
+        .unwrap();
+        assert_eq!(
+            push.into_runtime(),
+            Ok(TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: Some(50),
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 0,
+                energy_cost: 0,
+                recovery_time_units: None,
+                forced_movement: Some(ForcedMovement::new(1, 0)),
+                melee_arc: None,
+            })
+        );
+
+        let sweep: RawTechniqueAction = json5::from_str(
+            r#"{
+                type: "weapon_attack",
+                required_delivery: "melee",
+                physical_damage_percentage: 70,
+                energy_cost: 4,
+                recovery_time_units: 1,
+                melee_arc: { maximum_cells: 3 },
+            }"#,
+        )
+        .unwrap();
+        assert_eq!(
+            sweep.into_runtime(),
+            Ok(TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: Some(70),
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 0,
+                energy_cost: 4,
+                recovery_time_units: Some(1),
+                forced_movement: None,
+                melee_arc: Some(MeleeArc::new(3).unwrap()),
+            })
+        );
+    }
+
+    #[test]
+    fn technique_content_can_declare_multi_ut_preparation() {
+        let raw: RawTechniqueDefinition = json5::from_str(
+            r#"{
+                id: "test.mod:slow_scan",
+                discipline: "test.mod:scanning",
+                name_key: "technique.slow_scan.name",
+                description_key: "technique.slow_scan.description",
+                minimum_level: 1,
+                kind: "action",
+                prerequisite: null,
+                action: { type: "read_movement_traces", radius: 3 },
+                action_kind: "offensive",
+                preparation_time_units: 2,
+            }"#,
+        )
+        .unwrap();
+
+        assert_eq!(raw.preparation_time_units, Some(2));
+        assert!(matches!(raw.action_kind, Some(RawActionKind::Offensive)));
+        assert!(matches!(
+            raw.action,
+            Some(RawTechniqueAction::ReadMovementTraces { radius: 3 })
+        ));
+    }
+
+    #[test]
+    fn technique_content_can_declare_level_and_attribute_requirements() {
+        let raw: RawTechniqueDefinition = json5::from_str(
+            r#"{
+                id: "test.mod:advanced_scan",
+                discipline: "test.mod:scanning",
+                name_key: "technique.advanced_scan.name",
+                description_key: "technique.advanced_scan.description",
+                minimum_level: 4,
+                minimum_attributes: { perception: 7, processing: 6 },
+                kind: "action",
+                prerequisite: null,
+                action: { type: "read_movement_traces", radius: 5 },
+            }"#,
+        )
+        .unwrap();
+
+        assert_eq!(raw.minimum_level, 4);
+        assert_eq!(
+            raw.minimum_attributes.into_runtime().unwrap(),
+            vec![
+                TechniqueAttributeRequirement::new(PrimaryAttribute::Perception, 7).unwrap(),
+                TechniqueAttributeRequirement::new(PrimaryAttribute::Processing, 6).unwrap(),
+            ]
+        );
     }
 
     #[test]
@@ -2237,7 +6424,7 @@ mod tests {
             loaded
                 .weapons()
                 .get(&arc_lance)
-                .map(|weapon| weapon.attack().damage().damage_type),
+                .map(|weapon| weapon.attack().damage().primary_damage_type()),
             Some(DamageType::Electrical)
         );
         assert!(loaded.visual_cues().get(&arc_lance).is_some());
@@ -2270,6 +6457,26 @@ mod tests {
                 .as_ref()
                 .map(ContentId::as_str),
             Some("example.arc_arsenal:industrial_floor")
+        );
+        assert_eq!(expedition.destination.population.len(), 1);
+        assert_eq!(expedition.destination.population[0].count(), 2);
+        assert_eq!(
+            expedition.destination.population[0].ai().behavior,
+            AiBehavior::Skirmisher
+        );
+        let arc_world = loaded
+            .regional_worlds()
+            .get(&"example.arc_arsenal:arc_frontier".parse().unwrap())
+            .expect("mod regional world was not loaded");
+        assert_eq!(arc_world.bounds().addressable_region_count(), 3_267);
+        assert_eq!(arc_world.province_size(), 3);
+        assert_eq!(
+            arc_world
+                .biome(&"example.arc_arsenal:charged_wastes".parse().unwrap())
+                .unwrap()
+                .population()
+                .maximum_group_rolls(),
+            2
         );
     }
 
@@ -2325,6 +6532,104 @@ incompatible = []
                 ..
             } if package.as_str() == "test.visuals" && error_path == path
         ));
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn regional_world_loader_rejects_invalid_or_incomplete_atlases() {
+        let root = std::env::temp_dir().join(format!(
+            "project-rl-regional-world-{}-{}",
+            std::process::id(),
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .unwrap()
+                .as_nanos()
+        ));
+        let package_root = root.join("test.regions");
+        fs::create_dir_all(package_root.join("regional_worlds")).unwrap();
+        fs::write(
+            package_root.join("manifest.toml"),
+            r#"id = "test.regions"
+name = "Regional world test"
+version = "0.1.0"
+author = "test"
+game_version = ">=0.1.0, <0.2.0"
+dependencies = ["core >=0.1.0, <0.2.0"]
+optional_dependencies = []
+incompatible = []
+"#,
+        )
+        .unwrap();
+        let path = package_root.join("regional_worlds/test.json5");
+        let roots = [
+            PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content"),
+            root.clone(),
+        ];
+        let valid = r#"{
+            id:'test.regions:world',
+            bounds:{minimum_x:-4,maximum_x:4,minimum_y:-4,maximum_y:4,maximum_depth:2},
+            province_size:2,
+            local_map:{width:48,height:32},
+            vertical_links:[{upper:[-1,0,0],lower:[-1,0,1]}],
+            biomes:[
+                {
+                    id:'test.regions:surface',weight:2,maximum_depth:0,
+                    terrain:{ground:'grass',patch_count:2,minimum_patch_radius:1,
+                        maximum_patch_radius:3,features:[{kind:'tree',weight:1}]}
+                },
+                {
+                    id:'test.regions:depths',weight:1,minimum_depth:1,maximum_depth:2,
+                    terrain:{ground:'gravel',patch_count:2,minimum_patch_radius:1,
+                        maximum_patch_radius:3,features:[{kind:'boulder',weight:1}]}
+                }
+            ]
+        }"#;
+        for (source, expected) in [
+            (
+                valid.replace("province_size:2", "province_size:0"),
+                "positive",
+            ),
+            (
+                valid.replace(
+                    "{\n                    id:'test.regions:depths',weight:1,minimum_depth:1,maximum_depth:2,\n                    terrain:{ground:'gravel',patch_count:2,minimum_patch_radius:1,\n                        maximum_patch_radius:3,features:[{kind:'boulder',weight:1}]}\n                }",
+                    "",
+                ),
+                "depth 1 has no eligible biome",
+            ),
+            (
+                valid.replace("test.regions:world", "core:foreign"),
+                "namespace",
+            ),
+            (
+                valid.replace("province_size:2", "province_siz:2"),
+                "unknown field",
+            ),
+            (
+                valid.replace("lower:[-1,0,1]", "lower:[0,0,1]"),
+                "must keep x/y",
+            ),
+        ] {
+            fs::write(&path, source).unwrap();
+            let error = ContentLoader::load(&roots, &Version::new(0, 1, 0))
+                .unwrap_err()
+                .to_string();
+            assert!(error.contains("test.regions") && error.contains("test.json5"));
+            assert!(error.contains(expected), "Expected {expected}: {error}");
+        }
+
+        fs::write(&path, valid).unwrap();
+        let loaded = ContentLoader::load(&roots, &Version::new(0, 1, 0)).unwrap();
+        let world = loaded
+            .regional_worlds()
+            .get(&"test.regions:world".parse().unwrap())
+            .unwrap();
+        assert_eq!(
+            world.vertical_neighbor(
+                RegionCoord::new(-1, 0, 0),
+                crate::content::RegionVerticalDirection::Down,
+            ),
+            Some(RegionCoord::new(-1, 0, 1))
+        );
         fs::remove_dir_all(root).unwrap();
     }
 
@@ -2395,6 +6700,62 @@ incompatible = []
                     "['core:maintenance_collective','core:maintenance_collective']",
                 ),
                 "authorizations contain duplicates",
+            ),
+            (
+                valid.replace(
+                    "player_property_take_authorizations:",
+                    "population:[{count:0,minimum_entrance_distance:3,maximum_integrity:5,attack:{range:1,distance_metric:'chebyshev',requires_line_of_sight:false,damage:{amount:2,damage_type:'kinetic'}},ai:{behavior:'hunter',perception_radius:6}}],player_property_take_authorizations:",
+                ),
+                "population group count must be positive",
+            ),
+            (
+                valid.replace(
+                    "player_property_take_authorizations:",
+                    "population:[{count:1,minimum_entrance_distance:3,maximum_integrity:5,primary_attributes:{power:11,coordination:5,resilience:5,perception:5,processing:5},attack:{range:1,distance_metric:'chebyshev',requires_line_of_sight:false,damage:{amount:2,damage_type:'kinetic'}},ai:{behavior:'hunter',perception_radius:6}}],player_property_take_authorizations:",
+                ),
+                "invalid population primary attributes",
+            ),
+            (
+                valid.replace(
+                    "player_property_take_authorizations:",
+                    "population:[{count:1,minimum_entrance_distance:3,maximum_integrity:5,attack:{range:1,distance_metric:'chebyshev',requires_line_of_sight:false,damage:{amount:0,damage_type:'kinetic'}},ai:{behavior:'hunter',perception_radius:6}}],player_property_take_authorizations:",
+                ),
+                "population attacks require positive range and damage",
+            ),
+            (
+                valid.replace(
+                    "player_property_take_authorizations:",
+                    "population:[{count:257,minimum_entrance_distance:3,maximum_integrity:5,attack:{range:1,distance_metric:'chebyshev',requires_line_of_sight:false,damage:{amount:2,damage_type:'kinetic'}},ai:{behavior:'hunter',perception_radius:6}}],player_property_take_authorizations:",
+                ),
+                "generated zone population exceeds",
+            ),
+            (
+                valid.replace(
+                    "player_property_take_authorizations:",
+                    "population:[{count:1,minimum_entrance_distance:3,maximum_integrity:5,attack:{range:257,distance_metric:'chebyshev',requires_line_of_sight:false,damage:{amount:2,damage_type:'kinetic'}},ai:{behavior:'hunter',perception_radius:6}}],player_property_take_authorizations:",
+                ),
+                "attack range or cone width exceeds",
+            ),
+            (
+                valid.replace(
+                    "player_property_take_authorizations:",
+                    "population:[{count:1,minimum_entrance_distance:3,maximum_integrity:5,attack:{range:1,distance_metric:'chebyshev',requires_line_of_sight:false,damage:{amount:2,damage_type:'kinetic'}},ai:{behavior:'hunter',perception_radius:257}}],player_property_take_authorizations:",
+                ),
+                "perception radius exceeds",
+            ),
+            (
+                valid.replace(
+                    "player_property_take_authorizations:",
+                    "population:[{count:1,minimum_entrance_distance:3,maximum_integrity:5,attack:{range:1,distance_metric:'chebyshev',requires_line_of_sight:false,damage:{amount:2,damage_type:'kinetic'}},ai:{behavior:'hunter',perception_radius:6,maximum_pursuit_distance:0}}],player_property_take_authorizations:",
+                ),
+                "pursuit distance must be positive",
+            ),
+            (
+                valid.replace(
+                    "player_property_take_authorizations:",
+                    "population:[{count:1,minimum_entrance_distance:3,maximum_integrity:5,attack:{range:1,distance_metric:'chebyshev',requires_line_of_sight:false,damage:{amount:2,damage_type:'kinetic'}},ai:{behavior:'hunter',perception_radius:6,maximum_pursuit_distance:257}}],player_property_take_authorizations:",
+                ),
+                "pursuit distance exceeds",
             ),
             (valid.replace("seed_salt:7", "seed_slat:7"), "unknown field"),
         ] {

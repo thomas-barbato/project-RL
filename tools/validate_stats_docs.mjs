@@ -42,7 +42,7 @@ for (const line of preAnnex.split('\n').filter((l) => l.startsWith('|'))) {
   const c = cells(line);
   if (idPattern.test(c[0]) && /^[1-5]$/.test(c[1])) {
     assert.ok(!entries.has(c[0]), `Duplicate source ${c[0]}`);
-    entries.set(c[0], { id: c[0], rank: Number(c[1]), row: c });
+    entries.set(c[0], { id: c[0], minimumLevel: Number(c[1]), row: c });
   }
 }
 const parents = new Map([
@@ -54,7 +54,7 @@ const parents = new Map([
 for (const [id, entry] of entries) {
   if (id.startsWith('GEL-V')) parents.set(id, entry.row[3]);
 }
-const rankCosts = [0, 1, 2, 4, 6, 9];
+const choiceCostTotals = [0, 1, 2, 4, 6, 9];
 
 check('Markdown, liens locaux et suivi des textes', () => {
   for (const [name, doc] of [
@@ -127,7 +127,7 @@ check('Textes joueur : clés uniques, modèles et quinze accords distincts', () 
     'quantite', 'objet', 'geometrie', 'portee', 'duree', 'delai', 'chance', 'source', 'date', 'attitude',
     'valeur_signee', 'rayon', 'disponibles', 'projection', 'limite', 'materiel', 'fonction', 'depenses',
     'cause', 'cible', 'type', 'droits', 'programme', 'lot', 'element', 'type_trace', 'direction',
-    'anciennete', 'etat', 'processus', 'drone', 'niveau', 'recompenses', 'effet',
+    'anciennete', 'etat', 'processus', 'drone', 'niveau', 'attribut', 'valeur', 'recompenses', 'effet',
   ]);
   for (const row of interfaceTexts) {
     assert.equal(row.length, 3, row[0]);
@@ -150,11 +150,12 @@ check('Textes joueur : clés uniques, modèles et quinze accords distincts', () 
   }
 });
 
-check('Prérequis, rangs et cinq choix atteignables', () => {
+check('Prérequis, niveaux et cinq premiers apprentissages atteignables', () => {
   for (const [child, parent] of parents) {
     assert.ok(entries.has(child), `${child}: missing child`);
     assert.ok(entries.has(parent), `${child}: missing parent`);
-    assert.ok(entries.get(parent).rank < entries.get(child).rank, `${child}: parent chronology`);
+    assert.ok(entries.get(parent).minimumLevel < entries.get(child).minimumLevel,
+      `${child}: parent chronology`);
     assert.ok(entries.get(child).row.join(' ').includes(parent), `${child}: documented parent`);
     const seen = new Set([child]); let cur = parent;
     while (cur) { assert.ok(!seen.has(cur)); seen.add(cur); cur = parents.get(cur); }
@@ -163,7 +164,7 @@ check('Prérequis, rangs et cinq choix atteignables', () => {
     const pool = [...entries.values()].filter((e) => e.id.startsWith(`${discipline}-`));
     const result = inspectProgression(pool, parents);
     assert.ok(result.validInitial && result.allPathsComplete, `${discipline}: a legal path gets stuck`);
-    assert.ok(result.countsByRank.slice(1).every((count) => count > 0));
+    assert.ok(result.countsByChoiceCount.slice(1, 6).every((count) => count > 0));
     assert.equal(result.reachedIds.length, pool.length, `${discipline}: unreachable entry`);
     if (discipline === 'REC') {
       assert.ok(inspectProgression(pool, parents, new Set(['REC-08'])).allPathsComplete, 'REC without diagnosis');
@@ -179,7 +180,7 @@ check('Versions partielles, prérequis transitifs et acquis incompatibles', () =
   const incomplete = inspect(['REC-02', 'REC-03', 'REC-08']);
   assert.equal(incomplete.availableIds.length, 4);
   assert.equal(incomplete.allPathsComplete, false);
-  assert.equal(incomplete.countsByRank[5], 0);
+  assert.equal(incomplete.countsByChoiceCount[5], 0);
   assert.ok(inspect(['REC-01']).unavailableIds.includes('REC-09'));
   assert.ok(inspect([], ['REC-01', 'REC-02']).allPathsComplete);
   assert.equal(inspect(['REC-02'], ['REC-02']).validInitial, false);
@@ -188,11 +189,16 @@ check('Versions partielles, prérequis transitifs et acquis incompatibles', () =
   assert.equal(inspect([], ['REC-02', 'REC-03', 'REC-09']).validInitial, false);
   const maneuver = [...entries.values()].filter((e) => e.id.startsWith('MAN-'));
   assert.equal(inspectProgression(maneuver, parents, new Set(), ['MAN-07']).validInitial, false);
-  // Five entries alone do not guarantee five successive legal choices.
-  const fiveButBlocked = [1, 1, 5, 5, 5].map((rank, index) => ({ id: `fixture-${index}`, rank }));
-  assert.equal(inspectProgression(fiveButBlocked, new Map()).allPathsComplete, false);
+  // Minimum level is independent from the number of earlier choices.
+  const fiveAtHighLevel = [1, 1, 5, 5, 5]
+    .map((minimumLevel, index) => ({ id: `fixture-${index}`, minimumLevel }));
+  assert.equal(inspectProgression(fiveAtHighLevel, new Map()).allPathsComplete, true);
   // Closure must continue beyond a direct child, regardless of catalogue order.
-  const chain = [{ id: 'c', rank: 3 }, { id: 'b', rank: 2 }, { id: 'a', rank: 1 }];
+  const chain = [
+    { id: 'c', minimumLevel: 3 },
+    { id: 'b', minimumLevel: 2 },
+    { id: 'a', minimumLevel: 1 },
+  ];
   assert.deepEqual(inspectProgression(chain, new Map([['c', 'b'], ['b', 'a']]), new Set(['a']))
     .unavailableIds, ['a', 'b', 'c']);
   // Independent ordered recursion checks all 128 hypothetical REC feature masks.
@@ -200,7 +206,7 @@ check('Versions partielles, prérequis transitifs et acquis incompatibles', () =
   function everyPathFinishes(disabled, chosen = []) {
     if (chosen.length === 5) return true;
     const options = recon.filter((e) => !disabled.has(e.id) && !chosen.includes(e.id)
-      && e.rank <= chosen.length + 1 && (!parents.has(e.id) || chosen.includes(parents.get(e.id))));
+      && (!parents.has(e.id) || chosen.includes(parents.get(e.id))));
     return options.length > 0 && options.every((e) => everyPathFinishes(disabled, [...chosen, e.id]));
   }
   for (let mask = 0; mask < 2 ** recon.length; mask += 1) {
@@ -329,12 +335,11 @@ check('Six builds : budgets et séquences d’apprentissage', () => {
     assert.equal(end.reduce((a,b) => a+b, 0), 33, name);
     assert.ok(start.every((x) => x >= 3 && x <= 8), name);
     assert.ok(end.every((x, i) => x >= start[i] && x <= 10), name);
-    assert.equal(Object.values(choices).reduce((s, ids) => s + rankCosts[ids.length], 0), 21, name);
+    assert.equal(Object.values(choices).reduce((s, ids) => s + choiceCostTotals[ids.length], 0), 21, name);
     for (const [discipline, ids] of Object.entries(choices)) {
       const chosen = new Set();
-      ids.forEach((suffix, index) => {
+      ids.forEach((suffix) => {
         const id = `${discipline}-${suffix}`;
-        assert.ok(entries.get(id).rank <= index + 1, `${name}: rank ${id}`);
         assert.ok(!chosen.has(id), `${name}: duplicate ${id}`);
         assert.ok(!parents.has(id) || chosen.has(parents.get(id)), `${name}: prerequisite ${id}`);
         chosen.add(id);
@@ -357,7 +362,7 @@ check('Budget XP et anti-doublon : modèle documentaire', () => {
     xp += 100 + 40 * (level - 1);
     assert.equal(xp, 100 * level + 20 * level * (level - 1));
   }
-  assert.equal(xp, 8740); assert.equal(2 * rankCosts[5], 18);
+  assert.equal(xp, 8740); assert.equal(2 * choiceCostTotals[5], 18);
   const paid = new Set(); let received = 0;
   const reward = (key) => { if (!paid.has(key)) { paid.add(key); received += 100; } };
   reward('obstacle:1'); reward('obstacle:1');

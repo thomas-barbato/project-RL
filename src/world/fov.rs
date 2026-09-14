@@ -58,6 +58,13 @@ impl VisibilityState {
     pub fn explored_positions(&self) -> impl Iterator<Item = GridPos> + '_ {
         self.explored.iter().copied()
     }
+
+    /// Merges delayed sensor information without pretending those cells are
+    /// currently visible. Used when an autonomous physical unit reconnects
+    /// and uploads a dated report.
+    pub(crate) fn remember_explored(&mut self, positions: impl IntoIterator<Item = GridPos>) {
+        self.explored.extend(positions);
+    }
 }
 
 pub fn compute_visible_tiles(

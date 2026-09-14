@@ -17,6 +17,16 @@ pub struct StatusApplyOutcome {
     pub previous_stacks: u16,
     pub stacks: u16,
     pub remaining_turns: Option<u16>,
+    pub kind: StatusApplyKind,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum StatusApplyKind {
+    Applied,
+    Replaced,
+    Refreshed,
+    Stacked,
+    Ignored,
 }
 
 #[derive(Clone, Debug, Default, PartialEq, Eq)]
@@ -54,21 +64,25 @@ impl StatusSet {
                     previous_stacks: 0,
                     stacks: instance.stacks,
                     remaining_turns: instance.remaining_turns,
+                    kind: StatusApplyKind::Applied,
                 };
             }
             Entry::Occupied(entry) => entry.into_mut(),
         };
         let previous_stacks = instance.stacks;
 
-        match definition.stacking() {
+        let kind = match definition.stacking() {
+            StatusStacking::KeepExisting => StatusApplyKind::Ignored,
             StatusStacking::Replace => {
                 instance.stacks = initial_stacks;
                 instance.remaining_turns = definition.duration_turns();
                 instance.source = source;
+                StatusApplyKind::Replaced
             }
             StatusStacking::RefreshDuration => {
                 instance.remaining_turns = definition.duration_turns();
                 instance.source = source;
+                StatusApplyKind::Refreshed
             }
             StatusStacking::AddStacks {
                 maximum_stacks,
@@ -82,13 +96,15 @@ impl StatusSet {
                     instance.remaining_turns = definition.duration_turns();
                 }
                 instance.source = source;
+                StatusApplyKind::Stacked
             }
-        }
+        };
 
         StatusApplyOutcome {
             previous_stacks,
             stacks: instance.stacks,
             remaining_turns: instance.remaining_turns,
+            kind,
         }
     }
 
@@ -148,5 +164,19 @@ mod tests {
         assert!(!statuses.elapse_one_turn(definition.id()));
         assert!(statuses.elapse_one_turn(definition.id()));
         assert!(statuses.get(definition.id()).is_none());
+    }
+
+    #[test]
+    fn keep_existing_never_refreshes_an_active_duration() {
+        let definition = definition(StatusStacking::KeepExisting);
+        let mut statuses = StatusSet::default();
+        let first = statuses.apply(&definition, 1, None);
+        assert_eq!(first.kind, StatusApplyKind::Applied);
+        assert!(!statuses.elapse_one_turn(definition.id()));
+
+        let repeated = statuses.apply(&definition, 1, None);
+
+        assert_eq!(repeated.kind, StatusApplyKind::Ignored);
+        assert_eq!(repeated.remaining_turns, Some(2));
     }
 }

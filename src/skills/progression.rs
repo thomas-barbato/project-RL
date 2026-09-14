@@ -6,12 +6,13 @@ use super::{
     DisciplineId, InitialChoicesError, SkillCatalog, SkillCatalogError, SkillProgressionRules,
     SystemFeatureSet, TechniqueId,
 };
+use crate::stats::{PrimaryAttribute, PrimaryAttributes};
 
 /// Ordered skill choices learned during one run.
 ///
-/// A discipline rank is deliberately derived from the number of choices. It
-/// cannot drift away from the techniques stored by a save or granted by a
-/// future class.
+/// The order is retained so costs can follow the configured purchase curve and
+/// prerequisites can be validated without storing a second derived counter.
+/// Learning additional techniques is never capped.
 #[derive(Clone, Debug, Default, PartialEq, Eq)]
 pub struct SkillProgressionState {
     choices: BTreeMap<DisciplineId, Vec<TechniqueId>>,
@@ -91,10 +92,8 @@ impl SkillProgressionState {
         Ok(())
     }
 
-    pub fn rank(&self, discipline: &DisciplineId) -> u8 {
-        self.choices
-            .get(discipline)
-            .map_or(0, |choices| u8::try_from(choices.len()).unwrap_or(u8::MAX))
+    pub fn learned_count(&self, discipline: &DisciplineId) -> usize {
+        self.choices(discipline).len()
     }
 
     pub fn has_learned(&self, technique: &TechniqueId) -> bool {
@@ -122,6 +121,8 @@ impl SkillProgressionState {
         catalog: &SkillCatalog,
         features: &SystemFeatureSet,
         rules: &SkillProgressionRules,
+        player_level: u16,
+        player_attributes: Option<PrimaryAttributes>,
     ) -> Result<TechniqueLearned, TechniqueLearningError> {
         self.validate(catalog, features, rules)
             .map_err(|error| TechniqueLearningError::InvalidCurrentState(Box::new(error)))?;
@@ -150,18 +151,27 @@ impl SkillProgressionState {
         }
 
         let current_choices = self.choices(&discipline);
-        let next_rank = u8::try_from(current_choices.len().saturating_add(1)).unwrap_or(u8::MAX);
-        let Some(cost) = rules.cost_for_rank(next_rank) else {
-            return Err(TechniqueLearningError::MaximumRankReached(Box::new(
-                discipline,
-            )));
-        };
-        if definition.minimum_rank() > next_rank {
-            return Err(TechniqueLearningError::RankTooLow {
-                technique: Box::new(technique.clone()),
-                required: definition.minimum_rank(),
-                next: next_rank,
-            });
+        let choice_number = current_choices.len().saturating_add(1);
+        let cost = rules
+            .cost_for_choice_number(choice_number)
+            .expect("validated skill progression always has a final choice cost");
+        if rules.enforces_authored_requirements() {
+            if definition.minimum_level() > player_level {
+                return Err(TechniqueLearningError::LevelTooLow {
+                    technique: Box::new(technique.clone()),
+                    required: definition.minimum_level(),
+                    current: player_level,
+                });
+            }
+            if let Some(requirement) = definition.unmet_attribute_requirement(player_attributes) {
+                return Err(TechniqueLearningError::AttributeTooLow {
+                    technique: Box::new(technique.clone()),
+                    attribute: requirement.attribute(),
+                    required: requirement.minimum(),
+                    current: player_attributes
+                        .map_or(0, |attributes| attributes.value(requirement.attribute())),
+                });
+            }
         }
         if let Some(prerequisite) = definition.prerequisite()
             && !current_choices.contains(prerequisite)
@@ -190,7 +200,7 @@ impl SkillProgressionState {
         Ok(TechniqueLearned {
             technique: technique.clone(),
             discipline,
-            rank: next_rank,
+            choice_number,
             cost,
         })
     }
@@ -200,7 +210,7 @@ impl SkillProgressionState {
 pub struct TechniqueLearned {
     pub technique: TechniqueId,
     pub discipline: DisciplineId,
-    pub rank: u8,
+    pub choice_number: usize,
     pub cost: u16,
 }
 
@@ -262,11 +272,16 @@ pub enum TechniqueLearningError {
     DeferredDiscipline(Box<DisciplineId>),
     UnavailableTechnique(Box<TechniqueId>),
     AlreadyLearned(Box<TechniqueId>),
-    MaximumRankReached(Box<DisciplineId>),
-    RankTooLow {
+    LevelTooLow {
         technique: Box<TechniqueId>,
+        required: u16,
+        current: u16,
+    },
+    AttributeTooLow {
+        technique: Box<TechniqueId>,
+        attribute: PrimaryAttribute,
         required: u8,
-        next: u8,
+        current: u8,
     },
     MissingPrerequisite {
         technique: Box<TechniqueId>,
@@ -300,19 +315,22 @@ impl Display for TechniqueLearningError {
             Self::AlreadyLearned(technique) => {
                 write!(formatter, "technique '{technique}' is already learned")
             }
-            Self::MaximumRankReached(discipline) => {
-                write!(
-                    formatter,
-                    "discipline '{discipline}' already reached maximum rank"
-                )
-            }
-            Self::RankTooLow {
+            Self::LevelTooLow {
                 technique,
                 required,
-                next,
+                current,
             } => write!(
                 formatter,
-                "technique '{technique}' requires rank {required}, next rank is {next}"
+                "technique '{technique}' requires level {required}, current level is {current}"
+            ),
+            Self::AttributeTooLow {
+                technique,
+                attribute,
+                required,
+                current,
+            } => write!(
+                formatter,
+                "technique '{technique}' requires {attribute} {required}, current value is {current}"
             ),
             Self::MissingPrerequisite {
                 technique,

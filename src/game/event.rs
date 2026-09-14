@@ -1,3 +1,4 @@
+use crate::combat::PreparationDisruptionFamily;
 use crate::entity::{EntityId, EquipmentSlotId, GroundItemId, ItemInstanceId};
 use crate::progression::RewardKey;
 use crate::skills::{DisciplineId, TechniqueId};
@@ -25,6 +26,60 @@ pub struct TerrainAnalysis {
     pub blocks_vision: bool,
 }
 
+/// Energy-state fields that genuinely exist on the observed machine. Missing
+/// channels remain `None` instead of being invented by the analysis action.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct EnergyAnalysis {
+    pub analysis_score: u16,
+    pub energy_available: Option<u16>,
+    pub energy_capacity: Option<u16>,
+    pub heat: Option<u16>,
+    pub bandwidth_occupied: Option<u16>,
+    pub bandwidth_capacity: Option<u16>,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum ForcedMovementOutcome {
+    Incompatible,
+    Fixed,
+    Resisted,
+    Blocked,
+    Moved,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum CounterattackOutcome {
+    Performed,
+    ReactorUnavailable,
+    SourceUnavailable,
+    NoMeleeWeapon,
+    OutOfReach,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum InterceptionOutcome {
+    Performed,
+    ReactorUnavailable,
+    MoverUnavailable,
+    NoMeleeWeapon,
+    OutOfReach,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum PreparationDisruptionOutcome {
+    Protected,
+    Resisted,
+    Interrupted,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum TechniqueEffectFailure {
+    TargetHasNoArmor,
+    TargetHasNoCompatibleLocomotion,
+    TargetHasNoCompatibleSuppressionResponse,
+    ProtectedFromEffect,
+}
+
 /// Facts emitted by the simulation for rendering, audio, logs and tests.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum GameEvent {
@@ -44,10 +99,89 @@ pub enum GameEvent {
         from: GridPos,
         to: GridPos,
     },
+    NoiseEmitted {
+        source: Option<EntityId>,
+        at: GridPos,
+        intensity: u16,
+    },
+    MovementTimeCommitted {
+        entity: EntityId,
+        time_units: u16,
+    },
+    ForcedMovementResolved {
+        source: EntityId,
+        target: EntityId,
+        from: GridPos,
+        to: GridPos,
+        force: u16,
+        resistance: Option<u32>,
+        requested_distance: u8,
+        moved_distance: u8,
+        outcome: ForcedMovementOutcome,
+    },
     EntityWaited {
         entity: EntityId,
     },
     EntitySpawned {
+        entity: EntityId,
+        at: GridPos,
+    },
+    DroneControlEstablished {
+        entity: EntityId,
+        controller: EntityId,
+        visual_profile: crate::content::ContentId,
+        bandwidth_reserved: u16,
+    },
+    DroneControlReleased {
+        entity: EntityId,
+        controller: EntityId,
+        bandwidth_released: u16,
+    },
+    DroneEnergyDepleted {
+        entity: EntityId,
+        at: GridPos,
+    },
+    CompanionBehaviorChanged {
+        entities: Vec<EntityId>,
+        behavior: crate::companion::CompanionBehavior,
+    },
+    DroneOrderAdvanced {
+        entity: EntityId,
+        order: crate::drone::DroneOrder,
+    },
+    DronePositionConfirmed {
+        entity: EntityId,
+        at: GridPos,
+        observed_on_turn: u64,
+    },
+    DroneCargoCollected {
+        entity: EntityId,
+        ground_item: GroundItemId,
+        definition: crate::item::ItemId,
+        quantity: u16,
+    },
+    DroneCargoDelivered {
+        entity: EntityId,
+        controller: EntityId,
+        definition: crate::item::ItemId,
+        quantity: u16,
+    },
+    DroneCollectionFailed {
+        entity: EntityId,
+        ground_item: GroundItemId,
+    },
+    DroneInterposed {
+        entity: EntityId,
+        protected: EntityId,
+        attacker: EntityId,
+        energy_spent: u16,
+    },
+    DroneExplorationReportReceived {
+        entity: EntityId,
+        cells: Vec<GridPos>,
+        observed_on_turn: u64,
+    },
+    ThreatSourceDisabled {
         entity: EntityId,
         at: GridPos,
     },
@@ -96,6 +230,23 @@ pub enum GameEvent {
         damage_type: crate::combat::DamageType,
         affected_cells: Vec<crate::combat::AttackAreaCell>,
     },
+    AmmunitionSpent {
+        entity: EntityId,
+        weapon: crate::weapon::WeaponId,
+        amount: u16,
+        remaining: u16,
+    },
+    /// Result of the single passive accuracy/evasion roll for an ordinary
+    /// target. Area attacks and certain attacks against inert objects do not
+    /// emit this event because they deliberately consume no such roll.
+    AttackHitResolved {
+        attacker: EntityId,
+        target: EntityId,
+        at: GridPos,
+        chance: u8,
+        roll: u8,
+        hit: bool,
+    },
     GroundEffectCreated {
         source: Option<EntityId>,
         effect: crate::effects::GroundEffectId,
@@ -112,12 +263,80 @@ pub enum GameEvent {
         effect: crate::effects::GroundEffectId,
         at: GridPos,
     },
+    ExplosiveDeployed {
+        entity: EntityId,
+        device: crate::explosive::ExplosiveDeviceId,
+        material: crate::item::ItemId,
+        at: GridPos,
+    },
+    ExplosivePlacementResolved {
+        entity: EntityId,
+        aimed_at: GridPos,
+        placed_at: GridPos,
+        chance: u8,
+        roll: u8,
+    },
+    ExplosiveTriggered {
+        device: crate::explosive::ExplosiveDeviceId,
+        source: Option<EntityId>,
+        at: GridPos,
+    },
+    ExplosivePayloadResolved {
+        device: crate::explosive::ExplosiveDeviceId,
+        source: Option<EntityId>,
+        at: GridPos,
+        stage: u16,
+        cells: Vec<crate::combat::AttackAreaCell>,
+        final_stage: bool,
+    },
+    TerrainBreached {
+        device: crate::explosive::ExplosiveDeviceId,
+        cells: Vec<GridPos>,
+    },
+    ExplosiveNeutralized {
+        entity: EntityId,
+        device: crate::explosive::ExplosiveDeviceId,
+        at: GridPos,
+    },
+    ExplosiveRecovered {
+        entity: EntityId,
+        device: crate::explosive::ExplosiveDeviceId,
+        material: crate::item::ItemId,
+    },
+    ExplosivesProgrammed {
+        entity: EntityId,
+        devices: Vec<(crate::explosive::ExplosiveDeviceId, u16)>,
+    },
+    ExplosiveCamouflaged {
+        entity: EntityId,
+        device: crate::explosive::ExplosiveDeviceId,
+        at: GridPos,
+        optical_difficulty_bonus: i16,
+    },
+    SoundEmitterDeployed {
+        entity: EntityId,
+        emitter: crate::stealth::SoundEmitterId,
+        at: GridPos,
+        intensity: u16,
+        remaining_phases: u16,
+    },
+    SoundEmitterExpired {
+        emitter: crate::stealth::SoundEmitterId,
+        at: GridPos,
+    },
     WeaponEquipped {
         entity: EntityId,
         slot: u8,
         equipment_slot: EquipmentSlotId,
         item: ItemInstanceId,
         weapon: crate::weapon::WeaponId,
+        displaced: Option<ItemInstanceId>,
+    },
+    ItemEquipped {
+        entity: EntityId,
+        equipment_slot: EquipmentSlotId,
+        item: ItemInstanceId,
+        definition: crate::item::ItemId,
         displaced: Option<ItemInstanceId>,
     },
     ItemUsed {
@@ -142,11 +361,31 @@ pub enum GameEvent {
     DamageApplied {
         source: Option<EntityId>,
         target: EntityId,
+        at: GridPos,
         amount: u16,
         damage_type: crate::combat::DamageType,
+        effective_armor: u16,
+        absorbed_by_armor: u16,
+    },
+    /// One indivisible impact carrying several damage families. The target's
+    /// PV are changed once from the resolved total; components remain visible
+    /// for combat logs and diagnostics without becoming separate impacts.
+    DamageImpactApplied {
+        source: Option<EntityId>,
+        target: EntityId,
+        at: GridPos,
+        amount: u16,
+        components: Vec<crate::combat::ResolvedDamageComponent>,
+        effective_armor: u16,
+        absorbed_by_armor: u16,
     },
     EntityDied {
         entity: EntityId,
+        at: GridPos,
+    },
+    EntityDestructionTriggered {
+        entity: EntityId,
+        at: GridPos,
     },
     ExperienceAwarded {
         amount: u64,
@@ -161,7 +400,7 @@ pub enum GameEvent {
         entity: EntityId,
         technique: TechniqueId,
         discipline: DisciplineId,
-        rank: u8,
+        choice_number: usize,
         skill_points_spent: u16,
         skill_points_remaining: u32,
     },
@@ -170,10 +409,259 @@ pub enum GameEvent {
         technique: TechniqueId,
         observed_on_turn: u64,
     },
+    EmissionSilenceChanged {
+        entity: EntityId,
+        channel: crate::stealth::SignatureChannel,
+        silenced: bool,
+    },
+    LowProfileChanged {
+        entity: EntityId,
+        technique: TechniqueId,
+        active: bool,
+    },
+    AmbushResolved {
+        entity: EntityId,
+        target: EntityId,
+        bonuses_applied: bool,
+        silent_neutralization: bool,
+    },
+    TrailBreakStarted {
+        entity: EntityId,
+        technique: TechniqueId,
+        remaining_steps: u8,
+        remaining_turns: u16,
+    },
+    TrailBreakAdvanced {
+        entity: EntityId,
+        remaining_steps: u8,
+    },
+    TrailBreakEnded {
+        entity: EntityId,
+        technique: TechniqueId,
+    },
+    ActiveCamouflageChanged {
+        entity: EntityId,
+        technique: TechniqueId,
+        channel: crate::stealth::SignatureChannel,
+        active: bool,
+    },
+    TechniquePreparationStarted {
+        entity: EntityId,
+        technique: TechniqueId,
+        remaining_steps: u16,
+    },
+    TechniquePreparationAdvanced {
+        entity: EntityId,
+        technique: TechniqueId,
+        remaining_steps: u16,
+    },
+    TechniquePreparationCompleted {
+        entity: EntityId,
+        technique: TechniqueId,
+    },
+    TechniquePreparationCancelled {
+        entity: EntityId,
+        technique: TechniqueId,
+        reason: crate::game::PreparationCancellationReason,
+    },
+    ActionRecoveryStarted {
+        entity: EntityId,
+        remaining_actions: u16,
+    },
+    ActionRecoveryAdvanced {
+        entity: EntityId,
+        remaining_actions: u16,
+    },
+    ActionRecoveryCompleted {
+        entity: EntityId,
+    },
+    TechniqueCooldownStarted {
+        entity: EntityId,
+        technique: TechniqueId,
+        remaining_phases: u16,
+    },
+    TechniqueCooldownAdvanced {
+        entity: EntityId,
+        technique: TechniqueId,
+        remaining_phases: u16,
+    },
+    TechniqueCooldownCompleted {
+        entity: EntityId,
+        technique: TechniqueId,
+    },
+    ReactionPrepared {
+        entity: EntityId,
+        technique: TechniqueId,
+        reaction: crate::reaction::ReactionKind,
+    },
+    ReactionExpired {
+        entity: EntityId,
+        technique: TechniqueId,
+        reaction: crate::reaction::ReactionKind,
+    },
+    ReactionTriggered {
+        reactor: EntityId,
+        source: EntityId,
+        technique: TechniqueId,
+        reaction: crate::reaction::ReactionKind,
+    },
+    PersistentRangedAimStarted {
+        entity: EntityId,
+        target: EntityId,
+        technique: TechniqueId,
+        accuracy_modifier: i16,
+    },
+    PersistentRangedAimEnded {
+        entity: EntityId,
+        target: EntityId,
+        technique: TechniqueId,
+    },
+    WeaponBarrageStageResolved {
+        entity: EntityId,
+        technique: TechniqueId,
+        remaining_stages: u8,
+    },
+    WeaponBarrageCancelled {
+        entity: EntityId,
+        technique: TechniqueId,
+        remaining_stages: u8,
+    },
+    ChargeStarted {
+        entity: EntityId,
+        technique: TechniqueId,
+        target: EntityId,
+        target_at: GridPos,
+        required_advances: u8,
+    },
+    ChargeAdvanced {
+        entity: EntityId,
+        technique: TechniqueId,
+        from: GridPos,
+        to: GridPos,
+        completed_advances: u8,
+        required_advances: u8,
+    },
+    ChargeCompleted {
+        entity: EntityId,
+        technique: TechniqueId,
+        target: EntityId,
+        recovery_suppressed: bool,
+    },
+    ChargeCancelled {
+        entity: EntityId,
+        technique: TechniqueId,
+        completed_advances: u8,
+        controlled: bool,
+    },
+    AnchorPrepared {
+        entity: EntityId,
+        technique: TechniqueId,
+        displacement_resistance_bonus: u16,
+    },
+    AnchorEnded {
+        entity: EntityId,
+        technique: TechniqueId,
+    },
+    EvasiveStepResolved {
+        entity: EntityId,
+        from: GridPos,
+        to: GridPos,
+        moved: bool,
+    },
+    ObstacleTraversed {
+        entity: EntityId,
+        from: GridPos,
+        over: GridPos,
+        to: GridPos,
+    },
+    AllyExtracted {
+        entity: EntityId,
+        ally: EntityId,
+        player_from: GridPos,
+        player_to: GridPos,
+        ally_from: GridPos,
+        ally_to: GridPos,
+    },
+    PhysicalDamageParried {
+        reactor: EntityId,
+        source: EntityId,
+        before: u16,
+        after: u16,
+    },
+    CounterattackResolved {
+        reactor: EntityId,
+        source: EntityId,
+        technique: TechniqueId,
+        outcome: CounterattackOutcome,
+    },
+    InterceptionResolved {
+        reactor: EntityId,
+        mover: EntityId,
+        technique: TechniqueId,
+        from: GridPos,
+        to: GridPos,
+        outcome: InterceptionOutcome,
+    },
+    TechniqueOnHitEffectRejected {
+        source: EntityId,
+        target: EntityId,
+        technique: TechniqueId,
+        reason: TechniqueEffectFailure,
+    },
+    StabilityCheckResolved {
+        source: EntityId,
+        target: EntityId,
+        technique: TechniqueId,
+        intensity: u16,
+        chance: u8,
+        roll: u8,
+        resisted: bool,
+    },
+    PreparationDisruptionResolved {
+        source: EntityId,
+        target: EntityId,
+        family: PreparationDisruptionFamily,
+        intensity: u16,
+        chance: Option<u8>,
+        roll: Option<u8>,
+        outcome: PreparationDisruptionOutcome,
+    },
+    PreparationInterruptionProtectionChanged {
+        entity: EntityId,
+        family: PreparationDisruptionFamily,
+        active: bool,
+    },
     EnergySpent {
         entity: EntityId,
         amount: u16,
         remaining: u16,
+    },
+    BandwidthReserved {
+        entity: EntityId,
+        amount: u16,
+        occupied: u16,
+        capacity: u16,
+    },
+    BandwidthReleased {
+        entity: EntityId,
+        amount: u16,
+        occupied: u16,
+        capacity: u16,
+    },
+    HeatGenerated {
+        entity: EntityId,
+        amount: u16,
+        current: u16,
+    },
+    HeatDissipated {
+        entity: EntityId,
+        amount: u16,
+        current: u16,
+    },
+    HeatThresholdCrossed {
+        entity: EntityId,
+        critical: bool,
+        current: u16,
     },
     TargetAnalyzed {
         observer: EntityId,
@@ -181,11 +669,218 @@ pub enum GameEvent {
         at: GridPos,
         integrity: u16,
         maximum_integrity: u16,
+        armor: u16,
         resistances: crate::combat::ResistanceProfile,
+    },
+    PhysicalWeaknessIdentified {
+        observer: EntityId,
+        target: EntityId,
+    },
+    BodyComponentIdentified {
+        observer: EntityId,
+        target: EntityId,
+        component: crate::entity::BodyComponentId,
+    },
+    BodyComponentDamaged {
+        source: Option<EntityId>,
+        target: EntityId,
+        component: crate::entity::BodyComponentId,
+        amount: u16,
+        durability: u16,
+        maximum_durability: u16,
+        failed: bool,
+    },
+    WreckCreated {
+        wreck: crate::engineering::WreckId,
+        at: GridPos,
+        components: Vec<crate::entity::BodyComponentId>,
+    },
+    BodyComponentRepaired {
+        target: EntityId,
+        component: crate::entity::BodyComponentId,
+        amount: u16,
+        durability: u16,
+        maximum_durability: u16,
+    },
+    BodyComponentSalvaged {
+        wreck: crate::engineering::WreckId,
+        component: crate::entity::BodyComponentId,
+        inventory_item: ItemInstanceId,
+        durability: u16,
+        maximum_durability: u16,
+    },
+    BodyComponentDiagnosed {
+        target: EntityId,
+        component: crate::entity::BodyComponentId,
+        analysis_score: u16,
+        durability: u16,
+        maximum_durability: u16,
+        failed: bool,
+        destroyed: bool,
+    },
+    ModuleTuned {
+        module: ItemInstanceId,
+        tuning: crate::engineering::ModuleTuning,
+        output_percentage: u16,
+        energy_percentage: u16,
+    },
+    ModuleOverclockChanged {
+        module: ItemInstanceId,
+        output_percentage: u16,
+        remaining_time_units: u16,
+    },
+    ModuleDurabilityDamaged {
+        module: ItemInstanceId,
+        amount: u16,
+        durability: u16,
+        maximum_durability: u16,
+    },
+    BodyComponentBypassed {
+        target: EntityId,
+        receiver: crate::entity::BodyComponentId,
+        donor: crate::entity::BodyComponentId,
+        restored_output_percentage: u16,
+    },
+    BodyComponentBypassEnded {
+        target: EntityId,
+        receiver: crate::entity::BodyComponentId,
+        donor: crate::entity::BodyComponentId,
+    },
+    ModuleReconditioned {
+        module: ItemInstanceId,
+        amount: u16,
+        durability: u16,
+        maximum_durability: u16,
+    },
+    FieldBeaconAssembled {
+        emitter: crate::stealth::SoundEmitterId,
+        at: GridPos,
+        integrity: u16,
+        stored_energy: u16,
+        energy_per_phase: u16,
+    },
+    DigitalInterfaceProbed {
+        at: GridPos,
+        analysis_score: u16,
+        rights: Vec<crate::intrusion::AccessRight>,
+        defense: u16,
+        trace: crate::intrusion::SecurityTraceId,
+    },
+    IntrusionAttemptResolved {
+        at: GridPos,
+        chance: u8,
+        roll: u8,
+        succeeded: bool,
+        hardening: u16,
+        trace: crate::intrusion::SecurityTraceId,
+    },
+    DigitalAccessGranted {
+        at: GridPos,
+        origin: crate::intrusion::AccessOrigin,
+        rights: Vec<crate::intrusion::AccessRight>,
+        remaining_time_units: u16,
+    },
+    DigitalAccessExpired {
+        at: GridPos,
+    },
+    ElectronicLockForced {
+        interface: GridPos,
+        door: GridPos,
+    },
+    DataLotExtracted {
+        source: GridPos,
+        recorded_on_turn: u64,
+        extracted_on_turn: u64,
+    },
+    DeviceControlChanged {
+        at: GridPos,
+        command: crate::intrusion::DeviceCommand,
+        active: bool,
+    },
+    DeviceControlRecaptureBlocked {
+        at: GridPos,
+    },
+    DigitalRoutineChanged {
+        at: GridPos,
+        routine: crate::intrusion::DigitalRoutine,
+        suspended: bool,
+    },
+    BackdoorChanged {
+        at: GridPos,
+        installed: bool,
+    },
+    SecurityTraceFalsified {
+        trace: crate::intrusion::SecurityTraceId,
+        at: GridPos,
+    },
+    SecurityTraceAudited {
+        trace: crate::intrusion::SecurityTraceId,
+        at: GridPos,
+        falsified: bool,
+    },
+    SubnetCommandIssued {
+        devices: Vec<GridPos>,
+        command: crate::intrusion::DeviceCommand,
+    },
+    DeviceControlLockChanged {
+        at: GridPos,
+        active: bool,
+    },
+    ElectronicPulseResolved {
+        source: EntityId,
+        cells: Vec<GridPos>,
+        affected: Vec<EntityId>,
+        disruption_intensity: u16,
+    },
+    HostileProgramAttemptResolved {
+        source: EntityId,
+        target: EntityId,
+        chance: u8,
+        roll: u8,
+        succeeded: bool,
+    },
+    HostileProgramChanged {
+        program: crate::electronic_warfare::HostileProgramId,
+        target: EntityId,
+        active: bool,
+    },
+    HostileProgramTicked {
+        program: crate::electronic_warfare::HostileProgramId,
+        target: EntityId,
+    },
+    ElectronicJammingChanged {
+        source: EntityId,
+        channel: crate::electronic_warfare::ElectronicChannel,
+        active: bool,
+    },
+    ElectronicCascadeResolved {
+        source: EntityId,
+        targets: Vec<EntityId>,
+    },
+    SaturationBeaconDeployed {
+        beacon: EntityId,
+        at: GridPos,
+        active: bool,
+    },
+    SaturationBeaconActivated {
+        beacon: EntityId,
+    },
+    SaturationBeaconExpired {
+        beacon: EntityId,
+        at: GridPos,
+    },
+    ElectronicImplosionDetonated {
+        program: crate::electronic_warfare::HostileProgramId,
+        target: EntityId,
+        at: GridPos,
     },
     MovementTracesRead {
         observer: EntityId,
         traces: Vec<crate::world::ObservedMovementTrace>,
+    },
+    SecretsInspected {
+        observer: EntityId,
+        discovered_explosives: Vec<crate::explosive::ExplosiveDeviceId>,
     },
     TerrainAnalyzed {
         observer: EntityId,
@@ -195,7 +890,13 @@ pub enum GameEvent {
         observer: EntityId,
         target: EntityId,
         attacks: Vec<crate::combat::AttackProfile>,
+        armor: u16,
         resistances: crate::combat::ResistanceProfile,
+    },
+    EnergyAnalyzed {
+        observer: EntityId,
+        target: EntityId,
+        state: EnergyAnalysis,
     },
     StatusApplied {
         source: Option<EntityId>,
@@ -203,6 +904,13 @@ pub enum GameEvent {
         status: StatusId,
         stacks: u16,
         remaining_turns: Option<u16>,
+        application: crate::status::StatusApplyKind,
+    },
+    StatusApplicationBlocked {
+        source: Option<EntityId>,
+        target: EntityId,
+        status: StatusId,
+        blocking_status: StatusId,
     },
     StatusTriggered {
         target: EntityId,

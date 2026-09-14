@@ -2,6 +2,12 @@
   id: "core:needle_launcher",
   name_key: "weapon.needle_launcher.name",
   description_key: "weapon.needle_launcher.description",
+  ammunition_capacity: 30,
+  power_draw: 5,
+
+  capabilities: {
+    automatic_fire: true,
+  },
 
   attack: {
     range: 7,

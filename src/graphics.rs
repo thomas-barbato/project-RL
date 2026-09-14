@@ -55,6 +55,10 @@ pub struct GraphicsSettings {
     pub ui_scale_percent: u16,
     #[serde(default = "default_cell_size")]
     pub world_cell_px: u16,
+    #[serde(default)]
+    pub high_contrast: bool,
+    #[serde(default)]
+    pub reduced_motion: bool,
 }
 
 impl Default for GraphicsSettings {
@@ -65,6 +69,8 @@ impl Default for GraphicsSettings {
             windowed_size: [1280, 800],
             ui_scale_percent: 100,
             world_cell_px: default_cell_size(),
+            high_contrast: false,
+            reduced_motion: false,
         }
     }
 }
@@ -132,10 +138,14 @@ impl GraphicsSettings {
         result.map_err(|e| e.to_string())
     }
 
-    /// Macroquad already exposes DPI-adjusted coordinates. GUI scaling is a
-    /// separate transform and is capped to keep all menus reachable on resize.
+    /// Macroquad already exposes DPI-adjusted coordinates. The configured
+    /// percentage is combined with a conservative automatic scale on large
+    /// displays, then capped so every menu remains reachable after a resize.
     pub fn ui_scale(self, width: f32, height: f32) -> f32 {
-        (self.ui_scale_percent as f32 / 100.0)
+        let automatic = (width.max(1.0) / 1280.0)
+            .min(height.max(1.0) / 800.0)
+            .clamp(1.0, 2.0);
+        (self.ui_scale_percent as f32 / 100.0 * automatic)
             .min(width.max(1.0) / 700.0)
             .min(height.max(1.0) / 480.0)
     }
@@ -162,6 +172,8 @@ impl GraphicsSettings {
             }
             2 => self.ui_scale_percent = cycle_value(UI_SCALES, self.ui_scale_percent, forward),
             4 => self.world_cell_px = cycle_value(CELL_SIZES, self.world_cell_px, forward),
+            5 => self.high_contrast = !self.high_contrast,
+            6 => self.reduced_motion = !self.reduced_motion,
             _ => {}
         }
     }
@@ -365,15 +377,33 @@ mod tests {
         assert_eq!(settings.ui_scale_percent, 200);
         settings.cycle(2, true);
         assert_eq!(settings.ui_scale_percent, 75);
+        settings.cycle(5, true);
+        settings.cycle(6, true);
+        assert!(settings.high_contrast);
+        assert!(settings.reduced_motion);
+    }
+
+    #[test]
+    fn default_interface_scales_up_on_large_displays_and_stays_reachable() {
+        let settings = GraphicsSettings::default();
+        assert_eq!(settings.ui_scale(960.0, 540.0), 1.0);
+        assert!((settings.ui_scale(1920.0, 1080.0) - 1.35).abs() < 0.001);
+        assert_eq!(settings.ui_scale(3840.0, 2160.0), 2.0);
+        assert!(3840.0 / settings.ui_scale(3840.0, 2160.0) >= 700.0);
+        assert!(2160.0 / settings.ui_scale(3840.0, 2160.0) >= 480.0);
     }
 
     #[test]
     fn tile_zoom_is_independent_and_legacy_graphics_keep_their_preferences() {
         let mut document = serde_json::to_value(GraphicsSettings::default()).unwrap();
         document.as_object_mut().unwrap().remove("world_cell_px");
+        document.as_object_mut().unwrap().remove("high_contrast");
+        document.as_object_mut().unwrap().remove("reduced_motion");
         document["ui_scale_percent"] = serde_json::json!(150);
         let mut settings = GraphicsSettings::decode(&document.to_string()).unwrap();
         assert_eq!(settings.world_cell_px, 32);
+        assert!(!settings.high_contrast);
+        assert!(!settings.reduced_motion);
         settings.cycle(4, true);
         assert_eq!(settings.world_cell_px, 40);
         assert_eq!(settings.ui_scale_percent, 150);

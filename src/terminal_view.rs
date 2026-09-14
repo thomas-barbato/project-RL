@@ -2,8 +2,46 @@
 //! Only remembered terrain and currently perceived overlays reach the renderer.
 use std::collections::BTreeMap;
 
+use crate::ui_theme::{
+    UiTheme, draw_text as draw_ui_text, draw_text_bold as draw_ui_text_bold,
+    measure_text as measure_ui_text,
+};
+
+pub(crate) fn player_location_name(name: &str) -> String {
+    let base = name.split_once(" · région ").map_or(name, |(base, _)| base);
+    match base {
+        "HUMAN HABITAT" => "Territoires habités".to_owned(),
+        "SURFACE WILDS" => "Étendues sauvages".to_owned(),
+        "MAINTENANCE" => "Galeries de maintenance".to_owned(),
+        "PRODUCTION" => "Complexe de production".to_owned(),
+        "RESEARCH" => "Secteur de recherche".to_owned(),
+        "SECURITY" => "Secteur sécurisé".to_owned(),
+        "NETWORK" => "Nœud du réseau".to_owned(),
+        "CORRUPTED" => "Profondeurs corrompues".to_owned(),
+        _ if base
+            .chars()
+            .filter(|character| character.is_alphabetic())
+            .all(|character| character.is_uppercase()) =>
+        {
+            base.split_whitespace()
+                .map(|word| {
+                    let mut characters = word.chars();
+                    let first = characters
+                        .next()
+                        .map(|character| character.to_uppercase().collect::<String>())
+                        .unwrap_or_default();
+                    format!("{first}{}", characters.as_str().to_lowercase())
+                })
+                .collect::<Vec<_>>()
+                .join(" ")
+        }
+        _ => base.to_owned(),
+    }
+}
 use macroquad::prelude::*;
+use project_rl::ai::AiState;
 use project_rl::combat::AttackAreaCell;
+use project_rl::explosive::ExplosiveActivation;
 use project_rl::game::{GameState, WorldState};
 use project_rl::world::{GridPos, Map, Terrain, VisibilityState};
 
@@ -23,6 +61,7 @@ pub struct TerminalDrawOptions<'a> {
     pub legend_label: &'a str,
     pub legend_open: bool,
     pub attack_preview: Option<TerminalAttackPreview<'a>>,
+    pub navigation_signal: Option<&'a str>,
 }
 
 #[derive(Clone, Copy, Debug)]
@@ -91,14 +130,14 @@ impl TerminalView {
     #[cfg(debug_assertions)]
     pub fn draw_debug_overview(&self, game: &GameState) {
         clear_background(Color::from_rgba(6, 13, 19, 255));
-        draw_text(
+        draw_ui_text_bold(
             "PLAN DE DIAGNOSTIC · CARTE COMPLÈTE · HORS JEU",
             28.0,
             36.0,
             23.0,
             WHITE,
         );
-        draw_text(
+        draw_ui_text(
             "Ville fixe et sûre à gauche / extérieur variable à droite et au sud",
             28.0,
             62.0,
@@ -122,7 +161,7 @@ impl TerminalView {
                 );
             }
         }
-        draw_text(
+        draw_ui_text(
             "Les parties normales affichent uniquement la perception et la mémoire du joueur.",
             28.0,
             screen_height() - 22.0,
@@ -166,12 +205,28 @@ impl TerminalView {
         game: &WorldState,
         bounds: Rect,
         cell_size: u16,
+        navigation_signal_visible: bool,
         pointer: (f32, f32),
     ) -> Option<GridPos> {
-        terminal_grid_camera(game, bounds, cell_size)
+        terminal_grid_camera(game, bounds, cell_size, navigation_signal_visible)
             .1
             .hit(pointer)
             .filter(|position| self.known(*position).is_some())
+    }
+
+    /// Returns the exact on-screen rectangle used to draw a world cell.
+    /// Presentation overlays can therefore follow the terminal camera without
+    /// duplicating its zoom, sidebar or sensor-footprint calculations.
+    pub fn world_cell_rect(
+        &self,
+        game: &WorldState,
+        bounds: Rect,
+        cell_size: u16,
+        navigation_signal_visible: bool,
+        position: GridPos,
+    ) -> Option<Rect> {
+        let camera = terminal_grid_camera(game, bounds, cell_size, navigation_signal_visible).1;
+        camera.contains(position).then(|| camera.rect(position))
     }
 
     /// Neighbour joins never consult unknown terrain, including in the minimap.
@@ -194,9 +249,11 @@ impl TerminalView {
             legend_label,
             legend_open,
             attack_preview,
+            navigation_signal,
         } = options;
         let cyan = Color::from_rgba(104, 201, 201, 255);
         let muted = Color::from_rgba(135, 162, 167, 255);
+        let layout = terminal_ui_layout(bounds, navigation_signal.is_some());
         draw_rectangle(
             bounds.x,
             bounds.y,
@@ -216,35 +273,60 @@ impl TerminalView {
             .player_position()
             .is_some_and(|p| game.map().is_protected(p));
         let safety_label = if protected {
-            "VILLE PROTÉGÉE"
+            "ZONE SÛRE"
         } else {
             "ZONE HOSTILE"
         };
-        let safety_width = measure_text(safety_label, None, 16, 1.0).width;
+        let safety_width = measure_ui_text(safety_label, None, 16, 1.0).width;
+        let safety_reserved = if layout.header.w > 560.0 {
+            safety_width + 23.0
+        } else {
+            0.0
+        };
+        draw_rectangle(
+            layout.header.x,
+            layout.header.y + 7.0,
+            3.0,
+            17.0,
+            if protected { cyan } else { ORANGE },
+        );
         draw_bounded_text(
             &self.title,
-            bounds.x + 14.0,
-            bounds.y + 22.0,
-            bounds.w
-                - 28.0
-                - if bounds.w > 750.0 {
-                    safety_width + 24.0
-                } else {
-                    0.0
-                },
+            layout.header.x + 11.0,
+            layout.header.y + 23.0,
+            layout.header.w - safety_reserved - 11.0,
             18,
             cyan,
         );
-        if bounds.w > 750.0 {
-            draw_text(
+        if layout.header.w > 560.0 {
+            draw_ui_text(
                 safety_label,
-                bounds.x + bounds.w - safety_width - 14.0,
-                bounds.y + 22.0,
+                layout.header.x + layout.header.w - safety_width,
+                layout.header.y + 22.0,
                 16.0,
                 if protected { cyan } else { ORANGE },
             );
         }
-        let (sidebar, camera) = terminal_grid_camera(game, bounds, cell_size);
+        if let (Some(signal), Some(signal_rect)) = (navigation_signal, layout.route) {
+            UiTheme.card(signal_rect, false);
+            draw_ui_text_bold(
+                "ITINÉRAIRE",
+                signal_rect.x + 10.0,
+                signal_rect.y + 19.0,
+                13.0,
+                muted,
+            );
+            draw_bounded_text(
+                signal,
+                signal_rect.x + 94.0,
+                signal_rect.y + 19.0,
+                signal_rect.w - 104.0,
+                15,
+                Color::from_rgba(142, 234, 215, 255),
+            );
+        }
+        let (sidebar, camera) =
+            terminal_grid_camera(game, bounds, cell_size, navigation_signal.is_some());
         let focus = game.player_position().unwrap_or(GridPos::new(12, 12));
         let visibility = game.player_visibility();
         for row in 0..camera.rows {
@@ -362,8 +444,64 @@ impl TerminalView {
                 } else if let Some(link) = game.passage(position) {
                     format!(
                         "Vers {} · {} à proximité pour voyager",
-                        game.destination_name(link),
+                        player_location_name(game.destination_name(link)),
                         interact_label
+                    )
+                } else if let Some(source) = game
+                    .threat_sources()
+                    .iter()
+                    .find(|source| source.position() == position)
+                {
+                    if source.is_active() {
+                        format!(
+                            "Camp hostile actif · cycle {}T · plafond actif {} · quota restant {}/{} · {} à côté pour neutraliser",
+                            source.remaining_turns(),
+                            source.maximum_active(),
+                            source
+                                .maximum_total()
+                                .saturating_sub(source.spawned_total()),
+                            source.maximum_total(),
+                            interact_label,
+                        )
+                    } else {
+                        "Camp hostile neutralisé · aucun nouveau renfort".to_owned()
+                    }
+                } else if let Some(device) = game
+                    .explosive_devices()
+                    .at(position)
+                    .find(|device| device.is_identified())
+                {
+                    let state = if device.is_neutralized() {
+                        "neutralisée".to_owned()
+                    } else if device.triggered_on().is_some() {
+                        "séquence de détonation engagée".to_owned()
+                    } else {
+                        match device.activation() {
+                            ExplosiveActivation::Timed { trigger_turn } => format!(
+                                "temporisée · {}T",
+                                trigger_turn.saturating_sub(game.turn())
+                            ),
+                            ExplosiveActivation::Proximity { armed_turn, radius } => {
+                                if armed_turn > game.turn() {
+                                    format!(
+                                        "proximité · armement dans {}T · rayon {radius}",
+                                        armed_turn - game.turn()
+                                    )
+                                } else {
+                                    format!("proximité armée · rayon {radius}")
+                                }
+                            }
+                            ExplosiveActivation::Remote { maximum_link_range } => {
+                                format!("commande distante · liaison {maximum_link_range}")
+                            }
+                        }
+                    };
+                    format!("Dispositif explosif · {state}")
+                } else if let Some(emitter) = game.sound_emitters().at(position).next() {
+                    format!(
+                        "Leurre sonore · intensité {} · {} phase(s)",
+                        emitter.intensity(),
+                        emitter.remaining_phases()
                     )
                 } else {
                     overlay(position).map_or_else(
@@ -378,6 +516,18 @@ impl TerminalView {
                                     format!("{label} · ALARME DE SÉCURITÉ")
                                 }
                                 None => label.to_owned(),
+                            };
+                            let state_label = game
+                                .actors()
+                                .entity_at(position)
+                                .and_then(|entity| game.actors().get(entity))
+                                .and_then(|actor| {
+                                    actor.ai().map(|_| ai_state_label(actor.ai_state()))
+                                });
+                            let alert_label = if let Some(state) = state_label {
+                                format!("{alert_label} · {state}")
+                            } else {
+                                alert_label
                             };
                             match cell.status_icon {
                                 Some(TerminalStatusIcon::Burning) => {
@@ -399,7 +549,7 @@ impl TerminalView {
             format!(
                 "{} : rejoindre {} · retour possible",
                 interact_label,
-                game.destination_name(link)
+                player_location_name(game.destination_name(link))
             )
         } else {
             format!(
@@ -413,21 +563,16 @@ impl TerminalView {
         };
         draw_bounded_text(
             &description,
-            bounds.x + 14.0,
-            bounds.y + bounds.h - 11.0,
-            bounds.w - 28.0,
+            layout.footer.x,
+            layout.footer.y + 17.0,
+            layout.footer.w,
             16,
             muted,
         );
         if sidebar {
             self.draw_sidebar(
                 game,
-                Rect::new(
-                    bounds.x + bounds.w - 232.0,
-                    bounds.y + 38.0,
-                    216.0,
-                    bounds.h - 60.0,
-                ),
+                layout.sidebar.expect("visible sidebar has layout bounds"),
                 inspected.map(|_| description.as_str()),
                 (
                     visible_hostiles,
@@ -459,7 +604,7 @@ impl TerminalView {
     fn draw_sidebar(
         &self,
         game: &GameState,
-        rect: Rect,
+        panel: Rect,
         inspection: Option<&str>,
         visible_counts: (usize, usize, usize, usize, usize, usize),
         legend_label: &str,
@@ -475,29 +620,28 @@ impl TerminalView {
         let bright = Color::from_rgba(203, 222, 221, 255);
         let muted = Color::from_rgba(133, 163, 170, 255);
         let cyan = Color::from_rgba(100, 221, 201, 255);
-        draw_line(
-            rect.x - 12.0,
-            rect.y,
-            rect.x - 12.0,
-            rect.y + rect.h,
-            1.0,
-            Color::from_rgba(32, 61, 72, 255),
+        UiTheme.card(panel, false);
+        let rect = Rect::new(
+            panel.x + 10.0,
+            panel.y + 10.0,
+            panel.w - 20.0,
+            panel.h - 20.0,
         );
-        draw_text("CARTOGRAPHIE", rect.x, rect.y + 14.0, 18.0, bright);
-        draw_text(
-            "Uniquement les zones explorées",
-            rect.x,
-            rect.y + 35.0,
-            13.0,
-            muted,
-        );
+        draw_ui_text_bold("CARTOGRAPHIE", rect.x, rect.y + 18.0, 18.0, bright);
+        draw_ui_text("ZONES MÉMORISÉES", rect.x, rect.y + 38.0, 13.0, muted);
         let pixel = (rect.w / game.map().width() as f32).floor().max(1.0);
-        let origin = vec2(rect.x, rect.y + 48.0);
+        let map_width = game.map().width() as f32 * pixel;
+        let map_height = game.map().height() as f32 * pixel;
+        let origin = vec2(rect.x + (rect.w - map_width) * 0.5, rect.y + 53.0);
+        UiTheme.card(
+            Rect::new(rect.x, origin.y - 6.0, rect.w, map_height + 12.0),
+            false,
+        );
         draw_rectangle(
             origin.x,
             origin.y,
-            game.map().width() as f32 * pixel,
-            game.map().height() as f32 * pixel,
+            map_width,
+            map_height,
             Color::from_rgba(3, 8, 13, 255),
         );
         for (position, tile) in &self.remembered {
@@ -527,59 +671,100 @@ impl TerminalView {
                 cyan,
             );
         }
-        let mut y = origin.y + game.map().height() as f32 * pixel + 26.0;
-        draw_text("INSPECTION", rect.x, y, 18.0, bright);
+        let inspection_card = Rect::new(rect.x, origin.y + map_height + 14.0, rect.w, 104.0);
+        UiTheme.card(inspection_card, false);
+        let mut y = inspection_card.y + 25.0;
+        draw_ui_text_bold("INSPECTION", inspection_card.x + 10.0, y, 18.0, bright);
         y += 23.0;
         if let Some(description) = inspection {
-            y = draw_wrapped_lines(description, rect.x, y, rect.w, 15, 3, muted);
+            draw_wrapped_lines(
+                description,
+                inspection_card.x + 10.0,
+                y,
+                inspection_card.w - 20.0,
+                15,
+                3,
+                muted,
+            );
         } else {
-            draw_text("Survolez une case connue", rect.x, y, 15.0, muted);
+            draw_ui_text(
+                "Survolez une case connue",
+                inspection_card.x + 10.0,
+                y,
+                15.0,
+                muted,
+            );
             y += 19.0;
-            draw_text("ou sélectionnez une cible.", rect.x, y, 15.0, muted);
-            y += 19.0;
+            draw_ui_text(
+                "ou sélectionnez une cible.",
+                inspection_card.x + 10.0,
+                y,
+                15.0,
+                muted,
+            );
         }
-        y += 12.0;
-        if y + 86.0 < rect.y + rect.h {
-            draw_text("DÉTECTIONS ACTUELLES", rect.x, y, 16.0, bright);
-            y += 22.0;
-            draw_text(
-                format!(
-                    "Hostiles {visible_hostiles}  ·  Neutres {visible_neutrals}  ·  Objets {visible_items}"
-                ),
-                rect.x,
+
+        let alert_lines = usize::from(visible_local_alerts > 0)
+            + usize::from(visible_security_alarms > 0)
+            + usize::from(visible_security_lockdowns > 0);
+        let detection_card = Rect::new(
+            rect.x,
+            inspection_card.y + inspection_card.h + 10.0,
+            rect.w,
+            83.0 + alert_lines as f32 * 21.0,
+        );
+        if detection_card.y + detection_card.h < rect.y + rect.h - 22.0 {
+            UiTheme.card(detection_card, false);
+            let mut y = detection_card.y + 24.0;
+            draw_ui_text_bold("EN VUE", detection_card.x + 10.0, y, 16.0, bright);
+            y += 23.0;
+            draw_ui_text(
+                format!("Hostiles {visible_hostiles}  ·  Neutres {visible_neutrals}"),
+                detection_card.x + 10.0,
+                y,
+                15.0,
+                muted,
+            );
+            y += 18.0;
+            draw_ui_text(
+                format!("Objets {visible_items}"),
+                detection_card.x + 10.0,
                 y,
                 15.0,
                 muted,
             );
             if visible_local_alerts > 0 {
-                draw_text(
+                y += 21.0;
+                draw_ui_text(
                     format!("Alertes locales visibles {visible_local_alerts}"),
-                    rect.x,
-                    y + 21.0,
+                    detection_card.x + 10.0,
+                    y,
                     15.0,
                     Color::from_rgba(255, 175, 83, 255),
                 );
             }
             if visible_security_alarms > 0 {
-                draw_text(
+                y += 21.0;
+                draw_ui_text(
                     format!("Alarmes de sécurité visibles {visible_security_alarms}"),
-                    rect.x,
-                    y + 42.0,
+                    detection_card.x + 10.0,
+                    y,
                     15.0,
                     Color::from_rgba(255, 175, 83, 255),
                 );
             }
             if visible_security_lockdowns > 0 {
-                draw_text(
+                y += 21.0;
+                draw_ui_text(
                     format!("Verrouillages visibles {visible_security_lockdowns}"),
-                    rect.x,
-                    y + 63.0,
+                    detection_card.x + 10.0,
+                    y,
                     15.0,
                     Color::from_rgba(255, 175, 83, 255),
                 );
             }
         }
-        draw_text(
+        draw_ui_text(
             format!("{legend_label} · légende"),
             rect.x,
             rect.y + rect.h - 4.0,
@@ -589,11 +774,30 @@ impl TerminalView {
     }
 }
 
+fn ai_state_label(state: AiState) -> String {
+    match state {
+        AiState::Unaware => "NON ALERTÉ".to_owned(),
+        AiState::Pursuing {
+            remaining_turns, ..
+        } => format!("POURSUITE · {remaining_turns}T"),
+        AiState::Searching {
+            remaining_turns, ..
+        } => format!("RECHERCHE LA DERNIÈRE POSITION · {remaining_turns}T"),
+        AiState::Responding {
+            remaining_turns, ..
+        } => format!("RÉPOND À UNE ALARME · {remaining_turns}T"),
+        AiState::Returning => "RETOUR AU TERRITOIRE".to_owned(),
+        AiState::Cooldown { remaining_turns } => {
+            format!("RÉENGAGEMENT BLOQUÉ · {remaining_turns}T")
+        }
+    }
+}
+
 fn legend_panel(bounds: Rect) -> Rect {
     Rect::new(
-        bounds.x + (bounds.w - (bounds.w - 24.0).min(660.0)) * 0.5,
+        bounds.x + (bounds.w - (bounds.w - 24.0).min(980.0)) * 0.5,
         bounds.y + (bounds.h - (bounds.h - 24.0).min(440.0)) * 0.5,
-        (bounds.w - 24.0).min(660.0),
+        (bounds.w - 24.0).min(980.0),
         (bounds.h - 24.0).min(440.0),
     )
 }
@@ -618,7 +822,7 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
         2.0,
         Color::from_rgba(73, 139, 145, 255),
     );
-    draw_text(
+    draw_ui_text_bold(
         "LÉGENDE · TERMINAL À GLYPHES",
         panel.x + 22.0,
         panel.y + 38.0,
@@ -626,10 +830,18 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
         bright,
     );
 
-    let columns = [panel.x + 22.0, panel.x + panel.w * 0.5];
-    let top = panel.y + 68.0;
-    let available = (panel.h - 107.0).max(120.0);
-    let row_height = (available / 12.0).min(38.0);
+    let columns = [
+        panel.x + 22.0,
+        panel.x + panel.w / 3.0,
+        panel.x + panel.w * 2.0 / 3.0,
+    ];
+    let column_width = panel.w / 3.0;
+    draw_ui_text_bold("ENTITÉS ET EFFETS", columns[0], panel.y + 68.0, 14.0, cyan);
+    draw_ui_text_bold("DÉCORS", columns[1], panel.y + 68.0, 14.0, cyan);
+    draw_ui_text_bold("DÉCORS ET SYSTÈMES", columns[2], panel.y + 68.0, 14.0, cyan);
+    let top = panel.y + 91.0;
+    let available = (panel.h - 130.0).max(120.0);
+    let row_height = (available / 18.0).min(38.0);
     let icon_size = (row_height - 7.0).max(20.0);
     for (index, (symbol, label, color, alerted, status_icon)) in [
         ('@', "Vous", cyan, false, None),
@@ -644,6 +856,20 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             'm',
             "Technicien neutre",
             Color::from_rgba(112, 207, 190, 255),
+            false,
+            None,
+        ),
+        (
+            'u',
+            "Drone allié · unité physique",
+            Color::from_rgba(105, 205, 238, 255),
+            false,
+            None,
+        ),
+        (
+            'b',
+            "Balise de saturation · unité physique",
+            Color::from_rgba(112, 216, 226, 255),
             false,
             None,
         ),
@@ -665,6 +891,13 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             'r',
             "Tirailleur hostile",
             Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'o',
+            "Conteneur instable · explosion et feu",
+            Color::from_rgba(241, 177, 72, 255),
             false,
             None,
         ),
@@ -704,10 +937,31 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             None,
         ),
         (
+            '¤',
+            "Dispositif explosif identifié",
+            Color::from_rgba(255, 185, 82, 255),
+            false,
+            None,
+        ),
+        (
+            '♪',
+            "Leurre sonore actif",
+            Color::from_rgba(143, 211, 232, 255),
+            false,
+            None,
+        ),
+        (
             'c',
             "Badge ! · état de sécurité",
             Color::from_rgba(255, 175, 83, 255),
             true,
+            None,
+        ),
+        (
+            'S',
+            "Bandeau · signal de navigation",
+            Color::from_rgba(142, 234, 215, 255),
+            false,
             None,
         ),
     ]
@@ -735,13 +989,24 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             label,
             columns[0] + icon_size + 9.0,
             y,
-            panel.w * 0.5 - icon_size - 42.0,
+            column_width - icon_size - 30.0,
             15,
             muted,
         );
     }
-    for (index, (decor, label)) in [
+    let terrain_legend = [
         (Decor::Wall, "Cloison"),
+        (Decor::Grass, "Prairie"),
+        (Decor::Scrub, "Broussailles"),
+        (Decor::Mud, "Sol humide"),
+        (Decor::ShallowWater, "Eau peu profonde"),
+        (Decor::DeepWater, "Eau profonde"),
+        (Decor::Tree, "Arbre"),
+        (Decor::Boulder, "Bloc rocheux"),
+        (Decor::RuinWall, "Ruines de surface"),
+        (Decor::SupplyCache, "Cache de récupération"),
+        (Decor::ThreatCamp, "Camp hostile actif"),
+        (Decor::ThreatCampDisabled, "Camp neutralisé"),
         (Decor::DoorClosed, "Porte fermée"),
         (Decor::DoorLocked, "Porte verrouillée"),
         (Decor::DoorUnpowered, "Porte sans alimentation"),
@@ -749,6 +1014,8 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
         (Decor::Depot, "Dépôt de maintenance"),
         (Decor::RelayOffline, "Relais en panne"),
         (Decor::SensorOffline, "Capteur hors ligne"),
+        (Decor::DataTerminalOnline, "Terminal de données"),
+        (Decor::DataTerminalOffline, "Terminal hors ligne"),
         (
             Decor::Passage,
             if game.exit().is_some() {
@@ -757,13 +1024,16 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
                 "Passage interzone"
             },
         ),
-    ]
-    .into_iter()
-    .enumerate()
-    {
-        let y = top + index as f32 * row_height;
+        (Decor::Ascent, "Montée inter-couche"),
+        (Decor::Descent, "Descente inter-couche"),
+    ];
+    let terrain_rows = terrain_legend.len().div_ceil(2);
+    for (index, (decor, label)) in terrain_legend.into_iter().enumerate() {
+        let column = 1 + index / terrain_rows;
+        let row = index % terrain_rows;
+        let y = top + row as f32 * row_height;
         draw_tile(
-            Rect::new(columns[1], y - icon_size * 0.75, icon_size, icon_size),
+            Rect::new(columns[column], y - icon_size * 0.75, icon_size, icon_size),
             decor,
             [false; 4],
             true,
@@ -771,9 +1041,9 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
         );
         draw_bounded_text(
             label,
-            columns[1] + icon_size + 9.0,
+            columns[column] + icon_size + 9.0,
             y,
-            panel.w * 0.5 - icon_size - 42.0,
+            column_width - icon_size - 30.0,
             15,
             muted,
         );
@@ -785,23 +1055,23 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
     .into_iter()
     .enumerate()
     {
-        let y = top + (9 + offset) as f32 * row_height;
-        let rect = Rect::new(columns[1], y - icon_size * 0.75, icon_size, icon_size);
+        let y = top + (terrain_rows + offset) as f32 * row_height;
+        let rect = Rect::new(columns[2], y - icon_size * 0.75, icon_size, icon_size);
         draw_attack_preview_area(rect, true, 0);
         if cursor {
             draw_attack_preview_cursor(rect, true);
         }
         draw_bounded_text(
             label,
-            columns[1] + icon_size + 9.0,
+            columns[2] + icon_size + 9.0,
             y,
-            panel.w * 0.5 - icon_size - 42.0,
+            column_width - icon_size - 30.0,
             15,
             muted,
         );
     }
-    draw_text(
-        format!("{legend_label} ou Échap · fermer"),
+    draw_ui_text(
+        format!("{legend_label}, Échap ou clic gauche · fermer"),
         panel.x + 22.0,
         panel.y + panel.h - 16.0,
         15.0,
@@ -826,7 +1096,7 @@ fn draw_wrapped_lines(
         } else {
             format!("{line} {word}")
         };
-        if !line.is_empty() && measure_text(&candidate, None, size, 1.0).width > width {
+        if !line.is_empty() && measure_ui_text(&candidate, None, size, 1.0).width > width {
             lines.push(std::mem::take(&mut line));
             if lines.len() == maximum_lines {
                 break;
@@ -847,8 +1117,8 @@ fn draw_wrapped_lines(
 }
 
 fn draw_bounded_text(text: &str, x: f32, y: f32, width: f32, size: u16, color: Color) {
-    if measure_text(text, None, size, 1.0).width <= width {
-        draw_text(text, x, y, f32::from(size), color);
+    if measure_ui_text(text, None, size, 1.0).width <= width {
+        draw_ui_text(text, x, y, f32::from(size), color);
         return;
     }
     let mut clipped = String::new();
@@ -856,8 +1126,8 @@ fn draw_bounded_text(text: &str, x: f32, y: f32, width: f32, size: u16, color: C
     for character in text.chars() {
         let previous = clipped.len();
         clipped.push(character);
-        if measure_text(&clipped, None, size, 1.0).width
-            + measure_text(suffix, None, size, 1.0).width
+        if measure_ui_text(&clipped, None, size, 1.0).width
+            + measure_ui_text(suffix, None, size, 1.0).width
             > width
         {
             clipped.truncate(previous);
@@ -865,7 +1135,7 @@ fn draw_bounded_text(text: &str, x: f32, y: f32, width: f32, size: u16, color: C
         }
     }
     clipped.push_str(suffix);
-    draw_text(&clipped, x, y, f32::from(size), color);
+    draw_ui_text(&clipped, x, y, f32::from(size), color);
 }
 
 pub fn overlay_label(symbol: char) -> &'static str {
@@ -873,17 +1143,94 @@ pub fn overlay_label(symbol: char) -> &'static str {
         '@' => "Vous · noyau mobile",
         'c' => "Récupérateur neutre · transporte des matériaux",
         'm' => "Technicien neutre · entretient les installations",
+        'u' => "Drone allié · unité physique sur sa propre case",
+        'b' => "Balise de saturation · unité physique sur sa propre case",
         'd' => "Traqueur · hostile",
         't' => "Sentinelle · hostile",
         'r' => "Tirailleur · hostile",
+        'o' => "Conteneur instable · explosion et feu persistant",
         ')' => "Arme au sol",
         '!' => "Consommable au sol",
         '=' => "Matériau au sol",
+        '¤' => "Dispositif explosif identifié",
+        '♪' => "Leurre sonore actif",
         '>' => "Sortie du secteur",
         '.' | '-' | '*' | '+' | 'f' | 'F' | 'x' | '~' | 'a' => "Effet visuel en cours",
         '^' => "Feu au sol · dégâts thermiques persistants",
         's' => "Capteur de sécurité",
         _ => "Trace de déplacement",
+    }
+}
+
+pub(crate) fn detected_navigation_signal_summary(game: &WorldState) -> Option<String> {
+    let observer = game.player_position()?;
+    let signals = game
+        .active_facility()?
+        .detected_navigation_signals(observer);
+    let nearest = signals.first()?;
+    Some(navigation_signal_summary(
+        observer,
+        nearest.position,
+        nearest.distance,
+        signals.len(),
+    ))
+}
+
+pub(crate) fn navigation_signal_summary(
+    observer: GridPos,
+    target: GridPos,
+    distance: u32,
+    signal_count: usize,
+) -> String {
+    directional_signal_summary("SIGNAL DE SITE", observer, target, distance, signal_count)
+}
+
+pub(crate) fn directional_signal_summary(
+    label: &str,
+    observer: GridPos,
+    target: GridPos,
+    distance: u32,
+    signal_count: usize,
+) -> String {
+    let distance_label = match distance {
+        0..=3 => "SUR PLACE",
+        4..=12 => "TOUT PROCHE",
+        13..=28 => "PROCHE",
+        29..=52 => "À DISTANCE",
+        _ => "LOINTAIN",
+    };
+    let mut summary = if distance <= 3 {
+        format!("{label} · {distance_label}")
+    } else {
+        format!(
+            "{label} · {} · {distance_label}",
+            approximate_direction(observer, target)
+        )
+    };
+    if signal_count > 1 {
+        summary.push_str(&format!(" · +{} AUTRE(S)", signal_count - 1));
+    }
+    summary
+}
+
+fn approximate_direction(observer: GridPos, target: GridPos) -> &'static str {
+    let horizontal = observer.x.abs_diff(target.x);
+    let vertical = observer.y.abs_diff(target.y);
+    if horizontal > vertical.saturating_mul(2) {
+        return if target.x > observer.x {
+            "EST"
+        } else {
+            "OUEST"
+        };
+    }
+    if vertical > horizontal.saturating_mul(2) {
+        return if target.y > observer.y { "SUD" } else { "NORD" };
+    }
+    match (target.x > observer.x, target.y > observer.y) {
+        (true, true) => "SUD-EST",
+        (true, false) => "NORD-EST",
+        (false, true) => "SUD-OUEST",
+        (false, false) => "NORD-OUEST",
     }
 }
 
@@ -908,25 +1255,69 @@ fn fitted_cell_size(bounds: Rect, preferred: u16, radius: u16) -> f32 {
         .max(8.0)
 }
 
+#[derive(Clone, Copy, Debug, PartialEq)]
+struct TerminalUiLayout {
+    header: Rect,
+    route: Option<Rect>,
+    map: Rect,
+    footer: Rect,
+    sidebar: Option<Rect>,
+}
+
+fn terminal_ui_layout(bounds: Rect, navigation_signal_visible: bool) -> TerminalUiLayout {
+    let sidebar = (bounds.w >= 1050.0 && bounds.h >= 400.0).then(|| {
+        Rect::new(
+            bounds.x + bounds.w - 232.0,
+            bounds.y + 8.0,
+            216.0,
+            bounds.h - 16.0,
+        )
+    });
+    let main_right = sidebar.map_or(bounds.x + bounds.w - 8.0, |panel| panel.x - 12.0);
+    let main_x = bounds.x + 8.0;
+    let main_width = (main_right - main_x).max(80.0);
+    let header = Rect::new(main_x, bounds.y + 5.0, main_width, 30.0);
+    let route =
+        navigation_signal_visible.then(|| Rect::new(main_x, bounds.y + 40.0, main_width, 28.0));
+    let map_top = route.map_or(bounds.y + 42.0, |route| route.y + route.h + 7.0);
+    let footer = Rect::new(
+        main_x + 6.0,
+        bounds.y + bounds.h - 29.0,
+        main_width - 12.0,
+        23.0,
+    );
+    let map = Rect::new(
+        main_x,
+        map_top,
+        main_width,
+        (footer.y - map_top - 5.0).max(40.0),
+    );
+    TerminalUiLayout {
+        header,
+        route,
+        map,
+        footer,
+        sidebar,
+    }
+}
+
 fn terminal_grid_camera(
     game: &WorldState,
     bounds: Rect,
     preferred_cell: u16,
+    navigation_signal_visible: bool,
 ) -> (bool, GridCamera) {
-    let sidebar = bounds.w >= 1050.0 && bounds.h >= 400.0;
-    let map_bounds = Rect::new(
-        bounds.x + 8.0,
-        bounds.y + 34.0,
-        bounds.w - if sidebar { 252.0 } else { 16.0 },
-        bounds.h - 64.0,
-    );
+    let layout = terminal_ui_layout(bounds, navigation_signal_visible);
     let focus = game.player_position().unwrap_or(GridPos::new(12, 12));
     let effective_cell = fitted_cell_size(
-        map_bounds,
+        layout.map,
         preferred_cell,
         game.rules().player_field_of_view.radius,
     );
-    (sidebar, GridCamera::new(map_bounds, effective_cell, focus))
+    (
+        layout.sidebar.is_some(),
+        GridCamera::new(layout.map, effective_cell, focus),
+    )
 }
 
 impl GridCamera {
@@ -954,6 +1345,13 @@ impl GridCamera {
         )
     }
 
+    fn contains(&self, position: GridPos) -> bool {
+        position.x >= self.first.x
+            && position.y >= self.first.y
+            && position.x < self.first.x + self.columns
+            && position.y < self.first.y + self.rows
+    }
+
     pub fn hit(&self, (x, y): (f32, f32)) -> Option<GridPos> {
         let x = (x - self.origin.x) / self.cell;
         let y = (y - self.origin.y) / self.cell;
@@ -978,6 +1376,15 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
     let background = match kind {
         Decor::Grate => Color::from_rgba(20, 34, 39, 255),
         Decor::Gravel => Color::from_rgba(27, 31, 30, 255),
+        Decor::Grass => Color::from_rgba(24, 44, 33, 255),
+        Decor::Scrub => Color::from_rgba(47, 45, 29, 255),
+        Decor::Mud => Color::from_rgba(48, 37, 31, 255),
+        Decor::ShallowWater => Color::from_rgba(20, 54, 66, 255),
+        Decor::DeepWater => Color::from_rgba(12, 34, 54, 255),
+        Decor::RuinFloor => Color::from_rgba(43, 42, 39, 255),
+        Decor::Tree => Color::from_rgba(24, 48, 35, 255),
+        Decor::Boulder => Color::from_rgba(50, 53, 50, 255),
+        Decor::RuinWall => Color::from_rgba(55, 53, 49, 255),
         Decor::Lane | Decor::Threshold => Color::from_rgba(34, 39, 37, 255),
         _ if kind.blocks() => Color::from_rgba(42, 61, 71, 255),
         _ => Color::from_rgba(18, 31, 38, 255),
@@ -991,6 +1398,63 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
                 "########",
             ],
             dim(Color::from_rgba(255, 215, 120, 255), visible),
+        );
+        return;
+    }
+    if matches!(kind, Decor::Ascent | Decor::Descent) {
+        let pattern = if kind == Decor::Ascent {
+            &[
+                "...##...", "..####..", ".##..##.", "...##...", "...##...", ".######.", ".#....#.",
+                ".######.",
+            ]
+        } else {
+            &[
+                ".######.", ".#....#.", ".######.", "...##...", "...##...", ".##..##.", "..####..",
+                "...##...",
+            ]
+        };
+        draw_pixel_glyph(
+            rect,
+            pattern,
+            dim(Color::from_rgba(113, 220, 207, 255), visible),
+        );
+        return;
+    }
+    if matches!(kind, Decor::ShallowWater | Decor::DeepWater) {
+        let primary = if kind == Decor::ShallowWater {
+            Color::from_rgba(84, 174, 187, 255)
+        } else {
+            Color::from_rgba(65, 126, 169, 255)
+        };
+        let highlight = if kind == Decor::ShallowWater {
+            Color::from_rgba(151, 219, 207, 255)
+        } else {
+            Color::from_rgba(92, 169, 194, 255)
+        };
+        for row in 0..3 {
+            let offset = (position.x + position.y + row).rem_euclid(3) as f32;
+            draw_rectangle(
+                rect.x + 3.0 + offset * 2.0,
+                rect.y + 5.0 + row as f32 * (rect.h - 10.0) / 2.0,
+                (rect.w * 0.42).max(4.0),
+                1.5,
+                dim(if row == 1 { highlight } else { primary }, visible),
+            );
+        }
+        return;
+    }
+    if kind == Decor::Tree {
+        draw_pixel_glyph(
+            rect,
+            &TREE_CANOPY,
+            dim(Color::from_rgba(86, 166, 103, 255), visible),
+        );
+        draw_rectangle(
+            rect.x + rect.w * 0.44,
+            rect.y + rect.h * 0.57,
+            (rect.w * 0.12).max(2.0),
+            rect.h * 0.28,
+            dim(Color::from_rgba(156, 113, 72, 255), visible),
         );
         return;
     }
@@ -1046,11 +1510,11 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
         draw_rectangle(rect.x + 1.0, rect.y + 1.0, 1.0, rect.h - 2.0, seam);
         match kind {
             Decor::Gravel => {
+                let span_x = (rect.w as i32 - 4).max(1);
+                let span_y = (rect.h as i32 - 4).max(1);
                 for (dx, dy) in [(5, 7), (19, 16), (9, 24)] {
-                    let px =
-                        (dx + position.x * 7 + position.y * 3).rem_euclid(rect.w as i32 - 4) + 2;
-                    let py =
-                        (dy + position.x * 3 + position.y * 7).rem_euclid(rect.h as i32 - 4) + 2;
+                    let px = (dx + position.x * 7 + position.y * 3).rem_euclid(span_x) + 2;
+                    let py = (dy + position.x * 3 + position.y * 7).rem_euclid(span_y) + 2;
                     draw_rectangle(
                         rect.x + px as f32,
                         rect.y + py as f32,
@@ -1059,6 +1523,83 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
                         dim(Color::from_rgba(79, 87, 78, 255), visible),
                     );
                 }
+            }
+            Decor::Grass => {
+                let span_x = (rect.w as i32 - 4).max(1);
+                let span_y = (rect.h as i32 - 5).max(1);
+                for (dx, dy) in [(5, 20), (14, 10), (23, 22)] {
+                    let px = (dx + position.x * 5 + position.y * 2).rem_euclid(span_x) + 2;
+                    let py = (dy + position.x * 2 + position.y * 5).rem_euclid(span_y) + 3;
+                    let color = if (px + py) % 2 == 0 {
+                        Color::from_rgba(92, 151, 91, 255)
+                    } else {
+                        Color::from_rgba(139, 171, 91, 255)
+                    };
+                    draw_line(
+                        rect.x + px as f32,
+                        rect.y + py as f32,
+                        rect.x + px as f32 + 1.0,
+                        rect.y + py as f32 - 3.0,
+                        1.0,
+                        dim(color, visible),
+                    );
+                }
+            }
+            Decor::Scrub => {
+                let color = dim(Color::from_rgba(161, 143, 78, 255), visible);
+                draw_line(
+                    rect.x + rect.w * 0.25,
+                    rect.y + rect.h * 0.68,
+                    rect.x + rect.w * 0.48,
+                    rect.y + rect.h * 0.43,
+                    1.5,
+                    color,
+                );
+                draw_line(
+                    rect.x + rect.w * 0.48,
+                    rect.y + rect.h * 0.43,
+                    rect.x + rect.w * 0.74,
+                    rect.y + rect.h * 0.67,
+                    1.5,
+                    color,
+                );
+            }
+            Decor::Mud => {
+                let dark = dim(Color::from_rgba(100, 78, 58, 255), visible);
+                let wet = dim(Color::from_rgba(82, 117, 105, 255), visible);
+                draw_rectangle(
+                    rect.x + rect.w * 0.18,
+                    rect.y + rect.h * 0.62,
+                    rect.w * 0.55,
+                    2.0,
+                    dark,
+                );
+                draw_rectangle(
+                    rect.x + rect.w * 0.55,
+                    rect.y + rect.h * 0.30,
+                    rect.w * 0.25,
+                    1.0,
+                    wet,
+                );
+            }
+            Decor::RuinFloor => {
+                let crack = dim(Color::from_rgba(113, 108, 91, 255), visible);
+                draw_line(
+                    rect.x + rect.w * 0.22,
+                    rect.y + rect.h * 0.15,
+                    rect.x + rect.w * 0.50,
+                    rect.y + rect.h * 0.50,
+                    1.0,
+                    crack,
+                );
+                draw_line(
+                    rect.x + rect.w * 0.50,
+                    rect.y + rect.h * 0.50,
+                    rect.x + rect.w * 0.78,
+                    rect.y + rect.h * 0.42,
+                    1.0,
+                    crack,
+                );
             }
             Decor::Grate => {
                 for step in 1..4 {
@@ -1091,6 +1632,27 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
                     );
                 }
             }
+            Decor::SupplyCache => {
+                draw_pixel_glyph(
+                    rect,
+                    &SUPPLY_CACHE,
+                    dim(Color::from_rgba(235, 190, 92, 255), visible),
+                );
+            }
+            Decor::ThreatCamp => {
+                draw_pixel_glyph(
+                    rect,
+                    &THREAT_CAMP,
+                    dim(Color::from_rgba(234, 104, 72, 255), visible),
+                );
+            }
+            Decor::ThreatCampDisabled => {
+                draw_pixel_glyph(
+                    rect,
+                    &THREAT_CAMP_DISABLED,
+                    dim(Color::from_rgba(116, 137, 145, 255), visible),
+                );
+            }
             _ => {
                 draw_rectangle(rect.x + rect.w - 5.0, rect.y + rect.h - 5.0, 1.0, 1.0, seam);
             }
@@ -1103,6 +1665,8 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
         Decor::Server => (&SERVER, Color::from_rgba(107, 201, 190, 255)),
         Decor::Console => (&CONSOLE, Color::from_rgba(130, 185, 207, 255)),
         Decor::Coolant => (&COOLANT, Color::from_rgba(105, 169, 187, 255)),
+        Decor::Boulder => (&BOULDER, Color::from_rgba(143, 151, 142, 255)),
+        Decor::RuinWall => (&RUIN_WALL, Color::from_rgba(165, 151, 122, 255)),
         Decor::Depot => (&DEPOT, Color::from_rgba(200, 166, 105, 255)),
         Decor::RelayOffline => (&RELAY_OFFLINE, Color::from_rgba(180, 111, 92, 255)),
         Decor::RelayOnline => (&RELAY_ONLINE, Color::from_rgba(105, 211, 176, 255)),
@@ -1110,6 +1674,10 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
         Decor::ActuatorOnline => (&ACTUATOR_ONLINE, Color::from_rgba(112, 198, 190, 255)),
         Decor::SensorOffline => (&SENSOR_OFFLINE, Color::from_rgba(116, 137, 145, 255)),
         Decor::SensorOnline => (&SENSOR_ONLINE, Color::from_rgba(104, 207, 194, 255)),
+        Decor::DataTerminalOffline => {
+            (&DATA_TERMINAL_OFFLINE, Color::from_rgba(116, 137, 145, 255))
+        }
+        Decor::DataTerminalOnline => (&DATA_TERMINAL_ONLINE, Color::from_rgba(128, 218, 202, 255)),
         _ => unreachable!("non-blocking floor and wall already rendered"),
     };
     draw_pixel_glyph(rect, pattern, dim(color, visible));
@@ -1182,6 +1750,9 @@ fn draw_entity(
         'd' => &HUNTER,
         't' => &SENTRY,
         'r' => &SKIRMISHER,
+        'o' => &VOLATILE_CONTAINER,
+        'u' => &DRONE,
+        'b' => &SATURATION_BEACON,
         'c' => &RETRIEVER,
         'm' => &TECHNICIAN,
         ')' => &WEAPON,
@@ -1365,6 +1936,15 @@ const CONSOLE: PixelGlyph = [
 const COOLANT: PixelGlyph = [
     "..####..", ".#++++#.", "##+##+##", "#+#++#+#", "#+#++#+#", "##+##+##", ".#++++#.", "..####..",
 ];
+const TREE_CANOPY: PixelGlyph = [
+    "...##...", ".######.", "########", "##+##+##", "########", ".######.", "...##...", "...##...",
+];
+const BOULDER: PixelGlyph = [
+    "........", "..####..", ".######.", "##++++##", "##+##+##", "########", ".######.", "........",
+];
+const RUIN_WALL: PixelGlyph = [
+    "##..####", "##..####", "########", "####..##", "####..##", "##..####", "########", "########",
+];
 const PLAYER: PixelGlyph = [
     "...##...", ".######.", ".#++++#.", "##+##+##", "##+##+##", ".#++++#.", ".######.", "...##...",
 ];
@@ -1376,6 +1956,15 @@ const SENTRY: PixelGlyph = [
 ];
 const SKIRMISHER: PixelGlyph = [
     "......#.", "..##.##.", ".#####..", "##++##..", ".#####..", "..####..", ".##..##.", "##....##",
+];
+const DRONE: PixelGlyph = [
+    "........", ".##..##.", "..####..", ".#++++#.", "##+##+##", "..####..", ".##..##.", "........",
+];
+const SATURATION_BEACON: PixelGlyph = [
+    "...##...", "..####..", ".#+**+#.", ".#++++#.", "..####..", "...##...", "..####..", ".######.",
+];
+const VOLATILE_CONTAINER: PixelGlyph = [
+    "..####..", ".##++##.", ".#+**+#.", ".#+**+#.", ".#+**+#.", ".######.", "..####..", "...##...",
 ];
 const WEAPON: PixelGlyph = [
     "........", ".....##.", "..#####.", ".######.", "..##....", ".##.....", ".##.....", "........",
@@ -1467,6 +2056,21 @@ const SENSOR_OFFLINE: PixelGlyph = [
 const SENSOR_ONLINE: PixelGlyph = [
     "########", "#.#..#.#", "#..##..#", "#.####.#", "#.####.#", "#..##..#", "#.#..#.#", "########",
 ];
+const DATA_TERMINAL_OFFLINE: PixelGlyph = [
+    "########", "#......#", "#.####.#", "#.#..#.#", "#.####.#", "#......#", "#..##..#", "########",
+];
+const DATA_TERMINAL_ONLINE: PixelGlyph = [
+    "########", "#++++++#", "#+####+#", "#+#..#+#", "#+####+#", "#++++++#", "#..##..#", "########",
+];
+const SUPPLY_CACHE: PixelGlyph = [
+    "........", ".######.", ".#....#.", ".######.", ".#..#.#.", ".######.", "........", "........",
+];
+const THREAT_CAMP: PixelGlyph = [
+    "...##...", "..####..", ".######.", "##.##.##", "...##...", "..####..", ".#....#.", "........",
+];
+const THREAT_CAMP_DISABLED: PixelGlyph = [
+    "........", ".#....#.", "..#..#..", "...##...", "...##...", "..#..#..", ".#....#.", "........",
+];
 const RETRIEVER: PixelGlyph = [
     "...##...", "..####..", ".##++##.", "######..", "#######.", "..####..", ".##..##.", "##....##",
 ];
@@ -1534,6 +2138,39 @@ mod tests {
     }
 
     #[test]
+    fn route_map_and_cartography_use_separate_non_overlapping_regions() {
+        let bounds = Rect::new(20.0, 76.0, 1240.0, 620.0);
+        let layout = terminal_ui_layout(bounds, true);
+        let route = layout.route.expect("navigation route should be visible");
+        let sidebar = layout.sidebar.expect("wide view should have cartography");
+        assert!(route.x + route.w < sidebar.x);
+        assert!(layout.map.x + layout.map.w < sidebar.x);
+        assert!(layout.header.x + layout.header.w < sidebar.x);
+        assert!(route.y >= layout.header.y + layout.header.h);
+        assert!(layout.map.y > route.y + route.h);
+
+        let narrow = terminal_ui_layout(Rect::new(20.0, 76.0, 900.0, 420.0), true);
+        assert!(narrow.sidebar.is_none());
+        assert!(narrow.route.is_some());
+    }
+
+    #[test]
+    fn procedural_location_names_hide_internal_coordinates_and_use_player_language() {
+        assert_eq!(
+            player_location_name("HUMAN HABITAT · région +1, +0"),
+            "Territoires habités"
+        );
+        assert_eq!(
+            player_location_name("CORRUPTED · région -12, +7"),
+            "Profondeurs corrompues"
+        );
+        assert_eq!(
+            player_location_name("Ville de départ / Friches"),
+            "Ville de départ / Friches"
+        );
+    }
+
+    #[test]
     fn legend_panel_stays_inside_responsive_world_bounds() {
         for bounds in [
             Rect::new(20.0, 76.0, 600.0, 300.0),
@@ -1564,12 +2201,34 @@ mod tests {
     }
 
     #[test]
+    fn navigation_signal_uses_stable_approximate_directions_and_distance_bands() {
+        let observer = GridPos::new(10, 10);
+        assert_eq!(
+            navigation_signal_summary(observer, GridPos::new(30, 0), 20, 1),
+            "SIGNAL DE SITE · NORD-EST · PROCHE"
+        );
+        assert_eq!(
+            navigation_signal_summary(observer, GridPos::new(40, 9), 30, 2),
+            "SIGNAL DE SITE · EST · À DISTANCE · +1 AUTRE(S)"
+        );
+        assert_eq!(
+            navigation_signal_summary(observer, GridPos::new(11, 12), 2, 1),
+            "SIGNAL DE SITE · SUR PLACE"
+        );
+        assert_eq!(
+            directional_signal_summary("ACCÈS INFÉRIEUR", observer, GridPos::new(-30, 10), 40, 1,),
+            "ACCÈS INFÉRIEUR · OUEST · À DISTANCE"
+        );
+    }
+
+    #[test]
     fn entity_silhouettes_are_distinct_without_color_and_glyphs_are_well_formed() {
         let entities = [
             PLAYER,
             HUNTER,
             SENTRY,
             SKIRMISHER,
+            VOLATILE_CONTAINER,
             WEAPON,
             REPAIR,
             EXIT,

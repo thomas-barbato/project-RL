@@ -1,4 +1,5 @@
 mod actor;
+mod component;
 mod entity_id;
 mod equipment;
 mod ground_item;
@@ -6,6 +7,10 @@ mod inventory;
 mod registry;
 
 pub use actor::{Actor, ActorBuildError};
+pub use component::{
+    BodyComponentError, BodyComponentId, BodyComponentProfile, BodyComponentState,
+    ComponentFailureEffect,
+};
 pub use entity_id::EntityId;
 pub use equipment::{EquipOutcome, Equipment, EquipmentError, EquipmentSlotId};
 pub use ground_item::{

@@ -1,0 +1,54 @@
+# Interface et accessibilité
+
+L'interface de Project RL est une couche de présentation indépendante du moteur et du rendu du monde. Le mode « terminal à glyphes » et le futur mode texturé doivent partager les mêmes menus, le même HUD, les mêmes informations autorisées et les mêmes commandes. Changer de rendu ne doit donc jamais modifier les règles, la portée des capteurs ni révéler une information supplémentaire.
+
+## Socle visuel
+
+L'interface utilise Atkinson Hyperlegible en graisses normale et forte, embarquée dans l'exécutable sous licence SIL Open Font License 1.1. Les glyphes de la carte conservent la police terminal : deux polices ont deux responsabilités distinctes, sans faire dépendre la simulation de leur disponibilité.
+
+`ui_theme.rs` centralise les couleurs sémantiques, les surfaces, les états de sélection, les mesures de texte et les composants communs. Les écrans ne doivent pas coder la signification d'un état par la couleur seule : texte, bordure, symbole ou motif doivent rester suffisants en niveaux de gris.
+
+L'interface doit se lire comme un jeu tactique, pas comme un logiciel d'administration. L'action ou la décision du moment domine visuellement ; les références techniques, compteurs secondaires et explications viennent ensuite. Les cadres servent à regrouper une information réellement liée et ne doivent pas transformer chaque ligne en widget équivalent. Un titre et son contenu restent dans la même surface, et une donnée critique comme l'état du personnage ne peut pas être remplacée par des points de suspension.
+
+L'interface normale ne montre jamais les informations de mise au point du développement : graine de génération, version interne, empreinte, identifiant de contenu brut, nom d'énumération, coordonnées de grille ou commentaire sur l'état d'un prototype. Un emplacement est décrit relativement au joueur lorsque cette précision aide à agir. Les mesures utiles aux règles — portée, coût, dégâts, durée, profondeur ou résultat d'un jet — restent visibles. Une référence comme `REC-01` est conservée uniquement lorsqu'elle a été volontairement intégrée à la fiction et placée en second niveau visuel.
+
+Les composants interactifs partagent un langage visuel de jeu commun : surface légèrement surélevée, ombre courte, angles adoucis et accent discret plutôt que cadres complets systématiques. Le texte d'un bouton est centré à partir des limites réellement rendues par la police, horizontalement et verticalement. Les actions principales, secondaires et destructrices sont distinguées par leur forme d'accentuation, leur libellé et leur couleur ; le survol, le focus clavier et l'état désactivé restent cohérents dans tous les écrans.
+
+L'échelle choisie dans les options est combinée à une augmentation automatique prudente sur les grands écrans. Elle reste plafonnée après un redimensionnement afin que le contenu et les boutons soient toujours atteignables. Le plein écran fenêtré demeure la valeur par défaut.
+
+## Confort d'utilisation
+
+Toutes les actions de menu importantes doivent fonctionner au clavier et à la souris. La géométrie utilisée pour dessiner une ligne ou un bouton sert également au survol et au clic ; un écran ne maintient pas une seconde approximation de ses zones interactives.
+
+- L'inventaire accepte sélection au clic, molette, filtres **Tout / Armes / Armures / Conso. / Matériaux**, tri par type ou nom, équipement direct des trois emplacements d'arme, équipement de la protection corporelle, utilisation, dépôt et fermeture par boutons. Une armure indique sa contribution, son emplacement, son état porté ou rangé et le Blindage total calculé. Sur une largeur confortable, l'écran se divise en trois panneaux : liste, objet sélectionné, puis résumé du personnage avec protocole, niveau, primaires, secondaires et combat actif. Le troisième panneau ouvre la fiche détaillée au clic ; `J` effectue le même passage sans consommer de tour. Sur une fenêtre courte ou étroite, il disparaît plutôt que de comprimer les informations, et son raccourci reconfigurable reste annoncé dans l'en-tête.
+- Les objets reçoivent dans cet écran de petits dessins Terminal 7 × 7, présents dans la liste et agrandis dans la fiche. Leur silhouette différencie au minimum lame, arme à distance, projecteur thermique, armure, consommable et matériau sans dépendre uniquement de la couleur. Ce classement reste une présentation déduite des catalogues : il n'entre ni dans la sauvegarde ni dans les règles.
+- Les compétences acceptent sélection des disciplines et techniques au clic, molette, apprentissage, utilisation et fermeture par boutons. Leur écran sépare la navigation des disciplines, la liste des techniques et la fiche descriptive afin qu'aucun texte ne passe sous une autre colonne. La colonne des disciplines ne montre que leurs noms : ni la taille fixe ou variable du catalogue, ni un rang de discipline n'aident à choisir un arbre. Chaque technique affiche seulement ses conditions réelles — niveau, attributs et techniques prérequises — ainsi que son coût en points. Le nom joueur reste dominant ; la référence technique, comme `REC-01`, demeure secondaire et petite.
+- En jeu, `U` ouvre un sélecteur compact limité aux techniques actives déjà apprises ; les améliorations passives n'y figurent pas. Haut/bas, la molette et le survol permettent de choisir. Un second appui sur `U`, Entrée ou le bouton **Utiliser** lance la technique sélectionnée, puis laisse sa visée ou son choix de composant prendre le relais si nécessaire. Ouvrir, parcourir ou fermer ce sélecteur ne consomme aucun tour ; Échap et **Annuler** le ferment.
+- Une montée de niveau ouvre cet écran automatiquement, une fois le tour entièrement résolu, et renforce son bandeau avec le niveau atteint et le total de points disponibles. Cette navigation ne se rejoue pas lors d'une reprise de suspension ; Échap permet toujours de revenir immédiatement au jeu.
+- La création présente un résumé fonctionnel de chacun des cinq attributs avant toute répartition. La fiche de personnage et la seconde étape de création permettent ensuite de sélectionner un attribut au clavier ou au clic et affichent son explication complète, afin qu'aucune statistique ne repose sur une devinette tout en évitant cinq paragraphes permanents. La fiche regroupe aussi PV, Blindage, énergie, expérience et points disponibles dans un état compact issu du moteur.
+- Le dossier accepte la molette, affiche le lieu et le cycle de consultation, distingue visuellement relevés et archives, masque les identifiants internes des enregistrements et offre une fermeture cliquable.
+- La légende F1 décrit uniquement le rendu actif. Tant que les textures n'existent pas, elle porte explicitement le titre « Terminal à glyphes » et classe les entrées par fonction.
+
+Les raccourcis permanents du bas d'écran restent limités aux actions immédiates. Les commandes détaillées appartiennent à F1 et aux écrans concernés. La prévisualisation d'une attaque de zone remplace ce rappel par une carte contextuelle indiquant validité, nombre de cases, nombre de cibles, confirmation et annulation.
+
+Dans la vue de jeu, le lieu, l'itinéraire éventuel, la carte et la cartographie latérale occupent des surfaces distinctes. Le titre **Cartographie** appartient exclusivement au panneau latéral ; un séparateur ou une bordure ne traverse jamais l'en-tête, l'itinéraire ni une autre surface. Les panneaux principaux n'ajoutent pas de barre décorative pleine largeur en haut : l'accent coloré reste local et sert à hiérarchiser une information identifiable.
+
+Échap ferme toujours d'abord la surcouche active : légende, inventaire, personnage, compétences, dossier ou visée de zone. Il n'ouvre le menu pause que depuis le jeu dégagé. Dans une hiérarchie de menus, il remonte d'un niveau ; pendant la création, il revient d'abord à l'étape précédente.
+
+Les événements immédiatement perceptibles peuvent produire un message flottant transparent ancré à leur case : dégâts, soin, esquive, état, destruction ou alerte. Une attaque manquée reste distincte d'un impact observé à zéro dégât. Sur le joueur, dont la défense est connue, une absorption complète peut nommer le Blindage ; sur un adversaire non analysé, l'interface annonce seulement l'absence de dégâts afin de ne pas révéler sa statistique cachée. Le gain de niveau utilise une durée, une taille et un libellé renforcés au-dessus du joueur, puis son écran de dépense prend le relais sans interrompre la résolution du tour. Ces messages dérivent uniquement des événements déjà autorisés au client, disparaissent en temps réel, ne sont pas sauvegardés et ne modifient jamais la simulation. Plusieurs messages simultanés s'empilent pour rester lisibles ; l'option d'animations réduites supprime leur déplacement vertical sans supprimer l'information.
+
+## Accessibilité
+
+Les options d'affichage proposent :
+
+- une taille d'interface persistante, en plus de l'adaptation automatique ;
+- un contraste renforcé, qui épaissit et accentue les contours porteurs d'information ;
+- des animations réduites, qui suppriment notamment la pulsation des alertes sans masquer leur bandeau, leur texte ni leur symbole.
+
+L'écran des commandes présente chaque raccourci comme une valeur interactive centrée, distincte du nom de l'action, plutôt que comme une colonne de texte brute. La ligne entière demeure cliquable pour conserver une cible confortable à la souris.
+
+Atkinson Hyperlegible est réservée à l'interface et aux textes en français. Les tailles de corps ordinaires visent 15 à 18 unités logiques ou plus ; les tailles 12 à 14 sont réservées aux libellés secondaires et aux références techniques. Une chaîne trop longue doit être enveloppée ou réduite dans son propre composant, jamais déborder dans le composant voisin.
+
+## Validation visuelle
+
+Toute modification importante de l'interface doit être contrôlée au minimum en 960 × 540, 1280 × 800 et 1920 × 1080, avec plusieurs facteurs d'interface. Les captures de démarrage à froid vérifient séparément le menu principal, la création de personnage, la fiche, l'inventaire, les compétences, le dossier, F1, les alertes et la visée de zone. Les tests sans contexte graphique continuent de vérifier la géométrie, les clics, le défilement et l'absence de tour consommé par la navigation.

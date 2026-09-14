@@ -17,7 +17,7 @@ Les bornes de profondeur et de quantité sont inclusives. Une profondeur maximal
 
 Les poids sont relatifs : la probabilité d'une entrée éligible vaut son poids divisé par la somme des poids éligibles. Un poids nul désactive une entrée. Les lignes qui se recouvrent **s'additionnent**, y compris pour un même objet ; l'ordre n'établit pas de priorité. Les tirages se font avec remise : deux piles peuvent contenir le même objet. S'il n'y a aucune entrée éligible, aucun objet n'est produit et aucun objet de repli hors contexte n'est choisi.
 
-Le moteur utilise les entiers et un tirage sans biais de modulo. Même graine, même table ordonnée et même contexte donnent mêmes résultats et même état RNG final. Les refus, zéro tirage et les contextes vides préservent le RNG. La fixture d'expédition utilise un flux séparé pour le butin : changer les tirages ne change ni le terrain ni le flux aléatoire des ennemis.
+Le moteur utilise les entiers et un tirage sans biais de modulo. Même graine, même table ordonnée et même contexte donnent mêmes résultats et même état RNG final. Les refus, zéro tirage et les contextes vides préservent le RNG. La fixture d'expédition et les régions utilisent un flux séparé pour le butin : changer les tirages ne change ni le terrain, ni les lieux remarquables, ni le flux aléatoire des ennemis.
 
 ## Format de contenu
 
@@ -55,13 +55,19 @@ Les tables sont limitées à 1024 entrées, les sélecteurs à 64 valeurs distin
 
 ## Preuve jouable et exemple de mod
 
-Les **nouvelles parties** utilisent `core:industrial_floor` pour les deux piles du secteur industriel. La ville conserve ses objets de test fixes. À la profondeur 1, les poids d'essai sont réparation 70, lance-aiguilles 25 et lame 5 ; à partir de 3, ils deviennent 45, 50 et 5. Cela prouve la sélection contextuelle, sans prétendre définir une progression de puissance entre ces armes incomparables.
+Les **nouvelles parties** utilisent `core:industrial_floor` pour les deux piles du secteur industriel. La ville conserve ses objets de test fixes. Jusqu'à la profondeur 2, les poids d'essai sont réparation 70, lance-aiguilles 25, plastron rapiécé 12 et lame 5 ; à partir de 3, ils deviennent 45, 50, 20 pour la carapace composite et 5. Cela rend déjà une protection trouvable hors choix de classe, sans prétendre fixer l'équilibrage entre ces objets incomparables.
+
+Les deux biomes régionaux de surface sélectionnent `core:regional_cache`. Chaque région reçoit deux caches accessibles et deux à quatre tirages ; les piles remplissent d'abord ces caches. Depuis la génération v24, le contenu d'un cache placé derrière une entrée verrouillée conserve aussi le propriétaire déclaré par le profil de sécurité régional : le ramasser sans autorisation peut donc déclencher le capteur et la demande de renfort associée, sans modifier le tirage lui-même. En surface, les poids provisoires sont 690 pour une réparation, 300 pour le lance-aiguilles, 130 pour le plastron rapiécé, 9 pour la lame et 1 pour le lance-flammes. Ce dernier reste une exception inférieure à 0,1 % par tirage dans cette nouvelle somme. À partir de la profondeur 1, les poids deviennent 400, 350, 180, 120 pour le plastron, 50 pour la carapace composite et 70 : la distribution évolue bien avec la profondeur. La première région profonde de la version 29, Maintenance ou Production selon la seed, possède trois caches et trois à cinq tirages de ce contexte. Ces valeurs démontrent le schéma, elles ne constituent pas l'équilibrage final.
+
+Le **Plastron rapiécé** fournit actuellement +1 Blindage et peut donc apparaître dès la surface. La **Carapace composite** fournit +2 et entre dans les caches à partir de la profondeur 1 ainsi que dans la table industrielle à partir de la profondeur 3. BRÈCHE reçoit aussi un plastron garanti dans son inventaire initial afin que le système reste testable sans dépendre d'un tirage. Cette attribution de départ n'équipe pas silencieusement la pièce.
 
 `content/core/worlds/expedition.json5` choisit `loot_table` et `loot_draws`. Le secteur fournit automatiquement son type, sa profondeur et la source `core:floor`. Une table absente ou une requête trop grande refuse la création de la partie, sans supprimer de suspension. Une table valide sans entrée éligible produit une zone sans ces piles.
 
 Le paquet `mods/example.arc_arsenal` fournit une table réellement chargeable : `example.arc_arsenal:industrial_floor`. Sa définition `worlds/arc_expedition.json5` la sélectionne dans une expédition alternative également chargée et validée. Le client de test démarre encore explicitement `core:starter_expedition` : il ne propose pas encore de sélecteur d'expédition. La lance du mod a un poids de 1 contre 999 près de la surface, puis 300 contre 700 en profondeur. Cette démonstration n'en fait pas officiellement une arme de haut niveau. Aucun remplacement silencieux de la table `core` n'est autorisé.
 
 Les tirages font partie des définitions persistantes des zones. Les visiter plusieurs fois ne relance pas les dés. Ramassage, inventaire, équipement, consommation et dépôt suivent les commandes et validations existantes.
+
+Les armures et leurs nouvelles lignes de butin appartiennent à la génération **version 36**. Une suspension version 35 conserve le Blindage corporel introduit dans cette version, mais filtre les définitions, emplacements et lignes de butin d'armure avant de vérifier ses empreintes. Reprendre une ancienne partie ne modifie donc ni ses objets déjà tirés ni les probabilités de ses zones ; il faut choisir **Nouvelle partie** pour essayer ces protections.
 
 ## Suspension et compatibilité
 

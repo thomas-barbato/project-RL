@@ -1,6 +1,6 @@
 # Project RL — Textes joueur : statistiques et compétences
 
-Version rédactionnelle 2 — 10 septembre 2026 — Étape 7 complétée par les cinq corrections validées du point 8, sans intégration au jeu.
+Version rédactionnelle 3 — 13 septembre 2026 — Étape 7 complétée par les cinq corrections validées du point 8, puis suppression du plafond de techniques apprises.
 
 ## 1. Statut, périmètre et références
 
@@ -15,7 +15,7 @@ Périmètre : statistiques, matériel utile à leur lecture, progression actuell
 - Les identifiants de ce document sont des clés de rédaction et de future localisation, jamais du texte à montrer tel quel au joueur. Ce Markdown n'est pas un format de contenu chargé par le moteur.
 - Dans les tableaux, seules les colonnes « Libellé », « Nom », « Texte joueur » et « Limite à afficher » sont destinées au joueur. Les conditions d'affichage et les notes sont des consignes d'intégration.
 - Chaque fiche associe une explication courte à sa limite. Les conditions déterminantes doivent rester visibles avant achat ou utilisation : les cacher dans une page secondaire rendrait la description trompeuse.
-- Les données de fiche accompagnent le texte : type d'action, rang minimal, prérequis nommés, matériel requis, cible/canal, portée, trajectoire/zone, temps de préparation/exécution/récupération, coût initial et entretien, énergie, chaleur, bande passante occupée et durée de réservation, munitions/objets, durée d'effet, délai de réutilisation et risque pour les tiers. Afficher les champs applicables, pas une rangée de zéros.
+- Les données de fiche accompagnent le texte : type d'action, niveau minimal, attributs et techniques prérequis, matériel requis, cible/canal, portée, trajectoire/zone, temps de préparation/exécution/récupération, coût initial et entretien, énergie, chaleur, bande passante occupée et durée de réservation, munitions/objets, durée d'effet, délai de réutilisation et risque pour les tiers. Afficher les champs applicables, pas une rangée de zéros.
 - Ces nombres proviennent du profil actif et de l'équipement réel ; ne pas recopier les coefficients de laboratoire dans les phrases. Indiquer séparément ce qui est payé maintenant, lors de l'effet et pendant son maintien. Une réaction affiche aussi le coût qu'elle exigera au déclenchement.
 - Montrer les améliorations avec le nom de leur technique mère, et une variante avec ce qu'elle remplace et son compromis. Une seule variante électronique s'applique à une utilisation ; elle n'est pas offerte avec la technique mère.
 - Pour une propriété ou une défense ennemie inconnue, afficher « Non déterminé », pas zéro. N'afficher un pourcentage de réussite précis que si les données nécessaires sont connues ; sinon « Chances non déterminées ». Aucun calcul d'aperçu ne doit révéler indirectement le Blindage, la Défense numérique, un occupant caché ou un obstacle non observé.
@@ -77,23 +77,23 @@ Les bornes et budgets entre accolades proviennent de la configuration active. Le
 | UI-CORPS | Corps principal | Vous conservez le même corps principal pendant la partie. Votre équipement et vos améliorations peuvent évoluer sans effacer les techniques apprises. |
 | UI-EXPERIENCE | Expérience | Fait progresser votre personnage au cours de cette partie. Les objectifs, découvertes et obstacles résolus peuvent rapporter de l’expérience. Répéter une même résolution ne verse pas de nouvelle récompense. |
 | UI-NIVEAU | Niveau | Représente votre progression dans cette partie. Les récompenses du prochain niveau sont indiquées séparément. Gagner un niveau ne restaure pas automatiquement vos PV ou votre énergie. |
-| UI-POINTS-COMPETENCE | Points de compétence | Servent à acheter des rangs dans vos compétences. Chaque rang acheté comprend un choix de technique ou d’amélioration accessible. Le coût du rang suivant est indiqué avant confirmation. |
+| UI-POINTS-COMPETENCE | Points de compétence | Servent à apprendre des techniques et des améliorations. Le coût augmente avec votre spécialisation dans une même compétence et reste indiqué avant confirmation. |
 | UI-POINTS-PRIMAIRE | Points de statistique | Permettent d’augmenter vos statistiques primaires dans les limites indiquées. Augmenter une capacité maximale ne remplit pas la réserve correspondante. |
-| UI-RANG | Rang de compétence | Détermine les techniques auxquelles vos prochains choix donnent accès. Les techniques des rangs précédents restent disponibles si vous ne les avez pas apprises. Monter de rang ne donne pas toutes ses techniques. |
-| UI-CHOIX | Choix de technique | Chaque compétence permet au plus cinq choix, en comptant ceux de votre classe de départ. Une amélioration occupe elle aussi un choix et demande sa technique d’origine. |
-| UI-MAITRISE | Maîtrise | Le dernier rang complète vos cinq choix dans cette compétence. En Reconnaissance, il permet de choisir une technique antérieure encore non apprise, sans pouvoir exclusif supplémentaire. |
+| UI-CONDITIONS | Conditions d’apprentissage | Chaque technique peut demander un niveau de personnage, certains attributs ou des techniques déjà apprises. Toutes les conditions sont visibles avant l’achat. |
+| UI-CHOIX | Choix de technique | Vous pouvez apprendre toutes les techniques d’une compétence si vous réunissez leurs points et leurs prérequis. Une amélioration demande aussi sa technique d’origine. |
+| UI-REPERTOIRE | Techniques connues | Une compétence ne limite pas le nombre de techniques que vous pouvez apprendre. Vos points et les conditions propres à chaque technique déterminent vos choix. |
 | UI-AMELIORATION | Amélioration | Modifie une technique déjà apprise. Elle ne s’utilise pas seule. Consultez ce qu’elle ajoute ou remplace et les éventuels coûts supplémentaires. |
 | UI-VARIANTE | Variante électronique | Transforme une technique connue et occupe un choix supplémentaire. Vous choisissez une seule variante par utilisation ; leurs effets ne s’additionnent pas. |
 | UI-MATERIEL-APPRENTISSAGE | Technique et équipement | Vous pouvez apprendre une technique avant de posséder son matériel requis. Son utilisation attendra un équipement compatible. Retirer cet équipement n’efface pas l’apprentissage. |
 | UI-ACTIONS-ORDINAIRES | Fonctions ordinaires | Les usages de base de votre matériel restent accessibles sans spécialisation : attaquer, employer un consommable compatible ou donner un ordre simple à un drone équipé pour cela. Les techniques ajoutent des options. |
-| UI-CONFIRMATION-ACHAT | Confirmer l’apprentissage | Apprendre « {technique} » et passer au rang {rang} de {discipline} pour {cout} points ? Il vous restera {restants} points. |
+| UI-CONFIRMATION-ACHAT | Confirmer l’apprentissage | Apprendre « {technique} » dans {discipline} pour {cout} points ? Il vous restera {restants} points. |
 | UI-REATTRIBUTION | Réattribution | La réattribution des choix n’est pas disponible dans ce mode de jeu. Vérifiez vos prérequis et le matériel nécessaire avant de confirmer un apprentissage. |
 | UI-FIN-PARTIE | Progression de la partie | À la mort de votre personnage, sa progression de partie est perdue. Les déblocages permanents des classes sont conservés séparément ; ils n’accordent pas automatiquement tous les apprentissages d’une ancienne partie. |
-| UI-DISCIPLINE-DIFFEREE | Compétence indisponible dans cette version | Les possibilités nécessaires à cette progression ne sont pas encore toutes disponibles dans cette version. Aucun rang ne peut y être acheté pour le moment. Les fonctions ordinaires de votre équipement restent accessibles selon leurs règles. |
+| UI-DISCIPLINE-DIFFEREE | Compétence indisponible dans cette version | Les systèmes nécessaires à ses techniques ne sont pas encore disponibles. Les fonctions ordinaires de votre équipement restent utilisables. |
 
 UI-REATTRIBUTION est un texte conditionnel, affichable seulement si le profil joué désactive réellement la réattribution. Sa rédaction ne décide pas de supprimer cette possibilité pour le jeu final. De même, ne pas afficher un nombre de niveaux, un budget de classe ou des récompenses encore absents du contenu chargé. Une technique dépendant d'un système absent de la version reste masquée à l'achat, et non vendue sous prétexte que son texte est prêt.
 
-Une discipline dont une suite légale ne peut pas atteindre cinq choix reste différée dans cette version. Son entrée peut rester visible comme indisponible avec UI-DISCIPLINE-DIFFEREE, mais ne propose pas d'achat ; ce statut ne dépend pas du matériel que le joueur transporte. Les classes et sauvegardes incompatibles demandent une décision de contenu ou une migration explicite, jamais une perte silencieuse de choix. Aucun plafond provisoire inférieur à cinq n'est décidé ici.
+Une discipline sans parcours d'apprentissage cohérent avec les systèmes disponibles reste différée dans cette version. Son entrée peut rester visible comme indisponible avec UI-DISCIPLINE-DIFFEREE, mais ne propose pas d'achat ; ce statut ne dépend pas du matériel que le joueur transporte. Les classes et sauvegardes incompatibles demandent une décision de contenu ou une migration explicite, jamais une perte silencieuse de choix. Aucun plafond ne limite le nombre de techniques apprises.
 
 ## 5. Présentation des dix disciplines
 
@@ -112,7 +112,7 @@ Une discipline dont une suite légale ne peut pas atteindre cinq choix reste dif
 
 ## 6. Textes des techniques et améliorations
 
-Les 104 lignes suivantes reprennent exactement les identifiants et noms actifs du catalogue. Le rang minimal et les prérequis sont affichés depuis les fiches de référence, avec les valeurs détaillées prévues en section 2. Les termes « davantage », « brièvement » ou « temporairement » ne dispensent pas d'afficher le chiffre réel du profil joué.
+Les 104 lignes suivantes reprennent exactement les identifiants et noms actifs du catalogue. Le niveau minimal, les éventuels seuils d'attributs et les techniques prérequises sont affichés depuis les fiches de référence, avec les valeurs détaillées prévues en section 2. Les termes « davantage », « brièvement » ou « temporairement » ne dispensent pas d'afficher le chiffre réel du profil joué.
 
 ### 6.1. Combat rapproché
 
@@ -268,7 +268,7 @@ Les descriptions d'Infection et de ses variantes suivent le typage thermique dir
 
 | Code | Nom | Texte joueur | Limite à afficher |
 |---|---|---|---|
-| DRN-01 | Escorte active | Ordonne à un drone de vous escorter en respectant une distance choisie. | Le drone se déplace pendant ses propres actions et ne réagit qu’aux informations auxquelles il a accès. |
+| DRN-01 | Drone spectral | Manifeste un drone utilitaire autonome sur une case adjacente libre. Choisissez ensuite sa doctrine depuis le panneau d'allié. | Le drone occupe réellement le terrain, réserve sa bande passante et reste vulnérable. À batterie vide, il se dissipe et pourra être manifesté de nouveau après la recharge de la compétence. |
 | DRN-02 | Patrouille bornée | Programme un court trajet connu et une condition d’arrêt ou de retour pour un drone. | Les obstacles nouveaux peuvent interrompre la routine. Hors liaison, le drone peut suivre la consigne déjà reçue, mais pas recevoir de nouveaux ordres. |
 | DRN-03 | Leurre mobile | Envoie un drone équipé émettre un signal de diversion depuis une position choisie. | Le trajet et l’émission prennent du temps et des ressources. L’ennemi peut ignorer le leurre ou attaquer le drone. |
 | DRN-04 | Collecte ciblée | Envoie un drone doté d’un manipulateur chercher un objet connu et le rapporter. | L’objet doit encore être présent et transportable. Ramassage et retour utilisent les actions du drone, sans transfert instantané vers votre inventaire. |
@@ -316,7 +316,8 @@ Les modèles courts ci-dessous s'affichent uniquement avec des valeurs connues. 
 
 | Identifiant | Libellé | Texte joueur |
 |---|---|---|
-| UI-CHAMP-RANG | Rang minimal | Rang minimal : {rang} |
+| UI-CHAMP-NIVEAU | Niveau requis | Niveau requis : {niveau} |
+| UI-CHAMP-ATTRIBUT | Attribut requis | {attribut} requis : {valeur} |
 | UI-CHAMP-PREREQUIS | Prérequis | Requiert : {technique} |
 | UI-CHAMP-MATERIEL | Matériel requis | Matériel requis : {materiel} |
 | UI-CHAMP-TEMPS | Temps | Préparation : {preparation} UT ; exécution : {execution} UT |
@@ -348,9 +349,9 @@ Tous ces refus sont gratuits seulement lorsque leur condition est déjà connue.
 |---|---|---|
 | MSG-REFUS-TECHNIQUE | Technique non apprise. | Vous n’avez pas appris cette technique. |
 | MSG-REFUS-PREREQUIS | Technique mère absente lors de l'achat. | Apprenez d’abord « {technique} ». |
-| MSG-REFUS-RANG | Rang minimal non atteint pour le choix proposé. | Ce choix demande le rang {rang} en {discipline}. |
+| MSG-REFUS-NIVEAU | Niveau minimal non atteint pour le choix proposé. | Cette technique demande le niveau {niveau}. |
+| MSG-REFUS-ATTRIBUT | Seuil d'attribut non atteint pour le choix proposé. | Cette technique demande {attribut} {valeur}. |
 | MSG-REFUS-POINTS | Budget insuffisant pour l'achat complet. | Points insuffisants : {cout} requis, {disponibles} disponibles. |
-| MSG-REFUS-CHOIX | Cinq choix déjà acquis. | Vous avez déjà effectué vos cinq choix dans cette compétence. |
 | MSG-REFUS-DEJA-APPRIS | Même choix déjà acquis. | Vous avez déjà appris cette technique. |
 | MSG-REFUS-PRIMAIRE | Répartition de création hors budget ou bornes. | Répartition invalide : respectez le budget et les limites indiqués pour chaque statistique. |
 | MSG-REFUS-MATERIEL | Équipement requis absent ou incompatible connu. | Matériel compatible requis : {materiel}. |
@@ -451,9 +452,10 @@ Les résultats ci-dessous ne sont émis que pour les événements connus de l'ob
 | MSG-RESULTAT-ARRET-ENERGIE | Entretien impossible par réserve propre épuisée. | {processus} s’arrête faute d’énergie disponible. |
 | MSG-RESULTAT-SUSPENSION | Réservation interrompue après baisse de capacité. | {processus} suspendu : capacité de contrôle insuffisante. |
 | MSG-RESULTAT-DRONE-PERDU | Perte du contact, sans preuve de destruction. | Contact perdu avec {drone}. Dernière confirmation : {date}. |
+| MSG-RESULTAT-DRONE-FIN-VIE | Batterie d'un drone manifesté épuisée. | Fin de vie du drone : manifestation dissipée. Drone spectral sera de nouveau utilisable après sa recharge. |
 | MSG-RESULTAT-DRONE-RAPPORT | Rapport réellement transmis au retour ou à la reconnexion. | Rapport reçu de {drone} : observations du {date}. |
 | MSG-RESULTAT-COLLECTE | Échec rapporté par le drone seulement après contact valide. | Le drone n’a pas pu rapporter l’objet demandé. |
-| MSG-RESULTAT-APPRENTISSAGE | Achat atomique complet confirmé. | Technique apprise : {technique}. {discipline} atteint le rang {rang}. |
+| MSG-RESULTAT-APPRENTISSAGE | Achat atomique complet confirmé. | Technique apprise : {technique}. |
 | MSG-RESULTAT-NIVEAU | Nouveau niveau effectivement accordé. | Niveau {niveau} atteint. |
 | MSG-RESULTAT-POINTS | Attribution effective, distincte du seul changement de niveau. | Points obtenus : {recompenses}. |
 | MSG-RESULTAT-XP | Récompense nouvelle versée, source connue. | +{quantite} XP — {source}. |

@@ -1,17 +1,28 @@
-use std::collections::BTreeSet;
+use std::collections::{BTreeMap, BTreeSet};
 use std::error::Error;
 use std::fmt::{Debug, Display, Formatter};
 
-use crate::ai::AiProfile;
-use crate::combat::{AttackProfile, ResistanceProfile};
-use crate::effects::AbilityProfile;
+use crate::ai::{AiProfile, AiState};
+use crate::combat::{ArmorProfile, AttackProfile, ResistanceProfile};
+use crate::drone::DroneState;
+use crate::effects::{AbilityProfile, DestructionEffect};
+use crate::electronic_warfare::{ElectronicSystemProfile, ElectronicSystemState};
 use crate::progression::DefeatReward;
+use crate::reaction::{ActionOrigin, PreparedReaction, ReactionState, ReactionTrigger};
+use crate::skills::TechniqueId;
 use crate::social::{
     LocalAlert, LocalAlertProfile, ObservedPropertyTake, SocialGroupId, WitnessProfile,
 };
-use crate::stats::PrimaryAttributes;
+use crate::stats::{
+    BodyProfile, DisplacementProfile, HitPointRules, LocomotionProfile, PrimaryAttributes,
+};
 use crate::status::{StatusDefinition, StatusId, StatusInstance, StatusSet};
+use crate::time::{
+    ActionRecovery, CooldownAdvance, EnvironmentCooldown, RecoveryAdvance, TimeUnits,
+};
 use crate::world::GridPos;
+
+use super::{BodyComponentId, BodyComponentProfile, BodyComponentState, ComponentFailureEffect};
 
 #[derive(Clone, PartialEq, Eq)]
 pub struct Actor {
@@ -22,19 +33,33 @@ pub struct Actor {
     attacks: Vec<AttackProfile>,
     abilities: Vec<AbilityProfile>,
     ai: Option<AiProfile>,
+    ai_home: Option<GridPos>,
+    ai_state: AiState,
+    drone: Option<DroneState>,
+    electronic_system: Option<ElectronicSystemState>,
+    threat_source: Option<u16>,
     defeat_reward: Option<DefeatReward>,
+    destruction_effect: Option<DestructionEffect>,
     statuses: StatusSet,
     primary_attributes: Option<PrimaryAttributes>,
+    body_profile: Option<BodyProfile>,
+    body_components: BTreeMap<BodyComponentId, BodyComponentState>,
+    can_evade: bool,
+    evasion_modifier: i16,
     affiliation: Option<SocialGroupId>,
     property_take_authorizations: BTreeSet<SocialGroupId>,
     witness_profile: Option<WitnessProfile>,
     observed_property_takes: Vec<ObservedPropertyTake>,
     local_alert_profile: Option<LocalAlertProfile>,
     local_alert: Option<LocalAlert>,
+    reaction_state: ReactionState,
+    action_recovery: Option<ActionRecovery>,
+    technique_cooldowns: BTreeMap<TechniqueId, EnvironmentCooldown>,
+    next_action_turn: Option<u64>,
 }
 
-// Optional social data is omitted while empty so pre-social replay fingerprints
-// retain the exact Debug representation used by suspension versions 1 to 5.
+// Optional social and pursuit data is omitted while empty so older replay
+// fingerprints retain their exact historical Debug representation.
 impl Debug for Actor {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         let mut actor = formatter.debug_struct("Actor");
@@ -51,6 +76,27 @@ impl Debug for Actor {
             .field("primary_attributes", &self.primary_attributes);
         if let Some(affiliation) = &self.affiliation {
             actor.field("affiliation", affiliation);
+        }
+        if let Some(home) = self.ai_home {
+            actor.field("ai_home", &home);
+        }
+        if self.ai_state != AiState::Unaware {
+            actor.field("ai_state", &self.ai_state);
+        }
+        if let Some(drone) = &self.drone {
+            actor.field("drone", drone);
+        }
+        if let Some(system) = self.electronic_system {
+            actor.field("electronic_system", &system);
+        }
+        if let Some(source) = self.threat_source {
+            actor.field("threat_source", &source);
+        }
+        if let Some(effect) = &self.destruction_effect {
+            actor.field("destruction_effect", effect);
+        }
+        if self.evasion_modifier != 0 {
+            actor.field("evasion_modifier", &self.evasion_modifier);
         }
         if !self.property_take_authorizations.is_empty() {
             actor.field(
@@ -70,6 +116,24 @@ impl Debug for Actor {
         if let Some(alert) = &self.local_alert {
             actor.field("local_alert", alert);
         }
+        if let Some(body_profile) = self.body_profile {
+            actor.field("body_profile", &body_profile);
+        }
+        if !self.body_components.is_empty() {
+            actor.field("body_components", &self.body_components);
+        }
+        if self.reaction_state != ReactionState::default() {
+            actor.field("reaction_state", &self.reaction_state);
+        }
+        if let Some(recovery) = self.action_recovery {
+            actor.field("action_recovery", &recovery);
+        }
+        if !self.technique_cooldowns.is_empty() {
+            actor.field("technique_cooldowns", &self.technique_cooldowns);
+        }
+        if let Some(next_action_turn) = self.next_action_turn {
+            actor.field("next_action_turn", &next_action_turn);
+        }
         actor.finish()
     }
 }
@@ -88,15 +152,29 @@ impl Actor {
             attacks: Vec::new(),
             abilities: Vec::new(),
             ai: None,
+            ai_home: None,
+            ai_state: AiState::Unaware,
+            drone: None,
+            electronic_system: None,
+            threat_source: None,
             defeat_reward: None,
+            destruction_effect: None,
             statuses: StatusSet::default(),
             primary_attributes: None,
+            body_profile: None,
+            body_components: BTreeMap::new(),
+            can_evade: true,
+            evasion_modifier: 0,
             affiliation: None,
             property_take_authorizations: BTreeSet::new(),
             witness_profile: None,
             observed_property_takes: Vec::new(),
             local_alert_profile: None,
             local_alert: None,
+            reaction_state: ReactionState::default(),
+            action_recovery: None,
+            technique_cooldowns: BTreeMap::new(),
+            next_action_turn: None,
         })
     }
 
@@ -122,7 +200,45 @@ impl Actor {
 
     pub const fn with_ai(mut self, ai: AiProfile) -> Self {
         self.ai = Some(ai);
+        self.ai_home = if ai.maximum_pursuit_distance().is_some() {
+            Some(self.position)
+        } else {
+            None
+        };
+        self.ai_state = AiState::Unaware;
         self
+    }
+
+    pub fn with_drone(mut self, drone: DroneState) -> Self {
+        self.drone = Some(drone);
+        self
+    }
+
+    pub const fn with_electronic_system(mut self, profile: ElectronicSystemProfile) -> Self {
+        self.electronic_system = Some(ElectronicSystemState::new(profile));
+        self
+    }
+
+    pub const fn drone(&self) -> Option<&DroneState> {
+        self.drone.as_ref()
+    }
+
+    pub fn drone_mut(&mut self) -> Option<&mut DroneState> {
+        self.drone.as_mut()
+    }
+
+    pub const fn electronic_system(&self) -> Option<ElectronicSystemState> {
+        self.electronic_system
+    }
+
+    pub(crate) fn electronic_system_mut(&mut self) -> Option<&mut ElectronicSystemState> {
+        self.electronic_system.as_mut()
+    }
+
+    pub(crate) fn ensure_electronic_system(&mut self, profile: ElectronicSystemProfile) {
+        if self.electronic_system.is_none() {
+            self.electronic_system = Some(ElectronicSystemState::new(profile));
+        }
     }
 
     pub const fn with_defeat_reward(mut self, reward: DefeatReward) -> Self {
@@ -130,8 +246,31 @@ impl Actor {
         self
     }
 
+    pub fn with_destruction_effect(mut self, effect: DestructionEffect) -> Self {
+        self.destruction_effect = Some(effect);
+        self
+    }
+
     pub const fn with_primary_attributes(mut self, attributes: PrimaryAttributes) -> Self {
         self.primary_attributes = Some(attributes);
+        self
+    }
+
+    pub const fn with_body_profile(mut self, profile: BodyProfile) -> Self {
+        self.body_profile = Some(profile);
+        self
+    }
+
+    /// Marks a stationary or otherwise certain target as exempt from passive
+    /// accuracy/evasion rolls. The attack must still pass range, line-of-sight
+    /// and protected-zone validation.
+    pub const fn with_evasion_disabled(mut self) -> Self {
+        self.can_evade = false;
+        self
+    }
+
+    pub const fn with_evasion_modifier(mut self, modifier: i16) -> Self {
+        self.evasion_modifier = modifier;
         self
     }
 
@@ -157,6 +296,20 @@ impl Actor {
 
     pub const fn position(&self) -> GridPos {
         self.position
+    }
+
+    pub const fn displacement_profile(&self) -> Option<DisplacementProfile> {
+        match self.body_profile {
+            Some(body) => body.displacement_profile(),
+            None => None,
+        }
+    }
+
+    pub const fn locomotion_profile(&self) -> Option<LocomotionProfile> {
+        match self.body_profile {
+            Some(body) => body.locomotion_profile(),
+            None => None,
+        }
     }
 
     pub const fn integrity(&self) -> u16 {
@@ -191,12 +344,221 @@ impl Actor {
         self.ai
     }
 
+    pub const fn ai_home(&self) -> Option<GridPos> {
+        self.ai_home
+    }
+
+    pub const fn ai_state(&self) -> AiState {
+        self.ai_state
+    }
+
+    pub(crate) const fn set_ai_state(&mut self, state: AiState) {
+        self.ai_state = state;
+    }
+
+    pub(crate) const fn set_threat_source(&mut self, source: u16) {
+        self.threat_source = Some(source);
+    }
+
+    pub const fn threat_source(&self) -> Option<u16> {
+        self.threat_source
+    }
+
     pub const fn defeat_reward(&self) -> Option<DefeatReward> {
         self.defeat_reward
     }
 
+    pub const fn destruction_effect(&self) -> Option<&DestructionEffect> {
+        self.destruction_effect.as_ref()
+    }
+
     pub const fn primary_attributes(&self) -> Option<PrimaryAttributes> {
         self.primary_attributes
+    }
+
+    pub const fn body_profile(&self) -> Option<BodyProfile> {
+        self.body_profile
+    }
+
+    pub fn with_body_components(
+        mut self,
+        profiles: impl IntoIterator<Item = BodyComponentProfile>,
+    ) -> Self {
+        self.body_components = profiles
+            .into_iter()
+            .map(|profile| (profile.id().clone(), BodyComponentState::new(profile)))
+            .collect();
+        self
+    }
+
+    pub fn body_components(&self) -> impl Iterator<Item = &BodyComponentState> {
+        self.body_components.values()
+    }
+
+    pub fn body_component(&self, id: &BodyComponentId) -> Option<&BodyComponentState> {
+        self.body_components.get(id)
+    }
+
+    pub(crate) fn body_component_mut(
+        &mut self,
+        id: &BodyComponentId,
+    ) -> Option<&mut BodyComponentState> {
+        self.body_components.get_mut(id)
+    }
+
+    pub fn failed_component_effects(&self) -> impl Iterator<Item = ComponentFailureEffect> + '_ {
+        self.body_components
+            .values()
+            .filter(|component| component.is_failed())
+            .map(|component| component.profile().failure_effect())
+    }
+
+    /// Recalculates intrinsic Armor from explicit actor sources instead of
+    /// storing a second total that could diverge. `GameState` composes this
+    /// profile with currently equipped items when resolving gameplay.
+    pub const fn armor_profile(&self) -> ArmorProfile {
+        ArmorProfile::new(
+            match self.body_profile {
+                Some(body) => body.base_armor,
+                None => 0,
+            },
+            0,
+            0,
+            0,
+        )
+    }
+
+    pub const fn reaction_available(&self) -> bool {
+        self.reaction_state.is_available()
+    }
+
+    pub const fn prepared_reaction(&self) -> Option<&PreparedReaction> {
+        self.reaction_state.prepared()
+    }
+
+    pub(crate) fn reaction_state(&self) -> ReactionState {
+        self.reaction_state.clone()
+    }
+
+    pub(crate) fn restore_reaction_state(&mut self, state: ReactionState) {
+        self.reaction_state = state;
+    }
+
+    pub(crate) fn begin_normal_action(&mut self) -> Option<PreparedReaction> {
+        self.reaction_state.begin_normal_action()
+    }
+
+    pub const fn recovery_remaining(&self) -> Option<TimeUnits> {
+        match self.action_recovery {
+            Some(recovery) => Some(recovery.remaining_actions()),
+            None => None,
+        }
+    }
+
+    pub(crate) fn start_action_recovery(&mut self, duration: TimeUnits) {
+        self.action_recovery = Some(ActionRecovery::new(duration));
+    }
+
+    pub(crate) fn advance_action_recovery(&mut self) -> Option<RecoveryAdvance> {
+        let recovery = self.action_recovery.take()?;
+        let advance = recovery.advance();
+        if let RecoveryAdvance::Recovering(recovery) = advance {
+            self.action_recovery = Some(recovery);
+        }
+        Some(advance)
+    }
+
+    pub fn technique_cooldown_remaining(&self, technique: &TechniqueId) -> Option<TimeUnits> {
+        self.technique_cooldowns
+            .get(technique)
+            .map(|cooldown| cooldown.remaining_phases())
+    }
+
+    pub(crate) fn start_technique_cooldown(
+        &mut self,
+        technique: TechniqueId,
+        current_turn: u64,
+        duration: TimeUnits,
+    ) {
+        self.technique_cooldowns
+            .insert(technique, EnvironmentCooldown::new(current_turn, duration));
+    }
+
+    pub(crate) fn technique_cooldowns(
+        &self,
+    ) -> impl Iterator<Item = (&TechniqueId, EnvironmentCooldown)> {
+        self.technique_cooldowns
+            .iter()
+            .map(|(technique, cooldown)| (technique, *cooldown))
+    }
+
+    pub(crate) fn advance_technique_cooldown(
+        &mut self,
+        technique: &TechniqueId,
+        environment_turn: u64,
+    ) -> Option<CooldownAdvance> {
+        let cooldown = self.technique_cooldowns.remove(technique)?;
+        let advance = cooldown.advance(environment_turn);
+        match advance {
+            CooldownAdvance::Arming(next) | CooldownAdvance::Cooling(next) => {
+                self.technique_cooldowns.insert(technique.clone(), next);
+            }
+            CooldownAdvance::Complete => {}
+        }
+        Some(advance)
+    }
+
+    pub(crate) const fn action_is_delayed(&self, current_turn: u64) -> bool {
+        matches!(self.next_action_turn, Some(ready) if current_turn < ready)
+    }
+
+    pub(crate) fn delay_next_action_until(&mut self, turn: u64) {
+        self.next_action_turn = Some(turn);
+    }
+
+    pub(crate) fn clear_elapsed_action_delay(&mut self, current_turn: u64) {
+        if self
+            .next_action_turn
+            .is_some_and(|ready| current_turn >= ready)
+        {
+            self.next_action_turn = None;
+        }
+    }
+
+    pub(crate) fn prepare_reaction(
+        &mut self,
+        reaction: PreparedReaction,
+    ) -> Option<PreparedReaction> {
+        self.reaction_state.prepare(reaction)
+    }
+
+    pub(crate) fn try_trigger_reaction(
+        &mut self,
+        trigger: ReactionTrigger,
+        source: ActionOrigin,
+    ) -> Option<PreparedReaction> {
+        self.reaction_state.try_trigger(trigger, source)
+    }
+
+    pub const fn try_consume_reaction(&mut self, source: ActionOrigin) -> bool {
+        self.reaction_state.try_consume_unprepared(source)
+    }
+
+    pub(crate) fn initialize_body_hit_points(&mut self, rules: HitPointRules) {
+        let Some(profile) = self.body_profile else {
+            return;
+        };
+        let maximum = rules.maximum_for_body(profile, self.primary_attributes, 0);
+        self.maximum_integrity = maximum;
+        self.integrity = maximum;
+    }
+
+    pub const fn can_evade(&self) -> bool {
+        self.can_evade
+    }
+
+    pub const fn evasion_modifier(&self) -> i16 {
+        self.evasion_modifier
     }
 
     pub const fn affiliation(&self) -> Option<&SocialGroupId> {
@@ -278,7 +640,7 @@ impl Actor {
         self.statuses.elapse_one_turn(id)
     }
 
-    pub(super) fn set_position(&mut self, position: GridPos) {
+    pub(crate) fn set_position(&mut self, position: GridPos) {
         self.position = position;
     }
 

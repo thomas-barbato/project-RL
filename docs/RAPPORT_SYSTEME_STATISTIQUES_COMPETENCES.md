@@ -2,6 +2,8 @@
 
 10 septembre 2026. Livraison initiale : étapes 1 à 6 et première vérification documentaire de l'étape 8 ; étape 7 ensuite terminée au niveau rédactionnel, après quinze validations individuelles puis délégation pour les textes restants. **État actuel : les cinq corrections proposées à la revue finale ont été acceptées puis appliquées aux documents et à leurs contrôles ; bilan en section 10.** Les sections 8 et 9 conservent l'historique antérieur à cet accord, avec leurs anciens résultats. Aucun code de jeu, contenu d'équipement ou texte d'interface exécuté n'est modifié par ces livraisons. Les autres paramètres restent des propositions de travail, pas un équilibrage final.
 
+**Mise à jour du 13 septembre 2026 :** la limite de cinq techniques apprises puis le concept même de rang de discipline ont été refusés. Les passages qui les évaluent ci-dessous sont conservés comme historique de cette revue. La règle active utilise des conditions propres à chaque technique — niveau, attributs et techniques prérequises — sans plafond d'apprentissage ; la courbe 1, 1, 2, 2, puis 3 ne détermine que le prix des choix successifs.
+
 ## 1. Ce qui a été ajouté
 
 | Étape | Livrable | Statut |
@@ -10,7 +12,7 @@
 | 2 — Autres secondaires | Détection/Analyse déterministes, charge/traction/poussée ; proposition sans secondaire Contrôle distant supplémentaire. | Règles communes §14. |
 | 3 — Ressources | Énergie, chaleur, dissipation, bande passante, alimentation et réparation ordinaires. | Règles communes §15. |
 | 4 — Règles transversales | Temps, prélèvements, durée, récupération, cumuls, protections anti-répétition, réactions, zones. | Règles communes §16. |
-| 5 — Progression | Budget initial, rangs, XP, points primaires, exemples de fin de run et réattribution proposée. | Règles communes §17, chiffres à valider/tester. |
+| 5 — Progression | Budget initial, conditions d'apprentissage, XP, points primaires, exemples de fin de run et réattribution proposée. | Règles communes §17, chiffres à valider/tester. |
 | 6 — Fiches | 94 profils principaux + 10 variantes après fusion de Retraite méthodique dans Pas de dégagement. | Catalogue §16, coûts et effets d'essai ; correction validée en §15.7. |
 | 7 — Textes joueur | Quinze infobulles validées individuellement ; autres infobulles, aides, 94 descriptions principales, 10 variantes, états et messages rédigés sous délégation. | Règles communes §19 et document de textes joueur ; rédaction achevée et corrections synchronisées, non intégrée au jeu. |
 | 8 — Vérification | Couverture, prérequis, calculs, budgets, risques et contrats de données/sauvegarde. | Présent rapport + règles communes §§18–19 ; gameplay encore à tester. |
@@ -22,7 +24,7 @@ Documents de référence : [règles communes](STATISTIQUES_ET_COMPETENCES.md), [
 - Pas de douzième secondaire de contrôle distant : le matériel, les canaux et les techniques remplissent déjà ce rôle.
 - Détection/Analyse déterministes dans les conditions observables, pour ne pas récompenser les inspections répétées sans changement.
 - Profil d'essai : 20 niveaux, 2 points de compétence initiaux inclus dans les acquis de classe, puis 1 par niveau gagné ; total 21. Un point primaire tous les quatre niveaux, cinq au maximum.
-- Pas de bonus automatique de rang, ni de soin ou recharge au niveau supérieur. Réattribution et achat après cinq choix non ouverts dans le premier profil ; cette absence reste à valider.
+- Pas de bonus automatique lié au nombre d'apprentissages, ni de soin ou recharge au niveau supérieur. Aucun plafond de techniques par discipline ; la réattribution reste une décision séparée.
 - Réserves matérielles de laboratoire : 100 E, dissipation 5 H/UT, 4 B, contrôleur de deux drones. Elles ne définissent pas la classe ou le corps final.
 - Infection propose un sabotage thermique périodique direct, distinct de Surchauffe qui augmente la jauge de chaleur. Ce typage est une proposition technique, pas un nom ou un effet déjà validé dans l'interface.
 

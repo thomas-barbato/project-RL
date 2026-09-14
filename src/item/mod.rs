@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
 use std::error::Error;
-use std::fmt::{Display, Formatter};
+use std::fmt::{Debug, Display, Formatter};
 
 use crate::content::ContentId;
 
@@ -8,8 +8,32 @@ pub type ItemId = ContentId;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ItemKind {
+    Armor,
     Consumable,
     Material,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct EquipmentProfile {
+    slot: ContentId,
+    armor: u16,
+}
+
+impl EquipmentProfile {
+    pub fn new(slot: ContentId, armor: u16) -> Result<Self, ItemDefinitionError> {
+        if armor == 0 {
+            return Err(ItemDefinitionError::ZeroArmor);
+        }
+        Ok(Self { slot, armor })
+    }
+
+    pub const fn slot(&self) -> &ContentId {
+        &self.slot
+    }
+
+    pub const fn armor(&self) -> u16 {
+        self.armor
+    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -17,14 +41,36 @@ pub enum ItemEffect {
     RestoreIntegrity { amount: u16 },
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
 pub struct ItemDefinition {
     id: ItemId,
     name_key: String,
     description_key: String,
     maximum_stack: u16,
     kind: ItemKind,
+    mass_grams: Option<u32>,
+    equipment: Option<EquipmentProfile>,
     effects: Vec<ItemEffect>,
+}
+
+// Omit absent optional fields so replay fingerprints of older item definitions
+// remain byte-for-byte identical to their historical Debug form.
+impl Debug for ItemDefinition {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut item = formatter.debug_struct("ItemDefinition");
+        item.field("id", &self.id)
+            .field("name_key", &self.name_key)
+            .field("description_key", &self.description_key)
+            .field("maximum_stack", &self.maximum_stack)
+            .field("kind", &self.kind);
+        if let Some(mass_grams) = self.mass_grams {
+            item.field("mass_grams", &mass_grams);
+        }
+        if let Some(equipment) = &self.equipment {
+            item.field("equipment", equipment);
+        }
+        item.field("effects", &self.effects).finish()
+    }
 }
 
 impl ItemDefinition {
@@ -34,6 +80,7 @@ impl ItemDefinition {
         description_key: String,
         maximum_stack: u16,
         kind: ItemKind,
+        equipment: Option<EquipmentProfile>,
         effects: Vec<ItemEffect>,
     ) -> Result<Self, ItemDefinitionError> {
         if name_key.trim().is_empty() {
@@ -48,6 +95,15 @@ impl ItemDefinition {
         if matches!(kind, ItemKind::Consumable) && effects.is_empty() {
             return Err(ItemDefinitionError::ConsumableWithoutEffects);
         }
+        if matches!(kind, ItemKind::Armor) != equipment.is_some() {
+            return Err(ItemDefinitionError::ArmorEquipmentMismatch);
+        }
+        if matches!(kind, ItemKind::Armor) && maximum_stack != 1 {
+            return Err(ItemDefinitionError::ArmorMustNotStack);
+        }
+        if matches!(kind, ItemKind::Armor) && !effects.is_empty() {
+            return Err(ItemDefinitionError::ArmorWithConsumableEffects);
+        }
         if effects
             .iter()
             .any(|effect| matches!(effect, ItemEffect::RestoreIntegrity { amount: 0 }))
@@ -60,8 +116,18 @@ impl ItemDefinition {
             description_key,
             maximum_stack,
             kind,
+            mass_grams: None,
+            equipment,
             effects,
         })
+    }
+
+    pub fn with_mass_grams(mut self, mass_grams: u32) -> Result<Self, ItemDefinitionError> {
+        if mass_grams == 0 {
+            return Err(ItemDefinitionError::ZeroMass);
+        }
+        self.mass_grams = Some(mass_grams);
+        Ok(self)
     }
 
     pub const fn id(&self) -> &ItemId {
@@ -84,6 +150,16 @@ impl ItemDefinition {
         self.kind
     }
 
+    /// Mass of one unit. `None` keeps legacy definitions compatible and is
+    /// treated as no declared contribution by load-sensitive rules.
+    pub const fn mass_grams(&self) -> Option<u32> {
+        self.mass_grams
+    }
+
+    pub const fn equipment(&self) -> Option<&EquipmentProfile> {
+        self.equipment.as_ref()
+    }
+
     pub fn effects(&self) -> &[ItemEffect] {
         &self.effects
     }
@@ -95,7 +171,12 @@ pub enum ItemDefinitionError {
     EmptyDescriptionKey,
     ZeroMaximumStack,
     ConsumableWithoutEffects,
+    ArmorEquipmentMismatch,
+    ArmorMustNotStack,
+    ArmorWithConsumableEffects,
+    ZeroArmor,
     ZeroEffectAmount,
+    ZeroMass,
 }
 
 impl Display for ItemDefinitionError {
@@ -112,7 +193,16 @@ impl Display for ItemDefinitionError {
                     "a consumable item must define at least one effect"
                 )
             }
+            Self::ArmorEquipmentMismatch => {
+                write!(formatter, "armor kind and equipment profile must match")
+            }
+            Self::ArmorMustNotStack => write!(formatter, "armor maximum_stack must be one"),
+            Self::ArmorWithConsumableEffects => {
+                write!(formatter, "armor cannot define consumable effects")
+            }
+            Self::ZeroArmor => write!(formatter, "equipment armor must be positive"),
             Self::ZeroEffectAmount => write!(formatter, "item effect amount must be positive"),
+            Self::ZeroMass => write!(formatter, "item mass_grams must be positive when declared"),
         }
     }
 }
@@ -152,6 +242,12 @@ impl ItemCatalog {
                 .collect(),
         }
     }
+
+    pub fn without_id(&self, excluded: &ItemId) -> Self {
+        let mut catalog = self.clone();
+        catalog.definitions.remove(excluded);
+        catalog
+    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -181,6 +277,7 @@ mod tests {
             "item.repair.description".to_owned(),
             3,
             ItemKind::Consumable,
+            None,
             vec![ItemEffect::RestoreIntegrity { amount: 6 }],
         )
         .unwrap_or_else(|error| panic!("valid item rejected: {error}"))
@@ -196,6 +293,7 @@ mod tests {
             "item.empty.description".to_owned(),
             1,
             ItemKind::Consumable,
+            None,
             Vec::new(),
         );
 
@@ -225,6 +323,7 @@ mod tests {
                     "item.part.description".to_owned(),
                     4,
                     ItemKind::Material,
+                    None,
                     Vec::new(),
                 )
                 .unwrap(),
@@ -236,5 +335,64 @@ mod tests {
         assert!(legacy.get(&"core:repair_patch".parse().unwrap()).is_some());
         assert!(legacy.get(&"core:part".parse().unwrap()).is_none());
         assert_eq!(catalog.iter().count(), 2);
+    }
+
+    #[test]
+    fn armor_requires_a_single_non_stackable_equipment_profile() {
+        let slot: ContentId = "core:body_armor".parse().unwrap();
+        let armor = ItemDefinition::new(
+            "core:test_armor".parse().unwrap(),
+            "item.test_armor.name".to_owned(),
+            "item.test_armor.description".to_owned(),
+            1,
+            ItemKind::Armor,
+            Some(EquipmentProfile::new(slot.clone(), 2).unwrap()),
+            Vec::new(),
+        )
+        .unwrap();
+
+        assert_eq!(armor.equipment().map(EquipmentProfile::slot), Some(&slot));
+        assert_eq!(armor.equipment().map(EquipmentProfile::armor), Some(2));
+        assert_eq!(
+            EquipmentProfile::new(slot.clone(), 0),
+            Err(ItemDefinitionError::ZeroArmor)
+        );
+        assert_eq!(
+            ItemDefinition::new(
+                "core:stacked_armor".parse().unwrap(),
+                "item.stacked_armor.name".to_owned(),
+                "item.stacked_armor.description".to_owned(),
+                2,
+                ItemKind::Armor,
+                Some(EquipmentProfile::new(slot.clone(), 1).unwrap()),
+                Vec::new(),
+            ),
+            Err(ItemDefinitionError::ArmorMustNotStack)
+        );
+        assert_eq!(
+            ItemDefinition::new(
+                "core:fake_armor".parse().unwrap(),
+                "item.fake_armor.name".to_owned(),
+                "item.fake_armor.description".to_owned(),
+                1,
+                ItemKind::Material,
+                Some(EquipmentProfile::new(slot, 1).unwrap()),
+                Vec::new(),
+            ),
+            Err(ItemDefinitionError::ArmorEquipmentMismatch)
+        );
+    }
+
+    #[test]
+    fn mass_is_per_unit_and_zero_is_rejected() {
+        let definition = repair_item("core:weighted_patch")
+            .with_mass_grams(750)
+            .unwrap();
+
+        assert_eq!(definition.mass_grams(), Some(750));
+        assert_eq!(
+            repair_item("core:massless_patch").with_mass_grams(0),
+            Err(ItemDefinitionError::ZeroMass)
+        );
     }
 }

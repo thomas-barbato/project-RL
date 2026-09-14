@@ -10,9 +10,106 @@
   height: 44,
   rooms: 10,
   seed_salt: 91827,
+  // New runs use the larger v12 surface passage and destination. The legacy
+  // values above remain available solely to replay older suspensions exactly.
+  expanded_world: {
+    passage: [176, 108],
+    width: 128,
+    height: 88,
+    rooms: 24,
+    minimum_room_width: 8,
+    maximum_room_width: 18,
+    minimum_room_height: 7,
+    maximum_room_height: 14,
+    placement_attempts: 12000,
+  },
   loot_table: "core:industrial_floor",
   loot_source: "core:floor",
   loot_draws: 2,
+
+  // Population of the generated sector. Each group is validated and placed
+  // away from the entrance without any enemy rule in the terminal client.
+  population: [
+    {
+      count: 1,
+      minimum_entrance_distance: 19,
+      maximum_integrity: 9,
+      electronic_system: { digital_defense: 45, heat_alert_threshold: 30, heat_critical_threshold: 45, heat_dissipation_per_phase: 3, stored_energy: 30 },
+      primary_attributes: { power: 6, coordination: 6, resilience: 5, perception: 6, processing: 4 },
+      body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+      components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 8, failure_effect: { type: "disable_movement" } }],
+      attack: {
+        range: 1,
+        distance_metric: "chebyshev",
+        requires_line_of_sight: false,
+        impact: { material_cap: 12 },
+        damage: { amount: 3, damage_type: "kinetic", penetration: 0 },
+        // A heavy system shock can break an active multi-UT preparation. The
+        // engine resolves Stability and grants short anti-chain protection.
+        preparation_disruption: { family: "system_shock", intensity: 55 },
+      },
+      ai: {
+        behavior: "hunter",
+        perception_radius: 8,
+        preferred_attack_slot: 0,
+        maximum_path_search: 2048,
+        preferred_minimum_distance: 0,
+        maximum_pursuit_distance: 14,
+        pursuit_lifecycle: { maximum_turns: 12, search_turns: 4, cooldown_turns: 6 },
+      },
+      defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+    },
+    {
+      count: 1,
+      minimum_entrance_distance: 19,
+      maximum_integrity: 9,
+      electronic_system: { digital_defense: 55, heat_alert_threshold: 30, heat_critical_threshold: 45, heat_dissipation_per_phase: 4, stored_energy: 30 },
+      primary_attributes: { power: 5, coordination: 5, resilience: 6, perception: 8, processing: 6 },
+      body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+      components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 8, failure_effect: { type: "disable_movement" } }],
+      attack: {
+        range: 1,
+        distance_metric: "chebyshev",
+        requires_line_of_sight: false,
+        impact: { material_cap: 11 },
+        damage: { amount: 3, damage_type: "kinetic", penetration: 0 },
+      },
+      ai: {
+        behavior: "sentry",
+        perception_radius: 8,
+        preferred_attack_slot: 0,
+        maximum_path_search: 0,
+        preferred_minimum_distance: 0,
+      },
+      defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+    },
+    {
+      count: 1,
+      minimum_entrance_distance: 19,
+      maximum_integrity: 9,
+      electronic_system: { digital_defense: 50, heat_alert_threshold: 30, heat_critical_threshold: 45, heat_dissipation_per_phase: 3, stored_energy: 30 },
+      primary_attributes: { power: 6, coordination: 6, resilience: 5, perception: 6, processing: 4 },
+      body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+      components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 8, failure_effect: { type: "disable_movement" } }],
+      attack: {
+        range: 1,
+        distance_metric: "chebyshev",
+        requires_line_of_sight: false,
+        impact: { material_cap: 12 },
+        damage: { amount: 3, damage_type: "kinetic", penetration: 0 },
+      },
+      ai: {
+        behavior: "hunter",
+        perception_radius: 8,
+        preferred_attack_slot: 0,
+        maximum_path_search: 2048,
+        preferred_minimum_distance: 0,
+        maximum_pursuit_distance: 14,
+        pursuit_lifecycle: { maximum_turns: 12, search_turns: 4, cooldown_turns: 6 },
+      },
+      defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+    },
+  ],
 
   // First autonomous material circuit. Coordinates belong to the fixed hub;
   // the headless facility system itself is reusable by other content providers.
@@ -56,6 +153,17 @@
             { type: "lock_doors", actuator: "core:service_door_actuator" },
           ],
         },
+      },
+      {
+        id: "core:starter_city_archive_terminal",
+        // A first non-security exploration interaction. The record ID is
+        // resolved by the presentation layer and can be replaced by mods.
+        position: [48, 7],
+        maximum_integrity: 8,
+        integrity: 8,
+        capabilities: [
+          { type: "data_terminal", record: "core:starter_city_archive_record" },
+        ],
       },
       {
         id: "core:maintenance_depot",

@@ -1,0 +1,11 @@
+{
+  id: "core:locomotion_hindered",
+  duration_turns: 2,
+  stacking: { mode: "keep_existing" },
+  family: "core:locomotion_hindrance",
+  modifiers: [{ type: "movement_time_minimum", time_units: 2 }],
+  expiration_transition: {
+    status: "core:locomotion_hindrance_protection",
+    stacks: 1,
+  },
+}

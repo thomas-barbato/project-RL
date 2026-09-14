@@ -1,42 +1,258 @@
-use std::collections::BTreeSet;
+use std::collections::{BTreeMap, BTreeSet};
 use std::error::Error;
 use std::fmt::{Debug, Display, Formatter};
 
-use crate::ai::{AiAction, AiSituation, decide_action};
+use crate::ai::{
+    AiAction, AiSituation, AiState, PursuitLifecycle, decide_action, decide_known_action,
+};
 use crate::combat::{
-    AttackArea, AttackAreaCell, AttackPreview, AttackProfile, DamagePacket, resolve_damage,
+    ArmorProfile, AttackArea, AttackAreaCell, AttackDelivery, AttackPreview, AttackProfile,
+    DamageImpact, DamagePacket, HitRulesError, PreparationDisruption, PreparationDisruptionFamily,
+    resolve_damage_impact, resolve_damage_impact_with_armor,
+};
+use crate::companion::CompanionBehavior;
+use crate::drone::{
+    DroneCargo, DroneCollectionPhase, DroneCondition, DroneConditionalResponse, DroneDirective,
+    DroneExplorationReport, DroneLifecycle, DroneOrder, DroneProfile, DroneState,
+    PatrolBlockedResponse,
 };
 use crate::effects::{
     ApplyStatusEffect, EffectPrimitive, GroundEffectMap, GroundEffectSpec, RadialDamageEffect,
 };
-use crate::entity::{
-    Actor, ActorBuildError, ActorRegistry, EntityId, Equipment, EquipmentError, EquipmentSlotId,
-    GroundItemId, GroundItemRegistry, GroundItemRegistryError, Inventory, InventoryError,
-    ItemInstanceId, RegistryError,
+use crate::electronic_warfare::{
+    ElectronicDirective, ElectronicSystemProfile, ElectronicWarfareState, HostileProgramId,
+    HostileProgramKind, JammingField, SaturationBeacon,
 };
-use crate::item::{ItemEffect, ItemId, ItemKind};
+use crate::engineering::{
+    ActiveBypass, ActiveOverclock, ActiveTuning, EngineeringDirective, EquipmentEngineeringState,
+    ModuleTuning, WreckId, WreckRegistry,
+};
+use crate::entity::{
+    Actor, ActorBuildError, ActorRegistry, BodyComponentId, BodyComponentProfile,
+    ComponentFailureEffect, EntityId, Equipment, EquipmentError, EquipmentSlotId, GroundItemId,
+    GroundItemRegistry, GroundItemRegistryError, Inventory, InventoryError, ItemInstanceId,
+    RegistryError,
+};
+use crate::explosive::{
+    ExplosiveActivation, ExplosiveDeviceId, ExplosiveDeviceMap, ResolvedExplosivePayload,
+    ScheduledExplosivePayload,
+};
+use crate::intrusion::{
+    AccessOrigin, AccessRight, AccessSession, ActiveControlLock, ActiveDeviceControl,
+    ActiveRoutineSuspension, DeviceCommand, DigitalRoutine, IntrusionDirective, IntrusionState,
+    SecurityTraceId,
+};
+use crate::item::{ItemDefinition, ItemEffect, ItemId, ItemKind};
 use crate::progression::{
     DefeatReward, ExperienceAward, PlayerProgressionSaveError, ProgressionRulesError,
     RunProgression, SkillPointSpendError, decode_player_progression, encode_player_progression,
 };
-use crate::resources::{EnergyReserve, EnergyReserveError, EnergySpendError};
+use crate::reaction::{
+    ActionOrigin, PreparedReaction, ReactionEffect, ReactionFollowUp, ReactionTrigger,
+};
+use crate::resources::{
+    BandwidthReservationError, BandwidthReserve, EnergyReserve, EnergyReserveError,
+    EnergySpendError, HeatReserve, HeatRulesError,
+};
 use crate::skills::{
-    DisciplineAvailability, DisciplineId, InitialChoicesError, SkillCatalogError,
-    SkillProgressionState, TechniqueAction, TechniqueId, TechniqueLearningError,
+    DisciplineAvailability, DisciplineId, ExplosiveDeployment, ExplosivePlacementTarget,
+    ForcedMovement, InitialChoicesError, SkillCatalogError, SkillProgressionState, TechniqueAction,
+    TechniqueDefinition, TechniqueEffectResistance, TechniqueEngagementRequirement, TechniqueId,
+    TechniqueImprovement, TechniqueLearningError, TechniqueOnHitEffect, TechniqueTargetRequirement,
 };
 use crate::social::{ObservedPropertyTake, SocialGroupId};
-use crate::stats::{PrimaryAttributes, PrimaryAttributesError};
-use crate::status::{
-    StatusCatalog, StatusEffectPrimitive, StatusId, StatusInstance, StatusTrigger,
+use crate::stats::{
+    PhysicalRulesError, PrimaryAttribute, PrimaryAttributes, PrimaryAttributesError,
+    StabilityRulesError,
 };
-use crate::weapon::{WeaponDefinition, WeaponEffect, WeaponId};
+use crate::status::{
+    StatusCatalog, StatusCatalogError, StatusDefinition, StatusEffectPrimitive, StatusFamilyId,
+    StatusId, StatusInstance, StatusModifier, StatusTrigger,
+};
+use crate::stealth::{SignatureChannel, SoundEmitterId, SoundEmitterMap, StealthRulesError};
+use crate::time::{
+    ActionKind, ActionPreparation, CooldownAdvance, PreparationAdvance, RecoveryAdvance,
+};
+use crate::weapon::{
+    WeaponDefinition, WeaponEffect, WeaponEffectKind, WeaponEffectTrigger, WeaponId,
+};
 use crate::world::generation::GeneratedMap;
 use crate::world::{
-    Direction, DoorState, GridPos, Map, MovementTraceMap, MovementTraceRulesError, Terrain,
-    VisibilityState, compute_visible_tiles, has_line_of_sight,
+    Direction, DistanceMetric, DoorState, FieldOfViewRules, GridPos, Map, MovementTraceMap,
+    MovementTraceRulesError, Terrain, VisibilityState, compute_visible_tiles, has_line_of_sight,
 };
 
-use super::{ExperienceSource, GameCommand, GameEvent, GameRng, GameRules, TurnPhase};
+use super::{
+    CounterattackOutcome, EnergyAnalysis, ExperienceSource, ForcedMovementOutcome, GameCommand,
+    GameEvent, GameRng, GameRules, InterceptionOutcome, PreparationCancellationReason,
+    PreparationDisruptionOutcome, TechniqueEffectFailure, TechniquePreparationView,
+    ThreatReinforcementRequestError, ThreatSourceBlueprint, ThreatSourceState, TurnPhase,
+};
+
+#[derive(Clone, PartialEq, Eq)]
+struct PreparedTechniquePayload {
+    technique: TechniqueId,
+    targets: Vec<EntityId>,
+    weapon_slot: Option<u8>,
+    target_at: Option<GridPos>,
+    drone_directive: Option<DroneDirective>,
+    engineering_directive: Option<EngineeringDirective>,
+    intrusion_directive: Option<IntrusionDirective>,
+    electronic_directive: Option<ElectronicDirective>,
+}
+
+impl PreparedTechniquePayload {
+    /// Rebuilds the exact player intent kept by a multi-UT preparation. This
+    /// lets the simulation, rather than a presentation adapter, define what
+    /// "continue preparing" means.
+    fn continuation_command(&self) -> GameCommand {
+        if let Some(directive) = &self.drone_directive {
+            return GameCommand::UseDroneTechnique {
+                technique: self.technique.clone(),
+                directive: directive.clone(),
+            };
+        }
+        if let Some(directive) = &self.engineering_directive {
+            return GameCommand::UseEngineeringTechnique {
+                technique: self.technique.clone(),
+                directive: directive.clone(),
+            };
+        }
+        if let Some(directive) = &self.intrusion_directive {
+            return GameCommand::UseIntrusionTechnique {
+                technique: self.technique.clone(),
+                directive: directive.clone(),
+            };
+        }
+        if let Some(directive) = &self.electronic_directive {
+            return GameCommand::UseElectronicWarfareTechnique {
+                technique: self.technique.clone(),
+                directive: directive.clone(),
+            };
+        }
+        if let Some(target) = self.target_at {
+            return GameCommand::UseTechniqueAt {
+                technique: self.technique.clone(),
+                target,
+                // World-targeted techniques deliberately persist no weapon
+                // slot. Their dispatcher ignores it; zero is therefore only a
+                // transport placeholder. Weapon techniques retain their slot.
+                weapon_slot: self.weapon_slot.unwrap_or(0),
+            };
+        }
+        GameCommand::UseTechnique {
+            technique: self.technique.clone(),
+            targets: self.targets.clone(),
+            weapon_slot: self.weapon_slot,
+        }
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+struct PersistentRangedAim {
+    technique: TechniqueId,
+    target: EntityId,
+    accuracy_modifier: i16,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+struct TechniqueManifestationReservation {
+    technique: TechniqueId,
+    bandwidth: u16,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+struct PreparationInterruptionProtection {
+    family: PreparationDisruptionFamily,
+    expires_after_turn: u64,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+struct ActiveWeaponBarrage {
+    technique: TechniqueId,
+    target_at: GridPos,
+    weapon_slot: u8,
+    remaining_stages: u8,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+struct ActiveCharge {
+    technique: TechniqueId,
+    target: EntityId,
+    target_at: GridPos,
+    weapon_slot: u8,
+    direction: Direction,
+    required_advances: u8,
+    completed_advances: u8,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+struct ActiveLowProfile {
+    technique: TechniqueId,
+    optical_difficulty_bonus: i16,
+    minimum_movement_time_units: u16,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+struct ActiveTrailBreak {
+    technique: TechniqueId,
+    remaining_steps: u8,
+    expires_on_turn: u64,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+struct ActiveCamouflage {
+    technique: TechniqueId,
+    channel: SignatureChannel,
+    optical_difficulty_bonus: i16,
+    remaining_phases: u16,
+    upkeep_energy: u16,
+    heat_per_phase: u16,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+struct TransientNoise {
+    at: GridPos,
+    intensity: u16,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+struct DigitalInterfaceProfile {
+    position: GridPos,
+    rights: Vec<AccessRight>,
+    defense: u16,
+    controlled_door: Option<GridPos>,
+}
+
+// Historical preparations did not capture a weapon slot. Keep their Debug
+// representation stable because suspension state fingerprints use it.
+impl Debug for PreparedTechniquePayload {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut payload = formatter.debug_struct("PreparedTechniquePayload");
+        payload
+            .field("technique", &self.technique)
+            .field("targets", &self.targets);
+        if let Some(weapon_slot) = self.weapon_slot {
+            payload.field("weapon_slot", &weapon_slot);
+        }
+        if let Some(target_at) = self.target_at {
+            payload.field("target_at", &target_at);
+        }
+        if let Some(drone_directive) = &self.drone_directive {
+            payload.field("drone_directive", drone_directive);
+        }
+        if let Some(engineering_directive) = &self.engineering_directive {
+            payload.field("engineering_directive", engineering_directive);
+        }
+        if let Some(intrusion_directive) = &self.intrusion_directive {
+            payload.field("intrusion_directive", intrusion_directive);
+        }
+        if let Some(electronic_directive) = &self.electronic_directive {
+            payload.field("electronic_directive", electronic_directive);
+        }
+        payload.finish()
+    }
+}
 
 pub struct GameState {
     pub(super) map: Map,
@@ -57,7 +273,40 @@ pub struct GameState {
     pub(super) ground_items: GroundItemRegistry,
     pub(super) movement_traces: MovementTraceMap,
     player_energy: EnergyReserve,
+    player_bandwidth: Option<BandwidthReserve>,
+    player_heat: Option<HeatReserve>,
+    player_preparation_bandwidth: u16,
+    player_weapon_ammunition: BTreeMap<WeaponId, u16>,
+    player_preparation: Option<ActionPreparation<PreparedTechniquePayload>>,
+    player_preparation_interruption_protection: Option<PreparationInterruptionProtection>,
+    /// Transient intent consumed by controlled drones during the actor phase.
+    /// It is always cleared before the command returns and never serialized.
+    player_drone_support_target_this_action: Option<EntityId>,
+    player_persistent_ranged_aim: Option<PersistentRangedAim>,
+    player_known_physical_weaknesses: BTreeSet<EntityId>,
+    player_known_body_components: BTreeMap<EntityId, BTreeSet<BodyComponentId>>,
+    player_weapon_barrage: Option<ActiveWeaponBarrage>,
+    player_active_charge: Option<ActiveCharge>,
+    player_anchor: Option<(TechniqueId, u16)>,
+    player_low_profile: Option<ActiveLowProfile>,
+    player_trail_break: Option<ActiveTrailBreak>,
+    player_active_camouflage: Option<ActiveCamouflage>,
+    player_silenced_emissions: BTreeSet<SignatureChannel>,
+    player_movement_concealment_bonus: i16,
+    transient_noises: Vec<TransientNoise>,
+    pub(super) sound_emitters: SoundEmitterMap,
+    manifested_sound_emitters: BTreeMap<SoundEmitterId, TechniqueManifestationReservation>,
     pub(super) ground_effects: GroundEffectMap,
+    pub(super) explosive_devices: ExplosiveDeviceMap,
+    manifested_explosives: BTreeMap<ExplosiveDeviceId, TechniqueManifestationReservation>,
+    manifested_beacons: BTreeMap<EntityId, TechniqueManifestationReservation>,
+    pub(super) wrecks: WreckRegistry,
+    equipment_engineering: BTreeMap<ItemInstanceId, EquipmentEngineeringState>,
+    salvaged_components: BTreeMap<ItemInstanceId, crate::entity::BodyComponentState>,
+    active_bypasses: BTreeMap<(EntityId, BodyComponentId), ActiveBypass>,
+    pub(super) intrusion: IntrusionState,
+    pub(super) electronic_warfare: ElectronicWarfareState,
+    pub(super) threat_sources: Vec<ThreatSourceState>,
 }
 
 // Empty ground effects are omitted so versions 1-9 retain the exact state
@@ -84,8 +333,110 @@ impl Debug for GameState {
             .field("ground_items", &self.ground_items)
             .field("movement_traces", &self.movement_traces)
             .field("player_energy", &self.player_energy);
+        if let Some(bandwidth) = self.player_bandwidth {
+            state.field("player_bandwidth", &bandwidth);
+        }
+        if let Some(heat) = self.player_heat {
+            state.field("player_heat", &heat);
+        }
+        if self.player_preparation_bandwidth > 0 {
+            state.field(
+                "player_preparation_bandwidth",
+                &self.player_preparation_bandwidth,
+            );
+        }
         if !self.ground_effects.is_empty() {
             state.field("ground_effects", &self.ground_effects);
+        }
+        if !self.explosive_devices.is_empty() {
+            state.field("explosive_devices", &self.explosive_devices);
+        }
+        if !self.manifested_sound_emitters.is_empty() {
+            state.field("manifested_sound_emitters", &self.manifested_sound_emitters);
+        }
+        if !self.manifested_explosives.is_empty() {
+            state.field("manifested_explosives", &self.manifested_explosives);
+        }
+        if !self.manifested_beacons.is_empty() {
+            state.field("manifested_beacons", &self.manifested_beacons);
+        }
+        if !self.threat_sources.is_empty() {
+            state.field("threat_sources", &self.threat_sources);
+        }
+        if let Some(preparation) = &self.player_preparation {
+            state.field("player_preparation", preparation);
+        }
+        if let Some(protection) = self.player_preparation_interruption_protection {
+            state.field("player_preparation_interruption_protection", &protection);
+        }
+        if let Some(aim) = &self.player_persistent_ranged_aim {
+            state.field("player_persistent_ranged_aim", aim);
+        }
+        if !self.player_known_physical_weaknesses.is_empty() {
+            state.field(
+                "player_known_physical_weaknesses",
+                &self.player_known_physical_weaknesses,
+            );
+        }
+        if !self.player_known_body_components.is_empty() {
+            state.field(
+                "player_known_body_components",
+                &self.player_known_body_components,
+            );
+        }
+        if let Some(barrage) = &self.player_weapon_barrage {
+            state.field("player_weapon_barrage", barrage);
+        }
+        if let Some(charge) = &self.player_active_charge {
+            state.field("player_active_charge", charge);
+        }
+        if let Some(anchor) = &self.player_anchor {
+            state.field("player_anchor", anchor);
+        }
+        if let Some(profile) = &self.player_low_profile {
+            state.field("player_low_profile", profile);
+        }
+        if let Some(trail) = &self.player_trail_break {
+            state.field("player_trail_break", trail);
+        }
+        if let Some(camouflage) = &self.player_active_camouflage {
+            state.field("player_active_camouflage", camouflage);
+        }
+        if !self.player_silenced_emissions.is_empty() {
+            state.field("player_silenced_emissions", &self.player_silenced_emissions);
+        }
+        if self.player_movement_concealment_bonus != 0 {
+            state.field(
+                "player_movement_concealment_bonus",
+                &self.player_movement_concealment_bonus,
+            );
+        }
+        if !self.transient_noises.is_empty() {
+            state.field("transient_noises", &self.transient_noises);
+        }
+        if !self.sound_emitters.is_empty() {
+            state.field("sound_emitters", &self.sound_emitters);
+        }
+        if !self.wrecks.is_empty() {
+            state.field("wrecks", &self.wrecks);
+        }
+        if !self.equipment_engineering.is_empty() {
+            state.field("equipment_engineering", &self.equipment_engineering);
+        }
+        if !self.salvaged_components.is_empty() {
+            state.field("salvaged_components", &self.salvaged_components);
+        }
+        if !self.active_bypasses.is_empty() {
+            state.field("active_bypasses", &self.active_bypasses);
+        }
+        if !self.intrusion.is_empty() {
+            state.field("intrusion", &self.intrusion);
+        }
+        if !self.electronic_warfare.is_empty() {
+            state.field("electronic_warfare", &self.electronic_warfare);
+        }
+        if !self.player_weapon_ammunition.is_empty() {
+            state.field("player_weapon_ammunition", &self.player_weapon_ammunition);
         }
         state.finish()
     }
@@ -133,13 +484,64 @@ impl GameState {
             .skills
             .validate_runtime(&rules.enabled_system_features, &rules.skill_progression)
             .map_err(GameInitError::SkillCatalog)?;
+        rules
+            .skills
+            .validate_status_references(&rules.statuses)
+            .map_err(GameInitError::SkillCatalog)?;
+        rules
+            .statuses
+            .validate_references()
+            .map_err(GameInitError::StatusCatalog)?;
         let player_energy =
             EnergyReserve::new(rules.player_energy_capacity, rules.player_starting_energy)
                 .map_err(GameInitError::Energy)?;
+        let (player_bandwidth, player_heat) =
+            rules
+                .player_system_resources
+                .map_or(Ok((None, None)), |resources| {
+                    HeatReserve::new(
+                        resources.heat_alert_threshold,
+                        resources.heat_critical_threshold,
+                        resources.heat_dissipation_per_phase,
+                    )
+                    .map(|heat| {
+                        (
+                            Some(BandwidthReserve::new(resources.bandwidth_capacity)),
+                            Some(heat),
+                        )
+                    })
+                    .map_err(GameInitError::Heat)
+                })?;
         rules
             .movement_traces
             .validate()
             .map_err(GameInitError::MovementTraceRules)?;
+        if let Some(stealth) = rules.stealth_rules {
+            stealth.validate().map_err(GameInitError::StealthRules)?;
+        }
+        if let Some(hit) = rules.hit_rules {
+            hit.validate().map_err(GameInitError::HitRules)?;
+        }
+        if let Some(physical) = rules.physical_rules {
+            physical.validate().map_err(GameInitError::PhysicalRules)?;
+        } else if rules.player_body_profile.is_some() {
+            return Err(GameInitError::PlayerBodyWithoutPhysicalRules);
+        }
+        if let Some(stability) = rules.stability_rules {
+            stability
+                .validate()
+                .map_err(GameInitError::StabilityRules)?;
+        }
+        if rules.stability_rules.is_none()
+            && rules.skills.techniques().any(|(_, definition)| {
+                definition
+                    .on_hit_effect()
+                    .and_then(TechniqueOnHitEffect::resistance)
+                    .is_some()
+            })
+        {
+            return Err(GameInitError::TechniqueStabilityWithoutRules);
+        }
         if let Some((weapon, status)) = first_unknown_weapon_status(&rules) {
             return Err(GameInitError::UnknownWeaponStatusDefinition {
                 weapon: Box::new(weapon),
@@ -156,16 +558,26 @@ impl GameState {
         }
 
         let mut unique_slots = BTreeSet::new();
-        for slot in &rules.player_weapon_slots {
+        for slot in rules
+            .player_weapon_slots
+            .iter()
+            .chain(&rules.player_armor_slots)
+        {
             if !unique_slots.insert(slot.clone()) {
                 return Err(GameInitError::DuplicateEquipmentSlot(slot.clone()));
             }
         }
         let mut player_inventory = Inventory::new(rules.player_inventory_capacity);
         let mut player_equipment = Equipment::default();
+        let mut player_weapon_ammunition = BTreeMap::new();
         for weapon_id in &rules.player_starting_weapons {
-            if rules.weapons.get(weapon_id).is_none() {
+            let Some(weapon) = rules.weapons.get(weapon_id) else {
                 return Err(GameInitError::UnknownStartingWeapon(weapon_id.clone()));
+            };
+            if let Some(capacity) = weapon.ammunition_capacity() {
+                player_weapon_ammunition
+                    .entry(weapon_id.clone())
+                    .or_insert(capacity);
             }
             player_inventory
                 .add(weapon_id.clone(), 1, 1)
@@ -213,11 +625,23 @@ impl GameState {
                 .map_err(GameInitError::Equipment)?;
         }
 
-        let player_actor = Actor::new(player_start, rules.player_maximum_integrity)
+        let player_maximum_hit_points = if let (Some(physical), Some(body)) =
+            (rules.physical_rules, rules.player_body_profile)
+        {
+            physical
+                .hit_points
+                .maximum_for_body(body, Some(rules.player_starting_attributes), 0)
+        } else {
+            rules.player_maximum_integrity
+        };
+        let mut player_actor = Actor::new(player_start, player_maximum_hit_points)
             .map_err(GameInitError::Actor)?
             .with_attacks(rules.player_base_attacks.iter().copied())
             .with_abilities(rules.player_base_abilities.iter().cloned())
             .with_primary_attributes(rules.player_starting_attributes);
+        if let Some(body) = rules.player_body_profile {
+            player_actor = player_actor.with_body_profile(body);
+        }
         if let Some(status) = first_unknown_status(&player_actor, &rules.statuses) {
             return Err(GameInitError::UnknownStatusDefinition(status));
         }
@@ -229,6 +653,28 @@ impl GameState {
         player_visibility.recompute(&map, player_start, rules.player_field_of_view);
         let player_progression =
             RunProgression::with_starting_skill_points(rules.progression.starting_skill_points);
+        let engineering_feature = "core:engineering"
+            .parse()
+            .expect("built-in engineering feature ID must remain valid");
+        let equipment_engineering = if rules.enabled_system_features.contains(&engineering_feature)
+        {
+            player_inventory
+                .iter()
+                .filter(|entry| {
+                    rules.weapons.get(entry.item()).is_some()
+                        || rules
+                            .items
+                            .get(entry.item())
+                            .and_then(ItemDefinition::equipment)
+                            .is_some()
+                })
+                .filter_map(|entry| {
+                    EquipmentEngineeringState::new(100).map(|state| (entry.instance(), state))
+                })
+                .collect()
+        } else {
+            BTreeMap::new()
+        };
 
         Ok(Self {
             map,
@@ -249,7 +695,38 @@ impl GameState {
             ground_items: GroundItemRegistry::default(),
             movement_traces: MovementTraceMap::default(),
             player_energy,
+            player_bandwidth,
+            player_heat,
+            player_preparation_bandwidth: 0,
+            player_weapon_ammunition,
+            player_preparation: None,
+            player_preparation_interruption_protection: None,
+            player_drone_support_target_this_action: None,
+            player_persistent_ranged_aim: None,
+            player_known_physical_weaknesses: BTreeSet::new(),
+            player_known_body_components: BTreeMap::new(),
+            player_weapon_barrage: None,
+            player_active_charge: None,
+            player_anchor: None,
+            player_low_profile: None,
+            player_trail_break: None,
+            player_active_camouflage: None,
+            player_silenced_emissions: BTreeSet::new(),
+            player_movement_concealment_bonus: 0,
+            transient_noises: Vec::new(),
+            sound_emitters: SoundEmitterMap::default(),
+            manifested_sound_emitters: BTreeMap::new(),
             ground_effects: GroundEffectMap::default(),
+            explosive_devices: ExplosiveDeviceMap::default(),
+            manifested_explosives: BTreeMap::new(),
+            manifested_beacons: BTreeMap::new(),
+            wrecks: WreckRegistry::default(),
+            equipment_engineering,
+            salvaged_components: BTreeMap::new(),
+            active_bypasses: BTreeMap::new(),
+            intrusion: IntrusionState::default(),
+            electronic_warfare: ElectronicWarfareState::default(),
+            threat_sources: Vec::new(),
         })
     }
 
@@ -294,6 +771,58 @@ impl GameState {
             .and_then(Actor::primary_attributes)
     }
 
+    /// Returns the raw damage this actor would currently supply to an attack,
+    /// before the target's Armor or specialized resistance is applied. Clients
+    /// can therefore preview authored physical profiles without duplicating
+    /// engine rules.
+    pub fn resolved_attack_damage(
+        &self,
+        attacker: EntityId,
+        attack: AttackProfile,
+    ) -> Option<DamageImpact> {
+        self.resolved_attack_damage_or_error(attacker, attack).ok()
+    }
+
+    fn resolved_attack_damage_or_error(
+        &self,
+        attacker: EntityId,
+        attack: AttackProfile,
+    ) -> Result<DamageImpact, AttackError> {
+        let attacker = self
+            .actors
+            .get(attacker)
+            .ok_or(AttackError::MissingAttacker(attacker))?;
+        let mut damage = attack.damage();
+        if let (Some(physical), Some(impact)) = (self.rules.physical_rules, attack.melee_impact()) {
+            let authored_physical = damage
+                .components()
+                .filter(|component| component.damage_type.is_physical())
+                .fold(0_u16, |total, component| {
+                    total.saturating_add(component.amount)
+                });
+            let resolved_physical = physical
+                .impact
+                .resolve_melee_damage(
+                    attacker.primary_attributes(),
+                    impact.impact_modifier,
+                    impact.material_cap,
+                    authored_physical,
+                )
+                .raw_physical_damage;
+            damage = damage.with_physical_total(resolved_physical);
+        }
+        if attack.physical_damage_percentage() != 100 {
+            let scaled_physical = u32::from(damage.raw_physical_total())
+                .saturating_mul(u32::from(attack.physical_damage_percentage()))
+                / 100;
+            damage = damage.with_physical_total(u16::try_from(scaled_physical).unwrap_or(u16::MAX));
+        }
+        if attack.damage_output_percentage() != 100 {
+            damage = damage.scaled_percentage(attack.damage_output_percentage());
+        }
+        Ok(damage)
+    }
+
     pub const fn turn(&self) -> u64 {
         self.turn
     }
@@ -326,12 +855,130 @@ impl GameState {
         &self.player_skills
     }
 
+    pub fn player_known_body_components(
+        &self,
+        target: EntityId,
+    ) -> Vec<&crate::entity::BodyComponentState> {
+        let Some(known) = self.player_known_body_components.get(&target) else {
+            return Vec::new();
+        };
+        self.actors.get(target).map_or_else(Vec::new, |actor| {
+            actor
+                .body_components()
+                .filter(|component| known.contains(component.profile().id()))
+                .collect()
+        })
+    }
+
     pub const fn player_energy(&self) -> EnergyReserve {
         self.player_energy
     }
 
+    pub const fn player_bandwidth(&self) -> Option<BandwidthReserve> {
+        self.player_bandwidth
+    }
+
+    pub const fn player_heat(&self) -> Option<HeatReserve> {
+        self.player_heat
+    }
+
+    /// Remaining native projectiles for one finite-ammunition weapon. `None`
+    /// means that the weapon has no ammunition reserve in this ruleset.
+    pub fn player_weapon_ammunition(&self, weapon: &WeaponId) -> Option<(u16, u16)> {
+        let capacity = self.rules.weapons.get(weapon)?.ammunition_capacity()?;
+        Some((
+            self.player_weapon_ammunition
+                .get(weapon)
+                .copied()
+                .unwrap_or(0),
+            capacity,
+        ))
+    }
+
+    pub fn player_technique_preparation(&self) -> Option<TechniquePreparationView<'_>> {
+        self.player_preparation
+            .as_ref()
+            .map(|preparation| TechniquePreparationView {
+                technique: &preparation.payload().technique,
+                targets: &preparation.payload().targets,
+                target_at: preparation.payload().target_at,
+                remaining_steps: preparation.remaining_steps(),
+            })
+    }
+
+    /// Exact command persisted by the current multi-UT preparation. Legacy
+    /// presentation adapters may submit it directly when their rules predate
+    /// the generic Wait-to-continue contract.
+    pub fn player_preparation_continuation_command(&self) -> Option<GameCommand> {
+        self.player_preparation
+            .as_ref()
+            .map(|preparation| preparation.payload().continuation_command())
+    }
+
+    pub fn player_active_weapon_barrage(&self) -> Option<(&TechniqueId, GridPos, u8, u8)> {
+        self.player_weapon_barrage.as_ref().map(|barrage| {
+            (
+                &barrage.technique,
+                barrage.target_at,
+                barrage.weapon_slot,
+                barrage.remaining_stages,
+            )
+        })
+    }
+
     pub const fn ground_effects(&self) -> &GroundEffectMap {
         &self.ground_effects
+    }
+
+    pub const fn explosive_devices(&self) -> &ExplosiveDeviceMap {
+        &self.explosive_devices
+    }
+
+    pub const fn sound_emitters(&self) -> &SoundEmitterMap {
+        &self.sound_emitters
+    }
+
+    pub const fn wrecks(&self) -> &WreckRegistry {
+        &self.wrecks
+    }
+
+    pub const fn intrusion_state(&self) -> &IntrusionState {
+        &self.intrusion
+    }
+
+    pub const fn electronic_warfare_state(&self) -> &ElectronicWarfareState {
+        &self.electronic_warfare
+    }
+
+    pub fn player_digital_interface_positions(&self, range: u16) -> Vec<GridPos> {
+        let Some(origin) = self.player_position() else {
+            return Vec::new();
+        };
+        let mut positions = (0..self.map.height())
+            .flat_map(|y| (0..self.map.width()).map(move |x| (x, y)))
+            .filter_map(|(x, y)| {
+                let position = GridPos::new(i32::try_from(x).ok()?, i32::try_from(y).ok()?);
+                self.validate_digital_interface(position, range)
+                    .ok()
+                    .map(|_| position)
+            })
+            .collect::<Vec<_>>();
+        positions.sort_by_key(|position| (grid_distance(origin, *position), *position));
+        positions
+    }
+
+    pub fn equipment_engineering_state(
+        &self,
+        module: ItemInstanceId,
+    ) -> Option<EquipmentEngineeringState> {
+        self.equipment_engineering.get(&module).copied()
+    }
+
+    pub fn salvaged_component(
+        &self,
+        item: ItemInstanceId,
+    ) -> Option<&crate::entity::BodyComponentState> {
+        self.salvaged_components.get(&item)
     }
 
     /// Visible, in-range candidates for a client preview, sorted by distance
@@ -343,6 +990,12 @@ impl GameState {
         let Some(range) = self.rules.skills.target_range(technique) else {
             return Vec::new();
         };
+        let requires_energy_state = self
+            .rules
+            .skills
+            .technique(technique)
+            .and_then(TechniqueDefinition::action)
+            .is_some_and(|action| matches!(action, TechniqueAction::DiagnoseEnergy { .. }));
         let mut candidates: Vec<_> = self
             .actors
             .iter()
@@ -350,6 +1003,158 @@ impl GameState {
                 *id != self.player
                     && self.player_visibility.is_visible(actor.position())
                     && is_within_chebyshev_range(origin, actor.position(), range)
+                    && (!requires_energy_state || actor.drone().is_some())
+            })
+            .map(|(id, actor)| {
+                let dx = (i64::from(actor.position().x) - i64::from(origin.x)).abs();
+                let dy = (i64::from(actor.position().y) - i64::from(origin.y)).abs();
+                (dx.max(dy), id)
+            })
+            .collect();
+        candidates.sort_unstable();
+        candidates.into_iter().map(|(_, id)| id).collect()
+    }
+
+    /// Visible legal targets for a weapon-backed technique using the exact
+    /// equipped slot that will be recorded in the command and replayed.
+    pub fn player_weapon_technique_targets(
+        &self,
+        technique: &TechniqueId,
+        slot: u8,
+    ) -> Vec<EntityId> {
+        let Some(action) = self
+            .rules
+            .skills
+            .technique(technique)
+            .and_then(|definition| definition.action())
+        else {
+            return Vec::new();
+        };
+        let (
+            required_delivery,
+            physical_damage_percentage,
+            forced_movement,
+            melee_arc,
+            requires_automatic_fire,
+            requires_identified_component,
+            charge_advance_bounds,
+        ) = match action {
+            TechniqueAction::WeaponAttack {
+                required_delivery,
+                physical_damage_percentage,
+                forced_movement,
+                melee_arc,
+                ..
+            } => (
+                required_delivery,
+                physical_damage_percentage,
+                forced_movement,
+                melee_arc,
+                false,
+                false,
+                None,
+            ),
+            TechniqueAction::WeaponVolley {
+                requires_automatic_fire,
+                ..
+            } => (
+                AttackDelivery::Ranged,
+                None,
+                None,
+                None,
+                requires_automatic_fire,
+                false,
+                None,
+            ),
+            TechniqueAction::WeaponComponentAttack {
+                required_delivery, ..
+            } => (required_delivery, None, None, None, false, true, None),
+            TechniqueAction::ChargeAttack {
+                minimum_advance,
+                maximum_advance,
+                physical_damage_percentage,
+                ..
+            } => (
+                AttackDelivery::Melee,
+                Some(physical_damage_percentage),
+                None,
+                None,
+                false,
+                false,
+                Some((minimum_advance, maximum_advance)),
+            ),
+            TechniqueAction::Breakthrough { .. } => (
+                AttackDelivery::Melee,
+                None,
+                Some(ForcedMovement::new(1, 0)),
+                None,
+                false,
+                false,
+                None,
+            ),
+            TechniqueAction::AmbushAttack {
+                physical_damage_percentage,
+                ..
+            } => (
+                self.attack_details(self.player, slot)
+                    .map(|(_, attack, _, _, _)| attack.delivery())
+                    .unwrap_or(AttackDelivery::Melee),
+                Some(physical_damage_percentage),
+                None,
+                None,
+                false,
+                false,
+                None,
+            ),
+            _ => return Vec::new(),
+        };
+        let Ok((player, attack, weapon, _, _)) = self.attack_details(self.player, slot) else {
+            return Vec::new();
+        };
+        let origin = player.position();
+        if attack.delivery() != required_delivery
+            || (physical_damage_percentage.is_some() && !attack.damage().has_physical_component())
+            || (forced_movement.is_some()
+                && (!matches!(attack.area(), AttackArea::Single)
+                    || attack.melee_impact().is_none()
+                    || self.rules.physical_rules.is_none()))
+            || (melee_arc.is_some() && !matches!(attack.area(), AttackArea::Single))
+            || (requires_automatic_fire
+                && weapon.as_ref().is_none_or(|weapon| {
+                    self.rules
+                        .weapons
+                        .get(weapon)
+                        .is_none_or(|weapon| !weapon.capabilities().can_automatic_fire())
+                }))
+            || self.map.is_protected(origin)
+        {
+            return Vec::new();
+        }
+        let mut candidates: Vec<_> = self
+            .actors
+            .iter()
+            .filter(|(id, actor)| {
+                *id != self.player
+                    && self.player_visibility.is_visible(actor.position())
+                    && !self.map.is_protected(actor.position())
+                    && charge_advance_bounds.map_or_else(
+                        || attack.is_in_range(origin, actor.position()),
+                        |(minimum, maximum)| {
+                            cardinal_direction_and_distance(origin, actor.position()).is_some_and(
+                                |(_, distance)| {
+                                    let advances = distance.saturating_sub(1);
+                                    advances >= u16::from(minimum) && advances <= u16::from(maximum)
+                                },
+                            )
+                        },
+                    )
+                    && (!attack.requires_line_of_sight()
+                        || has_line_of_sight(&self.map, origin, actor.position(), true))
+                    && self.technique_engagement_requirement_met(technique, *id)
+                    && (!matches!(action, TechniqueAction::AmbushAttack { .. })
+                        || self.ambush_target_is_valid_for_selection(technique, *id))
+                    && (!requires_identified_component
+                        || !self.player_known_body_components(*id).is_empty())
             })
             .map(|(id, actor)| {
                 let dx = (i64::from(actor.position().x) - i64::from(origin.x)).abs();
@@ -386,12 +1191,128 @@ impl GameState {
         &self.player_inventory
     }
 
+    /// Total declared mass carried by an actor, excluding its own body mass.
+    /// Equipped player items remain inventory instances and are therefore
+    /// counted exactly once. Actors without an inventory currently carry zero.
+    pub fn actor_carried_mass_grams(&self, entity: EntityId) -> Option<u64> {
+        self.actors.get(entity)?;
+        if entity != self.player {
+            return Some(0);
+        }
+        Some(self.player_inventory.iter().fold(0_u64, |total, entry| {
+            let unit_mass = self
+                .rules
+                .weapons
+                .get(entry.item())
+                .and_then(WeaponDefinition::mass_grams)
+                .or_else(|| {
+                    self.rules
+                        .items
+                        .get(entry.item())
+                        .and_then(ItemDefinition::mass_grams)
+                })
+                .unwrap_or(0);
+            total.saturating_add(u64::from(unit_mass).saturating_mul(u64::from(entry.quantity())))
+        }))
+    }
+
     pub(super) fn player_inventory_mut(&mut self) -> &mut Inventory {
         &mut self.player_inventory
     }
 
     pub const fn player_equipment(&self) -> &Equipment {
         &self.player_equipment
+    }
+
+    fn actor_failed_component_effects(&self, entity: EntityId) -> Vec<ComponentFailureEffect> {
+        let Some(actor) = self.actors.get(entity) else {
+            return Vec::new();
+        };
+        let mut effects = Vec::new();
+        for component in actor.body_components() {
+            let component_id = component.profile().id();
+            let valid_bypass = self
+                .active_bypasses
+                .get(&(entity, component_id.clone()))
+                .filter(|bypass| {
+                    component.is_failed()
+                        && !component.is_destroyed()
+                        && actor
+                            .body_component(bypass.donor())
+                            .is_some_and(|donor| !donor.is_failed())
+                });
+            if component.is_failed() {
+                if let Some(bypass) = valid_bypass {
+                    if let Some(effect) = residual_component_failure_effect(
+                        component.profile().failure_effect(),
+                        bypass.restored_output_percentage(),
+                    ) {
+                        effects.push(effect);
+                    }
+                } else {
+                    effects.push(component.profile().failure_effect());
+                }
+                continue;
+            }
+            let suspended_as_donor =
+                self.active_bypasses
+                    .iter()
+                    .any(|((target, receiver), bypass)| {
+                        *target == entity
+                            && bypass.donor() == component_id
+                            && actor.body_component(receiver).is_some_and(|receiver| {
+                                receiver.is_failed() && !receiver.is_destroyed()
+                            })
+                    });
+            if suspended_as_donor {
+                effects.push(component.profile().failure_effect());
+            }
+        }
+        effects
+    }
+
+    /// Rebuilds the target's Armor from authored body data and currently
+    /// equipped item profiles. No mutable total is stored on the actor.
+    pub fn actor_armor_profile(&self, entity: EntityId) -> Option<ArmorProfile> {
+        let actor = self.actors.get(entity)?;
+        let intrinsic = actor.armor_profile();
+        let component_armor_loss = self
+            .actor_failed_component_effects(entity)
+            .into_iter()
+            .filter_map(|effect| match effect {
+                ComponentFailureEffect::ReduceArmor(amount) => Some(amount),
+                _ => None,
+            })
+            .fold(0_u16, u16::saturating_add);
+        let equipment = if entity == self.player {
+            self.player_equipment
+                .iter()
+                .filter_map(|(_, item)| self.player_inventory.get(item))
+                .filter_map(|entry| self.rules.items.get(entry.item()))
+                .filter_map(|definition| definition.equipment())
+                .map(|profile| profile.armor())
+                .fold(0_u16, u16::saturating_add)
+        } else {
+            0
+        };
+        let status_fragilization = actor
+            .statuses()
+            .filter_map(|instance| self.rules.statuses.get(&instance.definition))
+            .flat_map(StatusDefinition::modifiers)
+            .filter_map(|modifier| match modifier {
+                StatusModifier::ArmorFragilization { amount } => Some(*amount),
+                StatusModifier::Stability { .. }
+                | StatusModifier::MovementTimeMinimum { .. }
+                | StatusModifier::Accuracy { .. } => None,
+            })
+            .max()
+            .unwrap_or(0);
+        Some(ArmorProfile::new(
+            intrinsic.body().saturating_sub(component_armor_loss),
+            equipment,
+            intrinsic.reinforcement(),
+            intrinsic.fragilization().max(status_fragilization),
+        ))
     }
 
     pub fn discipline_availability(
@@ -421,6 +1342,11 @@ impl GameState {
         self.rules.weapons.get(entry.item())
     }
 
+    pub fn equipped_player_weapon_item(&self, slot: u8) -> Option<ItemInstanceId> {
+        let slot_id = self.rules.player_weapon_slots.get(usize::from(slot))?;
+        self.player_equipment.equipped(slot_id)
+    }
+
     /// Resolves a freely aimed area footprint without spending a turn or
     /// mutating simulation state. Execution calls the same preparation path.
     pub fn player_attack_preview(
@@ -428,6 +1354,15 @@ impl GameState {
         slot: u8,
         target: GridPos,
     ) -> Result<AttackPreview, CommandRejection> {
+        if let Some(remaining_actions) = self
+            .actors
+            .get(self.player)
+            .and_then(Actor::recovery_remaining)
+        {
+            return Err(CommandRejection::OffensiveActionBlockedByRecovery {
+                remaining_actions: remaining_actions.get(),
+            });
+        }
         self.prepare_player_area_attack(slot, target)
             .map(|prepared| {
                 AttackPreview::new(prepared.origin, prepared.target_at, prepared.affected_cells)
@@ -450,6 +1385,157 @@ impl GameState {
             .map_err(CommandRejection::from)
     }
 
+    /// Resolves the exact area that an authored weapon technique would affect
+    /// without spending energy, advancing time or consuming RNG.
+    pub fn player_weapon_technique_preview(
+        &self,
+        technique: &TechniqueId,
+        slot: u8,
+        target: GridPos,
+    ) -> Result<AttackPreview, CommandRejection> {
+        let definition = self.rules.skills.technique(technique);
+        if definition.is_some_and(|definition| definition.action_kind().is_offensive())
+            && let Some(remaining_actions) = self
+                .actors
+                .get(self.player)
+                .and_then(Actor::recovery_remaining)
+        {
+            return Err(CommandRejection::OffensiveActionBlockedByRecovery {
+                remaining_actions: remaining_actions.get(),
+            });
+        }
+        if matches!(
+            self.rules
+                .skills
+                .technique(technique)
+                .and_then(TechniqueDefinition::action),
+            Some(TechniqueAction::PrepareRangedOverwatch { .. })
+        ) {
+            return self
+                .prepare_player_overwatch_preview(technique, slot, target, true)
+                .map_err(CommandRejection::from);
+        }
+        if matches!(
+            self.rules
+                .skills
+                .technique(technique)
+                .and_then(TechniqueDefinition::action),
+            Some(TechniqueAction::WeaponBarrage { .. })
+        ) {
+            return self
+                .prepare_player_barrage_preview(technique, slot, target, true)
+                .map_err(CommandRejection::from);
+        }
+        if self
+            .rules
+            .skills
+            .technique(technique)
+            .and_then(TechniqueDefinition::action)
+            .is_some_and(TechniqueAction::is_explosive_action)
+        {
+            return self
+                .prepare_player_explosive_technique_preview(technique, target, true)
+                .map_err(CommandRejection::from);
+        }
+        if self
+            .rules
+            .skills
+            .technique(technique)
+            .and_then(TechniqueDefinition::action)
+            .is_some_and(TechniqueAction::is_movement_aim_action)
+        {
+            return self
+                .prepare_player_movement_technique_preview(technique, target, true)
+                .map_err(CommandRejection::from);
+        }
+        if self
+            .rules
+            .skills
+            .technique(technique)
+            .and_then(TechniqueDefinition::action)
+            .is_some_and(TechniqueAction::is_stealth_world_aim_action)
+        {
+            return self
+                .prepare_player_stealth_world_preview(technique, target, true)
+                .map_err(CommandRejection::from);
+        }
+        self.prepare_player_weapon_technique_area(technique, slot, target, true)
+            .map(|prepared| {
+                AttackPreview::new(prepared.origin, prepared.target_at, prepared.affected_cells)
+            })
+            .map_err(CommandRejection::from)
+    }
+
+    /// Returns the technique's geometric footprint even if a contextual rule
+    /// makes confirmation invalid, keeping preview and execution identical.
+    pub fn player_weapon_technique_footprint(
+        &self,
+        technique: &TechniqueId,
+        slot: u8,
+        target: GridPos,
+    ) -> Result<AttackPreview, CommandRejection> {
+        if matches!(
+            self.rules
+                .skills
+                .technique(technique)
+                .and_then(TechniqueDefinition::action),
+            Some(TechniqueAction::PrepareRangedOverwatch { .. })
+        ) {
+            return self
+                .prepare_player_overwatch_preview(technique, slot, target, false)
+                .map_err(CommandRejection::from);
+        }
+        if matches!(
+            self.rules
+                .skills
+                .technique(technique)
+                .and_then(TechniqueDefinition::action),
+            Some(TechniqueAction::WeaponBarrage { .. })
+        ) {
+            return self
+                .prepare_player_barrage_preview(technique, slot, target, false)
+                .map_err(CommandRejection::from);
+        }
+        if self
+            .rules
+            .skills
+            .technique(technique)
+            .and_then(TechniqueDefinition::action)
+            .is_some_and(TechniqueAction::is_explosive_action)
+        {
+            return self
+                .prepare_player_explosive_technique_preview(technique, target, false)
+                .map_err(CommandRejection::from);
+        }
+        if self
+            .rules
+            .skills
+            .technique(technique)
+            .and_then(TechniqueDefinition::action)
+            .is_some_and(TechniqueAction::is_movement_aim_action)
+        {
+            return self
+                .prepare_player_movement_technique_preview(technique, target, false)
+                .map_err(CommandRejection::from);
+        }
+        if self
+            .rules
+            .skills
+            .technique(technique)
+            .and_then(TechniqueDefinition::action)
+            .is_some_and(TechniqueAction::is_stealth_world_aim_action)
+        {
+            return self
+                .prepare_player_stealth_world_preview(technique, target, false)
+                .map_err(CommandRejection::from);
+        }
+        self.prepare_player_weapon_technique_area(technique, slot, target, false)
+            .map(|prepared| {
+                AttackPreview::new(prepared.origin, prepared.target_at, prepared.affected_cells)
+            })
+            .map_err(CommandRejection::from)
+    }
+
     pub fn events(&self) -> &[GameEvent] {
         &self.events
     }
@@ -458,7 +1544,82 @@ impl GameState {
         std::mem::take(&mut self.events)
     }
 
-    pub fn spawn_actor(&mut self, actor: Actor) -> Result<EntityId, SpawnError> {
+    pub fn threat_sources(&self) -> &[ThreatSourceState] {
+        &self.threat_sources
+    }
+
+    pub(super) fn install_threat_sources(
+        &mut self,
+        blueprints: Vec<ThreatSourceBlueprint>,
+    ) -> Result<(), String> {
+        if blueprints.len() > usize::from(u16::MAX) {
+            return Err("Too many threat sources".into());
+        }
+        let mut positions = BTreeSet::new();
+        for blueprint in &blueprints {
+            if !self.map.is_walkable(blueprint.position)
+                || !positions.insert(blueprint.position)
+                || blueprint.maximum_active > blueprint.maximum_total
+            {
+                return Err("Invalid, blocked or duplicate threat source".into());
+            }
+        }
+        self.threat_sources = blueprints
+            .into_iter()
+            .enumerate()
+            .map(|(id, blueprint)| ThreatSourceState::instantiate(id as u16, blueprint))
+            .collect();
+        Ok(())
+    }
+
+    /// Brings an existing finite source's next attempt forward. The request
+    /// does not bypass source deactivation, lifetime quotas, simultaneous
+    /// actor limits or ordinary spawn-cell validation.
+    pub(super) fn request_threat_reinforcement(
+        &mut self,
+        position: GridPos,
+        delay_turns: u16,
+    ) -> Result<(), ThreatReinforcementRequestError> {
+        self.request_threat_reinforcement_toward(position, None, delay_turns)
+    }
+
+    /// Brings a source forward and gives its next successfully spawned actor
+    /// one fixed incident to investigate. A newer accepted report replaces an
+    /// older pending report; neither contains the player's current position.
+    pub(super) fn request_investigating_threat_reinforcement(
+        &mut self,
+        position: GridPos,
+        incident: GridPos,
+        delay_turns: u16,
+    ) -> Result<(), ThreatReinforcementRequestError> {
+        self.request_threat_reinforcement_toward(position, Some(incident), delay_turns)
+    }
+
+    fn request_threat_reinforcement_toward(
+        &mut self,
+        position: GridPos,
+        incident: Option<GridPos>,
+        delay_turns: u16,
+    ) -> Result<(), ThreatReinforcementRequestError> {
+        let source = self
+            .threat_sources
+            .iter_mut()
+            .find(|source| source.position == position)
+            .ok_or(ThreatReinforcementRequestError::UnknownSource)?;
+        if !source.active {
+            return Err(ThreatReinforcementRequestError::SourceInactive);
+        }
+        if source.spawned_total >= source.maximum_total {
+            return Err(ThreatReinforcementRequestError::QuotaExhausted);
+        }
+        source.remaining_turns = source.remaining_turns.min(delay_turns.max(1));
+        if incident.is_some() {
+            source.pending_investigation = incident;
+        }
+        Ok(())
+    }
+
+    pub fn spawn_actor(&mut self, mut actor: Actor) -> Result<EntityId, SpawnError> {
         let position = actor.position();
         if !self.map.is_walkable(position) {
             return Err(SpawnError::BlockedByTerrain(position));
@@ -474,6 +1635,9 @@ impl GameState {
                 .validate_absolute(self.rules.primary_attribute_rules)
                 .map_err(SpawnError::InvalidPrimaryAttributes)?;
         }
+        if let Some(physical) = self.rules.physical_rules {
+            actor.initialize_body_hit_points(physical.hit_points);
+        }
 
         let entity = self.actors.spawn(actor).map_err(SpawnError::Registry)?;
         self.events.push(GameEvent::EntitySpawned {
@@ -481,6 +1645,175 @@ impl GameState {
             at: position,
         });
         Ok(entity)
+    }
+
+    /// Registers a player-controlled drone as an ordinary actor. Its actor
+    /// owns the world position and collision; control metadata only supplies
+    /// link, energy and routine state.
+    pub fn spawn_player_drone(
+        &mut self,
+        actor: Actor,
+        profile: DroneProfile,
+        energy_capacity: u16,
+        starting_energy: u16,
+    ) -> Result<EntityId, DroneSpawnError> {
+        self.spawn_player_drone_with_lifecycle(
+            actor,
+            profile,
+            energy_capacity,
+            starting_energy,
+            DroneLifecycle::Persistent,
+        )
+    }
+
+    /// Registers the temporary physical manifestation created by a technique.
+    /// Unlike a persistent chassis, it dissipates when its reserve reaches zero.
+    pub fn spawn_manifested_player_drone(
+        &mut self,
+        actor: Actor,
+        profile: DroneProfile,
+        energy_capacity: u16,
+        starting_energy: u16,
+    ) -> Result<EntityId, DroneSpawnError> {
+        self.spawn_player_drone_with_lifecycle(
+            actor,
+            profile,
+            energy_capacity,
+            starting_energy,
+            DroneLifecycle::Manifested,
+        )
+    }
+
+    fn spawn_player_drone_with_lifecycle(
+        &mut self,
+        mut actor: Actor,
+        profile: DroneProfile,
+        energy_capacity: u16,
+        starting_energy: u16,
+        lifecycle: DroneLifecycle,
+    ) -> Result<EntityId, DroneSpawnError> {
+        let bandwidth_required = profile.bandwidth_required();
+        let mut bandwidth = self
+            .player_bandwidth
+            .ok_or(DroneSpawnError::SystemResourcesUnavailable)?;
+        bandwidth
+            .reserve(bandwidth_required)
+            .map_err(DroneSpawnError::Bandwidth)?;
+        let position = actor.position();
+        let mut drone = DroneState::new(
+            profile,
+            self.player,
+            energy_capacity,
+            starting_energy,
+            position,
+            self.turn,
+        )
+        .map_err(DroneSpawnError::Energy)?
+        .with_lifecycle(lifecycle);
+        if self.rules.player_companion_behaviors {
+            drone.replace_order(DroneOrder::Companion {
+                controller: self.player,
+                behavior: CompanionBehavior::Follow,
+            });
+        } else if self.rules.player_drone_default_support {
+            drone.replace_order(
+                DroneOrder::escort(self.player, 1)
+                    .expect("the baseline close-escort distance is valid"),
+            );
+        }
+        actor.ensure_electronic_system(
+            crate::electronic_warfare::ElectronicSystemProfile::new(
+                55,
+                80,
+                100,
+                5,
+                starting_energy,
+            )
+            .expect("the built-in drone electronic profile is valid"),
+        );
+        let visual_profile = drone.profile().visual_profile().clone();
+        let entity = self
+            .spawn_actor(actor.with_drone(drone))
+            .map_err(DroneSpawnError::Spawn)?;
+        self.player_bandwidth = Some(bandwidth);
+        self.events.push(GameEvent::DroneControlEstablished {
+            entity,
+            controller: self.player,
+            visual_profile,
+            bandwidth_reserved: bandwidth_required,
+        });
+        Ok(entity)
+    }
+
+    pub fn player_controlled_companions(&self) -> Vec<EntityId> {
+        self.actors
+            .iter()
+            .filter_map(|(entity, actor)| {
+                actor
+                    .drone()
+                    .is_some_and(|drone| drone.controller() == self.player)
+                    .then_some(entity)
+            })
+            .collect()
+    }
+
+    pub fn player_companion_is_linked(&self, entity: EntityId) -> bool {
+        let Some(controller_position) = self.player_position() else {
+            return false;
+        };
+        let Some(actor) = self.actors.get(entity) else {
+            return false;
+        };
+        let Some(drone) = actor
+            .drone()
+            .filter(|drone| drone.controller() == self.player)
+        else {
+            return false;
+        };
+        drone.profile().link_reaches(
+            &self.map,
+            controller_position,
+            actor.position(),
+            self.electronic_jamming_penalty_at(
+                crate::electronic_warfare::ElectronicChannel::ControlLink,
+                actor.position(),
+            ),
+        )
+    }
+
+    fn set_player_companion_behavior(
+        &mut self,
+        behavior: CompanionBehavior,
+    ) -> Result<(), CommandRejection> {
+        if !self.rules.player_companion_behaviors {
+            return Err(CommandRejection::CompanionCommandsUnavailable);
+        }
+        let companions = self.player_controlled_companions();
+        if companions.is_empty() {
+            return Err(CommandRejection::NoControlledCompanion);
+        }
+        if companions
+            .iter()
+            .any(|entity| !self.player_companion_is_linked(*entity))
+        {
+            return Err(CommandRejection::CompanionLinkUnavailable);
+        }
+
+        for entity in companions.iter().copied() {
+            self.release_drone_order_bandwidth(entity);
+            self.set_drone_order(
+                entity,
+                DroneOrder::Companion {
+                    controller: self.player,
+                    behavior,
+                },
+            );
+        }
+        self.events.push(GameEvent::CompanionBehaviorChanged {
+            entities: companions,
+            behavior,
+        });
+        Ok(())
     }
 
     /// Places a non-blocking item stack in the world.
@@ -532,6 +1865,106 @@ impl GameState {
         if self.phase != TurnPhase::AwaitingPlayer {
             return CommandOutcome::Rejected(CommandRejection::NotPlayersTurn);
         }
+        self.player_drone_support_target_this_action = None;
+
+        let command = if matches!(command, GameCommand::Wait)
+            && self.rules.wait_continues_technique_preparation
+        {
+            self.player_preparation
+                .as_ref()
+                .map(|preparation| preparation.payload().continuation_command())
+                .unwrap_or(GameCommand::Wait)
+        } else {
+            command
+        };
+
+        let command_action_kind = self.player_command_action_kind(&command);
+        if let Some(remaining_actions) = self
+            .actors
+            .get(self.player)
+            .and_then(Actor::recovery_remaining)
+            && command_action_kind.is_offensive()
+        {
+            return CommandOutcome::Rejected(CommandRejection::OffensiveActionBlockedByRecovery {
+                remaining_actions: remaining_actions.get(),
+            });
+        }
+
+        let starts_normal_action = command.consumes_time_on_success();
+        let was_recovering = starts_normal_action
+            && self
+                .actors
+                .get(self.player)
+                .is_some_and(|actor| actor.recovery_remaining().is_some());
+        let previous_player_preparation = self.player_preparation.clone();
+        let previous_persistent_ranged_aim = self.player_persistent_ranged_aim.clone();
+        let previous_weapon_barrage = self.player_weapon_barrage.clone();
+        let previous_active_charge = self.player_active_charge.clone();
+        let previous_anchor = self.player_anchor.clone();
+        let previous_low_profile = self.player_low_profile.clone();
+        let previous_trail_break = self.player_trail_break.clone();
+        let previous_active_camouflage = self.player_active_camouflage.clone();
+        let previous_silenced_emissions = self.player_silenced_emissions.clone();
+        let previous_movement_concealment_bonus = self.player_movement_concealment_bonus;
+        let previous_transient_noises = self.transient_noises.clone();
+        let previous_sound_emitters = self.sound_emitters.clone();
+        let previous_weapon_ammunition = self.player_weapon_ammunition.clone();
+        let previous_player_inventory = self.player_inventory.clone();
+        let previous_explosive_devices = self.explosive_devices.clone();
+        let previous_wrecks = self.wrecks.clone();
+        let previous_equipment_engineering = self.equipment_engineering.clone();
+        let previous_salvaged_components = self.salvaged_components.clone();
+        let previous_active_bypasses = self.active_bypasses.clone();
+        let previous_intrusion = self.intrusion.clone();
+        let previous_electronic_warfare = self.electronic_warfare.clone();
+        let previous_player_energy = self.player_energy;
+        let previous_player_bandwidth = self.player_bandwidth;
+        let previous_player_heat = self.player_heat;
+        let previous_player_preparation_bandwidth = self.player_preparation_bandwidth;
+        let previous_rng = self.rng;
+        let previous_reaction_state = if starts_normal_action {
+            self.actors.get(self.player).map(Actor::reaction_state)
+        } else {
+            None
+        };
+        let event_checkpoint = self.events.len();
+        let mut applied_time_units = match &command {
+            GameCommand::UseTechniqueAt { technique, .. } => self
+                .rules
+                .skills
+                .technique(technique)
+                .and_then(TechniqueDefinition::action)
+                .and_then(|action| match action {
+                    TechniqueAction::SilentMove {
+                        minimum_time_units, ..
+                    } => Some(minimum_time_units),
+                    _ => None,
+                })
+                .unwrap_or(1),
+            _ => 1,
+        };
+        if starts_normal_action
+            && let Some(player) = self.actors.get_mut(self.player)
+            && let Some(expired) = player.begin_normal_action()
+        {
+            self.events.push(GameEvent::ReactionExpired {
+                entity: self.player,
+                technique: expired.technique().clone(),
+                reaction: expired.kind(),
+            });
+        }
+        if starts_normal_action && !self.command_continues_player_preparation(&command) {
+            self.cancel_player_preparation(PreparationCancellationReason::DifferentAction);
+        }
+        if starts_normal_action && !self.command_preserves_player_persistent_ranged_aim(&command) {
+            self.clear_player_persistent_ranged_aim();
+        }
+        if starts_normal_action && !self.command_continues_player_weapon_barrage(&command) {
+            self.cancel_player_weapon_barrage();
+        }
+        if starts_normal_action && !self.command_continues_player_charge(&command) {
+            self.cancel_player_charge();
+        }
 
         let outcome = match command {
             GameCommand::Interact { target } => match self.interact(target) {
@@ -540,6 +1973,13 @@ impl GameState {
             },
             GameCommand::Move(direction) => match self.move_entity(self.player, direction) {
                 Ok(destination) => {
+                    applied_time_units = self.actor_movement_time_units(self.player);
+                    if applied_time_units > 1 {
+                        self.events.push(GameEvent::MovementTimeCommitted {
+                            entity: self.player,
+                            time_units: applied_time_units,
+                        });
+                    }
                     self.player_visibility.recompute(
                         &self.map,
                         destination,
@@ -566,19 +2006,35 @@ impl GameState {
                 });
                 CommandOutcome::Applied
             }
+            GameCommand::SetCompanionBehavior { behavior } => {
+                match self.set_player_companion_behavior(behavior) {
+                    Ok(()) => CommandOutcome::AppliedWithoutTime,
+                    Err(error) => CommandOutcome::Rejected(error),
+                }
+            }
             GameCommand::Attack { slot, target } => {
                 match self.perform_attack(self.player, slot, target) {
-                    Ok(()) => CommandOutcome::Applied,
+                    Ok(()) => {
+                        self.end_player_active_camouflage();
+                        CommandOutcome::Applied
+                    }
                     Err(error) => CommandOutcome::Rejected(error.into()),
                 }
             }
             GameCommand::AttackAt { slot, target } => {
                 match self.perform_player_area_attack(slot, target) {
-                    Ok(()) => CommandOutcome::Applied,
+                    Ok(()) => {
+                        self.end_player_active_camouflage();
+                        CommandOutcome::Applied
+                    }
                     Err(error) => CommandOutcome::Rejected(error.into()),
                 }
             }
             GameCommand::EquipWeapon { slot, item } => match self.equip_player_weapon(slot, item) {
+                Ok(()) => CommandOutcome::Applied,
+                Err(error) => CommandOutcome::Rejected(error.into()),
+            },
+            GameCommand::EquipItem { slot, item } => match self.equip_player_item(slot, item) {
                 Ok(()) => CommandOutcome::Applied,
                 Err(error) => CommandOutcome::Rejected(error.into()),
             },
@@ -596,7 +2052,12 @@ impl GameState {
             },
             GameCommand::UseAbility { slot, target } => {
                 match self.perform_ability(self.player, slot, target) {
-                    Ok(()) => CommandOutcome::Applied,
+                    Ok(()) => {
+                        if command_action_kind.is_offensive() {
+                            self.end_player_active_camouflage();
+                        }
+                        CommandOutcome::Applied
+                    }
                     Err(error) => CommandOutcome::Rejected(error.into()),
                 }
             }
@@ -606,19 +2067,554 @@ impl GameState {
                     Err(error) => CommandOutcome::Rejected(error.into()),
                 }
             }
-            GameCommand::UseTechnique { technique, targets } => {
-                match self.use_player_technique(&technique, &targets) {
-                    Ok(()) => CommandOutcome::Applied,
-                    Err(error) => CommandOutcome::Rejected(error.into()),
-                }
-            }
+            GameCommand::UseTechnique {
+                technique,
+                targets,
+                weapon_slot,
+            } => match self.use_player_technique(&technique, &targets, weapon_slot) {
+                Ok(()) => CommandOutcome::Applied,
+                Err(error) => CommandOutcome::Rejected(error.into()),
+            },
+            GameCommand::UseTechniqueOnComponent {
+                technique,
+                target,
+                component,
+                weapon_slot,
+            } => match self.use_player_component_technique(
+                &technique,
+                target,
+                &component,
+                weapon_slot,
+            ) {
+                Ok(()) => CommandOutcome::Applied,
+                Err(error) => CommandOutcome::Rejected(error.into()),
+            },
+            GameCommand::UseTechniqueAt {
+                technique,
+                target,
+                weapon_slot,
+            } => match self.use_player_weapon_technique_at(&technique, target, weapon_slot) {
+                Ok(()) => CommandOutcome::Applied,
+                Err(error) => CommandOutcome::Rejected(error.into()),
+            },
+            GameCommand::UseDroneTechnique {
+                technique,
+                directive,
+            } => match self.use_player_drone_technique(&technique, &directive) {
+                Ok(()) => CommandOutcome::Applied,
+                Err(error) => CommandOutcome::Rejected(error.into()),
+            },
+            GameCommand::UseEngineeringTechnique {
+                technique,
+                directive,
+            } => match self.use_player_engineering_technique(&technique, &directive) {
+                Ok(()) => CommandOutcome::Applied,
+                Err(error) => CommandOutcome::Rejected(error.into()),
+            },
+            GameCommand::UseIntrusionTechnique {
+                technique,
+                directive,
+            } => match self.use_player_intrusion_technique(&technique, &directive) {
+                Ok(()) => CommandOutcome::Applied,
+                Err(error) => CommandOutcome::Rejected(error.into()),
+            },
+            GameCommand::UseElectronicWarfareTechnique {
+                technique,
+                directive,
+            } => match self.use_player_electronic_warfare_technique(&technique, &directive) {
+                Ok(()) => CommandOutcome::Applied,
+                Err(error) => CommandOutcome::Rejected(error.into()),
+            },
         };
 
-        if outcome == CommandOutcome::Applied {
-            self.complete_turn();
+        match outcome {
+            CommandOutcome::Applied => {
+                if was_recovering {
+                    self.advance_action_recovery(self.player);
+                }
+                for _ in 0..applied_time_units {
+                    self.complete_turn();
+                    if self.status != RunStatus::Active {
+                        break;
+                    }
+                }
+            }
+            CommandOutcome::Rejected(_) => {
+                self.player_preparation = previous_player_preparation;
+                self.player_persistent_ranged_aim = previous_persistent_ranged_aim;
+                self.player_weapon_barrage = previous_weapon_barrage;
+                self.player_active_charge = previous_active_charge;
+                self.player_anchor = previous_anchor;
+                self.player_low_profile = previous_low_profile;
+                self.player_trail_break = previous_trail_break;
+                self.player_active_camouflage = previous_active_camouflage;
+                self.player_silenced_emissions = previous_silenced_emissions;
+                self.player_movement_concealment_bonus = previous_movement_concealment_bonus;
+                self.transient_noises = previous_transient_noises;
+                self.sound_emitters = previous_sound_emitters;
+                self.player_weapon_ammunition = previous_weapon_ammunition;
+                self.player_inventory = previous_player_inventory;
+                self.explosive_devices = previous_explosive_devices;
+                self.wrecks = previous_wrecks;
+                self.equipment_engineering = previous_equipment_engineering;
+                self.salvaged_components = previous_salvaged_components;
+                self.active_bypasses = previous_active_bypasses;
+                self.intrusion = previous_intrusion;
+                self.electronic_warfare = previous_electronic_warfare;
+                self.player_energy = previous_player_energy;
+                self.player_bandwidth = previous_player_bandwidth;
+                self.player_heat = previous_player_heat;
+                self.player_preparation_bandwidth = previous_player_preparation_bandwidth;
+                self.rng = previous_rng;
+                if let Some(previous_reaction_state) = previous_reaction_state
+                    && let Some(player) = self.actors.get_mut(self.player)
+                {
+                    player.restore_reaction_state(previous_reaction_state);
+                }
+                self.events.truncate(event_checkpoint);
+            }
+            CommandOutcome::AppliedWithoutTime => {}
         }
 
         outcome
+    }
+
+    fn player_command_action_kind(&self, command: &GameCommand) -> ActionKind {
+        match command {
+            GameCommand::Attack { .. } | GameCommand::AttackAt { .. } => ActionKind::Offensive,
+            GameCommand::UseAbility { slot, .. } => self
+                .actors
+                .get(self.player)
+                .and_then(|actor| actor.ability(*slot))
+                .map_or(ActionKind::Support, |ability| ability.action_kind()),
+            GameCommand::UseTechnique { technique, .. }
+            | GameCommand::UseTechniqueOnComponent { technique, .. }
+            | GameCommand::UseTechniqueAt { technique, .. }
+            | GameCommand::UseDroneTechnique { technique, .. }
+            | GameCommand::UseEngineeringTechnique { technique, .. }
+            | GameCommand::UseIntrusionTechnique { technique, .. }
+            | GameCommand::UseElectronicWarfareTechnique { technique, .. } => self
+                .rules
+                .skills
+                .technique(technique)
+                .map_or(ActionKind::Support, |definition| definition.action_kind()),
+            _ => ActionKind::Support,
+        }
+    }
+
+    fn start_action_recovery(&mut self, entity: EntityId, duration: crate::time::TimeUnits) {
+        let Some(actor) = self.actors.get_mut(entity) else {
+            return;
+        };
+        actor.start_action_recovery(duration);
+        self.events.push(GameEvent::ActionRecoveryStarted {
+            entity,
+            remaining_actions: duration.get(),
+        });
+    }
+
+    pub(super) fn advance_action_recovery(&mut self, entity: EntityId) {
+        let Some(advance) = self
+            .actors
+            .get_mut(entity)
+            .and_then(Actor::advance_action_recovery)
+        else {
+            return;
+        };
+        match advance {
+            RecoveryAdvance::Recovering(recovery) => {
+                self.events.push(GameEvent::ActionRecoveryAdvanced {
+                    entity,
+                    remaining_actions: recovery.remaining_actions().get(),
+                });
+            }
+            RecoveryAdvance::Complete => {
+                self.events
+                    .push(GameEvent::ActionRecoveryCompleted { entity });
+            }
+        }
+    }
+
+    fn command_continues_player_preparation(&self, command: &GameCommand) -> bool {
+        let Some(preparation) = &self.player_preparation else {
+            return false;
+        };
+        match command {
+            GameCommand::UseTechnique {
+                technique,
+                targets,
+                weapon_slot,
+            } => {
+                preparation.payload().technique == *technique
+                    && preparation.payload().targets == *targets
+                    && preparation.payload().weapon_slot == *weapon_slot
+                    && preparation.payload().target_at.is_none()
+                    && preparation.payload().drone_directive.is_none()
+                    && preparation.payload().engineering_directive.is_none()
+                    && preparation.payload().intrusion_directive.is_none()
+            }
+            GameCommand::UseTechniqueAt {
+                technique,
+                target,
+                weapon_slot,
+            } => {
+                let world_aim = self
+                    .rules
+                    .skills
+                    .technique(technique)
+                    .and_then(TechniqueDefinition::action)
+                    .is_some_and(|action| {
+                        action.is_explosive_action()
+                            || action.is_movement_aim_action()
+                            || action.is_stealth_world_aim_action()
+                    });
+                preparation.payload().technique == *technique
+                    && preparation.payload().targets.is_empty()
+                    && (if world_aim {
+                        preparation.payload().weapon_slot.is_none()
+                    } else {
+                        preparation.payload().weapon_slot == Some(*weapon_slot)
+                    })
+                    && preparation.payload().target_at == Some(*target)
+                    && preparation.payload().drone_directive.is_none()
+                    && preparation.payload().engineering_directive.is_none()
+                    && preparation.payload().intrusion_directive.is_none()
+            }
+            GameCommand::UseDroneTechnique {
+                technique,
+                directive,
+            } => {
+                preparation.payload().technique == *technique
+                    && preparation.payload().targets.is_empty()
+                    && preparation.payload().weapon_slot.is_none()
+                    && preparation.payload().target_at.is_none()
+                    && preparation.payload().drone_directive.as_ref() == Some(directive)
+                    && preparation.payload().engineering_directive.is_none()
+                    && preparation.payload().intrusion_directive.is_none()
+            }
+            GameCommand::UseEngineeringTechnique {
+                technique,
+                directive,
+            } => {
+                preparation.payload().technique == *technique
+                    && preparation.payload().targets.is_empty()
+                    && preparation.payload().weapon_slot.is_none()
+                    && preparation.payload().target_at.is_none()
+                    && preparation.payload().drone_directive.is_none()
+                    && preparation.payload().engineering_directive.as_ref() == Some(directive)
+                    && preparation.payload().intrusion_directive.is_none()
+            }
+            GameCommand::UseIntrusionTechnique {
+                technique,
+                directive,
+            } => {
+                preparation.payload().technique == *technique
+                    && preparation.payload().targets.is_empty()
+                    && preparation.payload().weapon_slot.is_none()
+                    && preparation.payload().target_at.is_none()
+                    && preparation.payload().drone_directive.is_none()
+                    && preparation.payload().engineering_directive.is_none()
+                    && preparation.payload().intrusion_directive.as_ref() == Some(directive)
+                    && preparation.payload().electronic_directive.is_none()
+            }
+            GameCommand::UseElectronicWarfareTechnique {
+                technique,
+                directive,
+            } => {
+                preparation.payload().technique == *technique
+                    && preparation.payload().targets.is_empty()
+                    && preparation.payload().weapon_slot.is_none()
+                    && preparation.payload().target_at.is_none()
+                    && preparation.payload().drone_directive.is_none()
+                    && preparation.payload().engineering_directive.is_none()
+                    && preparation.payload().intrusion_directive.is_none()
+                    && preparation.payload().electronic_directive.as_ref() == Some(directive)
+            }
+            _ => false,
+        }
+    }
+
+    fn command_preserves_player_persistent_ranged_aim(&self, command: &GameCommand) -> bool {
+        let Some(aim) = &self.player_persistent_ranged_aim else {
+            return true;
+        };
+        match command {
+            GameCommand::Wait => true,
+            GameCommand::Attack { slot, target } if *target == aim.target => self
+                .attack_details(self.player, *slot)
+                .is_ok_and(|(_, attack, _, _, _)| {
+                    attack.delivery() == AttackDelivery::Ranged
+                        && matches!(attack.area(), AttackArea::Single)
+                }),
+            _ => false,
+        }
+    }
+
+    fn command_continues_player_weapon_barrage(&self, command: &GameCommand) -> bool {
+        let Some(barrage) = &self.player_weapon_barrage else {
+            return true;
+        };
+        matches!(
+            command,
+            GameCommand::UseTechniqueAt {
+                technique,
+                target,
+                weapon_slot,
+            } if technique == &barrage.technique
+                && *target == barrage.target_at
+                && *weapon_slot == barrage.weapon_slot
+        )
+    }
+
+    fn command_continues_player_charge(&self, command: &GameCommand) -> bool {
+        let Some(charge) = &self.player_active_charge else {
+            return true;
+        };
+        matches!(
+            command,
+            GameCommand::UseTechnique {
+                technique,
+                targets,
+                weapon_slot: Some(weapon_slot),
+            } if technique == &charge.technique
+                && targets.as_slice() == [charge.target]
+                && *weapon_slot == charge.weapon_slot
+        )
+    }
+
+    fn cancel_player_charge(&mut self) {
+        let Some(charge) = self.player_active_charge.take() else {
+            return;
+        };
+        let controlled = self.learned_controlled_charge_inertia(&charge.technique);
+        self.events.push(GameEvent::ChargeCancelled {
+            entity: self.player,
+            technique: charge.technique,
+            completed_advances: charge.completed_advances,
+            controlled,
+        });
+    }
+
+    fn end_player_anchor(&mut self) {
+        let Some((technique, _)) = self.player_anchor.take() else {
+            return;
+        };
+        self.events.push(GameEvent::AnchorEnded {
+            entity: self.player,
+            technique,
+        });
+    }
+
+    fn cancel_player_weapon_barrage(&mut self) {
+        let Some(barrage) = self.player_weapon_barrage.take() else {
+            return;
+        };
+        self.events.push(GameEvent::WeaponBarrageCancelled {
+            entity: self.player,
+            technique: barrage.technique,
+            remaining_stages: barrage.remaining_stages,
+        });
+    }
+
+    fn clear_player_persistent_ranged_aim(&mut self) {
+        let Some(aim) = self.player_persistent_ranged_aim.take() else {
+            return;
+        };
+        self.events.push(GameEvent::PersistentRangedAimEnded {
+            entity: self.player,
+            target: aim.target,
+            technique: aim.technique,
+        });
+    }
+
+    fn cancel_player_persistent_ranged_aim_if_target_unavailable(&mut self) {
+        let unavailable = self
+            .player_persistent_ranged_aim
+            .as_ref()
+            .is_some_and(|aim| {
+                self.actors
+                    .get(aim.target)
+                    .is_none_or(|target| !self.player_visibility.is_visible(target.position()))
+            });
+        if unavailable {
+            self.clear_player_persistent_ranged_aim();
+        }
+    }
+
+    fn cancel_player_preparation(&mut self, reason: PreparationCancellationReason) {
+        let Some(preparation) = self.player_preparation.take() else {
+            return;
+        };
+        let payload = preparation.cancel();
+        self.release_player_preparation_bandwidth();
+        self.events.push(GameEvent::TechniquePreparationCancelled {
+            entity: self.player,
+            technique: payload.technique,
+            reason,
+        });
+    }
+
+    fn resolve_preparation_disruption(
+        &mut self,
+        source: EntityId,
+        target: EntityId,
+        disruption: PreparationDisruption,
+    ) {
+        if target != self.player || self.player_preparation.is_none() {
+            return;
+        }
+        if self
+            .player_preparation_interruption_protection
+            .is_some_and(|protection| protection.family == disruption.family())
+        {
+            self.events.push(GameEvent::PreparationDisruptionResolved {
+                source,
+                target,
+                family: disruption.family(),
+                intensity: disruption.intensity(),
+                chance: None,
+                roll: None,
+                outcome: PreparationDisruptionOutcome::Protected,
+            });
+            return;
+        }
+
+        // The disruption metadata itself opts an attack into Stability. The
+        // default coefficients keep this usable in small modded rulesets that
+        // deliberately omit the broader technique-resistance subsystem.
+        let rules = self.rules.stability_rules.unwrap_or_default();
+        let actor = self
+            .actors
+            .get(target)
+            .expect("the preparing player remains registered");
+        let modifier = self.actor_stability_modifier(target);
+        let chance =
+            rules.resistance_chance(actor.primary_attributes(), modifier, disruption.intensity());
+        let roll = self.rng.percentile();
+        let outcome = if roll <= chance {
+            PreparationDisruptionOutcome::Resisted
+        } else {
+            PreparationDisruptionOutcome::Interrupted
+        };
+        self.events.push(GameEvent::PreparationDisruptionResolved {
+            source,
+            target,
+            family: disruption.family(),
+            intensity: disruption.intensity(),
+            chance: Some(chance),
+            roll: Some(roll),
+            outcome,
+        });
+        if outcome == PreparationDisruptionOutcome::Resisted {
+            return;
+        }
+
+        self.cancel_player_preparation(PreparationCancellationReason::Disrupted);
+        self.player_preparation_interruption_protection = Some(PreparationInterruptionProtection {
+            family: disruption.family(),
+            expires_after_turn: self.turn.saturating_add(1),
+        });
+        self.events
+            .push(GameEvent::PreparationInterruptionProtectionChanged {
+                entity: target,
+                family: disruption.family(),
+                active: true,
+            });
+    }
+
+    fn expire_player_preparation_interruption_protection(&mut self) {
+        let should_expire = self
+            .player_preparation_interruption_protection
+            .is_some_and(|protection| self.turn >= protection.expires_after_turn);
+        if !should_expire {
+            return;
+        }
+        let protection = self
+            .player_preparation_interruption_protection
+            .take()
+            .expect("expiration was checked against an active protection");
+        self.events
+            .push(GameEvent::PreparationInterruptionProtectionChanged {
+                entity: self.player,
+                family: protection.family,
+                active: false,
+            });
+    }
+
+    fn cancel_player_preparation_if_target_unavailable(&mut self) {
+        let payload = self
+            .player_preparation
+            .as_ref()
+            .map(|preparation| preparation.payload().clone());
+        let unavailable = payload.as_ref().is_some_and(|payload| {
+            if let Some(target_at) = payload.target_at {
+                return payload.weapon_slot.map_or_else(
+                    || {
+                        let movement_aim = self
+                            .rules
+                            .skills
+                            .technique(&payload.technique)
+                            .and_then(TechniqueDefinition::action)
+                            .is_some_and(TechniqueAction::is_movement_aim_action);
+                        let stealth_world_aim = self
+                            .rules
+                            .skills
+                            .technique(&payload.technique)
+                            .and_then(TechniqueDefinition::action)
+                            .is_some_and(TechniqueAction::is_stealth_world_aim_action);
+                        if movement_aim {
+                            self.prepare_player_movement_technique_preview(
+                                &payload.technique,
+                                target_at,
+                                true,
+                            )
+                            .is_err()
+                        } else if stealth_world_aim {
+                            self.prepare_player_stealth_world_preview(
+                                &payload.technique,
+                                target_at,
+                                true,
+                            )
+                            .is_err()
+                        } else {
+                            self.prepare_player_explosive_technique_preview(
+                                &payload.technique,
+                                target_at,
+                                true,
+                            )
+                            .is_err()
+                        }
+                    },
+                    |slot| {
+                        self.player_weapon_technique_preview(&payload.technique, slot, target_at)
+                            .is_err()
+                    },
+                );
+            }
+            if payload.targets.is_empty() {
+                return false;
+            }
+            if let Some(slot) = payload.weapon_slot {
+                let candidates = self.player_weapon_technique_targets(&payload.technique, slot);
+                return payload
+                    .targets
+                    .iter()
+                    .any(|target| !candidates.contains(target));
+            }
+            let Some(origin) = self.player_position() else {
+                return true;
+            };
+            let Some(range) = self.rules.skills.target_range(&payload.technique) else {
+                return false;
+            };
+            payload.targets.iter().any(|target| {
+                self.visible_technique_target(*target, origin, range)
+                    .is_err()
+            })
+        });
+        if unavailable {
+            self.cancel_player_preparation(PreparationCancellationReason::TargetUnavailable);
+        }
     }
 
     fn interact(&mut self, target: GridPos) -> Result<(), CommandRejection> {
@@ -629,6 +2625,18 @@ impl GameState {
             || !self.player_visibility.is_visible(target)
         {
             return Err(CommandRejection::InteractionOutOfReach);
+        }
+        if let Some(source) = self
+            .threat_sources
+            .iter_mut()
+            .find(|source| source.position == target && source.active)
+        {
+            source.active = false;
+            self.events.push(GameEvent::ThreatSourceDisabled {
+                entity: self.player,
+                at: target,
+            });
+            return Ok(());
         }
         let terrain = self
             .map
@@ -674,6 +2682,34 @@ impl GameState {
         self.map
             .set_terrain(target, next)
             .map_err(|_| CommandRejection::NothingToInteract)?;
+        if self.intrusion_enabled()
+            && matches!(
+                terrain,
+                Terrain::ControlPanel {
+                    activated: false,
+                    ..
+                }
+            )
+            && let Some(profile) = self.digital_interface_profile(target)
+        {
+            let rights = profile.rights;
+            self.intrusion.grant_session(
+                target,
+                AccessSession::new(
+                    rights.iter().copied(),
+                    AccessOrigin::Authentic,
+                    self.turn.saturating_add(7),
+                    0,
+                )
+                .expect("control panels expose at least one digital right"),
+            );
+            self.events.push(GameEvent::DigitalAccessGranted {
+                at: target,
+                origin: AccessOrigin::Authentic,
+                rights,
+                remaining_time_units: 6,
+            });
+        }
         self.events.push(GameEvent::TerrainInteracted {
             entity: self.player,
             at: target,
@@ -688,6 +2724,13 @@ impl GameState {
         Ok(())
     }
 
+    fn intrusion_enabled(&self) -> bool {
+        let feature = "core:intrusion"
+            .parse()
+            .expect("built-in intrusion feature ID must remain valid");
+        self.rules.enabled_system_features.contains(&feature)
+    }
+
     fn learn_player_technique(
         &mut self,
         technique: &TechniqueId,
@@ -699,6 +2742,8 @@ impl GameState {
                 &self.rules.skills,
                 &self.rules.enabled_system_features,
                 &self.rules.skill_progression,
+                self.player_progression.level(),
+                self.player_primary_attributes(),
             )
             .map_err(LearnTechniqueError::Technique)?;
         let mut next_progression = self.player_progression.clone();
@@ -712,7 +2757,7 @@ impl GameState {
             entity: self.player,
             technique: learned.technique,
             discipline: learned.discipline,
-            rank: learned.rank,
+            choice_number: learned.choice_number,
             skill_points_spent: learned.cost,
             skill_points_remaining: self.player_progression.unspent_skill_points(),
         });
@@ -723,6 +2768,7 @@ impl GameState {
         &mut self,
         technique: &TechniqueId,
         targets: &[EntityId],
+        weapon_slot: Option<u8>,
     ) -> Result<(), TechniqueUseError> {
         if !self.player_skills.has_learned(technique) {
             return Err(TechniqueUseError::NotLearned(technique.clone()));
@@ -731,19 +2777,144 @@ impl GameState {
             .rules
             .skills
             .technique(technique)
+            .cloned()
             .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
         let action = definition
             .action()
             .ok_or_else(|| TechniqueUseError::NoActiveAction(technique.clone()))?;
+        if action.requires_active_emission()
+            && self
+                .player_silenced_emissions
+                .contains(&SignatureChannel::ActiveEmission)
+        {
+            return Err(TechniqueUseError::ActiveEmissionSilenced);
+        }
+        match action {
+            TechniqueAction::ToggleEmissionSilence { channel } => {
+                return self.use_player_emission_silence_technique(
+                    technique,
+                    targets,
+                    weapon_slot,
+                    channel,
+                );
+            }
+            TechniqueAction::ToggleLowProfile {
+                optical_difficulty_bonus,
+                minimum_movement_time_units,
+            } => {
+                return self.use_player_low_profile_technique(
+                    technique,
+                    targets,
+                    weapon_slot,
+                    optical_difficulty_bonus,
+                    minimum_movement_time_units,
+                );
+            }
+            TechniqueAction::BreakTrail {
+                energy_cost,
+                maximum_steps,
+                maximum_duration,
+            } => {
+                return self.use_player_trail_break_technique(
+                    technique,
+                    targets,
+                    weapon_slot,
+                    &definition,
+                    energy_cost,
+                    maximum_steps,
+                    maximum_duration,
+                );
+            }
+            TechniqueAction::ToggleActiveCamouflage {
+                channel,
+                optical_difficulty_bonus,
+                maximum_duration,
+                activation_energy,
+                upkeep_energy,
+                heat_per_phase,
+            } => {
+                return self.use_player_active_camouflage_technique(
+                    technique,
+                    targets,
+                    weapon_slot,
+                    &definition,
+                    channel,
+                    optical_difficulty_bonus,
+                    maximum_duration,
+                    activation_energy,
+                    upkeep_energy,
+                    heat_per_phase,
+                );
+            }
+            _ => {}
+        }
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+        let cooldown = definition.cooldown();
         let player_position = self
             .player_position()
             .ok_or(TechniqueUseError::MissingPlayer)?;
-        let (maximum_targets, energy_cost) = match action {
-            TechniqueAction::AnalyzeTarget { .. } | TechniqueAction::AnalyzeThreat { .. } => (1, 0),
+        match action {
+            TechniqueAction::PrepareAnchor {
+                displacement_resistance_bonus,
+            } => {
+                return self.use_player_anchor_technique(
+                    technique,
+                    targets,
+                    weapon_slot,
+                    displacement_resistance_bonus,
+                );
+            }
+            TechniqueAction::ChargeAttack { .. } => {
+                return self.use_player_charge_technique(
+                    technique,
+                    targets,
+                    weapon_slot,
+                    &definition,
+                );
+            }
+            TechniqueAction::Breakthrough { .. } => {
+                return self.use_player_breakthrough_technique(
+                    technique,
+                    targets,
+                    weapon_slot,
+                    &definition,
+                );
+            }
+            TechniqueAction::ExtractAlly { .. } => {
+                return self.use_player_extract_technique(
+                    technique,
+                    targets,
+                    weapon_slot,
+                    &definition,
+                );
+            }
+            _ => {}
+        }
+        let (maximum_targets, mut energy_cost) = match action {
+            TechniqueAction::AnalyzeTarget { .. }
+            | TechniqueAction::AnalyzeThreat { .. }
+            | TechniqueAction::WeaponAttack { energy_cost: 0, .. } => (1, 0),
+            TechniqueAction::DiagnoseEnergy { energy_cost, .. } => (1, energy_cost),
+            TechniqueAction::WeaponAttack { energy_cost, .. } => (1, energy_cost),
+            TechniqueAction::WeaponVolley {
+                maximum_targets,
+                energy_cost,
+                ..
+            } => (usize::from(maximum_targets), energy_cost),
             TechniqueAction::AnalyzeMultipleTargets {
                 maximum_targets,
                 energy_cost,
             } => (usize::from(maximum_targets), energy_cost),
+            TechniqueAction::AmbushAttack { .. } => (1, 0),
             _ => (0, 0),
         };
         if targets.is_empty() && maximum_targets > 0 {
@@ -764,9 +2935,307 @@ impl GameState {
                 return Err(TechniqueUseError::DuplicateTarget(*target));
             }
         }
+        if let TechniqueAction::WeaponVolley {
+            maximum_target_separation: Some(maximum),
+            ..
+        } = action
+        {
+            for (index, left) in targets.iter().enumerate() {
+                for right in &targets[index + 1..] {
+                    let left_position = self
+                        .actors
+                        .get(*left)
+                        .ok_or(TechniqueUseError::UnknownTarget(*left))?
+                        .position();
+                    let right_position = self
+                        .actors
+                        .get(*right)
+                        .ok_or(TechniqueUseError::UnknownTarget(*right))?
+                        .position();
+                    if !is_within_chebyshev_range(left_position, right_position, maximum) {
+                        return Err(TechniqueUseError::VolleyTargetsTooFarApart {
+                            left: *left,
+                            right: *right,
+                            maximum,
+                        });
+                    }
+                }
+            }
+        }
+
+        let selected_weapon_slot = match action {
+            TechniqueAction::WeaponAttack { .. }
+            | TechniqueAction::WeaponVolley { .. }
+            | TechniqueAction::AmbushAttack { .. } => {
+                Some(weapon_slot.ok_or(TechniqueUseError::MissingWeaponSlot)?)
+            }
+            _ if weapon_slot.is_some() => return Err(TechniqueUseError::UnexpectedWeaponSlot),
+            _ => None,
+        };
 
         // Stage every observation before charging energy or publishing any result.
         // A hidden/invalid final target rejects the entire command atomically.
+        let prepared_reaction = match action {
+            TechniqueAction::PrepareMeleeParry {
+                physical_reduction_percentage,
+                trigger_energy_cost,
+            } => {
+                let compatible_weapon =
+                    self.rules
+                        .player_weapon_slots
+                        .iter()
+                        .enumerate()
+                        .any(|(slot, _)| {
+                            u8::try_from(slot)
+                                .ok()
+                                .and_then(|slot| self.equipped_player_weapon(slot))
+                                .is_some_and(|weapon| weapon.capabilities().can_melee_parry())
+                        });
+                if !compatible_weapon {
+                    return Err(TechniqueUseError::NoCompatibleParryWeapon);
+                }
+                let mut reaction = PreparedReaction::melee_parry(
+                    technique.clone(),
+                    physical_reduction_percentage,
+                    trigger_energy_cost,
+                )
+                .map_err(|_| TechniqueUseError::NoActiveAction(technique.clone()))?;
+                if let Some(counterattack) = self.learned_melee_counterattack(technique) {
+                    reaction = reaction.with_melee_counterattack(counterattack);
+                }
+                Some(reaction)
+            }
+            TechniqueAction::PrepareMeleeInterception => {
+                Some(PreparedReaction::melee_interception(technique.clone()))
+            }
+            _ => None,
+        };
+
+        let mut ambush_resolution = None;
+        let prepared_attack = match action {
+            TechniqueAction::WeaponAttack {
+                required_delivery,
+                physical_damage_percentage,
+                armor_penetration_bonus,
+                accuracy_modifier,
+                energy_cost: _,
+                recovery_time_units,
+                forced_movement,
+                melee_arc,
+            } => {
+                let target = targets[0];
+                let target_position = self
+                    .actors
+                    .get(target)
+                    .ok_or(TechniqueUseError::UnknownTarget(target))?
+                    .position();
+                if !self.player_visibility.is_visible(target_position) {
+                    return Err(TechniqueUseError::TargetNotVisible(target));
+                }
+                if let Some(requirement) = definition.engagement_requirement()
+                    && !self.actor_meets_engagement_requirement(target, requirement)
+                {
+                    return Err(TechniqueUseError::TargetDoesNotMeetEngagementRequirement(
+                        target,
+                    ));
+                }
+                let mut prepared = self
+                    .prepare_targeted_attack(
+                        self.player,
+                        selected_weapon_slot.expect("weapon attack validated with a selected slot"),
+                        target,
+                    )
+                    .map_err(TechniqueUseError::Attack)?;
+                if prepared.attack.delivery() != required_delivery {
+                    return Err(TechniqueUseError::WeaponDeliveryMismatch {
+                        required: required_delivery,
+                        actual: prepared.attack.delivery(),
+                    });
+                }
+                if forced_movement.is_some() {
+                    if !matches!(prepared.attack.area(), AttackArea::Single) {
+                        return Err(TechniqueUseError::WeaponMustTargetSingleActor);
+                    }
+                    if prepared.attack.melee_impact().is_none()
+                        || self.rules.physical_rules.is_none()
+                    {
+                        return Err(TechniqueUseError::WeaponHasNoImpact);
+                    }
+                }
+                if melee_arc.is_some() && !matches!(prepared.attack.area(), AttackArea::Single) {
+                    return Err(TechniqueUseError::WeaponMustTargetSingleActor);
+                }
+                if let Some(physical_damage_percentage) = physical_damage_percentage {
+                    prepared.attack = prepared
+                        .attack
+                        .with_physical_damage_percentage(physical_damage_percentage)
+                        .map_err(|_| TechniqueUseError::WeaponHasNoPhysicalDamage)?;
+                }
+                if armor_penetration_bonus > 0 {
+                    if prepared.attack.damage().raw_physical_total() == 0 {
+                        return Err(TechniqueUseError::WeaponHasNoPhysicalDamage);
+                    }
+                    let remaining_armor = self
+                        .actor_armor_profile(target)
+                        .map_or(0, ArmorProfile::after_fragilization);
+                    let armor_penetration_bonus = armor_penetration_bonus.min(remaining_armor / 2);
+                    prepared.attack = prepared
+                        .attack
+                        .with_additional_armor_penetration(armor_penetration_bonus);
+                }
+                prepared.attack = prepared.attack.with_accuracy_modifier(
+                    prepared
+                        .attack
+                        .accuracy_modifier()
+                        .saturating_add(accuracy_modifier),
+                );
+                if let Some(recovery_time_units) = recovery_time_units {
+                    let recovery = crate::time::TimeUnits::new(recovery_time_units)
+                        .expect("validated technique recovery remains positive");
+                    prepared.attack = prepared.attack.with_recovery_after_attack(recovery);
+                }
+                if let Some(melee_arc) = melee_arc {
+                    prepared.affected_cells =
+                        melee_arc.affected_cells(&self.map, prepared.origin, prepared.target_at);
+                }
+                prepared.forced_movement = forced_movement;
+                prepared.technique_on_hit_effect = definition
+                    .on_hit_effect()
+                    .cloned()
+                    .map(|effect| (technique.clone(), effect));
+                Some(prepared)
+            }
+            TechniqueAction::AmbushAttack {
+                accuracy_modifier,
+                physical_damage_percentage,
+            } => {
+                let target = targets[0];
+                let target_position = self
+                    .actors
+                    .get(target)
+                    .ok_or(TechniqueUseError::UnknownTarget(target))?
+                    .position();
+                if !self.player_visibility.is_visible(target_position) {
+                    return Err(TechniqueUseError::TargetNotVisible(target));
+                }
+                let continuing = self.player_preparation.as_ref().is_some_and(|preparation| {
+                    let payload = preparation.payload();
+                    payload.technique == *technique
+                        && payload.targets.as_slice() == [target]
+                        && payload.weapon_slot == weapon_slot
+                });
+                let target_unaware = self
+                    .actors
+                    .get(target)
+                    .is_some_and(|actor| matches!(actor.ai_state(), AiState::Unaware));
+                if !continuing && !target_unaware {
+                    return Err(TechniqueUseError::TargetAlreadyLocalized(target));
+                }
+                let slot = selected_weapon_slot.expect("ambush validated with a selected slot");
+                let mut prepared = self
+                    .prepare_targeted_attack(self.player, slot, target)
+                    .map_err(TechniqueUseError::Attack)?;
+                if !matches!(prepared.attack.area(), AttackArea::Single) {
+                    return Err(TechniqueUseError::WeaponMustTargetSingleActor);
+                }
+                if !prepared.attack.damage().has_physical_component() {
+                    return Err(TechniqueUseError::WeaponHasNoPhysicalDamage);
+                }
+                let mut silent_neutralization = false;
+                let mut noise_reduction = 0;
+                if target_unaware {
+                    prepared.attack = prepared
+                        .attack
+                        .with_physical_damage_percentage(physical_damage_percentage)
+                        .map_err(|_| TechniqueUseError::WeaponHasNoPhysicalDamage)?
+                        .with_accuracy_modifier(
+                            prepared
+                                .attack
+                                .accuracy_modifier()
+                                .saturating_add(accuracy_modifier),
+                        );
+                    if let Some((percentage, extra_energy, reduction)) =
+                        self.learned_silent_neutralization(technique)
+                        && prepared.attack.delivery() == AttackDelivery::Melee
+                        && is_within_chebyshev_range(prepared.origin, target_position, 1)
+                        && self.player_known_physical_weaknesses.contains(&target)
+                    {
+                        prepared.attack = prepared
+                            .attack
+                            .with_physical_damage_percentage(percentage)
+                            .map_err(|_| TechniqueUseError::WeaponHasNoPhysicalDamage)?;
+                        energy_cost = extra_energy;
+                        noise_reduction = reduction;
+                        silent_neutralization = true;
+                    }
+                }
+                ambush_resolution = Some((
+                    target,
+                    target_unaware,
+                    silent_neutralization,
+                    noise_reduction,
+                ));
+                Some(prepared)
+            }
+            _ => None,
+        };
+
+        let prepared_volley = match action {
+            TechniqueAction::WeaponVolley {
+                projectiles,
+                accuracy_modifier,
+                requires_automatic_fire,
+                ..
+            } => {
+                let slot = selected_weapon_slot
+                    .expect("weapon volley validated with a selected weapon slot");
+                let weapon = self
+                    .equipped_player_weapon(slot)
+                    .ok_or(TechniqueUseError::Attack(AttackError::MissingAttackSlot(
+                        slot,
+                    )))?;
+                if weapon.attack().delivery() != AttackDelivery::Ranged {
+                    return Err(TechniqueUseError::WeaponDeliveryMismatch {
+                        required: AttackDelivery::Ranged,
+                        actual: weapon.attack().delivery(),
+                    });
+                }
+                if requires_automatic_fire && !weapon.capabilities().can_automatic_fire() {
+                    return Err(TechniqueUseError::WeaponHasNoAutomaticFire);
+                }
+                let mut prepared = Vec::with_capacity(usize::from(projectiles));
+                for projectile in 0..projectiles {
+                    let target = if usize::from(projectile) < targets.len() {
+                        targets[usize::from(projectile)]
+                    } else {
+                        targets[0]
+                    };
+                    let position = self
+                        .actors
+                        .get(target)
+                        .ok_or(TechniqueUseError::UnknownTarget(target))?
+                        .position();
+                    if !self.player_visibility.is_visible(position) {
+                        return Err(TechniqueUseError::TargetNotVisible(target));
+                    }
+                    let mut shot = self
+                        .prepare_targeted_attack(self.player, slot, target)
+                        .map_err(TechniqueUseError::Attack)?;
+                    if !matches!(shot.attack.area(), AttackArea::Single) {
+                        return Err(TechniqueUseError::WeaponMustTargetSingleActor);
+                    }
+                    shot.attack = shot.attack.with_accuracy_modifier(
+                        shot.attack
+                            .accuracy_modifier()
+                            .saturating_add(accuracy_modifier),
+                    );
+                    prepared.push(shot);
+                }
+                Some(prepared)
+            }
+            _ => None,
+        };
+
         let observations = match action {
             TechniqueAction::AnalyzeTarget { range } => {
                 vec![self.target_analysis_event(targets[0], player_position, range)?]
@@ -798,6 +3267,38 @@ impl GameState {
                     traces,
                 }]
             }
+            TechniqueAction::InspectNearbySecrets {
+                radius,
+                detection_bonus,
+            } => {
+                let attributes = self
+                    .actors
+                    .get(self.player)
+                    .and_then(Actor::primary_attributes);
+                let discovered_explosives = self
+                    .explosive_devices
+                    .iter()
+                    .filter(|device| !device.is_identified())
+                    .filter(|device| self.player_visibility.is_visible(device.position()))
+                    .filter(|device| {
+                        let distance = grid_distance(player_position, device.position());
+                        if distance > radius {
+                            return false;
+                        }
+                        let score =
+                            observation_detection_score(attributes, detection_bonus, distance);
+                        let difficulty = 50_i32
+                            .saturating_add(i32::from(device.optical_concealment()))
+                            .max(0) as u32;
+                        u32::from(score) >= difficulty
+                    })
+                    .map(|device| device.id())
+                    .collect();
+                vec![GameEvent::SecretsInspected {
+                    observer: self.player,
+                    discovered_explosives,
+                }]
+            }
             TechniqueAction::AnalyzeNearbyWalls {
                 radius,
                 maximum_tiles,
@@ -821,10 +3322,3638 @@ impl GameState {
                     observer: self.player,
                     target,
                     attacks: actor.attacks().to_vec(),
+                    armor: self
+                        .actor_armor_profile(target)
+                        .map_or(0, ArmorProfile::after_fragilization),
                     resistances: actor.resistances(),
                 }]
             }
+            TechniqueAction::DiagnoseEnergy {
+                range,
+                analysis_bonus,
+                ..
+            } => {
+                let target = targets[0];
+                let actor = self.visible_technique_target(target, player_position, range)?;
+                let attributes = self
+                    .actors
+                    .get(self.player)
+                    .and_then(Actor::primary_attributes);
+                let analysis_score = observation_analysis_score(attributes, analysis_bonus);
+                let state = if target == self.player {
+                    EnergyAnalysis {
+                        analysis_score,
+                        energy_available: Some(self.player_energy.available()),
+                        energy_capacity: Some(self.player_energy.capacity()),
+                        heat: self.player_heat.map(|heat| heat.current()),
+                        bandwidth_occupied: self
+                            .player_bandwidth
+                            .map(|bandwidth| bandwidth.occupied()),
+                        bandwidth_capacity: self
+                            .player_bandwidth
+                            .map(|bandwidth| bandwidth.capacity()),
+                    }
+                } else if let Some(drone) = actor.drone() {
+                    EnergyAnalysis {
+                        analysis_score,
+                        energy_available: Some(drone.energy().available()),
+                        energy_capacity: Some(drone.energy().capacity()),
+                        heat: None,
+                        bandwidth_occupied: None,
+                        bandwidth_capacity: None,
+                    }
+                } else {
+                    return Err(TechniqueUseError::TargetHasNoEnergyState(target));
+                };
+                vec![GameEvent::EnergyAnalyzed {
+                    observer: self.player,
+                    target,
+                    state,
+                }]
+            }
+            TechniqueAction::WeaponAttack { .. } => Vec::new(),
+            TechniqueAction::WeaponVolley { .. } => Vec::new(),
+            TechniqueAction::WeaponComponentAttack { .. } => Vec::new(),
+            TechniqueAction::WeaponBarrage { .. } => Vec::new(),
+            TechniqueAction::PrepareRangedOverwatch { .. } => Vec::new(),
+            TechniqueAction::PrepareMeleeParry { .. } => Vec::new(),
+            TechniqueAction::PrepareMeleeInterception => Vec::new(),
+            TechniqueAction::DeployExplosive { .. }
+            | TechniqueAction::NeutralizeExplosive { .. }
+            | TechniqueAction::RecoverNeutralizedExplosive { .. }
+            | TechniqueAction::TriggerRemoteExplosive { .. }
+            | TechniqueAction::ProgramExplosives { .. } => Vec::new(),
+            TechniqueAction::CautiousMove { .. }
+            | TechniqueAction::PrepareAnchor { .. }
+            | TechniqueAction::TraverseSingleObstacle { .. }
+            | TechniqueAction::ChargeAttack { .. }
+            | TechniqueAction::PrepareEvasiveStep { .. }
+            | TechniqueAction::PropelledMove { .. }
+            | TechniqueAction::Breakthrough { .. }
+            | TechniqueAction::ExtractAlly { .. }
+            | TechniqueAction::SilentMove { .. }
+            | TechniqueAction::ToggleEmissionSilence { .. }
+            | TechniqueAction::ToggleLowProfile { .. }
+            | TechniqueAction::AmbushAttack { .. }
+            | TechniqueAction::DeploySoundDecoy { .. }
+            | TechniqueAction::BreakTrail { .. }
+            | TechniqueAction::CamouflageExplosive { .. }
+            | TechniqueAction::ToggleActiveCamouflage { .. }
+            | TechniqueAction::ManifestDrone { .. }
+            | TechniqueAction::DroneEscort { .. }
+            | TechniqueAction::DronePatrol { .. }
+            | TechniqueAction::DroneMobileDecoy { .. }
+            | TechniqueAction::DroneCollect { .. }
+            | TechniqueAction::DroneCoordinateFire { .. }
+            | TechniqueAction::DroneInterpose { .. }
+            | TechniqueAction::DroneConditionalRoutine { .. }
+            | TechniqueAction::DroneCoordinatedDeployment { .. }
+            | TechniqueAction::DroneEmergencyReturn { .. }
+            | TechniqueAction::RepairComponent { .. }
+            | TechniqueAction::SalvageComponent
+            | TechniqueAction::DiagnoseComponent { .. }
+            | TechniqueAction::TuneModule { .. }
+            | TechniqueAction::EmergencyRepairComponent { .. }
+            | TechniqueAction::OverclockModule { .. }
+            | TechniqueAction::BypassComponent { .. }
+            | TechniqueAction::ReconditionModule { .. }
+            | TechniqueAction::AssembleFieldBeacon { .. }
+            | TechniqueAction::ProbeInterface { .. }
+            | TechniqueAction::ForceElectronicLock { .. }
+            | TechniqueAction::ExtractData { .. }
+            | TechniqueAction::SpoofAuthorization { .. }
+            | TechniqueAction::DivertDevice { .. }
+            | TechniqueAction::SuspendDigitalRoutine { .. }
+            | TechniqueAction::MaintainBackdoor { .. }
+            | TechniqueAction::FalsifySecurityTrace { .. }
+            | TechniqueAction::DivertSubnet { .. }
+            | TechniqueAction::LockDeviceControl { .. }
+            | TechniqueAction::ElectronicPulse { .. }
+            | TechniqueAction::ImplantOverheat { .. }
+            | TechniqueAction::MaintainJamming { .. }
+            | TechniqueAction::PurgeHostileProgram { .. }
+            | TechniqueAction::ElectronicCascade { .. }
+            | TechniqueAction::ImplantInfection { .. }
+            | TechniqueAction::DeploySaturationBeacon { .. }
+            | TechniqueAction::ImplantImplosion { .. } => Vec::new(),
         };
+        if let Some(preparation_steps) = definition.preparation_steps() {
+            let payload = PreparedTechniquePayload {
+                technique: technique.clone(),
+                targets: targets.to_vec(),
+                weapon_slot,
+                target_at: None,
+                drone_directive: None,
+                engineering_directive: None,
+                intrusion_directive: None,
+                electronic_directive: None,
+            };
+            let execute_now = match self.player_preparation.take() {
+                None => {
+                    self.player_preparation =
+                        Some(ActionPreparation::new(payload, preparation_steps));
+                    self.events.push(GameEvent::TechniquePreparationStarted {
+                        entity: self.player,
+                        technique: technique.clone(),
+                        remaining_steps: preparation_steps.get(),
+                    });
+                    false
+                }
+                Some(preparation) if preparation.payload() == &payload => {
+                    match preparation.advance() {
+                        PreparationAdvance::Preparing(preparation) => {
+                            let remaining_steps = preparation.remaining_steps().get();
+                            self.player_preparation = Some(preparation);
+                            self.events.push(GameEvent::TechniquePreparationAdvanced {
+                                entity: self.player,
+                                technique: technique.clone(),
+                                remaining_steps,
+                            });
+                            false
+                        }
+                        PreparationAdvance::Ready(_) => {
+                            self.events.push(GameEvent::TechniquePreparationCompleted {
+                                entity: self.player,
+                                technique: technique.clone(),
+                            });
+                            true
+                        }
+                    }
+                }
+                Some(preparation) => {
+                    let cancelled = preparation.cancel();
+                    self.events.push(GameEvent::TechniquePreparationCancelled {
+                        entity: self.player,
+                        technique: cancelled.technique,
+                        reason: PreparationCancellationReason::DifferentAction,
+                    });
+                    self.player_preparation =
+                        Some(ActionPreparation::new(payload, preparation_steps));
+                    self.events.push(GameEvent::TechniquePreparationStarted {
+                        entity: self.player,
+                        technique: technique.clone(),
+                        remaining_steps: preparation_steps.get(),
+                    });
+                    false
+                }
+            };
+            if !execute_now {
+                return Ok(());
+            }
+        }
+        if let Some(prepared_attack) = &prepared_attack {
+            self.spend_prepared_attack_usage(prepared_attack, 1)
+                .map_err(TechniqueUseError::Attack)?;
+        }
+        if let Some(prepared_volley) = &prepared_volley {
+            let projectile_count = u16::try_from(prepared_volley.len()).unwrap_or(u16::MAX);
+            if let Some(first) = prepared_volley.first() {
+                self.spend_prepared_attack_usage(first, projectile_count)
+                    .map_err(TechniqueUseError::Attack)?;
+            }
+        }
+        self.player_energy
+            .spend(energy_cost)
+            .map_err(TechniqueUseError::Energy)?;
+        let discovered_explosives = observations
+            .iter()
+            .filter_map(|observation| match observation {
+                GameEvent::SecretsInspected {
+                    discovered_explosives,
+                    ..
+                } => Some(discovered_explosives.as_slice()),
+                _ => None,
+            })
+            .flatten()
+            .copied()
+            .collect::<Vec<_>>();
+        for device in discovered_explosives {
+            let identified = self.explosive_devices.identify(device);
+            debug_assert!(identified, "staged secret device remains registered");
+        }
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        if energy_cost > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_cost,
+                remaining: self.player_energy.available(),
+            });
+        }
+        if prepared_attack.is_some() || prepared_volley.is_some() {
+            self.end_player_active_camouflage();
+        }
+        if let Some((target, bonuses_applied, silent_neutralization, noise_reduction)) =
+            ambush_resolution
+        {
+            let intensity = prepared_attack.as_ref().map_or(0, |prepared| {
+                match prepared.attack.delivery() {
+                    AttackDelivery::Melee => 10_u16,
+                    AttackDelivery::Ranged => 30_u16,
+                }
+                .saturating_sub(noise_reduction)
+            });
+            if intensity > 0 {
+                self.emit_noise(Some(self.player), player_position, intensity);
+            }
+            self.events.push(GameEvent::AmbushResolved {
+                entity: self.player,
+                target,
+                bonuses_applied,
+                silent_neutralization,
+            });
+        }
+        if let Some(reaction) = prepared_reaction {
+            let kind = reaction.kind();
+            self.actors
+                .get_mut(self.player)
+                .ok_or(TechniqueUseError::MissingPlayer)?
+                .prepare_reaction(reaction);
+            self.events.push(GameEvent::ReactionPrepared {
+                entity: self.player,
+                technique: technique.clone(),
+                reaction: kind,
+            });
+        }
+        let analyzed_targets = observations
+            .iter()
+            .filter_map(|observation| match observation {
+                GameEvent::TargetAnalyzed { target, .. } => Some(*target),
+                _ => None,
+            });
+        let analyzed_targets = analyzed_targets.collect::<Vec<_>>();
+        self.events.extend(observations);
+        for target in analyzed_targets {
+            if self
+                .actor_armor_profile(target)
+                .is_some_and(|armor| armor.after_fragilization() > 0)
+                && self.player_known_physical_weaknesses.insert(target)
+            {
+                self.events.push(GameEvent::PhysicalWeaknessIdentified {
+                    observer: self.player,
+                    target,
+                });
+            }
+            let components = self.actors.get(target).map_or_else(Vec::new, |actor| {
+                actor
+                    .body_components()
+                    .map(|component| component.profile().id().clone())
+                    .collect::<Vec<_>>()
+            });
+            let known = self.player_known_body_components.entry(target).or_default();
+            for component in components {
+                if known.insert(component.clone()) {
+                    self.events.push(GameEvent::BodyComponentIdentified {
+                        observer: self.player,
+                        target,
+                        component,
+                    });
+                }
+            }
+        }
+        if let Some(prepared_attack) = prepared_attack {
+            let persistent_aim = self.learned_persistent_ranged_aim(technique);
+            let aimed_target = prepared_attack.target;
+            let recovery = prepared_attack.attack.recovery_after_attack();
+            self.resolve_prepared_attack(prepared_attack, ActionOrigin::Normal)
+                .map_err(TechniqueUseError::Attack)?;
+            if let (Some((improvement, accuracy_modifier)), Some(target)) =
+                (persistent_aim, aimed_target)
+                && self
+                    .actors
+                    .get(target)
+                    .is_some_and(|actor| self.player_visibility.is_visible(actor.position()))
+            {
+                self.player_persistent_ranged_aim = Some(PersistentRangedAim {
+                    technique: improvement.clone(),
+                    target,
+                    accuracy_modifier,
+                });
+                self.events.push(GameEvent::PersistentRangedAimStarted {
+                    entity: self.player,
+                    target,
+                    technique: improvement,
+                    accuracy_modifier,
+                });
+            }
+            if let Some(recovery) = recovery {
+                self.start_action_recovery(self.player, recovery);
+            }
+        }
+        if let Some(prepared_volley) = prepared_volley {
+            let mut hit_targets = BTreeSet::new();
+            for prepared_attack in prepared_volley {
+                let resolution = self
+                    .resolve_prepared_attack(prepared_attack, ActionOrigin::Normal)
+                    .map_err(TechniqueUseError::Attack)?;
+                hit_targets.extend(resolution.hit_targets);
+            }
+            if let Some(effect) = definition.on_hit_effect() {
+                for target in hit_targets {
+                    if self.actors.get(target).is_some() {
+                        self.resolve_technique_on_hit_effect(
+                            self.player,
+                            target,
+                            technique,
+                            effect,
+                        );
+                    }
+                }
+            }
+        }
+        if let Some(cooldown) = cooldown {
+            self.actors
+                .get_mut(self.player)
+                .ok_or(TechniqueUseError::MissingPlayer)?
+                .start_technique_cooldown(technique.clone(), self.turn, cooldown);
+            self.events.push(GameEvent::TechniqueCooldownStarted {
+                entity: self.player,
+                technique: technique.clone(),
+                remaining_phases: cooldown.get(),
+            });
+        }
+        Ok(())
+    }
+
+    /// Translates a data-authored drone technique plus explicit player
+    /// choices into persistent orders on physical drone actors. Validation is
+    /// completed before energy, bandwidth, orders or cooldowns are mutated.
+    fn use_player_drone_technique(
+        &mut self,
+        technique: &TechniqueId,
+        directive: &DroneDirective,
+    ) -> Result<(), TechniqueUseError> {
+        if !self.player_skills.has_learned(technique) {
+            return Err(TechniqueUseError::NotLearned(technique.clone()));
+        }
+        let definition = self
+            .rules
+            .skills
+            .technique(technique)
+            .cloned()
+            .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
+        let action = definition
+            .action()
+            .filter(|action| action.is_drone_action())
+            .ok_or_else(|| TechniqueUseError::NoActiveAction(technique.clone()))?;
+        if self
+            .player_silenced_emissions
+            .contains(&SignatureChannel::ActiveEmission)
+        {
+            return Err(TechniqueUseError::ActiveEmissionSilenced);
+        }
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+
+        let player_position = self
+            .player_position()
+            .ok_or(TechniqueUseError::MissingPlayer)?;
+        if let (
+            TechniqueAction::ManifestDrone {
+                integrity,
+                energy_capacity,
+                starting_energy,
+                link_range,
+                link_power,
+                link_difficulty,
+                link_attenuation_per_cell,
+                link_wall_attenuation_multiplier,
+                sensor_radius,
+                bandwidth_required,
+                movement_energy_cost,
+                manipulator_capacity_grams,
+                decoy_intensity,
+                attack_range,
+                attack_damage,
+            },
+            DroneDirective::Manifest { position },
+        ) = (action, directive)
+        {
+            if grid_distance(player_position, *position) != 1
+                || !self.map.is_walkable(*position)
+                || self.actors.entity_at(*position).is_some()
+            {
+                return Err(TechniqueUseError::InvalidDroneRoutine);
+            }
+            let active = self
+                .actors
+                .iter()
+                .filter(|(_, actor)| {
+                    actor
+                        .drone()
+                        .is_some_and(|drone| drone.controller() == self.player)
+                })
+                .count();
+            let (activation_energy, activation_heat, activation_bandwidth) =
+                self.preflight_intrinsic_activation(&definition, active)?;
+            let visual_profile = definition
+                .manifestation_profile()
+                .cloned()
+                .ok_or(TechniqueUseError::InvalidDroneRoutine)?;
+            let profile = DroneProfile::new(
+                visual_profile,
+                link_range,
+                link_power,
+                link_difficulty,
+                link_attenuation_per_cell,
+                link_wall_attenuation_multiplier,
+                sensor_radius,
+                bandwidth_required,
+                movement_energy_cost,
+                crate::drone::DroneCapabilities {
+                    manipulator_capacity_grams: Some(manipulator_capacity_grams),
+                    decoy_intensity: Some(decoy_intensity),
+                    can_interpose: true,
+                    autonomous_scout_range: 6,
+                },
+            )
+            .map_err(|_| TechniqueUseError::InvalidDroneRoutine)?;
+            let actor = Actor::new(*position, integrity)
+                .map_err(|_| TechniqueUseError::InvalidDroneRoutine)?
+                .with_attack(AttackProfile::new(
+                    attack_range,
+                    DistanceMetric::Euclidean,
+                    true,
+                    crate::combat::DamageType::Electrical,
+                    attack_damage,
+                    0,
+                ))
+                .with_body_components([
+                    BodyComponentProfile::new(
+                        "core:drone_drive".parse().expect("valid component ID"),
+                        "component.drone_drive.name".to_owned(),
+                        integrity,
+                        3,
+                        ComponentFailureEffect::DisableMovement,
+                    )
+                    .expect("manifested drone drive is valid"),
+                    BodyComponentProfile::new(
+                        "core:drone_sensor".parse().expect("valid component ID"),
+                        "component.drone_sensor.name".to_owned(),
+                        integrity.saturating_sub(4).max(1),
+                        2,
+                        ComponentFailureEffect::ReducePerception(3),
+                    )
+                    .expect("manifested drone sensor is valid"),
+                ]);
+            self.spawn_manifested_player_drone(actor, profile, energy_capacity, starting_energy)
+                .map_err(|error| match error {
+                    DroneSpawnError::Bandwidth(error) => TechniqueUseError::Bandwidth(error),
+                    DroneSpawnError::SystemResourcesUnavailable => {
+                        TechniqueUseError::SystemResourcesUnavailable
+                    }
+                    _ => TechniqueUseError::InvalidDroneRoutine,
+                })?;
+            self.commit_intrinsic_activation(
+                activation_energy,
+                activation_heat,
+                activation_bandwidth,
+            )?;
+            self.events.push(GameEvent::TechniqueUsed {
+                entity: self.player,
+                technique: technique.clone(),
+                observed_on_turn: self.turn,
+            });
+            self.start_player_technique_cooldown(technique, &definition);
+            return Ok(());
+        }
+        let mut plans: Vec<(EntityId, DroneOrder, u16)> = Vec::new();
+        let (energy_cost, transmission_bandwidth) = match (action, directive) {
+            (
+                TechniqueAction::DroneEscort {
+                    link_range,
+                    minimum_distance,
+                    maximum_distance,
+                    energy_cost,
+                },
+                DroneDirective::Escort { drone, distance },
+            ) => {
+                self.validate_linked_player_drone(*drone, link_range)?;
+                if *distance < minimum_distance || *distance > maximum_distance {
+                    return Err(TechniqueUseError::InvalidDroneRoutine);
+                }
+                let order = DroneOrder::escort(self.player, *distance)
+                    .map_err(|_| TechniqueUseError::InvalidDroneRoutine)?;
+                plans.push((*drone, order, 0));
+                (energy_cost, 0)
+            }
+            (
+                TechniqueAction::DronePatrol {
+                    link_range,
+                    maximum_waypoints,
+                    energy_cost,
+                },
+                DroneDirective::Patrol {
+                    drone,
+                    waypoints,
+                    blocked_response,
+                    autonomous,
+                },
+            ) => {
+                let state = self.validate_linked_player_drone(*drone, link_range)?;
+                if waypoints.is_empty() || waypoints.len() > usize::from(maximum_waypoints) {
+                    return Err(TechniqueUseError::InvalidDroneRoutine);
+                }
+                for waypoint in waypoints {
+                    self.validate_known_drone_position(*waypoint)?;
+                }
+                if *autonomous {
+                    let Some((maximum_unknown_steps, override_cost, additional_bandwidth)) =
+                        self.learned_drone_autonomous_scout(technique)
+                    else {
+                        return Err(TechniqueUseError::InvalidDroneRoutine);
+                    };
+                    if state.profile().capabilities().autonomous_scout_range < maximum_unknown_steps
+                    {
+                        return Err(TechniqueUseError::DroneMissingCapability(*drone));
+                    }
+                    plans.push((
+                        *drone,
+                        DroneOrder::AutonomousScout {
+                            waypoints: waypoints.clone(),
+                            next_waypoint: 0,
+                            remaining_unknown_steps: maximum_unknown_steps,
+                            return_to: player_position,
+                        },
+                        additional_bandwidth,
+                    ));
+                    (override_cost, 0)
+                } else {
+                    let order = DroneOrder::patrol(waypoints.clone(), *blocked_response)
+                        .map_err(|_| TechniqueUseError::InvalidDroneRoutine)?;
+                    plans.push((*drone, order, 0));
+                    (energy_cost, 0)
+                }
+            }
+            (
+                TechniqueAction::DroneMobileDecoy {
+                    link_range,
+                    controller_energy_cost,
+                    drone_energy_per_phase,
+                    intensity,
+                    maximum_duration,
+                },
+                DroneDirective::MobileDecoy { drone, destination },
+            ) => {
+                let state = self.validate_linked_player_drone(*drone, link_range)?;
+                self.validate_known_drone_position(*destination)?;
+                if !is_within_chebyshev_range(player_position, *destination, link_range)
+                    || state
+                        .profile()
+                        .capabilities()
+                        .decoy_intensity
+                        .is_none_or(|available| available < intensity)
+                {
+                    return Err(TechniqueUseError::DroneMissingCapability(*drone));
+                }
+                plans.push((
+                    *drone,
+                    DroneOrder::MobileDecoy {
+                        destination: *destination,
+                        intensity,
+                        remaining_phases: maximum_duration,
+                        energy_per_phase: drone_energy_per_phase,
+                    },
+                    0,
+                ));
+                (controller_energy_cost, 0)
+            }
+            (
+                TechniqueAction::DroneCollect {
+                    link_range,
+                    energy_cost,
+                },
+                DroneDirective::Collect { drone, item },
+            ) => {
+                let state = self.validate_linked_player_drone(*drone, link_range)?;
+                if state.cargo().is_some() {
+                    return Err(TechniqueUseError::DroneCargoUnavailable(*drone));
+                }
+                let ground = self
+                    .ground_items
+                    .get(*item)
+                    .ok_or(TechniqueUseError::DroneCargoUnavailable(*drone))?;
+                self.validate_known_drone_position(ground.position())?;
+                let unit_mass = self
+                    .rules
+                    .weapons
+                    .get(ground.item())
+                    .and_then(WeaponDefinition::mass_grams)
+                    .or_else(|| {
+                        self.rules
+                            .items
+                            .get(ground.item())
+                            .and_then(ItemDefinition::mass_grams)
+                    })
+                    .unwrap_or(0);
+                let required_grams = unit_mass.saturating_mul(u32::from(ground.quantity()));
+                let capacity_grams = state
+                    .profile()
+                    .capabilities()
+                    .manipulator_capacity_grams
+                    .ok_or(TechniqueUseError::DroneMissingCapability(*drone))?;
+                if required_grams > capacity_grams {
+                    return Err(TechniqueUseError::DroneCargoTooHeavy {
+                        entity: *drone,
+                        required_grams,
+                        capacity_grams,
+                    });
+                }
+                plans.push((
+                    *drone,
+                    DroneOrder::Collect {
+                        item: *item,
+                        return_to: player_position,
+                        phase: DroneCollectionPhase::ReachItem,
+                    },
+                    0,
+                ));
+                (energy_cost, 0)
+            }
+            (
+                TechniqueAction::DroneCoordinateFire {
+                    link_range,
+                    maximum_drones,
+                    energy_cost,
+                    transmission_bandwidth,
+                },
+                DroneDirective::CoordinateFire { drones, target },
+            ) => {
+                self.validate_drone_group(drones, maximum_drones, link_range)?;
+                let target_position = self
+                    .actors
+                    .get(*target)
+                    .ok_or(TechniqueUseError::UnknownTarget(*target))?
+                    .position();
+                if !self.player_visibility.is_visible(target_position) {
+                    return Err(TechniqueUseError::TargetNotVisible(*target));
+                }
+                for drone in drones {
+                    if self
+                        .actors
+                        .get(*drone)
+                        .is_none_or(|actor| actor.attacks().is_empty())
+                    {
+                        return Err(TechniqueUseError::DroneHasNoAttack(*drone));
+                    }
+                    plans.push((*drone, DroneOrder::CoordinatedAttack { target: *target }, 0));
+                }
+                (energy_cost, transmission_bandwidth)
+            }
+            (
+                TechniqueAction::DroneInterpose {
+                    link_range,
+                    controller_energy_cost,
+                    drone_trigger_energy_cost,
+                },
+                DroneDirective::Interpose { drone, ally },
+            ) => {
+                let state = self.validate_linked_player_drone(*drone, link_range)?;
+                if !state.profile().capabilities().can_interpose {
+                    return Err(TechniqueUseError::DroneMissingCapability(*drone));
+                }
+                if *ally != self.player
+                    && self
+                        .actors
+                        .get(*ally)
+                        .and_then(Actor::drone)
+                        .is_none_or(|candidate| candidate.controller() != self.player)
+                {
+                    return Err(TechniqueUseError::TargetNotCooperative(*ally));
+                }
+                plans.push((
+                    *drone,
+                    DroneOrder::Interpose {
+                        ally: *ally,
+                        trigger_energy_cost: drone_trigger_energy_cost,
+                    },
+                    0,
+                ));
+                (controller_energy_cost, 0)
+            }
+            (
+                TechniqueAction::DroneConditionalRoutine {
+                    link_range,
+                    energy_cost,
+                    additional_bandwidth,
+                },
+                DroneDirective::Conditional {
+                    drone,
+                    condition,
+                    response,
+                },
+            ) => {
+                let state = self.validate_linked_player_drone(*drone, link_range)?;
+                let base = state.order().clone();
+                let old_bandwidth = state.order_bandwidth();
+                let order = DroneOrder::conditional(*condition, *response, base)
+                    .map_err(|_| TechniqueUseError::InvalidDroneRoutine)?;
+                plans.push((*drone, order, old_bandwidth.max(additional_bandwidth)));
+                (energy_cost, 0)
+            }
+            (
+                TechniqueAction::DroneCoordinatedDeployment {
+                    link_range,
+                    maximum_drones,
+                    energy_cost,
+                    transmission_bandwidth,
+                },
+                DroneDirective::Deploy { assignments },
+            ) => {
+                let drones = assignments
+                    .iter()
+                    .map(|assignment| assignment.drone)
+                    .collect::<Vec<_>>();
+                self.validate_drone_group(&drones, maximum_drones, link_range)?;
+                let mut destinations = BTreeSet::new();
+                for assignment in assignments {
+                    self.validate_known_drone_position(assignment.destination)?;
+                    if !destinations.insert(assignment.destination) {
+                        return Err(TechniqueUseError::InvalidDroneRoutine);
+                    }
+                    plans.push((
+                        assignment.drone,
+                        DroneOrder::Deploy {
+                            destination: assignment.destination,
+                            role: assignment.role,
+                        },
+                        0,
+                    ));
+                }
+                (energy_cost, transmission_bandwidth)
+            }
+            (
+                TechniqueAction::DroneEmergencyReturn {
+                    link_range,
+                    maximum_drones,
+                    energy_cost,
+                    transmission_bandwidth,
+                    duration_phases,
+                },
+                DroneDirective::EmergencyReturn {
+                    drones,
+                    destination,
+                },
+            ) => {
+                self.validate_drone_group(drones, maximum_drones, link_range)?;
+                self.validate_known_drone_position(*destination)?;
+                for drone in drones {
+                    plans.push((
+                        *drone,
+                        DroneOrder::EmergencyReturn {
+                            destination: *destination,
+                            remaining_phases: duration_phases,
+                        },
+                        0,
+                    ));
+                }
+                (energy_cost, transmission_bandwidth)
+            }
+            _ => return Err(TechniqueUseError::DroneDirectiveMismatch),
+        };
+
+        if let Some(preparation_steps) = definition.preparation_steps() {
+            let payload = PreparedTechniquePayload {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+                target_at: None,
+                drone_directive: Some(directive.clone()),
+                engineering_directive: None,
+                intrusion_directive: None,
+                electronic_directive: None,
+            };
+            if !self.advance_player_technique_preparation(payload, preparation_steps) {
+                return Ok(());
+            }
+        }
+
+        // Preflight the complete bandwidth transition, including the short
+        // transmission reservation, before mutating any drone order.
+        if let Some(mut bandwidth) = self.player_bandwidth {
+            for (entity, _, _) in &plans {
+                let old = self
+                    .actors
+                    .get(*entity)
+                    .and_then(Actor::drone)
+                    .map_or(0, DroneState::order_bandwidth);
+                bandwidth.release(old);
+            }
+            for (_, _, required) in &plans {
+                bandwidth
+                    .reserve(*required)
+                    .map_err(TechniqueUseError::Bandwidth)?;
+            }
+            bandwidth
+                .reserve(transmission_bandwidth)
+                .map_err(TechniqueUseError::Bandwidth)?;
+        }
+        if self.player_energy.available() < energy_cost {
+            return Err(TechniqueUseError::Energy(EnergySpendError {
+                required: energy_cost,
+                available: self.player_energy.available(),
+            }));
+        }
+
+        for (entity, order, order_bandwidth) in plans {
+            let old_bandwidth = self
+                .actors
+                .get(entity)
+                .and_then(Actor::drone)
+                .map_or(0, DroneState::order_bandwidth);
+            self.release_player_bandwidth(old_bandwidth);
+            self.reserve_player_bandwidth(order_bandwidth)
+                .expect("drone routine bandwidth was preflighted");
+            if let Some(drone) = self.actors.get_mut(entity).and_then(Actor::drone_mut) {
+                drone.replace_order_bandwidth(order_bandwidth);
+            }
+            self.set_drone_order(entity, order);
+        }
+        if transmission_bandwidth > 0 {
+            self.reserve_player_bandwidth(transmission_bandwidth)
+                .expect("drone transmission bandwidth was preflighted");
+            self.release_player_bandwidth(transmission_bandwidth);
+        }
+        self.player_energy
+            .spend(energy_cost)
+            .expect("drone command energy was preflighted");
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        if energy_cost > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_cost,
+                remaining: self.player_energy.available(),
+            });
+        }
+        self.start_player_technique_cooldown(technique, &definition);
+        Ok(())
+    }
+
+    fn use_player_intrusion_technique(
+        &mut self,
+        technique: &TechniqueId,
+        directive: &IntrusionDirective,
+    ) -> Result<(), TechniqueUseError> {
+        if !self.player_skills.has_learned(technique) {
+            return Err(TechniqueUseError::NotLearned(technique.clone()));
+        }
+        let definition = self
+            .rules
+            .skills
+            .technique(technique)
+            .cloned()
+            .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
+        let action = definition
+            .action()
+            .filter(|action| action.is_intrusion_action())
+            .ok_or_else(|| TechniqueUseError::NoActiveAction(technique.clone()))?;
+        if self
+            .player_silenced_emissions
+            .contains(&SignatureChannel::ActiveEmission)
+        {
+            return Err(TechniqueUseError::ActiveEmissionSilenced);
+        }
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+
+        let turn = self.turn;
+        let interface =
+            |game: &Self, position, range| game.validate_digital_interface(position, range);
+        let require_right =
+            |game: &Self, position: GridPos, right: AccessRight| -> Result<(), TechniqueUseError> {
+                if game.intrusion.has_right(position, right, turn) {
+                    Ok(())
+                } else {
+                    Err(TechniqueUseError::DigitalAccessRequired {
+                        at: position,
+                        right,
+                    })
+                }
+            };
+
+        let energy_cost;
+        let mut preparation_bandwidth = 0;
+        let mut persistent_bandwidth = 0;
+        match (action, directive) {
+            (
+                TechniqueAction::ProbeInterface {
+                    range,
+                    energy_cost: cost,
+                    ..
+                },
+                IntrusionDirective::Interface { position },
+            ) => {
+                interface(self, *position, range)?;
+                energy_cost = cost;
+            }
+            (
+                TechniqueAction::ForceElectronicLock {
+                    range,
+                    energy_cost: cost,
+                    bandwidth_required,
+                    ..
+                },
+                IntrusionDirective::Interface { position },
+            ) => {
+                let profile = interface(self, *position, range)?;
+                if profile.controlled_door.is_none() {
+                    return Err(TechniqueUseError::DigitalCommandUnsupported(*position));
+                }
+                energy_cost = cost;
+                preparation_bandwidth = bandwidth_required;
+            }
+            (
+                TechniqueAction::ExtractData {
+                    range,
+                    energy_cost: cost,
+                },
+                IntrusionDirective::Interface { position },
+            ) => {
+                interface(self, *position, range)?;
+                require_right(self, *position, AccessRight::Read)?;
+                energy_cost = cost;
+            }
+            (
+                TechniqueAction::SpoofAuthorization {
+                    range,
+                    energy_cost: cost,
+                    ..
+                },
+                IntrusionDirective::Interface { position },
+            ) => {
+                interface(self, *position, range)?;
+                if !self.intrusion.has_credential(*position) {
+                    return Err(TechniqueUseError::DigitalCredentialRequired(*position));
+                }
+                energy_cost = cost;
+                persistent_bandwidth = 1;
+            }
+            (
+                TechniqueAction::DivertDevice {
+                    range,
+                    energy_cost: cost,
+                    additional_bandwidth,
+                    ..
+                },
+                IntrusionDirective::Command { position, command },
+            ) => {
+                interface(self, *position, range)?;
+                require_right(self, *position, AccessRight::Command)?;
+                self.validate_device_command(*position, *command)?;
+                energy_cost = cost;
+                persistent_bandwidth = additional_bandwidth;
+            }
+            (
+                TechniqueAction::SuspendDigitalRoutine {
+                    range,
+                    energy_cost: cost,
+                    ..
+                },
+                IntrusionDirective::Routine { position, .. },
+            ) => {
+                interface(self, *position, range)?;
+                require_right(self, *position, AccessRight::Command)?;
+                if self
+                    .intrusion
+                    .routine_suspension(*position)
+                    .is_some_and(|state| turn < state.protected_until_turn)
+                {
+                    return Err(TechniqueUseError::DigitalRoutineProtected(*position));
+                }
+                energy_cost = cost;
+            }
+            (
+                TechniqueAction::MaintainBackdoor {
+                    range,
+                    installation_energy_cost,
+                    reconnection_energy_cost,
+                    maximum_backdoors,
+                    ..
+                },
+                IntrusionDirective::Interface { position },
+            ) => {
+                interface(self, *position, range)?;
+                if self.intrusion.has_backdoor(*position) {
+                    energy_cost = reconnection_energy_cost;
+                } else {
+                    if self.intrusion.session(*position).is_none() {
+                        return Err(TechniqueUseError::DigitalAccessRequired {
+                            at: *position,
+                            right: AccessRight::Read,
+                        });
+                    }
+                    if self.intrusion.backdoors().count() >= usize::from(maximum_backdoors) {
+                        return Err(TechniqueUseError::TooManyBackdoors {
+                            maximum: maximum_backdoors,
+                        });
+                    }
+                    energy_cost = installation_energy_cost;
+                }
+                persistent_bandwidth = 1;
+            }
+            (
+                TechniqueAction::FalsifySecurityTrace {
+                    range,
+                    energy_cost: cost,
+                },
+                IntrusionDirective::Trace { trace },
+            ) => {
+                let record = self
+                    .intrusion
+                    .trace(*trace)
+                    .ok_or(TechniqueUseError::UnknownSecurityTrace(*trace))?;
+                interface(self, record.source(), range)?;
+                require_right(self, record.source(), AccessRight::ModifyRegister)?;
+                if record.was_audited() || record.is_falsified() {
+                    return Err(TechniqueUseError::SecurityTraceAlreadyResolved(*trace));
+                }
+                energy_cost = cost;
+            }
+            (
+                TechniqueAction::DivertSubnet {
+                    range,
+                    maximum_devices,
+                    energy_cost: cost,
+                    bandwidth_per_device,
+                    ..
+                },
+                IntrusionDirective::Subnet { positions, command },
+            ) => {
+                if positions.is_empty()
+                    || positions.len() > usize::from(maximum_devices)
+                    || positions.iter().collect::<BTreeSet<_>>().len() != positions.len()
+                {
+                    return Err(TechniqueUseError::DigitalSubnetInvalid);
+                }
+                for position in positions {
+                    interface(self, *position, range)?;
+                    require_right(self, *position, AccessRight::Command)?;
+                    self.validate_device_command(*position, *command)?;
+                }
+                energy_cost = cost;
+                persistent_bandwidth = bandwidth_per_device
+                    .saturating_mul(u16::try_from(positions.len()).unwrap_or(u16::MAX));
+            }
+            (
+                TechniqueAction::LockDeviceControl {
+                    range,
+                    energy_cost: cost,
+                    additional_bandwidth,
+                    ..
+                },
+                IntrusionDirective::Interface { position },
+            ) => {
+                interface(self, *position, range)?;
+                if self.intrusion.control(*position).is_none() {
+                    return Err(TechniqueUseError::DigitalControlRequired(*position));
+                }
+                energy_cost = cost;
+                persistent_bandwidth = additional_bandwidth;
+            }
+            _ => return Err(TechniqueUseError::IntrusionDirectiveMismatch),
+        }
+
+        if self.player_energy.available() < energy_cost {
+            return Err(TechniqueUseError::Energy(EnergySpendError {
+                required: energy_cost,
+                available: self.player_energy.available(),
+            }));
+        }
+        let replaceable_bandwidth = match (action, directive) {
+            (
+                TechniqueAction::SpoofAuthorization { .. }
+                | TechniqueAction::MaintainBackdoor { .. },
+                IntrusionDirective::Interface { position },
+            ) => self
+                .intrusion
+                .session(*position)
+                .map_or(0, AccessSession::bandwidth_reserved),
+            (
+                TechniqueAction::LockDeviceControl { .. },
+                IntrusionDirective::Interface { position },
+            ) => self
+                .intrusion
+                .control_lock(*position)
+                .map_or(0, |lock| lock.bandwidth_reserved),
+            (
+                TechniqueAction::DivertDevice { .. },
+                IntrusionDirective::Command { position, .. },
+            ) => self
+                .intrusion
+                .control(*position)
+                .map_or(0, |control| control.bandwidth_reserved),
+            (
+                TechniqueAction::DivertSubnet { .. },
+                IntrusionDirective::Subnet { positions, .. },
+            ) => positions
+                .iter()
+                .map(|position| {
+                    self.intrusion
+                        .control(*position)
+                        .map_or(0, |control| control.bandwidth_reserved)
+                })
+                .fold(0_u16, u16::saturating_add),
+            _ => 0,
+        };
+        if persistent_bandwidth > 0 {
+            let available = self
+                .player_bandwidth
+                .map_or(u16::MAX, |bandwidth| bandwidth.available())
+                .saturating_add(replaceable_bandwidth);
+            if available < persistent_bandwidth {
+                return Err(TechniqueUseError::Bandwidth(BandwidthReservationError {
+                    required: persistent_bandwidth,
+                    available,
+                }));
+            }
+        }
+
+        if let Some(preparation_steps) = definition.preparation_steps() {
+            let payload = PreparedTechniquePayload {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+                target_at: None,
+                drone_directive: None,
+                engineering_directive: None,
+                intrusion_directive: Some(directive.clone()),
+                electronic_directive: None,
+            };
+            let continues = self
+                .player_preparation
+                .as_ref()
+                .is_some_and(|preparation| preparation.payload() == &payload);
+            if !continues {
+                self.release_player_preparation_bandwidth();
+                self.reserve_player_bandwidth(preparation_bandwidth)?;
+                self.player_preparation_bandwidth = preparation_bandwidth;
+            }
+            if !self.advance_player_technique_preparation(payload, preparation_steps) {
+                return Ok(());
+            }
+            self.release_player_preparation_bandwidth();
+        }
+
+        self.player_energy
+            .spend(energy_cost)
+            .expect("intrusion energy was preflighted");
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        if energy_cost > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_cost,
+                remaining: self.player_energy.available(),
+            });
+        }
+
+        match (action, directive) {
+            (
+                TechniqueAction::ProbeInterface {
+                    analysis_bonus,
+                    audit_delay,
+                    ..
+                },
+                IntrusionDirective::Interface { position },
+            ) => {
+                let profile = self
+                    .digital_interface_profile(*position)
+                    .expect("probed interface was preflighted");
+                self.intrusion.mark_probed(*position);
+                let trace = self.intrusion.create_trace(*position, turn, audit_delay);
+                self.events.push(GameEvent::DigitalInterfaceProbed {
+                    at: *position,
+                    analysis_score: observation_analysis_score(
+                        self.player_primary_attributes(),
+                        analysis_bonus,
+                    ),
+                    rights: profile.rights,
+                    defense: profile.defense,
+                    trace,
+                });
+            }
+            (
+                TechniqueAction::ForceElectronicLock {
+                    failure_hardening_duration,
+                    audit_delay,
+                    ..
+                },
+                IntrusionDirective::Interface { position },
+            ) => {
+                let profile = self
+                    .digital_interface_profile(*position)
+                    .expect("forced interface was preflighted");
+                let hardening = self.intrusion.hardening(*position, turn);
+                let chance = intrusion_chance(
+                    self.player_primary_attributes(),
+                    profile.defense.saturating_add(hardening),
+                    0,
+                );
+                let roll = self.rng.percentile();
+                let succeeded = roll <= chance;
+                let trace = self.intrusion.create_trace(*position, turn, audit_delay);
+                let resulting_hardening = if succeeded {
+                    hardening
+                } else {
+                    self.intrusion
+                        .register_failure(*position, turn, failure_hardening_duration)
+                };
+                self.events.push(GameEvent::IntrusionAttemptResolved {
+                    at: *position,
+                    chance,
+                    roll,
+                    succeeded,
+                    hardening: resulting_hardening,
+                    trace,
+                });
+                if succeeded {
+                    let door = profile
+                        .controlled_door
+                        .expect("lock target was preflighted");
+                    self.map
+                        .set_terrain(door, Terrain::Door(DoorState::Open))
+                        .expect("controlled door remains mapped");
+                    self.events.push(GameEvent::ElectronicLockForced {
+                        interface: *position,
+                        door,
+                    });
+                    self.refresh_player_visibility();
+                }
+            }
+            (TechniqueAction::ExtractData { .. }, IntrusionDirective::Interface { position }) => {
+                let lot = crate::intrusion::DataLot {
+                    source: *position,
+                    recorded_on_turn: turn,
+                    extracted_on_turn: turn,
+                };
+                self.intrusion.add_data_lot(lot);
+                self.events.push(GameEvent::DataLotExtracted {
+                    source: lot.source,
+                    recorded_on_turn: lot.recorded_on_turn,
+                    extracted_on_turn: lot.extracted_on_turn,
+                });
+            }
+            (
+                TechniqueAction::SpoofAuthorization {
+                    duration_time_units,
+                    ..
+                },
+                IntrusionDirective::Interface { position },
+            ) => {
+                let rights = self
+                    .digital_interface_profile(*position)
+                    .expect("spoof target was preflighted")
+                    .rights;
+                if let Some(old) = self.intrusion.grant_session(
+                    *position,
+                    AccessSession::new(
+                        rights.iter().copied(),
+                        AccessOrigin::Spoofed,
+                        turn.saturating_add(u64::from(duration_time_units))
+                            .saturating_add(1),
+                        persistent_bandwidth,
+                    )
+                    .expect("digital interface always exposes rights"),
+                ) {
+                    self.release_player_bandwidth(old.bandwidth_reserved());
+                }
+                self.reserve_player_bandwidth(persistent_bandwidth)
+                    .expect("spoof bandwidth was preflighted");
+                self.events.push(GameEvent::DigitalAccessGranted {
+                    at: *position,
+                    origin: AccessOrigin::Spoofed,
+                    rights,
+                    remaining_time_units: duration_time_units,
+                });
+            }
+            (
+                TechniqueAction::DivertDevice {
+                    duration_time_units,
+                    ..
+                },
+                IntrusionDirective::Command { position, command },
+            ) => {
+                if let Some(old) = self.intrusion.set_control(
+                    *position,
+                    ActiveDeviceControl {
+                        command: *command,
+                        expires_on_turn: turn.saturating_add(u64::from(duration_time_units)),
+                        recapture_on_turn: turn.saturating_add(2),
+                        bandwidth_reserved: persistent_bandwidth,
+                    },
+                ) {
+                    self.release_player_bandwidth(old.bandwidth_reserved);
+                }
+                self.reserve_player_bandwidth(persistent_bandwidth)
+                    .expect("device control bandwidth was preflighted");
+                self.apply_device_command(*position, *command)?;
+                self.events.push(GameEvent::DeviceControlChanged {
+                    at: *position,
+                    command: *command,
+                    active: true,
+                });
+            }
+            (
+                TechniqueAction::SuspendDigitalRoutine {
+                    duration_time_units,
+                    repeat_protection_time_units,
+                    ..
+                },
+                IntrusionDirective::Routine { position, routine },
+            ) => {
+                self.intrusion.suspend_routine(
+                    *position,
+                    ActiveRoutineSuspension {
+                        routine: *routine,
+                        expires_on_turn: turn.saturating_add(u64::from(duration_time_units)),
+                        protected_until_turn: turn
+                            .saturating_add(u64::from(duration_time_units))
+                            .saturating_add(u64::from(repeat_protection_time_units)),
+                        active: true,
+                    },
+                );
+                self.events.push(GameEvent::DigitalRoutineChanged {
+                    at: *position,
+                    routine: *routine,
+                    suspended: true,
+                });
+            }
+            (
+                TechniqueAction::MaintainBackdoor {
+                    session_duration_time_units,
+                    ..
+                },
+                IntrusionDirective::Interface { position },
+            ) => {
+                let installed = !self.intrusion.has_backdoor(*position);
+                if installed {
+                    self.intrusion.install_backdoor(*position);
+                    self.events.push(GameEvent::BackdoorChanged {
+                        at: *position,
+                        installed: true,
+                    });
+                }
+                let rights = self
+                    .digital_interface_profile(*position)
+                    .expect("backdoor target was preflighted")
+                    .rights;
+                if let Some(old) = self.intrusion.grant_session(
+                    *position,
+                    AccessSession::new(
+                        rights.iter().copied(),
+                        AccessOrigin::Backdoor,
+                        turn.saturating_add(u64::from(session_duration_time_units))
+                            .saturating_add(1),
+                        persistent_bandwidth,
+                    )
+                    .expect("digital interface always exposes rights"),
+                ) {
+                    self.release_player_bandwidth(old.bandwidth_reserved());
+                }
+                self.reserve_player_bandwidth(persistent_bandwidth)
+                    .expect("backdoor bandwidth was preflighted");
+                self.events.push(GameEvent::DigitalAccessGranted {
+                    at: *position,
+                    origin: AccessOrigin::Backdoor,
+                    rights,
+                    remaining_time_units: session_duration_time_units,
+                });
+            }
+            (TechniqueAction::FalsifySecurityTrace { .. }, IntrusionDirective::Trace { trace }) => {
+                let at = self
+                    .intrusion
+                    .trace(*trace)
+                    .expect("security trace was preflighted")
+                    .source();
+                self.intrusion
+                    .falsify_trace(*trace)
+                    .then_some(())
+                    .expect("security trace remains falsifiable");
+                self.events
+                    .push(GameEvent::SecurityTraceFalsified { trace: *trace, at });
+            }
+            (
+                TechniqueAction::DivertSubnet {
+                    duration_time_units,
+                    bandwidth_per_device,
+                    ..
+                },
+                IntrusionDirective::Subnet { positions, command },
+            ) => {
+                for position in positions {
+                    if let Some(old) = self.intrusion.set_control(
+                        *position,
+                        ActiveDeviceControl {
+                            command: *command,
+                            expires_on_turn: turn.saturating_add(u64::from(duration_time_units)),
+                            recapture_on_turn: turn.saturating_add(2),
+                            bandwidth_reserved: bandwidth_per_device,
+                        },
+                    ) {
+                        self.release_player_bandwidth(old.bandwidth_reserved);
+                    }
+                    self.reserve_player_bandwidth(bandwidth_per_device)
+                        .expect("subnet bandwidth was preflighted");
+                    self.apply_device_command(*position, *command)?;
+                    self.events.push(GameEvent::DeviceControlChanged {
+                        at: *position,
+                        command: *command,
+                        active: true,
+                    });
+                }
+                self.events.push(GameEvent::SubnetCommandIssued {
+                    devices: positions.clone(),
+                    command: *command,
+                });
+            }
+            (
+                TechniqueAction::LockDeviceControl {
+                    duration_time_units,
+                    ..
+                },
+                IntrusionDirective::Interface { position },
+            ) => {
+                if let Some(old) = self.intrusion.set_control_lock(
+                    *position,
+                    ActiveControlLock {
+                        expires_on_turn: turn.saturating_add(u64::from(duration_time_units)),
+                        bandwidth_reserved: persistent_bandwidth,
+                    },
+                ) {
+                    self.release_player_bandwidth(old.bandwidth_reserved);
+                }
+                self.reserve_player_bandwidth(persistent_bandwidth)
+                    .expect("control-lock bandwidth was preflighted");
+                self.events.push(GameEvent::DeviceControlLockChanged {
+                    at: *position,
+                    active: true,
+                });
+            }
+            _ => unreachable!("intrusion action and directive were preflighted"),
+        }
+        self.start_player_technique_cooldown(technique, &definition);
+        Ok(())
+    }
+
+    fn use_player_electronic_warfare_technique(
+        &mut self,
+        technique: &TechniqueId,
+        directive: &ElectronicDirective,
+    ) -> Result<(), TechniqueUseError> {
+        if !self.player_skills.has_learned(technique) {
+            return Err(TechniqueUseError::NotLearned(technique.clone()));
+        }
+        let definition = self
+            .rules
+            .skills
+            .technique(technique)
+            .cloned()
+            .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
+        let action = definition
+            .action()
+            .filter(|action| action.is_electronic_warfare_action())
+            .ok_or_else(|| TechniqueUseError::NoActiveAction(technique.clone()))?;
+        if self
+            .player_silenced_emissions
+            .contains(&SignatureChannel::ActiveEmission)
+        {
+            return Err(TechniqueUseError::ActiveEmissionSilenced);
+        }
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+
+        let origin = self
+            .player_position()
+            .ok_or(TechniqueUseError::MissingPlayer)?;
+        let mut energy_cost = 0_u16;
+        let mut heat_generated = 0_u16;
+        let mut attempt_bandwidth = 0_u16;
+        let mut persistent_bandwidth = 0_u16;
+        let mut replaceable_bandwidth = 0_u16;
+        let mut staged_inventory = None;
+        let mut uses_preparation = true;
+
+        match (action, directive) {
+            (
+                TechniqueAction::ElectronicPulse {
+                    directional,
+                    energy_cost: cost,
+                    heat_generated: heat,
+                    bandwidth_required,
+                    ..
+                },
+                ElectronicDirective::Pulse { direction },
+            ) => {
+                if directional != direction.is_some() {
+                    return Err(TechniqueUseError::ElectronicDirectiveMismatch);
+                }
+                energy_cost = cost;
+                heat_generated = heat;
+                attempt_bandwidth = bandwidth_required;
+            }
+            (
+                TechniqueAction::ImplantOverheat {
+                    range,
+                    energy_cost: cost,
+                    heat_generated: heat,
+                    bandwidth_required,
+                    ..
+                },
+                ElectronicDirective::Target { target },
+            ) => {
+                self.validate_electronic_target(*target, origin, range)?;
+                if self.electronic_warfare.has_program_family(*target, |kind| {
+                    matches!(kind, HostileProgramKind::Overheat { .. })
+                }) {
+                    return Err(TechniqueUseError::ElectronicProgramFamilyActive(*target));
+                }
+                energy_cost = cost;
+                heat_generated = heat;
+                attempt_bandwidth = bandwidth_required;
+            }
+            (
+                TechniqueAction::MaintainJamming {
+                    activation_energy,
+                    bandwidth_required,
+                    ..
+                },
+                ElectronicDirective::Jam { .. },
+            ) => {
+                energy_cost = activation_energy;
+                persistent_bandwidth = bandwidth_required;
+                replaceable_bandwidth = self
+                    .electronic_warfare
+                    .jamming()
+                    .map_or(0, |field| field.bandwidth_reserved);
+            }
+            (
+                TechniqueAction::PurgeHostileProgram {
+                    range,
+                    energy_cost: cost,
+                    ..
+                },
+                ElectronicDirective::Purge { target, program },
+            ) => {
+                let stored = self
+                    .electronic_warfare
+                    .program(*program)
+                    .ok_or(TechniqueUseError::UnknownHostileProgram(*program))?;
+                if stored.target() != *target {
+                    return Err(TechniqueUseError::ElectronicProgramTargetMismatch);
+                }
+                self.validate_electronic_target_or_player(*target, origin, range)?;
+                energy_cost = cost;
+            }
+            (
+                TechniqueAction::ElectronicCascade {
+                    range,
+                    jump_range,
+                    maximum_targets,
+                    energy_cost: cost,
+                    heat_generated: heat,
+                    ..
+                },
+                ElectronicDirective::Cascade { targets },
+            ) => {
+                if targets.is_empty() || targets.len() > usize::from(maximum_targets) {
+                    return Err(TechniqueUseError::ElectronicCascadeInvalid);
+                }
+                if targets.iter().collect::<BTreeSet<_>>().len() != targets.len() {
+                    return Err(TechniqueUseError::ElectronicCascadeInvalid);
+                }
+                let mut previous = origin;
+                for (index, target) in targets.iter().enumerate() {
+                    let position = self
+                        .actors
+                        .get(*target)
+                        .ok_or(TechniqueUseError::UnknownTarget(*target))?
+                        .position();
+                    let allowed = if index == 0 { range } else { jump_range };
+                    if !is_within_chebyshev_range(previous, position, allowed) {
+                        return Err(TechniqueUseError::TargetOutOfRange(*target));
+                    }
+                    if !has_line_of_sight(&self.map, previous, position, true) {
+                        return Err(TechniqueUseError::ElectronicLinkBlocked(*target));
+                    }
+                    self.validate_electronic_target_compatibility(*target)?;
+                    if index == 0 && !self.player_visibility.is_visible(position) {
+                        return Err(TechniqueUseError::TargetNotVisible(*target));
+                    }
+                    previous = position;
+                }
+                energy_cost = cost;
+                heat_generated = heat;
+            }
+            (
+                TechniqueAction::ImplantInfection {
+                    range,
+                    energy_cost: cost,
+                    heat_generated: heat,
+                    bandwidth_required,
+                    ..
+                },
+                ElectronicDirective::Target { target },
+            ) => {
+                self.validate_electronic_target(*target, origin, range)?;
+                if self.electronic_warfare.has_program_family(*target, |kind| {
+                    matches!(kind, HostileProgramKind::Infection { .. })
+                }) {
+                    return Err(TechniqueUseError::ElectronicProgramFamilyActive(*target));
+                }
+                energy_cost = cost;
+                heat_generated = heat;
+                attempt_bandwidth = bandwidth_required;
+            }
+            (
+                TechniqueAction::DeploySaturationBeacon {
+                    manual_activation: true,
+                    activation_energy,
+                    activation_bandwidth,
+                    activation_link_range,
+                    ..
+                },
+                ElectronicDirective::ActivateBeacon { beacon },
+            ) => {
+                let state = self
+                    .electronic_warfare
+                    .beacon(*beacon)
+                    .ok_or(TechniqueUseError::UnknownSaturationBeacon(*beacon))?;
+                let at = self
+                    .actors
+                    .get(*beacon)
+                    .ok_or(TechniqueUseError::UnknownSaturationBeacon(*beacon))?
+                    .position();
+                if state.owner != self.player || state.active || state.remaining_phases == 0 {
+                    return Err(TechniqueUseError::SaturationBeaconUnavailable(*beacon));
+                }
+                if !is_within_chebyshev_range(origin, at, activation_link_range)
+                    || !has_line_of_sight(&self.map, origin, at, true)
+                {
+                    return Err(TechniqueUseError::ElectronicLinkBlocked(*beacon));
+                }
+                energy_cost = activation_energy;
+                attempt_bandwidth = activation_bandwidth;
+                uses_preparation = false;
+            }
+            (
+                TechniqueAction::DeploySaturationBeacon { .. },
+                ElectronicDirective::DeployBeacon { position },
+            ) => {
+                if grid_distance(origin, *position) != 1
+                    || !self.map.is_walkable(*position)
+                    || self.actors.entity_at(*position).is_some()
+                {
+                    return Err(TechniqueUseError::ElectronicPlacementBlocked(*position));
+                }
+                if definition.activation_cost().is_none() {
+                    staged_inventory = Some(self.stage_technique_material_removal(&definition)?);
+                }
+            }
+            (
+                TechniqueAction::ImplantImplosion {
+                    range,
+                    energy_cost: cost,
+                    heat_generated: heat,
+                    bandwidth_required,
+                    minimum_stored_energy,
+                    ..
+                },
+                ElectronicDirective::Target { target },
+            ) => {
+                let system = self.validate_electronic_target(*target, origin, range)?;
+                if system.stored_energy() < minimum_stored_energy {
+                    return Err(TechniqueUseError::ElectronicStoredEnergyInsufficient {
+                        target: *target,
+                        required: minimum_stored_energy,
+                        available: system.stored_energy(),
+                    });
+                }
+                if self.electronic_warfare.has_program_family(*target, |kind| {
+                    matches!(kind, HostileProgramKind::Implosion { .. })
+                }) {
+                    return Err(TechniqueUseError::ElectronicProgramFamilyActive(*target));
+                }
+                energy_cost = cost;
+                heat_generated = heat;
+                attempt_bandwidth = bandwidth_required;
+            }
+            _ => return Err(TechniqueUseError::ElectronicDirectiveMismatch),
+        }
+
+        let active_manifestations = self
+            .manifested_beacons
+            .values()
+            .filter(|reservation| reservation.technique == *technique)
+            .count();
+        let (intrinsic_energy, intrinsic_heat, intrinsic_bandwidth) =
+            if matches!(directive, ElectronicDirective::DeployBeacon { .. }) {
+                self.preflight_intrinsic_activation(&definition, active_manifestations)?
+            } else {
+                (0, 0, 0)
+            };
+        energy_cost = energy_cost.saturating_add(intrinsic_energy);
+        heat_generated = heat_generated.saturating_add(intrinsic_heat);
+
+        if self.player_energy.available() < energy_cost {
+            return Err(TechniqueUseError::Energy(EnergySpendError {
+                required: energy_cost,
+                available: self.player_energy.available(),
+            }));
+        }
+        if heat_generated > 0 && self.player_heat.is_none() {
+            return Err(TechniqueUseError::SystemResourcesUnavailable);
+        }
+        let bandwidth_required = attempt_bandwidth.max(persistent_bandwidth);
+        if bandwidth_required > 0 {
+            let available = self
+                .player_bandwidth
+                .map_or(u16::MAX, |bandwidth| bandwidth.available())
+                .saturating_add(replaceable_bandwidth);
+            if available < bandwidth_required {
+                return Err(TechniqueUseError::Bandwidth(BandwidthReservationError {
+                    required: bandwidth_required,
+                    available,
+                }));
+            }
+        }
+
+        if uses_preparation && let Some(preparation_steps) = definition.preparation_steps() {
+            let payload = PreparedTechniquePayload {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+                target_at: None,
+                drone_directive: None,
+                engineering_directive: None,
+                intrusion_directive: None,
+                electronic_directive: Some(directive.clone()),
+            };
+            let continues = self
+                .player_preparation
+                .as_ref()
+                .is_some_and(|preparation| preparation.payload() == &payload);
+            if !continues {
+                self.release_player_preparation_bandwidth();
+                self.reserve_player_bandwidth(attempt_bandwidth)?;
+                self.player_preparation_bandwidth = attempt_bandwidth;
+            }
+            if !self.advance_player_technique_preparation(payload, preparation_steps) {
+                return Ok(());
+            }
+            self.release_player_preparation_bandwidth();
+        }
+
+        self.player_energy
+            .spend(energy_cost)
+            .expect("electronic warfare energy was preflighted");
+        if energy_cost > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_cost,
+                remaining: self.player_energy.available(),
+            });
+        }
+        self.generate_player_heat(heat_generated)?;
+        if attempt_bandwidth > 0 && self.player_preparation_bandwidth == 0 {
+            self.reserve_player_bandwidth(attempt_bandwidth)?;
+        }
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+
+        match (action, directive) {
+            (
+                TechniqueAction::ElectronicPulse {
+                    radius,
+                    damage,
+                    disruption_intensity,
+                    filter_identified_allies,
+                    ..
+                },
+                ElectronicDirective::Pulse { direction },
+            ) => self.resolve_electronic_pulse(
+                origin,
+                radius,
+                damage,
+                disruption_intensity,
+                *direction,
+                filter_identified_allies,
+            ),
+            (
+                TechniqueAction::ImplantOverheat {
+                    heat_per_tick,
+                    dissipation_penalty,
+                    duration_time_units,
+                    audit_delay,
+                    ..
+                },
+                ElectronicDirective::Target { target },
+            ) => {
+                let kind = HostileProgramKind::Overheat {
+                    heat_per_tick,
+                    dissipation_penalty,
+                };
+                self.resolve_hostile_program_attempt(
+                    *target,
+                    audit_delay,
+                    duration_time_units,
+                    false,
+                    kind,
+                )?;
+            }
+            (
+                TechniqueAction::MaintainJamming {
+                    radius,
+                    penalty,
+                    energy_per_phase,
+                    heat_per_phase,
+                    bandwidth_required,
+                    maximum_duration,
+                    ..
+                },
+                ElectronicDirective::Jam { channel },
+            ) => {
+                if let Some(old) = self.electronic_warfare.take_jamming() {
+                    self.release_player_bandwidth(old.bandwidth_reserved);
+                    self.events.push(GameEvent::ElectronicJammingChanged {
+                        source: old.source,
+                        channel: old.channel,
+                        active: false,
+                    });
+                }
+                self.reserve_player_bandwidth(bandwidth_required)?;
+                self.electronic_warfare.replace_jamming(JammingField {
+                    source: self.player,
+                    center: origin,
+                    channel: *channel,
+                    radius,
+                    penalty,
+                    expires_on_turn: self.turn.saturating_add(u64::from(maximum_duration)),
+                    energy_per_phase,
+                    heat_per_phase,
+                    bandwidth_reserved: bandwidth_required,
+                });
+                self.events.push(GameEvent::ElectronicJammingChanged {
+                    source: self.player,
+                    channel: *channel,
+                    active: true,
+                });
+            }
+            (
+                TechniqueAction::PurgeHostileProgram {
+                    intrusion_bonus, ..
+                },
+                ElectronicDirective::Purge { target, program },
+            ) => {
+                let stored = self
+                    .electronic_warfare
+                    .program(*program)
+                    .expect("purged program was preflighted");
+                let defense = stored.strength();
+                let chance =
+                    intrusion_chance(self.player_primary_attributes(), defense, intrusion_bonus);
+                let roll = self.rng.percentile();
+                let succeeded = roll <= chance;
+                self.events.push(GameEvent::HostileProgramAttemptResolved {
+                    source: self.player,
+                    target: *target,
+                    chance,
+                    roll,
+                    succeeded,
+                });
+                if succeeded {
+                    self.electronic_warfare.remove_program(*program);
+                    self.events.push(GameEvent::HostileProgramChanged {
+                        program: *program,
+                        target: *target,
+                        active: false,
+                    });
+                }
+            }
+            (
+                TechniqueAction::ElectronicCascade {
+                    damage_by_target, ..
+                },
+                ElectronicDirective::Cascade { targets },
+            ) => {
+                let resolved = targets.clone();
+                for (index, target) in resolved.iter().copied().enumerate() {
+                    if self.actors.get(target).is_some() {
+                        let _ = self.apply_damage_to(
+                            Some(self.player),
+                            target,
+                            DamagePacket::new(
+                                damage_by_target[index],
+                                crate::combat::DamageType::Electrical,
+                                0,
+                            ),
+                        );
+                    }
+                }
+                self.events.push(GameEvent::ElectronicCascadeResolved {
+                    source: self.player,
+                    targets: resolved,
+                });
+            }
+            (
+                TechniqueAction::ImplantInfection {
+                    propagation_range,
+                    thermal_damage_per_tick,
+                    ticks_per_host,
+                    maximum_hosts,
+                    transmissions_per_host,
+                    campaign_duration,
+                    audit_delay,
+                    ..
+                },
+                ElectronicDirective::Target { target },
+            ) => {
+                let strength = intrusion_score(self.player_primary_attributes());
+                let campaign = self.electronic_warfare.add_infection_campaign(
+                    self.player,
+                    *target,
+                    strength,
+                    maximum_hosts,
+                    transmissions_per_host,
+                    propagation_range,
+                    thermal_damage_per_tick,
+                    ticks_per_host,
+                    self.turn
+                        .saturating_add(u64::from(campaign_duration))
+                        .saturating_add(1),
+                );
+                let kind = HostileProgramKind::Infection {
+                    campaign,
+                    thermal_damage_per_tick,
+                };
+                if !self.resolve_hostile_program_attempt(
+                    *target,
+                    audit_delay,
+                    ticks_per_host,
+                    true,
+                    kind,
+                )? {
+                    self.electronic_warfare.remove_campaign(campaign);
+                }
+            }
+            (
+                TechniqueAction::DeploySaturationBeacon {
+                    radius,
+                    damage,
+                    duration_time_units,
+                    integrity,
+                    battery_energy,
+                    energy_per_phase,
+                    manual_activation,
+                    activation_energy,
+                    activation_bandwidth,
+                    activation_link_range,
+                },
+                ElectronicDirective::DeployBeacon { position },
+            ) => {
+                let profile = ElectronicSystemProfile::new(50, 80, 100, 5, battery_energy)
+                    .expect("authored saturation beacon profile is valid");
+                let mut actor = Actor::new(*position, integrity)
+                    .expect("authored saturation beacon integrity is valid")
+                    .with_evasion_disabled()
+                    .with_electronic_system(profile);
+                if let Some(affiliation) = self
+                    .actors
+                    .get(self.player)
+                    .and_then(Actor::affiliation)
+                    .cloned()
+                {
+                    actor = actor.with_affiliation(affiliation);
+                }
+                let beacon = self
+                    .spawn_actor(actor)
+                    .map_err(|_| TechniqueUseError::ElectronicPlacementBlocked(*position))?;
+                if let Some(inventory) = staged_inventory.take() {
+                    self.player_inventory = inventory;
+                }
+                if intrinsic_bandwidth > 0 {
+                    self.reserve_player_bandwidth(intrinsic_bandwidth)
+                        .expect("beacon manifestation bandwidth was preflighted");
+                    self.manifested_beacons.insert(
+                        beacon,
+                        TechniqueManifestationReservation {
+                            technique: technique.clone(),
+                            bandwidth: intrinsic_bandwidth,
+                        },
+                    );
+                }
+                self.electronic_warfare.add_beacon(SaturationBeacon {
+                    entity: beacon,
+                    owner: self.player,
+                    damage,
+                    radius,
+                    remaining_phases: duration_time_units,
+                    battery: EnergyReserve::new(battery_energy, battery_energy)
+                        .expect("beacon battery definition is valid"),
+                    energy_per_phase,
+                    active: !manual_activation,
+                    activation_energy,
+                    activation_bandwidth,
+                    activation_link_range,
+                });
+                self.events.push(GameEvent::SaturationBeaconDeployed {
+                    beacon,
+                    at: *position,
+                    active: !manual_activation,
+                });
+            }
+            (
+                TechniqueAction::DeploySaturationBeacon { .. },
+                ElectronicDirective::ActivateBeacon { beacon },
+            ) => {
+                self.electronic_warfare
+                    .beacon_mut(*beacon)
+                    .expect("activated beacon was preflighted")
+                    .active = true;
+                self.events
+                    .push(GameEvent::SaturationBeaconActivated { beacon: *beacon });
+            }
+            (
+                TechniqueAction::ImplantImplosion {
+                    reserved_energy,
+                    delay_time_units,
+                    radius,
+                    physical_damage,
+                    thermal_damage,
+                    audit_delay,
+                    ..
+                },
+                ElectronicDirective::Target { target },
+            ) => {
+                let strength = intrusion_score(self.player_primary_attributes());
+                let defense = self
+                    .actors
+                    .get(*target)
+                    .and_then(Actor::electronic_system)
+                    .expect("implosion target was preflighted")
+                    .digital_defense();
+                let chance = intrusion_chance(self.player_primary_attributes(), defense, 0);
+                let roll = self.rng.percentile();
+                let succeeded = roll <= chance;
+                let at = self.actors.get(*target).expect("target remains").position();
+                self.intrusion.create_trace(at, self.turn, audit_delay);
+                self.events.push(GameEvent::HostileProgramAttemptResolved {
+                    source: self.player,
+                    target: *target,
+                    chance,
+                    roll,
+                    succeeded,
+                });
+                if succeeded {
+                    let reserved = self
+                        .actors
+                        .get_mut(*target)
+                        .and_then(Actor::electronic_system_mut)
+                        .is_some_and(|system| system.reserve_stored_energy(reserved_energy));
+                    if !reserved {
+                        return Err(TechniqueUseError::ElectronicProgramTargetChanged(*target));
+                    }
+                    let program = self.electronic_warfare.add_program(
+                        self.player,
+                        *target,
+                        strength,
+                        self.turn,
+                        self.turn
+                            .saturating_add(u64::from(delay_time_units))
+                            .saturating_add(1),
+                        0,
+                        false,
+                        HostileProgramKind::Implosion {
+                            reserved_energy,
+                            detonate_on_turn: self.turn.saturating_add(u64::from(delay_time_units)),
+                            physical_damage,
+                            thermal_damage,
+                            radius,
+                        },
+                    );
+                    self.events.push(GameEvent::HostileProgramChanged {
+                        program,
+                        target: *target,
+                        active: true,
+                    });
+                }
+            }
+            _ => unreachable!("electronic action and directive were preflighted"),
+        }
+
+        if attempt_bandwidth > 0 {
+            self.release_player_bandwidth(attempt_bandwidth);
+        }
+        self.start_player_technique_cooldown(technique, &definition);
+        Ok(())
+    }
+
+    fn validate_electronic_target(
+        &self,
+        target: EntityId,
+        origin: GridPos,
+        range: u16,
+    ) -> Result<crate::electronic_warfare::ElectronicSystemState, TechniqueUseError> {
+        let actor = self
+            .actors
+            .get(target)
+            .ok_or(TechniqueUseError::UnknownTarget(target))?;
+        if !self.player_visibility.is_visible(actor.position()) {
+            return Err(TechniqueUseError::TargetNotVisible(target));
+        }
+        if !is_within_chebyshev_range(origin, actor.position(), range) {
+            return Err(TechniqueUseError::TargetOutOfRange(target));
+        }
+        if !has_line_of_sight(&self.map, origin, actor.position(), true) {
+            return Err(TechniqueUseError::ElectronicLinkBlocked(target));
+        }
+        self.validate_electronic_target_compatibility(target)
+    }
+
+    fn validate_electronic_target_or_player(
+        &self,
+        target: EntityId,
+        origin: GridPos,
+        range: u16,
+    ) -> Result<(), TechniqueUseError> {
+        if target == self.player {
+            return is_within_chebyshev_range(origin, origin, range)
+                .then_some(())
+                .ok_or(TechniqueUseError::TargetOutOfRange(target));
+        }
+        self.validate_electronic_target(target, origin, range)
+            .map(|_| ())
+    }
+
+    fn validate_electronic_target_compatibility(
+        &self,
+        target: EntityId,
+    ) -> Result<crate::electronic_warfare::ElectronicSystemState, TechniqueUseError> {
+        self.actors
+            .get(target)
+            .ok_or(TechniqueUseError::UnknownTarget(target))?
+            .electronic_system()
+            .ok_or(TechniqueUseError::ElectronicTargetIncompatible(target))
+    }
+
+    fn resolve_hostile_program_attempt(
+        &mut self,
+        target: EntityId,
+        audit_delay: u16,
+        ticks: u16,
+        transmission_pending: bool,
+        kind: HostileProgramKind,
+    ) -> Result<bool, TechniqueUseError> {
+        let actor = self
+            .actors
+            .get(target)
+            .ok_or(TechniqueUseError::UnknownTarget(target))?;
+        let at = actor.position();
+        let defense = actor
+            .electronic_system()
+            .ok_or(TechniqueUseError::ElectronicTargetIncompatible(target))?
+            .digital_defense();
+        let strength = intrusion_score(self.player_primary_attributes());
+        let chance = intrusion_chance(self.player_primary_attributes(), defense, 0);
+        let roll = self.rng.percentile();
+        let succeeded = roll <= chance;
+        self.intrusion.create_trace(at, self.turn, audit_delay);
+        self.events.push(GameEvent::HostileProgramAttemptResolved {
+            source: self.player,
+            target,
+            chance,
+            roll,
+            succeeded,
+        });
+        if succeeded {
+            let program = self.electronic_warfare.add_program(
+                self.player,
+                target,
+                strength,
+                self.turn,
+                self.turn.saturating_add(u64::from(ticks)).saturating_add(1),
+                ticks,
+                transmission_pending,
+                kind,
+            );
+            self.events.push(GameEvent::HostileProgramChanged {
+                program,
+                target,
+                active: true,
+            });
+        }
+        Ok(succeeded)
+    }
+
+    fn resolve_electronic_pulse(
+        &mut self,
+        origin: GridPos,
+        radius: u16,
+        damage: u16,
+        disruption_intensity: u16,
+        direction: Option<Direction>,
+        filter_identified_allies: bool,
+    ) {
+        let effect = RadialDamageEffect {
+            maximum_cost: radius,
+            neighbor_mode: crate::world::NeighborMode::CardinalAndDiagonal,
+            propagation_policy: crate::world::TerrainPropagationPolicy::blocked_by_walls(1),
+            damage: DamagePacket::new(damage, crate::combat::DamageType::Electrical, 0),
+            falloff: crate::effects::DamageFalloff::None,
+        };
+        let direction_delta = direction.map(Direction::delta);
+        let mut cells = effect
+            .affected_cells(&self.map, origin)
+            .into_iter()
+            .filter(|cell| cell.position != origin)
+            .filter(|cell| {
+                let Some((forward_x, forward_y)) = direction_delta else {
+                    return true;
+                };
+                let dx = cell.position.x - origin.x;
+                let dy = cell.position.y - origin.y;
+                let forward = dx * forward_x + dy * forward_y;
+                let lateral = (dx * forward_y - dy * forward_x).abs();
+                forward > 0 && lateral <= forward
+            })
+            .map(|cell| cell.position)
+            .collect::<Vec<_>>();
+        cells.sort();
+        let player_affiliation = self
+            .actors
+            .get(self.player)
+            .and_then(Actor::affiliation)
+            .cloned();
+        let targets = self
+            .actors
+            .iter()
+            .filter(|(entity, actor)| {
+                *entity != self.player
+                    && cells.contains(&actor.position())
+                    && actor.electronic_system().is_some()
+            })
+            .filter(|(_, actor)| {
+                if !filter_identified_allies {
+                    return true;
+                }
+                let allied_by_affiliation = player_affiliation
+                    .as_ref()
+                    .is_some_and(|affiliation| actor.affiliation() == Some(affiliation));
+                let allied_drone = actor
+                    .drone()
+                    .is_some_and(|drone| drone.controller() == self.player);
+                !allied_by_affiliation && !allied_drone
+            })
+            .map(|(entity, _)| entity)
+            .collect::<Vec<_>>();
+        for target in &targets {
+            let _ = self.apply_damage_to(
+                Some(self.player),
+                *target,
+                DamagePacket::new(damage, crate::combat::DamageType::Electrical, 0),
+            );
+        }
+        self.events.push(GameEvent::ElectronicPulseResolved {
+            source: self.player,
+            cells,
+            affected: targets,
+            disruption_intensity,
+        });
+    }
+
+    fn digital_interface_profile(&self, position: GridPos) -> Option<DigitalInterfaceProfile> {
+        let terrain = self.map.tile(position).map(|tile| tile.terrain);
+        match terrain {
+            Some(Terrain::ControlPanel { door, .. }) => Some(DigitalInterfaceProfile {
+                position,
+                rights: vec![
+                    AccessRight::Read,
+                    AccessRight::Command,
+                    AccessRight::ModifyRegister,
+                ],
+                defense: 55,
+                controlled_door: Some(door),
+            }),
+            Some(Terrain::Door(_)) => Some(DigitalInterfaceProfile {
+                position,
+                rights: vec![AccessRight::Command],
+                defense: 60,
+                controlled_door: Some(position),
+            }),
+            _ if self
+                .threat_sources
+                .iter()
+                .any(|source| source.position == position) =>
+            {
+                Some(DigitalInterfaceProfile {
+                    position,
+                    rights: vec![AccessRight::Read, AccessRight::Command],
+                    defense: 65,
+                    controlled_door: None,
+                })
+            }
+            _ => None,
+        }
+    }
+
+    fn validate_digital_interface(
+        &self,
+        position: GridPos,
+        range: u16,
+    ) -> Result<DigitalInterfaceProfile, TechniqueUseError> {
+        let profile = self
+            .digital_interface_profile(position)
+            .ok_or(TechniqueUseError::NoDigitalInterface(position))?;
+        let origin = self
+            .player_position()
+            .ok_or(TechniqueUseError::MissingPlayer)?;
+        if grid_distance(origin, position) > range {
+            return Err(TechniqueUseError::DigitalInterfaceOutOfRange(position));
+        }
+        if !self.player_visibility.is_explored(position)
+            || !has_line_of_sight(&self.map, origin, position, true)
+        {
+            return Err(TechniqueUseError::DigitalLinkBlocked(position));
+        }
+        Ok(profile)
+    }
+
+    fn validate_device_command(
+        &self,
+        position: GridPos,
+        command: DeviceCommand,
+    ) -> Result<(), TechniqueUseError> {
+        let profile = self
+            .digital_interface_profile(position)
+            .ok_or(TechniqueUseError::NoDigitalInterface(position))?;
+        match command {
+            DeviceCommand::Open | DeviceCommand::Close if profile.controlled_door.is_some() => {
+                Ok(())
+            }
+            DeviceCommand::Disable
+                if self
+                    .threat_sources
+                    .iter()
+                    .any(|source| source.position == position) =>
+            {
+                Ok(())
+            }
+            _ => Err(TechniqueUseError::DigitalCommandUnsupported(position)),
+        }
+    }
+
+    fn apply_device_command(
+        &mut self,
+        position: GridPos,
+        command: DeviceCommand,
+    ) -> Result<(), TechniqueUseError> {
+        let profile = self
+            .digital_interface_profile(position)
+            .ok_or(TechniqueUseError::NoDigitalInterface(position))?;
+        match command {
+            DeviceCommand::Open | DeviceCommand::Close => {
+                let door = profile
+                    .controlled_door
+                    .ok_or(TechniqueUseError::DigitalCommandUnsupported(position))?;
+                if command == DeviceCommand::Close
+                    && (self.actors.entity_at(door).is_some()
+                        || self.ground_items.item_at(door).is_some())
+                {
+                    return Err(TechniqueUseError::DigitalCommandUnsupported(position));
+                }
+                let state = if command == DeviceCommand::Open {
+                    DoorState::Open
+                } else {
+                    DoorState::Closed
+                };
+                self.map
+                    .set_terrain(door, Terrain::Door(state))
+                    .map_err(|_| TechniqueUseError::DigitalCommandUnsupported(position))?;
+                self.refresh_player_visibility();
+                Ok(())
+            }
+            DeviceCommand::Disable => {
+                let source = self
+                    .threat_sources
+                    .iter_mut()
+                    .find(|source| source.position == position)
+                    .ok_or(TechniqueUseError::DigitalCommandUnsupported(position))?;
+                source.active = false;
+                self.events.push(GameEvent::ThreatSourceDisabled {
+                    entity: self.player,
+                    at: position,
+                });
+                Ok(())
+            }
+        }
+    }
+
+    fn refresh_player_visibility(&mut self) {
+        if let Some(origin) = self.player_position() {
+            self.player_visibility
+                .recompute(&self.map, origin, self.rules.player_field_of_view);
+            self.events.push(GameEvent::VisibilityUpdated {
+                observer: self.player,
+                origin,
+            });
+        }
+    }
+
+    fn use_player_engineering_technique(
+        &mut self,
+        technique: &TechniqueId,
+        directive: &EngineeringDirective,
+    ) -> Result<(), TechniqueUseError> {
+        if !self.player_skills.has_learned(technique) {
+            return Err(TechniqueUseError::NotLearned(technique.clone()));
+        }
+        let definition = self
+            .rules
+            .skills
+            .technique(technique)
+            .cloned()
+            .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
+        let action = definition
+            .action()
+            .ok_or_else(|| TechniqueUseError::NoActiveAction(technique.clone()))?;
+        if !matches!(
+            action,
+            TechniqueAction::RepairComponent { .. }
+                | TechniqueAction::SalvageComponent
+                | TechniqueAction::DiagnoseComponent { .. }
+                | TechniqueAction::TuneModule { .. }
+                | TechniqueAction::EmergencyRepairComponent { .. }
+                | TechniqueAction::OverclockModule { .. }
+                | TechniqueAction::BypassComponent { .. }
+                | TechniqueAction::ReconditionModule { .. }
+                | TechniqueAction::AssembleFieldBeacon { .. }
+        ) {
+            return Err(TechniqueUseError::EngineeringDirectiveMismatch);
+        }
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+        if definition.activation_cost().is_none()
+            && let Some(tool) = definition.required_tool()
+        {
+            let available = self
+                .player_inventory
+                .iter()
+                .filter(|entry| entry.item() == tool)
+                .map(|entry| entry.quantity())
+                .fold(0_u16, u16::saturating_add);
+            if available == 0 {
+                return Err(TechniqueUseError::MissingMaterial {
+                    item: tool.clone(),
+                    required: 1,
+                    available: 0,
+                });
+            }
+        }
+
+        let player_position = self
+            .player_position()
+            .ok_or(TechniqueUseError::MissingPlayer)?;
+        let mut staged_inventory =
+            if definition.activation_cost().is_none() && definition.material_cost().is_some() {
+                self.stage_technique_material_removal(&definition)?
+            } else {
+                self.player_inventory.clone()
+            };
+        let active_manifestations = self
+            .manifested_sound_emitters
+            .values()
+            .filter(|reservation| reservation.technique == *technique)
+            .count();
+        let (activation_energy, activation_heat, activation_bandwidth) =
+            self.preflight_intrinsic_activation(&definition, active_manifestations)?;
+        let mut staged_salvage = None;
+        let energy_cost = match (action, directive) {
+            (
+                TechniqueAction::RepairComponent {
+                    energy_cost: _,
+                    durability_restored: _,
+                }
+                | TechniqueAction::EmergencyRepairComponent {
+                    durability_restored: _,
+                },
+                EngineeringDirective::Component { target, component },
+            ) => {
+                let actor = self
+                    .actors
+                    .get(*target)
+                    .ok_or(TechniqueUseError::UnknownTarget(*target))?;
+                let cooperative = *target == self.player
+                    || actor
+                        .drone()
+                        .is_some_and(|drone| drone.controller() == self.player);
+                if !cooperative {
+                    return Err(TechniqueUseError::TargetNotCooperative(*target));
+                }
+                if grid_distance(player_position, actor.position()) > 1 {
+                    return Err(TechniqueUseError::TargetOutOfRange(*target));
+                }
+                let state = actor
+                    .body_component(component)
+                    .ok_or_else(|| TechniqueUseError::UnknownBodyComponent(component.clone()))?;
+                if state.is_destroyed() || state.durability() >= state.maximum_durability() {
+                    return Err(TechniqueUseError::EngineeringComponentNotRepairable);
+                }
+                match action {
+                    TechniqueAction::RepairComponent { energy_cost, .. } => energy_cost,
+                    TechniqueAction::EmergencyRepairComponent { .. } => 0,
+                    _ => unreachable!(),
+                }
+            }
+            (
+                TechniqueAction::SalvageComponent,
+                EngineeringDirective::WreckComponent { wreck, component },
+            ) => {
+                let wreckage = self
+                    .wrecks
+                    .get(*wreck)
+                    .ok_or(TechniqueUseError::EngineeringUnknownWreck(*wreck))?;
+                if grid_distance(player_position, wreckage.position()) > 1 {
+                    return Err(TechniqueUseError::TargetOutOfRange(self.player));
+                }
+                let recovered = wreckage
+                    .component(component)
+                    .filter(|component| !component.is_destroyed())
+                    .cloned()
+                    .ok_or_else(|| TechniqueUseError::UnknownBodyComponent(component.clone()))?;
+                let output = definition
+                    .produced_item()
+                    .ok_or_else(|| TechniqueUseError::UnknownMaterial(component.clone()))?;
+                let maximum_stack = self
+                    .inventory_stack_limit(output)
+                    .ok_or_else(|| TechniqueUseError::UnknownMaterial(output.clone()))?;
+                let instance = staged_inventory
+                    .add(output.clone(), 1, maximum_stack)
+                    .map_err(|_| TechniqueUseError::InventoryFull)?
+                    .into_iter()
+                    .next()
+                    .expect("positive salvage output creates or extends a stack");
+                staged_salvage = Some((*wreck, component.clone(), recovered, instance));
+                0
+            }
+            (
+                TechniqueAction::DiagnoseComponent {
+                    analysis_bonus: _,
+                    energy_cost,
+                },
+                EngineeringDirective::Component { target, component },
+            ) => {
+                let actor = self
+                    .actors
+                    .get(*target)
+                    .ok_or(TechniqueUseError::UnknownTarget(*target))?;
+                if grid_distance(player_position, actor.position()) > 1
+                    || !self.player_visibility.is_visible(actor.position())
+                {
+                    return Err(TechniqueUseError::TargetOutOfRange(*target));
+                }
+                actor
+                    .body_component(component)
+                    .ok_or_else(|| TechniqueUseError::UnknownBodyComponent(component.clone()))?;
+                energy_cost
+            }
+            (
+                TechniqueAction::TuneModule { .. },
+                EngineeringDirective::TuneModule { module, .. },
+            ) => {
+                let entry = self
+                    .player_inventory
+                    .get(*module)
+                    .ok_or(TechniqueUseError::EngineeringUnknownModule(*module))?;
+                if self
+                    .rules
+                    .weapons
+                    .get(entry.item())
+                    .and_then(WeaponDefinition::power_draw)
+                    .is_none()
+                    || !self.equipment_engineering.contains_key(module)
+                {
+                    return Err(TechniqueUseError::EngineeringModuleNotCompatible(*module));
+                }
+                0
+            }
+            (
+                TechniqueAction::OverclockModule {
+                    activation_energy, ..
+                },
+                EngineeringDirective::OverclockModule { module },
+            ) => {
+                let entry = self
+                    .player_inventory
+                    .get(*module)
+                    .ok_or(TechniqueUseError::EngineeringUnknownModule(*module))?;
+                let state = self
+                    .equipment_engineering
+                    .get(module)
+                    .ok_or(TechniqueUseError::EngineeringModuleNotCompatible(*module))?;
+                if self
+                    .rules
+                    .weapons
+                    .get(entry.item())
+                    .and_then(WeaponDefinition::power_draw)
+                    .is_none()
+                    || state.durability() == 0
+                {
+                    return Err(TechniqueUseError::EngineeringModuleNotCompatible(*module));
+                }
+                if self.player_heat.is_none() {
+                    return Err(TechniqueUseError::SystemResourcesUnavailable);
+                }
+                activation_energy
+            }
+            (
+                TechniqueAction::BypassComponent { energy_cost, .. },
+                EngineeringDirective::Bypass {
+                    target,
+                    receiver,
+                    donor,
+                },
+            ) => {
+                if receiver == donor {
+                    return Err(TechniqueUseError::EngineeringBypassInvalid);
+                }
+                let actor = self
+                    .actors
+                    .get(*target)
+                    .ok_or(TechniqueUseError::UnknownTarget(*target))?;
+                let cooperative = *target == self.player
+                    || actor
+                        .drone()
+                        .is_some_and(|drone| drone.controller() == self.player);
+                if !cooperative || grid_distance(player_position, actor.position()) > 1 {
+                    return Err(TechniqueUseError::TargetNotCooperative(*target));
+                }
+                let receiver_state = actor
+                    .body_component(receiver)
+                    .ok_or_else(|| TechniqueUseError::UnknownBodyComponent(receiver.clone()))?;
+                let donor_state = actor
+                    .body_component(donor)
+                    .ok_or_else(|| TechniqueUseError::UnknownBodyComponent(donor.clone()))?;
+                if receiver_state.is_destroyed()
+                    || !receiver_state.is_failed()
+                    || donor_state.is_failed()
+                    || self
+                        .active_bypasses
+                        .contains_key(&(*target, receiver.clone()))
+                    || self
+                        .active_bypasses
+                        .iter()
+                        .any(|((bypass_target, _), bypass)| {
+                            *bypass_target == *target
+                                && (bypass.donor() == receiver || bypass.donor() == donor)
+                        })
+                {
+                    return Err(TechniqueUseError::EngineeringBypassInvalid);
+                }
+                energy_cost
+            }
+            (
+                TechniqueAction::ReconditionModule { .. },
+                EngineeringDirective::Module { module },
+            ) => {
+                if !self.map.is_protected(player_position) {
+                    return Err(TechniqueUseError::EngineeringWorkshopRequired);
+                }
+                let state = self
+                    .equipment_engineering
+                    .get(module)
+                    .ok_or(TechniqueUseError::EngineeringUnknownModule(*module))?;
+                if state.durability() == 0 || state.durability() >= state.maximum_durability() {
+                    return Err(TechniqueUseError::EngineeringComponentNotRepairable);
+                }
+                0
+            }
+            (
+                TechniqueAction::AssembleFieldBeacon { .. },
+                EngineeringDirective::AssembleAt { position },
+            ) => {
+                if grid_distance(player_position, *position) != 1
+                    || !self.map.is_walkable(*position)
+                    || self.actors.entity_at(*position).is_some()
+                    || self.explosive_devices.at(*position).next().is_some()
+                    || self.sound_emitters.at(*position).next().is_some()
+                {
+                    return Err(TechniqueUseError::EngineeringPlacementBlocked(*position));
+                }
+                0
+            }
+            _ => return Err(TechniqueUseError::EngineeringDirectiveMismatch),
+        }
+        .saturating_add(activation_energy);
+        if self.player_energy.available() < energy_cost {
+            return Err(TechniqueUseError::Energy(EnergySpendError {
+                required: energy_cost,
+                available: self.player_energy.available(),
+            }));
+        }
+
+        if let Some(preparation_steps) = definition.preparation_steps() {
+            let payload = PreparedTechniquePayload {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+                target_at: None,
+                drone_directive: None,
+                engineering_directive: Some(directive.clone()),
+                intrusion_directive: None,
+                electronic_directive: None,
+            };
+            if !self.advance_player_technique_preparation(payload, preparation_steps) {
+                return Ok(());
+            }
+        }
+
+        self.player_energy
+            .spend(energy_cost)
+            .expect("engineering energy was preflighted");
+        self.generate_player_heat(activation_heat)?;
+        self.reserve_player_bandwidth(activation_bandwidth)?;
+        self.player_inventory = staged_inventory;
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        if energy_cost > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_cost,
+                remaining: self.player_energy.available(),
+            });
+        }
+
+        match (action, directive) {
+            (
+                TechniqueAction::RepairComponent {
+                    durability_restored,
+                    ..
+                }
+                | TechniqueAction::EmergencyRepairComponent {
+                    durability_restored,
+                },
+                EngineeringDirective::Component { target, component },
+            ) => {
+                let state = self
+                    .actors
+                    .get_mut(*target)
+                    .and_then(|actor| actor.body_component_mut(component))
+                    .expect("repair target was preflighted");
+                let amount = state.restore_if_repairable(durability_restored);
+                self.events.push(GameEvent::BodyComponentRepaired {
+                    target: *target,
+                    component: component.clone(),
+                    amount,
+                    durability: state.durability(),
+                    maximum_durability: state.maximum_durability(),
+                });
+            }
+            (TechniqueAction::SalvageComponent, _) => {
+                let (wreck, component, recovered, instance) =
+                    staged_salvage.expect("salvage was staged before commitment");
+                self.wrecks
+                    .recover_component(wreck, &component)
+                    .expect("staged wreck component remains available");
+                self.salvaged_components.insert(instance, recovered.clone());
+                self.events.push(GameEvent::BodyComponentSalvaged {
+                    wreck,
+                    component,
+                    inventory_item: instance,
+                    durability: recovered.durability(),
+                    maximum_durability: recovered.maximum_durability(),
+                });
+            }
+            (
+                TechniqueAction::DiagnoseComponent { analysis_bonus, .. },
+                EngineeringDirective::Component { target, component },
+            ) => {
+                let state = self
+                    .actors
+                    .get(*target)
+                    .and_then(|actor| actor.body_component(component))
+                    .expect("diagnostic target was preflighted");
+                let score = observation_analysis_score(
+                    self.actors
+                        .get(self.player)
+                        .and_then(Actor::primary_attributes),
+                    analysis_bonus,
+                );
+                self.events.push(GameEvent::BodyComponentDiagnosed {
+                    target: *target,
+                    component: component.clone(),
+                    analysis_score: score,
+                    durability: state.durability(),
+                    maximum_durability: state.maximum_durability(),
+                    failed: state.is_failed(),
+                    destroyed: state.is_destroyed(),
+                });
+            }
+            (
+                TechniqueAction::TuneModule {
+                    economy_output_percentage,
+                    economy_energy_percentage,
+                    power_output_percentage,
+                    power_energy_percentage,
+                },
+                EngineeringDirective::TuneModule { module, tuning },
+            ) => {
+                let (output_percentage, energy_percentage) = match tuning {
+                    ModuleTuning::Economy => (economy_output_percentage, economy_energy_percentage),
+                    ModuleTuning::Power => (power_output_percentage, power_energy_percentage),
+                };
+                self.equipment_engineering
+                    .get_mut(module)
+                    .expect("tuning module was preflighted")
+                    .tune(
+                        ActiveTuning::new(*tuning, output_percentage, energy_percentage)
+                            .expect("validated tuning percentages remain positive"),
+                    );
+                self.events.push(GameEvent::ModuleTuned {
+                    module: *module,
+                    tuning: *tuning,
+                    output_percentage,
+                    energy_percentage,
+                });
+            }
+            (
+                TechniqueAction::OverclockModule {
+                    output_percentage,
+                    usage_energy_percentage,
+                    heat_per_use,
+                    safe_heat_threshold,
+                    maximum_heat_threshold,
+                    duration_time_units,
+                    durability_damage_when_hot,
+                    ..
+                },
+                EngineeringDirective::OverclockModule { module },
+            ) => {
+                let overclock = ActiveOverclock::new(
+                    output_percentage,
+                    usage_energy_percentage,
+                    heat_per_use,
+                    safe_heat_threshold,
+                    maximum_heat_threshold,
+                    duration_time_units,
+                    durability_damage_when_hot,
+                )
+                .expect("validated overclock profile remains valid");
+                self.equipment_engineering
+                    .get_mut(module)
+                    .expect("overclock module was preflighted")
+                    .start_overclock(overclock);
+                self.events.push(GameEvent::ModuleOverclockChanged {
+                    module: *module,
+                    output_percentage,
+                    remaining_time_units: duration_time_units,
+                });
+            }
+            (
+                TechniqueAction::BypassComponent {
+                    restored_output_percentage,
+                    ..
+                },
+                EngineeringDirective::Bypass {
+                    target,
+                    receiver,
+                    donor,
+                },
+            ) => {
+                self.active_bypasses.insert(
+                    (*target, receiver.clone()),
+                    ActiveBypass::new(donor.clone(), restored_output_percentage)
+                        .expect("positive bypass output was validated"),
+                );
+                self.events.push(GameEvent::BodyComponentBypassed {
+                    target: *target,
+                    receiver: receiver.clone(),
+                    donor: donor.clone(),
+                    restored_output_percentage,
+                });
+            }
+            (
+                TechniqueAction::ReconditionModule {
+                    durability_restored,
+                },
+                EngineeringDirective::Module { module },
+            ) => {
+                let state = self
+                    .equipment_engineering
+                    .get_mut(module)
+                    .expect("reconditioned module was preflighted");
+                let amount = state.repair(durability_restored);
+                self.events.push(GameEvent::ModuleReconditioned {
+                    module: *module,
+                    amount,
+                    durability: state.durability(),
+                    maximum_durability: state.maximum_durability(),
+                });
+            }
+            (
+                TechniqueAction::AssembleFieldBeacon {
+                    integrity,
+                    battery_energy,
+                    energy_per_phase,
+                    noise_intensity,
+                },
+                EngineeringDirective::AssembleAt { position },
+            ) => {
+                let duration = battery_energy.div_ceil(energy_per_phase);
+                let emitter = self
+                    .sound_emitters
+                    .deploy(*position, noise_intensity, duration, integrity)
+                    .expect("field beacon profile and cell were preflighted");
+                if activation_bandwidth > 0 {
+                    self.manifested_sound_emitters.insert(
+                        emitter,
+                        TechniqueManifestationReservation {
+                            technique: technique.clone(),
+                            bandwidth: activation_bandwidth,
+                        },
+                    );
+                }
+                self.events.push(GameEvent::FieldBeaconAssembled {
+                    emitter,
+                    at: *position,
+                    integrity,
+                    stored_energy: battery_energy,
+                    energy_per_phase,
+                });
+            }
+            _ => unreachable!("engineering action and directive were preflighted"),
+        }
+        self.start_player_technique_cooldown(technique, &definition);
+        Ok(())
+    }
+
+    fn validate_linked_player_drone(
+        &self,
+        entity: EntityId,
+        technique_link_range: u16,
+    ) -> Result<&DroneState, TechniqueUseError> {
+        let actor = self
+            .actors
+            .get(entity)
+            .ok_or(TechniqueUseError::DroneNotControlled(entity))?;
+        let drone = actor
+            .drone()
+            .filter(|drone| drone.controller() == self.player)
+            .ok_or(TechniqueUseError::DroneNotControlled(entity))?;
+        let controller_position = self
+            .player_position()
+            .ok_or(TechniqueUseError::MissingPlayer)?;
+        if !is_within_chebyshev_range(controller_position, actor.position(), technique_link_range)
+            || !drone.profile().link_reaches(
+                &self.map,
+                controller_position,
+                actor.position(),
+                self.electronic_jamming_penalty_at(
+                    crate::electronic_warfare::ElectronicChannel::ControlLink,
+                    actor.position(),
+                ),
+            )
+        {
+            return Err(TechniqueUseError::DroneNotLinked(entity));
+        }
+        Ok(drone)
+    }
+
+    fn validate_drone_group(
+        &self,
+        drones: &[EntityId],
+        maximum: u8,
+        link_range: u16,
+    ) -> Result<(), TechniqueUseError> {
+        if drones.is_empty() || drones.len() > usize::from(maximum) {
+            return Err(TechniqueUseError::TooManyTargets {
+                maximum: usize::from(maximum),
+                actual: drones.len(),
+            });
+        }
+        let mut unique = BTreeSet::new();
+        for drone in drones {
+            if !unique.insert(*drone) {
+                return Err(TechniqueUseError::DuplicateTarget(*drone));
+            }
+            self.validate_linked_player_drone(*drone, link_range)?;
+        }
+        Ok(())
+    }
+
+    fn validate_known_drone_position(&self, position: GridPos) -> Result<(), TechniqueUseError> {
+        if !self.map.contains(position)
+            || !self.map.is_walkable(position)
+            || !self.player_visibility.is_explored(position)
+        {
+            return Err(TechniqueUseError::DronePositionUnknown(position));
+        }
+        Ok(())
+    }
+
+    fn learned_drone_autonomous_scout(&self, patrol: &TechniqueId) -> Option<(u8, u16, u16)> {
+        self.rules.skills.techniques().find_map(|(id, definition)| {
+            let TechniqueImprovement::DroneAutonomousScout {
+                maximum_unknown_steps,
+                energy_cost_override,
+                additional_bandwidth,
+            } = definition.improvement()?
+            else {
+                return None;
+            };
+            (definition.prerequisite() == Some(patrol) && self.player_skills.has_learned(id))
+                .then_some((
+                    maximum_unknown_steps,
+                    energy_cost_override,
+                    additional_bandwidth,
+                ))
+        })
+    }
+
+    fn use_player_anchor_technique(
+        &mut self,
+        technique: &TechniqueId,
+        targets: &[EntityId],
+        weapon_slot: Option<u8>,
+        displacement_resistance_bonus: u16,
+    ) -> Result<(), TechniqueUseError> {
+        if !targets.is_empty() {
+            return Err(TechniqueUseError::UnexpectedTarget);
+        }
+        if weapon_slot.is_some() {
+            return Err(TechniqueUseError::UnexpectedWeaponSlot);
+        }
+        self.player_anchor = Some((technique.clone(), displacement_resistance_bonus));
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        self.events.push(GameEvent::AnchorPrepared {
+            entity: self.player,
+            technique: technique.clone(),
+            displacement_resistance_bonus,
+        });
+        Ok(())
+    }
+
+    fn use_player_emission_silence_technique(
+        &mut self,
+        technique: &TechniqueId,
+        targets: &[EntityId],
+        weapon_slot: Option<u8>,
+        channel: SignatureChannel,
+    ) -> Result<(), TechniqueUseError> {
+        self.validate_targetless_technique(targets, weapon_slot)?;
+        let silenced = if self.player_silenced_emissions.remove(&channel) {
+            false
+        } else {
+            self.player_silenced_emissions.insert(channel);
+            true
+        };
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        self.events.push(GameEvent::EmissionSilenceChanged {
+            entity: self.player,
+            channel,
+            silenced,
+        });
+        Ok(())
+    }
+
+    fn use_player_low_profile_technique(
+        &mut self,
+        technique: &TechniqueId,
+        targets: &[EntityId],
+        weapon_slot: Option<u8>,
+        optical_difficulty_bonus: i16,
+        minimum_movement_time_units: u16,
+    ) -> Result<(), TechniqueUseError> {
+        self.validate_targetless_technique(targets, weapon_slot)?;
+        let active = self
+            .player_low_profile
+            .as_ref()
+            .is_none_or(|profile| profile.technique != *technique);
+        self.player_low_profile = active.then(|| ActiveLowProfile {
+            technique: technique.clone(),
+            optical_difficulty_bonus,
+            minimum_movement_time_units,
+        });
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        self.events.push(GameEvent::LowProfileChanged {
+            entity: self.player,
+            technique: technique.clone(),
+            active,
+        });
+        Ok(())
+    }
+
+    #[allow(clippy::too_many_arguments)]
+    fn use_player_trail_break_technique(
+        &mut self,
+        technique: &TechniqueId,
+        targets: &[EntityId],
+        weapon_slot: Option<u8>,
+        definition: &TechniqueDefinition,
+        energy_cost: u16,
+        maximum_steps: u8,
+        maximum_duration: u16,
+    ) -> Result<(), TechniqueUseError> {
+        self.validate_targetless_technique(targets, weapon_slot)?;
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+        if self.any_non_player_has_geometric_los_to_player() {
+            return Err(TechniqueUseError::RequiresBrokenLineOfSight);
+        }
+        self.player_energy
+            .spend(energy_cost)
+            .map_err(TechniqueUseError::Energy)?;
+        self.player_trail_break = Some(ActiveTrailBreak {
+            technique: technique.clone(),
+            remaining_steps: maximum_steps,
+            expires_on_turn: self
+                .turn
+                .saturating_add(u64::from(maximum_duration))
+                .saturating_add(1),
+        });
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        self.events.push(GameEvent::EnergySpent {
+            entity: self.player,
+            amount: energy_cost,
+            remaining: self.player_energy.available(),
+        });
+        self.events.push(GameEvent::TrailBreakStarted {
+            entity: self.player,
+            technique: technique.clone(),
+            remaining_steps: maximum_steps,
+            remaining_turns: maximum_duration,
+        });
+        self.start_player_technique_cooldown(technique, definition);
+        Ok(())
+    }
+
+    #[allow(clippy::too_many_arguments)]
+    fn use_player_active_camouflage_technique(
+        &mut self,
+        technique: &TechniqueId,
+        targets: &[EntityId],
+        weapon_slot: Option<u8>,
+        definition: &TechniqueDefinition,
+        channel: SignatureChannel,
+        optical_difficulty_bonus: i16,
+        maximum_duration: u16,
+        activation_energy: u16,
+        upkeep_energy: u16,
+        heat_per_phase: u16,
+    ) -> Result<(), TechniqueUseError> {
+        self.validate_targetless_technique(targets, weapon_slot)?;
+        if self
+            .player_active_camouflage
+            .as_ref()
+            .is_some_and(|camouflage| camouflage.technique == *technique)
+        {
+            self.events.push(GameEvent::TechniqueUsed {
+                entity: self.player,
+                technique: technique.clone(),
+                observed_on_turn: self.turn,
+            });
+            self.end_player_active_camouflage();
+            return Ok(());
+        }
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+        if self.player_heat.is_none() {
+            return Err(TechniqueUseError::SystemResourcesUnavailable);
+        }
+        self.player_energy
+            .spend(activation_energy)
+            .map_err(TechniqueUseError::Energy)?;
+        self.player_active_camouflage = Some(ActiveCamouflage {
+            technique: technique.clone(),
+            channel,
+            optical_difficulty_bonus,
+            remaining_phases: maximum_duration,
+            upkeep_energy,
+            heat_per_phase,
+        });
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        self.events.push(GameEvent::EnergySpent {
+            entity: self.player,
+            amount: activation_energy,
+            remaining: self.player_energy.available(),
+        });
+        self.events.push(GameEvent::ActiveCamouflageChanged {
+            entity: self.player,
+            technique: technique.clone(),
+            channel,
+            active: true,
+        });
+        self.start_player_technique_cooldown(technique, definition);
+        Ok(())
+    }
+
+    fn validate_targetless_technique(
+        &self,
+        targets: &[EntityId],
+        weapon_slot: Option<u8>,
+    ) -> Result<(), TechniqueUseError> {
+        if !targets.is_empty() {
+            return Err(TechniqueUseError::UnexpectedTarget);
+        }
+        if weapon_slot.is_some() {
+            return Err(TechniqueUseError::UnexpectedWeaponSlot);
+        }
+        Ok(())
+    }
+
+    fn start_player_technique_cooldown(
+        &mut self,
+        technique: &TechniqueId,
+        definition: &TechniqueDefinition,
+    ) {
+        let Some(cooldown) = definition.cooldown() else {
+            return;
+        };
+        if let Some(player) = self.actors.get_mut(self.player) {
+            player.start_technique_cooldown(technique.clone(), self.turn, cooldown);
+            self.events.push(GameEvent::TechniqueCooldownStarted {
+                entity: self.player,
+                technique: technique.clone(),
+                remaining_phases: cooldown.get(),
+            });
+        }
+    }
+
+    fn end_player_active_camouflage(&mut self) {
+        let Some(camouflage) = self.player_active_camouflage.take() else {
+            return;
+        };
+        self.events.push(GameEvent::ActiveCamouflageChanged {
+            entity: self.player,
+            technique: camouflage.technique,
+            channel: camouflage.channel,
+            active: false,
+        });
+    }
+
+    fn use_player_charge_technique(
+        &mut self,
+        technique: &TechniqueId,
+        targets: &[EntityId],
+        weapon_slot: Option<u8>,
+        definition: &TechniqueDefinition,
+    ) -> Result<(), TechniqueUseError> {
+        let Some(TechniqueAction::ChargeAttack {
+            minimum_advance,
+            maximum_advance,
+            physical_damage_percentage,
+            energy_per_step,
+            recovery_time_units,
+        }) = definition.action()
+        else {
+            return Err(TechniqueUseError::NoActiveAction(technique.clone()));
+        };
+        let [target] = targets else {
+            return if targets.is_empty() {
+                Err(TechniqueUseError::MissingTarget)
+            } else {
+                Err(TechniqueUseError::TooManyTargets {
+                    maximum: 1,
+                    actual: targets.len(),
+                })
+            };
+        };
+        let weapon_slot = weapon_slot.ok_or(TechniqueUseError::MissingWeaponSlot)?;
+        let (player, attack, _, _, _) = self
+            .attack_details(self.player, weapon_slot)
+            .map_err(TechniqueUseError::Attack)?;
+        if attack.delivery() != AttackDelivery::Melee {
+            return Err(TechniqueUseError::WeaponDeliveryMismatch {
+                required: AttackDelivery::Melee,
+                actual: attack.delivery(),
+            });
+        }
+        if !matches!(attack.area(), AttackArea::Single) {
+            return Err(TechniqueUseError::WeaponMustTargetSingleActor);
+        }
+        if !attack.damage().has_physical_component() {
+            return Err(TechniqueUseError::WeaponHasNoPhysicalDamage);
+        }
+
+        if self.player_active_charge.is_none() {
+            let target_state = self
+                .actors
+                .get(*target)
+                .ok_or(TechniqueUseError::UnknownTarget(*target))?;
+            let target_at = target_state.position();
+            if !self.player_visibility.is_visible(target_at) {
+                return Err(TechniqueUseError::TargetNotVisible(*target));
+            }
+            let (direction, distance) =
+                cardinal_direction_and_distance(player.position(), target_at)
+                    .ok_or(TechniqueUseError::InvalidMovementDestination(target_at))?;
+            let required_advances = distance.saturating_sub(1);
+            if required_advances < u16::from(minimum_advance)
+                || required_advances > u16::from(maximum_advance)
+            {
+                return Err(TechniqueUseError::TargetOutOfRange(*target));
+            }
+            for step in 1..=required_advances {
+                let position = step_cardinal(player.position(), direction, step);
+                if !self.map.is_walkable(position)
+                    || self.map.is_protected(position)
+                    || self.actors.entity_at(position).is_some()
+                {
+                    return Err(TechniqueUseError::MovementPathBlocked(position));
+                }
+            }
+            let required_advances = u8::try_from(required_advances).unwrap_or(u8::MAX);
+            self.player_active_charge = Some(ActiveCharge {
+                technique: technique.clone(),
+                target: *target,
+                target_at,
+                weapon_slot,
+                direction,
+                required_advances,
+                completed_advances: 0,
+            });
+            self.events.push(GameEvent::ChargeStarted {
+                entity: self.player,
+                technique: technique.clone(),
+                target: *target,
+                target_at,
+                required_advances,
+            });
+        }
+
+        let charge = self
+            .player_active_charge
+            .clone()
+            .expect("charge was initialized above");
+        if charge.technique != *technique
+            || charge.target != *target
+            || charge.weapon_slot != weapon_slot
+        {
+            return Err(TechniqueUseError::NoActiveAction(technique.clone()));
+        }
+        let target_remains = self
+            .actors
+            .get(*target)
+            .is_some_and(|actor| actor.position() == charge.target_at);
+        if !target_remains {
+            self.cancel_player_charge();
+            self.events.push(GameEvent::TechniqueUsed {
+                entity: self.player,
+                technique: technique.clone(),
+                observed_on_turn: self.turn,
+            });
+            return Ok(());
+        }
+
+        if charge.completed_advances < charge.required_advances {
+            let from = self
+                .player_position()
+                .ok_or(TechniqueUseError::MissingPlayer)?;
+            let to = from.step(charge.direction);
+            if !self.map.is_walkable(to)
+                || self.map.is_protected(to)
+                || self.actors.entity_at(to).is_some()
+            {
+                self.cancel_player_charge();
+                self.events.push(GameEvent::TechniqueUsed {
+                    entity: self.player,
+                    technique: technique.clone(),
+                    observed_on_turn: self.turn,
+                });
+                return Ok(());
+            }
+            self.player_energy
+                .spend(energy_per_step)
+                .map_err(TechniqueUseError::Energy)?;
+            self.events.push(GameEvent::TechniqueUsed {
+                entity: self.player,
+                technique: technique.clone(),
+                observed_on_turn: self.turn,
+            });
+            if energy_per_step > 0 {
+                self.events.push(GameEvent::EnergySpent {
+                    entity: self.player,
+                    amount: energy_per_step,
+                    remaining: self.player_energy.available(),
+                });
+            }
+            let moved_to = self
+                .move_entity(self.player, charge.direction)
+                .unwrap_or(from);
+            if moved_to == from {
+                self.cancel_player_charge();
+                return Ok(());
+            }
+            let completed_advances = charge.completed_advances.saturating_add(1);
+            if let Some(active) = self.player_active_charge.as_mut() {
+                active.completed_advances = completed_advances;
+            }
+            self.player_visibility
+                .recompute(&self.map, moved_to, self.rules.player_field_of_view);
+            self.events.push(GameEvent::VisibilityUpdated {
+                observer: self.player,
+                origin: moved_to,
+            });
+            self.events.push(GameEvent::ChargeAdvanced {
+                entity: self.player,
+                technique: technique.clone(),
+                from,
+                to: moved_to,
+                completed_advances,
+                required_advances: charge.required_advances,
+            });
+            return Ok(());
+        }
+
+        let player_at = self
+            .player_position()
+            .ok_or(TechniqueUseError::MissingPlayer)?;
+        if !player_at.cardinal_neighbors().contains(&charge.target_at) {
+            self.cancel_player_charge();
+            self.events.push(GameEvent::TechniqueUsed {
+                entity: self.player,
+                technique: technique.clone(),
+                observed_on_turn: self.turn,
+            });
+            return Ok(());
+        }
+        let mut prepared = self
+            .prepare_targeted_attack(self.player, weapon_slot, *target)
+            .map_err(TechniqueUseError::Attack)?;
+        prepared.attack = prepared
+            .attack
+            .with_physical_damage_percentage(physical_damage_percentage)
+            .map_err(|_| TechniqueUseError::WeaponHasNoPhysicalDamage)?;
+        self.spend_prepared_attack_usage(&prepared, 1)
+            .map_err(TechniqueUseError::Attack)?;
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        self.resolve_prepared_attack(prepared, ActionOrigin::Normal)
+            .map_err(TechniqueUseError::Attack)?;
+        let recovery_suppressed = self.learned_controlled_charge_inertia(technique);
+        self.player_active_charge = None;
+        if !recovery_suppressed {
+            self.start_action_recovery(
+                self.player,
+                crate::time::TimeUnits::new(recovery_time_units)
+                    .expect("charge recovery was validated"),
+            );
+        }
+        self.events.push(GameEvent::ChargeCompleted {
+            entity: self.player,
+            technique: technique.clone(),
+            target: *target,
+            recovery_suppressed,
+        });
+        Ok(())
+    }
+
+    fn use_player_breakthrough_technique(
+        &mut self,
+        technique: &TechniqueId,
+        targets: &[EntityId],
+        weapon_slot: Option<u8>,
+        definition: &TechniqueDefinition,
+    ) -> Result<(), TechniqueUseError> {
+        let Some(TechniqueAction::Breakthrough {
+            impact_modifier,
+            energy_cost,
+            recovery_time_units,
+        }) = definition.action()
+        else {
+            return Err(TechniqueUseError::NoActiveAction(technique.clone()));
+        };
+        let [target] = targets else {
+            return if targets.is_empty() {
+                Err(TechniqueUseError::MissingTarget)
+            } else {
+                Err(TechniqueUseError::TooManyTargets {
+                    maximum: 1,
+                    actual: targets.len(),
+                })
+            };
+        };
+        let weapon_slot = weapon_slot.ok_or(TechniqueUseError::MissingWeaponSlot)?;
+        let prepared = self
+            .prepare_targeted_attack(self.player, weapon_slot, *target)
+            .map_err(TechniqueUseError::Attack)?;
+        if prepared.attack.delivery() != AttackDelivery::Melee {
+            return Err(TechniqueUseError::WeaponDeliveryMismatch {
+                required: AttackDelivery::Melee,
+                actual: prepared.attack.delivery(),
+            });
+        }
+        if !matches!(prepared.attack.area(), AttackArea::Single)
+            || prepared.attack.melee_impact().is_none()
+            || self.rules.physical_rules.is_none()
+        {
+            return Err(TechniqueUseError::WeaponHasNoImpact);
+        }
+        let from = self
+            .actors
+            .get(*target)
+            .ok_or(TechniqueUseError::UnknownTarget(*target))?
+            .position();
+        if let Some(preparation_steps) = definition.preparation_steps() {
+            let payload = PreparedTechniquePayload {
+                technique: technique.clone(),
+                targets: targets.to_vec(),
+                weapon_slot: Some(weapon_slot),
+                target_at: None,
+                drone_directive: None,
+                engineering_directive: None,
+                intrusion_directive: None,
+                electronic_directive: None,
+            };
+            if !self.advance_player_technique_preparation(payload, preparation_steps) {
+                return Ok(());
+            }
+        }
         self.player_energy
             .spend(energy_cost)
             .map_err(TechniqueUseError::Energy)?;
@@ -840,8 +6969,2073 @@ impl GameState {
                 remaining: self.player_energy.available(),
             });
         }
-        self.events.extend(observations);
+        self.resolve_forced_movement(
+            self.player,
+            *target,
+            prepared.origin,
+            prepared.attack,
+            ForcedMovement::new(1, impact_modifier),
+        );
+        if self
+            .actors
+            .get(*target)
+            .is_some_and(|actor| actor.position() != from)
+            && self.actors.entity_at(from).is_none()
+        {
+            let player_from = self
+                .player_position()
+                .ok_or(TechniqueUseError::MissingPlayer)?;
+            self.actors
+                .move_to(self.player, from)
+                .expect("breakthrough opens the target's former cell");
+            self.end_player_anchor();
+            self.events.push(GameEvent::EntityMoved {
+                entity: self.player,
+                from: player_from,
+                to: from,
+            });
+            self.resolve_ranged_overwatch_entries(self.player, from);
+            self.player_visibility
+                .recompute(&self.map, from, self.rules.player_field_of_view);
+            self.events.push(GameEvent::VisibilityUpdated {
+                observer: self.player,
+                origin: from,
+            });
+        }
+        self.start_action_recovery(
+            self.player,
+            crate::time::TimeUnits::new(recovery_time_units)
+                .expect("breakthrough recovery was validated"),
+        );
         Ok(())
+    }
+
+    fn use_player_extract_technique(
+        &mut self,
+        technique: &TechniqueId,
+        targets: &[EntityId],
+        weapon_slot: Option<u8>,
+        definition: &TechniqueDefinition,
+    ) -> Result<(), TechniqueUseError> {
+        let Some(TechniqueAction::ExtractAlly { energy_cost }) = definition.action() else {
+            return Err(TechniqueUseError::NoActiveAction(technique.clone()));
+        };
+        if weapon_slot.is_some() {
+            return Err(TechniqueUseError::UnexpectedWeaponSlot);
+        }
+        let [ally] = targets else {
+            return if targets.is_empty() {
+                Err(TechniqueUseError::MissingTarget)
+            } else {
+                Err(TechniqueUseError::TooManyTargets {
+                    maximum: 1,
+                    actual: targets.len(),
+                })
+            };
+        };
+        let player_from = self
+            .player_position()
+            .ok_or(TechniqueUseError::MissingPlayer)?;
+        let ally_state = self
+            .actors
+            .get(*ally)
+            .ok_or(TechniqueUseError::UnknownTarget(*ally))?;
+        let ally_from = ally_state.position();
+        let affiliations_match = self
+            .actors
+            .get(self.player)
+            .and_then(Actor::affiliation)
+            .is_some_and(|affiliation| ally_state.affiliation() == Some(affiliation));
+        let cooperative = affiliations_match || ally_state.ai().is_none();
+        let Some(displacement) = ally_state.displacement_profile() else {
+            return Err(TechniqueUseError::TargetNotCooperative(*ally));
+        };
+        let physical = self
+            .rules
+            .physical_rules
+            .ok_or(TechniqueUseError::TargetNotCooperative(*ally))?;
+        let traction = physical
+            .impact
+            .available_impact(self.player_primary_attributes(), 0);
+        let resistance = displacement.resistance(self.actor_carried_mass_grams(*ally).unwrap_or(0));
+        if !cooperative || displacement.is_fixed() || u32::from(traction) < resistance {
+            return Err(TechniqueUseError::TargetNotCooperative(*ally));
+        }
+        let (toward_ally, distance) = cardinal_direction_and_distance(player_from, ally_from)
+            .ok_or(TechniqueUseError::TargetOutOfRange(*ally))?;
+        if distance != 1 {
+            return Err(TechniqueUseError::TargetOutOfRange(*ally));
+        }
+        let direction = opposite_direction(toward_ally);
+        let player_to = player_from.step(direction);
+        if !self.map.is_walkable(player_to)
+            || self.map.is_protected(player_to)
+            || self.actors.entity_at(player_to).is_some()
+        {
+            return Err(TechniqueUseError::MovementPathBlocked(player_to));
+        }
+        if let Some(preparation_steps) = definition.preparation_steps() {
+            let payload = PreparedTechniquePayload {
+                technique: technique.clone(),
+                targets: targets.to_vec(),
+                weapon_slot: None,
+                target_at: None,
+                drone_directive: None,
+                engineering_directive: None,
+                intrusion_directive: None,
+                electronic_directive: None,
+            };
+            if !self.advance_player_technique_preparation(payload, preparation_steps) {
+                return Ok(());
+            }
+        }
+        self.player_energy
+            .spend(energy_cost)
+            .map_err(TechniqueUseError::Energy)?;
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        if energy_cost > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_cost,
+                remaining: self.player_energy.available(),
+            });
+        }
+        let moved_player = self
+            .move_entity(self.player, direction)
+            .unwrap_or(player_from);
+        if moved_player == player_from || self.actors.get(*ally).is_none() {
+            return Ok(());
+        }
+        let moved_ally = self.move_entity(*ally, direction).unwrap_or(ally_from);
+        if moved_ally == player_from {
+            self.events.push(GameEvent::AllyExtracted {
+                entity: self.player,
+                ally: *ally,
+                player_from,
+                player_to: moved_player,
+                ally_from,
+                ally_to: moved_ally,
+            });
+        }
+        self.player_visibility
+            .recompute(&self.map, moved_player, self.rules.player_field_of_view);
+        self.events.push(GameEvent::VisibilityUpdated {
+            observer: self.player,
+            origin: moved_player,
+        });
+        Ok(())
+    }
+
+    fn use_player_component_technique(
+        &mut self,
+        technique: &TechniqueId,
+        target: EntityId,
+        component: &BodyComponentId,
+        weapon_slot: u8,
+    ) -> Result<(), TechniqueUseError> {
+        if !self.player_skills.has_learned(technique) {
+            return Err(TechniqueUseError::NotLearned(technique.clone()));
+        }
+        let definition = self
+            .rules
+            .skills
+            .technique(technique)
+            .cloned()
+            .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
+        let Some(TechniqueAction::WeaponComponentAttack {
+            required_delivery,
+            accuracy_modifier,
+            energy_cost,
+        }) = definition.action()
+        else {
+            return Err(TechniqueUseError::NoActiveAction(technique.clone()));
+        };
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+        let target_state = self
+            .actors
+            .get(target)
+            .ok_or(TechniqueUseError::UnknownTarget(target))?;
+        if !self.player_visibility.is_visible(target_state.position()) {
+            return Err(TechniqueUseError::TargetNotVisible(target));
+        }
+        if target_state.body_component(component).is_none() {
+            return Err(TechniqueUseError::UnknownBodyComponent(component.clone()));
+        }
+        if self
+            .player_known_body_components
+            .get(&target)
+            .is_none_or(|known| !known.contains(component))
+        {
+            return Err(TechniqueUseError::BodyComponentNotIdentified {
+                target,
+                component: component.clone(),
+            });
+        }
+        let mut prepared = self
+            .prepare_targeted_attack(self.player, weapon_slot, target)
+            .map_err(TechniqueUseError::Attack)?;
+        if prepared.attack.delivery() != required_delivery {
+            return Err(TechniqueUseError::WeaponDeliveryMismatch {
+                required: required_delivery,
+                actual: prepared.attack.delivery(),
+            });
+        }
+        if !matches!(prepared.attack.area(), AttackArea::Single) {
+            return Err(TechniqueUseError::WeaponMustTargetSingleActor);
+        }
+        prepared.attack = prepared.attack.with_accuracy_modifier(
+            prepared
+                .attack
+                .accuracy_modifier()
+                .saturating_add(accuracy_modifier),
+        );
+        prepared.damage_target = AttackDamageTarget::Component(component.clone());
+
+        self.spend_prepared_attack_usage(&prepared, 1)
+            .map_err(TechniqueUseError::Attack)?;
+
+        self.player_energy
+            .spend(energy_cost)
+            .map_err(TechniqueUseError::Energy)?;
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        if energy_cost > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_cost,
+                remaining: self.player_energy.available(),
+            });
+        }
+        self.resolve_prepared_attack(prepared, ActionOrigin::Normal)
+            .map_err(TechniqueUseError::Attack)?;
+        if let Some(cooldown) = definition.cooldown() {
+            self.actors
+                .get_mut(self.player)
+                .ok_or(TechniqueUseError::MissingPlayer)?
+                .start_technique_cooldown(technique.clone(), self.turn, cooldown);
+            self.events.push(GameEvent::TechniqueCooldownStarted {
+                entity: self.player,
+                technique: technique.clone(),
+                remaining_phases: cooldown.get(),
+            });
+        }
+        Ok(())
+    }
+
+    fn use_player_weapon_technique_at(
+        &mut self,
+        technique: &TechniqueId,
+        target_at: GridPos,
+        weapon_slot: u8,
+    ) -> Result<(), TechniqueUseError> {
+        if !self.player_skills.has_learned(technique) {
+            return Err(TechniqueUseError::NotLearned(technique.clone()));
+        }
+        let definition = self
+            .rules
+            .skills
+            .technique(technique)
+            .cloned()
+            .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
+        if definition
+            .action()
+            .is_some_and(TechniqueAction::is_explosive_action)
+        {
+            return self.use_player_explosive_technique_at(technique, target_at, &definition);
+        }
+        if definition
+            .action()
+            .is_some_and(TechniqueAction::is_movement_aim_action)
+        {
+            return self.use_player_movement_technique_at(technique, target_at, &definition);
+        }
+        if definition
+            .action()
+            .is_some_and(TechniqueAction::is_stealth_world_aim_action)
+        {
+            return self.use_player_stealth_world_technique_at(technique, target_at, &definition);
+        }
+        if matches!(
+            definition.action(),
+            Some(TechniqueAction::WeaponBarrage { .. })
+        ) {
+            return self.use_player_weapon_barrage_stage(
+                technique,
+                target_at,
+                weapon_slot,
+                &definition,
+            );
+        }
+        let (energy_cost, prepared_overwatch) = match definition.action() {
+            Some(TechniqueAction::WeaponAttack { energy_cost, .. }) => (energy_cost, None),
+            Some(TechniqueAction::PrepareRangedOverwatch { .. }) => {
+                let preview =
+                    self.prepare_player_overwatch_preview(technique, weapon_slot, target_at, true)?;
+                let covered_cells = preview.cells().iter().map(|cell| cell.position).collect();
+                let reaction = PreparedReaction::ranged_overwatch(
+                    technique.clone(),
+                    weapon_slot,
+                    covered_cells,
+                )
+                .map_err(|_| TechniqueUseError::NoActiveAction(technique.clone()))?;
+                (0, Some(reaction))
+            }
+            _ => return Err(TechniqueUseError::NoActiveAction(technique.clone())),
+        };
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+        let prepared_attack = if prepared_overwatch.is_none() {
+            Some(self.prepare_player_weapon_technique_area(
+                technique,
+                weapon_slot,
+                target_at,
+                true,
+            )?)
+        } else {
+            None
+        };
+
+        if let Some(preparation_steps) = definition.preparation_steps() {
+            let payload = PreparedTechniquePayload {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: Some(weapon_slot),
+                target_at: Some(target_at),
+                drone_directive: None,
+                engineering_directive: None,
+                intrusion_directive: None,
+                electronic_directive: None,
+            };
+            let execute_now = match self.player_preparation.take() {
+                None => {
+                    self.player_preparation =
+                        Some(ActionPreparation::new(payload, preparation_steps));
+                    self.events.push(GameEvent::TechniquePreparationStarted {
+                        entity: self.player,
+                        technique: technique.clone(),
+                        remaining_steps: preparation_steps.get(),
+                    });
+                    false
+                }
+                Some(preparation) if preparation.payload() == &payload => {
+                    match preparation.advance() {
+                        PreparationAdvance::Preparing(preparation) => {
+                            let remaining_steps = preparation.remaining_steps().get();
+                            self.player_preparation = Some(preparation);
+                            self.events.push(GameEvent::TechniquePreparationAdvanced {
+                                entity: self.player,
+                                technique: technique.clone(),
+                                remaining_steps,
+                            });
+                            false
+                        }
+                        PreparationAdvance::Ready(_) => {
+                            self.events.push(GameEvent::TechniquePreparationCompleted {
+                                entity: self.player,
+                                technique: technique.clone(),
+                            });
+                            true
+                        }
+                    }
+                }
+                Some(preparation) => {
+                    let cancelled = preparation.cancel();
+                    self.events.push(GameEvent::TechniquePreparationCancelled {
+                        entity: self.player,
+                        technique: cancelled.technique,
+                        reason: PreparationCancellationReason::DifferentAction,
+                    });
+                    self.player_preparation =
+                        Some(ActionPreparation::new(payload, preparation_steps));
+                    self.events.push(GameEvent::TechniquePreparationStarted {
+                        entity: self.player,
+                        technique: technique.clone(),
+                        remaining_steps: preparation_steps.get(),
+                    });
+                    false
+                }
+            };
+            if !execute_now {
+                return Ok(());
+            }
+        }
+
+        self.player_energy
+            .spend(energy_cost)
+            .map_err(TechniqueUseError::Energy)?;
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        if energy_cost > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_cost,
+                remaining: self.player_energy.available(),
+            });
+        }
+        if let Some(reaction) = prepared_overwatch {
+            let kind = reaction.kind();
+            self.actors
+                .get_mut(self.player)
+                .ok_or(TechniqueUseError::MissingPlayer)?
+                .prepare_reaction(reaction);
+            self.events.push(GameEvent::ReactionPrepared {
+                entity: self.player,
+                technique: technique.clone(),
+                reaction: kind,
+            });
+        }
+        if let Some(prepared_attack) = prepared_attack {
+            let recovery = prepared_attack.attack.recovery_after_attack();
+            self.resolve_prepared_attack(prepared_attack, ActionOrigin::Normal)
+                .map_err(TechniqueUseError::Attack)?;
+            if let Some(recovery) = recovery {
+                self.start_action_recovery(self.player, recovery);
+            }
+        }
+        if let Some(cooldown) = definition.cooldown() {
+            self.actors
+                .get_mut(self.player)
+                .ok_or(TechniqueUseError::MissingPlayer)?
+                .start_technique_cooldown(technique.clone(), self.turn, cooldown);
+            self.events.push(GameEvent::TechniqueCooldownStarted {
+                entity: self.player,
+                technique: technique.clone(),
+                remaining_phases: cooldown.get(),
+            });
+        }
+        Ok(())
+    }
+
+    fn prepare_player_movement_technique_preview(
+        &self,
+        technique: &TechniqueId,
+        target_at: GridPos,
+        validate_context: bool,
+    ) -> Result<AttackPreview, TechniqueUseError> {
+        let action = self
+            .rules
+            .skills
+            .technique(technique)
+            .and_then(TechniqueDefinition::action)
+            .filter(|action| action.is_movement_aim_action())
+            .ok_or_else(|| TechniqueUseError::NoActiveAction(technique.clone()))?;
+        let origin = self
+            .player_position()
+            .ok_or(TechniqueUseError::MissingPlayer)?;
+        if !self.map.contains(target_at) {
+            return Err(TechniqueUseError::Attack(AttackError::TargetOutsideMap(
+                target_at,
+            )));
+        }
+        let (direction, distance) = cardinal_direction_and_distance(origin, target_at)
+            .ok_or(TechniqueUseError::InvalidMovementDestination(target_at))?;
+        let required_distance = match action {
+            TechniqueAction::CautiousMove { .. }
+            | TechniqueAction::PrepareEvasiveStep { .. }
+            | TechniqueAction::SilentMove { .. } => 1,
+            TechniqueAction::TraverseSingleObstacle {
+                maximum_distance, ..
+            } => maximum_distance,
+            TechniqueAction::PropelledMove { distance, .. } => u16::from(distance),
+            _ => return Err(TechniqueUseError::NoActiveAction(technique.clone())),
+        };
+        if distance != required_distance {
+            return Err(TechniqueUseError::InvalidMovementDestination(target_at));
+        }
+        let cells = (1..=distance)
+            .map(|step| AttackAreaCell {
+                position: step_cardinal(origin, direction, step),
+                step,
+            })
+            .collect::<Vec<_>>();
+        if validate_context {
+            if self
+                .actor_failed_component_effects(self.player)
+                .into_iter()
+                .any(|effect| effect == ComponentFailureEffect::DisableMovement)
+            {
+                return Err(TechniqueUseError::MovementDisabled);
+            }
+            if self.map.is_protected(origin) != self.map.is_protected(target_at) {
+                return Err(TechniqueUseError::InvalidMovementDestination(target_at));
+            }
+            if !self.player_visibility.is_visible(target_at) {
+                return Err(TechniqueUseError::MovementPositionNotVisible(target_at));
+            }
+            match action {
+                TechniqueAction::TraverseSingleObstacle { .. } => {
+                    let over = cells[0].position;
+                    if self
+                        .map
+                        .tile(over)
+                        .is_none_or(|tile| tile.terrain != Terrain::DeepWater)
+                    {
+                        return Err(TechniqueUseError::NoCompatibleObstacle(over));
+                    }
+                    if !self.map.is_walkable(target_at)
+                        || self.actors.entity_at(target_at).is_some()
+                    {
+                        return Err(TechniqueUseError::MovementPathBlocked(target_at));
+                    }
+                }
+                _ => {
+                    for cell in &cells {
+                        if !self.map.is_walkable(cell.position)
+                            || self.actors.entity_at(cell.position).is_some()
+                        {
+                            return Err(TechniqueUseError::MovementPathBlocked(cell.position));
+                        }
+                    }
+                }
+            }
+        }
+        Ok(AttackPreview::new(origin, target_at, cells))
+    }
+
+    fn prepare_player_explosive_technique_preview(
+        &self,
+        technique: &TechniqueId,
+        target_at: GridPos,
+        validate_context: bool,
+    ) -> Result<AttackPreview, TechniqueUseError> {
+        let definition = self
+            .rules
+            .skills
+            .technique(technique)
+            .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
+        let action = definition
+            .action()
+            .filter(|action| action.is_explosive_action())
+            .ok_or_else(|| TechniqueUseError::NoActiveAction(technique.clone()))?;
+        if action.requires_active_emission()
+            && self
+                .player_silenced_emissions
+                .contains(&SignatureChannel::ActiveEmission)
+        {
+            return Err(TechniqueUseError::ActiveEmissionSilenced);
+        }
+        let origin = self
+            .player_position()
+            .ok_or(TechniqueUseError::MissingPlayer)?;
+        if !self.map.contains(target_at) {
+            return Err(TechniqueUseError::Attack(AttackError::TargetOutsideMap(
+                target_at,
+            )));
+        }
+        if validate_context {
+            if self.map.is_protected(origin) || self.map.is_protected(target_at) {
+                return Err(TechniqueUseError::Attack(AttackError::ProtectedZone));
+            }
+            if !self.player_visibility.is_visible(target_at) {
+                return Err(TechniqueUseError::ExplosivePositionNotVisible(target_at));
+            }
+        }
+
+        let cells = match action {
+            TechniqueAction::DeployExplosive {
+                deployment,
+                primary_payload,
+                ..
+            } => {
+                self.validate_explosive_deployment_target(origin, target_at, deployment)?;
+                if validate_context && definition.activation_cost().is_none() {
+                    self.stage_technique_material_removal(definition)?;
+                }
+                primary_payload.into_payload().footprint().affected_cells(
+                    &self.map,
+                    target_at,
+                    facing_toward(origin, target_at),
+                )
+            }
+            TechniqueAction::NeutralizeExplosive { range, .. } => {
+                self.validate_explosive_operation_target(origin, target_at, range)?;
+                self.explosive_device_at(target_at, |device| {
+                    device.is_identified()
+                        && !device.is_neutralized()
+                        && device.triggered_on().is_none()
+                })?;
+                vec![AttackAreaCell {
+                    position: target_at,
+                    step: grid_distance(origin, target_at),
+                }]
+            }
+            TechniqueAction::RecoverNeutralizedExplosive { range } => {
+                self.validate_explosive_operation_target(origin, target_at, range)?;
+                self.explosive_device_at(target_at, |device| device.is_neutralized())?;
+                vec![AttackAreaCell {
+                    position: target_at,
+                    step: grid_distance(origin, target_at),
+                }]
+            }
+            TechniqueAction::TriggerRemoteExplosive { range, .. } => {
+                self.validate_explosive_operation_target(origin, target_at, range)?;
+                self.explosive_device_at(target_at, |device| {
+                    device.is_identified()
+                        && !device.is_neutralized()
+                        && device.triggered_on().is_none()
+                        && matches!(
+                            device.activation(),
+                            ExplosiveActivation::Remote { maximum_link_range }
+                                if is_within_chebyshev_range(
+                                    origin,
+                                    device.position(),
+                                    maximum_link_range,
+                                )
+                        )
+                })?;
+                vec![AttackAreaCell {
+                    position: target_at,
+                    step: grid_distance(origin, target_at),
+                }]
+            }
+            TechniqueAction::ProgramExplosives { range, .. } => {
+                self.validate_explosive_operation_target(origin, target_at, range)?;
+                self.explosive_device_at(target_at, |device| {
+                    device.is_identified()
+                        && !device.is_neutralized()
+                        && device.triggered_on().is_none()
+                        && matches!(
+                            device.activation(),
+                            ExplosiveActivation::Remote { maximum_link_range }
+                                if is_within_chebyshev_range(
+                                    origin,
+                                    device.position(),
+                                    maximum_link_range,
+                                )
+                        )
+                })?;
+                vec![AttackAreaCell {
+                    position: target_at,
+                    step: grid_distance(origin, target_at),
+                }]
+            }
+            _ => return Err(TechniqueUseError::NoActiveAction(technique.clone())),
+        };
+        Ok(AttackPreview::new(origin, target_at, cells))
+    }
+
+    fn prepare_player_stealth_world_preview(
+        &self,
+        technique: &TechniqueId,
+        target_at: GridPos,
+        validate_context: bool,
+    ) -> Result<AttackPreview, TechniqueUseError> {
+        let definition = self
+            .rules
+            .skills
+            .technique(technique)
+            .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
+        let action = definition
+            .action()
+            .filter(|action| action.is_stealth_world_aim_action())
+            .ok_or_else(|| TechniqueUseError::NoActiveAction(technique.clone()))?;
+        let origin = self
+            .player_position()
+            .ok_or(TechniqueUseError::MissingPlayer)?;
+        if !self.map.contains(target_at) {
+            return Err(TechniqueUseError::Attack(AttackError::TargetOutsideMap(
+                target_at,
+            )));
+        }
+        let range = match action {
+            TechniqueAction::DeploySoundDecoy { range, .. }
+            | TechniqueAction::CamouflageExplosive { range, .. } => range,
+            _ => unreachable!("stealth world action was filtered"),
+        };
+        if !is_within_chebyshev_range(origin, target_at, range) {
+            return Err(TechniqueUseError::ExplosivePositionOutOfRange(target_at));
+        }
+        if validate_context {
+            if self.map.is_protected(origin) || self.map.is_protected(target_at) {
+                return Err(TechniqueUseError::Attack(AttackError::ProtectedZone));
+            }
+            if !self.player_visibility.is_visible(target_at) {
+                return Err(TechniqueUseError::ExplosivePositionNotVisible(target_at));
+            }
+            if !has_line_of_sight(&self.map, origin, target_at, true) {
+                return Err(TechniqueUseError::ExplosiveLineBlocked(target_at));
+            }
+            if definition.activation_cost().is_none() {
+                self.stage_technique_material_removal(definition)?;
+            }
+            match action {
+                TechniqueAction::DeploySoundDecoy { .. } => {
+                    if !self.map.is_walkable(target_at)
+                        || self.sound_emitters.at(target_at).next().is_some()
+                    {
+                        return Err(TechniqueUseError::ExplosivePlacementBlocked(target_at));
+                    }
+                }
+                TechniqueAction::CamouflageExplosive {
+                    optical_difficulty_bonus,
+                    ..
+                } => {
+                    self.explosive_device_at(target_at, |device| {
+                        device.is_identified()
+                            && device.triggered_on().is_none()
+                            && device.optical_concealment() < optical_difficulty_bonus
+                    })?;
+                }
+                _ => unreachable!("stealth world action was filtered"),
+            }
+        }
+        Ok(AttackPreview::new(
+            origin,
+            target_at,
+            vec![AttackAreaCell {
+                position: target_at,
+                step: grid_distance(origin, target_at),
+            }],
+        ))
+    }
+
+    fn use_player_stealth_world_technique_at(
+        &mut self,
+        technique: &TechniqueId,
+        target_at: GridPos,
+        definition: &TechniqueDefinition,
+    ) -> Result<(), TechniqueUseError> {
+        if !self.player_skills.has_learned(technique) {
+            return Err(TechniqueUseError::NotLearned(technique.clone()));
+        }
+        let action = definition
+            .action()
+            .filter(|action| action.is_stealth_world_aim_action())
+            .ok_or_else(|| TechniqueUseError::NoActiveAction(technique.clone()))?;
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+        self.prepare_player_stealth_world_preview(technique, target_at, true)?;
+        let inventory = definition
+            .activation_cost()
+            .is_none()
+            .then(|| self.stage_technique_material_removal(definition))
+            .transpose()?;
+        let active_manifestations = self
+            .manifested_sound_emitters
+            .values()
+            .filter(|reservation| reservation.technique == *technique)
+            .count();
+        let (activation_energy, activation_heat, activation_bandwidth) =
+            self.preflight_intrinsic_activation(definition, active_manifestations)?;
+        if let Some(preparation_steps) = definition.preparation_steps() {
+            let payload = PreparedTechniquePayload {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+                target_at: Some(target_at),
+                drone_directive: None,
+                engineering_directive: None,
+                intrusion_directive: None,
+                electronic_directive: None,
+            };
+            if !self.advance_player_technique_preparation(payload, preparation_steps) {
+                return Ok(());
+            }
+        }
+
+        if let Some(inventory) = inventory {
+            self.player_inventory = inventory;
+        }
+        self.commit_intrinsic_activation(activation_energy, activation_heat, activation_bandwidth)?;
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        match action {
+            TechniqueAction::DeploySoundDecoy {
+                intensity,
+                duration_phases,
+                integrity,
+                ..
+            } => {
+                let emitter = self
+                    .sound_emitters
+                    .deploy(target_at, intensity, duration_phases, integrity)
+                    .map_err(|_| TechniqueUseError::ExplosiveStateChanged)?;
+                if activation_bandwidth > 0 {
+                    self.manifested_sound_emitters.insert(
+                        emitter,
+                        TechniqueManifestationReservation {
+                            technique: technique.clone(),
+                            bandwidth: activation_bandwidth,
+                        },
+                    );
+                }
+                self.events.push(GameEvent::SoundEmitterDeployed {
+                    entity: self.player,
+                    emitter,
+                    at: target_at,
+                    intensity,
+                    remaining_phases: duration_phases,
+                });
+            }
+            TechniqueAction::CamouflageExplosive {
+                optical_difficulty_bonus,
+                ..
+            } => {
+                let device = self.explosive_device_at(target_at, |device| {
+                    device.is_identified()
+                        && device.triggered_on().is_none()
+                        && device.optical_concealment() < optical_difficulty_bonus
+                })?;
+                self.explosive_devices
+                    .set_optical_concealment(device, optical_difficulty_bonus)
+                    .map_err(|_| TechniqueUseError::ExplosiveStateChanged)?;
+                self.events.push(GameEvent::ExplosiveCamouflaged {
+                    entity: self.player,
+                    device,
+                    at: target_at,
+                    optical_difficulty_bonus,
+                });
+            }
+            _ => unreachable!("stealth world action was filtered"),
+        }
+        self.start_player_technique_cooldown(technique, definition);
+        Ok(())
+    }
+
+    fn validate_explosive_deployment_target(
+        &self,
+        origin: GridPos,
+        target_at: GridPos,
+        deployment: ExplosiveDeployment,
+    ) -> Result<(), TechniqueUseError> {
+        match deployment {
+            ExplosiveDeployment::ThrownImpact { range, .. } => {
+                if target_at == origin || !is_within_chebyshev_range(origin, target_at, range) {
+                    return Err(TechniqueUseError::ExplosivePositionOutOfRange(target_at));
+                }
+                if !has_line_of_sight(&self.map, origin, target_at, true) {
+                    return Err(TechniqueUseError::ExplosiveLineBlocked(target_at));
+                }
+            }
+            ExplosiveDeployment::AdjacentTimed { target, .. }
+            | ExplosiveDeployment::AdjacentRemote { target, .. } => {
+                if grid_distance(origin, target_at) != 1 {
+                    return Err(TechniqueUseError::ExplosivePositionOutOfRange(target_at));
+                }
+                self.validate_explosive_placement_kind(target_at, target)?;
+            }
+            ExplosiveDeployment::AdjacentProximity { .. } => {
+                if grid_distance(origin, target_at) != 1 {
+                    return Err(TechniqueUseError::ExplosivePositionOutOfRange(target_at));
+                }
+                self.validate_explosive_placement_kind(
+                    target_at,
+                    ExplosivePlacementTarget::FreeCell,
+                )?;
+            }
+        }
+        Ok(())
+    }
+
+    fn validate_explosive_placement_kind(
+        &self,
+        target_at: GridPos,
+        target: ExplosivePlacementTarget,
+    ) -> Result<(), TechniqueUseError> {
+        match target {
+            ExplosivePlacementTarget::KnownCell => Ok(()),
+            ExplosivePlacementTarget::FreeCell => {
+                if !self.map.is_walkable(target_at)
+                    || self.actors.entity_at(target_at).is_some()
+                    || self.explosive_devices.at(target_at).next().is_some()
+                {
+                    return Err(TechniqueUseError::ExplosivePlacementBlocked(target_at));
+                }
+                Ok(())
+            }
+            ExplosivePlacementTarget::DestructibleOccupant => {
+                let compatible = self
+                    .actors
+                    .entity_at(target_at)
+                    .and_then(|entity| self.actors.get(entity))
+                    .is_some_and(|actor| actor.destruction_effect().is_some());
+                if !compatible {
+                    return Err(TechniqueUseError::ExplosiveRequiresDestructible(target_at));
+                }
+                Ok(())
+            }
+            ExplosivePlacementTarget::StructuralSupport { .. } => {
+                if !matches!(
+                    self.map.tile(target_at).map(|tile| tile.terrain),
+                    Some(Terrain::Wall)
+                ) {
+                    return Err(TechniqueUseError::ExplosiveRequiresStructuralSupport(
+                        target_at,
+                    ));
+                }
+                Ok(())
+            }
+        }
+    }
+
+    fn validate_explosive_operation_target(
+        &self,
+        origin: GridPos,
+        target_at: GridPos,
+        range: u16,
+    ) -> Result<(), TechniqueUseError> {
+        if !is_within_chebyshev_range(origin, target_at, range) {
+            return Err(TechniqueUseError::ExplosivePositionOutOfRange(target_at));
+        }
+        if !has_line_of_sight(&self.map, origin, target_at, true) {
+            return Err(TechniqueUseError::ExplosiveLineBlocked(target_at));
+        }
+        Ok(())
+    }
+
+    fn explosive_device_at(
+        &self,
+        position: GridPos,
+        predicate: impl Fn(&crate::explosive::ExplosiveDevice) -> bool,
+    ) -> Result<ExplosiveDeviceId, TechniqueUseError> {
+        self.explosive_devices
+            .at(position)
+            .find(|device| predicate(device))
+            .map(|device| device.id())
+            .ok_or(TechniqueUseError::NoCompatibleExplosive(position))
+    }
+
+    fn stage_technique_material_removal(
+        &self,
+        definition: &TechniqueDefinition,
+    ) -> Result<Inventory, TechniqueUseError> {
+        if definition.material_cost().is_none() {
+            return Err(TechniqueUseError::MissingExplosiveMaterialRule(
+                definition.id().clone(),
+            ));
+        }
+        let mut inventory = self.player_inventory.clone();
+        for cost in definition.material_costs() {
+            let available = inventory
+                .iter()
+                .filter(|entry| entry.item() == cost.item())
+                .map(|entry| entry.quantity())
+                .fold(0_u16, u16::saturating_add);
+            if available < cost.quantity() {
+                return Err(TechniqueUseError::MissingMaterial {
+                    item: cost.item().clone(),
+                    required: cost.quantity(),
+                    available,
+                });
+            }
+            let mut remaining = cost.quantity();
+            let stacks = inventory
+                .iter()
+                .filter(|entry| entry.item() == cost.item())
+                .map(|entry| (entry.instance(), entry.quantity()))
+                .collect::<Vec<_>>();
+            for (instance, quantity) in stacks {
+                if remaining == 0 {
+                    break;
+                }
+                let removed = remaining.min(quantity);
+                inventory
+                    .remove(instance, removed)
+                    .map_err(|_| TechniqueUseError::InventoryChanged)?;
+                remaining -= removed;
+            }
+        }
+        Ok(inventory)
+    }
+
+    fn advance_player_technique_preparation(
+        &mut self,
+        payload: PreparedTechniquePayload,
+        preparation_steps: crate::time::TimeUnits,
+    ) -> bool {
+        let technique = payload.technique.clone();
+        match self.player_preparation.take() {
+            None => {
+                self.player_preparation = Some(ActionPreparation::new(payload, preparation_steps));
+                self.events.push(GameEvent::TechniquePreparationStarted {
+                    entity: self.player,
+                    technique,
+                    remaining_steps: preparation_steps.get(),
+                });
+                false
+            }
+            Some(preparation) if preparation.payload() == &payload => match preparation.advance() {
+                PreparationAdvance::Preparing(preparation) => {
+                    let remaining_steps = preparation.remaining_steps().get();
+                    self.player_preparation = Some(preparation);
+                    self.events.push(GameEvent::TechniquePreparationAdvanced {
+                        entity: self.player,
+                        technique,
+                        remaining_steps,
+                    });
+                    false
+                }
+                PreparationAdvance::Ready(_) => {
+                    self.events.push(GameEvent::TechniquePreparationCompleted {
+                        entity: self.player,
+                        technique,
+                    });
+                    true
+                }
+            },
+            Some(preparation) => {
+                let cancelled = preparation.cancel();
+                self.release_player_preparation_bandwidth();
+                self.events.push(GameEvent::TechniquePreparationCancelled {
+                    entity: self.player,
+                    technique: cancelled.technique,
+                    reason: PreparationCancellationReason::DifferentAction,
+                });
+                self.player_preparation = Some(ActionPreparation::new(payload, preparation_steps));
+                self.events.push(GameEvent::TechniquePreparationStarted {
+                    entity: self.player,
+                    technique,
+                    remaining_steps: preparation_steps.get(),
+                });
+                false
+            }
+        }
+    }
+
+    fn use_player_movement_technique_at(
+        &mut self,
+        technique: &TechniqueId,
+        target_at: GridPos,
+        definition: &TechniqueDefinition,
+    ) -> Result<(), TechniqueUseError> {
+        if !self.player_skills.has_learned(technique) {
+            return Err(TechniqueUseError::NotLearned(technique.clone()));
+        }
+        let action = definition
+            .action()
+            .filter(|action| action.is_movement_aim_action())
+            .ok_or_else(|| TechniqueUseError::NoActiveAction(technique.clone()))?;
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+        let preview = self.prepare_player_movement_technique_preview(technique, target_at, true)?;
+        if let Some(preparation_steps) = definition.preparation_steps() {
+            let payload = PreparedTechniquePayload {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+                target_at: Some(target_at),
+                drone_directive: None,
+                engineering_directive: None,
+                intrusion_directive: None,
+                electronic_directive: None,
+            };
+            if !self.advance_player_technique_preparation(payload, preparation_steps) {
+                return Ok(());
+            }
+        }
+
+        let (energy_cost, heat_generated) = match action {
+            TechniqueAction::TraverseSingleObstacle { energy_cost, .. } => (energy_cost, 0),
+            TechniqueAction::PropelledMove {
+                energy_cost,
+                heat_generated,
+                ..
+            } => (energy_cost, heat_generated),
+            _ => (0, 0),
+        };
+        self.player_energy
+            .spend(energy_cost)
+            .map_err(TechniqueUseError::Energy)?;
+        self.generate_player_heat(heat_generated)?;
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        if energy_cost > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_cost,
+                remaining: self.player_energy.available(),
+            });
+        }
+
+        let origin = preview.origin();
+        let (direction, _) = cardinal_direction_and_distance(origin, target_at)
+            .ok_or(TechniqueUseError::InvalidMovementDestination(target_at))?;
+        match action {
+            TechniqueAction::CautiousMove {
+                interception_evasion_modifier,
+            } => {
+                let _ = self.move_entity_with_interception_evasion(
+                    self.player,
+                    direction,
+                    interception_evasion_modifier,
+                );
+            }
+            TechniqueAction::TraverseSingleObstacle { .. } => {
+                if self.resolve_voluntary_leave_interceptions(self.player, origin, target_at, 0)
+                    && self.actors.get(self.player).is_some()
+                {
+                    let over = preview.cells()[0].position;
+                    self.actors
+                        .move_to(self.player, target_at)
+                        .expect("traversal destination was preflighted");
+                    self.end_player_anchor();
+                    if self.player_trail_break.is_none()
+                        && self
+                            .rules
+                            .enabled_system_features
+                            .iter()
+                            .any(|feature| feature.as_str() == "core:traces")
+                    {
+                        self.movement_traces.record(
+                            origin,
+                            direction,
+                            self.turn,
+                            self.rules.movement_traces,
+                        );
+                        self.movement_traces.record(
+                            over,
+                            direction,
+                            self.turn,
+                            self.rules.movement_traces,
+                        );
+                    }
+                    self.events.push(GameEvent::EntityMoved {
+                        entity: self.player,
+                        from: origin,
+                        to: target_at,
+                    });
+                    self.update_player_movement_concealment(target_at);
+                    self.advance_player_trail_break_step();
+                    self.emit_noise(Some(self.player), target_at, 10);
+                    self.events.push(GameEvent::ObstacleTraversed {
+                        entity: self.player,
+                        from: origin,
+                        over,
+                        to: target_at,
+                    });
+                    self.resolve_ranged_overwatch_entries(self.player, target_at);
+                }
+            }
+            TechniqueAction::PrepareEvasiveStep {
+                trigger_energy_cost,
+            } => {
+                let reaction = PreparedReaction::evasive_step(
+                    technique.clone(),
+                    target_at,
+                    trigger_energy_cost,
+                );
+                let kind = reaction.kind();
+                self.actors
+                    .get_mut(self.player)
+                    .ok_or(TechniqueUseError::MissingPlayer)?
+                    .prepare_reaction(reaction);
+                self.events.push(GameEvent::ReactionPrepared {
+                    entity: self.player,
+                    technique: technique.clone(),
+                    reaction: kind,
+                });
+            }
+            TechniqueAction::PropelledMove { distance, .. } => {
+                for _ in 0..distance {
+                    let before = self.player_position();
+                    let Ok(after) = self.move_entity(self.player, direction) else {
+                        break;
+                    };
+                    if before == Some(after) || self.actors.get(self.player).is_none() {
+                        break;
+                    }
+                }
+            }
+            TechniqueAction::SilentMove {
+                noise_reduction,
+                minimum_time_units,
+            } => {
+                if self.player_low_profile.is_some() {
+                    return Err(TechniqueUseError::IncompatibleStealthPosture);
+                }
+                if minimum_time_units > 1 {
+                    self.events.push(GameEvent::MovementTimeCommitted {
+                        entity: self.player,
+                        time_units: minimum_time_units,
+                    });
+                }
+                let _ = self.move_entity_with_interception_evasion_and_noise(
+                    self.player,
+                    direction,
+                    0,
+                    noise_reduction,
+                );
+            }
+            _ => return Err(TechniqueUseError::NoActiveAction(technique.clone())),
+        }
+        if let Some(position) = self.player_position() {
+            self.player_visibility
+                .recompute(&self.map, position, self.rules.player_field_of_view);
+            self.events.push(GameEvent::VisibilityUpdated {
+                observer: self.player,
+                origin: position,
+            });
+        }
+        if let Some(cooldown) = definition.cooldown() {
+            self.actors
+                .get_mut(self.player)
+                .ok_or(TechniqueUseError::MissingPlayer)?
+                .start_technique_cooldown(technique.clone(), self.turn, cooldown);
+            self.events.push(GameEvent::TechniqueCooldownStarted {
+                entity: self.player,
+                technique: technique.clone(),
+                remaining_phases: cooldown.get(),
+            });
+        }
+        Ok(())
+    }
+
+    fn use_player_explosive_technique_at(
+        &mut self,
+        technique: &TechniqueId,
+        target_at: GridPos,
+        definition: &TechniqueDefinition,
+    ) -> Result<(), TechniqueUseError> {
+        let action = definition
+            .action()
+            .filter(|action| action.is_explosive_action())
+            .ok_or_else(|| TechniqueUseError::NoActiveAction(technique.clone()))?;
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+        self.prepare_player_explosive_technique_preview(technique, target_at, true)?;
+
+        let prepared_inventory = (matches!(action, TechniqueAction::DeployExplosive { .. })
+            && definition.activation_cost().is_none())
+        .then(|| self.stage_technique_material_removal(definition))
+        .transpose()?;
+        let active_manifestations = self
+            .manifested_explosives
+            .values()
+            .filter(|reservation| reservation.technique == *technique)
+            .count();
+        let (intrinsic_energy, intrinsic_heat, intrinsic_bandwidth) =
+            self.preflight_intrinsic_activation(definition, active_manifestations)?;
+        let bandwidth_required = match action {
+            TechniqueAction::TriggerRemoteExplosive {
+                bandwidth_required, ..
+            }
+            | TechniqueAction::ProgramExplosives {
+                bandwidth_required, ..
+            } => bandwidth_required,
+            _ => 0,
+        };
+        let has_preparation = definition.preparation_steps().is_some();
+        if let Some(preparation_steps) = definition.preparation_steps() {
+            let payload = PreparedTechniquePayload {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+                target_at: Some(target_at),
+                drone_directive: None,
+                engineering_directive: None,
+                intrusion_directive: None,
+                electronic_directive: None,
+            };
+            let continues_existing = self
+                .player_preparation
+                .as_ref()
+                .is_some_and(|preparation| preparation.payload() == &payload);
+            if !continues_existing {
+                self.release_player_preparation_bandwidth();
+                self.reserve_player_bandwidth(bandwidth_required)?;
+                self.player_preparation_bandwidth = bandwidth_required;
+            }
+            let execute_now = match self.player_preparation.take() {
+                None => {
+                    self.player_preparation =
+                        Some(ActionPreparation::new(payload, preparation_steps));
+                    self.events.push(GameEvent::TechniquePreparationStarted {
+                        entity: self.player,
+                        technique: technique.clone(),
+                        remaining_steps: preparation_steps.get(),
+                    });
+                    false
+                }
+                Some(preparation) if preparation.payload() == &payload => {
+                    match preparation.advance() {
+                        PreparationAdvance::Preparing(preparation) => {
+                            let remaining_steps = preparation.remaining_steps().get();
+                            self.player_preparation = Some(preparation);
+                            self.events.push(GameEvent::TechniquePreparationAdvanced {
+                                entity: self.player,
+                                technique: technique.clone(),
+                                remaining_steps,
+                            });
+                            false
+                        }
+                        PreparationAdvance::Ready(_) => {
+                            self.events.push(GameEvent::TechniquePreparationCompleted {
+                                entity: self.player,
+                                technique: technique.clone(),
+                            });
+                            true
+                        }
+                    }
+                }
+                Some(preparation) => {
+                    let cancelled = preparation.cancel();
+                    self.events.push(GameEvent::TechniquePreparationCancelled {
+                        entity: self.player,
+                        technique: cancelled.technique,
+                        reason: PreparationCancellationReason::DifferentAction,
+                    });
+                    self.player_preparation =
+                        Some(ActionPreparation::new(payload, preparation_steps));
+                    self.events.push(GameEvent::TechniquePreparationStarted {
+                        entity: self.player,
+                        technique: technique.clone(),
+                        remaining_steps: preparation_steps.get(),
+                    });
+                    false
+                }
+            };
+            if !execute_now {
+                return Ok(());
+            }
+        } else {
+            self.reserve_player_bandwidth(bandwidth_required)?;
+        }
+
+        let energy_cost = match action {
+            TechniqueAction::NeutralizeExplosive { energy_cost, .. }
+            | TechniqueAction::TriggerRemoteExplosive { energy_cost, .. }
+            | TechniqueAction::ProgramExplosives { energy_cost, .. } => energy_cost,
+            _ => 0,
+        }
+        .saturating_add(intrinsic_energy);
+        self.player_energy
+            .spend(energy_cost)
+            .map_err(TechniqueUseError::Energy)?;
+        if let Some(inventory) = prepared_inventory {
+            self.player_inventory = inventory;
+        }
+        self.generate_player_heat(intrinsic_heat)?;
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        if energy_cost > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_cost,
+                remaining: self.player_energy.available(),
+            });
+        }
+
+        match action {
+            TechniqueAction::DeployExplosive {
+                deployment,
+                primary_payload,
+                secondary_payload,
+            } => {
+                let material = definition
+                    .manifestation_item()
+                    .or_else(|| definition.material_cost().map(|cost| cost.item()))
+                    .expect("deployment manifestation was validated")
+                    .clone();
+                let mut placed_at = target_at;
+                let activation = match deployment {
+                    ExplosiveDeployment::ThrownImpact {
+                        exact_placement_modifier,
+                        ..
+                    } => {
+                        let coordination =
+                            self.player_primary_attributes().map_or(5, |attributes| {
+                                attributes.value(PrimaryAttribute::Coordination)
+                            });
+                        let chance =
+                            (70_i16 + 4 * (i16::from(coordination) - 5) + exact_placement_modifier)
+                                .clamp(5, 95) as u8;
+                        let roll = self.rng.percentile();
+                        if roll > chance {
+                            let directions = [
+                                Direction::North,
+                                Direction::East,
+                                Direction::South,
+                                Direction::West,
+                            ];
+                            let index = self
+                                .rng
+                                .usize_inclusive(0, directions.len() - 1)
+                                .unwrap_or(0);
+                            let deviated = target_at.step(directions[index]);
+                            if self.map.contains(deviated)
+                                && has_line_of_sight(&self.map, target_at, deviated, true)
+                            {
+                                placed_at = deviated;
+                            }
+                        }
+                        self.events.push(GameEvent::ExplosivePlacementResolved {
+                            entity: self.player,
+                            aimed_at: target_at,
+                            placed_at,
+                            chance,
+                            roll,
+                        });
+                        ExplosiveActivation::Timed {
+                            trigger_turn: self.turn,
+                        }
+                    }
+                    ExplosiveDeployment::AdjacentTimed { delay_turns, .. } => {
+                        ExplosiveActivation::Timed {
+                            trigger_turn: self.turn.saturating_add(u64::from(delay_turns)),
+                        }
+                    }
+                    ExplosiveDeployment::AdjacentProximity {
+                        arming_delay_turns,
+                        trigger_radius,
+                    } => ExplosiveActivation::Proximity {
+                        armed_turn: self.turn.saturating_add(u64::from(arming_delay_turns)),
+                        radius: trigger_radius,
+                    },
+                    ExplosiveDeployment::AdjacentRemote {
+                        maximum_link_range, ..
+                    } => ExplosiveActivation::Remote { maximum_link_range },
+                };
+                let mut payloads = vec![ScheduledExplosivePayload::new(
+                    0,
+                    primary_payload.into_payload(),
+                )];
+                if let Some(secondary) = secondary_payload {
+                    payloads.push(ScheduledExplosivePayload::new(
+                        secondary.delay_after_first(),
+                        secondary.payload().into_payload(),
+                    ));
+                }
+                let device = self
+                    .explosive_devices
+                    .deploy(
+                        material.clone(),
+                        Some(self.player),
+                        placed_at,
+                        facing_toward(self.player_position().unwrap_or(placed_at), target_at),
+                        activation,
+                        true,
+                        payloads,
+                    )
+                    .map_err(|_| TechniqueUseError::ExplosiveStateChanged)?;
+                if intrinsic_bandwidth > 0 {
+                    self.reserve_player_bandwidth(intrinsic_bandwidth)
+                        .expect("manifestation bandwidth was preflighted");
+                    self.manifested_explosives.insert(
+                        device,
+                        TechniqueManifestationReservation {
+                            technique: technique.clone(),
+                            bandwidth: intrinsic_bandwidth,
+                        },
+                    );
+                }
+                self.events.push(GameEvent::ExplosiveDeployed {
+                    entity: self.player,
+                    device,
+                    material,
+                    at: placed_at,
+                });
+                if matches!(deployment, ExplosiveDeployment::ThrownImpact { .. }) {
+                    self.resolve_explosive_devices();
+                }
+            }
+            TechniqueAction::NeutralizeExplosive { .. } => {
+                let device = self.explosive_device_at(target_at, |device| {
+                    device.is_identified()
+                        && !device.is_neutralized()
+                        && device.triggered_on().is_none()
+                })?;
+                self.explosive_devices
+                    .neutralize(device)
+                    .map_err(|_| TechniqueUseError::ExplosiveStateChanged)?;
+                self.events.push(GameEvent::ExplosiveNeutralized {
+                    entity: self.player,
+                    device,
+                    at: target_at,
+                });
+            }
+            TechniqueAction::RecoverNeutralizedExplosive { .. } => {
+                let device =
+                    self.explosive_device_at(target_at, |device| device.is_neutralized())?;
+                let manifested = self.manifested_explosives.contains_key(&device);
+                let material = self
+                    .explosive_devices
+                    .get(device)
+                    .expect("selected device remains present")
+                    .material()
+                    .clone();
+                let mut inventory = self.player_inventory.clone();
+                if !manifested {
+                    let maximum_stack = self
+                        .inventory_stack_limit(&material)
+                        .ok_or_else(|| TechniqueUseError::UnknownMaterial(material.clone()))?;
+                    inventory
+                        .add(material.clone(), 1, maximum_stack)
+                        .map_err(|_| TechniqueUseError::InventoryFull)?;
+                }
+                self.explosive_devices
+                    .recover(device)
+                    .map_err(|_| TechniqueUseError::ExplosiveStateChanged)?;
+                let reservation = self.manifested_explosives.remove(&device);
+                self.release_manifestation_reservation(reservation);
+                self.player_inventory = inventory;
+                self.events.push(GameEvent::ExplosiveRecovered {
+                    entity: self.player,
+                    device,
+                    material,
+                });
+            }
+            TechniqueAction::TriggerRemoteExplosive { .. } => {
+                let origin = self
+                    .player_position()
+                    .ok_or(TechniqueUseError::MissingPlayer)?;
+                let device = self.explosive_device_at(target_at, |device| {
+                    device.is_identified()
+                        && !device.is_neutralized()
+                        && device.triggered_on().is_none()
+                        && matches!(
+                            device.activation(),
+                            ExplosiveActivation::Remote { maximum_link_range }
+                                if is_within_chebyshev_range(
+                                    origin,
+                                    device.position(),
+                                    maximum_link_range,
+                                )
+                        )
+                })?;
+                self.explosive_devices
+                    .trigger_remote(device, self.turn)
+                    .map_err(|_| TechniqueUseError::ExplosiveStateChanged)?;
+                self.resolve_explosive_devices();
+            }
+            TechniqueAction::ProgramExplosives {
+                range,
+                maximum_devices,
+                minimum_delay,
+                maximum_delay,
+                ..
+            } => {
+                let origin = self
+                    .player_position()
+                    .ok_or(TechniqueUseError::MissingPlayer)?;
+                let selected = self.explosive_device_at(target_at, |device| {
+                    device.is_identified()
+                        && !device.is_neutralized()
+                        && device.triggered_on().is_none()
+                        && matches!(
+                            device.activation(),
+                            ExplosiveActivation::Remote { maximum_link_range }
+                                if is_within_chebyshev_range(
+                                    origin,
+                                    device.position(),
+                                    maximum_link_range,
+                                )
+                        )
+                })?;
+                let mut candidates = self
+                    .explosive_devices
+                    .iter()
+                    .filter(|device| {
+                        device.is_identified()
+                            && !device.is_neutralized()
+                            && device.triggered_on().is_none()
+                            && matches!(
+                                device.activation(),
+                                ExplosiveActivation::Remote { maximum_link_range }
+                                    if is_within_chebyshev_range(
+                                        origin,
+                                        device.position(),
+                                        maximum_link_range,
+                                    )
+                            )
+                            && is_within_chebyshev_range(origin, device.position(), range)
+                            && has_line_of_sight(&self.map, origin, device.position(), true)
+                    })
+                    .map(|device| {
+                        (
+                            device.id() != selected,
+                            grid_distance(origin, device.position()),
+                            device.id(),
+                        )
+                    })
+                    .collect::<Vec<_>>();
+                candidates.sort_unstable();
+                let span = maximum_delay - minimum_delay + 1;
+                let orders = candidates
+                    .into_iter()
+                    .take(usize::from(maximum_devices))
+                    .enumerate()
+                    .map(|(index, (_, _, device))| {
+                        (
+                            device,
+                            minimum_delay + u16::try_from(index).unwrap_or(0) % span,
+                        )
+                    })
+                    .collect::<Vec<_>>();
+                self.explosive_devices
+                    .program(&orders, self.turn)
+                    .map_err(|_| TechniqueUseError::ExplosiveStateChanged)?;
+                self.events.push(GameEvent::ExplosivesProgrammed {
+                    entity: self.player,
+                    devices: orders,
+                });
+            }
+            _ => return Err(TechniqueUseError::NoActiveAction(technique.clone())),
+        }
+
+        if let Some(cooldown) = definition.cooldown() {
+            self.actors
+                .get_mut(self.player)
+                .ok_or(TechniqueUseError::MissingPlayer)?
+                .start_technique_cooldown(technique.clone(), self.turn, cooldown);
+            self.events.push(GameEvent::TechniqueCooldownStarted {
+                entity: self.player,
+                technique: technique.clone(),
+                remaining_phases: cooldown.get(),
+            });
+        }
+        if has_preparation {
+            self.release_player_preparation_bandwidth();
+        } else {
+            self.release_player_bandwidth(bandwidth_required);
+        }
+        Ok(())
+    }
+
+    fn use_player_weapon_barrage_stage(
+        &mut self,
+        technique: &TechniqueId,
+        target_at: GridPos,
+        weapon_slot: u8,
+        definition: &TechniqueDefinition,
+    ) -> Result<(), TechniqueUseError> {
+        let Some(TechniqueAction::WeaponBarrage {
+            stages,
+            accuracy_modifier,
+            energy_cost_per_stage,
+            ..
+        }) = definition.action()
+        else {
+            return Err(TechniqueUseError::NoActiveAction(technique.clone()));
+        };
+        if let Some(remaining) = self
+            .actors
+            .get(self.player)
+            .and_then(|actor| actor.technique_cooldown_remaining(technique))
+        {
+            return Err(TechniqueUseError::OnCooldown {
+                technique: technique.clone(),
+                remaining_phases: remaining.get(),
+            });
+        }
+        let preview =
+            self.prepare_player_barrage_preview(technique, weapon_slot, target_at, true)?;
+        let (attacker, attack, weapon, weapon_effects, module_use) = self
+            .attack_details(self.player, weapon_slot)
+            .map_err(TechniqueUseError::Attack)?;
+        let attack = attack
+            .with_accuracy_modifier(attack.accuracy_modifier().saturating_add(accuracy_modifier));
+        let mut prepared = Vec::with_capacity(preview.cells().len());
+        for cell in preview.cells() {
+            prepared.push(PreparedAttack {
+                attacker: self.player,
+                target: self
+                    .actors
+                    .entity_at(cell.position)
+                    .filter(|entity| *entity != self.player),
+                slot: weapon_slot,
+                origin: attacker.position(),
+                target_at: cell.position,
+                attack,
+                weapon: weapon.clone(),
+                weapon_effects: weapon_effects.clone(),
+                module_use,
+                affected_cells: vec![*cell],
+                forced_movement: None,
+                technique_on_hit_effect: None,
+                damage_target: AttackDamageTarget::Body,
+            });
+        }
+        let projectile_count = u16::try_from(prepared.len()).unwrap_or(u16::MAX);
+        if let Some(first) = prepared.first() {
+            self.spend_prepared_attack_usage(first, projectile_count)
+                .map_err(TechniqueUseError::Attack)?;
+        }
+        self.player_energy
+            .spend(energy_cost_per_stage)
+            .map_err(TechniqueUseError::Energy)?;
+        self.events.push(GameEvent::TechniqueUsed {
+            entity: self.player,
+            technique: technique.clone(),
+            observed_on_turn: self.turn,
+        });
+        if energy_cost_per_stage > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_cost_per_stage,
+                remaining: self.player_energy.available(),
+            });
+        }
+        let mut hit_targets = BTreeSet::new();
+        for shot in prepared {
+            let resolution = self
+                .resolve_prepared_attack(shot, ActionOrigin::Normal)
+                .map_err(TechniqueUseError::Attack)?;
+            hit_targets.extend(resolution.hit_targets);
+        }
+        if let Some(effect) = definition.on_hit_effect() {
+            for target in hit_targets {
+                if self.actors.get(target).is_some() {
+                    self.resolve_technique_on_hit_effect(self.player, target, technique, effect);
+                }
+            }
+        }
+
+        let remaining_stages = self
+            .player_weapon_barrage
+            .as_ref()
+            .map_or(stages, |barrage| barrage.remaining_stages)
+            .saturating_sub(1);
+        if remaining_stages > 0 {
+            self.player_weapon_barrage = Some(ActiveWeaponBarrage {
+                technique: technique.clone(),
+                target_at,
+                weapon_slot,
+                remaining_stages,
+            });
+        } else {
+            self.player_weapon_barrage = None;
+            if let Some(cooldown) = definition.cooldown() {
+                self.actors
+                    .get_mut(self.player)
+                    .ok_or(TechniqueUseError::MissingPlayer)?
+                    .start_technique_cooldown(technique.clone(), self.turn, cooldown);
+                self.events.push(GameEvent::TechniqueCooldownStarted {
+                    entity: self.player,
+                    technique: technique.clone(),
+                    remaining_phases: cooldown.get(),
+                });
+            }
+        }
+        self.events.push(GameEvent::WeaponBarrageStageResolved {
+            entity: self.player,
+            technique: technique.clone(),
+            remaining_stages,
+        });
+        Ok(())
+    }
+
+    fn prepare_player_weapon_technique_area(
+        &self,
+        technique: &TechniqueId,
+        slot: u8,
+        target_at: GridPos,
+        validate_context: bool,
+    ) -> Result<PreparedAttack, TechniqueUseError> {
+        let definition = self
+            .rules
+            .skills
+            .technique(technique)
+            .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
+        let Some(TechniqueAction::WeaponAttack {
+            required_delivery,
+            physical_damage_percentage,
+            armor_penetration_bonus,
+            accuracy_modifier,
+            recovery_time_units,
+            forced_movement,
+            melee_arc: Some(melee_arc),
+            ..
+        }) = definition.action()
+        else {
+            return Err(TechniqueUseError::NoActiveAction(technique.clone()));
+        };
+        if forced_movement.is_some() {
+            return Err(TechniqueUseError::WeaponMustTargetSingleActor);
+        }
+        if definition.engagement_requirement().is_some() {
+            return Err(TechniqueUseError::MissingTarget);
+        }
+        let (attacker, mut attack, weapon, weapon_effects, module_use) = self
+            .attack_details(self.player, slot)
+            .map_err(TechniqueUseError::Attack)?;
+        let origin = attacker.position();
+        if !self.map.contains(target_at) {
+            return Err(TechniqueUseError::Attack(AttackError::TargetOutsideMap(
+                target_at,
+            )));
+        }
+        if target_at == origin {
+            return Err(TechniqueUseError::Attack(AttackError::TargetIsOrigin));
+        }
+        if !matches!(attack.area(), AttackArea::Single) {
+            return Err(TechniqueUseError::WeaponMustTargetSingleActor);
+        }
+        if attack.delivery() != required_delivery {
+            return Err(TechniqueUseError::WeaponDeliveryMismatch {
+                required: required_delivery,
+                actual: attack.delivery(),
+            });
+        }
+        if let Some(percentage) = physical_damage_percentage {
+            attack = attack
+                .with_physical_damage_percentage(percentage)
+                .map_err(|_| TechniqueUseError::WeaponHasNoPhysicalDamage)?;
+        }
+        if armor_penetration_bonus > 0 {
+            attack = attack.with_additional_armor_penetration(armor_penetration_bonus);
+        }
+        attack = attack
+            .with_accuracy_modifier(attack.accuracy_modifier().saturating_add(accuracy_modifier));
+        if let Some(recovery_time_units) = recovery_time_units {
+            attack = attack.with_recovery_after_attack(
+                crate::time::TimeUnits::new(recovery_time_units)
+                    .expect("validated technique recovery remains positive"),
+            );
+        }
+        if validate_context {
+            if self.map.is_protected(origin) || self.map.is_protected(target_at) {
+                return Err(TechniqueUseError::Attack(AttackError::ProtectedZone));
+            }
+            if !attack.is_in_range(origin, target_at) {
+                return Err(TechniqueUseError::Attack(AttackError::PositionOutOfRange(
+                    target_at,
+                )));
+            }
+            if attack.requires_line_of_sight()
+                && !has_line_of_sight(&self.map, origin, target_at, true)
+            {
+                return Err(TechniqueUseError::Attack(AttackError::NoLineOfSightAt(
+                    target_at,
+                )));
+            }
+        }
+        let affected_cells = melee_arc.affected_cells(&self.map, origin, target_at);
+        Ok(PreparedAttack {
+            attacker: self.player,
+            target: self
+                .actors
+                .entity_at(target_at)
+                .filter(|entity| *entity != self.player),
+            slot,
+            origin,
+            target_at,
+            attack,
+            weapon,
+            weapon_effects,
+            module_use,
+            affected_cells,
+            forced_movement: None,
+            technique_on_hit_effect: definition
+                .on_hit_effect()
+                .cloned()
+                .map(|effect| (technique.clone(), effect)),
+            damage_target: AttackDamageTarget::Body,
+        })
+    }
+
+    fn prepare_player_overwatch_preview(
+        &self,
+        technique: &TechniqueId,
+        slot: u8,
+        target_at: GridPos,
+        validate_context: bool,
+    ) -> Result<AttackPreview, TechniqueUseError> {
+        let definition = self
+            .rules
+            .skills
+            .technique(technique)
+            .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
+        let Some(TechniqueAction::PrepareRangedOverwatch { maximum_line_cells }) =
+            definition.action()
+        else {
+            return Err(TechniqueUseError::NoActiveAction(technique.clone()));
+        };
+        let (attacker, attack, _, _, _) = self
+            .attack_details(self.player, slot)
+            .map_err(TechniqueUseError::Attack)?;
+        let origin = attacker.position();
+        if attack.delivery() != AttackDelivery::Ranged {
+            return Err(TechniqueUseError::WeaponDeliveryMismatch {
+                required: AttackDelivery::Ranged,
+                actual: attack.delivery(),
+            });
+        }
+        if !matches!(attack.area(), AttackArea::Single) {
+            return Err(TechniqueUseError::WeaponMustTargetSingleActor);
+        }
+        if !self.map.contains(target_at) {
+            return Err(TechniqueUseError::Attack(AttackError::TargetOutsideMap(
+                target_at,
+            )));
+        }
+        if target_at == origin {
+            return Err(TechniqueUseError::Attack(AttackError::TargetIsOrigin));
+        }
+        if validate_context && self.map.is_protected(origin) {
+            return Err(TechniqueUseError::Attack(AttackError::ProtectedZone));
+        }
+
+        let extended = self.rules.skills.techniques().any(|(id, candidate)| {
+            candidate.prerequisite() == Some(technique)
+                && candidate.improvement() == Some(TechniqueImprovement::ExtendedRangedOverwatch)
+                && self.player_skills.has_learned(id)
+        });
+        let cells = if extended {
+            ranged_sector_cells(
+                &self.map,
+                origin,
+                target_at,
+                attack.range(),
+                &self.player_visibility,
+            )
+        } else {
+            ranged_line_cells(
+                &self.map,
+                origin,
+                target_at,
+                maximum_line_cells,
+                attack.range(),
+                &self.player_visibility,
+            )
+        };
+        if cells.is_empty() {
+            return Err(TechniqueUseError::Attack(AttackError::NoLineOfSightAt(
+                target_at,
+            )));
+        }
+        Ok(AttackPreview::new(origin, target_at, cells))
+    }
+
+    fn prepare_player_barrage_preview(
+        &self,
+        technique: &TechniqueId,
+        slot: u8,
+        target_at: GridPos,
+        validate_context: bool,
+    ) -> Result<AttackPreview, TechniqueUseError> {
+        let definition = self
+            .rules
+            .skills
+            .technique(technique)
+            .ok_or_else(|| TechniqueUseError::UnknownTechnique(technique.clone()))?;
+        let Some(TechniqueAction::WeaponBarrage {
+            cells,
+            requires_automatic_fire,
+            ..
+        }) = definition.action()
+        else {
+            return Err(TechniqueUseError::NoActiveAction(technique.clone()));
+        };
+        let (attacker, attack, weapon, _, _) = self
+            .attack_details(self.player, slot)
+            .map_err(TechniqueUseError::Attack)?;
+        let origin = attacker.position();
+        if attack.delivery() != AttackDelivery::Ranged {
+            return Err(TechniqueUseError::WeaponDeliveryMismatch {
+                required: AttackDelivery::Ranged,
+                actual: attack.delivery(),
+            });
+        }
+        if !matches!(attack.area(), AttackArea::Single) {
+            return Err(TechniqueUseError::WeaponMustTargetSingleActor);
+        }
+        if requires_automatic_fire
+            && weapon.as_ref().is_none_or(|weapon| {
+                self.rules
+                    .weapons
+                    .get(weapon)
+                    .is_none_or(|weapon| !weapon.capabilities().can_automatic_fire())
+            })
+        {
+            return Err(TechniqueUseError::WeaponHasNoAutomaticFire);
+        }
+        if !self.map.contains(target_at) {
+            return Err(TechniqueUseError::Attack(AttackError::TargetOutsideMap(
+                target_at,
+            )));
+        }
+        if target_at == origin {
+            return Err(TechniqueUseError::Attack(AttackError::TargetIsOrigin));
+        }
+        let delta_x = (target_at.x - origin.x).signum();
+        let delta_y = (target_at.y - origin.y).signum();
+        let perpendicular = (-delta_y, delta_x);
+        let half = i32::from(cells / 2);
+        let mut affected = Vec::with_capacity(usize::from(cells));
+        for index in 0..i32::from(cells) {
+            let offset = index - half;
+            let position = GridPos::new(
+                target_at.x + perpendicular.0 * offset,
+                target_at.y + perpendicular.1 * offset,
+            );
+            if !self.map.contains(position)
+                || !self.player_visibility.is_visible(position)
+                || !attack.is_in_range(origin, position)
+                || (attack.requires_line_of_sight()
+                    && !has_line_of_sight(&self.map, origin, position, true))
+                || (validate_context
+                    && (self.map.is_protected(origin) || self.map.is_protected(position)))
+            {
+                return Err(TechniqueUseError::Attack(AttackError::NoLineOfSightAt(
+                    position,
+                )));
+            }
+            affected.push(AttackAreaCell {
+                position,
+                step: u16::try_from(index + 1).unwrap_or(u16::MAX),
+            });
+        }
+        Ok(AttackPreview::new(origin, target_at, affected))
     }
 
     fn visible_technique_target(
@@ -863,6 +9057,311 @@ impl GameState {
         Ok(actor)
     }
 
+    fn learned_melee_counterattack(&self, parry: &TechniqueId) -> Option<TechniqueId> {
+        self.rules.skills.techniques().find_map(|(id, definition)| {
+            (definition.prerequisite() == Some(parry)
+                && definition.improvement() == Some(TechniqueImprovement::MeleeCounterattack)
+                && self.player_skills.has_learned(id))
+            .then(|| id.clone())
+        })
+    }
+
+    fn learned_controlled_charge_inertia(&self, charge: &TechniqueId) -> bool {
+        self.rules.skills.techniques().any(|(id, definition)| {
+            definition.prerequisite() == Some(charge)
+                && definition.improvement() == Some(TechniqueImprovement::ControlledChargeInertia)
+                && self.player_skills.has_learned(id)
+        })
+    }
+
+    fn learned_persistent_ranged_aim(
+        &self,
+        aimed_shot: &TechniqueId,
+    ) -> Option<(TechniqueId, i16)> {
+        self.rules.skills.techniques().find_map(|(id, definition)| {
+            let Some(TechniqueImprovement::PersistentRangedAim {
+                retained_accuracy_modifier,
+            }) = definition.improvement()
+            else {
+                return None;
+            };
+            (definition.prerequisite() == Some(aimed_shot) && self.player_skills.has_learned(id))
+                .then(|| (id.clone(), retained_accuracy_modifier))
+        })
+    }
+
+    fn learned_covered_approach_bonus(&self) -> i16 {
+        self.rules
+            .skills
+            .techniques()
+            .filter_map(|(id, definition)| {
+                let TechniqueImprovement::CoveredApproach {
+                    optical_difficulty_bonus,
+                } = definition.improvement()?
+                else {
+                    return None;
+                };
+                self.player_skills
+                    .has_learned(id)
+                    .then_some(optical_difficulty_bonus)
+            })
+            .max()
+            .unwrap_or(0)
+    }
+
+    fn learned_silent_neutralization(&self, ambush: &TechniqueId) -> Option<(u16, u16, u16)> {
+        self.rules.skills.techniques().find_map(|(id, definition)| {
+            let TechniqueImprovement::SilentNeutralization {
+                physical_damage_percentage,
+                extra_energy_cost,
+                noise_reduction,
+            } = definition.improvement()?
+            else {
+                return None;
+            };
+            (definition.prerequisite() == Some(ambush) && self.player_skills.has_learned(id))
+                .then_some((
+                    physical_damage_percentage,
+                    extra_energy_cost,
+                    noise_reduction,
+                ))
+        })
+    }
+
+    fn ambush_target_is_valid_for_selection(
+        &self,
+        technique: &TechniqueId,
+        target: EntityId,
+    ) -> bool {
+        let continuing = self.player_preparation.as_ref().is_some_and(|preparation| {
+            preparation.payload().technique == *technique
+                && preparation.payload().targets.as_slice() == [target]
+        });
+        continuing
+            || self
+                .actors
+                .get(target)
+                .is_some_and(|actor| matches!(actor.ai_state(), AiState::Unaware))
+    }
+
+    fn emit_noise(&mut self, source: Option<EntityId>, at: GridPos, intensity: u16) {
+        if intensity == 0 || self.rules.stealth_rules.is_none() {
+            return;
+        }
+        self.transient_noises.push(TransientNoise { at, intensity });
+        self.events.push(GameEvent::NoiseEmitted {
+            source,
+            at,
+            intensity,
+        });
+    }
+
+    fn update_player_movement_concealment(&mut self, _destination: GridPos) {
+        self.player_movement_concealment_bonus = self.learned_covered_approach_bonus();
+    }
+
+    fn advance_player_trail_break_step(&mut self) {
+        let Some(mut trail) = self.player_trail_break.take() else {
+            return;
+        };
+        trail.remaining_steps = trail.remaining_steps.saturating_sub(1);
+        self.events.push(GameEvent::TrailBreakAdvanced {
+            entity: self.player,
+            remaining_steps: trail.remaining_steps,
+        });
+        if trail.remaining_steps == 0 {
+            self.events.push(GameEvent::TrailBreakEnded {
+                entity: self.player,
+                technique: trail.technique,
+            });
+        } else {
+            self.player_trail_break = Some(trail);
+        }
+    }
+
+    fn player_has_partial_cover_from(&self, observer: GridPos) -> bool {
+        let Some(player_position) = self.player_position() else {
+            return false;
+        };
+        player_position
+            .cardinal_neighbors()
+            .into_iter()
+            .any(|position| {
+                position != observer
+                    && self
+                        .map
+                        .tile(position)
+                        .is_some_and(|tile| tile.terrain.blocks_vision())
+            })
+    }
+
+    fn actor_optically_detects_player(&self, observer: EntityId) -> bool {
+        let Some(player_position) = self.player_position() else {
+            return false;
+        };
+        let Some(actor) = self.actors.get(observer) else {
+            return false;
+        };
+        let Some(profile) = actor.ai() else {
+            return false;
+        };
+        if self.map.is_protected(player_position) {
+            return false;
+        }
+        let reduction = self
+            .actor_failed_component_effects(observer)
+            .into_iter()
+            .filter_map(|effect| match effect {
+                ComponentFailureEffect::ReducePerception(amount) => Some(amount),
+                _ => None,
+            })
+            .fold(0_u16, u16::saturating_add);
+        let radius = profile.perception_radius.saturating_sub(reduction);
+        let visible = compute_visible_tiles(
+            &self.map,
+            actor.position(),
+            FieldOfViewRules {
+                radius,
+                distance_metric: DistanceMetric::Euclidean,
+                block_closed_corners: true,
+            },
+        )
+        .contains(&player_position);
+        if !visible {
+            return false;
+        }
+        let Some(rules) = self.rules.stealth_rules else {
+            return true;
+        };
+        let covered = self.player_has_partial_cover_from(actor.position());
+        let occultation = if covered {
+            rules.partial_cover_occultation
+        } else {
+            0
+        };
+        let movement_bonus = if covered {
+            self.player_movement_concealment_bonus
+        } else {
+            0
+        };
+        let posture_bonus = if covered {
+            self.player_low_profile
+                .as_ref()
+                .map_or(0, |profile| profile.optical_difficulty_bonus)
+        } else {
+            0
+        };
+        let active_bonus = self
+            .player_active_camouflage
+            .as_ref()
+            .map_or(0, |camouflage| {
+                (camouflage.channel == SignatureChannel::Optical)
+                    .then_some(camouflage.optical_difficulty_bonus)
+                    .unwrap_or(0)
+            });
+        let distance = grid_distance(actor.position(), player_position);
+        let optical_jamming = self.electronic_jamming_penalty_at(
+            crate::electronic_warfare::ElectronicChannel::OpticalSensor,
+            actor.position(),
+        );
+        let detection = rules.optical_detection_score(
+            actor.primary_attributes(),
+            distance,
+            0,
+            -i16::try_from(optical_jamming).unwrap_or(i16::MAX),
+        );
+        let difficulty = rules.optical_concealment_difficulty(
+            self.player_primary_attributes(),
+            occultation,
+            movement_bonus
+                .saturating_add(posture_bonus)
+                .saturating_add(active_bonus),
+        );
+        detection >= difficulty
+    }
+
+    fn electronic_jamming_penalty_at(
+        &self,
+        channel: crate::electronic_warfare::ElectronicChannel,
+        position: GridPos,
+    ) -> u16 {
+        self.electronic_warfare
+            .jamming()
+            .filter(|field| {
+                field.channel == channel
+                    && self.turn < field.expires_on_turn
+                    && is_within_chebyshev_range(field.center, position, field.radius)
+            })
+            .map_or(0, |field| field.penalty)
+    }
+
+    fn any_non_player_has_geometric_los_to_player(&self) -> bool {
+        let Some(player_position) = self.player_position() else {
+            return false;
+        };
+        self.actors.iter().any(|(entity, actor)| {
+            if entity == self.player {
+                return false;
+            }
+            let Some(profile) = actor.ai() else {
+                return false;
+            };
+            let reduction = self
+                .actor_failed_component_effects(entity)
+                .into_iter()
+                .filter_map(|effect| match effect {
+                    ComponentFailureEffect::ReducePerception(amount) => Some(amount),
+                    _ => None,
+                })
+                .fold(0_u16, u16::saturating_add);
+            compute_visible_tiles(
+                &self.map,
+                actor.position(),
+                FieldOfViewRules {
+                    radius: profile.perception_radius.saturating_sub(reduction),
+                    distance_metric: DistanceMetric::Euclidean,
+                    block_closed_corners: true,
+                },
+            )
+            .contains(&player_position)
+        })
+    }
+
+    fn technique_engagement_requirement_met(
+        &self,
+        technique: &TechniqueId,
+        target: EntityId,
+    ) -> bool {
+        self.rules
+            .skills
+            .technique(technique)
+            .and_then(TechniqueDefinition::engagement_requirement)
+            .is_none_or(|requirement| self.actor_meets_engagement_requirement(target, requirement))
+    }
+
+    fn actor_meets_engagement_requirement(
+        &self,
+        target: EntityId,
+        requirement: &TechniqueEngagementRequirement,
+    ) -> bool {
+        match requirement {
+            TechniqueEngagementRequirement::TargetHasAnyStatusFamily(families) => {
+                self.actors.get(target).is_some_and(|actor| {
+                    actor.statuses().any(|instance| {
+                        self.rules
+                            .statuses
+                            .get(&instance.definition)
+                            .and_then(StatusDefinition::family)
+                            .is_some_and(|family| families.contains(family))
+                    })
+                })
+            }
+            TechniqueEngagementRequirement::TargetHasKnownPhysicalWeakness => {
+                self.player_known_physical_weaknesses.contains(&target)
+            }
+        }
+    }
+
     fn target_analysis_event(
         &self,
         target: EntityId,
@@ -876,6 +9375,9 @@ impl GameState {
             at: actor.position(),
             integrity: actor.integrity(),
             maximum_integrity: actor.maximum_integrity(),
+            armor: self
+                .actor_armor_profile(target)
+                .map_or(0, ArmorProfile::after_fragilization),
             resistances: actor.resistances(),
         })
     }
@@ -885,11 +9387,42 @@ impl GameState {
         entity: EntityId,
         direction: Direction,
     ) -> Result<GridPos, MovementError> {
+        self.move_entity_with_interception_evasion_and_noise(entity, direction, 0, 0)
+    }
+
+    fn move_entity_with_interception_evasion(
+        &mut self,
+        entity: EntityId,
+        direction: Direction,
+        interception_evasion_modifier: i16,
+    ) -> Result<GridPos, MovementError> {
+        self.move_entity_with_interception_evasion_and_noise(
+            entity,
+            direction,
+            interception_evasion_modifier,
+            0,
+        )
+    }
+
+    fn move_entity_with_interception_evasion_and_noise(
+        &mut self,
+        entity: EntityId,
+        direction: Direction,
+        interception_evasion_modifier: i16,
+        noise_reduction: u16,
+    ) -> Result<GridPos, MovementError> {
         let origin = self
             .actors
             .get(entity)
             .map(Actor::position)
             .ok_or(MovementError::MissingEntity(entity))?;
+        if self
+            .actor_failed_component_effects(entity)
+            .into_iter()
+            .any(|effect| effect == ComponentFailureEffect::DisableMovement)
+        {
+            return Err(MovementError::DisabledByFailedComponent);
+        }
         let destination = origin.step(direction);
 
         if !self.map.is_walkable(destination)
@@ -901,14 +9434,25 @@ impl GameState {
             return Err(MovementError::Occupied(destination));
         }
 
+        if !self.resolve_voluntary_leave_interceptions(
+            entity,
+            origin,
+            destination,
+            interception_evasion_modifier,
+        ) {
+            return Ok(origin);
+        }
+
         self.actors
             .move_to(entity, destination)
             .map_err(|_| MovementError::MissingEntity(entity))?;
-        if self
-            .rules
-            .enabled_system_features
-            .iter()
-            .any(|feature| feature.as_str() == "core:traces")
+        let suppress_trace = entity == self.player && self.player_trail_break.is_some();
+        if !suppress_trace
+            && self
+                .rules
+                .enabled_system_features
+                .iter()
+                .any(|feature| feature.as_str() == "core:traces")
         {
             self.movement_traces
                 .record(origin, direction, self.turn, self.rules.movement_traces);
@@ -918,6 +9462,191 @@ impl GameState {
             from: origin,
             to: destination,
         });
+        if entity == self.player {
+            self.end_player_anchor();
+            self.update_player_movement_concealment(destination);
+            self.advance_player_trail_break_step();
+            let intensity = 10_u16.saturating_sub(noise_reduction);
+            if intensity > 0 {
+                self.emit_noise(Some(self.player), destination, intensity);
+            }
+        }
+        self.resolve_ranged_overwatch_entries(entity, destination);
+        Ok(destination)
+    }
+
+    fn resolve_ranged_overwatch_entries(&mut self, mover: EntityId, destination: GridPos) {
+        let reactors: Vec<(EntityId, u8)> = self
+            .actors
+            .iter()
+            .filter_map(|(reactor, actor)| {
+                if reactor == mover || !self.actor_perceives_position(reactor, destination) {
+                    return None;
+                }
+                let reaction = actor.prepared_reaction()?;
+                let ReactionEffect::PerformRangedWeaponAttack {
+                    slot,
+                    covered_cells,
+                } = reaction.effect()
+                else {
+                    return None;
+                };
+                covered_cells
+                    .contains(&destination)
+                    .then_some((reactor, *slot))
+            })
+            .collect();
+
+        for (reactor, slot) in reactors {
+            if self.actors.get(mover).is_none() {
+                break;
+            }
+            // Prepare first: a target which moved behind new cover or left the
+            // weapon's actual range must not consume the guard.
+            let Ok(prepared_attack) = self.prepare_targeted_attack(reactor, slot, mover) else {
+                continue;
+            };
+            if reactor == self.player
+                && self
+                    .ensure_prepared_attack_usage(&prepared_attack, 1)
+                    .is_err()
+            {
+                continue;
+            }
+            let Some(reaction) = self.actors.get_mut(reactor).and_then(|actor| {
+                actor.try_trigger_reaction(
+                    ReactionTrigger::AfterActorEntersCoveredCell,
+                    ActionOrigin::Normal,
+                )
+            }) else {
+                continue;
+            };
+            self.events.push(GameEvent::ReactionTriggered {
+                reactor,
+                source: mover,
+                technique: reaction.technique().clone(),
+                reaction: reaction.kind(),
+            });
+            if reactor == self.player {
+                self.spend_prepared_attack_usage(&prepared_attack, 1)
+                    .expect("overwatch usage was preflighted without intervening mutation");
+            }
+            // The attack follows the normal hit, damage and weapon-effect
+            // pipeline, but its origin forbids reaction chains.
+            let _ = self.resolve_prepared_attack(prepared_attack, ActionOrigin::Reaction);
+        }
+    }
+
+    fn actor_perceives_position(&self, observer: EntityId, position: GridPos) -> bool {
+        if observer == self.player {
+            return self.player_visibility.is_visible(position);
+        }
+        if self.player_position() == Some(position) {
+            return self.actor_optically_detects_player(observer);
+        }
+        let Some(actor) = self.actors.get(observer) else {
+            return false;
+        };
+        actor.ai().is_some_and(|profile| {
+            let reduction = self
+                .actor_failed_component_effects(observer)
+                .into_iter()
+                .filter_map(|effect| match effect {
+                    ComponentFailureEffect::ReducePerception(amount) => Some(amount),
+                    _ => None,
+                })
+                .fold(0_u16, u16::saturating_add);
+            compute_visible_tiles(
+                &self.map,
+                actor.position(),
+                FieldOfViewRules {
+                    radius: profile.perception_radius.saturating_sub(reduction),
+                    distance_metric: DistanceMetric::Euclidean,
+                    block_closed_corners: true,
+                },
+            )
+            .contains(&position)
+        })
+    }
+
+    fn resolve_voluntary_leave_interceptions(
+        &mut self,
+        mover: EntityId,
+        from: GridPos,
+        to: GridPos,
+        evasion_modifier: i16,
+    ) -> bool {
+        let reactors: Vec<EntityId> = self
+            .actors
+            .iter()
+            .filter(|(entity, actor)| {
+                *entity != mover
+                    && is_within_chebyshev_range(actor.position(), from, 1)
+                    && !is_within_chebyshev_range(actor.position(), to, 1)
+                    && actor.prepared_reaction().is_some_and(|reaction| {
+                        reaction.trigger() == ReactionTrigger::BeforeVoluntaryMeleeContactBroken
+                    })
+            })
+            .map(|(entity, _)| entity)
+            .collect();
+
+        for reactor in reactors {
+            let trigger_energy_cost = self
+                .actors
+                .get(reactor)
+                .and_then(Actor::prepared_reaction)
+                .map_or(0, PreparedReaction::trigger_energy_cost);
+            if !self.can_pay_reaction_energy(reactor, trigger_energy_cost) {
+                continue;
+            }
+            let Some(reaction) = self.actors.get_mut(reactor).and_then(|actor| {
+                actor.try_trigger_reaction(
+                    ReactionTrigger::BeforeVoluntaryMeleeContactBroken,
+                    ActionOrigin::Normal,
+                )
+            }) else {
+                continue;
+            };
+            self.pay_reaction_energy(reactor, reaction.trigger_energy_cost());
+            self.events.push(GameEvent::ReactionTriggered {
+                reactor,
+                source: mover,
+                technique: reaction.technique().clone(),
+                reaction: reaction.kind(),
+            });
+            let outcome = self.resolve_melee_interception(reactor, mover, evasion_modifier);
+            self.events.push(GameEvent::InterceptionResolved {
+                reactor,
+                mover,
+                technique: reaction.technique().clone(),
+                from,
+                to,
+                outcome,
+            });
+            if self.actors.get(mover).is_none() {
+                return false;
+            }
+        }
+        true
+    }
+
+    pub(super) fn move_ai_entity(
+        &mut self,
+        entity: EntityId,
+        direction: Direction,
+    ) -> Result<GridPos, MovementError> {
+        let movement_time = self.actor_movement_time_units(entity);
+        let destination = self.move_entity(entity, direction)?;
+        if movement_time > 1 {
+            let ready = self.turn.saturating_add(u64::from(movement_time));
+            if let Some(actor) = self.actors.get_mut(entity) {
+                actor.delay_next_action_until(ready);
+            }
+            self.events.push(GameEvent::MovementTimeCommitted {
+                entity,
+                time_units: movement_time,
+            });
+        }
         Ok(destination)
     }
 
@@ -927,13 +9656,266 @@ impl GameState {
         slot: u8,
         target: EntityId,
     ) -> Result<(), AttackError> {
+        let mut prepared = self.prepare_targeted_attack(attacker, slot, target)?;
+        if prepared.attack.delivery() == AttackDelivery::Ranged
+            && matches!(prepared.attack.area(), AttackArea::Single)
+            && let Some(interceptor) = self.trigger_drone_interposition(attacker, target)
+        {
+            prepared = self.prepare_targeted_attack(attacker, slot, interceptor)?;
+        }
+        let recovery = prepared.attack.recovery_after_attack();
+        self.spend_prepared_attack_usage(&prepared, 1)?;
+        self.resolve_prepared_attack(prepared, ActionOrigin::Normal)?;
+        if let Some(recovery) = recovery {
+            self.start_action_recovery(attacker, recovery);
+        }
+        Ok(())
+    }
+
+    fn trigger_drone_interposition(
+        &mut self,
+        attacker: EntityId,
+        protected: EntityId,
+    ) -> Option<EntityId> {
+        let protected_position = self.actors.get(protected)?.position();
+        let attacker_position = self.actors.get(attacker)?.position();
+        let interceptor = self.actors.iter().find_map(|(entity, actor)| {
+            let drone = actor.drone()?;
+            let DroneOrder::Interpose {
+                ally,
+                trigger_energy_cost,
+            } = drone.order()
+            else {
+                return None;
+            };
+            (*ally == protected
+                && entity != attacker
+                && grid_distance(actor.position(), protected_position) <= 1
+                && drone.profile().capabilities().can_interpose
+                && drone.energy().available() >= *trigger_energy_cost
+                && self.drone_perceives_actor(entity, attacker)
+                && has_line_of_sight(&self.map, attacker_position, actor.position(), true))
+            .then_some((entity, *trigger_energy_cost))
+        });
+        let (entity, energy_spent) = interceptor?;
+        self.actors
+            .get_mut(entity)
+            .and_then(Actor::drone_mut)
+            .expect("interposing drone remains registered")
+            .spend_energy(energy_spent)
+            .expect("interposition energy was preflighted");
+        self.set_drone_order(entity, DroneOrder::Hold);
+        self.events.push(GameEvent::DroneInterposed {
+            entity,
+            protected,
+            attacker,
+            energy_spent,
+        });
+        Some(entity)
+    }
+
+    fn ensure_player_weapon_ammunition(
+        &self,
+        weapon: Option<&WeaponId>,
+        required: u16,
+    ) -> Result<(), AttackError> {
+        let Some(weapon) = weapon else {
+            return Ok(());
+        };
+        let Some(capacity) = self
+            .rules
+            .weapons
+            .get(weapon)
+            .and_then(WeaponDefinition::ammunition_capacity)
+        else {
+            return Ok(());
+        };
+        let available = self
+            .player_weapon_ammunition
+            .get(weapon)
+            .copied()
+            .unwrap_or(capacity);
+        if available < required {
+            return Err(AttackError::InsufficientAmmunition {
+                weapon: weapon.clone(),
+                required,
+                available,
+            });
+        }
+        Ok(())
+    }
+
+    fn spend_player_weapon_ammunition(
+        &mut self,
+        weapon: Option<&WeaponId>,
+        required: u16,
+    ) -> Result<(), AttackError> {
+        self.ensure_player_weapon_ammunition(weapon, required)?;
+        let Some(weapon) = weapon else {
+            return Ok(());
+        };
+        let Some(capacity) = self
+            .rules
+            .weapons
+            .get(weapon)
+            .and_then(WeaponDefinition::ammunition_capacity)
+        else {
+            return Ok(());
+        };
+        let available = self
+            .player_weapon_ammunition
+            .entry(weapon.clone())
+            .or_insert(capacity);
+        *available -= required;
+        self.events.push(GameEvent::AmmunitionSpent {
+            entity: self.player,
+            weapon: weapon.clone(),
+            amount: required,
+            remaining: *available,
+        });
+        Ok(())
+    }
+
+    fn ensure_prepared_attack_usage(
+        &self,
+        prepared: &PreparedAttack,
+        required: u16,
+    ) -> Result<(), AttackError> {
+        if prepared.attacker != self.player {
+            return Ok(());
+        }
+        self.ensure_player_weapon_ammunition(prepared.weapon.as_ref(), required)?;
+        let Some(module_use) = prepared.module_use else {
+            return Ok(());
+        };
+        let energy_required = module_use.energy_per_use.saturating_mul(required);
+        if self.player_energy.available() < energy_required {
+            return Err(AttackError::InsufficientEnergy {
+                required: energy_required,
+                available: self.player_energy.available(),
+            });
+        }
+        if module_use.heat_per_use > 0 {
+            let heat = self
+                .player_heat
+                .ok_or(AttackError::EngineeringModuleUnavailable(module_use.module))?;
+            let projected = heat
+                .current()
+                .saturating_add(module_use.heat_per_use.saturating_mul(required));
+            if projected > module_use.maximum_heat_threshold {
+                return Err(AttackError::EngineeringModuleHeatLimit {
+                    module: module_use.module,
+                    projected,
+                    maximum: module_use.maximum_heat_threshold,
+                });
+            }
+        }
+        Ok(())
+    }
+
+    fn spend_prepared_attack_usage(
+        &mut self,
+        prepared: &PreparedAttack,
+        required: u16,
+    ) -> Result<(), AttackError> {
+        if prepared.attacker != self.player {
+            return Ok(());
+        }
+        self.ensure_prepared_attack_usage(prepared, required)?;
+        self.spend_player_weapon_ammunition(prepared.weapon.as_ref(), required)?;
+        let Some(module_use) = prepared.module_use else {
+            return Ok(());
+        };
+        let energy_spent = module_use.energy_per_use.saturating_mul(required);
+        self.player_energy
+            .spend(energy_spent)
+            .expect("powered module energy was preflighted");
+        if energy_spent > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy_spent,
+                remaining: self.player_energy.available(),
+            });
+        }
+        if module_use.heat_per_use == 0 {
+            return Ok(());
+        }
+        let heat = self
+            .player_heat
+            .as_mut()
+            .expect("overclock heat reserve was preflighted");
+        let before = heat.current();
+        let mut simulated = before;
+        let mut hot_uses = 0_u16;
+        for _ in 0..required {
+            simulated = simulated.saturating_add(module_use.heat_per_use);
+            if simulated > module_use.safe_heat_threshold {
+                hot_uses = hot_uses.saturating_add(1);
+            }
+        }
+        let generated = module_use.heat_per_use.saturating_mul(required);
+        heat.add(generated);
+        let current = heat.current();
+        self.events.push(GameEvent::HeatGenerated {
+            entity: self.player,
+            amount: generated,
+            current,
+        });
+        let crossed_alert = before < heat.alert_threshold() && current >= heat.alert_threshold();
+        let crossed_critical =
+            before < heat.critical_threshold() && current >= heat.critical_threshold();
+        if crossed_alert || crossed_critical {
+            self.events.push(GameEvent::HeatThresholdCrossed {
+                entity: self.player,
+                critical: crossed_critical,
+                current,
+            });
+        }
+        let durability_damage = module_use
+            .durability_damage_when_hot
+            .saturating_mul(hot_uses);
+        if durability_damage > 0
+            && let Some(state) = self.equipment_engineering.get_mut(&module_use.module)
+        {
+            let applied = state.damage(durability_damage);
+            self.events.push(GameEvent::ModuleDurabilityDamaged {
+                module: module_use.module,
+                amount: applied,
+                durability: state.durability(),
+                maximum_durability: state.maximum_durability(),
+            });
+        }
+        Ok(())
+    }
+
+    fn prepare_targeted_attack(
+        &self,
+        attacker: EntityId,
+        slot: u8,
+        target: EntityId,
+    ) -> Result<PreparedAttack, AttackError> {
         let target_state = self
             .actors
             .get(target)
             .cloned()
             .ok_or(AttackError::UnknownTarget(target))?;
-        let (attacker_state, attack, weapon, weapon_effects) =
+        let (attacker_state, mut attack, weapon, weapon_effects, module_use) =
             self.attack_details(attacker, slot)?;
+        if attacker == self.player
+            && self
+                .player_persistent_ranged_aim
+                .as_ref()
+                .is_some_and(|aim| aim.target == target)
+            && attack.delivery() == AttackDelivery::Ranged
+            && matches!(attack.area(), AttackArea::Single)
+        {
+            let modifier = self
+                .player_persistent_ranged_aim
+                .as_ref()
+                .map_or(0, |aim| aim.accuracy_modifier);
+            attack =
+                attack.with_accuracy_modifier(attack.accuracy_modifier().saturating_add(modifier));
+        }
         if self.map.is_protected(attacker_state.position())
             || self.map.is_protected(target_state.position())
         {
@@ -956,7 +9938,7 @@ impl GameState {
         let origin = attacker_state.position();
         let target_at = target_state.position();
         let affected_cells = attack.affected_cells(&self.map, origin, target_at);
-        self.resolve_prepared_attack(PreparedAttack {
+        Ok(PreparedAttack {
             attacker,
             target: Some(target),
             slot,
@@ -965,13 +9947,23 @@ impl GameState {
             attack,
             weapon,
             weapon_effects,
+            module_use,
             affected_cells,
+            forced_movement: None,
+            technique_on_hit_effect: None,
+            damage_target: AttackDamageTarget::Body,
         })
     }
 
     fn perform_player_area_attack(&mut self, slot: u8, target: GridPos) -> Result<(), AttackError> {
         let prepared = self.prepare_player_area_attack(slot, target)?;
-        self.resolve_prepared_attack(prepared)
+        let recovery = prepared.attack.recovery_after_attack();
+        self.spend_prepared_attack_usage(&prepared, 1)?;
+        self.resolve_prepared_attack(prepared, ActionOrigin::Normal)?;
+        if let Some(recovery) = recovery {
+            self.start_action_recovery(self.player, recovery);
+        }
+        Ok(())
     }
 
     fn prepare_player_area_attack(
@@ -1000,7 +9992,7 @@ impl GameState {
         slot: u8,
         target_at: GridPos,
     ) -> Result<PreparedAttack, AttackError> {
-        let (attacker_state, attack, weapon, weapon_effects) =
+        let (attacker_state, attack, weapon, weapon_effects, module_use) =
             self.attack_details(self.player, slot)?;
         let origin = attacker_state.position();
         if matches!(attack.area(), AttackArea::Single) {
@@ -1025,7 +10017,11 @@ impl GameState {
             attack,
             weapon,
             weapon_effects,
+            module_use,
             affected_cells,
+            forced_movement: None,
+            technique_on_hit_effect: None,
+            damage_target: AttackDamageTarget::Body,
         })
     }
 
@@ -1033,31 +10029,102 @@ impl GameState {
         &self,
         attacker: EntityId,
         slot: u8,
-    ) -> Result<(Actor, AttackProfile, Option<WeaponId>, Vec<WeaponEffect>), AttackError> {
+    ) -> Result<
+        (
+            Actor,
+            AttackProfile,
+            Option<WeaponId>,
+            Vec<WeaponEffect>,
+            Option<PreparedModuleUse>,
+        ),
+        AttackError,
+    > {
         let attacker_state = self
             .actors
             .get(attacker)
             .cloned()
             .ok_or(AttackError::MissingAttacker(attacker))?;
+        if self.actor_failed_component_effects(attacker).into_iter().any(
+            |effect| matches!(effect, ComponentFailureEffect::DisableAttackSlot(disabled) if disabled == slot),
+        ) {
+            return Err(AttackError::DisabledByFailedComponent(slot));
+        }
         if attacker == self.player && !self.rules.player_weapon_slots.is_empty() {
-            let weapon = self
-                .equipped_player_weapon(slot)
+            let module = self
+                .equipped_player_weapon_item(slot)
                 .ok_or(AttackError::MissingAttackSlot(slot))?;
+            let entry = self
+                .player_inventory
+                .get(module)
+                .ok_or(AttackError::MissingAttackSlot(slot))?;
+            let weapon = self
+                .rules
+                .weapons
+                .get(entry.item())
+                .ok_or(AttackError::MissingAttackSlot(slot))?;
+            let mut attack = weapon.attack();
+            let module_state = self.equipment_engineering.get(&module).copied();
+            if module_state
+                .is_some_and(|state| state.durability() == 0 || state.is_suspended_as_donor())
+            {
+                return Err(AttackError::EngineeringModuleUnavailable(module));
+            }
+            let module_use = weapon.power_draw().map(|power_draw| {
+                let mut output_percentage = 100;
+                let mut energy_percentage = 100;
+                let mut heat_per_use = 0;
+                let mut safe_heat_threshold = 0;
+                let mut maximum_heat_threshold = u16::MAX;
+                let mut durability_damage_when_hot = 0;
+                if let Some(tuning) =
+                    module_state.and_then(EquipmentEngineeringState::tuning_profile)
+                {
+                    output_percentage =
+                        combine_percentages(output_percentage, tuning.output_percentage());
+                    energy_percentage =
+                        combine_percentages(energy_percentage, tuning.energy_percentage());
+                }
+                if let Some(overclock) = module_state.and_then(EquipmentEngineeringState::overclock)
+                {
+                    output_percentage =
+                        combine_percentages(output_percentage, overclock.output_percentage());
+                    energy_percentage =
+                        combine_percentages(energy_percentage, overclock.usage_energy_percentage());
+                    heat_per_use = overclock.heat_per_use();
+                    safe_heat_threshold = overclock.safe_heat_threshold();
+                    maximum_heat_threshold = overclock.maximum_heat_threshold();
+                    durability_damage_when_hot = overclock.durability_damage_when_hot();
+                }
+                attack = attack.with_damage_output_percentage(output_percentage);
+                PreparedModuleUse {
+                    module,
+                    energy_per_use: scale_percentage_ceil(power_draw, energy_percentage),
+                    heat_per_use,
+                    safe_heat_threshold,
+                    maximum_heat_threshold,
+                    durability_damage_when_hot,
+                }
+            });
             Ok((
                 attacker_state,
-                weapon.attack(),
+                attack,
                 Some(weapon.id().clone()),
                 weapon.effects().to_vec(),
+                module_use,
             ))
         } else {
             let attack = attacker_state
                 .attack(slot)
                 .ok_or(AttackError::MissingAttackSlot(slot))?;
-            Ok((attacker_state, attack, None, Vec::new()))
+            Ok((attacker_state, attack, None, Vec::new(), None))
         }
     }
 
-    fn resolve_prepared_attack(&mut self, prepared: PreparedAttack) -> Result<(), AttackError> {
+    fn resolve_prepared_attack(
+        &mut self,
+        prepared: PreparedAttack,
+        action_origin: ActionOrigin,
+    ) -> Result<AttackResolution, AttackError> {
         let PreparedAttack {
             attacker,
             target,
@@ -1067,10 +10134,32 @@ impl GameState {
             attack,
             weapon,
             weapon_effects,
+            module_use: _,
             affected_cells,
+            forced_movement,
+            technique_on_hit_effect,
+            damage_target,
         } = prepared;
+        let resolved_damage = self.resolved_attack_damage_or_error(attacker, attack)?;
+        if attacker == self.player
+            && action_origin == ActionOrigin::Normal
+            && self.rules.player_drone_default_support
+        {
+            self.player_drone_support_target_this_action = target;
+        }
         let affected_positions: BTreeSet<GridPos> =
             affected_cells.iter().map(|cell| cell.position).collect();
+        self.events.push(GameEvent::AttackPerformed {
+            attacker,
+            target,
+            slot,
+            origin,
+            target_at,
+            weapon,
+            damage_type: attack.damage().primary_damage_type(),
+            affected_cells: affected_cells.clone(),
+        });
+        self.resolve_evasive_steps_before_attack(attacker, &affected_positions, action_origin);
         let affected_targets: Vec<EntityId> = self
             .actors
             .iter()
@@ -1081,37 +10170,756 @@ impl GameState {
                 .then_some(entity)
             })
             .collect();
-        self.events.push(GameEvent::AttackPerformed {
-            attacker,
-            target,
-            slot,
-            origin,
-            target_at,
-            weapon,
-            damage_type: attack.damage().damage_type,
-            affected_cells: affected_cells.clone(),
-        });
+        let mut hit_positions = BTreeSet::new();
+        let mut hit_targets = BTreeSet::new();
+        let mut damaged_positions = BTreeSet::new();
+        let mut destroyed_positions = BTreeSet::new();
+        let mut reaction_follow_ups = Vec::new();
         for affected_target in affected_targets {
-            self.apply_damage_to(Some(attacker), affected_target, attack.damage())
-                .map_err(|_| AttackError::UnknownTarget(affected_target))?;
-            if self.actors.get(affected_target).is_none() {
+            let hit = self.resolve_hit(attacker, affected_target, attack)?;
+            if !hit {
                 continue;
             }
+            let affected_position = self
+                .actors
+                .get(affected_target)
+                .ok_or(AttackError::UnknownTarget(affected_target))?
+                .position();
+            hit_positions.insert(affected_position);
+            hit_targets.insert(affected_target);
+            let (target_damage, reaction_follow_up) = self.apply_reaction_to_melee_hit(
+                attacker,
+                affected_target,
+                attack,
+                resolved_damage,
+                action_origin,
+            );
+            let application = match &damage_target {
+                AttackDamageTarget::Body => self
+                    .apply_damage_impact_to(Some(attacker), affected_target, target_damage)
+                    .map_err(|_| AttackError::UnknownTarget(affected_target))?,
+                AttackDamageTarget::Component(component) => self
+                    .apply_damage_impact_to_component(
+                        Some(attacker),
+                        affected_target,
+                        component,
+                        target_damage,
+                    )
+                    .map_err(|_| AttackError::UnknownTarget(affected_target))?,
+            };
+            if application.amount > 0 {
+                damaged_positions.insert(affected_position);
+            }
+            if application.target_destroyed {
+                destroyed_positions.insert(affected_position);
+            }
+            if application.target_destroyed {
+                continue;
+            }
+            if let Some(disruption) = attack.preparation_disruption() {
+                self.resolve_preparation_disruption(attacker, affected_target, disruption);
+            }
+            if let Some((technique, effect)) = &technique_on_hit_effect {
+                self.resolve_technique_on_hit_effect(attacker, affected_target, technique, effect);
+            }
             for effect in &weapon_effects {
-                if let WeaponEffect::ApplyStatus(effect) = effect {
-                    let _ = self.apply_status_to(Some(attacker), affected_target, effect);
+                let WeaponEffectKind::ApplyStatus(status) = effect.kind() else {
+                    continue;
+                };
+                let triggered = match effect.trigger().unwrap_or(WeaponEffectTrigger::OnHit) {
+                    WeaponEffectTrigger::OnHit => true,
+                    WeaponEffectTrigger::OnDamage => application.amount > 0,
+                    WeaponEffectTrigger::OnAttack | WeaponEffectTrigger::OnTargetDestroyed => false,
+                };
+                if triggered {
+                    let _ = self.apply_status_to(Some(attacker), affected_target, status);
                 }
+            }
+            if target == Some(affected_target)
+                && let Some(forced_movement) = forced_movement
+            {
+                self.resolve_forced_movement(
+                    attacker,
+                    affected_target,
+                    origin,
+                    attack,
+                    forced_movement,
+                );
+            }
+            if let Some(ReactionFollowUp::MeleeCounterattack { technique }) = reaction_follow_up {
+                reaction_follow_ups.push((affected_target, attacker, technique));
             }
         }
         for effect in &weapon_effects {
-            if let WeaponEffect::CreateGroundEffect(effect) = effect {
-                for cell in &affected_cells {
-                    self.create_ground_effect(Some(attacker), cell.position, effect);
+            if let WeaponEffectKind::CreateGroundEffect(ground_effect) = effect.kind() {
+                let positions: Vec<GridPos> = match effect.trigger() {
+                    Some(WeaponEffectTrigger::OnAttack) => {
+                        affected_cells.iter().map(|cell| cell.position).collect()
+                    }
+                    Some(WeaponEffectTrigger::OnHit) => hit_positions.iter().copied().collect(),
+                    Some(WeaponEffectTrigger::OnDamage) => {
+                        damaged_positions.iter().copied().collect()
+                    }
+                    Some(WeaponEffectTrigger::OnTargetDestroyed) => {
+                        destroyed_positions.iter().copied().collect()
+                    }
+                    None if !matches!(attack.area(), AttackArea::Single)
+                        || !hit_positions.is_empty() =>
+                    {
+                        affected_cells.iter().map(|cell| cell.position).collect()
+                    }
+                    None => Vec::new(),
+                };
+                for position in positions {
+                    self.create_ground_effect(Some(attacker), position, ground_effect);
                 }
             }
         }
+        for (reactor, source, technique) in reaction_follow_ups {
+            self.resolve_melee_counterattack(reactor, source, technique);
+        }
 
+        Ok(AttackResolution { hit_targets })
+    }
+
+    fn resolve_evasive_steps_before_attack(
+        &mut self,
+        attacker: EntityId,
+        affected_positions: &BTreeSet<GridPos>,
+        action_origin: ActionOrigin,
+    ) {
+        let attacker_position = self.actors.get(attacker).map(Actor::position);
+        let candidates = self
+            .actors
+            .iter()
+            .filter_map(|(entity, actor)| {
+                (entity != attacker
+                    && affected_positions.contains(&actor.position())
+                    && actor.prepared_reaction().is_some_and(|reaction| {
+                        reaction.trigger() == ReactionTrigger::BeforeIncomingAttack
+                    }))
+                .then_some(entity)
+            })
+            .collect::<Vec<_>>();
+
+        for reactor in candidates {
+            let perceives_attack = attacker_position
+                .is_some_and(|position| self.actor_perceives_position(reactor, position));
+            if !perceives_attack {
+                continue;
+            }
+            let trigger_energy_cost = self
+                .actors
+                .get(reactor)
+                .and_then(Actor::prepared_reaction)
+                .map_or(0, PreparedReaction::trigger_energy_cost);
+            if !self.can_pay_reaction_energy(reactor, trigger_energy_cost) {
+                continue;
+            }
+            let Some(reaction) = self.actors.get_mut(reactor).and_then(|actor| {
+                actor.try_trigger_reaction(ReactionTrigger::BeforeIncomingAttack, action_origin)
+            }) else {
+                continue;
+            };
+            self.pay_reaction_energy(reactor, reaction.trigger_energy_cost());
+            self.events.push(GameEvent::ReactionTriggered {
+                reactor,
+                source: attacker,
+                technique: reaction.technique().clone(),
+                reaction: reaction.kind(),
+            });
+            let ReactionEffect::MoveTo { destination } = reaction.effect() else {
+                continue;
+            };
+            let Some(from) = self.actors.get(reactor).map(Actor::position) else {
+                continue;
+            };
+            let legal = from.cardinal_neighbors().contains(destination)
+                && self.map.is_walkable(*destination)
+                && !self.map.is_protected(*destination)
+                && self.actors.entity_at(*destination).is_none();
+            if legal {
+                self.actors
+                    .move_to(reactor, *destination)
+                    .expect("evasive destination was preflighted");
+                if reactor == self.player {
+                    self.end_player_anchor();
+                    self.player_visibility.recompute(
+                        &self.map,
+                        *destination,
+                        self.rules.player_field_of_view,
+                    );
+                    self.events.push(GameEvent::VisibilityUpdated {
+                        observer: self.player,
+                        origin: *destination,
+                    });
+                }
+                self.events.push(GameEvent::EntityMoved {
+                    entity: reactor,
+                    from,
+                    to: *destination,
+                });
+            }
+            self.events.push(GameEvent::EvasiveStepResolved {
+                entity: reactor,
+                from,
+                to: *destination,
+                moved: legal,
+            });
+        }
+    }
+
+    fn resolve_forced_movement(
+        &mut self,
+        source: EntityId,
+        target: EntityId,
+        attack_origin: GridPos,
+        attack: AttackProfile,
+        movement: ForcedMovement,
+    ) {
+        let Some(target_state) = self.actors.get(target) else {
+            return;
+        };
+        let from = target_state.position();
+        let impact = attack
+            .melee_impact()
+            .expect("forced movement was validated with a melee Impact profile");
+        let physical = self
+            .rules
+            .physical_rules
+            .expect("forced movement was validated with physical rules");
+        let source_attributes = self.actors.get(source).and_then(Actor::primary_attributes);
+        let force = physical
+            .impact
+            .available_impact(
+                source_attributes,
+                impact
+                    .impact_modifier
+                    .saturating_add(movement.impact_modifier()),
+            )
+            .min(impact.material_cap);
+        let Some(profile) = target_state.displacement_profile() else {
+            self.events.push(GameEvent::ForcedMovementResolved {
+                source,
+                target,
+                from,
+                to: from,
+                force,
+                resistance: None,
+                requested_distance: movement.distance(),
+                moved_distance: 0,
+                outcome: ForcedMovementOutcome::Incompatible,
+            });
+            return;
+        };
+        let carried_mass_grams = self.actor_carried_mass_grams(target).unwrap_or(0);
+        let anchor_bonus = (target == self.player)
+            .then(|| {
+                self.player_anchor
+                    .as_ref()
+                    .map(|(_, bonus)| u32::from(*bonus))
+            })
+            .flatten()
+            .unwrap_or(0);
+        let resistance = profile
+            .resistance(carried_mass_grams)
+            .saturating_add(anchor_bonus);
+        if profile.is_fixed() {
+            self.events.push(GameEvent::ForcedMovementResolved {
+                source,
+                target,
+                from,
+                to: from,
+                force,
+                resistance: Some(resistance),
+                requested_distance: movement.distance(),
+                moved_distance: 0,
+                outcome: ForcedMovementOutcome::Fixed,
+            });
+            return;
+        }
+        if u32::from(force) < resistance {
+            self.events.push(GameEvent::ForcedMovementResolved {
+                source,
+                target,
+                from,
+                to: from,
+                force,
+                resistance: Some(resistance),
+                requested_distance: movement.distance(),
+                moved_distance: 0,
+                outcome: ForcedMovementOutcome::Resisted,
+            });
+            return;
+        }
+
+        let delta_x = match from.x.cmp(&attack_origin.x) {
+            std::cmp::Ordering::Less => -1,
+            std::cmp::Ordering::Equal => 0,
+            std::cmp::Ordering::Greater => 1,
+        };
+        let delta_y = match from.y.cmp(&attack_origin.y) {
+            std::cmp::Ordering::Less => -1,
+            std::cmp::Ordering::Equal => 0,
+            std::cmp::Ordering::Greater => 1,
+        };
+        let mut destination = from;
+        let mut moved_distance = 0;
+        for _ in 0..movement.distance() {
+            let Some(next_x) = destination.x.checked_add(delta_x) else {
+                break;
+            };
+            let Some(next_y) = destination.y.checked_add(delta_y) else {
+                break;
+            };
+            let next = GridPos::new(next_x, next_y);
+            if !self.map.is_walkable(next)
+                || self.map.is_protected(next)
+                || self.actors.entity_at(next).is_some()
+            {
+                break;
+            }
+            destination = next;
+            moved_distance += 1;
+        }
+        let outcome = if moved_distance == movement.distance() {
+            ForcedMovementOutcome::Moved
+        } else {
+            ForcedMovementOutcome::Blocked
+        };
+        if moved_distance > 0 {
+            self.actors
+                .move_to(target, destination)
+                .expect("validated forced movement target remains registered");
+            if target == self.player {
+                self.end_player_anchor();
+            }
+        }
+        self.events.push(GameEvent::ForcedMovementResolved {
+            source,
+            target,
+            from,
+            to: destination,
+            force,
+            resistance: Some(resistance),
+            requested_distance: movement.distance(),
+            moved_distance,
+            outcome,
+        });
+    }
+
+    fn apply_reaction_to_melee_hit(
+        &mut self,
+        source: EntityId,
+        target: EntityId,
+        attack: AttackProfile,
+        damage: DamageImpact,
+        action_origin: ActionOrigin,
+    ) -> (DamageImpact, Option<ReactionFollowUp>) {
+        if attack.delivery() != AttackDelivery::Melee {
+            return (damage, None);
+        }
+        let trigger_energy_cost = self
+            .actors
+            .get(target)
+            .and_then(Actor::prepared_reaction)
+            .filter(|reaction| reaction.trigger() == ReactionTrigger::AfterMeleeHit)
+            .map_or(0, PreparedReaction::trigger_energy_cost);
+        if !self.can_pay_reaction_energy(target, trigger_energy_cost) {
+            return (damage, None);
+        }
+        let Some(reaction) = self.actors.get_mut(target).and_then(|actor| {
+            actor.try_trigger_reaction(ReactionTrigger::AfterMeleeHit, action_origin)
+        }) else {
+            return (damage, None);
+        };
+        self.pay_reaction_energy(target, reaction.trigger_energy_cost());
+        let follow_up = reaction.follow_up().cloned();
+        self.events.push(GameEvent::ReactionTriggered {
+            reactor: target,
+            source,
+            technique: reaction.technique().clone(),
+            reaction: reaction.kind(),
+        });
+        match reaction.effect() {
+            ReactionEffect::ReducePhysicalDamage { percentage } => {
+                let before = damage.raw_physical_total();
+                let after = u32::from(before)
+                    .saturating_mul(u32::from(100_u8.saturating_sub(*percentage)))
+                    / 100;
+                let after = u16::try_from(after).unwrap_or(u16::MAX);
+                self.events.push(GameEvent::PhysicalDamageParried {
+                    reactor: target,
+                    source,
+                    before,
+                    after,
+                });
+                (damage.with_physical_total(after), follow_up)
+            }
+            ReactionEffect::PerformMeleeWeaponAttack
+            | ReactionEffect::PerformRangedWeaponAttack { .. }
+            | ReactionEffect::MoveTo { .. } => (damage, follow_up),
+        }
+    }
+
+    fn can_pay_reaction_energy(&self, entity: EntityId, amount: u16) -> bool {
+        amount == 0 || (entity == self.player && self.player_energy.available() >= amount)
+    }
+
+    fn pay_reaction_energy(&mut self, entity: EntityId, amount: u16) {
+        if amount == 0 || entity != self.player {
+            return;
+        }
+        self.player_energy
+            .spend(amount)
+            .expect("reaction energy availability was validated");
+        self.events.push(GameEvent::EnergySpent {
+            entity,
+            amount,
+            remaining: self.player_energy.available(),
+        });
+    }
+
+    fn reserve_player_bandwidth(&mut self, amount: u16) -> Result<(), TechniqueUseError> {
+        if amount == 0 {
+            return Ok(());
+        }
+        let Some(bandwidth) = self.player_bandwidth.as_mut() else {
+            // Generations saved before shared system resources existed had no
+            // bandwidth pool. Keeping their historical techniques usable is
+            // part of deterministic suspension compatibility; current games
+            // always opt into an explicit pool through their rules.
+            return Ok(());
+        };
+        bandwidth
+            .reserve(amount)
+            .map_err(TechniqueUseError::Bandwidth)?;
+        self.events.push(GameEvent::BandwidthReserved {
+            entity: self.player,
+            amount,
+            occupied: bandwidth.occupied(),
+            capacity: bandwidth.capacity(),
+        });
         Ok(())
+    }
+
+    fn release_player_bandwidth(&mut self, amount: u16) {
+        if amount == 0 {
+            return;
+        }
+        let Some(bandwidth) = self.player_bandwidth.as_mut() else {
+            return;
+        };
+        let before = bandwidth.occupied();
+        bandwidth.release(amount);
+        let released = before.saturating_sub(bandwidth.occupied());
+        if released > 0 {
+            self.events.push(GameEvent::BandwidthReleased {
+                entity: self.player,
+                amount: released,
+                occupied: bandwidth.occupied(),
+                capacity: bandwidth.capacity(),
+            });
+        }
+    }
+
+    fn release_player_preparation_bandwidth(&mut self) {
+        let amount = std::mem::take(&mut self.player_preparation_bandwidth);
+        self.release_player_bandwidth(amount);
+    }
+
+    fn preflight_intrinsic_activation(
+        &self,
+        definition: &TechniqueDefinition,
+        active_count: usize,
+    ) -> Result<(u16, u16, u16), TechniqueUseError> {
+        let Some(cost) = definition.activation_cost() else {
+            return Ok((0, 0, 0));
+        };
+        if let Some(maximum) = cost.active_limit()
+            && active_count >= usize::from(maximum)
+        {
+            return Err(TechniqueUseError::ManifestationLimitReached { maximum });
+        }
+        if self.player_energy.available() < cost.energy() {
+            return Err(TechniqueUseError::Energy(EnergySpendError {
+                required: cost.energy(),
+                available: self.player_energy.available(),
+            }));
+        }
+        if cost.heat() > 0 && self.player_heat.is_none() {
+            return Err(TechniqueUseError::SystemResourcesUnavailable);
+        }
+        if cost.persistent_bandwidth() > 0 {
+            let available = self
+                .player_bandwidth
+                .ok_or(TechniqueUseError::SystemResourcesUnavailable)?
+                .available();
+            if available < cost.persistent_bandwidth() {
+                return Err(TechniqueUseError::Bandwidth(BandwidthReservationError {
+                    required: cost.persistent_bandwidth(),
+                    available,
+                }));
+            }
+        }
+        Ok((cost.energy(), cost.heat(), cost.persistent_bandwidth()))
+    }
+
+    fn commit_intrinsic_activation(
+        &mut self,
+        energy: u16,
+        heat: u16,
+        bandwidth: u16,
+    ) -> Result<(), TechniqueUseError> {
+        self.player_energy
+            .spend(energy)
+            .expect("intrinsic activation energy was preflighted");
+        if energy > 0 {
+            self.events.push(GameEvent::EnergySpent {
+                entity: self.player,
+                amount: energy,
+                remaining: self.player_energy.available(),
+            });
+        }
+        self.generate_player_heat(heat)?;
+        self.reserve_player_bandwidth(bandwidth)?;
+        Ok(())
+    }
+
+    fn release_manifestation_reservation(
+        &mut self,
+        reservation: Option<TechniqueManifestationReservation>,
+    ) {
+        if let Some(reservation) = reservation {
+            self.release_player_bandwidth(reservation.bandwidth);
+        }
+    }
+
+    fn generate_player_heat(&mut self, amount: u16) -> Result<(), TechniqueUseError> {
+        if amount == 0 {
+            return Ok(());
+        }
+        let heat = self
+            .player_heat
+            .as_mut()
+            .ok_or(TechniqueUseError::SystemResourcesUnavailable)?;
+        let before = heat.current();
+        heat.add(amount);
+        let current = heat.current();
+        self.events.push(GameEvent::HeatGenerated {
+            entity: self.player,
+            amount,
+            current,
+        });
+        let crossed_alert = before < heat.alert_threshold() && current >= heat.alert_threshold();
+        let crossed_critical =
+            before < heat.critical_threshold() && current >= heat.critical_threshold();
+        if crossed_alert || crossed_critical {
+            self.events.push(GameEvent::HeatThresholdCrossed {
+                entity: self.player,
+                critical: crossed_critical,
+                current,
+            });
+        }
+        Ok(())
+    }
+
+    fn dissipate_player_heat(&mut self) {
+        let Some(heat) = self.player_heat.as_mut() else {
+            return;
+        };
+        let amount = heat.dissipate();
+        if amount > 0 {
+            self.events.push(GameEvent::HeatDissipated {
+                entity: self.player,
+                amount,
+                current: heat.current(),
+            });
+        }
+    }
+
+    fn resolve_melee_counterattack(
+        &mut self,
+        reactor: EntityId,
+        source: EntityId,
+        technique: TechniqueId,
+    ) {
+        let outcome = if self.actors.get(reactor).is_none() {
+            CounterattackOutcome::ReactorUnavailable
+        } else if self.actors.get(source).is_none() {
+            CounterattackOutcome::SourceUnavailable
+        } else if !is_within_chebyshev_range(
+            self.actors
+                .get(reactor)
+                .expect("reactor existence checked")
+                .position(),
+            self.actors
+                .get(source)
+                .expect("source existence checked")
+                .position(),
+            1,
+        ) {
+            CounterattackOutcome::OutOfReach
+        } else if let Some(slot) = self.melee_counterattack_slot(reactor) {
+            match self.prepare_targeted_attack(reactor, slot, source) {
+                Ok(prepared) => {
+                    let recovery = prepared.attack.recovery_after_attack();
+                    match self.resolve_prepared_attack(prepared, ActionOrigin::Reaction) {
+                        Ok(_) => {
+                            if let Some(recovery) = recovery {
+                                self.start_action_recovery(reactor, recovery);
+                            }
+                            CounterattackOutcome::Performed
+                        }
+                        Err(AttackError::MissingAttacker(_)) => {
+                            CounterattackOutcome::ReactorUnavailable
+                        }
+                        Err(AttackError::UnknownTarget(_)) => {
+                            CounterattackOutcome::SourceUnavailable
+                        }
+                        Err(_) => CounterattackOutcome::OutOfReach,
+                    }
+                }
+                Err(AttackError::MissingAttacker(_)) => CounterattackOutcome::ReactorUnavailable,
+                Err(AttackError::UnknownTarget(_)) => CounterattackOutcome::SourceUnavailable,
+                Err(AttackError::MissingAttackSlot(_)) => CounterattackOutcome::NoMeleeWeapon,
+                Err(_) => CounterattackOutcome::OutOfReach,
+            }
+        } else {
+            CounterattackOutcome::NoMeleeWeapon
+        };
+        self.events.push(GameEvent::CounterattackResolved {
+            reactor,
+            source,
+            technique,
+            outcome,
+        });
+    }
+
+    fn resolve_melee_interception(
+        &mut self,
+        reactor: EntityId,
+        mover: EntityId,
+        evasion_modifier: i16,
+    ) -> InterceptionOutcome {
+        if self.actors.get(reactor).is_none() {
+            return InterceptionOutcome::ReactorUnavailable;
+        }
+        if self.actors.get(mover).is_none() {
+            return InterceptionOutcome::MoverUnavailable;
+        }
+        let reactor_position = self
+            .actors
+            .get(reactor)
+            .expect("reactor existence checked")
+            .position();
+        let mover_position = self
+            .actors
+            .get(mover)
+            .expect("mover existence checked")
+            .position();
+        if !is_within_chebyshev_range(reactor_position, mover_position, 1) {
+            return InterceptionOutcome::OutOfReach;
+        }
+        let Some(slot) = self.melee_counterattack_slot(reactor) else {
+            return InterceptionOutcome::NoMeleeWeapon;
+        };
+        let Ok(mut prepared) = self.prepare_targeted_attack(reactor, slot, mover) else {
+            return InterceptionOutcome::OutOfReach;
+        };
+        prepared.attack = prepared.attack.with_accuracy_modifier(
+            prepared
+                .attack
+                .accuracy_modifier()
+                .saturating_sub(evasion_modifier),
+        );
+        let recovery = prepared.attack.recovery_after_attack();
+        if self
+            .resolve_prepared_attack(prepared, ActionOrigin::Reaction)
+            .is_err()
+        {
+            return InterceptionOutcome::OutOfReach;
+        }
+        if let Some(recovery) = recovery {
+            self.start_action_recovery(reactor, recovery);
+        }
+        InterceptionOutcome::Performed
+    }
+
+    fn melee_counterattack_slot(&self, reactor: EntityId) -> Option<u8> {
+        if reactor == self.player && !self.rules.player_weapon_slots.is_empty() {
+            return self
+                .rules
+                .player_weapon_slots
+                .iter()
+                .enumerate()
+                .find_map(|(slot, _)| {
+                    let slot = u8::try_from(slot).ok()?;
+                    let attack = self.equipped_player_weapon(slot)?.attack();
+                    (attack.delivery() == AttackDelivery::Melee
+                        && matches!(attack.area(), AttackArea::Single))
+                    .then_some(slot)
+                });
+        }
+        self.actors
+            .get(reactor)?
+            .attacks()
+            .iter()
+            .position(|attack| {
+                attack.delivery() == AttackDelivery::Melee
+                    && matches!(attack.area(), AttackArea::Single)
+            })
+            .and_then(|slot| u8::try_from(slot).ok())
+    }
+
+    fn resolve_hit(
+        &mut self,
+        attacker: EntityId,
+        target: EntityId,
+        attack: AttackProfile,
+    ) -> Result<bool, AttackError> {
+        if !matches!(attack.area(), AttackArea::Single) {
+            return Ok(true);
+        }
+        let Some(hit_rules) = self.rules.hit_rules else {
+            return Ok(true);
+        };
+        let attacker_attributes = self
+            .actors
+            .get(attacker)
+            .ok_or(AttackError::MissingAttacker(attacker))?
+            .primary_attributes();
+        let target_state = self
+            .actors
+            .get(target)
+            .ok_or(AttackError::UnknownTarget(target))?;
+        if !target_state.can_evade() {
+            return Ok(true);
+        }
+        let target_at = target_state.position();
+        let target_attributes = target_state.primary_attributes();
+        let evasion_modifier = target_state.evasion_modifier();
+        let chance = hit_rules.hit_chance(
+            attack.delivery(),
+            attacker_attributes,
+            attack
+                .accuracy_modifier()
+                .saturating_add(self.actor_accuracy_modifier(attacker)),
+            target_attributes,
+            evasion_modifier,
+            0,
+        );
+        let roll = self.rng.percentile();
+        let hit = roll <= chance;
+        self.events.push(GameEvent::AttackHitResolved {
+            attacker,
+            target,
+            at: target_at,
+            chance,
+            roll,
+            hit,
+        });
+        Ok(hit)
     }
 
     fn create_ground_effect(
@@ -1169,6 +10977,56 @@ impl GameState {
             equipment_slot,
             item,
             weapon: weapon_id,
+            displaced: outcome.displaced,
+        });
+        Ok(())
+    }
+
+    fn equip_player_item(
+        &mut self,
+        equipment_slot: EquipmentSlotId,
+        item: ItemInstanceId,
+    ) -> Result<(), EquipItemError> {
+        if !self.rules.player_armor_slots.contains(&equipment_slot) {
+            return Err(EquipItemError::UnknownEquipmentSlot(equipment_slot));
+        }
+        if self.player_equipment.equipped(&equipment_slot) == Some(item) {
+            return Err(EquipItemError::AlreadyEquipped {
+                slot: equipment_slot,
+                item,
+            });
+        }
+        let entry = self
+            .player_inventory
+            .get(item)
+            .ok_or(EquipItemError::UnknownInventoryItem(item))?;
+        let definition =
+            self.rules
+                .items
+                .get(entry.item())
+                .ok_or_else(|| EquipItemError::CannotEquip {
+                    slot: equipment_slot.clone(),
+                    item,
+                })?;
+        if definition
+            .equipment()
+            .is_none_or(|profile| profile.slot() != &equipment_slot)
+        {
+            return Err(EquipItemError::CannotEquip {
+                slot: equipment_slot,
+                item,
+            });
+        }
+        let definition_id = definition.id().clone();
+        let outcome = self
+            .player_equipment
+            .equip(equipment_slot.clone(), item, &self.player_inventory)
+            .map_err(EquipItemError::Equipment)?;
+        self.events.push(GameEvent::ItemEquipped {
+            entity: self.player,
+            equipment_slot,
+            item,
+            definition: definition_id,
             displaced: outcome.displaced,
         });
         Ok(())
@@ -1249,7 +11107,7 @@ impl GameState {
             .ok_or(PickUpError::UnknownItemDefinition)?;
 
         let mut next_inventory = self.player_inventory.clone();
-        next_inventory
+        let affected_instances = next_inventory
             .add_with_owner(
                 stack.item().clone(),
                 stack.quantity(),
@@ -1259,6 +11117,28 @@ impl GameState {
             .map_err(PickUpError::Inventory)?;
         let witnesses = self.property_take_witnesses(position, stack.owner());
         self.player_inventory = next_inventory;
+        let engineering_item = self.rules.weapons.get(stack.item()).is_some()
+            || self
+                .rules
+                .items
+                .get(stack.item())
+                .and_then(ItemDefinition::equipment)
+                .is_some();
+        let engineering_feature = "core:engineering"
+            .parse()
+            .expect("built-in engineering feature ID must remain valid");
+        if engineering_item
+            && self
+                .rules
+                .enabled_system_features
+                .contains(&engineering_feature)
+        {
+            for instance in affected_instances {
+                self.equipment_engineering
+                    .entry(instance)
+                    .or_insert_with(|| EquipmentEngineeringState::new(100).unwrap());
+            }
+        }
         let _ = self.ground_items.remove(ground_item);
         self.events.push(GameEvent::ItemPickedUp {
             entity: self.player,
@@ -1476,6 +11356,17 @@ impl GameState {
             .get(effect.status())
             .cloned()
             .ok_or(AbilityError::UnknownStatusDefinition)?;
+        if let Some(family) = definition.family()
+            && let Some(blocking_status) = self.status_blocking_family(target, family)
+        {
+            self.events.push(GameEvent::StatusApplicationBlocked {
+                source,
+                target,
+                status: effect.status().clone(),
+                blocking_status,
+            });
+            return Ok(());
+        }
         let Some(target_actor) = self.actors.get_mut(target) else {
             // A previous primitive in the same ability may already have removed the target.
             return Ok(());
@@ -1487,8 +11378,167 @@ impl GameState {
             status: effect.status().clone(),
             stacks: outcome.stacks,
             remaining_turns: outcome.remaining_turns,
+            application: outcome.kind,
         });
         Ok(())
+    }
+
+    fn resolve_technique_on_hit_effect(
+        &mut self,
+        source: EntityId,
+        target: EntityId,
+        technique: &TechniqueId,
+        effect: &TechniqueOnHitEffect,
+    ) {
+        let failure = match effect.target_requirement() {
+            TechniqueTargetRequirement::HasArmor
+                if !self
+                    .actor_armor_profile(target)
+                    .is_some_and(|armor| armor.total_before_fragilization() > 0) =>
+            {
+                Some(TechniqueEffectFailure::TargetHasNoArmor)
+            }
+            TechniqueTargetRequirement::HasCompatibleLocomotion
+                if !self
+                    .actors
+                    .get(target)
+                    .and_then(Actor::locomotion_profile)
+                    .is_some_and(|profile| profile.hindrance_compatible()) =>
+            {
+                Some(TechniqueEffectFailure::TargetHasNoCompatibleLocomotion)
+            }
+            TechniqueTargetRequirement::HasCompatibleSuppressionResponse
+                if !self
+                    .actors
+                    .get(target)
+                    .and_then(Actor::body_profile)
+                    .is_some_and(|body| body.is_suppression_compatible()) =>
+            {
+                Some(TechniqueEffectFailure::TargetHasNoCompatibleSuppressionResponse)
+            }
+            _ => None,
+        };
+        if let Some(reason) = failure {
+            self.events.push(GameEvent::TechniqueOnHitEffectRejected {
+                source,
+                target,
+                technique: technique.clone(),
+                reason,
+            });
+            return;
+        }
+        let status = effect.application().status();
+        if self
+            .rules
+            .statuses
+            .get(status)
+            .and_then(StatusDefinition::family)
+            .and_then(|family| self.status_blocking_family(target, family))
+            .is_some()
+        {
+            self.events.push(GameEvent::TechniqueOnHitEffectRejected {
+                source,
+                target,
+                technique: technique.clone(),
+                reason: TechniqueEffectFailure::ProtectedFromEffect,
+            });
+            return;
+        }
+        if let Some(TechniqueEffectResistance::Stability { intensity }) = effect.resistance() {
+            let rules = self
+                .rules
+                .stability_rules
+                .expect("Stability effects require validated Stability rules");
+            let actor = self
+                .actors
+                .get(target)
+                .expect("hit target survives and remains registered");
+            let modifier = self.actor_stability_modifier(target);
+            let chance = rules.resistance_chance(actor.primary_attributes(), modifier, intensity);
+            let roll = self.rng.percentile();
+            let resisted = roll <= chance;
+            self.events.push(GameEvent::StabilityCheckResolved {
+                source,
+                target,
+                technique: technique.clone(),
+                intensity,
+                chance,
+                roll,
+                resisted,
+            });
+            if resisted {
+                return;
+            }
+        }
+        self.apply_status_to(Some(source), target, effect.application())
+            .expect("technique status references were validated before the run");
+    }
+
+    fn actor_stability_modifier(&self, entity: EntityId) -> i16 {
+        self.actors
+            .get(entity)
+            .into_iter()
+            .flat_map(Actor::statuses)
+            .filter_map(|instance| self.rules.statuses.get(&instance.definition))
+            .flat_map(StatusDefinition::modifiers)
+            .filter_map(|modifier| match modifier {
+                StatusModifier::Stability { amount } => Some(*amount),
+                _ => None,
+            })
+            .fold(0_i16, i16::saturating_add)
+    }
+
+    fn actor_accuracy_modifier(&self, entity: EntityId) -> i16 {
+        self.actors
+            .get(entity)
+            .into_iter()
+            .flat_map(Actor::statuses)
+            .filter_map(|instance| self.rules.statuses.get(&instance.definition))
+            .flat_map(StatusDefinition::modifiers)
+            .filter_map(|modifier| match modifier {
+                StatusModifier::Accuracy { amount } => Some(*amount),
+                _ => None,
+            })
+            .fold(0_i16, i16::saturating_add)
+    }
+
+    pub fn actor_movement_time_units(&self, entity: EntityId) -> u16 {
+        let status_minimum = self
+            .actors
+            .get(entity)
+            .into_iter()
+            .flat_map(Actor::statuses)
+            .filter_map(|instance| self.rules.statuses.get(&instance.definition))
+            .flat_map(StatusDefinition::modifiers)
+            .filter_map(|modifier| match modifier {
+                StatusModifier::MovementTimeMinimum { time_units } => Some(*time_units),
+                _ => None,
+            })
+            .max()
+            .unwrap_or(1)
+            .max(1);
+        let posture_minimum = if entity == self.player {
+            self.player_low_profile
+                .as_ref()
+                .map_or(1, |profile| profile.minimum_movement_time_units)
+        } else {
+            1
+        };
+        status_minimum.max(posture_minimum)
+    }
+
+    fn status_blocking_family(
+        &self,
+        entity: EntityId,
+        family: &StatusFamilyId,
+    ) -> Option<StatusId> {
+        self.actors.get(entity)?.statuses().find_map(|instance| {
+            self.rules
+                .statuses
+                .get(&instance.definition)
+                .filter(|definition| definition.blocked_families().contains(family))
+                .map(|_| instance.definition.clone())
+        })
     }
 
     fn apply_radial_damage(
@@ -1531,35 +11581,173 @@ impl GameState {
         source: Option<EntityId>,
         target: EntityId,
         packet: DamagePacket,
-    ) -> Result<(), EntityId> {
+    ) -> Result<DamageApplication, EntityId> {
+        self.apply_damage_impact_to(source, target, DamageImpact::single(packet))
+    }
+
+    fn apply_damage_impact_to_component(
+        &mut self,
+        source: Option<EntityId>,
+        target: EntityId,
+        component: &BodyComponentId,
+        impact: DamageImpact,
+    ) -> Result<DamageApplication, EntityId> {
         let position = self.actors.get(target).ok_or(target)?.position();
         if self.map.is_protected(position)
             || source
                 .and_then(|id| self.actors.get(id))
                 .is_some_and(|actor| self.map.is_protected(actor.position()))
         {
-            return Ok(());
+            return Ok(DamageApplication::default());
         }
-        let (resistances, defeat_reward) = self
+        let armor = self.actor_armor_profile(target).ok_or(target)?;
+        let resistances = self.actors.get(target).ok_or(target)?.resistances();
+        let resolved = self.rules.armor_rules.map_or_else(
+            || resolve_damage_impact(impact, resistances, self.rules.damage),
+            |armor_rules| {
+                resolve_damage_impact_with_armor(
+                    impact,
+                    resistances,
+                    armor,
+                    self.rules.damage,
+                    armor_rules,
+                )
+            },
+        );
+        let component_state = self
             .actors
-            .get(target)
-            .map(|actor| (actor.resistances(), actor.defeat_reward()))
+            .get_mut(target)
+            .and_then(|actor| actor.body_component_mut(component))
             .ok_or(target)?;
-        let resolved = resolve_damage(packet, resistances, self.rules.damage);
-        let target_actor = self.actors.get_mut(target).ok_or(target)?;
-        let applied_damage = target_actor.apply_damage(resolved.amount);
-        let target_died = !target_actor.is_alive();
-
-        self.events.push(GameEvent::DamageApplied {
+        let amount = component_state.apply_damage(resolved.amount());
+        let durability = component_state.durability();
+        let maximum_durability = component_state.maximum_durability();
+        let failed = component_state.is_failed();
+        self.events.push(GameEvent::BodyComponentDamaged {
             source,
             target,
-            amount: applied_damage,
-            damage_type: packet.damage_type,
+            component: component.clone(),
+            amount,
+            durability,
+            maximum_durability,
+            failed,
         });
+        Ok(DamageApplication {
+            amount,
+            target_destroyed: false,
+        })
+    }
+
+    fn apply_damage_impact_to(
+        &mut self,
+        source: Option<EntityId>,
+        target: EntityId,
+        impact: DamageImpact,
+    ) -> Result<DamageApplication, EntityId> {
+        let position = self.actors.get(target).ok_or(target)?.position();
+        if self.map.is_protected(position)
+            || source
+                .and_then(|id| self.actors.get(id))
+                .is_some_and(|actor| self.map.is_protected(actor.position()))
+        {
+            return Ok(DamageApplication::default());
+        }
+        let armor = self.actor_armor_profile(target).ok_or(target)?;
+        let (resistances, defeat_reward, destruction_effect, controlled_drone, wreck_components) =
+            self.actors
+                .get(target)
+                .map(|actor| {
+                    (
+                        actor.resistances(),
+                        actor.defeat_reward(),
+                        actor.destruction_effect().cloned(),
+                        actor.drone().and_then(|drone| {
+                            (drone.controller() == self.player).then_some((
+                                drone.controller(),
+                                drone
+                                    .profile()
+                                    .bandwidth_required()
+                                    .saturating_add(drone.order_bandwidth()),
+                            ))
+                        }),
+                        actor.body_components().cloned().collect::<Vec<_>>(),
+                    )
+                })
+                .ok_or(target)?;
+        let resolved = self.rules.armor_rules.map_or_else(
+            || resolve_damage_impact(impact, resistances, self.rules.damage),
+            |armor_rules| {
+                resolve_damage_impact_with_armor(
+                    impact,
+                    resistances,
+                    armor,
+                    self.rules.damage,
+                    armor_rules,
+                )
+            },
+        );
+        let target_actor = self.actors.get_mut(target).ok_or(target)?;
+        let applied_damage = target_actor.apply_damage(resolved.amount());
+        let target_died = !target_actor.is_alive();
+
+        if impact.is_legacy_single() {
+            self.events.push(GameEvent::DamageApplied {
+                source,
+                target,
+                at: position,
+                amount: applied_damage,
+                damage_type: impact.primary_damage_type(),
+                effective_armor: resolved.effective_armor,
+                absorbed_by_armor: resolved.absorbed_by_armor,
+            });
+        } else {
+            self.events.push(GameEvent::DamageImpactApplied {
+                source,
+                target,
+                at: position,
+                amount: applied_damage,
+                components: resolved.components().collect(),
+                effective_armor: resolved.effective_armor,
+                absorbed_by_armor: resolved.absorbed_by_armor,
+            });
+        }
 
         if target_died {
-            self.events.push(GameEvent::EntityDied { entity: target });
+            self.events.push(GameEvent::EntityDied {
+                entity: target,
+                at: position,
+            });
             self.actors.remove(target);
+            self.electronic_warfare.remove_beacon(target);
+            let beacon_reservation = self.manifested_beacons.remove(&target);
+            self.release_manifestation_reservation(beacon_reservation);
+            if let Ok(Some(wreck)) = self.wrecks.create(position, wreck_components) {
+                let components = self
+                    .wrecks
+                    .get(wreck)
+                    .map(|wreckage| {
+                        wreckage
+                            .components()
+                            .map(|component| component.profile().id().clone())
+                            .collect()
+                    })
+                    .unwrap_or_default();
+                self.events.push(GameEvent::WreckCreated {
+                    wreck,
+                    at: position,
+                    components,
+                });
+            }
+            if let Some((controller, bandwidth_released)) = controlled_drone {
+                if let Some(bandwidth) = self.player_bandwidth.as_mut() {
+                    bandwidth.release(bandwidth_released);
+                }
+                self.events.push(GameEvent::DroneControlReleased {
+                    entity: target,
+                    controller,
+                    bandwidth_released,
+                });
+            }
             if target == self.player {
                 self.status = RunStatus::PlayerDestroyed;
             } else if source == Some(self.player)
@@ -1567,9 +11755,24 @@ impl GameState {
             {
                 self.award_defeat_experience(target, reward);
             }
+            if let Some(effect) = destruction_effect {
+                self.events.push(GameEvent::EntityDestructionTriggered {
+                    entity: target,
+                    at: position,
+                });
+                self.apply_radial_damage(source, position, effect.explosion());
+                if let Some(ground_effect) = effect.ground_effect() {
+                    for affected_position in effect.ground_effect_positions(&self.map, position) {
+                        self.create_ground_effect(source, affected_position, ground_effect);
+                    }
+                }
+            }
         }
 
-        Ok(())
+        Ok(DamageApplication {
+            amount: applied_damage,
+            target_destroyed: target_died,
+        })
     }
 
     fn award_defeat_experience(&mut self, target: EntityId, reward: DefeatReward) {
@@ -1617,10 +11820,27 @@ impl GameState {
         self.phase = TurnPhase::ResolvingEnvironment;
         if self.status == RunStatus::Active {
             self.resolve_status_trigger(StatusTrigger::TurnEnd);
+            self.resolve_explosive_devices();
             self.resolve_ground_effects();
+            self.resolve_stealth_environment();
             self.elapse_status_durations();
+            self.advance_technique_cooldowns();
+            self.resolve_threat_sources();
+            self.cancel_player_preparation_if_target_unavailable();
+            self.cancel_player_persistent_ranged_aim_if_target_unavailable();
+            self.advance_engineering_state();
+            self.advance_intrusion_state();
+            self.advance_electronic_warfare_state();
+            self.dissipate_player_heat();
+            self.expire_player_preparation_interruption_protection();
         }
         self.turn = self.turn.saturating_add(1);
+        let actor_ids: Vec<_> = self.actors.iter().map(|(entity, _)| entity).collect();
+        for entity in actor_ids {
+            if let Some(actor) = self.actors.get_mut(entity) {
+                actor.clear_elapsed_action_delay(self.turn);
+            }
+        }
         self.movement_traces
             .prune(self.turn, self.rules.movement_traces);
         self.events
@@ -1632,11 +11852,738 @@ impl GameState {
         };
     }
 
+    fn advance_engineering_state(&mut self) {
+        let modules = self
+            .equipment_engineering
+            .keys()
+            .copied()
+            .collect::<Vec<_>>();
+        for module in modules {
+            let Some(mut overclock) = self
+                .equipment_engineering
+                .get(&module)
+                .and_then(|state| state.overclock())
+            else {
+                continue;
+            };
+            if overclock.elapse() {
+                if let Some(state) = self.equipment_engineering.get_mut(&module) {
+                    state.stop_overclock();
+                }
+                self.events.push(GameEvent::ModuleOverclockChanged {
+                    module,
+                    output_percentage: 100,
+                    remaining_time_units: 0,
+                });
+            } else if let Some(state) = self.equipment_engineering.get_mut(&module) {
+                state.start_overclock(overclock);
+            }
+        }
+
+        let invalid =
+            self.active_bypasses
+                .iter()
+                .filter_map(|((target, receiver), bypass)| {
+                    let valid = self.actors.get(*target).is_some_and(|actor| {
+                        actor.body_component(receiver).is_some_and(|component| {
+                            component.is_failed() && !component.is_destroyed()
+                        }) && actor
+                            .body_component(bypass.donor())
+                            .is_some_and(|component| !component.is_failed())
+                    });
+                    (!valid).then_some((*target, receiver.clone(), bypass.donor().clone()))
+                })
+                .collect::<Vec<_>>();
+        for (target, receiver, donor) in invalid {
+            self.active_bypasses.remove(&(target, receiver.clone()));
+            self.events.push(GameEvent::BodyComponentBypassEnded {
+                target,
+                receiver,
+                donor,
+            });
+        }
+    }
+
+    pub(super) fn advance_intrusion_state(&mut self) {
+        for (trace, at, falsified) in self.intrusion.due_audits(self.turn) {
+            self.events.push(GameEvent::SecurityTraceAudited {
+                trace,
+                at,
+                falsified,
+            });
+            if !falsified
+                && let Some(source) = self
+                    .threat_sources
+                    .iter_mut()
+                    .filter(|source| source.active && source.spawned_total < source.maximum_total)
+                    .min_by_key(|source| grid_distance(source.position, at))
+            {
+                source.remaining_turns = source.remaining_turns.min(1);
+                source.pending_investigation = Some(at);
+            }
+        }
+
+        let controlled_positions = self
+            .intrusion
+            .controls()
+            .filter_map(|(position, control)| {
+                (self.turn >= control.recapture_on_turn
+                    && self
+                        .intrusion
+                        .routine_suspension(position)
+                        .is_none_or(|routine| !routine.active))
+                .then_some(position)
+            })
+            .collect::<Vec<_>>();
+        for position in controlled_positions {
+            if self
+                .intrusion
+                .control_lock(position)
+                .is_some_and(|lock| self.turn < lock.expires_on_turn)
+            {
+                self.events
+                    .push(GameEvent::DeviceControlRecaptureBlocked { at: position });
+                continue;
+            }
+            if let Some(control) = self.intrusion.remove_control(position) {
+                self.release_player_bandwidth(control.bandwidth_reserved);
+                self.revert_device_command(position, control.command);
+                self.events.push(GameEvent::DeviceControlChanged {
+                    at: position,
+                    command: control.command,
+                    active: false,
+                });
+            }
+        }
+
+        let expirations = self.intrusion.expire(self.turn.saturating_add(1));
+        self.release_player_bandwidth(expirations.bandwidth_released);
+        self.events.extend(
+            expirations
+                .sessions
+                .into_iter()
+                .map(|at| GameEvent::DigitalAccessExpired { at }),
+        );
+        for (at, command) in expirations.controls {
+            self.revert_device_command(at, command);
+            self.events.push(GameEvent::DeviceControlChanged {
+                at,
+                command,
+                active: false,
+            });
+        }
+        for at in expirations.routines {
+            self.events.push(GameEvent::DigitalRoutineChanged {
+                at,
+                routine: DigitalRoutine::AutomaticResponse,
+                suspended: false,
+            });
+        }
+        self.events.extend(
+            expirations
+                .locks
+                .into_iter()
+                .map(|at| GameEvent::DeviceControlLockChanged { at, active: false }),
+        );
+    }
+
+    pub(super) fn advance_electronic_warfare_state(&mut self) {
+        self.advance_electronic_jamming();
+
+        let program_ids = self.electronic_warfare.program_ids();
+        let mut dissipation_penalties = BTreeMap::<EntityId, u16>::new();
+        for program_id in program_ids {
+            let Some(program) = self.electronic_warfare.program(program_id) else {
+                continue;
+            };
+            let Some(target_position) = self.actors.get(program.target()).map(Actor::position)
+            else {
+                self.electronic_warfare.remove_program(program_id);
+                continue;
+            };
+
+            match program.kind() {
+                HostileProgramKind::Implosion {
+                    detonate_on_turn,
+                    physical_damage,
+                    thermal_damage,
+                    radius,
+                    ..
+                } if self.turn >= detonate_on_turn => {
+                    self.electronic_warfare.remove_program(program_id);
+                    self.events.push(GameEvent::ElectronicImplosionDetonated {
+                        program: program_id,
+                        target: program.target(),
+                        at: target_position,
+                    });
+                    self.resolve_electronic_implosion(
+                        program.source(),
+                        target_position,
+                        radius,
+                        physical_damage,
+                        thermal_damage,
+                    );
+                    continue;
+                }
+                HostileProgramKind::Implosion { .. } => continue,
+                HostileProgramKind::Overheat {
+                    heat_per_tick,
+                    dissipation_penalty,
+                } => {
+                    let overflow = self
+                        .actors
+                        .get_mut(program.target())
+                        .and_then(Actor::electronic_system_mut)
+                        .map(|system| {
+                            system.add_heat(heat_per_tick);
+                            system
+                                .heat()
+                                .saturating_sub(system.profile().heat_critical_threshold())
+                                .min(heat_per_tick)
+                        })
+                        .unwrap_or(0);
+                    dissipation_penalties
+                        .entry(program.target())
+                        .and_modify(|penalty| {
+                            *penalty = (*penalty).saturating_add(dissipation_penalty)
+                        })
+                        .or_insert(dissipation_penalty);
+                    if overflow > 0 {
+                        let _ = self.apply_damage_to(
+                            Some(program.source()),
+                            program.target(),
+                            DamagePacket::new(overflow, crate::combat::DamageType::Thermal, 0),
+                        );
+                    }
+                }
+                HostileProgramKind::Infection {
+                    campaign,
+                    thermal_damage_per_tick,
+                } => {
+                    let _ = self.apply_damage_to(
+                        Some(program.source()),
+                        program.target(),
+                        DamagePacket::new(
+                            thermal_damage_per_tick,
+                            crate::combat::DamageType::Thermal,
+                            0,
+                        ),
+                    );
+                    if program.transmission_pending() {
+                        self.propagate_infection(campaign, program.target(), target_position);
+                        if let Some(program) = self.electronic_warfare.program_mut(program_id) {
+                            program.consume_transmission();
+                        }
+                    }
+                }
+            }
+
+            if let Some(program) = self.electronic_warfare.program_mut(program_id) {
+                program.consume_tick();
+            }
+            self.events.push(GameEvent::HostileProgramTicked {
+                program: program_id,
+                target: program.target(),
+            });
+            let expired = self
+                .electronic_warfare
+                .program(program_id)
+                .is_some_and(|program| {
+                    program.ticks_remaining() == 0
+                        || self.turn.saturating_add(1) >= program.expires_on_turn()
+                });
+            if expired {
+                self.electronic_warfare.remove_program(program_id);
+                self.events.push(GameEvent::HostileProgramChanged {
+                    program: program_id,
+                    target: program.target(),
+                    active: false,
+                });
+            }
+        }
+
+        self.advance_saturation_beacons();
+
+        let electronic_targets = self
+            .actors
+            .iter()
+            .filter_map(|(entity, actor)| actor.electronic_system().map(|_| entity))
+            .collect::<Vec<_>>();
+        for target in electronic_targets {
+            let inhibition = dissipation_penalties.get(&target).copied().unwrap_or(0);
+            if let Some(system) = self
+                .actors
+                .get_mut(target)
+                .and_then(Actor::electronic_system_mut)
+            {
+                system.dissipate(inhibition);
+            }
+        }
+        self.electronic_warfare
+            .retain_campaigns(self.turn.saturating_add(1));
+    }
+
+    fn advance_electronic_jamming(&mut self) {
+        let Some(mut field) = self.electronic_warfare.take_jamming() else {
+            return;
+        };
+        let player_position = self.actors.get(field.source).map(Actor::position);
+        let resources_available = field.source == self.player
+            && self.player_energy.available() >= field.energy_per_phase
+            && self.player_heat.is_some();
+        if self.turn >= field.expires_on_turn || player_position.is_none() || !resources_available {
+            self.release_player_bandwidth(field.bandwidth_reserved);
+            self.events.push(GameEvent::ElectronicJammingChanged {
+                source: field.source,
+                channel: field.channel,
+                active: false,
+            });
+            return;
+        }
+        field.center = player_position.expect("validated jamming source has a position");
+        self.player_energy
+            .spend(field.energy_per_phase)
+            .expect("jamming upkeep was preflighted");
+        self.events.push(GameEvent::EnergySpent {
+            entity: self.player,
+            amount: field.energy_per_phase,
+            remaining: self.player_energy.available(),
+        });
+        self.generate_player_heat(field.heat_per_phase)
+            .expect("active jamming requires player heat state");
+        self.electronic_warfare.replace_jamming(field);
+    }
+
+    fn propagate_infection(
+        &mut self,
+        campaign_id: crate::electronic_warfare::InfectionCampaignId,
+        host: EntityId,
+        host_position: GridPos,
+    ) {
+        let Some(campaign) = self.electronic_warfare.campaign(campaign_id).cloned() else {
+            return;
+        };
+        if self.turn >= campaign.expires_on_turn() || !campaign.may_add_host() {
+            return;
+        }
+        let mut candidates = self
+            .actors
+            .iter()
+            .filter(|(target, actor)| {
+                *target != host
+                    && actor.electronic_system().is_some()
+                    && !campaign.was_attempted(*target)
+                    && is_within_chebyshev_range(
+                        host_position,
+                        actor.position(),
+                        campaign.propagation_range(),
+                    )
+                    && has_line_of_sight(&self.map, host_position, actor.position(), true)
+            })
+            .map(|(target, actor)| (target, actor.position()))
+            .collect::<Vec<_>>();
+        candidates
+            .sort_by_key(|(target, position)| (grid_distance(host_position, *position), *target));
+        for (target, position) in candidates
+            .into_iter()
+            .take(usize::from(campaign.transmissions_per_host()))
+        {
+            if !self
+                .electronic_warfare
+                .campaign(campaign_id)
+                .is_some_and(|campaign| campaign.may_add_host())
+            {
+                break;
+            }
+            let defense = self
+                .actors
+                .get(target)
+                .and_then(Actor::electronic_system)
+                .map_or(u16::MAX, |system| system.digital_defense());
+            let chance = software_chance(campaign.strength(), defense, 0);
+            let roll = self.rng.percentile();
+            let succeeded = roll <= chance;
+            if let Some(campaign) = self.electronic_warfare.campaign_mut(campaign_id) {
+                campaign.record_attempt(target, succeeded);
+            }
+            if self.player_visibility.is_visible(position)
+                || self.player_visibility.is_visible(host_position)
+            {
+                self.events.push(GameEvent::HostileProgramAttemptResolved {
+                    source: campaign.source(),
+                    target,
+                    chance,
+                    roll,
+                    succeeded,
+                });
+            }
+            if succeeded {
+                let program = self.electronic_warfare.add_program(
+                    campaign.source(),
+                    target,
+                    campaign.strength(),
+                    self.turn,
+                    campaign.expires_on_turn(),
+                    campaign.ticks_per_host(),
+                    true,
+                    HostileProgramKind::Infection {
+                        campaign: campaign_id,
+                        thermal_damage_per_tick: campaign.thermal_damage_per_tick(),
+                    },
+                );
+                if self.player_visibility.is_visible(position) {
+                    self.events.push(GameEvent::HostileProgramChanged {
+                        program,
+                        target,
+                        active: true,
+                    });
+                }
+            }
+        }
+    }
+
+    fn advance_saturation_beacons(&mut self) {
+        let beacon_ids = self.electronic_warfare.beacon_ids();
+        for beacon_id in beacon_ids {
+            let Some(mut beacon) = self.electronic_warfare.beacon(beacon_id) else {
+                continue;
+            };
+            let Some(position) = self.actors.get(beacon_id).map(Actor::position) else {
+                self.electronic_warfare.remove_beacon(beacon_id);
+                let reservation = self.manifested_beacons.remove(&beacon_id);
+                self.release_manifestation_reservation(reservation);
+                continue;
+            };
+            if !beacon.active {
+                continue;
+            }
+            if beacon.remaining_phases == 0 || beacon.battery.available() < beacon.energy_per_phase
+            {
+                beacon.active = false;
+                if let Some(stored) = self.electronic_warfare.beacon_mut(beacon_id) {
+                    *stored = beacon;
+                }
+                self.events.push(GameEvent::SaturationBeaconExpired {
+                    beacon: beacon_id,
+                    at: position,
+                });
+                let reservation = self.manifested_beacons.remove(&beacon_id);
+                self.release_manifestation_reservation(reservation);
+                continue;
+            }
+            beacon
+                .battery
+                .spend(beacon.energy_per_phase)
+                .expect("beacon battery was preflighted");
+            beacon.remaining_phases = beacon.remaining_phases.saturating_sub(1);
+            if let Some(stored) = self.electronic_warfare.beacon_mut(beacon_id) {
+                *stored = beacon;
+            }
+
+            let effect = RadialDamageEffect {
+                maximum_cost: beacon.radius,
+                neighbor_mode: crate::world::NeighborMode::CardinalAndDiagonal,
+                propagation_policy: crate::world::TerrainPropagationPolicy::blocked_by_walls(1),
+                damage: DamagePacket::new(beacon.damage, crate::combat::DamageType::Electrical, 0),
+                falloff: crate::effects::DamageFalloff::None,
+            };
+            let cells = effect
+                .affected_cells(&self.map, position)
+                .into_iter()
+                .map(|cell| cell.position)
+                .collect::<BTreeSet<_>>();
+            let targets = self
+                .actors
+                .iter()
+                .filter(|(target, actor)| {
+                    *target != beacon_id
+                        && actor.electronic_system().is_some()
+                        && cells.contains(&actor.position())
+                })
+                .map(|(target, _)| target)
+                .collect::<Vec<_>>();
+            for target in targets {
+                let _ = self.apply_damage_to(Some(beacon.owner), target, effect.damage);
+            }
+
+            if beacon.remaining_phases == 0 || beacon.battery.available() < beacon.energy_per_phase
+            {
+                beacon.active = false;
+                if let Some(stored) = self.electronic_warfare.beacon_mut(beacon_id) {
+                    *stored = beacon;
+                }
+                self.events.push(GameEvent::SaturationBeaconExpired {
+                    beacon: beacon_id,
+                    at: position,
+                });
+                let reservation = self.manifested_beacons.remove(&beacon_id);
+                self.release_manifestation_reservation(reservation);
+            }
+        }
+    }
+
+    fn resolve_electronic_implosion(
+        &mut self,
+        source: EntityId,
+        origin: GridPos,
+        radius: u16,
+        physical_damage: u16,
+        thermal_damage: u16,
+    ) {
+        let effect = RadialDamageEffect {
+            maximum_cost: radius,
+            neighbor_mode: crate::world::NeighborMode::CardinalAndDiagonal,
+            propagation_policy: crate::world::TerrainPropagationPolicy::blocked_by_walls(1),
+            damage: DamagePacket::new(1, crate::combat::DamageType::Explosive, 0),
+            falloff: crate::effects::DamageFalloff::None,
+        };
+        let cells = effect.affected_cells(&self.map, origin);
+        let positions = cells
+            .iter()
+            .map(|cell| cell.position)
+            .collect::<BTreeSet<_>>();
+        self.events.push(GameEvent::PropagationResolved {
+            source: Some(source),
+            origin,
+            cells,
+        });
+        let targets = self
+            .actors
+            .iter()
+            .filter(|(_, actor)| positions.contains(&actor.position()))
+            .map(|(target, _)| target)
+            .collect::<Vec<_>>();
+        let impact = DamageImpact::mixed(
+            [
+                crate::combat::DamageComponent::new(
+                    physical_damage,
+                    crate::combat::DamageType::Explosive,
+                ),
+                crate::combat::DamageComponent::new(
+                    thermal_damage,
+                    crate::combat::DamageType::Thermal,
+                ),
+            ],
+            0,
+            [],
+        )
+        .expect("authored electronic implosion has two non-zero components");
+        for target in targets {
+            let _ = self.apply_damage_impact_to(Some(source), target, impact);
+        }
+    }
+
+    fn revert_device_command(&mut self, position: GridPos, command: DeviceCommand) {
+        match command {
+            DeviceCommand::Open => {
+                if let Some(door) = self
+                    .digital_interface_profile(position)
+                    .and_then(|profile| profile.controlled_door)
+                    && self.actors.entity_at(door).is_none()
+                    && self.ground_items.item_at(door).is_none()
+                {
+                    let _ = self.map.set_terrain(door, Terrain::Door(DoorState::Closed));
+                    self.refresh_player_visibility();
+                }
+            }
+            DeviceCommand::Close => {}
+            DeviceCommand::Disable => {
+                if let Some(source) = self
+                    .threat_sources
+                    .iter_mut()
+                    .find(|source| source.position == position)
+                {
+                    source.active = true;
+                }
+            }
+        }
+    }
+
+    fn resolve_stealth_environment(&mut self) {
+        let expired_positions = self
+            .sound_emitters
+            .iter()
+            .map(|emitter| (emitter.id(), emitter.position()))
+            .collect::<BTreeMap<_, _>>();
+        for emitter in self.sound_emitters.elapse() {
+            let reservation = self.manifested_sound_emitters.remove(&emitter);
+            self.release_manifestation_reservation(reservation);
+            if let Some(at) = expired_positions.get(&emitter).copied() {
+                self.events
+                    .push(GameEvent::SoundEmitterExpired { emitter, at });
+            }
+        }
+
+        if let Some(mut camouflage) = self.player_active_camouflage.take() {
+            let can_maintain = self.player_heat.is_some()
+                && self.player_energy.available() >= camouflage.upkeep_energy;
+            if can_maintain {
+                self.player_energy
+                    .spend(camouflage.upkeep_energy)
+                    .expect("active camouflage upkeep was preflighted");
+                self.events.push(GameEvent::EnergySpent {
+                    entity: self.player,
+                    amount: camouflage.upkeep_energy,
+                    remaining: self.player_energy.available(),
+                });
+                self.generate_player_heat(camouflage.heat_per_phase)
+                    .expect("active camouflage requires an initialized heat reserve");
+                camouflage.remaining_phases = camouflage.remaining_phases.saturating_sub(1);
+            }
+            if can_maintain && camouflage.remaining_phases > 0 {
+                self.player_active_camouflage = Some(camouflage);
+            } else {
+                self.events.push(GameEvent::ActiveCamouflageChanged {
+                    entity: self.player,
+                    technique: camouflage.technique,
+                    channel: camouflage.channel,
+                    active: false,
+                });
+            }
+        }
+
+        let trail_ended = self.player_trail_break.as_ref().is_some_and(|trail| {
+            self.turn.saturating_add(1) >= trail.expires_on_turn
+                || self.any_non_player_has_geometric_los_to_player()
+        });
+        if trail_ended && let Some(trail) = self.player_trail_break.take() {
+            self.events.push(GameEvent::TrailBreakEnded {
+                entity: self.player,
+                technique: trail.technique,
+            });
+        }
+        self.player_movement_concealment_bonus = 0;
+        self.transient_noises.clear();
+    }
+
+    fn audible_incident_for(&self, observer: EntityId) -> Option<GridPos> {
+        let rules = self.rules.stealth_rules?;
+        let listener = self.actors.get(observer)?.position();
+        let mut candidates = self
+            .transient_noises
+            .iter()
+            .map(|noise| (noise.intensity, noise.at))
+            .chain(
+                self.sound_emitters
+                    .iter()
+                    .map(|emitter| (emitter.intensity(), emitter.position())),
+            )
+            .filter(|(intensity, at)| {
+                rules.sound_reaches_on_map(&self.map, *intensity, *at, listener)
+            })
+            .collect::<Vec<_>>();
+        candidates.sort_by_key(|(intensity, at)| {
+            (
+                std::cmp::Reverse(*intensity),
+                grid_distance(listener, *at),
+                *at,
+            )
+        });
+        candidates.first().map(|(_, at)| *at)
+    }
+
+    pub(super) fn resolve_threat_sources(&mut self) {
+        for index in 0..self.threat_sources.len() {
+            if !self.threat_sources[index].active
+                || self.threat_sources[index].spawned_total
+                    >= self.threat_sources[index].maximum_total
+            {
+                continue;
+            }
+            if self
+                .intrusion
+                .routine_suspension(self.threat_sources[index].position)
+                .is_some_and(|routine| routine.active && self.turn < routine.expires_on_turn)
+            {
+                continue;
+            }
+            if self.threat_sources[index].remaining_turns > 1 {
+                self.threat_sources[index].remaining_turns -= 1;
+                continue;
+            }
+            let source_id = self.threat_sources[index].id;
+            let active = self
+                .actors
+                .iter()
+                .filter(|(_, actor)| actor.threat_source() == Some(source_id))
+                .count();
+            if active >= usize::from(self.threat_sources[index].maximum_active) {
+                continue;
+            }
+            let origin = self.threat_sources[index].position;
+            let position = std::iter::once(origin)
+                .chain(origin.cardinal_neighbors())
+                .find(|position| {
+                    self.map.is_walkable(*position)
+                        && !self.map.is_protected(*position)
+                        && self.actors.entity_at(*position).is_none()
+                });
+            let Some(position) = position else {
+                continue;
+            };
+            let mut actor = self.threat_sources[index].actor.clone();
+            actor.set_position(position);
+            actor.set_threat_source(source_id);
+            if let Some(incident) = self.threat_sources[index].pending_investigation
+                && let Some(lifecycle) = actor.ai().and_then(|profile| profile.pursuit_lifecycle())
+            {
+                actor.set_ai_state(AiState::Responding {
+                    remaining_turns: lifecycle.maximum_pursuit_turns(),
+                    incident,
+                });
+            }
+            if self.spawn_actor(actor).is_ok() {
+                let source = &mut self.threat_sources[index];
+                source.spawned_total += 1;
+                source.remaining_turns = source.interval_turns;
+                source.pending_investigation = None;
+            }
+        }
+    }
+
+    pub(super) fn advance_technique_cooldowns(&mut self) {
+        let pending: Vec<(EntityId, TechniqueId)> = self
+            .actors
+            .iter()
+            .flat_map(|(entity, actor)| {
+                actor
+                    .technique_cooldowns()
+                    .map(move |(technique, _)| (entity, technique.clone()))
+            })
+            .collect();
+        for (entity, technique) in pending {
+            let Some(advance) = self
+                .actors
+                .get_mut(entity)
+                .and_then(|actor| actor.advance_technique_cooldown(&technique, self.turn))
+            else {
+                continue;
+            };
+            match advance {
+                CooldownAdvance::Arming(_) => {}
+                CooldownAdvance::Cooling(cooldown) => {
+                    self.events.push(GameEvent::TechniqueCooldownAdvanced {
+                        entity,
+                        technique,
+                        remaining_phases: cooldown.remaining_phases().get(),
+                    });
+                }
+                CooldownAdvance::Complete => {
+                    self.events
+                        .push(GameEvent::TechniqueCooldownCompleted { entity, technique });
+                }
+            }
+        }
+    }
+
     fn resolve_ai_turn(&mut self) {
+        self.resolve_player_drone_turns();
         let actors_to_resolve: Vec<EntityId> = self
             .actors
             .iter()
-            .filter_map(|(id, actor)| (id != self.player && actor.ai().is_some()).then_some(id))
+            .filter_map(|(id, actor)| {
+                (id != self.player && actor.ai().is_some() && actor.drone().is_none()).then_some(id)
+            })
             .collect();
 
         for entity in actors_to_resolve {
@@ -1644,45 +12591,971 @@ impl GameState {
                 break;
             }
 
-            let Some(actor) = self.actors.get(entity).cloned() else {
+            let Some(mut actor) = self.actors.get(entity).cloned() else {
                 continue;
             };
-            let Some(profile) = actor.ai() else {
+            if actor.action_is_delayed(self.turn) {
+                continue;
+            }
+            let Some(mut profile) = actor.ai() else {
                 continue;
             };
+            let perception_reduction = self
+                .actor_failed_component_effects(entity)
+                .into_iter()
+                .filter_map(|effect| match effect {
+                    ComponentFailureEffect::ReducePerception(amount) => Some(amount),
+                    _ => None,
+                })
+                .fold(0_u16, u16::saturating_add);
+            profile.perception_radius = profile
+                .perception_radius
+                .saturating_sub(perception_reduction);
             let Some(player_position) = self.player_position() else {
                 break;
             };
+            let visible_target = if self.actor_optically_detects_player(entity) {
+                Some(self.player)
+            } else {
+                self.actors
+                    .iter()
+                    .filter(|(candidate, actor)| {
+                        *candidate != entity
+                            && actor
+                                .drone()
+                                .is_some_and(|drone| drone.controller() == self.player)
+                            && !self.map.is_protected(actor.position())
+                            && self.actor_perceives_position(entity, actor.position())
+                    })
+                    .min_by_key(|(_, candidate)| {
+                        (
+                            grid_distance(actor.position(), candidate.position()),
+                            candidate.position(),
+                        )
+                    })
+                    .map(|(candidate, _)| candidate)
+            };
+            let target_visible = visible_target.is_some();
+            let target_entity = visible_target.unwrap_or(self.player);
+            let target_position = self
+                .actors
+                .get(target_entity)
+                .map_or(player_position, Actor::position);
+            let audible_incident = self.audible_incident_for(entity);
+            if matches!(actor.ai_state(), AiState::Unaware)
+                && let (Some(incident), Some(lifecycle)) =
+                    (audible_incident, profile.pursuit_lifecycle())
+            {
+                actor.set_ai_state(AiState::Responding {
+                    remaining_turns: lifecycle.maximum_pursuit_turns(),
+                    incident,
+                });
+            }
             let occupied_positions: BTreeSet<GridPos> = self
                 .actors
                 .iter()
                 .filter_map(|(id, other)| (id != entity).then_some(other.position()))
                 .collect();
-            let action = decide_action(AiSituation {
+            let situation = AiSituation {
                 map: &self.map,
                 actor_position: actor.position(),
-                target_position: player_position,
+                home_position: actor.ai_home(),
+                target_position,
                 occupied_positions: &occupied_positions,
                 profile,
                 preferred_attack: actor.attack(profile.preferred_attack_slot),
-            });
+            };
+            let was_recovering = actor.recovery_remaining().is_some();
+            let (action, next_state) = if let Some(lifecycle) = profile.pursuit_lifecycle() {
+                decide_lifecycle_action(&actor, situation, lifecycle, target_visible)
+            } else {
+                let action = if target_visible {
+                    decide_known_action(situation)
+                } else if let Some(incident) = audible_incident {
+                    decide_known_action(AiSituation {
+                        map: &self.map,
+                        actor_position: actor.position(),
+                        home_position: actor.ai_home(),
+                        target_position: incident,
+                        occupied_positions: &occupied_positions,
+                        profile,
+                        preferred_attack: None,
+                    })
+                } else {
+                    AiAction::Wait
+                };
+                (action, actor.ai_state())
+            };
+            let action = if was_recovering && matches!(action, AiAction::Attack { .. }) {
+                AiAction::Wait
+            } else {
+                action
+            };
+            if let Some(actor) = self.actors.get_mut(entity) {
+                actor.set_ai_state(next_state);
+            }
+
+            if let Some(actor) = self.actors.get_mut(entity)
+                && let Some(expired) = actor.begin_normal_action()
+            {
+                self.events.push(GameEvent::ReactionExpired {
+                    entity,
+                    technique: expired.technique().clone(),
+                    reaction: expired.kind(),
+                });
+            }
 
             match action {
                 AiAction::Wait => {
                     self.events.push(GameEvent::EntityWaited { entity });
                 }
                 AiAction::Move(direction) => {
-                    if self.move_entity(entity, direction).is_err() {
+                    if self.move_ai_entity(entity, direction).is_err() {
                         self.events.push(GameEvent::EntityWaited { entity });
                     }
                 }
                 AiAction::Attack { slot } => {
-                    if self.perform_attack(entity, slot, self.player).is_err() {
+                    if self.perform_attack(entity, slot, target_entity).is_err() {
                         self.events.push(GameEvent::EntityWaited { entity });
                     }
                 }
             }
+            if was_recovering {
+                self.advance_action_recovery(entity);
+            }
         }
+    }
+
+    fn resolve_player_drone_turns(&mut self) {
+        let drones = self
+            .actors
+            .iter()
+            .filter_map(|(entity, actor)| {
+                actor
+                    .drone()
+                    .filter(|drone| drone.controller() == self.player)
+                    .map(|_| entity)
+            })
+            .collect::<Vec<_>>();
+        for entity in drones {
+            if self.actors.get(entity).is_none() || self.expire_controlled_drone_if_depleted(entity)
+            {
+                continue;
+            }
+            if self
+                .actors
+                .get(entity)
+                .is_some_and(|actor| actor.action_is_delayed(self.turn))
+            {
+                continue;
+            }
+            self.resolve_player_drone_turn(entity);
+            self.expire_controlled_drone_if_depleted(entity);
+        }
+        self.player_drone_support_target_this_action = None;
+    }
+
+    fn expire_controlled_drone_if_depleted(&mut self, entity: EntityId) -> bool {
+        if !self.rules.player_drone_expires_without_energy {
+            return false;
+        }
+        let Some((at, controller, bandwidth_released, depleted)) =
+            self.actors.get(entity).map(|actor| {
+                let Some(drone) = actor.drone() else {
+                    return (actor.position(), self.player, 0, false);
+                };
+                (
+                    actor.position(),
+                    drone.controller(),
+                    drone
+                        .profile()
+                        .bandwidth_required()
+                        .saturating_add(drone.order_bandwidth()),
+                    drone.controller() == self.player
+                        && drone.lifecycle() == DroneLifecycle::Manifested
+                        && drone.energy().available() == 0,
+                )
+            })
+        else {
+            return false;
+        };
+        if !depleted {
+            return false;
+        }
+
+        self.actors.remove(entity);
+        self.release_player_bandwidth(bandwidth_released);
+        self.events
+            .push(GameEvent::DroneEnergyDepleted { entity, at });
+        self.events.push(GameEvent::DroneControlReleased {
+            entity,
+            controller,
+            bandwidth_released,
+        });
+        true
+    }
+
+    fn resolve_player_drone_turn(&mut self, entity: EntityId) {
+        let Some(actor) = self.actors.get(entity) else {
+            return;
+        };
+        let position = actor.position();
+        let Some(drone) = actor.drone() else {
+            return;
+        };
+        let controller = drone.controller();
+        let order = drone.order().clone();
+        let linked = self.actors.get(controller).is_some_and(|owner| {
+            drone.profile().link_reaches(
+                &self.map,
+                owner.position(),
+                position,
+                self.electronic_jamming_penalty_at(
+                    crate::electronic_warfare::ElectronicChannel::ControlLink,
+                    position,
+                ),
+            )
+        });
+        if linked {
+            let pending_report =
+                if let Some(drone) = self.actors.get_mut(entity).and_then(Actor::drone_mut) {
+                    drone.confirm_position(position, self.turn);
+                    drone.replace_pending_report(None)
+                } else {
+                    None
+                };
+            self.events.push(GameEvent::DronePositionConfirmed {
+                entity,
+                at: position,
+                observed_on_turn: self.turn,
+            });
+            if let Some(report) = pending_report {
+                self.player_visibility
+                    .remember_explored(report.cells().iter().copied());
+                self.events.push(GameEvent::DroneExplorationReportReceived {
+                    entity,
+                    cells: report.cells().to_vec(),
+                    observed_on_turn: report.observed_on_turn(),
+                });
+            }
+        }
+        if let Some(actor) = self.actors.get_mut(entity) {
+            let _ = actor.begin_normal_action();
+        }
+
+        match order {
+            DroneOrder::Hold => self.events.push(GameEvent::EntityWaited { entity }),
+            DroneOrder::Companion {
+                controller,
+                behavior,
+            } => self.resolve_drone_companion_behavior(entity, controller, behavior),
+            DroneOrder::Escort {
+                controller,
+                distance,
+            } => {
+                let assisted = self
+                    .player_drone_support_target_this_action
+                    .is_some_and(|target| {
+                        self.drone_perceives_actor(entity, target)
+                            && self.perform_attack(entity, 0, target).is_ok()
+                    });
+                if assisted {
+                    return;
+                }
+                let destination = self.actors.get(controller).map(Actor::position);
+                if destination.is_none_or(|destination| {
+                    grid_distance(position, destination) <= u16::from(distance)
+                }) || !self.move_drone_toward(entity, destination.unwrap_or(position))
+                {
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+            }
+            DroneOrder::Patrol {
+                waypoints,
+                mut next_waypoint,
+                blocked_response,
+            } => {
+                if waypoints.is_empty() {
+                    self.set_drone_order(entity, DroneOrder::Hold);
+                    self.events.push(GameEvent::EntityWaited { entity });
+                    return;
+                }
+                if position == waypoints[next_waypoint.min(waypoints.len() - 1)] {
+                    next_waypoint = (next_waypoint + 1) % waypoints.len();
+                }
+                let destination = waypoints[next_waypoint.min(waypoints.len() - 1)];
+                if self.move_drone_toward(entity, destination) {
+                    self.set_drone_order(
+                        entity,
+                        DroneOrder::Patrol {
+                            waypoints,
+                            next_waypoint,
+                            blocked_response,
+                        },
+                    );
+                } else {
+                    let replacement = match blocked_response {
+                        PatrolBlockedResponse::Stop => DroneOrder::Hold,
+                        PatrolBlockedResponse::Return => DroneOrder::EmergencyReturn {
+                            destination: self
+                                .actors
+                                .get(controller)
+                                .map_or(position, Actor::position),
+                            remaining_phases: 3,
+                        },
+                    };
+                    self.set_drone_order(entity, replacement);
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+            }
+            DroneOrder::MobileDecoy {
+                destination,
+                intensity,
+                remaining_phases,
+                energy_per_phase,
+            } => {
+                if position != destination {
+                    if !self.move_drone_toward(entity, destination) {
+                        self.events.push(GameEvent::EntityWaited { entity });
+                    }
+                    return;
+                }
+                let paid = self
+                    .actors
+                    .get_mut(entity)
+                    .and_then(Actor::drone_mut)
+                    .is_some_and(|drone| drone.spend_energy(energy_per_phase).is_ok());
+                if paid && remaining_phases > 0 {
+                    self.emit_noise(Some(entity), position, intensity);
+                    let next = remaining_phases - 1;
+                    self.set_drone_order(
+                        entity,
+                        if next == 0 {
+                            DroneOrder::Hold
+                        } else {
+                            DroneOrder::MobileDecoy {
+                                destination,
+                                intensity,
+                                remaining_phases: next,
+                                energy_per_phase,
+                            }
+                        },
+                    );
+                } else {
+                    self.set_drone_order(entity, DroneOrder::Hold);
+                }
+                self.events.push(GameEvent::EntityWaited { entity });
+            }
+            DroneOrder::Collect {
+                item,
+                return_to,
+                phase,
+            } => match phase {
+                DroneCollectionPhase::ReachItem => {
+                    let Some(item_position) =
+                        self.ground_items.get(item).map(|item| item.position())
+                    else {
+                        self.set_drone_order(
+                            entity,
+                            DroneOrder::Collect {
+                                item,
+                                return_to,
+                                phase: DroneCollectionPhase::ReportMissing,
+                            },
+                        );
+                        self.events.push(GameEvent::EntityWaited { entity });
+                        return;
+                    };
+                    if position == item_position {
+                        self.set_drone_order(
+                            entity,
+                            DroneOrder::Collect {
+                                item,
+                                return_to,
+                                phase: DroneCollectionPhase::PickUp,
+                            },
+                        );
+                        self.events.push(GameEvent::EntityWaited { entity });
+                    } else if !self.move_drone_toward(entity, item_position) {
+                        self.events.push(GameEvent::EntityWaited { entity });
+                    }
+                }
+                DroneCollectionPhase::PickUp => {
+                    let ground = self
+                        .ground_items
+                        .get(item)
+                        .filter(|ground| ground.position() == position)
+                        .cloned();
+                    let Some(ground) = ground else {
+                        self.set_drone_order(
+                            entity,
+                            DroneOrder::Collect {
+                                item,
+                                return_to,
+                                phase: DroneCollectionPhase::ReportMissing,
+                            },
+                        );
+                        self.events.push(GameEvent::EntityWaited { entity });
+                        return;
+                    };
+                    let unit_mass = self
+                        .rules
+                        .weapons
+                        .get(ground.item())
+                        .and_then(WeaponDefinition::mass_grams)
+                        .or_else(|| {
+                            self.rules
+                                .items
+                                .get(ground.item())
+                                .and_then(ItemDefinition::mass_grams)
+                        })
+                        .unwrap_or(0);
+                    let cargo = DroneCargo::new(
+                        ground.item().clone(),
+                        ground.quantity(),
+                        ground.owner().cloned(),
+                        unit_mass.saturating_mul(u32::from(ground.quantity())),
+                    );
+                    let loaded = self
+                        .actors
+                        .get_mut(entity)
+                        .and_then(Actor::drone_mut)
+                        .is_some_and(|drone| drone.load_cargo(cargo).is_ok());
+                    if loaded {
+                        self.ground_items.remove(item);
+                        self.events.push(GameEvent::DroneCargoCollected {
+                            entity,
+                            ground_item: item,
+                            definition: ground.item().clone(),
+                            quantity: ground.quantity(),
+                        });
+                        self.set_drone_order(
+                            entity,
+                            DroneOrder::Collect {
+                                item,
+                                return_to,
+                                phase: DroneCollectionPhase::Return,
+                            },
+                        );
+                    }
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+                DroneCollectionPhase::Return => {
+                    let destination = self
+                        .actors
+                        .get(controller)
+                        .map_or(return_to, Actor::position);
+                    if grid_distance(position, destination) <= 1 {
+                        let cargo = self
+                            .actors
+                            .get(entity)
+                            .and_then(Actor::drone)
+                            .and_then(DroneState::cargo)
+                            .cloned();
+                        let delivered = cargo.as_ref().is_some_and(|cargo| {
+                            let Some(maximum_stack) = self.inventory_stack_limit(cargo.item())
+                            else {
+                                return false;
+                            };
+                            let mut inventory = self.player_inventory.clone();
+                            if inventory
+                                .add_with_owner(
+                                    cargo.item().clone(),
+                                    cargo.quantity(),
+                                    maximum_stack,
+                                    cargo.owner().cloned(),
+                                )
+                                .is_err()
+                            {
+                                return false;
+                            }
+                            self.player_inventory = inventory;
+                            true
+                        });
+                        if delivered {
+                            let cargo = self
+                                .actors
+                                .get_mut(entity)
+                                .and_then(Actor::drone_mut)
+                                .and_then(DroneState::unload_cargo)
+                                .expect("delivered drone cargo remains loaded");
+                            self.events.push(GameEvent::DroneCargoDelivered {
+                                entity,
+                                controller,
+                                definition: cargo.item().clone(),
+                                quantity: cargo.quantity(),
+                            });
+                            self.set_drone_order(entity, DroneOrder::Hold);
+                        }
+                        self.events.push(GameEvent::EntityWaited { entity });
+                    } else if !self.move_drone_toward(entity, destination) {
+                        self.events.push(GameEvent::EntityWaited { entity });
+                    }
+                }
+                DroneCollectionPhase::ReportMissing => {
+                    if linked {
+                        self.events.push(GameEvent::DroneCollectionFailed {
+                            entity,
+                            ground_item: item,
+                        });
+                        self.set_drone_order(entity, DroneOrder::Hold);
+                    }
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+            },
+            DroneOrder::CoordinatedAttack { target } => {
+                let perceived = self.drone_perceives_actor(entity, target);
+                if !perceived || self.perform_attack(entity, 0, target).is_err() {
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+                self.set_drone_order(entity, DroneOrder::Hold);
+            }
+            DroneOrder::Interpose {
+                ally,
+                trigger_energy_cost,
+            } => {
+                let destination = self.actors.get(ally).map(Actor::position);
+                if destination.is_none_or(|destination| grid_distance(position, destination) <= 1)
+                    || !self.move_drone_toward(entity, destination.unwrap_or(position))
+                {
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+                self.set_drone_order(
+                    entity,
+                    DroneOrder::Interpose {
+                        ally,
+                        trigger_energy_cost,
+                    },
+                );
+            }
+            DroneOrder::AutonomousScout {
+                waypoints,
+                mut next_waypoint,
+                remaining_unknown_steps,
+                return_to,
+            } => {
+                if next_waypoint < waypoints.len() && position == waypoints[next_waypoint] {
+                    next_waypoint += 1;
+                }
+                if next_waypoint < waypoints.len() {
+                    if self.move_drone_toward(entity, waypoints[next_waypoint]) {
+                        self.set_drone_order(
+                            entity,
+                            DroneOrder::AutonomousScout {
+                                waypoints,
+                                next_waypoint,
+                                remaining_unknown_steps,
+                                return_to,
+                            },
+                        );
+                    } else {
+                        self.set_drone_order(
+                            entity,
+                            DroneOrder::EmergencyReturn {
+                                destination: return_to,
+                                remaining_phases: 3,
+                            },
+                        );
+                        self.events.push(GameEvent::EntityWaited { entity });
+                    }
+                    return;
+                }
+                if remaining_unknown_steps == 0 {
+                    self.set_drone_order(
+                        entity,
+                        DroneOrder::EmergencyReturn {
+                            destination: return_to,
+                            remaining_phases: 3,
+                        },
+                    );
+                    self.events.push(GameEvent::EntityWaited { entity });
+                    return;
+                }
+                let destination = position.cardinal_neighbors().into_iter().find(|candidate| {
+                    self.map.is_walkable(*candidate)
+                        && !self.map.is_protected(*candidate)
+                        && self.actors.entity_at(*candidate).is_none()
+                        && !self.player_visibility.is_explored(*candidate)
+                });
+                if destination
+                    .is_some_and(|destination| self.move_drone_toward(entity, destination))
+                {
+                    self.collect_drone_sensor_report(entity);
+                    let remaining_unknown_steps = remaining_unknown_steps - 1;
+                    self.set_drone_order(
+                        entity,
+                        DroneOrder::AutonomousScout {
+                            waypoints,
+                            next_waypoint,
+                            remaining_unknown_steps,
+                            return_to,
+                        },
+                    );
+                } else {
+                    self.set_drone_order(
+                        entity,
+                        DroneOrder::EmergencyReturn {
+                            destination: return_to,
+                            remaining_phases: 3,
+                        },
+                    );
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+            }
+            DroneOrder::Conditional {
+                condition,
+                response,
+                base,
+            } => {
+                if self.drone_condition_is_met(entity, condition) {
+                    self.release_drone_order_bandwidth(entity);
+                    let replacement = match response {
+                        DroneConditionalResponse::Stop => DroneOrder::Hold,
+                        DroneConditionalResponse::Return => DroneOrder::EmergencyReturn {
+                            destination: self
+                                .actors
+                                .get(controller)
+                                .map_or(position, Actor::position),
+                            remaining_phases: 3,
+                        },
+                        DroneConditionalResponse::Protect(ally) => DroneOrder::Interpose {
+                            ally,
+                            trigger_energy_cost: 0,
+                        },
+                    };
+                    self.set_drone_order(entity, replacement);
+                    self.events.push(GameEvent::EntityWaited { entity });
+                } else {
+                    let base = self.advance_drone_conditional_base(entity, *base);
+                    self.set_drone_order(
+                        entity,
+                        DroneOrder::Conditional {
+                            condition,
+                            response,
+                            base: Box::new(base),
+                        },
+                    );
+                }
+            }
+            DroneOrder::Deploy { destination, role } => {
+                if position == destination {
+                    let replacement = match role {
+                        crate::drone::DroneDeploymentRole::Hold => DroneOrder::Hold,
+                        crate::drone::DroneDeploymentRole::Escort => {
+                            DroneOrder::escort(controller, 2).unwrap_or(DroneOrder::Hold)
+                        }
+                        crate::drone::DroneDeploymentRole::Guard => DroneOrder::Interpose {
+                            ally: controller,
+                            trigger_energy_cost: 0,
+                        },
+                    };
+                    self.set_drone_order(entity, replacement);
+                    self.events.push(GameEvent::EntityWaited { entity });
+                } else if !self.move_drone_toward(entity, destination) {
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+            }
+            DroneOrder::EmergencyReturn {
+                destination,
+                remaining_phases,
+            } => {
+                if grid_distance(position, destination) <= 1 || remaining_phases <= 1 {
+                    self.set_drone_order(entity, DroneOrder::Hold);
+                    self.events.push(GameEvent::EntityWaited { entity });
+                } else if self.move_drone_toward(entity, destination) {
+                    self.set_drone_order(
+                        entity,
+                        DroneOrder::EmergencyReturn {
+                            destination,
+                            remaining_phases: remaining_phases - 1,
+                        },
+                    );
+                } else {
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+            }
+        }
+    }
+
+    fn resolve_drone_companion_behavior(
+        &mut self,
+        entity: EntityId,
+        controller: EntityId,
+        behavior: CompanionBehavior,
+    ) {
+        let Some(position) = self.actors.get(entity).map(Actor::position) else {
+            return;
+        };
+        let controller_position = self.actors.get(controller).map(Actor::position);
+        let explicit_target = self.player_drone_support_target_this_action;
+        let autonomous_target = match behavior {
+            CompanionBehavior::Defensive | CompanionBehavior::Aggressive => self
+                .actors
+                .iter()
+                .filter(|(candidate, actor)| {
+                    *candidate != entity
+                        && *candidate != controller
+                        && actor.ai().is_some()
+                        && self.drone_perceives_actor(entity, *candidate)
+                })
+                .filter(|(_, actor)| match behavior {
+                    CompanionBehavior::Defensive => {
+                        controller_position.is_some_and(|controller_position| {
+                            grid_distance(actor.position(), controller_position) <= 2
+                                || grid_distance(actor.position(), position) <= 2
+                        })
+                    }
+                    CompanionBehavior::Aggressive => {
+                        controller_position.is_some_and(|controller_position| {
+                            grid_distance(actor.position(), controller_position) <= 6
+                        })
+                    }
+                    _ => false,
+                })
+                .min_by_key(|(candidate, actor)| {
+                    (grid_distance(position, actor.position()), candidate.get())
+                })
+                .map(|(candidate, _)| candidate),
+            _ => None,
+        };
+        let target = match behavior {
+            CompanionBehavior::Follow => explicit_target,
+            CompanionBehavior::Aggressive => explicit_target.or(autonomous_target),
+            CompanionBehavior::Defensive => autonomous_target,
+            CompanionBehavior::Passive => None,
+        };
+
+        if let Some(target) = target {
+            let perceived = self.drone_perceives_actor(entity, target);
+            if perceived && self.perform_attack(entity, 0, target).is_ok() {
+                return;
+            }
+            if behavior == CompanionBehavior::Aggressive
+                && perceived
+                && let Some(destination) = self.actors.get(target).map(Actor::position)
+                && self.move_drone_toward(entity, destination)
+            {
+                return;
+            }
+        }
+
+        if controller_position.is_none_or(|destination| {
+            grid_distance(position, destination) <= 1
+                || !self.move_drone_toward(entity, destination)
+        }) {
+            self.events.push(GameEvent::EntityWaited { entity });
+        }
+    }
+
+    fn set_drone_order(&mut self, entity: EntityId, order: DroneOrder) {
+        if matches!(order, DroneOrder::Hold) {
+            self.release_drone_order_bandwidth(entity);
+        }
+        let changed = self
+            .actors
+            .get_mut(entity)
+            .and_then(Actor::drone_mut)
+            .map(|drone| {
+                drone.replace_order(order.clone());
+            })
+            .is_some();
+        if changed {
+            self.events
+                .push(GameEvent::DroneOrderAdvanced { entity, order });
+        }
+    }
+
+    fn release_drone_order_bandwidth(&mut self, entity: EntityId) {
+        let amount = self
+            .actors
+            .get_mut(entity)
+            .and_then(Actor::drone_mut)
+            .map_or(0, |drone| drone.replace_order_bandwidth(0));
+        self.release_player_bandwidth(amount);
+    }
+
+    fn drone_perceives_actor(&self, drone: EntityId, target: EntityId) -> bool {
+        let Some(drone_actor) = self.actors.get(drone) else {
+            return false;
+        };
+        let Some(drone_state) = drone_actor.drone() else {
+            return false;
+        };
+        let Some(target_position) = self.actors.get(target).map(Actor::position) else {
+            return false;
+        };
+        compute_visible_tiles(
+            &self.map,
+            drone_actor.position(),
+            FieldOfViewRules {
+                radius: drone_state.profile().sensor_radius(),
+                distance_metric: DistanceMetric::Euclidean,
+                block_closed_corners: true,
+            },
+        )
+        .contains(&target_position)
+    }
+
+    fn collect_drone_sensor_report(&mut self, entity: EntityId) {
+        let Some(actor) = self.actors.get(entity) else {
+            return;
+        };
+        let Some(drone) = actor.drone() else {
+            return;
+        };
+        let mut cells = drone
+            .pending_report()
+            .map_or_else(Vec::new, |report| report.cells().to_vec());
+        let seen = compute_visible_tiles(
+            &self.map,
+            actor.position(),
+            FieldOfViewRules {
+                radius: drone.profile().sensor_radius(),
+                distance_metric: DistanceMetric::Euclidean,
+                block_closed_corners: true,
+            },
+        );
+        cells.extend(
+            seen.into_iter()
+                .filter(|position| !self.player_visibility.is_explored(*position)),
+        );
+        cells.sort();
+        cells.dedup();
+        if let Some(drone) = self.actors.get_mut(entity).and_then(Actor::drone_mut) {
+            drone.replace_pending_report(Some(DroneExplorationReport::new(cells, self.turn)));
+        }
+    }
+
+    fn drone_condition_is_met(&self, entity: EntityId, condition: DroneCondition) -> bool {
+        let Some(actor) = self.actors.get(entity) else {
+            return false;
+        };
+        let Some(drone) = actor.drone() else {
+            return false;
+        };
+        match condition {
+            DroneCondition::IntegrityBelowPercent(percent) => {
+                u32::from(actor.integrity()).saturating_mul(100)
+                    < u32::from(actor.maximum_integrity()).saturating_mul(u32::from(percent))
+            }
+            DroneCondition::EnergyBelowPercent(percent) => {
+                u32::from(drone.energy().available()).saturating_mul(100)
+                    < u32::from(drone.energy().capacity()).saturating_mul(u32::from(percent))
+            }
+            DroneCondition::LocallyPerceivedDanger => {
+                self.actors.iter().any(|(other, candidate)| {
+                    other != self.player
+                        && other != entity
+                        && candidate
+                            .drone()
+                            .is_none_or(|state| state.controller() != self.player)
+                        && self.drone_perceives_actor(entity, other)
+                })
+            }
+        }
+    }
+
+    fn advance_drone_conditional_base(&mut self, entity: EntityId, base: DroneOrder) -> DroneOrder {
+        let Some(position) = self.actors.get(entity).map(Actor::position) else {
+            return DroneOrder::Hold;
+        };
+        match base {
+            DroneOrder::Escort {
+                controller,
+                distance,
+            } => {
+                if let Some(destination) = self.actors.get(controller).map(Actor::position)
+                    && grid_distance(position, destination) > u16::from(distance)
+                {
+                    let _ = self.move_drone_toward(entity, destination);
+                } else {
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+                DroneOrder::Escort {
+                    controller,
+                    distance,
+                }
+            }
+            DroneOrder::Patrol {
+                waypoints,
+                mut next_waypoint,
+                blocked_response,
+            } => {
+                if waypoints.is_empty() {
+                    return DroneOrder::Hold;
+                }
+                if position == waypoints[next_waypoint.min(waypoints.len() - 1)] {
+                    next_waypoint = (next_waypoint + 1) % waypoints.len();
+                }
+                if !self.move_drone_toward(entity, waypoints[next_waypoint]) {
+                    self.events.push(GameEvent::EntityWaited { entity });
+                }
+                DroneOrder::Patrol {
+                    waypoints,
+                    next_waypoint,
+                    blocked_response,
+                }
+            }
+            other => {
+                self.events.push(GameEvent::EntityWaited { entity });
+                other
+            }
+        }
+    }
+
+    fn move_drone_toward(&mut self, entity: EntityId, destination: GridPos) -> bool {
+        let Some(actor) = self.actors.get(entity) else {
+            return false;
+        };
+        let origin = actor.position();
+        let Some(drone) = actor.drone() else {
+            return false;
+        };
+        let energy_cost = drone.profile().movement_energy_cost();
+        if drone.energy().available() < energy_cost {
+            return false;
+        }
+        let occupied = self
+            .actors
+            .iter()
+            .filter_map(|(other, actor)| (other != entity).then_some(actor.position()))
+            .collect::<BTreeSet<_>>();
+        let maximum_visited = self.map.width().saturating_mul(self.map.height()).max(1);
+        let Some(path) = crate::world::find_path(
+            &self.map,
+            origin,
+            destination,
+            maximum_visited,
+            |position| !occupied.contains(&position),
+        ) else {
+            return false;
+        };
+        let Some(next) = path.get(1).copied() else {
+            return false;
+        };
+        let direction = if next.x > origin.x {
+            Direction::East
+        } else if next.x < origin.x {
+            Direction::West
+        } else if next.y > origin.y {
+            Direction::South
+        } else {
+            Direction::North
+        };
+        let Ok(moved_to) = self.move_ai_entity(entity, direction) else {
+            return false;
+        };
+        if moved_to == origin {
+            return false;
+        }
+        self.actors
+            .get_mut(entity)
+            .and_then(Actor::drone_mut)
+            .expect("the moving drone remains registered")
+            .spend_energy(energy_cost)
+            .expect("movement energy was preflighted");
+        self.emit_noise(Some(entity), moved_to, 10);
+        true
     }
 
     pub(super) fn resolve_status_trigger(&mut self, trigger: StatusTrigger) {
@@ -1768,18 +13641,140 @@ impl GameState {
         }
     }
 
+    pub(super) fn resolve_explosive_devices(&mut self) {
+        let actor_positions = self
+            .actors
+            .iter()
+            .map(|(entity, actor)| (entity, actor.position()))
+            .collect::<Vec<_>>();
+        let ready = self
+            .explosive_devices
+            .take_ready_payloads(self.turn, &actor_positions);
+        for resolved in ready {
+            self.resolve_explosive_payload(resolved);
+        }
+    }
+
+    fn resolve_explosive_payload(&mut self, resolved: ResolvedExplosivePayload) {
+        let final_manifestation = resolved
+            .final_payload
+            .then(|| self.manifested_explosives.remove(&resolved.device))
+            .flatten();
+        if resolved.first_payload {
+            self.events.push(GameEvent::ExplosiveTriggered {
+                device: resolved.device,
+                source: resolved.source,
+                at: resolved.position,
+            });
+        }
+        let breached =
+            self.breach_terrain(resolved.position, resolved.payload.terrain_breach_cells());
+        if !breached.is_empty() {
+            self.events.push(GameEvent::TerrainBreached {
+                device: resolved.device,
+                cells: breached,
+            });
+        }
+        let cells = resolved.payload.footprint().affected_cells(
+            &self.map,
+            resolved.position,
+            resolved.facing,
+        );
+        self.events.push(GameEvent::ExplosivePayloadResolved {
+            device: resolved.device,
+            source: resolved.source,
+            at: resolved.position,
+            stage: u16::try_from(resolved.payload_index + 1).unwrap_or(u16::MAX),
+            cells: cells.clone(),
+            final_stage: resolved.final_payload,
+        });
+
+        if let Some(center_damage) = resolved.payload.center_damage()
+            && let Some(target) = self.actors.entity_at(resolved.position)
+        {
+            let _ = self.apply_damage_to(resolved.source, target, center_damage);
+        }
+
+        for cell in &cells {
+            if resolved.payload.center_damage().is_some() && cell.position == resolved.position {
+                continue;
+            }
+            let Some(target) = self.actors.entity_at(cell.position) else {
+                continue;
+            };
+            let Some(damage) = resolved.payload.footprint().damage_at_step(cell.step) else {
+                continue;
+            };
+            let _ = self.apply_damage_to(resolved.source, target, damage);
+        }
+
+        if let Some(ground_effect) = resolved.payload.ground_effect() {
+            for cell in cells {
+                self.create_ground_effect(resolved.source, cell.position, ground_effect);
+            }
+        }
+        self.release_manifestation_reservation(final_manifestation);
+    }
+
+    fn breach_terrain(&mut self, origin: GridPos, maximum_cells: u8) -> Vec<GridPos> {
+        if maximum_cells == 0 {
+            return Vec::new();
+        }
+        let mut pending = std::collections::VecDeque::from([origin]);
+        let mut visited = BTreeSet::new();
+        let mut breached = Vec::new();
+        while let Some(position) = pending.pop_front() {
+            if breached.len() >= usize::from(maximum_cells) || !visited.insert(position) {
+                continue;
+            }
+            if self.map.is_protected(position)
+                || !matches!(
+                    self.map.tile(position).map(|tile| tile.terrain),
+                    Some(Terrain::Wall)
+                )
+            {
+                continue;
+            }
+            if self.map.set_terrain(position, Terrain::Floor).is_err() {
+                continue;
+            }
+            breached.push(position);
+            pending.extend(position.cardinal_neighbors());
+        }
+        if !breached.is_empty()
+            && let Some(origin) = self.player_position()
+        {
+            self.player_visibility
+                .recompute(&self.map, origin, self.rules.player_field_of_view);
+        }
+        breached
+    }
+
     pub(super) fn elapse_status_durations(&mut self) {
-        let active_statuses: Vec<(EntityId, StatusId)> = self
+        let status_catalog = &self.rules.statuses;
+        let active_statuses: Vec<(
+            EntityId,
+            StatusId,
+            Option<EntityId>,
+            Option<ApplyStatusEffect>,
+        )> = self
             .actors
             .iter()
             .flat_map(|(entity, actor)| {
-                actor
-                    .statuses()
-                    .map(move |status| (entity, status.definition.clone()))
+                actor.statuses().map(move |status| {
+                    let transition = status_catalog
+                        .get(&status.definition)
+                        .and_then(StatusDefinition::expiration_transition)
+                        .map(|transition| {
+                            ApplyStatusEffect::new(transition.status().clone(), transition.stacks())
+                                .expect("status transition stacks were validated")
+                        });
+                    (entity, status.definition.clone(), status.source, transition)
+                })
             })
             .collect();
 
-        for (target, status) in active_statuses {
+        for (target, status, source, transition) in active_statuses {
             let expired = self
                 .actors
                 .get_mut(target)
@@ -1790,15 +13785,342 @@ impl GameState {
                     status,
                     reason: super::StatusRemovalReason::Expired,
                 });
+                if let Some(transition) = transition {
+                    self.apply_status_to(source, target, &transition)
+                        .expect("status transition references were validated before the run");
+                }
             }
         }
     }
+}
+
+fn decide_lifecycle_action(
+    actor: &Actor,
+    situation: AiSituation<'_>,
+    lifecycle: PursuitLifecycle,
+    target_visible: bool,
+) -> (AiAction, AiState) {
+    let toward = |target_position| {
+        decide_known_action(AiSituation {
+            map: situation.map,
+            actor_position: situation.actor_position,
+            home_position: situation.home_position,
+            target_position,
+            occupied_positions: situation.occupied_positions,
+            profile: situation.profile,
+            preferred_attack: None,
+        })
+    };
+    let pursue = |remaining_turns| {
+        let action = decide_action(AiSituation {
+            map: situation.map,
+            actor_position: situation.actor_position,
+            home_position: situation.home_position,
+            target_position: situation.target_position,
+            occupied_positions: situation.occupied_positions,
+            profile: situation.profile,
+            preferred_attack: situation.preferred_attack,
+        });
+        let state = if remaining_turns <= 1 {
+            AiState::Returning
+        } else {
+            AiState::Pursuing {
+                remaining_turns: remaining_turns - 1,
+                last_seen: situation.target_position,
+            }
+        };
+        (action, state)
+    };
+
+    match actor.ai_state() {
+        AiState::Unaware if target_visible => pursue(lifecycle.maximum_pursuit_turns()),
+        AiState::Unaware => (AiAction::Wait, AiState::Unaware),
+        AiState::Pursuing {
+            remaining_turns, ..
+        } if target_visible => pursue(remaining_turns),
+        AiState::Pursuing { last_seen, .. } => {
+            let action = toward(last_seen);
+            let remaining_turns = lifecycle.search_turns();
+            let state = if remaining_turns <= 1 {
+                AiState::Returning
+            } else {
+                AiState::Searching {
+                    remaining_turns: remaining_turns - 1,
+                    last_seen,
+                }
+            };
+            (action, state)
+        }
+        AiState::Searching { .. } if target_visible => pursue(lifecycle.maximum_pursuit_turns()),
+        AiState::Searching {
+            remaining_turns,
+            last_seen,
+        } => {
+            let action = toward(last_seen);
+            let state = if remaining_turns <= 1 {
+                AiState::Returning
+            } else {
+                AiState::Searching {
+                    remaining_turns: remaining_turns - 1,
+                    last_seen,
+                }
+            };
+            (action, state)
+        }
+        AiState::Responding { .. } if target_visible => pursue(lifecycle.maximum_pursuit_turns()),
+        AiState::Responding { incident, .. } if situation.actor_position == incident => (
+            AiAction::Wait,
+            AiState::Searching {
+                remaining_turns: lifecycle.search_turns(),
+                last_seen: incident,
+            },
+        ),
+        AiState::Responding {
+            remaining_turns,
+            incident,
+        } => {
+            let action = toward(incident);
+            let state = if remaining_turns <= 1 {
+                AiState::Returning
+            } else {
+                AiState::Responding {
+                    remaining_turns: remaining_turns - 1,
+                    incident,
+                }
+            };
+            (action, state)
+        }
+        AiState::Returning => {
+            let Some(home) = situation.home_position else {
+                return (AiAction::Wait, AiState::Unaware);
+            };
+            if situation.actor_position == home {
+                (
+                    AiAction::Wait,
+                    AiState::Cooldown {
+                        remaining_turns: lifecycle.cooldown_turns(),
+                    },
+                )
+            } else {
+                (toward(home), AiState::Returning)
+            }
+        }
+        AiState::Cooldown { remaining_turns } if remaining_turns <= 1 => {
+            (AiAction::Wait, AiState::Unaware)
+        }
+        AiState::Cooldown { remaining_turns } => (
+            AiAction::Wait,
+            AiState::Cooldown {
+                remaining_turns: remaining_turns - 1,
+            },
+        ),
+    }
+}
+
+fn ranged_line_cells(
+    map: &Map,
+    origin: GridPos,
+    target: GridPos,
+    maximum_cells: u8,
+    weapon_range: u16,
+    visibility: &VisibilityState,
+) -> Vec<AttackAreaCell> {
+    let delta_x = i64::from(target.x) - i64::from(origin.x);
+    let delta_y = i64::from(target.y) - i64::from(origin.y);
+    let divisor = delta_x.abs().max(delta_y.abs());
+    if divisor == 0 {
+        return Vec::new();
+    }
+    let mut cells = Vec::new();
+    for step in 1..=u16::from(maximum_cells).min(weapon_range) {
+        let step = i64::from(step);
+        let x = i64::from(origin.x) + (delta_x * step).div_euclid(divisor);
+        let y = i64::from(origin.y) + (delta_y * step).div_euclid(divisor);
+        let (Ok(x), Ok(y)) = (i32::try_from(x), i32::try_from(y)) else {
+            break;
+        };
+        let position = GridPos::new(x, y);
+        if cells
+            .last()
+            .is_some_and(|cell: &AttackAreaCell| cell.position == position)
+        {
+            continue;
+        }
+        if !map.contains(position)
+            || map.blocks_vision(position)
+            || !visibility.is_visible(position)
+            || !has_line_of_sight(map, origin, position, true)
+        {
+            break;
+        }
+        cells.push(AttackAreaCell {
+            position,
+            step: u16::try_from(step).unwrap_or(u16::MAX),
+        });
+    }
+    cells
+}
+
+fn ranged_sector_cells(
+    map: &Map,
+    origin: GridPos,
+    target: GridPos,
+    weapon_range: u16,
+    visibility: &VisibilityState,
+) -> Vec<AttackAreaCell> {
+    let aim_x = i64::from(target.x) - i64::from(origin.x);
+    let aim_y = i64::from(target.y) - i64::from(origin.y);
+    let mut cells = Vec::new();
+    for y in 0..map.height() as i32 {
+        for x in 0..map.width() as i32 {
+            let position = GridPos::new(x, y);
+            if position == origin || !visibility.is_visible(position) {
+                continue;
+            }
+            let delta_x = i64::from(x) - i64::from(origin.x);
+            let delta_y = i64::from(y) - i64::from(origin.y);
+            let distance = delta_x.abs().max(delta_y.abs());
+            if distance == 0 || distance > i64::from(weapon_range) {
+                continue;
+            }
+            let dot = aim_x.saturating_mul(delta_x) + aim_y.saturating_mul(delta_y);
+            let cross = aim_x.saturating_mul(delta_y) - aim_y.saturating_mul(delta_x);
+            if dot <= 0
+                || cross.abs() > dot
+                || map.blocks_vision(position)
+                || !has_line_of_sight(map, origin, position, true)
+            {
+                continue;
+            }
+            cells.push(AttackAreaCell {
+                position,
+                step: u16::try_from(distance).unwrap_or(u16::MAX),
+            });
+        }
+    }
+    cells.sort_unstable_by_key(|cell| (cell.step, cell.position.y, cell.position.x));
+    cells
 }
 
 fn is_within_chebyshev_range(origin: GridPos, target: GridPos, range: u16) -> bool {
     let delta_x = (i64::from(target.x) - i64::from(origin.x)).abs();
     let delta_y = (i64::from(target.y) - i64::from(origin.y)).abs();
     delta_x.max(delta_y) <= i64::from(range)
+}
+
+fn grid_distance(origin: GridPos, target: GridPos) -> u16 {
+    let x = origin.x.abs_diff(target.x);
+    let y = origin.y.abs_diff(target.y);
+    u16::try_from(x.max(y)).unwrap_or(u16::MAX)
+}
+
+fn combine_percentages(left: u16, right: u16) -> u16 {
+    let combined = u32::from(left).saturating_mul(u32::from(right)) / 100;
+    u16::try_from(combined).unwrap_or(u16::MAX)
+}
+
+fn scale_percentage_ceil(value: u16, percentage: u16) -> u16 {
+    let scaled = u32::from(value)
+        .saturating_mul(u32::from(percentage))
+        .div_ceil(100);
+    u16::try_from(scaled).unwrap_or(u16::MAX)
+}
+
+fn residual_component_failure_effect(
+    effect: ComponentFailureEffect,
+    restored_output_percentage: u16,
+) -> Option<ComponentFailureEffect> {
+    let remaining = 100_u16.saturating_sub(restored_output_percentage.min(100));
+    match effect {
+        ComponentFailureEffect::DisableMovement | ComponentFailureEffect::DisableAttackSlot(_) => {
+            (restored_output_percentage == 0).then_some(effect)
+        }
+        ComponentFailureEffect::ReduceArmor(amount) => {
+            let amount = scale_percentage_ceil(amount, remaining);
+            (amount > 0).then_some(ComponentFailureEffect::ReduceArmor(amount))
+        }
+        ComponentFailureEffect::ReducePerception(amount) => {
+            let amount = scale_percentage_ceil(amount, remaining);
+            (amount > 0).then_some(ComponentFailureEffect::ReducePerception(amount))
+        }
+    }
+}
+
+fn observation_detection_score(
+    attributes: Option<PrimaryAttributes>,
+    sensor_bonus: i16,
+    distance: u16,
+) -> u16 {
+    let perception = attributes.map_or(5, |attributes| {
+        attributes.value(PrimaryAttribute::Perception)
+    });
+    let distance_penalty = i32::from(distance.saturating_sub(2)).saturating_mul(2);
+    let score = 50_i32
+        .saturating_add((i32::from(perception) - 5).saturating_mul(4))
+        .saturating_add(i32::from(sensor_bonus))
+        .saturating_sub(distance_penalty);
+    u16::try_from(score.max(0)).unwrap_or(u16::MAX)
+}
+
+fn observation_analysis_score(attributes: Option<PrimaryAttributes>, equipment_bonus: i16) -> u16 {
+    let attributes = attributes.unwrap_or_else(PrimaryAttributes::prototype_default);
+    let perception = attributes.value(PrimaryAttribute::Perception);
+    let processing = attributes.value(PrimaryAttribute::Processing);
+    let score = 50_i32
+        .saturating_add((i32::from(perception) - 5).saturating_mul(3))
+        .saturating_add((i32::from(processing) - 5).saturating_mul(2))
+        .saturating_add(i32::from(equipment_bonus));
+    u16::try_from(score.max(0)).unwrap_or(u16::MAX)
+}
+
+fn cardinal_direction_and_distance(origin: GridPos, target: GridPos) -> Option<(Direction, u16)> {
+    let delta_x = target.x.checked_sub(origin.x)?;
+    let delta_y = target.y.checked_sub(origin.y)?;
+    let (direction, distance) = match (delta_x, delta_y) {
+        (0, delta) if delta < 0 => (Direction::North, delta.unsigned_abs()),
+        (delta, 0) if delta > 0 => (Direction::East, delta.unsigned_abs()),
+        (0, delta) if delta > 0 => (Direction::South, delta.unsigned_abs()),
+        (delta, 0) if delta < 0 => (Direction::West, delta.unsigned_abs()),
+        _ => return None,
+    };
+    Some((direction, u16::try_from(distance).unwrap_or(u16::MAX)))
+}
+
+fn step_cardinal(origin: GridPos, direction: Direction, distance: u16) -> GridPos {
+    let (delta_x, delta_y) = direction.delta();
+    GridPos::new(
+        origin
+            .x
+            .saturating_add(delta_x.saturating_mul(i32::from(distance))),
+        origin
+            .y
+            .saturating_add(delta_y.saturating_mul(i32::from(distance))),
+    )
+}
+
+const fn opposite_direction(direction: Direction) -> Direction {
+    match direction {
+        Direction::North => Direction::South,
+        Direction::East => Direction::West,
+        Direction::South => Direction::North,
+        Direction::West => Direction::East,
+    }
+}
+
+fn facing_toward(origin: GridPos, target: GridPos) -> Direction {
+    let delta_x = target.x - origin.x;
+    let delta_y = target.y - origin.y;
+    if delta_x.abs() >= delta_y.abs() && delta_x != 0 {
+        if delta_x > 0 {
+            Direction::East
+        } else {
+            Direction::West
+        }
+    } else if delta_y > 0 {
+        Direction::South
+    } else {
+        Direction::North
+    }
 }
 
 fn analyzed_wall_tiles(
@@ -1852,6 +14174,45 @@ fn analyzed_wall_tiles(
         .collect()
 }
 
+fn intrusion_chance(
+    attributes: Option<PrimaryAttributes>,
+    digital_defense: u16,
+    context_modifier: i16,
+) -> u8 {
+    let processing = attributes.map_or(5_i32, |attributes| {
+        i32::from(attributes.value(PrimaryAttribute::Processing))
+    });
+    let intrusion = 65_i32
+        .saturating_add(5_i32.saturating_mul(processing.saturating_sub(5)))
+        .max(0);
+    let chance = 50_i32
+        .saturating_add(intrusion)
+        .saturating_sub(i32::from(digital_defense))
+        .saturating_add(i32::from(context_modifier))
+        .clamp(5, 95);
+    chance as u8
+}
+
+fn intrusion_score(attributes: Option<PrimaryAttributes>) -> u16 {
+    let processing = attributes.map_or(5_i32, |attributes| {
+        i32::from(attributes.value(PrimaryAttribute::Processing))
+    });
+    u16::try_from(
+        65_i32
+            .saturating_add(5_i32.saturating_mul(processing.saturating_sub(5)))
+            .max(0),
+    )
+    .unwrap_or(u16::MAX)
+}
+
+fn software_chance(attacker_strength: u16, digital_defense: u16, context_modifier: i16) -> u8 {
+    50_i32
+        .saturating_add(i32::from(attacker_strength))
+        .saturating_sub(i32::from(digital_defense))
+        .saturating_add(i32::from(context_modifier))
+        .clamp(5, 95) as u8
+}
+
 fn first_unknown_status(actor: &Actor, catalog: &StatusCatalog) -> Option<StatusId> {
     actor.abilities().iter().find_map(|ability| {
         ability.effects().iter().find_map(|effect| match effect {
@@ -1865,12 +14226,17 @@ fn first_unknown_status(actor: &Actor, catalog: &StatusCatalog) -> Option<Status
 
 fn first_unknown_weapon_status(rules: &GameRules) -> Option<(WeaponId, StatusId)> {
     rules.weapons.iter().find_map(|(weapon_id, weapon)| {
-        weapon.effects().iter().find_map(|effect| match effect {
-            WeaponEffect::ApplyStatus(effect) if !rules.statuses.contains(effect.status()) => {
-                Some((weapon_id.clone(), effect.status().clone()))
-            }
-            _ => None,
-        })
+        weapon
+            .effects()
+            .iter()
+            .find_map(|effect| match effect.kind() {
+                WeaponEffectKind::ApplyStatus(status)
+                    if !rules.statuses.contains(status.status()) =>
+                {
+                    Some((weapon_id.clone(), status.status().clone()))
+                }
+                _ => None,
+            })
     })
 }
 
@@ -1903,11 +14269,19 @@ pub enum CommandRejection {
     ProtectedZone,
     RunEnded,
     NotPlayersTurn,
+    CompanionCommandsUnavailable,
+    NoControlledCompanion,
+    CompanionLinkUnavailable,
+    OffensiveActionBlockedByRecovery {
+        remaining_actions: u16,
+    },
     MissingPlayer,
     BlockedByTerrain(GridPos),
     Occupied(GridPos),
+    MovementDisabledByFailedComponent,
     UnknownTarget(EntityId),
     MissingAttackSlot(u8),
+    AttackSlotDisabledByFailedComponent(u8),
     TargetOutOfRange(EntityId),
     NoLineOfSight(EntityId),
     AttackTargetOutsideMap(GridPos),
@@ -1915,10 +14289,33 @@ pub enum CommandRejection {
     AttackTargetOutOfRange(GridPos),
     AttackNoLineOfSight(GridPos),
     FreeAimRequiresAreaWeapon,
+    InsufficientAmmunition {
+        weapon: WeaponId,
+        required: u16,
+        available: u16,
+    },
+    WeaponModuleUnavailable(ItemInstanceId),
+    WeaponModuleHeatLimit {
+        module: ItemInstanceId,
+        projected: u16,
+        maximum: u16,
+    },
     MissingEquipmentSlot(u8),
     UnknownInventoryItem(ItemInstanceId),
     ItemIsNotWeapon(ItemInstanceId),
-    ItemAlreadyEquippedInSlot { slot: u8, item: ItemInstanceId },
+    ItemAlreadyEquippedInSlot {
+        slot: u8,
+        item: ItemInstanceId,
+    },
+    UnknownEquipmentSlot(EquipmentSlotId),
+    ItemCannotEquipInSlot {
+        slot: EquipmentSlotId,
+        item: ItemInstanceId,
+    },
+    ItemAlreadyEquipped {
+        slot: EquipmentSlotId,
+        item: ItemInstanceId,
+    },
     ItemIsNotUsable(ItemInstanceId),
     ItemHasNoUsefulEffect(ItemInstanceId),
     InventoryChanged(ItemInstanceId),
@@ -1934,7 +14331,10 @@ pub enum CommandRejection {
     AbilityTargetHasNoActor(GridPos),
     AbilityUnknownStatusDefinition,
     TechniqueLearning(Box<TechniqueLearningError>),
-    InsufficientSkillPoints { required: u16, available: u32 },
+    InsufficientSkillPoints {
+        required: u16,
+        available: u32,
+    },
     UnknownTechnique(TechniqueId),
     TechniqueNotLearned(TechniqueId),
     TechniqueHasNoActiveAction(TechniqueId),
@@ -1942,16 +14342,146 @@ pub enum CommandRejection {
     TechniqueUnexpectedTarget,
     TechniqueTargetNotVisible(EntityId),
     TechniqueTargetOutOfRange(EntityId),
-    TechniqueTooManyTargets { maximum: usize, actual: usize },
+    TechniqueTargetHasNoEnergyState(EntityId),
+    TechniqueTargetDoesNotMeetEngagementRequirement(EntityId),
+    TechniqueTooManyTargets {
+        maximum: usize,
+        actual: usize,
+    },
     TechniqueDuplicateTarget(EntityId),
-    InsufficientEnergy { required: u16, available: u16 },
+    TechniqueVolleyTargetsTooFarApart {
+        left: EntityId,
+        right: EntityId,
+        maximum: u16,
+    },
+    TechniqueUnknownBodyComponent(BodyComponentId),
+    TechniqueBodyComponentNotIdentified {
+        target: EntityId,
+        component: BodyComponentId,
+    },
+    TechniqueRequiresParryWeapon,
+    TechniqueRequiresWeaponSlot,
+    TechniqueUnexpectedWeaponSlot,
+    TechniqueWeaponDeliveryMismatch {
+        required: AttackDelivery,
+        actual: AttackDelivery,
+    },
+    TechniqueWeaponHasNoPhysicalDamage,
+    TechniqueWeaponHasNoImpact,
+    TechniqueWeaponHasNoAutomaticFire,
+    TechniqueWeaponMustTargetSingleActor,
+    TechniqueOnCooldown {
+        technique: TechniqueId,
+        remaining_phases: u16,
+    },
+    TechniqueManifestationLimitReached {
+        maximum: u8,
+    },
+    TechniqueMissingMaterial {
+        item: ItemId,
+        required: u16,
+        available: u16,
+    },
+    TechniqueExplosivePositionNotVisible(GridPos),
+    TechniqueExplosivePositionOutOfRange(GridPos),
+    TechniqueExplosiveLineBlocked(GridPos),
+    TechniqueExplosivePlacementBlocked(GridPos),
+    TechniqueRequiresDestructible(GridPos),
+    TechniqueRequiresStructuralSupport(GridPos),
+    TechniqueNoCompatibleExplosive(GridPos),
+    TechniqueExplosiveStateChanged,
+    TechniqueExplosiveInventoryFull,
+    TechniqueUnknownMaterial(ItemId),
+    TechniqueInvalidMovementDestination(GridPos),
+    TechniqueMovementPositionNotVisible(GridPos),
+    TechniqueMovementPathBlocked(GridPos),
+    TechniqueRequiresCompatibleObstacle(GridPos),
+    TechniqueRequiresCooperativeAlly(EntityId),
+    TechniqueTargetAlreadyLocalized(EntityId),
+    TechniqueRequiresBrokenLineOfSight,
+    TechniqueIncompatibleStealthPosture,
+    TechniqueActiveEmissionSilenced,
+    TechniqueDroneDirectiveMismatch,
+    TechniqueDroneNotControlled(EntityId),
+    TechniqueDroneNotLinked(EntityId),
+    TechniqueDroneMissingCapability(EntityId),
+    TechniqueDronePositionUnknown(GridPos),
+    TechniqueDroneCargoUnavailable(EntityId),
+    TechniqueDroneCargoTooHeavy {
+        entity: EntityId,
+        required_grams: u32,
+        capacity_grams: u32,
+    },
+    TechniqueDroneHasNoAttack(EntityId),
+    TechniqueInvalidDroneRoutine,
+    TechniqueEngineeringDirectiveMismatch,
+    TechniqueEngineeringComponentNotRepairable,
+    TechniqueEngineeringUnknownWreck(WreckId),
+    TechniqueEngineeringUnknownModule(ItemInstanceId),
+    TechniqueEngineeringModuleNotCompatible(ItemInstanceId),
+    TechniqueEngineeringWorkshopRequired,
+    TechniqueEngineeringBypassInvalid,
+    TechniqueEngineeringPlacementBlocked(GridPos),
+    TechniqueIntrusionDirectiveMismatch,
+    TechniqueNoDigitalInterface(GridPos),
+    TechniqueDigitalInterfaceOutOfRange(GridPos),
+    TechniqueDigitalLinkBlocked(GridPos),
+    TechniqueDigitalAccessRequired {
+        at: GridPos,
+        right: AccessRight,
+    },
+    TechniqueDigitalCredentialRequired(GridPos),
+    TechniqueDigitalCommandUnsupported(GridPos),
+    TechniqueTooManyBackdoors {
+        maximum: u8,
+    },
+    TechniqueUnknownSecurityTrace(SecurityTraceId),
+    TechniqueSecurityTraceAlreadyResolved(SecurityTraceId),
+    TechniqueDigitalRoutineProtected(GridPos),
+    TechniqueDigitalControlRequired(GridPos),
+    TechniqueDigitalSubnetInvalid,
+    TechniqueElectronicDirectiveMismatch,
+    TechniqueElectronicTargetIncompatible(EntityId),
+    TechniqueElectronicLinkBlocked(EntityId),
+    TechniqueElectronicProgramFamilyActive(EntityId),
+    TechniqueUnknownHostileProgram(HostileProgramId),
+    TechniqueElectronicProgramTargetMismatch,
+    TechniqueElectronicCascadeInvalid,
+    TechniqueUnknownSaturationBeacon(EntityId),
+    TechniqueSaturationBeaconUnavailable(EntityId),
+    TechniqueElectronicPlacementBlocked(GridPos),
+    TechniqueElectronicStoredEnergyInsufficient {
+        target: EntityId,
+        required: u16,
+        available: u16,
+    },
+    TechniqueElectronicProgramTargetChanged(EntityId),
+    InsufficientEnergy {
+        required: u16,
+        available: u16,
+    },
+    InsufficientBandwidth {
+        required: u16,
+        available: u16,
+    },
+    SystemResourcesUnavailable,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 enum TechniqueUseError {
-    TooManyTargets { maximum: usize, actual: usize },
+    TooManyTargets {
+        maximum: usize,
+        actual: usize,
+    },
     DuplicateTarget(EntityId),
+    VolleyTargetsTooFarApart {
+        left: EntityId,
+        right: EntityId,
+        maximum: u16,
+    },
     Energy(EnergySpendError),
+    Bandwidth(BandwidthReservationError),
+    SystemResourcesUnavailable,
     MissingPlayer,
     UnknownTechnique(TechniqueId),
     NotLearned(TechniqueId),
@@ -1961,6 +14491,114 @@ enum TechniqueUseError {
     UnknownTarget(EntityId),
     TargetNotVisible(EntityId),
     TargetOutOfRange(EntityId),
+    TargetHasNoEnergyState(EntityId),
+    TargetDoesNotMeetEngagementRequirement(EntityId),
+    UnknownBodyComponent(BodyComponentId),
+    BodyComponentNotIdentified {
+        target: EntityId,
+        component: BodyComponentId,
+    },
+    NoCompatibleParryWeapon,
+    MissingWeaponSlot,
+    UnexpectedWeaponSlot,
+    WeaponDeliveryMismatch {
+        required: AttackDelivery,
+        actual: AttackDelivery,
+    },
+    WeaponHasNoPhysicalDamage,
+    WeaponHasNoImpact,
+    WeaponHasNoAutomaticFire,
+    WeaponMustTargetSingleActor,
+    OnCooldown {
+        technique: TechniqueId,
+        remaining_phases: u16,
+    },
+    ManifestationLimitReached {
+        maximum: u8,
+    },
+    MissingMaterial {
+        item: ItemId,
+        required: u16,
+        available: u16,
+    },
+    MissingExplosiveMaterialRule(TechniqueId),
+    ExplosivePositionNotVisible(GridPos),
+    ExplosivePositionOutOfRange(GridPos),
+    ExplosiveLineBlocked(GridPos),
+    ExplosivePlacementBlocked(GridPos),
+    ExplosiveRequiresDestructible(GridPos),
+    ExplosiveRequiresStructuralSupport(GridPos),
+    NoCompatibleExplosive(GridPos),
+    ExplosiveStateChanged,
+    InventoryChanged,
+    InventoryFull,
+    UnknownMaterial(ItemId),
+    InvalidMovementDestination(GridPos),
+    MovementPositionNotVisible(GridPos),
+    MovementPathBlocked(GridPos),
+    NoCompatibleObstacle(GridPos),
+    MovementDisabled,
+    TargetNotCooperative(EntityId),
+    TargetAlreadyLocalized(EntityId),
+    RequiresBrokenLineOfSight,
+    IncompatibleStealthPosture,
+    ActiveEmissionSilenced,
+    DroneDirectiveMismatch,
+    DroneNotControlled(EntityId),
+    DroneNotLinked(EntityId),
+    DroneMissingCapability(EntityId),
+    DronePositionUnknown(GridPos),
+    DroneCargoUnavailable(EntityId),
+    DroneCargoTooHeavy {
+        entity: EntityId,
+        required_grams: u32,
+        capacity_grams: u32,
+    },
+    DroneHasNoAttack(EntityId),
+    InvalidDroneRoutine,
+    EngineeringDirectiveMismatch,
+    EngineeringComponentNotRepairable,
+    EngineeringUnknownWreck(WreckId),
+    EngineeringUnknownModule(ItemInstanceId),
+    EngineeringModuleNotCompatible(ItemInstanceId),
+    EngineeringWorkshopRequired,
+    EngineeringBypassInvalid,
+    EngineeringPlacementBlocked(GridPos),
+    IntrusionDirectiveMismatch,
+    NoDigitalInterface(GridPos),
+    DigitalInterfaceOutOfRange(GridPos),
+    DigitalLinkBlocked(GridPos),
+    DigitalAccessRequired {
+        at: GridPos,
+        right: AccessRight,
+    },
+    DigitalCredentialRequired(GridPos),
+    DigitalCommandUnsupported(GridPos),
+    TooManyBackdoors {
+        maximum: u8,
+    },
+    UnknownSecurityTrace(SecurityTraceId),
+    SecurityTraceAlreadyResolved(SecurityTraceId),
+    DigitalRoutineProtected(GridPos),
+    DigitalControlRequired(GridPos),
+    DigitalSubnetInvalid,
+    ElectronicDirectiveMismatch,
+    ElectronicTargetIncompatible(EntityId),
+    ElectronicLinkBlocked(EntityId),
+    ElectronicProgramFamilyActive(EntityId),
+    UnknownHostileProgram(HostileProgramId),
+    ElectronicProgramTargetMismatch,
+    ElectronicCascadeInvalid,
+    UnknownSaturationBeacon(EntityId),
+    SaturationBeaconUnavailable(EntityId),
+    ElectronicPlacementBlocked(GridPos),
+    ElectronicStoredEnergyInsufficient {
+        target: EntityId,
+        required: u16,
+        available: u16,
+    },
+    ElectronicProgramTargetChanged(EntityId),
+    Attack(AttackError),
 }
 
 impl From<TechniqueUseError> for CommandRejection {
@@ -1970,10 +14608,24 @@ impl From<TechniqueUseError> for CommandRejection {
                 Self::TechniqueTooManyTargets { maximum, actual }
             }
             TechniqueUseError::DuplicateTarget(target) => Self::TechniqueDuplicateTarget(target),
+            TechniqueUseError::VolleyTargetsTooFarApart {
+                left,
+                right,
+                maximum,
+            } => Self::TechniqueVolleyTargetsTooFarApart {
+                left,
+                right,
+                maximum,
+            },
             TechniqueUseError::Energy(error) => Self::InsufficientEnergy {
                 required: error.required,
                 available: error.available,
             },
+            TechniqueUseError::Bandwidth(error) => Self::InsufficientBandwidth {
+                required: error.required,
+                available: error.available,
+            },
+            TechniqueUseError::SystemResourcesUnavailable => Self::SystemResourcesUnavailable,
             TechniqueUseError::MissingPlayer => Self::MissingPlayer,
             TechniqueUseError::UnknownTechnique(technique) => Self::UnknownTechnique(technique),
             TechniqueUseError::NotLearned(technique) => Self::TechniqueNotLearned(technique),
@@ -1985,6 +14637,231 @@ impl From<TechniqueUseError> for CommandRejection {
             TechniqueUseError::UnknownTarget(target) => Self::UnknownTarget(target),
             TechniqueUseError::TargetNotVisible(target) => Self::TechniqueTargetNotVisible(target),
             TechniqueUseError::TargetOutOfRange(target) => Self::TechniqueTargetOutOfRange(target),
+            TechniqueUseError::TargetHasNoEnergyState(target) => {
+                Self::TechniqueTargetHasNoEnergyState(target)
+            }
+            TechniqueUseError::TargetDoesNotMeetEngagementRequirement(target) => {
+                Self::TechniqueTargetDoesNotMeetEngagementRequirement(target)
+            }
+            TechniqueUseError::UnknownBodyComponent(component) => {
+                Self::TechniqueUnknownBodyComponent(component)
+            }
+            TechniqueUseError::BodyComponentNotIdentified { target, component } => {
+                Self::TechniqueBodyComponentNotIdentified { target, component }
+            }
+            TechniqueUseError::NoCompatibleParryWeapon => Self::TechniqueRequiresParryWeapon,
+            TechniqueUseError::MissingWeaponSlot => Self::TechniqueRequiresWeaponSlot,
+            TechniqueUseError::UnexpectedWeaponSlot => Self::TechniqueUnexpectedWeaponSlot,
+            TechniqueUseError::WeaponDeliveryMismatch { required, actual } => {
+                Self::TechniqueWeaponDeliveryMismatch { required, actual }
+            }
+            TechniqueUseError::WeaponHasNoPhysicalDamage => {
+                Self::TechniqueWeaponHasNoPhysicalDamage
+            }
+            TechniqueUseError::WeaponHasNoImpact => Self::TechniqueWeaponHasNoImpact,
+            TechniqueUseError::WeaponHasNoAutomaticFire => Self::TechniqueWeaponHasNoAutomaticFire,
+            TechniqueUseError::WeaponMustTargetSingleActor => {
+                Self::TechniqueWeaponMustTargetSingleActor
+            }
+            TechniqueUseError::OnCooldown {
+                technique,
+                remaining_phases,
+            } => Self::TechniqueOnCooldown {
+                technique,
+                remaining_phases,
+            },
+            TechniqueUseError::ManifestationLimitReached { maximum } => {
+                Self::TechniqueManifestationLimitReached { maximum }
+            }
+            TechniqueUseError::MissingMaterial {
+                item,
+                required,
+                available,
+            } => Self::TechniqueMissingMaterial {
+                item,
+                required,
+                available,
+            },
+            TechniqueUseError::MissingExplosiveMaterialRule(technique) => {
+                Self::UnknownTechnique(technique)
+            }
+            TechniqueUseError::ExplosivePositionNotVisible(position) => {
+                Self::TechniqueExplosivePositionNotVisible(position)
+            }
+            TechniqueUseError::ExplosivePositionOutOfRange(position) => {
+                Self::TechniqueExplosivePositionOutOfRange(position)
+            }
+            TechniqueUseError::ExplosiveLineBlocked(position) => {
+                Self::TechniqueExplosiveLineBlocked(position)
+            }
+            TechniqueUseError::ExplosivePlacementBlocked(position) => {
+                Self::TechniqueExplosivePlacementBlocked(position)
+            }
+            TechniqueUseError::ExplosiveRequiresDestructible(position) => {
+                Self::TechniqueRequiresDestructible(position)
+            }
+            TechniqueUseError::ExplosiveRequiresStructuralSupport(position) => {
+                Self::TechniqueRequiresStructuralSupport(position)
+            }
+            TechniqueUseError::NoCompatibleExplosive(position) => {
+                Self::TechniqueNoCompatibleExplosive(position)
+            }
+            TechniqueUseError::ExplosiveStateChanged | TechniqueUseError::InventoryChanged => {
+                Self::TechniqueExplosiveStateChanged
+            }
+            TechniqueUseError::InventoryFull => Self::TechniqueExplosiveInventoryFull,
+            TechniqueUseError::UnknownMaterial(item) => Self::TechniqueUnknownMaterial(item),
+            TechniqueUseError::InvalidMovementDestination(position) => {
+                Self::TechniqueInvalidMovementDestination(position)
+            }
+            TechniqueUseError::MovementPositionNotVisible(position) => {
+                Self::TechniqueMovementPositionNotVisible(position)
+            }
+            TechniqueUseError::MovementPathBlocked(position) => {
+                Self::TechniqueMovementPathBlocked(position)
+            }
+            TechniqueUseError::NoCompatibleObstacle(position) => {
+                Self::TechniqueRequiresCompatibleObstacle(position)
+            }
+            TechniqueUseError::MovementDisabled => Self::MovementDisabledByFailedComponent,
+            TechniqueUseError::TargetNotCooperative(target) => {
+                Self::TechniqueRequiresCooperativeAlly(target)
+            }
+            TechniqueUseError::TargetAlreadyLocalized(target) => {
+                Self::TechniqueTargetAlreadyLocalized(target)
+            }
+            TechniqueUseError::RequiresBrokenLineOfSight => {
+                Self::TechniqueRequiresBrokenLineOfSight
+            }
+            TechniqueUseError::IncompatibleStealthPosture => {
+                Self::TechniqueIncompatibleStealthPosture
+            }
+            TechniqueUseError::ActiveEmissionSilenced => Self::TechniqueActiveEmissionSilenced,
+            TechniqueUseError::DroneDirectiveMismatch => Self::TechniqueDroneDirectiveMismatch,
+            TechniqueUseError::DroneNotControlled(entity) => {
+                Self::TechniqueDroneNotControlled(entity)
+            }
+            TechniqueUseError::DroneNotLinked(entity) => Self::TechniqueDroneNotLinked(entity),
+            TechniqueUseError::DroneMissingCapability(entity) => {
+                Self::TechniqueDroneMissingCapability(entity)
+            }
+            TechniqueUseError::DronePositionUnknown(position) => {
+                Self::TechniqueDronePositionUnknown(position)
+            }
+            TechniqueUseError::DroneCargoUnavailable(entity) => {
+                Self::TechniqueDroneCargoUnavailable(entity)
+            }
+            TechniqueUseError::DroneCargoTooHeavy {
+                entity,
+                required_grams,
+                capacity_grams,
+            } => Self::TechniqueDroneCargoTooHeavy {
+                entity,
+                required_grams,
+                capacity_grams,
+            },
+            TechniqueUseError::DroneHasNoAttack(entity) => Self::TechniqueDroneHasNoAttack(entity),
+            TechniqueUseError::InvalidDroneRoutine => Self::TechniqueInvalidDroneRoutine,
+            TechniqueUseError::EngineeringDirectiveMismatch => {
+                Self::TechniqueEngineeringDirectiveMismatch
+            }
+            TechniqueUseError::EngineeringComponentNotRepairable => {
+                Self::TechniqueEngineeringComponentNotRepairable
+            }
+            TechniqueUseError::EngineeringUnknownWreck(wreck) => {
+                Self::TechniqueEngineeringUnknownWreck(wreck)
+            }
+            TechniqueUseError::EngineeringUnknownModule(module) => {
+                Self::TechniqueEngineeringUnknownModule(module)
+            }
+            TechniqueUseError::EngineeringModuleNotCompatible(module) => {
+                Self::TechniqueEngineeringModuleNotCompatible(module)
+            }
+            TechniqueUseError::EngineeringWorkshopRequired => {
+                Self::TechniqueEngineeringWorkshopRequired
+            }
+            TechniqueUseError::EngineeringBypassInvalid => Self::TechniqueEngineeringBypassInvalid,
+            TechniqueUseError::EngineeringPlacementBlocked(position) => {
+                Self::TechniqueEngineeringPlacementBlocked(position)
+            }
+            TechniqueUseError::IntrusionDirectiveMismatch => {
+                Self::TechniqueIntrusionDirectiveMismatch
+            }
+            TechniqueUseError::NoDigitalInterface(position) => {
+                Self::TechniqueNoDigitalInterface(position)
+            }
+            TechniqueUseError::DigitalInterfaceOutOfRange(position) => {
+                Self::TechniqueDigitalInterfaceOutOfRange(position)
+            }
+            TechniqueUseError::DigitalLinkBlocked(position) => {
+                Self::TechniqueDigitalLinkBlocked(position)
+            }
+            TechniqueUseError::DigitalAccessRequired { at, right } => {
+                Self::TechniqueDigitalAccessRequired { at, right }
+            }
+            TechniqueUseError::DigitalCredentialRequired(position) => {
+                Self::TechniqueDigitalCredentialRequired(position)
+            }
+            TechniqueUseError::DigitalCommandUnsupported(position) => {
+                Self::TechniqueDigitalCommandUnsupported(position)
+            }
+            TechniqueUseError::TooManyBackdoors { maximum } => {
+                Self::TechniqueTooManyBackdoors { maximum }
+            }
+            TechniqueUseError::UnknownSecurityTrace(trace) => {
+                Self::TechniqueUnknownSecurityTrace(trace)
+            }
+            TechniqueUseError::SecurityTraceAlreadyResolved(trace) => {
+                Self::TechniqueSecurityTraceAlreadyResolved(trace)
+            }
+            TechniqueUseError::DigitalRoutineProtected(position) => {
+                Self::TechniqueDigitalRoutineProtected(position)
+            }
+            TechniqueUseError::DigitalControlRequired(position) => {
+                Self::TechniqueDigitalControlRequired(position)
+            }
+            TechniqueUseError::DigitalSubnetInvalid => Self::TechniqueDigitalSubnetInvalid,
+            TechniqueUseError::ElectronicDirectiveMismatch => {
+                Self::TechniqueElectronicDirectiveMismatch
+            }
+            TechniqueUseError::ElectronicTargetIncompatible(target) => {
+                Self::TechniqueElectronicTargetIncompatible(target)
+            }
+            TechniqueUseError::ElectronicLinkBlocked(target) => {
+                Self::TechniqueElectronicLinkBlocked(target)
+            }
+            TechniqueUseError::ElectronicProgramFamilyActive(target) => {
+                Self::TechniqueElectronicProgramFamilyActive(target)
+            }
+            TechniqueUseError::UnknownHostileProgram(program) => {
+                Self::TechniqueUnknownHostileProgram(program)
+            }
+            TechniqueUseError::ElectronicProgramTargetMismatch => {
+                Self::TechniqueElectronicProgramTargetMismatch
+            }
+            TechniqueUseError::ElectronicCascadeInvalid => Self::TechniqueElectronicCascadeInvalid,
+            TechniqueUseError::UnknownSaturationBeacon(beacon) => {
+                Self::TechniqueUnknownSaturationBeacon(beacon)
+            }
+            TechniqueUseError::SaturationBeaconUnavailable(beacon) => {
+                Self::TechniqueSaturationBeaconUnavailable(beacon)
+            }
+            TechniqueUseError::ElectronicPlacementBlocked(position) => {
+                Self::TechniqueElectronicPlacementBlocked(position)
+            }
+            TechniqueUseError::ElectronicStoredEnergyInsufficient {
+                target,
+                required,
+                available,
+            } => Self::TechniqueElectronicStoredEnergyInsufficient {
+                target,
+                required,
+                available,
+            },
+            TechniqueUseError::ElectronicProgramTargetChanged(target) => {
+                Self::TechniqueElectronicProgramTargetChanged(target)
+            }
+            TechniqueUseError::Attack(error) => error.into(),
         }
     }
 }
@@ -2075,6 +14952,39 @@ enum EquipWeaponError {
     Equipment(EquipmentError),
 }
 
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum EquipItemError {
+    UnknownEquipmentSlot(EquipmentSlotId),
+    UnknownInventoryItem(ItemInstanceId),
+    CannotEquip {
+        slot: EquipmentSlotId,
+        item: ItemInstanceId,
+    },
+    AlreadyEquipped {
+        slot: EquipmentSlotId,
+        item: ItemInstanceId,
+    },
+    Equipment(EquipmentError),
+}
+
+impl From<EquipItemError> for CommandRejection {
+    fn from(error: EquipItemError) -> Self {
+        match error {
+            EquipItemError::UnknownEquipmentSlot(slot) => Self::UnknownEquipmentSlot(slot),
+            EquipItemError::UnknownInventoryItem(item) => Self::UnknownInventoryItem(item),
+            EquipItemError::CannotEquip { slot, item } => {
+                Self::ItemCannotEquipInSlot { slot, item }
+            }
+            EquipItemError::AlreadyEquipped { slot, item } => {
+                Self::ItemAlreadyEquipped { slot, item }
+            }
+            EquipItemError::Equipment(EquipmentError::ItemNotInInventory(item)) => {
+                Self::UnknownInventoryItem(item)
+            }
+        }
+    }
+}
+
 impl From<EquipWeaponError> for CommandRejection {
     fn from(error: EquipWeaponError) -> Self {
         match error {
@@ -2096,6 +15006,7 @@ pub(super) enum MovementError {
     MissingEntity(EntityId),
     BlockedByTerrain(GridPos),
     Occupied(GridPos),
+    DisabledByFailedComponent,
 }
 
 impl From<MovementError> for CommandRejection {
@@ -2104,16 +15015,18 @@ impl From<MovementError> for CommandRejection {
             MovementError::MissingEntity(_) => Self::MissingPlayer,
             MovementError::BlockedByTerrain(position) => Self::BlockedByTerrain(position),
             MovementError::Occupied(position) => Self::Occupied(position),
+            MovementError::DisabledByFailedComponent => Self::MovementDisabledByFailedComponent,
         }
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 enum AttackError {
     ProtectedZone,
     MissingAttacker(EntityId),
     UnknownTarget(EntityId),
     MissingAttackSlot(u8),
+    DisabledByFailedComponent(u8),
     TargetOutOfRange(EntityId),
     NoLineOfSight(EntityId),
     TargetOutsideMap(GridPos),
@@ -2121,6 +15034,21 @@ enum AttackError {
     PositionOutOfRange(GridPos),
     NoLineOfSightAt(GridPos),
     FreeAimRequiresAreaWeapon,
+    InsufficientAmmunition {
+        weapon: WeaponId,
+        required: u16,
+        available: u16,
+    },
+    InsufficientEnergy {
+        required: u16,
+        available: u16,
+    },
+    EngineeringModuleUnavailable(ItemInstanceId),
+    EngineeringModuleHeatLimit {
+        module: ItemInstanceId,
+        projected: u16,
+        maximum: u16,
+    },
 }
 
 struct PreparedAttack {
@@ -2132,7 +15060,38 @@ struct PreparedAttack {
     attack: AttackProfile,
     weapon: Option<WeaponId>,
     weapon_effects: Vec<WeaponEffect>,
+    module_use: Option<PreparedModuleUse>,
     affected_cells: Vec<AttackAreaCell>,
+    forced_movement: Option<ForcedMovement>,
+    technique_on_hit_effect: Option<(TechniqueId, TechniqueOnHitEffect)>,
+    damage_target: AttackDamageTarget,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+struct PreparedModuleUse {
+    module: ItemInstanceId,
+    energy_per_use: u16,
+    heat_per_use: u16,
+    safe_heat_threshold: u16,
+    maximum_heat_threshold: u16,
+    durability_damage_when_hot: u16,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum AttackDamageTarget {
+    Body,
+    Component(BodyComponentId),
+}
+
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+struct AttackResolution {
+    hit_targets: BTreeSet<EntityId>,
+}
+
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+struct DamageApplication {
+    amount: u16,
+    target_destroyed: bool,
 }
 
 impl From<AttackError> for CommandRejection {
@@ -2142,6 +15101,9 @@ impl From<AttackError> for CommandRejection {
             AttackError::MissingAttacker(_) => Self::MissingPlayer,
             AttackError::UnknownTarget(target) => Self::UnknownTarget(target),
             AttackError::MissingAttackSlot(slot) => Self::MissingAttackSlot(slot),
+            AttackError::DisabledByFailedComponent(slot) => {
+                Self::AttackSlotDisabledByFailedComponent(slot)
+            }
             AttackError::TargetOutOfRange(target) => Self::TargetOutOfRange(target),
             AttackError::NoLineOfSight(target) => Self::NoLineOfSight(target),
             AttackError::TargetOutsideMap(target) => Self::AttackTargetOutsideMap(target),
@@ -2149,6 +15111,34 @@ impl From<AttackError> for CommandRejection {
             AttackError::PositionOutOfRange(target) => Self::AttackTargetOutOfRange(target),
             AttackError::NoLineOfSightAt(target) => Self::AttackNoLineOfSight(target),
             AttackError::FreeAimRequiresAreaWeapon => Self::FreeAimRequiresAreaWeapon,
+            AttackError::InsufficientAmmunition {
+                weapon,
+                required,
+                available,
+            } => Self::InsufficientAmmunition {
+                weapon,
+                required,
+                available,
+            },
+            AttackError::InsufficientEnergy {
+                required,
+                available,
+            } => Self::InsufficientEnergy {
+                required,
+                available,
+            },
+            AttackError::EngineeringModuleUnavailable(module) => {
+                Self::WeaponModuleUnavailable(module)
+            }
+            AttackError::EngineeringModuleHeatLimit {
+                module,
+                projected,
+                maximum,
+            } => Self::WeaponModuleHeatLimit {
+                module,
+                projected,
+                maximum,
+            },
         }
     }
 }
@@ -2245,8 +15235,36 @@ impl Display for GroundItemSpawnError {
 impl Error for GroundItemSpawnError {}
 
 #[derive(Clone, Debug, PartialEq, Eq)]
+pub enum DroneSpawnError {
+    SystemResourcesUnavailable,
+    Bandwidth(BandwidthReservationError),
+    Energy(EnergyReserveError),
+    Spawn(SpawnError),
+}
+
+impl Display for DroneSpawnError {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::SystemResourcesUnavailable => {
+                formatter.write_str("drone control requires a bandwidth reserve")
+            }
+            Self::Bandwidth(error) => write!(
+                formatter,
+                "drone requires {} bandwidth but only {} is available",
+                error.required, error.available
+            ),
+            Self::Energy(error) => write!(formatter, "invalid drone energy reserve: {error}"),
+            Self::Spawn(error) => write!(formatter, "could not place drone actor: {error}"),
+        }
+    }
+}
+
+impl Error for DroneSpawnError {}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub enum GameInitError {
     Energy(EnergyReserveError),
+    Heat(HeatRulesError),
     BlockedPlayerStart(GridPos),
     BlockedExit(GridPos),
     Actor(ActorBuildError),
@@ -2255,6 +15273,13 @@ pub enum GameInitError {
     PlayerAttributes(PrimaryAttributesError),
     SkillCatalog(SkillCatalogError),
     MovementTraceRules(MovementTraceRulesError),
+    HitRules(HitRulesError),
+    PhysicalRules(PhysicalRulesError),
+    StabilityRules(StabilityRulesError),
+    StealthRules(StealthRulesError),
+    StatusCatalog(StatusCatalogError),
+    TechniqueStabilityWithoutRules,
+    PlayerBodyWithoutPhysicalRules,
     UnknownStatusDefinition(StatusId),
     UnknownWeaponStatusDefinition {
         weapon: Box<WeaponId>,
@@ -2276,6 +15301,7 @@ impl Display for GameInitError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::Energy(error) => write!(formatter, "invalid player energy: {error}"),
+            Self::Heat(error) => write!(formatter, "invalid player heat rules: {error}"),
             Self::BlockedPlayerStart(position) => write!(
                 formatter,
                 "player start ({}, {}) is blocked or outside the map",
@@ -2297,6 +15323,20 @@ impl Display for GameInitError {
             Self::SkillCatalog(error) => write!(formatter, "invalid skill catalog: {error}"),
             Self::MovementTraceRules(error) => {
                 write!(formatter, "invalid movement trace rules: {error}")
+            }
+            Self::HitRules(error) => write!(formatter, "invalid hit rules: {error}"),
+            Self::PhysicalRules(error) => write!(formatter, "invalid physical rules: {error}"),
+            Self::StabilityRules(error) => {
+                write!(formatter, "invalid Stability rules: {error}")
+            }
+            Self::StealthRules(error) => write!(formatter, "invalid stealth rules: {error}"),
+            Self::StatusCatalog(error) => write!(formatter, "invalid status catalog: {error}"),
+            Self::TechniqueStabilityWithoutRules => write!(
+                formatter,
+                "a technique uses Stability resistance but no Stability rules are configured"
+            ),
+            Self::PlayerBodyWithoutPhysicalRules => {
+                write!(formatter, "player body profile requires physical rules")
             }
             Self::UnknownStatusDefinition(status) => write!(
                 formatter,
@@ -2505,14 +15545,29 @@ mod tests {
 
     use super::*;
     use crate::ai::AiProfile;
-    use crate::combat::{AttackProfile, DamageType, ResistanceProfile};
+    use crate::combat::{
+        AttackProfile, DamageComponent, DamageImpact, DamageType, HitRules, MeleeArc,
+        MeleeImpactProfile, ResistanceProfile,
+    };
     use crate::content::ContentLoader;
-    use crate::effects::{AbilityProfile, ApplyStatusEffect};
-    use crate::item::{ItemCatalog, ItemDefinition};
-    use crate::progression::{DefeatReward, ExperienceCurve, ProgressionRules};
-    use crate::skills::{SkillCatalog, SystemFeatureSet};
+    use crate::effects::{AbilityProfile, ApplyStatusEffect, GroundEffectSpec};
+    use crate::electronic_warfare::ElectronicChannel;
+    use crate::entity::{BodyComponentProfile, BodyComponentState};
+    use crate::item::{EquipmentProfile, ItemCatalog, ItemDefinition, ItemKind};
+    use crate::progression::{DefeatReward, ExperienceAward, ExperienceCurve, ProgressionRules};
+    use crate::reaction::{ActionOrigin, PreparedReaction, ReactionKind};
+    use crate::skills::{
+        DisciplineDefinition, SkillCatalog, SkillProgressionRules, SystemFeatureSet,
+        TechniqueDefinition, TechniqueKind,
+    };
     use crate::social::{LocalAlertProfile, WitnessProfile};
-    use crate::status::{StatusDefinition, StatusHook, StatusStacking};
+    use crate::stats::{
+        BodyProfile, DisplacementProfile, LocomotionProfile, PhysicalRules, StabilityRules,
+    };
+    use crate::status::{StatusDefinition, StatusHook, StatusStacking, StatusTransition};
+    use crate::stealth::StealthRules;
+    use crate::time::{ActionKind, TimeUnits};
+    use crate::weapon::{WeaponCapabilities, WeaponCatalog};
     use crate::world::{DistanceMetric, FieldOfViewRules};
 
     fn parse_map(definition: &str) -> Map {
@@ -2536,11 +15591,78 @@ mod tests {
         GameRules {
             progression,
             skills: content.skills().clone(),
+            statuses: content.statuses().clone(),
+            stability_rules: Some(StabilityRules::default()),
             enabled_system_features: SystemFeatureSet::new(["core:traces"
                 .parse()
                 .unwrap_or_else(|error| panic!("valid feature ID rejected: {error}"))]),
             ..GameRules::default()
         }
+    }
+
+    fn game_with_complete_reconnaissance(ordered_choices: &[&str]) -> GameState {
+        let mut rules = rules_with_reconnaissance(ProgressionRules::default());
+        rules.player_system_resources = Some(super::super::SystemResourceRules::default());
+        rules.enabled_system_features = SystemFeatureSet::new(
+            ["core:traces", "core:secrets", "core:energy_states"]
+                .into_iter()
+                .map(str::parse)
+                .collect::<Result<Vec<_>, crate::content::ContentIdError>>()
+                .unwrap(),
+        );
+        let mut game = GameState::new_with_rules(
+            parse_map("#########\n#.......#\n#.......#\n#########"),
+            GridPos::new(1, 1),
+            421,
+            rules,
+        )
+        .unwrap();
+        let discipline: DisciplineId = "core:reconnaissance".parse().unwrap();
+        let choices = ordered_choices
+            .iter()
+            .map(|id| format!("core:{id}").parse().unwrap())
+            .collect();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, choices)],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        game
+    }
+
+    fn with_technique_preparation(
+        mut rules: GameRules,
+        technique: &str,
+        preparation_steps: u16,
+        replacement_action: Option<TechniqueAction>,
+    ) -> GameRules {
+        let technique: TechniqueId = technique.parse().unwrap();
+        let mut catalog = SkillCatalog::default();
+        for (_, discipline) in rules.skills.disciplines() {
+            catalog.register_discipline(discipline.clone()).unwrap();
+        }
+        for (id, definition) in rules.skills.techniques() {
+            let definition = if id == &technique {
+                let definition = if let Some(action) = replacement_action {
+                    definition.clone().with_action(action).unwrap()
+                } else {
+                    definition.clone()
+                };
+                definition
+                    .with_preparation_steps(preparation_steps)
+                    .unwrap()
+            } else {
+                definition.clone()
+            };
+            catalog.register_technique(definition).unwrap();
+        }
+        catalog
+            .validate_runtime(&rules.enabled_system_features, &rules.skill_progression)
+            .unwrap();
+        rules.skills = catalog;
+        rules
     }
 
     fn build_actor(position: GridPos, integrity: u16) -> Actor {
@@ -2635,6 +15757,1281 @@ mod tests {
         )
     }
 
+    fn parry_rules() -> (GameRules, DisciplineId, TechniqueId) {
+        let discipline: DisciplineId = "core:test_melee".parse().unwrap();
+        let technique: TechniqueId = "core:test_parry".parse().unwrap();
+        let skill_progression = SkillProgressionRules::new(vec![1]).unwrap();
+        let mut skills = SkillCatalog::default();
+        skills
+            .register_discipline(
+                DisciplineDefinition::new(
+                    discipline.clone(),
+                    "discipline.test_melee.name".to_owned(),
+                    "discipline.test_melee.description".to_owned(),
+                )
+                .unwrap(),
+            )
+            .unwrap();
+        skills
+            .register_technique(
+                TechniqueDefinition::new(
+                    technique.clone(),
+                    discipline.clone(),
+                    "technique.test_parry.name".to_owned(),
+                    "technique.test_parry.description".to_owned(),
+                    1,
+                    TechniqueKind::Action,
+                    None,
+                    [],
+                )
+                .unwrap()
+                .with_action(TechniqueAction::PrepareMeleeParry {
+                    physical_reduction_percentage: 50,
+                    trigger_energy_cost: 2,
+                })
+                .unwrap(),
+            )
+            .unwrap();
+
+        let slot: EquipmentSlotId = "core:test_hand".parse().unwrap();
+        let blade: WeaponId = "core:test_parry_blade".parse().unwrap();
+        let mut weapons = WeaponCatalog::default();
+        weapons
+            .register(
+                WeaponDefinition::new(
+                    blade.clone(),
+                    "weapon.test_parry_blade.name".to_owned(),
+                    "weapon.test_parry_blade.description".to_owned(),
+                    AttackProfile::melee(DamageType::Kinetic, 3)
+                        .with_recovery_after_attack(TimeUnits::ONE),
+                )
+                .unwrap()
+                .with_capabilities(WeaponCapabilities::new().with_melee_parry()),
+            )
+            .unwrap();
+
+        (
+            GameRules {
+                damage: crate::combat::DamageRules::specialized(),
+                armor_rules: Some(crate::combat::ArmorRules::default()),
+                physical_rules: Some(PhysicalRules::default()),
+                player_body_profile: Some(BodyProfile::new(20, 0).unwrap().with_base_armor(2)),
+                player_starting_attributes: PrimaryAttributes::new(6, 6, 5, 6, 5),
+                player_weapon_slots: vec![slot],
+                player_starting_weapons: vec![blade.clone()],
+                player_starting_equipment: vec![Some(blade)],
+                skill_progression,
+                skills,
+                weapons,
+                ..GameRules::default()
+            },
+            discipline,
+            technique,
+        )
+    }
+
+    fn game_with_learned_parry() -> (GameState, TechniqueId) {
+        let (rules, discipline, technique) = parry_rules();
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            5,
+            rules,
+        )
+        .unwrap();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, vec![technique.clone()])],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        (game, technique)
+    }
+
+    fn game_with_learned_overwatch(extended: bool) -> (GameState, TechniqueId) {
+        let discipline: DisciplineId = "core:test_ranged".parse().unwrap();
+        let overwatch: TechniqueId = "core:test_overwatch".parse().unwrap();
+        let extension: TechniqueId = "core:test_extended_overwatch".parse().unwrap();
+        let mut skills = SkillCatalog::default();
+        skills
+            .register_discipline(
+                DisciplineDefinition::new(
+                    discipline.clone(),
+                    "discipline.test_ranged.name".to_owned(),
+                    "discipline.test_ranged.description".to_owned(),
+                )
+                .unwrap(),
+            )
+            .unwrap();
+        skills
+            .register_technique(
+                TechniqueDefinition::new(
+                    overwatch.clone(),
+                    discipline.clone(),
+                    "technique.test_overwatch.name".to_owned(),
+                    "technique.test_overwatch.description".to_owned(),
+                    1,
+                    TechniqueKind::Action,
+                    None,
+                    [],
+                )
+                .unwrap()
+                .with_action(TechniqueAction::PrepareRangedOverwatch {
+                    maximum_line_cells: 3,
+                })
+                .unwrap(),
+            )
+            .unwrap();
+        skills
+            .register_technique(
+                TechniqueDefinition::new(
+                    extension.clone(),
+                    discipline.clone(),
+                    "technique.test_extended_overwatch.name".to_owned(),
+                    "technique.test_extended_overwatch.description".to_owned(),
+                    2,
+                    TechniqueKind::Improvement,
+                    Some(overwatch.clone()),
+                    [],
+                )
+                .unwrap()
+                .with_improvement(TechniqueImprovement::ExtendedRangedOverwatch)
+                .unwrap(),
+            )
+            .unwrap();
+
+        let slot: EquipmentSlotId = "core:test_ranged_slot".parse().unwrap();
+        let weapon: WeaponId = "core:test_rifle".parse().unwrap();
+        let mut weapons = WeaponCatalog::default();
+        weapons
+            .register(
+                WeaponDefinition::new(
+                    weapon.clone(),
+                    "weapon.test_rifle.name".to_owned(),
+                    "weapon.test_rifle.description".to_owned(),
+                    AttackProfile::new(
+                        6,
+                        DistanceMetric::Chebyshev,
+                        true,
+                        DamageType::Kinetic,
+                        7,
+                        0,
+                    ),
+                )
+                .unwrap(),
+            )
+            .unwrap();
+        let rules = GameRules {
+            player_weapon_slots: vec![slot],
+            player_starting_weapons: vec![weapon.clone()],
+            player_starting_equipment: vec![Some(weapon)],
+            skill_progression: SkillProgressionRules::new(vec![1, 1]).unwrap(),
+            skills,
+            weapons,
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("#######\n#.....#\n#.....#\n#.....#\n#######"),
+            GridPos::new(1, 2),
+            77,
+            rules,
+        )
+        .unwrap();
+        let choices = if extended {
+            vec![overwatch.clone(), extension]
+        } else {
+            vec![overwatch.clone()]
+        };
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, choices)],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        (game, overwatch)
+    }
+
+    fn game_with_core_tir(ordered_choices: &[&str]) -> GameState {
+        let content_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
+        let loaded = ContentLoader::load(&[content_root], &Version::new(0, 1, 0))
+            .unwrap_or_else(|error| panic!("core content failed to load: {error}"));
+        let weapon: WeaponId = "core:needle_launcher".parse().unwrap();
+        let slot: EquipmentSlotId = "core:test_ranged_slot".parse().unwrap();
+        let components: crate::skills::SystemFeatureId = "core:components".parse().unwrap();
+        let rules = GameRules {
+            damage: crate::combat::DamageRules::specialized(),
+            armor_rules: Some(crate::combat::ArmorRules::default()),
+            physical_rules: Some(PhysicalRules::default()),
+            stability_rules: Some(StabilityRules::default()),
+            player_starting_attributes: PrimaryAttributes::new(8, 5, 5, 5, 5),
+            player_weapon_slots: vec![slot],
+            player_starting_weapons: vec![weapon.clone()],
+            player_starting_equipment: vec![Some(weapon)],
+            enabled_system_features: SystemFeatureSet::new([components]),
+            skills: loaded.skills().clone(),
+            statuses: loaded.statuses().clone(),
+            weapons: loaded.weapons().clone(),
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("#########\n#.......#\n#.......#\n#.......#\n#.......#\n#########"),
+            GridPos::new(1, 2),
+            97,
+            rules,
+        )
+        .unwrap();
+        let discipline: DisciplineId = "core:tir".parse().unwrap();
+        let choices = ordered_choices
+            .iter()
+            .map(|id| format!("core:{id}").parse().unwrap())
+            .collect();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, choices)],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        game
+    }
+
+    fn game_with_core_demolition(map: &str, ordered_choices: &[&str]) -> GameState {
+        let content_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
+        let loaded = ContentLoader::load(&[content_root], &Version::new(0, 1, 0))
+            .unwrap_or_else(|error| panic!("core content failed to load: {error}"));
+        let rules = GameRules {
+            damage: crate::combat::DamageRules::specialized(),
+            armor_rules: Some(crate::combat::ArmorRules::default()),
+            physical_rules: Some(PhysicalRules::default()),
+            stability_rules: Some(StabilityRules::default()),
+            player_starting_attributes: PrimaryAttributes::new(8, 5, 5, 5, 5),
+            player_energy_capacity: 50,
+            player_starting_energy: 50,
+            player_system_resources: Some(super::super::SystemResourceRules::default()),
+            player_inventory_capacity: 20,
+            player_starting_items: Vec::new(),
+            skills: loaded.skills().clone(),
+            statuses: loaded.statuses().clone(),
+            items: loaded.items().clone(),
+            ..GameRules::default()
+        };
+        let mut game =
+            GameState::new_with_rules(parse_map(map), GridPos::new(2, 2), 97, rules).unwrap();
+        let discipline: DisciplineId = "core:demolition".parse().unwrap();
+        let choices = ordered_choices
+            .iter()
+            .map(|id| format!("core:{id}").parse().unwrap())
+            .collect();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, choices)],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        game
+    }
+
+    fn game_with_core_manoeuvre(
+        map: &str,
+        player_start: GridPos,
+        ordered_choices: &[&str],
+    ) -> GameState {
+        let content_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
+        let loaded = ContentLoader::load(&[content_root], &Version::new(0, 1, 0))
+            .unwrap_or_else(|error| panic!("core content failed to load: {error}"));
+        let weapon: WeaponId = "core:integrity_blade".parse().unwrap();
+        let slot: EquipmentSlotId = "core:test_melee_slot".parse().unwrap();
+        let rules = GameRules {
+            damage: crate::combat::DamageRules::specialized(),
+            armor_rules: Some(crate::combat::ArmorRules::default()),
+            hit_rules: None,
+            physical_rules: Some(PhysicalRules::default()),
+            stability_rules: Some(StabilityRules::default()),
+            player_body_profile: Some(
+                BodyProfile::new(20, 0)
+                    .unwrap()
+                    .with_displacement_profile(DisplacementProfile::new(75_000, 0).unwrap())
+                    .with_locomotion_profile(LocomotionProfile::new(true)),
+            ),
+            player_starting_attributes: PrimaryAttributes::new(8, 5, 5, 5, 5),
+            player_energy_capacity: 100,
+            player_starting_energy: 100,
+            player_system_resources: Some(super::super::SystemResourceRules::default()),
+            player_weapon_slots: vec![slot],
+            player_starting_weapons: vec![weapon.clone()],
+            player_starting_equipment: vec![Some(weapon)],
+            skills: loaded.skills().clone(),
+            statuses: loaded.statuses().clone(),
+            weapons: loaded.weapons().clone(),
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(parse_map(map), player_start, 197, rules).unwrap();
+        let discipline: DisciplineId = "core:manoeuvre".parse().unwrap();
+        let choices = ordered_choices
+            .iter()
+            .map(|id| format!("core:{id}").parse().unwrap())
+            .collect();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, choices)],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        game
+    }
+
+    fn game_with_core_furtivite(
+        map: &str,
+        player_start: GridPos,
+        ordered_choices: &[&str],
+    ) -> GameState {
+        let content_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
+        let loaded = ContentLoader::load(&[content_root], &Version::new(0, 1, 0))
+            .unwrap_or_else(|error| panic!("core content failed to load: {error}"));
+        let weapon: WeaponId = "core:integrity_blade".parse().unwrap();
+        let slot: EquipmentSlotId = "core:test_stealth_slot".parse().unwrap();
+        let traces: crate::skills::SystemFeatureId = "core:traces".parse().unwrap();
+        let rules = GameRules {
+            damage: crate::combat::DamageRules::specialized(),
+            armor_rules: Some(crate::combat::ArmorRules::default()),
+            hit_rules: None,
+            physical_rules: Some(PhysicalRules::default()),
+            stability_rules: Some(StabilityRules::default()),
+            player_body_profile: Some(
+                BodyProfile::new(20, 0)
+                    .unwrap()
+                    .with_locomotion_profile(LocomotionProfile::new(true)),
+            ),
+            player_starting_attributes: PrimaryAttributes::new(8, 5, 5, 5, 5),
+            player_energy_capacity: 100,
+            player_starting_energy: 100,
+            player_system_resources: Some(super::super::SystemResourceRules::default()),
+            stealth_rules: Some(StealthRules::default()),
+            player_inventory_capacity: 20,
+            player_starting_items: Vec::new(),
+            player_weapon_slots: vec![slot],
+            player_starting_weapons: vec![weapon.clone()],
+            player_starting_equipment: vec![Some(weapon)],
+            enabled_system_features: SystemFeatureSet::new([traces]),
+            skills: loaded.skills().clone(),
+            statuses: loaded.statuses().clone(),
+            weapons: loaded.weapons().clone(),
+            items: loaded.items().clone(),
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(parse_map(map), player_start, 297, rules).unwrap();
+        let discipline: DisciplineId = "core:furtivite".parse().unwrap();
+        let choices = ordered_choices
+            .iter()
+            .map(|id| format!("core:{id}").parse().unwrap())
+            .collect();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, choices)],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        game
+    }
+
+    fn game_with_core_drones(
+        map: &str,
+        player_start: GridPos,
+        ordered_choices: &[&str],
+    ) -> GameState {
+        let content_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
+        let loaded = ContentLoader::load(&[content_root], &Version::new(0, 1, 0))
+            .unwrap_or_else(|error| panic!("core content failed to load: {error}"));
+        let rules = GameRules {
+            damage: crate::combat::DamageRules::specialized(),
+            armor_rules: Some(crate::combat::ArmorRules::default()),
+            hit_rules: None,
+            physical_rules: Some(PhysicalRules::default()),
+            stability_rules: Some(StabilityRules::default()),
+            player_energy_capacity: 100,
+            player_starting_energy: 100,
+            player_system_resources: Some(super::super::SystemResourceRules {
+                bandwidth_capacity: 8,
+                ..super::super::SystemResourceRules::default()
+            }),
+            player_inventory_capacity: 20,
+            skills: loaded.skills().clone(),
+            statuses: loaded.statuses().clone(),
+            weapons: loaded.weapons().clone(),
+            items: loaded.items().clone(),
+            stealth_rules: Some(StealthRules::default()),
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(parse_map(map), player_start, 397, rules).unwrap();
+        let discipline: DisciplineId = "core:controle_drones".parse().unwrap();
+        let choices = ordered_choices
+            .iter()
+            .map(|id| format!("core:{id}").parse().unwrap())
+            .collect();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, choices)],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        game
+    }
+
+    fn game_with_core_engineering(
+        map: &str,
+        player_start: GridPos,
+        ordered_choices: &[&str],
+    ) -> GameState {
+        let content_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
+        let loaded = ContentLoader::load(&[content_root], &Version::new(0, 1, 0))
+            .unwrap_or_else(|error| panic!("core content failed to load: {error}"));
+        let weapon: WeaponId = "core:needle_launcher".parse().unwrap();
+        let slot: EquipmentSlotId = "core:test_engineering_slot".parse().unwrap();
+        let enabled_system_features = SystemFeatureSet::new(
+            [
+                "core:components",
+                "core:engineering",
+                "core:workshops",
+                "core:heat",
+                "core:sound",
+            ]
+            .into_iter()
+            .map(str::parse)
+            .collect::<Result<Vec<_>, crate::content::ContentIdError>>()
+            .unwrap(),
+        );
+        let rules = GameRules {
+            damage: crate::combat::DamageRules::specialized(),
+            armor_rules: Some(crate::combat::ArmorRules::default()),
+            hit_rules: None,
+            physical_rules: Some(PhysicalRules::default()),
+            stability_rules: Some(StabilityRules::default()),
+            player_energy_capacity: 200,
+            player_starting_energy: 200,
+            player_system_resources: Some(super::super::SystemResourceRules {
+                heat_alert_threshold: 100,
+                heat_critical_threshold: 140,
+                heat_dissipation_per_phase: 0,
+                ..super::super::SystemResourceRules::default()
+            }),
+            player_inventory_capacity: 30,
+            player_starting_items: Vec::new(),
+            player_weapon_slots: vec![slot],
+            player_starting_weapons: vec![weapon.clone()],
+            player_starting_equipment: vec![Some(weapon)],
+            enabled_system_features,
+            skills: loaded.skills().clone(),
+            statuses: loaded.statuses().clone(),
+            weapons: loaded.weapons().clone(),
+            items: loaded.items().clone(),
+            stealth_rules: Some(StealthRules::default()),
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(parse_map(map), player_start, 457, rules).unwrap();
+        let discipline: DisciplineId = "core:ingenierie".parse().unwrap();
+        let choices = ordered_choices
+            .iter()
+            .map(|id| format!("core:{id}").parse().unwrap())
+            .collect();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, choices)],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        game
+    }
+
+    fn game_with_core_intrusion(
+        map: &str,
+        player_start: GridPos,
+        ordered_choices: &[&str],
+    ) -> GameState {
+        let content_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
+        let loaded = ContentLoader::load(&[content_root], &Version::new(0, 1, 0))
+            .unwrap_or_else(|error| panic!("core content failed to load: {error}"));
+        let enabled_system_features = SystemFeatureSet::new(
+            ["core:intrusion", "core:active_security"]
+                .into_iter()
+                .map(str::parse)
+                .collect::<Result<Vec<_>, crate::content::ContentIdError>>()
+                .unwrap(),
+        );
+        let rules = GameRules {
+            stability_rules: Some(StabilityRules::default()),
+            player_energy_capacity: 200,
+            player_starting_energy: 200,
+            player_system_resources: Some(super::super::SystemResourceRules {
+                bandwidth_capacity: 8,
+                ..super::super::SystemResourceRules::default()
+            }),
+            enabled_system_features,
+            skills: loaded.skills().clone(),
+            statuses: loaded.statuses().clone(),
+            weapons: loaded.weapons().clone(),
+            items: loaded.items().clone(),
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(parse_map(map), player_start, 557, rules).unwrap();
+        set_intrusion_choices(&mut game, ordered_choices);
+        game
+    }
+
+    fn set_intrusion_choices(game: &mut GameState, ordered_choices: &[&str]) {
+        let discipline: DisciplineId = "core:intrusion".parse().unwrap();
+        let choices = ordered_choices
+            .iter()
+            .map(|id| format!("core:{id}").parse().unwrap())
+            .collect();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, choices)],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+    }
+
+    fn install_intrusion_panel(game: &mut GameState, panel: GridPos, door: GridPos) {
+        game.map
+            .set_terrain(door, Terrain::Door(DoorState::Locked))
+            .unwrap();
+        game.map
+            .set_terrain(
+                panel,
+                Terrain::ControlPanel {
+                    door,
+                    activated: false,
+                },
+            )
+            .unwrap();
+        game.refresh_player_visibility();
+    }
+
+    fn grant_intrusion_access(game: &mut GameState, position: GridPos) {
+        let rights = game
+            .digital_interface_profile(position)
+            .unwrap_or_else(|| panic!("missing digital interface at {position:?}"))
+            .rights;
+        let _ = game.intrusion.grant_session(
+            position,
+            AccessSession::new(rights, AccessOrigin::Authentic, u64::MAX, 0).unwrap(),
+        );
+    }
+
+    fn use_intrusion(
+        game: &mut GameState,
+        technique: &str,
+        directive: IntrusionDirective,
+    ) -> CommandOutcome {
+        game.process_player_command(GameCommand::UseIntrusionTechnique {
+            technique: format!("core:{technique}").parse().unwrap(),
+            directive,
+        })
+    }
+
+    fn game_with_core_electronic_warfare(
+        map: &str,
+        player_start: GridPos,
+        ordered_choices: &[&str],
+    ) -> GameState {
+        let content_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
+        let loaded = ContentLoader::load(&[content_root], &Version::new(0, 1, 0))
+            .unwrap_or_else(|error| panic!("core content failed to load: {error}"));
+        let enabled_system_features = SystemFeatureSet::new(
+            ["core:electronic_warfare", "core:hostile_programs"]
+                .into_iter()
+                .map(str::parse)
+                .collect::<Result<Vec<_>, crate::content::ContentIdError>>()
+                .unwrap(),
+        );
+        let starting_items = [super::super::StartingItemStack::new(
+            "core:saturation_beacon".parse().unwrap(),
+            4,
+        )];
+        let rules = GameRules {
+            damage: crate::combat::DamageRules::specialized(),
+            stability_rules: Some(StabilityRules::default()),
+            player_energy_capacity: 500,
+            player_starting_energy: 500,
+            player_system_resources: Some(super::super::SystemResourceRules {
+                bandwidth_capacity: 8,
+                heat_alert_threshold: 500,
+                heat_critical_threshold: 600,
+                heat_dissipation_per_phase: 0,
+                ..super::super::SystemResourceRules::default()
+            }),
+            player_inventory_capacity: 20,
+            player_starting_items: starting_items.to_vec(),
+            enabled_system_features,
+            skills: loaded.skills().clone(),
+            statuses: loaded.statuses().clone(),
+            weapons: loaded.weapons().clone(),
+            items: loaded.items().clone(),
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(parse_map(map), player_start, 557, rules).unwrap();
+        let discipline: DisciplineId = "core:guerre_electronique".parse().unwrap();
+        let choices = ordered_choices
+            .iter()
+            .map(|id| format!("core:{id}").parse().unwrap())
+            .collect();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, choices)],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        game
+    }
+
+    fn spawn_electronic_test_actor(game: &mut GameState, position: GridPos) -> EntityId {
+        let profile = ElectronicSystemProfile::new(0, 80, 100, 5, 40).unwrap();
+        game.spawn_actor(
+            Actor::new(position, 100)
+                .unwrap()
+                .with_evasion_disabled()
+                .with_electronic_system(profile),
+        )
+        .unwrap()
+    }
+
+    fn use_electronic_warfare(
+        game: &mut GameState,
+        technique: &str,
+        directive: ElectronicDirective,
+    ) -> CommandOutcome {
+        game.process_player_command(GameCommand::UseElectronicWarfareTechnique {
+            technique: format!("core:{technique}").parse().unwrap(),
+            directive,
+        })
+    }
+
+    fn spawn_engineering_test_drone(game: &mut GameState, position: GridPos) -> EntityId {
+        let drive = BodyComponentProfile::new(
+            "core:test_drive".parse().unwrap(),
+            "component.test_drive.name".to_owned(),
+            20,
+            5,
+            ComponentFailureEffect::DisableMovement,
+        )
+        .unwrap();
+        let sensor = BodyComponentProfile::new(
+            "core:test_sensor".parse().unwrap(),
+            "component.test_sensor.name".to_owned(),
+            16,
+            3,
+            ComponentFailureEffect::ReducePerception(4),
+        )
+        .unwrap();
+        let profile = DroneProfile::new(
+            "core:test_engineering_drone".parse().unwrap(),
+            6,
+            50,
+            40,
+            2,
+            3,
+            6,
+            1,
+            1,
+            crate::drone::DroneCapabilities::default(),
+        )
+        .unwrap();
+        let actor = Actor::new(position, 20)
+            .unwrap()
+            .with_body_components([drive, sensor]);
+        let entity = game.spawn_player_drone(actor, profile, 30, 30).unwrap();
+        game.actors
+            .get_mut(entity)
+            .and_then(Actor::drone_mut)
+            .expect("test drone was registered")
+            .replace_order(DroneOrder::Hold);
+        entity
+    }
+
+    fn use_engineering(
+        game: &mut GameState,
+        technique: &str,
+        directive: EngineeringDirective,
+    ) -> CommandOutcome {
+        game.process_player_command(GameCommand::UseEngineeringTechnique {
+            technique: format!("core:{technique}").parse().unwrap(),
+            directive,
+        })
+    }
+
+    fn inventory_instance(game: &GameState, item: &str) -> ItemInstanceId {
+        game.player_inventory()
+            .iter()
+            .find(|entry| entry.item().as_str() == item)
+            .map(|entry| entry.instance())
+            .unwrap_or_else(|| panic!("missing inventory item {item}"))
+    }
+
+    fn spawn_test_player_drone(game: &mut GameState, position: GridPos) -> EntityId {
+        let profile = DroneProfile::new(
+            "core:test_utility_drone".parse().unwrap(),
+            6,
+            50,
+            40,
+            2,
+            3,
+            6,
+            1,
+            1,
+            crate::drone::DroneCapabilities {
+                manipulator_capacity_grams: Some(8_000),
+                decoy_intensity: Some(30),
+                can_interpose: true,
+                autonomous_scout_range: 6,
+            },
+        )
+        .unwrap();
+        let actor = Actor::new(position, 20)
+            .unwrap()
+            .with_attack(AttackProfile::new(
+                6,
+                DistanceMetric::Chebyshev,
+                true,
+                DamageType::Electrical,
+                5,
+                0,
+            ));
+        let entity = game.spawn_player_drone(actor, profile, 30, 30).unwrap();
+        // Order-specific tests install their own doctrine and must not inherit
+        // the normal player's baseline escort behavior.
+        game.actors
+            .get_mut(entity)
+            .and_then(Actor::drone_mut)
+            .expect("test drone was registered")
+            .replace_order(DroneOrder::Hold);
+        entity
+    }
+
+    fn use_drone_technique(
+        game: &mut GameState,
+        technique: &str,
+        directive: DroneDirective,
+    ) -> CommandOutcome {
+        game.process_player_command(GameCommand::UseDroneTechnique {
+            technique: format!("core:{technique}").parse().unwrap(),
+            directive,
+        })
+    }
+
+    fn use_technique_at(game: &mut GameState, technique: &str, target: GridPos) -> CommandOutcome {
+        game.process_player_command(GameCommand::UseTechniqueAt {
+            technique: format!("core:{technique}").parse().unwrap(),
+            target,
+            weapon_slot: 0,
+        })
+    }
+
+    fn inventory_quantity(game: &GameState, item: &str) -> u16 {
+        let item: ItemId = item.parse().unwrap();
+        game.player_inventory()
+            .iter()
+            .filter(|entry| entry.item() == &item)
+            .map(|entry| entry.quantity())
+            .fold(0, u16::saturating_add)
+    }
+
+    fn inert_destructible(position: GridPos, integrity: u16) -> Actor {
+        Actor::new(position, integrity)
+            .unwrap()
+            .with_destruction_effect(crate::effects::DestructionEffect::new(RadialDamageEffect {
+                maximum_cost: 0,
+                neighbor_mode: crate::world::NeighborMode::CardinalAndDiagonal,
+                propagation_policy: crate::world::TerrainPropagationPolicy::blocked_by_walls(1),
+                damage: DamagePacket::new(1, DamageType::Kinetic, 0),
+                falloff: crate::effects::DamageFalloff::None,
+            }))
+    }
+
+    fn deploy_test_remote(
+        game: &mut GameState,
+        position: GridPos,
+        maximum_link_range: u16,
+    ) -> ExplosiveDeviceId {
+        game.explosive_devices
+            .deploy(
+                "core:configurable_charge".parse().unwrap(),
+                None,
+                position,
+                Direction::East,
+                ExplosiveActivation::Remote { maximum_link_range },
+                true,
+                vec![ScheduledExplosivePayload::new(
+                    0,
+                    crate::explosive::ExplosivePayload::new(
+                        crate::explosive::ExplosiveFootprint::Radial(RadialDamageEffect {
+                            maximum_cost: 1,
+                            neighbor_mode: crate::world::NeighborMode::CardinalAndDiagonal,
+                            propagation_policy:
+                                crate::world::TerrainPropagationPolicy::blocked_by_walls(1),
+                            damage: DamagePacket::new(1, DamageType::Explosive, 0),
+                            falloff: crate::effects::DamageFalloff::None,
+                        }),
+                    ),
+                )],
+            )
+            .unwrap()
+    }
+
+    fn game_with_learned_riposte() -> (GameState, TechniqueId, TechniqueId) {
+        let (mut rules, discipline, parry) = parry_rules();
+        let riposte: TechniqueId = "core:test_riposte".parse().unwrap();
+        rules.skill_progression = SkillProgressionRules::new(vec![1, 1]).unwrap();
+        rules
+            .skills
+            .register_technique(
+                TechniqueDefinition::new(
+                    riposte.clone(),
+                    discipline.clone(),
+                    "technique.test_riposte.name".to_owned(),
+                    "technique.test_riposte.description".to_owned(),
+                    2,
+                    TechniqueKind::Improvement,
+                    Some(parry.clone()),
+                    [],
+                )
+                .unwrap()
+                .with_improvement(TechniqueImprovement::MeleeCounterattack)
+                .unwrap(),
+            )
+            .unwrap();
+        let mut game = GameState::new_with_rules(
+            parse_map("######\n#....#\n######"),
+            GridPos::new(1, 1),
+            5,
+            rules,
+        )
+        .unwrap();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, vec![parry.clone(), riposte.clone()])],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        (game, parry, riposte)
+    }
+
+    fn game_with_learned_interception() -> (GameState, TechniqueId) {
+        let (mut rules, discipline, _) = parry_rules();
+        let technique: TechniqueId = "core:test_interception".parse().unwrap();
+        let discipline_definition = rules.skills.discipline(&discipline).unwrap().clone();
+        let mut skills = SkillCatalog::default();
+        skills.register_discipline(discipline_definition).unwrap();
+        skills
+            .register_technique(
+                TechniqueDefinition::new(
+                    technique.clone(),
+                    discipline.clone(),
+                    "technique.test_interception.name".to_owned(),
+                    "technique.test_interception.description".to_owned(),
+                    1,
+                    TechniqueKind::Action,
+                    None,
+                    [],
+                )
+                .unwrap()
+                .with_action(TechniqueAction::PrepareMeleeInterception)
+                .unwrap(),
+            )
+            .unwrap();
+        rules.skills = skills;
+        let mut game = GameState::new_with_rules(
+            parse_map("######\n#....#\n######"),
+            GridPos::new(1, 1),
+            5,
+            rules,
+        )
+        .unwrap();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, vec![technique.clone()])],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        (game, technique)
+    }
+
+    fn game_with_learned_weapon_technique(
+        attack: AttackProfile,
+        hit_rules: Option<HitRules>,
+        technique: TechniqueId,
+        action: TechniqueAction,
+        preparation_steps: Option<u16>,
+        on_hit_status: Option<StatusDefinition>,
+    ) -> (GameState, TechniqueId) {
+        let discipline: DisciplineId = "core:test_melee".parse().unwrap();
+        let skill_progression = SkillProgressionRules::new(vec![1]).unwrap();
+        let mut skills = SkillCatalog::default();
+        skills
+            .register_discipline(
+                DisciplineDefinition::new(
+                    discipline.clone(),
+                    "discipline.test_melee.name".to_owned(),
+                    "discipline.test_melee.description".to_owned(),
+                )
+                .unwrap(),
+            )
+            .unwrap();
+        let mut definition = TechniqueDefinition::new(
+            technique.clone(),
+            discipline.clone(),
+            "technique.test_weapon_attack.name".to_owned(),
+            "technique.test_weapon_attack.description".to_owned(),
+            1,
+            TechniqueKind::Action,
+            None,
+            [],
+        )
+        .unwrap()
+        .with_action(action)
+        .unwrap()
+        .with_action_kind(ActionKind::Offensive)
+        .unwrap();
+        if let Some(preparation_steps) = preparation_steps {
+            definition = definition
+                .with_preparation_steps(preparation_steps)
+                .unwrap();
+        }
+        if let Some(status) = &on_hit_status {
+            definition = definition
+                .with_on_hit_effect(TechniqueOnHitEffect::new(
+                    ApplyStatusEffect::new(status.id().clone(), 1).unwrap(),
+                    TechniqueTargetRequirement::HasArmor,
+                ))
+                .unwrap();
+        }
+        skills.register_technique(definition).unwrap();
+
+        let slot: EquipmentSlotId = "core:test_hand".parse().unwrap();
+        let blade: WeaponId = "core:test_power_blade".parse().unwrap();
+        let mut weapons = WeaponCatalog::default();
+        weapons
+            .register(
+                WeaponDefinition::new(
+                    blade.clone(),
+                    "weapon.test_power_blade.name".to_owned(),
+                    "weapon.test_power_blade.description".to_owned(),
+                    attack,
+                )
+                .unwrap(),
+            )
+            .unwrap();
+        let mut statuses = StatusCatalog::default();
+        if let Some(status) = on_hit_status {
+            statuses.register(status).unwrap();
+        }
+        let rules = GameRules {
+            damage: crate::combat::DamageRules::specialized(),
+            armor_rules: Some(crate::combat::ArmorRules::default()),
+            physical_rules: Some(PhysicalRules::default()),
+            hit_rules,
+            player_starting_attributes: PrimaryAttributes::new(8, 5, 5, 5, 5),
+            player_weapon_slots: vec![slot],
+            player_starting_weapons: vec![blade.clone()],
+            player_starting_equipment: vec![Some(blade)],
+            skill_progression,
+            skills,
+            statuses,
+            weapons,
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("######\n#....#\n#....#\n#....#\n######"),
+            GridPos::new(1, 1),
+            5,
+            rules,
+        )
+        .unwrap();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, vec![technique.clone()])],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        (game, technique)
+    }
+
+    fn game_with_learned_power_strike(
+        attack: AttackProfile,
+        hit_rules: Option<HitRules>,
+    ) -> (GameState, TechniqueId) {
+        game_with_learned_weapon_technique(
+            attack,
+            hit_rules,
+            "core:test_power_strike".parse().unwrap(),
+            TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: Some(150),
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 0,
+                energy_cost: 0,
+                recovery_time_units: Some(1),
+                forced_movement: None,
+                melee_arc: None,
+            },
+            None,
+            None,
+        )
+    }
+
+    fn game_with_learned_precise_strike(
+        attack: AttackProfile,
+        hit_rules: Option<HitRules>,
+    ) -> (GameState, TechniqueId) {
+        game_with_learned_weapon_technique(
+            attack,
+            hit_rules,
+            "core:test_precise_strike".parse().unwrap(),
+            TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: None,
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 20,
+                energy_cost: 0,
+                recovery_time_units: None,
+                forced_movement: None,
+                melee_arc: None,
+            },
+            Some(1),
+            None,
+        )
+    }
+
+    fn game_with_learned_push(
+        attack: AttackProfile,
+        hit_rules: Option<HitRules>,
+    ) -> (GameState, TechniqueId) {
+        game_with_learned_weapon_technique(
+            attack,
+            hit_rules,
+            "core:test_push".parse().unwrap(),
+            TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: Some(50),
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 0,
+                energy_cost: 0,
+                recovery_time_units: None,
+                forced_movement: Some(ForcedMovement::new(1, 0)),
+                melee_arc: None,
+            },
+            None,
+            None,
+        )
+    }
+
+    fn game_with_learned_sweep(attack: AttackProfile) -> (GameState, TechniqueId) {
+        game_with_learned_weapon_technique(
+            attack,
+            None,
+            "core:test_sweep".parse().unwrap(),
+            TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: Some(70),
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 0,
+                energy_cost: 4,
+                recovery_time_units: Some(1),
+                forced_movement: None,
+                melee_arc: Some(MeleeArc::new(3).unwrap()),
+            },
+            None,
+            None,
+        )
+    }
+
+    fn game_with_learned_armor_break(
+        hit_rules: Option<HitRules>,
+    ) -> (GameState, TechniqueId, StatusId) {
+        let status: StatusId = "core:test_armor_fracture".parse().unwrap();
+        let definition = StatusDefinition::new(
+            status.clone(),
+            Some(3),
+            crate::status::StatusStacking::KeepExisting,
+            Vec::new(),
+        )
+        .unwrap()
+        .with_modifiers([StatusModifier::ArmorFragilization { amount: 4 }])
+        .unwrap();
+        let (game, technique) = game_with_learned_weapon_technique(
+            AttackProfile::melee(DamageType::Kinetic, 10),
+            hit_rules,
+            "core:test_armor_break".parse().unwrap(),
+            TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: Some(60),
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 0,
+                energy_cost: 3,
+                recovery_time_units: None,
+                forced_movement: None,
+                melee_arc: None,
+            },
+            None,
+            Some(definition),
+        );
+        (game, technique, status)
+    }
+
+    fn game_with_learned_hindrance(seed: u64) -> (GameState, TechniqueId, StatusId, StatusId) {
+        let technique: TechniqueId = "core:test_hindrance".parse().unwrap();
+        let hindrance: StatusId = "core:test_locomotion_hindrance".parse().unwrap();
+        let protection: StatusId = "core:test_hindrance_protection".parse().unwrap();
+        let family: StatusFamilyId = "core:test_locomotion_hindrance_family".parse().unwrap();
+        let hindrance_definition = StatusDefinition::new(
+            hindrance.clone(),
+            Some(2),
+            StatusStacking::KeepExisting,
+            Vec::new(),
+        )
+        .unwrap()
+        .with_family(family.clone())
+        .with_expiration_transition(StatusTransition::new(protection.clone(), 1).unwrap())
+        .with_modifiers([StatusModifier::MovementTimeMinimum { time_units: 2 }])
+        .unwrap();
+        let protection_definition = StatusDefinition::new(
+            protection.clone(),
+            Some(1),
+            StatusStacking::KeepExisting,
+            Vec::new(),
+        )
+        .unwrap()
+        .with_blocked_families([family]);
+        let (mut game, _) = game_with_learned_weapon_technique(
+            AttackProfile::melee(DamageType::Kinetic, 10),
+            None,
+            technique.clone(),
+            TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: Some(50),
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 0,
+                energy_cost: 3,
+                recovery_time_units: None,
+                forced_movement: None,
+                melee_arc: None,
+            },
+            None,
+            None,
+        );
+        let on_hit = TechniqueOnHitEffect::new(
+            ApplyStatusEffect::new(hindrance.clone(), 1).unwrap(),
+            TechniqueTargetRequirement::HasCompatibleLocomotion,
+        )
+        .with_stability_resistance(60)
+        .unwrap();
+        let definition = game
+            .rules
+            .skills
+            .technique(&technique)
+            .unwrap()
+            .clone()
+            .with_on_hit_effect(on_hit)
+            .unwrap()
+            .with_cooldown(2)
+            .unwrap();
+        let mut skills = SkillCatalog::default();
+        for (_, discipline) in game.rules.skills.disciplines() {
+            skills.register_discipline(discipline.clone()).unwrap();
+        }
+        skills.register_technique(definition).unwrap();
+        game.rules.skills = skills;
+        game.rules.stability_rules = Some(StabilityRules::default());
+        game.rules.statuses.register(hindrance_definition).unwrap();
+        game.rules.statuses.register(protection_definition).unwrap();
+        game.rules.statuses.validate_references().unwrap();
+        game.rules
+            .skills
+            .validate_status_references(&game.rules.statuses)
+            .unwrap();
+        game.rng = GameRng::from_seed(seed);
+        (game, technique, hindrance, protection)
+    }
+
+    fn game_with_learned_crushing_strike() -> (GameState, TechniqueId, StatusId, StatusId) {
+        let technique: TechniqueId = "core:test_crushing_strike".parse().unwrap();
+        let (mut game, _) = game_with_learned_weapon_technique(
+            AttackProfile::melee(DamageType::Kinetic, 10),
+            None,
+            technique.clone(),
+            TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: Some(180),
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 0,
+                energy_cost: 5,
+                recovery_time_units: Some(1),
+                forced_movement: None,
+                melee_arc: None,
+            },
+            None,
+            None,
+        );
+        let hindrance: StatusId = "core:test_hindered".parse().unwrap();
+        let immobilized: StatusId = "core:test_immobilized".parse().unwrap();
+        let hindrance_family: StatusFamilyId = "core:locomotion_hindrance".parse().unwrap();
+        let immobilization_family: StatusFamilyId = "core:immobilization".parse().unwrap();
+        for definition in [
+            StatusDefinition::new(
+                hindrance.clone(),
+                Some(2),
+                StatusStacking::KeepExisting,
+                Vec::new(),
+            )
+            .unwrap()
+            .with_family(hindrance_family.clone()),
+            StatusDefinition::new(
+                immobilized.clone(),
+                Some(2),
+                StatusStacking::KeepExisting,
+                Vec::new(),
+            )
+            .unwrap()
+            .with_family(immobilization_family.clone()),
+        ] {
+            game.rules.statuses.register(definition).unwrap();
+        }
+        let requirement = TechniqueEngagementRequirement::target_has_any_status_family([
+            hindrance_family,
+            immobilization_family,
+        ])
+        .unwrap();
+        let definition = game
+            .rules
+            .skills
+            .technique(&technique)
+            .unwrap()
+            .clone()
+            .with_engagement_requirement(requirement)
+            .unwrap();
+        let discipline = definition.discipline().clone();
+        let discipline_definition = game.rules.skills.discipline(&discipline).unwrap().clone();
+        let mut skills = SkillCatalog::default();
+        skills.register_discipline(discipline_definition).unwrap();
+        skills.register_technique(definition).unwrap();
+        skills
+            .validate_status_references(&game.rules.statuses)
+            .unwrap();
+        game.rules.skills = skills;
+        (game, technique, hindrance, immobilized)
+    }
+
     fn flamethrower_rules() -> (GameRules, WeaponId) {
         let content_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
         let loaded = ContentLoader::load(&[content_root], &Version::new(0, 1, 0))
@@ -2642,6 +17039,7 @@ mod tests {
         let weapon: WeaponId = "core:flamethrower".parse().unwrap();
         let slot: EquipmentSlotId = "core:flame_channel".parse().unwrap();
         let rules = GameRules {
+            hit_rules: Some(HitRules::default()),
             player_base_attacks: vec![loaded.weapons().get(&weapon).unwrap().attack()],
             player_weapon_slots: vec![slot],
             player_starting_weapons: vec![weapon.clone()],
@@ -2651,6 +17049,82 @@ mod tests {
             ..GameRules::default()
         };
         (rules, weapon)
+    }
+
+    fn status_trigger_rules(trigger: WeaponEffectTrigger) -> GameRules {
+        let content_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
+        let loaded = ContentLoader::load(&[content_root], &Version::new(0, 1, 0))
+            .unwrap_or_else(|error| panic!("core content failed to load: {error}"));
+        let status: StatusId = "core:burning".parse().unwrap();
+        let weapon: WeaponId = format!("core:trigger_{trigger:?}")
+            .to_ascii_lowercase()
+            .parse()
+            .unwrap();
+        let slot: EquipmentSlotId = "core:test_weapon".parse().unwrap();
+        let attack = AttackProfile::melee(DamageType::Kinetic, 3);
+        let effect =
+            WeaponEffect::apply_status(ApplyStatusEffect::new(status, 1).unwrap(), trigger)
+                .unwrap();
+        let mut weapons = WeaponCatalog::default();
+        weapons
+            .register(
+                WeaponDefinition::new(
+                    weapon.clone(),
+                    "weapon.trigger.name".to_owned(),
+                    "weapon.trigger.description".to_owned(),
+                    attack,
+                )
+                .unwrap()
+                .with_effects([effect]),
+            )
+            .unwrap();
+        GameRules {
+            armor_rules: Some(crate::combat::ArmorRules::default()),
+            physical_rules: Some(PhysicalRules::default()),
+            player_base_attacks: vec![attack],
+            player_weapon_slots: vec![slot],
+            player_starting_weapons: vec![weapon.clone()],
+            player_starting_equipment: vec![Some(weapon)],
+            statuses: loaded.statuses().clone(),
+            weapons,
+            ..GameRules::default()
+        }
+    }
+
+    fn destruction_trigger_rules() -> GameRules {
+        let weapon: WeaponId = "core:destruction_trigger".parse().unwrap();
+        let slot: EquipmentSlotId = "core:test_weapon".parse().unwrap();
+        let attack = AttackProfile::melee(DamageType::Kinetic, 5);
+        let ground = GroundEffectSpec::new(
+            "core:test_ground".parse().unwrap(),
+            3,
+            DamagePacket::new(1, DamageType::Thermal, 0),
+        )
+        .unwrap();
+        let mut weapons = WeaponCatalog::default();
+        weapons
+            .register(
+                WeaponDefinition::new(
+                    weapon.clone(),
+                    "weapon.trigger.name".to_owned(),
+                    "weapon.trigger.description".to_owned(),
+                    attack,
+                )
+                .unwrap()
+                .with_effects([WeaponEffect::create_ground_effect(
+                    ground,
+                    WeaponEffectTrigger::OnTargetDestroyed,
+                )]),
+            )
+            .unwrap();
+        GameRules {
+            player_base_attacks: vec![attack],
+            player_weapon_slots: vec![slot],
+            player_starting_weapons: vec![weapon.clone()],
+            player_starting_equipment: vec![Some(weapon)],
+            weapons,
+            ..GameRules::default()
+        }
     }
 
     fn consumable_rules() -> (GameRules, ItemId) {
@@ -2666,6 +17140,7 @@ mod tests {
                     "item.repair_patch.description".to_owned(),
                     3,
                     ItemKind::Consumable,
+                    None,
                     vec![ItemEffect::RestoreIntegrity { amount: 6 }],
                 )
                 .unwrap_or_else(|error| panic!("valid item rejected: {error}")),
@@ -2695,6 +17170,7 @@ mod tests {
                     "item.test_component.description".to_owned(),
                     4,
                     ItemKind::Material,
+                    None,
                     vec![],
                 )
                 .unwrap(),
@@ -2707,6 +17183,41 @@ mod tests {
                 ..GameRules::default()
             },
             material,
+        )
+    }
+
+    fn armor_equipment_rules() -> (GameRules, ItemId, EquipmentSlotId) {
+        let armor: ItemId = "core:test_armor".parse().unwrap();
+        let slot: EquipmentSlotId = "core:body_armor".parse().unwrap();
+        let mut items = ItemCatalog::default();
+        items
+            .register(
+                ItemDefinition::new(
+                    armor.clone(),
+                    "item.test_armor.name".to_owned(),
+                    "item.test_armor.description".to_owned(),
+                    1,
+                    ItemKind::Armor,
+                    Some(EquipmentProfile::new(slot.clone(), 2).unwrap()),
+                    Vec::new(),
+                )
+                .unwrap(),
+            )
+            .unwrap();
+        (
+            GameRules {
+                damage: crate::combat::DamageRules::specialized(),
+                armor_rules: Some(crate::combat::ArmorRules::default()),
+                physical_rules: Some(PhysicalRules::default()),
+                player_body_profile: Some(BodyProfile::new(20, 0).unwrap().with_base_armor(1)),
+                player_inventory_capacity: 2,
+                player_armor_slots: vec![slot.clone()],
+                player_starting_items: vec![super::super::StartingItemStack::new(armor.clone(), 1)],
+                items,
+                ..GameRules::default()
+            },
+            armor,
+            slot,
         )
     }
 
@@ -2763,6 +17274,944 @@ mod tests {
         assert_eq!(game.turn(), 1);
         assert_eq!(game.drain_events().len(), 2);
         assert!(game.events().is_empty());
+    }
+
+    #[test]
+    fn only_successful_normal_actions_refresh_reaction_availability() {
+        let mut game = small_game();
+        assert!(
+            game.actors
+                .get_mut(game.player)
+                .unwrap()
+                .try_consume_reaction(ActionOrigin::Normal)
+        );
+        assert!(!game.actors.get(game.player).unwrap().reaction_available());
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::North)),
+            CommandOutcome::Rejected(CommandRejection::BlockedByTerrain(GridPos::new(2, 0)))
+        );
+        assert!(!game.actors.get(game.player).unwrap().reaction_available());
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert!(game.actors.get(game.player).unwrap().reaction_available());
+    }
+
+    #[test]
+    fn each_ai_normal_opportunity_refreshes_its_own_reaction_availability() {
+        let mut game = small_game();
+        let actor = game
+            .spawn_actor(build_actor(GridPos::new(1, 1), 4).with_ai(AiProfile::idle()))
+            .unwrap();
+        assert!(
+            game.actors
+                .get_mut(actor)
+                .unwrap()
+                .try_consume_reaction(ActionOrigin::Normal)
+        );
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert!(game.actors.get(actor).unwrap().reaction_available());
+    }
+
+    #[test]
+    fn parry_technique_requires_an_explicitly_compatible_equipped_weapon() {
+        let (mut rules, discipline, technique) = parry_rules();
+        rules.weapons = rules.weapons.without_reaction_metadata();
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            5,
+            rules,
+        )
+        .unwrap();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, vec![technique.clone()])],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Rejected(CommandRejection::TechniqueRequiresParryWeapon)
+        );
+        assert_eq!(game.turn(), 0);
+        assert!(game.events().is_empty());
+        assert!(
+            game.actors
+                .get(game.player)
+                .unwrap()
+                .prepared_reaction()
+                .is_none()
+        );
+    }
+
+    #[test]
+    fn prepared_parry_reduces_only_physical_damage_before_armor_and_is_spent_once() {
+        let (mut game, technique) = game_with_learned_parry();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors
+                .get(game.player)
+                .and_then(Actor::prepared_reaction)
+                .map(PreparedReaction::kind),
+            Some(ReactionKind::MeleeParry)
+        );
+
+        let damage = DamageImpact::mixed(
+            [
+                DamageComponent::new(5, DamageType::Kinetic),
+                DamageComponent::new(4, DamageType::Electrical),
+            ],
+            0,
+            [],
+        )
+        .unwrap();
+        let enemy = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 20)
+                    .with_attack(AttackProfile::melee(DamageType::Kinetic, 1).with_damage(damage)),
+            )
+            .unwrap();
+        game.drain_events();
+
+        game.perform_attack(enemy, 0, game.player).unwrap();
+
+        assert_eq!(game.actors.get(game.player).map(Actor::integrity), Some(16));
+        assert_eq!(game.player_energy().available(), 98);
+        assert_eq!(game.actors.get(enemy).map(Actor::integrity), Some(20));
+        assert!(game.events().contains(&GameEvent::EnergySpent {
+            entity: game.player,
+            amount: 2,
+            remaining: 98,
+        }));
+        assert!(game.events().contains(&GameEvent::ReactionTriggered {
+            reactor: game.player,
+            source: enemy,
+            technique,
+            reaction: ReactionKind::MeleeParry,
+        }));
+        assert!(game.events().contains(&GameEvent::PhysicalDamageParried {
+            reactor: game.player,
+            source: enemy,
+            before: 5,
+            after: 2,
+        }));
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DamageImpactApplied {
+                target,
+                amount: 4,
+                effective_armor: 2,
+                absorbed_by_armor: 2,
+                components,
+                ..
+            } if *target == game.player
+                && components.iter().any(|component| component.damage_type == DamageType::Electrical
+                    && component.raw_amount == 4
+                    && component.amount == 4)
+        )));
+        assert!(!game.actors.get(game.player).unwrap().reaction_available());
+        assert!(
+            game.actors
+                .get(game.player)
+                .unwrap()
+                .prepared_reaction()
+                .is_none()
+        );
+        assert!(
+            !game
+                .events()
+                .iter()
+                .any(|event| matches!(event, GameEvent::CounterattackResolved { .. }))
+        );
+
+        game.drain_events();
+        game.perform_attack(enemy, 0, game.player).unwrap();
+        assert_eq!(game.actors.get(game.player).map(Actor::integrity), Some(9));
+        assert!(
+            !game
+                .events()
+                .iter()
+                .any(|event| matches!(event, GameEvent::ReactionTriggered { .. }))
+        );
+    }
+
+    #[test]
+    fn parry_waits_for_its_trigger_cost_and_is_preserved_when_energy_is_insufficient() {
+        let (mut game, technique) = game_with_learned_parry();
+        game.player_energy = EnergyReserve::new(100, 1).unwrap();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_energy().available(), 1);
+        let enemy = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 20)
+                    .with_attack(AttackProfile::melee(DamageType::Kinetic, 6)),
+            )
+            .unwrap();
+        game.drain_events();
+
+        game.perform_attack(enemy, 0, game.player).unwrap();
+
+        assert_eq!(game.actors.get(game.player).map(Actor::integrity), Some(16));
+        assert_eq!(game.player_energy().available(), 1);
+        assert!(
+            game.actors
+                .get(game.player)
+                .unwrap()
+                .prepared_reaction()
+                .is_some()
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ReactionTriggered { .. } | GameEvent::EnergySpent { .. }
+        )));
+    }
+
+    #[test]
+    fn learned_riposte_uses_one_reaction_then_makes_an_ordinary_melee_attack() {
+        let (mut game, parry, riposte) = game_with_learned_riposte();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: parry,
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        let enemy = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 20)
+                    .with_attack(AttackProfile::melee(DamageType::Kinetic, 6)),
+            )
+            .unwrap();
+        let enemy_guard: TechniqueId = "core:enemy_parry".parse().unwrap();
+        game.actors
+            .get_mut(enemy)
+            .unwrap()
+            .prepare_reaction(PreparedReaction::melee_parry(enemy_guard, 50, 0).unwrap());
+        game.drain_events();
+
+        game.perform_attack(enemy, 0, game.player).unwrap();
+
+        assert_eq!(game.actors.get(game.player).map(Actor::integrity), Some(19));
+        assert_eq!(game.actors.get(enemy).map(Actor::integrity), Some(17));
+        assert!(!game.actors.get(game.player).unwrap().reaction_available());
+        assert_eq!(
+            game.actors.get(game.player).unwrap().recovery_remaining(),
+            Some(TimeUnits::ONE)
+        );
+        assert!(game.actors.get(enemy).unwrap().reaction_available());
+        assert!(
+            game.actors
+                .get(enemy)
+                .unwrap()
+                .prepared_reaction()
+                .is_some()
+        );
+        assert!(game.events().contains(&GameEvent::CounterattackResolved {
+            reactor: game.player,
+            source: enemy,
+            technique: riposte,
+            outcome: CounterattackOutcome::Performed,
+        }));
+        assert_eq!(
+            game.events()
+                .iter()
+                .filter(|event| matches!(event, GameEvent::ReactionTriggered { .. }))
+                .count(),
+            1
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed { attacker, target: Some(target), .. }
+                if *attacker == game.player && *target == enemy
+        )));
+    }
+
+    #[test]
+    fn unavailable_riposte_never_cancels_the_successful_parry() {
+        let (mut game, parry, riposte) = game_with_learned_riposte();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: parry,
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        let equipment_slot = game.rules.player_weapon_slots[0].clone();
+        game.player_equipment.unequip(&equipment_slot);
+        let enemy = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 20)
+                    .with_attack(AttackProfile::melee(DamageType::Kinetic, 6)),
+            )
+            .unwrap();
+        game.drain_events();
+
+        game.perform_attack(enemy, 0, game.player).unwrap();
+
+        assert_eq!(game.actors.get(game.player).map(Actor::integrity), Some(19));
+        assert_eq!(game.actors.get(enemy).map(Actor::integrity), Some(20));
+        assert!(game.events().contains(&GameEvent::CounterattackResolved {
+            reactor: game.player,
+            source: enemy,
+            technique: riposte,
+            outcome: CounterattackOutcome::NoMeleeWeapon,
+        }));
+        assert!(!game.actors.get(game.player).unwrap().reaction_available());
+        assert_eq!(
+            game.actors.get(game.player).unwrap().recovery_remaining(),
+            None
+        );
+    }
+
+    #[test]
+    fn riposte_requires_contact_at_its_own_resolution_time() {
+        let (mut game, parry, riposte) = game_with_learned_riposte();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: parry,
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        let extended_melee = AttackProfile::new(
+            2,
+            DistanceMetric::Chebyshev,
+            false,
+            DamageType::Kinetic,
+            6,
+            0,
+        )
+        .with_delivery(AttackDelivery::Melee);
+        let enemy = game
+            .spawn_actor(build_actor(GridPos::new(3, 1), 20).with_attack(extended_melee))
+            .unwrap();
+        game.drain_events();
+
+        game.perform_attack(enemy, 0, game.player).unwrap();
+
+        assert_eq!(game.actors.get(game.player).map(Actor::integrity), Some(19));
+        assert_eq!(game.actors.get(enemy).map(Actor::integrity), Some(20));
+        assert!(game.events().contains(&GameEvent::CounterattackResolved {
+            reactor: game.player,
+            source: enemy,
+            technique: riposte,
+            outcome: CounterattackOutcome::OutOfReach,
+        }));
+        assert_eq!(
+            game.actors.get(game.player).unwrap().recovery_remaining(),
+            None
+        );
+    }
+
+    #[test]
+    fn interception_strikes_before_a_voluntary_withdrawal_without_chaining_reactions() {
+        let (mut game, technique) = game_with_learned_interception();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        let mover = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 20).with_evasion_disabled())
+            .unwrap();
+        let mover_guard: TechniqueId = "core:test_mover_parry".parse().unwrap();
+        game.actors
+            .get_mut(mover)
+            .unwrap()
+            .prepare_reaction(PreparedReaction::melee_parry(mover_guard, 50, 0).unwrap());
+        game.drain_events();
+
+        assert_eq!(
+            game.move_entity(mover, Direction::East),
+            Ok(GridPos::new(3, 1))
+        );
+
+        assert_eq!(game.actors.get(mover).map(Actor::integrity), Some(17));
+        assert_eq!(
+            game.actors.get(mover).map(Actor::position),
+            Some(GridPos::new(3, 1))
+        );
+        assert!(
+            game.actors
+                .get(mover)
+                .unwrap()
+                .prepared_reaction()
+                .is_some()
+        );
+        assert!(
+            game.actors
+                .get(game.player)
+                .unwrap()
+                .prepared_reaction()
+                .is_none()
+        );
+        assert!(game.events().contains(&GameEvent::InterceptionResolved {
+            reactor: game.player,
+            mover,
+            technique,
+            from: GridPos::new(2, 1),
+            to: GridPos::new(3, 1),
+            outcome: InterceptionOutcome::Performed,
+        }));
+        let interception = game
+            .events()
+            .iter()
+            .position(|event| matches!(event, GameEvent::InterceptionResolved { .. }))
+            .unwrap();
+        let movement = game
+            .events()
+            .iter()
+            .position(
+                |event| matches!(event, GameEvent::EntityMoved { entity, .. } if *entity == mover),
+            )
+            .unwrap();
+        assert!(interception < movement);
+        assert_eq!(
+            game.events()
+                .iter()
+                .filter(|event| matches!(event, GameEvent::ReactionTriggered { .. }))
+                .count(),
+            1
+        );
+
+        game.drain_events();
+        assert_eq!(
+            game.move_entity(mover, Direction::East),
+            Ok(GridPos::new(4, 1))
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::InterceptionResolved { .. } | GameEvent::AttackPerformed { .. }
+        )));
+    }
+
+    #[test]
+    fn blocked_or_forced_movement_does_not_consume_interception() {
+        let (mut game, technique) = game_with_learned_interception();
+        game.process_player_command(GameCommand::UseTechnique {
+            technique,
+            targets: Vec::new(),
+            weapon_slot: None,
+        });
+        let mover = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 20).with_body_profile(
+                    BodyProfile::new(20, 0)
+                        .unwrap()
+                        .with_displacement_profile(DisplacementProfile::new(10_000, 0).unwrap()),
+                ),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.move_entity(mover, Direction::North),
+            Err(MovementError::BlockedByTerrain(GridPos::new(2, 0)))
+        );
+        assert!(
+            game.actors
+                .get(game.player)
+                .unwrap()
+                .prepared_reaction()
+                .is_some()
+        );
+        game.resolve_forced_movement(
+            game.player,
+            mover,
+            GridPos::new(1, 1),
+            AttackProfile::melee(DamageType::Kinetic, 3)
+                .with_melee_impact(MeleeImpactProfile::new(20, 0))
+                .unwrap(),
+            ForcedMovement::new(1, 0),
+        );
+        assert_eq!(
+            game.actors.get(mover).map(Actor::position),
+            Some(GridPos::new(3, 1))
+        );
+        assert!(
+            game.actors
+                .get(game.player)
+                .unwrap()
+                .prepared_reaction()
+                .is_some()
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::InterceptionResolved { .. } | GameEvent::ReactionTriggered { .. }
+        )));
+    }
+
+    #[test]
+    fn ranged_overwatch_fires_once_when_a_perceived_actor_enters_the_covered_line() {
+        let (mut game, technique) = game_with_learned_overwatch(false);
+        let mover = game
+            .spawn_actor(build_actor(GridPos::new(3, 3), 20).with_evasion_disabled())
+            .unwrap();
+
+        let preview = game
+            .player_weapon_technique_preview(&technique, 0, GridPos::new(5, 2))
+            .unwrap();
+        assert_eq!(
+            preview
+                .cells()
+                .iter()
+                .map(|cell| cell.position)
+                .collect::<Vec<_>>(),
+            [GridPos::new(2, 2), GridPos::new(3, 2), GridPos::new(4, 2)]
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechniqueAt {
+                technique: technique.clone(),
+                target: GridPos::new(5, 2),
+                weapon_slot: 0,
+            }),
+            CommandOutcome::Applied
+        );
+        game.drain_events();
+
+        assert_eq!(
+            game.move_entity(mover, Direction::North),
+            Ok(GridPos::new(3, 2))
+        );
+        assert_eq!(game.actors.get(mover).map(Actor::integrity), Some(13));
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ReactionTriggered {
+                reactor,
+                source,
+                technique: used,
+                reaction: ReactionKind::RangedOverwatch,
+            } if *reactor == game.player && *source == mover && used == &technique
+        )));
+        assert!(
+            game.actors
+                .get(game.player)
+                .unwrap()
+                .prepared_reaction()
+                .is_none()
+        );
+
+        game.drain_events();
+        assert_eq!(
+            game.move_entity(mover, Direction::South),
+            Ok(GridPos::new(3, 3))
+        );
+        assert!(
+            !game
+                .events()
+                .iter()
+                .any(|event| matches!(event, GameEvent::AttackPerformed { .. }))
+        );
+    }
+
+    #[test]
+    fn extended_overwatch_replaces_the_line_with_a_visible_ninety_degree_sector() {
+        let (base, technique) = game_with_learned_overwatch(false);
+        let base = base
+            .player_weapon_technique_preview(&technique, 0, GridPos::new(5, 2))
+            .unwrap();
+        assert!(
+            !base
+                .cells()
+                .iter()
+                .any(|cell| cell.position == GridPos::new(3, 1))
+        );
+
+        let (extended, technique) = game_with_learned_overwatch(true);
+        let extended = extended
+            .player_weapon_technique_preview(&technique, 0, GridPos::new(5, 2))
+            .unwrap();
+        assert!(
+            extended
+                .cells()
+                .iter()
+                .any(|cell| cell.position == GridPos::new(3, 1))
+        );
+        assert!(extended.cells().len() > base.cells().len());
+    }
+
+    #[test]
+    fn persistent_ranged_aim_survives_wait_and_same_target_fire_but_not_movement() {
+        let mut game = game_with_core_tir(&["tir_01", "tir_04", "tir_05", "tir_07"]);
+        let aimed_shot: TechniqueId = "core:tir_01".parse().unwrap();
+        let persistent_aim: TechniqueId = "core:tir_07".parse().unwrap();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(5, 2), 40).with_evasion_disabled())
+            .unwrap();
+
+        let command = || GameCommand::UseTechnique {
+            technique: aimed_shot.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        };
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert!(game.player_persistent_ranged_aim.is_none());
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.player_persistent_ranged_aim,
+            Some(PersistentRangedAim {
+                technique: persistent_aim.clone(),
+                target,
+                accuracy_modifier: 10,
+            })
+        );
+
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert!(game.player_persistent_ranged_aim.is_some());
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 0, target }),
+            CommandOutcome::Applied
+        );
+        assert!(game.player_persistent_ranged_aim.is_some());
+
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::North)),
+            CommandOutcome::Applied
+        );
+        assert!(game.player_persistent_ranged_aim.is_none());
+        assert!(
+            game.events()
+                .contains(&GameEvent::PersistentRangedAimEnded {
+                    entity: game.player,
+                    target,
+                    technique: persistent_aim,
+                })
+        );
+    }
+
+    #[test]
+    fn rejected_action_restores_persistent_ranged_aim_atomically() {
+        let mut game = game_with_core_tir(&["tir_01", "tir_04", "tir_05", "tir_07"]);
+        let aimed_shot: TechniqueId = "core:tir_01".parse().unwrap();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(5, 2), 40).with_evasion_disabled())
+            .unwrap();
+        for _ in 0..2 {
+            assert_eq!(
+                game.process_player_command(GameCommand::UseTechnique {
+                    technique: aimed_shot.clone(),
+                    targets: vec![target],
+                    weapon_slot: Some(0),
+                }),
+                CommandOutcome::Applied
+            );
+        }
+        let before = game.player_persistent_ranged_aim.clone();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 9, target }),
+            CommandOutcome::Rejected(CommandRejection::MissingAttackSlot(9))
+        );
+        assert_eq!(game.player_persistent_ranged_aim, before);
+        assert!(game.events().is_empty());
+    }
+
+    #[test]
+    fn rupture_shot_requires_known_weakness_and_caps_bonus_penetration_at_half_armor() {
+        let mut game = game_with_core_tir(&["tir_01", "tir_04", "tir_05", "tir_07", "tir_09"]);
+        let technique: TechniqueId = "core:tir_09".parse().unwrap();
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(5, 2), 20)
+                    .with_evasion_disabled()
+                    .with_body_profile(BodyProfile::new(20, 0).unwrap().with_base_armor(5)),
+            )
+            .unwrap();
+        let command = || GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        };
+        let before = format!("{game:?}");
+
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Rejected(
+                CommandRejection::TechniqueTargetDoesNotMeetEngagementRequirement(target)
+            )
+        );
+        assert_eq!(format!("{game:?}"), before);
+
+        game.player_known_physical_weaknesses.insert(target);
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DamageApplied {
+                target: damaged,
+                amount: 1,
+                effective_armor: 2,
+                absorbed_by_armor: 2,
+                ..
+            } if *damaged == target
+        )));
+    }
+
+    #[test]
+    fn component_shot_damages_only_the_identified_component_and_failure_disables_movement() {
+        let mut game = game_with_core_tir(&["tir_01", "tir_04", "tir_05"]);
+        let technique: TechniqueId = "core:tir_05".parse().unwrap();
+        let component: BodyComponentId = "core:test_locomotion".parse().unwrap();
+        let profile = BodyComponentProfile::new(
+            component.clone(),
+            "component.test_locomotion.name".to_owned(),
+            10,
+            3,
+            ComponentFailureEffect::DisableMovement,
+        )
+        .unwrap();
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(5, 2), 20)
+                    .with_evasion_disabled()
+                    .with_body_components([profile]),
+            )
+            .unwrap();
+        game.player_known_body_components
+            .entry(target)
+            .or_default()
+            .insert(component.clone());
+
+        for expected_durability in [7, 4, 1] {
+            assert_eq!(
+                game.process_player_command(GameCommand::UseTechniqueOnComponent {
+                    technique: technique.clone(),
+                    target,
+                    component: component.clone(),
+                    weapon_slot: 0,
+                }),
+                CommandOutcome::Applied
+            );
+            assert_eq!(game.actors.get(target).map(Actor::integrity), Some(20));
+            assert_eq!(
+                game.actors
+                    .get(target)
+                    .and_then(|actor| actor.body_component(&component))
+                    .map(BodyComponentState::durability),
+                Some(expected_durability)
+            );
+        }
+        assert!(matches!(
+            game.move_entity(target, Direction::East),
+            Err(MovementError::DisabledByFailedComponent)
+        ));
+    }
+
+    #[test]
+    fn weapon_barrage_resolves_three_real_shots_per_stage_then_finishes() {
+        let mut game = game_with_core_tir(&["tir_02", "tir_03", "tir_06", "tir_04", "tir_10"]);
+        let technique: TechniqueId = "core:tir_10".parse().unwrap();
+        let target_at = GridPos::new(5, 2);
+        let target = game
+            .spawn_actor(
+                build_actor(target_at, 20)
+                    .with_evasion_disabled()
+                    .with_body_profile(
+                        BodyProfile::new(20, 0)
+                            .unwrap()
+                            .with_suppression_compatibility(true),
+                    ),
+            )
+            .unwrap();
+        let command = || GameCommand::UseTechniqueAt {
+            technique: technique.clone(),
+            target: target_at,
+            weapon_slot: 0,
+        };
+
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.player_active_weapon_barrage(),
+            Some((&technique, target_at, 0, 1))
+        );
+        assert_eq!(
+            game.player_weapon_ammunition(&"core:needle_launcher".parse().unwrap()),
+            Some((27, 30))
+        );
+        assert_eq!(
+            game.events()
+                .iter()
+                .filter(|event| matches!(event, GameEvent::AttackPerformed { .. }))
+                .count(),
+            3
+        );
+        assert_eq!(
+            game.events()
+                .iter()
+                .filter(|event| matches!(event, GameEvent::StabilityCheckResolved { target: checked, .. } if *checked == target))
+                .count(),
+            1
+        );
+
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert!(game.player_active_weapon_barrage().is_none());
+        assert_eq!(
+            game.player_weapon_ammunition(&"core:needle_launcher".parse().unwrap()),
+            Some((24, 30))
+        );
+        assert_eq!(
+            game.events()
+                .iter()
+                .filter(|event| matches!(event, GameEvent::AttackPerformed { .. }))
+                .count(),
+            3
+        );
+    }
+
+    #[test]
+    fn dispersed_volley_rejects_targets_farther_apart_without_spending_time_or_rng() {
+        let mut game = game_with_core_tir(&["tir_02", "tir_03", "tir_06"]);
+        let technique: TechniqueId = "core:tir_06".parse().unwrap();
+        let near = game
+            .spawn_actor(build_actor(GridPos::new(3, 1), 20).with_evasion_disabled())
+            .unwrap();
+        let far = game
+            .spawn_actor(build_actor(GridPos::new(7, 4), 20).with_evasion_disabled())
+            .unwrap();
+        let before = format!("{game:?}");
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![near, far],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Rejected(CommandRejection::TechniqueVolleyTargetsTooFarApart {
+                left: near,
+                right: far,
+                maximum: 3,
+            })
+        );
+        assert_eq!(format!("{game:?}"), before);
+    }
+
+    #[test]
+    fn volley_with_insufficient_native_projectiles_is_rejected_atomically() {
+        let mut game = game_with_core_tir(&["tir_02"]);
+        let weapon: WeaponId = "core:needle_launcher".parse().unwrap();
+        let technique: TechniqueId = "core:tir_02".parse().unwrap();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(5, 2), 20).with_evasion_disabled())
+            .unwrap();
+        game.player_weapon_ammunition.insert(weapon.clone(), 1);
+        let before = format!("{game:?}");
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Rejected(CommandRejection::InsufficientAmmunition {
+                weapon,
+                required: 2,
+                available: 1,
+            })
+        );
+        assert_eq!(format!("{game:?}"), before);
+    }
+
+    #[test]
+    fn rejected_action_preserves_guard_but_next_accepted_action_expires_it() {
+        let (mut game, technique) = game_with_learned_parry();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::North)),
+            CommandOutcome::Rejected(CommandRejection::BlockedByTerrain(GridPos::new(1, 0)))
+        );
+        assert!(game.events().is_empty());
+        assert!(
+            game.actors
+                .get(game.player)
+                .unwrap()
+                .prepared_reaction()
+                .is_some()
+        );
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert!(
+            game.actors
+                .get(game.player)
+                .unwrap()
+                .prepared_reaction()
+                .is_none()
+        );
+        assert!(game.events().contains(&GameEvent::ReactionExpired {
+            entity: game.player,
+            technique,
+            reaction: ReactionKind::MeleeParry,
+        }));
     }
 
     #[test]
@@ -2834,6 +18283,70 @@ mod tests {
             CommandOutcome::Applied
         );
         assert_eq!(game.actors().get(target).map(Actor::integrity), Some(4));
+    }
+
+    #[test]
+    fn armor_equipment_is_replayable_and_contributes_to_resolved_damage() {
+        let (rules, armor, slot) = armor_equipment_rules();
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let armor_item = game
+            .player_inventory()
+            .iter()
+            .find(|entry| entry.item() == &armor)
+            .map(|entry| entry.instance())
+            .unwrap();
+
+        assert_eq!(
+            game.actor_armor_profile(game.player_id()),
+            Some(ArmorProfile::new(1, 0, 0, 0))
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::EquipItem {
+                slot: slot.clone(),
+                item: armor_item,
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actor_armor_profile(game.player_id()),
+            Some(ArmorProfile::new(1, 2, 0, 0))
+        );
+        assert!(game.events().contains(&GameEvent::ItemEquipped {
+            entity: game.player_id(),
+            equipment_slot: slot,
+            item: armor_item,
+            definition: armor,
+            displaced: None,
+        }));
+
+        let integrity_before = game.actors().get(game.player_id()).unwrap().integrity();
+        game.drain_events();
+        game.apply_damage_to(
+            None,
+            game.player_id(),
+            DamagePacket::new(3, DamageType::Kinetic, 0),
+        )
+        .unwrap();
+
+        assert_eq!(
+            game.actors().get(game.player_id()).unwrap().integrity(),
+            integrity_before
+        );
+        assert!(game.events().contains(&GameEvent::DamageApplied {
+            source: None,
+            target: game.player_id(),
+            at: GridPos::new(1, 1),
+            amount: 0,
+            damage_type: DamageType::Kinetic,
+            effective_armor: 3,
+            absorbed_by_armor: 3,
+        }));
     }
 
     #[test]
@@ -2939,6 +18452,73 @@ mod tests {
     }
 
     #[test]
+    fn on_hit_and_on_damage_are_distinct_when_armor_absorbs_everything() {
+        for (trigger, expects_status) in [
+            (WeaponEffectTrigger::OnHit, true),
+            (WeaponEffectTrigger::OnDamage, false),
+        ] {
+            let mut game = GameState::new_with_rules(
+                parse_map("#####\n#...#\n#####"),
+                GridPos::new(1, 1),
+                7,
+                status_trigger_rules(trigger),
+            )
+            .unwrap();
+            let target = game
+                .spawn_actor(
+                    build_actor(GridPos::new(2, 1), 10)
+                        .with_body_profile(BodyProfile::new(10, 0).unwrap().with_base_armor(10))
+                        .with_evasion_disabled(),
+                )
+                .unwrap();
+            game.drain_events();
+
+            assert_eq!(
+                game.process_player_command(GameCommand::Attack { slot: 0, target }),
+                CommandOutcome::Applied
+            );
+            assert_eq!(
+                game.events().iter().any(|event| matches!(
+                    event,
+                    GameEvent::StatusApplied { target: applied, .. } if *applied == target
+                )),
+                expects_status
+            );
+            assert!(game.events().iter().any(|event| matches!(
+                event,
+                GameEvent::DamageApplied {
+                    target: damaged,
+                    amount: 0,
+                    ..
+                } if *damaged == target
+            )));
+        }
+    }
+
+    #[test]
+    fn target_destruction_trigger_requires_a_lethal_attack() {
+        for (integrity, expects_ground) in [(6, false), (5, true)] {
+            let mut game = GameState::new_with_rules(
+                parse_map("#####\n#...#\n#####"),
+                GridPos::new(1, 1),
+                7,
+                destruction_trigger_rules(),
+            )
+            .unwrap();
+            let target = game
+                .spawn_actor(build_actor(GridPos::new(2, 1), integrity))
+                .unwrap();
+            game.drain_events();
+
+            assert_eq!(
+                game.process_player_command(GameCommand::Attack { slot: 0, target }),
+                CommandOutcome::Applied
+            );
+            assert_eq!(!game.ground_effects().is_empty(), expects_ground);
+        }
+    }
+
+    #[test]
     fn area_attack_preview_is_non_mutating_and_execution_uses_the_exact_same_cells() {
         let (rules, weapon) = flamethrower_rules();
         let mut game = GameState::new_with_rules(
@@ -2955,6 +18535,7 @@ mod tests {
             .unwrap();
         game.drain_events();
         let aimed_at = GridPos::new(6, 3);
+        let rng_before = game.rng_state();
 
         let preview = game.player_attack_preview(0, aimed_at).unwrap();
 
@@ -2974,6 +18555,7 @@ mod tests {
         );
         assert_eq!(game.turn(), 0);
         assert!(game.events().is_empty());
+        assert_eq!(game.rng_state(), rng_before);
 
         assert_eq!(
             game.process_player_command(GameCommand::AttackAt {
@@ -2983,6 +18565,14 @@ mod tests {
             CommandOutcome::Applied
         );
         assert_eq!(game.actors().get(side).map(Actor::integrity), Some(24));
+        assert_eq!(game.ground_effects().iter().count(), preview.cells().len());
+        assert_eq!(game.rng_state(), rng_before);
+        assert!(
+            !game
+                .events()
+                .iter()
+                .any(|event| matches!(event, GameEvent::AttackHitResolved { .. }))
+        );
         assert!(game.events().iter().any(|event| matches!(
             event,
             GameEvent::AttackPerformed {
@@ -2993,6 +18583,40 @@ mod tests {
                 ..
             } if *target_at == aimed_at && id == &weapon && affected_cells == preview.cells()
         )));
+    }
+
+    #[test]
+    fn on_attack_ground_effect_resolves_across_an_empty_area() {
+        let (rules, _) = flamethrower_rules();
+        let mut game = GameState::new_with_rules(
+            parse_map(
+                "############\n#..........#\n#..........#\n#..........#\n#..........#\n#..........#\n############",
+            ),
+            GridPos::new(1, 3),
+            7,
+            rules,
+        )
+        .unwrap();
+        let aimed_at = GridPos::new(6, 3);
+        let footprint = game.player_attack_preview(0, aimed_at).unwrap();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::AttackAt {
+                slot: 0,
+                target: aimed_at,
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.ground_effects().iter().count(),
+            footprint.cells().len()
+        );
+        assert!(
+            !game
+                .events()
+                .iter()
+                .any(|event| matches!(event, GameEvent::AttackHitResolved { .. }))
+        );
     }
 
     #[test]
@@ -3043,9 +18667,11 @@ mod tests {
             AttackProfile::melee(DamageType::Thermal, 1),
         )
         .unwrap()
-        .with_effects([WeaponEffect::ApplyStatus(
+        .with_effects([WeaponEffect::apply_status(
             ApplyStatusEffect::new(status.clone(), 1).unwrap(),
-        )]);
+            WeaponEffectTrigger::OnHit,
+        )
+        .unwrap()]);
         let mut rules = GameRules::default();
         rules.weapons.register(weapon).unwrap();
 
@@ -3612,6 +19238,72 @@ mod tests {
     }
 
     #[test]
+    fn invalid_hit_rules_are_rejected_before_the_run() {
+        let rules = GameRules {
+            hit_rules: Some(HitRules {
+                minimum_hit_chance: 90,
+                maximum_hit_chance: 80,
+                ..HitRules::default()
+            }),
+            ..GameRules::default()
+        };
+
+        let result = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        );
+
+        assert!(matches!(
+            result,
+            Err(GameInitError::HitRules(
+                HitRulesError::InvalidChanceBounds {
+                    minimum: 90,
+                    maximum: 80,
+                }
+            ))
+        ));
+    }
+
+    #[test]
+    fn invalid_or_unbound_physical_profiles_are_rejected_before_the_run() {
+        let mut invalid_physical = PhysicalRules::default();
+        invalid_physical.hit_points.minimum_maximum_hit_points = 0;
+        let invalid_rules = GameRules {
+            physical_rules: Some(invalid_physical),
+            ..GameRules::default()
+        };
+        assert_eq!(
+            GameState::new_with_rules(
+                parse_map("#####\n#...#\n#####"),
+                GridPos::new(1, 1),
+                1,
+                invalid_rules,
+            )
+            .err(),
+            Some(GameInitError::PhysicalRules(
+                PhysicalRulesError::ZeroMinimumMaximumHitPoints
+            ))
+        );
+
+        let unbound_body = GameRules {
+            player_body_profile: Some(BodyProfile::new(20, 0).unwrap()),
+            ..GameRules::default()
+        };
+        assert_eq!(
+            GameState::new_with_rules(
+                parse_map("#####\n#...#\n#####"),
+                GridPos::new(1, 1),
+                1,
+                unbound_body,
+            )
+            .err(),
+            Some(GameInitError::PlayerBodyWithoutPhysicalRules)
+        );
+    }
+
+    #[test]
     fn spawned_actor_attributes_may_ignore_creation_budget_but_not_absolute_bounds() {
         let mut game = small_game();
         let legal = build_actor(GridPos::new(1, 1), 5)
@@ -3690,13 +19382,2209 @@ mod tests {
         assert!(game.events().contains(&GameEvent::DamageApplied {
             source: Some(game.player_id()),
             target: enemy,
+            at: GridPos::new(3, 1),
             amount: 5,
             damage_type: DamageType::Kinetic,
+            effective_armor: 0,
+            absorbed_by_armor: 0,
         }));
+        assert!(game.events().contains(&GameEvent::EntityDied {
+            entity: enemy,
+            at: GridPos::new(3, 1),
+        }));
+    }
+
+    #[test]
+    fn melee_impact_uses_power_once_and_respects_the_authored_material_cap() {
+        let attack = AttackProfile::melee(DamageType::Kinetic, 12)
+            .with_melee_impact(MeleeImpactProfile::new(14, 0))
+            .unwrap();
+        let rules = GameRules {
+            physical_rules: Some(PhysicalRules::default()),
+            player_starting_attributes: PrimaryAttributes::new(8, 5, 5, 5, 5),
+            player_base_attacks: vec![attack],
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            7,
+            rules,
+        )
+        .unwrap();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30).with_evasion_disabled())
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.resolved_attack_damage(game.player_id(), attack),
+            Some(DamageImpact::single(DamagePacket::new(
+                16,
+                DamageType::Kinetic,
+                0
+            )))
+        );
+        assert!(game.events().is_empty());
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 0, target }),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.actors().get(target).map(Actor::integrity), Some(14));
+        assert!(game.events().contains(&GameEvent::DamageApplied {
+            source: Some(game.player_id()),
+            target,
+            at: GridPos::new(2, 1),
+            amount: 16,
+            damage_type: DamageType::Kinetic,
+            effective_armor: 0,
+            absorbed_by_armor: 0,
+        }));
+    }
+
+    #[test]
+    fn weapon_technique_scales_post_impact_physical_damage_then_starts_recovery() {
+        let attack = AttackProfile::melee(DamageType::Kinetic, 12)
+            .with_melee_impact(MeleeImpactProfile::new(14, 0))
+            .unwrap();
+        let (mut game, technique) = game_with_learned_power_strike(attack, None);
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 50)
+                    .with_body_profile(BodyProfile::new(50, 0).unwrap().with_base_armor(5))
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.player_weapon_technique_targets(&technique, 0),
+            [target]
+        );
+        assert_eq!(
+            game.resolved_attack_damage(
+                game.player_id(),
+                attack.with_physical_damage_percentage(150).unwrap()
+            ),
+            Some(DamageImpact::single(DamagePacket::new(
+                24,
+                DamageType::Kinetic,
+                0
+            )))
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.actors().get(target).map(Actor::integrity), Some(31));
+        assert_eq!(
+            game.actors()
+                .get(game.player_id())
+                .and_then(Actor::recovery_remaining),
+            Some(TimeUnits::ONE)
+        );
+        assert!(game.events().contains(&GameEvent::DamageApplied {
+            source: Some(game.player_id()),
+            target,
+            at: GridPos::new(2, 1),
+            amount: 19,
+            damage_type: DamageType::Kinetic,
+            effective_armor: 5,
+            absorbed_by_armor: 5,
+        }));
+        assert!(game.events().contains(&GameEvent::ActionRecoveryStarted {
+            entity: game.player_id(),
+            remaining_actions: 1,
+        }));
+
+        game.drain_events();
+        let before = format!("{game:?}");
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Rejected(CommandRejection::OffensiveActionBlockedByRecovery {
+                remaining_actions: 1,
+            })
+        );
+        assert_eq!(format!("{game:?}"), before);
+    }
+
+    #[test]
+    fn physical_attack_scale_rounds_down_and_preserves_non_physical_components() {
+        let game = small_game();
+        let damage = DamageImpact::mixed(
+            [
+                DamageComponent::new(11, DamageType::Kinetic),
+                DamageComponent::new(5, DamageType::Thermal),
+            ],
+            0,
+            [],
+        )
+        .unwrap();
+        let attack = AttackProfile::melee(DamageType::Kinetic, 1)
+            .with_damage(damage)
+            .with_physical_damage_percentage(150)
+            .unwrap();
+        let resolved = game
+            .resolved_attack_damage(game.player_id(), attack)
+            .unwrap();
+
+        assert_eq!(resolved.raw_amount(DamageType::Kinetic), 16);
+        assert_eq!(resolved.raw_amount(DamageType::Thermal), 5);
+        assert_eq!(resolved.raw_total(), 21);
+    }
+
+    #[test]
+    fn weapon_technique_miss_still_recovers_but_invalid_engagements_are_free() {
+        let never_hits = HitRules {
+            minimum_hit_chance: 0,
+            maximum_hit_chance: 0,
+            ..HitRules::default()
+        };
+        let (mut game, technique) = game_with_learned_power_strike(
+            AttackProfile::melee(DamageType::Kinetic, 8),
+            Some(never_hits),
+        );
+        let distant = game
+            .spawn_actor(build_actor(GridPos::new(3, 1), 30))
+            .unwrap();
+        game.drain_events();
+        let before_rng = game.rng_state();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: vec![distant],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Rejected(CommandRejection::TargetOutOfRange(distant))
+        );
+        assert_eq!(game.turn(), 0);
+        assert_eq!(game.rng_state(), before_rng);
+        assert!(game.events().is_empty());
+        assert!(
+            game.actors()
+                .get(game.player_id())
+                .and_then(Actor::recovery_remaining)
+                .is_none()
+        );
+
+        game.actors.move_to(distant, GridPos::new(2, 1)).unwrap();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![distant],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors().get(distant).map(Actor::integrity), Some(30));
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackHitResolved {
+                target,
+                chance: 0,
+                hit: false,
+                ..
+            } if *target == distant
+        )));
+        assert_eq!(
+            game.actors()
+                .get(game.player_id())
+                .and_then(Actor::recovery_remaining),
+            Some(TimeUnits::ONE)
+        );
+    }
+
+    #[test]
+    fn crushing_strike_requires_a_status_family_before_committing_any_cost() {
+        let (mut game, technique, _, immobilized) = game_with_learned_crushing_strike();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30).with_evasion_disabled())
+            .unwrap();
+        game.drain_events();
+        let rng_before = game.rng_state();
+
+        assert!(
+            game.player_weapon_technique_targets(&technique, 0)
+                .is_empty()
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Rejected(
+                CommandRejection::TechniqueTargetDoesNotMeetEngagementRequirement(target)
+            )
+        );
+        assert_eq!(game.turn(), 0);
+        assert_eq!(game.player_energy().available(), 100);
+        assert_eq!(game.rng_state(), rng_before);
+        assert!(game.events().is_empty());
+        assert!(
+            game.actors
+                .get(game.player)
+                .unwrap()
+                .recovery_remaining()
+                .is_none()
+        );
+
+        game.apply_status_to(
+            None,
+            target,
+            &ApplyStatusEffect::new(immobilized.clone(), 1).unwrap(),
+        )
+        .unwrap();
+        game.drain_events();
+        assert_eq!(
+            game.player_weapon_technique_targets(&technique, 0),
+            [target]
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.actors.get(target).map(Actor::integrity), Some(12));
+        assert_eq!(game.player_energy().available(), 95);
+        assert_eq!(
+            game.actors.get(game.player).unwrap().recovery_remaining(),
+            Some(TimeUnits::ONE)
+        );
+        assert!(
+            game.actors
+                .get(target)
+                .unwrap()
+                .status(&immobilized)
+                .is_some()
+        );
+    }
+
+    #[test]
+    fn weapon_technique_rejects_missing_incompatible_or_non_physical_weapons_atomically() {
+        let (mut missing, technique) =
+            game_with_learned_power_strike(AttackProfile::melee(DamageType::Kinetic, 8), None);
+        let target = missing
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30).with_evasion_disabled())
+            .unwrap();
+        missing.drain_events();
+        assert_eq!(
+            missing.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: None,
+            }),
+            CommandOutcome::Rejected(CommandRejection::TechniqueRequiresWeaponSlot)
+        );
+        assert_eq!(missing.turn(), 0);
+        assert!(missing.events().is_empty());
+
+        let ranged = AttackProfile::new(
+            4,
+            DistanceMetric::Chebyshev,
+            false,
+            DamageType::Kinetic,
+            8,
+            0,
+        );
+        let (mut incompatible, technique) = game_with_learned_power_strike(ranged, None);
+        let target = incompatible
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30).with_evasion_disabled())
+            .unwrap();
+        incompatible.drain_events();
+        assert_eq!(
+            incompatible.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Rejected(CommandRejection::TechniqueWeaponDeliveryMismatch {
+                required: AttackDelivery::Melee,
+                actual: AttackDelivery::Ranged,
+            })
+        );
+        assert_eq!(incompatible.turn(), 0);
+        assert!(incompatible.events().is_empty());
+
+        let (mut non_physical, technique) =
+            game_with_learned_power_strike(AttackProfile::melee(DamageType::Thermal, 8), None);
+        let target = non_physical
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30).with_evasion_disabled())
+            .unwrap();
+        non_physical.drain_events();
+        assert_eq!(
+            non_physical.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Rejected(CommandRejection::TechniqueWeaponHasNoPhysicalDamage)
+        );
+        assert_eq!(non_physical.turn(), 0);
+        assert!(non_physical.events().is_empty());
+    }
+
+    #[test]
+    fn armor_break_applies_after_its_own_impact_even_at_zero_damage_without_refreshing() {
+        let (mut game, technique, status) = game_with_learned_armor_break(None);
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 30)
+                    .with_body_profile(BodyProfile::new(30, 0).unwrap().with_base_armor(10))
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        game.drain_events();
+        let command = GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        };
+
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors().get(target).map(Actor::integrity), Some(30));
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DamageApplied {
+                target: damaged,
+                amount: 0,
+                effective_armor: 10,
+                absorbed_by_armor: 6,
+                ..
+            } if *damaged == target
+        )));
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::StatusApplied {
+                target: affected,
+                status: applied,
+                remaining_turns: Some(3),
+                application: crate::status::StatusApplyKind::Applied,
+                ..
+            } if *affected == target && applied == &status
+        )));
+        assert_eq!(
+            game.actor_armor_profile(target),
+            Some(ArmorProfile::new(10, 0, 0, 4))
+        );
+        assert_eq!(
+            game.actors()
+                .get(target)
+                .and_then(|actor| actor.status(&status))
+                .and_then(|instance| instance.remaining_turns),
+            Some(2)
+        );
+        assert_eq!(game.player_energy().available(), 97);
+
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Applied
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DamageApplied {
+                target: damaged,
+                amount: 0,
+                effective_armor: 6,
+                absorbed_by_armor: 6,
+                ..
+            } if *damaged == target
+        )));
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::StatusApplied {
+                target: affected,
+                status: applied,
+                remaining_turns: Some(2),
+                application: crate::status::StatusApplyKind::Ignored,
+                ..
+            } if *affected == target && applied == &status
+        )));
+        assert_eq!(
+            game.actors()
+                .get(target)
+                .and_then(|actor| actor.status(&status))
+                .and_then(|instance| instance.remaining_turns),
+            Some(1)
+        );
+
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Applied
+        );
+        assert!(game.actors().get(target).unwrap().status(&status).is_none());
+
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(command),
+            CommandOutcome::Applied
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::StatusApplied {
+                target: affected,
+                status: applied,
+                application: crate::status::StatusApplyKind::Applied,
+                ..
+            } if *affected == target && applied == &status
+        )));
+        assert_eq!(game.player_energy().available(), 88);
+    }
+
+    #[test]
+    fn armor_break_rejects_an_unarmored_hit_but_still_spends_its_action_cost() {
+        let (mut game, technique, status) = game_with_learned_armor_break(None);
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30).with_evasion_disabled())
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.actors().get(target).map(Actor::integrity), Some(24));
+        assert!(game.actors().get(target).unwrap().status(&status).is_none());
         assert!(
             game.events()
-                .contains(&GameEvent::EntityDied { entity: enemy })
+                .contains(&GameEvent::TechniqueOnHitEffectRejected {
+                    source: game.player_id(),
+                    target,
+                    technique,
+                    reason: TechniqueEffectFailure::TargetHasNoArmor,
+                })
         );
+        assert_eq!(game.player_energy().available(), 97);
+        assert_eq!(game.turn(), 1);
+    }
+
+    #[test]
+    fn armor_break_never_applies_its_status_on_a_miss() {
+        let never_hits = HitRules {
+            minimum_hit_chance: 0,
+            maximum_hit_chance: 0,
+            ..HitRules::default()
+        };
+        let (mut game, technique, status) = game_with_learned_armor_break(Some(never_hits));
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 30)
+                    .with_body_profile(BodyProfile::new(30, 0).unwrap().with_base_armor(10)),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+
+        assert!(game.actors().get(target).unwrap().status(&status).is_none());
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::StatusApplied { target: affected, .. }
+                | GameEvent::TechniqueOnHitEffectRejected { target: affected, .. }
+                if *affected == target
+        )));
+        assert_eq!(game.player_energy().available(), 97);
+    }
+
+    #[test]
+    fn hindrance_uses_stability_then_arms_two_phase_cooldown_even_on_resistance() {
+        let chance = StabilityRules::default().resistance_chance(
+            Some(PrimaryAttributes::new(5, 5, 5, 5, 5)),
+            0,
+            60,
+        );
+        let (mut game, technique, hindrance, _) =
+            game_with_learned_hindrance(seed_with_first_roll_at_most(chance));
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 30)
+                    .with_primary_attributes(PrimaryAttributes::new(5, 5, 5, 5, 5))
+                    .with_body_profile(
+                        BodyProfile::new(30, 0)
+                            .unwrap()
+                            .with_locomotion_profile(LocomotionProfile::new(true)),
+                    )
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        game.drain_events();
+        let command = GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        };
+
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors().get(target).map(Actor::integrity), Some(25));
+        assert!(
+            game.actors()
+                .get(target)
+                .unwrap()
+                .status(&hindrance)
+                .is_none()
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::StabilityCheckResolved {
+                target: checked,
+                chance: rolled_chance,
+                resisted: true,
+                ..
+            } if *checked == target && *rolled_chance == chance
+        )));
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniqueCooldownStarted {
+                    entity: game.player_id(),
+                    technique: technique.clone(),
+                    remaining_phases: 2,
+                })
+        );
+
+        game.drain_events();
+        let before = format!("{game:?}");
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Rejected(CommandRejection::TechniqueOnCooldown {
+                technique: technique.clone(),
+                remaining_phases: 2,
+            })
+        );
+        assert_eq!(format!("{game:?}"), before);
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Rejected(CommandRejection::TechniqueOnCooldown {
+                technique: technique.clone(),
+                remaining_phases: 1,
+            })
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.turn(), 3);
+        assert!(
+            game.actors()
+                .get(game.player_id())
+                .unwrap()
+                .technique_cooldown_remaining(&technique)
+                .is_none()
+        );
+    }
+
+    #[test]
+    fn hindrance_miss_starts_cooldown_but_invalid_engagement_is_atomic() {
+        let (mut game, technique, hindrance, _) = game_with_learned_hindrance(24);
+        game.rules.hit_rules = Some(HitRules {
+            minimum_hit_chance: 0,
+            maximum_hit_chance: 0,
+            ..HitRules::default()
+        });
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(3, 1), 30).with_body_profile(
+                    BodyProfile::new(30, 0)
+                        .unwrap()
+                        .with_locomotion_profile(LocomotionProfile::new(true)),
+                ),
+            )
+            .unwrap();
+        game.drain_events();
+        let command = GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        };
+        let rng_before = game.rng_state();
+
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Rejected(CommandRejection::TargetOutOfRange(target))
+        );
+        assert_eq!(game.rng_state(), rng_before);
+        assert!(
+            game.actors()
+                .get(game.player_id())
+                .unwrap()
+                .technique_cooldown_remaining(&technique)
+                .is_none()
+        );
+
+        game.actors.move_to(target, GridPos::new(2, 1)).unwrap();
+        assert_eq!(
+            game.process_player_command(command),
+            CommandOutcome::Applied
+        );
+        assert!(
+            game.actors()
+                .get(target)
+                .unwrap()
+                .status(&hindrance)
+                .is_none()
+        );
+        assert_eq!(
+            game.actors()
+                .get(game.player_id())
+                .unwrap()
+                .technique_cooldown_remaining(&technique)
+                .map(TimeUnits::get),
+            Some(2)
+        );
+    }
+
+    #[test]
+    fn failed_stability_applies_hindrance_then_non_refreshing_protection() {
+        let chance = 40;
+        let (mut game, technique, hindrance, protection) =
+            game_with_learned_hindrance(seed_with_first_roll_above(chance));
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 30)
+                    .with_primary_attributes(PrimaryAttributes::new(5, 5, 5, 5, 5))
+                    .with_body_profile(
+                        BodyProfile::new(30, 0)
+                            .unwrap()
+                            .with_locomotion_profile(LocomotionProfile::new(true)),
+                    )
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors()
+                .get(target)
+                .and_then(|actor| actor.status(&hindrance))
+                .and_then(|status| status.remaining_turns),
+            Some(1)
+        );
+        assert_eq!(game.actor_movement_time_units(target), 2);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::StabilityCheckResolved {
+                target: checked,
+                resisted: false,
+                ..
+            } if *checked == target
+        )));
+
+        game.drain_events();
+        game.process_player_command(GameCommand::Wait);
+        assert!(
+            game.actors()
+                .get(target)
+                .unwrap()
+                .status(&hindrance)
+                .is_none()
+        );
+        assert_eq!(
+            game.actors()
+                .get(target)
+                .and_then(|actor| actor.status(&protection))
+                .and_then(|status| status.remaining_turns),
+            Some(1)
+        );
+        game.drain_events();
+        game.apply_status_to(
+            None,
+            target,
+            &ApplyStatusEffect::new(hindrance.clone(), 1).unwrap(),
+        )
+        .unwrap();
+        assert!(
+            game.actors()
+                .get(target)
+                .unwrap()
+                .status(&hindrance)
+                .is_none()
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::StatusApplicationBlocked {
+                target: blocked,
+                status,
+                blocking_status,
+                ..
+            } if *blocked == target && status == &hindrance && blocking_status == &protection
+        )));
+        game.process_player_command(GameCommand::Wait);
+        assert!(
+            game.actors()
+                .get(target)
+                .unwrap()
+                .status(&protection)
+                .is_none()
+        );
+        game.apply_status_to(
+            None,
+            target,
+            &ApplyStatusEffect::new(hindrance.clone(), 1).unwrap(),
+        )
+        .unwrap();
+        assert!(
+            game.actors()
+                .get(target)
+                .unwrap()
+                .status(&hindrance)
+                .is_some()
+        );
+    }
+
+    #[test]
+    fn incompatible_or_protected_locomotion_consumes_no_stability_roll() {
+        let (mut incompatible, technique, _, _) = game_with_learned_hindrance(81);
+        let target = incompatible
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 30)
+                    .with_body_profile(BodyProfile::new(30, 0).unwrap())
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        incompatible.drain_events();
+        let rng_before = incompatible.rng_state();
+        incompatible.process_player_command(GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        });
+        assert_eq!(incompatible.rng_state(), rng_before);
+        assert!(
+            incompatible
+                .events()
+                .contains(&GameEvent::TechniqueOnHitEffectRejected {
+                    source: incompatible.player_id(),
+                    target,
+                    technique: technique.clone(),
+                    reason: TechniqueEffectFailure::TargetHasNoCompatibleLocomotion,
+                })
+        );
+
+        let (mut protected, technique, hindrance, protection_status) =
+            game_with_learned_hindrance(91);
+        let target = protected
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 30)
+                    .with_body_profile(
+                        BodyProfile::new(30, 0)
+                            .unwrap()
+                            .with_locomotion_profile(LocomotionProfile::new(true)),
+                    )
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        protected
+            .apply_status_to(
+                None,
+                target,
+                &ApplyStatusEffect::new(protection_status.clone(), 1).unwrap(),
+            )
+            .unwrap();
+        protected.drain_events();
+        let rng_before = protected.rng_state();
+        protected.process_player_command(GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        });
+        assert_eq!(protected.rng_state(), rng_before);
+        assert!(
+            protected
+                .actors()
+                .get(target)
+                .unwrap()
+                .status(&hindrance)
+                .is_none()
+        );
+        assert!(
+            protected
+                .events()
+                .contains(&GameEvent::TechniqueOnHitEffectRejected {
+                    source: protected.player_id(),
+                    target,
+                    technique,
+                    reason: TechniqueEffectFailure::ProtectedFromEffect,
+                })
+        );
+        assert!(
+            protected
+                .actors()
+                .get(target)
+                .unwrap()
+                .status(&protection_status)
+                .is_none()
+        );
+    }
+
+    #[test]
+    fn hindered_player_spends_two_turns_and_hindered_ai_skips_one_opportunity() {
+        let (mut game, _, hindrance, _) = game_with_learned_hindrance(12);
+        game.apply_status_to(
+            None,
+            game.player_id(),
+            &ApplyStatusEffect::new(hindrance.clone(), 1).unwrap(),
+        )
+        .unwrap();
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.turn(), 2);
+        assert!(game.events().contains(&GameEvent::MovementTimeCommitted {
+            entity: game.player_id(),
+            time_units: 2,
+        }));
+
+        let (mut ai_game, _, hindrance, _) = game_with_learned_hindrance(13);
+        let enemy = ai_game
+            .spawn_actor(
+                build_actor(GridPos::new(4, 1), 20)
+                    .with_ai(AiProfile::hunter(12, 0))
+                    .with_body_profile(
+                        BodyProfile::new(20, 0)
+                            .unwrap()
+                            .with_locomotion_profile(LocomotionProfile::new(true)),
+                    ),
+            )
+            .unwrap();
+        ai_game
+            .apply_status_to(None, enemy, &ApplyStatusEffect::new(hindrance, 1).unwrap())
+            .unwrap();
+        ai_game.drain_events();
+        ai_game.process_player_command(GameCommand::Wait);
+        let after_first = ai_game.actors().get(enemy).unwrap().position();
+        ai_game.process_player_command(GameCommand::Wait);
+        assert_eq!(ai_game.actors().get(enemy).unwrap().position(), after_first);
+    }
+
+    #[test]
+    fn active_armor_fragilizations_keep_the_strongest_value_instead_of_summing() {
+        let (mut game, _, weaker) = game_with_learned_armor_break(None);
+        let stronger: StatusId = "core:test_stronger_armor_fracture".parse().unwrap();
+        game.rules
+            .statuses
+            .register(
+                StatusDefinition::new(
+                    stronger.clone(),
+                    Some(3),
+                    crate::status::StatusStacking::KeepExisting,
+                    Vec::new(),
+                )
+                .unwrap()
+                .with_modifiers([StatusModifier::ArmorFragilization { amount: 6 }])
+                .unwrap(),
+            )
+            .unwrap();
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 30)
+                    .with_body_profile(BodyProfile::new(30, 0).unwrap().with_base_armor(10)),
+            )
+            .unwrap();
+
+        game.apply_status_to(None, target, &ApplyStatusEffect::new(weaker, 1).unwrap())
+            .unwrap();
+        game.apply_status_to(None, target, &ApplyStatusEffect::new(stronger, 1).unwrap())
+            .unwrap();
+
+        assert_eq!(
+            game.actor_armor_profile(target),
+            Some(ArmorProfile::new(10, 0, 0, 6))
+        );
+        assert_eq!(
+            game.actor_armor_profile(target)
+                .map(ArmorProfile::after_fragilization),
+            Some(4)
+        );
+    }
+
+    #[test]
+    fn precise_strike_prepares_then_adds_twenty_accuracy_to_the_weapon_attack() {
+        let (mut game, technique) = game_with_learned_precise_strike(
+            AttackProfile::melee(DamageType::Thermal, 8).with_accuracy_modifier(-5),
+            Some(HitRules::default()),
+        );
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30))
+            .unwrap();
+        game.drain_events();
+        let command = GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        };
+        let rng_before = game.rng_state();
+
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.turn(), 1);
+        assert_eq!(game.rng_state(), rng_before);
+        assert_eq!(
+            game.player_technique_preparation()
+                .map(|state| state.remaining_steps().get()),
+            Some(1)
+        );
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationStarted {
+                    entity: game.player_id(),
+                    technique: technique.clone(),
+                    remaining_steps: 1,
+                })
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::TechniqueUsed { .. }
+                | GameEvent::AttackPerformed { .. }
+                | GameEvent::AttackHitResolved { .. }
+        )));
+
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.turn(), 2);
+        assert!(game.player_technique_preparation().is_none());
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationCompleted {
+                    entity: game.player_id(),
+                    technique: technique.clone(),
+                })
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::TechniqueUsed {
+                entity,
+                technique: used,
+                ..
+            } if *entity == game.player_id() && used == &technique
+        )));
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackHitResolved {
+                attacker,
+                target: resolved_target,
+                chance: 85,
+                ..
+            } if *attacker == game.player_id() && *resolved_target == target
+        )));
+        assert_ne!(game.rng_state(), rng_before);
+    }
+
+    #[test]
+    fn precise_strike_invalid_engagement_is_free_and_movement_cancels_preparation() {
+        let (mut game, technique) =
+            game_with_learned_precise_strike(AttackProfile::melee(DamageType::Kinetic, 8), None);
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(3, 1), 30))
+            .unwrap();
+        game.drain_events();
+        let command = GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        };
+        let rng_before = game.rng_state();
+
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Rejected(CommandRejection::TargetOutOfRange(target))
+        );
+        assert_eq!(game.turn(), 0);
+        assert_eq!(game.rng_state(), rng_before);
+        assert!(game.player_technique_preparation().is_none());
+        assert!(game.events().is_empty());
+
+        game.actors.move_to(target, GridPos::new(2, 1)).unwrap();
+        assert_eq!(
+            game.process_player_command(command),
+            CommandOutcome::Applied
+        );
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::South)),
+            CommandOutcome::Applied
+        );
+        assert!(game.player_technique_preparation().is_none());
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationCancelled {
+                    entity: game.player_id(),
+                    technique,
+                    reason: PreparationCancellationReason::DifferentAction,
+                })
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::TechniqueUsed { .. } | GameEvent::AttackPerformed { .. }
+        )));
+    }
+
+    #[test]
+    fn precise_strike_switching_target_restarts_a_single_preparation() {
+        let (mut game, technique) =
+            game_with_learned_precise_strike(AttackProfile::melee(DamageType::Kinetic, 8), None);
+        let first = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30))
+            .unwrap();
+        let second = game
+            .spawn_actor(build_actor(GridPos::new(1, 2), 30))
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: vec![first],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: vec![second],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+
+        let preparation = game.player_technique_preparation().unwrap();
+        assert_eq!(preparation.technique(), &technique);
+        assert_eq!(preparation.targets(), [second]);
+        assert_eq!(preparation.remaining_steps().get(), 1);
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationCancelled {
+                    entity: game.player_id(),
+                    technique: technique.clone(),
+                    reason: PreparationCancellationReason::DifferentAction,
+                })
+        );
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationStarted {
+                    entity: game.player_id(),
+                    technique,
+                    remaining_steps: 1,
+                })
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::TechniqueUsed { .. } | GameEvent::AttackPerformed { .. }
+        )));
+    }
+
+    #[test]
+    fn precise_strike_loses_preparation_when_the_target_breaks_contact() {
+        let (mut game, technique) =
+            game_with_learned_precise_strike(AttackProfile::melee(DamageType::Kinetic, 8), None);
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 30)
+                    .with_attack(AttackProfile::melee(DamageType::Kinetic, 1))
+                    .with_ai(AiProfile::skirmisher(8, 0, 3)),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(
+            game.actors().get(target).map(Actor::position),
+            Some(GridPos::new(3, 1))
+        );
+        assert!(game.player_technique_preparation().is_none());
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationCancelled {
+                    entity: game.player_id(),
+                    technique,
+                    reason: PreparationCancellationReason::TargetUnavailable,
+                })
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::TechniqueUsed { .. } | GameEvent::AttackPerformed { .. }
+        )));
+    }
+
+    #[test]
+    fn push_uses_capped_impact_and_moves_a_hit_target_even_after_zero_damage() {
+        let attack = AttackProfile::melee(DamageType::Kinetic, 12)
+            .with_melee_impact(MeleeImpactProfile::new(20, 0))
+            .unwrap();
+        let (mut game, technique) = game_with_learned_push(attack, None);
+        let body = BodyProfile::new(30, 0)
+            .unwrap()
+            .with_base_armor(20)
+            .with_displacement_profile(DisplacementProfile::new(80_000, 0).unwrap());
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 2), 30)
+                    .with_body_profile(body)
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.player_weapon_technique_targets(&technique, 0),
+            [target]
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.actors().get(target).map(Actor::integrity), Some(30));
+        assert_eq!(
+            game.actors().get(target).map(Actor::position),
+            Some(GridPos::new(3, 3))
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DamageApplied {
+                target: damaged,
+                amount: 0,
+                ..
+            } if *damaged == target
+        )));
+        assert!(game.events().contains(&GameEvent::ForcedMovementResolved {
+            source: game.player_id(),
+            target,
+            from: GridPos::new(2, 2),
+            to: GridPos::new(3, 3),
+            force: 16,
+            resistance: Some(8),
+            requested_distance: 1,
+            moved_distance: 1,
+            outcome: ForcedMovementOutcome::Moved,
+        }));
+    }
+
+    #[test]
+    fn pickup_and_drop_change_forced_movement_resistance_from_declared_unit_mass() {
+        let weapon_id: WeaponId = "core:weighted_test_blade".parse().unwrap();
+        let item_id: ItemId = "core:weighted_test_part".parse().unwrap();
+        let weapon_slot: EquipmentSlotId = "core:test_weapon".parse().unwrap();
+        let attack = AttackProfile::melee(DamageType::Kinetic, 5)
+            .with_melee_impact(MeleeImpactProfile::new(10, 0))
+            .unwrap();
+        let mut weapons = WeaponCatalog::default();
+        weapons
+            .register(
+                WeaponDefinition::new(
+                    weapon_id.clone(),
+                    "weapon.weighted.name".to_owned(),
+                    "weapon.weighted.description".to_owned(),
+                    attack,
+                )
+                .unwrap()
+                .with_mass_grams(30_000)
+                .unwrap(),
+            )
+            .unwrap();
+        let mut items = ItemCatalog::default();
+        items
+            .register(
+                ItemDefinition::new(
+                    item_id.clone(),
+                    "item.weighted.name".to_owned(),
+                    "item.weighted.description".to_owned(),
+                    1,
+                    ItemKind::Material,
+                    None,
+                    Vec::new(),
+                )
+                .unwrap()
+                .with_mass_grams(40_000)
+                .unwrap(),
+            )
+            .unwrap();
+        let player_body = BodyProfile::new(20, 0)
+            .unwrap()
+            .with_displacement_profile(DisplacementProfile::new(50_000, 0).unwrap());
+        let rules = GameRules {
+            physical_rules: Some(PhysicalRules::default()),
+            player_body_profile: Some(player_body),
+            player_weapon_slots: vec![weapon_slot],
+            player_starting_weapons: vec![weapon_id.clone()],
+            player_starting_equipment: vec![Some(weapon_id)],
+            weapons,
+            items,
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#...#\n#####"),
+            GridPos::new(2, 1),
+            1234,
+            rules,
+        )
+        .unwrap();
+        let player = game.player_id();
+        let source = game
+            .spawn_actor(Actor::new(GridPos::new(1, 1), 20).unwrap())
+            .unwrap();
+        game.spawn_ground_item(GridPos::new(2, 1), item_id.clone(), 1)
+            .unwrap();
+
+        assert_eq!(game.actor_carried_mass_grams(player), Some(30_000));
+        assert_eq!(
+            game.process_player_command(GameCommand::PickUp),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actor_carried_mass_grams(player), Some(70_000));
+        let item = game
+            .player_inventory()
+            .iter()
+            .find(|entry| entry.item() == &item_id)
+            .map(|entry| entry.instance())
+            .unwrap();
+        game.drain_events();
+
+        game.resolve_forced_movement(
+            source,
+            player,
+            GridPos::new(1, 1),
+            attack,
+            ForcedMovement::new(1, 0),
+        );
+        assert_eq!(
+            game.actors().get(player).map(Actor::position),
+            Some(GridPos::new(2, 1))
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ForcedMovementResolved {
+                target,
+                force: 10,
+                resistance: Some(12),
+                outcome: ForcedMovementOutcome::Resisted,
+                ..
+            } if *target == player
+        )));
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::DropItem { item }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actor_carried_mass_grams(player), Some(30_000));
+        game.drain_events();
+        game.resolve_forced_movement(
+            source,
+            player,
+            GridPos::new(1, 1),
+            attack,
+            ForcedMovement::new(1, 0),
+        );
+        assert_eq!(
+            game.actors().get(player).map(Actor::position),
+            Some(GridPos::new(3, 1))
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ForcedMovementResolved {
+                target,
+                resistance: Some(8),
+                outcome: ForcedMovementOutcome::Moved,
+                ..
+            } if *target == player
+        )));
+    }
+
+    #[test]
+    fn sweep_hits_every_occupant_of_three_contiguous_adjacent_cells_and_starts_recovery() {
+        let attack = AttackProfile::melee(DamageType::Kinetic, 12)
+            .with_melee_impact(MeleeImpactProfile::new(10, 0))
+            .unwrap();
+        let (mut game, technique) = game_with_learned_sweep(attack);
+        let player = game.player_id();
+        game.actors.move_to(player, GridPos::new(2, 2)).unwrap();
+        game.player_visibility.recompute(
+            &game.map,
+            GridPos::new(2, 2),
+            game.rules.player_field_of_view,
+        );
+        let center = game
+            .spawn_actor(build_actor(GridPos::new(3, 2), 30).with_evasion_disabled())
+            .unwrap();
+        let upper = game
+            .spawn_actor(build_actor(GridPos::new(3, 1), 30).with_evasion_disabled())
+            .unwrap();
+        let lower = game
+            .spawn_actor(build_actor(GridPos::new(3, 3), 30).with_evasion_disabled())
+            .unwrap();
+        let outside = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30).with_evasion_disabled())
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![center],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+
+        for target in [center, upper, lower] {
+            assert_eq!(game.actors().get(target).map(Actor::integrity), Some(22));
+        }
+        assert_eq!(game.actors().get(outside).map(Actor::integrity), Some(30));
+        assert_eq!(game.player_energy().available(), 96);
+        assert_eq!(
+            game.actors()
+                .get(player)
+                .and_then(Actor::recovery_remaining),
+            Some(TimeUnits::ONE)
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed {
+                target: Some(selected),
+                affected_cells,
+                ..
+            } if *selected == center
+                && affected_cells.iter().map(|cell| cell.position).collect::<Vec<_>>()
+                    == [GridPos::new(3, 2), GridPos::new(3, 1), GridPos::new(3, 3)]
+        )));
+    }
+
+    #[test]
+    fn sweep_preview_and_free_aim_execution_share_the_same_empty_centered_arc() {
+        let attack = AttackProfile::melee(DamageType::Kinetic, 10)
+            .with_melee_impact(MeleeImpactProfile::new(10, 0))
+            .unwrap();
+        let (mut game, technique) = game_with_learned_sweep(attack);
+        let player = game.player_id();
+        game.actors.move_to(player, GridPos::new(2, 2)).unwrap();
+        game.player_visibility.recompute(
+            &game.map,
+            GridPos::new(2, 2),
+            game.rules.player_field_of_view,
+        );
+        let aimed_at = GridPos::new(3, 2);
+        let upper = game
+            .spawn_actor(build_actor(GridPos::new(3, 1), 30).with_evasion_disabled())
+            .unwrap();
+        let lower = game
+            .spawn_actor(build_actor(GridPos::new(3, 3), 30).with_evasion_disabled())
+            .unwrap();
+        assert!(game.actors.entity_at(aimed_at).is_none());
+        game.drain_events();
+        let preview = game
+            .player_weapon_technique_preview(&technique, 0, aimed_at)
+            .unwrap();
+        assert_eq!(
+            preview
+                .cells()
+                .iter()
+                .map(|cell| cell.position)
+                .collect::<Vec<_>>(),
+            [GridPos::new(3, 2), GridPos::new(3, 1), GridPos::new(3, 3)]
+        );
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechniqueAt {
+                technique: technique.clone(),
+                target: aimed_at,
+                weapon_slot: 0,
+            }),
+            CommandOutcome::Applied
+        );
+
+        for target in [upper, lower] {
+            assert_eq!(game.actors.get(target).map(Actor::integrity), Some(23));
+        }
+        assert_eq!(game.player_energy().available(), 96);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed {
+                target: None,
+                target_at,
+                affected_cells,
+                ..
+            } if *target_at == aimed_at && affected_cells == preview.cells()
+        )));
+    }
+
+    #[test]
+    fn sweep_with_insufficient_energy_is_atomic() {
+        let attack = AttackProfile::melee(DamageType::Kinetic, 12);
+        let (mut game, technique) = game_with_learned_sweep(attack);
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30).with_evasion_disabled())
+            .unwrap();
+        game.player_energy = EnergyReserve::new(3, 3).unwrap();
+        game.drain_events();
+        let before = format!("{game:?}");
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Rejected(CommandRejection::InsufficientEnergy {
+                required: 4,
+                available: 3,
+            })
+        );
+        assert_eq!(format!("{game:?}"), before);
+    }
+
+    #[test]
+    fn push_keeps_damage_when_anchoring_resists_or_the_destination_is_occupied() {
+        let attack = AttackProfile::melee(DamageType::Kinetic, 12)
+            .with_melee_impact(MeleeImpactProfile::new(20, 0))
+            .unwrap();
+        let (mut resisted, technique) = game_with_learned_push(attack, None);
+        let anchored = BodyProfile::new(30, 0)
+            .unwrap()
+            .with_displacement_profile(DisplacementProfile::new(80_000, 10).unwrap());
+        let target = resisted
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 30)
+                    .with_body_profile(anchored)
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        resisted.drain_events();
+
+        assert_eq!(
+            resisted.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            resisted.actors().get(target).map(Actor::integrity),
+            Some(21)
+        );
+        assert_eq!(
+            resisted.actors().get(target).map(Actor::position),
+            Some(GridPos::new(2, 1))
+        );
+        assert!(resisted.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ForcedMovementResolved {
+                target: moved,
+                force: 16,
+                resistance: Some(18),
+                outcome: ForcedMovementOutcome::Resisted,
+                ..
+            } if *moved == target
+        )));
+
+        let (mut blocked, technique) = game_with_learned_push(attack, None);
+        let movable = BodyProfile::new(30, 0)
+            .unwrap()
+            .with_displacement_profile(DisplacementProfile::new(80_000, 0).unwrap());
+        let target = blocked
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 30)
+                    .with_body_profile(movable)
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        let obstacle = blocked
+            .spawn_actor(build_actor(GridPos::new(3, 1), 30))
+            .unwrap();
+        blocked.drain_events();
+
+        assert_eq!(
+            blocked.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(blocked.actors().get(target).map(Actor::integrity), Some(21));
+        assert_eq!(
+            blocked.actors().get(target).map(Actor::position),
+            Some(GridPos::new(2, 1))
+        );
+        assert_eq!(
+            blocked.actors().get(obstacle).map(Actor::position),
+            Some(GridPos::new(3, 1))
+        );
+        assert!(blocked.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ForcedMovementResolved {
+                target: moved,
+                resistance: Some(8),
+                moved_distance: 0,
+                outcome: ForcedMovementOutcome::Blocked,
+                ..
+            } if *moved == target
+        )));
+    }
+
+    #[test]
+    fn push_on_a_miss_never_moves_the_target() {
+        let never_hits = HitRules {
+            minimum_hit_chance: 0,
+            maximum_hit_chance: 0,
+            ..HitRules::default()
+        };
+        let attack = AttackProfile::melee(DamageType::Kinetic, 12)
+            .with_melee_impact(MeleeImpactProfile::new(20, 0))
+            .unwrap();
+        let (mut game, technique) = game_with_learned_push(attack, Some(never_hits));
+        let body = BodyProfile::new(30, 0)
+            .unwrap()
+            .with_displacement_profile(DisplacementProfile::new(80_000, 0).unwrap());
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30).with_body_profile(body))
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors().get(target).map(Actor::position),
+            Some(GridPos::new(2, 1))
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackHitResolved {
+                target: missed,
+                hit: false,
+                ..
+            } if *missed == target
+        )));
+        assert!(
+            !game
+                .events()
+                .iter()
+                .any(|event| matches!(event, GameEvent::ForcedMovementResolved { .. }))
+        );
+    }
+
+    #[test]
+    fn push_rejects_a_weapon_without_impact_before_any_cost() {
+        let (mut game, technique) =
+            game_with_learned_push(AttackProfile::melee(DamageType::Kinetic, 12), None);
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 30).with_evasion_disabled())
+            .unwrap();
+        game.drain_events();
+        let before = format!("{game:?}");
+
+        assert!(
+            game.player_weapon_technique_targets(&technique, 0)
+                .is_empty()
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![target],
+                weapon_slot: Some(0),
+            }),
+            CommandOutcome::Rejected(CommandRejection::TechniqueWeaponHasNoImpact)
+        );
+        assert_eq!(format!("{game:?}"), before);
+    }
+
+    #[test]
+    fn actor_armor_can_fully_absorb_a_physical_hit_and_reports_the_observed_result() {
+        let rules = GameRules {
+            damage: crate::combat::DamageRules::specialized(),
+            armor_rules: Some(crate::combat::ArmorRules::default()),
+            physical_rules: Some(PhysicalRules::default()),
+            player_base_attacks: vec![AttackProfile::melee(DamageType::Kinetic, 6)],
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            5,
+            rules,
+        )
+        .unwrap();
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 10)
+                    .with_body_profile(BodyProfile::new(10, 0).unwrap().with_base_armor(10))
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 0, target }),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.actors().get(target).map(Actor::integrity), Some(10));
+        assert!(game.events().contains(&GameEvent::DamageApplied {
+            source: Some(game.player_id()),
+            target,
+            at: GridPos::new(2, 1),
+            amount: 0,
+            damage_type: DamageType::Kinetic,
+            effective_armor: 10,
+            absorbed_by_armor: 6,
+        }));
+    }
+
+    #[test]
+    fn mixed_attack_changes_hit_points_once_and_reports_every_component() {
+        let damage = DamageImpact::mixed(
+            [
+                DamageComponent::new(6, DamageType::Kinetic),
+                DamageComponent::new(4, DamageType::Piercing),
+                DamageComponent::new(8, DamageType::Electrical),
+            ],
+            0,
+            [],
+        )
+        .unwrap();
+        let rules = GameRules {
+            damage: crate::combat::DamageRules::specialized(),
+            armor_rules: Some(crate::combat::ArmorRules::default()),
+            player_base_attacks: vec![
+                AttackProfile::melee(DamageType::Kinetic, 1).with_damage(damage),
+            ],
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            5,
+            rules,
+        )
+        .unwrap();
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 30)
+                    .with_body_profile(BodyProfile::new(30, 0).unwrap().with_base_armor(4))
+                    .with_resistances(ResistanceProfile::default().with(DamageType::Electrical, 50))
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 0, target }),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.actors().get(target).map(Actor::integrity), Some(20));
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DamageImpactApplied {
+                source: Some(source),
+                target: damaged,
+                amount: 10,
+                components,
+                effective_armor: 4,
+                absorbed_by_armor: 4,
+                ..
+            } if *source == game.player_id()
+                && *damaged == target
+                && components.len() == 3
+                && components.iter().map(|component| component.amount).sum::<u16>() == 10
+        )));
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DamageApplied { target: damaged, .. } if *damaged == target
+        )));
+    }
+
+    #[test]
+    fn body_profiles_derive_full_spawn_hit_points_from_resilience() {
+        let rules = GameRules {
+            physical_rules: Some(PhysicalRules::default()),
+            player_body_profile: Some(BodyProfile::new(100, 0).unwrap()),
+            player_starting_attributes: PrimaryAttributes::new(5, 5, 8, 5, 5),
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            7,
+            rules,
+        )
+        .unwrap();
+
+        let player = game.actors().get(game.player_id()).unwrap();
+        assert_eq!(player.integrity(), 115);
+        assert_eq!(player.maximum_integrity(), 115);
+
+        let profiled = build_actor(GridPos::new(2, 1), 2)
+            .with_primary_attributes(PrimaryAttributes::new(5, 5, 3, 5, 5))
+            .with_body_profile(BodyProfile::new(50, 0).unwrap());
+        let profiled = game.spawn_actor(profiled).unwrap();
+        assert_eq!(
+            game.actors()
+                .get(profiled)
+                .map(|actor| (actor.integrity(), actor.maximum_integrity())),
+            Some((40, 40))
+        );
+    }
+
+    fn seed_with_first_roll_above(chance: u8) -> u64 {
+        (0..10_000)
+            .find(|seed| {
+                let mut rng = GameRng::from_seed(*seed);
+                rng.percentile() > chance
+            })
+            .expect("a miss-producing deterministic seed must exist")
+    }
+
+    fn seed_with_first_roll_at_most(chance: u8) -> u64 {
+        (0_u64..)
+            .find(|seed| {
+                let mut rng = GameRng::from_seed(*seed);
+                rng.percentile() <= chance
+            })
+            .expect("one deterministic seed must produce a roll at or below the chance")
+    }
+
+    #[test]
+    fn valid_single_target_attack_uses_one_replayable_hit_roll() {
+        let chance = 74;
+        let seed = seed_with_first_roll_above(chance);
+        let rules = GameRules {
+            hit_rules: Some(HitRules::default()),
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("######\n#....#\n######"),
+            GridPos::new(2, 1),
+            seed,
+            rules,
+        )
+        .unwrap();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(3, 1), 10))
+            .unwrap();
+        game.drain_events();
+        let rng_before = game.rng_state();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 0, target }),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.actors().get(target).map(Actor::integrity), Some(10));
+        assert_ne!(game.rng_state(), rng_before);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackHitResolved {
+                attacker,
+                target: rolled_target,
+                at,
+                chance: rolled_chance,
+                roll,
+                hit: false,
+            } if *attacker == game.player_id()
+                && *rolled_target == target
+                && *at == GridPos::new(3, 1)
+                && *rolled_chance == chance
+                && *roll > chance
+        )));
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DamageApplied { target: damaged, .. } if *damaged == target
+        )));
+    }
+
+    #[test]
+    fn missed_attack_starts_recovery_and_only_an_accepted_non_offensive_action_clears_r1() {
+        let chance = 74;
+        let seed = seed_with_first_roll_above(chance);
+        let recovering_attack =
+            AttackProfile::melee(DamageType::Kinetic, 5).with_recovery_after_attack(TimeUnits::ONE);
+        let rules = GameRules {
+            hit_rules: Some(HitRules::default()),
+            player_base_attacks: vec![recovering_attack],
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            seed,
+            rules,
+        )
+        .unwrap();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 20))
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 0, target }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors().get(target).map(Actor::integrity), Some(20));
+        assert_eq!(
+            game.actors()
+                .get(game.player_id())
+                .and_then(Actor::recovery_remaining),
+            Some(TimeUnits::ONE)
+        );
+        assert!(game.events().contains(&GameEvent::ActionRecoveryStarted {
+            entity: game.player_id(),
+            remaining_actions: 1,
+        }));
+
+        for rejected in [
+            GameCommand::Attack { slot: 0, target },
+            GameCommand::UseAbility {
+                slot: 0,
+                target: GridPos::new(2, 1),
+            },
+        ] {
+            let before = format!("{game:?}");
+            assert_eq!(
+                game.process_player_command(rejected),
+                CommandOutcome::Rejected(CommandRejection::OffensiveActionBlockedByRecovery {
+                    remaining_actions: 1,
+                })
+            );
+            assert_eq!(format!("{game:?}"), before);
+        }
+
+        let before = format!("{game:?}");
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::North)),
+            CommandOutcome::Rejected(CommandRejection::BlockedByTerrain(GridPos::new(1, 0)))
+        );
+        assert_eq!(format!("{game:?}"), before);
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors()
+                .get(game.player_id())
+                .and_then(Actor::recovery_remaining),
+            None
+        );
+        assert!(game.events().contains(&GameEvent::ActionRecoveryCompleted {
+            entity: game.player_id(),
+        }));
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 0, target }),
+            CommandOutcome::Applied
+        );
+    }
+
+    #[test]
+    fn action_kind_classification_blocks_future_offensive_preparations_but_allows_support() {
+        let mut game = small_game();
+        let player = game.player_id();
+        game.actors
+            .get_mut(player)
+            .unwrap()
+            .start_action_recovery(TimeUnits::ONE);
+
+        assert_eq!(
+            game.player_command_action_kind(&GameCommand::UseAbility {
+                slot: 0,
+                target: GridPos::new(1, 1),
+            }),
+            ActionKind::Offensive
+        );
+        assert_eq!(
+            game.player_command_action_kind(&GameCommand::Wait),
+            ActionKind::Support
+        );
+    }
+
+    #[test]
+    fn active_recovery_disables_area_confirmation_but_preserves_geometric_footprint() {
+        let area = AttackProfile::new(
+            4,
+            DistanceMetric::Euclidean,
+            true,
+            DamageType::Thermal,
+            2,
+            0,
+        )
+        .with_area(AttackArea::Cone(
+            crate::combat::ConeAttack::new(1, 1, 2).unwrap(),
+        ));
+        let rules = GameRules {
+            player_base_attacks: vec![area],
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("#######\n#.....#\n#######"),
+            GridPos::new(1, 1),
+            7,
+            rules,
+        )
+        .unwrap();
+        game.actors
+            .get_mut(game.player)
+            .unwrap()
+            .start_action_recovery(TimeUnits::ONE);
+        let target = GridPos::new(4, 1);
+
+        assert_eq!(
+            game.player_attack_preview(0, target),
+            Err(CommandRejection::OffensiveActionBlockedByRecovery {
+                remaining_actions: 1,
+            })
+        );
+        assert!(game.player_attack_footprint(0, target).is_ok());
+    }
+
+    #[test]
+    fn rejected_attack_and_certain_inert_target_consume_no_hit_roll() {
+        let rules = GameRules {
+            hit_rules: Some(HitRules::default()),
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("#######\n#.....#\n#######"),
+            GridPos::new(1, 1),
+            19,
+            rules,
+        )
+        .unwrap();
+        let distant = game
+            .spawn_actor(build_actor(GridPos::new(4, 1), 10))
+            .unwrap();
+        let inert = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 10).with_evasion_disabled())
+            .unwrap();
+        game.drain_events();
+        let rng_before = game.rng_state();
+
+        assert!(matches!(
+            game.process_player_command(GameCommand::Attack {
+                slot: 0,
+                target: distant,
+            }),
+            CommandOutcome::Rejected(CommandRejection::TargetOutOfRange(target))
+                if target == distant
+        ));
+        assert_eq!(game.rng_state(), rng_before);
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack {
+                slot: 0,
+                target: inert,
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.rng_state(), rng_before);
+        assert_eq!(game.actors().get(inert).map(Actor::integrity), Some(5));
+        assert!(
+            !game
+                .events()
+                .iter()
+                .any(|event| matches!(event, GameEvent::AttackHitResolved { .. }))
+        );
+    }
+
+    #[test]
+    fn destructible_actors_chain_their_bounded_radial_effects() {
+        let mut game = GameState::new(
+            parse_map("########\n#......#\n########"),
+            GridPos::new(1, 1),
+            7,
+        )
+        .unwrap_or_else(|error| panic!("valid test game failed to initialize: {error}"));
+        let explosion = RadialDamageEffect {
+            maximum_cost: 1,
+            neighbor_mode: crate::world::NeighborMode::Cardinal,
+            propagation_policy: crate::world::TerrainPropagationPolicy::blocked_by_walls(1),
+            damage: DamagePacket::new(5, DamageType::Explosive, 0),
+            falloff: crate::effects::DamageFalloff::None,
+        };
+        let first =
+            game.spawn_actor(build_actor(GridPos::new(2, 1), 5).with_destruction_effect(
+                crate::effects::DestructionEffect::new(explosion.clone()),
+            ))
+            .unwrap_or_else(|error| panic!("valid destructible failed to spawn: {error}"));
+        let second = game
+            .spawn_actor(
+                build_actor(GridPos::new(3, 1), 5)
+                    .with_destruction_effect(crate::effects::DestructionEffect::new(explosion)),
+            )
+            .unwrap_or_else(|error| panic!("valid destructible failed to spawn: {error}"));
+        let victim = game
+            .spawn_actor(build_actor(GridPos::new(4, 1), 5))
+            .unwrap_or_else(|error| panic!("valid victim failed to spawn: {error}"));
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack {
+                slot: 0,
+                target: first,
+            }),
+            CommandOutcome::Applied
+        );
+
+        assert!(game.actors().get(first).is_none());
+        assert!(game.actors().get(second).is_none());
+        assert!(game.actors().get(victim).is_none());
+        let detonations: Vec<_> = game
+            .events()
+            .iter()
+            .filter_map(|event| match event {
+                GameEvent::EntityDestructionTriggered { entity, at } => Some((*entity, *at)),
+                _ => None,
+            })
+            .collect();
+        assert_eq!(
+            detonations,
+            vec![(first, GridPos::new(2, 1)), (second, GridPos::new(3, 1))]
+        );
+        assert_eq!(
+            game.actors().get(game.player_id()).map(Actor::integrity),
+            Some(15)
+        );
+    }
+
+    #[test]
+    fn volatile_destruction_hurts_every_actor_and_leaves_a_chebyshev_fire_disk() {
+        let mut game = GameState::new(
+            parse_map(
+                "#########\n#.......#\n#.......#\n#.......#\n#.......#\n#.......#\n#.......#\n#.......#\n#########",
+            ),
+            GridPos::new(3, 4),
+            7,
+        )
+        .unwrap_or_else(|error| panic!("valid test game failed to initialize: {error}"));
+        let explosion = RadialDamageEffect {
+            maximum_cost: 2,
+            neighbor_mode: crate::world::NeighborMode::CardinalAndDiagonal,
+            propagation_policy: crate::world::TerrainPropagationPolicy::blocked_by_walls(1),
+            damage: DamagePacket::new(5, DamageType::Explosive, 0),
+            falloff: crate::effects::DamageFalloff::None,
+        };
+        let fire = GroundEffectSpec::new(
+            "core:test_barrel_fire".parse().unwrap(),
+            3,
+            DamagePacket::new(2, DamageType::Thermal, 0),
+        )
+        .unwrap();
+        let barrel = game
+            .spawn_actor(build_actor(GridPos::new(4, 4), 5).with_destruction_effect(
+                crate::effects::DestructionEffect::new(explosion).with_ground_effect(fire.clone()),
+            ))
+            .unwrap_or_else(|error| panic!("valid destructible failed to spawn: {error}"));
+        let bystander = game
+            .spawn_actor(build_actor(GridPos::new(5, 4), 10))
+            .unwrap_or_else(|error| panic!("valid bystander failed to spawn: {error}"));
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack {
+                slot: 0,
+                target: barrel,
+            }),
+            CommandOutcome::Applied
+        );
+
+        assert!(game.actors().get(barrel).is_none());
+        assert_eq!(
+            game.actors().get(game.player_id()).map(Actor::integrity),
+            Some(15)
+        );
+        assert_eq!(game.actors().get(bystander).map(Actor::integrity), Some(5));
+        assert_eq!(game.ground_effects().iter().count(), 25);
+        assert!(
+            game.ground_effects()
+                .at(GridPos::new(4, 2))
+                .any(|effect| effect.definition() == fire.id())
+        );
+        assert!(
+            game.ground_effects()
+                .at(GridPos::new(2, 2))
+                .any(|effect| effect.definition() == fire.id())
+        );
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors().get(game.player_id()).map(Actor::integrity),
+            Some(13)
+        );
+        assert_eq!(game.actors().get(bystander).map(Actor::integrity), Some(3));
     }
 
     #[test]
@@ -3723,6 +21611,104 @@ mod tests {
             game.actors().get(hunter_id).map(Actor::position),
             Some(GridPos::new(3, 1))
         );
+    }
+
+    #[test]
+    fn recovering_ai_waits_for_one_real_turn_before_attacking_again() {
+        let mut game =
+            GameState::new(parse_map("#####\n#...#\n#####"), GridPos::new(1, 1), 1).unwrap();
+        let hunter = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 10)
+                    .with_attack(
+                        AttackProfile::melee(DamageType::Kinetic, 2)
+                            .with_recovery_after_attack(TimeUnits::ONE),
+                    )
+                    .with_ai(AiProfile::hunter(8, 0)),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors().get(game.player_id()).map(Actor::integrity),
+            Some(18)
+        );
+        assert_eq!(
+            game.actors()
+                .get(hunter)
+                .and_then(Actor::recovery_remaining),
+            Some(TimeUnits::ONE)
+        );
+
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors().get(game.player_id()).map(Actor::integrity),
+            Some(18)
+        );
+        assert!(
+            game.events()
+                .contains(&GameEvent::EntityWaited { entity: hunter })
+        );
+        assert!(
+            game.events()
+                .contains(&GameEvent::ActionRecoveryCompleted { entity: hunter })
+        );
+
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors().get(game.player_id()).map(Actor::integrity),
+            Some(16)
+        );
+    }
+
+    #[test]
+    fn leashed_hunter_breaks_off_and_returns_home() {
+        let mut game = GameState::new(
+            parse_map("##########\n#........#\n##########"),
+            GridPos::new(3, 1),
+            1,
+        )
+        .unwrap();
+        let home = GridPos::new(6, 1);
+        let profile = AiProfile::hunter(8, 0).with_maximum_pursuit_distance(
+            std::num::NonZeroU16::new(3).expect("constant is non-zero"),
+        );
+        let hunter_id = game
+            .spawn_actor(
+                build_actor(home, 10)
+                    .with_attack(AttackProfile::melee(DamageType::Kinetic, 2))
+                    .with_ai(profile),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors().get(hunter_id).unwrap().position(),
+            GridPos::new(5, 1)
+        );
+        assert_eq!(game.actors().get(hunter_id).unwrap().ai_home(), Some(home));
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::West)),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors().get(hunter_id).unwrap().position(), home);
     }
 
     #[test]
@@ -4008,7 +21994,7 @@ mod tests {
         );
         assert_eq!(game.turn(), turn_before_learning);
         assert_eq!(game.player_progression().unspent_skill_points(), 0);
-        assert_eq!(game.player_skills().rank(&discipline), 1);
+        assert_eq!(game.player_skills().learned_count(&discipline), 1);
         assert!(game.player_skills().has_learned(&technique));
         assert_eq!(
             game.events(),
@@ -4016,7 +22002,7 @@ mod tests {
                 entity: game.player_id(),
                 technique,
                 discipline,
-                rank: 1,
+                choice_number: 1,
                 skill_points_spent: 1,
                 skill_points_remaining: 0,
             }]
@@ -4035,6 +22021,67 @@ mod tests {
         restored
             .restore_player_progression(&saved)
             .unwrap_or_else(|error| panic!("valid progression failed to restore: {error}"));
+        assert_eq!(restored.player_progression(), game.player_progression());
+        assert_eq!(restored.player_skills(), game.player_skills());
+    }
+
+    #[test]
+    fn skill_learning_continues_beyond_the_fifth_choice() {
+        let mut rules = rules_with_reconnaissance(ProgressionRules {
+            starting_skill_points: 20,
+            skill_points_per_level: 0,
+            ..ProgressionRules::default()
+        });
+        rules.enabled_system_features = SystemFeatureSet::new(
+            ["core:traces", "core:secrets", "core:energy_states"]
+                .into_iter()
+                .map(str::parse)
+                .collect::<Result<Vec<_>, crate::content::ContentIdError>>()
+                .unwrap(),
+        );
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules.clone(),
+        )
+        .unwrap_or_else(|error| panic!("valid test game failed to initialize: {error}"));
+        game.player_progression
+            .award(&ExperienceAward::repeatable(70), &game.rules.progression);
+        assert_eq!(game.player_progression.level(), 5);
+        let discipline: DisciplineId = "core:reconnaissance".parse().unwrap();
+        let choices = ["rec_01", "rec_02", "rec_03", "rec_04", "rec_05", "rec_09"];
+
+        for name in choices {
+            let technique: TechniqueId = format!("core:{name}").parse().unwrap();
+            assert_eq!(
+                game.process_player_command(GameCommand::LearnTechnique { technique }),
+                CommandOutcome::AppliedWithoutTime
+            );
+        }
+
+        assert_eq!(game.player_skills().choices(&discipline).len(), 6);
+        assert_eq!(game.player_skills().learned_count(&discipline), 6);
+        assert_eq!(game.player_progression().unspent_skill_points(), 8);
+        assert!(matches!(
+            game.events().last(),
+            Some(GameEvent::TechniqueLearned {
+                choice_number: 6,
+                skill_points_spent: 3,
+                skill_points_remaining: 8,
+                ..
+            })
+        ));
+
+        let saved = game.export_player_progression().unwrap();
+        let mut restored = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            99,
+            rules,
+        )
+        .unwrap();
+        restored.restore_player_progression(&saved).unwrap();
         assert_eq!(restored.player_progression(), game.player_progression());
         assert_eq!(restored.player_skills(), game.player_skills());
     }
@@ -4082,7 +22129,8 @@ mod tests {
         let target = game
             .spawn_actor(
                 build_actor(GridPos::new(2, 1), 9)
-                    .with_resistances(ResistanceProfile::default().with(DamageType::Kinetic, 25)),
+                    .with_resistances(ResistanceProfile::default().with(DamageType::Kinetic, 25))
+                    .with_body_profile(BodyProfile::new(9, 0).unwrap().with_base_armor(3)),
             )
             .unwrap_or_else(|error| panic!("valid target failed to spawn: {error}"));
         let technique: TechniqueId = "core:rec_01"
@@ -4100,6 +22148,7 @@ mod tests {
             game.process_player_command(GameCommand::UseTechnique {
                 technique: technique.clone(),
                 targets: vec![target],
+                weapon_slot: None,
             }),
             CommandOutcome::Applied
         );
@@ -4118,11 +22167,409 @@ mod tests {
                     at: GridPos::new(2, 1),
                     integrity: 9,
                     maximum_integrity: 9,
+                    armor: 3,
                     resistances: ResistanceProfile::default().with(DamageType::Kinetic, 25),
+                },
+                GameEvent::PhysicalWeaknessIdentified {
+                    observer: game.player_id(),
+                    target,
                 },
                 GameEvent::TurnCompleted { turn: 1 },
             ]
         );
+    }
+
+    #[test]
+    fn multi_ut_preparation_exposes_each_step_before_executing_exactly_once() {
+        let rules = with_technique_preparation(
+            rules_with_reconnaissance(ProgressionRules {
+                starting_skill_points: 1,
+                ..ProgressionRules::default()
+            }),
+            "core:rec_02",
+            2,
+            None,
+        );
+        let mut game = GameState::new_with_rules(
+            parse_map("#######\n#.....#\n#######"),
+            GridPos::new(1, 1),
+            7,
+            rules,
+        )
+        .unwrap();
+        let technique: TechniqueId = "core:rec_02".parse().unwrap();
+        assert_eq!(
+            game.process_player_command(GameCommand::LearnTechnique {
+                technique: technique.clone(),
+            }),
+            CommandOutcome::AppliedWithoutTime
+        );
+        let enemy = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 20)
+                    .with_attack(AttackProfile::melee(DamageType::Kinetic, 2))
+                    .with_ai(AiProfile::hunter(8, 0)),
+            )
+            .unwrap();
+        game.drain_events();
+        let command = GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: Vec::new(),
+            weapon_slot: None,
+        };
+
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.turn(), 1);
+        assert_eq!(
+            game.player_technique_preparation()
+                .map(|state| state.remaining_steps().get()),
+            Some(2)
+        );
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationStarted {
+                    entity: game.player_id(),
+                    technique: technique.clone(),
+                    remaining_steps: 2,
+                })
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed { attacker, .. } if *attacker == enemy
+        )));
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::TechniqueUsed { .. } | GameEvent::MovementTracesRead { .. }
+        )));
+
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.turn(), 2);
+        assert_eq!(
+            game.player_technique_preparation()
+                .map(|state| state.remaining_steps().get()),
+            Some(1)
+        );
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationAdvanced {
+                    entity: game.player_id(),
+                    technique: technique.clone(),
+                    remaining_steps: 1,
+                })
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::TechniqueUsed { .. } | GameEvent::MovementTracesRead { .. }
+        )));
+
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.turn(), 3);
+        assert!(game.player_technique_preparation().is_none());
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationCompleted {
+                    entity: game.player_id(),
+                    technique: technique.clone(),
+                })
+        );
+        assert_eq!(
+            game.events()
+                .iter()
+                .filter(|event| matches!(event, GameEvent::TechniqueUsed { .. }))
+                .count(),
+            1
+        );
+        assert!(
+            game.events()
+                .iter()
+                .any(|event| matches!(event, GameEvent::MovementTracesRead { .. }))
+        );
+        assert_eq!(game.actors().get(game.player_id()).unwrap().integrity(), 14);
+    }
+
+    #[test]
+    fn rejected_command_preserves_preparation_but_a_real_other_action_cancels_it() {
+        let rules = with_technique_preparation(
+            rules_with_reconnaissance(ProgressionRules {
+                starting_skill_points: 1,
+                ..ProgressionRules::default()
+            }),
+            "core:rec_02",
+            1,
+            None,
+        );
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            7,
+            rules,
+        )
+        .unwrap();
+        let technique: TechniqueId = "core:rec_02".parse().unwrap();
+        game.process_player_command(GameCommand::LearnTechnique {
+            technique: technique.clone(),
+        });
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::West)),
+            CommandOutcome::Rejected(CommandRejection::BlockedByTerrain(GridPos::new(0, 1)))
+        );
+        assert!(game.player_technique_preparation().is_some());
+        assert!(game.events().is_empty());
+        assert_eq!(game.turn(), 1);
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+        assert!(game.player_technique_preparation().is_none());
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationCancelled {
+                    entity: game.player_id(),
+                    technique,
+                    reason: PreparationCancellationReason::DifferentAction,
+                })
+        );
+        assert_eq!(game.turn(), 2);
+    }
+
+    #[test]
+    fn failed_disruption_breaks_preparation_then_protects_the_next_actor_phase() {
+        let intensity = 55;
+        let chance = StabilityRules::default().resistance_chance(
+            Some(PrimaryAttributes::prototype_default()),
+            0,
+            intensity,
+        );
+        let mut rules = with_technique_preparation(
+            rules_with_reconnaissance(ProgressionRules {
+                starting_skill_points: 1,
+                ..ProgressionRules::default()
+            }),
+            "core:rec_02",
+            2,
+            None,
+        );
+        rules.wait_continues_technique_preparation = true;
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            seed_with_first_roll_above(chance),
+            rules,
+        )
+        .unwrap();
+        let technique: TechniqueId = "core:rec_02".parse().unwrap();
+        game.process_player_command(GameCommand::LearnTechnique {
+            technique: technique.clone(),
+        });
+        let disruption =
+            PreparationDisruption::new(PreparationDisruptionFamily::SystemShock, intensity)
+                .unwrap();
+        let source = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 20)
+                    .with_attack(
+                        AttackProfile::melee(DamageType::Kinetic, 1)
+                            .with_preparation_disruption(disruption),
+                    )
+                    .with_ai(AiProfile::hunter(8, 0)),
+            )
+            .unwrap();
+        game.drain_events();
+        let command = GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: Vec::new(),
+            weapon_slot: None,
+        };
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Applied
+        );
+        assert!(game.player_technique_preparation().is_none());
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed { attacker, .. } if *attacker == source
+        )));
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::PreparationDisruptionResolved {
+                chance: Some(rolled_chance),
+                roll: Some(roll),
+                outcome: PreparationDisruptionOutcome::Interrupted,
+                ..
+            } if *rolled_chance == chance && *roll > chance
+        )));
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationCancelled {
+                    entity: game.player_id(),
+                    technique: technique.clone(),
+                    reason: PreparationCancellationReason::Disrupted,
+                })
+        );
+
+        game.drain_events();
+        let rng_before_protected_hit = game.rng_state();
+        assert_eq!(
+            game.process_player_command(command),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.rng_state(), rng_before_protected_hit);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::PreparationDisruptionResolved {
+                outcome: PreparationDisruptionOutcome::Protected,
+                chance: None,
+                roll: None,
+                ..
+            }
+        )));
+        assert!(game.player_technique_preparation().is_some());
+        assert!(
+            game.events()
+                .contains(&GameEvent::PreparationInterruptionProtectionChanged {
+                    entity: game.player_id(),
+                    family: PreparationDisruptionFamily::SystemShock,
+                    active: false,
+                })
+        );
+    }
+
+    #[test]
+    fn resisted_disruption_keeps_preparation_and_arms_no_protection() {
+        let intensity = 55;
+        let chance = StabilityRules::default().resistance_chance(
+            Some(PrimaryAttributes::prototype_default()),
+            0,
+            intensity,
+        );
+        let rules = with_technique_preparation(
+            rules_with_reconnaissance(ProgressionRules {
+                starting_skill_points: 1,
+                ..ProgressionRules::default()
+            }),
+            "core:rec_02",
+            2,
+            None,
+        );
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            seed_with_first_roll_at_most(chance),
+            rules,
+        )
+        .unwrap();
+        let technique: TechniqueId = "core:rec_02".parse().unwrap();
+        game.process_player_command(GameCommand::LearnTechnique {
+            technique: technique.clone(),
+        });
+        game.process_player_command(GameCommand::UseTechnique {
+            technique,
+            targets: Vec::new(),
+            weapon_slot: None,
+        });
+        game.drain_events();
+        let disruption =
+            PreparationDisruption::new(PreparationDisruptionFamily::SystemShock, intensity)
+                .unwrap();
+
+        game.resolve_preparation_disruption(game.player_id(), game.player_id(), disruption);
+
+        assert!(game.player_technique_preparation().is_some());
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::PreparationDisruptionResolved {
+                outcome: PreparationDisruptionOutcome::Resisted,
+                chance: Some(rolled_chance),
+                roll: Some(roll),
+                ..
+            } if *rolled_chance == chance && *roll <= chance
+        )));
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::PreparationInterruptionProtectionChanged { .. }
+                | GameEvent::TechniquePreparationCancelled { .. }
+        )));
+    }
+
+    #[test]
+    fn tracked_target_leaving_range_cancels_preparation_after_actor_phase() {
+        let rules = with_technique_preparation(
+            rules_with_reconnaissance(ProgressionRules {
+                starting_skill_points: 1,
+                ..ProgressionRules::default()
+            }),
+            "core:rec_01",
+            1,
+            Some(TechniqueAction::AnalyzeTarget { range: 1 }),
+        );
+        let mut game = GameState::new_with_rules(
+            parse_map("#######\n#.....#\n#######"),
+            GridPos::new(2, 1),
+            7,
+            rules,
+        )
+        .unwrap();
+        let technique: TechniqueId = "core:rec_01".parse().unwrap();
+        game.process_player_command(GameCommand::LearnTechnique {
+            technique: technique.clone(),
+        });
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(3, 1), 20)
+                    .with_attack(AttackProfile::melee(DamageType::Kinetic, 1))
+                    .with_ai(AiProfile::skirmisher(8, 0, 3)),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: vec![target],
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors().get(target).unwrap().position(),
+            GridPos::new(4, 1)
+        );
+        assert!(game.player_technique_preparation().is_none());
+        assert!(
+            game.events()
+                .contains(&GameEvent::TechniquePreparationCancelled {
+                    entity: game.player_id(),
+                    technique,
+                    reason: PreparationCancellationReason::TargetUnavailable,
+                })
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::TechniqueUsed { .. } | GameEvent::TargetAnalyzed { .. }
+        )));
     }
 
     #[test]
@@ -4154,6 +22601,7 @@ mod tests {
             game.process_player_command(GameCommand::UseTechnique {
                 technique: technique.clone(),
                 targets: Vec::new(),
+                weapon_slot: None,
             }),
             CommandOutcome::Applied
         );
@@ -4206,6 +22654,7 @@ mod tests {
     fn learned_recon_game(energy: u16) -> GameState {
         let mut rules = rules_with_reconnaissance(ProgressionRules {
             starting_skill_points: 9,
+            skill_points_per_level: 0,
             ..ProgressionRules::default()
         });
         rules.player_starting_energy = energy;
@@ -4217,6 +22666,9 @@ mod tests {
             rules,
         )
         .unwrap();
+        game.player_progression
+            .award(&ExperienceAward::repeatable(70), &game.rules.progression);
+        assert_eq!(game.player_progression.level(), 5);
         for technique in [
             "core:rec_01",
             "core:rec_02",
@@ -4242,6 +22694,7 @@ mod tests {
         GameCommand::UseTechnique {
             technique: "core:rec_09".parse().unwrap(),
             targets,
+            weapon_slot: None,
         }
     }
 
@@ -4279,6 +22732,7 @@ mod tests {
                 game.process_player_command(GameCommand::UseTechnique {
                     technique: "core:rec_01".parse().unwrap(),
                     targets: vec![target],
+                    weapon_slot: None,
                 }),
                 CommandOutcome::Applied
             );
@@ -4456,6 +22910,7 @@ mod tests {
             game.process_player_command(GameCommand::UseTechnique {
                 technique: "core:rec_04".parse().unwrap(),
                 targets: vec![],
+                weapon_slot: None,
             }),
             CommandOutcome::Applied
         );
@@ -4483,6 +22938,7 @@ mod tests {
             game.process_player_command(GameCommand::UseTechnique {
                 technique: "core:rec_05".parse().unwrap(),
                 targets: vec![target],
+                weapon_slot: None,
             }),
             CommandOutcome::Applied
         );
@@ -4492,17 +22948,149 @@ mod tests {
     }
 
     #[test]
-    fn startup_refuses_to_sell_a_technique_without_executable_behavior() {
-        let mut rules = rules_with_reconnaissance(ProgressionRules::default());
-        rules.enabled_system_features = SystemFeatureSet::new([
-            "core:traces".parse().unwrap(),
-            "core:secrets".parse().unwrap(),
-        ]);
-        let result =
-            GameState::new_with_rules(parse_map("###\n#.#\n###"), GridPos::new(1, 1), 0, rules);
-        assert!(
-            matches!(result, Err(GameInitError::SkillCatalog(SkillCatalogError::MissingTechniqueBehavior(id))) if id.as_str() == "core:rec_03")
+    fn meticulous_inspection_discovers_only_real_detectable_devices_after_preparation() {
+        let mut game = game_with_complete_reconnaissance(&["rec_01", "rec_03"]);
+        let payload = || {
+            vec![ScheduledExplosivePayload::new(
+                0,
+                crate::explosive::ExplosivePayload::new(
+                    crate::explosive::ExplosiveFootprint::Radial(RadialDamageEffect {
+                        maximum_cost: 1,
+                        neighbor_mode: crate::world::NeighborMode::CardinalAndDiagonal,
+                        propagation_policy:
+                            crate::world::TerrainPropagationPolicy::blocked_by_walls(1),
+                        damage: DamagePacket::new(5, DamageType::Explosive, 0),
+                        falloff: crate::effects::DamageFalloff::None,
+                    }),
+                ),
+            )]
+        };
+        let visible = game
+            .explosive_devices
+            .deploy(
+                "core:proximity_mine".parse().unwrap(),
+                None,
+                GridPos::new(3, 1),
+                Direction::North,
+                ExplosiveActivation::Remote {
+                    maximum_link_range: 6,
+                },
+                false,
+                payload(),
+            )
+            .unwrap();
+        game.explosive_devices
+            .set_optical_concealment(visible, 20)
+            .unwrap();
+        let too_well_hidden = game
+            .explosive_devices
+            .deploy(
+                "core:proximity_mine".parse().unwrap(),
+                None,
+                GridPos::new(3, 2),
+                Direction::North,
+                ExplosiveActivation::Remote {
+                    maximum_link_range: 6,
+                },
+                false,
+                payload(),
+            )
+            .unwrap();
+        game.explosive_devices
+            .set_optical_concealment(too_well_hidden, 30)
+            .unwrap();
+        let command = || GameCommand::UseTechnique {
+            technique: "core:rec_03".parse().unwrap(),
+            targets: Vec::new(),
+            weapon_slot: None,
+        };
+
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
         );
+        assert!(
+            !game
+                .explosive_devices()
+                .get(visible)
+                .unwrap()
+                .is_identified()
+        );
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert!(
+            game.explosive_devices()
+                .get(visible)
+                .unwrap()
+                .is_identified()
+        );
+        assert!(
+            !game
+                .explosive_devices()
+                .get(too_well_hidden)
+                .unwrap()
+                .is_identified()
+        );
+        assert!(game.events().contains(&GameEvent::SecretsInspected {
+            observer: game.player,
+            discovered_explosives: vec![visible],
+        }));
+    }
+
+    #[test]
+    fn energy_diagnostic_reads_a_real_drone_reserve_and_rejects_an_actor_without_one() {
+        let mut game = game_with_complete_reconnaissance(&["rec_01", "rec_03", "rec_05", "rec_08"]);
+        let drone = spawn_test_player_drone(&mut game, GridPos::new(3, 1));
+        game.actors
+            .get_mut(drone)
+            .unwrap()
+            .drone_mut()
+            .unwrap()
+            .spend_energy(13)
+            .unwrap();
+        let ordinary = game
+            .spawn_actor(Actor::new(GridPos::new(2, 2), 20).unwrap())
+            .unwrap();
+        let technique: TechniqueId = "core:rec_08".parse().unwrap();
+        assert_eq!(game.player_technique_targets(&technique), vec![drone]);
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: vec![drone],
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_energy().available(), 98);
+        assert!(game.events().contains(&GameEvent::EnergyAnalyzed {
+            observer: game.player,
+            target: drone,
+            state: EnergyAnalysis {
+                analysis_score: 70,
+                energy_available: Some(17),
+                energy_capacity: Some(30),
+                heat: None,
+                bandwidth_occupied: None,
+                bandwidth_capacity: None,
+            },
+        }));
+
+        game.drain_events();
+        let before = (game.turn(), game.player_energy());
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique,
+                targets: vec![ordinary],
+                weapon_slot: None,
+            }),
+            CommandOutcome::Rejected(CommandRejection::TechniqueTargetHasNoEnergyState(ordinary))
+        );
+        assert_eq!((game.turn(), game.player_energy()), before);
+        assert!(game.events().is_empty());
     }
 
     #[test]
@@ -4617,5 +23205,3117 @@ mod tests {
             result,
             Err(GameInitError::UnknownStatusDefinition(status)) if status == unknown
         ));
+    }
+
+    #[test]
+    fn pursuit_lifecycle_is_bounded_then_returns_cools_down_and_can_reengage() {
+        let mut game = GameState::new(
+            parse_map("#########\n#.......#\n#########"),
+            GridPos::new(1, 1),
+            1,
+        )
+        .unwrap();
+        let lifecycle = PursuitLifecycle::new(
+            std::num::NonZeroU16::new(2).unwrap(),
+            std::num::NonZeroU16::new(2).unwrap(),
+            std::num::NonZeroU16::new(2).unwrap(),
+        );
+        let enemy = game
+            .spawn_actor(
+                Actor::new(GridPos::new(6, 1), 10)
+                    .unwrap()
+                    .with_attack(AttackProfile::melee(DamageType::Kinetic, 1))
+                    .with_ai(
+                        AiProfile::hunter(10, 0)
+                            .with_maximum_pursuit_distance(std::num::NonZeroU16::new(7).unwrap())
+                            .with_pursuit_lifecycle(lifecycle),
+                    ),
+            )
+            .unwrap();
+
+        game.process_player_command(GameCommand::Wait);
+        assert!(matches!(
+            game.actors().get(enemy).unwrap().ai_state(),
+            AiState::Pursuing {
+                remaining_turns: 1,
+                ..
+            }
+        ));
+        game.process_player_command(GameCommand::Wait);
+        assert_eq!(
+            game.actors().get(enemy).unwrap().ai_state(),
+            AiState::Returning
+        );
+        for _ in 0..3 {
+            game.process_player_command(GameCommand::Wait);
+        }
+        assert!(matches!(
+            game.actors().get(enemy).unwrap().ai_state(),
+            AiState::Cooldown { .. }
+        ));
+        game.process_player_command(GameCommand::Wait);
+        game.process_player_command(GameCommand::Wait);
+        assert_eq!(
+            game.actors().get(enemy).unwrap().ai_state(),
+            AiState::Unaware
+        );
+        game.process_player_command(GameCommand::Wait);
+        assert!(matches!(
+            game.actors().get(enemy).unwrap().ai_state(),
+            AiState::Pursuing { .. }
+        ));
+    }
+
+    #[test]
+    fn lost_target_is_searched_only_at_its_last_seen_position() {
+        let map = parse_map("#########\n#.......#\n#########");
+        let lifecycle = PursuitLifecycle::new(
+            std::num::NonZeroU16::new(4).unwrap(),
+            std::num::NonZeroU16::new(2).unwrap(),
+            std::num::NonZeroU16::new(2).unwrap(),
+        );
+        let mut actor = Actor::new(GridPos::new(6, 1), 10)
+            .unwrap()
+            .with_attack(AttackProfile::melee(DamageType::Kinetic, 1))
+            .with_ai(
+                AiProfile::hunter(1, 0)
+                    .with_maximum_pursuit_distance(std::num::NonZeroU16::new(7).unwrap())
+                    .with_pursuit_lifecycle(lifecycle),
+            );
+        actor.set_ai_state(AiState::Pursuing {
+            remaining_turns: 3,
+            last_seen: GridPos::new(4, 1),
+        });
+        let occupied = BTreeSet::new();
+        let (action, state) = decide_lifecycle_action(
+            &actor,
+            AiSituation {
+                map: &map,
+                actor_position: actor.position(),
+                home_position: actor.ai_home(),
+                target_position: GridPos::new(1, 1),
+                occupied_positions: &occupied,
+                profile: actor.ai().unwrap(),
+                preferred_attack: actor.attack(0),
+            },
+            lifecycle,
+            false,
+        );
+
+        assert_eq!(action, AiAction::Move(Direction::West));
+        assert_eq!(
+            state,
+            AiState::Searching {
+                remaining_turns: 1,
+                last_seen: GridPos::new(4, 1),
+            }
+        );
+    }
+
+    #[test]
+    fn visible_threat_source_can_be_disabled_before_its_finite_zero_xp_renewal() {
+        let mut game = GameState::new(
+            parse_map("#######\n#.....#\n#######"),
+            GridPos::new(1, 1),
+            1,
+        )
+        .unwrap();
+        game.install_threat_sources(vec![ThreatSourceBlueprint {
+            position: GridPos::new(2, 1),
+            interval_turns: std::num::NonZeroU16::new(2).unwrap(),
+            maximum_active: std::num::NonZeroU16::new(1).unwrap(),
+            maximum_total: std::num::NonZeroU16::new(2).unwrap(),
+            actor: Actor::new(GridPos::new(2, 1), 4)
+                .unwrap()
+                .with_ai(AiProfile::idle())
+                .with_defeat_reward(DefeatReward::summoned(0, 0)),
+        }])
+        .unwrap();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Interact {
+                target: GridPos::new(2, 1),
+            }),
+            CommandOutcome::Applied
+        );
+        assert!(!game.threat_sources()[0].is_active());
+        assert!(game.events().contains(&GameEvent::ThreatSourceDisabled {
+            entity: game.player_id(),
+            at: GridPos::new(2, 1),
+        }));
+        for _ in 0..8 {
+            game.process_player_command(GameCommand::Wait);
+        }
+        assert_eq!(game.threat_sources()[0].spawned_total(), 0);
+        assert_eq!(game.actors().iter().count(), 1);
+    }
+
+    #[test]
+    fn reinforcement_request_accelerates_but_never_revives_or_refills_a_source() {
+        let source_position = GridPos::new(6, 1);
+        let mut game = GameState::new(
+            parse_map("########\n#......#\n########"),
+            GridPos::new(1, 1),
+            1,
+        )
+        .unwrap();
+        game.install_threat_sources(vec![ThreatSourceBlueprint {
+            position: source_position,
+            interval_turns: std::num::NonZeroU16::new(20).unwrap(),
+            maximum_active: std::num::NonZeroU16::new(1).unwrap(),
+            maximum_total: std::num::NonZeroU16::new(1).unwrap(),
+            actor: Actor::new(source_position, 4)
+                .unwrap()
+                .with_ai(AiProfile::idle())
+                .with_defeat_reward(DefeatReward::summoned(0, 0)),
+        }])
+        .unwrap();
+
+        game.request_threat_reinforcement(source_position, 3)
+            .unwrap();
+        assert_eq!(game.threat_sources()[0].remaining_turns(), 3);
+        game.process_player_command(GameCommand::Wait);
+        game.process_player_command(GameCommand::Wait);
+        assert_eq!(game.threat_sources()[0].spawned_total(), 0);
+        game.process_player_command(GameCommand::Wait);
+        assert_eq!(game.threat_sources()[0].spawned_total(), 1);
+        assert_eq!(
+            game.request_threat_reinforcement(source_position, 1),
+            Err(ThreatReinforcementRequestError::QuotaExhausted)
+        );
+        game.threat_sources[0].active = false;
+        assert_eq!(
+            game.request_threat_reinforcement(source_position, 1),
+            Err(ThreatReinforcementRequestError::SourceInactive)
+        );
+        assert_eq!(
+            game.request_threat_reinforcement(GridPos::new(5, 1), 1),
+            Err(ThreatReinforcementRequestError::UnknownSource)
+        );
+    }
+
+    #[test]
+    fn investigating_reinforcement_uses_the_latest_reported_incident_not_the_player_position() {
+        let source = GridPos::new(7, 1);
+        let first_incident = GridPos::new(5, 1);
+        let latest_incident = GridPos::new(4, 1);
+        let lifecycle = PursuitLifecycle::new(
+            std::num::NonZeroU16::new(6).unwrap(),
+            std::num::NonZeroU16::new(2).unwrap(),
+            std::num::NonZeroU16::new(2).unwrap(),
+        );
+        let mut game = GameState::new(
+            parse_map("#########\n#.......#\n#########"),
+            GridPos::new(1, 1),
+            1,
+        )
+        .unwrap();
+        game.install_threat_sources(vec![ThreatSourceBlueprint {
+            position: source,
+            interval_turns: std::num::NonZeroU16::new(20).unwrap(),
+            maximum_active: std::num::NonZeroU16::new(1).unwrap(),
+            maximum_total: std::num::NonZeroU16::new(1).unwrap(),
+            actor: Actor::new(source, 4)
+                .unwrap()
+                .with_ai(
+                    AiProfile::hunter(1, 0)
+                        .with_maximum_pursuit_distance(std::num::NonZeroU16::new(6).unwrap())
+                        .with_pursuit_lifecycle(lifecycle),
+                )
+                .with_defeat_reward(DefeatReward::summoned(0, 0)),
+        }])
+        .unwrap();
+
+        game.request_investigating_threat_reinforcement(source, first_incident, 3)
+            .unwrap();
+        game.request_investigating_threat_reinforcement(source, latest_incident, 1)
+            .unwrap();
+        assert_eq!(
+            game.threat_sources()[0].pending_investigation(),
+            Some(latest_incident)
+        );
+        game.process_player_command(GameCommand::Wait);
+        let responder = game
+            .actors()
+            .iter()
+            .find(|(_, actor)| actor.threat_source() == Some(0))
+            .map(|(entity, _)| entity)
+            .unwrap();
+        assert_eq!(
+            game.actors().get(responder).unwrap().ai_state(),
+            AiState::Responding {
+                remaining_turns: lifecycle.maximum_pursuit_turns(),
+                incident: latest_incident,
+            }
+        );
+        assert_eq!(game.threat_sources()[0].pending_investigation(), None);
+
+        game.process_player_command(GameCommand::Wait);
+        let responder = game.actors().get(responder).unwrap();
+        assert_eq!(responder.position(), GridPos::new(6, 1));
+        assert!(matches!(
+            responder.ai_state(),
+            AiState::Responding {
+                incident,
+                ..
+            } if incident == latest_incident
+        ));
+    }
+
+    #[test]
+    fn threat_renewal_obeys_simultaneous_and_lifetime_caps() {
+        let mut game = GameState::new(
+            parse_map("########\n#......#\n########"),
+            GridPos::new(1, 1),
+            1,
+        )
+        .unwrap();
+        game.install_threat_sources(vec![ThreatSourceBlueprint {
+            position: GridPos::new(6, 1),
+            interval_turns: std::num::NonZeroU16::new(1).unwrap(),
+            maximum_active: std::num::NonZeroU16::new(1).unwrap(),
+            maximum_total: std::num::NonZeroU16::new(2).unwrap(),
+            actor: Actor::new(GridPos::new(6, 1), 4)
+                .unwrap()
+                .with_ai(AiProfile::idle())
+                .with_defeat_reward(DefeatReward::summoned(0, 0)),
+        }])
+        .unwrap();
+
+        game.process_player_command(GameCommand::Wait);
+        let first = game
+            .actors()
+            .iter()
+            .find_map(|(entity, actor)| (actor.threat_source() == Some(0)).then_some(entity))
+            .unwrap();
+        game.process_player_command(GameCommand::Wait);
+        assert_eq!(game.threat_sources()[0].spawned_total(), 1);
+        game.actors.remove(first);
+        game.process_player_command(GameCommand::Wait);
+        let second = game
+            .actors()
+            .iter()
+            .find_map(|(entity, actor)| (actor.threat_source() == Some(0)).then_some(entity))
+            .unwrap();
+        assert_eq!(game.threat_sources()[0].spawned_total(), 2);
+        game.actors.remove(second);
+        for _ in 0..4 {
+            game.process_player_command(GameCommand::Wait);
+        }
+        assert_eq!(game.threat_sources()[0].spawned_total(), 2);
+        assert_eq!(game.actors().iter().count(), 1);
+        assert_eq!(game.player_progression().experience(), 0);
+    }
+
+    #[test]
+    fn adjusted_throw_needs_no_inventory_charge_and_can_hit_empty_ground() {
+        let mut game = game_with_core_demolition(
+            "#########\n#.......#\n#.......#\n#.......#\n#########",
+            &["dem_01"],
+        );
+        let target = GridPos::new(4, 2);
+        let before = inventory_quantity(&game, "core:fragmentation_charge");
+        game.drain_events();
+
+        assert_eq!(
+            use_technique_at(&mut game, "dem_01", target),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            inventory_quantity(&game, "core:fragmentation_charge"),
+            before
+        );
+        assert!(game.explosive_devices().is_empty());
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            inventory_quantity(&game, "core:fragmentation_charge"),
+            before
+        );
+
+        assert_eq!(
+            use_technique_at(&mut game, "dem_01", target),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            use_technique_at(&mut game, "dem_01", target),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            inventory_quantity(&game, "core:fragmentation_charge"),
+            before
+        );
+        assert!(game.explosive_devices().is_empty());
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ExplosivePayloadResolved { cells, .. }
+                if cells.iter().any(|cell| cell.position == target)
+        )));
+    }
+
+    #[test]
+    fn breach_charge_waits_one_response_turn_and_applies_distinct_center_damage() {
+        let mut game = game_with_core_demolition(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            &["dem_01", "dem_03"],
+        );
+        let target_at = GridPos::new(3, 2);
+        let target = game
+            .spawn_actor(inert_destructible(target_at, 100))
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            use_technique_at(&mut game, "dem_03", target_at),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            use_technique_at(&mut game, "dem_03", target_at),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors().get(target).unwrap().integrity(), 100);
+        assert_eq!(game.explosive_devices().iter().count(), 1);
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors().get(target).unwrap().integrity(), 40);
+        assert!(game.explosive_devices().is_empty());
+    }
+
+    #[test]
+    fn proximity_mine_ignores_its_placer_but_triggers_on_a_later_contact() {
+        let mut game = game_with_core_demolition(
+            "#########\n#.......#\n#.......#\n#.......#\n#########",
+            &["dem_01", "dem_03", "dem_04"],
+        );
+        let mine_at = GridPos::new(3, 2);
+        assert_eq!(
+            use_technique_at(&mut game, "dem_04", mine_at),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            use_technique_at(&mut game, "dem_04", mine_at),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.explosive_devices().iter().count(), 1);
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 1);
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::West)),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.explosive_devices().iter().count(), 1);
+        let contact = game.spawn_actor(Actor::new(mine_at, 30).unwrap()).unwrap();
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors().get(contact).unwrap().integrity(), 10);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ExplosiveTriggered { at, .. } if *at == mine_at
+        )));
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 0);
+    }
+
+    #[test]
+    fn directed_charge_and_remote_command_share_the_exact_forward_footprint() {
+        let mut game = game_with_core_demolition(
+            "#########\n#.......#\n#.......#\n#.......#\n#########",
+            &["dem_01", "dem_03", "dem_05", "dem_06"],
+        );
+        let charge_at = GridPos::new(3, 2);
+        let forward = game
+            .spawn_actor(Actor::new(GridPos::new(4, 2), 30).unwrap())
+            .unwrap();
+        assert_eq!(
+            use_technique_at(&mut game, "dem_05", charge_at),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            use_technique_at(&mut game, "dem_05", charge_at),
+            CommandOutcome::Applied
+        );
+        game.drain_events();
+        assert_eq!(
+            use_technique_at(&mut game, "dem_06", charge_at),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors().get(forward).unwrap().integrity(), 10);
+        let cells = game
+            .events()
+            .iter()
+            .find_map(|event| match event {
+                GameEvent::ExplosivePayloadResolved { cells, .. } => Some(cells),
+                _ => None,
+            })
+            .unwrap();
+        assert!(cells.iter().any(|cell| cell.position == GridPos::new(4, 2)));
+        assert!(!cells.iter().any(|cell| cell.position == GridPos::new(2, 2)));
+    }
+
+    #[test]
+    fn remote_command_honors_the_receiver_link_range_atomically() {
+        let mut game = game_with_core_demolition(
+            "############\n#..........#\n#..........#\n#..........#\n############",
+            &["dem_01", "dem_03", "dem_05", "dem_06"],
+        );
+        let charge_at = GridPos::new(7, 2);
+        let device = deploy_test_remote(&mut game, charge_at, 3);
+        let before_energy = game.player_energy().available();
+        game.drain_events();
+
+        assert!(matches!(
+            use_technique_at(&mut game, "dem_06", charge_at),
+            CommandOutcome::Rejected(CommandRejection::TechniqueNoCompatibleExplosive(at))
+                if at == charge_at
+        ));
+        assert_eq!(game.player_energy().available(), before_energy);
+        assert!(game.explosive_devices().get(device).is_some());
+        assert!(game.events().is_empty());
+    }
+
+    #[test]
+    fn recovery_is_an_active_improvement_of_disarm_and_returns_finite_material() {
+        let mut game = game_with_core_demolition(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            &["dem_02", "dem_01", "dem_03", "dem_07"],
+        );
+        let charge_at = GridPos::new(3, 2);
+        let device = deploy_test_remote(&mut game, charge_at, 6);
+        let before = inventory_quantity(&game, "core:configurable_charge");
+
+        assert_eq!(
+            use_technique_at(&mut game, "dem_02", charge_at),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            use_technique_at(&mut game, "dem_02", charge_at),
+            CommandOutcome::Applied
+        );
+        assert!(
+            game.explosive_devices()
+                .get(device)
+                .is_some_and(|device| device.is_neutralized())
+        );
+        assert_eq!(
+            use_technique_at(&mut game, "dem_07", charge_at),
+            CommandOutcome::Applied
+        );
+        assert!(game.explosive_devices().get(device).is_none());
+        assert_eq!(
+            inventory_quantity(&game, "core:configurable_charge"),
+            before + 1
+        );
+    }
+
+    #[test]
+    fn sequence_programming_selects_three_known_receivers_in_stable_order() {
+        let mut game = game_with_core_demolition(
+            "#########\n#.......#\n#.......#\n#.......#\n#########",
+            &["dem_01", "dem_03", "dem_05", "dem_08"],
+        );
+        let selected_at = GridPos::new(3, 2);
+        let selected = deploy_test_remote(&mut game, selected_at, 6);
+        let second = deploy_test_remote(&mut game, GridPos::new(2, 3), 6);
+        let third = deploy_test_remote(&mut game, GridPos::new(4, 2), 6);
+        game.drain_events();
+
+        assert_eq!(
+            use_technique_at(&mut game, "dem_08", selected_at),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            use_technique_at(&mut game, "dem_08", selected_at),
+            CommandOutcome::Applied
+        );
+        let orders = game
+            .events()
+            .iter()
+            .find_map(|event| match event {
+                GameEvent::ExplosivesProgrammed { devices, .. } => Some(devices.clone()),
+                _ => None,
+            })
+            .unwrap();
+        assert_eq!(orders, vec![(selected, 1), (second, 2), (third, 3)]);
+        assert!(matches!(
+            game.explosive_devices().get(selected).unwrap().activation(),
+            ExplosiveActivation::Timed { trigger_turn: 2 }
+        ));
+    }
+
+    #[test]
+    fn controlled_collapse_breaches_only_the_connected_bounded_support() {
+        let mut game = game_with_core_demolition(
+            "#########\n#.......#\n#..##...#\n#..##...#\n#.......#\n#########",
+            &["dem_01", "dem_03", "dem_05", "dem_08", "dem_09"],
+        );
+        let support = GridPos::new(3, 2);
+        let before = inventory_quantity(&game, "core:structural_charge");
+        for _ in 0..3 {
+            assert_eq!(
+                use_technique_at(&mut game, "dem_09", support),
+                CommandOutcome::Applied
+            );
+        }
+        assert_eq!(inventory_quantity(&game, "core:structural_charge"), before);
+        assert_eq!(game.map().tile(support).unwrap().terrain, Terrain::Wall);
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.map().tile(support).unwrap().terrain, Terrain::Floor);
+        let breached = game
+            .events()
+            .iter()
+            .find_map(|event| match event {
+                GameEvent::TerrainBreached { cells, .. } => Some(cells),
+                _ => None,
+            })
+            .unwrap();
+        assert_eq!(breached.len(), 4);
+        assert!(
+            breached
+                .iter()
+                .all(|position| (3..=4).contains(&position.x))
+        );
+    }
+
+    #[test]
+    fn combined_detonation_resolves_two_saved_stages_without_reusing_the_first_damage() {
+        let mut game = game_with_core_demolition(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            &["dem_01", "dem_03", "dem_05", "dem_08", "dem_10"],
+        );
+        let target_at = GridPos::new(3, 2);
+        let target = game
+            .spawn_actor(inert_destructible(target_at, 100))
+            .unwrap();
+        for _ in 0..3 {
+            assert_eq!(
+                use_technique_at(&mut game, "dem_10", target_at),
+                CommandOutcome::Applied
+            );
+        }
+        game.drain_events();
+        game.process_player_command(GameCommand::Wait);
+        assert_eq!(game.actors().get(target).unwrap().integrity(), 40);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ExplosivePayloadResolved {
+                stage: 1,
+                final_stage: false,
+                ..
+            }
+        )));
+        game.drain_events();
+        game.process_player_command(GameCommand::Wait);
+        assert_eq!(game.actors().get(target).unwrap().integrity(), 20);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ExplosivePayloadResolved {
+                stage: 2,
+                final_stage: true,
+                ..
+            }
+        )));
+        assert!(game.explosive_devices().is_empty());
+    }
+
+    #[test]
+    fn manoeuvre_traversal_crosses_exactly_one_deep_water_cell_after_preparation() {
+        let mut game = game_with_core_manoeuvre(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &["man_01", "man_03"],
+        );
+        let over = GridPos::new(3, 2);
+        let destination = GridPos::new(4, 2);
+        game.map.set_terrain(over, Terrain::DeepWater).unwrap();
+
+        assert_eq!(
+            use_technique_at(&mut game, "man_03", destination),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_position(), Some(GridPos::new(2, 2)));
+        assert_eq!(
+            use_technique_at(&mut game, "man_03", destination),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.player_position(), Some(destination));
+        assert_eq!(game.player_energy().available(), 96);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ObstacleTraversed {
+                entity,
+                from,
+                over: crossed,
+                to,
+            } if *entity == game.player && *from == GridPos::new(2, 2)
+                && *crossed == over && *to == destination
+        )));
+    }
+
+    #[test]
+    fn propelled_move_occupies_each_intermediate_cell_and_generates_heat() {
+        let mut game = game_with_core_manoeuvre(
+            "########\n#......#\n#......#\n#......#\n########",
+            GridPos::new(2, 2),
+            &["man_01", "man_03", "man_06"],
+        );
+        let destination = GridPos::new(4, 2);
+
+        assert_eq!(
+            use_technique_at(&mut game, "man_06", destination),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.player_position(), Some(destination));
+        assert_eq!(game.player_energy().available(), 92);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::HeatGenerated {
+                entity,
+                amount: 10,
+                ..
+            } if *entity == game.player
+        )));
+        let movement = game
+            .events()
+            .iter()
+            .filter(|event| matches!(event, GameEvent::EntityMoved { entity, .. } if *entity == game.player))
+            .count();
+        assert_eq!(movement, 2);
+    }
+
+    #[test]
+    fn charge_spends_one_turn_and_one_energy_payment_per_advanced_cell() {
+        let mut game = game_with_core_manoeuvre(
+            "#########\n#.......#\n#.......#\n#.......#\n#########",
+            GridPos::new(2, 2),
+            &["man_01", "man_04"],
+        );
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(5, 2), 100).with_evasion_disabled())
+            .unwrap();
+        let technique: TechniqueId = "core:man_04".parse().unwrap();
+        let command = || GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        };
+
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_position(), Some(GridPos::new(3, 2)));
+        assert_eq!(game.player_energy().available(), 98);
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_position(), Some(GridPos::new(4, 2)));
+        assert_eq!(game.player_energy().available(), 96);
+        let before = game.actors.get(target).unwrap().integrity();
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+
+        assert!(game.actors.get(target).unwrap().integrity() < before);
+        assert!(game.player_active_charge.is_none());
+        assert_eq!(
+            game.actors.get(game.player).unwrap().recovery_remaining(),
+            Some(TimeUnits::ONE)
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::ChargeCompleted {
+                entity,
+                target: completed_target,
+                recovery_suppressed: false,
+                ..
+            } if *entity == game.player && *completed_target == target
+        )));
+    }
+
+    #[test]
+    fn anchor_is_persistent_until_the_player_really_moves() {
+        let mut game = game_with_core_manoeuvre(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &["man_02"],
+        );
+        let technique: TechniqueId = "core:man_02".parse().unwrap();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_anchor, Some((technique.clone(), 10)));
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_anchor, Some((technique.clone(), 10)));
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+        assert!(game.player_anchor.is_none());
+        assert!(game.events().contains(&GameEvent::AnchorEnded {
+            entity: game.player,
+            technique,
+        }));
+    }
+
+    #[test]
+    fn evasive_step_moves_before_a_single_cell_attack_is_resolved() {
+        let mut game = game_with_core_manoeuvre(
+            "########\n#......#\n#......#\n#......#\n########",
+            GridPos::new(3, 2),
+            &["man_01", "man_03", "man_05"],
+        );
+        let destination = GridPos::new(3, 1);
+        assert_eq!(
+            use_technique_at(&mut game, "man_05", destination),
+            CommandOutcome::Applied
+        );
+        let attacker = game
+            .spawn_actor(
+                build_actor(GridPos::new(6, 2), 20).with_attack(AttackProfile::new(
+                    6,
+                    DistanceMetric::Chebyshev,
+                    true,
+                    DamageType::Kinetic,
+                    8,
+                    0,
+                )),
+            )
+            .unwrap();
+        let before = game.actors.get(game.player).unwrap().integrity();
+        game.drain_events();
+
+        game.perform_attack(attacker, 0, game.player).unwrap();
+
+        assert_eq!(game.player_position(), Some(destination));
+        assert_eq!(game.actors.get(game.player).unwrap().integrity(), before);
+        assert_eq!(game.player_energy().available(), 97);
+        assert!(game.events().contains(&GameEvent::EvasiveStepResolved {
+            entity: game.player,
+            from: GridPos::new(3, 2),
+            to: destination,
+            moved: true,
+        }));
+    }
+
+    #[test]
+    fn breakthrough_pushes_without_dealing_damage_and_takes_the_opened_cell() {
+        let mut game = game_with_core_manoeuvre(
+            "########\n#......#\n#......#\n#......#\n########",
+            GridPos::new(2, 2),
+            &["man_01", "man_03", "man_05", "man_06", "man_09"],
+        );
+        let target_body = BodyProfile::new(20, 0)
+            .unwrap()
+            .with_displacement_profile(DisplacementProfile::new(10_000, 0).unwrap());
+        let target = game
+            .spawn_actor(
+                build_actor(GridPos::new(3, 2), 40)
+                    .with_body_profile(target_body)
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        let technique: TechniqueId = "core:man_09".parse().unwrap();
+        let command = || GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        };
+        let before = game.actors.get(target).unwrap().integrity();
+
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.actors.get(target).unwrap().integrity(), before);
+        assert_eq!(
+            game.actors.get(target).unwrap().position(),
+            GridPos::new(4, 2)
+        );
+        assert_eq!(game.player_position(), Some(GridPos::new(3, 2)));
+        assert_eq!(game.player_energy().available(), 90);
+    }
+
+    #[test]
+    fn extraction_repositions_a_cooperative_actor_on_real_grid_cells() {
+        let mut game = game_with_core_manoeuvre(
+            "########\n#......#\n#......#\n#......#\n########",
+            GridPos::new(3, 2),
+            &["man_01", "man_03", "man_05", "man_06", "man_10"],
+        );
+        let ally_body = BodyProfile::new(20, 0)
+            .unwrap()
+            .with_displacement_profile(DisplacementProfile::new(10_000, 0).unwrap());
+        let ally = game
+            .spawn_actor(build_actor(GridPos::new(4, 2), 30).with_body_profile(ally_body))
+            .unwrap();
+        let technique: TechniqueId = "core:man_10".parse().unwrap();
+        let command = || GameCommand::UseTechnique {
+            technique: technique.clone(),
+            targets: vec![ally],
+            weapon_slot: None,
+        };
+
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.player_position(), Some(GridPos::new(2, 2)));
+        assert_eq!(
+            game.actors.get(ally).unwrap().position(),
+            GridPos::new(3, 2)
+        );
+        assert_eq!(game.player_energy().available(), 94);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AllyExtracted { ally: moved, .. } if *moved == ally
+        )));
+    }
+
+    #[test]
+    fn controlled_drone_occupies_moves_and_releases_its_reserved_bandwidth() {
+        let mut game = GameState::new_with_rules(
+            parse_map("########\n#......#\n#......#\n#......#\n########"),
+            GridPos::new(2, 2),
+            211,
+            GameRules {
+                player_system_resources: Some(super::super::SystemResourceRules::default()),
+                stealth_rules: Some(StealthRules::default()),
+                ..GameRules::default()
+            },
+        )
+        .unwrap();
+        let profile = DroneProfile::new(
+            "core:test_drone_visual".parse().unwrap(),
+            6,
+            50,
+            40,
+            2,
+            3,
+            5,
+            1,
+            1,
+            crate::drone::DroneCapabilities::default(),
+        )
+        .unwrap();
+        let drone = game
+            .spawn_player_drone(Actor::new(GridPos::new(5, 2), 10).unwrap(), profile, 20, 20)
+            .unwrap();
+        game.actors
+            .get_mut(drone)
+            .unwrap()
+            .drone_mut()
+            .unwrap()
+            .replace_order(DroneOrder::escort(game.player, 1).unwrap());
+
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 1);
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors.get(drone).map(Actor::position),
+            Some(GridPos::new(4, 2))
+        );
+        assert_eq!(
+            game.actors
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(|drone| drone.energy().available()),
+            Some(19)
+        );
+        assert_eq!(game.actors.entity_at(GridPos::new(4, 2)), Some(drone));
+
+        game.apply_damage_to(
+            Some(game.player),
+            drone,
+            DamagePacket::new(20, DamageType::Electrical, 0),
+        )
+        .unwrap();
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 0);
+        assert!(game.events().contains(&GameEvent::DroneControlReleased {
+            entity: drone,
+            controller: game.player,
+            bandwidth_released: 1,
+        }));
+    }
+
+    #[test]
+    fn learned_drone_manifestation_creates_one_real_actor_without_an_inventory_chassis() {
+        let mut game = game_with_core_drones(
+            "############\n#..........#\n#..........#\n############",
+            GridPos::new(2, 1),
+            &["drn_01"],
+        );
+        assert_eq!(
+            use_drone_technique(
+                &mut game,
+                "drn_01",
+                DroneDirective::Manifest {
+                    position: GridPos::new(3, 1),
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_energy().available(), 90);
+        let drone = game.actors().entity_at(GridPos::new(3, 1)).unwrap();
+        assert!(game.actors().get(drone).unwrap().drone().is_some());
+        assert!(matches!(
+            game.actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(DroneState::order),
+            Some(DroneOrder::Companion {
+                controller,
+                behavior: CompanionBehavior::Follow,
+            }) if *controller == game.player_id()
+        ));
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 1);
+        for _ in 0..3 {
+            assert_eq!(
+                game.process_player_command(GameCommand::Wait),
+                CommandOutcome::Applied
+            );
+        }
+        assert_eq!(
+            use_drone_technique(
+                &mut game,
+                "drn_01",
+                DroneDirective::Manifest {
+                    position: GridPos::new(2, 2),
+                },
+            ),
+            CommandOutcome::Rejected(CommandRejection::TechniqueManifestationLimitReached {
+                maximum: 1,
+            })
+        );
+    }
+
+    #[test]
+    fn manifested_drone_follows_then_assists_the_players_explicit_target() {
+        let mut game = game_with_core_drones(
+            "###########\n#.........#\n#.........#\n#.........#\n###########",
+            GridPos::new(2, 2),
+            &["drn_01"],
+        );
+        assert_eq!(
+            use_drone_technique(
+                &mut game,
+                "drn_01",
+                DroneDirective::Manifest {
+                    position: GridPos::new(2, 3),
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        let drone = game.actors().entity_at(GridPos::new(2, 3)).unwrap();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+        let initial_drone_position = GridPos::new(2, 3);
+        let following_drone_position = game.actors().get(drone).unwrap().position();
+        assert_ne!(following_drone_position, initial_drone_position);
+        assert!(
+            grid_distance(game.player_position().unwrap(), following_drone_position) <= 2,
+            "the escort must move toward its controller"
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        let player_position = game.player_position().unwrap();
+        let drone_position = game.actors().get(drone).unwrap().position();
+        assert_eq!(
+            grid_distance(player_position, drone_position),
+            1,
+            "player={player_position:?} drone={drone_position:?} order={:?}",
+            game.actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(DroneState::order),
+        );
+
+        let target = game
+            .spawn_actor(Actor::new(GridPos::new(7, 2), 20).unwrap())
+            .unwrap();
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 1, target }),
+            CommandOutcome::Applied
+        );
+
+        assert!(game.actors().get(target).unwrap().integrity() < 20);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed {
+                attacker,
+                target: Some(attacked),
+                ..
+            } if *attacker == drone && *attacked == target
+        )));
+    }
+
+    #[test]
+    fn depleted_manifested_drone_disappears_releases_control_and_can_be_manifested_again() {
+        let mut game = game_with_core_drones(
+            "###########\n#.........#\n#.........#\n#.........#\n###########",
+            GridPos::new(2, 2),
+            &["drn_01"],
+        );
+        assert_eq!(
+            use_drone_technique(
+                &mut game,
+                "drn_01",
+                DroneDirective::Manifest {
+                    position: GridPos::new(2, 3),
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        let drone = game.actors().entity_at(GridPos::new(2, 3)).unwrap();
+        game.actors
+            .get_mut(drone)
+            .and_then(Actor::drone_mut)
+            .unwrap()
+            .spend_energy(29)
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+        assert!(game.actors().get(drone).is_some());
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+
+        assert!(game.actors().get(drone).is_none());
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 0);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DroneEnergyDepleted { entity, .. } if *entity == drone
+        )));
+        assert!(game.events().contains(&GameEvent::DroneControlReleased {
+            entity: drone,
+            controller: game.player,
+            bandwidth_released: 1,
+        }));
+
+        let position = game
+            .player_position()
+            .unwrap()
+            .cardinal_neighbors()
+            .into_iter()
+            .find(|position| {
+                game.map().is_walkable(*position) && game.actors().entity_at(*position).is_none()
+            })
+            .unwrap();
+        assert!(matches!(
+            use_drone_technique(&mut game, "drn_01", DroneDirective::Manifest { position }),
+            CommandOutcome::Rejected(CommandRejection::TechniqueOnCooldown {
+                remaining_phases: 1,
+                ..
+            })
+        ));
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            use_drone_technique(&mut game, "drn_01", DroneDirective::Manifest { position },),
+            CommandOutcome::Applied
+        );
+    }
+
+    #[test]
+    fn depleted_persistent_drone_is_not_mistaken_for_a_temporary_manifestation() {
+        let mut game = GameState::new_with_rules(
+            parse_map("#######\n#.....#\n#######"),
+            GridPos::new(1, 1),
+            9,
+            GameRules {
+                player_system_resources: Some(super::super::SystemResourceRules::default()),
+                ..GameRules::default()
+            },
+        )
+        .unwrap();
+        let profile = DroneProfile::new(
+            "core:persistent_test_drone".parse().unwrap(),
+            6,
+            50,
+            40,
+            1,
+            3,
+            5,
+            1,
+            1,
+            crate::drone::DroneCapabilities::default(),
+        )
+        .unwrap();
+        let drone = game
+            .spawn_player_drone(Actor::new(GridPos::new(2, 1), 10).unwrap(), profile, 10, 0)
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+
+        assert!(game.actors().get(drone).is_some());
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DroneEnergyDepleted { entity, .. } if *entity == drone
+        )));
+    }
+
+    #[test]
+    fn companion_behaviors_are_timeless_replayable_and_change_drone_engagement() {
+        let mut game = game_with_core_drones(
+            "###########\n#.........#\n#.........#\n#.........#\n###########",
+            GridPos::new(2, 2),
+            &["drn_01"],
+        );
+        assert_eq!(
+            use_drone_technique(
+                &mut game,
+                "drn_01",
+                DroneDirective::Manifest {
+                    position: GridPos::new(2, 3),
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        let drone = game.actors().entity_at(GridPos::new(2, 3)).unwrap();
+        let target = game
+            .spawn_actor(
+                Actor::new(GridPos::new(5, 3), 20)
+                    .unwrap()
+                    .with_ai(AiProfile::hunter(8, 0)),
+            )
+            .unwrap();
+
+        let turn = game.turn();
+        assert_eq!(
+            game.process_player_command(GameCommand::SetCompanionBehavior {
+                behavior: CompanionBehavior::Passive,
+            }),
+            CommandOutcome::AppliedWithoutTime
+        );
+        assert_eq!(game.turn(), turn);
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed { attacker, .. } if *attacker == drone
+        )));
+
+        assert_eq!(
+            game.process_player_command(GameCommand::SetCompanionBehavior {
+                behavior: CompanionBehavior::Aggressive,
+            }),
+            CommandOutcome::AppliedWithoutTime
+        );
+        assert!(matches!(
+            game.actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(DroneState::order),
+            Some(DroneOrder::Companion {
+                behavior: CompanionBehavior::Aggressive,
+                ..
+            })
+        ));
+        game.drain_events();
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed {
+                attacker,
+                target: Some(attacked),
+                ..
+            } if *attacker == drone && *attacked == target
+        )));
+
+        for behavior in [CompanionBehavior::Defensive, CompanionBehavior::Follow] {
+            assert_eq!(
+                game.process_player_command(GameCommand::SetCompanionBehavior { behavior }),
+                CommandOutcome::AppliedWithoutTime
+            );
+        }
+    }
+
+    #[test]
+    fn legacy_rules_keep_newly_controlled_drones_on_hold() {
+        let mut rules = GameRules {
+            player_system_resources: Some(super::super::SystemResourceRules::default()),
+            ..GameRules::default()
+        };
+        rules.player_drone_default_support = false;
+        rules.player_companion_behaviors = false;
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#...#\n#####"),
+            GridPos::new(1, 1),
+            17,
+            rules,
+        )
+        .unwrap();
+        let profile = DroneProfile::new(
+            "core:test_legacy_drone".parse().unwrap(),
+            6,
+            50,
+            40,
+            2,
+            3,
+            5,
+            1,
+            1,
+            crate::drone::DroneCapabilities::default(),
+        )
+        .unwrap();
+        let drone = game
+            .spawn_player_drone(Actor::new(GridPos::new(2, 1), 10).unwrap(), profile, 20, 20)
+            .unwrap();
+
+        assert!(matches!(
+            game.actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(DroneState::order),
+            Some(DroneOrder::Hold)
+        ));
+    }
+
+    #[test]
+    fn autonomous_patrol_keeps_its_parameters_through_preparation_and_reserves_bandwidth() {
+        let mut game = game_with_core_drones(
+            "##########\n#........#\n#........#\n##########",
+            GridPos::new(1, 1),
+            &["drn_02", "drn_03", "drn_05", "drn_07"],
+        );
+        let drone = spawn_test_player_drone(&mut game, GridPos::new(2, 1));
+        let command = || DroneDirective::Patrol {
+            drone,
+            waypoints: vec![GridPos::new(4, 1)],
+            blocked_response: PatrolBlockedResponse::Return,
+            autonomous: true,
+        };
+
+        assert_eq!(
+            use_drone_technique(&mut game, "drn_02", command()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_energy().available(), 100);
+        assert!(matches!(
+            game.actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(DroneState::order),
+            Some(DroneOrder::Hold)
+        ));
+
+        assert_eq!(
+            use_drone_technique(&mut game, "drn_02", command()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_energy().available(), 96);
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 2);
+        assert_eq!(
+            game.actors().get(drone).map(Actor::position),
+            Some(GridPos::new(3, 1))
+        );
+        assert!(matches!(
+            game.actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(DroneState::order),
+            Some(DroneOrder::AutonomousScout {
+                remaining_unknown_steps: 6,
+                ..
+            })
+        ));
+    }
+
+    #[test]
+    fn collection_moves_a_real_ground_item_into_drone_cargo_before_delivery() {
+        let mut game = game_with_core_drones(
+            "########\n#......#\n#......#\n########",
+            GridPos::new(2, 1),
+            &["drn_01", "drn_04"],
+        );
+        let drone = spawn_test_player_drone(&mut game, GridPos::new(4, 1));
+        let item: ItemId = "core:sound_decoy".parse().unwrap();
+        let ground_item = game
+            .spawn_ground_item(GridPos::new(4, 1), item.clone(), 1)
+            .unwrap();
+
+        assert_eq!(
+            use_drone_technique(
+                &mut game,
+                "drn_04",
+                DroneDirective::Collect {
+                    drone,
+                    item: ground_item,
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        assert!(game.ground_items().get(ground_item).is_some());
+        assert_eq!(inventory_quantity(&game, item.as_str()), 0);
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert!(game.ground_items().get(ground_item).is_none());
+        assert!(
+            game.actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .and_then(DroneState::cargo)
+                .is_some()
+        );
+        assert_eq!(inventory_quantity(&game, item.as_str()), 0);
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(inventory_quantity(&game, item.as_str()), 1);
+        assert!(
+            game.actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .and_then(DroneState::cargo)
+                .is_none()
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DroneCargoDelivered { entity, definition, .. }
+                if *entity == drone && definition == &item
+        )));
+    }
+
+    #[test]
+    fn coordinated_fire_uses_the_drone_weapon_and_interposition_redirects_a_projectile() {
+        let mut fire = game_with_core_drones(
+            "#########\n#.......#\n#.......#\n#########",
+            GridPos::new(1, 1),
+            &["drn_01", "drn_03", "drn_05"],
+        );
+        let firing_drone = spawn_test_player_drone(&mut fire, GridPos::new(3, 1));
+        let target = fire
+            .spawn_actor(Actor::new(GridPos::new(6, 1), 20).unwrap())
+            .unwrap();
+
+        assert_eq!(
+            use_drone_technique(
+                &mut fire,
+                "drn_05",
+                DroneDirective::CoordinateFire {
+                    drones: vec![firing_drone],
+                    target,
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        assert_eq!(fire.actors().get(target).unwrap().integrity(), 15);
+        assert!(fire.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DamageApplied { source: Some(source), target: hit, .. }
+                if *source == firing_drone && *hit == target
+        )));
+
+        let mut guard = game_with_core_drones(
+            "#########\n#.......#\n#.......#\n#########",
+            GridPos::new(2, 1),
+            &["drn_01", "drn_03", "drn_06"],
+        );
+        let guard_drone = spawn_test_player_drone(&mut guard, GridPos::new(3, 1));
+        let attacker = guard
+            .spawn_actor(Actor::new(GridPos::new(6, 1), 20).unwrap().with_attack(
+                AttackProfile::new(
+                    6,
+                    DistanceMetric::Chebyshev,
+                    true,
+                    DamageType::Kinetic,
+                    7,
+                    0,
+                ),
+            ))
+            .unwrap();
+        let player = guard.player;
+        let player_before = guard.actors().get(player).unwrap().integrity();
+        let drone_before = guard.actors().get(guard_drone).unwrap().integrity();
+
+        assert_eq!(
+            use_drone_technique(
+                &mut guard,
+                "drn_06",
+                DroneDirective::Interpose {
+                    drone: guard_drone,
+                    ally: player,
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        guard.perform_attack(attacker, 0, player).unwrap();
+        assert_eq!(
+            guard.actors().get(player).unwrap().integrity(),
+            player_before
+        );
+        assert_eq!(
+            guard.actors().get(guard_drone).unwrap().integrity(),
+            drone_before - 7
+        );
+        assert!(guard.events().contains(&GameEvent::DroneInterposed {
+            entity: guard_drone,
+            protected: player,
+            attacker,
+            energy_spent: 3,
+        }));
+    }
+
+    #[test]
+    fn mobile_decoy_moves_before_emitting_and_pays_its_own_phase_energy() {
+        let mut game = game_with_core_drones(
+            "########\n#......#\n#......#\n########",
+            GridPos::new(1, 1),
+            &["drn_01", "drn_03"],
+        );
+        let drone = spawn_test_player_drone(&mut game, GridPos::new(2, 1));
+        let destination = GridPos::new(4, 1);
+
+        assert_eq!(
+            use_drone_technique(
+                &mut game,
+                "drn_03",
+                DroneDirective::MobileDecoy { drone, destination },
+            ),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors().get(drone).unwrap().position(),
+            GridPos::new(3, 1)
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::NoiseEmitted { source: Some(source), intensity: 30, .. }
+                if *source == drone
+        )));
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors().get(drone).unwrap().position(), destination);
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::NoiseEmitted { source: Some(source), at, intensity: 30 }
+                if *source == drone && *at == destination
+        )));
+        assert_eq!(
+            game.actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .unwrap()
+                .energy()
+                .available(),
+            25
+        );
+    }
+
+    #[test]
+    fn conditional_routine_and_coordinated_deployment_remain_bounded_physical_orders() {
+        let mut conditional = game_with_core_drones(
+            "#########\n#.......#\n#.......#\n#########",
+            GridPos::new(1, 1),
+            &["drn_01", "drn_03", "drn_05", "drn_08"],
+        );
+        let drone = spawn_test_player_drone(&mut conditional, GridPos::new(3, 1));
+        conditional.actors.get_mut(drone).unwrap().apply_damage(5);
+        let directive = || DroneDirective::Conditional {
+            drone,
+            condition: DroneCondition::IntegrityBelowPercent(80),
+            response: DroneConditionalResponse::Return,
+        };
+
+        assert_eq!(
+            use_drone_technique(&mut conditional, "drn_08", directive()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            use_drone_technique(&mut conditional, "drn_08", directive()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(conditional.player_energy().available(), 97);
+        assert_eq!(conditional.player_bandwidth().unwrap().occupied(), 1);
+        assert!(matches!(
+            conditional
+                .actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(DroneState::order),
+            Some(DroneOrder::EmergencyReturn {
+                remaining_phases: 3,
+                ..
+            })
+        ));
+
+        let mut deployment = game_with_core_drones(
+            "#########\n#.......#\n#.......#\n#########",
+            GridPos::new(1, 1),
+            &["drn_01", "drn_03", "drn_05", "drn_08", "drn_09"],
+        );
+        let drone = spawn_test_player_drone(&mut deployment, GridPos::new(2, 1));
+        let destination = GridPos::new(5, 1);
+        let directive = || DroneDirective::Deploy {
+            assignments: vec![crate::drone::DroneDeploymentAssignment {
+                drone,
+                destination,
+                role: crate::drone::DroneDeploymentRole::Guard,
+            }],
+        };
+        assert_eq!(
+            use_drone_technique(&mut deployment, "drn_09", directive()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            use_drone_technique(&mut deployment, "drn_09", directive()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(deployment.player_energy().available(), 94);
+        assert_eq!(
+            deployment.actors().get(drone).unwrap().position(),
+            GridPos::new(3, 1)
+        );
+        assert!(matches!(
+            deployment
+                .actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(DroneState::order),
+            Some(DroneOrder::Deploy { destination: ordered, .. }) if *ordered == destination
+        ));
+    }
+
+    #[test]
+    fn emergency_return_overrides_the_order_moves_by_phases_and_starts_its_cooldown() {
+        let mut game = game_with_core_drones(
+            "#########\n#.......#\n#.......#\n#########",
+            GridPos::new(1, 1),
+            &["drn_01", "drn_03", "drn_05", "drn_08", "drn_10"],
+        );
+        let drone = spawn_test_player_drone(&mut game, GridPos::new(5, 1));
+        let destination = GridPos::new(1, 1);
+        let directive = || DroneDirective::EmergencyReturn {
+            drones: vec![drone],
+            destination,
+        };
+
+        assert_eq!(
+            use_drone_technique(&mut game, "drn_10", directive()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_energy().available(), 95);
+        assert_eq!(
+            game.actors().get(drone).unwrap().position(),
+            GridPos::new(4, 1)
+        );
+        assert!(matches!(
+            game.actors()
+                .get(drone)
+                .and_then(Actor::drone)
+                .map(DroneState::order),
+            Some(DroneOrder::EmergencyReturn {
+                remaining_phases: 2,
+                ..
+            })
+        ));
+        assert!(matches!(
+            use_drone_technique(&mut game, "drn_10", directive()),
+            CommandOutcome::Rejected(CommandRejection::TechniqueOnCooldown {
+                remaining_phases: 3,
+                ..
+            })
+        ));
+    }
+
+    #[test]
+    fn silent_move_uses_two_time_units_and_removes_only_its_movement_noise() {
+        let mut game = game_with_core_furtivite(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &["fur_01"],
+        );
+        let destination = GridPos::new(3, 2);
+
+        assert_eq!(
+            use_technique_at(&mut game, "fur_01", destination),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.player_position(), Some(destination));
+        assert_eq!(game.turn(), 2);
+        assert!(game.events().contains(&GameEvent::MovementTimeCommitted {
+            entity: game.player,
+            time_units: 2,
+        }));
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::NoiseEmitted { source: Some(entity), .. } if *entity == game.player
+        )));
+    }
+
+    #[test]
+    fn covered_approach_and_low_profile_use_real_cover_and_exclude_silent_move() {
+        let map = "########\n#.##...#\n#......#\n#......#\n########";
+        let mut game = game_with_core_furtivite(
+            map,
+            GridPos::new(2, 2),
+            &["fur_01", "fur_02", "fur_03", "fur_04"],
+        );
+        let lifecycle = PursuitLifecycle::new(
+            std::num::NonZeroU16::new(6).unwrap(),
+            std::num::NonZeroU16::new(2).unwrap(),
+            std::num::NonZeroU16::new(2).unwrap(),
+        );
+        let observer = game
+            .spawn_actor(
+                Actor::new(GridPos::new(6, 2), 20)
+                    .unwrap()
+                    .with_primary_attributes(PrimaryAttributes::new(5, 5, 5, 8, 5))
+                    .with_ai(AiProfile::hunter(8, 0).with_pursuit_lifecycle(lifecycle)),
+            )
+            .unwrap();
+        let low_profile: TechniqueId = "core:fur_04".parse().unwrap();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: low_profile,
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        assert!(matches!(
+            game.actors().get(observer).unwrap().ai_state(),
+            AiState::Unaware
+        ));
+        assert_eq!(game.actor_movement_time_units(game.player), 2);
+        assert!(matches!(
+            use_technique_at(&mut game, "fur_01", GridPos::new(3, 2)),
+            CommandOutcome::Rejected(CommandRejection::TechniqueIncompatibleStealthPosture)
+        ));
+
+        let mut covered = game_with_core_furtivite(map, GridPos::new(2, 2), &["fur_01", "fur_02"]);
+        let observer = covered
+            .spawn_actor(
+                Actor::new(GridPos::new(6, 2), 20)
+                    .unwrap()
+                    .with_primary_attributes(PrimaryAttributes::new(5, 5, 5, 8, 5))
+                    .with_ai(AiProfile::hunter(8, 0).with_pursuit_lifecycle(lifecycle)),
+            )
+            .unwrap();
+        assert_eq!(
+            covered.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+        assert!(matches!(
+            covered.actors().get(observer).unwrap().ai_state(),
+            AiState::Unaware
+        ));
+    }
+
+    #[test]
+    fn emission_silence_blocks_real_remote_commands_until_toggled_back_on() {
+        let mut game = game_with_core_furtivite(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &["fur_01", "fur_02", "fur_03"],
+        );
+        let silence: TechniqueId = "core:fur_03".parse().unwrap();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: silence.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        assert!(
+            game.player_silenced_emissions
+                .contains(&SignatureChannel::ActiveEmission)
+        );
+        let position = GridPos::new(3, 2);
+        deploy_test_remote(&mut game, position, 6);
+        let remote: TechniqueId = "core:dem_06".parse().unwrap();
+        let definition = game.rules.skills.technique(&remote).unwrap().clone();
+        assert_eq!(
+            game.use_player_explosive_technique_at(&remote, position, &definition),
+            Err(TechniqueUseError::ActiveEmissionSilenced)
+        );
+
+        game.process_player_command(GameCommand::UseTechnique {
+            technique: silence,
+            targets: Vec::new(),
+            weapon_slot: None,
+        });
+        assert!(game.player_silenced_emissions.is_empty());
+    }
+
+    #[test]
+    fn ambush_and_silent_neutralization_use_awareness_contact_and_known_weakness() {
+        let choices = ["fur_01", "fur_03", "fur_05", "fur_07", "fur_10"];
+        let mut game = game_with_core_furtivite(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &choices,
+        );
+        let target = game
+            .spawn_actor(
+                Actor::new(GridPos::new(3, 2), 100)
+                    .unwrap()
+                    .with_evasion_disabled()
+                    .with_ai(AiProfile::idle()),
+            )
+            .unwrap();
+        game.player_known_physical_weaknesses.insert(target);
+        let ambush: TechniqueId = "core:fur_05".parse().unwrap();
+        let command = || GameCommand::UseTechnique {
+            technique: ambush.clone(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        };
+
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.process_player_command(command()),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.player_energy().available(), 96);
+        assert!(game.events().contains(&GameEvent::AmbushResolved {
+            entity: game.player,
+            target,
+            bonuses_applied: true,
+            silent_neutralization: true,
+        }));
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::NoiseEmitted { source: Some(entity), .. } if *entity == game.player
+        )));
+    }
+
+    #[test]
+    fn sound_decoy_needs_no_inventory_item_and_sends_ai_to_its_incident() {
+        let mut game = game_with_core_furtivite(
+            "#########\n#...#...#\n#...#...#\n#...#...#\n#########",
+            GridPos::new(1, 2),
+            &["fur_01", "fur_03", "fur_06"],
+        );
+        let lifecycle = PursuitLifecycle::new(
+            std::num::NonZeroU16::new(6).unwrap(),
+            std::num::NonZeroU16::new(2).unwrap(),
+            std::num::NonZeroU16::new(2).unwrap(),
+        );
+        let observer = game
+            .spawn_actor(
+                Actor::new(GridPos::new(6, 2), 20)
+                    .unwrap()
+                    .with_ai(AiProfile::hunter(8, 0).with_pursuit_lifecycle(lifecycle)),
+            )
+            .unwrap();
+        let at = GridPos::new(3, 2);
+        let before = inventory_quantity(&game, "core:sound_decoy");
+
+        assert_eq!(
+            use_technique_at(&mut game, "fur_06", at),
+            CommandOutcome::Applied
+        );
+        assert_eq!(inventory_quantity(&game, "core:sound_decoy"), before);
+        assert_eq!(game.sound_emitters().iter().count(), 1);
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 1);
+        assert!(matches!(
+            game.actors().get(observer).unwrap().ai_state(),
+            AiState::Responding { incident, .. } if incident == at
+        ));
+        game.process_player_command(GameCommand::Wait);
+        game.process_player_command(GameCommand::Wait);
+        assert!(game.sound_emitters().is_empty());
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 0);
+    }
+
+    #[test]
+    fn trail_break_requires_broken_los_and_suppresses_exactly_three_new_steps() {
+        let choices = ["fur_01", "fur_03", "fur_05", "fur_07"];
+        let mut visible = game_with_core_furtivite(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &choices,
+        );
+        visible
+            .spawn_actor(
+                Actor::new(GridPos::new(4, 2), 20)
+                    .unwrap()
+                    .with_ai(AiProfile::hunter(8, 0)),
+            )
+            .unwrap();
+        let rupture: TechniqueId = "core:fur_07".parse().unwrap();
+        assert_eq!(
+            visible.process_player_command(GameCommand::UseTechnique {
+                technique: rupture,
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Rejected(CommandRejection::TechniqueRequiresBrokenLineOfSight)
+        );
+
+        let mut hidden = game_with_core_furtivite(
+            "#########\n#...#...#\n#...#...#\n#...#...#\n#########",
+            GridPos::new(1, 2),
+            &choices,
+        );
+        hidden
+            .spawn_actor(
+                Actor::new(GridPos::new(6, 2), 20)
+                    .unwrap()
+                    .with_ai(AiProfile::hunter(8, 0)),
+            )
+            .unwrap();
+        let rupture: TechniqueId = "core:fur_07".parse().unwrap();
+        assert_eq!(
+            hidden.process_player_command(GameCommand::UseTechnique {
+                technique: rupture,
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        for direction in [Direction::North, Direction::East, Direction::East] {
+            assert_eq!(
+                hidden.process_player_command(GameCommand::Move(direction)),
+                CommandOutcome::Applied
+            );
+        }
+        assert!(hidden.player_trail_break.is_none());
+        for position in [GridPos::new(1, 2), GridPos::new(1, 1), GridPos::new(2, 1)] {
+            assert!(hidden.movement_traces().traces_at(position).is_empty());
+        }
+    }
+
+    #[test]
+    fn device_camouflage_needs_no_material_and_changes_device_after_preparation() {
+        let choices = ["fur_01", "fur_03", "fur_05", "fur_08"];
+        let mut game = game_with_core_furtivite(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &choices,
+        );
+        let at = GridPos::new(3, 2);
+        let device = deploy_test_remote(&mut game, at, 6);
+        let before = inventory_quantity(&game, "core:camouflage_bundle");
+
+        assert_eq!(
+            use_technique_at(&mut game, "fur_08", at),
+            CommandOutcome::Applied
+        );
+        assert_eq!(inventory_quantity(&game, "core:camouflage_bundle"), before);
+        assert_eq!(
+            use_technique_at(&mut game, "fur_08", at),
+            CommandOutcome::Applied
+        );
+        assert_eq!(inventory_quantity(&game, "core:camouflage_bundle"), before);
+        assert_eq!(
+            game.explosive_devices()
+                .get(device)
+                .unwrap()
+                .optical_concealment(),
+            20
+        );
+    }
+
+    #[test]
+    fn active_camouflage_pays_upkeep_and_an_attack_ends_it_early() {
+        let choices = ["fur_01", "fur_03", "fur_05", "fur_07", "fur_09"];
+        let mut game = game_with_core_furtivite(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &choices,
+        );
+        let camouflage: TechniqueId = "core:fur_09".parse().unwrap();
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: camouflage.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_energy().available(), 86);
+        assert!(game.player_active_camouflage.is_some());
+        assert!(
+            game.events()
+                .iter()
+                .any(|event| matches!(event, GameEvent::HeatGenerated { amount: 4, .. }))
+        );
+
+        let target = game
+            .spawn_actor(
+                Actor::new(GridPos::new(3, 2), 30)
+                    .unwrap()
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 0, target }),
+            CommandOutcome::Applied
+        );
+        assert!(game.player_active_camouflage.is_none());
+        assert!(game.events().contains(&GameEvent::ActiveCamouflageChanged {
+            entity: game.player,
+            technique: camouflage,
+            channel: SignatureChannel::Optical,
+            active: false,
+        }));
+    }
+
+    #[test]
+    fn intrusion_probe_and_forced_lock_use_real_interfaces_traces_and_door_state() {
+        let mut game = game_with_core_intrusion(
+            "#######\n#.....#\n#.....#\n#######",
+            GridPos::new(1, 1),
+            &["int_01", "int_02"],
+        );
+        let panel = GridPos::new(2, 1);
+        let door = GridPos::new(3, 1);
+        install_intrusion_panel(&mut game, panel, door);
+        let directive = IntrusionDirective::Interface { position: panel };
+
+        assert_eq!(
+            use_intrusion(&mut game, "int_01", directive.clone()),
+            CommandOutcome::Applied
+        );
+        assert!(game.intrusion_state().was_probed(panel));
+        assert_eq!(game.intrusion_state().traces().count(), 1);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::DigitalInterfaceProbed { at, analysis_score: 65, .. } if *at == panel
+        )));
+
+        assert_eq!(
+            use_intrusion(&mut game, "int_02", directive.clone()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.map().tile(door).map(|tile| tile.terrain),
+            Some(Terrain::Door(DoorState::Locked))
+        );
+        game.rng = GameRng::from_seed(2);
+        assert_eq!(
+            use_intrusion(&mut game, "int_02", directive),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.map().tile(door).map(|tile| tile.terrain),
+            Some(Terrain::Door(DoorState::Open))
+        );
+        assert_eq!(game.intrusion_state().traces().count(), 2);
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 0);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::IntrusionAttemptResolved { at, roll: 11, succeeded: true, .. }
+                if *at == panel
+        )));
+    }
+
+    #[test]
+    fn intrusion_data_spoof_backdoor_and_trace_falsification_form_one_persistent_chain() {
+        let mut game = game_with_core_intrusion(
+            "########\n#......#\n#......#\n########",
+            GridPos::new(1, 1),
+            &["int_01", "int_03", "int_05", "int_07"],
+        );
+        let panel = GridPos::new(2, 1);
+        install_intrusion_panel(&mut game, panel, GridPos::new(3, 1));
+        grant_intrusion_access(&mut game, panel);
+        let interface = IntrusionDirective::Interface { position: panel };
+
+        for _ in 0..2 {
+            assert_eq!(
+                use_intrusion(&mut game, "int_03", interface.clone()),
+                CommandOutcome::Applied
+            );
+        }
+        assert_eq!(game.intrusion_state().data_lots().len(), 1);
+        assert!(game.intrusion_state().has_credential(panel));
+
+        set_intrusion_choices(&mut game, &["int_01", "int_04"]);
+        assert_eq!(
+            use_intrusion(&mut game, "int_04", interface.clone()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.intrusion_state()
+                .session(panel)
+                .map(AccessSession::origin),
+            Some(AccessOrigin::Spoofed)
+        );
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 1);
+
+        set_intrusion_choices(&mut game, &["int_01", "int_03", "int_05", "int_07"]);
+        for _ in 0..2 {
+            assert_eq!(
+                use_intrusion(&mut game, "int_07", interface.clone()),
+                CommandOutcome::Applied
+            );
+        }
+        assert!(game.intrusion_state().has_backdoor(panel));
+        assert_eq!(
+            game.intrusion_state()
+                .session(panel)
+                .map(AccessSession::origin),
+            Some(AccessOrigin::Backdoor)
+        );
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 1);
+
+        assert_eq!(
+            use_intrusion(&mut game, "int_01", interface),
+            CommandOutcome::Applied
+        );
+        let trace = game
+            .intrusion_state()
+            .traces()
+            .filter(|trace| trace.source() == panel && !trace.was_audited())
+            .map(|trace| trace.id())
+            .last()
+            .unwrap();
+        set_intrusion_choices(&mut game, &["int_02", "int_04", "int_06", "int_08"]);
+        for _ in 0..2 {
+            assert_eq!(
+                use_intrusion(&mut game, "int_08", IntrusionDirective::Trace { trace }),
+                CommandOutcome::Applied
+            );
+        }
+        assert!(game.intrusion_state().trace(trace).unwrap().is_falsified());
+        assert!(
+            game.events()
+                .contains(&GameEvent::SecurityTraceFalsified { trace, at: panel })
+        );
+    }
+
+    #[test]
+    fn intrusion_device_subnet_and_control_lock_mutate_devices_with_bounded_bandwidth() {
+        let mut game = game_with_core_intrusion(
+            "########\n#......#\n#......#\n#......#\n########",
+            GridPos::new(1, 2),
+            &["int_01", "int_03", "int_05"],
+        );
+        let panels = [GridPos::new(2, 1), GridPos::new(2, 2), GridPos::new(2, 3)];
+        let doors = [GridPos::new(3, 1), GridPos::new(3, 2), GridPos::new(3, 3)];
+        for (panel, door) in panels.into_iter().zip(doors) {
+            install_intrusion_panel(&mut game, panel, door);
+            grant_intrusion_access(&mut game, panel);
+        }
+
+        assert_eq!(
+            use_intrusion(
+                &mut game,
+                "int_05",
+                IntrusionDirective::Command {
+                    position: panels[0],
+                    command: DeviceCommand::Open,
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        assert!(game.intrusion_state().control(panels[0]).is_some());
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 1);
+        set_intrusion_choices(
+            &mut game,
+            &["int_02", "int_04", "int_06", "int_08", "int_10"],
+        );
+        assert_eq!(
+            use_intrusion(
+                &mut game,
+                "int_10",
+                IntrusionDirective::Interface {
+                    position: panels[0],
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 2);
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert!(game.intrusion_state().control(panels[0]).is_some());
+        assert!(
+            game.events()
+                .contains(&GameEvent::DeviceControlRecaptureBlocked { at: panels[0] })
+        );
+
+        set_intrusion_choices(
+            &mut game,
+            &["int_01", "int_03", "int_05", "int_07", "int_09"],
+        );
+        let subnet = IntrusionDirective::Subnet {
+            positions: panels.to_vec(),
+            command: DeviceCommand::Open,
+        };
+        for _ in 0..3 {
+            assert_eq!(
+                use_intrusion(&mut game, "int_09", subnet.clone()),
+                CommandOutcome::Applied
+            );
+        }
+        assert_eq!(game.intrusion_state().controls().count(), 3);
+        assert_eq!(game.player_bandwidth().unwrap().occupied(), 3);
+        assert!(doors.into_iter().all(|door| matches!(
+            game.map().tile(door).map(|tile| tile.terrain),
+            Some(Terrain::Door(DoorState::Open))
+        )));
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::SubnetCommandIssued { devices, command: DeviceCommand::Open }
+                if devices == &panels
+        )));
+    }
+
+    #[test]
+    fn suspended_security_routine_blocks_a_physical_reinforcement_source_for_two_phases() {
+        let mut game = game_with_core_intrusion(
+            "#######\n#.....#\n#.....#\n#######",
+            GridPos::new(1, 1),
+            &["int_01", "int_03", "int_06"],
+        );
+        let source = GridPos::new(2, 1);
+        game.install_threat_sources(vec![ThreatSourceBlueprint {
+            position: source,
+            interval_turns: std::num::NonZeroU16::new(1).unwrap(),
+            maximum_active: std::num::NonZeroU16::new(1).unwrap(),
+            maximum_total: std::num::NonZeroU16::new(1).unwrap(),
+            actor: Actor::new(source, 4)
+                .unwrap()
+                .with_ai(AiProfile::idle())
+                .with_defeat_reward(DefeatReward::summoned(0, 0)),
+        }])
+        .unwrap();
+        grant_intrusion_access(&mut game, source);
+
+        assert_eq!(
+            use_intrusion(
+                &mut game,
+                "int_06",
+                IntrusionDirective::Routine {
+                    position: source,
+                    routine: DigitalRoutine::AutomaticResponse,
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.threat_sources()[0].spawned_total(), 0);
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.threat_sources()[0].spawned_total(), 0);
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.threat_sources()[0].spawned_total(), 1);
+    }
+
+    #[test]
+    fn engineering_repair_and_diagnostic_use_real_drone_component_state() {
+        let mut game = game_with_core_engineering(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &["ing_01", "ing_02", "ing_03"],
+        );
+        let drone = spawn_engineering_test_drone(&mut game, GridPos::new(3, 2));
+        let drive: BodyComponentId = "core:test_drive".parse().unwrap();
+        game.actors
+            .get_mut(drone)
+            .unwrap()
+            .body_component_mut(&drive)
+            .unwrap()
+            .apply_damage(15);
+        let parts_before = inventory_quantity(&game, "core:repair_parts");
+        let repair = EngineeringDirective::Component {
+            target: drone,
+            component: drive.clone(),
+        };
+
+        assert_eq!(
+            use_engineering(&mut game, "ing_01", repair.clone()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(inventory_quantity(&game, "core:repair_parts"), parts_before);
+        assert_eq!(
+            game.actors
+                .get(drone)
+                .unwrap()
+                .body_component(&drive)
+                .unwrap()
+                .durability(),
+            5
+        );
+        assert_eq!(
+            use_engineering(&mut game, "ing_01", repair.clone()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors
+                .get(drone)
+                .unwrap()
+                .body_component(&drive)
+                .unwrap()
+                .durability(),
+            20
+        );
+        assert_eq!(game.actors.get(drone).unwrap().integrity(), 20);
+        assert_eq!(inventory_quantity(&game, "core:repair_parts"), parts_before);
+
+        let energy_before = game.player_energy().available();
+        assert_eq!(
+            use_engineering(&mut game, "ing_03", repair),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_energy().available(), energy_before - 3);
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::BodyComponentDiagnosed {
+                target,
+                component,
+                durability: 20,
+                failed: false,
+                ..
+            } if *target == drone && component == &drive
+        )));
+    }
+
+    #[test]
+    fn engineering_salvage_preserves_component_durability_and_is_finite() {
+        let mut game = game_with_core_engineering(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &["ing_02"],
+        );
+        let drone = spawn_engineering_test_drone(&mut game, GridPos::new(3, 2));
+        let drive: BodyComponentId = "core:test_drive".parse().unwrap();
+        game.actors
+            .get_mut(drone)
+            .unwrap()
+            .body_component_mut(&drive)
+            .unwrap()
+            .apply_damage(7);
+        game.apply_damage_to(
+            Some(game.player),
+            drone,
+            DamagePacket::new(100, DamageType::Kinetic, 100),
+        )
+        .unwrap();
+        let wreck = game.wrecks().iter().next().unwrap().id();
+        let directive = EngineeringDirective::WreckComponent {
+            wreck,
+            component: drive.clone(),
+        };
+
+        for _ in 0..2 {
+            assert_eq!(
+                use_engineering(&mut game, "ing_02", directive.clone()),
+                CommandOutcome::Applied
+            );
+            assert_eq!(inventory_quantity(&game, "core:salvaged_component"), 0);
+        }
+        assert_eq!(
+            use_engineering(&mut game, "ing_02", directive.clone()),
+            CommandOutcome::Applied
+        );
+        let salvaged = inventory_instance(&game, "core:salvaged_component");
+        assert_eq!(game.salvaged_component(salvaged).unwrap().durability(), 13);
+        assert!(
+            game.wrecks()
+                .get(wreck)
+                .is_some_and(|wreckage| wreckage.component(&drive).is_none())
+        );
+        assert!(matches!(
+            use_engineering(&mut game, "ing_02", directive),
+            CommandOutcome::Rejected(CommandRejection::TechniqueUnknownBodyComponent(_))
+        ));
+    }
+
+    #[test]
+    fn module_tuning_changes_real_weapon_output_and_power_draw() {
+        let mut game = game_with_core_engineering(
+            "########\n#......#\n#......#\n#......#\n########",
+            GridPos::new(2, 2),
+            &["ing_01", "ing_02", "ing_03", "ing_04"],
+        );
+        let module = game.equipped_player_weapon_item(0).unwrap();
+        let parts_before = inventory_quantity(&game, "core:tuning_parts");
+        let economy = EngineeringDirective::TuneModule {
+            module,
+            tuning: ModuleTuning::Economy,
+        };
+        for _ in 0..3 {
+            assert_eq!(
+                use_engineering(&mut game, "ing_04", economy.clone()),
+                CommandOutcome::Applied
+            );
+        }
+        assert_eq!(
+            game.equipment_engineering_state(module).unwrap().tuning(),
+            Some(ModuleTuning::Economy)
+        );
+        assert_eq!(inventory_quantity(&game, "core:tuning_parts"), parts_before);
+        let target = game
+            .spawn_actor(
+                Actor::new(GridPos::new(3, 2), 20)
+                    .unwrap()
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        let energy_before = game.player_energy().available();
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 0, target }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors.get(target).unwrap().integrity(), 18);
+        assert_eq!(game.player_energy().available(), energy_before - 4);
+
+        let power = EngineeringDirective::TuneModule {
+            module,
+            tuning: ModuleTuning::Power,
+        };
+        for _ in 0..3 {
+            assert_eq!(
+                use_engineering(&mut game, "ing_04", power.clone()),
+                CommandOutcome::Applied
+            );
+        }
+        let second = game
+            .spawn_actor(
+                Actor::new(GridPos::new(4, 2), 20)
+                    .unwrap()
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        let energy_before = game.player_energy().available();
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack {
+                slot: 0,
+                target: second,
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors.get(second).unwrap().integrity(), 16);
+        assert_eq!(game.player_energy().available(), energy_before - 7);
+    }
+
+    #[test]
+    fn overclock_spends_energy_generates_heat_damages_hot_module_and_expires() {
+        let choices = ["ing_01", "ing_02", "ing_03", "ing_04", "ing_06"];
+        let mut game = game_with_core_engineering(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &choices,
+        );
+        let module = game.equipped_player_weapon_item(0).unwrap();
+        game.player_heat.as_mut().unwrap().add(100);
+        assert_eq!(
+            use_engineering(
+                &mut game,
+                "ing_06",
+                EngineeringDirective::OverclockModule { module }
+            ),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_energy().available(), 195);
+        assert_eq!(
+            game.equipment_engineering_state(module)
+                .unwrap()
+                .overclock()
+                .unwrap()
+                .remaining_time_units(),
+            2
+        );
+        let target = game
+            .spawn_actor(
+                Actor::new(GridPos::new(3, 2), 20)
+                    .unwrap()
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 0, target }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.actors.get(target).unwrap().integrity(), 16);
+        assert_eq!(game.player_energy().available(), 187);
+        assert_eq!(game.player_heat().unwrap().current(), 108);
+        assert_eq!(
+            game.equipment_engineering_state(module)
+                .unwrap()
+                .durability(),
+            98
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert!(
+            game.equipment_engineering_state(module)
+                .unwrap()
+                .overclock()
+                .is_none()
+        );
+    }
+
+    #[test]
+    fn bypass_temporarily_restores_failed_function_and_uses_a_real_donor() {
+        let choices = ["ing_01", "ing_03", "ing_05", "ing_07"];
+        let mut game = game_with_core_engineering(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &choices,
+        );
+        let drone = spawn_engineering_test_drone(&mut game, GridPos::new(3, 2));
+        let drive: BodyComponentId = "core:test_drive".parse().unwrap();
+        let sensor: BodyComponentId = "core:test_sensor".parse().unwrap();
+        game.actors
+            .get_mut(drone)
+            .unwrap()
+            .body_component_mut(&drive)
+            .unwrap()
+            .apply_damage(15);
+        assert_eq!(
+            game.move_entity(drone, Direction::East),
+            Err(MovementError::DisabledByFailedComponent)
+        );
+        let directive = EngineeringDirective::Bypass {
+            target: drone,
+            receiver: drive.clone(),
+            donor: sensor,
+        };
+        assert_eq!(
+            use_engineering(&mut game, "ing_07", directive.clone()),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            use_engineering(&mut game, "ing_07", directive),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.move_entity(drone, Direction::East),
+            Ok(GridPos::new(4, 2))
+        );
+        assert!(game.active_bypasses.contains_key(&(drone, drive)));
+    }
+
+    #[test]
+    fn field_beacon_uses_system_resources_without_parts_then_runs_on_its_reserve() {
+        let choices = ["ing_01", "ing_03", "ing_05", "ing_07", "ing_09"];
+        let mut game = game_with_core_engineering(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &choices,
+        );
+        let at = GridPos::new(3, 2);
+        let parts_before = inventory_quantity(&game, "core:repair_parts");
+        let batteries_before = inventory_quantity(&game, "core:charged_battery");
+        let directive = EngineeringDirective::AssembleAt { position: at };
+        for _ in 0..3 {
+            assert_eq!(
+                use_engineering(&mut game, "ing_09", directive.clone()),
+                CommandOutcome::Applied
+            );
+        }
+        assert_eq!(inventory_quantity(&game, "core:repair_parts"), parts_before);
+        assert_eq!(
+            inventory_quantity(&game, "core:charged_battery"),
+            batteries_before
+        );
+        let emitter = game.sound_emitters().at(at).next().unwrap();
+        assert_eq!(emitter.intensity(), 30);
+        assert_eq!(emitter.integrity(), 10);
+        assert_eq!(emitter.remaining_phases(), 9);
+    }
+
+    #[test]
+    fn engineering_improvements_execute_emergency_repair_reconditioning_and_regulated_overclock() {
+        let map = "#######\n#.....#\n#.....#\n#.....#\n#######";
+        let mut emergency =
+            game_with_core_engineering(map, GridPos::new(2, 2), &["ing_01", "ing_03", "ing_05"]);
+        let drone = spawn_engineering_test_drone(&mut emergency, GridPos::new(3, 2));
+        let drive: BodyComponentId = "core:test_drive".parse().unwrap();
+        emergency
+            .actors
+            .get_mut(drone)
+            .unwrap()
+            .body_component_mut(&drive)
+            .unwrap()
+            .apply_damage(15);
+        let parts_before = inventory_quantity(&emergency, "core:repair_parts");
+        assert_eq!(
+            use_engineering(
+                &mut emergency,
+                "ing_05",
+                EngineeringDirective::Component {
+                    target: drone,
+                    component: drive.clone(),
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            emergency
+                .actors
+                .get(drone)
+                .unwrap()
+                .body_component(&drive)
+                .unwrap()
+                .durability(),
+            15
+        );
+        assert_eq!(
+            inventory_quantity(&emergency, "core:repair_parts"),
+            parts_before
+        );
+
+        let mut workshop = game_with_core_engineering(
+            map,
+            GridPos::new(2, 2),
+            &["ing_01", "ing_03", "ing_05", "ing_08"],
+        );
+        workshop
+            .map
+            .set_protected(GridPos::new(2, 2), true)
+            .unwrap();
+        let module = workshop.equipped_player_weapon_item(0).unwrap();
+        workshop
+            .equipment_engineering
+            .get_mut(&module)
+            .unwrap()
+            .damage(60);
+        let parts_before = inventory_quantity(&workshop, "core:repair_parts");
+        for _ in 0..5 {
+            assert_eq!(
+                use_engineering(
+                    &mut workshop,
+                    "ing_08",
+                    EngineeringDirective::Module { module }
+                ),
+                CommandOutcome::Applied
+            );
+        }
+        assert_eq!(
+            workshop
+                .equipment_engineering_state(module)
+                .unwrap()
+                .durability(),
+            90
+        );
+        assert_eq!(
+            inventory_quantity(&workshop, "core:repair_parts"),
+            parts_before
+        );
+
+        let mut regulated = game_with_core_engineering(
+            map,
+            GridPos::new(2, 2),
+            &["ing_01", "ing_03", "ing_04", "ing_06", "ing_10"],
+        );
+        let module = regulated.equipped_player_weapon_item(0).unwrap();
+        assert_eq!(
+            use_engineering(
+                &mut regulated,
+                "ing_10",
+                EngineeringDirective::OverclockModule { module }
+            ),
+            CommandOutcome::Applied
+        );
+        let overclock = regulated
+            .equipment_engineering_state(module)
+            .unwrap()
+            .overclock()
+            .unwrap();
+        assert_eq!(overclock.output_percentage(), 115);
+        assert_eq!(overclock.usage_energy_percentage(), 125);
+        assert_eq!(overclock.heat_per_use(), 4);
+        assert_eq!(overclock.safe_heat_threshold(), 120);
+    }
+
+    #[test]
+    fn electronic_pulse_profiles_resolve_disk_cone_and_ally_filter_in_the_world() {
+        let map = "#########\n#.......#\n#.......#\n#.......#\n#.......#\n#.......#\n#########";
+
+        let mut disk = game_with_core_electronic_warfare(map, GridPos::new(4, 3), &["gel_01"]);
+        let east = spawn_electronic_test_actor(&mut disk, GridPos::new(5, 3));
+        let west = spawn_electronic_test_actor(&mut disk, GridPos::new(3, 3));
+        assert_eq!(
+            use_electronic_warfare(
+                &mut disk,
+                "gel_01",
+                ElectronicDirective::Pulse { direction: None },
+            ),
+            CommandOutcome::Applied
+        );
+        assert_eq!(disk.actors.get(east).unwrap().integrity(), 84);
+        assert_eq!(disk.actors.get(west).unwrap().integrity(), 84);
+
+        let mut cone =
+            game_with_core_electronic_warfare(map, GridPos::new(4, 3), &["gel_01", "gel_v01"]);
+        let east = spawn_electronic_test_actor(&mut cone, GridPos::new(5, 3));
+        let west = spawn_electronic_test_actor(&mut cone, GridPos::new(3, 3));
+        assert_eq!(
+            use_electronic_warfare(
+                &mut cone,
+                "gel_v01",
+                ElectronicDirective::Pulse {
+                    direction: Some(Direction::East),
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        assert_eq!(cone.actors.get(east).unwrap().integrity(), 84);
+        assert_eq!(cone.actors.get(west).unwrap().integrity(), 100);
+
+        let mut filtered =
+            game_with_core_electronic_warfare(map, GridPos::new(4, 3), &["gel_01", "gel_v02"]);
+        let ally = spawn_engineering_test_drone(&mut filtered, GridPos::new(3, 3));
+        let hostile = spawn_electronic_test_actor(&mut filtered, GridPos::new(5, 3));
+        let ally_integrity = filtered.actors.get(ally).unwrap().integrity();
+        assert_eq!(
+            use_electronic_warfare(
+                &mut filtered,
+                "gel_v02",
+                ElectronicDirective::Pulse { direction: None },
+            ),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            filtered.actors.get(ally).unwrap().integrity(),
+            ally_integrity
+        );
+        assert_eq!(filtered.actors.get(hostile).unwrap().integrity(), 84);
+    }
+
+    #[test]
+    fn overheat_profiles_install_their_authored_programs() {
+        let map = "#######\n#.....#\n#.....#\n#.....#\n#######";
+        let profiles = [
+            (vec!["gel_02"], "gel_02", 15, 3, 3),
+            (vec!["gel_02", "gel_v03"], "gel_v03", 25, 3, 2),
+            (vec!["gel_02", "gel_v04"], "gel_v04", 10, 3, 5),
+        ];
+        for (choices, technique, expected_heat, expected_penalty, expected_ticks) in profiles {
+            let mut game = game_with_core_electronic_warfare(map, GridPos::new(2, 2), &choices);
+            let target = spawn_electronic_test_actor(&mut game, GridPos::new(3, 2));
+            assert_eq!(
+                use_electronic_warfare(
+                    &mut game,
+                    technique,
+                    ElectronicDirective::Target { target },
+                ),
+                CommandOutcome::Applied
+            );
+            let program = game
+                .electronic_warfare_state()
+                .programs_on(target)
+                .next()
+                .unwrap_or_else(|| panic!("{technique} did not install its hostile program"));
+            assert!(matches!(
+                program.kind(),
+                HostileProgramKind::Overheat {
+                    heat_per_tick,
+                    dissipation_penalty,
+                } if heat_per_tick == expected_heat && dissipation_penalty == expected_penalty
+            ));
+            assert!(program.ticks_remaining() <= expected_ticks);
+            assert!(
+                game.actors
+                    .get(target)
+                    .unwrap()
+                    .electronic_system()
+                    .is_some_and(|system| system.heat() > 0)
+            );
+        }
+    }
+
+    #[test]
+    fn jamming_and_purge_change_persistent_electronic_state() {
+        let map = "#######\n#.....#\n#.....#\n#.....#\n#######";
+        let mut jammer =
+            game_with_core_electronic_warfare(map, GridPos::new(2, 2), &["gel_01", "gel_03"]);
+        assert_eq!(
+            use_electronic_warfare(
+                &mut jammer,
+                "gel_03",
+                ElectronicDirective::Jam {
+                    channel: ElectronicChannel::ControlLink,
+                },
+            ),
+            CommandOutcome::Applied
+        );
+        let field = jammer.electronic_warfare_state().jamming().unwrap();
+        assert_eq!(field.channel, ElectronicChannel::ControlLink);
+        assert_eq!((field.radius, field.penalty), (2, 20));
+        assert_eq!(jammer.player_bandwidth().unwrap().occupied(), 1);
+
+        let mut purge =
+            game_with_core_electronic_warfare(map, GridPos::new(2, 2), &["gel_01", "gel_04"]);
+        let target = spawn_electronic_test_actor(&mut purge, GridPos::new(3, 2));
+        let program = purge.electronic_warfare.add_program(
+            target,
+            target,
+            1,
+            purge.turn,
+            purge.turn + 10,
+            10,
+            false,
+            HostileProgramKind::Overheat {
+                heat_per_tick: 1,
+                dissipation_penalty: 0,
+            },
+        );
+        assert_eq!(
+            use_electronic_warfare(
+                &mut purge,
+                "gel_04",
+                ElectronicDirective::Purge { target, program },
+            ),
+            CommandOutcome::Applied
+        );
+        assert!(purge.electronic_warfare_state().program(program).is_none());
+    }
+
+    #[test]
+    fn cascade_profiles_apply_each_authored_link_in_order() {
+        let map = "##########\n#........#\n#........#\n#........#\n##########";
+        let profiles = [
+            (
+                vec!["gel_01", "gel_02", "gel_05"],
+                "gel_05",
+                vec![16, 12, 9],
+            ),
+            (
+                vec!["gel_01", "gel_02", "gel_05", "gel_v05"],
+                "gel_v05",
+                vec![16, 12, 9, 6],
+            ),
+            (
+                vec!["gel_01", "gel_02", "gel_05", "gel_v06"],
+                "gel_v06",
+                vec![16, 14, 12],
+            ),
+        ];
+        for (choices, technique, damage) in profiles {
+            let mut game = game_with_core_electronic_warfare(map, GridPos::new(2, 2), &choices);
+            let targets = (0..damage.len())
+                .map(|index| {
+                    spawn_electronic_test_actor(
+                        &mut game,
+                        GridPos::new(3 + i32::try_from(index).unwrap(), 2),
+                    )
+                })
+                .collect::<Vec<_>>();
+            assert_eq!(
+                use_electronic_warfare(
+                    &mut game,
+                    technique,
+                    ElectronicDirective::Cascade {
+                        targets: targets.clone(),
+                    },
+                ),
+                CommandOutcome::Applied
+            );
+            for (target, expected_damage) in targets.into_iter().zip(damage) {
+                assert_eq!(
+                    game.actors.get(target).unwrap().integrity(),
+                    100 - expected_damage
+                );
+            }
+        }
+    }
+
+    #[test]
+    fn infection_profiles_create_bounded_campaigns_with_authored_variants() {
+        let map = "########\n#......#\n#......#\n#......#\n########";
+        let profiles = [
+            (vec!["gel_01", "gel_02", "gel_06"], "gel_06", 3, 1, 4),
+            (
+                vec!["gel_01", "gel_02", "gel_06", "gel_v07"],
+                "gel_v07",
+                4,
+                2,
+                2,
+            ),
+            (
+                vec!["gel_01", "gel_02", "gel_06", "gel_v08"],
+                "gel_v08",
+                1,
+                0,
+                8,
+            ),
+        ];
+        for (choices, technique, maximum_hosts, transmissions, thermal_damage) in profiles {
+            let mut game = game_with_core_electronic_warfare(map, GridPos::new(2, 2), &choices);
+            let first = spawn_electronic_test_actor(&mut game, GridPos::new(3, 2));
+            let _second = spawn_electronic_test_actor(&mut game, GridPos::new(4, 2));
+            let _third = spawn_electronic_test_actor(&mut game, GridPos::new(5, 2));
+            assert_eq!(
+                use_electronic_warfare(
+                    &mut game,
+                    technique,
+                    ElectronicDirective::Target { target: first },
+                ),
+                CommandOutcome::Applied
+            );
+            let program = game
+                .electronic_warfare_state()
+                .programs_on(first)
+                .next()
+                .unwrap_or_else(|| panic!("{technique} did not install its infection"));
+            let HostileProgramKind::Infection {
+                campaign,
+                thermal_damage_per_tick,
+            } = program.kind()
+            else {
+                panic!("{technique} installed the wrong program family");
+            };
+            assert_eq!(thermal_damage_per_tick, thermal_damage);
+            let campaign = game.electronic_warfare_state().campaign(campaign).unwrap();
+            assert_eq!(campaign.maximum_hosts(), maximum_hosts);
+            assert_eq!(campaign.transmissions_per_host(), transmissions);
+            assert!(campaign.hosts().count() <= usize::from(maximum_hosts));
+            assert!(campaign.was_attempted(first));
+        }
+    }
+
+    #[test]
+    fn saturation_beacon_profiles_are_physical_persistent_actors() {
+        let map = "########\n#......#\n#......#\n#......#\n########";
+        let profiles = [
+            (
+                vec!["gel_01", "gel_02", "gel_03", "gel_07"],
+                "gel_07",
+                8,
+                false,
+            ),
+            (
+                vec!["gel_01", "gel_02", "gel_03", "gel_07", "gel_v09"],
+                "gel_v09",
+                5,
+                false,
+            ),
+            (
+                vec!["gel_01", "gel_02", "gel_03", "gel_07", "gel_v10"],
+                "gel_v10",
+                8,
+                true,
+            ),
+        ];
+        for (index, (choices, technique, damage, manual)) in profiles.into_iter().enumerate() {
+            let mut game = game_with_core_electronic_warfare(map, GridPos::new(2, 2), &choices);
+            let at = GridPos::new(3, 2);
+            let directive = ElectronicDirective::DeployBeacon { position: at };
+            for _ in 0..2 {
+                assert_eq!(
+                    use_electronic_warfare(&mut game, technique, directive.clone()),
+                    CommandOutcome::Applied
+                );
+            }
+            let beacon = game
+                .electronic_warfare_state()
+                .beacons()
+                .next()
+                .copied()
+                .unwrap();
+            assert_eq!(beacon.damage, damage);
+            assert_eq!(game.actors.entity_at(at), Some(beacon.entity));
+            assert!(
+                game.actors
+                    .get(beacon.entity)
+                    .is_some_and(|actor| actor.electronic_system().is_some())
+            );
+            assert_eq!(beacon.active, !manual);
+            assert_eq!(game.player_bandwidth().unwrap().occupied(), 1);
+
+            if manual {
+                assert_eq!(
+                    use_electronic_warfare(
+                        &mut game,
+                        technique,
+                        ElectronicDirective::ActivateBeacon {
+                            beacon: beacon.entity,
+                        },
+                    ),
+                    CommandOutcome::Applied
+                );
+                assert!(
+                    game.electronic_warfare_state()
+                        .beacon(beacon.entity)
+                        .is_some_and(|state| state.active)
+                );
+            }
+
+            if index == 0 {
+                for _ in 0..3 {
+                    let _ = game.process_player_command(GameCommand::Wait);
+                }
+                let exhausted = game
+                    .electronic_warfare_state()
+                    .beacon(beacon.entity)
+                    .unwrap();
+                assert!(!exhausted.active);
+                assert_eq!(exhausted.remaining_phases, 0);
+                assert_eq!(game.actors.entity_at(at), Some(beacon.entity));
+                assert_eq!(game.player_bandwidth().unwrap().occupied(), 0);
+            }
+        }
+    }
+
+    #[test]
+    fn electronic_implosion_reserves_target_energy_then_detonates_mixed_damage() {
+        let map = "########\n#......#\n#......#\n#......#\n########";
+        let mut game = game_with_core_electronic_warfare(
+            map,
+            GridPos::new(2, 2),
+            &["gel_01", "gel_02", "gel_03", "gel_04", "gel_08"],
+        );
+        let target = spawn_electronic_test_actor(&mut game, GridPos::new(4, 2));
+        let neighbor = spawn_electronic_test_actor(&mut game, GridPos::new(4, 3));
+        let directive = ElectronicDirective::Target { target };
+        for _ in 0..2 {
+            assert_eq!(
+                use_electronic_warfare(&mut game, "gel_08", directive.clone()),
+                CommandOutcome::Applied
+            );
+        }
+        assert_eq!(
+            game.actors
+                .get(target)
+                .unwrap()
+                .electronic_system()
+                .unwrap()
+                .stored_energy(),
+            20
+        );
+        for _ in 0..3 {
+            if game.events().iter().any(|event| {
+                matches!(event, GameEvent::ElectronicImplosionDetonated { target: hit, .. } if *hit == target)
+            }) {
+                break;
+            }
+            assert_eq!(
+                game.process_player_command(GameCommand::Wait),
+                CommandOutcome::Applied
+            );
+        }
+        assert!(game.events().iter().any(|event| {
+            matches!(event, GameEvent::ElectronicImplosionDetonated { target: hit, .. } if *hit == target)
+        }));
+        assert!(game.actors.get(target).unwrap().integrity() < 100);
+        assert!(game.actors.get(neighbor).unwrap().integrity() < 100);
+    }
+
+    #[test]
+    fn overclock_rejects_a_use_above_its_authored_heat_limit_atomically() {
+        let mut game = game_with_core_engineering(
+            "#######\n#.....#\n#.....#\n#.....#\n#######",
+            GridPos::new(2, 2),
+            &["ing_01", "ing_02", "ing_03", "ing_04", "ing_06"],
+        );
+        let module = game.equipped_player_weapon_item(0).unwrap();
+        game.player_heat.as_mut().unwrap().add(136);
+        assert_eq!(
+            use_engineering(
+                &mut game,
+                "ing_06",
+                EngineeringDirective::OverclockModule { module }
+            ),
+            CommandOutcome::Applied
+        );
+        let target = game
+            .spawn_actor(
+                Actor::new(GridPos::new(3, 2), 20)
+                    .unwrap()
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        let before = format!("{game:?}");
+        assert_eq!(
+            game.process_player_command(GameCommand::Attack { slot: 0, target }),
+            CommandOutcome::Rejected(CommandRejection::WeaponModuleHeatLimit {
+                module,
+                projected: 144,
+                maximum: 140,
+            })
+        );
+        assert_eq!(format!("{game:?}"), before);
     }
 }

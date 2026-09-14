@@ -4,6 +4,7 @@ use std::fmt::{Display, Formatter};
 
 use crate::combat::DamagePacket;
 pub use crate::content::{ContentId as StatusId, ContentIdError as StatusIdError};
+pub type StatusFamilyId = crate::content::ContentId;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum StatusTrigger {
@@ -17,6 +18,9 @@ pub enum StatusTrigger {
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum StatusStacking {
+    /// Keeps the first application unchanged until it expires. This is used by
+    /// bounded effects which explicitly forbid duration refreshes.
+    KeepExisting,
     Replace,
     RefreshDuration,
     AddStacks {
@@ -28,9 +32,42 @@ pub enum StatusStacking {
 impl StatusStacking {
     pub const fn maximum_stacks(self) -> u16 {
         match self {
-            Self::Replace | Self::RefreshDuration => 1,
+            Self::KeepExisting | Self::Replace | Self::RefreshDuration => 1,
             Self::AddStacks { maximum_stacks, .. } => maximum_stacks,
         }
+    }
+}
+
+/// Passive numeric contribution exposed by an active status.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum StatusModifier {
+    ArmorFragilization { amount: u16 },
+    Stability { amount: i16 },
+    MovementTimeMinimum { time_units: u16 },
+    Accuracy { amount: i16 },
+}
+
+/// Status applied only after the owning finite status expires naturally.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct StatusTransition {
+    status: StatusId,
+    stacks: u16,
+}
+
+impl StatusTransition {
+    pub fn new(status: StatusId, stacks: u16) -> Result<Self, StatusDefinitionError> {
+        if stacks == 0 {
+            return Err(StatusDefinitionError::ZeroTransitionStacks);
+        }
+        Ok(Self { status, stacks })
+    }
+
+    pub const fn status(&self) -> &StatusId {
+        &self.status
+    }
+
+    pub const fn stacks(&self) -> u16 {
+        self.stacks
     }
 }
 
@@ -63,12 +100,40 @@ impl StatusHook {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
 pub struct StatusDefinition {
     id: StatusId,
     duration_turns: Option<u16>,
     stacking: StatusStacking,
     hooks: Vec<StatusHook>,
+    modifiers: Vec<StatusModifier>,
+    family: Option<StatusFamilyId>,
+    blocked_families: Vec<StatusFamilyId>,
+    expiration_transition: Option<StatusTransition>,
+}
+
+impl std::fmt::Debug for StatusDefinition {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut definition = formatter.debug_struct("StatusDefinition");
+        definition
+            .field("id", &self.id)
+            .field("duration_turns", &self.duration_turns)
+            .field("stacking", &self.stacking)
+            .field("hooks", &self.hooks);
+        if !self.modifiers.is_empty() {
+            definition.field("modifiers", &self.modifiers);
+        }
+        if let Some(family) = &self.family {
+            definition.field("family", family);
+        }
+        if !self.blocked_families.is_empty() {
+            definition.field("blocked_families", &self.blocked_families);
+        }
+        if let Some(transition) = &self.expiration_transition {
+            definition.field("expiration_transition", transition);
+        }
+        definition.finish()
+    }
 }
 
 impl StatusDefinition {
@@ -89,7 +154,80 @@ impl StatusDefinition {
             duration_turns,
             stacking,
             hooks,
+            modifiers: Vec::new(),
+            family: None,
+            blocked_families: Vec::new(),
+            expiration_transition: None,
         })
+    }
+
+    pub fn with_modifiers(
+        mut self,
+        modifiers: impl IntoIterator<Item = StatusModifier>,
+    ) -> Result<Self, StatusDefinitionError> {
+        let modifiers: Vec<_> = modifiers.into_iter().collect();
+        let armor_fragilizations = modifiers
+            .iter()
+            .filter(|modifier| matches!(modifier, StatusModifier::ArmorFragilization { .. }))
+            .count();
+        if armor_fragilizations > 1 {
+            return Err(StatusDefinitionError::DuplicateArmorFragilization);
+        }
+        if modifiers
+            .iter()
+            .any(|modifier| matches!(modifier, StatusModifier::ArmorFragilization { amount: 0 }))
+        {
+            return Err(StatusDefinitionError::ZeroArmorFragilization);
+        }
+        let stability_modifiers = modifiers
+            .iter()
+            .filter(|modifier| matches!(modifier, StatusModifier::Stability { .. }))
+            .count();
+        if stability_modifiers > 1 {
+            return Err(StatusDefinitionError::DuplicateStabilityModifier);
+        }
+        let movement_minima = modifiers
+            .iter()
+            .filter(|modifier| matches!(modifier, StatusModifier::MovementTimeMinimum { .. }))
+            .count();
+        if movement_minima > 1 {
+            return Err(StatusDefinitionError::DuplicateMovementTimeMinimum);
+        }
+        if modifiers.iter().any(|modifier| {
+            matches!(
+                modifier,
+                StatusModifier::MovementTimeMinimum { time_units: 0 }
+            )
+        }) {
+            return Err(StatusDefinitionError::ZeroMovementTimeMinimum);
+        }
+        let accuracy_modifiers = modifiers
+            .iter()
+            .filter(|modifier| matches!(modifier, StatusModifier::Accuracy { .. }))
+            .count();
+        if accuracy_modifiers > 1 {
+            return Err(StatusDefinitionError::DuplicateAccuracyModifier);
+        }
+        self.modifiers = modifiers;
+        Ok(self)
+    }
+
+    pub fn with_family(mut self, family: StatusFamilyId) -> Self {
+        self.family = Some(family);
+        self
+    }
+
+    pub fn with_blocked_families(
+        mut self,
+        families: impl IntoIterator<Item = StatusFamilyId>,
+    ) -> Self {
+        self.blocked_families = families.into_iter().collect();
+        self
+    }
+
+    pub fn with_expiration_transition(mut self, transition: StatusTransition) -> Self {
+        self.expiration_transition = Some(transition);
+        self
     }
 
     pub const fn id(&self) -> &StatusId {
@@ -109,12 +247,35 @@ impl StatusDefinition {
             .iter()
             .filter(move |hook| hook.trigger() == trigger)
     }
+
+    pub fn modifiers(&self) -> &[StatusModifier] {
+        &self.modifiers
+    }
+
+    pub const fn family(&self) -> Option<&StatusFamilyId> {
+        self.family.as_ref()
+    }
+
+    pub fn blocked_families(&self) -> &[StatusFamilyId] {
+        &self.blocked_families
+    }
+
+    pub const fn expiration_transition(&self) -> Option<&StatusTransition> {
+        self.expiration_transition.as_ref()
+    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum StatusDefinitionError {
     ZeroDuration,
     ZeroMaximumStacks,
+    ZeroArmorFragilization,
+    DuplicateArmorFragilization,
+    DuplicateStabilityModifier,
+    ZeroMovementTimeMinimum,
+    DuplicateMovementTimeMinimum,
+    DuplicateAccuracyModifier,
+    ZeroTransitionStacks,
 }
 
 impl Display for StatusDefinitionError {
@@ -122,6 +283,30 @@ impl Display for StatusDefinitionError {
         match self {
             Self::ZeroDuration => write!(formatter, "finite status duration must be positive"),
             Self::ZeroMaximumStacks => write!(formatter, "maximum status stacks must be positive"),
+            Self::ZeroArmorFragilization => {
+                write!(formatter, "armor fragilization must be positive")
+            }
+            Self::DuplicateArmorFragilization => {
+                write!(
+                    formatter,
+                    "a status cannot define armor fragilization twice"
+                )
+            }
+            Self::DuplicateStabilityModifier => {
+                write!(formatter, "a status cannot modify Stability twice")
+            }
+            Self::ZeroMovementTimeMinimum => {
+                write!(formatter, "movement time minimum must be positive")
+            }
+            Self::DuplicateMovementTimeMinimum => {
+                write!(formatter, "a status cannot define movement time twice")
+            }
+            Self::DuplicateAccuracyModifier => {
+                write!(formatter, "a status cannot modify Accuracy twice")
+            }
+            Self::ZeroTransitionStacks => {
+                write!(formatter, "expiration transition stacks must be positive")
+            }
         }
     }
 }
@@ -151,22 +336,52 @@ impl StatusCatalog {
         self.definitions.contains_key(id)
     }
 
+    pub fn contains_family(&self, family: &StatusFamilyId) -> bool {
+        self.definitions
+            .values()
+            .any(|definition| definition.family() == Some(family))
+    }
+
     pub fn without_id(&self, excluded: &StatusId) -> Self {
         let mut definitions = self.definitions.clone();
         definitions.remove(excluded);
         Self { definitions }
+    }
+
+    pub fn validate_references(&self) -> Result<(), StatusCatalogError> {
+        for (source, definition) in &self.definitions {
+            if let Some(transition) = definition.expiration_transition()
+                && !self.contains(transition.status())
+            {
+                return Err(StatusCatalogError::UnknownTransitionStatus {
+                    source: Box::new(source.clone()),
+                    target: Box::new(transition.status().clone()),
+                });
+            }
+        }
+        Ok(())
     }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum StatusCatalogError {
     DuplicateId(StatusId),
+    UnknownTransitionStatus {
+        source: Box<StatusId>,
+        target: Box<StatusId>,
+    },
 }
 
 impl Display for StatusCatalogError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::DuplicateId(id) => write!(formatter, "duplicate status ID '{}'", id.as_str()),
+            Self::UnknownTransitionStatus { source, target } => write!(
+                formatter,
+                "status '{}' transitions to unknown status '{}'",
+                source.as_str(),
+                target.as_str()
+            ),
         }
     }
 }
@@ -207,5 +422,72 @@ mod tests {
             catalog.register(definition),
             Err(StatusCatalogError::DuplicateId(status_id("core:corroded")))
         );
+    }
+
+    #[test]
+    fn armor_fragilization_modifier_is_positive_and_unique_per_status() {
+        let base = StatusDefinition::new(
+            status_id("core:fractured"),
+            Some(3),
+            StatusStacking::KeepExisting,
+            Vec::new(),
+        )
+        .unwrap();
+
+        assert_eq!(
+            base.clone()
+                .with_modifiers([StatusModifier::ArmorFragilization { amount: 0 }]),
+            Err(StatusDefinitionError::ZeroArmorFragilization)
+        );
+        assert_eq!(
+            base.with_modifiers([
+                StatusModifier::ArmorFragilization { amount: 4 },
+                StatusModifier::ArmorFragilization { amount: 6 },
+            ]),
+            Err(StatusDefinitionError::DuplicateArmorFragilization)
+        );
+    }
+
+    #[test]
+    fn movement_minimum_and_expiration_transition_are_validated() {
+        let base = StatusDefinition::new(
+            status_id("core:hindered"),
+            Some(2),
+            StatusStacking::KeepExisting,
+            Vec::new(),
+        )
+        .unwrap();
+        assert_eq!(
+            base.clone()
+                .with_modifiers([StatusModifier::MovementTimeMinimum { time_units: 0 }]),
+            Err(StatusDefinitionError::ZeroMovementTimeMinimum)
+        );
+        assert_eq!(
+            StatusTransition::new(status_id("core:protected"), 0),
+            Err(StatusDefinitionError::ZeroTransitionStacks)
+        );
+
+        let mut catalog = StatusCatalog::default();
+        catalog
+            .register(base.with_expiration_transition(
+                StatusTransition::new(status_id("core:protected"), 1).unwrap(),
+            ))
+            .unwrap();
+        assert!(matches!(
+            catalog.validate_references(),
+            Err(StatusCatalogError::UnknownTransitionStatus { .. })
+        ));
+        catalog
+            .register(
+                StatusDefinition::new(
+                    status_id("core:protected"),
+                    Some(1),
+                    StatusStacking::KeepExisting,
+                    Vec::new(),
+                )
+                .unwrap(),
+            )
+            .unwrap();
+        assert_eq!(catalog.validate_references(), Ok(()));
     }
 }

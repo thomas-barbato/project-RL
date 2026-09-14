@@ -6,7 +6,7 @@ use std::fmt::{Display, Formatter};
 
 use crate::content::ContentId;
 use crate::game::GameRng;
-use crate::item::{ItemCatalog, ItemId};
+use crate::item::{ItemCatalog, ItemId, ItemKind};
 use crate::weapon::WeaponCatalog;
 
 pub type LootTableId = ContentId;
@@ -190,6 +190,65 @@ impl LootCatalog {
     }
     pub fn iter(&self) -> impl Iterator<Item = (&LootTableId, &LootTable)> {
         self.tables.iter()
+    }
+
+    /// Compatibility projection used by versioned replay adapters when an
+    /// item family did not exist yet. Empty, newly introduced tables vanish.
+    pub fn without_item_kind(&self, items: &ItemCatalog, excluded: ItemKind) -> Self {
+        let tables = self
+            .tables
+            .iter()
+            .filter_map(|(id, table)| {
+                let entries = table
+                    .entries
+                    .iter()
+                    .filter(|entry| {
+                        items
+                            .get(&entry.item)
+                            .is_none_or(|definition| definition.kind() != excluded)
+                    })
+                    .cloned()
+                    .collect::<Vec<_>>();
+                (!entries.is_empty()).then(|| {
+                    (
+                        id.clone(),
+                        LootTable {
+                            id: id.clone(),
+                            entries,
+                        },
+                    )
+                })
+            })
+            .collect();
+        Self { tables }
+    }
+
+    /// Compatibility projection for item definitions introduced after a
+    /// recorded generation. Remaining rows keep their original order and
+    /// weights, preserving the historical deterministic draw stream.
+    pub fn without_items(&self, excluded: &[ItemId]) -> Self {
+        let tables = self
+            .tables
+            .iter()
+            .filter_map(|(id, table)| {
+                let entries = table
+                    .entries
+                    .iter()
+                    .filter(|entry| !excluded.contains(&entry.item))
+                    .cloned()
+                    .collect::<Vec<_>>();
+                (!entries.is_empty()).then(|| {
+                    (
+                        id.clone(),
+                        LootTable {
+                            id: id.clone(),
+                            entries,
+                        },
+                    )
+                })
+            })
+            .collect();
+        Self { tables }
     }
 }
 

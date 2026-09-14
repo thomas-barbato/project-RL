@@ -8,7 +8,7 @@ impl EntityId {
         self.0
     }
 
-    pub(super) const fn new(value: u64) -> Self {
+    pub(crate) const fn new(value: u64) -> Self {
         Self(value)
     }
 }

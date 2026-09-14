@@ -128,13 +128,13 @@ pub fn decode_player_progression(
     )
     .map_err(|error| PlayerProgressionSaveError::Skills(Box::new(error)))?;
     let spent_skill_points = skills.disciplines().fold(0_u32, |total, (_, choices)| {
-        let discipline_cost = skill_rules
-            .rank_costs()
-            .iter()
-            .take(choices.len())
-            .fold(0_u32, |cost, rank_cost| {
-                cost.saturating_add(u32::from(*rank_cost))
-            });
+        let discipline_cost = (1..=choices.len()).fold(0_u32, |cost, choice_number| {
+            cost.saturating_add(u32::from(
+                skill_rules
+                    .cost_for_choice_number(choice_number)
+                    .expect("validated skill progression always has a final choice cost"),
+            ))
+        });
         total.saturating_add(discipline_cost)
     });
     let accounted_skill_points = run

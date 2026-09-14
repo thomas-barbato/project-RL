@@ -3,6 +3,7 @@ mod instance;
 
 pub use definition::{
     StatusCatalog, StatusCatalogError, StatusDefinition, StatusDefinitionError,
-    StatusEffectPrimitive, StatusHook, StatusId, StatusIdError, StatusStacking, StatusTrigger,
+    StatusEffectPrimitive, StatusFamilyId, StatusHook, StatusId, StatusIdError, StatusModifier,
+    StatusStacking, StatusTransition, StatusTrigger,
 };
-pub use instance::{StatusApplyOutcome, StatusInstance, StatusSet};
+pub use instance::{StatusApplyKind, StatusApplyOutcome, StatusInstance, StatusSet};

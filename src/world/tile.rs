@@ -15,18 +15,34 @@ pub enum DoorState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Terrain {
     Floor,
+    /// Traversable water. It has no movement penalty yet, but remains a
+    /// distinct simulation value so future movement profiles can treat it
+    /// differently without asking the renderer what it looks like.
+    ShallowWater,
+    /// Water that cannot be crossed by ordinary movement. It does not block
+    /// sight, unlike a wall or dense obstacle.
+    DeepWater,
     Wall,
     Door(DoorState),
-    ControlPanel { door: GridPos, activated: bool },
+    ControlPanel {
+        door: GridPos,
+        activated: bool,
+    },
 }
 
 impl Terrain {
     pub const fn blocks_movement(self) -> bool {
-        !matches!(self, Self::Floor | Self::Door(DoorState::Open))
+        !matches!(
+            self,
+            Self::Floor | Self::ShallowWater | Self::Door(DoorState::Open)
+        )
     }
 
     pub const fn blocks_vision(self) -> bool {
-        self.blocks_movement()
+        !matches!(
+            self,
+            Self::Floor | Self::ShallowWater | Self::DeepWater | Self::Door(DoorState::Open)
+        )
     }
 
     pub const fn is_interactive(self) -> bool {

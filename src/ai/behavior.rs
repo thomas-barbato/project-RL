@@ -17,6 +17,7 @@ pub enum AiAction {
 pub struct AiSituation<'a> {
     pub map: &'a Map,
     pub actor_position: GridPos,
+    pub home_position: Option<GridPos>,
     pub target_position: GridPos,
     pub occupied_positions: &'a BTreeSet<GridPos>,
     pub profile: AiProfile,
@@ -24,9 +25,17 @@ pub struct AiSituation<'a> {
 }
 
 pub fn decide_action(situation: AiSituation<'_>) -> AiAction {
-    if situation.profile.behavior == AiBehavior::Idle
-        || situation.map.is_protected(situation.target_position)
-    {
+    decide_action_with_visibility(situation, false)
+}
+
+/// Follows a remembered position without granting knowledge of the player.
+/// Callers must omit an attack while searching, so this can only navigate.
+pub fn decide_known_action(situation: AiSituation<'_>) -> AiAction {
+    decide_action_with_visibility(situation, true)
+}
+
+fn decide_action_with_visibility(situation: AiSituation<'_>, target_is_known: bool) -> AiAction {
+    if situation.profile.behavior == AiBehavior::Idle {
         return AiAction::Wait;
     }
 
@@ -39,7 +48,16 @@ pub fn decide_action(situation: AiSituation<'_>) -> AiAction {
             block_closed_corners: true,
         },
     );
-    if !visible.contains(&situation.target_position) {
+    let target_visible = target_is_known
+        || (visible.contains(&situation.target_position)
+            && !situation.map.is_protected(situation.target_position));
+    if let Some((home, maximum_distance)) = pursuit_leash(&situation) {
+        let target_inside_leash =
+            chebyshev_distance(home, situation.target_position) <= u32::from(maximum_distance);
+        if !target_visible || !target_inside_leash {
+            return move_toward(&situation, home, Some((home, maximum_distance)));
+        }
+    } else if !target_visible {
         return AiAction::Wait;
     }
 
@@ -63,14 +81,35 @@ pub fn decide_action(situation: AiSituation<'_>) -> AiAction {
         return AiAction::Wait;
     }
 
+    let leash = pursuit_leash(&situation);
+    move_toward(&situation, situation.target_position, leash)
+}
+
+fn pursuit_leash(situation: &AiSituation<'_>) -> Option<(GridPos, u16)> {
+    situation
+        .home_position
+        .zip(situation.profile.maximum_pursuit_distance())
+}
+
+fn move_toward(
+    situation: &AiSituation<'_>,
+    destination: GridPos,
+    leash: Option<(GridPos, u16)>,
+) -> AiAction {
+    if situation.actor_position == destination {
+        return AiAction::Wait;
+    }
     let path = find_path(
         situation.map,
         situation.actor_position,
-        situation.target_position,
+        destination,
         situation.profile.maximum_path_search,
         |position| {
             !situation.occupied_positions.contains(&position)
                 && !situation.map.is_protected(position)
+                && leash.is_none_or(|(home, maximum_distance)| {
+                    chebyshev_distance(home, position) <= u32::from(maximum_distance)
+                })
         },
     );
     let Some(next_position) = path.and_then(|path| path.get(1).copied()) else {
@@ -98,6 +137,9 @@ fn retreat_direction(situation: &AiSituation<'_>) -> Option<Direction> {
         if !situation.map.is_walkable(destination)
             || situation.map.is_protected(destination)
             || situation.occupied_positions.contains(&destination)
+            || pursuit_leash(situation).is_some_and(|(home, maximum_distance)| {
+                chebyshev_distance(home, destination) > u32::from(maximum_distance)
+            })
         {
             continue;
         }
@@ -133,6 +175,7 @@ mod tests {
         let action = decide_action(AiSituation {
             map: &corridor(),
             actor_position: GridPos::new(5, 1),
+            home_position: None,
             target_position: GridPos::new(1, 1),
             occupied_positions: &occupied,
             profile: AiProfile::sentry(8, 0),
@@ -148,6 +191,7 @@ mod tests {
         let action = decide_action(AiSituation {
             map: &corridor(),
             actor_position: GridPos::new(2, 1),
+            home_position: None,
             target_position: GridPos::new(1, 1),
             occupied_positions: &occupied,
             profile: AiProfile::skirmisher(8, 0, 2),
@@ -162,5 +206,81 @@ mod tests {
         });
 
         assert_eq!(action, AiAction::Move(Direction::East));
+    }
+
+    #[test]
+    fn leashed_hunter_returns_home_when_the_target_is_too_far_away() {
+        let occupied = BTreeSet::new();
+        let profile = AiProfile::hunter(8, 0).with_maximum_pursuit_distance(
+            std::num::NonZeroU16::new(3).expect("constant is non-zero"),
+        );
+        let action = decide_action(AiSituation {
+            map: &corridor(),
+            actor_position: GridPos::new(4, 1),
+            home_position: Some(GridPos::new(5, 1)),
+            target_position: GridPos::new(1, 1),
+            occupied_positions: &occupied,
+            profile,
+            preferred_attack: Some(AttackProfile::melee(DamageType::Kinetic, 2)),
+        });
+
+        assert_eq!(action, AiAction::Move(Direction::East));
+    }
+
+    #[test]
+    fn leashed_hunter_never_steps_beyond_its_territory() {
+        let occupied = BTreeSet::new();
+        let profile = AiProfile::hunter(8, 0).with_maximum_pursuit_distance(
+            std::num::NonZeroU16::new(2).expect("constant is non-zero"),
+        );
+        let action = decide_action(AiSituation {
+            map: &corridor(),
+            actor_position: GridPos::new(3, 1),
+            home_position: Some(GridPos::new(5, 1)),
+            target_position: GridPos::new(1, 1),
+            occupied_positions: &occupied,
+            profile,
+            preferred_attack: Some(AttackProfile::melee(DamageType::Kinetic, 2)),
+        });
+
+        assert_eq!(action, AiAction::Move(Direction::East));
+    }
+
+    #[test]
+    fn leashed_hunter_returns_home_after_losing_sight_of_the_target() {
+        let occupied = BTreeSet::new();
+        let profile = AiProfile::hunter(2, 0).with_maximum_pursuit_distance(
+            std::num::NonZeroU16::new(5).expect("constant is non-zero"),
+        );
+        let action = decide_action(AiSituation {
+            map: &corridor(),
+            actor_position: GridPos::new(4, 1),
+            home_position: Some(GridPos::new(5, 1)),
+            target_position: GridPos::new(1, 1),
+            occupied_positions: &occupied,
+            profile,
+            preferred_attack: Some(AttackProfile::melee(DamageType::Kinetic, 2)),
+        });
+
+        assert_eq!(action, AiAction::Move(Direction::East));
+    }
+
+    #[test]
+    fn leashed_skirmisher_does_not_retreat_beyond_its_territory() {
+        let occupied = BTreeSet::new();
+        let profile = AiProfile::skirmisher(8, 0, 2).with_maximum_pursuit_distance(
+            std::num::NonZeroU16::new(2).expect("constant is non-zero"),
+        );
+        let action = decide_action(AiSituation {
+            map: &corridor(),
+            actor_position: GridPos::new(3, 1),
+            home_position: Some(GridPos::new(5, 1)),
+            target_position: GridPos::new(4, 1),
+            occupied_positions: &occupied,
+            profile,
+            preferred_attack: Some(AttackProfile::melee(DamageType::Kinetic, 2)),
+        });
+
+        assert_eq!(action, AiAction::Attack { slot: 0 });
     }
 }

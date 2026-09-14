@@ -141,41 +141,50 @@ pub fn wheel_steps(wheel: f32) -> usize {
 pub enum MenuScreen {
     #[default]
     Hidden,
+    Main,
     Pause,
     Options,
     Controls,
     Graphics,
     ConfirmGraphics,
     ConfirmAbandon,
-    ResumeSuspension,
+    ConfirmNewRun,
 }
 
 impl MenuScreen {
     pub fn back(self) -> Self {
         match self {
             Self::Hidden => Self::Pause,
+            Self::Main => Self::Main,
             Self::Pause => Self::Hidden,
             Self::Options | Self::ConfirmAbandon => Self::Pause,
             Self::Controls | Self::Graphics => Self::Options,
             Self::ConfirmGraphics => Self::Graphics,
-            Self::ResumeSuspension => Self::ResumeSuspension,
+            Self::ConfirmNewRun => Self::Main,
         }
     }
 
     pub fn title(self) -> &'static str {
         match self {
+            Self::Main => "PROJECT RL",
             Self::Pause => "PAUSE",
             Self::Options | Self::Controls => "OPTIONS",
             Self::Graphics => "AFFICHAGE",
             Self::ConfirmGraphics => "CONSERVER L'AFFICHAGE ?",
             Self::ConfirmAbandon => "ABANDONNER LA PARTIE ?",
-            Self::ResumeSuspension => "PARTIE SUSPENDUE",
+            Self::ConfirmNewRun => "COMMENCER UNE NOUVELLE PARTIE ?",
             Self::Hidden => "",
         }
     }
 
     pub fn buttons(self) -> &'static [&'static str] {
         match self {
+            Self::Main => &[
+                "Reprendre la partie",
+                "Nouvelle partie",
+                "Options",
+                "Quitter",
+            ],
             Self::Pause => &[
                 "Reprendre",
                 "Options",
@@ -189,13 +198,15 @@ impl MenuScreen {
                 "Interface",
                 "Rendu",
                 "Taille des cases",
+                "Contraste renforcé",
+                "Animations réduites",
                 "Valeurs par défaut",
                 "Appliquer",
                 "Retour",
             ],
             Self::ConfirmGraphics => &["Rétablir les anciens réglages", "Conserver"],
             Self::ConfirmAbandon => &["Annuler", "Confirmer"],
-            Self::ResumeSuspension => &["Reprendre la partie suspendue", "Quitter"],
+            Self::ConfirmNewRun => &["Annuler", "Confirmer"],
             Self::Hidden | Self::Controls => &[],
         }
     }
@@ -208,21 +219,33 @@ pub struct MenuLayout {
 
 impl MenuLayout {
     pub fn new(width: f32, height: f32, count: usize) -> Self {
-        let panel_width = (width - 32.0).clamp(120.0, 560.0);
-        let panel_height = (height - 32.0).clamp(180.0, 470.0);
+        let panel_width = (width - 32.0).clamp(360.0, 680.0);
+        let desired_height: f32 = match count {
+            0..=2 => 430.0,
+            3 => 445.0,
+            4 => 470.0,
+            5..=7 => 500.0,
+            _ => 540.0,
+        };
+        let panel_height = (height - 32.0).clamp(400.0, desired_height);
         let panel = Rect::new(
             (width - panel_width) * 0.5,
             (height - panel_height) * 0.5,
             panel_width,
             panel_height,
         );
-        let row_height = ((panel_height - 175.0) / count.max(1) as f32).clamp(25.0, 54.0);
+        let row_height = ((panel_height - 190.0) / count.max(1) as f32).clamp(25.0, 58.0);
+        let button_width = if count <= 4 {
+            (panel.w - 120.0).max(300.0)
+        } else {
+            panel.w - 48.0
+        };
         let buttons = (0..count)
             .map(|index| {
                 Rect::new(
-                    panel.x + 24.0,
-                    panel.y + 83.0 + index as f32 * row_height,
-                    panel.w - 48.0,
+                    panel.x + (panel.w - button_width) * 0.5,
+                    panel.y + 88.0 + index as f32 * row_height,
+                    button_width,
                     row_height - 7.0,
                 )
             })
@@ -256,12 +279,14 @@ mod tests {
     #[test]
     fn escape_follows_the_menu_hierarchy() {
         assert_eq!(MenuScreen::Hidden.back(), MenuScreen::Pause);
+        assert_eq!(MenuScreen::Main.back(), MenuScreen::Main);
         assert_eq!(MenuScreen::Pause.back(), MenuScreen::Hidden);
         assert_eq!(
             MenuScreen::Controls.back().back().back(),
             MenuScreen::Hidden
         );
         assert_eq!(MenuScreen::ConfirmAbandon.back(), MenuScreen::Pause);
+        assert_eq!(MenuScreen::ConfirmNewRun.back(), MenuScreen::Main);
     }
 
     #[test]
@@ -280,6 +305,18 @@ mod tests {
                 assert_eq!(layout.hit((rect.x - 1.0, rect.y)), None);
             }
         }
+    }
+
+    #[test]
+    fn short_game_menus_use_a_compact_centered_action_column() {
+        let short = MenuLayout::new(1280.0, 800.0, 4);
+        let dense = MenuLayout::new(1280.0, 800.0, 10);
+        assert!(short.panel.h < dense.panel.h);
+        assert!(short.buttons[0].w < dense.buttons[0].w);
+        assert_eq!(
+            short.buttons[0].x + short.buttons[0].w * 0.5,
+            short.panel.x + short.panel.w * 0.5
+        );
     }
 
     #[test]

@@ -134,7 +134,7 @@ verify('REGISTRE', () => {
 verify('RECONNAISSANCE_PARTIELLE', () => {
   const entries = catalogue.split('## 16. Annexe technique')[0].split('\n')
     .filter((line) => /^\| REC-\d{2} \| [1-5] \|/.test(line)).map(cells)
-    .map((row) => ({ id: row[0], rank: Number(row[1]) }));
+    .map((row) => ({ id: row[0], minimumLevel: Number(row[1]) }));
   assert.equal(entries.length, 7);
   assert.match(catalogue, /REC-09[^\n]+Demande Analyse de cible/);
   const parents = new Map([['REC-09', 'REC-01']]);
@@ -144,14 +144,15 @@ verify('RECONNAISSANCE_PARTIELLE', () => {
   const noTracesSecretsDiagnostic = explore(new Set(['REC-02', 'REC-03', 'REC-08']));
   assert.ok(full.allPathsComplete);
   assert.ok(noDiagnostic.allPathsComplete);
-  assert.equal(noTracesSecretsDiagnostic.countsByRank[5], 0);
+  assert.equal(noTracesSecretsDiagnostic.countsByChoiceCount[5], 0);
   assert.equal(noTracesSecretsDiagnostic.allPathsComplete, false);
   assert.match(rules, /différer l'ouverture d'une discipline/);
   assert.ok(explore(new Set(['REC-01'])).unavailableIds.includes('REC-09'));
   assert.ok(explore(new Set(), ['REC-01', 'REC-02']).allPathsComplete);
   assert.equal(explore(new Set(['REC-02']), ['REC-02']).validInitial, false);
-  return { configurationsParRang: { complet: full.countsByRank.slice(1), sansDiagnostic: noDiagnostic.countsByRank.slice(1),
-    sansTracesSecretsDiagnostic: noTracesSecretsDiagnostic.countsByRank.slice(1) },
+  return { configurationsParNombreDeChoix: { complet: full.countsByChoiceCount.slice(1),
+    sansDiagnostic: noDiagnostic.countsByChoiceCount.slice(1),
+    sansTracesSecretsDiagnostic: noTracesSecretsDiagnostic.countsByChoiceCount.slice(1) },
     disciplineIncompleteDifferee: true,
     limite: 'masques fictifs, pas detection des fonctionnalites du prototype ni migration de sauvegarde' };
 });
@@ -169,7 +170,7 @@ verify('RETRAITE_METHODIQUE', () => {
   assert.deepEqual(manual, retainedCommand);
   const entries = catalogue.split('## 16. Annexe technique')[0].split('\n')
     .filter((line) => /^\| MAN-\d{2} \| [1-5] \|/.test(line)).map(cells)
-    .map((row) => ({ id: row[0], rank: Number(row[1]) }));
+    .map((row) => ({ id: row[0], minimumLevel: Number(row[1]) }));
   assert.equal(entries.length, 9);
   assert.ok(inspectProgression(entries, new Map([['MAN-08', 'MAN-04']])).allPathsComplete);
   return { repetitionManuelle: manual, consigneMaintenue: retainedCommand,

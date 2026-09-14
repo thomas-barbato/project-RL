@@ -1,0 +1,525 @@
+{
+  id: "core:simulation_overworld",
+  bounds: {
+    minimum_x: -512,
+    maximum_x: 511,
+    minimum_y: -512,
+    maximum_y: 511,
+    maximum_depth: 7,
+  },
+  // One biome draw covers a small province instead of producing a noisy
+  // checkerboard. Individual local maps still receive unique region seeds.
+  province_size: 4,
+  local_map: { width: 96, height: 64 },
+  // Explicit shafts keep vertical topology authored and moddable. Regions are
+  // still generated only when the player first crosses one of these links.
+  vertical_links: [
+    { upper: [-1, 0, 0], lower: [-1, 0, 1] },
+  ],
+  biomes: [
+    {
+      id: "core:human_habitat", weight: 60, maximum_depth: 0,
+      terrain: {
+        ground: "gravel", patch_count: 16,
+        minimum_patch_radius: 3, maximum_patch_radius: 10,
+        features: [
+          { kind: "grass", weight: 3 }, { kind: "scrub", weight: 2 },
+          { kind: "deep_water", weight: 1 }, { kind: "boulder", weight: 1 },
+          { kind: "ruin_floor", weight: 2 },
+        ],
+      },
+      population: {
+        group_rolls: [1, 3],
+        groups: [
+          {
+            weight: 70, count: [1, 2], minimum_passage_distance: 8,
+            maximum_integrity: 7,
+            primary_attributes: { power: 6, coordination: 6, resilience: 5, perception: 6, processing: 4 },
+            body: { base_hit_points: 7, mass_grams: 65000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 7, failure_effect: { type: "disable_movement" } }],
+            electronic_system: { digital_defense: 45, heat_alert_threshold: 30, heat_critical_threshold: 45, heat_dissipation_per_phase: 3, stored_energy: 30 },
+            attack: {
+              range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+              impact: { material_cap: 11 },
+              damage: { amount: 2, damage_type: "kinetic", penetration: 0 },
+            },
+            ai: {
+              behavior: "hunter", perception_radius: 9, maximum_path_search: 4096,
+              maximum_pursuit_distance: 10,
+              pursuit_lifecycle: { maximum_turns: 12, search_turns: 4, cooldown_turns: 6 },
+            },
+            defeat_reward: { base_experience: 4, threat_level: 1, origin: "persistent" },
+          },
+          {
+            weight: 30, count: [1, 1], minimum_passage_distance: 10,
+            maximum_integrity: 8,
+            primary_attributes: { power: 4, coordination: 7, resilience: 4, perception: 7, processing: 6 },
+            body: { base_hit_points: 8, mass_grams: 70000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 4, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 1, damage_type: "piercing", penetration: 0 },
+            },
+            ai: {
+              behavior: "skirmisher", perception_radius: 10, maximum_path_search: 4096,
+              preferred_minimum_distance: 2, maximum_pursuit_distance: 12,
+              pursuit_lifecycle: { maximum_turns: 10, search_turns: 4, cooldown_turns: 7 },
+            },
+            defeat_reward: { base_experience: 5, threat_level: 1, origin: "persistent" },
+          },
+        ],
+      },
+      // V21: guarded points of interest plus a few roaming groups. This layer
+      // has its own random stream so density tuning never changes the terrain.
+      encounters: {
+        group_rolls: [3, 5],
+        groups: [
+          {
+            weight: 70, count: [1, 2], minimum_passage_distance: 8,
+            maximum_integrity: 7,
+            primary_attributes: { power: 6, coordination: 6, resilience: 5, perception: 6, processing: 4 },
+            body: { base_hit_points: 7, mass_grams: 65000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+              impact: { material_cap: 11 },
+              damage: { amount: 2, damage_type: "kinetic", penetration: 0 },
+            },
+            ai: {
+              behavior: "hunter", perception_radius: 9, maximum_path_search: 4096,
+              maximum_pursuit_distance: 10,
+              pursuit_lifecycle: { maximum_turns: 12, search_turns: 4, cooldown_turns: 6 },
+            },
+            defeat_reward: { base_experience: 4, threat_level: 1, origin: "persistent" },
+          },
+          {
+            weight: 30, count: [1, 1], minimum_passage_distance: 10,
+            maximum_integrity: 8,
+            primary_attributes: { power: 4, coordination: 7, resilience: 4, perception: 7, processing: 6 },
+            body: { base_hit_points: 8, mass_grams: 70000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 4, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 1, damage_type: "piercing", penetration: 0 },
+            },
+            ai: {
+              behavior: "skirmisher", perception_radius: 10, maximum_path_search: 4096,
+              preferred_minimum_distance: 2, maximum_pursuit_distance: 12,
+              pursuit_lifecycle: { maximum_turns: 10, search_turns: 4, cooldown_turns: 7 },
+            },
+            defeat_reward: { base_experience: 5, threat_level: 1, origin: "persistent" },
+          },
+        ],
+      },
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [2, 4] },
+      landmarks: { caches: [2, 2], threat_camps: [1, 2], minimum_passage_distance: 8 },
+      sites: {
+        compounds: [1, 2],
+        width: 9,
+        height: 7,
+        entrances: { open: 2, closed_door: 5, locked_console: 3 },
+        terminals: {
+          count: [1, 1],
+          records: ["core:human_habitat_site_record"],
+        },
+        security: {
+          owner: "core:system_security",
+          radius: 8,
+          duration_turns: 8,
+          reinforcement_delay_turns: 3,
+          navigation_signal_range: 96,
+        },
+      },
+      threats: {
+        interval_turns: 32, maximum_active: 2, maximum_total: 4,
+        maximum_integrity: 7,
+        primary_attributes: { power: 6, coordination: 6, resilience: 5, perception: 6, processing: 4 },
+        body: { base_hit_points: 7, mass_grams: 65000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+        attack: {
+          range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+          impact: { material_cap: 11 },
+          damage: { amount: 2, damage_type: "kinetic", penetration: 0 },
+        },
+        ai: {
+          behavior: "hunter", perception_radius: 9, maximum_path_search: 4096,
+          maximum_pursuit_distance: 10,
+          pursuit_lifecycle: { maximum_turns: 10, search_turns: 4, cooldown_turns: 7 },
+        },
+      },
+    },
+    {
+      id: "core:surface_wilds", weight: 40, maximum_depth: 0,
+      terrain: {
+        ground: "grass", patch_count: 24,
+        minimum_patch_radius: 3, maximum_patch_radius: 11,
+        features: [
+          { kind: "scrub", weight: 4 }, { kind: "mud", weight: 2 },
+          { kind: "deep_water", weight: 2 }, { kind: "tree", weight: 5 },
+          { kind: "boulder", weight: 2 }, { kind: "ruin_floor", weight: 1 },
+        ],
+      },
+      population: {
+        group_rolls: [2, 4],
+        groups: [
+          {
+            weight: 65, count: [1, 2], minimum_passage_distance: 8,
+            maximum_integrity: 8,
+            primary_attributes: { power: 7, coordination: 7, resilience: 6, perception: 7, processing: 4 },
+            body: { base_hit_points: 8, mass_grams: 70000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 8, failure_effect: { type: "disable_movement" } }],
+            electronic_system: { digital_defense: 50, heat_alert_threshold: 32, heat_critical_threshold: 48, heat_dissipation_per_phase: 3, stored_energy: 30 },
+            attack: {
+              range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+              impact: { material_cap: 12 },
+              damage: { amount: 3, damage_type: "kinetic", penetration: 0 },
+            },
+            ai: {
+              behavior: "hunter", perception_radius: 10, maximum_path_search: 4096,
+              maximum_pursuit_distance: 12,
+              pursuit_lifecycle: { maximum_turns: 14, search_turns: 5, cooldown_turns: 6 },
+            },
+            defeat_reward: { base_experience: 5, threat_level: 1, origin: "persistent" },
+          },
+          {
+            weight: 35, count: [1, 1], minimum_passage_distance: 10,
+            maximum_integrity: 9,
+            primary_attributes: { power: 5, coordination: 7, resilience: 5, perception: 8, processing: 6 },
+            body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 5, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 2, damage_type: "piercing", penetration: 1 },
+            },
+            ai: {
+              behavior: "skirmisher", perception_radius: 11, maximum_path_search: 4096,
+              preferred_minimum_distance: 3, maximum_pursuit_distance: 14,
+              pursuit_lifecycle: { maximum_turns: 12, search_turns: 5, cooldown_turns: 8 },
+            },
+            defeat_reward: { base_experience: 7, threat_level: 2, origin: "persistent" },
+          },
+        ],
+      },
+      encounters: {
+        group_rolls: [4, 6],
+        groups: [
+          {
+            weight: 65, count: [1, 2], minimum_passage_distance: 8,
+            maximum_integrity: 8,
+            primary_attributes: { power: 7, coordination: 7, resilience: 6, perception: 7, processing: 4 },
+            body: { base_hit_points: 8, mass_grams: 70000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+              impact: { material_cap: 12 },
+              damage: { amount: 3, damage_type: "kinetic", penetration: 0 },
+            },
+            ai: {
+              behavior: "hunter", perception_radius: 10, maximum_path_search: 4096,
+              maximum_pursuit_distance: 12,
+              pursuit_lifecycle: { maximum_turns: 14, search_turns: 5, cooldown_turns: 6 },
+            },
+            defeat_reward: { base_experience: 5, threat_level: 1, origin: "persistent" },
+          },
+          {
+            weight: 35, count: [1, 1], minimum_passage_distance: 10,
+            maximum_integrity: 9,
+            primary_attributes: { power: 5, coordination: 7, resilience: 5, perception: 8, processing: 6 },
+            body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 5, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 2, damage_type: "piercing", penetration: 1 },
+            },
+            ai: {
+              behavior: "skirmisher", perception_radius: 11, maximum_path_search: 4096,
+              preferred_minimum_distance: 3, maximum_pursuit_distance: 14,
+              pursuit_lifecycle: { maximum_turns: 12, search_turns: 5, cooldown_turns: 8 },
+            },
+            defeat_reward: { base_experience: 7, threat_level: 2, origin: "persistent" },
+          },
+        ],
+      },
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [2, 4] },
+      landmarks: { caches: [2, 2], threat_camps: [1, 2], minimum_passage_distance: 9 },
+      sites: {
+        compounds: [1, 2],
+        width: 9,
+        height: 7,
+        entrances: { open: 4, closed_door: 4, locked_console: 2 },
+        terminals: {
+          count: [1, 1],
+          records: ["core:surface_wilds_site_record"],
+        },
+        security: {
+          owner: "core:system_security",
+          radius: 8,
+          duration_turns: 8,
+          reinforcement_delay_turns: 3,
+          navigation_signal_range: 96,
+        },
+      },
+      threats: {
+        interval_turns: 28, maximum_active: 2, maximum_total: 5,
+        maximum_integrity: 8,
+        primary_attributes: { power: 7, coordination: 7, resilience: 6, perception: 7, processing: 4 },
+        body: { base_hit_points: 8, mass_grams: 70000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+        attack: {
+          range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+          impact: { material_cap: 12 },
+          damage: { amount: 3, damage_type: "kinetic", penetration: 0 },
+        },
+        ai: {
+          behavior: "hunter", perception_radius: 10, maximum_path_search: 4096,
+          maximum_pursuit_distance: 12,
+          pursuit_lifecycle: { maximum_turns: 12, search_turns: 5, cooldown_turns: 7 },
+        },
+      },
+    },
+    {
+      id: "core:maintenance", weight: 50, minimum_depth: 1, maximum_depth: 2,
+      terrain: {
+        ground: "gravel", patch_count: 18,
+        minimum_patch_radius: 2, maximum_patch_radius: 8,
+        features: [
+          { kind: "mud", weight: 2 }, { kind: "shallow_water", weight: 2 },
+          { kind: "boulder", weight: 2 }, { kind: "ruin_floor", weight: 4 },
+          { kind: "ruin_wall", weight: 1 },
+        ],
+      },
+      population: {
+        group_rolls: [2, 3],
+        groups: [
+          {
+            weight: 70, count: [1, 2], minimum_passage_distance: 9,
+            maximum_integrity: 9,
+            primary_attributes: { power: 6, coordination: 6, resilience: 7, perception: 6, processing: 5 },
+            body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 9, failure_effect: { type: "disable_movement" } }],
+            electronic_system: { digital_defense: 55, heat_alert_threshold: 35, heat_critical_threshold: 50, heat_dissipation_per_phase: 4, stored_energy: 35 },
+            attack: {
+              range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+              impact: { material_cap: 12 },
+              damage: { amount: 3, damage_type: "kinetic", penetration: 0 },
+            },
+            ai: {
+              behavior: "hunter", perception_radius: 9, maximum_path_search: 4096,
+              maximum_pursuit_distance: 11,
+              pursuit_lifecycle: { maximum_turns: 12, search_turns: 5, cooldown_turns: 7 },
+            },
+            defeat_reward: { base_experience: 6, threat_level: 2, origin: "persistent" },
+          },
+          {
+            weight: 30, count: [1, 1], minimum_passage_distance: 11,
+            maximum_integrity: 9,
+            primary_attributes: { power: 5, coordination: 7, resilience: 6, perception: 7, processing: 7 },
+            body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 4, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 2, damage_type: "piercing", penetration: 1 },
+            },
+            ai: {
+              behavior: "skirmisher", perception_radius: 10, maximum_path_search: 4096,
+              preferred_minimum_distance: 2, maximum_pursuit_distance: 13,
+              pursuit_lifecycle: { maximum_turns: 11, search_turns: 5, cooldown_turns: 8 },
+            },
+            defeat_reward: { base_experience: 7, threat_level: 2, origin: "persistent" },
+          },
+        ],
+      },
+      encounters: {
+        group_rolls: [3, 5],
+        groups: [
+          {
+            weight: 70, count: [1, 2], minimum_passage_distance: 9,
+            maximum_integrity: 9,
+            primary_attributes: { power: 6, coordination: 6, resilience: 7, perception: 6, processing: 5 },
+            body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+              impact: { material_cap: 12 },
+              damage: { amount: 3, damage_type: "kinetic", penetration: 0 },
+            },
+            ai: {
+              behavior: "hunter", perception_radius: 9, maximum_path_search: 4096,
+              maximum_pursuit_distance: 11,
+              pursuit_lifecycle: { maximum_turns: 12, search_turns: 5, cooldown_turns: 7 },
+            },
+            defeat_reward: { base_experience: 6, threat_level: 2, origin: "persistent" },
+          },
+          {
+            weight: 30, count: [1, 1], minimum_passage_distance: 11,
+            maximum_integrity: 9,
+            primary_attributes: { power: 5, coordination: 7, resilience: 6, perception: 7, processing: 7 },
+            body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 4, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 2, damage_type: "piercing", penetration: 1 },
+            },
+            ai: {
+              behavior: "skirmisher", perception_radius: 10, maximum_path_search: 4096,
+              preferred_minimum_distance: 2, maximum_pursuit_distance: 13,
+              pursuit_lifecycle: { maximum_turns: 11, search_turns: 5, cooldown_turns: 8 },
+            },
+            defeat_reward: { base_experience: 7, threat_level: 2, origin: "persistent" },
+          },
+        ],
+      },
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [3, 5] },
+      landmarks: { caches: [3, 3], threat_camps: [0, 0], minimum_passage_distance: 9 },
+      destructibles: {
+        count: [2, 3], minimum_passage_distance: 8, maximum_integrity: 4,
+        explosion: {
+          radius: 2,
+          damage: { amount: 8, damage_type: "explosive", penetration: 0 },
+          falloff_per_cost: 2,
+        },
+        ground_effect: {
+          id: "core:burning_ground", duration_turns: 3,
+          damage_each_turn: { amount: 2, damage_type: "thermal", penetration: 0 },
+        },
+      },
+    },
+    {
+      id: "core:production", weight: 40, minimum_depth: 1, maximum_depth: 3,
+      terrain: {
+        ground: "gravel", patch_count: 20,
+        minimum_patch_radius: 2, maximum_patch_radius: 9,
+        features: [
+          { kind: "mud", weight: 2 }, { kind: "shallow_water", weight: 1 },
+          { kind: "boulder", weight: 3 }, { kind: "ruin_floor", weight: 4 },
+          { kind: "ruin_wall", weight: 2 },
+        ],
+      },
+      population: {
+        group_rolls: [2, 4],
+        groups: [
+          {
+            weight: 60, count: [1, 2], minimum_passage_distance: 9,
+            maximum_integrity: 10,
+            primary_attributes: { power: 7, coordination: 7, resilience: 7, perception: 7, processing: 5 },
+            body: { base_hit_points: 10, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 10, failure_effect: { type: "disable_movement" } }],
+            electronic_system: { digital_defense: 60, heat_alert_threshold: 38, heat_critical_threshold: 55, heat_dissipation_per_phase: 5, stored_energy: 40 },
+            attack: {
+              range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+              impact: { material_cap: 14 },
+              damage: { amount: 3, damage_type: "kinetic", penetration: 1 },
+            },
+            ai: {
+              behavior: "hunter", perception_radius: 10, maximum_path_search: 4096,
+              maximum_pursuit_distance: 12,
+              pursuit_lifecycle: { maximum_turns: 13, search_turns: 5, cooldown_turns: 7 },
+            },
+            defeat_reward: { base_experience: 7, threat_level: 2, origin: "persistent" },
+          },
+          {
+            weight: 40, count: [1, 1], minimum_passage_distance: 11,
+            maximum_integrity: 10,
+            primary_attributes: { power: 5, coordination: 7, resilience: 6, perception: 8, processing: 7 },
+            body: { base_hit_points: 10, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 5, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 2, damage_type: "piercing", penetration: 1 },
+            },
+            ai: {
+              behavior: "skirmisher", perception_radius: 11, maximum_path_search: 4096,
+              preferred_minimum_distance: 3, maximum_pursuit_distance: 14,
+              pursuit_lifecycle: { maximum_turns: 12, search_turns: 5, cooldown_turns: 8 },
+            },
+            defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+          },
+        ],
+      },
+      encounters: {
+        group_rolls: [4, 6],
+        groups: [
+          {
+            weight: 60, count: [1, 2], minimum_passage_distance: 9,
+            maximum_integrity: 10,
+            primary_attributes: { power: 7, coordination: 7, resilience: 7, perception: 7, processing: 5 },
+            body: { base_hit_points: 10, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+              impact: { material_cap: 14 },
+              damage: { amount: 3, damage_type: "kinetic", penetration: 1 },
+            },
+            ai: {
+              behavior: "hunter", perception_radius: 10, maximum_path_search: 4096,
+              maximum_pursuit_distance: 12,
+              pursuit_lifecycle: { maximum_turns: 13, search_turns: 5, cooldown_turns: 7 },
+            },
+            defeat_reward: { base_experience: 7, threat_level: 2, origin: "persistent" },
+          },
+          {
+            weight: 40, count: [1, 1], minimum_passage_distance: 11,
+            maximum_integrity: 10,
+            primary_attributes: { power: 5, coordination: 7, resilience: 6, perception: 8, processing: 7 },
+            body: { base_hit_points: 10, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 5, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 2, damage_type: "piercing", penetration: 1 },
+            },
+            ai: {
+              behavior: "skirmisher", perception_radius: 11, maximum_path_search: 4096,
+              preferred_minimum_distance: 3, maximum_pursuit_distance: 14,
+              pursuit_lifecycle: { maximum_turns: 12, search_turns: 5, cooldown_turns: 8 },
+            },
+            defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+          },
+        ],
+      },
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [3, 5] },
+      landmarks: { caches: [3, 3], threat_camps: [0, 0], minimum_passage_distance: 9 },
+      destructibles: {
+        count: [3, 5], minimum_passage_distance: 8, maximum_integrity: 5,
+        explosion: {
+          radius: 2,
+          damage: { amount: 9, damage_type: "explosive", penetration: 1 },
+          falloff_per_cost: 2,
+        },
+        ground_effect: {
+          id: "core:burning_ground", duration_turns: 3,
+          damage_each_turn: { amount: 2, damage_type: "thermal", penetration: 0 },
+        },
+      },
+    },
+    {
+      id: "core:research", weight: 35, minimum_depth: 2, maximum_depth: 4,
+      terrain: {
+        ground: "ruin_floor", patch_count: 18,
+        minimum_patch_radius: 2, maximum_patch_radius: 8,
+        features: [
+          { kind: "gravel", weight: 2 }, { kind: "shallow_water", weight: 1 },
+          { kind: "ruin_wall", weight: 4 }, { kind: "boulder", weight: 1 },
+        ],
+      },
+    },
+    {
+      id: "core:security", weight: 30, minimum_depth: 3, maximum_depth: 6,
+      terrain: {
+        ground: "ruin_floor", patch_count: 22,
+        minimum_patch_radius: 2, maximum_patch_radius: 7,
+        features: [
+          { kind: "gravel", weight: 2 }, { kind: "ruin_wall", weight: 5 },
+          { kind: "boulder", weight: 2 },
+        ],
+      },
+    },
+    {
+      id: "core:network", weight: 25, minimum_depth: 4, maximum_depth: 7,
+      terrain: {
+        ground: "ruin_floor", patch_count: 26,
+        minimum_patch_radius: 2, maximum_patch_radius: 8,
+        features: [
+          { kind: "deep_water", weight: 2 }, { kind: "ruin_wall", weight: 5 },
+          { kind: "gravel", weight: 1 },
+        ],
+      },
+    },
+    {
+      id: "core:corrupted", weight: 15, minimum_depth: 5, maximum_depth: 7,
+      terrain: {
+        ground: "mud", patch_count: 30,
+        minimum_patch_radius: 2, maximum_patch_radius: 10,
+        features: [
+          { kind: "deep_water", weight: 3 }, { kind: "tree", weight: 2 },
+          { kind: "ruin_wall", weight: 4 }, { kind: "scrub", weight: 2 },
+        ],
+      },
+    },
+  ],
+}

@@ -23,4 +23,29 @@
   loot_table: "example.arc_arsenal:industrial_floor",
   loot_source: "core:floor",
   loot_draws: 2,
+  population: [
+    {
+      count: 2,
+      minimum_entrance_distance: 16,
+      maximum_integrity: 11,
+      primary_attributes: { power: 5, coordination: 7, resilience: 6, perception: 8, processing: 8 },
+      body: { base_hit_points: 11, mass_grams: 85000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+      attack: {
+        range: 5,
+        distance_metric: "euclidean",
+        requires_line_of_sight: true,
+        damage: { amount: 3, damage_type: "electrical", penetration: 1 },
+      },
+      ai: {
+        behavior: "skirmisher",
+        perception_radius: 9,
+        preferred_attack_slot: 0,
+        maximum_path_search: 2048,
+        preferred_minimum_distance: 3,
+        maximum_pursuit_distance: 16,
+        pursuit_lifecycle: { maximum_turns: 12, search_turns: 5, cooldown_turns: 8 },
+      },
+      defeat_reward: { base_experience: 10, threat_level: 2, origin: "persistent" },
+    },
+  ],
 }

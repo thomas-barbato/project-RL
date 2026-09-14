@@ -28,9 +28,9 @@ L'utilisateur a demandé d'enchaîner les étapes documentaires 1 à 6 et 8. Les
 | Statistique secondaire | Valeur exprimant l'efficacité ou une capacité résultant du personnage, de son matériel et, lorsque c'est pertinent, de la situation. |
 | Capacité matérielle | Propriété du corps, d'un équipement ou d'un module : réserve énergétique, blindage, portée d'une arme, etc. |
 | Ressource actuelle | Quantité disponible à cet instant, distincte de son maximum : PV restants, énergie disponible, munitions. |
-| Compétence / discipline | L'une des dix progressions à rangs, par exemple Tir ou Intrusion. « Discipline » sert ici à la distinguer de ses techniques, sans imposer un renommage de l'interface. |
-| Rang | Niveau d'investissement dans une compétence, de 0 à 5. |
-| Technique | Action, posture, procédure ou comportement appris grâce à un choix de rang. |
+| Compétence / discipline | L'une des dix familles de techniques, par exemple Tir ou Intrusion. « Discipline » sert ici à distinguer la famille des techniques qu'elle contient, sans imposer ce terme dans l'interface. |
+| Condition d'apprentissage | Niveau de personnage, valeur d'attribut ou technique déjà apprise explicitement demandé par une technique. |
+| Technique | Action, posture, procédure ou comportement appris en dépensant des points de compétence. |
 | Amélioration de technique | Choix qui modifie une technique connue et demande celle-ci en prérequis. |
 
 Une valeur de Précision n'est donc pas une technique de Tir. Apprendre Tir visé fournit une préparation particulière ; la Précision exprime une partie de son efficacité avec l'arme utilisée.
@@ -65,13 +65,13 @@ La fréquence des augmentations de primaires et le traitement détaillé des mod
 
 Les dix compétences sont Combat rapproché, Tir, Démolition, Manœuvre, Furtivité, Reconnaissance, Ingénierie, Intrusion, Guerre électronique et Contrôle de drones.
 
-- Chaque rang acheté donne un choix de technique ou d'amélioration éligible ; les choix antérieurs restent accessibles.
-- La base actuelle limite chaque compétence à cinq choix, y compris ceux accordés au départ par une classe.
+- Une technique devient apprenable lorsque son niveau minimal, ses éventuels seuils d'attributs et ses techniques prérequises sont satisfaits.
+- Une discipline n'impose aucun nombre maximal de techniques apprises. Les conditions sont propres à chaque technique et ne dépendent pas du nombre déjà acheté dans cette discipline.
 - Les fonctions ordinaires du matériel restent accessibles selon ses règles, sans apprentissage obligatoire d'une technique spécialisée.
 - L'expérience et la progression du noyau appartiennent à la partie ; les classes débloquées relèvent d'une progression séparée.
-- Le barème de rangs 1, 1, 2, 2, 3 points et l'hypothèse d'un point par niveau restent des paramètres d'essai, pas un équilibrage acquis.
+- Le barème de coût des apprentissages successifs — 1, 1, 2, 2, puis 3 points pour les suivants — et l'hypothèse d'un point par niveau restent des paramètres d'essai, pas un équilibrage acquis.
 
-La présence éventuelle d'un bonus numérique automatique lié au rang lui-même n'est pas tranchée ici. Il ne faut pas en ajouter un silencieusement aux bénéfices de chaque technique.
+Le nombre de techniques connues dans une discipline n'accorde aucun bonus numérique automatique. Les bénéfices proviennent des techniques et du matériel explicitement actifs.
 
 ### 3.3. Défense physique confirmée
 
@@ -174,7 +174,7 @@ Ces exemples expliquent les responsabilités sans ajouter de bonus ou de coût a
 |---|---|---|
 | Tir visé (TIR-01) | Précision de l'attaque, arme et préparation. | Le montant du bonus reste à fixer ; la préparation ne permet pas de tirer à travers un mur. |
 | Repoussement | Impact physique, masse et ancrage de la cible, case d'arrivée. | Une forte Puissance ne crée pas une destination praticable. |
-| Brise-armure (MEL-07) et Tir de rupture (TIR-09) | Blindage de la cible, état de fragilisation ou contournement partiel propre au tir. | Les techniques conservent leurs conditions et contreparties ; un ordre de résolution est proposé en section 10, leurs quantités et durées restent à définir. |
+| Brise-armure (MEL-07) et Tir de rupture (TIR-09) | Blindage de la cible, état de fragilisation ou contournement partiel propre au tir. | MEL-07 fixe Fragilisation 4 pour 3 UT après l'impact ; le contournement propre à TIR-09 reste à définir. |
 | Analyse de cible (REC-01) | Analyse, observation actuelle et données identifiables. | La technique n'invente pas une position hors perception et n'ajoute pas un bonus d'attaque automatique. |
 | Surcharge (GEL-01) | Puissance d'émission du matériel, énergie, propagation et résistance adaptée. | Ce n'est pas automatiquement un duel entre Efficacité d'intrusion et Défense numérique : la nature physique de l'effet compte. |
 | Ordre simple à un drone | Contrôleur et unité disponibles, ordre légal. | Aucun besoin d'acheter trois disciplines ni d'ajouter un jet de Contrôle distant à chaque ordre. |
@@ -205,10 +205,10 @@ Ces scénarios décrivent des tests futurs ; ils n'ont pas été exécutés dans
 | STAT-05 | Progression. | Section 17 : profil d'essai à 20 niveaux, budget initial de 2 points inclus dans les classes, 1 point par niveau gagné et cinq augmentations primaires. Ce ne sont pas des décisions finales. |
 | STAT-06 | Fiches finales. | Annexe 16 du catalogue : 104 profils techniques couvrant les 94 entrées et 10 variantes, après fusion de MAN-07 dans MAN-01. Chiffres à tester ; textes joueur rédigés, quinze validations individuelles en section 19.1 puis complément sous délégation en section 19.3. |
 | STAT-07 | Formule de Blindage. | Présence et absorption totale des petites attaques confirmées, sans minimum de 1 dégât ; réduction fixe et pénétration en points restent une proposition à valider. |
-| STAT-08 | Chances de toucher. | Examiner la base de 70 % entre profils ordinaires, les contributions des primaires et les bornes d'essai de 5 % à 95 % ; rien n'est encore validé. |
+| STAT-08 | Chances de toucher. | La base de 70 % entre profils ordinaires, les contributions de Coordination/Perception et les bornes de 5 % à 95 % sont acceptées comme barème jouable expérimental et raccordées au moteur en version 31. Elles restent à équilibrer par des parties réelles. |
 | STAT-09 | Difficulté et possibilité de gagner. | Objectif confirmé : ni facile ni impossible à gagner. Éprouver les réponses accessibles, les obstacles obligatoires et les limites des builds défensifs ; aucun taux de victoire cible n'est fixé. |
-| STAT-10 | Puissance, Impact et dégâts de mêlée. | Section 11 : rôle de Puissance limité par le matériel retenu comme base de travail ; référence 10 et coefficient 2 restent un barème d'essai. Vérifier les seuils de Blindage et les attaques multiples. |
-| STAT-11 | Changement de maximum et réparation. | Augmenter le maximum sans réparation automatique retenu comme base de travail. La section 11.5 détaille le plafonnement proposé lors d'une baisse ; ergonomie et économie restent à éprouver. |
+| STAT-10 | Puissance, Impact et dégâts de mêlée. | Raccordé aux profils de mêlée déclaratifs en version 33 ; référence 10 et coefficient 2 restent un barème d'essai. Vérifier les seuils de Blindage et les attaques multiples. |
+| STAT-11 | Changement de maximum et réparation. | Résilience raccordée aux profils corporels lors de l'apparition en version 33. La conservation des PV sans réparation gratuite est testée comme règle pure ; son déclenchement par un changement dynamique d'équipement ou d'état reste à raccorder. |
 | STAT-12 | Types de dégâts et résistances. | Distinction des protections et résistances spécialisées en pourcentages retenue après accord ; plafond de 75 % comme base d'essai, autres bornes et modalités à éprouver ou préciser. |
 | STAT-13 | Stabilité et interruptions. | Stabilité distincte des dégâts, interruption sans perte automatique du prochain tour et courte protection contre les répétitions retenues ; coefficients, durée exacte et chronologie restent à éprouver. |
 | STAT-14 | Écart avec le prototype. | Section 12.8 : minimum de dégâts, unité de pénétration, familles de dégâts et attaques mixtes à réconcilier avant implémentation ; aucun code modifié ici. |
@@ -217,7 +217,7 @@ La discussion des capacités extérieures reste reportée. Le chapitre actuel pe
 
 ## 10. Première proposition chiffrée : combat physique
 
-Statut : proposition chiffrée à valider, avec absorption totale et absence de minimum automatique de 1 dégât confirmées par l'utilisateur. Ce chapitre n'est pas la description du combat actuellement implémenté et n'impose pas encore ses nombres au contenu du jeu. L'accord sur l'absorption totale ne valide pas implicitement les coefficients de Précision/Esquive, leurs bornes ni toutes les modalités de pénétration.
+Statut : les coefficients de Précision/Esquive, leur jet unique et leurs bornes sont acceptés comme **barème jouable expérimental** et raccordés aux attaques ordinaires en version 31. Ils devront être éprouvés et pourront encore être rééquilibrés. Les propositions de Blindage, pénétration fixe et dégâts des sections suivantes ne sont pas rendues effectives par cet accord.
 
 ### 10.1. Périmètre et légalité
 
@@ -227,7 +227,7 @@ Avant tout jet, vérifier les conditions de l'action : matériel, ressources, po
 
 Une attaque de zone ne donne pas automatiquement un jet d'Esquive à chaque occupant. La présence dans les cases effectivement affectées, les obstacles et les éventuels déplacements de réaction déterminent l'exposition. Un éventuel jet de placement d'un projectile explosif est une question distincte. Une action certaine sur un objet inerte n'a pas besoin d'un jet uniquement pour employer cette formule.
 
-### 10.2. Calcul proposé de Précision et d'Esquive
+### 10.2. Calcul expérimental de Précision et d'Esquive
 
 Toutes les valeurs de ce premier barème sont entières. Les contributions neutres de matériel et d'état valent zéro ; leurs valeurs réelles viendront des profils d'équipement et des effets.
 
@@ -241,9 +241,9 @@ Esquive = max(0, 10 + 4 × (Coordination − 5) + modificateurs_d'esquive)
 
 Les modificateurs de précision regroupent les contributions explicites de l'arme, de ses réglages et des états de l'attaquant. Ceux d'esquive regroupent locomotion, encombrement et états défensifs applicables. Ils sont distincts du Blindage : une armure lourde ne réduit pas l'Esquive par simple présence d'un score élevé de Blindage ; une pénalité de charge ou de mobilité doit être explicitement définie.
 
-Le coefficient de Perception est ici réservé au tir ordinaire ; il n'ajoute pas automatiquement un second bonus à toutes les attaques de mêlée. Coordination ne fournit ni dégâts supplémentaires ni accélération générale par ces formules. Aucun bonus de rang gratuit n'est ajouté.
+Le coefficient de Perception est ici réservé au tir ordinaire ; il n'ajoute pas automatiquement un second bonus à toutes les attaques de mêlée. Coordination ne fournit ni dégâts supplémentaires ni accélération générale par ces formules. Aucun bonus gratuit lié au nombre de techniques connues n'est ajouté.
 
-Proposition de résolution :
+Résolution expérimentale adoptée :
 
 ```text
 Chance_de_toucher = borner(Précision − Esquive_adverse + contexte, 5, 95)
@@ -268,11 +268,11 @@ Les cas suivants sont des tirs valides, sans réaction spéciale. Sauf indicatio
 | Défenseur avec Coordination 8 | 80 | 22 | 0 | 58 % |
 | Attaquant avec Coordination 8, cible sous un couvert donnant −20 | 92 | 10 | −20 | 62 % |
 
-Ces chiffres visent à rendre une bonne position et un investissement en Coordination perceptibles. Il faudra vérifier si 70 % produit trop de tours sans effet et si les bornes de 5 % et 95 % créent des échecs frustrants ou des réussites trop indulgentes dans les situations extrêmes.
+Ces chiffres visent à rendre une bonne position et un investissement en Coordination perceptibles. Ils sont désormais testables dans les nouvelles parties ; il faudra vérifier si 70 % produit trop de tours sans effet et si les bornes de 5 % et 95 % créent des échecs frustrants ou des réussites trop indulgentes dans les situations extrêmes.
 
-### 10.4. Blindage et pénétration : réduction fixe proposée
+### 10.4. Blindage et pénétration : réduction fixe raccordée
 
-Proposition de premier modèle global, sans répartition anatomique : le Blindage est la somme non négative des contributions explicites du corps, des protections équipées et des renforcements. Une même source n'est comptée qu'une fois. Les états de fragilisation sont traités séparément ci-dessous ; on ne les soustrait pas déjà dans cette somme.
+Premier modèle global, sans répartition anatomique : le Blindage est la somme non négative des contributions explicites du corps, des protections équipées et des renforcements. Une même source n'est comptée qu'une fois. Les états de fragilisation sont traités séparément ci-dessous ; on ne les soustrait pas déjà dans cette somme. La version 35 implémente cette composition dans le moteur headless et alimente d'abord la contribution corporelle. La version 36 y raccorde les protections actuellement équipées depuis leurs profils de contenu. Le jalon MEL-07 raccorde ensuite les fragilisations actives portées par les états ; le moteur retient la valeur la plus forte avec l'éventuelle contribution intrinsèque. Le Renforcement reste une entrée explicite sans source de gameplay standard.
 
 La pénétration est exprimée en points de Blindage ignorés pour cet impact. Elle ne retire pas définitivement l'armure et n'ajoute pas de dégâts lorsque toute la protection est déjà contournée.
 
@@ -311,19 +311,23 @@ Exemple, si tous les coups touchent : trois projectiles de 6 dégâts contre un 
 
 ### 10.6. Techniques, retours au joueur et limites
 
-- Brise-armure : proposer que la nouvelle fragilisation s'applique après la résolution de son propre impact, pour les attaques suivantes, sans réduction rétroactive. Les conditions de réussite, le montant et la durée restent à préciser. Pour une même famille de fragilisation, retenir la plus forte plutôt qu'additionner indéfiniment les applications ; le renouvellement de durée reste à définir.
+- Brise-armure : la fragilisation 4 s'applique après la résolution de son propre impact pour 3 UT, donc sans réduction rétroactive. Une touche suffit même à zéro dégât, mais la cible doit posséder du Blindage. La valeur active la plus forte est retenue ; une réapplication pendant sa durée ne cumule rien et ne la rafraîchit pas.
 - Tir de rupture : son contournement concerne le tir exécuté, pas une perte permanente du Blindage adverse. Sa conversion en points de pénétration reste à fixer et doit conserver le contournement partiel prévu par sa fiche. Le cas générique de pénétration 20 du tableau ne lui accorde pas une traversée totale de toute armure.
 - Parade : ne pas la transformer implicitement en bonus de Blindage permanent. Sa réduction et son ordre par rapport au Blindage restent à définir avec son coût de réaction.
-- Les effets secondaires ne sont pas automatiquement bloqués ou déclenchés par zéro dégât. Chaque fiche devra distinguer une condition « toucher », « infliger des dégâts » ou une autre condition explicite.
+- Les effets secondaires ne sont pas automatiquement bloqués ou déclenchés par zéro dégât. Depuis la version 38, une arme distingue explicitement `on_attack`, `on_hit`, `on_damage` et `on_target_destroyed` dans sa fiche de contenu. Un toucher entièrement absorbé satisfait `on_hit`, mais pas `on_damage`.
 - Un profil très blindé peut absorber une arme trop faible : ce principe est confirmé. Pour respecter l'objectif de difficulté surmontable, les essais devront vérifier les réponses viables, sans imposer l'achat d'une technique particulière ni rendre une voie de progression impraticable faute d'un objet rare ; voir section 10.8.
 
 Le joueur doit pouvoir distinguer attaque manquée, impact sans dégât observé et perte de PV constatée. Un aperçu exact de probabilité ou de dégâts n'est permis que si les informations nécessaires sont connues. Si le Blindage ou l'Esquive adverse ne sont pas connus, utiliser une indication incertaine ou une estimation fondée sur les seules observations disponibles, sans révéler une statistique cachée ni attribuer automatiquement la cause de zéro dégât à l'armure.
 
 ### 10.7. Vérifications et suite de la proposition
 
-Vérifications arithmétiques effectuées lors de la rédaction : les dix lignes d'exemples des sections 10.3 et 10.5 ont été relues depuis ce document et recalculées. Des séries de valeurs ont aussi vérifié les bornes de probabilité, la monotonie de Précision et d'Esquive, celle du Blindage, de la fragilisation et de la pénétration, l'absence de dégâts négatifs ou supérieurs aux dégâts bruts du seul fait de la pénétration, ainsi que l'exemple de rafale face à l'impact unique. Ce sont des calculs isolés, pas des tests du moteur ni des parties jouées.
+Vérifications arithmétiques effectuées lors de la rédaction : les dix lignes d'exemples des sections 10.3 et 10.5 ont été relues depuis ce document et recalculées. Des séries de valeurs ont aussi vérifié les bornes de probabilité, la monotonie de Précision et d'Esquive, celle du Blindage, de la fragilisation et de la pénétration, l'absence de dégâts négatifs ou supérieurs aux dégâts bruts du seul fait de la pénétration, ainsi que l'exemple de rafale face à l'impact unique. Depuis la version 35, les cas de Blindage fixe, pénétration, absorption complète et séparation des résistances sont également couverts par des tests déterministes du moteur. Le jalon MEL-07 ajoute les preuves d'application après impact, de touche absorbée, de cible sans Blindage, de raté, d'absence de rafraîchissement et de nouvelle application après expiration ; l'équilibrage en partie reste distinct.
 
-Les essais jouables restent nécessaires : fréquence des ratés, efficacité des builds défensifs, intérêt des armes légères et lourdes, coût des préparations, rencontres avec armure inconnue et accès à des solutions alternatives. La compatibilité avec le moteur n'est pas validée par un calcul de tableau.
+Les exemples de Précision/Esquive sont maintenant couverts par les tests du moteur, avec contrôle du tirage reproductible, de l'absence de RNG lors des refus/prévisualisations, et des exemptions des zones et objets inertes. Le Blindage version 35 protège les familles `Kinetic`, `Piercing` et `Explosive` sans résistance physique en pourcentage supplémentaire ; une pénétration physique réduit ce Blindage en points et une protection suffisante peut ramener les dégâts à zéro. Les essais jouables restent nécessaires : fréquence des ratés, efficacité des builds défensifs, intérêt des armes légères et lourdes, coût des préparations, rencontres avec armure inconnue et accès à des solutions alternatives.
+
+Depuis la version 36, un test headless équipe une protection par son identifiant d'instance, vérifie la contribution distincte corps + équipement, puis résout un impact physique entièrement absorbé. Un test du client clique sur **Équiper**, contrôle le Blindage affichable et rejoue la même commande depuis une suspension. Ces preuves valident le trajet mécanique et déterministe, pas les valeurs d'équilibrage +1 et +2 du contenu actuel.
+
+Depuis la version 32, les populations d'expédition, populations régionales, rencontres et menaces renouvelables peuvent déclarer les cinq primaires. Les premiers profils différencient provisoirement chasseurs, sentinelles et tirailleurs ; ce sont des profils de comportement pour éprouver le barème, pas des espèces, classes ou identités narratives définitives. Coordination et Perception agissent sur la touche depuis cette version. En version 33, Puissance agit uniquement sur les attaques de mêlée dotées d'un profil d'Impact et Résilience uniquement sur les acteurs dotés d'un profil corporel ; aucun effet n'est inventé pour les contenus qui omettent ces données. Traitement reste sans effet raccordé à ce stade.
 
 La section 11 poursuit avec Impact, dégâts bruts de mêlée et PV ; la section 12 propose les résistances et interruptions. Restent les réactions actives détaillées, les autres états et secondaires et le budget de progression. Les capacités extérieures restent hors de cette étape.
 
@@ -343,7 +347,7 @@ Les essais futurs devront comparer plusieurs builds et plusieurs parties génér
 
 ## 11. Proposition chiffrée : Impact et PV
 
-Statut : principes retenus comme base de travail selon le retour ci-dessous, modalités complémentaires proposées et valeurs d'essai ; pas une règle déjà programmée. Cette étape complète le barème physique avec le rôle de Puissance dans un coup de mêlée et celui de Résilience dans les PV maximaux. Elle ne change pas le corps principal, les cinq primaires, leur plafond de 10 ou les techniques existantes.
+Statut : principes retenus comme base de travail et valeurs d'essai, raccordés au moteur headless en version 33 par des profils physiques déclaratifs. Les attaques de mêlée compatibles fournissent leur plafond matériel ; les acteurs concernés fournissent leur base corporelle. Puissance modifie alors une seule fois leurs dégâts physiques de référence et Résilience leurs PV maximaux lors de l'apparition. Cette étape ne change pas le corps principal, les cinq primaires, leur plafond de 10 ou les techniques existantes. Le premier Blindage corporel est raccordé séparément en version 35 ; changements dynamiques du maximum et équilibrage en partie restent des étapes distinctes.
 
 Suivi du retour utilisateur : les principes présentés dans le résumé — Puissance contribuant à la mêlée dans les limites matérielles, contribution limitée de Résilience aux PV et absence de réparation automatique lors d'une augmentation du maximum — sont retenus comme base de travail. Les nombres demeurent un barème d'essai ; cet accord ne vaut pas validation implicite de chaque détail annexe ni preuve d'équilibrage.
 
@@ -457,7 +461,11 @@ La réparation ordinaire doit rester viable sans apprendre Ingénierie. Réparat
 
 ### 11.7. Vérifications et décisions suivantes
 
-Vérifications arithmétiques effectuées lors de la rédaction : les 14 lignes des tableaux de cette section et les 10 lignes du chapitre 10 ont été extraites du document et recalculées. Les deux exemples de réparation ont aussi été vérifiés. Des séries de valeurs ont contrôlé l'Impact non négatif et borné par le matériel, la croissance des valeurs avec leur primaire, le minimum du maximum de PV, l'absence de gain de réserve par un cycle d'équipement et le maintien à zéro d'une réserve déjà nulle. Les dégâts ordinaires utilisent une seule fois le bonus issu de Puissance, via l'Impact. Ces vérifications portent sur les formules proposées, pas sur une implémentation du jeu.
+Vérifications arithmétiques effectuées lors de la rédaction : les 14 lignes des tableaux de cette section et les 10 lignes du chapitre 10 ont été extraites du document et recalculées. Les deux exemples de réparation ont aussi été vérifiés. Des séries de valeurs ont contrôlé l'Impact non négatif et borné par le matériel, la croissance des valeurs avec leur primaire, le minimum du maximum de PV, l'absence de gain de réserve par un cycle d'équipement et le maintien à zéro d'une réserve déjà nulle. Les dégâts ordinaires utilisent une seule fois le bonus issu de Puissance, via l'Impact.
+
+Le module `stats::physical` reproduit les cinq exemples de mêlée, les cinq exemples de PV et les quatre transitions de maximum sous forme de tests Rust. Il borne les résultats sans dépassement arithmétique, expose séparément Impact disponible et utilisé afin que l'interface puisse signaler un plafond matériel connu, et conserve le profil neutre explicite des acteurs sans primaires. En version 33, le chargeur accepte ces profils sur les armes et populations, les valide avant la partie et le moteur les applique lors de la résolution ou de l'apparition. L'inventaire et l'analyse de menace demandent au moteur les dégâts actuels et affichent aussi référence et plafond connus. Le contenu central emploie provisoirement des plafonds de 11 à 14 et des bases corporelles conservant les anciennes valeurs comme repli de compatibilité ; ces nombres servent aux essais, pas à un équilibrage définitif.
+
+Une suspension de version 32 ou antérieure retire ces métadonnées avant vérification de ses empreintes et retrouve exactement ses dégâts et maxima historiques. Un mod existant qui ne déclare ni `impact` ni `body` conserve également son comportement. La règle de conservation des PV lors d'une future variation de maximum reste disponible et testée, mais aucun équipement actuel ne modifie encore dynamiquement le corps.
 
 Les essais jouables devront vérifier les seuils de Blindage, les limites matérielles lisibles, la différence entre armes légères et lourdes, la durée des combats et l'économie de réparation à plusieurs niveaux de Résilience. Les calculs seuls ne valident pas une difficulté ni l'état du moteur.
 
@@ -467,7 +475,7 @@ La section 12 poursuit avec les types de dégâts, leurs résistances, Stabilit�
 
 Statut : principes retenus après accord utilisateur. Sont retenus la distinction entre Blindage, résistances spécialisées, Défense numérique et Stabilité, les résistances en pourcentages avec vulnérabilités possibles, et l'interruption d'une préparation sans perte automatique du prochain tour, accompagnée d'une courte protection contre les interruptions répétées.
 
-Le plafond de résistance de 75 % reste une base d'essai. Les autres bornes, coefficients, arrondis, regroupements de dégâts, durée précise et chronologie de la protection restent des modalités proposées à éprouver ou à préciser ; l'accord ne constitue pas une validation technique de chaque détail. Aucun de ces systèmes n'est déclaré implémenté par ce document. Les capacités extérieures à débloquer en jeu restent hors périmètre.
+Le plafond de résistance de 75 % reste une base d'essai. La version 35 raccorde le Blindage fixe et les résistances spécialisées avec les bornes −50 à 75 %, l'arrondi inférieur et zéro dégât possible. La version 37 raccorde le regroupement de plusieurs composantes dans un même impact et sépare leurs unités de pénétration. Le jalon de laboratoire MEL-08 raccorde ensuite le calcul de Stabilité, les résistances passives à une perturbation compatible et une protection familiale après expiration d'état ; il ne prouve pas encore leur équilibre ni toutes les futures interruptions. Les capacités extérieures à débloquer en jeu restent hors périmètre.
 
 ### 12.1. Séparer dégâts, intrusion et perturbation
 
@@ -515,7 +523,7 @@ Les contributions sont des points de pourcentage, pas des multiplicateurs succes
 
 La dernière ligne rend visible l'effet de l'arrondi : de très petits dégâts peuvent être entièrement absorbés sans immunité générale. Cette conséquence et les dégâts périodiques de faible intensité devront être testés. Aucun minimum de 1 dégât n'est réintroduit après réduction. Une immunité spécifique ou une incompatibilité d'effet ne doit pas être inventée à partir d'un empilement de bonus dépassant 75 % ; les éventuelles immunités explicites demandent une règle distincte.
 
-La pénétration du Blindage de la section 10 reste exprimée en points d'armure. Elle ne diminue pas ces résistances en pourcentage. Aucun contournement générique de résistance spécialisée n'est ajouté ici ; une future propriété de ce genre devra nommer son unité et sa cible explicitement.
+La pénétration du Blindage de la section 10 reste exprimée en points d'armure et ne diminue pas les résistances en pourcentage. Depuis la version 37, une attaque mixte déclare `armor_penetration` pour le Blindage et des `resistance_penetrations` dont chaque entrée nomme le type concerné et des `percentage_points`. Pour préserver le sens des paquets à une composante existants, leur champ historique `penetration` reste accepté : selon la défense affectée à cette unique famille, il conserve son ancienne unité et n'est jamais appliqué aux deux défenses. Les nouvelles définitions mixtes ne disposent pas de ce raccourci ambigu.
 
 ### 12.4. Attaques mixtes et ordre de calcul
 
@@ -526,6 +534,8 @@ Pour un impact valide :
 3. Appliquer séparément chaque résistance spécialisée au total du type correspondant et arrondir ce résultat à l'entier inférieur.
 4. Additionner les dégâts restants, puis retirer le total des PV actuels, sans passer sous zéro.
 5. Résoudre les effets secondaires uniquement selon leurs déclencheurs déclarés, sans déduire automatiquement leur présence de dégâts positifs ou nuls.
+
+Cet ordre est raccordé au moteur headless depuis la version 37. Le détail des composantes résolues reste disponible dans l'événement produit, mais la réserve de PV ne subit qu'une seule mutation pour l'impact complet. Cette étape ne transforme pas les rafales en impacts uniques. Depuis la version 38, les effets secondaires d'arme consultent ensuite leur déclencheur déclaré au lieu d'inférer leur activation depuis le seul total brut.
 
 Les cas ci-dessous n'ont ni pénétration ni fragilisation, réaction spéciale ou effet logiciel.
 
@@ -564,7 +574,7 @@ Le jet est passif : il ne consomme ni ne rétablit le droit à une réaction de 
 
 ### 12.6. Première interruption et protection contre les répétitions
 
-Proposition de cas initial : interrompre une préparation en cours déclarée interruptible. En cas d'échec au jet de Stabilité, cette préparation prend fin ; les coûts déjà engagés ne sont pas remboursés et les coûts non encore engagés ne sont pas prélevés. Une action déjà résolue n'est pas annulée rétroactivement.
+Premier raccordement moteur en version 56 : une attaque doit déclarer explicitement une famille de perturbation et une intensité strictement positive pour pouvoir interrompre une préparation en cours. En cas d'échec au jet de Stabilité, cette préparation prend fin ; les coûts déjà engagés ne sont pas remboursés et les coûts non encore engagés ne sont pas prélevés. Une action déjà résolue n'est pas annulée rétroactivement. Les dégâts seuls ne provoquent jamais cette règle.
 
 Cette interruption n'ajoute pas un tour automatiquement perdu : le personnage pourra choisir sa prochaine action normale, notamment se déplacer ou changer de tactique. Immobilisation, neutralisation complète, panne de module et déplacement forcé nécessitent leurs propres règles ; ils ne sont pas tous simulés par cette seule interruption.
 
@@ -574,7 +584,7 @@ Après une interruption effectivement subie, proposer une protection temporaire 
 
 Lire un menu, annuler ou envoyer une commande refusée ne fait pas expirer ou renouveler cette protection. Une perturbation bloquée ne prolonge pas la fenêtre. Résister au jet sans subir d'interruption ne déclenche pas cette protection. Elle ne protège ni des dégâts, ni de la chaleur, ni automatiquement d'autres familles d'effets. La protection suit la famille d'interruption, pas le type électrique ou physique de sa source, afin d'éviter un contournement par alternance de sources.
 
-Ce mécanisme reste à valider et à éprouver avec les préparations longues et plusieurs ennemis. Il vise à laisser une possibilité d'action, pas à garantir qu'une préparation risquée aboutisse quelles que soient les décisions du joueur.
+Le noyau valide désormais de façon déterministe l'interruption, la résistance, l'absence de jet sans préparation, le blocage sans nouveau tirage et l'expiration après la prochaine fenêtre adverse. L'équilibrage avec plusieurs ennemis et les préparations longues reste à éprouver en partie. Le mécanisme vise à laisser une possibilité d'action, pas à garantir qu'une préparation risquée aboutisse quelles que soient les décisions du joueur.
 
 ### 12.7. Raccordement aux compétences existantes
 
@@ -589,22 +599,29 @@ Ce mécanisme reste à valider et à éprouver avec les préparations longues et
 
 Ces raccordements sont des propositions de formalisation, pas une modification des fiches existantes. Les nombres des techniques et leur disponibilité dépendent toujours des systèmes réellement présents.
 
-### 12.8. Écarts constatés avec le prototype, sans modification du code
+### 12.8. Raccordements versions 35–36 et écarts restants
 
-Lecture ciblée de `src/combat/damage.rs` lors de cette rédaction :
+La version 35 introduit dans `src/combat/damage.rs` :
 
 - le prototype définit huit types : `Kinetic`, `Piercing`, `Explosive`, `Thermal`, `Electrical`, `Chemical`, `Radiation` et `Corruption` ;
-- `DamageRules::default()` fixe encore `minimum_damage_after_resistance` à 1 et les bornes de résistance à −100 et +100 ;
-- `resolve_damage` soustrait actuellement `DamagePacket.penetration` à une résistance en pourcentage, puis traite un paquet ; il ne s'agit pas des points de Blindage de notre proposition ;
-- le traitement d'un paquet ne constitue pas à lui seul le regroupement des composantes d'un même impact décrit ci-dessus.
+- `DamageRules::specialized()` fixe le minimum à zéro et les bornes de résistance à −50 et +75, sans modifier le profil historique utilisé par les suspensions 1 à 34 ;
+- `ArmorProfile` additionne séparément corps, équipement et renforcement, puis retranche fragilisation et pénétration sans dépassement ;
+- `ArmorRules` classe par défaut `Kinetic`, `Piercing` et `Explosive` comme physiques, tout en restant remplaçable dans les règles d'une partie ;
+- la résolution choisit exactement une défense par paquet ; l'événement de dégâts rapporte séparément le Blindage effectif et la quantité absorbée, tandis que les techniques d'analyse exposent le profil de résistances selon leurs propres règles d'information.
 
-Ce sont des écarts entre le prototype et la conception, pas des changements effectués. Modifier seulement le minimum de dégâts ne suffirait pas à implémenter le nouveau modèle. Une étape dédiée devra définir les unités, le regroupement par impact, la compatibilité du contenu existant et les tests, avant toute modification des données ou du code. Les profils existants à résistance 100 ne doivent pas être réinterprétés silencieusement comme 75.
+La version 36 ajoute un profil d'équipement aux objets d'armure, un emplacement adressé par identifiant de contenu et une commande générique d'équipement rejouable. `GameState` résout la protection portée depuis l'instance encore présente dans l'inventaire, puis l'additionne à la contribution corporelle au moment du calcul. Le Plastron rapiécé et la Carapace composite sont les deux premières définitions d'essai ; leur puissance ne modifie pas la formule.
+
+La version 37 raccorde l'ordre de la section 12.4. Un `DamageImpact` regroupe au plus une entrée par famille, avec total borné : toutes les composantes protégées rencontrent ensemble le Blindage une seule fois, tandis que chaque composante spécialisée rencontre séparément sa résistance. La pénétration de Blindage possède désormais son champ en points et les pénétrations spécialisées déclarent explicitement leurs points de pourcentage. L'ancien paquet à une composante garde son champ historique et sa résolution à l'identique. Le moteur applique le total final aux PV en une seule mutation, puis publie le détail résolu dans un événement d'impact mixte.
+
+La version 38 raccorde quatre déclencheurs d'effet d'arme sans branche dédiée au lance-flammes : `on_attack` couvre toute l'empreinte dès que l'attaque est exécutée ; `on_hit`, `on_damage` et `on_target_destroyed` ciblent respectivement les cases des cibles touchées, réellement blessées après protection ou détruites. Un statut exige une cible encore vivante et n'accepte donc que `on_hit` ou `on_damage`. Les définitions historiques sans `trigger` conservent leur comportement antérieur pour la compatibilité des mods et des suspensions ; les nouvelles fiches doivent employer une condition explicite.
+
+Un paquet reste limité à un seul type : le regroupement des composantes physiques d'un même impact et la résolution complète d'une attaque mixte ne sont donc pas encore réalisés. La propriété de pénétration n'est pas encore typée séparément pour Blindage et résistances spécialisées. Les profils historiques à résistance 100 ne sont pas réinterprétés : une suspension 34 ou antérieure reconstruit `DamageRules::default()`, désactive le Blindage et retire la contribution corporelle ajoutée en version 35 avant de vérifier son empreinte et son rejeu.
 
 ### 12.9. Vérifications et prochaines décisions
 
 Vérifications arithmétiques effectuées : les 15 lignes des tableaux de cette section et les 24 lignes des chapitres 10 et 11 ont été extraites du document et recalculées. Des séries de valeurs ont vérifié les bornes et la monotonie des résistances, les vulnérabilités, le zéro dégât, la croissance de Stabilité avec Résilience et la baisse de probabilité de résistance avec l'intensité. Les exemples de regroupement physique et d'arrondi par type ont aussi été vérifiés. Ce sont des calculs isolés, pas des essais de gameplay ou des tests du moteur.
 
-Essais de simulation à prévoir : interruption effective ou résistée, action déjà terminée, absence de préparation, répétitions par plusieurs sources, expiration de la protection après une vraie fenêtre d'action, absence de renouvellement par menus et absence de fuite d'information dans l'aperçu. Aucun de ces comportements n'est déclaré testé dans le jeu par la rédaction de ces règles.
+Essais de simulation automatisés en version 56 : interruption effective et résistée, absence de tirage sous protection, maintien de la préparation résistée, annulation explicite après échec et expiration après la prochaine fenêtre adverse. Restent à éprouver en situation longue : plusieurs sources dans une même action, absence de renouvellement par menus et lisibilité joueur sans fuite de la probabilité exacte.
 
 Les informations exactes affichées restent limitées à ce qui est connu du joueur. Une résistance ou une Stabilité cachée ne doit pas être déduite gratuitement d'un aperçu exact ; les résultats observables peuvent en revanche enrichir sa compréhension.
 
@@ -628,7 +645,7 @@ Défense_numérique = max(0, 50 + 4 × (Traitement − 5) + pare_feu + modificat
 Chance_logicielle = borner(50 + Intrusion − Défense_numérique + contexte, 5, 95)
 ```
 
-Un entier uniforme de 1 à 100 inférieur ou égal à Chance_logicielle signifie une réussite. Les contributions du matériel sont des scores, pas des pourcentages multiplicatifs. Pas de contribution supplémentaire de Résilience, de rang ou de Perception à ce jet : leurs autres fonctions suffisent. Pour un appareil sans primaires, son profil fournit directement sa Défense numérique ; aucun Traitement humain fictif n'est nécessaire.
+Un entier uniforme de 1 à 100 inférieur ou égal à Chance_logicielle signifie une réussite. Les contributions du matériel sont des scores, pas des pourcentages multiplicatifs. Pas de contribution supplémentaire de Résilience, du nombre de techniques connues ou de Perception à ce jet : leurs autres fonctions suffisent. Pour un appareil sans primaires, son profil fournit directement sa Défense numérique ; aucun Traitement humain fictif n'est nécessaire.
 
 | Traitement attaquant | Bonus attaquant | Traitement défenseur | Pare-feu | Intrusion | Défense numérique | Chance |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -773,7 +790,7 @@ B n'est pas consommée comme une munition : elle est occupée puis libérée. V�
 
 En cas de capacité réduite : suspendre les processus selon une priorité stable choisie à l'avance (à défaut, plus récent d'abord, puis identifiant). Une unité concernée passe à sa routine locale de sécurité ; elle ne disparaît pas. Revenir à une capacité supérieure ne relance pas gratuitement des attaques ni ne recharge une balise. L'achat d'une technique ne réserve pas de B en permanence.
 
-## 16. Temps, états, réactions et exécution — proposition
+## 16. Temps, états, réactions et exécution — proposition et premier raccordement
 
 ### 16.1. Horloge de référence
 
@@ -792,6 +809,24 @@ Déplacements : une case par UT par défaut. Un déplacement lent de 2 UT expose
 5. Donner leurs opportunités normales aux acteurs selon l'ordonnanceur ; puis, en phase environnementale, résoudre retardateurs et effets périodiques, dégâts thermiques, refroidissement et expirations.
 
 Pour une durée d'effet D : expiration à la fin de la D-ième phase environnementale **strictement postérieure à la phase d'application**. Un effet créé au cours d'une phase environnementale commence son décompte à la suivante. Une application pendant les actions ordinaires peut donc agir à la phase environnementale qui suit. Les périodes utilisent les mêmes échéances, avec un identifiant pour éviter deux traitements dans une phase. Les mouvements futurs ne consomment pas une durée à la vitesse des images.
+
+Le premier socle temporel raccordé au moteur définit une `TimeUnits` entière et strictement positive, ainsi qu'une `AnnouncedDeadline` persistante. Une échéance armée au cycle C avec un délai 1 n'est due qu'en C+1 et son état empêche un second déclenchement après reprise ou nouvelle vérification. Cette primitive ne programme encore aucune charge ni explosion : le type d'effet et son exécution resteront déclarés par le système qui l'utilise. Depuis la version 40, `ActionPreparation<T>` porte aussi un état générique Pn+A1. Une technique peut déclarer `preparation_time_units` : répéter la même commande et les mêmes cibles, ou choisir explicitement `Attendre` depuis la version 55, consomme une étape ; l'effet et son coût final ne sont résolus qu'à l'action d'exécution. `Attendre` restitue la commande exacte mémorisée par le cœur, y compris ses cibles et directives, sans déléguer cette règle à l'interface. Une autre action acceptée annule sans remboursement ; une commande refusée ne modifie rien ; une cible suivie devenue indisponible annule après la phase des acteurs. Les événements de simulation distinguent ces transitions et le rejeu reconstruit l'étape restante. Les anciennes générations conservent leur sémantique de rejeu.
+
+Depuis la version 41, `ActionRecovery` porte la récupération `Rn` de chaque acteur. Une attaque peut déclarer `recovery_time_units` et engage ce coût à l'exécution même si elle rate. Une action offensive ou sa préparation est refusée tant que la récupération demeure ; déplacement, attente et soutien sont autorisés. Seule une action normale réellement acceptée réduit l'état : une commande refusée conserve exactement récupération, tour, événements, aléatoire, garde et préparation. L'intention `offensive` ou `support` est une donnée générique des capacités et techniques, pas une liste d'identifiants du cœur. L'IA respecte la même contrainte et consomme sa fenêtre par une véritable attente si elle aurait attaqué. Les événements et le rejeu conservent le début, la progression et la fin. Aucun objet ou technique standard n'active encore R1 avant le raccordement complet de la mêlée.
+
+Le premier profil offensif complet de laboratoire est celui de Frappe puissante (MEL-01). La primitive déclarative `weapon_attack` exige ici une arme livrée en mêlée, reprend son jet de touche ordinaire, calcule d'abord les dégâts physiques autorisés par Impact, applique 150 % avec arrondi inférieur, puis laisse Parade et Blindage intervenir dans leur ordre commun. Les composantes non physiques d'un impact mixte restent inchangées. Le slot choisi fait partie de la commande rejouable. Une frappe légalement engagée arme R1 même si le jet rate ; une cible hors de portée, un slot absent, une arme de tir ou une arme sans composante physique provoque un refus atomique. Une action de technique exécutant une arme est toujours offensive, même si un contenu omet son étiquette. Le profil est utilisable par un catalogue de test ou un mod complet ; le contenu standard ne propose une technique que lorsque ses dépendances et un parcours d'apprentissage sans impasse sont réellement exécutables.
+
+Frappe précise (MEL-02) constitue le second profil offensif de laboratoire. La même primitive peut désormais ajouter un modificateur de Précision sans demander de multiplicateur physique : P1+A1 conserve le slot et la cible, n'effectue la touche et les effets natifs de l'arme qu'à la seconde commande, puis ajoute +20 au modificateur déjà porté par l'arme. Déplacer le joueur, sélectionner une autre cible ou laisser la cible rompre le contact annule la préparation. Il n'existe qu'un état de préparation actif, donc aucune autre visée ne peut se cumuler. Un engagement initial invalide est refusé sans tour, événement de technique ni tirage aléatoire. Ce profil accepte aussi une arme de mêlée non physique puisque son bonus porte sur la touche, pas sur un type de dégâts. Comme MEL-01, il reste disponible aux catalogues de test et aux mods mais n'ouvre pas encore la discipline incomplète dans le contenu standard.
+
+Repoussement (MEL-03) constitue le troisième profil offensif de laboratoire. `weapon_attack` peut porter un déplacement forcé déclaratif avec distance et modificateur d'Impact ; MEL-03 demande une arme de mêlée mono-cible munie d'un profil d'Impact, applique 50 % aux dégâts physiques, puis tente une poussée d'une case après une touche. La force est l'Impact disponible borné par le plafond matériel de l'arme. La résistance d'un corps déclaratif est calculée sans aléatoire par `plafond((masse corporelle + charge portée) / 10 000) + ancrage`. Une cible fixée ou sans profil compatible ne bouge pas. Une case occupée, un mur, une limite de carte ou une zone protégée bloque le déplacement sans pousser l'obstacle, permuter les acteurs ou ajouter des dégâts de collision. Le coup conserve ses dégâts et une poussée peut réussir même lorsque le Blindage absorbe tout. Le résultat typé distingue déplacement, résistance, blocage, fixation et incompatibilité ; l'adaptateur n'en déduit aucune règle. Objets et armes peuvent déclarer leur masse unitaire en JSON5 ; le calcul multiplie celle d'une pile par sa quantité et ne recompte pas l'équipement, qui reste dans l'inventaire. Un profil omis conserve les anciens contenus avec une contribution nulle. La preuve couvre l'inventaire réel du joueur ; les acteurs sans inventaire partagé n'ajoutent encore aucune charge à leur masse corporelle.
+
+Balayage (MEL-05) constitue le quatrième profil offensif de laboratoire. `weapon_attack` peut remplacer l'empreinte mono-cible d'une arme par un arc de mêlée déclaratif, dont la limite est validée entre une et huit cases. Le profil MEL-05 en demande trois : l'occupant adjacent sélectionné fixe la direction centrale, puis les deux cases immédiatement contiguës dans l'anneau autour de l'attaquant complètent l'arc. Une case infranchissable ou hors carte disparaît sans être remplacée, et une arme possédant déjà une zone est incompatible. Le moteur déduit tous les occupants des cases restantes, alliés compris, puis résout un jet de touche et les défenses ordinaires pour chacun. Le joueur ne fournit donc pas une liste permettant d'épargner sélectivement un occupant. Le profil applique 70 % aux dégâts physiques après l'unique calcul d'Impact, dépense 4 E à l'exécution et engage R1 après l'attaque, y compris si tous les occupants esquivent. Le refus pour énergie insuffisante est atomique. L'événement `AttackPerformed` conserve les cases réellement couvertes ; le futur client intégré pourra ainsi prévisualiser et animer l'arc sans recopier sa géométrie.
+
+Riposte (MEL-06) constitue la première amélioration passive de mêlée raccordée. Le comportement déclaratif `melee_counterattack` n'est pas une action supplémentaire : il doit dépendre d'une technique qui prépare Parade. Lorsque cette Parade se déclenche, sa réduction et l'attaque reçue sont entièrement résolues avant la riposte. Si le défenseur vit encore, si l'attaquant existe et reste adjacent, la première arme de mêlée mono-cible équipée produit une attaque ordinaire issue d'une réaction. Elle conserve ses propres touche, dégâts, effets et récupération, mais ne consomme pas un second droit et ne peut déclencher une Parade adverse. Une arme indisponible ou une rupture de contact annule seulement la frappe de riposte, jamais la Parade. Le résultat est exposé par un événement typé. Les coûts natifs de munition ou d'énergie des armes ne sont pas encore modélisés ; leur vérification atomique restera à raccorder lorsque ces ressources existeront.
+
+Brise-armure (MEL-07) constitue le cinquième profil offensif de laboratoire. Une technique `weapon_attack` peut porter un `on_hit_effect` déclaratif qui applique un état connu après les dégâts, avec une condition de cible indépendante du nom de la technique. MEL-07 demande une arme de mêlée, applique 60 % aux dégâts physiques et dépense 3 E. Sur une touche contre une cible dont le Blindage total avant fragilisation est positif, elle applique Fragilisation 4 pour 3 UT même si le coup inflige zéro dégât ; le coup courant a déjà rencontré l'ancien Blindage. Une cible sans Blindage reçoit encore les dégâts ordinaires mais refuse l'effet secondaire par un événement typé. Un raté ne l'applique jamais. Le mode d'état `keep_existing` conserve l'instance et sa durée courante lors d'une nouvelle application, puis permet une nouvelle Fragilisation après expiration. Plusieurs états de ce type ne s'additionnent pas : le profil de Blindage retient leur valeur la plus forte. Les données, le moteur et le client restent génériques ; MEL-07 n'est pas encore vendu dans le contenu standard.
+
+Entrave (MEL-08) constitue le sixième profil offensif de laboratoire. Le corps de la cible déclare explicitement sa compatibilité locomotrice : le moteur ne la déduit ni de son glyphe, ni de sa faction, ni de son IA. Après une touche de mêlée à 50 % des dégâts physiques et un coût de 3 E, une cible compatible effectue un unique test passif de Stabilité contre une intensité 60. Un succès conserve les dégâts déjà résolus mais évite l'état ; un échec applique une Entrave de 2 UT qui porte le coût minimal du déplacement volontaire ordinaire à 2 UT. Plusieurs minima de déplacement retiennent le plus élevé. Le joueur laisse alors réellement deux phases aux acteurs et à l'environnement ; une IA entravée ne reçoit sa prochaine occasion qu'après ces 2 UT. À l'expiration naturelle, l'état applique une protection familiale de 1 UT : une nouvelle application bloquée ne lance aucun jet et ne prolonge pas la protection. Une cible incompatible ou déjà protégée ne consomme elle non plus aucun tirage. La technique engage un cooldown de deux phases environnementales après son exécution, même si la touche est ratée ou la perturbation résistée ; les commandes refusées et une future préparation interrompue avant exécution ne l'engagent pas. Définition des familles, transitions d'expiration, modificateurs de Stabilité, minima de déplacement, résistance, cooldown et événements sont tous déclaratifs. Le client affiche les résultats observables sans révéler la chance cachée. MEL-08 n'est pas encore proposée dans une partie standard avant l'intégration groupée de Combat rapproché.
 
 **Retardateur annoncé, convention validée distincte :** le cycle où il est armé ne compte pas. Si l'armement a lieu pendant le cycle C, au cours des actions ou de la phase environnementale, la première phase éligible est C+1 et l'événement de délai D≥1 se produit en phase environnementale C+D. Un délai 1 laisse une prochaine action ordinaire de 1 UT avant l'événement ; un délai 2 laisse deux étapes ordinaires. Une action ralentie ou une longue préparation peut ne pas tenir dans cette fenêtre, et aucune réponse n'est garantie de réussir.
 
@@ -820,7 +855,7 @@ Pour les états appliqués lors d'une phase, la règle « strictement postérieu
 
 Les protections locomotrices, de suppression et de fonction commencent après l'expiration ou la purge de l'effet réellement subi, et durent une phase éligible. Elles suivent la famille, non l'attaquant. Leur réapplication bloquée ne prolonge rien. Les autres dégâts restent possibles. Un profil doit déclarer sa famille ; il ne peut contourner ces règles par un simple nom différent.
 
-Les effets multiples d'un même impact ne s'opposent pas tous à la même défense : touche physique puis effet locomoteur distinct éventuellement opposé à Stabilité ; logiciel contre Défense numérique sans second jet pour la même suspension. Toute condition supplémentaire figure dans la fiche, pas dans un bonus implicite de rang.
+Les effets multiples d'un même impact ne s'opposent pas tous à la même défense : touche physique puis effet locomoteur distinct éventuellement opposé à Stabilité ; logiciel contre Défense numérique sans second jet pour la même suspension. Toute condition supplémentaire figure dans la fiche, pas dans un bonus implicite de discipline.
 
 ### 16.4. Réactions précises
 
@@ -831,6 +866,10 @@ Les effets multiples d'un même impact ne s'opposent pas tous à la même défen
 - Interposition : le drone peut occuper une case libre adjacente sur la trajectoire d'un projectile direct avant son impact ; il consomme sa réaction et subit le projectile selon ses défenses. Pas d'échange de places, de téléportation ou d'annulation de toute explosion.
 
 Un réglage de priorité désigne une protection admissible ; une cible ne bénéficie pas de plusieurs interpositions en cascade sur le même projectile. Chaque acteur garde au plus une réaction entre deux actions normales, mais les réactions de plusieurs unités restent un risque d'équilibrage à mesurer.
+
+Le socle de réaction stocke ce droit séparément sur chaque acteur. Une action normale réellement acceptée le rétablit ; un menu, un achat sans temps ou une commande refusée ne le modifient pas. Une tentative issue elle-même d'une réaction est refusée avant consommation du droit, ce qui rend impossible une chaîne de réactions par construction.
+
+Depuis la version 39, **Parade** fournit la première garde concrète headless : une action de technique déclarative prépare `after_melee_hit`, exige au moins une arme équipée dont la capacité `melee_parry` est explicite, puis expire au début de l'action normale suivante si elle n'a pas servi. Après une touche de mêlée, elle consomme le droit commun, ramène la composante physique brute à la fraction restante avec arrondi inférieur, puis transmet l'impact au résolveur normal de Blindage et de résistances. Les composantes non physiques ne sont pas modifiées. Préparation, expiration, déclenchement et réduction produisent des événements distincts ; un client ne doit donc pas reconstruire cette règle depuis une animation. L'amélioration passive Riposte peut désormais ajouter une attaque de mêlée ordinaire après cette résolution, sans second droit ni réaction en chaîne, et publie son propre résultat. La Lame d'intégrité porte déjà la capacité matérielle, mais la discipline de mêlée complète reste différée : aucune Parade ni Riposte n'est encore proposée dans une nouvelle partie standard tant que ses cinq choix ne forment pas un parcours intégralement exécutable.
 
 ### 16.5. Zones, champs et explosions
 
@@ -844,11 +883,11 @@ Les cibles alliées/neutres sont exposées sauf filtrage matériel explicite. Au
 
 ### 17.1. Budget et augmentations
 
-Conserver les cinq primaires, la somme initiale 28, les bornes de création 3–8 et le plafond absolu 10. Le profil d'essai commence au niveau 1 avec **2 points de compétence**. La classe peut préallouer tout ou partie de ces deux points à ses rangs/choix de départ : elle ne les ajoute pas au budget. Deux rangs 1 dans deux disciplines ou un rang 2 coûtent donc 2 points et donnent deux choix. Aucun nom ou contenu de classe n'est défini ici ; le matériel de départ compatible sera validé avec les classes.
+Conserver les cinq primaires, la somme initiale 28, les bornes de création 3–8 et le plafond absolu 10. Le profil d'essai commence au niveau 1 avec **2 points de compétence**. La classe peut préallouer tout ou partie de ces deux points à ses techniques de départ : elle ne les ajoute pas au budget. Deux premiers apprentissages coûtent donc chacun 1 point. Aucun nom ou contenu de classe n'est défini ici ; le matériel de départ compatible sera validé avec les classes.
 
-Chaque niveau gagné du 2 au 20 donne 1 point ; aucun bonus automatique de Précision, dégâts, PV ou rang. Un point primaire est proposé aux niveaux 4, 8, 12, 16 et 20 : au plus cinq points supplémentaires, donc somme 33 au niveau 20 avant états temporaires. Les points non dépensés restent disponibles, sans franchir le plafond de 10. Les modifications temporaires bornent la primaire effective entre 1 et 10 ; elles n'ouvrent pas rétroactivement des choix de rang.
+Chaque niveau gagné du 2 au 20 donne 1 point ; aucun bonus automatique de Précision, dégâts, PV ou maîtrise de discipline. Un point primaire est proposé aux niveaux 4, 8, 12, 16 et 20 : au plus cinq points supplémentaires, donc somme 33 au niveau 20 avant états temporaires. Les points non dépensés restent disponibles, sans franchir le plafond de 10. Une modification temporaire d'attribut ne rend pas rétroactivement légal un apprentissage déjà refusé ; les conditions sont réévaluées au moment de l'achat.
 
-Tarif de rang conservé pour essai : 1, 1, 2, 2, 3 ; rangs achetés dans l'ordre, un choix éligible obligatoire à chaque achat. Pas de bonus numérique passif lié au rang lui-même. Pas de prérequis de primaire ajouté aux techniques actuelles. Une amélioration demande sa technique mère ; on ne peut pas dépenser le même choix sur la mère et sa variante. Les acquis de classe comptent dans les cinq choix de la discipline.
+Tarif d'apprentissage conservé pour essai : 1, 1, 2, 2, puis 3 points. Ce barème dépend seulement du nombre de techniques déjà apprises dans la discipline et détermine le prix, jamais l'éligibilité. Il n'existe ni rang ni bonus numérique passif de discipline. Une technique déclare ses propres conditions de niveau, d'attributs et d'apprentissages antérieurs ; une amélioration demande sa technique mère. Les acquis de classe participent au décompte du prix mais ne créent aucun plafond d'apprentissage.
 
 ### 17.2. Courbe d'XP proposée
 
@@ -880,17 +919,17 @@ Les éliminations par alliés sont attribuées au propriétaire pertinent une se
 
 Hypothèse de calibration d'une route complète : environ 9 000 XP disponibles par objectifs, découvertes et résolutions effectivement accessibles. Comparer routes combattante, discrète et numérique sans exiger la somme de toutes les activités. Cette enveloppe est un besoin de contenu à tester, pas une promesse qu'une carte actuelle l'offre. Aucun taux de victoire ou scaling automatique des ennemis au niveau n'est introduit.
 
-### 17.4. Choix, maîtrise et réattribution
+### 17.4. Choix, spécialisation et réattribution
 
-À 21 points, deux maîtrises coûtent 18 ; il reste 3 points, par exemple pour un rang 2 et un rang 1. Les dix maîtrises coûteraient 90 : une run ne donne donc pas tout le catalogue. Le rang 5 de Reconnaissance conserve son tarif commun de 3 pour un cinquième choix antérieur ; son rapport utilité/coût reste un risque, à mesurer avant réduction particulière.
+Avec le budget de niveau 20 actuellement proposé, les points disponibles restent une limite naturelle de construction de personnage : se spécialiser fortement dans deux disciplines consomme l'essentiel d'une run, sans interdire techniquement d'apprendre ailleurs. Le moteur n'impose aucun nombre maximal de techniques apprises.
 
-Proposition prudente pour ce premier profil : pas de réattribution en cours de run et pas d'achat supplémentaire après cinq choix. Ce choix est **à valider**, non une suppression définitive de la possibilité : la simulation doit d'abord mesurer les erreurs de build, et une réattribution limitée pourra faire l'objet d'une décision distincte. Annuler un choix avant de confirmer l'achat est sans coût ; un achat est atomique (rang, points et technique ensemble), sans possibilité d'obtenir un rang vide.
+Décision du 13 septembre 2026 : les rangs de discipline sont supprimés. La réattribution en cours de run reste à décider séparément. Annuler un choix avant de confirmer l'achat est sans coût ; un achat est atomique (points et technique ensemble), sans progression abstraite ou palier vide.
 
 Les achats se font entre deux commandes, sans avancer le temps et sans restaurer ressources, réaction ou cooldown. Une technique compatible avec la version peut être apprise avant d'avoir son matériel ; une technique dépendant d'un système inexistant dans cette version est masquée de l'achat, ainsi que ses améliorations devenues sans prérequis disponible. Les techniques apprises ne disparaissent pas avec l'équipement. Mort : progression de run perdue ; déblocages horizontaux des classes stockés séparément.
 
-**Disponibilité des disciplines, règle validée :** dans une version de test, différer l'ouverture d'une discipline dès qu'une suite légale de choix ne peut pas être prolongée jusqu'à cinq achats éligibles. Ne pas proposer ses premiers rangs en promettant une maîtrise impossible. Le validateur applique les dépendances de version et leurs prérequis transitifs, puis explore chaque état d'apprentissage atteignable avant le rang 5 ; aucun ne doit mener à une impasse. Compter simplement cinq fiches ou trouver un seul build valide ne suffit pas. Un plafond temporaire inférieur nécessite une décision explicite distincte ; aucun n'est ajouté ici.
+**Disponibilité des disciplines, règle validée :** dans une version de test, différer l'ouverture d'une discipline qui ne contient encore aucun parcours d'apprentissage cohérent avec les systèmes réellement implémentés. Le validateur applique les dépendances de version et leurs prérequis transitifs ; chaque technique proposée doit être atteignable depuis au moins une suite légale. Il n'exige ni quota, ni rang final, ni nombre maximal d'apprentissages.
 
-La vérification inclut les acquis préalloués de chaque classe : ils consomment les rangs et choix prévus et doivent appartenir au catalogue disponible, avec une suite possible. Au chargement d'une sauvegarde, une entrée retirée comme MAN-07, une discipline devenue indisponible ou un prérequis absent demande une migration versionnée explicitement décidée, ou un refus explicite de compatibilité. Ne pas effacer de choix, réattribuer de points ou offrir des acquis de remplacement silencieusement. Les fonctions natives du matériel restent disponibles selon leurs règles même si une discipline est différée.
+La vérification inclut les acquis préalloués de chaque classe : ils participent au décompte du prix et doivent appartenir au catalogue disponible, avec leurs conditions satisfaites. Au chargement d'une sauvegarde, une entrée retirée comme MAN-07, une discipline devenue indisponible ou un prérequis absent demande une migration versionnée explicitement décidée, ou un refus explicite de compatibilité. Ne pas effacer de choix, réattribuer de points ou offrir des acquis de remplacement silencieusement. Les fonctions natives du matériel restent disponibles selon leurs règles même si une discipline est différée.
 
 ## 18. Contrats de données et validation de version — proposition
 
@@ -900,22 +939,22 @@ Les 104 profils de l'annexe 16 du catalogue sont des fiches de conception. Une f
 
 | Élément | Données à conserver / vérifier |
 |---|---|
-| Technique | Identifiant stable, discipline, rang minimal, prérequis, type (action/amélioration/posture), dépendances de systèmes, profil/version, coûts et moments de prélèvement, portée/géométrie, cible/canal, étapes, effets, déclencheurs, familles, durées, CD et contre-mesures. |
+| Technique | Identifiant stable, discipline, niveau minimal, seuils d'attributs, techniques prérequises, type (action/amélioration/posture), dépendances de systèmes, profil/version, coûts et moments de prélèvement, portée/géométrie, cible/canal, étapes, effets, déclencheurs, familles, durées, CD et contre-mesures. |
 | Matériel | Compatibilités, dégâts et composantes par impact, unités de pénétration, force/plafond, masse, énergie réelle, dissipation, réservations, munitions, paramètres de dispersion et ressources de récupération. |
-| Personnage | Primaires de base, points non dépensés, rangs et identifiants des choix, corps principal stable, matériel et sources des bonus. Secondaires recalculées, sans double stockage faisant diverger les valeurs. |
+| Personnage | Primaires de base, points non dépensés et identifiants ordonnés des techniques apprises, corps principal stable, matériel et sources des bonus. Secondaires recalculées, sans double stockage faisant diverger les valeurs. |
 | Effet actif | Source/propriétaire, cible, famille, intensité, phase d'application, type d'échéance (effet, retardateur, audit), cycle d'origine, cycle dû, marqueur d'exécution, expiration, cooldown, protection après fin, coût réservé, origine de contagion et hôtes déjà visités. |
 | Temps et hasard | Phase et compteur UT, états de préparation/récupération, droit à réaction et garde, état du générateur aléatoire ; aucun tirage lié à l'affichage. |
 | Connaissance | Observateur, cible/case, propriété connue, provenance, date, canal et degré de certitude ; séparée de l'état réel du monde. |
 | Accès et progression | Droits, liaisons, clés d'XP déjà consommées, copies de preuves, files d'audit, masque de fonctionnalités de version, disciplines ouvertes/différées, acquis de classe et méta-déblocages hors sauvegarde de run. |
 | Textes | Identifiants de localisation et statut de validation séparés des nombres ; aucune phrase proposée ne devient approuvée parce qu'une fiche technique existe. |
 
-Le chargement refuse les rangs hors 0–5, cycles de prérequis, références retirées, durées négatives, ressources impossibles et profils sans dépendances. Les nombres intermédiaires doivent prévenir les dépassements ; les données doivent identifier leur version. Un identifiant absent ou un ancien sens de pénétration demande une erreur explicite ou une migration versionnée, jamais une substitution silencieuse.
+Le chargement refuse les niveaux ou seuils d'attributs invalides, cycles de prérequis, références retirées, durées négatives, ressources impossibles et profils sans dépendances. Les nombres intermédiaires doivent prévenir les dépassements ; les données doivent identifier leur version. Un identifiant absent ou un ancien sens de pénétration demande une erreur explicite ou une migration versionnée, jamais une substitution silencieuse.
 
 ### 18.2. Écarts à raccorder au prototype
 
-Lecture locale du 10 septembre : `src/progression/experience.rs` utilise encore la courbe d'amorçage [10, 25, 45, 70, 100, 140, 190], un point par niveau et des règles anti-farming. La nouvelle courbe n'y est pas appliquée. `src/game/turn.rs` expose quatre phases ; cela ne prouve pas les préparations, fenêtres ou coûts multi-UT décrits ici. Le minimum de dégâts, les résistances et la pénétration présentent les écarts de la section 12.8, toujours constatés lors de cette livraison.
+Lecture locale du 14 septembre : `src/progression/experience.rs` utilise encore la courbe d'amorçage [10, 25, 45, 70, 100, 140, 190], un point par niveau et des règles anti-farming. La nouvelle courbe n'y est pas appliquée. `src/game/turn.rs` expose quatre phases ; `src/time.rs` et `src/reaction.rs` fournissent durée positive, échéance annoncée, préparation générique Pn+A1, récupération générique Rn, cooldown par phases environnementales, droit de réaction individuel, garde préparée et suivi passif de Riposte. Parade, les coûts de préparation multi-UT, R1 et les profils headless de Frappe puissante, Frappe précise, Repoussement, Balayage, Riposte, Brise-armure et Entrave sont prouvés, mais aucun de ces profils de mêlée n'est encore ouvert dans le contenu standard. La charge réelle portée entre dans la résistance de Repoussement. Le Blindage, les résistances spécialisées, les impacts mixtes, les pénétrations typées, l'équipement défensif, la Fragilisation active, le premier usage locomoteur de Stabilité et l'interruption de préparation par perturbation déclarative sont raccordés. Une première famille `system_shock` est jouable ; d'autres familles restent à définir par leurs effets et contre-mesures propres.
 
-Les prochains travaux de code devront couvrir, dans cet ordre : données/prérequis/sauvegarde ; dégâts/secondaires ; temps et réactions ; ressources/états ; perception/indices ; terrain/dispositifs ; accès/sécurité ; drones. Chaque étape doit garder un test déterministe hors rendu. **Aucun fichier de jeu n'est modifié par cette livraison documentaire.**
+Les prochains travaux de code devront poursuivre, dans cet ordre indicatif : MEL-09, autres gardes et achèvement des profils de mêlée avant leur intégration groupée ; autres ressources/états ; perception/indices ; terrain/dispositifs ; accès/sécurité ; drones. Chaque étape doit garder un test déterministe hors rendu. Le présent état documente le Blindage version 35, ses premières protections équipables en version 36, les impacts mixtes version 37, les déclencheurs d'effets d'arme version 38, la première Parade headless version 39, les préparations Pn+A1 déclaratives version 40, la récupération Rn déclarative version 41, puis les profils de laboratoire MEL-01, MEL-02, MEL-03, MEL-05, MEL-06, MEL-07 et MEL-08 ; il ne valide pas encore leur équilibrage en partie.
 
 ## 19. Vérification, équilibrage et textes de l'étape 7
 
@@ -1067,11 +1106,11 @@ Le dernier point du plan est l'étape 8, vérification et mise à l'épreuve. Sa
 
 L'utilisateur a répondu « oui :) » à la proposition des cinq corrections, après lecture de leur synthèse. Elles sont appliquées à cette révision documentaire : refus thermique limité aux apports positifs dépassant la limite du mode (§15.3) ; retardateurs annoncés sans décompte du cycle de création (§16.2) ; audit de référence à 5 UT, distinct des retardateurs (§13.3) ; maintien de consigne intégré sans achat supplémentaire à Pas de dégagement, MAN-07 conservé seulement dans l'historique du catalogue ; ouverture des disciplines conditionnée à cinq choix atteignables sur toute suite légale, avec contrôles des acquis et versions (§17.4).
 
-La portée de cet accord reste documentaire. Aucun paramètre de dégâts, coût de rang, choix de réattribution ou capacité extérieure n'est modifié en plus. Les quinze infobulles validées individuellement sont inchangées. Le [rapport, section 10](RAPPORT_SYSTEME_STATISTIQUES_COMPETENCES.md#10-application-des-cinq-corrections-validées) conserve le bilan de l'application et des contrôles ; sa section 9 reste le constat historique ayant motivé ces corrections.
+La portée de cet accord reste documentaire. Aucun paramètre de dégâts, coût d'apprentissage, choix de réattribution ou capacité extérieure n'est modifié en plus. Les quinze infobulles validées individuellement sont inchangées. Le [rapport, section 10](RAPPORT_SYSTEME_STATISTIQUES_COMPETENCES.md#10-application-des-cinq-corrections-validées) conserve le bilan de l'application et des contrôles ; sa section 9 reste le constat historique ayant motivé ces corrections.
 
 ## 20. Sources et entretien
 
-- [Catalogue des compétences](PROPOSITION_COMPETENCES_v0.1.md), sections 1 à 3 : décisions actuelles, rangs, coûts d'essai et règles transversales ; sections 4 à 8 : fiches.
+- [Catalogue des compétences](PROPOSITION_COMPETENCES_v0.1.md), sections 1 à 3 : décisions actuelles, conditions d'apprentissage, coûts d'essai et règles transversales ; sections 4 à 8 : fiches.
 - [Document de conception](../Projet_Roguelike_IA_Document_Conception_v0.2.md), sections 7 et 8 : corps principal et progression.
 - [Spécification CODEX](../Projet_Roguelike_IA_Spec_CODEX_v0.2.md), section 17.5 : expérience propre à la partie et distinction avec les déblocages permanents.
 

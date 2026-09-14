@@ -30,6 +30,19 @@ impl GameRng {
         let offset = self.next_u64() % span;
         minimum.checked_add(usize::try_from(offset).ok()?)
     }
+
+    /// Draws an exactly uniform percentile in 1..=100. Rejection avoids the
+    /// tiny modulo bias while remaining deterministic for replay.
+    pub fn percentile(&mut self) -> u8 {
+        const BOUND: u64 = 100;
+        const THRESHOLD: u64 = BOUND.wrapping_neg() % BOUND;
+        loop {
+            let value = self.next_u64();
+            if value >= THRESHOLD {
+                return (value % BOUND + 1) as u8;
+            }
+        }
+    }
 }
 
 #[cfg(test)]
@@ -65,5 +78,17 @@ mod tests {
             assert!(value.is_some_and(|sample| (3..=7).contains(&sample)));
         }
         assert_eq!(rng.usize_inclusive(8, 7), None);
+    }
+
+    #[test]
+    fn percentile_is_deterministic_and_always_within_one_to_one_hundred() {
+        let mut first = GameRng::from_seed(123);
+        let mut second = GameRng::from_seed(123);
+
+        for _ in 0..256 {
+            let roll = first.percentile();
+            assert!((1..=100).contains(&roll));
+            assert_eq!(roll, second.percentile());
+        }
     }
 }
