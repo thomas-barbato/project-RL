@@ -6,7 +6,8 @@ use crate::pause_menu::{ControlsLayout, MenuFocus, MenuLayout, MenuScreen, wheel
 use crate::suspension::{self, RecordedCommand, Suspension};
 use crate::terminal_view::{
     TerminalAlertKind, TerminalAttackPreview, TerminalDrawOptions, TerminalOverlay,
-    TerminalStatusIcon, TerminalView, player_location_name,
+    TerminalStatusIcon, TerminalTargetAnalysis, TerminalTargetSummary, TerminalView,
+    player_location_name, terminal_status_panel,
 };
 use crate::test_sector::TestSector;
 use crate::ui_theme::{
@@ -18,8 +19,8 @@ use macroquad::prelude::*;
 use project_rl::ai::{AiProfile, PursuitLifecycle};
 use project_rl::character_class::{CharacterClassCatalog, CharacterClassId};
 use project_rl::combat::{
-    ArmorRules, AttackArea, AttackProfile, DamageImpact, DamageRules, DamageType, HitRules,
-    MeleeImpactProfile,
+    ArmorProfile, ArmorRules, AttackArea, AttackProfile, DamageImpact, DamageRules, DamageType,
+    HitRules, MeleeImpactProfile,
 };
 use project_rl::content::{
     ContentId, ContentLoader, ExpeditionCatalog, RegionCoord, RegionDirection,
@@ -917,6 +918,60 @@ impl AsciiApp {
         }
         match scene {
             "game" => {}
+            "target-locked" | "target-analyzed" => {
+                let player = app
+                    .game
+                    .player_position()
+                    .ok_or("Joueur de diagnostic absent.")?;
+                let position = player
+                    .cardinal_neighbors()
+                    .into_iter()
+                    .find(|position| {
+                        app.game.map().is_walkable(*position)
+                            && app.game.actors().entity_at(*position).is_none()
+                    })
+                    .ok_or("Aucune case de diagnostic libre près du joueur.")?;
+                let target = app
+                    .game
+                    .spawn_actor(
+                        Actor::new(position, 18)
+                            .map_err(|error| error.to_string())?
+                            .with_body_profile(
+                                BodyProfile::new(18, 0)
+                                    .map_err(|error| error.to_string())?
+                                    .with_base_armor(3),
+                            )
+                            .with_resistances(
+                                project_rl::combat::ResistanceProfile::default()
+                                    .with(DamageType::Thermal, -20),
+                            ),
+                    )
+                    .map_err(|error| error.to_string())?;
+                app.selected_target = Some(target);
+                if scene == "target-analyzed" {
+                    let technique = technique_id("core:rec_01")
+                        .ok_or("Analyse de cible absente du catalogue.")?;
+                    if app
+                        .game
+                        .process_player_command(GameCommand::LearnTechnique {
+                            technique: technique.clone(),
+                        })
+                        != CommandOutcome::AppliedWithoutTime
+                    {
+                        return Err("Apprentissage de diagnostic refusé.".to_owned());
+                    }
+                    app.game.drain_events();
+                    if app.game.process_player_command(GameCommand::UseTechnique {
+                        technique,
+                        targets: vec![target],
+                        weapon_slot: None,
+                    }) != CommandOutcome::Applied
+                    {
+                        return Err("Analyse de diagnostic refusée.".to_owned());
+                    }
+                    app.capture_events_at(Some(0.0));
+                }
+            }
             "main" => app.open_menu(MenuScreen::Main),
             "resume" => {
                 app.suspension()?.write(&app.suspension_path)?;
@@ -2315,6 +2370,7 @@ impl AsciiApp {
             valid: resolved_attack_preview.as_ref().is_some_and(Result::is_ok),
         });
         let navigation_signal = self.navigation_signal_summary();
+        let target_summary = self.terminal_target_summary();
         self.terminal.draw(
             &self.game,
             TerminalDrawOptions {
@@ -2325,6 +2381,7 @@ impl AsciiApp {
                 legend_open: self.legend_open,
                 attack_preview,
                 navigation_signal: navigation_signal.as_deref(),
+                target_summary: target_summary.as_ref(),
             },
             |position| {
                 self.glyph_at(position)
@@ -2362,6 +2419,7 @@ impl AsciiApp {
 
         set_camera(&graphics::ui_camera(self.ui_width(), self.ui_height()));
         self.draw_header();
+        self.draw_player_status_panel();
         self.draw_companion_bar();
         self.draw_footer();
         self.draw_end_message();
@@ -2727,11 +2785,18 @@ impl AsciiApp {
         } else {
             0.0
         };
+        let expanded_height = screen_height() - 111.0 * ui_scale - companion_height;
+        let wide_hud = screen_width() - 40.0 >= 1120.0 && expanded_height >= 480.0;
+        let top = if self.visible_alert_summary().is_some() || !wide_hud {
+            76.0 * ui_scale
+        } else {
+            7.0 * ui_scale
+        };
         Rect::new(
             20.0,
-            76.0 * ui_scale,
+            top,
             screen_width() - 40.0,
-            (screen_height() - 180.0 * ui_scale - companion_height).max(100.0),
+            (screen_height() - top - 104.0 * ui_scale - companion_height).max(100.0),
         )
     }
 
@@ -8080,6 +8145,321 @@ impl AsciiApp {
             .join("  ·  ")
     }
 
+    fn terminal_target_summary(&self) -> Option<TerminalTargetSummary> {
+        let target = self.selected_target?;
+        let actor = self.game.actors().get(target)?;
+        if !self.game.player_visibility().is_visible(actor.position()) {
+            return None;
+        }
+        let observer = self.game.player_position()?;
+        let name = match self.hostile_glyph(target) {
+            'd' => "Traqueur",
+            't' => "Sentinelle",
+            'r' => "Tirailleur",
+            _ => "Entité détectée",
+        }
+        .to_owned();
+        let visible_state = actor
+            .statuses()
+            .next()
+            .map(|status| status_display_name(&status.definition).to_owned())
+            .unwrap_or_else(|| "Aucun état visible".to_owned());
+        let analysis = self.game.player_has_analyzed_target(target).then(|| {
+            let resistances = [
+                ("KIN", DamageType::Kinetic),
+                ("PIR", DamageType::Piercing),
+                ("EXP", DamageType::Explosive),
+                ("THR", DamageType::Thermal),
+                ("ELE", DamageType::Electrical),
+                ("CHM", DamageType::Chemical),
+                ("RAD", DamageType::Radiation),
+                ("COR", DamageType::Corruption),
+            ]
+            .into_iter()
+            .filter_map(|(label, damage_type)| {
+                let value = actor.resistances().get(damage_type);
+                (value != 0).then_some(format!("{label} {value:+}%"))
+            })
+            .collect::<Vec<_>>();
+            TerminalTargetAnalysis {
+                integrity: actor.integrity(),
+                maximum_integrity: actor.maximum_integrity(),
+                armor: self
+                    .game
+                    .actor_armor_profile(target)
+                    .map_or(0, ArmorProfile::after_fragilization),
+                resistances: if resistances.is_empty() {
+                    "Aucune résistance identifiée".to_owned()
+                } else {
+                    resistances.join(" · ")
+                },
+            }
+        });
+        Some(TerminalTargetSummary {
+            name,
+            distance: grid_distance(observer, actor.position()),
+            visible_state,
+            analysis,
+        })
+    }
+
+    fn draw_player_status_panel(&self) {
+        let ui_scale = self.ui_scale();
+        let Some(panel) = terminal_status_panel(self.terminal_bounds()).map(|panel| {
+            Rect::new(
+                panel.x / ui_scale,
+                panel.y / ui_scale,
+                panel.w / ui_scale,
+                panel.h / ui_scale,
+            )
+        }) else {
+            return;
+        };
+        let Some(player) = self.game.actors().get(self.game.player_id()) else {
+            return;
+        };
+        let theme = UiTheme;
+        theme.card(panel, false);
+        let x = panel.x + 14.0;
+        let width = panel.w - 28.0;
+        let progression = self.game.player_progression();
+        let active_weapon = self
+            .game
+            .equipped_player_weapon(self.active_weapon_slot)
+            .map(|weapon| {
+                let name = self.item_name(weapon.id());
+                self.game
+                    .player_weapon_ammunition(weapon.id())
+                    .map_or(name.clone(), |(remaining, capacity)| {
+                        format!("{name} · MUN. {remaining}/{capacity}")
+                    })
+            })
+            .unwrap_or_else(|| "Vide".to_owned());
+        draw_text_bold("NIVEAU", x + 25.0, panel.y + 30.0, 17.0, theme.text());
+        draw_ui_icon(
+            UiIcon::Level,
+            Rect::new(x, panel.y + 14.0, 18.0, 18.0),
+            theme.accent(),
+        );
+        draw_text_bold(
+            progression.level().to_string(),
+            panel.x + panel.w - 34.0,
+            panel.y + 30.0,
+            18.0,
+            theme.focus(),
+        );
+        let level = progression.level();
+        let thresholds = self.game.rules().progression.curve.cumulative_thresholds();
+        let previous = if level <= 1 {
+            0
+        } else {
+            thresholds
+                .get(usize::from(level.saturating_sub(2)))
+                .copied()
+                .unwrap_or(0)
+        };
+        let next = self
+            .game
+            .rules()
+            .progression
+            .curve
+            .next_threshold_after(level)
+            .unwrap_or(progression.experience().max(1));
+        let level_ratio = if next > previous {
+            (progression.experience().saturating_sub(previous) as f32 / (next - previous) as f32)
+                .clamp(0.0, 1.0)
+        } else {
+            1.0
+        };
+        draw_status_bar(
+            Rect::new(x, panel.y + 43.0, width, 34.0),
+            "EXPÉRIENCE",
+            &format!("{}/{}", progression.experience(), next),
+            level_ratio,
+            UiIcon::Level,
+            theme.accent(),
+        );
+        draw_wrapped_text(
+            &skill_points_hud_label(progression.unspent_skill_points()),
+            x,
+            panel.y + 93.0,
+            width,
+            2,
+            14,
+            theme.muted(),
+        );
+        draw_line(
+            x,
+            panel.y + 128.0,
+            x + width,
+            panel.y + 128.0,
+            1.0,
+            theme.muted(),
+        );
+        draw_ui_icon(
+            UiIcon::Weapon,
+            Rect::new(x, panel.y + 142.0, 18.0, 18.0),
+            theme.focus(),
+        );
+        draw_text_bold(
+            "ARME ACTIVE",
+            x + 25.0,
+            panel.y + 158.0,
+            15.0,
+            theme.focus(),
+        );
+        draw_wrapped_text(
+            &active_weapon,
+            x,
+            panel.y + 182.0,
+            width,
+            2,
+            14,
+            theme.text(),
+        );
+        draw_line(
+            x,
+            panel.y + 221.0,
+            x + width,
+            panel.y + 221.0,
+            1.0,
+            theme.muted(),
+        );
+        draw_text_bold("ÉTAT", x, panel.y + 249.0, 17.0, theme.text());
+
+        let mut y = panel.y + 262.0;
+        let mut metric = |label: &str, value: String, ratio: f32, icon: UiIcon, color: Color| {
+            draw_status_bar(
+                Rect::new(x, y, width, 45.0),
+                label,
+                &value,
+                ratio,
+                icon,
+                color,
+            );
+            y += 56.0;
+        };
+        metric(
+            "PV",
+            format!("{}/{}", player.integrity(), player.maximum_integrity()),
+            normalized_ratio(player.integrity(), player.maximum_integrity()),
+            UiIcon::Health,
+            theme.success(),
+        );
+        let energy = self.game.player_energy();
+        metric(
+            "ÉNERGIE",
+            format!("{}/{}", energy.available(), energy.capacity()),
+            normalized_ratio(energy.available(), energy.capacity()),
+            UiIcon::Energy,
+            theme.focus(),
+        );
+        if let Some(bandwidth) = self.game.player_bandwidth() {
+            metric(
+                "BANDE PASSANTE",
+                format!("{}/{}", bandwidth.available(), bandwidth.capacity()),
+                normalized_ratio(bandwidth.available(), bandwidth.capacity()),
+                UiIcon::Bandwidth,
+                theme.accent(),
+            );
+        }
+        if let Some(heat) = self.game.player_heat() {
+            metric(
+                "CHALEUR",
+                format!("{}/{}", heat.current(), heat.critical_threshold()),
+                normalized_ratio(heat.current(), heat.critical_threshold()),
+                UiIcon::Heat,
+                if heat.current() >= heat.alert_threshold() {
+                    theme.danger()
+                } else {
+                    theme.focus()
+                },
+            );
+        }
+        let player_id = self.game.player_id();
+        let armor = self
+            .game
+            .actor_armor_profile(player_id)
+            .map_or(0, ArmorProfile::after_fragilization);
+        let evasion = self.game.actor_evasion(player_id);
+        let stability = self.game.actor_stability(player_id);
+        let digital_defense = self.game.actor_digital_defense(player_id);
+        let resistances = player.resistances();
+        draw_line(x, y, x + width, y, 1.0, theme.muted());
+        draw_ui_icon(
+            UiIcon::Armor,
+            Rect::new(x, y + 12.0, 16.0, 16.0),
+            theme.accent(),
+        );
+        draw_text_bold("DÉFENSES", x + 23.0, y + 27.0, 15.0, theme.text());
+        y += 39.0;
+        let column_gap = 8.0;
+        let column_width = (width - column_gap) * 0.5;
+        let defense_value =
+            |value: Option<u16>| value.map_or_else(|| "—".to_owned(), |value| value.to_string());
+        draw_compact_stat(
+            Rect::new(x, y, column_width, 20.0),
+            "BLINDAGE",
+            &armor.to_string(),
+            theme.text(),
+            theme.muted(),
+        );
+        draw_compact_stat(
+            Rect::new(x + column_width + column_gap, y, column_width, 20.0),
+            "ESQUIVE",
+            &defense_value(evasion),
+            theme.text(),
+            theme.muted(),
+        );
+        y += 22.0;
+        draw_compact_stat(
+            Rect::new(x, y, column_width, 20.0),
+            "STABILITÉ",
+            &defense_value(stability),
+            theme.text(),
+            theme.muted(),
+        );
+        draw_compact_stat(
+            Rect::new(x + column_width + column_gap, y, column_width, 20.0),
+            "NUMÉRIQUE",
+            &defense_value(digital_defense),
+            theme.text(),
+            theme.muted(),
+        );
+        y += 31.0;
+        draw_text_bold("RÉSISTANCES", x, y + 11.0, 12.0, theme.accent());
+        y += 17.0;
+        for ((left_label, left_type), right) in [
+            (
+                ("THERMIQUE", DamageType::Thermal),
+                Some(("ÉLECTRIQUE", DamageType::Electrical)),
+            ),
+            (
+                ("CHIMIQUE", DamageType::Chemical),
+                Some(("RADIATION", DamageType::Radiation)),
+            ),
+            (("CORRUPTION", DamageType::Corruption), None),
+        ] {
+            draw_compact_stat(
+                Rect::new(x, y, column_width, 18.0),
+                left_label,
+                &resistance_percentage(resistances.get(left_type)),
+                theme.text(),
+                theme.muted(),
+            );
+            if let Some((right_label, right_type)) = right {
+                draw_compact_stat(
+                    Rect::new(x + column_width + column_gap, y, column_width, 18.0),
+                    right_label,
+                    &resistance_percentage(resistances.get(right_type)),
+                    theme.text(),
+                    theme.muted(),
+                );
+            }
+            y += 20.0;
+        }
+    }
+
     fn draw_header(&self) {
         let theme = UiTheme;
         let player_pv = self
@@ -8088,87 +8468,6 @@ impl AsciiApp {
             .get(self.game.player_id())
             .map(|actor| format!("{}/{}", actor.integrity(), actor.maximum_integrity()))
             .unwrap_or_else(|| "0/--".to_owned());
-        let recovery = self
-            .game
-            .actors()
-            .get(self.game.player_id())
-            .and_then(Actor::recovery_remaining)
-            .map_or_else(String::new, |remaining| {
-                format!(" · Récupération {} tour(s)", remaining.get())
-            });
-        let system_resources = match (self.game.player_bandwidth(), self.game.player_heat()) {
-            (Some(bandwidth), Some(heat)) => format!(
-                " · Bande passante {}/{} · Chaleur {}",
-                bandwidth.available(),
-                bandwidth.capacity(),
-                heat.current()
-            ),
-            _ => String::new(),
-        };
-        let target = self.attack_aim.map_or_else(
-            || {
-                self.selected_target.map_or_else(
-                    || "Aucune cible".to_owned(),
-                    |entity| {
-                        let label = match self.hostile_glyph(entity) {
-                            'd' => "TRAQUEUR",
-                            't' => "SENTINELLE",
-                            'r' => "TIRAILLEUR",
-                            _ => "HOSTILE",
-                        };
-                        let status = self
-                            .game
-                            .actors()
-                            .get(entity)
-                            .and_then(|actor| actor.statuses().next())
-                            .map(|status| {
-                                let duration = status
-                                    .remaining_turns
-                                    .map(|turns| format!("{turns}T"))
-                                    .unwrap_or_else(|| "PERMANENT".to_owned());
-                                format!(
-                                    " / {} x{} {duration}",
-                                    status_display_name(&status.definition),
-                                    status.stacks
-                                )
-                            })
-                            .unwrap_or_default();
-                        format!("{label}{status}")
-                    },
-                )
-            },
-            |aim| {
-                let result = self.aimed_attack_preview(aim);
-                let footprint = self.aimed_attack_footprint(aim);
-                let affected = footprint.as_ref().map_or(0, |preview| {
-                    preview
-                        .cells()
-                        .iter()
-                        .filter(|cell| {
-                            !self.game.map().is_protected(cell.position)
-                                && self
-                                    .game
-                                    .actors()
-                                    .entity_at(cell.position)
-                                    .is_some_and(|entity| entity != self.game.player_id())
-                        })
-                        .count()
-                });
-                let status = match result.as_ref() {
-                    Ok(_) => "VALIDE".to_owned(),
-                    Err(reason) => {
-                        format!("INVALIDE : {}", attack_preview_rejection_label(reason))
-                    }
-                };
-                format!(
-                    "VISÉE · {} · {} CIBLE{}",
-                    status,
-                    affected,
-                    if affected > 1 { "S" } else { "" }
-                )
-            },
-        );
-        let progression = self.game.player_progression();
         let active_weapon = self
             .game
             .equipped_player_weapon(self.active_weapon_slot)
@@ -8234,7 +8533,7 @@ impl AsciiApp {
             );
             draw_text(
                 format!(
-                    "Encore {remaining_turns} tour(s) · Intégrité {player_pv} · Énergie {}/{}{system_resources}{recovery}",
+                    "Encore {remaining_turns} tour(s) · Intégrité {player_pv} · Énergie {}/{}",
                     self.game.player_energy().available(),
                     self.game.player_energy().capacity(),
                 ),
@@ -8243,47 +8542,32 @@ impl AsciiApp {
                 15.0,
                 Color::from_rgba(255, 211, 163, 255),
             );
-        } else {
-            let x = 12.0;
+            return;
+        }
+
+        if terminal_status_panel(self.terminal_bounds()).is_none() {
+            let progression = self.game.player_progression();
             let gap = 6.0;
-            let available = self.ui_width() - x * 2.0 - gap * 3.0;
-            let first = available * 0.2;
-            let second = available * 0.3;
-            let third = available * 0.25;
-            let fourth = available - first - second - third;
-            let cards = [
+            let width = (self.ui_width() - 24.0 - gap * 2.0) / 3.0;
+            let state = format!(
+                "PV {player_pv} · Énergie {}/{}",
+                self.game.player_energy().available(),
+                self.game.player_energy().capacity()
+            );
+            for (index, (label, value, accent)) in [
                 (
-                    Rect::new(x, 7.0, first, 58.0),
                     format!("NIVEAU {}", progression.level()),
                     skill_points_hud_label(progression.unspent_skill_points()),
                     theme.accent(),
                 ),
-                (
-                    Rect::new(x + first + gap, 7.0, second, 58.0),
-                    "ÉTAT".to_owned(),
-                    format!(
-                        "PV {player_pv} · Énergie {}/{}{system_resources}{recovery}",
-                        self.game.player_energy().available(),
-                        self.game.player_energy().capacity()
-                    ),
-                    theme.success(),
-                ),
-                (
-                    Rect::new(x + first + second + gap * 2.0, 7.0, third, 58.0),
-                    format!("ARME · EMPLACEMENT {}", self.active_weapon_slot + 1),
-                    active_weapon,
-                    theme.focus(),
-                ),
-                (
-                    Rect::new(x + first + second + third + gap * 3.0, 7.0, fourth, 58.0),
-                    "CIBLE".to_owned(),
-                    target,
-                    theme.accent(),
-                ),
-            ];
-            for (rect, label, value, accent) in cards {
+                ("ÉTAT".to_owned(), state, theme.success()),
+                ("ARME ACTIVE".to_owned(), active_weapon, theme.focus()),
+            ]
+            .into_iter()
+            .enumerate()
+            {
                 draw_hud_card(
-                    rect,
+                    Rect::new(12.0 + index as f32 * (width + gap), 7.0, width, 58.0),
                     &label,
                     &value,
                     accent,
@@ -14177,6 +14461,14 @@ const fn damage_type_label(damage_type: DamageType) -> &'static str {
     }
 }
 
+fn resistance_percentage(value: i16) -> String {
+    if value > 0 {
+        format!("+{value}%")
+    } else {
+        format!("{value}%")
+    }
+}
+
 const fn primary_attribute_label(attribute: PrimaryAttribute) -> &'static str {
     match attribute {
         PrimaryAttribute::Power => "PUISSANCE",
@@ -14245,6 +14537,74 @@ fn draw_hud_card(rect: Rect, label: &str, value: &str, accent: Color, high_contr
         2,
         14,
         theme.text(),
+    );
+}
+
+fn normalized_ratio(value: u16, maximum: u16) -> f32 {
+    if maximum == 0 {
+        0.0
+    } else {
+        (f32::from(value) / f32::from(maximum)).clamp(0.0, 1.0)
+    }
+}
+
+fn draw_status_bar(rect: Rect, label: &str, value: &str, ratio: f32, icon: UiIcon, color: Color) {
+    draw_ui_icon(icon, Rect::new(rect.x, rect.y + 2.0, 16.0, 16.0), color);
+    let mut value_size = 13_u16;
+    let maximum_value_width = (rect.w * 0.38).max(34.0);
+    while value_size > 10 && measure_text_bold(value, value_size).width > maximum_value_width {
+        value_size -= 1;
+    }
+    let value_width = measure_text_bold(value, value_size)
+        .width
+        .min(maximum_value_width);
+    draw_wrapped_text(
+        label,
+        rect.x + 23.0,
+        rect.y + 15.0,
+        (rect.w - 31.0 - value_width).max(24.0),
+        1,
+        13,
+        UiTheme.text(),
+    );
+    draw_text_bold(
+        value,
+        rect.x + rect.w - value_width,
+        rect.y + 15.0,
+        f32::from(value_size),
+        color,
+    );
+    let bar = Rect::new(rect.x, rect.y + 25.0, rect.w, 8.0);
+    draw_rectangle(
+        bar.x,
+        bar.y,
+        bar.w,
+        bar.h,
+        Color::from_rgba(19, 39, 48, 255),
+    );
+    draw_rectangle(bar.x, bar.y, bar.w * ratio.clamp(0.0, 1.0), bar.h, color);
+}
+
+fn draw_compact_stat(rect: Rect, label: &str, value: &str, value_color: Color, label_color: Color) {
+    let value_size = 12_u16;
+    let value_width = measure_text_bold(value, value_size)
+        .width
+        .min(rect.w * 0.38);
+    draw_wrapped_text(
+        label,
+        rect.x,
+        rect.y + 13.0,
+        (rect.w - value_width - 5.0).max(18.0),
+        1,
+        11,
+        label_color,
+    );
+    draw_text_bold(
+        value,
+        rect.x + rect.w - value_width,
+        rect.y + 13.0,
+        f32::from(value_size),
+        value_color,
     );
 }
 
@@ -20321,6 +20681,10 @@ mod tests {
             .collect();
         app.game.drain_events();
         app.selected_target = Some(targets[2]);
+        assert!(
+            app.terminal_target_summary()
+                .is_some_and(|summary| summary.analysis.is_none())
+        );
         let command = app.technique_command(multiple.clone()).unwrap();
         assert_eq!(
             command,
@@ -20335,6 +20699,10 @@ mod tests {
             CommandOutcome::Applied
         );
         app.capture_events();
+        assert!(
+            app.terminal_target_summary()
+                .is_some_and(|summary| summary.analysis.is_some())
+        );
         assert!(!app.report_open);
         assert_eq!(app.observation_report.len(), 5);
         assert!(app.observation_report[0].contains("Analyse multiple — relevé · cycle 0"));
@@ -20352,6 +20720,7 @@ mod tests {
 
         // A stale selection cannot add a hidden target to a new command.
         app.selected_target = Some(targets[3]);
+        assert!(app.terminal_target_summary().is_none());
         assert_eq!(
             app.technique_command(multiple.clone()),
             Some(GameCommand::UseTechnique {

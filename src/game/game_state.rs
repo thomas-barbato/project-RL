@@ -292,6 +292,7 @@ pub struct GameState {
     /// It is always cleared before the command returns and never serialized.
     player_drone_support_target_this_action: Option<EntityId>,
     player_persistent_ranged_aim: Option<PersistentRangedAim>,
+    player_analyzed_targets: BTreeSet<EntityId>,
     player_known_physical_weaknesses: BTreeSet<EntityId>,
     player_known_body_components: BTreeMap<EntityId, BTreeSet<BodyComponentId>>,
     player_weapon_barrage: Option<ActiveWeaponBarrage>,
@@ -380,6 +381,9 @@ impl Debug for GameState {
         }
         if let Some(aim) = &self.player_persistent_ranged_aim {
             state.field("player_persistent_ranged_aim", aim);
+        }
+        if !self.player_analyzed_targets.is_empty() {
+            state.field("player_analyzed_targets", &self.player_analyzed_targets);
         }
         if !self.player_known_physical_weaknesses.is_empty() {
             state.field(
@@ -712,6 +716,7 @@ impl GameState {
             player_preparation_interruption_protection: None,
             player_drone_support_target_this_action: None,
             player_persistent_ranged_aim: None,
+            player_analyzed_targets: BTreeSet::new(),
             player_known_physical_weaknesses: BTreeSet::new(),
             player_known_body_components: BTreeMap::new(),
             player_weapon_barrage: None,
@@ -778,6 +783,43 @@ impl GameState {
         self.actors
             .get(self.player)
             .and_then(Actor::primary_attributes)
+    }
+
+    /// Returns the current Evasion score used by single-target hit checks.
+    /// Rulesets predating hit resolution expose no score instead of a fake
+    /// zero, and actors unable to evade are reported as zero.
+    pub fn actor_evasion(&self, entity: EntityId) -> Option<u16> {
+        let rules = self.rules.hit_rules?;
+        let actor = self.actors.get(entity)?;
+        if !actor.can_evade() {
+            return Some(0);
+        }
+        Some(
+            rules
+                .evasion(actor.primary_attributes(), actor.evasion_modifier())
+                .clamp(0, i32::from(u16::MAX)) as u16,
+        )
+    }
+
+    /// Returns the current Stability score used by compatible disruption
+    /// checks, including active status modifiers.
+    pub fn actor_stability(&self, entity: EntityId) -> Option<u16> {
+        let rules = self.rules.stability_rules?;
+        let actor = self.actors.get(entity)?;
+        Some(rules.stability(
+            actor.primary_attributes(),
+            self.actor_stability_modifier(entity),
+        ))
+    }
+
+    /// Returns the authored Digital Defense of an electronic actor. `None`
+    /// means that the actor has no compatible electronic system; it must not
+    /// be presented as a real score of zero.
+    pub fn actor_digital_defense(&self, entity: EntityId) -> Option<u16> {
+        self.actors
+            .get(entity)?
+            .electronic_system()
+            .map(|system| system.digital_defense())
     }
 
     /// Returns the raw damage this actor would currently supply to an attack,
@@ -877,6 +919,10 @@ impl GameState {
                 .filter(|component| known.contains(component.profile().id()))
                 .collect()
         })
+    }
+
+    pub fn player_has_analyzed_target(&self, target: EntityId) -> bool {
+        self.player_analyzed_targets.contains(&target)
     }
 
     pub const fn player_energy(&self) -> EnergyReserve {
@@ -3618,6 +3664,7 @@ impl GameState {
         let analyzed_targets = analyzed_targets.collect::<Vec<_>>();
         self.events.extend(observations);
         for target in analyzed_targets {
+            self.player_analyzed_targets.insert(target);
             if self
                 .actor_armor_profile(target)
                 .is_some_and(|armor| armor.after_fragilization() > 0)
@@ -19359,6 +19406,40 @@ mod tests {
     }
 
     #[test]
+    fn defensive_queries_report_resolved_scores_without_faking_missing_systems() {
+        let rules = GameRules {
+            hit_rules: Some(HitRules::default()),
+            stability_rules: Some(StabilityRules::default()),
+            ..GameRules::default()
+        };
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+
+        assert_eq!(game.actor_evasion(game.player_id()), Some(14));
+        assert_eq!(game.actor_stability(game.player_id()), Some(55));
+        assert_eq!(game.actor_digital_defense(game.player_id()), None);
+
+        let electronic_target = game
+            .spawn_actor(
+                Actor::new(GridPos::new(2, 1), 10)
+                    .unwrap()
+                    .with_evasion_disabled()
+                    .with_electronic_system(
+                        ElectronicSystemProfile::new(42, 20, 30, 2, 10).unwrap(),
+                    ),
+            )
+            .unwrap();
+        assert_eq!(game.actor_evasion(electronic_target), Some(0));
+        assert_eq!(game.actor_stability(electronic_target), Some(50));
+        assert_eq!(game.actor_digital_defense(electronic_target), Some(42));
+    }
+
+    #[test]
     fn invalid_player_creation_attributes_are_rejected_before_the_run() {
         let invalid = PrimaryAttributes::new(8, 8, 8, 8, 8);
         let rules = GameRules {
@@ -22283,6 +22364,7 @@ mod tests {
         let technique: TechniqueId = "core:rec_01"
             .parse()
             .unwrap_or_else(|error| panic!("valid technique ID rejected: {error}"));
+        assert!(!game.player_has_analyzed_target(target));
         assert_eq!(
             game.process_player_command(GameCommand::LearnTechnique {
                 technique: technique.clone(),
@@ -22300,6 +22382,7 @@ mod tests {
             CommandOutcome::Applied
         );
         assert_eq!(game.turn(), 1);
+        assert!(game.player_has_analyzed_target(target));
         assert_eq!(
             game.events(),
             &[

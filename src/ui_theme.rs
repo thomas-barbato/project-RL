@@ -191,6 +191,12 @@ pub enum UiIcon {
     Use,
     Drop,
     Character,
+    Level,
+    Health,
+    Energy,
+    Bandwidth,
+    Heat,
+    Target,
     Window,
     Grid,
     Contrast,
@@ -759,6 +765,53 @@ pub fn draw_ui_icon(icon: UiIcon, rect: Rect, color: Color) {
         UiIcon::Character => {
             draw_circle(cx, top + radius * 0.48, radius * 0.36, color);
             draw_circle_lines(cx, bottom, radius * 0.78, line, color);
+        }
+        UiIcon::Level => {
+            draw_line(left, cy + radius * 0.25, cx, top, line, color);
+            draw_line(cx, top, right, cy + radius * 0.25, line, color);
+            draw_line(cx, top, cx, bottom, line, color);
+            draw_line(left, bottom, right, bottom, line, color);
+        }
+        UiIcon::Health => {
+            draw_circle(cx - radius * 0.38, cy - radius * 0.22, radius * 0.5, color);
+            draw_circle(cx + radius * 0.38, cy - radius * 0.22, radius * 0.5, color);
+            draw_triangle(
+                vec2(left - radius * 0.02, cy - radius * 0.05),
+                vec2(right + radius * 0.02, cy - radius * 0.05),
+                vec2(cx, bottom),
+                color,
+            );
+        }
+        UiIcon::Energy => {
+            let points = [
+                vec2(cx + radius * 0.05, top),
+                vec2(left + radius * 0.35, cy + radius * 0.08),
+                vec2(cx - radius * 0.05, cy + radius * 0.08),
+                vec2(cx - radius * 0.18, bottom),
+                vec2(right - radius * 0.2, cy - radius * 0.12),
+                vec2(cx + radius * 0.15, cy - radius * 0.12),
+            ];
+            for edge in points.windows(2) {
+                draw_line(edge[0].x, edge[0].y, edge[1].x, edge[1].y, line, color);
+            }
+        }
+        UiIcon::Bandwidth => {
+            for (index, height) in [0.45, 0.72, 1.0].into_iter().enumerate() {
+                let x = left + radius * (0.28 + index as f32 * 0.72);
+                draw_line(x, bottom, x, bottom - radius * 2.0 * height, line, color);
+            }
+        }
+        UiIcon::Heat => {
+            draw_circle_lines(cx, bottom - radius * 0.25, radius * 0.42, line, color);
+            draw_line(cx, top, cx, bottom - radius * 0.55, line * 1.4, color);
+            draw_circle(cx, bottom - radius * 0.25, radius * 0.18, color);
+        }
+        UiIcon::Target => {
+            draw_circle_lines(cx, cy, radius * 0.62, line, color);
+            draw_line(left, cy, cx - radius * 0.3, cy, line, color);
+            draw_line(cx + radius * 0.3, cy, right, cy, line, color);
+            draw_line(cx, top, cx, cy - radius * 0.3, line, color);
+            draw_line(cx, cy + radius * 0.3, cx, bottom, line, color);
         }
         UiIcon::Contrast => {
             draw_circle_lines(cx, cy, radius, line, color);

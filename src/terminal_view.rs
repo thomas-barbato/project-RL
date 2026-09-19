@@ -3,7 +3,7 @@
 use std::collections::BTreeMap;
 
 use crate::ui_theme::{
-    UiTheme, draw_text as draw_ui_text, draw_text_bold as draw_ui_text_bold,
+    UiIcon, UiTheme, draw_text as draw_ui_text, draw_text_bold as draw_ui_text_bold, draw_ui_icon,
     measure_text as measure_ui_text,
 };
 
@@ -62,6 +62,23 @@ pub struct TerminalDrawOptions<'a> {
     pub legend_open: bool,
     pub attack_preview: Option<TerminalAttackPreview<'a>>,
     pub navigation_signal: Option<&'a str>,
+    pub target_summary: Option<&'a TerminalTargetSummary>,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct TerminalTargetSummary {
+    pub name: String,
+    pub distance: u32,
+    pub visible_state: String,
+    pub analysis: Option<TerminalTargetAnalysis>,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct TerminalTargetAnalysis {
+    pub integrity: u16,
+    pub maximum_integrity: u16,
+    pub armor: u16,
+    pub resistances: String,
 }
 
 #[derive(Clone, Copy, Debug)]
@@ -250,6 +267,7 @@ impl TerminalView {
             legend_open,
             attack_preview,
             navigation_signal,
+            target_summary,
         } = options;
         let cyan = Color::from_rgba(104, 201, 201, 255);
         let muted = Color::from_rgba(135, 162, 167, 255);
@@ -573,7 +591,6 @@ impl TerminalView {
             self.draw_sidebar(
                 game,
                 layout.sidebar.expect("visible sidebar has layout bounds"),
-                inspected.map(|_| description.as_str()),
                 (
                     visible_hostiles,
                     visible_neutrals,
@@ -582,7 +599,7 @@ impl TerminalView {
                     visible_security_alarms,
                     visible_security_lockdowns,
                 ),
-                legend_label,
+                target_summary,
             );
         }
         if visible_local_alerts + visible_security_alarms + visible_security_lockdowns > 0 {
@@ -605,9 +622,8 @@ impl TerminalView {
         &self,
         game: &GameState,
         panel: Rect,
-        inspection: Option<&str>,
         visible_counts: (usize, usize, usize, usize, usize, usize),
-        legend_label: &str,
+        target: Option<&TerminalTargetSummary>,
     ) {
         let (
             visible_hostiles,
@@ -628,20 +644,35 @@ impl TerminalView {
             panel.h - 20.0,
         );
         draw_ui_text_bold("CARTOGRAPHIE", rect.x, rect.y + 18.0, 18.0, bright);
-        draw_ui_text("ZONES MÉMORISÉES", rect.x, rect.y + 38.0, 13.0, muted);
-        let pixel = (rect.w / game.map().width() as f32).floor().max(1.0);
-        let map_width = game.map().width() as f32 * pixel;
-        let map_height = game.map().height() as f32 * pixel;
-        let origin = vec2(rect.x + (rect.w - map_width) * 0.5, rect.y + 53.0);
-        UiTheme.card(
-            Rect::new(rect.x, origin.y - 6.0, rect.w, map_height + 12.0),
-            false,
+        let map_area = Rect::new(
+            rect.x,
+            rect.y + 30.0,
+            rect.w,
+            (rect.h * 0.38).clamp(180.0, 240.0),
+        );
+        let (known_min, known_max) = remembered_bounds(
+            &self.remembered,
+            game.player_position(),
+            game.map().width(),
+            game.map().height(),
+        );
+        let known_width = (known_max.x - known_min.x + 1).max(1) as f32;
+        let known_height = (known_max.y - known_min.y + 1).max(1) as f32;
+        let pixel = (map_area.w / known_width)
+            .min(map_area.h / known_height)
+            .floor()
+            .clamp(1.0, 8.0);
+        let map_width = known_width * pixel;
+        let map_height = known_height * pixel;
+        let origin = vec2(
+            map_area.x + (map_area.w - map_width) * 0.5,
+            map_area.y + (map_area.h - map_height) * 0.5,
         );
         draw_rectangle(
-            origin.x,
-            origin.y,
-            map_width,
-            map_height,
+            map_area.x,
+            map_area.y,
+            map_area.w,
+            map_area.h,
             Color::from_rgba(3, 8, 13, 255),
         );
         for (position, tile) in &self.remembered {
@@ -655,8 +686,8 @@ impl TerminalView {
                 (false, false) => Color::from_rgba(18, 33, 44, 255),
             };
             draw_rectangle(
-                origin.x + position.x as f32 * pixel,
-                origin.y + position.y as f32 * pixel,
+                origin.x + (position.x - known_min.x) as f32 * pixel,
+                origin.y + (position.y - known_min.y) as f32 * pixel,
                 pixel,
                 pixel,
                 color,
@@ -664,114 +695,153 @@ impl TerminalView {
         }
         if let Some(position) = game.player_position() {
             draw_rectangle(
-                origin.x + position.x as f32 * pixel,
-                origin.y + position.y as f32 * pixel,
+                origin.x + (position.x - known_min.x) as f32 * pixel,
+                origin.y + (position.y - known_min.y) as f32 * pixel,
                 pixel,
                 pixel,
                 cyan,
             );
         }
-        let inspection_card = Rect::new(rect.x, origin.y + map_height + 14.0, rect.w, 104.0);
-        UiTheme.card(inspection_card, false);
-        let mut y = inspection_card.y + 25.0;
-        draw_ui_text_bold("INSPECTION", inspection_card.x + 10.0, y, 18.0, bright);
+        let mut y = map_area.y + map_area.h + 12.0;
+        draw_line(rect.x, y, rect.x + rect.w, y, 1.0, UiTheme.muted());
+        y += 22.0;
+        draw_ui_icon(UiIcon::All, Rect::new(rect.x, y - 15.0, 16.0, 16.0), cyan);
+        draw_ui_text_bold("EN VUE", rect.x + 24.0, y, 16.0, bright);
         y += 23.0;
-        if let Some(description) = inspection {
-            draw_wrapped_lines(
-                description,
-                inspection_card.x + 10.0,
-                y,
-                inspection_card.w - 20.0,
-                15,
-                3,
-                muted,
-            );
-        } else {
-            draw_ui_text(
-                "Survolez une case connue",
-                inspection_card.x + 10.0,
-                y,
-                15.0,
-                muted,
-            );
+        draw_bounded_text(
+            &format!("Hostiles {visible_hostiles}  ·  Neutres {visible_neutrals}"),
+            rect.x,
+            y,
+            rect.w,
+            15,
+            muted,
+        );
+        y += 18.0;
+        draw_ui_text(format!("Objets {visible_items}"), rect.x, y, 15.0, muted);
+        let alert = Color::from_rgba(255, 175, 83, 255);
+        for line in [
+            (visible_local_alerts, "Alertes locales"),
+            (visible_security_alarms, "Alarmes réseau"),
+            (visible_security_lockdowns, "Verrouillages"),
+        ]
+        .into_iter()
+        .filter(|(count, _)| *count > 0)
+        {
             y += 19.0;
-            draw_ui_text(
-                "ou sélectionnez une cible.",
-                inspection_card.x + 10.0,
+            draw_bounded_text(
+                &format!("{} {}", line.1, line.0),
+                rect.x,
                 y,
-                15.0,
-                muted,
+                rect.w,
+                14,
+                alert,
             );
         }
 
-        let alert_lines = usize::from(visible_local_alerts > 0)
-            + usize::from(visible_security_alarms > 0)
-            + usize::from(visible_security_lockdowns > 0);
-        let detection_card = Rect::new(
-            rect.x,
-            inspection_card.y + inspection_card.h + 10.0,
-            rect.w,
-            83.0 + alert_lines as f32 * 21.0,
-        );
-        if detection_card.y + detection_card.h < rect.y + rect.h - 22.0 {
-            UiTheme.card(detection_card, false);
-            let mut y = detection_card.y + 24.0;
-            draw_ui_text_bold("EN VUE", detection_card.x + 10.0, y, 16.0, bright);
-            y += 23.0;
-            draw_ui_text(
-                format!("Hostiles {visible_hostiles}  ·  Neutres {visible_neutrals}"),
-                detection_card.x + 10.0,
-                y,
-                15.0,
-                muted,
-            );
-            y += 18.0;
-            draw_ui_text(
-                format!("Objets {visible_items}"),
-                detection_card.x + 10.0,
-                y,
-                15.0,
-                muted,
-            );
-            if visible_local_alerts > 0 {
-                y += 21.0;
-                draw_ui_text(
-                    format!("Alertes locales visibles {visible_local_alerts}"),
-                    detection_card.x + 10.0,
-                    y,
-                    15.0,
-                    Color::from_rgba(255, 175, 83, 255),
-                );
-            }
-            if visible_security_alarms > 0 {
-                y += 21.0;
-                draw_ui_text(
-                    format!("Alarmes de sécurité visibles {visible_security_alarms}"),
-                    detection_card.x + 10.0,
-                    y,
-                    15.0,
-                    Color::from_rgba(255, 175, 83, 255),
-                );
-            }
-            if visible_security_lockdowns > 0 {
-                y += 21.0;
-                draw_ui_text(
-                    format!("Verrouillages visibles {visible_security_lockdowns}"),
-                    detection_card.x + 10.0,
-                    y,
-                    15.0,
-                    Color::from_rgba(255, 175, 83, 255),
-                );
-            }
-        }
-        draw_ui_text(
-            format!("{legend_label} · légende"),
-            rect.x,
-            rect.y + rect.h - 4.0,
-            15.0,
+        y += 12.0;
+        draw_line(rect.x, y, rect.x + rect.w, y, 1.0, UiTheme.muted());
+        y += 22.0;
+        draw_ui_icon(
+            UiIcon::Target,
+            Rect::new(rect.x, y - 15.0, 16.0, 16.0),
             cyan,
         );
+        draw_ui_text_bold("CIBLE", rect.x + 24.0, y, 16.0, bright);
+        y += 23.0;
+        if let Some(target) = target {
+            draw_bounded_text(&target.name, rect.x, y, rect.w, 16, bright);
+            y += 20.0;
+            draw_bounded_text(
+                &format!("Distance {} · {}", target.distance, target.visible_state),
+                rect.x,
+                y,
+                rect.w,
+                14,
+                muted,
+            );
+            y += 22.0;
+            if let Some(analysis) = &target.analysis {
+                draw_ui_text_bold(
+                    format!(
+                        "Intégrité {}/{}",
+                        analysis.integrity, analysis.maximum_integrity
+                    ),
+                    rect.x,
+                    y,
+                    14.0,
+                    bright,
+                );
+                y += 7.0;
+                draw_hud_progress(
+                    Rect::new(rect.x, y, rect.w, 7.0),
+                    analysis.integrity,
+                    analysis.maximum_integrity,
+                    UiTheme.success(),
+                );
+                y += 23.0;
+                draw_ui_text(
+                    format!("Blindage {}", analysis.armor),
+                    rect.x,
+                    y,
+                    14.0,
+                    bright,
+                );
+                y += 19.0;
+                draw_wrapped_lines(&analysis.resistances, rect.x, y, rect.w, 13, 2, muted);
+            } else {
+                draw_bounded_text("DONNÉES TACTIQUES MASQUÉES", rect.x, y, rect.w, 13, muted);
+                y += 19.0;
+                draw_ui_text("Analyse de cible · REC-01", rect.x, y, 14.0, cyan);
+            }
+        } else {
+            draw_ui_text("Aucune cible sélectionnée", rect.x, y, 15.0, muted);
+        }
     }
+}
+
+fn remembered_bounds(
+    remembered: &BTreeMap<GridPos, KnownTile>,
+    player: Option<GridPos>,
+    map_width: usize,
+    map_height: usize,
+) -> (GridPos, GridPos) {
+    let fallback = player.unwrap_or(GridPos::new(0, 0));
+    let mut minimum = fallback;
+    let mut maximum = fallback;
+    for position in remembered.keys().copied().chain(player) {
+        minimum.x = minimum.x.min(position.x);
+        minimum.y = minimum.y.min(position.y);
+        maximum.x = maximum.x.max(position.x);
+        maximum.y = maximum.y.max(position.y);
+    }
+    let maximum_x = i32::try_from(map_width.saturating_sub(1)).unwrap_or(i32::MAX);
+    let maximum_y = i32::try_from(map_height.saturating_sub(1)).unwrap_or(i32::MAX);
+    (
+        GridPos::new(
+            minimum.x.saturating_sub(2).max(0),
+            minimum.y.saturating_sub(2).max(0),
+        ),
+        GridPos::new(
+            maximum.x.saturating_add(2).min(maximum_x),
+            maximum.y.saturating_add(2).min(maximum_y),
+        ),
+    )
+}
+
+fn draw_hud_progress(rect: Rect, value: u16, maximum: u16, color: Color) {
+    draw_rectangle(
+        rect.x,
+        rect.y,
+        rect.w,
+        rect.h,
+        Color::from_rgba(19, 39, 48, 255),
+    );
+    let ratio = if maximum == 0 {
+        0.0
+    } else {
+        f32::from(value).clamp(0.0, f32::from(maximum)) / f32::from(maximum)
+    };
+    draw_rectangle(rect.x, rect.y, rect.w * ratio, rect.h, color);
 }
 
 fn ai_state_label(state: AiState) -> String {
@@ -1264,17 +1334,23 @@ struct TerminalUiLayout {
     sidebar: Option<Rect>,
 }
 
+pub fn terminal_status_panel(bounds: Rect) -> Option<Rect> {
+    (bounds.w >= 1120.0 && bounds.h >= 480.0)
+        .then(|| Rect::new(bounds.x + 8.0, bounds.y + 8.0, 210.0, bounds.h - 16.0))
+}
+
 fn terminal_ui_layout(bounds: Rect, navigation_signal_visible: bool) -> TerminalUiLayout {
-    let sidebar = (bounds.w >= 1050.0 && bounds.h >= 400.0).then(|| {
+    let status_sidebar = terminal_status_panel(bounds);
+    let sidebar = status_sidebar.map(|_| {
         Rect::new(
-            bounds.x + bounds.w - 232.0,
+            bounds.x + bounds.w - 336.0,
             bounds.y + 8.0,
-            216.0,
+            320.0,
             bounds.h - 16.0,
         )
     });
     let main_right = sidebar.map_or(bounds.x + bounds.w - 8.0, |panel| panel.x - 12.0);
-    let main_x = bounds.x + 8.0;
+    let main_x = status_sidebar.map_or(bounds.x + 8.0, |panel| panel.x + panel.w + 12.0);
     let main_width = (main_right - main_x).max(80.0);
     let header = Rect::new(main_x, bounds.y + 5.0, main_width, 30.0);
     let route =
@@ -2143,6 +2219,8 @@ mod tests {
         let layout = terminal_ui_layout(bounds, true);
         let route = layout.route.expect("navigation route should be visible");
         let sidebar = layout.sidebar.expect("wide view should have cartography");
+        let status = terminal_status_panel(bounds).expect("wide view should have player status");
+        assert!(status.x + status.w < route.x);
         assert!(route.x + route.w < sidebar.x);
         assert!(layout.map.x + layout.map.w < sidebar.x);
         assert!(layout.header.x + layout.header.w < sidebar.x);
@@ -2152,6 +2230,30 @@ mod tests {
         let narrow = terminal_ui_layout(Rect::new(20.0, 76.0, 900.0, 420.0), true);
         assert!(narrow.sidebar.is_none());
         assert!(narrow.route.is_some());
+    }
+
+    #[test]
+    fn cartography_focuses_the_remembered_region_with_a_bounded_margin() {
+        let mut remembered = BTreeMap::new();
+        for y in 40..=44 {
+            for x in 70..=76 {
+                remembered.insert(
+                    GridPos::new(x, y),
+                    KnownTile {
+                        terrain: Terrain::Floor,
+                        decor: Decor::default(),
+                    },
+                );
+            }
+        }
+        assert_eq!(
+            remembered_bounds(&remembered, Some(GridPos::new(73, 42)), 160, 96),
+            (GridPos::new(68, 38), GridPos::new(78, 46))
+        );
+        assert_eq!(
+            remembered_bounds(&BTreeMap::new(), Some(GridPos::new(0, 0)), 160, 96),
+            (GridPos::new(0, 0), GridPos::new(2, 2))
+        );
     }
 
     #[test]
