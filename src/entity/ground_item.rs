@@ -6,7 +6,9 @@ use crate::item::ItemId;
 use crate::social::SocialGroupId;
 use crate::world::GridPos;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct GroundItemId(u64);
 
 impl GroundItemId {
@@ -19,7 +21,7 @@ impl GroundItemId {
     }
 }
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct GroundItem {
     position: GridPos,
     item: ItemId,
@@ -58,7 +60,7 @@ impl GroundItem {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
 pub struct GroundItemRegistry {
     items: BTreeMap<GroundItemId, GroundItem>,
     next_id: u64,

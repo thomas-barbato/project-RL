@@ -392,7 +392,7 @@ mod tests {
 
     #[test]
     fn learned_discipline_is_rejected_when_its_version_is_deferred() {
-        let catalog = core_skills();
+        let catalog = core_skills().without_technique(&id("core:rec_06"));
         let skills = learned_recon(&catalog);
         let source = encode_player_progression(
             &RunProgression::with_starting_skill_points(

@@ -3,7 +3,7 @@ use std::fmt::{Display, Formatter};
 
 use super::{GridPos, Terrain, TileState};
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct Map {
     width: usize,
     height: usize,

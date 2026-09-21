@@ -13,7 +13,7 @@ use crate::world::{
 
 /// Material capabilities owned by one drone chassis. Orders may only use
 /// information and functions declared here; a skill never invents hardware.
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DroneCapabilities {
     pub manipulator_capacity_grams: Option<u32>,
     pub decoy_intensity: Option<u16>,
@@ -24,7 +24,7 @@ pub struct DroneCapabilities {
 /// Data-driven chassis and control-link profile. `visual_profile` is consumed
 /// by presentation adapters: the terminal can map it to a glyph today and a
 /// graphical client to an image later without changing simulation state.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DroneProfile {
     visual_profile: ContentId,
     link_range: u16,
@@ -135,6 +135,8 @@ impl DroneProfile {
             },
             &TerrainPropagationPolicy {
                 floor_cost: Some(1),
+                shallow_water_cost: Some(1),
+                deep_water_cost: Some(self.link_wall_attenuation_multiplier),
                 wall_cost: Some(self.link_wall_attenuation_multiplier),
             },
         )
@@ -143,34 +145,34 @@ impl DroneProfile {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum PatrolBlockedResponse {
     Stop,
     Return,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DroneCondition {
     IntegrityBelowPercent(u8),
     EnergyBelowPercent(u8),
     LocallyPerceivedDanger,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DroneConditionalResponse {
     Stop,
     Return,
     Protect(EntityId),
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DroneDeploymentRole {
     Hold,
     Escort,
     Guard,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DroneDeploymentAssignment {
     pub drone: EntityId,
     pub destination: GridPos,
@@ -180,7 +182,7 @@ pub struct DroneDeploymentAssignment {
 /// Explicit player-authored parameters for a drone technique. The skill
 /// definition supplies limits and costs; this payload records only choices so
 /// suspension/replay never has to infer them from a later UI state.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DroneDirective {
     Manifest {
         position: GridPos,
@@ -225,7 +227,7 @@ pub enum DroneDirective {
     },
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DroneCollectionPhase {
     ReachItem,
     PickUp,
@@ -236,7 +238,7 @@ pub enum DroneCollectionPhase {
 /// Physical cargo currently carried by a drone. It remains attached to the
 /// drone actor until an adjacent hand-off succeeds; collection never writes
 /// directly into the remote controller's inventory.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DroneCargo {
     item: ItemId,
     quantity: u16,
@@ -278,7 +280,7 @@ impl DroneCargo {
 
 /// Dated information accumulated locally by an autonomous scout. The report
 /// is not copied into player exploration while the drone is out of contact.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DroneExplorationReport {
     cells: Vec<GridPos>,
     observed_on_turn: u64,
@@ -303,7 +305,7 @@ impl DroneExplorationReport {
 
 /// One persistent routine. Changing an order never grants an extra drone
 /// action: the routine is consumed only during the drone's normal phase.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DroneOrder {
     Hold,
     Companion {
@@ -408,14 +410,14 @@ impl DroneOrder {
     }
 }
 
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DroneLifecycle {
     #[default]
     Persistent,
     Manifested,
 }
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DroneState {
     profile: DroneProfile,
     controller: EntityId,

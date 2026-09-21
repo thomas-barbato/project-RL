@@ -78,6 +78,15 @@ pub enum StatusEffectPrimitive {
         packet: DamagePacket,
         multiply_by_stacks: bool,
     },
+    /// Damages the other actor involved in the trigger, when one exists.
+    ///
+    /// The counterpart is the attacker for `DamageReceived` and `Death`, and
+    /// the damaged target for `DamageDealt`. Turn and movement hooks have no
+    /// counterpart, so this primitive is inert for those triggers.
+    DealDamageToCounterpart {
+        packet: DamagePacket,
+        multiply_by_stacks: bool,
+    },
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]

@@ -1,0 +1,14 @@
+{
+  id: "core:electrified_ground",
+  terminal: {
+    frames: ["spark", "wave"],
+    color: [43, 142, 194, 220],
+    accent_colors: [
+      [89, 221, 237, 240],
+      [219, 249, 255, 255],
+    ],
+    frame_millis: 80,
+    step_millis: 0,
+    linger_millis: 70,
+  },
+}

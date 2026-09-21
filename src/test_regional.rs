@@ -1,10 +1,11 @@
 //! Temporary Terminal adapter for local maps addressed by the regional atlas.
 //! Coordinate identity, biome choice and terrain generation all remain in the
 //! headless library; only semantic terrain-to-glyph decoration lives here.
-use crate::test_sector::{Decor, SectorDecor};
+use crate::test_sector::{Decor, SectorDecor, Zone};
+use project_rl::ai::AiProfile;
 use project_rl::content::{
-    ContentId, RegionCoord, RegionDescriptor, RegionDirection, RegionTerrain,
-    RegionVerticalDirection, RegionalWorldDefinition,
+    ContentId, RegionCityDefinition, RegionCityLayout, RegionCoord, RegionDescriptor,
+    RegionDirection, RegionTerrain, RegionVerticalDirection, RegionalWorldDefinition,
 };
 use project_rl::entity::Actor;
 use project_rl::facility::{
@@ -15,11 +16,12 @@ use project_rl::game::{GroundLootBlueprint, ThreatSourceBlueprint, ZoneBlueprint
 use project_rl::loot::LootCatalog;
 use project_rl::progression::DefeatReward;
 use project_rl::world::generation::{
-    GeneratedRegionalSite, GeneratedRegionalSiteTerminal, RegionSiteEntranceKind,
-    RegionalLandmarkKind, RegionalLootRequest, RegionalMapGenerator, RegionalPopulationFeatures,
+    GeneratedRegionalSite, GeneratedRegionalSiteTerminal, MapValidationRules,
+    RegionSiteEntranceKind, RegionalCityFeature, RegionalLandmarkKind, RegionalLootRequest,
+    RegionalMapGenerator, RegionalPopulationFeatures, generate_regional_city,
     generate_regional_destructibles, generate_regional_encounters, generate_regional_landmarks,
     generate_regional_loot, generate_regional_population, generate_regional_site_terminals,
-    generate_regional_sites, vertical_passage,
+    generate_regional_sites, validate_playable_map, vertical_passage,
 };
 use project_rl::world::{Direction, GridPos};
 use std::collections::BTreeSet;
@@ -48,8 +50,10 @@ pub struct RegionalGenerationFeatures {
     pub site_terminals: bool,
     pub reinforcement_investigation: bool,
     pub site_navigation_signals: bool,
+    pub site_terminal_navigation_signals: bool,
     pub threat_renewal: bool,
     pub destructibles: bool,
+    pub environmental_conduction: bool,
     pub electronic_systems: bool,
     pub player_relations: bool,
 }
@@ -75,6 +79,14 @@ pub fn zone_info(
     world: &RegionalWorldDefinition,
     descriptor: &RegionDescriptor,
 ) -> Result<ZoneInfo, String> {
+    if let Some(city) = world.city_at(descriptor.coordinate) {
+        return Ok(ZoneInfo {
+            id: zone_id(world, descriptor.coordinate)?,
+            name: city.name().to_owned(),
+            kind: city.kind().clone(),
+            depth: descriptor.coordinate.depth,
+        });
+    }
     Ok(ZoneInfo {
         id: zone_id(world, descriptor.coordinate)?,
         name: format!(
@@ -98,6 +110,9 @@ pub fn generate(
 ) -> Result<GeneratedRegionalDestination, String> {
     if info != zone_info(world, descriptor)? {
         return Err("Regional zone metadata does not match its atlas coordinate".into());
+    }
+    if let Some(city) = world.city_at(descriptor.coordinate) {
+        return generate_city_destination(world, descriptor, info, entrance, city);
     }
     let biome = world
         .biome(&descriptor.biome)
@@ -270,6 +285,7 @@ pub fn generate(
     }
     if features.destructibles
         && let Some(profile) = biome.destructibles()
+        && (features.environmental_conduction || !profile.uses_distinct_water_propagation())
     {
         let reserved: BTreeSet<_> = actor_positions
             .union(&reserved_site_positions)
@@ -339,7 +355,8 @@ pub fn generate(
                             profile.attack().without_melee_impact()
                         })
                         .with_ai(profile.ai())
-                        .with_defeat_reward(DefeatReward::summoned(0, 0));
+                        .with_defeat_reward(DefeatReward::summoned(0, 0))
+                        .with_tags(profile.tags().iter().cloned());
                     if features.player_relations {
                         actor = actor.with_player_relation(profile.player_relation());
                     }
@@ -393,6 +410,7 @@ pub fn generate(
         loot: &loot,
         reinforcement_investigation: features.reinforcement_investigation,
         navigation_signals: features.site_navigation_signals,
+        terminal_navigation_signals: features.site_terminal_navigation_signals,
     })?;
     let (map, terrain, _) = generated.into_parts();
     let mut decor = SectorDecor {
@@ -463,6 +481,244 @@ pub fn generate(
     })
 }
 
+fn generate_city_destination(
+    world: &RegionalWorldDefinition,
+    descriptor: &RegionDescriptor,
+    info: ZoneInfo,
+    entrance: GridPos,
+    city: &RegionCityDefinition,
+) -> Result<GeneratedRegionalDestination, String> {
+    let generated = generate_regional_city(city.map_size(), city.layout())
+        .map_err(|error| error.to_string())?;
+    let cardinal = generated.passages();
+    let passages = [
+        (RegionDirection::North, cardinal[0]),
+        (RegionDirection::East, cardinal[1]),
+        (RegionDirection::South, cardinal[2]),
+        (RegionDirection::West, cardinal[3]),
+    ];
+    let vertical_passages = world
+        .vertical_neighbors(descriptor.coordinate)
+        .into_iter()
+        .map(|(direction, _)| (direction, vertical_passage(city.map_size(), direction)))
+        .collect::<Vec<_>>();
+    if !passages.iter().any(|(_, passage)| *passage == entrance)
+        && !vertical_passages
+            .iter()
+            .any(|(_, passage)| *passage == entrance)
+    {
+        return Err("Regional city entrance is not a declared passage".into());
+    }
+
+    let required_positions = std::iter::once(city.merchant().position)
+        .chain(std::iter::once(city.clinic().work_position))
+        .chain(std::iter::once(city.clinic().break_position))
+        .chain(
+            city.residents()
+                .iter()
+                .flat_map(|resident| [resident.residence_position, resident.gathering_position]),
+        )
+        .chain(passages.iter().map(|(_, passage)| *passage))
+        .chain(vertical_passages.iter().map(|(_, passage)| *passage))
+        .collect::<Vec<_>>();
+    validate_playable_map(
+        generated.map(),
+        entrance,
+        passages[0].1,
+        &required_positions,
+        MapValidationRules::default(),
+    )
+    .map_err(|error| format!("Regional city services are unreachable: {error}"))?;
+
+    let mut actors = Vec::with_capacity(city.residents().len() + 2);
+    actors.push(
+        Actor::new(city.merchant().position, city.merchant().maximum_integrity)
+            .map_err(|error| error.to_string())?
+            .with_ai(AiProfile::idle()),
+    );
+    actors.push(
+        Actor::new(city.clinic().work_position, city.clinic().maximum_integrity)
+            .map_err(|error| error.to_string())?
+            .with_ai(AiProfile::idle()),
+    );
+    for resident in city.residents() {
+        actors.push(
+            Actor::new(resident.residence_position, resident.maximum_integrity)
+                .map_err(|error| error.to_string())?
+                .with_ai(AiProfile::idle()),
+        );
+    }
+
+    let (map, features, _) = generated.into_parts();
+    let mut decor = SectorDecor {
+        fallback_name: Some(city.name().to_owned()),
+        zones: city_zones(city.layout()),
+        ..SectorDecor::default()
+    };
+    decor.cells.extend(
+        features
+            .into_iter()
+            .map(|(position, feature)| (position, city_decor_for(feature))),
+    );
+    for (_, passage) in passages {
+        decor.cells.insert(passage, Decor::Passage);
+    }
+    for (direction, passage) in &vertical_passages {
+        decor.cells.insert(
+            *passage,
+            match direction {
+                RegionVerticalDirection::Up => Decor::Ascent,
+                RegionVerticalDirection::Down => Decor::Descent,
+            },
+        );
+    }
+    Ok(GeneratedRegionalDestination {
+        blueprint: ZoneBlueprint {
+            info,
+            map,
+            entrance,
+            seed: descriptor.seed,
+            actors,
+            loot: Vec::new(),
+            threat_sources: Vec::new(),
+        },
+        facility: None,
+        decor,
+        passages,
+        vertical_passages,
+    })
+}
+
+fn city_zones(layout: RegionCityLayout) -> Vec<Zone> {
+    match layout {
+        RegionCityLayout::MaintenanceSpine => vec![
+            Zone {
+                name: "Marché de récupération".to_owned(),
+                bounds: [27, 24, 18, 16],
+            },
+            Zone {
+                name: "Clinique de couche".to_owned(),
+                bounds: [52, 24, 18, 16],
+            },
+            Zone {
+                name: "Nef de maintenance".to_owned(),
+                bounds: [45, 1, 7, 62],
+            },
+            Zone {
+                name: "Quartiers habités".to_owned(),
+                bounds: [24, 7, 52, 50],
+            },
+        ],
+        RegionCityLayout::CoolantRings => vec![
+            Zone {
+                name: "Marché radial".to_owned(),
+                bounds: [27, 28, 13, 17],
+            },
+            Zone {
+                name: "Clinique radiale".to_owned(),
+                bounds: [40, 28, 14, 17],
+            },
+            Zone {
+                name: "Cœur technique".to_owned(),
+                bounds: [15, 17, 50, 38],
+            },
+            Zone {
+                name: "Anneau de refroidissement".to_owned(),
+                bounds: [3, 4, 74, 64],
+            },
+        ],
+        RegionCityLayout::DissonantLattice => vec![
+            Zone {
+                name: "Échange de lisière".to_owned(),
+                bounds: [6, 23, 43, 11],
+            },
+            Zone {
+                name: "Infirmerie greffée".to_owned(),
+                bounds: [64, 35, 42, 16],
+            },
+            Zone {
+                name: "Nexus dissonant".to_owned(),
+                bounds: [48, 19, 17, 19],
+            },
+            Zone {
+                name: "Cavités habitées".to_owned(),
+                bounds: [6, 5, 100, 46],
+            },
+        ],
+        RegionCityLayout::RecursiveBloom => vec![
+            Zone {
+                name: "Troc des mues".to_owned(),
+                bounds: [10, 34, 28, 20],
+            },
+            Zone {
+                name: "Infirmerie enchâssée".to_owned(),
+                bounds: [56, 33, 28, 25],
+            },
+            Zone {
+                name: "Pli central".to_owned(),
+                bounds: [28, 27, 31, 37],
+            },
+            Zone {
+                name: "Alvéoles habitées".to_owned(),
+                bounds: [4, 6, 80, 76],
+            },
+        ],
+        RegionCityLayout::ProcessRuin => vec![
+            Zone {
+                name: "Échange résiduel".to_owned(),
+                bounds: [12, 32, 28, 20],
+            },
+            Zone {
+                name: "Routine de restauration".to_owned(),
+                bounds: [68, 29, 29, 23],
+            },
+            Zone {
+                name: "Processus central".to_owned(),
+                bounds: [38, 29, 29, 23],
+            },
+            Zone {
+                name: "Fenêtres mortes".to_owned(),
+                bounds: [7, 6, 90, 68],
+            },
+        ],
+    }
+}
+
+const fn city_decor_for(feature: RegionalCityFeature) -> Decor {
+    match feature {
+        RegionalCityFeature::Deck => Decor::Deck,
+        RegionalCityFeature::CorrodedDeck => Decor::RuinFloor,
+        RegionalCityFeature::Grate => Decor::Grate,
+        RegionalCityFeature::Lane => Decor::Lane,
+        RegionalCityFeature::Threshold => Decor::Threshold,
+        RegionalCityFeature::CoolantChannel => Decor::ShallowWater,
+        RegionalCityFeature::ForeignFloor => Decor::ForeignFloor,
+        RegionalCityFeature::VeinedFloor => Decor::VeinedFloor,
+        RegionalCityFeature::ChitinFloor => Decor::ChitinFloor,
+        RegionalCityFeature::PulseChannel => Decor::PulseChannel,
+        RegionalCityFeature::MemoryFloor => Decor::MemoryFloor,
+        RegionalCityFeature::WindowFrame => Decor::WindowFrame,
+        RegionalCityFeature::FaultTrace => Decor::FaultTrace,
+        RegionalCityFeature::Wall => Decor::Wall,
+        RegionalCityFeature::MembraneWall => Decor::MembraneWall,
+        RegionalCityFeature::VoidWall => Decor::VoidWall,
+        RegionalCityFeature::DeadScreen => Decor::DeadScreen,
+        RegionalCityFeature::Pillar => Decor::Pillar,
+        RegionalCityFeature::Crate => Decor::Crate,
+        RegionalCityFeature::Server => Decor::Server,
+        RegionalCityFeature::Console => Decor::Console,
+        RegionalCityFeature::Coolant => Decor::Coolant,
+        RegionalCityFeature::Resonator => Decor::Resonator,
+        RegionalCityFeature::GrowthNode => Decor::GrowthNode,
+        RegionalCityFeature::EyeNode => Decor::EyeNode,
+        RegionalCityFeature::RootMass => Decor::RootMass,
+        RegionalCityFeature::KernelFault => Decor::KernelFault,
+        RegionalCityFeature::OrphanProcess => Decor::OrphanProcess,
+        RegionalCityFeature::ClinicBed => Decor::ClinicBed,
+        RegionalCityFeature::ClinicCounter => Decor::ClinicCounter,
+    }
+}
+
 fn site_security_positions(site: GeneratedRegionalSite) -> [GridPos; 2] {
     [
         GridPos::new(site.camp.x, site.camp.y - 2),
@@ -479,6 +735,7 @@ struct SiteFacilityRequest<'a> {
     loot: &'a [GroundLootBlueprint],
     reinforcement_investigation: bool,
     navigation_signals: bool,
+    terminal_navigation_signals: bool,
 }
 
 fn build_site_facility(
@@ -493,6 +750,7 @@ fn build_site_facility(
         loot,
         reinforcement_investigation,
         navigation_signals,
+        terminal_navigation_signals,
     } = request;
     let protected_caches: BTreeSet<_> = security
         .map(|profile| {
@@ -511,6 +769,7 @@ fn build_site_facility(
         .iter()
         .map(|terminal| (terminal.site_index, terminal))
         .collect();
+    let has_terminals = !terminal_by_site.is_empty();
     let has_security = !secured.is_empty();
     if secured.is_empty() && terminal_by_site.is_empty() {
         return Ok(None);
@@ -540,7 +799,10 @@ fn build_site_facility(
             let sensor = generated_installation_id(zone, index, "sensor")?;
             let actuator = generated_installation_id(zone, index, "actuator")?;
             let mut sensor_capabilities = vec![InstallationCapability::SecuritySensor];
-            if navigation_signals && let Some(range) = profile.navigation_signal_range() {
+            if navigation_signals
+                && (!terminal_navigation_signals || !has_terminals)
+                && let Some(range) = profile.navigation_signal_range()
+            {
                 sensor_capabilities.push(InstallationCapability::NavigationBeacon { range });
             }
             installations.push(InstallationBlueprint {
@@ -587,14 +849,21 @@ fn build_site_facility(
             });
         }
         if let Some(terminal) = terminal {
+            let mut capabilities = vec![InstallationCapability::DataTerminal {
+                record: terminal.record.clone(),
+            }];
+            if navigation_signals
+                && terminal_navigation_signals
+                && let Some(range) = security.and_then(|profile| profile.navigation_signal_range())
+            {
+                capabilities.push(InstallationCapability::NavigationBeacon { range });
+            }
             installations.push(InstallationBlueprint {
                 id: generated_installation_id(zone, index, "terminal")?,
                 position: terminal.position,
                 maximum_integrity: 10,
                 integrity: 10,
-                capabilities: vec![InstallationCapability::DataTerminal {
-                    record: terminal.record.clone(),
-                }],
+                capabilities,
                 dependencies: vec![],
                 security_alarm_profile: None,
             });
@@ -720,8 +989,10 @@ mod tests {
                 site_terminals: false,
                 reinforcement_investigation: false,
                 site_navigation_signals: false,
+                site_terminal_navigation_signals: false,
                 threat_renewal: false,
                 destructibles: false,
+                environmental_conduction: false,
                 electronic_systems: true,
                 player_relations: true,
             },
@@ -772,32 +1043,35 @@ mod tests {
                     "core:surface_wilds" => 6,
                     unexpected => panic!("unexpected surface biome {unexpected}"),
                 };
+                let features = RegionalGenerationFeatures {
+                    vertical_travel: true,
+                    population: true,
+                    encounters: true,
+                    pursuit_lifecycle: true,
+                    primary_attributes: true,
+                    physical_profiles: true,
+                    loot: true,
+                    landmarks: true,
+                    sites: true,
+                    site_interactions: true,
+                    site_security: true,
+                    site_terminals: true,
+                    reinforcement_investigation: true,
+                    site_navigation_signals: true,
+                    site_terminal_navigation_signals: true,
+                    threat_renewal: true,
+                    destructibles: true,
+                    environmental_conduction: true,
+                    electronic_systems: true,
+                    player_relations: true,
+                };
                 let generated = generate(
                     world,
                     &descriptor,
                     zone_info(world, &descriptor).unwrap(),
                     entrance,
                     Some(loaded.loot()),
-                    RegionalGenerationFeatures {
-                        vertical_travel: true,
-                        population: true,
-                        encounters: true,
-                        pursuit_lifecycle: true,
-                        primary_attributes: true,
-                        physical_profiles: true,
-                        loot: true,
-                        landmarks: true,
-                        sites: true,
-                        site_interactions: true,
-                        site_security: true,
-                        site_terminals: true,
-                        reinforcement_investigation: true,
-                        site_navigation_signals: true,
-                        threat_renewal: true,
-                        destructibles: true,
-                        electronic_systems: true,
-                        player_relations: true,
-                    },
+                    features,
                 )
                 .unwrap();
                 assert!(
@@ -807,10 +1081,12 @@ mod tests {
                     generated.blueprint.actors.len()
                 );
                 if let Some(facility) = &generated.facility {
+                    let mut facility_map = generated.blueprint.map.clone();
+                    let mut facility_actors = ActorRegistry::default();
                     FacilityState::instantiate(
                         facility.clone(),
-                        &mut generated.blueprint.map.clone(),
-                        &ActorRegistry::default(),
+                        &mut facility_map,
+                        &mut facility_actors,
                     )
                     .unwrap();
                     let has_terminal = facility.installations.iter().any(|installation| {
@@ -822,6 +1098,24 @@ mod tests {
                         has_terminal,
                         "every core surface region requests one terminal"
                     );
+                    let beacons = facility
+                        .installations
+                        .iter()
+                        .filter(|installation| {
+                            installation.capabilities.iter().any(|capability| {
+                                matches!(
+                                    capability,
+                                    InstallationCapability::NavigationBeacon { .. }
+                                )
+                            })
+                        })
+                        .collect::<Vec<_>>();
+                    assert!(!beacons.is_empty(), "a survey terminal needs a site signal");
+                    assert!(beacons.iter().all(|installation| {
+                        installation.capabilities.iter().any(|capability| {
+                            matches!(capability, InstallationCapability::DataTerminal { .. })
+                        })
+                    }));
                     terminal_regions += 1;
                     if facility.owner.is_some() {
                         secured_regions += 1;
@@ -862,6 +1156,50 @@ mod tests {
                         }
                     }
                     if facility.owner.is_some() && !legacy_response_checked {
+                        let previous = generate(
+                            world,
+                            &descriptor,
+                            zone_info(world, &descriptor).unwrap(),
+                            entrance,
+                            Some(loaded.loot()),
+                            RegionalGenerationFeatures {
+                                site_terminal_navigation_signals: false,
+                                ..features
+                            },
+                        )
+                        .unwrap();
+                        let previous_installations =
+                            &previous.facility.as_ref().unwrap().installations;
+                        assert!(previous_installations.iter().any(|installation| {
+                            installation.capabilities.iter().any(|capability| {
+                                matches!(capability, InstallationCapability::SecuritySensor)
+                            }) && installation.capabilities.iter().any(|capability| {
+                                matches!(
+                                    capability,
+                                    InstallationCapability::NavigationBeacon { .. }
+                                )
+                            })
+                        }));
+                        assert!(
+                            previous_installations
+                                .iter()
+                                .filter(|installation| {
+                                    installation.capabilities.iter().any(|capability| {
+                                        matches!(
+                                            capability,
+                                            InstallationCapability::DataTerminal { .. }
+                                        )
+                                    })
+                                })
+                                .all(|installation| installation.capabilities.iter().all(
+                                    |capability| {
+                                        !matches!(
+                                            capability,
+                                            InstallationCapability::NavigationBeacon { .. }
+                                        )
+                                    }
+                                ))
+                        );
                         let legacy = generate(
                             world,
                             &descriptor,
@@ -883,8 +1221,10 @@ mod tests {
                                 site_terminals: false,
                                 reinforcement_investigation: false,
                                 site_navigation_signals: false,
+                                site_terminal_navigation_signals: false,
                                 threat_renewal: true,
                                 destructibles: false,
+                                environmental_conduction: false,
                                 electronic_systems: true,
                                 player_relations: true,
                             },
@@ -935,8 +1275,10 @@ mod tests {
                                 site_terminals: true,
                                 reinforcement_investigation: true,
                                 site_navigation_signals: true,
+                                site_terminal_navigation_signals: true,
                                 threat_renewal: true,
                                 destructibles: false,
+                                environmental_conduction: false,
                                 electronic_systems: true,
                                 player_relations: true,
                             },
@@ -993,7 +1335,7 @@ mod tests {
     }
 
     #[test]
-    fn core_descent_is_stable_bidirectional_and_leads_to_a_playable_layer() {
+    fn core_descent_chain_is_stable_bidirectional_and_reaches_layer_five() {
         let content_root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
         let loaded = ContentLoader::load(&[content_root], &semver::Version::new(0, 1, 0)).unwrap();
         let world = loaded
@@ -1015,13 +1357,19 @@ mod tests {
             site_terminals: true,
             reinforcement_investigation: true,
             site_navigation_signals: true,
+            site_terminal_navigation_signals: true,
             threat_renewal: true,
             destructibles: true,
+            environmental_conduction: true,
             electronic_systems: true,
             player_relations: true,
         };
         let upper_coordinate = RegionCoord::new(-1, 0, 0);
         let lower_coordinate = RegionCoord::new(-1, 0, 1);
+        let second_layer_coordinate = RegionCoord::new(-1, 0, 2);
+        let third_layer_coordinate = RegionCoord::new(-1, 0, 3);
+        let fourth_layer_coordinate = RegionCoord::new(-1, 0, 4);
+        let fifth_layer_coordinate = RegionCoord::new(-1, 0, 5);
         assert_eq!(
             world.vertical_neighbor(upper_coordinate, RegionVerticalDirection::Down),
             Some(lower_coordinate)
@@ -1061,30 +1409,283 @@ mod tests {
         .unwrap();
         assert_eq!(
             lower.vertical_passages,
-            vec![(RegionVerticalDirection::Up, ascent)]
+            vec![
+                (RegionVerticalDirection::Up, ascent),
+                (RegionVerticalDirection::Down, descent),
+            ]
         );
         assert_eq!(lower.decor.cells.get(&ascent), Some(&Decor::Ascent));
+        assert_eq!(lower.decor.cells.get(&descent), Some(&Decor::Descent));
         assert!(lower.blueprint.map.is_walkable(ascent));
-        assert!(!lower.blueprint.actors.is_empty());
-        assert!(!lower.blueprint.loot.is_empty());
+        assert!(lower.blueprint.map.is_walkable(descent));
+        assert_eq!(lower.blueprint.info.name, "Nœud de maintenance");
+        assert_eq!(lower.blueprint.info.kind.as_str(), "core:maintenance_city");
+        assert_eq!(lower.blueprint.actors.len(), 4);
+        assert!(lower.blueprint.loot.is_empty());
         assert!(
-            (2..=5).contains(
-                &lower
-                    .blueprint
-                    .actors
-                    .iter()
-                    .filter(|actor| actor.destruction_effect().is_some())
-                    .count()
-            )
+            lower
+                .blueprint
+                .actors
+                .iter()
+                .all(|actor| actor.destruction_effect().is_none())
+        );
+        assert!((0..lower.blueprint.map.height()).all(|y| {
+            (0..lower.blueprint.map.width()).all(|x| {
+                let position = GridPos::new(x as i32, y as i32);
+                !lower.blueprint.map.is_walkable(position)
+                    || lower.blueprint.map.is_protected(position)
+            })
+        }));
+        assert!(
+            lower
+                .decor
+                .cells
+                .values()
+                .any(|decor| *decor == Decor::ClinicBed)
         );
 
+        assert_eq!(
+            world.vertical_neighbor(lower_coordinate, RegionVerticalDirection::Down),
+            Some(second_layer_coordinate)
+        );
+        let second_layer_descriptor = world.region(17, second_layer_coordinate).unwrap();
+        let second_layer_ascent = vertical_passage(
+            world.map_size_at(second_layer_coordinate),
+            RegionVerticalDirection::Up,
+        );
+        let second_layer_descent = vertical_passage(
+            world.map_size_at(second_layer_coordinate),
+            RegionVerticalDirection::Down,
+        );
+        let second_layer = generate(
+            world,
+            &second_layer_descriptor,
+            zone_info(world, &second_layer_descriptor).unwrap(),
+            second_layer_ascent,
+            Some(loaded.loot()),
+            features,
+        )
+        .unwrap();
+        assert_eq!(
+            second_layer.vertical_passages,
+            vec![
+                (RegionVerticalDirection::Up, second_layer_ascent),
+                (RegionVerticalDirection::Down, second_layer_descent),
+            ]
+        );
+        assert_eq!(
+            second_layer.decor.cells.get(&second_layer_ascent),
+            Some(&Decor::Ascent)
+        );
+        assert!(second_layer.blueprint.map.is_walkable(second_layer_ascent));
+        assert_eq!(
+            second_layer.decor.cells.get(&second_layer_descent),
+            Some(&Decor::Descent)
+        );
+        assert!(second_layer.blueprint.map.is_walkable(second_layer_descent));
+        assert_eq!(second_layer.blueprint.map.width(), 80);
+        assert_eq!(second_layer.blueprint.map.height(), 72);
+        assert_eq!(
+            second_layer.blueprint.info.name,
+            "Couronne de refroidissement"
+        );
+        assert_eq!(
+            second_layer.blueprint.info.kind.as_str(),
+            "core:coolant_city"
+        );
+        assert_eq!(second_layer.blueprint.actors.len(), 5);
+        assert!(second_layer.blueprint.loot.is_empty());
+        assert!(
+            second_layer
+                .blueprint
+                .actors
+                .iter()
+                .all(|actor| actor.destruction_effect().is_none())
+        );
+        assert!(
+            second_layer
+                .decor
+                .cells
+                .values()
+                .any(|decor| *decor == Decor::ShallowWater)
+        );
+
+        assert_eq!(
+            world.vertical_neighbor(second_layer_coordinate, RegionVerticalDirection::Down),
+            Some(third_layer_coordinate)
+        );
+        let third_layer_descriptor = world.region(17, third_layer_coordinate).unwrap();
+        let third_layer_ascent = vertical_passage(
+            world.map_size_at(third_layer_coordinate),
+            RegionVerticalDirection::Up,
+        );
+        let third_layer_descent = vertical_passage(
+            world.map_size_at(third_layer_coordinate),
+            RegionVerticalDirection::Down,
+        );
+        let third_layer = generate(
+            world,
+            &third_layer_descriptor,
+            zone_info(world, &third_layer_descriptor).unwrap(),
+            third_layer_ascent,
+            Some(loaded.loot()),
+            features,
+        )
+        .unwrap();
+        assert_eq!(
+            third_layer.vertical_passages,
+            vec![
+                (RegionVerticalDirection::Up, third_layer_ascent),
+                (RegionVerticalDirection::Down, third_layer_descent),
+            ]
+        );
+        assert_eq!(
+            third_layer.decor.cells.get(&third_layer_ascent),
+            Some(&Decor::Ascent)
+        );
+        assert_eq!(third_layer.blueprint.map.width(), 112);
+        assert_eq!(third_layer.blueprint.map.height(), 56);
+        assert_eq!(third_layer.blueprint.info.name, "Bastion dissonant");
+        assert_eq!(
+            third_layer.blueprint.info.kind.as_str(),
+            "core:security_city"
+        );
+        assert_eq!(third_layer.blueprint.actors.len(), 6);
+        assert!(third_layer.blueprint.loot.is_empty());
+        assert!(
+            third_layer
+                .decor
+                .cells
+                .values()
+                .any(|decor| *decor == Decor::ForeignFloor)
+        );
+        assert!(
+            third_layer
+                .decor
+                .cells
+                .values()
+                .any(|decor| *decor == Decor::MembraneWall)
+        );
+
+        assert_eq!(
+            world.vertical_neighbor(third_layer_coordinate, RegionVerticalDirection::Down),
+            Some(fourth_layer_coordinate)
+        );
+        let fourth_layer_descriptor = world.region(17, fourth_layer_coordinate).unwrap();
+        let fourth_layer_ascent = vertical_passage(
+            world.map_size_at(fourth_layer_coordinate),
+            RegionVerticalDirection::Up,
+        );
+        let fourth_layer_descent = vertical_passage(
+            world.map_size_at(fourth_layer_coordinate),
+            RegionVerticalDirection::Down,
+        );
+        let fourth_layer = generate(
+            world,
+            &fourth_layer_descriptor,
+            zone_info(world, &fourth_layer_descriptor).unwrap(),
+            fourth_layer_ascent,
+            Some(loaded.loot()),
+            features,
+        )
+        .unwrap();
+        assert_eq!(
+            fourth_layer.vertical_passages,
+            vec![
+                (RegionVerticalDirection::Up, fourth_layer_ascent),
+                (RegionVerticalDirection::Down, fourth_layer_descent),
+            ]
+        );
+        assert_eq!(
+            fourth_layer.decor.cells.get(&fourth_layer_ascent),
+            Some(&Decor::Ascent)
+        );
+        assert_eq!(fourth_layer.blueprint.map.width(), 88);
+        assert_eq!(fourth_layer.blueprint.map.height(), 88);
+        assert_eq!(fourth_layer.blueprint.info.name, "Rosace des mues");
+        assert_eq!(
+            fourth_layer.blueprint.info.kind.as_str(),
+            "core:recursive_city"
+        );
+        assert_eq!(fourth_layer.blueprint.actors.len(), 7);
+        assert!(fourth_layer.blueprint.loot.is_empty());
+        assert!(
+            fourth_layer
+                .decor
+                .cells
+                .values()
+                .any(|decor| *decor == Decor::ChitinFloor)
+        );
+        assert!(
+            fourth_layer
+                .decor
+                .cells
+                .values()
+                .any(|decor| *decor == Decor::EyeNode)
+        );
+
+        assert_eq!(
+            world.vertical_neighbor(fourth_layer_coordinate, RegionVerticalDirection::Down),
+            Some(fifth_layer_coordinate)
+        );
+        let fifth_layer_descriptor = world.region(17, fifth_layer_coordinate).unwrap();
+        let fifth_layer_ascent = vertical_passage(
+            world.map_size_at(fifth_layer_coordinate),
+            RegionVerticalDirection::Up,
+        );
+        let fifth_layer = generate(
+            world,
+            &fifth_layer_descriptor,
+            zone_info(world, &fifth_layer_descriptor).unwrap(),
+            fifth_layer_ascent,
+            Some(loaded.loot()),
+            features,
+        )
+        .unwrap();
+        assert_eq!(
+            fifth_layer.vertical_passages,
+            vec![(RegionVerticalDirection::Up, fifth_layer_ascent)]
+        );
+        assert_eq!(
+            fifth_layer.decor.cells.get(&fifth_layer_ascent),
+            Some(&Decor::Ascent)
+        );
+        assert_eq!(fifth_layer.blueprint.map.width(), 104);
+        assert_eq!(fifth_layer.blueprint.map.height(), 80);
+        assert_eq!(fifth_layer.blueprint.info.name, "Noyau des erreurs");
+        assert_eq!(
+            fifth_layer.blueprint.info.kind.as_str(),
+            "core:dead_system_city"
+        );
+        assert_eq!(fifth_layer.blueprint.actors.len(), 8);
+        assert!(fifth_layer.blueprint.loot.is_empty());
+        assert!(
+            fifth_layer
+                .decor
+                .cells
+                .values()
+                .any(|decor| *decor == Decor::MemoryFloor)
+        );
+        assert!(
+            fifth_layer
+                .decor
+                .cells
+                .values()
+                .any(|decor| *decor == Decor::OrphanProcess)
+        );
+
+        let wild_coordinate = RegionCoord::new(-2, 0, 1);
+        let wild_entrance = project_rl::world::generation::cardinal_passage(
+            world.local_map_size(),
+            Direction::East,
+        );
         for seed in 0..64 {
-            let descriptor = world.region(seed, lower_coordinate).unwrap();
+            let descriptor = world.region(seed, wild_coordinate).unwrap();
             let generated = generate(
                 world,
                 &descriptor,
                 zone_info(world, &descriptor).unwrap(),
-                ascent,
+                wild_entrance,
                 Some(loaded.loot()),
                 features,
             )
@@ -1129,5 +1730,88 @@ mod tests {
             );
             assert!(generated.blueprint.loot.len() >= 3);
         }
+    }
+
+    #[test]
+    fn research_relays_are_bounded_electrical_and_version_gated() {
+        let content_root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content");
+        let loaded = ContentLoader::load(&[content_root], &semver::Version::new(0, 1, 0)).unwrap();
+        let world = loaded
+            .regional_worlds()
+            .get(&"core:simulation_overworld".parse().unwrap())
+            .unwrap();
+        let descriptor = RegionDescriptor {
+            coordinate: RegionCoord::new(3, -2, 2),
+            seed: 0xE1EC_7A1C,
+            biome: "core:research".parse().unwrap(),
+        };
+        let entrance = project_rl::world::generation::cardinal_passage(
+            world.local_map_size(),
+            Direction::West,
+        );
+        let current_features = RegionalGenerationFeatures {
+            vertical_travel: true,
+            population: true,
+            encounters: true,
+            pursuit_lifecycle: true,
+            primary_attributes: true,
+            physical_profiles: true,
+            loot: true,
+            landmarks: true,
+            sites: true,
+            site_interactions: true,
+            site_security: true,
+            site_terminals: true,
+            reinforcement_investigation: true,
+            site_navigation_signals: true,
+            site_terminal_navigation_signals: true,
+            threat_renewal: true,
+            destructibles: true,
+            environmental_conduction: true,
+            electronic_systems: true,
+            player_relations: true,
+        };
+        let current = generate(
+            world,
+            &descriptor,
+            zone_info(world, &descriptor).unwrap(),
+            entrance,
+            Some(loaded.loot()),
+            current_features,
+        )
+        .unwrap();
+        let relays = current
+            .blueprint
+            .actors
+            .iter()
+            .filter_map(Actor::destruction_effect)
+            .collect::<Vec<_>>();
+        assert!((2..=3).contains(&relays.len()));
+        assert!(relays.iter().all(|effect| {
+            effect.explosion().damage.damage_type == project_rl::combat::DamageType::Electrical
+                && effect
+                    .ground_effect()
+                    .is_some_and(|ground| ground.id().as_str() == "core:electrified_ground")
+        }));
+
+        let legacy = generate(
+            world,
+            &descriptor,
+            zone_info(world, &descriptor).unwrap(),
+            entrance,
+            Some(loaded.loot()),
+            RegionalGenerationFeatures {
+                environmental_conduction: false,
+                ..current_features
+            },
+        )
+        .unwrap();
+        assert!(
+            legacy
+                .blueprint
+                .actors
+                .iter()
+                .all(|actor| actor.destruction_effect().is_none())
+        );
     }
 }

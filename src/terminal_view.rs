@@ -1,10 +1,12 @@
-//! A code-native terminal tileset: square cells, pixel glyphs, no raster assets.
-//! Only remembered terrain and currently perceived overlays reach the renderer.
-use std::collections::BTreeMap;
+//! A code-native terminal tileset: square pixel scenery, ASCII actors, no
+//! raster assets. Only remembered terrain and currently perceived overlays
+//! reach the renderer.
+use std::collections::{BTreeMap, BTreeSet};
 
 use crate::ui_theme::{
-    UiIcon, UiTheme, draw_text as draw_ui_text, draw_text_bold as draw_ui_text_bold, draw_ui_icon,
-    measure_text as measure_ui_text,
+    UiIcon, UiTheme, draw_text as draw_ui_text, draw_text_bold as draw_ui_text_bold,
+    draw_text_bold_centered as draw_ui_text_bold_centered, draw_ui_icon,
+    measure_text as measure_ui_text, measure_text_bold as measure_ui_text_bold,
 };
 
 pub(crate) fn player_location_name(name: &str) -> String {
@@ -42,12 +44,12 @@ use macroquad::prelude::*;
 use project_rl::ai::AiState;
 use project_rl::combat::AttackAreaCell;
 use project_rl::explosive::ExplosiveActivation;
-use project_rl::game::{GameState, WorldState};
+use project_rl::game::{ActorObservationField, GameState, WorldState};
 use project_rl::world::{GridPos, Map, Terrain, VisibilityState};
 
 use crate::test_sector::{Decor, SectorDecor, TestSector};
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct KnownTile {
     pub terrain: Terrain,
     pub decor: Decor,
@@ -59,10 +61,16 @@ pub struct TerminalDrawOptions<'a> {
     pub cell_size: u16,
     pub interact_label: &'a str,
     pub legend_label: &'a str,
+    pub observation_label: &'a str,
     pub legend_open: bool,
     pub attack_preview: Option<TerminalAttackPreview<'a>>,
     pub navigation_signal: Option<&'a str>,
     pub target_summary: Option<&'a TerminalTargetSummary>,
+    pub observation_fields: &'a [ActorObservationField],
+}
+
+fn inside_actor_visual_field(fields: &[ActorObservationField], position: GridPos) -> bool {
+    fields.iter().any(|field| field.contains(position))
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -97,6 +105,9 @@ pub enum TerminalAlertKind {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TerminalStatusIcon {
     Burning,
+    RequiredMaterial,
+    QuestAvailable,
+    QuestReady,
 }
 
 #[derive(Clone, Copy, Debug)]
@@ -112,6 +123,31 @@ pub struct TerminalOverlay {
     /// A small shape displayed in addition to the entity glyph, so a status
     /// never relies on color alone.
     pub status_icon: Option<TerminalStatusIcon>,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum SensorContactKind {
+    Hostile,
+    Service,
+    Neutral,
+    Unknown,
+}
+
+#[derive(Clone, Copy, Debug)]
+struct SensorContact {
+    position: GridPos,
+    kind: SensorContactKind,
+    selected: bool,
+    alerted: bool,
+}
+
+fn sensor_contact_kind(symbol: char) -> SensorContactKind {
+    match symbol {
+        'd' | 't' | 'r' => SensorContactKind::Hostile,
+        'm' | 'h' | 'v' => SensorContactKind::Service,
+        'c' | 'i' | 'u' | 'b' => SensorContactKind::Neutral,
+        _ => SensorContactKind::Unknown,
+    }
 }
 
 #[derive(Clone, Copy, Debug)]
@@ -135,6 +171,7 @@ impl TerminalGlyphPalette {
     }
 }
 
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct TerminalView {
     pub title: String,
     pub decor: SectorDecor,
@@ -264,10 +301,12 @@ impl TerminalView {
             cell_size,
             interact_label,
             legend_label,
+            observation_label,
             legend_open,
             attack_preview,
             navigation_signal,
             target_summary,
+            observation_fields,
         } = options;
         let cyan = Color::from_rgba(104, 201, 201, 255);
         let muted = Color::from_rgba(135, 162, 167, 255);
@@ -301,18 +340,11 @@ impl TerminalView {
         } else {
             0.0
         };
-        draw_rectangle(
-            layout.header.x,
-            layout.header.y + 7.0,
-            3.0,
-            17.0,
-            if protected { cyan } else { ORANGE },
-        );
         draw_bounded_text(
             &self.title,
-            layout.header.x + 11.0,
+            layout.header.x,
             layout.header.y + 23.0,
-            layout.header.w - safety_reserved - 11.0,
+            layout.header.w - safety_reserved,
             18,
             cyan,
         );
@@ -351,17 +383,32 @@ impl TerminalView {
             for column in 0..camera.columns {
                 let position = GridPos::new(camera.first.x + column, camera.first.y + row);
                 let rect = camera.rect(position);
-                let Some(tile) = self.known(position) else {
+                let known = self.known(position);
+                let observed = observation_fields
+                    .iter()
+                    .any(|field| field.contains(position) || field.origin() == position);
+                if known.is_none() && !observed {
                     continue;
-                };
+                }
                 let visible = visibility.is_visible(position);
-                draw_tile(
-                    rect,
-                    tile.decor,
-                    self.wall_joins(position),
-                    visible,
-                    position,
-                );
+                if let Some(tile) = known {
+                    draw_tile(
+                        rect,
+                        tile.decor,
+                        self.wall_joins(position),
+                        visible,
+                        position,
+                    );
+                } else {
+                    draw_rectangle(
+                        rect.x,
+                        rect.y,
+                        rect.w,
+                        rect.h,
+                        Color::from_rgba(4, 10, 15, 255),
+                    );
+                }
+                draw_observation_fields(rect, observation_fields, position);
                 if visible
                     && let Some(preview) = attack_preview
                     && let Some(cell) = preview.cells.iter().find(|cell| cell.position == position)
@@ -409,6 +456,11 @@ impl TerminalView {
         let mut visible_local_alerts = 0;
         let mut visible_security_alarms = 0;
         let mut visible_security_lockdowns = 0;
+        let observation_origins: BTreeSet<_> = observation_fields
+            .iter()
+            .map(ActorObservationField::origin)
+            .collect();
+        let mut sensor_contacts = Vec::new();
         for position in visibility.visible_positions() {
             if game.active_facility().is_some_and(|facility| {
                 facility
@@ -432,6 +484,14 @@ impl TerminalView {
                 }
                 if cell.selected {
                     selected_inspected = self.known(position).map(|tile| (position, tile));
+                }
+                if observation_origins.contains(&position) {
+                    sensor_contacts.push(SensorContact {
+                        position,
+                        kind: sensor_contact_kind(cell.symbol),
+                        selected: cell.selected,
+                        alerted: cell.alert.is_some(),
+                    });
                 }
             }
         }
@@ -551,6 +611,15 @@ impl TerminalView {
                                 Some(TerminalStatusIcon::Burning) => {
                                     format!("{alert_label} · EN FEU")
                                 }
+                                Some(TerminalStatusIcon::RequiredMaterial) => {
+                                    format!("{alert_label} · REQUIS POUR LA MAINTENANCE")
+                                }
+                                Some(TerminalStatusIcon::QuestAvailable) => {
+                                    format!("{alert_label} · QUÊTE DISPONIBLE")
+                                }
+                                Some(TerminalStatusIcon::QuestReady) => {
+                                    format!("{alert_label} · RAPPORT DE QUÊTE ATTENDU")
+                                }
                                 None => alert_label,
                             }
                         },
@@ -579,6 +648,13 @@ impl TerminalView {
                 }
             )
         };
+        let description = inspected.map_or(description.clone(), |(position, _)| {
+            if inside_actor_visual_field(observation_fields, position) {
+                format!("{description} · CHAMP VISUEL PNJ")
+            } else {
+                description.clone()
+            }
+        });
         draw_bounded_text(
             &description,
             layout.footer.x,
@@ -600,6 +676,9 @@ impl TerminalView {
                     visible_security_lockdowns,
                 ),
                 target_summary,
+                observation_fields,
+                observation_label,
+                &sensor_contacts,
             );
         }
         if visible_local_alerts + visible_security_alarms + visible_security_lockdowns > 0 {
@@ -624,6 +703,9 @@ impl TerminalView {
         panel: Rect,
         visible_counts: (usize, usize, usize, usize, usize, usize),
         target: Option<&TerminalTargetSummary>,
+        observation_fields: &[ActorObservationField],
+        observation_label: &str,
+        sensor_contacts: &[SensorContact],
     ) {
         let (
             visible_hostiles,
@@ -643,19 +725,29 @@ impl TerminalView {
             panel.w - 20.0,
             panel.h - 20.0,
         );
-        draw_ui_text_bold("CARTOGRAPHIE", rect.x, rect.y + 18.0, 18.0, bright);
+        draw_ui_text_bold("CAPTEURS", rect.x, rect.y + 18.0, 18.0, bright);
         let map_area = Rect::new(
             rect.x,
             rect.y + 30.0,
             rect.w,
             (rect.h * 0.38).clamp(180.0, 240.0),
         );
-        let (known_min, known_max) = remembered_bounds(
-            &self.remembered,
-            game.player_position(),
-            game.map().width(),
-            game.map().height(),
-        );
+        let (known_min, known_max) = if observation_fields.is_empty() {
+            remembered_bounds(
+                &self.remembered,
+                game.player_position(),
+                game.map().width(),
+                game.map().height(),
+            )
+        } else {
+            (
+                GridPos::new(0, 0),
+                GridPos::new(
+                    i32::try_from(game.map().width().saturating_sub(1)).unwrap_or(i32::MAX),
+                    i32::try_from(game.map().height().saturating_sub(1)).unwrap_or(i32::MAX),
+                ),
+            )
+        };
         let known_width = (known_max.x - known_min.x + 1).max(1) as f32;
         let known_height = (known_max.y - known_min.y + 1).max(1) as f32;
         let pixel = (map_area.w / known_width)
@@ -668,40 +760,17 @@ impl TerminalView {
             map_area.x + (map_area.w - map_width) * 0.5,
             map_area.y + (map_area.h - map_height) * 0.5,
         );
-        draw_rectangle(
-            map_area.x,
-            map_area.y,
-            map_area.w,
-            map_area.h,
-            Color::from_rgba(3, 8, 13, 255),
+        draw_sensor_scope(
+            map_area,
+            &self.remembered,
+            game,
+            known_min,
+            known_max,
+            pixel,
+            origin,
+            observation_fields,
+            sensor_contacts,
         );
-        for (position, tile) in &self.remembered {
-            let color = match (
-                tile.terrain.blocks_movement(),
-                game.player_visibility().is_visible(*position),
-            ) {
-                (true, true) => Color::from_rgba(119, 160, 167, 255),
-                (true, false) => Color::from_rgba(43, 68, 78, 255),
-                (false, true) => Color::from_rgba(36, 77, 78, 255),
-                (false, false) => Color::from_rgba(18, 33, 44, 255),
-            };
-            draw_rectangle(
-                origin.x + (position.x - known_min.x) as f32 * pixel,
-                origin.y + (position.y - known_min.y) as f32 * pixel,
-                pixel,
-                pixel,
-                color,
-            );
-        }
-        if let Some(position) = game.player_position() {
-            draw_rectangle(
-                origin.x + (position.x - known_min.x) as f32 * pixel,
-                origin.y + (position.y - known_min.y) as f32 * pixel,
-                pixel,
-                pixel,
-                cyan,
-            );
-        }
         let mut y = map_area.y + map_area.h + 12.0;
         draw_line(rect.x, y, rect.x + rect.w, y, 1.0, UiTheme.muted());
         y += 22.0;
@@ -735,6 +804,34 @@ impl TerminalView {
                 rect.w,
                 14,
                 alert,
+            );
+        }
+
+        if !observation_fields.is_empty() {
+            let observers: BTreeSet<_> = observation_fields
+                .iter()
+                .map(ActorObservationField::observer)
+                .collect();
+            y += 19.0;
+            draw_bounded_text(
+                &format!(
+                    "{observation_label} · lecture tactique · {} PNJ visibles",
+                    observers.len()
+                ),
+                rect.x,
+                y,
+                rect.w,
+                14,
+                cyan,
+            );
+            y += 18.0;
+            draw_bounded_text(
+                "Trame contourée · champ visuel",
+                rect.x,
+                y,
+                rect.w,
+                13,
+                Color::from_rgba(79, 218, 183, 255),
             );
         }
 
@@ -795,6 +892,500 @@ impl TerminalView {
             }
         } else {
             draw_ui_text("Aucune cible sélectionnée", rect.x, y, 15.0, muted);
+        }
+    }
+}
+
+#[allow(clippy::too_many_arguments)]
+fn draw_sensor_scope(
+    area: Rect,
+    remembered: &BTreeMap<GridPos, KnownTile>,
+    game: &GameState,
+    known_min: GridPos,
+    known_max: GridPos,
+    pixel: f32,
+    origin: Vec2,
+    observation_fields: &[ActorObservationField],
+    contacts: &[SensorContact],
+) {
+    let phosphor = Color::from_rgba(74, 207, 187, 255);
+    let phosphor_dim = Color::from_rgba(38, 104, 105, 255);
+    let memory = Color::from_rgba(57, 81, 91, 255);
+    draw_rectangle(
+        area.x,
+        area.y,
+        area.w,
+        area.h,
+        Color::from_rgba(2, 8, 12, 255),
+    );
+
+    // A hardware-like phosphor grid. It is purely presentational and never
+    // participates in perception or delays already available information.
+    let grid_step = 16.0;
+    let mut grid_x = area.x + grid_step;
+    while grid_x < area.right() {
+        draw_line(
+            grid_x,
+            area.y,
+            grid_x,
+            area.bottom(),
+            1.0,
+            Color::from_rgba(24, 62, 68, 74),
+        );
+        grid_x += grid_step;
+    }
+    let mut grid_y = area.y + grid_step;
+    while grid_y < area.bottom() {
+        draw_line(
+            area.x,
+            grid_y,
+            area.right(),
+            grid_y,
+            1.0,
+            Color::from_rgba(24, 62, 68, 74),
+        );
+        grid_y += grid_step;
+    }
+    let mut scanline_y = area.y + 3.0;
+    while scanline_y < area.bottom() {
+        draw_line(
+            area.x + 1.0,
+            scanline_y,
+            area.right() - 1.0,
+            scanline_y,
+            1.0,
+            Color::from_rgba(0, 0, 0, 38),
+        );
+        scanline_y += 5.0;
+    }
+
+    for (position, tile) in remembered {
+        if !sensor_position_is_inside(*position, known_min, known_max) {
+            continue;
+        }
+        let cell = sensor_cell_rect(*position, known_min, pixel, origin);
+        let visible = game.player_visibility().is_visible(*position);
+        if tile.terrain.blocks_movement() {
+            let edge_color = if visible { phosphor_dim } else { memory };
+            let neighbours = position.cardinal_neighbors();
+            let joined = neighbours.map(|neighbour| {
+                remembered
+                    .get(&neighbour)
+                    .is_some_and(|known| known.terrain.blocks_movement())
+            });
+            if !joined[0] {
+                draw_sensor_edge(cell.x, cell.y, cell.right(), cell.y, edge_color, !visible);
+            }
+            if !joined[1] {
+                draw_sensor_edge(
+                    cell.right(),
+                    cell.y,
+                    cell.right(),
+                    cell.bottom(),
+                    edge_color,
+                    !visible,
+                );
+            }
+            if !joined[2] {
+                draw_sensor_edge(
+                    cell.x,
+                    cell.bottom(),
+                    cell.right(),
+                    cell.bottom(),
+                    edge_color,
+                    !visible,
+                );
+            }
+            if !joined[3] {
+                draw_sensor_edge(cell.x, cell.y, cell.x, cell.bottom(), edge_color, !visible);
+            }
+        } else if visible {
+            let dot = (pixel * 0.2).clamp(0.7, 1.35);
+            draw_circle(
+                cell.x + cell.w * 0.5,
+                cell.y + cell.h * 0.5,
+                dot,
+                Color::from_rgba(56, 159, 149, 150),
+            );
+        } else if sensor_memory_sample(*position) {
+            let dot = (pixel * 0.13).clamp(0.5, 0.9);
+            draw_circle(
+                cell.x + cell.w * 0.5,
+                cell.y + cell.h * 0.5,
+                dot,
+                Color::from_rgba(66, 88, 96, 135),
+            );
+        }
+    }
+
+    // The solid contour is the player's current reliable sensor footprint.
+    // Remembered terrain remains dashed and dim outside it.
+    for position in game.player_visibility().visible_positions() {
+        if !sensor_position_is_inside(position, known_min, known_max) {
+            continue;
+        }
+        let cell = sensor_cell_rect(position, known_min, pixel, origin);
+        let [north, east, south, west] = position.cardinal_neighbors();
+        let boundary = Color::from_rgba(88, 225, 201, 125);
+        if !game.player_visibility().is_visible(north) {
+            draw_line(cell.x, cell.y, cell.right(), cell.y, 1.0, boundary);
+        }
+        if !game.player_visibility().is_visible(east) {
+            draw_line(
+                cell.right(),
+                cell.y,
+                cell.right(),
+                cell.bottom(),
+                1.0,
+                boundary,
+            );
+        }
+        if !game.player_visibility().is_visible(south) {
+            draw_line(
+                cell.x,
+                cell.bottom(),
+                cell.right(),
+                cell.bottom(),
+                1.0,
+                boundary,
+            );
+        }
+        if !game.player_visibility().is_visible(west) {
+            draw_line(cell.x, cell.y, cell.x, cell.bottom(), 1.0, boundary);
+        }
+    }
+
+    // REC-06 overlays only fields already authorized by the game state. The
+    // dotted fill never draws terrain that is absent from remembered data.
+    for field in observation_fields {
+        for position in field.positions() {
+            if !sensor_position_is_inside(position, known_min, known_max) {
+                continue;
+            }
+            let cell = sensor_cell_rect(position, known_min, pixel, origin);
+            if (position.x + position.y).rem_euclid(2) == 0 {
+                draw_circle(
+                    cell.x + cell.w * 0.5,
+                    cell.y + cell.h * 0.5,
+                    (pixel * 0.22).clamp(0.65, 1.15),
+                    Color::from_rgba(73, 218, 182, 125),
+                );
+            }
+            let [north, east, south, west] = position.cardinal_neighbors();
+            let boundary = Color::from_rgba(89, 233, 195, 188);
+            if !field.contains(north) {
+                draw_sensor_edge(cell.x, cell.y, cell.right(), cell.y, boundary, true);
+            }
+            if !field.contains(east) {
+                draw_sensor_edge(
+                    cell.right(),
+                    cell.y,
+                    cell.right(),
+                    cell.bottom(),
+                    boundary,
+                    true,
+                );
+            }
+            if !field.contains(south) {
+                draw_sensor_edge(
+                    cell.x,
+                    cell.bottom(),
+                    cell.right(),
+                    cell.bottom(),
+                    boundary,
+                    true,
+                );
+            }
+            if !field.contains(west) {
+                draw_sensor_edge(cell.x, cell.y, cell.x, cell.bottom(), boundary, true);
+            }
+        }
+    }
+
+    for contact in contacts {
+        if sensor_position_is_inside(contact.position, known_min, known_max) {
+            draw_sensor_contact(
+                sensor_cell_rect(contact.position, known_min, pixel, origin),
+                *contact,
+            );
+        }
+    }
+    if let Some(position) = game.player_position()
+        && sensor_position_is_inside(position, known_min, known_max)
+    {
+        draw_sensor_player(sensor_cell_rect(position, known_min, pixel, origin));
+    }
+
+    // The moving sweep and its fading tail are feedback only: all reliable
+    // information is drawn before it and is available immediately.
+    let sweep = area.x + (get_time() as f32 * 0.19).fract() * area.w;
+    draw_rectangle(
+        (sweep - 8.0).max(area.x),
+        area.y + 1.0,
+        (sweep - area.x).min(8.0),
+        area.h - 2.0,
+        Color::from_rgba(45, 185, 165, 18),
+    );
+    draw_line(
+        sweep,
+        area.y + 1.0,
+        sweep,
+        area.bottom() - 1.0,
+        1.0,
+        Color::from_rgba(110, 246, 216, 155),
+    );
+    draw_triangle(
+        vec2(sweep - 3.0, area.y + 1.0),
+        vec2(sweep + 3.0, area.y + 1.0),
+        vec2(sweep, area.y + 5.0),
+        Color::from_rgba(110, 246, 216, 190),
+    );
+
+    draw_rectangle_lines(
+        area.x,
+        area.y,
+        area.w,
+        area.h,
+        1.0,
+        Color::from_rgba(44, 105, 111, 255),
+    );
+    draw_sensor_corners(area, phosphor);
+}
+
+fn sensor_position_is_inside(position: GridPos, minimum: GridPos, maximum: GridPos) -> bool {
+    position.x >= minimum.x
+        && position.y >= minimum.y
+        && position.x <= maximum.x
+        && position.y <= maximum.y
+}
+
+fn sensor_cell_rect(position: GridPos, minimum: GridPos, pixel: f32, origin: Vec2) -> Rect {
+    Rect::new(
+        origin.x + (position.x - minimum.x) as f32 * pixel,
+        origin.y + (position.y - minimum.y) as f32 * pixel,
+        pixel,
+        pixel,
+    )
+}
+
+fn sensor_memory_sample(position: GridPos) -> bool {
+    (position.x.wrapping_mul(31) ^ position.y.wrapping_mul(17)).rem_euclid(5) == 0
+}
+
+fn draw_sensor_edge(from_x: f32, from_y: f32, to_x: f32, to_y: f32, color: Color, dashed: bool) {
+    if !dashed || (from_x - to_x).abs().max((from_y - to_y).abs()) <= 2.0 {
+        draw_line(from_x, from_y, to_x, to_y, 1.0, color);
+        return;
+    }
+    for segment in [0.0, 0.5] {
+        let start = segment;
+        let end = (segment + 0.28_f32).min(1.0);
+        draw_line(
+            from_x + (to_x - from_x) * start,
+            from_y + (to_y - from_y) * start,
+            from_x + (to_x - from_x) * end,
+            from_y + (to_y - from_y) * end,
+            1.0,
+            color,
+        );
+    }
+}
+
+fn draw_sensor_contact(cell: Rect, contact: SensorContact) {
+    let center = vec2(cell.x + cell.w * 0.5, cell.y + cell.h * 0.5);
+    let radius = (cell.w * 0.65).clamp(2.7, 5.0);
+    let color = match contact.kind {
+        SensorContactKind::Hostile => Color::from_rgba(255, 134, 105, 255),
+        SensorContactKind::Service => Color::from_rgba(112, 222, 212, 255),
+        SensorContactKind::Neutral => Color::from_rgba(204, 230, 223, 255),
+        SensorContactKind::Unknown => Color::from_rgba(244, 190, 101, 255),
+    };
+    match contact.kind {
+        SensorContactKind::Hostile => {
+            draw_triangle(
+                vec2(center.x, center.y - radius),
+                vec2(center.x + radius, center.y),
+                vec2(center.x, center.y + radius),
+                color,
+            );
+            draw_triangle(
+                vec2(center.x, center.y - radius),
+                vec2(center.x - radius, center.y),
+                vec2(center.x, center.y + radius),
+                color,
+            );
+            draw_circle(center.x, center.y, (radius * 0.28).max(1.0), BLACK);
+        }
+        SensorContactKind::Service => {
+            draw_rectangle_lines(
+                center.x - radius,
+                center.y - radius,
+                radius * 2.0,
+                radius * 2.0,
+                1.0,
+                color,
+            );
+            draw_line(
+                center.x - radius * 0.55,
+                center.y,
+                center.x + radius * 0.55,
+                center.y,
+                1.0,
+                color,
+            );
+            draw_line(
+                center.x,
+                center.y - radius * 0.55,
+                center.x,
+                center.y + radius * 0.55,
+                1.0,
+                color,
+            );
+        }
+        SensorContactKind::Neutral => {
+            draw_circle_lines(center.x, center.y, radius, 1.0, color);
+            draw_circle(center.x, center.y, (radius * 0.3).max(1.0), color);
+        }
+        SensorContactKind::Unknown => {
+            draw_line(
+                center.x - radius,
+                center.y - radius,
+                center.x + radius,
+                center.y + radius,
+                1.0,
+                color,
+            );
+            draw_line(
+                center.x + radius,
+                center.y - radius,
+                center.x - radius,
+                center.y + radius,
+                1.0,
+                color,
+            );
+        }
+    }
+    if contact.alerted {
+        let pulse = ((get_time() * 5.0).sin() * 0.5 + 0.5) as f32;
+        draw_circle_lines(
+            center.x,
+            center.y,
+            radius + 2.0 + pulse * 2.0,
+            1.0,
+            Color::from_rgba(255, 183, 91, 215),
+        );
+    }
+    if contact.selected {
+        draw_circle_lines(
+            center.x,
+            center.y,
+            radius + 3.0,
+            1.0,
+            Color::from_rgba(230, 244, 238, 235),
+        );
+    }
+}
+
+fn draw_sensor_player(cell: Rect) {
+    let center = vec2(cell.x + cell.w * 0.5, cell.y + cell.h * 0.5);
+    let radius = (cell.w * 0.72).clamp(3.3, 5.8);
+    let color = Color::from_rgba(109, 243, 218, 255);
+    draw_circle_lines(center.x, center.y, radius + 2.0, 1.0, color);
+    draw_triangle(
+        vec2(center.x, center.y - radius),
+        vec2(center.x + radius * 0.72, center.y + radius * 0.72),
+        vec2(center.x - radius * 0.72, center.y + radius * 0.72),
+        color,
+    );
+    draw_circle(
+        center.x,
+        center.y + radius * 0.15,
+        1.2,
+        Color::from_rgba(2, 8, 12, 255),
+    );
+}
+
+fn draw_sensor_corners(area: Rect, color: Color) {
+    let arm = 11.0_f32.min(area.w * 0.12).min(area.h * 0.12);
+    for (x, y, x_direction, y_direction) in [
+        (area.x + 2.0, area.y + 2.0, 1.0, 1.0),
+        (area.right() - 2.0, area.y + 2.0, -1.0, 1.0),
+        (area.x + 2.0, area.bottom() - 2.0, 1.0, -1.0),
+        (area.right() - 2.0, area.bottom() - 2.0, -1.0, -1.0),
+    ] {
+        draw_line(x, y, x + arm * x_direction, y, 2.0, color);
+        draw_line(x, y, x, y + arm * y_direction, 2.0, color);
+    }
+}
+
+fn draw_observation_fields(rect: Rect, fields: &[ActorObservationField], position: GridPos) {
+    for field in fields
+        .iter()
+        .filter(|field| field.contains(position) || field.origin() == position)
+    {
+        let base = Color::from_rgba(55, 208, 174, 255);
+        if field.contains(position) {
+            let dx = (position.x - field.origin().x) as f32;
+            let dy = (position.y - field.origin().y) as f32;
+            let distance = (dx * dx + dy * dy).sqrt();
+            let ratio = (distance / f32::from(field.radius().max(1))).clamp(0.0, 1.0);
+            let fill_alpha = 0.19 - ratio * 0.09;
+            draw_rectangle(
+                rect.x + 0.5,
+                rect.y + 0.5,
+                rect.w - 1.0,
+                rect.h - 1.0,
+                Color::new(base.r, base.g, base.b, fill_alpha),
+            );
+
+            let line = (rect.w * 0.055).clamp(0.8, 1.6);
+            let [north, east, south, west] = position.cardinal_neighbors();
+            let boundary = Color::new(base.r, base.g, base.b, 0.78);
+            if !field.contains(north) {
+                draw_line(rect.x, rect.y, rect.x + rect.w, rect.y, line, boundary);
+            }
+            if !field.contains(east) {
+                draw_line(
+                    rect.x + rect.w,
+                    rect.y,
+                    rect.x + rect.w,
+                    rect.y + rect.h,
+                    line,
+                    boundary,
+                );
+            }
+            if !field.contains(south) {
+                draw_line(
+                    rect.x,
+                    rect.y + rect.h,
+                    rect.x + rect.w,
+                    rect.y + rect.h,
+                    line,
+                    boundary,
+                );
+            }
+            if !field.contains(west) {
+                draw_line(rect.x, rect.y, rect.x, rect.y + rect.h, line, boundary);
+            }
+        }
+
+        if field.origin() == position {
+            let center = vec2(rect.x + rect.w * 0.5, rect.y + rect.h * 0.5);
+            let radius = (rect.w * 0.2).clamp(2.0, 4.5);
+            draw_circle(center.x, center.y, radius, Color::from_rgba(4, 10, 15, 220));
+            draw_circle_lines(
+                center.x,
+                center.y,
+                radius,
+                (rect.w * 0.07).clamp(1.0, 1.8),
+                Color::new(base.r, base.g, base.b, 0.95),
+            );
+            draw_circle(
+                center.x,
+                center.y,
+                (radius * 0.32).max(1.0),
+                Color::new(base.r, base.g, base.b, 0.95),
+            );
         }
     }
 }
@@ -866,9 +1457,9 @@ fn ai_state_label(state: AiState) -> String {
 fn legend_panel(bounds: Rect) -> Rect {
     Rect::new(
         bounds.x + (bounds.w - (bounds.w - 24.0).min(980.0)) * 0.5,
-        bounds.y + (bounds.h - (bounds.h - 24.0).min(440.0)) * 0.5,
+        bounds.y + (bounds.h - (bounds.h - 24.0).min(520.0)) * 0.5,
         (bounds.w - 24.0).min(980.0),
-        (bounds.h - 24.0).min(440.0),
+        (bounds.h - 24.0).min(520.0),
     )
 }
 
@@ -911,8 +1502,12 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
     draw_ui_text_bold("DÉCORS ET SYSTÈMES", columns[2], panel.y + 68.0, 14.0, cyan);
     let top = panel.y + 91.0;
     let available = (panel.h - 130.0).max(120.0);
-    let row_height = (available / 18.0).min(38.0);
-    let icon_size = (row_height - 7.0).max(20.0);
+    // The entity column currently carries the most rows. Deriving icon and
+    // text sizes from that capacity keeps the legend inside its panel as new
+    // deep-layer visual families are added to the other two columns.
+    let row_height = (available / 26.0).min(38.0);
+    let icon_size = (row_height - 2.0).clamp(11.0, 20.0);
+    let legend_font_size = row_height.floor().clamp(11.0, 15.0) as u16;
     for (index, (symbol, label, color, alerted, status_icon)) in [
         ('@', "Vous", cyan, false, None),
         (
@@ -925,6 +1520,27 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
         (
             'm',
             "Technicien neutre",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            None,
+        ),
+        (
+            'h',
+            "Soigneur de la clinique",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            None,
+        ),
+        (
+            'v',
+            "Marchande de la place",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            None,
+        ),
+        (
+            'i',
+            "Habitant du quartier",
             Color::from_rgba(112, 207, 190, 255),
             false,
             None,
@@ -972,6 +1588,13 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             None,
         ),
         (
+            'q',
+            "Relais conducteur · décharge amplifiée par l'eau",
+            Color::from_rgba(89, 221, 237, 255),
+            false,
+            None,
+        ),
+        (
             'd',
             "Icône flamme · en feu",
             Color::from_rgba(255, 137, 48, 255),
@@ -982,6 +1605,13 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             '^',
             "Feu au sol · dégâts",
             Color::from_rgba(255, 151, 46, 255),
+            false,
+            None,
+        ),
+        (
+            'z',
+            "Sol électrifié · dégâts",
+            Color::from_rgba(89, 221, 237, 255),
             false,
             None,
         ),
@@ -1005,6 +1635,27 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             Color::from_rgba(118, 202, 207, 255),
             false,
             None,
+        ),
+        (
+            '=',
+            "Badge + · matériau requis par une intervention locale",
+            Color::from_rgba(118, 202, 207, 255),
+            false,
+            Some(TerminalStatusIcon::RequiredMaterial),
+        ),
+        (
+            'i',
+            "Badge ? · quête disponible",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            Some(TerminalStatusIcon::QuestAvailable),
+        ),
+        (
+            'i',
+            "Badge ! · rapport de quête attendu",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            Some(TerminalStatusIcon::QuestReady),
         ),
         (
             '¤',
@@ -1060,7 +1711,7 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             columns[0] + icon_size + 9.0,
             y,
             column_width - icon_size - 30.0,
-            15,
+            legend_font_size,
             muted,
         );
     }
@@ -1074,6 +1725,22 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
         (Decor::Tree, "Arbre"),
         (Decor::Boulder, "Bloc rocheux"),
         (Decor::RuinWall, "Ruines de surface"),
+        (Decor::ForeignFloor, "Substrat étranger"),
+        (Decor::VeinedFloor, "Veine minérale"),
+        (Decor::MembraneWall, "Masse étrangère"),
+        (Decor::Resonator, "Résonateur étranger"),
+        (Decor::GrowthNode, "Nœud minéral"),
+        (Decor::ChitinFloor, "Plaque chitineuse"),
+        (Decor::PulseChannel, "Canal pulsatile"),
+        (Decor::VoidWall, "Masse creuse"),
+        (Decor::EyeNode, "Œil dormant"),
+        (Decor::RootMass, "Racine calcifiée"),
+        (Decor::MemoryFloor, "Mémoire stable"),
+        (Decor::WindowFrame, "Cadre d'interface brisé"),
+        (Decor::FaultTrace, "Erreur d'exécution"),
+        (Decor::DeadScreen, "Écran mort"),
+        (Decor::KernelFault, "Faute noyau"),
+        (Decor::OrphanProcess, "Processus orphelin"),
         (Decor::SupplyCache, "Cache de récupération"),
         (Decor::ThreatCamp, "Camp hostile actif"),
         (Decor::ThreatCampDisabled, "Camp neutralisé"),
@@ -1081,10 +1748,13 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
         (Decor::DoorLocked, "Porte verrouillée"),
         (Decor::DoorUnpowered, "Porte sans alimentation"),
         (Decor::ControlReady, "Console active"),
+        (Decor::ClinicBed, "Lit de soin"),
+        (Decor::ClinicCounter, "Comptoir médical"),
         (Decor::Depot, "Dépôt de maintenance"),
         (Decor::RelayOffline, "Relais en panne"),
         (Decor::SensorOffline, "Capteur hors ligne"),
         (Decor::DataTerminalOnline, "Terminal de données"),
+        (Decor::DataTerminalUpdated, "Terminal · registre mis à jour"),
         (Decor::DataTerminalOffline, "Terminal hors ligne"),
         (
             Decor::Passage,
@@ -1114,7 +1784,7 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             columns[column] + icon_size + 9.0,
             y,
             column_width - icon_size - 30.0,
-            15,
+            legend_font_size,
             muted,
         );
     }
@@ -1136,7 +1806,7 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             columns[2] + icon_size + 9.0,
             y,
             column_width - icon_size - 30.0,
-            15,
+            legend_font_size,
             muted,
         );
     }
@@ -1213,12 +1883,16 @@ pub fn overlay_label(symbol: char) -> &'static str {
         '@' => "Vous · noyau mobile",
         'c' => "Récupérateur neutre · transporte des matériaux",
         'm' => "Technicien neutre · entretient les installations",
+        'h' => "Soigneur neutre · soins accessibles à la clinique",
+        'v' => "Marchande neutre · achat, vente et paris",
+        'i' => "Habitant neutre · routine locale et conversation",
         'u' => "Drone allié · unité physique sur sa propre case",
         'b' => "Balise de saturation · unité physique sur sa propre case",
         'd' => "Traqueur · hostile",
         't' => "Sentinelle · hostile",
         'r' => "Tirailleur · hostile",
         'o' => "Conteneur instable · explosion et feu persistant",
+        'q' => "Relais conducteur · décharge électrique amplifiée par l'eau",
         ')' => "Arme au sol",
         '!' => "Consommable au sol",
         '=' => "Matériau au sol",
@@ -1227,6 +1901,7 @@ pub fn overlay_label(symbol: char) -> &'static str {
         '>' => "Sortie du secteur",
         '.' | '-' | '*' | '+' | 'f' | 'F' | 'x' | '~' | 'a' => "Effet visuel en cours",
         '^' => "Feu au sol · dégâts thermiques persistants",
+        'z' => "Sol électrifié · dégâts électriques persistants",
         's' => "Capteur de sécurité",
         _ => "Trace de déplacement",
     }
@@ -1283,7 +1958,7 @@ pub(crate) fn directional_signal_summary(
     summary
 }
 
-fn approximate_direction(observer: GridPos, target: GridPos) -> &'static str {
+pub(crate) fn approximate_direction(observer: GridPos, target: GridPos) -> &'static str {
     let horizontal = observer.x.abs_diff(target.x);
     let vertical = observer.y.abs_diff(target.y);
     if horizontal > vertical.saturating_mul(2) {
@@ -1462,6 +2137,16 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
         Decor::Boulder => Color::from_rgba(50, 53, 50, 255),
         Decor::RuinWall => Color::from_rgba(55, 53, 49, 255),
         Decor::Lane | Decor::Threshold => Color::from_rgba(34, 39, 37, 255),
+        Decor::ForeignFloor => Color::from_rgba(25, 21, 43, 255),
+        Decor::VeinedFloor => Color::from_rgba(24, 39, 48, 255),
+        Decor::MembraneWall => Color::from_rgba(48, 34, 66, 255),
+        Decor::ChitinFloor => Color::from_rgba(48, 39, 27, 255),
+        Decor::PulseChannel => Color::from_rgba(57, 22, 30, 255),
+        Decor::VoidWall => Color::from_rgba(29, 18, 21, 255),
+        Decor::MemoryFloor => Color::from_rgba(8, 12, 13, 255),
+        Decor::WindowFrame => Color::from_rgba(10, 15, 16, 255),
+        Decor::FaultTrace => Color::from_rgba(19, 8, 9, 255),
+        Decor::DeadScreen => Color::from_rgba(2, 3, 4, 255),
         _ if kind.blocks() => Color::from_rgba(42, 61, 71, 255),
         _ => Color::from_rgba(18, 31, 38, 255),
     };
@@ -1554,9 +2239,28 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
         draw_pixel_glyph(rect, pattern, dim(color, visible));
         return;
     }
-    if kind == Decor::Wall {
-        let edge = dim(Color::from_rgba(128, 165, 174, 255), visible);
-        let inner = dim(Color::from_rgba(61, 88, 98, 255), visible);
+    if matches!(
+        kind,
+        Decor::Wall | Decor::MembraneWall | Decor::VoidWall | Decor::DeadScreen
+    ) {
+        let (edge, inner) = match kind {
+            Decor::MembraneWall => (
+                dim(Color::from_rgba(169, 111, 194, 255), visible),
+                dim(Color::from_rgba(82, 51, 105, 255), visible),
+            ),
+            Decor::VoidWall => (
+                dim(Color::from_rgba(181, 139, 91, 255), visible),
+                dim(Color::from_rgba(72, 49, 37, 255), visible),
+            ),
+            Decor::DeadScreen => (
+                dim(Color::from_rgba(126, 145, 142, 255), visible),
+                dim(Color::from_rgba(3, 5, 6, 255), visible),
+            ),
+            _ => (
+                dim(Color::from_rgba(128, 165, 174, 255), visible),
+                dim(Color::from_rgba(61, 88, 98, 255), visible),
+            ),
+        };
         let [n, e, s, w] = joins;
         draw_rectangle(
             rect.x + 3.0,
@@ -1582,8 +2286,13 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
     }
     if !kind.blocks() {
         let seam = dim(Color::from_rgba(35, 52, 61, 255), visible);
-        draw_rectangle(rect.x + 1.0, rect.y + 1.0, rect.w - 2.0, 1.0, seam);
-        draw_rectangle(rect.x + 1.0, rect.y + 1.0, 1.0, rect.h - 2.0, seam);
+        if !matches!(
+            kind,
+            Decor::MemoryFloor | Decor::WindowFrame | Decor::FaultTrace
+        ) {
+            draw_rectangle(rect.x + 1.0, rect.y + 1.0, rect.w - 2.0, 1.0, seam);
+            draw_rectangle(rect.x + 1.0, rect.y + 1.0, 1.0, rect.h - 2.0, seam);
+        }
         match kind {
             Decor::Gravel => {
                 let span_x = (rect.w as i32 - 4).max(1);
@@ -1708,6 +2417,137 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
                     );
                 }
             }
+            Decor::ForeignFloor => {
+                let mineral = dim(Color::from_rgba(112, 83, 145, 255), visible);
+                let offset = (position.x * 3 + position.y * 5).rem_euclid(5) as f32;
+                draw_line(
+                    rect.x + 4.0 + offset,
+                    rect.y + rect.h * 0.72,
+                    rect.x + rect.w * 0.48,
+                    rect.y + 4.0 + offset * 0.4,
+                    1.0,
+                    mineral,
+                );
+                draw_rectangle(
+                    rect.x + rect.w * 0.62,
+                    rect.y + rect.h * 0.33,
+                    2.0,
+                    2.0,
+                    mineral,
+                );
+            }
+            Decor::VeinedFloor => {
+                let vein = dim(Color::from_rgba(81, 188, 176, 255), visible);
+                let reverse = (position.x + position.y).rem_euclid(2) == 0;
+                let (start_x, end_x) = if reverse {
+                    (rect.x + 3.0, rect.x + rect.w - 3.0)
+                } else {
+                    (rect.x + rect.w - 3.0, rect.x + 3.0)
+                };
+                draw_line(
+                    start_x,
+                    rect.y + rect.h * 0.68,
+                    end_x,
+                    rect.y + rect.h * 0.32,
+                    1.5,
+                    vein,
+                );
+            }
+            Decor::ChitinFloor => {
+                let edge = dim(Color::from_rgba(154, 118, 72, 255), visible);
+                let offset = (position.x + position.y * 2).rem_euclid(4) as f32;
+                draw_line(
+                    rect.x + 3.0,
+                    rect.y + rect.h * 0.28 + offset,
+                    rect.x + rect.w * 0.48,
+                    rect.y + rect.h - 3.0,
+                    1.0,
+                    edge,
+                );
+                draw_line(
+                    rect.x + rect.w * 0.48,
+                    rect.y + rect.h - 3.0,
+                    rect.x + rect.w - 3.0,
+                    rect.y + rect.h * 0.28 + offset,
+                    1.0,
+                    edge,
+                );
+            }
+            Decor::PulseChannel => {
+                let pulse = dim(Color::from_rgba(211, 78, 89, 255), visible);
+                let center_y = rect.y + rect.h / 2.0;
+                draw_line(
+                    rect.x + 2.0,
+                    center_y,
+                    rect.x + rect.w - 2.0,
+                    center_y,
+                    1.5,
+                    pulse,
+                );
+                let knot = if (position.x + position.y).rem_euclid(3) == 0 {
+                    4.0
+                } else {
+                    2.0
+                };
+                draw_rectangle(
+                    rect.x + rect.w / 2.0 - knot / 2.0,
+                    center_y - knot / 2.0,
+                    knot,
+                    knot,
+                    pulse,
+                );
+            }
+            Decor::MemoryFloor => {
+                if (position.x * 7 + position.y * 11).rem_euclid(5) == 0 {
+                    let data = dim(Color::from_rgba(116, 145, 139, 255), visible);
+                    let y = rect.y + rect.h * 0.68;
+                    draw_rectangle(rect.x + 4.0, y, (rect.w * 0.22).max(2.0), 1.0, data);
+                    draw_rectangle(
+                        rect.x + rect.w * 0.64,
+                        rect.y + rect.h * 0.29,
+                        1.5,
+                        1.5,
+                        data,
+                    );
+                }
+            }
+            Decor::WindowFrame => {
+                let frame = dim(Color::from_rgba(174, 196, 190, 255), visible);
+                let cold = dim(Color::from_rgba(78, 172, 167, 255), visible);
+                let offset = (position.x * 3 + position.y).rem_euclid(3) as f32;
+                draw_line(
+                    rect.x + 1.0,
+                    rect.y + 3.0 + offset,
+                    rect.x + rect.w - 1.0,
+                    rect.y + 3.0 + offset,
+                    1.0,
+                    frame,
+                );
+                if (position.x + position.y).rem_euclid(4) == 0 {
+                    draw_rectangle(
+                        rect.x + 3.0,
+                        rect.y + rect.h - 5.0,
+                        (rect.w * 0.44).max(3.0),
+                        1.5,
+                        cold,
+                    );
+                }
+            }
+            Decor::FaultTrace => {
+                let fault = dim(Color::from_rgba(225, 64, 58, 255), visible);
+                let y = rect.y
+                    + rect.h * (0.34 + 0.16 * (position.x + position.y).rem_euclid(3) as f32);
+                draw_line(rect.x + 1.0, y, rect.x + rect.w * 0.34, y, 1.5, fault);
+                draw_line(
+                    rect.x + rect.w * 0.57,
+                    y - 1.0,
+                    rect.x + rect.w - 1.0,
+                    y - 1.0,
+                    1.5,
+                    fault,
+                );
+                draw_rectangle(rect.x + rect.w * 0.45, y - 2.0, 2.0, 3.0, fault);
+            }
             Decor::SupplyCache => {
                 draw_pixel_glyph(
                     rect,
@@ -1741,6 +2581,14 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
         Decor::Server => (&SERVER, Color::from_rgba(107, 201, 190, 255)),
         Decor::Console => (&CONSOLE, Color::from_rgba(130, 185, 207, 255)),
         Decor::Coolant => (&COOLANT, Color::from_rgba(105, 169, 187, 255)),
+        Decor::Resonator => (&RESONATOR, Color::from_rgba(185, 111, 219, 255)),
+        Decor::GrowthNode => (&GROWTH_NODE, Color::from_rgba(91, 213, 174, 255)),
+        Decor::EyeNode => (&EYE_NODE, Color::from_rgba(232, 92, 104, 255)),
+        Decor::RootMass => (&ROOT_MASS, Color::from_rgba(194, 151, 84, 255)),
+        Decor::KernelFault => (&KERNEL_FAULT, Color::from_rgba(235, 67, 59, 255)),
+        Decor::OrphanProcess => (&ORPHAN_PROCESS, Color::from_rgba(190, 89, 151, 255)),
+        Decor::ClinicBed => (&CLINIC_BED, Color::from_rgba(130, 204, 184, 255)),
+        Decor::ClinicCounter => (&CLINIC_COUNTER, Color::from_rgba(112, 181, 176, 255)),
         Decor::Boulder => (&BOULDER, Color::from_rgba(143, 151, 142, 255)),
         Decor::RuinWall => (&RUIN_WALL, Color::from_rgba(165, 151, 122, 255)),
         Decor::Depot => (&DEPOT, Color::from_rgba(200, 166, 105, 255)),
@@ -1754,6 +2602,9 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
             (&DATA_TERMINAL_OFFLINE, Color::from_rgba(116, 137, 145, 255))
         }
         Decor::DataTerminalOnline => (&DATA_TERMINAL_ONLINE, Color::from_rgba(128, 218, 202, 255)),
+        Decor::DataTerminalUpdated => {
+            (&DATA_TERMINAL_UPDATED, Color::from_rgba(151, 226, 169, 255))
+        }
         _ => unreachable!("non-blocking floor and wall already rendered"),
     };
     draw_pixel_glyph(rect, pattern, dim(color, visible));
@@ -1821,37 +2672,36 @@ fn draw_entity(
     alerted: bool,
     status_icon: Option<TerminalStatusIcon>,
 ) {
-    let pattern = match symbol {
-        '@' => &PLAYER,
-        'd' => &HUNTER,
-        't' => &SENTRY,
-        'r' => &SKIRMISHER,
-        'o' => &VOLATILE_CONTAINER,
-        'u' => &DRONE,
-        'b' => &SATURATION_BEACON,
-        'c' => &RETRIEVER,
-        'm' => &TECHNICIAN,
-        ')' => &WEAPON,
-        '!' => &REPAIR,
-        '=' => &MATERIAL,
-        '>' => &EXIT,
-        '.' => &EFFECT_DOT,
-        '-' => &EFFECT_PROJECTILE,
-        '*' => &EFFECT,
-        '+' => &EFFECT_BURST,
-        'f' => &FLAME_SMALL,
-        'F' => &FLAME,
-        'x' => &EFFECT_IMPACT,
-        '~' => &EFFECT_WAVE,
-        'a' => &EFFECT_ALARM,
-        's' => &SENSOR_ONLINE,
-        '^' => &FLAME_LARGE,
-        '→' => &TRACE_EAST,
-        '↓' => &TRACE_SOUTH,
-        '←' => &TRACE_WEST,
-        _ => &TRACE,
-    };
-    draw_pixel_glyph_palette(rect, pattern, palette);
+    if let Some(ascii) = actor_ascii_glyph(symbol) {
+        draw_ascii_actor(rect, ascii, palette.primary);
+    } else {
+        let pattern = match symbol {
+            'o' => &VOLATILE_CONTAINER,
+            'q' => &SUBMERGED_RELAY,
+            'b' => &SATURATION_BEACON,
+            ')' => &WEAPON,
+            '!' => &REPAIR,
+            '=' => &MATERIAL,
+            '>' => &EXIT,
+            '.' => &EFFECT_DOT,
+            '-' => &EFFECT_PROJECTILE,
+            '*' => &EFFECT,
+            '+' => &EFFECT_BURST,
+            'f' => &FLAME_SMALL,
+            'F' => &FLAME,
+            'x' => &EFFECT_IMPACT,
+            '~' => &EFFECT_WAVE,
+            'a' => &EFFECT_ALARM,
+            's' => &SENSOR_ONLINE,
+            '^' => &FLAME_LARGE,
+            'z' => &ELECTRIFIED_FIELD,
+            '→' => &TRACE_EAST,
+            '↓' => &TRACE_SOUTH,
+            '←' => &TRACE_WEST,
+            _ => &TRACE,
+        };
+        draw_pixel_glyph_palette(rect, pattern, palette);
+    }
     if symbol == '@' {
         draw_rectangle_lines(
             rect.x + 1.0,
@@ -1884,6 +2734,35 @@ fn draw_entity(
     }
 }
 
+/// The simulation keeps compact, stable internal symbols. The Terminal client
+/// translates only their presentation so service roles remain readable in the
+/// current language without changing commands, saves or content IDs.
+const fn actor_ascii_glyph(symbol: char) -> Option<&'static str> {
+    match symbol {
+        '@' => Some("@"),
+        'c' => Some("R"),
+        'm' => Some("T"),
+        'v' => Some("M"),
+        'h' => Some("S"),
+        'i' => Some("H"),
+        'u' => Some("u"),
+        'd' => Some("d"),
+        't' => Some("t"),
+        'r' => Some("r"),
+        _ => None,
+    }
+}
+
+fn draw_ascii_actor(rect: Rect, glyph: &str, color: Color) {
+    let mut font_size = (rect.h * 0.84).round().clamp(8.0, 34.0) as u16;
+    while font_size > 8 && measure_ui_text_bold(glyph, font_size).width > rect.w - 2.0 {
+        font_size -= 1;
+    }
+    let shadow = Rect::new(rect.x + 1.0, rect.y + 1.0, rect.w, rect.h);
+    draw_ui_text_bold_centered(glyph, shadow, font_size, Color::from_rgba(0, 5, 7, 230));
+    draw_ui_text_bold_centered(glyph, rect, font_size, color);
+}
+
 fn draw_status_icon(rect: Rect, icon: TerminalStatusIcon) {
     let badge_size = (rect.w * 0.43).clamp(11.0, 15.0);
     let badge = Rect::new(
@@ -1910,6 +2789,41 @@ fn draw_status_icon(rect: Rect, icon: TerminalStatusIcon) {
                 Some(Color::from_rgba(255, 220, 82, 255)),
             ),
         ),
+        TerminalStatusIcon::RequiredMaterial => {
+            let color = Color::from_rgba(255, 218, 135, 255);
+            let center_x = badge.x + badge.w * 0.5;
+            let center_y = badge.y + badge.h * 0.5;
+            let arm = badge.w * 0.24;
+            draw_line(
+                center_x - arm,
+                center_y,
+                center_x + arm,
+                center_y,
+                2.0,
+                color,
+            );
+            draw_line(
+                center_x,
+                center_y - arm,
+                center_x,
+                center_y + arm,
+                2.0,
+                color,
+            );
+        }
+        TerminalStatusIcon::QuestAvailable | TerminalStatusIcon::QuestReady => {
+            let marker = if icon == TerminalStatusIcon::QuestReady {
+                "!"
+            } else {
+                "?"
+            };
+            draw_ui_text_bold_centered(
+                marker,
+                badge,
+                (badge.h * 0.9).round().clamp(8.0, 13.0) as u16,
+                Color::from_rgba(255, 218, 135, 255),
+            );
+        }
     }
 }
 
@@ -2012,6 +2926,30 @@ const CONSOLE: PixelGlyph = [
 const COOLANT: PixelGlyph = [
     "..####..", ".#++++#.", "##+##+##", "#+#++#+#", "#+#++#+#", "##+##+##", ".#++++#.", "..####..",
 ];
+const RESONATOR: PixelGlyph = [
+    "...##...", ".##++##.", "##+**+##", ".#+##+#.", ".#+##+#.", "##+**+##", ".##++##.", "...##...",
+];
+const GROWTH_NODE: PixelGlyph = [
+    "#......#", ".#....#.", "..#++#..", ".#+**+#.", "..#**#..", "...##...", "..####..", ".##..##.",
+];
+const EYE_NODE: PixelGlyph = [
+    "........", "..####..", ".##++##.", "##+**+##", "##+**+##", ".##++##.", "..####..", "........",
+];
+const ROOT_MASS: PixelGlyph = [
+    "...##...", "..####..", ".##++##.", "##+##+##", ".#+##+#.", "..####..", ".##..##.", "##....##",
+];
+const KERNEL_FAULT: PixelGlyph = [
+    "########", "#..##..#", "#.#++#.#", "##+##+##", "##+##+##", "#.#++#.#", "#..##..#", "########",
+];
+const ORPHAN_PROCESS: PixelGlyph = [
+    ".######.", "##++++##", "#++##++#", "#++..++#", "#++##++#", "##++++##", ".###.##.", "##....##",
+];
+const CLINIC_BED: PixelGlyph = [
+    "########", "#++++++#", "#++##++#", "#++##++#", "#++++++#", "#++++++#", "########", "##....##",
+];
+const CLINIC_COUNTER: PixelGlyph = [
+    "########", "#++++++#", "#++##++#", "#++##++#", "#++++++#", "########", "##....##", "##....##",
+];
 const TREE_CANOPY: PixelGlyph = [
     "...##...", ".######.", "########", "##+##+##", "########", ".######.", "...##...", "...##...",
 ];
@@ -2021,26 +2959,14 @@ const BOULDER: PixelGlyph = [
 const RUIN_WALL: PixelGlyph = [
     "##..####", "##..####", "########", "####..##", "####..##", "##..####", "########", "########",
 ];
-const PLAYER: PixelGlyph = [
-    "...##...", ".######.", ".#++++#.", "##+##+##", "##+##+##", ".#++++#.", ".######.", "...##...",
-];
-const HUNTER: PixelGlyph = [
-    ".#....#.", ".##..##.", "..####..", ".##++##.", ".######.", "..#..#..", ".##..##.", ".#....#.",
-];
-const SENTRY: PixelGlyph = [
-    "...##...", "...##...", "..####..", ".##++##.", ".######.", "..####..", ".##..##.", "##....##",
-];
-const SKIRMISHER: PixelGlyph = [
-    "......#.", "..##.##.", ".#####..", "##++##..", ".#####..", "..####..", ".##..##.", "##....##",
-];
-const DRONE: PixelGlyph = [
-    "........", ".##..##.", "..####..", ".#++++#.", "##+##+##", "..####..", ".##..##.", "........",
-];
 const SATURATION_BEACON: PixelGlyph = [
     "...##...", "..####..", ".#+**+#.", ".#++++#.", "..####..", "...##...", "..####..", ".######.",
 ];
 const VOLATILE_CONTAINER: PixelGlyph = [
     "..####..", ".##++##.", ".#+**+#.", ".#+**+#.", ".#+**+#.", ".######.", "..####..", "...##...",
+];
+const SUBMERGED_RELAY: PixelGlyph = [
+    "..####..", ".##++##.", ".#+**+#.", ".#*##+#.", ".#+##*#.", ".######.", "..#++#..", ".##..##.",
 ];
 const WEAPON: PixelGlyph = [
     "........", ".....##.", "..#####.", ".######.", "..##....", ".##.....", ".##.....", "........",
@@ -2080,6 +3006,9 @@ const FLAME: PixelGlyph = [
 ];
 const FLAME_LARGE: PixelGlyph = [
     "...#....", "..#+#...", "..#++...", ".#+++#..", ".#+**+#.", "##+***##", ".#++**#.", "..####..",
+];
+const ELECTRIFIED_FIELD: PixelGlyph = [
+    "........", ".#....#.", "..#+.#..", "...**...", "..**....", ".#+..+#.", "#......#", "........",
 ];
 const TRACE: PixelGlyph = [
     "........", "...#....", "..###...", ".#####..", "...#....", "...#....", "........", "........",
@@ -2138,6 +3067,9 @@ const DATA_TERMINAL_OFFLINE: PixelGlyph = [
 const DATA_TERMINAL_ONLINE: PixelGlyph = [
     "########", "#++++++#", "#+####+#", "#+#..#+#", "#+####+#", "#++++++#", "#..##..#", "########",
 ];
+const DATA_TERMINAL_UPDATED: PixelGlyph = [
+    "########", "#++++++#", "#+....+#", "#+...#+#", "#+#.##+#", "#+.##.+#", "#++++++#", "########",
+];
 const SUPPLY_CACHE: PixelGlyph = [
     "........", ".######.", ".#....#.", ".######.", ".#..#.#.", ".######.", "........", "........",
 ];
@@ -2146,12 +3078,6 @@ const THREAT_CAMP: PixelGlyph = [
 ];
 const THREAT_CAMP_DISABLED: PixelGlyph = [
     "........", ".#....#.", "..#..#..", "...##...", "...##...", "..#..#..", ".#....#.", "........",
-];
-const RETRIEVER: PixelGlyph = [
-    "...##...", "..####..", ".##++##.", "######..", "#######.", "..####..", ".##..##.", "##....##",
-];
-const TECHNICIAN: PixelGlyph = [
-    "....#...", "...##...", "..####..", ".##++##.", ".######.", "..####.#", ".##..##.", "##....##",
 ];
 const MATERIAL: PixelGlyph = [
     "........", "..####..", ".##..##.", "##.##.##", "##.##.##", ".##..##.", "..####..", "........",
@@ -2257,6 +3183,38 @@ mod tests {
     }
 
     #[test]
+    fn sensor_contacts_use_shapes_with_stable_semantic_categories() {
+        for symbol in ['d', 't', 'r'] {
+            assert_eq!(sensor_contact_kind(symbol), SensorContactKind::Hostile);
+        }
+        for symbol in ['m', 'h', 'v'] {
+            assert_eq!(sensor_contact_kind(symbol), SensorContactKind::Service);
+        }
+        for symbol in ['c', 'i', 'u', 'b'] {
+            assert_eq!(sensor_contact_kind(symbol), SensorContactKind::Neutral);
+        }
+        assert_eq!(sensor_contact_kind('?'), SensorContactKind::Unknown);
+    }
+
+    #[test]
+    fn sensor_projection_rejects_positions_outside_its_authorized_bounds() {
+        let minimum = GridPos::new(4, 7);
+        let maximum = GridPos::new(11, 16);
+        assert!(sensor_position_is_inside(minimum, minimum, maximum));
+        assert!(sensor_position_is_inside(maximum, minimum, maximum));
+        assert!(!sensor_position_is_inside(
+            GridPos::new(3, 7),
+            minimum,
+            maximum
+        ));
+        assert!(!sensor_position_is_inside(
+            GridPos::new(11, 17),
+            minimum,
+            maximum
+        ));
+    }
+
+    #[test]
     fn procedural_location_names_hide_internal_coordinates_and_use_player_language() {
         assert_eq!(
             player_location_name("HUMAN HABITAT · région +1, +0"),
@@ -2324,13 +3282,22 @@ mod tests {
     }
 
     #[test]
-    fn entity_silhouettes_are_distinct_without_color_and_glyphs_are_well_formed() {
-        let entities = [
-            PLAYER,
-            HUNTER,
-            SENTRY,
-            SKIRMISHER,
+    fn ascii_actors_are_unique_and_terminal_shapes_are_well_formed() {
+        let actors = ['@', 'c', 'm', 'v', 'h', 'i', 'u', 'd', 't', 'r']
+            .map(|symbol| actor_ascii_glyph(symbol).expect("known actor must have an ASCII glyph"));
+        for (index, glyph) in actors.iter().enumerate() {
+            assert!(!actors[..index].contains(glyph));
+        }
+        assert_eq!(actor_ascii_glyph('v'), Some("M"));
+        assert_eq!(actor_ascii_glyph('i'), Some("H"));
+        assert_eq!(
+            overlay_label('v'),
+            "Marchande neutre · achat, vente et paris"
+        );
+
+        for glyph in [
             VOLATILE_CONTAINER,
+            SUBMERGED_RELAY,
             WEAPON,
             REPAIR,
             EXIT,
@@ -2338,15 +3305,16 @@ mod tests {
             FLAME_SMALL,
             FLAME,
             FLAME_LARGE,
+            ELECTRIFIED_FIELD,
             TRACE,
-        ];
-        for (index, glyph) in entities.iter().enumerate() {
-            assert!(!entities[..index].contains(glyph));
-        }
-        for glyph in entities
-            .into_iter()
-            .chain([PILLAR, CRATE, SERVER, CONSOLE, COOLANT])
-        {
+            PILLAR,
+            CRATE,
+            SERVER,
+            CONSOLE,
+            COOLANT,
+            CLINIC_BED,
+            CLINIC_COUNTER,
+        ] {
             for row in glyph {
                 assert_eq!(row.len(), 8);
                 assert!(row.bytes().all(|b| b".#+*".contains(&b)));

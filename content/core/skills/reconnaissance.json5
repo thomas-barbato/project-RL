@@ -28,6 +28,16 @@
       action: { type: "read_movement_traces", radius: 3 },
     },
     {
+      id: "core:rec_06",
+      discipline: "core:reconnaissance",
+      name_key: "technique.rec_06.name",
+      description_key: "technique.rec_06.description",
+      minimum_level: 2,
+      kind: "improvement",
+      prerequisite: "core:rec_01",
+      improvement: { type: "npc_vision_overlay" },
+    },
+    {
       id: "core:rec_03",
       discipline: "core:reconnaissance",
       name_key: "technique.rec_03.name",

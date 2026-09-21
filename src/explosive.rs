@@ -99,7 +99,9 @@ impl ExplosivePayloadProfile {
 /// Commands and presentation refer to this identity instead of a position: a
 /// mod may therefore move, conceal or stack devices without silently changing
 /// which one a scheduled order controls.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct ExplosiveDeviceId(u64);
 
 impl ExplosiveDeviceId {
@@ -108,7 +110,7 @@ impl ExplosiveDeviceId {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ExplosiveFootprint {
     Radial(RadialDamageEffect),
     Directional {
@@ -166,7 +168,7 @@ impl ExplosiveFootprint {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ExplosivePayload {
     footprint: ExplosiveFootprint,
     center_damage: Option<DamagePacket>,
@@ -218,7 +220,7 @@ impl ExplosivePayload {
 
 /// One payload in a device sequence. Delay zero resolves when the device is
 /// first triggered; later delays are counted from that same trigger turn.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ScheduledExplosivePayload {
     delay_after_trigger: u16,
     payload: ExplosivePayload,
@@ -241,14 +243,14 @@ impl ScheduledExplosivePayload {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ExplosiveActivation {
     Timed { trigger_turn: u64 },
     Proximity { armed_turn: u64, radius: u16 },
     Remote { maximum_link_range: u16 },
 }
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ExplosiveDevice {
     id: ExplosiveDeviceId,
     material: ItemId,
@@ -393,7 +395,7 @@ pub struct ResolvedExplosivePayload {
     pub payload: ExplosivePayload,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ExplosiveDeviceMap {
     next_id: u64,
     devices: BTreeMap<ExplosiveDeviceId, ExplosiveDevice>,

@@ -131,7 +131,8 @@ fn generate_population_layer(
                 } else {
                     rule.attack().without_melee_impact()
                 })
-                .with_ai(ai);
+                .with_ai(ai)
+                .with_tags(rule.tags().iter().cloned());
             if features.player_relations {
                 actor = actor.with_player_relation(rule.player_relation());
             }
@@ -289,6 +290,8 @@ mod tests {
                 )
                 .unwrap()
                 .with_primary_attributes(PrimaryAttributes::new(6, 6, 5, 6, 4))
+                .unwrap()
+                .with_tags(vec!["test:quest_target".parse().unwrap()])
                 .unwrap(),
                 RegionPopulationRule::new(
                     1,
@@ -310,6 +313,8 @@ mod tests {
                 )
                 .unwrap()
                 .with_primary_attributes(PrimaryAttributes::new(4, 7, 4, 7, 6))
+                .unwrap()
+                .with_tags(vec!["test:quest_target".parse().unwrap()])
                 .unwrap(),
             ],
         )
@@ -362,6 +367,7 @@ mod tests {
                 && actor.ai_home() == Some(actor.position())
                 && actor.ai().unwrap().maximum_pursuit_distance().is_some()
                 && actor.primary_attributes().is_some()
+                && actor.tags().contains(&"test:quest_target".parse().unwrap())
         }));
     }
 

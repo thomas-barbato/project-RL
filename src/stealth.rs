@@ -8,7 +8,9 @@ use crate::world::{
 
 /// Independent perception channels. A modifier must always name the channel
 /// it affects; no stealth action can silently become global invisibility.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub enum SignatureChannel {
     Optical,
     Acoustic,
@@ -119,6 +121,8 @@ impl StealthRules {
             },
             &TerrainPropagationPolicy {
                 floor_cost: Some(1),
+                shallow_water_cost: Some(1),
+                deep_water_cost: Some(self.sound_wall_attenuation_multiplier),
                 wall_cost: Some(self.sound_wall_attenuation_multiplier),
             },
         )
@@ -164,7 +168,9 @@ impl Display for StealthRulesError {
 
 impl Error for StealthRulesError {}
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct SoundEmitterId(u64);
 
 impl SoundEmitterId {
@@ -176,7 +182,7 @@ impl SoundEmitterId {
 /// A physical, persistent decoy occupying a known world position. It does not
 /// block movement, but it can be addressed and removed independently from the
 /// transient sound observations it produces.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct SoundEmitter {
     id: SoundEmitterId,
     position: GridPos,
@@ -207,7 +213,7 @@ impl SoundEmitter {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct SoundEmitterMap {
     next_id: u64,
     emitters: std::collections::BTreeMap<SoundEmitterId, SoundEmitter>,

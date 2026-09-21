@@ -8,7 +8,9 @@ use crate::social::SocialGroupId;
 ///
 /// UI code and equipment refer to this value instead of a vector index, so
 /// sorting or removing another entry cannot silently retarget an action.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct ItemInstanceId(u64);
 
 impl ItemInstanceId {
@@ -17,12 +19,41 @@ impl ItemInstanceId {
     }
 }
 
-#[derive(Clone, PartialEq, Eq)]
+/// Rolled properties carried by one identified magical equipment instance.
+/// White items keep this absent, preserving their historical stacking rules.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct MagicItemModifiers {
+    armor_bonus: u16,
+    mass_reduction_percent: u8,
+}
+
+impl MagicItemModifiers {
+    pub const fn new(armor_bonus: u16, mass_reduction_percent: u8) -> Option<Self> {
+        if armor_bonus == 0 || mass_reduction_percent == 0 || mass_reduction_percent > 80 {
+            return None;
+        }
+        Some(Self {
+            armor_bonus,
+            mass_reduction_percent,
+        })
+    }
+
+    pub const fn armor_bonus(self) -> u16 {
+        self.armor_bonus
+    }
+
+    pub const fn mass_reduction_percent(self) -> u8 {
+        self.mass_reduction_percent
+    }
+}
+
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct InventoryEntry {
     instance: ItemInstanceId,
     item: ItemId,
     quantity: u16,
     owner: Option<SocialGroupId>,
+    magic_modifiers: Option<MagicItemModifiers>,
 }
 
 impl Debug for InventoryEntry {
@@ -34,6 +65,9 @@ impl Debug for InventoryEntry {
             .field("quantity", &self.quantity);
         if let Some(owner) = &self.owner {
             entry.field("owner", owner);
+        }
+        if let Some(modifiers) = self.magic_modifiers {
+            entry.field("magic_modifiers", &modifiers);
         }
         entry.finish()
     }
@@ -55,10 +89,14 @@ impl InventoryEntry {
     pub const fn owner(&self) -> Option<&SocialGroupId> {
         self.owner.as_ref()
     }
+
+    pub const fn magic_modifiers(&self) -> Option<MagicItemModifiers> {
+        self.magic_modifiers
+    }
 }
 
 /// Slot-based inventory with deterministic insertion and stacking order.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct Inventory {
     capacity: usize,
     entries: Vec<InventoryEntry>,
@@ -130,7 +168,9 @@ impl Inventory {
         let reusable_capacity: u32 = self
             .entries
             .iter()
-            .filter(|entry| entry.item == item && entry.owner == owner)
+            .filter(|entry| {
+                entry.item == item && entry.owner == owner && entry.magic_modifiers.is_none()
+            })
             .map(|entry| u32::from(maximum_stack.saturating_sub(entry.quantity)))
             .sum();
         let remaining_after_reuse = u32::from(quantity).saturating_sub(reusable_capacity);
@@ -158,11 +198,9 @@ impl Inventory {
 
         let mut remaining = quantity;
         let mut affected = Vec::new();
-        for entry in self
-            .entries
-            .iter_mut()
-            .filter(|entry| entry.item == item && entry.owner == owner)
-        {
+        for entry in self.entries.iter_mut().filter(|entry| {
+            entry.item == item && entry.owner == owner && entry.magic_modifiers.is_none()
+        }) {
             if remaining == 0 {
                 break;
             }
@@ -182,11 +220,40 @@ impl Inventory {
                 item: item.clone(),
                 quantity: stacked,
                 owner: owner.clone(),
+                magic_modifiers: None,
             });
             affected.push(instance);
             remaining -= stacked;
         }
         Ok(affected)
+    }
+
+    /// Adds one identified magical item without merging it into white stacks.
+    pub fn add_magic(
+        &mut self,
+        item: ItemId,
+        owner: Option<SocialGroupId>,
+        modifiers: MagicItemModifiers,
+    ) -> Result<ItemInstanceId, InventoryError> {
+        if self.remaining_slots() == 0 {
+            return Err(InventoryError::InsufficientCapacity {
+                requested: 1,
+                storable: 0,
+            });
+        }
+        self.next_instance
+            .checked_add(1)
+            .ok_or(InventoryError::InstanceIdExhausted)?;
+        let instance = ItemInstanceId(self.next_instance);
+        self.next_instance += 1;
+        self.entries.push(InventoryEntry {
+            instance,
+            item,
+            quantity: 1,
+            owner,
+            magic_modifiers: Some(modifiers),
+        });
+        Ok(instance)
     }
 
     pub fn remove(

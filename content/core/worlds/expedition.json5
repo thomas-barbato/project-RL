@@ -114,6 +114,160 @@
     },
   ],
 
+  // First bounded town economy. Prices and quantities are content data; the
+  // runtime only enforces atomic transfers, finite stock and finite funds.
+  player_starting_credits: 120,
+  hub_merchant: {
+    position: [25, 18],
+    maximum_integrity: 12,
+    credits: 300,
+    offers: [
+      { item: "core:repair_patch", stock: 4, buy_price: 24, sell_price: 12,
+        minimum_depth: 0 },
+      { item: "core:patched_plating", stock: 1, buy_price: 80, sell_price: 40,
+        minimum_depth: 0, maximum_depth: 2 },
+      { item: "core:composite_carapace", stock: 1, buy_price: 140, sell_price: 70,
+        minimum_depth: 3 },
+    ],
+    gambles: [
+      { item: "core:patched_plating", stock: 2, price: 95 },
+      { item: "core:composite_carapace", stock: 1, price: 165 },
+    ],
+    // Each zone authors the item families it can offer. The hidden magical
+    // statistics then scale by both local depth and player progression.
+    gamble_scaling: {
+      player_levels_per_rank: 3,
+      zone_depths_per_rank: 1,
+      maximum_rank: 12,
+    },
+  },
+
+  // A care service available without a quest or maintenance prerequisite.
+  // The provider follows only this small, observable local routine.
+  hub_clinic: {
+    work_position: [15, 11],
+    break_position: [17, 13],
+    maximum_integrity: 12,
+    credits: 80,
+    maximum_restoration: 8,
+    price_per_point: 3,
+    work_turns: 12,
+    break_turns: 4,
+    maximum_path_search: 512,
+  },
+
+  // A resident with no commercial service. Its bounded routine remains
+  // independent from the optional local quest chain below.
+  hub_residents: [
+    {
+      residence_position: [12, 27],
+      gathering_position: [40, 23],
+      maximum_integrity: 10,
+      residence_turns: 7,
+      gathering_turns: 5,
+      maximum_path_search: 1024,
+    },
+  ],
+
+  // First authored narrative branch. The two opening offers are mutually
+  // exclusive, while each selected approach unlocks its own follow-up.
+  hub_quests: [
+    {
+      id: "core:survey_outskirts",
+      title_key: "quest.survey_outskirts.title",
+      summary_key: "quest.survey_outskirts.summary",
+      objective: {
+        type: "explore_zones",
+        required_zones: 1,
+        qualifying_records: [
+          "core:human_habitat_site_record",
+          "core:surface_wilds_site_record",
+        ],
+      },
+      reward_credits: 24,
+      reward_experience: 12,
+      completion_world_states: [
+        {
+          id: "core:outskirts_reported",
+          summary_key: "world_state.outskirts_reported.summary",
+          provider_dialogue_key: "world_state.outskirts_reported.dialogue",
+        },
+      ],
+      choice_group: "core:resident_first_report",
+      choice_prompt_key: "quest.resident_first_report.prompt",
+      provider: { type: "existing", position: [12, 27] },
+    },
+    {
+      id: "core:consult_city_archive",
+      title_key: "quest.consult_city_archive.title",
+      summary_key: "quest.consult_city_archive.summary",
+      objective: { type: "access_data_record", record: "core:starter_city_archive_record" },
+      reward_credits: 24,
+      reward_experience: 12,
+      completion_world_states: [
+        {
+          id: "core:archive_consulted",
+          summary_key: "world_state.archive_consulted.summary",
+          provider_dialogue_key: "world_state.archive_consulted.dialogue",
+        },
+      ],
+      choice_group: "core:resident_first_report",
+      choice_prompt_key: "quest.resident_first_report.prompt",
+      provider: { type: "existing", position: [12, 27] },
+    },
+    {
+      id: "core:survey_extended_routes",
+      title_key: "quest.survey_extended_routes.title",
+      summary_key: "quest.survey_extended_routes.summary",
+      objective: { type: "explore_zones", required_zones: 2 },
+      prerequisites: ["core:survey_outskirts"],
+      required_world_states: ["core:outskirts_reported"],
+      reward_credits: 40,
+      reward_experience: 24,
+      completion_world_states: [
+        {
+          id: "core:routes_mapped",
+          summary_key: "world_state.routes_mapped.summary",
+          provider_dialogue_key: "world_state.routes_mapped.dialogue",
+        },
+      ],
+      completion_world_effects: [
+        {
+          type: "unlock_door",
+          position: [32, 38],
+          summary_key: "world_effect.depot_rear_access.summary",
+        },
+      ],
+      provider: { type: "existing", position: [12, 27] },
+    },
+    {
+      id: "core:verify_archive_context",
+      title_key: "quest.verify_archive_context.title",
+      summary_key: "quest.verify_archive_context.summary",
+      objective: { type: "explore_zones", required_zones: 1 },
+      prerequisites: ["core:consult_city_archive"],
+      required_world_states: ["core:archive_consulted"],
+      reward_credits: 40,
+      reward_experience: 24,
+      completion_world_states: [
+        {
+          id: "core:archive_verified",
+          summary_key: "world_state.archive_verified.summary",
+          provider_dialogue_key: "world_state.archive_verified.dialogue",
+        },
+      ],
+      completion_world_effects: [
+        {
+          type: "update_data_terminal",
+          installation: "core:starter_city_archive_terminal",
+          record: "core:starter_city_archive_verified_record",
+          summary_key: "world_effect.archive_terminal_updated.summary",
+        },
+      ],
+      provider: { type: "existing", position: [12, 27] },
+    },
+  ],
+
   // First autonomous material circuit. Coordinates belong to the fixed hub;
   // the headless facility system itself is reusable by other content providers.
   hub_facility: {
@@ -186,6 +340,14 @@
         witness: { radius: 10, memory_capacity: 16 },
         // Prototype duration; mods can tune or omit this individual reaction.
         local_alert: { duration_turns: 8 },
+        // Direct local report only; it requires range and an unobstructed line of sight.
+        property_report: { recipient_position: [44, 32], radius: 32 },
+        // A separate installed link. It remains inert until the checkpoint
+        // sensor and its power dependency are operational.
+        installed_property_report: {
+          installation: "core:checkpoint_sensor",
+          radius: 32,
+        },
       },
       {
         position: [44, 32],
@@ -194,6 +356,12 @@
         affiliation: "core:maintenance_collective",
         witness: { radius: 10, memory_capacity: 16 },
         local_alert: { duration_turns: 8 },
+        // A received report starts a finite walk to the recorded incident,
+        // never a pursuit of the player's current position.
+        reported_incident_response: {
+          inspection_turns: 3,
+          maximum_response_turns: 24,
+        },
       },
     ],
     repair_orders: [

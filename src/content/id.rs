@@ -2,7 +2,9 @@ use std::error::Error;
 use std::fmt::{Display, Formatter};
 use std::str::FromStr;
 
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct PackageId(String);
 
 impl PackageId {
@@ -46,7 +48,9 @@ impl Display for PackageIdError {
 
 impl Error for PackageIdError {}
 
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct ContentId {
     raw: String,
     namespace: PackageId,

@@ -6,7 +6,7 @@ use crate::combat::{DamageImpact, DamagePacket, DamageType};
 use crate::time::TimeUnits;
 use crate::world::{DistanceMetric, GridPos, Map, has_line_of_sight};
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum PreparationDisruptionFamily {
     SystemShock,
 }
@@ -14,7 +14,7 @@ pub enum PreparationDisruptionFamily {
 /// Explicit functional perturbation carried by a successful attack. Damage
 /// never implies disruption on its own; content must opt into a named family
 /// and intensity so protections and future countermeasures remain moddable.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct PreparationDisruption {
     family: PreparationDisruptionFamily,
     intensity: u16,
@@ -40,7 +40,7 @@ impl PreparationDisruption {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ConeAttack {
     narrow_length: u16,
     maximum_half_width: u16,
@@ -202,13 +202,13 @@ impl Display for MeleeArcError {
 
 impl Error for MeleeArcError {}
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum AttackArea {
     Single,
     Cone(ConeAttack),
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum AttackDelivery {
     Melee,
     Ranged,
@@ -216,7 +216,7 @@ pub enum AttackDelivery {
 
 /// Authored material limits for an attack whose physical component benefits
 /// from the attacker's Power.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct MeleeImpactProfile {
     pub material_cap: u16,
     pub impact_modifier: i16,
@@ -281,7 +281,7 @@ impl AttackPreview {
 
 /// A reusable attack description. Content definitions will construct these
 /// profiles; combat resolution does not branch on weapon classes.
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct AttackProfile {
     range: u16,
     distance_metric: DistanceMetric,

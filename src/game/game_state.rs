@@ -2,6 +2,8 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::error::Error;
 use std::fmt::{Debug, Display, Formatter};
 
+use serde::{Deserialize, Serialize};
+
 use crate::ai::{
     AiAction, AiSituation, AiState, PursuitLifecycle, decide_action, decide_known_action,
 };
@@ -44,7 +46,7 @@ use crate::intrusion::{
 };
 use crate::item::{ItemDefinition, ItemEffect, ItemId, ItemKind};
 use crate::progression::{
-    DefeatReward, ExperienceAward, PlayerProgressionSaveError, ProgressionRulesError,
+    DefeatReward, ExperienceAward, PlayerProgressionSaveError, ProgressionRulesError, RewardKey,
     RunProgression, SkillPointSpendError, decode_player_progression, encode_player_progression,
 };
 use crate::reaction::{
@@ -90,7 +92,38 @@ use super::{
     ThreatReinforcementRequestError, ThreatSourceBlueprint, ThreatSourceState, TurnPhase,
 };
 
-#[derive(Clone, PartialEq, Eq)]
+/// One live visual field from an actor in the active zone.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct ActorObservationField {
+    observer: EntityId,
+    origin: GridPos,
+    radius: u16,
+    positions: BTreeSet<GridPos>,
+}
+
+impl ActorObservationField {
+    pub const fn observer(&self) -> EntityId {
+        self.observer
+    }
+
+    pub const fn origin(&self) -> GridPos {
+        self.origin
+    }
+
+    pub const fn radius(&self) -> u16 {
+        self.radius
+    }
+
+    pub fn contains(&self, position: GridPos) -> bool {
+        self.positions.contains(&position)
+    }
+
+    pub fn positions(&self) -> impl Iterator<Item = GridPos> + '_ {
+        self.positions.iter().copied()
+    }
+}
+
+#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
 struct PreparedTechniquePayload {
     technique: TechniqueId,
     targets: Vec<EntityId>,
@@ -149,26 +182,26 @@ impl PreparedTechniquePayload {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 struct PersistentRangedAim {
     technique: TechniqueId,
     target: EntityId,
     accuracy_modifier: i16,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 struct TechniqueManifestationReservation {
     technique: TechniqueId,
     bandwidth: u16,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 struct PreparationInterruptionProtection {
     family: PreparationDisruptionFamily,
     expires_after_turn: u64,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 struct ActiveWeaponBarrage {
     technique: TechniqueId,
     target_at: GridPos,
@@ -176,7 +209,7 @@ struct ActiveWeaponBarrage {
     remaining_stages: u8,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 struct ActiveCharge {
     technique: TechniqueId,
     target: EntityId,
@@ -187,21 +220,21 @@ struct ActiveCharge {
     completed_advances: u8,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 struct ActiveLowProfile {
     technique: TechniqueId,
     optical_difficulty_bonus: i16,
     minimum_movement_time_units: u16,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 struct ActiveTrailBreak {
     technique: TechniqueId,
     remaining_steps: u8,
     expires_on_turn: u64,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 struct ActiveCamouflage {
     technique: TechniqueId,
     channel: SignatureChannel,
@@ -211,7 +244,7 @@ struct ActiveCamouflage {
     heat_per_phase: u16,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 struct TransientNoise {
     at: GridPos,
     intensity: u16,
@@ -317,6 +350,176 @@ pub struct GameState {
     pub(super) intrusion: IntrusionState,
     pub(super) electronic_warfare: ElectronicWarfareState,
     pub(super) threat_sources: Vec<ThreatSourceState>,
+}
+
+// Binary recovery boundary for one active zone. Keeping this derive beside the
+// full field list makes missing Serde contracts fail during ordinary checking.
+#[derive(Serialize, Deserialize)]
+pub(super) struct GameStateSnapshot {
+    map: Map,
+    actors: ActorRegistry,
+    player: EntityId,
+    exit: Option<GridPos>,
+    turn: u64,
+    phase: TurnPhase,
+    status: RunStatus,
+    rng: GameRng,
+    player_visibility: VisibilityState,
+    player_progression: RunProgression,
+    player_skills: SkillProgressionState,
+    player_inventory: Inventory,
+    player_equipment: Equipment,
+    ground_items: GroundItemRegistry,
+    movement_traces: MovementTraceMap,
+    player_energy: EnergyReserve,
+    player_bandwidth: Option<BandwidthReserve>,
+    player_heat: Option<HeatReserve>,
+    player_preparation_bandwidth: u16,
+    player_weapon_ammunition: BTreeMap<WeaponId, u16>,
+    player_preparation: Option<ActionPreparation<PreparedTechniquePayload>>,
+    player_preparation_interruption_protection: Option<PreparationInterruptionProtection>,
+    player_persistent_ranged_aim: Option<PersistentRangedAim>,
+    player_analyzed_targets: BTreeSet<EntityId>,
+    player_known_physical_weaknesses: BTreeSet<EntityId>,
+    player_known_body_components: BTreeMap<EntityId, BTreeSet<BodyComponentId>>,
+    player_weapon_barrage: Option<ActiveWeaponBarrage>,
+    player_active_charge: Option<ActiveCharge>,
+    player_anchor: Option<(TechniqueId, u16)>,
+    player_low_profile: Option<ActiveLowProfile>,
+    player_trail_break: Option<ActiveTrailBreak>,
+    player_active_camouflage: Option<ActiveCamouflage>,
+    player_silenced_emissions: BTreeSet<SignatureChannel>,
+    player_movement_concealment_bonus: i16,
+    transient_noises: Vec<TransientNoise>,
+    sound_emitters: SoundEmitterMap,
+    manifested_sound_emitters: BTreeMap<SoundEmitterId, TechniqueManifestationReservation>,
+    ground_effects: GroundEffectMap,
+    explosive_devices: ExplosiveDeviceMap,
+    manifested_explosives: BTreeMap<ExplosiveDeviceId, TechniqueManifestationReservation>,
+    manifested_beacons: BTreeMap<EntityId, TechniqueManifestationReservation>,
+    wrecks: WreckRegistry,
+    equipment_engineering: BTreeMap<ItemInstanceId, EquipmentEngineeringState>,
+    salvaged_components: BTreeMap<ItemInstanceId, crate::entity::BodyComponentState>,
+    active_bypasses: BTreeMap<(EntityId, BodyComponentId), ActiveBypass>,
+    intrusion: IntrusionState,
+    electronic_warfare: ElectronicWarfareState,
+    threat_sources: Vec<ThreatSourceState>,
+}
+
+impl GameState {
+    pub(super) fn snapshot(&self) -> Result<GameStateSnapshot, String> {
+        if !self.events.is_empty() || self.player_drone_support_target_this_action.is_some() {
+            return Err("L'état moteur contient encore des données transitoires.".to_owned());
+        }
+        Ok(GameStateSnapshot {
+            map: self.map.clone(),
+            actors: self.actors.clone(),
+            player: self.player,
+            exit: self.exit,
+            turn: self.turn,
+            phase: self.phase,
+            status: self.status,
+            rng: self.rng,
+            player_visibility: self.player_visibility.clone(),
+            player_progression: self.player_progression.clone(),
+            player_skills: self.player_skills.clone(),
+            player_inventory: self.player_inventory.clone(),
+            player_equipment: self.player_equipment.clone(),
+            ground_items: self.ground_items.clone(),
+            movement_traces: self.movement_traces.clone(),
+            player_energy: self.player_energy,
+            player_bandwidth: self.player_bandwidth,
+            player_heat: self.player_heat,
+            player_preparation_bandwidth: self.player_preparation_bandwidth,
+            player_weapon_ammunition: self.player_weapon_ammunition.clone(),
+            player_preparation: self.player_preparation.clone(),
+            player_preparation_interruption_protection: self
+                .player_preparation_interruption_protection,
+            player_persistent_ranged_aim: self.player_persistent_ranged_aim.clone(),
+            player_analyzed_targets: self.player_analyzed_targets.clone(),
+            player_known_physical_weaknesses: self.player_known_physical_weaknesses.clone(),
+            player_known_body_components: self.player_known_body_components.clone(),
+            player_weapon_barrage: self.player_weapon_barrage.clone(),
+            player_active_charge: self.player_active_charge.clone(),
+            player_anchor: self.player_anchor.clone(),
+            player_low_profile: self.player_low_profile.clone(),
+            player_trail_break: self.player_trail_break.clone(),
+            player_active_camouflage: self.player_active_camouflage.clone(),
+            player_silenced_emissions: self.player_silenced_emissions.clone(),
+            player_movement_concealment_bonus: self.player_movement_concealment_bonus,
+            transient_noises: self.transient_noises.clone(),
+            sound_emitters: self.sound_emitters.clone(),
+            manifested_sound_emitters: self.manifested_sound_emitters.clone(),
+            ground_effects: self.ground_effects.clone(),
+            explosive_devices: self.explosive_devices.clone(),
+            manifested_explosives: self.manifested_explosives.clone(),
+            manifested_beacons: self.manifested_beacons.clone(),
+            wrecks: self.wrecks.clone(),
+            equipment_engineering: self.equipment_engineering.clone(),
+            salvaged_components: self.salvaged_components.clone(),
+            active_bypasses: self.active_bypasses.clone(),
+            intrusion: self.intrusion.clone(),
+            electronic_warfare: self.electronic_warfare.clone(),
+            threat_sources: self.threat_sources.clone(),
+        })
+    }
+
+    pub(super) fn from_snapshot(snapshot: GameStateSnapshot, rules: GameRules) -> Self {
+        Self {
+            map: snapshot.map,
+            actors: snapshot.actors,
+            player: snapshot.player,
+            exit: snapshot.exit,
+            turn: snapshot.turn,
+            phase: snapshot.phase,
+            status: snapshot.status,
+            events: Vec::new(),
+            rng: snapshot.rng,
+            rules,
+            player_visibility: snapshot.player_visibility,
+            player_progression: snapshot.player_progression,
+            player_skills: snapshot.player_skills,
+            player_inventory: snapshot.player_inventory,
+            player_equipment: snapshot.player_equipment,
+            ground_items: snapshot.ground_items,
+            movement_traces: snapshot.movement_traces,
+            player_energy: snapshot.player_energy,
+            player_bandwidth: snapshot.player_bandwidth,
+            player_heat: snapshot.player_heat,
+            player_preparation_bandwidth: snapshot.player_preparation_bandwidth,
+            player_weapon_ammunition: snapshot.player_weapon_ammunition,
+            player_preparation: snapshot.player_preparation,
+            player_preparation_interruption_protection: snapshot
+                .player_preparation_interruption_protection,
+            player_drone_support_target_this_action: None,
+            player_persistent_ranged_aim: snapshot.player_persistent_ranged_aim,
+            player_analyzed_targets: snapshot.player_analyzed_targets,
+            player_known_physical_weaknesses: snapshot.player_known_physical_weaknesses,
+            player_known_body_components: snapshot.player_known_body_components,
+            player_weapon_barrage: snapshot.player_weapon_barrage,
+            player_active_charge: snapshot.player_active_charge,
+            player_anchor: snapshot.player_anchor,
+            player_low_profile: snapshot.player_low_profile,
+            player_trail_break: snapshot.player_trail_break,
+            player_active_camouflage: snapshot.player_active_camouflage,
+            player_silenced_emissions: snapshot.player_silenced_emissions,
+            player_movement_concealment_bonus: snapshot.player_movement_concealment_bonus,
+            transient_noises: snapshot.transient_noises,
+            sound_emitters: snapshot.sound_emitters,
+            manifested_sound_emitters: snapshot.manifested_sound_emitters,
+            ground_effects: snapshot.ground_effects,
+            explosive_devices: snapshot.explosive_devices,
+            manifested_explosives: snapshot.manifested_explosives,
+            manifested_beacons: snapshot.manifested_beacons,
+            wrecks: snapshot.wrecks,
+            equipment_engineering: snapshot.equipment_engineering,
+            salvaged_components: snapshot.salvaged_components,
+            active_bypasses: snapshot.active_bypasses,
+            intrusion: snapshot.intrusion,
+            electronic_warfare: snapshot.electronic_warfare,
+            threat_sources: snapshot.threat_sources,
+        }
+    }
 }
 
 // Empty ground effects are omitted so versions 1-9 retain the exact state
@@ -770,13 +973,23 @@ impl GameState {
             .is_some_and(|player| player.may_take_property_of(owner))
     }
 
-    /// Deterministic world-setup hook. Dynamic grants must eventually pass
-    /// through a recorded game command before dialogue or quest systems use it.
+    /// Deterministic world-setup hook. Dynamic grants pass through a recorded
+    /// world command such as quest completion before presentation observes it.
     pub fn grant_player_property_take_authorization(&mut self, owner: SocialGroupId) -> bool {
         self.actors
             .get_mut(self.player)
             .expect("a valid game always retains its player")
             .grant_property_take_authorization(owner)
+    }
+
+    pub(crate) fn revoke_player_property_take_authorization(
+        &mut self,
+        owner: &SocialGroupId,
+    ) -> bool {
+        self.actors
+            .get_mut(self.player)
+            .expect("a valid game always retains its player")
+            .revoke_property_take_authorization(owner)
     }
 
     pub fn player_primary_attributes(&self) -> Option<PrimaryAttributes> {
@@ -904,6 +1117,81 @@ impl GameState {
 
     pub const fn player_skills(&self) -> &SkillProgressionState {
         &self.player_skills
+    }
+
+    pub fn player_has_learned_improvement(&self, improvement: TechniqueImprovement) -> bool {
+        self.rules.skills.techniques().any(|(id, definition)| {
+            definition.improvement() == Some(improvement) && self.player_skills.has_learned(id)
+        })
+    }
+
+    /// Returns one visual field for every currently visible non-player actor.
+    /// Specialized sight profiles are merged instead of exposing combat and
+    /// witness reactions as separate kinds of vision. Actors without one use
+    /// the ruleset's ordinary field. Hidden actors never enter this projection.
+    pub fn actor_observation_fields(&self) -> Vec<ActorObservationField> {
+        let mut fields = Vec::new();
+        for (observer, actor) in self.actors.iter() {
+            if observer == self.player || !self.player_visibility.is_visible(actor.position()) {
+                continue;
+            }
+
+            let mut has_specialized_profile = false;
+            let mut radius = 0;
+            let mut positions = BTreeSet::new();
+
+            if let Some(profile) = actor.ai()
+                && profile.perception_radius > 0
+            {
+                has_specialized_profile = true;
+                let reduction = self
+                    .actor_failed_component_effects(observer)
+                    .into_iter()
+                    .filter_map(|effect| match effect {
+                        ComponentFailureEffect::ReducePerception(amount) => Some(amount),
+                        _ => None,
+                    })
+                    .fold(0_u16, u16::saturating_add);
+                let profile_radius = profile.perception_radius.saturating_sub(reduction);
+                radius = radius.max(profile_radius);
+                if profile_radius > 0 {
+                    positions.extend(compute_visible_tiles(
+                        &self.map,
+                        actor.position(),
+                        FieldOfViewRules {
+                            radius: profile_radius,
+                            distance_metric: DistanceMetric::Euclidean,
+                            block_closed_corners: true,
+                        },
+                    ));
+                }
+            }
+
+            if let Some(profile) = actor.witness_profile() {
+                has_specialized_profile = true;
+                radius = radius.max(profile.field_of_view().radius);
+                positions.extend(compute_visible_tiles(
+                    &self.map,
+                    actor.position(),
+                    profile.field_of_view(),
+                ));
+            }
+
+            if !has_specialized_profile {
+                let profile = self.rules.player_field_of_view;
+                radius = profile.radius;
+                positions.extend(compute_visible_tiles(&self.map, actor.position(), profile));
+            }
+
+            positions.insert(actor.position());
+            fields.push(ActorObservationField {
+                observer,
+                origin: actor.position(),
+                radius,
+                positions,
+            });
+        }
+        fields
     }
 
     pub fn player_known_body_components(
@@ -1267,6 +1555,11 @@ impl GameState {
                         .and_then(ItemDefinition::mass_grams)
                 })
                 .unwrap_or(0);
+            let unit_mass = entry.magic_modifiers().map_or(unit_mass, |modifiers| {
+                unit_mass.saturating_mul(
+                    100_u32.saturating_sub(u32::from(modifiers.mass_reduction_percent())),
+                ) / 100
+            });
             total.saturating_add(u64::from(unit_mass).saturating_mul(u64::from(entry.quantity())))
         }))
     }
@@ -1343,9 +1636,19 @@ impl GameState {
             self.player_equipment
                 .iter()
                 .filter_map(|(_, item)| self.player_inventory.get(item))
-                .filter_map(|entry| self.rules.items.get(entry.item()))
-                .filter_map(|definition| definition.equipment())
-                .map(|profile| profile.armor())
+                .filter_map(|entry| {
+                    self.rules
+                        .items
+                        .get(entry.item())
+                        .and_then(|definition| definition.equipment())
+                        .map(|profile| {
+                            profile.armor().saturating_add(
+                                entry
+                                    .magic_modifiers()
+                                    .map_or(0, |modifiers| modifiers.armor_bonus()),
+                            )
+                        })
+                })
                 .fold(0_u16, u16::saturating_add)
         } else {
             0
@@ -2050,28 +2353,30 @@ impl GameState {
             },
             GameCommand::Move(direction) => match self.move_entity(self.player, direction) {
                 Ok(destination) => {
-                    applied_time_units = self.actor_movement_time_units(self.player);
-                    if applied_time_units > 1 {
-                        self.events.push(GameEvent::MovementTimeCommitted {
-                            entity: self.player,
-                            time_units: applied_time_units,
+                    if self.actors.get(self.player).is_some() {
+                        applied_time_units = self.actor_movement_time_units(self.player);
+                        if applied_time_units > 1 {
+                            self.events.push(GameEvent::MovementTimeCommitted {
+                                entity: self.player,
+                                time_units: applied_time_units,
+                            });
+                        }
+                        self.player_visibility.recompute(
+                            &self.map,
+                            destination,
+                            self.rules.player_field_of_view,
+                        );
+                        self.events.push(GameEvent::VisibilityUpdated {
+                            observer: self.player,
+                            origin: destination,
                         });
-                    }
-                    self.player_visibility.recompute(
-                        &self.map,
-                        destination,
-                        self.rules.player_field_of_view,
-                    );
-                    self.events.push(GameEvent::VisibilityUpdated {
-                        observer: self.player,
-                        origin: destination,
-                    });
-                    if self.exit == Some(destination) {
-                        self.status = RunStatus::Escaped;
-                        self.events.push(GameEvent::ExitReached {
-                            entity: self.player,
-                            at: destination,
-                        });
+                        if self.exit == Some(destination) {
+                            self.status = RunStatus::Escaped;
+                            self.events.push(GameEvent::ExitReached {
+                                entity: self.player,
+                                at: destination,
+                            });
+                        }
                     }
                     CommandOutcome::Applied
                 }
@@ -2127,6 +2432,15 @@ impl GameState {
                 Ok(()) => CommandOutcome::Applied,
                 Err(error) => CommandOutcome::Rejected(error.into()),
             },
+            // WorldState validates and commits town commerce before routing
+            // these world-scoped actions through the normal turn lifecycle.
+            GameCommand::BuyItem { .. }
+            | GameCommand::BuyResaleItem { .. }
+            | GameCommand::GambleItem { .. }
+            | GameCommand::SellItem { .. }
+            | GameCommand::ReceiveTreatment { .. }
+            | GameCommand::CompleteQuest { .. } => CommandOutcome::Applied,
+            GameCommand::AcceptQuest { .. } => CommandOutcome::AppliedWithoutTime,
             GameCommand::UseAbility { slot, target } => {
                 match self.perform_ability(self.player, slot, target) {
                     Ok(()) => {
@@ -7072,13 +7386,16 @@ impl GameState {
                 from: player_from,
                 to: from,
             });
-            self.resolve_ranged_overwatch_entries(self.player, from);
-            self.player_visibility
-                .recompute(&self.map, from, self.rules.player_field_of_view);
-            self.events.push(GameEvent::VisibilityUpdated {
-                observer: self.player,
-                origin: from,
-            });
+            self.resolve_status_trigger_for(self.player, StatusTrigger::Movement);
+            if self.actors.get(self.player).is_some() {
+                self.resolve_ranged_overwatch_entries(self.player, from);
+                self.player_visibility
+                    .recompute(&self.map, from, self.rules.player_field_of_view);
+                self.events.push(GameEvent::VisibilityUpdated {
+                    observer: self.player,
+                    origin: from,
+                });
+            }
         }
         self.start_action_recovery(
             self.player,
@@ -8221,16 +8538,19 @@ impl GameState {
                         from: origin,
                         to: target_at,
                     });
-                    self.update_player_movement_concealment(target_at);
-                    self.advance_player_trail_break_step();
-                    self.emit_noise(Some(self.player), target_at, 10);
+                    self.resolve_status_trigger_for(self.player, StatusTrigger::Movement);
                     self.events.push(GameEvent::ObstacleTraversed {
                         entity: self.player,
                         from: origin,
                         over,
                         to: target_at,
                     });
-                    self.resolve_ranged_overwatch_entries(self.player, target_at);
+                    if self.actors.get(self.player).is_some() {
+                        self.update_player_movement_concealment(target_at);
+                        self.advance_player_trail_break_step();
+                        self.emit_noise(Some(self.player), target_at, 10);
+                        self.resolve_ranged_overwatch_entries(self.player, target_at);
+                    }
                 }
             }
             TechniqueAction::PrepareEvasiveStep {
@@ -8284,6 +8604,9 @@ impl GameState {
                 );
             }
             _ => return Err(TechniqueUseError::NoActiveAction(technique.clone())),
+        }
+        if self.actors.get(self.player).is_none() {
+            return Ok(());
         }
         if let Some(position) = self.player_position() {
             self.player_visibility
@@ -9543,6 +9866,7 @@ impl GameState {
                 from: destination,
                 to: origin,
             });
+            self.resolve_status_trigger_for(companion, StatusTrigger::Movement);
         }
         self.actors
             .move_to(entity, destination)
@@ -9563,6 +9887,10 @@ impl GameState {
             from: origin,
             to: destination,
         });
+        self.resolve_status_trigger_for(entity, StatusTrigger::Movement);
+        if self.actors.get(entity).is_none() {
+            return Ok(destination);
+        }
         if entity == self.player {
             self.end_player_anchor();
             self.update_player_movement_concealment(destination);
@@ -9738,7 +10066,7 @@ impl GameState {
     ) -> Result<GridPos, MovementError> {
         let movement_time = self.actor_movement_time_units(entity);
         let destination = self.move_entity(entity, direction)?;
-        if movement_time > 1 {
+        if movement_time > 1 && self.actors.get(entity).is_some() {
             let ready = self.turn.saturating_add(u64::from(movement_time));
             if let Some(actor) = self.actors.get_mut(entity) {
                 actor.delay_next_action_until(ready);
@@ -10264,6 +10592,9 @@ impl GameState {
         let mut destroyed_positions = BTreeSet::new();
         let mut reaction_follow_ups = Vec::new();
         for affected_target in affected_targets {
+            if self.actors.get(attacker).is_none() {
+                break;
+            }
             let hit = self.resolve_hit(attacker, affected_target, attack)?;
             if !hit {
                 continue;
@@ -10447,6 +10778,7 @@ impl GameState {
                     from,
                     to: *destination,
                 });
+                self.resolve_status_trigger_for(reactor, StatusTrigger::Movement);
             }
             self.events.push(GameEvent::EvasiveStepResolved {
                 entity: reactor,
@@ -10594,6 +10926,9 @@ impl GameState {
             moved_distance,
             outcome,
         });
+        if moved_distance > 0 {
+            self.resolve_status_trigger_for(target, StatusTrigger::Movement);
+        }
     }
 
     fn apply_reaction_to_melee_hit(
@@ -11248,6 +11583,34 @@ impl GameState {
                     quantity: stack.quantity(),
                     at: position,
                 };
+                let property_report = self
+                    .actors
+                    .get(witness)
+                    .and_then(Actor::property_report_profile)
+                    .and_then(|profile| {
+                        let recipient = profile.recipient();
+                        let reporter = self.actors.get(witness)?;
+                        let recipient_actor = self.actors.get(recipient)?;
+                        (recipient != witness
+                            && reporter.affiliation() == Some(owner)
+                            && recipient_actor.affiliation() == Some(owner)
+                            && compute_visible_tiles(
+                                &self.map,
+                                reporter.position(),
+                                profile.field_of_view(),
+                            )
+                            .contains(&recipient_actor.position()))
+                        .then(|| {
+                            (
+                                recipient,
+                                self.player_visibility
+                                    .is_visible(recipient_actor.position()),
+                                recipient_actor
+                                    .local_alert_profile()
+                                    .map(|profile| profile.duration_turns()),
+                            )
+                        })
+                    });
                 let witness_actor = self
                     .actors
                     .get_mut(witness)
@@ -11256,7 +11619,7 @@ impl GameState {
                     .local_alert_profile()
                     .map(|profile| profile.duration_turns());
                 witness_actor.remember_property_take(incident.clone());
-                let raised_local_alert = witness_actor.raise_local_alert(incident);
+                let raised_local_alert = witness_actor.raise_local_alert(incident.clone());
                 if visible_to_player {
                     self.events.push(GameEvent::PropertyTakeWitnessed {
                         taker: self.player,
@@ -11272,6 +11635,35 @@ impl GameState {
                             owner: owner.clone(),
                             at: position,
                             duration_turns: alert_duration
+                                .expect("a raised local alert has a configured duration"),
+                        });
+                    }
+                }
+                if let Some((recipient, recipient_visible, recipient_alert_duration)) =
+                    property_report
+                {
+                    let recipient_actor = self
+                        .actors
+                        .get_mut(recipient)
+                        .expect("report recipient was selected from the actor registry");
+                    recipient_actor.receive_property_take_report(witness, incident.clone());
+                    let raised_recipient_alert = recipient_actor.raise_local_alert(incident);
+                    if visible_to_player && recipient_visible {
+                        self.events.push(GameEvent::PropertyTakeReported {
+                            source: witness,
+                            recipient,
+                            owner: owner.clone(),
+                            definition: stack.item().clone(),
+                            quantity: stack.quantity(),
+                            at: position,
+                        });
+                    }
+                    if recipient_visible && raised_recipient_alert {
+                        self.events.push(GameEvent::LocalAlertRaised {
+                            source: recipient,
+                            owner: owner.clone(),
+                            at: position,
+                            duration_turns: recipient_alert_duration
                                 .expect("a raised local alert has a configured duration"),
                         });
                     }
@@ -11670,7 +12062,26 @@ impl GameState {
         target: EntityId,
         packet: DamagePacket,
     ) -> Result<DamageApplication, EntityId> {
-        self.apply_damage_impact_to(source, target, DamageImpact::single(packet))
+        self.apply_damage_impact_to_with_status_hooks(
+            source,
+            target,
+            DamageImpact::single(packet),
+            true,
+        )
+    }
+
+    fn apply_status_damage_to(
+        &mut self,
+        source: Option<EntityId>,
+        target: EntityId,
+        packet: DamagePacket,
+    ) -> Result<DamageApplication, EntityId> {
+        self.apply_damage_impact_to_with_status_hooks(
+            source,
+            target,
+            DamageImpact::single(packet),
+            false,
+        )
     }
 
     fn apply_damage_impact_to_component(
@@ -11679,6 +12090,19 @@ impl GameState {
         target: EntityId,
         component: &BodyComponentId,
         impact: DamageImpact,
+    ) -> Result<DamageApplication, EntityId> {
+        self.apply_damage_impact_to_component_with_status_hooks(
+            source, target, component, impact, true,
+        )
+    }
+
+    fn apply_damage_impact_to_component_with_status_hooks(
+        &mut self,
+        source: Option<EntityId>,
+        target: EntityId,
+        component: &BodyComponentId,
+        impact: DamageImpact,
+        trigger_status_hooks: bool,
     ) -> Result<DamageApplication, EntityId> {
         let position = self.actors.get(target).ok_or(target)?.position();
         if self.map.is_protected(position)
@@ -11720,10 +12144,11 @@ impl GameState {
             maximum_durability,
             failed,
         });
-        Ok(DamageApplication {
+        let application = DamageApplication {
             amount,
             target_destroyed: false,
-        })
+        };
+        Ok(self.resolve_damage_status_hooks(source, target, application, trigger_status_hooks))
     }
 
     fn apply_damage_impact_to(
@@ -11731,6 +12156,16 @@ impl GameState {
         source: Option<EntityId>,
         target: EntityId,
         impact: DamageImpact,
+    ) -> Result<DamageApplication, EntityId> {
+        self.apply_damage_impact_to_with_status_hooks(source, target, impact, true)
+    }
+
+    fn apply_damage_impact_to_with_status_hooks(
+        &mut self,
+        source: Option<EntityId>,
+        target: EntityId,
+        impact: DamageImpact,
+        trigger_status_hooks: bool,
     ) -> Result<DamageApplication, EntityId> {
         let position = self.actors.get(target).ok_or(target)?.position();
         if self.map.is_protected(position)
@@ -11741,27 +12176,35 @@ impl GameState {
             return Ok(DamageApplication::default());
         }
         let armor = self.actor_armor_profile(target).ok_or(target)?;
-        let (resistances, defeat_reward, destruction_effect, controlled_drone, wreck_components) =
-            self.actors
-                .get(target)
-                .map(|actor| {
-                    (
-                        actor.resistances(),
-                        actor.defeat_reward(),
-                        actor.destruction_effect().cloned(),
-                        actor.drone().and_then(|drone| {
-                            (drone.controller() == self.player).then_some((
-                                drone.controller(),
-                                drone
-                                    .profile()
-                                    .bandwidth_required()
-                                    .saturating_add(drone.order_bandwidth()),
-                            ))
-                        }),
-                        actor.body_components().cloned().collect::<Vec<_>>(),
-                    )
-                })
-                .ok_or(target)?;
+        let (
+            resistances,
+            defeat_reward,
+            destruction_effect,
+            controlled_drone,
+            wreck_components,
+            tags,
+        ) = self
+            .actors
+            .get(target)
+            .map(|actor| {
+                (
+                    actor.resistances(),
+                    actor.defeat_reward(),
+                    actor.destruction_effect().cloned(),
+                    actor.drone().and_then(|drone| {
+                        (drone.controller() == self.player).then_some((
+                            drone.controller(),
+                            drone
+                                .profile()
+                                .bandwidth_required()
+                                .saturating_add(drone.order_bandwidth()),
+                        ))
+                    }),
+                    actor.body_components().cloned().collect::<Vec<_>>(),
+                    actor.tags().iter().cloned().collect::<Vec<_>>(),
+                )
+            })
+            .ok_or(target)?;
         let resolved = self.rules.armor_rules.map_or_else(
             || resolve_damage_impact(impact, resistances, self.rules.damage),
             |armor_rules| {
@@ -11777,6 +12220,9 @@ impl GameState {
         let target_actor = self.actors.get_mut(target).ok_or(target)?;
         let applied_damage = target_actor.apply_damage(resolved.amount());
         let target_died = !target_actor.is_alive();
+        let pending_death_statuses = (target_died && trigger_status_hooks)
+            .then(|| self.pending_status_effects_for(target, StatusTrigger::Death))
+            .unwrap_or_default();
 
         if impact.is_legacy_single() {
             self.events.push(GameEvent::DamageApplied {
@@ -11805,7 +12251,21 @@ impl GameState {
                 entity: target,
                 at: position,
             });
+            if target != self.player && source == Some(self.player) {
+                self.events.push(GameEvent::EntityDefeatedByPlayer {
+                    entity: target,
+                    at: position,
+                    tags,
+                });
+            }
             self.actors.remove(target);
+            self.resolve_pending_status_effects(
+                target,
+                StatusTrigger::Death,
+                source,
+                pending_death_statuses,
+                false,
+            );
             self.electronic_warfare.remove_beacon(target);
             let beacon_reservation = self.manifested_beacons.remove(&target);
             self.release_manifestation_reservation(beacon_reservation);
@@ -11857,10 +12317,41 @@ impl GameState {
             }
         }
 
-        Ok(DamageApplication {
+        let application = DamageApplication {
             amount: applied_damage,
             target_destroyed: target_died,
-        })
+        };
+        Ok(self.resolve_damage_status_hooks(source, target, application, trigger_status_hooks))
+    }
+
+    fn resolve_damage_status_hooks(
+        &mut self,
+        source: Option<EntityId>,
+        target: EntityId,
+        mut application: DamageApplication,
+        trigger_status_hooks: bool,
+    ) -> DamageApplication {
+        if !trigger_status_hooks || application.amount == 0 {
+            return application;
+        }
+        if self.actors.get(target).is_some() {
+            self.resolve_status_trigger_for_counterpart(
+                target,
+                StatusTrigger::DamageReceived,
+                source,
+            );
+        }
+        if let Some(source) = source
+            && self.actors.get(source).is_some()
+        {
+            self.resolve_status_trigger_for_counterpart(
+                source,
+                StatusTrigger::DamageDealt,
+                Some(target),
+            );
+        }
+        application.target_destroyed |= self.actors.get(target).is_none();
+        application
     }
 
     fn award_defeat_experience(&mut self, target: EntityId, reward: DefeatReward) {
@@ -11902,9 +12393,21 @@ impl GameState {
         );
     }
 
+    pub(super) fn award_one_time_experience(&mut self, amount: u64, key: RewardKey) {
+        self.apply_experience_award(
+            &ExperienceAward::one_time(amount, key.clone()),
+            ExperienceSource::OneTimeReward(key),
+        );
+    }
+
     pub(super) fn complete_turn(&mut self) {
         self.phase = TurnPhase::ResolvingActors;
-        self.resolve_ai_turn();
+        if self.status == RunStatus::Active {
+            self.resolve_status_trigger(StatusTrigger::TurnStart);
+            if self.status == RunStatus::Active {
+                self.resolve_ai_turn();
+            }
+        }
         self.phase = TurnPhase::ResolvingEnvironment;
         if self.status == RunStatus::Active {
             self.resolve_status_trigger(StatusTrigger::TurnEnd);
@@ -13754,57 +14257,90 @@ impl GameState {
     }
 
     pub(super) fn resolve_status_trigger(&mut self, trigger: StatusTrigger) {
-        #[derive(Clone)]
-        struct PendingStatus {
-            target: EntityId,
-            instance: StatusInstance,
-            effects: Vec<StatusEffectPrimitive>,
-        }
-
-        let status_catalog = &self.rules.statuses;
-        let pending: Vec<PendingStatus> = self
+        let actor_ids = self
             .actors
             .iter()
-            .flat_map(|(target, actor)| {
-                actor.statuses().filter_map(move |instance| {
+            .map(|(target, _)| target)
+            .collect::<Vec<_>>();
+        for target in actor_ids {
+            self.resolve_status_trigger_for(target, trigger);
+        }
+    }
+
+    pub(super) fn resolve_status_trigger_for(&mut self, target: EntityId, trigger: StatusTrigger) {
+        self.resolve_status_trigger_for_counterpart(target, trigger, None);
+    }
+
+    fn pending_status_effects_for(
+        &self,
+        target: EntityId,
+        trigger: StatusTrigger,
+    ) -> Vec<(StatusInstance, Vec<StatusEffectPrimitive>)> {
+        let status_catalog = &self.rules.statuses;
+        self.actors.get(target).map_or_else(Vec::new, |actor| {
+            actor
+                .statuses()
+                .filter_map(|instance| {
                     let definition = status_catalog.get(&instance.definition)?;
                     let effects: Vec<StatusEffectPrimitive> = definition
                         .hooks_for(trigger)
                         .flat_map(|hook| hook.effects().iter().copied())
                         .collect();
-                    (!effects.is_empty()).then_some(PendingStatus {
-                        target,
-                        instance: instance.clone(),
-                        effects,
-                    })
+                    (!effects.is_empty()).then_some((instance.clone(), effects))
                 })
-            })
-            .collect();
+                .collect()
+        })
+    }
 
-        for pending_status in pending {
-            if self.actors.get(pending_status.target).is_none() {
+    fn resolve_status_trigger_for_counterpart(
+        &mut self,
+        target: EntityId,
+        trigger: StatusTrigger,
+        counterpart: Option<EntityId>,
+    ) {
+        let pending = self.pending_status_effects_for(target, trigger);
+        self.resolve_pending_status_effects(target, trigger, counterpart, pending, true);
+    }
+
+    fn resolve_pending_status_effects(
+        &mut self,
+        target: EntityId,
+        trigger: StatusTrigger,
+        counterpart: Option<EntityId>,
+        pending: Vec<(StatusInstance, Vec<StatusEffectPrimitive>)>,
+        require_owner: bool,
+    ) {
+        for (instance, effects) in pending {
+            if require_owner && self.actors.get(target).is_none() {
                 continue;
             }
             self.events.push(GameEvent::StatusTriggered {
-                target: pending_status.target,
-                status: pending_status.instance.definition.clone(),
+                target,
+                status: instance.definition.clone(),
                 trigger,
             });
-            for effect in pending_status.effects {
+            for effect in effects {
                 match effect {
                     StatusEffectPrimitive::DealDamage {
                         mut packet,
                         multiply_by_stacks,
                     } => {
                         if multiply_by_stacks {
-                            packet.amount =
-                                packet.amount.saturating_mul(pending_status.instance.stacks);
+                            packet.amount = packet.amount.saturating_mul(instance.stacks);
                         }
-                        let _ = self.apply_damage_to(
-                            pending_status.instance.source,
-                            pending_status.target,
-                            packet,
-                        );
+                        let _ = self.apply_status_damage_to(instance.source, target, packet);
+                    }
+                    StatusEffectPrimitive::DealDamageToCounterpart {
+                        mut packet,
+                        multiply_by_stacks,
+                    } => {
+                        if multiply_by_stacks {
+                            packet.amount = packet.amount.saturating_mul(instance.stacks);
+                        }
+                        if let Some(counterpart) = counterpart {
+                            let _ =
+                                self.apply_status_damage_to(instance.source, counterpart, packet);
+                        }
                     }
                 }
             }
@@ -14435,7 +14971,7 @@ fn first_unknown_weapon_status(rules: &GameRules) -> Option<(WeaponId, StatusId)
     })
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum RunStatus {
     Active,
     PlayerDestroyed,
@@ -14461,6 +14997,24 @@ pub enum CommandRejection {
     ControlUnavailable,
     NoMaterialForDepot,
     FacilityUnavailable,
+    MerchantUnavailable,
+    MerchantOfferUnavailable,
+    MerchantOutOfStock,
+    InsufficientCredits,
+    MerchantInsufficientCredits,
+    ClinicUnavailable,
+    TreatmentNotNeeded,
+    QuestUnavailable,
+    QuestPrerequisiteIncomplete,
+    QuestWorldStateUnavailable,
+    QuestBranchUnavailable,
+    QuestAlreadyAccepted,
+    QuestNotAccepted,
+    QuestObjectiveIncomplete,
+    QuestAlreadyCompleted,
+    QuestRewardUnavailable,
+    QuestWorldEffectUnavailable,
+    EquippedItemCannotBeSold,
     ProtectedZone,
     RunEnded,
     NotPlayersTurn,
@@ -15747,7 +16301,7 @@ mod tests {
     use crate::content::ContentLoader;
     use crate::effects::{AbilityProfile, ApplyStatusEffect, GroundEffectSpec};
     use crate::electronic_warfare::ElectronicChannel;
-    use crate::entity::{BodyComponentProfile, BodyComponentState};
+    use crate::entity::{BodyComponentProfile, BodyComponentState, MagicItemModifiers};
     use crate::item::{EquipmentProfile, ItemCatalog, ItemDefinition, ItemKind};
     use crate::progression::{DefeatReward, ExperienceAward, ExperienceCurve, ProgressionRules};
     use crate::reaction::{ActionOrigin, PreparedReaction, ReactionKind};
@@ -15755,7 +16309,7 @@ mod tests {
         DisciplineDefinition, SkillCatalog, SkillProgressionRules, SystemFeatureSet,
         TechniqueDefinition, TechniqueKind,
     };
-    use crate::social::{LocalAlertProfile, WitnessProfile};
+    use crate::social::{LocalAlertProfile, PropertyReportProfile, WitnessProfile};
     use crate::stats::{
         BodyProfile, DisplacementProfile, LocomotionProfile, PhysicalRules, StabilityRules,
     };
@@ -15777,6 +16331,102 @@ mod tests {
             Ok(game) => game,
             Err(error) => panic!("valid test game failed to initialize: {error}"),
         }
+    }
+
+    #[test]
+    fn actor_observation_fields_include_every_visible_npc_without_hidden_actors() {
+        let mut map = parse_map(
+            "#####################\n#...................#\n#...................#\n#...#...............#\n#...................#\n#####################",
+        );
+        let protected = GridPos::new(3, 2);
+        map.set_protected(protected, true).unwrap();
+        let mut game = GameState::new(map, GridPos::new(4, 1), 77).unwrap();
+        let witness = WitnessProfile::new(6, DistanceMetric::Euclidean, true, 4).unwrap();
+        let visible_observer = game
+            .spawn_actor(
+                Actor::new(GridPos::new(2, 3), 10)
+                    .unwrap()
+                    .with_ai(AiProfile::hunter(8, 0))
+                    .with_witness_profile(witness),
+            )
+            .unwrap();
+        let hidden_observer = game
+            .spawn_actor(
+                Actor::new(GridPos::new(18, 3), 10)
+                    .unwrap()
+                    .with_ai(AiProfile::hunter(8, 0))
+                    .with_witness_profile(witness),
+            )
+            .unwrap();
+        let allied_observer = game
+            .spawn_actor(
+                Actor::new(GridPos::new(6, 1), 10)
+                    .unwrap()
+                    .with_player_relation(crate::social::PlayerRelation::Allied)
+                    .with_ai(AiProfile::hunter(8, 0))
+                    .with_witness_profile(witness),
+            )
+            .unwrap();
+        let ordinary_npc = game
+            .spawn_actor(
+                Actor::new(GridPos::new(5, 1), 10)
+                    .unwrap()
+                    .with_ai(AiProfile::idle()),
+            )
+            .unwrap();
+
+        assert!(
+            game.player_visibility()
+                .is_visible(game.actors().get(visible_observer).unwrap().position())
+        );
+        assert!(
+            !game
+                .player_visibility()
+                .is_visible(game.actors().get(hidden_observer).unwrap().position())
+        );
+        let fields = game.actor_observation_fields();
+        let visible_field = fields
+            .iter()
+            .find(|field| field.observer() == visible_observer)
+            .expect("visible observer exposes one merged visual field");
+
+        assert_eq!(visible_field.origin(), GridPos::new(2, 3));
+        assert_eq!(visible_field.radius(), 8);
+        assert!(!visible_field.contains(GridPos::new(5, 3)));
+        assert!(visible_field.contains(protected));
+        assert_eq!(fields.len(), 3);
+        assert_eq!(
+            fields
+                .iter()
+                .map(ActorObservationField::observer)
+                .collect::<BTreeSet<_>>()
+                .len(),
+            fields.len()
+        );
+        assert!(
+            fields
+                .iter()
+                .all(|field| field.observer() != hidden_observer)
+        );
+        assert!(
+            fields
+                .iter()
+                .any(|field| field.observer() == allied_observer)
+        );
+        let ordinary_field = fields
+            .iter()
+            .find(|field| field.observer() == ordinary_npc)
+            .expect("an idle service NPC receives the ordinary visual field");
+        assert_eq!(
+            ordinary_field.radius(),
+            game.rules().player_field_of_view.radius
+        );
+        assert!(ordinary_field.contains(GridPos::new(6, 1)));
+        assert!(
+            fields
+                .iter()
+                .all(|field| field.observer() != game.player_id())
+        );
     }
 
     fn rules_with_reconnaissance(progression: ProgressionRules) -> GameRules {
@@ -15902,6 +16552,38 @@ mod tests {
             .register(definition)
             .unwrap_or_else(|error| panic!("valid status registration rejected: {error}"));
         (rules, status)
+    }
+
+    fn triggered_damage_status_rules(
+        trigger: StatusTrigger,
+        damage: u16,
+    ) -> (GameRules, StatusDefinition) {
+        let id = match trigger {
+            StatusTrigger::TurnStart => "test:turn_start_damage",
+            StatusTrigger::TurnEnd => "test:turn_end_damage",
+            StatusTrigger::DamageReceived => "test:damage_received_damage",
+            StatusTrigger::DamageDealt => "test:damage_dealt_damage",
+            StatusTrigger::Movement => "test:movement_damage",
+            StatusTrigger::Death => "test:death_damage",
+        }
+        .parse()
+        .unwrap();
+        let definition = StatusDefinition::new(
+            id,
+            None,
+            StatusStacking::Replace,
+            vec![StatusHook::new(
+                trigger,
+                vec![StatusEffectPrimitive::DealDamage {
+                    packet: DamagePacket::new(damage, DamageType::Chemical, 0),
+                    multiply_by_stacks: false,
+                }],
+            )],
+        )
+        .unwrap();
+        let mut rules = GameRules::default();
+        rules.statuses.register(definition.clone()).unwrap();
+        (rules, definition)
     }
 
     fn equipment_rules() -> (GameRules, WeaponId, WeaponId) {
@@ -17395,6 +18077,8 @@ mod tests {
                     Some(EquipmentProfile::new(slot.clone(), 2).unwrap()),
                     Vec::new(),
                 )
+                .unwrap()
+                .with_mass_grams(10_000)
                 .unwrap(),
             )
             .unwrap();
@@ -18544,6 +19228,39 @@ mod tests {
     }
 
     #[test]
+    fn magical_armor_modifiers_affect_real_armor_and_carried_mass() {
+        let (rules, armor, slot) = armor_equipment_rules();
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let modifiers = MagicItemModifiers::new(3, 20).unwrap();
+        let magical = game
+            .player_inventory_mut()
+            .add_magic(armor, None, modifiers)
+            .unwrap();
+
+        assert_eq!(
+            game.actor_carried_mass_grams(game.player_id()),
+            Some(18_000)
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::EquipItem {
+                slot,
+                item: magical,
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actor_armor_profile(game.player_id()),
+            Some(ArmorProfile::new(1, 5, 0, 0))
+        );
+    }
+
+    #[test]
     fn flamethrower_hits_its_cone_burns_targets_and_leaves_expiring_ground_fire() {
         let (rules, weapon) = flamethrower_rules();
         let mut map = parse_map(
@@ -19073,6 +19790,209 @@ mod tests {
     }
 
     #[test]
+    fn witnessed_property_take_is_reported_to_one_recipient_without_retransmission() {
+        let (rules, material) = material_rules();
+        let mut game = GameState::new_with_rules(
+            parse_map("##########\n#........#\n##########"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let owner: SocialGroupId = "core:maintainers".parse().unwrap();
+        let witness_profile = WitnessProfile::new(3, DistanceMetric::Euclidean, true, 4).unwrap();
+        let alert_profile = LocalAlertProfile::new(8).unwrap();
+        let third = game
+            .spawn_actor(build_actor(GridPos::new(7, 1), 10).with_affiliation(owner.clone()))
+            .unwrap();
+        let recipient = game
+            .spawn_actor(
+                build_actor(GridPos::new(5, 1), 10)
+                    .with_affiliation(owner.clone())
+                    .with_witness_profile(
+                        WitnessProfile::new(1, DistanceMetric::Euclidean, true, 4).unwrap(),
+                    )
+                    .with_local_alert_profile(alert_profile)
+                    .with_property_report_profile(
+                        PropertyReportProfile::new(third, 3, DistanceMetric::Euclidean, true)
+                            .unwrap(),
+                    ),
+            )
+            .unwrap();
+        let reporter = game
+            .spawn_actor(
+                build_actor(GridPos::new(3, 1), 10)
+                    .with_affiliation(owner.clone())
+                    .with_witness_profile(witness_profile)
+                    .with_local_alert_profile(alert_profile)
+                    .with_property_report_profile(
+                        PropertyReportProfile::new(recipient, 3, DistanceMetric::Euclidean, true)
+                            .unwrap(),
+                    ),
+            )
+            .unwrap();
+        game.spawn_ground_item_with_owner(
+            GridPos::new(1, 1),
+            material.clone(),
+            1,
+            Some(owner.clone()),
+        )
+        .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::PickUp),
+            CommandOutcome::Applied
+        );
+        let reports = game
+            .actors()
+            .get(recipient)
+            .unwrap()
+            .received_property_take_reports();
+        assert_eq!(reports.len(), 1);
+        assert_eq!(reports[0].source, reporter);
+        assert_eq!(reports[0].incident.owner, owner);
+        assert_eq!(reports[0].incident.item, material);
+        assert!(
+            game.actors()
+                .get(recipient)
+                .unwrap()
+                .local_alert()
+                .is_some()
+        );
+        assert!(
+            game.actors()
+                .get(third)
+                .unwrap()
+                .received_property_take_reports()
+                .is_empty(),
+            "a received fact must never retransmit itself"
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::PropertyTakeReported {
+                source,
+                recipient: target,
+                ..
+            } if *source == reporter && *target == recipient
+        )));
+    }
+
+    #[test]
+    fn property_report_requires_a_real_line_of_sight_to_its_recipient() {
+        let (rules, material) = material_rules();
+        let mut game = GameState::new_with_rules(
+            parse_map("########\n#..#...#\n########"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let owner: SocialGroupId = "core:maintainers".parse().unwrap();
+        let recipient = game
+            .spawn_actor(build_actor(GridPos::new(4, 1), 10).with_affiliation(owner.clone()))
+            .unwrap();
+        let reporter = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 10)
+                    .with_affiliation(owner.clone())
+                    .with_witness_profile(
+                        WitnessProfile::new(3, DistanceMetric::Euclidean, true, 4).unwrap(),
+                    )
+                    .with_property_report_profile(
+                        PropertyReportProfile::new(recipient, 4, DistanceMetric::Euclidean, true)
+                            .unwrap(),
+                    ),
+            )
+            .unwrap();
+        game.spawn_ground_item_with_owner(GridPos::new(1, 1), material, 1, Some(owner))
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::PickUp),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors()
+                .get(reporter)
+                .unwrap()
+                .observed_property_takes()
+                .len(),
+            1
+        );
+        assert!(
+            game.actors()
+                .get(recipient)
+                .unwrap()
+                .received_property_take_reports()
+                .is_empty()
+        );
+        assert!(
+            game.events()
+                .iter()
+                .all(|event| !matches!(event, GameEvent::PropertyTakeReported { .. }))
+        );
+    }
+
+    #[test]
+    fn property_report_requires_recipient_within_its_authored_range() {
+        let (rules, material) = material_rules();
+        let mut game = GameState::new_with_rules(
+            parse_map("########\n#......#\n########"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let owner: SocialGroupId = "core:maintainers".parse().unwrap();
+        let recipient = game
+            .spawn_actor(build_actor(GridPos::new(4, 1), 10).with_affiliation(owner.clone()))
+            .unwrap();
+        let reporter = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 10)
+                    .with_affiliation(owner.clone())
+                    .with_witness_profile(
+                        WitnessProfile::new(3, DistanceMetric::Euclidean, true, 4).unwrap(),
+                    )
+                    .with_property_report_profile(
+                        PropertyReportProfile::new(recipient, 1, DistanceMetric::Euclidean, true)
+                            .unwrap(),
+                    ),
+            )
+            .unwrap();
+        game.spawn_ground_item_with_owner(GridPos::new(1, 1), material, 1, Some(owner))
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::PickUp),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            game.actors()
+                .get(reporter)
+                .unwrap()
+                .observed_property_takes()
+                .len(),
+            1
+        );
+        assert!(
+            game.actors()
+                .get(recipient)
+                .unwrap()
+                .received_property_take_reports()
+                .is_empty()
+        );
+        assert!(
+            game.events()
+                .iter()
+                .all(|event| !matches!(event, GameEvent::PropertyTakeReported { .. }))
+        );
+    }
+
+    #[test]
     fn rejected_owned_pickup_creates_no_witness_memory() {
         let (mut rules, material) = material_rules();
         rules.player_inventory_capacity = 1;
@@ -19154,7 +20074,9 @@ mod tests {
         assert!(witness.local_alert().is_none());
         assert!(game.events().iter().all(|event| !matches!(
             event,
-            GameEvent::PropertyTakeWitnessed { .. } | GameEvent::LocalAlertRaised { .. }
+            GameEvent::PropertyTakeWitnessed { .. }
+                | GameEvent::PropertyTakeReported { .. }
+                | GameEvent::LocalAlertRaised { .. }
         )));
         assert_eq!(
             game.player_inventory()
@@ -23321,6 +24243,530 @@ mod tests {
         );
         assert_eq!((game.turn(), game.player_energy()), before);
         assert!(game.events().is_empty());
+    }
+
+    #[test]
+    fn turn_start_status_resolves_before_the_affected_ai_can_act() {
+        let (rules, status) = triggered_damage_status_rules(StatusTrigger::TurnStart, 2);
+        let mut game = GameState::new_with_rules(
+            parse_map("#######\n#.....#\n#######"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let enemy = game
+            .spawn_actor(build_actor(GridPos::new(4, 1), 10).with_ai(AiProfile::hunter(8, 0)))
+            .unwrap();
+        game.actors
+            .get_mut(enemy)
+            .unwrap()
+            .apply_status(&status, 1, None);
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.actors.get(enemy).map(Actor::integrity), Some(8));
+        assert_eq!(
+            game.actors.get(enemy).map(Actor::position),
+            Some(GridPos::new(3, 1))
+        );
+        let trigger_index = game
+            .events()
+            .iter()
+            .position(|event| {
+                matches!(
+                    event,
+                    GameEvent::StatusTriggered {
+                        target,
+                        trigger: StatusTrigger::TurnStart,
+                        ..
+                    } if *target == enemy
+                )
+            })
+            .unwrap();
+        let movement_index = game
+            .events()
+            .iter()
+            .position(
+                |event| matches!(event, GameEvent::EntityMoved { entity, .. } if *entity == enemy),
+            )
+            .unwrap();
+        assert!(trigger_index < movement_index);
+    }
+
+    #[test]
+    fn movement_status_triggers_once_only_after_a_completed_move() {
+        let (rules, status) = triggered_damage_status_rules(StatusTrigger::Movement, 2);
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let player = game.player_id();
+        game.actors
+            .get_mut(player)
+            .unwrap()
+            .apply_status(&status, 1, None);
+        let initial_integrity = game.actors.get(player).unwrap().integrity();
+        game.drain_events();
+
+        assert!(matches!(
+            game.process_player_command(GameCommand::Move(Direction::North)),
+            CommandOutcome::Rejected(CommandRejection::BlockedByTerrain(_))
+        ));
+        assert_eq!(
+            game.actors.get(player).map(Actor::integrity),
+            Some(initial_integrity)
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::StatusTriggered {
+                target,
+                trigger: StatusTrigger::Movement,
+                ..
+            } if *target == player
+        )));
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_position(), Some(GridPos::new(2, 1)));
+        assert_eq!(
+            game.actors.get(player).map(Actor::integrity),
+            Some(initial_integrity - 2)
+        );
+        assert_eq!(
+            game.events()
+                .iter()
+                .filter(|event| matches!(
+                    event,
+                    GameEvent::StatusTriggered {
+                        target,
+                        trigger: StatusTrigger::Movement,
+                        ..
+                    } if *target == player
+                ))
+                .count(),
+            1
+        );
+    }
+
+    #[test]
+    fn lethal_movement_status_ends_the_run_without_posthumous_visibility_or_escape() {
+        let (rules, status) = triggered_damage_status_rules(StatusTrigger::Movement, 100);
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let player = game.player_id();
+        game.exit = Some(GridPos::new(2, 1));
+        game.actors
+            .get_mut(player)
+            .unwrap()
+            .apply_status(&status, 1, None);
+        game.drain_events();
+
+        assert_eq!(
+            game.process_player_command(GameCommand::Move(Direction::East)),
+            CommandOutcome::Applied
+        );
+
+        assert_eq!(game.status(), RunStatus::PlayerDestroyed);
+        assert_eq!(game.phase(), TurnPhase::RunEnded);
+        assert!(game.actors.get(player).is_none());
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::VisibilityUpdated { observer, .. }
+                | GameEvent::ExitReached {
+                    entity: observer,
+                    ..
+                } if *observer == player
+        )));
+    }
+
+    #[test]
+    fn applied_damage_triggers_receiver_then_source_once_without_recursion() {
+        let (mut rules, received) = triggered_damage_status_rules(StatusTrigger::DamageReceived, 2);
+        let (_, dealt) = triggered_damage_status_rules(StatusTrigger::DamageDealt, 2);
+        rules.statuses.register(dealt.clone()).unwrap();
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let player = game.player_id();
+        let player_integrity = game.actors.get(player).unwrap().integrity();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 10))
+            .unwrap();
+        game.actors
+            .get_mut(target)
+            .unwrap()
+            .apply_status(&received, 1, None);
+        game.actors
+            .get_mut(player)
+            .unwrap()
+            .apply_status(&dealt, 1, None);
+        game.drain_events();
+
+        let application = game
+            .apply_damage_to(
+                Some(player),
+                target,
+                DamagePacket::new(1, DamageType::Chemical, 0),
+            )
+            .unwrap();
+
+        assert_eq!(application.amount, 1);
+        assert!(!application.target_destroyed);
+        assert_eq!(game.actors.get(target).map(Actor::integrity), Some(7));
+        assert_eq!(
+            game.actors.get(player).map(Actor::integrity),
+            Some(player_integrity - 2)
+        );
+        let triggers = game
+            .events()
+            .iter()
+            .filter_map(|event| match event {
+                GameEvent::StatusTriggered {
+                    target, trigger, ..
+                } if matches!(
+                    trigger,
+                    StatusTrigger::DamageReceived | StatusTrigger::DamageDealt
+                ) =>
+                {
+                    Some((*target, *trigger))
+                }
+                _ => None,
+            })
+            .collect::<Vec<_>>();
+        assert_eq!(
+            triggers,
+            vec![
+                (target, StatusTrigger::DamageReceived),
+                (player, StatusTrigger::DamageDealt),
+            ]
+        );
+    }
+
+    #[test]
+    fn component_damage_uses_the_same_received_damage_hook_boundary() {
+        let (rules, received) = triggered_damage_status_rules(StatusTrigger::DamageReceived, 2);
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let component: BodyComponentId = "test:hooked_component".parse().unwrap();
+        let profile = BodyComponentProfile::new(
+            component.clone(),
+            "component.test.hooked.name".to_owned(),
+            10,
+            2,
+            ComponentFailureEffect::DisableMovement,
+        )
+        .unwrap();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 10).with_body_components([profile]))
+            .unwrap();
+        game.actors
+            .get_mut(target)
+            .unwrap()
+            .apply_status(&received, 1, None);
+        game.drain_events();
+
+        let application = game
+            .apply_damage_impact_to_component(
+                Some(game.player),
+                target,
+                &component,
+                DamageImpact::single(DamagePacket::new(1, DamageType::Chemical, 0)),
+            )
+            .unwrap();
+
+        assert_eq!(application.amount, 1);
+        assert_eq!(game.actors.get(target).map(Actor::integrity), Some(8));
+        assert_eq!(
+            game.actors
+                .get(target)
+                .and_then(|actor| actor.body_component(&component))
+                .map(BodyComponentState::durability),
+            Some(9)
+        );
+        assert_eq!(
+            game.events()
+                .iter()
+                .filter(|event| matches!(
+                    event,
+                    GameEvent::StatusTriggered {
+                        target: triggered,
+                        trigger: StatusTrigger::DamageReceived,
+                        ..
+                    } if *triggered == target
+                ))
+                .count(),
+            1
+        );
+    }
+
+    #[test]
+    fn absorbed_or_lethal_damage_obeys_survival_and_positive_damage_boundaries() {
+        let (mut rules, received) = triggered_damage_status_rules(StatusTrigger::DamageReceived, 2);
+        let (_, dealt) = triggered_damage_status_rules(StatusTrigger::DamageDealt, 2);
+        rules.statuses.register(dealt.clone()).unwrap();
+        rules.armor_rules = Some(crate::combat::ArmorRules::default());
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let player = game.player_id();
+        let player_integrity = game.actors.get(player).unwrap().integrity();
+        game.actors
+            .get_mut(player)
+            .unwrap()
+            .apply_status(&dealt, 1, None);
+        let armored = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 10)
+                    .with_body_profile(BodyProfile::new(10, 0).unwrap().with_base_armor(10)),
+            )
+            .unwrap();
+        game.actors
+            .get_mut(armored)
+            .unwrap()
+            .apply_status(&received, 1, None);
+        game.drain_events();
+
+        let absorbed = game
+            .apply_damage_to(
+                Some(player),
+                armored,
+                DamagePacket::new(3, DamageType::Kinetic, 0),
+            )
+            .unwrap();
+        assert_eq!(absorbed.amount, 0);
+        assert_eq!(game.actors.get(armored).map(Actor::integrity), Some(10));
+        assert_eq!(
+            game.actors.get(player).map(Actor::integrity),
+            Some(player_integrity)
+        );
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::StatusTriggered {
+                trigger: StatusTrigger::DamageReceived | StatusTrigger::DamageDealt,
+                ..
+            }
+        )));
+
+        let doomed = game
+            .spawn_actor(build_actor(GridPos::new(3, 1), 1))
+            .unwrap();
+        game.actors
+            .get_mut(doomed)
+            .unwrap()
+            .apply_status(&received, 1, None);
+        game.drain_events();
+        let lethal = game
+            .apply_damage_to(
+                Some(player),
+                doomed,
+                DamagePacket::new(1, DamageType::Chemical, 0),
+            )
+            .unwrap();
+
+        assert!(lethal.target_destroyed);
+        assert!(game.actors.get(doomed).is_none());
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::StatusTriggered {
+                target,
+                trigger: StatusTrigger::DamageReceived,
+                ..
+            } if *target == doomed
+        )));
+        assert_eq!(
+            game.events()
+                .iter()
+                .filter(|event| matches!(
+                    event,
+                    GameEvent::StatusTriggered {
+                        target,
+                        trigger: StatusTrigger::DamageDealt,
+                        ..
+                    } if *target == player
+                ))
+                .count(),
+            1
+        );
+    }
+
+    #[test]
+    fn death_status_damages_the_killer_after_its_owner_is_removed() {
+        let death_status = StatusDefinition::new(
+            "test:death_retaliation".parse().unwrap(),
+            None,
+            StatusStacking::Replace,
+            vec![StatusHook::new(
+                StatusTrigger::Death,
+                vec![StatusEffectPrimitive::DealDamageToCounterpart {
+                    packet: DamagePacket::new(3, DamageType::Electrical, 0),
+                    multiply_by_stacks: false,
+                }],
+            )],
+        )
+        .unwrap();
+        let mut rules = GameRules::default();
+        rules.statuses.register(death_status.clone()).unwrap();
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let player = game.player_id();
+        let player_integrity = game.actors.get(player).unwrap().integrity();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 1))
+            .unwrap();
+        game.actors
+            .get_mut(target)
+            .unwrap()
+            .apply_status(&death_status, 1, None);
+        game.drain_events();
+
+        let application = game
+            .apply_damage_to(
+                Some(player),
+                target,
+                DamagePacket::new(1, DamageType::Kinetic, 0),
+            )
+            .unwrap();
+
+        assert!(application.target_destroyed);
+        assert!(game.actors.get(target).is_none());
+        assert_eq!(
+            game.actors.get(player).map(Actor::integrity),
+            Some(player_integrity - 3)
+        );
+        let death_event = game
+            .events()
+            .iter()
+            .position(
+                |event| matches!(event, GameEvent::EntityDied { entity, .. } if *entity == target),
+            )
+            .unwrap();
+        let trigger_event = game
+            .events()
+            .iter()
+            .position(|event| {
+                matches!(
+                    event,
+                    GameEvent::StatusTriggered {
+                        target: owner,
+                        trigger: StatusTrigger::Death,
+                        ..
+                    } if *owner == target
+                )
+            })
+            .unwrap();
+        let retaliation_event = game
+            .events()
+            .iter()
+            .position(|event| {
+                matches!(
+                    event,
+                    GameEvent::DamageApplied {
+                        target: damaged,
+                        amount: 3,
+                        ..
+                    } if *damaged == player
+                )
+            })
+            .unwrap();
+        assert!(death_event < trigger_event);
+        assert!(trigger_event < retaliation_event);
+    }
+
+    #[test]
+    fn damage_from_a_status_cannot_chain_death_hooks() {
+        let death_status = StatusDefinition::new(
+            "test:bounded_death_retaliation".parse().unwrap(),
+            None,
+            StatusStacking::Replace,
+            vec![StatusHook::new(
+                StatusTrigger::Death,
+                vec![StatusEffectPrimitive::DealDamageToCounterpart {
+                    packet: DamagePacket::new(100, DamageType::Electrical, 0),
+                    multiply_by_stacks: false,
+                }],
+            )],
+        )
+        .unwrap();
+        let mut rules = GameRules::default();
+        rules.statuses.register(death_status.clone()).unwrap();
+        let mut game = GameState::new_with_rules(
+            parse_map("#####\n#...#\n#####"),
+            GridPos::new(1, 1),
+            1,
+            rules,
+        )
+        .unwrap();
+        let player = game.player_id();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 1))
+            .unwrap();
+        game.actors
+            .get_mut(player)
+            .unwrap()
+            .apply_status(&death_status, 1, None);
+        game.actors
+            .get_mut(target)
+            .unwrap()
+            .apply_status(&death_status, 1, None);
+        game.drain_events();
+
+        let application = game
+            .apply_damage_to(
+                Some(player),
+                target,
+                DamagePacket::new(1, DamageType::Kinetic, 0),
+            )
+            .unwrap();
+
+        assert!(application.target_destroyed);
+        assert_eq!(game.status(), RunStatus::PlayerDestroyed);
+        assert!(game.actors.get(player).is_none());
+        assert_eq!(
+            game.events()
+                .iter()
+                .filter(|event| matches!(
+                    event,
+                    GameEvent::StatusTriggered {
+                        trigger: StatusTrigger::Death,
+                        ..
+                    }
+                ))
+                .count(),
+            1
+        );
     }
 
     #[test]

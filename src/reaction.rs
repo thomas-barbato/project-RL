@@ -12,7 +12,7 @@ pub enum ActionOrigin {
     Reaction,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ReactionTrigger {
     BeforeIncomingAttack,
     AfterMeleeHit,
@@ -20,7 +20,7 @@ pub enum ReactionTrigger {
     AfterActorEntersCoveredCell,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ReactionKind {
     EvasiveStep,
     MeleeParry,
@@ -31,7 +31,7 @@ pub enum ReactionKind {
 /// Reusable effect carried by a prepared reaction. The trigger decides when it
 /// may happen; this value decides what it changes once the shared right is
 /// consumed.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ReactionEffect {
     MoveTo {
         destination: GridPos,
@@ -49,12 +49,12 @@ pub enum ReactionEffect {
 /// Optional action produced by a reaction after its primary effect resolves.
 /// The originating improvement is retained so events and saves never need to
 /// recover behavior from a hard-coded content ID.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ReactionFollowUp {
     MeleeCounterattack { technique: TechniqueId },
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct PreparedReaction {
     technique: TechniqueId,
     trigger: ReactionTrigger,
@@ -194,7 +194,7 @@ const fn validate_percentage(percentage: u8) -> Result<(), PreparedReactionError
 
 /// Shared per-actor reaction right. Prepared guards consume this budget; their
 /// concrete targeting and effects remain separate data.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ReactionBudget {
     available: bool,
 }
@@ -229,7 +229,7 @@ impl ReactionBudget {
 
 /// Complete reaction state owned by one actor. A prepared guard survives until
 /// it triggers or until that actor begins its next accepted normal action.
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ReactionState {
     budget: ReactionBudget,
     prepared: Option<PreparedReaction>,

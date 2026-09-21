@@ -10,7 +10,7 @@ use super::{Inventory, ItemInstanceId};
 /// so a ruleset can replace or extend the loadout without changing this type.
 pub type EquipmentSlotId = ContentId;
 
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct Equipment {
     slots: BTreeMap<EquipmentSlotId, ItemInstanceId>,
 }

@@ -14,7 +14,9 @@ use crate::item::{ItemCatalog, ItemId, ItemKind};
 use crate::loot::{LootCatalog, LootTableId, MAX_DRAWS};
 use crate::progression::DefeatReward;
 use crate::social::PlayerRelation;
-use crate::social::{LocalAlertProfileError, SocialGroupId, WitnessProfileError};
+use crate::social::{
+    LocalAlertProfileError, PropertyReportProfileError, SocialGroupId, WitnessProfileError,
+};
 use crate::stats::{
     BodyProfile, PhysicalRulesError, PrimaryAttributeRules, PrimaryAttributes,
     PrimaryAttributesError,
@@ -30,6 +32,17 @@ pub const MAX_ZONE_SIDE: usize = 256;
 pub const MAX_ROOMS: usize = 64;
 pub const MAX_PLACEMENT_ATTEMPTS: usize = 100_000;
 pub const MAX_FACILITY_MATERIAL_SPAWNS: usize = 256;
+pub const MAX_MERCHANT_OFFERS: usize = 64;
+pub const MAX_GAMBLE_RANK: u16 = 64;
+pub const MAX_CLINIC_PATH_SEARCH: usize = 100_000;
+pub const MAX_HUB_RESIDENTS: usize = 32;
+pub const MAX_HUB_QUESTS: usize = 16;
+pub const MAX_QUEST_PREREQUISITES: usize = 8;
+pub const MAX_QUEST_REWARD_ITEMS: usize = 8;
+pub const MAX_QUEST_WORLD_STATES: usize = 8;
+pub const MAX_QUEST_WORLD_EFFECTS: usize = 8;
+pub const MAX_POPULATION_TAGS: usize = 16;
+pub const MAX_RESIDENT_PATH_SEARCH: usize = 100_000;
 pub const MAX_PLAYER_PROPERTY_AUTHORIZATIONS: usize = 64;
 pub const MAX_POPULATION_GROUPS: usize = 64;
 pub const MAX_POPULATION_ACTORS: usize = 256;
@@ -97,6 +110,7 @@ pub struct PopulationGroupDefinition {
     body_components: Vec<BodyComponentProfile>,
     electronic_system: Option<ElectronicSystemProfile>,
     player_relation: PlayerRelation,
+    tags: Vec<ContentId>,
 }
 
 // Optional v32 attributes are omitted so catalogs stripped for older
@@ -125,6 +139,9 @@ impl Debug for PopulationGroupDefinition {
         }
         if self.player_relation != PlayerRelation::Neutral {
             group.field("player_relation", &self.player_relation);
+        }
+        if !self.tags.is_empty() {
+            group.field("tags", &self.tags);
         }
         group.finish()
     }
@@ -187,6 +204,7 @@ impl PopulationGroupDefinition {
             body_components: Vec::new(),
             electronic_system: None,
             player_relation: PlayerRelation::Neutral,
+            tags: Vec::new(),
         })
     }
 
@@ -222,6 +240,19 @@ impl PopulationGroupDefinition {
     pub const fn with_player_relation(mut self, relation: PlayerRelation) -> Self {
         self.player_relation = relation;
         self
+    }
+
+    pub fn with_tags(mut self, tags: Vec<ContentId>) -> Result<Self, ExpeditionDefinitionError> {
+        if tags.len() > MAX_POPULATION_TAGS
+            || tags
+                .iter()
+                .enumerate()
+                .any(|(index, tag)| tags[..index].contains(tag))
+        {
+            return Err(ExpeditionDefinitionError::InvalidPopulationTags);
+        }
+        self.tags = tags;
+        Ok(self)
     }
 
     pub const fn count(&self) -> u16 {
@@ -266,6 +297,10 @@ impl PopulationGroupDefinition {
 
     pub const fn player_relation(&self) -> PlayerRelation {
         self.player_relation
+    }
+
+    pub fn tags(&self) -> &[ContentId] {
+        &self.tags
     }
 
     pub(crate) fn remove_pursuit_lifecycle(&mut self) {
@@ -335,6 +370,868 @@ pub struct FacilityDefinition {
     pub materials: Vec<FacilityMaterialSpawn>,
 }
 
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct MerchantOfferDefinition {
+    pub item: ItemId,
+    pub initial_stock: u16,
+    pub buy_price: u32,
+    pub sell_price: u32,
+    pub minimum_depth: u16,
+    pub maximum_depth: Option<u16>,
+}
+
+impl MerchantOfferDefinition {
+    pub fn available_at_depth(&self, depth: u16) -> bool {
+        depth >= self.minimum_depth && self.maximum_depth.is_none_or(|maximum| depth <= maximum)
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct MerchantGambleDefinition {
+    pub item: ItemId,
+    pub initial_stock: u16,
+    pub price: u32,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct GambleScalingDefinition {
+    pub player_levels_per_rank: u16,
+    pub zone_depths_per_rank: u16,
+    pub maximum_rank: u16,
+}
+
+impl GambleScalingDefinition {
+    pub const fn new(
+        player_levels_per_rank: u16,
+        zone_depths_per_rank: u16,
+        maximum_rank: u16,
+    ) -> Option<Self> {
+        let definition = Self {
+            player_levels_per_rank,
+            zone_depths_per_rank,
+            maximum_rank,
+        };
+        if !definition.is_valid() {
+            return None;
+        }
+        Some(definition)
+    }
+
+    pub const fn is_valid(self) -> bool {
+        self.player_levels_per_rank > 0
+            && self.zone_depths_per_rank > 0
+            && self.maximum_rank > 0
+            && self.maximum_rank <= MAX_GAMBLE_RANK
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct MerchantDefinition {
+    pub position: GridPos,
+    pub maximum_integrity: u16,
+    pub initial_credits: u32,
+    pub offers: Vec<MerchantOfferDefinition>,
+    pub gambles: Vec<MerchantGambleDefinition>,
+    pub gamble_scaling: GambleScalingDefinition,
+}
+
+impl MerchantDefinition {
+    pub fn new(
+        position: GridPos,
+        maximum_integrity: u16,
+        initial_credits: u32,
+        offers: Vec<MerchantOfferDefinition>,
+        gambles: Vec<MerchantGambleDefinition>,
+        gamble_scaling: GambleScalingDefinition,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if maximum_integrity == 0
+            || offers.is_empty()
+            || offers.len() > MAX_MERCHANT_OFFERS
+            || offers.iter().any(|offer| {
+                offer.initial_stock == 0
+                    || offer.buy_price == 0
+                    || offer.sell_price == 0
+                    || offer.sell_price > offer.buy_price
+                    || offer
+                        .maximum_depth
+                        .is_some_and(|maximum| maximum < offer.minimum_depth)
+            })
+            || offers
+                .iter()
+                .enumerate()
+                .any(|(index, offer)| offers[..index].iter().any(|known| known.item == offer.item))
+            || gambles.is_empty()
+            || gambles.len() > MAX_MERCHANT_OFFERS
+            || gambles
+                .iter()
+                .any(|gamble| gamble.initial_stock == 0 || gamble.price == 0)
+            || !gamble_scaling.is_valid()
+        {
+            return Err(ExpeditionDefinitionError::InvalidMerchant);
+        }
+        Ok(Self {
+            position,
+            maximum_integrity,
+            initial_credits,
+            offers,
+            gambles,
+            gamble_scaling,
+        })
+    }
+
+    pub(crate) fn validate_references(
+        &self,
+        items: &ItemCatalog,
+    ) -> Result<(), ExpeditionDefinitionError> {
+        for offer in &self.offers {
+            if items.get(&offer.item).is_none() {
+                return Err(ExpeditionDefinitionError::UnknownMerchantItem(
+                    offer.item.clone(),
+                ));
+            }
+        }
+        for gamble in &self.gambles {
+            let definition = items.get(&gamble.item).ok_or_else(|| {
+                ExpeditionDefinitionError::UnknownMerchantItem(gamble.item.clone())
+            })?;
+            if definition.kind() != ItemKind::Armor {
+                return Err(ExpeditionDefinitionError::MerchantGambleItemIsNotArmor(
+                    gamble.item.clone(),
+                ));
+            }
+        }
+        Ok(())
+    }
+}
+
+/// One bounded local care provider. Treatment prices and the short work/break
+/// routine are authored by content; the simulation only performs atomic
+/// payment, restoration and deterministic movement between the two anchors.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct ClinicDefinition {
+    pub work_position: GridPos,
+    pub break_position: GridPos,
+    pub maximum_integrity: u16,
+    pub initial_credits: u32,
+    pub maximum_restoration: u16,
+    pub price_per_point: u32,
+    pub work_turns: u16,
+    pub break_turns: u16,
+    pub maximum_path_search: usize,
+}
+
+impl ClinicDefinition {
+    #[allow(clippy::too_many_arguments)]
+    pub fn new(
+        work_position: GridPos,
+        break_position: GridPos,
+        maximum_integrity: u16,
+        initial_credits: u32,
+        maximum_restoration: u16,
+        price_per_point: u32,
+        work_turns: u16,
+        break_turns: u16,
+        maximum_path_search: usize,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if maximum_integrity == 0
+            || maximum_restoration == 0
+            || price_per_point == 0
+            || work_turns == 0
+            || break_turns == 0
+            || maximum_path_search == 0
+            || maximum_path_search > MAX_CLINIC_PATH_SEARCH
+            || u32::from(maximum_restoration)
+                .checked_mul(price_per_point)
+                .is_none()
+        {
+            return Err(ExpeditionDefinitionError::InvalidClinic);
+        }
+        Ok(Self {
+            work_position,
+            break_position,
+            maximum_integrity,
+            initial_credits,
+            maximum_restoration,
+            price_per_point,
+            work_turns,
+            break_turns,
+            maximum_path_search,
+        })
+    }
+}
+
+/// One non-service resident following a small, observable local circuit.
+/// The two anchors and dwell times are authored by content so this remains a
+/// bounded routine rather than a simulated daily life.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct ResidentDefinition {
+    pub residence_position: GridPos,
+    pub gathering_position: GridPos,
+    pub maximum_integrity: u16,
+    pub residence_turns: u16,
+    pub gathering_turns: u16,
+    pub maximum_path_search: usize,
+}
+
+impl ResidentDefinition {
+    pub const fn new(
+        residence_position: GridPos,
+        gathering_position: GridPos,
+        maximum_integrity: u16,
+        residence_turns: u16,
+        gathering_turns: u16,
+        maximum_path_search: usize,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if residence_position.x == gathering_position.x
+            && residence_position.y == gathering_position.y
+            || maximum_integrity == 0
+            || residence_turns == 0
+            || gathering_turns == 0
+            || maximum_path_search == 0
+            || maximum_path_search > MAX_RESIDENT_PATH_SEARCH
+        {
+            return Err(ExpeditionDefinitionError::InvalidResident);
+        }
+        Ok(Self {
+            residence_position,
+            gathering_position,
+            maximum_integrity,
+            residence_turns,
+            gathering_turns,
+            maximum_path_search,
+        })
+    }
+}
+
+/// Stable delivery contract authored by a content package. The simulation
+/// owns its accepted/completed state; this definition only supplies immutable
+/// objective and reward data.
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct DeliveryQuestDefinition {
+    pub id: ContentId,
+    pub title_key: String,
+    pub summary_key: String,
+    pub required_item: ItemId,
+    pub required_quantity: u16,
+    pub reward_credits: u32,
+}
+
+impl DeliveryQuestDefinition {
+    pub fn new(
+        id: ContentId,
+        title_key: String,
+        summary_key: String,
+        required_item: ItemId,
+        required_quantity: u16,
+        reward_credits: u32,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if title_key.trim().is_empty() || summary_key.trim().is_empty() || required_quantity == 0 {
+            return Err(ExpeditionDefinitionError::InvalidDeliveryQuest);
+        }
+        Ok(Self {
+            id,
+            title_key,
+            summary_key,
+            required_item,
+            required_quantity,
+            reward_credits,
+        })
+    }
+}
+
+/// Exploration contract that counts distinct zones first entered after the
+/// quest was accepted. The provider's zone and every zone already visited at
+/// acceptance form the baseline and can never inflate this objective.
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct ExplorationQuestDefinition {
+    pub id: ContentId,
+    pub title_key: String,
+    pub summary_key: String,
+    pub required_zones: u16,
+    pub reward_credits: u32,
+    #[serde(default)]
+    pub qualifying_records: Vec<ContentId>,
+}
+
+// Omit absent v85 metadata from historical content fingerprints.
+impl Debug for ExplorationQuestDefinition {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut state = formatter.debug_struct("ExplorationQuestDefinition");
+        state
+            .field("id", &self.id)
+            .field("title_key", &self.title_key)
+            .field("summary_key", &self.summary_key)
+            .field("required_zones", &self.required_zones)
+            .field("reward_credits", &self.reward_credits);
+        if !self.qualifying_records.is_empty() {
+            state.field("qualifying_records", &self.qualifying_records);
+        }
+        state.finish()
+    }
+}
+
+impl ExplorationQuestDefinition {
+    pub fn new(
+        id: ContentId,
+        title_key: String,
+        summary_key: String,
+        required_zones: u16,
+        reward_credits: u32,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if title_key.trim().is_empty() || summary_key.trim().is_empty() || required_zones == 0 {
+            return Err(ExpeditionDefinitionError::InvalidExplorationQuest);
+        }
+        Ok(Self {
+            id,
+            title_key,
+            summary_key,
+            required_zones,
+            reward_credits,
+            qualifying_records: Vec::new(),
+        })
+    }
+
+    /// When configured, only a successful consultation of one of these
+    /// records in a newly visited zone counts that zone as explored.
+    pub fn with_qualifying_records(
+        mut self,
+        records: Vec<ContentId>,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if records.is_empty()
+            || records.len() > 16
+            || records
+                .iter()
+                .enumerate()
+                .any(|(index, record)| records[..index].contains(record))
+        {
+            return Err(ExpeditionDefinitionError::InvalidExplorationQuest);
+        }
+        self.qualifying_records = records;
+        Ok(self)
+    }
+}
+
+/// Interaction contract completed by successfully consulting a data terminal
+/// that exposes the authored record. Prior discoveries do not count: the
+/// simulation observes an actual terminal access after quest acceptance.
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct DataRecordQuestDefinition {
+    pub id: ContentId,
+    pub title_key: String,
+    pub summary_key: String,
+    pub record: ContentId,
+    pub reward_credits: u32,
+}
+
+impl DataRecordQuestDefinition {
+    pub fn new(
+        id: ContentId,
+        title_key: String,
+        summary_key: String,
+        record: ContentId,
+        reward_credits: u32,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if title_key.trim().is_empty() || summary_key.trim().is_empty() {
+            return Err(ExpeditionDefinitionError::InvalidDataRecordQuest);
+        }
+        Ok(Self {
+            id,
+            title_key,
+            summary_key,
+            record,
+            reward_credits,
+        })
+    }
+}
+
+/// Combat contract keyed by a stable actor tag rather than by glyph, stats,
+/// affiliation or a particular runtime entity ID.
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct DefeatTargetsQuestDefinition {
+    pub id: ContentId,
+    pub title_key: String,
+    pub summary_key: String,
+    pub target_tag: ContentId,
+    pub required_quantity: u16,
+    pub reward_credits: u32,
+}
+
+impl DefeatTargetsQuestDefinition {
+    pub fn new(
+        id: ContentId,
+        title_key: String,
+        summary_key: String,
+        target_tag: ContentId,
+        required_quantity: u16,
+        reward_credits: u32,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if title_key.trim().is_empty() || summary_key.trim().is_empty() || required_quantity == 0 {
+            return Err(ExpeditionDefinitionError::InvalidDefeatTargetsQuest);
+        }
+        Ok(Self {
+            id,
+            title_key,
+            summary_key,
+            target_tag,
+            required_quantity,
+            reward_credits,
+        })
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub enum QuestDefinition {
+    Delivery(DeliveryQuestDefinition),
+    ExploreZones(ExplorationQuestDefinition),
+    AccessDataRecord(DataRecordQuestDefinition),
+    DefeatTargets(DefeatTargetsQuestDefinition),
+}
+
+impl QuestDefinition {
+    pub const fn id(&self) -> &ContentId {
+        match self {
+            Self::Delivery(definition) => &definition.id,
+            Self::ExploreZones(definition) => &definition.id,
+            Self::AccessDataRecord(definition) => &definition.id,
+            Self::DefeatTargets(definition) => &definition.id,
+        }
+    }
+
+    pub fn title_key(&self) -> &str {
+        match self {
+            Self::Delivery(definition) => &definition.title_key,
+            Self::ExploreZones(definition) => &definition.title_key,
+            Self::AccessDataRecord(definition) => &definition.title_key,
+            Self::DefeatTargets(definition) => &definition.title_key,
+        }
+    }
+
+    pub fn summary_key(&self) -> &str {
+        match self {
+            Self::Delivery(definition) => &definition.summary_key,
+            Self::ExploreZones(definition) => &definition.summary_key,
+            Self::AccessDataRecord(definition) => &definition.summary_key,
+            Self::DefeatTargets(definition) => &definition.summary_key,
+        }
+    }
+
+    pub const fn reward_credits(&self) -> u32 {
+        match self {
+            Self::Delivery(definition) => definition.reward_credits,
+            Self::ExploreZones(definition) => definition.reward_credits,
+            Self::AccessDataRecord(definition) => definition.reward_credits,
+            Self::DefeatTargets(definition) => definition.reward_credits,
+        }
+    }
+}
+
+impl From<DeliveryQuestDefinition> for QuestDefinition {
+    fn from(value: DeliveryQuestDefinition) -> Self {
+        Self::Delivery(value)
+    }
+}
+
+impl From<ExplorationQuestDefinition> for QuestDefinition {
+    fn from(value: ExplorationQuestDefinition) -> Self {
+        Self::ExploreZones(value)
+    }
+}
+
+impl From<DataRecordQuestDefinition> for QuestDefinition {
+    fn from(value: DataRecordQuestDefinition) -> Self {
+        Self::AccessDataRecord(value)
+    }
+}
+
+impl From<DefeatTargetsQuestDefinition> for QuestDefinition {
+    fn from(value: DefeatTargetsQuestDefinition) -> Self {
+        Self::DefeatTargets(value)
+    }
+}
+
+/// How an authored hub quest obtains its NPC. `Existing` adds the quest to a
+/// merchant, healer, resident or worker already starting at this position;
+/// `Contact` creates a dedicated neutral quest NPC.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum HubQuestProviderDefinition {
+    Existing {
+        position: GridPos,
+    },
+    Contact {
+        position: GridPos,
+        maximum_integrity: u16,
+    },
+}
+
+impl HubQuestProviderDefinition {
+    pub fn existing(position: GridPos) -> Result<Self, ExpeditionDefinitionError> {
+        if position.x < 0 || position.y < 0 {
+            return Err(ExpeditionDefinitionError::InvalidQuestProvider);
+        }
+        Ok(Self::Existing { position })
+    }
+
+    pub fn contact(
+        position: GridPos,
+        maximum_integrity: u16,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if position.x < 0 || position.y < 0 || maximum_integrity == 0 {
+            return Err(ExpeditionDefinitionError::InvalidQuestProvider);
+        }
+        Ok(Self::Contact {
+            position,
+            maximum_integrity,
+        })
+    }
+
+    pub const fn position(&self) -> GridPos {
+        match self {
+            Self::Existing { position } | Self::Contact { position, .. } => *position,
+        }
+    }
+}
+
+fn quest_providers_can_share(
+    left: &HubQuestProviderDefinition,
+    right: &HubQuestProviderDefinition,
+) -> bool {
+    match (left, right) {
+        (
+            HubQuestProviderDefinition::Existing { position: left },
+            HubQuestProviderDefinition::Existing { position: right },
+        ) => left == right,
+        (
+            HubQuestProviderDefinition::Contact {
+                position: left,
+                maximum_integrity: left_integrity,
+            },
+            HubQuestProviderDefinition::Contact {
+                position: right,
+                maximum_integrity: right_integrity,
+            },
+        ) => left == right && left_integrity == right_integrity,
+        _ => false,
+    }
+}
+
+#[derive(Clone, PartialEq, Eq)]
+pub struct HubQuestDefinition {
+    pub provider: HubQuestProviderDefinition,
+    pub quest: QuestDefinition,
+    pub prerequisites: Vec<ContentId>,
+    pub required_world_states: Vec<ContentId>,
+    pub completion_world_states: Vec<QuestWorldStateDefinition>,
+    pub completion_world_effects: Vec<QuestWorldEffectDefinition>,
+    pub choice_group: Option<ContentId>,
+    pub choice_prompt_key: Option<String>,
+    pub reward_experience: u64,
+    pub reward_items: Vec<QuestItemRewardDefinition>,
+}
+
+// Empty v66/v67 consequence metadata is omitted so stripped definitions retain
+// the exact historical Debug representation used by suspension fingerprints.
+impl Debug for HubQuestDefinition {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut state = formatter.debug_struct("HubQuestDefinition");
+        state
+            .field("provider", &self.provider)
+            .field("quest", &self.quest)
+            .field("prerequisites", &self.prerequisites)
+            .field("choice_group", &self.choice_group)
+            .field("choice_prompt_key", &self.choice_prompt_key)
+            .field("reward_experience", &self.reward_experience)
+            .field("reward_items", &self.reward_items);
+        if !self.required_world_states.is_empty() {
+            state.field("required_world_states", &self.required_world_states);
+        }
+        if !self.completion_world_states.is_empty() {
+            state.field("completion_world_states", &self.completion_world_states);
+        }
+        if !self.completion_world_effects.is_empty() {
+            state.field("completion_world_effects", &self.completion_world_effects);
+        }
+        state.finish()
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct QuestItemRewardDefinition {
+    pub item: ItemId,
+    pub quantity: u16,
+}
+
+/// One durable, authored consequence activated when a quest is completed.
+/// The state ID is simulation data; text keys only describe its visible result
+/// and an optional contextual reply from the quest provider.
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct QuestWorldStateDefinition {
+    pub id: ContentId,
+    pub summary_key: String,
+    pub provider_dialogue_key: Option<String>,
+}
+
+impl QuestWorldStateDefinition {
+    pub fn new(id: ContentId, summary_key: String) -> Result<Self, ExpeditionDefinitionError> {
+        if summary_key.trim().is_empty() {
+            return Err(ExpeditionDefinitionError::InvalidQuestWorldState);
+        }
+        Ok(Self {
+            id,
+            summary_key,
+            provider_dialogue_key: None,
+        })
+    }
+
+    pub fn with_provider_dialogue(
+        mut self,
+        dialogue_key: String,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if dialogue_key.trim().is_empty() {
+            return Err(ExpeditionDefinitionError::InvalidQuestWorldState);
+        }
+        self.provider_dialogue_key = Some(dialogue_key);
+        Ok(self)
+    }
+}
+
+/// One bounded material change applied atomically when a quest is completed.
+/// Effects are local to the quest's hub; the summary key makes the consequence
+/// visible before the player accepts the quest.
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub enum QuestWorldEffectDefinition {
+    UnlockDoor {
+        position: GridPos,
+        summary_key: String,
+    },
+    UpdateDataTerminal {
+        installation: ContentId,
+        record: ContentId,
+        summary_key: String,
+    },
+    GrantPropertyTakeAuthorization {
+        owner: SocialGroupId,
+        summary_key: String,
+    },
+}
+
+impl QuestWorldEffectDefinition {
+    pub fn unlock_door(
+        position: GridPos,
+        summary_key: String,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if position.x < 0 || position.y < 0 || summary_key.trim().is_empty() {
+            return Err(ExpeditionDefinitionError::InvalidQuestWorldEffect);
+        }
+        Ok(Self::UnlockDoor {
+            position,
+            summary_key,
+        })
+    }
+
+    pub fn update_data_terminal(
+        installation: ContentId,
+        record: ContentId,
+        summary_key: String,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if summary_key.trim().is_empty() {
+            return Err(ExpeditionDefinitionError::InvalidQuestWorldEffect);
+        }
+        Ok(Self::UpdateDataTerminal {
+            installation,
+            record,
+            summary_key,
+        })
+    }
+
+    pub fn grant_property_take_authorization(
+        owner: SocialGroupId,
+        summary_key: String,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if summary_key.trim().is_empty() {
+            return Err(ExpeditionDefinitionError::InvalidQuestWorldEffect);
+        }
+        Ok(Self::GrantPropertyTakeAuthorization { owner, summary_key })
+    }
+
+    pub const fn door_position(&self) -> Option<GridPos> {
+        match self {
+            Self::UnlockDoor { position, .. } => Some(*position),
+            Self::UpdateDataTerminal { .. } | Self::GrantPropertyTakeAuthorization { .. } => None,
+        }
+    }
+
+    pub fn summary_key(&self) -> &str {
+        match self {
+            Self::UnlockDoor { summary_key, .. }
+            | Self::UpdateDataTerminal { summary_key, .. }
+            | Self::GrantPropertyTakeAuthorization { summary_key, .. } => summary_key,
+        }
+    }
+
+    pub const fn is_installation_effect(&self) -> bool {
+        matches!(self, Self::UpdateDataTerminal { .. })
+    }
+
+    pub const fn is_authorization_effect(&self) -> bool {
+        matches!(self, Self::GrantPropertyTakeAuthorization { .. })
+    }
+
+    pub(crate) fn has_valid_shape(&self) -> bool {
+        match self {
+            Self::UnlockDoor {
+                position,
+                summary_key,
+            } => position.x >= 0 && position.y >= 0 && !summary_key.trim().is_empty(),
+            Self::UpdateDataTerminal { summary_key, .. } => !summary_key.trim().is_empty(),
+            Self::GrantPropertyTakeAuthorization { summary_key, .. } => {
+                !summary_key.trim().is_empty()
+            }
+        }
+    }
+
+    pub(crate) fn targets_same_element(&self, other: &Self) -> bool {
+        match (self, other) {
+            (
+                Self::UnlockDoor { position: left, .. },
+                Self::UnlockDoor {
+                    position: right, ..
+                },
+            ) => left == right,
+            (
+                Self::UpdateDataTerminal {
+                    installation: left, ..
+                },
+                Self::UpdateDataTerminal {
+                    installation: right,
+                    ..
+                },
+            ) => left == right,
+            (
+                Self::GrantPropertyTakeAuthorization { owner: left, .. },
+                Self::GrantPropertyTakeAuthorization { owner: right, .. },
+            ) => left == right,
+            _ => false,
+        }
+    }
+}
+
+impl QuestItemRewardDefinition {
+    pub fn new(item: ItemId, quantity: u16) -> Result<Self, ExpeditionDefinitionError> {
+        if quantity == 0 {
+            return Err(ExpeditionDefinitionError::InvalidQuestReward);
+        }
+        Ok(Self { item, quantity })
+    }
+}
+
+impl HubQuestDefinition {
+    pub fn new(provider: HubQuestProviderDefinition, quest: QuestDefinition) -> Self {
+        Self {
+            provider,
+            quest,
+            prerequisites: Vec::new(),
+            required_world_states: Vec::new(),
+            completion_world_states: Vec::new(),
+            completion_world_effects: Vec::new(),
+            choice_group: None,
+            choice_prompt_key: None,
+            reward_experience: 0,
+            reward_items: Vec::new(),
+        }
+    }
+
+    pub fn with_prerequisites(
+        mut self,
+        prerequisites: Vec<ContentId>,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if prerequisites.len() > MAX_QUEST_PREREQUISITES
+            || prerequisites
+                .iter()
+                .enumerate()
+                .any(|(index, id)| prerequisites[..index].contains(id))
+        {
+            return Err(ExpeditionDefinitionError::InvalidQuestPrerequisites);
+        }
+        self.prerequisites = prerequisites;
+        Ok(self)
+    }
+
+    pub fn with_choice(
+        mut self,
+        group: ContentId,
+        prompt_key: String,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if prompt_key.trim().is_empty() {
+            return Err(ExpeditionDefinitionError::InvalidQuestChoice);
+        }
+        self.choice_group = Some(group);
+        self.choice_prompt_key = Some(prompt_key);
+        Ok(self)
+    }
+
+    pub fn with_world_states(
+        mut self,
+        required: Vec<ContentId>,
+        completed: Vec<QuestWorldStateDefinition>,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if required.len() > MAX_QUEST_WORLD_STATES
+            || completed.len() > MAX_QUEST_WORLD_STATES
+            || required
+                .iter()
+                .enumerate()
+                .any(|(index, id)| required[..index].contains(id))
+            || completed.iter().enumerate().any(|(index, state)| {
+                state.summary_key.trim().is_empty()
+                    || state
+                        .provider_dialogue_key
+                        .as_ref()
+                        .is_some_and(|key| key.trim().is_empty())
+                    || completed[..index].iter().any(|known| known.id == state.id)
+            })
+        {
+            return Err(ExpeditionDefinitionError::InvalidQuestWorldState);
+        }
+        self.required_world_states = required;
+        self.completion_world_states = completed;
+        Ok(self)
+    }
+
+    pub fn with_world_effects(
+        mut self,
+        effects: Vec<QuestWorldEffectDefinition>,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if effects.len() > MAX_QUEST_WORLD_EFFECTS
+            || effects.iter().enumerate().any(|(index, effect)| {
+                !effect.has_valid_shape()
+                    || effects[..index]
+                        .iter()
+                        .any(|known| known.targets_same_element(effect))
+            })
+        {
+            return Err(ExpeditionDefinitionError::InvalidQuestWorldEffect);
+        }
+        self.completion_world_effects = effects;
+        Ok(self)
+    }
+
+    pub fn with_additional_rewards(
+        mut self,
+        experience: u64,
+        items: Vec<QuestItemRewardDefinition>,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if items.len() > MAX_QUEST_REWARD_ITEMS
+            || items.iter().enumerate().any(|(index, reward)| {
+                reward.quantity == 0 || items[..index].iter().any(|known| known.item == reward.item)
+            })
+        {
+            return Err(ExpeditionDefinitionError::InvalidQuestReward);
+        }
+        self.reward_experience = experience;
+        self.reward_items = items;
+        Ok(self)
+    }
+}
+
 impl FacilityDefinition {
     pub fn new(
         blueprint: FacilityBlueprint,
@@ -382,6 +1279,11 @@ pub struct ExpeditionDefinition {
     pub hub_passage: GridPos,
     pub expanded_world: Option<ExpandedWorldDefinition>,
     pub hub_facility: Option<FacilityDefinition>,
+    pub hub_merchant: Option<MerchantDefinition>,
+    pub hub_clinic: Option<ClinicDefinition>,
+    pub hub_residents: Vec<ResidentDefinition>,
+    pub hub_quests: Vec<HubQuestDefinition>,
+    pub player_starting_credits: u32,
     player_property_take_authorizations: Vec<SocialGroupId>,
 }
 
@@ -400,6 +1302,21 @@ impl Debug for ExpeditionDefinition {
         }
         if let Some(facility) = &self.hub_facility {
             definition.field("hub_facility", facility);
+        }
+        if let Some(merchant) = &self.hub_merchant {
+            definition.field("hub_merchant", merchant);
+        }
+        if let Some(clinic) = &self.hub_clinic {
+            definition.field("hub_clinic", clinic);
+        }
+        if !self.hub_residents.is_empty() {
+            definition.field("hub_residents", &self.hub_residents);
+        }
+        if !self.hub_quests.is_empty() {
+            definition.field("hub_quests", &self.hub_quests);
+        }
+        if self.player_starting_credits > 0 {
+            definition.field("player_starting_credits", &self.player_starting_credits);
         }
         if !self.player_property_take_authorizations.is_empty() {
             definition.field(
@@ -460,6 +1377,11 @@ impl ExpeditionDefinition {
             hub_passage,
             expanded_world: None,
             hub_facility: None,
+            hub_merchant: None,
+            hub_clinic: None,
+            hub_residents: Vec::new(),
+            hub_quests: Vec::new(),
+            player_starting_credits: 0,
             player_property_take_authorizations: Vec::new(),
         })
     }
@@ -505,6 +1427,192 @@ impl ExpeditionDefinition {
         self
     }
 
+    pub fn with_hub_merchant(
+        mut self,
+        merchant: MerchantDefinition,
+        player_starting_credits: u32,
+    ) -> Self {
+        self.hub_merchant = Some(merchant);
+        self.player_starting_credits = player_starting_credits;
+        self
+    }
+
+    pub fn with_hub_clinic(mut self, clinic: ClinicDefinition) -> Self {
+        self.hub_clinic = Some(clinic);
+        self
+    }
+
+    pub fn with_hub_residents(
+        mut self,
+        residents: Vec<ResidentDefinition>,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if residents.len() > MAX_HUB_RESIDENTS
+            || residents.iter().enumerate().any(|(index, resident)| {
+                residents[..index].iter().any(|known| {
+                    known.residence_position == resident.residence_position
+                        || known.residence_position == resident.gathering_position
+                        || known.gathering_position == resident.residence_position
+                        || known.gathering_position == resident.gathering_position
+                })
+            })
+        {
+            return Err(ExpeditionDefinitionError::InvalidResident);
+        }
+        self.hub_residents = residents;
+        Ok(self)
+    }
+
+    pub fn with_hub_quests(
+        mut self,
+        quests: Vec<HubQuestDefinition>,
+    ) -> Result<Self, ExpeditionDefinitionError> {
+        if quests.len() > MAX_HUB_QUESTS {
+            return Err(ExpeditionDefinitionError::TooManyHubQuests);
+        }
+        for (index, quest) in quests.iter().enumerate() {
+            if quest.prerequisites.len() > MAX_QUEST_PREREQUISITES
+                || quest
+                    .prerequisites
+                    .iter()
+                    .enumerate()
+                    .any(|(required_index, required)| {
+                        quest.prerequisites[..required_index].contains(required)
+                    })
+            {
+                return Err(ExpeditionDefinitionError::InvalidQuestPrerequisites);
+            }
+            if quest.reward_items.len() > MAX_QUEST_REWARD_ITEMS
+                || quest
+                    .reward_items
+                    .iter()
+                    .enumerate()
+                    .any(|(reward_index, reward)| {
+                        reward.quantity == 0
+                            || quest.reward_items[..reward_index]
+                                .iter()
+                                .any(|known| known.item == reward.item)
+                    })
+            {
+                return Err(ExpeditionDefinitionError::InvalidQuestReward);
+            }
+            if quest.required_world_states.len() > MAX_QUEST_WORLD_STATES
+                || quest.completion_world_states.len() > MAX_QUEST_WORLD_STATES
+                || quest
+                    .required_world_states
+                    .iter()
+                    .enumerate()
+                    .any(|(state_index, state)| {
+                        quest.required_world_states[..state_index].contains(state)
+                            || !quests[..index].iter().any(|known| {
+                                known
+                                    .completion_world_states
+                                    .iter()
+                                    .any(|completed| &completed.id == state)
+                            })
+                    })
+                || quest
+                    .completion_world_states
+                    .iter()
+                    .enumerate()
+                    .any(|(state_index, state)| {
+                        state.summary_key.trim().is_empty()
+                            || state
+                                .provider_dialogue_key
+                                .as_ref()
+                                .is_some_and(|key| key.trim().is_empty())
+                            || quest.completion_world_states[..state_index]
+                                .iter()
+                                .any(|known| known.id == state.id)
+                            || quests[..index].iter().any(|known| {
+                                known
+                                    .completion_world_states
+                                    .iter()
+                                    .any(|completed| completed.id == state.id)
+                            })
+                    })
+            {
+                return Err(ExpeditionDefinitionError::InvalidQuestWorldState);
+            }
+            if quest.completion_world_effects.len() > MAX_QUEST_WORLD_EFFECTS
+                || quest.completion_world_effects.iter().enumerate().any(
+                    |(effect_index, effect)| {
+                        !effect.has_valid_shape()
+                            || quest.completion_world_effects[..effect_index]
+                                .iter()
+                                .any(|known| known.targets_same_element(effect))
+                            || quests[..index].iter().any(|known| {
+                                known
+                                    .completion_world_effects
+                                    .iter()
+                                    .any(|known| known.targets_same_element(effect))
+                            })
+                    },
+                )
+            {
+                return Err(ExpeditionDefinitionError::InvalidQuestWorldEffect);
+            }
+            if quests[..index]
+                .iter()
+                .any(|known| known.quest.id() == quest.quest.id())
+            {
+                return Err(ExpeditionDefinitionError::DuplicateQuest(
+                    quest.quest.id().clone(),
+                ));
+            }
+            if quest.prerequisites.iter().any(|required| {
+                !quests[..index]
+                    .iter()
+                    .any(|known| known.quest.id() == required)
+            }) {
+                return Err(ExpeditionDefinitionError::InvalidQuestPrerequisites);
+            }
+            if quest.choice_group.is_some() != quest.choice_prompt_key.is_some() {
+                return Err(ExpeditionDefinitionError::InvalidQuestChoice);
+            }
+            if let Some(group) = &quest.choice_group {
+                let Some(first) = quests
+                    .iter()
+                    .find(|known| known.choice_group.as_ref() == Some(group))
+                else {
+                    unreachable!("the current quest belongs to its own choice group")
+                };
+                if first.provider.position() != quest.provider.position()
+                    || first.choice_prompt_key != quest.choice_prompt_key
+                    || quest.prerequisites.iter().any(|required| {
+                        quests[..index].iter().any(|known| {
+                            known.quest.id() == required
+                                && known.choice_group.as_ref() == Some(group)
+                        })
+                    })
+                {
+                    return Err(ExpeditionDefinitionError::InvalidQuestChoice);
+                }
+            }
+            if let Some(known) = quests[..index]
+                .iter()
+                .find(|known| known.provider.position() == quest.provider.position())
+                && !quest_providers_can_share(&known.provider, &quest.provider)
+            {
+                return Err(ExpeditionDefinitionError::DuplicateQuestProviderPosition(
+                    quest.provider.position(),
+                ));
+            }
+        }
+        for quest in &quests {
+            if let Some(group) = &quest.choice_group
+                && quests
+                    .iter()
+                    .filter(|known| known.choice_group.as_ref() == Some(group))
+                    .count()
+                    < 2
+            {
+                return Err(ExpeditionDefinitionError::InvalidQuestChoice);
+            }
+        }
+        self.hub_quests = quests;
+        Ok(self)
+    }
+
     pub fn with_player_property_take_authorizations(
         mut self,
         authorizations: Vec<SocialGroupId>,
@@ -542,7 +1650,90 @@ impl ExpeditionDefinition {
         if let Some(facility) = &self.hub_facility {
             facility.validate_references(items)?;
         }
+        if let Some(merchant) = &self.hub_merchant {
+            merchant.validate_references(items)?;
+        }
+        for quest in &self.hub_quests {
+            if let QuestDefinition::Delivery(delivery) = &quest.quest
+                && items.get(&delivery.required_item).is_none()
+            {
+                return Err(ExpeditionDefinitionError::UnknownQuestItem(
+                    delivery.required_item.clone(),
+                ));
+            }
+            for reward in &quest.reward_items {
+                if items.get(&reward.item).is_none() {
+                    return Err(ExpeditionDefinitionError::UnknownQuestItem(
+                        reward.item.clone(),
+                    ));
+                }
+            }
+            for effect in &quest.completion_world_effects {
+                if let QuestWorldEffectDefinition::UpdateDataTerminal {
+                    installation,
+                    record,
+                    ..
+                } = effect
+                {
+                    let valid_target = self.hub_facility.as_ref().is_some_and(|facility| {
+                        facility.blueprint.installations.iter().any(|candidate| {
+                            &candidate.id == installation
+                                && candidate.capabilities.iter().any(|capability| {
+                                    matches!(
+                                        capability,
+                                        InstallationCapability::DataTerminal {
+                                            record: current_record
+                                        } if current_record != record
+                                    )
+                                })
+                        })
+                    });
+                    if !valid_target {
+                        return Err(ExpeditionDefinitionError::InvalidQuestWorldEffect);
+                    }
+                }
+            }
+            let position = quest.provider.position();
+            match &quest.provider {
+                HubQuestProviderDefinition::Existing { .. }
+                    if !self.has_authored_hub_actor_at(position) =>
+                {
+                    return Err(ExpeditionDefinitionError::UnknownQuestProviderPosition(
+                        position,
+                    ));
+                }
+                HubQuestProviderDefinition::Contact { .. }
+                    if self.has_authored_hub_actor_at(position) =>
+                {
+                    return Err(ExpeditionDefinitionError::OccupiedQuestContactPosition(
+                        position,
+                    ));
+                }
+                _ => {}
+            }
+        }
         Ok(())
+    }
+
+    fn has_authored_hub_actor_at(&self, position: GridPos) -> bool {
+        self.hub_merchant
+            .as_ref()
+            .is_some_and(|merchant| merchant.position == position)
+            || self
+                .hub_clinic
+                .as_ref()
+                .is_some_and(|clinic| clinic.work_position == position)
+            || self
+                .hub_residents
+                .iter()
+                .any(|resident| resident.residence_position == position)
+            || self.hub_facility.as_ref().is_some_and(|facility| {
+                facility
+                    .blueprint
+                    .workers
+                    .iter()
+                    .any(|worker| worker.actor_position == position)
+            })
     }
 }
 
@@ -560,6 +1751,15 @@ impl ExpeditionCatalog {
             return Err(ExpeditionDefinitionError::DuplicateExpedition(
                 definition.id().clone(),
             ));
+        }
+        if let Some(duplicate) = definition.hub_quests.iter().find_map(|quest| {
+            self.definitions
+                .values()
+                .flat_map(|known| known.hub_quests.iter())
+                .find(|known| known.quest.id() == quest.quest.id())
+                .map(|_| quest.quest.id().clone())
+        }) {
+            return Err(ExpeditionDefinitionError::DuplicateQuest(duplicate));
         }
         self.definitions.insert(definition.id().clone(), definition);
         Ok(())
@@ -580,8 +1780,230 @@ impl ExpeditionCatalog {
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
                 definition.hub_facility = None;
+                definition.hub_merchant = None;
+                definition.hub_clinic = None;
+                definition.hub_residents.clear();
+                definition.hub_quests.clear();
+                definition.player_starting_credits = 0;
                 definition.player_property_take_authorizations.clear();
                 definition.destination.population.clear();
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes v62 commerce data while preserving older world fingerprints.
+    pub fn without_commerce_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                definition.hub_merchant = None;
+                // A catalogue reconstructed for any pre-commerce generation
+                // must also discard services introduced after commerce.
+                definition.hub_clinic = None;
+                definition.hub_residents.clear();
+                definition.hub_quests.clear();
+                definition.player_starting_credits = 0;
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes v63 clinic data while preserving v62 catalogue fingerprints.
+    pub fn without_clinic_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                definition.hub_clinic = None;
+                definition.hub_residents.clear();
+                definition.hub_quests.clear();
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes v64 resident data while preserving v63 catalogue fingerprints.
+    pub fn without_resident_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                definition.hub_residents.clear();
+                definition.hub_quests.clear();
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes v65 authored quest chains while preserving v64 catalogue
+    /// fingerprints and resident routines.
+    pub fn without_quest_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                definition.hub_quests.clear();
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Restores the v84 border-crossing exploration rule for older runs.
+    pub fn without_quest_site_record_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                for quest in &mut definition.hub_quests {
+                    if let QuestDefinition::ExploreZones(exploration) = &mut quest.quest {
+                        exploration.qualifying_records.clear();
+                    }
+                }
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes v66 durable quest consequences while preserving the v65 quest
+    /// chain definitions and their historical fingerprints.
+    pub fn without_quest_world_state_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                for quest in &mut definition.hub_quests {
+                    quest.required_world_states.clear();
+                    quest.completion_world_states.clear();
+                }
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes v67 material quest consequences while preserving v66 world
+    /// states and their historical catalogue fingerprints.
+    pub fn without_quest_world_effect_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                for quest in &mut definition.hub_quests {
+                    quest.completion_world_effects.clear();
+                }
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes v68 installation-targeted quest effects while preserving v67
+    /// door effects and their historical catalogue fingerprints.
+    pub fn without_quest_installation_effect_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                for quest in &mut definition.hub_quests {
+                    quest
+                        .completion_world_effects
+                        .retain(|effect| !effect.is_installation_effect());
+                }
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes v69 dynamic property authorizations while preserving all v68
+    /// installation and door effects for historical catalogue fingerprints.
+    pub fn without_quest_authorization_effect_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                for quest in &mut definition.hub_quests {
+                    quest
+                        .completion_world_effects
+                        .retain(|effect| !effect.is_authorization_effect());
+                }
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes v70 direct witness-report links while preserving all v69 quest
+    /// effects and historical catalogue fingerprints.
+    pub fn without_property_report_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                if let Some(facility) = &mut definition.hub_facility {
+                    for worker in &mut facility.blueprint.workers {
+                        worker.property_report = None;
+                        worker.installed_property_report = None;
+                        worker.reported_incident_response = None;
+                    }
+                }
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes v71 recipient movement responses while preserving v70 direct
+    /// report links and their historical catalogue fingerprints.
+    pub fn without_reported_incident_response_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                if let Some(facility) = &mut definition.hub_facility {
+                    for worker in &mut facility.blueprint.workers {
+                        worker.installed_property_report = None;
+                        worker.reported_incident_response = None;
+                    }
+                }
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes v72 witness links to installed security systems while
+    /// preserving v71 worker investigations and direct actor reports.
+    pub fn without_installed_property_report_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                if let Some(facility) = &mut definition.hub_facility {
+                    for worker in &mut facility.blueprint.workers {
+                        worker.installed_property_report = None;
+                    }
+                }
                 (id.clone(), definition)
             })
             .collect();
@@ -606,6 +2028,9 @@ impl ExpeditionCatalog {
                         worker.affiliation = None;
                         worker.witness_profile = None;
                         worker.local_alert_profile = None;
+                        worker.property_report = None;
+                        worker.installed_property_report = None;
+                        worker.reported_incident_response = None;
                     }
                     for material in &mut facility.materials {
                         material.owner = None;
@@ -938,8 +2363,30 @@ pub enum ExpeditionDefinitionError {
     InvalidFacilityMaterials,
     UnknownFacilityItem(ItemId),
     FacilityItemIsNotMaterial(ItemId),
+    InvalidMerchant,
+    InvalidClinic,
+    InvalidResident,
+    InvalidDeliveryQuest,
+    InvalidExplorationQuest,
+    InvalidDataRecordQuest,
+    InvalidDefeatTargetsQuest,
+    InvalidQuestPrerequisites,
+    InvalidQuestChoice,
+    InvalidQuestReward,
+    InvalidQuestWorldState,
+    InvalidQuestWorldEffect,
+    InvalidQuestProvider,
+    TooManyHubQuests,
+    DuplicateQuest(ContentId),
+    DuplicateQuestProviderPosition(GridPos),
+    UnknownQuestProviderPosition(GridPos),
+    OccupiedQuestContactPosition(GridPos),
+    UnknownQuestItem(ItemId),
+    UnknownMerchantItem(ItemId),
+    MerchantGambleItemIsNotArmor(ItemId),
     InvalidWitnessProfile(WitnessProfileError),
     InvalidLocalAlertProfile(LocalAlertProfileError),
+    InvalidPropertyReportProfile(PropertyReportProfileError),
     InvalidSecurityAlarmProfile(SecurityAlarmProfileError),
     InvalidPlayerPropertyAuthorizations,
     ZeroPopulationCount,
@@ -950,6 +2397,7 @@ pub enum ExpeditionDefinitionError {
     InvalidPopulationBody(PhysicalRulesError),
     InvalidPopulationComponent(String),
     InvalidPopulationElectronicSystem(String),
+    InvalidPopulationTags,
     InvalidPopulationAttackSlot,
     PopulationAttackBudgetExceeded,
     PopulationPathBudgetExceeded,
@@ -987,8 +2435,85 @@ impl Display for ExpeditionDefinitionError {
             Self::FacilityItemIsNotMaterial(id) => {
                 write!(formatter, "facility item '{id}' is not a material")
             }
+            Self::InvalidMerchant => write!(
+                formatter,
+                "merchant requires unique stocked offers, positive prices, and sell prices no greater than buy prices"
+            ),
+            Self::InvalidClinic => write!(
+                formatter,
+                "clinic requires positive care, prices, routine durations, and a bounded path budget"
+            ),
+            Self::InvalidResident => write!(
+                formatter,
+                "resident requires distinct anchors, positive routine durations, and a bounded path budget"
+            ),
+            Self::InvalidDeliveryQuest => write!(
+                formatter,
+                "delivery quest requires non-empty text keys and a positive item quantity"
+            ),
+            Self::InvalidExplorationQuest => write!(
+                formatter,
+                "exploration quest requires non-empty text keys and a positive zone count"
+            ),
+            Self::InvalidDataRecordQuest => {
+                write!(formatter, "data record quest requires non-empty text keys")
+            }
+            Self::InvalidDefeatTargetsQuest => write!(
+                formatter,
+                "defeat targets quest requires non-empty text keys and a positive target quantity"
+            ),
+            Self::InvalidQuestPrerequisites => write!(
+                formatter,
+                "quest prerequisites must be unique, bounded, and refer only to earlier quests in the same hub"
+            ),
+            Self::InvalidQuestChoice => write!(
+                formatter,
+                "quest choices require at least two offers from the same provider with one shared non-empty prompt"
+            ),
+            Self::InvalidQuestReward => write!(
+                formatter,
+                "quest item rewards must have unique item IDs, positive quantities, and remain within the reward budget"
+            ),
+            Self::InvalidQuestWorldState => write!(
+                formatter,
+                "quest world states must be unique, bounded, visibly described, and required only after an earlier quest can grant them"
+            ),
+            Self::InvalidQuestWorldEffect => write!(
+                formatter,
+                "quest world effects must be unique, bounded, visibly described, and target non-negative hub coordinates"
+            ),
+            Self::InvalidQuestProvider => write!(
+                formatter,
+                "quest provider requires non-negative coordinates and a positive integrity when it creates a contact"
+            ),
+            Self::TooManyHubQuests => write!(
+                formatter,
+                "hub quests cannot exceed {MAX_HUB_QUESTS} entries"
+            ),
+            Self::DuplicateQuest(id) => write!(formatter, "duplicate quest ID '{id}'"),
+            Self::DuplicateQuestProviderPosition(position) => write!(
+                formatter,
+                "more than one quest targets the hub NPC at [{}, {}]",
+                position.x, position.y
+            ),
+            Self::UnknownQuestProviderPosition(position) => write!(
+                formatter,
+                "quest targets no authored hub NPC at [{}, {}]",
+                position.x, position.y
+            ),
+            Self::OccupiedQuestContactPosition(position) => write!(
+                formatter,
+                "dedicated quest contact overlaps an authored hub NPC at [{}, {}]",
+                position.x, position.y
+            ),
+            Self::UnknownQuestItem(id) => write!(formatter, "unknown quest item '{id}'"),
+            Self::UnknownMerchantItem(id) => write!(formatter, "unknown merchant item '{id}'"),
+            Self::MerchantGambleItemIsNotArmor(id) => {
+                write!(formatter, "merchant gamble item '{id}' is not armor")
+            }
             Self::InvalidWitnessProfile(error) => write!(formatter, "{error}"),
             Self::InvalidLocalAlertProfile(error) => write!(formatter, "{error}"),
+            Self::InvalidPropertyReportProfile(error) => write!(formatter, "{error}"),
             Self::InvalidSecurityAlarmProfile(error) => write!(formatter, "{error}"),
             Self::InvalidPlayerPropertyAuthorizations => write!(
                 formatter,
@@ -1021,6 +2546,10 @@ impl Display for ExpeditionDefinitionError {
             Self::InvalidPopulationElectronicSystem(error) => {
                 write!(formatter, "invalid population electronic system: {error}")
             }
+            Self::InvalidPopulationTags => write!(
+                formatter,
+                "population actor tags must be unique and cannot exceed {MAX_POPULATION_TAGS} entries"
+            ),
             Self::InvalidPopulationAttackSlot => {
                 write!(
                     formatter,
@@ -1069,6 +2598,36 @@ mod tests {
     use super::*;
     use crate::combat::DamageType;
     use crate::stats::{PrimaryAttribute, PrimaryAttributesError};
+
+    #[test]
+    fn exploration_site_records_are_optional_bounded_and_unique() {
+        let definition = ExplorationQuestDefinition::new(
+            "test:survey".parse().unwrap(),
+            "quest.survey.title".into(),
+            "quest.survey.summary".into(),
+            1,
+            10,
+        )
+        .unwrap();
+        assert!(definition.qualifying_records.is_empty());
+        let record: ContentId = "test:site_record".parse().unwrap();
+        assert_eq!(
+            definition
+                .clone()
+                .with_qualifying_records(vec![record.clone(), record.clone()])
+                .unwrap_err(),
+            ExpeditionDefinitionError::InvalidExplorationQuest
+        );
+        assert_eq!(
+            definition
+                .clone()
+                .with_qualifying_records(vec![])
+                .unwrap_err(),
+            ExpeditionDefinitionError::InvalidExplorationQuest
+        );
+        let authored = definition.with_qualifying_records(vec![record]).unwrap();
+        assert!(format!("{authored:?}").contains("qualifying_records"));
+    }
 
     #[test]
     fn non_player_attributes_are_optional_and_reject_out_of_bounds_values() {

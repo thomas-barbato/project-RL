@@ -5,13 +5,20 @@ use project_rl::world::generation::{GeneratedMap, MapValidationRules};
 use project_rl::world::{Direction, DoorState, GridPos, Map, Terrain};
 use std::collections::BTreeMap;
 
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum Decor {
     #[default]
     Deck,
     Grate,
     Lane,
     Threshold,
+    ForeignFloor,
+    VeinedFloor,
+    ChitinFloor,
+    PulseChannel,
+    MemoryFloor,
+    WindowFrame,
+    FaultTrace,
     Gravel,
     Grass,
     Scrub,
@@ -23,11 +30,22 @@ pub enum Decor {
     RuinFloor,
     RuinWall,
     Wall,
+    MembraneWall,
+    VoidWall,
+    DeadScreen,
     Pillar,
     Crate,
     Server,
     Console,
     Coolant,
+    Resonator,
+    GrowthNode,
+    EyeNode,
+    RootMass,
+    KernelFault,
+    OrphanProcess,
+    ClinicBed,
+    ClinicCounter,
     DoorClosed,
     DoorOpen,
     DoorLocked,
@@ -43,6 +61,7 @@ pub enum Decor {
     SensorOnline,
     DataTerminalOffline,
     DataTerminalOnline,
+    DataTerminalUpdated,
     SupplyCache,
     ThreatCamp,
     ThreatCampDisabled,
@@ -58,6 +77,13 @@ impl Decor {
             Self::Grate => "Caillebotis · passage libre",
             Self::Lane => "Voie de circulation · passage libre",
             Self::Threshold => "Seuil ouvert · passage libre",
+            Self::ForeignFloor => "Substrat étranger · passage libre",
+            Self::VeinedFloor => "Veine minérale · passage libre",
+            Self::ChitinFloor => "Plaque chitineuse · passage libre",
+            Self::PulseChannel => "Canal pulsatile · passage libre",
+            Self::MemoryFloor => "Bloc mémoire stable · passage libre",
+            Self::WindowFrame => "Cadre d'interface brisé · passage libre",
+            Self::FaultTrace => "Erreur d'exécution · passage libre",
             Self::Gravel => "Terrain extérieur · passage libre",
             Self::Grass => "Prairie sauvage · passage libre",
             Self::Scrub => "Broussailles sèches · passage libre",
@@ -69,14 +95,25 @@ impl Decor {
             Self::RuinFloor => "Ruines habitées autrefois · passage libre",
             Self::RuinWall => "Mur en ruine · passage et vue bloqués",
             Self::Wall => "Cloison · passage et vue bloqués",
+            Self::MembraneWall => "Masse étrangère · passage et vue bloqués",
+            Self::VoidWall => "Masse creuse · passage et vue bloqués",
+            Self::DeadScreen => "Écran mort · passage et vue bloqués",
             Self::Pillar => "Pilier · passage et vue bloqués",
             Self::Crate => "Conteneur · passage et vue bloqués",
             Self::Server => "Baie serveur · passage et vue bloqués",
             Self::Console => "Pupitre inactif · obstacle",
             Self::Coolant => "Cuve · passage et vue bloqués",
+            Self::Resonator => "Résonateur étranger · obstacle",
+            Self::GrowthNode => "Nœud minéral · obstacle",
+            Self::EyeNode => "Œil dormant · obstacle",
+            Self::RootMass => "Racine calcifiée · obstacle",
+            Self::KernelFault => "Faute noyau · obstacle",
+            Self::OrphanProcess => "Processus orphelin · obstacle",
+            Self::ClinicBed => "Lit de soin · clinique locale",
+            Self::ClinicCounter => "Comptoir médical · clinique locale",
             Self::DoorClosed => "Porte fermée · interagir pour ouvrir",
             Self::DoorOpen => "Porte ouverte · interagir pour fermer",
-            Self::DoorLocked => "Porte verrouillée · trouver sa console",
+            Self::DoorLocked => "Accès verrouillé · autorisation nécessaire",
             Self::DoorUnpowered => "Porte de service · alimentation absente",
             Self::ControlReady => "Console active · déverrouille un accès",
             Self::ControlUsed => "Console utilisée · accès déverrouillé",
@@ -89,6 +126,9 @@ impl Decor {
             Self::SensorOnline => "Capteur de sécurité · opérationnel",
             Self::DataTerminalOffline => "Terminal de données · hors ligne",
             Self::DataTerminalOnline => "Terminal de données · interagir pour consulter",
+            Self::DataTerminalUpdated => {
+                "Terminal de données · registre mis à jour, interagir pour consulter"
+            }
             Self::SupplyCache => "Cache de récupération · contenu ramassable sur place",
             Self::ThreatCamp => {
                 "Camp hostile actif · interagir à côté pour neutraliser les renforts"
@@ -106,6 +146,13 @@ impl Decor {
                 | Self::Grate
                 | Self::Lane
                 | Self::Threshold
+                | Self::ForeignFloor
+                | Self::VeinedFloor
+                | Self::ChitinFloor
+                | Self::PulseChannel
+                | Self::MemoryFloor
+                | Self::WindowFrame
+                | Self::FaultTrace
                 | Self::Gravel
                 | Self::Grass
                 | Self::Scrub
@@ -132,15 +179,16 @@ impl Decor {
     }
 }
 
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct Zone {
-    pub name: &'static str,
+    pub name: String,
     pub bounds: [i32; 4],
 }
-#[derive(Default)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct SectorDecor {
     pub cells: BTreeMap<GridPos, Decor>,
     pub zones: Vec<Zone>,
-    pub biomes: BTreeMap<GridPos, &'static str>,
+    pub biomes: BTreeMap<GridPos, String>,
     pub fallback_name: Option<String>,
 }
 
@@ -176,8 +224,8 @@ impl SectorDecor {
                 let [x, y, w, h] = zone.bounds;
                 position.x >= x && position.x < x + w && position.y >= y && position.y < y + h
             })
-            .map(|zone| zone.name)
-            .or_else(|| self.biomes.get(&position).copied())
+            .map(|zone| zone.name.as_str())
+            .or_else(|| self.biomes.get(&position).map(String::as_str))
             .or(self.fallback_name.as_deref())
             .unwrap_or("Friches extérieures")
     }
@@ -194,7 +242,14 @@ impl TestSector {
     pub const NAME: &str = "VILLE DE DÉPART / FRICHES";
     pub const GATE: GridPos = GridPos::new(62, 21);
     pub const LOCKED_DOOR: GridPos = GridPos::new(52, 15);
+    pub const QUEST_ACCESS_DOOR: GridPos = GridPos::new(32, 38);
     pub const CONTROL: GridPos = GridPos::new(50, 17);
+    pub const RECYCLING_BOUNDS: [i32; 4] = [72, 4, 24, 15];
+    pub const RECYCLING_START: GridPos = GridPos::new(82, 11);
+    pub const RECYCLING_MAIN_DOOR: GridPos = GridPos::new(72, 11);
+    pub const RECYCLING_CONTROL: GridPos = GridPos::new(76, 7);
+    pub const RECYCLING_CONDUIT: GridPos = GridPos::new(88, 18);
+    pub const RECYCLING_REPAIR_PART: GridPos = GridPos::new(86, 11);
     #[cfg(any(debug_assertions, test))]
     pub const ARCHIVE_TERMINAL: GridPos = GridPos::new(48, 7);
     #[cfg(any(debug_assertions, test))]
@@ -211,22 +266,35 @@ impl TestSector {
 
     #[cfg(test)]
     pub fn build(seed: u64) -> Result<Self, String> {
-        Self::build_for_generation(seed, true, true)
+        Self::build_for_generation(seed, true, true, true, true, true)
     }
 
     pub fn build_for_generation(
         seed: u64,
         expanded: bool,
         include_regional_passages: bool,
+        include_clinic: bool,
+        include_quest_access: bool,
+        include_recycling_intro: bool,
     ) -> Result<Self, String> {
         if expanded {
-            Self::build_expanded(seed, include_regional_passages)
+            Self::build_expanded(
+                seed,
+                include_regional_passages,
+                include_clinic,
+                include_quest_access,
+                include_recycling_intro,
+            )
         } else {
-            Self::build_legacy(seed)
+            Self::build_legacy(seed, include_clinic, include_quest_access)
         }
     }
 
-    fn build_legacy(seed: u64) -> Result<Self, String> {
+    fn build_legacy(
+        seed: u64,
+        include_clinic: bool,
+        include_quest_access: bool,
+    ) -> Result<Self, String> {
         let mut map = Map::filled(110, 68, Terrain::Wall).map_err(|e| e.to_string())?;
         let mut decor = SectorDecor::default();
         paint(&mut map, &mut decor, [1, 1, 108, 66], Decor::Gravel)?;
@@ -238,7 +306,16 @@ impl TestSector {
             paint(&mut map, &mut decor, bounds, Decor::Lane)?;
         }
         for (name, bounds, surface, door) in [
-            ("Accueil", [6, 5, 14, 11], Decor::Deck, GridPos::new(12, 15)),
+            (
+                if include_clinic {
+                    "Clinique"
+                } else {
+                    "Accueil"
+                },
+                [6, 5, 14, 11],
+                Decor::Deck,
+                GridPos::new(12, 15),
+            ),
             (
                 "Atelier",
                 [26, 5, 14, 11],
@@ -277,24 +354,43 @@ impl TestSector {
                 }),
             )
             .map_err(|e| e.to_string())?;
-            decor.zones.push(Zone { name, bounds });
+            decor.zones.push(Zone {
+                name: name.to_owned(),
+                bounds,
+            });
         }
         decor.zones.push(Zone {
-            name: "Place centrale",
+            name: "Place centrale".to_owned(),
             bounds: [21, 16, 25, 12],
         });
         decor.zones.push(Zone {
-            name: "Rues de la ville",
+            name: "Rues de la ville".to_owned(),
             bounds: [1, 1, 62, 44],
         });
         for bounds in [[30, 20, 3, 3], [9, 31, 2, 2], [16, 34, 2, 2]] {
             paint(&mut map, &mut decor, bounds, Decor::Pillar)?;
         }
-        for bounds in [[8, 7, 5, 1], [28, 7, 4, 2], [48, 35, 5, 1]] {
+        if include_clinic {
+            paint(&mut map, &mut decor, [8, 7, 4, 2], Decor::ClinicBed)?;
+            paint(&mut map, &mut decor, [15, 7, 3, 1], Decor::ClinicCounter)?;
+        }
+        let consoles = if include_clinic {
+            &[[28, 7, 4, 2], [48, 35, 5, 1]][..]
+        } else {
+            &[[8, 7, 5, 1], [28, 7, 4, 2], [48, 35, 5, 1]][..]
+        };
+        for &bounds in consoles {
             paint(&mut map, &mut decor, bounds, Decor::Console)?;
         }
         for bounds in [[28, 31, 3, 2], [35, 35, 3, 2]] {
             paint(&mut map, &mut decor, bounds, Decor::Crate)?;
+        }
+        if include_quest_access {
+            // Optional rear access to the depot: the ordinary front door keeps
+            // the building reachable, while quest completion can unlock this
+            // persistent shortcut without gating a merchant or clinic.
+            map.set_terrain(Self::QUEST_ACCESS_DOOR, Terrain::Door(DoorState::Locked))
+                .map_err(|error| error.to_string())?;
         }
         for bounds in [[48, 7, 2, 4], [53, 7, 2, 4]] {
             paint(&mut map, &mut decor, bounds, Decor::Server)?;
@@ -366,8 +462,14 @@ impl TestSector {
         })
     }
 
-    fn build_expanded(seed: u64, include_regional_passages: bool) -> Result<Self, String> {
-        let legacy = Self::build_legacy(seed)?;
+    fn build_expanded(
+        seed: u64,
+        include_regional_passages: bool,
+        include_clinic: bool,
+        include_quest_access: bool,
+        include_recycling_intro: bool,
+    ) -> Result<Self, String> {
+        let legacy = Self::build_legacy(seed, include_clinic, include_quest_access)?;
         let mut map = Map::filled(Self::EXPANDED_WIDTH, Self::EXPANDED_HEIGHT, Terrain::Wall)
             .map_err(|error| error.to_string())?;
         let mut decor = SectorDecor::default();
@@ -473,7 +575,7 @@ impl TestSector {
             paint_ruin(&mut map, &mut decor, origin, size)?;
         }
 
-        let enemies = vec![
+        let mut enemies = vec![
             GridPos::new(74, 21),
             GridPos::new(91, 14),
             GridPos::new(85, 36),
@@ -485,6 +587,12 @@ impl TestSector {
             GridPos::new(138, 113),
             GridPos::new(181, 69),
         ];
+        if include_recycling_intro {
+            // The old second encounter occupied the new wake-up room. Moving
+            // it outside preserves the enemy family while leaving both exits
+            // available without a mandatory opening fight.
+            enemies[1] = GridPos::new(99, 16);
+        }
         let loot = vec![GridPos::new(35, 24), GridPos::new(28, 25)];
         let exit = Self::EXPANDED_EXPEDITION_PASSAGE;
         let regional_passages = include_regional_passages
@@ -518,7 +626,11 @@ impl TestSector {
             {
                 continue;
             }
-            let biome = decor.biomes.get(&position).copied().unwrap_or_default();
+            let biome = decor
+                .biomes
+                .get(&position)
+                .map(String::as_str)
+                .unwrap_or_default();
             let kind =
                 if biome == "Bois de récupération" || biome == "Prairies de l'ancienne ceinture" {
                     (!rng.next_u64().is_multiple_of(3)).then_some(Decor::Tree)
@@ -545,6 +657,9 @@ impl TestSector {
         ] {
             paint(&mut map, &mut decor, bounds, Decor::Lane)?;
         }
+        if include_recycling_intro {
+            paint_recycling_intro(&mut map, &mut decor)?;
+        }
         for position in &required {
             clear_required_position(&mut map, &mut decor, *position)?;
         }
@@ -554,7 +669,11 @@ impl TestSector {
             }
         }
 
-        let start = GridPos::new(27, 23);
+        let start = if include_recycling_intro {
+            Self::RECYCLING_START
+        } else {
+            GridPos::new(27, 23)
+        };
         let level =
             GeneratedMap::from_layout(map, start, exit, &required, MapValidationRules::default())
                 .map_err(|error| format!("Grande carte ville/extérieur invalide : {error}"))?;
@@ -565,6 +684,62 @@ impl TestSector {
             loot,
         })
     }
+}
+
+fn paint_recycling_intro(map: &mut Map, decor: &mut SectorDecor) -> Result<(), String> {
+    // A fixed, compact opening space inside the seeded exterior. It is
+    // deliberately authored after the biomes so every new run teaches the
+    // same first choices before opening onto the variable surface.
+    paint(map, decor, TestSector::RECYCLING_BOUNDS, Decor::Wall)?;
+    paint(map, decor, [73, 5, 22, 13], Decor::Grate)?;
+
+    // Dismantling fixtures give the room a functional silhouette while
+    // keeping a generous central lane around the player's chassis.
+    for bounds in [[74, 5, 5, 1], [91, 6, 3, 3], [74, 14, 2, 3]] {
+        paint(map, decor, bounds, Decor::Server)?;
+    }
+    for bounds in [[79, 6, 2, 2], [91, 14, 3, 2]] {
+        paint(map, decor, bounds, Decor::Crate)?;
+    }
+    paint(map, decor, [84, 6, 4, 1], Decor::Console)?;
+
+    map.set_terrain(
+        TestSector::RECYCLING_MAIN_DOOR,
+        Terrain::Door(DoorState::Locked),
+    )
+    .map_err(|error| error.to_string())?;
+    map.set_terrain(
+        TestSector::RECYCLING_CONTROL,
+        Terrain::ControlPanel {
+            door: TestSector::RECYCLING_MAIN_DOOR,
+            activated: false,
+        },
+    )
+    .map_err(|error| error.to_string())?;
+
+    // Main route: rearm the western access, then follow the old service lane
+    // down to the city road. This is the shortest and clearest path.
+    paint(map, decor, [63, 10, 9, 3], Decor::Lane)?;
+    paint(map, decor, [63, 10, 3, 13], Decor::Lane)?;
+
+    // Alternate route: a narrow southern conduit is always open. It asks for
+    // exploration rather than a skill, tool or inventory check.
+    map.set_terrain(TestSector::RECYCLING_CONDUIT, Terrain::Floor)
+        .map_err(|error| error.to_string())?;
+    decor
+        .cells
+        .insert(TestSector::RECYCLING_CONDUIT, Decor::Threshold);
+    paint(map, decor, [87, 19, 3, 4], Decor::Grate)?;
+
+    decor.zones.push(Zone {
+        name: "Zone de recyclage".to_owned(),
+        bounds: TestSector::RECYCLING_BOUNDS,
+    });
+    decor.zones.push(Zone {
+        name: "Conduit de maintenance".to_owned(),
+        bounds: [87, 18, 3, 5],
+    });
+    Ok(())
 }
 
 fn paint_biome(
@@ -578,7 +753,7 @@ fn paint_biome(
     let [x, y, width, height] = bounds;
     for py in y..y + height {
         for px in x..x + width {
-            decor.biomes.insert(GridPos::new(px, py), name);
+            decor.biomes.insert(GridPos::new(px, py), name.to_owned());
         }
     }
     Ok(())
@@ -615,7 +790,7 @@ fn paint_biome_ellipse(
                 map.set_terrain(position, kind.terrain())
                     .map_err(|error| error.to_string())?;
                 decor.cells.insert(position, kind);
-                decor.biomes.insert(position, name);
+                decor.biomes.insert(position, name.to_owned());
             }
         }
     }
@@ -718,6 +893,14 @@ mod tests {
         assert_eq!(first.level.map().width(), TestSector::EXPANDED_WIDTH);
         assert_eq!(first.level.map().height(), TestSector::EXPANDED_HEIGHT);
         assert_eq!(first.level.exit(), TestSector::EXPANDED_EXPEDITION_PASSAGE);
+        assert_eq!(
+            first
+                .level
+                .map()
+                .tile(TestSector::QUEST_ACCESS_DOOR)
+                .map(|tile| tile.terrain),
+            Some(Terrain::Door(DoorState::Locked))
+        );
         assert_eq!(first.level, TestSector::build(1).unwrap().level);
         for seed in 2..34 {
             let next = TestSector::build(seed).unwrap();
@@ -785,12 +968,90 @@ mod tests {
     }
 
     #[test]
+    fn recycling_intro_has_two_independent_routes_toward_the_city() {
+        let sector = TestSector::build(20_260_920).unwrap();
+        assert_eq!(sector.level.player_start(), TestSector::RECYCLING_START);
+        assert_eq!(
+            sector
+                .level
+                .map()
+                .tile(TestSector::RECYCLING_MAIN_DOOR)
+                .map(|tile| tile.terrain),
+            Some(Terrain::Door(DoorState::Locked))
+        );
+        assert_eq!(
+            sector
+                .level
+                .map()
+                .tile(TestSector::RECYCLING_CONTROL)
+                .map(|tile| tile.terrain),
+            Some(Terrain::ControlPanel {
+                door: TestSector::RECYCLING_MAIN_DOOR,
+                activated: false,
+            })
+        );
+        assert_eq!(
+            sector.decor.zone_at(TestSector::RECYCLING_START),
+            "Zone de recyclage"
+        );
+
+        let city_approach = GridPos::new(63, 21);
+        let mut main_route_only = sector.level.map().clone();
+        main_route_only
+            .set_terrain(TestSector::RECYCLING_CONDUIT, Terrain::Wall)
+            .unwrap();
+        validate_interactive_map(
+            &main_route_only,
+            TestSector::RECYCLING_START,
+            city_approach,
+            &[],
+            MapValidationRules::default(),
+        )
+        .expect("the interior control must make the main route independently solvable");
+
+        let mut conduit_route_only = sector.level.map().clone();
+        conduit_route_only
+            .set_terrain(TestSector::RECYCLING_MAIN_DOOR, Terrain::Wall)
+            .unwrap();
+        conduit_route_only
+            .set_terrain(TestSector::RECYCLING_CONTROL, Terrain::Wall)
+            .unwrap();
+        validate_interactive_map(
+            &conduit_route_only,
+            TestSector::RECYCLING_START,
+            city_approach,
+            &[],
+            MapValidationRules::default(),
+        )
+        .expect("the conduit must remain usable without the main door");
+    }
+
+    #[test]
+    fn expanded_pre_intro_generation_keeps_the_city_start() {
+        let sector = TestSector::build_for_generation(1, true, true, true, true, false).unwrap();
+        assert_eq!(sector.level.player_start(), GridPos::new(27, 23));
+        assert_ne!(
+            sector.decor.zone_at(TestSector::RECYCLING_START),
+            "Zone de recyclage"
+        );
+    }
+
+    #[test]
     fn legacy_surface_dimensions_and_passage_remain_available_for_replay() {
-        let sector = TestSector::build_for_generation(1, false, false).unwrap();
+        let sector =
+            TestSector::build_for_generation(1, false, false, false, false, false).unwrap();
         assert_eq!(sector.level.map().width(), 110);
         assert_eq!(sector.level.map().height(), 68);
         assert_eq!(sector.level.exit(), GridPos::new(103, 59));
         assert_eq!(TestSector::LEGACY_EXPEDITION_PASSAGE, GridPos::new(67, 21));
+        assert_eq!(
+            sector
+                .level
+                .map()
+                .tile(TestSector::QUEST_ACCESS_DOOR)
+                .map(|tile| tile.terrain),
+            Some(Terrain::Wall)
+        );
     }
     #[test]
     fn validator_rejects_console_locked_behind_its_own_door() {

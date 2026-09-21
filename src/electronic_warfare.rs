@@ -13,7 +13,7 @@ use crate::entity::EntityId;
 use crate::resources::{EnergyReserve, EnergyReserveError};
 use crate::world::{Direction, GridPos};
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ElectronicSystemProfile {
     digital_defense: u16,
     heat_alert_threshold: u16,
@@ -66,7 +66,7 @@ impl ElectronicSystemProfile {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ElectronicSystemState {
     profile: ElectronicSystemProfile,
     heat: u16,
@@ -125,14 +125,14 @@ impl ElectronicSystemState {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ElectronicChannel {
     OpticalSensor,
     ThermalSensor,
     ControlLink,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ElectronicDirective {
     Pulse {
         direction: Option<Direction>,
@@ -158,7 +158,9 @@ pub enum ElectronicDirective {
     },
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct HostileProgramId(NonZeroU64);
 
 impl HostileProgramId {
@@ -174,7 +176,9 @@ impl HostileProgramId {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct InfectionCampaignId(NonZeroU64);
 
 impl InfectionCampaignId {
@@ -190,7 +194,7 @@ impl InfectionCampaignId {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum HostileProgramKind {
     Overheat {
         heat_per_tick: u16,
@@ -209,7 +213,7 @@ pub enum HostileProgramKind {
     },
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct HostileProgram {
     id: HostileProgramId,
     source: EntityId,
@@ -293,7 +297,7 @@ impl HostileProgram {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct InfectionCampaign {
     id: InfectionCampaignId,
     source: EntityId,
@@ -393,7 +397,7 @@ impl InfectionCampaign {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct JammingField {
     pub source: EntityId,
     pub center: GridPos,
@@ -406,7 +410,7 @@ pub struct JammingField {
     pub bandwidth_reserved: u16,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct SaturationBeacon {
     pub entity: EntityId,
     pub owner: EntityId,
@@ -421,7 +425,7 @@ pub struct SaturationBeacon {
     pub activation_link_range: u16,
 }
 
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ElectronicWarfareState {
     programs: BTreeMap<HostileProgramId, HostileProgram>,
     campaigns: BTreeMap<InfectionCampaignId, InfectionCampaign>,

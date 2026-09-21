@@ -11,7 +11,7 @@ pub enum ThreatReinforcementRequestError {
     QuotaExhausted,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
 pub struct ThreatSourceBlueprint {
     pub position: GridPos,
     pub interval_turns: NonZeroU16,
@@ -20,7 +20,7 @@ pub struct ThreatSourceBlueprint {
     pub actor: Actor,
 }
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ThreatSourceState {
     pub(crate) id: u16,
     pub(crate) position: GridPos,

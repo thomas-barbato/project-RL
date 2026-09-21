@@ -6,13 +6,13 @@ use crate::entity::{BodyComponentId, BodyComponentState, EntityId, ItemInstanceI
 use crate::world::GridPos;
 
 /// Player-selected compromise for a compatible powered module.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ModuleTuning {
     Economy,
     Power,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ActiveTuning {
     mode: ModuleTuning,
     output_percentage: u16,
@@ -48,7 +48,7 @@ impl ActiveTuning {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ActiveBypass {
     donor: BodyComponentId,
     restored_output_percentage: u16,
@@ -78,7 +78,7 @@ impl ActiveBypass {
 ///
 /// Keeping those parameters in the command makes preparations replayable and
 /// prevents the engine from silently selecting a different component later.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum EngineeringDirective {
     Component {
         target: EntityId,
@@ -108,7 +108,9 @@ pub enum EngineeringDirective {
     },
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct WreckId(u64);
 
 impl WreckId {
@@ -119,7 +121,7 @@ impl WreckId {
 
 /// Persistent remains of a destroyed actor. Components are moved here with
 /// their exact durability; salvage removes the selected entry exactly once.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct Wreckage {
     id: WreckId,
     position: GridPos,
@@ -144,7 +146,7 @@ impl Wreckage {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct WreckRegistry {
     next_id: u64,
     wrecks: BTreeMap<WreckId, Wreckage>,
@@ -244,7 +246,7 @@ impl Display for WreckError {
 impl Error for WreckError {}
 
 /// Mutable state belonging to one concrete equipment instance.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct EquipmentEngineeringState {
     durability: u16,
     maximum_durability: u16,
@@ -327,7 +329,7 @@ impl EquipmentEngineeringState {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ActiveOverclock {
     output_percentage: u16,
     usage_energy_percentage: u16,

@@ -1,4 +1,4 @@
-//! Single-use, prototype replay suspension. No rewind or checkpoint loading UI.
+//! Single-use snapshot suspension with a verified replay fallback.
 use project_rl::{
     companion::CompanionBehavior,
     drone::{
@@ -20,8 +20,132 @@ use std::{
 };
 
 pub const MAX_COMMANDS: usize = 50_000;
-pub const MAX_GENERATION_VERSION: u8 = 61;
+pub const MAX_GENERATION_VERSION: u8 = 86;
+const REPLAY_RECOVERY_SCHEMA: u8 = 1;
+pub const CURRENT_RECOVERY_SCHEMA: u8 = 2;
+const CURRENT_CRASH_RECOVERY_SCHEMA: u8 = 1;
 const MAX_BYTES: u64 = 16 * 1024 * 1024;
+const MAX_SAVED_PACKAGES: usize = 1024;
+
+/// Human-readable package identity stored alongside the authoritative content
+/// fingerprints. Strings keep the JSON format independent from semver's serde
+/// representation while validation still enforces both identifier formats.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct SavedPackage {
+    pub id: String,
+    pub version: String,
+}
+
+impl SavedPackage {
+    pub fn new(id: impl Into<String>, version: impl Into<String>) -> Result<Self, String> {
+        let package = Self {
+            id: id.into(),
+            version: version.into(),
+        };
+        package.validate()?;
+        Ok(package)
+    }
+
+    fn validate(&self) -> Result<(), String> {
+        self.id
+            .parse::<project_rl::content::PackageId>()
+            .map_err(|error| {
+                format!("Identifiant de paquet invalide dans la suspension : {error}")
+            })?;
+        semver::Version::parse(&self.version).map_err(|error| {
+            format!(
+                "Version invalide pour le paquet '{}' dans la suspension : {error}",
+                self.id
+            )
+        })?;
+        Ok(())
+    }
+}
+
+/// Versioned recovery payload, deliberately independent from world generation.
+/// Legacy suspensions omit it and continue to use their historical replay path.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(tag = "mode", rename_all = "snake_case", deny_unknown_fields)]
+pub enum RecoveryPayload {
+    Replay {
+        schema: u8,
+        command_count: u32,
+    },
+    Snapshot {
+        schema: u8,
+        command_count: u32,
+        state: String,
+    },
+}
+
+impl RecoveryPayload {
+    pub fn replay(command_count: usize) -> Result<Self, String> {
+        Ok(Self::Replay {
+            schema: REPLAY_RECOVERY_SCHEMA,
+            command_count: u32::try_from(command_count)
+                .map_err(|_| "Journal de suspension trop long.".to_owned())?,
+        })
+    }
+
+    pub fn snapshot(command_count: usize, state: String) -> Result<Self, String> {
+        if state.is_empty() {
+            return Err("Instantané moteur vide.".to_owned());
+        }
+        Ok(Self::Snapshot {
+            schema: CURRENT_RECOVERY_SCHEMA,
+            command_count: u32::try_from(command_count)
+                .map_err(|_| "Journal de suspension trop long.".to_owned())?,
+            state,
+        })
+    }
+
+    pub fn snapshot_state(&self) -> Option<&str> {
+        match self {
+            Self::Snapshot { state, .. } => Some(state),
+            Self::Replay { .. } => None,
+        }
+    }
+
+    fn validate(&self, commands: usize) -> Result<(), String> {
+        match self {
+            Self::Replay {
+                schema,
+                command_count,
+            } => {
+                if *schema != REPLAY_RECOVERY_SCHEMA {
+                    return Err(
+                        "Schéma de restauration non pris en charge ; suspension conservée."
+                            .to_owned(),
+                    );
+                }
+                if usize::try_from(*command_count).ok() != Some(commands) {
+                    return Err(
+                        "Le descripteur de restauration ne correspond pas au journal.".to_owned(),
+                    );
+                }
+            }
+            Self::Snapshot {
+                schema,
+                command_count,
+                state,
+            } => {
+                if *schema != CURRENT_RECOVERY_SCHEMA || state.is_empty() {
+                    return Err(
+                        "Schéma de restauration non pris en charge ; suspension conservée."
+                            .to_owned(),
+                    );
+                }
+                if usize::try_from(*command_count).ok() != Some(commands) {
+                    return Err(
+                        "L'instantané ne correspond pas au journal de commandes.".to_owned()
+                    );
+                }
+            }
+        }
+        Ok(())
+    }
+}
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "directive", rename_all = "snake_case", deny_unknown_fields)]
@@ -271,6 +395,33 @@ pub enum RecordedCommand {
     Drop {
         item: u64,
     },
+    Buy {
+        merchant: u64,
+        item: String,
+    },
+    BuyResale {
+        merchant: u64,
+        listing: u64,
+    },
+    Gamble {
+        merchant: u64,
+        item: String,
+    },
+    Sell {
+        merchant: u64,
+        item: u64,
+    },
+    Treatment {
+        healer: u64,
+    },
+    AcceptQuest {
+        giver: u64,
+        quest: String,
+    },
+    CompleteQuest {
+        giver: u64,
+        quest: String,
+    },
     Ability {
         slot: u8,
         x: i32,
@@ -354,6 +505,33 @@ impl RecordedCommand {
             GameCommand::UseItem { item } => Self::UseItem { item: item.get() },
             GameCommand::PickUp => Self::PickUp,
             GameCommand::DropItem { item } => Self::Drop { item: item.get() },
+            GameCommand::BuyItem { merchant, item } => Self::Buy {
+                merchant: merchant.get(),
+                item: item.to_string(),
+            },
+            GameCommand::BuyResaleItem { merchant, listing } => Self::BuyResale {
+                merchant: merchant.get(),
+                listing: *listing,
+            },
+            GameCommand::GambleItem { merchant, item } => Self::Gamble {
+                merchant: merchant.get(),
+                item: item.to_string(),
+            },
+            GameCommand::SellItem { merchant, item } => Self::Sell {
+                merchant: merchant.get(),
+                item: item.get(),
+            },
+            GameCommand::ReceiveTreatment { healer } => Self::Treatment {
+                healer: healer.get(),
+            },
+            GameCommand::AcceptQuest { giver, quest } => Self::AcceptQuest {
+                giver: giver.get(),
+                quest: quest.to_string(),
+            },
+            GameCommand::CompleteQuest { giver, quest } => Self::CompleteQuest {
+                giver: giver.get(),
+                quest: quest.to_string(),
+            },
             GameCommand::UseAbility { slot, target } => Self::Ability {
                 slot: *slot,
                 x: target.x,
@@ -491,6 +669,50 @@ impl RecordedCommand {
             Self::PickUp => GameCommand::PickUp,
             Self::Drop { item: value } => GameCommand::DropItem {
                 item: item(*value)?,
+            },
+            Self::Buy {
+                merchant,
+                item: definition,
+            } => GameCommand::BuyItem {
+                merchant: entity(*merchant)?,
+                item: definition
+                    .parse()
+                    .map_err(|error| format!("Objet marchand invalide : {error}"))?,
+            },
+            Self::BuyResale { merchant, listing } => GameCommand::BuyResaleItem {
+                merchant: entity(*merchant)?,
+                listing: *listing,
+            },
+            Self::Gamble {
+                merchant,
+                item: definition,
+            } => GameCommand::GambleItem {
+                merchant: entity(*merchant)?,
+                item: definition
+                    .parse()
+                    .map_err(|error| format!("Objet de pari invalide : {error}"))?,
+            },
+            Self::Sell {
+                merchant,
+                item: instance,
+            } => GameCommand::SellItem {
+                merchant: entity(*merchant)?,
+                item: item(*instance)?,
+            },
+            Self::Treatment { healer } => GameCommand::ReceiveTreatment {
+                healer: entity(*healer)?,
+            },
+            Self::AcceptQuest { giver, quest } => GameCommand::AcceptQuest {
+                giver: entity(*giver)?,
+                quest: quest
+                    .parse()
+                    .map_err(|error| format!("Quête invalide : {error}"))?,
+            },
+            Self::CompleteQuest { giver, quest } => GameCommand::CompleteQuest {
+                giver: entity(*giver)?,
+                quest: quest
+                    .parse()
+                    .map_err(|error| format!("Quête invalide : {error}"))?,
             },
             Self::Ability { slot, x, y } => GameCommand::UseAbility {
                 slot: *slot,
@@ -1045,6 +1267,10 @@ pub struct Suspension {
     pub version: u8,
     pub build: String,
     pub rules: u64,
+    /// Absent only in legacy suspensions written before package identities were
+    /// persisted explicitly. Fingerprints remain the final compatibility proof.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub packages: Option<Vec<SavedPackage>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub loot_rules: Option<u64>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -1054,6 +1280,8 @@ pub struct Suspension {
     pub character_class: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub starting_attributes: Option<[u8; 5]>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub recovery: Option<RecoveryPayload>,
     pub commands: Vec<RecordedCommand>,
     pub state: u64,
     pub active_weapon_slot: u8,
@@ -1088,6 +1316,28 @@ impl Suspension {
                 "Protocole et attributs de départ doivent être enregistrés ensemble.".to_owned(),
             );
         }
+        if let Some(packages) = &self.packages {
+            if packages.is_empty() || packages.len() > MAX_SAVED_PACKAGES {
+                return Err("Liste de paquets invalide dans la suspension.".to_owned());
+            }
+            let mut has_core = false;
+            for package in packages {
+                package.validate()?;
+                if package.id == "core" {
+                    has_core = true;
+                }
+            }
+            let unique = packages
+                .iter()
+                .map(|package| package.id.as_str())
+                .collect::<std::collections::BTreeSet<_>>();
+            if unique.len() != packages.len() {
+                return Err("Un paquet est dupliqué dans la suspension.".to_owned());
+            }
+            if !has_core {
+                return Err("Paquet central absent de la suspension.".to_owned());
+            }
+        }
         if self.version < 34 && self.character_class.is_some() {
             return Err(
                 "Un ancien format de suspension ne peut pas contenir de protocole.".to_owned(),
@@ -1100,9 +1350,8 @@ impl Suspension {
         {
             return Err("Identifiant de protocole invalide ; suspension conservée.".to_owned());
         }
-        // Build identifies the producer, not replay compatibility: a UI-only
-        // patch changes it too. The caller must still validate the active rules,
-        // replay every command and compare the complete final state before use.
+        // Build identifies the producer and gates only the opaque snapshot.
+        // Replay compatibility is still proved independently from this value.
         if self.build.len() != 16 || !self.build.bytes().all(|byte| byte.is_ascii_hexdigit()) {
             return Err("Identifiant de compilation invalide ; suspension conservée.".to_owned());
         }
@@ -1116,6 +1365,9 @@ impl Suspension {
                 .any(|text| text.len() > 8192)
         {
             return Err("Suspension trop volumineuse pour ce prototype.".to_owned());
+        }
+        if let Some(recovery) = &self.recovery {
+            recovery.validate(self.commands.len())?;
         }
         Ok(())
     }
@@ -1167,6 +1419,98 @@ impl Suspension {
             let _ = std::fs::remove_file(&temporary);
         }
         result.map_err(|error| error.to_string())
+    }
+}
+
+/// One of two alternating emergency checkpoints. It is deliberately wrapped
+/// around the ordinary verified suspension format so a crash never gains a
+/// weaker restoration path.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CrashRecovery {
+    schema: u8,
+    sequence: u64,
+    suspension: Suspension,
+}
+
+impl CrashRecovery {
+    pub fn new(sequence: u64, suspension: Suspension) -> Result<Self, String> {
+        let recovery = Self {
+            schema: CURRENT_CRASH_RECOVERY_SCHEMA,
+            sequence,
+            suspension,
+        };
+        recovery.validate()?;
+        Ok(recovery)
+    }
+
+    pub const fn sequence(&self) -> u64 {
+        self.sequence
+    }
+
+    pub const fn suspension(&self) -> &Suspension {
+        &self.suspension
+    }
+
+    fn validate(&self) -> Result<(), String> {
+        if self.schema != CURRENT_CRASH_RECOVERY_SCHEMA || self.sequence == 0 {
+            return Err("Point de récupération après incident non pris en charge.".to_owned());
+        }
+        self.suspension.validate()
+    }
+
+    pub fn read(path: &Path) -> Result<Self, String> {
+        let file = File::open(path).map_err(|error| error.to_string())?;
+        let mut source = Vec::new();
+        file.take(MAX_BYTES + 1)
+            .read_to_end(&mut source)
+            .map_err(|error| error.to_string())?;
+        if source.len() as u64 > MAX_BYTES {
+            return Err("Point de récupération trop volumineux.".to_owned());
+        }
+        let result: Self = serde_json::from_slice(&source).map_err(|error| error.to_string())?;
+        result.validate()?;
+        Ok(result)
+    }
+
+    /// Replaces only one slot. The other alternating slot remains valid while
+    /// this file is serialized, synchronized and renamed.
+    pub fn write_replacing(&self, path: &Path) -> Result<(), String> {
+        self.validate()?;
+        let source = serde_json::to_vec(self).map_err(|error| error.to_string())?;
+        if source.len() as u64 > MAX_BYTES {
+            return Err("Point de récupération trop volumineux.".to_owned());
+        }
+        if let Some(parent) = path.parent() {
+            std::fs::create_dir_all(parent).map_err(|error| error.to_string())?;
+        }
+        let temporary = path.with_extension(format!(
+            "tmp-{}-{}",
+            std::process::id(),
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .map_err(|error| error.to_string())?
+                .as_nanos()
+        ));
+        let mut file = std::fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(&temporary)
+            .map_err(|error| error.to_string())?;
+        let result = file.write_all(&source).and_then(|()| file.sync_all());
+        drop(file);
+        if let Err(error) = result {
+            let _ = std::fs::remove_file(&temporary);
+            return Err(error.to_string());
+        }
+        if path.try_exists().map_err(|error| error.to_string())? {
+            std::fs::remove_file(path).map_err(|error| error.to_string())?;
+        }
+        if let Err(error) = std::fs::rename(&temporary, path) {
+            let _ = std::fs::remove_file(&temporary);
+            return Err(error.to_string());
+        }
+        Ok(())
     }
 }
 
@@ -1241,6 +1585,48 @@ mod tests {
     }
 
     #[test]
+    fn recovery_schema_is_independent_and_bound_to_its_command_journal() {
+        let payload = RecoveryPayload::replay(3).unwrap();
+        assert_eq!(payload.validate(3), Ok(()));
+        assert!(payload.validate(2).is_err());
+        assert_eq!(
+            serde_json::to_value(&payload).unwrap(),
+            serde_json::json!({
+                "mode": "replay",
+                "schema": REPLAY_RECOVERY_SCHEMA,
+                "command_count": 3,
+            })
+        );
+
+        let snapshot = RecoveryPayload::snapshot(3, "encoded-state".to_owned()).unwrap();
+        assert_eq!(snapshot.validate(3), Ok(()));
+        assert_eq!(snapshot.snapshot_state(), Some("encoded-state"));
+        assert!(snapshot.validate(2).is_err());
+
+        let future: RecoveryPayload = serde_json::from_value(serde_json::json!({
+            "mode": "snapshot",
+            "schema": CURRENT_RECOVERY_SCHEMA + 1,
+            "command_count": 3,
+            "state": "encoded-state",
+        }))
+        .unwrap();
+        assert!(future.validate(3).is_err());
+    }
+
+    #[test]
+    fn saved_package_requires_canonical_id_and_semantic_version() {
+        assert_eq!(
+            SavedPackage::new("alice.tools", "1.2.3").unwrap(),
+            SavedPackage {
+                id: "alice.tools".to_owned(),
+                version: "1.2.3".to_owned(),
+            }
+        );
+        assert!(SavedPackage::new("Alice Tools", "1.2.3").is_err());
+        assert!(SavedPackage::new("alice.tools", "latest").is_err());
+    }
+
+    #[test]
     fn recorded_drone_technique_preserves_physical_assignments_and_roles() {
         let mut game = GameState::new(
             Map::from_ascii("#######\n#.....#\n#.....#\n#######").unwrap(),
@@ -1296,6 +1682,64 @@ mod tests {
                 serde_json::to_value(&recorded).unwrap()["action"],
                 serde_json::json!("companion_behavior")
             );
+        }
+    }
+
+    #[test]
+    fn recorded_clinic_treatment_preserves_the_provider() {
+        let mut game = GameState::new(
+            Map::from_ascii("#####\n#...#\n#####").unwrap(),
+            GridPos::new(1, 1),
+            13,
+        )
+        .unwrap();
+        let healer = game
+            .spawn_actor(Actor::new(GridPos::new(2, 1), 10).unwrap())
+            .unwrap();
+        let command = GameCommand::ReceiveTreatment { healer };
+        let recorded = RecordedCommand::record(&command);
+        assert_eq!(recorded.command(&game), Ok(command));
+        assert_eq!(
+            serde_json::to_value(&recorded).unwrap(),
+            serde_json::json!({ "action": "treatment", "healer": healer.get() })
+        );
+    }
+
+    #[test]
+    fn recorded_quest_commands_preserve_the_giver_and_quest_id() {
+        let mut game = GameState::new(
+            Map::from_ascii("#####\n#...#\n#####").unwrap(),
+            GridPos::new(1, 1),
+            13,
+        )
+        .unwrap();
+        let giver = game
+            .spawn_actor(Actor::new(GridPos::new(2, 1), 10).unwrap())
+            .unwrap();
+        let quest: project_rl::content::ContentId = "core:delivery_test".parse().unwrap();
+
+        for (command, action) in [
+            (
+                GameCommand::AcceptQuest {
+                    giver,
+                    quest: quest.clone(),
+                },
+                "accept_quest",
+            ),
+            (
+                GameCommand::CompleteQuest {
+                    giver,
+                    quest: quest.clone(),
+                },
+                "complete_quest",
+            ),
+        ] {
+            let recorded = RecordedCommand::record(&command);
+            assert_eq!(recorded.command(&game), Ok(command));
+            let json = serde_json::to_value(&recorded).unwrap();
+            assert_eq!(json["action"], serde_json::json!(action));
+            assert_eq!(json["giver"], serde_json::json!(giver.get()));
+            assert_eq!(json["quest"], serde_json::json!("core:delivery_test"));
         }
     }
 

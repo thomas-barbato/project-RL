@@ -1,4 +1,6 @@
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub enum DamageType {
     Kinetic,
     Piercing,
@@ -44,7 +46,7 @@ impl DamageType {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DamagePacket {
     pub amount: u16,
     pub damage_type: DamageType,
@@ -82,7 +84,7 @@ impl DamageComponent {
 /// All damage delivered by one impact. Amounts are stored once per family so
 /// Armor and specialized resistances cannot be applied repeatedly because a
 /// content file split one impact into several rows.
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DamageImpact {
     amounts: [u16; DamageType::COUNT],
     primary_damage_type: DamageType,
@@ -490,7 +492,7 @@ impl ArmorProfile {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ResistanceProfile {
     percentages: [i16; DamageType::COUNT],
 }

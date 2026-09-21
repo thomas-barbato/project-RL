@@ -12,15 +12,20 @@ pub use crate::companion::CompanionBehavior;
 pub use command::GameCommand;
 pub use event::{
     CounterattackOutcome, EnergyAnalysis, ExperienceSource, ForcedMovementOutcome, GameEvent,
-    InterceptionOutcome, PreparationDisruptionOutcome, StatusRemovalReason, TechniqueEffectFailure,
-    TerrainAnalysis,
+    InterceptionOutcome, PreparationDisruptionOutcome, QuestCompletion, StatusRemovalReason,
+    TechniqueEffectFailure, TerrainAnalysis,
 };
 pub use expedition::{
-    GroundLootBlueprint, WorldState, ZoneBlueprint, ZoneConnectionBlueprint, ZoneInfo, ZoneLink,
+    ClinicRoutineState, DataRecordQuestDefinition, DefeatTargetsQuestDefinition,
+    DeliveryQuestDefinition, ExplorationQuestDefinition, GroundLootBlueprint, NpcInteraction,
+    NpcQuestView, NpcRole, NpcService, NpcServiceState, QuestDefinition, QuestId,
+    QuestJournalEntry, QuestMarker, QuestObjectiveView, QuestStatus, ResidentRoutineState,
+    TradeGambleView, TradeOfferView, TradeResaleView, TradeSellView, WorldState, ZoneBlueprint,
+    ZoneConnectionBlueprint, ZoneInfo, ZoneLink,
 };
 pub use game_state::{
-    CommandOutcome, CommandRejection, DroneSpawnError, GameInitError, GameState,
-    GroundItemSpawnError, RunStatus, SpawnError,
+    ActorObservationField, CommandOutcome, CommandRejection, DroneSpawnError, GameInitError,
+    GameState, GroundItemSpawnError, RunStatus, SpawnError,
 };
 pub use preparation::{PreparationCancellationReason, TechniquePreparationView};
 pub use rng::GameRng;

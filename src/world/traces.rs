@@ -48,7 +48,7 @@ impl Display for MovementTraceRulesError {
 
 impl Error for MovementTraceRulesError {}
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct MovementTrace {
     direction: Direction,
     created_on_turn: u64,
@@ -79,7 +79,7 @@ pub struct ObservedMovementTrace {
 ///
 /// Traces deliberately store no entity identifier: reading old evidence must
 /// not become a live tracker for its author.
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct MovementTraceMap {
     by_tile: BTreeMap<GridPos, Vec<MovementTrace>>,
 }

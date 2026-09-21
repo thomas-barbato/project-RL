@@ -3,7 +3,7 @@ use std::fmt::{Display, Formatter};
 
 /// A finite reserve. Spending cannot create energy, and changing capacity
 /// never fills it. Sources of recharge will explicitly transfer stored energy.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct EnergyReserve {
     capacity: u16,
     available: u16,
@@ -74,7 +74,7 @@ pub struct EnergySpendError {
 
 /// Capacity occupied by live links and procedures. Unlike energy, bandwidth
 /// is reserved and released; a failed reservation never changes occupancy.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct BandwidthReserve {
     capacity: u16,
     occupied: u16,
@@ -125,7 +125,7 @@ pub struct BandwidthReservationError {
 /// Accumulated heat has no artificial storage capacity. The authored alert
 /// and critical thresholds are presentation and consequence boundaries, not
 /// clamps; cooling can only reduce the current value.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct HeatReserve {
     current: u16,
     alert_threshold: u16,

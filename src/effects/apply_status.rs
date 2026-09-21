@@ -2,7 +2,7 @@ use crate::status::StatusId;
 use std::error::Error;
 use std::fmt::{Display, Formatter};
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ApplyStatusEffect {
     status: StatusId,
     stacks: u16,

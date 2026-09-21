@@ -12,7 +12,7 @@ pub type GroundEffectId = ContentId;
 /// Complete, data-shaped rules for a persistent effect left on a map cell.
 /// Carrying the rules in the instance keeps modded fields deterministic even
 /// when several weapons create different kinds of hazards.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct GroundEffectSpec {
     id: GroundEffectId,
     duration_turns: u16,
@@ -68,7 +68,7 @@ impl Display for GroundEffectSpecError {
 
 impl Error for GroundEffectSpecError {}
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct GroundEffectInstance {
     definition: GroundEffectId,
     position: GridPos,
@@ -100,7 +100,7 @@ impl GroundEffectInstance {
     }
 }
 
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct GroundEffectMap {
     instances: BTreeMap<(GridPos, GroundEffectId), GroundEffectInstance>,
 }

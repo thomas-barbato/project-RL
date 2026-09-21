@@ -13,7 +13,7 @@ use crate::stats::{PrimaryAttribute, PrimaryAttributes};
 /// The order is retained so costs can follow the configured purchase curve and
 /// prerequisites can be validated without storing a second derived counter.
 /// Learning additional techniques is never capped.
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct SkillProgressionState {
     choices: BTreeMap<DisciplineId, Vec<TechniqueId>>,
 }

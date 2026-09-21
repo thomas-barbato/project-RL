@@ -1,6 +1,8 @@
 /// Stable runtime identity. IDs, rather than references, are used by events and
 /// will later be used by saves.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct EntityId(u64);
 
 impl EntityId {

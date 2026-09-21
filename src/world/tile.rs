@@ -1,6 +1,6 @@
 use super::GridPos;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DoorState {
     Closed,
     Open,
@@ -12,7 +12,7 @@ pub enum DoorState {
 
 /// Terrain and the first declarative interaction primitives. Renderers must
 /// obtain movement/vision semantics here, never infer them from a glyph.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum Terrain {
     Floor,
     /// Traversable water. It has no movement penalty yet, but remains a
@@ -50,7 +50,7 @@ impl Terrain {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct TileState {
     pub terrain: Terrain,
     /// Protected ground is explicit level data, not a renderer or AI exception

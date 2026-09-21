@@ -384,6 +384,38 @@ impl UiTheme {
         );
     }
 
+    /// Compact mode selector. Unlike an action button it has no decorative
+    /// bottom rail: selection is carried only by fill, outline and text.
+    pub fn tab(self, rect: Rect, label: &str, active: bool) {
+        let radius = (rect.h * 0.2).clamp(4.0, 8.0);
+        rounded_rectangle(
+            Rect::new(rect.x + 1.0, rect.y + 3.0, rect.w, rect.h),
+            radius,
+            Color::new(0.0, 0.0, 0.0, 0.38),
+        );
+        rounded_outline(
+            rect,
+            radius,
+            if active { 2.0 } else { 1.0 },
+            if active {
+                self.accent()
+            } else {
+                subdued(self.muted(), 0.32)
+            },
+            if active {
+                self.surface_selected()
+            } else {
+                self.surface_raised()
+            },
+        );
+        draw_text_bold_centered(
+            label,
+            Rect::new(rect.x + 8.0, rect.y, rect.w - 16.0, rect.h - 1.0),
+            16,
+            if active { self.accent() } else { self.text() },
+        );
+    }
+
     pub fn button_with_icon(self, rect: Rect, label: &str, icon: UiIcon, state: ButtonState) {
         self.button(
             rect,

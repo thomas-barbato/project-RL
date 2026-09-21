@@ -10,7 +10,9 @@ use std::num::NonZeroU64;
 
 use crate::world::GridPos;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct SecurityTraceId(NonZeroU64);
 
 impl SecurityTraceId {
@@ -26,33 +28,35 @@ impl SecurityTraceId {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, serde::Serialize, serde::Deserialize,
+)]
 pub enum AccessRight {
     Read,
     Command,
     ModifyRegister,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum AccessOrigin {
     Authentic,
     Spoofed,
     Backdoor,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DeviceCommand {
     Open,
     Close,
     Disable,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DigitalRoutine {
     AutomaticResponse,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum IntrusionDirective {
     Interface {
         position: GridPos,
@@ -74,7 +78,7 @@ pub enum IntrusionDirective {
     },
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct AccessSession {
     rights: BTreeSet<AccessRight>,
     origin: AccessOrigin,
@@ -118,7 +122,7 @@ impl AccessSession {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct SecurityTrace {
     id: SecurityTraceId,
     source: GridPos,
@@ -154,14 +158,14 @@ impl SecurityTrace {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DataLot {
     pub source: GridPos,
     pub recorded_on_turn: u64,
     pub extracted_on_turn: u64,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ActiveDeviceControl {
     pub command: DeviceCommand,
     pub expires_on_turn: u64,
@@ -169,7 +173,7 @@ pub struct ActiveDeviceControl {
     pub bandwidth_reserved: u16,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ActiveRoutineSuspension {
     pub routine: DigitalRoutine,
     pub expires_on_turn: u64,
@@ -177,7 +181,7 @@ pub struct ActiveRoutineSuspension {
     pub active: bool,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Default)]
+#[derive(Clone, Debug, PartialEq, Eq, Default, serde::Serialize, serde::Deserialize)]
 pub struct IntrusionState {
     sessions: BTreeMap<GridPos, AccessSession>,
     probed_interfaces: BTreeSet<GridPos>,
@@ -192,13 +196,13 @@ pub struct IntrusionState {
     next_trace_id: u64,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct FailedAttemptHardening {
     pub bonus: u16,
     pub expires_on_turn: u64,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ActiveControlLock {
     pub expires_on_turn: u64,
     pub bandwidth_reserved: u16,

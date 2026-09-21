@@ -7,7 +7,7 @@ pub type BodyComponentId = ContentId;
 
 /// Concrete engine consequence of a failed body component. Content chooses
 /// the primitive; combat techniques only address the component ID.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ComponentFailureEffect {
     DisableMovement,
     DisableAttackSlot(u8),
@@ -15,7 +15,7 @@ pub enum ComponentFailureEffect {
     ReducePerception(u16),
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct BodyComponentProfile {
     id: BodyComponentId,
     name_key: String,
@@ -71,7 +71,7 @@ impl BodyComponentProfile {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct BodyComponentState {
     profile: BodyComponentProfile,
     durability: u16,

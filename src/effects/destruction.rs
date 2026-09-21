@@ -6,7 +6,7 @@ use crate::world::{GridPos, Map};
 /// Keeping the explosion and the optional persistent hazard together lets
 /// mods define volatile scenery without teaching the game loop about each
 /// individual barrel, reactor or creature type.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DestructionEffect {
     explosion: RadialDamageEffect,
     ground_effect: Option<GroundEffectSpec>,
@@ -45,5 +45,41 @@ impl DestructionEffect {
             .into_iter()
             .map(|cell| cell.position)
             .collect()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::combat::{DamagePacket, DamageType};
+    use crate::effects::DamageFalloff;
+    use crate::world::{NeighborMode, Terrain, TerrainPropagationPolicy};
+
+    #[test]
+    fn persistent_discharge_reuses_the_water_conductive_footprint() {
+        let mut map = Map::filled(9, 5, Terrain::Wall).unwrap();
+        for x in 1..=7 {
+            map.set_terrain(GridPos::new(x, 2), Terrain::Floor).unwrap();
+            map.set_terrain(GridPos::new(x, 1), Terrain::ShallowWater)
+                .unwrap();
+        }
+        let field = GroundEffectSpec::new(
+            "core:test_electrified_ground".parse().unwrap(),
+            2,
+            DamagePacket::new(2, DamageType::Electrical, 0),
+        )
+        .unwrap();
+        let effect = DestructionEffect::new(RadialDamageEffect {
+            maximum_cost: 4,
+            neighbor_mode: NeighborMode::Cardinal,
+            propagation_policy: TerrainPropagationPolicy::conductive(3, 1),
+            damage: DamagePacket::new(5, DamageType::Electrical, 0),
+            falloff: DamageFalloff::PerPropagationCost(1),
+        })
+        .with_ground_effect(field);
+        let positions = effect.ground_effect_positions(&map, GridPos::new(1, 2));
+
+        assert!(positions.contains(&GridPos::new(4, 1)));
+        assert!(!positions.contains(&GridPos::new(3, 2)));
     }
 }

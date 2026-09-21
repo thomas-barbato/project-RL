@@ -4,13 +4,13 @@ use crate::world::{
     propagate,
 };
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DamageFalloff {
     None,
     PerPropagationCost(u16),
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct RadialDamageEffect {
     pub maximum_cost: u16,
     pub neighbor_mode: NeighborMode,

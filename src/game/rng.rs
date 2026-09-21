@@ -2,7 +2,7 @@
 ///
 /// It uses SplitMix64, which is suitable for reproducible gameplay decisions
 /// but is not a cryptographic generator.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct GameRng {
     state: u64,
 }

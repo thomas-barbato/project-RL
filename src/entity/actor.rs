@@ -4,6 +4,7 @@ use std::fmt::{Debug, Display, Formatter};
 
 use crate::ai::{AiProfile, AiState};
 use crate::combat::{ArmorProfile, AttackProfile, ResistanceProfile};
+use crate::content::ContentId;
 use crate::drone::DroneState;
 use crate::effects::{AbilityProfile, DestructionEffect};
 use crate::electronic_warfare::{ElectronicSystemProfile, ElectronicSystemState};
@@ -11,8 +12,8 @@ use crate::progression::DefeatReward;
 use crate::reaction::{ActionOrigin, PreparedReaction, ReactionState, ReactionTrigger};
 use crate::skills::TechniqueId;
 use crate::social::{
-    LocalAlert, LocalAlertProfile, ObservedPropertyTake, PlayerRelation, SocialGroupId,
-    WitnessProfile,
+    LocalAlert, LocalAlertProfile, MAX_RECEIVED_PROPERTY_REPORTS, ObservedPropertyTake,
+    PlayerRelation, PropertyReportProfile, ReportedPropertyTake, SocialGroupId, WitnessProfile,
 };
 use crate::stats::{
     BodyProfile, DisplacementProfile, HitPointRules, LocomotionProfile, PrimaryAttributes,
@@ -23,9 +24,11 @@ use crate::time::{
 };
 use crate::world::GridPos;
 
-use super::{BodyComponentId, BodyComponentProfile, BodyComponentState, ComponentFailureEffect};
+use super::{
+    BodyComponentId, BodyComponentProfile, BodyComponentState, ComponentFailureEffect, EntityId,
+};
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct Actor {
     position: GridPos,
     integrity: u16,
@@ -49,11 +52,14 @@ pub struct Actor {
     evasion_modifier: i16,
     affiliation: Option<SocialGroupId>,
     player_relation: PlayerRelation,
+    tags: BTreeSet<ContentId>,
     property_take_authorizations: BTreeSet<SocialGroupId>,
     witness_profile: Option<WitnessProfile>,
     observed_property_takes: Vec<ObservedPropertyTake>,
     local_alert_profile: Option<LocalAlertProfile>,
     local_alert: Option<LocalAlert>,
+    property_report_profile: Option<PropertyReportProfile>,
+    received_property_take_reports: Vec<ReportedPropertyTake>,
     reaction_state: ReactionState,
     action_recovery: Option<ActionRecovery>,
     technique_cooldowns: BTreeMap<TechniqueId, EnvironmentCooldown>,
@@ -81,6 +87,9 @@ impl Debug for Actor {
         }
         if self.player_relation != PlayerRelation::Neutral {
             actor.field("player_relation", &self.player_relation);
+        }
+        if !self.tags.is_empty() {
+            actor.field("tags", &self.tags);
         }
         if let Some(home) = self.ai_home {
             actor.field("ai_home", &home);
@@ -120,6 +129,15 @@ impl Debug for Actor {
         }
         if let Some(alert) = &self.local_alert {
             actor.field("local_alert", alert);
+        }
+        if let Some(profile) = self.property_report_profile {
+            actor.field("property_report_profile", &profile);
+        }
+        if !self.received_property_take_reports.is_empty() {
+            actor.field(
+                "received_property_take_reports",
+                &self.received_property_take_reports,
+            );
         }
         if let Some(body_profile) = self.body_profile {
             actor.field("body_profile", &body_profile);
@@ -172,11 +190,14 @@ impl Actor {
             evasion_modifier: 0,
             affiliation: None,
             player_relation: PlayerRelation::Neutral,
+            tags: BTreeSet::new(),
             property_take_authorizations: BTreeSet::new(),
             witness_profile: None,
             observed_property_takes: Vec::new(),
             local_alert_profile: None,
             local_alert: None,
+            property_report_profile: None,
+            received_property_take_reports: Vec::new(),
             reaction_state: ReactionState::default(),
             action_recovery: None,
             technique_cooldowns: BTreeMap::new(),
@@ -290,6 +311,11 @@ impl Actor {
         self
     }
 
+    pub fn with_tags(mut self, tags: impl IntoIterator<Item = ContentId>) -> Self {
+        self.tags.extend(tags);
+        self
+    }
+
     pub fn with_property_take_authorization(mut self, owner: SocialGroupId) -> Self {
         self.property_take_authorizations.insert(owner);
         self
@@ -302,6 +328,11 @@ impl Actor {
 
     pub const fn with_local_alert_profile(mut self, profile: LocalAlertProfile) -> Self {
         self.local_alert_profile = Some(profile);
+        self
+    }
+
+    pub const fn with_property_report_profile(mut self, profile: PropertyReportProfile) -> Self {
+        self.property_report_profile = Some(profile);
         self
     }
 
@@ -580,6 +611,10 @@ impl Actor {
         self.player_relation
     }
 
+    pub fn tags(&self) -> &BTreeSet<ContentId> {
+        &self.tags
+    }
+
     pub fn may_take_property_of(&self, owner: &SocialGroupId) -> bool {
         self.affiliation.as_ref() == Some(owner)
             || self.property_take_authorizations.contains(owner)
@@ -591,6 +626,10 @@ impl Actor {
 
     pub(crate) fn grant_property_take_authorization(&mut self, owner: SocialGroupId) -> bool {
         self.property_take_authorizations.insert(owner)
+    }
+
+    pub(crate) fn revoke_property_take_authorization(&mut self, owner: &SocialGroupId) -> bool {
+        self.property_take_authorizations.remove(owner)
     }
 
     pub const fn witness_profile(&self) -> Option<WitnessProfile> {
@@ -607,6 +646,30 @@ impl Actor {
 
     pub const fn local_alert(&self) -> Option<&LocalAlert> {
         self.local_alert.as_ref()
+    }
+
+    pub const fn property_report_profile(&self) -> Option<PropertyReportProfile> {
+        self.property_report_profile
+    }
+
+    pub(crate) fn set_property_report_profile(&mut self, profile: PropertyReportProfile) {
+        self.property_report_profile = Some(profile);
+    }
+
+    pub fn received_property_take_reports(&self) -> &[ReportedPropertyTake] {
+        &self.received_property_take_reports
+    }
+
+    pub(crate) fn receive_property_take_report(
+        &mut self,
+        source: EntityId,
+        incident: ObservedPropertyTake,
+    ) {
+        if self.received_property_take_reports.len() >= MAX_RECEIVED_PROPERTY_REPORTS {
+            self.received_property_take_reports.remove(0);
+        }
+        self.received_property_take_reports
+            .push(ReportedPropertyTake { source, incident });
     }
 
     pub(crate) fn remember_property_take(&mut self, incident: ObservedPropertyTake) {

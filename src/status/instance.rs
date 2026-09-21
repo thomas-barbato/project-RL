@@ -4,7 +4,7 @@ use crate::entity::EntityId;
 
 use super::{StatusDefinition, StatusId, StatusStacking};
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct StatusInstance {
     pub definition: StatusId,
     pub stacks: u16,
@@ -29,7 +29,7 @@ pub enum StatusApplyKind {
     Ignored,
 }
 
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct StatusSet {
     instances: BTreeMap<StatusId, StatusInstance>,
 }

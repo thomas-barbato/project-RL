@@ -1,9 +1,10 @@
 use std::cmp::Ordering;
 use std::collections::{BTreeMap, BinaryHeap};
+use std::fmt::{Debug, Formatter};
 
-use super::{GridPos, Map};
+use super::{DoorState, GridPos, Map, Terrain};
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum NeighborMode {
     Cardinal,
     CardinalAndDiagonal,
@@ -31,9 +32,11 @@ pub trait PropagationPolicy {
 
 /// Initial data-shaped policy based on terrain. `None` makes a terrain
 /// impassable to the effect; a larger cost slows or weakens propagation.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct TerrainPropagationPolicy {
     pub floor_cost: Option<u16>,
+    pub shallow_water_cost: Option<u16>,
+    pub deep_water_cost: Option<u16>,
     pub wall_cost: Option<u16>,
 }
 
@@ -41,17 +44,54 @@ impl TerrainPropagationPolicy {
     pub const fn blocked_by_walls(floor_cost: u16) -> Self {
         Self {
             floor_cost: Some(floor_cost),
+            shallow_water_cost: Some(floor_cost),
+            deep_water_cost: None,
             wall_cost: None,
         }
+    }
+
+    /// A bounded electrical profile: ordinary ground attenuates the discharge,
+    /// while either depth of water carries it at the cheaper conductive cost.
+    /// Walls and closed doors remain absolute barriers.
+    pub const fn conductive(dry_cost: u16, water_cost: u16) -> Self {
+        Self {
+            floor_cost: Some(dry_cost),
+            shallow_water_cost: Some(water_cost),
+            deep_water_cost: Some(water_cost),
+            wall_cost: None,
+        }
+    }
+
+    pub fn uses_distinct_water_costs(self) -> bool {
+        self.shallow_water_cost != self.floor_cost || self.deep_water_cost != self.wall_cost
+    }
+}
+
+/// Preserve the exact historical fingerprint whenever water follows the old
+/// movement-derived behavior. New water-specific fields appear only for a
+/// policy that really uses them.
+impl Debug for TerrainPropagationPolicy {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut policy = formatter.debug_struct("TerrainPropagationPolicy");
+        policy.field("floor_cost", &self.floor_cost);
+        if self.uses_distinct_water_costs() {
+            policy
+                .field("shallow_water_cost", &self.shallow_water_cost)
+                .field("deep_water_cost", &self.deep_water_cost);
+        }
+        policy.field("wall_cost", &self.wall_cost).finish()
     }
 }
 
 impl PropagationPolicy for TerrainPropagationPolicy {
     fn traversal_cost(&self, map: &Map, _from: GridPos, to: GridPos) -> Option<u16> {
-        if map.tile(to)?.terrain.blocks_movement() {
-            self.wall_cost
-        } else {
-            self.floor_cost
+        match map.tile(to)?.terrain {
+            Terrain::Floor | Terrain::Door(DoorState::Open) => self.floor_cost,
+            Terrain::ShallowWater => self.shallow_water_cost,
+            Terrain::DeepWater => self.deep_water_cost,
+            Terrain::Wall
+            | Terrain::Door(DoorState::Closed | DoorState::Locked | DoorState::Unpowered)
+            | Terrain::ControlPanel { .. } => self.wall_cost,
         }
     }
 }
@@ -192,6 +232,8 @@ mod tests {
             },
             &TerrainPropagationPolicy {
                 floor_cost: Some(1),
+                shallow_water_cost: Some(1),
+                deep_water_cost: None,
                 wall_cost: Some(2),
             },
         );
@@ -228,5 +270,33 @@ mod tests {
         assert_eq!(first, second);
         assert!(first.windows(2).all(|pair| pair[0].cost <= pair[1].cost));
         assert_eq!(first.first().map(|cell| cell.step), Some(0));
+    }
+
+    #[test]
+    fn conductive_policy_reaches_farther_through_water_than_dry_ground() {
+        let mut map = Map::filled(9, 5, Terrain::Wall).unwrap();
+        for x in 1..=7 {
+            map.set_terrain(GridPos::new(x, 2), Terrain::Floor).unwrap();
+        }
+        for x in 1..=7 {
+            map.set_terrain(GridPos::new(x, 1), Terrain::ShallowWater)
+                .unwrap();
+        }
+        let cells = propagate(
+            &map,
+            PropagationRequest {
+                origin: GridPos::new(1, 2),
+                maximum_cost: 4,
+                neighbor_mode: NeighborMode::Cardinal,
+            },
+            &TerrainPropagationPolicy::conductive(3, 1),
+        );
+
+        assert!(
+            cells
+                .iter()
+                .any(|cell| cell.position == GridPos::new(4, 1) && cell.cost == 4)
+        );
+        assert!(cells.iter().all(|cell| cell.position != GridPos::new(3, 2)));
     }
 }

@@ -4,7 +4,7 @@ use crate::world::{DistanceMetric, GridPos};
 use super::{ApplyStatusEffect, RadialDamageEffect};
 
 /// A data-shaped ability assembled from reusable effect primitives.
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct AbilityProfile {
     range: u16,
     distance_metric: DistanceMetric,
@@ -88,7 +88,7 @@ impl AbilityProfile {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum EffectPrimitive {
     RadialDamage(RadialDamageEffect),
     ApplyStatus(ApplyStatusEffect),

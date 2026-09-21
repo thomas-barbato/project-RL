@@ -2,7 +2,7 @@ use std::collections::BTreeSet;
 
 use super::{GridPos, Map};
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum DistanceMetric {
     Chebyshev,
     Euclidean,
@@ -10,7 +10,7 @@ pub enum DistanceMetric {
 
 /// Data-shaped field-of-view rules. These values can later be loaded from a
 /// content package or exposed to a sandboxed rule script.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct FieldOfViewRules {
     pub radius: u16,
     pub distance_metric: DistanceMetric,
@@ -27,7 +27,7 @@ impl Default for FieldOfViewRules {
     }
 }
 
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct VisibilityState {
     visible: BTreeSet<GridPos>,
     explored: BTreeSet<GridPos>,

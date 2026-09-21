@@ -523,7 +523,7 @@ Sections particulièrement concernées : 2.1, 2.4, 3, 7, 8.3, 8.4, 10, 11, 12 et
 
 Sections particulièrement concernées : 17.5, 41, 43, 44 et 69.
 
-L’identité de Vey, sa mort, le rôle précis du Geôlier, les itinéraires et la machine d’accueil sont des **choix narratifs proposés ici**, pas des informations déjà imposées par les documents fondateurs.
+Le réveil dans la zone de recyclage, la possibilité d'en sortir sans compétence obligatoire et l'arrivée dans une première ville habitée sont validés comme véritable début jouable. L’identité de Vey, sa mort, le rôle précis du Geôlier, les itinéraires ultérieurs et la machine d’accueil restent des **choix narratifs proposés ici**, pas des informations déjà imposées par les documents fondateurs.
 
 Une validation de ce scénario fixerait ces choix dans le contenu narratif, sans rendre le moteur dépendant d’une explication unique de l’univers. Les textes, conditions et résultats de quête doivent rester des données autant que possible. Aucun changement de pile technique ou d’exigences de plateforme n’est introduit.
 

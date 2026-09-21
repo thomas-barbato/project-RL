@@ -6,7 +6,7 @@ use crate::world::GridPos;
 
 use super::{Actor, EntityId};
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
 pub struct ActorRegistry {
     actors: BTreeMap<EntityId, Actor>,
     next_id: u64,

@@ -1,4 +1,5 @@
 mod regional;
+mod regional_city;
 mod regional_destructible;
 mod regional_landmark;
 mod regional_loot;
@@ -9,6 +10,10 @@ mod validation;
 pub use regional::{
     GeneratedRegionalMap, RegionalGenerationError, RegionalMapGenerator, cardinal_passage,
     vertical_passage,
+};
+pub use regional_city::{
+    GeneratedRegionalCityMap, RegionalCityFeature, RegionalCityGenerationError,
+    generate_regional_city,
 };
 pub use regional_destructible::{RegionalDestructibleError, generate_regional_destructibles};
 pub use regional_landmark::{

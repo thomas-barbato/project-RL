@@ -825,6 +825,8 @@ impl TechniqueAction {
 /// compatible prerequisite without creating a second command in the UI.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TechniqueImprovement {
+    /// Unlocks a client-side reading of currently visible NPC observation fields.
+    NpcVisionOverlay,
     /// Adds one ordinary melee weapon strike after a successful prepared parry.
     MeleeCounterattack,
     ExtendedRangedOverwatch,
@@ -2419,6 +2421,13 @@ pub struct SkillCatalog {
 }
 
 impl SkillCatalog {
+    /// Removes one declaration when replaying a generation that predates it.
+    pub fn without_technique(&self, excluded: &TechniqueId) -> Self {
+        let mut catalog = self.clone();
+        catalog.techniques.remove(excluded);
+        catalog
+    }
+
     pub fn without_action_kinds(&self) -> Self {
         let mut catalog = self.clone();
         for definition in catalog.techniques.values_mut() {
@@ -2653,6 +2662,16 @@ impl SkillCatalog {
                     )
                 {
                     return Err(SkillCatalogError::InvalidMeleeCounterattackImprovement(
+                        technique.id().clone(),
+                    ));
+                }
+                if technique.improvement() == Some(TechniqueImprovement::NpcVisionOverlay)
+                    && !matches!(
+                        prerequisite.action(),
+                        Some(TechniqueAction::AnalyzeTarget { .. })
+                    )
+                {
+                    return Err(SkillCatalogError::InvalidNpcVisionOverlayImprovement(
                         technique.id().clone(),
                     ));
                 }
@@ -3002,6 +3021,7 @@ pub enum SkillCatalogError {
     MissingTechniqueBehavior(TechniqueId),
     MissingDeploymentMaterial(TechniqueId),
     InvalidAnalysisImprovement(TechniqueId),
+    InvalidNpcVisionOverlayImprovement(TechniqueId),
     InvalidExplosiveRecoveryImprovement(TechniqueId),
     InvalidMeleeCounterattackImprovement(TechniqueId),
     InvalidRangedOverwatchImprovement(TechniqueId),
@@ -3060,6 +3080,10 @@ impl Display for SkillCatalogError {
             Self::InvalidAnalysisImprovement(id) => write!(
                 formatter,
                 "multiple analysis '{id}' must require a target analysis"
+            ),
+            Self::InvalidNpcVisionOverlayImprovement(id) => write!(
+                formatter,
+                "NPC vision overlay '{id}' must improve a target analysis"
             ),
             Self::InvalidExplosiveRecoveryImprovement(id) => write!(
                 formatter,

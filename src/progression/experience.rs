@@ -3,7 +3,9 @@ use std::error::Error;
 use std::fmt::{Display, Formatter};
 
 /// Stable, namespaced identifier used to deduplicate one-time run rewards.
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct RewardKey(String);
 
 impl RewardKey {
@@ -235,7 +237,7 @@ impl Display for ProgressionRulesError {
 
 impl Error for ProgressionRulesError {}
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ExperienceRewardOrigin {
     Persistent,
     Summoned,
@@ -243,7 +245,7 @@ pub enum ExperienceRewardOrigin {
 }
 
 /// Experience content attached to a defeated actor.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DefeatReward {
     pub base_experience: u64,
     pub threat_level: u16,
@@ -321,7 +323,7 @@ pub struct ExperienceAwardOutcome {
     pub duplicate_one_time_reward: bool,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct RunProgression {
     experience: u64,
     level: u16,

@@ -14,7 +14,10 @@ use crate::entity::{
     ActorRegistry, EntityId, GroundItemId, GroundItemRegistry, Inventory, ItemInstanceId,
 };
 use crate::item::ItemId;
-use crate::social::{LocalAlertProfile, ObservedPropertyTake, SocialGroupId, WitnessProfile};
+use crate::social::{
+    LocalAlertProfile, ObservedPropertyTake, PropertyReportChannel, PropertyReportProfile,
+    SocialGroupId, WitnessProfile,
+};
 use crate::world::{
     DistanceMetric, DoorState, FieldOfViewRules, GridPos, Map, Terrain, compute_visible_tiles,
     find_path_with,
@@ -32,8 +35,9 @@ pub const MAX_NAVIGATION_BEACON_RANGE: u16 = 1_024;
 pub const MAX_SECURITY_ALARM_DURATION_TURNS: u16 = 10_000;
 pub const MAX_SECURITY_ALARM_RESPONSES: usize = 32;
 pub const MAX_SECURITY_REINFORCEMENT_DELAY_TURNS: u16 = 10_000;
+pub const MAX_REPORTED_INCIDENT_RESPONSE_TURNS: u16 = 1_000;
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum InstallationCapability {
     PowerRelay,
     DoorActuator {
@@ -69,6 +73,13 @@ pub struct DataTerminalAccess {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
+pub enum DataTerminalUpdateError {
+    UnknownInstallation,
+    MissingDataTerminal,
+    UnchangedRecord,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum SecurityAlarmResponse {
     /// Locks every door controlled by the referenced actuator. Referencing an
     /// installation ID keeps the rule stable when a map layout moves.
@@ -83,7 +94,7 @@ pub enum SecurityAlarmResponse {
     CallInvestigatingReinforcements { source: GridPos, delay_turns: u16 },
 }
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct SecurityAlarmProfile {
     field_of_view: FieldOfViewRules,
     duration_turns: u16,
@@ -202,7 +213,7 @@ impl Display for SecurityAlarmProfileError {
 
 impl Error for SecurityAlarmProfileError {}
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct InstallationBlueprint {
     pub id: InstallationId,
     pub position: GridPos,
@@ -232,13 +243,35 @@ impl Debug for InstallationBlueprint {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum WorkerRole {
     Retriever,
     Technician,
 }
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct WorkerPropertyReportBlueprint {
+    pub recipient_position: GridPos,
+    pub channel: PropertyReportChannel,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct WorkerInstalledPropertyReportBlueprint {
+    pub installation: InstallationId,
+    pub channel: PropertyReportChannel,
+}
+
+/// A deliberately local, finite reaction to a fact received from another
+/// worker. The facility remains the only movement authority for its workers;
+/// this does not turn a service NPC into combat AI or reveal the taker's live
+/// position.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct WorkerReportedIncidentResponseBlueprint {
+    pub inspection_turns: u16,
+    pub maximum_response_turns: u16,
+}
+
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct WorkerBlueprint {
     /// The adapter does not know global entity IDs before spawning. A unique
     /// position resolves the already-created actor without storing an index.
@@ -249,6 +282,9 @@ pub struct WorkerBlueprint {
     pub affiliation: Option<SocialGroupId>,
     pub witness_profile: Option<WitnessProfile>,
     pub local_alert_profile: Option<LocalAlertProfile>,
+    pub property_report: Option<WorkerPropertyReportBlueprint>,
+    pub installed_property_report: Option<WorkerInstalledPropertyReportBlueprint>,
+    pub reported_incident_response: Option<WorkerReportedIncidentResponseBlueprint>,
 }
 
 impl Debug for WorkerBlueprint {
@@ -267,11 +303,20 @@ impl Debug for WorkerBlueprint {
         if let Some(profile) = self.local_alert_profile {
             worker.field("local_alert_profile", &profile);
         }
+        if let Some(report) = self.property_report {
+            worker.field("property_report", &report);
+        }
+        if let Some(report) = &self.installed_property_report {
+            worker.field("installed_property_report", report);
+        }
+        if let Some(response) = self.reported_incident_response {
+            worker.field("reported_incident_response", &response);
+        }
         worker.finish()
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct RepairOrderBlueprint {
     pub id: WorkOrderId,
     pub target: InstallationId,
@@ -280,7 +325,7 @@ pub struct RepairOrderBlueprint {
     pub work_turns: u16,
 }
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct FacilityBlueprint {
     pub installations: Vec<InstallationBlueprint>,
     pub depot: InstallationId,
@@ -306,7 +351,7 @@ impl Debug for FacilityBlueprint {
     }
 }
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct InstallationState {
     id: InstallationId,
     position: GridPos,
@@ -364,7 +409,7 @@ impl InstallationState {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum RepairStatus {
     WaitingForMaterial,
     MaterialAvailable,
@@ -378,7 +423,18 @@ pub enum RepairStatus {
     Completed,
 }
 
+/// Presentation-safe snapshot of a repair order. The facility remains the
+/// authority for stock and worker cargo; adapters only receive the amount that
+/// is still missing instead of trying to reconstruct it from rendered state.
 #[derive(Clone, Debug, PartialEq, Eq)]
+pub struct RepairOrderSummary {
+    pub order: WorkOrderId,
+    pub required_item: ItemId,
+    pub missing_quantity: u16,
+    pub status: RepairStatus,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 struct RepairOrderState {
     id: WorkOrderId,
     target: InstallationId,
@@ -388,7 +444,7 @@ struct RepairOrderState {
     status: RepairStatus,
 }
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 struct Cargo {
     item: ItemId,
     quantity: u16,
@@ -408,13 +464,41 @@ impl Debug for Cargo {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 struct WorkerState {
     role: WorkerRole,
     last_position: GridPos,
     cargo: Option<Cargo>,
     reserved_ground: Option<GroundItemId>,
     assigned_order: Option<WorkOrderId>,
+    reported_incident_response: Option<WorkerReportedIncidentResponseBlueprint>,
+    reported_incident_investigation: Option<ReportedIncidentInvestigation>,
+}
+
+impl Debug for WorkerState {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut worker = formatter.debug_struct("WorkerState");
+        worker
+            .field("role", &self.role)
+            .field("last_position", &self.last_position)
+            .field("cargo", &self.cargo)
+            .field("reserved_ground", &self.reserved_ground)
+            .field("assigned_order", &self.assigned_order);
+        if let Some(response) = self.reported_incident_response {
+            worker.field("reported_incident_response", &response);
+        }
+        if let Some(investigation) = self.reported_incident_investigation {
+            worker.field("reported_incident_investigation", &investigation);
+        }
+        worker.finish()
+    }
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+struct ReportedIncidentInvestigation {
+    at: GridPos,
+    remaining_inspection_turns: u16,
+    remaining_response_turns: u16,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -459,6 +543,21 @@ pub enum FacilityEvent {
         order: WorkOrderId,
         worker: EntityId,
         turns: u16,
+    },
+    ReportedIncidentInvestigationAssigned {
+        worker: EntityId,
+        at: GridPos,
+        maximum_response_turns: u16,
+    },
+    ReportedIncidentInvestigationEnded {
+        worker: EntityId,
+        at: GridPos,
+        reached: bool,
+    },
+    InstalledPropertyReportReceived {
+        source: EntityId,
+        installation: InstallationId,
+        at: GridPos,
     },
     InstallationRepaired {
         order: WorkOrderId,
@@ -530,7 +629,7 @@ pub struct SecurityAlarmResponseContext<'a> {
 
 /// A local installed alarm. It records only the incident seen by this sensor;
 /// transmission and faction-wide consequences are deliberately separate.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct SecurityAlarm {
     pub incident: ObservedPropertyTake,
     pub expires_on_turn: u64,
@@ -550,7 +649,7 @@ pub enum ReinforcementRequestFailure {
     QuotaExhausted,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct SecurityDoorLockdown {
     pub installation: InstallationId,
     pub actuator: InstallationId,
@@ -577,16 +676,19 @@ impl SecurityAlarm {
     }
 }
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct FacilityState {
     installations: BTreeMap<InstallationId, InstallationState>,
     depot: InstallationId,
     owner: Option<SocialGroupId>,
     stock: BTreeMap<ItemId, u16>,
     workers: BTreeMap<EntityId, WorkerState>,
+    installed_property_reports: BTreeMap<EntityId, WorkerInstalledPropertyReportBlueprint>,
     repair_orders: BTreeMap<WorkOrderId, RepairOrderState>,
     ground_reservations: BTreeMap<GroundItemId, EntityId>,
     accessed_data_terminals: BTreeSet<InstallationId>,
+    retained_data_terminal_records: BTreeSet<ContentId>,
+    updated_data_terminals: BTreeSet<InstallationId>,
     security_alarms: BTreeMap<InstallationId, SecurityAlarm>,
     security_door_lockdowns: BTreeMap<GridPos, SecurityDoorLockdown>,
     maximum_path_search: usize,
@@ -603,11 +705,27 @@ impl Debug for FacilityState {
         }
         facility
             .field("stock", &self.stock)
-            .field("workers", &self.workers)
+            .field("workers", &self.workers);
+        if !self.installed_property_reports.is_empty() {
+            facility.field(
+                "installed_property_reports",
+                &self.installed_property_reports,
+            );
+        }
+        facility
             .field("repair_orders", &self.repair_orders)
             .field("ground_reservations", &self.ground_reservations);
         if !self.accessed_data_terminals.is_empty() {
             facility.field("accessed_data_terminals", &self.accessed_data_terminals);
+        }
+        if !self.retained_data_terminal_records.is_empty() {
+            facility.field(
+                "retained_data_terminal_records",
+                &self.retained_data_terminal_records,
+            );
+        }
+        if !self.updated_data_terminals.is_empty() {
+            facility.field("updated_data_terminals", &self.updated_data_terminals);
         }
         if !self.security_alarms.is_empty() {
             facility.field("security_alarms", &self.security_alarms);
@@ -768,10 +886,88 @@ impl FacilityState {
                     worker.actor_position,
                 ));
             }
+            if worker.reported_incident_response.is_some_and(|response| {
+                response.inspection_turns == 0
+                    || response.maximum_response_turns < response.inspection_turns
+                    || response.maximum_response_turns > MAX_REPORTED_INCIDENT_RESPONSE_TURNS
+            }) {
+                return Err(FacilityBuildError::InvalidReportedIncidentResponse(
+                    worker.actor_position,
+                ));
+            }
             if !worker_positions.insert(worker.actor_position) {
                 return Err(FacilityBuildError::DuplicateWorkerPosition(
                     worker.actor_position,
                 ));
+            }
+        }
+        for worker in &blueprint.workers {
+            let Some(report) = worker.property_report else {
+                if worker.installed_property_report.is_none() {
+                    continue;
+                }
+                // Installed links are validated below without requiring an
+                // actor recipient.
+                continue;
+            };
+            if worker.witness_profile.is_none() {
+                return Err(FacilityBuildError::PropertyReportWithoutWitness(
+                    worker.actor_position,
+                ));
+            }
+            if report.recipient_position == worker.actor_position {
+                return Err(FacilityBuildError::PropertyReportToSelf(
+                    worker.actor_position,
+                ));
+            }
+            let Some(recipient) = blueprint
+                .workers
+                .iter()
+                .find(|candidate| candidate.actor_position == report.recipient_position)
+            else {
+                return Err(FacilityBuildError::UnknownPropertyReportRecipient {
+                    source: worker.actor_position,
+                    recipient: report.recipient_position,
+                });
+            };
+            if worker.affiliation.is_none() || worker.affiliation != recipient.affiliation {
+                return Err(FacilityBuildError::PropertyReportAffiliationMismatch {
+                    source: worker.actor_position,
+                    recipient: report.recipient_position,
+                });
+            }
+        }
+        for worker in &blueprint.workers {
+            let Some(report) = &worker.installed_property_report else {
+                continue;
+            };
+            if worker.witness_profile.is_none() {
+                return Err(FacilityBuildError::InstalledPropertyReportWithoutWitness(
+                    worker.actor_position,
+                ));
+            }
+            if worker.affiliation.is_none() || worker.affiliation != blueprint.owner {
+                return Err(
+                    FacilityBuildError::InstalledPropertyReportAffiliationMismatch(
+                        worker.actor_position,
+                    ),
+                );
+            }
+            let Some(target) = installations.get(&report.installation) else {
+                return Err(FacilityBuildError::UnknownInstalledPropertyReportTarget {
+                    source: worker.actor_position,
+                    installation: Box::new(report.installation.clone()),
+                });
+            };
+            if target.security_alarm_profile.is_none()
+                || !target
+                    .capabilities
+                    .contains(&InstallationCapability::SecuritySensor)
+            {
+                return Err(FacilityBuildError::InvalidInstalledPropertyReportTarget {
+                    source: worker.actor_position,
+                    installation: Box::new(report.installation.clone()),
+                });
             }
         }
         let mut orders = BTreeSet::new();
@@ -794,7 +990,7 @@ impl FacilityState {
     pub fn instantiate(
         blueprint: FacilityBlueprint,
         map: &mut Map,
-        actors: &ActorRegistry,
+        actors: &mut ActorRegistry,
     ) -> Result<Self, FacilityBuildError> {
         Self::validate_blueprint(&blueprint)?;
         let mut installations = BTreeMap::new();
@@ -846,6 +1042,8 @@ impl FacilityState {
         validate_dependencies(&installations)?;
 
         let mut workers = BTreeMap::new();
+        let mut property_reports = Vec::<(EntityId, PropertyReportProfile)>::new();
+        let mut installed_property_reports = BTreeMap::new();
         for worker in blueprint.workers {
             let entity = actors
                 .entity_at(worker.actor_position)
@@ -860,6 +1058,15 @@ impl FacilityState {
                     actual: actor.maximum_integrity(),
                 });
             }
+            if let Some(report) = worker.property_report {
+                let recipient = actors
+                    .entity_at(report.recipient_position)
+                    .ok_or(FacilityBuildError::MissingWorker(report.recipient_position))?;
+                property_reports.push((entity, report.channel.for_recipient(recipient)));
+            }
+            if let Some(report) = worker.installed_property_report {
+                installed_property_reports.insert(entity, report);
+            }
             workers.insert(
                 entity,
                 WorkerState {
@@ -868,6 +1075,8 @@ impl FacilityState {
                     cargo: None,
                     reserved_ground: None,
                     assigned_order: None,
+                    reported_incident_response: worker.reported_incident_response,
+                    reported_incident_investigation: None,
                 },
             );
         }
@@ -905,9 +1114,12 @@ impl FacilityState {
             owner: blueprint.owner,
             stock: BTreeMap::new(),
             workers,
+            installed_property_reports,
             repair_orders,
             ground_reservations: BTreeMap::new(),
             accessed_data_terminals: BTreeSet::new(),
+            retained_data_terminal_records: BTreeSet::new(),
+            updated_data_terminals: BTreeSet::new(),
             security_alarms: BTreeMap::new(),
             security_door_lockdowns: BTreeMap::new(),
             maximum_path_search: blueprint.maximum_path_search,
@@ -915,6 +1127,12 @@ impl FacilityState {
         facility
             .synchronize_outputs(map)
             .map_err(|_| FacilityBuildError::OutputInitializationFailed)?;
+        for (source, profile) in property_reports {
+            actors
+                .get_mut(source)
+                .expect("property reporter was resolved from the same registry")
+                .set_property_report_profile(profile);
+        }
         Ok(facility)
     }
 
@@ -950,6 +1168,35 @@ impl FacilityState {
             .security_alarm(&installation.id)
             .filter(|alarm| alarm.is_active(turn))?;
         Some((installation, alarm))
+    }
+
+    /// Assigns one fixed incident to an explicitly configured, currently free
+    /// worker. Busy workers keep their real maintenance responsibilities and
+    /// an active response is never silently retargeted by a later report.
+    pub fn assign_reported_incident_investigation(
+        &mut self,
+        worker: EntityId,
+        at: GridPos,
+    ) -> Option<FacilityEvent> {
+        let state = self.workers.get_mut(&worker)?;
+        let response = state.reported_incident_response?;
+        if state.cargo.is_some()
+            || state.reserved_ground.is_some()
+            || state.assigned_order.is_some()
+            || state.reported_incident_investigation.is_some()
+        {
+            return None;
+        }
+        state.reported_incident_investigation = Some(ReportedIncidentInvestigation {
+            at,
+            remaining_inspection_turns: response.inspection_turns,
+            remaining_response_turns: response.maximum_response_turns,
+        });
+        Some(FacilityEvent::ReportedIncidentInvestigationAssigned {
+            worker,
+            at,
+            maximum_response_turns: response.maximum_response_turns,
+        })
     }
 
     pub fn active_security_alarms(
@@ -1045,25 +1292,87 @@ impl FacilityState {
             .collect();
         sources
             .into_iter()
-            .map(|(installation, duration_turns)| {
-                self.security_alarms.insert(
-                    installation.clone(),
-                    SecurityAlarm {
-                        incident: incident.clone(),
-                        expires_on_turn: incident
-                            .turn
-                            .saturating_add(u64::from(duration_turns))
-                            .saturating_add(1),
-                    },
-                );
-                FacilityEvent::SecurityAlarmRaised {
-                    installation,
-                    owner: incident.owner.clone(),
-                    at: incident.at,
-                    duration_turns,
-                }
+            .filter_map(|(installation, duration_turns)| {
+                self.raise_security_alarm(installation, duration_turns, incident)
             })
             .collect()
+    }
+
+    /// Receives one witnessed fact through one explicitly authored worker to
+    /// installation link. The source must currently see the installed target,
+    /// and the target must be operational. The alarm records only the supplied
+    /// incident; it gains no live knowledge of the taker.
+    pub fn receive_installed_property_report(
+        &mut self,
+        source: EntityId,
+        map: &Map,
+        actors: &ActorRegistry,
+        incident: &ObservedPropertyTake,
+    ) -> Vec<FacilityEvent> {
+        if self.owner.as_ref() != Some(&incident.owner) {
+            return Vec::new();
+        }
+        let Some(report) = self.installed_property_reports.get(&source).cloned() else {
+            return Vec::new();
+        };
+        let Some(source_position) = actors.get(source).map(|actor| actor.position()) else {
+            return Vec::new();
+        };
+        let Some(target) = self.installations.get(&report.installation) else {
+            return Vec::new();
+        };
+        if !self.is_operational(&report.installation)
+            || !compute_visible_tiles(map, source_position, report.channel.field_of_view())
+                .contains(&target.position)
+        {
+            return Vec::new();
+        }
+        let installation = report.installation;
+        let duration_turns = target
+            .security_alarm_profile
+            .as_ref()
+            .expect("installed report targets are validated security sensors")
+            .duration_turns();
+        let mut events = vec![FacilityEvent::InstalledPropertyReportReceived {
+            source,
+            installation: installation.clone(),
+            at: incident.at,
+        }];
+        if let Some(alarm) = self.raise_security_alarm(installation, duration_turns, incident) {
+            events.push(alarm);
+        }
+        events
+    }
+
+    fn raise_security_alarm(
+        &mut self,
+        installation: InstallationId,
+        duration_turns: u16,
+        incident: &ObservedPropertyTake,
+    ) -> Option<FacilityEvent> {
+        if self
+            .security_alarms
+            .get(&installation)
+            .is_some_and(|alarm| alarm.incident == *incident)
+        {
+            return None;
+        }
+        self.security_alarms.insert(
+            installation.clone(),
+            SecurityAlarm {
+                incident: incident.clone(),
+                expires_on_turn: incident
+                    .turn
+                    .saturating_add(u64::from(duration_turns))
+                    .saturating_add(1),
+            },
+        );
+        Some(FacilityEvent::SecurityAlarmRaised {
+            installation,
+            owner: incident.owner.clone(),
+            at: incident.at,
+            duration_turns,
+        })
     }
 
     /// Applies only the response primitives declared by newly raised alarms.
@@ -1304,22 +1613,60 @@ impl FacilityState {
         self.accessed_data_terminals.contains(installation)
     }
 
+    pub fn data_terminal_was_updated(&self, installation: &InstallationId) -> bool {
+        self.updated_data_terminals.contains(installation)
+    }
+
+    /// Replaces one terminal's current record without erasing information the
+    /// player already read. The replacement itself remains undiscovered until
+    /// a new successful interaction with the terminal.
+    pub fn update_data_terminal_record(
+        &mut self,
+        installation: &InstallationId,
+        next_record: ContentId,
+    ) -> Result<ContentId, DataTerminalUpdateError> {
+        let state = self
+            .installations
+            .get_mut(installation)
+            .ok_or(DataTerminalUpdateError::UnknownInstallation)?;
+        let current_record = state
+            .capabilities
+            .iter_mut()
+            .find_map(|capability| match capability {
+                InstallationCapability::DataTerminal { record } => Some(record),
+                _ => None,
+            })
+            .ok_or(DataTerminalUpdateError::MissingDataTerminal)?;
+        if current_record == &next_record {
+            return Err(DataTerminalUpdateError::UnchangedRecord);
+        }
+        let previous_record = std::mem::replace(current_record, next_record);
+        if self.accessed_data_terminals.remove(installation) {
+            self.retained_data_terminal_records
+                .insert(previous_record.clone());
+        }
+        self.updated_data_terminals.insert(installation.clone());
+        Ok(previous_record)
+    }
+
     /// Returns the records actually read through this facility. The records
     /// remain derived from terminal state so suspension replay has one source
     /// of truth and presentation never needs its own discovery registry.
     pub fn accessed_data_terminal_records(&self) -> impl Iterator<Item = &ContentId> {
-        self.accessed_data_terminals
-            .iter()
-            .filter_map(|installation| self.installations.get(installation))
-            .filter_map(|installation| {
-                installation
-                    .capabilities
-                    .iter()
-                    .find_map(|capability| match capability {
-                        InstallationCapability::DataTerminal { record } => Some(record),
-                        _ => None,
-                    })
-            })
+        self.retained_data_terminal_records.iter().chain(
+            self.accessed_data_terminals
+                .iter()
+                .filter_map(|installation| self.installations.get(installation))
+                .filter_map(|installation| {
+                    installation
+                        .capabilities
+                        .iter()
+                        .find_map(|capability| match capability {
+                            InstallationCapability::DataTerminal { record } => Some(record),
+                            _ => None,
+                        })
+                }),
+        )
     }
 
     /// Deposits the first complete missing material request the inventory can
@@ -1334,17 +1681,7 @@ impl FacilityState {
             if order.status != RepairStatus::WaitingForMaterial {
                 return None;
             }
-            let in_transit: u32 = self
-                .workers
-                .values()
-                .filter_map(|worker| worker.cargo.as_ref())
-                .filter(|cargo| cargo.item == order.required_item)
-                .map(|cargo| u32::from(cargo.quantity))
-                .sum();
-            let supplied =
-                u32::from(self.depot_stock(&order.required_item)).saturating_add(in_transit);
-            let missing = u32::from(order.required_quantity).saturating_sub(supplied);
-            let missing = u16::try_from(missing).ok()?;
+            let missing = self.missing_material_for(order);
             if missing == 0 {
                 return None;
             }
@@ -1390,6 +1727,15 @@ impl FacilityState {
         self.repair_orders.get(order).map(|state| state.status)
     }
 
+    pub fn repair_order_summaries(&self) -> impl Iterator<Item = RepairOrderSummary> + '_ {
+        self.repair_orders.values().map(|order| RepairOrderSummary {
+            order: order.id.clone(),
+            required_item: order.required_item.clone(),
+            missing_quantity: self.missing_material_for(order),
+            status: order.status,
+        })
+    }
+
     pub fn repair_target(&self, order: &WorkOrderId) -> Option<&InstallationState> {
         self.repair_orders
             .get(order)
@@ -1400,6 +1746,18 @@ impl FacilityState {
         self.repair_orders
             .iter()
             .map(|(id, order)| (id, order.status))
+    }
+
+    fn missing_material_for(&self, order: &RepairOrderState) -> u16 {
+        let in_transit: u32 = self
+            .workers
+            .values()
+            .filter_map(|worker| worker.cargo.as_ref())
+            .filter(|cargo| cargo.item == order.required_item)
+            .map(|cargo| u32::from(cargo.quantity))
+            .sum();
+        let supplied = u32::from(self.depot_stock(&order.required_item)).saturating_add(in_transit);
+        u16::try_from(u32::from(order.required_quantity).saturating_sub(supplied)).unwrap_or(0)
     }
 
     pub fn apply_damage(
@@ -1439,10 +1797,26 @@ impl FacilityState {
         self.reconcile_missing_workers(map, actors, ground, &mut events)?;
         self.refresh_available_material();
 
+        let responders: BTreeSet<_> = self
+            .workers
+            .iter()
+            .filter_map(|(id, worker)| {
+                worker
+                    .reported_incident_investigation
+                    .is_some()
+                    .then_some(*id)
+            })
+            .collect();
+        for worker in responders.iter().copied() {
+            self.tick_reported_incident_investigation(worker, map, actors, &mut events);
+        }
+
         let retrievers: Vec<_> = self
             .workers
             .iter()
-            .filter_map(|(id, worker)| (worker.role == WorkerRole::Retriever).then_some(*id))
+            .filter_map(|(id, worker)| {
+                (worker.role == WorkerRole::Retriever && !responders.contains(id)).then_some(*id)
+            })
             .collect();
         for worker in retrievers {
             self.tick_retriever(worker, map, actors, ground, &mut events)?;
@@ -1452,13 +1826,66 @@ impl FacilityState {
         let technicians: Vec<_> = self
             .workers
             .iter()
-            .filter_map(|(id, worker)| (worker.role == WorkerRole::Technician).then_some(*id))
+            .filter_map(|(id, worker)| {
+                (worker.role == WorkerRole::Technician && !responders.contains(id)).then_some(*id)
+            })
             .collect();
         for worker in technicians {
             self.tick_technician(worker, map, actors, &mut events)?;
         }
         self.synchronize_outputs(map)?;
         Ok(events)
+    }
+
+    fn tick_reported_incident_investigation(
+        &mut self,
+        worker: EntityId,
+        map: &mut Map,
+        actors: &mut ActorRegistry,
+        events: &mut Vec<FacilityEvent>,
+    ) {
+        let Some(position) = actors.get(worker).map(|actor| actor.position()) else {
+            return;
+        };
+        let Some(mut investigation) = self
+            .workers
+            .get(&worker)
+            .and_then(|state| state.reported_incident_investigation)
+        else {
+            return;
+        };
+        self.workers
+            .get_mut(&worker)
+            .expect("investigating worker exists")
+            .last_position = position;
+
+        let reached =
+            position == investigation.at || is_cardinally_adjacent(position, investigation.at);
+        let completed = if reached {
+            investigation.remaining_inspection_turns =
+                investigation.remaining_inspection_turns.saturating_sub(1);
+            investigation.remaining_inspection_turns == 0
+        } else {
+            self.move_towards_interaction(worker, investigation.at, map, actors, events);
+            false
+        };
+        investigation.remaining_response_turns =
+            investigation.remaining_response_turns.saturating_sub(1);
+        let expired = investigation.remaining_response_turns == 0;
+        let state = self
+            .workers
+            .get_mut(&worker)
+            .expect("investigating worker exists");
+        if completed || expired {
+            state.reported_incident_investigation = None;
+            events.push(FacilityEvent::ReportedIncidentInvestigationEnded {
+                worker,
+                at: investigation.at,
+                reached: completed,
+            });
+        } else {
+            state.reported_incident_investigation = Some(investigation);
+        }
     }
 
     fn is_operational_inner(
@@ -2080,6 +2507,27 @@ pub enum FacilityBuildError {
         expected: u16,
         actual: u16,
     },
+    InvalidReportedIncidentResponse(GridPos),
+    InstalledPropertyReportWithoutWitness(GridPos),
+    InstalledPropertyReportAffiliationMismatch(GridPos),
+    UnknownInstalledPropertyReportTarget {
+        source: GridPos,
+        installation: Box<InstallationId>,
+    },
+    InvalidInstalledPropertyReportTarget {
+        source: GridPos,
+        installation: Box<InstallationId>,
+    },
+    PropertyReportWithoutWitness(GridPos),
+    PropertyReportToSelf(GridPos),
+    UnknownPropertyReportRecipient {
+        source: GridPos,
+        recipient: GridPos,
+    },
+    PropertyReportAffiliationMismatch {
+        source: GridPos,
+        recipient: GridPos,
+    },
     InvalidRepairOrder(WorkOrderId),
     DuplicateRepairOrder(WorkOrderId),
     UnknownRepairTarget(InstallationId),
@@ -2189,6 +2637,9 @@ mod tests {
                     affiliation: None,
                     witness_profile: None,
                     local_alert_profile: None,
+                    property_report: None,
+                    installed_property_report: None,
+                    reported_incident_response: None,
                 })
                 .chain([WorkerBlueprint {
                     actor_position: technician,
@@ -2197,6 +2648,9 @@ mod tests {
                     affiliation: None,
                     witness_profile: None,
                     local_alert_profile: None,
+                    property_report: None,
+                    installed_property_report: None,
+                    reported_incident_response: None,
                 }])
                 .collect(),
             repair_orders: vec![RepairOrderBlueprint {
@@ -2222,6 +2676,273 @@ mod tests {
     }
 
     #[test]
+    fn authored_property_report_resolves_one_worker_and_rejects_implicit_links() {
+        let reporter_position = GridPos::new(5, 3);
+        let recipient_position = GridPos::new(3, 3);
+        let owner = id("collective");
+        let mut definition = blueprint(&[reporter_position], recipient_position);
+        for worker in &mut definition.workers {
+            worker.affiliation = Some(owner.clone());
+        }
+        definition.workers[0].witness_profile =
+            Some(WitnessProfile::new(8, DistanceMetric::Euclidean, true, 4).unwrap());
+        definition.workers[0].property_report = Some(WorkerPropertyReportBlueprint {
+            recipient_position,
+            channel: PropertyReportChannel::new(8, DistanceMetric::Euclidean, true).unwrap(),
+        });
+        let mut map = map();
+        let mut actors = actors(&[reporter_position], recipient_position);
+        let reporter = actors.entity_at(reporter_position).unwrap();
+        let recipient = actors.entity_at(recipient_position).unwrap();
+
+        FacilityState::instantiate(definition.clone(), &mut map, &mut actors).unwrap();
+
+        assert_eq!(
+            actors
+                .get(reporter)
+                .and_then(Actor::property_report_profile)
+                .map(|profile| profile.recipient()),
+            Some(recipient)
+        );
+
+        definition.workers[0].property_report = Some(WorkerPropertyReportBlueprint {
+            recipient_position: reporter_position,
+            channel: PropertyReportChannel::new(8, DistanceMetric::Euclidean, true).unwrap(),
+        });
+        assert!(matches!(
+            FacilityState::validate_blueprint(&definition),
+            Err(FacilityBuildError::PropertyReportToSelf(position))
+                if position == reporter_position
+        ));
+    }
+
+    #[test]
+    fn reported_incident_response_walks_to_the_fixed_location_then_resumes() {
+        let technician_position = GridPos::new(2, 3);
+        let incident = GridPos::new(7, 3);
+        let mut definition = blueprint(&[], technician_position);
+        definition.workers[0].reported_incident_response =
+            Some(WorkerReportedIncidentResponseBlueprint {
+                inspection_turns: 2,
+                maximum_response_turns: 12,
+            });
+        let mut map = map();
+        let mut actors = actors(&[], technician_position);
+        let technician = actors.entity_at(technician_position).unwrap();
+        let mut ground = GroundItemRegistry::default();
+        let mut facility = FacilityState::instantiate(definition, &mut map, &mut actors).unwrap();
+
+        assert_eq!(
+            facility.assign_reported_incident_investigation(technician, incident),
+            Some(FacilityEvent::ReportedIncidentInvestigationAssigned {
+                worker: technician,
+                at: incident,
+                maximum_response_turns: 12,
+            })
+        );
+        assert_eq!(
+            facility.assign_reported_incident_investigation(technician, GridPos::new(2, 1)),
+            None,
+            "an active response keeps its first fixed incident"
+        );
+
+        let mut events = Vec::new();
+        for _ in 0..12 {
+            events.extend(facility.tick(&mut map, &mut actors, &mut ground).unwrap());
+            if events.iter().any(|event| {
+                matches!(
+                    event,
+                    FacilityEvent::ReportedIncidentInvestigationEnded { reached: true, .. }
+                )
+            }) {
+                break;
+            }
+        }
+        let final_position = actors.get(technician).unwrap().position();
+        assert!(
+            final_position == incident || is_cardinally_adjacent(final_position, incident),
+            "the worker must inspect the reported location, not the later report"
+        );
+        assert!(
+            events.contains(&FacilityEvent::ReportedIncidentInvestigationEnded {
+                worker: technician,
+                at: incident,
+                reached: true,
+            })
+        );
+    }
+
+    #[test]
+    fn unreachable_reported_incident_expires_without_monopolizing_the_worker() {
+        let technician_position = GridPos::new(2, 3);
+        let incident = GridPos::new(7, 3);
+        let mut definition = blueprint(&[], technician_position);
+        definition.workers[0].reported_incident_response =
+            Some(WorkerReportedIncidentResponseBlueprint {
+                inspection_turns: 2,
+                maximum_response_turns: 3,
+            });
+        let mut map = map();
+        for blocked in technician_position.cardinal_neighbors() {
+            map.set_terrain(blocked, Terrain::Wall).unwrap();
+        }
+        let mut actors = actors(&[], technician_position);
+        let technician = actors.entity_at(technician_position).unwrap();
+        let mut ground = GroundItemRegistry::default();
+        let mut facility = FacilityState::instantiate(definition, &mut map, &mut actors).unwrap();
+        facility
+            .assign_reported_incident_investigation(technician, incident)
+            .unwrap();
+
+        let mut events = Vec::new();
+        for _ in 0..3 {
+            events.extend(facility.tick(&mut map, &mut actors, &mut ground).unwrap());
+        }
+
+        assert_eq!(
+            actors.get(technician).unwrap().position(),
+            technician_position
+        );
+        assert!(
+            events.contains(&FacilityEvent::ReportedIncidentInvestigationEnded {
+                worker: technician,
+                at: incident,
+                reached: false,
+            })
+        );
+        assert!(
+            facility
+                .assign_reported_incident_investigation(technician, GridPos::new(3, 3))
+                .is_some()
+        );
+    }
+
+    #[test]
+    fn reported_incident_response_profile_is_positive_and_bounded() {
+        let mut definition = blueprint(&[], GridPos::new(3, 3));
+        definition.workers[0].reported_incident_response =
+            Some(WorkerReportedIncidentResponseBlueprint {
+                inspection_turns: 0,
+                maximum_response_turns: 3,
+            });
+        assert!(matches!(
+            FacilityState::validate_blueprint(&definition),
+            Err(FacilityBuildError::InvalidReportedIncidentResponse(_))
+        ));
+
+        definition.workers[0].reported_incident_response =
+            Some(WorkerReportedIncidentResponseBlueprint {
+                inspection_turns: 4,
+                maximum_response_turns: 3,
+            });
+        assert!(matches!(
+            FacilityState::validate_blueprint(&definition),
+            Err(FacilityBuildError::InvalidReportedIncidentResponse(_))
+        ));
+    }
+
+    #[test]
+    fn installed_property_report_requires_its_real_link_and_operational_target() {
+        let reporter_position = GridPos::new(5, 3);
+        let technician_position = GridPos::new(3, 3);
+        let incident = ObservedPropertyTake {
+            turn: 4,
+            taker: EntityId::new(99),
+            owner: id("collective"),
+            item: id("regulator"),
+            quantity: 1,
+            at: GridPos::new(1, 3),
+        };
+        let mut definition = blueprint(&[reporter_position], technician_position);
+        definition.owner = Some(incident.owner.clone());
+        definition.installations[0].integrity = 10;
+        definition.installations[2].security_alarm_profile =
+            Some(SecurityAlarmProfile::new(1, DistanceMetric::Euclidean, true, 8).unwrap());
+        definition.workers[0].affiliation = Some(incident.owner.clone());
+        definition.workers[0].witness_profile =
+            Some(WitnessProfile::new(8, DistanceMetric::Euclidean, true, 4).unwrap());
+        definition.workers[0].installed_property_report =
+            Some(WorkerInstalledPropertyReportBlueprint {
+                installation: id("sensor"),
+                channel: PropertyReportChannel::new(8, DistanceMetric::Euclidean, true).unwrap(),
+            });
+        let mut map = map();
+        let mut registry = actors(&[reporter_position], technician_position);
+        let reporter = registry.entity_at(reporter_position).unwrap();
+        let mut facility =
+            FacilityState::instantiate(definition.clone(), &mut map, &mut registry).unwrap();
+
+        assert!(
+            facility
+                .observe_unauthorized_property_take(&map, &incident)
+                .is_empty(),
+            "the installed sensor cannot directly see the remote incident"
+        );
+        assert_eq!(
+            facility.receive_installed_property_report(reporter, &map, &registry, &incident),
+            vec![
+                FacilityEvent::InstalledPropertyReportReceived {
+                    source: reporter,
+                    installation: id("sensor"),
+                    at: incident.at,
+                },
+                FacilityEvent::SecurityAlarmRaised {
+                    installation: id("sensor"),
+                    owner: incident.owner.clone(),
+                    at: incident.at,
+                    duration_turns: 8,
+                },
+            ]
+        );
+        assert!(facility.security_alarm(&id("sensor")).is_some());
+        assert_eq!(
+            facility.receive_installed_property_report(reporter, &map, &registry, &incident),
+            vec![FacilityEvent::InstalledPropertyReportReceived {
+                source: reporter,
+                installation: id("sensor"),
+                at: incident.at,
+            }],
+            "the same fact may be acknowledged but must not raise a duplicate alarm"
+        );
+
+        definition.installations[0].integrity = 0;
+        let mut registry = actors(&[reporter_position], technician_position);
+        let reporter = registry.entity_at(reporter_position).unwrap();
+        let mut facility = FacilityState::instantiate(definition, &mut map, &mut registry).unwrap();
+        assert!(
+            facility
+                .receive_installed_property_report(reporter, &map, &registry, &incident)
+                .is_empty(),
+            "an unpowered target cannot acknowledge a report"
+        );
+    }
+
+    #[test]
+    fn installed_property_report_target_and_affiliation_are_validated() {
+        let reporter_position = GridPos::new(5, 3);
+        let mut definition = blueprint(&[reporter_position], GridPos::new(3, 3));
+        definition.owner = Some(id("collective"));
+        definition.workers[0].witness_profile =
+            Some(WitnessProfile::new(8, DistanceMetric::Euclidean, true, 4).unwrap());
+        definition.workers[0].installed_property_report =
+            Some(WorkerInstalledPropertyReportBlueprint {
+                installation: id("sensor"),
+                channel: PropertyReportChannel::new(8, DistanceMetric::Euclidean, true).unwrap(),
+            });
+        assert!(matches!(
+            FacilityState::validate_blueprint(&definition),
+            Err(FacilityBuildError::InstalledPropertyReportAffiliationMismatch(position))
+                if position == reporter_position
+        ));
+
+        definition.workers[0].affiliation = definition.owner.clone();
+        assert!(matches!(
+            FacilityState::validate_blueprint(&definition),
+            Err(FacilityBuildError::InvalidInstalledPropertyReportTarget { .. })
+        ));
+    }
+
+    #[test]
     fn material_moves_once_then_repair_restores_real_outputs() {
         let mut map = map();
         let mut actors = actors(&[GridPos::new(5, 3)], GridPos::new(3, 3));
@@ -2232,7 +2953,7 @@ mod tests {
         let mut facility = FacilityState::instantiate(
             blueprint(&[GridPos::new(5, 3)], GridPos::new(3, 3)),
             &mut map,
-            &actors,
+            &mut actors,
         )
         .unwrap();
         assert_eq!(
@@ -2274,7 +2995,7 @@ mod tests {
             .spawn(GridPos::new(7, 3), id("regulator"), 1)
             .unwrap();
         let mut facility =
-            FacilityState::instantiate(blueprint(&retrievers, technician), &mut map, &actors)
+            FacilityState::instantiate(blueprint(&retrievers, technician), &mut map, &mut actors)
                 .unwrap();
 
         for _ in 0..8 {
@@ -2307,7 +3028,7 @@ mod tests {
             .spawn(GridPos::new(7, 3), id("regulator"), 1)
             .unwrap();
         let mut facility =
-            FacilityState::instantiate(blueprint(&[retriever], technician), &mut map, &actors)
+            FacilityState::instantiate(blueprint(&[retriever], technician), &mut map, &mut actors)
                 .unwrap();
         facility.tick(&mut map, &mut actors, &mut ground).unwrap();
         assert_eq!(facility.ground_reservations.len(), 1);
@@ -2345,10 +3066,10 @@ mod tests {
     fn player_delivery_can_atomically_span_several_inventory_stacks() {
         let technician = GridPos::new(3, 3);
         let mut map = map();
-        let actors = actors(&[], technician);
+        let mut actors = actors(&[], technician);
         let mut definition = blueprint(&[], technician);
         definition.repair_orders[0].required_quantity = 5;
-        let mut facility = FacilityState::instantiate(definition, &mut map, &actors).unwrap();
+        let mut facility = FacilityState::instantiate(definition, &mut map, &mut actors).unwrap();
         let mut inventory = Inventory::new(2);
         inventory.add(id("regulator"), 5, 3).unwrap();
         assert_eq!(inventory.len(), 2);
@@ -2397,7 +3118,7 @@ mod tests {
         for y in 1..5 {
             map.set_terrain(GridPos::new(5, y), Terrain::Wall).unwrap();
         }
-        let mut facility = FacilityState::instantiate(blueprint, &mut map, &actors).unwrap();
+        let mut facility = FacilityState::instantiate(blueprint, &mut map, &mut actors).unwrap();
 
         for _ in 0..5 {
             facility.tick(&mut map, &mut actors, &mut ground).unwrap();
@@ -2430,8 +3151,8 @@ mod tests {
         definition.installations[0].integrity = 10;
         definition.installations[2].security_alarm_profile = Some(profile);
         let mut map = map();
-        let actors = actors(&[], technician);
-        let mut facility = FacilityState::instantiate(definition, &mut map, &actors).unwrap();
+        let mut actors = actors(&[], technician);
+        let mut facility = FacilityState::instantiate(definition, &mut map, &mut actors).unwrap();
         let taker = actors.entity_at(technician).unwrap();
 
         let incident = |owner: SocialGroupId, at: GridPos| ObservedPropertyTake {
@@ -2495,9 +3216,9 @@ mod tests {
         for position in [GridPos::new(8, 1), GridPos::new(8, 3), GridPos::new(8, 4)] {
             map.set_terrain(position, Terrain::Wall).unwrap();
         }
-        let actors = actors(&[], technician);
+        let mut actors = actors(&[], technician);
         let ground = GroundItemRegistry::default();
-        let mut facility = FacilityState::instantiate(definition, &mut map, &actors).unwrap();
+        let mut facility = FacilityState::instantiate(definition, &mut map, &mut actors).unwrap();
         let alarm_sources = [id("sensor")];
         let incident = ObservedPropertyTake {
             turn: 4,
@@ -2614,9 +3335,9 @@ mod tests {
         definition.installations[0].integrity = 10;
         definition.installations[2].security_alarm_profile = Some(profile);
         let mut map = map();
-        let actors = actors(&[], technician);
+        let mut actors = actors(&[], technician);
         let ground = GroundItemRegistry::default();
-        let mut facility = FacilityState::instantiate(definition, &mut map, &actors).unwrap();
+        let mut facility = FacilityState::instantiate(definition, &mut map, &mut actors).unwrap();
         facility.observe_unauthorized_property_take(
             &map,
             &ObservedPropertyTake {
@@ -2711,10 +3432,10 @@ mod tests {
         let mut blueprint = blueprint(&[GridPos::new(5, 3)], GridPos::new(3, 3));
         blueprint.installations[0].dependencies = vec![id("sensor")];
         let mut map = map();
-        let actors = actors(&[GridPos::new(5, 3)], GridPos::new(3, 3));
+        let mut actors = actors(&[GridPos::new(5, 3)], GridPos::new(3, 3));
 
         assert!(matches!(
-            FacilityState::instantiate(blueprint, &mut map, &actors),
+            FacilityState::instantiate(blueprint, &mut map, &mut actors),
             Err(FacilityBuildError::DependencyCycle(_))
         ));
     }
@@ -2729,11 +3450,11 @@ mod tests {
         ));
 
         let mut map = map();
-        let actors = actors(&[GridPos::new(5, 3)], GridPos::new(3, 3));
+        let mut actors = actors(&[GridPos::new(5, 3)], GridPos::new(3, 3));
         let mut mismatch = blueprint(&[GridPos::new(5, 3)], GridPos::new(3, 3));
         mismatch.workers[0].maximum_integrity = 11;
         assert!(matches!(
-            FacilityState::instantiate(mismatch, &mut map, &actors),
+            FacilityState::instantiate(mismatch, &mut map, &mut actors),
             Err(FacilityBuildError::WorkerIntegrityMismatch { .. })
         ));
     }
@@ -2747,8 +3468,8 @@ mod tests {
             .push(InstallationCapability::NavigationBeacon { range: 6 });
         let sensor = definition.installations[2].id.clone();
         let mut map = map();
-        let actors = actors(&[], GridPos::new(3, 3));
-        let mut facility = FacilityState::instantiate(definition, &mut map, &actors).unwrap();
+        let mut actors = actors(&[], GridPos::new(3, 3));
+        let mut facility = FacilityState::instantiate(definition, &mut map, &mut actors).unwrap();
 
         assert_eq!(
             facility.detected_navigation_signals(GridPos::new(3, 3)),
@@ -2791,8 +3512,8 @@ mod tests {
             security_alarm_profile: None,
         });
         let mut map = map();
-        let actors = actors(&[], GridPos::new(3, 3));
-        let mut facility = FacilityState::instantiate(definition, &mut map, &actors).unwrap();
+        let mut actors = actors(&[], GridPos::new(3, 3));
+        let mut facility = FacilityState::instantiate(definition, &mut map, &mut actors).unwrap();
 
         assert!(facility.is_player_interactive_at(GridPos::new(4, 1)));
         assert_eq!(
@@ -2817,6 +3538,34 @@ mod tests {
                 .accessed_data_terminal_records()
                 .collect::<Vec<_>>(),
             vec![&record]
+        );
+
+        let revised_record = id("revised_archive_record");
+        assert_eq!(
+            facility.update_data_terminal_record(&terminal, revised_record.clone()),
+            Ok(record.clone())
+        );
+        assert!(facility.data_terminal_was_updated(&terminal));
+        assert!(!facility.data_terminal_was_accessed(&terminal));
+        assert_eq!(
+            facility
+                .accessed_data_terminal_records()
+                .collect::<Vec<_>>(),
+            vec![&record]
+        );
+        assert_eq!(
+            facility.access_data_terminal(GridPos::new(4, 1)),
+            Some(DataTerminalAccess {
+                installation: terminal.clone(),
+                record: revised_record.clone(),
+                first_access: true,
+            })
+        );
+        assert_eq!(
+            facility
+                .accessed_data_terminal_records()
+                .collect::<Vec<_>>(),
+            vec![&record, &revised_record]
         );
 
         facility.apply_damage(&relay, 10, &mut map).unwrap();

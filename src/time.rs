@@ -3,7 +3,9 @@ use std::fmt::{Display, Formatter};
 use std::num::NonZeroU16;
 
 /// Positive simulation duration. Rendering time never enters this type.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, serde::Serialize, serde::Deserialize,
+)]
 pub struct TimeUnits(NonZeroU16);
 
 impl TimeUnits {
@@ -42,7 +44,7 @@ impl Error for TimeUnitsError {}
 /// Semantic intent of a normal action. Recovery rules inspect intent rather
 /// than concrete command or content IDs, so mods can add new offensive and
 /// support actions without teaching the scheduler their names.
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum ActionKind {
     Offensive,
     #[default]
@@ -57,7 +59,7 @@ impl ActionKind {
 
 /// A recovery window measured in the actor's next accepted normal actions.
 /// Rejected commands never reach `advance`, which keeps recovery transactional.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ActionRecovery {
     remaining_actions: TimeUnits,
 }
@@ -95,7 +97,7 @@ pub enum RecoveryAdvance {
 /// Cooldown advanced by eligible environment phases. The phase which arms it
 /// is excluded, so a duration of two armed at C blocks launches at C+1 and
 /// C+2, then completes for C+3.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct EnvironmentCooldown {
     armed_on_turn: u64,
     remaining_phases: TimeUnits,
@@ -198,7 +200,7 @@ impl Error for DeadlineError {}
 /// One action split into a positive number of preparation steps followed by
 /// its final execution step. The payload remains owned by the simulation so a
 /// client cannot manufacture a completed action by reopening a menu.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ActionPreparation<T> {
     payload: T,
     remaining_steps: TimeUnits,

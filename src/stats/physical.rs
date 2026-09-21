@@ -159,7 +159,7 @@ impl HitPointRules {
 }
 
 /// Authored, persistent properties of one body before Resilience and states.
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct BodyProfile {
     pub base_hit_points: u16,
     pub material_bonus: i16,
@@ -261,7 +261,7 @@ impl BodyProfile {
 
 /// Authored capability targeted by locomotor perturbations. Keeping this on
 /// the body avoids guessing from glyphs, factions or AI behavior.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct LocomotionProfile {
     hindrance_compatible: bool,
 }
@@ -283,7 +283,7 @@ impl LocomotionProfile {
 /// `mass_grams` is the body's own mass. Carried mass is supplied separately by
 /// the actor-inventory adapter so it is counted once, independently from
 /// anchoring and without changing the resistance formula.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DisplacementProfile {
     mass_grams: u32,
     anchoring: u16,

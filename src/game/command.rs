@@ -43,6 +43,33 @@ pub enum GameCommand {
     DropItem {
         item: ItemInstanceId,
     },
+    BuyItem {
+        merchant: EntityId,
+        item: crate::item::ItemId,
+    },
+    BuyResaleItem {
+        merchant: EntityId,
+        listing: u64,
+    },
+    GambleItem {
+        merchant: EntityId,
+        item: crate::item::ItemId,
+    },
+    SellItem {
+        merchant: EntityId,
+        item: ItemInstanceId,
+    },
+    ReceiveTreatment {
+        healer: EntityId,
+    },
+    AcceptQuest {
+        giver: EntityId,
+        quest: crate::content::ContentId,
+    },
+    CompleteQuest {
+        giver: EntityId,
+        quest: crate::content::ContentId,
+    },
     UseAbility {
         slot: u8,
         target: GridPos,
@@ -95,7 +122,9 @@ impl GameCommand {
     pub const fn consumes_time_on_success(&self) -> bool {
         !matches!(
             self,
-            Self::LearnTechnique { .. } | Self::SetCompanionBehavior { .. }
+            Self::LearnTechnique { .. }
+                | Self::SetCompanionBehavior { .. }
+                | Self::AcceptQuest { .. }
         )
     }
 }

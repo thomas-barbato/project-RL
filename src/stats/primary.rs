@@ -40,7 +40,7 @@ impl Display for PrimaryAttribute {
 /// Construction does not silently apply creation limits: a loaded class,
 /// save, temporary test profile, or character-creation screen must validate
 /// the values against the active [`PrimaryAttributeRules`] explicitly.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct PrimaryAttributes {
     values: [u8; PRIMARY_ATTRIBUTE_COUNT],
 }

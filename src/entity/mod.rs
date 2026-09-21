@@ -16,5 +16,7 @@ pub use equipment::{EquipOutcome, Equipment, EquipmentError, EquipmentSlotId};
 pub use ground_item::{
     GroundItem, GroundItemId, GroundItemRegistry, GroundItemRegistryError, GroundItemTakeError,
 };
-pub use inventory::{Inventory, InventoryEntry, InventoryError, ItemId, ItemInstanceId};
+pub use inventory::{
+    Inventory, InventoryEntry, InventoryError, ItemId, ItemInstanceId, MagicItemModifiers,
+};
 pub use registry::{ActorRegistry, RegistryError};

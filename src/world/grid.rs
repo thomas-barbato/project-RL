@@ -1,5 +1,7 @@
 /// A position in simulation space. It is never expressed in screen pixels.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct GridPos {
     pub x: i32,
     pub y: i32,
@@ -25,7 +27,7 @@ impl GridPos {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum Direction {
     North,
     East,

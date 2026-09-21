@@ -22,7 +22,9 @@ use crate::effects::{
 use crate::explosive::{ExplosiveAreaProfile, ExplosivePayloadProfile};
 use crate::facility::{
     FacilityBlueprint, InstallationBlueprint, InstallationCapability, RepairOrderBlueprint,
-    SecurityAlarmProfile, SecurityAlarmResponse, WorkerBlueprint, WorkerRole,
+    SecurityAlarmProfile, SecurityAlarmResponse, WorkerBlueprint,
+    WorkerInstalledPropertyReportBlueprint, WorkerPropertyReportBlueprint,
+    WorkerReportedIncidentResponseBlueprint, WorkerRole,
 };
 use crate::item::{
     EquipmentProfile, ItemCatalog, ItemCatalogError, ItemDefinition, ItemDefinitionError,
@@ -42,7 +44,7 @@ use crate::skills::{
     TechniqueEngagementRequirement, TechniqueImprovement, TechniqueKind, TechniqueMaterialCost,
     TechniqueOnHitEffect, TechniqueTargetRequirement,
 };
-use crate::social::{LocalAlertProfile, PlayerRelation, WitnessProfile};
+use crate::social::{LocalAlertProfile, PlayerRelation, PropertyReportChannel, WitnessProfile};
 use crate::stats::{PrimaryAttribute, PrimaryAttributes};
 use crate::status::{
     StatusCatalog, StatusCatalogError, StatusDefinition, StatusDefinitionError,
@@ -90,6 +92,15 @@ impl ContentLoader {
             .collect();
         let order = resolve_package_order(&manifests, game_version)
             .map_err(ContentLoadError::PackageResolution)?;
+        let package_manifests = order
+            .iter()
+            .map(|package_id| {
+                packages
+                    .get(package_id)
+                    .map(|package| package.manifest.clone())
+                    .ok_or_else(|| ContentLoadError::ResolvedPackageMissing(package_id.clone()))
+            })
+            .collect::<Result<Vec<_>, _>>()?;
         let mut statuses = StatusCatalog::default();
         let mut weapons = WeaponCatalog::default();
         let mut items = ItemCatalog::default();
@@ -156,11 +167,12 @@ impl ContentLoader {
                 .get(package_id)
                 .ok_or_else(|| ContentLoadError::ResolvedPackageMissing(package_id.clone()))?;
             load_expedition_definitions(package, &loot, &items, &mut expeditions)?;
-            load_regional_world_definitions(package, &loot, &mut regional_worlds)?;
+            load_regional_world_definitions(package, &loot, &items, &mut regional_worlds)?;
         }
 
         Ok(LoadedContent {
             package_order: order,
+            package_manifests,
             statuses,
             weapons,
             items,
@@ -178,6 +190,7 @@ impl ContentLoader {
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct LoadedContent {
     package_order: Vec<PackageId>,
+    package_manifests: Vec<PackageManifest>,
     statuses: StatusCatalog,
     weapons: WeaponCatalog,
     items: ItemCatalog,
@@ -209,6 +222,13 @@ impl LoadedContent {
 
     pub fn package_order(&self) -> &[PackageId] {
         &self.package_order
+    }
+
+    /// Resolved package identities in the exact dependency order used to load
+    /// this content set. Save systems can persist this human-readable contract
+    /// in addition to their full rules fingerprints.
+    pub fn package_manifests(&self) -> &[PackageManifest] {
+        &self.package_manifests
     }
 
     pub const fn statuses(&self) -> &StatusCatalog {
@@ -767,6 +787,7 @@ fn one_loot_item() -> [u16; 2] {
 fn load_regional_world_definitions(
     package: &DiscoveredPackage,
     loot_catalog: &LootCatalog,
+    item_catalog: &ItemCatalog,
     catalog: &mut RegionalWorldCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "regional_worlds")? {
@@ -835,9 +856,15 @@ fn load_regional_world_definitions(
                     .population
                     .groups
                     .into_iter()
-                    .map(RawRegionPopulationRule::into_runtime)
-                    .collect::<Result<Vec<_>, RegionalWorldError>>()
-                    .map_err(&failure)?;
+                    .map(|rule| {
+                        let tags = rule.tags.iter().map(|tag| parse(tag)).collect::<Result<
+                            Vec<_>,
+                            ContentLoadError,
+                        >>(
+                        )?;
+                        rule.into_runtime(tags).map_err(&failure)
+                    })
+                    .collect::<Result<Vec<_>, ContentLoadError>>()?;
                 let population = RegionPopulationProfile::new(
                     biome.population.group_rolls[0],
                     biome.population.group_rolls[1],
@@ -848,9 +875,15 @@ fn load_regional_world_definitions(
                     .encounters
                     .groups
                     .into_iter()
-                    .map(RawRegionPopulationRule::into_runtime)
-                    .collect::<Result<Vec<_>, RegionalWorldError>>()
-                    .map_err(&failure)?;
+                    .map(|rule| {
+                        let tags = rule.tags.iter().map(|tag| parse(tag)).collect::<Result<
+                            Vec<_>,
+                            ContentLoadError,
+                        >>(
+                        )?;
+                        rule.into_runtime(tags).map_err(&failure)
+                    })
+                    .collect::<Result<Vec<_>, ContentLoadError>>()?;
                 let encounters = RegionPopulationProfile::new(
                     biome.encounters.group_rolls[0],
                     biome.encounters.group_rolls[1],
@@ -934,9 +967,15 @@ fn load_regional_world_definitions(
                     .transpose()?;
                 let threats = biome
                     .threats
-                    .map(RawRegionThreatProfile::into_runtime)
-                    .transpose()
-                    .map_err(&failure)?;
+                    .map(|threats| {
+                        let tags = threats.tags.iter().map(|tag| parse(tag)).collect::<Result<
+                            Vec<_>,
+                            ContentLoadError,
+                        >>(
+                        )?;
+                        threats.into_runtime(tags).map_err(&failure)
+                    })
+                    .transpose()?;
                 let destructibles = biome
                     .destructibles
                     .map(|raw| {
@@ -985,10 +1024,113 @@ fn load_regional_world_definitions(
                 Ok(runtime)
             })
             .collect::<Result<Vec<_>, ContentLoadError>>()?;
+        let cities = raw
+            .cities
+            .into_iter()
+            .map(|city| {
+                let city_id = parse(&city.id)?;
+                let coordinate_depth = u16::try_from(city.coordinate[2])
+                    .map_err(|_| failure(RegionalWorldError::CityOutsideWorld(city_id.clone())))?;
+                let city_map_size = city
+                    .map
+                    .map(|map| RegionMapSize::new(map.width, map.height).map_err(&failure))
+                    .transpose()?
+                    .unwrap_or(local_map_size);
+                let merchant_offers = city
+                    .merchant
+                    .offers
+                    .into_iter()
+                    .map(|offer| {
+                        Ok(crate::content::MerchantOfferDefinition {
+                            item: parse(&offer.item)?,
+                            initial_stock: offer.stock,
+                            buy_price: offer.buy_price,
+                            sell_price: offer.sell_price,
+                            minimum_depth: offer.minimum_depth,
+                            maximum_depth: offer.maximum_depth,
+                        })
+                    })
+                    .collect::<Result<Vec<_>, ContentLoadError>>()?;
+                let merchant_gambles = city
+                    .merchant
+                    .gambles
+                    .into_iter()
+                    .map(|gamble| {
+                        Ok(crate::content::MerchantGambleDefinition {
+                            item: parse(&gamble.item)?,
+                            initial_stock: gamble.stock,
+                            price: gamble.price,
+                        })
+                    })
+                    .collect::<Result<Vec<_>, ContentLoadError>>()?;
+                let merchant = crate::content::MerchantDefinition::new(
+                    grid_position(city.merchant.position),
+                    city.merchant.maximum_integrity,
+                    city.merchant.credits,
+                    merchant_offers,
+                    merchant_gambles,
+                    crate::content::GambleScalingDefinition::new(
+                        city.merchant.gamble_scaling.player_levels_per_rank,
+                        city.merchant.gamble_scaling.zone_depths_per_rank,
+                        city.merchant.gamble_scaling.maximum_rank,
+                    )
+                    .ok_or_else(|| {
+                        failure(RegionalWorldError::InvalidCity(Box::new(
+                            ExpeditionDefinitionError::InvalidMerchant,
+                        )))
+                    })?,
+                )
+                .map_err(|error| failure(RegionalWorldError::InvalidCity(Box::new(error))))?;
+                merchant
+                    .validate_references(item_catalog)
+                    .map_err(|error| failure(RegionalWorldError::InvalidCity(Box::new(error))))?;
+                let clinic = crate::content::ClinicDefinition::new(
+                    grid_position(city.clinic.work_position),
+                    grid_position(city.clinic.break_position),
+                    city.clinic.maximum_integrity,
+                    city.clinic.credits,
+                    city.clinic.maximum_restoration,
+                    city.clinic.price_per_point,
+                    city.clinic.work_turns,
+                    city.clinic.break_turns,
+                    city.clinic.maximum_path_search,
+                )
+                .map_err(|error| failure(RegionalWorldError::InvalidCity(Box::new(error))))?;
+                let residents = city
+                    .residents
+                    .into_iter()
+                    .map(|resident| {
+                        crate::content::ResidentDefinition::new(
+                            grid_position(resident.residence_position),
+                            grid_position(resident.gathering_position),
+                            resident.maximum_integrity,
+                            resident.residence_turns,
+                            resident.gathering_turns,
+                            resident.maximum_path_search,
+                        )
+                    })
+                    .collect::<Result<Vec<_>, _>>()
+                    .map_err(|error| failure(RegionalWorldError::InvalidCity(Box::new(error))))?;
+                crate::content::RegionCityDefinition::new(
+                    city_id,
+                    RegionCoord::new(city.coordinate[0], city.coordinate[1], coordinate_depth),
+                    city.name,
+                    parse(&city.kind)?,
+                    city_map_size,
+                    city.layout.into_runtime(),
+                    merchant,
+                    clinic,
+                    residents,
+                )
+                .map_err(&failure)
+            })
+            .collect::<Result<Vec<_>, ContentLoadError>>()?;
         let definition =
             RegionalWorldDefinition::new(id, bounds, raw.province_size, local_map_size, biomes)
                 .map_err(&failure)?
                 .with_vertical_links(vertical_links)
+                .map_err(&failure)?
+                .with_cities(cities)
                 .map_err(&failure)?;
         catalog.register(definition).map_err(failure)?;
     }
@@ -1004,7 +1146,46 @@ struct RawRegionalWorld {
     local_map: RawRegionMap,
     #[serde(default)]
     vertical_links: Vec<RawRegionVerticalLink>,
+    #[serde(default)]
+    cities: Vec<RawRegionCityDefinition>,
     biomes: Vec<RawRegionBiomeRule>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionCityDefinition {
+    id: String,
+    coordinate: [i32; 3],
+    name: String,
+    kind: String,
+    #[serde(default)]
+    map: Option<RawRegionMap>,
+    layout: RawRegionCityLayout,
+    merchant: RawMerchantDefinition,
+    clinic: RawClinicDefinition,
+    residents: Vec<RawResidentDefinition>,
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(rename_all = "snake_case")]
+enum RawRegionCityLayout {
+    MaintenanceSpine,
+    CoolantRings,
+    DissonantLattice,
+    RecursiveBloom,
+    ProcessRuin,
+}
+
+impl RawRegionCityLayout {
+    const fn into_runtime(self) -> crate::content::RegionCityLayout {
+        match self {
+            Self::MaintenanceSpine => crate::content::RegionCityLayout::MaintenanceSpine,
+            Self::CoolantRings => crate::content::RegionCityLayout::CoolantRings,
+            Self::DissonantLattice => crate::content::RegionCityLayout::DissonantLattice,
+            Self::RecursiveBloom => crate::content::RegionCityLayout::RecursiveBloom,
+            Self::ProcessRuin => crate::content::RegionCityLayout::ProcessRuin,
+        }
+    }
 }
 
 #[derive(Clone, Copy, Deserialize)]
@@ -1072,7 +1253,16 @@ impl RawRegionDestructibleProfile {
         let mut destruction_effect = DestructionEffect::new(RadialDamageEffect {
             maximum_cost: self.explosion.radius,
             neighbor_mode: NeighborMode::CardinalAndDiagonal,
-            propagation_policy: TerrainPropagationPolicy::blocked_by_walls(1),
+            propagation_policy: TerrainPropagationPolicy {
+                floor_cost: Some(self.explosion.floor_cost),
+                shallow_water_cost: Some(
+                    self.explosion
+                        .shallow_water_cost
+                        .unwrap_or(self.explosion.floor_cost),
+                ),
+                deep_water_cost: self.explosion.deep_water_cost,
+                wall_cost: None,
+            },
             damage: self.explosion.damage.into_runtime(),
             falloff: self
                 .explosion
@@ -1096,6 +1286,10 @@ impl RawRegionDestructibleProfile {
 #[serde(deny_unknown_fields)]
 struct RawRegionExplosion {
     radius: u16,
+    #[serde(default = "one_u16")]
+    floor_cost: u16,
+    shallow_water_cost: Option<u16>,
+    deep_water_cost: Option<u16>,
     damage: RawWeaponDamage,
     falloff_per_cost: Option<u16>,
 }
@@ -1191,10 +1385,12 @@ struct RawRegionThreatProfile {
     electronic_system: Option<RawElectronicSystemProfile>,
     #[serde(default)]
     player_relation: RawPlayerRelation,
+    #[serde(default)]
+    tags: Vec<String>,
 }
 
 impl RawRegionThreatProfile {
-    fn into_runtime(self) -> Result<RegionThreatProfile, RegionalWorldError> {
+    fn into_runtime(self, tags: Vec<ContentId>) -> Result<RegionThreatProfile, RegionalWorldError> {
         let interval_turns = std::num::NonZeroU16::new(self.interval_turns)
             .ok_or(RegionalWorldError::InvalidThreatLimits)?;
         let maximum_active = std::num::NonZeroU16::new(self.maximum_active)
@@ -1219,6 +1415,7 @@ impl RawRegionThreatProfile {
             ai,
         )?;
         profile = profile.with_player_relation(self.player_relation.into_runtime());
+        profile = profile.with_tags(tags)?;
         if let Some(attributes) = self.primary_attributes {
             profile = profile.with_primary_attributes(attributes.into_runtime())?;
         }
@@ -1282,10 +1479,15 @@ struct RawRegionPopulationRule {
     electronic_system: Option<RawElectronicSystemProfile>,
     #[serde(default)]
     player_relation: RawPlayerRelation,
+    #[serde(default)]
+    tags: Vec<String>,
 }
 
 impl RawRegionPopulationRule {
-    fn into_runtime(self) -> Result<RegionPopulationRule, RegionalWorldError> {
+    fn into_runtime(
+        self,
+        tags: Vec<ContentId>,
+    ) -> Result<RegionPopulationRule, RegionalWorldError> {
         let attack = self.attack.into_runtime().map_err(|error| {
             RegionalWorldError::InvalidPopulation(Box::new(
                 ExpeditionDefinitionError::InvalidPopulationAttackDefinition(error),
@@ -1306,6 +1508,7 @@ impl RawRegionPopulationRule {
             self.defeat_reward.map(RawDefeatReward::into_runtime),
         )?;
         rule = rule.with_player_relation(self.player_relation.into_runtime());
+        rule = rule.with_tags(tags)?;
         if let Some(attributes) = self.primary_attributes {
             rule = rule.with_primary_attributes(attributes.into_runtime())?;
         }
@@ -1424,9 +1627,15 @@ fn load_expedition_definitions(
         let population = raw
             .population
             .into_iter()
-            .map(RawPopulationGroup::into_runtime)
-            .collect::<Result<Vec<_>, _>>()
-            .map_err(&failure)?;
+            .map(|group| {
+                let tags = group
+                    .tags
+                    .iter()
+                    .map(|tag| parse(tag))
+                    .collect::<Result<Vec<_>, ContentLoadError>>()?;
+                group.into_runtime(tags).map_err(&failure)
+            })
+            .collect::<Result<Vec<_>, ContentLoadError>>()?;
         let destination = GeneratedZoneDefinition {
             zone: resolve_zone(raw.destination)?,
             generator: RoomsGeneratorConfig {
@@ -1469,6 +1678,265 @@ fn load_expedition_definitions(
                     .collect::<Result<_, _>>()?,
             )
             .map_err(&failure)?;
+        if let Some(merchant) = raw.hub_merchant {
+            let offers = merchant
+                .offers
+                .into_iter()
+                .map(|offer| {
+                    Ok(crate::content::MerchantOfferDefinition {
+                        item: parse(&offer.item)?,
+                        initial_stock: offer.stock,
+                        buy_price: offer.buy_price,
+                        sell_price: offer.sell_price,
+                        minimum_depth: offer.minimum_depth,
+                        maximum_depth: offer.maximum_depth,
+                    })
+                })
+                .collect::<Result<Vec<_>, ContentLoadError>>()?;
+            let gambles = merchant
+                .gambles
+                .into_iter()
+                .map(|gamble| {
+                    Ok(crate::content::MerchantGambleDefinition {
+                        item: parse(&gamble.item)?,
+                        initial_stock: gamble.stock,
+                        price: gamble.price,
+                    })
+                })
+                .collect::<Result<Vec<_>, ContentLoadError>>()?;
+            definition = definition.with_hub_merchant(
+                crate::content::MerchantDefinition::new(
+                    grid_position(merchant.position),
+                    merchant.maximum_integrity,
+                    merchant.credits,
+                    offers,
+                    gambles,
+                    crate::content::GambleScalingDefinition::new(
+                        merchant.gamble_scaling.player_levels_per_rank,
+                        merchant.gamble_scaling.zone_depths_per_rank,
+                        merchant.gamble_scaling.maximum_rank,
+                    )
+                    .ok_or_else(|| failure(ExpeditionDefinitionError::InvalidMerchant))?,
+                )
+                .map_err(&failure)?,
+                raw.player_starting_credits,
+            );
+        }
+        if let Some(clinic) = raw.hub_clinic {
+            definition = definition.with_hub_clinic(
+                crate::content::ClinicDefinition::new(
+                    grid_position(clinic.work_position),
+                    grid_position(clinic.break_position),
+                    clinic.maximum_integrity,
+                    clinic.credits,
+                    clinic.maximum_restoration,
+                    clinic.price_per_point,
+                    clinic.work_turns,
+                    clinic.break_turns,
+                    clinic.maximum_path_search,
+                )
+                .map_err(&failure)?,
+            );
+        }
+        let residents = raw
+            .hub_residents
+            .into_iter()
+            .map(|resident| {
+                crate::content::ResidentDefinition::new(
+                    grid_position(resident.residence_position),
+                    grid_position(resident.gathering_position),
+                    resident.maximum_integrity,
+                    resident.residence_turns,
+                    resident.gathering_turns,
+                    resident.maximum_path_search,
+                )
+            })
+            .collect::<Result<Vec<_>, _>>()
+            .map_err(&failure)?;
+        definition = definition.with_hub_residents(residents).map_err(&failure)?;
+        let quests = raw
+            .hub_quests
+            .into_iter()
+            .map(|quest| {
+                let quest_id = parse(&quest.id)?;
+                ensure_local_namespace(package, &path, &quest_id)?;
+                let provider = match quest.provider {
+                    RawHubQuestProviderDefinition::Existing { position } => {
+                        crate::content::HubQuestProviderDefinition::existing(grid_position(
+                            position,
+                        ))
+                        .map_err(&failure)?
+                    }
+                    RawHubQuestProviderDefinition::Contact {
+                        position,
+                        maximum_integrity,
+                    } => crate::content::HubQuestProviderDefinition::contact(
+                        grid_position(position),
+                        maximum_integrity,
+                    )
+                    .map_err(&failure)?,
+                };
+                let objective = match quest.objective {
+                    RawQuestObjectiveDefinition::Delivery {
+                        required_item,
+                        required_quantity,
+                    } => crate::content::DeliveryQuestDefinition::new(
+                        quest_id,
+                        quest.title_key,
+                        quest.summary_key,
+                        parse(&required_item)?,
+                        required_quantity,
+                        quest.reward_credits,
+                    )
+                    .map(crate::content::QuestDefinition::from)
+                    .map_err(&failure)?,
+                    RawQuestObjectiveDefinition::ExploreZones {
+                        required_zones,
+                        qualifying_records,
+                    } => {
+                        let mut definition = crate::content::ExplorationQuestDefinition::new(
+                            quest_id,
+                            quest.title_key,
+                            quest.summary_key,
+                            required_zones,
+                            quest.reward_credits,
+                        )
+                        .map_err(&failure)?;
+                        if !qualifying_records.is_empty() {
+                            definition = definition
+                                .with_qualifying_records(
+                                    qualifying_records
+                                        .iter()
+                                        .map(|record| parse(record))
+                                        .collect::<Result<_, _>>()?,
+                                )
+                                .map_err(&failure)?;
+                        }
+                        definition.into()
+                    }
+                    RawQuestObjectiveDefinition::AccessDataRecord { record } => {
+                        crate::content::DataRecordQuestDefinition::new(
+                            quest_id,
+                            quest.title_key,
+                            quest.summary_key,
+                            parse(&record)?,
+                            quest.reward_credits,
+                        )
+                        .map(crate::content::QuestDefinition::from)
+                        .map_err(&failure)?
+                    }
+                    RawQuestObjectiveDefinition::DefeatTargets {
+                        target_tag,
+                        required_quantity,
+                    } => crate::content::DefeatTargetsQuestDefinition::new(
+                        quest_id,
+                        quest.title_key,
+                        quest.summary_key,
+                        parse(&target_tag)?,
+                        required_quantity,
+                        quest.reward_credits,
+                    )
+                    .map(crate::content::QuestDefinition::from)
+                    .map_err(&failure)?,
+                };
+                let prerequisites = quest
+                    .prerequisites
+                    .iter()
+                    .map(|id| parse(id))
+                    .collect::<Result<Vec<_>, _>>()?;
+                let reward_items = quest
+                    .reward_items
+                    .into_iter()
+                    .map(|reward| {
+                        crate::content::QuestItemRewardDefinition::new(
+                            parse(&reward.item)?,
+                            reward.quantity,
+                        )
+                        .map_err(&failure)
+                    })
+                    .collect::<Result<Vec<_>, ContentLoadError>>()?;
+                let required_world_states = quest
+                    .required_world_states
+                    .iter()
+                    .map(|id| parse(id))
+                    .collect::<Result<Vec<_>, _>>()?;
+                let completion_world_states = quest
+                    .completion_world_states
+                    .into_iter()
+                    .map(|state| {
+                        let state_id = parse(&state.id)?;
+                        ensure_local_namespace(package, &path, &state_id)?;
+                        let mut definition = crate::content::QuestWorldStateDefinition::new(
+                            state_id,
+                            state.summary_key,
+                        )
+                        .map_err(&failure)?;
+                        if let Some(dialogue_key) = state.provider_dialogue_key {
+                            definition = definition
+                                .with_provider_dialogue(dialogue_key)
+                                .map_err(&failure)?;
+                        }
+                        Ok(definition)
+                    })
+                    .collect::<Result<Vec<_>, ContentLoadError>>()?;
+                let completion_world_effects = quest
+                    .completion_world_effects
+                    .into_iter()
+                    .map(|effect| match effect {
+                        RawQuestWorldEffectDefinition::UnlockDoor {
+                            position,
+                            summary_key,
+                        } => crate::content::QuestWorldEffectDefinition::unlock_door(
+                            GridPos::new(position[0], position[1]),
+                            summary_key,
+                        )
+                        .map_err(&failure),
+                        RawQuestWorldEffectDefinition::UpdateDataTerminal {
+                            installation,
+                            record,
+                            summary_key,
+                        } => {
+                            let installation = parse(&installation)?;
+                            ensure_local_namespace(package, &path, &installation)?;
+                            crate::content::QuestWorldEffectDefinition::update_data_terminal(
+                                installation,
+                                parse(&record)?,
+                                summary_key,
+                            )
+                            .map_err(&failure)
+                        }
+                        RawQuestWorldEffectDefinition::GrantPropertyTakeAuthorization {
+                            owner,
+                            summary_key,
+                        } => crate::content::QuestWorldEffectDefinition::grant_property_take_authorization(
+                            parse(&owner)?,
+                            summary_key,
+                        )
+                        .map_err(&failure),
+                    })
+                    .collect::<Result<Vec<_>, ContentLoadError>>()?;
+                let mut definition = crate::content::HubQuestDefinition::new(provider, objective)
+                    .with_prerequisites(prerequisites)
+                    .map_err(&failure)?
+                    .with_world_states(required_world_states, completion_world_states)
+                    .map_err(&failure)?
+                    .with_world_effects(completion_world_effects)
+                    .map_err(&failure)?
+                    .with_additional_rewards(quest.reward_experience, reward_items)
+                    .map_err(&failure)?;
+                match (quest.choice_group, quest.choice_prompt_key) {
+                    (Some(group), Some(prompt)) => {
+                        let group = parse(&group)?;
+                        ensure_local_namespace(package, &path, &group)?;
+                        definition = definition.with_choice(group, prompt).map_err(&failure)?;
+                    }
+                    (None, None) => {}
+                    _ => return Err(failure(ExpeditionDefinitionError::InvalidQuestChoice)),
+                }
+                Ok(definition)
+            })
+            .collect::<Result<Vec<_>, ContentLoadError>>()?;
+        definition = definition.with_hub_quests(quests).map_err(&failure)?;
         if let Some(facility) = raw.hub_facility {
             let installations = facility
                 .installations
@@ -1556,6 +2024,30 @@ fn load_expedition_definitions(
                         .map_err(|error| {
                             failure(ExpeditionDefinitionError::InvalidLocalAlertProfile(error))
                         })?;
+                    let property_report = worker
+                        .property_report
+                        .map(RawPropertyReportProfile::into_runtime)
+                        .transpose()
+                        .map_err(|error| {
+                            failure(ExpeditionDefinitionError::InvalidPropertyReportProfile(
+                                error,
+                            ))
+                        })?;
+                    let installed_property_report = worker
+                        .installed_property_report
+                        .map(|report| {
+                            let installation = parse(&report.installation)?;
+                            let channel = report.into_channel().map_err(|error| {
+                                failure(ExpeditionDefinitionError::InvalidPropertyReportProfile(
+                                    error,
+                                ))
+                            })?;
+                            Ok::<_, ContentLoadError>(WorkerInstalledPropertyReportBlueprint {
+                                installation,
+                                channel,
+                            })
+                        })
+                        .transpose()?;
                     Ok(WorkerBlueprint {
                         actor_position: grid_position(worker.position),
                         role: worker.role.into_runtime(),
@@ -1563,6 +2055,11 @@ fn load_expedition_definitions(
                         affiliation: worker.affiliation.as_deref().map(parse).transpose()?,
                         witness_profile,
                         local_alert_profile,
+                        property_report,
+                        installed_property_report,
+                        reported_incident_response: worker
+                            .reported_incident_response
+                            .map(RawReportedIncidentResponse::into_runtime),
                     })
                 })
                 .collect::<Result<Vec<_>, ContentLoadError>>()?;
@@ -1643,7 +2140,170 @@ struct RawExpeditionDefinition {
     expanded_world: Option<RawExpandedWorldDefinition>,
     #[serde(default)]
     player_property_take_authorizations: Vec<String>,
+    #[serde(default)]
+    player_starting_credits: u32,
+    hub_merchant: Option<RawMerchantDefinition>,
+    hub_clinic: Option<RawClinicDefinition>,
+    #[serde(default)]
+    hub_residents: Vec<RawResidentDefinition>,
+    #[serde(default)]
+    hub_quests: Vec<RawHubQuestDefinition>,
     hub_facility: Option<RawFacilityDefinition>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawHubQuestDefinition {
+    id: String,
+    title_key: String,
+    summary_key: String,
+    reward_credits: u32,
+    #[serde(default)]
+    reward_experience: u64,
+    #[serde(default)]
+    reward_items: Vec<RawQuestItemRewardDefinition>,
+    #[serde(default)]
+    prerequisites: Vec<String>,
+    #[serde(default)]
+    required_world_states: Vec<String>,
+    #[serde(default)]
+    completion_world_states: Vec<RawQuestWorldStateDefinition>,
+    #[serde(default)]
+    completion_world_effects: Vec<RawQuestWorldEffectDefinition>,
+    choice_group: Option<String>,
+    choice_prompt_key: Option<String>,
+    objective: RawQuestObjectiveDefinition,
+    provider: RawHubQuestProviderDefinition,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawQuestItemRewardDefinition {
+    item: String,
+    quantity: u16,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawQuestWorldStateDefinition {
+    id: String,
+    summary_key: String,
+    provider_dialogue_key: Option<String>,
+}
+
+#[derive(Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawQuestWorldEffectDefinition {
+    UnlockDoor {
+        position: [i32; 2],
+        summary_key: String,
+    },
+    UpdateDataTerminal {
+        installation: String,
+        record: String,
+        summary_key: String,
+    },
+    GrantPropertyTakeAuthorization {
+        owner: String,
+        summary_key: String,
+    },
+}
+
+#[derive(Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawQuestObjectiveDefinition {
+    Delivery {
+        required_item: String,
+        required_quantity: u16,
+    },
+    ExploreZones {
+        required_zones: u16,
+        #[serde(default)]
+        qualifying_records: Vec<String>,
+    },
+    AccessDataRecord {
+        record: String,
+    },
+    DefeatTargets {
+        target_tag: String,
+        required_quantity: u16,
+    },
+}
+
+#[derive(Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+enum RawHubQuestProviderDefinition {
+    Existing {
+        position: [i32; 2],
+    },
+    Contact {
+        position: [i32; 2],
+        maximum_integrity: u16,
+    },
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawResidentDefinition {
+    residence_position: [i32; 2],
+    gathering_position: [i32; 2],
+    maximum_integrity: u16,
+    residence_turns: u16,
+    gathering_turns: u16,
+    maximum_path_search: usize,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawClinicDefinition {
+    work_position: [i32; 2],
+    break_position: [i32; 2],
+    maximum_integrity: u16,
+    credits: u32,
+    maximum_restoration: u16,
+    price_per_point: u32,
+    work_turns: u16,
+    break_turns: u16,
+    maximum_path_search: usize,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawMerchantDefinition {
+    position: [i32; 2],
+    maximum_integrity: u16,
+    credits: u32,
+    offers: Vec<RawMerchantOfferDefinition>,
+    gambles: Vec<RawMerchantGambleDefinition>,
+    gamble_scaling: RawGambleScalingDefinition,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawGambleScalingDefinition {
+    player_levels_per_rank: u16,
+    zone_depths_per_rank: u16,
+    maximum_rank: u16,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawMerchantOfferDefinition {
+    item: String,
+    stock: u16,
+    buy_price: u32,
+    sell_price: u32,
+    #[serde(default)]
+    minimum_depth: u16,
+    maximum_depth: Option<u16>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawMerchantGambleDefinition {
+    item: String,
+    stock: u16,
+    price: u32,
 }
 
 #[derive(Deserialize)]
@@ -1701,10 +2361,15 @@ struct RawPopulationGroup {
     electronic_system: Option<RawElectronicSystemProfile>,
     #[serde(default)]
     player_relation: RawPlayerRelation,
+    #[serde(default)]
+    tags: Vec<String>,
 }
 
 impl RawPopulationGroup {
-    fn into_runtime(self) -> Result<PopulationGroupDefinition, ExpeditionDefinitionError> {
+    fn into_runtime(
+        self,
+        tags: Vec<ContentId>,
+    ) -> Result<PopulationGroupDefinition, ExpeditionDefinitionError> {
         let attack = self
             .attack
             .into_runtime()
@@ -1719,6 +2384,7 @@ impl RawPopulationGroup {
             self.defeat_reward.map(RawDefeatReward::into_runtime),
         )?;
         group = group.with_player_relation(self.player_relation.into_runtime());
+        group = group.with_tags(tags)?;
         if let Some(attributes) = self.primary_attributes {
             group = group.with_primary_attributes(attributes.into_runtime())?;
         }
@@ -2100,6 +2766,74 @@ struct RawWorkerDefinition {
     affiliation: Option<String>,
     witness: Option<RawWitnessProfile>,
     local_alert: Option<RawLocalAlertProfile>,
+    property_report: Option<RawPropertyReportProfile>,
+    installed_property_report: Option<RawInstalledPropertyReportProfile>,
+    reported_incident_response: Option<RawReportedIncidentResponse>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawInstalledPropertyReportProfile {
+    installation: String,
+    radius: u16,
+    #[serde(default = "default_witness_distance_metric")]
+    distance_metric: RawDistanceMetric,
+    #[serde(default = "default_block_closed_corners")]
+    block_closed_corners: bool,
+}
+
+impl RawInstalledPropertyReportProfile {
+    fn into_channel(
+        self,
+    ) -> Result<PropertyReportChannel, crate::social::PropertyReportProfileError> {
+        PropertyReportChannel::new(
+            self.radius,
+            self.distance_metric.into_runtime(),
+            self.block_closed_corners,
+        )
+    }
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawReportedIncidentResponse {
+    inspection_turns: u16,
+    maximum_response_turns: u16,
+}
+
+impl RawReportedIncidentResponse {
+    const fn into_runtime(self) -> WorkerReportedIncidentResponseBlueprint {
+        WorkerReportedIncidentResponseBlueprint {
+            inspection_turns: self.inspection_turns,
+            maximum_response_turns: self.maximum_response_turns,
+        }
+    }
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawPropertyReportProfile {
+    recipient_position: [i32; 2],
+    radius: u16,
+    #[serde(default = "default_witness_distance_metric")]
+    distance_metric: RawDistanceMetric,
+    #[serde(default = "default_block_closed_corners")]
+    block_closed_corners: bool,
+}
+
+impl RawPropertyReportProfile {
+    fn into_runtime(
+        self,
+    ) -> Result<WorkerPropertyReportBlueprint, crate::social::PropertyReportProfileError> {
+        Ok(WorkerPropertyReportBlueprint {
+            recipient_position: grid_position(self.recipient_position),
+            channel: PropertyReportChannel::new(
+                self.radius,
+                self.distance_metric.into_runtime(),
+                self.block_closed_corners,
+            )?,
+        })
+    }
 }
 
 #[derive(Deserialize)]
@@ -2793,6 +3527,14 @@ enum RawStatusEffect {
         #[serde(default)]
         multiply_by_stacks: bool,
     },
+    DealDamageToCounterpart {
+        amount: u16,
+        damage_type: RawDamageType,
+        #[serde(default)]
+        penetration: u16,
+        #[serde(default)]
+        multiply_by_stacks: bool,
+    },
 }
 
 impl RawStatusEffect {
@@ -2804,6 +3546,15 @@ impl RawStatusEffect {
                 penetration,
                 multiply_by_stacks,
             } => StatusEffectPrimitive::DealDamage {
+                packet: DamagePacket::new(amount, damage_type.into_runtime(), penetration),
+                multiply_by_stacks,
+            },
+            Self::DealDamageToCounterpart {
+                amount,
+                damage_type,
+                penetration,
+                multiply_by_stacks,
+            } => StatusEffectPrimitive::DealDamageToCounterpart {
                 packet: DamagePacket::new(amount, damage_type.into_runtime(), penetration),
                 multiply_by_stacks,
             },
@@ -3521,6 +4272,7 @@ impl RawTechniqueTargetRequirement {
 #[derive(Clone, Copy, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
 enum RawTechniqueImprovement {
+    NpcVisionOverlay,
     MeleeCounterattack,
     ExtendedRangedOverwatch,
     PersistentRangedAim {
@@ -3547,6 +4299,7 @@ enum RawTechniqueImprovement {
 impl RawTechniqueImprovement {
     const fn into_runtime(self) -> TechniqueImprovement {
         match self {
+            Self::NpcVisionOverlay => TechniqueImprovement::NpcVisionOverlay,
             Self::MeleeCounterattack => TechniqueImprovement::MeleeCounterattack,
             Self::ExtendedRangedOverwatch => TechniqueImprovement::ExtendedRangedOverwatch,
             Self::PersistentRangedAim {
@@ -5630,6 +6383,9 @@ mod tests {
         let target_analysis: crate::skills::TechniqueId = "core:rec_01"
             .parse()
             .unwrap_or_else(|error| panic!("valid technique ID rejected: {error}"));
+        let tactical_reading: crate::skills::TechniqueId = "core:rec_06"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid technique ID rejected: {error}"));
         let starter_expedition: ExpeditionId = "core:starter_expedition"
             .parse()
             .unwrap_or_else(|error| panic!("valid expedition ID rejected: {error}"));
@@ -5827,6 +6583,22 @@ mod tests {
                 .and_then(TechniqueDefinition::action),
             Some(TechniqueAction::AnalyzeTarget { range: 8 })
         );
+        let tactical_reading_definition = loaded
+            .skills()
+            .technique(&tactical_reading)
+            .expect("tactical reading technique was not loaded");
+        assert_eq!(tactical_reading_definition.minimum_level(), 2);
+        assert_eq!(
+            tactical_reading_definition.prerequisite(),
+            Some(&target_analysis)
+        );
+        assert_eq!(
+            tactical_reading_definition.improvement(),
+            Some(TechniqueImprovement::NpcVisionOverlay)
+        );
+        assert!(tactical_reading_definition.material_cost().is_none());
+        assert!(tactical_reading_definition.required_tool().is_none());
+        assert!(tactical_reading_definition.action().is_none());
         assert_eq!(
             loaded
                 .skills()
@@ -5842,9 +6614,9 @@ mod tests {
                 &crate::skills::SkillProgressionRules::default(),
             )
             .unwrap_or_else(|error| panic!("core skill availability failed: {error}"));
-        assert!(!prototype_availability.is_open());
-        assert_eq!(prototype_availability.available.len(), 4);
-        assert_eq!(prototype_availability.complete_paths, 0);
+        assert!(prototype_availability.is_open());
+        assert_eq!(prototype_availability.available.len(), 5);
+        assert!(prototype_availability.complete_paths > 0);
         let traces: crate::skills::SystemFeatureId = "core:traces"
             .parse()
             .unwrap_or_else(|error| panic!("valid feature ID rejected: {error}"));
@@ -5858,7 +6630,7 @@ mod tests {
             )
             .unwrap_or_else(|error| panic!("trace-enabled availability failed: {error}"));
         assert!(trace_enabled_availability.is_open());
-        assert_eq!(trace_enabled_availability.available.len(), 5);
+        assert_eq!(trace_enabled_availability.available.len(), 6);
         let expedition = loaded
             .expeditions()
             .get(&starter_expedition)
@@ -5950,6 +6722,63 @@ mod tests {
                 .map(|reward| reward.base_experience),
             Some(8)
         );
+        let merchant = expedition
+            .hub_merchant
+            .as_ref()
+            .expect("core hub merchant was not loaded");
+        assert_eq!(expedition.player_starting_credits, 120);
+        assert_eq!(merchant.initial_credits, 300);
+        assert_eq!(merchant.offers.len(), 3);
+        assert_eq!(
+            merchant
+                .offers
+                .iter()
+                .filter(|offer| offer.available_at_depth(0))
+                .count(),
+            2
+        );
+        assert_eq!(
+            merchant
+                .offers
+                .iter()
+                .filter(|offer| offer.available_at_depth(3))
+                .count(),
+            2
+        );
+        assert_eq!(merchant.gambles.len(), 2);
+        assert_eq!(merchant.gamble_scaling.player_levels_per_rank, 3);
+        assert_eq!(merchant.gamble_scaling.zone_depths_per_rank, 1);
+        assert_eq!(merchant.gamble_scaling.maximum_rank, 12);
+        let clinic = expedition
+            .hub_clinic
+            .as_ref()
+            .expect("core hub clinic was not loaded");
+        assert_eq!(clinic.work_position, GridPos::new(15, 11));
+        assert_eq!(clinic.break_position, GridPos::new(17, 13));
+        assert_eq!(clinic.initial_credits, 80);
+        assert_eq!(clinic.maximum_restoration, 8);
+        assert_eq!(clinic.price_per_point, 3);
+        assert_eq!((clinic.work_turns, clinic.break_turns), (12, 4));
+        assert_eq!(expedition.hub_residents.len(), 1);
+        let resident = &expedition.hub_residents[0];
+        assert_eq!(resident.residence_position, GridPos::new(12, 27));
+        assert_eq!(resident.gathering_position, GridPos::new(40, 23));
+        assert_eq!((resident.residence_turns, resident.gathering_turns), (7, 5));
+        let archive_follow_up = expedition
+            .hub_quests
+            .iter()
+            .find(|quest| quest.quest.id().as_str() == "core:verify_archive_context")
+            .expect("core archive follow-up quest was not loaded");
+        assert!(matches!(
+            archive_follow_up.completion_world_effects.as_slice(),
+            [crate::content::QuestWorldEffectDefinition::UpdateDataTerminal {
+                installation,
+                record,
+                summary_key,
+            }] if installation.as_str() == "core:starter_city_archive_terminal"
+                && record.as_str() == "core:starter_city_archive_verified_record"
+                && summary_key == "world_effect.archive_terminal_updated.summary"
+        ));
         let facility = expedition
             .hub_facility
             .as_ref()
@@ -6013,6 +6842,18 @@ mod tests {
             Some(8)
         );
         assert_eq!(
+            facility.blueprint.workers[0]
+                .property_report
+                .map(|report| report.recipient_position),
+            Some(GridPos::new(44, 32))
+        );
+        assert_eq!(
+            facility.blueprint.workers[0]
+                .property_report
+                .map(|report| report.channel.field_of_view().radius),
+            Some(32)
+        );
+        assert_eq!(
             facility.materials[0].owner.as_ref().map(ContentId::as_str),
             Some("core:maintenance_collective")
         );
@@ -6026,6 +6867,100 @@ mod tests {
         );
         assert_eq!(regional_world.province_size(), 4);
         assert_eq!(regional_world.biomes().len(), 8);
+        assert_eq!(regional_world.vertical_links().len(), 5);
+        assert_eq!(regional_world.cities().len(), 5);
+        let city = regional_world
+            .city_at(crate::content::RegionCoord::new(-1, 0, 1))
+            .expect("the first deep layer must expose its authored city");
+        assert_eq!(city.id().as_str(), "core:maintenance_exchange");
+        assert_eq!(city.name(), "Nœud de maintenance");
+        assert_eq!(city.kind().as_str(), "core:maintenance_city");
+        assert_eq!(
+            city.map_size(),
+            crate::content::RegionMapSize::new(96, 64).unwrap()
+        );
+        assert_eq!(city.residents().len(), 2);
+        assert_eq!(city.merchant().position, GridPos::new(36, 32));
+        assert_eq!(city.clinic().work_position, GridPos::new(58, 32));
+        let second_city = regional_world
+            .city_at(crate::content::RegionCoord::new(-1, 0, 2))
+            .expect("the second deep layer must expose a distinct authored city");
+        assert_eq!(second_city.id().as_str(), "core:coolant_crown");
+        assert_eq!(second_city.name(), "Couronne de refroidissement");
+        assert_eq!(second_city.kind().as_str(), "core:coolant_city");
+        assert_eq!(
+            second_city.map_size(),
+            crate::content::RegionMapSize::new(80, 72).unwrap()
+        );
+        assert_eq!(second_city.residents().len(), 3);
+        let third_city = regional_world
+            .city_at(crate::content::RegionCoord::new(-1, 0, 3))
+            .expect("the third deep layer must expose a distinct authored city");
+        assert_eq!(third_city.id().as_str(), "core:control_bastion");
+        assert_eq!(third_city.name(), "Bastion dissonant");
+        assert_eq!(third_city.kind().as_str(), "core:security_city");
+        assert_eq!(
+            third_city.map_size(),
+            crate::content::RegionMapSize::new(112, 56).unwrap()
+        );
+        assert_eq!(third_city.residents().len(), 4);
+        let fourth_city = regional_world
+            .city_at(crate::content::RegionCoord::new(-1, 0, 4))
+            .expect("the fourth deep layer must expose a distinct authored city");
+        assert_eq!(fourth_city.id().as_str(), "core:shedding_rosette");
+        assert_eq!(fourth_city.name(), "Rosace des mues");
+        assert_eq!(fourth_city.kind().as_str(), "core:recursive_city");
+        assert_eq!(
+            fourth_city.map_size(),
+            crate::content::RegionMapSize::new(88, 88).unwrap()
+        );
+        assert_eq!(fourth_city.residents().len(), 5);
+        let fifth_city = regional_world
+            .city_at(crate::content::RegionCoord::new(-1, 0, 5))
+            .expect("the fifth deep layer must expose a distinct authored city");
+        assert_eq!(fifth_city.id().as_str(), "core:error_core");
+        assert_eq!(fifth_city.name(), "Noyau des erreurs");
+        assert_eq!(fifth_city.kind().as_str(), "core:dead_system_city");
+        assert_eq!(
+            fifth_city.map_size(),
+            crate::content::RegionMapSize::new(104, 80).unwrap()
+        );
+        assert_eq!(fifth_city.residents().len(), 6);
+        assert_eq!(
+            regional_world.vertical_neighbor(
+                crate::content::RegionCoord::new(-1, 0, 1),
+                crate::content::RegionVerticalDirection::Down,
+            ),
+            Some(crate::content::RegionCoord::new(-1, 0, 2))
+        );
+        let legacy_regions = loaded
+            .regional_worlds()
+            .without_second_layer_route_metadata();
+        let legacy_world = legacy_regions.get(&regional_world.id().clone()).unwrap();
+        assert_eq!(legacy_world.vertical_links().len(), 1);
+        assert_eq!(
+            legacy_world.vertical_neighbor(
+                crate::content::RegionCoord::new(-1, 0, 0),
+                crate::content::RegionVerticalDirection::Down,
+            ),
+            Some(crate::content::RegionCoord::new(-1, 0, 1))
+        );
+        assert!(
+            legacy_world
+                .vertical_neighbor(
+                    crate::content::RegionCoord::new(-1, 0, 1),
+                    crate::content::RegionVerticalDirection::Down,
+                )
+                .is_none()
+        );
+        let pre_city_regions = loaded.regional_worlds().without_city_metadata();
+        assert!(
+            pre_city_regions
+                .get(&regional_world.id().clone())
+                .unwrap()
+                .cities()
+                .is_empty()
+        );
         assert!(
             regional_world
                 .biomes()
@@ -6079,6 +7014,29 @@ mod tests {
                                 && effect.duration_turns() == 3
                         })
                 }))
+        );
+        let research = regional_world
+            .biomes()
+            .iter()
+            .find(|biome| biome.biome().as_str() == "core:research")
+            .expect("research biome must expose the conductive prototype");
+        let relay = research
+            .destructibles()
+            .expect("research biome must contain conductive relays");
+        let discharge = relay.destruction_effect().explosion();
+        assert_eq!(discharge.damage.damage_type, DamageType::Electrical);
+        assert_eq!(discharge.propagation_policy.floor_cost, Some(3));
+        assert_eq!(discharge.propagation_policy.shallow_water_cost, Some(1));
+        assert_eq!(discharge.propagation_policy.deep_water_cost, Some(1));
+        assert!(relay.uses_distinct_water_propagation());
+        assert!(
+            relay
+                .destruction_effect()
+                .ground_effect()
+                .is_some_and(|effect| {
+                    effect.id().as_str() == "core:electrified_ground"
+                        && effect.damage_each_turn().damage_type == DamageType::Electrical
+                })
         );
     }
 
@@ -6171,6 +7129,28 @@ mod tests {
             "test.mod:armor_fracture"
         );
         assert_eq!(effect.application().stacks(), 1);
+    }
+
+    #[test]
+    fn status_content_can_damage_the_trigger_counterpart() {
+        let raw: RawStatusEffect = json5::from_str(
+            r#"{
+                type: "deal_damage_to_counterpart",
+                amount: 4,
+                damage_type: "electrical",
+                penetration: 2,
+                multiply_by_stacks: true,
+            }"#,
+        )
+        .unwrap();
+
+        assert_eq!(
+            raw.into_runtime(),
+            StatusEffectPrimitive::DealDamageToCounterpart {
+                packet: DamagePacket::new(4, DamageType::Electrical, 2),
+                multiply_by_stacks: true,
+            }
+        );
     }
 
     #[test]
@@ -6450,6 +7430,17 @@ mod tests {
                 .map(PackageId::as_str)
                 .collect::<Vec<_>>(),
             vec!["core", "example.arc_arsenal"]
+        );
+        assert_eq!(
+            loaded
+                .package_manifests()
+                .iter()
+                .map(|manifest| (manifest.id.as_str(), manifest.version.to_string()))
+                .collect::<Vec<_>>(),
+            vec![
+                ("core", "0.1.0".to_owned()),
+                ("example.arc_arsenal", "0.1.0".to_owned()),
+            ]
         );
         assert_eq!(
             loaded
@@ -6810,6 +7801,245 @@ incompatible = []
             expedition.player_property_take_authorizations()[0].as_str(),
             "core:maintenance_collective"
         );
+        assert!(expedition.hub_quests.is_empty());
+
+        let quest_content = valid.replace(
+            "player_property_take_authorizations:",
+            "hub_quests:[{id:'test.world:local_delivery',title_key:'quest.local_delivery.title',summary_key:'quest.local_delivery.summary',objective:{type:'delivery',required_item:'core:power_regulator',required_quantity:2},reward_credits:45,provider:{type:'contact',position:[3,3],maximum_integrity:10}}],player_property_take_authorizations:",
+        );
+        fs::write(&path, &quest_content).unwrap();
+        let loaded = ContentLoader::load(&roots, &Version::new(0, 1, 0)).unwrap();
+        let quest = &loaded
+            .expeditions()
+            .get(&"test.world:expedition".parse().unwrap())
+            .unwrap()
+            .hub_quests[0];
+        let crate::content::QuestDefinition::Delivery(delivery) = &quest.quest else {
+            panic!("delivery objective expected");
+        };
+        assert_eq!(delivery.id.as_str(), "test.world:local_delivery");
+        assert_eq!(delivery.required_item.as_str(), "core:power_regulator");
+        assert_eq!(delivery.required_quantity, 2);
+        assert_eq!(delivery.reward_credits, 45);
+        assert!(matches!(
+            quest.provider,
+            crate::content::HubQuestProviderDefinition::Contact {
+                position: GridPos { x: 3, y: 3 },
+                maximum_integrity: 10
+            }
+        ));
+
+        let chain_content = valid.replace(
+            "player_property_take_authorizations:",
+            "hub_quests:[{id:'test.world:chain_start',title_key:'quest.chain_start.title',summary_key:'quest.chain_start.summary',objective:{type:'explore_zones',required_zones:1},reward_credits:10,reward_experience:7,reward_items:[{item:'core:power_regulator',quantity:2}],completion_world_states:[{id:'test.world:reported',summary_key:'world.reported.summary',provider_dialogue_key:'world.reported.dialogue'}],completion_world_effects:[{type:'unlock_door',position:[4,4],summary_key:'world_effect.access.summary'},{type:'grant_property_take_authorization',owner:'test.world:salvage_collective',summary_key:'world_effect.salvage_authorized.summary'}],provider:{type:'contact',position:[3,3],maximum_integrity:10}},{id:'test.world:chain_follow_up',title_key:'quest.chain_follow_up.title',summary_key:'quest.chain_follow_up.summary',objective:{type:'explore_zones',required_zones:2},prerequisites:['test.world:chain_start'],required_world_states:['test.world:reported'],reward_credits:20,provider:{type:'contact',position:[3,3],maximum_integrity:10}}],player_property_take_authorizations:",
+        );
+        fs::write(&path, &chain_content).unwrap();
+        let loaded = ContentLoader::load(&roots, &Version::new(0, 1, 0)).unwrap();
+        let quests = &loaded
+            .expeditions()
+            .get(&"test.world:expedition".parse().unwrap())
+            .unwrap()
+            .hub_quests;
+        assert_eq!(quests.len(), 2);
+        assert_eq!(quests[0].reward_experience, 7);
+        assert_eq!(quests[0].reward_items[0].quantity, 2);
+        assert_eq!(
+            quests[0].completion_world_states[0].id.as_str(),
+            "test.world:reported"
+        );
+        assert_eq!(
+            quests[0].completion_world_effects[0].door_position(),
+            Some(GridPos::new(4, 4))
+        );
+        assert_eq!(
+            quests[0].completion_world_effects[0].summary_key(),
+            "world_effect.access.summary"
+        );
+        assert!(matches!(
+            &quests[0].completion_world_effects[1],
+            crate::content::QuestWorldEffectDefinition::GrantPropertyTakeAuthorization {
+                owner,
+                summary_key,
+            } if owner.as_str() == "test.world:salvage_collective"
+                && summary_key == "world_effect.salvage_authorized.summary"
+        ));
+        assert_eq!(
+            quests[1].required_world_states[0].as_str(),
+            "test.world:reported"
+        );
+        assert_eq!(
+            quests[1].prerequisites[0].as_str(),
+            "test.world:chain_start"
+        );
+        fs::write(
+            &path,
+            chain_content.replace("position:[4,4]", "position:[-1,4]"),
+        )
+        .unwrap();
+        let error = ContentLoader::load(&roots, &Version::new(0, 1, 0))
+            .unwrap_err()
+            .to_string();
+        assert!(error.contains("quest world effects"), "{error}");
+        fs::write(
+            &path,
+            chain_content.replace("['test.world:chain_start']", "['test.world:unknown']"),
+        )
+        .unwrap();
+        let error = ContentLoader::load(&roots, &Version::new(0, 1, 0))
+            .unwrap_err()
+            .to_string();
+        assert!(error.contains("prerequisites"), "{error}");
+        fs::write(
+            &path,
+            chain_content.replace(
+                "required_world_states:['test.world:reported']",
+                "required_world_states:['test.world:unknown_state']",
+            ),
+        )
+        .unwrap();
+        let error = ContentLoader::load(&roots, &Version::new(0, 1, 0))
+            .unwrap_err()
+            .to_string();
+        assert!(error.contains("world states"), "{error}");
+
+        for (source, expected) in [
+            (
+                quest_content.replace("core:power_regulator", "core:unknown_quest_item"),
+                "unknown quest item",
+            ),
+            (
+                quest_content.replace("test.world:local_delivery", "core:foreign_quest"),
+                "namespace",
+            ),
+            (
+                quest_content.replace("required_quantity:2", "required_quantity:0"),
+                "positive item quantity",
+            ),
+            (
+                quest_content.replace(
+                    "provider:{type:'contact',position:[3,3],maximum_integrity:10}",
+                    "provider:{type:'existing',position:[3,3]}",
+                ),
+                "no authored hub NPC",
+            ),
+            (
+                quest_content.replace(
+                    "}],player_property_take_authorizations:",
+                    "},{id:'test.world:other_delivery',title_key:'quest.other.title',summary_key:'quest.other.summary',objective:{type:'delivery',required_item:'core:power_regulator',required_quantity:1},reward_credits:1,provider:{type:'existing',position:[3,3]}}],player_property_take_authorizations:",
+                ),
+                "more than one quest targets",
+            ),
+        ] {
+            fs::write(&path, source).unwrap();
+            let error = ContentLoader::load(&roots, &Version::new(0, 1, 0))
+                .unwrap_err()
+                .to_string();
+            assert!(error.contains(expected), "Expected {expected}: {error}");
+        }
+
+        let exploration_content = valid.replace(
+            "player_property_take_authorizations:",
+            "hub_quests:[{id:'test.world:local_exploration',title_key:'quest.local_exploration.title',summary_key:'quest.local_exploration.summary',objective:{type:'explore_zones',required_zones:3},reward_credits:70,provider:{type:'contact',position:[3,3],maximum_integrity:10}}],player_property_take_authorizations:",
+        );
+        fs::write(&path, &exploration_content).unwrap();
+        let loaded = ContentLoader::load(&roots, &Version::new(0, 1, 0)).unwrap();
+        let quest = &loaded
+            .expeditions()
+            .get(&"test.world:expedition".parse().unwrap())
+            .unwrap()
+            .hub_quests[0];
+        let crate::content::QuestDefinition::ExploreZones(exploration) = &quest.quest else {
+            panic!("exploration objective expected");
+        };
+        assert_eq!(exploration.id.as_str(), "test.world:local_exploration");
+        assert_eq!(exploration.required_zones, 3);
+        assert_eq!(exploration.reward_credits, 70);
+        fs::write(
+            &path,
+            exploration_content.replace("required_zones:3", "required_zones:0"),
+        )
+        .unwrap();
+        let error = ContentLoader::load(&roots, &Version::new(0, 1, 0))
+            .unwrap_err()
+            .to_string();
+        assert!(error.contains("positive zone count"), "{error}");
+
+        let data_record_content = valid.replace(
+            "player_property_take_authorizations:",
+            "hub_quests:[{id:'test.world:local_archive',title_key:'quest.local_archive.title',summary_key:'quest.local_archive.summary',objective:{type:'access_data_record',record:'test.world:sealed_archive'},reward_credits:55,provider:{type:'contact',position:[3,3],maximum_integrity:10}}],player_property_take_authorizations:",
+        );
+        fs::write(&path, &data_record_content).unwrap();
+        let loaded = ContentLoader::load(&roots, &Version::new(0, 1, 0)).unwrap();
+        let quest = &loaded
+            .expeditions()
+            .get(&"test.world:expedition".parse().unwrap())
+            .unwrap()
+            .hub_quests[0];
+        let crate::content::QuestDefinition::AccessDataRecord(data_record) = &quest.quest else {
+            panic!("data record objective expected");
+        };
+        assert_eq!(data_record.id.as_str(), "test.world:local_archive");
+        assert_eq!(data_record.record.as_str(), "test.world:sealed_archive");
+        assert_eq!(data_record.reward_credits, 55);
+
+        let tagged_population_content = valid.replace(
+            "player_property_take_authorizations:",
+            "population:[{count:1,minimum_entrance_distance:3,maximum_integrity:5,tags:['test.world:rust_hound'],attack:{range:1,distance_metric:'chebyshev',requires_line_of_sight:false,damage:{amount:2,damage_type:'kinetic'}},ai:{behavior:'hunter',perception_radius:6}}],player_property_take_authorizations:",
+        );
+        fs::write(&path, &tagged_population_content).unwrap();
+        let loaded = ContentLoader::load(&roots, &Version::new(0, 1, 0)).unwrap();
+        assert_eq!(
+            loaded
+                .expeditions()
+                .get(&"test.world:expedition".parse().unwrap())
+                .unwrap()
+                .destination
+                .population[0]
+                .tags()[0]
+                .as_str(),
+            "test.world:rust_hound"
+        );
+        fs::write(
+            &path,
+            tagged_population_content.replace(
+                "['test.world:rust_hound']",
+                "['test.world:rust_hound','test.world:rust_hound']",
+            ),
+        )
+        .unwrap();
+        let error = ContentLoader::load(&roots, &Version::new(0, 1, 0))
+            .unwrap_err()
+            .to_string();
+        assert!(error.contains("actor tags must be unique"), "{error}");
+
+        let defeat_content = valid.replace(
+            "player_property_take_authorizations:",
+            "hub_quests:[{id:'test.world:local_hunt',title_key:'quest.local_hunt.title',summary_key:'quest.local_hunt.summary',objective:{type:'defeat_targets',target_tag:'test.world:rust_hound',required_quantity:2},reward_credits:80,provider:{type:'contact',position:[3,3],maximum_integrity:10}}],player_property_take_authorizations:",
+        );
+        fs::write(&path, &defeat_content).unwrap();
+        let loaded = ContentLoader::load(&roots, &Version::new(0, 1, 0)).unwrap();
+        let quest = &loaded
+            .expeditions()
+            .get(&"test.world:expedition".parse().unwrap())
+            .unwrap()
+            .hub_quests[0];
+        let crate::content::QuestDefinition::DefeatTargets(defeat) = &quest.quest else {
+            panic!("defeat targets objective expected");
+        };
+        assert_eq!(defeat.target_tag.as_str(), "test.world:rust_hound");
+        assert_eq!(defeat.required_quantity, 2);
+        assert_eq!(defeat.reward_credits, 80);
+        fs::write(
+            &path,
+            defeat_content.replace("required_quantity:2", "required_quantity:0"),
+        )
+        .unwrap();
+        let error = ContentLoader::load(&roots, &Version::new(0, 1, 0))
+            .unwrap_err()
+            .to_string();
+        assert!(error.contains("positive target quantity"), "{error}");
+
+        fs::write(&path, valid).unwrap();
         fs::write(package_root.join("worlds/duplicate.json5"), valid).unwrap();
         assert!(
             ContentLoader::load(&roots, &Version::new(0, 1, 0))
@@ -6871,6 +8101,17 @@ incompatible = []
             .unwrap_err()
             .to_string();
         assert!(error.contains("local alert duration"), "{error}");
+        let invalid_property_report = facility
+            .replace("core:unknown_material", "core:power_regulator")
+            .replace(
+                "workers:[]",
+                "workers:[{position:[4,2],role:'retriever',maximum_integrity:5,property_report:{recipient_position:[5,2],radius:0}}]",
+            );
+        fs::write(&path, invalid_property_report).unwrap();
+        let error = ContentLoader::load(&roots, &Version::new(0, 1, 0))
+            .unwrap_err()
+            .to_string();
+        assert!(error.contains("property report range"), "{error}");
         let invalid_security_alarm = facility
             .replace("core:unknown_material", "core:power_regulator")
             .replace(

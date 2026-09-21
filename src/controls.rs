@@ -50,7 +50,9 @@ actions! {
     Skills, "Ouvrir / fermer les compétences", "K", ALL;
     QuickTechniques, "Ouvrir les techniques actives", "U", GAME;
     Report, "Ouvrir / fermer le dossier", "O", ALL;
+    QuestJournal, "Ouvrir / fermer le journal de quêtes", "N", ALL;
     Legend, "Afficher / masquer la légende", "F1", GAME;
+    NpcVision, "Afficher / masquer les champs de vision", "F2", GAME;
     Restart, "Nouvelle partie", "R", GAME;
     Analyze, "Analyse de cible", "C", GAME;
     Traces, "Lecture de traces", "L", GAME;
@@ -404,8 +406,10 @@ impl Controls {
         for action in [
             Action::Interact,
             Action::Legend,
+            Action::NpcVision,
             Action::Character,
             Action::QuickTechniques,
+            Action::QuestJournal,
         ] {
             if result.bindings.contains_key(&action) {
                 continue;
@@ -629,6 +633,7 @@ mod tests {
                 );
                 assert_eq!(controls.binding(Action::Report), &Binding::key("O"));
                 assert_eq!(controls.binding(Action::Legend), &Binding::key("F1"));
+                assert_eq!(controls.binding(Action::NpcVision), &Binding::key("F2"));
             }
         }
     }
@@ -688,12 +693,12 @@ mod tests {
     #[test]
     fn rebinding_replaces_old_key_and_rejects_conflicts_atomically() {
         let mut controls = Controls::preset(Layout::Azerty, KeySemantics::Physical);
-        controls.rebind(Action::Report, Binding::key("F2")).unwrap();
+        controls.rebind(Action::Report, Binding::key("F3")).unwrap();
         for (binding, expected) in [
             ("O", false),
             ("Enter", false),
             ("Escape", false),
-            ("F2", true),
+            ("F3", true),
         ] {
             let frame = InputFrame {
                 pressed: [Binding::key(binding)].into(),
@@ -816,6 +821,21 @@ mod tests {
     }
 
     #[test]
+    fn legacy_controls_gain_npc_vision_without_overwriting_a_custom_f2_binding() {
+        let mut document =
+            serde_json::to_value(Controls::preset(Layout::Azerty, KeySemantics::native())).unwrap();
+        document["bindings"]
+            .as_object_mut()
+            .unwrap()
+            .remove("npc_vision");
+        document["bindings"]["report"] = serde_json::json!({"type":"key", "value":"F2"});
+        let migrated = Controls::decode(&document.to_string()).unwrap();
+        assert_eq!(migrated.binding(Action::Report), &Binding::key("F2"));
+        assert_ne!(migrated.binding(Action::NpcVision), &Binding::key("F2"));
+        migrated.validate().unwrap();
+    }
+
+    #[test]
     fn legacy_controls_gain_character_without_overwriting_a_custom_j_binding() {
         let mut document =
             serde_json::to_value(Controls::preset(Layout::Azerty, KeySemantics::native())).unwrap();
@@ -845,6 +865,21 @@ mod tests {
             migrated.binding(Action::QuickTechniques),
             &Binding::key("U")
         );
+        migrated.validate().unwrap();
+    }
+
+    #[test]
+    fn legacy_controls_gain_quest_journal_without_overwriting_a_custom_n_binding() {
+        let mut document =
+            serde_json::to_value(Controls::preset(Layout::Azerty, KeySemantics::native())).unwrap();
+        document["bindings"]
+            .as_object_mut()
+            .unwrap()
+            .remove("quest_journal");
+        document["bindings"]["report"] = serde_json::json!({"type":"key", "value":"N"});
+        let migrated = Controls::decode(&document.to_string()).unwrap();
+        assert_eq!(migrated.binding(Action::Report), &Binding::key("N"));
+        assert_ne!(migrated.binding(Action::QuestJournal), &Binding::key("N"));
         migrated.validate().unwrap();
     }
 }

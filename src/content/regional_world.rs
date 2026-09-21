@@ -15,7 +15,10 @@ use crate::stats::PrimaryAttributes;
 use crate::world::DistanceMetric;
 
 use super::ContentId;
-use super::expedition::{ExpeditionDefinitionError, PopulationGroupDefinition};
+use super::expedition::{
+    ClinicDefinition, ExpeditionDefinitionError, MerchantDefinition, PopulationGroupDefinition,
+    ResidentDefinition,
+};
 
 pub const MAX_REGIONAL_WORLD_SIDE: u32 = 4_096;
 pub const MAX_REGIONAL_WORLD_DEPTH: u16 = 255;
@@ -35,10 +38,14 @@ pub const MAX_REGION_SITES: u16 = 4;
 pub const MAX_REGION_SITE_SIDE: u16 = 15;
 pub const MAX_REGION_SITE_TERMINAL_RECORDS: usize = 32;
 pub const MAX_REGION_VERTICAL_LINKS: usize = 1_024;
+pub const MAX_REGION_CITIES: usize = 64;
+pub const MAX_REGION_CITY_RESIDENTS: usize = 32;
 pub const MAX_REGION_DESTRUCTIBLES: u16 = 32;
 pub const MAX_REGION_DESTRUCTION_COST: u16 = 8;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize,
+)]
 pub struct RegionCoord {
     pub x: i32,
     pub y: i32,
@@ -379,6 +386,14 @@ impl RegionPopulationRule {
         self
     }
 
+    pub fn with_tags(mut self, tags: Vec<ContentId>) -> Result<Self, RegionalWorldError> {
+        self.group = self
+            .group
+            .with_tags(tags)
+            .map_err(|error| RegionalWorldError::InvalidPopulation(Box::new(error)))?;
+        Ok(self)
+    }
+
     pub const fn weight(&self) -> u32 {
         self.weight
     }
@@ -431,6 +446,10 @@ impl RegionPopulationRule {
 
     pub const fn player_relation(&self) -> PlayerRelation {
         self.group.player_relation()
+    }
+
+    pub fn tags(&self) -> &[ContentId] {
+        self.group.tags()
     }
 }
 
@@ -540,19 +559,14 @@ impl RegionDestructibleProfile {
             return Err(RegionalWorldError::ZeroDestructibleIntegrity);
         }
         let explosion = destruction_effect.explosion();
+        let propagation = explosion.propagation_policy;
         if explosion.maximum_cost == 0
             || explosion.maximum_cost > MAX_REGION_DESTRUCTION_COST
             || explosion.damage.amount == 0
-            || destruction_effect
-                .explosion()
-                .propagation_policy
-                .floor_cost
-                .is_none_or(|cost| cost == 0)
-            || destruction_effect
-                .explosion()
-                .propagation_policy
-                .wall_cost
-                .is_some_and(|cost| cost == 0)
+            || propagation.floor_cost.is_none_or(|cost| cost == 0)
+            || propagation.shallow_water_cost.is_some_and(|cost| cost == 0)
+            || propagation.deep_water_cost.is_some_and(|cost| cost == 0)
+            || propagation.wall_cost.is_some_and(|cost| cost == 0)
             || matches!(
                 destruction_effect.explosion().falloff,
                 DamageFalloff::PerPropagationCost(0)
@@ -583,6 +597,13 @@ impl RegionDestructibleProfile {
 
     pub const fn destruction_effect(&self) -> &DestructionEffect {
         &self.destruction_effect
+    }
+
+    pub fn uses_distinct_water_propagation(&self) -> bool {
+        self.destruction_effect
+            .explosion()
+            .propagation_policy
+            .uses_distinct_water_costs()
     }
 }
 
@@ -1051,6 +1072,14 @@ impl RegionThreatProfile {
         self
     }
 
+    pub fn with_tags(mut self, tags: Vec<ContentId>) -> Result<Self, RegionalWorldError> {
+        self.actor = self
+            .actor
+            .with_tags(tags)
+            .map_err(|error| RegionalWorldError::InvalidPopulation(Box::new(error)))?;
+        Ok(self)
+    }
+
     pub const fn interval_turns(&self) -> u16 {
         self.interval_turns.get()
     }
@@ -1095,6 +1124,10 @@ impl RegionThreatProfile {
 
     pub const fn player_relation(&self) -> PlayerRelation {
         self.actor.player_relation()
+    }
+
+    pub fn tags(&self) -> &[ContentId] {
+        self.actor.tags()
     }
 }
 
@@ -1378,6 +1411,144 @@ pub struct RegionDescriptor {
     pub biome: ContentId,
 }
 
+/// Authored topology family for one settlement. Each future layer may select
+/// a genuinely different layout without changing the generic city services.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum RegionCityLayout {
+    MaintenanceSpine,
+    CoolantRings,
+    DissonantLattice,
+    RecursiveBloom,
+    ProcessRuin,
+}
+
+impl RegionCityLayout {
+    pub const fn minimum_size(self) -> (u16, u16) {
+        match self {
+            Self::MaintenanceSpine => (48, 40),
+            Self::CoolantRings => (64, 56),
+            Self::DissonantLattice => (112, 56),
+            Self::RecursiveBloom => (88, 88),
+            Self::ProcessRuin => (104, 80),
+        }
+    }
+
+    pub const fn supports(self, size: RegionMapSize) -> bool {
+        let (minimum_width, minimum_height) = self.minimum_size();
+        size.width >= minimum_width && size.height >= minimum_height
+    }
+}
+
+/// One persistent settlement anchored to an atlas coordinate. Merchant,
+/// clinic and resident definitions are deliberately independent from quests:
+/// arriving in the city is sufficient to meet and use these NPCs.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct RegionCityDefinition {
+    id: ContentId,
+    coordinate: RegionCoord,
+    name: String,
+    kind: ContentId,
+    map_size: RegionMapSize,
+    layout: RegionCityLayout,
+    merchant: MerchantDefinition,
+    clinic: ClinicDefinition,
+    residents: Vec<ResidentDefinition>,
+}
+
+impl RegionCityDefinition {
+    #[allow(clippy::too_many_arguments)]
+    pub fn new(
+        id: ContentId,
+        coordinate: RegionCoord,
+        name: String,
+        kind: ContentId,
+        map_size: RegionMapSize,
+        layout: RegionCityLayout,
+        merchant: MerchantDefinition,
+        clinic: ClinicDefinition,
+        residents: Vec<ResidentDefinition>,
+    ) -> Result<Self, RegionalWorldError> {
+        if name.trim().is_empty() {
+            return Err(RegionalWorldError::EmptyCityName);
+        }
+        if residents.is_empty() || residents.len() > MAX_REGION_CITY_RESIDENTS {
+            return Err(RegionalWorldError::InvalidCityResidentCount);
+        }
+        if !layout.supports(map_size) {
+            return Err(RegionalWorldError::CityLayoutTooSmall(layout));
+        }
+        if !merchant
+            .offers
+            .iter()
+            .any(|offer| offer.available_at_depth(coordinate.depth))
+        {
+            return Err(RegionalWorldError::InvalidCity(Box::new(
+                ExpeditionDefinitionError::InvalidMerchant,
+            )));
+        }
+        let mut provider_positions = BTreeSet::from([merchant.position, clinic.work_position]);
+        for resident in &residents {
+            if !provider_positions.insert(resident.residence_position) {
+                return Err(RegionalWorldError::DuplicateCityProviderPosition(
+                    resident.residence_position,
+                ));
+            }
+        }
+        if provider_positions.len() != residents.len().saturating_add(2) {
+            return Err(RegionalWorldError::DuplicateCityProviderPosition(
+                clinic.work_position,
+            ));
+        }
+        Ok(Self {
+            id,
+            coordinate,
+            name,
+            kind,
+            map_size,
+            layout,
+            merchant,
+            clinic,
+            residents,
+        })
+    }
+
+    pub const fn id(&self) -> &ContentId {
+        &self.id
+    }
+
+    pub const fn coordinate(&self) -> RegionCoord {
+        self.coordinate
+    }
+
+    pub fn name(&self) -> &str {
+        &self.name
+    }
+
+    pub const fn kind(&self) -> &ContentId {
+        &self.kind
+    }
+
+    pub const fn map_size(&self) -> RegionMapSize {
+        self.map_size
+    }
+
+    pub const fn layout(&self) -> RegionCityLayout {
+        self.layout
+    }
+
+    pub const fn merchant(&self) -> &MerchantDefinition {
+        &self.merchant
+    }
+
+    pub const fn clinic(&self) -> &ClinicDefinition {
+        &self.clinic
+    }
+
+    pub fn residents(&self) -> &[ResidentDefinition] {
+        &self.residents
+    }
+}
+
 #[derive(Clone, PartialEq, Eq)]
 pub struct RegionalWorldDefinition {
     id: ContentId,
@@ -1386,6 +1557,7 @@ pub struct RegionalWorldDefinition {
     local_map_size: RegionMapSize,
     biomes: Vec<RegionBiomeRule>,
     vertical_links: Vec<RegionVerticalLink>,
+    cities: Vec<RegionCityDefinition>,
 }
 
 impl Debug for RegionalWorldDefinition {
@@ -1401,6 +1573,11 @@ impl Debug for RegionalWorldDefinition {
         // legacy suspension fingerprints are intentionally replay-compatible.
         if !self.vertical_links.is_empty() {
             debug.field("vertical_links", &self.vertical_links);
+        }
+        // As with links, an empty collection preserves every pre-city world
+        // fingerprint byte-for-byte.
+        if !self.cities.is_empty() {
+            debug.field("cities", &self.cities);
         }
         debug.finish()
     }
@@ -1551,6 +1728,7 @@ impl RegionalWorldDefinition {
             local_map_size,
             biomes,
             vertical_links: Vec::new(),
+            cities: Vec::new(),
         })
     }
 
@@ -1571,6 +1749,48 @@ impl RegionalWorldDefinition {
             }
         }
         self.vertical_links = vertical_links;
+        Ok(self)
+    }
+
+    pub fn with_cities(
+        mut self,
+        cities: Vec<RegionCityDefinition>,
+    ) -> Result<Self, RegionalWorldError> {
+        if cities.len() > MAX_REGION_CITIES {
+            return Err(RegionalWorldError::CityBudgetExceeded);
+        }
+        let mut ids = BTreeSet::new();
+        let mut coordinates = BTreeSet::new();
+        for city in &cities {
+            if !self.bounds.contains(city.coordinate) {
+                return Err(RegionalWorldError::CityOutsideWorld(city.id.clone()));
+            }
+            if !ids.insert(city.id.clone()) {
+                return Err(RegionalWorldError::DuplicateCity(city.id.clone()));
+            }
+            if !coordinates.insert(city.coordinate) {
+                return Err(RegionalWorldError::DuplicateCityCoordinate(city.coordinate));
+            }
+            for position in std::iter::once(city.merchant.position)
+                .chain(std::iter::once(city.clinic.work_position))
+                .chain(std::iter::once(city.clinic.break_position))
+                .chain(city.residents.iter().flat_map(|resident| {
+                    [resident.residence_position, resident.gathering_position]
+                }))
+            {
+                if position.x <= 0
+                    || position.y <= 0
+                    || position.x >= i32::from(city.map_size.width) - 1
+                    || position.y >= i32::from(city.map_size.height) - 1
+                {
+                    return Err(RegionalWorldError::CityPositionOutsideMap {
+                        city: city.id.clone(),
+                        position,
+                    });
+                }
+            }
+        }
+        self.cities = cities;
         Ok(self)
     }
 
@@ -1596,6 +1816,25 @@ impl RegionalWorldDefinition {
 
     pub fn vertical_links(&self) -> &[RegionVerticalLink] {
         &self.vertical_links
+    }
+
+    pub fn cities(&self) -> &[RegionCityDefinition] {
+        &self.cities
+    }
+
+    pub fn city_at(&self, coordinate: RegionCoord) -> Option<&RegionCityDefinition> {
+        self.cities
+            .iter()
+            .find(|city| city.coordinate == coordinate)
+    }
+
+    /// Returns the actual dimensions of a local destination. Authored cities
+    /// may use a silhouette distinct from the procedural regions around them;
+    /// passage arrivals must therefore be resolved from the destination, not
+    /// from the atlas-wide procedural default.
+    pub fn map_size_at(&self, coordinate: RegionCoord) -> RegionMapSize {
+        self.city_at(coordinate)
+            .map_or(self.local_map_size, RegionCityDefinition::map_size)
     }
 
     pub fn biome(&self, id: &ContentId) -> Option<&RegionBiomeRule> {
@@ -1731,6 +1970,141 @@ impl RegionalWorldCatalog {
         let mut catalog = self.clone();
         for definition in catalog.definitions.values_mut() {
             definition.vertical_links.clear();
+        }
+        catalog
+    }
+
+    /// Restores the exact v29-v74 core atlas: those generations know the first
+    /// surface shaft, but none of its later continuations below layer 1.
+    /// Other worlds and links are left untouched so modded historical routes
+    /// retain their own fingerprints and replay behavior.
+    pub fn without_second_layer_route_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        let core_world = "core:simulation_overworld";
+        if let Some(definition) = catalog
+            .definitions
+            .values_mut()
+            .find(|definition| definition.id.as_str() == core_world)
+        {
+            definition.vertical_links.retain(|link| {
+                link.upper().x != -1 || link.upper().y != 0 || link.upper().depth == 0
+            });
+        }
+        catalog
+    }
+
+    /// Restores the v75-v77 core shaft, which ends on layer 2. Other worlds
+    /// and unrelated authored links are not altered.
+    pub fn without_third_layer_route_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog
+            .definitions
+            .values_mut()
+            .find(|definition| definition.id.as_str() == "core:simulation_overworld")
+        {
+            definition.vertical_links.retain(|link| {
+                link.upper().x != -1 || link.upper().y != 0 || link.upper().depth < 2
+            });
+        }
+        catalog
+    }
+
+    /// Restores the v78-v79 core shaft, which ends on layer 3. Other worlds
+    /// and unrelated authored links are not altered.
+    pub fn without_fourth_layer_route_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog
+            .definitions
+            .values_mut()
+            .find(|definition| definition.id.as_str() == "core:simulation_overworld")
+        {
+            definition.vertical_links.retain(|link| {
+                link.upper().x != -1 || link.upper().y != 0 || link.upper().depth < 3
+            });
+        }
+        catalog
+    }
+
+    /// Restores the v80-v81 core shaft, which ends on layer 4. Other worlds
+    /// and unrelated authored links are not altered.
+    pub fn without_fifth_layer_route_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog
+            .definitions
+            .values_mut()
+            .find(|definition| definition.id.as_str() == "core:simulation_overworld")
+        {
+            definition.vertical_links.retain(|link| {
+                link.upper().x != -1 || link.upper().y != 0 || link.upper().depth < 4
+            });
+        }
+        catalog
+    }
+
+    /// Removes v76+ settlements while preserving the v75 atlas and its second
+    /// vertical route. Older saves therefore keep their procedural region at
+    /// the same coordinate instead of silently acquiring a city and services.
+    pub fn without_city_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            definition.cities.clear();
+        }
+        catalog
+    }
+
+    /// Restores the exact v76 core atlas. That generation contains the first
+    /// city on layer 1, while every deeper destination remains procedural.
+    /// Authored cities from other packages are left untouched.
+    pub fn without_second_city_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog
+            .definitions
+            .values_mut()
+            .find(|definition| definition.id.as_str() == "core:simulation_overworld")
+        {
+            definition.cities.retain(|city| city.coordinate.depth < 2);
+        }
+        catalog
+    }
+
+    /// Restores the v77-v78 settlement catalogue: cities exist on layers 1
+    /// and 2, while every deeper destination remains procedural.
+    pub fn without_third_city_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog
+            .definitions
+            .values_mut()
+            .find(|definition| definition.id.as_str() == "core:simulation_overworld")
+        {
+            definition.cities.retain(|city| city.coordinate.depth < 3);
+        }
+        catalog
+    }
+
+    /// Restores the v79-v80 settlement catalogue: cities exist through layer
+    /// 3, while layer 4 remains procedural even when its route is present.
+    pub fn without_fourth_city_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog
+            .definitions
+            .values_mut()
+            .find(|definition| definition.id.as_str() == "core:simulation_overworld")
+        {
+            definition.cities.retain(|city| city.coordinate.depth < 4);
+        }
+        catalog
+    }
+
+    /// Restores the v81-v82 settlement catalogue: cities exist through layer
+    /// 4, while layer 5 remains procedural even when its route is present.
+    pub fn without_fifth_city_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog
+            .definitions
+            .values_mut()
+            .find(|definition| definition.id.as_str() == "core:simulation_overworld")
+        {
+            definition.cities.retain(|city| city.coordinate.depth < 5);
         }
         catalog
     }
@@ -2000,6 +2374,24 @@ impl RegionalWorldCatalog {
         }
         catalog
     }
+
+    /// Removes the v74 water-conduction proof while retaining the volatile
+    /// destructibles that already belonged to v30-v73 regional generation.
+    pub fn without_environmental_conduction_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            for biome in &mut definition.biomes {
+                if biome
+                    .destructibles
+                    .as_ref()
+                    .is_some_and(RegionDestructibleProfile::uses_distinct_water_propagation)
+                {
+                    biome.destructibles = None;
+                }
+            }
+        }
+        catalog
+    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -2064,6 +2456,19 @@ pub enum RegionalWorldError {
     VerticalLinkOutsideWorld,
     DuplicateVerticalLink(RegionVerticalLink),
     VerticalLinkBudgetExceeded,
+    EmptyCityName,
+    CityBudgetExceeded,
+    InvalidCityResidentCount,
+    CityLayoutTooSmall(RegionCityLayout),
+    InvalidCity(Box<ExpeditionDefinitionError>),
+    CityOutsideWorld(ContentId),
+    DuplicateCity(ContentId),
+    DuplicateCityCoordinate(RegionCoord),
+    DuplicateCityProviderPosition(crate::world::GridPos),
+    CityPositionOutsideMap {
+        city: ContentId,
+        position: crate::world::GridPos,
+    },
     InvalidDestructibleCountRange,
     ZeroDestructibleIntegrity,
     InvalidDestructionEffect,
@@ -2291,6 +2696,42 @@ impl Display for RegionalWorldError {
             Self::VerticalLinkBudgetExceeded => write!(
                 formatter,
                 "regional world exceeds {MAX_REGION_VERTICAL_LINKS} vertical links"
+            ),
+            Self::EmptyCityName => write!(formatter, "regional city name must not be empty"),
+            Self::CityBudgetExceeded => write!(
+                formatter,
+                "regional world exceeds {MAX_REGION_CITIES} authored cities"
+            ),
+            Self::InvalidCityResidentCount => write!(
+                formatter,
+                "regional city requires between 1 and {MAX_REGION_CITY_RESIDENTS} residents"
+            ),
+            Self::CityLayoutTooSmall(layout) => {
+                let (width, height) = layout.minimum_size();
+                write!(
+                    formatter,
+                    "regional city layout '{layout:?}' requires at least {width} x {height} tiles"
+                )
+            }
+            Self::InvalidCity(error) => write!(formatter, "invalid regional city: {error}"),
+            Self::CityOutsideWorld(city) => {
+                write!(formatter, "regional city '{city}' is outside world bounds")
+            }
+            Self::DuplicateCity(city) => write!(formatter, "duplicate regional city '{city}'"),
+            Self::DuplicateCityCoordinate(coordinate) => write!(
+                formatter,
+                "multiple regional cities occupy [{}, {}, {}]",
+                coordinate.x, coordinate.y, coordinate.depth
+            ),
+            Self::DuplicateCityProviderPosition(position) => write!(
+                formatter,
+                "regional city has multiple providers at [{}, {}]",
+                position.x, position.y
+            ),
+            Self::CityPositionOutsideMap { city, position } => write!(
+                formatter,
+                "regional city '{city}' uses an out-of-bounds service position [{}, {}]",
+                position.x, position.y
             ),
             Self::InvalidDestructibleCountRange => write!(
                 formatter,
@@ -2700,6 +3141,55 @@ mod tests {
         assert!(
             catalog
                 .without_destructible_metadata()
+                .iter()
+                .next()
+                .unwrap()
+                .1
+                .biomes()[0]
+                .destructibles()
+                .is_none()
+        );
+        assert!(
+            catalog
+                .without_environmental_conduction_metadata()
+                .iter()
+                .next()
+                .unwrap()
+                .1
+                .biomes()[0]
+                .destructibles()
+                .is_some()
+        );
+    }
+
+    #[test]
+    fn conductive_destructibles_can_be_removed_without_removing_legacy_fire() {
+        let effect = DestructionEffect::new(crate::effects::RadialDamageEffect {
+            maximum_cost: 4,
+            neighbor_mode: crate::world::NeighborMode::CardinalAndDiagonal,
+            propagation_policy: crate::world::TerrainPropagationPolicy::conductive(3, 1),
+            damage: crate::combat::DamagePacket::new(5, crate::combat::DamageType::Electrical, 0),
+            falloff: DamageFalloff::PerPropagationCost(1),
+        });
+        let profile = RegionDestructibleProfile::new(2, 3, 6, 4, effect).unwrap();
+        assert!(profile.uses_distinct_water_propagation());
+        let biome = RegionBiomeRule::new(id("research"), 1, 0, Some(0), terrain_profile())
+            .unwrap()
+            .with_destructibles(profile);
+        let world = RegionalWorldDefinition::new(
+            id("conductive_world"),
+            RegionBounds::new(-2, 2, -2, 2, 0).unwrap(),
+            1,
+            RegionMapSize::new(48, 36).unwrap(),
+            vec![biome],
+        )
+        .unwrap();
+        let mut catalog = RegionalWorldCatalog::default();
+        catalog.register(world).unwrap();
+
+        assert!(
+            catalog
+                .without_environmental_conduction_metadata()
                 .iter()
                 .next()
                 .unwrap()

@@ -1,7 +1,7 @@
 use std::fmt::{Debug, Formatter};
 use std::num::NonZeroU16;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum AiBehavior {
     Idle,
     Hunter,
@@ -9,7 +9,7 @@ pub enum AiBehavior {
     Skirmisher,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct PursuitLifecycle {
     maximum_pursuit_turns: NonZeroU16,
     search_turns: NonZeroU16,
@@ -44,7 +44,7 @@ impl PursuitLifecycle {
 
 /// Persistent perception state. It belongs to the simulation rather than to
 /// the renderer, so suspending or leaving a zone cannot reset a pursuit.
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum AiState {
     #[default]
     Unaware,
@@ -69,7 +69,7 @@ pub enum AiState {
 }
 
 /// Data-shaped AI parameters, suitable for later content definitions.
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct AiProfile {
     pub behavior: AiBehavior,
     pub perception_radius: u16,

@@ -285,7 +285,8 @@ fn defined_population(
         let mut actor = Actor::new(position, group.maximum_integrity())
             .map_err(|error| error.to_string())?
             .with_attack(attack)
-            .with_ai(ai);
+            .with_ai(ai)
+            .with_tags(group.tags().iter().cloned());
         if features.player_relations {
             actor = actor.with_player_relation(group.player_relation());
         }

@@ -12,6 +12,24 @@ pub enum ExperienceSource {
     System,
 }
 
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum QuestCompletion {
+    Delivery {
+        item: crate::item::ItemId,
+        quantity: u16,
+    },
+    ExploreZones {
+        zones: u16,
+    },
+    AccessDataRecord {
+        record: crate::content::ContentId,
+    },
+    DefeatTargets {
+        target_tag: crate::content::ContentId,
+        quantity: u16,
+    },
+}
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum StatusRemovalReason {
     Expired,
@@ -89,6 +107,51 @@ pub enum GameEvent {
         arrival: GridPos,
     },
     Facility(crate::facility::FacilityEvent),
+    ItemBought {
+        merchant: EntityId,
+        definition: crate::item::ItemId,
+        price: u32,
+        player_credits: u32,
+    },
+    ItemSold {
+        merchant: EntityId,
+        definition: crate::item::ItemId,
+        price: u32,
+        player_credits: u32,
+    },
+    GambleResolved {
+        merchant: EntityId,
+        definition: crate::item::ItemId,
+        price: u32,
+        player_credits: u32,
+        modifiers: crate::entity::MagicItemModifiers,
+    },
+    TreatmentReceived {
+        healer: EntityId,
+        amount: u16,
+        price: u32,
+        player_credits: u32,
+    },
+    QuestAccepted {
+        giver: EntityId,
+        quest: crate::content::ContentId,
+    },
+    QuestProgressed {
+        quest: crate::content::ContentId,
+        current: u16,
+        required: u16,
+    },
+    QuestCompleted {
+        giver: EntityId,
+        quest: crate::content::ContentId,
+        objective: QuestCompletion,
+        reward_credits: u32,
+        reward_experience: u64,
+        reward_items: Vec<crate::content::QuestItemRewardDefinition>,
+        world_states: Vec<crate::content::QuestWorldStateDefinition>,
+        world_effects: Vec<crate::content::QuestWorldEffectDefinition>,
+        player_credits: u32,
+    },
     TerrainInteracted {
         entity: EntityId,
         at: GridPos,
@@ -208,6 +271,14 @@ pub enum GameEvent {
     PropertyTakeWitnessed {
         taker: EntityId,
         witness: EntityId,
+        owner: crate::social::SocialGroupId,
+        definition: crate::item::ItemId,
+        quantity: u16,
+        at: GridPos,
+    },
+    PropertyTakeReported {
+        source: EntityId,
+        recipient: EntityId,
         owner: crate::social::SocialGroupId,
         definition: crate::item::ItemId,
         quantity: u16,
@@ -390,6 +461,14 @@ pub enum GameEvent {
     EntityDied {
         entity: EntityId,
         at: GridPos,
+    },
+    /// A death directly attributed to the player, with stable content tags
+    /// captured before the actor leaves the registry. Quest tracking consumes
+    /// this fact without reconstructing identity from visuals or combat logs.
+    EntityDefeatedByPlayer {
+        entity: EntityId,
+        at: GridPos,
+        tags: Vec<crate::content::ContentId>,
     },
     EntityDestructionTriggered {
         entity: EntityId,

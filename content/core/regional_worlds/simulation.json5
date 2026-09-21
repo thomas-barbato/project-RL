@@ -15,6 +15,413 @@
   // still generated only when the player first crosses one of these links.
   vertical_links: [
     { upper: [-1, 0, 0], lower: [-1, 0, 1] },
+    { upper: [-1, 0, 1], lower: [-1, 0, 2] },
+    { upper: [-1, 0, 2], lower: [-1, 0, 3] },
+    { upper: [-1, 0, 3], lower: [-1, 0, 4] },
+    { upper: [-1, 0, 4], lower: [-1, 0, 5] },
+  ],
+  // First authored deep settlement. It occupies the intermediate shaft node,
+  // so the player can resupply before choosing to continue toward layer 2.
+  // Its ordinary services are available immediately and do not require a quest.
+  cities: [
+    {
+      id: "core:maintenance_exchange",
+      coordinate: [-1, 0, 1],
+      name: "Nœud de maintenance",
+      kind: "core:maintenance_city",
+      map: { width: 96, height: 64 },
+      layout: "maintenance_spine",
+      merchant: {
+        position: [36, 32],
+        maximum_integrity: 12,
+        credits: 360,
+        offers: [
+          { item: "core:repair_patch", stock: 5, buy_price: 24, sell_price: 12,
+            minimum_depth: 0 },
+          { item: "core:patched_plating", stock: 2, buy_price: 80, sell_price: 40,
+            minimum_depth: 0, maximum_depth: 2 },
+          { item: "core:composite_carapace", stock: 1, buy_price: 140, sell_price: 70,
+            minimum_depth: 3 },
+        ],
+        gambles: [
+          { item: "core:patched_plating", stock: 2, price: 100 },
+          { item: "core:composite_carapace", stock: 1, price: 170 },
+        ],
+        gamble_scaling: {
+          player_levels_per_rank: 3,
+          zone_depths_per_rank: 1,
+          maximum_rank: 12,
+        },
+      },
+      clinic: {
+        work_position: [58, 32],
+        break_position: [64, 36],
+        maximum_integrity: 12,
+        credits: 100,
+        maximum_restoration: 10,
+        price_per_point: 3,
+        work_turns: 10,
+        break_turns: 4,
+        maximum_path_search: 1024,
+      },
+      residents: [
+        {
+          residence_position: [31, 12],
+          gathering_position: [46, 12],
+          maximum_integrity: 10,
+          residence_turns: 8,
+          gathering_turns: 5,
+          maximum_path_search: 2048,
+        },
+        {
+          residence_position: [67, 51],
+          gathering_position: [50, 51],
+          maximum_integrity: 10,
+          residence_turns: 6,
+          gathering_turns: 6,
+          maximum_path_search: 2048,
+        },
+      ],
+    },
+    {
+      // Prototype v77 : une ville plus compacte mais plus haute, organisée en
+      // anneaux humides plutôt qu'autour de la nef rectiligne de la couche 1.
+      // Nom et identité sociale restent provisoires ; les services ordinaires
+      // demeurent accessibles dès l'arrivée.
+      id: "core:coolant_crown",
+      coordinate: [-1, 0, 2],
+      name: "Couronne de refroidissement",
+      kind: "core:coolant_city",
+      map: { width: 80, height: 72 },
+      layout: "coolant_rings",
+      merchant: {
+        position: [31, 36],
+        maximum_integrity: 12,
+        credits: 420,
+        // Assortiment provisoire partagé avec la première ville. Les objets
+        // définitifs seront écrits avec le vrai catalogue d'équipement.
+        offers: [
+          { item: "core:repair_patch", stock: 5, buy_price: 24, sell_price: 12,
+            minimum_depth: 0 },
+          { item: "core:patched_plating", stock: 2, buy_price: 80, sell_price: 40,
+            minimum_depth: 0, maximum_depth: 2 },
+          { item: "core:composite_carapace", stock: 1, buy_price: 140, sell_price: 70,
+            minimum_depth: 3 },
+        ],
+        gambles: [
+          { item: "core:patched_plating", stock: 2, price: 100 },
+          { item: "core:composite_carapace", stock: 1, price: 170 },
+        ],
+        gamble_scaling: {
+          player_levels_per_rank: 3,
+          zone_depths_per_rank: 1,
+          maximum_rank: 12,
+        },
+      },
+      clinic: {
+        work_position: [49, 36],
+        break_position: [52, 42],
+        maximum_integrity: 12,
+        credits: 120,
+        maximum_restoration: 10,
+        price_per_point: 3,
+        work_turns: 9,
+        break_turns: 5,
+        maximum_path_search: 1024,
+      },
+      residents: [
+        {
+          residence_position: [5, 12],
+          gathering_position: [40, 6],
+          maximum_integrity: 10,
+          residence_turns: 7,
+          gathering_turns: 5,
+          maximum_path_search: 2048,
+        },
+        {
+          residence_position: [74, 59],
+          gathering_position: [40, 65],
+          maximum_integrity: 10,
+          residence_turns: 6,
+          gathering_turns: 6,
+          maximum_path_search: 2048,
+        },
+        {
+          residence_position: [17, 36],
+          gathering_position: [40, 19],
+          maximum_integrity: 10,
+          residence_turns: 9,
+          gathering_turns: 4,
+          maximum_path_search: 2048,
+        },
+      ],
+    },
+    {
+      // Prototype v79 : la couche 3 quitte pour la première fois l'architecture
+      // strictement humaine. Des cavités asymétriques sont reliées par des
+      // veines obliques dans un substrat étranger. Le nom et l'identité sociale
+      // restent provisoires.
+      id: "core:control_bastion",
+      coordinate: [-1, 0, 3],
+      name: "Bastion dissonant",
+      kind: "core:security_city",
+      map: { width: 112, height: 56 },
+      layout: "dissonant_lattice",
+      merchant: {
+        position: [30, 28],
+        maximum_integrity: 13,
+        credits: 520,
+        // Même catalogue de preuve : la profondeur filtre déjà les objets
+        // blancs ordinaires, sans prétendre fixer l'assortiment final.
+        offers: [
+          { item: "core:repair_patch", stock: 5, buy_price: 24, sell_price: 12,
+            minimum_depth: 0 },
+          { item: "core:patched_plating", stock: 2, buy_price: 80, sell_price: 40,
+            minimum_depth: 0, maximum_depth: 2 },
+          { item: "core:composite_carapace", stock: 1, buy_price: 140, sell_price: 70,
+            minimum_depth: 3 },
+        ],
+        gambles: [
+          { item: "core:patched_plating", stock: 2, price: 100 },
+          { item: "core:composite_carapace", stock: 1, price: 170 },
+        ],
+        gamble_scaling: {
+          player_levels_per_rank: 3,
+          zone_depths_per_rank: 1,
+          maximum_rank: 12,
+        },
+      },
+      clinic: {
+        work_position: [78, 38],
+        break_position: [96, 46],
+        maximum_integrity: 13,
+        credits: 140,
+        maximum_restoration: 10,
+        price_per_point: 3,
+        work_turns: 8,
+        break_turns: 5,
+        maximum_path_search: 2048,
+      },
+      residents: [
+        {
+          residence_position: [14, 12],
+          gathering_position: [28, 20],
+          maximum_integrity: 11,
+          residence_turns: 8,
+          gathering_turns: 5,
+          maximum_path_search: 2048,
+        },
+        {
+          residence_position: [98, 12],
+          gathering_position: [84, 20],
+          maximum_integrity: 11,
+          residence_turns: 6,
+          gathering_turns: 7,
+          maximum_path_search: 2048,
+        },
+        {
+          residence_position: [14, 43],
+          gathering_position: [28, 36],
+          maximum_integrity: 11,
+          residence_turns: 7,
+          gathering_turns: 6,
+          maximum_path_search: 2048,
+        },
+        {
+          residence_position: [98, 43],
+          gathering_position: [84, 36],
+          maximum_integrity: 11,
+          residence_turns: 9,
+          gathering_turns: 4,
+          maximum_path_search: 2048,
+        },
+      ],
+    },
+    {
+      // Prototype v81 : la couche 4 n'est plus une architecture humaine
+      // contaminée, mais une structure cellulaire habitée. Ses losanges se
+      // répètent à plusieurs échelles autour d'un pli décentré. Le nom et
+      // l'identité sociale restent provisoires.
+      id: "core:shedding_rosette",
+      coordinate: [-1, 0, 4],
+      name: "Rosace des mues",
+      kind: "core:recursive_city",
+      map: { width: 88, height: 88 },
+      layout: "recursive_bloom",
+      merchant: {
+        position: [24, 43],
+        maximum_integrity: 14,
+        credits: 620,
+        // Catalogue de preuve uniquement : les objets ordinaires restent
+        // filtrés par profondeur jusqu'à la création du vrai catalogue.
+        offers: [
+          { item: "core:repair_patch", stock: 5, buy_price: 24, sell_price: 12,
+            minimum_depth: 0 },
+          { item: "core:patched_plating", stock: 2, buy_price: 80, sell_price: 40,
+            minimum_depth: 0, maximum_depth: 2 },
+          { item: "core:composite_carapace", stock: 1, buy_price: 140, sell_price: 70,
+            minimum_depth: 3 },
+        ],
+        gambles: [
+          { item: "core:patched_plating", stock: 2, price: 100 },
+          { item: "core:composite_carapace", stock: 1, price: 170 },
+        ],
+        gamble_scaling: {
+          player_levels_per_rank: 3,
+          zone_depths_per_rank: 1,
+          maximum_rank: 12,
+        },
+      },
+      clinic: {
+        work_position: [64, 46],
+        break_position: [69, 52],
+        maximum_integrity: 14,
+        credits: 160,
+        maximum_restoration: 10,
+        price_per_point: 3,
+        work_turns: 8,
+        break_turns: 6,
+        maximum_path_search: 4096,
+      },
+      residents: [
+        {
+          residence_position: [18, 20],
+          gathering_position: [26, 22],
+          maximum_integrity: 12,
+          residence_turns: 9,
+          gathering_turns: 5,
+          maximum_path_search: 4096,
+        },
+        {
+          residence_position: [68, 18],
+          gathering_position: [60, 21],
+          maximum_integrity: 12,
+          residence_turns: 7,
+          gathering_turns: 7,
+          maximum_path_search: 4096,
+        },
+        {
+          residence_position: [18, 68],
+          gathering_position: [26, 65],
+          maximum_integrity: 12,
+          residence_turns: 8,
+          gathering_turns: 6,
+          maximum_path_search: 4096,
+        },
+        {
+          residence_position: [62, 70],
+          gathering_position: [55, 67],
+          maximum_integrity: 12,
+          residence_turns: 6,
+          gathering_turns: 8,
+          maximum_path_search: 4096,
+        },
+        {
+          residence_position: [73, 45],
+          gathering_position: [61, 45],
+          maximum_integrity: 12,
+          residence_turns: 10,
+          gathering_turns: 4,
+          maximum_path_search: 4096,
+        },
+      ],
+    },
+    {
+      // Prototype v83 : la couche 5 est un système mort qui continue de
+      // fonctionner. Ses fenêtres de terminal brisées sont devenues des lieux,
+      // ses cadres des passages et ses erreurs une architecture.
+      id: "core:error_core",
+      coordinate: [-1, 0, 5],
+      name: "Noyau des erreurs",
+      kind: "core:dead_system_city",
+      map: { width: 104, height: 80 },
+      layout: "process_ruin",
+      merchant: {
+        position: [25, 42],
+        maximum_integrity: 15,
+        credits: 720,
+        // Catalogue de preuve partagé et filtré par profondeur jusqu'à la
+        // création du véritable répertoire d'objets ordinaires.
+        offers: [
+          { item: "core:repair_patch", stock: 5, buy_price: 24, sell_price: 12,
+            minimum_depth: 0 },
+          { item: "core:patched_plating", stock: 2, buy_price: 80, sell_price: 40,
+            minimum_depth: 0, maximum_depth: 2 },
+          { item: "core:composite_carapace", stock: 1, buy_price: 140, sell_price: 70,
+            minimum_depth: 3 },
+        ],
+        gambles: [
+          { item: "core:patched_plating", stock: 2, price: 100 },
+          { item: "core:composite_carapace", stock: 1, price: 170 },
+        ],
+        gamble_scaling: {
+          player_levels_per_rank: 3,
+          zone_depths_per_rank: 1,
+          maximum_rank: 12,
+        },
+      },
+      clinic: {
+        work_position: [81, 39],
+        break_position: [85, 43],
+        maximum_integrity: 15,
+        credits: 180,
+        maximum_restoration: 10,
+        price_per_point: 3,
+        work_turns: 7,
+        break_turns: 7,
+        maximum_path_search: 4096,
+      },
+      residents: [
+        {
+          residence_position: [27, 17],
+          gathering_position: [46, 16],
+          maximum_integrity: 13,
+          residence_turns: 8,
+          gathering_turns: 6,
+          maximum_path_search: 4096,
+        },
+        {
+          residence_position: [78, 19],
+          gathering_position: [48, 17],
+          maximum_integrity: 13,
+          residence_turns: 6,
+          gathering_turns: 8,
+          maximum_path_search: 4096,
+        },
+        {
+          residence_position: [27, 63],
+          gathering_position: [57, 64],
+          maximum_integrity: 13,
+          residence_turns: 9,
+          gathering_turns: 5,
+          maximum_path_search: 4096,
+        },
+        {
+          residence_position: [73, 61],
+          gathering_position: [58, 64],
+          maximum_integrity: 13,
+          residence_turns: 7,
+          gathering_turns: 7,
+          maximum_path_search: 4096,
+        },
+        {
+          residence_position: [47, 36],
+          gathering_position: [52, 32],
+          maximum_integrity: 13,
+          residence_turns: 10,
+          gathering_turns: 4,
+          maximum_path_search: 4096,
+        },
+        {
+          residence_position: [58, 44],
+          gathering_position: [56, 48],
+          maximum_integrity: 13,
+          residence_turns: 5,
+          gathering_turns: 9,
+          maximum_path_search: 4096,
+        },
+      ],
+    },
   ],
   biomes: [
     {
@@ -504,6 +911,23 @@
           { kind: "gravel", weight: 2 }, { kind: "shallow_water", weight: 1 },
           { kind: "ruin_wall", weight: 4 }, { kind: "boulder", weight: 1 },
         ],
+      },
+      // Prototype environnemental v74 : les relais conducteurs déchargent peu sur
+      // le sol sec, mais leur courant gagne plusieurs cases dans l'eau.
+      destructibles: {
+        count: [2, 3], minimum_passage_distance: 8, maximum_integrity: 4,
+        explosion: {
+          radius: 4,
+          floor_cost: 3,
+          shallow_water_cost: 1,
+          deep_water_cost: 1,
+          damage: { amount: 5, damage_type: "electrical", penetration: 0 },
+          falloff_per_cost: 1,
+        },
+        ground_effect: {
+          id: "core:electrified_ground", duration_turns: 2,
+          damage_each_turn: { amount: 2, damage_type: "electrical", penetration: 0 },
+        },
       },
     },
     {
