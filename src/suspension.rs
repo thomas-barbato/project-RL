@@ -20,7 +20,7 @@ use std::{
 };
 
 pub const MAX_COMMANDS: usize = 50_000;
-pub const MAX_GENERATION_VERSION: u8 = 93;
+pub const MAX_GENERATION_VERSION: u8 = 96;
 const REPLAY_RECOVERY_SCHEMA: u8 = 1;
 pub const CURRENT_RECOVERY_SCHEMA: u8 = 2;
 const CURRENT_CRASH_RECOVERY_SCHEMA: u8 = 1;

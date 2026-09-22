@@ -19,9 +19,10 @@ use project_rl::world::generation::{
     GeneratedRegionalSite, GeneratedRegionalSiteTerminal, MapValidationRules,
     RegionSiteEntranceKind, RegionalCityFeature, RegionalLandmarkKind, RegionalLootRequest,
     RegionalMapGenerator, RegionalPopulationFeatures, generate_regional_city,
-    generate_regional_destructibles, generate_regional_encounters, generate_regional_landmarks,
-    generate_regional_loot, generate_regional_population, generate_regional_site_terminals,
-    generate_regional_sites, validate_playable_map, vertical_passage,
+    generate_regional_destructibles, generate_regional_encounters_with_roles,
+    generate_regional_landmarks, generate_regional_loot_with_scatter, generate_regional_population,
+    generate_regional_salvage_reward, generate_regional_site_terminals,
+    generate_regional_sites_with_detours, validate_playable_map, vertical_passage,
 };
 use project_rl::world::{Direction, GridPos};
 use std::collections::BTreeSet;
@@ -39,6 +40,9 @@ pub struct RegionalGenerationFeatures {
     pub vertical_travel: bool,
     pub population: bool,
     pub encounters: bool,
+    pub exploration_variety: bool,
+    pub exploration_salvage: bool,
+    pub exploration_salvage_breaches: bool,
     pub pursuit_lifecycle: bool,
     pub primary_attributes: bool,
     pub physical_profiles: bool,
@@ -171,7 +175,7 @@ pub fn generate(
     let mut generated_sites = Vec::new();
     let landmarks = if features.landmarks {
         if features.sites && !biome.sites().is_empty() {
-            let layout = generate_regional_sites(
+            let layout = generate_regional_sites_with_detours(
                 generated.map(),
                 &passage_positions,
                 &actor_positions,
@@ -179,6 +183,9 @@ pub fn generate(
                 biome.sites(),
                 features.site_interactions,
                 descriptor.seed,
+                features.exploration_variety && descriptor.coordinate.depth == 0,
+                features.exploration_salvage && descriptor.coordinate.depth == 0,
+                features.exploration_salvage_breaches && descriptor.coordinate.depth == 0,
             )
             .map_err(|error| error.to_string())?;
             generated
@@ -215,6 +222,14 @@ pub fn generate(
             (landmark.kind == RegionalLandmarkKind::SupplyCache).then_some(landmark.position)
         })
         .collect();
+    let salvage_cache = (features.exploration_salvage && descriptor.coordinate.depth == 0)
+        .then(|| {
+            cache_positions
+                .iter()
+                .copied()
+                .find(|position| !generated_sites.iter().any(|site| site.cache == *position))
+        })
+        .flatten();
     let landmark_positions: BTreeSet<_> =
         landmarks.iter().map(|landmark| landmark.position).collect();
     let secured_sites: Vec<_> = if features.site_security && biome.site_security().is_some() {
@@ -250,6 +265,7 @@ pub fn generate(
         .copied()
         .chain(security_installation_positions.iter().copied())
         .chain(terminal_positions.iter().copied())
+        .chain(salvage_cache.map(|cache| GridPos::new(cache.x + 2, cache.y)))
         .collect();
     if features.encounters {
         let reserved: BTreeSet<_> = actor_positions
@@ -260,7 +276,7 @@ pub fn generate(
             .iter()
             .map(|landmark| landmark.position)
             .collect::<Vec<_>>();
-        let generated_encounters = generate_regional_encounters(
+        let generated_encounters = generate_regional_encounters_with_roles(
             generated.map(),
             &passage_positions,
             &encounter_anchors,
@@ -274,6 +290,7 @@ pub fn generate(
                 electronic_systems: features.electronic_systems,
                 player_relations: features.player_relations,
             },
+            features.exploration_variety && descriptor.coordinate.depth == 0,
         )
         .map_err(|error| error.to_string())?;
         actor_positions.extend(generated_encounters.iter().map(Actor::position));
@@ -283,18 +300,32 @@ pub fn generate(
         && let Some(profile) = biome.destructibles()
         && (features.environmental_conduction || !profile.uses_distinct_water_propagation())
     {
-        let reserved: BTreeSet<_> = actor_positions
-            .union(&reserved_site_positions)
-            .copied()
-            .collect();
-        let generated_destructibles = generate_regional_destructibles(
-            generated.map(),
-            &passage_positions,
-            &reserved,
-            profile,
-            descriptor.seed,
-        )
-        .map_err(|error| error.to_string())?;
+        let generated_destructibles = if let Some(cache) = salvage_cache
+            && profile.count_range() == (1, 1)
+        {
+            vec![
+                Actor::new(
+                    GridPos::new(cache.x + 2, cache.y),
+                    profile.maximum_integrity(),
+                )
+                .map_err(|error| error.to_string())?
+                .with_destruction_effect(profile.destruction_effect().clone())
+                .with_evasion_disabled(),
+            ]
+        } else {
+            let reserved: BTreeSet<_> = actor_positions
+                .union(&reserved_site_positions)
+                .copied()
+                .collect();
+            generate_regional_destructibles(
+                generated.map(),
+                &passage_positions,
+                &reserved,
+                profile,
+                descriptor.seed,
+            )
+            .map_err(|error| error.to_string())?
+        };
         actor_positions.extend(generated_destructibles.iter().map(Actor::position));
         actors.extend(generated_destructibles);
     }
@@ -302,19 +333,22 @@ pub fn generate(
         .union(&reserved_site_positions)
         .copied()
         .collect();
-    let generated_loot = if features.loot {
+    let mut generated_loot = if features.loot {
         match (biome.loot(), loot_catalog) {
-            (Some(profile), Some(catalog)) => generate_regional_loot(RegionalLootRequest {
-                map: generated.map(),
-                passages: &passage_positions,
-                reserved: &reserved_for_loot,
-                cache_positions: &cache_positions,
-                profile,
-                catalog,
-                biome: &descriptor.biome,
-                depth: descriptor.coordinate.depth,
-                region_seed: descriptor.seed,
-            })
+            (Some(profile), Some(catalog)) => generate_regional_loot_with_scatter(
+                RegionalLootRequest {
+                    map: generated.map(),
+                    passages: &passage_positions,
+                    reserved: &reserved_for_loot,
+                    cache_positions: &cache_positions,
+                    profile,
+                    catalog,
+                    biome: &descriptor.biome,
+                    depth: descriptor.coordinate.depth,
+                    region_seed: descriptor.seed,
+                },
+                features.exploration_variety && descriptor.coordinate.depth == 0,
+            )
             .map_err(|error| error.to_string())?,
             (Some(_), None) => return Err("Regional loot catalog is missing".into()),
             (None, _) => Vec::new(),
@@ -322,6 +356,25 @@ pub fn generate(
     } else {
         Vec::new()
     };
+    if let (Some(cache), Some(profile), Some(catalog)) =
+        (salvage_cache, biome.salvage_loot(), loot_catalog)
+        && features.loot
+    {
+        let (item, quantity) = generate_regional_salvage_reward(
+            profile,
+            catalog,
+            &descriptor.biome,
+            descriptor.coordinate.depth,
+            descriptor.seed,
+        )
+        .map_err(|error| error.to_string())?;
+        let drop = generated_loot
+            .iter_mut()
+            .find(|(position, _, _)| *position == cache)
+            .ok_or("Volatile salvage cache has no reward draw")?;
+        drop.1 = item;
+        drop.2 = quantity;
+    }
     let secured_cache_positions: BTreeSet<_> =
         secured_sites.iter().map(|(_, site)| site.cache).collect();
     let security_owner = biome.site_security().map(|profile| profile.owner().clone());
@@ -974,6 +1027,9 @@ mod tests {
                 vertical_travel: true,
                 population: true,
                 encounters: false,
+                exploration_variety: false,
+                exploration_salvage: false,
+                exploration_salvage_breaches: false,
                 pursuit_lifecycle: true,
                 primary_attributes: true,
                 physical_profiles: true,
@@ -1030,6 +1086,8 @@ mod tests {
         let mut terminal_regions = 0;
         let mut independent_terminal_checked = false;
         let mut legacy_response_checked = false;
+        let mut sealed_yards = 0;
+        let mut breached_yards = 0;
 
         for y in -4..=3 {
             for x in -4..=3 {
@@ -1043,6 +1101,9 @@ mod tests {
                     vertical_travel: true,
                     population: true,
                     encounters: true,
+                    exploration_variety: true,
+                    exploration_salvage: true,
+                    exploration_salvage_breaches: true,
                     pursuit_lifecycle: true,
                     primary_attributes: true,
                     physical_profiles: true,
@@ -1073,6 +1134,33 @@ mod tests {
                 assert_eq!(generated.blueprint.map.width(), 128);
                 assert_eq!(generated.blueprint.map.height(), 80);
                 assert_eq!(generated.blueprint.threat_sources.len(), 2);
+                let exposed_sites = generated
+                    .blueprint
+                    .threat_sources
+                    .iter()
+                    .filter(|source| {
+                        generated
+                            .blueprint
+                            .map
+                            .tile(GridPos::new(source.position.x + 1, source.position.y + 1))
+                            .is_some_and(|tile| tile.terrain == project_rl::world::Terrain::Wall)
+                    })
+                    .count();
+                assert_eq!(exposed_sites, 1, "one site should offer lateral approaches");
+                for behavior in [
+                    project_rl::ai::AiBehavior::Hunter,
+                    project_rl::ai::AiBehavior::Skirmisher,
+                    project_rl::ai::AiBehavior::Sentry,
+                ] {
+                    assert!(
+                        generated
+                            .blueprint
+                            .actors
+                            .iter()
+                            .any(|actor| { actor.ai().is_some_and(|ai| ai.behavior == behavior) }),
+                        "{behavior:?} is missing from {x}, {y}"
+                    );
+                }
                 assert_eq!(
                     generated
                         .decor
@@ -1082,6 +1170,205 @@ mod tests {
                         .count(),
                     3
                 );
+                let cache_positions: BTreeSet<_> = generated
+                    .decor
+                    .cells
+                    .iter()
+                    .filter_map(|(position, decor)| {
+                        (*decor == Decor::SupplyCache).then_some(*position)
+                    })
+                    .collect();
+                let volatile = generated
+                    .blueprint
+                    .actors
+                    .iter()
+                    .filter(|actor| actor.destruction_effect().is_some())
+                    .collect::<Vec<_>>();
+                assert_eq!(volatile.len(), 1);
+                let canister = volatile[0].position();
+                let salvage_cache = GridPos::new(canister.x - 2, canister.y);
+                assert!(cache_positions.contains(&salvage_cache));
+                assert!(
+                    generated
+                        .blueprint
+                        .loot
+                        .iter()
+                        .any(|loot| loot.position() == salvage_cache
+                            && loot.item().as_str() != "core:repair_patch")
+                );
+                let north_breach = GridPos::new(salvage_cache.x, salvage_cache.y - 2);
+                let west_breach = GridPos::new(salvage_cache.x - 2, salvage_cache.y);
+                let breached =
+                    project_rl::world::generation::salvage_yard_is_breached(descriptor.seed);
+                for position in [north_breach, west_breach] {
+                    assert_eq!(
+                        generated.blueprint.map.tile(position).unwrap().terrain,
+                        if breached {
+                            project_rl::world::Terrain::Floor
+                        } else {
+                            project_rl::world::Terrain::Wall
+                        },
+                    );
+                }
+                if breached {
+                    breached_yards += 1;
+                } else {
+                    sealed_yards += 1;
+                }
+                assert!(
+                    volatile[0]
+                        .destruction_effect()
+                        .unwrap()
+                        .ground_effect()
+                        .is_some()
+                );
+                if !breached && sealed_yards == 1 {
+                    let mut rules = project_rl::game::GameRules::default();
+                    rules.items = loaded.items().clone();
+                    rules.weapons = loaded.weapons().clone();
+                    rules.statuses = loaded.statuses().clone();
+                    let mut probe = project_rl::game::GameState::new_with_rules(
+                        generated.blueprint.map.clone(),
+                        GridPos::new(canister.x + 1, canister.y),
+                        descriptor.seed,
+                        rules,
+                    )
+                    .unwrap();
+                    let hazard = probe.spawn_actor(volatile[0].clone()).unwrap();
+                    let salvage = generated
+                        .blueprint
+                        .loot
+                        .iter()
+                        .find(|loot| loot.position() == salvage_cache)
+                        .unwrap();
+                    probe
+                        .spawn_ground_item(
+                            salvage.position(),
+                            salvage.item().clone(),
+                            salvage.quantity(),
+                        )
+                        .unwrap();
+                    assert!(matches!(
+                        probe.process_player_command(project_rl::game::GameCommand::Move(
+                            Direction::West
+                        )),
+                        project_rl::game::CommandOutcome::Rejected(_)
+                    ));
+                    assert_eq!(
+                        probe.process_player_command(project_rl::game::GameCommand::Attack {
+                            slot: 0,
+                            target: hazard,
+                        }),
+                        project_rl::game::CommandOutcome::Applied
+                    );
+                    assert!(probe.actors().get(hazard).is_none());
+                    for _ in 0..3 {
+                        assert_eq!(
+                            probe.process_player_command(project_rl::game::GameCommand::Move(
+                                Direction::West
+                            )),
+                            project_rl::game::CommandOutcome::Applied
+                        );
+                    }
+                    assert_eq!(probe.player_position(), Some(salvage_cache));
+                    assert_eq!(
+                        probe.process_player_command(project_rl::game::GameCommand::PickUp),
+                        project_rl::game::CommandOutcome::Applied
+                    );
+                    assert!(probe.ground_items().item_at(salvage_cache).is_none());
+                }
+                if breached && breached_yards == 1 {
+                    let previous = generate(
+                        world,
+                        &descriptor,
+                        zone_info(world, &descriptor).unwrap(),
+                        entrance,
+                        Some(loaded.loot()),
+                        RegionalGenerationFeatures {
+                            exploration_salvage_breaches: false,
+                            ..features
+                        },
+                    )
+                    .unwrap();
+                    assert_eq!(
+                        previous.decor.cells.get(&salvage_cache),
+                        generated.decor.cells.get(&salvage_cache)
+                    );
+                    let old_reward = previous
+                        .blueprint
+                        .loot
+                        .iter()
+                        .find(|loot| loot.position() == salvage_cache)
+                        .unwrap();
+                    let new_reward = generated
+                        .blueprint
+                        .loot
+                        .iter()
+                        .find(|loot| loot.position() == salvage_cache)
+                        .unwrap();
+                    assert_eq!(
+                        (old_reward.item(), old_reward.quantity()),
+                        (new_reward.item(), new_reward.quantity())
+                    );
+                    for position in [north_breach, west_breach] {
+                        assert_eq!(
+                            previous.blueprint.map.tile(position).unwrap().terrain,
+                            project_rl::world::Terrain::Wall
+                        );
+                    }
+                    let mut rules = project_rl::game::GameRules::default();
+                    rules.items = loaded.items().clone();
+                    rules.weapons = loaded.weapons().clone();
+                    rules.statuses = loaded.statuses().clone();
+                    let mut probe = project_rl::game::GameState::new_with_rules(
+                        generated.blueprint.map.clone(),
+                        GridPos::new(salvage_cache.x - 3, salvage_cache.y),
+                        descriptor.seed,
+                        rules,
+                    )
+                    .unwrap();
+                    let hazard = probe.spawn_actor(volatile[0].clone()).unwrap();
+                    let salvage = generated
+                        .blueprint
+                        .loot
+                        .iter()
+                        .find(|loot| loot.position() == salvage_cache)
+                        .unwrap();
+                    probe
+                        .spawn_ground_item(
+                            salvage.position(),
+                            salvage.item().clone(),
+                            salvage.quantity(),
+                        )
+                        .unwrap();
+                    for _ in 0..3 {
+                        assert_eq!(
+                            probe.process_player_command(project_rl::game::GameCommand::Move(
+                                Direction::East
+                            )),
+                            project_rl::game::CommandOutcome::Applied
+                        );
+                    }
+                    assert_eq!(probe.player_position(), Some(salvage_cache));
+                    assert!(
+                        probe.actors().get(hazard).is_some(),
+                        "the volatile container remains an optional tactical choice"
+                    );
+                    assert_eq!(
+                        probe.process_player_command(project_rl::game::GameCommand::PickUp),
+                        project_rl::game::CommandOutcome::Applied
+                    );
+                    assert!(probe.ground_items().item_at(salvage_cache).is_none());
+                }
+                assert!(generated.blueprint.loot.len() >= 4);
+                assert!(generated.blueprint.loot.iter().any(|loot| {
+                    !cache_positions.contains(&loot.position())
+                        && generated.passages.iter().all(|(_, passage)| {
+                            loot.position().x.abs_diff(passage.x)
+                                + loot.position().y.abs_diff(passage.y)
+                                >= 8
+                        })
+                }));
                 assert!(
                     generated.blueprint.actors.len() >= expected_minimum,
                     "{} at ({x}, {y}) generated only {} actors",
@@ -1218,6 +1505,9 @@ mod tests {
                                 vertical_travel: true,
                                 population: true,
                                 encounters: true,
+                                exploration_variety: false,
+                                exploration_salvage: false,
+                                exploration_salvage_breaches: false,
                                 pursuit_lifecycle: true,
                                 primary_attributes: true,
                                 physical_profiles: true,
@@ -1272,6 +1562,9 @@ mod tests {
                                 vertical_travel: true,
                                 population: true,
                                 encounters: true,
+                                exploration_variety: false,
+                                exploration_salvage: false,
+                                exploration_salvage_breaches: false,
                                 pursuit_lifecycle: true,
                                 primary_attributes: true,
                                 physical_profiles: true,
@@ -1338,6 +1631,7 @@ mod tests {
             "core regions never generated site security"
         );
         assert_eq!(terminal_regions, 64);
+        assert!(sealed_yards > 0 && breached_yards > 0);
         assert!(independent_terminal_checked);
         assert!(legacy_response_checked);
     }
@@ -1354,6 +1648,9 @@ mod tests {
             vertical_travel: true,
             population: true,
             encounters: true,
+            exploration_variety: true,
+            exploration_salvage: true,
+            exploration_salvage_breaches: true,
             pursuit_lifecycle: true,
             primary_attributes: true,
             physical_profiles: true,
@@ -1768,6 +2065,9 @@ mod tests {
             vertical_travel: true,
             population: true,
             encounters: true,
+            exploration_variety: true,
+            exploration_salvage: true,
+            exploration_salvage_breaches: true,
             pursuit_lifecycle: true,
             primary_attributes: true,
             physical_profiles: true,

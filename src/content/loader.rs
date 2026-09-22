@@ -911,6 +911,25 @@ fn load_regional_world_definitions(
                         .map_err(&failure)
                     })
                     .transpose()?;
+                let salvage_loot = biome
+                    .salvage_loot
+                    .map(|loot| {
+                        let table = parse(&loot.table)?;
+                        if loot_catalog.get(&table).is_none() {
+                            return Err(failure(RegionalWorldError::UnknownLootTable(table)));
+                        }
+                        if loot.draws != [1, 1] {
+                            return Err(failure(RegionalWorldError::InvalidLootDrawRange));
+                        }
+                        RegionLootProfile::new(
+                            table,
+                            parse(&loot.source)?,
+                            loot.draws[0],
+                            loot.draws[1],
+                        )
+                        .map_err(&failure)
+                    })
+                    .transpose()?;
                 let landmarks = RegionLandmarkProfile::new(
                     biome.landmarks.caches[0],
                     biome.landmarks.caches[1],
@@ -1013,6 +1032,9 @@ fn load_regional_world_definitions(
                 .with_sites(sites);
                 if let Some(loot) = loot {
                     runtime = runtime.with_loot(loot);
+                }
+                if let Some(loot) = salvage_loot {
+                    runtime = runtime.with_salvage_loot(loot);
                 }
                 if let Some(threats) = threats {
                     runtime = runtime.with_threats(threats);
@@ -1235,6 +1257,7 @@ struct RawRegionBiomeRule {
     #[serde(default)]
     encounters: RawRegionPopulationProfile,
     loot: Option<RawRegionLootProfile>,
+    salvage_loot: Option<RawRegionLootProfile>,
     #[serde(default)]
     landmarks: RawRegionLandmarkProfile,
     #[serde(default)]

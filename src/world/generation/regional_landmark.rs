@@ -147,6 +147,80 @@ pub fn generate_regional_sites(
     interactive_entrances: bool,
     region_seed: u64,
 ) -> Result<GeneratedRegionalSiteLayout, RegionalLandmarkError> {
+    generate_regional_sites_with_variety(
+        map,
+        passages,
+        reserved,
+        landmarks,
+        sites,
+        interactive_entrances,
+        region_seed,
+        false,
+    )
+}
+
+pub fn generate_regional_sites_with_variety(
+    map: &Map,
+    passages: &[GridPos],
+    reserved: &BTreeSet<GridPos>,
+    landmarks: RegionLandmarkProfile,
+    sites: RegionSiteProfile,
+    interactive_entrances: bool,
+    region_seed: u64,
+    variety: bool,
+) -> Result<GeneratedRegionalSiteLayout, RegionalLandmarkError> {
+    generate_regional_sites_with_salvage(
+        map,
+        passages,
+        reserved,
+        landmarks,
+        sites,
+        interactive_entrances,
+        region_seed,
+        variety,
+        false,
+    )
+}
+
+pub fn generate_regional_sites_with_salvage(
+    map: &Map,
+    passages: &[GridPos],
+    reserved: &BTreeSet<GridPos>,
+    landmarks: RegionLandmarkProfile,
+    sites: RegionSiteProfile,
+    interactive_entrances: bool,
+    region_seed: u64,
+    variety: bool,
+    salvage_yard: bool,
+) -> Result<GeneratedRegionalSiteLayout, RegionalLandmarkError> {
+    generate_regional_sites_with_detours(
+        map,
+        passages,
+        reserved,
+        landmarks,
+        sites,
+        interactive_entrances,
+        region_seed,
+        variety,
+        salvage_yard,
+        false,
+    )
+}
+
+/// New generations may breach the optional salvage yard. Older generations
+/// retain its single blocked entrance and exactly the same random draws.
+pub fn generate_regional_sites_with_detours(
+    map: &Map,
+    passages: &[GridPos],
+    reserved: &BTreeSet<GridPos>,
+    landmarks: RegionLandmarkProfile,
+    sites: RegionSiteProfile,
+    interactive_entrances: bool,
+    region_seed: u64,
+    variety: bool,
+    salvage_yard: bool,
+    salvage_breaches: bool,
+) -> Result<GeneratedRegionalSiteLayout, RegionalLandmarkError> {
     if sites.is_empty() {
         return Ok(GeneratedRegionalSiteLayout {
             landmarks: generate_regional_landmarks(
@@ -206,8 +280,14 @@ pub fn generate_regional_sites(
             kind: RegionalLandmarkKind::SupplyCache,
             position: cache,
         });
+        let exposed_courtyard = variety && placed == 0;
         paint_ruined_compound(&mut terrain, center, width, height);
-        let entrance_kind = if interactive_entrances {
+        if exposed_courtyard {
+            paint_exposed_courtyard(&mut terrain, center, width, height);
+        }
+        let entrance_kind = if exposed_courtyard {
+            RegionSiteEntranceKind::Open
+        } else if interactive_entrances {
             choose_site_entrance(&mut rng, sites.entrances())
         } else {
             RegionSiteEntranceKind::Open
@@ -229,8 +309,32 @@ pub fn generate_regional_sites(
         unavailable.extend(padded_site_cells(center, width, height));
     }
 
-    let remaining_caches = cache_count - compound_count;
+    let mut remaining_caches = cache_count - compound_count;
     let remaining_camps = camp_count - compound_count;
+    if salvage_yard && remaining_caches > 0 {
+        let candidates = site_center_candidates(
+            map,
+            passages,
+            &unavailable,
+            5,
+            5,
+            landmarks.minimum_passage_distance(),
+        );
+        if candidates.is_empty() {
+            return Err(RegionalLandmarkError::InsufficientSalvageSpace);
+        }
+        let cache = candidates[below(&mut rng, candidates.len() as u64) as usize];
+        paint_salvage_yard(&mut terrain, cache);
+        if salvage_breaches && salvage_yard_is_breached(region_seed) {
+            paint_salvage_breaches(&mut terrain, cache);
+        }
+        generated.push(GeneratedRegionalLandmark {
+            kind: RegionalLandmarkKind::SupplyCache,
+            position: cache,
+        });
+        unavailable.extend(padded_site_cells(cache, 5, 5));
+        remaining_caches -= 1;
+    }
     let remaining_total = usize::from(remaining_caches + remaining_camps);
     let mut candidates = standalone_candidates(
         map,
@@ -263,6 +367,14 @@ pub fn generate_regional_sites(
         interactions,
         sites: generated_sites,
     })
+}
+
+/// Separate salt: changing the optional yard never changes compound or cache
+/// placement through shared RNG consumption.
+pub fn salvage_yard_is_breached(region_seed: u64) -> bool {
+    GameRng::from_seed(region_seed ^ 0x5341_4c56_5f42_5243)
+        .next_u64()
+        .is_multiple_of(2)
 }
 
 /// Selects terminal-bearing compounds and archive records independently from
@@ -443,6 +555,58 @@ fn paint_ruined_compound(
     }
 }
 
+// A breached site offers several lines of approach and a small piece of cover.
+// Its archive, cache, camp and security coordinates retain the same contract.
+fn paint_exposed_courtyard(
+    terrain: &mut BTreeMap<GridPos, RegionTerrain>,
+    center: GridPos,
+    width: u16,
+    height: u16,
+) {
+    let half_width = i32::from(width / 2);
+    let half_height = i32::from(height / 2);
+    for position in [
+        GridPos::new(center.x - half_width, center.y + 1),
+        GridPos::new(center.x + half_width, center.y + 1),
+        GridPos::new(center.x + 1, center.y - half_height),
+    ] {
+        terrain.insert(position, RegionTerrain::RuinFloor);
+    }
+    for position in [
+        GridPos::new(center.x - 1, center.y + 1),
+        GridPos::new(center.x + 1, center.y + 1),
+    ] {
+        terrain.insert(position, RegionTerrain::RuinWall);
+    }
+}
+
+fn paint_salvage_yard(terrain: &mut BTreeMap<GridPos, RegionTerrain>, cache: GridPos) {
+    for y in cache.y - 2..=cache.y + 2 {
+        for x in cache.x - 2..=cache.x + 2 {
+            let boundary =
+                x == cache.x - 2 || x == cache.x + 2 || y == cache.y - 2 || y == cache.y + 2;
+            let entrance = x == cache.x + 2 && y == cache.y;
+            terrain.insert(
+                GridPos::new(x, y),
+                if boundary && !entrance {
+                    RegionTerrain::RuinWall
+                } else {
+                    RegionTerrain::RuinFloor
+                },
+            );
+        }
+    }
+}
+
+fn paint_salvage_breaches(terrain: &mut BTreeMap<GridPos, RegionTerrain>, cache: GridPos) {
+    for position in [
+        GridPos::new(cache.x - 2, cache.y),
+        GridPos::new(cache.x, cache.y - 2),
+    ] {
+        terrain.insert(position, RegionTerrain::RuinFloor);
+    }
+}
+
 fn inclusive(rng: &mut GameRng, range: (u16, u16)) -> u16 {
     range.0 + below(rng, u64::from(range.1 - range.0) + 1) as u16
 }
@@ -465,6 +629,7 @@ fn manhattan(left: GridPos, right: GridPos) -> u32 {
 pub enum RegionalLandmarkError {
     InsufficientSpace { requested: usize, available: usize },
     InsufficientSiteSpace { requested: u16, placed: u16 },
+    InsufficientSalvageSpace,
 }
 
 impl Display for RegionalLandmarkError {
@@ -481,6 +646,9 @@ impl Display for RegionalLandmarkError {
                 formatter,
                 "regional sites requested {requested} compounds but only {placed} safe footprints could be placed"
             ),
+            Self::InsufficientSalvageSpace => {
+                write!(formatter, "regional salvage yard has no safe footprint")
+            }
         }
     }
 }
@@ -623,6 +791,55 @@ mod tests {
                     == Some(&RegionTerrain::RuinFloor)
         }));
         assert!(first.interactions().is_empty());
+    }
+
+    #[test]
+    fn varied_sites_keep_the_locked_site_sealed_and_open_a_separate_courtyard() {
+        let rows = std::iter::once("#".repeat(80))
+            .chain(std::iter::repeat_n(format!("#{}#", ".".repeat(78)), 38))
+            .chain(std::iter::once("#".repeat(80)))
+            .collect::<Vec<_>>();
+        let map = Map::from_ascii(&rows.join("\n")).unwrap();
+        let landmarks = RegionLandmarkProfile::new(2, 2, 2, 2, 8).unwrap();
+        let sites = RegionSiteProfile::new(2, 2, 9, 7)
+            .unwrap()
+            .with_entrances(RegionSiteEntranceProfile::new(0, 0, 1))
+            .unwrap();
+        let generate = || {
+            generate_regional_sites_with_variety(
+                &map,
+                &[GridPos::new(1, 20)],
+                &BTreeSet::new(),
+                landmarks,
+                sites,
+                true,
+                991,
+                true,
+            )
+            .unwrap()
+        };
+        let layout = generate();
+        assert_eq!(layout, generate());
+        let exposed = layout.sites()[0];
+        let secured = layout.sites()[1];
+        assert_eq!(exposed.entrance_kind, RegionSiteEntranceKind::Open);
+        assert_eq!(secured.entrance_kind, RegionSiteEntranceKind::LockedConsole);
+        assert_eq!(
+            layout
+                .terrain()
+                .get(&GridPos::new(exposed.camp.x + 4, exposed.camp.y + 1)),
+            Some(&RegionTerrain::RuinFloor)
+        );
+        assert_eq!(
+            layout
+                .terrain()
+                .get(&GridPos::new(secured.camp.x + 4, secured.camp.y + 1)),
+            Some(&RegionTerrain::RuinWall)
+        );
+        assert_eq!(
+            layout.interactions().get(&secured.entrance),
+            Some(&Terrain::Door(DoorState::Locked))
+        );
     }
 
     #[test]

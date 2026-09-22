@@ -1213,6 +1213,7 @@ pub struct RegionBiomeRule {
     population: RegionPopulationProfile,
     encounters: RegionPopulationProfile,
     loot: Option<RegionLootProfile>,
+    salvage_loot: Option<RegionLootProfile>,
     landmarks: RegionLandmarkProfile,
     sites: RegionSiteProfile,
     site_terminals: Option<RegionSiteTerminalProfile>,
@@ -1240,6 +1241,9 @@ impl Debug for RegionBiomeRule {
         }
         if let Some(loot) = &self.loot {
             biome.field("loot", loot);
+        }
+        if let Some(loot) = &self.salvage_loot {
+            biome.field("salvage_loot", loot);
         }
         if !self.landmarks.is_empty() {
             biome.field("landmarks", &self.landmarks);
@@ -1286,6 +1290,7 @@ impl RegionBiomeRule {
             population: RegionPopulationProfile::default(),
             encounters: RegionPopulationProfile::default(),
             loot: None,
+            salvage_loot: None,
             landmarks: RegionLandmarkProfile::default(),
             sites: RegionSiteProfile::default(),
             site_terminals: None,
@@ -1310,6 +1315,11 @@ impl RegionBiomeRule {
 
     pub fn with_loot(mut self, loot: RegionLootProfile) -> Self {
         self.loot = Some(loot);
+        self
+    }
+
+    pub fn with_salvage_loot(mut self, loot: RegionLootProfile) -> Self {
+        self.salvage_loot = Some(loot);
         self
     }
 
@@ -1373,6 +1383,10 @@ impl RegionBiomeRule {
 
     pub const fn loot(&self) -> Option<&RegionLootProfile> {
         self.loot.as_ref()
+    }
+
+    pub const fn salvage_loot(&self) -> Option<&RegionLootProfile> {
+        self.salvage_loot.as_ref()
     }
 
     pub const fn landmarks(&self) -> RegionLandmarkProfile {
@@ -1675,6 +1689,22 @@ impl RegionalWorldDefinition {
                     || site_height.saturating_add(4) >= local_map_size.height
                 {
                     return Err(RegionalWorldError::SiteTooLargeForMap(biome.biome.clone()));
+                }
+            }
+            if let Some(salvage) = &biome.salvage_loot {
+                if salvage.minimum_draws != 1 || salvage.maximum_draws != 1 {
+                    return Err(RegionalWorldError::InvalidLootDrawRange);
+                }
+                if biome.sites.is_empty()
+                    || biome.landmarks.minimum_caches <= biome.sites.maximum_compounds
+                    || biome
+                        .destructibles
+                        .as_ref()
+                        .is_none_or(|profile| profile.count_range() != (1, 1))
+                {
+                    return Err(RegionalWorldError::SalvageRequiresStandaloneCache(
+                        biome.biome.clone(),
+                    ));
                 }
             }
             if let Some(terminals) = &biome.site_terminals {
@@ -2024,6 +2054,54 @@ impl RegionalWorldCatalog {
         catalog
     }
 
+    /// Keeps v93 surface encounter tables and loot budgets intact on resume.
+    /// The new layout and placement algorithms are gated separately by the
+    /// saved generation version.
+    pub fn without_surface_variety_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog
+            .definitions
+            .values_mut()
+            .find(|definition| definition.id.as_str() == "core:simulation_overworld")
+        {
+            for biome in &mut definition.biomes {
+                if !matches!(
+                    biome.biome.as_str(),
+                    "core:human_habitat" | "core:surface_wilds"
+                ) {
+                    continue;
+                }
+                biome.encounters.rules.truncate(2);
+                if let Some(loot) = &mut biome.loot {
+                    loot.minimum_draws = 3;
+                }
+            }
+        }
+        catalog
+    }
+
+    /// Surface salvage containers were introduced after v94; earlier runs
+    /// retain their original content fingerprint and region population.
+    pub fn without_surface_salvage_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog
+            .definitions
+            .values_mut()
+            .find(|definition| definition.id.as_str() == "core:simulation_overworld")
+        {
+            for biome in &mut definition.biomes {
+                if matches!(
+                    biome.biome.as_str(),
+                    "core:human_habitat" | "core:surface_wilds"
+                ) {
+                    biome.destructibles = None;
+                    biome.salvage_loot = None;
+                }
+            }
+        }
+        catalog
+    }
+
     pub fn without_population_metadata(&self) -> Self {
         let mut catalog = self.clone();
         for definition in catalog.definitions.values_mut() {
@@ -2187,6 +2265,7 @@ impl RegionalWorldCatalog {
                 biome.population = RegionPopulationProfile::default();
                 biome.encounters = RegionPopulationProfile::default();
                 biome.loot = None;
+                biome.salvage_loot = None;
                 biome.landmarks = RegionLandmarkProfile::default();
                 biome.sites = RegionSiteProfile::default();
                 biome.site_terminals = None;
@@ -2348,6 +2427,7 @@ impl RegionalWorldCatalog {
         for definition in catalog.definitions.values_mut() {
             for biome in &mut definition.biomes {
                 biome.loot = None;
+                biome.salvage_loot = None;
             }
         }
         catalog
@@ -2358,6 +2438,7 @@ impl RegionalWorldCatalog {
         for definition in catalog.definitions.values_mut() {
             for biome in &mut definition.biomes {
                 biome.landmarks = RegionLandmarkProfile::default();
+                biome.salvage_loot = None;
                 biome.sites = RegionSiteProfile::default();
                 biome.site_terminals = None;
                 biome.site_security = None;
@@ -2383,6 +2464,7 @@ impl RegionalWorldCatalog {
         for definition in catalog.definitions.values_mut() {
             for biome in &mut definition.biomes {
                 biome.sites = RegionSiteProfile::default();
+                biome.salvage_loot = None;
                 biome.site_terminals = None;
                 biome.site_security = None;
             }
@@ -2438,6 +2520,7 @@ impl RegionalWorldCatalog {
         for definition in catalog.definitions.values_mut() {
             for biome in &mut definition.biomes {
                 biome.destructibles = None;
+                biome.salvage_loot = None;
             }
         }
         catalog
@@ -2513,6 +2596,7 @@ pub enum RegionalWorldError {
     InvalidThreatLimits,
     LandmarkDistanceTooLargeForMap(ContentId),
     SitesRequirePairedLandmarks(ContentId),
+    SalvageRequiresStandaloneCache(ContentId),
     SiteTooLargeForMap(ContentId),
     SiteTerminalsRequireSites(ContentId),
     SiteTerminalCountExceedsSites(ContentId),
@@ -2721,6 +2805,10 @@ impl Display for RegionalWorldError {
             Self::SitesRequirePairedLandmarks(biome) => write!(
                 formatter,
                 "regional biome '{biome}' requires at least one cache and threat camp per guaranteed compound"
+            ),
+            Self::SalvageRequiresStandaloneCache(biome) => write!(
+                formatter,
+                "regional biome '{biome}' requires one standalone cache and one volatile container for salvage loot"
             ),
             Self::SiteTooLargeForMap(biome) => write!(
                 formatter,

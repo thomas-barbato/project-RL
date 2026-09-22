@@ -176,9 +176,12 @@ const ORME_DIRECTION_BOARD_GENERATION_VERSION: u8 = STATIONARY_QUEST_CONTACT_GEN
 const RELAY_SERVICE_ROUTE_GENERATION_VERSION: u8 = ORME_DIRECTION_BOARD_GENERATION_VERSION + 1;
 const SURFACE_MAP_SIZE_GENERATION_VERSION: u8 = RELAY_SERVICE_ROUTE_GENERATION_VERSION + 1;
 const SURFACE_EXPLORATION_GENERATION_VERSION: u8 = SURFACE_MAP_SIZE_GENERATION_VERSION + 1;
+const SURFACE_VARIETY_GENERATION_VERSION: u8 = SURFACE_EXPLORATION_GENERATION_VERSION + 1;
+const SURFACE_SALVAGE_GENERATION_VERSION: u8 = SURFACE_VARIETY_GENERATION_VERSION + 1;
+const SURFACE_SALVAGE_BREACHES_GENERATION_VERSION: u8 = SURFACE_SALVAGE_GENERATION_VERSION + 1;
 #[path = "narrative_app.rs"]
 mod narrative;
-const CURRENT_GENERATION_VERSION: u8 = SURFACE_EXPLORATION_GENERATION_VERSION;
+const CURRENT_GENERATION_VERSION: u8 = SURFACE_SALVAGE_BREACHES_GENERATION_VERSION;
 const _: () = assert!(CURRENT_GENERATION_VERSION == suspension::MAX_GENERATION_VERSION);
 const LOG_CAPACITY: usize = 6;
 const FLOATING_MESSAGE_CAPACITY: usize = 32;
@@ -7022,6 +7025,16 @@ impl AsciiApp {
                 .without_orme_direction_board_metadata()
                 .without_narrative_metadata()
         };
+        let regional_worlds = if version < SURFACE_SALVAGE_GENERATION_VERSION {
+            regional_worlds.without_surface_salvage_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < SURFACE_VARIETY_GENERATION_VERSION {
+            regional_worlds.without_surface_variety_metadata()
+        } else {
+            regional_worlds
+        };
         let regional_worlds = if version < SURFACE_EXPLORATION_GENERATION_VERSION {
             regional_worlds.without_surface_exploration_metadata()
         } else {
@@ -8714,6 +8727,10 @@ impl AsciiApp {
                     >= REGIONAL_VERTICAL_TRAVEL_GENERATION_VERSION,
                 population: self.generation_version >= REGIONAL_POPULATION_GENERATION_VERSION,
                 encounters: self.generation_version >= REGIONAL_ENCOUNTER_GENERATION_VERSION,
+                exploration_variety: self.generation_version >= SURFACE_VARIETY_GENERATION_VERSION,
+                exploration_salvage: self.generation_version >= SURFACE_SALVAGE_GENERATION_VERSION,
+                exploration_salvage_breaches: self.generation_version
+                    >= SURFACE_SALVAGE_BREACHES_GENERATION_VERSION,
                 pursuit_lifecycle: self.generation_version >= PURSUIT_LIFECYCLE_GENERATION_VERSION,
                 primary_attributes: self.generation_version >= ENEMY_ATTRIBUTES_GENERATION_VERSION,
                 physical_profiles: self.generation_version >= PHYSICAL_PROFILES_GENERATION_VERSION,
@@ -19639,6 +19656,12 @@ fn world_fingerprint_for_version(
         terminal_compatible
     };
     let mut compatible_regions = regional_worlds.clone();
+    if version < SURFACE_SALVAGE_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_surface_salvage_metadata();
+    }
+    if version < SURFACE_VARIETY_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_surface_variety_metadata();
+    }
     if version < SURFACE_EXPLORATION_GENERATION_VERSION {
         compatible_regions = compatible_regions.without_surface_exploration_metadata();
     }
@@ -20084,6 +20107,12 @@ fn loot_for_generation_version(
             .parse()
             .expect("built-in saturation beacon ID must remain valid");
         compatible = compatible.without_items(&[beacon]);
+    }
+    if version < SURFACE_SALVAGE_GENERATION_VERSION {
+        let salvage: ContentId = "core:surface_salvage"
+            .parse()
+            .expect("built-in surface salvage table ID must remain valid");
+        compatible = compatible.without_table(&salvage);
     }
     compatible
 }
@@ -21941,6 +21970,149 @@ mod tests {
         );
         assert_eq!(suspension::fingerprint(&restored.game), saved.state);
         assert_eq!(restored.game.map().width(), 128);
+    }
+
+    #[test]
+    fn surface_variety_keeps_version_93_roster_loot_and_suspension() {
+        let legacy = app_with_test_controls_version(SURFACE_EXPLORATION_GENERATION_VERSION);
+        let current = app_with_test_controls();
+        let world_id: ContentId = "core:simulation_overworld".parse().unwrap();
+        let habitat_id: ContentId = "core:human_habitat".parse().unwrap();
+        let legacy_biome = legacy
+            .regional_worlds
+            .get(&world_id)
+            .unwrap()
+            .biome(&habitat_id)
+            .unwrap();
+        let current_biome = current
+            .regional_worlds
+            .get(&world_id)
+            .unwrap()
+            .biome(&habitat_id)
+            .unwrap();
+        assert_eq!(legacy_biome.encounters().rules().len(), 2);
+        assert_eq!(legacy_biome.loot().unwrap().minimum_draws(), 3);
+        assert_eq!(current_biome.encounters().rules().len(), 3);
+        assert_eq!(current_biome.loot().unwrap().minimum_draws(), 4);
+        let saved = legacy.suspension().unwrap();
+        let restored = AsciiApp::restore_suspension(
+            &saved,
+            legacy.rules.clone(),
+            legacy.texts.clone(),
+            legacy.loot.clone(),
+            legacy.expeditions.clone(),
+        )
+        .unwrap();
+        assert_eq!(
+            restored.generation_version,
+            SURFACE_EXPLORATION_GENERATION_VERSION
+        );
+        assert_eq!(suspension::fingerprint(&restored.game), saved.state);
+    }
+
+    #[test]
+    fn salvage_yard_keeps_version_94_surface_without_volatile_containers() {
+        let mut previous = app_with_test_controls_version(SURFACE_VARIETY_GENERATION_VERSION);
+        let current = app_with_test_controls();
+        let world_id: ContentId = "core:simulation_overworld".parse().unwrap();
+        let habitat_id: ContentId = "core:human_habitat".parse().unwrap();
+        assert!(
+            previous
+                .regional_worlds
+                .get(&world_id)
+                .unwrap()
+                .biome(&habitat_id)
+                .unwrap()
+                .destructibles()
+                .is_none()
+        );
+        assert!(
+            current
+                .regional_worlds
+                .get(&world_id)
+                .unwrap()
+                .biome(&habitat_id)
+                .unwrap()
+                .destructibles()
+                .is_some()
+        );
+        let west_hub_passage = TestSector::EXPANDED_REGIONAL_PASSAGES
+            .into_iter()
+            .find_map(|(direction, passage)| (direction == Direction::West).then_some(passage))
+            .unwrap();
+        previous
+            .walk_fixture_to(west_hub_passage.step(Direction::East))
+            .unwrap();
+        apply(
+            &mut previous,
+            GameCommand::Interact {
+                target: west_hub_passage,
+            },
+        );
+        assert_eq!(previous.game.map().width(), 128);
+        assert!(
+            previous
+                .game
+                .actors()
+                .iter()
+                .all(|(_, actor)| actor.destruction_effect().is_none())
+        );
+        let saved = previous.suspension().unwrap();
+        let restored = AsciiApp::restore_suspension(
+            &saved,
+            previous.rules.clone(),
+            previous.texts.clone(),
+            previous.loot.clone(),
+            previous.expeditions.clone(),
+        )
+        .unwrap();
+        assert_eq!(
+            restored.generation_version,
+            SURFACE_VARIETY_GENERATION_VERSION
+        );
+        assert_eq!(suspension::fingerprint(&restored.game), saved.state);
+    }
+
+    #[test]
+    fn salvage_breaches_keep_version_95_replay_unchanged() {
+        let mut previous = app_with_test_controls_version(SURFACE_SALVAGE_GENERATION_VERSION);
+        let west_hub_passage = TestSector::EXPANDED_REGIONAL_PASSAGES
+            .into_iter()
+            .find_map(|(direction, passage)| (direction == Direction::West).then_some(passage))
+            .unwrap();
+        previous
+            .walk_fixture_to(west_hub_passage.step(Direction::East))
+            .unwrap();
+        apply(
+            &mut previous,
+            GameCommand::Interact {
+                target: west_hub_passage,
+            },
+        );
+        assert_eq!(previous.game.map().width(), 128);
+        assert_eq!(
+            previous
+                .game
+                .actors()
+                .iter()
+                .filter(|(_, actor)| actor.destruction_effect().is_some())
+                .count(),
+            1,
+        );
+        let saved = previous.suspension().unwrap();
+        let restored = AsciiApp::restore_suspension(
+            &saved,
+            previous.rules.clone(),
+            previous.texts.clone(),
+            previous.loot.clone(),
+            previous.expeditions.clone(),
+        )
+        .unwrap();
+        assert_eq!(
+            restored.generation_version,
+            SURFACE_SALVAGE_GENERATION_VERSION
+        );
+        assert_eq!(suspension::fingerprint(&restored.game), saved.state);
     }
 
     #[test]

@@ -36,6 +36,7 @@ pub fn generate_regional_population(
         profile,
         region_seed ^ POPULATION_SEED_SALT,
         features,
+        false,
     )
 }
 
@@ -51,6 +52,28 @@ pub fn generate_regional_encounters(
     region_seed: u64,
     features: RegionalPopulationFeatures,
 ) -> Result<Vec<Actor>, RegionalPopulationError> {
+    generate_regional_encounters_with_roles(
+        map,
+        passages,
+        landmarks,
+        reserved,
+        profile,
+        region_seed,
+        features,
+        false,
+    )
+}
+
+pub fn generate_regional_encounters_with_roles(
+    map: &Map,
+    passages: &[GridPos],
+    landmarks: &[GridPos],
+    reserved: &BTreeSet<GridPos>,
+    profile: &RegionPopulationProfile,
+    region_seed: u64,
+    features: RegionalPopulationFeatures,
+    distinct_roles: bool,
+) -> Result<Vec<Actor>, RegionalPopulationError> {
     generate_population_layer(
         map,
         passages,
@@ -59,6 +82,7 @@ pub fn generate_regional_encounters(
         profile,
         region_seed ^ ENCOUNTER_SEED_SALT,
         features,
+        distinct_roles,
     )
 }
 
@@ -70,6 +94,7 @@ fn generate_population_layer(
     profile: &RegionPopulationProfile,
     seed: u64,
     features: RegionalPopulationFeatures,
+    distinct_roles: bool,
 ) -> Result<Vec<Actor>, RegionalPopulationError> {
     if profile.is_empty() {
         return Ok(Vec::new());
@@ -89,7 +114,11 @@ fn generate_population_layer(
     let mut occupied = reserved.clone();
 
     for group_index in 0..roll_count {
-        let rule = weighted_rule(profile.rules(), total_weight, &mut rng);
+        let rule = if distinct_roles && usize::from(group_index) < profile.rules().len() {
+            &profile.rules()[usize::from(group_index)]
+        } else {
+            weighted_rule(profile.rules(), total_weight, &mut rng)
+        };
         let count = inclusive_u16(&mut rng, rule.minimum_count(), rule.maximum_count());
         let mut candidates = regional_spawn_cells(map, passages, rule, &occupied);
         if candidates.len() < usize::from(count) {

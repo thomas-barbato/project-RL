@@ -520,9 +520,23 @@
             },
             defeat_reward: { base_experience: 5, threat_level: 1, origin: "persistent" },
           },
+          // Stationary overwatch makes exposed salvage a positioning problem.
+          {
+            weight: 25, count: [1, 1], minimum_passage_distance: 10,
+            maximum_integrity: 9, player_relation: "hostile",
+            primary_attributes: { power: 5, coordination: 7, resilience: 5, perception: 8, processing: 5 },
+            body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 6, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 1, damage_type: "piercing", penetration: 0 },
+            },
+            ai: { behavior: "sentry", perception_radius: 11, maximum_path_search: 0 },
+            defeat_reward: { base_experience: 6, threat_level: 1, origin: "persistent" },
+          },
         ],
       },
-      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [3, 5] },
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [4, 5] },
+      salvage_loot: { table: "core:surface_salvage", source: "core:surface_salvage", draws: [1, 1] },
       landmarks: { caches: [3, 3], threat_camps: [2, 2], minimum_passage_distance: 8 },
       sites: {
         compounds: [2, 2],
@@ -539,6 +553,19 @@
           duration_turns: 8,
           reinforcement_delay_turns: 3,
           navigation_signal_range: 96,
+        },
+      },
+      // One volatile container blocks the entrance to the optional salvage cache.
+      destructibles: {
+        count: [1, 1], minimum_passage_distance: 8, maximum_integrity: 4,
+        explosion: {
+          radius: 2,
+          damage: { amount: 6, damage_type: "explosive", penetration: 0 },
+          falloff_per_cost: 2,
+        },
+        ground_effect: {
+          id: "core:burning_ground", duration_turns: 2,
+          damage_each_turn: { amount: 2, damage_type: "thermal", penetration: 0 },
         },
       },
       threats: {
@@ -650,9 +677,22 @@
             },
             defeat_reward: { base_experience: 7, threat_level: 2, origin: "persistent" },
           },
+          {
+            weight: 25, count: [1, 1], minimum_passage_distance: 11,
+            maximum_integrity: 10, player_relation: "hostile",
+            primary_attributes: { power: 5, coordination: 8, resilience: 5, perception: 9, processing: 5 },
+            body: { base_hit_points: 10, mass_grams: 78000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 6, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 2, damage_type: "piercing", penetration: 0 },
+            },
+            ai: { behavior: "sentry", perception_radius: 12, maximum_path_search: 0 },
+            defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+          },
         ],
       },
-      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [3, 5] },
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [4, 5] },
+      salvage_loot: { table: "core:surface_salvage", source: "core:surface_salvage", draws: [1, 1] },
       landmarks: { caches: [3, 3], threat_camps: [2, 2], minimum_passage_distance: 9 },
       sites: {
         compounds: [2, 2],
@@ -669,6 +709,18 @@
           duration_turns: 8,
           reinforcement_delay_turns: 3,
           navigation_signal_range: 96,
+        },
+      },
+      destructibles: {
+        count: [1, 1], minimum_passage_distance: 9, maximum_integrity: 5,
+        explosion: {
+          radius: 2,
+          damage: { amount: 7, damage_type: "explosive", penetration: 0 },
+          falloff_per_cost: 2,
+        },
+        ground_effect: {
+          id: "core:burning_ground", duration_turns: 2,
+          damage_each_turn: { amount: 2, damage_type: "thermal", penetration: 0 },
         },
       },
       threats: {

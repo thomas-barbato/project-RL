@@ -21,11 +21,16 @@ pub use regional_landmark::{
     GeneratedRegionalSiteParts, GeneratedRegionalSiteTerminal, RegionSiteEntranceKind,
     RegionalLandmarkError, RegionalLandmarkKind, generate_regional_landmarks,
     generate_regional_site_terminals, generate_regional_sites,
+    generate_regional_sites_with_detours, generate_regional_sites_with_salvage,
+    generate_regional_sites_with_variety, salvage_yard_is_breached,
 };
-pub use regional_loot::{RegionalLootError, RegionalLootRequest, generate_regional_loot};
+pub use regional_loot::{
+    RegionalLootError, RegionalLootRequest, generate_regional_loot,
+    generate_regional_loot_with_scatter, generate_regional_salvage_reward,
+};
 pub use regional_population::{
     RegionalPopulationError, RegionalPopulationFeatures, generate_regional_encounters,
-    generate_regional_population,
+    generate_regional_encounters_with_roles, generate_regional_population,
 };
 pub use rooms::{GeneratedMap, GenerationError, Room, RoomsGenerator, RoomsGeneratorConfig};
 pub use validation::{

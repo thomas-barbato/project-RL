@@ -192,6 +192,14 @@ impl LootCatalog {
         self.tables.iter()
     }
 
+    /// Removes a table introduced after an older run was created while
+    /// leaving all historical table draws and their order untouched.
+    pub fn without_table(&self, id: &LootTableId) -> Self {
+        let mut compatible = self.clone();
+        compatible.tables.remove(id);
+        compatible
+    }
+
     /// Compatibility projection used by versioned replay adapters when an
     /// item family did not exist yet. Empty, newly introduced tables vanish.
     pub fn without_item_kind(&self, items: &ItemCatalog, excluded: ItemKind) -> Self {
