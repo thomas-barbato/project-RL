@@ -396,12 +396,18 @@ impl AsciiApp {
         }
         let count = dialogue.choices.len();
         if count == 0 {
+            self.menu_focus.hovered = input
+                .pointer
+                .filter(|point| layout.close.contains((*point).into()))
+                .map(|_| 1);
             return;
         }
         self.npc_quest_selection = self.npc_quest_selection.min(count - 1);
-        if self.controls.pressed(Action::MenuUp, input) {
+        let up = self.controls.pressed(Action::MenuUp, input);
+        let down = self.controls.pressed(Action::MenuDown, input);
+        if up {
             self.npc_quest_selection = (self.npc_quest_selection + count - 1) % count;
-        } else if self.controls.pressed(Action::MenuDown, input) {
+        } else if down {
             self.npc_quest_selection = (self.npc_quest_selection + 1) % count;
         }
         let first = self.npc_quest_selection.saturating_sub(3);
@@ -417,9 +423,27 @@ impl AsciiApp {
                         .is_some_and(|point| rect.contains(point.into())))
                 .then_some(index)
             });
-        if clicked && let Some(index) = hovered {
-            self.npc_quest_selection = index;
-        }
+        self.menu_focus
+            .update(hovered, &mut self.npc_quest_selection, clicked, up || down);
+        self.menu_focus.hovered = hovered.map(|index| 3 + index).or_else(|| {
+            input.pointer.and_then(|point| {
+                let point = point.into();
+                if layout.service.contains(point) {
+                    Some(0)
+                } else if layout.close.contains(point) {
+                    Some(1)
+                } else if layout.mode_toggle.contains(point)
+                    && self
+                        .game
+                        .npc_interaction(provider)
+                        .is_some_and(|npc| !npc.services.is_empty())
+                {
+                    Some(2)
+                } else {
+                    None
+                }
+            })
+        });
         let activate = self.controls.pressed(Action::Learn, input)
             || (clicked
                 && (hovered.is_some()
@@ -494,15 +518,22 @@ impl AsciiApp {
             let Some(choice) = dialogue.choices.get(first + row) else {
                 break;
             };
-            theme.card(*rect, first + row == selection);
+            let index = first + row;
+            let hovered = self.menu_focus.hovered == Some(3 + index);
+            let selected = self.menu_focus.highlighted(index, selection);
+            theme.dialogue_choice(*rect, selected, hovered);
             draw_wrapped_text(
                 text(&choice.text_key),
-                rect.x + 12.0,
+                rect.x + 26.0,
                 rect.y + 20.0,
-                rect.w - 24.0,
+                rect.w - 38.0,
                 2,
                 14,
-                theme.text(),
+                if selected || hovered {
+                    theme.accent()
+                } else {
+                    theme.text()
+                },
             );
         }
         if self
@@ -510,7 +541,12 @@ impl AsciiApp {
             .npc_interaction(provider)
             .is_some_and(|npc| !npc.services.is_empty())
         {
-            theme.tab(layout.mode_toggle, "SOINS", false);
+            theme.dialogue_action(
+                layout.mode_toggle,
+                "SOINS",
+                self.menu_focus.hovered == Some(2),
+                true,
+            );
         }
         let reward_summary = self.narrative_reward_summary(provider).unwrap_or_default();
         draw_wrapped_text(
@@ -526,15 +562,17 @@ impl AsciiApp {
             14,
             theme.accent(),
         );
-        theme.tab(
+        theme.dialogue_action(
             layout.service,
             &format!("{} : répondre", self.controls.label(Action::Learn)),
-            false,
+            self.menu_focus.hovered == Some(0),
+            !dialogue.choices.is_empty(),
         );
-        theme.tab(
+        theme.dialogue_action(
             layout.close,
             &format!("{} : partir", self.controls.label(Action::Interact)),
-            false,
+            self.menu_focus.hovered == Some(1),
+            true,
         );
         let mut hint = format!(
             "{} / {} : choisir",
@@ -952,6 +990,29 @@ mod tests {
             Some("RELAIS À LOCALISER DANS LE SECTEUR INDUSTRIEL")
         );
         assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), before);
+    }
+
+    #[test]
+    fn dialogue_hover_reveals_clickable_choices_without_advancing_time() {
+        let mut app = app();
+        let layout = NpcInteractionLayout::new(1280.0, 800.0);
+        let row = layout.trade_rows[1];
+        let turn = app.game.turn();
+        app.update_input(&InputFrame {
+            pointer: Some((row.x + 20.0, row.y + 20.0)),
+            viewport: Some((1280.0, 800.0)),
+            ..Default::default()
+        });
+        assert_eq!(app.menu_focus.hovered, Some(4));
+        assert_eq!(app.npc_quest_selection, 1);
+        assert_eq!(app.game.turn(), turn);
+
+        app.update_input(&InputFrame {
+            pressed: [controls::Binding::key("Up")].into(),
+            ..Default::default()
+        });
+        assert_eq!(app.npc_quest_selection, 0);
+        assert!(app.menu_focus.keyboard_mode());
     }
 
     #[test]

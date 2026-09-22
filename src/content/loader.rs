@@ -817,6 +817,11 @@ fn load_regional_world_definitions(
         .map_err(&failure)?;
         let local_map_size =
             RegionMapSize::new(raw.local_map.width, raw.local_map.height).map_err(&failure)?;
+        let surface_map_size = raw
+            .surface_map
+            .as_ref()
+            .map(|map| RegionMapSize::new(map.width, map.height).map_err(&failure))
+            .transpose()?;
         let vertical_links = raw
             .vertical_links
             .iter()
@@ -1128,6 +1133,8 @@ fn load_regional_world_definitions(
         let definition =
             RegionalWorldDefinition::new(id, bounds, raw.province_size, local_map_size, biomes)
                 .map_err(&failure)?
+                .with_surface_map_size(surface_map_size)
+                .map_err(&failure)?
                 .with_vertical_links(vertical_links)
                 .map_err(&failure)?
                 .with_cities(cities)
@@ -1144,6 +1151,8 @@ struct RawRegionalWorld {
     bounds: RawRegionBounds,
     province_size: u16,
     local_map: RawRegionMap,
+    #[serde(default)]
+    surface_map: Option<RawRegionMap>,
     #[serde(default)]
     vertical_links: Vec<RawRegionVerticalLink>,
     #[serde(default)]

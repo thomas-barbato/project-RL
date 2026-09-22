@@ -1,6 +1,6 @@
 # Monde, exploration et progression
 
-**Mise à jour :** 21 septembre 2026.
+**Mise à jour :** 22 septembre 2026.
 
 **Statut :** direction de conception validée par l'utilisateur ; mise en œuvre encore partielle. Les valeurs d'essai et les exemples signalés comme propositions ne sont pas des paramètres approuvés.
 
@@ -100,15 +100,16 @@ Les retours connus devront rester confortables. Voyage automatique interrompu pa
 
 ## 7. État actuel et valeurs encore à éprouver
 
-Au 21 septembre 2026, les données locales définissent :
+Au 22 septembre 2026, les données locales définissent :
 
 - une carte de départ de 192 × 128 cases, ville et friches comprises ;
-- des cartes régionales ordinaires de 96 × 64 cases ;
+- des régions de surface ordinaires de 128 × 80 cases dans les nouvelles parties, et des régions profondes ordinaires de 96 × 64 ;
+- depuis la version 93, deux enceintes de surface par région, trois caches et deux camps, dont un seul terminal nécessaire au relevé ; le plafond des groupes de rencontre gagne un tirage, sans doubler la présence initiale ;
 - cinq villes profondes aux couches 1 à 5, placées sur le même puits ;
 - un atlas très étendu, dont la superficie adressable ne représente pas une quantité équivalente de contenu conçu ;
 - des premières quêtes locales de démonstration, sans campagne complète d'évasion.
 
-Cette organisation est un état de prototype. Elle ne représente pas encore les expéditions sauvages, les lieux narratifs garantis et la durée visés par le présent document. Cette mise à jour documentaire ne modifie aucune carte, donnée de génération ou sauvegarde.
+Cette organisation est un état de prototype. L'essai de taille et de présence des sites ne représente pas encore les expéditions sauvages, les lieux narratifs garantis et la durée visés par le présent document. Les parties suspendues en version 91 ou antérieure conservent leur taille de 96 × 64 à la surface ; celles de version 92 gardent aussi leurs anciens reliefs, sites et tirages de butin. Les villes et les profondeurs ne changent pas. Le second site donne une destination facultative, mais les enceintes emploient encore une seule famille de plan. Il faut éprouver la durée des trajets et diversifier les types de lieux et de décisions avant de retenir cette formule.
 
 Les tailles de **160 × 112** pour un extérieur courant et **192 × 128** pour certains grands lieux ont été proposées comme essais. Elles ne constituent ni des valeurs approuvées, ni des dimensions uniformes à appliquer. Le nombre de régions entre étapes et la répartition des difficultés restent également à éprouver.
 

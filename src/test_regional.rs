@@ -117,7 +117,8 @@ pub fn generate(
     let biome = world
         .biome(&descriptor.biome)
         .ok_or_else(|| format!("Unknown regional biome '{}'", descriptor.biome))?;
-    let mut generated = RegionalMapGenerator::new(world.local_map_size(), biome.terrain())
+    let map_size = world.map_size_at(descriptor.coordinate);
+    let mut generated = RegionalMapGenerator::new(map_size, biome.terrain())
         .generate(descriptor.seed)
         .map_err(|error| error.to_string())?;
     let passages = [
@@ -130,12 +131,7 @@ pub fn generate(
         world
             .vertical_neighbors(descriptor.coordinate)
             .into_iter()
-            .map(|(direction, _)| {
-                (
-                    direction,
-                    vertical_passage(world.local_map_size(), direction),
-                )
-            })
+            .map(|(direction, _)| (direction, vertical_passage(map_size, direction)))
             .collect::<Vec<_>>()
     } else {
         Vec::new()
@@ -965,7 +961,7 @@ mod tests {
         let info = zone_info(&world, &descriptor).unwrap();
         assert_eq!(info.id.as_str(), "test:world_region_xn2_yp3_d0");
         let entrance = project_rl::world::generation::cardinal_passage(
-            world.local_map_size(),
+            world.map_size_at(coordinate),
             Direction::West,
         );
         let generated = generate(
@@ -1024,7 +1020,7 @@ mod tests {
             .get(&"core:simulation_overworld".parse().unwrap())
             .unwrap();
         let entrance = project_rl::world::generation::cardinal_passage(
-            world.local_map_size(),
+            world.map_size_at(RegionCoord::new(-4, -4, 0)),
             Direction::West,
         );
         let mut closed_doors = 0;
@@ -1074,6 +1070,18 @@ mod tests {
                     features,
                 )
                 .unwrap();
+                assert_eq!(generated.blueprint.map.width(), 128);
+                assert_eq!(generated.blueprint.map.height(), 80);
+                assert_eq!(generated.blueprint.threat_sources.len(), 2);
+                assert_eq!(
+                    generated
+                        .decor
+                        .cells
+                        .values()
+                        .filter(|decor| **decor == Decor::SupplyCache)
+                        .count(),
+                    3
+                );
                 assert!(
                     generated.blueprint.actors.len() >= expected_minimum,
                     "{} at ({x}, {y}) generated only {} actors",
@@ -1381,14 +1389,17 @@ mod tests {
             &upper_descriptor,
             zone_info(world, &upper_descriptor).unwrap(),
             project_rl::world::generation::cardinal_passage(
-                world.local_map_size(),
+                world.map_size_at(upper_coordinate),
                 Direction::East,
             ),
             Some(loaded.loot()),
             features,
         )
         .unwrap();
-        let descent = vertical_passage(world.local_map_size(), RegionVerticalDirection::Down);
+        let descent = vertical_passage(
+            world.map_size_at(upper_coordinate),
+            RegionVerticalDirection::Down,
+        );
         assert_eq!(
             upper.vertical_passages,
             vec![(RegionVerticalDirection::Down, descent)]
@@ -1398,6 +1409,10 @@ mod tests {
 
         let lower_descriptor = world.region(17, lower_coordinate).unwrap();
         let ascent = vertical_passage(world.local_map_size(), RegionVerticalDirection::Up);
+        let lower_descent = vertical_passage(
+            world.map_size_at(lower_coordinate),
+            RegionVerticalDirection::Down,
+        );
         let lower = generate(
             world,
             &lower_descriptor,
@@ -1411,13 +1426,13 @@ mod tests {
             lower.vertical_passages,
             vec![
                 (RegionVerticalDirection::Up, ascent),
-                (RegionVerticalDirection::Down, descent),
+                (RegionVerticalDirection::Down, lower_descent),
             ]
         );
         assert_eq!(lower.decor.cells.get(&ascent), Some(&Decor::Ascent));
-        assert_eq!(lower.decor.cells.get(&descent), Some(&Decor::Descent));
+        assert_eq!(lower.decor.cells.get(&lower_descent), Some(&Decor::Descent));
         assert!(lower.blueprint.map.is_walkable(ascent));
-        assert!(lower.blueprint.map.is_walkable(descent));
+        assert!(lower.blueprint.map.is_walkable(lower_descent));
         assert_eq!(lower.blueprint.info.name, "Nœud de maintenance");
         assert_eq!(lower.blueprint.info.kind.as_str(), "core:maintenance_city");
         assert_eq!(lower.blueprint.actors.len(), 4);

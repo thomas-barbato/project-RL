@@ -179,6 +179,7 @@ pub enum UiIcon {
     Attack,
     Techniques,
     Inventory,
+    Quest,
     Help,
     Menu,
     Sort,
@@ -289,6 +290,126 @@ impl UiTheme {
         }
     }
 
+    pub fn hud_panel(self, rect: Rect) {
+        rounded_outline(
+            rect,
+            8.0,
+            1.0,
+            Color::new(0.32, 0.54, 0.57, 0.34),
+            Color::new(0.035, 0.08, 0.10, 0.95),
+        );
+    }
+
+    pub fn hud_chip(self, rect: Rect) {
+        rounded_rectangle(rect, 5.0, Color::new(0.045, 0.11, 0.13, 0.92));
+    }
+
+    pub fn hud_action(self, rect: Rect, hover: f32) {
+        let hover = hover.clamp(0.0, 1.0);
+        rounded_rectangle(
+            rect,
+            5.0,
+            Color::new(
+                0.065 + 0.025 * hover,
+                0.17 + 0.10 * hover,
+                0.19 + 0.09 * hover,
+                0.98 + 0.02 * hover,
+            ),
+        );
+    }
+
+    pub fn hud_alert(self, rect: Rect, pulse: f32) {
+        let pulse = pulse.clamp(0.0, 1.0);
+        rounded_outline(
+            rect,
+            8.0,
+            1.0 + pulse * 0.6,
+            Color::new(0.88, 0.32 + pulse * 0.08, 0.22, 0.78),
+            Color::new(0.28, 0.075, 0.055, 0.97),
+        );
+    }
+
+    /// Dialogue choices use a filled state and a small chevron instead of rails or box outlines.
+    pub fn dialogue_choice(self, rect: Rect, selected: bool, hovered: bool) {
+        let fill = if hovered {
+            Color::new(0.085, 0.27, 0.28, 1.0)
+        } else if selected {
+            self.surface_selected()
+        } else {
+            Color::new(0.055, 0.145, 0.17, 1.0)
+        };
+        rounded_rectangle(rect, 6.0, fill);
+        if selected || hovered {
+            let x = rect.x + 11.0;
+            let y = rect.y + rect.h * 0.5;
+            draw_line(x, y - 4.0, x + 4.0, y, 1.5, self.accent());
+            draw_line(x + 4.0, y, x, y + 4.0, 1.5, self.accent());
+        }
+    }
+
+    pub fn dialogue_action(self, rect: Rect, label: &str, hovered: bool, enabled: bool) {
+        let fill = if !enabled {
+            Color::new(0.035, 0.06, 0.07, 0.94)
+        } else if hovered {
+            Color::new(0.085, 0.27, 0.28, 1.0)
+        } else {
+            Color::new(0.055, 0.145, 0.17, 1.0)
+        };
+        rounded_rectangle(rect, 6.0, fill);
+        let color = if !enabled {
+            self.muted()
+        } else if hovered {
+            self.accent()
+        } else {
+            self.text()
+        };
+        let mut font_size = 16_u16;
+        while font_size > 12 && measure_text_bold(label, font_size).width > rect.w - 20.0 {
+            font_size -= 1;
+        }
+        draw_text_bold_centered(label, rect, font_size, color);
+    }
+
+    pub fn dialogue_action_with_icon(
+        self,
+        rect: Rect,
+        label: &str,
+        icon: UiIcon,
+        hovered: bool,
+        enabled: bool,
+    ) {
+        self.dialogue_action(rect, "", hovered, enabled);
+        let color = if !enabled {
+            self.muted()
+        } else if hovered {
+            self.accent()
+        } else {
+            self.text()
+        };
+        let icon_size = (rect.h - 14.0).clamp(12.0, 21.0);
+        draw_ui_icon(
+            icon,
+            Rect::new(
+                rect.x + 12.0,
+                rect.y + (rect.h - icon_size) * 0.5,
+                icon_size,
+                icon_size,
+            ),
+            color,
+        );
+        let label_rect = Rect::new(
+            rect.x + icon_size + 20.0,
+            rect.y,
+            rect.w - icon_size - 28.0,
+            rect.h,
+        );
+        let mut font_size = 15_u16;
+        while font_size > 12 && measure_text_bold(label, font_size).width > label_rect.w - 8.0 {
+            font_size -= 1;
+        }
+        draw_text_bold_centered(label, label_rect, font_size, color);
+    }
+
     pub fn button(
         self,
         rect: Rect,
@@ -363,37 +484,6 @@ impl UiTheme {
             } else {
                 self.text()
             },
-        );
-    }
-
-    /// Compact mode selector; selection is carried by fill, outline and text.
-    pub fn tab(self, rect: Rect, label: &str, active: bool) {
-        let radius = (rect.h * 0.2).clamp(4.0, 8.0);
-        rounded_rectangle(
-            Rect::new(rect.x + 1.0, rect.y + 3.0, rect.w, rect.h),
-            radius,
-            Color::new(0.0, 0.0, 0.0, 0.38),
-        );
-        rounded_outline(
-            rect,
-            radius,
-            if active { 2.0 } else { 1.0 },
-            if active {
-                self.accent()
-            } else {
-                subdued(self.muted(), 0.32)
-            },
-            if active {
-                self.surface_selected()
-            } else {
-                self.surface_raised()
-            },
-        );
-        draw_text_bold_centered(
-            label,
-            Rect::new(rect.x + 8.0, rect.y, rect.w - 16.0, rect.h - 1.0),
-            16,
-            if active { self.accent() } else { self.text() },
         );
     }
 
@@ -654,6 +744,27 @@ pub fn draw_ui_icon(icon: UiIcon, rect: Rect, color: Color) {
                 line,
                 color,
             );
+        }
+        UiIcon::Quest => {
+            draw_rectangle_lines(
+                left + radius * 0.22,
+                top,
+                radius * 1.56,
+                radius * 2.0,
+                line,
+                color,
+            );
+            for offset in [0.65, 1.05, 1.45] {
+                let y = top + radius * offset;
+                draw_line(
+                    left + radius * 0.52,
+                    y,
+                    right - radius * 0.45,
+                    y,
+                    line,
+                    color,
+                );
+            }
         }
         UiIcon::Help => {
             draw_circle_lines(cx, cy, radius, line, color);

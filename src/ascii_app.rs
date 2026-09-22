@@ -26,6 +26,8 @@ use project_rl::combat::{
     ArmorProfile, ArmorRules, AttackArea, AttackProfile, DamageImpact, DamageRules, DamageType,
     HitRules, MeleeImpactProfile,
 };
+#[cfg(test)]
+use project_rl::content::RegionMapSize;
 use project_rl::content::{
     ContentId, ContentLoader, ExpeditionCatalog, HubQuestProviderDefinition, RegionCoord,
     RegionDirection, RegionVerticalDirection, RegionalWorldCatalog,
@@ -172,9 +174,11 @@ const NARRATIVE_REWARD_GENERATION_VERSION: u8 = NARRATIVE_GENERATION_VERSION + 1
 const STATIONARY_QUEST_CONTACT_GENERATION_VERSION: u8 = NARRATIVE_REWARD_GENERATION_VERSION + 1;
 const ORME_DIRECTION_BOARD_GENERATION_VERSION: u8 = STATIONARY_QUEST_CONTACT_GENERATION_VERSION + 1;
 const RELAY_SERVICE_ROUTE_GENERATION_VERSION: u8 = ORME_DIRECTION_BOARD_GENERATION_VERSION + 1;
+const SURFACE_MAP_SIZE_GENERATION_VERSION: u8 = RELAY_SERVICE_ROUTE_GENERATION_VERSION + 1;
+const SURFACE_EXPLORATION_GENERATION_VERSION: u8 = SURFACE_MAP_SIZE_GENERATION_VERSION + 1;
 #[path = "narrative_app.rs"]
 mod narrative;
-const CURRENT_GENERATION_VERSION: u8 = RELAY_SERVICE_ROUTE_GENERATION_VERSION;
+const CURRENT_GENERATION_VERSION: u8 = SURFACE_EXPLORATION_GENERATION_VERSION;
 const _: () = assert!(CURRENT_GENERATION_VERSION == suspension::MAX_GENERATION_VERSION);
 const LOG_CAPACITY: usize = 6;
 const FLOATING_MESSAGE_CAPACITY: usize = 32;
@@ -182,6 +186,7 @@ const DISPLAY_LOCALE: &str = "fr";
 const WAIT_ACTION_FOCUS: usize = usize::MAX;
 const QUEST_JOURNAL_FOCUS: usize = usize::MAX - 1;
 const COMPANION_ACTION_FOCUS_BASE: usize = usize::MAX - 8;
+const NPC_TRADE_TAB_FOCUS_BASE: usize = usize::MAX - 16;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 struct AttackAim {
@@ -1088,6 +1093,7 @@ pub struct AsciiApp {
     menu_selection: usize,
     menu_message: String,
     menu_focus: MenuFocus,
+    hud_action_hover: [f32; 2],
     cursor_icon: miniquad::CursorIcon,
     quit_requested: bool,
     resume_requested: bool,
@@ -1139,6 +1145,22 @@ impl AsciiApp {
             self.update_input_at(&input, Some(now));
         }
         self.apply_graphics_window_change();
+        let hover_step = if self.graphics.active.reduced_motion {
+            1.0
+        } else {
+            (get_frame_time() / 0.12).clamp(0.0, 1.0)
+        };
+        for (index, focus) in [WAIT_ACTION_FOCUS, QUEST_JOURNAL_FOCUS]
+            .into_iter()
+            .enumerate()
+        {
+            let strength = &mut self.hud_action_hover[index];
+            if self.menu_focus.hovered == Some(focus) {
+                *strength = (*strength + hover_step).min(1.0);
+            } else {
+                *strength = (*strength - hover_step).max(0.0);
+            }
+        }
         let cursor_icon = if self.attack_aim.is_some() {
             miniquad::CursorIcon::Crosshair
         } else if self.menu_focus.hovered.is_some() && !self.rebinding {
@@ -2478,6 +2500,12 @@ impl AsciiApp {
         }
         match scene {
             "game" => {}
+            "game-hover" => {
+                app.menu_focus.hovered = Some(QUEST_JOURNAL_FOCUS);
+                app.hud_action_hover[1] = 1.0;
+            }
+            "game-720" => request_new_screen_size(1280.0, 720.0),
+            "game-960" => request_new_screen_size(960.0, 540.0),
             "context-menu" => {
                 app.walk_fixture_to(GridPos::new(76, 8))?;
                 let item: ItemId = "core:power_regulator".parse().unwrap();
@@ -3009,7 +3037,7 @@ impl AsciiApp {
                         )?)
                         .ok_or("Regional depth world missing")?;
                 let descent = project_rl::world::generation::vertical_passage(
-                    world.local_map_size(),
+                    world.map_size_at(RegionCoord::new(-1, 0, 0)),
                     project_rl::content::RegionVerticalDirection::Down,
                 );
                 let second_descent = project_rl::world::generation::vertical_passage(
@@ -5177,8 +5205,10 @@ impl AsciiApp {
             let close_hovered = input
                 .pointer
                 .is_some_and(|point| layout.close.contains(point.into()));
-            self.menu_focus.hovered = service_hovered
-                .then_some(0)
+            self.menu_focus.hovered = row_hovered
+                .map(|index| 3 + index)
+                .or_else(|| tab_hovered.map(|index| NPC_TRADE_TAB_FOCUS_BASE + index))
+                .or_else(|| service_hovered.then_some(0))
                 .or_else(|| close_hovered.then_some(1))
                 .or_else(|| mode_hovered.then_some(2));
             if self.controls.pressed(Action::Interact, input) || clicked && close_hovered {
@@ -5250,6 +5280,7 @@ impl AsciiApp {
             }
             return;
         }
+        let mut quest_row_hovered = None;
         if show_quest {
             let count = interaction.quests.len();
             if count > 0 {
@@ -5275,6 +5306,7 @@ impl AsciiApp {
                                 .is_some_and(|point| rect.contains(point.into())))
                         .then_some(index)
                     });
+                quest_row_hovered = hovered;
                 if clicked && let Some(index) = hovered {
                     self.npc_quest_selection = index;
                     self.npc_interaction_message.clear();
@@ -5284,15 +5316,29 @@ impl AsciiApp {
                 self.npc_quest_selection = 0;
             }
         }
-        let service_hovered = (!interaction.services.is_empty() || !interaction.quests.is_empty())
+        let service_enabled = if show_quest {
+            interaction
+                .quests
+                .get(self.npc_quest_selection)
+                .is_some_and(|quest| {
+                    matches!(
+                        quest.status,
+                        QuestStatus::Available | QuestStatus::ReadyToComplete
+                    )
+                })
+        } else {
+            npc_service_available(&interaction)
+        };
+        let service_hovered = service_enabled
             && input
                 .pointer
                 .is_some_and(|point| layout.service.contains(point.into()));
         let close_hovered = input
             .pointer
             .is_some_and(|point| layout.close.contains(point.into()));
-        self.menu_focus.hovered = service_hovered
-            .then_some(0)
+        self.menu_focus.hovered = quest_row_hovered
+            .map(|index| 3 + index)
+            .or_else(|| service_hovered.then_some(0))
             .or_else(|| close_hovered.then_some(1))
             .or_else(|| mode_hovered.then_some(2));
         if self.controls.pressed(Action::Interact, input) || clicked && close_hovered {
@@ -5463,27 +5509,25 @@ impl AsciiApp {
             15.0,
             theme.accent(),
         );
-        draw_line(
-            x,
-            layout.panel.y + 108.0,
-            layout.panel.x + layout.panel.w - 22.0,
-            layout.panel.y + 108.0,
-            1.0,
-            theme.surface_raised(),
-        );
         let has_both = !interaction.services.is_empty() && !interaction.quests.is_empty();
         let show_quest = !interaction.quests.is_empty()
             && (interaction.services.is_empty()
                 || self.npc_interaction_mode == NpcInteractionMode::Quest);
         if has_both {
-            theme.tab(
+            theme.dialogue_action(
                 layout.mode_toggle,
                 if show_quest { "SERVICE" } else { "QUÊTE" },
                 self.menu_focus.hovered == Some(2),
+                true,
             );
         }
         if narrative.is_some() && self.npc_dialogue_services {
-            theme.tab(layout.mode_toggle, "PARLER", false);
+            theme.dialogue_action(
+                layout.mode_toggle,
+                "PARLER",
+                self.menu_focus.hovered == Some(2),
+                true,
+            );
         }
         if !show_quest
             && let Some(NpcService::Trade {
@@ -5549,34 +5593,23 @@ impl AsciiApp {
                         break;
                     };
                     let selected = index == self.npc_quest_selection;
-                    draw_rectangle(
-                        row.x,
-                        row.y,
-                        row.w,
-                        row.h,
-                        if selected {
-                            theme.surface_raised()
-                        } else {
-                            theme.surface()
-                        },
-                    );
-                    draw_rectangle_lines(
-                        row.x,
-                        row.y,
-                        row.w,
-                        row.h,
-                        if selected { 2.0 } else { 1.0 },
-                        if selected {
-                            theme.accent()
-                        } else {
-                            theme.muted()
-                        },
-                    );
+                    let hovered = self.menu_focus.hovered == Some(3 + index);
+                    theme.dialogue_choice(row, selected, hovered);
                     let title = self
                         .texts
                         .resolve(DISPLAY_LOCALE, &choice.title_key)
                         .unwrap_or("Demande locale");
-                    draw_text_bold(title, row.x + 10.0, row.y + 22.0, 14.0, theme.text());
+                    draw_text_bold(
+                        title,
+                        row.x + 25.0,
+                        row.y + 22.0,
+                        14.0,
+                        if selected || hovered {
+                            theme.accent()
+                        } else {
+                            theme.text()
+                        },
+                    );
                 }
             }
             let quest_card_y = if interaction.quests.len() > 1 {
@@ -5681,42 +5714,30 @@ impl AsciiApp {
                 QuestStatus::ReadyToComplete => Self::quest_ready_action_label(&quest.objective),
                 QuestStatus::Completed => "Quête terminée",
             };
-            theme.button_with_icon(
+            theme.dialogue_action_with_icon(
                 layout.service,
                 label,
                 UiIcon::Confirm,
-                ButtonState::new(
-                    self.menu_focus.hovered == Some(0),
-                    false,
-                    actionable,
-                    ButtonTone::Primary,
-                ),
+                self.menu_focus.hovered == Some(0),
+                actionable,
             );
-            theme.button_with_icon(
+            theme.dialogue_action_with_icon(
                 layout.close,
                 "Terminer",
                 UiIcon::Cancel,
-                ButtonState::new(
-                    self.menu_focus.hovered == Some(1),
-                    false,
-                    true,
-                    ButtonTone::Secondary,
-                ),
+                self.menu_focus.hovered == Some(1),
+                true,
             );
             return;
         }
 
         if interaction.services.is_empty() {
-            theme.button_with_icon(
+            theme.dialogue_action_with_icon(
                 layout.close,
                 "Terminer",
                 UiIcon::Cancel,
-                ButtonState::new(
-                    self.menu_focus.hovered == Some(1),
-                    false,
-                    true,
-                    ButtonTone::Secondary,
-                ),
+                self.menu_focus.hovered == Some(1),
+                true,
             );
             return;
         }
@@ -5774,7 +5795,7 @@ impl AsciiApp {
             interaction.services.first(),
             Some(NpcService::Treatment { .. })
         );
-        theme.button_with_icon(
+        theme.dialogue_action_with_icon(
             layout.service,
             if treatment && available {
                 "Recevoir le soin"
@@ -5786,23 +5807,15 @@ impl AsciiApp {
                 "Aucune action requise"
             },
             UiIcon::Confirm,
-            ButtonState::new(
-                self.menu_focus.hovered == Some(0),
-                false,
-                available,
-                ButtonTone::Primary,
-            ),
+            self.menu_focus.hovered == Some(0),
+            available,
         );
-        theme.button_with_icon(
+        theme.dialogue_action_with_icon(
             layout.close,
             "Terminer",
             UiIcon::Cancel,
-            ButtonState::new(
-                self.menu_focus.hovered == Some(1),
-                false,
-                true,
-                ButtonTone::Secondary,
-            ),
+            self.menu_focus.hovered == Some(1),
+            true,
         );
     }
 
@@ -5841,20 +5854,26 @@ impl AsciiApp {
             15.0,
             theme.muted(),
         );
-        theme.tab(
+        theme.dialogue_action(
             layout.trade_tabs[0],
             "ACHETER",
-            self.npc_trade_mode == NpcTradeMode::Buy,
+            self.npc_trade_mode == NpcTradeMode::Buy
+                || self.menu_focus.hovered == Some(NPC_TRADE_TAB_FOCUS_BASE),
+            true,
         );
-        theme.tab(
+        theme.dialogue_action(
             layout.trade_tabs[1],
             "VENDRE",
-            self.npc_trade_mode == NpcTradeMode::Sell,
+            self.npc_trade_mode == NpcTradeMode::Sell
+                || self.menu_focus.hovered == Some(NPC_TRADE_TAB_FOCUS_BASE + 1),
+            true,
         );
-        theme.tab(
+        theme.dialogue_action(
             layout.trade_tabs[2],
             "PARIS",
-            self.npc_trade_mode == NpcTradeMode::Gamble,
+            self.npc_trade_mode == NpcTradeMode::Gamble
+                || self.menu_focus.hovered == Some(NPC_TRADE_TAB_FOCUS_BASE + 2),
+            true,
         );
 
         let count = match self.npc_trade_mode {
@@ -5871,17 +5890,7 @@ impl AsciiApp {
                 break;
             }
             let selected = index == self.npc_trade_selection;
-            draw_rectangle(
-                row.x,
-                row.y,
-                row.w,
-                row.h,
-                if selected {
-                    theme.surface_selected()
-                } else {
-                    theme.surface_raised()
-                },
-            );
+            theme.dialogue_choice(row, selected, self.menu_focus.hovered == Some(3 + index));
             let (item, detail, price) = match self.npc_trade_mode {
                 NpcTradeMode::Buy => {
                     if let Some(offer) = offers.get(index) {
@@ -5930,7 +5939,7 @@ impl AsciiApp {
             };
             draw_text_bold(
                 self.item_name(item),
-                row.x + 12.0,
+                row.x + 26.0,
                 row.y + 25.0,
                 16.0,
                 if selected {
@@ -6013,27 +6022,19 @@ impl AsciiApp {
                 NpcTradeMode::Gamble => format!("Parier · {price} cr"),
             },
         );
-        theme.button_with_icon(
+        theme.dialogue_action_with_icon(
             layout.service,
             &action,
             UiIcon::Confirm,
-            ButtonState::new(
-                self.menu_focus.hovered == Some(0),
-                false,
-                enabled,
-                ButtonTone::Primary,
-            ),
+            self.menu_focus.hovered == Some(0),
+            enabled,
         );
-        theme.button_with_icon(
+        theme.dialogue_action_with_icon(
             layout.close,
             "Terminer",
             UiIcon::Cancel,
-            ButtonState::new(
-                self.menu_focus.hovered == Some(1),
-                false,
-                true,
-                ButtonTone::Secondary,
-            ),
+            self.menu_focus.hovered == Some(1),
+            true,
         );
     }
 
@@ -7021,6 +7022,16 @@ impl AsciiApp {
                 .without_orme_direction_board_metadata()
                 .without_narrative_metadata()
         };
+        let regional_worlds = if version < SURFACE_EXPLORATION_GENERATION_VERSION {
+            regional_worlds.without_surface_exploration_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < SURFACE_MAP_SIZE_GENERATION_VERSION {
+            regional_worlds.without_surface_map_metadata()
+        } else {
+            regional_worlds
+        };
         let regional_worlds = if version >= FIFTH_REGIONAL_CITY_GENERATION_VERSION {
             regional_worlds
         } else if version >= FIFTH_LAYER_ROUTE_GENERATION_VERSION {
@@ -7957,6 +7968,7 @@ impl AsciiApp {
             menu_selection: 0,
             menu_message: String::new(),
             menu_focus: MenuFocus::default(),
+            hud_action_hover: [0.0; 2],
             cursor_icon: miniquad::CursorIcon::Default,
             quit_requested: false,
             resume_requested: false,
@@ -13278,7 +13290,9 @@ impl AsciiApp {
             return;
         };
         let theme = UiTheme;
-        theme.card(panel, false);
+        theme.hud_panel(panel);
+        let vertical_scale = ((panel.h - 24.0) / 672.0).clamp(0.65, 1.0);
+        let panel_y = |offset: f32| panel.y + offset * vertical_scale;
         let x = panel.x + 14.0;
         let width = panel.w - 28.0;
         let progression = self.game.player_progression();
@@ -13294,18 +13308,18 @@ impl AsciiApp {
                     })
             })
             .unwrap_or_else(|| "Vide".to_owned());
-        draw_text_bold("NIVEAU", x + 25.0, panel.y + 30.0, 17.0, theme.text());
+        draw_text_bold("NIVEAU", x + 25.0, panel_y(30.0), 16.0, theme.text());
         draw_ui_icon(
             UiIcon::Level,
-            Rect::new(x, panel.y + 14.0, 18.0, 18.0),
+            Rect::new(x, panel_y(14.0), 18.0, 18.0),
             theme.accent(),
         );
         draw_text_bold(
             progression.level().to_string(),
             panel.x + panel.w - 34.0,
-            panel.y + 30.0,
+            panel_y(30.0),
             18.0,
-            theme.focus(),
+            theme.accent(),
         );
         let level = progression.level();
         let thresholds = self.game.rules().progression.curve.cumulative_thresholds();
@@ -13331,7 +13345,7 @@ impl AsciiApp {
             1.0
         };
         draw_status_bar(
-            Rect::new(x, panel.y + 43.0, width, 34.0),
+            Rect::new(x, panel_y(43.0), width, 34.0),
             "EXPÉRIENCE",
             &format!("{}/{}", progression.experience(), next),
             level_ratio,
@@ -13341,52 +13355,30 @@ impl AsciiApp {
         draw_wrapped_text(
             &skill_points_hud_label(progression.unspent_skill_points()),
             x,
-            panel.y + 93.0,
+            panel_y(93.0),
             width,
             2,
             14,
             theme.muted(),
         );
-        draw_line(
-            x,
-            panel.y + 128.0,
-            x + width,
-            panel.y + 128.0,
-            1.0,
-            theme.muted(),
-        );
         draw_ui_icon(
             UiIcon::Weapon,
-            Rect::new(x, panel.y + 142.0, 18.0, 18.0),
-            theme.focus(),
+            Rect::new(x, panel_y(142.0), 18.0, 18.0),
+            theme.accent(),
         );
-        draw_text_bold(
-            "ARME ACTIVE",
-            x + 25.0,
-            panel.y + 158.0,
-            15.0,
-            theme.focus(),
-        );
+        draw_text_bold("ARME ACTIVE", x + 25.0, panel_y(158.0), 15.0, theme.muted());
         draw_wrapped_text(
             &active_weapon,
             x,
-            panel.y + 182.0,
+            panel_y(182.0),
             width,
             2,
             14,
             theme.text(),
         );
-        draw_line(
-            x,
-            panel.y + 221.0,
-            x + width,
-            panel.y + 221.0,
-            1.0,
-            theme.muted(),
-        );
-        draw_text_bold("ÉTAT", x, panel.y + 249.0, 17.0, theme.text());
+        draw_text_bold("RESSOURCES", x, panel_y(249.0), 15.0, theme.muted());
 
-        let mut y = panel.y + 262.0;
+        let mut y = panel_y(262.0);
         let mut metric = |label: &str, value: String, ratio: f32, icon: UiIcon, color: Color| {
             draw_status_bar(
                 Rect::new(x, y, width, 45.0),
@@ -13396,7 +13388,7 @@ impl AsciiApp {
                 icon,
                 color,
             );
-            y += 56.0;
+            y += 56.0 * vertical_scale;
         };
         metric(
             "PV",
@@ -13411,7 +13403,7 @@ impl AsciiApp {
             format!("{}/{}", energy.available(), energy.capacity()),
             normalized_ratio(energy.available(), energy.capacity()),
             UiIcon::Energy,
-            theme.focus(),
+            Color::new(0.54, 0.73, 0.91, 1.0),
         );
         if let Some(bandwidth) = self.game.player_bandwidth() {
             metric(
@@ -13431,7 +13423,7 @@ impl AsciiApp {
                 if heat.current() >= heat.alert_threshold() {
                     theme.danger()
                 } else {
-                    theme.focus()
+                    theme.muted()
                 },
             );
         }
@@ -13444,14 +13436,13 @@ impl AsciiApp {
         let stability = self.game.actor_stability(player_id);
         let digital_defense = self.game.actor_digital_defense(player_id);
         let resistances = player.resistances();
-        draw_line(x, y, x + width, y, 1.0, theme.muted());
         draw_ui_icon(
             UiIcon::Armor,
             Rect::new(x, y + 12.0, 16.0, 16.0),
-            theme.accent(),
+            theme.muted(),
         );
-        draw_text_bold("DÉFENSES", x + 23.0, y + 27.0, 15.0, theme.text());
-        y += 39.0;
+        draw_text_bold("DÉFENSES", x + 23.0, y + 27.0, 15.0, theme.muted());
+        y += 39.0 * vertical_scale;
         let column_gap = 8.0;
         let column_width = (width - column_gap) * 0.5;
         let defense_value =
@@ -13470,7 +13461,7 @@ impl AsciiApp {
             theme.text(),
             theme.muted(),
         );
-        y += 22.0;
+        y += (22.0 * vertical_scale).max(17.0);
         draw_compact_stat(
             Rect::new(x, y, column_width, 20.0),
             "STABILITÉ",
@@ -13485,9 +13476,9 @@ impl AsciiApp {
             theme.text(),
             theme.muted(),
         );
-        y += 31.0;
-        draw_text_bold("RÉSISTANCES", x, y + 11.0, 12.0, theme.accent());
-        y += 17.0;
+        y += 31.0 * vertical_scale;
+        draw_text_bold("RÉSISTANCES", x, y + 11.0, 12.0, theme.muted());
+        y += 17.0 * vertical_scale;
         for ((left_label, left_type), right) in [
             (
                 ("THERMIQUE", DamageType::Thermal),
@@ -13515,7 +13506,7 @@ impl AsciiApp {
                     theme.muted(),
                 );
             }
-            y += 20.0;
+            y += (20.0 * vertical_scale).max(15.0);
         }
     }
 
@@ -13546,25 +13537,7 @@ impl AsciiApp {
             } else {
                 ((get_time() * 4.0).sin() * 0.5 + 0.5) as f32
             };
-            draw_rectangle(
-                12.0,
-                7.0,
-                self.ui_width() - 24.0,
-                58.0,
-                Color::from_rgba(104, 31, 17, 255),
-            );
-            draw_rectangle_lines(
-                12.0,
-                7.0,
-                self.ui_width() - 24.0,
-                58.0,
-                if self.graphics.active.high_contrast {
-                    3.0
-                } else {
-                    2.0 + pulse
-                },
-                Color::new(1.0, 0.48 + pulse * 0.18, 0.17, 1.0),
-            );
+            UiTheme.hud_alert(Rect::new(12.0, 7.0, self.ui_width() - 24.0, 58.0), pulse);
             let (warning, marker) = match (local_alerts, security_alarms) {
                 (local, 0) => (format!("ALERTE LOCALE · {local} source(s) visible(s)"), "!"),
                 (0, security) => (
@@ -13576,11 +13549,21 @@ impl AsciiApp {
                     "!#",
                 ),
             };
+            draw_circle(
+                35.0,
+                35.0,
+                14.0 + if self.graphics.active.high_contrast {
+                    0.0
+                } else {
+                    pulse * 2.0
+                },
+                Color::new(0.44, 0.12, 0.08, 0.94),
+            );
             draw_text_bold(
                 marker,
-                24.0,
+                25.0,
                 45.0,
-                30.0,
+                27.0,
                 Color::from_rgba(255, 225, 183, 255),
             );
             draw_text_bold(
@@ -13648,7 +13631,7 @@ impl AsciiApp {
             return;
         };
         let layout = CompanionBarLayout::new(self.ui_width(), self.ui_height());
-        UiTheme.card(layout.panel, false);
+        UiTheme.hud_panel(layout.panel);
         let linked = companions
             .iter()
             .all(|entity| self.game.player_companion_is_linked(*entity));
@@ -13691,24 +13674,27 @@ impl AsciiApp {
                 UiTheme.danger()
             },
         );
+        let companion_tone = companion_button_tone(linked);
         for (index, behavior) in CompanionBehavior::ALL.into_iter().enumerate() {
             let focused = self.menu_focus.hovered == Some(COMPANION_ACTION_FOCUS_BASE + index);
             let active = active_behavior == Some(behavior);
-            UiTheme.button(
+            UiTheme.hud_action(
                 layout.behavior_buttons[index],
-                "",
-                focused,
-                active,
-                linked,
-                companion_button_tone(linked),
+                if active {
+                    1.0
+                } else if focused {
+                    0.65
+                } else {
+                    0.0
+                },
             );
             draw_companion_behavior_icon(
                 layout.behavior_buttons[index],
                 behavior,
-                if !linked {
+                if companion_tone == ButtonTone::Danger {
                     UiTheme.danger()
                 } else if active {
-                    UiTheme.focus()
+                    UiTheme.accent()
                 } else if focused {
                     UiTheme.accent()
                 } else {
@@ -13756,16 +13742,16 @@ impl AsciiApp {
                 ),
             };
             let rect = Rect::new(12.0, self.ui_height() - 94.0, self.ui_width() - 24.0, 82.0);
-            draw_rectangle(rect.x, rect.y, rect.w, rect.h, UiTheme.surface());
-            draw_rectangle_lines(rect.x, rect.y, rect.w, rect.h, 2.0, state_color);
-            draw_text_bold(state, rect.x + 14.0, rect.y + 26.0, 18.0, state_color);
+            UiTheme.hud_panel(rect);
+            draw_rectangle(rect.x + 14.0, rect.y + 17.0, 6.0, 6.0, state_color);
+            draw_text_bold(state, rect.x + 28.0, rect.y + 27.0, 18.0, state_color);
             draw_text(
                 format!(
                     "{} case(s) couvertes · {} cible(s)",
                     footprint.as_ref().map_or(0, |area| area.cells().len()),
                     affected
                 ),
-                rect.x + 14.0,
+                rect.x + 28.0,
                 rect.y + 50.0,
                 16.0,
                 UiTheme.text(),
@@ -13817,43 +13803,36 @@ impl AsciiApp {
                 14,
                 UiTheme.muted(),
             );
-            UiTheme.button(
+            draw_footer_action_button(
                 button,
-                &format!(
-                    "CONTINUER · {}",
-                    self.controls.label(Action::Wait).to_uppercase()
-                ),
-                self.menu_focus.hovered == Some(WAIT_ACTION_FOCUS),
-                false,
-                true,
-                ButtonTone::Primary,
+                "Continuer la préparation",
+                &self.controls.label(Action::Wait),
+                UiIcon::Wait,
+                self.hud_action_hover[0],
             );
         } else {
             let wait_binding = self.controls.label(Action::Wait);
             let wait_button = wait_turn_rect(self.ui_height());
             let wait_hovered = self.menu_focus.hovered == Some(WAIT_ACTION_FOCUS);
-            draw_wait_action_button(wait_button, &wait_binding, wait_hovered);
+            draw_wait_action_button(
+                wait_button,
+                &wait_binding,
+                wait_hovered,
+                self.hud_action_hover[0],
+            );
             let journal_button = quest_journal_button_rect(self.ui_height());
             let journal_count = self.game.quest_journal().len();
             let journal_label = if journal_count == 0 {
-                format!(
-                    "QUÊTES · {}",
-                    self.controls.label(Action::QuestJournal).to_uppercase()
-                )
+                "Quêtes".to_owned()
             } else {
-                format!(
-                    "QUÊTES {} · {}",
-                    journal_count,
-                    self.controls.label(Action::QuestJournal).to_uppercase()
-                )
+                format!("Quêtes {journal_count}")
             };
-            UiTheme.button(
+            draw_footer_action_button(
                 journal_button,
                 &journal_label,
-                self.menu_focus.hovered == Some(QUEST_JOURNAL_FOCUS),
-                false,
-                true,
-                ButtonTone::Secondary,
+                &self.controls.label(Action::QuestJournal),
+                UiIcon::Quest,
+                self.hud_action_hover[1],
             );
             let hint_y = self.ui_height() - 94.0;
             let mut hint_x = journal_button.x + journal_button.w + 14.0;
@@ -13873,7 +13852,13 @@ impl AsciiApp {
                     "Aide" => UiIcon::Help,
                     _ => UiIcon::Menu,
                 };
-                hint_x = draw_control_hint(hint_x, hint_y, &binding, label, icon);
+                let display_label =
+                    if self.ui_width() < 1140.0 && !matches!(label, "Interagir" | "Attaquer") {
+                        ""
+                    } else {
+                        label
+                    };
+                hint_x = draw_control_hint(hint_x, hint_y, &binding, display_label, icon);
             }
         }
 
@@ -19654,6 +19639,12 @@ fn world_fingerprint_for_version(
         terminal_compatible
     };
     let mut compatible_regions = regional_worlds.clone();
+    if version < SURFACE_EXPLORATION_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_surface_exploration_metadata();
+    }
+    if version < SURFACE_MAP_SIZE_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_surface_map_metadata();
+    }
     if version < REGIONAL_CITY_GENERATION_VERSION {
         compatible_regions = compatible_regions.without_city_metadata();
     } else if version < SECOND_REGIONAL_CITY_GENERATION_VERSION {
@@ -20548,15 +20539,15 @@ fn draw_stat_line(
 
 fn draw_hud_card(rect: Rect, label: &str, value: &str, accent: Color, high_contrast: bool) {
     let theme = UiTheme;
-    theme.card(rect, false);
+    theme.hud_panel(rect);
     if high_contrast {
         draw_rectangle_lines(rect.x, rect.y, rect.w, rect.h, 2.0, accent);
     }
-    draw_rectangle(rect.x + 6.0, rect.y + 7.0, 3.0, rect.h - 14.0, accent);
-    draw_text_bold(label, rect.x + 15.0, rect.y + 17.0, 12.0, accent);
+    draw_rectangle(rect.x + 10.0, rect.y + 10.0, 5.0, 5.0, accent);
+    draw_text_bold(label, rect.x + 22.0, rect.y + 17.0, 12.0, accent);
     draw_wrapped_text(
         value,
-        rect.x + 15.0,
+        rect.x + 14.0,
         rect.y + 36.0,
         rect.w - 26.0,
         2,
@@ -20590,7 +20581,7 @@ fn draw_status_bar(rect: Rect, label: &str, value: &str, ratio: f32, icon: UiIco
         (rect.w - 31.0 - value_width).max(24.0),
         1,
         13,
-        UiTheme.text(),
+        UiTheme.muted(),
     );
     draw_text_bold(
         value,
@@ -20599,13 +20590,13 @@ fn draw_status_bar(rect: Rect, label: &str, value: &str, ratio: f32, icon: UiIco
         f32::from(value_size),
         color,
     );
-    let bar = Rect::new(rect.x, rect.y + 25.0, rect.w, 8.0);
+    let bar = Rect::new(rect.x, rect.y + 26.0, rect.w, 5.0);
     draw_rectangle(
         bar.x,
         bar.y,
         bar.w,
         bar.h,
-        Color::from_rgba(19, 39, 48, 255),
+        Color::new(0.09, 0.17, 0.19, 1.0),
     );
     draw_rectangle(bar.x, bar.y, bar.w * ratio.clamp(0.0, 1.0), bar.h, color);
 }
@@ -20635,21 +20626,24 @@ fn draw_compact_stat(rect: Rect, label: &str, value: &str, value_color: Color, l
 
 fn draw_control_hint(x: f32, y: f32, binding: &str, label: &str, icon: UiIcon) -> f32 {
     let (key_width, label_width) = control_hint_widths(binding, label);
-    draw_rectangle(x, y, key_width, 24.0, UiTheme.surface_raised());
-    draw_rectangle_lines(x, y, key_width, 24.0, 1.0, UiTheme.accent());
-    draw_text_bold_centered(
-        binding,
-        Rect::new(x, y, key_width, 24.0),
-        13,
-        UiTheme.text(),
+    let width = key_width + label_width + 30.0;
+    UiTheme.hud_chip(Rect::new(x, y - 4.0, width, 30.0));
+    let key = Rect::new(x + 5.0, y + 1.0, key_width, 20.0);
+    draw_rectangle(
+        key.x,
+        key.y,
+        key.w,
+        key.h,
+        Color::new(0.025, 0.065, 0.075, 0.98),
     );
+    draw_text_bold_centered(binding, key, 12, UiTheme.accent());
     draw_ui_icon(
         icon,
-        Rect::new(x + key_width + 6.0, y + 5.0, 14.0, 14.0),
-        UiTheme.accent(),
+        Rect::new(x + key_width + 10.0, y + 4.0, 14.0, 14.0),
+        UiTheme.muted(),
     );
-    draw_text(label, x + key_width + 24.0, y + 17.0, 14.0, UiTheme.muted());
-    x + key_width + label_width + 36.0
+    draw_text(label, x + key_width + 27.0, y + 17.0, 14.0, UiTheme.text());
+    x + width + 6.0
 }
 
 fn control_hint_widths(binding: &str, label: &str) -> (f32, f32) {
@@ -20680,35 +20674,12 @@ fn quest_status_presentation(status: QuestStatus) -> (&'static str, Color) {
     }
 }
 
-fn draw_wait_action_button(rect: Rect, binding: &str, hovered: bool) {
-    UiTheme.button(rect, "", hovered, false, true, ButtonTone::Secondary);
-    let color = if hovered {
-        UiTheme.focus()
-    } else {
-        UiTheme.text()
-    };
-    draw_ui_icon(
-        UiIcon::Wait,
-        Rect::new(rect.x + 8.0, rect.y + 7.0, 16.0, 16.0),
-        color,
-    );
-    draw_text_bold("Attendre", rect.x + 31.0, rect.y + 20.0, 14.0, color);
-
-    let binding = binding.to_uppercase();
-    let key_width = (measure_text_bold(&binding, 11).width + 12.0).max(34.0);
-    let key = Rect::new(
-        rect.x + rect.w - key_width - 6.0,
-        rect.y + 5.0,
-        key_width,
-        20.0,
-    );
-    draw_rectangle(key.x, key.y, key.w, key.h, UiTheme.surface_raised());
-    draw_rectangle_lines(key.x, key.y, key.w, key.h, 1.0, UiTheme.accent());
-    draw_text_bold_centered(&binding, key, 11, color);
+fn draw_wait_action_button(rect: Rect, binding: &str, hovered: bool, hover_strength: f32) {
+    draw_footer_action_button(rect, "Attendre", binding, UiIcon::Wait, hover_strength);
 
     if hovered {
         let tooltip = Rect::new(rect.x, rect.y - 39.0, 224.0, 31.0);
-        UiTheme.card(tooltip, false);
+        UiTheme.hud_panel(tooltip);
         draw_text(
             "Passe un tour sans vous déplacer.",
             tooltip.x + 9.0,
@@ -20717,6 +20688,58 @@ fn draw_wait_action_button(rect: Rect, binding: &str, hovered: bool) {
             UiTheme.text(),
         );
     }
+}
+
+fn draw_footer_action_button(
+    rect: Rect,
+    label: &str,
+    binding: &str,
+    icon: UiIcon,
+    hover_strength: f32,
+) {
+    UiTheme.hud_action(rect, hover_strength);
+    let hover = hover_strength.clamp(0.0, 1.0);
+    let base = UiTheme.text();
+    let accent = UiTheme.accent();
+    let color = Color::new(
+        base.r + (accent.r - base.r) * hover,
+        base.g + (accent.g - base.g) * hover,
+        base.b + (accent.b - base.b) * hover,
+        1.0,
+    );
+    draw_ui_icon(
+        icon,
+        Rect::new(rect.x + 9.0, rect.y + 7.0, 16.0, 16.0),
+        UiTheme.accent(),
+    );
+    let binding = binding.to_uppercase();
+    let key_width = (measure_text_bold(&binding, 11).width + 12.0).max(29.0);
+    let key = Rect::new(
+        rect.x + rect.w - key_width - 7.0,
+        rect.y + 5.0,
+        key_width,
+        20.0,
+    );
+    draw_rectangle(
+        key.x,
+        key.y,
+        key.w,
+        key.h,
+        Color::new(0.025, 0.065, 0.075, 0.98),
+    );
+    draw_text_bold_centered(&binding, key, 11, UiTheme.accent());
+    let label_width = (key.x - rect.x - 39.0).max(20.0);
+    let mut font_size = 14_u16;
+    while font_size > 12 && measure_text_bold(label, font_size).width > label_width {
+        font_size -= 1;
+    }
+    draw_text_bold(
+        label,
+        rect.x + 31.0,
+        rect.y + 20.0,
+        f32::from(font_size),
+        color,
+    );
 }
 
 fn draw_recommended_profile(rect: Rect, profile: PrimaryAttributes, minimum: u8, maximum: u8) {
@@ -21566,13 +21589,13 @@ fn draw_companion_behavior_tooltip(anchor: Rect, behavior: CompanionBehavior) {
         width,
         43.0,
     );
-    UiTheme.card(rect, false);
+    UiTheme.hud_panel(rect);
     draw_text_bold(
         companion_behavior_label(behavior),
         rect.x + 10.0,
         rect.y + 17.0,
         14.0,
-        UiTheme.focus(),
+        UiTheme.accent(),
     );
     draw_text(
         description,
@@ -21814,6 +21837,110 @@ mod tests {
         app.controls = Controls::preset(Layout::Azerty, KeySemantics::Physical);
         app.suspension_path = temporary_folder("test-run").join("suspended-run.json");
         app
+    }
+
+    #[test]
+    fn surface_size_trial_keeps_version_91_suspensions_on_the_old_map() {
+        let coordinate = RegionCoord::new(-1, 0, 0);
+        let world_id: ContentId = "core:simulation_overworld".parse().unwrap();
+        let current = app_with_test_controls();
+        let legacy = app_with_test_controls_version(RELAY_SERVICE_ROUTE_GENERATION_VERSION);
+        assert_eq!(
+            current
+                .regional_worlds
+                .get(&world_id)
+                .unwrap()
+                .map_size_at(coordinate),
+            RegionMapSize::new(128, 80).unwrap()
+        );
+        assert_eq!(
+            legacy
+                .regional_worlds
+                .get(&world_id)
+                .unwrap()
+                .map_size_at(coordinate),
+            RegionMapSize::new(96, 64).unwrap()
+        );
+        let saved = legacy.suspension().unwrap();
+        let restored = AsciiApp::restore_suspension(
+            &saved,
+            legacy.rules.clone(),
+            legacy.texts.clone(),
+            legacy.loot.clone(),
+            legacy.expeditions.clone(),
+        )
+        .unwrap();
+        assert_eq!(
+            restored.generation_version,
+            RELAY_SERVICE_ROUTE_GENERATION_VERSION
+        );
+        assert_eq!(suspension::fingerprint(&restored.game), saved.state);
+        assert_eq!(
+            restored
+                .regional_worlds
+                .get(&world_id)
+                .unwrap()
+                .map_size_at(coordinate),
+            RegionMapSize::new(96, 64).unwrap()
+        );
+    }
+
+    #[test]
+    fn surface_exploration_keeps_version_92_sites_and_replays_a_visited_region() {
+        let mut legacy = app_with_test_controls_version(SURFACE_MAP_SIZE_GENERATION_VERSION);
+        let world_id: ContentId = "core:simulation_overworld".parse().unwrap();
+        let habitat_id: ContentId = "core:human_habitat".parse().unwrap();
+        let old_habitat = legacy
+            .regional_worlds
+            .get(&world_id)
+            .unwrap()
+            .biome(&habitat_id)
+            .unwrap();
+        assert_eq!(old_habitat.terrain().patch_count(), 16);
+        assert_eq!(old_habitat.encounters().maximum_group_rolls(), 5);
+        assert_eq!(old_habitat.sites().compound_range(), (1, 2));
+        assert_eq!(old_habitat.landmarks().cache_range(), (2, 2));
+        let current = app_with_test_controls();
+        let new_habitat = current
+            .regional_worlds
+            .get(&world_id)
+            .unwrap()
+            .biome(&habitat_id)
+            .unwrap();
+        assert_eq!(new_habitat.terrain().patch_count(), 28);
+        assert_eq!(new_habitat.encounters().maximum_group_rolls(), 6);
+        assert_eq!(new_habitat.sites().compound_range(), (2, 2));
+
+        let west_hub_passage = TestSector::EXPANDED_REGIONAL_PASSAGES
+            .into_iter()
+            .find_map(|(direction, passage)| (direction == Direction::West).then_some(passage))
+            .unwrap();
+        legacy
+            .walk_fixture_to(west_hub_passage.step(Direction::East))
+            .unwrap();
+        apply(
+            &mut legacy,
+            GameCommand::Interact {
+                target: west_hub_passage,
+            },
+        );
+        assert_eq!(legacy.game.map().width(), 128);
+        assert_eq!(legacy.game.map().height(), 80);
+        let saved = legacy.suspension().unwrap();
+        let restored = AsciiApp::restore_suspension(
+            &saved,
+            legacy.rules.clone(),
+            legacy.texts.clone(),
+            legacy.loot.clone(),
+            legacy.expeditions.clone(),
+        )
+        .unwrap();
+        assert_eq!(
+            restored.generation_version,
+            SURFACE_MAP_SIZE_GENERATION_VERSION
+        );
+        assert_eq!(suspension::fingerprint(&restored.game), saved.state);
+        assert_eq!(restored.game.map().width(), 128);
     }
 
     #[test]
@@ -25755,7 +25882,7 @@ mod tests {
                 app.regional_worlds
                     .get(&"core:simulation_overworld".parse().unwrap())
                     .unwrap()
-                    .local_map_size(),
+                    .map_size_at(RegionCoord::new(-1, 0, 0)),
                 direction,
             )
         });
@@ -25776,7 +25903,7 @@ mod tests {
                     .all(|passage| home.x.abs_diff(passage.x) + home.y.abs_diff(passage.y) >= 8)
         }));
         assert!(app.game.ground_items().iter().count() >= 2);
-        assert!((1..=2).contains(&app.game.threat_sources().len()));
+        assert_eq!(app.game.threat_sources().len(), 2);
         if app.game.active_facility().is_some_and(|facility| {
             facility.installations().any(|(_, installation)| {
                 installation
@@ -26226,8 +26353,12 @@ mod tests {
             .regional_worlds
             .get(&"core:simulation_overworld".parse().unwrap())
             .unwrap();
-        let descent = project_rl::world::generation::vertical_passage(
-            world.local_map_size(),
+        let surface_descent = project_rl::world::generation::vertical_passage(
+            world.map_size_at(RegionCoord::new(-1, 0, 0)),
+            project_rl::content::RegionVerticalDirection::Down,
+        );
+        let layer_one_descent = project_rl::world::generation::vertical_passage(
+            world.map_size_at(RegionCoord::new(-1, 0, 1)),
             project_rl::content::RegionVerticalDirection::Down,
         );
         let layer_two_ascent = project_rl::world::generation::vertical_passage(
@@ -26259,21 +26390,26 @@ mod tests {
             project_rl::content::RegionVerticalDirection::Up,
         );
         assert_eq!(
-            app.terminal.decor.cells.get(&descent),
+            app.terminal.decor.cells.get(&surface_descent),
             Some(&crate::test_sector::Decor::Descent)
         );
-        assert!(app.game.passage(descent).is_some());
+        assert!(app.game.passage(surface_descent).is_some());
         assert!(
             app.navigation_signal_summary()
-                .is_some_and(|signal| signal == "ACCÈS INFÉRIEUR · OUEST · À DISTANCE")
+                .is_some_and(|signal| signal == "ACCÈS INFÉRIEUR · OUEST · LOINTAIN")
         );
 
-        app.walk_fixture_to(descent).unwrap();
+        app.walk_fixture_to(surface_descent).unwrap();
         assert_eq!(
             app.navigation_signal_summary().as_deref(),
             Some("ACCÈS INFÉRIEUR · SUR PLACE")
         );
-        apply(&mut app, GameCommand::Interact { target: descent });
+        apply(
+            &mut app,
+            GameCommand::Interact {
+                target: surface_descent,
+            },
+        );
         let layer_one_zone = app.game.current_zone().unwrap().id.clone();
         let ascent = app.game.player_position().unwrap();
         assert_eq!(
@@ -26377,12 +26513,17 @@ mod tests {
                 !app.game.map().is_walkable(position) || app.game.map().is_protected(position)
             })
         }));
-        app.walk_fixture_to(descent).unwrap();
+        app.walk_fixture_to(layer_one_descent).unwrap();
         assert_eq!(
             app.navigation_signal_summary().as_deref(),
             Some("ACCÈS INFÉRIEUR · SUR PLACE")
         );
-        apply(&mut app, GameCommand::Interact { target: descent });
+        apply(
+            &mut app,
+            GameCommand::Interact {
+                target: layer_one_descent,
+            },
+        );
         let layer_two_zone = app.game.current_zone().unwrap().id.clone();
         assert_eq!(
             app.regional_zones.get(&layer_two_zone),
@@ -26675,7 +26816,7 @@ mod tests {
             },
         );
         assert_eq!(restored.game.current_zone().unwrap().id, layer_one_zone);
-        assert_eq!(restored.game.player_position(), Some(descent));
+        assert_eq!(restored.game.player_position(), Some(layer_one_descent));
         assert_eq!(
             restored
                 .game
@@ -27698,7 +27839,7 @@ mod tests {
             signals[0].distance,
             signals.len(),
         );
-        assert!(summary.starts_with("SIGNAL DE SITE · EST"));
+        assert!(summary.starts_with("SIGNAL DE SITE ·"));
         assert!(!summary.contains('('));
     }
 
@@ -28090,7 +28231,10 @@ mod tests {
                     .without_quest_authorization_effect_metadata()
             )
         );
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions_with_authorization,
@@ -28140,7 +28284,10 @@ mod tests {
                     .without_property_report_metadata()
             )
         );
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions,
@@ -28187,7 +28334,10 @@ mod tests {
                     .without_reported_incident_response_metadata()
             )
         );
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions,
@@ -28237,7 +28387,10 @@ mod tests {
                     .without_installed_property_report_metadata()
             )
         );
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions,
@@ -28278,7 +28431,10 @@ mod tests {
     #[test]
     fn version_seventy_three_keeps_tactical_reading_without_conductive_relays() {
         let (_, _, _, expeditions) = ascii_game_content().unwrap();
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         let world = regional_worlds
             .get(&"core:simulation_overworld".parse().unwrap())
             .unwrap();
@@ -28312,7 +28468,10 @@ mod tests {
     #[test]
     fn version_seventy_four_keeps_the_first_shaft_without_the_layer_two_extension() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             regional_worlds
                 .get(&"core:simulation_overworld".parse().unwrap())
@@ -28391,7 +28550,10 @@ mod tests {
     #[test]
     fn version_seventy_five_keeps_the_second_shaft_without_retroactive_city_services() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions,
@@ -28466,7 +28628,10 @@ mod tests {
     #[test]
     fn version_seventy_six_keeps_the_first_city_without_replacing_layer_two() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions,
@@ -28552,7 +28717,10 @@ mod tests {
     #[test]
     fn version_seventy_seven_keeps_two_cities_without_opening_layer_three() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions,
@@ -28623,7 +28791,10 @@ mod tests {
     #[test]
     fn version_seventy_eight_opens_layer_three_without_retroactive_city_services() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions,
@@ -28717,7 +28888,10 @@ mod tests {
     #[test]
     fn version_seventy_nine_keeps_three_cities_without_opening_layer_four() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions,
@@ -28756,7 +28930,10 @@ mod tests {
     #[test]
     fn version_eighty_opens_layer_four_without_retroactive_city_services() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions,
@@ -28860,7 +29037,10 @@ mod tests {
     #[test]
     fn version_eighty_one_keeps_four_cities_without_opening_layer_five() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions,
@@ -28899,7 +29079,10 @@ mod tests {
     #[test]
     fn version_eighty_two_opens_layer_five_without_retroactive_city_services() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let regional_worlds = ascii_regional_world_catalog().unwrap();
+        let regional_worlds = ascii_regional_world_catalog()
+            .unwrap()
+            .without_surface_exploration_metadata()
+            .without_surface_map_metadata();
         assert_eq!(
             world_fingerprint_for_version(
                 &expeditions,

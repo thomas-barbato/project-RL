@@ -1555,6 +1555,7 @@ pub struct RegionalWorldDefinition {
     bounds: RegionBounds,
     province_size: u16,
     local_map_size: RegionMapSize,
+    surface_map_size: Option<RegionMapSize>,
     biomes: Vec<RegionBiomeRule>,
     vertical_links: Vec<RegionVerticalLink>,
     cities: Vec<RegionCityDefinition>,
@@ -1569,6 +1570,9 @@ impl Debug for RegionalWorldDefinition {
             .field("province_size", &self.province_size)
             .field("local_map_size", &self.local_map_size)
             .field("biomes", &self.biomes);
+        if let Some(surface_map_size) = self.surface_map_size {
+            debug.field("surface_map_size", &surface_map_size);
+        }
         // Empty link metadata must keep the exact pre-v29 debug shape because
         // legacy suspension fingerprints are intentionally replay-compatible.
         if !self.vertical_links.is_empty() {
@@ -1726,6 +1730,7 @@ impl RegionalWorldDefinition {
             bounds,
             province_size,
             local_map_size,
+            surface_map_size: None,
             biomes,
             vertical_links: Vec::new(),
             cities: Vec::new(),
@@ -1810,6 +1815,19 @@ impl RegionalWorldDefinition {
         self.local_map_size
     }
 
+    pub fn with_surface_map_size(
+        mut self,
+        size: Option<RegionMapSize>,
+    ) -> Result<Self, RegionalWorldError> {
+        if size.is_some_and(|size| {
+            size.width < self.local_map_size.width || size.height < self.local_map_size.height
+        }) {
+            return Err(RegionalWorldError::SurfaceMapSmallerThanLocalMap);
+        }
+        self.surface_map_size = size;
+        Ok(self)
+    }
+
     pub fn biomes(&self) -> &[RegionBiomeRule] {
         &self.biomes
     }
@@ -1828,13 +1846,21 @@ impl RegionalWorldDefinition {
             .find(|city| city.coordinate == coordinate)
     }
 
-    /// Returns the actual dimensions of a local destination. Authored cities
-    /// may use a silhouette distinct from the procedural regions around them;
+    /// Returns the actual dimensions of a local destination. Surface regions
+    /// and authored cities may differ from the procedural regions below;
     /// passage arrivals must therefore be resolved from the destination, not
     /// from the atlas-wide procedural default.
     pub fn map_size_at(&self, coordinate: RegionCoord) -> RegionMapSize {
-        self.city_at(coordinate)
-            .map_or(self.local_map_size, RegionCityDefinition::map_size)
+        self.city_at(coordinate).map_or_else(
+            || {
+                if coordinate.depth == 0 {
+                    self.surface_map_size.unwrap_or(self.local_map_size)
+                } else {
+                    self.local_map_size
+                }
+            },
+            RegionCityDefinition::map_size,
+        )
     }
 
     pub fn biome(&self, id: &ContentId) -> Option<&RegionBiomeRule> {
@@ -1954,6 +1980,48 @@ impl RegionalWorldCatalog {
 
     pub fn iter(&self) -> impl Iterator<Item = (&ContentId, &RegionalWorldDefinition)> {
         self.definitions.iter()
+    }
+
+    pub fn without_surface_map_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            definition.surface_map_size = None;
+        }
+        catalog
+    }
+
+    /// Restores the two core surface biomes as they were before the v93
+    /// exploration trial. Existing suspensions must retain their terrain,
+    /// site, threat-source and loot draws even when the live data is richer.
+    /// Other worlds and modded biomes are left untouched.
+    pub fn without_surface_exploration_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog
+            .definitions
+            .values_mut()
+            .find(|definition| definition.id.as_str() == "core:simulation_overworld")
+        {
+            for biome in &mut definition.biomes {
+                let (patch_count, encounter_maximum) = match biome.biome.as_str() {
+                    "core:human_habitat" => (16, 5),
+                    "core:surface_wilds" => (24, 6),
+                    _ => continue,
+                };
+                biome.terrain.patch_count = patch_count;
+                biome.encounters.maximum_group_rolls = encounter_maximum;
+                biome.landmarks.minimum_caches = 2;
+                biome.landmarks.maximum_caches = 2;
+                biome.landmarks.minimum_threat_camps = 1;
+                biome.landmarks.maximum_threat_camps = 2;
+                biome.sites.minimum_compounds = 1;
+                biome.sites.maximum_compounds = 2;
+                if let Some(loot) = &mut biome.loot {
+                    loot.minimum_draws = 2;
+                    loot.maximum_draws = 4;
+                }
+            }
+        }
+        catalog
     }
 
     pub fn without_population_metadata(&self) -> Self {
@@ -2410,6 +2478,7 @@ pub enum RegionalWorldError {
     DuplicateWorld(ContentId),
     LocalMapTooSmall,
     LocalMapTooLarge,
+    SurfaceMapSmallerThanLocalMap,
     BlockedBaseTerrain,
     ZeroTerrainWeight,
     TerrainPatchBudgetExceeded,
@@ -2518,6 +2587,10 @@ impl Display for RegionalWorldError {
             Self::LocalMapTooLarge => write!(
                 formatter,
                 "regional local maps cannot exceed {MAX_REGION_MAP_SIDE} tiles per side"
+            ),
+            Self::SurfaceMapSmallerThanLocalMap => write!(
+                formatter,
+                "regional surface maps cannot be smaller than the ordinary local map"
             ),
             Self::BlockedBaseTerrain => {
                 write!(formatter, "regional base terrain must be walkable")

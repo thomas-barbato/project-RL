@@ -11,6 +11,9 @@
   // checkerboard. Individual local maps still receive unique region seeds.
   province_size: 4,
   local_map: { width: 96, height: 64 },
+  // First playable surface-size trial. Cities and underground maps keep their
+  // own dimensions; older suspended runs retain the 96 x 64 surface maps.
+  surface_map: { width: 128, height: 80 },
   // Explicit shafts keep vertical topology authored and moddable. Regions are
   // still generated only when the player first crosses one of these links.
   vertical_links: [
@@ -427,7 +430,7 @@
     {
       id: "core:human_habitat", weight: 60, maximum_depth: 0,
       terrain: {
-        ground: "gravel", patch_count: 16,
+        ground: "gravel", patch_count: 28,
         minimum_patch_radius: 3, maximum_patch_radius: 10,
         features: [
           { kind: "grass", weight: 3 }, { kind: "scrub", weight: 2 },
@@ -480,7 +483,7 @@
       // V21: guarded points of interest plus a few roaming groups. This layer
       // has its own random stream so density tuning never changes the terrain.
       encounters: {
-        group_rolls: [3, 5],
+        group_rolls: [3, 6],
         groups: [
           {
             weight: 70, count: [1, 2], minimum_passage_distance: 8,
@@ -519,10 +522,10 @@
           },
         ],
       },
-      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [2, 4] },
-      landmarks: { caches: [2, 2], threat_camps: [1, 2], minimum_passage_distance: 8 },
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [3, 5] },
+      landmarks: { caches: [3, 3], threat_camps: [2, 2], minimum_passage_distance: 8 },
       sites: {
-        compounds: [1, 2],
+        compounds: [2, 2],
         width: 9,
         height: 7,
         entrances: { open: 2, closed_door: 5, locked_console: 3 },
@@ -559,7 +562,7 @@
     {
       id: "core:surface_wilds", weight: 40, maximum_depth: 0,
       terrain: {
-        ground: "grass", patch_count: 24,
+        ground: "grass", patch_count: 40,
         minimum_patch_radius: 3, maximum_patch_radius: 11,
         features: [
           { kind: "scrub", weight: 4 }, { kind: "mud", weight: 2 },
@@ -610,7 +613,7 @@
         ],
       },
       encounters: {
-        group_rolls: [4, 6],
+        group_rolls: [4, 7],
         groups: [
           {
             weight: 65, count: [1, 2], minimum_passage_distance: 8,
@@ -649,10 +652,10 @@
           },
         ],
       },
-      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [2, 4] },
-      landmarks: { caches: [2, 2], threat_camps: [1, 2], minimum_passage_distance: 9 },
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [3, 5] },
+      landmarks: { caches: [3, 3], threat_camps: [2, 2], minimum_passage_distance: 9 },
       sites: {
-        compounds: [1, 2],
+        compounds: [2, 2],
         width: 9,
         height: 7,
         entrances: { open: 4, closed_door: 4, locked_console: 2 },

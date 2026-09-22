@@ -509,7 +509,7 @@ impl TerminalView {
             bounds.w,
             bounds.h,
             1.0,
-            Color::from_rgba(39, 73, 82, 255),
+            Color::from_rgba(45, 79, 86, 185),
         );
         let protected = game
             .player_position()
@@ -534,6 +534,13 @@ impl TerminalView {
             cyan,
         );
         if layout.header.w > 560.0 {
+            let safety_chip = Rect::new(
+                layout.header.x + layout.header.w - safety_width - 13.0,
+                layout.header.y + 3.0,
+                safety_width + 13.0,
+                25.0,
+            );
+            UiTheme.hud_chip(safety_chip);
             draw_ui_text(
                 safety_label,
                 layout.header.x + layout.header.w - safety_width,
@@ -543,7 +550,7 @@ impl TerminalView {
             );
         }
         if let (Some(signal), Some(signal_rect)) = (navigation_signal, layout.route) {
-            UiTheme.card(signal_rect, false);
+            UiTheme.hud_chip(signal_rect);
             draw_ui_text_bold(
                 "ITINÉRAIRE",
                 signal_rect.x + 10.0,
@@ -940,17 +947,6 @@ impl TerminalView {
                 &sensor_contacts,
             );
         }
-        if visible_local_alerts + visible_security_alarms + visible_security_lockdowns > 0 {
-            let pulse = ((get_time() * 4.0).sin() * 0.5 + 0.5) as f32;
-            draw_rectangle_lines(
-                bounds.x + 1.0,
-                bounds.y + 1.0,
-                bounds.w - 2.0,
-                bounds.h - 2.0,
-                3.0 + pulse,
-                Color::new(1.0, 0.43 + pulse * 0.2, 0.13, 0.82 + pulse * 0.18),
-            );
-        }
         if legend_open {
             draw_legend_overlay(game, bounds, legend_label);
         }
@@ -977,7 +973,7 @@ impl TerminalView {
         let bright = Color::from_rgba(203, 222, 221, 255);
         let muted = Color::from_rgba(133, 163, 170, 255);
         let cyan = Color::from_rgba(100, 221, 201, 255);
-        UiTheme.card(panel, false);
+        UiTheme.hud_panel(panel);
         let rect = Rect::new(
             panel.x + 10.0,
             panel.y + 10.0,
@@ -1037,9 +1033,8 @@ impl TerminalView {
             observation_fields,
             sensor_contacts,
         );
-        let mut y = map_area.y + map_area.h + 12.0;
-        draw_line(rect.x, y, rect.x + rect.w, y, 1.0, UiTheme.muted());
-        y += 22.0;
+        let mut y = map_area.y + map_area.h + 20.0;
+        UiTheme.hud_chip(Rect::new(rect.x, y - 21.0, rect.w, 29.0));
         draw_ui_icon(UiIcon::All, Rect::new(rect.x, y - 15.0, 16.0, 16.0), cyan);
         draw_ui_text_bold("EN VUE", rect.x + 24.0, y, 16.0, bright);
         y += 23.0;
@@ -1101,9 +1096,8 @@ impl TerminalView {
             );
         }
 
-        y += 12.0;
-        draw_line(rect.x, y, rect.x + rect.w, y, 1.0, UiTheme.muted());
-        y += 22.0;
+        y += 23.0;
+        UiTheme.hud_chip(Rect::new(rect.x, y - 21.0, rect.w, 29.0));
         draw_ui_icon(
             UiIcon::Target,
             Rect::new(rect.x, y - 15.0, 16.0, 16.0),
@@ -1136,7 +1130,7 @@ impl TerminalView {
                 );
                 y += 7.0;
                 draw_hud_progress(
-                    Rect::new(rect.x, y, rect.w, 7.0),
+                    Rect::new(rect.x, y, rect.w, 5.0),
                     analysis.integrity,
                     analysis.maximum_integrity,
                     UiTheme.success(),
@@ -3168,14 +3162,7 @@ fn draw_interaction_tooltip(anchor: Rect, map: Rect, title: &str, action: &str) 
     };
     let y = anchor.y.clamp(map.y + 4.0, map.y + map.h - height - 4.0);
     let panel = Rect::new(x, y, width, height);
-    UiTheme.card(panel, false);
-    draw_rectangle(
-        panel.x,
-        panel.y,
-        3.0,
-        panel.h,
-        Color::from_rgba(121, 231, 218, 255),
-    );
+    UiTheme.hud_panel(panel);
     draw_bounded_text(
         title,
         x + 11.0,
