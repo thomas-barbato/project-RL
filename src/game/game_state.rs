@@ -2440,7 +2440,9 @@ impl GameState {
             | GameCommand::SellItem { .. }
             | GameCommand::ReceiveTreatment { .. }
             | GameCommand::CompleteQuest { .. } => CommandOutcome::Applied,
-            GameCommand::AcceptQuest { .. } => CommandOutcome::AppliedWithoutTime,
+            GameCommand::AcceptQuest { .. } | GameCommand::ChooseDialogue { .. } => {
+                CommandOutcome::AppliedWithoutTime
+            }
             GameCommand::UseAbility { slot, target } => {
                 match self.perform_ability(self.player, slot, target) {
                     Ok(()) => {
@@ -15014,6 +15016,7 @@ pub enum CommandRejection {
     QuestAlreadyCompleted,
     QuestRewardUnavailable,
     QuestWorldEffectUnavailable,
+    DialogueChoiceUnavailable,
     EquippedItemCannotBeSold,
     ProtectedZone,
     RunEnded,

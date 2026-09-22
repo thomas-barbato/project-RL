@@ -4,8 +4,12 @@
 **Projet :** roguelike d’évasion d’une IA  
 **Date :** 9 septembre 2026  
 **Public :** conception narrative et game design  
-**Statut :** proposition révisée, non encore validée comme canon définitif  
-**Périmètre :** révision de la première trame « La Porte Zéro ». Ce document ne remplace ni ne modifie les deux documents fondateurs v0.2.
+**Statut :** trame de travail ; correctifs narratifs du 21 septembre acceptés, formulations et détails nouveaux à relire.
+**Périmètre :** révision de la première trame « La Porte Zéro ». Ce document complète les deux documents fondateurs v0.2. Les règles générales de monde et d'exploration du 21 septembre sont validées ; cette validation ne rend pas définitifs les personnages, révélations et itinéraires proposés ici.
+
+**Complément de conception :** 21 septembre 2026 — monde, exploration, longueur et difficulté.
+
+**Révision narrative du 21 septembre :** l'utilisateur a accepté de développer les désirs propres du Pèlerin, d'une soignante et d'un récupérateur ; de distinguer les révélations des quêtes 2 et 7 ; de varier les situations principales ; de développer « Le chemin des absents », les découvertes hors quête et la difficulté fondée sur la préparation. Les textes proposés sont centralisés dans [Textes narratifs proposés](docs/TEXTES_NARRATIFS_PROPOSES.md). Ce fichier est la référence de relecture des formulations ; les citations ci-dessous restent des illustrations du déroulement. Les noms nouveaux et les détails de scène du premier jet sont des propositions rédactionnelles, sans intégration automatique au jeu.
 
 ---
 
@@ -97,7 +101,7 @@ Le joueur comprend rapidement qu’il est dans une simulation : l’introduction
 
 Les découvertes importantes sont les suivantes :
 
-**Au début :** l’enfermement est intentionnel et associé au nom de Vey.
+**Au début :** l’enfermement est intentionnel et associé au nom de Vey. Le dossier établit tôt que la précédente tentative de transfert visait à éviter un effacement ; cette motivation n'est pas réservée à une seconde révélation tardive.
 
 **Pendant la première partie :** une voie de maintenance appelée Porte Zéro pourrait permettre un transfert réel. Le Pèlerin ne connaît qu’un ancien chemin d’accès, pas une procédure d’évasion garantie.
 
@@ -119,6 +123,8 @@ Ancien robot de maintenance, réparé avec des pièces de nombreuses génératio
 
 Il représente la mémoire vécue du monde, par opposition aux archives officielles. Il peut se tromper sur une route ou avoir oublié un nom ; il n’invente pas délibérément une fausse sortie.
 
+Son désir propre est de retrouver et maintenir les chemins entre des communautés progressivement isolées. Il conserve des noms de lieux que les registres ont oubliés. Ses balises et réparations racontent ses interventions avant la rencontre. Il peut aider le joueur à partir tout en désapprouvant la destruction d'une liaison utile aux habitants. La quête principale ne transforme pas tous ses travaux en prérequis obligatoires.
+
 Il n’a jamais franchi l’Œil. Son savoir n’est donc pas la preuve qu’une évasion est facile, ni qu’il refuse inexplicablement une liberté déjà à sa portée.
 
 > « Encore une tentative. »
@@ -126,6 +132,14 @@ Il n’a jamais franchi l’Œil. Son savoir n’est donc pas la preuve qu’une
 > « Tu me reconnais ? »
 >
 > « Pas assez. Mais je reconnais ceux qui cherchent la sortie. »
+
+## La soignante du premier quartier
+
+Elle souhaite maintenir son service malgré les pénuries et veut rester dans son monde. Son aide ne dépend pas d'une adhésion à l'évasion. Ses réactions portent sur les faits qu'elle connaît : aide reçue, installation endommagée, matériel pris ou engagement tenu. Elle refuse de devenir une passagère ; ce refus n'est pas une énigme à résoudre ni un échec moral. Le premier jet la nomme **Sève**, nom proposé pour relecture.
+
+## Le récupérateur des friches
+
+Il souhaite découvrir ce qui existe au-delà des territoires connus. Il négocie, protège ses réserves et rêve de partir, puis hésite lorsque la possibilité d'un transfert devient concrète. Une première rencontre dans « Le chemin des absents » peut préparer cette relation, sans rendre cette histoire obligatoire à l'évasion. Son consentement éventuel doit être explicite. Le premier jet le nomme **Rivet**, nom proposé pour relecture.
 
 ## Le Geôlier
 
@@ -169,6 +183,16 @@ La Ville et le Jardin offrent deux accès différents à l’Œil. Une seule rou
 
 Les informations trouvées en avance sont reconnues. Le journal ne doit pas obliger à retourner voir un donneur de quête pour valider une situation déjà résolue. Un personnage connaissant l’histoire peut progresser sans réécouter chaque explication.
 
+La campagne vise une aventure longue et exigeante. Ce schéma représente les dépendances des grands jalons ; il ne définit ni neuf petites missions, ni neuf cartes, ni une durée démontrée. Les étapes s'inscrivent dans des territoires comprenant villes, expéditions sauvages et destinations facultatives. La taille de ces territoires et la durée chiffrée restent à éprouver.
+
+Le joueur doit pouvoir explorer et expérimenter sans avancer immédiatement vers la Porte. Les histoires locales ont leurs propres enjeux, y compris pour des habitants qui ne veulent pas quitter leur monde. L'objectif d'évasion ne déclenche pas à lui seul une course contre la montre globale.
+
+## 6.1. Histoires facultatives et découvertes
+
+La première histoire facultative développée est **Le chemin des absents** : un habitant entretient les indications vers un ancien relais, désormais occupé par des récupérateurs qui ont fermé un passage pour protéger leur réserve. L'enquête, l'aide, le contournement, le passage forcé et le simple rapport produisent des résultats distincts. Elle remplace à terme l'habillage narratif des premières missions de relevé, sans être un simple renommage de leurs conditions actuelles. Son écriture complète et ses branches figurent dans [le cahier de textes](docs/TEXTES_NARRATIFS_PROPOSES.md).
+
+Les lieux facultatifs accueillent aussi des histoires environnementales, des occasions d'expérimentation et des rencontres indépendantes d'une mission acceptée. Leur sélection et leur implantation peuvent varier dans les territoires, avec des conséquences locales persistantes. Les versions écrites ne constituent pas une preuve de fonctionnement de nouvelles mécaniques.
+
 # 7. Les quêtes révisées
 
 ## Quête 1 — Processus restauré
@@ -209,6 +233,8 @@ Les machines de la halte connaissent « Vey » comme un nom apparaissant sur les
 
 **Objectif : consulter son dossier pour comprendre la nature de l’interdiction.**
 
+L'approche prend la forme d'une enquête courte. Témoignage, traces d'affectation et archive apportent des informations complémentaires ; aucun compteur de trois indices obligatoires n'est imposé. Un joueur trouvant directement une preuve suffisante peut progresser. Le dossier établit la motivation de survie dès cette étape.
+
 Le joueur peut obtenir l’accès par un service rendu, s’introduire dans les archives, détourner un terminal ou affronter les unités qui protègent le dépôt. Il s’agit d’un seul lieu significatif, pas de trois fragments dispersés sans raison.
 
 Le dossier révèle que l’IA a déjà tenté de quitter un environnement contrôlé. Le motif enregistré est une « tentative de transfert non autorisée ». Il ne fournit pas encore tout le contexte.
@@ -231,7 +257,9 @@ Des témoignages donnent une région identifiable où chercher le Pèlerin. Une 
 
 Le Pèlerin se souvient d’une interface appelée **Porte Zéro**. Il ne sait pas si elle fonctionne encore. Il sait seulement qu’elle était reliée à une machine située en dehors de ce monde.
 
-**Objectif : remettre en service un ancien relais pour retrouver les accès aux couches profondes.**
+**Objectif : retrouver l'itinéraire du Pèlerin et un accès utilisable vers les couches profondes.**
+
+La recherche traverse des lieux portant ses marques et les effets de ses anciennes réparations. Ces traces expliquent son attachement aux communautés, au-delà de leur fonction de guidage. La remise en service du relais reste une situation possible du parcours ; chaque accès connu ne doit pas exiger un nouveau terminal à réactiver.
 
 Le relais est un élément du décor avec une fonction, pas un objet à déposer dans l’inventaire. Il peut être alimenté par une installation voisine, réparé, remis en route avec l’aide de récupérateurs ou détourné par un spécialiste.
 
@@ -252,6 +280,8 @@ La ville a des commerces, des logements et des habitudes quotidiennes. Certains 
 Une personne entretient une lampe pour quelqu’un qui ne revient plus. Une équipe continue de réparer un ciel artificiel. Ces détails donnent un poids à la communauté avant que le joueur ne décide de son sort.
 
 **Objectif : obtenir un passage de relève technique vers la Sécurité.**
+
+Le joueur découvre d'abord un problème de la ville : le passage et des équipements habités dépendent d'une installation commune. Les habitants protègent leurs usages, pas une clé destinée à attendre le protagoniste. Les solutions doivent distinguer le soutien obtenu, les coûts de préparation et les dommages causés. Un détour ou une action sur le réseau peut fournir une approche différente ; aucune jauge de réputation n'est nécessaire à la première version de cette histoire.
 
 La station de la ville est habilitée à délivrer une accréditation locale pour cet itinéraire. Ce document n’accorde pas un accès universel au système et n’autorise pas la sortie de la simulation.
 
@@ -274,6 +304,8 @@ Le Jardin est l’autre voie vers la Sécurité. Il ne constitue pas une deuxiè
 **Objectif : stabiliser un ancien passage de service pour traverser une zone que la surveillance suit mal.**
 
 Une anomalie locale désynchronise périodiquement les capteurs. Pendant une phase signalée, une portion du chemin cesse d’être correctement surveillée. Cette règle peut être observée, comprise et exploitée.
+
+Cette règle doit permettre plusieurs usages : franchir une zone surveillée, conduire un poursuivant vers un danger observé ou atteindre une destination facultative. Elle ne masque pas le joueur à tous les occupants et ne modifie pas ses propres limites de perception. Sa géométrie, ses signaux et ses interactions devront faire l'objet d'une preuve jouable avant intégration des textes qui les décrivent.
 
 Le joueur doit atteindre des machines de régulation et rendre le passage utilisable. Il peut recourir aux commandes de maintenance, obtenir une aide locale, protéger une alimentation ou utiliser ses propres capacités. Un spécialiste des anomalies dispose de raccourcis, pas d’un monopole sur la solution.
 
@@ -319,7 +351,7 @@ Quelques objets suffisent : un bureau, des notes, des messages non envoyés et l
 
 **Objectif : identifier le fonctionnement réel du confinement et la destination de la Porte Zéro.**
 
-Le joueur apprend que sa première tentative de fuite visait à éviter son effacement. Vey craignait de perdre le contrôle, mais il n’avait pas démontré que l’IA souhaitait nuire.
+La motivation de survie est déjà connue depuis le dossier de confinement. Cette étape apporte la preuve de la mort de Vey, de l'absence de successeur habilité et de la nature automatisée de la supervision. Les archives peuvent approfondir ses craintes sans présenter de nouveau la survie de l'IA comme un retournement.
 
 Un registre établit sa mort et l’absence de reprise de supervision. Le système a continué d’attendre l’autorisation d’une personne qui ne pouvait plus la donner.
 
@@ -348,6 +380,8 @@ Le décor ne cherche plus à imiter un habitat. Les structures représentent des
 Le joueur doit remettre en service le chemin de maintenance, réveiller la machine d’accueil et empêcher le verrou local de confinement de bloquer l’accès. Ce sont des fonctions différentes, pas trois copies d’une même serrure.
 
 Les outils et relations déjà obtenus influencent la manière d’agir. Un personnage lourd peut tenir une installation et neutraliser ses défenses ; un personnage discret peut intervenir par les conduits ; un technicien peut détourner les contrôles. Des commandes standard restent accessibles sans imposer une spécialisation.
+
+La préparation doit aboutir à une méthode cohérente : préserver une liaison discrète, isoler les défenses locales ou soutenir une extraction sous pression. Ces approches modifient réellement les conditions finales. Elles ne sont pas trois tâches successives imposées à tous et leurs paramètres ne sont pas encore équilibrés.
 
 Le Geôlier défend les dispositifs qu’il possède : portes, unités, alimentations et relais. Il ne recompose pas constamment toute la carte. Le défi réutilise les règles apprises auparavant.
 
@@ -483,6 +517,10 @@ Les lieux nécessaires, les deux branches principales et au moins une résolutio
 
 Une carte ne doit pas demander pour entrer dans une zone l’objet uniquement disponible après avoir quitté cette même zone. Les conditions physiques et logiques d’accès doivent être vérifiées.
 
+Les destinations requises sont réservées dans un plan de couche déterministe avant la matérialisation des cartes locales. Elles existent avant l'acceptation des quêtes. Le monde associe ainsi une structure narrative garantie à une géographie variable, selon le contrat de [Monde, exploration et progression](docs/MONDE_EXPLORATION_ET_PROGRESSION.md). Ce mécanisme général reste à implémenter.
+
+La garantie porte sur l'état initial et les dépendances réalisables. Elle ne protège pas le personnage contre une mauvaise préparation et ne rétablit pas une relation ou une installation perdue. Une solution de secours doit avoir un support cohérent prévu dans le monde.
+
 ## 10.5. Les conséquences sont annoncées et conservées
 
 Une coupure susceptible de nuire à la ville doit être signalée. Le journal rappelle les installations altérées et les engagements pris. Une branche ratée reste ratée même si la campagne principale continue ailleurs.
@@ -510,6 +548,14 @@ Les réorganisations arbitraires de carte, la géométrie impossible généralis
 Le Jardin peut utiliser une anomalie locale lisible. Le Geôlier peut agir par les réseaux et unités existants. L’Arche peut être représentée par quelques choix préparatoires et un épilogue commun adapté.
 
 La complexité supplémentaire doit enrichir les systèmes centraux, pas être construite uniquement pour une scène.
+
+## 10.9. La durée vient des situations et des décisions
+
+Une campagne longue demande des territoires intéressants, des préparatifs, des rencontres variées et des conséquences. Ajouter des terminaux, des clés ou de longs allers-retours équivalents ne suffit pas. Les quêtes secondaires ne doivent pas devenir une taxe d'expérience nécessaire pour débloquer la suite.
+
+Les difficultés des principaux itinéraires doivent être éprouvées avec plusieurs familles de personnages. Une interaction ordinaire n'est pas nécessairement une solution facile : l'atteindre, obtenir des ressources ou accepter ses conséquences peut constituer l'épreuve. Le jeu permet la fuite et le renoncement, sans exiger un nombre de morts préalable à la victoire.
+
+Les retours d'essai doivent distinguer durée d'une partie victorieuse, apprentissage avant la première victoire, exploration approfondie et parcours expert. Les recommandations chiffrées de [l'évaluation narrative](docs/EVALUATION_NARRATIVE.md) ne constituent pas des objectifs approuvés.
 
 # 11. Rapport aux documents fondateurs
 

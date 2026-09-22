@@ -167,7 +167,12 @@ const FIFTH_REGIONAL_CITY_GENERATION_VERSION: u8 = FIFTH_LAYER_ROUTE_GENERATION_
 const RECYCLING_INTRO_GENERATION_VERSION: u8 = FIFTH_REGIONAL_CITY_GENERATION_VERSION + 1;
 const SITE_SURVEY_GENERATION_VERSION: u8 = RECYCLING_INTRO_GENERATION_VERSION + 1;
 const SITE_TERMINAL_NAVIGATION_GENERATION_VERSION: u8 = SITE_SURVEY_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = SITE_TERMINAL_NAVIGATION_GENERATION_VERSION;
+const NARRATIVE_GENERATION_VERSION: u8 = SITE_TERMINAL_NAVIGATION_GENERATION_VERSION + 1;
+const NARRATIVE_REWARD_GENERATION_VERSION: u8 = NARRATIVE_GENERATION_VERSION + 1;
+const STATIONARY_QUEST_CONTACT_GENERATION_VERSION: u8 = NARRATIVE_REWARD_GENERATION_VERSION + 1;
+#[path = "narrative_app.rs"]
+mod narrative;
+const CURRENT_GENERATION_VERSION: u8 = STATIONARY_QUEST_CONTACT_GENERATION_VERSION;
 const _: () = assert!(CURRENT_GENERATION_VERSION == suspension::MAX_GENERATION_VERSION);
 const LOG_CAPACITY: usize = 6;
 const FLOATING_MESSAGE_CAPACITY: usize = 32;
@@ -996,6 +1001,18 @@ enum ResumeSource {
     CrashRecovery { sequence: u64 },
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum ContextChoice {
+    PickUp,
+    Interact(GridPos),
+}
+
+#[derive(Clone, Debug)]
+struct ContextMenu {
+    choices: Vec<ContextChoice>,
+    selected: usize,
+}
+
 pub struct AsciiApp {
     game: WorldState,
     terminal: TerminalView,
@@ -1051,11 +1068,13 @@ pub struct AsciiApp {
     quest_journal_open: bool,
     quest_journal_selection: usize,
     npc_interaction: Option<EntityId>,
+    npc_dialogue_services: bool,
     npc_interaction_message: String,
     npc_interaction_mode: NpcInteractionMode,
     npc_trade_mode: NpcTradeMode,
     npc_trade_selection: usize,
     npc_quest_selection: usize,
+    context_menu: Option<ContextMenu>,
     legend_open: bool,
     npc_vision_overlay_open: bool,
     controls: Controls,
@@ -2457,6 +2476,74 @@ impl AsciiApp {
         }
         match scene {
             "game" => {}
+            "context-menu" => {
+                app.walk_fixture_to(GridPos::new(76, 8))?;
+                let item: ItemId = "core:power_regulator".parse().unwrap();
+                let position = app.game.player_position().unwrap();
+                app.game
+                    .spawn_ground_item(position, item, 1)
+                    .map_err(|error| error.to_string())?;
+                app.context_command();
+                if app.context_menu.is_none() {
+                    return Err("Choix contextuel absent du diagnostic".to_owned());
+                }
+            }
+            "narrative-reward" | "narrative-reward-journal" => {
+                app.prepare_narrative_reward_diagnostic()?;
+                if scene == "narrative-reward-journal" {
+                    app.npc_interaction = None;
+                    app.quest_journal_open = true;
+                }
+            }
+            "resume-journal" => {
+                let source = std::env::args_os()
+                    .nth(3)
+                    .ok_or("Fichier de sauvegarde requis")?;
+                let saved = Suspension::read(std::path::Path::new(&source))?;
+                app = Self::restore_suspension(
+                    &saved,
+                    app.rules.clone(),
+                    app.texts.clone(),
+                    app.loot.clone(),
+                    app.expeditions.clone(),
+                )?;
+                app.suspension_path = output.join("diagnostic-run.json");
+                app.quest_journal_open = true;
+                eprintln!(
+                    "[SAVED RUN CHECK] generation={} credits={} xp={} quests={:?}",
+                    app.generation_version,
+                    app.game.player_credits(),
+                    app.game.player_progression().experience(),
+                    app.game
+                        .quest_journal()
+                        .iter()
+                        .map(|entry| (
+                            &entry.quest.id,
+                            entry.quest.status,
+                            entry.quest.reward_credits,
+                            entry.quest.reward_experience
+                        ))
+                        .collect::<Vec<_>>()
+                );
+            }
+            "narrative-directions" | "narrative-route" | "narrative-journal" => {
+                app.prepare_narrative_directions_diagnostic()?;
+                if scene != "narrative-directions" {
+                    app.npc_interaction = None;
+                }
+                app.quest_journal_open = scene == "narrative-journal";
+            }
+            "narrative" | "narrative-markers" => {
+                app.prepare_narrative_diagnostic()?;
+                if scene == "narrative-markers" {
+                    let giver = app.npc_interaction.take().ok_or("Orme absent")?;
+                    app.execute_command(GameCommand::ChooseDialogue {
+                        speaker: giver,
+                        node: "ABS-D01".into(),
+                        choice: 0,
+                    });
+                }
+            }
             "intro-objective" => {
                 app.log = vec![
                     "La mémoire locale ne contient aucune identité exploitable.".to_owned(),
@@ -3417,6 +3504,40 @@ impl AsciiApp {
             let mut probes = vec![layout.close];
             probes.extend(layout.rows.into_iter().map(|(_, rect)| rect));
             probes
+        } else if let Some(menu) = &app.context_menu {
+            vec![
+                app.context_menu_row(menu.choices.len(), 0),
+                app.context_menu_row(menu.choices.len(), menu.choices.len() - 1),
+            ]
+        } else if let Some(dialogue) = app
+            .npc_interaction
+            .and_then(|provider| app.game.dialogue_view(provider))
+            && !app.npc_dialogue_services
+        {
+            let layout = NpcInteractionLayout::new(app.ui_width(), app.ui_height());
+            let mut probes = vec![
+                layout.service,
+                layout.close,
+                Rect::new(
+                    layout.panel.x + 18.0,
+                    layout.panel.y + 10.0,
+                    layout.panel.w - 36.0,
+                    92.0,
+                ),
+                Rect::new(
+                    layout.panel.x + 18.0,
+                    layout.panel.y + 96.0,
+                    layout.panel.w - 36.0,
+                    108.0,
+                ),
+            ];
+            probes.extend(
+                layout
+                    .trade_rows
+                    .into_iter()
+                    .take(dialogue.choices.len().min(4)),
+            );
+            probes
         } else if app.npc_interaction.is_some() {
             let layout = NpcInteractionLayout::new(app.ui_width(), app.ui_height());
             let interaction = app
@@ -3955,6 +4076,7 @@ impl AsciiApp {
             || self.report_open
             || self.quest_journal_open
             || self.npc_interaction.is_some()
+            || self.context_menu.is_some()
             || self.attack_aim.is_some()
             || self.component_selection.is_some()
             || self.character_creation.is_some()
@@ -3990,6 +4112,8 @@ impl AsciiApp {
                 self.quest_journal_open = false;
             } else if self.npc_interaction.take().is_some() {
                 self.npc_interaction_message.clear();
+            } else if self.context_menu.take().is_some() {
+                // Choosing an interaction never advances a turn.
             } else if self.attack_aim.take().is_some() {
                 self.attack_aim_technique = None;
                 self.attack_aim_pointer = None;
@@ -4007,6 +4131,10 @@ impl AsciiApp {
         }
         if self.menu != MenuScreen::Hidden {
             self.update_menu(input);
+            return;
+        }
+        if self.context_menu.is_some() {
+            self.update_context_menu(input);
             return;
         }
         if self.controls.pressed(Action::QuestJournal, input) {
@@ -4366,9 +4494,7 @@ impl AsciiApp {
             self.facing = direction;
         }
         let command = if self.controls.pressed(Action::Interact, input) {
-            self.interaction_command()
-        } else if self.controls.pressed(Action::PickUp, input) {
-            Some(GameCommand::PickUp)
+            self.context_command()
         } else if self.controls.pressed(Action::Analyze, input) {
             self.target_analysis_command()
         } else if self.controls.pressed(Action::Traces, input) {
@@ -4448,7 +4574,10 @@ impl AsciiApp {
             TerminalDrawOptions {
                 bounds: self.terminal_bounds(),
                 cell_size: self.graphics.active.world_cell_px,
+                reduced_motion: self.graphics.active.reduced_motion,
                 interact_label: &self.controls.label(Action::Interact),
+                interaction_focus: self.interaction_choice().0,
+                multiple_interactions: self.context_choices().len() > 1,
                 legend_label: &self.controls.label(Action::Legend),
                 observation_label: &self.controls.label(Action::NpcVision),
                 legend_open: self.legend_open,
@@ -4476,6 +4605,7 @@ impl AsciiApp {
                         }
                     })
             },
+            |position| self.interaction_display_name(position),
         );
 
         if self.menu == MenuScreen::Hidden
@@ -4487,6 +4617,7 @@ impl AsciiApp {
             && !self.report_open
             && !self.quest_journal_open
             && self.npc_interaction.is_none()
+            && self.context_menu.is_none()
             && self.component_selection.is_none()
             && self.character_creation.is_none()
         {
@@ -4535,6 +4666,9 @@ impl AsciiApp {
         }
         if self.technique_menu_open {
             self.draw_technique_menu();
+        }
+        if self.context_menu.is_some() {
+            self.draw_context_menu();
         }
         set_default_camera();
     }
@@ -4714,10 +4848,10 @@ impl AsciiApp {
                 .texts
                 .resolve(DISPLAY_LOCALE, &entry.quest.title_key)
                 .unwrap_or("Demande locale");
-            let summary = self
-                .texts
-                .resolve(DISPLAY_LOCALE, &entry.quest.summary_key)
-                .unwrap_or("Votre interlocuteur demande une livraison.");
+            let summary = self.narrative_text(
+                &entry.quest.summary_key,
+                "Votre interlocuteur demande une livraison.",
+            );
             let (status, status_color) = quest_status_presentation(entry.quest.status);
             draw_text(status, x, layout.detail_panel.y + 31.0, 13.0, status_color);
             draw_wrapped_text(
@@ -4730,11 +4864,11 @@ impl AsciiApp {
                 theme.text(),
             );
             draw_wrapped_text(
-                summary,
+                &summary,
                 x,
                 layout.detail_panel.y + 122.0,
                 width,
-                3,
+                4,
                 15,
                 theme.muted(),
             );
@@ -4768,7 +4902,12 @@ impl AsciiApp {
             );
             draw_text(
                 format!(
-                    "RÉCOMPENSE · {}",
+                    "{} · {}",
+                    if entry.quest.status == QuestStatus::Completed {
+                        "RÉCOMPENSE REÇUE"
+                    } else {
+                        "RÉCOMPENSE"
+                    },
                     if rewards.is_empty() {
                         "aucune".to_owned()
                     } else {
@@ -4834,6 +4973,25 @@ impl AsciiApp {
             );
             return;
         };
+        if let Some(dialogue) = self.game.dialogue_view(provider) {
+            let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
+            let layout = NpcInteractionLayout::new(width, height);
+            let toggle = self.controls.pressed(Action::MenuLeft, input)
+                || self.controls.pressed(Action::MenuRight, input)
+                || (input.pressed.contains(&controls::Binding::MouseLeft)
+                    && input
+                        .pointer
+                        .is_some_and(|point| layout.mode_toggle.contains(point.into())));
+            if !interaction.services.is_empty() && toggle {
+                self.npc_dialogue_services = !self.npc_dialogue_services;
+                self.npc_interaction_message.clear();
+                return;
+            }
+            if !self.npc_dialogue_services || interaction.services.is_empty() {
+                self.update_narrative_dialogue(input, provider, &dialogue, &layout);
+                return;
+            }
+        }
         let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
         let layout = NpcInteractionLayout::new(width, height);
         let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
@@ -5218,6 +5376,17 @@ impl AsciiApp {
     }
 
     fn draw_npc_interaction(&self) {
+        if let Some(provider) = self.npc_interaction
+            && let Some(dialogue) = self.game.dialogue_view(provider)
+            && (!self.npc_dialogue_services
+                || self
+                    .game
+                    .npc_interaction(provider)
+                    .is_some_and(|npc| npc.services.is_empty()))
+        {
+            self.draw_narrative_dialogue(provider, &dialogue);
+            return;
+        }
         let Some(interaction) = self
             .npc_interaction
             .and_then(|provider| self.game.npc_interaction(provider))
@@ -5236,6 +5405,7 @@ impl AsciiApp {
         theme.card(layout.panel, false);
         let x = layout.panel.x + 22.0;
         let content_width = layout.panel.w - 44.0;
+        let narrative = self.game.dialogue_view(interaction.provider);
         draw_text(
             "INTERACTION LOCALE",
             x,
@@ -5244,7 +5414,10 @@ impl AsciiApp {
             theme.muted(),
         );
         draw_text_bold(
-            self.npc_name(interaction.role),
+            narrative
+                .as_ref()
+                .and_then(|dialogue| self.texts.resolve(DISPLAY_LOCALE, &dialogue.name_key))
+                .unwrap_or_else(|| self.npc_name(interaction.role)),
             x,
             layout.panel.y + 66.0,
             25.0,
@@ -5275,6 +5448,9 @@ impl AsciiApp {
                 if show_quest { "SERVICE" } else { "QUÊTE" },
                 self.menu_focus.hovered == Some(2),
             );
+        }
+        if narrative.is_some() && self.npc_dialogue_services {
+            theme.tab(layout.mode_toggle, "PARLER", false);
         }
         if !show_quest
             && let Some(NpcService::Trade {
@@ -5394,12 +5570,12 @@ impl AsciiApp {
                 .resolve(DISPLAY_LOCALE, &quest.title_key)
                 .unwrap_or("Demande locale");
             draw_text_bold(title, x + 13.0, quest_card.y + 51.0, 18.0, theme.accent());
-            let summary = self
-                .texts
-                .resolve(DISPLAY_LOCALE, &quest.summary_key)
-                .unwrap_or("Votre interlocuteur demande une livraison.");
+            let summary = self.narrative_text(
+                &quest.summary_key,
+                "Votre interlocuteur demande une livraison.",
+            );
             draw_wrapped_text(
-                summary,
+                &summary,
                 x + 13.0,
                 quest_card.y + 76.0,
                 quest_card.w - 26.0,
@@ -5850,6 +6026,13 @@ impl AsciiApp {
     }
 
     fn quest_giver_name(&self, entry: &project_rl::game::QuestJournalEntry) -> &str {
+        if let Some(name) = self
+            .game
+            .narrative_name_key_in(&entry.zone.id, entry.giver)
+            .and_then(|key| self.texts.resolve(DISPLAY_LOCALE, key))
+        {
+            return name;
+        }
         let role = self
             .game
             .quest_giver_role(&entry.zone.id, entry.giver)
@@ -6423,61 +6606,68 @@ impl AsciiApp {
             .ui_scale(screen_width(), screen_height())
     }
 
-    fn interaction_command(&mut self) -> Option<GameCommand> {
-        let origin = self.game.player_position()?;
-        if self.game.passage(origin).is_some() {
-            return Some(GameCommand::Interact { target: origin });
-        }
-        let candidates: Vec<_> = origin
-            .cardinal_neighbors()
-            .into_iter()
-            .filter(|p| {
-                self.game.player_visibility().is_visible(*p)
-                    && (self.game.passage(*p).is_some()
-                        || self
-                            .game
-                            .active_facility()
-                            .is_some_and(|facility| facility.is_player_interactive_at(*p))
-                        || self.game.actors().entity_at(*p).is_some_and(|entity| {
-                            self.game.active_worker_role(entity).is_some()
-                                || self.game.active_merchant(entity)
-                                || self.game.active_clinic(entity)
-                                || self.game.active_resident(entity)
-                                || self.game.active_quest_provider(entity)
-                        })
-                        || self
-                            .game
-                            .map()
-                            .tile(*p)
-                            .is_some_and(|t| t.terrain.is_interactive()))
-            })
-            .collect();
-        let target = if candidates.contains(&origin.step(self.facing)) {
+    fn interaction_choice(&self) -> (Option<GridPos>, usize) {
+        let Some(origin) = self.game.player_position() else {
+            return (None, 0);
+        };
+        let candidates = self.interaction_candidates();
+        let target = if candidates.contains(&origin) {
+            Some(origin)
+        } else if candidates.contains(&origin.step(self.facing)) {
             Some(origin.step(self.facing))
         } else if candidates.len() == 1 {
             candidates.first().copied()
         } else {
             None
         };
+        (target, candidates.len())
+    }
+
+    fn interaction_candidates(&self) -> Vec<GridPos> {
+        let Some(origin) = self.game.player_position() else {
+            return Vec::new();
+        };
+        let mut candidates = Vec::new();
+        if self.game.passage(origin).is_some() {
+            candidates.push(origin);
+        }
+        candidates.extend(origin.cardinal_neighbors().into_iter().filter(|p| {
+            self.game.player_visibility().is_visible(*p)
+                && (self.game.passage(*p).is_some()
+                    || self
+                        .game
+                        .threat_sources()
+                        .iter()
+                        .any(|source| source.position() == *p && source.is_active())
+                    || self
+                        .game
+                        .active_facility()
+                        .is_some_and(|facility| facility.is_player_interactive_at(*p))
+                    || self.game.actors().entity_at(*p).is_some_and(|entity| {
+                        self.game.active_worker_role(entity).is_some()
+                            || self.game.active_merchant(entity)
+                            || self.game.active_clinic(entity)
+                            || self.game.active_resident(entity)
+                            || self.game.active_quest_provider(entity)
+                            || self.game.dialogue_view(entity).is_some()
+                    })
+                    || self
+                        .game
+                        .map()
+                        .tile(*p)
+                        .is_some_and(|t| t.terrain.is_interactive()))
+        }));
+        candidates
+    }
+
+    #[cfg(test)]
+    fn interaction_command(&mut self) -> Option<GameCommand> {
+        let (target, count) = self.interaction_choice();
         if let Some(target) = target {
-            if let Some(provider) = self.game.actors().entity_at(target)
-                && self.game.npc_interaction(provider).is_some()
-            {
-                self.npc_interaction = Some(provider);
-                self.npc_interaction_mode = NpcInteractionMode::Service;
-                self.npc_interaction_message.clear();
-                self.npc_trade_mode = NpcTradeMode::Buy;
-                self.npc_trade_selection = 0;
-                self.npc_quest_selection = 0;
-                self.attack_aim = None;
-                self.attack_aim_technique = None;
-                self.attack_aim_pointer = None;
-                return None;
-            }
-            Some(GameCommand::Interact { target })
+            self.interaction_command_at(target)
         } else {
             self.push_log(
-                if candidates.is_empty() {
+                if count == 0 {
                     "Approchez-vous d'une personne, d'une porte, d'une console, d'une installation ou d'un passage."
                 } else {
                     "Plusieurs interactions : faites face à celle souhaitée avec une direction."
@@ -6486,6 +6676,219 @@ impl AsciiApp {
             );
             None
         }
+    }
+
+    fn interaction_command_at(&mut self, target: GridPos) -> Option<GameCommand> {
+        if let Some(provider) = self.game.actors().entity_at(target)
+            && self.game.npc_interaction(provider).is_some()
+        {
+            self.npc_interaction = Some(provider);
+            self.npc_dialogue_services = false;
+            self.npc_interaction_mode = NpcInteractionMode::Service;
+            self.npc_interaction_message.clear();
+            self.npc_trade_mode = NpcTradeMode::Buy;
+            self.npc_trade_selection = 0;
+            self.npc_quest_selection = 0;
+            self.attack_aim = None;
+            self.attack_aim_technique = None;
+            self.attack_aim_pointer = None;
+            return None;
+        }
+        Some(GameCommand::Interact { target })
+    }
+
+    fn context_choices(&self) -> Vec<ContextChoice> {
+        let mut choices = Vec::new();
+        if let Some(position) = self.game.player_position()
+            && self.game.ground_items().item_at(position).is_some()
+        {
+            choices.push(ContextChoice::PickUp);
+        }
+        choices.extend(
+            self.interaction_candidates()
+                .into_iter()
+                .map(ContextChoice::Interact),
+        );
+        choices
+    }
+
+    fn context_command(&mut self) -> Option<GameCommand> {
+        let choices = self.context_choices();
+        match choices.as_slice() {
+            [ContextChoice::PickUp] => Some(GameCommand::PickUp),
+            [ContextChoice::Interact(target)] => self.interaction_command_at(*target),
+            [] => {
+                self.push_log("Rien à ramasser ou à utiliser à portée.".to_owned());
+                None
+            }
+            _ => {
+                self.context_menu = Some(ContextMenu {
+                    choices,
+                    selected: 0,
+                });
+                None
+            }
+        }
+    }
+
+    fn context_menu_panel(&self, count: usize) -> Rect {
+        let width = self.ui_width().min(460.0).max(300.0);
+        let height = 100.0 + count as f32 * 38.0;
+        Rect::new(
+            (self.ui_width() - width) / 2.0,
+            (self.ui_height() - height) / 2.0,
+            width,
+            height,
+        )
+    }
+
+    fn context_menu_row(&self, count: usize, index: usize) -> Rect {
+        let panel = self.context_menu_panel(count);
+        Rect::new(
+            panel.x + 14.0,
+            panel.y + 47.0 + index as f32 * 38.0,
+            panel.w - 28.0,
+            34.0,
+        )
+    }
+
+    fn context_choice_label(&self, choice: ContextChoice) -> String {
+        match choice {
+            ContextChoice::PickUp => {
+                let name = self
+                    .game
+                    .player_position()
+                    .and_then(|position| self.game.ground_items().item_at(position))
+                    .and_then(|entity| self.game.ground_items().get(entity))
+                    .map(|stack| self.item_name(stack.item()))
+                    .unwrap_or_else(|| "objet".to_owned());
+                format!("Ramasser : {name}")
+            }
+            ContextChoice::Interact(position) => {
+                let actor_name = self.game.actors().entity_at(position).and_then(|entity| {
+                    self.game
+                        .current_zone()
+                        .and_then(|zone| self.game.narrative_name_key_in(&zone.id, entity))
+                        .and_then(|key| self.texts.resolve(DISPLAY_LOCALE, key))
+                        .map(str::to_owned)
+                        .or_else(|| {
+                            self.game
+                                .npc_interaction(entity)
+                                .map(|interaction| self.npc_name(interaction.role).to_owned())
+                        })
+                });
+                let name = actor_name.unwrap_or_else(|| {
+                    if self.game.passage(position).is_some() {
+                        "passage".to_owned()
+                    } else {
+                        match self.game.map().tile(position).map(|tile| tile.terrain) {
+                            Some(Terrain::Door(_)) => "porte",
+                            Some(Terrain::ControlPanel { .. }) => "console",
+                            _ => "installation",
+                        }
+                        .to_owned()
+                    }
+                });
+                format!("Interagir : {name} ({}, {})", position.x, position.y)
+            }
+        }
+    }
+
+    fn update_context_menu(&mut self, input: &InputFrame) {
+        let Some(mut menu) = self.context_menu.take() else {
+            return;
+        };
+        if menu.choices.is_empty() {
+            return;
+        }
+        if input.pressed.contains(&controls::Binding::MouseRight) {
+            return;
+        }
+        if self.controls.pressed(Action::MenuUp, input) {
+            menu.selected = menu.selected.saturating_sub(1);
+        } else if self.controls.pressed(Action::MenuDown, input) {
+            menu.selected = (menu.selected + 1).min(menu.choices.len() - 1);
+        }
+        let hovered = input.pointer.and_then(|point| {
+            (0..menu.choices.len()).find(|&index| {
+                self.context_menu_row(menu.choices.len(), index)
+                    .contains(point.into())
+            })
+        });
+        if let Some(index) = hovered {
+            menu.selected = index;
+        }
+        let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
+        let confirmed = self.controls.pressed(Action::Interact, input)
+            || self.controls.pressed(Action::Learn, input)
+            || clicked && hovered.is_some();
+        if !confirmed {
+            self.context_menu = Some(menu);
+            return;
+        }
+        let choice = menu.choices[menu.selected];
+        let command = match choice {
+            ContextChoice::PickUp => Some(GameCommand::PickUp),
+            ContextChoice::Interact(target) => self.interaction_command_at(target),
+        };
+        if let Some(command) = command {
+            if let CommandOutcome::Rejected(reason) = self.execute_command(command) {
+                self.push_log(command_rejection_message(reason).to_owned());
+            }
+            self.capture_events();
+        }
+    }
+
+    fn draw_context_menu(&self) {
+        let Some(menu) = &self.context_menu else {
+            return;
+        };
+        let theme = UiTheme;
+        let panel = self.context_menu_panel(menu.choices.len());
+        draw_rectangle(
+            0.0,
+            0.0,
+            self.ui_width(),
+            self.ui_height(),
+            Color::from_rgba(0, 5, 8, 190),
+        );
+        theme.card(panel, false);
+        draw_text_bold(
+            "CHOISIR UNE ACTION",
+            panel.x + 18.0,
+            panel.y + 30.0,
+            20.0,
+            theme.text(),
+        );
+        for (index, choice) in menu.choices.iter().enumerate() {
+            let row = self.context_menu_row(menu.choices.len(), index);
+            if index == menu.selected {
+                draw_rectangle(row.x, row.y, row.w, row.h, theme.surface_selected());
+                // One quiet outline; no focus bar or second frame around the row.
+                draw_rectangle_lines(
+                    row.x,
+                    row.y,
+                    row.w,
+                    row.h,
+                    1.0,
+                    Color::from_rgba(83, 130, 140, 255),
+                );
+            }
+            draw_text(
+                &self.context_choice_label(*choice),
+                row.x + 12.0,
+                row.y + 23.0,
+                17.0,
+                theme.text(),
+            );
+        }
+        draw_text(
+            "Haut/Bas choisir · E/Entrée valider · Échap annuler",
+            panel.x + 18.0,
+            panel.y + panel.h - 18.0,
+            14.0,
+            theme.muted(),
+        );
     }
 
     fn ui_width(&self) -> f32 {
@@ -6567,6 +6970,17 @@ impl AsciiApp {
         regional_worlds: RegionalWorldCatalog,
         version: u8,
     ) -> Result<Self, String> {
+        let expeditions = if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
+            expeditions
+        } else if version >= NARRATIVE_REWARD_GENERATION_VERSION {
+            expeditions.without_stationary_quest_contact_metadata()
+        } else if version >= NARRATIVE_GENERATION_VERSION {
+            expeditions
+                .without_stationary_quest_contact_metadata()
+                .without_narrative_reward_metadata()
+        } else {
+            expeditions.without_narrative_metadata()
+        };
         let regional_worlds = if version >= FIFTH_REGIONAL_CITY_GENERATION_VERSION {
             regional_worlds
         } else if version >= FIFTH_LAYER_ROUTE_GENERATION_VERSION {
@@ -6644,8 +7058,17 @@ impl AsciiApp {
         if version >= RESIDENT_GENERATION_VERSION {
             app.enable_resident_fixtures()?;
         }
-        if version >= QUEST_CHAIN_GENERATION_VERSION {
+        let authored_narrative = app
+            .expeditions
+            .get(&"core:starter_expedition".parse().unwrap())
+            .is_some_and(|definition| definition.narrative.is_some());
+        if version >= QUEST_CHAIN_GENERATION_VERSION
+            && (version < NARRATIVE_GENERATION_VERSION || !authored_narrative)
+        {
             app.enable_hub_quests()?;
+        }
+        if version >= NARRATIVE_GENERATION_VERSION {
+            app.enable_narrative()?;
         }
         Ok(app)
     }
@@ -7468,11 +7891,13 @@ impl AsciiApp {
             quest_journal_open: false,
             quest_journal_selection: 0,
             npc_interaction: None,
+            npc_dialogue_services: false,
             npc_interaction_message: String::new(),
             npc_interaction_mode: NpcInteractionMode::Service,
             npc_trade_mode: NpcTradeMode::Buy,
             npc_trade_selection: 0,
             npc_quest_selection: 0,
+            context_menu: None,
             legend_open: false,
             npc_vision_overlay_open: false,
             controls: Controls::preset(controls::Layout::Qwerty, KeySemantics::native()),
@@ -7531,7 +7956,10 @@ impl AsciiApp {
                 let role = self.game.active_worker_role(entity);
                 let merchant = self.game.active_merchant(entity);
                 let clinic = self.game.active_clinic(entity);
-                let resident = self.game.active_resident(entity);
+                let resident = self.game.active_resident(entity)
+                    || self.game.current_zone().is_some_and(|zone| {
+                        self.game.narrative_name_key_in(&zone.id, entity).is_some()
+                    });
                 let drone = self
                     .game
                     .actors()
@@ -7730,12 +8158,11 @@ impl AsciiApp {
 
     fn status_icon_at(&self, position: GridPos) -> Option<TerminalStatusIcon> {
         self.burning_status_icon_at(position)
-            .or_else(|| {
-                let provider = self.game.actors().entity_at(position)?;
-                match self.game.quest_marker(provider)? {
-                    QuestMarker::Available => Some(TerminalStatusIcon::QuestAvailable),
-                    QuestMarker::ReadyToComplete => Some(TerminalStatusIcon::QuestReady),
-                }
+            .or_else(|| match self.game.quest_marker_at(position)? {
+                QuestMarker::Available => Some(TerminalStatusIcon::QuestAvailable),
+                QuestMarker::ReadyToComplete => Some(TerminalStatusIcon::QuestReady),
+                QuestMarker::InProgress => Some(TerminalStatusIcon::QuestInProgress),
+                QuestMarker::Objective => Some(TerminalStatusIcon::QuestObjective),
             })
             .or_else(|| {
                 let ground_item = self.game.ground_items().item_at(position)?;
@@ -7751,6 +8178,29 @@ impl AsciiApp {
                     })
                     .then_some(TerminalStatusIcon::RequiredMaterial)
             })
+    }
+
+    fn interaction_display_name(&self, position: GridPos) -> Option<String> {
+        if !self.game.player_visibility().is_visible(position) {
+            return None;
+        }
+        if let Some(ground_item) = self.game.ground_items().item_at(position)
+            && let Some(stack) = self.game.ground_items().get(ground_item)
+        {
+            return Some(self.item_name(stack.item()));
+        }
+        let entity = self.game.actors().entity_at(position)?;
+        if let Some(name) = self
+            .game
+            .current_zone()
+            .and_then(|zone| self.game.narrative_name_key_in(&zone.id, entity))
+            .and_then(|key| self.texts.resolve(DISPLAY_LOCALE, key))
+        {
+            return Some(name.to_owned());
+        }
+        self.game
+            .npc_interaction(entity)
+            .map(|interaction| self.npc_name(interaction.role).to_owned())
     }
 
     fn local_alert_remaining_at(&self, position: GridPos) -> Option<u64> {
@@ -7959,6 +8409,9 @@ impl AsciiApp {
                 1,
             ));
         }
+        if let Some(signal) = self.narrative_navigation_signal_summary() {
+            return Some(signal);
+        }
         if journal.iter().any(|entry| {
             entry.quest.status == QuestStatus::Active
                 && matches!(
@@ -8114,7 +8567,7 @@ impl AsciiApp {
                 (definition.destination.zone.id == destination).then_some(definition.clone())
             })
             .ok_or_else(|| format!("Aucun fournisseur pour la zone '{destination}'."))?;
-        let generated = crate::test_expedition::generate_destination(
+        let mut generated = crate::test_expedition::generate_destination(
             &self.rules,
             self.seed,
             Some(&self.loot),
@@ -8134,8 +8587,24 @@ impl AsciiApp {
                 player_relations: self.generation_version >= PLAYER_RELATIONS_GENERATION_VERSION,
             },
         )?;
+        let facility = if self.generation_version >= NARRATIVE_GENERATION_VERSION {
+            definition
+                .narrative
+                .as_ref()
+                .map(|narrative| {
+                    crate::test_expedition::install_narrative_relay(&mut generated, narrative)
+                })
+                .transpose()?
+        } else {
+            None
+        };
         self.game
-            .materialize_passage_destination(*target, generated.blueprint)?;
+            .materialize_passage_destination_with_connections_and_facility(
+                *target,
+                generated.blueprint,
+                &[],
+                facility,
+            )?;
         self.zone_decor.insert(destination, generated.decor);
         Ok(())
     }
@@ -8734,6 +9203,9 @@ impl AsciiApp {
                         QuestCompletion::ExploreZones { zones } => {
                             format!("rapport sur {zones} nouveaux secteurs remis")
                         }
+                        QuestCompletion::AccessDataRecord { ref record } if self.game.is_known_fact_objective(record) => {
+                            "rapport d'enquête remis".to_owned()
+                        }
                         QuestCompletion::AccessDataRecord { .. } => {
                             "consultation du terminal confirmée".to_owned()
                         }
@@ -8805,7 +9277,7 @@ impl AsciiApp {
                                     " · MATÉRIEL ATTRIBUÉ · PRISE SIGNALÉE SI OBSERVÉE"
                                 }
                             }),
-                            self.controls.label(Action::PickUp)
+                            self.controls.label(Action::Interact)
                         ));
                     }
                 }
@@ -13447,8 +13919,13 @@ impl AsciiApp {
                     format!("Nouveaux secteurs explorés : {explored_zones}/{required_zones}")
                 }
             }
-            QuestObjectiveView::AccessDataRecord { accessed, .. } => format!(
-                "Terminal ciblé consulté : {}",
+            QuestObjectiveView::AccessDataRecord { record, accessed } => format!(
+                "{} : {}",
+                if self.game.is_known_fact_objective(record) {
+                    "Faits établis"
+                } else {
+                    "Terminal ciblé consulté"
+                },
                 if *accessed { "oui" } else { "non" }
             ),
             QuestObjectiveView::DefeatTargets {
@@ -18828,6 +19305,18 @@ fn rules_fingerprint_for_version(rules: &GameRules, version: u8) -> u64 {
 }
 
 fn expedition_fingerprint_for_version(expeditions: &ExpeditionCatalog, version: u8) -> u64 {
+    let narrative_compatible = if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
+        expeditions.clone()
+    } else if version >= NARRATIVE_REWARD_GENERATION_VERSION {
+        expeditions.without_stationary_quest_contact_metadata()
+    } else if version >= NARRATIVE_GENERATION_VERSION {
+        expeditions
+            .without_stationary_quest_contact_metadata()
+            .without_narrative_reward_metadata()
+    } else {
+        expeditions.without_narrative_metadata()
+    };
+    let expeditions = &narrative_compatible;
     let survey_compatible = if version >= SITE_SURVEY_GENERATION_VERSION {
         expeditions.clone()
     } else {
@@ -18966,6 +19455,18 @@ fn world_fingerprint_for_version(
     if version < REGIONAL_TRAVEL_GENERATION_VERSION {
         return expedition_fingerprint_for_version(expeditions, version);
     }
+    let narrative_compatible = if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
+        expeditions.clone()
+    } else if version >= NARRATIVE_REWARD_GENERATION_VERSION {
+        expeditions.without_stationary_quest_contact_metadata()
+    } else if version >= NARRATIVE_GENERATION_VERSION {
+        expeditions
+            .without_stationary_quest_contact_metadata()
+            .without_narrative_reward_metadata()
+    } else {
+        expeditions.without_narrative_metadata()
+    };
+    let expeditions = &narrative_compatible;
     let survey_compatible = if version >= SITE_SURVEY_GENERATION_VERSION {
         expeditions.clone()
     } else {
@@ -20482,6 +20983,9 @@ fn command_rejection_message(reason: CommandRejection) -> &'static str {
         CommandRejection::QuestWorldEffectUnavailable => {
             "La modification locale promise ne peut pas être appliquée."
         }
+        CommandRejection::DialogueChoiceUnavailable => {
+            "Ce sujet de conversation n’est plus disponible."
+        }
         CommandRejection::EquippedItemCannotBeSold => {
             "Retirez cet objet de votre équipement avant de le vendre."
         }
@@ -21222,11 +21726,49 @@ mod tests {
     }
 
     fn app_with_test_controls() -> AsciiApp {
+        app_with_test_controls_version(CURRENT_GENERATION_VERSION)
+    }
+
+    fn app_with_test_controls_version(version: u8) -> AsciiApp {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
+        let mut app =
+            AsciiApp::from_seed_version(INITIAL_SEED, rules, texts, loot, expeditions, version)
+                .unwrap();
         app.controls = Controls::preset(Layout::Azerty, KeySemantics::Physical);
         app.suspension_path = temporary_folder("test-run").join("suspended-run.json");
         app
+    }
+
+    #[test]
+    fn context_key_offers_pickup_and_nearby_interaction_without_spending_a_turn() {
+        let mut app = app_with_test_controls();
+        app.walk_fixture_to(GridPos::new(76, 8)).unwrap();
+        assert!(
+            app.interaction_candidates()
+                .contains(&TestSector::RECYCLING_CONTROL)
+        );
+        let position = app.game.player_position().unwrap();
+        let item: ItemId = "core:power_regulator".parse().unwrap();
+        app.game.spawn_ground_item(position, item, 1).unwrap();
+        let before = app.game.turn();
+        assert_eq!(app.context_command(), None);
+        let menu = app.context_menu.as_ref().unwrap();
+        assert!(menu.choices.contains(&ContextChoice::PickUp));
+        assert!(
+            menu.choices
+                .contains(&ContextChoice::Interact(TestSector::RECYCLING_CONTROL))
+        );
+        assert_eq!(app.game.turn(), before);
+        app.update_context_menu(&InputFrame {
+            pressed: [controls::Binding::key("Down")].into(),
+            ..Default::default()
+        });
+        app.update_context_menu(&InputFrame {
+            pressed: [controls::Binding::key("E")].into(),
+            ..Default::default()
+        });
+        assert!(app.context_menu.is_none());
+        assert!(app.game.ground_items().item_at(position).is_some());
     }
 
     #[test]
@@ -23468,13 +24010,13 @@ mod tests {
         app.walk_fixture_to(GridPos::new(32, 16)).unwrap();
         let door = GridPos::new(32, 15);
         let turn = app.game.turn();
-        app.update_input(&input("V"));
+        app.update_input(&input("E"));
         assert_eq!(
             app.game.map().tile(door).unwrap().terrain,
             Terrain::Door(project_rl::world::DoorState::Open)
         );
         assert_eq!(app.game.turn(), turn + 1);
-        app.update_input(&input("V"));
+        app.update_input(&input("E"));
         assert_eq!(
             app.game.map().tile(door).unwrap().terrain,
             Terrain::Door(project_rl::world::DoorState::Closed)
@@ -23497,14 +24039,14 @@ mod tests {
             .unwrap();
         app.facing = Direction::East;
         let terminal_turn = app.game.turn();
-        app.update_input(&input("V"));
+        app.update_input(&input("E"));
         assert_eq!(app.game.turn(), terminal_turn + 1);
         assert!(
             app.log
                 .last()
                 .is_some_and(|line| line.contains("ARCHIVE DÉCOUVERTE"))
         );
-        app.update_input(&input("V"));
+        app.update_input(&input("E"));
         assert!(
             app.log
                 .last()
@@ -23664,7 +24206,7 @@ mod tests {
 
         let turn = app.game.turn();
         let history = app.history.len();
-        app.update_input(&input("V"));
+        app.update_input(&input("E"));
         assert_eq!(app.npc_interaction, Some(technician));
         assert_eq!(app.game.turn(), turn);
         assert_eq!(app.history.len(), history);
@@ -25368,8 +25910,8 @@ mod tests {
     }
 
     #[test]
-    fn starter_site_survey_completes_through_real_travel_and_resume() {
-        let mut app = app_with_test_controls();
+    fn version_86_site_survey_completes_through_real_travel_and_resume() {
+        let mut app = app_with_test_controls_version(SITE_TERMINAL_NAVIGATION_GENERATION_VERSION);
         app.walk_fixture_to(GridPos::new(40, 22)).unwrap();
         let giver = app
             .game
@@ -25467,7 +26009,12 @@ mod tests {
             .min_by_key(|position| grid_distance(*position, player))
             .unwrap();
         app.walk_fixture_to(approach).unwrap();
+        assert_eq!(
+            app.game.quest_marker_at(terminal),
+            Some(QuestMarker::Objective)
+        );
         apply(&mut app, GameCommand::Interact { target: terminal });
+        assert_eq!(app.game.quest_marker_at(terminal), None);
         assert_eq!(
             app.game.quest_journal()[0].quest.status,
             QuestStatus::ReadyToComplete
@@ -27104,7 +27651,10 @@ mod tests {
             .game
             .actors()
             .iter()
-            .filter(|(id, _)| *id != app.game.player_id())
+            .filter(|(id, actor)| {
+                *id != app.game.player_id()
+                    && !actor.tags().contains(&"core:rivet".parse().unwrap())
+            })
             .map(|(_, actor)| actor)
             .collect::<Vec<_>>();
         assert_eq!(enemies.len(), expected_count);
@@ -27249,9 +27799,16 @@ mod tests {
             .iter()
             .find_map(|(entity, _)| current.game.active_resident(entity).then_some(entity))
             .expect("current generation must retain its resident");
-        assert!(current.game.active_quest_provider(resident));
+        assert!(!current.game.active_quest_provider(resident));
+        let contact = current
+            .game
+            .actors()
+            .entity_at(GridPos::new(11, 27))
+            .expect("current generation must add a fixed quest contact");
+        assert_ne!(contact, resident);
+        assert!(current.game.active_quest_provider(contact));
         assert_eq!(
-            current.game.quest_marker(resident),
+            current.game.quest_marker(contact),
             Some(QuestMarker::Available)
         );
     }
@@ -27268,8 +27825,15 @@ mod tests {
             QUEST_CHAIN_GENERATION_VERSION,
         )
         .unwrap();
-        let current =
-            AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions.clone()).unwrap();
+        let current = AsciiApp::from_seed_version(
+            INITIAL_SEED,
+            rules,
+            texts,
+            loot,
+            expeditions.clone(),
+            SITE_TERMINAL_NAVIGATION_GENERATION_VERSION,
+        )
+        .unwrap();
 
         assert!(format!("{:?}", previous.game).contains("survey_outskirts"));
         assert!(!format!("{:?}", previous.game).contains("outskirts_reported"));
@@ -27298,8 +27862,15 @@ mod tests {
             QUEST_WORLD_STATE_GENERATION_VERSION,
         )
         .unwrap();
-        let current =
-            AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions.clone()).unwrap();
+        let current = AsciiApp::from_seed_version(
+            INITIAL_SEED,
+            rules,
+            texts,
+            loot,
+            expeditions.clone(),
+            SITE_TERMINAL_NAVIGATION_GENERATION_VERSION,
+        )
+        .unwrap();
 
         assert!(format!("{:?}", previous.game).contains("routes_mapped"));
         assert!(!format!("{:?}", previous.game).contains("depot_rear_access"));
@@ -27342,8 +27913,15 @@ mod tests {
             QUEST_WORLD_EFFECT_GENERATION_VERSION,
         )
         .unwrap();
-        let current =
-            AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions.clone()).unwrap();
+        let current = AsciiApp::from_seed_version(
+            INITIAL_SEED,
+            rules,
+            texts,
+            loot,
+            expeditions.clone(),
+            SITE_TERMINAL_NAVIGATION_GENERATION_VERSION,
+        )
+        .unwrap();
         let terminal_position = GridPos::new(48, 7);
 
         assert!(format!("{:?}", previous.game).contains("depot_rear_access"));
@@ -27404,12 +27982,13 @@ mod tests {
             QUEST_INSTALLATION_EFFECT_GENERATION_VERSION,
         )
         .unwrap();
-        let current = AsciiApp::from_seed(
+        let current = AsciiApp::from_seed_version(
             INITIAL_SEED,
             rules,
             texts,
             loot,
             expeditions_with_authorization.clone(),
+            SITE_TERMINAL_NAVIGATION_GENERATION_VERSION,
         )
         .unwrap();
 

@@ -338,6 +338,8 @@ Exemple non définitif :
 
 Les couches ne doivent pas obligatoirement former une progression linéaire. Certaines branches peuvent être facultatives.
 
+**Direction précisée le 21 septembre 2026 :** chaque couche doit former un territoire à explorer, avec sa ville, plusieurs espaces sauvages et des destinations facultatives. Les villes et les accès profonds ne doivent pas s'enchaîner systématiquement sur un même puits direct. L'ampleur recherchée concerne à la fois les cartes locales et les expéditions entre les étapes. Les dimensions et le nombre de régions restent à éprouver ; les dimensions du prototype ne fixent pas celles du monde final.
+
 ---
 
 ## 3.5. La question morale
@@ -399,6 +401,18 @@ Cela peut permettre plusieurs fins.
 6. mort, échec ou fin ;
 7. déblocages horizontaux ;
 8. nouvelle tentative.
+
+## 4.4. Une aventure longue, exigeante et libre à explorer
+
+**Direction validée le 21 septembre 2026.** Une partie victorieuse doit constituer une aventure substantielle, sur plusieurs sessions. La difficulté repose sur les décisions, les ressources, les rencontres et la compréhension des systèmes. Elle ne doit pas être obtenue en allongeant artificiellement les trajets ou en imposant des niveaux et du farming.
+
+Le joueur doit pouvoir consacrer une session à se promener, découvrir une histoire locale ou expérimenter son personnage sans faire avancer la quête principale. L'évasion reste un objectif majeur ; le monde possède aussi un intérêt propre. Une urgence de scénario ne crée pas implicitement un compte à rebours global. Les crises locales éventuelles suivent des causes et des règles perceptibles.
+
+Une première tentative victorieuse reste possible, sans être facile ni attendue. Les morts ne sont pas une condition obligatoire de progression. La durée chiffrée reste ouverte : les essais distingueront une partie gagnante, l'apprentissage cumulé jusqu'à la première victoire, l'exploration approfondie et un parcours de joueur expérimenté.
+
+Le contrat détaillé figure dans [Monde, exploration et progression](docs/MONDE_EXPLORATION_ET_PROGRESSION.md). Les suggestions de durée et l'avis critique sur la trame figurent dans [l'évaluation narrative](docs/EVALUATION_NARRATIVE.md) ; ils restent des recommandations.
+
+Les correctifs narratifs acceptés le 21 septembre développent des personnages avec des buts indépendants de l'évasion, des situations de quête variées, des révélations distinctes et des histoires facultatives aux conséquences locales. Leur première rédaction est centralisée dans [Textes narratifs proposés](docs/TEXTES_NARRATIFS_PROPOSES.md), avec identifiants et conditions d'affichage pour la relecture. L'accord sur ces correctifs ne vaut pas validation mot à mot ni preuve de leur intégration au jeu.
 
 ---
 
@@ -827,6 +841,12 @@ Il doit assembler :
 - secrets.
 
 Une zone doit avoir une identité.
+
+**Direction validée le 21 septembre 2026 : génération encadrée par les besoins du scénario.** Le jeu garantit les lieux, dispositifs, informations et connexions indispensables, puis fait varier les territoires alentour, les accès secondaires, les rencontres et le contenu facultatif. La référence à Diablo II porte sur cette combinaison d'une structure d'aventure et d'une géographie variable.
+
+Un plan de couche déterministe doit réserver les éléments requis avant la génération détaillée des cartes à leur première visite. Les lieux existent indépendamment de l'acceptation des quêtes ; une découverte anticipée compte lorsqu'elle remplit réellement l'objectif. La validation doit couvrir les accès physiques et les dépendances logiques, puis les sauvegardes doivent conserver les lieux et conséquences.
+
+La génération garantit une situation initiale cohérente et réalisable, pas une victoire ni l'annulation des pertes du joueur. L'identité des villes peut reposer sur des plans conçus à la main. Les extérieurs doivent offrir des repères, des itinéraires et des situations intéressantes, au-delà de leur superficie. Ce contrat complet reste à implémenter ; voir [Monde, exploration et progression](docs/MONDE_EXPLORATION_ET_PROGRESSION.md).
 
 Exemple de définition :
 
@@ -1453,7 +1473,8 @@ Ces choix doivent être tranchés plus tard :
 - nombre de fins ;
 - style visuel exact ;
 - degré de simulation du feu/gaz/liquides ;
-- structure linéaire ou ramifiée des couches ;
+- répartition précise des villes, branches et accès profonds dans les territoires, dans le cadre de la section 3.4 ;
+- dimensions des cartes, nombre de régions entre étapes et durée chiffrée d'une partie victorieuse ;
 - degré de méta-progression.
 
 ---
@@ -1468,6 +1489,8 @@ Le projet fonctionne si :
 - deux builds jouent réellement différemment ;
 - le monde produit des interactions non scriptées ;
 - le joueur découvre régulièrement une nouvelle manière d'exploiter la simulation ;
+- une session d'exploration libre apporte des découvertes et des décisions même sans avancer l'évasion ;
+- la victoire exige une maîtrise réelle et une aventure substantielle, sans répétitions servant uniquement à la retarder ;
 - un moddeur peut ajouter du contenu sans recompiler le jeu ;
 - Codex peut ajouter des dizaines d'objets sans toucher au cœur du moteur ;
 - une nouvelle run peut raconter une histoire de gameplay différente.

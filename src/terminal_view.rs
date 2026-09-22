@@ -45,7 +45,7 @@ use project_rl::ai::AiState;
 use project_rl::combat::AttackAreaCell;
 use project_rl::explosive::ExplosiveActivation;
 use project_rl::game::{ActorObservationField, GameState, WorldState};
-use project_rl::world::{GridPos, Map, Terrain, VisibilityState};
+use project_rl::world::{DoorState, GridPos, Map, Terrain, VisibilityState};
 
 use crate::test_sector::{Decor, SectorDecor, TestSector};
 
@@ -59,7 +59,10 @@ pub struct KnownTile {
 pub struct TerminalDrawOptions<'a> {
     pub bounds: Rect,
     pub cell_size: u16,
+    pub reduced_motion: bool,
     pub interact_label: &'a str,
+    pub interaction_focus: Option<GridPos>,
+    pub multiple_interactions: bool,
     pub legend_label: &'a str,
     pub observation_label: &'a str,
     pub legend_open: bool,
@@ -67,6 +70,159 @@ pub struct TerminalDrawOptions<'a> {
     pub navigation_signal: Option<&'a str>,
     pub target_summary: Option<&'a TerminalTargetSummary>,
     pub observation_fields: &'a [ActorObservationField],
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+struct InteractionHint {
+    title: String,
+    is_loot: bool,
+    verb: &'static str,
+    unavailable: Option<&'static str>,
+}
+
+// Only live, perceived state may be passed here; remembered decor never implies
+// an interaction still exists.
+fn interaction_hint(game: &WorldState, position: GridPos) -> Option<InteractionHint> {
+    if !game.player_visibility().is_visible(position) {
+        return None;
+    }
+    if game.ground_items().item_at(position).is_some() {
+        return Some(InteractionHint {
+            title: "Objet au sol".to_owned(),
+            is_loot: true,
+            verb: "ramasser",
+            unavailable: None,
+        });
+    }
+    if let Some(link) = game.passage(position) {
+        return Some(InteractionHint {
+            title: format!("Vers {}", player_location_name(game.destination_name(link))),
+            is_loot: false,
+            verb: "voyager",
+            unavailable: None,
+        });
+    }
+    if game
+        .threat_sources()
+        .iter()
+        .any(|source| source.position() == position && source.is_active())
+    {
+        return Some(InteractionHint {
+            title: "Camp hostile actif".to_owned(),
+            is_loot: false,
+            verb: "neutraliser",
+            unavailable: None,
+        });
+    }
+    if let Some(entity) = game.actors().entity_at(position) {
+        use project_rl::facility::WorkerRole;
+        let title = if game.active_merchant(entity) {
+            Some("Marchande")
+        } else if game.active_clinic(entity) {
+            Some("Soigneur")
+        } else if let Some(role) = game.active_worker_role(entity) {
+            Some(match role {
+                WorkerRole::Retriever => "Récupérateur",
+                WorkerRole::Technician => "Technicien",
+            })
+        } else if game.active_resident(entity)
+            || game.active_quest_provider(entity)
+            || game
+                .current_zone()
+                .is_some_and(|zone| game.narrative_name_key_in(&zone.id, entity).is_some())
+        {
+            Some("Habitant")
+        } else {
+            None
+        };
+        if let Some(title) = title {
+            return Some(InteractionHint {
+                title: title.to_owned(),
+                is_loot: false,
+                verb: "parler",
+                unavailable: None,
+            });
+        }
+    }
+    if let Some(facility) = game.active_facility()
+        && facility.is_player_interactive_at(position)
+    {
+        return Some(InteractionHint {
+            title: if facility.data_terminal_record_at(position).is_some() {
+                "Terminal de données"
+            } else {
+                "Dépôt de maintenance"
+            }
+            .to_owned(),
+            is_loot: false,
+            verb: if facility.data_terminal_record_at(position).is_some() {
+                "consulter"
+            } else {
+                "utiliser"
+            },
+            unavailable: None,
+        });
+    }
+    let terrain = game.map().tile(position)?.terrain;
+    let (title, verb, unavailable) = match terrain {
+        Terrain::Door(DoorState::Open) => ("Porte ouverte", "fermer", None),
+        Terrain::Door(DoorState::Closed) => ("Porte fermée", "ouvrir", None),
+        Terrain::Door(DoorState::Locked) => (
+            "Accès verrouillé",
+            "ouvrir",
+            Some("Autorisation nécessaire"),
+        ),
+        Terrain::Door(DoorState::Unpowered) => {
+            ("Porte hors service", "ouvrir", Some("Alimentation absente"))
+        }
+        Terrain::ControlPanel {
+            activated: true, ..
+        } => ("Console utilisée", "activer", Some("Déjà activée")),
+        Terrain::ControlPanel {
+            activated: false, ..
+        } => ("Console active", "activer", None),
+        _ => return None,
+    };
+    Some(InteractionHint {
+        title: title.to_owned(),
+        is_loot: false,
+        verb,
+        unavailable,
+    })
+}
+
+fn interaction_action(
+    player: Option<GridPos>,
+    position: GridPos,
+    focus: Option<GridPos>,
+    hint: &InteractionHint,
+    interact_label: &str,
+    multiple_interactions: bool,
+) -> String {
+    let Some(player) = player else {
+        return "Approchez-vous".to_owned();
+    };
+    if hint.is_loot {
+        return if player == position {
+            if multiple_interactions {
+                format!("{interact_label} · choisir : ramasser")
+            } else {
+                format!("{interact_label} · ramasser")
+            }
+        } else {
+            "Rejoignez la case pour ramasser".to_owned()
+        };
+    }
+    if player.x.abs_diff(position.x) + player.y.abs_diff(position.y) > 1 {
+        return "Approchez-vous pour interagir".to_owned();
+    }
+    if let Some(reason) = hint.unavailable {
+        return reason.to_owned();
+    }
+    if multiple_interactions || focus != Some(position) {
+        return format!("{interact_label} · choisir : {}", hint.verb);
+    }
+    format!("{interact_label} · {}", hint.verb)
 }
 
 fn inside_actor_visual_field(fields: &[ActorObservationField], position: GridPos) -> bool {
@@ -108,6 +264,17 @@ pub enum TerminalStatusIcon {
     RequiredMaterial,
     QuestAvailable,
     QuestReady,
+    QuestInProgress,
+    QuestObjective,
+}
+
+impl TerminalStatusIcon {
+    fn is_quest(self) -> bool {
+        matches!(
+            self,
+            Self::QuestAvailable | Self::QuestReady | Self::QuestInProgress | Self::QuestObjective
+        )
+    }
 }
 
 #[derive(Clone, Copy, Debug)]
@@ -295,11 +462,15 @@ impl TerminalView {
         game: &WorldState,
         options: TerminalDrawOptions<'_>,
         overlay: impl Fn(GridPos) -> Option<TerminalOverlay>,
+        interaction_name: impl Fn(GridPos) -> Option<String>,
     ) {
         let TerminalDrawOptions {
             bounds,
             cell_size,
+            reduced_motion,
             interact_label,
+            interaction_focus,
+            multiple_interactions,
             legend_label,
             observation_label,
             legend_open,
@@ -427,7 +598,7 @@ impl TerminalView {
                         ),
                         cell.selected,
                         cell.alert.is_some(),
-                        cell.status_icon,
+                        cell.status_icon.filter(|icon| !icon.is_quest()),
                     );
                 }
                 if visible
@@ -446,6 +617,31 @@ impl TerminalView {
                     draw_attack_preview_cursor(rect, preview.valid);
                 }
             }
+        }
+        // A second pass keeps overhead markers above neighbouring terrain and
+        // supports installations even when no actor/item overlay occupies them.
+        // A gentle 0–3 px float every 2.4 seconds uses presentation time only.
+        let quest_marker_rise = if reduced_motion {
+            0.0
+        } else {
+            (1.5 * (1.0 - (get_time() * std::f64::consts::TAU / 2.4).cos())) as f32
+        };
+        for position in visibility
+            .visible_positions()
+            .filter(|position| camera.contains(*position))
+        {
+            let Some(marker) = game.quest_marker_at(position) else {
+                continue;
+            };
+            let icon = match marker {
+                project_rl::game::QuestMarker::Available => TerminalStatusIcon::QuestAvailable,
+                project_rl::game::QuestMarker::ReadyToComplete => TerminalStatusIcon::QuestReady,
+                project_rl::game::QuestMarker::InProgress => TerminalStatusIcon::QuestInProgress,
+                project_rl::game::QuestMarker::Objective => TerminalStatusIcon::QuestObjective,
+            };
+            let mut marker_rect = camera.rect(position);
+            marker_rect.y -= quest_marker_rise;
+            draw_status_icon(marker_rect, icon);
         }
         let pointer = camera.hit(mouse_position());
         let pointer_inspected = pointer.and_then(|p| self.known(p).map(|t| (p, t)));
@@ -498,7 +694,9 @@ impl TerminalView {
         // Mouse inspection takes priority; keyboard target selection remains a
         // complete alternative when no known map cell is hovered.
         let inspected = pointer_inspected.or(selected_inspected);
-        if let Some((position, _)) = inspected {
+        if let Some((position, _)) = inspected
+            && game.player_position() != Some(position)
+        {
             let rect = camera.rect(position);
             draw_rectangle_lines(
                 rect.x,
@@ -508,6 +706,31 @@ impl TerminalView {
                 1.0,
                 Color::from_rgba(151, 191, 198, 255),
             );
+        }
+        let hovered_interaction = pointer.and_then(|position| {
+            visibility
+                .is_visible(position)
+                .then(|| interaction_hint(game, position).map(|hint| (position, hint)))
+                .flatten()
+        });
+        let focused_interaction = interaction_focus.and_then(|position| {
+            (camera.contains(position) && visibility.is_visible(position))
+                .then(|| interaction_hint(game, position).map(|hint| (position, hint)))
+                .flatten()
+        });
+        if !legend_open && let Some((position, hint)) = hovered_interaction.or(focused_interaction)
+        {
+            let rect = camera.rect(position);
+            let action = interaction_action(
+                game.player_position(),
+                position,
+                interaction_focus,
+                &hint,
+                interact_label,
+                multiple_interactions,
+            );
+            let title = interaction_name(position).unwrap_or(hint.title);
+            draw_interaction_tooltip(rect, layout.map, &title, &action);
         }
         let description = if let Some((position, tile)) = inspected {
             if visibility.is_visible(position) {
@@ -620,6 +843,12 @@ impl TerminalView {
                                 Some(TerminalStatusIcon::QuestReady) => {
                                     format!("{alert_label} · RAPPORT DE QUÊTE ATTENDU")
                                 }
+                                Some(TerminalStatusIcon::QuestInProgress) => {
+                                    format!("{alert_label} · QUÊTE EN COURS")
+                                }
+                                Some(TerminalStatusIcon::QuestObjective) => {
+                                    format!("{alert_label} · OBJECTIF DE QUÊTE")
+                                }
                                 None => alert_label,
                             }
                         },
@@ -655,6 +884,22 @@ impl TerminalView {
                 description.clone()
             }
         });
+        let description = if inspected.is_some_and(|(position, _)| {
+            overlay(position).is_none()
+                && game.quest_marker_at(position) == Some(project_rl::game::QuestMarker::Objective)
+        }) {
+            format!("{description} · OBJECTIF DE QUÊTE")
+        } else {
+            description
+        };
+        let description = if sidebar {
+            description
+        } else {
+            format!(
+                "POSITION · {} · {description}",
+                local_coordinates(game.player_position())
+            )
+        };
         draw_bounded_text(
             &description,
             layout.footer.x,
@@ -699,7 +944,7 @@ impl TerminalView {
 
     fn draw_sidebar(
         &self,
-        game: &GameState,
+        game: &WorldState,
         panel: Rect,
         visible_counts: (usize, usize, usize, usize, usize, usize),
         target: Option<&TerminalTargetSummary>,
@@ -726,11 +971,18 @@ impl TerminalView {
             panel.h - 20.0,
         );
         draw_ui_text_bold("CAPTEURS", rect.x, rect.y + 18.0, 18.0, bright);
+        draw_ui_text_bold(
+            &format!("POSITION · {}", local_coordinates(game.player_position())),
+            rect.x,
+            rect.y + 40.0,
+            14.0,
+            cyan,
+        );
         let map_area = Rect::new(
             rect.x,
-            rect.y + 30.0,
+            rect.y + 52.0,
             rect.w,
-            (rect.h * 0.38).clamp(180.0, 240.0),
+            (rect.h * 0.38).clamp(180.0, 240.0) - 22.0,
         );
         let (known_min, known_max) = if observation_fields.is_empty() {
             remembered_bounds(
@@ -753,7 +1005,7 @@ impl TerminalView {
         let pixel = (map_area.w / known_width)
             .min(map_area.h / known_height)
             .floor()
-            .clamp(1.0, 8.0);
+            .clamp(1.0, 12.0);
         let map_width = known_width * pixel;
         let map_height = known_height * pixel;
         let origin = vec2(
@@ -900,7 +1152,7 @@ impl TerminalView {
 fn draw_sensor_scope(
     area: Rect,
     remembered: &BTreeMap<GridPos, KnownTile>,
-    game: &GameState,
+    game: &WorldState,
     known_min: GridPos,
     known_max: GridPos,
     pixel: f32,
@@ -1102,12 +1354,32 @@ fn draw_sensor_scope(
         }
     }
 
+    // Live affordances live on the sensor map; they never appear in stale
+    // explored memory, even when the underlying terrain remains drawn there.
+    for position in game.player_visibility().visible_positions() {
+        if !sensor_position_is_inside(position, known_min, known_max)
+            || game.player_position() == Some(position)
+        {
+            continue;
+        }
+        if let Some(hint) = interaction_hint(game, position) {
+            draw_sensor_interaction(sensor_cell_rect(position, known_min, pixel, origin), &hint);
+        }
+    }
     for contact in contacts {
         if sensor_position_is_inside(contact.position, known_min, known_max) {
             draw_sensor_contact(
                 sensor_cell_rect(contact.position, known_min, pixel, origin),
                 *contact,
             );
+        }
+    }
+    for position in game.player_visibility().visible_positions() {
+        if !sensor_position_is_inside(position, known_min, known_max) {
+            continue;
+        }
+        if let Some(marker) = game.quest_marker_at(position) {
+            draw_sensor_quest_marker(sensor_cell_rect(position, known_min, pixel, origin), marker);
         }
     }
     if let Some(position) = game.player_position()
@@ -1189,6 +1461,81 @@ fn draw_sensor_edge(from_x: f32, from_y: f32, to_x: f32, to_y: f32, color: Color
             color,
         );
     }
+}
+
+fn draw_sensor_interaction(cell: Rect, hint: &InteractionHint) {
+    let center = vec2(cell.x + cell.w * 0.5, cell.y + cell.h * 0.5);
+    let radius = (cell.w * 0.65).clamp(3.5, 5.2);
+    let color = if hint.is_loot {
+        Color::from_rgba(255, 211, 92, 255)
+    } else if hint.unavailable.is_some() {
+        Color::from_rgba(152, 177, 178, 255)
+    } else {
+        Color::from_rgba(121, 231, 218, 255)
+    };
+    draw_circle(
+        center.x,
+        center.y,
+        radius + 1.2,
+        Color::from_rgba(2, 8, 12, 255),
+    );
+    if hint.is_loot {
+        draw_circle_lines(center.x, center.y, radius, 1.5, color);
+        draw_circle(center.x, center.y, 1.0, color);
+    } else if hint.unavailable.is_some() {
+        draw_line(
+            center.x - radius,
+            center.y - radius,
+            center.x + radius,
+            center.y + radius,
+            1.5,
+            color,
+        );
+        draw_line(
+            center.x + radius,
+            center.y - radius,
+            center.x - radius,
+            center.y + radius,
+            1.5,
+            color,
+        );
+    } else {
+        draw_line(
+            center.x - radius,
+            center.y,
+            center.x + radius,
+            center.y,
+            1.5,
+            color,
+        );
+        draw_line(
+            center.x,
+            center.y - radius,
+            center.x,
+            center.y + radius,
+            1.5,
+            color,
+        );
+    }
+}
+
+fn draw_sensor_quest_marker(cell: Rect, marker: project_rl::game::QuestMarker) {
+    let symbol = match marker {
+        project_rl::game::QuestMarker::Available => "!",
+        project_rl::game::QuestMarker::ReadyToComplete => "?",
+        project_rl::game::QuestMarker::InProgress => "…",
+        project_rl::game::QuestMarker::Objective => "*",
+    };
+    let size = (cell.w * 1.5).round().clamp(11.0, 14.0) as u16;
+    let rect = Rect::new(
+        cell.x + cell.w * 0.5 - 7.0,
+        cell.y + cell.h * 0.5 - 7.0,
+        14.0,
+        14.0,
+    );
+    let shadow = Rect::new(rect.x + 1.0, rect.y + 1.0, rect.w, rect.h);
+    draw_ui_text_bold_centered(symbol, shadow, size, Color::from_rgba(2, 8, 12, 255));
+    draw_ui_text_bold_centered(symbol, rect, size, Color::from_rgba(255, 230, 130, 255));
 }
 
 fn draw_sensor_contact(cell: Rect, contact: SensorContact) {
@@ -1288,9 +1635,8 @@ fn draw_sensor_contact(cell: Rect, contact: SensorContact) {
 
 fn draw_sensor_player(cell: Rect) {
     let center = vec2(cell.x + cell.w * 0.5, cell.y + cell.h * 0.5);
-    let radius = (cell.w * 0.72).clamp(3.3, 5.8);
+    let radius = (cell.w * 0.72).clamp(4.0, 5.8);
     let color = Color::from_rgba(109, 243, 218, 255);
-    draw_circle_lines(center.x, center.y, radius + 2.0, 1.0, color);
     draw_triangle(
         vec2(center.x, center.y - radius),
         vec2(center.x + radius * 0.72, center.y + radius * 0.72),
@@ -1645,17 +1991,31 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
         ),
         (
             'i',
-            "Badge ? · quête disponible",
+            "! au-dessus · quête disponible",
             Color::from_rgba(112, 207, 190, 255),
             false,
             Some(TerminalStatusIcon::QuestAvailable),
         ),
         (
             'i',
-            "Badge ! · rapport de quête attendu",
+            "? au-dessus · quête à rendre",
             Color::from_rgba(112, 207, 190, 255),
             false,
             Some(TerminalStatusIcon::QuestReady),
+        ),
+        (
+            'i',
+            "… au-dessus · quête en cours",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            Some(TerminalStatusIcon::QuestInProgress),
+        ),
+        (
+            '=',
+            "* au-dessus · élément recherché pour une quête",
+            Color::from_rgba(118, 202, 207, 255),
+            false,
+            Some(TerminalStatusIcon::QuestObjective),
         ),
         (
             '¤',
@@ -1810,6 +2170,14 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             muted,
         );
     }
+    draw_bounded_text(
+        "Minimap : + interaction · cercle objet · × accès bloqué · !/?/…/* quête visible",
+        panel.x + 22.0,
+        panel.y + panel.h - 37.0,
+        panel.w - 44.0,
+        14,
+        cyan,
+    );
     draw_ui_text(
         format!("{legend_label}, Échap ou clic gauche · fermer"),
         panel.x + 22.0,
@@ -2702,16 +3070,6 @@ fn draw_entity(
         };
         draw_pixel_glyph_palette(rect, pattern, palette);
     }
-    if symbol == '@' {
-        draw_rectangle_lines(
-            rect.x + 1.0,
-            rect.y + 1.0,
-            rect.w - 2.0,
-            rect.h - 2.0,
-            1.0,
-            palette.primary,
-        );
-    }
     if let Some(icon) = status_icon {
         draw_status_icon(rect, icon);
     }
@@ -2763,13 +3121,132 @@ fn draw_ascii_actor(rect: Rect, glyph: &str, color: Color) {
     draw_ui_text_bold_centered(glyph, rect, font_size, color);
 }
 
+pub(crate) fn local_coordinates(position: Option<GridPos>) -> String {
+    position.map_or_else(|| "—".to_owned(), |p| format!("X {} · Y {}", p.x, p.y))
+}
+
+fn draw_interaction_tooltip(anchor: Rect, map: Rect, title: &str, action: &str) {
+    let width = (measure_ui_text(title, None, 15, 1.0)
+        .width
+        .max(measure_ui_text(action, None, 14, 1.0).width)
+        + 22.0)
+        .clamp(156.0, (map.w - 12.0).max(156.0));
+    let height = 53.0;
+    let preferred_x = anchor.x + anchor.w + 8.0;
+    let x = if preferred_x + width <= map.x + map.w - 4.0 {
+        preferred_x
+    } else {
+        (anchor.x - width - 8.0).max(map.x + 4.0)
+    };
+    let y = anchor.y.clamp(map.y + 4.0, map.y + map.h - height - 4.0);
+    let panel = Rect::new(x, y, width, height);
+    UiTheme.card(panel, false);
+    draw_rectangle(
+        panel.x,
+        panel.y,
+        3.0,
+        panel.h,
+        Color::from_rgba(121, 231, 218, 255),
+    );
+    draw_bounded_text(
+        title,
+        x + 11.0,
+        y + 20.0,
+        width - 20.0,
+        15,
+        Color::from_rgba(224, 240, 237, 255),
+    );
+    draw_bounded_text(
+        action,
+        x + 11.0,
+        y + 40.0,
+        width - 20.0,
+        14,
+        Color::from_rgba(142, 226, 210, 255),
+    );
+}
+
 fn draw_status_icon(rect: Rect, icon: TerminalStatusIcon) {
-    let badge_size = (rect.w * 0.43).clamp(11.0, 15.0);
-    let badge = Rect::new(
-        rect.x + rect.w - badge_size + 1.0,
-        rect.y + rect.h - badge_size + 1.0,
-        badge_size,
-        badge_size,
+    let badge_size = if icon.is_quest() {
+        (rect.w * 0.70).clamp(20.0, 24.0)
+    } else {
+        (rect.w * 0.43).clamp(11.0, 15.0)
+    };
+    let badge = if icon.is_quest() {
+        Rect::new(
+            rect.x + (rect.w - badge_size) * 0.5,
+            rect.y - badge_size * 0.65,
+            badge_size,
+            badge_size,
+        )
+    } else {
+        Rect::new(
+            rect.x + rect.w - badge_size + 1.0,
+            rect.y + rect.h - badge_size + 1.0,
+            badge_size,
+            badge_size,
+        )
+    };
+    if icon.is_quest() {
+        let marker = match icon {
+            TerminalStatusIcon::QuestAvailable => "!",
+            TerminalStatusIcon::QuestReady => "?",
+            TerminalStatusIcon::QuestInProgress => "…",
+            TerminalStatusIcon::QuestObjective => "*",
+            _ => unreachable!(),
+        };
+        let size = (badge.h * 1.1).round().clamp(18.0, 23.0) as u16;
+        let shadow = Rect::new(badge.x + 1.0, badge.y + 1.0, badge.w, badge.h);
+        draw_ui_text_bold_centered(marker, shadow, size, Color::from_rgba(2, 8, 12, 255));
+        draw_ui_text_bold_centered(marker, badge, size, Color::from_rgba(255, 230, 130, 255));
+        return;
+    }
+    if icon == TerminalStatusIcon::RequiredMaterial {
+        let center_x = badge.x + badge.w * 0.5;
+        let center_y = badge.y + badge.h * 0.5;
+        let arm = badge.w * 0.24;
+        let shadow = Color::from_rgba(2, 8, 12, 255);
+        let color = Color::from_rgba(255, 218, 135, 255);
+        draw_line(
+            center_x - arm + 1.0,
+            center_y + 1.0,
+            center_x + arm + 1.0,
+            center_y + 1.0,
+            3.0,
+            shadow,
+        );
+        draw_line(
+            center_x + 1.0,
+            center_y - arm + 1.0,
+            center_x + 1.0,
+            center_y + arm + 1.0,
+            3.0,
+            shadow,
+        );
+        draw_line(
+            center_x - arm,
+            center_y,
+            center_x + arm,
+            center_y,
+            2.0,
+            color,
+        );
+        draw_line(
+            center_x,
+            center_y - arm,
+            center_x,
+            center_y + arm,
+            2.0,
+            color,
+        );
+        return;
+    }
+    draw_rectangle(
+        badge.x,
+        badge.y,
+        badge.w,
+        badge.h,
+        Color::from_rgba(7, 15, 21, 245),
     );
     draw_rectangle_lines(
         badge.x,
@@ -2789,41 +3266,11 @@ fn draw_status_icon(rect: Rect, icon: TerminalStatusIcon) {
                 Some(Color::from_rgba(255, 220, 82, 255)),
             ),
         ),
-        TerminalStatusIcon::RequiredMaterial => {
-            let color = Color::from_rgba(255, 218, 135, 255);
-            let center_x = badge.x + badge.w * 0.5;
-            let center_y = badge.y + badge.h * 0.5;
-            let arm = badge.w * 0.24;
-            draw_line(
-                center_x - arm,
-                center_y,
-                center_x + arm,
-                center_y,
-                2.0,
-                color,
-            );
-            draw_line(
-                center_x,
-                center_y - arm,
-                center_x,
-                center_y + arm,
-                2.0,
-                color,
-            );
-        }
-        TerminalStatusIcon::QuestAvailable | TerminalStatusIcon::QuestReady => {
-            let marker = if icon == TerminalStatusIcon::QuestReady {
-                "!"
-            } else {
-                "?"
-            };
-            draw_ui_text_bold_centered(
-                marker,
-                badge,
-                (badge.h * 0.9).round().clamp(8.0, 13.0) as u16,
-                Color::from_rgba(255, 218, 135, 255),
-            );
-        }
+        TerminalStatusIcon::RequiredMaterial => unreachable!(),
+        TerminalStatusIcon::QuestAvailable
+        | TerminalStatusIcon::QuestReady
+        | TerminalStatusIcon::QuestInProgress
+        | TerminalStatusIcon::QuestObjective => unreachable!(),
     }
 }
 
@@ -3087,6 +3534,57 @@ const MATERIAL: PixelGlyph = [
 mod tests {
     use super::*;
     use project_rl::world::FieldOfViewRules;
+
+    #[test]
+    fn interaction_hint_only_advertises_a_key_when_it_can_target_the_element() {
+        let player = GridPos::new(4, 4);
+        let adjacent = GridPos::new(5, 4);
+        let far = GridPos::new(7, 4);
+        let door = InteractionHint {
+            title: "Porte fermée".to_owned(),
+            is_loot: false,
+            verb: "ouvrir",
+            unavailable: None,
+        };
+        assert_eq!(
+            interaction_action(Some(player), adjacent, Some(adjacent), &door, "E", false),
+            "E · ouvrir"
+        );
+        assert_eq!(
+            interaction_action(Some(player), adjacent, None, &door, "E", false),
+            "E · choisir : ouvrir"
+        );
+        assert_eq!(
+            interaction_action(Some(player), far, None, &door, "E", false),
+            "Approchez-vous pour interagir"
+        );
+        let locked = InteractionHint {
+            unavailable: Some("Autorisation nécessaire"),
+            ..door.clone()
+        };
+        assert_eq!(
+            interaction_action(Some(player), adjacent, Some(adjacent), &locked, "E", false),
+            "Autorisation nécessaire"
+        );
+        let loot = InteractionHint {
+            title: "Objet au sol".to_owned(),
+            is_loot: true,
+            verb: "ramasser",
+            unavailable: None,
+        };
+        assert_eq!(
+            interaction_action(Some(player), player, None, &loot, "E", false),
+            "E · ramasser"
+        );
+        assert_eq!(
+            interaction_action(Some(player), player, None, &loot, "E", true),
+            "E · choisir : ramasser"
+        );
+        assert_eq!(
+            interaction_action(Some(player), adjacent, None, &loot, "E", false),
+            "Rejoignez la case pour ramasser"
+        );
+    }
 
     #[test]
     fn memory_never_refreshes_hidden_terrain_or_joins_unknown_walls() {

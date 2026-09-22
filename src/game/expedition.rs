@@ -44,6 +44,11 @@ use super::{
 
 const MAX_WORLD_SNAPSHOT_BYTES: usize = 12 * 1024 * 1024;
 
+#[path = "narrative.rs"]
+mod narrative;
+use narrative::NarrativeState;
+pub use narrative::{DialogueChoiceView, DialogueView};
+
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ZoneInfo {
     pub id: ContentId,
@@ -149,6 +154,8 @@ pub struct NpcQuestView {
 pub enum QuestMarker {
     Available,
     ReadyToComplete,
+    InProgress,
+    Objective,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -648,6 +655,7 @@ impl Debug for ZoneState {
 }
 
 pub struct WorldState {
+    narrative: Option<NarrativeState>,
     active: GameState,
     current: Option<ContentId>,
     information: BTreeMap<ContentId, ZoneInfo>,
@@ -667,6 +675,7 @@ pub struct WorldState {
 // Serde so the compiler checks the complete snapshot contract in one place.
 #[derive(Serialize, Deserialize)]
 struct WorldStateSnapshot {
+    narrative: Option<NarrativeState>,
     active: GameStateSnapshot,
     current: Option<ContentId>,
     information: BTreeMap<ContentId, ZoneInfo>,
@@ -715,6 +724,9 @@ impl Debug for WorldState {
         if self.player_credits > 0 {
             state.field("player_credits", &self.player_credits);
         }
+        if let Some(narrative) = &self.narrative {
+            state.field("narrative", narrative);
+        }
         state.finish()
     }
 }
@@ -736,6 +748,7 @@ impl DerefMut for WorldState {
 impl WorldState {
     pub fn recovery_snapshot_bytes(&self) -> Result<Vec<u8>, String> {
         let snapshot = WorldStateSnapshot {
+            narrative: self.narrative.clone(),
             active: self.active.snapshot()?,
             current: self.current.clone(),
             information: self.information.clone(),
@@ -770,6 +783,7 @@ impl WorldState {
             .map_err(|error| format!("Instantané moteur incompatible : {error}"))?;
         Ok(Self {
             active: GameState::from_snapshot(snapshot.active, rules),
+            narrative: snapshot.narrative,
             current: snapshot.current,
             information: snapshot.information,
             pending: snapshot.pending,
@@ -802,6 +816,7 @@ impl WorldState {
     /// Legacy single-map replay, with byte-for-byte unchanged GameState Debug.
     pub fn single(active: GameState) -> Self {
         Self {
+            narrative: None,
             active,
             current: None,
             information: BTreeMap::new(),
@@ -934,6 +949,11 @@ impl WorldState {
             .values()
             .flat_map(FacilityState::accessed_data_terminal_records)
             .cloned()
+            .chain(
+                self.narrative
+                    .iter()
+                    .flat_map(|state| state.records.iter().cloned()),
+            )
             .collect()
     }
 
@@ -1171,7 +1191,7 @@ impl WorldState {
                 quests: quests.clone(),
             });
         }
-        if !quests.is_empty() {
+        if !quests.is_empty() || self.narrative_character(provider).is_some() {
             return Some(NpcInteraction {
                 provider,
                 position,
@@ -1318,6 +1338,11 @@ impl WorldState {
             .any(|quest| quest.status == QuestStatus::Available)
         {
             Some(QuestMarker::Available)
+        } else if views
+            .iter()
+            .any(|quest| quest.status == QuestStatus::Active)
+        {
+            Some(QuestMarker::InProgress)
         } else {
             None
         }
@@ -1426,7 +1451,8 @@ impl WorldState {
                 )
             }
             (
-                QuestDefinition::AccessDataRecord(definition),
+                QuestDefinition::AccessDataRecord(definition)
+                | QuestDefinition::KnownFact(definition),
                 QuestProgress::AccessDataRecord { accessed },
             ) => (
                 QuestObjectiveView::AccessDataRecord {
@@ -1846,7 +1872,8 @@ impl WorldState {
                     && !exploration.summary_key.trim().is_empty()
                     && exploration.required_zones > 0
             }
-            QuestDefinition::AccessDataRecord(data_record) => {
+            QuestDefinition::AccessDataRecord(data_record)
+            | QuestDefinition::KnownFact(data_record) => {
                 !data_record.title_key.trim().is_empty()
                     && !data_record.summary_key.trim().is_empty()
             }
@@ -2025,7 +2052,7 @@ impl WorldState {
                 baseline: BTreeSet::new(),
                 discovered: BTreeSet::new(),
             },
-            QuestDefinition::AccessDataRecord(_) => {
+            QuestDefinition::AccessDataRecord(_) | QuestDefinition::KnownFact(_) => {
                 QuestProgress::AccessDataRecord { accessed: false }
             }
             QuestDefinition::DefeatTargets(_) => QuestProgress::DefeatTargets {
@@ -2690,6 +2717,11 @@ impl WorldState {
             GameCommand::CompleteQuest { giver, quest } => {
                 Some(self.complete_quest(*giver, quest, command.clone()))
             }
+            GameCommand::ChooseDialogue {
+                speaker,
+                node,
+                choice,
+            } => Some(self.choose_dialogue(*speaker, node, *choice)),
             _ => None,
         };
         let outcome = if let Some(outcome) = world_action {
@@ -2985,6 +3017,7 @@ impl WorldState {
             .chain(self.inactive.keys())
             .cloned()
             .collect::<BTreeSet<_>>();
+        let known_records = self.discovered_data_terminal_records();
         let previous_quests = self.quests.clone();
         let accepted = &mut self.quests.get_mut(&zone).expect("quest access validated")[index];
         accepted.accepted = true;
@@ -2997,7 +3030,7 @@ impl WorldState {
             discovered.clear();
         }
         if let QuestProgress::AccessDataRecord { accessed } = &mut accepted.progress {
-            *accessed = false;
+            *accessed = matches!(&accepted.definition, QuestDefinition::KnownFact(definition) if known_records.contains(&definition.record));
         }
         if let QuestProgress::DefeatTargets { defeated_quantity } = &mut accepted.progress {
             *defeated_quantity = 0;
@@ -3100,7 +3133,8 @@ impl WorldState {
                     )
                 }
                 (
-                    QuestDefinition::AccessDataRecord(definition),
+                    QuestDefinition::AccessDataRecord(definition)
+                    | QuestDefinition::KnownFact(definition),
                     QuestProgress::AccessDataRecord { accessed },
                 ) => {
                     if !accessed {
@@ -3859,7 +3893,8 @@ impl WorldState {
                 }
                 match (&quest.definition, &mut quest.progress) {
                     (
-                        QuestDefinition::AccessDataRecord(definition),
+                        QuestDefinition::AccessDataRecord(definition)
+                        | QuestDefinition::KnownFact(definition),
                         QuestProgress::AccessDataRecord { accessed },
                     ) if !*accessed && definition.record == *record => {
                         *accessed = true;

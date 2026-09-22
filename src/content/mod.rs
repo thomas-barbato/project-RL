@@ -2,6 +2,7 @@ mod expedition;
 mod id;
 mod loader;
 mod manifest;
+mod narrative;
 mod regional_world;
 mod resolver;
 
@@ -18,6 +19,10 @@ pub use expedition::{
 pub use id::{ContentId, ContentIdError, PackageId, PackageIdError};
 pub use loader::{ContentLoadError, ContentLoader, LoadedContent};
 pub use manifest::{DependencySpec, ManifestError, PackageManifest};
+pub use narrative::{
+    DialogueAction, DialogueChoice, DialogueCondition, DialogueNode, NarrativeCharacter,
+    NarrativeDefinition,
+};
 pub use regional_world::{
     MAX_REGION_BIOME_RULES, MAX_REGION_CITIES, MAX_REGION_CITY_RESIDENTS, MAX_REGION_DESTRUCTIBLES,
     MAX_REGION_DESTRUCTION_COST, MAX_REGION_MAP_SIDE, MAX_REGION_PATCH_RADIUS,

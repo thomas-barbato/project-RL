@@ -43,8 +43,7 @@ actions! {
     Wait, "Attendre un tour", "Space", GAME;
     Attack, "Attaquer la cible", "F", GAME;
     CycleTarget, "Cible suivante", "Tab", GAME;
-    PickUp, "Ramasser", "E", GAME;
-    Interact, "Interagir : porte / console", "V", GAME;
+    Interact, "Interagir / ramasser", "E", GAME;
     Inventory, "Ouvrir / fermer l'inventaire", "I", ALL;
     Character, "Ouvrir / fermer le personnage", "J", ALL;
     Skills, "Ouvrir / fermer les compétences", "K", ALL;
@@ -395,6 +394,20 @@ impl Controls {
             document["version"] = serde_json::json!(2);
             if let Some(bindings) = document["bindings"].as_object_mut() {
                 bindings.remove("close");
+            }
+        }
+        // Older profiles had separate pickup (E) and interaction (V) keys.
+        // Keep a personalized key when one exists; otherwise use the new E default.
+        if let Some(bindings) = document["bindings"].as_object_mut() {
+            if let Some(pickup) = bindings.remove("pick_up") {
+                let old_interact = bindings.get("interact").cloned();
+                let pickup_custom = pickup != serde_json::json!({"type":"key", "value":"E"});
+                let interact_custom = old_interact.as_ref().is_some_and(|binding| {
+                    *binding != serde_json::json!({"type":"key", "value":"V"})
+                });
+                if pickup_custom || !interact_custom {
+                    bindings.insert("interact".to_owned(), pickup);
+                }
             }
         }
         let mut result: Self =
@@ -788,6 +801,34 @@ mod tests {
         document["bindings"]["move_north"] = serde_json::json!({"type":"key", "value":"Escape"});
         assert!(Controls::decode(&document.to_string()).is_err());
         assert!(controls.rebind(Action::Report, Binding::key("F1")).is_err());
+    }
+
+    #[test]
+    fn split_pickup_and_interaction_bindings_migrate_to_one_context_key() {
+        let controls = Controls::preset(Layout::Qwerty, KeySemantics::Physical);
+        let mut document = serde_json::to_value(&controls).unwrap();
+        document["bindings"]["pick_up"] = serde_json::json!({"type":"key", "value":"E"});
+        document["bindings"]["interact"] = serde_json::json!({"type":"key", "value":"V"});
+        assert_eq!(
+            Controls::decode(&document.to_string())
+                .unwrap()
+                .binding(Action::Interact),
+            &Binding::key("E")
+        );
+        document["bindings"]["interact"] = serde_json::json!({"type":"key", "value":"F4"});
+        assert_eq!(
+            Controls::decode(&document.to_string())
+                .unwrap()
+                .binding(Action::Interact),
+            &Binding::key("F4")
+        );
+        document["bindings"]["pick_up"] = serde_json::json!({"type":"key", "value":"F3"});
+        assert_eq!(
+            Controls::decode(&document.to_string())
+                .unwrap()
+                .binding(Action::Interact),
+            &Binding::key("F3")
+        );
     }
 
     #[test]

@@ -17,11 +17,11 @@ pub use event::{
 };
 pub use expedition::{
     ClinicRoutineState, DataRecordQuestDefinition, DefeatTargetsQuestDefinition,
-    DeliveryQuestDefinition, ExplorationQuestDefinition, GroundLootBlueprint, NpcInteraction,
-    NpcQuestView, NpcRole, NpcService, NpcServiceState, QuestDefinition, QuestId,
-    QuestJournalEntry, QuestMarker, QuestObjectiveView, QuestStatus, ResidentRoutineState,
-    TradeGambleView, TradeOfferView, TradeResaleView, TradeSellView, WorldState, ZoneBlueprint,
-    ZoneConnectionBlueprint, ZoneInfo, ZoneLink,
+    DeliveryQuestDefinition, DialogueChoiceView, DialogueView, ExplorationQuestDefinition,
+    GroundLootBlueprint, NpcInteraction, NpcQuestView, NpcRole, NpcService, NpcServiceState,
+    QuestDefinition, QuestId, QuestJournalEntry, QuestMarker, QuestObjectiveView, QuestStatus,
+    ResidentRoutineState, TradeGambleView, TradeOfferView, TradeResaleView, TradeSellView,
+    WorldState, ZoneBlueprint, ZoneConnectionBlueprint, ZoneInfo, ZoneLink,
 };
 pub use game_state::{
     ActorObservationField, CommandOutcome, CommandRejection, DroneSpawnError, GameInitError,

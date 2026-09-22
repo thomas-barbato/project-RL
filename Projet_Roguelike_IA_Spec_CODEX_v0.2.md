@@ -1311,6 +1311,20 @@ Generation validation must check at least:
 - path exists where required;
 - no mandatory object placed in invalid tile.
 
+## Approved world direction — September 21, 2026
+
+The full game needs both larger meaningful outdoor maps and territories containing multiple wilderness regions between major settlements and campaign milestones. Each layer has its own city anchor, wilderness destinations and optional branches. Do not treat the prototype's aligned city shaft or current map dimensions as the final world layout. Exact dimensions, distances and region counts remain unapproved.
+
+Use constrained procedural generation: authored campaign requirements define mandatory sites, information, devices and dependencies; procedural generation varies compatible geography, approaches, encounters and optional content. City layouts may retain handcrafted identities.
+
+The target architecture is a lightweight deterministic layer plan with stable site identities and reserved connections, created before detailed local maps are materialized on first visit. Reuse existing world, passage, facility and quest definitions where appropriate; the general planning contract is not yet implemented. Do not eagerly instantiate the whole atlas.
+
+Validate physical reachability and logical prerequisites independently, including circular access requirements. Required destinations must exist without first accepting their quests. Recognize early discoveries when they satisfy the objective. Persist the plan and consequences across suspension and revisits; quest acceptance must not relocate content into previously explored regions.
+
+These guarantees concern a viable initial world. They do not guarantee victory with any remaining resources or undo destructive player choices. Fallback information must have an authored, plausible source. Navigation validation alone does not prove difficulty or build viability.
+
+See [World, exploration and progression](docs/MONDE_EXPLORATION_ET_PROGRESSION.md) for the approved design contract and its distinction from the current implementation.
+
 ---
 
 # 42. Biome definitions
@@ -1353,6 +1367,16 @@ Types:
 - lore entries.
 
 Do not encode every narrative event as a Rust function.
+
+The full campaign must support a substantial, demanding winning run and optional sessions devoted to exploration and systemic experimentation. Main quests provide direction without making every local activity serve escape. Local stories should produce observable changes through bounded systems; this does not bring deferred faction or reputation systems into scope automatically.
+
+Do not add an implicit global deadline merely because the protagonist wants to escape. Timed local situations must expose their trigger, turn budget and consequences. Long-term exploration also requires a sustainable, balanced resource loop for the supported play styles.
+
+Measure winning-run duration separately from cumulative learning and failed attempts. No numeric duration or target win rate has been approved. Do not pad progression with repeated dialogue, mandatory grinding, empty travel or arbitrary level gates. First-attempt victory may be possible without being easy; permanent power upgrades or prior deaths must not be required.
+
+The nine milestones in the proposed story are narrative roles, not a map count or a proven campaign length. The [narrative assessment](docs/EVALUATION_NARRATIVE.md) contains recommendations, not additional approved story canon.
+
+The narrative corrections subsequently accepted on September 21 develop independent character motivations, distinct revelations, varied quest situations and optional local stories. Keep their proposed player-facing wording in [the narrative review manuscript](docs/TEXTES_NARRATIFS_PROPOSES.md), with stable editorial IDs and display conditions. This Markdown is not runtime content. Preserve the distinction between accepted direction, wording under review and implemented behavior; future integration must map IDs to localized content and verify the actual conditions before showing a line.
 
 ---
 

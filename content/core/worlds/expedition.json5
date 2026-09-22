@@ -3,6 +3,312 @@
 // ZoneBlueprints and reciprocal links through the headless WorldState API.
 {
   id: "core:starter_expedition",
+  // v89: Orme is a stationary contact beside the resident's route.
+  // v88: one-time XP for the investigation, in addition to its credits.
+  narrative_reward_experience: 12,
+  // v87: optional investigation. Manuscript: docs/TEXTES_NARRATIFS_PROPOSES.md.
+  narrative: {
+  "characters": [
+    {
+      "tag": "core:orme",
+      "name_key": "narrative.orme.name",
+      "role_key": "narrative.orme.role",
+      "hub_position": [
+        11,
+        27
+      ],
+      "entry": "ABS-D01",
+      "nodes": [
+        {
+          "id": "ABS-D01",
+          "text_key": "narrative.abs-d01",
+          "choices": [
+            {
+              "text_key": "narrative.choice.0",
+              "next": "ABS-D02",
+              "conditions": [
+                {
+                  "quest_available": "core:chemin_des_absents"
+                },
+                {
+                  "does_not_know_record": "core:relay_testimony"
+                }
+              ],
+              "action": {
+                "accept_quest": "core:chemin_des_absents"
+              }
+            },
+            {
+              "text_key": "narrative.choice.1",
+              "next": "ABS-D17",
+              "conditions": [
+                {
+                  "quest_available": "core:chemin_des_absents"
+                },
+                {
+                  "knows_record": "core:relay_testimony"
+                }
+              ],
+              "action": {
+                "accept_quest": "core:chemin_des_absents"
+              }
+            },
+            {
+              "text_key": "narrative.choice.2",
+              "next": "ABS-D03",
+              "conditions": [],
+              "action": null
+            },
+            {
+              "text_key": "narrative.choice.3",
+              "next": "ABS-D02",
+              "conditions": [
+                {
+                  "quest_active": "core:chemin_des_absents"
+                }
+              ],
+              "action": null
+            },
+            {
+              "text_key": "narrative.choice.4",
+              "next": "ABS-D14",
+              "conditions": [
+                {
+                  "quest_ready": "core:chemin_des_absents"
+                }
+              ],
+              "action": {
+                "complete_quest": "core:chemin_des_absents"
+              }
+            },
+            {
+              "text_key": "narrative.choice.5",
+              "next": "ABS-D14",
+              "conditions": [
+                {
+                  "quest_completed": "core:chemin_des_absents"
+                }
+              ],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D02",
+          "text_key": "narrative.abs-d02",
+          "choices": [
+            {
+              "text_key": "narrative.choice.7",
+              "next": "ABS-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D03",
+          "text_key": "narrative.abs-d03",
+          "choices": [
+            {
+              "text_key": "narrative.choice.9",
+              "next": "ABS-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D17",
+          "text_key": "narrative.abs-d17",
+          "choices": [
+            {
+              "text_key": "narrative.choice.11",
+              "next": "ABS-D14",
+              "conditions": [
+                {
+                  "quest_ready": "core:chemin_des_absents"
+                }
+              ],
+              "action": {
+                "complete_quest": "core:chemin_des_absents"
+              }
+            },
+            {
+              "text_key": "narrative.choice.12",
+              "next": "ABS-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D14",
+          "text_key": "narrative.abs-d14",
+          "choices": [
+            {
+              "text_key": "narrative.choice.14",
+              "next": "ABS-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "core:seve",
+      "name_key": "narrative.seve.name",
+      "role_key": "narrative.seve.role",
+      "hub_position": [
+        15,
+        11
+      ],
+      "entry": "SEV-D01",
+      "nodes": [
+        {
+          "id": "SEV-D01",
+          "text_key": "narrative.sev-d01",
+          "choices": [
+            {
+              "text_key": "narrative.choice.29",
+              "next": "SEV-D02",
+              "conditions": [],
+              "action": null
+            },
+            {
+              "text_key": "narrative.choice.30",
+              "next": "SEV-D05",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "SEV-D02",
+          "text_key": "narrative.sev-d02",
+          "choices": [
+            {
+              "text_key": "narrative.choice.32",
+              "next": "SEV-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "SEV-D05",
+          "text_key": "narrative.sev-d05",
+          "choices": [
+            {
+              "text_key": "narrative.choice.34",
+              "next": "SEV-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "core:rivet",
+      "name_key": "narrative.rivet.name",
+      "role_key": "narrative.rivet.role",
+      "hub_position": null,
+      "entry": "ABS-D04",
+      "nodes": [
+        {
+          "id": "ABS-D04",
+          "text_key": "narrative.abs-d04",
+          "choices": [
+            {
+              "text_key": "narrative.choice.16",
+              "next": "ABS-D05",
+              "conditions": [],
+              "action": null
+            },
+            {
+              "text_key": "narrative.choice.17",
+              "next": "ABS-D08",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D05",
+          "text_key": "narrative.abs-d05",
+          "choices": [
+            {
+              "text_key": "narrative.choice.19",
+              "next": "ABS-D06",
+              "conditions": [],
+              "action": {
+                "learn_record": "core:relay_testimony"
+              }
+            },
+            {
+              "text_key": "narrative.choice.20",
+              "next": "ABS-D04",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D06",
+          "text_key": "narrative.abs-d06",
+          "choices": [
+            {
+              "text_key": "narrative.choice.22",
+              "next": "ABS-D04",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D08",
+          "text_key": "narrative.abs-d08",
+          "choices": [
+            {
+              "text_key": "narrative.choice.24",
+              "next": "ABS-D10",
+              "conditions": [],
+              "action": null
+            },
+            {
+              "text_key": "narrative.choice.25",
+              "next": "ABS-D04",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D10",
+          "text_key": "narrative.abs-d10",
+          "choices": [
+            {
+              "text_key": "narrative.choice.27",
+              "next": "ABS-D04",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relay_character": "core:rivet",
+  "investigation": {
+    "id": "core:chemin_des_absents",
+    "provider_tag": "core:orme",
+    "record": "core:relay_testimony",
+    "title_key": "narrative.abs.title",
+    "summary_key": "narrative.abs.summary",
+    "reward_credits": 30
+  }
+},
   hub: { id: "core:starter_city", name: "Ville de départ / Friches", kind: "core:surface", depth: 0 },
   destination: { id: "core:industrial_sector", name: "Secteur industriel", kind: "core:industrial", depth: 1 },
   passage: [67, 21],

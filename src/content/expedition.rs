@@ -785,6 +785,8 @@ pub enum QuestDefinition {
     ExploreZones(ExplorationQuestDefinition),
     AccessDataRecord(DataRecordQuestDefinition),
     DefeatTargets(DefeatTargetsQuestDefinition),
+    /// Knowledge is retained even when discovered before accepting the quest.
+    KnownFact(DataRecordQuestDefinition),
 }
 
 impl QuestDefinition {
@@ -792,7 +794,7 @@ impl QuestDefinition {
         match self {
             Self::Delivery(definition) => &definition.id,
             Self::ExploreZones(definition) => &definition.id,
-            Self::AccessDataRecord(definition) => &definition.id,
+            Self::AccessDataRecord(definition) | Self::KnownFact(definition) => &definition.id,
             Self::DefeatTargets(definition) => &definition.id,
         }
     }
@@ -801,7 +803,9 @@ impl QuestDefinition {
         match self {
             Self::Delivery(definition) => &definition.title_key,
             Self::ExploreZones(definition) => &definition.title_key,
-            Self::AccessDataRecord(definition) => &definition.title_key,
+            Self::AccessDataRecord(definition) | Self::KnownFact(definition) => {
+                &definition.title_key
+            }
             Self::DefeatTargets(definition) => &definition.title_key,
         }
     }
@@ -810,7 +814,9 @@ impl QuestDefinition {
         match self {
             Self::Delivery(definition) => &definition.summary_key,
             Self::ExploreZones(definition) => &definition.summary_key,
-            Self::AccessDataRecord(definition) => &definition.summary_key,
+            Self::AccessDataRecord(definition) | Self::KnownFact(definition) => {
+                &definition.summary_key
+            }
             Self::DefeatTargets(definition) => &definition.summary_key,
         }
     }
@@ -819,7 +825,9 @@ impl QuestDefinition {
         match self {
             Self::Delivery(definition) => definition.reward_credits,
             Self::ExploreZones(definition) => definition.reward_credits,
-            Self::AccessDataRecord(definition) => definition.reward_credits,
+            Self::AccessDataRecord(definition) | Self::KnownFact(definition) => {
+                definition.reward_credits
+            }
             Self::DefeatTargets(definition) => definition.reward_credits,
         }
     }
@@ -1273,6 +1281,9 @@ impl FacilityDefinition {
 
 #[derive(Clone, PartialEq, Eq)]
 pub struct ExpeditionDefinition {
+    pub narrative: Option<super::NarrativeDefinition>,
+    // Reward metadata stays outside the narrative stored in v87 world snapshots.
+    pub narrative_reward_experience: u64,
     id: ExpeditionId,
     pub hub: ZoneDefinition,
     pub destination: GeneratedZoneDefinition,
@@ -1324,6 +1335,15 @@ impl Debug for ExpeditionDefinition {
                 &self.player_property_take_authorizations,
             );
         }
+        if let Some(narrative) = &self.narrative {
+            definition.field("narrative", narrative);
+            if self.narrative_reward_experience > 0 {
+                definition.field(
+                    "narrative_reward_experience",
+                    &self.narrative_reward_experience,
+                );
+            }
+        }
         definition.finish()
     }
 }
@@ -1373,6 +1393,8 @@ impl ExpeditionDefinition {
         Ok(Self {
             id,
             hub,
+            narrative: None,
+            narrative_reward_experience: 0,
             destination,
             hub_passage,
             expanded_world: None,
@@ -1779,6 +1801,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 definition.hub_facility = None;
                 definition.hub_merchant = None;
                 definition.hub_clinic = None;
@@ -1800,6 +1823,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 definition.hub_merchant = None;
                 // A catalogue reconstructed for any pre-commerce generation
                 // must also discard services introduced after commerce.
@@ -1820,6 +1844,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 definition.hub_clinic = None;
                 definition.hub_residents.clear();
                 definition.hub_quests.clear();
@@ -1836,6 +1861,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 definition.hub_residents.clear();
                 definition.hub_quests.clear();
                 (id.clone(), definition)
@@ -1852,6 +1878,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 definition.hub_quests.clear();
                 (id.clone(), definition)
             })
@@ -1866,6 +1893,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for quest in &mut definition.hub_quests {
                     if let QuestDefinition::ExploreZones(exploration) = &mut quest.quest {
                         exploration.qualifying_records.clear();
@@ -1877,6 +1905,39 @@ impl ExpeditionCatalog {
         Self { definitions }
     }
 
+    /// Restore the moving resident as Orme in v87-v88 saves and replays.
+    pub fn without_stationary_quest_contact_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            if let Some(narrative) = &mut definition.narrative {
+                for character in &mut narrative.characters {
+                    if character.tag.as_str() == "core:orme" {
+                        character.hub_position = Some([12, 27]);
+                    }
+                }
+            }
+        }
+        catalog
+    }
+
+    /// Keep v87 quest rewards and catalogue fingerprints when replaying a run.
+    pub fn without_narrative_reward_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            definition.narrative_reward_experience = 0;
+        }
+        catalog
+    }
+
+    pub fn without_narrative_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            definition.narrative = None;
+            definition.narrative_reward_experience = 0;
+        }
+        catalog
+    }
+
     /// Removes v66 durable quest consequences while preserving the v65 quest
     /// chain definitions and their historical fingerprints.
     pub fn without_quest_world_state_metadata(&self) -> Self {
@@ -1885,6 +1946,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for quest in &mut definition.hub_quests {
                     quest.required_world_states.clear();
                     quest.completion_world_states.clear();
@@ -1903,6 +1965,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for quest in &mut definition.hub_quests {
                     quest.completion_world_effects.clear();
                 }
@@ -1920,6 +1983,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for quest in &mut definition.hub_quests {
                     quest
                         .completion_world_effects
@@ -1939,6 +2003,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for quest in &mut definition.hub_quests {
                     quest
                         .completion_world_effects
@@ -1958,6 +2023,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 if let Some(facility) = &mut definition.hub_facility {
                     for worker in &mut facility.blueprint.workers {
                         worker.property_report = None;
@@ -1979,6 +2045,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 if let Some(facility) = &mut definition.hub_facility {
                     for worker in &mut facility.blueprint.workers {
                         worker.installed_property_report = None;
@@ -1999,6 +2066,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 if let Some(facility) = &mut definition.hub_facility {
                     for worker in &mut facility.blueprint.workers {
                         worker.installed_property_report = None;
@@ -2018,6 +2086,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 definition.destination.population.clear();
                 if let Some(facility) = &mut definition.hub_facility {
                     facility.blueprint.owner = None;
@@ -2051,6 +2120,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 definition.destination.population.clear();
                 if let Some(facility) = &mut definition.hub_facility {
                     for installation in &mut facility.blueprint.installations {
@@ -2075,6 +2145,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 definition.destination.population.clear();
                 if let Some(facility) = &mut definition.hub_facility {
                     for installation in &mut facility.blueprint.installations {
@@ -2095,6 +2166,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 definition.destination.population.clear();
                 if let Some(facility) = &mut definition.hub_facility {
                     for installation in &mut facility.blueprint.installations {
@@ -2118,6 +2190,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 definition.destination.population.clear();
                 (id.clone(), definition)
             })
@@ -2133,6 +2206,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 definition.expanded_world = None;
                 (id.clone(), definition)
             })
@@ -2148,6 +2222,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for group in &mut definition.destination.population {
                     group.ai = group.ai.without_pursuit_limit();
                 }
@@ -2165,6 +2240,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for group in &mut definition.destination.population {
                     group.remove_pursuit_lifecycle();
                 }
@@ -2182,6 +2258,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for group in &mut definition.destination.population {
                     group.remove_primary_attributes();
                 }
@@ -2199,6 +2276,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for group in &mut definition.destination.population {
                     group.remove_player_relation_metadata();
                 }
@@ -2216,6 +2294,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for group in &mut definition.destination.population {
                     group.remove_physical_metadata();
                 }
@@ -2233,6 +2312,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for group in &mut definition.destination.population {
                     group.remove_melee_skill_body_metadata();
                 }
@@ -2250,6 +2330,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for group in &mut definition.destination.population {
                     group.remove_ranged_skill_body_metadata();
                 }
@@ -2267,6 +2348,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for group in &mut definition.destination.population {
                     group.remove_electronic_system_metadata();
                 }
@@ -2284,6 +2366,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 for group in &mut definition.destination.population {
                     group.remove_preparation_disruption_metadata();
                 }
@@ -2302,6 +2385,7 @@ impl ExpeditionCatalog {
             .iter()
             .map(|(id, definition)| {
                 let mut definition = definition.clone();
+                definition.narrative = None;
                 if let Some(facility) = &mut definition.hub_facility {
                     for installation in &mut facility.blueprint.installations {
                         installation.capabilities.retain(|capability| {

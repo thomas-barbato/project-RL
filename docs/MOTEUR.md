@@ -4,6 +4,8 @@ Le moteur de Project RL est une bibliothèque de simulation indépendante de Mac
 
 La charte de la couche de présentation, ses garanties clavier/souris et la séparation entre interface commune, rendu terminal et futur rendu texturé sont détaillées dans [`INTERFACE.md`](INTERFACE.md).
 
+La direction de monde précisée le 21 septembre 2026 figure dans [Monde, exploration et progression](MONDE_EXPLORATION_ET_PROGRESSION.md) : territoires sauvages plus développés, lieux de quête garantis et plan de couche déterministe avant génération locale à la visite. Ce contrat complet est une cible de conception, distincte des mécanismes et dimensions de prototype décrits ci-dessous. La campagne complète et sa durée ne sont pas encore validées par une implémentation.
+
 ## Contrat de simulation
 
 ```text
@@ -467,3 +469,42 @@ la preuve du relevé, même quand le site n'a pas de capteur de sécurité. Les
 capteurs restent les émetteurs des régions sans terminal ; les générations 85
 et antérieures conservent leur répartition précédente pour préserver leurs
 suspensions et le rejeu déterministe.
+
+## Enquête et repères de quête — génération 87
+
+Les nouvelles parties raccordent les premiers dialogues d'Orme, de Sève et de
+Rivet à une enquête facultative dans le secteur industriel. Le moteur valide les
+choix de conversation, conserve les faits connus avant l'acceptation et sauvegarde
+les dialogues en cours. Le registre offre une autre source que Rivet. Les anciens
+objectifs de consultation conservent leurs règles dans les reprises historiques.
+
+Les repères `!` (offre), `…` (en cours), `?` (à rendre) et `*` (objectif visible)
+sont dessinés au-dessus des PNJ et des éléments concernés. La simulation ne fournit
+aucun marqueur hors du champ de vision, et consulter les marqueurs ne modifie pas
+l'état du monde. Le terminal et le dépôt du relais occupent des cases physiques,
+avec un passage conservé autour d'eux.
+
+Les symboles de quête et le joueur sont dessinés sans cadre. Les éléments
+interactifs ne reçoivent pas de badge permanent sur le terrain : la minimap
+montre une croix pour les interactions possibles, un cercle pour les objets à
+ramasser et un `×` discret pour les accès bloqués. Elle reprend aussi les
+statuts de quête visibles (`!`, `…`, `?`, `*`). Le survol affiche près de
+l'élément une infobulle qui reste ouverte tant que la souris y demeure ; sans
+survol d'un tel élément, elle suit l'interaction sélectionnée au clavier. Elle
+indique la touche réattribuée seulement si l'action est possible dans la
+position actuelle ; sinon, elle précise s'il faut approcher, rejoindre la case,
+faire face à la cible ou résoudre un verrouillage. Les éléments seulement
+mémorisés ne portent ni repère d'interaction ni infobulle.
+
+Le [suivi d'intégration narrative](SUIVI_INTEGRATION_NARRATIVE.md) précise les textes
+raccordés et les limites de cette tranche : les branches matérielles de réouverture
+et la suite de la campagne restent à réaliser.
+
+## Récompense de l'enquête — génération 88
+
+Les nouvelles parties accordent 12 XP en plus des 30 crédits au rapport auprès
+d'Orme. Le bonus utilise l'attribution unique d'XP des quêtes existantes ; les
+dialogues répétés ne le versent pas une seconde fois. Le montant vient du champ
+`narrative_reward_experience` du catalogue d'expédition. La génération 87 conserve
+son montant historique de 0 XP au rejeu. L'interface affiche directement les
+récompenses du contrat en cours, y compris après sa validation.

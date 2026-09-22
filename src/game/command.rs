@@ -70,6 +70,11 @@ pub enum GameCommand {
         giver: EntityId,
         quest: crate::content::ContentId,
     },
+    ChooseDialogue {
+        speaker: EntityId,
+        node: String,
+        choice: u16,
+    },
     UseAbility {
         slot: u8,
         target: GridPos,
@@ -125,6 +130,7 @@ impl GameCommand {
             Self::LearnTechnique { .. }
                 | Self::SetCompanionBehavior { .. }
                 | Self::AcceptQuest { .. }
+                | Self::ChooseDialogue { .. }
         )
     }
 }

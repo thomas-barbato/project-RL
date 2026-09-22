@@ -2102,6 +2102,18 @@ fn load_expedition_definitions(
                 FacilityDefinition::new(blueprint, materials).map_err(&failure)?,
             );
         }
+        if let Some(narrative) = raw.narrative {
+            narrative
+                .validate()
+                .map_err(|explanation| ContentLoadError::DefinitionSyntax {
+                    package: package.manifest.id.clone(),
+                    path: path.clone(),
+                    definition_kind: "narrative",
+                    explanation,
+                })?;
+            definition.narrative = Some(narrative);
+            definition.narrative_reward_experience = raw.narrative_reward_experience;
+        }
         definition
             .validate_references(loot, items)
             .map_err(&failure)?;
@@ -2113,6 +2125,9 @@ fn load_expedition_definitions(
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 struct RawExpeditionDefinition {
+    narrative: Option<super::NarrativeDefinition>,
+    #[serde(default)]
+    narrative_reward_experience: u64,
     id: String,
     hub: RawZoneDefinition,
     destination: RawZoneDefinition,

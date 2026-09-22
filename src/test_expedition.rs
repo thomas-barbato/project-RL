@@ -184,6 +184,94 @@ fn source_info(definition: &ExpeditionDefinition) -> ZoneInfo {
     }
 }
 
+/// A guaranteed, occupied relay within the seeded industrial map. Reserving an
+/// existing open patch preserves every generated corridor and reciprocal exit.
+pub fn install_narrative_relay(
+    generated: &mut GeneratedExpeditionDestination,
+    narrative: &project_rl::content::NarrativeDefinition,
+) -> Result<project_rl::facility::FacilityBlueprint, String> {
+    use project_rl::facility::{FacilityBlueprint, InstallationBlueprint, InstallationCapability};
+    let blueprint = &mut generated.blueprint;
+    let occupied: BTreeSet<_> = blueprint
+        .actors
+        .iter()
+        .map(Actor::position)
+        .chain(blueprint.loot.iter().map(|loot| loot.position()))
+        .chain(std::iter::once(blueprint.entrance))
+        .collect();
+    let mut candidates = Vec::new();
+    for y in 2..blueprint.map.height() as i32 - 2 {
+        for x in 2..blueprint.map.width() as i32 - 2 {
+            let at = GridPos::new(x, y);
+            let distance = (x - blueprint.entrance.x).abs() + (y - blueprint.entrance.y).abs();
+            if distance < 14 {
+                continue;
+            }
+            if (-1..=1).all(|dy| {
+                (-2..=2).all(|dx| {
+                    let p = GridPos::new(x + dx, y + dy);
+                    blueprint.map.is_walkable(p) && !occupied.contains(&p)
+                })
+            }) {
+                candidates.push((distance, at.y, at.x, at));
+            }
+        }
+    }
+    candidates.sort_by_key(|(distance, y, x, _)| (*distance, *y, *x));
+    let at = candidates
+        .first()
+        .ok_or("Aucun emplacement accessible pour le relais")?
+        .3;
+    let rivet = GridPos::new(at.x - 1, at.y);
+    let depot = GridPos::new(at.x + 1, at.y);
+    // Both installations occupy real tiles. The untouched perimeter of the
+    // reserved 5x3 patch keeps all former paths connected around them.
+    for position in [at, depot] {
+        blueprint
+            .map
+            .set_terrain(position, project_rl::world::Terrain::Wall)
+            .map_err(|e| e.to_string())?;
+    }
+    blueprint.actors.push(
+        Actor::new(rivet, 18)
+            .map_err(|e| e.to_string())?
+            .with_ai(AiProfile::idle())
+            .with_tags([narrative.relay_character.clone()]),
+    );
+    generated.decor.cells.insert(at, Decor::DataTerminalOnline);
+    generated.decor.cells.insert(depot, Decor::Depot);
+    let depot_id: ContentId = "core:relay_depot".parse().unwrap();
+    Ok(FacilityBlueprint {
+        installations: vec![
+            InstallationBlueprint {
+                id: "core:relay_register".parse().unwrap(),
+                position: at,
+                maximum_integrity: 12,
+                integrity: 12,
+                capabilities: vec![InstallationCapability::DataTerminal {
+                    record: narrative.investigation.record.clone(),
+                }],
+                dependencies: Vec::new(),
+                security_alarm_profile: None,
+            },
+            InstallationBlueprint {
+                id: depot_id.clone(),
+                position: depot,
+                maximum_integrity: 12,
+                integrity: 12,
+                capabilities: vec![InstallationCapability::Storage],
+                dependencies: Vec::new(),
+                security_alarm_profile: None,
+            },
+        ],
+        depot: depot_id,
+        workers: Vec::new(),
+        repair_orders: Vec::new(),
+        maximum_path_search: 512,
+        owner: None,
+    })
+}
+
 fn destination_info(definition: &ExpeditionDefinition) -> ZoneInfo {
     ZoneInfo {
         id: definition.destination.zone.id.clone(),

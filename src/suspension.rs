@@ -20,7 +20,7 @@ use std::{
 };
 
 pub const MAX_COMMANDS: usize = 50_000;
-pub const MAX_GENERATION_VERSION: u8 = 86;
+pub const MAX_GENERATION_VERSION: u8 = 89;
 const REPLAY_RECOVERY_SCHEMA: u8 = 1;
 pub const CURRENT_RECOVERY_SCHEMA: u8 = 2;
 const CURRENT_CRASH_RECOVERY_SCHEMA: u8 = 1;
@@ -422,6 +422,11 @@ pub enum RecordedCommand {
         giver: u64,
         quest: String,
     },
+    ChooseDialogue {
+        speaker: u64,
+        node: String,
+        choice: u16,
+    },
     Ability {
         slot: u8,
         x: i32,
@@ -531,6 +536,15 @@ impl RecordedCommand {
             GameCommand::CompleteQuest { giver, quest } => Self::CompleteQuest {
                 giver: giver.get(),
                 quest: quest.to_string(),
+            },
+            GameCommand::ChooseDialogue {
+                speaker,
+                node,
+                choice,
+            } => Self::ChooseDialogue {
+                speaker: speaker.get(),
+                node: node.clone(),
+                choice: *choice,
             },
             GameCommand::UseAbility { slot, target } => Self::Ability {
                 slot: *slot,
@@ -718,6 +732,20 @@ impl RecordedCommand {
                 slot: *slot,
                 target: GridPos::new(*x, *y),
             },
+            Self::ChooseDialogue {
+                speaker,
+                node,
+                choice,
+            } => {
+                if node.is_empty() || node.len() > 128 || *choice >= 12 {
+                    return Err("Choix de dialogue invalide.".to_owned());
+                }
+                GameCommand::ChooseDialogue {
+                    speaker: entity(*speaker)?,
+                    node: node.clone(),
+                    choice: *choice,
+                }
+            }
             Self::Learn { technique } => GameCommand::LearnTechnique {
                 technique: technique
                     .parse()
