@@ -1905,6 +1905,20 @@ impl ExpeditionCatalog {
         Self { definitions }
     }
 
+    /// Restore the v89 hub facility for older saves and catalogue fingerprints.
+    pub fn without_orme_direction_board_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            if let Some(facility) = &mut definition.hub_facility {
+                facility
+                    .blueprint
+                    .installations
+                    .retain(|installation| installation.id.as_str() != "core:orme_direction_board");
+            }
+        }
+        catalog
+    }
+
     /// Restore the moving resident as Orme in v87-v88 saves and replays.
     pub fn without_stationary_quest_contact_metadata(&self) -> Self {
         let mut catalog = self.clone();

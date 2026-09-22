@@ -581,6 +581,15 @@
     owner: "core:maintenance_collective",
     installations: [
       {
+        id: "core:orme_direction_board",
+        position: [10, 28],
+        maximum_integrity: 8,
+        integrity: 8,
+        capabilities: [
+          { type: "data_terminal", record: "core:orme_direction_board_old" },
+        ],
+      },
+      {
         id: "core:maintenance_relay",
         // External access prevents a circular dependency: this relay can be
         // serviced even while the checkpoint door it powers is unpowered.

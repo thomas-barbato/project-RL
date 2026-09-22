@@ -8,7 +8,8 @@ use project_rl::game::{GameRng, GameRules, WorldState, ZoneBlueprint, ZoneInfo};
 use project_rl::loot::{LootCatalog, LootContext};
 use project_rl::progression::DefeatReward;
 use project_rl::world::generation::RoomsGenerator;
-use project_rl::world::{DistanceMetric, GridPos};
+use project_rl::world::generation::{MapValidationRules, validate_interactive_map};
+use project_rl::world::{DistanceMetric, DoorState, GridPos, Terrain};
 use std::cmp::Reverse;
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -250,6 +251,173 @@ pub fn install_narrative_relay(
                 integrity: 12,
                 capabilities: vec![InstallationCapability::DataTerminal {
                     record: narrative.investigation.record.clone(),
+                }],
+                dependencies: Vec::new(),
+                security_alarm_profile: None,
+            },
+            InstallationBlueprint {
+                id: depot_id.clone(),
+                position: depot,
+                maximum_integrity: 12,
+                integrity: 12,
+                capabilities: vec![InstallationCapability::Storage],
+                dependencies: Vec::new(),
+                security_alarm_profile: None,
+            },
+        ],
+        depot: depot_id,
+        workers: Vec::new(),
+        repair_orders: Vec::new(),
+        maximum_path_search: 512,
+        owner: None,
+    })
+}
+
+/// A bounded courtyard carved only into an already open generated room. The
+/// service door is the ordinary entrance; the former road stays barricaded.
+/// Every candidate is checked against the complete post-decoration map, so a
+/// quest site cannot silently sever a procedural corridor or its return exit.
+pub fn install_narrative_relay_with_service_route(
+    generated: &mut GeneratedExpeditionDestination,
+    narrative: &project_rl::content::NarrativeDefinition,
+) -> Result<project_rl::facility::FacilityBlueprint, String> {
+    use project_rl::facility::{FacilityBlueprint, InstallationBlueprint, InstallationCapability};
+    let blueprint = &mut generated.blueprint;
+    let occupied: BTreeSet<_> = blueprint
+        .actors
+        .iter()
+        .map(Actor::position)
+        .chain(blueprint.loot.iter().map(|loot| loot.position()))
+        .chain(std::iter::once(blueprint.entrance))
+        .collect();
+    let mut candidates = Vec::new();
+    for y in 3..blueprint.map.height() as i32 - 3 {
+        for x in 4..blueprint.map.width() as i32 - 4 {
+            let at = GridPos::new(x, y);
+            let distance = (x - blueprint.entrance.x).abs() + (y - blueprint.entrance.y).abs();
+            if distance < 14
+                || !(-2..=2).all(|dy| {
+                    (-3..=3).all(|dx| {
+                        let position = GridPos::new(x + dx, y + dy);
+                        blueprint.map.is_walkable(position)
+                            && !blueprint.map.is_protected(position)
+                            && !occupied.contains(&position)
+                    })
+                })
+                || [GridPos::new(x - 4, y), GridPos::new(x, y + 3)]
+                    .into_iter()
+                    .any(|position| {
+                        !blueprint.map.is_walkable(position) || occupied.contains(&position)
+                    })
+            {
+                continue;
+            }
+            candidates.push((distance, y, x, at));
+        }
+    }
+    candidates.sort_by_key(|(distance, y, x, _)| (*distance, *y, *x));
+    let mut selected = None;
+    for (_, _, _, at) in candidates {
+        let mut trial = blueprint.map.clone();
+        for dy in -2_i32..=2 {
+            for dx in -3_i32..=3 {
+                if dx.abs() == 3 || dy.abs() == 2 {
+                    let position = GridPos::new(at.x + dx, at.y + dy);
+                    let terrain = if dx == 0 && dy == 2 {
+                        Terrain::Door(DoorState::Closed)
+                    } else {
+                        Terrain::Wall
+                    };
+                    trial
+                        .set_terrain(position, terrain)
+                        .map_err(|error| error.to_string())?;
+                }
+            }
+        }
+        // The barricade is narrative scenery until removing it has a quest outcome.
+        trial
+            .set_protected(GridPos::new(at.x - 3, at.y), true)
+            .map_err(|error| error.to_string())?;
+        for position in [
+            at,
+            GridPos::new(at.x + 1, at.y),
+            GridPos::new(at.x - 2, at.y + 1),
+        ] {
+            trial
+                .set_terrain(position, Terrain::Wall)
+                .map_err(|error| error.to_string())?;
+        }
+        let rivet = GridPos::new(at.x - 1, at.y);
+        let service_approach = GridPos::new(at.x, at.y + 3);
+        let old_approach = GridPos::new(at.x - 4, at.y);
+        if validate_interactive_map(
+            &trial,
+            blueprint.entrance,
+            blueprint.entrance,
+            &[rivet, service_approach, old_approach],
+            MapValidationRules::default(),
+        )
+        .is_ok()
+        {
+            selected = Some((at, trial));
+            break;
+        }
+    }
+    let (at, map) = selected.ok_or("Aucun emplacement connecté pour la cour du relais")?;
+    blueprint.map = map;
+    let rivet = GridPos::new(at.x - 1, at.y);
+    let depot = GridPos::new(at.x + 1, at.y);
+    let service_plan = GridPos::new(at.x - 2, at.y + 1);
+    for dy in -2_i32..=2 {
+        for dx in -3_i32..=3 {
+            let position = GridPos::new(at.x + dx, at.y + dy);
+            let decor = if dx == -3 && dy == 0 {
+                Decor::Barricade
+            } else if dx.abs() == 3 || dy.abs() == 2 {
+                Decor::RuinWall
+            } else {
+                Decor::RuinFloor
+            };
+            generated.decor.cells.insert(position, decor);
+        }
+    }
+    generated.decor.cells.insert(at, Decor::DataTerminalOnline);
+    generated.decor.cells.insert(depot, Decor::Depot);
+    generated
+        .decor
+        .cells
+        .insert(service_plan, Decor::ServicePlan);
+    generated.decor.zones.push(crate::test_sector::Zone {
+        name: "Cour du relais".to_owned(),
+        bounds: [at.x - 3, at.y - 2, 7, 5],
+    });
+    blueprint.actors.push(
+        Actor::new(rivet, 18)
+            .map_err(|error| error.to_string())?
+            .with_ai(AiProfile::idle())
+            .with_tags([narrative.relay_character.clone()]),
+    );
+    let depot_id: ContentId = "core:relay_depot".parse().unwrap();
+    Ok(FacilityBlueprint {
+        installations: vec![
+            InstallationBlueprint {
+                id: "core:relay_register".parse().unwrap(),
+                position: at,
+                maximum_integrity: 12,
+                integrity: 12,
+                capabilities: vec![InstallationCapability::DataTerminal {
+                    record: narrative.investigation.record.clone(),
+                }],
+                dependencies: Vec::new(),
+                security_alarm_profile: None,
+            },
+            InstallationBlueprint {
+                id: "core:relay_service_plan".parse().unwrap(),
+                position: service_plan,
+                maximum_integrity: 8,
+                integrity: 8,
+                capabilities: vec![InstallationCapability::DataTerminal {
+                    record: "core:relay_service_route_verified".parse().unwrap(),
                 }],
                 dependencies: Vec::new(),
                 security_alarm_profile: None,

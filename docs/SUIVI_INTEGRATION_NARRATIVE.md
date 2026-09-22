@@ -8,11 +8,13 @@ Les parties de générations 87 et 88 proposent **Le chemin des absents** auprè
 
 La touche **E** sert désormais à ramasser l'objet sous le joueur, à parler à un PNJ ou à utiliser un élément proche. Si plusieurs actions sont possibles, un menu permet de choisir avec ↑/↓ puis E ou Entrée, ou à la souris ; Échap annule. Ouvrir ce choix ne consomme pas de tour. Les anciens réglages de touches fusionnent les deux raccourcis : une touche personnalisée de ramassage est conservée en priorité, sinon celle de l'interaction, sinon E.
 
-Le relais est placé sur un espace accessible du terrain généré, sans supprimer de couloir, de sortie, d'ennemi ou de butin existant. Sa position locale varie avec la carte. C'est une première implantation dans la destination industrielle existante : la répartition des lieux narratifs sur des plans de couches complets reste à réaliser.
+Le relais est placé sur un espace accessible du terrain généré, sans supprimer de couloir, de sortie, d'ennemi ou de butin existant. Sa position locale varie avec la carte. Depuis la génération 91, son site est une petite cour fermée : l'ancien accès est barricadé, tandis qu'une porte ordinaire au sud permet d'entrer par le service. Un plan mural à l'intérieur confirme ce trajet après qu'on l'a réellement parcouru. Le placement ne doit pas couper les autres chemins de la carte ; les anciennes générations gardent leur petit relais ouvert. La répartition des lieux narratifs sur des plans de couches complets reste à réaliser.
 
 L'enquête peut être menée par conversation avec Rivet ou par consultation du registre. Les faits obtenus avant de parler à Orme sont conservés : accepter ensuite l'enquête permet de faire immédiatement son rapport. À partir des nouvelles parties de génération 88, le rapport accorde une seule fois **30 crédits et 12 XP**, valeurs provisoires d'équilibrage. Les 12 XP correspondent au montant des premières enquêtes du prototype. Le montant est défini dans `narrative_reward_experience` dans le fichier d'expédition ; les crédits restent dans `narrative.investigation.reward_credits`. Les personnages se souviennent du sujet de conversation en cours.
 
 La génération 87 est reprise avec ses règles historiques (**30 crédits, 0 XP**), afin de conserver la vérification exacte de ses commandes et de sa sauvegarde. Aucune récompense rétroactive n'est injectée dans une ancienne partie. Le dialogue affiche désormais la récompense prévue, puis un récapitulatif persistant « QUÊTE TERMINÉE » avec les montants effectivement prévus par cette partie. Le journal d'une quête achevée indique « RÉCOMPENSE REÇUE ».
+
+Depuis la génération 90, un panneau d'orientation est fixé près d'Orme, à X 10, Y 28. Il peut être lu avant l'enquête. Après le rapport, son indication change dans la ville : elle confirme l'occupation du relais et précise que l'ancien accès reste fermé. Le panneau n'affirme pas qu'un itinéraire praticable pour les voyageurs a été ouvert. Sa modification est un effet de quête enregistré avec l'état du monde ; elle reste visible après sauvegarde et reprise. Les générations 87 à 89 conservent leur ville et leur catalogue précédents.
 
 Cette tranche remplace, dans les nouvelles parties, les quatre offres de démonstration du quartier. Ces offres et leurs anciennes règles restent disponibles pour reprendre les parties de générations 65 à 86. Les nouvelles conversations ne sont pas ajoutées rétroactivement à ces sauvegardes.
 
@@ -24,9 +26,11 @@ Cette tranche remplace, dans les nouvelles parties, les quatre offres de démons
 | Occupation du relais, motif de fermeture et envies de Rivet | ABS-D04, D05, D06, D08, D10 |
 | Premiers échanges à la clinique | SEV-D01, D02, D05 |
 | Registre, titre et suivi de l'enquête | ABS-A01, ABS-J01/J02, adaptés au suivi actuel |
+| Panneau d'Orme avant et après le rapport | ABS-P01 |
+| Plan mural de l'accès de service | ABS-E02 |
 
 - **Tous les textes proposés**, y compris ceux encore à intégrer : [TEXTES_NARRATIFS_PROPOSES.md](TEXTES_NARRATIFS_PROPOSES.md).
-- **Textes réellement affichés** : [fr.json5](../content/core/locales/fr.json5), clés `narrative.*` et `core:relay_testimony`. Les répliques jouables sont synchronisées avec les blocs correspondants du cahier ; le paramètre `{passage_coordinates}` est remplacé par les coordonnées du passage. Les libellés courts des choix et du journal sont adaptés aux interactions disponibles.
+- **Textes réellement affichés** : [fr.json5](../content/core/locales/fr.json5), clés `narrative.*`, `core:relay_testimony`, `core:relay_service_route_verified` et `core:orme_direction_board_*`. Les répliques jouables sont synchronisées avec les blocs correspondants du cahier ; le paramètre `{passage_coordinates}` est remplacé par les coordonnées du passage. Les libellés courts des choix et du journal sont adaptés aux interactions disponibles.
 - **Enchaînements, conditions et actions des dialogues** : [expedition.json5](../content/core/worlds/expedition.json5), champ `narrative`.
 
 ## Repères de quête
@@ -56,12 +60,12 @@ Dans le secteur industriel, la position du relais dépend de la génération. Le
 
 ## Limites de cette tranche
 
-Cette enquête n'implémente pas encore les branches matérielles de réouverture, de contournement ou de passage forcé. Le motif de la fermeture est, à ce stade, appris dans un témoignage ou un registre. Le relais ne possède pas encore la cour barricadée, la voie de service et les attaques contre les réserves prévues par le cahier ; aucun dialogue ne propose d'effectuer ces actions avant qu'elles existent.
+Le contournement par la porte de service est maintenant un trajet physique, mais il n'est pas encore une branche de rapport distincte auprès d'Orme. La barricade ne peut pas encore être retirée ni forcée ; les unités qui attaqueraient les réserves ne sont pas encore liées à ce site. Le motif de la fermeture reste appris dans un témoignage ou un registre. Aucun dialogue ne prétend que ces autres actions sont déjà possibles.
 
-La modification physique des panneaux d'Orme reste à faire : son rapport, la récompense et la conclusion du journal sont persistants. Les autres jalons de campagne, les passagers et les épilogues restent à intégrer. Cette tranche ne valide donc ni la durée finale ni l'équilibrage d'une campagne entière.
+Le panneau d'Orme réagit désormais au rapport, mais la nouvelle voie évoquée n'est pas encore un passage traversable entre le quartier et le relais. Les autres jalons de campagne, les passagers et les épilogues restent à intégrer. Cette tranche ne valide donc ni la durée finale ni l'équilibrage d'une campagne entière.
 
 ## Vérification
 
-Un test d'intégration parcourt également la carte réelle depuis l'acceptation auprès d'Orme : passage souterrain, présence de Rivet, consultation du registre, remontée et rapport récompensé. Il vérifie que l'entrée indiquée permet effectivement d'achever l'enquête.
+Un test d'intégration parcourt également la carte réelle depuis l'acceptation auprès d'Orme : passage souterrain, ouverture de la porte de service, lecture facultative du plan, présence de Rivet, consultation du registre, remontée et rapport récompensé. Il vérifie que l'entrée indiquée permet effectivement d'achever l'enquête, que le panneau change, se laisse lire et conserve son nouvel état après reprise.
 
-Les contrôles couvrent la découverte anticipée, le rapport, la récompense unique, le rejet d'un dialogue périmé ou hors de portée, le rejeu des commandes, la reprise d'un instantané et les repères sans révélation hors champ. Le placement accessible du relais est contrôlé sur 24 graines. Les coordonnées sont vérifiées après une acceptation réelle auprès d'Orme ; les indications ne modifient ni l'état du monde ni le terrain découvert. Les diagnostics visuels `--ui-cold-narrative`, `--ui-cold-narrative-markers`, `--ui-cold-narrative-directions`, `--ui-cold-narrative-journal` et `--ui-cold-narrative-route` permettent de vérifier l'interface sans toucher à une partie du joueur.
+Les contrôles couvrent la découverte anticipée, le rapport, la récompense unique, le rejet d'un dialogue périmé ou hors de portée, le rejeu des commandes, la reprise d'un instantané et les repères sans révélation hors champ. Le placement et la connectivité de la cour du relais sont contrôlés sur 25 graines, dont la graine de départ. Les coordonnées sont vérifiées après une acceptation réelle auprès d'Orme ; les indications ne modifient ni l'état du monde ni le terrain découvert. Les diagnostics visuels `--ui-cold-narrative`, `--ui-cold-narrative-markers`, `--ui-cold-narrative-directions`, `--ui-cold-narrative-journal` et `--ui-cold-narrative-route` permettent de vérifier l'interface sans toucher à une partie du joueur.

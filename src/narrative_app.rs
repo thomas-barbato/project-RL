@@ -1,7 +1,8 @@
 //! Presentation adapter for the first optional investigation.
 use super::*;
 use project_rl::content::{
-    DataRecordQuestDefinition, HubQuestDefinition, QuestDefinition, QuestWorldStateDefinition,
+    DataRecordQuestDefinition, HubQuestDefinition, QuestDefinition, QuestWorldEffectDefinition,
+    QuestWorldStateDefinition,
 };
 use project_rl::game::DialogueView;
 
@@ -357,6 +358,16 @@ impl AsciiApp {
                     )
                     .map_err(|error| error.to_string())?,
                 );
+                if self.generation_version >= ORME_DIRECTION_BOARD_GENERATION_VERSION {
+                    authored.completion_world_effects.push(
+                        QuestWorldEffectDefinition::update_data_terminal(
+                            "core:orme_direction_board".parse().unwrap(),
+                            "core:orme_direction_board_updated".parse().unwrap(),
+                            "world_effect.orme_direction_board_updated.summary".into(),
+                        )
+                        .map_err(|error| error.to_string())?,
+                    );
+                }
                 self.game
                     .register_authored_quest(zone.clone(), provider, authored)?;
             }
@@ -574,6 +585,8 @@ mod tests {
         for (version, expected_xp) in [
             (NARRATIVE_GENERATION_VERSION, 0),
             (NARRATIVE_REWARD_GENERATION_VERSION, 12),
+            (STATIONARY_QUEST_CONTACT_GENERATION_VERSION, 12),
+            (ORME_DIRECTION_BOARD_GENERATION_VERSION, 12),
             (CURRENT_GENERATION_VERSION, 12),
         ] {
             let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
@@ -612,6 +625,14 @@ mod tests {
                 assert!(app.game.active_resident(resident));
                 assert_ne!(resident, giver);
             }
+            assert_eq!(
+                app.game
+                    .active_facility()
+                    .and_then(|facility| facility
+                        .installation(&"core:orme_direction_board".parse().unwrap()))
+                    .is_some(),
+                version >= ORME_DIRECTION_BOARD_GENERATION_VERSION
+            );
             let mut saved = app.suspension().unwrap();
             saved.build = "0000000000000000".into();
             saved.recovery = None;
@@ -669,11 +690,37 @@ mod tests {
     #[test]
     fn underground_passage_leads_to_the_record_and_a_completable_investigation() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
+        let mut app = AsciiApp::from_seed(
+            INITIAL_SEED,
+            rules.clone(),
+            texts.clone(),
+            loot.clone(),
+            expeditions.clone(),
+        )
+        .unwrap();
         app.prepare_narrative_directions_diagnostic().unwrap();
+        let board_id: ContentId = "core:orme_direction_board".parse().unwrap();
+        let board_position = GridPos::new(10, 28);
+        assert_eq!(
+            app.game
+                .active_facility()
+                .unwrap()
+                .data_terminal_record_at(board_position)
+                .unwrap()
+                .as_str(),
+            "core:orme_direction_board_old"
+        );
+        assert_eq!(
+            app.terminal.decor.cells.get(&board_position),
+            Some(&crate::test_sector::Decor::DirectionBoard)
+        );
         let giver = app.npc_interaction.take().unwrap();
         assert_eq!(
-            choose(&mut app.game, giver, "ABS-D02", 0),
+            app.execute_command(GameCommand::ChooseDialogue {
+                speaker: giver,
+                node: "ABS-D02".into(),
+                choice: 0,
+            }),
             CommandOutcome::AppliedWithoutTime
         );
         let passage = TestSector::EXPANDED_EXPEDITION_PASSAGE;
@@ -699,6 +746,23 @@ mod tests {
                 (id.as_str() == "core:relay_register").then_some(installation.position())
             })
             .unwrap();
+        let service_door = GridPos::new(register.x, register.y + 2);
+        let old_access = GridPos::new(register.x - 3, register.y);
+        let service_plan = GridPos::new(register.x - 2, register.y + 1);
+        assert_eq!(
+            app.game.map().tile(service_door).map(|tile| tile.terrain),
+            Some(Terrain::Door(project_rl::world::DoorState::Closed))
+        );
+        assert!(app.game.map().is_protected(old_access));
+        assert_eq!(
+            app.game
+                .active_facility()
+                .unwrap()
+                .data_terminal_record_at(service_plan)
+                .unwrap()
+                .as_str(),
+            "core:relay_service_route_verified"
+        );
         let rivet = app
             .game
             .actors()
@@ -713,7 +777,26 @@ mod tests {
         let rivet_position = app.game.actors().get(rivet).unwrap().position();
         app.walk_fixture_to_unchecked(rivet_position.step(Direction::North))
             .unwrap();
+        assert_eq!(
+            app.game.map().tile(service_door).map(|tile| tile.terrain),
+            Some(Terrain::Door(project_rl::world::DoorState::Open))
+        );
         assert!(app.game.dialogue_view(rivet).is_some());
+        app.walk_fixture_to_unchecked(GridPos::new(register.x - 1, register.y + 1))
+            .unwrap();
+        assert_eq!(
+            app.execute_command(GameCommand::Interact {
+                target: service_plan
+            }),
+            CommandOutcome::Applied
+        );
+        app.capture_events_at(Some(0.0));
+        assert!(
+            app.game
+                .discovered_data_terminal_records()
+                .contains(&"core:relay_service_route_verified".parse().unwrap())
+        );
+        assert!(app.log.iter().any(|line| line.contains("PLAN LU")));
         // This fixture walks real generated corridors and uses the real terminal.
         let approach = register
             .cardinal_neighbors()
@@ -734,6 +817,11 @@ mod tests {
             QuestStatus::ReadyToComplete
         );
         app.walk_fixture_to_unchecked(return_passage).unwrap();
+        let integrity_before_return = app
+            .game
+            .actors()
+            .get(app.game.player_id())
+            .map(Actor::integrity);
         assert_eq!(
             app.execute_command(GameCommand::Interact {
                 target: return_passage
@@ -745,7 +833,12 @@ mod tests {
             app.game.current_zone().unwrap().id.as_str(),
             "core:starter_city"
         );
-        app.walk_fixture_to(GridPos::new(11, 26)).unwrap();
+        assert!(
+            app.game.player_position().is_some(),
+            "player lost on return, integrity before: {integrity_before_return:?}"
+        );
+        app.walk_fixture_to_unchecked_with_repairs(GridPos::new(11, 26), true)
+            .unwrap();
         let credits = app.game.player_credits();
         let experience = app.game.player_progression().experience();
         assert_eq!(
@@ -762,6 +855,70 @@ mod tests {
         );
         assert_eq!(app.game.player_credits(), credits + 30);
         assert_eq!(app.game.player_progression().experience(), experience + 12);
+        app.capture_events_at(Some(0.0));
+        let facility = app.game.active_facility().unwrap();
+        assert!(facility.data_terminal_was_updated(&board_id));
+        assert_eq!(
+            facility
+                .data_terminal_record_at(board_position)
+                .unwrap()
+                .as_str(),
+            "core:orme_direction_board_updated"
+        );
+        assert_eq!(
+            app.terminal.decor.cells.get(&board_position),
+            Some(&crate::test_sector::Decor::DirectionBoardUpdated)
+        );
+        app.walk_fixture_to(GridPos::new(10, 27)).unwrap();
+        assert_eq!(
+            app.execute_command(GameCommand::Interact {
+                target: board_position
+            }),
+            CommandOutcome::Applied
+        );
+        app.capture_events_at(Some(0.0));
+        assert!(
+            app.log
+                .iter()
+                .any(|line| line.contains("PANNEAU LU") && line.contains("Relais occupé"))
+        );
+
+        let mut saved = app.suspension().unwrap();
+        saved.build = "0000000000000000".into();
+        saved.recovery = None;
+        let restored =
+            AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
+        assert_eq!(
+            restored.game.recovery_snapshot_bytes().unwrap(),
+            app.game.recovery_snapshot_bytes().unwrap()
+        );
+        assert!(
+            restored
+                .game
+                .discovered_data_terminal_records()
+                .contains(&"core:relay_service_route_verified".parse().unwrap())
+        );
+        assert!(
+            restored
+                .game
+                .facility_in_zone(&"core:industrial_sector".parse().unwrap())
+                .unwrap()
+                .data_terminal_was_accessed(&"core:relay_service_plan".parse().unwrap())
+        );
+        assert_eq!(
+            restored
+                .game
+                .active_facility()
+                .unwrap()
+                .data_terminal_record_at(board_position)
+                .unwrap()
+                .as_str(),
+            "core:orme_direction_board_updated"
+        );
+        assert_eq!(
+            restored.terminal.decor.cells.get(&board_position),
+            Some(&crate::test_sector::Decor::DirectionBoardUpdated)
+        );
     }
 
     #[test]
@@ -1053,6 +1210,70 @@ mod tests {
                     .count(),
                 1
             );
+        }
+    }
+
+    #[test]
+    fn relay_service_courtyard_keeps_the_generated_map_connected() {
+        let (rules, _, loot, expeditions) = ascii_game_content().unwrap();
+        let definition = expeditions
+            .get(&"core:starter_expedition".parse().unwrap())
+            .unwrap();
+        for seed in (0..24).chain(std::iter::once(INITIAL_SEED)) {
+            let mut destination = crate::test_expedition::generate_destination(
+                &rules,
+                seed,
+                Some(&loot),
+                definition,
+                crate::test_expedition::ExpeditionGenerationFeatures {
+                    defined_population: true,
+                    expanded_world: true,
+                    pursuit_limits: true,
+                    pursuit_lifecycle: true,
+                    primary_attributes: true,
+                    physical_profiles: true,
+                    electronic_systems: true,
+                    preparation_disruption: true,
+                    player_relations: true,
+                },
+            )
+            .unwrap();
+            let facility = crate::test_expedition::install_narrative_relay_with_service_route(
+                &mut destination,
+                definition.narrative.as_ref().unwrap(),
+            )
+            .unwrap_or_else(|error| panic!("seed {seed}: {error}"));
+            let center = facility.installations[0].position;
+            let service_door = GridPos::new(center.x, center.y + 2);
+            let old_access = GridPos::new(center.x - 3, center.y);
+            let service_approach = service_door.step(Direction::South);
+            let map = &destination.blueprint.map;
+            assert_eq!(
+                map.tile(service_door).map(|tile| tile.terrain),
+                Some(Terrain::Door(project_rl::world::DoorState::Closed)),
+                "seed {seed}"
+            );
+            assert_eq!(
+                map.tile(old_access).map(|tile| tile.terrain),
+                Some(Terrain::Wall)
+            );
+            assert!(map.is_protected(old_access));
+            assert_eq!(
+                destination.decor.at(old_access, Terrain::Wall),
+                crate::test_sector::Decor::Barricade
+            );
+            assert!(
+                project_rl::world::find_path(
+                    map,
+                    destination.blueprint.entrance,
+                    service_approach,
+                    map.width() * map.height(),
+                    |_| true,
+                )
+                .is_some(),
+                "seed {seed}"
+            );
+            assert_eq!(facility.installations.len(), 3);
         }
     }
 }

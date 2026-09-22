@@ -263,6 +263,12 @@ Condition : inspection des indices présents.
 
 > **Cour du relais.** Des pièces triées occupent les anciens emplacements de repos. Quelqu'un travaille encore ici.
 
+### ABS-E02 — Plan de l'accès de service (intégré, génération 91)
+
+Le plan mural est accessible depuis la cour après avoir emprunté l'entrée de service au sud. Sa lecture est une découverte facultative ; elle ne termine pas l'enquête d'Orme.
+
+> Plan du relais : l'entrée de service au sud rejoint la cour sans ouvrir l'ancien accès barricadé.
+
 ### ABS-D04 — Rivet au relais
 
 Condition : Rivet présent, non hostile, joueur à portée de conversation ; ne se déclenche pas à travers un mur.
@@ -369,6 +375,18 @@ Condition : Orme reçoit les faits d'ABS-J02 et l'ancienne liaison reste fermée
 > **Joueur :** Le relais est occupé. Ils ont fermé l'ancien passage pour protéger leur réserve. Ils empruntent une autre voie.
 >
 > **Orme :** Ils sont toujours là ? Tant mieux. Je commençais à imaginer le pire. Merci d'être allé voir. Voilà pour le déplacement.
+
+### ABS-P01 — Panneau d'orientation d'Orme (intégré, génération 90)
+
+Avant le rapport :
+
+> Relais : ancien chemin fermé. Aucune nouvelle récente de ses occupants.
+
+Après le rapport ABS-D14 :
+
+> Relais occupé. Ancien accès fermé après des intrusions ; une voie de service est utilisée par les récupérateurs. Accès des voyageurs non vérifié.
+
+Conséquence annoncée dans le suivi de la quête : « le panneau d'Orme indique que le relais est occupé et que l'ancien accès reste fermé ». Ce panneau ne prétend pas qu'une liaison praticable a été ouverte. Ces libellés intégrés restent provisoires pour la relecture des textes.
 
 ### ABS-D15 — Rapport avec nouvelle liaison
 

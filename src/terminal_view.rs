@@ -147,8 +147,18 @@ fn interaction_hint(game: &WorldState, position: GridPos) -> Option<InteractionH
     if let Some(facility) = game.active_facility()
         && facility.is_player_interactive_at(position)
     {
+        let is_direction_board = facility
+            .installation_at(position)
+            .is_some_and(|installation| installation.id().as_str() == "core:orme_direction_board");
+        let is_service_plan = facility
+            .installation_at(position)
+            .is_some_and(|installation| installation.id().as_str() == "core:relay_service_plan");
         return Some(InteractionHint {
-            title: if facility.data_terminal_record_at(position).is_some() {
+            title: if is_direction_board {
+                "Panneau d'orientation"
+            } else if is_service_plan {
+                "Plan du relais"
+            } else if facility.data_terminal_record_at(position).is_some() {
                 "Terminal de données"
             } else {
                 "Dépôt de maintenance"
@@ -156,7 +166,11 @@ fn interaction_hint(game: &WorldState, position: GridPos) -> Option<InteractionH
             .to_owned(),
             is_loot: false,
             verb: if facility.data_terminal_record_at(position).is_some() {
-                "consulter"
+                if is_direction_board || is_service_plan {
+                    "lire"
+                } else {
+                    "consulter"
+                }
             } else {
                 "utiliser"
             },
@@ -2099,6 +2113,7 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
         (Decor::WindowFrame, "Cadre d'interface brisé"),
         (Decor::FaultTrace, "Erreur d'exécution"),
         (Decor::DeadScreen, "Écran mort"),
+        (Decor::Barricade, "Ancien accès barricadé"),
         (Decor::KernelFault, "Faute noyau"),
         (Decor::OrphanProcess, "Processus orphelin"),
         (Decor::SupplyCache, "Cache de récupération"),
@@ -2116,6 +2131,12 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
         (Decor::DataTerminalOnline, "Terminal de données"),
         (Decor::DataTerminalUpdated, "Terminal · registre mis à jour"),
         (Decor::DataTerminalOffline, "Terminal hors ligne"),
+        (Decor::DirectionBoard, "Panneau d'orientation"),
+        (
+            Decor::DirectionBoardUpdated,
+            "Panneau · indication corrigée",
+        ),
+        (Decor::ServicePlan, "Plan du relais"),
         (
             Decor::Passage,
             if game.exit().is_some() {
@@ -2503,7 +2524,7 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
         Decor::RuinFloor => Color::from_rgba(43, 42, 39, 255),
         Decor::Tree => Color::from_rgba(24, 48, 35, 255),
         Decor::Boulder => Color::from_rgba(50, 53, 50, 255),
-        Decor::RuinWall => Color::from_rgba(55, 53, 49, 255),
+        Decor::RuinWall | Decor::Barricade => Color::from_rgba(55, 53, 49, 255),
         Decor::Lane | Decor::Threshold => Color::from_rgba(34, 39, 37, 255),
         Decor::ForeignFloor => Color::from_rgba(25, 21, 43, 255),
         Decor::VeinedFloor => Color::from_rgba(24, 39, 48, 255),
@@ -2959,6 +2980,7 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
         Decor::ClinicCounter => (&CLINIC_COUNTER, Color::from_rgba(112, 181, 176, 255)),
         Decor::Boulder => (&BOULDER, Color::from_rgba(143, 151, 142, 255)),
         Decor::RuinWall => (&RUIN_WALL, Color::from_rgba(165, 151, 122, 255)),
+        Decor::Barricade => (&BARRICADE, Color::from_rgba(153, 132, 114, 255)),
         Decor::Depot => (&DEPOT, Color::from_rgba(200, 166, 105, 255)),
         Decor::RelayOffline => (&RELAY_OFFLINE, Color::from_rgba(180, 111, 92, 255)),
         Decor::RelayOnline => (&RELAY_ONLINE, Color::from_rgba(105, 211, 176, 255)),
@@ -2973,6 +2995,12 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
         Decor::DataTerminalUpdated => {
             (&DATA_TERMINAL_UPDATED, Color::from_rgba(151, 226, 169, 255))
         }
+        Decor::DirectionBoard => (&DIRECTION_BOARD, Color::from_rgba(142, 163, 171, 255)),
+        Decor::DirectionBoardUpdated => (
+            &DIRECTION_BOARD_UPDATED,
+            Color::from_rgba(128, 190, 177, 255),
+        ),
+        Decor::ServicePlan => (&SERVICE_PLAN, Color::from_rgba(125, 185, 184, 255)),
         _ => unreachable!("non-blocking floor and wall already rendered"),
     };
     draw_pixel_glyph(rect, pattern, dim(color, visible));
@@ -3406,6 +3434,9 @@ const BOULDER: PixelGlyph = [
 const RUIN_WALL: PixelGlyph = [
     "##..####", "##..####", "########", "####..##", "####..##", "##..####", "########", "########",
 ];
+const BARRICADE: PixelGlyph = [
+    "#..##..#", ".######.", "##.##.##", ".######.", "##.##.##", ".######.", "#..##..#", "........",
+];
 const SATURATION_BEACON: PixelGlyph = [
     "...##...", "..####..", ".#+**+#.", ".#++++#.", "..####..", "...##...", "..####..", ".######.",
 ];
@@ -3516,6 +3547,15 @@ const DATA_TERMINAL_ONLINE: PixelGlyph = [
 ];
 const DATA_TERMINAL_UPDATED: PixelGlyph = [
     "########", "#++++++#", "#+....+#", "#+...#+#", "#+#.##+#", "#+.##.+#", "#++++++#", "########",
+];
+const DIRECTION_BOARD: PixelGlyph = [
+    "........", ".######.", ".#....#.", ".#..#.#.", ".#....#.", ".######.", "...##...", "...##...",
+];
+const DIRECTION_BOARD_UPDATED: PixelGlyph = [
+    "........", ".######.", ".#..#.#.", ".#...##.", ".#..#.#.", ".######.", "...##...", "...##...",
+];
+const SERVICE_PLAN: PixelGlyph = [
+    "........", ".######.", ".#.#..#.", ".#..#.#.", ".#.#..#.", ".######.", "...##...", "...##...",
 ];
 const SUPPLY_CACHE: PixelGlyph = [
     "........", ".######.", ".#....#.", ".######.", ".#..#.#.", ".######.", "........", "........",

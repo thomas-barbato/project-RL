@@ -29,6 +29,7 @@ pub enum Decor {
     Boulder,
     RuinFloor,
     RuinWall,
+    Barricade,
     Wall,
     MembraneWall,
     VoidWall,
@@ -62,6 +63,9 @@ pub enum Decor {
     DataTerminalOffline,
     DataTerminalOnline,
     DataTerminalUpdated,
+    DirectionBoard,
+    DirectionBoardUpdated,
+    ServicePlan,
     SupplyCache,
     ThreatCamp,
     ThreatCampDisabled,
@@ -94,6 +98,7 @@ impl Decor {
             Self::Boulder => "Bloc rocheux · passage et vue bloqués",
             Self::RuinFloor => "Ruines habitées autrefois · passage libre",
             Self::RuinWall => "Mur en ruine · passage et vue bloqués",
+            Self::Barricade => "Ancien accès barricadé · passage bloqué",
             Self::Wall => "Cloison · passage et vue bloqués",
             Self::MembraneWall => "Masse étrangère · passage et vue bloqués",
             Self::VoidWall => "Masse creuse · passage et vue bloqués",
@@ -129,6 +134,9 @@ impl Decor {
             Self::DataTerminalUpdated => {
                 "Terminal de données · registre mis à jour, interagir pour consulter"
             }
+            Self::DirectionBoard => "Panneau d'orientation · interagir pour lire",
+            Self::DirectionBoardUpdated => "Panneau d'orientation · indication corrigée",
+            Self::ServicePlan => "Plan du relais · interagir pour lire",
             Self::SupplyCache => "Cache de récupération · contenu ramassable sur place",
             Self::ThreatCamp => {
                 "Camp hostile actif · interagir à côté pour neutraliser les renforts"

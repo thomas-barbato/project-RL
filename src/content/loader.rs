@@ -6798,7 +6798,18 @@ mod tests {
             .hub_facility
             .as_ref()
             .expect("core hub facility was not loaded");
-        assert_eq!(facility.blueprint.installations.len(), 5);
+        assert_eq!(facility.blueprint.installations.len(), 6);
+        assert!(facility.blueprint.installations.iter().any(|installation| {
+            installation.id.as_str() == "core:orme_direction_board"
+                && installation.position == GridPos::new(10, 28)
+                && installation.capabilities.iter().any(|capability| {
+                    matches!(
+                        capability,
+                        InstallationCapability::DataTerminal { record }
+                            if record.as_str() == "core:orme_direction_board_old"
+                    )
+                })
+        }));
         assert!(facility.blueprint.installations.iter().any(|installation| {
             installation.id.as_str() == "core:starter_city_archive_terminal"
                 && installation.capabilities.iter().any(|capability| {

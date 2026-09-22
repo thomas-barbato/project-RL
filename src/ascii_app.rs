@@ -170,9 +170,11 @@ const SITE_TERMINAL_NAVIGATION_GENERATION_VERSION: u8 = SITE_SURVEY_GENERATION_V
 const NARRATIVE_GENERATION_VERSION: u8 = SITE_TERMINAL_NAVIGATION_GENERATION_VERSION + 1;
 const NARRATIVE_REWARD_GENERATION_VERSION: u8 = NARRATIVE_GENERATION_VERSION + 1;
 const STATIONARY_QUEST_CONTACT_GENERATION_VERSION: u8 = NARRATIVE_REWARD_GENERATION_VERSION + 1;
+const ORME_DIRECTION_BOARD_GENERATION_VERSION: u8 = STATIONARY_QUEST_CONTACT_GENERATION_VERSION + 1;
+const RELAY_SERVICE_ROUTE_GENERATION_VERSION: u8 = ORME_DIRECTION_BOARD_GENERATION_VERSION + 1;
 #[path = "narrative_app.rs"]
 mod narrative;
-const CURRENT_GENERATION_VERSION: u8 = STATIONARY_QUEST_CONTACT_GENERATION_VERSION;
+const CURRENT_GENERATION_VERSION: u8 = RELAY_SERVICE_ROUTE_GENERATION_VERSION;
 const _: () = assert!(CURRENT_GENERATION_VERSION == suspension::MAX_GENERATION_VERSION);
 const LOG_CAPACITY: usize = 6;
 const FLOATING_MESSAGE_CAPACITY: usize = 32;
@@ -3998,10 +4000,41 @@ impl AsciiApp {
 
     #[cfg(any(test, debug_assertions))]
     fn walk_fixture_to_unchecked(&mut self, goal: GridPos) -> Result<(), String> {
+        self.walk_fixture_to_unchecked_with_repairs(goal, false)
+    }
+
+    #[cfg(any(test, debug_assertions))]
+    fn walk_fixture_to_unchecked_with_repairs(
+        &mut self,
+        goal: GridPos,
+        use_repairs: bool,
+    ) -> Result<(), String> {
         for _ in 0..300 {
             let origin = self.game.player_position().ok_or("Joueur absent")?;
             if origin == goal {
                 return Ok(());
+            }
+            let repair_item = if use_repairs
+                && self
+                    .game
+                    .actors()
+                    .get(self.game.player_id())
+                    .is_some_and(|player| player.integrity() <= 10)
+            {
+                self.game
+                    .player_inventory()
+                    .iter()
+                    .find(|entry| entry.item().as_str() == "core:repair_patch")
+                    .map(|entry| entry.instance())
+            } else {
+                None
+            };
+            if let Some(item) = repair_item {
+                if self.execute_command(GameCommand::UseItem { item }) != CommandOutcome::Applied {
+                    return Err("Soin de contrôle refusé".to_owned());
+                }
+                self.capture_events_at(Some(0.0));
+                continue;
             }
             let mut navigation = self.game.map().clone();
             for y in 0..navigation.height() as i32 {
@@ -6970,16 +7003,23 @@ impl AsciiApp {
         regional_worlds: RegionalWorldCatalog,
         version: u8,
     ) -> Result<Self, String> {
-        let expeditions = if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
+        let expeditions = if version >= ORME_DIRECTION_BOARD_GENERATION_VERSION {
             expeditions
+        } else if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
+            expeditions.without_orme_direction_board_metadata()
         } else if version >= NARRATIVE_REWARD_GENERATION_VERSION {
-            expeditions.without_stationary_quest_contact_metadata()
+            expeditions
+                .without_orme_direction_board_metadata()
+                .without_stationary_quest_contact_metadata()
         } else if version >= NARRATIVE_GENERATION_VERSION {
             expeditions
+                .without_orme_direction_board_metadata()
                 .without_stationary_quest_contact_metadata()
                 .without_narrative_reward_metadata()
         } else {
-            expeditions.without_narrative_metadata()
+            expeditions
+                .without_orme_direction_board_metadata()
+                .without_narrative_metadata()
         };
         let regional_worlds = if version >= FIFTH_REGIONAL_CITY_GENERATION_VERSION {
             regional_worlds
@@ -7497,7 +7537,15 @@ impl AsciiApp {
         for (id, installation) in facility.installations() {
             let operational = facility.is_operational(id);
             let decor =
-                if installation
+                if id.as_str() == "core:orme_direction_board" {
+                    if facility.data_terminal_was_updated(id) {
+                        crate::test_sector::Decor::DirectionBoardUpdated
+                    } else {
+                        crate::test_sector::Decor::DirectionBoard
+                    }
+                } else if id.as_str() == "core:relay_service_plan" {
+                    crate::test_sector::Decor::ServicePlan
+                } else if installation
                     .capabilities()
                     .contains(&InstallationCapability::Storage)
                 {
@@ -8592,7 +8640,14 @@ impl AsciiApp {
                 .narrative
                 .as_ref()
                 .map(|narrative| {
-                    crate::test_expedition::install_narrative_relay(&mut generated, narrative)
+                    if self.generation_version >= RELAY_SERVICE_ROUTE_GENERATION_VERSION {
+                        crate::test_expedition::install_narrative_relay_with_service_route(
+                            &mut generated,
+                            narrative,
+                        )
+                    } else {
+                        crate::test_expedition::install_narrative_relay(&mut generated, narrative)
+                    }
                 })
                 .transpose()?
         } else {
@@ -8914,6 +8969,7 @@ impl AsciiApp {
                         ));
                     }
                     FacilityEvent::DataTerminalAccessed {
+                        installation,
                         record,
                         first_access,
                         ..
@@ -8925,12 +8981,19 @@ impl AsciiApp {
                             .unwrap_or_else(|| format!("Archive {record}"));
                         self.push_log(format!(
                             "{} · {text}{}",
-                            if first_access {
+                            if installation.as_str() == "core:orme_direction_board" {
+                                "PANNEAU LU"
+                            } else if installation.as_str() == "core:relay_service_plan" {
+                                "PLAN LU"
+                            } else if first_access {
                                 "ARCHIVE DÉCOUVERTE"
                             } else {
                                 "ARCHIVE CONSULTÉE"
                             },
-                            if first_access {
+                            if first_access
+                                && installation.as_str() != "core:orme_direction_board"
+                                && installation.as_str() != "core:relay_service_plan"
+                            {
                                 format!(" · {} : dossier", self.controls.label(Action::Report))
                             } else {
                                 String::new()
@@ -19305,16 +19368,23 @@ fn rules_fingerprint_for_version(rules: &GameRules, version: u8) -> u64 {
 }
 
 fn expedition_fingerprint_for_version(expeditions: &ExpeditionCatalog, version: u8) -> u64 {
-    let narrative_compatible = if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
+    let narrative_compatible = if version >= ORME_DIRECTION_BOARD_GENERATION_VERSION {
         expeditions.clone()
+    } else if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
+        expeditions.without_orme_direction_board_metadata()
     } else if version >= NARRATIVE_REWARD_GENERATION_VERSION {
-        expeditions.without_stationary_quest_contact_metadata()
+        expeditions
+            .without_orme_direction_board_metadata()
+            .without_stationary_quest_contact_metadata()
     } else if version >= NARRATIVE_GENERATION_VERSION {
         expeditions
+            .without_orme_direction_board_metadata()
             .without_stationary_quest_contact_metadata()
             .without_narrative_reward_metadata()
     } else {
-        expeditions.without_narrative_metadata()
+        expeditions
+            .without_orme_direction_board_metadata()
+            .without_narrative_metadata()
     };
     let expeditions = &narrative_compatible;
     let survey_compatible = if version >= SITE_SURVEY_GENERATION_VERSION {
@@ -19455,16 +19525,23 @@ fn world_fingerprint_for_version(
     if version < REGIONAL_TRAVEL_GENERATION_VERSION {
         return expedition_fingerprint_for_version(expeditions, version);
     }
-    let narrative_compatible = if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
+    let narrative_compatible = if version >= ORME_DIRECTION_BOARD_GENERATION_VERSION {
         expeditions.clone()
+    } else if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
+        expeditions.without_orme_direction_board_metadata()
     } else if version >= NARRATIVE_REWARD_GENERATION_VERSION {
-        expeditions.without_stationary_quest_contact_metadata()
+        expeditions
+            .without_orme_direction_board_metadata()
+            .without_stationary_quest_contact_metadata()
     } else if version >= NARRATIVE_GENERATION_VERSION {
         expeditions
+            .without_orme_direction_board_metadata()
             .without_stationary_quest_contact_metadata()
             .without_narrative_reward_metadata()
     } else {
-        expeditions.without_narrative_metadata()
+        expeditions
+            .without_orme_direction_board_metadata()
+            .without_narrative_metadata()
     };
     let expeditions = &narrative_compatible;
     let survey_compatible = if version >= SITE_SURVEY_GENERATION_VERSION {
@@ -21837,7 +21914,9 @@ mod tests {
             assert!(definition.qualifying_records.contains(&record_id));
         }
 
-        let legacy = expeditions.without_quest_site_record_metadata();
+        let legacy = expeditions
+            .without_orme_direction_board_metadata()
+            .without_quest_site_record_metadata();
         assert_eq!(
             expedition_fingerprint_for_version(&expeditions, RECYCLING_INTRO_GENERATION_VERSION),
             suspension::fingerprint(&legacy)
@@ -27842,6 +27921,7 @@ mod tests {
             expedition_fingerprint_for_version(&expeditions, QUEST_CHAIN_GENERATION_VERSION),
             suspension::fingerprint(
                 &expeditions
+                    .without_orme_direction_board_metadata()
                     .without_quest_site_record_metadata()
                     .without_property_report_metadata()
                     .without_quest_world_effect_metadata()
@@ -27894,6 +27974,7 @@ mod tests {
             expedition_fingerprint_for_version(&expeditions, QUEST_WORLD_STATE_GENERATION_VERSION),
             suspension::fingerprint(
                 &expeditions
+                    .without_orme_direction_board_metadata()
                     .without_quest_site_record_metadata()
                     .without_property_report_metadata()
                     .without_quest_world_effect_metadata(),
@@ -27947,6 +28028,7 @@ mod tests {
             expedition_fingerprint_for_version(&expeditions, QUEST_WORLD_EFFECT_GENERATION_VERSION),
             suspension::fingerprint(
                 &expeditions
+                    .without_orme_direction_board_metadata()
                     .without_quest_site_record_metadata()
                     .without_property_report_metadata()
                     .without_quest_installation_effect_metadata(),
@@ -28002,6 +28084,7 @@ mod tests {
             ),
             suspension::fingerprint(
                 &expeditions_with_authorization
+                    .without_orme_direction_board_metadata()
                     .without_quest_site_record_metadata()
                     .without_property_report_metadata()
                     .without_quest_authorization_effect_metadata()
@@ -28016,6 +28099,7 @@ mod tests {
             ),
             suspension::fingerprint(&(
                 expeditions_with_authorization
+                    .without_orme_direction_board_metadata()
                     .without_quest_site_record_metadata()
                     .without_property_report_metadata()
                     .without_quest_authorization_effect_metadata(),
@@ -28051,6 +28135,7 @@ mod tests {
             ),
             suspension::fingerprint(
                 &expeditions
+                    .without_orme_direction_board_metadata()
                     .without_quest_site_record_metadata()
                     .without_property_report_metadata()
             )
@@ -28064,6 +28149,7 @@ mod tests {
             ),
             suspension::fingerprint(&(
                 expeditions
+                    .without_orme_direction_board_metadata()
                     .without_quest_site_record_metadata()
                     .without_property_report_metadata(),
                 regional_worlds
@@ -28096,6 +28182,7 @@ mod tests {
             expedition_fingerprint_for_version(&expeditions, PROPERTY_REPORT_GENERATION_VERSION,),
             suspension::fingerprint(
                 &expeditions
+                    .without_orme_direction_board_metadata()
                     .without_quest_site_record_metadata()
                     .without_reported_incident_response_metadata()
             )
@@ -28109,6 +28196,7 @@ mod tests {
             ),
             suspension::fingerprint(&(
                 expeditions
+                    .without_orme_direction_board_metadata()
                     .without_quest_site_record_metadata()
                     .without_reported_incident_response_metadata(),
                 regional_worlds
@@ -28144,6 +28232,7 @@ mod tests {
             ),
             suspension::fingerprint(
                 &expeditions
+                    .without_orme_direction_board_metadata()
                     .without_quest_site_record_metadata()
                     .without_installed_property_report_metadata()
             )
@@ -28157,6 +28246,7 @@ mod tests {
             ),
             suspension::fingerprint(&(
                 expeditions
+                    .without_orme_direction_board_metadata()
                     .without_quest_site_record_metadata()
                     .without_installed_property_report_metadata(),
                 regional_worlds
@@ -28208,7 +28298,9 @@ mod tests {
                 NPC_VISION_OVERLAY_GENERATION_VERSION,
             ),
             suspension::fingerprint(&(
-                expeditions.without_quest_site_record_metadata(),
+                expeditions
+                    .without_orme_direction_board_metadata()
+                    .without_quest_site_record_metadata(),
                 regional_worlds
                     .without_city_metadata()
                     .without_environmental_conduction_metadata()
@@ -28236,7 +28328,9 @@ mod tests {
                 ENVIRONMENTAL_CONDUCTION_GENERATION_VERSION,
             ),
             suspension::fingerprint(&(
-                expeditions.without_quest_site_record_metadata(),
+                expeditions
+                    .without_orme_direction_board_metadata()
+                    .without_quest_site_record_metadata(),
                 regional_worlds
                     .without_city_metadata()
                     .without_second_layer_route_metadata(),
@@ -28305,7 +28399,9 @@ mod tests {
                 SECOND_LAYER_ROUTE_GENERATION_VERSION,
             ),
             suspension::fingerprint(&(
-                expeditions.without_quest_site_record_metadata(),
+                expeditions
+                    .without_orme_direction_board_metadata()
+                    .without_quest_site_record_metadata(),
                 regional_worlds
                     .without_city_metadata()
                     .without_third_layer_route_metadata(),
@@ -28378,7 +28474,9 @@ mod tests {
                 REGIONAL_CITY_GENERATION_VERSION,
             ),
             suspension::fingerprint(&(
-                expeditions.without_quest_site_record_metadata(),
+                expeditions
+                    .without_orme_direction_board_metadata()
+                    .without_quest_site_record_metadata(),
                 regional_worlds
                     .without_second_city_metadata()
                     .without_third_layer_route_metadata(),
@@ -28462,7 +28560,9 @@ mod tests {
                 SECOND_REGIONAL_CITY_GENERATION_VERSION,
             ),
             suspension::fingerprint(&(
-                expeditions.without_quest_site_record_metadata(),
+                expeditions
+                    .without_orme_direction_board_metadata()
+                    .without_quest_site_record_metadata(),
                 regional_worlds
                     .without_third_city_metadata()
                     .without_third_layer_route_metadata(),
@@ -28531,7 +28631,9 @@ mod tests {
                 THIRD_LAYER_ROUTE_GENERATION_VERSION,
             ),
             suspension::fingerprint(&(
-                expeditions.without_quest_site_record_metadata(),
+                expeditions
+                    .without_orme_direction_board_metadata()
+                    .without_quest_site_record_metadata(),
                 regional_worlds
                     .without_third_city_metadata()
                     .without_fourth_layer_route_metadata(),
@@ -28623,7 +28725,9 @@ mod tests {
                 THIRD_REGIONAL_CITY_GENERATION_VERSION,
             ),
             suspension::fingerprint(&(
-                expeditions.without_quest_site_record_metadata(),
+                expeditions
+                    .without_orme_direction_board_metadata()
+                    .without_quest_site_record_metadata(),
                 regional_worlds
                     .without_fourth_city_metadata()
                     .without_fourth_layer_route_metadata(),
@@ -28660,7 +28764,9 @@ mod tests {
                 FOURTH_LAYER_ROUTE_GENERATION_VERSION,
             ),
             suspension::fingerprint(&(
-                expeditions.without_quest_site_record_metadata(),
+                expeditions
+                    .without_orme_direction_board_metadata()
+                    .without_quest_site_record_metadata(),
                 regional_worlds
                     .without_fourth_city_metadata()
                     .without_fifth_layer_route_metadata(),
@@ -28762,7 +28868,9 @@ mod tests {
                 FOURTH_REGIONAL_CITY_GENERATION_VERSION,
             ),
             suspension::fingerprint(&(
-                expeditions.without_quest_site_record_metadata(),
+                expeditions
+                    .without_orme_direction_board_metadata()
+                    .without_quest_site_record_metadata(),
                 regional_worlds
                     .without_fifth_city_metadata()
                     .without_fifth_layer_route_metadata(),
@@ -28799,7 +28907,9 @@ mod tests {
                 FIFTH_LAYER_ROUTE_GENERATION_VERSION,
             ),
             suspension::fingerprint(&(
-                expeditions.without_quest_site_record_metadata(),
+                expeditions
+                    .without_orme_direction_board_metadata()
+                    .without_quest_site_record_metadata(),
                 regional_worlds.without_fifth_city_metadata(),
             ))
         );
@@ -28863,6 +28973,7 @@ mod tests {
             ),
             suspension::fingerprint(
                 &expeditions
+                    .without_orme_direction_board_metadata()
                     .without_property_report_metadata()
                     .without_commerce_metadata()
                     .without_player_relation_metadata()
@@ -28917,6 +29028,7 @@ mod tests {
             ),
             suspension::fingerprint(
                 &expeditions
+                    .without_orme_direction_board_metadata()
                     .without_property_report_metadata()
                     .without_commerce_metadata()
                     .without_player_relation_metadata(),

@@ -344,24 +344,6 @@ impl UiTheme {
             fill,
         );
 
-        if enabled && (focused || active || tone != ButtonTone::Secondary) {
-            let rail_width = if active || tone != ButtonTone::Secondary {
-                34.0
-            } else {
-                22.0
-            };
-            rounded_rectangle(
-                Rect::new(
-                    rect.x + (rect.w - rail_width) * 0.5,
-                    rect.y + rect.h - 4.0,
-                    rail_width,
-                    2.0,
-                ),
-                1.0,
-                semantic,
-            );
-        }
-
         let mut font_size = 16_u16;
         while font_size > 12 && measure_text_bold(label, font_size).width > rect.w - 20.0 {
             font_size -= 1;
@@ -384,8 +366,7 @@ impl UiTheme {
         );
     }
 
-    /// Compact mode selector. Unlike an action button it has no decorative
-    /// bottom rail: selection is carried only by fill, outline and text.
+    /// Compact mode selector; selection is carried by fill, outline and text.
     pub fn tab(self, rect: Rect, label: &str, active: bool) {
         let radius = (rect.h * 0.2).clamp(4.0, 8.0);
         rounded_rectangle(
