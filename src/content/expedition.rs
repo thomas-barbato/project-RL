@@ -165,6 +165,12 @@ impl PopulationGroupDefinition {
         if attack.range() == 0 || attack.damage().raw_total() == 0 {
             return Err(ExpeditionDefinitionError::InvalidPopulationAttack);
         }
+        if ai.behavior == crate::ai::AiBehavior::TelegraphedShooter
+            && (attack.delivery() != crate::combat::AttackDelivery::Ranged
+                || !matches!(attack.area(), AttackArea::Single))
+        {
+            return Err(ExpeditionDefinitionError::InvalidPopulationAttack);
+        }
         if usize::from(attack.range()) > MAX_ZONE_SIDE
             || matches!(
                 attack.area(),
@@ -314,6 +320,19 @@ impl PopulationGroupDefinition {
     pub(crate) fn remove_physical_metadata(&mut self) {
         self.body_profile = None;
         self.attack = self.attack.without_melee_impact();
+    }
+
+    pub(crate) fn remove_base_armor_metadata(&mut self) {
+        self.body_profile = self.body_profile.map(BodyProfile::without_base_armor);
+    }
+
+    pub(crate) fn remove_carried_weapon_metadata(&mut self) {
+        self.tags.retain(|tag| {
+            !matches!(
+                tag.as_str(),
+                "core:humanoid_rifle_carrier" | "core:humanoid_knife_carrier"
+            )
+        });
     }
 
     pub(crate) fn remove_melee_skill_body_metadata(&mut self) {
@@ -1765,6 +1784,21 @@ pub struct ExpeditionCatalog {
 }
 
 impl ExpeditionCatalog {
+    /// The first surface contacts are optional and absent from older runs.
+    pub fn without_surface_cast_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            if let Some(narrative) = &mut definition.narrative {
+                narrative.characters.retain(|character| {
+                    !matches!(
+                        character.tag.as_str(),
+                        "core:surface_scout" | "core:sorting_operator"
+                    )
+                });
+            }
+        }
+        catalog
+    }
     pub fn register(
         &mut self,
         definition: ExpeditionDefinition,
@@ -2311,6 +2345,23 @@ impl ExpeditionCatalog {
                 definition.narrative = None;
                 for group in &mut definition.destination.population {
                     group.remove_physical_metadata();
+                }
+                (id.clone(), definition)
+            })
+            .collect();
+        Self { definitions }
+    }
+
+    /// Removes later tactical armor tuning while retaining every earlier body
+    /// property and the exact population order used by historical replays.
+    pub fn without_population_base_armor_metadata(&self) -> Self {
+        let definitions = self
+            .definitions
+            .iter()
+            .map(|(id, definition)| {
+                let mut definition = definition.clone();
+                for group in &mut definition.destination.population {
+                    group.remove_base_armor_metadata();
                 }
                 (id.clone(), definition)
             })

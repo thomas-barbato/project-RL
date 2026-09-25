@@ -247,6 +247,45 @@ pub struct TestSector {
 }
 
 impl TestSector {
+    /// Authored, optional v100 contacts: one on the plaza, one in a protected
+    /// roadside shelter. This never changes a pre-v100 generated map.
+    pub fn with_surface_contacts(mut self) -> Result<Self, String> {
+        let mut map = self.level.map().clone();
+        paint(&mut map, &mut self.decor, [66, 24, 7, 6], Decor::Wall)?;
+        paint(&mut map, &mut self.decor, [67, 25, 5, 4], Decor::Deck)?;
+        paint(&mut map, &mut self.decor, [69, 21, 1, 4], Decor::Lane)?;
+        for y in 25..29 {
+            for x in 67..72 {
+                map.set_protected(GridPos::new(x, y), true)
+                    .map_err(|e| e.to_string())?;
+            }
+        }
+        self.decor.zones.insert(
+            0,
+            Zone {
+                name: "Abri de la lisière".to_owned(),
+                bounds: [66, 24, 7, 6],
+            },
+        );
+        let required: Vec<_> = self
+            .enemies
+            .iter()
+            .chain(&self.loot)
+            .copied()
+            .chain([GridPos::new(68, 26), GridPos::new(36, 26)])
+            .chain(Self::EXPANDED_REGIONAL_PASSAGES.iter().map(|(_, pos)| *pos))
+            .collect();
+        self.level = GeneratedMap::from_layout(
+            map,
+            self.level.player_start(),
+            self.level.exit(),
+            &required,
+            MapValidationRules::default(),
+        )
+        .map_err(|e| format!("Surface contacts are unreachable: {e}"))?;
+        Ok(self)
+    }
+
     pub const NAME: &str = "VILLE DE DÉPART / FRICHES";
     pub const GATE: GridPos = GridPos::new(62, 21);
     pub const LOCKED_DOOR: GridPos = GridPos::new(52, 15);
@@ -895,6 +934,26 @@ fn paint(
 mod tests {
     use super::*;
     use project_rl::world::generation::validate_interactive_map;
+
+    #[test]
+    fn surface_contacts_keep_routes_solvable_and_enemies_outside_the_shelter() {
+        for seed in 1..17 {
+            let sector = TestSector::build(seed)
+                .unwrap()
+                .with_surface_contacts()
+                .unwrap();
+            for contact in [GridPos::new(36, 26), GridPos::new(68, 26)] {
+                assert!(sector.level.map().is_protected(contact));
+            }
+            assert!(
+                sector
+                    .enemies
+                    .iter()
+                    .all(|at| !sector.level.map().is_protected(*at))
+            );
+        }
+    }
+
     #[test]
     fn town_is_fixed_exterior_varies_and_all_interactive_routes_are_solvable() {
         let first = TestSector::build(1).unwrap();

@@ -29,11 +29,11 @@
       description_key: "technique.mel_02.description",
       minimum_level: 1,
       kind: "action",
-      preparation_time_units: 1,
       action: {
         type: "weapon_attack",
         required_delivery: "melee",
-        accuracy_modifier: 20,
+        physical_damage_percentage: 75,
+        accuracy_modifier: 25,
       },
     },
     {
@@ -139,7 +139,8 @@
       action: {
         type: "weapon_attack",
         required_delivery: "melee",
-        physical_damage_percentage: 180,
+        physical_damage_percentage: 220,
+        armor_penetration_bonus: 2,
         energy_cost: 5,
         recovery_time_units: 1,
       },
@@ -155,7 +156,10 @@
       description_key: "technique.mel_10.description",
       minimum_level: 5,
       kind: "action",
-      action: { type: "prepare_melee_interception" },
+      action: {
+        type: "prepare_melee_interception",
+        stability_intensity: 60,
+      },
     },
   ],
 }

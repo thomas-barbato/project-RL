@@ -4,6 +4,11 @@ use std::fmt::{Debug, Display, Formatter};
 
 use crate::content::ContentId;
 
+mod affix;
+pub use affix::{
+    EquipmentAffixId, EquipmentNameGrammar, NamedEquipmentAffixes, RolledEquipmentAffix,
+};
+
 pub type ItemId = ContentId;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]

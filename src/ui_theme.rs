@@ -532,6 +532,58 @@ impl UiTheme {
         }
         draw_text_bold_centered(label, label_rect, font_size, color);
     }
+
+    /// The title screen uses quiet surfaces and one turquoise focus cue.
+    /// Keeping the label centered leaves the icon and chevron as secondary cues.
+    pub fn main_menu_action(
+        self,
+        rect: Rect,
+        label: &str,
+        icon: UiIcon,
+        focused: bool,
+        enabled: bool,
+    ) {
+        let fill = if !enabled {
+            Color::new(0.07, 0.10, 0.12, 0.82)
+        } else if focused {
+            Color::new(0.075, 0.23, 0.25, 0.98)
+        } else {
+            Color::new(0.075, 0.13, 0.15, 0.94)
+        };
+        rounded_rectangle(rect, 7.0, fill);
+        if focused {
+            rounded_rectangle(
+                Rect::new(rect.x + 1.0, rect.y + 8.0, 3.0, rect.h - 16.0),
+                1.5,
+                self.accent(),
+            );
+        }
+        let foreground = if !enabled {
+            Color::new(0.45, 0.53, 0.55, 1.0)
+        } else if focused {
+            self.accent()
+        } else {
+            self.text()
+        };
+        draw_ui_icon(
+            icon,
+            Rect::new(rect.x + 18.0, rect.y + (rect.h - 19.0) * 0.5, 19.0, 19.0),
+            foreground,
+        );
+        let label_area = Rect::new(rect.x + 49.0, rect.y, rect.w - 98.0, rect.h);
+        let mut font_size = 17_u16;
+        while font_size > 12 && measure_text_bold(label, font_size).width > label_area.w - 8.0 {
+            font_size -= 1;
+        }
+        draw_text_bold_centered(label, label_area, font_size, foreground);
+        if enabled {
+            let mid_y = rect.y + rect.h * 0.5;
+            let right = rect.x + rect.w - 20.0;
+            let chevron = if focused { self.accent() } else { self.muted() };
+            draw_line(right - 5.0, mid_y - 4.0, right, mid_y, 1.5, chevron);
+            draw_line(right, mid_y, right - 5.0, mid_y + 4.0, 1.5, chevron);
+        }
+    }
 }
 
 fn button_foreground(

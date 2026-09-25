@@ -1,0 +1,20 @@
+{
+  "id": "core:couteau_de_chitine",
+  "name_key": "equipment.couteau_de_chitine.name",
+  "description_key": "equipment.couteau_de_chitine.description",
+  "mass_grams": 900,
+  "attack": {
+    "range": 1,
+    "distance_metric": "chebyshev",
+    "requires_line_of_sight": false,
+    "accuracy_modifier": 10,
+    "impact": {
+      "material_cap": 15
+    },
+    "damage": {
+      "amount": 5,
+      "damage_type": "piercing",
+      "penetration": 2
+    }
+  }
+}

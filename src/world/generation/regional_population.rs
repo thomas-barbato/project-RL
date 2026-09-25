@@ -1,4 +1,4 @@
-use std::collections::BTreeSet;
+use std::collections::{BTreeSet, VecDeque};
 use std::error::Error;
 use std::fmt::{Display, Formatter};
 
@@ -9,6 +9,14 @@ use crate::world::{GridPos, Map};
 
 const POPULATION_SEED_SALT: u64 = 0x504f_5055_4c41_544e;
 const ENCOUNTER_SEED_SALT: u64 = 0x454e_434f_554e_5452;
+
+/// Explicit placement inputs: structures reserve cells but do not repel groups.
+/// Existing actors do, so a new encounter cannot pile onto the previous layer.
+pub struct RegionalEncounterLayout<'a> {
+    pub landmarks: &'a [GridPos],
+    pub reserved: &'a BTreeSet<GridPos>,
+    pub existing_actors: &'a [GridPos],
+}
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub struct RegionalPopulationFeatures {
@@ -31,8 +39,11 @@ pub fn generate_regional_population(
     generate_population_layer(
         map,
         passages,
-        &[],
-        &BTreeSet::new(),
+        RegionalEncounterLayout {
+            landmarks: &[],
+            reserved: &BTreeSet::new(),
+            existing_actors: &[],
+        },
         profile,
         region_seed ^ POPULATION_SEED_SALT,
         features,
@@ -74,11 +85,34 @@ pub fn generate_regional_encounters_with_roles(
     features: RegionalPopulationFeatures,
     distinct_roles: bool,
 ) -> Result<Vec<Actor>, RegionalPopulationError> {
+    generate_regional_encounters_in_layout(
+        map,
+        passages,
+        RegionalEncounterLayout {
+            landmarks,
+            reserved,
+            existing_actors: &[],
+        },
+        profile,
+        region_seed,
+        features,
+        distinct_roles,
+    )
+}
+
+pub fn generate_regional_encounters_in_layout(
+    map: &Map,
+    passages: &[GridPos],
+    layout: RegionalEncounterLayout<'_>,
+    profile: &RegionPopulationProfile,
+    region_seed: u64,
+    features: RegionalPopulationFeatures,
+    distinct_roles: bool,
+) -> Result<Vec<Actor>, RegionalPopulationError> {
     generate_population_layer(
         map,
         passages,
-        landmarks,
-        reserved,
+        layout,
         profile,
         region_seed ^ ENCOUNTER_SEED_SALT,
         features,
@@ -89,8 +123,7 @@ pub fn generate_regional_encounters_with_roles(
 fn generate_population_layer(
     map: &Map,
     passages: &[GridPos],
-    landmarks: &[GridPos],
-    reserved: &BTreeSet<GridPos>,
+    layout: RegionalEncounterLayout<'_>,
     profile: &RegionPopulationProfile,
     seed: u64,
     features: RegionalPopulationFeatures,
@@ -111,7 +144,29 @@ fn generate_population_layer(
         .map(|rule| u64::from(rule.weight()))
         .sum();
     let mut actors = Vec::new();
-    let mut occupied = reserved.clone();
+    let mut occupied = layout.reserved.clone();
+    // Cache the static mask once. Re-testing reachability and every previous
+    // actor for every cell of every draw makes large starter maps needlessly
+    // slow; each completed group only removes its own small exclusion area.
+    let mut spread_candidates = profile.spread_groups().then(|| {
+        let reachable = reachable_cells(map, passages);
+        (1..map.height() as i32 - 1)
+            .flat_map(|y| (1..map.width() as i32 - 1).map(move |x| GridPos::new(x, y)))
+            .filter(|at| {
+                reachable.contains(at)
+                    && !map.is_protected(*at)
+                    && !occupied.contains(at)
+                    && passages
+                        .iter()
+                        .all(|entry| chebyshev_distance(*at, *entry) >= 16)
+                    && layout
+                        .existing_actors
+                        .iter()
+                        .all(|other| chebyshev_distance(*at, *other) >= 12)
+            })
+            .collect::<Vec<_>>()
+    });
+    let mut separated = layout.existing_actors.to_vec();
 
     for group_index in 0..roll_count {
         let rule = if distinct_roles && usize::from(group_index) < profile.rules().len() {
@@ -120,7 +175,20 @@ fn generate_population_layer(
             weighted_rule(profile.rules(), total_weight, &mut rng)
         };
         let count = inclusive_u16(&mut rng, rule.minimum_count(), rule.maximum_count());
-        let mut candidates = regional_spawn_cells(map, passages, rule, &occupied);
+        let mut candidates = if let Some(available) = &spread_candidates {
+            available
+                .iter()
+                .copied()
+                .filter(|at| {
+                    passages.iter().all(|entry| {
+                        manhattan_distance(*at, *entry)
+                            >= u32::from(rule.minimum_passage_distance())
+                    })
+                })
+                .collect()
+        } else {
+            regional_spawn_cells(map, passages, rule, &occupied)
+        };
         if candidates.len() < usize::from(count) {
             return Err(RegionalPopulationError::InsufficientSpawnSpace {
                 requested: count,
@@ -128,7 +196,8 @@ fn generate_population_layer(
                 minimum_passage_distance: rule.minimum_passage_distance(),
             });
         }
-        let anchor = landmarks
+        let anchor = layout
+            .landmarks
             .get(usize::from(group_index))
             .and_then(|landmark| {
                 candidates.iter().copied().min_by_key(|position| {
@@ -139,61 +208,128 @@ fn generate_population_layer(
                     )
                 })
             })
-            .unwrap_or_else(|| candidates[below(&mut rng, candidates.len() as u64) as usize]);
-        candidates.sort_by_key(|position| {
+            .unwrap_or_else(|| {
+                let first = candidates[below(&mut rng, candidates.len() as u64) as usize];
+                if !profile.spread_groups() {
+                    return first;
+                }
+                // A bounded sample fills the quieter parts of the map without
+                // turning every seed into a regular grid of enemies.
+                std::iter::once(first)
+                    .chain(
+                        (0..7)
+                            .map(|_| candidates[below(&mut rng, candidates.len() as u64) as usize]),
+                    )
+                    .max_by_key(|at| {
+                        separated
+                            .iter()
+                            .map(|other| chebyshev_distance(*at, *other))
+                            .min()
+                            .unwrap_or(0)
+                    })
+                    .unwrap()
+            });
+        let order = |position: &GridPos| {
             (
                 manhattan_distance(*position, anchor),
                 position.y,
                 position.x,
             )
-        });
+        };
+        if profile.spread_groups() {
+            // Unique (distance, y, x) keys give exactly the same first members
+            // as a full sort, without sorting thousands of unused cells.
+            candidates.select_nth_unstable_by_key(usize::from(count) - 1, order);
+            candidates.truncate(usize::from(count));
+        }
+        candidates.sort_by_key(order);
+        if let Some(available) = &mut spread_candidates {
+            available.retain(|at| {
+                candidates
+                    .iter()
+                    .take(usize::from(count))
+                    .all(|member| chebyshev_distance(*at, *member) >= 12)
+            });
+        }
         for position in candidates.into_iter().take(usize::from(count)) {
-            let ai = if features.pursuit_lifecycle {
-                rule.ai()
-            } else {
-                rule.ai().without_pursuit_lifecycle()
-            };
-            let mut actor = Actor::new(position, rule.maximum_integrity())
-                .expect("regional population validation rejects zero integrity")
-                .with_attack(if features.physical_profiles {
-                    rule.attack()
-                } else {
-                    rule.attack().without_melee_impact()
-                })
-                .with_ai(ai)
-                .with_tags(rule.tags().iter().cloned());
-            if features.player_relations {
-                actor = actor.with_player_relation(rule.player_relation());
-            }
-            if features.primary_attributes
-                && let Some(attributes) = rule.primary_attributes()
-            {
-                actor = actor.with_primary_attributes(attributes);
-            }
-            if features.physical_profiles
-                && let Some(body) = rule.body_profile()
-            {
-                actor = actor.with_body_profile(body);
-            }
-            if features.physical_profiles && !rule.body_components().is_empty() {
-                actor = actor.with_body_components(rule.body_components().iter().cloned());
-            }
-            if features.electronic_systems
-                && let Some(profile) = rule.electronic_system()
-            {
-                actor = actor.with_electronic_system(profile);
-            }
-            if let Some(reward) = rule.defeat_reward() {
-                actor = actor.with_defeat_reward(reward);
-            }
+            let actor = population_actor(rule, position, features);
             occupied.insert(position);
+            separated.push(position);
             actors.push(actor);
         }
     }
     Ok(actors)
 }
 
-fn regional_spawn_cells(
+fn chebyshev_distance(left: GridPos, right: GridPos) -> u32 {
+    left.x.abs_diff(right.x).max(left.y.abs_diff(right.y))
+}
+
+fn reachable_cells(map: &Map, entries: &[GridPos]) -> BTreeSet<GridPos> {
+    let mut reached = BTreeSet::new();
+    let mut queue = VecDeque::new();
+    for entry in entries.iter().copied().filter(|at| map.is_walkable(*at)) {
+        if reached.insert(entry) {
+            queue.push_back(entry);
+        }
+    }
+    while let Some(at) = queue.pop_front() {
+        for next in at.cardinal_neighbors() {
+            if map.is_walkable(next) && reached.insert(next) {
+                queue.push_back(next);
+            }
+        }
+    }
+    reached
+}
+
+pub(super) fn population_actor(
+    rule: &RegionPopulationRule,
+    position: GridPos,
+    features: RegionalPopulationFeatures,
+) -> Actor {
+    let ai = if features.pursuit_lifecycle {
+        rule.ai()
+    } else {
+        rule.ai().without_pursuit_lifecycle()
+    };
+    let mut actor = Actor::new(position, rule.maximum_integrity())
+        .expect("regional population validation rejects zero integrity")
+        .with_attack(if features.physical_profiles {
+            rule.attack()
+        } else {
+            rule.attack().without_melee_impact()
+        })
+        .with_ai(ai)
+        .with_tags(rule.tags().iter().cloned());
+    if features.player_relations {
+        actor = actor.with_player_relation(rule.player_relation());
+    }
+    if features.primary_attributes
+        && let Some(attributes) = rule.primary_attributes()
+    {
+        actor = actor.with_primary_attributes(attributes);
+    }
+    if features.physical_profiles
+        && let Some(body) = rule.body_profile()
+    {
+        actor = actor.with_body_profile(body);
+    }
+    if features.physical_profiles && !rule.body_components().is_empty() {
+        actor = actor.with_body_components(rule.body_components().iter().cloned());
+    }
+    if features.electronic_systems
+        && let Some(profile) = rule.electronic_system()
+    {
+        actor = actor.with_electronic_system(profile);
+    }
+    if let Some(reward) = rule.defeat_reward() {
+        actor = actor.with_defeat_reward(reward);
+    }
+    actor
+}
+
+pub(super) fn regional_spawn_cells(
     map: &Map,
     passages: &[GridPos],
     rule: &RegionPopulationRule,
@@ -233,14 +369,14 @@ fn weighted_rule<'a>(
         .expect("validated population rules have positive total weight")
 }
 
-fn inclusive_u16(rng: &mut GameRng, minimum: u16, maximum: u16) -> u16 {
+pub(super) fn inclusive_u16(rng: &mut GameRng, minimum: u16, maximum: u16) -> u16 {
     let span = u64::from(maximum - minimum) + 1;
     minimum + below(rng, span) as u16
 }
 
 // Rejection sampling avoids modulo bias while preserving the historical
 // GameRng helpers used by older suspension versions.
-fn below(rng: &mut GameRng, bound: u64) -> u64 {
+pub(super) fn below(rng: &mut GameRng, bound: u64) -> u64 {
     debug_assert!(bound > 0);
     let threshold = bound.wrapping_neg() % bound;
     loop {
@@ -453,5 +589,73 @@ mod tests {
             .unwrap()
             .is_empty()
         );
+    }
+
+    #[test]
+    fn spaced_encounters_are_reachable_safe_and_deterministic_across_seeds() {
+        use crate::world::Terrain;
+        let mut map = Map::filled(128, 80, Terrain::Floor).unwrap();
+        // This sealed pocket must never receive a draw even though its floor
+        // is otherwise a perfectly valid spawn cell.
+        for x in 60..=75 {
+            for y in 25..=40 {
+                if x == 60 || x == 75 || y == 25 || y == 40 {
+                    map.set_terrain(GridPos::new(x, y), Terrain::Wall).unwrap();
+                }
+            }
+        }
+        for x in 10..30 {
+            for y in 10..30 {
+                map.set_protected(GridPos::new(x, y), true).unwrap();
+            }
+        }
+        let passages = [GridPos::new(2, 40), GridPos::new(125, 40)];
+        let existing = [GridPos::new(85, 55)];
+        let reserved = BTreeSet::from([GridPos::new(50, 40)]);
+        let profile = RegionPopulationProfile::new(14, 18, vec![profile().rules()[1].clone()])
+            .unwrap()
+            .with_spread_groups(true);
+        let reachable = reachable_cells(&map, &passages);
+        for seed in 0..64 {
+            let generate = || {
+                generate_regional_encounters_in_layout(
+                    &map,
+                    &passages,
+                    RegionalEncounterLayout {
+                        landmarks: &[],
+                        reserved: &reserved,
+                        existing_actors: &existing,
+                    },
+                    &profile,
+                    seed,
+                    FEATURES,
+                    false,
+                )
+                .unwrap()
+            };
+            let first = generate();
+            assert_eq!(first, generate());
+            assert!((14..=18).contains(&first.len()));
+            for (index, actor) in first.iter().enumerate() {
+                let at = actor.position();
+                assert!(reachable.contains(&at));
+                assert!(!map.is_protected(at) && !reserved.contains(&at));
+                assert!(
+                    passages
+                        .iter()
+                        .all(|entry| chebyshev_distance(at, *entry) >= 16)
+                );
+                assert!(
+                    existing
+                        .iter()
+                        .all(|other| chebyshev_distance(at, *other) >= 12)
+                );
+                assert!(
+                    first[..index]
+                        .iter()
+                        .all(|other| chebyshev_distance(at, other.position()) >= 12)
+                );
+            }
+        }
     }
 }

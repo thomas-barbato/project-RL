@@ -1,0 +1,11 @@
+{
+  id: "core:weapon_ricochet",
+  terminal: {
+    frames: ["ricochet", "ricochet", "ricochet", "ricochet"],
+    color: [158, 150, 115, 230],
+    accent_colors: [[244, 210, 132, 245], [255, 250, 225, 255]],
+    frame_millis: 80,
+    step_millis: 65,
+    linger_millis: 60,
+  },
+}

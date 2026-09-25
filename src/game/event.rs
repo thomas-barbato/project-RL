@@ -34,6 +34,7 @@ pub enum QuestCompletion {
 pub enum StatusRemovalReason {
     Expired,
     Cleansed,
+    Consumed,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -77,6 +78,17 @@ pub enum CounterattackOutcome {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum InterceptionOutcome {
     Performed,
+    Missed,
+    Resisted {
+        intensity: u16,
+        chance: u8,
+        roll: u8,
+    },
+    MovementStopped {
+        intensity: u16,
+        chance: u8,
+        roll: u8,
+    },
     ReactorUnavailable,
     MoverUnavailable,
     NoMeleeWeapon,
@@ -101,6 +113,50 @@ pub enum TechniqueEffectFailure {
 /// Facts emitted by the simulation for rendering, audio, logs and tests.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum GameEvent {
+    /// Fuel captured on a direct hit, including a lethal one. The burst remains
+    /// at that hit's position even if another effect displaced the target.
+    StatusCatalyzed {
+        source: EntityId,
+        target: EntityId,
+        at: GridPos,
+        status: StatusId,
+    },
+    WeaponFlameConeResolved {
+        source: EntityId,
+        origin: GridPos,
+        cells: Vec<crate::world::PropagationCell>,
+    },
+    CatalyticExplosion {
+        source: EntityId,
+        at: GridPos,
+    },
+    WeaponEchoScheduled {
+        source: EntityId,
+        at: GridPos,
+        delay_turns: u16,
+    },
+    WeaponEchoResolved {
+        source: EntityId,
+        at: GridPos,
+    },
+    WeaponFractureResolved {
+        source: EntityId,
+        target: EntityId,
+        at: GridPos,
+        status: StatusId,
+        charges: u16,
+        threshold: u16,
+    },
+    AttackTelegraphed {
+        attacker: EntityId,
+        origin: GridPos,
+        target_at: GridPos,
+    },
+    AllyHealed {
+        medic: EntityId,
+        target: EntityId,
+        amount: u16,
+    },
     ZoneChanged {
         from: crate::content::ContentId,
         to: crate::content::ContentId,
@@ -260,6 +316,11 @@ pub enum GameEvent {
         ground_item: GroundItemId,
         definition: crate::item::ItemId,
         quantity: u16,
+        at: GridPos,
+    },
+    ActorEquipmentDropped {
+        entity: EntityId,
+        ground_item: GroundItemId,
         at: GridPos,
     },
     ItemPickedUp {
@@ -432,10 +493,29 @@ pub enum GameEvent {
         slot: u8,
         target: GridPos,
     },
+    /// Presentation of an equipment push; the ordinary forced-movement event
+    /// separately reports its outcome. No extra attack or damage is implied.
+    WeaponImpulseResolved {
+        source: EntityId,
+        target: EntityId,
+        origin: GridPos,
+        from: GridPos,
+        to: GridPos,
+    },
     PropagationResolved {
         source: Option<EntityId>,
         origin: GridPos,
         cells: Vec<crate::world::PropagationCell>,
+        /// Exact definition and effect index; clients choose presentation without
+        /// inferring it from whichever weapon happens to be equipped now.
+        weapon_effect: Option<(crate::weapon::WeaponId, usize)>,
+    },
+    /// One guard consumed by one positive post-defense body impact.
+    DamageGuardAbsorbed {
+        target: EntityId,
+        at: GridPos,
+        status: StatusId,
+        amount: u16,
     },
     DamageApplied {
         source: Option<EntityId>,
@@ -454,6 +534,7 @@ pub enum GameEvent {
         target: EntityId,
         at: GridPos,
         amount: u16,
+        /// Typed amounts after armor/resistances, before guard and HP clamping.
         components: Vec<crate::combat::ResolvedDamageComponent>,
         effective_armor: u16,
         absorbed_by_armor: u16,

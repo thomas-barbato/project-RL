@@ -43,6 +43,10 @@ impl StatusSet {
         self.instances.values()
     }
 
+    pub(crate) fn remove(&mut self, id: &StatusId) -> bool {
+        self.instances.remove(id).is_some()
+    }
+
     pub fn apply(
         &mut self,
         definition: &StatusDefinition,
@@ -135,6 +139,35 @@ mod tests {
             .unwrap_or_else(|error| panic!("valid status ID rejected: {error}"));
         StatusDefinition::new(id, Some(3), stacking, Vec::<StatusHook>::new())
             .unwrap_or_else(|error| panic!("valid definition rejected: {error}"))
+    }
+
+    #[test]
+    fn different_timed_effects_have_independent_lifetimes_and_no_numeric_limit_of_two() {
+        let mut statuses = StatusSet::default();
+        let definitions = (1..=5)
+            .map(|duration| {
+                StatusDefinition::new(
+                    format!("core:timed_{duration}").parse().unwrap(),
+                    Some(duration),
+                    StatusStacking::RefreshDuration,
+                    vec![],
+                )
+                .unwrap()
+            })
+            .collect::<Vec<_>>();
+        for definition in &definitions {
+            for _ in 0..4 {
+                statuses.apply(definition, 9, None);
+            }
+        }
+        assert_eq!(statuses.iter().count(), 5);
+        assert!(statuses.iter().all(|status| status.stacks == 1));
+        for turn in 1..=5 {
+            for definition in &definitions {
+                statuses.elapse_one_turn(definition.id());
+            }
+            assert_eq!(statuses.iter().count(), 5 - turn);
+        }
     }
 
     #[test]

@@ -2,10 +2,13 @@ use std::collections::BTreeMap;
 use std::error::Error;
 use std::fmt::{Debug, Display, Formatter};
 
-use crate::combat::{AttackImpactError, AttackProfile, ConeAttackError, DamageImpactError};
+use crate::combat::{
+    AttackImpactError, AttackProfile, ConeAttackError, DamageImpactError, DamagePacket,
+};
 use crate::content::{ContentId, ContentIdError};
 use crate::effects::{
     ApplyStatusEffect, ApplyStatusEffectError, GroundEffectSpec, GroundEffectSpecError,
+    RadialDamageEffect,
 };
 use crate::status::StatusId;
 use crate::time::TimeUnitsError;
@@ -14,8 +17,76 @@ pub type WeaponId = ContentId;
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum WeaponEffectKind {
+    /// One ranged rebound; never remembers a previous attack or chains itself.
+    Ricochet {
+        range: u16,
+        damage: DamagePacket,
+    },
+    /// Explicit bearer-origin exception. Pre-existing burns cause local bursts.
+    CatalyticCone {
+        range: u16,
+        damage: DamagePacket,
+        burning_status: StatusId,
+        explosion: RadialDamageEffect,
+    },
+    /// One return hit on the previously struck actor, within reach of this impact.
+    Alternation {
+        range: u16,
+        memory_turns: u16,
+        damage: DamagePacket,
+    },
+    /// One committed strike on an old impact cell, after real simulation turns.
+    DelayedEcho {
+        delay_turns: u16,
+        damage: DamagePacket,
+    },
+    /// One charge on a directly hit target; a bounded mark fuels a final burst.
+    AccumulatedFracture {
+        mark_status: StatusId,
+        threshold: u16,
+        effect: RadialDamageEffect,
+        affects_source: bool,
+    },
+    /// Consume a pre-existing target status to fuel one impact-centered zone.
+    Catalysis {
+        required_status: StatusId,
+        effect: RadialDamageEffect,
+        affects_source: bool,
+    },
+    /// One bounded push after a direct hit; recovery is shared by the bearer.
+    Percussion {
+        force: u16,
+        recovery_status: StatusId,
+    },
     ApplyStatus(ApplyStatusEffect),
+    ApplyBearerStatus(ApplyStatusEffect),
     CreateGroundEffect(GroundEffectSpec),
+    /// A bounded continuation beyond the actual impact, never the initial path.
+    PiercingLine {
+        length: u16,
+        damage: DamagePacket,
+    },
+    /// Opt-in target classification, never inferred from a glyph or AI state.
+    LifeSteal {
+        percent: u16,
+        maximum_per_attack: u16,
+        required_target_tag: ContentId,
+    },
+    RadialDamage {
+        effect: RadialDamageEffect,
+        origin: WeaponEffectOrigin,
+        affects_source: bool,
+    },
+}
+
+/// The center of a secondary offensive zone never depends on weapon delivery.
+/// Healing recipients and status targets are separate from this spatial rule.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, serde::Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum WeaponEffectOrigin {
+    #[default]
+    Impact,
+    Bearer,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -30,6 +101,8 @@ pub enum WeaponEffectTrigger {
 pub struct WeaponEffect {
     trigger: Option<WeaponEffectTrigger>,
     kind: WeaponEffectKind,
+    // Runtime provenance for an appended instance effect, never a base mutation.
+    source: Option<(ContentId, usize)>,
 }
 
 // Effects loaded from versions 10-37 retain the exact historical Debug
@@ -39,12 +112,46 @@ impl Debug for WeaponEffect {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         let Some(trigger) = self.trigger else {
             return match &self.kind {
+                WeaponEffectKind::Ricochet { .. } | WeaponEffectKind::CatalyticCone { .. } => {
+                    self.kind.fmt(formatter)
+                }
+                WeaponEffectKind::Alternation { .. } | WeaponEffectKind::DelayedEcho { .. } => {
+                    self.kind.fmt(formatter)
+                }
+                WeaponEffectKind::AccumulatedFracture { .. } => formatter
+                    .debug_tuple("AccumulatedFracture")
+                    .field(&self.kind)
+                    .finish(),
+                WeaponEffectKind::Catalysis { .. } => formatter
+                    .debug_tuple("Catalysis")
+                    .field(&self.kind)
+                    .finish(),
+                WeaponEffectKind::Percussion { .. } => formatter
+                    .debug_tuple("Percussion")
+                    .field(&self.kind)
+                    .finish(),
+                WeaponEffectKind::ApplyBearerStatus(effect) => formatter
+                    .debug_tuple("ApplyBearerStatus")
+                    .field(effect)
+                    .finish(),
                 WeaponEffectKind::ApplyStatus(effect) => {
                     formatter.debug_tuple("ApplyStatus").field(effect).finish()
                 }
                 WeaponEffectKind::CreateGroundEffect(effect) => formatter
                     .debug_tuple("CreateGroundEffect")
                     .field(effect)
+                    .finish(),
+                WeaponEffectKind::RadialDamage { .. } => formatter
+                    .debug_tuple("RadialDamage")
+                    .field(&self.kind)
+                    .finish(),
+                WeaponEffectKind::LifeSteal { .. } => formatter
+                    .debug_tuple("LifeSteal")
+                    .field(&self.kind)
+                    .finish(),
+                WeaponEffectKind::PiercingLine { .. } => formatter
+                    .debug_tuple("PiercingLine")
+                    .field(&self.kind)
                     .finish(),
             };
         };
@@ -57,6 +164,198 @@ impl Debug for WeaponEffect {
 }
 
 impl WeaponEffect {
+    fn sourced_from(mut self, id: ContentId, index: usize) -> Self {
+        self.source = Some((id, index));
+        self
+    }
+
+    pub fn source(&self) -> Option<&(ContentId, usize)> {
+        self.source.as_ref()
+    }
+
+    pub fn ricochet(range: u16, damage: DamagePacket) -> Result<Self, WeaponEffectError> {
+        if range == 0 || damage.amount == 0 {
+            return Err(WeaponEffectError::InvalidEcho);
+        }
+        Ok(Self {
+            trigger: Some(WeaponEffectTrigger::OnHit),
+            kind: WeaponEffectKind::Ricochet { range, damage },
+            source: None,
+        })
+    }
+
+    pub fn catalytic_cone(
+        range: u16,
+        damage: DamagePacket,
+        burning_status: StatusId,
+        explosion: RadialDamageEffect,
+    ) -> Result<Self, WeaponEffectError> {
+        if range == 0 || damage.amount == 0 {
+            return Err(WeaponEffectError::InvalidEcho);
+        }
+        let mut result = Self::radial_damage(
+            explosion.clone(),
+            WeaponEffectTrigger::OnHit,
+            WeaponEffectOrigin::Bearer,
+            false,
+        )?;
+        result.kind = WeaponEffectKind::CatalyticCone {
+            range,
+            damage,
+            burning_status,
+            explosion,
+        };
+        Ok(result)
+    }
+    pub fn alternation(
+        range: u16,
+        memory_turns: u16,
+        damage: DamagePacket,
+    ) -> Result<Self, WeaponEffectError> {
+        if range == 0 || memory_turns < 2 || damage.amount == 0 {
+            return Err(WeaponEffectError::InvalidEcho);
+        }
+        Ok(Self {
+            trigger: Some(WeaponEffectTrigger::OnHit),
+            kind: WeaponEffectKind::Alternation {
+                range,
+                memory_turns,
+                damage,
+            },
+            source: None,
+        })
+    }
+
+    pub fn delayed_echo(delay_turns: u16, damage: DamagePacket) -> Result<Self, WeaponEffectError> {
+        // Bound the lifetime; cells cannot accumulate multiple pending echoes.
+        if !(1..=8).contains(&delay_turns) || damage.amount == 0 {
+            return Err(WeaponEffectError::InvalidEcho);
+        }
+        Ok(Self {
+            trigger: Some(WeaponEffectTrigger::OnHit),
+            kind: WeaponEffectKind::DelayedEcho {
+                delay_turns,
+                damage,
+            },
+            source: None,
+        })
+    }
+    pub fn accumulated_fracture(
+        mark_status: StatusId,
+        threshold: u16,
+        effect: RadialDamageEffect,
+        affects_source: bool,
+    ) -> Result<Self, WeaponEffectError> {
+        if threshold < 2 {
+            return Err(WeaponEffectError::InvalidFractureMark);
+        }
+        let mut result = Self::radial_damage(
+            effect.clone(),
+            WeaponEffectTrigger::OnHit,
+            WeaponEffectOrigin::Impact,
+            affects_source,
+        )?;
+        result.kind = WeaponEffectKind::AccumulatedFracture {
+            mark_status,
+            threshold,
+            effect,
+            affects_source,
+        };
+        Ok(result)
+    }
+
+    pub fn catalysis(
+        required_status: StatusId,
+        effect: RadialDamageEffect,
+        affects_source: bool,
+    ) -> Result<Self, WeaponEffectError> {
+        let mut result = Self::radial_damage(
+            effect.clone(),
+            WeaponEffectTrigger::OnHit,
+            WeaponEffectOrigin::Impact,
+            affects_source,
+        )?;
+        result.kind = WeaponEffectKind::Catalysis {
+            required_status,
+            effect,
+            affects_source,
+        };
+        Ok(result)
+    }
+
+    pub fn percussion(force: u16, recovery_status: StatusId) -> Result<Self, WeaponEffectError> {
+        if force == 0 {
+            return Err(WeaponEffectError::ZeroPercussionForce);
+        }
+        Ok(Self {
+            trigger: Some(WeaponEffectTrigger::OnHit),
+            kind: WeaponEffectKind::Percussion {
+                force,
+                recovery_status,
+            },
+            source: None,
+        })
+    }
+
+    /// Applies once to the surviving bearer, never once per victim or reaction.
+    pub fn apply_bearer_status(
+        effect: ApplyStatusEffect,
+        trigger: WeaponEffectTrigger,
+    ) -> Result<Self, WeaponEffectError> {
+        let mut weapon_effect = Self::apply_status(effect.clone(), trigger)?;
+        weapon_effect.kind = WeaponEffectKind::ApplyBearerStatus(effect);
+        Ok(weapon_effect)
+    }
+
+    pub fn piercing_line(
+        length: u16,
+        damage: DamagePacket,
+        trigger: WeaponEffectTrigger,
+    ) -> Result<Self, WeaponEffectError> {
+        if !matches!(
+            trigger,
+            WeaponEffectTrigger::OnHit | WeaponEffectTrigger::OnDamage
+        ) {
+            return Err(WeaponEffectError::InvalidPiercingTrigger(trigger));
+        }
+        if length == 0 || damage.amount == 0 {
+            return Err(WeaponEffectError::EmptyPiercingLine);
+        }
+        Ok(Self {
+            trigger: Some(trigger),
+            kind: WeaponEffectKind::PiercingLine { length, damage },
+            source: None,
+        })
+    }
+
+    /// One restoration per normal attack after positive primary damage to an
+    /// explicitly eligible target. Secondary damage and reactions cannot proc it.
+    pub fn life_steal(
+        percent: u16,
+        maximum_per_attack: u16,
+        required_target_tag: ContentId,
+        trigger: WeaponEffectTrigger,
+    ) -> Result<Self, WeaponEffectError> {
+        if trigger != WeaponEffectTrigger::OnDamage {
+            return Err(WeaponEffectError::InvalidRestorationTrigger(trigger));
+        }
+        if !(1..=100).contains(&percent) {
+            return Err(WeaponEffectError::InvalidLifeStealPercent(percent));
+        }
+        if maximum_per_attack == 0 {
+            return Err(WeaponEffectError::ZeroRestoration);
+        }
+        Ok(Self {
+            trigger: Some(trigger),
+            kind: WeaponEffectKind::LifeSteal {
+                percent,
+                maximum_per_attack,
+                required_target_tag,
+            },
+            source: None,
+        })
+    }
+
     pub fn apply_status(
         effect: ApplyStatusEffect,
         trigger: WeaponEffectTrigger,
@@ -70,6 +369,7 @@ impl WeaponEffect {
         Ok(Self {
             trigger: Some(trigger),
             kind: WeaponEffectKind::ApplyStatus(effect),
+            source: None,
         })
     }
 
@@ -80,7 +380,46 @@ impl WeaponEffect {
         Self {
             trigger: Some(trigger),
             kind: WeaponEffectKind::CreateGroundEffect(effect),
+            source: None,
         }
+    }
+
+    /// One secondary zone per normal attack, after a qualifying direct hit.
+    /// Source exposure must be authored explicitly, independently of its center.
+    pub fn radial_damage(
+        effect: RadialDamageEffect,
+        trigger: WeaponEffectTrigger,
+        origin: WeaponEffectOrigin,
+        affects_source: bool,
+    ) -> Result<Self, WeaponEffectError> {
+        if !matches!(
+            trigger,
+            WeaponEffectTrigger::OnHit | WeaponEffectTrigger::OnDamage
+        ) {
+            return Err(WeaponEffectError::InvalidRadialTrigger(trigger));
+        }
+        if effect.damage.amount == 0 {
+            return Err(WeaponEffectError::ZeroRadialDamage);
+        }
+        if [
+            effect.propagation_policy.floor_cost,
+            effect.propagation_policy.shallow_water_cost,
+            effect.propagation_policy.deep_water_cost,
+            effect.propagation_policy.wall_cost,
+        ]
+        .contains(&Some(0))
+        {
+            return Err(WeaponEffectError::ZeroRadialPropagationCost);
+        }
+        Ok(Self {
+            trigger: Some(trigger),
+            kind: WeaponEffectKind::RadialDamage {
+                effect,
+                origin,
+                affects_source,
+            },
+            source: None,
+        })
     }
 
     pub const fn trigger(&self) -> Option<WeaponEffectTrigger> {
@@ -95,6 +434,7 @@ impl WeaponEffect {
         Self {
             trigger: None,
             kind: WeaponEffectKind::ApplyStatus(effect),
+            source: None,
         }
     }
 
@@ -102,6 +442,7 @@ impl WeaponEffect {
         Self {
             trigger: None,
             kind: WeaponEffectKind::CreateGroundEffect(effect),
+            source: None,
         }
     }
 
@@ -112,16 +453,65 @@ impl WeaponEffect {
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WeaponEffectError {
+    InvalidEcho,
+    InvalidFractureMark,
+    ZeroPercussionForce,
+    InvalidPercussionRecovery,
+    InvalidPiercingTrigger(WeaponEffectTrigger),
+    EmptyPiercingLine,
+    InvalidLifeStealPercent(u16),
+    InvalidRestorationTrigger(WeaponEffectTrigger),
+    ZeroRestoration,
     InvalidStatusTrigger(WeaponEffectTrigger),
+    InvalidRadialTrigger(WeaponEffectTrigger),
+    ZeroRadialDamage,
+    ZeroRadialPropagationCost,
 }
 
 impl Display for WeaponEffectError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::InvalidEcho => write!(
+                formatter,
+                "echo requires positive damage, positive range, memory >= 2 and a delay of 1..=8 turns"
+            ),
+            Self::InvalidFractureMark => write!(
+                formatter,
+                "fracture requires an inert finite refreshing charge marker matching a threshold of at least two"
+            ),
+            Self::ZeroPercussionForce => write!(formatter, "percussion force must be positive"),
+            Self::InvalidPercussionRecovery => write!(
+                formatter,
+                "percussion requires an inert finite keep_existing recovery of at least two turns"
+            ),
+            Self::InvalidPiercingTrigger(trigger) => write!(
+                formatter,
+                "piercing requires on_hit or on_damage, found {trigger:?}"
+            ),
+            Self::EmptyPiercingLine => {
+                write!(formatter, "piercing length and damage must be positive")
+            }
+            Self::InvalidLifeStealPercent(value) => write!(
+                formatter,
+                "life steal percent must be 1..=100, found {value}"
+            ),
+            Self::InvalidRestorationTrigger(trigger) => write!(
+                formatter,
+                "restoration requires an on_damage trigger, found {trigger:?}"
+            ),
+            Self::ZeroRestoration => write!(formatter, "restoration must be positive"),
             Self::InvalidStatusTrigger(trigger) => write!(
                 formatter,
                 "status effects require an on_hit or on_damage trigger, found {trigger:?}"
             ),
+            Self::InvalidRadialTrigger(trigger) => write!(
+                formatter,
+                "radial weapon effects require an on_hit or on_damage trigger, found {trigger:?}"
+            ),
+            Self::ZeroRadialDamage => write!(formatter, "radial weapon damage must be positive"),
+            Self::ZeroRadialPropagationCost => {
+                write!(formatter, "radial propagation costs must be positive")
+            }
         }
     }
 }
@@ -315,6 +705,16 @@ impl WeaponDefinition {
         &self.effects
     }
 
+    /// A secondary cone needs the same confirmation step as a native area
+    /// attack, without changing the intrinsic attack profile.
+    pub fn requires_area_aim(&self) -> bool {
+        !matches!(self.attack.area(), crate::combat::AttackArea::Single)
+            || self
+                .effects
+                .iter()
+                .any(|effect| matches!(effect.kind(), WeaponEffectKind::CatalyticCone { .. }))
+    }
+
     pub const fn capabilities(&self) -> WeaponCapabilities {
         self.capabilities
     }
@@ -425,15 +825,74 @@ impl Display for WeaponDefinitionError {
 
 impl Error for WeaponDefinitionError {}
 
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+/// Authored effect package referenced by an individual item. Its parameters
+/// belong to the rules fingerprint; the item stores its stable identity.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct WeaponEffectAffixDefinition {
+    id: ContentId,
+    suffix_key: String,
+    description_key: String,
+    effects: Vec<WeaponEffect>,
+}
+
+impl WeaponEffectAffixDefinition {
+    pub fn new(
+        id: ContentId,
+        suffix_key: String,
+        description_key: String,
+        effects: Vec<WeaponEffect>,
+    ) -> Result<Self, String> {
+        if suffix_key.trim().is_empty() || description_key.trim().is_empty() || effects.is_empty() {
+            return Err("An effect affix needs text keys and at least one effect".into());
+        }
+        Ok(Self {
+            id,
+            suffix_key,
+            description_key,
+            effects,
+        })
+    }
+    pub fn id(&self) -> &ContentId {
+        &self.id
+    }
+    pub fn suffix_key(&self) -> &str {
+        &self.suffix_key
+    }
+    pub fn description_key(&self) -> &str {
+        &self.description_key
+    }
+    pub fn effects(&self) -> &[WeaponEffect] {
+        &self.effects
+    }
+    pub fn supports(&self, weapon: &WeaponDefinition) -> bool {
+        self.effects.iter().all(|effect| {
+            !matches!(effect.kind(), WeaponEffectKind::Ricochet { .. })
+                || weapon.attack().delivery() == crate::combat::AttackDelivery::Ranged
+        })
+    }
+}
+
+#[derive(Clone, Default, PartialEq, Eq)]
 pub struct WeaponCatalog {
     definitions: BTreeMap<WeaponId, WeaponDefinition>,
+    effect_affixes: BTreeMap<ContentId, WeaponEffectAffixDefinition>,
+}
+
+impl Debug for WeaponCatalog {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut catalog = f.debug_struct("WeaponCatalog");
+        catalog.field("definitions", &self.definitions);
+        if !self.effect_affixes.is_empty() {
+            catalog.field("effect_affixes", &self.effect_affixes);
+        }
+        catalog.finish()
+    }
 }
 
 impl WeaponCatalog {
     pub fn register(&mut self, definition: WeaponDefinition) -> Result<(), WeaponCatalogError> {
         let id = definition.id().clone();
-        if self.definitions.contains_key(&id) {
+        if self.definitions.contains_key(&id) || self.effect_affixes.contains_key(&id) {
             return Err(WeaponCatalogError::DuplicateId(id));
         }
         self.definitions.insert(id, definition);
@@ -448,10 +907,81 @@ impl WeaponCatalog {
         self.definitions.iter()
     }
 
+    pub fn register_effect_affix(
+        &mut self,
+        definition: WeaponEffectAffixDefinition,
+    ) -> Result<(), WeaponCatalogError> {
+        let id = definition.id().clone();
+        if self.definitions.contains_key(&id) || self.effect_affixes.contains_key(&id) {
+            return Err(WeaponCatalogError::DuplicateId(id));
+        }
+        self.effect_affixes.insert(id, definition);
+        Ok(())
+    }
+
+    pub fn effect_affix(&self, id: &ContentId) -> Option<&WeaponEffectAffixDefinition> {
+        self.effect_affixes.get(id)
+    }
+
+    pub fn without_effect_affixes(&self, excluded: &[ContentId]) -> Self {
+        let mut compatible = self.clone();
+        compatible
+            .effect_affixes
+            .retain(|id, _| !excluded.contains(id));
+        compatible
+    }
+
+    pub fn effect_sets(&self) -> impl Iterator<Item = (&ContentId, &[WeaponEffect])> {
+        self.definitions
+            .iter()
+            .map(|(id, weapon)| (id, weapon.effects()))
+            .chain(
+                self.effect_affixes
+                    .iter()
+                    .map(|(id, affix)| (id, affix.effects())),
+            )
+    }
+
+    pub fn effect_at_source(&self, id: &ContentId, index: usize) -> Option<&WeaponEffect> {
+        self.get(id)
+            .map(WeaponDefinition::effects)
+            .or_else(|| {
+                self.effect_affix(id)
+                    .map(WeaponEffectAffixDefinition::effects)
+            })?
+            .get(index)
+    }
+
+    pub fn resolve_instance(
+        &self,
+        base: &WeaponId,
+        effect_affix: Option<&ContentId>,
+    ) -> Option<WeaponDefinition> {
+        let mut weapon = self.get(base)?.clone();
+        if let Some(id) = effect_affix {
+            let definition = self.effect_affix(id)?;
+            if !definition.supports(&weapon) {
+                return None;
+            }
+            weapon.effects.extend(
+                definition
+                    .effects()
+                    .iter()
+                    .cloned()
+                    .enumerate()
+                    .map(|(index, effect)| effect.sourced_from(id.clone(), index)),
+            );
+        }
+        Some(weapon)
+    }
+
     pub fn without_id(&self, excluded: &WeaponId) -> Self {
         let mut definitions = self.definitions.clone();
         definitions.remove(excluded);
-        Self { definitions }
+        Self {
+            definitions,
+            effect_affixes: self.effect_affixes.clone(),
+        }
     }
 
     pub fn without_physical_metadata(&self) -> Self {

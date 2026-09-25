@@ -21,13 +21,133 @@ impl ItemInstanceId {
 
 /// Rolled properties carried by one identified magical equipment instance.
 /// White items keep this absent, preserving their historical stacking rules.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[serde(try_from = "StoredMagicItemModifiers")]
 pub struct MagicItemModifiers {
     armor_bonus: u16,
     mass_reduction_percent: u8,
+    #[serde(default)]
+    attribute_bonuses: [u8; 5],
+    #[serde(default)]
+    accuracy_bonus: u16,
+    #[serde(default)]
+    armor_penetration_bonus: u16,
+    #[serde(default)]
+    maximum_hit_points_bonus: u16,
+    #[serde(default)]
+    energy_capacity_bonus: u16,
+    #[serde(default)]
+    heat_dissipation_bonus: u16,
+    #[serde(default)]
+    named_affixes: Option<crate::item::NamedEquipmentAffixes>,
+    #[serde(default)]
+    effect_affix: Option<crate::content::ContentId>,
+}
+
+// Validate the redundant numeric cache against its rolled identities on load.
+// Anonymous historical bonuses keep their old values and Debug representation.
+#[derive(serde::Deserialize)]
+struct StoredMagicItemModifiers {
+    armor_bonus: u16,
+    mass_reduction_percent: u8,
+    #[serde(default)]
+    attribute_bonuses: [u8; 5],
+    #[serde(default)]
+    accuracy_bonus: u16,
+    #[serde(default)]
+    armor_penetration_bonus: u16,
+    #[serde(default)]
+    maximum_hit_points_bonus: u16,
+    #[serde(default)]
+    energy_capacity_bonus: u16,
+    #[serde(default)]
+    heat_dissipation_bonus: u16,
+    #[serde(default)]
+    named_affixes: Option<crate::item::NamedEquipmentAffixes>,
+    #[serde(default)]
+    effect_affix: Option<crate::content::ContentId>,
+}
+
+impl TryFrom<StoredMagicItemModifiers> for MagicItemModifiers {
+    type Error = &'static str;
+    fn try_from(raw: StoredMagicItemModifiers) -> Result<Self, Self::Error> {
+        let result = Self {
+            armor_bonus: raw.armor_bonus,
+            mass_reduction_percent: raw.mass_reduction_percent,
+            attribute_bonuses: raw.attribute_bonuses,
+            accuracy_bonus: raw.accuracy_bonus,
+            armor_penetration_bonus: raw.armor_penetration_bonus,
+            maximum_hit_points_bonus: raw.maximum_hit_points_bonus,
+            energy_capacity_bonus: raw.energy_capacity_bonus,
+            heat_dissipation_bonus: raw.heat_dissipation_bonus,
+            named_affixes: raw.named_affixes,
+            effect_affix: raw.effect_affix,
+        };
+        if let Some(affixes) = result.named_affixes
+            && result
+                != Self::from_affixes(affixes)
+                    .with_optional_effect_affix(result.effect_affix.clone())
+        {
+            return Err("equipment bonuses disagree with their named affixes");
+        }
+        Ok(result)
+    }
+}
+
+// Keep fingerprints of old magical armor and mass-only instances unchanged.
+impl Debug for MagicItemModifiers {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut d = f.debug_struct("MagicItemModifiers");
+        d.field("armor_bonus", &self.armor_bonus)
+            .field("mass_reduction_percent", &self.mass_reduction_percent);
+        if self.attribute_bonuses != [0; 5] {
+            d.field("attribute_bonuses", &self.attribute_bonuses);
+        }
+        if self.accuracy_bonus != 0 {
+            d.field("accuracy_bonus", &self.accuracy_bonus);
+        }
+        if self.armor_penetration_bonus != 0 {
+            d.field("armor_penetration_bonus", &self.armor_penetration_bonus);
+        }
+        if self.maximum_hit_points_bonus != 0 {
+            d.field("maximum_hit_points_bonus", &self.maximum_hit_points_bonus);
+        }
+        if self.energy_capacity_bonus != 0 {
+            d.field("energy_capacity_bonus", &self.energy_capacity_bonus);
+        }
+        if self.heat_dissipation_bonus != 0 {
+            d.field("heat_dissipation_bonus", &self.heat_dissipation_bonus);
+        }
+        if let Some(affixes) = self.named_affixes {
+            d.field("named_affixes", &affixes);
+        }
+        if let Some(effect) = &self.effect_affix {
+            d.field("effect_affix", effect);
+        }
+        d.finish()
+    }
 }
 
 impl MagicItemModifiers {
+    /// A lighter weapon need not also grant armor or change its base profile.
+    pub const fn mass_reduction_only(percent: u8) -> Option<Self> {
+        if percent == 0 || percent > 80 {
+            return None;
+        }
+        Some(Self {
+            armor_bonus: 0,
+            mass_reduction_percent: percent,
+            attribute_bonuses: [0; 5],
+            accuracy_bonus: 0,
+            armor_penetration_bonus: 0,
+            maximum_hit_points_bonus: 0,
+            energy_capacity_bonus: 0,
+            heat_dissipation_bonus: 0,
+            named_affixes: None,
+            effect_affix: None,
+        })
+    }
+
     pub const fn new(armor_bonus: u16, mass_reduction_percent: u8) -> Option<Self> {
         if armor_bonus == 0 || mass_reduction_percent == 0 || mass_reduction_percent > 80 {
             return None;
@@ -35,14 +155,161 @@ impl MagicItemModifiers {
         Some(Self {
             armor_bonus,
             mass_reduction_percent,
+            attribute_bonuses: [0; 5],
+            accuracy_bonus: 0,
+            armor_penetration_bonus: 0,
+            maximum_hit_points_bonus: 0,
+            energy_capacity_bonus: 0,
+            heat_dissipation_bonus: 0,
+            named_affixes: None,
+            effect_affix: None,
         })
     }
 
-    pub const fn armor_bonus(self) -> u16 {
+    pub const fn armor_bonus(&self) -> u16 {
         self.armor_bonus
     }
 
-    pub const fn mass_reduction_percent(self) -> u8 {
+    pub fn weapon_bonuses(
+        attribute_bonuses: [u8; 5],
+        accuracy_bonus: u16,
+        armor_penetration_bonus: u16,
+    ) -> Option<Self> {
+        Self::rpg_bonuses(
+            attribute_bonuses,
+            accuracy_bonus,
+            armor_penetration_bonus,
+            0,
+            0,
+            0,
+        )
+    }
+
+    pub fn rpg_bonuses(
+        attribute_bonuses: [u8; 5],
+        accuracy_bonus: u16,
+        armor_penetration_bonus: u16,
+        maximum_hit_points_bonus: u16,
+        energy_capacity_bonus: u16,
+        heat_dissipation_bonus: u16,
+    ) -> Option<Self> {
+        if attribute_bonuses == [0; 5]
+            && accuracy_bonus == 0
+            && armor_penetration_bonus == 0
+            && maximum_hit_points_bonus == 0
+            && energy_capacity_bonus == 0
+            && heat_dissipation_bonus == 0
+        {
+            return None;
+        }
+        Some(Self {
+            armor_bonus: 0,
+            mass_reduction_percent: 0,
+            attribute_bonuses,
+            accuracy_bonus,
+            armor_penetration_bonus,
+            maximum_hit_points_bonus,
+            energy_capacity_bonus,
+            heat_dissipation_bonus,
+            named_affixes: None,
+            effect_affix: None,
+        })
+    }
+
+    pub fn from_affixes(affixes: crate::item::NamedEquipmentAffixes) -> Self {
+        use crate::item::EquipmentAffixId as Id;
+        let mut attributes = [0; 5];
+        let (mut accuracy, mut penetration, mut hp, mut energy, mut cooling) = (0, 0, 0, 0, 0);
+        for roll in affixes.iter() {
+            match roll.id() {
+                Id::Power => attributes[0] = roll.value() as u8,
+                Id::Coordination => attributes[1] = roll.value() as u8,
+                Id::Resilience => attributes[2] = roll.value() as u8,
+                Id::Perception => attributes[3] = roll.value() as u8,
+                Id::Processing => attributes[4] = roll.value() as u8,
+                Id::Accuracy => accuracy = roll.value(),
+                Id::ArmorPenetration => penetration = roll.value(),
+                Id::Vitality => hp = roll.value(),
+                Id::EnergyReserve => energy = roll.value(),
+                Id::HeatDissipation => cooling = roll.value(),
+            }
+        }
+        let mut result = Self::rpg_bonuses(attributes, accuracy, penetration, hp, energy, cooling)
+            .expect("validated affixes carry at least one positive numeric bonus");
+        result.named_affixes = Some(affixes);
+        result
+    }
+
+    /// An effect-only item has no fictitious numerical bonus.
+    pub fn effect_only(effect: crate::content::ContentId) -> Self {
+        Self {
+            armor_bonus: 0,
+            mass_reduction_percent: 0,
+            attribute_bonuses: [0; 5],
+            accuracy_bonus: 0,
+            armor_penetration_bonus: 0,
+            maximum_hit_points_bonus: 0,
+            energy_capacity_bonus: 0,
+            heat_dissipation_bonus: 0,
+            named_affixes: None,
+            effect_affix: Some(effect),
+        }
+    }
+
+    pub fn with_effect_affix(self, effect: crate::content::ContentId) -> Self {
+        self.with_optional_effect_affix(Some(effect))
+    }
+
+    fn with_optional_effect_affix(mut self, effect: Option<crate::content::ContentId>) -> Self {
+        self.effect_affix = effect;
+        self
+    }
+
+    pub fn effect_affix(&self) -> Option<&crate::content::ContentId> {
+        self.effect_affix.as_ref()
+    }
+
+    pub const fn named_affixes(&self) -> Option<crate::item::NamedEquipmentAffixes> {
+        self.named_affixes
+    }
+    pub const fn attribute_bonus(&self, attribute: crate::stats::PrimaryAttribute) -> u8 {
+        self.attribute_bonuses[attribute as usize]
+    }
+    pub const fn accuracy_bonus(&self) -> u16 {
+        self.accuracy_bonus
+    }
+    pub const fn armor_penetration_bonus(&self) -> u16 {
+        self.armor_penetration_bonus
+    }
+    pub const fn maximum_hit_points_bonus(&self) -> u16 {
+        self.maximum_hit_points_bonus
+    }
+    pub const fn energy_capacity_bonus(&self) -> u16 {
+        self.energy_capacity_bonus
+    }
+    pub const fn heat_dissipation_bonus(&self) -> u16 {
+        self.heat_dissipation_bonus
+    }
+
+    /// Modifies a resolved copy, never the catalog's intrinsic attack.
+    pub fn modify_weapon_attack(
+        &self,
+        attack: crate::combat::AttackProfile,
+    ) -> crate::combat::AttackProfile {
+        attack
+            .with_accuracy_modifier(
+                attack
+                    .accuracy_modifier()
+                    .saturating_add(i16::try_from(self.accuracy_bonus).unwrap_or(i16::MAX)),
+            )
+            .with_damage(
+                attack
+                    .damage()
+                    .with_additional_armor_penetration(self.armor_penetration_bonus),
+            )
+    }
+
+    pub const fn mass_reduction_percent(&self) -> u8 {
         self.mass_reduction_percent
     }
 }
@@ -66,7 +333,7 @@ impl Debug for InventoryEntry {
         if let Some(owner) = &self.owner {
             entry.field("owner", owner);
         }
-        if let Some(modifiers) = self.magic_modifiers {
+        if let Some(modifiers) = &self.magic_modifiers {
             entry.field("magic_modifiers", &modifiers);
         }
         entry.finish()
@@ -90,8 +357,8 @@ impl InventoryEntry {
         self.owner.as_ref()
     }
 
-    pub const fn magic_modifiers(&self) -> Option<MagicItemModifiers> {
-        self.magic_modifiers
+    pub fn magic_modifiers(&self) -> Option<MagicItemModifiers> {
+        self.magic_modifiers.clone()
     }
 }
 
@@ -130,6 +397,23 @@ impl Inventory {
 
     pub fn get(&self, instance: ItemInstanceId) -> Option<&InventoryEntry> {
         self.entries.iter().find(|entry| entry.instance == instance)
+    }
+
+    pub(crate) fn attach_effect_affix(
+        &mut self,
+        instance: ItemInstanceId,
+        effect: crate::content::ContentId,
+    ) -> Result<(), InventoryError> {
+        let entry = self
+            .entries
+            .iter_mut()
+            .find(|entry| entry.instance == instance)
+            .ok_or(InventoryError::UnknownInstance(instance))?;
+        entry.magic_modifiers = Some(match entry.magic_modifiers.take() {
+            Some(bonus) => bonus.with_effect_affix(effect),
+            None => MagicItemModifiers::effect_only(effect),
+        });
+        Ok(())
     }
 
     pub fn iter(&self) -> impl Iterator<Item = &InventoryEntry> {
@@ -337,6 +621,102 @@ impl Error for InventoryError {}
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn named_affix_values_drive_real_bonuses_and_cannot_disagree_on_load() {
+        use crate::item::{
+            EquipmentAffixId as Id, EquipmentNameGrammar as Grammar, NamedEquipmentAffixes,
+            RolledEquipmentAffix as Roll,
+        };
+        for id in Id::ALL {
+            let roll = Roll::new(id, 6, id.range(6).unwrap().1).unwrap();
+            let affixes = NamedEquipmentAffixes::new(Grammar::FeminineSingular, &[roll]).unwrap();
+            let bonus = MagicItemModifiers::from_affixes(affixes);
+            assert_eq!(bonus.named_affixes(), Some(affixes));
+            assert_eq!(
+                bincode::deserialize::<MagicItemModifiers>(&bincode::serialize(&bonus).unwrap())
+                    .unwrap(),
+                bonus
+            );
+            assert_eq!(
+                serde_json::from_str::<MagicItemModifiers>(&serde_json::to_string(&bonus).unwrap())
+                    .unwrap(),
+                bonus
+            );
+            let actual = match id {
+                Id::Power => {
+                    u16::from(bonus.attribute_bonus(crate::stats::PrimaryAttribute::Power))
+                }
+                Id::Coordination => {
+                    u16::from(bonus.attribute_bonus(crate::stats::PrimaryAttribute::Coordination))
+                }
+                Id::Resilience => {
+                    u16::from(bonus.attribute_bonus(crate::stats::PrimaryAttribute::Resilience))
+                }
+                Id::Perception => {
+                    u16::from(bonus.attribute_bonus(crate::stats::PrimaryAttribute::Perception))
+                }
+                Id::Processing => {
+                    u16::from(bonus.attribute_bonus(crate::stats::PrimaryAttribute::Processing))
+                }
+                Id::Accuracy => bonus.accuracy_bonus(),
+                Id::ArmorPenetration => bonus.armor_penetration_bonus(),
+                Id::Vitality => bonus.maximum_hit_points_bonus(),
+                Id::EnergyReserve => bonus.energy_capacity_bonus(),
+                Id::HeatDissipation => bonus.heat_dissipation_bonus(),
+            };
+            assert_eq!(actual, roll.value());
+            let mut invalid = serde_json::to_value(bonus).unwrap();
+            invalid["armor_bonus"] = 1.into();
+            assert!(serde_json::from_value::<MagicItemModifiers>(invalid).is_err());
+        }
+    }
+
+    #[test]
+    fn old_anonymous_stat_bonuses_are_not_renamed_or_rerolled() {
+        let old: MagicItemModifiers = serde_json::from_str(
+            r#"{
+            "armor_bonus":0,"mass_reduction_percent":0,"attribute_bonuses":[2,0,0,0,0],
+            "accuracy_bonus":12,"maximum_hit_points_bonus":15
+        }"#,
+        )
+        .unwrap();
+        assert_eq!(old.named_affixes(), None);
+        assert_eq!(old.accuracy_bonus(), 12);
+        assert_eq!(
+            format!("{old:?}"),
+            "MagicItemModifiers { armor_bonus: 0, mass_reduction_percent: 0, attribute_bonuses: [2, 0, 0, 0, 0], accuracy_bonus: 12, maximum_hit_points_bonus: 15 }"
+        );
+    }
+
+    #[test]
+    fn mass_only_bonus_has_no_armor_and_keeps_the_existing_bounds() {
+        assert!(MagicItemModifiers::mass_reduction_only(0).is_none());
+        assert!(MagicItemModifiers::mass_reduction_only(81).is_none());
+        for percent in [1, 25, 80] {
+            let bonus = MagicItemModifiers::mass_reduction_only(percent).unwrap();
+            assert_eq!(bonus.armor_bonus(), 0);
+            assert_eq!(bonus.mass_reduction_percent(), percent);
+        }
+    }
+
+    #[test]
+    fn rpg_bonuses_round_trip_and_legacy_modifiers_keep_their_fingerprint() {
+        let legacy: MagicItemModifiers =
+            serde_json::from_str(r#"{"armor_bonus":3,"mass_reduction_percent":20}"#).unwrap();
+        assert_eq!(
+            format!("{legacy:?}"),
+            "MagicItemModifiers { armor_bonus: 3, mass_reduction_percent: 20 }"
+        );
+        assert_eq!(legacy, MagicItemModifiers::new(3, 20).unwrap());
+        let bonus = MagicItemModifiers::rpg_bonuses([2, 1, 0, 0, 0], 12, 3, 10, 15, 2).unwrap();
+        assert_eq!(
+            serde_json::from_str::<MagicItemModifiers>(&serde_json::to_string(&bonus).unwrap())
+                .unwrap(),
+            bonus
+        );
+        assert!(MagicItemModifiers::weapon_bonuses([0; 5], 0, 0).is_none());
+    }
 
     fn item(id: &str) -> ItemId {
         id.parse()

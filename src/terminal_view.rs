@@ -49,6 +49,9 @@ use project_rl::world::{DoorState, GridPos, Map, Terrain, VisibilityState};
 
 use crate::test_sector::{Decor, SectorDecor, TestSector};
 
+#[path = "terminal_fx.rs"]
+mod terminal_fx;
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct KnownTile {
     pub terrain: Terrain,
@@ -58,6 +61,7 @@ pub struct KnownTile {
 #[derive(Clone, Copy, Debug)]
 pub struct TerminalDrawOptions<'a> {
     pub bounds: Rect,
+    pub ui_scale: f32,
     pub cell_size: u16,
     pub reduced_motion: bool,
     pub interact_label: &'a str,
@@ -88,7 +92,10 @@ fn interaction_hint(game: &WorldState, position: GridPos) -> Option<InteractionH
     }
     if game.ground_items().item_at(position).is_some() {
         return Some(InteractionHint {
-            title: "Objet au sol".to_owned(),
+            title: match game.ground_items().count_at(position) {
+                1 => "Objet au sol".to_owned(),
+                count => format!("{count} objets au sol"),
+            },
             is_loot: true,
             verb: "ramasser",
             unavailable: None,
@@ -275,6 +282,7 @@ pub enum TerminalAlertKind {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TerminalStatusIcon {
     Burning,
+    Sheltered,
     RequiredMaterial,
     QuestAvailable,
     QuestReady,
@@ -291,7 +299,23 @@ impl TerminalStatusIcon {
     }
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum TerminalEffectBadge {
+    Fracture { charges: u16, threshold: u16 },
+    Alternation,
+    Echo { turns: u16 },
+    Guard,
+    Burning,
+    Corrosion,
+    Caustic,
+    Electrical,
+    Fragile,
+    Slowed,
+    Suppressed,
+    Timed,
+}
+
+#[derive(Clone, Debug)]
 pub struct TerminalOverlay {
     pub symbol: char,
     pub color: Color,
@@ -304,6 +328,9 @@ pub struct TerminalOverlay {
     /// A small shape displayed in addition to the entity glyph, so a status
     /// never relies on color alone.
     pub status_icon: Option<TerminalStatusIcon>,
+    pub effect_badges: Vec<TerminalEffectBadge>,
+    pub sustained_effects: Vec<crate::visual_effects::TerminalEffectSample>,
+    pub effect: Option<crate::visual_effects::TerminalEffectSample>,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -324,9 +351,11 @@ struct SensorContact {
 
 fn sensor_contact_kind(symbol: char) -> SensorContactKind {
     match symbol {
-        'd' | 't' | 'r' => SensorContactKind::Hostile,
+        'd' | 't' | 'r' | 'j' | 'w' | 'B' | 'V' | 'K' | 'X' | 'Y' | 'L' | 'A' => {
+            SensorContactKind::Hostile
+        }
         'm' | 'h' | 'v' => SensorContactKind::Service,
-        'c' | 'i' | 'u' | 'b' => SensorContactKind::Neutral,
+        'c' | 'i' | 'u' | 'b' | 'G' | 'N' => SensorContactKind::Neutral,
         _ => SensorContactKind::Unknown,
     }
 }
@@ -439,11 +468,12 @@ impl TerminalView {
         &self,
         game: &WorldState,
         bounds: Rect,
+        ui_scale: f32,
         cell_size: u16,
         navigation_signal_visible: bool,
         pointer: (f32, f32),
     ) -> Option<GridPos> {
-        terminal_grid_camera(game, bounds, cell_size, navigation_signal_visible)
+        terminal_grid_camera(game, bounds, ui_scale, cell_size, navigation_signal_visible)
             .1
             .hit(pointer)
             .filter(|position| self.known(*position).is_some())
@@ -456,11 +486,13 @@ impl TerminalView {
         &self,
         game: &WorldState,
         bounds: Rect,
+        ui_scale: f32,
         cell_size: u16,
         navigation_signal_visible: bool,
         position: GridPos,
     ) -> Option<Rect> {
-        let camera = terminal_grid_camera(game, bounds, cell_size, navigation_signal_visible).1;
+        let camera =
+            terminal_grid_camera(game, bounds, ui_scale, cell_size, navigation_signal_visible).1;
         camera.contains(position).then(|| camera.rect(position))
     }
 
@@ -480,6 +512,7 @@ impl TerminalView {
     ) {
         let TerminalDrawOptions {
             bounds,
+            ui_scale,
             cell_size,
             reduced_motion,
             interact_label,
@@ -495,7 +528,7 @@ impl TerminalView {
         } = options;
         let cyan = Color::from_rgba(104, 201, 201, 255);
         let muted = Color::from_rgba(135, 162, 167, 255);
-        let layout = terminal_ui_layout(bounds, navigation_signal.is_some());
+        let layout = terminal_ui_layout(bounds, ui_scale, navigation_signal.is_some());
         draw_rectangle(
             bounds.x,
             bounds.y,
@@ -567,8 +600,13 @@ impl TerminalView {
                 Color::from_rgba(142, 234, 215, 255),
             );
         }
-        let (sidebar, camera) =
-            terminal_grid_camera(game, bounds, cell_size, navigation_signal.is_some());
+        let (sidebar, camera) = terminal_grid_camera(
+            game,
+            bounds,
+            ui_scale,
+            cell_size,
+            navigation_signal.is_some(),
+        );
         let focus = game.player_position().unwrap_or(GridPos::new(12, 12));
         let visibility = game.player_visibility();
         for row in 0..camera.rows {
@@ -609,18 +647,28 @@ impl TerminalView {
                 }
                 // Even a buggy caller cannot render a live actor/effect in memory.
                 if visible && let Some(cell) = overlay(position) {
-                    draw_entity(
-                        rect,
-                        cell.symbol,
-                        TerminalGlyphPalette::new(
-                            cell.color,
-                            cell.accent_color,
-                            cell.highlight_color,
-                        ),
-                        cell.selected,
-                        cell.alert.is_some(),
-                        cell.status_icon.filter(|icon| !icon.is_quest()),
-                    );
+                    for effect in cell.sustained_effects {
+                        terminal_fx::draw(rect, effect, cell.symbol != '\0');
+                    }
+                    if let Some(effect) = cell.effect {
+                        terminal_fx::draw(rect, effect, cell.symbol != '\0');
+                    }
+                    // Effects never replace the occupant glyph or its identity
+                    // in the sensor panel during the animation.
+                    if cell.symbol != '\0' {
+                        draw_entity(
+                            rect,
+                            cell.symbol,
+                            TerminalGlyphPalette::new(
+                                cell.color,
+                                cell.accent_color,
+                                cell.highlight_color,
+                            ),
+                            cell.selected,
+                            cell.alert.is_some(),
+                            cell.status_icon.filter(|icon| !icon.is_quest()),
+                        );
+                    }
                 }
                 if visible
                     && game.active_facility().is_some_and(|facility| {
@@ -651,6 +699,9 @@ impl TerminalView {
             .visible_positions()
             .filter(|position| camera.contains(*position))
         {
+            if let Some(cell) = overlay(position) {
+                draw_effect_badges(camera.rect(position), &cell.effect_badges);
+            }
             let Some(marker) = game.quest_marker_at(position) else {
                 continue;
             };
@@ -664,6 +715,42 @@ impl TerminalView {
             marker_rect.y -= quest_marker_rise;
             draw_status_icon(marker_rect, icon);
         }
+        // Telegraphs never reveal a hidden shooter or an unobserved cell.
+        for (_, actor) in game.actors().iter() {
+            if let project_rl::ai::AiState::Aiming { target_at, .. } = actor.ai_state()
+                && visibility.is_visible(actor.position())
+                && visibility.is_visible(target_at)
+                && camera.contains(target_at)
+            {
+                let rect = camera.rect(target_at);
+                let inset = 3.0;
+                let color = Color::from_rgba(255, 125, 100, 255);
+                draw_rectangle_lines(
+                    rect.x + inset,
+                    rect.y + inset,
+                    rect.w - 2.0 * inset,
+                    rect.h - 2.0 * inset,
+                    2.0,
+                    color,
+                );
+                draw_line(
+                    rect.x + inset,
+                    rect.y + inset,
+                    rect.x + rect.w - inset,
+                    rect.y + rect.h - inset,
+                    1.5,
+                    color,
+                );
+                draw_line(
+                    rect.x + rect.w - inset,
+                    rect.y + inset,
+                    rect.x + inset,
+                    rect.y + rect.h - inset,
+                    1.5,
+                    color,
+                );
+            }
+        }
         let pointer = camera.hit(mouse_position());
         let pointer_inspected = pointer.and_then(|p| self.known(p).map(|t| (p, t)));
         let mut selected_inspected = None;
@@ -673,10 +760,6 @@ impl TerminalView {
         let mut visible_local_alerts = 0;
         let mut visible_security_alarms = 0;
         let mut visible_security_lockdowns = 0;
-        let observation_origins: BTreeSet<_> = observation_fields
-            .iter()
-            .map(ActorObservationField::origin)
-            .collect();
         let mut sensor_contacts = Vec::new();
         for position in visibility.visible_positions() {
             if game.active_facility().is_some_and(|facility| {
@@ -687,11 +770,15 @@ impl TerminalView {
                 visible_security_lockdowns += 1;
             }
             if let Some(cell) = overlay(position) {
-                if matches!(cell.symbol, 'd' | 't' | 'r') {
-                    visible_hostiles += 1;
-                } else if matches!(cell.symbol, 'c' | 'm') {
-                    visible_neutrals += 1;
-                } else if matches!(cell.symbol, ')' | '!' | '=') {
+                let contact_kind = sensor_contact_kind(cell.symbol);
+                match contact_kind {
+                    SensorContactKind::Hostile => visible_hostiles += 1,
+                    SensorContactKind::Service | SensorContactKind::Neutral => {
+                        visible_neutrals += 1
+                    }
+                    SensorContactKind::Unknown => {}
+                }
+                if matches!(cell.symbol, ')' | '!' | '=') {
                     visible_items += 1;
                 }
                 match cell.alert {
@@ -702,10 +789,11 @@ impl TerminalView {
                 if cell.selected {
                     selected_inspected = self.known(position).map(|tile| (position, tile));
                 }
-                if observation_origins.contains(&position) {
+                // Visible contacts do not depend on activating the F2 field overlay.
+                if contact_kind != SensorContactKind::Unknown {
                     sensor_contacts.push(SensorContact {
                         position,
-                        kind: sensor_contact_kind(cell.symbol),
+                        kind: contact_kind,
                         selected: cell.selected,
                         alerted: cell.alert.is_some(),
                     });
@@ -829,7 +917,12 @@ impl TerminalView {
                     overlay(position).map_or_else(
                         || tile.decor.label().to_owned(),
                         |cell| {
-                            let label = overlay_label(cell.symbol);
+                            let label = if cell.symbol == '\0' {
+                                ground_effect_description(game.ground_effects(), position)
+                                    .unwrap_or_else(|| tile.decor.label().to_owned())
+                            } else {
+                                overlay_label(cell.symbol).to_owned()
+                            };
                             let alert_label = match cell.alert {
                                 Some(TerminalAlertKind::LocalWitness) => {
                                     format!("{label} · ALERTE LOCALE")
@@ -844,7 +937,9 @@ impl TerminalView {
                                 .entity_at(position)
                                 .and_then(|entity| game.actors().get(entity))
                                 .and_then(|actor| {
-                                    actor.ai().map(|_| ai_state_label(actor.ai_state()))
+                                    heavy_fauna_state_label(actor).or_else(|| {
+                                        actor.ai().map(|_| ai_state_label(actor.ai_state()))
+                                    })
                                 });
                             let alert_label = if let Some(state) = state_label {
                                 format!("{alert_label} · {state}")
@@ -852,6 +947,7 @@ impl TerminalView {
                                 alert_label
                             };
                             match cell.status_icon {
+                                Some(TerminalStatusIcon::Sheltered) => alert_label,
                                 Some(TerminalStatusIcon::Burning) => {
                                     format!("{alert_label} · EN FEU")
                                 }
@@ -898,6 +994,22 @@ impl TerminalView {
                 }
             )
         };
+        let description = inspected
+            .filter(|(position, _)| visibility.is_visible(*position))
+            .map_or(description.clone(), |(position, _)| {
+                let mut result = description.clone();
+                if let Some((_, turns)) =
+                    game.pending_weapon_echoes().find(|(at, _)| *at == position)
+                {
+                    result.push_str(&format!(" · ÉCHO DANS {turns} TOUR(S)"));
+                }
+                if let Some((target, turns)) = game.alternation_previous(game.player_id())
+                    && game.actors().entity_at(position) == Some(target)
+                {
+                    result.push_str(&format!(" · ALTERNANCE {turns} TOUR(S)"));
+                }
+                result
+            });
         let description = inspected.map_or(description.clone(), |(position, _)| {
             if inside_actor_visual_field(observation_fields, position) {
                 format!("{description} · CHAMP VISUEL PNJ")
@@ -1109,13 +1221,21 @@ impl TerminalView {
             draw_bounded_text(&target.name, rect.x, y, rect.w, 16, bright);
             y += 20.0;
             draw_bounded_text(
-                &format!("Distance {} · {}", target.distance, target.visible_state),
+                &format!("Distance {}", target.distance),
                 rect.x,
                 y,
                 rect.w,
                 14,
                 muted,
             );
+            for state in target.visible_state.split(" · ") {
+                // Leave room for the analysis panel even with many statuses.
+                if y + 125.0 >= rect.bottom() {
+                    break;
+                }
+                y += 17.0;
+                draw_bounded_text(state, rect.x, y, rect.w, 14, muted);
+            }
             y += 22.0;
             if let Some(analysis) = &target.analysis {
                 draw_ui_text_bold(
@@ -1137,7 +1257,7 @@ impl TerminalView {
                 );
                 y += 23.0;
                 draw_ui_text(
-                    format!("Blindage {}", analysis.armor),
+                    format!("Armure {}", analysis.armor),
                     rect.x,
                     y,
                     14.0,
@@ -1789,8 +1909,27 @@ fn draw_hud_progress(rect: Rect, value: u16, maximum: u16, color: Color) {
     draw_rectangle(rect.x, rect.y, rect.w * ratio, rect.h, color);
 }
 
+pub(crate) fn heavy_fauna_state_label(actor: &project_rl::entity::Actor) -> Option<String> {
+    if actor.ai()?.behavior != project_rl::ai::AiBehavior::TelegraphedBiter {
+        return None;
+    }
+    if let Some(remaining) = actor.recovery_remaining() {
+        Some(format!("Récupère · immobile ({} UT)", remaining.get()))
+    } else if matches!(actor.ai_state(), AiState::Aiming { .. }) {
+        Some("Morsure imminente".to_owned())
+    } else {
+        None
+    }
+}
+
 fn ai_state_label(state: AiState) -> String {
     match state {
+        AiState::Listening { .. } => "RECHERCHE D'UN BRUIT".to_owned(),
+        AiState::Sheltered { .. } => "REPLIÉ · CARAPACE RENFORCÉE".to_owned(),
+        AiState::Fleeing => "FUIT LE CONTACT".to_owned(),
+        AiState::Cornered => "ACCULÉ · PEUT MORDRE".to_owned(),
+        AiState::SupportStock { .. } => "SOUTIEN".to_owned(),
+        AiState::Aiming { .. } => "TIR IMMINENT · QUITTER LA CASE VISÉE".to_owned(),
         AiState::Unaware => "NON ALERTÉ".to_owned(),
         AiState::Pursuing {
             remaining_turns, ..
@@ -1811,9 +1950,9 @@ fn ai_state_label(state: AiState) -> String {
 fn legend_panel(bounds: Rect) -> Rect {
     Rect::new(
         bounds.x + (bounds.w - (bounds.w - 24.0).min(980.0)) * 0.5,
-        bounds.y + (bounds.h - (bounds.h - 24.0).min(520.0)) * 0.5,
+        bounds.y + (bounds.h - (bounds.h - 24.0).min(680.0)) * 0.5,
         (bounds.w - 24.0).min(980.0),
-        (bounds.h - 24.0).min(520.0),
+        (bounds.h - 24.0).min(680.0),
     )
 }
 
@@ -1855,14 +1994,7 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
     draw_ui_text_bold("DÉCORS", columns[1], panel.y + 68.0, 14.0, cyan);
     draw_ui_text_bold("DÉCORS ET SYSTÈMES", columns[2], panel.y + 68.0, 14.0, cyan);
     let top = panel.y + 91.0;
-    let available = (panel.h - 130.0).max(120.0);
-    // The entity column currently carries the most rows. Deriving icon and
-    // text sizes from that capacity keeps the legend inside its panel as new
-    // deep-layer visual families are added to the other two columns.
-    let row_height = (available / 26.0).min(38.0);
-    let icon_size = (row_height - 2.0).clamp(11.0, 20.0);
-    let legend_font_size = row_height.floor().clamp(11.0, 15.0) as u16;
-    for (index, (symbol, label, color, alerted, status_icon)) in [
+    let entity_legend = [
         ('@', "Vous", cyan, false, None),
         (
             'c',
@@ -1935,9 +2067,65 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             None,
         ),
         (
+            'j',
+            "Artilleur · tir annoncé sur une case",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'w',
+            "Soigneur de terrain · soutien allié au contact",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
             'o',
             "Conteneur instable · explosion et feu",
             Color::from_rgba(241, 177, 72, 255),
+            false,
+            None,
+        ),
+        (
+            'B',
+            "Mordeur · charognard · meute",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'K',
+            "Brise-os · prépare, mord, récupère",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'V',
+            "Fouisseur · suit les bruits",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'G',
+            "Herbivore à carapace · neutre",
+            Color::from_rgba(161, 204, 137, 255),
+            false,
+            None,
+        ),
+        (
+            'G',
+            "Petit bouclier · replié, carapace renforcée",
+            Color::from_rgba(161, 204, 137, 255),
+            false,
+            Some(TerminalStatusIcon::Sheltered),
+        ),
+        (
+            'N',
+            "Grignoteur · fuit, mord si acculé",
+            Color::from_rgba(161, 204, 137, 255),
             false,
             None,
         ),
@@ -2053,9 +2241,15 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             false,
             None,
         ),
-    ]
-    .into_iter()
-    .enumerate()
+    ];
+    let available = (panel.h - 140.0).max(120.0);
+    // This is the longest column. Its actual length reserves the footer even
+    // when new creatures or status markers are added.
+    let row_height = (available / entity_legend.len() as f32).min(38.0);
+    let icon_size = (row_height - 2.0).clamp(11.0, 20.0);
+    let legend_font_size = row_height.floor().clamp(11.0, 15.0) as u16;
+    for (index, (symbol, label, color, alerted, status_icon)) in
+        entity_legend.into_iter().enumerate()
     {
         let y = top + index as f32 * row_height;
         let (accent_color, highlight_color) = if symbol == '^' {
@@ -2263,6 +2457,10 @@ fn draw_bounded_text(text: &str, x: f32, y: f32, width: f32, size: u16, color: C
 
 pub fn overlay_label(symbol: char) -> &'static str {
     match symbol {
+        'X' => "Mannequin d'essai · passif, sans riposte",
+        'L' => "Mannequin lourd · résiste à Percussion",
+        'A' => "Mannequin ancré · inamovible",
+        'Y' => "Dispositif d'essai · frappe à 1 case : 4 dégâts électriques",
         '@' => "Vous · noyau mobile",
         'c' => "Récupérateur neutre · transporte des matériaux",
         'm' => "Technicien neutre · entretient les installations",
@@ -2274,6 +2472,13 @@ pub fn overlay_label(symbol: char) -> &'static str {
         'd' => "Traqueur · hostile",
         't' => "Sentinelle · hostile",
         'r' => "Tirailleur · hostile",
+        'j' => "Artilleur humanoïde · annonce son tir ; quitter la case marquée",
+        'w' => "Soigneur humanoïde · aide ses alliés blessés au contact",
+        'B' => "Mordeur des friches · charognard · chasse en meute",
+        'K' => "Brise-os · morsure annoncée puis récupération immobile",
+        'V' => "Fouisseur vibrant · fouisseur · vision courte, suit les bruits",
+        'G' => "Herbivore à carapace · neutre, se protège après un coup",
+        'N' => "Grignoteur de gravats · neutre, fuit et mord seulement si acculé",
         'o' => "Conteneur instable · explosion et feu persistant",
         'q' => "Relais conducteur · décharge électrique amplifiée par l'eau",
         ')' => "Arme au sol",
@@ -2288,6 +2493,27 @@ pub fn overlay_label(symbol: char) -> &'static str {
         's' => "Capteur de sécurité",
         _ => "Trace de déplacement",
     }
+}
+
+/// A field no longer needs a fake occupant glyph to remain inspectable.
+fn ground_effect_description(
+    ground: &project_rl::effects::GroundEffectMap,
+    at: GridPos,
+) -> Option<String> {
+    use project_rl::combat::DamageType;
+    let labels: Vec<_> = ground
+        .at(at)
+        .map(|field| {
+            let name = match field.damage_each_turn().damage_type {
+                DamageType::Thermal => "Flammes au sol",
+                DamageType::Chemical => "Flaque caustique",
+                DamageType::Electrical => "Sol électrifié",
+                _ => "Champ dangereux",
+            };
+            format!("{name} · {}t", field.remaining_turns())
+        })
+        .collect();
+    (!labels.is_empty()).then(|| labels.join(" / "))
 }
 
 pub(crate) fn detected_navigation_signal_summary(game: &WorldState) -> Option<String> {
@@ -2392,13 +2618,21 @@ struct TerminalUiLayout {
     sidebar: Option<Rect>,
 }
 
-pub fn terminal_status_panel(bounds: Rect) -> Option<Rect> {
-    (bounds.w >= 1120.0 && bounds.h >= 480.0)
-        .then(|| Rect::new(bounds.x + 8.0, bounds.y + 8.0, 210.0, bounds.h - 16.0))
+pub fn terminal_status_panel(bounds: Rect, ui_scale: f32) -> Option<Rect> {
+    // The world uses screen pixels, but the status text uses logical UI units.
+    // Reserve its scaled width in the shared layout (including pointer hits).
+    let width = 260.0 * ui_scale;
+    let height = bounds.h - 16.0;
+    (bounds.w >= 1120.0 && bounds.w - width >= 780.0 && height >= 480.0 * ui_scale)
+        .then(|| Rect::new(bounds.x + 8.0, bounds.y + 8.0, width, height))
 }
 
-fn terminal_ui_layout(bounds: Rect, navigation_signal_visible: bool) -> TerminalUiLayout {
-    let status_sidebar = terminal_status_panel(bounds);
+fn terminal_ui_layout(
+    bounds: Rect,
+    ui_scale: f32,
+    navigation_signal_visible: bool,
+) -> TerminalUiLayout {
+    let status_sidebar = terminal_status_panel(bounds, ui_scale);
     let sidebar = status_sidebar.map(|_| {
         Rect::new(
             bounds.x + bounds.w - 336.0,
@@ -2438,10 +2672,11 @@ fn terminal_ui_layout(bounds: Rect, navigation_signal_visible: bool) -> Terminal
 fn terminal_grid_camera(
     game: &WorldState,
     bounds: Rect,
+    ui_scale: f32,
     preferred_cell: u16,
     navigation_signal_visible: bool,
 ) -> (bool, GridCamera) {
-    let layout = terminal_ui_layout(bounds, navigation_signal_visible);
+    let layout = terminal_ui_layout(bounds, ui_scale, navigation_signal_visible);
     let focus = game.player_position().unwrap_or(GridPos::new(12, 12));
     let effective_cell = fitted_cell_size(
         layout.map,
@@ -3082,6 +3317,15 @@ fn draw_entity(
             'x' => &EFFECT_IMPACT,
             '~' => &EFFECT_WAVE,
             'a' => &EFFECT_ALARM,
+            '\u{e000}' => &SHOCK_SMALL,
+            '\u{e001}' => &SHOCK_WIDE,
+            '\u{e002}' => &RING_SMALL,
+            '\u{e003}' => &RING_WIDE,
+            '\u{e004}' => &ARC_FORK,
+            '\u{e005}' => &ARC_SPLIT,
+            '\u{e006}' => &ACID_DROP,
+            '\u{e007}' => &ACID_SPLASH,
+            '\u{e008}' => &ACID_POOL,
             's' => &SENSOR_ONLINE,
             '^' => &FLAME_LARGE,
             'z' => &ELECTRIFIED_FIELD,
@@ -3119,6 +3363,10 @@ fn draw_entity(
 /// current language without changing commands, saves or content IDs.
 const fn actor_ascii_glyph(symbol: char) -> Option<&'static str> {
     match symbol {
+        'X' => Some("X"), // Laboratory target, not a campaign creature.
+        'Y' => Some("!"), // Laboratory probe, not a consumable item.
+        'L' => Some("L"),
+        'A' => Some("A"),
         '@' => Some("@"),
         'c' => Some("R"),
         'm' => Some("T"),
@@ -3129,6 +3377,13 @@ const fn actor_ascii_glyph(symbol: char) -> Option<&'static str> {
         'd' => Some("d"),
         't' => Some("t"),
         'r' => Some("r"),
+        'j' => Some("a"),
+        'w' => Some("s"),
+        'B' => Some("b"),
+        'K' => Some("k"),
+        'V' => Some("f"),
+        'G' => Some("g"),
+        'N' => Some("n"),
         _ => None,
     }
 }
@@ -3179,6 +3434,75 @@ fn draw_interaction_tooltip(anchor: Rect, map: Rect, title: &str, action: &str) 
         14,
         Color::from_rgba(142, 226, 210, 255),
     );
+}
+
+fn draw_effect_badges(rect: Rect, badges: &[TerminalEffectBadge]) {
+    // Four per row; more rows never discard an effect or impose a gameplay cap.
+    let columns = badges.len().min(4).max(1);
+    let size = (rect.w / columns as f32).clamp(8.0, 13.0);
+    for (index, icon) in badges.iter().enumerate() {
+        let badge = Rect::new(
+            rect.center().x - columns as f32 * size * 0.5 + (index % 4) as f32 * size,
+            rect.y - 2.0 - (index / 4 + 1) as f32 * (size + 1.0),
+            size,
+            size,
+        );
+        draw_rectangle(
+            badge.x,
+            badge.y,
+            badge.w,
+            badge.h,
+            Color::from_rgba(3, 12, 17, 240),
+        );
+        let (pattern, color) = match icon {
+            TerminalEffectBadge::Alternation => {
+                (&BADGE_ALTERNATION, Color::from_rgba(195, 177, 255, 255))
+            }
+            TerminalEffectBadge::Echo { turns } => {
+                draw_text(
+                    &turns.to_string(),
+                    badge.x + 2.0,
+                    badge.y + badge.h - 1.0,
+                    badge.h,
+                    Color::from_rgba(220, 240, 255, 255),
+                );
+                continue;
+            }
+            TerminalEffectBadge::Guard => (&BADGE_GUARD, Color::from_rgba(131, 204, 255, 255)),
+            TerminalEffectBadge::Burning => (&FLAME, Color::from_rgba(255, 152, 63, 255)),
+            TerminalEffectBadge::Corrosion => (&ACID_DROP, Color::from_rgba(170, 232, 94, 255)),
+            TerminalEffectBadge::Caustic => (&ACID_POOL, Color::from_rgba(170, 232, 94, 255)),
+            TerminalEffectBadge::Electrical => (&ARC_FORK, Color::from_rgba(107, 235, 238, 255)),
+            TerminalEffectBadge::Fragile => (&EFFECT_IMPACT, Color::from_rgba(243, 170, 105, 255)),
+            TerminalEffectBadge::Slowed => (&BADGE_SLOWED, Color::from_rgba(147, 195, 247, 255)),
+            TerminalEffectBadge::Suppressed => {
+                (&BADGE_SUPPRESSED, Color::from_rgba(211, 171, 247, 255))
+            }
+            TerminalEffectBadge::Timed => (&BADGE_TIMED, Color::from_rgba(208, 228, 230, 255)),
+            TerminalEffectBadge::Fracture { charges, threshold } => {
+                let count = (*threshold).clamp(1, 5);
+                for step in 0..count {
+                    let filled = u32::from(step) * u32::from(*threshold)
+                        < u32::from(*charges) * u32::from(count);
+                    let width = badge.w / f32::from(count);
+                    let height = badge.h * (0.40 + f32::from(step + 1) / f32::from(count) * 0.45);
+                    draw_rectangle(
+                        badge.x + f32::from(step) * width,
+                        badge.bottom() - height,
+                        (width - 1.0).max(1.0),
+                        height,
+                        if filled {
+                            Color::from_rgba(247, 224, 177, 255)
+                        } else {
+                            Color::from_rgba(77, 88, 90, 255)
+                        },
+                    );
+                }
+                continue;
+            }
+        };
+        draw_pixel_glyph_palette(badge, pattern, TerminalGlyphPalette::monochrome(color));
+    }
 }
 
 fn draw_status_icon(rect: Rect, icon: TerminalStatusIcon) {
@@ -3256,6 +3580,23 @@ fn draw_status_icon(rect: Rect, icon: TerminalStatusIcon) {
         );
         return;
     }
+    if icon == TerminalStatusIcon::Sheltered {
+        let color = Color::from_rgba(177, 229, 182, 255);
+        let points = [
+            (badge.x + 1.0, badge.y + 1.0),
+            (badge.right() - 1.0, badge.y + 1.0),
+            (badge.right() - 2.0, badge.y + badge.h * 0.65),
+            (badge.x + badge.w * 0.5, badge.bottom() - 1.0),
+            (badge.x + 2.0, badge.y + badge.h * 0.65),
+        ];
+        for i in 0..points.len() {
+            let (x, y) = points[i];
+            let (nx, ny) = points[(i + 1) % points.len()];
+            draw_line(x, y, nx, ny, 3.0, Color::from_rgba(3, 12, 10, 255));
+            draw_line(x, y, nx, ny, 1.5, color);
+        }
+        return;
+    }
     draw_rectangle(
         badge.x,
         badge.y,
@@ -3281,7 +3622,7 @@ fn draw_status_icon(rect: Rect, icon: TerminalStatusIcon) {
                 Some(Color::from_rgba(255, 220, 82, 255)),
             ),
         ),
-        TerminalStatusIcon::RequiredMaterial => unreachable!(),
+        TerminalStatusIcon::RequiredMaterial | TerminalStatusIcon::Sheltered => unreachable!(),
         TerminalStatusIcon::QuestAvailable
         | TerminalStatusIcon::QuestReady
         | TerminalStatusIcon::QuestInProgress
@@ -3334,6 +3675,9 @@ fn draw_alert_marker(rect: Rect) {
 }
 
 type PixelGlyph = [&'static str; 8];
+const BADGE_ALTERNATION: PixelGlyph = [
+    "........", ".##..##.", "#..##..#", "#..##..#", ".##..##.", "........", "........", "........",
+];
 fn draw_pixel_glyph(rect: Rect, pattern: &PixelGlyph, color: Color) {
     draw_pixel_glyph_palette(rect, pattern, TerminalGlyphPalette::monochrome(color));
 }
@@ -3463,6 +3807,45 @@ const EFFECT_WAVE: PixelGlyph = [
 const EFFECT_ALARM: PixelGlyph = [
     "...##...", "..+**+..", "..+**+..", ".#****#.", ".#+**+#.", "##+**+##", "...##...", "...##...",
 ];
+const SHOCK_SMALL: PixelGlyph = [
+    "........", "........", "...++...", "..+**+..", "..+**+..", "...++...", "........", "........",
+];
+const BADGE_GUARD: PixelGlyph = [
+    "...##...", ".##..##.", ".#....#.", ".#....#.", ".#....#.", "..#..#..", "...##...", "........",
+];
+const BADGE_TIMED: PixelGlyph = [
+    ".######.", "..#..#..", "...##...", "...##...", "..#..#..", ".######.", "........", "........",
+];
+const BADGE_SLOWED: PixelGlyph = [
+    "........", "..#..#..", "..#..#..", "..#..#..", "..#..#..", "........", "........", "........",
+];
+const BADGE_SUPPRESSED: PixelGlyph = [
+    "...##...", "..#..#..", ".#....#.", "..#..#..", "...##...", "........", "..####..", "........",
+];
+const SHOCK_WIDE: PixelGlyph = [
+    ".#....#.", "..+..+..", ".+.**.+.", "..*..*..", "..*..*..", ".+.**.+.", "..+..+..", ".#....#.",
+];
+const RING_SMALL: PixelGlyph = [
+    "........", "........", "...++...", "..+..+..", "..+..+..", "...++...", "........", "........",
+];
+const RING_WIDE: PixelGlyph = [
+    "..++++..", ".+....+.", "+......+", "+......+", "+......+", "+......+", ".+....+.", "..++++..",
+];
+const ARC_FORK: PixelGlyph = [
+    "....+...", "...*....", "+..*....", ".++**...", "....*++.", "...*...+", "..+.....", ".+......",
+];
+const ARC_SPLIT: PixelGlyph = [
+    ".+....+.", "..+..*..", "...**...", "....*...", "...**...", "..*..+..", ".*....+.", "+.......",
+];
+const ACID_DROP: PixelGlyph = [
+    "....+...", "....+...", "...+*+..", "...+*+..", "....+...", "........", "..#..#..", "........",
+];
+const ACID_SPLASH: PixelGlyph = [
+    "........", "........", ".+....+.", "..+..+..", "...**...", ".++**++.", "..####..", "........",
+];
+const ACID_POOL: PixelGlyph = [
+    "........", "........", "........", ".....+..", "..+.....", ".#+##+#.", "#++**++#", ".######.",
+];
 const FLAME_SMALL: PixelGlyph = [
     "........", "....#...", "...#+...", "...++#..", "..#+*#..", "..#**#..", "...##...", "........",
 ];
@@ -3560,6 +3943,41 @@ const MATERIAL: PixelGlyph = [
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn ground_hover_labels_keep_all_live_fields_without_an_occupant_glyph() {
+        use project_rl::combat::{DamagePacket, DamageType};
+        use project_rl::effects::{GroundEffectMap, GroundEffectSpec};
+        let at = GridPos::new(2, 2);
+        let mut ground = GroundEffectMap::default();
+        for (id, damage, label) in [
+            ("test:fire", DamageType::Thermal, "Flammes au sol"),
+            ("test:acid", DamageType::Chemical, "Flaque caustique"),
+            ("test:electric", DamageType::Electrical, "Sol électrifié"),
+        ] {
+            ground.apply(
+                at,
+                None,
+                &GroundEffectSpec::new(id.parse().unwrap(), 3, DamagePacket::new(1, damage, 0))
+                    .unwrap(),
+                0,
+            );
+            assert!(
+                ground_effect_description(&ground, at)
+                    .unwrap()
+                    .contains(label)
+            );
+        }
+        let labels = ground_effect_description(&ground, at).unwrap();
+        assert_eq!(labels.matches("3t").count(), 3);
+        assert!(ground_effect_description(&ground, GridPos::new(1, 1)).is_none());
+        for id in ["test:fire", "test:acid", "test:electric"] {
+            for _ in 0..3 {
+                ground.elapse(at, &id.parse().unwrap());
+            }
+        }
+        assert!(ground_effect_description(&ground, at).is_none());
+    }
     use project_rl::world::FieldOfViewRules;
 
     #[test]
@@ -3667,10 +4085,11 @@ mod tests {
     #[test]
     fn route_map_and_cartography_use_separate_non_overlapping_regions() {
         let bounds = Rect::new(20.0, 76.0, 1240.0, 620.0);
-        let layout = terminal_ui_layout(bounds, true);
+        let layout = terminal_ui_layout(bounds, 1.0, true);
         let route = layout.route.expect("navigation route should be visible");
         let sidebar = layout.sidebar.expect("wide view should have cartography");
-        let status = terminal_status_panel(bounds).expect("wide view should have player status");
+        let status =
+            terminal_status_panel(bounds, 1.0).expect("wide view should have player status");
         assert!(status.x + status.w < route.x);
         assert!(route.x + route.w < sidebar.x);
         assert!(layout.map.x + layout.map.w < sidebar.x);
@@ -3678,9 +4097,70 @@ mod tests {
         assert!(route.y >= layout.header.y + layout.header.h);
         assert!(layout.map.y > route.y + route.h);
 
-        let narrow = terminal_ui_layout(Rect::new(20.0, 76.0, 900.0, 420.0), true);
+        let narrow = terminal_ui_layout(Rect::new(20.0, 76.0, 900.0, 420.0), 1.0, true);
         assert!(narrow.sidebar.is_none());
         assert!(narrow.route.is_some());
+    }
+
+    #[test]
+    fn scaled_status_panel_preserves_text_space_and_world_pointer_alignment() {
+        let map = Map::from_ascii("#########\n#.......#\n#.......#\n#.......#\n#########").unwrap();
+        let game = WorldState::single(GameState::new(map, GridPos::new(4, 2), 1).unwrap());
+        let view = TerminalView::new(SectorDecor::default(), game.map(), game.player_visibility());
+        for (width, height) in [
+            (960.0, 540.0),
+            (1280.0, 800.0),
+            (1920.0, 1080.0),
+            (3840.0, 2160.0),
+        ] {
+            for percent in [75, 100, 125, 150, 200] {
+                let mut settings = crate::graphics::GraphicsSettings::default();
+                settings.ui_scale_percent = percent;
+                let scale = settings.ui_scale(width, height);
+                let bounds = Rect::new(20.0, 7.0 * scale, width - 40.0, height - 111.0 * scale);
+                for navigation in [false, true] {
+                    let layout = terminal_ui_layout(bounds, scale, navigation);
+                    if let Some(panel) = terminal_status_panel(bounds, scale) {
+                        assert!((panel.w / scale - 260.0).abs() < 0.01);
+                        assert!(panel.h / scale >= 480.0);
+                        assert!(panel.right() < layout.map.x);
+                        assert!(layout.map.w >= 400.0);
+                        assert!(layout.map.right() < layout.sidebar.unwrap().x);
+                        assert!(
+                            view.hit_test(
+                                &game,
+                                bounds,
+                                scale,
+                                32,
+                                navigation,
+                                (panel.x + 20.0, panel.y + 20.0)
+                            )
+                            .is_none()
+                        );
+                    } else {
+                        assert!(layout.sidebar.is_none());
+                        assert!(layout.map.w >= width - 60.0);
+                    }
+                    for cell_size in [24, 32, 40, 48] {
+                        let at = game.player_position().unwrap();
+                        let cell = view
+                            .world_cell_rect(&game, bounds, scale, cell_size, navigation, at)
+                            .unwrap();
+                        assert_eq!(
+                            view.hit_test(
+                                &game,
+                                bounds,
+                                scale,
+                                cell_size,
+                                navigation,
+                                (cell.x + cell.w * 0.5, cell.y + cell.h * 0.5)
+                            ),
+                            Some(at)
+                        );
+                    }
+                }
+            }
+        }
     }
 
     #[test]
@@ -3709,13 +4189,13 @@ mod tests {
 
     #[test]
     fn sensor_contacts_use_shapes_with_stable_semantic_categories() {
-        for symbol in ['d', 't', 'r'] {
+        for symbol in ['d', 't', 'r', 'j', 'w', 'B', 'V', 'K', 'X', 'Y'] {
             assert_eq!(sensor_contact_kind(symbol), SensorContactKind::Hostile);
         }
         for symbol in ['m', 'h', 'v'] {
             assert_eq!(sensor_contact_kind(symbol), SensorContactKind::Service);
         }
-        for symbol in ['c', 'i', 'u', 'b'] {
+        for symbol in ['c', 'i', 'u', 'b', 'G', 'N'] {
             assert_eq!(sensor_contact_kind(symbol), SensorContactKind::Neutral);
         }
         assert_eq!(sensor_contact_kind('?'), SensorContactKind::Unknown);
@@ -3808,12 +4288,17 @@ mod tests {
 
     #[test]
     fn ascii_actors_are_unique_and_terminal_shapes_are_well_formed() {
-        let actors = ['@', 'c', 'm', 'v', 'h', 'i', 'u', 'd', 't', 'r']
-            .map(|symbol| actor_ascii_glyph(symbol).expect("known actor must have an ASCII glyph"));
+        let actors = [
+            '@', 'c', 'm', 'v', 'h', 'i', 'u', 'd', 't', 'r', 'j', 'w', 'B', 'V', 'G', 'N', 'K',
+        ]
+        .map(|symbol| actor_ascii_glyph(symbol).expect("known actor must have an ASCII glyph"));
         for (index, glyph) in actors.iter().enumerate() {
             assert!(!actors[..index].contains(glyph));
         }
         assert_eq!(actor_ascii_glyph('v'), Some("M"));
+        assert_eq!(actor_ascii_glyph('Y'), Some("!"));
+        assert_ne!(overlay_label('Y'), overlay_label('!'));
+        assert!(overlay_label('Y').contains("4 dégâts électriques"));
         assert_eq!(actor_ascii_glyph('i'), Some("H"));
         assert_eq!(
             overlay_label('v'),
@@ -3821,6 +4306,19 @@ mod tests {
         );
 
         for glyph in [
+            SHOCK_SMALL,
+            SHOCK_WIDE,
+            RING_SMALL,
+            RING_WIDE,
+            ARC_FORK,
+            ARC_SPLIT,
+            ACID_DROP,
+            ACID_SPLASH,
+            ACID_POOL,
+            BADGE_TIMED,
+            BADGE_GUARD,
+            BADGE_SLOWED,
+            BADGE_SUPPRESSED,
             VOLATILE_CONTAINER,
             SUBMERGED_RELAY,
             WEAPON,

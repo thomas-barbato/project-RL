@@ -1,0 +1,11 @@
+{
+  id: "core:couteau_de_sapeur",
+  name_key: "equipment.couteau_de_sapeur.name",
+  description_key: "equipment.couteau_de_sapeur.description",
+  mass_grams: 1000,
+  attack: {
+    range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+    accuracy_modifier: 8, impact: { material_cap: 12 },
+    damage: { amount: 4, damage_type: "piercing", penetration: 1 },
+  },
+}

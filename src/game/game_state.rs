@@ -2,6 +2,39 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::error::Error;
 use std::fmt::{Debug, Display, Formatter};
 
+#[path = "tactical_ai.rs"]
+mod tactical_ai;
+
+#[cfg(test)]
+#[path = "actor_loot_tests.rs"]
+mod actor_loot_tests;
+#[path = "equipment_bonuses.rs"]
+mod equipment_bonuses;
+#[cfg(test)]
+#[path = "instance_effect_tests.rs"]
+mod instance_effect_tests;
+#[cfg(test)]
+#[path = "weapon_area_tests.rs"]
+mod weapon_area_tests;
+#[path = "weapon_catalysis.rs"]
+mod weapon_catalysis;
+#[path = "weapon_echo.rs"]
+mod weapon_echo;
+#[path = "weapon_followups.rs"]
+mod weapon_followups;
+#[path = "weapon_fracture.rs"]
+mod weapon_fracture;
+use weapon_echo::WeaponEchoState;
+#[path = "weapon_guard.rs"]
+mod weapon_guard;
+#[path = "weapon_percussion.rs"]
+mod weapon_percussion;
+#[path = "weapon_piercing.rs"]
+mod weapon_piercing;
+#[cfg(test)]
+#[path = "weapon_restoration_tests.rs"]
+mod weapon_restoration_tests;
+
 use serde::{Deserialize, Serialize};
 
 use crate::ai::{
@@ -297,6 +330,7 @@ impl Debug for PreparedTechniquePayload {
 }
 
 pub struct GameState {
+    weapon_echoes: WeaponEchoState,
     pub(super) map: Map,
     pub(super) actors: ActorRegistry,
     pub(super) player: EntityId,
@@ -356,6 +390,7 @@ pub struct GameState {
 // full field list makes missing Serde contracts fail during ordinary checking.
 #[derive(Serialize, Deserialize)]
 pub(super) struct GameStateSnapshot {
+    weapon_echoes: WeaponEchoState,
     map: Map,
     actors: ActorRegistry,
     player: EntityId,
@@ -412,6 +447,7 @@ impl GameState {
             return Err("L'état moteur contient encore des données transitoires.".to_owned());
         }
         Ok(GameStateSnapshot {
+            weapon_echoes: self.weapon_echoes.clone(),
             map: self.map.clone(),
             actors: self.actors.clone(),
             player: self.player,
@@ -466,6 +502,7 @@ impl GameState {
 
     pub(super) fn from_snapshot(snapshot: GameStateSnapshot, rules: GameRules) -> Self {
         Self {
+            weapon_echoes: snapshot.weapon_echoes,
             map: snapshot.map,
             actors: snapshot.actors,
             player: snapshot.player,
@@ -575,6 +612,9 @@ impl Debug for GameState {
         }
         if !self.threat_sources.is_empty() {
             state.field("threat_sources", &self.threat_sources);
+        }
+        if !self.weapon_echoes.is_empty() {
+            state.field("weapon_echoes", &self.weapon_echoes);
         }
         if let Some(preparation) = &self.player_preparation {
             state.field("player_preparation", preparation);
@@ -754,6 +794,10 @@ impl GameState {
                     .on_hit_effect()
                     .and_then(TechniqueOnHitEffect::resistance)
                     .is_some()
+                    || matches!(
+                        definition.action(),
+                        Some(TechniqueAction::PrepareControllingMeleeInterception { .. })
+                    )
             })
         {
             return Err(GameInitError::TechniqueStabilityWithoutRules);
@@ -763,6 +807,38 @@ impl GameState {
                 weapon: Box::new(weapon),
                 status,
             });
+        }
+        for (weapon, effects) in rules.weapons.effect_sets() {
+            for effect in effects {
+                if let WeaponEffectKind::AccumulatedFracture {
+                    mark_status,
+                    threshold,
+                    ..
+                } = effect.kind()
+                    && !rules
+                        .statuses
+                        .get(mark_status)
+                        .is_some_and(|status| status.is_weapon_charge_marker(*threshold))
+                {
+                    return Err(GameInitError::InvalidWeaponChargeMarker {
+                        weapon: Box::new(weapon.clone()),
+                        status: mark_status.clone(),
+                    });
+                }
+                if let WeaponEffectKind::Percussion {
+                    recovery_status, ..
+                } = effect.kind()
+                    && !rules
+                        .statuses
+                        .get(recovery_status)
+                        .is_some_and(StatusDefinition::is_weapon_recovery)
+                {
+                    return Err(GameInitError::InvalidWeaponRecovery {
+                        weapon: Box::new(weapon.clone()),
+                        status: recovery_status.clone(),
+                    });
+                }
+            }
         }
         if !map.is_walkable(player_start) {
             return Err(GameInitError::BlockedPlayerStart(player_start));
@@ -944,6 +1020,7 @@ impl GameState {
             intrusion: IntrusionState::default(),
             electronic_warfare: ElectronicWarfareState::default(),
             threat_sources: Vec::new(),
+            weapon_echoes: WeaponEchoState::default(),
         })
     }
 
@@ -1009,7 +1086,10 @@ impl GameState {
         }
         Some(
             rules
-                .evasion(actor.primary_attributes(), actor.evasion_modifier())
+                .evasion(
+                    self.actor_effective_primary_attributes(entity),
+                    actor.evasion_modifier(),
+                )
                 .clamp(0, i32::from(u16::MAX)) as u16,
         )
     }
@@ -1018,9 +1098,9 @@ impl GameState {
     /// checks, including active status modifiers.
     pub fn actor_stability(&self, entity: EntityId) -> Option<u16> {
         let rules = self.rules.stability_rules?;
-        let actor = self.actors.get(entity)?;
+        self.actors.get(entity)?;
         Some(rules.stability(
-            actor.primary_attributes(),
+            self.actor_effective_primary_attributes(entity),
             self.actor_stability_modifier(entity),
         ))
     }
@@ -1052,7 +1132,8 @@ impl GameState {
         attacker: EntityId,
         attack: AttackProfile,
     ) -> Result<DamageImpact, AttackError> {
-        let attacker = self
+        let attributes = self.actor_effective_primary_attributes(attacker);
+        let _attacker = self
             .actors
             .get(attacker)
             .ok_or(AttackError::MissingAttacker(attacker))?;
@@ -1067,7 +1148,7 @@ impl GameState {
             let resolved_physical = physical
                 .impact
                 .resolve_melee_damage(
-                    attacker.primary_attributes(),
+                    attributes,
                     impact.impact_modifier,
                     impact.material_cap,
                     authored_physical,
@@ -1568,8 +1649,61 @@ impl GameState {
         &mut self.player_inventory
     }
 
+    /// Completes an authored loadout before the first action. Runtime acquisition
+    /// still goes through recorded gameplay commands, not this setup builder.
+    pub fn with_starting_magic_equipment(
+        mut self,
+        equipment: impl IntoIterator<Item = (ItemId, crate::entity::MagicItemModifiers)>,
+    ) -> Result<Self, String> {
+        if self.turn != 0 || self.phase != TurnPhase::AwaitingPlayer {
+            return Err("Starting equipment can only be supplied before turn one".into());
+        }
+        for (item, modifiers) in equipment {
+            let is_weapon = self.rules.weapons.get(&item).is_some();
+            let is_armor = self
+                .rules
+                .items
+                .get(&item)
+                .is_some_and(|definition| definition.equipment().is_some());
+            if !is_weapon && !is_armor {
+                return Err(format!("Unknown starting equipment '{item}'"));
+            }
+            if let Some(effect) = modifiers.effect_affix()
+                && self
+                    .rules
+                    .weapons
+                    .resolve_instance(&item, Some(effect))
+                    .is_none()
+            {
+                return Err(format!(
+                    "Unknown or incompatible weapon effect affix '{effect}'"
+                ));
+            }
+            self.player_inventory
+                .add_magic(item, None, modifiers)
+                .map_err(|error| error.to_string())?;
+        }
+        Ok(self)
+    }
+
     pub const fn player_equipment(&self) -> &Equipment {
         &self.player_equipment
+    }
+
+    /// Authored scenario setup only; runtime damage still uses combat commands.
+    /// Does not change maximum HP, advance time or emit a fictitious hit.
+    pub fn with_starting_player_integrity(mut self, integrity: u16) -> Result<Self, String> {
+        if self.turn != 0 || self.phase != TurnPhase::AwaitingPlayer {
+            return Err("Starting integrity can only be supplied before turn one".into());
+        }
+        let actor = self.actors.get_mut(self.player).ok_or("Missing player")?;
+        if integrity == 0 || integrity > actor.integrity() {
+            return Err(
+                "Starting integrity must be positive and no greater than current HP".into(),
+            );
+        }
+        actor.apply_damage(actor.integrity() - integrity);
+        Ok(self)
     }
 
     fn actor_failed_component_effects(&self, entity: EntityId) -> Vec<ComponentFailureEffect> {
@@ -1661,12 +1795,16 @@ impl GameState {
                 StatusModifier::ArmorFragilization { amount } => Some(*amount),
                 StatusModifier::Stability { .. }
                 | StatusModifier::MovementTimeMinimum { .. }
-                | StatusModifier::Accuracy { .. } => None,
+                | StatusModifier::Accuracy { .. }
+                | StatusModifier::DamageGuard { .. } => None,
             })
             .max()
             .unwrap_or(0);
         Some(ArmorProfile::new(
-            intrinsic.body().saturating_sub(component_armor_loss),
+            intrinsic
+                .body()
+                .saturating_add(self.fauna_shell_armor(entity))
+                .saturating_sub(component_armor_loss),
             equipment,
             intrinsic.reinforcement(),
             intrinsic.fragilization().max(status_fragilization),
@@ -1722,9 +1860,7 @@ impl GameState {
             });
         }
         self.prepare_player_area_attack(slot, target)
-            .map(|prepared| {
-                AttackPreview::new(prepared.origin, prepared.target_at, prepared.affected_cells)
-            })
+            .map(|prepared| self.preview_with_weapon_followups(&prepared))
             .map_err(CommandRejection::from)
     }
 
@@ -1737,9 +1873,7 @@ impl GameState {
         target: GridPos,
     ) -> Result<AttackPreview, CommandRejection> {
         self.prepare_player_area_footprint(slot, target)
-            .map(|prepared| {
-                AttackPreview::new(prepared.origin, prepared.target_at, prepared.affected_cells)
-            })
+            .map(|prepared| self.preview_with_weapon_followups(&prepared))
             .map_err(CommandRejection::from)
     }
 
@@ -1988,6 +2122,9 @@ impl GameState {
         if let Some(status) = first_unknown_status(&actor, &self.rules.statuses) {
             return Err(SpawnError::UnknownStatusDefinition(status));
         }
+        actor
+            .validate_equipped_weapon(&self.rules.weapons)
+            .map_err(SpawnError::InvalidEquipment)?;
         if let Some(attributes) = actor.primary_attributes() {
             attributes
                 .validate_absolute(self.rules.primary_attribute_rules)
@@ -1996,6 +2133,7 @@ impl GameState {
         if let Some(physical) = self.rules.physical_rules {
             actor.initialize_body_hit_points(physical.hit_points);
         }
+        actor.initialize_weapon_hit_points(self.rules.physical_rules.map(|rules| rules.hit_points));
 
         let entity = self.actors.spawn(actor).map_err(SpawnError::Registry)?;
         self.events.push(GameEvent::EntitySpawned {
@@ -2876,13 +3014,12 @@ impl GameState {
         // default coefficients keep this usable in small modded rulesets that
         // deliberately omit the broader technique-resistance subsystem.
         let rules = self.rules.stability_rules.unwrap_or_default();
-        let actor = self
-            .actors
-            .get(target)
-            .expect("the preparing player remains registered");
         let modifier = self.actor_stability_modifier(target);
-        let chance =
-            rules.resistance_chance(actor.primary_attributes(), modifier, disruption.intensity());
+        let chance = rules.resistance_chance(
+            self.actor_effective_primary_attributes(target),
+            modifier,
+            disruption.intensity(),
+        );
         let roll = self.rng.percentile();
         let outcome = if roll <= chance {
             PreparationDisruptionOutcome::Resisted
@@ -3401,6 +3538,15 @@ impl GameState {
             TechniqueAction::PrepareMeleeInterception => {
                 Some(PreparedReaction::melee_interception(technique.clone()))
             }
+            TechniqueAction::PrepareControllingMeleeInterception {
+                stability_intensity,
+            } => Some(
+                PreparedReaction::controlling_melee_interception(
+                    technique.clone(),
+                    stability_intensity,
+                )
+                .map_err(|_| TechniqueUseError::NoActiveAction(technique.clone()))?,
+            ),
             _ => None,
         };
 
@@ -3771,6 +3917,7 @@ impl GameState {
             TechniqueAction::PrepareRangedOverwatch { .. } => Vec::new(),
             TechniqueAction::PrepareMeleeParry { .. } => Vec::new(),
             TechniqueAction::PrepareMeleeInterception => Vec::new(),
+            TechniqueAction::PrepareControllingMeleeInterception { .. } => Vec::new(),
             TechniqueAction::DeployExplosive { .. }
             | TechniqueAction::NeutralizeExplosive { .. }
             | TechniqueAction::RecoverNeutralizedExplosive { .. }
@@ -4944,7 +5091,7 @@ impl GameState {
                 self.events.push(GameEvent::DigitalInterfaceProbed {
                     at: *position,
                     analysis_score: observation_analysis_score(
-                        self.player_primary_attributes(),
+                        self.player_effective_primary_attributes(),
                         analysis_bonus,
                     ),
                     rights: profile.rights,
@@ -4965,7 +5112,7 @@ impl GameState {
                     .expect("forced interface was preflighted");
                 let hardening = self.intrusion.hardening(*position, turn);
                 let chance = intrusion_chance(
-                    self.player_primary_attributes(),
+                    self.player_effective_primary_attributes(),
                     profile.defense.saturating_add(hardening),
                     0,
                 );
@@ -5640,8 +5787,11 @@ impl GameState {
                     .program(*program)
                     .expect("purged program was preflighted");
                 let defense = stored.strength();
-                let chance =
-                    intrusion_chance(self.player_primary_attributes(), defense, intrusion_bonus);
+                let chance = intrusion_chance(
+                    self.player_effective_primary_attributes(),
+                    defense,
+                    intrusion_bonus,
+                );
                 let roll = self.rng.percentile();
                 let succeeded = roll <= chance;
                 self.events.push(GameEvent::HostileProgramAttemptResolved {
@@ -5698,7 +5848,7 @@ impl GameState {
                 },
                 ElectronicDirective::Target { target },
             ) => {
-                let strength = intrusion_score(self.player_primary_attributes());
+                let strength = intrusion_score(self.player_effective_primary_attributes());
                 let campaign = self.electronic_warfare.add_infection_campaign(
                     self.player,
                     *target,
@@ -5815,14 +5965,15 @@ impl GameState {
                 },
                 ElectronicDirective::Target { target },
             ) => {
-                let strength = intrusion_score(self.player_primary_attributes());
+                let strength = intrusion_score(self.player_effective_primary_attributes());
                 let defense = self
                     .actors
                     .get(*target)
                     .and_then(Actor::electronic_system)
                     .expect("implosion target was preflighted")
                     .digital_defense();
-                let chance = intrusion_chance(self.player_primary_attributes(), defense, 0);
+                let chance =
+                    intrusion_chance(self.player_effective_primary_attributes(), defense, 0);
                 let roll = self.rng.percentile();
                 let succeeded = roll <= chance;
                 let at = self.actors.get(*target).expect("target remains").position();
@@ -5943,8 +6094,8 @@ impl GameState {
             .electronic_system()
             .ok_or(TechniqueUseError::ElectronicTargetIncompatible(target))?
             .digital_defense();
-        let strength = intrusion_score(self.player_primary_attributes());
-        let chance = intrusion_chance(self.player_primary_attributes(), defense, 0);
+        let strength = intrusion_score(self.player_effective_primary_attributes());
+        let chance = intrusion_chance(self.player_effective_primary_attributes(), defense, 0);
         let roll = self.rng.percentile();
         let succeeded = roll <= chance;
         self.intrusion.create_trace(at, self.turn, audit_delay);
@@ -7453,7 +7604,7 @@ impl GameState {
             .ok_or(TechniqueUseError::TargetNotCooperative(*ally))?;
         let traction = physical
             .impact
-            .available_impact(self.player_primary_attributes(), 0);
+            .available_impact(self.player_effective_primary_attributes(), 0);
         let resistance = displacement.resistance(self.actor_carried_mass_grams(*ally).unwrap_or(0));
         if !cooperative || displacement.is_fixed() || u32::from(traction) < resistance {
             return Err(TechniqueUseError::TargetNotCooperative(*ally));
@@ -8795,8 +8946,9 @@ impl GameState {
                         exact_placement_modifier,
                         ..
                     } => {
-                        let coordination =
-                            self.player_primary_attributes().map_or(5, |attributes| {
+                        let coordination = self
+                            .player_effective_primary_attributes()
+                            .map_or(5, |attributes| {
                                 attributes.value(PrimaryAttribute::Coordination)
                             });
                         let chance =
@@ -9676,7 +9828,7 @@ impl GameState {
             -i16::try_from(optical_jamming).unwrap_or(i16::MAX),
         );
         let difficulty = rules.optical_concealment_difficulty(
-            self.player_primary_attributes(),
+            self.player_effective_primary_attributes(),
             occultation,
             movement_bonus
                 .saturating_add(posture_bonus)
@@ -10045,7 +10197,18 @@ impl GameState {
                 technique: reaction.technique().clone(),
                 reaction: reaction.kind(),
             });
-            let outcome = self.resolve_melee_interception(reactor, mover, evasion_modifier);
+            let stability_intensity = match reaction.effect() {
+                ReactionEffect::PerformControllingMeleeWeaponAttack {
+                    stability_intensity,
+                } => Some(*stability_intensity),
+                _ => None,
+            };
+            let outcome = self.resolve_melee_interception(
+                reactor,
+                mover,
+                evasion_modifier,
+                stability_intensity,
+            );
             self.events.push(GameEvent::InterceptionResolved {
                 reactor,
                 mover,
@@ -10054,7 +10217,9 @@ impl GameState {
                 to,
                 outcome,
             });
-            if self.actors.get(mover).is_none() {
+            if self.actors.get(mover).is_none()
+                || matches!(outcome, InterceptionOutcome::MovementStopped { .. })
+            {
                 return false;
             }
         }
@@ -10408,6 +10573,14 @@ impl GameState {
         if self.map.is_protected(origin) || self.map.is_protected(target_at) {
             return Err(AttackError::ProtectedZone);
         }
+        if matches!(attack.area(), AttackArea::Single) {
+            // An on-hit cone still needs an actual primary target. Empty-cell
+            // aiming may show its shape but cannot spend a turn or fire it.
+            let target = prepared
+                .target
+                .ok_or(AttackError::TargetHasNoActor(target_at))?;
+            return self.prepare_targeted_attack(self.player, slot, target);
+        }
         if !attack.is_in_range(origin, target_at) {
             return Err(AttackError::PositionOutOfRange(target_at));
         }
@@ -10426,7 +10599,11 @@ impl GameState {
         let (attacker_state, attack, weapon, weapon_effects, module_use) =
             self.attack_details(self.player, slot)?;
         let origin = attacker_state.position();
-        if matches!(attack.area(), AttackArea::Single) {
+        if matches!(attack.area(), AttackArea::Single)
+            && !weapon_effects
+                .iter()
+                .any(|effect| matches!(effect.kind(), WeaponEffectKind::CatalyticCone { .. }))
+        {
             return Err(AttackError::FreeAimRequiresAreaWeapon);
         }
         if !self.map.contains(target_at) {
@@ -10476,11 +10653,9 @@ impl GameState {
                 .get(module)
                 .ok_or(AttackError::MissingAttackSlot(slot))?;
             let weapon = self
-                .rules
-                .weapons
-                .get(entry.item())
+                .player_item_weapon(entry.instance())
                 .ok_or(AttackError::MissingAttackSlot(slot))?;
-            let mut attack = weapon.attack();
+            let mut attack = self.apply_equipped_attack_bonuses(weapon.attack());
             let module_state = self.equipment_engineering.get(&module).copied();
             if module_state
                 .is_some_and(|state| state.durability() == 0 || state.is_suspended_as_donor())
@@ -10534,6 +10709,18 @@ impl GameState {
             let attack = attacker_state
                 .attack(slot)
                 .ok_or(AttackError::MissingAttackSlot(slot))?;
+            if let Some(carried) = attacker_state.equipped_weapon() {
+                let weapon = carried
+                    .resolve(&self.rules.weapons)
+                    .ok_or(AttackError::MissingAttackSlot(slot))?;
+                return Ok((
+                    attacker_state,
+                    attack,
+                    Some(weapon.id().clone()),
+                    weapon.effects().to_vec(),
+                    None,
+                ));
+            }
             Ok((attacker_state, attack, None, Vec::new(), None))
         }
     }
@@ -10573,7 +10760,7 @@ impl GameState {
             slot,
             origin,
             target_at,
-            weapon,
+            weapon: weapon.clone(),
             damage_type: attack.damage().primary_damage_type(),
             affected_cells: affected_cells.clone(),
         });
@@ -10588,10 +10775,35 @@ impl GameState {
                 .then_some(entity)
             })
             .collect();
+        // Snapshot fuel before ANY primary hit, status hook or new cone burn.
+        let cone_fuel: BTreeMap<usize, BTreeSet<EntityId>> = weapon_effects
+            .iter()
+            .enumerate()
+            .filter_map(|(index, effect)| {
+                if let WeaponEffectKind::CatalyticCone { burning_status, .. } = effect.kind() {
+                    Some((
+                        index,
+                        self.actors
+                            .iter()
+                            .filter_map(|(id, actor)| {
+                                actor.status(burning_status).is_some().then_some(id)
+                            })
+                            .collect(),
+                    ))
+                } else {
+                    None
+                }
+            })
+            .collect();
         let mut hit_positions = BTreeSet::new();
         let mut hit_targets = BTreeSet::new();
+        let mut hit_impacts: BTreeMap<GridPos, EntityId> = BTreeMap::new();
+        let mut catalysis_hits: BTreeMap<usize, BTreeMap<GridPos, EntityId>> = BTreeMap::new();
+        let mut fracture_hits: BTreeMap<usize, BTreeMap<GridPos, (EntityId, u16)>> =
+            BTreeMap::new();
         let mut damaged_positions = BTreeSet::new();
         let mut destroyed_positions = BTreeSet::new();
+        let mut life_steal_damage: BTreeMap<usize, u32> = BTreeMap::new();
         let mut reaction_follow_ups = Vec::new();
         for affected_target in affected_targets {
             if self.actors.get(attacker).is_none() {
@@ -10608,6 +10820,36 @@ impl GameState {
                 .position();
             hit_positions.insert(affected_position);
             hit_targets.insert(affected_target);
+            hit_impacts.insert(affected_position, affected_target);
+            // Capture fuel before direct damage or this weapon's status hooks.
+            // A killing hit retains its impact; a newly applied brand cannot
+            // fuel catalysis in the same attack.
+            for (index, effect) in weapon_effects.iter().enumerate() {
+                if let WeaponEffectKind::AccumulatedFracture { mark_status, .. } = effect.kind() {
+                    let charges = self
+                        .actors
+                        .get(affected_target)
+                        .and_then(|actor| actor.status(mark_status))
+                        .map_or(0, |status| status.stacks);
+                    fracture_hits
+                        .entry(index)
+                        .or_default()
+                        .insert(affected_position, (affected_target, charges));
+                }
+                if let WeaponEffectKind::Catalysis {
+                    required_status, ..
+                } = effect.kind()
+                    && self
+                        .actors
+                        .get(affected_target)
+                        .is_some_and(|actor| actor.status(required_status).is_some())
+                {
+                    catalysis_hits
+                        .entry(index)
+                        .or_default()
+                        .insert(affected_position, affected_target);
+                }
+            }
             let (target_damage, reaction_follow_up) = self.apply_reaction_to_melee_hit(
                 attacker,
                 affected_target,
@@ -10615,6 +10857,25 @@ impl GameState {
                 resolved_damage,
                 action_origin,
             );
+            // Cache admission before damage can remove a killed target. No
+            // default admission: scenery, summons and test props require opt-in.
+            let eligible_effects: Vec<usize> = weapon_effects
+                .iter()
+                .enumerate()
+                .filter_map(|(index, effect)| match effect.kind() {
+                    WeaponEffectKind::LifeSteal {
+                        required_target_tag,
+                        ..
+                    } if self
+                        .actors
+                        .get(affected_target)
+                        .is_some_and(|actor| actor.tags().contains(required_target_tag)) =>
+                    {
+                        Some(index)
+                    }
+                    _ => None,
+                })
+                .collect();
             let application = match &damage_target {
                 AttackDamageTarget::Body => self
                     .apply_damage_impact_to(Some(attacker), affected_target, target_damage)
@@ -10630,6 +10891,10 @@ impl GameState {
             };
             if application.amount > 0 {
                 damaged_positions.insert(affected_position);
+                for index in eligible_effects {
+                    let total = life_steal_damage.entry(index).or_default();
+                    *total = total.saturating_add(u32::from(application.amount));
+                }
             }
             if application.target_destroyed {
                 destroyed_positions.insert(affected_position);
@@ -10694,6 +10959,282 @@ impl GameState {
                 for position in positions {
                     self.create_ground_effect(Some(attacker), position, ground_effect);
                 }
+            }
+        }
+        // Secondary zones cannot start another equipment/reaction chain. Resolve
+        // only one per effect, even when the primary attack hits several actors.
+        // Captured impact cells survive a lethal hit or a subsequent knockback.
+        if action_origin == ActionOrigin::Normal {
+            let mut catalysis_used = false;
+            let mut fracture_used = false;
+            let mut ricochet_used = false;
+            let mut cone_used = false;
+            let mut alternation_used = false;
+            let mut delayed_echo_used = false;
+            for (effect_index, effect) in weapon_effects.iter().enumerate() {
+                if let WeaponEffectKind::Ricochet { range, damage } = effect.kind() {
+                    if !ricochet_used
+                        && attack.delivery() == AttackDelivery::Ranged
+                        && let Some(&at) = hit_positions
+                            .get(&target_at)
+                            .or_else(|| hit_positions.first())
+                    {
+                        ricochet_used = true;
+                        self.apply_weapon_ricochet(
+                            attacker,
+                            at,
+                            *range,
+                            *damage,
+                            &hit_targets,
+                            effect
+                                .source()
+                                .cloned()
+                                .or_else(|| weapon.clone().map(|id| (id, effect_index))),
+                        );
+                    }
+                    continue;
+                }
+                if let WeaponEffectKind::CatalyticCone { .. } = effect.kind() {
+                    if !cone_used
+                        && let Some(&at) = hit_positions
+                            .get(&target_at)
+                            .or_else(|| hit_positions.first())
+                    {
+                        cone_used = true;
+                        self.apply_catalytic_cone(
+                            attacker,
+                            origin,
+                            at,
+                            effect.kind(),
+                            &cone_fuel[&effect_index],
+                            &hit_impacts,
+                            effect
+                                .source()
+                                .cloned()
+                                .or_else(|| weapon.clone().map(|id| (id, effect_index))),
+                        );
+                    }
+                    continue;
+                }
+                if matches!(
+                    effect.kind(),
+                    WeaponEffectKind::Alternation { .. } | WeaponEffectKind::DelayedEcho { .. }
+                ) {
+                    let used = if matches!(effect.kind(), WeaponEffectKind::Alternation { .. }) {
+                        &mut alternation_used
+                    } else {
+                        &mut delayed_echo_used
+                    };
+                    if !*used
+                        && let Some((&at, &target)) = hit_impacts
+                            .get_key_value(&target_at)
+                            .or_else(|| hit_impacts.first_key_value())
+                    {
+                        *used = true;
+                        self.apply_weapon_echo(
+                            attacker,
+                            target,
+                            at,
+                            effect.kind(),
+                            effect
+                                .source()
+                                .cloned()
+                                .or_else(|| weapon.clone().map(|id| (id, effect_index))),
+                        );
+                    }
+                    continue;
+                }
+                if let WeaponEffectKind::AccumulatedFracture {
+                    mark_status,
+                    threshold,
+                    effect: radial,
+                    affects_source,
+                } = effect.kind()
+                {
+                    if !fracture_used && let Some(impacts) = fracture_hits.get(&effect_index) {
+                        let eligible = |(_, (id, previous)): &(&GridPos, &(EntityId, u16))| {
+                            self.actors.get(*id).map_or(
+                                previous.saturating_add(1) >= *threshold,
+                                |actor| {
+                                    actor.is_alive()
+                                        && actor.status(mark_status).map_or(0, |mark| mark.stacks)
+                                            == *previous
+                                },
+                            )
+                        };
+                        let candidate = impacts
+                            .get_key_value(&target_at)
+                            .filter(eligible)
+                            .or_else(|| impacts.iter().find(eligible));
+                        if let Some((&at, &(target, previous))) = candidate {
+                            fracture_used = self.apply_weapon_fracture(
+                                attacker,
+                                target,
+                                at,
+                                previous,
+                                mark_status,
+                                *threshold,
+                                radial,
+                                *affects_source,
+                                effect
+                                    .source()
+                                    .cloned()
+                                    .or_else(|| weapon.clone().map(|id| (id, effect_index))),
+                            );
+                        }
+                    }
+                    continue;
+                }
+                if let WeaponEffectKind::Catalysis {
+                    required_status,
+                    effect: radial,
+                    affects_source,
+                } = effect.kind()
+                {
+                    if !catalysis_used && let Some(impacts) = catalysis_hits.get(&effect_index) {
+                        let eligible = |(_, id): &(&GridPos, &EntityId)| {
+                            self.actors
+                                .get(**id)
+                                .is_none_or(|actor| actor.status(required_status).is_some())
+                        };
+                        let candidate = impacts
+                            .get_key_value(&target_at)
+                            .filter(eligible)
+                            .or_else(|| impacts.iter().find(eligible));
+                        if let Some((&at, &target)) = candidate {
+                            catalysis_used = self.apply_weapon_catalysis(
+                                attacker,
+                                target,
+                                at,
+                                required_status,
+                                radial,
+                                *affects_source,
+                                effect
+                                    .source()
+                                    .cloned()
+                                    .or_else(|| weapon.clone().map(|id| (id, effect_index))),
+                            );
+                        }
+                    }
+                    continue;
+                }
+                if let WeaponEffectKind::Percussion {
+                    force,
+                    recovery_status,
+                } = effect.kind()
+                {
+                    let eligible = |(at, id): &(&GridPos, &EntityId)| {
+                        self.actors
+                            .get(**id)
+                            .is_some_and(|actor| actor.position() == **at && actor.is_alive())
+                    };
+                    let candidate = hit_impacts
+                        .get_key_value(&target_at)
+                        .filter(eligible)
+                        .or_else(|| hit_impacts.iter().find(eligible));
+                    if let Some((_, &target)) = candidate {
+                        self.apply_weapon_percussion(
+                            attacker,
+                            target,
+                            origin,
+                            *force,
+                            recovery_status,
+                        );
+                    }
+                    continue;
+                }
+                if let WeaponEffectKind::ApplyBearerStatus(status) = effect.kind() {
+                    let triggered = match effect.trigger() {
+                        Some(WeaponEffectTrigger::OnHit) => !hit_positions.is_empty(),
+                        Some(WeaponEffectTrigger::OnDamage) => !damaged_positions.is_empty(),
+                        _ => false,
+                    };
+                    if triggered && self.actors.get(attacker).is_some_and(Actor::is_alive) {
+                        let _ = self.apply_status_to(Some(attacker), attacker, status);
+                    }
+                    continue;
+                }
+                if let WeaponEffectKind::PiercingLine { length, damage } = effect.kind() {
+                    let positions = match effect.trigger() {
+                        Some(WeaponEffectTrigger::OnHit) => &hit_positions,
+                        Some(WeaponEffectTrigger::OnDamage) => &damaged_positions,
+                        _ => continue,
+                    };
+                    if let Some(impact) = positions.get(&target_at).or_else(|| positions.first())
+                        && self.actors.get(attacker).is_some()
+                    {
+                        self.apply_weapon_piercing(
+                            attacker,
+                            origin,
+                            *impact,
+                            *length,
+                            *damage,
+                            &hit_targets,
+                            effect
+                                .source()
+                                .cloned()
+                                .or_else(|| weapon.clone().map(|id| (id, effect_index))),
+                        );
+                    }
+                    continue;
+                }
+                if let WeaponEffectKind::LifeSteal {
+                    percent,
+                    maximum_per_attack,
+                    ..
+                } = effect.kind()
+                {
+                    if let Some(damage) = life_steal_damage.get(&effect_index)
+                        && let Some(bearer) = self.actors.get_mut(attacker)
+                    {
+                        // Aggregate only actual primary damage (not overkill or
+                        // secondary procs), round down once, cap once per action.
+                        let amount = (u64::from(*damage) * u64::from(*percent) / 100)
+                            .min(u64::from(*maximum_per_attack))
+                            as u16;
+                        let restored = bearer.restore_integrity(amount);
+                        if restored > 0 {
+                            self.events.push(GameEvent::IntegrityRestored {
+                                entity: attacker,
+                                amount: restored,
+                            });
+                        }
+                    }
+                    continue;
+                }
+                let WeaponEffectKind::RadialDamage {
+                    effect: radial,
+                    origin: effect_origin,
+                    affects_source,
+                } = effect.kind()
+                else {
+                    continue;
+                };
+                let positions = match effect.trigger() {
+                    Some(WeaponEffectTrigger::OnHit) => &hit_positions,
+                    Some(WeaponEffectTrigger::OnDamage) => &damaged_positions,
+                    _ => continue,
+                };
+                let Some(impact) = positions.get(&target_at).or_else(|| positions.first()) else {
+                    continue;
+                };
+                let Some(bearer) = self.actors.get(attacker) else {
+                    break;
+                };
+                let center = match effect_origin {
+                    crate::weapon::WeaponEffectOrigin::Impact => *impact,
+                    crate::weapon::WeaponEffectOrigin::Bearer => bearer.position(),
+                };
+                self.apply_radial_damage_excluding(
+                    Some(attacker),
+                    center,
+                    radial,
+                    (!affects_source).then_some(attacker),
+                    effect
+                        .source()
+                        .cloned()
+                        .or_else(|| weapon.clone().map(|id| (id, effect_index))),
+                );
             }
         }
         for (reactor, source, technique) in reaction_follow_ups {
@@ -10799,10 +11340,9 @@ impl GameState {
         attack: AttackProfile,
         movement: ForcedMovement,
     ) {
-        let Some(target_state) = self.actors.get(target) else {
+        let Some(_) = self.actors.get(target) else {
             return;
         };
-        let from = target_state.position();
         let impact = attack
             .melee_impact()
             .expect("forced movement was validated with a melee Impact profile");
@@ -10820,6 +11360,30 @@ impl GameState {
                     .saturating_add(movement.impact_modifier()),
             )
             .min(impact.material_cap);
+        self.resolve_displacement(
+            source,
+            target,
+            attack_origin,
+            force,
+            movement.distance(),
+            false,
+        );
+    }
+
+    /// Keep historical technique geometry intact; new equipment effects opt
+    /// into slope-preserving movement and strict diagonal collision checks.
+    #[allow(clippy::too_many_arguments)]
+    fn resolve_displacement(
+        &mut self,
+        source: EntityId,
+        target: EntityId,
+        attack_origin: GridPos,
+        force: u16,
+        distance: u8,
+        strict: bool,
+    ) -> Option<GridPos> {
+        let target_state = self.actors.get(target)?;
+        let from = target_state.position();
         let Some(profile) = target_state.displacement_profile() else {
             self.events.push(GameEvent::ForcedMovementResolved {
                 source,
@@ -10828,11 +11392,11 @@ impl GameState {
                 to: from,
                 force,
                 resistance: None,
-                requested_distance: movement.distance(),
+                requested_distance: distance,
                 moved_distance: 0,
                 outcome: ForcedMovementOutcome::Incompatible,
             });
-            return;
+            return Some(from);
         };
         let carried_mass_grams = self.actor_carried_mass_grams(target).unwrap_or(0);
         let anchor_bonus = (target == self.player)
@@ -10854,11 +11418,11 @@ impl GameState {
                 to: from,
                 force,
                 resistance: Some(resistance),
-                requested_distance: movement.distance(),
+                requested_distance: distance,
                 moved_distance: 0,
                 outcome: ForcedMovementOutcome::Fixed,
             });
-            return;
+            return Some(from);
         }
         if u32::from(force) < resistance {
             self.events.push(GameEvent::ForcedMovementResolved {
@@ -10868,11 +11432,11 @@ impl GameState {
                 to: from,
                 force,
                 resistance: Some(resistance),
-                requested_distance: movement.distance(),
+                requested_distance: distance,
                 moved_distance: 0,
                 outcome: ForcedMovementOutcome::Resisted,
             });
-            return;
+            return Some(from);
         }
 
         let delta_x = match from.x.cmp(&attack_origin.x) {
@@ -10887,24 +11451,40 @@ impl GameState {
         };
         let mut destination = from;
         let mut moved_distance = 0;
-        for _ in 0..movement.distance() {
+        for step in 1..=distance {
             let Some(next_x) = destination.x.checked_add(delta_x) else {
                 break;
             };
             let Some(next_y) = destination.y.checked_add(delta_y) else {
                 break;
             };
-            let next = GridPos::new(next_x, next_y);
+            let next = if strict {
+                let Some(next) =
+                    weapon_percussion::continuation_cell(attack_origin, from, u16::from(step))
+                else {
+                    break;
+                };
+                next
+            } else {
+                GridPos::new(next_x, next_y)
+            };
             if !self.map.is_walkable(next)
                 || self.map.is_protected(next)
                 || self.actors.entity_at(next).is_some()
+                || (strict
+                    && !weapon_percussion::push_step_open(
+                        &self.map,
+                        &self.actors,
+                        destination,
+                        next,
+                    ))
             {
                 break;
             }
             destination = next;
             moved_distance += 1;
         }
-        let outcome = if moved_distance == movement.distance() {
+        let outcome = if moved_distance == distance {
             ForcedMovementOutcome::Moved
         } else {
             ForcedMovementOutcome::Blocked
@@ -10924,13 +11504,29 @@ impl GameState {
             to: destination,
             force,
             resistance: Some(resistance),
-            requested_distance: movement.distance(),
+            requested_distance: distance,
             moved_distance,
             outcome,
         });
         if moved_distance > 0 {
             self.resolve_status_trigger_for(target, StatusTrigger::Movement);
         }
+        if strict
+            && moved_distance > 0
+            && target == self.player
+            && self.actors.get(target).is_some()
+        {
+            self.player_visibility.recompute(
+                &self.map,
+                destination,
+                self.rules.player_field_of_view,
+            );
+            self.events.push(GameEvent::VisibilityUpdated {
+                observer: target,
+                origin: destination,
+            });
+        }
+        Some(destination)
     }
 
     fn apply_reaction_to_melee_hit(
@@ -10982,6 +11578,7 @@ impl GameState {
                 (damage.with_physical_total(after), follow_up)
             }
             ReactionEffect::PerformMeleeWeaponAttack
+            | ReactionEffect::PerformControllingMeleeWeaponAttack { .. }
             | ReactionEffect::PerformRangedWeaponAttack { .. }
             | ReactionEffect::MoveTo { .. } => (damage, follow_up),
         }
@@ -11226,6 +11823,7 @@ impl GameState {
         reactor: EntityId,
         mover: EntityId,
         evasion_modifier: i16,
+        stability_intensity: Option<u16>,
     ) -> InterceptionOutcome {
         if self.actors.get(reactor).is_none() {
             return InterceptionOutcome::ReactorUnavailable;
@@ -11259,16 +11857,45 @@ impl GameState {
                 .saturating_sub(evasion_modifier),
         );
         let recovery = prepared.attack.recovery_after_attack();
-        if self
-            .resolve_prepared_attack(prepared, ActionOrigin::Reaction)
-            .is_err()
-        {
-            return InterceptionOutcome::OutOfReach;
-        }
+        let resolution = match self.resolve_prepared_attack(prepared, ActionOrigin::Reaction) {
+            Ok(resolution) => resolution,
+            Err(_) => return InterceptionOutcome::OutOfReach,
+        };
         if let Some(recovery) = recovery {
             self.start_action_recovery(reactor, recovery);
         }
-        InterceptionOutcome::Performed
+        if !resolution.hit_targets.contains(&mover) {
+            return InterceptionOutcome::Missed;
+        }
+        let Some(intensity) = stability_intensity else {
+            return InterceptionOutcome::Performed;
+        };
+        if self.actors.get(mover).is_none() {
+            return InterceptionOutcome::Performed;
+        }
+        let rules = self
+            .rules
+            .stability_rules
+            .expect("controlling interceptions require validated Stability rules");
+        let chance = rules.resistance_chance(
+            self.actor_effective_primary_attributes(mover),
+            self.actor_stability_modifier(mover),
+            intensity,
+        );
+        let roll = self.rng.percentile();
+        if roll <= chance {
+            InterceptionOutcome::Resisted {
+                intensity,
+                chance,
+                roll,
+            }
+        } else {
+            InterceptionOutcome::MovementStopped {
+                intensity,
+                chance,
+                roll,
+            }
+        }
     }
 
     fn melee_counterattack_slot(&self, reactor: EntityId) -> Option<u8> {
@@ -11309,11 +11936,7 @@ impl GameState {
         let Some(hit_rules) = self.rules.hit_rules else {
             return Ok(true);
         };
-        let attacker_attributes = self
-            .actors
-            .get(attacker)
-            .ok_or(AttackError::MissingAttacker(attacker))?
-            .primary_attributes();
+        let attacker_attributes = self.actor_effective_primary_attributes(attacker);
         let target_state = self
             .actors
             .get(target)
@@ -11322,7 +11945,7 @@ impl GameState {
             return Ok(true);
         }
         let target_at = target_state.position();
-        let target_attributes = target_state.primary_attributes();
+        let target_attributes = self.actor_effective_primary_attributes(target);
         let evasion_modifier = target_state.evasion_modifier();
         let chance = hit_rules.hit_chance(
             attack.delivery(),
@@ -11396,6 +12019,7 @@ impl GameState {
             .player_equipment
             .equip(equipment_slot.clone(), item, &self.player_inventory)
             .map_err(EquipWeaponError::Equipment)?;
+        self.refresh_equipment_resources();
         self.events.push(GameEvent::WeaponEquipped {
             entity: self.player,
             slot,
@@ -11447,6 +12071,7 @@ impl GameState {
             .player_equipment
             .equip(equipment_slot.clone(), item, &self.player_inventory)
             .map_err(EquipItemError::Equipment)?;
+        self.refresh_equipment_resources();
         self.events.push(GameEvent::ItemEquipped {
             entity: self.player,
             equipment_slot,
@@ -11532,14 +12157,22 @@ impl GameState {
             .ok_or(PickUpError::UnknownItemDefinition)?;
 
         let mut next_inventory = self.player_inventory.clone();
-        let affected_instances = next_inventory
-            .add_with_owner(
-                stack.item().clone(),
-                stack.quantity(),
-                maximum_stack,
-                stack.owner().cloned(),
-            )
-            .map_err(PickUpError::Inventory)?;
+        let affected_instances = if let Some(bonus) = stack.magic_modifiers() {
+            vec![
+                next_inventory
+                    .add_magic(stack.item().clone(), stack.owner().cloned(), bonus)
+                    .map_err(PickUpError::Inventory)?,
+            ]
+        } else {
+            next_inventory
+                .add_with_owner(
+                    stack.item().clone(),
+                    stack.quantity(),
+                    maximum_stack,
+                    stack.owner().cloned(),
+                )
+                .map_err(PickUpError::Inventory)?
+        };
         let witnesses = self.property_take_witnesses(position, stack.owner());
         self.player_inventory = next_inventory;
         let engineering_item = self.rules.weapons.get(stack.item()).is_some()
@@ -11734,6 +12367,21 @@ impl GameState {
                 entry.owner().cloned(),
             )
             .map_err(DropItemError::Ground)?;
+        if let Some(bonus) = entry.magic_modifiers().filter(|bonus| {
+            // Old runs never generated these properties. Preserve historical
+            // mass/armor-only drop replay behavior until its own migration.
+            PrimaryAttribute::ALL
+                .iter()
+                .any(|attribute| bonus.attribute_bonus(*attribute) > 0)
+                || bonus.accuracy_bonus() > 0
+                || bonus.armor_penetration_bonus() > 0
+                || bonus.maximum_hit_points_bonus() > 0
+                || bonus.energy_capacity_bonus() > 0
+                || bonus.heat_dissipation_bonus() > 0
+                || bonus.effect_affix().is_some()
+        }) {
+            next_ground_items.retain_magic_modifiers(ground_item, bonus);
+        }
         let mut next_inventory = self.player_inventory.clone();
         next_inventory
             .remove(item, entry.quantity())
@@ -11746,6 +12394,7 @@ impl GameState {
         self.ground_items = next_ground_items;
         self.player_inventory = next_inventory;
         self.player_equipment = next_equipment;
+        self.refresh_equipment_resources();
         self.events.push(GameEvent::GroundItemSpawned {
             ground_item,
             definition: entry.item().clone(),
@@ -11931,12 +12580,12 @@ impl GameState {
                 .rules
                 .stability_rules
                 .expect("Stability effects require validated Stability rules");
-            let actor = self
-                .actors
-                .get(target)
-                .expect("hit target survives and remains registered");
             let modifier = self.actor_stability_modifier(target);
-            let chance = rules.resistance_chance(actor.primary_attributes(), modifier, intensity);
+            let chance = rules.resistance_chance(
+                self.actor_effective_primary_attributes(target),
+                modifier,
+                intensity,
+            );
             let roll = self.rng.percentile();
             let resisted = roll <= chance;
             self.events.push(GameEvent::StabilityCheckResolved {
@@ -12029,6 +12678,17 @@ impl GameState {
         origin: GridPos,
         effect: &RadialDamageEffect,
     ) {
+        self.apply_radial_damage_excluding(source, origin, effect, None, None);
+    }
+
+    fn apply_radial_damage_excluding(
+        &mut self,
+        source: Option<EntityId>,
+        origin: GridPos,
+        effect: &RadialDamageEffect,
+        excluded: Option<EntityId>,
+        weapon_effect: Option<(WeaponId, usize)>,
+    ) {
         let cells = effect.affected_cells(&self.map, origin);
         let costs: std::collections::BTreeMap<GridPos, u16> = cells
             .iter()
@@ -12038,11 +12698,13 @@ impl GameState {
             source,
             origin,
             cells,
+            weapon_effect,
         });
 
         let targets: Vec<(EntityId, u16)> = self
             .actors
             .iter()
+            .filter(|(entity, _)| Some(*entity) != excluded)
             .filter_map(|(entity, actor)| {
                 costs
                     .get(&actor.position())
@@ -12219,9 +12881,13 @@ impl GameState {
                 )
             },
         );
+        let guarded_damage = self.consume_damage_guard(target, position, resolved.amount());
         let target_actor = self.actors.get_mut(target).ok_or(target)?;
-        let applied_damage = target_actor.apply_damage(resolved.amount());
+        let applied_damage = target_actor.apply_damage(guarded_damage);
         let target_died = !target_actor.is_alive();
+        if !target_died && source != Some(target) {
+            self.shelter_wounded_fauna(target);
+        }
         let pending_death_statuses = (target_died && trigger_status_hooks)
             .then(|| self.pending_status_effects_for(target, StatusTrigger::Death))
             .unwrap_or_default();
@@ -12260,7 +12926,9 @@ impl GameState {
                     tags,
                 });
             }
-            self.actors.remove(target);
+            if let Some(dead) = self.actors.remove(target) {
+                self.drop_actor_weapon(target, &dead);
+            }
             self.resolve_pending_status_effects(
                 target,
                 StatusTrigger::Death,
@@ -12414,6 +13082,7 @@ impl GameState {
         if self.status == RunStatus::Active {
             self.resolve_status_trigger(StatusTrigger::TurnEnd);
             self.resolve_explosive_devices();
+            self.resolve_weapon_echoes();
             self.resolve_ground_effects();
             self.resolve_stealth_environment();
             self.elapse_status_durations();
@@ -12939,6 +13608,7 @@ impl GameState {
             source: Some(source),
             origin,
             cells,
+            weapon_effect: None,
         });
         let targets = self
             .actors
@@ -13303,18 +13973,20 @@ impl GameState {
                 });
             }
 
-            match action {
-                AiAction::Wait => {
-                    self.events.push(GameEvent::EntityWaited { entity });
-                }
-                AiAction::Move(direction) => {
-                    if self.move_ai_entity(entity, direction).is_err() {
+            if !self.resolve_tactical_ai_action(entity, action, target_entity, was_recovering) {
+                match action {
+                    AiAction::Wait => {
                         self.events.push(GameEvent::EntityWaited { entity });
                     }
-                }
-                AiAction::Attack { slot } => {
-                    if self.perform_attack(entity, slot, target_entity).is_err() {
-                        self.events.push(GameEvent::EntityWaited { entity });
+                    AiAction::Move(direction) => {
+                        if self.move_ai_entity(entity, direction).is_err() {
+                            self.events.push(GameEvent::EntityWaited { entity });
+                        }
+                    }
+                    AiAction::Attack { slot } => {
+                        if self.perform_attack(entity, slot, target_entity).is_err() {
+                            self.events.push(GameEvent::EntityWaited { entity });
+                        }
                     }
                 }
             }
@@ -14566,6 +15238,12 @@ fn decide_lifecycle_action(
     };
 
     match actor.ai_state() {
+        AiState::Aiming { .. }
+        | AiState::SupportStock { .. }
+        | AiState::Listening { .. }
+        | AiState::Sheltered { .. }
+        | AiState::Fleeing
+        | AiState::Cornered => (AiAction::Wait, actor.ai_state()),
         AiState::Unaware if target_visible => pursue(lifecycle.maximum_pursuit_turns()),
         AiState::Unaware => (AiAction::Wait, AiState::Unaware),
         AiState::Pursuing {
@@ -14958,19 +15636,40 @@ fn first_unknown_status(actor: &Actor, catalog: &StatusCatalog) -> Option<Status
 }
 
 fn first_unknown_weapon_status(rules: &GameRules) -> Option<(WeaponId, StatusId)> {
-    rules.weapons.iter().find_map(|(weapon_id, weapon)| {
-        weapon
-            .effects()
-            .iter()
-            .find_map(|effect| match effect.kind() {
+    rules
+        .weapons
+        .effect_sets()
+        .find_map(|(weapon_id, effects)| {
+            effects.iter().find_map(|effect| match effect.kind() {
+                WeaponEffectKind::AccumulatedFracture { mark_status, .. }
+                    if !rules.statuses.contains(mark_status) =>
+                {
+                    Some((weapon_id.clone(), mark_status.clone()))
+                }
+                WeaponEffectKind::Catalysis {
+                    required_status, ..
+                } if !rules.statuses.contains(required_status) => {
+                    Some((weapon_id.clone(), required_status.clone()))
+                }
+                WeaponEffectKind::CatalyticCone { burning_status, .. }
+                    if !rules.statuses.contains(burning_status) =>
+                {
+                    Some((weapon_id.clone(), burning_status.clone()))
+                }
+                WeaponEffectKind::Percussion {
+                    recovery_status, ..
+                } if !rules.statuses.contains(recovery_status) => {
+                    Some((weapon_id.clone(), recovery_status.clone()))
+                }
                 WeaponEffectKind::ApplyStatus(status)
+                | WeaponEffectKind::ApplyBearerStatus(status)
                     if !rules.statuses.contains(status.status()) =>
                 {
                     Some((weapon_id.clone(), status.status().clone()))
                 }
                 _ => None,
             })
-    })
+        })
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -15038,6 +15737,7 @@ pub enum CommandRejection {
     NoLineOfSight(EntityId),
     AttackTargetOutsideMap(GridPos),
     AttackTargetIsOrigin,
+    AttackTargetHasNoActor(GridPos),
     AttackTargetOutOfRange(GridPos),
     AttackNoLineOfSight(GridPos),
     FreeAimRequiresAreaWeapon,
@@ -15783,6 +16483,7 @@ enum AttackError {
     NoLineOfSight(EntityId),
     TargetOutsideMap(GridPos),
     TargetIsOrigin,
+    TargetHasNoActor(GridPos),
     PositionOutOfRange(GridPos),
     NoLineOfSightAt(GridPos),
     FreeAimRequiresAreaWeapon,
@@ -15860,6 +16561,7 @@ impl From<AttackError> for CommandRejection {
             AttackError::NoLineOfSight(target) => Self::NoLineOfSight(target),
             AttackError::TargetOutsideMap(target) => Self::AttackTargetOutsideMap(target),
             AttackError::TargetIsOrigin => Self::AttackTargetIsOrigin,
+            AttackError::TargetHasNoActor(target) => Self::AttackTargetHasNoActor(target),
             AttackError::PositionOutOfRange(target) => Self::AttackTargetOutOfRange(target),
             AttackError::NoLineOfSightAt(target) => Self::AttackNoLineOfSight(target),
             AttackError::FreeAimRequiresAreaWeapon => Self::FreeAimRequiresAreaWeapon,
@@ -15931,6 +16633,7 @@ pub enum SpawnError {
     Registry(RegistryError),
     UnknownStatusDefinition(StatusId),
     InvalidPrimaryAttributes(PrimaryAttributesError),
+    InvalidEquipment(String),
 }
 
 impl Display for SpawnError {
@@ -15954,6 +16657,9 @@ impl Display for SpawnError {
             ),
             Self::InvalidPrimaryAttributes(error) => {
                 write!(formatter, "actor has invalid primary attributes: {error}")
+            }
+            Self::InvalidEquipment(error) => {
+                write!(formatter, "actor has invalid equipment: {error}")
             }
         }
     }
@@ -16015,6 +16721,14 @@ impl Error for DroneSpawnError {}
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum GameInitError {
+    InvalidWeaponChargeMarker {
+        weapon: Box<WeaponId>,
+        status: StatusId,
+    },
+    InvalidWeaponRecovery {
+        weapon: Box<WeaponId>,
+        status: StatusId,
+    },
     Energy(EnergyReserveError),
     Heat(HeatRulesError),
     BlockedPlayerStart(GridPos),
@@ -16052,6 +16766,14 @@ pub enum GameInitError {
 impl Display for GameInitError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::InvalidWeaponChargeMarker { weapon, status } => write!(
+                formatter,
+                "weapon '{weapon}' has invalid charge marker '{status}'"
+            ),
+            Self::InvalidWeaponRecovery { weapon, status } => write!(
+                formatter,
+                "weapon '{weapon}' has invalid recovery status '{status}'"
+            ),
             Self::Energy(error) => write!(formatter, "invalid player energy: {error}"),
             Self::Heat(error) => write!(formatter, "invalid player heat rules: {error}"),
             Self::BlockedPlayerStart(position) => write!(
@@ -17545,6 +18267,53 @@ mod tests {
         (game, technique)
     }
 
+    fn game_with_learned_controlling_interception(
+        seed: u64,
+        stability_intensity: u16,
+    ) -> (GameState, TechniqueId) {
+        let (mut rules, discipline, _) = parry_rules();
+        let technique: TechniqueId = "core:test_interception".parse().unwrap();
+        let discipline_definition = rules.skills.discipline(&discipline).unwrap().clone();
+        let mut skills = SkillCatalog::default();
+        skills.register_discipline(discipline_definition).unwrap();
+        skills
+            .register_technique(
+                TechniqueDefinition::new(
+                    technique.clone(),
+                    discipline.clone(),
+                    "technique.test_interception.name".to_owned(),
+                    "technique.test_interception.description".to_owned(),
+                    1,
+                    TechniqueKind::Action,
+                    None,
+                    [],
+                )
+                .unwrap()
+                .with_action(TechniqueAction::PrepareControllingMeleeInterception {
+                    stability_intensity,
+                })
+                .unwrap(),
+            )
+            .unwrap();
+        rules.skills = skills;
+        rules.stability_rules = Some(StabilityRules::default());
+        let mut game = GameState::new_with_rules(
+            parse_map("######\n#....#\n######"),
+            GridPos::new(1, 1),
+            seed,
+            rules,
+        )
+        .unwrap();
+        game.player_skills = SkillProgressionState::from_ordered_choices(
+            [(discipline, vec![technique.clone()])],
+            &game.rules.skills,
+            &game.rules.enabled_system_features,
+            &game.rules.skill_progression,
+        )
+        .unwrap();
+        (game, technique)
+    }
+
     fn game_with_learned_weapon_technique(
         attack: AttackProfile,
         hit_rules: Option<HitRules>,
@@ -18598,6 +19367,159 @@ mod tests {
             event,
             GameEvent::InterceptionResolved { .. } | GameEvent::AttackPerformed { .. }
         )));
+    }
+
+    #[test]
+    fn controlling_interception_stops_a_retreat_after_a_failed_stability_check() {
+        let intensity = 60;
+        let chance = StabilityRules::default().resistance_chance(
+            Some(PrimaryAttributes::new(5, 5, 5, 5, 5)),
+            0,
+            intensity,
+        );
+        let (mut game, technique) = game_with_learned_controlling_interception(
+            seed_with_first_roll_above(chance),
+            intensity,
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        let mover = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 20)
+                    .with_primary_attributes(PrimaryAttributes::new(5, 5, 5, 5, 5))
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.move_entity(mover, Direction::East),
+            Ok(GridPos::new(2, 1))
+        );
+        assert_eq!(game.actors.get(mover).map(Actor::integrity), Some(17));
+        assert_eq!(
+            game.actors.get(mover).map(Actor::position),
+            Some(GridPos::new(2, 1))
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::InterceptionResolved {
+                mover: checked,
+                technique: used,
+                outcome: InterceptionOutcome::MovementStopped {
+                    intensity: rolled_intensity,
+                    chance: rolled_chance,
+                    roll,
+                },
+                ..
+            } if *checked == mover
+                && used == &technique
+                && *rolled_intensity == intensity
+                && *rolled_chance == chance
+                && *roll > chance
+        )));
+        assert!(!game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::EntityMoved { entity, .. } if *entity == mover
+        )));
+    }
+
+    #[test]
+    fn controlling_interception_allows_a_retreat_after_a_successful_stability_check() {
+        let intensity = 60;
+        let chance = StabilityRules::default().resistance_chance(
+            Some(PrimaryAttributes::new(5, 5, 5, 5, 5)),
+            0,
+            intensity,
+        );
+        let (mut game, technique) = game_with_learned_controlling_interception(
+            seed_with_first_roll_at_most(chance),
+            intensity,
+        );
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        let mover = game
+            .spawn_actor(
+                build_actor(GridPos::new(2, 1), 20)
+                    .with_primary_attributes(PrimaryAttributes::new(5, 5, 5, 5, 5))
+                    .with_evasion_disabled(),
+            )
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.move_entity(mover, Direction::East),
+            Ok(GridPos::new(3, 1))
+        );
+        assert_eq!(
+            game.actors.get(mover).map(Actor::position),
+            Some(GridPos::new(3, 1))
+        );
+        assert!(game.events().iter().any(|event| matches!(
+            event,
+            GameEvent::InterceptionResolved {
+                mover: checked,
+                technique: used,
+                outcome: InterceptionOutcome::Resisted {
+                    intensity: rolled_intensity,
+                    chance: rolled_chance,
+                    roll,
+                },
+                ..
+            } if *checked == mover
+                && used == &technique
+                && *rolled_intensity == intensity
+                && *rolled_chance == chance
+                && *roll <= chance
+        )));
+    }
+
+    #[test]
+    fn controlling_interception_cannot_stop_a_retreat_when_the_attack_misses() {
+        let (mut game, technique) = game_with_learned_controlling_interception(11, 60);
+        game.rules.hit_rules = Some(HitRules {
+            minimum_hit_chance: 0,
+            maximum_hit_chance: 0,
+            ..HitRules::default()
+        });
+        assert_eq!(
+            game.process_player_command(GameCommand::UseTechnique {
+                technique: technique.clone(),
+                targets: Vec::new(),
+                weapon_slot: None,
+            }),
+            CommandOutcome::Applied
+        );
+        let mover = game
+            .spawn_actor(build_actor(GridPos::new(2, 1), 20))
+            .unwrap();
+        game.drain_events();
+
+        assert_eq!(
+            game.move_entity(mover, Direction::East),
+            Ok(GridPos::new(3, 1))
+        );
+        assert_eq!(game.actors.get(mover).map(Actor::integrity), Some(20));
+        assert!(game.events().contains(&GameEvent::InterceptionResolved {
+            reactor: game.player,
+            mover,
+            technique,
+            from: GridPos::new(2, 1),
+            to: GridPos::new(3, 1),
+            outcome: InterceptionOutcome::Missed,
+        }));
     }
 
     #[test]

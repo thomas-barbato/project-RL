@@ -1,13 +1,13 @@
 {
   id: "core:burning",
   terminal: {
-    frames: ["flame", "flame_large"],
+    frames: ["flame_small", "flame", "flame_large", "flame", "flame_small"],
     color: [194, 43, 18, 225],
     accent_colors: [
       [255, 105, 22, 240],
       [255, 220, 82, 255],
     ],
-    frame_millis: 100,
+    frame_millis: 120,
     step_millis: 0,
     linger_millis: 100,
   },

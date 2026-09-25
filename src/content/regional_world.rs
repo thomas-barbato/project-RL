@@ -455,11 +455,27 @@ impl RegionPopulationRule {
 
 /// Bounded weighted draws keep different regions of one biome from receiving
 /// an identical roster while remaining deterministic for a given region seed.
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Default, PartialEq, Eq)]
 pub struct RegionPopulationProfile {
     minimum_group_rolls: u16,
     maximum_group_rolls: u16,
     rules: Vec<RegionPopulationRule>,
+    spread_groups: bool,
+}
+
+// Omitting the opt-in field preserves fingerprints of pre-v109 catalogues.
+impl Debug for RegionPopulationProfile {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut debug = formatter.debug_struct("RegionPopulationProfile");
+        debug
+            .field("minimum_group_rolls", &self.minimum_group_rolls)
+            .field("maximum_group_rolls", &self.maximum_group_rolls)
+            .field("rules", &self.rules);
+        if self.spread_groups {
+            debug.field("spread_groups", &true);
+        }
+        debug.finish()
+    }
 }
 
 impl RegionPopulationProfile {
@@ -499,7 +515,17 @@ impl RegionPopulationProfile {
             minimum_group_rolls,
             maximum_group_rolls,
             rules,
+            spread_groups: false,
         })
+    }
+
+    pub fn with_spread_groups(mut self, enabled: bool) -> Self {
+        self.spread_groups = enabled;
+        self
+    }
+
+    pub const fn spread_groups(&self) -> bool {
+        self.spread_groups
     }
 
     pub const fn minimum_group_rolls(&self) -> u16 {
@@ -1212,6 +1238,7 @@ pub struct RegionBiomeRule {
     terrain: RegionTerrainProfile,
     population: RegionPopulationProfile,
     encounters: RegionPopulationProfile,
+    fauna: Option<super::RegionFaunaProfile>,
     loot: Option<RegionLootProfile>,
     salvage_loot: Option<RegionLootProfile>,
     landmarks: RegionLandmarkProfile,
@@ -1238,6 +1265,9 @@ impl Debug for RegionBiomeRule {
         }
         if !self.encounters.is_empty() {
             biome.field("encounters", &self.encounters);
+        }
+        if let Some(fauna) = &self.fauna {
+            biome.field("fauna", fauna);
         }
         if let Some(loot) = &self.loot {
             biome.field("loot", loot);
@@ -1289,6 +1319,7 @@ impl RegionBiomeRule {
             terrain,
             population: RegionPopulationProfile::default(),
             encounters: RegionPopulationProfile::default(),
+            fauna: None,
             loot: None,
             salvage_loot: None,
             landmarks: RegionLandmarkProfile::default(),
@@ -1379,6 +1410,19 @@ impl RegionBiomeRule {
 
     pub const fn encounters(&self) -> &RegionPopulationProfile {
         &self.encounters
+    }
+
+    pub fn with_fauna(
+        mut self,
+        fauna: super::RegionFaunaProfile,
+    ) -> Result<Self, RegionalWorldError> {
+        fauna.validate().map_err(RegionalWorldError::InvalidFauna)?;
+        self.fauna = Some(fauna);
+        Ok(self)
+    }
+
+    pub fn fauna(&self) -> Option<&super::RegionFaunaProfile> {
+        self.fauna.as_ref()
     }
 
     pub const fn loot(&self) -> Option<&RegionLootProfile> {
@@ -1660,6 +1704,12 @@ impl RegionalWorldDefinition {
                 .population
                 .maximum_actor_count()
                 .saturating_add(biome.encounters.maximum_actor_count())
+                .saturating_add(
+                    biome
+                        .fauna
+                        .as_ref()
+                        .map_or(0, super::RegionFaunaProfile::maximum_actor_count),
+                )
                 > MAX_REGION_POPULATION_ACTORS
             {
                 return Err(RegionalWorldError::PopulationActorBudgetExceeded);
@@ -2362,6 +2412,147 @@ impl RegionalWorldCatalog {
         catalog
     }
 
+    /// Removes later armor tuning from all hostile regional sources without
+    /// changing their counts, placement streams or other body properties.
+    pub fn without_population_base_armor_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            for biome in &mut definition.biomes {
+                for rule in &mut biome.population.rules {
+                    rule.group.remove_base_armor_metadata();
+                }
+                for rule in &mut biome.encounters.rules {
+                    rule.group.remove_base_armor_metadata();
+                }
+                if let Some(threats) = &mut biome.threats {
+                    threats.actor.remove_base_armor_metadata();
+                }
+            }
+        }
+        catalog
+    }
+
+    /// Restores the authored pre-v109 surface draw counts, weights and layout.
+    /// Other worlds, deeper biomes, combat stats and fauna are untouched.
+    pub fn without_surface_density_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            if definition.id.as_str() != "core:simulation_overworld" {
+                continue;
+            }
+            for biome in &mut definition.biomes {
+                let range = match biome.biome.as_str() {
+                    "core:human_habitat" => [3, 6],
+                    "core:surface_wilds" => [4, 7],
+                    _ => continue,
+                };
+                // Only strip the new metadata, not custom profiles without it.
+                if !biome.encounters.spread_groups {
+                    continue;
+                }
+                biome.encounters.minimum_group_rolls = range[0];
+                biome.encounters.maximum_group_rolls = range[1];
+                biome.encounters.spread_groups = false;
+                for rule in &mut biome.encounters.rules {
+                    match rule.ai().behavior {
+                        crate::ai::AiBehavior::TelegraphedShooter => rule.weight = 25,
+                        crate::ai::AiBehavior::FieldMedic { .. } => rule.weight = 20,
+                        _ => {}
+                    }
+                }
+            }
+        }
+        catalog
+    }
+
+    /// v108 explicitly identifies humanoid weapon carriers, never by glyph/AI.
+    pub fn without_carried_weapon_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            for biome in &mut definition.biomes {
+                for rule in biome
+                    .population
+                    .rules
+                    .iter_mut()
+                    .chain(&mut biome.encounters.rules)
+                {
+                    rule.group.remove_carried_weapon_metadata();
+                }
+            }
+        }
+        catalog
+    }
+
+    /// v100 adds two surface encounter roles; old runs keep the exact draw table.
+    pub fn without_surface_cast_metadata(&self) -> Self {
+        let mut catalog = self
+            .without_surface_density_metadata()
+            .without_fauna_metadata();
+        for definition in catalog.definitions.values_mut() {
+            for biome in &mut definition.biomes {
+                biome.encounters.rules.retain(|rule| {
+                    !matches!(
+                        rule.group.ai().behavior,
+                        crate::ai::AiBehavior::TelegraphedShooter
+                            | crate::ai::AiBehavior::FieldMedic { .. }
+                    )
+                });
+            }
+        }
+        catalog
+    }
+
+    /// Restore the v102 surface-wild fauna table and its previous level ceiling.
+    pub fn without_heavy_fauna_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            for biome in &mut definition.biomes {
+                if let Some(fauna) = &mut biome.fauna {
+                    let mut removed = false;
+                    for family in &mut fauna.families {
+                        family.species.retain(|species| {
+                            let keep = species.id.as_str() != "core:bone_breaker";
+                            removed |= !keep;
+                            keep
+                        });
+                    }
+                    if removed {
+                        fauna.level_range[1] = 3;
+                    }
+                }
+            }
+        }
+        catalog
+    }
+
+    /// v102 adds a second scavenger species without changing the previous draw table.
+    pub fn without_skittish_fauna_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            for biome in &mut definition.biomes {
+                if let Some(fauna) = &mut biome.fauna {
+                    for family in &mut fauna.families {
+                        family
+                            .species
+                            .retain(|species| species.id.as_str() != "core:rubble_nibbler");
+                    }
+                }
+            }
+        }
+        catalog
+    }
+
+    /// v101 fauna is a separate population stream; previous worlds remain identical.
+    pub fn without_fauna_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        for definition in catalog.definitions.values_mut() {
+            for biome in &mut definition.biomes {
+                biome.fauna = None;
+            }
+        }
+        catalog
+    }
+
     /// Removes v42 displacement and locomotion capabilities without erasing
     /// the earlier body profiles, attributes or attack Impact metadata.
     pub fn without_melee_skill_body_metadata(&self) -> Self {
@@ -2416,6 +2607,28 @@ impl RegionalWorldCatalog {
                 }
                 if let Some(threats) = &mut biome.threats {
                     threats.actor.remove_electronic_system_metadata();
+                }
+            }
+        }
+        catalog
+    }
+
+    /// v106 adds caches only to these four core biomes. Older worlds retain
+    /// their exact metadata, including existing maintenance/production loot.
+    pub fn without_deep_equipment_cache_metadata(&self) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog.definitions.get_mut(
+            &"core:simulation_overworld"
+                .parse()
+                .expect("built-in world ID"),
+        ) {
+            for biome in &mut definition.biomes {
+                if matches!(
+                    biome.biome.as_str(),
+                    "core:research" | "core:security" | "core:network" | "core:corrupted"
+                ) {
+                    biome.loot = None;
+                    biome.landmarks = RegionLandmarkProfile::default();
                 }
             }
         }
@@ -2547,6 +2760,7 @@ impl RegionalWorldCatalog {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum RegionalWorldError {
+    InvalidFauna(String),
     InvertedBounds,
     WorldBudgetExceeded,
     ZeroProvinceSize,
@@ -2631,6 +2845,7 @@ pub enum RegionalWorldError {
 impl Display for RegionalWorldError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::InvalidFauna(error) => write!(formatter, "invalid regional fauna: {error}"),
             Self::InvertedBounds => write!(formatter, "regional world bounds are inverted"),
             Self::WorldBudgetExceeded => write!(
                 formatter,

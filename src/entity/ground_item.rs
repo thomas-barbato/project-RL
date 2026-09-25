@@ -27,6 +27,8 @@ pub struct GroundItem {
     item: ItemId,
     quantity: u16,
     owner: Option<SocialGroupId>,
+    #[serde(default)]
+    magic_modifiers: Option<super::MagicItemModifiers>,
 }
 
 impl Debug for GroundItem {
@@ -37,6 +39,9 @@ impl Debug for GroundItem {
             .field("quantity", &self.quantity);
         if let Some(owner) = &self.owner {
             item.field("owner", owner);
+        }
+        if let Some(bonus) = &self.magic_modifiers {
+            item.field("magic_modifiers", bonus);
         }
         item.finish()
     }
@@ -57,6 +62,10 @@ impl GroundItem {
 
     pub const fn owner(&self) -> Option<&SocialGroupId> {
         self.owner.as_ref()
+    }
+
+    pub fn magic_modifiers(&self) -> Option<super::MagicItemModifiers> {
+        self.magic_modifiers.clone()
     }
 }
 
@@ -102,6 +111,28 @@ impl GroundItemRegistry {
         if self.item_at(position).is_some() {
             return Err(GroundItemRegistryError::Occupied(position));
         }
+        self.insert_at(position, item, quantity, owner, None)
+    }
+
+    /// Death must not erase loot just because another item occupies the tile.
+    /// Ordinary placements retain their historical one-stack-per-cell rule.
+    pub(crate) fn spawn_remains(
+        &mut self,
+        position: GridPos,
+        item: ItemId,
+        modifiers: Option<super::MagicItemModifiers>,
+    ) -> Result<GroundItemId, GroundItemRegistryError> {
+        self.insert_at(position, item, 1, None, modifiers)
+    }
+
+    fn insert_at(
+        &mut self,
+        position: GridPos,
+        item: ItemId,
+        quantity: u16,
+        owner: Option<SocialGroupId>,
+        magic_modifiers: Option<super::MagicItemModifiers>,
+    ) -> Result<GroundItemId, GroundItemRegistryError> {
         let following_id = self
             .next_id
             .checked_add(1)
@@ -115,6 +146,7 @@ impl GroundItemRegistry {
                 item,
                 quantity,
                 owner,
+                magic_modifiers,
             },
         );
         Ok(id)
@@ -124,10 +156,27 @@ impl GroundItemRegistry {
         self.items.get(&id)
     }
 
+    pub(crate) fn retain_magic_modifiers(
+        &mut self,
+        id: GroundItemId,
+        modifiers: super::MagicItemModifiers,
+    ) {
+        if let Some(item) = self.items.get_mut(&id) {
+            item.magic_modifiers = Some(modifiers);
+        }
+    }
+
     pub fn item_at(&self, position: GridPos) -> Option<GroundItemId> {
         self.items
             .iter()
             .find_map(|(id, item)| (item.position == position).then_some(*id))
+    }
+
+    pub fn count_at(&self, position: GridPos) -> usize {
+        self.items
+            .values()
+            .filter(|item| item.position == position)
+            .count()
     }
 
     pub fn iter(&self) -> impl Iterator<Item = (GroundItemId, &GroundItem)> {
@@ -164,6 +213,7 @@ impl GroundItemRegistry {
             item: item.item.clone(),
             quantity,
             owner: item.owner.clone(),
+            magic_modifiers: item.magic_modifiers.clone(),
         };
         item.quantity -= quantity;
         if item.quantity == 0 {

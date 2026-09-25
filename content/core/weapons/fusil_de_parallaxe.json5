@@ -1,0 +1,19 @@
+{
+  "id": "core:fusil_de_parallaxe",
+  "name_key": "equipment.fusil_de_parallaxe.name",
+  "description_key": "equipment.fusil_de_parallaxe.description",
+  "mass_grams": 3700,
+  "ammunition_capacity": 6,
+  "attack": {
+    "range": 10,
+    "distance_metric": "euclidean",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": 15,
+    "recovery_time_units": 40,
+    "damage": {
+      "amount": 7,
+      "damage_type": "piercing",
+      "penetration": 2
+    }
+  }
+}

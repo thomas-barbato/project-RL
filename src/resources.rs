@@ -169,6 +169,15 @@ impl HeatReserve {
         self.current = self.current.saturating_add(amount);
     }
 
+    pub const fn dissipation_per_phase(self) -> u16 {
+        self.dissipation_per_phase
+    }
+
+    pub(crate) fn set_dissipation_per_phase(&mut self, amount: u16) {
+        // Equipping changes future cooling, never accumulated heat.
+        self.dissipation_per_phase = amount;
+    }
+
     pub fn dissipate(&mut self) -> u16 {
         let before = self.current;
         self.current = self.current.saturating_sub(self.dissipation_per_phase);

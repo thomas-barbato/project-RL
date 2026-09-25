@@ -483,7 +483,8 @@
       // V21: guarded points of interest plus a few roaming groups. This layer
       // has its own random stream so density tuning never changes the terrain.
       encounters: {
-        group_rolls: [3, 6],
+        // v109: more encounters, separated groups and safe arrival areas.
+        group_rolls: [12, 16], spread_groups: true,
         groups: [
           {
             weight: 70, count: [1, 2], minimum_passage_distance: 8,
@@ -525,13 +526,115 @@
             weight: 25, count: [1, 1], minimum_passage_distance: 10,
             maximum_integrity: 9, player_relation: "hostile",
             primary_attributes: { power: 5, coordination: 7, resilience: 5, perception: 8, processing: 5 },
-            body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            body: { base_hit_points: 9, base_armor: 1, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
               range: 6, distance_metric: "euclidean", requires_line_of_sight: true,
               damage: { amount: 1, damage_type: "piercing", penetration: 0 },
             },
             ai: { behavior: "sentry", perception_radius: 11, maximum_path_search: 0 },
             defeat_reward: { base_experience: 6, threat_level: 1, origin: "persistent" },
+          },
+          {
+            // v100: the shot is announced one action before impact.
+            tags: ["core:humanoid_rifle_carrier"],
+            weight: 160, count: [1, 1], minimum_passage_distance: 12,
+            maximum_integrity: 8, player_relation: "hostile",
+            primary_attributes: { power: 5, coordination: 6, resilience: 5, perception: 8, processing: 5 },
+            body: { base_hit_points: 8, mass_grams: 65000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 5, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 5, damage_type: "piercing", penetration: 1 },
+            },
+            ai: { behavior: "telegraphed_shooter", perception_radius: 10, maximum_path_search: 2048, maximum_pursuit_distance: 12 },
+            defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+          },
+          {
+            // v100: a humanoid field medic with three finite care supplies.
+            tags: ["core:humanoid_knife_carrier"],
+            weight: 40, count: [1, 1], minimum_passage_distance: 12,
+            maximum_integrity: 8, player_relation: "hostile",
+            primary_attributes: { power: 4, coordination: 5, resilience: 5, perception: 7, processing: 7 },
+            body: { base_hit_points: 8, mass_grams: 55000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+              damage: { amount: 2, damage_type: "kinetic", penetration: 0 },
+            },
+            ai: {
+              behavior: "field_medic", perception_radius: 9, maximum_path_search: 2048,
+              maximum_pursuit_distance: 12, care: { restoration: 3, supplies: 3 },
+            },
+            defeat_reward: { base_experience: 6, threat_level: 2, origin: "persistent" },
+          },
+        ],
+      },
+      // v101: bounded family/species draws, separate from humanoid encounters.
+      fauna: {
+        group_rolls: [1, 2], level_range: [1, 3], danger_budget: 6,
+        families: [
+          {
+            id: "core:fauna_scavengers", weight: 40,
+            species: [{
+              // v102: a timid neutral, not another pack attacker. Removing this
+              // entry restores the exact v101 species weights and ordering.
+              id: "core:rubble_nibbler", level: 1, habitats: ["gravel", "scrub", "ruin_floor"],
+              population: {
+                weight: 100, count: [1, 2], minimum_passage_distance: 12,
+                maximum_integrity: 5, player_relation: "neutral",
+                primary_attributes: { power: 2, coordination: 6, resilience: 3, perception: 5, processing: 2 },
+                body: { base_hit_points: 5, mass_grams: 3500, locomotion: { hindrance_compatible: true } },
+                attack: { range: 1, distance_metric: "chebyshev", requires_line_of_sight: true,
+                  damage: { amount: 2, damage_type: "piercing", penetration: 0 } },
+                ai: { behavior: "skittish_forager", perception_radius: 4, maximum_path_search: 128 },
+              },
+            }, {
+              id: "core:friche_biter", level: 2, habitats: ["gravel", "scrub", "ruin_floor"],
+              population: {
+                weight: 100, count: [2, 3], minimum_passage_distance: 16,
+                maximum_integrity: 6, player_relation: "hostile",
+                primary_attributes: { power: 4, coordination: 6, resilience: 4, perception: 6, processing: 2 },
+                body: { base_hit_points: 6, mass_grams: 18000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+                attack: { range: 1, distance_metric: "chebyshev", requires_line_of_sight: true,
+                  damage: { amount: 2, damage_type: "piercing", penetration: 0 } },
+                ai: { behavior: "pack_hunter", perception_radius: 8, maximum_path_search: 1024,
+                  maximum_pursuit_distance: 8, pursuit_lifecycle: { maximum_turns: 8, search_turns: 2, cooldown_turns: 4 } },
+                defeat_reward: { base_experience: 4, threat_level: 2, origin: "persistent" },
+              },
+            }],
+          },
+          {
+            id: "core:fauna_burrowers", weight: 30,
+            species: [{
+              id: "core:vibration_burrower", level: 2, habitats: ["grass", "scrub", "mud"],
+              population: {
+                weight: 100, count: [1, 1], minimum_passage_distance: 16,
+                maximum_integrity: 8, player_relation: "hostile",
+                primary_attributes: { power: 5, coordination: 4, resilience: 5, perception: 3, processing: 2 },
+                body: { base_hit_points: 8, mass_grams: 25000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+                attack: { range: 1, distance_metric: "chebyshev", requires_line_of_sight: true,
+                  damage: { amount: 3, damage_type: "kinetic", penetration: 0 } },
+                ai: { behavior: "vibration_hunter", perception_radius: 1, maximum_path_search: 1024,
+                  maximum_pursuit_distance: 8, hearing: { radius: 8, sensitivity: 4, memory_turns: 4 } },
+                defeat_reward: { base_experience: 5, threat_level: 2, origin: "persistent" },
+              },
+            }],
+          },
+          {
+            id: "core:fauna_carapaces", weight: 30,
+            species: [{
+              id: "core:moss_grazer", level: 1, habitats: ["grass", "mud", "scrub"],
+              population: {
+                weight: 100, count: [1, 2], minimum_passage_distance: 12,
+                maximum_integrity: 8, player_relation: "neutral",
+                primary_attributes: { power: 2, coordination: 3, resilience: 5, perception: 4, processing: 2 },
+                body: { base_hit_points: 8, base_armor: 1, mass_grams: 8000, locomotion: { hindrance_compatible: true } },
+                // Ordinary attack data is required by the population schema;
+                // the grazer's AI never uses it and no defeat reward is granted.
+                attack: { range: 1, distance_metric: "chebyshev", requires_line_of_sight: true,
+                  damage: { amount: 1, damage_type: "kinetic", penetration: 0 } },
+                ai: { behavior: "timid_grazer", perception_radius: 4, maximum_path_search: 128,
+                  maximum_pursuit_distance: 3, shelter: { armor: 3, turns: 4 } },
+              },
+            }],
           },
         ],
       },
@@ -640,7 +743,7 @@
         ],
       },
       encounters: {
-        group_rolls: [4, 7],
+        group_rolls: [14, 18], spread_groups: true,
         groups: [
           {
             weight: 65, count: [1, 2], minimum_passage_distance: 8,
@@ -681,13 +784,129 @@
             weight: 25, count: [1, 1], minimum_passage_distance: 11,
             maximum_integrity: 10, player_relation: "hostile",
             primary_attributes: { power: 5, coordination: 8, resilience: 5, perception: 9, processing: 5 },
-            body: { base_hit_points: 10, mass_grams: 78000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            body: { base_hit_points: 10, base_armor: 2, mass_grams: 78000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
               range: 6, distance_metric: "euclidean", requires_line_of_sight: true,
               damage: { amount: 2, damage_type: "piercing", penetration: 0 },
             },
             ai: { behavior: "sentry", perception_radius: 12, maximum_path_search: 0 },
             defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+          },
+          {
+            // v100: the shot is announced one action before impact.
+            tags: ["core:humanoid_rifle_carrier"],
+            weight: 160, count: [1, 1], minimum_passage_distance: 12,
+            maximum_integrity: 8, player_relation: "hostile",
+            primary_attributes: { power: 5, coordination: 6, resilience: 5, perception: 8, processing: 5 },
+            body: { base_hit_points: 8, mass_grams: 65000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 5, distance_metric: "euclidean", requires_line_of_sight: true,
+              damage: { amount: 5, damage_type: "piercing", penetration: 1 },
+            },
+            ai: { behavior: "telegraphed_shooter", perception_radius: 10, maximum_path_search: 2048, maximum_pursuit_distance: 12 },
+            defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+          },
+          {
+            // v100: a humanoid field medic with three finite care supplies.
+            tags: ["core:humanoid_knife_carrier"],
+            weight: 40, count: [1, 1], minimum_passage_distance: 12,
+            maximum_integrity: 8, player_relation: "hostile",
+            primary_attributes: { power: 4, coordination: 5, resilience: 5, perception: 7, processing: 7 },
+            body: { base_hit_points: 8, mass_grams: 55000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            attack: {
+              range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+              damage: { amount: 2, damage_type: "kinetic", penetration: 0 },
+            },
+            ai: {
+              behavior: "field_medic", perception_radius: 9, maximum_path_search: 2048,
+              maximum_pursuit_distance: 12, care: { restoration: 3, supplies: 3 },
+            },
+            defeat_reward: { base_experience: 6, threat_level: 2, origin: "persistent" },
+          },
+        ],
+      },
+      // v101: bounded family/species draws, separate from humanoid encounters.
+      fauna: {
+        group_rolls: [1, 2], level_range: [1, 4], danger_budget: 6,
+        families: [
+          {
+            id: "core:fauna_scavengers", weight: 40,
+            species: [{
+              // v102: a timid neutral, not another pack attacker. Removing this
+              // entry restores the exact v101 species weights and ordering.
+              id: "core:rubble_nibbler", level: 1, habitats: ["gravel", "scrub", "ruin_floor"],
+              population: {
+                weight: 100, count: [1, 2], minimum_passage_distance: 12,
+                maximum_integrity: 5, player_relation: "neutral",
+                primary_attributes: { power: 2, coordination: 6, resilience: 3, perception: 5, processing: 2 },
+                body: { base_hit_points: 5, mass_grams: 3500, locomotion: { hindrance_compatible: true } },
+                attack: { range: 1, distance_metric: "chebyshev", requires_line_of_sight: true,
+                  damage: { amount: 2, damage_type: "piercing", penetration: 0 } },
+                ai: { behavior: "skittish_forager", perception_radius: 4, maximum_path_search: 128 },
+              },
+            }, {
+              id: "core:friche_biter", level: 2, habitats: ["gravel", "scrub", "ruin_floor"],
+              population: {
+                weight: 100, count: [2, 3], minimum_passage_distance: 16,
+                maximum_integrity: 6, player_relation: "hostile",
+                primary_attributes: { power: 4, coordination: 6, resilience: 4, perception: 6, processing: 2 },
+                body: { base_hit_points: 6, mass_grams: 18000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+                attack: { range: 1, distance_metric: "chebyshev", requires_line_of_sight: true,
+                  damage: { amount: 2, damage_type: "piercing", penetration: 0 } },
+                ai: { behavior: "pack_hunter", perception_radius: 8, maximum_path_search: 1024,
+                  maximum_pursuit_distance: 8, pursuit_lifecycle: { maximum_turns: 8, search_turns: 2, cooldown_turns: 4 } },
+                defeat_reward: { base_experience: 4, threat_level: 2, origin: "persistent" },
+              },
+            }, {
+              // v103: rare, solitary heavy bite in wild regions only.
+              id: "core:bone_breaker", level: 4, habitats: ["gravel", "scrub", "ruin_floor"],
+              population: {
+                weight: 25, count: [1, 1], minimum_passage_distance: 20,
+                maximum_integrity: 12, player_relation: "hostile",
+                primary_attributes: { power: 7, coordination: 4, resilience: 6, perception: 7, processing: 2 },
+                body: { base_hit_points: 12, mass_grams: 65000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+                attack: { range: 1, distance_metric: "chebyshev", requires_line_of_sight: true,
+                  recovery_time_units: 2, damage: { amount: 6, damage_type: "piercing", penetration: 0 } },
+                ai: { behavior: "telegraphed_biter", perception_radius: 7, maximum_path_search: 1024,
+                  maximum_pursuit_distance: 8 },
+                defeat_reward: { base_experience: 8, threat_level: 4, origin: "persistent" },
+              },
+            }],
+          },
+          {
+            id: "core:fauna_burrowers", weight: 30,
+            species: [{
+              id: "core:vibration_burrower", level: 2, habitats: ["grass", "scrub", "mud"],
+              population: {
+                weight: 100, count: [1, 1], minimum_passage_distance: 16,
+                maximum_integrity: 8, player_relation: "hostile",
+                primary_attributes: { power: 5, coordination: 4, resilience: 5, perception: 3, processing: 2 },
+                body: { base_hit_points: 8, mass_grams: 25000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+                attack: { range: 1, distance_metric: "chebyshev", requires_line_of_sight: true,
+                  damage: { amount: 3, damage_type: "kinetic", penetration: 0 } },
+                ai: { behavior: "vibration_hunter", perception_radius: 1, maximum_path_search: 1024,
+                  maximum_pursuit_distance: 8, hearing: { radius: 8, sensitivity: 4, memory_turns: 4 } },
+                defeat_reward: { base_experience: 5, threat_level: 2, origin: "persistent" },
+              },
+            }],
+          },
+          {
+            id: "core:fauna_carapaces", weight: 30,
+            species: [{
+              id: "core:moss_grazer", level: 1, habitats: ["grass", "mud", "scrub"],
+              population: {
+                weight: 100, count: [1, 2], minimum_passage_distance: 12,
+                maximum_integrity: 8, player_relation: "neutral",
+                primary_attributes: { power: 2, coordination: 3, resilience: 5, perception: 4, processing: 2 },
+                body: { base_hit_points: 8, base_armor: 1, mass_grams: 8000, locomotion: { hindrance_compatible: true } },
+                // Ordinary attack data is required by the population schema;
+                // the grazer's AI never uses it and no defeat reward is granted.
+                attack: { range: 1, distance_metric: "chebyshev", requires_line_of_sight: true,
+                  damage: { amount: 1, damage_type: "kinetic", penetration: 0 } },
+                ai: { behavior: "timid_grazer", perception_radius: 4, maximum_path_search: 128,
+                  maximum_pursuit_distance: 3, shelter: { armor: 3, turns: 4 } },
+              },
+            }],
           },
         ],
       },
@@ -760,7 +979,7 @@
             maximum_integrity: 9,
             player_relation: "hostile",
             primary_attributes: { power: 6, coordination: 6, resilience: 7, perception: 6, processing: 5 },
-            body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            body: { base_hit_points: 9, base_armor: 1, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 9, failure_effect: { type: "disable_movement" } }],
             electronic_system: { digital_defense: 55, heat_alert_threshold: 35, heat_critical_threshold: 50, heat_dissipation_per_phase: 4, stored_energy: 35 },
             attack: {
@@ -802,7 +1021,7 @@
             maximum_integrity: 9,
             player_relation: "hostile",
             primary_attributes: { power: 6, coordination: 6, resilience: 7, perception: 6, processing: 5 },
-            body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            body: { base_hit_points: 9, base_armor: 1, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
               range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
               impact: { material_cap: 12 },
@@ -868,7 +1087,7 @@
             maximum_integrity: 10,
             player_relation: "hostile",
             primary_attributes: { power: 7, coordination: 7, resilience: 7, perception: 7, processing: 5 },
-            body: { base_hit_points: 10, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            body: { base_hit_points: 10, base_armor: 2, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 10, failure_effect: { type: "disable_movement" } }],
             electronic_system: { digital_defense: 60, heat_alert_threshold: 38, heat_critical_threshold: 55, heat_dissipation_per_phase: 5, stored_energy: 40 },
             attack: {
@@ -910,7 +1129,7 @@
             maximum_integrity: 10,
             player_relation: "hostile",
             primary_attributes: { power: 7, coordination: 7, resilience: 7, perception: 7, processing: 5 },
-            body: { base_hit_points: 10, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+            body: { base_hit_points: 10, base_armor: 2, mass_grams: 80000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
             attack: {
               range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
               impact: { material_cap: 14 },
@@ -959,6 +1178,9 @@
     },
     {
       id: "core:research", weight: 35, minimum_depth: 2, maximum_depth: 4,
+      // v106: recoverable supplies in caches, never possessions of local robots.
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [3, 5] },
+      landmarks: { caches: [3, 3], threat_camps: [0, 0], minimum_passage_distance: 9 },
       terrain: {
         ground: "ruin_floor", patch_count: 18,
         minimum_patch_radius: 2, maximum_patch_radius: 8,
@@ -987,6 +1209,8 @@
     },
     {
       id: "core:security", weight: 30, minimum_depth: 3, maximum_depth: 6,
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [3, 5] },
+      landmarks: { caches: [3, 3], threat_camps: [0, 0], minimum_passage_distance: 9 },
       terrain: {
         ground: "ruin_floor", patch_count: 22,
         minimum_patch_radius: 2, maximum_patch_radius: 7,
@@ -998,6 +1222,8 @@
     },
     {
       id: "core:network", weight: 25, minimum_depth: 4, maximum_depth: 7,
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [3, 5] },
+      landmarks: { caches: [3, 3], threat_camps: [0, 0], minimum_passage_distance: 9 },
       terrain: {
         ground: "ruin_floor", patch_count: 26,
         minimum_patch_radius: 2, maximum_patch_radius: 8,
@@ -1009,6 +1235,8 @@
     },
     {
       id: "core:corrupted", weight: 15, minimum_depth: 5, maximum_depth: 7,
+      loot: { table: "core:regional_cache", source: "core:regional_cache", draws: [3, 5] },
+      landmarks: { caches: [3, 3], threat_camps: [0, 0], minimum_passage_distance: 9 },
       terrain: {
         ground: "mud", patch_count: 30,
         minimum_patch_radius: 2, maximum_patch_radius: 10,

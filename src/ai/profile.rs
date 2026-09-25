@@ -7,6 +7,27 @@ pub enum AiBehavior {
     Hunter,
     Sentry,
     Skirmisher,
+    /// Commits to a visible cell, then fires there on its next opportunity.
+    TelegraphedShooter,
+    /// Restores an adjacent ally using a finite, persistent supply reserve.
+    FieldMedic {
+        restoration: u16,
+        supplies: u16,
+    },
+    PackHunter,
+    VibrationHunter {
+        hearing_radius: u16,
+        hearing_gain: u16,
+        memory_turns: u16,
+    },
+    TimidGrazer {
+        shell_armor: u16,
+        shelter_turns: u16,
+    },
+    /// Avoids perceived threats; only defends itself when no escape exists.
+    SkittishForager,
+    /// Commits a melee strike to a cell, then stays still during recovery.
+    TelegraphedBiter,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
@@ -66,6 +87,22 @@ pub enum AiState {
     Cooldown {
         remaining_turns: u16,
     },
+    Aiming {
+        origin: crate::world::GridPos,
+        target_at: crate::world::GridPos,
+    },
+    SupportStock {
+        remaining: u16,
+    },
+    Listening {
+        remaining_turns: u16,
+        last_heard: crate::world::GridPos,
+    },
+    Sheltered {
+        remaining_turns: u16,
+    },
+    Fleeing,
+    Cornered,
 }
 
 /// Data-shaped AI parameters, suitable for later content definitions.

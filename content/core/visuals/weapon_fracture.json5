@@ -1,0 +1,11 @@
+{
+  id: "core:weapon_fracture",
+  terminal: {
+    frames: ["fracture", "fracture", "fracture", "fracture"],
+    color: [134, 128, 112, 235],
+    accent_colors: [[224, 204, 162, 250], [255, 247, 217, 255]],
+    frame_millis: 135,
+    step_millis: 45,
+    linger_millis: 90,
+  },
+}

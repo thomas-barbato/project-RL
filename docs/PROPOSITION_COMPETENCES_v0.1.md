@@ -166,15 +166,15 @@ Rôle : frapper fort, frapper précisément, contrôler le contact. Primaires pr
 | Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
 | MEL-01 | 1 | Frappe puissante | Renforce une attaque de mêlée, avec une récupération plus longue. | Arme/actuateurs adaptés ; davantage de temps laissé aux adversaires. Une cible peut exploiter la récupération. |
-| MEL-02 | 1 | Frappe précise | Prépare une attaque pour améliorer les chances de toucher une cible difficile. | Préparation sur une cible perçue ; perte du contact ou changement de cible fait perdre la préparation. |
+| MEL-02 | 1 | Frappe précise | Porte immédiatement une attaque moins puissante, mais beaucoup plus fiable contre une cible difficile à toucher. | Compromis dégâts/précision : inutile de payer cette perte contre une cible déjà facile. |
 | MEL-03 | 2 | Repoussement | Inflige peu de dégâts et tente de déplacer la cible d'une case. | Comparaison de force utile, masse et ancrage ; destination légale. Un obstacle bloque le déplacement ; une collision dommageable reste conditionnelle. |
 | MEL-04 | 2 | Parade | Consacre une action à réduire les dégâts de la prochaine attaque de mêlée pendant la fenêtre de garde. | Équipement capable de parer ; la garde ne protège pas automatiquement des explosions ou des programmes. L'adversaire peut attendre, reculer ou utiliser une autre attaque. |
 | MEL-05 | 3 | Balayage | Frappe plusieurs cases adjacentes dans un arc, avec des dégâts réduits par cible. | Arme et espace adaptés ; risque pour les alliés et consommation accrue. Les obstacles coupent les trajectoires. |
 | MEL-06 | 3 | Riposte | Améliore MEL-04 : après une parade réussie, produit une contre-attaque si l'ennemi reste à portée. | Demande Parade et utilise le droit de réaction. Aucun enchaînement de ripostes entre acteurs. |
-| MEL-07 | 4 | Brise-armure | Sacrifie une partie des dégâts immédiats pour fragiliser temporairement le blindage. | Cible blindée et arme adaptée ; effet borné, sans cumul infini. Une cible sans blindage offre peu d'intérêt. |
+| MEL-07 | 4 | Brise-armure | Sacrifie une partie des dégâts immédiats pour fragiliser temporairement l'armure. | Cible protégée et arme adaptée ; effet borné, sans cumul infini. Une cible sans armure offre peu d'intérêt. |
 | MEL-08 | 4 | Entrave | Frappe une fonction locomotrice pour gêner brièvement le déplacement. | Cible mobile compatible et résistance applicable ; pas de blocage permanent par répétition. |
-| MEL-09 | 5 | Écrasement | Exploite une immobilisation ou une entrave pour infliger une frappe particulièrement lourde. | La condition peut venir d'un allié, du terrain ou de MEL-08 ; cette dernière n'est pas un prérequis d'apprentissage. Récupération et matériel limitent l'emploi. |
-| MEL-10 | 5 | Interception | Prépare une garde permettant de frapper un adversaire qui quitte le contact. | Utilise une réaction ; n'annule pas automatiquement le mouvement. Proposition : se déclenche sur un retrait volontaire, pas sur un Repoussement allié. |
+| MEL-09 | 5 | Écrasement | Exploite une immobilisation ou une entrave pour infliger une frappe dévastatrice et partiellement perforante. | La condition peut venir d'un allié, du terrain ou de MEL-08 ; cette dernière n'est pas un prérequis d'apprentissage. Récupération et coût énergétique limitent l'emploi. |
+| MEL-10 | 5 | Interception | Prépare une garde permettant de frapper et de retenir un adversaire qui quitte le contact. | Utilise une réaction ; sur une touche, l'adversaire résiste avec sa Stabilité. Un déplacement forcé ne la déclenche pas. |
 
 Frontière : les charges, franchissements et déplacements volontaires appartiennent à Manœuvre. Le déplacement imposé par un coup appartient au combat rapproché.
 
@@ -196,7 +196,7 @@ Rôle : précision, rafales et contrôle d'un passage. Primaire principale : Coo
 | TIR-06 | 3 | Rafale répartie | Répartit les projectiles disponibles entre plusieurs cibles proches et visibles. | Chaque trajectoire est validée ; le total reste celui de la rafale. Le joueur renonce à concentrer tous les tirs sur une cible. |
 | TIR-07 | 4 | Visée persistante | Améliore TIR-01 : conserve une partie de la préparation après le tir sur la même cible. | Demande Tir visé ; rester immobile et conserver le contact. Le bonus ne croît pas indéfiniment. |
 | TIR-08 | 4 | Surveillance étendue | Améliore TIR-04 : couvre un secteur plus large. | Demande Surveillance ; aucune augmentation du champ de vision, de la portée physique ou du nombre de réactions. |
-| TIR-09 | 5 | Tir de rupture | Prépare un tir exploitant une faiblesse identifiée pour contourner une partie du blindage. | Arme adaptée et faiblesse connue par observation, équipement, renseignement ou allié. Ne traverse pas toute protection et n'impose pas une seconde compétence obligatoire. |
+| TIR-09 | 5 | Tir de rupture | Prépare un tir exploitant une faiblesse identifiée pour traverser une partie de l'armure. | Arme adaptée et faiblesse connue par observation, équipement, renseignement ou allié. Ne traverse pas toute protection et n'impose pas une seconde compétence obligatoire. |
 | TIR-10 | 5 | Barrage | Maintient un feu sur une petite zone, avec dégâts répartis et suppression. | Arme soutenant ce tir, forte consommation et immobilisation pendant l'action. Les couverts et le risque allié restent applicables. |
 
 Frontière : les attaques de zone natives d'une arme restent disponibles. Démolition apporte des procédés de mise à feu et de destruction ; elle n'est pas automatiquement ajoutée à tous les jets d'un lanceur explosif. Les règles doivent éviter de compter deux fois la même maîtrise.
@@ -236,7 +236,7 @@ Rôle : se déplacer sous pression, franchir un obstacle et choisir sa position.
 
 | Code | Niveau | Technique | Fonctionnement | Conditions, coût et réponse possible |
 |---|---:|---|---|---|
-| MAN-01 | 1 | Pas de dégagement | Effectue un pas prudent réduisant la vulnérabilité à une interception de mêlée lors du retrait. La consigne peut être maintenue pour les pas de retraite suivants sans achat supplémentaire. | Chaque pas consomme son action et exige une destination accessible. Attaquer ou changer de posture rompt la consigne, sans cumul du bonus. Ne neutralise pas les zones dangereuses ni les tirs couvrant l'arrivée. |
+| MAN-01 | 1 | Pas de dégagement | Effectue un pas prudent réduisant la vulnérabilité à une interception de mêlée lorsque le personnage quitte le corps à corps. La consigne peut être maintenue pour les pas suivants sans achat supplémentaire. | Chaque pas consomme son action et exige une destination accessible. Attaquer ou changer de posture rompt la consigne, sans cumul du bonus. Ne neutralise pas les zones dangereuses ni les tirs couvrant l'arrivée. |
 | MAN-02 | 1 | Appui stable | Prépare un ancrage temporaire pour mieux résister aux poussées et déséquilibres. | Sol et corps compatibles ; rester en place. Consomme du temps et ne protège pas des autres dégâts. |
 | MAN-03 | 2 | Franchissement | Traverse un obstacle bas, un débris ou un petit intervalle compatible avec le châssis. | Départ, passage et arrivée vérifiés ; coût en temps/énergie. Aucun passage à travers un mur ou une fosse trop large. |
 | MAN-04 | 2 | Charge | Avance en ligne puis effectue une attaque ordinaire bénéficiant de l'élan. | Cible perçue, ligne praticable et distance suffisante ; coût global supérieur à une action simple. Chaque case peut déclencher un danger ou une surveillance. |
@@ -725,15 +725,15 @@ Les lignes utilisent des codes et du vocabulaire de conception, pas des descript
 | Code | Temps / type | Coûts | Portée / cibles | Effet chiffré proposé | Échec, fin et contre-mesure |
 |---|---|---|---|---|---|
 | MEL-01 | A1 + R1 | Arme | Contact | Dégâts physiques ×1,5 ; touche ordinaire. | Récupération engagée même si raté ; esquive, armure ou distance. |
-| MEL-02 | P1+A1 | Arme à la frappe | Contact, cible suivie | +20 Précision pour une frappe. | Bouger, perdre le contact ou changer de cible annule ; pas de cumul avec une autre visée. |
+| MEL-02 | A1 | Arme à la frappe | Contact, une cible | Physiques ×0,75 ; +25 Précision pour cette frappe. | Touche et coûts natifs ordinaires ; le sacrifice de dégâts la réserve aux cibles difficiles à atteindre. |
 | MEL-03 | A1 | Arme | Contact, poussée 1 case | Physiques ×0,5 ; si touche, poussée avec Force=Impact, même à zéro dégât. | Masse/ancrage ou destination invalide bloquent la poussée ; aucun dégât de collision ajouté. |
 | MEL-04 | A1 de garde | 0 à la garde ; 2 E au déclenchement | Soi, une attaque de mêlée | Réaction : −50 % physiques bruts avant Blindage, selon règles communes. | Expire à l'action suivante ; détourner, attendre ou employer un autre type d'attaque. |
 | MEL-05 | A1 + R1 | Arme pour une frappe + 4 E | Jusqu'à 3 cases adjacentes contiguës en arc | Un jet par occupant ; physiques ×0,7 par cible, alliés inclus. | Espace réel requis ; couvert, armure et dispersion des adversaires. |
 | MEL-06 | Amélioration de MEL-04 | Parade + Arme de riposte | Attaquant encore au contact | Une frappe ordinaire après parade, dans la même réaction. | Pas de réaction supplémentaire ; absence de portée/ressources supprime la riposte seulement. |
-| MEL-07 | A1 | Arme + 3 E | Contact | Physiques ×0,6 ; si touche, fragilisation 4 après l'impact pendant 3 UT. | Même à zéro dégât, pas d'effet sur cible sans Blindage ; pas de cumul/rafraîchissement actif. |
+| MEL-07 | A1 | Arme + 3 E | Contact | Physiques ×0,6 ; si touche, fragilisation 4 après l'impact pendant 3 UT. | Même à zéro dégât, pas d'effet sur cible sans Armure ; pas de cumul/rafraîchissement actif. |
 | MEL-08 | A1 | Arme + 3 E ; CD 2 | Contact, locomotion identifiée | Physiques ×0,5 ; si touche, Stabilité contre intensité 60 ; échec défensif : entrave 2 UT. | Cible incompatible ou fonction absente : pas d'entrave ; protection 1 UT après fin. |
-| MEL-09 | A1 + R1 | Arme + 5 E | Contact, cible entravée/immobilisée | Physiques ×1,8 ; touche ordinaire. | Précondition vérifiée à l'engagement ; aucune entrave gratuite ni prérequis MEL-08 ajouté. |
-| MEL-10 | A1 de garde | Arme au déclenchement | Une cible quittant le contact | Une frappe ordinaire de réaction avant retrait volontaire. | Mouvement non annulé automatiquement ; poussée/réaction ne déclenche pas l'interception. |
+| MEL-09 | A1 + R1 | Arme + 5 E | Contact, cible entravée/immobilisée | Physiques ×2,2 ; +2 pénétration d'Armure ; touche ordinaire. | Précondition vérifiée à l'engagement ; aucune entrave gratuite ni prérequis MEL-08 ajouté. |
+| MEL-10 | A1 de garde | Arme au déclenchement | Une cible quittant le contact | Frappe ordinaire de réaction ; sur une touche, Stabilité contre intensité 60. | Échec défensif : la cible reste sur sa case de départ. Réussite ou attaque manquée : elle parvient à s'éloigner. Poussée/réaction ne déclenche pas l'interception. |
 
 ### 16.3. Tir — 10 profils
 
@@ -749,7 +749,7 @@ Pour les modes continus, chaque étape paie ses projectiles. Des munitions insuf
 | TIR-06 | A1 | 3 projectiles natifs | Jusqu'à 3 cibles perçues, distantes entre elles d'au plus 3 cases | Répartir exactement 3 projectiles, au moins 1 par cible ; dispersion −15. | Chaque trajectoire et défense résolues ; aucun tir supplémentaire. |
 | TIR-07 | Amélioration de TIR-01 | Ceux du tir | Même cible | Après le tir visé, conserve +10 Précision pour les tirs simples suivants. | Fin dès mouvement, perte de vue, autre cible ou action autre que tir simple/attente ; ne croît jamais. |
 | TIR-08 | Amélioration de TIR-04 | Ceux de Surveillance | Secteur de 90 degrés dans portée/vision | Remplace les 3 cases par le secteur ; un seul tir et une seule réaction. | Aucune vision ni portée supplémentaire ; mêmes réponses que Surveillance. |
-| TIR-09 | P1+A1 | Arme + 4 E au tir | Portée arme, faiblesse connue | +4 pénétration physique pour ce tir, bornée à la moitié inférieure du Blindage encore présent après fragilisation. | Pas de bonus de toucher ; couvert/mouvement interrompent la préparation ; aucune réduction permanente. |
+| TIR-09 | P1+A1 | Arme + 4 E au tir | Portée arme, faiblesse connue | +4 pénétration physique pour ce tir, bornée à la moitié inférieure de l'Armure encore présente après fragilisation. | Pas de bonus de toucher ; couvert/mouvement interrompent la préparation ; aucune réduction permanente. |
 | TIR-10 | Deux étapes A1 | 3 projectiles par étape | 3 cases adjacentes connues, dans portée | Une balle par case à chaque étape ; jet ordinaire −15 contre occupant réellement exposé ; suppression comme TIR-03. | Immobilité entre étapes ; interruption annule la suite, pas les tirs passés ; alliés exposés. |
 
 Le plafonnement de TIR-09 porte sur sa pénétration **supplémentaire** ; la propriété native de l'arme conserve son unité et son effet. Exemple B=5, aucune fragilisation : cette technique apporte +2, pas +4 ni ignorance totale. Le calcul ne révèle pas B dans un aperçu si cette valeur est inconnue.
@@ -775,7 +775,7 @@ Lancer natif de référence : viser une case connue à 4 cases maximum, trajecto
 
 | Code | Temps / type | Coûts | Portée / cibles | Effet chiffré proposé | Échec, fin et contre-mesure |
 |---|---|---|---|---|---|
-| MAN-01 | A1 de déplacement | 0 E | Une case accessible | +20 Esquive uniquement contre une interception de ce retrait ; maintien de la consigne inclus sans achat supplémentaire. | Chaque pas coûte son action ; attaque/autre posture rompt la consigne, aucun cumul du bonus. Ni interception ni tirs/mines/dangers supprimés ; charge lourde garde son temps. |
+| MAN-01 | A1 de déplacement | 0 E | Une case accessible | +20 Esquive uniquement contre une interception déclenchée en quittant le corps à corps ; maintien de la consigne inclus sans achat supplémentaire. | Chaque pas coûte son action ; attaque/autre posture rompt la consigne, aucun cumul du bonus. Ni interception ni tirs/mines/dangers supprimés ; charge lourde garde son temps. |
 | MAN-02 | A1 de posture | 0 E | Soi | Ancrage +10 tant qu'immobile ; ne remplace pas la garde/réaction. | Déplacement volontaire ou forcé met fin ; n'atténue aucun dégât. |
 | MAN-03 | P1+A1 | 4 E au franchissement | Obstacle bas ou intervalle d'une case, arrivée au plus à 2 cases | Franchissement certain avec corps compatible et trajet légal ; arrivée résolue normalement. | Nouvelle obstruction interrompt le franchissement ; pas de passage diagonal fermé ou de fosse arbitraire. |
 | MAN-04 | Avance de 2–3 UT + frappe A1 + R1 | 2 E par case avancée puis Arme | Ligne droite ; cible initialement perçue | Une case par UT, puis frappe au contact, physiques ×1,25 ; la dernière avance laisse sa fenêtre adverse. | Obstacles/dangers interrompent la route ; cible partie : pas de suivi/attaque gratuite, R1 seulement si frappe exécutée. |

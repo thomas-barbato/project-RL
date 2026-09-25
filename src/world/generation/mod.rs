@@ -1,9 +1,11 @@
 mod regional;
 mod regional_city;
 mod regional_destructible;
+mod regional_fauna;
 mod regional_landmark;
 mod regional_loot;
 mod regional_population;
+pub use regional_fauna::generate_regional_fauna;
 mod rooms;
 mod validation;
 
@@ -29,7 +31,8 @@ pub use regional_loot::{
     generate_regional_loot_with_scatter, generate_regional_salvage_reward,
 };
 pub use regional_population::{
-    RegionalPopulationError, RegionalPopulationFeatures, generate_regional_encounters,
+    RegionalEncounterLayout, RegionalPopulationError, RegionalPopulationFeatures,
+    generate_regional_encounters, generate_regional_encounters_in_layout,
     generate_regional_encounters_with_roles, generate_regional_population,
 };
 pub use rooms::{GeneratedMap, GenerationError, Room, RoomsGenerator, RoomsGeneratorConfig};

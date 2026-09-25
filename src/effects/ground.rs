@@ -113,6 +113,8 @@ impl GroundEffectMap {
         spec: &GroundEffectSpec,
         current_turn: u64,
     ) -> &GroundEffectInstance {
+        // Identity is (cell, effect), never (cell, effect, attacker): repeated
+        // applications cannot create extra ticks. Distinct effects coexist.
         let key = (position, spec.id().clone());
         let instance = self
             .instances
@@ -216,5 +218,45 @@ mod tests {
                 .map(|field| field.remaining_turns()),
             Some(3)
         );
+    }
+
+    #[test]
+    fn any_number_of_different_fields_coexist_but_each_ticks_once() {
+        let mut fields = GroundEffectMap::default();
+        let at = GridPos::new(2, 3);
+        for (index, damage_type) in [
+            DamageType::Thermal,
+            DamageType::Chemical,
+            DamageType::Electrical,
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            let effect = GroundEffectSpec::new(
+                format!("core:field_{index}").parse().unwrap(),
+                3,
+                DamagePacket::new(2, damage_type, 0),
+            )
+            .unwrap();
+            for _ in 0..5 {
+                fields.apply(at, None, &effect, 0);
+            }
+        }
+        assert_eq!(fields.at(at).count(), 3);
+        for turn in 1..=3 {
+            let ready = fields.ready_on(turn);
+            assert_eq!(ready.len(), 3);
+            assert_eq!(
+                ready
+                    .iter()
+                    .map(|field| field.damage_each_turn().amount)
+                    .sum::<u16>(),
+                6
+            );
+            for field in ready {
+                fields.elapse(at, field.definition());
+            }
+        }
+        assert!(fields.is_empty());
     }
 }

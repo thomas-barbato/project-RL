@@ -6,7 +6,7 @@ mod ground_item;
 mod inventory;
 mod registry;
 
-pub use actor::{Actor, ActorBuildError};
+pub use actor::{Actor, ActorBuildError, ActorWeapon};
 pub use component::{
     BodyComponentError, BodyComponentId, BodyComponentProfile, BodyComponentState,
     ComponentFailureEffect,

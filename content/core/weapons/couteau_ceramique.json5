@@ -1,0 +1,20 @@
+{
+  "id": "core:couteau_ceramique",
+  "name_key": "equipment.couteau_ceramique.name",
+  "description_key": "equipment.couteau_ceramique.description",
+  "mass_grams": 650,
+  "attack": {
+    "range": 1,
+    "distance_metric": "chebyshev",
+    "requires_line_of_sight": false,
+    "accuracy_modifier": 12,
+    "impact": {
+      "material_cap": 14
+    },
+    "damage": {
+      "amount": 5,
+      "damage_type": "piercing",
+      "penetration": 1
+    }
+  }
+}

@@ -22,6 +22,9 @@ macro_rules! actions {
         pub enum Action { $($id,)* }
         impl Action {
             pub const ALL: &'static [Self] = &[$(Self::$id,)*];
+            pub const NAVIGATION: &'static [Self] = &[
+                Self::MenuUp, Self::MenuDown, Self::MenuLeft, Self::MenuRight,
+            ];
             pub const MOVEMENT: &'static [Self] = &[
                 Self::MoveNorth,
                 Self::MoveEast,
@@ -70,6 +73,8 @@ actions! {
     Learn, "Apprendre / réattribuer une commande", "Enter", SKILLS | SETTINGS;
     Use, "Utiliser la sélection", "U", INVENTORY | SKILLS;
     Drop, "Déposer la sélection", "X", INVENTORY;
+    InventoryFilter, "Inventaire : catégorie suivante", "Tab", INVENTORY;
+    InventorySort, "Inventaire : changer le tri", "T", INVENTORY;
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -349,6 +354,7 @@ impl Controls {
     }
     pub fn pressed(&self, action: Action, frame: &InputFrame) -> bool {
         frame.pressed.contains(self.binding(action))
+            || (Action::NAVIGATION.contains(&action) && frame.navigation_repeat == Some(action))
     }
     pub fn held(&self, action: Action, frame: &InputFrame) -> bool {
         frame.held.contains(self.binding(action))
@@ -423,6 +429,8 @@ impl Controls {
             Action::Character,
             Action::QuickTechniques,
             Action::QuestJournal,
+            Action::InventoryFilter,
+            Action::InventorySort,
         ] {
             if result.bindings.contains_key(&action) {
                 continue;
@@ -490,12 +498,15 @@ impl Controls {
     }
 }
 
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct InputFrame {
     pub pressed: BTreeSet<Binding>,
     /// Keyboard bindings currently held. Mouse buttons deliberately remain
     /// edge-triggered: holding a click must never manufacture repeated actions.
     pub held: BTreeSet<Binding>,
+    /// An action-level repeat, never a synthetic key press: a key shared with
+    /// an action in another context must not repeat that action as well.
+    pub navigation_repeat: Option<Action>,
     pub pause: bool,
     pub pointer: Option<(f32, f32)>,
     pub viewport: Option<(f32, f32)>,
@@ -527,11 +538,64 @@ impl InputFrame {
         Self {
             pressed,
             held,
+            navigation_repeat: None,
             pause: keys.contains(&KeyCode::Escape),
             pointer: Some(mouse_position()),
             viewport: Some((screen_width(), screen_height())),
             wheel_y: mouse_wheel().1,
         }
+    }
+}
+
+/// Menu navigation only. Confirmation, purchases, equipment and mouse buttons
+/// remain edge-triggered, regardless of the player's customized bindings.
+#[derive(Clone, Debug, Default)]
+pub struct MenuRepeater {
+    active: Option<(Action, Binding)>,
+    repeat_at: f64,
+}
+
+impl MenuRepeater {
+    pub const INITIAL_DELAY_SECONDS: f64 = 0.35;
+    pub const INTERVAL_SECONDS: f64 = 0.08;
+
+    pub fn clear(&mut self) {
+        self.active = None;
+        self.repeat_at = 0.0;
+    }
+
+    pub fn poll(&mut self, controls: &Controls, frame: &InputFrame, now: f64) -> Option<Action> {
+        if frame.pause || frame.wheel_y != 0.0 || !now.is_finite() {
+            self.clear();
+            return None;
+        }
+        if !frame.pressed.is_empty() {
+            self.clear();
+            if frame.pressed.len() == 1 {
+                for &action in Action::NAVIGATION {
+                    let binding = controls.binding(action);
+                    if matches!(binding, Binding::Key(_))
+                        && frame.pressed.contains(binding)
+                        && frame.held.contains(binding)
+                    {
+                        self.active = Some((action, binding.clone()));
+                        self.repeat_at = now + Self::INITIAL_DELAY_SECONDS;
+                        break;
+                    }
+                }
+            }
+            return None;
+        }
+        let (action, binding) = self.active.as_ref()?;
+        if controls.binding(*action) != binding || !frame.held.contains(binding) {
+            self.clear();
+            return None;
+        }
+        if now < self.repeat_at {
+            return None;
+        }
+        self.repeat_at = now + Self::INTERVAL_SECONDS;
+        Some(*action)
     }
 }
 
@@ -682,6 +746,119 @@ mod tests {
 
         repeat.clear();
         assert_eq!(repeat.poll(&controls, &held, 20.0), None);
+    }
+
+    #[test]
+    fn menu_repeat_is_delayed_paced_rebindable_and_never_catches_up_in_a_burst() {
+        let mut controls = Controls::preset(Layout::Azerty, KeySemantics::Physical);
+        controls
+            .rebind(Action::MenuDown, Binding::key("PageDown"))
+            .unwrap();
+        let mut repeat = MenuRepeater::default();
+        let mut frame = InputFrame {
+            pressed: [Binding::key("PageDown")].into(),
+            held: [Binding::key("PageDown")].into(),
+            ..Default::default()
+        };
+        assert_eq!(repeat.poll(&controls, &frame, 10.0), None);
+        frame.pressed.clear();
+        assert_eq!(repeat.poll(&controls, &frame, 10.34), None);
+        assert_eq!(
+            repeat.poll(&controls, &frame, 10.36),
+            Some(Action::MenuDown)
+        );
+        assert_eq!(repeat.poll(&controls, &frame, 10.40), None);
+        assert_eq!(
+            repeat.poll(&controls, &frame, 10.45),
+            Some(Action::MenuDown)
+        );
+        assert_eq!(
+            repeat.poll(&controls, &frame, 100.0),
+            Some(Action::MenuDown)
+        );
+        assert_eq!(repeat.poll(&controls, &frame, 100.0), None);
+        frame.held.clear();
+        assert_eq!(repeat.poll(&controls, &frame, 101.0), None);
+        frame.held.insert(Binding::key("PageDown"));
+        assert_eq!(repeat.poll(&controls, &frame, 102.0), None);
+        frame.pressed.insert(Binding::key("PageDown"));
+        repeat.poll(&controls, &frame, 103.0);
+        frame.pressed.clear();
+        controls
+            .rebind(Action::MenuDown, Binding::key("Down"))
+            .unwrap();
+        frame.held.insert(Binding::key("Down"));
+        assert_eq!(repeat.poll(&controls, &frame, 104.0), None);
+    }
+
+    #[test]
+    fn menu_repeat_changes_direction_immediately_and_stops_on_mouse_or_other_actions() {
+        let controls = Controls::preset(Layout::Qwerty, KeySemantics::Physical);
+        let mut repeat = MenuRepeater::default();
+        for (key, action) in [
+            ("Down", Action::MenuDown),
+            ("Up", Action::MenuUp),
+            ("Left", Action::MenuLeft),
+            ("Right", Action::MenuRight),
+        ] {
+            let mut frame = InputFrame {
+                pressed: [Binding::key(key)].into(),
+                held: [Binding::key(key)].into(),
+                ..Default::default()
+            };
+            assert_eq!(repeat.poll(&controls, &frame, 1.0), None);
+            frame.pressed.clear();
+            assert_eq!(repeat.poll(&controls, &frame, 1.36), Some(action));
+            frame.pressed.insert(Binding::MouseLeft);
+            assert_eq!(repeat.poll(&controls, &frame, 2.0), None);
+            frame.pressed.clear();
+            assert_eq!(repeat.poll(&controls, &frame, 3.0), None);
+        }
+        for &action in Action::ALL
+            .iter()
+            .filter(|action| !Action::NAVIGATION.contains(action))
+        {
+            let binding = controls.binding(action).clone();
+            let mut frame = InputFrame {
+                pressed: [binding.clone()].into(),
+                held: [binding].into(),
+                ..Default::default()
+            };
+            assert_eq!(repeat.poll(&controls, &frame, 1.0), None);
+            frame.pressed.clear();
+            assert_eq!(repeat.poll(&controls, &frame, 2.0), None, "{action:?}");
+        }
+        let mut controls = controls;
+        controls
+            .rebind(Action::MenuDown, Binding::MouseMiddle)
+            .unwrap();
+        let mut frame = InputFrame {
+            pressed: [Binding::MouseMiddle].into(),
+            held: [Binding::MouseMiddle].into(),
+            ..Default::default()
+        };
+        assert_eq!(repeat.poll(&controls, &frame, 1.0), None);
+        frame.pressed.clear();
+        assert_eq!(repeat.poll(&controls, &frame, 2.0), None);
+    }
+
+    #[test]
+    fn menu_repeat_cannot_activate_another_action_sharing_the_key_in_a_different_context() {
+        let mut controls = Controls::preset(Layout::Qwerty, KeySemantics::Physical);
+        controls
+            .rebind(Action::Drop, Binding::key("Right"))
+            .unwrap();
+        let frame = InputFrame {
+            navigation_repeat: Some(Action::MenuRight),
+            ..Default::default()
+        };
+        assert!(controls.pressed(Action::MenuRight, &frame));
+        assert!(!controls.pressed(Action::Drop, &frame));
+        let frame = InputFrame {
+            navigation_repeat: Some(Action::Drop),
+            ..Default::default()
+        };
+        assert!(!controls.pressed(Action::Drop, &frame));
     }
 
     #[test]
@@ -922,5 +1099,33 @@ mod tests {
         assert_eq!(migrated.binding(Action::Report), &Binding::key("N"));
         assert_ne!(migrated.binding(Action::QuestJournal), &Binding::key("N"));
         migrated.validate().unwrap();
+    }
+
+    #[test]
+    fn legacy_controls_gain_inventory_filter_and_sort_without_losing_custom_bindings() {
+        for layout in [Layout::Azerty, Layout::Qwerty] {
+            let mut document =
+                serde_json::to_value(Controls::preset(layout, KeySemantics::Physical)).unwrap();
+            let bindings = document["bindings"].as_object_mut().unwrap();
+            bindings.remove("inventory_filter");
+            bindings.remove("inventory_sort");
+            bindings.insert(
+                "use".into(),
+                serde_json::json!({"type":"key", "value":"Tab"}),
+            );
+            bindings.insert(
+                "drop".into(),
+                serde_json::json!({"type":"key", "value":"T"}),
+            );
+            let migrated = Controls::decode(&document.to_string()).unwrap();
+            assert_eq!(migrated.binding(Action::Use), &Binding::key("Tab"));
+            assert_eq!(migrated.binding(Action::Drop), &Binding::key("T"));
+            assert_ne!(
+                migrated.binding(Action::InventoryFilter),
+                &Binding::key("Tab")
+            );
+            assert_ne!(migrated.binding(Action::InventorySort), &Binding::key("T"));
+            migrated.validate().unwrap();
+        }
     }
 }

@@ -1,4 +1,5 @@
 mod expedition;
+mod fauna;
 mod id;
 mod loader;
 mod manifest;
@@ -16,6 +17,7 @@ pub use expedition::{
     PopulationGroupDefinition, QuestDefinition, QuestItemRewardDefinition,
     QuestWorldEffectDefinition, QuestWorldStateDefinition, ResidentDefinition, ZoneDefinition,
 };
+pub use fauna::{FaunaFamily, FaunaSpecies, RegionFaunaProfile};
 pub use id::{ContentId, ContentIdError, PackageId, PackageIdError};
 pub use loader::{ContentLoadError, ContentLoader, LoadedContent};
 pub use manifest::{DependencySpec, ManifestError, PackageManifest};

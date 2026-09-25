@@ -1,0 +1,11 @@
+{
+  id: "core:guard_consumed",
+  terminal: {
+    frames: ["guard_break", "guard_break", "guard_break"],
+    color: [58, 119, 194, 255],
+    accent_colors: [[155, 219, 255, 255], [247, 253, 255, 255]],
+    frame_millis: 110,
+    step_millis: 0,
+    linger_millis: 70,
+  },
+}

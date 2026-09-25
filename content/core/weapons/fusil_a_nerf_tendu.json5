@@ -1,0 +1,19 @@
+{
+  "id": "core:fusil_a_nerf_tendu",
+  "name_key": "equipment.fusil_a_nerf_tendu.name",
+  "description_key": "equipment.fusil_a_nerf_tendu.description",
+  "mass_grams": 3000,
+  "ammunition_capacity": 10,
+  "attack": {
+    "range": 8,
+    "distance_metric": "euclidean",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": 10,
+    "recovery_time_units": 30,
+    "damage": {
+      "amount": 8,
+      "damage_type": "piercing",
+      "penetration": 3
+    }
+  }
+}

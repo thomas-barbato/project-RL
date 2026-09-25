@@ -1,0 +1,11 @@
+{
+  id: "core:fusil_de_patrouille",
+  name_key: "equipment.fusil_de_patrouille.name",
+  description_key: "equipment.fusil_de_patrouille.description",
+  mass_grams: 3500, ammunition_capacity: 12,
+  attack: {
+    range: 7, distance_metric: "euclidean", requires_line_of_sight: true,
+    accuracy_modifier: 5,
+    damage: { amount: 4, damage_type: "piercing", penetration: 0 },
+  },
+}

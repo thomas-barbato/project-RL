@@ -363,6 +363,11 @@ pub enum TechniqueAction {
     /// Prepares a one-use ordinary melee strike before another actor
     /// voluntarily leaves contact. Forced movement never opens this trigger.
     PrepareMeleeInterception,
+    /// Prepares the same strike, then contests a surviving target's Stability
+    /// on hit. A failed resistance check cancels only the attempted retreat.
+    PrepareControllingMeleeInterception {
+        stability_intensity: u16,
+    },
     /// Consumes authored inventory material only when the final deployment
     /// step succeeds, then creates a persistent zone-owned device.
     DeployExplosive {
@@ -1331,6 +1336,9 @@ impl TechniqueDefinition {
                     physical_reduction_percentage,
                 ));
             }
+            TechniqueAction::PrepareControllingMeleeInterception {
+                stability_intensity: 0,
+            } => return Err(SkillDefinitionError::ZeroEffectIntensity),
             TechniqueAction::DeployExplosive {
                 primary_payload,
                 secondary_payload,
@@ -2474,6 +2482,23 @@ impl SkillCatalog {
         if let Some(definition) = catalog.techniques.get_mut(id) {
             definition.action = Some(action);
             definition.cooldown = None;
+        }
+        catalog
+    }
+
+    /// Restores the preparation duration used by a historical replay
+    /// generation without changing the current authored technique.
+    pub fn with_compatibility_preparation_steps(
+        &self,
+        id: &TechniqueId,
+        preparation_steps: Option<u16>,
+    ) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog.techniques.get_mut(id) {
+            definition.preparation_steps = preparation_steps.map(|steps| {
+                TimeUnits::new(steps)
+                    .expect("historical technique preparation must remain positive")
+            });
         }
         catalog
     }

@@ -4,9 +4,8 @@
   duration_turns: 3,
 
   stacking: {
-    mode: "add_stacks",
-    maximum_stacks: 3,
-    refresh_duration: true,
+    // Reapplication renews the duration, never the damage intensity.
+    mode: "refresh_duration",
   },
 
   hooks: [

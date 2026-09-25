@@ -1,0 +1,19 @@
+{
+  "id": "core:fusil_de_l_horizon_fendu",
+  "name_key": "equipment.fusil_de_l_horizon_fendu.name",
+  "description_key": "equipment.fusil_de_l_horizon_fendu.description",
+  "mass_grams": 3600,
+  "ammunition_capacity": 6,
+  "attack": {
+    "range": 11,
+    "distance_metric": "euclidean",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": 15,
+    "recovery_time_units": 50,
+    "damage": {
+      "amount": 9,
+      "damage_type": "piercing",
+      "penetration": 3
+    }
+  }
+}

@@ -182,6 +182,7 @@ impl MenuScreen {
             Self::Main => &[
                 "Reprendre la partie",
                 "Nouvelle partie",
+                "Laboratoire de test",
                 "Options",
                 "Quitter",
             ],
@@ -218,6 +219,61 @@ pub struct MenuLayout {
 }
 
 impl MenuLayout {
+    pub fn for_screen(screen: MenuScreen, width: f32, height: f32, count: usize) -> Self {
+        if screen == MenuScreen::Main {
+            return Self::main(width, height, count);
+        }
+        Self::new(width, height, count)
+    }
+
+    fn main(width: f32, height: f32, count: usize) -> Self {
+        let wide = width >= 1100.0 && height >= 620.0;
+        let margin = (width * 0.065).clamp(30.0, 110.0);
+        let panel_width = if wide {
+            448.0
+        } else {
+            (width - 40.0).min(510.0)
+        };
+        let panel_height = if wide {
+            (height - 88.0).min(390.0)
+        } else if width >= 800.0 {
+            300.0
+        } else {
+            (height - 130.0).clamp(360.0, 470.0)
+        };
+        let panel = Rect::new(
+            if wide {
+                width - margin - panel_width
+            } else {
+                (width - panel_width) * 0.5
+            },
+            if wide {
+                (height - panel_height) * 0.5
+            } else if width >= 800.0 {
+                ((height - panel_height - 16.0) * 0.5).clamp(104.0, 160.0)
+            } else {
+                (height - panel_height - 16.0).max(72.0)
+            },
+            panel_width,
+            panel_height,
+        );
+        let row_height = if wide { 52.0 } else { 44.0 };
+        let row_gap = if wide { 10.0 } else { 6.0 };
+        let actions_height = row_height * count as f32 + row_gap * count.saturating_sub(1) as f32;
+        let first_y = panel.y + (panel.h - actions_height) * 0.5;
+        let buttons = (0..count)
+            .map(|index| {
+                Rect::new(
+                    panel.x + 25.0,
+                    first_y + index as f32 * (row_height + row_gap),
+                    panel.w - 50.0,
+                    row_height,
+                )
+            })
+            .collect();
+        Self { panel, buttons }
+    }
+
     pub fn new(width: f32, height: f32, count: usize) -> Self {
         let panel_width = (width - 32.0).clamp(360.0, 680.0);
         let desired_height: f32 = match count {
@@ -270,6 +326,27 @@ impl MenuLayout {
             self.panel.y + self.panel.h - 88.0 - top,
         )
     }
+
+    pub fn main_error(&self, viewport_height: f32) -> Rect {
+        let external_top = self.panel.bottom() + 12.0;
+        if viewport_height - external_top >= 84.0 {
+            return Rect::new(
+                self.panel.x + 25.0,
+                external_top,
+                self.panel.w - 50.0,
+                (viewport_height - external_top - 16.0).min(110.0),
+            );
+        }
+        let last = self.buttons.last().expect("main menu has buttons");
+        let top = last.y + last.h + 14.0;
+        Rect::new(
+            self.panel.x + 25.0,
+            top,
+            self.panel.w - 50.0,
+            (self.panel.y + self.panel.h - if self.panel.h >= 500.0 { 58.0 } else { 25.0 } - top)
+                .max(42.0),
+        )
+    }
 }
 
 #[cfg(test)]
@@ -304,6 +381,41 @@ mod tests {
                 );
                 assert_eq!(layout.hit((rect.x - 1.0, rect.y)), None);
             }
+        }
+    }
+
+    #[test]
+    fn main_menu_actions_fit_and_use_the_same_pointer_geometry() {
+        for (width, height) in [
+            (640.0, 480.0),
+            (640.0, 540.0),
+            (960.0, 540.0),
+            (1280.0, 800.0),
+            (1920.0, 1080.0),
+        ] {
+            let layout = MenuLayout::for_screen(
+                MenuScreen::Main,
+                width,
+                height,
+                MenuScreen::Main.buttons().len(),
+            );
+            assert_eq!(layout.buttons.len(), 5);
+            assert!(layout.panel.x >= 0.0 && layout.panel.y >= 0.0);
+            assert!(layout.panel.x + layout.panel.w <= width);
+            assert!(layout.panel.y + layout.panel.h <= height);
+            for (index, rect) in layout.buttons.iter().enumerate() {
+                assert!(
+                    rect.y >= layout.panel.y && rect.y + rect.h < layout.panel.y + layout.panel.h
+                );
+                assert_eq!(
+                    layout.hit((rect.x + rect.w / 2.0, rect.y + rect.h / 2.0)),
+                    Some(index)
+                );
+            }
+            let error = layout.main_error(height);
+            assert!(error.y > layout.buttons.last().unwrap().bottom());
+            assert!(error.h > 0.0);
+            assert!(error.bottom() < height);
         }
     }
 

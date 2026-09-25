@@ -22,8 +22,8 @@ pub enum GameCommand {
         slot: u8,
         target: EntityId,
     },
-    /// A free world-space aim used by area attacks. Single-target attacks keep
-    /// their stable entity target so an empty tile cannot silently consume a turn.
+    /// A world-space aim used by area attacks. Single-target weapons with a
+    /// secondary cone require an occupant; empty ground cannot spend a turn.
     AttackAt {
         slot: u8,
         target: GridPos,

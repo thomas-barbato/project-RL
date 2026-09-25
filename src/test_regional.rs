@@ -17,9 +17,9 @@ use project_rl::loot::LootCatalog;
 use project_rl::progression::DefeatReward;
 use project_rl::world::generation::{
     GeneratedRegionalSite, GeneratedRegionalSiteTerminal, MapValidationRules,
-    RegionSiteEntranceKind, RegionalCityFeature, RegionalLandmarkKind, RegionalLootRequest,
-    RegionalMapGenerator, RegionalPopulationFeatures, generate_regional_city,
-    generate_regional_destructibles, generate_regional_encounters_with_roles,
+    RegionSiteEntranceKind, RegionalCityFeature, RegionalEncounterLayout, RegionalLandmarkKind,
+    RegionalLootRequest, RegionalMapGenerator, RegionalPopulationFeatures, generate_regional_city,
+    generate_regional_destructibles, generate_regional_encounters_in_layout,
     generate_regional_landmarks, generate_regional_loot_with_scatter, generate_regional_population,
     generate_regional_salvage_reward, generate_regional_site_terminals,
     generate_regional_sites_with_detours, validate_playable_map, vertical_passage,
@@ -276,11 +276,15 @@ pub fn generate(
             .iter()
             .map(|landmark| landmark.position)
             .collect::<Vec<_>>();
-        let generated_encounters = generate_regional_encounters_with_roles(
+        let existing_actors = actor_positions.iter().copied().collect::<Vec<_>>();
+        let generated_encounters = generate_regional_encounters_in_layout(
             generated.map(),
             &passage_positions,
-            &encounter_anchors,
-            &reserved,
+            RegionalEncounterLayout {
+                landmarks: &encounter_anchors,
+                reserved: &reserved,
+                existing_actors: &existing_actors,
+            },
             biome.encounters(),
             descriptor.seed,
             RegionalPopulationFeatures {
@@ -377,6 +381,27 @@ pub fn generate(
     }
     let secured_cache_positions: BTreeSet<_> =
         secured_sites.iter().map(|(_, site)| site.cache).collect();
+    // The fauna stream comes last, so it cannot reroll historical sites, loot
+    // or humanoid encounters. Old catalogs contain no fauna metadata.
+    if features.population
+        && let Some(profile) = biome.fauna()
+    {
+        let reserved = actor_positions
+            .union(&reserved_site_positions)
+            .copied()
+            .chain(generated_loot.iter().map(|(at, _, _)| *at))
+            .collect();
+        let fauna = project_rl::world::generation::generate_regional_fauna(
+            generated.map(),
+            generated.terrain(),
+            &passage_positions,
+            &reserved,
+            profile,
+            descriptor.seed,
+        )?;
+        actor_positions.extend(fauna.iter().map(Actor::position));
+        actors.extend(fauna);
+    }
     let security_owner = biome.site_security().map(|profile| profile.owner().clone());
     let loot: Vec<_> = generated_loot
         .into_iter()
@@ -1093,8 +1118,8 @@ mod tests {
             for x in -4..=3 {
                 let descriptor = world.region(17, RegionCoord::new(x, y, 0)).unwrap();
                 let expected_minimum = match descriptor.biome.as_str() {
-                    "core:human_habitat" => 4,
-                    "core:surface_wilds" => 6,
+                    "core:human_habitat" => 13,
+                    "core:surface_wilds" => 16,
                     unexpected => panic!("unexpected surface biome {unexpected}"),
                 };
                 let features = RegionalGenerationFeatures {

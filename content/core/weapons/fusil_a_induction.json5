@@ -1,0 +1,19 @@
+{
+  "id": "core:fusil_a_induction",
+  "name_key": "equipment.fusil_a_induction.name",
+  "description_key": "equipment.fusil_a_induction.description",
+  "mass_grams": 3800,
+  "ammunition_capacity": 10,
+  "attack": {
+    "range": 8,
+    "distance_metric": "euclidean",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": 8,
+    "recovery_time_units": 20,
+    "damage": {
+      "amount": 6,
+      "damage_type": "piercing",
+      "penetration": 2
+    }
+  }
+}

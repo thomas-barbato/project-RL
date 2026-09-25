@@ -1,6 +1,36 @@
 # Butin pondéré — premier jalon moteur
 
-Décision confirmée : la profondeur doit favoriser les objets plus puissants, sans supprimer les trouvailles exceptionnelles près de la surface. Un objet associé aux grandes profondeurs pourra donc y avoir un poids très faible plutôt qu'une interdiction systématique. Les probabilités finales, budgets de puissance et affixes ne sont pas encore définis.
+**État actuel :** la génération 106 étend le [générateur d'exemplaires](GENERATION_EQUIPEMENT.md)
+aux caches souterraines des nouvelles parties : dix-huit bases, bonus pondérés P1 à P6,
+Braise et Décharge. Les tables historiques ci-dessous restent utilisées comme
+premier tirage ; seuls certains équipements sont ensuite remplacés dans ce contexte.
+Les autres sources et les anciennes parties conservent leur comportement.
+
+**Catalogue du 25 septembre 2026 :** les [bases d'équipement](CATALOGUE_BASES_EQUIPEMENT.md)
+et les [affixes avec filtres de provenance](AFFIXES_ET_PROVENANCE_EQUIPEMENT.md)
+restent principalement des propositions ; dix-huit bases et deux effets passent
+maintenant par l'étape complémentaire décrite ci-dessus, sans modifier les
+poids des tables historiques. La règle confirmée impose d'abord la compatibilité
+avec la source ; un robot ne peut pas tirer du matériel humain. Les dix affixes
+chiffrés sont utilisables par ce générateur et restent testables au laboratoire.
+
+**Paris :** avant l'achat, le marchand révèle seulement le modèle de base et
+son prix, sans préfixe, suffixe, valeur de bonus ni effet spécial. L'affichage
+ne tire aucune propriété ; le résultat est révélé après l'achat réussi.
+Depuis la génération 107, les [marchands](COMMERCE_EQUIPEMENT.md) proposent des
+bases par profondeur et les paris réutilisent le générateur d'affixes pondéré.
+
+**Ennemis :** depuis la génération 108, les [Artilleurs et Soigneurs de terrain](EQUIPEMENT_DES_ENNEMIS.md)
+utilisent puis laissent à leur mort une arme persistante, avec ses éventuels bonus.
+Les autres profils et les inventaires complets ne sont pas encore raccordés.
+
+**Conception du 24 septembre 2026 :** [Butins des rencontres](BUTINS_DES_RENCONTRES.md)
+compare Qud et Cogmind et distingue possessions, restes exploitables et trouvailles
+de sites. Le modèle général est accepté, mais les objets et taux restent à définir
+et son intégration reste partielle ; le présent document continue de décrire
+les tirages réellement pris en charge.
+
+Décision confirmée : la profondeur doit favoriser les objets plus puissants, sans supprimer les trouvailles exceptionnelles près de la surface. Un objet associé aux grandes profondeurs pourra donc y avoir un poids très faible plutôt qu'une interdiction systématique. Les probabilités finales et budgets de puissance restent à définir ; les affixes proposés sont décrits dans le catalogue lié ci-dessus.
 
 Ce jalon tire **des définitions d'objets existantes**. Il ne génère pas encore leurs statistiques et ne déduit pas leur puissance de leur rareté ou de leurs dégâts bruts. Les objets de quête et autres solutions indispensables ne doivent pas dépendre d'un tirage rare ; leur placement garanti reste distinct.
 

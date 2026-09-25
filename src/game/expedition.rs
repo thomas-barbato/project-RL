@@ -43,6 +43,12 @@ use super::{
 };
 
 const MAX_WORLD_SNAPSHOT_BYTES: usize = 12 * 1024 * 1024;
+// Binary snapshots are caches; older layouts must use verified command replay.
+const WORLD_SNAPSHOT_HEADER: &[u8] = b"RLWS\x06";
+
+#[path = "equipment_trade.rs"]
+mod equipment_trade;
+use equipment_trade::EquipmentTradeRules;
 
 #[path = "narrative.rs"]
 mod narrative;
@@ -246,7 +252,7 @@ struct MerchantGambleState {
     price: u32,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
 struct MerchantState {
     provider: crate::entity::EntityId,
     credits: u32,
@@ -256,6 +262,26 @@ struct MerchantState {
     next_listing: u64,
     gamble_rng: GameRng,
     gamble_scaling: GambleScalingDefinition,
+    equipment: Option<EquipmentTradeRules>,
+}
+
+impl Debug for MerchantState {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut state = formatter.debug_struct("MerchantState");
+        state
+            .field("provider", &self.provider)
+            .field("credits", &self.credits)
+            .field("offers", &self.offers)
+            .field("resale", &self.resale)
+            .field("gambles", &self.gambles)
+            .field("next_listing", &self.next_listing)
+            .field("gamble_rng", &self.gamble_rng)
+            .field("gamble_scaling", &self.gamble_scaling);
+        if let Some(equipment) = &self.equipment {
+            state.field("equipment", equipment);
+        }
+        state.finish()
+    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -496,6 +522,8 @@ pub struct GroundLootBlueprint {
     item: ItemId,
     quantity: u16,
     owner: Option<SocialGroupId>,
+    #[serde(default)]
+    magic_modifiers: Option<MagicItemModifiers>,
 }
 
 impl GroundLootBlueprint {
@@ -505,7 +533,20 @@ impl GroundLootBlueprint {
             item,
             quantity,
             owner: None,
+            magic_modifiers: None,
         }
+    }
+
+    pub fn with_magic_modifiers(mut self, modifiers: MagicItemModifiers) -> Result<Self, String> {
+        if self.quantity != 1 {
+            return Err("Generated equipment must be a single instance".into());
+        }
+        self.magic_modifiers = Some(modifiers);
+        Ok(self)
+    }
+
+    pub fn magic_modifiers(&self) -> Option<&MagicItemModifiers> {
+        self.magic_modifiers.as_ref()
     }
 
     pub fn with_owner(mut self, owner: SocialGroupId) -> Self {
@@ -538,16 +579,19 @@ impl From<(GridPos, ItemId, u16)> for GroundLootBlueprint {
 
 impl Debug for GroundLootBlueprint {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
-        if self.owner.is_none() {
+        if self.owner.is_none() && self.magic_modifiers.is_none() {
             return (&self.position, &self.item, self.quantity).fmt(formatter);
         }
-        formatter
-            .debug_struct("GroundLootBlueprint")
+        let mut value = formatter.debug_struct("GroundLootBlueprint");
+        value
             .field("position", &self.position)
             .field("item", &self.item)
             .field("quantity", &self.quantity)
-            .field("owner", &self.owner)
-            .finish()
+            .field("owner", &self.owner);
+        if let Some(modifiers) = &self.magic_modifiers {
+            value.field("magic_modifiers", modifiers);
+        }
+        value.finish()
     }
 }
 
@@ -763,8 +807,10 @@ impl WorldState {
             quests: self.quests.clone(),
             player_credits: self.player_credits,
         };
-        let bytes = bincode::serialize(&snapshot)
+        let payload = bincode::serialize(&snapshot)
             .map_err(|error| format!("Impossible d'encoder l'instantané : {error}"))?;
+        let mut bytes = WORLD_SNAPSHOT_HEADER.to_vec();
+        bytes.extend_from_slice(&payload);
         if bytes.len() > MAX_WORLD_SNAPSHOT_BYTES {
             return Err("Instantané moteur trop volumineux.".to_owned());
         }
@@ -779,9 +825,13 @@ impl WorldState {
             .with_fixint_encoding()
             .with_limit(MAX_WORLD_SNAPSHOT_BYTES as u64)
             .reject_trailing_bytes()
-            .deserialize(bytes)
+            .deserialize(
+                bytes
+                    .strip_prefix(WORLD_SNAPSHOT_HEADER)
+                    .ok_or("Ancien format d'instantané : reprise par le journal requise.")?,
+            )
             .map_err(|error| format!("Instantané moteur incompatible : {error}"))?;
-        Ok(Self {
+        let world = Self {
             active: GameState::from_snapshot(snapshot.active, rules),
             narrative: snapshot.narrative,
             current: snapshot.current,
@@ -796,7 +846,76 @@ impl WorldState {
             residents: snapshot.residents,
             quests: snapshot.quests,
             player_credits: snapshot.player_credits,
-        })
+        };
+        let validate = |item: &ItemId, bonus: Option<MagicItemModifiers>| -> Result<(), String> {
+            if let Some(effect) = bonus.as_ref().and_then(|bonus| bonus.effect_affix())
+                && world
+                    .rules()
+                    .weapons
+                    .resolve_instance(item, Some(effect))
+                    .is_none()
+            {
+                return Err(format!(
+                    "Effet d'équipement inconnu ou incompatible : {effect}"
+                ));
+            }
+            Ok(())
+        };
+        for entry in world.player_inventory().iter() {
+            validate(entry.item(), entry.magic_modifiers())?;
+        }
+        for actor in world
+            .actors()
+            .iter()
+            .map(|(_, actor)| actor)
+            .chain(
+                world
+                    .inactive
+                    .values()
+                    .flat_map(|zone| zone.actors.iter().map(|(_, actor)| actor)),
+            )
+            .chain(
+                world
+                    .pending
+                    .values()
+                    .flat_map(|blueprint| &blueprint.actors),
+            )
+        {
+            actor.validate_equipped_weapon(&world.rules().weapons)?;
+        }
+        for loot in world.pending.values().flat_map(|blueprint| &blueprint.loot) {
+            if loot.magic_modifiers.is_some() && loot.quantity != 1 {
+                return Err("Generated equipment must be a single instance".into());
+            }
+            validate(loot.item(), loot.magic_modifiers.clone())?;
+        }
+        for (_, item) in world
+            .ground_items()
+            .iter()
+            .chain(world.inactive.values().flat_map(|zone| zone.ground.iter()))
+        {
+            validate(item.item(), item.magic_modifiers())?;
+        }
+        for entry in world
+            .merchants
+            .values()
+            .flat_map(|merchant| &merchant.resale)
+        {
+            validate(&entry.item, entry.magic_modifiers.clone())?;
+        }
+        for merchant in world.merchants.values() {
+            if let Some(equipment) = &merchant.equipment {
+                equipment.validate(world.rules())?;
+                if merchant
+                    .gambles
+                    .iter()
+                    .any(|gamble| !equipment.admits(&gamble.item))
+                {
+                    return Err("Missing persisted equipment gamble profile".into());
+                }
+            }
+        }
+        Ok(world)
     }
 
     pub fn encode_recovery_snapshot(&self) -> Result<String, String> {
@@ -1074,7 +1193,7 @@ impl WorldState {
                     listing: listing.listing,
                     item: listing.item.clone(),
                     price: listing.price,
-                    magic_modifiers: listing.magic_modifiers,
+                    magic_modifiers: listing.magic_modifiers.clone(),
                 })
                 .collect();
             let gambles = merchant
@@ -1098,23 +1217,15 @@ impl WorldState {
                         && entry.owner().is_none()
                 })
                 .filter_map(|entry| {
-                    let standard = merchant
-                        .offers
-                        .iter()
-                        .find(|offer| offer.item == *entry.item())
-                        .map(|offer| offer.sell_price);
-                    let gamble = merchant
-                        .gambles
-                        .iter()
-                        .find(|gamble| gamble.item == *entry.item())
-                        .map(|gamble| gamble.price / 2);
-                    standard.or(gamble).map(|price| TradeSellView {
-                        instance: entry.instance(),
-                        item: entry.item().clone(),
-                        quantity: entry.quantity(),
-                        price,
-                        magic_modifiers: entry.magic_modifiers(),
-                    })
+                    merchant
+                        .sale_quote(entry.item(), self.active.rules())
+                        .map(|(price, _, _)| TradeSellView {
+                            instance: entry.instance(),
+                            item: entry.item().clone(),
+                            quantity: entry.quantity(),
+                            price,
+                            magic_modifiers: entry.magic_modifiers(),
+                        })
                 })
                 .collect();
             return Some(NpcInteraction {
@@ -1506,6 +1617,26 @@ impl WorldState {
         definition: MerchantDefinition,
         gamble_seed: u64,
     ) -> Result<(), String> {
+        self.register_merchant_internal(
+            zone,
+            provider,
+            player_starting_credits,
+            definition,
+            gamble_seed,
+            None,
+        )
+    }
+
+    #[allow(clippy::too_many_arguments)]
+    fn register_merchant_internal(
+        &mut self,
+        zone: ContentId,
+        provider: crate::entity::EntityId,
+        player_starting_credits: u32,
+        definition: MerchantDefinition,
+        gamble_seed: u64,
+        equipment: Option<EquipmentTradeRules>,
+    ) -> Result<(), String> {
         let MerchantDefinition {
             initial_credits: merchant_credits,
             offers,
@@ -1555,8 +1686,9 @@ impl WorldState {
                 .rules()
                 .items
                 .get(&item)
-                .ok_or_else(|| format!("Unknown merchant item '{item}'"))?
-                .maximum_stack();
+                .map(|definition| definition.maximum_stack())
+                .or_else(|| self.active.rules().weapons.get(&item).map(|_| 1))
+                .ok_or_else(|| format!("Unknown merchant item '{item}'"))?;
             if stock == 0 || buy_price == 0 || sell_price == 0 || sell_price > buy_price {
                 return Err("Invalid merchant offer".into());
             }
@@ -1582,13 +1714,16 @@ impl WorldState {
             let item = gamble.item;
             let stock = gamble.initial_stock;
             let price = gamble.price;
-            let definition = self
-                .active
-                .rules()
-                .items
-                .get(&item)
-                .ok_or_else(|| format!("Unknown merchant gamble item '{item}'"))?;
-            if definition.kind() != crate::item::ItemKind::Armor || stock == 0 || price == 0 {
+            let admitted = if let Some(pool) = &equipment {
+                pool.admits(&item)
+            } else {
+                self.active
+                    .rules()
+                    .items
+                    .get(&item)
+                    .is_some_and(|definition| definition.kind() == crate::item::ItemKind::Armor)
+            };
+            if !admitted || stock == 0 || price == 0 {
                 return Err("Invalid merchant gamble".into());
             }
             resolved_gambles.push(MerchantGambleState { item, stock, price });
@@ -1608,6 +1743,7 @@ impl WorldState {
                 next_listing: 1,
                 gamble_rng: GameRng::from_seed(gamble_seed),
                 gamble_scaling,
+                equipment,
             },
         );
         if initialize_player_wallet {
@@ -2645,7 +2781,30 @@ impl WorldState {
                 .map_err(|e| e.to_string())?;
         }
         for loot in &blueprint.loot {
-            probe
+            if let Some(modifiers) = &loot.magic_modifiers {
+                if loot.quantity != 1
+                    || (!probe.rules.weapons.get(loot.item()).is_some()
+                        && !probe
+                            .rules
+                            .items
+                            .get(loot.item())
+                            .is_some_and(|item| item.kind() == crate::item::ItemKind::Armor))
+                {
+                    return Err("Invalid generated equipment instance".into());
+                }
+                if let Some(effect) = modifiers.effect_affix()
+                    && probe
+                        .rules
+                        .weapons
+                        .resolve_instance(loot.item(), Some(effect))
+                        .is_none()
+                {
+                    return Err(format!(
+                        "Unknown or incompatible equipment effect: {effect}"
+                    ));
+                }
+            }
+            let instance = probe
                 .spawn_ground_item_with_owner(
                     loot.position(),
                     loot.item().clone(),
@@ -2653,6 +2812,11 @@ impl WorldState {
                     loot.owner().cloned(),
                 )
                 .map_err(|e| e.to_string())?;
+            if let Some(modifiers) = &loot.magic_modifiers {
+                probe
+                    .ground_items
+                    .retain_magic_modifiers(instance, modifiers.clone());
+            }
         }
         probe.install_threat_sources(blueprint.threat_sources.clone())?;
         Ok(ZoneState {
@@ -3541,22 +3705,9 @@ impl WorldState {
             .get(&zone)
             .expect("merchant access validated")
             .clone();
-        let standard = previous_merchant
-            .offers
-            .iter()
-            .find(|offer| offer.item == item)
-            .map(|offer| (offer.sell_price, offer.buy_price, offer.maximum_stack));
-        let gamble =
-            previous_merchant
-                .gambles
-                .iter()
-                .find(|gamble| gamble.item == item)
-                .and_then(|gamble| {
-                    self.active.rules().items.get(&item).map(|definition| {
-                        (gamble.price / 2, gamble.price, definition.maximum_stack())
-                    })
-                });
-        let Some((price, resale_price, maximum_stack)) = standard.or(gamble) else {
+        let Some((price, resale_price, maximum_stack)) =
+            previous_merchant.sale_quote(&item, self.active.rules())
+        else {
             return reject(CommandRejection::MerchantOfferUnavailable);
         };
         let Some(next_merchant_credits) = previous_merchant.credits.checked_sub(price) else {
@@ -3635,7 +3786,7 @@ impl WorldState {
             return reject(CommandRejection::MerchantUnavailable);
         };
         let mut next_inventory = previous_inventory.clone();
-        let added = if let Some(modifiers) = entry.magic_modifiers {
+        let added = if let Some(modifiers) = entry.magic_modifiers.clone() {
             next_inventory
                 .add_magic(entry.item.clone(), None, modifiers)
                 .map(|_| ())
@@ -3713,10 +3864,22 @@ impl WorldState {
             player_level,
             zone_depth,
         );
-        let modifiers = roll_profile.roll(&mut next_merchant.gamble_rng);
+        let modifiers = if let Some(equipment) = &next_merchant.equipment {
+            match equipment.roll(
+                &item,
+                roll_profile.quality_draws as u8,
+                self.active.rules(),
+                &mut next_merchant.gamble_rng,
+            ) {
+                Ok(modifiers) => modifiers,
+                Err(_) => return reject(CommandRejection::MerchantOfferUnavailable),
+            }
+        } else {
+            roll_profile.roll(&mut next_merchant.gamble_rng)
+        };
         let mut next_inventory = previous_inventory.clone();
         if next_inventory
-            .add_magic(item.clone(), None, modifiers)
+            .add_magic(item.clone(), None, modifiers.clone())
             .is_err()
         {
             return reject(CommandRejection::InventoryCannotFitItem);
@@ -4429,13 +4592,46 @@ impl GameState {
             }
         }
         self.resolve_status_trigger(StatusTrigger::TurnStart);
+        // Committed shots and allied care continue locally, without a remote player
+        // position. Events are discarded with the other background events.
+        let tactical: Vec<_> = self
+            .actors
+            .iter()
+            .filter_map(|(id, actor)| {
+                (!actor.action_is_delayed(self.turn)
+                    && (matches!(actor.ai_state(), AiState::Aiming { .. })
+                        || actor.ai().is_some_and(|ai| {
+                            matches!(
+                                ai.behavior,
+                                AiBehavior::FieldMedic { .. }
+                                    | AiBehavior::TelegraphedShooter
+                                    | AiBehavior::VibrationHunter { .. }
+                                    | AiBehavior::TimidGrazer { .. }
+                                    | AiBehavior::SkittishForager
+                                    | AiBehavior::TelegraphedBiter
+                            )
+                        })))
+                .then_some((id, actor.recovery_remaining().is_some()))
+            })
+            .collect();
+        for (entity, recovering) in tactical {
+            self.resolve_tactical_ai_action(entity, AiAction::Wait, entity, recovering);
+            if recovering {
+                self.advance_action_recovery(entity);
+            }
+        }
         let actors: Vec<_> = self
             .actors
             .iter()
             .filter_map(|(id, actor)| {
                 actor
                     .ai()
-                    .filter(|ai| matches!(ai.behavior, AiBehavior::Hunter | AiBehavior::Skirmisher))
+                    .filter(|ai| {
+                        matches!(
+                            ai.behavior,
+                            AiBehavior::Hunter | AiBehavior::Skirmisher | AiBehavior::PackHunter
+                        )
+                    })
                     .map(|ai| (id, actor.position(), ai, actor.ai_home(), actor.ai_state()))
             })
             .collect();
@@ -4615,7 +4811,7 @@ impl GameState {
 mod tests {
     use super::*;
     use crate::ai::AiProfile;
-    use crate::combat::{DamagePacket, DamageType};
+    use crate::combat::{AttackProfile, DamagePacket, DamageType};
     use crate::companion::CompanionBehavior;
     use crate::content::{ClinicDefinition, MerchantGambleDefinition, MerchantOfferDefinition};
     use crate::drone::{DroneCapabilities, DroneProfile, DroneState};
@@ -4628,7 +4824,9 @@ mod tests {
     };
     use crate::game::GameRules;
     use crate::item::{EquipmentProfile, ItemDefinition, ItemEffect, ItemKind};
-    use crate::social::{LocalAlertProfile, PropertyReportChannel, SocialGroupId, WitnessProfile};
+    use crate::social::{
+        LocalAlertProfile, PlayerRelation, PropertyReportChannel, SocialGroupId, WitnessProfile,
+    };
     use crate::status::{
         StatusDefinition, StatusEffectPrimitive, StatusHook, StatusModifier, StatusStacking,
     };
@@ -4701,6 +4899,211 @@ mod tests {
             .unwrap();
         world.drain_events();
         world
+    }
+
+    #[test]
+    fn surface_cast_pending_shots_and_care_resolve_offscreen_without_events() {
+        let mut world = world();
+        let mut shooter = Actor::new(GridPos::new(6, 2), 10)
+            .unwrap()
+            .with_ai(AiProfile::new(AiBehavior::TelegraphedShooter, 8, 0, 256, 0))
+            .with_attack(AttackProfile::new(
+                6,
+                DistanceMetric::Euclidean,
+                true,
+                DamageType::Piercing,
+                2,
+                0,
+            ));
+        shooter.set_ai_state(AiState::Aiming {
+            origin: GridPos::new(6, 2),
+            target_at: GridPos::new(2, 2),
+        });
+        let shooter = world.spawn_actor(shooter).unwrap();
+        let medic = world
+            .spawn_actor(
+                Actor::new(GridPos::new(5, 4), 10)
+                    .unwrap()
+                    .with_ai(AiProfile::new(
+                        AiBehavior::FieldMedic {
+                            restoration: 3,
+                            supplies: 2,
+                        },
+                        8,
+                        0,
+                        256,
+                        0,
+                    ))
+                    .with_player_relation(PlayerRelation::Hostile),
+            )
+            .unwrap();
+        let mut wounded = Actor::new(GridPos::new(6, 4), 10)
+            .unwrap()
+            .with_ai(AiProfile::idle())
+            .with_player_relation(PlayerRelation::Hostile);
+        wounded.apply_damage(5);
+        let ally = world.spawn_actor(wounded).unwrap();
+        // Put the player at the existing passage before the first timed action.
+        world
+            .active
+            .actors
+            .get_mut(world.active.player)
+            .unwrap()
+            .set_position(GridPos::new(2, 1));
+        world.drain_events();
+        assert_eq!(
+            world.process_player_command(GameCommand::Interact {
+                target: GridPos::new(2, 1)
+            }),
+            CommandOutcome::Applied
+        );
+        let zone = world.inactive.get(&id("a")).unwrap();
+        assert_eq!(
+            zone.actors.get(shooter).unwrap().ai_state(),
+            AiState::Unaware
+        );
+        assert_eq!(zone.actors.get(ally).unwrap().integrity(), 8);
+        assert_eq!(
+            zone.actors.get(medic).unwrap().ai_state(),
+            AiState::SupportStock { remaining: 1 }
+        );
+        assert!(!world.drain_events().iter().any(|event| matches!(
+            event,
+            GameEvent::AttackPerformed { .. } | GameEvent::AllyHealed { .. }
+        )));
+    }
+
+    #[test]
+    fn heavy_fauna_commitment_and_recovery_continue_offscreen_without_remote_events() {
+        let mut world = world();
+        let mut actor = Actor::new(GridPos::new(5, 3), 20)
+            .unwrap()
+            .with_ai(AiProfile::new(AiBehavior::TelegraphedBiter, 7, 0, 256, 0))
+            .with_attack(
+                AttackProfile::new(
+                    1,
+                    DistanceMetric::Chebyshev,
+                    true,
+                    DamageType::Piercing,
+                    6,
+                    0,
+                )
+                .with_recovery_after_attack(crate::time::TimeUnits::new(2).unwrap()),
+            );
+        actor.set_ai_state(AiState::Aiming {
+            origin: GridPos::new(5, 3),
+            target_at: GridPos::new(4, 3),
+        });
+        let animal = world.spawn_actor(actor).unwrap();
+        world
+            .active
+            .actors
+            .get_mut(world.active.player)
+            .unwrap()
+            .set_position(GridPos::new(2, 1));
+        world.drain_events();
+        assert_eq!(
+            world.process_player_command(GameCommand::Interact {
+                target: GridPos::new(2, 1)
+            }),
+            CommandOutcome::Applied
+        );
+        for remaining in [Some(2), Some(1), None] {
+            let actor = world
+                .inactive
+                .get(&id("a"))
+                .unwrap()
+                .actors
+                .get(animal)
+                .unwrap();
+            assert_eq!(actor.ai_state(), AiState::Unaware);
+            assert_eq!(actor.position(), GridPos::new(5, 3));
+            assert_eq!(actor.recovery_remaining().map(|time| time.get()), remaining);
+            assert!(!world.drain_events().iter().any(|event| matches!(event,
+                GameEvent::AttackPerformed { attacker, .. } | GameEvent::AttackTelegraphed { attacker, .. } if *attacker == animal)));
+            world.process_player_command(GameCommand::Wait);
+        }
+    }
+
+    #[test]
+    fn fauna_memory_and_shelter_expire_in_inactive_zones_without_remote_perception() {
+        let mut world = world();
+        let mut listener = Actor::new(GridPos::new(6, 3), 10)
+            .unwrap()
+            .with_ai(AiProfile::new(
+                AiBehavior::VibrationHunter {
+                    hearing_radius: 8,
+                    hearing_gain: 4,
+                    memory_turns: 4,
+                },
+                1,
+                0,
+                128,
+                0,
+            ));
+        listener.set_ai_state(AiState::Listening {
+            remaining_turns: 2,
+            last_heard: GridPos::new(4, 3),
+        });
+        let listener = world.spawn_actor(listener).unwrap();
+        let mut grazer = Actor::new(GridPos::new(5, 4), 10)
+            .unwrap()
+            .with_ai(AiProfile::new(
+                AiBehavior::TimidGrazer {
+                    shell_armor: 3,
+                    shelter_turns: 4,
+                },
+                4,
+                0,
+                128,
+                0,
+            ));
+        grazer.set_ai_state(AiState::Sheltered { remaining_turns: 3 });
+        let grazer = world.spawn_actor(grazer).unwrap();
+        let mut forager = Actor::new(GridPos::new(6, 4), 10)
+            .unwrap()
+            .with_ai(AiProfile::new(AiBehavior::SkittishForager, 8, 0, 128, 0));
+        forager.set_ai_state(AiState::Cornered);
+        let forager = world.spawn_actor(forager).unwrap();
+        world
+            .active
+            .actors
+            .get_mut(world.active.player)
+            .unwrap()
+            .set_position(GridPos::new(2, 1));
+        assert_eq!(
+            world.process_player_command(GameCommand::Interact {
+                target: GridPos::new(2, 1)
+            }),
+            CommandOutcome::Applied
+        );
+        let inactive = world.inactive.get(&id("a")).unwrap();
+        assert_eq!(
+            inactive.actors.get(forager).unwrap().ai_state(),
+            AiState::Unaware
+        );
+        assert_eq!(
+            inactive.actors.get(forager).unwrap().position(),
+            GridPos::new(6, 4)
+        );
+        assert!(
+            matches!(inactive.actors.get(listener).unwrap().ai_state(), AiState::Listening { remaining_turns: 1, last_heard } if last_heard == GridPos::new(4, 3))
+        );
+        assert_eq!(
+            inactive.actors.get(grazer).unwrap().ai_state(),
+            AiState::Sheltered { remaining_turns: 2 }
+        );
+        world.process_player_command(GameCommand::Wait);
+        world.process_player_command(GameCommand::Wait);
+        let inactive = world.inactive.get(&id("a")).unwrap();
+        assert_eq!(
+            inactive.actors.get(listener).unwrap().ai_state(),
+            AiState::Unaware
+        );
+        assert_eq!(
+            inactive.actors.get(grazer).unwrap().ai_state(),
+            AiState::Unaware
+        );
     }
 
     fn commerce_world() -> (WorldState, crate::entity::EntityId, ItemId) {
@@ -6552,6 +6955,58 @@ mod tests {
         assert_eq!(resale.len(), 1);
         assert_eq!(resale[0].item, armor);
         assert_eq!(resale[0].magic_modifiers, None);
+    }
+
+    #[test]
+    fn named_affixes_survive_sale_snapshot_and_repurchase() {
+        use crate::item::{
+            EquipmentAffixId as Id, EquipmentNameGrammar as Grammar, NamedEquipmentAffixes,
+            RolledEquipmentAffix as Roll,
+        };
+        let (mut world, merchant, armor) = commerce_world();
+        let bonus = MagicItemModifiers::from_affixes(
+            NamedEquipmentAffixes::new(
+                Grammar::FeminineSingular,
+                &[
+                    Roll::new(Id::Vitality, 1, 15).unwrap(),
+                    Roll::new(Id::Accuracy, 1, 9).unwrap(),
+                ],
+            )
+            .unwrap(),
+        );
+        let instance = world
+            .active
+            .player_inventory_mut()
+            .add_magic(armor.clone(), None, bonus.clone())
+            .unwrap();
+        assert_eq!(
+            world.process_player_command(GameCommand::SellItem {
+                merchant,
+                item: instance
+            }),
+            CommandOutcome::Applied
+        );
+        world.drain_events();
+        let snapshot = world.recovery_snapshot_bytes().unwrap();
+        world = WorldState::from_recovery_snapshot_bytes(&snapshot, world.rules().clone()).unwrap();
+        let interaction = world.npc_interaction(merchant).unwrap();
+        let [NpcService::Trade { resale, .. }] = interaction.services.as_slice() else {
+            panic!("missing merchant")
+        };
+        assert_eq!(resale.len(), 1);
+        assert_eq!(resale[0].magic_modifiers, Some(bonus.clone()));
+        let listing = resale[0].listing;
+        assert_eq!(
+            world.process_player_command(GameCommand::BuyResaleItem { merchant, listing }),
+            CommandOutcome::Applied
+        );
+        let bought = world
+            .player_inventory()
+            .iter()
+            .find(|entry| entry.item() == &armor)
+            .unwrap();
+        assert_eq!(bought.magic_modifiers(), Some(bonus));
+        assert_ne!(bought.instance(), instance);
     }
 
     #[test]

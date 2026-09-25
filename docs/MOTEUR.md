@@ -4,9 +4,36 @@ Le moteur de Project RL est une bibliothèque de simulation indépendante de Mac
 
 La charte de la couche de présentation, ses garanties clavier/souris et la séparation entre interface commune, rendu terminal et futur rendu texturé sont détaillées dans [`INTERFACE.md`](INTERFACE.md).
 
+Le [laboratoire de test](LABORATOIRE_DE_TEST.md) est une carte temporaire accessible
+depuis le menu principal : cibles inertes, obstacles/eau, variantes d'armes et
+réinitialisation. Ses règles restent locales au client ; ni ses objets ni son
+état ne peuvent remplacer une sauvegarde de campagne.
+
+La génération 104 rend la corrosion centrale non cumulable (renouvellement de
+durée, comme la brûlure). La compatibilité 103 et antérieure reconstitue son
+ancienne politique de charges pour préserver les sauvegardes. Les effets
+distincts restent simultanés sans limite de deux. Les champs au sol sont déjà
+uniques par `(case, identifiant d'effet)`. Le retour visuel regroupe les dégâts
+par destinataire réel dans une résolution et expose les états temporaires sans
+les retirer lorsque leur animation s'achève. Les événements de propagation
+identifient la définition et l'index de l'effet d'arme, afin de choisir le bon
+profil visuel même si l'équipement change ensuite.
+
 La direction de monde précisée le 21 septembre 2026 figure dans [Monde, exploration et progression](MONDE_EXPLORATION_ET_PROGRESSION.md) : territoires sauvages plus développés, lieux de quête garantis et plan de couche déterministe avant génération locale à la visite. Ce contrat complet est une cible de conception, distincte des mécanismes et dimensions de prototype décrits ci-dessous. La campagne complète et sa durée ne sont pas encore validées par une implémentation.
 
 ## Contrat de simulation
+
+La génération 109 augmente la [densité des rencontres de surface](POPULATION_DE_SURFACE.md)
+et peuple aussi les friches initiales avec les humanoïdes équipés existants.
+Le placement répartit les groupes, écarte les arrivées et exclut les poches
+inaccessibles. Les profils historiques et leurs empreintes restent inchangés
+pour les reprises 108 et antérieures ; le format du cache moteur reste v6.
+
+La génération 108 ajoute les [armes portées des ennemis](EQUIPEMENT_DES_ENNEMIS.md) :
+profils humanoïdes explicitement déclarés, attaque issue de l'exemplaire, bonus
+et effets réels, dépôt unique à la mort même sur une case déjà occupée. Les
+anciennes générations gardent leurs rencontres sans ce butin ; le cache moteur
+v6 conserve les armes portées et reprend les anciens caches par le journal.
 
 ```text
 intention du joueur
@@ -183,7 +210,7 @@ Le client Terminal possède un premier lecteur de ces signaux. Les attaques de l
 
 Une seconde couche, également limitée au client, transforme les événements déjà perceptibles en messages flottants ancrés à leur case. Dégâts, soins, esquives, états, destructions et alertes utilisent des libellés explicites en plus de leur couleur. Le gain de niveau reste plus grand et plus longtemps visible au-dessus du joueur ; après drainage de tous les événements du tour, il ouvre aussi l'écran de compétences. Cette réaction de navigation ne modifie ni tour, ni RNG, ni sauvegarde et elle est volontairement désactivée pendant un rejeu. La file est bornée à 32 messages, empile les événements simultanés et ne reçoit rien d'une case hors perception. Elle est vidée au changement de zone et après le rejeu d'une suspension : ces textes ne constituent ni un état mécanique ni une nouvelle source d'information.
 
-Une arme de zone ouvre désormais une **visée de zone** au premier appui sur Attaquer. Un premier clic gauche sur une case visible de la carte accomplit la même action en plaçant directement le curseur sur cette case ; un second clic confirme, de sorte que tout le parcours reste possible sans clavier. L'empreinte translucide et le curseur restent des informations de présentation, mais leurs cases proviennent du moteur : `GameState::player_attack_footprint` expose la géométrie complète, même lorsqu'une règle contextuelle interdit le tir, et `GameState::player_attack_preview` valide exactement la même préparation que l'exécution. Portée, ligne de vue, murs, forme et étapes ne sont jamais réimplémentés dans le client. Une empreinte invalide reste donc entièrement visible en rouge avec son motif géométrique et la raison du refus, par exemple « zone protégée », au lieu de se réduire au seul curseur. Les directions de déplacement déplacent le curseur sans déplacer le joueur ni faire passer le temps ; la souris l'oriente, `Tab` l'accroche à une cible visible, un second appui sur Attaquer ou un clic gauche confirme, et Échap ou clic droit annule. Seule la confirmation produit une commande rejouable `AttackAt`, qui peut viser une case vide et enregistre ses coordonnées dans la suspension. Les attaques à cible unique conservent leur commande par identifiant d'entité. Le cône actuel du lance-flammes utilise toujours sa portée maximale configurée : déplacer le curseur change son vecteur précis, pas encore sa longueur. Une éventuelle portée raccourcissable reste donc une règle de contenu à décider, et non un comportement implicite du client.
+Une arme de zone ouvre désormais une **visée de zone** au premier appui sur Attaquer. Un premier clic gauche sur le sol visible de la carte (hors cible sélectionnable) accomplit la même action en plaçant directement le curseur sur cette case ; un second clic confirme, de sorte que tout le parcours reste possible sans clavier. L'empreinte translucide et le curseur restent des informations de présentation, mais leurs cases proviennent du moteur : `GameState::player_attack_footprint` expose la géométrie complète, même lorsqu'une règle contextuelle interdit le tir, et `GameState::player_attack_preview` valide exactement la même préparation que l'exécution. Portée, ligne de vue, murs, forme et étapes ne sont jamais réimplémentés dans le client. Une empreinte invalide reste donc entièrement visible en rouge avec son motif géométrique et la raison du refus, par exemple « zone protégée », au lieu de se réduire au seul curseur. Les directions de déplacement déplacent le curseur sans déplacer le joueur ni faire passer le temps ; la souris l'oriente, `Tab` l'accroche à une cible visible, un second appui sur Attaquer ou un clic gauche confirme, et Échap ou clic droit annule. Seule la confirmation produit une commande rejouable `AttackAt`, qui peut viser une case vide et enregistre ses coordonnées dans la suspension. Les attaques à cible unique conservent leur commande par identifiant d'entité. Le cône actuel du lance-flammes utilise toujours sa portée maximale configurée : déplacer le curseur change son vecteur précis, pas encore sa longueur. Une éventuelle portée raccourcissable reste donc une règle de contenu à décider, et non un comportement implicite du client.
 
 Pour que le jet ne paraisse jamais détaché de l'arme, sa première étape est la case adjacente au joueur (`step = 0`) et sa persistance visuelle garde cette base affichée pendant que le front retardé atteint la pointe du cône. La case du joueur n'appartient ni à l'empreinte mécanique ni à l'animation.
 
@@ -341,7 +368,7 @@ La version 41 raccorde la récupération d'action `Rn`, dont `R1` est le premier
 
 La primitive de technique `weapon_attack` raccorde maintenant ce socle à une attaque d'arme sélectionnée. Le contenu impose le mode de livraison compatible (`melee` ou `ranged`) et peut ajouter indépendamment un modificateur de Précision, un pourcentage strictement positif appliqué à la seule composante physique après Impact avec arrondi inférieur, et une récupération. Le slot actif est capturé dans `GameCommand` et dans le journal de suspension ; une ancienne commande sans slot reste lisible. Portée, ligne de vue, touche, Blindage, effets secondaires et coûts natifs passent par la résolution ordinaire de l'arme. La primitive est intrinsèquement offensive ; une arme sans composante physique n'est refusée que si la technique cherche effectivement à modifier cette composante.
 
-Deux profils de laboratoire emploient ce raccord. MEL-01 vérifie ×1,5 puis R1, y compris après un raté. MEL-02 vérifie P1+A1 puis ajoute +20 à la Précision native de l'arme, sans remplacer son propre modificateur : la première commande ne tire aucun aléa et la seconde réalise seule la frappe. Déplacement, changement de cible ou perte du contact annulent la préparation ; l'unique état de préparation empêche le cumul avec une autre visée. Une commande refusée, une cible hors portée, un slot absent ou une arme incompatible ne consomme ni tour ni aléatoire. Le client sait sélectionner la cible légale de l'arme active et exécuter ces profils depuis l'écran des compétences. Le cœur ne propose ces techniques au joueur que lorsque leurs dépendances et leurs conditions d'apprentissage forment un parcours réellement exécutable.
+Deux profils initiaux emploient ce raccord. MEL-01 vérifie ×1,5 puis R1, y compris après un raté. Depuis la version 97, MEL-02 est une décision immédiate : ×0,75 sur les dégâts physiques et +25 à la Précision native de l'arme pour une unique frappe A1. Elle ne monopolise donc plus deux actions pour un simple bonus de touche ; sa perte de dégâts la rend volontairement moins intéressante contre une cible déjà facile à atteindre. Une commande refusée, une cible hors portée, un slot absent ou une arme incompatible ne consomme ni tour ni aléatoire. Le client sait sélectionner la cible légale de l'arme active et exécuter ces profils depuis l'écran des compétences. Les générations 96 et antérieures reconstruisent encore l'ancien profil P1+A1 à +20 pour préserver leurs rejeux.
 
 MEL-03 fournit le premier raccord headless du déplacement forcé à cette attaque déclarative. Le profil applique 50 % des dégâts physiques après Impact puis, uniquement sur une touche et si la cible survit, compare l'Impact plafonné de l'arme à `plafond(masse / 10 kg) + ancrage`. Le corps ciblé peut déclarer en JSON5 sa masse en grammes, son ancrage et une fixation absolue. Une réussite déplace d'une case dans l'axe réel du coup, cardinal ou diagonal. Une masse ou un ancrage trop élevés, une fixation, une case infranchissable ou occupée bloquent seulement le déplacement : les dégâts du coup restent résolus et aucune collision, permutation ou poussée récursive n'est ajoutée. Un impact réduit à zéro par le Blindage peut donc encore pousser. Le moteur émet un résultat typé et le client affiche un retour flottant sans reconstruire la règle.
 
@@ -384,6 +411,12 @@ En v94, les deux biomes de surface emploient une première variante éventrée �
 En v95, le cache de surface restant hors des deux enceintes reçoit une empreinte distincte de 5 × 5 cases, ouverte par l'est. Le générateur ne retient qu'une empreinte praticable avec couronne libre, puis place à l'accès un conteneur destructible défini par le biome. Le cache et son butin existent dès la génération ; le conteneur occupe physiquement le seul accès jusqu'à sa destruction. L'explosion et le feu utilisent la résolution commune des effets, sans récompense d'expérience créée pour le conteneur. Un tirage indépendant dans `core:surface_salvage` remplace seulement l'objet de cette cache et favorise les préparations utiles. Les rencontres et les autres caches restent dans leurs flux séparés. La v94 reconstitue ses catalogues sans ce conteneur ni cette table et conserve l'ancien placement des caches.
 
 En v96, un flux aléatoire indépendant choisit pour chaque région de surface entre l'aire fermée et deux brèches supplémentaires au nord et à l'ouest. Le conteneur demeure à l'entrée est ; dans l'aire éventrée, on peut le contourner pour prendre la cache ou le détruire pour exploiter son explosion. La cache garde son emplacement et sa récompense ; les nouvelles cases praticables peuvent modifier le placement de butin dispersé ou d'ennemis. Les terminaux de relevé restent garantis. Les suspensions v95 gardent l'aire fermée.
+
+La version 97 rééquilibre trois décisions de Combat rapproché sans coder leurs identifiants dans la résolution. Frappe précise devient une attaque A1 à 75 % des dégâts physiques et +25 Précision. Écrasement passe à 220 % et ajoute 2 de pénétration contre une cible déjà entravée ou immobilisée. Interception dispose d'une nouvelle réaction déclarative portant une intensité de Stabilité : après une touche sur une cible survivante, une résistance réussie autorise le retrait et un échec le laisse sur la case de départ ; un raté n'effectue aucun test. Les événements distinguent retrait maintenu et retrait bloqué afin que l'interface affiche un retour flottant sans recalculer la règle. L'ancienne réaction sans contrôle reste sérialisable, et l'adaptateur de génération rend aux suspensions v96 leurs trois anciens profils avant empreinte et rejeu.
+
+La version 98 commence l'épreuve tactique de cette discipline dans le secteur extérieur fixe. Les sentinelles y possèdent désormais 2 points d'Armure, tandis que les traqueurs et les tirailleurs n'en reçoivent pas. Cette différence crée une cible lisible pour Brise-armure et pour la pénétration d'Écrasement sans augmenter artificiellement les PV de tous les adversaires. Le tirailleur conserve son Esquive supérieure et sa volonté de s'éloigner quand le joueur l'approche : Frappe précise et Interception répondent donc à un comportement réellement rencontré. Les générations 97 et antérieures reconstruisent encore ces dix adversaires sans Armure afin de préserver leurs suspensions.
+
+La version 99 étend cette différenciation aux destinations générées sans uniformiser les rencontres. La sentinelle des habitats de surface reçoit 1 point d'Armure et celle des étendues sauvages en reçoit 2. Dans les couches industrielles, seuls les traqueurs lourds de Maintenance puis de Production reçoivent respectivement 1 et 2 points ; les tirailleurs et les renforts renouvelables restent non protégés. Les PV, les nombres de groupes et les flux de placement ne changent pas. Le contenu porte ces valeurs dans les profils corporels ordinaires, tandis qu'un adaptateur retire seulement leur Armure pour reconstruire les catalogues et les régions des suspensions v98 et antérieures.
 
 Les deux biomes de surface déclarent maintenant du butin et des lieux remarquables dans le même fichier. Les flux terrain, population, lieux et butin utilisent des sels indépendants. Chaque cache est une case accessible, distincte des acteurs et passages, qui porte prioritairement une vraie pile ramassable. Chaque camp est une source identifiable : délai, plafond de renforts simultanés, quota total fini et archétype sont validés depuis les données. Un renfort apparaît sur le camp ou une case cardinale libre, reçoit une provenance `Summoned` sans XP par défaut et ne peut donc pas alimenter une ferme infinie. Lorsqu'une alarme sécurisant une cache l'appelle, le prochain acteur produit reçoit l'état persistant `Responding` avec la dernière case d'incident acceptée ; il s'y déplace sans attaque aveugle, passe en poursuite seulement après perception réelle, puis recherche et revient selon son cycle borné. Plusieurs alarmes avant l'apparition remplacent la destination par l'incident le plus récent. Interagir avec le camp adjacent le neutralise définitivement. Les sources actives et leurs ordres en attente continuent hors écran sans transmettre leurs événements locaux et synchronisent les identifiants globaux d'acteurs. Depuis la version 26, le sous-profil de sécurité peut aussi fournir `navigation_signal_range` : chaque capteur de site reçoit alors une balise dans les nouvelles parties, sans modifier les tirages ni les cartes. Le client Terminal affiche seulement la balise opérationnelle la plus proche, sa direction à huit secteurs et une tranche de distance ; les coordonnées exactes restent privées. Les caches, camps actifs et camps neutralisés ont des glyphes distincts et figurent dans F1, qui explique aussi le bandeau de signal.
 
@@ -514,3 +547,190 @@ dialogues répétés ne le versent pas une seconde fois. Le montant vient du cha
 `narrative_reward_experience` du catalogue d'expédition. La génération 87 conserve
 son montant historique de 0 XP au rejeu. L'interface affiche directement les
 récompenses du contrat en cours, y compris après sa validation.
+
+## Premiers nouveaux habitants et adversaires — génération 100
+
+La [population de surface](POPULATION_DE_SURFACE.md) ajoute deux contacts
+facultatifs, un artilleur à tir annoncé et un soigneur humanoïde. Les profils
+ne déduisent aucune nature robotique de leur rôle. Le tir mémorise une case
+plutôt qu'une cible suivie automatiquement ; le soutien dépense un stock borné
+de fournitures. Ces états appartiennent aux acteurs, se sérialisent et évoluent
+hors écran sans fuite d'information. Les deux nouveaux rôles sont déclaratifs
+dans les rencontres de surface ; les anciens catalogues sont adaptés avant
+empreinte et génération pour préserver les reprises jusqu'à la version 99.
+
+## Familles de faune — génération 101
+
+La [première faune de surface](FAUNE_DE_SURFACE.md) utilise un catalogue de
+familles et d'espèces avec niveaux de référence, habitats et budget de danger.
+Le tirage déterministe choisit d'abord une famille puis une espèce admissible,
+après les autres éléments régionaux, sans modifier leurs flux aléatoires.
+Le premier lot comprend une meute, un solitaire guidé par les sons et un
+carapacé herbivore neutre qui se replie après un coup. Les comportements
+réutilisent perception, propagation sonore, pathfinding, armure et états
+d'acteur persistants ; aucun système électronique n'est attribué à ces animaux.
+Les états évoluent aussi hors écran. Les métadonnées de faune sont retirées
+des catalogues des anciennes générations avant empreinte et reconstruction,
+de sorte qu'une reprise 100 n'introduit pas de nouvelles populations.
+
+## Fuite et défense acculée — génération 102
+
+Le Grignoteur de gravats introduit une seconde espèce parmi les charognards,
+sans accroître le poids de la famille ni le budget de population. Sa fuite
+utilise uniquement les menaces perçues, cherche un chemin d'éloignement avec
+détours latéraux et distingue impasse prouvée de recherche interrompue. Seule
+l'impasse permet une morsure au contact ; laisser une issue interrompt cette
+défense. Les états « fuit » et « acculé » se sauvegardent et ne révèlent rien
+hors vision. La reprise 101 retire cette espèce avant empreinte et génération.
+
+## Morsure annoncée et récupération — génération 103
+
+Le Brise-os est une rencontre animale rare de niveau 4, réservée aux étendues
+sauvages de surface, sans changement de densité ni de budget total. Il utilise
+le même engagement sur une case que l'artilleur, mais pour une morsure au
+contact, avec deux occasions de récupération immobile après le coup, même
+raté. Le client distingue « morsure » de « tir » et montre la récupération.
+Les préparations et récupérations se sérialisent et progressent hors écran
+sans suivre le joueur dans une autre zone. Une reprise 102 retire l'espèce et
+retrouve la plage de niveaux antérieure ; les friches initiales ne changent pas.
+
+## Conception du bestiaire avant les prochains ajouts — 24 septembre 2026
+
+L'ajout isolé de nouveaux ennemis laisse place à une revue du
+[catalogue global](BESTIAIRE_ET_RENCONTRES.md) : familles, noms destinés à rester,
+habitats, comportements et [provenance des butins](BUTINS_DES_RENCONTRES.md).
+Les 36 espèces ou modèles proposés et les six rôles humanoïdes ne sont pas
+de nouveaux acteurs intégrés. Le modèle général de butin et les quatre noms
+de famille de surface ont été acceptés ; les déclinaisons par espèce, objets
+précis et taux restent à finaliser. Les cinq animaux jouables,
+les tables, les objets et la génération 103 ne changent pas. Aucun test de
+simulation n'est présenté comme validation de ces idées.
+
+## Direction suivante : amélioration des bonus d'équipement
+
+Le laboratoire dispose aussi d'une première protection d'impact : état fini
+`damage_guard`, appliqué au porteur via `apply_bearer_status` après dégâts
+directs. Une protection se consomme sur un impact positif après défenses ;
+elle ne se cumule ni ne se rafraîchit. Voir les contrats et limites dans
+[le catalogue d'effets](EFFETS_SPECIAUX_EQUIPEMENT.md#10-égide-dimpact--protection-de-laboratoire).
+Cette brique n'ajoute aucun champ de sauvegarde ni équipement de campagne.
+
+Catalyse ajoute une conversion d'état à l'impact : une brûlure préexistante est
+consommée pour une explosion thermique, au plus une par attaque normale.
+Les touches mortelles gardent leur position ; les autres états sont conservés,
+les dégâts secondaires ne relancent pas les effets d'arme. La condition et
+l'animation sont testables au laboratoire, sans nouvelle donnée de sauvegarde.
+
+Percussion ajoute une poussée d'une case sur touche et une recharge temporaire
+partagée par le porteur, limitée au laboratoire. Elle réutilise les règles de
+masse/ancrage et de collision sans modifier les techniques de mêlée historiques
+ni leurs reprises. Les détails et restrictions sont dans le catalogue d'effets.
+
+Le [service de PNJ retenu](AMELIORATION_EQUIPEMENT.md) remplace la piste
+d'artisanat pour le moment : équipement existant et ressources, ajout ou
+modification aléatoire de bonus, base inchangée. Les effets spéciaux seront
+choisis dans un [catalogue prédéfini](EFFETS_SPECIAUX_EQUIPEMENT.md) avec leurs
+règles et visuels. Les recommandations et un premier ensemble de douze effets
+sont retenus. Toute zone offensive issue d'une touche part de l'impact,
+en mêlée comme à distance, sauf mention explicite « autour du porteur ».
+Le soin sur une frappe et la foudre expressément autour du porteur restent
+les deux exemples initiaux ; le soin ne change pas de bénéficiaire.
+L'intervention unique reste envisagée ; paramètres, ingrédients et modalités
+doivent être précisés avant intégration du service.
+
+Une première brique `WeaponEffectKind::RadialDamage`, chargeable dans les
+définitions d'arme, applique l'origine `impact` par défaut ou `bearer` explicite.
+Elle exige une touche (`on_hit`) ou des dégâts directs positifs (`on_damage`),
+émet au plus une zone par définition et attaque normale, conserve la position
+de l'impact mortel, et ne s'active pas sur les attaques de réaction. La cible
+visée admissible est prioritaire, sinon la première case admissible dans l'ordre
+stable des coordonnées. L'exposition du porteur est un choix obligatoire séparé
+de l'origine ; les autres occupants suivent les dégâts de zone existants,
+sans filtre social nouveau. La propagation respecte les murs, les dégâts
+respectent les zones protégées. Aucun profil n'est ajouté aux objets jouables :
+service PNJ, propriétés spéciales par exemplaire, ciblage social final,
+prévisualisations et nouveaux visuels restent à intégrer. Aucun format de
+sauvegarde ni réglage d'arme existant ne change dans cette étape.
+
+### Affixes chiffrés nommés — laboratoire, 25 septembre 2026
+
+Les nouveaux bonus du laboratoire utilisent `NamedEquipmentAffixes` : identités
+stables, palier et valeurs tirées, avec validation des doublons et des bornes.
+`MagicItemModifiers` vérifie à la désérialisation que son cache numérique correspond
+à ces propriétés. Les bonus historiques anonymes restent inchangés, y compris
+leur empreinte Debug. Les objets nommés passent par les mêmes transferts d'inventaire,
+sol et revente ; aucun nouveau tirage n'est réalisé par l'affichage ou la reprise.
+
+Le laboratoire génère 1 à 3 affixes chiffrés P1 par exemplaire magique ; les six
+paliers sont définis mais les hauts paliers ne sont pas distribués. Le client
+compose un nom court et affiche chaque bonus séparément. Les 144 nouvelles bases et les filtres de provenance restent
+au stade catalogue, sans modification du butin de campagne.
+
+Le cache binaire moteur est maintenant `RLWS` version 4. Les anciens caches
+sont refusés avant décodage de la structure et la suspension utilise son journal
+vérifié ; il ne s'agit pas d'une nouvelle version de génération du monde.
+
+### Effets spéciaux par exemplaire — 25 septembre 2026
+
+`MagicItemModifiers::effect_affix` référence un `WeaponEffectAffixDefinition`
+enregistré dans le catalogue d'armes : identité, suffixe, description et mécaniques
+prédéfinies. La résolution compose la base et l'effet de l'exemplaire sans modifier
+la base ni ses dégâts. Seule l'arme utilisée fournit les effets ; les bonus chiffrés
+des objets équipés gardent leur portée habituelle. Ricochet exige une arme à distance.
+Les profils inconnus ou incompatibles sont refusés à l'attribution initiale et à
+la lecture du cache. Les références aux états sont validées avec les règles.
+
+Le laboratoire a migré ses effets vers ces propriétés persistantes. Leurs sources
+restent identifiables dans les événements, y compris après une attaque différée :
+animations et aperçu de Catalyse ne dépendent pas d'une déduction du nom de base.
+Les anciennes parties n'acquièrent aucun effet rétroactivement. Les caches v1 et v2
+utilisent le journal vérifié ; le dépôt/ramassage et la vente/reprise conservent
+le profil et les affixes chiffrés.
+
+Les paris n'affichent que le nom de base, jamais le nom composé d'un exemplaire.
+Leurs propriétés sont encore tirées lors de l'achat réussi. Cette étape n'ajoute
+ni distribution des nouveaux effets en campagne, ni service d'amélioration,
+ni distribution exhaustive du catalogue. Le raccordement suivant est décrit ci-dessous.
+L'enregistrement moteur d'un marchand accepte aussi une base d'arme non empilable
+pour éprouver la vente/reprise d'un exemplaire spécial. Aucun stock de campagne
+n'est modifié ; les offres d'armes dans les fichiers de contenu et les paris
+sur armes restent à raccorder lors de l'intégration des nouvelles bases.
+
+### Générateur pondéré d'exemplaires — génération 105
+
+`loot::EquipmentLootCatalog` filtre la provenance, choisit la famille puis le
+palier pondéré par profondeur, la base et les propriétés persistantes. Chaque
+affixe a son propre poids, distinct de la qualité blanc/magique. Pas de doublon,
+au maximum trois propriétés dont un effet ; aucune modification de la définition
+de base. Les profils sont chargés depuis `equipment_loot` et `weapon_affixes`.
+
+Six bases P1/P2 et deux effets sont distribués dans les régions `human_habitat`.
+Le flux RNG est séparé et les positions, quantités et propriétaires existants sont
+préservés. `GroundLootBlueprint` transporte désormais les propriétés jusqu'à la
+matérialisation, y compris après reprise. Les anciennes empreintes Debug restent
+inchangées en l'absence de métadonnées. Les générations <=104 filtrent les nouveaux
+catalogues ; les caches moteur <=3 sont reconstruits via le journal vérifié.
+Voir [le contrat complet et les limites](GENERATION_EQUIPEMENT.md).
+
+### Catalogue par profondeur — génération 106
+
+Les trois familles couvrent maintenant P1 à P6 (18 bases), sans modifier leurs
+propriétés de tirage ni multiplier les définitions par combinaison d'affixes.
+L'adaptateur remplace aussi les équipements humanoïdes des caches souterraines,
+jamais les possessions des robots. Recherche, sécurité, réseau et corruption
+reçoivent des caches ; les villes et marchands restent inchangés. Les projections
+de compatibilité retirent uniquement ces nouvelles métadonnées et les douze
+bases P3 à P6 pour les versions antérieures. Les empreintes et tirages v105 restent
+identiques, avec test de reprise. Voir le tableau des bases dans le contrat ci-dessus.
+
+### Commerce des nouvelles bases — génération 107
+
+L'adaptateur des villes propose du stock blanc du palier local et du précédent,
+trois paris du palier local et le rachat des dix-huit bases. La voie moteur
+`register_equipment_merchant` conserve les profils et prix de reprise ; la voie
+historique reste inchangée. `EquipmentLootCatalog::enchant_base` tire les propriétés
+du modèle annoncé, avec les mêmes poids que le butin. La progression améliore les
+valeurs à l'intérieur de leurs bornes, sans modifier le palier ni les effets.
+Les vues ne révèlent et ne tirent rien. Les refus restaurent le RNG comme les
+stocks et les crédits. `RLWS` v5 protège la nouvelle disposition binaire ; le
+journal reprend les anciens caches. Voir [Commerce d'équipement](COMMERCE_EQUIPEMENT.md).

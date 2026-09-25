@@ -10,6 +10,44 @@
   narrative: {
   "characters": [
     {
+      "tag": "core:sorting_operator",
+      "name_key": "surface_cast.sorter.name",
+      "role_key": "surface_cast.sorter.role",
+      "hub_position": [36, 26],
+      "entry": "welcome",
+      "nodes": [
+        { "id": "welcome", "text_key": "surface_cast.sorter.welcome", "choices": [
+          { "text_key": "surface_cast.sorter.ask_work", "next": "work", "action": null },
+          { "text_key": "surface_cast.sorter.ask_outside", "next": "outside", "action": null }
+        ] },
+        { "id": "work", "text_key": "surface_cast.sorter.work", "choices": [
+          { "text_key": "surface_cast.other", "next": "welcome", "action": null }
+        ] },
+        { "id": "outside", "text_key": "surface_cast.sorter.outside", "choices": [
+          { "text_key": "surface_cast.other", "next": "welcome", "action": null }
+        ] }
+      ]
+    },
+    {
+      "tag": "core:surface_scout",
+      "name_key": "surface_cast.scout.name",
+      "role_key": "surface_cast.scout.role",
+      "hub_position": [68, 26],
+      "entry": "welcome",
+      "nodes": [
+        { "id": "welcome", "text_key": "surface_cast.scout.welcome", "choices": [
+          { "text_key": "surface_cast.scout.ask_shooter", "next": "shooter", "action": null },
+          { "text_key": "surface_cast.scout.ask_medic", "next": "medic", "action": null }
+        ] },
+        { "id": "shooter", "text_key": "surface_cast.scout.shooter", "choices": [
+          { "text_key": "surface_cast.other", "next": "welcome", "action": null }
+        ] },
+        { "id": "medic", "text_key": "surface_cast.scout.medic", "choices": [
+          { "text_key": "surface_cast.other", "next": "welcome", "action": null }
+        ] }
+      ]
+    },
+    {
       "tag": "core:orme",
       "name_key": "narrative.orme.name",
       "role_key": "narrative.orme.role",
@@ -373,7 +411,9 @@
       player_relation: "hostile",
       electronic_system: { digital_defense: 55, heat_alert_threshold: 30, heat_critical_threshold: 45, heat_dissipation_per_phase: 4, stored_energy: 30 },
       primary_attributes: { power: 5, coordination: 5, resilience: 6, perception: 8, processing: 6 },
-      body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+      // Stationary protection: durable against ordinary impacts, but still
+      // vulnerable to armor-breaking techniques and specialized damage.
+      body: { base_hit_points: 9, base_armor: 2, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
       components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 8, failure_effect: { type: "disable_movement" } }],
       attack: {
         range: 1,

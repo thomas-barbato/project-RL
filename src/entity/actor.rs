@@ -28,6 +28,10 @@ use super::{
     BodyComponentId, BodyComponentProfile, BodyComponentState, ComponentFailureEffect, EntityId,
 };
 
+#[path = "actor_weapon.rs"]
+mod weapon;
+pub use weapon::ActorWeapon;
+
 #[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct Actor {
     position: GridPos,
@@ -35,6 +39,7 @@ pub struct Actor {
     maximum_integrity: u16,
     resistances: ResistanceProfile,
     attacks: Vec<AttackProfile>,
+    equipped_weapon: Option<super::ActorWeapon>,
     abilities: Vec<AbilityProfile>,
     ai: Option<AiProfile>,
     ai_home: Option<GridPos>,
@@ -84,6 +89,9 @@ impl Debug for Actor {
             .field("primary_attributes", &self.primary_attributes);
         if let Some(affiliation) = &self.affiliation {
             actor.field("affiliation", affiliation);
+        }
+        if let Some(weapon) = &self.equipped_weapon {
+            actor.field("equipped_weapon", weapon);
         }
         if self.player_relation != PlayerRelation::Neutral {
             actor.field("player_relation", &self.player_relation);
@@ -173,6 +181,7 @@ impl Actor {
             maximum_integrity,
             resistances: ResistanceProfile::default(),
             attacks: Vec::new(),
+            equipped_weapon: None,
             abilities: Vec::new(),
             ai: None,
             ai_home: None,
@@ -360,6 +369,12 @@ impl Actor {
 
     pub const fn maximum_integrity(&self) -> u16 {
         self.maximum_integrity
+    }
+
+    /// Equipment can change capacity, never heal by repeatedly swapping it.
+    pub(crate) fn resize_integrity_without_healing(&mut self, maximum: u16) {
+        self.maximum_integrity = maximum.max(1);
+        self.integrity = self.integrity.min(self.maximum_integrity);
     }
 
     pub const fn resistances(&self) -> ResistanceProfile {
@@ -712,6 +727,10 @@ impl Actor {
         source: Option<crate::entity::EntityId>,
     ) -> crate::status::StatusApplyOutcome {
         self.statuses.apply(definition, stacks, source)
+    }
+
+    pub(crate) fn remove_status(&mut self, id: &StatusId) -> bool {
+        self.statuses.remove(id)
     }
 
     pub(crate) fn elapse_status_turn(&mut self, id: &StatusId) -> bool {

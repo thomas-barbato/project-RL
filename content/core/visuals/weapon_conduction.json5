@@ -1,0 +1,8 @@
+{
+  id: "core:weapon_conduction",
+  terminal: {
+    frames: ["arc_fork", "arc_split", "arc_fork", "arc_split"],
+    color: [45, 179, 178, 205], accent_colors: [[109, 243, 237, 255], [224, 255, 251, 255]],
+    frame_millis: 95, step_millis: 65, linger_millis: 60,
+  },
+}

@@ -18,7 +18,7 @@ Périmètre : statistiques, matériel utile à leur lecture, progression actuell
 - Les données de fiche accompagnent le texte : type d'action, niveau minimal, attributs et techniques prérequis, matériel requis, cible/canal, portée, trajectoire/zone, temps de préparation/exécution/récupération, coût initial et entretien, énergie, chaleur, bande passante occupée et durée de réservation, munitions/objets, durée d'effet, délai de réutilisation et risque pour les tiers. Afficher les champs applicables, pas une rangée de zéros.
 - Ces nombres proviennent du profil actif et de l'équipement réel ; ne pas recopier les coefficients de laboratoire dans les phrases. Indiquer séparément ce qui est payé maintenant, lors de l'effet et pendant son maintien. Une réaction affiche aussi le coût qu'elle exigera au déclenchement.
 - Montrer les améliorations avec le nom de leur technique mère, et une variante avec ce qu'elle remplace et son compromis. Une seule variante électronique s'applique à une utilisation ; elle n'est pas offerte avec la technique mère.
-- Pour une propriété ou une défense ennemie inconnue, afficher « Non déterminé », pas zéro. N'afficher un pourcentage de réussite précis que si les données nécessaires sont connues ; sinon « Chances non déterminées ». Aucun calcul d'aperçu ne doit révéler indirectement le Blindage, la Défense numérique, un occupant caché ou un obstacle non observé.
+- Pour une propriété ou une défense ennemie inconnue, afficher « Non déterminé », pas zéro. N'afficher un pourcentage de réussite précis que si les données nécessaires sont connues ; sinon « Chances non déterminées ». Aucun calcul d'aperçu ne doit révéler indirectement l'Armure, la Défense numérique, un occupant caché ou un obstacle non observé.
 - Un résultat distingue perception actuelle, dernier relevé daté et indice incertain. Une animation sonar, une couleur, un message, le journal ou un rapport de drone ne peuvent contourner cette limite. Un indice non localisé n'est pas dessiné à des coordonnées exactes inventées.
 - Clavier et souris donnent les mêmes textes et informations. Afficher les actions remappées, sans figer une touche QWERTY ou AZERTY. Les mots, symboles et motifs accompagnent les couleurs ; aucune relation ou alerte ne repose sur la couleur seule.
 - Un menu, un survol ou une annulation avant engagement ne fait pas avancer le temps. Une tentative légale peut échouer et coûter des ressources. Un refus gratuit ne décrit que ce que le personnage pouvait déjà savoir, jamais la cause cachée découverte par une sonde gratuite.
@@ -45,14 +45,14 @@ La première ligne complète les onze secondaires. Les autres décrivent des res
 | UI-EMPLACEMENTS | Emplacements disponibles | Déterminent les modules ou programmes que votre matériel peut accueillir. Un emplacement libre doit aussi être compatible. Apprendre une technique ne crée pas de nouvel emplacement. |
 | UI-PORTEE-ARME | Portée de l’arme | Fixe la distance maximale d’utilisation du mode choisi. La trajectoire, les obstacles et les conditions de ciblage restent à respecter. Une meilleure Précision ne prolonge pas cette portée. |
 | UI-DEGATS | Dégâts | Décrivent les dégâts de l’attaque avant les protections de la cible. Chaque type rencontre la défense qui lui correspond. Une attaque peut toucher sans infliger de dégâts. |
-| UI-PENETRATION | Pénétration physique | Ignore une partie du Blindage pour l’impact concerné. Ne détruit pas ce blindage et ne réduit pas les résistances thermiques, électriques ou chimiques. |
+| UI-PENETRATION | Pénétration d'armure | Traverse une partie de l'Armure pour cet impact. N'endommage pas l'armure et ne réduit pas les résistances thermiques, électriques ou chimiques. |
 | UI-MUNITIONS | Munitions | Indiquent les projectiles disponibles pour l’arme. Une rafale dépense chaque projectile tiré. Une attaque manquée ne rend pas les munitions déjà utilisées. |
 | UI-MODES-ARME | Modes de l’arme | Décrivent les façons de tirer ou de frapper prévues par votre équipement. Leurs coûts et leurs effets diffèrent. Une technique exigeant un mode compatible ne crée pas ce mode sur une arme qui en est dépourvue. |
 | UI-PORTEE-CAPTEURS | Portée des capteurs | Fixe la distance à laquelle vos capteurs peuvent recueillir des informations. Les murs, les portes fermées et les limites de chaque canal restent applicables. Agrandir la fenêtre n’étend pas votre perception. |
 | UI-CANAUX | Canaux de détection | Déterminent les types de signaux que vos capteurs peuvent percevoir. Un camouflage ou un brouillage n’affecte que les canaux concernés ; les autres peuvent rester utiles. |
 | UI-SIGNATURE | Signature | Décrit les indices que votre corps et vos équipements émettent sur un canal donné. Réduire le bruit ne masque pas votre silhouette ou votre chaleur. Les observations déjà faites ne sont pas effacées. |
 | UI-COUT-DEPLACEMENT | Temps de déplacement | Indique le temps nécessaire pour parcourir une case dans votre état actuel. Terrain, charge et posture peuvent ralentir le mouvement. Les autres acteurs peuvent agir pendant ce temps. |
-| UI-ANCRAGE | Ancrage | Aide à résister aux déplacements imposés, avec votre masse et les limites du matériel. Ne réduit pas les dégâts d’un coup et ne remplace pas le Blindage. |
+| UI-ANCRAGE | Ancrage | Aide à rester en place lorsqu'un adversaire tente de vous pousser, avec votre masse et les limites du matériel. Ne réduit pas les dégâts d'un coup et ne remplace pas l'Armure. |
 | UI-TRACTION | Capacité de traction | Limite la masse que votre matériel peut déplacer lors d’une extraction. Le corps et la charge de l’allié comptent ensemble. Un trajet praticable et des places d’arrivée libres restent nécessaires. |
 | UI-DRONES | Unités contrôlables | Indique le nombre d’unités que votre contrôleur peut prendre en charge. La bande passante, les liaisons et les ressources restent nécessaires. Les ordres ne donnent pas d’actions supplémentaires aux drones. |
 | UI-LIAISON | Liaison | Permet de transmettre une commande à un dispositif joignable. Portée, obstacles et brouillage peuvent la couper. Une liaison de commande ne donne pas automatiquement la vision de la cible ou de ses alentours. |
@@ -119,15 +119,15 @@ Les 104 lignes suivantes reprennent exactement les identifiants et noms actifs d
 | Code | Nom | Texte joueur | Limite à afficher |
 |---|---|---|---|
 | MEL-01 | Frappe puissante | Porte une frappe de mêlée plus dévastatrice. | Demande une récupération après le coup, même si l’attaque manque sa cible. |
-| MEL-02 | Frappe précise | Prépare une frappe pour améliorer vos chances de toucher. | Bouger, changer de cible ou perdre le contact annule la préparation. |
+| MEL-02 | Frappe précise | Porte immédiatement une frappe moins puissante, mais nettement plus précise. | Inflige 75 % des dégâts physiques et apporte +25 Précision : le compromis est peu rentable contre une cible déjà facile à toucher. |
 | MEL-03 | Repoussement | Porte un coup moins puissant et tente de repousser la cible d’une case. | Sa masse, son ancrage ou une destination bloquée peuvent empêcher le déplacement. Aucun dégât de collision supplémentaire. |
 | MEL-04 | Parade | Prépare une garde réduisant les dégâts physiques de la prochaine attaque de mêlée qui vous touche. | Exige un équipement capable de parer et consomme votre réaction. Ne protège pas contre les tirs ou les explosions. |
 | MEL-05 | Balayage | Frappe plusieurs cases voisines dans un arc, avec moins de dégâts par cible. | Exige une arme et un espace adaptés. Les alliés dans l’arc peuvent être touchés ; une récupération suit le balayage. |
 | MEL-06 | Riposte | Ajoute une contre-attaque ordinaire après une parade réussie. | Demande Parade. L’attaquant doit rester à portée et les ressources de la frappe doivent être disponibles. N’accorde pas de réaction supplémentaire. |
-| MEL-07 | Brise-armure | Sacrifie une partie des dégâts du coup pour fragiliser temporairement le Blindage de la cible touchée. | La fragilisation profite aux impacts suivants. Elle ne s’accumule pas et n’est pas prolongée tant qu’elle est active. |
+| MEL-07 | Brise-armure | Sacrifie une partie des dégâts du coup pour fragiliser temporairement l'Armure de la cible touchée. | La fragilisation profite aux impacts suivants. Elle ne s'accumule pas et n'est pas prolongée tant qu'elle est active. |
 | MEL-08 | Entrave | Frappe une fonction locomotrice identifiée pour tenter de ralentir les déplacements de la cible. | La cible peut résister. L’effet est bref et ne l’immobilise pas entièrement ; une courte protection suit sa fin. |
-| MEL-09 | Écrasement | Porte une frappe particulièrement lourde contre une cible déjà entravée ou immobilisée. | L’état requis doit être présent. Le coup ne l’applique pas lui-même et demande une récupération. |
-| MEL-10 | Interception | Prépare une frappe contre un adversaire qui quitte volontairement le contact. | Consomme votre réaction sans arrêter automatiquement le retrait. Un déplacement forcé ne la déclenche pas. |
+| MEL-09 | Écrasement | Exploite une cible entravée ou immobilisée avec une frappe dévastatrice qui traverse une partie de son Armure. | Inflige 220 % des dégâts physiques et gagne 2 de pénétration d'armure ; le coup n'applique pas lui-même l'état requis et demande une récupération. |
+| MEL-10 | Interception | Prépare une frappe contre un adversaire qui tente de s'éloigner. | Sur une touche, la cible teste sa Stabilité contre une intensité de 60 : si elle échoue, elle perd ses appuis et reste au contact. Un déplacement forcé ne déclenche pas la garde. |
 
 ### 6.2. Tir
 
@@ -141,7 +141,7 @@ Les 104 lignes suivantes reprennent exactement les identifiants et noms actifs d
 | TIR-06 | Rafale répartie | Répartit les projectiles d’une rafale entre plusieurs cibles proches et perçues. | Ne crée aucun projectile supplémentaire. Chaque tir conserve ses contraintes de trajectoire et ses chances de toucher. |
 | TIR-07 | Visée persistante | Conserve une partie du bonus de Tir visé pour vos tirs simples suivants contre la même cible. | Demande Tir visé. Bouger, perdre la vue, changer de cible ou entreprendre une autre action que tirer simplement ou attendre met fin au bonus. |
 | TIR-08 | Surveillance étendue | Étend Surveillance à un secteur plus large. | Demande Surveillance. Le nombre de tirs de réaction, la portée et le champ de vision restent inchangés. |
-| TIR-09 | Tir de rupture | Prépare un tir exploitant une faiblesse connue pour ignorer une partie du Blindage. | Exige une arme adaptée et une faiblesse réellement identifiée. Ne garantit pas la touche et n’ignore pas toutes les protections. |
+| TIR-09 | Tir de rupture | Prépare un tir exploitant une faiblesse connue pour traverser une partie de l'Armure. | Exige une arme adaptée et une faiblesse réellement identifiée. Ne garantit pas la touche et ne traverse pas toutes les protections. |
 | TIR-10 | Barrage | Maintient un feu réparti sur une petite zone, avec une possibilité de suppression des occupants touchés. | Exige de rester en place et de payer chaque étape de tir. Les couverts protègent encore et les alliés exposés risquent d’être touchés. |
 
 ### 6.3. Démolition
@@ -163,7 +163,7 @@ Les 104 lignes suivantes reprennent exactement les identifiants et noms actifs d
 
 | Code | Nom | Texte joueur | Limite à afficher |
 |---|---|---|---|
-| MAN-01 | Pas de dégagement | Effectue un pas prudent améliorant votre Esquive contre une interception de mêlée. La consigne peut être maintenue pour les pas de retraite suivants. | Chaque pas prend son temps normal, sans cumul du bonus. Attaquer ou changer de posture rompt la consigne ; tirs, mines et dangers d’arrivée restent actifs. |
+| MAN-01 | Pas de dégagement | Effectue un pas prudent améliorant votre Esquive lorsqu'un adversaire tente de vous frapper pendant que vous quittez le corps à corps. La consigne peut être maintenue pour les pas suivants. | Chaque pas prend son temps normal, sans cumul du bonus. Attaquer ou changer de posture rompt la consigne ; tirs, mines et dangers d'arrivée restent actifs. |
 | MAN-02 | Appui stable | Renforce votre ancrage pour mieux résister aux poussées tant que vous restez en place. | Un déplacement volontaire ou forcé met fin à la posture. Ne réduit pas les dégâts reçus. |
 | MAN-03 | Franchissement | Prépare le passage d’un obstacle bas ou d’un petit intervalle compatible avec votre corps. | Le passage et l’arrivée doivent être praticables. N’autorise pas à traverser un mur ou un intervalle trop large. |
 | MAN-04 | Charge | Avance en ligne droite puis porte une frappe de mêlée renforcée par l’élan. | Chaque étape prend du temps et reste exposée aux dangers. Si la cible quitte le contact prévu, la charge ne la poursuit pas automatiquement. |
@@ -287,7 +287,7 @@ Infobulles d'états observés : afficher durée restante, source et quantité se
 |---|---|---|
 | UI-ETAT-ENTRAVE | Entravé | Vos déplacements sont ralentis et les manœuvres rapides concernées sont indisponibles. Vous pouvez encore agir ; cet effet n’est pas une immobilisation totale. |
 | UI-ETAT-SUPPRESSION | Sous suppression | Votre Précision est temporairement réduite. Vous gardez le choix de vos actions ; vous n’êtes pas contraint de fuir. |
-| UI-ETAT-FRAGILISATION | Blindage fragilisé | Une partie de votre Blindage est temporairement neutralisée. Une nouvelle application du même effet ne cumule pas la réduction et ne prolonge pas sa durée active. |
+| UI-ETAT-FRAGILISATION | Armure fragilisée | Une partie de votre Armure protège temporairement moins bien. Une nouvelle application du même effet ne cumule pas la réduction et ne prolonge pas sa durée active. |
 | UI-ETAT-FONCTION | Fonction suspendue | La fonction indiquée est temporairement indisponible. Vos autres fonctions restent utilisables selon leurs propres conditions. |
 | UI-ETAT-PROTECTION | Protection temporaire | Empêche une nouvelle application de la famille d’effet indiquée pendant une courte durée. Ne protège pas contre les dégâts ou les autres familles d’effets. |
 | UI-ETAT-SURCHAUFFE | Sabotage thermique actif | Un programme augmente votre chaleur et gêne la dissipation. Une purge réussie ou l’arrêt local du module compromis peut y mettre fin ; la chaleur et les dégâts déjà subis restent présents. |

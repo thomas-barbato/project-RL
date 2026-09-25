@@ -75,6 +75,9 @@ use super::{
 const MAX_MANIFEST_BYTES: u64 = 256 * 1024;
 const MAX_DEFINITION_BYTES: u64 = 1024 * 1024;
 
+#[path = "equipment_loot.rs"]
+mod equipment_loot;
+
 pub struct ContentLoader;
 
 impl ContentLoader {
@@ -118,6 +121,7 @@ impl ContentLoader {
                 .ok_or_else(|| ContentLoadError::ResolvedPackageMissing(package_id.clone()))?;
             load_status_definitions(package, &mut statuses)?;
             load_weapon_definitions(package, &statuses, &mut weapons)?;
+            equipment_loot::load_effect_affixes(package, &statuses, &mut weapons)?;
             load_skill_definitions(package, &mut skills)?;
             load_text_definitions(package, &mut texts)?;
             load_visual_cue_definitions(package, &mut visual_cues)?;
@@ -161,6 +165,7 @@ impl ContentLoader {
                 .get(package_id)
                 .ok_or_else(|| ContentLoadError::ResolvedPackageMissing(package_id.clone()))?;
             load_loot_definitions(package, &items, &weapons, &mut loot)?;
+            equipment_loot::load_equipment_bases(package, &items, &weapons, &mut loot)?;
         }
         for package_id in &order {
             let package = packages
@@ -543,6 +548,28 @@ enum RawTerminalEffectGlyph {
     Impact,
     Wave,
     Alarm,
+    ShockSmall,
+    ShockWide,
+    RingSmall,
+    RingWide,
+    ArcFork,
+    ArcSplit,
+    AcidDrop,
+    AcidSplash,
+    AcidPool,
+    Restoration,
+    Piercing,
+    Guard,
+    GuardBreak,
+    Impulse,
+    ImpulseBlocked,
+    Catalysis,
+    Frost,
+    Fracture,
+    Alternation,
+    Echo,
+    Ricochet,
+    FlameJet,
 }
 
 impl RawTerminalEffectGlyph {
@@ -558,6 +585,28 @@ impl RawTerminalEffectGlyph {
             Self::Impact => TerminalEffectGlyph::Impact,
             Self::Wave => TerminalEffectGlyph::Wave,
             Self::Alarm => TerminalEffectGlyph::Alarm,
+            Self::ShockSmall => TerminalEffectGlyph::ShockSmall,
+            Self::ShockWide => TerminalEffectGlyph::ShockWide,
+            Self::RingSmall => TerminalEffectGlyph::RingSmall,
+            Self::RingWide => TerminalEffectGlyph::RingWide,
+            Self::ArcFork => TerminalEffectGlyph::ArcFork,
+            Self::ArcSplit => TerminalEffectGlyph::ArcSplit,
+            Self::AcidDrop => TerminalEffectGlyph::AcidDrop,
+            Self::AcidSplash => TerminalEffectGlyph::AcidSplash,
+            Self::AcidPool => TerminalEffectGlyph::AcidPool,
+            Self::Restoration => TerminalEffectGlyph::Restoration,
+            Self::Piercing => TerminalEffectGlyph::Piercing,
+            Self::Guard => TerminalEffectGlyph::Guard,
+            Self::GuardBreak => TerminalEffectGlyph::GuardBreak,
+            Self::Impulse => TerminalEffectGlyph::Impulse,
+            Self::ImpulseBlocked => TerminalEffectGlyph::ImpulseBlocked,
+            Self::Catalysis => TerminalEffectGlyph::Catalysis,
+            Self::Frost => TerminalEffectGlyph::Frost,
+            Self::Fracture => TerminalEffectGlyph::Fracture,
+            Self::Alternation => TerminalEffectGlyph::Alternation,
+            Self::Echo => TerminalEffectGlyph::Echo,
+            Self::Ricochet => TerminalEffectGlyph::Ricochet,
+            Self::FlameJet => TerminalEffectGlyph::FlameJet,
         }
     }
 }
@@ -875,7 +924,8 @@ fn load_regional_world_definitions(
                     biome.population.group_rolls[1],
                     population_rules,
                 )
-                .map_err(&failure)?;
+                .map_err(&failure)?
+                .with_spread_groups(biome.population.spread_groups);
                 let encounter_rules = biome
                     .encounters
                     .groups
@@ -894,7 +944,8 @@ fn load_regional_world_definitions(
                     biome.encounters.group_rolls[1],
                     encounter_rules,
                 )
-                .map_err(&failure)?;
+                .map_err(&failure)?
+                .with_spread_groups(biome.encounters.spread_groups);
                 let loot = biome
                     .loot
                     .map(|loot| {
@@ -1030,6 +1081,14 @@ fn load_regional_world_definitions(
                 .with_encounters(encounters)
                 .with_landmarks(landmarks)
                 .with_sites(sites);
+                if let Some(fauna) = biome.fauna {
+                    runtime =
+                        runtime
+                            .with_fauna(fauna.into_runtime().map_err(|error| {
+                                failure(RegionalWorldError::InvalidFauna(error))
+                            })?)
+                            .map_err(&failure)?;
+                }
                 if let Some(loot) = loot {
                     runtime = runtime.with_loot(loot);
                 }
@@ -1256,6 +1315,7 @@ struct RawRegionBiomeRule {
     population: RawRegionPopulationProfile,
     #[serde(default)]
     encounters: RawRegionPopulationProfile,
+    fauna: Option<RawRegionFaunaProfile>,
     loot: Option<RawRegionLootProfile>,
     salvage_loot: Option<RawRegionLootProfile>,
     #[serde(default)]
@@ -1264,6 +1324,85 @@ struct RawRegionBiomeRule {
     sites: RawRegionSiteProfile,
     threats: Option<RawRegionThreatProfile>,
     destructibles: Option<RawRegionDestructibleProfile>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawRegionFaunaProfile {
+    group_rolls: [u16; 2],
+    level_range: [u16; 2],
+    danger_budget: u16,
+    families: Vec<RawFaunaFamily>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawFaunaFamily {
+    id: String,
+    weight: u32,
+    species: Vec<RawFaunaSpecies>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawFaunaSpecies {
+    id: String,
+    level: u16,
+    habitats: Vec<RawRegionTerrain>,
+    population: RawRegionPopulationRule,
+}
+
+impl RawRegionFaunaProfile {
+    fn into_runtime(self) -> Result<super::RegionFaunaProfile, String> {
+        let parse = |id: &str| id.parse::<ContentId>().map_err(|error| error.to_string());
+        let families = self
+            .families
+            .into_iter()
+            .map(|family| {
+                let id = parse(&family.id)?;
+                let species = family
+                    .species
+                    .into_iter()
+                    .map(|kind| {
+                        let species_id = parse(&kind.id)?;
+                        let mut tags = kind
+                            .population
+                            .tags
+                            .iter()
+                            .map(|tag| parse(tag))
+                            .collect::<Result<Vec<_>, _>>()?;
+                        tags.extend([id.clone(), species_id.clone()]);
+                        Ok(super::FaunaSpecies {
+                            id: species_id,
+                            level: kind.level,
+                            habitats: kind
+                                .habitats
+                                .into_iter()
+                                .map(RawRegionTerrain::into_runtime)
+                                .collect(),
+                            population: kind
+                                .population
+                                .into_runtime(tags)
+                                .map_err(|error| error.to_string())?,
+                        })
+                    })
+                    .collect::<Result<Vec<_>, String>>()?;
+                Ok(super::FaunaFamily {
+                    id,
+                    weight: family.weight,
+                    species,
+                })
+            })
+            .collect::<Result<Vec<_>, String>>()?;
+        let profile = super::RegionFaunaProfile {
+            group_rolls: self.group_rolls,
+            level_range: self.level_range,
+            danger_budget: self.danger_budget,
+            families,
+        };
+        profile.validate()?;
+        Ok(profile)
+    }
 }
 
 #[derive(Deserialize)]
@@ -1487,6 +1626,8 @@ impl RawRegionThreatProfile {
 #[derive(Default, Deserialize)]
 #[serde(deny_unknown_fields)]
 struct RawRegionPopulationProfile {
+    #[serde(default)]
+    spread_groups: bool,
     #[serde(default)]
     group_rolls: [u16; 2],
     #[serde(default)]
@@ -2642,6 +2783,31 @@ struct RawAiProfile {
     preferred_minimum_distance: u16,
     maximum_pursuit_distance: Option<u16>,
     pursuit_lifecycle: Option<RawPursuitLifecycle>,
+    care: Option<RawAiCare>,
+    hearing: Option<RawAiHearing>,
+    shelter: Option<RawAiShelter>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawAiHearing {
+    radius: u16,
+    sensitivity: u16,
+    memory_turns: u16,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawAiShelter {
+    armor: u16,
+    turns: u16,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawAiCare {
+    restoration: u16,
+    supplies: u16,
 }
 
 #[derive(Deserialize)]
@@ -2654,8 +2820,67 @@ struct RawPursuitLifecycle {
 
 impl RawAiProfile {
     fn into_runtime(self) -> Result<AiProfile, ExpeditionDefinitionError> {
+        if self.hearing.is_some() != matches!(self.behavior, RawAiBehavior::VibrationHunter)
+            || self.shelter.is_some() != matches!(self.behavior, RawAiBehavior::TimidGrazer)
+            || (matches!(
+                self.behavior,
+                RawAiBehavior::VibrationHunter
+                    | RawAiBehavior::TimidGrazer
+                    | RawAiBehavior::SkittishForager
+                    | RawAiBehavior::TelegraphedBiter
+            ) && self.pursuit_lifecycle.is_some())
+        {
+            return Err(ExpeditionDefinitionError::InvalidPopulationAttack);
+        }
+        let behavior = match (self.behavior, self.care) {
+            (RawAiBehavior::FieldMedic, Some(care))
+                if care.restoration > 0
+                    && care.supplies > 0
+                    && self.pursuit_lifecycle.is_none() =>
+            {
+                AiBehavior::FieldMedic {
+                    restoration: care.restoration,
+                    supplies: care.supplies,
+                }
+            }
+            (RawAiBehavior::FieldMedic, _) | (_, Some(_)) => {
+                return Err(ExpeditionDefinitionError::InvalidPopulationAttack);
+            }
+            (RawAiBehavior::VibrationHunter, None) => {
+                let hearing = self.hearing.unwrap();
+                if hearing.radius == 0
+                    || hearing.sensitivity == 0
+                    || hearing.sensitivity > 8
+                    || hearing.radius > 32
+                    || hearing.memory_turns == 0
+                    || hearing.memory_turns > 32
+                {
+                    return Err(ExpeditionDefinitionError::InvalidPopulationAttack);
+                }
+                AiBehavior::VibrationHunter {
+                    hearing_radius: hearing.radius,
+                    hearing_gain: hearing.sensitivity,
+                    memory_turns: hearing.memory_turns,
+                }
+            }
+            (RawAiBehavior::TimidGrazer, None) => {
+                let shelter = self.shelter.unwrap();
+                if shelter.armor == 0
+                    || shelter.armor > 100
+                    || shelter.turns == 0
+                    || shelter.turns > 32
+                {
+                    return Err(ExpeditionDefinitionError::InvalidPopulationAttack);
+                }
+                AiBehavior::TimidGrazer {
+                    shell_armor: shelter.armor,
+                    shelter_turns: shelter.turns,
+                }
+            }
+            (behavior, None) => behavior.into_runtime(),
+        };
         let mut profile = AiProfile::new(
-            self.behavior.into_runtime(),
+            behavior,
             self.perception_radius,
             self.preferred_attack_slot,
             self.maximum_path_search,
@@ -2694,15 +2919,30 @@ enum RawAiBehavior {
     Hunter,
     Sentry,
     Skirmisher,
+    TelegraphedShooter,
+    FieldMedic,
+    PackHunter,
+    VibrationHunter,
+    TimidGrazer,
+    SkittishForager,
+    TelegraphedBiter,
 }
 
 impl RawAiBehavior {
-    const fn into_runtime(self) -> AiBehavior {
+    fn into_runtime(self) -> AiBehavior {
         match self {
             Self::Idle => AiBehavior::Idle,
             Self::Hunter => AiBehavior::Hunter,
             Self::Sentry => AiBehavior::Sentry,
             Self::Skirmisher => AiBehavior::Skirmisher,
+            Self::TelegraphedShooter => AiBehavior::TelegraphedShooter,
+            Self::PackHunter => AiBehavior::PackHunter,
+            Self::SkittishForager => AiBehavior::SkittishForager,
+            Self::TelegraphedBiter => AiBehavior::TelegraphedBiter,
+            Self::VibrationHunter | Self::TimidGrazer => {
+                unreachable!("fauna parameters are validated before conversion")
+            }
+            Self::FieldMedic => unreachable!("care parameters are validated before conversion"),
         }
     }
 }
@@ -3500,6 +3740,7 @@ impl RawStatusStacking {
 #[derive(Clone, Copy, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
 enum RawStatusModifier {
+    DamageGuard { amount: u16 },
     ArmorFragilization { amount: u16 },
     Stability { amount: i16 },
     MovementTimeMinimum { time_units: u16 },
@@ -3509,6 +3750,7 @@ enum RawStatusModifier {
 impl RawStatusModifier {
     const fn into_runtime(self) -> StatusModifier {
         match self {
+            Self::DamageGuard { amount } => StatusModifier::DamageGuard { amount },
             Self::ArmorFragilization { amount } => StatusModifier::ArmorFragilization { amount },
             Self::Stability { amount } => StatusModifier::Stability { amount },
             Self::MovementTimeMinimum { time_units } => {
@@ -3888,6 +4130,73 @@ enum RawAttackArea {
 #[derive(Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
 enum RawWeaponEffect {
+    Ricochet {
+        range: u16,
+        damage: RawWeaponDamage,
+    },
+    CatalyticCone {
+        range: u16,
+        damage: RawWeaponDamage,
+        burning_status: String,
+        explosion_radius: u16,
+        explosion_damage: RawWeaponDamage,
+    },
+    Alternation {
+        range: u16,
+        memory_turns: u16,
+        damage: RawWeaponDamage,
+    },
+    DelayedEcho {
+        delay_turns: u16,
+        damage: RawWeaponDamage,
+    },
+    AccumulatedFracture {
+        mark_status: String,
+        threshold: u16,
+        radius: u16,
+        damage: RawWeaponDamage,
+        affects_source: bool,
+    },
+    Catalysis {
+        required_status: String,
+        radius: u16,
+        damage: RawWeaponDamage,
+        affects_source: bool,
+    },
+    Percussion {
+        force: u16,
+        recovery_status: String,
+    },
+    PiercingLine {
+        length: u16,
+        damage: RawWeaponDamage,
+        trigger: RawWeaponEffectTrigger,
+    },
+    ApplyBearerStatus {
+        status: String,
+        #[serde(default = "one_u16")]
+        stacks: u16,
+        trigger: RawWeaponEffectTrigger,
+    },
+    LifeSteal {
+        percent: u16,
+        maximum_per_attack: u16,
+        required_target_tag: String,
+        trigger: RawWeaponEffectTrigger,
+    },
+    RadialDamage {
+        radius: u16,
+        damage: RawWeaponDamage,
+        trigger: RawWeaponEffectTrigger,
+        #[serde(default)]
+        origin: crate::weapon::WeaponEffectOrigin,
+        affects_source: bool,
+        #[serde(default = "one_u16")]
+        floor_cost: u16,
+        shallow_water_cost: Option<u16>,
+        deep_water_cost: Option<u16>,
+        falloff_per_cost: Option<u16>,
+    },
     ApplyStatus {
         status: String,
         #[serde(default = "one_u16")]
@@ -3930,6 +4239,188 @@ impl RawWeaponEffectTrigger {
 impl RawWeaponEffect {
     fn into_runtime(self, statuses: &StatusCatalog) -> Result<WeaponEffect, WeaponDefinitionError> {
         match self {
+            Self::Ricochet { range, damage } => {
+                WeaponEffect::ricochet(range, damage.into_runtime())
+                    .map_err(WeaponDefinitionError::InvalidEffectTrigger)
+            }
+            Self::CatalyticCone {
+                range,
+                damage,
+                burning_status,
+                explosion_radius,
+                explosion_damage,
+            } => {
+                let burning_status: StatusId = burning_status
+                    .parse()
+                    .map_err(WeaponDefinitionError::InvalidEffectId)?;
+                if !statuses.contains(&burning_status) {
+                    return Err(WeaponDefinitionError::UnknownStatus(burning_status));
+                }
+                WeaponEffect::catalytic_cone(
+                    range,
+                    damage.into_runtime(),
+                    burning_status,
+                    RadialDamageEffect {
+                        maximum_cost: explosion_radius,
+                        neighbor_mode: NeighborMode::CardinalAndDiagonal,
+                        propagation_policy: TerrainPropagationPolicy::blocked_by_walls(1),
+                        damage: explosion_damage.into_runtime(),
+                        falloff: DamageFalloff::None,
+                    },
+                )
+                .map_err(WeaponDefinitionError::InvalidEffectTrigger)
+            }
+            Self::Alternation {
+                range,
+                memory_turns,
+                damage,
+            } => WeaponEffect::alternation(range, memory_turns, damage.into_runtime())
+                .map_err(WeaponDefinitionError::InvalidEffectTrigger),
+            Self::DelayedEcho {
+                delay_turns,
+                damage,
+            } => WeaponEffect::delayed_echo(delay_turns, damage.into_runtime())
+                .map_err(WeaponDefinitionError::InvalidEffectTrigger),
+            Self::AccumulatedFracture {
+                mark_status,
+                threshold,
+                radius,
+                damage,
+                affects_source,
+            } => {
+                let mark_status: StatusId = mark_status
+                    .parse()
+                    .map_err(WeaponDefinitionError::InvalidEffectId)?;
+                let definition = statuses
+                    .get(&mark_status)
+                    .ok_or_else(|| WeaponDefinitionError::UnknownStatus(mark_status.clone()))?;
+                if !definition.is_weapon_charge_marker(threshold) {
+                    return Err(WeaponDefinitionError::InvalidEffectTrigger(
+                        crate::weapon::WeaponEffectError::InvalidFractureMark,
+                    ));
+                }
+                WeaponEffect::accumulated_fracture(
+                    mark_status,
+                    threshold,
+                    RadialDamageEffect {
+                        maximum_cost: radius,
+                        neighbor_mode: NeighborMode::CardinalAndDiagonal,
+                        propagation_policy: TerrainPropagationPolicy::blocked_by_walls(1),
+                        damage: damage.into_runtime(),
+                        falloff: DamageFalloff::None,
+                    },
+                    affects_source,
+                )
+                .map_err(WeaponDefinitionError::InvalidEffectTrigger)
+            }
+            Self::Catalysis {
+                required_status,
+                radius,
+                damage,
+                affects_source,
+            } => {
+                let required_status: StatusId = required_status
+                    .parse()
+                    .map_err(WeaponDefinitionError::InvalidEffectId)?;
+                if !statuses.contains(&required_status) {
+                    return Err(WeaponDefinitionError::UnknownStatus(required_status));
+                }
+                WeaponEffect::catalysis(
+                    required_status,
+                    RadialDamageEffect {
+                        maximum_cost: radius,
+                        neighbor_mode: NeighborMode::CardinalAndDiagonal,
+                        propagation_policy: TerrainPropagationPolicy::blocked_by_walls(1),
+                        damage: damage.into_runtime(),
+                        falloff: DamageFalloff::None,
+                    },
+                    affects_source,
+                )
+                .map_err(WeaponDefinitionError::InvalidEffectTrigger)
+            }
+            Self::Percussion {
+                force,
+                recovery_status,
+            } => {
+                let recovery_status: StatusId = recovery_status
+                    .parse()
+                    .map_err(WeaponDefinitionError::InvalidEffectId)?;
+                let definition = statuses
+                    .get(&recovery_status)
+                    .ok_or_else(|| WeaponDefinitionError::UnknownStatus(recovery_status.clone()))?;
+                if !definition.is_weapon_recovery() {
+                    return Err(WeaponDefinitionError::InvalidEffectTrigger(
+                        crate::weapon::WeaponEffectError::InvalidPercussionRecovery,
+                    ));
+                }
+                WeaponEffect::percussion(force, recovery_status)
+                    .map_err(WeaponDefinitionError::InvalidEffectTrigger)
+            }
+            Self::ApplyBearerStatus {
+                status,
+                stacks,
+                trigger,
+            } => {
+                let status: StatusId = status
+                    .parse()
+                    .map_err(WeaponDefinitionError::InvalidEffectId)?;
+                if !statuses.contains(&status) {
+                    return Err(WeaponDefinitionError::UnknownStatus(status));
+                }
+                let effect = ApplyStatusEffect::new(status, stacks)
+                    .map_err(WeaponDefinitionError::InvalidStatusEffect)?;
+                WeaponEffect::apply_bearer_status(effect, trigger.into_runtime())
+                    .map_err(WeaponDefinitionError::InvalidEffectTrigger)
+            }
+            Self::PiercingLine {
+                length,
+                damage,
+                trigger,
+            } => WeaponEffect::piercing_line(length, damage.into_runtime(), trigger.into_runtime())
+                .map_err(WeaponDefinitionError::InvalidEffectTrigger),
+            Self::LifeSteal {
+                percent,
+                maximum_per_attack,
+                required_target_tag,
+                trigger,
+            } => WeaponEffect::life_steal(
+                percent,
+                maximum_per_attack,
+                required_target_tag
+                    .parse()
+                    .map_err(WeaponDefinitionError::InvalidEffectId)?,
+                trigger.into_runtime(),
+            )
+            .map_err(WeaponDefinitionError::InvalidEffectTrigger),
+            Self::RadialDamage {
+                radius,
+                damage,
+                trigger,
+                origin,
+                affects_source,
+                floor_cost,
+                shallow_water_cost,
+                deep_water_cost,
+                falloff_per_cost,
+            } => WeaponEffect::radial_damage(
+                RadialDamageEffect {
+                    maximum_cost: radius,
+                    neighbor_mode: NeighborMode::CardinalAndDiagonal,
+                    propagation_policy: TerrainPropagationPolicy {
+                        floor_cost: Some(floor_cost),
+                        shallow_water_cost: Some(shallow_water_cost.unwrap_or(floor_cost)),
+                        deep_water_cost,
+                        wall_cost: None,
+                    },
+                    damage: damage.into_runtime(),
+                    falloff: falloff_per_cost
+                        .map_or(DamageFalloff::None, DamageFalloff::PerPropagationCost),
+                },
+                trigger.into_runtime(),
+                origin,
+                affects_source,
+            )
+            .map_err(WeaponDefinitionError::InvalidEffectTrigger),
             Self::ApplyStatus {
                 status,
                 stacks,
@@ -4522,7 +5013,10 @@ enum RawTechniqueAction {
         #[serde(default)]
         trigger_energy_cost: u16,
     },
-    PrepareMeleeInterception,
+    PrepareMeleeInterception {
+        #[serde(default)]
+        stability_intensity: Option<u16>,
+    },
     DeployExplosive {
         deployment: RawExplosiveDeployment,
         primary_payload: RawExplosivePayload,
@@ -5038,7 +5532,15 @@ impl RawTechniqueAction {
                 physical_reduction_percentage,
                 trigger_energy_cost,
             },
-            Self::PrepareMeleeInterception => TechniqueAction::PrepareMeleeInterception,
+            Self::PrepareMeleeInterception {
+                stability_intensity,
+            } => {
+                stability_intensity.map_or(TechniqueAction::PrepareMeleeInterception, |intensity| {
+                    TechniqueAction::PrepareControllingMeleeInterception {
+                        stability_intensity: intensity,
+                    }
+                })
+            }
             Self::DeployExplosive {
                 deployment,
                 primary_payload,
@@ -6146,6 +6648,82 @@ mod tests {
     use crate::content::{ContentId, ExpeditionId};
 
     #[test]
+    fn fauna_content_requires_bounded_senses_and_exclusive_persistent_states() {
+        let parse = |source| {
+            json5::from_str::<RawAiProfile>(source)
+                .unwrap()
+                .into_runtime()
+        };
+        assert!(matches!(
+            parse("{ behavior: 'vibration_hunter', perception_radius: 1, hearing: { radius: 8, sensitivity: 4, memory_turns: 4 } }").unwrap().behavior,
+            AiBehavior::VibrationHunter { hearing_radius: 8, hearing_gain: 4, memory_turns: 4 }
+        ));
+        assert!(matches!(
+            parse("{ behavior: 'timid_grazer', perception_radius: 4, shelter: { armor: 3, turns: 4 } }").unwrap().behavior,
+            AiBehavior::TimidGrazer { shell_armor: 3, shelter_turns: 4 }
+        ));
+        assert_eq!(
+            parse("{ behavior: 'skittish_forager', perception_radius: 4 }")
+                .unwrap()
+                .behavior,
+            AiBehavior::SkittishForager
+        );
+        assert_eq!(
+            parse("{ behavior: 'telegraphed_biter', perception_radius: 7 }")
+                .unwrap()
+                .behavior,
+            AiBehavior::TelegraphedBiter
+        );
+        for source in [
+            "{ behavior: 'telegraphed_biter', perception_radius: 7, pursuit_lifecycle: { maximum_turns: 4, search_turns: 2, cooldown_turns: 2 } }",
+            "{ behavior: 'skittish_forager', perception_radius: 4, pursuit_lifecycle: { maximum_turns: 4, search_turns: 2, cooldown_turns: 2 } }",
+            "{ behavior: 'vibration_hunter', perception_radius: 1 }",
+            "{ behavior: 'timid_grazer', perception_radius: 4 }",
+            "{ behavior: 'hunter', perception_radius: 4, hearing: { radius: 8, sensitivity: 4, memory_turns: 4 } }",
+            "{ behavior: 'pack_hunter', perception_radius: 4, shelter: { armor: 3, turns: 4 } }",
+            "{ behavior: 'vibration_hunter', perception_radius: 1, hearing: { radius: 0, sensitivity: 4, memory_turns: 4 } }",
+            "{ behavior: 'vibration_hunter', perception_radius: 1, hearing: { radius: 8, sensitivity: 0, memory_turns: 4 } }",
+            "{ behavior: 'vibration_hunter', perception_radius: 1, hearing: { radius: 8, sensitivity: 4, memory_turns: 33 } }",
+            "{ behavior: 'timid_grazer', perception_radius: 4, shelter: { armor: 101, turns: 4 } }",
+            "{ behavior: 'timid_grazer', perception_radius: 4, shelter: { armor: 3, turns: 0 } }",
+            "{ behavior: 'timid_grazer', perception_radius: 4, shelter: { armor: 3, turns: 4 }, pursuit_lifecycle: { maximum_turns: 4, search_turns: 2, cooldown_turns: 2 } }",
+            "{ behavior: 'vibration_hunter', perception_radius: 1, hearing: { radius: 8, sensitivity: 4, memory_turns: 4 }, pursuit_lifecycle: { maximum_turns: 4, search_turns: 2, cooldown_turns: 2 } }",
+        ] {
+            assert!(parse(source).is_err(), "unexpectedly accepted {source}");
+        }
+    }
+
+    #[test]
+    fn field_medic_content_requires_finite_care_and_preserves_its_state_slot() {
+        let parse = |source| {
+            json5::from_str::<RawAiProfile>(source)
+                .unwrap()
+                .into_runtime()
+        };
+        let valid = parse(
+            r#"{ behavior: 'field_medic', perception_radius: 8,
+            care: { restoration: 3, supplies: 2 } }"#,
+        )
+        .unwrap();
+        assert_eq!(
+            valid.behavior,
+            AiBehavior::FieldMedic {
+                restoration: 3,
+                supplies: 2
+            }
+        );
+        for source in [
+            "{ behavior: 'field_medic', perception_radius: 8 }",
+            "{ behavior: 'field_medic', perception_radius: 8, care: { restoration: 0, supplies: 2 } }",
+            "{ behavior: 'field_medic', perception_radius: 8, care: { restoration: 3, supplies: 0 } }",
+            "{ behavior: 'hunter', perception_radius: 8, care: { restoration: 3, supplies: 2 } }",
+            "{ behavior: 'field_medic', perception_radius: 8, care: { restoration: 3, supplies: 2 }, pursuit_lifecycle: { maximum_turns: 4, search_turns: 2, cooldown_turns: 2 } }",
+        ] {
+            assert!(parse(source).is_err(), "unexpectedly accepted {source}");
+        }
+    }
+
+    #[test]
     fn weapon_content_can_override_delivery_and_accuracy_without_a_code_branch() {
         let raw: RawWeaponAttack = json5::from_str(
             r#"{
@@ -6346,6 +6924,474 @@ mod tests {
     }
 
     #[test]
+    fn restoration_weapon_effect_requires_valid_life_steal_bounds_and_target_admission() {
+        let valid = r#"{type: "life_steal", percent: 50, maximum_per_attack: 3, trigger: "on_damage", required_target_tag: "lab:healing_target"}"#;
+        let effect = json5::from_str::<RawWeaponEffect>(valid)
+            .unwrap()
+            .into_runtime(&StatusCatalog::default())
+            .unwrap();
+        assert_eq!(effect.trigger(), Some(WeaponEffectTrigger::OnDamage));
+        assert!(
+            matches!(effect.kind(), crate::weapon::WeaponEffectKind::LifeSteal { percent: 50, maximum_per_attack: 3, required_target_tag } if required_target_tag.to_string() == "lab:healing_target")
+        );
+        for invalid in [
+            valid.replace("percent: 50", "percent: 0"),
+            valid.replace("percent: 50", "percent: 101"),
+            valid.replace("maximum_per_attack: 3", "maximum_per_attack: 0"),
+            valid.replace("on_damage", "on_hit"),
+            valid.replace("on_damage", "on_attack"),
+            valid.replace("on_damage", "on_target_destroyed"),
+            valid.replace("lab:healing_target", "bad id"),
+        ] {
+            assert!(
+                json5::from_str::<RawWeaponEffect>(&invalid)
+                    .unwrap()
+                    .into_runtime(&StatusCatalog::default())
+                    .is_err()
+            );
+        }
+        assert!(
+            json5::from_str::<RawWeaponEffect>(
+                r#"{type: "life_steal", percent: 50, maximum_per_attack: 3, trigger: "on_damage"}"#
+            )
+            .is_err()
+        );
+    }
+
+    #[test]
+    fn bearer_status_and_guard_content_validate_references_and_bounds() {
+        let raw = r#"{id: "test:guard", duration_turns: 3, stacking: {mode: "keep_existing"}, modifiers: [{type: "damage_guard", amount: 3}]}"#;
+        let definition = json5::from_str::<RawStatusDefinition>(raw)
+            .unwrap()
+            .into_runtime("test:guard".parse().unwrap(), None, vec![], None)
+            .unwrap();
+        let mut statuses = StatusCatalog::default();
+        statuses.register(definition).unwrap();
+        let effect = r#"{type: "apply_bearer_status", status: "test:guard", trigger: "on_damage"}"#;
+        assert!(
+            json5::from_str::<RawWeaponEffect>(effect)
+                .unwrap()
+                .into_runtime(&statuses)
+                .is_ok()
+        );
+        assert!(
+            json5::from_str::<RawWeaponEffect>(effect)
+                .unwrap()
+                .into_runtime(&StatusCatalog::default())
+                .is_err()
+        );
+        for invalid in [
+            effect.replace("on_damage", "on_attack"),
+            effect.replace("on_damage", "on_target_destroyed"),
+        ] {
+            assert!(
+                json5::from_str::<RawWeaponEffect>(&invalid)
+                    .unwrap()
+                    .into_runtime(&statuses)
+                    .is_err()
+            );
+        }
+        assert!(
+            json5::from_str::<RawWeaponEffect>(
+                r#"{type: "apply_bearer_status", status: "test:guard"}"#
+            )
+            .is_err()
+        );
+        for invalid in [
+            raw.replace("amount: 3", "amount: 0"),
+            raw.replace("keep_existing", "refresh_duration"),
+            raw.replace("duration_turns: 3", "duration_turns: null"),
+        ] {
+            assert!(
+                json5::from_str::<RawStatusDefinition>(&invalid)
+                    .unwrap()
+                    .into_runtime("test:guard".parse().unwrap(), None, vec![], None)
+                    .is_err()
+            );
+        }
+    }
+
+    #[test]
+    fn followup_content_validates_bounds_statuses_and_fixed_trigger_origin() {
+        let ricochet =
+            r#"{type: "ricochet", range: 4, damage: {amount: 3, damage_type: "piercing"}}"#;
+        let cone = r#"{type: "catalytic_cone", range: 7, damage: {amount: 2, damage_type: "thermal"},
+            burning_status: "test:burning", explosion_radius: 1, explosion_damage: {amount: 6, damage_type: "thermal"}}"#;
+        let mut statuses = StatusCatalog::default();
+        statuses
+            .register(
+                StatusDefinition::new(
+                    "test:burning".parse().unwrap(),
+                    Some(4),
+                    StatusStacking::RefreshDuration,
+                    vec![],
+                )
+                .unwrap(),
+            )
+            .unwrap();
+        for valid in [ricochet, cone] {
+            let effect = json5::from_str::<RawWeaponEffect>(valid)
+                .unwrap()
+                .into_runtime(&statuses)
+                .unwrap();
+            assert_eq!(effect.trigger(), Some(WeaponEffectTrigger::OnHit));
+            for invalid in [
+                valid
+                    .replace("range: 4", "range: 0")
+                    .replace("range: 7", "range: 0"),
+                valid
+                    .replace("amount: 3", "amount: 0")
+                    .replace("amount: 2", "amount: 0"),
+            ] {
+                assert!(
+                    json5::from_str::<RawWeaponEffect>(&invalid)
+                        .unwrap()
+                        .into_runtime(&statuses)
+                        .is_err()
+                );
+            }
+            for field in [
+                r#"origin: "impact","#,
+                r#"trigger: "on_attack","#,
+                "affects_source: true,",
+            ] {
+                assert!(
+                    json5::from_str::<RawWeaponEffect>(&valid.replacen(
+                        '{',
+                        &format!("{{{field}"),
+                        1
+                    ))
+                    .is_err()
+                );
+            }
+        }
+        assert!(
+            json5::from_str::<RawWeaponEffect>(cone)
+                .unwrap()
+                .into_runtime(&StatusCatalog::default())
+                .is_err()
+        );
+        assert!(
+            json5::from_str::<RawWeaponEffect>(&cone.replace("amount: 6", "amount: 0"))
+                .unwrap()
+                .into_runtime(&statuses)
+                .is_err()
+        );
+        assert!(
+            json5::from_str::<RawWeaponEffect>(&cone.replace("explosion_radius: 1,", "")).is_err()
+        );
+    }
+
+    #[test]
+    fn catalysis_content_requires_known_fuel_damage_and_explicit_exposure() {
+        let valid = r#"{type: "catalysis", required_status: "test:burning", radius: 1, damage: {amount: 6, damage_type: "thermal"}, affects_source: false}"#;
+        let mut statuses = StatusCatalog::default();
+        statuses
+            .register(
+                StatusDefinition::new(
+                    "test:burning".parse().unwrap(),
+                    Some(3),
+                    StatusStacking::RefreshDuration,
+                    vec![],
+                )
+                .unwrap(),
+            )
+            .unwrap();
+        let effect = json5::from_str::<RawWeaponEffect>(valid)
+            .unwrap()
+            .into_runtime(&statuses)
+            .unwrap();
+        assert!(matches!(
+            effect.kind(),
+            crate::weapon::WeaponEffectKind::Catalysis {
+                affects_source: false,
+                ..
+            }
+        ));
+        assert_eq!(effect.trigger(), Some(WeaponEffectTrigger::OnHit));
+        for invalid in [
+            valid.replace("amount: 6", "amount: 0"),
+            valid.replace("test:burning", "test:unknown"),
+        ] {
+            assert!(
+                json5::from_str::<RawWeaponEffect>(&invalid)
+                    .unwrap()
+                    .into_runtime(&statuses)
+                    .is_err()
+            );
+        }
+        for invalid in [
+            valid.replace(", affects_source: false", ""),
+            valid.replace(
+                "affects_source: false",
+                "affects_source: false, origin: 'bearer'",
+            ),
+            valid.replace(
+                "affects_source: false",
+                "affects_source: false, trigger: 'on_attack'",
+            ),
+        ] {
+            assert!(json5::from_str::<RawWeaponEffect>(&invalid).is_err());
+        }
+    }
+
+    #[test]
+    fn fracture_content_requires_matching_inert_mark_and_explicit_exposure() {
+        let valid = r#"{type: "accumulated_fracture", mark_status: "test:mark", threshold: 3, radius: 1, damage: {amount: 6, damage_type: "kinetic"}, affects_source: false}"#;
+        let mut statuses = StatusCatalog::default();
+        statuses
+            .register(
+                StatusDefinition::new(
+                    "test:mark".parse().unwrap(),
+                    Some(5),
+                    StatusStacking::AddStacks {
+                        maximum_stacks: 3,
+                        refresh_duration: true,
+                    },
+                    vec![],
+                )
+                .unwrap(),
+            )
+            .unwrap();
+        let effect = json5::from_str::<RawWeaponEffect>(valid)
+            .unwrap()
+            .into_runtime(&statuses)
+            .unwrap();
+        assert!(matches!(
+            effect.kind(),
+            crate::weapon::WeaponEffectKind::AccumulatedFracture {
+                threshold: 3,
+                affects_source: false,
+                ..
+            }
+        ));
+        assert_eq!(effect.trigger(), Some(WeaponEffectTrigger::OnHit));
+        for invalid in [
+            valid.replace("threshold: 3", "threshold: 1"),
+            valid.replace("threshold: 3", "threshold: 4"),
+            valid.replace("test:mark", "test:unknown"),
+            valid.replace("amount: 6", "amount: 0"),
+        ] {
+            assert!(
+                json5::from_str::<RawWeaponEffect>(&invalid)
+                    .unwrap()
+                    .into_runtime(&statuses)
+                    .is_err()
+            );
+        }
+        for invalid in [
+            valid.replace(", affects_source: false", ""),
+            valid.replace(
+                "affects_source: false",
+                "affects_source: false, trigger: 'on_attack'",
+            ),
+            valid.replace(
+                "affects_source: false",
+                "affects_source: false, origin: 'bearer'",
+            ),
+        ] {
+            assert!(json5::from_str::<RawWeaponEffect>(&invalid).is_err());
+        }
+    }
+
+    #[test]
+    fn echo_content_requires_explicit_bounded_parameters_and_disallows_trigger_or_origin_overrides()
+    {
+        for (raw, valid) in [
+            (
+                r#"{type:'alternation',range:4,memory_turns:5,damage:{amount:3,damage_type:'kinetic'}}"#,
+                true,
+            ),
+            (
+                r#"{type:'delayed_echo',delay_turns:2,damage:{amount:3,damage_type:'kinetic'}}"#,
+                true,
+            ),
+            (
+                r#"{type:'alternation',range:0,memory_turns:5,damage:{amount:3,damage_type:'kinetic'}}"#,
+                false,
+            ),
+            (
+                r#"{type:'alternation',range:4,memory_turns:1,damage:{amount:3,damage_type:'kinetic'}}"#,
+                false,
+            ),
+            (
+                r#"{type:'delayed_echo',delay_turns:0,damage:{amount:3,damage_type:'kinetic'}}"#,
+                false,
+            ),
+            (
+                r#"{type:'delayed_echo',delay_turns:9,damage:{amount:3,damage_type:'kinetic'}}"#,
+                false,
+            ),
+            (
+                r#"{type:'delayed_echo',delay_turns:2,damage:{amount:0,damage_type:'kinetic'}}"#,
+                false,
+            ),
+        ] {
+            let effect: RawWeaponEffect = json5::from_str(raw).unwrap();
+            assert_eq!(
+                effect.into_runtime(&StatusCatalog::default()).is_ok(),
+                valid,
+                "{raw}"
+            );
+        }
+        for raw in [
+            r#"{type:'alternation',range:4,damage:{amount:3,damage_type:'kinetic'}}"#,
+            r#"{type:'delayed_echo',damage:{amount:3,damage_type:'kinetic'}}"#,
+            r#"{type:'delayed_echo',delay_turns:2,damage:{amount:3,damage_type:'kinetic'},origin:'bearer'}"#,
+            r#"{type:'alternation',range:4,memory_turns:5,damage:{amount:3,damage_type:'kinetic'},trigger:'on_attack'}"#,
+        ] {
+            assert!(json5::from_str::<RawWeaponEffect>(raw).is_err(), "{raw}");
+        }
+    }
+
+    #[test]
+    fn percussion_content_requires_positive_force_and_inert_finite_recovery() {
+        let valid = r#"{type: "percussion", force: 4, recovery_status: "test:recovery"}"#;
+        for (turns, stacking, accepted) in [
+            (Some(3), StatusStacking::KeepExisting, true),
+            (Some(1), StatusStacking::KeepExisting, false),
+            (None, StatusStacking::KeepExisting, false),
+            (Some(3), StatusStacking::RefreshDuration, false),
+        ] {
+            let mut statuses = StatusCatalog::default();
+            statuses
+                .register(
+                    StatusDefinition::new(
+                        "test:recovery".parse().unwrap(),
+                        turns,
+                        stacking,
+                        vec![],
+                    )
+                    .unwrap(),
+                )
+                .unwrap();
+            assert_eq!(
+                json5::from_str::<RawWeaponEffect>(valid)
+                    .unwrap()
+                    .into_runtime(&statuses)
+                    .is_ok(),
+                accepted
+            );
+            assert!(
+                json5::from_str::<RawWeaponEffect>(&valid.replace("force: 4", "force: 0"))
+                    .unwrap()
+                    .into_runtime(&statuses)
+                    .is_err()
+            );
+        }
+        assert!(
+            json5::from_str::<RawWeaponEffect>(valid)
+                .unwrap()
+                .into_runtime(&StatusCatalog::default())
+                .is_err()
+        );
+        assert!(json5::from_str::<RawWeaponEffect>(r#"{type: "percussion", force: 4}"#).is_err());
+    }
+
+    #[test]
+    fn piercing_content_requires_positive_damage_length_and_qualified_trigger() {
+        let valid = r#"{type: "piercing_line", length: 3, damage: {amount: 3, damage_type: "piercing"}, trigger: "on_hit"}"#;
+        for trigger in ["on_hit", "on_damage"] {
+            let effect = json5::from_str::<RawWeaponEffect>(&valid.replace("on_hit", trigger))
+                .unwrap()
+                .into_runtime(&StatusCatalog::default())
+                .unwrap();
+            assert!(matches!(
+                effect.kind(),
+                crate::weapon::WeaponEffectKind::PiercingLine { length: 3, .. }
+            ));
+        }
+        for invalid in [
+            valid.replace("length: 3", "length: 0"),
+            valid.replace("amount: 3", "amount: 0"),
+            valid.replace("on_hit", "on_attack"),
+            valid.replace("on_hit", "on_target_destroyed"),
+        ] {
+            assert!(
+                json5::from_str::<RawWeaponEffect>(&invalid)
+                    .unwrap()
+                    .into_runtime(&StatusCatalog::default())
+                    .is_err()
+            );
+        }
+    }
+
+    #[test]
+    fn radial_weapon_effects_default_to_impact_and_require_explicit_source_exposure() {
+        let definition = r#"{
+            type: "radial_damage", radius: 2,
+            damage: { amount: 7, damage_type: "electrical" },
+            trigger: "on_hit", affects_source: false,
+            floor_cost: 3, shallow_water_cost: 1, deep_water_cost: 1,
+        }"#;
+        let raw: RawWeaponEffect = json5::from_str(definition).unwrap();
+        let effect = raw.into_runtime(&StatusCatalog::default()).unwrap();
+        assert!(matches!(
+            effect.kind(),
+            crate::weapon::WeaponEffectKind::RadialDamage {
+                origin: crate::weapon::WeaponEffectOrigin::Impact,
+                affects_source: false,
+                ..
+            }
+        ));
+        let crate::weapon::WeaponEffectKind::RadialDamage { effect: radial, .. } = effect.kind()
+        else {
+            unreachable!()
+        };
+        assert_eq!(radial.propagation_policy.shallow_water_cost, Some(1));
+        assert_eq!(radial.propagation_policy.floor_cost, Some(3));
+        assert_eq!(radial.propagation_policy.wall_cost, None);
+
+        let bearer = definition.replace(
+            "affects_source: false",
+            "affects_source: false, origin: 'bearer'",
+        );
+        let raw: RawWeaponEffect = json5::from_str(&bearer).unwrap();
+        assert!(matches!(
+            raw.into_runtime(&StatusCatalog::default()).unwrap().kind(),
+            crate::weapon::WeaponEffectKind::RadialDamage {
+                origin: crate::weapon::WeaponEffectOrigin::Bearer,
+                ..
+            }
+        ));
+        assert!(
+            json5::from_str::<RawWeaponEffect>(&definition.replace("affects_source: false,", ""))
+                .is_err()
+        );
+        assert!(
+            json5::from_str::<RawWeaponEffect>(&definition.replace("trigger: \"on_hit\",", ""))
+                .is_err()
+        );
+        assert!(
+            json5::from_str::<RawWeaponEffect>(&bearer.replace("'bearer'", "'weapon_delivery'"))
+                .is_err()
+        );
+    }
+
+    #[test]
+    fn radial_weapon_effects_reject_unqualified_triggers_and_zero_damage_or_costs() {
+        let definition = r#"{
+            type: "radial_damage", radius: 1,
+            damage: { amount: 7, damage_type: "electrical" },
+            trigger: "on_hit", affects_source: false, floor_cost: 1,
+        }"#;
+        for invalid in [
+            definition.replace("on_hit", "on_attack"),
+            definition.replace("on_hit", "on_target_destroyed"),
+            definition.replace("amount: 7", "amount: 0"),
+            definition.replace("floor_cost: 1", "floor_cost: 0"),
+            definition.replace("floor_cost: 1", "floor_cost: 1, shallow_water_cost: 0"),
+            definition.replace("floor_cost: 1", "floor_cost: 1, deep_water_cost: 0"),
+        ] {
+            let raw: RawWeaponEffect = json5::from_str(&invalid).unwrap();
+            assert!(matches!(
+                raw.into_runtime(&StatusCatalog::default()),
+                Err(WeaponDefinitionError::InvalidEffectTrigger(_))
+            ));
+        }
+    }
+
+    #[test]
     fn body_content_can_declare_armor_mass_and_anchoring_without_a_code_branch() {
         let raw: RawBodyProfile = json5::from_str(
             r#"{
@@ -6416,6 +7462,9 @@ mod tests {
             .parse()
             .unwrap_or_else(|error| panic!("valid discipline ID rejected: {error}"));
         let parry: crate::skills::TechniqueId = "core:mel_04"
+            .parse()
+            .unwrap_or_else(|error| panic!("valid technique ID rejected: {error}"));
+        let precise: crate::skills::TechniqueId = "core:mel_02"
             .parse()
             .unwrap_or_else(|error| panic!("valid technique ID rejected: {error}"));
         let crushing: crate::skills::TechniqueId = "core:mel_09"
@@ -6596,6 +7645,29 @@ mod tests {
                 trigger_energy_cost: 2,
             })
         );
+        assert_eq!(
+            loaded
+                .skills()
+                .technique(&precise)
+                .and_then(TechniqueDefinition::action),
+            Some(TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: Some(75),
+                armor_penetration_bonus: 0,
+                accuracy_modifier: 25,
+                energy_cost: 0,
+                recovery_time_units: None,
+                forced_movement: None,
+                melee_arc: None,
+            })
+        );
+        assert!(
+            loaded
+                .skills()
+                .technique(&precise)
+                .and_then(TechniqueDefinition::preparation_steps)
+                .is_none()
+        );
         assert!(matches!(
             loaded
                 .skills()
@@ -6608,9 +7680,27 @@ mod tests {
         assert_eq!(
             loaded
                 .skills()
+                .technique(&crushing)
+                .and_then(TechniqueDefinition::action),
+            Some(TechniqueAction::WeaponAttack {
+                required_delivery: AttackDelivery::Melee,
+                physical_damage_percentage: Some(220),
+                armor_penetration_bonus: 2,
+                accuracy_modifier: 0,
+                energy_cost: 5,
+                recovery_time_units: Some(1),
+                forced_movement: None,
+                melee_arc: None,
+            })
+        );
+        assert_eq!(
+            loaded
+                .skills()
                 .technique(&interception)
                 .and_then(TechniqueDefinition::action),
-            Some(TechniqueAction::PrepareMeleeInterception)
+            Some(TechniqueAction::PrepareControllingMeleeInterception {
+                stability_intensity: 60,
+            })
         );
         assert_eq!(
             loaded.texts().resolve("fr", "technique.rec_01.name"),
@@ -6755,6 +7845,23 @@ mod tests {
         assert_eq!(
             expedition.destination.population[1].ai().behavior,
             AiBehavior::Sentry
+        );
+        assert_eq!(
+            expedition.destination.population[1]
+                .body_profile()
+                .map(|body| body.base_armor),
+            Some(2)
+        );
+        assert!(
+            loaded
+                .expeditions()
+                .without_population_base_armor_metadata()
+                .get(&starter_expedition)
+                .unwrap()
+                .destination
+                .population
+                .iter()
+                .all(|group| group.body_profile().is_none_or(|body| body.base_armor == 0))
         );
         assert_eq!(
             expedition.destination.population[1]
@@ -7050,6 +8157,54 @@ mod tests {
                             .is_some_and(|threats| threats.primary_attributes().is_some())
                 })
         );
+        let regional_armor = |biome_id: &str, behavior: AiBehavior| {
+            regional_world
+                .biomes()
+                .iter()
+                .find(|biome| biome.biome().as_str() == biome_id)
+                .into_iter()
+                .flat_map(|biome| {
+                    biome
+                        .population()
+                        .rules()
+                        .iter()
+                        .chain(biome.encounters().rules())
+                })
+                .filter(|rule| rule.ai().behavior == behavior)
+                .filter_map(|rule| rule.body_profile().map(|body| body.base_armor))
+                .max()
+        };
+        assert_eq!(
+            regional_armor("core:human_habitat", AiBehavior::Sentry),
+            Some(1)
+        );
+        assert_eq!(
+            regional_armor("core:surface_wilds", AiBehavior::Sentry),
+            Some(2)
+        );
+        assert_eq!(
+            regional_armor("core:maintenance", AiBehavior::Hunter),
+            Some(1)
+        );
+        assert_eq!(
+            regional_armor("core:production", AiBehavior::Hunter),
+            Some(2)
+        );
+        assert!(
+            loaded
+                .regional_worlds()
+                .without_population_base_armor_metadata()
+                .iter()
+                .flat_map(|(_, world)| world.biomes())
+                .flat_map(|biome| {
+                    biome
+                        .population()
+                        .rules()
+                        .iter()
+                        .chain(biome.encounters().rules())
+                })
+                .all(|rule| rule.body_profile().is_none_or(|body| body.base_armor == 0))
+        );
         assert!(matches!(
             regional_world
                 .region(42, crate::content::RegionCoord::new(0, 0, 0))
@@ -7113,6 +8268,30 @@ mod tests {
             Ok(TechniqueAction::PrepareMeleeParry {
                 physical_reduction_percentage: 50,
                 trigger_energy_cost: 0,
+            })
+        );
+    }
+
+    #[test]
+    fn melee_interception_content_keeps_legacy_and_controlling_forms_distinct() {
+        let legacy: RawTechniqueAction =
+            json5::from_str(r#"{ type: "prepare_melee_interception" }"#).unwrap();
+        let controlling: RawTechniqueAction = json5::from_str(
+            r#"{
+                type: "prepare_melee_interception",
+                stability_intensity: 60,
+            }"#,
+        )
+        .unwrap();
+
+        assert_eq!(
+            legacy.into_runtime(),
+            Ok(TechniqueAction::PrepareMeleeInterception)
+        );
+        assert_eq!(
+            controlling.into_runtime(),
+            Ok(TechniqueAction::PrepareControllingMeleeInterception {
+                stability_intensity: 60,
             })
         );
     }

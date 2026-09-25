@@ -40,6 +40,9 @@ pub enum ReactionEffect {
         percentage: u8,
     },
     PerformMeleeWeaponAttack,
+    PerformControllingMeleeWeaponAttack {
+        stability_intensity: u16,
+    },
     PerformRangedWeaponAttack {
         slot: u8,
         covered_cells: Vec<GridPos>,
@@ -114,6 +117,25 @@ impl PreparedReaction {
         }
     }
 
+    pub fn controlling_melee_interception(
+        technique: TechniqueId,
+        stability_intensity: u16,
+    ) -> Result<Self, PreparedReactionError> {
+        if stability_intensity == 0 {
+            return Err(PreparedReactionError::ZeroStabilityIntensity);
+        }
+        Ok(Self {
+            technique,
+            trigger: ReactionTrigger::BeforeVoluntaryMeleeContactBroken,
+            kind: ReactionKind::MeleeInterception,
+            effect: ReactionEffect::PerformControllingMeleeWeaponAttack {
+                stability_intensity,
+            },
+            trigger_energy_cost: 0,
+            follow_up: None,
+        })
+    }
+
     pub fn ranged_overwatch(
         technique: TechniqueId,
         slot: u8,
@@ -165,6 +187,7 @@ pub enum PreparedReactionError {
     ZeroPercentage,
     PercentageAboveHundred(u8),
     EmptyCoveredArea,
+    ZeroStabilityIntensity,
 }
 
 impl Display for PreparedReactionError {
@@ -176,6 +199,9 @@ impl Display for PreparedReactionError {
                 "reaction percentage must not exceed 100, found {percentage}"
             ),
             Self::EmptyCoveredArea => write!(formatter, "reaction covered area must not be empty"),
+            Self::ZeroStabilityIntensity => {
+                write!(formatter, "reaction Stability intensity must be positive")
+            }
         }
     }
 }
@@ -314,6 +340,24 @@ mod tests {
             PreparedReaction::melee_parry(technique, 101, 0),
             Err(PreparedReactionError::PercentageAboveHundred(101))
         );
+    }
+
+    #[test]
+    fn controlling_interception_requires_positive_stability_intensity() {
+        let technique: TechniqueId = "core:interception".parse().unwrap();
+
+        assert_eq!(
+            PreparedReaction::controlling_melee_interception(technique.clone(), 0),
+            Err(PreparedReactionError::ZeroStabilityIntensity)
+        );
+        assert!(matches!(
+            PreparedReaction::controlling_melee_interception(technique, 60)
+                .unwrap()
+                .effect(),
+            ReactionEffect::PerformControllingMeleeWeaponAttack {
+                stability_intensity: 60,
+            }
+        ));
     }
 
     #[test]

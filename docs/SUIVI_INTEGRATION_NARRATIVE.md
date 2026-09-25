@@ -60,6 +60,13 @@ Dans le secteur industriel, la position du relais dépend de la génération. Le
 
 ## Limites de cette tranche
 
+Complément du 24 septembre (génération 100) : l'opérateur du tri et l'éclaireuse
+de la lisière ont des conversations locales indépendantes de l'enquête. Ils
+n'accordent ni mission, ni progression, ni service obligatoire. Leurs postes,
+la protection de l'abri extérieur et les limites de ce premier lot sont décrits
+dans [Population de surface](POPULATION_DE_SURFACE.md). Ce sont des rôles
+d'habitants, pas une nouvelle définition de peuple ou de faction.
+
 Le contournement par la porte de service est maintenant un trajet physique, mais il n'est pas encore une branche de rapport distincte auprès d'Orme. La barricade ne peut pas encore être retirée ni forcée ; les unités qui attaqueraient les réserves ne sont pas encore liées à ce site. Le motif de la fermeture reste appris dans un témoignage ou un registre. Aucun dialogue ne prétend que ces autres actions sont déjà possibles.
 
 Le panneau d'Orme réagit désormais au rapport, mais la nouvelle voie évoquée n'est pas encore un passage traversable entre le quartier et le relais. Les autres jalons de campagne, les passagers et les épilogues restent à intégrer. Cette tranche ne valide donc ni la durée finale ni l'équilibrage d'une campagne entière.

@@ -1,5 +1,5 @@
 //! Deterministic weighted draws of existing item definitions, independent of UI.
-//! Power rolls/affixes are deliberately a later stage, not inferred from rarity.
+//! Equipment instances have a separate, source-filtered generator.
 use std::collections::{BTreeMap, BTreeSet};
 use std::error::Error;
 use std::fmt::{Display, Formatter};
@@ -8,6 +8,12 @@ use crate::content::ContentId;
 use crate::game::GameRng;
 use crate::item::{ItemCatalog, ItemId, ItemKind};
 use crate::weapon::WeaponCatalog;
+
+mod equipment;
+pub use equipment::{
+    EquipmentBaseDefinition, EquipmentEffectChoice, EquipmentForm, EquipmentLootCatalog,
+    EquipmentQuality, EquipmentSource, EquipmentStatChoice, GeneratedEquipment,
+};
 
 pub type LootTableId = ContentId;
 pub const MAX_ENTRIES: usize = 1024;
@@ -173,11 +179,34 @@ fn below(rng: &mut GameRng, bound: u64) -> u64 {
     }
 }
 
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Default, PartialEq, Eq)]
 pub struct LootCatalog {
     tables: BTreeMap<LootTableId, LootTable>,
+    equipment: EquipmentLootCatalog,
+}
+impl std::fmt::Debug for LootCatalog {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut value = f.debug_struct("LootCatalog");
+        value.field("tables", &self.tables);
+        if !self.equipment.is_empty() {
+            value.field("equipment", &self.equipment);
+        }
+        value.finish()
+    }
 }
 impl LootCatalog {
+    pub fn equipment(&self) -> &EquipmentLootCatalog {
+        &self.equipment
+    }
+    pub fn equipment_mut(&mut self) -> &mut EquipmentLootCatalog {
+        &mut self.equipment
+    }
+    pub fn without_equipment_generation(&self) -> Self {
+        Self {
+            tables: self.tables.clone(),
+            equipment: EquipmentLootCatalog::default(),
+        }
+    }
     pub fn register(&mut self, table: LootTable) -> Result<(), LootError> {
         if self.tables.contains_key(table.id()) {
             return Err(LootError::DuplicateTable(table.id().clone()));
@@ -228,7 +257,15 @@ impl LootCatalog {
                 })
             })
             .collect();
-        Self { tables }
+        let excluded: Vec<_> = items
+            .iter()
+            .filter(|(_, item)| item.kind() == excluded)
+            .map(|(id, _)| id.clone())
+            .collect();
+        Self {
+            tables,
+            equipment: self.equipment.without_items(&excluded),
+        }
     }
 
     /// Compatibility projection for item definitions introduced after a
@@ -256,7 +293,10 @@ impl LootCatalog {
                 })
             })
             .collect();
-        Self { tables }
+        Self {
+            tables,
+            equipment: self.equipment.without_items(excluded),
+        }
     }
 }
 

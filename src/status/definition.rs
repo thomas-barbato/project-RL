@@ -41,10 +41,22 @@ impl StatusStacking {
 /// Passive numeric contribution exposed by an active status.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum StatusModifier {
-    ArmorFragilization { amount: u16 },
-    Stability { amount: i16 },
-    MovementTimeMinimum { time_units: u16 },
-    Accuracy { amount: i16 },
+    /// Absorbs a bounded amount from one body-HP impact, after other defenses.
+    DamageGuard {
+        amount: u16,
+    },
+    ArmorFragilization {
+        amount: u16,
+    },
+    Stability {
+        amount: i16,
+    },
+    MovementTimeMinimum {
+        time_units: u16,
+    },
+    Accuracy {
+        amount: i16,
+    },
 }
 
 /// Status applied only after the owning finite status expires naturally.
@@ -175,6 +187,24 @@ impl StatusDefinition {
         modifiers: impl IntoIterator<Item = StatusModifier>,
     ) -> Result<Self, StatusDefinitionError> {
         let modifiers: Vec<_> = modifiers.into_iter().collect();
+        let guards: Vec<_> = modifiers
+            .iter()
+            .filter_map(|modifier| match modifier {
+                StatusModifier::DamageGuard { amount } => Some(*amount),
+                _ => None,
+            })
+            .collect();
+        if guards.len() > 1 {
+            return Err(StatusDefinitionError::DuplicateDamageGuard);
+        }
+        if let Some(amount) = guards.first() {
+            if *amount == 0 {
+                return Err(StatusDefinitionError::ZeroDamageGuard);
+            }
+            if self.duration_turns.is_none() || self.stacking != StatusStacking::KeepExisting {
+                return Err(StatusDefinitionError::UnboundedDamageGuard);
+            }
+        }
         let armor_fragilizations = modifiers
             .iter()
             .filter(|modifier| matches!(modifier, StatusModifier::ArmorFragilization { .. }))
@@ -243,6 +273,33 @@ impl StatusDefinition {
         &self.id
     }
 
+    /// A charge counter cannot strengthen damage, defenses or expiration hooks.
+    pub fn is_weapon_charge_marker(&self, threshold: u16) -> bool {
+        threshold >= 2
+            && self.duration_turns.is_some_and(|turns| turns >= 2)
+            && self.stacking
+                == (StatusStacking::AddStacks {
+                    maximum_stacks: threshold,
+                    refresh_duration: true,
+                })
+            && self.hooks.is_empty()
+            && self.modifiers.is_empty()
+            && self.family.is_none()
+            && self.blocked_families.is_empty()
+            && self.expiration_transition.is_none()
+    }
+
+    /// A cooldown marker is not a buff, debuff, hook or cleanse transition.
+    pub fn is_weapon_recovery(&self) -> bool {
+        self.duration_turns.is_some_and(|turns| turns >= 2)
+            && self.stacking == StatusStacking::KeepExisting
+            && self.hooks.is_empty()
+            && self.modifiers.is_empty()
+            && self.family.is_none()
+            && self.blocked_families.is_empty()
+            && self.expiration_transition.is_none()
+    }
+
     pub const fn duration_turns(&self) -> Option<u16> {
         self.duration_turns
     }
@@ -276,6 +333,9 @@ impl StatusDefinition {
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum StatusDefinitionError {
+    ZeroDamageGuard,
+    DuplicateDamageGuard,
+    UnboundedDamageGuard,
     ZeroDuration,
     ZeroMaximumStacks,
     ZeroArmorFragilization,
@@ -290,6 +350,14 @@ pub enum StatusDefinitionError {
 impl Display for StatusDefinitionError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::ZeroDamageGuard => write!(formatter, "damage guard must be positive"),
+            Self::DuplicateDamageGuard => {
+                write!(formatter, "a status cannot define damage guard twice")
+            }
+            Self::UnboundedDamageGuard => write!(
+                formatter,
+                "damage guard requires a finite keep_existing status"
+            ),
             Self::ZeroDuration => write!(formatter, "finite status duration must be positive"),
             Self::ZeroMaximumStacks => write!(formatter, "maximum status stacks must be positive"),
             Self::ZeroArmorFragilization => {
@@ -328,6 +396,15 @@ pub struct StatusCatalog {
 }
 
 impl StatusCatalog {
+    /// Reconstructs historical stacking rules for deterministic old replays.
+    pub fn with_compatibility_stacking(&self, id: &StatusId, stacking: StatusStacking) -> Self {
+        let mut catalog = self.clone();
+        if let Some(definition) = catalog.definitions.get_mut(id) {
+            definition.stacking = stacking;
+        }
+        catalog
+    }
+
     pub fn register(&mut self, definition: StatusDefinition) -> Result<(), StatusCatalogError> {
         let id = definition.id().clone();
         if self.definitions.contains_key(&id) {

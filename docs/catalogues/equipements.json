@@ -1,0 +1,2934 @@
+{
+  "schema_version": 1,
+  "status": "design_only_not_loaded_by_game",
+  "deep_equipment_direction": "mixed_human_exotic_organic_living",
+  "power_tiers_are_player_levels": false,
+  "player_level_cap": null,
+  "tiers": [
+    {
+      "id": 1,
+      "label": "Usuel",
+      "intent": "Matériel courant, formes et usages immédiatement reconnaissables."
+    },
+    {
+      "id": 2,
+      "label": "Spécialisé",
+      "intent": "Fabrications adaptées à un métier, un terrain ou un rôle de combat."
+    },
+    {
+      "id": 3,
+      "label": "Avancé",
+      "intent": "Matériaux composites et mécanismes élaborés ; silhouettes encore familières."
+    },
+    {
+      "id": 4,
+      "label": "Exotique",
+      "intent": "Structures inhabituelles, géométries et phénomènes étrangers."
+    },
+    {
+      "id": 5,
+      "label": "Aberrant",
+      "intent": "Objets difficiles à interpréter ; fonction de combat encore lisible."
+    },
+    {
+      "id": 6,
+      "label": "Singulier",
+      "intent": "Extrême profondeur : formes impossibles et fonctionnement non humain."
+    }
+  ],
+  "distribution": {
+    "status": "proposal_not_game_balance",
+    "roll_order": [
+      "source_profile",
+      "compatible_families",
+      "base_tier",
+      "base",
+      "quality",
+      "compatible_affix_groups",
+      "affix_values"
+    ],
+    "depth_weights": [
+      {
+        "depth": 0,
+        "weights": [
+          7000,
+          2200,
+          600,
+          160,
+          35,
+          5
+        ]
+      },
+      {
+        "depth": 1,
+        "weights": [
+          3000,
+          4000,
+          2000,
+          750,
+          200,
+          50
+        ]
+      },
+      {
+        "depth": 2,
+        "weights": [
+          1200,
+          2600,
+          3800,
+          1700,
+          550,
+          150
+        ]
+      },
+      {
+        "depth": 3,
+        "weights": [
+          500,
+          1300,
+          2300,
+          3600,
+          1700,
+          600
+        ]
+      },
+      {
+        "depth": 4,
+        "weights": [
+          200,
+          600,
+          1400,
+          2600,
+          3400,
+          1800
+        ]
+      },
+      {
+        "depth": 5,
+        "weights": [
+          100,
+          250,
+          650,
+          1700,
+          3300,
+          4000
+        ]
+      }
+    ],
+    "above_last_depth": "reuse_last_profile_until_new_content",
+    "roll_time": "actor_or_site_creation",
+    "on_death": "transfer_remaining_existing_possessions_not_reroll",
+    "no_eligible_item": "no_equipment_drop_no_global_fallback",
+    "material_does_not_determine_source": true
+  },
+  "generation_proposal": {
+    "minimum_affixes": 1,
+    "maximum_affixes": 3,
+    "maximum_special_effects": 1,
+    "white_items_have_affixes": false,
+    "duplicate_groups_allowed": false,
+    "display_prefixes": 1,
+    "display_suffixes": 1,
+    "show_all_affixes_in_details": true,
+    "draws_persist": true,
+    "special_effect_tiers": "eligibility_only_no_automatic_damage_or_radius_scaling",
+    "prototype_values_only": true
+  },
+  "families": [
+    {
+      "id": "knives",
+      "label": "Couteaux",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "melee",
+      "role": "Contact précis, faible impact par frappe, créneaux d'action courts.",
+      "readiness": "profile_possible",
+      "notes": "Portée, précision et récupération sont paramétrables ; ne pas promettre un critique ou un dos vulnérable sans mécanique dédiée.",
+      "bases": [
+        {
+          "id": "catalog:couteau_de_camp",
+          "name": "Couteau de camp",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:couteau_de_sapeur",
+          "name": "Couteau de sapeur",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:couteau_ceramique",
+          "name": "Couteau céramique",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:couteau_de_chitine",
+          "name": "Couteau de chitine",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:couteau_a_dent_vivante",
+          "name": "Couteau à dent vivante",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "living",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:couteau_du_dernier_seuil",
+          "name": "Couteau du dernier seuil",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "swords",
+      "label": "Épées",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "melee",
+      "role": "Mêlée polyvalente et aptitude à la parade ; portée courte.",
+      "readiness": "profile_possible",
+      "notes": "La parade est une capacité du matériel exploitée par une compétence apprise, pas une compétence accordée par l'objet.",
+      "bases": [
+        {
+          "id": "catalog:epee_de_patrouille",
+          "name": "Épée de patrouille",
+          "tier": 1,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:epee_de_garde",
+          "name": "Épée de garde",
+          "tier": 2,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:epee_composite",
+          "name": "Épée composite",
+          "tier": 3,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:epee_nervuree",
+          "name": "Épée nervurée",
+          "tier": 4,
+          "grammar": "fs",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:epee_a_veine_vive",
+          "name": "Épée à veine vive",
+          "tier": 5,
+          "grammar": "fs",
+          "nature": "living",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:epee_de_l_intervalle",
+          "name": "Épée de l'intervalle",
+          "tier": 6,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "axes",
+      "label": "Haches",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "melee",
+      "role": "Fort impact de contact contre une disponibilité plus contraignante.",
+      "readiness": "profile_possible",
+      "notes": "Impact et récupération existent ; pas de bris d'armure ou de destruction de décor gratuits.",
+      "bases": [
+        {
+          "id": "catalog:hache_de_chantier",
+          "name": "Hache de chantier",
+          "tier": 1,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:hache_d_assaut",
+          "name": "Hache d'assaut",
+          "tier": 2,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:hache_laminee",
+          "name": "Hache laminée",
+          "tier": 3,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:hache_de_carapace",
+          "name": "Hache de carapace",
+          "tier": 4,
+          "grammar": "fs",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:hache_de_rupture",
+          "name": "Hache de rupture",
+          "tier": 5,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:hache_de_l_entaille_noire",
+          "name": "Hache de l'entaille noire",
+          "tier": 6,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "maces",
+      "label": "Masses",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "melee",
+      "role": "Impact cinétique concentré ; force exploitée dans la limite du matériau.",
+      "readiness": "profile_possible",
+      "notes": "Pousser ou étourdir n'est pas un résultat automatique de la famille : cela exige une technique ou un effet déclaré.",
+      "bases": [
+        {
+          "id": "catalog:masse_de_chantier",
+          "name": "Masse de chantier",
+          "tier": 1,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:masse_de_breche",
+          "name": "Masse de brèche",
+          "tier": 2,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:masse_inertielle",
+          "name": "Masse inertielle",
+          "tier": 3,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:masse_de_resonance",
+          "name": "Masse de résonance",
+          "tier": 4,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:masse_a_coeur_battant",
+          "name": "Masse à cœur battant",
+          "tier": 5,
+          "grammar": "fs",
+          "nature": "living",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:masse_du_point_mort",
+          "name": "Masse du point mort",
+          "tier": 6,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "spears",
+      "label": "Lances",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "melee",
+      "role": "Contact à allonge, tenue d'un couloir et placement.",
+      "readiness": "engine_work_needed",
+      "notes": "Valider une vraie allonge de mêlée, les diagonales et les interactions avec parade/interception ; pas un fusil renommé.",
+      "bases": [
+        {
+          "id": "catalog:lance_de_veille",
+          "name": "Lance de veille",
+          "tier": 1,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:lance_de_rempart",
+          "name": "Lance de rempart",
+          "tier": 2,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:lance_telescopique",
+          "name": "Lance télescopique",
+          "tier": 3,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:lance_d_os_spirale",
+          "name": "Lance d'os spiralé",
+          "tier": 4,
+          "grammar": "fs",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:lance_a_tige_vive",
+          "name": "Lance à tige vive",
+          "tier": 5,
+          "grammar": "fs",
+          "nature": "living",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:lance_de_l_horizon_clos",
+          "name": "Lance de l'horizon clos",
+          "tier": 6,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "sidearms",
+      "label": "Armes de poing",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "ranged",
+      "role": "Tir ponctuel à portée modérée et faible engagement.",
+      "readiness": "profile_possible",
+      "notes": "Définir des ressources et une récupération distinctes du fusil ; aucune règle de double maniement implicite.",
+      "bases": [
+        {
+          "id": "catalog:pistolet_de_service",
+          "name": "Pistolet de service",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:pistolet_de_vigie",
+          "name": "Pistolet de vigie",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:pistolet_a_aiguilles",
+          "name": "Pistolet à aiguilles",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:pistolet_a_impulsion",
+          "name": "Pistolet à impulsion",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:pistolet_de_remanence",
+          "name": "Pistolet de rémanence",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:pistolet_du_point_aveugle",
+          "name": "Pistolet du point aveugle",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "rifles",
+      "label": "Fusils",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "ranged",
+      "role": "Précision à moyenne/longue portée ; ligne de tir importante.",
+      "readiness": "profile_possible",
+      "notes": "Tir automatique seulement pour les modèles qui déclarent la capacité, sans accorder la compétence associée.",
+      "bases": [
+        {
+          "id": "catalog:fusil_de_patrouille",
+          "name": "Fusil de patrouille",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:fusil_de_guetteur",
+          "name": "Fusil de guetteur",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:fusil_a_induction",
+          "name": "Fusil à induction",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:fusil_de_parallaxe",
+          "name": "Fusil de parallaxe",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:fusil_a_nerf_tendu",
+          "name": "Fusil à nerf tendu",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "living",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:fusil_de_l_horizon_fendu",
+          "name": "Fusil de l'horizon fendu",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "scatterguns",
+      "label": "Fusils à dispersion",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "ranged",
+      "role": "Zone courte et large ; placement face à un groupe.",
+      "readiness": "engine_work_needed",
+      "notes": "La géométrie en cône existe ; concevoir la résolution de la dispersion avant de simuler plusieurs plombs comme des attaques indépendantes.",
+      "bases": [
+        {
+          "id": "catalog:fusil_a_gerbe",
+          "name": "Fusil à gerbe",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:fusil_de_tranchee",
+          "name": "Fusil de tranchée",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:fusil_a_flechettes",
+          "name": "Fusil à fléchettes",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:fusil_a_gerbe_d_epines",
+          "name": "Fusil à gerbe d'épines",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:fusil_a_dispersion_creuse",
+          "name": "Fusil à dispersion creuse",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:fusil_de_l_eventail_noir",
+          "name": "Fusil de l'éventail noir",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "crossbows",
+      "label": "Arbalètes",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "ranged",
+      "role": "Tir mécanique appuyé, disponibilité plus espacée, sans dépense électrique par défaut.",
+      "readiness": "engine_work_needed",
+      "notes": "Un délai de récupération est possible ; le cycle de rechargement et ses ressources doivent être définis avant intégration.",
+      "bases": [
+        {
+          "id": "catalog:arbalete_de_chasse",
+          "name": "Arbalète de chasse",
+          "tier": 1,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:arbalete_de_treuil",
+          "name": "Arbalète de treuil",
+          "tier": 2,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:arbalete_composite",
+          "name": "Arbalète composite",
+          "tier": 3,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:arbalete_de_tendons",
+          "name": "Arbalète de tendons",
+          "tier": 4,
+          "grammar": "fs",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:arbalete_sans_corde",
+          "name": "Arbalète sans corde",
+          "tier": 5,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:arbalete_du_fil_rompu",
+          "name": "Arbalète du fil rompu",
+          "tier": 6,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "thermal_projectors",
+      "label": "Projecteurs thermiques",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "ranged",
+      "role": "Zone thermique visible, couloirs et persistance explicitement déclarée.",
+      "readiness": "profile_possible",
+      "notes": "Les cônes, brûlures et champs au sol existent ; leur présence fait partie de la base seulement si elle est déclarée.",
+      "bases": [
+        {
+          "id": "catalog:bruleur_de_defense",
+          "name": "Brûleur de défense",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:lance_flammes_de_sape",
+          "name": "Lance-flammes de sape",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:projecteur_thermique",
+          "name": "Projecteur thermique",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:projecteur_a_chambre_solaire",
+          "name": "Projecteur à chambre solaire",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:projecteur_a_gorge_de_braise",
+          "name": "Projecteur à gorge de braise",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "living",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:projecteur_du_brasier_muet",
+          "name": "Projecteur du brasier muet",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "electric_projectors",
+      "label": "Projecteurs électriques",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "ranged",
+      "role": "Dégâts électriques ; position et terrain conducteur selon le profil.",
+      "readiness": "engine_work_needed",
+      "notes": "Le type électrique et Conduction existent ; ne pas appliquer la propagation à toutes les bases par défaut. Consommation et rendu primaire à définir.",
+      "bases": [
+        {
+          "id": "catalog:emetteur_d_arc",
+          "name": "Émetteur d'arc",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:emetteur_de_contention",
+          "name": "Émetteur de contention",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:projecteur_capacitif",
+          "name": "Projecteur capacitif",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:projecteur_a_noeuds_conducteurs",
+          "name": "Projecteur à nœuds conducteurs",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:projecteur_d_orage_clos",
+          "name": "Projecteur d'orage clos",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:projecteur_de_l_eclair_immobile",
+          "name": "Projecteur de l'éclair immobile",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "impact_cannons",
+      "label": "Canons d'impact",
+      "kind": "weapon",
+      "slot": "weapon",
+      "delivery": "ranged",
+      "role": "Tir lourd, impact important et fenêtre d'indisponibilité marquée.",
+      "readiness": "engine_work_needed",
+      "notes": "Pas de promesse d'explosion ou de recul automatique ; vérifier la préparation, l'impact principal, les ressources et la récupération.",
+      "bases": [
+        {
+          "id": "catalog:canon_a_boulons",
+          "name": "Canon à boulons",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:canon_de_demolition",
+          "name": "Canon de démolition",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:canon_inertiel",
+          "name": "Canon inertiel",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:canon_de_compression",
+          "name": "Canon de compression",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:canon_a_vertebres",
+          "name": "Canon à vertèbres",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:canon_du_centre_effondre",
+          "name": "Canon du centre effondré",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "jackets",
+      "label": "Vestes protectrices",
+      "kind": "armor",
+      "slot": "torso",
+      "delivery": "none",
+      "role": "Protection légère ; budget plutôt orienté vers les caractéristiques et les réserves.",
+      "readiness": "profile_possible",
+      "notes": "La distinction légère/lourde est une orientation de budget, pas un bonus d'esquive déjà implémenté.",
+      "bases": [
+        {
+          "id": "catalog:veste_matelassee",
+          "name": "Veste matelassée",
+          "tier": 1,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:veste_de_veille",
+          "name": "Veste de veille",
+          "tier": 2,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:veste_a_fibres_croisees",
+          "name": "Veste à fibres croisées",
+          "tier": 3,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:veste_de_membranes",
+          "name": "Veste de membranes",
+          "tier": 4,
+          "grammar": "fs",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:veste_de_peau_seconde",
+          "name": "Veste de peau seconde",
+          "tier": 5,
+          "grammar": "fs",
+          "nature": "living",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:veste_de_la_seconde_ombre",
+          "name": "Veste de la seconde ombre",
+          "tier": 6,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "breastplates",
+      "label": "Plastrons",
+      "kind": "armor",
+      "slot": "torso",
+      "delivery": "none",
+      "role": "Protection intermédiaire et régulière.",
+      "readiness": "profile_possible",
+      "notes": "Le moteur sait équiper une protection de torse ; les nouvelles bases restent hors distribution.",
+      "bases": [
+        {
+          "id": "catalog:plastron_de_recuperation",
+          "name": "Plastron de récupération",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:plastron_de_garde",
+          "name": "Plastron de garde",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:plastron_stratifie",
+          "name": "Plastron stratifié",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:plastron_de_nacre",
+          "name": "Plastron de nacre",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:plastron_sans_envers",
+          "name": "Plastron sans envers",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:plastron_de_l_intervalle",
+          "name": "Plastron de l'intervalle",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "heavy_armor",
+      "label": "Armures lourdes",
+      "kind": "armor",
+      "slot": "torso",
+      "delivery": "none",
+      "role": "Protection physique élevée ; contrepartie fonctionnelle à tester.",
+      "readiness": "engine_work_needed",
+      "notes": "Ne pas ajouter seulement davantage d'armure. Fixer une contrepartie réelle et lisible avant d'établir sa supériorité ou ses coûts.",
+      "bases": [
+        {
+          "id": "catalog:armure_rivetee",
+          "name": "Armure rivetée",
+          "tier": 1,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:armure_de_siege",
+          "name": "Armure de siège",
+          "tier": 2,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:armure_a_plaques_composites",
+          "name": "Armure à plaques composites",
+          "tier": 3,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:armure_de_carapaces",
+          "name": "Armure de carapaces",
+          "tier": 4,
+          "grammar": "fs",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:armure_a_plaques_vivantes",
+          "name": "Armure à plaques vivantes",
+          "tier": 5,
+          "grammar": "fs",
+          "nature": "living",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:armure_de_l_espace_ferme",
+          "name": "Armure de l'espace fermé",
+          "tier": 6,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "helmets",
+      "label": "Casques",
+      "kind": "armor",
+      "slot": "head",
+      "delivery": "none",
+      "role": "Protection de tête ; affixes de perception, traitement ou défense possibles.",
+      "readiness": "slot_work_needed",
+      "notes": "Le profil d'armure accepte un emplacement déclaratif ; ajouter cet emplacement au personnage et à l'interface demande une décision distincte.",
+      "bases": [
+        {
+          "id": "catalog:casque_de_chantier",
+          "name": "Casque de chantier",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:casque_de_vigie",
+          "name": "Casque de vigie",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:casque_a_coque_composite",
+          "name": "Casque à coque composite",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:casque_de_chitine",
+          "name": "Casque de chitine",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:casque_sans_face",
+          "name": "Casque sans face",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:casque_de_l_oeil_ferme",
+          "name": "Casque de l'œil fermé",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "gauntlets",
+      "label": "Gantelets",
+      "kind": "armor",
+      "slot": "hands",
+      "delivery": "none",
+      "role": "Protection des mains ; affixes de maniement ou de caractéristiques possibles.",
+      "readiness": "slot_work_needed",
+      "notes": "Aucun bonus de vitesse, de parade ou de puissance intrinsèque n'est accordé par le seul nom de famille.",
+      "bases": [
+        {
+          "id": "catalog:gantelets_de_travail",
+          "name": "Gantelets de travail",
+          "tier": 1,
+          "grammar": "mp",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:gantelets_de_garde",
+          "name": "Gantelets de garde",
+          "tier": 2,
+          "grammar": "mp",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:gantelets_articules",
+          "name": "Gantelets articulés",
+          "tier": 3,
+          "grammar": "mp",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:gantelets_de_tendons_tresses",
+          "name": "Gantelets de tendons tressés",
+          "tier": 4,
+          "grammar": "mp",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:gantelets_aux_jointures_inversees",
+          "name": "Gantelets aux jointures inversées",
+          "tier": 5,
+          "grammar": "mp",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:gantelets_de_la_prise_impossible",
+          "name": "Gantelets de la prise impossible",
+          "tier": 6,
+          "grammar": "mp",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "boots",
+      "label": "Bottes",
+      "kind": "armor",
+      "slot": "feet",
+      "delivery": "none",
+      "role": "Protection des pieds ; futurs profils de terrain à concevoir séparément.",
+      "readiness": "slot_work_needed",
+      "notes": "Pas de vitesse supplémentaire ou d'immunité aux terrains sans support moteur et coût de puissance explicites.",
+      "bases": [
+        {
+          "id": "catalog:bottes_de_marche",
+          "name": "Bottes de marche",
+          "tier": 1,
+          "grammar": "fp",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:bottes_de_traverse",
+          "name": "Bottes de traverse",
+          "tier": 2,
+          "grammar": "fp",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:bottes_renforcees",
+          "name": "Bottes renforcées",
+          "tier": 3,
+          "grammar": "fp",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:bottes_de_mailles_reticulees",
+          "name": "Bottes de mailles réticulées",
+          "tier": 4,
+          "grammar": "fp",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:bottes_a_semelles_vivantes",
+          "name": "Bottes à semelles vivantes",
+          "tier": 5,
+          "grammar": "fp",
+          "nature": "living",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:bottes_du_pas_absent",
+          "name": "Bottes du pas absent",
+          "tier": 6,
+          "grammar": "fp",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "belts",
+      "label": "Ceintures",
+      "kind": "armor",
+      "slot": "waist",
+      "delivery": "none",
+      "role": "Support défensif ou utilitaire ; réserve et dissipation parmi les affixes compatibles.",
+      "readiness": "slot_work_needed",
+      "notes": "Une ceinture pourra devenir un accessoire plutôt qu'une armure ; ne pas lui inventer un point d'armure obligatoire pour contourner le modèle actuel.",
+      "bases": [
+        {
+          "id": "catalog:ceinture_de_route",
+          "name": "Ceinture de route",
+          "tier": 1,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:ceinture_de_service",
+          "name": "Ceinture de service",
+          "tier": 2,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:ceinture_compartimentee",
+          "name": "Ceinture compartimentée",
+          "tier": 3,
+          "grammar": "fs",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:ceinture_de_fibres_nerveuses",
+          "name": "Ceinture de fibres nerveuses",
+          "tier": 4,
+          "grammar": "fs",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:ceinture_a_boucle_ouverte",
+          "name": "Ceinture à boucle ouverte",
+          "tier": 5,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:ceinture_du_cercle_incomplet",
+          "name": "Ceinture du cercle incomplet",
+          "tier": 6,
+          "grammar": "fs",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "shields",
+      "label": "Boucliers",
+      "kind": "armor",
+      "slot": "offhand_proposal",
+      "delivery": "none",
+      "role": "Protection directionnelle et parade potentielle.",
+      "readiness": "engine_work_needed",
+      "notes": "L'occupation d'une main, les armes compatibles et le blocage ne sont pas décidés ; aucun emplacement de main secondaire n'est créé par ce catalogue.",
+      "bases": [
+        {
+          "id": "catalog:bouclier_de_recuperation",
+          "name": "Bouclier de récupération",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:bouclier_de_rempart",
+          "name": "Bouclier de rempart",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:bouclier_composite",
+          "name": "Bouclier composite",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:bouclier_de_nacre",
+          "name": "Bouclier de nacre",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "organic",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:bouclier_a_peau_mouvante",
+          "name": "Bouclier à peau mouvante",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "living",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        },
+        {
+          "id": "catalog:bouclier_du_revers_absent",
+          "name": "Bouclier du revers absent",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "humanoid_equipped",
+            "humanoid_site"
+          ]
+        }
+      ],
+      "form": "humanoid_equipment"
+    },
+    {
+      "id": "cutting_modules",
+      "label": "Modules de coupe",
+      "kind": "weapon",
+      "slot": "module_mount",
+      "delivery": "melee",
+      "role": "Outil de coupe fixé à une machine ; impact de contact.",
+      "readiness": "engine_work_needed",
+      "notes": "Valider la récupération et la compatibilité d'équipement du joueur sans ajouter implicitement une recette ou un atelier.",
+      "bases": [
+        {
+          "id": "catalog:disque_de_coupe",
+          "name": "Disque de coupe",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_de_cisaille",
+          "name": "Module de cisaille",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_a_dents_ceramiques",
+          "name": "Module à dents céramiques",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_a_tranchant_vibratoire",
+          "name": "Module à tranchant vibratoire",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_de_coupe_sans_axe",
+          "name": "Module de coupe sans axe",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_du_plan_separe",
+          "name": "Module du plan séparé",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        }
+      ],
+      "form": "machine_module"
+    },
+    {
+      "id": "ballistic_modules",
+      "label": "Modules balistiques",
+      "kind": "weapon",
+      "slot": "module_mount",
+      "delivery": "ranged",
+      "role": "Armement balistique de châssis ; tir et ressources propres.",
+      "readiness": "engine_work_needed",
+      "notes": "La pièce utilisée par le robot est celle qui pourra être récupérée, pas un pistolet humain tiré après sa mort.",
+      "bases": [
+        {
+          "id": "catalog:module_lance_rivets",
+          "name": "Module lance-rivets",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_lance_aiguilles",
+          "name": "Module lance-aiguilles",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_balistique_a_induction",
+          "name": "Module balistique à induction",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_a_chambre_prismatique",
+          "name": "Module à chambre prismatique",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_de_tir_sans_recul",
+          "name": "Module de tir sans recul",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_du_projectile_absent",
+          "name": "Module du projectile absent",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        }
+      ],
+      "form": "machine_module"
+    },
+    {
+      "id": "chassis_plating",
+      "label": "Blindages de châssis",
+      "kind": "armor",
+      "slot": "chassis_proposal",
+      "delivery": "none",
+      "role": "Protection structurelle d'une machine, distincte d'un plastron humain.",
+      "readiness": "engine_work_needed",
+      "notes": "La compatibilité avec le corps du joueur reste à décider ; une plaque intégrée n'est pas automatiquement une armure portable.",
+      "bases": [
+        {
+          "id": "catalog:blindage_boulonne",
+          "name": "Blindage boulonné",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:blindage_articule",
+          "name": "Blindage articulé",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:blindage_ceramique",
+          "name": "Blindage céramique",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:blindage_alveolaire_inverse",
+          "name": "Blindage alvéolaire inversé",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:blindage_sans_jointure",
+          "name": "Blindage sans jointure",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:blindage_de_l_enveloppe_close",
+          "name": "Blindage de l'enveloppe close",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        }
+      ],
+      "form": "machine_module"
+    },
+    {
+      "id": "thermal_modules",
+      "label": "Modules thermiques",
+      "kind": "armor",
+      "slot": "utility_proposal",
+      "delivery": "none",
+      "role": "Module de réserve ou de dissipation ; pas une pièce vestimentaire.",
+      "readiness": "engine_work_needed",
+      "notes": "Famille utilitaire : le modèle actuel d'armure impose une protection positive. Ne pas ajouter d'armure fictive pour contourner cette limite.",
+      "bases": [
+        {
+          "id": "catalog:dissipateur_a_ailettes",
+          "name": "Dissipateur à ailettes",
+          "tier": 1,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_de_refroidissement",
+          "name": "Module de refroidissement",
+          "tier": 2,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_caloporteur",
+          "name": "Module caloporteur",
+          "tier": 3,
+          "grammar": "ms",
+          "nature": "manufactured",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_a_circulation_inverse",
+          "name": "Module à circulation inverse",
+          "tier": 4,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_de_chaleur_captive",
+          "name": "Module de chaleur captive",
+          "tier": 5,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        },
+        {
+          "id": "catalog:module_du_puits_froid",
+          "name": "Module du puits froid",
+          "tier": 6,
+          "grammar": "ms",
+          "nature": "anomalous",
+          "loot_sources": [
+            "robot",
+            "machine_site"
+          ]
+        }
+      ],
+      "form": "machine_module"
+    }
+  ],
+  "affixes": [
+    {
+      "id": "affix:power",
+      "weight": 100,
+      "group": "power",
+      "category": "stat",
+      "placement": "prefix",
+      "forms": {
+        "ms": "puissant",
+        "fs": "puissante",
+        "mp": "puissants",
+        "fp": "puissantes"
+      },
+      "property": "power",
+      "compatibility": [
+        "weapon",
+        "armor"
+      ],
+      "scope": "all_equipped",
+      "readiness": "numeric_bonus_supported",
+      "priority": 10,
+      "ranges": [
+        {
+          "tier": 1,
+          "minimum": 1,
+          "maximum": 2
+        },
+        {
+          "tier": 2,
+          "minimum": 1,
+          "maximum": 3
+        },
+        {
+          "tier": 3,
+          "minimum": 2,
+          "maximum": 4
+        },
+        {
+          "tier": 4,
+          "minimum": 3,
+          "maximum": 5
+        },
+        {
+          "tier": 5,
+          "minimum": 4,
+          "maximum": 7
+        },
+        {
+          "tier": 6,
+          "minimum": 5,
+          "maximum": 9
+        }
+      ],
+      "stat_label": "Puissance"
+    },
+    {
+      "id": "affix:coordination",
+      "weight": 100,
+      "group": "coordination",
+      "category": "stat",
+      "placement": "prefix",
+      "forms": {
+        "ms": "adroit",
+        "fs": "adroite",
+        "mp": "adroits",
+        "fp": "adroites"
+      },
+      "property": "coordination",
+      "compatibility": [
+        "weapon",
+        "armor"
+      ],
+      "scope": "all_equipped",
+      "readiness": "numeric_bonus_supported",
+      "priority": 10,
+      "ranges": [
+        {
+          "tier": 1,
+          "minimum": 1,
+          "maximum": 2
+        },
+        {
+          "tier": 2,
+          "minimum": 1,
+          "maximum": 3
+        },
+        {
+          "tier": 3,
+          "minimum": 2,
+          "maximum": 4
+        },
+        {
+          "tier": 4,
+          "minimum": 3,
+          "maximum": 5
+        },
+        {
+          "tier": 5,
+          "minimum": 4,
+          "maximum": 7
+        },
+        {
+          "tier": 6,
+          "minimum": 5,
+          "maximum": 9
+        }
+      ],
+      "stat_label": "Coordination"
+    },
+    {
+      "id": "affix:resilience",
+      "weight": 100,
+      "group": "resilience",
+      "category": "stat",
+      "placement": "prefix",
+      "forms": {
+        "ms": "robuste",
+        "fs": "robuste",
+        "mp": "robustes",
+        "fp": "robustes"
+      },
+      "property": "resilience",
+      "compatibility": [
+        "weapon",
+        "armor"
+      ],
+      "scope": "all_equipped",
+      "readiness": "numeric_bonus_supported",
+      "priority": 10,
+      "ranges": [
+        {
+          "tier": 1,
+          "minimum": 1,
+          "maximum": 2
+        },
+        {
+          "tier": 2,
+          "minimum": 1,
+          "maximum": 3
+        },
+        {
+          "tier": 3,
+          "minimum": 2,
+          "maximum": 4
+        },
+        {
+          "tier": 4,
+          "minimum": 3,
+          "maximum": 5
+        },
+        {
+          "tier": 5,
+          "minimum": 4,
+          "maximum": 7
+        },
+        {
+          "tier": 6,
+          "minimum": 5,
+          "maximum": 9
+        }
+      ],
+      "stat_label": "Résilience"
+    },
+    {
+      "id": "affix:perception",
+      "weight": 80,
+      "group": "perception",
+      "category": "stat",
+      "placement": "suffix",
+      "forms": {
+        "all": "de vigilance"
+      },
+      "property": "perception",
+      "compatibility": [
+        "weapon",
+        "armor"
+      ],
+      "scope": "all_equipped",
+      "readiness": "numeric_bonus_supported",
+      "priority": 10,
+      "ranges": [
+        {
+          "tier": 1,
+          "minimum": 1,
+          "maximum": 2
+        },
+        {
+          "tier": 2,
+          "minimum": 1,
+          "maximum": 3
+        },
+        {
+          "tier": 3,
+          "minimum": 2,
+          "maximum": 4
+        },
+        {
+          "tier": 4,
+          "minimum": 3,
+          "maximum": 5
+        },
+        {
+          "tier": 5,
+          "minimum": 4,
+          "maximum": 7
+        },
+        {
+          "tier": 6,
+          "minimum": 5,
+          "maximum": 9
+        }
+      ],
+      "stat_label": "Perception"
+    },
+    {
+      "id": "affix:processing",
+      "weight": 80,
+      "group": "processing",
+      "category": "stat",
+      "placement": "prefix",
+      "forms": {
+        "ms": "lucide",
+        "fs": "lucide",
+        "mp": "lucides",
+        "fp": "lucides"
+      },
+      "property": "processing",
+      "compatibility": [
+        "weapon",
+        "armor"
+      ],
+      "scope": "all_equipped",
+      "readiness": "numeric_bonus_supported",
+      "priority": 10,
+      "ranges": [
+        {
+          "tier": 1,
+          "minimum": 1,
+          "maximum": 2
+        },
+        {
+          "tier": 2,
+          "minimum": 1,
+          "maximum": 3
+        },
+        {
+          "tier": 3,
+          "minimum": 2,
+          "maximum": 4
+        },
+        {
+          "tier": 4,
+          "minimum": 3,
+          "maximum": 5
+        },
+        {
+          "tier": 5,
+          "minimum": 4,
+          "maximum": 7
+        },
+        {
+          "tier": 6,
+          "minimum": 5,
+          "maximum": 9
+        }
+      ],
+      "stat_label": "Traitement"
+    },
+    {
+      "id": "affix:accuracy",
+      "weight": 70,
+      "group": "accuracy",
+      "category": "stat",
+      "placement": "prefix",
+      "forms": {
+        "ms": "précis",
+        "fs": "précise",
+        "mp": "précis",
+        "fp": "précises"
+      },
+      "property": "accuracy",
+      "compatibility": [
+        "weapon",
+        "armor"
+      ],
+      "scope": "all_equipped",
+      "readiness": "numeric_bonus_supported",
+      "priority": 30,
+      "ranges": [
+        {
+          "tier": 1,
+          "minimum": 5,
+          "maximum": 10
+        },
+        {
+          "tier": 2,
+          "minimum": 7,
+          "maximum": 14
+        },
+        {
+          "tier": 3,
+          "minimum": 10,
+          "maximum": 18
+        },
+        {
+          "tier": 4,
+          "minimum": 14,
+          "maximum": 23
+        },
+        {
+          "tier": 5,
+          "minimum": 18,
+          "maximum": 28
+        },
+        {
+          "tier": 6,
+          "minimum": 23,
+          "maximum": 35
+        }
+      ],
+      "stat_label": "Précision"
+    },
+    {
+      "id": "affix:armor_penetration",
+      "weight": 35,
+      "group": "armor_penetration",
+      "category": "stat",
+      "placement": "prefix",
+      "forms": {
+        "ms": "pénétrant",
+        "fs": "pénétrante",
+        "mp": "pénétrants",
+        "fp": "pénétrantes"
+      },
+      "property": "armor_penetration",
+      "compatibility": [
+        "weapon",
+        "armor"
+      ],
+      "scope": "all_equipped",
+      "readiness": "numeric_bonus_supported",
+      "priority": 25,
+      "ranges": [
+        {
+          "tier": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        {
+          "tier": 2,
+          "minimum": 1,
+          "maximum": 2
+        },
+        {
+          "tier": 3,
+          "minimum": 2,
+          "maximum": 3
+        },
+        {
+          "tier": 4,
+          "minimum": 3,
+          "maximum": 4
+        },
+        {
+          "tier": 5,
+          "minimum": 4,
+          "maximum": 5
+        },
+        {
+          "tier": 6,
+          "minimum": 5,
+          "maximum": 7
+        }
+      ],
+      "stat_label": "Pénétration d'armure"
+    },
+    {
+      "id": "affix:vitality",
+      "weight": 100,
+      "group": "vitality",
+      "category": "stat",
+      "placement": "suffix",
+      "forms": {
+        "all": "de vitalité"
+      },
+      "property": "maximum_hit_points",
+      "compatibility": [
+        "weapon",
+        "armor"
+      ],
+      "scope": "all_equipped",
+      "readiness": "numeric_bonus_supported",
+      "priority": 20,
+      "ranges": [
+        {
+          "tier": 1,
+          "minimum": 5,
+          "maximum": 15
+        },
+        {
+          "tier": 2,
+          "minimum": 10,
+          "maximum": 20
+        },
+        {
+          "tier": 3,
+          "minimum": 15,
+          "maximum": 30
+        },
+        {
+          "tier": 4,
+          "minimum": 20,
+          "maximum": 40
+        },
+        {
+          "tier": 5,
+          "minimum": 30,
+          "maximum": 55
+        },
+        {
+          "tier": 6,
+          "minimum": 40,
+          "maximum": 75
+        }
+      ],
+      "stat_label": "PV maximum"
+    },
+    {
+      "id": "affix:energy_reserve",
+      "weight": 70,
+      "group": "energy_reserve",
+      "category": "stat",
+      "placement": "suffix",
+      "forms": {
+        "all": "de réserve"
+      },
+      "property": "energy_capacity",
+      "compatibility": [
+        "weapon",
+        "armor"
+      ],
+      "scope": "all_equipped",
+      "readiness": "numeric_bonus_supported",
+      "priority": 15,
+      "ranges": [
+        {
+          "tier": 1,
+          "minimum": 5,
+          "maximum": 15
+        },
+        {
+          "tier": 2,
+          "minimum": 10,
+          "maximum": 20
+        },
+        {
+          "tier": 3,
+          "minimum": 15,
+          "maximum": 30
+        },
+        {
+          "tier": 4,
+          "minimum": 20,
+          "maximum": 40
+        },
+        {
+          "tier": 5,
+          "minimum": 30,
+          "maximum": 55
+        },
+        {
+          "tier": 6,
+          "minimum": 40,
+          "maximum": 75
+        }
+      ],
+      "stat_label": "Énergie maximale"
+    },
+    {
+      "id": "affix:heat_dissipation",
+      "weight": 35,
+      "group": "heat_dissipation",
+      "category": "stat",
+      "placement": "suffix",
+      "forms": {
+        "all": "de dissipation"
+      },
+      "property": "heat_dissipation",
+      "compatibility": [
+        "weapon",
+        "armor"
+      ],
+      "scope": "all_equipped",
+      "readiness": "numeric_bonus_supported",
+      "priority": 15,
+      "ranges": [
+        {
+          "tier": 1,
+          "minimum": 1,
+          "maximum": 1
+        },
+        {
+          "tier": 2,
+          "minimum": 1,
+          "maximum": 2
+        },
+        {
+          "tier": 3,
+          "minimum": 2,
+          "maximum": 3
+        },
+        {
+          "tier": 4,
+          "minimum": 3,
+          "maximum": 4
+        },
+        {
+          "tier": 5,
+          "minimum": 4,
+          "maximum": 5
+        },
+        {
+          "tier": 6,
+          "minimum": 5,
+          "maximum": 7
+        }
+      ],
+      "stat_label": "Dissipation par tour"
+    },
+    {
+      "id": "affix:impact",
+      "weight": 8,
+      "group": "impact",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "de décharge"
+      },
+      "effect": "Onde d'impact",
+      "lab_profile": "impact",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "melee",
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 1,
+      "origin": "impact",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group"
+    },
+    {
+      "id": "affix:bearer",
+      "weight": 6,
+      "group": "bearer",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "de couronne"
+      },
+      "effect": "Décharge circulaire",
+      "lab_profile": "bearer",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "melee",
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 2,
+      "origin": "bearer",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group"
+    },
+    {
+      "id": "affix:conduction",
+      "weight": 8,
+      "group": "conduction",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "de conduction"
+      },
+      "effect": "Conduction",
+      "lab_profile": "conduction",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "melee",
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 2,
+      "origin": "impact",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group"
+    },
+    {
+      "id": "affix:burning",
+      "weight": 20,
+      "group": "burning",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "de braise"
+      },
+      "effect": "Brandon",
+      "lab_profile": "burning",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "melee",
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 1,
+      "origin": "impact",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group"
+    },
+    {
+      "id": "affix:caustic",
+      "weight": 12,
+      "group": "caustic",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "d'acide"
+      },
+      "effect": "Suintement caustique",
+      "lab_profile": "caustic",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "melee",
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 2,
+      "origin": "impact",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group"
+    },
+    {
+      "id": "affix:healing",
+      "weight": 4,
+      "group": "healing",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "de siphon"
+      },
+      "effect": "Vol de vie",
+      "lab_profile": "healing",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "melee",
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 2,
+      "origin": "bearer",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group"
+    },
+    {
+      "id": "affix:piercing",
+      "weight": 10,
+      "group": "piercing",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "de perforation"
+      },
+      "effect": "Perforation",
+      "lab_profile": "piercing",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "melee",
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 2,
+      "origin": "beyond_impact",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group"
+    },
+    {
+      "id": "affix:aegis",
+      "weight": 6,
+      "group": "aegis",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "d'égide"
+      },
+      "effect": "Égide d'impact",
+      "lab_profile": "aegis",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "melee",
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 2,
+      "origin": "bearer",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group"
+    },
+    {
+      "id": "affix:percussion",
+      "weight": 16,
+      "group": "percussion",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "de percussion"
+      },
+      "effect": "Percussion",
+      "lab_profile": "percussion",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "melee",
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 1,
+      "origin": "impact",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group"
+    },
+    {
+      "id": "affix:fracture",
+      "weight": 4,
+      "group": "fracture",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "de marquage"
+      },
+      "effect": "Marquage",
+      "lab_profile": "fracture",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "melee",
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 3,
+      "origin": "impact",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group"
+    },
+    {
+      "id": "affix:ricochet",
+      "weight": 8,
+      "group": "ricochet",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "de ricochet"
+      },
+      "effect": "Ricochet",
+      "lab_profile": "ricochet",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 2,
+      "origin": "impact",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group",
+      "allowed_families": [
+        "sidearms",
+        "rifles",
+        "scatterguns",
+        "crossbows",
+        "impact_cannons",
+        "ballistic_modules"
+      ]
+    },
+    {
+      "id": "affix:catalysis",
+      "weight": 4,
+      "group": "catalysis",
+      "category": "special_effect",
+      "placement": "suffix",
+      "forms": {
+        "all": "de fournaise"
+      },
+      "effect": "Catalyse",
+      "lab_profile": "catalysis",
+      "compatibility": [
+        "weapon"
+      ],
+      "deliveries": [
+        "melee",
+        "ranged"
+      ],
+      "scope": "used_weapon_only",
+      "minimum_tier": 3,
+      "origin": "bearer_aimed_cone",
+      "readiness": "effect_supported_instance_affix_pending",
+      "priority": 100,
+      "stacking": "no_duplicate_group"
+    }
+  ],
+  "excluded_effects": [
+    {
+      "lab_profile": "echo",
+      "reason": "En réexamen après le refus de l'utilisateur ; exclu des nouveaux tirages."
+    },
+    {
+      "lab_profile": "alternation",
+      "reason": "Remplacé par Ricochet."
+    }
+  ],
+  "loot_sources": [
+    {
+      "id": "humanoid_equipped",
+      "label": "Humanoïde équipé",
+      "kind": "enemy",
+      "forms": [
+        "humanoid_equipment"
+      ],
+      "notes": "Uniquement des possessions réellement attribuées à un individu capable de les porter. Ses capacités et son anatomie affinent ensuite cette liste."
+    },
+    {
+      "id": "robot",
+      "label": "Robot",
+      "kind": "enemy",
+      "forms": [
+        "machine_module"
+      ],
+      "notes": "Uniquement des modules et protections mécaniques adaptés au modèle ; jamais un vêtement ou une arme de forme humaine."
+    },
+    {
+      "id": "organic_creature",
+      "label": "Créature organique non équipée",
+      "kind": "enemy",
+      "forms": [],
+      "notes": "Aucune base équipable générique pour l'instant. Restes utiles séparés ; pas d'épée ou de bottes créées dans son corps, même si elles sont organiques."
+    },
+    {
+      "id": "anomalous_creature",
+      "label": "Créature anormale sans possessions",
+      "kind": "enemy",
+      "forms": [],
+      "notes": "Aucun équipement automatique. Un objet ou un résidu exige une existence matérielle et un usage définis."
+    },
+    {
+      "id": "humanoid_site",
+      "label": "Réserve d'équipement humanoïde",
+      "kind": "site",
+      "forms": [
+        "humanoid_equipment"
+      ],
+      "notes": "Contenu placé à la création du lieu ; tuer son gardien ne crée pas un second tirage."
+    },
+    {
+      "id": "machine_site",
+      "label": "Réserve de pièces mécaniques",
+      "kind": "site",
+      "forms": [
+        "machine_module"
+      ],
+      "notes": "Modules d'un atelier ou dépôt mécanique, indépendants de l'inventaire d'un robot voisin."
+    }
+  ]
+}

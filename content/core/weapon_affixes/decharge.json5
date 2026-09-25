@@ -1,0 +1,9 @@
+{
+  id: "core:affix_decharge", suffix_key: "equipment.affix_decharge.suffix",
+  description_key: "equipment.affix_decharge.description",
+  effects: [{ type: "radial_damage", radius: 1,
+    damage: { amount: 2, damage_type: "electrical", penetration: 0 },
+    trigger: "on_hit", origin: "impact", affects_source: false,
+    deep_water_cost: 1,
+  }],
+}

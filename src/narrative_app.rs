@@ -320,7 +320,8 @@ impl AsciiApp {
             let provider = if let Some(provider) = self.game.actors().entity_at(position) {
                 provider
             } else if self.generation_version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION
-                && character.tag == definition.investigation.provider_tag
+                && (character.tag == definition.investigation.provider_tag
+                    || self.generation_version >= SURFACE_CAST_GENERATION_VERSION)
                 && self.game.map().is_walkable(position)
             {
                 self.game

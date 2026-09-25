@@ -1,9 +1,10 @@
 {
   id: "core:corroded",
   terminal: {
-    frames: ["dot", "wave", "spark"],
-    color: [155, 229, 105, 255],
-    frame_millis: 80,
+    frames: ["acid_drop", "acid_splash", "acid_drop"],
+    color: [78, 124, 43, 220],
+    accent_colors: [[163, 224, 88, 250], [231, 254, 179, 255]],
+    frame_millis: 155,
     step_millis: 0,
     linger_millis: 160,
   },
