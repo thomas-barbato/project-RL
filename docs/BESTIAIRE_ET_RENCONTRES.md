@@ -1,6 +1,6 @@
 # Bestiaire et rencontres — catalogue de conception
 
-24 septembre 2026.
+24 septembre 2026 — revue des noms ouverte le 26 septembre 2026.
 
 ## 1. Statut et ordre de travail
 
@@ -8,9 +8,17 @@ Demande confirmée : concevoir le bestiaire avant de poursuivre l'ajout isolé
 d'ennemis, avec de vrais noms et des butins pensés en même temps. Le présent
 catalogue propose des noms destinés à rester, pas des étiquettes techniques à
 remplacer après intégration. Les quatre noms de famille de surface — **Vaurins,
-Talvènes, Ostrèles et Vélines** — ont été validés après leur présentation.
-Les déclinaisons par espèce et les noms profonds restent des propositions à
-finaliser ; l'accord sur les familles n'est pas un renommage automatique en jeu.
+Talvènes, Ostrèles et Vélines** — avaient été validés après leur présentation.
+La revue du 26 septembre rouvre la question des appellations, surface comprise :
+elles ont été jugées trop artificielles. La nouvelle
+[direction et première liste de noms](NOMS_DU_BESTIAIRE.md) privilégie des noms
+courts et évocateurs ; « Sentinelle » est préféré à « Gardien de confinement ».
+Les anciennes appellations ci-dessous restent des repères de correspondance,
+pas une consigne de les intégrer. Les familles, silhouettes, comportements et
+profils de butin ne sont pas remis en cause par cette revue. La première liste
+a ensuite été validée : les cinq animaux jouables et les cinq contacts fixes
+utilisent leurs noms retenus en jeu ; les quatre noms souterrains sont validés
+sans ajout de nouvelles créatures. Les 27 autres entrées restent à relire.
 
 Le [modèle général de butin](BUTINS_DES_RENCONTRES.md) a été accepté le
 24 septembre 2026 : provenance cohérente, tables partagées, possessions séparées
@@ -31,10 +39,12 @@ futurs. Les rôles humanoïdes ne comptent pas comme six espèces supplémentair
 
 La proposition remplace, pour la conception à venir, la petite
 [liste exploratoire de surface](PROPOSITION_BESTIAIRE_SURFACE.md). Les
-[cinq animaux du prototype](FAUNE_DE_SURFACE.md) restent inchangés dans le jeu.
-Aucun code, texte joueur, objet chargé, sauvegarde ou paramètre de génération
-n'est modifié par ce document. La prochaine étape est une revue du catalogue,
-pas l'intégration automatique de la ligne suivante.
+[cinq animaux du prototype](FAUNE_DE_SURFACE.md) gardent leurs comportements,
+avec les noms de surface retenus dans la revue. Les tables ci-dessous conservent
+les anciennes appellations comme correspondance de conception ; le document
+de revue fait référence pour les noms validés. Aucun nouvel objet, nouvelle
+espèce ou paramètre de génération n'est ajouté par cette revue. La suite reste
+une intégration par ensembles cohérents, pas l'ajout automatique de la ligne suivante.
 
 ## 2. Principes communs
 
@@ -98,17 +108,18 @@ Ce sont des profils de provenance partagés, pas des listes d'objets exclusives
 
 ## 4. Catalogue de surface détaillé — 12 espèces
 
-Les noms des quatre familles ci-dessous sont retenus. Leurs déclinaisons,
-fourchettes de niveau et butins demandent encore une finalisation. Trois
+Les quatre familles ci-dessous restent des regroupements de conception ; leurs
+noms sont désormais en revue. Les déclinaisons, fourchettes de niveau et butins
+demandent encore une finalisation. Trois
 espèces par famille est une structure de présentation de ce premier ensemble,
 pas une règle de production du bestiaire : une famille pourra être plus ou
 moins nombreuse et une espèce rare pourra être inoffensive.
 
 ### 4.1. Vaurins
 
-Le nom de famille est employé par les habitants pour ces animaux au dos incliné
-et au museau large. Tous ne chassent pas et les trois espèces ne se distinguent
-pas seulement par leur couleur.
+La proposition initiale regroupait sous ce nom des animaux au dos incliné et au
+museau large. L'appellation employée par les habitants reste à revoir. Tous ne
+chassent pas et les trois espèces ne se distinguent pas seulement par leur couleur.
 
 | Espèce | Niveaux ; présence | Apparence et milieu | Vie, danger et réponse du joueur | Butin proposé |
 |---|---|---|---|---|
@@ -265,9 +276,10 @@ glands, peaux et dents exclusifs sans usage ne crée pas une diversité utile.
 
 ## 8. Revue avant intégration
 
-- Conserver les quatre noms de famille de surface validés, puis finaliser les
-  déclinaisons et silhouettes des 12 espèces. Les noms profonds doivent être relus pour éviter
-  une succession de synonymes abstraits ou trop proches des peuplades.
+- Revoir les appellations de surface comme les noms profonds suivant la
+  [nouvelle direction](NOMS_DU_BESTIAIRE.md), en conservant les regroupements et
+  identités de conception. Faire valider les noms avant intégration ; ne pas
+  reprendre automatiquement les anciennes appellations de famille.
 - Appliquer le [modèle de butin accepté](BUTINS_DES_RENCONTRES.md), sans prendre
   les taux illustratifs ni les profils chiffrés pour des valeurs approuvées.
 - Définir le catalogue d'objets utile avant de remplir les profils avec des

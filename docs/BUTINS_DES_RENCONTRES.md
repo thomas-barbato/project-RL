@@ -35,9 +35,12 @@ Les pourcentages pédagogiques et les profils chiffrés ci-dessous restent des
 exemples à éprouver. Il ne valide pas individuellement tous les noms du bestiaire
 et ne déclenche aucune intégration automatique.
 
-Un accord ultérieur retient les noms des quatre familles de surface : Vaurins,
-Talvènes, Ostrèles et Vélines. Les déclinaisons par espèce et les objets de la
-section 11 restent à finaliser ; aucun objet n'est ajouté au jeu par cet accord.
+Un accord ultérieur avait retenu les noms des quatre familles de surface :
+Vaurins, Talvènes, Ostrèles et Vélines. La
+[revue des noms du 26 septembre](NOMS_DU_BESTIAIRE.md) rouvre ces appellations ;
+elles restent ici des repères de provenance, sans changement des familles ou
+des règles de butin. Les déclinaisons par espèce et les objets de la section 11
+restent à finaliser ; aucun objet n'est ajouté au jeu par ces accords.
 
 **Direction ultérieure retenue :** l'artisanat est reporté. Le
 [service d'amélioration d'équipement](AMELIORATION_EQUIPEMENT.md) agit sur les

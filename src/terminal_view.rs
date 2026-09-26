@@ -1947,7 +1947,7 @@ fn ai_state_label(state: AiState) -> String {
     }
 }
 
-fn legend_panel(bounds: Rect) -> Rect {
+pub(crate) fn legend_panel(bounds: Rect) -> Rect {
     Rect::new(
         bounds.x + (bounds.w - (bounds.w - 24.0).min(980.0)) * 0.5,
         bounds.y + (bounds.h - (bounds.h - 24.0).min(680.0)) * 0.5,
@@ -2103,14 +2103,14 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
         ),
         (
             'V',
-            "Fouisseur · suit les bruits",
+            "Fouisseur pâle · suit les bruits",
             Color::from_rgba(244, 132, 113, 255),
             false,
             None,
         ),
         (
             'G',
-            "Herbivore à carapace · neutre",
+            "Dos-rond · herbivore neutre",
             Color::from_rgba(161, 204, 137, 255),
             false,
             None,
@@ -2476,9 +2476,9 @@ pub fn overlay_label(symbol: char) -> &'static str {
         'w' => "Soigneur humanoïde · aide ses alliés blessés au contact",
         'B' => "Mordeur des friches · charognard · chasse en meute",
         'K' => "Brise-os · morsure annoncée puis récupération immobile",
-        'V' => "Fouisseur vibrant · fouisseur · vision courte, suit les bruits",
-        'G' => "Herbivore à carapace · neutre, se protège après un coup",
-        'N' => "Grignoteur de gravats · neutre, fuit et mord seulement si acculé",
+        'V' => "Fouisseur pâle · vision courte, suit les bruits",
+        'G' => "Dos-rond · herbivore neutre, se protège après un coup",
+        'N' => "Grignoteur · neutre, fuit et mord seulement si acculé",
         'o' => "Conteneur instable · explosion et feu persistant",
         'q' => "Relais conducteur · décharge électrique amplifiée par l'eau",
         ')' => "Arme au sol",

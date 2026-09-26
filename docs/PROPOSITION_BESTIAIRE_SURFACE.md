@@ -6,9 +6,12 @@
 comme historique des prototypes. Le [catalogue global du bestiaire](BESTIAIRE_ET_RENCONTRES.md)
 propose maintenant des noms destinés à rester, une répartition entre les milieux
 et des profils de butin. Le [modèle général de butin](BUTINS_DES_RENCONTRES.md)
-est accepté, ainsi que les noms Vaurins, Talvènes, Ostrèles et Vélines. Les
-déclinaisons par espèce, objets précis et taux restent à finaliser avant de
-poursuivre l'intégration. Aucun renommage en jeu n'est effectué par ces documents.
+est accepté. Les noms Vaurins, Talvènes, Ostrèles et Vélines avaient été retenus,
+mais la [revue du 26 septembre](NOMS_DU_BESTIAIRE.md) rouvre les appellations,
+surface comprise, en faveur de noms courts et évocateurs. Les regroupements
+restent conservés. Les déclinaisons par espèce, objets précis et taux restent
+à finaliser avant de poursuivre l'intégration. Aucun renommage en jeu n'est
+effectué par ces documents.
 
 Document de conception : cinq représentants sont maintenant intégrés comme
 prototype (Mordeur, Fouisseur vibrant et Herbivore à carapace en génération 101,

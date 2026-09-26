@@ -2,6 +2,12 @@
 
 24 septembre 2026 — première tranche jouable, génération 100.
 
+Mise à jour du 26 septembre : les [prénoms validés](NOMS_DU_BESTIAIRE.md) sont
+appliqués aux contacts fixes. L'Opérateur du tri devient **Basile** et
+l'Éclaireuse de la lisière **Lina** ; leur activité reste affichée séparément.
+Les contacts narratifs Orme, Sève et Rivet deviennent **Elias, Nora et Milo**.
+Dialogues, services, identifiants et états persistants restent inchangés.
+
 Mise à jour du 25 septembre : la génération 109 augmente la densité de surface.
 Les paragraphes sur les ajouts sans hausse des effectifs décrivent les anciennes
 générations ; voir le bilan ci-dessous pour les nouvelles parties.

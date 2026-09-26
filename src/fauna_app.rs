@@ -146,7 +146,7 @@ impl AsciiApp {
         self.intro_city_reached = true;
         self.log.clear();
         self.push_log(
-            "FAUNE DE SURFACE · b : Mordeur · f : Fouisseur · g : Herbivore à carapace".to_owned(),
+            "FAUNE DE SURFACE · b : Mordeur · f : Fouisseur pâle · g : Dos-rond".to_owned(),
         );
         Ok(())
     }

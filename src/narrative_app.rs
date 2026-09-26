@@ -61,7 +61,7 @@ impl AsciiApp {
         }
         let zone = self.game.current_zone()?;
         if zone.id == expedition.hub.id {
-            // Orme supplies this known entrance; no unexplored tile is revealed.
+            // Elias supplies this known entrance; no unexplored tile is revealed.
             let passage = expedition.hub_passage_for_expanded_world(
                 self.generation_version >= EXPANDED_WORLD_GENERATION_VERSION,
             );
@@ -143,13 +143,13 @@ impl AsciiApp {
                     .contains(&"core:orme".parse().unwrap())
                     .then_some(entity)
             })
-            .ok_or("Orme absent")?;
+            .ok_or("Elias absent")?;
         for _ in 0..120 {
             let position = self
                 .game
                 .actors()
                 .get(giver)
-                .ok_or("Orme absent")?
+                .ok_or("Elias absent")?
                 .position();
             if self
                 .game
@@ -172,7 +172,7 @@ impl AsciiApp {
             self.execute_command(GameCommand::Wait);
             self.capture_events_at(Some(0.0));
         }
-        Err("Orme est inaccessible".into())
+        Err("Elias est inaccessible".into())
     }
 
     #[cfg(any(test, debug_assertions))]
@@ -617,6 +617,52 @@ mod tests {
             node: node.into(),
             choice,
         })
+    }
+
+    #[test]
+    fn approved_names_match_dialogue_interaction_and_quest_giver() {
+        let mut app = app();
+        for (key, name) in [
+            ("narrative.orme.name", "Elias"),
+            ("narrative.seve.name", "Nora"),
+            ("narrative.rivet.name", "Milo"),
+            ("surface_cast.sorter.name", "Basile"),
+            ("surface_cast.scout.name", "Lina"),
+        ] {
+            assert_eq!(app.texts.resolve(DISPLAY_LOCALE, key), Some(name));
+        }
+        let position = GridPos::new(5, 3);
+        let giver = app.game.actors().entity_at(position).unwrap();
+        let dialogue = app.game.dialogue_view(giver).unwrap();
+        assert_eq!(
+            app.texts.resolve(DISPLAY_LOCALE, &dialogue.name_key),
+            Some("Elias")
+        );
+        assert_ne!(dialogue.name_key, dialogue.role_key);
+        assert_eq!(
+            app.interaction_display_name(position).as_deref(),
+            Some("Elias")
+        );
+        assert_eq!(
+            app.context_choice_label(ContextChoice::Interact(position)),
+            "Interagir : Elias (5, 3)"
+        );
+        assert_eq!(
+            choose(&mut app.game, giver, "ABS-D01", 0),
+            CommandOutcome::AppliedWithoutTime
+        );
+        let journal = app.game.quest_journal();
+        let entry = journal.iter().find(|entry| entry.giver == giver).unwrap();
+        assert_eq!(app.quest_giver_name(entry), "Elias");
+        for key in [
+            "narrative.abs.summary",
+            "narrative.abs.reported",
+            "world_effect.orme_direction_board_updated.summary",
+        ] {
+            let text = app.narrative_text(key, "");
+            assert!(text.contains("Elias"), "{key}: {text}");
+            assert!(!text.contains("Orme"), "{key}: {text}");
+        }
     }
 
     #[test]

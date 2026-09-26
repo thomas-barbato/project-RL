@@ -606,6 +606,16 @@ précis et taux restent à finaliser. Les cinq animaux jouables,
 les tables, les objets et la génération 103 ne changent pas. Aucun test de
 simulation n'est présenté comme validation de ces idées.
 
+Mise à jour du 26 septembre : la [revue des noms](NOMS_DU_BESTIAIRE.md) rouvre les
+appellations de surface et des profondeurs, jugées trop artificielles. La
+direction retenue privilégie des noms courts et évocateurs, avec « Sentinelle »
+pour la machine proposée. La première liste a ensuite été validée et appliquée
+aux cinq animaux jouables et aux cinq contacts fixes : inspection, légende,
+dialogues et textes de mission cohérents, sans changement d'identifiants ou de
+version de génération. Les quatre noms souterrains sont retenus, mais les
+créatures correspondantes ne sont pas encore intégrées. Les autres entrées
+restent à relire ; familles, comportements et provenance des butins sont conservés.
+
 ## Direction suivante : amélioration des bonus d'équipement
 
 Le laboratoire dispose aussi d'une première protection d'impact : état fini

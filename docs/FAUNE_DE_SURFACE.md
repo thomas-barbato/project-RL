@@ -2,10 +2,17 @@
 
 24 septembre 2026 — prototype jouable, générations 101–103.
 
+**Noms validés le 26 septembre :** Grignoteur de gravats devient **Grignoteur**,
+Fouisseur vibrant devient **Fouisseur pâle**, Herbivore à carapace devient
+**Dos-rond**. Mordeur des friches et Brise-os sont conservés. La
+[revue des noms](NOMS_DU_BESTIAIRE.md) est appliquée à la présentation sans changer
+les identifiants, comportements, populations ou versions de génération. Les
+anciens noms dans le bilan ci-dessous décrivent les lots historiques.
+
 **Conception suivante :** le [catalogue du bestiaire](BESTIAIRE_ET_RENCONTRES.md)
 et les [butins des rencontres](BUTINS_DES_RENCONTRES.md) préparent la suite avant
 toute nouvelle intégration. Leurs noms proposés et profils de butin ne changent
-pas les cinq espèces jouables décrites ici.
+pas les comportements des cinq espèces jouables décrites ici.
 
 Cette tranche éprouve les familles du [bestiaire proposé](PROPOSITION_BESTIAIRE_SURFACE.md),
 pas une liste définitive d'espèces. Cinq représentants sur neuf sont jouables.

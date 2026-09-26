@@ -2800,7 +2800,7 @@ impl AsciiApp {
             "narrative" | "narrative-markers" => {
                 app.prepare_narrative_diagnostic()?;
                 if scene == "narrative-markers" {
-                    let giver = app.npc_interaction.take().ok_or("Orme absent")?;
+                    let giver = app.npc_interaction.take().ok_or("Elias absent")?;
                     app.execute_command(GameCommand::ChooseDialogue {
                         speaker: giver,
                         node: "ABS-D01".into(),
@@ -3972,6 +3972,16 @@ impl AsciiApp {
                 probes.push(layout.mode_toggle);
             }
             probes
+        } else if app.legend_open {
+            let panel = crate::terminal_view::legend_panel(app.terminal_bounds());
+            // The legend hides the HUD: inspect its own title, not the
+            // dimmed background used by the generic gameplay probe.
+            vec![Rect::new(
+                panel.x + 8.0,
+                panel.y + 12.0,
+                panel.w - 16.0,
+                36.0,
+            )]
         } else if app.technique_menu_open {
             let layout = TechniqueQuickMenuLayout::new(
                 app.ui_width(),
@@ -13991,9 +14001,9 @@ impl AsciiApp {
             'w' => "Soigneur de terrain",
             'B' if self.test_lab => "Mannequin blindé",
             'B' => "Mordeur des friches",
-            'V' => "Fouisseur vibrant",
-            'G' => "Herbivore à carapace",
-            'N' => "Grignoteur de gravats",
+            'V' => "Fouisseur pâle",
+            'G' => "Dos-rond",
+            'N' => "Grignoteur",
             'K' => "Brise-os",
             'X' => "Mannequin d'essai",
             'L' if self.test_lab => "Mannequin lourd",
@@ -23186,6 +23196,137 @@ mod tests {
         app.controls = Controls::preset(Layout::Azerty, KeySemantics::Physical);
         app.suspension_path = temporary_folder("test-run").join("suspended-run.json");
         app
+    }
+
+    #[test]
+    fn approved_names_keep_old_surface_suspensions_compatible() {
+        let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+        // Recreate the previous localized names without changing stable keys,
+        // actor definitions or the generation version.
+        let source: serde_json::Value =
+            json5::from_str(include_str!("../content/core/locales/fr.json5")).unwrap();
+        let mut legacy_texts = TextCatalog::default();
+        for (key, value) in source["entries"].as_object().unwrap() {
+            let value = match key.as_str() {
+                "surface_cast.sorter.name" => "Opérateur du tri",
+                "surface_cast.sorter.role" => "Récupération et vie du quartier",
+                "surface_cast.scout.name" => "Éclaireuse de la lisière",
+                "surface_cast.scout.role" => "Observation des friches",
+                "narrative.orme.name" => "Orme",
+                "narrative.seve.name" => "Sève",
+                "narrative.rivet.name" => "Rivet",
+                _ => value.as_str().unwrap(),
+            };
+            legacy_texts
+                .register(DISPLAY_LOCALE.into(), key.clone(), value.into())
+                .unwrap();
+        }
+        for version in [
+            SURFACE_CAST_GENERATION_VERSION,
+            HEAVY_FAUNA_GENERATION_VERSION,
+            CURRENT_GENERATION_VERSION,
+        ] {
+            let mut original = AsciiApp::from_seed_version(
+                INITIAL_SEED,
+                rules.clone(),
+                legacy_texts.clone(),
+                loot.clone(),
+                expeditions.clone(),
+                version,
+            )
+            .unwrap();
+            assert!(
+                original
+                    .context_choice_label(ContextChoice::Interact(GridPos::new(36, 26)))
+                    .contains("Opérateur du tri")
+            );
+            original.execute_command(GameCommand::Wait);
+            original.game.drain_events();
+            let expected = original.game.recovery_snapshot_bytes().unwrap();
+            let saved = original.suspension().unwrap();
+            for replay in [false, true] {
+                let mut saved = saved.clone();
+                if replay {
+                    // Keep the old snapshot present: another build must use
+                    // verified replay rather than the opaque fast snapshot.
+                    saved.build = "0000000000000000".into();
+                }
+                let restored = AsciiApp::restore_suspension(
+                    &saved,
+                    rules.clone(),
+                    texts.clone(),
+                    loot.clone(),
+                    expeditions.clone(),
+                )
+                .unwrap();
+                assert_eq!(restored.generation_version, version);
+                assert_eq!(restored.game.recovery_snapshot_bytes().unwrap(), expected);
+                assert_eq!(suspension::fingerprint(&restored.game), saved.state);
+                for (position, name) in [
+                    (GridPos::new(36, 26), "Basile"),
+                    (GridPos::new(68, 26), "Lina"),
+                    (GridPos::new(11, 27), "Elias"),
+                ] {
+                    assert_eq!(
+                        restored.context_choice_label(ContextChoice::Interact(position)),
+                        format!("Interagir : {name} ({}, {})", position.x, position.y)
+                    );
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn approved_names_match_fauna_targets_and_map_inspection() {
+        let mut app = app_with_test_controls();
+        app.prepare_fauna_diagnostic(false).unwrap();
+        for (symbol, name) in [
+            ('B', "Mordeur des friches"),
+            ('V', "Fouisseur pâle"),
+            ('G', "Dos-rond"),
+        ] {
+            app.selected_target = app
+                .game
+                .actors()
+                .iter()
+                .find_map(|(id, _)| (app.hostile_glyph(id) == symbol).then_some(id));
+            assert_eq!(
+                app.terminal_target_summary()
+                    .unwrap()
+                    .name
+                    .split(" · ")
+                    .next(),
+                Some(name)
+            );
+            assert_eq!(
+                crate::terminal_view::overlay_label(symbol)
+                    .split(" · ")
+                    .next(),
+                Some(name)
+            );
+        }
+        for (symbol, name) in [('N', "Grignoteur"), ('K', "Brise-os")] {
+            if symbol == 'N' {
+                app.prepare_forager_diagnostic(false).unwrap();
+            } else {
+                app.prepare_bone_breaker_diagnostic(false).unwrap();
+            }
+            assert_eq!(
+                app.terminal_target_summary()
+                    .unwrap()
+                    .name
+                    .split(" · ")
+                    .next(),
+                Some(name)
+            );
+            assert_eq!(
+                crate::terminal_view::overlay_label(symbol)
+                    .split(" · ")
+                    .next(),
+                Some(name)
+            );
+        }
+        assert!(crate::terminal_view::overlay_label('G').contains("herbivore"));
     }
 
     #[test]
