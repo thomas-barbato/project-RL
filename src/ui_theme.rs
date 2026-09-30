@@ -350,15 +350,15 @@ impl UiTheme {
     }
 
     pub const fn surface(self) -> Color {
-        Color::new(0.035, 0.055, 0.073, 0.99)
+        Color::new(0.10, 0.15, 0.19, 0.99)
     }
 
     pub const fn surface_raised(self) -> Color {
-        Color::new(0.065, 0.094, 0.117, 1.0)
+        Color::new(0.15, 0.21, 0.26, 1.0)
     }
 
     pub const fn surface_selected(self) -> Color {
-        Color::new(0.07, 0.23, 0.25, 0.98)
+        Color::new(0.12, 0.32, 0.35, 0.98)
     }
 
     pub const fn text(self) -> Color {
@@ -400,6 +400,7 @@ impl UiTheme {
             Color::new(0.0, 0.0, 0.0, 0.42),
         );
         rounded_outline(rect, 11.0, 1.0, subdued(self.muted(), 0.20), self.surface());
+        surface_relief(rect, 11.0);
     }
 
     pub fn card(self, rect: Rect, selected: bool) {
@@ -419,24 +420,73 @@ impl UiTheme {
             },
             fill,
         );
+        surface_relief(rect, 7.0);
     }
 
     pub fn hud_panel(self, rect: Rect) {
+        surface_shadow(rect, 8.0);
         rounded_outline(
             rect,
             8.0,
             1.0,
             Color::new(0.32, 0.54, 0.57, 0.34),
-            Color::new(0.035, 0.08, 0.10, 0.95),
+            Color::new(0.075, 0.13, 0.17, 0.97),
         );
+        surface_relief(rect, 8.0);
     }
 
     pub fn hud_chip(self, rect: Rect) {
-        rounded_rectangle(rect, 5.0, Color::new(0.045, 0.11, 0.13, 0.92));
+        rounded_rectangle(rect, 5.0, Color::new(0.12, 0.21, 0.25, 0.96));
+        surface_relief(rect, 5.0);
+    }
+
+    /// Compact floating menus have a quiet rim, soft shadow and opaque content.
+    pub fn context_surface(self, rect: Rect) {
+        for (spread, alpha) in [(9.0, 0.035), (6.0, 0.06), (3.0, 0.12)] {
+            rounded_rectangle(
+                Rect::new(
+                    rect.x - spread,
+                    rect.y + 4.0 - spread,
+                    rect.w + spread * 2.0,
+                    rect.h + spread * 2.0,
+                ),
+                12.0 + spread,
+                Color::new(0.0, 0.0, 0.0, alpha),
+            );
+        }
+        rounded_outline(
+            rect,
+            12.0,
+            1.0,
+            subdued(self.muted(), 0.25),
+            self.surface_raised(),
+        );
+        rounded_rectangle(
+            Rect::new(rect.x + 1.0, rect.y + 1.0, rect.w - 2.0, rect.h - 2.0),
+            11.0,
+            self.surface(),
+        );
+    }
+
+    pub fn context_row(self, rect: Rect, highlighted: bool, enabled: bool) {
+        if highlighted {
+            rounded_outline(
+                rect,
+                6.0,
+                1.0,
+                subdued(if enabled { self.accent() } else { self.muted() }, 0.20),
+                if enabled {
+                    self.surface_selected()
+                } else {
+                    self.surface_raised()
+                },
+            );
+        }
     }
 
     pub fn hud_action(self, rect: Rect, hover: f32) {
         let hover = hover.clamp(0.0, 1.0);
+        surface_shadow(rect, 5.0);
         rounded_rectangle(
             rect,
             5.0,
@@ -447,6 +497,7 @@ impl UiTheme {
                 0.98 + 0.02 * hover,
             ),
         );
+        surface_relief(rect, 5.0);
     }
 
     pub fn hud_alert(self, rect: Rect, pulse: f32) {
@@ -593,6 +644,7 @@ impl UiTheme {
             outline,
             fill,
         );
+        surface_relief(rect, radius);
 
         let mut font_size = 16_u16;
         while font_size > 12 && measure_text_bold(label, font_size).width > rect.w - 20.0 {
@@ -1245,6 +1297,47 @@ pub fn draw_ui_icon(icon: UiIcon, rect: Rect, color: Color) {
 
 fn subdued(color: Color, alpha: f32) -> Color {
     Color::new(color.r, color.g, color.b, alpha)
+}
+
+fn surface_shadow(rect: Rect, radius: f32) {
+    for (offset, alpha) in [(6.0, 0.10), (3.0, 0.20)] {
+        rounded_rectangle(
+            Rect::new(rect.x + 1.0, rect.y + offset, rect.w, rect.h),
+            radius,
+            Color::new(0.0, 0.0, 0.0, alpha),
+        );
+    }
+}
+
+/// Quiet directional lighting, confined to the rim so text keeps its contrast.
+fn surface_relief(rect: Rect, radius: f32) {
+    for i in 0..6 {
+        let inset = 1.0 + i as f32;
+        draw_line(
+            rect.x + radius,
+            rect.y + inset,
+            rect.right() - radius,
+            rect.y + inset,
+            1.0,
+            Color::new(0.65, 0.88, 0.92, 0.07 * (1.0 - i as f32 / 6.0)),
+        );
+    }
+    draw_line(
+        rect.x + radius,
+        rect.bottom() - 1.0,
+        rect.right() - radius,
+        rect.bottom() - 1.0,
+        1.0,
+        Color::new(0.0, 0.0, 0.0, 0.48),
+    );
+    draw_line(
+        rect.x + 1.0,
+        rect.y + radius,
+        rect.x + 1.0,
+        rect.bottom() - radius,
+        1.0,
+        Color::new(0.48, 0.75, 0.80, 0.13),
+    );
 }
 
 fn rounded_outline(rect: Rect, radius: f32, thickness: f32, outline: Color, fill: Color) {

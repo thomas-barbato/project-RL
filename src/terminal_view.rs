@@ -70,9 +70,11 @@ pub struct TerminalDrawOptions<'a> {
     pub legend_label: &'a str,
     pub observation_label: &'a str,
     pub legend_open: bool,
+    pub hide_interaction_tooltip: bool,
     pub attack_preview: Option<TerminalAttackPreview<'a>>,
     pub navigation_signal: Option<&'a str>,
     pub target_summary: Option<&'a TerminalTargetSummary>,
+    pub selected_cell: Option<GridPos>,
     pub observation_fields: &'a [ActorObservationField],
 }
 
@@ -156,6 +158,8 @@ fn interaction_hint(game: &WorldState, position: GridPos) -> Option<InteractionH
             })
         } else if game.active_resident(entity)
             || game.active_quest_provider(entity)
+            || game.dialogue_view(entity).is_some()
+            || game.npc_interaction(entity).is_some()
             || game
                 .current_zone()
                 .is_some_and(|zone| game.narrative_name_key_in(&zone.id, entity).is_some())
@@ -278,6 +282,33 @@ pub struct TerminalTargetSummary {
     pub distance: u32,
     pub visible_state: String,
     pub analysis: Option<TerminalTargetAnalysis>,
+    pub interaction: Option<String>,
+    pub health: Option<(u16, u16)>,
+}
+
+pub fn interactive_target_summary(
+    game: &WorldState,
+    at: GridPos,
+    name: Option<String>,
+    key: &str,
+) -> Option<TerminalTargetSummary> {
+    let hint = interaction_hint(game, at)?;
+    let origin = game.player_position()?;
+    Some(TerminalTargetSummary {
+        name: name.unwrap_or(hint.title),
+        distance: origin.x.abs_diff(at.x).max(origin.y.abs_diff(at.y)),
+        visible_state: String::new(),
+        analysis: None,
+        health: game
+            .actors()
+            .entity_at(at)
+            .and_then(|id| game.actors().get(id))
+            .map(|a| (a.integrity(), a.maximum_integrity())),
+        interaction: Some(
+            hint.unavailable
+                .map_or_else(|| format!("{key} : {}", hint.verb), str::to_owned),
+        ),
+    })
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -568,9 +599,11 @@ impl TerminalView {
             legend_label,
             observation_label,
             legend_open,
+            hide_interaction_tooltip,
             attack_preview,
             navigation_signal,
             target_summary,
+            selected_cell,
             observation_fields,
         } = options;
         let cyan = Color::from_rgba(104, 201, 201, 255);
@@ -591,6 +624,15 @@ impl TerminalView {
             1.0,
             Color::from_rgba(45, 79, 86, 185),
         );
+        // Undiscovered map cells inherit pure black. Remembered tiles retain
+        // their existing dimmed rendering when they leave the field of view.
+        draw_rectangle(
+            layout.map.x,
+            layout.map.y,
+            layout.map.w,
+            layout.map.h,
+            BLACK,
+        );
         let protected = game
             .player_position()
             .is_some_and(|p| game.map().is_protected(p));
@@ -599,33 +641,32 @@ impl TerminalView {
         } else {
             "ZONE HOSTILE"
         };
-        let safety_width = measure_ui_text(safety_label, None, 16, 1.0).width;
-        let safety_reserved = if layout.header.w > 560.0 {
-            safety_width + 23.0
+        let safety_width = measure_ui_text_bold(safety_label, 16).width + 24.0;
+        let title_width = if layout.header.w > 560.0 {
+            (layout.header.w - safety_width) * 0.5 - 16.0
         } else {
-            0.0
+            layout.header.w
         };
         draw_bounded_text(
             &self.title,
             layout.header.x,
             layout.header.y + 23.0,
-            layout.header.w - safety_reserved,
+            title_width,
             18,
             cyan,
         );
         if layout.header.w > 560.0 {
             let safety_chip = Rect::new(
-                layout.header.x + layout.header.w - safety_width - 13.0,
-                layout.header.y + 3.0,
-                safety_width + 13.0,
-                25.0,
+                layout.header.x + (layout.header.w - safety_width) * 0.5,
+                layout.header.y + (layout.header.h - 28.0) * 0.5,
+                safety_width,
+                28.0,
             );
             UiTheme.hud_chip(safety_chip);
-            draw_ui_text(
+            draw_ui_text_bold_centered(
                 safety_label,
-                layout.header.x + layout.header.w - safety_width,
-                layout.header.y + 22.0,
-                16.0,
+                safety_chip,
+                16,
                 if protected { cyan } else { ORANGE },
             );
         }
@@ -682,13 +723,7 @@ impl TerminalView {
                         position,
                     );
                 } else {
-                    draw_rectangle(
-                        rect.x,
-                        rect.y,
-                        rect.w,
-                        rect.h,
-                        Color::from_rgba(4, 10, 15, 255),
-                    );
+                    draw_rectangle(rect.x, rect.y, rect.w, rect.h, BLACK);
                 }
                 draw_observation_fields(rect, observation_fields, position);
                 if visible
@@ -721,6 +756,12 @@ impl TerminalView {
                             cell.status_icon.filter(|icon| !icon.is_quest()),
                         );
                     }
+                }
+                if visible
+                    && selected_cell == Some(position)
+                    && overlay(position).is_none_or(|cell| cell.symbol == '\0')
+                {
+                    draw_selection_marker(rect);
                 }
                 if visible
                     && game.active_facility().is_some_and(|facility| {
@@ -830,7 +871,9 @@ impl TerminalView {
         }
         let pointer = camera.hit(mouse_position());
         let pointer_inspected = pointer.and_then(|p| self.known(p).map(|t| (p, t)));
-        let mut selected_inspected = None;
+        let mut selected_inspected = selected_cell
+            .filter(|at| visibility.is_visible(*at))
+            .and_then(|at| self.known(at).map(|tile| (at, tile)));
         let mut visible_hostiles = 0;
         let mut visible_neutrals = 0;
         let mut visible_items = 0;
@@ -904,7 +947,9 @@ impl TerminalView {
                 .then(|| interaction_hint(game, position).map(|hint| (position, hint)))
                 .flatten()
         });
-        if !legend_open && let Some((position, hint)) = hovered_interaction.or(focused_interaction)
+        if !legend_open
+            && !hide_interaction_tooltip
+            && let Some((position, hint)) = hovered_interaction.or(focused_interaction)
         {
             let rect = camera.rect(position);
             let action = interaction_action(
@@ -1127,6 +1172,7 @@ impl TerminalView {
                 observation_fields,
                 observation_label,
                 &sensor_contacts,
+                layout.objective,
             );
         }
         if legend_open {
@@ -1143,6 +1189,7 @@ impl TerminalView {
         observation_fields: &[ActorObservationField],
         observation_label: &str,
         sensor_contacts: &[SensorContact],
+        objective: Rect,
     ) {
         let (
             visible_hostiles,
@@ -1157,24 +1204,28 @@ impl TerminalView {
         let cyan = Color::from_rgba(100, 221, 201, 255);
         UiTheme.hud_panel(panel);
         let rect = Rect::new(
-            panel.x + 10.0,
-            panel.y + 10.0,
-            panel.w - 20.0,
-            panel.h - 20.0,
+            panel.x + 16.0,
+            panel.y + 16.0,
+            panel.w - 32.0,
+            objective.y - panel.y - 32.0,
         );
         draw_ui_text_bold("CAPTEURS", rect.x, rect.y + 18.0, 18.0, bright);
-        draw_ui_text_bold(
-            "Votre position sur le relevé",
-            rect.x,
-            rect.y + 40.0,
-            14.0,
-            cyan,
-        );
+        let extra_lines = [
+            visible_local_alerts,
+            visible_security_alarms,
+            visible_security_lockdowns,
+        ]
+        .into_iter()
+        .filter(|count| *count > 0)
+        .count()
+            + usize::from(!observation_fields.is_empty());
         let map_area = Rect::new(
             rect.x,
-            rect.y + 52.0,
+            rect.y + 34.0,
             rect.w,
-            (rect.h * 0.38).clamp(180.0, 240.0) - 22.0,
+            (rect.h * 0.28)
+                .clamp(100.0, 230.0)
+                .min((rect.h - 360.0 - extra_lines as f32 * 23.0).max(60.0)),
         );
         let (known_min, known_max) = if observation_fields.is_empty() {
             remembered_bounds(
@@ -1215,21 +1266,24 @@ impl TerminalView {
             observation_fields,
             sensor_contacts,
         );
-        let mut y = map_area.y + map_area.h + 20.0;
+        let mut y = map_area.bottom() + 36.0;
         UiTheme.hud_chip(Rect::new(rect.x, y - 21.0, rect.w, 29.0));
         draw_ui_icon(UiIcon::All, Rect::new(rect.x, y - 15.0, 16.0, 16.0), cyan);
         draw_ui_text_bold("EN VUE", rect.x + 24.0, y, 16.0, bright);
-        y += 23.0;
-        draw_bounded_text(
-            &format!("Hostiles {visible_hostiles}  ·  Neutres {visible_neutrals}"),
-            rect.x,
-            y,
-            rect.w,
-            15,
-            muted,
-        );
-        y += 18.0;
-        draw_ui_text(format!("Objets {visible_items}"), rect.x, y, 15.0, muted);
+        y += 31.0;
+        for (index, (count, label)) in [
+            (visible_hostiles, "Hostiles"),
+            (visible_neutrals, "Neutres"),
+            (visible_items, "Objets"),
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            let x = rect.x + index as f32 * rect.w / 3.0;
+            draw_ui_text_bold(count.to_string(), x, y, 20.0, bright);
+            draw_ui_text(label, x, y + 20.0, 14.0, muted);
+        }
+        y += 20.0;
         let alert = Color::from_rgba(255, 175, 83, 255);
         for line in [
             (visible_local_alerts, "Alertes locales"),
@@ -1239,7 +1293,7 @@ impl TerminalView {
         .into_iter()
         .filter(|(count, _)| *count > 0)
         {
-            y += 19.0;
+            y += 23.0;
             draw_bounded_text(
                 &format!("{} {}", line.1, line.0),
                 rect.x,
@@ -1255,30 +1309,18 @@ impl TerminalView {
                 .iter()
                 .map(ActorObservationField::observer)
                 .collect();
-            y += 19.0;
+            y += 23.0;
             draw_bounded_text(
-                &format!(
-                    "{observation_label} · lecture tactique · {} PNJ visibles",
-                    observers.len()
-                ),
+                &format!("{observation_label} · {} champs visuels", observers.len()),
                 rect.x,
                 y,
                 rect.w,
                 14,
                 cyan,
             );
-            y += 18.0;
-            draw_bounded_text(
-                "Trame contourée · champ visuel",
-                rect.x,
-                y,
-                rect.w,
-                13,
-                Color::from_rgba(79, 218, 183, 255),
-            );
         }
 
-        y += 23.0;
+        y += 44.0;
         UiTheme.hud_chip(Rect::new(rect.x, y - 21.0, rect.w, 29.0));
         draw_ui_icon(
             UiIcon::Target,
@@ -1286,59 +1328,76 @@ impl TerminalView {
             cyan,
         );
         draw_ui_text_bold("CIBLE", rect.x + 24.0, y, 16.0, bright);
-        y += 23.0;
+        y += 34.0;
         if let Some(target) = target {
-            draw_bounded_text(&target.name, rect.x, y, rect.w, 16, bright);
-            y += 20.0;
+            y = draw_wrapped_lines(&target.name, rect.x, y, rect.w, 19, 2, bright);
+            y += 5.0;
             draw_bounded_text(
-                &format!("Distance {}", target.distance),
+                &format!(
+                    "À {} case{}",
+                    target.distance,
+                    if target.distance > 1 { "s" } else { "" }
+                ),
                 rect.x,
                 y,
                 rect.w,
-                14,
+                16,
                 muted,
             );
-            for state in target.visible_state.split(" · ") {
-                // Leave room for the analysis panel even with many statuses.
-                if y + 125.0 >= rect.bottom() {
-                    break;
-                }
-                y += 17.0;
-                draw_bounded_text(state, rect.x, y, rect.w, 14, muted);
-            }
-            y += 22.0;
-            if let Some(analysis) = &target.analysis {
-                draw_ui_text_bold(
-                    format!(
-                        "Intégrité {}/{}",
-                        analysis.integrity, analysis.maximum_integrity
-                    ),
-                    rect.x,
-                    y,
-                    14.0,
-                    bright,
-                );
-                y += 7.0;
+            y += 32.0;
+            if let Some((hp, maximum)) = target.health {
                 draw_hud_progress(
-                    Rect::new(rect.x, y, rect.w, 5.0),
-                    analysis.integrity,
-                    analysis.maximum_integrity,
+                    Rect::new(rect.x, y - 8.0, rect.w, 7.0),
+                    hp,
+                    maximum,
                     UiTheme.success(),
                 );
-                y += 23.0;
+                y += 22.0;
+            }
+            if let Some(action) = &target.interaction {
+                y = draw_wrapped_lines(action, rect.x, y, rect.w, 16, 3, cyan);
+            } else if let Some(analysis) = &target.analysis {
+                draw_ui_text_bold(
+                    format!("PV {} / {}", analysis.integrity, analysis.maximum_integrity),
+                    rect.x,
+                    y,
+                    17.0,
+                    bright,
+                );
+                y += 28.0;
                 draw_ui_text(
                     format!("Armure {}", analysis.armor),
                     rect.x,
                     y,
-                    14.0,
+                    16.0,
                     bright,
                 );
-                y += 19.0;
-                draw_wrapped_lines(&analysis.resistances, rect.x, y, rect.w, 13, 2, muted);
+                y += 24.0;
+                let lines = ((rect.bottom() - y) / 20.0).floor().max(0.0) as usize;
+                y = draw_wrapped_lines(
+                    &analysis.resistances,
+                    rect.x,
+                    y,
+                    rect.w,
+                    15,
+                    lines.min(3),
+                    muted,
+                );
             } else {
-                draw_bounded_text("DONNÉES TACTIQUES MASQUÉES", rect.x, y, rect.w, 13, muted);
-                y += 19.0;
-                draw_ui_text("Analyse de cible · REC-01", rect.x, y, 14.0, cyan);
+                y = draw_wrapped_lines(
+                    "Analysez cette cible pour connaître ses défenses.",
+                    rect.x,
+                    y,
+                    rect.w,
+                    15,
+                    2,
+                    muted,
+                );
+            }
+            y += 20.0;
+            let lines = ((rect.bottom() - y) / 21.0).floor().max(0.0) as usize;
+            if lines > 0 && target.visible_state != "Aucun état visible" {
+                draw_wrapped_lines(&target.visible_state, rect.x, y, rect.w, 16, lines, cyan);
             }
         } else {
             draw_ui_text("Aucune cible sélectionnée", rect.x, y, 15.0, muted);
@@ -2889,6 +2948,11 @@ struct TerminalUiLayout {
     map: Rect,
     footer: Rect,
     sidebar: Option<Rect>,
+    objective: Rect,
+}
+
+pub fn terminal_objective_panel(bounds: Rect, ui_scale: f32) -> Rect {
+    terminal_ui_layout(bounds, ui_scale, false).objective
 }
 
 pub fn terminal_status_panel(bounds: Rect, ui_scale: f32) -> Option<Rect> {
@@ -2896,7 +2960,7 @@ pub fn terminal_status_panel(bounds: Rect, ui_scale: f32) -> Option<Rect> {
     // Reserve its scaled width in the shared layout (including pointer hits).
     let width = 260.0 * ui_scale;
     let height = bounds.h - 16.0;
-    (bounds.w >= 1120.0 && bounds.w - width * 2.0 >= 480.0 * ui_scale && height >= 480.0 * ui_scale)
+    (bounds.w >= 1120.0 && bounds.w - width * 2.0 >= 480.0 * ui_scale && height >= 600.0 * ui_scale)
         .then(|| Rect::new(bounds.x + 8.0, bounds.y + 8.0, width, height))
 }
 
@@ -2907,14 +2971,34 @@ fn terminal_ui_layout(
 ) -> TerminalUiLayout {
     let status_sidebar = terminal_status_panel(bounds, ui_scale);
     let sidebar = status_sidebar.map(|_| {
+        let width = (bounds.w * 0.20).clamp(260.0 * ui_scale, 340.0 * ui_scale);
         Rect::new(
-            bounds.x + bounds.w - 276.0 * ui_scale,
+            bounds.x + bounds.w - width - 16.0 * ui_scale,
             bounds.y + 8.0,
-            260.0 * ui_scale,
+            width,
             bounds.h - 16.0,
         )
     });
-    let main_right = sidebar.map_or(bounds.x + bounds.w - 8.0, |panel| panel.x - 12.0);
+    let objective = sidebar.map_or_else(
+        || {
+            let width = (bounds.w * 0.34).clamp(210.0 * ui_scale, 320.0 * ui_scale);
+            Rect::new(
+                bounds.right() - width - 8.0,
+                bounds.y + 8.0,
+                width,
+                144.0 * ui_scale,
+            )
+        },
+        |panel| {
+            Rect::new(
+                panel.x + 16.0,
+                panel.bottom() - 16.0 - 144.0 * ui_scale,
+                panel.w - 32.0,
+                144.0 * ui_scale,
+            )
+        },
+    );
+    let main_right = sidebar.map_or(objective.x - 12.0, |panel| panel.x - 12.0);
     let main_x = status_sidebar.map_or(bounds.x + 8.0, |panel| panel.x + panel.w + 12.0);
     let main_width = (main_right - main_x).max(80.0);
     let header = Rect::new(main_x, bounds.y + 5.0, main_width, 30.0);
@@ -2939,6 +3023,7 @@ fn terminal_ui_layout(
         map,
         footer,
         sidebar,
+        objective,
     }
 }
 
@@ -3660,18 +3745,22 @@ fn draw_entity(
         draw_alert_marker(rect);
     }
     if selected {
-        let x = rect.x;
-        let y = rect.y;
-        let w = rect.w;
-        for (dx, dy, sx, sy) in [
-            (0.0, 0.0, 1.0, 1.0),
-            (w, 0.0, -1.0, 1.0),
-            (0.0, w, 1.0, -1.0),
-            (w, w, -1.0, -1.0),
-        ] {
-            draw_line(x + dx, y + dy, x + dx + 7.0 * sx, y + dy, 2.0, YELLOW);
-            draw_line(x + dx, y + dy, x + dx, y + dy + 7.0 * sy, 2.0, YELLOW);
-        }
+        draw_selection_marker(rect);
+    }
+}
+
+fn draw_selection_marker(rect: Rect) {
+    let x = rect.x;
+    let y = rect.y;
+    let w = rect.w;
+    for (dx, dy, sx, sy) in [
+        (0.0, 0.0, 1.0, 1.0),
+        (w, 0.0, -1.0, 1.0),
+        (0.0, w, 1.0, -1.0),
+        (w, w, -1.0, -1.0),
+    ] {
+        draw_line(x + dx, y + dy, x + dx + 7.0 * sx, y + dy, 2.0, YELLOW);
+        draw_line(x + dx, y + dy, x + dx, y + dy + 7.0 * sy, 2.0, YELLOW);
     }
 }
 
@@ -4511,6 +4600,23 @@ mod tests {
     }
 
     #[test]
+    fn objective_panel_has_a_fixed_place_outside_the_map_in_both_layouts() {
+        for (bounds, scale) in [
+            (Rect::new(20.0, 204.0, 920.0, 232.0), 1.0),
+            (Rect::new(20.0, 7.0, 1240.0, 689.0), 1.0),
+            (Rect::new(20.0, 7.0, 1880.0, 969.0), 1.0),
+            (Rect::new(20.0, 306.0, 1240.0, 338.0), 1.5),
+        ] {
+            let layout = terminal_ui_layout(bounds, scale, false);
+            let objective = layout.objective;
+            assert_eq!(objective, terminal_ui_layout(bounds, scale, true).objective);
+            assert!(objective.x > layout.map.right());
+            assert!(objective.right() <= bounds.right());
+            assert!(objective.y >= bounds.y && objective.bottom() <= bounds.bottom());
+        }
+    }
+
+    #[test]
     fn scaled_status_panel_preserves_text_space_and_world_pointer_alignment() {
         let map = Map::from_ascii("#########\n#.......#\n#.......#\n#.......#\n#########").unwrap();
         let game = WorldState::single(GameState::new(map, GridPos::new(4, 2), 1).unwrap());
@@ -4547,7 +4653,8 @@ mod tests {
                         );
                     } else {
                         assert!(layout.sidebar.is_none());
-                        assert!(layout.map.w >= width - 60.0);
+                        assert!(layout.map.w >= width - 80.0 - layout.objective.w);
+                        assert!(layout.map.right() < layout.objective.x);
                     }
                     for cell_size in [24, 32, 40, 48] {
                         let at = game.player_position().unwrap();

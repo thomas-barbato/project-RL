@@ -11,6 +11,253 @@ pub(super) struct ResourceGauge {
 }
 
 impl AsciiApp {
+    pub(super) fn objective_panel_text(&self) -> Option<String> {
+        let objective = self.primary_objective()?;
+        if objective == "OBJECTIF · REJOINDRE LE SECTEUR HABITÉ" {
+            return Some("Rejoindre le secteur habité.".into());
+        }
+        if objective == "OBJECTIF · PARLER À L'HABITANT DE LA PLACE" {
+            return Some("Parler à l'habitant de la place.".into());
+        }
+        let journal = self.game.quest_journal();
+        let entry = self
+            .ux
+            .tracked_quest
+            .as_ref()
+            .and_then(|id| {
+                journal
+                    .iter()
+                    .find(|e| &e.quest.id == id && e.quest.status != QuestStatus::Completed)
+            })
+            .or_else(|| {
+                journal
+                    .iter()
+                    .find(|e| e.quest.status == QuestStatus::ReadyToComplete)
+            })
+            .or_else(|| {
+                journal
+                    .iter()
+                    .find(|e| e.quest.status == QuestStatus::Active)
+            });
+        if !self.test_lab
+            && let Some(entry) = entry
+        {
+            return Some(if entry.quest.status == QuestStatus::ReadyToComplete {
+                format!("Retourner parler à {}.", self.quest_giver_name(entry))
+            } else {
+                self.quest_objective_text(&entry.quest.objective)
+            });
+        }
+        Some(
+            objective
+                .trim_start_matches("LABORATOIRE · ")
+                .trim_start_matches("OBJECTIF · ")
+                .trim_start_matches("Objectif · ")
+                .to_owned(),
+        )
+    }
+
+    pub(super) fn draw_objective_panel(&self) {
+        let scale = self.ui_scale();
+        let physical =
+            crate::terminal_view::terminal_objective_panel(self.terminal_bounds(), scale);
+        let panel = Rect::new(
+            physical.x / scale,
+            physical.y / scale,
+            physical.w / scale,
+            physical.h / scale,
+        );
+        self.ux.hud_objective.set(Some(panel));
+        UiTheme.hud_chip(panel);
+        let x = panel.x + 12.0;
+        let width = panel.w - 24.0;
+        draw_text_bold("OBJECTIF", x, panel.y + 22.0, 13.0, UiTheme.accent());
+        draw_wrapped_text(
+            &self
+                .objective_panel_text()
+                .unwrap_or_else(|| "Aucun objectif suivi.".into()),
+            x,
+            panel.y + 46.0,
+            width,
+            4,
+            15,
+            UiTheme.text(),
+        );
+        if !self.test_lab {
+            crate::ui_theme::draw_text_in_rect(
+                format!("Journal [{}]", self.controls.label(Action::QuestJournal)),
+                Rect::new(x, panel.bottom() - 26.0, width, 18.0),
+                12,
+                if self.menu_focus.hovered == Some(50_023) {
+                    UiTheme.accent()
+                } else {
+                    UiTheme.muted()
+                },
+            );
+        }
+    }
+
+    pub(super) fn visible_health_bars(&self, now: f64) -> Vec<(EntityId, GridPos, u16, u16)> {
+        self.game
+            .actors()
+            .iter()
+            .filter_map(|(id, actor)| {
+                let recent = self
+                    .ux
+                    .recent_damage
+                    .get(&id)
+                    .is_some_and(|time| (0.0..3.0).contains(&(now - time)));
+                (self.game.player_visibility().is_visible(actor.position())
+                    && (self.selected_target == Some(id) || recent))
+                    .then_some((
+                        id,
+                        actor.position(),
+                        actor.integrity(),
+                        actor.maximum_integrity(),
+                    ))
+            })
+            .collect()
+    }
+
+    pub(super) fn draw_world_health_bars(&self, navigation: bool) {
+        for (id, at, hp, maximum) in self.visible_health_bars(get_time()) {
+            let Some(cell) = self.terminal.world_cell_rect(
+                &self.game,
+                self.terminal_bounds(),
+                self.ui_scale(),
+                self.graphics.active.world_cell_px,
+                navigation,
+                at,
+            ) else {
+                continue;
+            };
+            let width = (cell.w * 0.82).clamp(8.0, 34.0);
+            let badge_rows = self.effect_badges_at(at).len().div_ceil(4) as f32;
+            let bar = Rect::new(
+                cell.x + (cell.w - width) * 0.5,
+                cell.y - badge_rows * 15.0 - 7.0,
+                width,
+                4.0,
+            );
+            draw_rectangle(
+                bar.x - 1.0,
+                bar.y - 1.0,
+                bar.w + 2.0,
+                bar.h + 2.0,
+                Color::from_rgba(3, 9, 13, 240),
+            );
+            draw_rectangle(
+                bar.x,
+                bar.y,
+                bar.w,
+                bar.h,
+                Color::from_rgba(39, 52, 59, 255),
+            );
+            let color = if id == self.game.player_id() {
+                UiTheme.success()
+            } else if self
+                .game
+                .actors()
+                .get(id)
+                .is_some_and(|actor| actor.player_relation() != PlayerRelation::Hostile)
+            {
+                UiTheme.accent()
+            } else {
+                UiTheme.danger()
+            };
+            draw_rectangle(
+                bar.x,
+                bar.y,
+                bar.w * normalized_ratio(hp, maximum),
+                bar.h,
+                color,
+            );
+            draw_line(
+                bar.x,
+                bar.y,
+                bar.x + bar.w * normalized_ratio(hp, maximum),
+                bar.y,
+                1.0,
+                Color::new(1.0, 1.0, 1.0, 0.28),
+            );
+        }
+    }
+
+    pub(super) fn player_defense_values(&self) -> Vec<(&'static str, String)> {
+        let id = self.game.player_id();
+        let mut values = vec![
+            (
+                "Armure",
+                self.game
+                    .actor_armor_profile(id)
+                    .map_or(0, ArmorProfile::after_fragilization)
+                    .to_string(),
+            ),
+            (
+                "Esquive",
+                self.game
+                    .actor_evasion(id)
+                    .map_or("n/d".into(), |v| v.to_string()),
+            ),
+            (
+                "Stabilité",
+                self.game
+                    .actor_stability(id)
+                    .map_or("n/d".into(), |v| v.to_string()),
+            ),
+            (
+                "Défense numérique",
+                self.game
+                    .actor_digital_defense(id)
+                    .map_or("n/d".into(), |v| v.to_string()),
+            ),
+        ];
+        if let Some(player) = self.game.actors().get(id) {
+            for (label, kind) in [
+                ("Thermique", DamageType::Thermal),
+                ("Électrique", DamageType::Electrical),
+                ("Chimique", DamageType::Chemical),
+                ("Radiation", DamageType::Radiation),
+                ("Corruption", DamageType::Corruption),
+            ] {
+                values.push((label, format!("{} %", player.resistances().get(kind))));
+            }
+        }
+        values
+    }
+
+    fn draw_defense_values(&self, rect: Rect, compact: bool) {
+        let theme = UiTheme;
+        theme.hud_chip(rect);
+        crate::ui_theme::draw_text_in_rect(
+            "DÉFENSES",
+            Rect::new(rect.x + 10.0, rect.y + 7.0, rect.w - 20.0, 16.0),
+            12,
+            theme.muted(),
+        );
+        let values = self.player_defense_values();
+        let columns = if compact { 3 } else { 1 };
+        let rows = values.len().div_ceil(columns);
+        let pitch = ((rect.h - 30.0) / rows as f32).min(24.0);
+        let width = (rect.w - 20.0) / columns as f32;
+        for (i, (label, value)) in values.iter().enumerate() {
+            let x = rect.x + 10.0 + (i % columns) as f32 * width;
+            let y = rect.y + 27.0 + (i / columns) as f32 * pitch;
+            crate::ui_theme::draw_text_in_rect(
+                label,
+                Rect::new(x, y, width - 44.0, pitch - 2.0),
+                if compact { 12 } else { 14 },
+                theme.text(),
+            );
+            crate::ui_theme::draw_text_in_rect(
+                value,
+                Rect::new(x + width - 42.0, y, 38.0, pitch - 2.0),
+                if compact { 12 } else { 14 },
+                theme.accent(),
+            );
+        }
+    }
+
     pub(super) fn resource_gauges(&self) -> Vec<ResourceGauge> {
         let theme = UiTheme;
         let mut gauges = Vec::new();
@@ -99,11 +346,10 @@ impl AsciiApp {
                 },
             });
         }
-        if let Some(heat) = self
-            .game
-            .player_heat()
-            .filter(|_| !self.game.rules().maintained_energy_reservations)
-        {
+        if let Some(heat) = self.game.player_heat().filter(|_| {
+            !self.game.rules().maintained_energy_reservations
+                || !self.overclock_resource_lines().is_empty()
+        }) {
             gauges.push(ResourceGauge {
                 reserved_ratio: 0.0,
                 companion_slots: None,
@@ -286,16 +532,11 @@ impl AsciiApp {
             12,
             theme.muted(),
         );
-        let defenses = Rect::new(x, panel.bottom() - 130.0, width, 32.0);
-        theme.button(
-            defenses,
-            "Défenses et réserves",
-            self.menu_focus.hovered == Some(50_021),
+        let defense_top = bottom + 29.0;
+        self.draw_defense_values(
+            Rect::new(x, defense_top, width, panel.bottom() - 108.0 - defense_top),
             false,
-            true,
-            ButtonTone::Secondary,
         );
-        self.ux.hud_defenses.set(Some(defenses));
         let progression = self.game.player_progression();
         let available = progression.unspent_skill_points();
         let points = Rect::new(x, panel.bottom() - 88.0, width, 32.0);
@@ -394,5 +635,73 @@ impl AsciiApp {
             14,
             theme.text(),
         );
+        let defense_width = (self.ui_width() - 30.0) * 0.66;
+        self.draw_defense_values(Rect::new(12.0, 105.0, defense_width, 88.0), true);
+        let target_rect = Rect::new(
+            18.0 + defense_width,
+            105.0,
+            self.ui_width() - defense_width - 30.0,
+            88.0,
+        );
+        theme.hud_panel(target_rect);
+        let summary = self.terminal_target_summary();
+        crate::ui_theme::draw_text_in_rect(
+            summary.as_ref().map_or("Aucune cible", |s| s.name.as_str()),
+            Rect::new(
+                target_rect.x + 10.0,
+                target_rect.y + 8.0,
+                target_rect.w - 20.0,
+                20.0,
+            ),
+            14,
+            theme.text(),
+        );
+        if let Some(summary) = summary {
+            let details = summary.interaction.clone().unwrap_or_else(|| {
+                if let Some(analysis) = &summary.analysis {
+                    format!(
+                        "PV {} / {} · Armure {}",
+                        analysis.integrity, analysis.maximum_integrity, analysis.armor
+                    )
+                } else if !summary.visible_state.is_empty()
+                    && summary.visible_state != "Aucun état visible"
+                {
+                    summary.visible_state.clone()
+                } else {
+                    format!(
+                        "À {} case{}",
+                        summary.distance,
+                        if summary.distance > 1 { "s" } else { "" }
+                    )
+                }
+            });
+            crate::ui_theme::draw_text_in_rect(
+                details,
+                Rect::new(
+                    target_rect.x + 10.0,
+                    target_rect.y + 32.0,
+                    target_rect.w - 20.0,
+                    20.0,
+                ),
+                12,
+                theme.muted(),
+            );
+            if let Some((hp, max)) = summary.health {
+                draw_rectangle(
+                    target_rect.x + 10.0,
+                    target_rect.bottom() - 18.0,
+                    target_rect.w - 20.0,
+                    5.0,
+                    theme.surface(),
+                );
+                draw_rectangle(
+                    target_rect.x + 10.0,
+                    target_rect.bottom() - 18.0,
+                    (target_rect.w - 20.0) * normalized_ratio(hp, max),
+                    5.0,
+                    theme.success(),
+                );
+            }
+        }
     }
 }

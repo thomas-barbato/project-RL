@@ -93,6 +93,8 @@ mod equipment_affix_names;
 mod performance_capture;
 #[path = "ux.rs"]
 mod ux;
+#[path = "world_context.rs"]
+mod world_context;
 
 const INITIAL_SEED: u64 = 20_260_909;
 const MIN_RESUME_LOADING_SECONDS: f64 = 0.75;
@@ -334,6 +336,8 @@ enum FloatingMessageTone {
     Alert,
     Progression,
     Information,
+    Miss,
+    Evasion,
 }
 
 impl FloatingMessageTone {
@@ -341,6 +345,7 @@ impl FloatingMessageTone {
         match self {
             Self::Progression => 2.4,
             Self::Alert => 2.0,
+            Self::Miss | Self::Evasion => 2.0,
             Self::Status => 1.8,
             Self::Damage | Self::Recovery | Self::Information => 1.35,
         }
@@ -350,6 +355,7 @@ impl FloatingMessageTone {
         match self {
             Self::Progression => 22.0,
             Self::Alert => 19.0,
+            Self::Miss | Self::Evasion => 20.0,
             Self::Damage | Self::Recovery | Self::Status | Self::Information => 17.0,
         }
     }
@@ -362,6 +368,8 @@ impl FloatingMessageTone {
             Self::Alert => Color::from_rgba(255, 210, 82, 255),
             Self::Progression => Color::from_rgba(255, 226, 105, 255),
             Self::Information => Color::from_rgba(132, 225, 229, 255),
+            Self::Miss => Color::from_rgba(231, 217, 194, 255),
+            Self::Evasion => Color::from_rgba(132, 225, 229, 255),
         }
     }
 }
@@ -1313,6 +1321,10 @@ struct ContextMenu {
 }
 
 pub struct AsciiApp {
+    world_context: Option<world_context::WorldContextMenu>,
+    mouse_walk: Option<world_context::MouseWalk>,
+    world_cursor: Option<GridPos>,
+    keyboard_target_pointer: Option<(f32, f32)>,
     ux: ux::UxState,
     test_lab: bool,
     lab_bonus_seed: u64,
@@ -1337,6 +1349,7 @@ pub struct AsciiApp {
     actor_glyphs: BTreeMap<EntityId, char>,
     intro_city_reached: bool,
     selected_target: Option<EntityId>,
+    selected_world_cell: Option<GridPos>,
     attack_aim: Option<AttackAim>,
     attack_aim_technique: Option<TechniqueId>,
     attack_aim_pointer: Option<(f32, f32)>,
@@ -3133,6 +3146,32 @@ impl AsciiApp {
             "generated-equipment" | "deep-equipment" => {
                 app.prepare_generated_equipment_diagnostic(scene == "deep-equipment")?
             }
+            scene if scene.starts_with("world-context-") => {
+                app.prepare_arsenal_diagnostic("arsenal-grenade-preview")?;
+                if scene.contains("-route") {
+                    app.prepare_context_route_diagnostic(scene)?;
+                }
+                if scene.contains("npc") {
+                    app.prepare_clinic_diagnostic()?;
+                    app.npc_interaction = None;
+                    if scene.contains("approach") {
+                        for _ in 0..2 {
+                            if app.execute_command(GameCommand::Move(Direction::West))
+                                != CommandOutcome::Applied
+                            {
+                                return Err("Placement de diagnostic refusé".into());
+                            }
+                        }
+                    }
+                }
+                app.attack_aim = None;
+                app.attack_aim_technique = None;
+                app.attack_aim_pointer = None;
+                app.selected_target = None;
+                if scene.ends_with("-960") {
+                    request_new_screen_size(960.0, 540.0);
+                }
+            }
             scene if scene.starts_with("arsenal-") => {
                 app.prepare_arsenal_diagnostic(scene)?;
                 if scene.ends_with("-960") {
@@ -3425,6 +3464,53 @@ impl AsciiApp {
                     FloatingMessageTone::Progression,
                     now,
                 );
+            }
+            "miss-feedback" => {
+                let rules = GameRules {
+                    hit_rules: Some(HitRules {
+                        melee_base_accuracy: 100,
+                        base_evasion: 100,
+                        accuracy_per_coordination: 0,
+                        evasion_per_coordination: 0,
+                        minimum_hit_chance: 0,
+                        maximum_hit_chance: 100,
+                        ..HitRules::default()
+                    }),
+                    player_base_attacks: vec![
+                        AttackProfile::melee(DamageType::Kinetic, 1).with_accuracy_modifier(-100),
+                    ],
+                    ..GameRules::default()
+                };
+                let mut game = GameState::new_with_rules(
+                    project_rl::world::Map::filled(18, 15, Terrain::Floor)
+                        .map_err(|e| e.to_string())?,
+                    GridPos::new(5, 6),
+                    129,
+                    rules,
+                )
+                .map_err(|e| e.to_string())?;
+                let target = game
+                    .spawn_actor(
+                        Actor::new(GridPos::new(6, 6), 20)
+                            .unwrap()
+                            .with_attack(AttackProfile::melee(DamageType::Kinetic, 1))
+                            .with_ai(AiProfile::hunter(8, 0)),
+                    )
+                    .map_err(|e| e.to_string())?;
+                app.floating_messages.clear();
+                app.terminal = TerminalView::new(
+                    crate::test_sector::SectorDecor::default(),
+                    game.map(),
+                    game.player_visibility(),
+                );
+                app.game = WorldState::single(game);
+                app.actor_glyphs.clear();
+                app.actor_glyphs.insert(target, 'E');
+                if app.execute_command(GameCommand::Attack { slot: 0, target })
+                    != CommandOutcome::Applied
+                {
+                    return Err("Attaque de diagnostic refusée".into());
+                }
             }
             "drone-controls" | "drone-controls-unlinked" => {
                 let player = app
@@ -4145,6 +4231,10 @@ impl AsciiApp {
                 });
             }
             "skills" => app.skills_open = true,
+            "keyboard-cursor" | "keyboard-actions" | "targeting-input" => {
+                app.prepare_arsenal_diagnostic("arsenal-assault")?
+            }
+            "techniques-empty" => app.open_technique_menu(),
             "techniques" => {
                 let technique: TechniqueId = "core:rec_01"
                     .parse()
@@ -4250,6 +4340,138 @@ impl AsciiApp {
         }
         if scene.starts_with("arsenal-grenade-direct-input") {
             app.verify_grenade_direct_pointer_input()?;
+        }
+        if scene.starts_with("world-context-") {
+            app.verify_world_context_pointer(scene)?;
+            // The pointer-driven menu is opened after viewport warm-up. Let
+            // its new labels populate the font atlas before reading pixels.
+            for _ in 0..3 {
+                app.draw();
+                next_frame().await;
+            }
+        }
+        if scene == "keyboard-cursor" || scene == "keyboard-actions" {
+            let before = suspension::fingerprint(&app.game);
+            app.update_input(&InputFrame {
+                pressed: [app.controls.binding(Action::WorldActions).clone()].into(),
+                ..Default::default()
+            });
+            if app.world_cursor != app.selected_visible_cell()
+                || suspension::fingerprint(&app.game) != before
+            {
+                return Err("Le curseur clavier a modifié la partie ou perdu la sélection".into());
+            }
+            if scene == "keyboard-actions" {
+                let at = app.world_cursor.unwrap();
+                app.update_input(&InputFrame {
+                    pressed: [app.controls.binding(Action::Learn).clone()].into(),
+                    viewport: Some((app.ui_width(), app.ui_height())),
+                    ..Default::default()
+                });
+                if !app.world_context.as_ref().is_some_and(|menu| menu.at == at)
+                    || suspension::fingerprint(&app.game) != before
+                {
+                    return Err("Entrée n'a pas ouvert les actions de la case sans tour".into());
+                }
+            }
+            for _ in 0..3 {
+                app.draw();
+                next_frame().await;
+            }
+        }
+        if scene == "targeting-input" {
+            let at = GridPos::new(10, 12);
+            let target = app.game.actors().entity_at(at).ok_or("Cible absente")?;
+            let scale = app.ui_scale();
+            let cell = app
+                .terminal
+                .world_cell_rect(
+                    &app.game,
+                    app.terminal_bounds(),
+                    scale,
+                    app.graphics.active.world_cell_px,
+                    app.navigation_signal_summary().is_some(),
+                    at,
+                )
+                .ok_or("Cible hors caméra")?;
+            let pointer = Some((
+                (cell.x + cell.w * 0.5) / scale,
+                (cell.y + cell.h * 0.5) / scale,
+            ));
+            let before = suspension::fingerprint(&app.game);
+            app.selected_target = None;
+            for action in [Action::WorldActions, Action::CycleTarget] {
+                app.update_input(&InputFrame {
+                    pressed: [app.controls.binding(action).clone()].into(),
+                    pointer,
+                    ..Default::default()
+                });
+            }
+            if app.world_cursor.is_some() || app.selected_target.is_none() {
+                return Err("Tab ne reprend pas le ciblage depuis le curseur".into());
+            }
+            app.selected_target = None;
+            app.update_input(&InputFrame {
+                pressed: [app.controls.binding(Action::WorldActions).clone()].into(),
+                ..Default::default()
+            });
+            for expected in [Some(target), None, Some(target)] {
+                app.update_input(&InputFrame {
+                    pressed: [controls::Binding::MouseLeft].into(),
+                    pointer,
+                    ..Default::default()
+                });
+                if app.world_cursor.is_some()
+                    || app.selected_target != expected
+                    || suspension::fingerprint(&app.game) != before
+                {
+                    return Err("Clic de sélection incorrect ou consommant un tour".into());
+                }
+            }
+            let hp = app.game.actors().get(target).unwrap().integrity();
+            // Point at the player's cell, away from the explicitly selected enemy.
+            let player_cell = app
+                .terminal
+                .world_cell_rect(
+                    &app.game,
+                    app.terminal_bounds(),
+                    scale,
+                    app.graphics.active.world_cell_px,
+                    app.navigation_signal_summary().is_some(),
+                    app.game.player_position().unwrap(),
+                )
+                .unwrap();
+            app.update_input(&InputFrame {
+                pressed: [app.controls.binding(Action::Attack).clone()].into(),
+                pointer: Some((
+                    (player_cell.x + player_cell.w * 0.5) / scale,
+                    (player_cell.y + player_cell.h * 0.5) / scale,
+                )),
+                ..Default::default()
+            });
+            if app.selected_target != Some(target)
+                || app.game.actors().get(target).unwrap().integrity() >= hp
+            {
+                return Err("F a perdu la cible après déplacement de la souris".into());
+            }
+            for _ in 0..3 {
+                app.draw();
+                next_frame().await;
+            }
+        }
+        if scene == "miss-feedback" {
+            app.capture_events_at(Some(get_time()));
+            if !["RATÉ", "ESQUIVE"].iter().all(|label| {
+                app.floating_messages
+                    .iter()
+                    .any(|message| message.text == *label)
+            }) {
+                return Err("Retours de raté et esquive absents".into());
+            }
+            for _ in 0..3 {
+                app.draw();
+                next_frame().await;
+            }
         }
         app.draw();
         let path = output.join("cold-start.png");
@@ -4943,6 +5165,27 @@ impl AsciiApp {
     }
 
     fn update_input_at(&mut self, input: &InputFrame, captured_at: Option<f64>) {
+        let trigger = self
+            .mouse_walk
+            .as_ref()
+            .and_then(|walk| walk.trigger_key.as_ref());
+        if input.pause
+            || !input.pressed.is_empty()
+            || input.held.iter().any(|binding| {
+                matches!(binding, controls::Binding::Key(_)) && Some(binding) != trigger
+            })
+            || input.wheel_y != 0.0
+        {
+            self.mouse_walk = None;
+        }
+        if let Some(walk) = self.mouse_walk.as_mut()
+            && walk
+                .trigger_key
+                .as_ref()
+                .is_some_and(|key| !input.held.contains(key))
+        {
+            walk.trigger_key = None;
+        }
         let skill_before = (
             self.skill_discipline_selection,
             self.skill_technique_selection,
@@ -4965,6 +5208,9 @@ impl AsciiApp {
             self.dispatch_input_at(&repeated_input, captured_at);
         } else {
             self.dispatch_input_at(input, captured_at);
+        }
+        if let Some(now) = captured_at {
+            self.tick_mouse_walk(now);
         }
         if skill_before
             != (
@@ -5007,7 +5253,10 @@ impl AsciiApp {
         if self.menu != MenuScreen::Hidden {
             return Some(MenuNavigationContext::Screen(self.menu));
         }
-        if self.context_menu.is_some() {
+        if self.world_context.is_some()
+            || self.context_menu.is_some()
+            || self.world_cursor.is_some()
+        {
             return Some(MenuNavigationContext::Context);
         }
         if self.quest_journal_open {
@@ -5047,6 +5296,36 @@ impl AsciiApp {
         // In particular, input captured alongside an OS close cannot take a turn.
         if self.quit_requested {
             self.movement_repeat.clear();
+            return;
+        }
+        if self.world_context.is_some() {
+            if input.pause {
+                self.world_context = None;
+            } else {
+                self.update_world_context(input, captured_at.unwrap_or(0.0));
+            }
+            return;
+        }
+        if self.world_cursor.is_some() {
+            self.update_world_cursor(input, captured_at.unwrap_or(0.0));
+            return;
+        }
+        if !input.pause
+            && !self.resume_requested
+            && !self.rebinding
+            && self.menu == MenuScreen::Hidden
+            && self.game.status() == RunStatus::Active
+            && self.menu_navigation_context().is_none()
+            && input.pressed.contains(&controls::Binding::MouseRight)
+            && let Some(at) = self.attack_pointer_cell(input)
+            && self.game.player_visibility().is_visible(at)
+        {
+            self.movement_repeat.clear();
+            self.open_world_context(
+                at,
+                input.pointer.unwrap(),
+                input.viewport.unwrap_or((1280.0, 800.0)),
+            );
             return;
         }
         if input.pause
@@ -5365,6 +5644,10 @@ impl AsciiApp {
             return;
         }
         if self.controls.pressed(Action::Inspect, input) {
+            if let Some(at) = self.keyboard_action_cell(input) {
+                self.run_keyboard_world_action(Action::Inspect, at, captured_at.unwrap_or(0.0));
+                return;
+            }
             self.ux.inspected_target = true;
             self.ux.help_scroll.offset = 0.0;
             return;
@@ -5461,7 +5744,24 @@ impl AsciiApp {
         }
 
         if self.attack_aim.is_some() {
-            self.update_attack_aim(input);
+            if self.controls.pressed(Action::Interact, input) {
+                if let Some(at) = self.keyboard_action_cell(input) {
+                    self.run_keyboard_world_action(
+                        Action::Interact,
+                        at,
+                        captured_at.unwrap_or(0.0),
+                    );
+                }
+            } else {
+                self.update_attack_aim(input);
+            }
+            return;
+        }
+
+        if self.controls.pressed(Action::WorldActions, input) {
+            self.world_cursor = self.selected_visible_cell().or(self.game.player_position());
+            self.mouse_walk = None;
+            self.movement_repeat.clear();
             return;
         }
 
@@ -5475,12 +5775,7 @@ impl AsciiApp {
                 .attack_pointer_cell(input)
                 .filter(|position| self.game.player_visibility().is_visible(*position))
         {
-            if !self.toggle_pointer_target_at(target)
-                && !self.begin_pointer_attack_aim(target, input.pointer)
-            {
-                self.selected_target = None;
-                self.push_log("Cette arme doit viser une cible.".to_owned());
-            }
+            self.select_pointer_world_cell(target, input.pointer);
             // Consume even an unsupported ground selection: a mouse-bound
             // Attack must never fall through and fire at the previous actor.
             return;
@@ -5493,6 +5788,7 @@ impl AsciiApp {
 
         if self.controls.pressed(Action::CycleTarget, input) {
             self.cycle_target();
+            self.keyboard_target_pointer = input.pointer;
             return;
         }
 
@@ -5517,6 +5813,10 @@ impl AsciiApp {
             self.facing = direction;
         }
         let command = if self.controls.pressed(Action::Interact, input) {
+            if let Some(at) = self.keyboard_action_cell(input) {
+                self.run_keyboard_world_action(Action::Interact, at, captured_at.unwrap_or(0.0));
+                return;
+            }
             self.context_command()
         } else if self.controls.pressed(Action::Analyze, input) {
             self.target_analysis_command()
@@ -5544,6 +5844,14 @@ impl AsciiApp {
             }
             None
         } else if self.controls.pressed(Action::Attack, input) {
+            if self.game.player_technique_preparation().is_none()
+                && let Some(at) = self
+                    .selected_visible_cell()
+                    .or_else(|| self.keyboard_action_cell(input))
+            {
+                self.run_keyboard_world_action(Action::Attack, at, captured_at.unwrap_or(0.0));
+                return;
+            }
             self.weapon_command(input.pointer)
         } else {
             read_movement_command(&self.game, self.active_weapon_slot, &self.controls, input)
@@ -5580,7 +5888,7 @@ impl AsciiApp {
     pub fn draw(&self) {
         crate::ui_theme::set_high_contrast(self.graphics.active.high_contrast);
         self.ux.hud_points.set(None);
-        self.ux.hud_defenses.set(None);
+        self.ux.hud_objective.set(None);
         clear_background(Color::from_rgba(5, 8, 12, 255));
         if self.resume_requested {
             set_camera(&graphics::ui_camera(self.ui_width(), self.ui_height()));
@@ -5639,9 +5947,11 @@ impl AsciiApp {
                 legend_label: &self.controls.label(Action::Legend),
                 observation_label: &self.controls.label(Action::NpcVision),
                 legend_open: false,
+                hide_interaction_tooltip: self.world_context.is_some(),
                 attack_preview,
                 navigation_signal: navigation_signal.as_deref(),
                 target_summary: target_summary.as_ref(),
+                selected_cell: self.selected_visible_cell(),
                 observation_fields: &observation_fields,
             },
             |position| {
@@ -5699,6 +6009,7 @@ impl AsciiApp {
             && self.component_selection.is_none()
             && self.character_creation.is_none()
         {
+            self.draw_world_health_bars(navigation_signal.is_some());
             self.draw_floating_messages(navigation_signal.is_some());
         }
 
@@ -5709,6 +6020,7 @@ impl AsciiApp {
         if !self.legend_open {
             self.draw_header();
             self.draw_player_status_panel();
+            self.draw_objective_panel();
             self.draw_companion_bar();
             self.draw_footer();
             self.draw_end_message();
@@ -5766,6 +6078,8 @@ impl AsciiApp {
         if self.ux.lab_open {
             self.draw_lab_menu();
         }
+        self.draw_world_context();
+        self.draw_world_cursor();
         set_default_camera();
     }
 
@@ -7571,9 +7885,6 @@ impl AsciiApp {
 
     fn draw_technique_menu(&self) {
         let techniques = self.active_learned_techniques();
-        if techniques.is_empty() {
-            return;
-        }
         let layout = TechniqueQuickMenuLayout::new(
             self.ui_width(),
             self.ui_height(),
@@ -7596,7 +7907,12 @@ impl AsciiApp {
             21.0,
             theme.focus(),
         );
-        let hint = if self.technique_menu_message.is_empty() {
+        let hint = if techniques.is_empty() {
+            format!(
+                "{} : apprendre · Échap : fermer",
+                self.controls.label(Action::Learn)
+            )
+        } else if self.technique_menu_message.is_empty() {
             format!(
                 "{} : utiliser · {} : fiche complète · Échap : fermer",
                 self.controls.label(Action::Learn),
@@ -7618,6 +7934,25 @@ impl AsciiApp {
                 theme.focus()
             },
         );
+
+        if techniques.is_empty() {
+            draw_text_bold(
+                "Aucune compétence active apprise",
+                layout.panel.x + 22.0,
+                layout.panel.y + 96.0,
+                19.0,
+                theme.text(),
+            );
+            draw_wrapped_text(
+                "Ouvrez les compétences pour choisir votre première technique.",
+                layout.panel.x + 22.0,
+                layout.panel.y + 125.0,
+                layout.panel.w - 44.0,
+                2,
+                16,
+                theme.muted(),
+            );
+        }
 
         for (index, row) in &layout.rows {
             let Some(id) = techniques.get(*index) else {
@@ -7684,7 +8019,15 @@ impl AsciiApp {
         for (index, (button, label)) in layout
             .actions
             .iter()
-            .zip(["Utiliser", "Fiche complète", "Fermer"])
+            .zip([
+                "Utiliser",
+                if techniques.is_empty() {
+                    "Apprendre"
+                } else {
+                    "Fiche complète"
+                },
+                "Fermer",
+            ])
             .enumerate()
         {
             theme.button_with_icon(
@@ -7701,10 +8044,9 @@ impl AsciiApp {
                     self.menu_focus.hovered == Some(techniques.len() + index),
                     false,
                     index != 0
-                        || self
-                            .quick_technique_status(&techniques[self.technique_menu_selection])
-                            .1
-                            .is_none(),
+                        || techniques
+                            .get(self.technique_menu_selection)
+                            .is_some_and(|id| self.quick_technique_status(id).1.is_none()),
                     if index == 0 {
                         ButtonTone::Primary
                     } else {
@@ -8177,7 +8519,7 @@ impl AsciiApp {
         )
         .is_some();
         let top = if !wide_hud {
-            (110.0 + if has_alert { 66.0 } else { 0.0 }) * ui_scale
+            (204.0 + if has_alert { 66.0 } else { 0.0 }) * ui_scale
         } else {
             wide_top * ui_scale
         };
@@ -9245,6 +9587,10 @@ impl AsciiApp {
 
         Ok(Self {
             test_lab: false,
+            world_context: None,
+            mouse_walk: None,
+            world_cursor: None,
+            keyboard_target_pointer: None,
             lab_bonus_seed: 0,
             lab_return: None,
             game: WorldState::single(game),
@@ -9267,6 +9613,7 @@ impl AsciiApp {
             actor_glyphs,
             intro_city_reached: generation_version < RECYCLING_INTRO_GENERATION_VERSION,
             selected_target: None,
+            selected_world_cell: None,
             attack_aim: None,
             attack_aim_technique: None,
             attack_aim_pointer: None,
@@ -9808,10 +10155,13 @@ impl AsciiApp {
             .log
             .iter()
             .rev()
+            .filter(|message| {
+                !message.starts_with("OBJECTIF ·") && !message.starts_with("Objectif ·")
+            })
             .take(2)
-            .rev()
             .map(|message| (message.clone(), false))
             .collect::<Vec<_>>();
+        recent.reverse();
         let onboarding = if !self.test_lab && self.game.turn() < 30 {
             if !self.ux.moved && self.game.turn() == 0 {
                 Some(format!(
@@ -9842,7 +10192,7 @@ impl AsciiApp {
         } else {
             None
         };
-        let Some(objective) = self.primary_objective().or(onboarding) else {
+        let Some(objective) = onboarding else {
             return recent;
         };
         if let Some((_, highlighted)) = recent.iter_mut().find(|(line, _)| line == &objective) {
@@ -10371,6 +10721,9 @@ impl AsciiApp {
     }
 
     fn execute_command(&mut self, command: GameCommand) -> CommandOutcome {
+        if self.selected_target.is_some() {
+            self.selected_world_cell = None;
+        }
         if self.materialize_deferred_destination_for(&command).is_err() {
             self.push_log("Le passage ne mène nulle part pour le moment.".to_owned());
         }
@@ -10402,6 +10755,8 @@ impl AsciiApp {
                 self.refresh_zone_title();
                 self.selected_target = None;
                 self.visual_cues.clear_world();
+                self.selected_world_cell = None;
+                self.ux.recent_damage.clear();
                 self.trace_cells.clear();
                 self.observation_report.clear();
                 self.report_open = false;
@@ -10409,6 +10764,12 @@ impl AsciiApp {
             self.sync_facility_presentation();
             self.terminal
                 .observe(self.game.map(), self.game.player_visibility());
+            if self
+                .selected_world_cell
+                .is_some_and(|at| !self.selectable_world_cell(at))
+            {
+                self.selected_world_cell = None;
+            }
         }
         outcome
     }
@@ -10436,6 +10797,7 @@ impl AsciiApp {
         let mut floating_alert_positions = Vec::new();
         let visual_time = replay_time.unwrap_or_else(get_time);
         let mut damage_totals: BTreeMap<EntityId, (GridPos, u32)> = BTreeMap::new();
+        let mut missed_hits: BTreeMap<(GridPos, bool), u16> = BTreeMap::new();
         let mut guarded_impacts = std::collections::BTreeSet::new();
         for event in self.game.drain_events() {
             if let GameEvent::DamageApplied { target, amount, .. }
@@ -11046,22 +11408,15 @@ impl AsciiApp {
                     target,
                     at,
                     hit,
+                    evaded,
                     ..
                 } => {
                     if !hit
                         && (target == self.game.player_id()
                             || self.game.player_visibility().is_visible(at))
                     {
-                        self.push_floating_message(
-                            if target == self.game.player_id() {
-                                "ESQUIVÉ"
-                            } else {
-                                "RATÉ"
-                            },
-                            at,
-                            FloatingMessageTone::Information,
-                            visual_time,
-                        );
+                        let count = missed_hits.entry((at, evaded)).or_default();
+                        *count = count.saturating_add(1);
                     }
                     if attacker == self.game.player_id() {
                         let details = player_attack_confirmation
@@ -11405,7 +11760,7 @@ impl AsciiApp {
                         );
                     }
                     self.push_log(
-                        "Fin de vie du drone · manifestation dissipée. Drone spectral sera de nouveau utilisable après sa recharge."
+                        "Le drone se dissipe. Vous pourrez en invoquer un nouveau après la recharge de la compétence."
                             .to_owned(),
                     );
                 }
@@ -13548,6 +13903,12 @@ impl AsciiApp {
         // One total per real recipient in this resolution; direct and secondary
         // packets remain separate engine events and retain their detailed log.
         for (target, (at, amount)) in damage_totals {
+            self.ux
+                .recent_damage
+                .retain(|_, time| visual_time - *time < 3.0);
+            if amount > 0 && self.game.actors().get(target).is_some() {
+                self.ux.recent_damage.insert(target, visual_time);
+            }
             self.push_floating_message(
                 if target == self.game.player_id() {
                     format!("−{amount} PV")
@@ -13556,6 +13917,23 @@ impl AsciiApp {
                 },
                 at,
                 FloatingMessageTone::Damage,
+                visual_time,
+            );
+        }
+        for ((at, evaded), count) in missed_hits {
+            let label = if evaded { "ESQUIVE" } else { "RATÉ" };
+            self.push_floating_message(
+                if count > 1 {
+                    format!("{label} ×{count}")
+                } else {
+                    label.to_owned()
+                },
+                at,
+                if evaded {
+                    FloatingMessageTone::Evasion
+                } else {
+                    FloatingMessageTone::Miss
+                },
                 visual_time,
             );
         }
@@ -13593,12 +13971,7 @@ impl AsciiApp {
     }
 
     fn is_selected_target_at(&self, position: GridPos) -> bool {
-        self.selected_target.is_some_and(|target| {
-            self.game
-                .actors()
-                .get(target)
-                .is_some_and(|actor| actor.position() == position)
-        })
+        self.selected_visible_cell() == Some(position)
     }
 
     fn push_floating_message(
@@ -13675,7 +14048,7 @@ impl AsciiApp {
             let badge_rows = self.effect_badges_at(message.at).len().div_ceil(4) as f32;
             let baseline = (cell.y
                 - badge_rows * 15.0
-                - 5.0 * scale
+                - 13.0 * scale
                 - f32::from(message.lane) * 21.0 * scale
                 - rise)
                 .max(bounds.y + font_size);
@@ -13696,9 +14069,15 @@ impl AsciiApp {
                 (0.0, -outline),
                 (0.0, outline),
             ] {
-                draw_text_bold(&message.text, x + dx, baseline + dy, font_size, shadow);
+                draw_text_bold(
+                    &message.text,
+                    label.x + dx,
+                    baseline + dy,
+                    font_size,
+                    shadow,
+                );
             }
-            draw_text_bold(&message.text, x, baseline, font_size, color);
+            draw_text_bold(&message.text, label.x, baseline, font_size, color);
         }
     }
 
@@ -13715,40 +14094,51 @@ impl AsciiApp {
 
     fn cycle_target(&mut self) {
         self.ux.targeted = true;
-        let targets = self.visible_targets();
+        let targets = self.visible_selection_cells();
         if targets.is_empty() {
-            self.selected_target = None;
+            self.select_world_target(None);
             self.push_log("Aucune cible visible.".to_owned());
             return;
         }
 
         let next_index = self
-            .selected_target
+            .selected_visible_cell()
             .and_then(|selected| targets.iter().position(|target| *target == selected))
             .map_or(0, |index| (index + 1) % targets.len());
-        self.selected_target = targets.get(next_index).copied();
-        if self.selected_target.is_some() {
+        self.select_world_target(targets.get(next_index).copied());
+        if self.selected_visible_cell().is_some() {
             self.push_log("Cible verrouillée.".to_owned());
         }
     }
 
-    /// A click selects the same visible actors as Tab, never an attack. Consume
+    /// A click selects the same visible elements as Tab, never an attack. Consume
     /// the click even when clearing selection so a mouse-bound action cannot
     /// fall through and immediately attack or open area aiming.
     fn toggle_pointer_target_at(&mut self, position: GridPos) -> bool {
-        let Some(target) = self.game.actors().entity_at(position) else {
-            return false;
-        };
-        if !self.visible_targets().contains(&target) {
+        if !self.selectable_world_cell(position) {
             return false;
         }
-        self.selected_target = (self.selected_target != Some(target)).then_some(target);
-        self.push_log(if self.selected_target.is_some() {
+        self.select_world_target(
+            (self.selected_visible_cell() != Some(position)).then_some(position),
+        );
+        self.push_log(if self.selected_visible_cell().is_some() {
             "Cible verrouillée.".to_owned()
         } else {
             "Cible désélectionnée.".to_owned()
         });
         true
+    }
+
+    fn select_pointer_world_cell(&mut self, at: GridPos, pointer: Option<(f32, f32)>) {
+        self.world_cursor = None;
+        self.keyboard_target_pointer = pointer;
+        if self.toggle_pointer_target_at(at) {
+            return;
+        }
+        self.select_world_target(None);
+        if !self.begin_pointer_attack_aim(at, pointer) {
+            self.push_log("Cette arme doit viser une cible.".to_owned());
+        }
     }
 
     fn select_weapon_slot(&mut self, slot: u8) {
@@ -13857,13 +14247,7 @@ impl AsciiApp {
             return;
         };
         let slot = self.active_weapon_slot;
-        let selected = self.selected_target.and_then(|target| {
-            self.game
-                .actors()
-                .get(target)
-                .map(|actor| actor.position())
-                .filter(|position| self.game.player_visibility().is_visible(*position))
-        });
+        let selected = self.selected_visible_cell();
         let range = self
             .game
             .equipped_player_weapon(slot)
@@ -13904,11 +14288,7 @@ impl AsciiApp {
             })
             .unwrap_or_else(|| origin.step(self.facing));
         self.attack_aim = Some(AttackAim { slot, cursor });
-        self.selected_target = self
-            .game
-            .actors()
-            .entity_at(cursor)
-            .filter(|target| self.visible_targets().contains(target));
+        self.select_world_target(Some(cursor));
         self.attack_aim_technique = technique;
         self.attack_aim_pointer = pointer;
         self.push_log(if self.attack_aim_technique.is_some() {
@@ -13933,12 +14313,10 @@ impl AsciiApp {
         }
         if self.controls.pressed(Action::CycleTarget, input) {
             self.cycle_target();
-            if let Some(position) = self
-                .selected_target
-                .and_then(|target| self.game.actors().get(target).map(|actor| actor.position()))
-            {
+            if let Some(position) = self.selected_visible_cell() {
                 aim.cursor = position;
             }
+            self.keyboard_target_pointer = input.pointer;
             self.attack_aim = Some(aim);
             self.attack_aim_pointer = input.pointer;
             return;
@@ -13983,10 +14361,9 @@ impl AsciiApp {
         if !keyboard_moved && let Some(position) = clicked_cell {
             if self.attack_aim_technique.is_none()
                 && aim.cursor == position
-                && self.selected_target.is_some()
-                && self.selected_target == self.game.actors().entity_at(position)
+                && self.selected_visible_cell() == Some(position)
             {
-                self.selected_target = None;
+                self.select_world_target(None);
                 self.attack_aim = None;
                 self.attack_aim_pointer = None;
                 self.push_log("Cible désélectionnée.".to_owned());
@@ -13995,11 +14372,8 @@ impl AsciiApp {
             aim.cursor = position;
         }
         if keyboard_moved || clicked_cell.is_some() {
-            self.selected_target = self
-                .game
-                .actors()
-                .entity_at(aim.cursor)
-                .filter(|target| self.visible_targets().contains(target));
+            self.select_world_target(Some(aim.cursor));
+            self.keyboard_target_pointer = input.pointer;
         }
         self.attack_aim = Some(aim);
 
@@ -14114,6 +14488,7 @@ impl AsciiApp {
     }
 
     fn ensure_visible_target(&mut self) -> Option<EntityId> {
+        self.selected_world_cell = None;
         let targets = self.visible_targets();
         let selected_is_visible = self
             .selected_target
@@ -15102,7 +15477,19 @@ impl AsciiApp {
     }
 
     fn terminal_target_summary(&self) -> Option<TerminalTargetSummary> {
-        let target = self.selected_target?;
+        let at = self.selected_visible_cell()?;
+        if self.selected_target.is_none() || self.context_npc_at(at) {
+            return crate::terminal_view::interactive_target_summary(
+                &self.game,
+                at,
+                self.interaction_display_name(at),
+                &self.controls.label(Action::Interact),
+            );
+        }
+        self.terminal_target_summary_for(self.selected_target?)
+    }
+
+    fn terminal_target_summary_for(&self, target: EntityId) -> Option<TerminalTargetSummary> {
         let actor = self.game.actors().get(target)?;
         if !self.game.player_visibility().is_visible(actor.position()) {
             return None;
@@ -15252,6 +15639,8 @@ impl AsciiApp {
             distance: grid_distance(observer, actor.position()),
             visible_state,
             analysis,
+            interaction: None,
+            health: Some((actor.integrity(), actor.maximum_integrity())),
         })
     }
 
@@ -15273,7 +15662,7 @@ impl AsciiApp {
             self.draw_compact_resource_header();
         }
         if let Some((local, network, turns)) = self.visible_alert_summary() {
-            let y = if compact { 106.0 } else { 7.0 };
+            let y = if compact { 200.0 } else { 7.0 };
             let rect = Rect::new(12.0, y, self.ui_width() - 24.0, 58.0);
             let pulse = if self.graphics.active.reduced_motion {
                 0.0
@@ -15485,7 +15874,7 @@ impl AsciiApp {
             );
             draw_text(
                 format!(
-                    "Visée : {} {} {} {} ou clic · Annuler : Échap ou clic droit",
+                    "Visée : {} {} {} {} ou clic · Échap : annuler",
                     self.controls.label(Action::MoveNorth),
                     self.controls.label(Action::MoveWest),
                     self.controls.label(Action::MoveSouth),
@@ -15875,10 +16264,6 @@ impl AsciiApp {
 
     fn open_technique_menu(&mut self) {
         let techniques = self.active_learned_techniques();
-        if techniques.is_empty() {
-            self.push_log("Aucune technique active apprise.".to_owned());
-            return;
-        }
         self.technique_menu_selection = self
             .technique_menu_selection
             .min(techniques.len().saturating_sub(1));
@@ -15920,7 +16305,29 @@ impl AsciiApp {
     fn update_technique_menu(&mut self, input: &InputFrame) {
         let techniques = self.active_learned_techniques();
         if techniques.is_empty() {
-            self.close_technique_menu();
+            let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
+            let layout = TechniqueQuickMenuLayout::new(width, height, 0, 0);
+            let hovered = input.pointer.and_then(|point| {
+                layout
+                    .actions
+                    .iter()
+                    .position(|button| button.contains(point.into()))
+            });
+            self.menu_focus.hovered = hovered;
+            let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
+            if clicked && hovered == Some(2)
+                || self.controls.pressed(Action::QuickTechniques, input)
+            {
+                self.close_technique_menu();
+            } else if clicked && hovered == Some(1)
+                || self.controls.pressed(Action::Learn, input)
+                || self.controls.pressed(Action::Skills, input)
+                || self.controls.pressed(Action::Inspect, input)
+            {
+                self.close_technique_menu();
+                self.skills_open = true;
+                self.clamp_skill_selection();
+            }
             return;
         }
         self.technique_menu_selection = self
@@ -19109,6 +19516,10 @@ impl AsciiApp {
     }
 
     fn open_menu(&mut self, menu: MenuScreen) {
+        self.world_context = None;
+        self.mouse_walk = None;
+        self.world_cursor = None;
+        self.keyboard_target_pointer = None;
         self.menu_repeat.clear();
         self.menu_repeat_context = None;
         if menu != MenuScreen::ConfirmGraphics {
@@ -24382,8 +24793,11 @@ mod tests {
     }
 
     #[test]
-    fn persistent_intro_objective_replaces_an_old_footer_message_instead_of_adding_a_third_line() {
+    fn persistent_intro_objective_is_separate_from_footer_messages() {
         let mut app = app_with_test_controls();
+        app.ux.moved = true;
+        app.ux.interacted = true;
+        app.ux.targeted = true;
         app.log = vec![
             "Ancien message sans objectif.".to_owned(),
             "Dernier message de jeu.".to_owned(),
@@ -24392,7 +24806,7 @@ mod tests {
         assert_eq!(
             app.footer_lines(),
             vec![
-                ("OBJECTIF · REJOINDRE LE SECTEUR HABITÉ".to_owned(), true),
+                ("Ancien message sans objectif.".to_owned(), false),
                 ("Dernier message de jeu.".to_owned(), false),
             ]
         );
@@ -24780,7 +25194,7 @@ mod tests {
                 .any(|message| message.text == "- DRONE")
         );
         assert!(app.log.iter().any(|line| {
-            line.contains("Fin de vie du drone") && line.contains("de nouveau utilisable")
+            line.contains("Le drone se dissipe") && line.contains("après la recharge")
         }));
     }
 
@@ -25563,15 +25977,19 @@ mod tests {
 
         app.update_input(&input("U"));
 
-        assert!(!app.technique_menu_open);
+        assert!(app.technique_menu_open);
         assert_eq!(
             (app.game.turn(), app.game.rng_state(), app.history.len()),
             before
         );
-        assert!(
-            app.log
-                .iter()
-                .any(|line| line.contains("Aucune technique active apprise"))
+        app.update_input(&InputFrame::default());
+        assert!(app.technique_menu_open);
+        app.update_input(&input("Enter"));
+        assert!(app.skills_open);
+        assert!(!app.technique_menu_open);
+        assert_eq!(
+            (app.game.turn(), app.game.rng_state(), app.history.len()),
+            before
         );
     }
 
@@ -25710,6 +26128,90 @@ mod tests {
         replay.capture_events_at(Some(0.0));
         assert!(!replay.skills_open);
         assert_eq!(replay.level_up_notice, None);
+    }
+
+    #[test]
+    fn miss_feedback_for_both_sides_is_truthful_grouped_and_non_mutating() {
+        let mut app = app_with_test_controls();
+        for (accuracy, evasion, expected) in [
+            (0, 0, Some("RATÉ ×2")),
+            (100, 100, Some("ESQUIVE ×2")),
+            (100, 0, None),
+        ] {
+            let rules = GameRules {
+                hit_rules: Some(HitRules {
+                    melee_base_accuracy: accuracy,
+                    base_evasion: evasion,
+                    accuracy_per_coordination: 0,
+                    evasion_per_coordination: 0,
+                    minimum_hit_chance: 0,
+                    maximum_hit_chance: 100,
+                    ..HitRules::default()
+                }),
+                ..GameRules::default()
+            };
+            let mut game = GameState::new_with_rules(
+                project_rl::world::Map::filled(18, 15, Terrain::Floor).unwrap(),
+                GridPos::new(5, 6),
+                129,
+                rules,
+            )
+            .unwrap();
+            let target = game
+                .spawn_actor(
+                    Actor::new(GridPos::new(6, 6), 100)
+                        .unwrap()
+                        .with_attack(AttackProfile::melee(DamageType::Kinetic, 1))
+                        .with_ai(AiProfile::hunter(8, 0)),
+                )
+                .unwrap();
+            app.game = WorldState::single(game);
+            app.floating_messages.clear();
+            for _ in 0..2 {
+                assert_eq!(
+                    app.execute_command(GameCommand::Attack { slot: 0, target }),
+                    CommandOutcome::Applied
+                );
+            }
+            // Event consumption is expected; actor state, turns and RNG are not.
+            let before = (
+                app.game.turn(),
+                app.game.rng_state(),
+                format!("{:?}", app.game.actors()),
+            );
+            app.capture_events_at(Some(0.0));
+            assert_eq!(
+                (
+                    app.game.turn(),
+                    app.game.rng_state(),
+                    format!("{:?}", app.game.actors())
+                ),
+                before
+            );
+            let messages: Vec<_> = app
+                .floating_messages
+                .iter()
+                .filter(|m| {
+                    matches!(
+                        m.tone,
+                        FloatingMessageTone::Miss | FloatingMessageTone::Evasion
+                    )
+                })
+                .collect();
+            if let Some(label) = expected {
+                assert_eq!(messages.len(), 2);
+                assert!(
+                    messages
+                        .iter()
+                        .all(|m| m.text == label && m.tone.lifetime() >= 2.0)
+                );
+                for at in [GridPos::new(5, 6), GridPos::new(6, 6)] {
+                    assert!(messages.iter().any(|m| m.at == at));
+                }
+            } else {
+                assert!(messages.is_empty());
+            }
+        }
     }
 
     #[test]
@@ -27571,11 +28073,8 @@ mod tests {
         );
         let footer = app.footer_lines();
         assert_eq!(
-            footer.first(),
-            Some(&(
-                "OBJECTIF · RETOURNER PARLER À Contact local".to_owned(),
-                true
-            ))
+            app.objective_panel_text().as_deref(),
+            Some("Retourner parler à Contact local.")
         );
         assert!(
             footer

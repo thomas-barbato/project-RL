@@ -23,7 +23,8 @@ pub(super) struct UxState {
     pub item_scroll: ScrollState,
     pub comparison_slot: Option<u8>,
     pub hud_points: Cell<Option<Rect>>,
-    pub hud_defenses: Cell<Option<Rect>>,
+    pub hud_objective: Cell<Option<Rect>>,
+    pub recent_damage: BTreeMap<EntityId, f64>,
     pub hud_energy: Cell<Option<Rect>>,
     pub hud_companions: Cell<Option<Rect>>,
     pub resources_open: bool,
@@ -984,7 +985,7 @@ impl AsciiApp {
             UiTheme.backdrop(),
         );
         draw_reader(
-            "État et cible",
+            "Cible sélectionnée",
             "Informations connues · aucune action ni aucun tour dépensé",
             panel,
             self.menu_focus.hovered == Some(0),
@@ -993,58 +994,7 @@ impl AsciiApp {
         let body = reader_body(panel);
         crate::ui_theme::begin_text_pane(body, self.ux.help_scroll.offset);
         let mut y = body.y + 22.0;
-        let id = self.game.player_id();
         let mut lines = Vec::new();
-        if let Some(player) = self.game.actors().get(id) {
-            lines.push(format!("Votre état · {} / {} PV · Armure {} · Esquive {} · Stabilité {} · Défense numérique {}",player.integrity(),player.maximum_integrity(),self.game.actor_armor_profile(id).map_or(0,ArmorProfile::after_fragilization),self.game.actor_evasion(id).unwrap_or(0),self.game.actor_stability(id).unwrap_or(0),self.game.actor_digital_defense(id).unwrap_or(0)));
-            lines.push(format!(
-                "Résistances · {}",
-                [
-                    ("Thermique", DamageType::Thermal),
-                    ("Électrique", DamageType::Electrical),
-                    ("Chimique", DamageType::Chemical),
-                    ("Radiation", DamageType::Radiation),
-                    ("Corruption", DamageType::Corruption)
-                ]
-                .into_iter()
-                .map(|(label, t)| format!("{label} {} %", player.resistances().get(t)))
-                .collect::<Vec<_>>()
-                .join(" · ")
-            ));
-        }
-        lines.push(format!(
-            "Énergie {}/{} · Munitions {}",
-            self.game.player_energy().available(),
-            self.game.player_energy().capacity(),
-            self.game.player_matter().unwrap_or(0)
-        ));
-        if let Some(b) = self.game.player_bandwidth() {
-            lines.push(format!(
-                "Bande passante disponible {}/{}",
-                b.available(),
-                b.capacity()
-            ));
-        }
-        if self.game.rules().maintained_energy_reservations {
-            lines.push(format!(
-                "{} : gérer l'énergie réservée et les compagnons · {} E réservés",
-                self.controls.label(Action::Learn),
-                self.game.player_energy().reserved()
-            ));
-            lines.extend(self.overclock_resource_lines());
-        }
-        if let Some(h) = self
-            .game
-            .player_heat()
-            .filter(|_| !self.game.rules().maintained_energy_reservations)
-        {
-            lines.push(format!(
-                "Chaleur {} · alerte {} · seuil critique {}",
-                h.current(),
-                h.alert_threshold(),
-                h.critical_threshold()
-            ));
-        }
         if let Some(target) = self.terminal_target_summary() {
             lines.push(format!(
                 "Cible · {} · distance {} cases",
@@ -1058,8 +1008,7 @@ impl AsciiApp {
                 ));
             } else {
                 lines.push(
-                    "Statistiques inconnues. Une analyse de la cible peut compléter cette fiche."
-                        .to_owned(),
+                    target.interaction.unwrap_or_else(|| "Statistiques inconnues. Une analyse de la cible peut compléter cette fiche.".to_owned()),
                 );
             }
         } else {
@@ -1090,7 +1039,7 @@ impl AsciiApp {
                 UiIcon::Techniques,
             ),
             (Some(Action::Inventory), "Inventaire", UiIcon::Inventory),
-            (Some(Action::Inspect), "État / cible", UiIcon::Target),
+            (Some(Action::Inspect), "Examiner", UiIcon::Target),
             (Some(Action::EventHistory), "Historique", UiIcon::Quest),
             (Some(Action::Legend), "Aide", UiIcon::Help),
             (None, "Menu", UiIcon::Menu),
@@ -1108,13 +1057,18 @@ impl AsciiApp {
         .collect()
     }
 
-    pub(super) fn lab_button(width: f32, height: f32) -> Rect {
-        Rect::new(width - 236.0, height - 144.0, 224.0, 36.0)
+    pub(super) fn lab_button(&self) -> Rect {
+        self.ux
+            .hud_objective
+            .get()
+            .map_or(Rect::new(0.0, 0.0, 0.0, 0.0), |panel| {
+                Rect::new(panel.x + 10.0, panel.bottom() - 42.0, panel.w - 20.0, 30.0)
+            })
     }
     pub(super) fn draw_hud_shortcuts(&self) {
         if self.test_lab {
             UiTheme.button(
-                Self::lab_button(self.ui_width(), self.ui_height()),
+                self.lab_button(),
                 &format!("Essais [{}]", self.controls.label(Action::Laboratory)),
                 self.menu_focus.hovered == Some(50_030),
                 false,
@@ -1180,6 +1134,30 @@ impl AsciiApp {
     pub(super) fn route_hud_click(&mut self, input: &InputFrame, captured_at: Option<f64>) -> bool {
         let (w, h) = input.viewport.unwrap_or((1280.0, 800.0));
         let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
+        if self.test_lab
+            && input
+                .pointer
+                .is_some_and(|p| self.lab_button().contains(p.into()))
+        {
+            self.menu_focus.hovered = Some(50_030);
+            if clicked {
+                self.ux.lab_open = true;
+                return true;
+            }
+        }
+        if self
+            .ux
+            .hud_objective
+            .get()
+            .is_some_and(|r| input.pointer.is_some_and(|p| r.contains(p.into())))
+        {
+            self.menu_focus.hovered = Some(50_023);
+            if clicked {
+                self.mouse_walk = None;
+                self.open_quest_journal();
+                return true;
+            }
+        }
         if self.game.rules().maintained_energy_reservations
             && [self.ux.hud_energy.get(), self.ux.hud_companions.get()]
                 .into_iter()
@@ -1192,21 +1170,7 @@ impl AsciiApp {
                 return true;
             }
         }
-        if self.test_lab
-            && input
-                .pointer
-                .is_some_and(|p| Self::lab_button(w, h).contains(p.into()))
-        {
-            self.menu_focus.hovered = Some(50_030);
-            if clicked {
-                self.ux.lab_open = true;
-                return true;
-            }
-        }
-        for (rect, action, focus) in [
-            (self.ux.hud_points.get(), Action::Skills, 50_020),
-            (self.ux.hud_defenses.get(), Action::Inspect, 50_021),
-        ] {
+        for (rect, action, focus) in [(self.ux.hud_points.get(), Action::Skills, 50_020)] {
             if rect.is_some_and(|r| input.pointer.is_some_and(|p| r.contains(p.into()))) {
                 self.menu_focus.hovered = Some(focus);
                 if clicked {
@@ -1246,8 +1210,10 @@ impl AsciiApp {
     pub(super) fn help_command_lines(&self) -> Vec<String> {
         let mut lines=vec![
                 format!("Déplacement · {} {} {} {}. Un déplacement réussi fait avancer le temps.",self.controls.label(Action::MoveNorth),self.controls.label(Action::MoveWest),self.controls.label(Action::MoveSouth),self.controls.label(Action::MoveEast)),
-                format!("Interagir · {} près d'une installation, d'un objet ou d'un habitant. Plusieurs possibilités ouvrent un choix.",self.controls.label(Action::Interact)),
-                format!("Cibler · {} ou clic sur une entité visible. Attaquer · {}. Une attaque de zone présente sa zone avant confirmation ; Échap l'annule.",self.controls.label(Action::CycleTarget),self.controls.label(Action::Attack)),
+                "Clic droit sur une case : actions et approche automatique. Le clic gauche conserve le ciblage. Le trajet s'arrête en cas de blessure, de nouvel ennemi visible ou de nouvelle commande.".to_owned(),
+                format!("Interagir · survolez une installation, un objet ou un habitant puis appuyez sur {} : le personnage s'approche et agit. Sans case survolée ni cible sélectionnée, les interactions proches restent disponibles.",self.controls.label(Action::Interact)),
+                format!("Sélectionner · {} ou clic sur un personnage, objet ou élément interactif visible. Attaquer · {}. Une attaque de zone présente sa zone avant confirmation ; Échap l'annule.",self.controls.label(Action::CycleTarget),self.controls.label(Action::Attack)),
+                format!("Actions au clavier · {} ouvre un curseur de case. Flèches pour le déplacer, Entrée pour les actions. {} attaque, {} interagit ou ramasse, {} examine : votre personnage s'approche automatiquement si nécessaire.", self.controls.label(Action::WorldActions), self.controls.label(Action::Attack), self.controls.label(Action::Interact), self.controls.label(Action::Inspect)),
                 format!("Changer de cible · clic sur un personnage ou une case vide. Le clic ne tire jamais ; {} ou le bouton Attaquer confirme. Au clavier, {} ouvre la visée d'une case, puis les touches de déplacement la déplacent.", self.controls.label(Action::Attack), self.controls.label(Action::AimGround)),
                 format!("Patienter · {}. Techniques actives · {}. Les coûts et conditions de chaque technique figurent dans les compétences.",self.controls.label(Action::Wait),self.controls.label(Action::QuickTechniques)),
                 format!("Inventaire · {}. Personnage · {}. Compétences · {}. Ouvrir ces écrans ne dépense pas de tour.",self.controls.label(Action::Inventory),self.controls.label(Action::Character),self.controls.label(Action::Skills)),

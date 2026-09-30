@@ -46,6 +46,7 @@ actions! {
     Wait, "Attendre un tour", "Space", GAME;
     Attack, "Attaquer la cible", "F", GAME;
     AimGround, "Viser une case", "T", GAME;
+    WorldActions, "Choisir une case / actions au clavier", "X", GAME;
     CycleTarget, "Cible suivante", "Tab", GAME;
     Interact, "Interagir / ramasser", "E", GAME;
     Inventory, "Ouvrir / fermer l'inventaire", "I", ALL;
@@ -441,6 +442,7 @@ impl Controls {
             Action::CompanionOrder,
             Action::Laboratory,
             Action::AimGround,
+            Action::WorldActions,
         ] {
             if result.bindings.contains_key(&action) {
                 continue;

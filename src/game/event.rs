@@ -408,6 +408,9 @@ pub enum GameEvent {
         chance: u8,
         roll: u8,
         hit: bool,
+        /// The same roll would hit without the defender's evasion. This is
+        /// presentation metadata only, never a second roll or combat rule.
+        evaded: bool,
     },
     GroundEffectCreated {
         source: Option<EntityId>,

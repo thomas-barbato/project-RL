@@ -6,6 +6,21 @@ campagne, ni une quête, ni une nouvelle partie sauvegardable.
 
 ## Utilisation
 
+- **Tab** parcourt les éléments interactifs visibles, du plus proche au plus éloigné : personnages (y compris les PNJ de service), objets au sol, portes, consoles, installations et passages. Un clic gauche sélectionne les mêmes éléments ; un second clic sur le même élément le désélectionne. Le sol ordinaire et les murs ne font pas partie du cycle. Sélectionner ne consomme aucun tour.
+- Le repère sur la carte et le panneau de cible indiquent l'élément sélectionné. **E** permet d'aller interagir ou ramasser. **F** attaque une cible attaquable même si la souris est déplacée ailleurs, sans choisir un autre ennemi à la place d'un élément non attaquable. Tab et le clic gauche quittent aussi le curseur de case X. Sans cible verrouillée, F conserve l'action sur la case survolée.
+- Les attaques manquées affichent **RATÉ** au-dessus de la cible ; si le calcul indique que son esquive a fait échouer l'attaque, le message est **ESQUIVE**, pour le joueur comme pour les ennemis. Ces messages restent deux secondes ; les résultats identiques d'une rafale sont regroupés. Aucun jet de dé ni coût supplémentaire n'est ajouté.
+
+- Les raccourcis **E**, **F** et **F4** fonctionnent aussi directement sur la case survolée, sans clic préalable ni ouverture de menu. L'approche continue si la touche reste enfoncée et n'exécute l'action qu'une fois. Échap ou une nouvelle commande annule le trajet. **Tab** conserve la priorité sur la cible sélectionnée tant que la souris ne bouge pas de nouveau.
+
+- **X** ouvre un curseur de case au clavier : flèches pour choisir, **Entrée** pour ouvrir les actions de la case. **F**, **E** et **F4** déclenchent respectivement attaque, interaction/ramassage et examen, avec la même approche automatique qu'à la souris. Ces touches fonctionnent aussi dans le menu contextuel et sont réattribuables. Sans case survolée, elles utilisent la cible sélectionnée ; sans sélection, E conserve les interactions proches. Échap annule le curseur sans avancer de tour.
+- Le menu des techniques actives (**U**) et le sous-menu contextuel restent accessibles sans compétence apprise et proposent un accès à l'apprentissage. Les surfaces communes des menus sont bleu-gris, avec un contraste plus clair. Le panneau droit distingue capteurs, contacts visibles et cible, avec une largeur adaptée à l'écran.
+
+- Un **clic droit sur une case visible** ouvre les actions près du curseur : déplacement, attaque, dialogue, ramassage, examen et compétences selon le contexte. Les actions indisponibles expliquent pourquoi. Un clic extérieur ou Échap ferme le menu sans agir ; les flèches, Entrée et la molette permettent aussi de le parcourir.
+- Choisir **Attaquer** déclenche si nécessaire une approche par A* jusqu'à une position de tir valide, en conservant la portée disponible de l'arme. Si la cible est déjà à portée, aucun déplacement n'est effectué. Les murs, la ligne de vue et les ressources sont vérifiés par le moteur. Une arme de zone ouvre ensuite l'aperçu ; le bouton **Attaquer** confirme. Le clic gauche sur la carte reste réservé à la sélection.
+- **Ramasser**, **Parler**, **Interagir** et **Examiner** déclenchent l'approche nécessaire, puis l'action. Le ramassage se fait sur la case de l'objet ; les autres actions depuis une case adjacente. L'inspection et l'ouverture d'un dialogue ne dépensent pas de tour supplémentaire. Une porte ou un objet déjà repéré peut être temporairement masqué pendant le détour : l'approche continue, puis vérifie la cible à l'arrivée.
+- Les chemins sont calculés par A* sur les cases visibles au départ, sans traverser les dangers connus. Un ennemi déjà visible ne limite plus l'ordre à un seul pas. L'arrivée d'un nouvel ennemi dans le champ de vision, une blessure ou une nouvelle commande annule le trajet et l'action prévue. Une attaque recalcule sa route si sa cible visible bouge, avec une limite de poursuite ; elle ne vise jamais un autre occupant à sa place.
+- Le sous-menu **Compétences** montre toutes les compétences actives apprises, sur toute case visible. Une compétence inutilisable reste affichée avec sa raison ; la liste défile à la molette ou aux flèches. **Invoquer un drone** est accessible depuis n'importe quelle case et invoque près du personnage. Les commandes spécialisées qui utilisent les dispositifs proches ou configurent les drones se lancent depuis le menu du personnage, afin de ne pas confondre leurs cibles automatiques avec la case cliquée.
+
 - Le nouvel arsenal comprend le **Fusil d'assaut**, la **Mitrailleuse lourde**, le **Lance-roquettes**, le **Lance-grenades**, la **Hache de combat** et le **Marteau de guerre**, sans bonus. Une hache de saignée et une lance de venin sont aussi présentes, chacune avec et sans bonus statistiques. Le laboratoire contient désormais 71 objets pour 80 places.
 - Le **lance-grenades** tire avec **F** ou le bouton **Attaquer** sur la sélection. Un clic sur un personnage ou sur une case vide change la sélection, sans tirer, y compris pendant la visée. Bouger la souris seul ne change pas la sélection. Au clavier, **T** (commande réattribuable « Viser une case ») ouvre la visée libre et les touches de déplacement choisissent la case. Sans cible sélectionnée, F ouvre aussi la visée libre. La grenade reste au sol avec un compteur de deux tours ; les explosions peuvent vous toucher.
 - Le **lance-roquettes** conserve sa prévisualisation avec **F** avant confirmation. La commande **T** ouvre également la visée libre des armes de zone.
@@ -28,8 +43,8 @@ campagne, ni une quête, ni une nouvelle partie sauvegardable.
   les essais restaure tout. Les douze mannequins `X` restent inoffensifs.
 - **Tab** parcourt les cibles visibles ; **F** attaque directement la cible
   sélectionnée, sauf pour Catalyse : **F ouvre la prévisualisation du cône**,
-  puis F ou un clic confirme. Souris et flèches orientent l'aperçu ; Échap
-  ou clic droit annule sans consommer de tour. Ces commandes restent réattribuables.
+  puis F ou le bouton Attaquer confirme. Un clic sur la carte ou les touches de déplacement changent l'aperçu ; Échap
+  annule sans consommer de tour. Le clic droit ouvre les actions de la case. Les commandes clavier restent réattribuables.
   La frappe principale doit toucher une cible à portée de l'arme : une case
   vide ou trop éloignée affiche un aperçu invalide et ne permet pas d'attaquer.
   L'aperçu inclut les explosions des cibles déjà brûlantes et visibles.
@@ -54,6 +69,22 @@ campagne, ni une quête, ni une nouvelle partie sauvegardable.
   de test ; aucune blessure n'est infligée au personnage de campagne.
 
 ## Variantes présentes
+
+L'interface principale affiche directement les défenses du joueur, sans bouton
+« Défenses et réserves ». Les jauges restent à gauche, la cible à droite ; sur
+petit écran ces informations sont regroupées au-dessus du plateau. Le clic sur
+l'énergie ou les compagnons conserve l'accès à leur gestion.
+
+L'objectif courant et sa progression occupent un bloc fixe à droite, sous la
+cible, avec un accès au journal par clic. Les messages d'action restent en bas.
+Dans le laboratoire, le bouton des essais est intégré à ce bloc. Le terrain
+inexploré est noir ; les cases mémorisées hors de vue gardent leur rendu atténué.
+
+Sur le plateau, une petite barre de vie suit chaque personnage sélectionné ou
+blessé depuis moins de trois secondes. Elle disparaît hors de la vue du joueur.
+Les défenses précises des ennemis restent réservées à l'analyse. Les panneaux et
+boutons utilisent des ombres et des rebords éclairés discrets, sans changer le
+style du monde ni les animations de combat.
 
 54 armes : treize profils en lame et fusil, plus Ricochet en fusil uniquement,
 chacun **sans bonus statistique** et **avec 1 à 3 bonus aléatoires distincts**.

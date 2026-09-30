@@ -583,8 +583,20 @@ impl AsciiApp {
             );
         }
         let list = Rect::new(body.x, body.y + 192.0, body.w, (body.h - 192.0).max(1.0));
-        self.ux
-            .resources_scroll
-            .finish(list, list.y + actions.len() as f32 * 44.0);
+        let mut details_bottom = list.y + actions.len().max(1) as f32 * 44.0;
+        crate::ui_theme::begin_text_pane(list, offset);
+        for line in self.overclock_resource_lines() {
+            details_bottom = draw_wrapped_text(
+                &line,
+                list.x,
+                details_bottom + 22.0,
+                list.w - 20.0,
+                4096,
+                15,
+                UiTheme.text(),
+            ) + 10.0;
+        }
+        crate::ui_theme::end_text_pane();
+        self.ux.resources_scroll.finish(list, details_bottom);
     }
 }

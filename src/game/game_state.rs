@@ -1924,6 +1924,63 @@ impl GameState {
             .map_err(CommandRejection::from)
     }
 
+    /// Read-only validation for a selected actor, including weapon resources.
+    pub fn player_targeted_attack_preview(
+        &self,
+        slot: u8,
+        target: EntityId,
+    ) -> Result<AttackPreview, CommandRejection> {
+        if let Some(remaining_actions) = self
+            .actors
+            .get(self.player)
+            .and_then(Actor::recovery_remaining)
+        {
+            return Err(CommandRejection::OffensiveActionBlockedByRecovery {
+                remaining_actions: remaining_actions.get(),
+            });
+        }
+        self.prepare_targeted_attack(self.player, slot, target)
+            .and_then(|prepared| {
+                self.ensure_prepared_attack_usage(&prepared, 1)?;
+                Ok(self.preview_with_weapon_followups(&prepared))
+            })
+            .map_err(CommandRejection::from)
+    }
+
+    /// Read-only attack validation from a possible movement destination.
+    /// Uses the same preparation and resource checks as the real attack.
+    pub fn player_attack_approach_preview(
+        &self,
+        slot: u8,
+        origin: GridPos,
+        target: GridPos,
+        actor: Option<EntityId>,
+    ) -> Result<AttackPreview, CommandRejection> {
+        if !self.map.is_walkable(origin) {
+            return Err(CommandRejection::BlockedByTerrain(origin));
+        }
+        if let Some(remaining_actions) = self
+            .actors
+            .get(self.player)
+            .and_then(Actor::recovery_remaining)
+        {
+            return Err(CommandRejection::OffensiveActionBlockedByRecovery {
+                remaining_actions: remaining_actions.get(),
+            });
+        }
+        let prepared = if let Some(actor) = actor {
+            self.prepare_targeted_attack_from(self.player, slot, actor, Some(origin))
+        } else {
+            self.prepare_player_area_attack_from(slot, target, Some(origin))
+        };
+        prepared
+            .and_then(|prepared| {
+                self.ensure_prepared_attack_usage(&prepared, 1)?;
+                Ok(self.preview_with_weapon_followups(&prepared))
+            })
+            .map_err(CommandRejection::from)
+    }
+
     /// Returns the geometric footprint even when contextual rules such as a
     /// protected zone forbid confirmation. This lets clients explain an
     /// invalid aim without inventing or partially hiding the attack shape.
@@ -10612,6 +10669,16 @@ impl GameState {
         slot: u8,
         target: EntityId,
     ) -> Result<PreparedAttack, AttackError> {
+        self.prepare_targeted_attack_from(attacker, slot, target, None)
+    }
+
+    fn prepare_targeted_attack_from(
+        &self,
+        attacker: EntityId,
+        slot: u8,
+        target: EntityId,
+        origin: Option<GridPos>,
+    ) -> Result<PreparedAttack, AttackError> {
         let target_state = self
             .actors
             .get(target)
@@ -10634,26 +10701,19 @@ impl GameState {
             attack =
                 attack.with_accuracy_modifier(attack.accuracy_modifier().saturating_add(modifier));
         }
-        if self.map.is_protected(attacker_state.position())
-            || self.map.is_protected(target_state.position())
-        {
+        let origin = origin.unwrap_or(attacker_state.position());
+        if self.map.is_protected(origin) || self.map.is_protected(target_state.position()) {
             return Err(AttackError::ProtectedZone);
         }
-        if !attack.is_in_range(attacker_state.position(), target_state.position()) {
+        if !attack.is_in_range(origin, target_state.position()) {
             return Err(AttackError::TargetOutOfRange(target));
         }
         if attack.requires_line_of_sight()
-            && !has_line_of_sight(
-                &self.map,
-                attacker_state.position(),
-                target_state.position(),
-                true,
-            )
+            && !has_line_of_sight(&self.map, origin, target_state.position(), true)
         {
             return Err(AttackError::NoLineOfSight(target));
         }
 
-        let origin = attacker_state.position();
         let target_at = target_state.position();
         let affected_cells = self.weapon_attack_cells(attack, weapon.as_ref(), origin, target_at);
         Ok(PreparedAttack {
@@ -10688,7 +10748,16 @@ impl GameState {
         slot: u8,
         target_at: GridPos,
     ) -> Result<PreparedAttack, AttackError> {
-        let prepared = self.prepare_player_area_footprint(slot, target_at)?;
+        self.prepare_player_area_attack_from(slot, target_at, None)
+    }
+
+    fn prepare_player_area_attack_from(
+        &self,
+        slot: u8,
+        target_at: GridPos,
+        origin: Option<GridPos>,
+    ) -> Result<PreparedAttack, AttackError> {
+        let prepared = self.prepare_player_area_footprint_from(slot, target_at, origin)?;
         let origin = prepared.origin;
         let attack = prepared.attack;
         if self.map.is_protected(origin) || self.map.is_protected(target_at) {
@@ -10702,7 +10771,7 @@ impl GameState {
             let target = prepared
                 .target
                 .ok_or(AttackError::TargetHasNoActor(target_at))?;
-            return self.prepare_targeted_attack(self.player, slot, target);
+            return self.prepare_targeted_attack_from(self.player, slot, target, Some(origin));
         }
         if !attack.is_in_range(origin, target_at) {
             return Err(AttackError::PositionOutOfRange(target_at));
@@ -10719,9 +10788,18 @@ impl GameState {
         slot: u8,
         target_at: GridPos,
     ) -> Result<PreparedAttack, AttackError> {
+        self.prepare_player_area_footprint_from(slot, target_at, None)
+    }
+
+    fn prepare_player_area_footprint_from(
+        &self,
+        slot: u8,
+        target_at: GridPos,
+        origin: Option<GridPos>,
+    ) -> Result<PreparedAttack, AttackError> {
         let (attacker_state, attack, weapon, weapon_effects, module_use) =
             self.attack_details(self.player, slot)?;
-        let origin = attacker_state.position();
+        let origin = origin.unwrap_or(attacker_state.position());
         if matches!(attack.area(), AttackArea::Single)
             && weapon
                 .as_ref()
@@ -12174,6 +12252,19 @@ impl GameState {
         );
         let roll = self.rng.percentile();
         let hit = roll <= chance;
+        let chance_without_evasion = hit_rules
+            .accuracy(
+                attack.delivery(),
+                attacker_attributes,
+                attack
+                    .accuracy_modifier()
+                    .saturating_add(self.actor_accuracy_modifier(attacker)),
+            )
+            .clamp(
+                i32::from(hit_rules.minimum_hit_chance),
+                i32::from(hit_rules.maximum_hit_chance),
+            );
+        let evaded = !hit && i32::from(roll) <= chance_without_evasion;
         self.events.push(GameEvent::AttackHitResolved {
             attacker,
             target,
@@ -12181,6 +12272,7 @@ impl GameState {
             chance,
             roll,
             hit,
+            evaded,
         });
         Ok(hit)
     }
@@ -23670,6 +23762,7 @@ mod tests {
                 chance: rolled_chance,
                 roll,
                 hit: false,
+                ..
             } if *attacker == game.player_id()
                 && *rolled_target == target
                 && *at == GridPos::new(3, 1)
@@ -23680,6 +23773,54 @@ mod tests {
             event,
             GameEvent::DamageApplied { target: damaged, .. } if *damaged == target
         )));
+    }
+
+    #[test]
+    fn miss_feedback_distinguishes_accuracy_from_evasion_without_an_extra_roll() {
+        for (accuracy, evasion, expected_hit, expected_evaded) in [
+            (0, 0, false, false),
+            (100, 100, false, true),
+            (100, 0, true, false),
+        ] {
+            let rules = GameRules {
+                hit_rules: Some(HitRules {
+                    melee_base_accuracy: accuracy,
+                    base_evasion: evasion,
+                    accuracy_per_coordination: 0,
+                    evasion_per_coordination: 0,
+                    minimum_hit_chance: 0,
+                    maximum_hit_chance: 100,
+                    ..HitRules::default()
+                }),
+                ..GameRules::default()
+            };
+            let mut game = GameState::new_with_rules(
+                parse_map("#####\n#...#\n#####"),
+                GridPos::new(1, 1),
+                129,
+                rules,
+            )
+            .unwrap();
+            let target = game
+                .spawn_actor(build_actor(GridPos::new(2, 1), 20))
+                .unwrap();
+            game.drain_events();
+            let mut expected_rng = game.rng.clone();
+            expected_rng.percentile();
+            assert_eq!(
+                game.resolve_hit(
+                    game.player_id(),
+                    target,
+                    AttackProfile::melee(DamageType::Kinetic, 1)
+                ),
+                Ok(expected_hit)
+            );
+            assert_eq!(game.rng_state(), expected_rng.state());
+            assert!(
+                matches!(game.events().last(), Some(GameEvent::AttackHitResolved { hit, evaded, .. })
+                if *hit == expected_hit && *evaded == expected_evaded)
+            );
+        }
     }
 
     #[test]

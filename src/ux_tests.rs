@@ -1,5 +1,57 @@
 // Included in ascii_app::tests to exercise the same input route as the game.
 #[test]
+fn ux_objective_card_opens_journal_without_a_turn_or_world_click() {
+    let mut app = app_with_test_controls();
+    app.ux.hud_objective.set(Some(Rect::new(980.0, 510.0, 240.0, 144.0)));
+    assert_eq!(app.objective_panel_text().as_deref(), Some("Rejoindre le secteur habité."));
+    let before = (suspension::fingerprint(&app.game), app.history.len());
+    assert!(app.route_hud_click(&InputFrame {
+        pressed: [Binding::MouseLeft].into(),
+        pointer: Some((1050.0, 550.0)),
+        viewport: Some((1280.0, 800.0)),
+        ..Default::default()
+    }, Some(0.0)));
+    assert!(app.quest_journal_open);
+    assert_eq!((suspension::fingerprint(&app.game), app.history.len()), before);
+}
+
+#[test]
+fn ux_world_health_bars_follow_selection_damage_and_visibility_without_mutation() {
+    let mut app = app_with_test_controls();
+    app.prepare_context_route_diagnostic("attack-route").unwrap();
+    let target = app.game.spawn_actor(Actor::new(GridPos::new(7, 6), 100).unwrap().with_evasion_disabled()).unwrap();
+    let hidden = app.game.spawn_actor(Actor::new(GridPos::new(17, 14), 100).unwrap()).unwrap();
+    app.selected_target = Some(target);
+    app.ux.recent_damage.insert(hidden, 10.0);
+    let before = suspension::fingerprint(&app.game);
+    assert_eq!(app.visible_health_bars(10.0).iter().map(|bar| bar.0).collect::<Vec<_>>(), vec![target]);
+    assert_eq!(suspension::fingerprint(&app.game), before);
+    assert_eq!(app.execute_command(GameCommand::Attack { slot: 0, target }), CommandOutcome::Applied);
+    app.capture_events_at(Some(10.0));
+    app.select_world_target(None);
+    let bars = app.visible_health_bars(12.9);
+    assert!(bars.iter().any(|bar| bar.0 == target && bar.2 < bar.3));
+    assert!(!bars.iter().any(|bar| bar.0 == hidden));
+    assert!(app.visible_health_bars(13.0).is_empty());
+    app.selected_target = Some(target);
+    assert_eq!(app.visible_health_bars(20.0).len(), 1);
+}
+
+#[test]
+fn ux_hud_defenses_are_resolved_engine_values_without_resource_duplicates() {
+    let app = app_with_test_controls();
+    let id = app.game.player_id();
+    let before = suspension::fingerprint(&app.game);
+    let values = app.player_defense_values();
+    assert_eq!(values.len(), 9);
+    assert_eq!(values[0].1, app.game.actor_armor_profile(id).map_or(0, ArmorProfile::after_fragilization).to_string());
+    assert_eq!(values[1].1, app.game.actor_evasion(id).unwrap().to_string());
+    assert_eq!(values[4].1, format!("{} %", app.game.actors().get(id).unwrap().resistances().get(DamageType::Thermal)));
+    assert!(values.iter().all(|(label, _)| !["PV", "Énergie", "Munitions", "Compagnons"].contains(label)));
+    assert_eq!(suspension::fingerprint(&app.game), before);
+}
+
+#[test]
 fn ux_reserved_energy_panel_is_free_modal_and_stop_commands_can_be_replayed() {
     let mut app = app_with_test_controls();
     app.prepare_reserved_energy_diagnostic().unwrap();

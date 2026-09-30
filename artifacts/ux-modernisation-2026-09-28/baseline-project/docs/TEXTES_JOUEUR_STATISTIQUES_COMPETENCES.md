@@ -268,7 +268,7 @@ Les descriptions d'Infection et de ses variantes suivent le typage thermique dir
 
 | Code | Nom | Texte joueur | Limite à afficher |
 |---|---|---|---|
-| DRN-01 | Drone spectral | Manifeste un drone utilitaire autonome sur une case adjacente libre. Choisissez ensuite sa doctrine depuis le panneau d'allié. | Le drone occupe réellement le terrain, réserve sa bande passante et reste vulnérable. À batterie vide, il se dissipe et pourra être manifesté de nouveau après la recharge de la compétence. |
+| DRN-01 | Invoquer un drone | Manifeste un drone utilitaire autonome sur une case adjacente libre. Choisissez ensuite sa doctrine depuis le panneau d'allié. | Le drone occupe réellement le terrain, réserve sa bande passante et reste vulnérable. À batterie vide, il se dissipe et pourra être manifesté de nouveau après la recharge de la compétence. |
 | DRN-02 | Patrouille bornée | Programme un court trajet connu et une condition d’arrêt ou de retour pour un drone. | Les obstacles nouveaux peuvent interrompre la routine. Hors liaison, le drone peut suivre la consigne déjà reçue, mais pas recevoir de nouveaux ordres. |
 | DRN-03 | Leurre mobile | Envoie un drone équipé émettre un signal de diversion depuis une position choisie. | Le trajet et l’émission prennent du temps et des ressources. L’ennemi peut ignorer le leurre ou attaquer le drone. |
 | DRN-04 | Collecte ciblée | Envoie un drone doté d’un manipulateur chercher un objet connu et le rapporter. | L’objet doit encore être présent et transportable. Ramassage et retour utilisent les actions du drone, sans transfert instantané vers votre inventaire. |
@@ -452,7 +452,7 @@ Les résultats ci-dessous ne sont émis que pour les événements connus de l'ob
 | MSG-RESULTAT-ARRET-ENERGIE | Entretien impossible par réserve propre épuisée. | {processus} s’arrête faute d’énergie disponible. |
 | MSG-RESULTAT-SUSPENSION | Réservation interrompue après baisse de capacité. | {processus} suspendu : capacité de contrôle insuffisante. |
 | MSG-RESULTAT-DRONE-PERDU | Perte du contact, sans preuve de destruction. | Contact perdu avec {drone}. Dernière confirmation : {date}. |
-| MSG-RESULTAT-DRONE-FIN-VIE | Batterie d'un drone manifesté épuisée. | Fin de vie du drone : manifestation dissipée. Drone spectral sera de nouveau utilisable après sa recharge. |
+| MSG-RESULTAT-DRONE-FIN-VIE | Batterie d'un drone manifesté épuisée. | Le drone se dissipe. Vous pourrez en invoquer un nouveau après la recharge de la compétence. |
 | MSG-RESULTAT-DRONE-LIAISON-PERDUE | Liaison de contrôle interrompue. | Liaison du drone perdue. Sa consigne locale reste active. |
 | MSG-RESULTAT-DRONE-LIAISON-RETABLIE | Liaison de contrôle de nouveau valide. | Liaison du drone rétablie. Sa doctrine reprend automatiquement. |
 | MSG-RESULTAT-DRONE-RAPPORT | Rapport réellement transmis au retour ou à la reconnexion. | Rapport reçu de {drone} : observations du {date}. |
