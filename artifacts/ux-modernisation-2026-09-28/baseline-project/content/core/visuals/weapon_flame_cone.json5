@@ -1,0 +1,11 @@
+{
+  id: "core:weapon_flame_cone",
+  terminal: {
+    frames: ["flame_jet", "flame_jet", "flame_jet", "flame_jet"],
+    color: [170, 43, 22, 235],
+    accent_colors: [[255, 141, 38, 250], [255, 237, 168, 255]],
+    frame_millis: 140,
+    step_millis: 45,
+    linger_millis: 80,
+  },
+}

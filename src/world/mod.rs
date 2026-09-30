@@ -9,6 +9,7 @@ mod traces;
 
 pub use fov::{
     DistanceMetric, FieldOfViewRules, VisibilityState, compute_visible_tiles, has_line_of_sight,
+    is_tile_visible,
 };
 pub use grid::{Direction, GridPos};
 pub use map::{Map, MapBuildError, MapParseError};

@@ -1,0 +1,61 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 41.09s
+     Running unittests src\lib.rs (target\debug\deps\project_rl-2e9ad6618a1c2637.exe)
+
+running 778 tests
+....................................................................................... 87/778
+....................................................................................... 174/778
+....................................................................................... 261/778
+....................................................................................... 348/778
+....................................................................................... 435/778
+....................................................................................... 522/778
+....................................................................................... 609/778
+....................................................................................... 696/778
+..................................................................................
+test result: ok. 778 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 18.53s
+
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 454 tests
+iiiiiiii.. 10/454
+ascii_app::combat_balance_tests::combat_balance_surface_roles_remain_distinct_with_starting_white_weapons --- FAILED
+ascii_app::combat_balance_tests::combat_balance_white_equipment_matrix_matches_real_impacts --- FAILED
+.................................................................iiiii................. 99/454
+........................test ascii_app::depth_distribution_tests::depth_distribution_survives_snapshot_and_command_replay_for_old_and_new_runs has been running for over 60 seconds
+...........test ascii_app::effects_lab::tests::laboratory_weapons_execute_their_announced_effects has been running for over 60 seconds
+........i.................test ascii_app::expedition_survival_tests::survival_expedition_measures_every_seed_once_without_resurrection has been running for over 60 seconds
+....test ascii_app::first_layer_plan_tests::first_layer_plan_runtime_round_trip_snapshot_and_replay has been running for over 60 seconds
+...................... 186/454
+.........test ascii_app::narrative::tests::underground_passage_leads_to_the_record_and_a_completable_investigation has been running for over 60 seconds
+............................................................test ascii_app::tests::expedition_generation_is_valid_and_reproducible_across_seeds has been running for over 60 seconds
+.................. 273/454
+....................................................................................... 360/454
+....................................................................................... 447/454
+.......
+failures:
+
+---- ascii_app::combat_balance_tests::combat_balance_surface_roles_remain_distinct_with_starting_white_weapons stdout ----
+Surface | PV | touches couteau | touches fusil (avant réaction)
+
+thread 'ascii_app::combat_balance_tests::combat_balance_surface_roles_remain_distinct_with_starting_white_weapons' (27544) panicked at src\combat_balance_app.rs:154:17:
+assertion `left == right` failed
+  left: Rejected(InsufficientMatter { required: 1, available: 0 })
+ right: Applied
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- ascii_app::combat_balance_tests::combat_balance_white_equipment_matrix_matches_real_impacts stdout ----
+Creature | couche | palier | PV | coups couteau | coups fusil | degats recus | coups mortels (PV initiaux)
+
+thread 'ascii_app::combat_balance_tests::combat_balance_white_equipment_matrix_matches_real_impacts' (28968) panicked at src\combat_balance_app.rs:421:21:
+assertion `left == right` failed
+  left: Rejected(InsufficientMatter { required: 1, available: 0 })
+ right: Applied
+
+
+failures:
+    ascii_app::combat_balance_tests::combat_balance_surface_roles_remain_distinct_with_starting_white_weapons
+    ascii_app::combat_balance_tests::combat_balance_white_equipment_matrix_matches_real_impacts
+
+test result: FAILED. 438 passed; 2 failed; 14 ignored; 0 measured; 0 filtered out; finished in 348.20s
+
+error: test failed, to rerun pass `--bin project-rl`

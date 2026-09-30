@@ -1,0 +1,17 @@
+{
+  // This file is intentionally outside content/core: it is a real local mod.
+  id: "example.arc_arsenal:arc_lance",
+  name_key: "weapon.arc_lance.name",
+  description_key: "weapon.arc_lance.description",
+
+  attack: {
+    range: 8,
+    distance_metric: "euclidean",
+    requires_line_of_sight: true,
+    damage: {
+      amount: 4,
+      damage_type: "electrical",
+      penetration: 1,
+    },
+  },
+}

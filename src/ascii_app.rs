@@ -88,6 +88,11 @@ mod effect_feedback;
 mod effects_lab;
 #[path = "equipment_affix_names.rs"]
 mod equipment_affix_names;
+#[cfg(debug_assertions)]
+#[path = "performance_capture.rs"]
+mod performance_capture;
+#[path = "ux.rs"]
+mod ux;
 
 const INITIAL_SEED: u64 = 20_260_909;
 const MIN_RESUME_LOADING_SECONDS: f64 = 0.75;
@@ -199,6 +204,8 @@ mod fauna;
 mod narrative;
 #[path = "surface_cast_app.rs"]
 mod surface_cast;
+#[path = "underground_fauna_app.rs"]
+mod underground_fauna;
 const FAUNA_GENERATION_VERSION: u8 = SURFACE_CAST_GENERATION_VERSION + 1;
 const SKITTISH_FAUNA_GENERATION_VERSION: u8 = FAUNA_GENERATION_VERSION + 1;
 const HEAVY_FAUNA_GENERATION_VERSION: u8 = SKITTISH_FAUNA_GENERATION_VERSION + 1;
@@ -214,8 +221,80 @@ mod equipment_generation;
 #[path = "surface_density.rs"]
 mod surface_density;
 const SURFACE_DENSITY_GENERATION_VERSION: u8 = CARRIED_WEAPON_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = SURFACE_DENSITY_GENERATION_VERSION;
+const UNDERGROUND_FAUNA_GENERATION_VERSION: u8 = SURFACE_DENSITY_GENERATION_VERSION + 1;
+const CAVE_ANEMONE_GENERATION_VERSION: u8 = UNDERGROUND_FAUNA_GENERATION_VERSION + 1;
+const DEEP_ENCOUNTERS_GENERATION_VERSION: u8 = CAVE_ANEMONE_GENERATION_VERSION + 1;
+const LAYER_BALANCE_GENERATION_VERSION: u8 = DEEP_ENCOUNTERS_GENERATION_VERSION + 1;
+const STRANGE_FAUNA_GENERATION_VERSION: u8 = LAYER_BALANCE_GENERATION_VERSION + 1;
+const MARSH_SPITTER_GENERATION_VERSION: u8 = STRANGE_FAUNA_GENERATION_VERSION + 1;
+const BESTIARY_BATCH_GENERATION_VERSION: u8 = MARSH_SPITTER_GENERATION_VERSION + 1;
+const DEPTH_DISTRIBUTION_GENERATION_VERSION: u8 = BESTIARY_BATCH_GENERATION_VERSION + 1;
+const FIRST_LAYER_PLAN_GENERATION_VERSION: u8 = DEPTH_DISTRIBUTION_GENERATION_VERSION + 1;
+const FIRST_LAYER_LANDSCAPES_GENERATION_VERSION: u8 = FIRST_LAYER_PLAN_GENERATION_VERSION + 1;
+const FIRST_LAYER_ENCOUNTERS_GENERATION_VERSION: u8 = FIRST_LAYER_LANDSCAPES_GENERATION_VERSION + 1;
+const LEVEL_HEALTH_GENERATION_VERSION: u8 = FIRST_LAYER_ENCOUNTERS_GENERATION_VERSION + 1;
+const LEVEL_FULL_HEAL_GENERATION_VERSION: u8 = LEVEL_HEALTH_GENERATION_VERSION + 1;
+const SHARED_WEAPON_SUPPLIES_GENERATION_VERSION: u8 = LEVEL_FULL_HEAL_GENERATION_VERSION + 1;
+const PARALLAX_RECOVERY_GENERATION_VERSION: u8 = SHARED_WEAPON_SUPPLIES_GENERATION_VERSION + 1;
+const CONTINUOUS_ENERGY_FIRE_GENERATION_VERSION: u8 = PARALLAX_RECOVERY_GENERATION_VERSION + 1;
+const MAINTAINED_ENERGY_GENERATION_VERSION: u8 = CONTINUOUS_ENERGY_FIRE_GENERATION_VERSION + 1;
+const CLASS_WEAPON_SUPPLIES_GENERATION_VERSION: u8 = MAINTAINED_ENERGY_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = CLASS_WEAPON_SUPPLIES_GENERATION_VERSION;
+#[path = "bestiary_batch_app.rs"]
+mod bestiary_batch;
+#[path = "cave_anemone_app.rs"]
+mod cave_anemone;
+#[cfg(test)]
+#[path = "combat_balance_app.rs"]
+mod combat_balance_tests;
+#[cfg(test)]
+#[path = "continuous_expedition_tests.rs"]
+mod continuous_expedition_tests;
+#[path = "deep_encounters_app.rs"]
+mod deep_encounters;
+#[cfg(test)]
+#[path = "depth_distribution_tests.rs"]
+mod depth_distribution_tests;
+#[cfg(test)]
+#[path = "expedition_decisions_tests.rs"]
+mod expedition_decisions_tests;
+#[cfg(test)]
+#[path = "expedition_survival_tests.rs"]
+mod expedition_survival_tests;
+#[cfg(test)]
+#[path = "first_layer_expedition_tests.rs"]
+mod first_layer_expedition_tests;
+#[path = "first_layer_landscapes_app.rs"]
+pub(crate) mod first_layer_landscapes;
+#[cfg(test)]
+#[path = "first_layer_plan_tests.rs"]
+mod first_layer_plan_tests;
+#[cfg(test)]
+#[path = "generated_survival_tests.rs"]
+mod generated_survival_tests;
+#[cfg(test)]
+#[path = "layer_balance_app.rs"]
+mod layer_balance_tests;
+#[cfg(test)]
+#[path = "level_health_app_tests.rs"]
+mod level_health_tests;
+#[path = "marsh_spitter_app.rs"]
+mod marsh_spitter;
+#[cfg(any(test, debug_assertions))]
+#[path = "mixed_encounters_app.rs"]
+mod mixed_encounters;
+#[path = "strange_fauna_app.rs"]
+mod strange_fauna;
 const _: () = assert!(CURRENT_GENERATION_VERSION == suspension::MAX_GENERATION_VERSION);
+
+#[path = "energy_reservation_app.rs"]
+mod energy_reservation_app;
+#[path = "hud_resources.rs"]
+mod hud_resources;
+#[path = "statistics_help.rs"]
+mod statistics_help;
+#[path = "weapon_supplies_app.rs"]
+mod weapon_supplies_app;
 const LOG_CAPACITY: usize = 6;
 const FLOATING_MESSAGE_CAPACITY: usize = 32;
 const DISPLAY_LOCALE: &str = "fr";
@@ -314,6 +393,7 @@ enum CharacterCreationStage {
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum MenuNavigationContext {
+    Reader(u8),
     Screen(MenuScreen),
     Creation(CharacterCreationStage),
     Context,
@@ -553,14 +633,23 @@ impl InventoryLayout {
                 panel_height - 128.0,
             )
         });
-        let character_details = stats_panel.map(|panel| {
-            Rect::new(
-                panel.x + 12.0,
-                panel.y + panel.h - 39.0,
-                panel.w - 24.0,
-                29.0,
-            )
-        });
+        let character_details = Some(
+            stats_panel
+                .map(|panel| {
+                    Rect::new(
+                        panel.x + 12.0,
+                        panel.y + panel.h - 39.0,
+                        panel.w - 24.0,
+                        29.0,
+                    )
+                })
+                .unwrap_or(Rect::new(
+                    margin + panel_width - 164.0,
+                    top + 17.0,
+                    144.0,
+                    31.0,
+                )),
+        );
         Self {
             rows,
             sections,
@@ -591,7 +680,7 @@ struct SkillsLayout {
 struct TechniqueQuickMenuLayout {
     panel: Rect,
     rows: Vec<(usize, Rect)>,
-    actions: [Rect; 2],
+    actions: [Rect; 3],
     first_visible: usize,
 }
 
@@ -671,8 +760,12 @@ struct NpcInteractionLayout {
 
 impl NpcInteractionLayout {
     fn new(width: f32, height: f32) -> Self {
+        Self::bounded(width, height, 640.0)
+    }
+
+    fn bounded(width: f32, height: f32, maximum_height: f32) -> Self {
         let panel_width = (width - 40.0).clamp(420.0, 760.0);
-        let panel_height = (height - 40.0).clamp(500.0, 640.0);
+        let panel_height = (height - 40.0).clamp(maximum_height.min(500.0), maximum_height);
         let panel = Rect::new(
             (width - panel_width) * 0.5,
             (height - panel_height) * 0.5,
@@ -740,6 +833,22 @@ impl NpcInteractionLayout {
         }
     }
 
+    fn merchant_action(&self) -> Rect {
+        Rect::new(
+            self.service.x,
+            self.service.y,
+            self.service.w * 0.53 - 4.0,
+            self.service.h,
+        )
+    }
+    fn merchant_inspect(&self) -> Rect {
+        Rect::new(
+            self.service.x + self.service.w * 0.53 + 4.0,
+            self.service.y,
+            self.service.w * 0.47 - 4.0,
+            self.service.h,
+        )
+    }
     fn merchant_rows(&self) -> &[Rect] {
         &self.merchant_rows[..self.merchant_row_count]
     }
@@ -802,16 +911,15 @@ impl TechniqueQuickMenuLayout {
                 )
             })
             .collect();
-        let button_width = (panel.w - 31.0) * 0.5;
-        let actions = [
-            Rect::new(panel.x + 12.0, panel.y + panel.h - 49.0, button_width, 35.0),
+        let button_width = (panel.w - 38.0) / 3.0;
+        let actions = std::array::from_fn(|i| {
             Rect::new(
-                panel.x + 19.0 + button_width,
-                panel.y + panel.h - 49.0,
+                panel.x + 12.0 + i as f32 * (button_width + 7.0),
+                panel.bottom() - 49.0,
                 button_width,
                 35.0,
-            ),
-        ];
+            )
+        });
         Self {
             panel,
             rows,
@@ -963,7 +1071,7 @@ impl SkillsLayout {
                 )
             })
             .collect();
-        let row_height = 43.0;
+        let row_height = 49.0;
         let visible = ((technique_panel.h - 58.0) / row_height).floor().max(1.0) as usize;
         let first_technique = technique_selection.saturating_sub(visible.saturating_sub(1));
         let technique_rows = (first_technique..(first_technique + visible).min(technique_count))
@@ -975,7 +1083,7 @@ impl SkillsLayout {
                         technique_panel.x + 7.0,
                         technique_panel.y + 46.0 + visible_index as f32 * row_height,
                         technique_panel.w - 14.0,
-                        37.0,
+                        43.0,
                     ),
                 )
             })
@@ -1006,12 +1114,9 @@ impl SkillsLayout {
 
 impl CharacterCreationLayout {
     fn new(width: f32, height: f32, class_count: usize) -> Self {
-        let panel = Rect::new(
-            24.0,
-            24.0,
-            (width - 48.0).max(592.0),
-            (height - 48.0).max(432.0),
-        );
+        let w = (width - 32.0).min(1120.0);
+        let h = (height - 32.0).min(540.0);
+        let panel = Rect::new((width - w) * 0.5, (height - h) * 0.5, w, h);
         let left_width = panel.w * 0.43;
         let row_height = ((panel.h - 210.0) / class_count.max(1) as f32).clamp(50.0, 78.0);
         let class_rows = (0..class_count)
@@ -1049,9 +1154,9 @@ impl CharacterCreationLayout {
             class_rows,
             cancel: Rect::new(panel.x + 24.0, panel.y + panel.h - 61.0, 150.0, 37.0),
             continue_button: Rect::new(
-                panel.x + panel.w - 224.0,
+                panel.x + panel.w - 264.0,
                 panel.y + panel.h - 61.0,
-                200.0,
+                240.0,
                 37.0,
             ),
             attribute_rows,
@@ -1060,8 +1165,8 @@ impl CharacterCreationLayout {
             preset: Rect::new(
                 panel.x + left_width + 24.0,
                 panel.y + panel.h - 119.0,
-                panel.w - left_width - 48.0,
-                37.0,
+                (panel.w - left_width - 48.0).min(290.0),
+                34.0,
             ),
         }
     }
@@ -1079,6 +1184,9 @@ impl CharacterCreationLayout {
             return Some(CharacterCreationHover::Continue);
         }
         match stage {
+            CharacterCreationStage::Protocol if self.preset.contains(point) => {
+                Some(CharacterCreationHover::Preset)
+            }
             CharacterCreationStage::Protocol => self
                 .class_rows
                 .iter()
@@ -1123,9 +1231,54 @@ struct RecoveryPresentation {
 
 #[derive(Serialize, Deserialize)]
 struct AppRecoverySnapshot {
+    #[serde(serialize_with = "serialize_engine_bytes")]
     engine: Vec<u8>,
     presentation: RecoveryPresentation,
     presentation_fingerprint: u64,
+}
+
+// Borrow presentation while encoding it: copying every remembered/decorated cell
+// at each recovery checkpoint is unnecessary. Its wire format and Debug name
+// deliberately match the owned reader, including historical fingerprints.
+#[derive(Serialize)]
+struct RecoveryPresentationRef<'a> {
+    terminal: &'a TerminalView,
+    zone_views: &'a BTreeMap<ContentId, TerminalView>,
+    zone_decor: &'a BTreeMap<ContentId, SectorDecor>,
+    facing: Direction,
+    regional_zones: &'a BTreeMap<ContentId, RegionCoord>,
+    actor_glyphs: &'a BTreeMap<EntityId, char>,
+    intro_city_reached: bool,
+}
+
+impl std::fmt::Debug for RecoveryPresentationRef<'_> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("RecoveryPresentation")
+            .field("terminal", self.terminal)
+            .field("zone_views", self.zone_views)
+            .field("zone_decor", self.zone_decor)
+            .field("facing", &self.facing)
+            .field("regional_zones", self.regional_zones)
+            .field("actor_glyphs", self.actor_glyphs)
+            .field("intro_city_reached", &self.intro_city_reached)
+            .finish()
+    }
+}
+
+#[derive(Serialize)]
+struct AppRecoverySnapshotRef<'a> {
+    #[serde(serialize_with = "serialize_engine_bytes")]
+    engine: &'a [u8],
+    presentation: RecoveryPresentationRef<'a>,
+    presentation_fingerprint: u64,
+}
+
+fn serialize_engine_bytes<S: serde::Serializer>(
+    bytes: &[u8],
+    serializer: S,
+) -> Result<S::Ok, S::Error> {
+    // Bincode writes the same length and bytes as Vec<u8>, in one bulk write.
+    serializer.serialize_bytes(bytes)
 }
 
 struct DecodedAppRecoverySnapshot {
@@ -1152,6 +1305,7 @@ struct ContextMenu {
 }
 
 pub struct AsciiApp {
+    ux: ux::UxState,
     test_lab: bool,
     lab_bonus_seed: u64,
     lab_return: Option<Box<AsciiApp>>,
@@ -1271,6 +1425,7 @@ impl AsciiApp {
             return;
         }
         let now = get_time();
+        self.visual_cues.prune(now);
         if self.resume_requested {
             self.poll_resume_request(now);
             return;
@@ -1651,6 +1806,11 @@ impl AsciiApp {
 
     #[cfg(debug_assertions)]
     fn prepare_clinic_diagnostic(&mut self) -> Result<(), String> {
+        self.prepare_clinic_budget_diagnostic(120)
+    }
+
+    #[cfg(debug_assertions)]
+    fn prepare_clinic_budget_diagnostic(&mut self, credits: u32) -> Result<(), String> {
         let map = project_rl::world::Map::from_ascii(
             "############\n#..........#\n#..........#\n#..........#\n#..........#\n############",
         )
@@ -1692,7 +1852,7 @@ impl AsciiApp {
             256,
         )
         .map_err(|error| error.to_string())?;
-        world.register_clinic(zone, healer, 120, clinic)?;
+        world.register_clinic(zone, healer, credits, clinic)?;
         if world.damage_player_for_diagnostic(6) != 6 {
             return Err("Diagnostic clinic could not damage the player".to_owned());
         }
@@ -2659,7 +2819,64 @@ impl AsciiApp {
             app.draw();
             next_frame().await;
         }
+        let contrast = scene.ends_with("-contrast");
+        let scene = scene.strip_suffix("-contrast").unwrap_or(scene);
+        let (scene, size) = if let Some(base) = scene.strip_suffix("-small") {
+            (base, Some((960.0, 540.0, 100)))
+        } else if let Some(base) = scene.strip_suffix("-wide") {
+            (base, Some((1920.0, 1080.0, 100)))
+        } else if let Some(base) = scene.strip_suffix("-largeui") {
+            (base, Some((1280.0, 800.0, 150)))
+        } else {
+            (scene, None)
+        };
         match scene {
+            "ux-end" => {
+                app.prepare_end_diagnostic()?;
+            }
+            "ux-history" => {
+                for i in 0..20 {
+                    app.push_log(format!("Événement observé {i} · Une description longue reste consultable dans l'historique."));
+                }
+                app.ux.history_open = true;
+            }
+            "ux-inspect" => {
+                app.ux.inspected_target = true;
+            }
+            "ux-laboratory" => {
+                app.open_menu(MenuScreen::Main);
+                app.enter_test_lab()?;
+                app.ux.lab_open = true;
+            }
+            "ux-item" => {
+                app.inventory_open = true;
+                app.open_inventory_card();
+            }
+            "ux-help-custom" => {
+                app.controls
+                    .rebind(Action::Attack, controls::Binding::key("F6"))?;
+                app.controls
+                    .rebind(Action::Legend, controls::Binding::key("F7"))?;
+                app.legend_open = true;
+            }
+            "ux-symbols" => {
+                app.legend_open = true;
+                app.ux.help_tab = 1;
+            }
+            "ux-energy" | "ux-energy-panel" => {
+                app.prepare_reserved_energy_diagnostic()?;
+                app.ux.resources_open = scene == "ux-energy-panel";
+                app.write_statistics_review(&output.join("RELECTURE_STATISTIQUES.md"))?;
+            }
+            "ux-statistics"
+            | "ux-statistics-bottom"
+            | "ux-statistics-resources"
+            | "ux-statistics-attributes"
+            | "ux-statistics-defenses" => {
+                app.legend_open = true;
+                app.ux.help_tab = 2;
+                app.write_statistics_review(&output.join("RELECTURE_STATISTIQUES.md"))?;
+            }
             "lab-target" | "lab-target-cleared" | "lab-target-960" | "lab-target-1080" => {
                 let (width, height) = match scene {
                     "lab-target-960" => (960.0, 540.0),
@@ -2714,9 +2931,79 @@ impl AsciiApp {
                     app.capture_events_at(Some(get_time()));
                 }
             }
+            "first-layer-workshops"
+            | "first-layer-pumps"
+            | "first-layer-workshops-960"
+            | "first-layer-pumps-960" => {
+                let dimensions = if scene.ends_with("960") {
+                    (960.0, 540.0)
+                } else {
+                    (1280.0, 800.0)
+                };
+                request_new_screen_size(dimensions.0, dimensions.1);
+                for _ in 0..3 {
+                    next_frame().await;
+                }
+                app.prepare_first_layer_landscape_diagnostic(scene)?;
+            }
             "surface-enemies" => app.prepare_surface_enemies_diagnostic()?,
+            "mixed-surface" | "mixed-research" | "mixed-corrupted" => {
+                app.prepare_mixed_encounter_diagnostic(scene)?;
+            }
+            "bestiary-scaled" | "bestiary-maw" | "bestiary-laggard" | "bestiary-bat"
+            | "bestiary-riveter" => app.prepare_bestiary_batch_diagnostic(scene)?,
             "surface-fauna" => app.prepare_fauna_diagnostic(false)?,
             "surface-fauna-shell" => app.prepare_fauna_diagnostic(true)?,
+            "armored-worm" => app.prepare_armored_worm_diagnostic(false)?,
+            "armored-worm-recovery" => app.prepare_armored_worm_diagnostic(true)?,
+            "marsh-spitter" | "marsh-spitter-recovery" => {
+                app.prepare_marsh_spitter_diagnostic(scene.ends_with("recovery"))?;
+            }
+            "marsh-spitter-impact" => {
+                app.prepare_marsh_spitter_diagnostic(false)?;
+                app.game.process_player_command(GameCommand::Wait);
+                app.capture_events_at(Some(get_time() - 0.12));
+            }
+            "watcher" | "spectre" | "spectre-recovery" => {
+                app.prepare_strange_fauna_diagnostic(scene)?;
+            }
+            "watcher-habitat" | "watcher-habitat-signal" | "watcher-habitat-signal-960" => {
+                if scene.ends_with("960") {
+                    request_new_screen_size(960.0, 540.0);
+                    for _ in 0..3 {
+                        next_frame().await;
+                    }
+                }
+                app.prepare_strange_fauna_diagnostic("watcher-habitat")?;
+                if scene.contains("signal") {
+                    app.game.process_player_command(GameCommand::Wait);
+                    app.capture_events_at(Some(get_time() - 0.10));
+                }
+            }
+            "spectre-impact" => {
+                app.prepare_strange_fauna_diagnostic("spectre")?;
+                app.game.process_player_command(GameCommand::Wait);
+                app.capture_events_at(Some(get_time() - 0.12));
+            }
+            "cave-anemone" => app.prepare_cave_anemone_diagnostic(false)?,
+            "cave-anemone-grasp" => app.prepare_cave_anemone_diagnostic(true)?,
+            "layer-balance-three" => app.prepare_layer_balance_diagnostic(3)?,
+            "layer-balance-six" => app.prepare_layer_balance_diagnostic(6)?,
+            "fault-howler-impact" | "sentinel-projector-impact" => {
+                let howler = scene.starts_with("fault-howler");
+                app.prepare_deep_encounter_diagnostic(howler, false)?;
+                for _ in 0..if howler { 3 } else { 2 } {
+                    app.game.process_player_command(GameCommand::Wait);
+                }
+                app.capture_events_at(Some(get_time() - 0.18));
+            }
+            "fault-howler"
+            | "fault-howler-recovery"
+            | "sentinel-projector"
+            | "sentinel-projector-recovery" => app.prepare_deep_encounter_diagnostic(
+                scene.starts_with("fault-howler"),
+                scene.ends_with("recovery"),
+            )?,
             "surface-forager" => app.prepare_forager_diagnostic(false)?,
             "surface-forager-cornered" => app.prepare_forager_diagnostic(true)?,
             "surface-bone-breaker" => app.prepare_bone_breaker_diagnostic(false)?,
@@ -2841,11 +3128,50 @@ impl AsciiApp {
             "enemy-loot" | "enemy-loot-inventory" => {
                 app.prepare_enemy_loot_diagnostic(scene.ends_with("inventory"))?
             }
+            "shared-matter"
+            | "shared-matter-960"
+            | "shared-energy"
+            | "shared-energy-960"
+            | "shared-energy-recovery"
+            | "shared-matter-720"
+            | "shared-inventory"
+            | "shared-inventory-960" => {
+                app.prepare_shared_supplies_diagnostic(scene.starts_with("shared-energy"))?;
+                if scene.ends_with("-recovery") {
+                    let target = app
+                        .game
+                        .actors()
+                        .entity_at(GridPos::new(13, 9))
+                        .ok_or("Cible absente")?;
+                    app.execute_command(GameCommand::Attack { slot: 0, target });
+                    app.capture_events_at(Some(0.0));
+                }
+                if scene.starts_with("shared-inventory") {
+                    app.inventory_filter = InventoryFilter::Weapons;
+                    app.inventory_selection = 0;
+                    app.inventory_open = true;
+                }
+                if scene.ends_with("-960") {
+                    request_new_screen_size(960.0, 540.0);
+                } else if scene.ends_with("-720") {
+                    request_new_screen_size(1280.0, 720.0);
+                }
+            }
             "npc-gamble" => {
                 app.prepare_merchant_diagnostic()?;
                 app.npc_trade_mode = NpcTradeMode::Gamble;
             }
             "npc-clinic" => app.prepare_clinic_diagnostic()?,
+            "npc-clinic-partial" | "npc-clinic-partial-960" | "npc-clinic-poor" => {
+                app.prepare_clinic_budget_diagnostic(if scene == "npc-clinic-poor" {
+                    2
+                } else {
+                    11
+                })?;
+                if scene.ends_with("-960") {
+                    request_new_screen_size(960.0, 540.0);
+                }
+            }
             "npc-clinic-quest" => app.prepare_clinic_quest_diagnostic()?,
             "npc-resident" => app.prepare_resident_diagnostic()?,
             "npc-quest" | "npc-quest-ready" => {
@@ -3525,7 +3851,7 @@ impl AsciiApp {
             "expedition-revisit" => {
                 app.walk_expedition_fixture(2)?;
             }
-            "attack-preview" => {
+            "attack-preview" | "attack-preview-no-ammo" => {
                 app.walk_fixture_to(GridPos::new(65, 21))?;
                 app.active_weapon_slot = 2;
                 app.facing = Direction::East;
@@ -3543,6 +3869,26 @@ impl AsciiApp {
                     return Err("Area preview is invalid in diagnostic scene".into());
                 }
                 app.attack_aim = Some(aim);
+                if scene == "attack-preview-no-ammo" {
+                    let ammo = app
+                        .game
+                        .player_inventory()
+                        .iter()
+                        .find(|entry| entry.item().as_str() == "core:weapon_matter")
+                        .map(|entry| entry.instance())
+                        .ok_or("Munitions de départ absentes")?;
+                    if app.execute_command(GameCommand::DropItem { item: ammo })
+                        != CommandOutcome::Applied
+                    {
+                        return Err("Dépôt des munitions refusé".into());
+                    }
+                    if !matches!(
+                        app.aimed_attack_preview(aim),
+                        Err(CommandRejection::InsufficientMatter { .. })
+                    ) {
+                        return Err("Le manque de munitions doit invalider la visée".into());
+                    }
+                }
             }
             "attack-preview-protected" => {
                 app.active_weapon_slot = 2;
@@ -3787,9 +4133,34 @@ impl AsciiApp {
             }
             _ => return Err(format!("Scène de diagnostic inconnue : {scene}")),
         }
+        if let Some((w, h, scale)) = size {
+            app.graphics.active.ui_scale_percent = scale;
+            request_new_screen_size(w, h);
+            for _ in 0..10 {
+                next_frame().await;
+            }
+        }
+        if contrast {
+            app.graphics.active.high_contrast = true;
+        }
         for _ in 0..3 {
             app.draw();
             next_frame().await;
+        }
+        if scene == "ux-statistics-bottom" {
+            app.ux.help_scroll.offset = app.ux.help_scroll.maximum.get();
+        } else if scene == "ux-statistics-resources" {
+            app.ux.help_scroll.offset = 370.0;
+        } else if scene == "ux-statistics-attributes" {
+            app.ux.help_scroll.offset = app.ux.statistics_section_offsets.get()[1];
+        } else if scene == "ux-statistics-defenses" {
+            app.ux.help_scroll.offset = app.ux.statistics_section_offsets.get()[2];
+        }
+        if scene.starts_with("ux-statistics-") {
+            for _ in 0..3 {
+                app.draw();
+                next_frame().await;
+            }
         }
         app.draw();
         let path = output.join("cold-start.png");
@@ -3806,6 +4177,14 @@ impl AsciiApp {
                 Rect::new(panel.x + 24.0, panel.y + 14.0, panel.w - 48.0, 64.0),
                 Rect::new(panel.x + 24.0, panel.bottom() - 72.0, panel.w - 48.0, 62.0),
             ]
+        } else if app.ux.item_card.is_some()
+            || app.ux.history_open
+            || app.ux.inspected_target
+            || app.ux.lab_open
+            || app.game.status() != RunStatus::Active
+        {
+            let p = ux::reader_panel(app.ui_width(), app.ui_height());
+            vec![Rect::new(p.x + 12.0, p.y + 10.0, p.w - 24.0, 44.0)]
         } else if let Some(creation) = &app.character_creation {
             let layout = CharacterCreationLayout::new(
                 app.ui_width(),
@@ -3854,7 +4233,7 @@ impl AsciiApp {
             .and_then(|provider| app.game.dialogue_view(provider))
             && !app.npc_dialogue_services
         {
-            let layout = NpcInteractionLayout::new(app.ui_width(), app.ui_height());
+            let layout = app.npc_layout(app.ui_width(), app.ui_height());
             let mut probes = vec![
                 layout.service,
                 layout.close,
@@ -3879,7 +4258,7 @@ impl AsciiApp {
             );
             probes
         } else if app.npc_interaction.is_some() {
-            let layout = NpcInteractionLayout::new(app.ui_width(), app.ui_height());
+            let layout = app.npc_layout(app.ui_width(), app.ui_height());
             let interaction = app
                 .npc_interaction
                 .and_then(|provider| app.game.npc_interaction(provider));
@@ -3973,7 +4352,7 @@ impl AsciiApp {
             }
             probes
         } else if app.legend_open {
-            let panel = crate::terminal_view::legend_panel(app.terminal_bounds());
+            let panel = ux::reader_panel(app.ui_width(), app.ui_height());
             // The legend hides the HUD: inspect its own title, not the
             // dimmed background used by the generic gameplay probe.
             vec![Rect::new(
@@ -4000,7 +4379,13 @@ impl AsciiApp {
         } else if app.report_open {
             vec![Rect::new(55.0, 50.0, 360.0, 35.0)]
         } else {
-            vec![Rect::new(6.0, 10.0, 300.0, 30.0)]
+            vec![
+                if terminal_status_panel(app.terminal_bounds(), app.ui_scale()).is_some() {
+                    Rect::new(30.0, 140.0, 260.0, 44.0)
+                } else {
+                    Rect::new(6.0, 10.0, 300.0, 46.0)
+                },
+            ]
         };
         if scene.starts_with("resume-error") {
             let area = MenuLayout::for_screen(
@@ -4023,7 +4408,10 @@ impl AsciiApp {
                 ));
             }
         }
-        eprintln!("[COLD UI] {scene} : contraste OK, {}", path.display());
+        eprintln!(
+            "[COLD UI] {scene} : texte présent dans les zones vérifiées, {}",
+            path.display()
+        );
         Ok(())
     }
 
@@ -4466,6 +4854,10 @@ impl AsciiApp {
     }
 
     fn update_input_at(&mut self, input: &InputFrame, captured_at: Option<f64>) {
+        let skill_before = (
+            self.skill_discipline_selection,
+            self.skill_technique_selection,
+        );
         let context = self.menu_navigation_context();
         if self.menu_repeat_context != context {
             self.menu_repeat.clear();
@@ -4485,6 +4877,14 @@ impl AsciiApp {
         } else {
             self.dispatch_input_at(input, captured_at);
         }
+        if skill_before
+            != (
+                self.skill_discipline_selection,
+                self.skill_technique_selection,
+            )
+        {
+            self.ux.skill_scroll.offset = 0.0;
+        }
         // A held key never carries navigation into a newly opened screen.
         let next_context = self.menu_navigation_context();
         if next_context != context {
@@ -4494,8 +4894,23 @@ impl AsciiApp {
     }
 
     fn menu_navigation_context(&self) -> Option<MenuNavigationContext> {
+        if self.ux.resources_open {
+            return Some(MenuNavigationContext::Reader(4));
+        }
         if self.quit_requested || self.resume_requested || self.rebinding {
             return None;
+        }
+        if self.ux.item_card.is_some() {
+            return Some(MenuNavigationContext::Reader(0));
+        }
+        if self.ux.history_open {
+            return Some(MenuNavigationContext::Reader(1));
+        }
+        if self.ux.inspected_target {
+            return Some(MenuNavigationContext::Reader(2));
+        }
+        if self.ux.lab_open {
+            return Some(MenuNavigationContext::Reader(3));
         }
         if let Some(creation) = &self.character_creation {
             return Some(MenuNavigationContext::Creation(creation.stage));
@@ -4523,7 +4938,7 @@ impl AsciiApp {
             return Some(MenuNavigationContext::Techniques);
         }
         if self.legend_open {
-            return None;
+            return Some(MenuNavigationContext::Reader(4));
         }
         if self.character_open {
             return Some(MenuNavigationContext::Character);
@@ -4569,11 +4984,23 @@ impl AsciiApp {
             return;
         }
         if input.pause {
-            if self.rebinding {
+            if self.ux.resources_open {
+                self.ux.resources_open = false;
+            } else if self.rebinding {
                 self.rebinding = false;
                 self.options_message = "Réattribution annulée.".to_owned();
+            } else if self.ux.item_card.is_some() {
+                self.ux.item_card = None;
             } else if self.menu != MenuScreen::Hidden {
                 self.open_menu(self.menu_back());
+            } else if self.ux.lab_open {
+                self.ux.lab_open = false;
+            } else if self.ux.item_card.is_some() {
+                self.ux.item_card = None;
+            } else if self.ux.inspected_target {
+                self.ux.inspected_target = false;
+            } else if self.ux.history_open {
+                self.ux.history_open = false;
             } else if self.legend_open {
                 self.legend_open = false;
             } else if self.inventory_open {
@@ -4604,12 +5031,37 @@ impl AsciiApp {
             }
             return;
         }
+        if self.ux.resources_open {
+            self.movement_repeat.clear();
+            self.update_energy_reservations(input);
+            return;
+        }
+        if self.ux.item_card.is_some() {
+            self.update_item_card(input);
+            return;
+        }
         if self.menu == MenuScreen::Controls {
             self.update_options(input);
             return;
         }
         if self.menu != MenuScreen::Hidden {
             self.update_menu(input);
+            return;
+        }
+        if self.ux.lab_open {
+            self.update_lab_menu(input);
+            return;
+        }
+        if self.ux.item_card.is_some() {
+            self.update_item_card(input);
+            return;
+        }
+        if self.ux.inspected_target {
+            self.update_inspector(input);
+            return;
+        }
+        if self.ux.history_open {
+            self.update_history(input);
             return;
         }
         if self.context_menu.is_some() {
@@ -4671,12 +5123,7 @@ impl AsciiApp {
             return;
         }
         if self.legend_open {
-            if input.pointer.is_some() {
-                self.menu_focus.hovered = Some(0);
-            }
-            if input.pressed.contains(&controls::Binding::MouseLeft) {
-                self.legend_open = false;
-            }
+            self.update_help(input);
             return;
         }
         if self.controls.pressed(Action::Character, input) {
@@ -4695,6 +5142,13 @@ impl AsciiApp {
         if self.character_open {
             let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
             let layout = CharacterLayout::new(width, height);
+            if input.wheel_y != 0.0
+                || input.pressed.contains(&controls::Binding::key("PageDown"))
+                || input.pressed.contains(&controls::Binding::key("PageUp"))
+            {
+                self.ux.character_scroll.update(input, &self.controls);
+                return;
+            }
             let hovered_attribute = input.pointer.and_then(|point| {
                 layout
                     .attribute_rows
@@ -4741,32 +5195,17 @@ impl AsciiApp {
             return;
         }
         if self.report_open {
-            let dossier_line_count = self.dossier_lines().len();
-            let (width, _) = input.viewport.unwrap_or((1280.0, 800.0));
-            let close = Rect::new((width - 140.0).max(60.0), 50.0, 80.0, 31.0);
-            let close_hovered = input
+            let (w, h) = input.viewport.unwrap_or((1280.0, 800.0));
+            let hovered = input
                 .pointer
-                .is_some_and(|point| close.contains(point.into()));
-            self.menu_focus.hovered = close_hovered.then_some(0);
+                .is_some_and(|p| ux::reader_close(ux::reader_panel(w, h)).contains(p.into()));
+            self.menu_focus.hovered = hovered.then_some(0);
             if self.controls.pressed(Action::Report, input)
-                || input.pressed.contains(&controls::Binding::MouseLeft) && close_hovered
+                || input.pressed.contains(&controls::Binding::MouseLeft) && hovered
             {
                 self.report_open = false;
-            } else if self.controls.pressed(Action::MenuDown, input) {
-                self.report_scroll =
-                    (self.report_scroll + 1).min(dossier_line_count.saturating_sub(1));
-            } else if self.controls.pressed(Action::MenuUp, input) {
-                self.report_scroll = self.report_scroll.saturating_sub(1);
-            } else if input.wheel_y > 0.0 {
-                self.report_scroll = self
-                    .report_scroll
-                    .saturating_sub(wheel_steps(input.wheel_y));
-            } else if input.wheel_y < 0.0 {
-                self.report_scroll = self
-                    .report_scroll
-                    .saturating_add(wheel_steps(input.wheel_y))
-                    .min(dossier_line_count.saturating_sub(1));
             }
+            self.ux.dossier_scroll.update(input, &self.controls);
             return;
         }
         if self.controls.pressed(Action::Report, input) {
@@ -4784,7 +5223,9 @@ impl AsciiApp {
         }
         if self.controls.pressed(Action::Skills, input) {
             self.skills_open = !self.skills_open;
-            self.level_up_notice = None;
+            if !self.skills_open {
+                self.level_up_notice = None;
+            }
             if self.skills_open {
                 self.attack_aim = None;
                 self.attack_aim_technique = None;
@@ -4826,6 +5267,31 @@ impl AsciiApp {
             return;
         }
 
+        if self.test_lab && self.controls.pressed(Action::Laboratory, input) {
+            self.ux.lab_open = true;
+            return;
+        }
+        if self.controls.pressed(Action::CompanionOrder, input) && self.has_controlled_companion() {
+            self.cycle_companion_order();
+            return;
+        }
+        if self.controls.pressed(Action::Inspect, input) {
+            self.ux.inspected_target = true;
+            self.ux.help_scroll.offset = 0.0;
+            return;
+        }
+        if self.game.status() == RunStatus::Active
+            && self.attack_aim.is_none()
+            && self.game.player_technique_preparation().is_none()
+            && self.route_hud_click(input, captured_at)
+        {
+            return;
+        }
+        if self.controls.pressed(Action::EventHistory, input) {
+            self.ux.history_open = true;
+            self.ux.history_scroll.offset = 0.0;
+            return;
+        }
         if self.controls.pressed(Action::Restart, input) {
             if self.test_lab {
                 if let Err(error) = self.reset_test_lab() {
@@ -4833,40 +5299,16 @@ impl AsciiApp {
                 }
                 return;
             }
-            let next_seed = self.seed.wrapping_add(1);
-            match Self::from_seed(
-                next_seed,
-                self.rules.clone(),
-                self.texts.clone(),
-                self.loot.clone(),
-                self.expeditions.clone(),
-            ) {
-                Ok(mut next_run) => {
-                    if let Err(error) = self.remove_crash_recovery_files_except(None) {
-                        eprintln!("[RECOVERY] Restart cleanup failed: {error}");
-                        self.push_log(
-                            "Redémarrage impossible : récupération active non supprimée."
-                                .to_owned(),
-                        );
-                        return;
-                    }
-                    next_run.character_class = self.character_class.clone();
-                    next_run.controls = self.controls.clone();
-                    next_run.controls_path = self.controls_path.clone();
-                    next_run.options_message = self.options_message.clone();
-                    next_run.graphics = self.graphics.clone();
-                    next_run.suspension_path = self.suspension_path.clone();
-                    next_run.crash_recovery_enabled = self.crash_recovery_enabled;
-                    next_run.session_lock = self.session_lock.take();
-                    *self = next_run;
-                    self.start_crash_recovery();
-                }
-                Err(_) => self.push_log("Impossible de commencer une nouvelle partie.".to_owned()),
+            if self.game.status() == RunStatus::Active {
+                self.open_menu(MenuScreen::ConfirmRestart);
+            } else {
+                self.restart_current_profile();
             }
             return;
         }
 
         if self.game.status() != RunStatus::Active {
+            self.update_end_screen(input);
             return;
         }
 
@@ -5030,10 +5472,32 @@ impl AsciiApp {
     }
 
     pub fn draw(&self) {
+        crate::ui_theme::set_high_contrast(self.graphics.active.high_contrast);
+        self.ux.hud_points.set(None);
+        self.ux.hud_defenses.set(None);
         clear_background(Color::from_rgba(5, 8, 12, 255));
         if self.resume_requested {
             set_camera(&graphics::ui_camera(self.ui_width(), self.ui_height()));
             self.draw_resume_loading();
+            set_default_camera();
+            return;
+        }
+
+        // These screens paint an opaque background. Rendering the world and
+        // its HUD underneath has no visible result and delays menu navigation.
+        if self.is_main_menu_flow() {
+            set_camera(&graphics::ui_camera(self.ui_width(), self.ui_height()));
+            if self.menu == MenuScreen::Controls {
+                self.draw_options();
+            } else if self.menu != MenuScreen::Hidden {
+                self.draw_menu();
+            }
+            if self.character_creation.is_some() {
+                self.draw_character_creation();
+            }
+            if self.ux.item_card.is_some() {
+                self.draw_item_card();
+            }
             set_default_camera();
             return;
         }
@@ -5068,7 +5532,7 @@ impl AsciiApp {
                 multiple_interactions: self.context_choices().len() > 1,
                 legend_label: &self.controls.label(Action::Legend),
                 observation_label: &self.controls.label(Action::NpcVision),
-                legend_open: self.legend_open,
+                legend_open: false,
                 attack_preview,
                 navigation_signal: navigation_signal.as_deref(),
                 target_summary: target_summary.as_ref(),
@@ -5143,6 +5607,18 @@ impl AsciiApp {
             self.draw_footer();
             self.draw_end_message();
         }
+        if self.legend_open {
+            self.draw_help();
+        }
+        if self.ux.resources_open {
+            self.draw_energy_reservations();
+        }
+        if self.ux.history_open {
+            self.draw_history();
+        }
+        if self.ux.inspected_target {
+            self.draw_inspector();
+        }
         if self.inventory_open {
             self.draw_inventory();
         }
@@ -5178,6 +5654,12 @@ impl AsciiApp {
         if self.context_menu.is_some() {
             self.draw_context_menu();
         }
+        if self.ux.item_card.is_some() {
+            self.draw_item_card();
+        }
+        if self.ux.lab_open {
+            self.draw_lab_menu();
+        }
         set_default_camera();
     }
 
@@ -5196,16 +5678,27 @@ impl AsciiApp {
         self.npc_interaction = None;
         self.npc_interaction_message.clear();
         self.quest_journal_open = true;
-        let count = self.game.quest_journal().len();
+        let count = self.journal_entries().len();
         self.quest_journal_selection = self.quest_journal_selection.min(count.saturating_sub(1));
         self.menu_focus.reset();
     }
 
     fn update_quest_journal(&mut self, input: &InputFrame) {
-        let count = self.game.quest_journal().len();
+        let count = self.journal_entries().len();
         self.quest_journal_selection = self.quest_journal_selection.min(count.saturating_sub(1));
         let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
         let layout = QuestJournalLayout::new(width, height, self.quest_journal_selection, count);
+        if input
+            .pointer
+            .is_some_and(|p| layout.detail_panel.contains(p.into()))
+            && input.wheel_y != 0.0
+            || input.pressed.contains(&controls::Binding::key("PageDown"))
+            || input.pressed.contains(&controls::Binding::key("PageUp"))
+        {
+            self.ux.quest_scroll.update(input, &self.controls);
+            return;
+        }
+        self.ux.quest_scroll.offset = 0.0;
         let hovered_row = input.pointer.and_then(|point| {
             layout
                 .rows
@@ -5220,6 +5713,24 @@ impl AsciiApp {
         let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
         if clicked && close_hovered {
             self.quest_journal_open = false;
+            return;
+        }
+        let track = Rect::new(layout.panel.x + 20.0, layout.close.y, 190.0, layout.close.h);
+        let archive = Rect::new(track.right() + 10.0, track.y, 170.0, track.h);
+        if clicked && input.pointer.is_some_and(|p| archive.contains(p.into())) {
+            self.quest_journal_open = false;
+            self.report_open = true;
+            self.ux.dossier_scroll.offset = 0.0;
+            return;
+        }
+        if self.controls.pressed(Action::Learn, input)
+            || clicked && input.pointer.is_some_and(|p| track.contains(p.into()))
+        {
+            if let Some(entry) = self.journal_entries().get(self.quest_journal_selection)
+                && entry.quest.status != QuestStatus::Completed
+            {
+                self.ux.tracked_quest = Some(entry.quest.id.clone());
+            }
             return;
         }
         if count == 0 {
@@ -5249,7 +5760,7 @@ impl AsciiApp {
     }
 
     fn draw_quest_journal(&self) {
-        let entries = self.game.quest_journal();
+        let entries = self.journal_entries();
         let layout = QuestJournalLayout::new(
             self.ui_width(),
             self.ui_height(),
@@ -5273,7 +5784,17 @@ impl AsciiApp {
             theme.text(),
         );
         draw_text(
-            format!("{} CONTRAT(S) CONNU(S)", entries.len()),
+            format!(
+                "En cours {} · Terminées {}",
+                entries
+                    .iter()
+                    .filter(|e| e.quest.status != QuestStatus::Completed)
+                    .count(),
+                entries
+                    .iter()
+                    .filter(|e| e.quest.status == QuestStatus::Completed)
+                    .count()
+            ),
             layout.panel.x + layout.panel.w - 205.0,
             layout.panel.y + 36.0,
             13.0,
@@ -5282,6 +5803,32 @@ impl AsciiApp {
         theme.card(layout.list_panel, false);
         theme.card(layout.detail_panel, false);
 
+        let track = Rect::new(layout.panel.x + 20.0, layout.close.y, 190.0, layout.close.h);
+        let tracked = entries
+            .get(self.quest_journal_selection)
+            .is_some_and(|e| self.ux.tracked_quest.as_ref() == Some(&e.quest.id));
+        UiTheme.button(
+            track,
+            if tracked {
+                "Quête suivie"
+            } else {
+                "Suivre cette quête"
+            },
+            false,
+            tracked,
+            entries
+                .get(self.quest_journal_selection)
+                .is_some_and(|e| e.quest.status != QuestStatus::Completed),
+            ButtonTone::Primary,
+        );
+        UiTheme.button(
+            Rect::new(track.right() + 10.0, track.y, 170.0, track.h),
+            "Archives connues",
+            false,
+            false,
+            true,
+            ButtonTone::Secondary,
+        );
         if entries.is_empty() {
             draw_text_bold(
                 "AUCUNE QUÊTE ACCEPTÉE",
@@ -5350,50 +5897,39 @@ impl AsciiApp {
         }
 
         if let Some(entry) = entries.get(self.quest_journal_selection) {
-            let x = layout.detail_panel.x + 20.0;
-            let width = layout.detail_panel.w - 40.0;
+            let p = layout.detail_panel;
+            let body = Rect::new(p.x + 20.0, p.y + 12.0, p.w - 40.0, p.h - 24.0);
+            crate::ui_theme::begin_text_pane(body, self.ux.quest_scroll.offset);
+            let (status, color) = quest_status_presentation(entry.quest.status);
+            let mut y = body.y + 20.0;
+            draw_text(status, body.x, y, 14.0, color);
+            y += 32.0;
             let title = self
                 .texts
                 .resolve(DISPLAY_LOCALE, &entry.quest.title_key)
                 .unwrap_or("Demande locale");
-            let summary = self.narrative_text(
-                &entry.quest.summary_key,
-                "Votre interlocuteur demande une livraison.",
-            );
-            let (status, status_color) = quest_status_presentation(entry.quest.status);
-            draw_text(status, x, layout.detail_panel.y + 31.0, 13.0, status_color);
-            draw_wrapped_text(
-                title,
-                x,
-                layout.detail_panel.y + 65.0,
-                width,
-                2,
-                23,
-                theme.text(),
-            );
-            draw_wrapped_text(
-                &summary,
-                x,
-                layout.detail_panel.y + 122.0,
-                width,
-                4,
-                15,
-                theme.muted(),
-            );
-            draw_text(
-                "OBJECTIF",
-                x,
-                layout.detail_panel.y + 205.0,
-                13.0,
+            y = draw_wrapped_text(title, body.x, y, body.w - 12.0, 4096, 23, theme.text()) + 18.0;
+            y = draw_wrapped_text(
+                &self.quest_objective_text(&entry.quest.objective),
+                body.x,
+                y,
+                body.w - 12.0,
+                4096,
+                18,
                 theme.accent(),
-            );
-            draw_text_bold(
-                self.quest_objective_text(&entry.quest.objective),
-                x,
-                layout.detail_panel.y + 234.0,
-                18.0,
+            ) + 20.0;
+            y = draw_wrapped_text(
+                &self.narrative_text(
+                    &entry.quest.summary_key,
+                    "Votre interlocuteur demande une livraison.",
+                ),
+                body.x,
+                y,
+                body.w - 12.0,
+                4096,
+                16,
                 theme.text(),
-            );
+            ) + 22.0;
             let mut rewards = Vec::new();
             if entry.quest.reward_credits > 0 {
                 rewards.push(format!("{} crédits", entry.quest.reward_credits));
@@ -5406,15 +5942,15 @@ impl AsciiApp {
                     .quest
                     .reward_items
                     .iter()
-                    .map(|reward| format!("{} ×{}", self.item_name(&reward.item), reward.quantity)),
+                    .map(|r| format!("{} ×{}", self.item_name(&r.item), r.quantity)),
             );
-            draw_text(
-                format!(
-                    "{} · {}",
+            y = draw_wrapped_text(
+                &format!(
+                    "Récompense{} · {}",
                     if entry.quest.status == QuestStatus::Completed {
-                        "RÉCOMPENSE REÇUE"
+                        " reçue"
                     } else {
-                        "RÉCOMPENSE"
+                        ""
                     },
                     if rewards.is_empty() {
                         "aucune".to_owned()
@@ -5422,27 +5958,28 @@ impl AsciiApp {
                         rewards.join(" · ")
                     }
                 ),
-                x,
-                layout.detail_panel.y + 270.0,
-                15.0,
+                body.x,
+                y,
+                body.w - 12.0,
+                4096,
+                16,
                 theme.text(),
-            );
-            draw_text(
-                "LIEU DU DONNEUR",
-                x,
-                layout.detail_panel.y + 311.0,
-                13.0,
-                theme.accent(),
-            );
-            draw_wrapped_text(
-                &entry.zone.name,
-                x,
-                layout.detail_panel.y + 339.0,
-                width,
-                2,
-                17,
-                theme.text(),
-            );
+            ) + 22.0;
+            y = draw_wrapped_text(
+                &format!(
+                    "Interlocuteur · {}\nLieu connu · {}",
+                    self.quest_giver_name(entry),
+                    entry.zone.name
+                ),
+                body.x,
+                y,
+                body.w - 12.0,
+                4096,
+                16,
+                theme.muted(),
+            ) + 12.0;
+            crate::ui_theme::end_text_pane();
+            self.ux.quest_scroll.finish(body, y);
         }
 
         theme.button(
@@ -5463,7 +6000,7 @@ impl AsciiApp {
                 self.controls.label(Action::MenuDown)
             ),
             layout.panel.x + 16.0,
-            layout.panel.y + layout.panel.h - 24.0,
+            layout.panel.y + layout.panel.h + 16.0,
             13.0,
             theme.muted(),
         );
@@ -5483,7 +6020,7 @@ impl AsciiApp {
         };
         if let Some(dialogue) = self.game.dialogue_view(provider) {
             let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
-            let layout = NpcInteractionLayout::new(width, height);
+            let layout = self.npc_layout(width, height);
             let toggle = self.controls.pressed(Action::MenuLeft, input)
                 || self.controls.pressed(Action::MenuRight, input)
                 || (input.pressed.contains(&controls::Binding::MouseLeft)
@@ -5501,7 +6038,7 @@ impl AsciiApp {
             }
         }
         let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
-        let layout = NpcInteractionLayout::new(width, height);
+        let layout = self.npc_layout(width, height);
         let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
         let has_both = !interaction.services.is_empty() && !interaction.quests.is_empty();
         let mode_hovered = has_both
@@ -5617,6 +6154,16 @@ impl AsciiApp {
                 NpcTradeMode::Gamble => gambles.len(),
             };
             if entries > 0 {
+                if input.wheel_y != 0.0 {
+                    let steps = wheel_steps(input.wheel_y);
+                    self.npc_trade_selection = if input.wheel_y > 0.0 {
+                        self.npc_trade_selection.saturating_sub(steps)
+                    } else {
+                        self.npc_trade_selection
+                            .saturating_add(steps)
+                            .min(entries - 1)
+                    };
+                }
                 if self.controls.pressed(Action::MenuUp, input) {
                     self.npc_trade_selection = self
                         .npc_trade_selection
@@ -5647,9 +6194,47 @@ impl AsciiApp {
             if clicked && let Some(index) = row_hovered {
                 self.npc_trade_selection = index;
             }
+            let selected_item = match self.npc_trade_mode {
+                NpcTradeMode::Buy => offers
+                    .get(self.npc_trade_selection)
+                    .map(|v| (&v.item, None))
+                    .or_else(|| {
+                        resale
+                            .get(self.npc_trade_selection.saturating_sub(offers.len()))
+                            .map(|v| (&v.item, v.magic_modifiers.clone()))
+                    }),
+                NpcTradeMode::Sell => sellable
+                    .get(self.npc_trade_selection)
+                    .map(|v| (&v.item, v.magic_modifiers.clone())),
+                NpcTradeMode::Gamble => gambles
+                    .get(self.npc_trade_selection)
+                    .map(|v| (&v.item, None)),
+            };
+            let purchased_name = selected_item
+                .as_ref()
+                .map(|(id, bonus)| self.trade_item_name(self.npc_trade_mode, id, bonus.clone()))
+                .unwrap_or_default();
+            let inspect_hovered = input
+                .pointer
+                .is_some_and(|p| layout.merchant_inspect().contains(p.into()));
+            if clicked && inspect_hovered || self.controls.pressed(Action::Inspect, input) {
+                if let Some((id, bonus)) = selected_item {
+                    self.ux.item_card = Some((
+                        purchased_name,
+                        self.item_card_lines(
+                            id,
+                            bonus,
+                            self.npc_trade_mode == NpcTradeMode::Gamble,
+                        ),
+                    ));
+                    self.ux.item_scroll.offset = 0.0;
+                    self.ux.comparison_slot = None;
+                }
+                return;
+            }
             let service_hovered = input
                 .pointer
-                .is_some_and(|point| layout.service.contains(point.into()));
+                .is_some_and(|point| layout.merchant_action().contains(point.into()));
             let close_hovered = input
                 .pointer
                 .is_some_and(|point| layout.close.contains(point.into()));
@@ -5717,8 +6302,8 @@ impl AsciiApp {
                 }
                 CommandOutcome::Applied | CommandOutcome::AppliedWithoutTime => {
                     self.npc_interaction_message = match self.npc_trade_mode {
-                        NpcTradeMode::Buy => "Achat effectué.".to_owned(),
-                        NpcTradeMode::Sell => "Vente effectuée.".to_owned(),
+                        NpcTradeMode::Buy => format!("Reçu : {purchased_name}."),
+                        NpcTradeMode::Sell => format!("Vendu : {purchased_name}."),
                         NpcTradeMode::Gamble => {
                             "Pari remporté : les propriétés sont maintenant révélées.".to_owned()
                         }
@@ -5865,8 +6450,18 @@ impl AsciiApp {
             return;
         }
         if !service_available {
-            self.npc_interaction_message =
-                "Ce service n'exige aucune action de votre part pour le moment.".to_owned();
+            self.npc_interaction_message = match interaction.services.first() {
+                Some(NpcService::Treatment {
+                    current_integrity,
+                    maximum_integrity,
+                    ..
+                }) if current_integrity < maximum_integrity => {
+                    "Vous n'avez pas assez de crédits pour récupérer un PV."
+                }
+                Some(NpcService::Treatment { .. }) => "Vos PV sont déjà au maximum.",
+                _ => "Ce service n'exige aucune action de votre part pour le moment.",
+            }
+            .to_owned();
             return;
         }
         let command = if matches!(
@@ -5884,12 +6479,15 @@ impl AsciiApp {
                 self.npc_interaction_message = command_rejection_message(reason).to_owned();
             }
             CommandOutcome::Applied | CommandOutcome::AppliedWithoutTime => {
-                self.npc_interaction_message = if matches!(
-                    interaction.services.first(),
-                    Some(NpcService::Treatment { .. })
-                ) {
-                    "Soin terminé. Le paiement et la récupération des PV sont enregistrés."
-                        .to_owned()
+                self.npc_interaction_message = if let Some(NpcService::Treatment {
+                    restore_amount,
+                    price,
+                    ..
+                }) = interaction.services.first()
+                {
+                    format!(
+                        "Soin terminé : vous récupérez {restore_amount} PV pour {price} crédits."
+                    )
                 } else {
                     "La pièce est confiée au technicien. La simulation de maintenance prend le relais."
                         .to_owned()
@@ -5921,7 +6519,7 @@ impl AsciiApp {
             return;
         };
         let theme = UiTheme;
-        let layout = NpcInteractionLayout::new(self.ui_width(), self.ui_height());
+        let layout = self.npc_layout(self.ui_width(), self.ui_height());
         draw_rectangle(
             0.0,
             0.0,
@@ -6238,22 +6836,25 @@ impl AsciiApp {
                 theme.accent(),
             );
         }
+        if let Some(NpcService::Treatment { restore_amount, .. }) = interaction.services.first()
+            && let Some(player) = self.game.actors().get(self.game.player_id())
+        {
+            draw_text(
+                format!(
+                    "Après le soin : {} / {} PV",
+                    (player.integrity() + restore_amount).min(player.maximum_integrity()),
+                    player.maximum_integrity()
+                ),
+                x + 13.0,
+                service_card.bottom() - 12.0,
+                15.0,
+                theme.accent(),
+            );
+        }
         let available = npc_service_available(&interaction);
-        let treatment = matches!(
-            interaction.services.first(),
-            Some(NpcService::Treatment { .. })
-        );
         theme.dialogue_action_with_icon(
             layout.service,
-            if treatment && available {
-                "Recevoir le soin"
-            } else if treatment {
-                "Soin indisponible"
-            } else if available {
-                "Confier la pièce"
-            } else {
-                "Aucune action requise"
-            },
+            &npc_service_action_label(&interaction),
             UiIcon::Confirm,
             self.menu_focus.hovered == Some(0),
             available,
@@ -6491,8 +7092,38 @@ impl AsciiApp {
                 NpcTradeMode::Gamble => format!("Parier · {price} cr"),
             },
         );
+        theme.button(
+            layout.merchant_inspect(),
+            "Examiner [F4]",
+            false,
+            false,
+            count > 0,
+            ButtonTone::Secondary,
+        );
+        if !enabled && self.npc_interaction_message.is_empty() {
+            draw_rectangle(
+                x,
+                layout.service.y - 28.0,
+                layout.panel.w - 44.0,
+                22.0,
+                theme.surface(),
+            );
+            draw_text(
+                if count == 0 {
+                    "Aucun objet disponible"
+                } else if self.npc_trade_mode == NpcTradeMode::Sell {
+                    "La marchande n'a pas assez de crédits"
+                } else {
+                    "Crédits insuffisants ou stock épuisé"
+                },
+                x,
+                layout.service.y - 10.0,
+                14.0,
+                theme.attention(),
+            );
+        }
         theme.dialogue_action_with_icon(
-            layout.service,
+            layout.merchant_action(),
             &action,
             UiIcon::Confirm,
             self.menu_focus.hovered == Some(0),
@@ -6639,13 +7270,16 @@ impl AsciiApp {
             }
             NpcRole::Healer => match interaction.services.first() {
                 Some(NpcService::Treatment {
-                    restore_amount: 0,
+                    current_integrity,
+                    maximum_integrity,
                     routine,
                     ..
-                }) => format!(
+                }) if current_integrity >= maximum_integrity => format!(
                     "Vos constantes sont stables. Aucun soin n'est nécessaire pour le moment. {}",
                     clinic_routine_dialogue(*routine)
                 ),
+                Some(NpcService::Treatment { restore_amount: 0, .. }) =>
+                    "Vous n'avez pas assez de crédits pour un soin.".to_owned(),
                 Some(NpcService::Treatment {
                     restore_amount,
                     price,
@@ -6767,25 +7401,20 @@ impl AsciiApp {
             ),
             Some(NpcService::Treatment {
                 player_credits,
-                clinic_credits,
                 current_integrity,
                 maximum_integrity,
-                maximum_restoration,
                 restore_amount,
                 price,
-                routine,
+                ..
             }) => (
-                if *restore_amount == 0 {
-                    "ÉTAT STABLE".to_owned()
-                } else if *player_credits < *price {
+                if current_integrity >= maximum_integrity {
+                    "PV AU MAXIMUM".to_owned()
+                } else if *restore_amount == 0 {
                     "CRÉDITS INSUFFISANTS".to_owned()
                 } else {
                     "SOIN DISPONIBLE".to_owned()
                 },
-                format!(
-                    "PV {current_integrity}/{maximum_integrity} · jusqu'à {maximum_restoration} PV par soin · coût actuel {price} · portefeuille {player_credits} · caisse {clinic_credits} · {}",
-                    clinic_routine_label(*routine)
-                ),
+                format!("PV {current_integrity}/{maximum_integrity}. Vous avez {player_credits} crédits."),
                 if *restore_amount > 0 && *player_credits >= *price {
                     theme.accent()
                 } else {
@@ -6853,7 +7482,7 @@ impl AsciiApp {
             self.ui_height(),
             Color::from_rgba(0, 4, 7, 205),
         );
-        theme.card(layout.panel, true);
+        theme.panel(layout.panel);
         draw_text_bold(
             "TECHNIQUES ACTIVES",
             layout.panel.x + 18.0,
@@ -6863,8 +7492,9 @@ impl AsciiApp {
         );
         let hint = if self.technique_menu_message.is_empty() {
             format!(
-                "{} ou Entrée : utiliser · Échap : fermer",
-                self.controls.label(Action::QuickTechniques)
+                "{} : utiliser · {} : fiche complète · Échap : fermer",
+                self.controls.label(Action::Learn),
+                self.controls.label(Action::Inspect)
             )
         } else {
             self.technique_menu_message.clone()
@@ -6902,9 +7532,6 @@ impl AsciiApp {
                     },
                 );
             }
-            if selected {
-                draw_rectangle(row.x, row.y, 3.0, row.h, theme.focus());
-            }
             draw_wrapped_text(
                 &self.technique_name(id),
                 row.x + 11.0,
@@ -6918,15 +7545,12 @@ impl AsciiApp {
                     theme.text()
                 },
             );
-            let discipline = self
-                .game
-                .rules()
-                .skills
-                .technique(id)
-                .map(|definition| self.discipline_name(definition.discipline()))
-                .unwrap_or_else(|| "Discipline inconnue".to_owned());
+            let (cost, blocked) = self.quick_technique_status(id);
+            let status = blocked
+                .as_ref()
+                .map_or(cost.clone(), |why| format!("{why} · {cost}"));
             draw_wrapped_text(
-                &format!("{} · {discipline}", technical_reference(id)),
+                &status,
                 row.x + 22.0,
                 row.y + 35.0,
                 row.w - 33.0,
@@ -6954,7 +7578,7 @@ impl AsciiApp {
         for (index, (button, label)) in layout
             .actions
             .iter()
-            .zip(["UTILISER", "ANNULER"])
+            .zip(["Utiliser", "Fiche complète", "Fermer"])
             .enumerate()
         {
             theme.button_with_icon(
@@ -6962,13 +7586,19 @@ impl AsciiApp {
                 label,
                 if index == 0 {
                     UiIcon::Use
+                } else if index == 1 {
+                    UiIcon::Help
                 } else {
                     UiIcon::Cancel
                 },
                 ButtonState::new(
                     self.menu_focus.hovered == Some(techniques.len() + index),
                     false,
-                    true,
+                    index != 0
+                        || self
+                            .quick_technique_status(&techniques[self.technique_menu_selection])
+                            .1
+                            .is_none(),
                     if index == 0 {
                         ButtonTone::Primary
                     } else {
@@ -7028,9 +7658,6 @@ impl AsciiApp {
                         theme.surface_raised()
                     },
                 );
-            }
-            if selected {
-                draw_rectangle(row.x, row.y, 3.0, row.h, theme.focus());
             }
             let state = self
                 .game
@@ -7153,6 +7780,14 @@ impl AsciiApp {
                             || self.game.active_resident(entity)
                             || self.game.active_quest_provider(entity)
                             || self.game.dialogue_view(entity).is_some()
+                            || self
+                                .game
+                                .actors()
+                                .get(entity)
+                                .and_then(Actor::ai)
+                                .is_some_and(|ai| {
+                                    ai.behavior == project_rl::ai::AiBehavior::Riveter
+                                })
                     })
                     || self
                         .game
@@ -7268,6 +7903,16 @@ impl AsciiApp {
                 format!("Ramasser : {name}")
             }
             ContextChoice::Interact(position) => {
+                if self
+                    .game
+                    .actors()
+                    .entity_at(position)
+                    .and_then(|id| self.game.actors().get(id))
+                    .and_then(Actor::ai)
+                    .is_some_and(|ai| ai.behavior == project_rl::ai::AiBehavior::Riveter)
+                {
+                    return "Arrêter le chantier : Riveuse".to_owned();
+                }
                 let actor_name = self.game.actors().entity_at(position).and_then(|entity| {
                     self.game
                         .current_zone()
@@ -7292,7 +7937,12 @@ impl AsciiApp {
                         .to_owned()
                     }
                 });
-                format!("Interagir : {name} ({}, {})", position.x, position.y)
+                format!(
+                    "Interagir : {name} · {}",
+                    self.game.player_position().map_or("à proximité", |origin| {
+                        approximate_direction(origin, position)
+                    })
+                )
             }
         }
     }
@@ -7318,10 +7968,14 @@ impl AsciiApp {
                     .contains(point.into())
             })
         });
-        if let Some(index) = hovered {
-            menu.selected = index;
-        }
         let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
+        self.menu_focus.update(
+            hovered,
+            &mut menu.selected,
+            clicked,
+            self.controls.pressed(Action::MenuUp, input)
+                || self.controls.pressed(Action::MenuDown, input),
+        );
         let confirmed = self.controls.pressed(Action::Interact, input)
             || self.controls.pressed(Action::Learn, input)
             || clicked && hovered.is_some();
@@ -7408,16 +8062,18 @@ impl AsciiApp {
         } else {
             0.0
         };
-        let expanded_height = screen_height() - 111.0 * ui_scale - companion_height;
+        let has_alert = self.visible_alert_summary().is_some();
+        let wide_top = if has_alert { 76.0 } else { 7.0 };
+        let expanded_height = screen_height() - (wide_top + 104.0) * ui_scale - companion_height;
         let wide_hud = terminal_status_panel(
             Rect::new(20.0, 7.0 * ui_scale, screen_width() - 40.0, expanded_height),
             ui_scale,
         )
         .is_some();
-        let top = if self.visible_alert_summary().is_some() || !wide_hud {
-            76.0 * ui_scale
+        let top = if !wide_hud {
+            (110.0 + if has_alert { 66.0 } else { 0.0 }) * ui_scale
         } else {
-            7.0 * ui_scale
+            wide_top * ui_scale
         };
         Rect::new(
             20.0,
@@ -7481,6 +8137,61 @@ impl AsciiApp {
             expeditions.without_surface_cast_metadata()
         } else {
             expeditions
+        };
+        let regional_worlds = if version < FIRST_LAYER_ENCOUNTERS_GENERATION_VERSION {
+            regional_worlds.without_first_layer_encounters_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < FIRST_LAYER_LANDSCAPES_GENERATION_VERSION {
+            regional_worlds.without_first_layer_landscapes_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < FIRST_LAYER_PLAN_GENERATION_VERSION {
+            regional_worlds.without_first_layer_plan_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < DEPTH_DISTRIBUTION_GENERATION_VERSION {
+            regional_worlds.without_depth_distribution_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < BESTIARY_BATCH_GENERATION_VERSION {
+            regional_worlds.without_bestiary_batch_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < MARSH_SPITTER_GENERATION_VERSION {
+            regional_worlds.without_marsh_spitter_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < STRANGE_FAUNA_GENERATION_VERSION {
+            regional_worlds.without_strange_fauna_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < LAYER_BALANCE_GENERATION_VERSION {
+            regional_worlds.without_layer_balance_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < DEEP_ENCOUNTERS_GENERATION_VERSION {
+            regional_worlds.without_deep_encounters_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < CAVE_ANEMONE_GENERATION_VERSION {
+            regional_worlds.without_cave_anemone_metadata()
+        } else {
+            regional_worlds
+        };
+        let regional_worlds = if version < UNDERGROUND_FAUNA_GENERATION_VERSION {
+            regional_worlds.without_underground_fauna_metadata()
+        } else {
+            regional_worlds
         };
         let regional_worlds = if version < SURFACE_DENSITY_GENERATION_VERSION {
             regional_worlds.without_surface_density_metadata()
@@ -8503,6 +9214,7 @@ impl AsciiApp {
             npc_quest_selection: 0,
             context_menu: None,
             legend_open: false,
+            ux: ux::UxState::default(),
             npc_vision_overlay_open: false,
             controls: Controls::preset(controls::Layout::Qwerty, KeySemantics::native()),
             movement_repeat: controls::MovementRepeater::default(),
@@ -8596,7 +9308,7 @@ impl AsciiApp {
                     Color::from_rgba(105, 205, 238, 255)
                 } else if role.is_some() || merchant || clinic || resident {
                     Color::from_rgba(112, 207, 190, 255)
-                } else if matches!(glyph, 'G' | 'N') {
+                } else if matches!(glyph, 'G' | 'N' | 'I') {
                     Color::from_rgba(161, 204, 137, 255)
                 } else if destructible {
                     if glyph == 'q' {
@@ -8684,6 +9396,18 @@ impl AsciiApp {
                     "core:moss_grazer" => return 'G',
                     "core:rubble_nibbler" => return 'N',
                     "core:bone_breaker" => return 'K',
+                    "core:armored_worm" => return 'W',
+                    "core:cave_anemone" => return 'J',
+                    "core:fault_howler" => return 'Q',
+                    "core:sentinel_projector" => return 'P',
+                    "core:watcher" => return 'U',
+                    "core:spectre" => return 'Z',
+                    "core:marsh_spitter" => return 'O',
+                    "core:cave_scaled" => return 'C',
+                    "core:void_maw" => return 'D',
+                    "core:laggard" => return 'F',
+                    "core:ruin_bat" => return 'H',
+                    "core:riveter" => return 'I',
                     _ => {}
                 }
             }
@@ -8798,6 +9522,15 @@ impl AsciiApp {
             return Some(self.equipment_name(stack.item(), stack.magic_modifiers()));
         }
         let entity = self.game.actors().entity_at(position)?;
+        if self
+            .game
+            .actors()
+            .get(entity)
+            .and_then(Actor::ai)
+            .is_some_and(|ai| ai.behavior == project_rl::ai::AiBehavior::Riveter)
+        {
+            return Some("Riveuse".to_owned());
+        }
         if let Some(name) = self
             .game
             .current_zone()
@@ -8900,9 +9633,32 @@ impl AsciiApp {
     fn primary_objective(&self) -> Option<String> {
         if self.test_lab {
             return Some(format!(
-                "LABORATOIRE · {} : variantes d'équipement · Échap : réinitialiser / retour",
+                "LABORATOIRE · {} : choisir un essai · {} : équipement",
+                self.controls.label(Action::Laboratory),
                 self.controls.label(Action::Inventory)
             ));
+        }
+        if let Some(id) = &self.ux.tracked_quest
+            && let Some(entry) = self
+                .game
+                .quest_journal()
+                .iter()
+                .find(|e| &e.quest.id == id && e.quest.status != QuestStatus::Completed)
+        {
+            return Some(if entry.quest.status == QuestStatus::ReadyToComplete {
+                format!(
+                    "Objectif · Retourner parler à {}",
+                    self.quest_giver_name(entry)
+                )
+            } else {
+                format!(
+                    "Objectif · {} · {}",
+                    self.texts
+                        .resolve(DISPLAY_LOCALE, &entry.quest.title_key)
+                        .unwrap_or("Quête suivie"),
+                    self.quest_objective_text(&entry.quest.objective)
+                )
+            });
         }
         if let Some(objective) = self.intro_primary_objective() {
             return Some(objective.to_owned());
@@ -8950,7 +9706,37 @@ impl AsciiApp {
             .rev()
             .map(|message| (message.clone(), false))
             .collect::<Vec<_>>();
-        let Some(objective) = self.primary_objective() else {
+        let onboarding = if !self.test_lab && self.game.turn() < 30 {
+            if !self.ux.moved && self.game.turn() == 0 {
+                Some(format!(
+                    "Se déplacer : {} {} {} {} · {} : aide",
+                    self.controls.label(Action::MoveNorth),
+                    self.controls.label(Action::MoveWest),
+                    self.controls.label(Action::MoveSouth),
+                    self.controls.label(Action::MoveEast),
+                    self.controls.label(Action::Legend)
+                ))
+            } else if !self.ux.interacted && !self.context_choices().is_empty() {
+                Some(format!(
+                    "{} : interagir à proximité",
+                    self.controls.label(Action::Interact)
+                ))
+            } else if !self.ux.targeted
+                && self.selected_target.is_none()
+                && !self.visible_targets().is_empty()
+            {
+                Some(format!(
+                    "{} ou clic : choisir une cible · {} : attaquer",
+                    self.controls.label(Action::CycleTarget),
+                    self.controls.label(Action::Attack)
+                ))
+            } else {
+                None
+            }
+        } else {
+            None
+        };
+        let Some(objective) = self.primary_objective().or(onboarding) else {
             return recent;
         };
         if let Some((_, highlighted)) = recent.iter_mut().find(|(line, _)| line == &objective) {
@@ -9069,7 +9855,10 @@ impl AsciiApp {
         let current_zone = &self.game.current_zone()?.id;
         let coordinate = *self.regional_zones.get(current_zone)?;
         let world_id: ContentId = "core:simulation_overworld".parse().ok()?;
-        let world = self.regional_worlds.get(&world_id)?;
+        let world = self
+            .regional_worlds
+            .get(&world_id)?
+            .resolved_for_seed(self.seed);
         let observer = self.game.player_position()?;
         let neighbors = world.vertical_neighbors(coordinate);
         let (direction, target) = neighbors
@@ -9079,6 +9868,12 @@ impl AsciiApp {
                     world.map_size_at(coordinate),
                     *direction,
                 );
+                if self.generation_version >= FIRST_LAYER_PLAN_GENERATION_VERSION
+                    && coordinate.depth > 0
+                    && !self.game.player_visibility().is_explored(target)
+                {
+                    return None;
+                }
                 // Compatibility catalogues may expose more links than the active
                 // generation. Only a passage installed in the runtime may be shown.
                 self.game.passage(target).map(|_| (*direction, target))
@@ -9116,7 +9911,10 @@ impl AsciiApp {
         let current_zone = &self.game.current_zone()?.id;
         let coordinate = *self.regional_zones.get(current_zone)?;
         let world_id: ContentId = "core:simulation_overworld".parse().ok()?;
-        let world = self.regional_worlds.get(&world_id)?;
+        let world = self
+            .regional_worlds
+            .get(&world_id)?
+            .resolved_for_seed(self.seed);
         let destination = world
             .vertical_links()
             .iter()
@@ -9132,7 +9930,20 @@ impl AsciiApp {
                 )
             })?;
         let direction = regional_route_direction(coordinate, destination)?;
-        let target = if coordinate == RegionCoord::new(0, 0, 0) {
+        let target = if self.generation_version >= FIRST_LAYER_PLAN_GENERATION_VERSION
+            && coordinate.depth > 0
+        {
+            // Do not turn the internal layer plan into an omniscient compass.
+            // A return indication follows visited regions only, after the
+            // player has actually crossed the descent at least once.
+            let lower = world.vertical_neighbor(destination, RegionVerticalDirection::Down)?;
+            let lower_id = crate::test_regional::zone_id(&world, lower).ok()?;
+            if !self.zone_decor.contains_key(&lower_id) {
+                return None;
+            }
+            let destination_id = crate::test_regional::zone_id(&world, destination).ok()?;
+            self.game.next_visited_passage_towards(&destination_id)?
+        } else if coordinate == RegionCoord::new(0, 0, 0) {
             Self::hub_regional_passage(direction)?
         } else {
             project_rl::world::generation::cardinal_passage(
@@ -9243,7 +10054,7 @@ impl AsciiApp {
             .regional_worlds
             .get(&world_id)
             .ok_or("Atlas régional de départ absent.")?
-            .clone();
+            .resolved_for_seed(self.seed);
         let descriptor = world
             .region(self.seed, coordinate)
             .ok_or("Destination située hors de l'atlas régional.")?;
@@ -9457,10 +10268,14 @@ impl AsciiApp {
         if self.materialize_deferred_destination_for(&command).is_err() {
             self.push_log("Le passage ne mène nulle part pour le moment.".to_owned());
         }
+        let moved = matches!(command, GameCommand::Move(_));
+        let interacted = matches!(command, GameCommand::Interact { .. } | GameCommand::PickUp);
         let recorded = RecordedCommand::record(&command);
         let previous_zone = self.game.current_zone().map(|zone| zone.id.clone());
         let outcome = self.game.process_player_command(command);
         if !matches!(outcome, CommandOutcome::Rejected(_)) {
+            self.ux.moved |= moved;
+            self.ux.interacted |= interacted;
             self.history.push(recorded);
             let current_zone = self.game.current_zone().map(|zone| zone.id.clone());
             if previous_zone != current_zone
@@ -9526,6 +10341,10 @@ impl AsciiApp {
                 continue;
             }
             match event {
+                GameEvent::MaintainedEnergyChanged { technique, amount, reserved } => {
+                    let name = self.technique_name(&technique);
+                    self.push_log(format!("{name} · {amount} E {}.", if reserved { "réservés" } else { "libérés" }));
+                }
                 GameEvent::WeaponFlameConeResolved { origin, cells, .. } => {
                     let cells: Vec<_> = cells.into_iter().filter(|cell| self.game.player_visibility().is_visible(cell.position)).collect();
                     if let Ok(cue) = VisualCue::from_propagation(visual_cue_id("core:weapon_flame_cone"), origin, &cells) {
@@ -10043,7 +10862,15 @@ impl AsciiApp {
                         .map(|id| self.item_name(id))
                         .unwrap_or_else(|| "Attaque".to_owned());
                     let visibility = self.game.player_visibility();
-                    let id = weapon.unwrap_or_else(|| visual_cue_id("core:generic_attack"));
+                    let id = weapon.unwrap_or_else(|| visual_cue_id(match self.game.actors().get(attacker).and_then(Actor::ai).map(|ai| ai.behavior) {
+                        Some(project_rl::ai::AiBehavior::TelegraphedResonator) => "core:howler_pulse",
+                        Some(project_rl::ai::AiBehavior::TelegraphedProjector) => "core:sentinel_projection",
+                        Some(project_rl::ai::AiBehavior::TelegraphedEcho) => "core:spectre_echo",
+                        Some(project_rl::ai::AiBehavior::TelegraphedSpitter) => "core:marsh_spit",
+                        Some(project_rl::ai::AiBehavior::ExpandingRing) => "core:void_ring",
+                        Some(project_rl::ai::AiBehavior::Riveter) => "core:rivet_line",
+                        _ => "core:generic_attack",
+                    }));
                     let cue = if affected_cells.len() > 1 {
                         VisualCue::world(
                             id,
@@ -10066,6 +10893,9 @@ impl AsciiApp {
                         player_attack_confirmation =
                             Some(format!("ATTAQUE CONFIRMÉE · {weapon_name}"));
                     }
+                }
+                GameEvent::MatterSpent { entity, amount, remaining } if entity == self.game.player_id() => {
+                    self.push_log(format!("Munitions utilisées : {amount}. Réserve : {remaining}."));
                 }
                 GameEvent::AmmunitionSpent {
                     entity,
@@ -10554,9 +11384,13 @@ impl AsciiApp {
                             visual_time,
                         );
                     }
-                    self.push_log(format!(
+                    let mut message = format!(
                         "Niveau {level} atteint · points de compétence +{skill_points_awarded}"
-                    ));
+                    );
+                    if self.rules.player_hit_points_per_level > 0 {
+                        message.push_str(&format!(" · PV maximum +{}", self.rules.player_hit_points_per_level));
+                    }
+                    self.push_log(message);
                 }
                 GameEvent::TechniqueLearned {
                     technique,
@@ -11428,6 +12262,7 @@ impl AsciiApp {
                 GameEvent::EnergySpent {
                     amount, remaining, ..
                 } => {
+                    if amount == 0 { continue; }
                     if let Some(at) = self.game.player_position() {
                         self.push_floating_message(
                             format!("−{amount} E"),
@@ -12181,6 +13016,7 @@ impl AsciiApp {
                     self.push_log(format!("Diagnostic · {summary}"));
                 }
                 GameEvent::StatusApplied {
+                    source,
                     target,
                     status,
                     stacks,
@@ -12203,15 +13039,31 @@ impl AsciiApp {
                     let duration = remaining_turns
                         .map(|turns| format!("{turns} tour(s)"))
                         .unwrap_or_else(|| "permanent".to_owned());
-                    if application == StatusApplyKind::Ignored {
+                    let anemone_grasp = status.as_str() == "core:locomotion_hindered"
+                        && source.and_then(|id| self.game.actors().get(id)).and_then(Actor::ai)
+                            .is_some_and(|ai| ai.behavior == project_rl::ai::AiBehavior::TelegraphedGrasper);
+                    if anemone_grasp && application != StatusApplyKind::Ignored {
+                        self.push_log(if target == self.game.player_id() {
+                            "Les vrilles vous entravent. Vos déplacements sont ralentis."
+                        } else {
+                            "Les vrilles ralentissent la cible."
+                        }.to_owned());
+                    } else if status.as_str() == "core:locomotion_hindrance_protection"
+                        && application != StatusApplyKind::Ignored {
+                        self.push_log(if target == self.game.player_id() {
+                            "Vous résistez brièvement aux entraves."
+                        } else {
+                            "La cible résiste brièvement aux entraves."
+                        }.to_owned());
+                    } else if application == StatusApplyKind::Ignored {
                         self.push_log(format!(
                             "{} déjà actif sur {subject} · durée inchangée ({duration}).",
-                            display_content_name(&status),
+                            status_display_name(&status),
                         ));
                     } else {
                         self.push_log(format!(
                             "{} sur {subject} ×{stacks} ({duration})",
-                            display_content_name(&status),
+                            status_display_name(&status),
                         ));
                     }
                     if let Some(position) = self.game.actors().get(target).map(Actor::position)
@@ -12248,8 +13100,8 @@ impl AsciiApp {
                 } => {
                     self.push_log(format!(
                         "{} bloqué par {}.",
-                        display_content_name(&status),
-                        display_content_name(&blocking_status)
+                        status_display_name(&status),
+                        status_display_name(&blocking_status)
                     ));
                     if let Some(position) = self.game.actors().get(target).map(Actor::position)
                         && self.game.player_visibility().is_visible(position)
@@ -12288,10 +13140,15 @@ impl AsciiApp {
                     } else {
                         "la cible"
                     };
-                    self.push_log(format!(
-                        "{} expire sur {subject}",
-                        display_content_name(&status)
-                    ));
+                    if status.as_str() == "core:locomotion_hindered" {
+                        self.push_log(if target == self.game.player_id() {
+                            "Vous n'êtes plus entravé."
+                        } else {
+                            "La cible n'est plus entravée."
+                        }.to_owned());
+                    } else {
+                        self.push_log(format!("{} expire sur {subject}", status_display_name(&status)));
+                    }
                     if let Some(position) = self.game.actors().get(target).map(Actor::position)
                         && self.game.player_visibility().is_visible(position)
                     {
@@ -12432,8 +13289,51 @@ impl AsciiApp {
                         self.item_name(&definition)
                     ));
                 }
+                GameEvent::RiveterStopped { at, .. } => {
+                    if self.game.player_visibility().is_visible(at) {
+                        self.push_log("La Riveuse est arrêtée.".to_owned());
+                    }
+                }
                 GameEvent::AttackTelegraphed { attacker, origin, target_at } => {
                     if self.game.player_visibility().is_visible(origin) {
+                        let behavior = self.game.actors().get(attacker).and_then(Actor::ai).map(|ai| ai.behavior);
+                        let announcement = match behavior {
+                            Some(project_rl::ai::AiBehavior::ExpandingRing) => Some("La Gueule du vide se dilate. Le centre et les cases non marquées restent sûrs."),
+                            Some(project_rl::ai::AiBehavior::AlternatingStalker) => Some("Le Traînard se tend. Quittez la case marquée !"),
+                            Some(project_rl::ai::AiBehavior::NestDiver) => Some("La Chauve-souris des ruines prépare son piqué."),
+                            Some(project_rl::ai::AiBehavior::Riveter) => Some("La Riveuse reprend son travail. Contournez l'axe ou arrêtez-la au contact."),
+                            _ => None,
+                        };
+                        if let Some(text) = announcement { self.push_log(text.to_owned()); continue; }
+                        if behavior == Some(project_rl::ai::AiBehavior::TelegraphedEcho) {
+                            self.push_log("Le Spectre prépare une double frappe. Quittez les cases marquées !".to_owned());
+                            self.push_floating_message("ÉCHO".to_owned(), origin, FloatingMessageTone::Alert, visual_time);
+                            continue;
+                        }
+                        if behavior == Some(project_rl::ai::AiBehavior::TelegraphedSpitter) {
+                            self.push_log("Le Cracheur des mares prépare son jet. Quittez la case marquée !".to_owned());
+                            self.push_floating_message("JET".to_owned(), origin, FloatingMessageTone::Alert, visual_time);
+                            continue;
+                        }
+                        if matches!(behavior, Some(project_rl::ai::AiBehavior::TelegraphedResonator | project_rl::ai::AiBehavior::TelegraphedProjector)) {
+                            let howler = behavior == Some(project_rl::ai::AiBehavior::TelegraphedResonator);
+                            self.push_log(if howler { "Le Hurleur des failles se gonfle. Éloignez-vous ou abritez-vous !" } else { "La Sentinelle charge son projecteur. Sortez du cône !" }.to_owned());
+                            self.push_floating_message(if howler { "ONDE" } else { "CHARGE" }.to_owned(), origin, FloatingMessageTone::Alert, visual_time);
+                            continue;
+                        }
+                        if self.game.actors().get(attacker).and_then(Actor::ai)
+                            .is_some_and(|ai| ai.behavior == project_rl::ai::AiBehavior::TelegraphedGrasper) {
+                            self.push_log("L'Anémone des caves déploie ses vrilles. Éloignez-vous !".to_owned());
+                            self.push_floating_message("VRILLES".to_owned(), origin, FloatingMessageTone::Alert, visual_time);
+                            continue;
+                        }
+                        let sweep = self.game.actors().get(attacker).and_then(Actor::ai)
+                            .is_some_and(|ai| ai.behavior == project_rl::ai::AiBehavior::TelegraphedSweeper);
+                        if sweep {
+                            self.push_log("Le Ver cuirassé prépare un balayage. Sortez de la zone marquée !".to_owned());
+                            self.push_floating_message("BALAYAGE".to_owned(), origin, FloatingMessageTone::Alert, visual_time);
+                            continue;
+                        }
                         let bite = self.game.actors().get(attacker).and_then(Actor::ai)
                             .is_some_and(|ai| ai.behavior == project_rl::ai::AiBehavior::TelegraphedBiter);
                         self.push_log(if bite {
@@ -12443,6 +13343,17 @@ impl AsciiApp {
                         } else { "Un artilleur prépare son tir sur la case marquée.".to_owned() });
                         let cue_at = if bite && self.game.player_visibility().is_visible(target_at) { target_at } else { origin };
                         self.push_floating_message(if bite { "MORSURE" } else { "VISÉE" }.to_owned(), cue_at, FloatingMessageTone::Alert, visual_time);
+                    }
+                }
+                GameEvent::FaunaAlertRelayed { at, links, .. } => {
+                    for (from, to) in links {
+                        if let Some(cue) = crate::watcher_signals::perceived_link(from, to, |p| self.game.player_visibility().is_visible(p)) {
+                            self.visual_cues.play(cue, visual_time);
+                        }
+                    }
+                    if self.game.player_visibility().is_visible(at) {
+                        self.push_log("Le Guetteur alerte ses voisins.".to_owned());
+                        self.push_floating_message("ALERTE".to_owned(), at, FloatingMessageTone::Alert, visual_time);
                     }
                 }
                 GameEvent::AllyHealed { medic, target, amount } => {
@@ -12518,7 +13429,8 @@ impl AsciiApp {
         if let Some(notice) = level_up_notice
             && self.game.status() == RunStatus::Active
         {
-            self.open_level_up_screen(notice);
+            self.level_up_notice = Some(notice);
+            self.push_log(format!("Niveau {} atteint · {} points disponibles · {} pour les dépenser quand vous le souhaitez.", notice.level, self.game.player_progression().unspent_skill_points(), self.controls.label(Action::Skills)));
         }
     }
 
@@ -12654,6 +13566,10 @@ impl AsciiApp {
     }
 
     fn push_log(&mut self, message: String) {
+        self.ux.history.push((self.game.turn(), message.clone()));
+        if self.ux.history.len() > 600 {
+            self.ux.history.remove(0);
+        }
         self.log.push(message);
         if self.log.len() > LOG_CAPACITY {
             self.log.remove(0);
@@ -12661,6 +13577,7 @@ impl AsciiApp {
     }
 
     fn cycle_target(&mut self) {
+        self.ux.targeted = true;
         let targets = self.visible_targets();
         if targets.is_empty() {
             self.selected_target = None;
@@ -14005,6 +14922,18 @@ impl AsciiApp {
             'G' => "Dos-rond",
             'N' => "Grignoteur",
             'K' => "Brise-os",
+            'W' => "Ver cuirassé",
+            'J' => "Anémone des caves",
+            'Q' => "Hurleur des failles",
+            'P' => "Sentinelle · machine",
+            'U' => "Guetteur",
+            'Z' => "Spectre",
+            'O' => "Cracheur des mares",
+            'C' => "Écailleux des cavernes",
+            'D' => "Gueule du vide",
+            'F' => "Traînard",
+            'H' => "Chauve-souris des ruines",
+            'I' => "Riveuse",
             'X' => "Mannequin d'essai",
             'L' if self.test_lab => "Mannequin lourd",
             'A' if self.test_lab => "Mannequin ancré",
@@ -14013,11 +14942,24 @@ impl AsciiApp {
             _ => "Entité détectée",
         }
         .to_owned();
-        if let Some(level) = actor.tags().iter().find_map(|tag| {
-            tag.as_str()
-                .strip_prefix("core:fauna_level_")
-                .and_then(|level| level.parse::<u16>().ok())
-        }) {
+        if let Some(level) = actor
+            .tags()
+            .iter()
+            .find_map(|tag| {
+                tag.as_str()
+                    .strip_prefix("core:encounter_level_")
+                    .or_else(|| tag.as_str().strip_prefix("core:fauna_level_"))
+                    .and_then(|level| level.parse::<u16>().ok())
+            })
+            .or_else(|| {
+                actor
+                    .tags()
+                    .iter()
+                    .any(|tag| tag.as_str() == "core:sentinel_projector")
+                    .then(|| actor.defeat_reward().map(|reward| reward.threat_level))
+                    .flatten()
+            })
+        {
             name.push_str(&format!(" · niv. {level}"));
         }
         let mut effect_labels = actor
@@ -14116,361 +15058,47 @@ impl AsciiApp {
     }
 
     fn draw_player_status_panel(&self) {
-        let ui_scale = self.ui_scale();
-        let Some(panel) = terminal_status_panel(self.terminal_bounds(), ui_scale).map(|panel| {
-            Rect::new(
-                panel.x / ui_scale,
-                panel.y / ui_scale,
-                panel.w / ui_scale,
-                panel.h / ui_scale,
-            )
-        }) else {
-            return;
-        };
-        let Some(player) = self.game.actors().get(self.game.player_id()) else {
-            return;
-        };
-        let theme = UiTheme;
-        theme.hud_panel(panel);
-        let vertical_scale = ((panel.h - 24.0) / 672.0).clamp(0.65, 1.0);
-        let panel_y = |offset: f32| panel.y + offset * vertical_scale;
-        let x = panel.x + 14.0;
-        let width = panel.w - 28.0;
-        let progression = self.game.player_progression();
-        let active_weapon = self
-            .game
-            .equipped_player_weapon(self.active_weapon_slot)
-            .map(|weapon| {
-                let name = self
-                    .equipped_instance_name(self.active_weapon_slot)
-                    .unwrap_or_else(|| self.item_name(weapon.id()));
-                self.game
-                    .player_weapon_ammunition(weapon.id())
-                    .map_or(name.clone(), |(remaining, capacity)| {
-                        format!("{name} · MUN. {remaining}/{capacity}")
-                    })
-            })
-            .unwrap_or_else(|| "Vide".to_owned());
-        draw_text_bold("NIVEAU", x + 25.0, panel_y(30.0), 16.0, theme.text());
-        draw_ui_icon(
-            UiIcon::Level,
-            Rect::new(x, panel_y(14.0), 18.0, 18.0),
-            theme.accent(),
-        );
-        draw_text_bold(
-            progression.level().to_string(),
-            panel.x + panel.w - 34.0,
-            panel_y(30.0),
-            18.0,
-            theme.accent(),
-        );
-        let level = progression.level();
-        let thresholds = self.game.rules().progression.curve.cumulative_thresholds();
-        let previous = if level <= 1 {
-            0
-        } else {
-            thresholds
-                .get(usize::from(level.saturating_sub(2)))
-                .copied()
-                .unwrap_or(0)
-        };
-        let next = self
-            .game
-            .rules()
-            .progression
-            .curve
-            .next_threshold_after(level)
-            .unwrap_or(progression.experience().max(1));
-        let level_ratio = if next > previous {
-            (progression.experience().saturating_sub(previous) as f32 / (next - previous) as f32)
-                .clamp(0.0, 1.0)
-        } else {
-            1.0
-        };
-        let experience_rect = Rect::new(x, panel_y(43.0), width, 29.0);
-        draw_status_bar(
-            experience_rect,
-            "EXPÉRIENCE",
-            &format!("{}/{}", progression.experience(), next),
-            level_ratio,
-            UiIcon::Level,
-            theme.accent(),
-        );
-        draw_wrapped_text(
-            &skill_points_hud_label(progression.unspent_skill_points()),
-            x,
-            panel_y(93.0).max(experience_rect.bottom() + 13.0),
-            width,
-            2,
-            14,
-            theme.muted(),
-        );
-        draw_ui_icon(
-            UiIcon::Weapon,
-            Rect::new(x, panel_y(142.0), 18.0, 18.0),
-            theme.accent(),
-        );
-        draw_text_bold("ARME ACTIVE", x + 25.0, panel_y(158.0), 15.0, theme.muted());
-        draw_wrapped_text(
-            &active_weapon,
-            x,
-            panel_y(182.0),
-            width,
-            2,
-            14,
-            theme.text(),
-        );
-        if let Some(readiness) = self.active_effect_readiness() {
-            draw_wrapped_text(&readiness, x, panel_y(221.0), width, 1, 12, theme.accent());
-        }
-        draw_text_bold("RESSOURCES", x, panel_y(249.0), 15.0, theme.muted());
-
-        let mut y = panel_y(262.0);
-        let mut metric = |label: &str, value: String, ratio: f32, icon: UiIcon, color: Color| {
-            draw_status_bar(
-                Rect::new(x, y, width, 45.0),
-                label,
-                &value,
-                ratio,
-                icon,
-                color,
-            );
-            y += 56.0 * vertical_scale;
-        };
-        metric(
-            "PV",
-            format!("{}/{}", player.integrity(), player.maximum_integrity()),
-            normalized_ratio(player.integrity(), player.maximum_integrity()),
-            UiIcon::Health,
-            theme.success(),
-        );
-        let energy = self.game.player_energy();
-        metric(
-            "ÉNERGIE",
-            format!("{}/{}", energy.available(), energy.capacity()),
-            normalized_ratio(energy.available(), energy.capacity()),
-            UiIcon::Energy,
-            Color::new(0.54, 0.73, 0.91, 1.0),
-        );
-        if let Some(bandwidth) = self.game.player_bandwidth() {
-            metric(
-                "BANDE PASSANTE",
-                format!("{}/{}", bandwidth.available(), bandwidth.capacity()),
-                normalized_ratio(bandwidth.available(), bandwidth.capacity()),
-                UiIcon::Bandwidth,
-                theme.accent(),
-            );
-        }
-        if let Some(heat) = self.game.player_heat() {
-            metric(
-                "CHALEUR",
-                format!("{}/{}", heat.current(), heat.critical_threshold()),
-                normalized_ratio(heat.current(), heat.critical_threshold()),
-                UiIcon::Heat,
-                if heat.current() >= heat.alert_threshold() {
-                    theme.danger()
-                } else {
-                    theme.muted()
-                },
-            );
-        }
-        let player_id = self.game.player_id();
-        let armor = self
-            .game
-            .actor_armor_profile(player_id)
-            .map_or(0, ArmorProfile::after_fragilization);
-        let evasion = self.game.actor_evasion(player_id);
-        let stability = self.game.actor_stability(player_id);
-        let digital_defense = self.game.actor_digital_defense(player_id);
-        let resistances = player.resistances();
-        draw_ui_icon(
-            UiIcon::Armor,
-            Rect::new(x, y + 12.0, 16.0, 16.0),
-            theme.muted(),
-        );
-        draw_text_bold("DÉFENSES", x + 23.0, y + 27.0, 15.0, theme.muted());
-        y += 39.0 * vertical_scale;
-        let column_gap = 8.0;
-        let column_width = (width - column_gap) * 0.5;
-        let defense_value =
-            |value: Option<u16>| value.map_or_else(|| "—".to_owned(), |value| value.to_string());
-        draw_compact_stat(
-            Rect::new(x, y, column_width, 20.0),
-            "ARMURE",
-            &armor.to_string(),
-            theme.text(),
-            theme.muted(),
-        );
-        draw_compact_stat(
-            Rect::new(x + column_width + column_gap, y, column_width, 20.0),
-            "ESQUIVE",
-            &defense_value(evasion),
-            theme.text(),
-            theme.muted(),
-        );
-        y += (22.0 * vertical_scale).max(17.0);
-        draw_compact_stat(
-            Rect::new(x, y, column_width, 20.0),
-            "STABILITÉ",
-            &defense_value(stability),
-            theme.text(),
-            theme.muted(),
-        );
-        draw_compact_stat(
-            Rect::new(x + column_width + column_gap, y, column_width, 20.0),
-            "NUMÉRIQUE",
-            &defense_value(digital_defense),
-            theme.text(),
-            theme.muted(),
-        );
-        y += 31.0 * vertical_scale;
-        draw_text_bold("RÉSISTANCES", x, y + 11.0, 12.0, theme.muted());
-        y += 17.0 * vertical_scale;
-        for ((left_label, left_type), right) in [
-            (
-                ("THERMIQUE", DamageType::Thermal),
-                Some(("ÉLECTRIQUE", DamageType::Electrical)),
-            ),
-            (
-                ("CHIMIQUE", DamageType::Chemical),
-                Some(("RADIATION", DamageType::Radiation)),
-            ),
-            (("CORRUPTION", DamageType::Corruption), None),
-        ] {
-            draw_compact_stat(
-                Rect::new(x, y, column_width, 18.0),
-                left_label,
-                &resistance_percentage(resistances.get(left_type)),
-                theme.text(),
-                theme.muted(),
-            );
-            if let Some((right_label, right_type)) = right {
-                draw_compact_stat(
-                    Rect::new(x + column_width + column_gap, y, column_width, 18.0),
-                    right_label,
-                    &resistance_percentage(resistances.get(right_type)),
-                    theme.text(),
-                    theme.muted(),
-                );
-            }
-            y += (20.0 * vertical_scale).max(15.0);
+        let scale = self.ui_scale();
+        if let Some(panel) = terminal_status_panel(self.terminal_bounds(), scale) {
+            self.draw_resource_sidebar(Rect::new(
+                panel.x / scale,
+                panel.y / scale,
+                panel.w / scale,
+                panel.h / scale,
+            ));
         }
     }
 
     fn draw_header(&self) {
-        let theme = UiTheme;
-        let player_pv = self
-            .game
-            .actors()
-            .get(self.game.player_id())
-            .map(|actor| format!("{}/{}", actor.integrity(), actor.maximum_integrity()))
-            .unwrap_or_else(|| "0/--".to_owned());
-        let active_weapon = self
-            .game
-            .equipped_player_weapon(self.active_weapon_slot)
-            .map(|weapon| {
-                let name = self.item_name(weapon.id());
-                self.game
-                    .player_weapon_ammunition(weapon.id())
-                    .map_or(name.clone(), |(remaining, capacity)| {
-                        format!("{name} · MUN. {remaining}/{capacity}")
-                    })
-            })
-            .unwrap_or_else(|| "Vide".to_owned());
-        if let Some((local_alerts, security_alarms, remaining_turns)) = self.visible_alert_summary()
-        {
+        let compact = terminal_status_panel(self.terminal_bounds(), self.ui_scale()).is_none();
+        if compact {
+            self.draw_compact_resource_header();
+        }
+        if let Some((local, network, turns)) = self.visible_alert_summary() {
+            let y = if compact { 106.0 } else { 7.0 };
+            let rect = Rect::new(12.0, y, self.ui_width() - 24.0, 58.0);
             let pulse = if self.graphics.active.reduced_motion {
                 0.0
             } else {
                 ((get_time() * 4.0).sin() * 0.5 + 0.5) as f32
             };
-            UiTheme.hud_alert(Rect::new(12.0, 7.0, self.ui_width() - 24.0, 58.0), pulse);
-            let (warning, marker) = match (local_alerts, security_alarms) {
-                (local, 0) => (format!("ALERTE LOCALE · {local} source(s) visible(s)"), "!"),
-                (0, security) => (
-                    format!("ALARME RÉSEAU · {security} système(s) actif(s)"),
-                    "#",
-                ),
-                (local, security) => (
-                    format!("ALERTE LOCALE + RÉSEAU · {local} témoin(s) · {security} système(s)"),
-                    "!#",
-                ),
-            };
-            draw_circle(
-                35.0,
-                35.0,
-                14.0 + if self.graphics.active.high_contrast {
-                    0.0
-                } else {
-                    pulse * 2.0
-                },
-                Color::new(0.44, 0.12, 0.08, 0.94),
+            UiTheme.hud_alert(rect, pulse);
+            let warning =
+                format!("Alerte · {local} source(s) locale(s) · {network} alarme(s) réseau");
+            crate::ui_theme::draw_text_in_rect(
+                warning,
+                Rect::new(rect.x + 14.0, y + 7.0, rect.w - 28.0, 22.0),
+                18,
+                UiTheme.text(),
             );
-            draw_text_bold(
-                marker,
-                25.0,
-                45.0,
-                27.0,
-                Color::from_rgba(255, 225, 183, 255),
+            crate::ui_theme::draw_text_in_rect(
+                format!("Encore {turns} tour(s)"),
+                Rect::new(rect.x + 14.0, y + 33.0, rect.w - 28.0, 17.0),
+                14,
+                UiTheme.attention(),
             );
-            draw_text_bold(
-                &warning,
-                66.0,
-                32.0,
-                19.0,
-                Color::from_rgba(255, 237, 199, 255),
-            );
-            draw_text(
-                format!(
-                    "Encore {remaining_turns} tour(s) · Intégrité {player_pv} · Énergie {}/{}",
-                    self.game.player_energy().available(),
-                    self.game.player_energy().capacity(),
-                ),
-                66.0,
-                53.0,
-                15.0,
-                Color::from_rgba(255, 211, 163, 255),
-            );
-            return;
-        }
-
-        if terminal_status_panel(self.terminal_bounds(), self.ui_scale()).is_none() {
-            let progression = self.game.player_progression();
-            let gap = 6.0;
-            let width = (self.ui_width() - 24.0 - gap * 2.0) / 3.0;
-            let active_weapon = self
-                .active_effect_readiness()
-                .map_or(active_weapon.clone(), |readiness| {
-                    format!("{active_weapon} · {readiness}")
-                });
-            let state = format!(
-                "PV {player_pv} · Énergie {}/{}",
-                self.game.player_energy().available(),
-                self.game.player_energy().capacity()
-            );
-            for (index, (label, value, accent)) in [
-                (
-                    format!("NIVEAU {}", progression.level()),
-                    skill_points_hud_label(progression.unspent_skill_points()),
-                    theme.accent(),
-                ),
-                ("ÉTAT".to_owned(), state, theme.success()),
-                ("ARME ACTIVE".to_owned(), active_weapon, theme.focus()),
-            ]
-            .into_iter()
-            .enumerate()
-            {
-                draw_hud_card(
-                    Rect::new(12.0 + index as f32 * (width + gap), 7.0, width, 58.0),
-                    &label,
-                    &value,
-                    accent,
-                    self.graphics.active.high_contrast,
-                );
-            }
         }
     }
-
     fn draw_companion_bar(&self) {
         let companions = self.game.player_controlled_companions();
         let Some(entity) = companions.first().copied() else {
@@ -14492,11 +15120,12 @@ impl AsciiApp {
             DroneOrder::Escort { .. } => Some(CompanionBehavior::Follow),
             _ => None,
         };
-        let title = if companions.len() == 1 {
-            "DRONE".to_owned()
-        } else {
-            format!("DRONES · {}", companions.len())
-        };
+        let title = format!(
+            "Drone{} · {} [{}]",
+            if companions.len() > 1 { "s" } else { "" },
+            active_behavior.map_or("Ordre spécial", companion_behavior_label),
+            self.controls.label(Action::CompanionOrder)
+        );
         draw_text_bold(
             &title,
             layout.panel.x + 10.0,
@@ -14599,9 +15228,13 @@ impl AsciiApp {
             draw_text_bold(state, rect.x + 28.0, rect.y + 27.0, 18.0, state_color);
             draw_text(
                 format!(
-                    "{} case(s) couvertes · {} cible(s)",
+                    "{} case(s) · {}",
                     footprint.as_ref().map_or(0, |area| area.cells().len()),
-                    affected
+                    if affected == 0 {
+                        "Aucune cible dans la zone".to_owned()
+                    } else {
+                        format!("{affected} cible(s)")
+                    }
                 ),
                 rect.x + 28.0,
                 rect.y + 50.0,
@@ -14686,72 +15319,29 @@ impl AsciiApp {
                 UiIcon::Quest,
                 self.hud_action_hover[1],
             );
-            let hint_y = self.ui_height() - 94.0;
-            let mut hint_x = journal_button.x + journal_button.w + 14.0;
-            for (binding, label) in [
-                (self.controls.label(Action::Interact), "Interagir"),
-                (self.controls.label(Action::Attack), "Attaquer"),
-                (self.controls.label(Action::QuickTechniques), "Techniques"),
-                (self.controls.label(Action::Inventory), "Inventaire"),
-                (self.controls.label(Action::Legend), "Aide"),
-                ("ÉCHAP".to_owned(), "Menu"),
-            ] {
-                let icon = match label {
-                    "Interagir" => UiIcon::Interact,
-                    "Attaquer" => UiIcon::Attack,
-                    "Techniques" => UiIcon::Techniques,
-                    "Inventaire" => UiIcon::Inventory,
-                    "Aide" => UiIcon::Help,
-                    _ => UiIcon::Menu,
-                };
-                let display_label =
-                    if self.ui_width() < 1140.0 && !matches!(label, "Interagir" | "Attaquer") {
-                        ""
-                    } else {
-                        label
-                    };
-                hint_x = draw_control_hint(hint_x, hint_y, &binding, display_label, icon);
-            }
+            self.draw_hud_shortcuts();
         }
 
         for (index, (message, objective)) in self.footer_lines().into_iter().enumerate() {
             let y = self.ui_height() - 42.0 + index as f32 * 20.0;
-            if objective {
-                draw_text_bold(&message, 20.0, y, 14.0, UiTheme.accent());
-            } else {
-                draw_text(&message, 20.0, y, 16.0, UiTheme.muted());
-            }
+            draw_wrapped_text(
+                &message,
+                20.0,
+                y,
+                self.ui_width() - 40.0,
+                1,
+                if objective { 14 } else { 16 },
+                if objective {
+                    UiTheme.accent()
+                } else {
+                    UiTheme.muted()
+                },
+            );
         }
     }
 
     fn draw_end_message(&self) {
-        let message = if self.game.status() == RunStatus::PlayerDestroyed {
-            Some(format!(
-                "NOYAU DÉTRUIT — {} : RECOMMENCER",
-                self.controls.label(Action::Restart)
-            ))
-        } else if self.game.status() == RunStatus::Escaped {
-            Some(format!(
-                "SORTIE ATTEINTE — {} : NOUVELLE PARTIE",
-                self.controls.label(Action::Restart)
-            ))
-        } else {
-            None
-        };
-
-        if let Some(message) = message {
-            let metrics = measure_text(&message, None, 28, 1.0);
-            let x = (self.ui_width() - metrics.width) * 0.5;
-            let y = self.ui_height() * 0.5;
-            draw_rectangle(
-                x - 18.0,
-                y - 34.0,
-                metrics.width + 36.0,
-                52.0,
-                Color::from_rgba(4, 8, 12, 235),
-            );
-            draw_text(&message, x, y, 28.0, Color::from_rgba(255, 211, 92, 255));
-        }
+        self.draw_run_summary();
     }
 
     fn clamp_inventory_selection(&mut self) {
@@ -14822,11 +15412,15 @@ impl AsciiApp {
             QuestObjectiveView::AccessDataRecord { record, accessed } => format!(
                 "{} : {}",
                 if self.game.is_known_fact_objective(record) {
-                    "Faits établis"
+                    "Enquête auprès des contacts connus"
                 } else {
-                    "Terminal ciblé consulté"
+                    "Consulter le terminal indiqué"
                 },
-                if *accessed { "oui" } else { "non" }
+                if *accessed {
+                    "terminé"
+                } else {
+                    "à poursuivre"
+                }
             ),
             QuestObjectiveView::DefeatTargets {
                 required_quantity,
@@ -15007,17 +15601,20 @@ impl AsciiApp {
         ))
     }
 
-    fn selected_skill_techniques(&self) -> &[TechniqueId] {
+    fn selected_skill_techniques(&self) -> Vec<TechniqueId> {
         let Some(discipline) = self
             .skill_disciplines_cache
             .get(self.skill_discipline_selection)
         else {
-            return &[];
+            return Vec::new();
         };
         self.skill_techniques_cache
             .get(discipline)
-            .map(Vec::as_slice)
-            .unwrap_or_default()
+            .into_iter()
+            .flatten()
+            .filter(|id| !self.ux.skill_filter || self.skill_learning_cost(id).is_ok())
+            .cloned()
+            .collect()
     }
 
     fn clamp_skill_selection(&mut self) {
@@ -15120,7 +15717,7 @@ impl AsciiApp {
             hovered_row.or_else(|| hovered_action.map(|index| techniques.len() + index));
         let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
 
-        if clicked && hovered_action == Some(1) {
+        if clicked && hovered_action == Some(2) {
             self.close_technique_menu();
             return;
         }
@@ -15156,10 +15753,31 @@ impl AsciiApp {
             self.technique_menu_message.clear();
             return;
         }
+        if self.controls.pressed(Action::Inspect, input) || clicked && hovered_action == Some(1) {
+            let id = &techniques[self.technique_menu_selection];
+            if let Some(d) = self.game.rules().skills.technique(id) {
+                self.ux.item_card = Some((
+                    self.technique_name(id),
+                    vec![
+                        self.resource_technique_description(d).to_owned(),
+                        self.technique_usage(d),
+                    ],
+                ));
+                self.ux.item_scroll.offset = 0.0;
+            }
+            return;
+        }
         if self.controls.pressed(Action::QuickTechniques, input)
             || self.controls.pressed(Action::Learn, input)
             || clicked && hovered_action == Some(0)
         {
+            if let Some(reason) = self
+                .quick_technique_status(&techniques[self.technique_menu_selection])
+                .1
+            {
+                self.technique_menu_message = reason;
+                return;
+            }
             self.use_quick_technique(&techniques);
         }
     }
@@ -15178,6 +15796,34 @@ impl AsciiApp {
             self.skill_technique_selection,
             initial_technique_count,
         );
+        let filter = Self::skill_filter_rect(layout.panel);
+        if self.controls.pressed(Action::InventoryFilter, input)
+            || input.pressed.contains(&controls::Binding::MouseLeft)
+                && input.pointer.is_some_and(|p| filter.contains(p.into()))
+        {
+            self.ux.skill_filter = !self.ux.skill_filter;
+            self.skill_technique_selection = 0;
+            self.ux.skill_scroll.offset = 0.0;
+            return;
+        }
+        if self.ux.skill_selection.get()
+            != (
+                self.skill_discipline_selection,
+                self.skill_technique_selection,
+            )
+        {
+            self.ux.skill_scroll.offset = 0.0;
+        }
+        if input
+            .pointer
+            .is_some_and(|p| layout.detail_panel.contains(p.into()))
+            && input.wheel_y != 0.0
+            || input.pressed.contains(&controls::Binding::key("PageDown"))
+            || input.pressed.contains(&controls::Binding::key("PageUp"))
+        {
+            self.ux.skill_scroll.update(input, &self.controls);
+            return;
+        }
         let hovered_discipline = input.pointer.and_then(|point| {
             layout
                 .discipline_rows
@@ -15329,6 +15975,14 @@ impl AsciiApp {
             count,
             self.inventory_equipped_count(),
         );
+        let details = Rect::new(32.0 + layout.left_width + 12.0, 47.0, 145.0, 31.0);
+        if self.controls.pressed(Action::Inspect, input)
+            || input.pressed.contains(&controls::Binding::MouseLeft)
+                && input.pointer.is_some_and(|p| details.contains(p.into()))
+        {
+            self.open_inventory_card();
+            return;
+        }
         let hovered_row = input.pointer.and_then(|point| {
             layout
                 .rows
@@ -15546,7 +16200,7 @@ impl AsciiApp {
             return;
         }
 
-        let requested_slot = hovered_action
+        let requested_slot = mouse_action
             .filter(|index| *index < 3)
             .map(|index| index as u8)
             .or_else(|| pressed_weapon_slot(&self.controls, input));
@@ -15598,7 +16252,7 @@ impl AsciiApp {
         let cyan = Color::from_rgba(99, 242, 210, 255);
         let muted = Color::from_rgba(155, 180, 191, 255);
         let text = Color::from_rgba(231, 240, 244, 255);
-        let amber = Color::from_rgba(255, 211, 92, 255);
+        let amber = UiTheme.accent();
         let inventory = self.game.player_inventory();
         let entries = self.inventory_entries();
         let equipped_count = self.inventory_equipped_count();
@@ -15658,33 +16312,25 @@ impl AsciiApp {
             separator,
         );
 
-        draw_text(
+        crate::ui_theme::draw_text_in_rect(
             "INVENTAIRE ET ÉQUIPEMENT",
-            margin + 20.0,
-            top + 37.0,
-            25.0,
+            Rect::new(margin + 20.0, top + 13.0, left_width - 20.0, 32.0),
+            25,
             cyan,
         );
-        let capacity = if layout.stats_panel.is_some() {
-            format!(
-                "EMPLACEMENTS {:02}/{:02}",
-                inventory.len(),
-                inventory.capacity()
-            )
-        } else {
-            format!(
-                "{} · FICHE  ·  EMPLACEMENTS {:02}/{:02}",
-                self.controls.label(Action::Character),
-                inventory.len(),
-                inventory.capacity()
-            )
-        };
-        let capacity_width = measure_text(&capacity, None, 18, 1.0).width;
-        draw_text(
+        let capacity = format!("{:02}/{:02} places", inventory.len(), inventory.capacity());
+        let right = layout
+            .character_details
+            .filter(|_| layout.stats_panel.is_none())
+            .map_or(margin + width - 20.0, |r| r.x - 10.0);
+        let left = 32.0 + layout.left_width + 169.0;
+        draw_wrapped_text(
             &capacity,
-            margin + width - capacity_width - 20.0,
+            left,
             top + 35.0,
-            18.0,
+            (right - left).max(40.0),
+            1,
+            15,
             muted,
         );
 
@@ -15744,21 +16390,8 @@ impl AsciiApp {
             let selected = *index == self.inventory_selection;
             let hovered = self.menu_focus.hovered == Some(*index);
             if selected {
-                draw_rectangle(
-                    row.x,
-                    row.y,
-                    row.w,
-                    row.h,
-                    Color::from_rgba(27, 57, 83, 245),
-                );
-                draw_rectangle_lines(
-                    row.x,
-                    row.y,
-                    row.w,
-                    row.h,
-                    1.0,
-                    Color::from_rgba(123, 181, 225, 255),
-                );
+                draw_rectangle(row.x, row.y, row.w, row.h, UiTheme.surface_selected());
+                draw_rectangle_lines(row.x, row.y, row.w, row.h, 1.0, UiTheme.accent());
             } else if hovered {
                 draw_rectangle(row.x, row.y, row.w, row.h, UiTheme.surface_raised());
             }
@@ -15901,7 +16534,7 @@ impl AsciiApp {
                 let label = if weapon.is_some()
                     || item_definition.is_some_and(|item| item.kind() == ItemKind::Armor)
                 {
-                    "Aucun bonus statistique"
+                    "Aucun bonus d’attribut"
                 } else if item_definition.is_some_and(|item| item.kind() == ItemKind::Consumable) {
                     "Consommable"
                 } else {
@@ -15945,6 +16578,8 @@ impl AsciiApp {
                 );
                 let area = match attack.area() {
                     AttackArea::Single => "Cible unique".to_owned(),
+                    AttackArea::Adjacent => "Cases voisines".to_owned(),
+                    AttackArea::Pulse(pulse) => format!("Onde · rayon {}", pulse.radius()),
                     AttackArea::Cone(cone) => format!(
                         "Cône · largeur 1 à {}",
                         cone.maximum_half_width()
@@ -15980,6 +16615,13 @@ impl AsciiApp {
                     ),
                     ("Zone", area),
                 ]);
+                if let Some(supply) = self
+                    .game
+                    .weapon_supply(weapon.id())
+                    .and_then(|_| self.weapon_supply_label(weapon.id()))
+                {
+                    rows.push(("Coût du tir", supply));
+                }
             } else if let Some(definition) = item_definition {
                 if let Some(equipment) = definition.equipment() {
                     let magic = entry.magic_modifiers();
@@ -16135,6 +16777,24 @@ impl AsciiApp {
             );
         }
 
+        UiTheme.button(
+            Rect::new(32.0 + layout.left_width + 12.0, 47.0, 145.0, 31.0),
+            "Détails / comparer",
+            false,
+            false,
+            !entries.is_empty(),
+            ButtonTone::Secondary,
+        );
+        if layout.stats_panel.is_none() {
+            UiTheme.button(
+                layout.character_details.unwrap(),
+                &format!("Personnage [{}]", self.controls.label(Action::Character)),
+                false,
+                false,
+                true,
+                ButtonTone::Secondary,
+            );
+        }
         if let Some(stats_panel) = layout.stats_panel {
             self.draw_inventory_character_summary(
                 stats_panel,
@@ -16185,7 +16845,14 @@ impl AsciiApp {
             } else {
                 let action = [Action::Slot1, Action::Slot2, Action::Slot3][index];
                 (
-                    format!("Équiper [{}]", self.controls.label(action)),
+                    format!(
+                        "{} [{}]",
+                        self.equipped_instance_name(index as u8)
+                            .map_or("Équiper · vide".to_owned(), |name| format!(
+                                "Remplacer {name}"
+                            )),
+                        self.controls.label(action)
+                    ),
                     selected_is_weapon,
                 )
             }
@@ -16205,7 +16872,10 @@ impl AsciiApp {
             ("Fermer [Échap]".to_owned(), true),
         ];
         for (index, (rect, (label, enabled))) in layout.actions.iter().zip(&actions).enumerate() {
-            if label.is_empty() {
+            if label.is_empty()
+                || index == 3 && !selected_is_consumable
+                || index < 3 && !selected_is_weapon && !selected_is_armor
+            {
                 continue;
             }
             let icon = match index {
@@ -16450,365 +17120,322 @@ impl AsciiApp {
         let Some(creation) = &self.character_creation else {
             return;
         };
+        let theme = UiTheme;
         let classes = self.character_classes.iter().collect::<Vec<_>>();
         let layout = CharacterCreationLayout::new(self.ui_width(), self.ui_height(), classes.len());
         let panel = layout.panel;
         let left_width = panel.w * 0.43;
-        let cyan = Color::from_rgba(99, 242, 210, 255);
-        let muted = Color::from_rgba(102, 139, 148, 255);
-        let text = Color::from_rgba(205, 225, 225, 255);
-        let amber = Color::from_rgba(255, 211, 92, 255);
-        let disabled = Color::from_rgba(116, 91, 86, 255);
-
+        let detail_x = panel.x + left_width + 24.0;
+        let detail_width = panel.w - left_width - 48.0;
+        let rules = self.rules.primary_attribute_rules;
+        let remaining = rules
+            .creation_total
+            .saturating_sub(creation.attributes.total());
+        let customizing = creation.stage == CharacterCreationStage::Attributes;
         draw_rectangle(
             0.0,
             0.0,
             self.ui_width(),
             self.ui_height(),
-            Color::from_rgba(2, 8, 12, 254),
+            Color::new(0.012, 0.026, 0.037, 1.0),
         );
-        UiTheme.panel(panel);
-        draw_line(
-            panel.x,
-            panel.y + 66.0,
-            panel.x + panel.w,
-            panel.y + 66.0,
-            1.0,
-            muted,
-        );
-        draw_line(
-            panel.x + left_width,
-            panel.y + 66.0,
-            panel.x + left_width,
-            panel.y + panel.h - 78.0,
-            1.0,
-            muted,
-        );
-        draw_text(
-            "RESTAURATION DE L'INSTANCE",
+        theme.panel(panel);
+        draw_text_bold(
+            if customizing {
+                "Personnaliser les attributs"
+            } else {
+                "Choisir votre profil"
+            },
             panel.x + 24.0,
-            panel.y + 42.0,
-            27.0,
-            cyan,
+            panel.y + 40.0,
+            28.0,
+            theme.text(),
         );
-        let step = match creation.stage {
-            CharacterCreationStage::Protocol => "ÉTAPE 1 / 2 · PROTOCOLE",
-            CharacterCreationStage::Attributes => "ÉTAPE 2 / 2 · ATTRIBUTS",
-        };
-        let step_width = measure_text(step, None, 15, 1.0).width;
         draw_text(
-            step,
-            panel.x + panel.w - step_width - 24.0,
-            panel.y + 39.0,
-            15.0,
-            amber,
+            if customizing {
+                "Retirez un point avec − pour le réattribuer avec +."
+            } else {
+                "Un équipement de départ et une façon d'aborder l'expédition."
+            },
+            panel.x + 24.0,
+            panel.y + 66.0,
+            16.0,
+            theme.muted(),
         );
-
         let selected = classes
             .get(creation.selected_class)
             .map(|(_, class)| *class);
-        match creation.stage {
-            CharacterCreationStage::Protocol => {
-                draw_text(
-                    "PROTOCOLES DISPONIBLES",
-                    panel.x + 24.0,
-                    panel.y + 92.0,
-                    16.0,
-                    muted,
+        if !customizing {
+            for (index, ((_, class), row)) in classes.iter().zip(&layout.class_rows).enumerate() {
+                theme.card(*row, index == creation.selected_class);
+                let icon = [UiIcon::Attack, UiIcon::Techniques, UiIcon::Armor][index % 3];
+                draw_ui_icon(
+                    icon,
+                    Rect::new(row.x + 14.0, row.y + 15.0, 24.0, 24.0),
+                    theme.accent(),
                 );
-                for (index, ((_, class), row)) in classes.iter().zip(&layout.class_rows).enumerate()
-                {
-                    let selected_row = index == creation.selected_class;
-                    let hovered = creation.hovered == Some(CharacterCreationHover::Class(index));
-                    draw_rectangle(
-                        row.x,
-                        row.y,
-                        row.w,
-                        row.h,
-                        if selected_row {
-                            Color::from_rgba(18, 58, 63, 245)
-                        } else if hovered {
-                            Color::from_rgba(19, 44, 52, 245)
-                        } else {
-                            Color::from_rgba(11, 28, 35, 245)
-                        },
+                let name = self
+                    .texts
+                    .resolve(DISPLAY_LOCALE, class.name_key())
+                    .unwrap_or("Profil");
+                let role = self
+                    .texts
+                    .resolve(DISPLAY_LOCALE, class.role_key())
+                    .unwrap_or("");
+                draw_text_bold(name, row.x + 50.0, row.y + 25.0, 20.0, theme.text());
+                draw_wrapped_text(
+                    role,
+                    row.x + 50.0,
+                    row.y + 46.0,
+                    row.w - 62.0,
+                    1,
+                    14,
+                    theme.muted(),
+                );
+            }
+        } else {
+            draw_text_bold(
+                format!(
+                    "{remaining} point{} à répartir",
+                    if remaining > 1 { "s" } else { "" }
+                ),
+                panel.x + 28.0,
+                panel.y + 98.0,
+                17.0,
+                if remaining > 0 {
+                    theme.attention()
+                } else {
+                    theme.accent()
+                },
+            );
+            for (index, attribute) in PrimaryAttribute::ALL.into_iter().enumerate() {
+                let row = layout.attribute_rows[index];
+                theme.card(row, index == creation.selected_attribute);
+                let value = creation.attributes.value(attribute);
+                draw_text(
+                    primary_attribute_label(attribute),
+                    row.x + 12.0,
+                    row.y + 28.0,
+                    17.0,
+                    theme.text(),
+                );
+                draw_text_bold_centered(
+                    &value.to_string(),
+                    Rect::new(row.right() - 81.0, row.y, 43.0, row.h),
+                    22,
+                    theme.text(),
+                );
+                for (button, symbol, hover, enabled) in [
+                    (
+                        layout.attribute_minus[index],
+                        "−",
+                        CharacterCreationHover::AttributeMinus(index),
+                        value > rules.creation_minimum,
+                    ),
+                    (
+                        layout.attribute_plus[index],
+                        "+",
+                        CharacterCreationHover::AttributePlus(index),
+                        value < rules.creation_maximum && remaining > 0,
+                    ),
+                ] {
+                    theme.button(
+                        button,
+                        symbol,
+                        creation.hovered == Some(hover),
+                        false,
+                        enabled,
+                        ButtonTone::Secondary,
                     );
-                    draw_rectangle_lines(
-                        row.x,
-                        row.y,
-                        row.w,
-                        row.h,
-                        if selected_row || hovered { 2.0 } else { 1.0 },
-                        if selected_row {
-                            amber
-                        } else if hovered {
-                            cyan
-                        } else {
-                            muted
-                        },
-                    );
-                    let name = self
-                        .texts
-                        .resolve(DISPLAY_LOCALE, class.name_key())
-                        .unwrap_or("Protocole sans nom");
-                    let role = self
-                        .texts
-                        .resolve(DISPLAY_LOCALE, class.role_key())
-                        .unwrap_or("Fonction non décrite");
-                    draw_text(
-                        name,
-                        row.x + 14.0,
-                        row.y + 25.0,
-                        20.0,
-                        if selected_row { amber } else { text },
-                    );
-                    draw_text(role, row.x + 28.0, row.y + 46.0, 14.0, cyan);
                 }
             }
-            CharacterCreationStage::Attributes => {
-                draw_text(
-                    "RÉPARTITION DES ATTRIBUTS",
-                    panel.x + 28.0,
-                    panel.y + 105.0,
-                    16.0,
-                    muted,
-                );
-                for (index, attribute) in PrimaryAttribute::ALL.into_iter().enumerate() {
-                    let row = layout.attribute_rows[index];
-                    let selected_row = index == creation.selected_attribute;
-                    let hovered = matches!(
-                        creation.hovered,
-                        Some(CharacterCreationHover::Attribute(candidate))
-                            | Some(CharacterCreationHover::AttributeMinus(candidate))
-                            | Some(CharacterCreationHover::AttributePlus(candidate))
-                            if candidate == index
-                    );
-                    draw_rectangle(
-                        row.x,
-                        row.y,
-                        row.w,
-                        row.h,
-                        if selected_row {
-                            Color::from_rgba(18, 58, 63, 245)
-                        } else if hovered {
-                            Color::from_rgba(19, 44, 52, 245)
-                        } else {
-                            Color::from_rgba(11, 28, 35, 245)
-                        },
-                    );
-                    draw_text(
-                        primary_attribute_label(attribute),
-                        row.x + 12.0,
-                        row.y + 29.0,
-                        18.0,
-                        if selected_row { amber } else { text },
-                    );
-                    for (button, symbol, hover) in [
-                        (
-                            layout.attribute_minus[index],
-                            "−",
-                            CharacterCreationHover::AttributeMinus(index),
-                        ),
-                        (
-                            layout.attribute_plus[index],
-                            "+",
-                            CharacterCreationHover::AttributePlus(index),
-                        ),
-                    ] {
-                        let hovered = creation.hovered == Some(hover);
-                        UiTheme.button(button, symbol, hovered, false, true, ButtonTone::Secondary);
-                    }
-                    let value = creation.attributes.value(attribute).to_string();
-                    let value_width = measure_text(&value, None, 22, 1.0).width;
-                    draw_text(
-                        &value,
-                        row.x + row.w - 59.0 - value_width * 0.5,
-                        row.y + 30.0,
-                        22.0,
-                        amber,
-                    );
-                    if let Some(class) = selected {
-                        let recommended = class.recommended_attributes().value(attribute);
-                        let delta = i16::from(creation.attributes.value(attribute))
-                            - i16::from(recommended);
-                        draw_text(
-                            if delta == 0 {
-                                "conseillé".to_owned()
-                            } else {
-                                format!("{delta:+}")
-                            },
-                            row.x + row.w - 176.0,
-                            row.y + 27.0,
-                            14.0,
-                            if delta == 0 { cyan } else { muted },
-                        );
-                    }
-                }
-            }
+            draw_wrapped_text(
+                &format!(
+                    "Valeurs de {} à {} · {} points au total",
+                    rules.creation_minimum, rules.creation_maximum, rules.creation_total
+                ),
+                panel.x + 28.0,
+                layout.attribute_rows.last().unwrap().bottom() + 24.0,
+                left_width - 44.0,
+                2,
+                14,
+                theme.muted(),
+            );
         }
-
-        let detail_x = panel.x + left_width + 24.0;
-        let detail_width = panel.w - left_width - 48.0;
         if let Some(class) = selected {
             let name = self
                 .texts
                 .resolve(DISPLAY_LOCALE, class.name_key())
-                .unwrap_or("Protocole sans nom");
-            let role = self
-                .texts
-                .resolve(DISPLAY_LOCALE, class.role_key())
-                .unwrap_or("Fonction non décrite");
-            draw_text_bold(name, detail_x, panel.y + 112.0, 28.0, amber);
-            draw_text(role, detail_x, panel.y + 139.0, 17.0, cyan);
-            let description = self
-                .texts
-                .resolve(DISPLAY_LOCALE, class.description_key())
-                .unwrap_or("Description indisponible.");
-            let weapons = class
-                .starting_weapons()
-                .iter()
-                .map(|id| self.item_name(id))
-                .collect::<Vec<_>>()
-                .join(" · ");
-            let repairs = class
-                .starting_items()
-                .iter()
-                .map(|item| format!("{} ×{}", self.item_name(item.item()), item.quantity()))
-                .collect::<Vec<_>>()
-                .join(" · ");
-
-            if creation.stage == CharacterCreationStage::Attributes {
-                let rules = self.rules.primary_attribute_rules;
-                let remaining = rules
-                    .creation_total
-                    .saturating_sub(creation.attributes.total());
-                draw_text_bold(
-                    "RÉPARTITION PERSONNALISÉE",
+                .unwrap_or("Profil");
+            draw_text_bold(name, detail_x, panel.y + 110.0, 25.0, theme.accent());
+            let profile = creation.attributes;
+            if customizing {
+                let recommended = profile == class.recommended_attributes();
+                draw_text(
+                    if recommended {
+                        "Profil recommandé"
+                    } else {
+                        "Répartition personnalisée"
+                    },
                     detail_x,
-                    panel.y + 184.0,
-                    18.0,
-                    text,
+                    panel.y + 139.0,
+                    16.0,
+                    theme.muted(),
                 );
+                let attr = PrimaryAttribute::ALL[creation.selected_attribute];
                 draw_text_bold(
-                    format!(
-                        "{} / {} points · {} restant{}",
-                        creation.attributes.total(),
-                        rules.creation_total,
-                        remaining,
-                        if remaining > 1 { "s" } else { "" }
-                    ),
+                    primary_attribute_label(attr),
                     detail_x,
-                    panel.y + 218.0,
-                    24.0,
-                    if remaining == 0 { cyan } else { amber },
+                    panel.y + 180.0,
+                    19.0,
+                    theme.text(),
                 );
-                draw_wrapped_text(
-                    "Les écarts +/− comparent votre répartition au profil conseillé. Tous les points restent librement modifiables.",
+                let bottom = draw_wrapped_text(
+                    primary_attribute_description(attr),
                     detail_x,
-                    panel.y + 249.0,
+                    panel.y + 206.0,
+                    detail_width,
+                    6,
+                    15,
+                    theme.text(),
+                );
+                let preview_y = (bottom + 26.0).min(panel.y + panel.h - 179.0);
+                self.draw_creation_preview(
+                    profile,
+                    Rect::new(detail_x, preview_y, detail_width, 42.0),
+                );
+            } else {
+                let description = self
+                    .texts
+                    .resolve(DISPLAY_LOCALE, class.description_key())
+                    .unwrap_or("");
+                let y = draw_wrapped_text(
+                    description,
+                    detail_x,
+                    panel.y + 143.0,
+                    detail_width,
+                    4,
+                    16,
+                    theme.text(),
+                );
+                let equipment = class
+                    .starting_weapons()
+                    .iter()
+                    .map(|id| self.item_name(id))
+                    .chain(class.starting_items().iter().map(|item| {
+                        format!("{} ×{}", self.item_name(item.item()), item.quantity())
+                    }))
+                    .collect::<Vec<_>>()
+                    .join(" · ");
+                draw_text_bold(
+                    "Équipement de départ",
+                    detail_x,
+                    y + 26.0,
+                    16.0,
+                    theme.muted(),
+                );
+                let y = draw_wrapped_text(
+                    &equipment,
+                    detail_x,
+                    y + 49.0,
                     detail_width,
                     3,
                     15,
-                    muted,
+                    theme.text(),
                 );
-                draw_text_bold(
-                    format!(
-                        "{} · EFFETS",
-                        primary_attribute_label(PrimaryAttribute::ALL[creation.selected_attribute])
-                    ),
-                    detail_x,
-                    panel.y + 309.0,
-                    17.0,
-                    cyan,
-                );
+                let profile_text = PrimaryAttribute::ALL
+                    .into_iter()
+                    .map(|a| format!("{} {}", primary_attribute_label(a), profile.value(a)))
+                    .collect::<Vec<_>>()
+                    .join(" · ");
                 draw_wrapped_text(
-                    primary_attribute_description(
-                        PrimaryAttribute::ALL[creation.selected_attribute],
-                    ),
+                    &profile_text,
                     detail_x,
-                    panel.y + 335.0,
-                    detail_width,
-                    ((panel.h - 445.0) / 20.0).floor().max(2.0) as usize,
-                    15,
-                    text,
-                );
-                UiTheme.button(
-                    layout.preset,
-                    "Rétablir le profil recommandé",
-                    creation.hovered == Some(CharacterCreationHover::Preset),
-                    false,
-                    true,
-                    ButtonTone::Secondary,
-                );
-            } else {
-                draw_wrapped_text(
-                    description,
-                    detail_x,
-                    panel.y + 170.0,
+                    y + 28.0,
                     detail_width,
                     2,
-                    16,
-                    text,
-                );
-                draw_wrapped_text(
-                    &format!("Équipement initial · {weapons} · {repairs}"),
-                    detail_x,
-                    panel.y + 218.0,
-                    detail_width,
-                    1,
-                    15,
-                    muted,
-                );
-                let profile = class.recommended_attributes();
-                let card = Rect::new(detail_x, panel.y + 241.0, detail_width, 145.0);
-                draw_recommended_profile(
-                    card,
-                    profile,
-                    self.rules.primary_attribute_rules.creation_minimum,
-                    self.rules.primary_attribute_rules.creation_maximum,
+                    14,
+                    theme.accent(),
                 );
             }
         }
-
-        let can_start = creation.stage == CharacterCreationStage::Protocol
-            || creation.attributes.total() == self.rules.primary_attribute_rules.creation_total;
-        let cancel_label = if creation.stage == CharacterCreationStage::Protocol {
-            "Retour"
-        } else {
-            "Changer de protocole"
-        };
-        let continue_label = if creation.stage == CharacterCreationStage::Protocol {
-            "Configurer les attributs"
-        } else {
-            "Commencer la partie"
-        };
-        UiTheme.button(
+        theme.button(
+            layout.preset,
+            &if customizing {
+                "Rétablir le profil recommandé".to_owned()
+            } else {
+                format!(
+                    "Personnaliser les attributs [{}]",
+                    self.controls.label(Action::InventoryFilter)
+                )
+            },
+            creation.hovered == Some(CharacterCreationHover::Preset),
+            false,
+            true,
+            ButtonTone::Secondary,
+        );
+        theme.button(
             layout.cancel,
-            cancel_label,
+            if customizing {
+                "Retour aux profils"
+            } else {
+                "Retour"
+            },
             creation.hovered == Some(CharacterCreationHover::Cancel),
             false,
             true,
             ButtonTone::Secondary,
         );
-        UiTheme.button(
+        theme.button(
             layout.continue_button,
-            continue_label,
+            if customizing {
+                "Commencer la partie"
+            } else {
+                "Commencer avec ce profil"
+            },
             creation.hovered == Some(CharacterCreationHover::Continue),
             false,
-            can_start,
+            remaining == 0,
             ButtonTone::Primary,
         );
-        if !creation.message.is_empty() {
+        if !creation.message.is_empty() || remaining > 0 {
+            let message = if creation.message.is_empty() {
+                "Répartissez tous les points pour commencer."
+            } else {
+                &creation.message
+            };
             draw_wrapped_text(
-                &creation.message,
-                panel.x + 190.0,
-                panel.y + panel.h - 35.0,
-                panel.w - 430.0,
-                1,
+                message,
+                panel.x + 192.0,
+                panel.bottom() - 38.0,
+                panel.w - 480.0,
+                2,
                 14,
-                if can_start { muted } else { disabled },
+                theme.attention(),
             );
         }
+    }
+
+    fn draw_creation_preview(&self, attributes: PrimaryAttributes, rect: Rect) {
+        let hp = self
+            .rules
+            .physical_rules
+            .zip(self.rules.player_body_profile)
+            .map_or(self.rules.player_maximum_integrity, |(rules, body)| {
+                rules.hit_points.maximum_for_body(body, Some(attributes), 0)
+            });
+        let evasion = self
+            .rules
+            .hit_rules
+            .map_or(0, |rules| rules.evasion(Some(attributes), 0));
+        UiTheme.card(rect, false);
+        draw_text_bold(
+            format!("Résultat · {hp} PV · Esquive {evasion}"),
+            rect.x + 12.0,
+            rect.y + 27.0,
+            16.0,
+            UiTheme.accent(),
+        );
     }
 
     fn draw_character(&self) {
@@ -16940,9 +17567,6 @@ impl AsciiApp {
                     },
                 );
             }
-            if selected {
-                draw_rectangle(row.x, row.y, 3.0, row.h, theme.focus());
-            }
             let value = attributes.map_or(0, |values| values.value(attribute));
             let bonus = self.game.player_attribute_bonus(attribute);
             let value_label = if bonus == 0 {
@@ -16984,25 +17608,41 @@ impl AsciiApp {
         let right_x = margin + left_width + 24.0;
         let right_width = width - left_width - 48.0;
         let selected_attribute = PrimaryAttribute::ALL[self.character_attribute_selection];
-        let attribute_card = Rect::new(right_x, top + 72.0, right_width, 91.0);
-        theme.card(attribute_card, true);
+        let pane = Rect::new(right_x, top + 72.0, right_width, height - 130.0);
+        theme.card(pane, false);
+        crate::ui_theme::begin_text_pane(pane, self.ux.character_scroll.offset);
+        let mut detail_y = pane.y + 30.0;
         draw_text_bold(
-            format!("EFFETS · {}", primary_attribute_label(selected_attribute)),
-            attribute_card.x + 12.0,
-            attribute_card.y + 25.0,
-            18.0,
-            theme.focus(),
+            format!("{} · effets", primary_attribute_label(selected_attribute)),
+            right_x + 12.0,
+            detail_y,
+            19.0,
+            theme.accent(),
         );
-        draw_wrapped_text(
+        detail_y = draw_wrapped_text(
             primary_attribute_description(selected_attribute),
-            attribute_card.x + 12.0,
-            attribute_card.y + 49.0,
-            attribute_card.w - 24.0,
-            2,
-            14,
+            right_x + 12.0,
+            detail_y + 28.0,
+            right_width - 28.0,
+            4096,
+            16,
             theme.text(),
-        );
-
+        ) + 20.0;
+        let base = self
+            .game
+            .player_primary_attributes()
+            .map_or(0, |a| a.value(selected_attribute));
+        let bonus = self.game.player_attribute_bonus(selected_attribute);
+        let current = attributes.map_or(0, |a| a.value(selected_attribute));
+        detail_y = draw_wrapped_text(
+            &format!("Base {base} · Équipement {bonus:+} · Valeur actuelle {current}"),
+            right_x + 12.0,
+            detail_y,
+            right_width - 28.0,
+            4096,
+            16,
+            theme.accent(),
+        ) + 30.0;
         let actor = self.game.actors().get(self.game.player_id());
         let integrity = actor.map_or("--".to_owned(), |actor| {
             format!("{} / {}", actor.integrity(), actor.maximum_integrity())
@@ -17013,15 +17653,8 @@ impl AsciiApp {
             .map_or("--".to_owned(), |armor| {
                 armor.after_fragilization().to_string()
             });
-        let state_card = Rect::new(right_x, top + 174.0, right_width, 88.0);
-        theme.card(state_card, false);
-        draw_text_bold(
-            "ÉTAT ACTUEL",
-            state_card.x + 12.0,
-            state_card.y + 21.0,
-            15.0,
-            theme.muted(),
-        );
+        draw_text_bold("État actuel", right_x + 12.0, detail_y, 19.0, theme.text());
+        detail_y += 30.0;
         let state_metrics = [
             ("PV", integrity),
             ("Armure", armor),
@@ -17039,16 +17672,18 @@ impl AsciiApp {
                 progression.unspent_skill_points().to_string(),
             ),
         ];
-        for (index, (label, value)) in state_metrics.iter().enumerate() {
-            draw_compact_metric(
-                state_card.x + 12.0 + (index % 3) as f32 * state_card.w / 3.0,
-                state_card.y + 46.0 + (index / 3) as f32 * 28.0,
-                label,
-                value,
-                state_card.w / 3.0 - 18.0,
-            );
+        for (label, value) in state_metrics {
+            detail_y = draw_wrapped_text(
+                &format!("{label} · {value}"),
+                right_x + 12.0,
+                detail_y,
+                right_width - 28.0,
+                4096,
+                16,
+                theme.text(),
+            ) + 8.0;
         }
-
+        detail_y += 24.0;
         let active_weapon = self.game.equipped_player_weapon(self.active_weapon_slot);
         let weapon_name = active_weapon
             .and_then(|_| self.equipped_instance_name(self.active_weapon_slot))
@@ -17098,23 +17733,18 @@ impl AsciiApp {
                     resolved.available, resolved.used
                 )
             });
-        let combat_card = Rect::new(
-            right_x,
-            top + 274.0,
-            right_width,
-            (height - 329.0).max(68.0),
-        );
-        theme.card(combat_card, false);
-        draw_text_bold(
-            format!(
-                "COMBAT · EMPLACEMENT D'ARME {} · {weapon_name}",
+        detail_y = draw_wrapped_text(
+            &format!(
+                "Combat · canal {} · {weapon_name}",
                 self.active_weapon_slot + 1
             ),
-            combat_card.x + 12.0,
-            combat_card.y + 21.0,
-            15.0,
-            theme.muted(),
-        );
+            right_x + 12.0,
+            detail_y,
+            right_width - 28.0,
+            4096,
+            19,
+            theme.accent(),
+        ) + 16.0;
         let combat_metrics = [
             (
                 "Touche",
@@ -17130,15 +17760,28 @@ impl AsciiApp {
             ),
             ("Impact", impact.unwrap_or_else(|| "--".to_owned())),
         ];
-        for (index, (label, value)) in combat_metrics.iter().enumerate() {
-            draw_compact_metric(
-                combat_card.x + 12.0 + index as f32 * combat_card.w * 0.25,
-                combat_card.y + 49.0,
-                label,
-                value,
-                combat_card.w * 0.25 - 14.0,
-            );
+        for (label, value) in combat_metrics {
+            detail_y = draw_wrapped_text(
+                &format!("{label} · {value}"),
+                right_x + 12.0,
+                detail_y,
+                right_width - 28.0,
+                4096,
+                16,
+                theme.text(),
+            ) + 12.0;
         }
+        detail_y = draw_wrapped_text(
+            "La précision affichée est une référence sans cible. La situation et la cible modifient la probabilité réelle.",
+            right_x + 12.0,
+            detail_y + 12.0,
+            right_width - 28.0,
+            4096,
+            15,
+            theme.muted(),
+        );
+        crate::ui_theme::end_text_pane();
+        self.ux.character_scroll.finish(pane, detail_y);
 
         for (index, (rect, label)) in layout
             .actions
@@ -17171,9 +17814,9 @@ impl AsciiApp {
         let width = (self.ui_width() - margin * 2.0).max(620.0);
         let height = (self.ui_height() - top * 2.0).max(400.0);
         let cyan = Color::from_rgba(99, 242, 210, 255);
-        let muted = Color::from_rgba(102, 139, 148, 255);
+        let muted = UiTheme.muted();
         let text = Color::from_rgba(205, 225, 225, 255);
-        let amber = Color::from_rgba(255, 211, 92, 255);
+        let amber = UiTheme.accent();
         let locked = Color::from_rgba(154, 98, 92, 255);
         let disciplines = self.skill_disciplines();
         let techniques = self.selected_skill_techniques();
@@ -17207,14 +17850,7 @@ impl AsciiApp {
             layout.technique_panel,
             layout.detail_panel,
         ] {
-            draw_rectangle(
-                section.x,
-                section.y,
-                section.w,
-                section.h,
-                UiTheme.surface(),
-            );
-            draw_rectangle_lines(section.x, section.y, section.w, section.h, 1.0, muted);
+            UiTheme.card(section, false);
         }
 
         draw_text_bold("COMPÉTENCES", margin + 20.0, top + 37.0, 25.0, cyan);
@@ -17257,7 +17893,6 @@ impl AsciiApp {
                     row.h,
                     Color::from_rgba(18, 58, 63, 230),
                 );
-                draw_rectangle(row.x, row.y, 3.0, row.h, amber);
             } else if self.menu_focus.hovered == Some(index) {
                 draw_rectangle(row.x, row.y, row.w, row.h, UiTheme.surface_raised());
             }
@@ -17313,6 +17948,23 @@ impl AsciiApp {
         if let Some(id) = techniques.get(self.skill_technique_selection)
             && let Some(definition) = self.game.rules().skills.technique(id)
         {
+            let pane = Rect::new(
+                layout.detail_panel.x + 4.0,
+                layout.detail_panel.y + 4.0,
+                layout.detail_panel.w - 8.0,
+                layout.detail_panel.h - 8.0,
+            );
+            let selection = (
+                self.skill_discipline_selection,
+                self.skill_technique_selection,
+            );
+            let offset = if self.ux.skill_selection.get() == selection {
+                self.ux.skill_scroll.offset
+            } else {
+                0.0
+            };
+            self.ux.skill_selection.set(selection);
+            crate::ui_theme::begin_text_pane(pane, offset);
             let x = layout.detail_panel.x + 13.0;
             let available_width = layout.detail_panel.w - 26.0;
             draw_text(
@@ -17371,10 +18023,7 @@ impl AsciiApp {
                 14,
                 cyan,
             );
-            let description = self
-                .texts
-                .resolve(DISPLAY_LOCALE, definition.description_key())
-                .unwrap_or("Description indisponible.");
+            let description = self.resource_technique_description(definition);
             draw_text("DESCRIPTION", x, y + 5.0, 12.0, muted);
             let max_lines = (((layout.detail_panel.h - 205.0) / 42.0).floor() as usize).clamp(1, 5);
             y = draw_wrapped_text(
@@ -17388,813 +18037,25 @@ impl AsciiApp {
             );
             draw_text("EN ACTION", x, y + 4.0, 12.0, muted);
             y += 27.0;
-            let action_timing = definition.preparation_steps().map_or_else(
-                || "1 tour".to_owned(),
-                |steps| format!("P{}+A1", steps.get()),
-            );
-            let usage = if definition.improvement()
-                == Some(TechniqueImprovement::MeleeCounterattack)
-            {
-                "Passif. Après une Parade réussie, tente une frappe ordinaire avec la première arme de mêlée équipée si l'attaquant est encore au contact. Ne consomme pas une seconde réaction."
-                    .to_owned()
-            } else if definition.improvement()
-                == Some(TechniqueImprovement::ExtendedRangedOverwatch)
-            {
-                "Passif. Remplace la ligne de Surveillance par le secteur visible de 90° montré dans l'aperçu. N'ajoute ni portée, ni tir, ni réaction."
-                    .to_owned()
-            } else if let Some(TechniqueImprovement::PersistentRangedAim {
-                retained_accuracy_modifier,
-            }) = definition.improvement()
-            {
-                format!(
-                    "Passif. Après le tir de la technique requise, conserve Précision {retained_accuracy_modifier:+} contre la même cible. Bouger, perdre la vue, changer de cible ou entreprendre une autre action qu'un tir simple ou attendre annule ce bonus."
-                )
-            } else if definition.improvement()
-                == Some(TechniqueImprovement::ControlledChargeInertia)
-            {
-                "Passif. Une autre action permet d'arrêter volontairement la Charge en cours ; une Charge menée jusqu'à sa frappe finale ne provoque plus de récupération."
-                    .to_owned()
-            } else if let Some(TechniqueImprovement::CoveredApproach {
-                optical_difficulty_bonus,
-            }) = definition.improvement()
-            {
-                format!(
-                    "Passif. Après un déplacement, un couvert optique réel augmente de {optical_difficulty_bonus} la difficulté de détection pendant la résolution adverse. Ne crée jamais de couvert artificiel."
-                )
-            } else if let Some(TechniqueImprovement::SilentNeutralization {
-                physical_damage_percentage,
-                extra_energy_cost,
-                noise_reduction,
-            }) = definition.improvement()
-            {
-                format!(
-                    "Passif d'Embuscade au contact d'une vulnérabilité connue : {physical_damage_percentage} % des dégâts physiques, +{extra_energy_cost} E et bruit −{noise_reduction}."
-                )
-            } else if let Some(TechniqueImprovement::DroneAutonomousScout {
-                maximum_unknown_steps,
-                energy_cost_override,
-                additional_bandwidth,
-            }) = definition.improvement()
-            {
-                format!(
-                    "Passif de Patrouille bornée : autorise jusqu'à {maximum_unknown_steps} nouvelles cases avant retour, pour {energy_cost_override} E et +{additional_bandwidth} B durant la routine. Le rapport reste daté et n'accorde aucune vision directe."
-                )
-            } else {
-                match definition.action() {
-                    Some(TechniqueAction::AnalyzeTarget { range }) => format!(
-                        "{action_timing} / 0 E. Analyse une cible visible à portée {range} et révèle son intégrité, son armure et ses résistances observables."
-                    ),
-                    Some(TechniqueAction::AnalyzeMultipleTargets {
-                        maximum_targets,
-                        energy_cost,
-                    }) => format!(
-                        "{action_timing} / {energy_cost} E. Jusqu'à {maximum_targets} cibles visibles : sélection d'abord, puis les plus proches. Même analyse que le prérequis."
-                    ),
-                    Some(TechniqueAction::ReadMovementTraces { radius }) => format!(
-                        "{action_timing} / 0 E. Rayon {radius}. Indices datés ; aucun suivi de leur auteur."
-                    ),
-                    Some(TechniqueAction::InspectNearbySecrets {
-                        radius,
-                        detection_bonus,
-                    }) => format!(
-                        "{action_timing} / 0 E. Inspecte les cases visibles dans un rayon de {radius}, avec Détection +{detection_bonus}. Découvre un dispositif réellement présent sans l'ouvrir ni le désarmer."
-                    ),
-                    Some(TechniqueAction::AnalyzeNearbyWalls {
-                        maximum_tiles,
-                        radius,
-                    }) => format!(
-                        "{action_timing} / 0 E. Analyse jusqu'à {maximum_tiles} parois liées dans un rayon de {radius} et révèle si elles bloquent le passage ou la vision."
-                    ),
-                    Some(TechniqueAction::AnalyzeThreat { range }) => format!(
-                        "{action_timing} / 0 E. Analyse une cible visible à portée {range} et révèle ses capacités offensives connues, sans prédire ses décisions."
-                    ),
-                    Some(TechniqueAction::DiagnoseEnergy {
-                        range,
-                        analysis_bonus,
-                        energy_cost,
-                    }) => format!(
-                        "{action_timing} / {energy_cost} E. Machine visible, portée {range}, Analyse +{analysis_bonus}. Ne révèle que ses réserves et canaux énergétiques réellement simulés."
-                    ),
-                    Some(TechniqueAction::RepairComponent {
-                        durability_restored,
-                        energy_cost,
-                    }) => format!(
-                        "{action_timing} / {energy_cost} E de fonctionnement. Restaure jusqu'à {durability_restored} durabilité au composant choisi, sans soigner le corps ni recréer un composant détruit."
-                    ),
-                    Some(TechniqueAction::SalvageComponent) => format!(
-                        "{action_timing}. Préserve dans son état réel un composant survivant choisi sur une carcasse adjacente ; il est retiré définitivement de cette carcasse."
-                    ),
-                    Some(TechniqueAction::DiagnoseComponent {
-                        analysis_bonus,
-                        energy_cost,
-                    }) => format!(
-                        "{action_timing} / {energy_cost} E de fonctionnement. Analyse matérielle +{analysis_bonus} sur un composant accessible ; ne répare ni ne purge un logiciel."
-                    ),
-                    Some(TechniqueAction::TuneModule {
-                        economy_output_percentage,
-                        economy_energy_percentage,
-                        power_output_percentage,
-                        power_energy_percentage,
-                    }) => format!(
-                        "{action_timing}. Économie : sortie {economy_output_percentage} %, énergie {economy_energy_percentage} %. Puissance : sortie {power_output_percentage} %, énergie {power_energy_percentage} %. Le nouveau réglage remplace l'ancien."
-                    ),
-                    Some(TechniqueAction::EmergencyRepairComponent {
-                        durability_restored,
-                    }) => format!(
-                        "{action_timing}. Restaure immédiatement {durability_restored} durabilité au plus ; un composant détruit reste détruit."
-                    ),
-                    Some(TechniqueAction::OverclockModule {
-                        output_percentage,
-                        usage_energy_percentage,
-                        heat_per_use,
-                        safe_heat_threshold,
-                        maximum_heat_threshold,
-                        duration_time_units,
-                        activation_energy,
-                        durability_damage_when_hot,
-                    }) => format!(
-                        "{action_timing} / {activation_energy} E. Pendant {duration_time_units} UT : sortie {output_percentage} %, coût énergétique d'usage {usage_energy_percentage} %, +{heat_per_use} chaleur/usage, seuil volontaire {maximum_heat_threshold}. Au-dessus de {safe_heat_threshold}, −{durability_damage_when_hot} durabilité/usage."
-                    ),
-                    Some(TechniqueAction::BypassComponent {
-                        restored_output_percentage,
-                        energy_cost,
-                    }) => format!(
-                        "{action_timing} / {energy_cost} E de fonctionnement. Rétablit une fonction électrique dégradée à {restored_output_percentage} % en suspendant un second composant réel du même corps."
-                    ),
-                    Some(TechniqueAction::ReconditionModule {
-                        durability_restored,
-                    }) => format!(
-                        "{action_timing} / atelier sûr. Restaure jusqu'à {durability_restored} durabilité propre sans dépasser le maximum réparable."
-                    ),
-                    Some(TechniqueAction::AssembleFieldBeacon {
-                        integrity,
-                        battery_energy,
-                        energy_per_phase,
-                        noise_intensity,
-                    }) => format!(
-                        "{action_timing}. Manifeste sur une case libre une balise de {integrity} durabilité, batterie {battery_energy} E, consommation {energy_per_phase} E/phase, bruit {noise_intensity}."
-                    ),
-                    Some(TechniqueAction::WeaponAttack {
-                        required_delivery,
-                        physical_damage_percentage,
-                        armor_penetration_bonus,
-                        accuracy_modifier,
-                        energy_cost,
-                        recovery_time_units,
-                        forced_movement,
-                        melee_arc,
-                    }) => {
-                        let delivery = match required_delivery {
-                            project_rl::combat::AttackDelivery::Melee => "mêlée",
-                            project_rl::combat::AttackDelivery::Ranged => "tir",
-                        };
-                        let recovery = recovery_time_units
-                            .map_or_else(String::new, |duration| format!(" Puis R{duration}."));
-                        let accuracy = match accuracy_modifier.cmp(&0) {
-                            std::cmp::Ordering::Greater => {
-                                format!(" Précision +{accuracy_modifier}.")
-                            }
-                            std::cmp::Ordering::Less => format!(" Précision {accuracy_modifier}."),
-                            std::cmp::Ordering::Equal => String::new(),
-                        };
-                        let physical_damage =
-                            physical_damage_percentage.map_or_else(String::new, |percentage| {
-                                format!(" {percentage} % des dégâts physiques après Impact.")
-                            });
-                        let penetration = if armor_penetration_bonus > 0 {
-                            format!(" Pénétration d'armure +{armor_penetration_bonus}.")
-                        } else {
-                            String::new()
-                        };
-                        let displacement = forced_movement.map_or_else(String::new, |movement| {
-                        let modifier = match movement.impact_modifier().cmp(&0) {
-                            std::cmp::Ordering::Greater => {
-                                format!(" + {}", movement.impact_modifier())
-                            }
-                            std::cmp::Ordering::Less => {
-                                format!(" − {}", movement.impact_modifier().unsigned_abs())
-                            }
-                            std::cmp::Ordering::Equal => String::new(),
-                        };
-                        format!(
-                            " Sur une touche : poussée de {} case(s), Force = Impact{modifier}.",
-                            movement.distance()
-                        )
-                    });
-                        let arc = melee_arc.map_or_else(String::new, |arc| {
-                            format!(
-                                " Arc de {} cases adjacentes ; chaque occupant est exposé.",
-                                arc.maximum_cells()
-                            )
-                        });
-                        let on_hit_effect = definition.on_hit_effect().map_or_else(
-                            String::new,
-                            |effect| {
-                                let target = match effect.target_requirement() {
-                                    TechniqueTargetRequirement::HasArmor => {
-                                        "une cible portant une armure"
-                                    }
-                                    TechniqueTargetRequirement::HasCompatibleLocomotion => {
-                                        "une cible à locomotion compatible"
-                                    }
-                                    TechniqueTargetRequirement::HasCompatibleSuppressionResponse => {
-                                        "une cible sensible à la suppression"
-                                    }
-                                };
-                                let Some(status) = self
-                                    .game
-                                    .rules()
-                                    .statuses
-                                    .get(effect.application().status())
-                                else {
-                                    return format!(
-                                        " Sur une touche contre {target} : applique {}.",
-                                        status_display_name(effect.application().status())
-                                    );
-                                };
-                                let duration = status.duration_turns().map_or_else(
-                                    || "sans limite de durée".to_owned(),
-                                    |turns| format!("pendant {turns} UT"),
-                                );
-                                let resistance = match effect.resistance() {
-                                    Some(TechniqueEffectResistance::Stability { intensity }) => {
-                                        format!(" Test passif de Stabilité contre intensité {intensity}.")
-                                    }
-                                    None => String::new(),
-                                };
-                                let description = status.modifiers().first().map_or_else(
-                                    || {
-                                        format!(
-                                            " Sur une touche contre {target} : applique {} {duration}.",
-                                            status_display_name(status.id())
-                                        )
-                                    },
-                                    |modifier| match modifier {
-                                        StatusModifier::DamageGuard { amount } => format!(
-                                            " Protection de {amount} dégâts sur le prochain impact {duration}."
-                                        ),
-                                        StatusModifier::ArmorFragilization { amount } => format!(
-                                            " Sur une touche contre {target} : armure fragilisée de {amount} {duration}, sans cumul ni rafraîchissement."
-                                        ),
-                                        StatusModifier::Stability { amount } => format!(
-                                            " Sur une touche contre {target} : Stabilité {amount:+} {duration}."
-                                        ),
-                                        StatusModifier::MovementTimeMinimum { time_units } => format!(
-                                            " Sur une touche contre {target} : déplacement ordinaire à {time_units} UT minimum {duration}."
-                                        ),
-                                        StatusModifier::Accuracy { amount } => format!(
-                                            " Sur une touche contre {target} : Précision {amount:+} {duration}."
-                                        ),
-                                    },
-                                );
-                                format!("{description}{resistance}")
-                            },
-                        );
-                        let engagement_requirement = definition
-                            .engagement_requirement()
-                            .map_or_else(String::new, |requirement| match requirement {
-                                TechniqueEngagementRequirement::TargetHasAnyStatusFamily(_) => {
-                                    " Requiert une cible déjà entravée ou immobilisée.".to_owned()
-                                }
-                                TechniqueEngagementRequirement::TargetHasKnownPhysicalWeakness => {
-                                    " Requiert une faiblesse physique réellement identifiée sur cette cible."
-                                        .to_owned()
-                                }
-                            });
-                        let cost = if energy_cost == 0 {
-                            "coût natif de l'arme".to_owned()
-                        } else {
-                            format!("coût natif de l'arme + {energy_cost} E")
-                        };
-                        let cooldown = definition.cooldown().map_or_else(String::new, |duration| {
-                            format!(" Recharge : {} phases d'environnement.", duration.get())
-                        });
-                        format!(
-                            "{action_timing} / {cost}. Attaque de {delivery}.{physical_damage}{penetration}{accuracy}{arc}{displacement}{on_hit_effect}{engagement_requirement}{recovery}{cooldown}"
-                        )
-                    }
-                    Some(TechniqueAction::WeaponVolley {
-                        projectiles,
-                        maximum_targets,
-                        maximum_target_separation,
-                        accuracy_modifier,
-                        energy_cost,
-                        requires_automatic_fire,
-                    }) => {
-                        let automatic = if requires_automatic_fire {
-                            " Requiert un mode de tir automatique."
-                        } else {
-                            ""
-                        };
-                        let accuracy = match accuracy_modifier.cmp(&0) {
-                            std::cmp::Ordering::Greater => {
-                                format!(" Précision +{accuracy_modifier} par projectile.")
-                            }
-                            std::cmp::Ordering::Less => {
-                                format!(" Précision {accuracy_modifier} par projectile.")
-                            }
-                            std::cmp::Ordering::Equal => String::new(),
-                        };
-                        let energy = if energy_cost == 0 {
-                            String::new()
-                        } else {
-                            format!(" + {energy_cost} E")
-                        };
-                        let separation = maximum_target_separation.map_or_else(
-                            String::new,
-                            |maximum| {
-                                format!(
-                                    " Les cibles choisies doivent rester à {maximum} case(s) les unes des autres."
-                                )
-                            },
-                        );
-                        format!(
-                            "{action_timing} / {projectiles} projectiles natifs{energy}. Jusqu'à {maximum_targets} cible(s) visible(s), une résolution indépendante par projectile.{accuracy}{automatic}{separation}"
-                        )
-                    }
-                    Some(TechniqueAction::WeaponComponentAttack {
-                        required_delivery,
-                        accuracy_modifier,
-                        energy_cost,
-                    }) => {
-                        let delivery = match required_delivery {
-                            project_rl::combat::AttackDelivery::Melee => "mêlée",
-                            project_rl::combat::AttackDelivery::Ranged => "tir",
-                        };
-                        format!(
-                            "{action_timing} / coût natif de l'arme + {energy_cost} E. Attaque de {delivery} contre la durabilité propre d'un composant identifié ; Précision {accuracy_modifier:+}. Les dégâts ne sont pas aussi appliqués aux PV du corps."
-                        )
-                    }
-                    Some(TechniqueAction::WeaponBarrage {
-                        stages,
-                        cells,
-                        accuracy_modifier,
-                        energy_cost_per_stage,
-                        requires_automatic_fire,
-                    }) => format!(
-                        "{stages} étapes A1 / {cells} projectiles natifs par étape + {energy_cost_per_stage} E. Une balle par case de la ligne visée ; Précision {accuracy_modifier:+}.{} Toute autre action interrompt les étapes restantes sans annuler les tirs déjà résolus.",
-                        if requires_automatic_fire {
-                            " Requiert un mode automatique."
-                        } else {
-                            ""
-                        }
-                    ),
-                    Some(TechniqueAction::PrepareRangedOverwatch { maximum_line_cells }) => {
-                        format!(
-                            "{action_timing} / un projectile natif au déclenchement. Désigne une ligne de {maximum_line_cells} case(s) dans la portée et la vision. Le premier ennemi perçu qui y entre déclenche un tir simple de réaction."
-                        )
-                    }
-                    Some(TechniqueAction::PrepareMeleeParry {
-                        physical_reduction_percentage,
-                        trigger_energy_cost,
-                    }) => format!(
-                        "{action_timing} / {trigger_energy_cost} E au déclenchement. Requiert une arme apte à parer. Réduit de {physical_reduction_percentage} % les dégâts physiques bruts de la prochaine touche de mêlée, avant l'armure."
-                    ),
-                    Some(TechniqueAction::PrepareMeleeInterception) => format!(
-                        "{action_timing} / coût natif de l'arme au déclenchement. Prépare une frappe de mêlée ordinaire lorsqu'une cible au contact tente de s'éloigner. Une poussée ne la déclenche pas ; si la cible survit, elle parvient à s'éloigner."
-                    ),
-                    Some(TechniqueAction::PrepareControllingMeleeInterception {
-                        stability_intensity,
-                    }) => format!(
-                        "{action_timing} / coût natif de l'arme au déclenchement. Prépare une frappe de mêlée lorsqu'une cible au contact tente de s'éloigner. Sur une touche, sa Stabilité s'oppose à une intensité de {stability_intensity} : en cas d'échec, elle reste au contact. Une poussée ne déclenche jamais la garde."
-                    ),
-                    Some(TechniqueAction::DeployExplosive { deployment, .. }) => format!(
-                        "{action_timing}. {} La zone d'effet est prévisualisée avant la manifestation.",
-                        explosive_deployment_description(deployment)
-                    ),
-                    Some(TechniqueAction::NeutralizeExplosive {
-                        range,
-                        analysis_bonus,
-                        energy_cost,
-                    }) => format!(
-                        "{action_timing} / {energy_cost} E. Neutralise un dispositif identifié à portée {range}. Bonus d'analyse {analysis_bonus:+}."
-                    ),
-                    Some(TechniqueAction::RecoverNeutralizedExplosive { range }) => format!(
-                        "{action_timing}. Récupère intacte la charge d'un dispositif déjà neutralisé à portée {range}, si l'inventaire peut la recevoir."
-                    ),
-                    Some(TechniqueAction::TriggerRemoteExplosive {
-                        range,
-                        energy_cost,
-                        bandwidth_required,
-                    }) => format!(
-                        "{action_timing} / {energy_cost} E · {bandwidth_required} B pendant la commande. Déclenche un récepteur identifié en liaison directe à portée {range}."
-                    ),
-                    Some(TechniqueAction::ProgramExplosives {
-                        range,
-                        maximum_devices,
-                        minimum_delay,
-                        maximum_delay,
-                        energy_cost,
-                        bandwidth_required,
-                    }) => format!(
-                        "{action_timing} / {energy_cost} E · {bandwidth_required} B. Programme jusqu'à {maximum_devices} récepteurs connus à portée {range}, avec des délais de {minimum_delay} à {maximum_delay} UT."
-                    ),
-                    Some(TechniqueAction::CautiousMove {
-                        interception_evasion_modifier,
-                    }) => format!(
-                        "A1. Déplacement d'une case ; Esquive {interception_evasion_modifier:+} uniquement contre les interceptions provoquées lorsque vous quittez le corps à corps."
-                    ),
-                    Some(TechniqueAction::PrepareAnchor {
-                        displacement_resistance_bonus,
-                    }) => format!(
-                        "A1. Prépare un appui donnant Ancrage {displacement_resistance_bonus:+} tant que vous ne changez pas de case."
-                    ),
-                    Some(TechniqueAction::TraverseSingleObstacle {
-                        maximum_distance,
-                        energy_cost,
-                    }) => format!(
-                        "{action_timing} / {energy_cost} E. Traverse un intervalle compatible d'une case vers une arrivée située à {maximum_distance} cases. Les murs et portes ne sont jamais franchissables."
-                    ),
-                    Some(TechniqueAction::ChargeAttack {
-                        minimum_advance,
-                        maximum_advance,
-                        physical_damage_percentage,
-                        energy_per_step,
-                        recovery_time_units,
-                    }) => format!(
-                        "Une avance par tour, de {minimum_advance} à {maximum_advance} cases, à {energy_per_step} E par case ; confirmez encore pour frapper à {physical_damage_percentage} % des dégâts physiques. Récupération {recovery_time_units} tour sans Inertie maîtrisée."
-                    ),
-                    Some(TechniqueAction::PrepareEvasiveStep {
-                        trigger_energy_cost,
-                    }) => format!(
-                        "A1 de garde. Choisissez une case adjacente ; la prochaine attaque perçue tente d'y déplacer le joueur pour {trigger_energy_cost} E et consomme la réaction commune."
-                    ),
-                    Some(TechniqueAction::PropelledMove {
-                        distance,
-                        energy_cost,
-                        heat_generated,
-                    }) => format!(
-                        "A1 / {energy_cost} E · +{heat_generated} H. Parcourt {distance} cases successives ; chaque entrée conserve ses dangers et tirs de Surveillance."
-                    ),
-                    Some(TechniqueAction::Breakthrough {
-                        impact_modifier,
-                        energy_cost,
-                        recovery_time_units,
-                    }) => format!(
-                        "{action_timing} / {energy_cost} E. Tente une poussée sans dégâts avec Impact {impact_modifier:+}, puis occupe la case libérée. Récupération {recovery_time_units} tour."
-                    ),
-                    Some(TechniqueAction::ExtractAlly { energy_cost }) => format!(
-                        "{action_timing} / {energy_cost} E. Recule d'une case avec un allié adjacent coopératif et transportable ; aucun des deux ne reçoit d'action gratuite."
-                    ),
-                    Some(TechniqueAction::SilentMove {
-                        noise_reduction,
-                        minimum_time_units,
-                    }) => format!(
-                        "A{minimum_time_units}. Avance d'une case avec une signature acoustique réduite de {noise_reduction}. Incompatible avec Profil réduit."
-                    ),
-                    Some(TechniqueAction::ToggleEmissionSilence { channel }) => format!(
-                        "A1. Active ou désactive le silence des {}. Les actions qui en dépendent restent indisponibles tant que le silence est actif.",
-                        signature_channel_label(channel)
-                    ),
-                    Some(TechniqueAction::ToggleLowProfile {
-                        optical_difficulty_bonus,
-                        minimum_movement_time_units,
-                    }) => format!(
-                        "A1. Posture activable : difficulté optique +{optical_difficulty_bonus} sous couvert réel ; déplacements d'au moins {minimum_movement_time_units} UT."
-                    ),
-                    Some(TechniqueAction::AmbushAttack {
-                        accuracy_modifier,
-                        physical_damage_percentage,
-                    }) => format!(
-                        "{action_timing}. Attaque simple contre une cible non alertée : Précision {accuracy_modifier:+}, {physical_damage_percentage} % des dégâts physiques. Si elle vous localise pendant la préparation, les bonus sont perdus."
-                    ),
-                    Some(TechniqueAction::DeploySoundDecoy {
-                        range,
-                        intensity,
-                        duration_phases,
-                        integrity,
-                    }) => format!(
-                        "A1. Place à portée {range} un leurre physique (intensité {intensity}, durée {duration_phases} phases, intégrité {integrity}) qui attire les observateurs capables de l'entendre."
-                    ),
-                    Some(TechniqueAction::BreakTrail {
-                        energy_cost,
-                        maximum_steps,
-                        maximum_duration,
-                    }) => format!(
-                        "A1 / {energy_cost} E. Hors de toute détection optique, masque jusqu'à {maximum_steps} nouvelles traces pendant {maximum_duration} tours ; une nouvelle localisation interrompt l'effet."
-                    ),
-                    Some(TechniqueAction::CamouflageExplosive {
-                        range,
-                        optical_difficulty_bonus,
-                    }) => format!(
-                        "{action_timing}. Génère une couverture donnant +{optical_difficulty_bonus} de difficulté optique à un explosif identifié et non déclenché à portée {range}."
-                    ),
-                    Some(TechniqueAction::ToggleActiveCamouflage {
-                        channel,
-                        optical_difficulty_bonus,
-                        maximum_duration,
-                        activation_energy,
-                        upkeep_energy,
-                        heat_per_phase,
-                    }) => format!(
-                        "A1 / {activation_energy} E, puis {upkeep_energy} E et +{heat_per_phase} H par phase. Utilise les {} : difficulté optique +{optical_difficulty_bonus}, au plus {maximum_duration} phases ; une attaque l'interrompt.",
-                        signature_channel_label(channel)
-                    ),
-                    Some(TechniqueAction::ManifestDrone {
-                        integrity,
-                        energy_capacity,
-                        link_range,
-                        sensor_radius,
-                        bandwidth_required,
-                        attack_range,
-                        attack_damage,
-                        ..
-                    }) => format!(
-                        "A1. Manifeste sur une case adjacente un drone physique de {integrity} intégrité et {energy_capacity} E. Liaison ≤{link_range}, capteurs {sensor_radius}, {bandwidth_required} B réservée ; attaque électrique {attack_damage} à portée {attack_range}."
-                    ),
-                    Some(TechniqueAction::DroneEscort {
-                        link_range,
-                        minimum_distance,
-                        maximum_distance,
-                        energy_cost,
-                    }) => format!(
-                        "A1 / {energy_cost} E. Donne à un drone physique en liaison ≤{link_range} un ordre d'escorte à une distance choisie de {minimum_distance} à {maximum_distance} cases."
-                    ),
-                    Some(TechniqueAction::DronePatrol {
-                        link_range,
-                        maximum_waypoints,
-                        energy_cost,
-                    }) => format!(
-                        "P1+A1 / {energy_cost} E. Programme jusqu'à {maximum_waypoints} points connus sur un drone en liaison ≤{link_range}. Le drone suit ensuite la route avec ses propres actions."
-                    ),
-                    Some(TechniqueAction::DroneMobileDecoy {
-                        link_range,
-                        controller_energy_cost,
-                        drone_energy_per_phase,
-                        intensity,
-                        maximum_duration,
-                    }) => format!(
-                        "A1 / {controller_energy_cost} E. Un drone équipé rejoint une destination connue en liaison ≤{link_range}, puis dépense {drone_energy_per_phase} E/phase pour émettre un leurre d'intensité {intensity}, au plus {maximum_duration} phases."
-                    ),
-                    Some(TechniqueAction::DroneCollect {
-                        link_range,
-                        energy_cost,
-                    }) => format!(
-                        "A1 / {energy_cost} E. Ordonne à un drone en liaison ≤{link_range} de rejoindre un objet connu, de le charger réellement, puis de revenir pour une remise adjacente."
-                    ),
-                    Some(TechniqueAction::DroneCoordinateFire {
-                        link_range,
-                        maximum_drones,
-                        energy_cost,
-                        transmission_bandwidth,
-                    }) => format!(
-                        "A1 / {energy_cost} E, +{transmission_bandwidth} B pendant l'émission. Jusqu'à {maximum_drones} drones en liaison ≤{link_range} viseront la cible lors de leur prochaine attaque ordinaire."
-                    ),
-                    Some(TechniqueAction::DroneInterpose {
-                        link_range,
-                        controller_energy_cost,
-                        drone_trigger_energy_cost,
-                    }) => format!(
-                        "A1 / {controller_energy_cost} E. Un drone compatible en liaison ≤{link_range} rejoint l'allié et peut intercepter un tir simple perçu pour {drone_trigger_energy_cost} E propres."
-                    ),
-                    Some(TechniqueAction::DroneConditionalRoutine {
-                        link_range,
-                        energy_cost,
-                        additional_bandwidth,
-                    }) => format!(
-                        "P1+A1 / {energy_cost} E, +{additional_bandwidth} B durant la routine. Programme une condition locale bornée sur un drone en liaison ≤{link_range}, sans boucle ni information globale."
-                    ),
-                    Some(TechniqueAction::DroneCoordinatedDeployment {
-                        link_range,
-                        maximum_drones,
-                        energy_cost,
-                        transmission_bandwidth,
-                    }) => format!(
-                        "P1+A1 / {energy_cost} E, +{transmission_bandwidth} B pendant l'émission. Assigne à jusqu'à {maximum_drones} drones en liaison ≤{link_range} des destinations et rôles réels, sans déplacement instantané."
-                    ),
-                    Some(TechniqueAction::DroneEmergencyReturn {
-                        link_range,
-                        maximum_drones,
-                        energy_cost,
-                        transmission_bandwidth,
-                        duration_phases,
-                    }) => format!(
-                        "A1 / {energy_cost} E, +{transmission_bandwidth} B pendant l'émission. Jusqu'à {maximum_drones} drones en liaison ≤{link_range} reviennent durant {duration_phases} phases, puis attendent."
-                    ),
-                    Some(TechniqueAction::ProbeInterface {
-                        range,
-                        analysis_bonus,
-                        energy_cost,
-                        audit_delay,
-                    }) => format!(
-                        "A1 / {energy_cost} E. Sonde une interface connue en liaison ≤{range}, Analyse +{analysis_bonus}. Crée une trace locale dont l'audit de référence arrive après {audit_delay} UT."
-                    ),
-                    Some(TechniqueAction::ForceElectronicLock {
-                        range,
-                        energy_cost,
-                        bandwidth_required,
-                        failure_hardening_duration,
-                        ..
-                    }) => format!(
-                        "P1+A1 / {energy_cost} E, {bandwidth_required} B pendant la procédure. Tente une ouverture électronique en liaison ≤{range}. Un échec durcit l'interface jusqu'à +20 pendant {failure_hardening_duration} UT."
-                    ),
-                    Some(TechniqueAction::ExtractData { range, energy_cost }) => format!(
-                        "P1+A1 / {energy_cost} E. Extrait d'une session de lecture à portée {range} un lot persistant, daté et rattaché à sa source."
-                    ),
-                    Some(TechniqueAction::SpoofAuthorization {
-                        range,
-                        energy_cost,
-                        duration_time_units,
-                    }) => format!(
-                        "A1 / {energy_cost} E, 1 B de session. Utilise un identifiant déjà extrait à portée {range} et accorde seulement les droits locaux pendant {duration_time_units} UT."
-                    ),
-                    Some(TechniqueAction::DivertDevice {
-                        range,
-                        energy_cost,
-                        additional_bandwidth,
-                        duration_time_units,
-                    }) => format!(
-                        "A1 / {energy_cost} E, +{additional_bandwidth} B. Maintient une consigne simple autorisée à portée {range} pendant {duration_time_units} UT ; une reprise adverse reste possible."
-                    ),
-                    Some(TechniqueAction::SuspendDigitalRoutine {
-                        range,
-                        energy_cost,
-                        duration_time_units,
-                        repeat_protection_time_units,
-                    }) => format!(
-                        "A1 / {energy_cost} E, recharge 3. Suspend une routine nommée à portée {range} pendant {duration_time_units} UT, puis protège cette famille {repeat_protection_time_units} UT."
-                    ),
-                    Some(TechniqueAction::MaintainBackdoor {
-                        range,
-                        installation_energy_cost,
-                        reconnection_energy_cost,
-                        maximum_backdoors,
-                        session_duration_time_units,
-                    }) => format!(
-                        "P1+A1 / {installation_energy_cost} E à l'installation, {reconnection_energy_cost} E à la reconnexion et 1 B de session. Jusqu'à {maximum_backdoors} accès dormants, liaison ≤{range}, session {session_duration_time_units} UT."
-                    ),
-                    Some(TechniqueAction::FalsifySecurityTrace { range, energy_cost }) => format!(
-                        "P1+A1 / {energy_cost} E. Avec droit de modification à portée {range}, falsifie une trace identifiée avant son audit ; copies, témoins et transmissions subsistent."
-                    ),
-                    Some(TechniqueAction::DivertSubnet {
-                        range,
-                        maximum_devices,
-                        energy_cost,
-                        bandwidth_per_device,
-                        duration_time_units,
-                    }) => format!(
-                        "P2+A1 / {energy_cost} E, {bandwidth_per_device} B par dispositif. Commande jusqu'à {maximum_devices} interfaces autorisées et joignables à portée {range} pendant {duration_time_units} UT."
-                    ),
-                    Some(TechniqueAction::LockDeviceControl {
-                        range,
-                        energy_cost,
-                        additional_bandwidth,
-                        duration_time_units,
-                    }) => format!(
-                        "A1 / {energy_cost} E, +{additional_bandwidth} B, recharge 4. Bloque pendant {duration_time_units} UT les reprises ordinaires d'un dispositif déjà détourné à portée {range}."
-                    ),
-                    Some(TechniqueAction::ElectronicPulse {
-                        radius,
-                        damage,
-                        energy_cost,
-                        heat_generated,
-                        disruption_intensity,
-                        directional,
-                        filter_identified_allies,
-                        bandwidth_required,
-                    }) => format!(
-                        "A1 / {energy_cost} E, +{heat_generated} H{}{}. {} de rayon {radius} : {damage} dégâts électriques aux systèmes compatibles ; interruption d'intensité {disruption_intensity}. Les parois bloquent la propagation.",
-                        if bandwidth_required > 0 {
-                            format!(", {bandwidth_required} B pendant l'émission")
-                        } else {
-                            String::new()
-                        },
-                        if filter_identified_allies {
-                            ", alliés identifiés filtrés"
-                        } else {
-                            ""
-                        },
-                        if directional {
-                            "Cône de 90°"
-                        } else {
-                            "Disque"
-                        },
-                    ),
-                    Some(TechniqueAction::ImplantOverheat {
-                        range,
-                        energy_cost,
-                        heat_generated,
-                        bandwidth_required,
-                        heat_per_tick,
-                        dissipation_penalty,
-                        duration_time_units,
-                        ..
-                    }) => format!(
-                        "A1 / {energy_cost} E, +{heat_generated} H, {bandwidth_required} B pendant la tentative. Machine visible à portée {range} : test logiciel, puis +{heat_per_tick} H et dissipation −{dissipation_penalty} durant {duration_time_units} UT."
-                    ),
-                    Some(TechniqueAction::MaintainJamming {
-                        radius,
-                        penalty,
-                        activation_energy,
-                        energy_per_phase,
-                        heat_per_phase,
-                        bandwidth_required,
-                        maximum_duration,
-                    }) => format!(
-                        "A1 / {activation_energy} E, puis {energy_per_phase} E et +{heat_per_phase} H par phase, {bandwidth_required} B. Brouille un canal choisi dans un rayon de {radius} avec un malus de {penalty}, au plus {maximum_duration} UT."
-                    ),
-                    Some(TechniqueAction::PurgeHostileProgram {
-                        range,
-                        energy_cost,
-                        intrusion_bonus,
-                    }) => format!(
-                        "A1 / {energy_cost} E. À portée {range}, tente de retirer un programme hostile précis avec un bonus logiciel de {intrusion_bonus:+}."
-                    ),
-                    Some(TechniqueAction::ElectronicCascade {
-                        range,
-                        jump_range,
-                        maximum_targets,
-                        damage_by_target,
-                        energy_cost,
-                        heat_generated,
-                    }) => format!(
-                        "A1 / {energy_cost} E, +{heat_generated} H. Première machine visible à portée {range}, puis jusqu'à {maximum_targets} cibles distinctes séparées de {jump_range} cases : dégâts électriques successifs {}. Chaque saut exige une liaison libre.",
-                        damage_sequence_label(
-                            &damage_by_target
-                                [..usize::from(maximum_targets).min(damage_by_target.len())]
-                        )
-                    ),
-                    Some(TechniqueAction::ImplantInfection {
-                        range,
-                        propagation_range,
-                        energy_cost,
-                        heat_generated,
-                        bandwidth_required,
-                        thermal_damage_per_tick,
-                        ticks_per_host,
-                        maximum_hosts,
-                        transmissions_per_host,
-                        campaign_duration,
-                        ..
-                    }) => format!(
-                        "A1 / {energy_cost} E, +{heat_generated} H, {bandwidth_required} B pendant la tentative. Infection logicielle à portée {range} : {thermal_damage_per_tick} thermiques pendant {ticks_per_host} UT par hôte, jusqu'à {maximum_hosts} hôtes. Chaque hôte tente {transmissions_per_host} transmission(s) distincte(s) à portée {propagation_range}, campagne {campaign_duration} UT."
-                    ),
-                    Some(TechniqueAction::DeploySaturationBeacon {
-                        radius,
-                        damage,
-                        duration_time_units,
-                        integrity,
-                        battery_energy,
-                        energy_per_phase,
-                        manual_activation,
-                        activation_energy,
-                        activation_bandwidth,
-                        activation_link_range,
-                    }) => format!(
-                        "P1+A1 / une balise. Acteur physique de {integrity} intégrité sur une case adjacente : disque bloqué par les murs, {damage} électriques, rayon {radius}, {duration_time_units} UT, batterie {battery_energy} E à {energy_per_phase} E/phase.{}",
-                        if manual_activation {
-                            format!(
-                                " Pose inactive ; activation ultérieure à portée {activation_link_range} pour {activation_energy} E et {activation_bandwidth} B temporaire."
-                            )
-                        } else {
-                            String::new()
-                        }
-                    ),
-                    Some(TechniqueAction::ImplantImplosion {
-                        range,
-                        energy_cost,
-                        heat_generated,
-                        bandwidth_required,
-                        minimum_stored_energy,
-                        reserved_energy,
-                        delay_time_units,
-                        radius,
-                        physical_damage,
-                        thermal_damage,
-                        ..
-                    }) => format!(
-                        "P1+A1 / {energy_cost} E, +{heat_generated} H, {bandwidth_required} B pendant la tentative. Réserve {reserved_energy} E dans une machine possédant au moins {minimum_stored_energy} E à portée {range}, puis annonce une détonation après {delay_time_units} UT : rayon {radius}, {physical_damage} physiques + {thermal_damage} thermiques."
-                    ),
-                    None => "Fonction indisponible dans cette version.".to_owned(),
-                }
-            };
-            let usage = definition.activation_cost().map_or(usage.clone(), |cost| {
-                let mut resources = Vec::new();
-                if cost.energy() > 0 {
-                    resources.push(format!("{} E", cost.energy()));
-                }
-                if cost.heat() > 0 {
-                    resources.push(format!("+{} H", cost.heat()));
-                }
-                if cost.persistent_bandwidth() > 0 {
-                    resources.push(format!("{} B réservée", cost.persistent_bandwidth()));
-                }
-                if let Some(limit) = cost.active_limit() {
-                    resources.push(format!("limite active {limit}"));
-                }
-                format!("COÛT INTRINSÈQUE : {}. {usage}", resources.join(" · "))
-            });
+            let usage = self.technique_usage(definition);
             let remaining_lines = (((layout.detail_panel.y + layout.detail_panel.h - 10.0 - y)
                 / 19.0)
                 .floor()
                 .max(0.0)) as usize;
-            draw_wrapped_text(&usage, x, y, available_width, remaining_lines, 14, muted);
+            let usage = usage
+                .replace("P1+A1", "Préparation 1 tour + action 1 tour")
+                .replace("P2+A1", "Préparation 2 tours + action 1 tour")
+                .replace("R1", "récupération 1 tour")
+                .replace("R2", "récupération 2 tours");
+            let bottom =
+                draw_wrapped_text(&usage, x, y, available_width, remaining_lines, 15, muted);
+            crate::ui_theme::end_text_pane();
+            self.ux.skill_scroll.finish(pane, bottom);
         }
         for (index, row) in &layout.technique_rows {
             let Some(technique_id) = techniques.get(*index) else {
                 continue;
             };
-            let row_y = row.y + 25.0;
             let selected = *index == self.skill_technique_selection;
             if selected {
                 draw_rectangle(
@@ -18251,29 +18112,23 @@ impl AsciiApp {
                     })
                     .unwrap_or_else(|| "Coût indisponible".to_owned())
             };
-            draw_wrapped_text(
+            crate::ui_theme::draw_text_in_rect(
                 &format!(
                     "{} {}",
                     if selected { ">" } else { " " },
                     self.technique_name(technique_id)
                 ),
-                row.x + 8.0,
-                row_y,
-                row.w - 16.0,
-                1,
+                Rect::new(row.x + 8.0, row.y + 5.0, row.w - 16.0, 18.0),
                 16,
                 if selected { amber } else { text },
             );
-            draw_wrapped_text(
+            crate::ui_theme::draw_text_in_rect(
                 &format!(
                     "{} · {} · {status}",
                     technical_reference(technique_id),
                     technique_kind_label(technique.kind())
                 ),
-                row.x + 22.0,
-                row_y + 15.0,
-                row.w - 30.0,
-                1,
+                Rect::new(row.x + 22.0, row.y + 26.0, row.w - 30.0, 13.0),
                 12,
                 if learned || (discipline_open && available_in_version) {
                     cyan
@@ -18302,12 +18157,53 @@ impl AsciiApp {
         let learned = techniques
             .get(self.skill_technique_selection)
             .is_some_and(|id| self.game.player_skills().has_learned(id));
-        let discipline_open = availability.is_some_and(|state| state.is_open());
+        let learning = techniques
+            .get(self.skill_technique_selection)
+            .map(|id| self.skill_learning_cost(id));
+        let learn_label = match &learning {
+            Some(Ok(cost)) => format!(
+                "Apprendre · {cost} point{}",
+                if *cost > 1 { "s" } else { "" }
+            ),
+            _ => "Apprendre".to_owned(),
+        };
+        UiTheme.button(
+            Self::skill_filter_rect(layout.panel),
+            &format!(
+                "{} [{}]",
+                if self.ux.skill_filter {
+                    "Disponibles"
+                } else {
+                    "Toutes"
+                },
+                self.controls.label(Action::InventoryFilter)
+            ),
+            false,
+            self.ux.skill_filter,
+            true,
+            ButtonTone::Secondary,
+        );
+        draw_text(
+            format!(
+                "{} / {} : discipline · {} / {} : technique · Page suiv. : détail",
+                self.controls.label(Action::MenuLeft),
+                self.controls.label(Action::MenuRight),
+                self.controls.label(Action::MenuUp),
+                self.controls.label(Action::MenuDown)
+            ),
+            layout.panel.x + 12.0,
+            layout.panel.y + 57.0,
+            13.0,
+            UiTheme.muted(),
+        );
         for (index, (rect, (label, enabled))) in layout
             .actions
             .iter()
             .zip([
-                ("Apprendre", discipline_open && !learned),
+                (
+                    learn_label.as_str(),
+                    learning.as_ref().is_some_and(|r| r.is_ok()),
+                ),
                 ("Utiliser", learned),
                 ("Fermer", true),
             ])
@@ -18606,6 +18502,7 @@ impl AsciiApp {
         let activate = self.controls.pressed(Action::Learn, input) && !clicked;
         match creation.stage {
             CharacterCreationStage::Protocol => {
+                let previous_class = creation.selected_class;
                 let previous = self.controls.pressed(Action::MenuUp, input)
                     || self.controls.pressed(Action::MenuLeft, input);
                 let next = self.controls.pressed(Action::MenuDown, input)
@@ -18628,6 +18525,14 @@ impl AsciiApp {
                 {
                     creation.selected_class = index;
                 }
+                if creation.selected_class != previous_class {
+                    if let Some((_, class)) =
+                        self.character_classes.iter().nth(creation.selected_class)
+                    {
+                        creation.attributes = class.recommended_attributes();
+                    }
+                    creation.message.clear();
+                }
                 let cancel = clicked
                     && input
                         .pointer
@@ -18636,23 +18541,37 @@ impl AsciiApp {
                     self.open_menu(MenuScreen::Main);
                     return;
                 }
-                let continue_requested = activate
-                    || (clicked
+                let customize = self.controls.pressed(Action::InventoryFilter, input)
+                    || clicked
                         && input
                             .pointer
-                            .is_some_and(|point| layout.continue_button.contains(point.into())));
-                if continue_requested
-                    && let Some(attributes) = self
-                        .character_classes
-                        .iter()
-                        .nth(creation.selected_class)
-                        .map(|(_, definition)| definition.recommended_attributes())
-                {
-                    creation.attributes = attributes;
+                            .is_some_and(|p| layout.preset.contains(p.into()));
+                if customize {
                     creation.stage = CharacterCreationStage::Attributes;
-                    creation.message =
-                        "Profil recommandé appliqué ; redistribuez librement les 28 points."
-                            .to_owned();
+                    creation.message.clear();
+                } else if activate
+                    || clicked
+                        && input
+                            .pointer
+                            .is_some_and(|p| layout.continue_button.contains(p.into()))
+                {
+                    if creation.attributes.total()
+                        != self.rules.primary_attribute_rules.creation_total
+                    {
+                        creation.stage = CharacterCreationStage::Attributes;
+                        creation.message =
+                            "Répartissez les points restants pour commencer.".to_owned();
+                    } else {
+                        match self.rebuild_run_with_character_class(&creation) {
+                            Ok(()) => return,
+                            Err(error) => {
+                                eprintln!("[NEW RUN] {error}");
+                                creation.message =
+                                    "Impossible de commencer cette partie pour le moment."
+                                        .to_owned();
+                            }
+                        }
+                    }
                 }
             }
             CharacterCreationStage::Attributes => {
@@ -18715,7 +18634,13 @@ impl AsciiApp {
                             && input.pointer.is_some_and(|point| {
                                 layout.continue_button.contains(point.into())
                             }));
-                    if start {
+                    if start
+                        && creation.attributes.total()
+                            != self.rules.primary_attribute_rules.creation_total
+                    {
+                        creation.message =
+                            "Répartissez les points restants pour commencer.".to_owned();
+                    } else if start {
                         match self.rebuild_run_with_character_class(&creation) {
                             Ok(()) => return,
                             Err(error) => {
@@ -18783,6 +18708,7 @@ impl AsciiApp {
         definition
             .apply_to_rules(&mut rules, creation.attributes)
             .map_err(|error| error.to_string())?;
+        weapon_supplies_app::ensure_class_weapon_supplies(&mut rules, CURRENT_GENERATION_VERSION);
 
         // The complete run is built before the optional old suspension is consumed.
         let mut fresh = Self::from_seed(
@@ -18862,6 +18788,45 @@ impl AsciiApp {
         Ok(())
     }
 
+    fn restart_current_profile(&mut self) {
+        let next_seed = self.seed.wrapping_add(1);
+        match Self::from_seed(
+            next_seed,
+            self.rules.clone(),
+            self.texts.clone(),
+            self.loot.clone(),
+            self.expeditions.clone(),
+        ) {
+            Ok(mut next_run) => {
+                if let Err(error) = self.remove_crash_recovery_files_except(None) {
+                    eprintln!("[RECOVERY] Restart cleanup failed: {error}");
+                    self.push_log(
+                        "Redémarrage impossible : récupération active non supprimée.".to_owned(),
+                    );
+                    return;
+                }
+                next_run.character_class = self.character_class.clone();
+                next_run.active_weapon_slot = next_run
+                    .game
+                    .rules()
+                    .player_starting_equipment
+                    .iter()
+                    .position(Option::is_some)
+                    .unwrap_or(0) as u8;
+                next_run.controls = self.controls.clone();
+                next_run.controls_path = self.controls_path.clone();
+                next_run.options_message = self.options_message.clone();
+                next_run.graphics = self.graphics.clone();
+                next_run.suspension_path = self.suspension_path.clone();
+                next_run.crash_recovery_enabled = self.crash_recovery_enabled;
+                next_run.session_lock = self.session_lock.take();
+                *self = next_run;
+                self.start_crash_recovery();
+            }
+            Err(_) => self.push_log("Impossible de commencer une nouvelle partie.".to_owned()),
+        }
+    }
+
     fn open_menu(&mut self, menu: MenuScreen) {
         self.menu_repeat.clear();
         self.menu_repeat_context = None;
@@ -18883,6 +18848,24 @@ impl AsciiApp {
     }
 
     fn update_menu(&mut self, input: &InputFrame) {
+        if self.menu == MenuScreen::Main
+            && !self.ux.resume_error.is_empty()
+            && (self.controls.pressed(Action::Inspect, input)
+                || input.pressed.contains(&controls::Binding::MouseLeft)
+                    && input.pointer.is_some_and(|p| {
+                        MenuLayout::for_screen(
+                            self.menu,
+                            input.viewport.unwrap_or((1280.0, 800.0)).0,
+                            input.viewport.unwrap_or((1280.0, 800.0)).1,
+                            self.menu_labels().len(),
+                        )
+                        .main_error(input.viewport.unwrap_or((1280.0, 800.0)).1)
+                        .contains(p.into())
+                    }))
+        {
+            self.ux.item_card=Some(("Diagnostic de reprise".to_owned(),vec![self.ux.resume_error.clone(),"La sauvegarde est conservée. Vous pouvez fermer ce diagnostic et réessayer après correction du problème.".to_owned()]));
+            return;
+        }
         let count = self.menu.buttons().len();
         if count == 0 {
             return;
@@ -18927,6 +18910,21 @@ impl AsciiApp {
         if ((clicked && hovered.is_some()) || activate)
             && self.menu_row_enabled(self.menu_selection)
         {
+            if self.menu == MenuScreen::Graphics && matches!(self.menu_selection,0..=2|4..=6) {
+                let rect = MenuLayout::for_screen(
+                    self.menu,
+                    input.viewport.unwrap_or((1280.0, 800.0)).0,
+                    input.viewport.unwrap_or((1280.0, 800.0)).1,
+                    count,
+                )
+                .buttons[self.menu_selection];
+                let backwards = clicked
+                    && input
+                        .pointer
+                        .is_some_and(|p| p.0 >= rect.right() - 77.0 && p.0 < rect.right() - 35.0);
+                self.graphics.draft.cycle(self.menu_selection, !backwards);
+                return;
+            }
             match (self.menu, self.menu_selection) {
                 (MenuScreen::Main, 0) => {
                     self.resume_requested = true;
@@ -18992,6 +18990,8 @@ impl AsciiApp {
                             "Retour au menu impossible : veuillez réessayer.".to_owned();
                     }
                 }
+                (MenuScreen::ConfirmRestart, 0) => self.open_menu(MenuScreen::Hidden),
+                (MenuScreen::ConfirmRestart, 1) => self.restart_current_profile(),
                 (MenuScreen::ConfirmNewRun, 0) => self.open_menu(MenuScreen::Main),
                 (MenuScreen::ConfirmNewRun, 1) => {
                     if let Err(error) = self.begin_character_creation(true) {
@@ -19074,7 +19074,7 @@ impl AsciiApp {
                     "Résolution : bureau (automatique)".to_owned()
                 },
                 format!("Taille de l'interface : {} %", settings.ui_scale_percent),
-                "Rendu : Terminal à glyphes (textures à venir)".to_owned(),
+                "Rendu : Terminal à glyphes".to_owned(),
                 format!("Taille des cases : {} px", settings.world_cell_px),
                 format!(
                     "Contraste renforcé : {}",
@@ -19158,10 +19158,12 @@ impl AsciiApp {
             "Session de test temporaire · aucune sauvegarde de partie modifiée."
         } else if self.menu == MenuScreen::ConfirmAbandon {
             "La partie en cours sera perdue sans sauvegarde. Tu reviendras au menu principal."
+        } else if self.menu == MenuScreen::ConfirmRestart {
+            "Votre progression actuelle sera perdue. Une nouvelle partie débutera avec le même profil."
         } else if self.menu == MenuScreen::ConfirmNewRun {
             "La reprise disponible sera définitivement remplacée. Annuler la conserve intacte."
         } else if self.menu == MenuScreen::Main && self.has_suspension() {
-            "Une partie suspendue est disponible. La reprise reste unique et ne permet aucun retour en arrière."
+            "Une partie suspendue est disponible. Reprenez là où vous vous êtes arrêté ; vous pourrez suspendre à nouveau."
         } else if self.menu == MenuScreen::Main && self.has_crash_recovery() {
             "La session précédente s'est interrompue. Un unique point de récupération automatique est disponible."
         } else if self.menu == MenuScreen::Main {
@@ -19175,7 +19177,7 @@ impl AsciiApp {
         } else if self.game.status() != RunStatus::Active {
             "Partie terminée : aucune sauvegarde de reprise ne sera créée."
         } else {
-            "Sauvegarder et quitter permet une reprise unique. Aucun tour ne s'écoule dans le menu."
+            "Vous pouvez suspendre et reprendre votre partie à chaque session. Aucun tour ne s'écoule ici."
         };
         let hint = if self.menu == MenuScreen::Graphics {
             format!(
@@ -19238,7 +19240,7 @@ impl AsciiApp {
         );
         let summary = match self.menu {
             MenuScreen::Main if self.has_suspension() => {
-                "Suspension disponible · reprise unique".to_owned()
+                "Partie suspendue · reprendre au même endroit".to_owned()
             }
             MenuScreen::Main if self.has_crash_recovery() => {
                 "Session interrompue · récupération disponible".to_owned()
@@ -19269,6 +19271,15 @@ impl AsciiApp {
         for (index, (label, rect)) in buttons.iter().zip(&layout.buttons).enumerate() {
             let enabled = self.menu_row_enabled(index);
             let selected = enabled && self.menu_focus.highlighted(index, self.menu_selection);
+            if self.menu == MenuScreen::Graphics && index <= 6 {
+                let toggle = match index {
+                    5 => Some(self.graphics.draft.high_contrast),
+                    6 => Some(self.graphics.draft.reduced_motion),
+                    _ => None,
+                };
+                theme.setting_row(*rect, label, selected, enabled, toggle);
+                continue;
+            }
             theme.button_with_icon(
                 *rect,
                 label,
@@ -19453,6 +19464,16 @@ impl AsciiApp {
 
         for (index, (label, rect)) in buttons.iter().zip(&layout.buttons).enumerate() {
             let enabled = self.menu_row_enabled(index);
+            if index == 0 && !enabled {
+                draw_text(
+                    "Aucune partie suspendue",
+                    rect.x + 18.0,
+                    rect.y + rect.h * 0.7,
+                    14.0,
+                    theme.muted(),
+                );
+                continue;
+            }
             let selected = enabled && self.menu_focus.highlighted(index, self.menu_selection);
             theme.main_menu_action(
                 *rect,
@@ -19460,6 +19481,7 @@ impl AsciiApp {
                 menu_button_icon(MenuScreen::Main, index),
                 selected,
                 enabled,
+                index == if self.has_resume_data() { 0 } else { 1 },
             );
         }
 
@@ -19481,7 +19503,10 @@ impl AsciiApp {
                 Color::new(0.74, 0.39, 0.39, 0.85),
             );
             draw_text_bold(
-                error_title,
+                &format!(
+                    "{error_title} · Diagnostic [{}]",
+                    self.controls.label(Action::Inspect)
+                ),
                 area.x + 12.0,
                 area.y + 23.0,
                 16.0,
@@ -19689,22 +19714,30 @@ impl AsciiApp {
         Rect::new(margin, margin, width - margin * 2.0, height - margin * 2.0)
     }
 
-    fn encode_recovery_snapshot(&self) -> Result<String, String> {
-        let presentation = RecoveryPresentation {
-            terminal: self.terminal.clone(),
-            zone_views: self.zone_views.clone(),
-            zone_decor: self.zone_decor.clone(),
+    fn recovery_presentation(&self) -> RecoveryPresentationRef<'_> {
+        RecoveryPresentationRef {
+            terminal: &self.terminal,
+            zone_views: &self.zone_views,
+            zone_decor: &self.zone_decor,
             facing: self.facing,
-            regional_zones: self.regional_zones.clone(),
-            actor_glyphs: self.actor_glyphs.clone(),
+            regional_zones: &self.regional_zones,
+            actor_glyphs: &self.actor_glyphs,
             intro_city_reached: self.intro_city_reached,
-        };
-        let snapshot = AppRecoverySnapshot {
-            engine: self.game.recovery_snapshot_bytes()?,
+        }
+    }
+
+    fn encode_recovery_snapshot(&self) -> Result<String, String> {
+        let presentation = self.recovery_presentation();
+        let engine = self.game.recovery_snapshot_bytes()?;
+        let snapshot = AppRecoverySnapshotRef {
+            engine: &engine,
             presentation_fingerprint: suspension::fingerprint(&presentation),
             presentation,
         };
-        let bytes = bincode::serialize(&snapshot)
+        let mut bytes = Vec::new();
+        // serialize() first walks the entire object to calculate its size. A
+        // growing buffer lets us visit the presentation once instead of twice.
+        bincode::serialize_into(&mut bytes, &snapshot)
             .map_err(|error| format!("Impossible d'encoder la reprise : {error}"))?;
         if bytes.len() > MAX_APP_RECOVERY_SNAPSHOT_BYTES {
             return Err("Instantané de reprise trop volumineux.".to_owned());
@@ -19783,6 +19816,8 @@ impl AsciiApp {
             selected_target: self.selected_target.map(|id| id.get()),
             report: self.observation_report.clone(),
             log: self.log.clone(),
+            observed_events: self.ux.history.clone(),
+            tracked_quest: self.ux.tracked_quest.as_ref().map(ToString::to_string),
         };
         saved.validate()?;
         Ok(saved)
@@ -19826,6 +19861,7 @@ impl AsciiApp {
             definition
                 .apply_to_rules(&mut rules, attributes)
                 .map_err(|error| format!("Protocole enregistré incompatible : {error}"))?;
+            weapon_supplies_app::ensure_class_weapon_supplies(&mut rules, saved.version);
         }
         if saved.rules != rules_fingerprint_for_version(&rules, saved.version) {
             return Err("Les règles ou les mods ont changé ; suspension conservée.".to_owned());
@@ -19926,6 +19962,25 @@ impl AsciiApp {
         }
         restored.observation_report = saved.report.clone();
         restored.log = saved.log.clone();
+        if !saved.observed_events.is_empty() {
+            restored.ux.history = saved
+                .observed_events
+                .iter()
+                .filter(|(turn, _)| *turn <= restored.game.turn())
+                .cloned()
+                .collect();
+        }
+        restored.ux.tracked_quest = saved
+            .tracked_quest
+            .as_ref()
+            .and_then(|id| id.parse().ok())
+            .filter(|id| {
+                restored
+                    .game
+                    .quest_journal()
+                    .iter()
+                    .any(|e| &e.quest.id == id)
+            });
         restored.character_class = restored_class;
         restored.trace_cells.clear();
         restored.visual_cues.clear_world();
@@ -20051,6 +20106,7 @@ impl AsciiApp {
 
     fn report_resume_failure(&mut self, error: String) {
         eprintln!("[SUSPENSION] Resume failed: {error}");
+        self.ux.resume_error = error;
         self.menu_message = "Reprise impossible : la sauvegarde ne peut pas être chargée. Elle a été conservée intacte.".to_owned();
     }
 
@@ -20109,9 +20165,10 @@ impl AsciiApp {
     }
 
     fn update_options(&mut self, input: &InputFrame) {
+        let actions = self.control_actions();
         if self.rebinding {
             if input.pressed.len() == 1 {
-                let action = Action::ALL[self.options_selection - 1];
+                let action = actions[self.options_selection - 1];
                 let mut next = self.controls.clone();
                 match next.rebind(action, input.pressed.first().unwrap().clone()) {
                     Ok(()) => {
@@ -20126,13 +20183,25 @@ impl AsciiApp {
             }
             return;
         }
+        let (w, _) = input.viewport.unwrap_or((1280.0, 800.0));
+        if input.pressed.contains(&controls::Binding::MouseLeft) {
+            if let Some(group) = (0..6).find(|i| {
+                input
+                    .pointer
+                    .is_some_and(|p| Self::control_tab(w, *i).contains(p.into()))
+            }) {
+                self.ux.controls_group = group;
+                self.options_selection = 0;
+                self.options_scroll = 0;
+                return;
+            }
+        }
         let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
         let up = self.controls.pressed(Action::MenuUp, input);
         let down = self.controls.pressed(Action::MenuDown, input);
         let activate = self.controls.pressed(Action::Learn, input) && !clicked;
         let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
-        let mut layout =
-            ControlsLayout::new(width, height, self.options_scroll, Action::ALL.len() + 1);
+        let mut layout = ControlsLayout::new(width, height, self.options_scroll, actions.len() + 1);
         let scrolling = wheel_steps(input.wheel_y) > 0
             && input
                 .pointer
@@ -20144,15 +20213,15 @@ impl AsciiApp {
         if up && !clicked {
             self.options_selection = self.options_selection.saturating_sub(1);
         } else if down && !clicked {
-            self.options_selection = (self.options_selection + 1).min(Action::ALL.len() + 1);
+            self.options_selection = (self.options_selection + 1).min(actions.len() + 1);
         }
         if up || down || activate || (self.menu_focus.keyboard_mode() && !scrolling) {
-            layout.reveal(self.options_selection.min(Action::ALL.len()));
+            layout.reveal(self.options_selection.min(actions.len()));
         }
         self.options_scroll = layout.first;
         let hovered = input.pointer.and_then(|pointer| {
             if layout.back.contains(pointer.into()) {
-                Some(Action::ALL.len() + 1)
+                Some(actions.len() + 1)
             } else {
                 layout.hit(pointer)
             }
@@ -20164,7 +20233,7 @@ impl AsciiApp {
             up || down || activate,
         );
         if (clicked && hovered.is_some()) || activate {
-            if self.options_selection > Action::ALL.len() {
+            if self.options_selection > actions.len() {
                 self.open_menu(MenuScreen::Options);
             } else if self.options_selection == 0 {
                 let mut next = self.controls.clone();
@@ -20195,11 +20264,12 @@ impl AsciiApp {
     }
 
     fn draw_options(&self) {
+        let actions = self.control_actions();
         let layout = ControlsLayout::new(
             self.ui_width(),
             self.ui_height(),
             self.options_scroll,
-            Action::ALL.len() + 1,
+            actions.len() + 1,
         );
         let margin = layout.bounds.x;
         let width = layout.bounds.w;
@@ -20214,7 +20284,7 @@ impl AsciiApp {
         draw_text_bold("OPTIONS", margin, 55.0, 30.0, UiTheme.text());
         let back_selected = self
             .menu_focus
-            .highlighted(Action::ALL.len() + 1, self.options_selection);
+            .highlighted(actions.len() + 1, self.options_selection);
         let back = layout.back;
         UiTheme.button(
             back,
@@ -20225,15 +20295,26 @@ impl AsciiApp {
             ButtonTone::Secondary,
         );
         draw_text_bold("COMMANDES", margin, 87.0, 19.0, UiTheme.accent());
-        draw_wrapped_text(
-            "Disposition et raccourcis personnels. La partie est en pause. Échap : retour aux options.",
-            margin,
-            115.0,
-            width,
-            2,
-            16,
-            GRAY,
-        );
+        for (index, label) in [
+            "Tout",
+            "Déplacement",
+            "Combat",
+            "Interfaces",
+            "Navigation",
+            "Essais",
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            UiTheme.button(
+                Self::control_tab(self.ui_width(), index),
+                label,
+                false,
+                self.ux.controls_group == index,
+                true,
+                ButtonTone::Secondary,
+            );
+        }
         for index in layout.first..layout.first + layout.visible {
             let rect = layout.row(index).expect("visible controls row");
             let y = rect.y + 21.0;
@@ -20244,7 +20325,7 @@ impl AsciiApp {
                     self.controls.layout.name().to_owned(),
                 )
             } else {
-                let action = Action::ALL[index - 1];
+                let action = actions[index - 1];
                 (action.name(), self.controls.label(action))
             };
             if selected {
@@ -20255,8 +20336,7 @@ impl AsciiApp {
                     rect.h,
                     Color::from_rgba(18, 58, 63, 255),
                 );
-                draw_rectangle(rect.x, rect.y + 4.0, 3.0, rect.h - 8.0, YELLOW);
-                draw_rectangle_lines(rect.x, rect.y, rect.w, rect.h, 1.0, SKYBLUE);
+                draw_rectangle_lines(rect.x, rect.y, rect.w, rect.h, 1.0, UiTheme.accent());
             }
             draw_wrapped_text(
                 name,
@@ -20265,7 +20345,11 @@ impl AsciiApp {
                 width * 0.68 - 20.0,
                 1,
                 17,
-                if selected { YELLOW } else { LIGHTGRAY },
+                if selected {
+                    UiTheme.accent()
+                } else {
+                    UiTheme.text()
+                },
             );
             UiTheme.button(
                 Rect::new(
@@ -20298,7 +20382,7 @@ impl AsciiApp {
                 y,
                 4.0,
                 thumb,
-                SKYBLUE,
+                UiTheme.accent(),
             );
         }
         draw_wrapped_text(
@@ -20308,14 +20392,14 @@ impl AsciiApp {
             width,
             2,
             15,
-            YELLOW,
+            UiTheme.accent(),
         );
         let hint = format!(
             "{} / {} : sélectionner · molette : défiler · {} ou clic : {} · Échap : retour",
             self.controls.label(Action::MenuUp),
             self.controls.label(Action::MenuDown),
             self.controls.label(Action::Learn),
-            if self.options_selection > Action::ALL.len() {
+            if self.options_selection > actions.len() {
                 "revenir"
             } else if self.options_selection == 0 {
                 "changer de disposition"
@@ -20330,7 +20414,7 @@ impl AsciiApp {
             width,
             2,
             15,
-            SKYBLUE,
+            UiTheme.accent(),
         );
     }
 
@@ -20378,102 +20462,48 @@ impl AsciiApp {
     }
 
     fn draw_dossier(&self) {
-        let theme = UiTheme;
-        let x = 40.0;
-        let width = (self.ui_width() - 80.0).max(100.0);
-        let height = (self.ui_height() - 80.0).max(150.0);
+        let panel = ux::reader_panel(self.ui_width(), self.ui_height());
         draw_rectangle(
             0.0,
             0.0,
             self.ui_width(),
             self.ui_height(),
-            theme.backdrop(),
+            UiTheme.backdrop(),
         );
-        theme.panel(Rect::new(x, 40.0, width, height));
-        draw_text_bold("DOSSIER DE TERRAIN", x + 20.0, 77.0, 24.0, theme.text());
-        let location = self
-            .game
-            .current_zone()
-            .map(|zone| player_zone_title(&zone.name, zone.depth))
-            .unwrap_or_else(|| "Zone inconnue".to_owned());
-        draw_text(
-            format!("{location} · cycle {}", self.game.turn()),
-            x + 20.0,
-            103.0,
-            15.0,
-            theme.accent(),
-        );
-        let close = Rect::new(x + width - 100.0, 50.0, 80.0, 31.0);
-        theme.button_with_icon(
-            close,
-            "Fermer",
-            UiIcon::Cancel,
-            ButtonState::new(
-                self.menu_focus.hovered == Some(0),
-                false,
-                true,
-                ButtonTone::Secondary,
-            ),
-        );
-        draw_line(x + 20.0, 119.0, x + width - 20.0, 119.0, 1.0, theme.muted());
-        let bottom = 40.0 + height - 65.0;
-        let mut y = 151.0;
-        let lines = self.dossier_lines();
-        for line in lines.iter().skip(self.report_scroll) {
-            if y + 24.0 > bottom {
-                break;
-            }
-            match line.kind {
-                DossierLineKind::Section => {
-                    draw_text_bold(&line.text, x + 20.0, y, 16.0, theme.accent());
-                    draw_line(
-                        x + 20.0,
-                        y + 8.0,
-                        x + width - 20.0,
-                        y + 8.0,
-                        1.0,
-                        theme.surface_raised(),
-                    );
-                    y += 30.0;
-                }
-                DossierLineKind::Content => {
-                    let card = Rect::new(x + 18.0, y - 20.0, width - 36.0, 56.0);
-                    draw_rectangle(card.x, card.y, card.w, card.h, theme.surface_raised());
-                    y = draw_wrapped_text(
-                        &line.text,
-                        card.x + 12.0,
-                        y,
-                        card.w - 24.0,
-                        2,
-                        17,
-                        theme.text(),
-                    ) + 17.0;
-                }
-            }
-        }
-        if lines.len() > 1 {
-            let track = Rect::new(x + width - 9.0, 132.0, 3.0, (bottom - 132.0).max(20.0));
-            draw_rectangle(track.x, track.y, track.w, track.h, theme.surface_raised());
-            let thumb_h = (track.h / lines.len() as f32 * 4.0).clamp(20.0, track.h);
-            let thumb_y = track.y
-                + (track.h - thumb_h) * self.report_scroll as f32
-                    / lines.len().saturating_sub(1).max(1) as f32;
-            draw_rectangle(track.x, thumb_y, track.w, thumb_h, theme.accent());
-        }
-        draw_wrapped_text(
+        ux::draw_reader(
+            "Dossier de terrain",
             &format!(
-                "{} / {} ou molette : défiler · {} : fermer",
-                self.controls.label(Action::MenuUp),
-                self.controls.label(Action::MenuDown),
-                self.controls.label(Action::Report)
+                "Relevés et archives découverts · {} : journal des quêtes",
+                self.controls.label(Action::QuestJournal)
             ),
-            x + 20.0,
-            40.0 + height - 25.0,
-            width - 40.0,
-            2,
-            14,
-            theme.accent(),
+            panel,
+            self.menu_focus.hovered == Some(0),
+            &self.controls,
         );
+        let body = ux::reader_body(panel);
+        crate::ui_theme::begin_text_pane(body, self.ux.dossier_scroll.offset);
+        let mut y = body.y + 24.0;
+        for line in self.dossier_lines() {
+            let section = matches!(line.kind, DossierLineKind::Section);
+            if section {
+                y += 14.0;
+            }
+            y = draw_wrapped_text(
+                &line.text,
+                body.x,
+                y,
+                body.w - 20.0,
+                4096,
+                if section { 18 } else { 17 },
+                if section {
+                    UiTheme.accent()
+                } else {
+                    UiTheme.text()
+                },
+            ) + 18.0;
+        }
+        crate::ui_theme::end_text_pane();
+        self.ux.dossier_scroll.finish(body, y);
     }
 }
 
@@ -20487,10 +20517,15 @@ fn draw_wrapped_text(
     size: u16,
     color: Color,
 ) -> f32 {
+    let maximum_lines = if crate::ui_theme::text_pane_active() {
+        4096
+    } else {
+        maximum_lines.min(4096)
+    };
     if maximum_lines == 0 || text.is_empty() {
         return y;
     }
-    let mut lines = Vec::with_capacity(maximum_lines);
+    let mut lines = Vec::with_capacity(maximum_lines.min(16));
     let mut line = String::with_capacity(text.len().min(128));
     let mut truncated = false;
     for word in text.split_whitespace() {
@@ -20851,6 +20886,39 @@ fn world_fingerprint_for_version(
     } else {
         regional_worlds.without_population_base_armor_metadata()
     };
+    if version < DEPTH_DISTRIBUTION_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_depth_distribution_metadata();
+    }
+    if version < FIRST_LAYER_PLAN_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_first_layer_plan_metadata();
+    }
+    if version < FIRST_LAYER_ENCOUNTERS_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_first_layer_encounters_metadata();
+    }
+    if version < FIRST_LAYER_LANDSCAPES_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_first_layer_landscapes_metadata();
+    }
+    if version < BESTIARY_BATCH_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_bestiary_batch_metadata();
+    }
+    if version < MARSH_SPITTER_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_marsh_spitter_metadata();
+    }
+    if version < STRANGE_FAUNA_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_strange_fauna_metadata();
+    }
+    if version < LAYER_BALANCE_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_layer_balance_metadata();
+    }
+    if version < DEEP_ENCOUNTERS_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_deep_encounters_metadata();
+    }
+    if version < CAVE_ANEMONE_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_cave_anemone_metadata();
+    }
+    if version < UNDERGROUND_FAUNA_GENERATION_VERSION {
+        compatible_regions = compatible_regions.without_underground_fauna_metadata();
+    }
     if version < SURFACE_DENSITY_GENERATION_VERSION {
         compatible_regions = compatible_regions.without_surface_density_metadata();
     }
@@ -21012,6 +21080,47 @@ const fn prototype_enemy_base_armor(index: usize, generation_version: u8) -> u16
 }
 
 fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules {
+    if version < MAINTAINED_ENERGY_GENERATION_VERSION {
+        rules.maintained_energy_reservations = false;
+        rules.player_companion_limit = None;
+    }
+    if version < CONTINUOUS_ENERGY_FIRE_GENERATION_VERSION {
+        rules.weapons = rules
+            .weapons
+            .with_weapon_recovery(
+                &"core:fusil_de_parallaxe".parse().unwrap(),
+                project_rl::time::TimeUnits::ONE,
+            )
+            .with_weapon_recovery(
+                &"core:fusil_de_l_horizon_fendu".parse().unwrap(),
+                project_rl::time::TimeUnits::new(50).unwrap(),
+            );
+    }
+    if version < PARALLAX_RECOVERY_GENERATION_VERSION {
+        rules.weapons = rules.weapons.with_weapon_recovery(
+            &"core:fusil_de_parallaxe".parse().unwrap(),
+            project_rl::time::TimeUnits::new(40).unwrap(),
+        );
+    }
+    if version < SHARED_WEAPON_SUPPLIES_GENERATION_VERSION {
+        let matter = "core:weapon_matter".parse().unwrap();
+        if rules.items.get(&matter).is_some() {
+            rules.player_inventory_capacity = rules.player_inventory_capacity.saturating_sub(1);
+        }
+        rules.weapon_matter_item = None;
+        rules.player_energy_regeneration = 0;
+        rules
+            .player_starting_items
+            .retain(|stack| stack.item != matter);
+        rules.items = rules.items.without_id(&matter);
+        rules.weapons = rules.weapons.without_supply_metadata();
+    }
+    if version < LEVEL_FULL_HEAL_GENERATION_VERSION {
+        rules.player_full_heal_on_level_up = false;
+    }
+    if version < LEVEL_HEALTH_GENERATION_VERSION {
+        rules.player_hit_points_per_level = 0;
+    }
     if version < DEPTH_EQUIPMENT_GENERATION_VERSION {
         for id in equipment_generation::DEEP_BASE_IDS {
             let id = id.parse().expect("built-in equipment ID");
@@ -21501,6 +21610,8 @@ fn ascii_game_content() -> Result<(GameRules, TextCatalog, LootCatalog, Expediti
         armor_rules: Some(ArmorRules::default()),
         hit_rules: Some(HitRules::default()),
         physical_rules: Some(PhysicalRules::default()),
+        player_hit_points_per_level: 3,
+        player_full_heal_on_level_up: true,
         stability_rules: Some(StabilityRules::default()),
         player_body_profile: Some(
             BodyProfile::new(15, 0)
@@ -21517,6 +21628,7 @@ fn ascii_game_content() -> Result<(GameRules, TextCatalog, LootCatalog, Expediti
         player_armor_slots,
         player_starting_weapons,
         player_starting_items: vec![
+            StartingItemStack::new("core:weapon_matter".parse().unwrap(), 40),
             StartingItemStack::new(repair_id, 2),
             StartingItemStack::new(sound_decoy_id, 2),
             StartingItemStack::new(camouflage_bundle_id, 2),
@@ -21527,7 +21639,13 @@ fn ascii_game_content() -> Result<(GameRules, TextCatalog, LootCatalog, Expediti
             StartingItemStack::new(saturation_beacon_id, 2),
         ],
         player_starting_equipment,
+        // Compensate the one slot occupied by the common material stack.
+        player_inventory_capacity: 13,
         player_system_resources: Some(SystemResourceRules::default()),
+        weapon_matter_item: Some("core:weapon_matter".parse().unwrap()),
+        player_energy_regeneration: 1,
+        maintained_energy_reservations: true,
+        player_companion_limit: Some(5),
         stealth_rules: Some(StealthRules::default()),
         statuses,
         weapons,
@@ -21703,14 +21821,6 @@ fn player_zone_title(name: &str, depth: u16) -> String {
     }
 }
 
-fn skill_points_hud_label(points: u32) -> String {
-    match points {
-        0 => "Aucun point de compétence".to_owned(),
-        1 => "1 point de compétence disponible".to_owned(),
-        points => format!("{points} points de compétence disponibles"),
-    }
-}
-
 fn observer_location(observer: Option<GridPos>, target: GridPos) -> String {
     observer.map_or_else(
         || "dans la zone".to_owned(),
@@ -21816,14 +21926,6 @@ const fn damage_type_label(damage_type: DamageType) -> &'static str {
     }
 }
 
-fn resistance_percentage(value: i16) -> String {
-    if value > 0 {
-        format!("+{value}%")
-    } else {
-        format!("{value}%")
-    }
-}
-
 const fn primary_attribute_label(attribute: PrimaryAttribute) -> &'static str {
     match attribute {
         PrimaryAttribute::Power => "PUISSANCE",
@@ -21849,18 +21951,8 @@ const fn primary_attribute_description(attribute: PrimaryAttribute) -> &'static 
             "Améliore votre capacité à repérer les présences dissimulées et les indices discrets, ainsi qu’à analyser vos observations. Contribue également à la précision de vos tirs. N’augmente pas la portée de vos capteurs et ne permet pas de voir à travers les murs."
         }
         PrimaryAttribute::Processing => {
-            "Améliore l’efficacité de vos intrusions et votre résistance aux attaques logicielles. Facilite l’analyse des informations disponibles. N’augmente ni vos réserves d’énergie ni votre bande passante."
+            "Améliore l’efficacité de vos intrusions et votre résistance aux attaques logicielles. Facilite l’analyse des informations disponibles. N’augmente pas votre réserve d’énergie."
         }
-    }
-}
-
-const fn primary_attribute_summary(attribute: PrimaryAttribute) -> &'static str {
-    match attribute {
-        PrimaryAttribute::Power => "Mêlée · recul · charge",
-        PrimaryAttribute::Coordination => "Précision · esquive · discrétion",
-        PrimaryAttribute::Resilience => "PV maximum · stabilité",
-        PrimaryAttribute::Perception => "Détection · analyse · tir",
-        PrimaryAttribute::Processing => "Intrusion · défense logicielle",
     }
 }
 
@@ -21885,25 +21977,6 @@ fn fit_inventory_label(label: &str, width: f32, size: u16, bold: bool) -> String
         }
     }
     String::new()
-}
-
-fn draw_hud_card(rect: Rect, label: &str, value: &str, accent: Color, high_contrast: bool) {
-    let theme = UiTheme;
-    theme.hud_panel(rect);
-    if high_contrast {
-        draw_rectangle_lines(rect.x, rect.y, rect.w, rect.h, 2.0, accent);
-    }
-    draw_rectangle(rect.x + 10.0, rect.y + 10.0, 5.0, 5.0, accent);
-    draw_text_bold(label, rect.x + 22.0, rect.y + 17.0, 12.0, accent);
-    draw_wrapped_text(
-        value,
-        rect.x + 14.0,
-        rect.y + 36.0,
-        rect.w - 26.0,
-        2,
-        14,
-        theme.text(),
-    );
 }
 
 fn normalized_ratio(value: u16, maximum: u16) -> f32 {
@@ -21949,58 +22022,6 @@ fn draw_status_bar(rect: Rect, label: &str, value: &str, ratio: f32, icon: UiIco
         Color::new(0.09, 0.17, 0.19, 1.0),
     );
     draw_rectangle(bar.x, bar.y, bar.w * ratio.clamp(0.0, 1.0), bar.h, color);
-}
-
-fn draw_compact_stat(rect: Rect, label: &str, value: &str, value_color: Color, label_color: Color) {
-    let value_size = 12_u16;
-    let value_width = measure_text_bold(value, value_size)
-        .width
-        .min(rect.w * 0.38);
-    draw_wrapped_text(
-        label,
-        rect.x,
-        rect.y + 13.0,
-        (rect.w - value_width - 5.0).max(18.0),
-        1,
-        11,
-        label_color,
-    );
-    draw_text_bold(
-        value,
-        rect.x + rect.w - value_width,
-        rect.y + 13.0,
-        f32::from(value_size),
-        value_color,
-    );
-}
-
-fn draw_control_hint(x: f32, y: f32, binding: &str, label: &str, icon: UiIcon) -> f32 {
-    let (key_width, label_width) = control_hint_widths(binding, label);
-    let width = key_width + label_width + 30.0;
-    UiTheme.hud_chip(Rect::new(x, y - 4.0, width, 30.0));
-    let key = Rect::new(x + 5.0, y + 1.0, key_width, 20.0);
-    draw_rectangle(
-        key.x,
-        key.y,
-        key.w,
-        key.h,
-        Color::new(0.025, 0.065, 0.075, 0.98),
-    );
-    draw_text_bold_centered(binding, key, 12, UiTheme.accent());
-    draw_ui_icon(
-        icon,
-        Rect::new(x + key_width + 10.0, y + 4.0, 14.0, 14.0),
-        UiTheme.muted(),
-    );
-    draw_text(label, x + key_width + 27.0, y + 17.0, 14.0, UiTheme.text());
-    x + width + 6.0
-}
-
-fn control_hint_widths(binding: &str, label: &str) -> (f32, f32) {
-    (
-        (measure_text_bold(binding, 13).width + 14.0).max(27.0),
-        measure_text(label, None, 14, 1.0).width,
-    )
 }
 
 fn preparation_continue_rect(width: f32, height: f32) -> Rect {
@@ -22092,72 +22113,6 @@ fn draw_footer_action_button(
     );
 }
 
-fn draw_recommended_profile(rect: Rect, profile: PrimaryAttributes, minimum: u8, maximum: u8) {
-    let theme = UiTheme;
-    theme.card(rect, false);
-    draw_text_bold(
-        "PROFIL CONSEILLÉ",
-        rect.x + 12.0,
-        rect.y + 21.0,
-        17.0,
-        theme.focus(),
-    );
-    draw_text(
-        "Modifiable · effets détaillés à l'étape suivante",
-        rect.x + 12.0,
-        rect.y + 39.0,
-        13.0,
-        theme.muted(),
-    );
-    let segments = usize::from(maximum.saturating_sub(minimum).saturating_add(1)).max(1);
-    for (index, attribute) in PrimaryAttribute::ALL.into_iter().enumerate() {
-        let baseline = rect.y + 61.0 + index as f32 * 16.5;
-        let value = profile.value(attribute);
-        draw_text(
-            primary_attribute_label(attribute),
-            rect.x + 12.0,
-            baseline,
-            13.0,
-            theme.text(),
-        );
-        draw_text(
-            primary_attribute_summary(attribute),
-            rect.x + (rect.w * 0.28).max(96.0),
-            baseline,
-            12.0,
-            theme.muted(),
-        );
-        if rect.w >= 520.0 {
-            let bar_x = rect.x + (rect.w * 0.67).max(242.0);
-            let bar_width = (rect.w - (bar_x - rect.x) - 42.0).max(24.0);
-            let gap = 3.0;
-            let segment_width =
-                (bar_width - gap * (segments.saturating_sub(1)) as f32) / segments as f32;
-            let filled = usize::from(value.saturating_sub(minimum).saturating_add(1)).min(segments);
-            for segment in 0..segments {
-                draw_rectangle(
-                    bar_x + segment as f32 * (segment_width + gap),
-                    baseline - 8.0,
-                    segment_width.max(2.0),
-                    6.0,
-                    if segment < filled {
-                        theme.accent()
-                    } else {
-                        theme.muted()
-                    },
-                );
-            }
-        }
-        draw_text_bold(
-            value.to_string(),
-            rect.x + rect.w - 29.0,
-            baseline + 1.0,
-            19.0,
-            theme.focus(),
-        );
-    }
-}
-
 fn physical_damage_total(damage: DamageImpact) -> u16 {
     damage
         .components()
@@ -22239,20 +22194,6 @@ fn draw_attribute_meter(
             },
         );
     }
-}
-
-fn draw_compact_metric(x: f32, y: f32, label: &str, value: &str, width: f32) {
-    draw_text(label, x, y, 12.0, UiTheme.muted());
-    let label_width = measure_text(label, None, 12, 1.0).width + 7.0;
-    draw_wrapped_text(
-        value,
-        x + label_width,
-        y,
-        (width - label_width).max(18.0),
-        1,
-        15,
-        UiTheme.text(),
-    );
 }
 
 fn draw_summary_metric(x: f32, right: f32, y: f32, label: &str, value: &str) {
@@ -22340,7 +22281,11 @@ const fn menu_button_tone(menu: MenuScreen, index: usize, has_suspension: bool) 
         MenuScreen::Pause if index == 3 => ButtonTone::Danger,
         MenuScreen::Graphics if index == 8 => ButtonTone::Primary,
         MenuScreen::ConfirmGraphics if index == 1 => ButtonTone::Primary,
-        MenuScreen::ConfirmAbandon | MenuScreen::ConfirmNewRun if index == 1 => ButtonTone::Danger,
+        MenuScreen::ConfirmAbandon | MenuScreen::ConfirmNewRun | MenuScreen::ConfirmRestart
+            if index == 1 =>
+        {
+            ButtonTone::Danger
+        }
         _ => ButtonTone::Secondary,
     }
 }
@@ -22387,6 +22332,7 @@ const fn inventory_filter_icon(filter: InventoryFilter) -> UiIcon {
 
 fn command_rejection_message(reason: CommandRejection) -> &'static str {
     match reason {
+        CommandRejection::MaintainedEffectUnavailable => "Cet effet n'est plus maintenu.",
         CommandRejection::PassageUnavailable => "Passage indisponible.",
         CommandRejection::PassageObstructed => "Arrivée encombrée : attendez avant de réessayer.",
         CommandRejection::InteractionOutOfReach => {
@@ -22478,6 +22424,9 @@ fn command_rejection_message(reason: CommandRejection) -> &'static str {
         }
         CommandRejection::InsufficientAmmunition { .. } => {
             "Munitions insuffisantes pour résoudre cette action."
+        }
+        CommandRejection::InsufficientMatter { .. } => {
+            "Vous n'avez pas assez de munitions pour tirer."
         }
         CommandRejection::WeaponModuleUnavailable(_) => {
             "Ce module est détruit ou temporairement affecté à une dérivation."
@@ -22762,6 +22711,21 @@ fn command_rejection_message(reason: CommandRejection) -> &'static str {
     }
 }
 
+fn npc_service_action_label(interaction: &NpcInteraction) -> String {
+    match interaction.services.first() {
+        Some(NpcService::Treatment {
+            restore_amount,
+            price,
+            ..
+        }) if npc_service_available(interaction) => {
+            format!("Récupérer {restore_amount} PV pour {price} crédits")
+        }
+        Some(NpcService::Treatment { .. }) => "Soin indisponible".to_owned(),
+        _ if npc_service_available(interaction) => "Confier la pièce".to_owned(),
+        _ => "Aucune action requise".to_owned(),
+    }
+}
+
 fn npc_service_available(interaction: &NpcInteraction) -> bool {
     interaction.services.iter().any(|service| match service {
         NpcService::FacilityMaintenance {
@@ -22780,15 +22744,6 @@ fn npc_service_available(interaction: &NpcInteraction) -> bool {
         } => *restore_amount > 0 && *player_credits >= *price,
         NpcService::Trade { .. } | NpcService::FacilityMaintenance { .. } => false,
     })
-}
-
-const fn clinic_routine_label(routine: ClinicRoutineState) -> &'static str {
-    match routine {
-        ClinicRoutineState::AtWork => "consultation en cours",
-        ClinicRoutineState::MovingToBreak => "se dirige vers l'espace de pause",
-        ClinicRoutineState::OnBreak => "pause locale",
-        ClinicRoutineState::ReturningToWork => "retour au poste de soin",
-    }
 }
 
 const fn clinic_routine_dialogue(routine: ClinicRoutineState) -> &'static str {
@@ -22962,6 +22917,9 @@ fn draw_companion_behavior_tooltip(anchor: Rect, behavior: CompanionBehavior) {
 
 fn attack_preview_rejection_label(reason: &CommandRejection) -> &'static str {
     match reason {
+        CommandRejection::InsufficientMatter { .. }
+        | CommandRejection::InsufficientAmmunition { .. } => "MUNITIONS INSUFFISANTES",
+        CommandRejection::InsufficientEnergy { .. } => "ÉNERGIE INSUFFISANTE",
         CommandRejection::ProtectedZone => "ZONE PROTÉGÉE",
         CommandRejection::AttackTargetOutsideMap(_) => "HORS CARTE",
         CommandRejection::AttackTargetIsOrigin => "CHOISISSEZ UNE DIRECTION",
@@ -23269,7 +23227,13 @@ mod tests {
                 ] {
                     assert_eq!(
                         restored.context_choice_label(ContextChoice::Interact(position)),
-                        format!("Interagir : {name} ({}, {})", position.x, position.y)
+                        format!(
+                            "Interagir : {name} · {}",
+                            approximate_direction(
+                                restored.game.player_position().unwrap(),
+                                position
+                            )
+                        )
                     );
                 }
             }
@@ -24237,11 +24201,6 @@ mod tests {
             Some(CharacterCreationStage::Protocol)
         );
         app.update_input(&input("Enter"));
-        assert_eq!(
-            app.character_creation.as_ref().map(|state| state.stage),
-            Some(CharacterCreationStage::Attributes)
-        );
-        app.update_input(&input("Enter"));
         assert!(app.character_creation.is_none());
         assert!(app.character_class.is_some());
     }
@@ -24637,12 +24596,12 @@ mod tests {
         app.update_input_at(&held_menu_key("Down", true), Some(6.0));
         app.update_input_at(&held_menu_key("Down", false), Some(6.36));
         assert_eq!(app.character_creation.as_ref().unwrap().selected_class, 2);
-        app.update_input_at(&held_menu_key("Enter", true), Some(7.0));
+        app.update_input_at(&held_menu_key("Tab", true), Some(7.0));
         assert_eq!(
             app.character_creation.as_ref().unwrap().stage,
             CharacterCreationStage::Attributes
         );
-        app.update_input_at(&held_menu_key("Enter", false), Some(8.0));
+        app.update_input_at(&held_menu_key("Tab", false), Some(8.0));
         assert!(app.character_creation.is_some());
         app.update_input_at(&held_menu_key("Down", false), Some(9.0));
         assert_eq!(
@@ -24745,16 +24704,17 @@ mod tests {
         app.open_menu(MenuScreen::Hidden);
         app.observation_report = (0..20).map(|index| format!("Ligne {index}")).collect();
         app.report_open = true;
+        app.ux.dossier_scroll.maximum.set(500.0);
         app.update_input(&InputFrame {
             wheel_y: -3.0,
             ..Default::default()
         });
-        assert_eq!(app.report_scroll, 3);
+        assert_eq!(app.ux.dossier_scroll.offset, 108.0);
         app.update_input(&InputFrame {
             wheel_y: 2.0,
             ..Default::default()
         });
-        assert_eq!(app.report_scroll, 1);
+        assert_eq!(app.ux.dossier_scroll.offset, 36.0);
         assert_eq!(suspension::fingerprint(&app.game), before);
         assert!(app.history.is_empty());
     }
@@ -24989,7 +24949,7 @@ mod tests {
         let mut app = app_with_test_controls();
         assert_eq!(
             MenuScreen::ConfirmAbandon.buttons(),
-            &["Annuler", "Confirmer"]
+            &["Annuler", "Abandonner la partie"]
         );
         let before = suspension::fingerprint(&app.game);
         app.update_input(&input("F1"));
@@ -25073,7 +25033,7 @@ mod tests {
         assert_eq!(app.menu, MenuScreen::ConfirmNewRun);
         assert_eq!(
             MenuScreen::ConfirmNewRun.buttons(),
-            &["Annuler", "Confirmer"]
+            &["Annuler", "Remplacer la partie"]
         );
         app.update_input(&input("Enter"));
         assert_eq!(app.menu, MenuScreen::Main);
@@ -25124,7 +25084,7 @@ mod tests {
         );
 
         app.update_input(&input("Down")); // BRÈCHE -> CREUSET
-        app.update_input(&input("Enter"));
+        app.update_input(&input("Tab"));
         app.update_input(&input("Left")); // Puissance 4 -> 3, one point freed.
         app.update_input(&input("Down"));
         app.update_input(&input("Right")); // Coordination 5 -> 6.
@@ -25380,7 +25340,7 @@ mod tests {
     }
 
     #[test]
-    fn live_level_gain_opens_skills_after_the_turn_but_replay_does_not() {
+    fn live_level_gain_notifies_without_interrupting_play_and_replay_stays_silent() {
         fn queue_level_gain(app: &mut AsciiApp) {
             let mut rules = app.rules.clone();
             rules.progression.curve = project_rl::progression::ExperienceCurve::new(vec![1])
@@ -25421,6 +25381,8 @@ mod tests {
         let resolved_turn = live.game.turn();
         live.capture_events();
         assert_eq!(live.game.turn(), resolved_turn);
+        assert!(!live.skills_open);
+        live.update_input(&input("K"));
         assert!(live.skills_open);
         assert_eq!(
             live.level_up_notice,
@@ -26079,6 +26041,49 @@ mod tests {
 
         assert_eq!(suspension::fingerprint(&restored.game), expected);
         assert_eq!(restored.history, saved.commands);
+    }
+
+    #[test]
+    fn borrowed_recovery_snapshot_preserves_legacy_bytes_and_fingerprints() {
+        #[derive(Serialize)]
+        struct LegacySnapshot {
+            engine: Vec<u8>,
+            presentation: RecoveryPresentation,
+            presentation_fingerprint: u64,
+        }
+        for version in [15, CURRENT_GENERATION_VERSION] {
+            let mut app = app_with_test_controls_version(version);
+            apply(&mut app, GameCommand::Wait);
+            let presentation = RecoveryPresentation {
+                terminal: app.terminal.clone(),
+                zone_views: app.zone_views.clone(),
+                zone_decor: app.zone_decor.clone(),
+                facing: app.facing,
+                regional_zones: app.regional_zones.clone(),
+                actor_glyphs: app.actor_glyphs.clone(),
+                intro_city_reached: app.intro_city_reached,
+            };
+            assert_eq!(
+                format!("{presentation:?}"),
+                format!("{:?}", app.recovery_presentation())
+            );
+            let legacy = LegacySnapshot {
+                engine: app.game.recovery_snapshot_bytes().unwrap(),
+                presentation_fingerprint: suspension::fingerprint(&presentation),
+                presentation,
+            };
+            let encoded = app.encode_recovery_snapshot().unwrap();
+            let bytes = base64::engine::general_purpose::STANDARD
+                .decode(&encoded)
+                .unwrap();
+            assert_eq!(bytes, bincode::serialize(&legacy).unwrap());
+            let decoded = AsciiApp::decode_recovery_snapshot(&encoded, app.rules.clone()).unwrap();
+            assert_eq!(
+                decoded.game.recovery_snapshot_bytes().unwrap(),
+                legacy.engine
+            );
+            assert_eq!(decoded.presentation, legacy.presentation);
+        }
     }
 
     #[test]
@@ -26774,7 +26779,7 @@ mod tests {
         }
         assert_eq!(app.npc_trade_selection, offers.len());
         assert_eq!(app.game.turn(), turn);
-        let layout = NpcInteractionLayout::new(1280.0, 800.0);
+        let layout = app.npc_layout(1280.0, 800.0);
         app.update_input(&rect_pointer(layout.merchant_rows()[0], 0.0));
         assert_eq!(app.npc_trade_selection, 1);
         app.update_input(&rect_pointer(layout.trade_tabs[2], 0.0));
@@ -26837,7 +26842,7 @@ mod tests {
     fn merchant_tabs_rows_actions_and_close_are_fully_mouse_navigable() {
         let mut app = app_with_test_controls();
         app.prepare_merchant_diagnostic().unwrap();
-        let layout = NpcInteractionLayout::new(1280.0, 800.0);
+        let layout = app.npc_layout(1280.0, 800.0);
 
         app.update_input(&rect_pointer(layout.trade_rows[1], 0.0));
         assert_eq!(app.npc_trade_selection, 1);
@@ -26871,6 +26876,73 @@ mod tests {
     }
 
     #[test]
+    fn clinic_partial_care_is_explicit_and_works_with_keyboard_and_mouse() {
+        for mouse in [false, true] {
+            let mut app = app_with_test_controls();
+            app.prepare_clinic_budget_diagnostic(11).unwrap();
+            let healer = app.npc_interaction.unwrap();
+            let interaction = app.game.npc_interaction(healer).unwrap();
+            assert_eq!(
+                npc_service_action_label(&interaction),
+                "Récupérer 3 PV pour 9 crédits"
+            );
+            assert!(
+                app.npc_dialogue(&interaction)
+                    .contains("3 PV pour 9 crédits")
+            );
+            let turn = app.game.turn();
+            let hp = app
+                .game
+                .actors()
+                .get(app.game.player_id())
+                .unwrap()
+                .integrity();
+            let activate = if mouse {
+                rect_pointer(app.npc_layout(1280.0, 800.0).service, 0.0)
+            } else {
+                input("Enter")
+            };
+            app.update_input(&activate);
+            assert_eq!(app.game.turn(), turn + 1);
+            assert_eq!(app.game.player_credits(), 2);
+            assert_eq!(
+                app.game
+                    .actors()
+                    .get(app.game.player_id())
+                    .unwrap()
+                    .integrity(),
+                hp + 3
+            );
+            assert!(app.npc_interaction_message.contains("3 PV pour 9 crédits"));
+            let interaction = app.game.npc_interaction(healer).unwrap();
+            assert!(!npc_service_available(&interaction));
+            assert_eq!(
+                app.npc_service_summary(&interaction).0,
+                "CRÉDITS INSUFFISANTS"
+            );
+            assert!(
+                app.npc_dialogue(&interaction)
+                    .contains("pas assez de crédits")
+            );
+            assert!(
+                !app.npc_dialogue(&interaction)
+                    .contains("Aucun soin n'est nécessaire")
+            );
+            app.update_input(&activate);
+            assert_eq!(app.game.turn(), turn + 1);
+            assert_eq!(app.game.player_credits(), 2);
+            assert_eq!(
+                app.game
+                    .actors()
+                    .get(app.game.player_id())
+                    .unwrap()
+                    .integrity(),
+                hp + 3
+            );
+        }
+    }
+
+    #[test]
     fn clinic_treatment_and_close_are_fully_keyboard_navigable() {
         let mut app = app_with_test_controls();
         app.prepare_clinic_diagnostic().unwrap();
@@ -26900,7 +26972,7 @@ mod tests {
         app.prepare_clinic_diagnostic().unwrap();
         let player = app.game.player_id();
         let integrity = app.game.actors().get(player).unwrap().integrity();
-        let layout = NpcInteractionLayout::new(1280.0, 800.0);
+        let layout = app.npc_layout(1280.0, 800.0);
 
         app.update_input(&rect_pointer(layout.service, 0.0));
 
@@ -26944,7 +27016,7 @@ mod tests {
         assert!(app.npc_interaction.is_none());
 
         app.prepare_resident_diagnostic().unwrap();
-        let layout = NpcInteractionLayout::new(1280.0, 800.0);
+        let layout = app.npc_layout(1280.0, 800.0);
         app.update_input(&rect_pointer(layout.close, 0.0));
         assert!(app.npc_interaction.is_none());
         assert_eq!(app.game.turn(), turn);
@@ -27008,7 +27080,7 @@ mod tests {
         let mut app = app_with_test_controls();
         app.prepare_quest_diagnostic(false).unwrap();
         let giver = app.npc_interaction.unwrap();
-        let layout = NpcInteractionLayout::new(1280.0, 800.0);
+        let layout = app.npc_layout(1280.0, 800.0);
 
         app.update_input(&rect_pointer(layout.service, 0.0));
         assert_eq!(
@@ -27131,7 +27203,7 @@ mod tests {
         let mut mouse = app_with_test_controls();
         mouse.prepare_quest_choice_diagnostic().unwrap();
         let giver = mouse.npc_interaction.unwrap();
-        let layout = NpcInteractionLayout::new(1280.0, 800.0);
+        let layout = mouse.npc_layout(1280.0, 800.0);
         mouse.update_input(&rect_pointer(layout.quest_rows[1], 0.0));
         assert_eq!(mouse.npc_quest_selection, 1);
         mouse.update_input(&rect_pointer(layout.service, 0.0));
@@ -27220,7 +27292,7 @@ mod tests {
         assert_eq!(entry.quest.status, QuestStatus::ReadyToComplete);
         assert_eq!(
             app.quest_objective_text(&entry.quest.objective),
-            "Terminal ciblé consulté : oui"
+            "Consulter le terminal indiqué : terminé"
         );
         assert_eq!(
             AsciiApp::quest_ready_action_label(&entry.quest.objective),
@@ -27434,7 +27506,7 @@ mod tests {
         let mut mouse = app_with_test_controls();
         mouse.prepare_clinic_diagnostic().unwrap();
         attach_quest(&mut mouse);
-        let layout = NpcInteractionLayout::new(1280.0, 800.0);
+        let layout = mouse.npc_layout(1280.0, 800.0);
         mouse.update_input(&rect_pointer(layout.mode_toggle, 0.0));
         assert_eq!(mouse.npc_interaction_mode, NpcInteractionMode::Quest);
         mouse.update_input(&rect_pointer(layout.mode_toggle, 0.0));
@@ -27443,22 +27515,24 @@ mod tests {
 
     #[test]
     fn recorded_clinic_treatment_replays_the_same_world_state() {
-        let mut played = app_with_test_controls();
-        played.prepare_clinic_diagnostic().unwrap();
-        let healer = played.npc_interaction.unwrap();
-        apply(&mut played, GameCommand::ReceiveTreatment { healer });
-        let recorded = played.history.last().cloned().unwrap();
+        for credits in [120, 11] {
+            let mut played = app_with_test_controls();
+            played.prepare_clinic_budget_diagnostic(credits).unwrap();
+            let healer = played.npc_interaction.unwrap();
+            apply(&mut played, GameCommand::ReceiveTreatment { healer });
+            let recorded = played.history.last().cloned().unwrap();
 
-        let mut replayed = app_with_test_controls();
-        replayed.prepare_clinic_diagnostic().unwrap();
-        let command = recorded.command(&replayed.game).unwrap();
-        apply(&mut replayed, command);
+            let mut replayed = app_with_test_controls();
+            replayed.prepare_clinic_budget_diagnostic(credits).unwrap();
+            let command = recorded.command(&replayed.game).unwrap();
+            apply(&mut replayed, command);
 
-        assert_eq!(
-            suspension::fingerprint(&replayed.game),
-            suspension::fingerprint(&played.game)
-        );
-        assert_eq!(replayed.history, played.history);
+            assert_eq!(
+                suspension::fingerprint(&replayed.game),
+                suspension::fingerprint(&played.game)
+            );
+            assert_eq!(replayed.history, played.history);
+        }
     }
 
     #[test]
@@ -28731,8 +28805,9 @@ mod tests {
     }
 
     #[test]
-    fn current_run_can_reach_layer_five_resume_and_return_through_the_same_shaft() {
-        let mut app = app_with_test_controls();
+    fn version_117_can_reach_layer_five_resume_and_return_through_the_same_shaft() {
+        // Historical runs retain the direct urban shaft after v118.
+        let mut app = app_with_test_controls_version(117);
         assert!(
             app.navigation_signal_summary()
                 .is_some_and(|signal| signal.starts_with("SECTEUR HABITÉ · SUD-OUEST"))
@@ -30697,6 +30772,13 @@ mod tests {
         );
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -30759,6 +30841,13 @@ mod tests {
         );
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -30818,6 +30907,13 @@ mod tests {
         );
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -30880,6 +30976,13 @@ mod tests {
         );
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -30931,6 +31034,13 @@ mod tests {
         let (_, _, _, expeditions) = ascii_game_content().unwrap();
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -30975,6 +31085,13 @@ mod tests {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -31064,6 +31181,13 @@ mod tests {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -31149,6 +31273,13 @@ mod tests {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -31245,6 +31376,13 @@ mod tests {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -31326,6 +31464,13 @@ mod tests {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -31430,6 +31575,13 @@ mod tests {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -31479,6 +31631,13 @@ mod tests {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -31593,6 +31752,13 @@ mod tests {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -31642,6 +31808,13 @@ mod tests {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let regional_worlds = ascii_regional_world_catalog()
             .unwrap()
+            .without_first_layer_plan_metadata()
+            .without_depth_distribution_metadata()
+            .without_bestiary_batch_metadata()
+            .without_marsh_spitter_metadata()
+            .without_strange_fauna_metadata()
+            .without_layer_balance_metadata()
+            .without_deep_encounters_metadata()
             .without_deep_equipment_cache_metadata()
             .without_surface_cast_metadata()
             .without_population_base_armor_metadata()
@@ -32146,15 +32319,15 @@ mod tests {
         app.update_input(&input("O"));
         assert!(!app.report_open);
         app.controls
-            .rebind(Action::Report, Binding::key("F3"))
+            .rebind(Action::Report, Binding::key("F6"))
             .unwrap();
         app.update_input(&input("O"));
         assert!(!app.report_open);
-        app.update_input(&input("F3"));
+        app.update_input(&input("F6"));
         assert!(app.report_open);
         app.update_input(&input("O"));
         assert!(app.report_open);
-        app.update_input(&input("F3"));
+        app.update_input(&input("F6"));
         assert!(!app.report_open);
         assert_eq!(
             (
@@ -33099,4 +33272,5 @@ mod tests {
         assert_eq!(app.observation_report.len(), 2);
         assert!(app.observation_report[0].contains("Analyse de cible — relevé · cycle 2"));
     }
+    include!("ux_tests.rs");
 }

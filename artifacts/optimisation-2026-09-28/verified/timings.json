@@ -1,0 +1,150 @@
+{
+  "build": "debug",
+  "frames_per_scene": 120,
+  "scenes": [
+    {
+      "cpu": {
+        "max_ms": 12.420399999999999,
+        "median_ms": 7.669300000000001,
+        "p95_ms": 11.3776
+      },
+      "first_cpu_ms": 188.9265,
+      "frame_with_present": {
+        "max_ms": 12.9818,
+        "median_ms": 9.998099999999999,
+        "p95_ms": 11.7402
+      },
+      "scene": "world"
+    },
+    {
+      "cpu": {
+        "max_ms": 13.987,
+        "median_ms": 9.937899999999999,
+        "p95_ms": 13.155899999999999
+      },
+      "first_cpu_ms": 20.7919,
+      "frame_with_present": {
+        "max_ms": 20.0024,
+        "median_ms": 10.4826,
+        "p95_ms": 14.050500000000001
+      },
+      "scene": "pause"
+    },
+    {
+      "cpu": {
+        "max_ms": 12.113000000000001,
+        "median_ms": 8.0894,
+        "p95_ms": 11.392299999999999
+      },
+      "first_cpu_ms": 9.319600000000001,
+      "frame_with_present": {
+        "max_ms": 20.329900000000002,
+        "median_ms": 9.9986,
+        "p95_ms": 12.0675
+      },
+      "scene": "world-return"
+    },
+    {
+      "cpu": {
+        "max_ms": 20.7212,
+        "median_ms": 13.2961,
+        "p95_ms": 19.5158
+      },
+      "first_cpu_ms": 629.3071,
+      "frame_with_present": {
+        "max_ms": 21.318199999999997,
+        "median_ms": 13.9679,
+        "p95_ms": 20.0216
+      },
+      "scene": "inventory"
+    },
+    {
+      "cpu": {
+        "max_ms": 17.3702,
+        "median_ms": 10.3245,
+        "p95_ms": 15.381300000000001
+      },
+      "first_cpu_ms": 51.413399999999996,
+      "frame_with_present": {
+        "max_ms": 17.8002,
+        "median_ms": 10.649000000000001,
+        "p95_ms": 15.864199999999999
+      },
+      "scene": "skills"
+    },
+    {
+      "cpu": {
+        "max_ms": 15.0031,
+        "median_ms": 9.0144,
+        "p95_ms": 13.4477
+      },
+      "first_cpu_ms": 36.0272,
+      "frame_with_present": {
+        "max_ms": 19.9915,
+        "median_ms": 9.9961,
+        "p95_ms": 15.0489
+      },
+      "scene": "help"
+    },
+    {
+      "cpu": {
+        "max_ms": 1.8109,
+        "median_ms": 1.142,
+        "p95_ms": 1.5279
+      },
+      "first_cpu_ms": 25.1891,
+      "frame_with_present": {
+        "max_ms": 10.2552,
+        "median_ms": 9.996,
+        "p95_ms": 10.1695
+      },
+      "scene": "main"
+    },
+    {
+      "cpu": {
+        "max_ms": 15.705400000000001,
+        "median_ms": 9.6243,
+        "p95_ms": 15.347700000000001
+      },
+      "first_cpu_ms": 35.3136,
+      "frame_with_present": {
+        "max_ms": 16.763299999999997,
+        "median_ms": 9.8946,
+        "p95_ms": 15.754299999999999
+      },
+      "scene": "ground-fire"
+    },
+    {
+      "cpu": {
+        "max_ms": 17.7202,
+        "median_ms": 10.9015,
+        "p95_ms": 15.0663
+      },
+      "first_cpu_ms": 12.3437,
+      "frame_with_present": {
+        "max_ms": 18.1382,
+        "median_ms": 11.2158,
+        "p95_ms": 15.494900000000001
+      },
+      "scene": "ground-fire-pause"
+    },
+    {
+      "cpu": {
+        "max_ms": 15.5611,
+        "median_ms": 9.8052,
+        "p95_ms": 14.2523
+      },
+      "first_cpu_ms": 12.141900000000001,
+      "frame_with_present": {
+        "max_ms": 16.1158,
+        "median_ms": 10.135,
+        "p95_ms": 14.683399999999999
+      },
+      "scene": "ground-fire-return"
+    }
+  ],
+  "size": [
+    1280.0,
+    800.0
+  ]
+}

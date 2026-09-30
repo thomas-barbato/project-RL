@@ -1,0 +1,16 @@
+{
+  id: "core:flamethrower",
+  terminal: {
+    frames: ["flame_small", "flame", "flame_large"],
+    color: [202, 53, 19, 220],
+    accent_colors: [
+      [255, 118, 24, 235],
+      [255, 231, 92, 255],
+    ],
+    frame_millis: 75,
+    step_millis: 42,
+    // Keep the base visible while the delayed front reaches the cone tip: the
+    // jet grows from the first adjacent cell instead of appearing detached.
+    linger_millis: 300,
+  },
+}

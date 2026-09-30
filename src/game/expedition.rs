@@ -44,7 +44,7 @@ use super::{
 
 const MAX_WORLD_SNAPSHOT_BYTES: usize = 12 * 1024 * 1024;
 // Binary snapshots are caches; older layouts must use verified command replay.
-const WORLD_SNAPSHOT_HEADER: &[u8] = b"RLWS\x06";
+const WORLD_SNAPSHOT_HEADER: &[u8] = b"RLWS\x07";
 
 #[path = "equipment_trade.rs"]
 mod equipment_trade;
@@ -300,6 +300,14 @@ struct ClinicState {
 }
 
 impl ClinicState {
+    /// Quote only whole points the player can afford. Registration validates
+    /// the nonzero unit price and the maximum treatment cost.
+    fn treatment_quote(&self, missing: u16, player_credits: u32) -> (u16, u32) {
+        let amount = u32::from(missing.min(self.maximum_restoration))
+            .min(player_credits / self.price_per_point) as u16;
+        (amount, u32::from(amount) * self.price_per_point)
+    }
+
     fn routine_state(&self, position: GridPos) -> ClinicRoutineState {
         if self.routine_working && position == self.work_position {
             ClinicRoutineState::AtWork
@@ -1255,12 +1263,10 @@ impl WorldState {
             let player_actor = self.active.actors.get(self.active.player)?;
             let current_integrity = player_actor.integrity();
             let maximum_integrity = player_actor.maximum_integrity();
-            let restore_amount = maximum_integrity
-                .saturating_sub(current_integrity)
-                .min(clinic.maximum_restoration);
-            let price = u32::from(restore_amount)
-                .checked_mul(clinic.price_per_point)
-                .expect("validated clinic price must remain bounded");
+            let (restore_amount, price) = clinic.treatment_quote(
+                maximum_integrity.saturating_sub(current_integrity),
+                self.player_credits,
+            );
             return Some(NpcInteraction {
                 provider,
                 position,
@@ -2835,7 +2841,25 @@ impl WorldState {
         })
     }
 
+    fn sync_away_companions(&mut self) {
+        self.active.away_companions = self
+            .inactive
+            .values()
+            .map(|zone| {
+                zone.actors
+                    .iter()
+                    .filter(|(_, actor)| {
+                        actor
+                            .companion_origin()
+                            .is_some_and(|origin| origin.uses_slot())
+                    })
+                    .count()
+            })
+            .sum();
+    }
+
     pub fn process_player_command(&mut self, command: GameCommand) -> CommandOutcome {
+        self.sync_away_companions();
         let previous_turn = self.active.turn;
         let event_checkpoint = self.active.events.len();
         let unauthorized_property_take = if matches!(&command, GameCommand::PickUp) {
@@ -3095,6 +3119,7 @@ impl WorldState {
         for tags in defeated_tags {
             self.record_defeat_quest_progress(&tags);
         }
+        self.sync_away_companions();
         outcome
     }
 
@@ -3569,15 +3594,14 @@ impl WorldState {
             .get(&zone)
             .expect("clinic access validated")
             .clone();
-        let amount = maximum_integrity
-            .saturating_sub(previous_integrity)
-            .min(previous_clinic.maximum_restoration);
-        if amount == 0 {
+        let missing = maximum_integrity.saturating_sub(previous_integrity);
+        if missing == 0 {
             return reject(CommandRejection::TreatmentNotNeeded);
         }
-        let price = u32::from(amount)
-            .checked_mul(previous_clinic.price_per_point)
-            .expect("validated clinic price must remain bounded");
+        let (amount, price) = previous_clinic.treatment_quote(missing, previous_player_credits);
+        if amount == 0 {
+            return reject(CommandRejection::InsufficientCredits);
+        }
         let Some(next_player_credits) = self.player_credits.checked_sub(price) else {
             return reject(CommandRejection::InsufficientCredits);
         };
@@ -4246,6 +4270,7 @@ impl WorldState {
             .inactive
             .remove(&link.destination)
             .expect("checked zone");
+        self.active.end_local_maintained_effects_for_travel();
         let from = self
             .current
             .replace(link.destination.clone())
@@ -4300,6 +4325,7 @@ impl WorldState {
                 .resolve_status_trigger_for(entity, StatusTrigger::Movement);
         }
         self.inactive.insert(from.clone(), next);
+        self.sync_away_companions();
         self.active.player_visibility.recompute(
             &self.active.map,
             arrival,
@@ -4501,8 +4527,9 @@ fn tick_actor_towards_anchor(
     if actors.entity_at(target).is_some() {
         return false;
     }
+    let occupied: BTreeSet<_> = actors.iter().map(|(_, actor)| actor.position()).collect();
     let Some(path) = find_path(map, origin, target, maximum_path_search, |position| {
-        actors.entity_at(position).is_none()
+        !occupied.contains(&position)
     }) else {
         return false;
     };
@@ -4599,18 +4626,31 @@ impl GameState {
             .iter()
             .filter_map(|(id, actor)| {
                 (!actor.action_is_delayed(self.turn)
-                    && (matches!(actor.ai_state(), AiState::Aiming { .. })
-                        || actor.ai().is_some_and(|ai| {
-                            matches!(
-                                ai.behavior,
-                                AiBehavior::FieldMedic { .. }
-                                    | AiBehavior::TelegraphedShooter
-                                    | AiBehavior::VibrationHunter { .. }
-                                    | AiBehavior::TimidGrazer { .. }
-                                    | AiBehavior::SkittishForager
-                                    | AiBehavior::TelegraphedBiter
-                            )
-                        })))
+                    && (matches!(
+                        actor.ai_state(),
+                        AiState::Aiming { .. } | AiState::ChargingAttack { .. }
+                    ) || actor.ai().is_some_and(|ai| {
+                        matches!(
+                            ai.behavior,
+                            AiBehavior::FieldMedic { .. }
+                                | AiBehavior::TelegraphedShooter
+                                | AiBehavior::VibrationHunter { .. }
+                                | AiBehavior::TimidGrazer { .. }
+                                | AiBehavior::SkittishForager
+                                | AiBehavior::TelegraphedBiter
+                                | AiBehavior::TelegraphedSweeper
+                                | AiBehavior::TelegraphedGrasper
+                                | AiBehavior::TelegraphedResonator
+                                | AiBehavior::TelegraphedProjector
+                                | AiBehavior::TelegraphedEcho
+                                | AiBehavior::TelegraphedSpitter
+                                | AiBehavior::DirectionalGuard
+                                | AiBehavior::ExpandingRing
+                                | AiBehavior::AlternatingStalker
+                                | AiBehavior::NestDiver
+                                | AiBehavior::Riveter
+                        )
+                    })))
                 .then_some((id, actor.recovery_remaining().is_some()))
             })
             .collect();
@@ -4629,7 +4669,10 @@ impl GameState {
                     .filter(|ai| {
                         matches!(
                             ai.behavior,
-                            AiBehavior::Hunter | AiBehavior::Skirmisher | AiBehavior::PackHunter
+                            AiBehavior::Hunter
+                                | AiBehavior::Skirmisher
+                                | AiBehavior::PackHunter
+                                | AiBehavior::Watcher
                         )
                     })
                     .map(|ai| (id, actor.position(), ai, actor.ai_home(), actor.ai_state()))
@@ -4726,6 +4769,14 @@ impl GameState {
             if let Some(home) = home
                 && origin != home
             {
+                // Snapshot occupancy for this search, after preceding actors have
+                // moved. Scanning the registry for every explored cell made distant
+                // off-screen return routes disproportionately expensive.
+                let occupied: BTreeSet<_> = self
+                    .actors
+                    .iter()
+                    .map(|(_, actor)| actor.position())
+                    .collect();
                 let path = find_path(
                     &self.map,
                     origin,
@@ -4733,7 +4784,7 @@ impl GameState {
                     profile.maximum_path_search,
                     |position| {
                         !self.map.is_protected(position)
-                            && self.actors.entity_at(position).is_none()
+                            && !occupied.contains(&position)
                             && profile.maximum_pursuit_distance().is_none_or(|maximum| {
                                 position.x.abs_diff(home.x).max(position.y.abs_diff(home.y))
                                     <= u32::from(maximum)
@@ -4902,6 +4953,54 @@ mod tests {
     }
 
     #[test]
+    fn maintained_companion_limit_includes_other_zones_and_survives_snapshot() {
+        use crate::companion::CompanionOrigin;
+        let mut world = world();
+        world.active.rules.maintained_energy_reservations = true;
+        world.active.rules.player_companion_limit = Some(5);
+        for x in 2..=6 {
+            world
+                .spawn_actor(
+                    Actor::new(GridPos::new(x, 3), 10)
+                        .unwrap()
+                        .with_companion_origin(CompanionOrigin::Recruited),
+                )
+                .unwrap();
+        }
+        assert_eq!(
+            world.process_player_command(GameCommand::Interact {
+                target: GridPos::new(2, 1)
+            }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(world.player_companion_count(), 5);
+        assert!(
+            world
+                .actors()
+                .iter()
+                .all(|(_, a)| a.companion_origin().is_none())
+        );
+        world.drain_events();
+        let bytes = world.recovery_snapshot_bytes().unwrap();
+        let mut restored =
+            WorldState::from_recovery_snapshot_bytes(&bytes, world.active.rules.clone()).unwrap();
+        assert_eq!(restored.player_companion_count(), 5);
+        assert!(matches!(
+            restored.spawn_actor(
+                Actor::new(GridPos::new(5, 3), 10)
+                    .unwrap()
+                    .with_companion_origin(CompanionOrigin::Purchased)
+            ),
+            Err(super::super::SpawnError::CompanionLimit { maximum: 5 })
+        ));
+        let remote = restored.inactive.get_mut(&id("a")).unwrap();
+        let dead = remote.actors.entity_at(GridPos::new(2, 3)).unwrap();
+        remote.actors.remove(dead);
+        restored.process_player_command(GameCommand::Wait);
+        assert_eq!(restored.player_companion_count(), 4);
+    }
+
+    #[test]
     fn surface_cast_pending_shots_and_care_resolve_offscreen_without_events() {
         let mut world = world();
         let mut shooter = Actor::new(GridPos::new(6, 2), 10)
@@ -4974,12 +5073,128 @@ mod tests {
     }
 
     #[test]
+    fn bestiary_batch_states_continue_offscreen_without_remote_perception_or_event_leaks() {
+        use crate::ai::EncounterState;
+        for behavior in [
+            AiBehavior::DirectionalGuard,
+            AiBehavior::ExpandingRing,
+            AiBehavior::AlternatingStalker,
+            AiBehavior::NestDiver,
+            AiBehavior::Riveter,
+        ] {
+            let mut world = world();
+            let at = GridPos::new(5, 3);
+            let mut actor = Actor::new(at, 30)
+                .unwrap()
+                .with_ai(
+                    AiProfile::new(behavior, 6, 0, 512, 0)
+                        .with_maximum_pursuit_distance(std::num::NonZeroU16::new(4).unwrap()),
+                )
+                .with_attack(
+                    AttackProfile::new(
+                        3,
+                        DistanceMetric::Chebyshev,
+                        true,
+                        DamageType::Kinetic,
+                        2,
+                        0,
+                    )
+                    .with_recovery_after_attack(crate::time::TimeUnits::new(2).unwrap()),
+                );
+            actor.set_ai_state(match behavior {
+                AiBehavior::ExpandingRing => AiState::Encounter(EncounterState::Ring {
+                    origin: at,
+                    radius: 2,
+                }),
+                AiBehavior::DirectionalGuard => AiState::Encounter(EncounterState::Guard {
+                    dx: -1,
+                    dy: 0,
+                    remaining_turns: 3,
+                }),
+                AiBehavior::Riveter => AiState::Encounter(EncounterState::WorkStopped),
+                _ => AiState::Aiming {
+                    origin: at,
+                    target_at: GridPos::new(4, 3),
+                },
+            });
+            let entity = world.spawn_actor(actor).unwrap();
+            world
+                .active
+                .actors
+                .get_mut(world.active.player)
+                .unwrap()
+                .set_position(GridPos::new(2, 1));
+            world.drain_events();
+            assert_eq!(
+                world.process_player_command(GameCommand::Interact {
+                    target: GridPos::new(2, 1)
+                }),
+                CommandOutcome::Applied
+            );
+            for _ in 0..8 {
+                assert!(!world.drain_events().iter().any(|event|matches!(event,
+                    GameEvent::AttackTelegraphed{attacker,..}|GameEvent::AttackPerformed{attacker,..} if *attacker==entity)));
+                world.process_player_command(GameCommand::Wait);
+            }
+            let actor = world
+                .inactive
+                .get(&id("a"))
+                .unwrap()
+                .actors
+                .get(entity)
+                .unwrap();
+            assert_eq!(
+                actor.ai_state(),
+                if behavior == AiBehavior::Riveter {
+                    AiState::Encounter(EncounterState::WorkStopped)
+                } else {
+                    AiState::Unaware
+                }
+            );
+            assert_eq!(actor.position(), at);
+        }
+    }
+
+    #[test]
     fn heavy_fauna_commitment_and_recovery_continue_offscreen_without_remote_events() {
-        let mut world = world();
-        let mut actor = Actor::new(GridPos::new(5, 3), 20)
-            .unwrap()
-            .with_ai(AiProfile::new(AiBehavior::TelegraphedBiter, 7, 0, 256, 0))
-            .with_attack(
+        for behavior in [
+            AiBehavior::TelegraphedBiter,
+            AiBehavior::TelegraphedSweeper,
+            AiBehavior::TelegraphedGrasper,
+            AiBehavior::TelegraphedEcho,
+            AiBehavior::TelegraphedSpitter,
+        ] {
+            let mut world = world();
+            let attack = if behavior == AiBehavior::TelegraphedGrasper {
+                AttackProfile::melee(DamageType::Kinetic, 3)
+                    .with_area(crate::combat::AttackArea::Adjacent)
+                    .with_recovery_after_attack(crate::time::TimeUnits::new(3).unwrap())
+            } else if behavior == AiBehavior::TelegraphedEcho {
+                AttackProfile::new(
+                    4,
+                    DistanceMetric::Chebyshev,
+                    true,
+                    DamageType::Kinetic,
+                    3,
+                    0,
+                )
+                .with_delivery(crate::combat::AttackDelivery::Ranged)
+                .with_recovery_after_attack(crate::time::TimeUnits::new(2).unwrap())
+            } else if behavior == AiBehavior::TelegraphedSweeper {
+                AttackProfile::new(
+                    2,
+                    DistanceMetric::Chebyshev,
+                    true,
+                    DamageType::Kinetic,
+                    4,
+                    0,
+                )
+                .with_delivery(crate::combat::AttackDelivery::Melee)
+                .with_area(crate::combat::AttackArea::Cone(
+                    crate::combat::ConeAttack::new(1, 1, 1).unwrap(),
+                ))
+                .with_recovery_after_attack(crate::time::TimeUnits::new(2).unwrap())
+            } else {
                 AttackProfile::new(
                     1,
                     DistanceMetric::Chebyshev,
@@ -4988,40 +5203,128 @@ mod tests {
                     6,
                     0,
                 )
-                .with_recovery_after_attack(crate::time::TimeUnits::new(2).unwrap()),
-            );
-        actor.set_ai_state(AiState::Aiming {
-            origin: GridPos::new(5, 3),
-            target_at: GridPos::new(4, 3),
-        });
-        let animal = world.spawn_actor(actor).unwrap();
-        world
-            .active
-            .actors
-            .get_mut(world.active.player)
-            .unwrap()
-            .set_position(GridPos::new(2, 1));
-        world.drain_events();
-        assert_eq!(
-            world.process_player_command(GameCommand::Interact {
-                target: GridPos::new(2, 1)
-            }),
-            CommandOutcome::Applied
-        );
-        for remaining in [Some(2), Some(1), None] {
-            let actor = world
-                .inactive
-                .get(&id("a"))
+                .with_recovery_after_attack(crate::time::TimeUnits::new(2).unwrap())
+            };
+            let mut actor = Actor::new(GridPos::new(5, 3), 20)
                 .unwrap()
+                .with_ai(AiProfile::new(behavior, 7, 0, 256, 0))
+                .with_attack(attack);
+            actor.set_ai_state(AiState::Aiming {
+                origin: GridPos::new(5, 3),
+                target_at: GridPos::new(4, 3),
+            });
+            let animal = world.spawn_actor(actor).unwrap();
+            world
+                .active
                 .actors
-                .get(animal)
-                .unwrap();
-            assert_eq!(actor.ai_state(), AiState::Unaware);
-            assert_eq!(actor.position(), GridPos::new(5, 3));
-            assert_eq!(actor.recovery_remaining().map(|time| time.get()), remaining);
-            assert!(!world.drain_events().iter().any(|event| matches!(event,
+                .get_mut(world.active.player)
+                .unwrap()
+                .set_position(GridPos::new(2, 1));
+            world.drain_events();
+            assert_eq!(
+                world.process_player_command(GameCommand::Interact {
+                    target: GridPos::new(2, 1)
+                }),
+                CommandOutcome::Applied
+            );
+            let recovery = if behavior == AiBehavior::TelegraphedGrasper {
+                vec![Some(3), Some(2), Some(1), None]
+            } else {
+                vec![Some(2), Some(1), None]
+            };
+            for remaining in recovery {
+                let actor = world
+                    .inactive
+                    .get(&id("a"))
+                    .unwrap()
+                    .actors
+                    .get(animal)
+                    .unwrap();
+                assert_eq!(actor.ai_state(), AiState::Unaware);
+                assert_eq!(actor.position(), GridPos::new(5, 3));
+                assert_eq!(actor.recovery_remaining().map(|time| time.get()), remaining);
+                assert!(!world.drain_events().iter().any(|event| matches!(event,
                 GameEvent::AttackPerformed { attacker, .. } | GameEvent::AttackTelegraphed { attacker, .. } if *attacker == animal)));
-            world.process_player_command(GameCommand::Wait);
+                world.process_player_command(GameCommand::Wait);
+            }
+        }
+    }
+
+    #[test]
+    fn deep_encounter_charge_finishes_offscreen_then_recovers_without_leaking_events() {
+        for howler in [false, true] {
+            let mut world = world();
+            let behavior = if howler {
+                AiBehavior::TelegraphedResonator
+            } else {
+                AiBehavior::TelegraphedProjector
+            };
+            let attack = AttackProfile::new(
+                3,
+                DistanceMetric::Euclidean,
+                true,
+                DamageType::Kinetic,
+                5,
+                0,
+            )
+            .with_area(if howler {
+                crate::combat::AttackArea::Pulse(crate::combat::PulseAttack::new(3).unwrap())
+            } else {
+                crate::combat::AttackArea::Cone(crate::combat::ConeAttack::new(1, 2, 2).unwrap())
+            })
+            .with_recovery_after_attack(crate::time::TimeUnits::new(3).unwrap());
+            let delay = if howler { 2 } else { 1 };
+            let origin = GridPos::new(5, 3);
+            let mut actor = Actor::new(origin, 24)
+                .unwrap()
+                .with_ai(AiProfile::new(behavior, 8, 0, 512, 0))
+                .with_attack(attack);
+            actor.set_ai_state(AiState::ChargingAttack {
+                origin,
+                target_at: GridPos::new(4, 3),
+                remaining_turns: delay,
+            });
+            let entity = world.spawn_actor(actor).unwrap();
+            world
+                .active
+                .actors
+                .get_mut(world.active.player)
+                .unwrap()
+                .set_position(GridPos::new(2, 1));
+            world.drain_events();
+            assert_eq!(
+                world.process_player_command(GameCommand::Interact {
+                    target: GridPos::new(2, 1)
+                }),
+                CommandOutcome::Applied
+            );
+            for remaining in (0..delay).rev() {
+                let actor = world
+                    .inactive
+                    .get(&id("a"))
+                    .unwrap()
+                    .actors
+                    .get(entity)
+                    .unwrap();
+                assert!(
+                    matches!(actor.ai_state(), AiState::ChargingAttack {remaining_turns, ..} if remaining_turns == remaining)
+                );
+                world.process_player_command(GameCommand::Wait);
+            }
+            for remaining in [Some(3), Some(2), Some(1), None] {
+                let actor = world
+                    .inactive
+                    .get(&id("a"))
+                    .unwrap()
+                    .actors
+                    .get(entity)
+                    .unwrap();
+                assert_eq!(actor.position(), origin);
+                assert_eq!(actor.ai_state(), AiState::Unaware);
+                assert_eq!(actor.recovery_remaining().map(|t| t.get()), remaining);
+                assert!(!world.drain_events().iter().any(|event| matches!(event, GameEvent::AttackPerformed {attacker, ..} | GameEvent::AttackTelegraphed {attacker, ..} if *attacker == entity)));
+                world.process_player_command(GameCommand::Wait);
+            }
         }
     }
 
@@ -6742,6 +7045,73 @@ mod tests {
     }
 
     #[test]
+    fn clinic_partial_treatment_matches_quote_keeps_change_and_survives_recovery() {
+        for (credits, wound, expected) in [
+            (3, 6, 1),
+            (5, 6, 1),
+            (11, 6, 3),
+            (12, 6, 4),
+            (100, 6, 4),
+            (100, 1, 1),
+            (u32::MAX, 6, 4),
+        ] {
+            let (mut world, healer) = clinic_world(credits);
+            let player = world.player_id();
+            world
+                .active
+                .actors
+                .get_mut(player)
+                .unwrap()
+                .apply_damage(wound);
+            let before_hp = world.actors().get(player).unwrap().integrity();
+            let before_turn = world.turn();
+            let interaction = world.npc_interaction(healer).unwrap();
+            let [
+                NpcService::Treatment {
+                    restore_amount,
+                    price,
+                    ..
+                },
+            ] = interaction.services.as_slice()
+            else {
+                panic!("missing treatment")
+            };
+            let cost = u32::from(expected) * 3;
+            assert_eq!((*restore_amount, *price), (expected, cost));
+            let rules = world.active.rules.clone();
+            let mut restored = WorldState::from_recovery_snapshot_bytes(
+                &world.recovery_snapshot_bytes().unwrap(),
+                rules.clone(),
+            )
+            .unwrap();
+            for state in [&mut world, &mut restored] {
+                assert_eq!(
+                    state.process_player_command(GameCommand::ReceiveTreatment { healer }),
+                    CommandOutcome::Applied
+                );
+                assert_eq!(
+                    state.actors().get(player).unwrap().integrity(),
+                    before_hp + expected
+                );
+                assert_eq!(state.player_credits(), credits - cost);
+                assert_eq!(state.clinics[&id("clinic")].credits, 20 + cost);
+                assert_eq!(state.turn(), before_turn + 1);
+                assert!(state.events().contains(&GameEvent::TreatmentReceived {
+                    healer,
+                    amount: expected,
+                    price: cost,
+                    player_credits: credits - cost,
+                }));
+                state.drain_events();
+            }
+            let bytes = world.recovery_snapshot_bytes().unwrap();
+            assert_eq!(bytes, restored.recovery_snapshot_bytes().unwrap());
+            let after = WorldState::from_recovery_snapshot_bytes(&bytes, rules).unwrap();
+            assert_eq!(after.recovery_snapshot_bytes().unwrap(), bytes);
+        }
+    }
+
+    #[test]
     fn clinic_refusals_mutate_neither_time_health_nor_money() {
         let (mut full, healer) = clinic_world(100);
         let turn = full.turn();
@@ -6752,7 +7122,7 @@ mod tests {
         assert_eq!(full.turn(), turn);
         assert_eq!(full.player_credits(), 100);
 
-        let (mut poor, healer) = clinic_world(5);
+        let (mut poor, healer) = clinic_world(2);
         let player = poor.player_id();
         poor.active.actors.get_mut(player).unwrap().apply_damage(4);
         let integrity = poor.actors().get(player).unwrap().integrity();
@@ -6762,7 +7132,7 @@ mod tests {
             CommandOutcome::Rejected(CommandRejection::InsufficientCredits)
         );
         assert_eq!(poor.turn(), turn);
-        assert_eq!(poor.player_credits(), 5);
+        assert_eq!(poor.player_credits(), 2);
         assert_eq!(poor.actors().get(player).unwrap().integrity(), integrity);
     }
 

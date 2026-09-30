@@ -1,0 +1,140 @@
+[PERF ACTION] {"max_ms":10.260399999999999,"median_ms":9.8537,"operation":"wait","scene":"recycling"}
+[PERF ACTION] {"max_ms":5.4239,"median_ms":5.1112,"operation":"engine-snapshot","scene":"recycling"}
+[PERF ACTION] {"max_ms":47.5087,"median_ms":46.8594,"operation":"app-snapshot","scene":"recycling"}
+[PERF ACTION] {"max_ms":14.3372,"median_ms":14.0883,"operation":"state-fingerprint","scene":"recycling"}
+[PERF ACTION] {"max_ms":3.8525,"median_ms":3.5151000000000003,"operation":"content-fingerprints","scene":"recycling"}
+[PERF ACTION] {"max_ms":77.81620000000001,"median_ms":68.25580000000001,"operation":"suspension","scene":"recycling"}
+[PERF ACTION] {"max_ms":129.54760000000002,"median_ms":115.8742,"operation":"checkpoint","scene":"recycling"}
+[PERF ACTION] {"max_ms":8.4428,"median_ms":7.7259,"operation":"presentation-clone","scene":"recycling"}
+[PERF ACTION] {"max_ms":31.8786,"median_ms":27.349700000000002,"operation":"presentation-fingerprint","scene":"recycling"}
+[PERF ACTION] {"max_ms":28.200599999999998,"median_ms":27.3715,"operation":"presentation-bincode","scene":"recycling"}
+[PERF ACTION] {"max_ms":17.0651,"median_ms":14.826,"operation":"engine-byte-bincode","scene":"recycling"}
+[PERF ACTION] {"max_ms":7.0347,"median_ms":6.6632,"operation":"wait","scene":"hub"}
+[PERF ACTION] {"max_ms":10.205,"median_ms":9.3318,"operation":"engine-snapshot","scene":"hub"}
+[PERF ACTION] {"max_ms":63.51469999999999,"median_ms":49.339099999999995,"operation":"app-snapshot","scene":"hub"}
+[PERF ACTION] {"max_ms":15.0589,"median_ms":14.3773,"operation":"state-fingerprint","scene":"hub"}
+[PERF ACTION] {"max_ms":3.6822,"median_ms":3.3607,"operation":"content-fingerprints","scene":"hub"}
+[PERF ACTION] {"max_ms":81.4737,"median_ms":68.2079,"operation":"suspension","scene":"hub"}
+[PERF ACTION] {"max_ms":148.9391,"median_ms":132.3331,"operation":"checkpoint","scene":"hub"}
+[PERF ACTION] {"max_ms":12.8124,"median_ms":12.4703,"operation":"presentation-clone","scene":"hub"}
+[PERF ACTION] {"max_ms":41.53189999999999,"median_ms":38.4523,"operation":"presentation-fingerprint","scene":"hub"}
+[PERF ACTION] {"max_ms":26.7764,"median_ms":26.5668,"operation":"presentation-bincode","scene":"hub"}
+[PERF ACTION] {"max_ms":12.415000000000001,"median_ms":11.5378,"operation":"engine-byte-bincode","scene":"hub"}
+[PERF ACTION] {"max_ms":55.6016,"median_ms":43.5344,"operation":"wait","scene":"surface"}
+[PERF ACTION] {"max_ms":8.171,"median_ms":7.7165,"operation":"engine-snapshot","scene":"surface"}
+[PERF ACTION] {"max_ms":68.72240000000001,"median_ms":59.7752,"operation":"app-snapshot","scene":"surface"}
+[PERF ACTION] {"max_ms":21.0218,"median_ms":20.0975,"operation":"state-fingerprint","scene":"surface"}
+[PERF ACTION] {"max_ms":3.9803,"median_ms":3.5251,"operation":"content-fingerprints","scene":"surface"}
+[PERF ACTION] {"max_ms":110.1966,"median_ms":92.462,"operation":"suspension","scene":"surface"}
+[PERF ACTION] {"max_ms":160.55929999999998,"median_ms":148.28150000000002,"operation":"checkpoint","scene":"surface"}
+[PERF ACTION] {"max_ms":14.5806,"median_ms":14.3203,"operation":"presentation-clone","scene":"surface"}
+[PERF ACTION] {"max_ms":46.7571,"median_ms":44.2513,"operation":"presentation-fingerprint","scene":"surface"}
+[PERF ACTION] {"max_ms":23.9811,"median_ms":22.0449,"operation":"presentation-bincode","scene":"surface"}
+[PERF ACTION] {"max_ms":25.513,"median_ms":18.4379,"operation":"engine-byte-bincode","scene":"surface"}
+[BACKGROUND] tactical 128 231 0.138
+[BACKGROUND] routes 128 231 99.492
+[BACKGROUND] environment 128 231 101.049
+[BACKGROUND] tactical 192 231 0.217
+[BACKGROUND] routes 192 231 38.054
+[BACKGROUND] environment 192 231 39.577
+[BACKGROUND] tactical 128 232 0.143
+[BACKGROUND] routes 128 232 94.905
+[BACKGROUND] environment 128 232 96.573
+[BACKGROUND] tactical 192 232 0.311
+[BACKGROUND] routes 192 232 38.502
+[BACKGROUND] environment 192 232 40.047
+[BACKGROUND] tactical 128 233 0.100
+[BACKGROUND] routes 128 233 101.235
+[BACKGROUND] environment 128 233 102.928
+[BACKGROUND] tactical 192 233 0.216
+[BACKGROUND] routes 192 233 38.375
+[BACKGROUND] environment 192 233 39.961
+[BACKGROUND] tactical 128 234 0.103
+[BACKGROUND] routes 128 234 98.688
+[BACKGROUND] environment 128 234 100.721
+[BACKGROUND] tactical 192 234 0.363
+[BACKGROUND] routes 192 234 34.927
+[BACKGROUND] environment 192 234 36.861
+[BACKGROUND] tactical 128 235 0.100
+[BACKGROUND] routes 128 235 89.954
+[BACKGROUND] environment 128 235 91.536
+[BACKGROUND] tactical 192 235 0.218
+[BACKGROUND] routes 192 235 32.909
+[BACKGROUND] environment 192 235 34.369
+[BACKGROUND] tactical 128 236 0.111
+[BACKGROUND] routes 128 236 89.904
+[BACKGROUND] environment 128 236 91.712
+[BACKGROUND] tactical 192 236 0.325
+[BACKGROUND] routes 192 236 27.706
+[BACKGROUND] environment 192 236 29.270
+[BACKGROUND] tactical 128 237 0.153
+[BACKGROUND] routes 128 237 96.827
+[BACKGROUND] environment 128 237 98.439
+[BACKGROUND] tactical 192 237 0.219
+[BACKGROUND] routes 192 237 27.813
+[BACKGROUND] environment 192 237 29.069
+[BACKGROUND] tactical 128 238 0.099
+[BACKGROUND] routes 128 238 91.007
+[BACKGROUND] environment 128 238 92.497
+[BACKGROUND] tactical 192 238 0.215
+[BACKGROUND] routes 192 238 38.701
+[BACKGROUND] environment 192 238 40.179
+[PERF ACTION] {"max_ms":145.797,"median_ms":139.3594,"operation":"wait","scene":"depth-one"}
+[PERF ACTION] {"max_ms":10.2785,"median_ms":9.9353,"operation":"engine-snapshot","scene":"depth-one"}
+[PERF ACTION] {"max_ms":83.7696,"median_ms":69.1915,"operation":"app-snapshot","scene":"depth-one"}
+[PERF ACTION] {"max_ms":24.1239,"median_ms":23.9137,"operation":"state-fingerprint","scene":"depth-one"}
+[PERF ACTION] {"max_ms":3.5947999999999998,"median_ms":3.4318999999999997,"operation":"content-fingerprints","scene":"depth-one"}
+[PERF ACTION] {"max_ms":120.1662,"median_ms":96.8662,"operation":"suspension","scene":"depth-one"}
+[PERF ACTION] {"max_ms":188.644,"median_ms":174.40269999999998,"operation":"checkpoint","scene":"depth-one"}
+[PERF ACTION] {"max_ms":12.584,"median_ms":9.7026,"operation":"presentation-clone","scene":"depth-one"}
+[PERF ACTION] {"max_ms":38.1612,"median_ms":35.6929,"operation":"presentation-fingerprint","scene":"depth-one"}
+[PERF ACTION] {"max_ms":24.1319,"median_ms":23.555300000000003,"operation":"presentation-bincode","scene":"depth-one"}
+[PERF ACTION] {"max_ms":24.7306,"median_ms":19.4177,"operation":"engine-byte-bincode","scene":"depth-one"}
+[BACKGROUND] tactical 128 231 0.105
+[BACKGROUND] routes 128 231 88.272
+[BACKGROUND] environment 128 231 90.040
+[BACKGROUND] tactical 192 231 0.223
+[BACKGROUND] routes 192 231 38.018
+[BACKGROUND] environment 192 231 39.686
+[BACKGROUND] tactical 128 232 0.105
+[BACKGROUND] routes 128 232 100.386
+[BACKGROUND] environment 128 232 102.114
+[BACKGROUND] tactical 192 232 0.338
+[BACKGROUND] routes 192 232 56.752
+[BACKGROUND] environment 192 232 58.837
+[BACKGROUND] tactical 128 233 0.107
+[BACKGROUND] routes 128 233 124.473
+[BACKGROUND] environment 128 233 126.180
+[BACKGROUND] tactical 192 233 0.322
+[BACKGROUND] routes 192 233 41.353
+[BACKGROUND] environment 192 233 43.182
+[BACKGROUND] tactical 128 234 0.110
+[BACKGROUND] routes 128 234 91.146
+[BACKGROUND] environment 128 234 92.736
+[BACKGROUND] tactical 192 234 0.218
+[BACKGROUND] routes 192 234 22.494
+[BACKGROUND] environment 192 234 23.797
+[BACKGROUND] tactical 128 235 0.132
+[BACKGROUND] routes 128 235 92.160
+[BACKGROUND] environment 128 235 93.678
+[BACKGROUND] tactical 192 235 0.260
+[BACKGROUND] routes 192 235 33.136
+[BACKGROUND] environment 192 235 34.909
+[BACKGROUND] tactical 128 236 0.100
+[BACKGROUND] routes 128 236 74.601
+[BACKGROUND] environment 128 236 76.048
+[BACKGROUND] tactical 192 236 0.257
+[BACKGROUND] routes 192 236 27.807
+[BACKGROUND] environment 192 236 29.280
+[BACKGROUND] tactical 128 237 0.102
+[BACKGROUND] routes 128 237 94.712
+[BACKGROUND] environment 128 237 96.271
+[BACKGROUND] tactical 192 237 0.217
+[BACKGROUND] routes 192 237 27.900
+[BACKGROUND] environment 192 237 29.288
+[BACKGROUND] tactical 128 238 0.100
+[BACKGROUND] routes 128 238 97.326
+[BACKGROUND] environment 128 238 98.697
+[BACKGROUND] tactical 192 238 0.220
+[BACKGROUND] routes 192 238 38.400
+[BACKGROUND] environment 192 238 40.095

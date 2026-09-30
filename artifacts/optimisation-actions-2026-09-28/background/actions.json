@@ -1,0 +1,313 @@
+[
+  {
+    "max_ms": 10.260399999999999,
+    "median_ms": 9.8537,
+    "operation": "wait",
+    "scene": "recycling"
+  },
+  {
+    "max_ms": 5.4239,
+    "median_ms": 5.1112,
+    "operation": "engine-snapshot",
+    "scene": "recycling"
+  },
+  {
+    "max_ms": 47.5087,
+    "median_ms": 46.8594,
+    "operation": "app-snapshot",
+    "scene": "recycling"
+  },
+  {
+    "max_ms": 14.3372,
+    "median_ms": 14.0883,
+    "operation": "state-fingerprint",
+    "scene": "recycling"
+  },
+  {
+    "max_ms": 3.8525,
+    "median_ms": 3.5151000000000003,
+    "operation": "content-fingerprints",
+    "scene": "recycling"
+  },
+  {
+    "max_ms": 77.81620000000001,
+    "median_ms": 68.25580000000001,
+    "operation": "suspension",
+    "scene": "recycling"
+  },
+  {
+    "max_ms": 129.54760000000002,
+    "median_ms": 115.8742,
+    "operation": "checkpoint",
+    "scene": "recycling"
+  },
+  {
+    "max_ms": 8.4428,
+    "median_ms": 7.7259,
+    "operation": "presentation-clone",
+    "scene": "recycling"
+  },
+  {
+    "max_ms": 31.8786,
+    "median_ms": 27.349700000000002,
+    "operation": "presentation-fingerprint",
+    "scene": "recycling"
+  },
+  {
+    "max_ms": 28.200599999999998,
+    "median_ms": 27.3715,
+    "operation": "presentation-bincode",
+    "scene": "recycling"
+  },
+  {
+    "max_ms": 17.0651,
+    "median_ms": 14.826,
+    "operation": "engine-byte-bincode",
+    "scene": "recycling"
+  },
+  {
+    "commands": 8,
+    "fingerprint": 12771303672072417791,
+    "operation": "state",
+    "scene": "recycling",
+    "snapshot_bytes": 160193,
+    "snapshot_fingerprint": 15322466270382000375
+  },
+  {
+    "max_ms": 7.0347,
+    "median_ms": 6.6632,
+    "operation": "wait",
+    "scene": "hub"
+  },
+  {
+    "max_ms": 10.205,
+    "median_ms": 9.3318,
+    "operation": "engine-snapshot",
+    "scene": "hub"
+  },
+  {
+    "max_ms": 63.51469999999999,
+    "median_ms": 49.339099999999995,
+    "operation": "app-snapshot",
+    "scene": "hub"
+  },
+  {
+    "max_ms": 15.0589,
+    "median_ms": 14.3773,
+    "operation": "state-fingerprint",
+    "scene": "hub"
+  },
+  {
+    "max_ms": 3.6822,
+    "median_ms": 3.3607,
+    "operation": "content-fingerprints",
+    "scene": "hub"
+  },
+  {
+    "max_ms": 81.4737,
+    "median_ms": 68.2079,
+    "operation": "suspension",
+    "scene": "hub"
+  },
+  {
+    "max_ms": 148.9391,
+    "median_ms": 132.3331,
+    "operation": "checkpoint",
+    "scene": "hub"
+  },
+  {
+    "max_ms": 12.8124,
+    "median_ms": 12.4703,
+    "operation": "presentation-clone",
+    "scene": "hub"
+  },
+  {
+    "max_ms": 41.53189999999999,
+    "median_ms": 38.4523,
+    "operation": "presentation-fingerprint",
+    "scene": "hub"
+  },
+  {
+    "max_ms": 26.7764,
+    "median_ms": 26.5668,
+    "operation": "presentation-bincode",
+    "scene": "hub"
+  },
+  {
+    "max_ms": 12.415000000000001,
+    "median_ms": 11.5378,
+    "operation": "engine-byte-bincode",
+    "scene": "hub"
+  },
+  {
+    "commands": 159,
+    "fingerprint": 7014829444361222006,
+    "operation": "state",
+    "scene": "hub",
+    "snapshot_bytes": 171276,
+    "snapshot_fingerprint": 12216774832015792313
+  },
+  {
+    "ms": 1299.0140999999999,
+    "operation": "generate-and-travel",
+    "scene": "surface"
+  },
+  {
+    "max_ms": 55.6016,
+    "median_ms": 43.5344,
+    "operation": "wait",
+    "scene": "surface"
+  },
+  {
+    "max_ms": 8.171,
+    "median_ms": 7.7165,
+    "operation": "engine-snapshot",
+    "scene": "surface"
+  },
+  {
+    "max_ms": 68.72240000000001,
+    "median_ms": 59.7752,
+    "operation": "app-snapshot",
+    "scene": "surface"
+  },
+  {
+    "max_ms": 21.0218,
+    "median_ms": 20.0975,
+    "operation": "state-fingerprint",
+    "scene": "surface"
+  },
+  {
+    "max_ms": 3.9803,
+    "median_ms": 3.5251,
+    "operation": "content-fingerprints",
+    "scene": "surface"
+  },
+  {
+    "max_ms": 110.1966,
+    "median_ms": 92.462,
+    "operation": "suspension",
+    "scene": "surface"
+  },
+  {
+    "max_ms": 160.55929999999998,
+    "median_ms": 148.28150000000002,
+    "operation": "checkpoint",
+    "scene": "surface"
+  },
+  {
+    "max_ms": 14.5806,
+    "median_ms": 14.3203,
+    "operation": "presentation-clone",
+    "scene": "surface"
+  },
+  {
+    "max_ms": 46.7571,
+    "median_ms": 44.2513,
+    "operation": "presentation-fingerprint",
+    "scene": "surface"
+  },
+  {
+    "max_ms": 23.9811,
+    "median_ms": 22.0449,
+    "operation": "presentation-bincode",
+    "scene": "surface"
+  },
+  {
+    "max_ms": 25.513,
+    "median_ms": 18.4379,
+    "operation": "engine-byte-bincode",
+    "scene": "surface"
+  },
+  {
+    "commands": 168,
+    "fingerprint": 6151086430487046101,
+    "operation": "state",
+    "scene": "surface",
+    "snapshot_bytes": 242188,
+    "snapshot_fingerprint": 8853523657119520853
+  },
+  {
+    "ms": 731.8717,
+    "operation": "generate-and-travel",
+    "scene": "depth-one"
+  },
+  {
+    "max_ms": 145.797,
+    "median_ms": 139.3594,
+    "operation": "wait",
+    "scene": "depth-one"
+  },
+  {
+    "max_ms": 10.2785,
+    "median_ms": 9.9353,
+    "operation": "engine-snapshot",
+    "scene": "depth-one"
+  },
+  {
+    "max_ms": 83.7696,
+    "median_ms": 69.1915,
+    "operation": "app-snapshot",
+    "scene": "depth-one"
+  },
+  {
+    "max_ms": 24.1239,
+    "median_ms": 23.9137,
+    "operation": "state-fingerprint",
+    "scene": "depth-one"
+  },
+  {
+    "max_ms": 3.5947999999999998,
+    "median_ms": 3.4318999999999997,
+    "operation": "content-fingerprints",
+    "scene": "depth-one"
+  },
+  {
+    "max_ms": 120.1662,
+    "median_ms": 96.8662,
+    "operation": "suspension",
+    "scene": "depth-one"
+  },
+  {
+    "max_ms": 188.644,
+    "median_ms": 174.40269999999998,
+    "operation": "checkpoint",
+    "scene": "depth-one"
+  },
+  {
+    "max_ms": 12.584,
+    "median_ms": 9.7026,
+    "operation": "presentation-clone",
+    "scene": "depth-one"
+  },
+  {
+    "max_ms": 38.1612,
+    "median_ms": 35.6929,
+    "operation": "presentation-fingerprint",
+    "scene": "depth-one"
+  },
+  {
+    "max_ms": 24.1319,
+    "median_ms": 23.555300000000003,
+    "operation": "presentation-bincode",
+    "scene": "depth-one"
+  },
+  {
+    "max_ms": 24.7306,
+    "median_ms": 19.4177,
+    "operation": "engine-byte-bincode",
+    "scene": "depth-one"
+  },
+  {
+    "commands": 239,
+    "fingerprint": 7244843872683717876,
+    "operation": "state",
+    "scene": "depth-one",
+    "snapshot_bytes": 294784,
+    "snapshot_fingerprint": 2992820229545666216
+  },
+  {
+    "ms": 13863.0335,
+    "operation": "verified-suspension",
+    "scene": "depth-one"
+  }
+]

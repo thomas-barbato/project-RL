@@ -1,0 +1,8 @@
+{
+  id: "core:sentinel_projection",
+  terminal: {
+    frames: ["arc_fork", "arc_split", "arc_fork"],
+    color: [45, 179, 178, 205], accent_colors: [[109, 243, 237, 255], [224, 255, 251, 255]],
+    frame_millis: 85, step_millis: 55, linger_millis: 80,
+  },
+}

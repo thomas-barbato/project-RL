@@ -1,0 +1,9 @@
+{
+  id: "core:weapon_percussion_blocked",
+  terminal: {
+    frames: ["impulse_blocked", "impulse_blocked", "impulse_blocked"],
+    color: [149, 86, 47, 220],
+    accent_colors: [[241, 173, 101, 255], [255, 237, 195, 255]],
+    frame_millis: 120, step_millis: 0, linger_millis: 60,
+  },
+}

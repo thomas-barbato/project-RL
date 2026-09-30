@@ -3,6 +3,7 @@
 //! World glyphs deliberately keep their terminal renderer.  This module owns
 //! the readable interface layer that can be reused by terminal and textured
 //! world renderers alike.
+use std::collections::{BTreeMap, HashMap};
 use std::sync::OnceLock;
 
 use macroquad::prelude::{
@@ -13,6 +14,87 @@ use macroquad::prelude::{
 
 static REGULAR_FONT: OnceLock<Font> = OnceLock::new();
 static BOLD_FONT: OnceLock<Font> = OnceLock::new();
+
+thread_local! {
+    static TEXT_PANE: std::cell::Cell<Option<(Rect, f32)>> = const { std::cell::Cell::new(None) };
+    static HIGH_CONTRAST: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+    static TEXT_MEASUREMENTS: std::cell::RefCell<TextMeasurements> = std::cell::RefCell::new(TextMeasurements::default());
+}
+
+/// Fonts are immutable after startup. Bound both entry count and string length
+/// so dynamic logs/mod text cannot turn this presentation cache into a leak.
+#[derive(Default)]
+struct TextMeasurements {
+    fonts: BTreeMap<(bool, u16, u32), HashMap<String, TextDimensions>>,
+    count: usize,
+    dpi: u32,
+}
+
+impl TextMeasurements {
+    fn set_dpi(&mut self, dpi: f32) {
+        if self.dpi != dpi.to_bits() {
+            self.fonts.clear();
+            self.count = 0;
+            self.dpi = dpi.to_bits();
+        }
+    }
+    fn get_or_measure(
+        &mut self,
+        text: &str,
+        bold: bool,
+        size: u16,
+        scale: f32,
+        measure: impl FnOnce() -> TextDimensions,
+    ) -> TextDimensions {
+        if text.len() > 1024 {
+            return measure();
+        }
+        let key = (bold, size, scale.to_bits());
+        if let Some(value) = self.fonts.get(&key).and_then(|entries| entries.get(text)) {
+            return *value;
+        }
+        let value = measure();
+        if self.count >= 8192 {
+            self.fonts.clear();
+            self.count = 0;
+        }
+        self.fonts
+            .entry(key)
+            .or_default()
+            .insert(text.to_owned(), value);
+        self.count += 1;
+        value
+    }
+}
+
+fn measure_builtin(text: &str, bold: bool, size: u16, scale: f32) -> TextDimensions {
+    let font = if bold {
+        bold_font().or_else(regular_font)
+    } else {
+        regular_font()
+    };
+    let measure = || macroquad::text::measure_text(text, font, size, scale);
+    if font.is_none() {
+        return measure();
+    }
+    TEXT_MEASUREMENTS.with_borrow_mut(|cache| {
+        cache.set_dpi(macroquad::window::screen_dpi_scale());
+        cache.get_or_measure(text, bold, size, scale, measure)
+    })
+}
+
+pub fn set_high_contrast(enabled: bool) {
+    HIGH_CONTRAST.set(enabled);
+}
+pub fn begin_text_pane(rect: Rect, offset: f32) {
+    TEXT_PANE.set(Some((rect, offset)));
+}
+pub fn end_text_pane() {
+    TEXT_PANE.set(None);
+}
+pub fn text_pane_active() -> bool {
+    TEXT_PANE.get().is_some()
+}
 
 const REGULAR_BYTES: &[u8] = include_bytes!("../assets/fonts/AtkinsonHyperlegible-Regular.ttf");
 const BOLD_BYTES: &[u8] = include_bytes!("../assets/fonts/AtkinsonHyperlegible-Bold.ttf");
@@ -75,13 +157,27 @@ fn draw_with_font(
     color: Color,
     font: Option<&Font>,
 ) -> TextDimensions {
+    let bold = font.is_some_and(|font| bold_font().is_some_and(|bold| std::ptr::eq(font, bold)));
+    let size = font_size.round().clamp(1.0, u16::MAX as f32) as u16;
+    // Prepare the entire string before drawing its first glyph. Otherwise
+    // Macroquad can upload the complete atlas again for EACH missing glyph.
+    // Cache hits avoid repeating the glyph-by-glyph measurement on later frames.
+    let dimensions = measure_builtin(text.as_ref(), bold, size, 1.0);
+    let mut y = y;
+    if let Some((rect, offset)) = TEXT_PANE.get() {
+        y -= offset;
+        // Draw complete lines only; text never leaks into headers or actions.
+        if y - font_size < rect.y || y + 4.0 > rect.bottom() {
+            return dimensions;
+        }
+    }
     draw_text_ex(
         text,
         x,
         y,
         TextParams {
             font,
-            font_size: font_size.round().clamp(1.0, u16::MAX as f32) as u16,
+            font_size: size,
             color,
             ..Default::default()
         },
@@ -96,20 +192,14 @@ pub fn measure_text(
     font_size: u16,
     font_scale: f32,
 ) -> TextDimensions {
-    let resolved_font = match font {
-        Some(font) => Some(font),
-        None => regular_font(),
-    };
-    macroquad::text::measure_text(text.as_ref(), resolved_font, font_size, font_scale)
+    if let Some(font) = font {
+        return macroquad::text::measure_text(text.as_ref(), Some(font), font_size, font_scale);
+    }
+    measure_builtin(text.as_ref(), false, font_size, font_scale)
 }
 
 pub fn measure_text_bold(text: impl AsRef<str>, font_size: u16) -> TextDimensions {
-    macroquad::text::measure_text(
-        text.as_ref(),
-        bold_font().or_else(regular_font),
-        font_size,
-        1.0,
-    )
+    measure_builtin(text.as_ref(), true, font_size, 1.0)
 }
 
 /// Positionne la ligne de base à partir des limites réellement rasterisées de
@@ -128,10 +218,55 @@ pub fn draw_text_bold_centered(
     font_size: u16,
     color: Color,
 ) -> TextDimensions {
-    let text = text.as_ref();
-    let dimensions = measure_text_bold(text, font_size);
+    let (text, font_size, dimensions) = fitted_label(text.as_ref(), rect, font_size, true);
     let (x, y) = centered_text_origin(rect, dimensions);
     draw_text_bold(text, x, y, f32::from(font_size), color)
+}
+
+/// A single label stays inside its allotted content box, including descenders.
+/// Long labels retain a readable size and use an ellipsis instead of overflowing.
+fn fitted_label(text: &str, rect: Rect, size: u16, bold: bool) -> (String, u16, TextDimensions) {
+    let measure = |text: &str, size| {
+        if bold {
+            measure_text_bold(text, size)
+        } else {
+            measure_text(text, None, size, 1.0)
+        }
+    };
+    let mut size = size.max(1);
+    let mut label = text.to_owned();
+    let minimum = size.min(12);
+    while size > minimum {
+        let dimensions = measure(&label, size);
+        if dimensions.width <= rect.w && dimensions.height <= rect.h {
+            break;
+        }
+        size -= 1;
+    }
+    while size > 1 && measure(&label, size).height > rect.h.max(1.0) {
+        size -= 1;
+    }
+    if measure(&label, size).width > rect.w.max(0.0) {
+        while !label.is_empty() && measure(&format!("{label}…"), size).width > rect.w.max(0.0) {
+            label.pop();
+        }
+        if measure("…", size).width <= rect.w.max(0.0) {
+            label.push('…');
+        }
+    }
+    let dimensions = measure(&label, size);
+    (label, size, dimensions)
+}
+
+pub fn draw_text_in_rect(
+    text: impl AsRef<str>,
+    rect: Rect,
+    size: u16,
+    color: Color,
+) -> TextDimensions {
+    let (text, size, dimensions) = fitted_label(text.as_ref(), rect, size, false);
+    let (_, y) = centered_text_origin(rect, dimensions);
+    draw_text(text, rect.x, y, f32::from(size), color)
 }
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
@@ -162,6 +297,7 @@ impl ButtonState {
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[allow(dead_code)] // Shared icon family, including variants used by alternate HUD layouts.
 pub enum UiIcon {
     Play,
     Add,
@@ -214,11 +350,11 @@ impl UiTheme {
     }
 
     pub const fn surface(self) -> Color {
-        Color::new(0.024, 0.055, 0.075, 0.98)
+        Color::new(0.035, 0.055, 0.073, 0.99)
     }
 
     pub const fn surface_raised(self) -> Color {
-        Color::new(0.045, 0.105, 0.13, 1.0)
+        Color::new(0.065, 0.094, 0.117, 1.0)
     }
 
     pub const fn surface_selected(self) -> Color {
@@ -229,8 +365,12 @@ impl UiTheme {
         Color::new(0.88, 0.94, 0.94, 1.0)
     }
 
-    pub const fn muted(self) -> Color {
-        Color::new(0.58, 0.7, 0.72, 1.0)
+    pub fn muted(self) -> Color {
+        if HIGH_CONTRAST.get() {
+            Color::new(0.80, 0.87, 0.88, 1.0)
+        } else {
+            Color::new(0.64, 0.73, 0.76, 1.0)
+        }
     }
 
     pub const fn accent(self) -> Color {
@@ -238,6 +378,10 @@ impl UiTheme {
     }
 
     pub const fn focus(self) -> Color {
+        self.accent()
+    }
+
+    pub const fn attention(self) -> Color {
         Color::new(1.0, 0.83, 0.36, 1.0)
     }
 
@@ -255,13 +399,7 @@ impl UiTheme {
             11.0,
             Color::new(0.0, 0.0, 0.0, 0.42),
         );
-        rounded_outline(
-            rect,
-            11.0,
-            1.0,
-            subdued(self.accent(), 0.34),
-            self.surface(),
-        );
+        rounded_outline(rect, 11.0, 1.0, subdued(self.muted(), 0.20), self.surface());
     }
 
     pub fn card(self, rect: Rect, selected: bool) {
@@ -277,17 +415,10 @@ impl UiTheme {
             if selected {
                 self.focus()
             } else {
-                subdued(self.muted(), 0.28)
+                subdued(self.muted(), 0.12)
             },
             fill,
         );
-        if selected {
-            rounded_rectangle(
-                Rect::new(rect.x + 7.0, rect.y + 7.0, 3.0, (rect.h - 14.0).max(3.0)),
-                1.5,
-                self.focus(),
-            );
-        }
     }
 
     pub fn hud_panel(self, rect: Rect) {
@@ -420,35 +551,33 @@ impl UiTheme {
         tone: ButtonTone,
     ) {
         let semantic = match tone {
-            ButtonTone::Secondary => self.accent(),
-            ButtonTone::Primary => self.focus(),
+            ButtonTone::Secondary | ButtonTone::Primary => self.accent(),
             ButtonTone::Danger => self.danger(),
         };
         let fill = if !enabled {
-            if tone == ButtonTone::Danger {
-                Color::new(0.16, 0.045, 0.045, 0.94)
-            } else {
-                Color::new(0.035, 0.06, 0.07, 0.9)
-            }
-        } else if focused || active {
-            match tone {
-                ButtonTone::Secondary => self.surface_selected(),
-                ButtonTone::Primary => Color::new(0.20, 0.18, 0.075, 1.0),
-                ButtonTone::Danger => Color::new(0.20, 0.075, 0.07, 1.0),
-            }
+            self.surface()
         } else {
-            self.surface_raised()
+            match tone {
+                ButtonTone::Primary => {
+                    if focused {
+                        Color::new(0.53, 1.0, 0.88, 1.0)
+                    } else {
+                        self.accent()
+                    }
+                }
+                ButtonTone::Danger => Color::new(0.25, 0.085, 0.08, 1.0),
+                ButtonTone::Secondary if focused || active => self.surface_selected(),
+                ButtonTone::Secondary => self.surface_raised(),
+            }
         };
         let outline = if !enabled {
-            if tone == ButtonTone::Danger {
-                subdued(self.danger(), 0.78)
-            } else {
-                Color::new(0.22, 0.27, 0.28, 0.55)
-            }
-        } else if focused || active {
+            subdued(self.muted(), 0.15)
+        } else if focused {
+            self.text()
+        } else if active || tone != ButtonTone::Secondary {
             semantic
         } else {
-            subdued(self.muted(), 0.32)
+            subdued(self.muted(), 0.15)
         };
         let radius = (rect.h * 0.2).clamp(4.0, 8.0);
 
@@ -473,17 +602,7 @@ impl UiTheme {
             label,
             Rect::new(rect.x + 8.0, rect.y, rect.w - 16.0, rect.h - 1.0),
             font_size,
-            if !enabled {
-                if tone == ButtonTone::Danger {
-                    self.danger()
-                } else {
-                    Color::new(0.42, 0.49, 0.50, 1.0)
-                }
-            } else if focused || active {
-                semantic
-            } else {
-                self.text()
-            },
+            button_foreground(self, focused, active, enabled, tone),
         );
     }
 
@@ -503,6 +622,27 @@ impl UiTheme {
         } else {
             (rect.h - 13.0).clamp(13.0, 22.0)
         };
+        // On narrow filters, keep the full name before the redundant icon.
+        let label_start = if compact {
+            icon_size + 9.0
+        } else {
+            icon_size + 24.0
+        };
+        let label_end_margin = if compact { 4.0 } else { 12.0 };
+        if measure_text_bold(label, 12).width > rect.w - label_start - label_end_margin {
+            draw_text_bold_centered(
+                label,
+                Rect::new(
+                    rect.x + 6.0,
+                    rect.y + 3.0,
+                    (rect.w - 12.0).max(0.0),
+                    rect.h - 6.0,
+                ),
+                16,
+                color,
+            );
+            return;
+        }
         let icon_margin = if compact { 5.0 } else { 12.0 };
         draw_ui_icon(
             icon,
@@ -514,12 +654,6 @@ impl UiTheme {
             ),
             color,
         );
-        let label_start = if compact {
-            icon_size + 9.0
-        } else {
-            icon_size + 24.0
-        };
-        let label_end_margin = if compact { 4.0 } else { 12.0 };
         let label_rect = Rect::new(
             rect.x + label_start,
             rect.y,
@@ -542,24 +676,22 @@ impl UiTheme {
         icon: UiIcon,
         focused: bool,
         enabled: bool,
+        primary: bool,
     ) {
         let fill = if !enabled {
             Color::new(0.07, 0.10, 0.12, 0.82)
+        } else if primary {
+            self.accent()
         } else if focused {
             Color::new(0.075, 0.23, 0.25, 0.98)
         } else {
             Color::new(0.075, 0.13, 0.15, 0.94)
         };
         rounded_rectangle(rect, 7.0, fill);
-        if focused {
-            rounded_rectangle(
-                Rect::new(rect.x + 1.0, rect.y + 8.0, 3.0, rect.h - 16.0),
-                1.5,
-                self.accent(),
-            );
-        }
         let foreground = if !enabled {
             Color::new(0.45, 0.53, 0.55, 1.0)
+        } else if primary {
+            self.surface()
         } else if focused {
             self.accent()
         } else {
@@ -579,9 +711,77 @@ impl UiTheme {
         if enabled {
             let mid_y = rect.y + rect.h * 0.5;
             let right = rect.x + rect.w - 20.0;
-            let chevron = if focused { self.accent() } else { self.muted() };
+            let chevron = foreground;
             draw_line(right - 5.0, mid_y - 4.0, right, mid_y, 1.5, chevron);
             draw_line(right, mid_y, right - 5.0, mid_y + 4.0, 1.5, chevron);
+        }
+    }
+
+    pub fn setting_row(
+        self,
+        rect: Rect,
+        label: &str,
+        focused: bool,
+        enabled: bool,
+        toggle: Option<bool>,
+    ) {
+        self.card(rect, focused);
+        let (name, value) = label.split_once(':').unwrap_or((label, ""));
+        draw_text(
+            name,
+            rect.x + 14.0,
+            rect.y + rect.h * 0.7,
+            15.0,
+            if enabled { self.text() } else { self.muted() },
+        );
+        if let Some(on) = toggle {
+            let switch = Rect::new(rect.right() - 69.0, rect.y + rect.h * 0.5 - 9.0, 48.0, 18.0);
+            rounded_rectangle(
+                switch,
+                9.0,
+                if on {
+                    self.accent()
+                } else {
+                    self.surface_raised()
+                },
+            );
+            draw_circle(
+                switch.x + if on { 38.0 } else { 10.0 },
+                switch.y + 9.0,
+                6.0,
+                if on { self.surface() } else { self.muted() },
+            );
+            draw_text(
+                if on { "Activé" } else { "Désactivé" },
+                rect.right() - 157.0,
+                rect.y + rect.h * 0.7,
+                14.0,
+                self.muted(),
+            );
+        } else {
+            let area = Rect::new(rect.x + rect.w * 0.43, rect.y, rect.w * 0.57 - 16.0, rect.h);
+            draw_text_bold_centered(
+                value.trim(),
+                area,
+                14,
+                if enabled { self.accent() } else { self.muted() },
+            );
+            if enabled {
+                draw_text(
+                    "<",
+                    rect.right() - 62.0,
+                    rect.y + rect.h * 0.7,
+                    16.0,
+                    self.accent(),
+                );
+                draw_text(
+                    ">",
+                    rect.right() - 23.0,
+                    rect.y + rect.h * 0.7,
+                    16.0,
+                    self.accent(),
+                );
+            }
         }
     }
 }
@@ -594,17 +794,13 @@ fn button_foreground(
     tone: ButtonTone,
 ) -> Color {
     if !enabled {
-        if tone == ButtonTone::Danger {
-            theme.danger()
-        } else {
-            Color::new(0.42, 0.49, 0.50, 1.0)
-        }
+        theme.muted()
+    } else if tone == ButtonTone::Primary {
+        Color::new(0.025, 0.12, 0.13, 1.0)
+    } else if tone == ButtonTone::Danger {
+        theme.danger()
     } else if focused || active {
-        match tone {
-            ButtonTone::Secondary => theme.accent(),
-            ButtonTone::Primary => theme.focus(),
-            ButtonTone::Danger => theme.danger(),
-        }
+        theme.accent()
     } else {
         theme.text()
     }
@@ -1102,6 +1298,48 @@ fn rounded_rectangle(rect: Rect, radius: f32, color: Color) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn text_cache_separates_fonts_sizes_scales_and_stays_bounded() {
+        let mut cache = TextMeasurements::default();
+        let value = TextDimensions {
+            width: 12.0,
+            height: 8.0,
+            offset_y: 6.0,
+        };
+        assert_eq!(
+            cache
+                .get_or_measure("Énergie", false, 16, 1.0, || value)
+                .width,
+            12.0
+        );
+        cache.get_or_measure("Énergie", false, 16, 1.0, || panic!("cache miss"));
+        for (bold, size, scale) in [(true, 16, 1.0), (false, 18, 1.0), (false, 16, 1.5)] {
+            assert_eq!(
+                cache
+                    .get_or_measure("Énergie", bold, size, scale, || TextDimensions {
+                        width: 30.0,
+                        ..value
+                    })
+                    .width,
+                30.0
+            );
+        }
+        for index in 0..9000 {
+            cache.get_or_measure(&index.to_string(), false, 16, 1.0, || value);
+        }
+        assert!(cache.count <= 8192);
+        let before = cache.count;
+        cache.get_or_measure(&"x".repeat(1025), false, 16, 1.0, || value);
+        assert_eq!(cache.count, before);
+        cache.set_dpi(1.5);
+        assert_eq!(cache.count, 0);
+        cache.get_or_measure("Énergie", false, 16, 1.0, || value);
+        cache.set_dpi(1.5);
+        assert_eq!(cache.count, 1);
+        cache.set_dpi(2.0);
+        assert_eq!(cache.count, 0);
+    }
 
     #[test]
     fn centered_origin_uses_the_rasterized_bounds_in_both_axes() {

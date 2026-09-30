@@ -122,6 +122,28 @@ fn interaction_hint(game: &WorldState, position: GridPos) -> Option<InteractionH
         });
     }
     if let Some(entity) = game.actors().entity_at(position) {
+        if game
+            .actors()
+            .get(entity)
+            .and_then(project_rl::entity::Actor::ai)
+            .is_some_and(|ai| ai.behavior == project_rl::ai::AiBehavior::Riveter)
+        {
+            return Some(InteractionHint {
+                title: "Riveuse".to_owned(),
+                is_loot: false,
+                verb: "arrêter le chantier",
+                unavailable: if game.actors().get(entity).is_some_and(|a| {
+                    matches!(
+                        a.ai_state(),
+                        AiState::Encounter(project_rl::ai::EncounterState::WorkStopped)
+                    )
+                }) {
+                    Some("Chantier arrêté")
+                } else {
+                    None
+                },
+            });
+        }
         use project_rl::facility::WorkerRole;
         let title = if game.active_merchant(entity) {
             Some("Marchande")
@@ -333,6 +355,29 @@ pub struct TerminalOverlay {
     pub effect: Option<crate::visual_effects::TerminalEffectSample>,
 }
 
+impl TerminalOverlay {
+    fn transient_effect(&self) -> Option<crate::visual_effects::TerminalEffectSample> {
+        self.effect.filter(|effect| {
+            // A live flame already draws this cell. Stacking the short attack
+            // flame on it used to flicker rapidly before the steady loop won.
+            effect.family != crate::visual_effects::TerminalEffectFamily::Flame
+                || !self
+                    .sustained_effects
+                    .iter()
+                    .any(|live| live.family == effect.family)
+        })
+    }
+}
+
+fn frame_overlays(
+    visible: impl Iterator<Item = GridPos>,
+    sample: impl Fn(GridPos) -> Option<TerminalOverlay>,
+) -> BTreeMap<GridPos, TerminalOverlay> {
+    visible
+        .filter_map(|at| sample(at).map(|cell| (at, cell)))
+        .collect()
+}
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum SensorContactKind {
     Hostile,
@@ -351,11 +396,10 @@ struct SensorContact {
 
 fn sensor_contact_kind(symbol: char) -> SensorContactKind {
     match symbol {
-        'd' | 't' | 'r' | 'j' | 'w' | 'B' | 'V' | 'K' | 'X' | 'Y' | 'L' | 'A' => {
-            SensorContactKind::Hostile
-        }
+        'd' | 't' | 'r' | 'j' | 'w' | 'B' | 'V' | 'K' | 'W' | 'J' | 'Q' | 'P' | 'U' | 'Z' | 'O'
+        | 'C' | 'D' | 'F' | 'H' | 'X' | 'Y' | 'L' | 'A' => SensorContactKind::Hostile,
         'm' | 'h' | 'v' => SensorContactKind::Service,
-        'c' | 'i' | 'u' | 'b' | 'G' | 'N' => SensorContactKind::Neutral,
+        'c' | 'i' | 'u' | 'b' | 'G' | 'N' | 'I' => SensorContactKind::Neutral,
         _ => SensorContactKind::Unknown,
     }
 }
@@ -548,7 +592,7 @@ impl TerminalView {
             .player_position()
             .is_some_and(|p| game.map().is_protected(p));
         let safety_label = if protected {
-            "ZONE SÛRE"
+            "PROTECTION LOCALE"
         } else {
             "ZONE HOSTILE"
         };
@@ -609,6 +653,11 @@ impl TerminalView {
         );
         let focus = game.player_position().unwrap_or(GridPos::new(12, 12));
         let visibility = game.player_visibility();
+        // Reuse exactly one sample per visible cell across map, overhead
+        // badges, sensor contacts and inspection. Never persist across frames:
+        // motion, changed perception and commands are reflected immediately.
+        let overlays = frame_overlays(visibility.visible_positions(), overlay);
+        let overlay = |position| overlays.get(&position);
         for row in 0..camera.rows {
             for column in 0..camera.columns {
                 let position = GridPos::new(camera.first.x + column, camera.first.y + row);
@@ -647,10 +696,10 @@ impl TerminalView {
                 }
                 // Even a buggy caller cannot render a live actor/effect in memory.
                 if visible && let Some(cell) = overlay(position) {
-                    for effect in cell.sustained_effects {
+                    for &effect in &cell.sustained_effects {
                         terminal_fx::draw(rect, effect, cell.symbol != '\0');
                     }
-                    if let Some(effect) = cell.effect {
+                    if let Some(effect) = cell.transient_effect() {
                         terminal_fx::draw(rect, effect, cell.symbol != '\0');
                     }
                     // Effects never replace the occupant glyph or its identity
@@ -715,16 +764,41 @@ impl TerminalView {
             marker_rect.y -= quest_marker_rise;
             draw_status_icon(marker_rect, icon);
         }
-        // Telegraphs never reveal a hidden shooter or an unobserved cell.
-        for (_, actor) in game.actors().iter() {
-            if let project_rl::ai::AiState::Aiming { target_at, .. } = actor.ai_state()
-                && visibility.is_visible(actor.position())
-                && visibility.is_visible(target_at)
-                && camera.contains(target_at)
+        // Show the real committed footprint, never a hidden actor or cell.
+        for (entity, actor) in game.actors().iter() {
+            if visibility.is_visible(actor.position())
+                && camera.contains(actor.position())
+                && let AiState::Encounter(project_rl::ai::EncounterState::Guard { dx, dy, .. }) =
+                    actor.ai_state()
             {
-                let rect = camera.rect(target_at);
+                let rect = camera.rect(actor.position());
+                let center = rect.center();
+                let x = center.x + dx as f32 * rect.w * 0.43;
+                let y = center.y + dy as f32 * rect.h * 0.43;
+                let half = rect.w * 0.32;
+                draw_line(
+                    x - dy as f32 * half,
+                    y + dx as f32 * half,
+                    x + dy as f32 * half,
+                    y - dx as f32 * half,
+                    3.0,
+                    Color::from_rgba(203, 221, 209, 255),
+                );
+            }
+            for cell in visible_telegraphed_attack_cells(game, entity) {
+                if !camera.contains(cell.position) {
+                    continue;
+                }
+                let rect = camera.rect(cell.position);
                 let inset = 3.0;
                 let color = Color::from_rgba(255, 125, 100, 255);
+                draw_rectangle(
+                    rect.x + inset,
+                    rect.y + inset,
+                    rect.w - 2.0 * inset,
+                    rect.h - 2.0 * inset,
+                    Color::from_rgba(255, 125, 100, 30),
+                );
                 draw_rectangle_lines(
                     rect.x + inset,
                     rect.y + inset,
@@ -1025,14 +1099,7 @@ impl TerminalView {
         } else {
             description
         };
-        let description = if sidebar {
-            description
-        } else {
-            format!(
-                "POSITION · {} · {description}",
-                local_coordinates(game.player_position())
-            )
-        };
+        let description = if sidebar { description } else { description };
         draw_bounded_text(
             &description,
             layout.footer.x,
@@ -1094,7 +1161,7 @@ impl TerminalView {
         );
         draw_ui_text_bold("CAPTEURS", rect.x, rect.y + 18.0, 18.0, bright);
         draw_ui_text_bold(
-            &format!("POSITION · {}", local_coordinates(game.player_position())),
+            "Votre position sur le relevé",
             rect.x,
             rect.y + 40.0,
             14.0,
@@ -1909,14 +1976,117 @@ fn draw_hud_progress(rect: Rect, value: u16, maximum: u16, color: Color) {
     draw_rectangle(rect.x, rect.y, rect.w * ratio, rect.h, color);
 }
 
+pub(crate) fn visible_telegraphed_attack_cells(
+    game: &GameState,
+    entity: project_rl::entity::EntityId,
+) -> Vec<AttackAreaCell> {
+    if !game
+        .actors()
+        .get(entity)
+        .is_some_and(|actor| game.player_visibility().is_visible(actor.position()))
+    {
+        return Vec::new();
+    }
+    game.telegraphed_attack_cells(entity)
+        .into_iter()
+        .filter(|cell| game.player_visibility().is_visible(cell.position))
+        .collect()
+}
+
 pub(crate) fn heavy_fauna_state_label(actor: &project_rl::entity::Actor) -> Option<String> {
-    if actor.ai()?.behavior != project_rl::ai::AiBehavior::TelegraphedBiter {
+    let behavior = actor.ai()?.behavior;
+    use project_rl::ai::{AiBehavior, EncounterState};
+    if let AiState::Encounter(state) = actor.ai_state() {
+        return Some(match state {
+            EncounterState::Guard {
+                dx,
+                dy,
+                remaining_turns,
+            } => format!(
+                "Écailles vers {} · {} UT",
+                match (dx, dy) {
+                    (1, 0) => "l'est",
+                    (-1, 0) => "l'ouest",
+                    (0, 1) => "le sud",
+                    _ => "le nord",
+                },
+                remaining_turns
+            ),
+            EncounterState::Slow { .. } => "Se traîne · attention au sursaut".to_owned(),
+            EncounterState::Ring { radius, .. } => {
+                format!("Anneau à {} cases · centre sûr", radius)
+            }
+            EncounterState::Withdrawal { .. } => "Se replie vers son nid".to_owned(),
+            EncounterState::WorkStopped => "Chantier arrêté".to_owned(),
+        });
+    }
+    if matches!(
+        behavior,
+        AiBehavior::DirectionalGuard
+            | AiBehavior::ExpandingRing
+            | AiBehavior::AlternatingStalker
+            | AiBehavior::NestDiver
+            | AiBehavior::Riveter
+    ) {
+        return Some(if let Some(time) = actor.recovery_remaining() {
+            format!("Récupère · {} UT", time.get())
+        } else if matches!(actor.ai_state(), AiState::Aiming { .. }) {
+            match behavior {
+                AiBehavior::NestDiver => "Piqué imminent",
+                AiBehavior::Riveter => "Rivetage imminent · interaction pour arrêter",
+                _ => "Sursaut imminent · quittez la case marquée",
+            }
+            .to_owned()
+        } else if behavior == AiBehavior::Riveter {
+            "Machine de chantier · interaction pour arrêter".to_owned()
+        } else {
+            "Sur son territoire".to_owned()
+        });
+    }
+    if !matches!(
+        behavior,
+        project_rl::ai::AiBehavior::TelegraphedBiter
+            | project_rl::ai::AiBehavior::TelegraphedSweeper
+            | project_rl::ai::AiBehavior::TelegraphedGrasper
+            | project_rl::ai::AiBehavior::TelegraphedResonator
+            | project_rl::ai::AiBehavior::TelegraphedProjector
+            | project_rl::ai::AiBehavior::TelegraphedEcho
+            | project_rl::ai::AiBehavior::TelegraphedSpitter
+    ) {
         return None;
     }
     if let Some(remaining) = actor.recovery_remaining() {
         Some(format!("Récupère · immobile ({} UT)", remaining.get()))
+    } else if let AiState::ChargingAttack {
+        remaining_turns, ..
+    } = actor.ai_state()
+    {
+        Some(format!(
+            "{} dans {} UT · quittez la zone",
+            if behavior == project_rl::ai::AiBehavior::TelegraphedResonator {
+                "Onde"
+            } else {
+                "Tir"
+            },
+            remaining_turns + 1
+        ))
     } else if matches!(actor.ai_state(), AiState::Aiming { .. }) {
-        Some("Morsure imminente".to_owned())
+        Some(
+            if behavior == project_rl::ai::AiBehavior::TelegraphedSweeper {
+                "Balayage imminent · sortez de la zone"
+            } else if behavior == project_rl::ai::AiBehavior::TelegraphedGrasper {
+                "Vrilles déployées · éloignez-vous"
+            } else if behavior == project_rl::ai::AiBehavior::TelegraphedEcho {
+                "Double frappe imminente · quittez les cases marquées"
+            } else if behavior == project_rl::ai::AiBehavior::TelegraphedSpitter {
+                "Jet imminent · quittez la case marquée"
+            } else {
+                "Morsure imminente"
+            }
+            .to_owned(),
+        )
+    } else if behavior == project_rl::ai::AiBehavior::TelegraphedGrasper {
+        Some("Fixée au sol".to_owned())
     } else {
         None
     }
@@ -1924,12 +2094,16 @@ pub(crate) fn heavy_fauna_state_label(actor: &project_rl::entity::Actor) -> Opti
 
 fn ai_state_label(state: AiState) -> String {
     match state {
+        AiState::Encounter(_) => "ACTIVITÉ LOCALE".to_owned(),
         AiState::Listening { .. } => "RECHERCHE D'UN BRUIT".to_owned(),
         AiState::Sheltered { .. } => "REPLIÉ · CARAPACE RENFORCÉE".to_owned(),
         AiState::Fleeing => "FUIT LE CONTACT".to_owned(),
         AiState::Cornered => "ACCULÉ · PEUT MORDRE".to_owned(),
         AiState::SupportStock { .. } => "SOUTIEN".to_owned(),
         AiState::Aiming { .. } => "TIR IMMINENT · QUITTER LA CASE VISÉE".to_owned(),
+        AiState::ChargingAttack {
+            remaining_turns, ..
+        } => format!("ATTAQUE DANS {} UT", remaining_turns + 1),
         AiState::Unaware => "NON ALERTÉ".to_owned(),
         AiState::Pursuing {
             remaining_turns, ..
@@ -2098,6 +2272,90 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
             'K',
             "Brise-os · prépare, mord, récupère",
             Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'W',
+            "Ver cuirassé · balayage annoncé",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'J',
+            "Anémone des caves · prise annoncée",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'Q',
+            "Hurleur des failles · onde annoncée",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'P',
+            "Sentinelle · machine, cône annoncé",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'U',
+            "Guetteur · alerte ses voisins",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'Z',
+            "Spectre · double frappe annoncée",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'O',
+            "Cracheur des mares · jet annoncé",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'C',
+            "Écailleux · protection orientée",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'D',
+            "Gueule du vide · anneau, centre sûr",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'F',
+            "Traînard · lenteur puis sursaut",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'H',
+            "Chauve-souris · piqué puis repli",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'I',
+            "Riveuse · chantier interrompable",
+            Color::from_rgba(161, 204, 137, 255),
             false,
             None,
         ),
@@ -2476,6 +2734,18 @@ pub fn overlay_label(symbol: char) -> &'static str {
         'w' => "Soigneur humanoïde · aide ses alliés blessés au contact",
         'B' => "Mordeur des friches · charognard · chasse en meute",
         'K' => "Brise-os · morsure annoncée puis récupération immobile",
+        'W' => "Ver cuirassé · balayage frontal, puis récupération immobile",
+        'J' => "Anémone des caves · fixée au sol, ses vrilles ralentissent les cibles touchées",
+        'Q' => "Hurleur des failles · son onde est arrêtée par les murs",
+        'P' => "Sentinelle · machine, charge son projecteur puis récupère",
+        'U' => "Guetteur · transmet la position qu'il a repérée à ses voisins",
+        'Z' => "Spectre · frappe deux cases marquées, puis récupère",
+        'O' => "Cracheur des mares · vise une case avec son jet irritant",
+        'C' => "Écailleux des cavernes · contournez ses écailles orientées",
+        'D' => "Gueule du vide · anneau annoncé, centre sûr",
+        'F' => "Traînard · lenteur puis frappe rapide annoncée",
+        'H' => "Chauve-souris des ruines · piqué puis retour au nid",
+        'I' => "Riveuse · chantier neutre, interaction au contact pour arrêter",
         'V' => "Fouisseur pâle · vision courte, suit les bruits",
         'G' => "Dos-rond · herbivore neutre, se protège après un coup",
         'N' => "Grignoteur · neutre, fuit et mord seulement si acculé",
@@ -2487,7 +2757,7 @@ pub fn overlay_label(symbol: char) -> &'static str {
         '¤' => "Dispositif explosif identifié",
         '♪' => "Leurre sonore actif",
         '>' => "Sortie du secteur",
-        '.' | '-' | '*' | '+' | 'f' | 'F' | 'x' | '~' | 'a' => "Effet visuel en cours",
+        '.' | '-' | '*' | '+' | 'f' | 'x' | '~' | 'a' => "Effet visuel en cours",
         '^' => "Feu au sol · dégâts thermiques persistants",
         'z' => "Sol électrifié · dégâts électriques persistants",
         's' => "Capteur de sécurité",
@@ -2623,7 +2893,7 @@ pub fn terminal_status_panel(bounds: Rect, ui_scale: f32) -> Option<Rect> {
     // Reserve its scaled width in the shared layout (including pointer hits).
     let width = 260.0 * ui_scale;
     let height = bounds.h - 16.0;
-    (bounds.w >= 1120.0 && bounds.w - width >= 780.0 && height >= 480.0 * ui_scale)
+    (bounds.w >= 1120.0 && bounds.w - width * 2.0 >= 480.0 * ui_scale && height >= 480.0 * ui_scale)
         .then(|| Rect::new(bounds.x + 8.0, bounds.y + 8.0, width, height))
 }
 
@@ -2635,9 +2905,9 @@ fn terminal_ui_layout(
     let status_sidebar = terminal_status_panel(bounds, ui_scale);
     let sidebar = status_sidebar.map(|_| {
         Rect::new(
-            bounds.x + bounds.w - 336.0,
+            bounds.x + bounds.w - 276.0 * ui_scale,
             bounds.y + 8.0,
-            320.0,
+            260.0 * ui_scale,
             bounds.h - 16.0,
         )
     });
@@ -2751,6 +3021,7 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
         Decor::ShallowWater => Color::from_rgba(20, 54, 66, 255),
         Decor::DeepWater => Color::from_rgba(12, 34, 54, 255),
         Decor::RuinFloor => Color::from_rgba(43, 42, 39, 255),
+        Decor::NetworkTrace(_) => Color::from_rgba(23, 34, 35, 255),
         Decor::Tree => Color::from_rgba(24, 48, 35, 255),
         Decor::Boulder => Color::from_rgba(50, 53, 50, 255),
         Decor::RuinWall | Decor::Barricade => Color::from_rgba(55, 53, 49, 255),
@@ -3166,6 +3437,49 @@ fn draw_tile(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool, position:
                 );
                 draw_rectangle(rect.x + rect.w * 0.45, y - 2.0, 2.0, 3.0, fault);
             }
+            Decor::NetworkTrace(mask) => {
+                let ink = dim(Color::from_rgba(82, 119, 119, 255), visible);
+                let joint = dim(Color::from_rgba(120, 146, 136, 255), visible);
+                let center = vec2(rect.x + rect.w * 0.5, rect.y + rect.h * 0.5);
+                for (bit, (dx, dy)) in [(0.0, -1.0), (1.0, 0.0), (0.0, 1.0), (-1.0, 0.0)]
+                    .into_iter()
+                    .enumerate()
+                {
+                    if mask & (1 << bit) != 0 {
+                        let start = center + vec2(dx * rect.w, dy * rect.h) * 0.13;
+                        let end = center + vec2(dx * rect.w, dy * rect.h) * 0.5;
+                        draw_line(start.x, start.y, end.x, end.y, 1.0, ink);
+                    }
+                }
+                draw_rectangle_lines(center.x - 2.0, center.y - 2.0, 4.0, 4.0, 1.0, joint);
+            }
+            Decor::Nest => {
+                let color = dim(Color::from_rgba(183, 157, 112, 255), visible);
+                draw_line(
+                    rect.x + 3.0,
+                    rect.y + rect.h * 0.55,
+                    rect.x + rect.w * 0.3,
+                    rect.y + rect.h - 3.0,
+                    1.5,
+                    color,
+                );
+                draw_line(
+                    rect.x + rect.w * 0.3,
+                    rect.y + rect.h - 3.0,
+                    rect.x + rect.w * 0.7,
+                    rect.y + rect.h - 3.0,
+                    1.5,
+                    color,
+                );
+                draw_line(
+                    rect.x + rect.w * 0.7,
+                    rect.y + rect.h - 3.0,
+                    rect.x + rect.w - 3.0,
+                    rect.y + rect.h * 0.55,
+                    1.5,
+                    color,
+                );
+            }
             Decor::SupplyCache => {
                 draw_pixel_glyph(
                     rect,
@@ -3381,6 +3695,18 @@ const fn actor_ascii_glyph(symbol: char) -> Option<&'static str> {
         'w' => Some("s"),
         'B' => Some("b"),
         'K' => Some("k"),
+        'W' => Some("v"),
+        'J' => Some("e"),
+        'Q' => Some("h"),
+        'P' => Some("p"),
+        'U' => Some("q"),
+        'Z' => Some("z"),
+        'O' => Some("o"),
+        'C' => Some("c"),
+        'D' => Some("O"),
+        'F' => Some("x"),
+        'H' => Some("y"),
+        'I' => Some("i"),
         'V' => Some("f"),
         'G' => Some("g"),
         'N' => Some("n"),
@@ -3945,6 +4271,70 @@ mod tests {
     use super::*;
 
     #[test]
+    fn frame_overlays_sample_visible_cells_once_and_do_not_reuse_stale_data() {
+        let calls = std::cell::Cell::new(0);
+        let at = GridPos::new(2, 3);
+        let empty = GridPos::new(3, 3);
+        let frames = |positions: Vec<GridPos>| {
+            frame_overlays(positions.into_iter(), |position| {
+                calls.set(calls.get() + 1);
+                (position == at).then(|| TerminalOverlay {
+                    symbol: '@',
+                    color: WHITE,
+                    accent_color: None,
+                    highlight_color: None,
+                    selected: false,
+                    alert: None,
+                    status_icon: None,
+                    effect_badges: Vec::new(),
+                    sustained_effects: Vec::new(),
+                    effect: None,
+                })
+            })
+        };
+        let frame = frames(vec![at, empty]);
+        for _ in 0..5 {
+            assert_eq!(frame.get(&at).unwrap().symbol, '@');
+        }
+        assert!(!frame.contains_key(&empty));
+        assert_eq!(calls.get(), 2);
+        assert!(!frames(vec![empty]).contains_key(&at));
+        assert_eq!(calls.get(), 3);
+    }
+
+    #[test]
+    fn live_flames_replace_duplicate_fire_but_keep_distinct_attack_feedback() {
+        use crate::visual_effects::{TerminalEffectFamily, VisualCuePlayer};
+        let mut effect = VisualCuePlayer::default().sample_sustained(
+            &"test:fire".parse().unwrap(),
+            GridPos::new(1, 1),
+            0.0,
+            false,
+        );
+        effect.family = TerminalEffectFamily::Flame;
+        let mut cell = TerminalOverlay {
+            symbol: '\0',
+            color: WHITE,
+            accent_color: None,
+            highlight_color: None,
+            selected: false,
+            alert: None,
+            status_icon: None,
+            effect_badges: Vec::new(),
+            sustained_effects: vec![effect],
+            effect: Some(effect),
+        };
+        assert!(cell.transient_effect().is_none());
+        effect.family = TerminalEffectFamily::Catalysis;
+        cell.effect = Some(effect);
+        assert_eq!(cell.transient_effect(), Some(effect));
+        effect.family = TerminalEffectFamily::Flame;
+        cell.effect = Some(effect);
+        cell.sustained_effects.clear();
+        assert_eq!(cell.transient_effect(), Some(effect));
+    }
+
+    #[test]
     fn ground_hover_labels_keep_all_live_fields_without_an_occupant_glyph() {
         use project_rl::combat::{DamagePacket, DamageType};
         use project_rl::effects::{GroundEffectMap, GroundEffectSpec};
@@ -4189,7 +4579,9 @@ mod tests {
 
     #[test]
     fn sensor_contacts_use_shapes_with_stable_semantic_categories() {
-        for symbol in ['d', 't', 'r', 'j', 'w', 'B', 'V', 'K', 'X', 'Y'] {
+        for symbol in [
+            'd', 't', 'r', 'j', 'w', 'B', 'V', 'K', 'W', 'J', 'Q', 'P', 'U', 'Z', 'O', 'X', 'Y',
+        ] {
             assert_eq!(sensor_contact_kind(symbol), SensorContactKind::Hostile);
         }
         for symbol in ['m', 'h', 'v'] {
@@ -4290,6 +4682,7 @@ mod tests {
     fn ascii_actors_are_unique_and_terminal_shapes_are_well_formed() {
         let actors = [
             '@', 'c', 'm', 'v', 'h', 'i', 'u', 'd', 't', 'r', 'j', 'w', 'B', 'V', 'G', 'N', 'K',
+            'W', 'J', 'Q', 'P', 'U', 'Z', 'O', 'C', 'D', 'F', 'H', 'I',
         ]
         .map(|symbol| actor_ascii_glyph(symbol).expect("known actor must have an ASCII glyph"));
         for (index, glyph) in actors.iter().enumerate() {
@@ -4344,4 +4737,432 @@ mod tests {
             }
         }
     }
+}
+
+pub(crate) fn draw_symbol_guide(game: &GameState, bounds: Rect, scroll: f32) -> f32 {
+    let cyan = UiTheme.accent();
+    let entity_legend = [
+        ('@', "Vous", cyan, false, None),
+        (
+            'c',
+            "Récupérateur neutre",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            None,
+        ),
+        (
+            'm',
+            "Technicien neutre",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            None,
+        ),
+        (
+            'h',
+            "Soigneur de la clinique",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            None,
+        ),
+        (
+            'v',
+            "Marchande de la place",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            None,
+        ),
+        (
+            'i',
+            "Habitant du quartier",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            None,
+        ),
+        (
+            'u',
+            "Drone allié · unité physique",
+            Color::from_rgba(105, 205, 238, 255),
+            false,
+            None,
+        ),
+        (
+            'b',
+            "Balise de saturation · unité physique",
+            Color::from_rgba(112, 216, 226, 255),
+            false,
+            None,
+        ),
+        (
+            'd',
+            "Traqueur hostile",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            't',
+            "Sentinelle hostile",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'r',
+            "Tirailleur hostile",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'j',
+            "Artilleur · tir annoncé sur une case",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'w',
+            "Soigneur de terrain · soutien allié au contact",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'o',
+            "Conteneur instable · explosion et feu",
+            Color::from_rgba(241, 177, 72, 255),
+            false,
+            None,
+        ),
+        (
+            'B',
+            "Mordeur · charognard · meute",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'K',
+            "Brise-os · prépare, mord, récupère",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'W',
+            "Ver cuirassé · balayage annoncé",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'J',
+            "Anémone des caves · prise annoncée",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'Q',
+            "Hurleur des failles · onde annoncée",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'P',
+            "Sentinelle · machine, cône annoncé",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'U',
+            "Guetteur · alerte ses voisins",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'Z',
+            "Spectre · double frappe annoncée",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'O',
+            "Cracheur des mares · jet annoncé",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'C',
+            "Écailleux · protection orientée",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'D',
+            "Gueule du vide · anneau, centre sûr",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'F',
+            "Traînard · lenteur puis sursaut",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'H',
+            "Chauve-souris · piqué puis repli",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'I',
+            "Riveuse · chantier interrompable",
+            Color::from_rgba(161, 204, 137, 255),
+            false,
+            None,
+        ),
+        (
+            'V',
+            "Fouisseur pâle · suit les bruits",
+            Color::from_rgba(244, 132, 113, 255),
+            false,
+            None,
+        ),
+        (
+            'G',
+            "Dos-rond · herbivore neutre",
+            Color::from_rgba(161, 204, 137, 255),
+            false,
+            None,
+        ),
+        (
+            'G',
+            "Petit bouclier · replié, carapace renforcée",
+            Color::from_rgba(161, 204, 137, 255),
+            false,
+            Some(TerminalStatusIcon::Sheltered),
+        ),
+        (
+            'N',
+            "Grignoteur · fuit, mord si acculé",
+            Color::from_rgba(161, 204, 137, 255),
+            false,
+            None,
+        ),
+        (
+            'q',
+            "Relais conducteur · décharge amplifiée par l'eau",
+            Color::from_rgba(89, 221, 237, 255),
+            false,
+            None,
+        ),
+        (
+            'd',
+            "Icône flamme · en feu",
+            Color::from_rgba(255, 137, 48, 255),
+            false,
+            Some(TerminalStatusIcon::Burning),
+        ),
+        (
+            '^',
+            "Feu au sol · dégâts",
+            Color::from_rgba(255, 151, 46, 255),
+            false,
+            None,
+        ),
+        (
+            'z',
+            "Sol électrifié · dégâts",
+            Color::from_rgba(89, 221, 237, 255),
+            false,
+            None,
+        ),
+        (
+            ')',
+            "Arme au sol",
+            Color::from_rgba(239, 200, 111, 255),
+            false,
+            None,
+        ),
+        (
+            '!',
+            "Consommable",
+            Color::from_rgba(127, 211, 157, 255),
+            false,
+            None,
+        ),
+        (
+            '=',
+            "Matériau au sol",
+            Color::from_rgba(118, 202, 207, 255),
+            false,
+            None,
+        ),
+        (
+            '=',
+            "Badge + · matériau requis par une intervention locale",
+            Color::from_rgba(118, 202, 207, 255),
+            false,
+            Some(TerminalStatusIcon::RequiredMaterial),
+        ),
+        (
+            'i',
+            "! au-dessus · quête disponible",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            Some(TerminalStatusIcon::QuestAvailable),
+        ),
+        (
+            'i',
+            "? au-dessus · quête à rendre",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            Some(TerminalStatusIcon::QuestReady),
+        ),
+        (
+            'i',
+            "… au-dessus · quête en cours",
+            Color::from_rgba(112, 207, 190, 255),
+            false,
+            Some(TerminalStatusIcon::QuestInProgress),
+        ),
+        (
+            '=',
+            "* au-dessus · élément recherché pour une quête",
+            Color::from_rgba(118, 202, 207, 255),
+            false,
+            Some(TerminalStatusIcon::QuestObjective),
+        ),
+        (
+            '¤',
+            "Dispositif explosif identifié",
+            Color::from_rgba(255, 185, 82, 255),
+            false,
+            None,
+        ),
+        (
+            '♪',
+            "Leurre sonore actif",
+            Color::from_rgba(143, 211, 232, 255),
+            false,
+            None,
+        ),
+        (
+            'c',
+            "Badge ! · état de sécurité",
+            Color::from_rgba(255, 175, 83, 255),
+            true,
+            None,
+        ),
+        (
+            'S',
+            "Bandeau · signal de navigation",
+            Color::from_rgba(142, 234, 215, 255),
+            false,
+            None,
+        ),
+    ];
+    let terrain_legend = [
+        (Decor::Wall, "Cloison"),
+        (Decor::Grass, "Prairie"),
+        (Decor::Scrub, "Broussailles"),
+        (Decor::Mud, "Sol humide"),
+        (Decor::ShallowWater, "Eau peu profonde"),
+        (Decor::DeepWater, "Eau profonde"),
+        (Decor::Tree, "Arbre"),
+        (Decor::Boulder, "Bloc rocheux"),
+        (Decor::RuinWall, "Ruines de surface"),
+        (Decor::ForeignFloor, "Substrat étranger"),
+        (Decor::VeinedFloor, "Veine minérale"),
+        (Decor::MembraneWall, "Masse étrangère"),
+        (Decor::Resonator, "Résonateur étranger"),
+        (Decor::GrowthNode, "Nœud minéral"),
+        (Decor::ChitinFloor, "Plaque chitineuse"),
+        (Decor::PulseChannel, "Canal pulsatile"),
+        (Decor::VoidWall, "Masse creuse"),
+        (Decor::EyeNode, "Œil dormant"),
+        (Decor::RootMass, "Racine calcifiée"),
+        (Decor::MemoryFloor, "Mémoire stable"),
+        (Decor::WindowFrame, "Cadre d'interface brisé"),
+        (Decor::FaultTrace, "Erreur d'exécution"),
+        (Decor::DeadScreen, "Écran mort"),
+        (Decor::Barricade, "Ancien accès barricadé"),
+        (Decor::KernelFault, "Faute noyau"),
+        (Decor::OrphanProcess, "Processus orphelin"),
+        (Decor::SupplyCache, "Cache de récupération"),
+        (Decor::ThreatCamp, "Camp hostile actif"),
+        (Decor::ThreatCampDisabled, "Camp neutralisé"),
+        (Decor::DoorClosed, "Porte fermée"),
+        (Decor::DoorLocked, "Porte verrouillée"),
+        (Decor::DoorUnpowered, "Porte sans alimentation"),
+        (Decor::ControlReady, "Console active"),
+        (Decor::ClinicBed, "Lit de soin"),
+        (Decor::ClinicCounter, "Comptoir médical"),
+        (Decor::Depot, "Dépôt de maintenance"),
+        (Decor::RelayOffline, "Relais en panne"),
+        (Decor::SensorOffline, "Capteur hors ligne"),
+        (Decor::DataTerminalOnline, "Terminal de données"),
+        (Decor::DataTerminalUpdated, "Terminal · registre mis à jour"),
+        (Decor::DataTerminalOffline, "Terminal hors ligne"),
+        (Decor::DirectionBoard, "Panneau d'orientation"),
+        (
+            Decor::DirectionBoardUpdated,
+            "Panneau · indication corrigée",
+        ),
+        (Decor::ServicePlan, "Plan du relais"),
+        (
+            Decor::Passage,
+            if game.exit().is_some() {
+                "Sortie"
+            } else {
+                "Passage interzone"
+            },
+        ),
+        (Decor::Ascent, "Montée inter-couche"),
+        (Decor::Descent, "Descente inter-couche"),
+    ];
+
+    let row_h = 34.0;
+    let mut index = 0;
+    for (symbol, label, color, alerted, status_icon) in entity_legend {
+        let y = bounds.y + 24.0 + index as f32 * row_h - scroll;
+        if y - 20.0 >= bounds.y && y + 5.0 <= bounds.bottom() {
+            draw_entity(
+                Rect::new(bounds.x, y - 18.0, 22.0, 22.0),
+                symbol,
+                TerminalGlyphPalette::new(color, None, None),
+                false,
+                alerted,
+                status_icon,
+            );
+            draw_ui_text(label, bounds.x + 38.0, y, 16.0, UiTheme.text());
+        }
+        index += 1;
+    }
+    for (decor, label) in terrain_legend {
+        let y = bounds.y + 24.0 + index as f32 * row_h - scroll;
+        if y - 20.0 >= bounds.y && y + 5.0 <= bounds.bottom() {
+            draw_tile(
+                Rect::new(bounds.x, y - 18.0, 22.0, 22.0),
+                decor,
+                [false; 4],
+                true,
+                GridPos::new(0, 0),
+            );
+            draw_ui_text(label, bounds.x + 38.0, y, 16.0, UiTheme.text());
+        }
+        index += 1;
+    }
+    bounds.y + 24.0 + index as f32 * row_h
 }

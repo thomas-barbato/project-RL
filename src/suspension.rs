@@ -20,7 +20,7 @@ use std::{
 };
 
 pub const MAX_COMMANDS: usize = 50_000;
-pub const MAX_GENERATION_VERSION: u8 = 109;
+pub const MAX_GENERATION_VERSION: u8 = 127;
 const REPLAY_RECOVERY_SCHEMA: u8 = 1;
 pub const CURRENT_RECOVERY_SCHEMA: u8 = 2;
 const CURRENT_CRASH_RECOVERY_SCHEMA: u8 = 1;
@@ -360,6 +360,12 @@ impl RecordedCompanionBehavior {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "action", rename_all = "snake_case", deny_unknown_fields)]
 pub enum RecordedCommand {
+    EndMaintainedEffect {
+        effect: project_rl::game::MaintainedEffectId,
+    },
+    DismissCompanion {
+        entity: u64,
+    },
     Move {
         direction: u8,
     },
@@ -483,6 +489,12 @@ impl RecordedCommand {
                 },
             },
             GameCommand::Wait => Self::Wait,
+            GameCommand::EndMaintainedEffect { effect } => {
+                Self::EndMaintainedEffect { effect: *effect }
+            }
+            GameCommand::DismissCompanion { entity } => Self::DismissCompanion {
+                entity: entity.get(),
+            },
             GameCommand::SetCompanionBehavior { behavior } => Self::CompanionBehavior {
                 behavior: RecordedCompanionBehavior::record(*behavior),
             },
@@ -653,6 +665,12 @@ impl RecordedCommand {
                 _ => return Err("Direction invalide.".to_owned()),
             }),
             Self::Wait => GameCommand::Wait,
+            Self::EndMaintainedEffect { effect } => {
+                GameCommand::EndMaintainedEffect { effect: *effect }
+            }
+            Self::DismissCompanion { entity: id } => GameCommand::DismissCompanion {
+                entity: entity(*id)?,
+            },
             Self::CompanionBehavior { behavior } => GameCommand::SetCompanionBehavior {
                 behavior: behavior.restore(),
             },
@@ -1316,14 +1334,32 @@ pub struct Suspension {
     pub selected_target: Option<u64>,
     pub report: Vec<String>,
     pub log: Vec<String>,
+    /// Optional client presentation data; absent in older saves. It never
+    /// participates in simulation fingerprints or replay commands.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub observed_events: Vec<(u64, String)>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tracked_quest: Option<String>,
 }
 
 pub fn fingerprint(value: &impl std::fmt::Debug) -> u64 {
-    format!("{value:?}")
-        .bytes()
-        .fold(0xcbf29ce484222325_u64, |hash, byte| {
-            (hash ^ u64::from(byte)).wrapping_mul(0x100000001b3)
-        })
+    use std::fmt::Write;
+
+    struct Fingerprint(u64);
+    impl Write for Fingerprint {
+        fn write_str(&mut self, text: &str) -> std::fmt::Result {
+            self.0 = text.bytes().fold(self.0, |hash, byte| {
+                (hash ^ u64::from(byte)).wrapping_mul(0x100000001b3)
+            });
+            Ok(())
+        }
+    }
+
+    // Hash the identical Debug byte stream without allocating a second textual
+    // copy of the entire world. Older saves depend on these exact bytes.
+    let mut writer = Fingerprint(0xcbf29ce484222325);
+    write!(&mut writer, "{value:?}").expect("Debug formatting failed");
+    writer.0
 }
 
 impl Suspension {
@@ -1384,6 +1420,11 @@ impl Suspension {
             return Err("Identifiant de compilation invalide ; suspension conservée.".to_owned());
         }
         if self.commands.len() > MAX_COMMANDS
+            || self.observed_events.len() > 600
+            || self
+                .observed_events
+                .iter()
+                .any(|(_, text)| text.len() > 8192)
             || self.report.len() > 4096
             || self.log.len() > 6
             || self
@@ -1396,6 +1437,13 @@ impl Suspension {
         }
         if let Some(recovery) = &self.recovery {
             recovery.validate(self.commands.len())?;
+        }
+        if self
+            .tracked_quest
+            .as_ref()
+            .is_some_and(|id| id.parse::<project_rl::content::ContentId>().is_err())
+        {
+            return Err("Identifiant de quête suivie invalide.".to_owned());
         }
         Ok(())
     }
@@ -1564,6 +1612,27 @@ pub fn session_lock(path: &Path) -> Result<File, String> {
 mod tests {
     use super::*;
     use project_rl::{entity::Actor, world::Map};
+
+    #[test]
+    fn streaming_fingerprint_preserves_legacy_debug_bytes() {
+        fn legacy(value: &impl std::fmt::Debug) -> u64 {
+            format!("{value:?}")
+                .bytes()
+                .fold(0xcbf29ce484222325_u64, |hash, byte| {
+                    (hash ^ u64::from(byte)).wrapping_mul(0x100000001b3)
+                })
+        }
+        let values = (0..4096)
+            .map(|i| (i, Some(format!("Étage {i} · 火\\n\""))))
+            .collect::<Vec<_>>();
+        assert_eq!(fingerprint(&values), legacy(&values));
+        assert_eq!(fingerprint(&()), legacy(&()));
+        assert_eq!(
+            fingerprint(&Some(f64::INFINITY)),
+            legacy(&Some(f64::INFINITY))
+        );
+        assert_eq!(fingerprint(&[0_u8, 127, 255]), legacy(&[0_u8, 127, 255]));
+    }
 
     #[test]
     fn recorded_technique_preserves_weapon_slot_and_reads_legacy_commands() {

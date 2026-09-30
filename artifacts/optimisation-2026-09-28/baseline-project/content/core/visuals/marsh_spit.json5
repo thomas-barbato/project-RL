@@ -1,0 +1,9 @@
+{
+  id: "core:marsh_spit",
+  terminal: {
+    frames: ["acid_drop", "acid_splash"],
+    color: [154, 189, 83, 230],
+    accent_colors: [[212, 224, 121, 245], [244, 242, 173, 255]],
+    frame_millis: 110, step_millis: 35, linger_millis: 100,
+  },
+}

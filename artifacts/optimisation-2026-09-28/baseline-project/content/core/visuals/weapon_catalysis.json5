@@ -1,0 +1,9 @@
+{
+  id: "core:weapon_catalysis",
+  terminal: {
+    frames: ["catalysis", "catalysis", "catalysis", "catalysis"],
+    color: [205, 45, 15, 235],
+    accent_colors: [[255, 119, 19, 250], [255, 229, 131, 255]],
+    frame_millis: 150, step_millis: 45, linger_millis: 120,
+  },
+}

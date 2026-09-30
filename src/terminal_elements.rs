@@ -52,17 +52,32 @@ fn tongue(raster: &mut Raster, x: f32, base: f32, height: f32, width: f32, phase
 fn fire(effect: TerminalEffectSample) -> Raster {
     let mut raster = [0; SIDE * SIDE];
     let p = effect.progress;
-    let seed = f32::from(effect.variant % 17);
-    let phase = p * if effect.sustained {
-        std::f32::consts::TAU
+    let looping_flame = effect.family == TerminalEffectFamily::Flame;
+    let motion = if looping_flame {
+        effect.motion_progress
     } else {
-        15.0
-    } + seed;
+        p
+    };
+    let seed = f32::from(effect.variant % 17);
+    let phase = motion
+        * if effect.sustained || looping_flame {
+            std::f32::consts::TAU
+        } else {
+            15.0
+        }
+        + seed;
     let burst = effect.family == TerminalEffectFamily::Catalysis;
     let life = if burst {
         ((1.0 - p) * 2.2).min(1.0)
     } else {
-        0.83 + 0.17 * (phase * if effect.sustained { 1.0 } else { 0.7 }).sin()
+        0.83 + 0.17
+            * (phase
+                * if effect.sustained || looping_flame {
+                    1.0
+                } else {
+                    0.7
+                })
+            .sin()
     };
     let direction = vec2(effect.direction.0, effect.direction.1).normalize_or_zero();
     // A brief rounded ignition, then uneven rising tongues. The blast enters
@@ -97,7 +112,14 @@ fn fire(effect: TerminalEffectSample) -> Raster {
         );
     }
     for index in 0..4 {
-        let t = (p * if effect.sustained { 1.0 } else { 1.2 } + index as f32 * 0.27).fract();
+        let t = (motion
+            * if effect.sustained || looping_flame {
+                1.0
+            } else {
+                1.2
+            }
+            + index as f32 * 0.27)
+            .fract();
         let x = 2.0 + ((seed * 3.0 + index as f32 * 4.2) % 12.0) + (t * 6.0 + seed).sin();
         let y = 12.0 - t * 13.0;
         put(
@@ -272,26 +294,47 @@ pub(super) fn draw(rect: Rect, effect: TerminalEffectSample, occupied: bool) {
     let raster = raster(effect);
     let accent = effect.accent_color.unwrap_or(effect.color);
     let light = effect.highlight_color.unwrap_or(accent);
+    raster_runs(&raster, occupied, |x, y, end, tone, dim| {
+        let mut color = match tone {
+            1 => Color::new(0.32, 0.29, 0.26, effect.color.a * 0.45),
+            2 => effect.color,
+            3 => accent,
+            _ => light,
+        };
+        if dim {
+            color.a *= 0.22;
+        }
+        let left = rect.x + x as f32 * rect.w / SIDE as f32;
+        let top = rect.y + y as f32 * rect.h / SIDE as f32;
+        let right = (rect.x + end as f32 * rect.w / SIDE as f32).min(rect.right());
+        let bottom = (rect.y + (y + 1) as f32 * rect.h / SIDE as f32).min(rect.bottom());
+        draw_rectangle(left, top, right - left, bottom - top, color);
+    });
+}
+
+/// Merge adjacent identical pixels without changing the palette, silhouette
+/// or the dimmed area underneath an occupant's glyph.
+fn raster_runs(
+    raster: &Raster,
+    occupied: bool,
+    mut draw: impl FnMut(usize, usize, usize, u8, bool),
+) {
     for y in 0..SIDE {
-        for x in 0..SIDE {
+        let dimmed = |x| occupied && (5..11).contains(&x) && (3..13).contains(&y);
+        let mut x = 0;
+        while x < SIDE {
             let tone = raster[y * SIDE + x];
-            let mut color = match tone {
-                0 => continue,
-                1 => Color::new(0.32, 0.29, 0.26, effect.color.a * 0.45),
-                2 => effect.color,
-                3 => accent,
-                _ => light,
-            };
-            // The actual occupant is drawn afterwards. Quiet its glyph's core
-            // without hollowing out unoccupied flames, pools or crystals.
-            if occupied && (5..11).contains(&x) && (3..13).contains(&y) {
-                color.a *= 0.22;
+            if tone == 0 {
+                x += 1;
+                continue;
             }
-            let left = rect.x + x as f32 * rect.w / SIDE as f32;
-            let top = rect.y + y as f32 * rect.h / SIDE as f32;
-            let right = (rect.x + (x + 1) as f32 * rect.w / SIDE as f32).min(rect.right());
-            let bottom = (rect.y + (y + 1) as f32 * rect.h / SIDE as f32).min(rect.bottom());
-            draw_rectangle(left, top, right - left, bottom - top, color);
+            let start = x;
+            let dim = dimmed(x);
+            x += 1;
+            while x < SIDE && raster[y * SIDE + x] == tone && dimmed(x) == dim {
+                x += 1;
+            }
+            draw(start, y, x, tone, dim);
         }
     }
 }
@@ -299,6 +342,45 @@ pub(super) fn draw(rect: Rect, effect: TerminalEffectSample, occupied: bool) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn merged_runs_preserve_every_pixel_and_occupant_opacity() {
+        for family in [
+            TerminalEffectFamily::Flame,
+            TerminalEffectFamily::Caustic,
+            TerminalEffectFamily::Frost,
+        ] {
+            for occupied in [false, true] {
+                for step in 0..=20 {
+                    let source = raster(sample(family, step as f32 / 20.0));
+                    let mut rebuilt = [0; SIDE * SIDE];
+                    let mut runs = 0;
+                    raster_runs(&source, occupied, |x, y, end, tone, dim| {
+                        runs += 1;
+                        for column in x..end {
+                            assert_eq!(
+                                dim,
+                                occupied && (5..11).contains(&column) && (3..13).contains(&y)
+                            );
+                            rebuilt[y * SIDE + column] = tone;
+                        }
+                    });
+                    assert_eq!(source, rebuilt);
+                    assert!(runs < source.iter().filter(|tone| **tone != 0).count());
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn flame_motion_does_not_accelerate_with_short_transient_lifetime() {
+        let mut live = sample(TerminalEffectFamily::Flame, 0.3);
+        live.sustained = true;
+        let mut transient = live;
+        transient.sustained = false;
+        transient.progress = 0.8;
+        assert_eq!(raster(live), raster(transient));
+    }
 
     fn sample(family: TerminalEffectFamily, progress: f32) -> TerminalEffectSample {
         TerminalEffectSample {
@@ -309,6 +391,7 @@ mod tests {
             outline: None,
             family,
             progress,
+            motion_progress: progress,
             sustained: false,
             variant: 7,
             links: 0,
@@ -375,6 +458,7 @@ mod tests {
             let first = raster(effect);
             for step in 0..=100 {
                 effect.progress = step as f32 / 100.0;
+                effect.motion_progress = effect.progress;
                 let frame = raster(effect);
                 assert!(frame.iter().filter(|tone| **tone > 0).count() >= 30);
                 if family == TerminalEffectFamily::Caustic {
@@ -386,6 +470,7 @@ mod tests {
             let last = raster(effect);
             assert!(first.iter().zip(last).filter(|(a, b)| **a != *b).count() <= 4);
             effect.progress = 0.32;
+            effect.motion_progress = effect.progress;
             assert_ne!(raster(effect), first);
         }
     }

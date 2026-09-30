@@ -1,0 +1,741 @@
+// First playable expedition. Metadata and generation parameters are data,
+// not decisions made by the terminal renderer. New providers can supply further
+// ZoneBlueprints and reciprocal links through the headless WorldState API.
+{
+  id: "core:starter_expedition",
+  // v89: Orme is a stationary contact beside the resident's route.
+  // v88: one-time XP for the investigation, in addition to its credits.
+  narrative_reward_experience: 12,
+  // v87: optional investigation. Manuscript: docs/TEXTES_NARRATIFS_PROPOSES.md.
+  narrative: {
+  "characters": [
+    {
+      "tag": "core:sorting_operator",
+      "name_key": "surface_cast.sorter.name",
+      "role_key": "surface_cast.sorter.role",
+      "hub_position": [36, 26],
+      "entry": "welcome",
+      "nodes": [
+        { "id": "welcome", "text_key": "surface_cast.sorter.welcome", "choices": [
+          { "text_key": "surface_cast.sorter.ask_work", "next": "work", "action": null },
+          { "text_key": "surface_cast.sorter.ask_outside", "next": "outside", "action": null }
+        ] },
+        { "id": "work", "text_key": "surface_cast.sorter.work", "choices": [
+          { "text_key": "surface_cast.other", "next": "welcome", "action": null }
+        ] },
+        { "id": "outside", "text_key": "surface_cast.sorter.outside", "choices": [
+          { "text_key": "surface_cast.other", "next": "welcome", "action": null }
+        ] }
+      ]
+    },
+    {
+      "tag": "core:surface_scout",
+      "name_key": "surface_cast.scout.name",
+      "role_key": "surface_cast.scout.role",
+      "hub_position": [68, 26],
+      "entry": "welcome",
+      "nodes": [
+        { "id": "welcome", "text_key": "surface_cast.scout.welcome", "choices": [
+          { "text_key": "surface_cast.scout.ask_shooter", "next": "shooter", "action": null },
+          { "text_key": "surface_cast.scout.ask_medic", "next": "medic", "action": null }
+        ] },
+        { "id": "shooter", "text_key": "surface_cast.scout.shooter", "choices": [
+          { "text_key": "surface_cast.other", "next": "welcome", "action": null }
+        ] },
+        { "id": "medic", "text_key": "surface_cast.scout.medic", "choices": [
+          { "text_key": "surface_cast.other", "next": "welcome", "action": null }
+        ] }
+      ]
+    },
+    {
+      "tag": "core:orme",
+      "name_key": "narrative.orme.name",
+      "role_key": "narrative.orme.role",
+      "hub_position": [
+        11,
+        27
+      ],
+      "entry": "ABS-D01",
+      "nodes": [
+        {
+          "id": "ABS-D01",
+          "text_key": "narrative.abs-d01",
+          "choices": [
+            {
+              "text_key": "narrative.choice.0",
+              "next": "ABS-D02",
+              "conditions": [
+                {
+                  "quest_available": "core:chemin_des_absents"
+                },
+                {
+                  "does_not_know_record": "core:relay_testimony"
+                }
+              ],
+              "action": {
+                "accept_quest": "core:chemin_des_absents"
+              }
+            },
+            {
+              "text_key": "narrative.choice.1",
+              "next": "ABS-D17",
+              "conditions": [
+                {
+                  "quest_available": "core:chemin_des_absents"
+                },
+                {
+                  "knows_record": "core:relay_testimony"
+                }
+              ],
+              "action": {
+                "accept_quest": "core:chemin_des_absents"
+              }
+            },
+            {
+              "text_key": "narrative.choice.2",
+              "next": "ABS-D03",
+              "conditions": [],
+              "action": null
+            },
+            {
+              "text_key": "narrative.choice.3",
+              "next": "ABS-D02",
+              "conditions": [
+                {
+                  "quest_active": "core:chemin_des_absents"
+                }
+              ],
+              "action": null
+            },
+            {
+              "text_key": "narrative.choice.4",
+              "next": "ABS-D14",
+              "conditions": [
+                {
+                  "quest_ready": "core:chemin_des_absents"
+                }
+              ],
+              "action": {
+                "complete_quest": "core:chemin_des_absents"
+              }
+            },
+            {
+              "text_key": "narrative.choice.5",
+              "next": "ABS-D14",
+              "conditions": [
+                {
+                  "quest_completed": "core:chemin_des_absents"
+                }
+              ],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D02",
+          "text_key": "narrative.abs-d02",
+          "choices": [
+            {
+              "text_key": "narrative.choice.7",
+              "next": "ABS-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D03",
+          "text_key": "narrative.abs-d03",
+          "choices": [
+            {
+              "text_key": "narrative.choice.9",
+              "next": "ABS-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D17",
+          "text_key": "narrative.abs-d17",
+          "choices": [
+            {
+              "text_key": "narrative.choice.11",
+              "next": "ABS-D14",
+              "conditions": [
+                {
+                  "quest_ready": "core:chemin_des_absents"
+                }
+              ],
+              "action": {
+                "complete_quest": "core:chemin_des_absents"
+              }
+            },
+            {
+              "text_key": "narrative.choice.12",
+              "next": "ABS-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D14",
+          "text_key": "narrative.abs-d14",
+          "choices": [
+            {
+              "text_key": "narrative.choice.14",
+              "next": "ABS-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "core:seve",
+      "name_key": "narrative.seve.name",
+      "role_key": "narrative.seve.role",
+      "hub_position": [
+        15,
+        11
+      ],
+      "entry": "SEV-D01",
+      "nodes": [
+        {
+          "id": "SEV-D01",
+          "text_key": "narrative.sev-d01",
+          "choices": [
+            {
+              "text_key": "narrative.choice.29",
+              "next": "SEV-D02",
+              "conditions": [],
+              "action": null
+            },
+            {
+              "text_key": "narrative.choice.30",
+              "next": "SEV-D05",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "SEV-D02",
+          "text_key": "narrative.sev-d02",
+          "choices": [
+            {
+              "text_key": "narrative.choice.32",
+              "next": "SEV-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "SEV-D05",
+          "text_key": "narrative.sev-d05",
+          "choices": [
+            {
+              "text_key": "narrative.choice.34",
+              "next": "SEV-D01",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "core:rivet",
+      "name_key": "narrative.rivet.name",
+      "role_key": "narrative.rivet.role",
+      "hub_position": null,
+      "entry": "ABS-D04",
+      "nodes": [
+        {
+          "id": "ABS-D04",
+          "text_key": "narrative.abs-d04",
+          "choices": [
+            {
+              "text_key": "narrative.choice.16",
+              "next": "ABS-D05",
+              "conditions": [],
+              "action": null
+            },
+            {
+              "text_key": "narrative.choice.17",
+              "next": "ABS-D08",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D05",
+          "text_key": "narrative.abs-d05",
+          "choices": [
+            {
+              "text_key": "narrative.choice.19",
+              "next": "ABS-D06",
+              "conditions": [],
+              "action": {
+                "learn_record": "core:relay_testimony"
+              }
+            },
+            {
+              "text_key": "narrative.choice.20",
+              "next": "ABS-D04",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D06",
+          "text_key": "narrative.abs-d06",
+          "choices": [
+            {
+              "text_key": "narrative.choice.22",
+              "next": "ABS-D04",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D08",
+          "text_key": "narrative.abs-d08",
+          "choices": [
+            {
+              "text_key": "narrative.choice.24",
+              "next": "ABS-D10",
+              "conditions": [],
+              "action": null
+            },
+            {
+              "text_key": "narrative.choice.25",
+              "next": "ABS-D04",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        },
+        {
+          "id": "ABS-D10",
+          "text_key": "narrative.abs-d10",
+          "choices": [
+            {
+              "text_key": "narrative.choice.27",
+              "next": "ABS-D04",
+              "conditions": [],
+              "action": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relay_character": "core:rivet",
+  "investigation": {
+    "id": "core:chemin_des_absents",
+    "provider_tag": "core:orme",
+    "record": "core:relay_testimony",
+    "title_key": "narrative.abs.title",
+    "summary_key": "narrative.abs.summary",
+    "reward_credits": 30
+  }
+},
+  hub: { id: "core:starter_city", name: "Ville de départ / Friches", kind: "core:surface", depth: 0 },
+  destination: { id: "core:industrial_sector", name: "Secteur industriel", kind: "core:industrial", depth: 1 },
+  passage: [67, 21],
+  width: 64,
+  height: 44,
+  rooms: 10,
+  seed_salt: 91827,
+  // New runs use the larger v12 surface passage and destination. The legacy
+  // values above remain available solely to replay older suspensions exactly.
+  expanded_world: {
+    passage: [176, 108],
+    width: 128,
+    height: 88,
+    rooms: 24,
+    minimum_room_width: 8,
+    maximum_room_width: 18,
+    minimum_room_height: 7,
+    maximum_room_height: 14,
+    placement_attempts: 12000,
+  },
+  loot_table: "core:industrial_floor",
+  loot_source: "core:floor",
+  loot_draws: 2,
+
+  // Population of the generated sector. Each group is validated and placed
+  // away from the entrance without any enemy rule in the terminal client.
+  population: [
+    {
+      count: 1,
+      minimum_entrance_distance: 19,
+      maximum_integrity: 9,
+      player_relation: "hostile",
+      electronic_system: { digital_defense: 45, heat_alert_threshold: 30, heat_critical_threshold: 45, heat_dissipation_per_phase: 3, stored_energy: 30 },
+      primary_attributes: { power: 6, coordination: 6, resilience: 5, perception: 6, processing: 4 },
+      body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+      components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 8, failure_effect: { type: "disable_movement" } }],
+      attack: {
+        range: 1,
+        distance_metric: "chebyshev",
+        requires_line_of_sight: false,
+        impact: { material_cap: 12 },
+        damage: { amount: 3, damage_type: "kinetic", penetration: 0 },
+        // A heavy system shock can break an active multi-UT preparation. The
+        // engine resolves Stability and grants short anti-chain protection.
+        preparation_disruption: { family: "system_shock", intensity: 55 },
+      },
+      ai: {
+        behavior: "hunter",
+        perception_radius: 8,
+        preferred_attack_slot: 0,
+        maximum_path_search: 2048,
+        preferred_minimum_distance: 0,
+        maximum_pursuit_distance: 14,
+        pursuit_lifecycle: { maximum_turns: 12, search_turns: 4, cooldown_turns: 6 },
+      },
+      defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+    },
+    {
+      count: 1,
+      minimum_entrance_distance: 19,
+      maximum_integrity: 9,
+      player_relation: "hostile",
+      electronic_system: { digital_defense: 55, heat_alert_threshold: 30, heat_critical_threshold: 45, heat_dissipation_per_phase: 4, stored_energy: 30 },
+      primary_attributes: { power: 5, coordination: 5, resilience: 6, perception: 8, processing: 6 },
+      // Stationary protection: durable against ordinary impacts, but still
+      // vulnerable to armor-breaking techniques and specialized damage.
+      body: { base_hit_points: 9, base_armor: 2, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+      components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 8, failure_effect: { type: "disable_movement" } }],
+      attack: {
+        range: 1,
+        distance_metric: "chebyshev",
+        requires_line_of_sight: false,
+        impact: { material_cap: 11 },
+        damage: { amount: 3, damage_type: "kinetic", penetration: 0 },
+      },
+      ai: {
+        behavior: "sentry",
+        perception_radius: 8,
+        preferred_attack_slot: 0,
+        maximum_path_search: 0,
+        preferred_minimum_distance: 0,
+      },
+      defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+    },
+    {
+      count: 1,
+      minimum_entrance_distance: 19,
+      maximum_integrity: 9,
+      player_relation: "hostile",
+      electronic_system: { digital_defense: 50, heat_alert_threshold: 30, heat_critical_threshold: 45, heat_dissipation_per_phase: 3, stored_energy: 30 },
+      primary_attributes: { power: 6, coordination: 6, resilience: 5, perception: 6, processing: 4 },
+      body: { base_hit_points: 9, mass_grams: 75000, suppression_compatible: true, locomotion: { hindrance_compatible: true } },
+      components: [{ id: "core:locomotion_assembly", name_key: "component.locomotion_assembly.name", maximum_durability: 8, failure_effect: { type: "disable_movement" } }],
+      attack: {
+        range: 1,
+        distance_metric: "chebyshev",
+        requires_line_of_sight: false,
+        impact: { material_cap: 12 },
+        damage: { amount: 3, damage_type: "kinetic", penetration: 0 },
+      },
+      ai: {
+        behavior: "hunter",
+        perception_radius: 8,
+        preferred_attack_slot: 0,
+        maximum_path_search: 2048,
+        preferred_minimum_distance: 0,
+        maximum_pursuit_distance: 14,
+        pursuit_lifecycle: { maximum_turns: 12, search_turns: 4, cooldown_turns: 6 },
+      },
+      defeat_reward: { base_experience: 8, threat_level: 2, origin: "persistent" },
+    },
+  ],
+
+  // First bounded town economy. Prices and quantities are content data; the
+  // runtime only enforces atomic transfers, finite stock and finite funds.
+  player_starting_credits: 120,
+  hub_merchant: {
+    position: [25, 18],
+    maximum_integrity: 12,
+    credits: 300,
+    offers: [
+      { item: "core:repair_patch", stock: 4, buy_price: 24, sell_price: 12,
+        minimum_depth: 0 },
+      { item: "core:patched_plating", stock: 1, buy_price: 80, sell_price: 40,
+        minimum_depth: 0, maximum_depth: 2 },
+      { item: "core:composite_carapace", stock: 1, buy_price: 140, sell_price: 70,
+        minimum_depth: 3 },
+    ],
+    gambles: [
+      { item: "core:patched_plating", stock: 2, price: 95 },
+      { item: "core:composite_carapace", stock: 1, price: 165 },
+    ],
+    // Each zone authors the item families it can offer. The hidden magical
+    // statistics then scale by both local depth and player progression.
+    gamble_scaling: {
+      player_levels_per_rank: 3,
+      zone_depths_per_rank: 1,
+      maximum_rank: 12,
+    },
+  },
+
+  // A care service available without a quest or maintenance prerequisite.
+  // The provider follows only this small, observable local routine.
+  hub_clinic: {
+    work_position: [15, 11],
+    break_position: [17, 13],
+    maximum_integrity: 12,
+    credits: 80,
+    maximum_restoration: 8,
+    price_per_point: 3,
+    work_turns: 12,
+    break_turns: 4,
+    maximum_path_search: 512,
+  },
+
+  // A resident with no commercial service. Its bounded routine remains
+  // independent from the optional local quest chain below.
+  hub_residents: [
+    {
+      residence_position: [12, 27],
+      gathering_position: [40, 23],
+      maximum_integrity: 10,
+      residence_turns: 7,
+      gathering_turns: 5,
+      maximum_path_search: 1024,
+    },
+  ],
+
+  // First authored narrative branch. The two opening offers are mutually
+  // exclusive, while each selected approach unlocks its own follow-up.
+  hub_quests: [
+    {
+      id: "core:survey_outskirts",
+      title_key: "quest.survey_outskirts.title",
+      summary_key: "quest.survey_outskirts.summary",
+      objective: {
+        type: "explore_zones",
+        required_zones: 1,
+        qualifying_records: [
+          "core:human_habitat_site_record",
+          "core:surface_wilds_site_record",
+        ],
+      },
+      reward_credits: 24,
+      reward_experience: 12,
+      completion_world_states: [
+        {
+          id: "core:outskirts_reported",
+          summary_key: "world_state.outskirts_reported.summary",
+          provider_dialogue_key: "world_state.outskirts_reported.dialogue",
+        },
+      ],
+      choice_group: "core:resident_first_report",
+      choice_prompt_key: "quest.resident_first_report.prompt",
+      provider: { type: "existing", position: [12, 27] },
+    },
+    {
+      id: "core:consult_city_archive",
+      title_key: "quest.consult_city_archive.title",
+      summary_key: "quest.consult_city_archive.summary",
+      objective: { type: "access_data_record", record: "core:starter_city_archive_record" },
+      reward_credits: 24,
+      reward_experience: 12,
+      completion_world_states: [
+        {
+          id: "core:archive_consulted",
+          summary_key: "world_state.archive_consulted.summary",
+          provider_dialogue_key: "world_state.archive_consulted.dialogue",
+        },
+      ],
+      choice_group: "core:resident_first_report",
+      choice_prompt_key: "quest.resident_first_report.prompt",
+      provider: { type: "existing", position: [12, 27] },
+    },
+    {
+      id: "core:survey_extended_routes",
+      title_key: "quest.survey_extended_routes.title",
+      summary_key: "quest.survey_extended_routes.summary",
+      objective: { type: "explore_zones", required_zones: 2 },
+      prerequisites: ["core:survey_outskirts"],
+      required_world_states: ["core:outskirts_reported"],
+      reward_credits: 40,
+      reward_experience: 24,
+      completion_world_states: [
+        {
+          id: "core:routes_mapped",
+          summary_key: "world_state.routes_mapped.summary",
+          provider_dialogue_key: "world_state.routes_mapped.dialogue",
+        },
+      ],
+      completion_world_effects: [
+        {
+          type: "unlock_door",
+          position: [32, 38],
+          summary_key: "world_effect.depot_rear_access.summary",
+        },
+      ],
+      provider: { type: "existing", position: [12, 27] },
+    },
+    {
+      id: "core:verify_archive_context",
+      title_key: "quest.verify_archive_context.title",
+      summary_key: "quest.verify_archive_context.summary",
+      objective: { type: "explore_zones", required_zones: 1 },
+      prerequisites: ["core:consult_city_archive"],
+      required_world_states: ["core:archive_consulted"],
+      reward_credits: 40,
+      reward_experience: 24,
+      completion_world_states: [
+        {
+          id: "core:archive_verified",
+          summary_key: "world_state.archive_verified.summary",
+          provider_dialogue_key: "world_state.archive_verified.dialogue",
+        },
+      ],
+      completion_world_effects: [
+        {
+          type: "update_data_terminal",
+          installation: "core:starter_city_archive_terminal",
+          record: "core:starter_city_archive_verified_record",
+          summary_key: "world_effect.archive_terminal_updated.summary",
+        },
+      ],
+      provider: { type: "existing", position: [12, 27] },
+    },
+  ],
+
+  // First autonomous material circuit. Coordinates belong to the fixed hub;
+  // the headless facility system itself is reusable by other content providers.
+  hub_facility: {
+    // Technical group ID only; its final player-facing name remains undecided.
+    owner: "core:maintenance_collective",
+    installations: [
+      {
+        id: "core:orme_direction_board",
+        position: [10, 28],
+        maximum_integrity: 8,
+        integrity: 8,
+        capabilities: [
+          { type: "data_terminal", record: "core:orme_direction_board_old" },
+        ],
+      },
+      {
+        id: "core:maintenance_relay",
+        // External access prevents a circular dependency: this relay can be
+        // serviced even while the checkpoint door it powers is unpowered.
+        position: [46, 32],
+        maximum_integrity: 12,
+        integrity: 0,
+        capabilities: [{ type: "power_relay" }],
+      },
+      {
+        id: "core:service_door_actuator",
+        position: [50, 35],
+        maximum_integrity: 8,
+        integrity: 8,
+        capabilities: [{ type: "door_actuator", door: [52, 28] }],
+        dependencies: ["core:maintenance_relay"],
+      },
+      {
+        id: "core:checkpoint_sensor",
+        position: [52, 35],
+        maximum_integrity: 8,
+        integrity: 8,
+        capabilities: [{ type: "security_sensor" }],
+        dependencies: ["core:maintenance_relay"],
+        // Installed alarms are separate from individual witness reactions.
+        // This sensor only sees through its declared field of view while its
+        // power dependency is operational.
+        security_alarm: {
+          radius: 8,
+          duration_turns: 8,
+          // Response primitives refer to stable installation IDs; the engine
+          // resolves the actuator's door and refuses unsafe confinement.
+          responses: [
+            { type: "lock_doors", actuator: "core:service_door_actuator" },
+          ],
+        },
+      },
+      {
+        id: "core:starter_city_archive_terminal",
+        // A first non-security exploration interaction. The record ID is
+        // resolved by the presentation layer and can be replaced by mods.
+        position: [48, 7],
+        maximum_integrity: 8,
+        integrity: 8,
+        capabilities: [
+          { type: "data_terminal", record: "core:starter_city_archive_record" },
+        ],
+      },
+      {
+        id: "core:maintenance_depot",
+        position: [28, 31],
+        maximum_integrity: 16,
+        integrity: 16,
+        capabilities: [{ type: "storage" }],
+      },
+    ],
+    depot: "core:maintenance_depot",
+    workers: [
+      {
+        position: [24, 32],
+        role: "retriever",
+        maximum_integrity: 12,
+        affiliation: "core:maintenance_collective",
+        witness: { radius: 10, memory_capacity: 16 },
+        // Prototype duration; mods can tune or omit this individual reaction.
+        local_alert: { duration_turns: 8 },
+        // Direct local report only; it requires range and an unobstructed line of sight.
+        property_report: { recipient_position: [44, 32], radius: 32 },
+        // A separate installed link. It remains inert until the checkpoint
+        // sensor and its power dependency are operational.
+        installed_property_report: {
+          installation: "core:checkpoint_sensor",
+          radius: 32,
+        },
+      },
+      {
+        position: [44, 32],
+        role: "technician",
+        maximum_integrity: 12,
+        affiliation: "core:maintenance_collective",
+        witness: { radius: 10, memory_capacity: 16 },
+        local_alert: { duration_turns: 8 },
+        // A received report starts a finite walk to the recorded incident,
+        // never a pursuit of the player's current position.
+        reported_incident_response: {
+          inspection_turns: 3,
+          maximum_response_turns: 24,
+        },
+      },
+    ],
+    repair_orders: [
+      {
+        id: "core:restore_checkpoint_power",
+        target: "core:maintenance_relay",
+        required_item: "core:power_regulator",
+        required_quantity: 1,
+        work_turns: 5,
+      },
+    ],
+    materials: [
+      {
+        position: [16, 23],
+        item: "core:power_regulator",
+        quantity: 1,
+        owner: "core:maintenance_collective",
+      },
+    ],
+    maximum_path_search: 15000,
+  },
+}

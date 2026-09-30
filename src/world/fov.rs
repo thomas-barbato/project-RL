@@ -98,6 +98,25 @@ pub fn compute_visible_tiles(
     visible
 }
 
+/// Same visibility rule as the complete field, without building every visible
+/// cell when an AI or reaction only needs to test one position.
+pub fn is_tile_visible(
+    map: &Map,
+    origin: GridPos,
+    target: GridPos,
+    rules: FieldOfViewRules,
+) -> bool {
+    map.contains(origin)
+        && map.contains(target)
+        && is_within_radius(
+            origin,
+            target,
+            i32::from(rules.radius),
+            rules.distance_metric,
+        )
+        && has_line_of_sight(map, origin, target, rules.block_closed_corners)
+}
+
 fn is_within_radius(origin: GridPos, target: GridPos, radius: i32, metric: DistanceMetric) -> bool {
     let delta_x = i64::from((target.x - origin.x).abs());
     let delta_y = i64::from((target.y - origin.y).abs());
@@ -164,6 +183,46 @@ mod tests {
         match Map::from_ascii(definition) {
             Ok(map) => map,
             Err(error) => panic!("valid test map failed to parse: {error}"),
+        }
+    }
+
+    #[test]
+    fn single_tile_queries_match_complete_fields_with_doors_corners_and_bounds() {
+        use super::super::{DoorState, Terrain};
+        for terrain in [
+            Terrain::Wall,
+            Terrain::Door(DoorState::Closed),
+            Terrain::Door(DoorState::Open),
+        ] {
+            let mut map = parse_map("#######\n#.#...#\n##....#\n#.....#\n#######");
+            map.set_terrain(GridPos::new(3, 2), terrain).unwrap();
+            for distance_metric in [DistanceMetric::Chebyshev, DistanceMetric::Euclidean] {
+                for block_closed_corners in [false, true] {
+                    for radius in [0, 1, 3, 12] {
+                        let rules = FieldOfViewRules {
+                            radius,
+                            distance_metric,
+                            block_closed_corners,
+                        };
+                        for y in -1..6 {
+                            for x in -1..8 {
+                                let origin = GridPos::new(x, y);
+                                let visible = compute_visible_tiles(&map, origin, rules);
+                                for target_y in -1..6 {
+                                    for target_x in -1..8 {
+                                        let target = GridPos::new(target_x, target_y);
+                                        assert_eq!(
+                                            is_tile_visible(&map, origin, target, rules),
+                                            visible.contains(&target),
+                                            "{origin:?} -> {target:?}, {rules:?}"
+                                        );
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

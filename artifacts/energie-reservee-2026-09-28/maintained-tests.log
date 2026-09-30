@@ -1,0 +1,18 @@
+    Blocking waiting for file lock on build directory
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 29.40s
+     Running unittests src\lib.rs (target\debug\deps\project_rl-2e9ad6618a1c2637.exe)
+
+running 9 tests
+test game::expedition::tests::maintained_companion_limit_includes_other_zones_and_survives_snapshot ... ok
+test game::game_state::tests::maintained_companion_sixth_invocation_is_rejected_without_cost_or_time ... ok
+test game::game_state::tests::maintained_energy_subnet_reserves_one_total_and_releases_each_device_share ... ok
+test game::game_state::tests::maintained_energy_survives_zero_free_energy_and_refunds_once_on_expiry ... ok
+test game::game_state::tests::maintained_companion_slots_count_origins_exclude_quest_escorts_and_can_be_reused ... ok
+test game::game_state::tests::maintained_energy_capacity_reduction_stops_effects_without_orphaned_reservations ... ok
+test game::game_state::tests::maintained_energy_native_snapshot_preserves_reservation_and_refund ... ok
+test game::game_state::tests::maintained_energy_regenerates_only_free_capacity_and_rejects_unaffordable_activation ... ok
+test game::game_state::tests::maintained_energy_multiple_effects_use_authored_costs_and_end_independently ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 767 filtered out; finished in 1.30s
+

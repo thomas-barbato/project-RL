@@ -1,0 +1,12 @@
+{
+  id: "core:composite_carapace",
+  name_key: "item.composite_carapace.name",
+  description_key: "item.composite_carapace.description",
+  maximum_stack: 1,
+  kind: "armor",
+
+  equipment: {
+    slot: "core:body_armor",
+    armor: 2,
+  },
+}

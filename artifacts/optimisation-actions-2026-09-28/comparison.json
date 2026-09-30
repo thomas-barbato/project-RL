@@ -1,0 +1,223 @@
+{
+  "identical_states": true,
+  "identical_save_except_build": true,
+  "rows": [
+    {
+      "scene": "recycling",
+      "operation": "wait",
+      "before_ms": 17.463,
+      "after_ms": 9.6169,
+      "reduction_percent": 44.92985168642273
+    },
+    {
+      "scene": "recycling",
+      "operation": "engine-snapshot",
+      "before_ms": 5.0332,
+      "after_ms": 5.0296,
+      "reduction_percent": 0.07152507351186888
+    },
+    {
+      "scene": "recycling",
+      "operation": "app-snapshot",
+      "before_ms": 70.50670000000001,
+      "after_ms": 45.843799999999995,
+      "reduction_percent": 34.979512585328784
+    },
+    {
+      "scene": "recycling",
+      "operation": "state-fingerprint",
+      "before_ms": 13.026299999999999,
+      "after_ms": 13.8599,
+      "reduction_percent": -6.3993612921551035
+    },
+    {
+      "scene": "recycling",
+      "operation": "content-fingerprints",
+      "before_ms": 3.0714,
+      "after_ms": 3.5325,
+      "reduction_percent": -15.0126977925376
+    },
+    {
+      "scene": "recycling",
+      "operation": "suspension",
+      "before_ms": 88.003,
+      "after_ms": 65.9517,
+      "reduction_percent": 25.057441223594644
+    },
+    {
+      "scene": "recycling",
+      "operation": "checkpoint",
+      "before_ms": 151.8904,
+      "after_ms": 129.3597,
+      "reduction_percent": 14.833524699388501
+    },
+    {
+      "scene": "hub",
+      "operation": "wait",
+      "before_ms": 7.1838,
+      "after_ms": 6.6063,
+      "reduction_percent": 8.038920905370418
+    },
+    {
+      "scene": "hub",
+      "operation": "engine-snapshot",
+      "before_ms": 6.1312,
+      "after_ms": 5.5575,
+      "reduction_percent": 9.357058977035482
+    },
+    {
+      "scene": "hub",
+      "operation": "app-snapshot",
+      "before_ms": 76.2521,
+      "after_ms": 58.2121,
+      "reduction_percent": 23.65836481880499
+    },
+    {
+      "scene": "hub",
+      "operation": "state-fingerprint",
+      "before_ms": 13.148,
+      "after_ms": 14.3217,
+      "reduction_percent": -8.926832978399757
+    },
+    {
+      "scene": "hub",
+      "operation": "content-fingerprints",
+      "before_ms": 3.3038,
+      "after_ms": 3.4027,
+      "reduction_percent": -2.9935226103275037
+    },
+    {
+      "scene": "hub",
+      "operation": "suspension",
+      "before_ms": 89.0242,
+      "after_ms": 67.36240000000001,
+      "reduction_percent": 24.332484874899173
+    },
+    {
+      "scene": "hub",
+      "operation": "checkpoint",
+      "before_ms": 172.0214,
+      "after_ms": 134.8494,
+      "reduction_percent": 21.608939352894463
+    },
+    {
+      "scene": "surface",
+      "operation": "generate-and-travel",
+      "before_ms": 1478.0901,
+      "after_ms": 1518.7019,
+      "reduction_percent": -2.7475862263065087
+    },
+    {
+      "scene": "surface",
+      "operation": "wait",
+      "before_ms": 45.1352,
+      "after_ms": 8.501399999999999,
+      "reduction_percent": 81.16458994310427
+    },
+    {
+      "scene": "surface",
+      "operation": "engine-snapshot",
+      "before_ms": 8.039299999999999,
+      "after_ms": 8.851700000000001,
+      "reduction_percent": -10.1053574316172
+    },
+    {
+      "scene": "surface",
+      "operation": "app-snapshot",
+      "before_ms": 89.9763,
+      "after_ms": 69.88759999999999,
+      "reduction_percent": 22.326657130822237
+    },
+    {
+      "scene": "surface",
+      "operation": "state-fingerprint",
+      "before_ms": 18.4034,
+      "after_ms": 22.0478,
+      "reduction_percent": -19.802862514535335
+    },
+    {
+      "scene": "surface",
+      "operation": "content-fingerprints",
+      "before_ms": 3.5204,
+      "after_ms": 5.6996,
+      "reduction_percent": -61.90205658447905
+    },
+    {
+      "scene": "surface",
+      "operation": "suspension",
+      "before_ms": 116.39099999999999,
+      "after_ms": 90.78179999999999,
+      "reduction_percent": 22.00273217001315
+    },
+    {
+      "scene": "surface",
+      "operation": "checkpoint",
+      "before_ms": 193.15679999999998,
+      "after_ms": 156.8799,
+      "reduction_percent": 18.78106284635073
+    },
+    {
+      "scene": "depth-one",
+      "operation": "generate-and-travel",
+      "before_ms": 761.7089,
+      "after_ms": 570.7884,
+      "reduction_percent": 25.064758991262927
+    },
+    {
+      "scene": "depth-one",
+      "operation": "wait",
+      "before_ms": 137.9806,
+      "after_ms": 1.482,
+      "reduction_percent": 98.925935964911
+    },
+    {
+      "scene": "depth-one",
+      "operation": "engine-snapshot",
+      "before_ms": 10.1991,
+      "after_ms": 9.9534,
+      "reduction_percent": 2.409036091419825
+    },
+    {
+      "scene": "depth-one",
+      "operation": "app-snapshot",
+      "before_ms": 110.9016,
+      "after_ms": 85.81869999999999,
+      "reduction_percent": 22.617257099987743
+    },
+    {
+      "scene": "depth-one",
+      "operation": "state-fingerprint",
+      "before_ms": 21.9223,
+      "after_ms": 23.3589,
+      "reduction_percent": -6.553144514945952
+    },
+    {
+      "scene": "depth-one",
+      "operation": "content-fingerprints",
+      "before_ms": 4.9597,
+      "after_ms": 3.4813,
+      "reduction_percent": 29.80825453152408
+    },
+    {
+      "scene": "depth-one",
+      "operation": "suspension",
+      "before_ms": 127.88579999999999,
+      "after_ms": 96.0805,
+      "reduction_percent": 24.870079398963753
+    },
+    {
+      "scene": "depth-one",
+      "operation": "checkpoint",
+      "before_ms": 204.5253,
+      "after_ms": 175.19989999999999,
+      "reduction_percent": 14.33827502025422
+    },
+    {
+      "scene": "depth-one",
+      "operation": "verified-suspension",
+      "before_ms": 17645.6551,
+      "after_ms": 8744.7019,
+      "reduction_percent": 50.44274723470028
+    }
+  ]
+}

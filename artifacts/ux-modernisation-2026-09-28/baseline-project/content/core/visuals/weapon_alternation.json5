@@ -1,0 +1,11 @@
+{
+  id: "core:weapon_alternation",
+  terminal: {
+    frames: ["alternation", "alternation", "alternation", "alternation"],
+    color: [118, 119, 206, 230],
+    accent_colors: [[195, 177, 255, 245], [242, 230, 255, 255]],
+    frame_millis: 110,
+    step_millis: 65,
+    linger_millis: 60,
+  },
+}

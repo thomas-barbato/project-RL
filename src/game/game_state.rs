@@ -8,11 +8,18 @@ mod tactical_ai;
 #[cfg(test)]
 #[path = "actor_loot_tests.rs"]
 mod actor_loot_tests;
+
 #[path = "equipment_bonuses.rs"]
 mod equipment_bonuses;
+#[path = "maintained_energy.rs"]
+mod maintained_energy;
+pub use maintained_energy::{MaintainedEffectId, MaintainedEnergyReservation};
 #[cfg(test)]
 #[path = "instance_effect_tests.rs"]
 mod instance_effect_tests;
+#[cfg(test)]
+#[path = "level_health_tests.rs"]
+mod level_health_tests;
 #[cfg(test)]
 #[path = "weapon_area_tests.rs"]
 mod weapon_area_tests;
@@ -24,6 +31,12 @@ mod weapon_echo;
 mod weapon_followups;
 #[path = "weapon_fracture.rs"]
 mod weapon_fracture;
+#[path = "weapon_supplies.rs"]
+mod weapon_supplies;
+
+#[cfg(test)]
+#[path = "weapon_supplies_tests.rs"]
+mod weapon_supplies_tests;
 use weapon_echo::WeaponEchoState;
 #[path = "weapon_guard.rs"]
 mod weapon_guard;
@@ -349,6 +362,8 @@ pub struct GameState {
     pub(super) ground_items: GroundItemRegistry,
     pub(super) movement_traces: MovementTraceMap,
     player_energy: EnergyReserve,
+    maintained_energy: BTreeMap<MaintainedEffectId, MaintainedEnergyReservation>,
+    pub(super) away_companions: usize,
     player_bandwidth: Option<BandwidthReserve>,
     player_heat: Option<HeatReserve>,
     player_preparation_bandwidth: u16,
@@ -407,6 +422,8 @@ pub(super) struct GameStateSnapshot {
     ground_items: GroundItemRegistry,
     movement_traces: MovementTraceMap,
     player_energy: EnergyReserve,
+    maintained_energy: BTreeMap<MaintainedEffectId, MaintainedEnergyReservation>,
+    pub(super) away_companions: usize,
     player_bandwidth: Option<BandwidthReserve>,
     player_heat: Option<HeatReserve>,
     player_preparation_bandwidth: u16,
@@ -464,6 +481,8 @@ impl GameState {
             ground_items: self.ground_items.clone(),
             movement_traces: self.movement_traces.clone(),
             player_energy: self.player_energy,
+            maintained_energy: self.maintained_energy.clone(),
+            away_companions: self.away_companions,
             player_bandwidth: self.player_bandwidth,
             player_heat: self.player_heat,
             player_preparation_bandwidth: self.player_preparation_bandwidth,
@@ -521,6 +540,8 @@ impl GameState {
             ground_items: snapshot.ground_items,
             movement_traces: snapshot.movement_traces,
             player_energy: snapshot.player_energy,
+            maintained_energy: snapshot.maintained_energy,
+            away_companions: snapshot.away_companions,
             player_bandwidth: snapshot.player_bandwidth,
             player_heat: snapshot.player_heat,
             player_preparation_bandwidth: snapshot.player_preparation_bandwidth,
@@ -585,6 +606,12 @@ impl Debug for GameState {
             .field("player_energy", &self.player_energy);
         if let Some(bandwidth) = self.player_bandwidth {
             state.field("player_bandwidth", &bandwidth);
+        }
+        if self.away_companions > 0 {
+            state.field("away_companions", &self.away_companions);
+        }
+        if !self.maintained_energy.is_empty() {
+            state.field("maintained_energy", &self.maintained_energy);
         }
         if let Some(heat) = self.player_heat {
             state.field("player_heat", &heat);
@@ -751,6 +778,14 @@ impl GameState {
         let player_energy =
             EnergyReserve::new(rules.player_energy_capacity, rules.player_starting_energy)
                 .map_err(GameInitError::Energy)?;
+        if let Some(item) = &rules.weapon_matter_item {
+            if !rules.items.get(item).is_some_and(|definition| {
+                definition.kind() == crate::item::ItemKind::Material
+                    && definition.maximum_stack() >= 6
+            }) {
+                return Err(GameInitError::InvalidWeaponMatterItem(item.clone()));
+            }
+        }
         let (player_bandwidth, player_heat) =
             rules
                 .player_system_resources
@@ -762,7 +797,8 @@ impl GameState {
                     )
                     .map(|heat| {
                         (
-                            Some(BandwidthReserve::new(resources.bandwidth_capacity)),
+                            (!rules.maintained_energy_reservations)
+                                .then(|| BandwidthReserve::new(resources.bandwidth_capacity)),
                             Some(heat),
                         )
                     })
@@ -987,6 +1023,8 @@ impl GameState {
             ground_items: GroundItemRegistry::default(),
             movement_traces: MovementTraceMap::default(),
             player_energy,
+            maintained_energy: BTreeMap::new(),
+            away_companions: 0,
             player_bandwidth,
             player_heat,
             player_preparation_bandwidth: 0,
@@ -1309,6 +1347,9 @@ impl GameState {
     /// Remaining native projectiles for one finite-ammunition weapon. `None`
     /// means that the weapon has no ammunition reserve in this ruleset.
     pub fn player_weapon_ammunition(&self, weapon: &WeaponId) -> Option<(u16, u16)> {
+        if self.weapon_supply(weapon).is_some() {
+            return None;
+        }
         let capacity = self.rules.weapons.get(weapon)?.ammunition_capacity()?;
         Some((
             self.player_weapon_ammunition
@@ -1608,6 +1649,10 @@ impl GameState {
         let (run, skills) = restored.into_parts();
         self.player_progression = run;
         self.player_skills = skills;
+        if self.rules.player_hit_points_per_level > 0 {
+            // Importing progression restores capacity, not a level-up reward.
+            self.refresh_equipment_resources();
+        }
         Ok(())
     }
 
@@ -1860,7 +1905,10 @@ impl GameState {
             });
         }
         self.prepare_player_area_attack(slot, target)
-            .map(|prepared| self.preview_with_weapon_followups(&prepared))
+            .and_then(|prepared| {
+                self.ensure_prepared_attack_usage(&prepared, 1)?;
+                Ok(self.preview_with_weapon_followups(&prepared))
+            })
             .map_err(CommandRejection::from)
     }
 
@@ -2112,6 +2160,14 @@ impl GameState {
     }
 
     pub fn spawn_actor(&mut self, mut actor: Actor) -> Result<EntityId, SpawnError> {
+        if actor
+            .companion_origin()
+            .is_some_and(|origin| origin.uses_slot())
+            && let Some(maximum) = self.rules.player_companion_limit
+            && self.player_companion_count() >= usize::from(maximum)
+        {
+            return Err(SpawnError::CompanionLimit { maximum });
+        }
         let position = actor.position();
         if !self.map.is_walkable(position) {
             return Err(SpawnError::BlockedByTerrain(position));
@@ -2189,12 +2245,19 @@ impl GameState {
         lifecycle: DroneLifecycle,
     ) -> Result<EntityId, DroneSpawnError> {
         let bandwidth_required = profile.bandwidth_required();
-        let mut bandwidth = self
-            .player_bandwidth
-            .ok_or(DroneSpawnError::SystemResourcesUnavailable)?;
-        bandwidth
-            .reserve(bandwidth_required)
-            .map_err(DroneSpawnError::Bandwidth)?;
+        let mut bandwidth = self.player_bandwidth;
+        if !self.rules.maintained_energy_reservations {
+            bandwidth
+                .as_mut()
+                .ok_or(DroneSpawnError::SystemResourcesUnavailable)?
+                .reserve(bandwidth_required)
+                .map_err(DroneSpawnError::Bandwidth)?;
+        } else if actor.companion_origin().is_none() {
+            actor = actor.with_companion_origin(match lifecycle {
+                DroneLifecycle::Manifested => crate::companion::CompanionOrigin::Summoned,
+                DroneLifecycle::Persistent => crate::companion::CompanionOrigin::Recruited,
+            });
+        }
         let position = actor.position();
         let mut drone = DroneState::new(
             profile,
@@ -2248,7 +2311,7 @@ impl GameState {
         let entity = self
             .spawn_actor(actor.with_drone(drone))
             .map_err(DroneSpawnError::Spawn)?;
-        self.player_bandwidth = Some(bandwidth);
+        self.player_bandwidth = bandwidth;
         self.events.push(GameEvent::DroneControlEstablished {
             entity,
             controller: self.player,
@@ -2436,6 +2499,9 @@ impl GameState {
         let previous_intrusion = self.intrusion.clone();
         let previous_electronic_warfare = self.electronic_warfare.clone();
         let previous_player_energy = self.player_energy;
+        let previous_maintained_energy = self.maintained_energy.clone();
+        let maintained_before = self.live_maintained_effects();
+        let maintained_technique = Self::maintained_command_technique(&command).cloned();
         let previous_player_bandwidth = self.player_bandwidth;
         let previous_player_heat = self.player_heat;
         let previous_player_preparation_bandwidth = self.player_preparation_bandwidth;
@@ -2485,6 +2551,16 @@ impl GameState {
         }
 
         let outcome = match command {
+            GameCommand::EndMaintainedEffect { effect } => match self.end_maintained_effect(effect)
+            {
+                Ok(()) => CommandOutcome::Applied,
+                Err(error) => CommandOutcome::Rejected(error),
+            },
+            GameCommand::DismissCompanion { entity } => match self.dismiss_player_companion(entity)
+            {
+                Ok(()) => CommandOutcome::Applied,
+                Err(error) => CommandOutcome::Rejected(error),
+            },
             GameCommand::Interact { target } => match self.interact(target) {
                 Ok(()) => CommandOutcome::Applied,
                 Err(error) => CommandOutcome::Rejected(error),
@@ -2658,6 +2734,16 @@ impl GameState {
             },
         };
 
+        if matches!(
+            outcome,
+            CommandOutcome::Applied | CommandOutcome::AppliedWithoutTime
+        ) {
+            self.convert_activation_to_reservation(
+                maintained_technique.as_ref(),
+                &maintained_before,
+                event_checkpoint,
+            );
+        }
         match outcome {
             CommandOutcome::Applied => {
                 if was_recovering {
@@ -2693,6 +2779,7 @@ impl GameState {
                 self.intrusion = previous_intrusion;
                 self.electronic_warfare = previous_electronic_warfare;
                 self.player_energy = previous_player_energy;
+                self.maintained_energy = previous_maintained_energy;
                 self.player_bandwidth = previous_player_bandwidth;
                 self.player_heat = previous_player_heat;
                 self.player_preparation_bandwidth = previous_player_preparation_bandwidth;
@@ -3155,6 +3242,9 @@ impl GameState {
             || !self.player_visibility.is_visible(target)
         {
             return Err(CommandRejection::InteractionOutOfReach);
+        }
+        if self.stop_riveter_at(target) {
+            return Ok(());
         }
         if let Some(source) = self
             .threat_sources
@@ -9988,7 +10078,7 @@ impl GameState {
                 .get(entity)
                 .and_then(Actor::drone)
                 .is_some_and(|drone| drone.controller() == self.player);
-        if !self.map.is_walkable(destination)
+        if !self.actor_can_traverse(entity, destination)
             || (entity != self.player
                 && self.map.is_protected(destination)
                 && !is_player_controlled_drone)
@@ -10063,7 +10153,7 @@ impl GameState {
             .actors
             .iter()
             .filter_map(|(reactor, actor)| {
-                if reactor == mover || !self.actor_perceives_position(reactor, destination) {
+                if reactor == mover {
                     return None;
                 }
                 let reaction = actor.prepared_reaction()?;
@@ -10074,9 +10164,11 @@ impl GameState {
                 else {
                     return None;
                 };
-                covered_cells
-                    .contains(&destination)
-                    .then_some((reactor, *slot))
+                // Most actors have no overwatch, and most moves miss its cells.
+                // Only those that could fire need a perception query.
+                (covered_cells.contains(&destination)
+                    && self.actor_perceives_position(reactor, destination))
+                .then_some((reactor, *slot))
             })
             .collect();
 
@@ -10139,16 +10231,16 @@ impl GameState {
                     _ => None,
                 })
                 .fold(0_u16, u16::saturating_add);
-            compute_visible_tiles(
+            crate::world::is_tile_visible(
                 &self.map,
                 actor.position(),
+                position,
                 FieldOfViewRules {
                     radius: profile.perception_radius.saturating_sub(reduction),
                     distance_metric: DistanceMetric::Euclidean,
                     block_closed_corners: true,
                 },
             )
-            .contains(&position)
         })
     }
 
@@ -10318,6 +10410,14 @@ impl GameState {
         let Some(weapon) = weapon else {
             return Ok(());
         };
+        if let Some(supply) = self.weapon_supply(weapon) {
+            return match supply {
+                crate::weapon::WeaponSupply::Matter { amount } => {
+                    self.ensure_weapon_matter(amount, required)
+                }
+                crate::weapon::WeaponSupply::Energy { .. } => Ok(()),
+            };
+        }
         let Some(capacity) = self
             .rules
             .weapons
@@ -10350,6 +10450,14 @@ impl GameState {
         let Some(weapon) = weapon else {
             return Ok(());
         };
+        if let Some(supply) = self.weapon_supply(weapon) {
+            return match supply {
+                crate::weapon::WeaponSupply::Matter { amount } => {
+                    self.spend_weapon_matter(amount, required)
+                }
+                crate::weapon::WeaponSupply::Energy { .. } => Ok(()),
+            };
+        }
         let Some(capacity) = self
             .rules
             .weapons
@@ -10460,7 +10568,7 @@ impl GameState {
         let crossed_alert = before < heat.alert_threshold() && current >= heat.alert_threshold();
         let crossed_critical =
             before < heat.critical_threshold() && current >= heat.critical_threshold();
-        if crossed_alert || crossed_critical {
+        if (crossed_alert || crossed_critical) && !self.rules.maintained_energy_reservations {
             self.events.push(GameEvent::HeatThresholdCrossed {
                 entity: self.player,
                 critical: crossed_critical,
@@ -10662,7 +10770,11 @@ impl GameState {
             {
                 return Err(AttackError::EngineeringModuleUnavailable(module));
             }
-            let module_use = weapon.power_draw().map(|power_draw| {
+            let power_draw = match self.weapon_supply(weapon.id()) {
+                Some(crate::weapon::WeaponSupply::Energy { amount }) => Some(amount),
+                _ => weapon.power_draw(),
+            };
+            let module_use = power_draw.map(|power_draw| {
                 let mut output_percentage = 100;
                 let mut energy_percentage = 100;
                 let mut heat_per_use = 0;
@@ -10857,6 +10969,11 @@ impl GameState {
                 resolved_damage,
                 action_origin,
             );
+            let target_damage = if self.directional_guard_blocks(affected_target, origin) {
+                target_damage.scaled_percentage(50)
+            } else {
+                target_damage
+            };
             // Cache admission before damage can remove a killed target. No
             // default admission: scenery, summons and test props require opt-in.
             let eligible_effects: Vec<usize> = weapon_effects
@@ -11603,6 +11720,9 @@ impl GameState {
     }
 
     fn reserve_player_bandwidth(&mut self, amount: u16) -> Result<(), TechniqueUseError> {
+        if self.rules.maintained_energy_reservations {
+            return Ok(());
+        }
         if amount == 0 {
             return Ok(());
         }
@@ -11626,6 +11746,9 @@ impl GameState {
     }
 
     fn release_player_bandwidth(&mut self, amount: u16) {
+        if self.rules.maintained_energy_reservations {
+            return;
+        }
         if amount == 0 {
             return;
         }
@@ -11658,7 +11781,24 @@ impl GameState {
         let Some(cost) = definition.activation_cost() else {
             return Ok((0, 0, 0));
         };
-        if let Some(maximum) = cost.active_limit()
+        let companion = self.rules.maintained_energy_reservations
+            && matches!(
+                definition.action(),
+                Some(TechniqueAction::ManifestDrone { .. })
+            );
+        let maximum = if companion {
+            self.rules
+                .player_companion_limit
+                .map(|limit| limit.min(u16::from(u8::MAX)) as u8)
+        } else {
+            cost.active_limit()
+        };
+        let active_count = if companion {
+            self.player_companion_count()
+        } else {
+            active_count
+        };
+        if let Some(maximum) = maximum
             && active_count >= usize::from(maximum)
         {
             return Err(TechniqueUseError::ManifestationLimitReached { maximum });
@@ -11672,7 +11812,7 @@ impl GameState {
         if cost.heat() > 0 && self.player_heat.is_none() {
             return Err(TechniqueUseError::SystemResourcesUnavailable);
         }
-        if cost.persistent_bandwidth() > 0 {
+        if cost.persistent_bandwidth() > 0 && !self.rules.maintained_energy_reservations {
             let available = self
                 .player_bandwidth
                 .ok_or(TechniqueUseError::SystemResourcesUnavailable)?
@@ -11718,6 +11858,11 @@ impl GameState {
     }
 
     fn generate_player_heat(&mut self, amount: u16) -> Result<(), TechniqueUseError> {
+        // Only overclocked equipment heats the player in the new rules. Its
+        // local thermal checks live in spend_prepared_attack_usage.
+        if self.rules.maintained_energy_reservations {
+            return Ok(());
+        }
         if amount == 0 {
             return Ok(());
         }
@@ -12928,6 +13073,7 @@ impl GameState {
             }
             if let Some(dead) = self.actors.remove(target) {
                 self.drop_actor_weapon(target, &dead);
+                self.drop_actor_matter(&dead);
             }
             self.resolve_pending_status_effects(
                 target,
@@ -13039,6 +13185,14 @@ impl GameState {
         );
     }
 
+    /// Derived from progression, never accumulated into the body's authored PV.
+    pub fn player_level_hit_point_bonus(&self) -> u16 {
+        self.player_progression
+            .level()
+            .saturating_sub(1)
+            .saturating_mul(self.rules.player_hit_points_per_level)
+    }
+
     fn apply_experience_award(&mut self, award: &ExperienceAward, source: ExperienceSource) {
         let outcome = self
             .player_progression
@@ -13047,6 +13201,7 @@ impl GameState {
             return;
         }
 
+        let gained_level = !outcome.level_gains.is_empty();
         self.events.push(GameEvent::ExperienceAwarded {
             amount: outcome.awarded_experience,
             total: outcome.total,
@@ -13061,6 +13216,35 @@ impl GameState {
                     skill_points_awarded: gain.skill_points_awarded,
                 }),
         );
+        if gained_level
+            && (self.rules.player_hit_points_per_level > 0
+                || self.rules.player_full_heal_on_level_up)
+        {
+            let old_maximum = self
+                .actors
+                .get(self.player)
+                .map_or(0, Actor::maximum_integrity);
+            self.refresh_equipment_resources();
+            // Current runs fully heal on level gain. Historical runs only
+            // restore extra capacity. Neither policy resurrects a dead player.
+            if self.status == RunStatus::Active
+                && let Some(actor) = self.actors.get_mut(self.player)
+                && actor.is_alive()
+            {
+                let gain = if self.rules.player_full_heal_on_level_up {
+                    actor.maximum_integrity().saturating_sub(actor.integrity())
+                } else {
+                    actor.maximum_integrity().saturating_sub(old_maximum)
+                };
+                let amount = actor.restore_integrity(gain);
+                if amount > 0 {
+                    self.events.push(GameEvent::IntegrityRestored {
+                        entity: self.player,
+                        amount,
+                    });
+                }
+            }
+        }
     }
 
     pub(super) fn award_one_time_experience(&mut self, amount: u64, key: RewardKey) {
@@ -13094,6 +13278,11 @@ impl GameState {
             self.advance_intrusion_state();
             self.advance_electronic_warfare_state();
             self.dissipate_player_heat();
+            self.release_finished_maintained_energy();
+            if self.status == RunStatus::Active {
+                self.player_energy
+                    .restore(self.rules.player_energy_regeneration);
+            }
             self.expire_player_preparation_interruption_protection();
         }
         self.turn = self.turn.saturating_add(1);
@@ -13389,6 +13578,10 @@ impl GameState {
         let Some(mut field) = self.electronic_warfare.take_jamming() else {
             return;
         };
+        if self.rules.maintained_energy_reservations {
+            field.energy_per_phase = 0;
+            field.heat_per_phase = 0;
+        }
         let player_position = self.actors.get(field.source).map(Actor::position);
         let resources_available = field.source == self.player
             && self.player_energy.available() >= field.energy_per_phase
@@ -13678,6 +13871,10 @@ impl GameState {
         }
 
         if let Some(mut camouflage) = self.player_active_camouflage.take() {
+            if self.rules.maintained_energy_reservations {
+                camouflage.upkeep_energy = 0;
+                camouflage.heat_per_phase = 0;
+            }
             let can_maintain = self.player_heat.is_some()
                 && self.player_energy.available() >= camouflage.upkeep_energy;
             if can_maintain {
@@ -13841,6 +14038,7 @@ impl GameState {
 
     fn resolve_ai_turn(&mut self) {
         self.resolve_player_drone_turns();
+        self.relay_watcher_alerts();
         let actors_to_resolve: Vec<EntityId> = self
             .actors
             .iter()
@@ -15239,6 +15437,8 @@ fn decide_lifecycle_action(
 
     match actor.ai_state() {
         AiState::Aiming { .. }
+        | AiState::Encounter(_)
+        | AiState::ChargingAttack { .. }
         | AiState::SupportStock { .. }
         | AiState::Listening { .. }
         | AiState::Sheltered { .. }
@@ -15688,6 +15888,7 @@ pub enum CommandOutcome {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum CommandRejection {
+    MaintainedEffectUnavailable,
     PassageUnavailable,
     PassageObstructed,
     InteractionOutOfReach,
@@ -15747,6 +15948,10 @@ pub enum CommandRejection {
         available: u16,
     },
     WeaponModuleUnavailable(ItemInstanceId),
+    InsufficientMatter {
+        required: u32,
+        available: u32,
+    },
     WeaponModuleHeatLimit {
         module: ItemInstanceId,
         projected: u16,
@@ -16474,6 +16679,10 @@ impl From<MovementError> for CommandRejection {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 enum AttackError {
+    InsufficientMatter {
+        required: u32,
+        available: u32,
+    },
     ProtectedZone,
     MissingAttacker(EntityId),
     UnknownTarget(EntityId),
@@ -16550,6 +16759,13 @@ struct DamageApplication {
 impl From<AttackError> for CommandRejection {
     fn from(error: AttackError) -> Self {
         match error {
+            AttackError::InsufficientMatter {
+                required,
+                available,
+            } => Self::InsufficientMatter {
+                required,
+                available,
+            },
             AttackError::ProtectedZone => Self::ProtectedZone,
             AttackError::MissingAttacker(_) => Self::MissingPlayer,
             AttackError::UnknownTarget(target) => Self::UnknownTarget(target),
@@ -16628,6 +16844,7 @@ impl From<AbilityError> for CommandRejection {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum SpawnError {
+    CompanionLimit { maximum: u16 },
     BlockedByTerrain(GridPos),
     Occupied(GridPos),
     Registry(RegistryError),
@@ -16639,6 +16856,9 @@ pub enum SpawnError {
 impl Display for SpawnError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::CompanionLimit { maximum } => {
+                write!(formatter, "companion capacity reached ({maximum})")
+            }
             Self::BlockedByTerrain(position) => write!(
                 formatter,
                 "spawn position ({}, {}) is blocked or outside the map",
@@ -16721,6 +16941,7 @@ impl Error for DroneSpawnError {}
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum GameInitError {
+    InvalidWeaponMatterItem(ItemId),
     InvalidWeaponChargeMarker {
         weapon: Box<WeaponId>,
         status: StatusId,
@@ -16766,6 +16987,9 @@ pub enum GameInitError {
 impl Display for GameInitError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::InvalidWeaponMatterItem(item) => {
+                write!(formatter, "invalid shared weapon material '{item}'")
+            }
             Self::InvalidWeaponChargeMarker { weapon, status } => write!(
                 formatter,
                 "weapon '{weapon}' has invalid charge marker '{status}'"
@@ -17685,6 +17909,8 @@ mod tests {
         .unwrap();
         game
     }
+
+    include!("maintained_energy_tests.rs");
 
     fn game_with_core_furtivite(
         map: &str,
@@ -19971,6 +20197,46 @@ mod tests {
             })
         );
         assert_eq!(format!("{game:?}"), before);
+    }
+
+    #[test]
+    fn shared_supplies_volley_preflights_and_consumes_each_projectile() {
+        let mut game = game_with_core_tir(&["tir_02"]);
+        let matter: ItemId = "core:weapon_matter".parse().unwrap();
+        game.rules.weapon_matter_item = Some(matter.clone());
+        game.player_inventory.add(matter.clone(), 1, 999).unwrap();
+        let target = game
+            .spawn_actor(build_actor(GridPos::new(5, 2), 100).with_evasion_disabled())
+            .unwrap();
+        let command = GameCommand::UseTechnique {
+            technique: "core:tir_02".parse().unwrap(),
+            targets: vec![target],
+            weapon_slot: Some(0),
+        };
+        let before = format!("{game:?}");
+        assert_eq!(
+            game.process_player_command(command.clone()),
+            CommandOutcome::Rejected(CommandRejection::InsufficientMatter {
+                required: 2,
+                available: 1
+            })
+        );
+        assert_eq!(format!("{game:?}"), before);
+        game.player_inventory.add(matter, 2, 999).unwrap();
+        assert_eq!(
+            game.process_player_command(command),
+            CommandOutcome::Applied
+        );
+        assert_eq!(game.player_matter(), Some(1));
+        let spent: u32 = game
+            .events()
+            .iter()
+            .filter_map(|event| match event {
+                GameEvent::MatterSpent { amount, .. } => Some(*amount),
+                _ => None,
+            })
+            .sum();
+        assert_eq!(spent, 2);
     }
 
     #[test]
@@ -28579,6 +28845,180 @@ mod tests {
         assert!(matches!(
             use_engineering(&mut game, "ing_02", directive),
             CommandOutcome::Rejected(CommandRejection::TechniqueUnknownBodyComponent(_))
+        ));
+    }
+
+    #[test]
+    fn authored_sentinel_leaves_only_its_real_components_and_salvage_keeps_wear() {
+        let mut game = game_with_core_engineering(
+            "#########\n#.......#\n#.......#\n#.......#\n#.......#\n#########",
+            GridPos::new(3, 3),
+            &["ing_02"],
+        );
+        let loaded = ContentLoader::load(
+            &[PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content")],
+            &Version::new(0, 1, 0),
+        )
+        .unwrap();
+        let population = loaded
+            .regional_worlds()
+            .get(&"core:simulation_overworld".parse().unwrap())
+            .unwrap()
+            .biome(&"core:security".parse().unwrap())
+            .unwrap()
+            .population();
+        let mut actor = (0..64)
+            .find_map(|seed| {
+                crate::world::generation::generate_regional_population(
+                    &game.map,
+                    &[],
+                    population,
+                    seed,
+                    crate::world::generation::RegionalPopulationFeatures {
+                        pursuit_lifecycle: true,
+                        primary_attributes: true,
+                        physical_profiles: true,
+                        electronic_systems: true,
+                        player_relations: true,
+                    },
+                )
+                .unwrap()
+                .pop()
+            })
+            .unwrap();
+        actor.set_position(GridPos::new(4, 3));
+        let drive: BodyComponentId = "core:locomotion_assembly".parse().unwrap();
+        actor.body_component_mut(&drive).unwrap().apply_damage(4);
+        actor
+            .body_component_mut(&"core:sentinel_projector".parse().unwrap())
+            .unwrap()
+            .apply_damage(10);
+        assert!(actor.electronic_system().is_some() && actor.equipped_weapon().is_none());
+        let sentinel = game.spawn_actor(actor).unwrap();
+        game.apply_damage_to(
+            Some(game.player),
+            sentinel,
+            DamagePacket::new(100, DamageType::Kinetic, 100),
+        )
+        .unwrap();
+        let wreckage = game.wrecks().iter().next().unwrap();
+        assert_eq!(wreckage.component(&drive).unwrap().durability(), 8);
+        assert!(
+            wreckage
+                .component(&"core:sentinel_projector".parse().unwrap())
+                .is_none()
+        );
+        let wreck = wreckage.id();
+        let directive = EngineeringDirective::WreckComponent {
+            wreck,
+            component: drive.clone(),
+        };
+        for _ in 0..3 {
+            assert_eq!(
+                use_engineering(&mut game, "ing_02", directive.clone()),
+                CommandOutcome::Applied
+            );
+        }
+        let item = inventory_instance(&game, "core:salvaged_component");
+        assert_eq!(game.salvaged_component(item).unwrap().durability(), 8);
+        assert!(
+            game.wrecks()
+                .get(wreck)
+                .unwrap()
+                .component(&drive)
+                .is_none()
+        );
+        assert!(matches!(
+            use_engineering(&mut game, "ing_02", directive),
+            CommandOutcome::Rejected(_)
+        ));
+    }
+
+    #[test]
+    fn bestiary_riveter_salvage_keeps_only_installed_surviving_parts_and_their_wear() {
+        let mut game = game_with_core_engineering(
+            "#########\n#.......#\n#.......#\n#.......#\n#.......#\n#########",
+            GridPos::new(3, 3),
+            &["ing_02"],
+        );
+        let loaded = ContentLoader::load(
+            &[PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content")],
+            &Version::new(0, 1, 0),
+        )
+        .unwrap();
+        let population = loaded
+            .regional_worlds()
+            .get(&"core:simulation_overworld".parse().unwrap())
+            .unwrap()
+            .biome(&"core:maintenance".parse().unwrap())
+            .unwrap()
+            .population();
+        let mut actor = (0..128)
+            .find_map(|seed| {
+                crate::world::generation::generate_regional_population(
+                    &game.map,
+                    &[],
+                    population,
+                    seed,
+                    crate::world::generation::RegionalPopulationFeatures {
+                        pursuit_lifecycle: true,
+                        primary_attributes: true,
+                        physical_profiles: true,
+                        electronic_systems: true,
+                        player_relations: true,
+                    },
+                )
+                .unwrap()
+                .into_iter()
+                .find(|a| {
+                    a.ai()
+                        .is_some_and(|ai| ai.behavior == crate::ai::AiBehavior::Riveter)
+                })
+            })
+            .unwrap();
+        actor.set_position(GridPos::new(4, 3));
+        let arm: BodyComponentId = "core:riveting_arm".parse().unwrap();
+        actor.body_component_mut(&arm).unwrap().apply_damage(3);
+        actor
+            .body_component_mut(&"core:locomotion_assembly".parse().unwrap())
+            .unwrap()
+            .apply_damage(10);
+        let id = game.spawn_actor(actor).unwrap();
+        game.apply_damage_to(
+            Some(game.player),
+            id,
+            DamagePacket::new(100, DamageType::Kinetic, 100),
+        )
+        .unwrap();
+        assert!(
+            !game
+                .drain_events()
+                .iter()
+                .any(|e| matches!(e, GameEvent::ActorEquipmentDropped { .. }))
+        );
+        let wreckage = game.wrecks().iter().next().unwrap();
+        assert_eq!(wreckage.component(&arm).unwrap().durability(), 5);
+        assert!(
+            wreckage
+                .component(&"core:locomotion_assembly".parse().unwrap())
+                .is_none()
+        );
+        let wreck = wreckage.id();
+        let directive = EngineeringDirective::WreckComponent {
+            wreck,
+            component: arm.clone(),
+        };
+        for _ in 0..3 {
+            assert_eq!(
+                use_engineering(&mut game, "ing_02", directive.clone()),
+                CommandOutcome::Applied
+            );
+        }
+        let item = inventory_instance(&game, "core:salvaged_component");
+        assert_eq!(game.salvaged_component(item).unwrap().durability(), 5);
+        assert!(matches!(
+            use_engineering(&mut game, "ing_02", directive),
+            CommandOutcome::Rejected(_)
         ));
     }
 

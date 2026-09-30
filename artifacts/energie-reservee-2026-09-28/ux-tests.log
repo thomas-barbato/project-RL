@@ -1,0 +1,23 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 24.15s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 15 tests
+test ascii_app::tests::ux_statistics_legacy_resources_do_not_promise_modern_regeneration_or_level_healing ... ok
+test ascii_app::tests::ux_gamble_card_does_not_reveal_unknown_properties ... ok
+test ascii_app::tests::ux_personalized_attributes_survive_back_and_forward ... ok
+test ascii_app::tests::ux_help_scroll_and_tabs_do_not_close_on_an_unrelated_click ... ok
+test ascii_app::tests::ux_help_uses_current_bindings_layout_and_mouse_labels ... ok
+test ascii_app::tests::ux_hud_mouse_buttons_follow_rebound_actions_without_advancing_time ... ok
+test ascii_app::tests::ux_statistics_help_is_complete_live_and_free_to_read ... ok
+test ascii_app::tests::ux_inventory_hover_and_readers_never_equip_or_spend_a_turn ... ok
+test ascii_app::tests::ux_end_screen_mouse_and_keyboard_open_history_without_underlying_hud_actions ... ok
+test ascii_app::tests::ux_resource_gauges_follow_heat_bandwidth_and_energy_after_real_actions ... ok
+test ascii_app::tests::ux_reserved_energy_panel_is_free_modal_and_stop_commands_can_be_replayed ... ok
+test ascii_app::tests::ux_chosen_quest_is_persistent_and_navigation_is_free ... ok
+test ascii_app::tests::ux_restart_requires_confirmation_and_cancel_keeps_the_run ... ok
+test ascii_app::tests::ux_history_is_bounded_modal_and_restored_with_legacy_fallback ... ok
+test ascii_app::tests::ux_current_resource_copy_has_no_bandwidth_cost_and_v125_keeps_legacy_rules ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 429 filtered out; finished in 6.60s
+

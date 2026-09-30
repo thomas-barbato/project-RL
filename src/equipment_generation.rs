@@ -157,6 +157,12 @@ mod tests {
     use project_rl::game::ZoneInfo;
     use project_rl::world::{Map, Terrain};
 
+    #[test]
+    fn weapon_families_preserve_version_127() {
+        let app = app(127);
+        println!("v127 rules={} loot={}", rules_fingerprint_for_version(&app.rules, 127), suspension::fingerprint(&app.loot));
+    }
+
     fn app(version: u8) -> AsciiApp {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         AsciiApp::from_seed_version(INITIAL_SEED, rules, texts, loot, expeditions, version).unwrap()

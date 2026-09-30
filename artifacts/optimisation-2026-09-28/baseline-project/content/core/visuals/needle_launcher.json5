@@ -1,0 +1,10 @@
+{
+  id: "core:needle_launcher",
+  terminal: {
+    frames: ["dot", "projectile", "spark"],
+    color: [151, 229, 255, 255],
+    frame_millis: 45,
+    step_millis: 35,
+    linger_millis: 40,
+  },
+}

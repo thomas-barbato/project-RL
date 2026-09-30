@@ -1,0 +1,12 @@
+{
+  id: "core:patched_plating",
+  name_key: "item.patched_plating.name",
+  description_key: "item.patched_plating.description",
+  maximum_stack: 1,
+  kind: "armor",
+
+  equipment: {
+    slot: "core:body_armor",
+    armor: 1,
+  },
+}

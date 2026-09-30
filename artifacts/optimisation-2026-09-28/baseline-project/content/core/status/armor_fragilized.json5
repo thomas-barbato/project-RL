@@ -1,0 +1,6 @@
+{
+  id: "core:armor_fragilized",
+  duration_turns: 3,
+  stacking: { mode: "keep_existing" },
+  modifiers: [{ type: "armor_fragilization", amount: 4 }],
+}

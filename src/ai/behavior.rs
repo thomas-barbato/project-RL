@@ -2,7 +2,7 @@ use std::collections::BTreeSet;
 
 use crate::combat::AttackProfile;
 use crate::world::{
-    Direction, DistanceMetric, FieldOfViewRules, GridPos, Map, compute_visible_tiles, find_path,
+    Direction, DistanceMetric, FieldOfViewRules, GridPos, Map, find_path, is_tile_visible,
 };
 
 use super::{AiBehavior, AiProfile};
@@ -39,18 +39,18 @@ fn decide_action_with_visibility(situation: AiSituation<'_>, target_is_known: bo
         return AiAction::Wait;
     }
 
-    let visible = compute_visible_tiles(
-        situation.map,
-        situation.actor_position,
-        FieldOfViewRules {
-            radius: situation.profile.perception_radius,
-            distance_metric: DistanceMetric::Euclidean,
-            block_closed_corners: true,
-        },
-    );
     let target_visible = target_is_known
-        || (visible.contains(&situation.target_position)
-            && !situation.map.is_protected(situation.target_position));
+        || (!situation.map.is_protected(situation.target_position)
+            && is_tile_visible(
+                situation.map,
+                situation.actor_position,
+                situation.target_position,
+                FieldOfViewRules {
+                    radius: situation.profile.perception_radius,
+                    distance_metric: DistanceMetric::Euclidean,
+                    block_closed_corners: true,
+                },
+            ));
     if let Some((home, maximum_distance)) = pursuit_leash(&situation) {
         let target_inside_leash =
             chebyshev_distance(home, situation.target_position) <= u32::from(maximum_distance);
@@ -77,7 +77,10 @@ fn decide_action_with_visibility(situation: AiSituation<'_>, target_is_known: bo
         };
     }
 
-    if situation.profile.behavior == AiBehavior::Sentry {
+    if matches!(
+        situation.profile.behavior,
+        AiBehavior::Sentry | AiBehavior::TelegraphedGrasper | AiBehavior::TelegraphedProjector
+    ) {
         return AiAction::Wait;
     }
 

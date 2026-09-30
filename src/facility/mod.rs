@@ -2224,13 +2224,14 @@ impl FacilityState {
         if actors.entity_at(target).is_some() {
             return;
         }
+        let occupied: BTreeSet<_> = actors.iter().map(|(_, actor)| actor.position()).collect();
         let Some(path) = find_path_with(
             map,
             origin,
             target,
             self.maximum_path_search,
             worker_can_traverse,
-            |position| actors.entity_at(position).is_none(),
+            |position| !occupied.contains(&position),
         ) else {
             return;
         };
@@ -2248,12 +2249,11 @@ impl FacilityState {
         let Some(origin) = actors.get(worker).map(|actor| actor.position()) else {
             return;
         };
+        let occupied: BTreeSet<_> = actors.iter().map(|(_, actor)| actor.position()).collect();
         let mut paths: Vec<_> = target
             .cardinal_neighbors()
             .into_iter()
-            .filter(|goal| {
-                map.is_walkable(*goal) && (*goal == origin || actors.entity_at(*goal).is_none())
-            })
+            .filter(|goal| map.is_walkable(*goal) && (*goal == origin || !occupied.contains(goal)))
             .filter_map(|goal| {
                 find_path_with(
                     map,
@@ -2261,7 +2261,7 @@ impl FacilityState {
                     goal,
                     self.maximum_path_search,
                     worker_can_traverse,
-                    |position| actors.entity_at(position).is_none(),
+                    |position| !occupied.contains(&position),
                 )
                 .map(|path| (path.len(), goal, path))
             })

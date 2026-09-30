@@ -11,6 +11,7 @@ mod test_sector;
 mod ui_capture;
 mod ui_theme;
 mod visual_effects;
+mod watcher_signals;
 
 use ascii_app::AsciiApp;
 use macroquad::prelude::*;
@@ -38,7 +39,11 @@ async fn main() {
     #[cfg(debug_assertions)]
     if let Some(output) = graphics::ui_smoke_output() {
         let mode = std::env::args().nth(1).unwrap_or_default();
-        let result = if mode.starts_with("--ui-cold") {
+        let result = if mode == "--ui-cold-performance-actions" {
+            AsciiApp::capture_action_performance(&output)
+        } else if mode == "--ui-cold-performance" {
+            AsciiApp::capture_performance(&output).await
+        } else if mode.starts_with("--ui-cold") {
             AsciiApp::capture_cold_start(&output, mode.strip_prefix("--ui-cold-").unwrap_or("game"))
                 .await
         } else {

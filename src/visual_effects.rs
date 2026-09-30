@@ -29,6 +29,8 @@ pub enum TerminalEffectFamily {
     Echo,
     Ricochet,
     FlameJet,
+    Resonance,
+    Signal,
 }
 
 // Clockwise: N, NE, E, SE, S, SW, W, NW. Local edges only: the
@@ -55,6 +57,8 @@ pub struct TerminalEffectSample {
     pub family: TerminalEffectFamily,
     /// Local animation progress. Reduced motion samples a fixed instant.
     pub progress: f32,
+    /// Loop phase independent of a transient cue's short lifetime/fade.
+    pub motion_progress: f32,
     /// A live simulation effect, looping without the transient fade-out.
     pub sustained: bool,
     pub variant: u8,
@@ -91,8 +95,7 @@ impl VisualCuePlayer {
     }
 
     pub fn play(&mut self, cue: VisualCue, started_at: f64) {
-        self.active
-            .retain(|active| !active.expired(started_at, &self.styles));
+        self.prune(started_at);
         let steps: std::collections::BTreeMap<GridPos, u16> = match cue.target() {
             VisualCueTarget::World { cells, .. } => cells
                 .iter()
@@ -110,9 +113,19 @@ impl VisualCuePlayer {
         } else {
             Default::default()
         };
+        let last_step = steps.values().copied().max().unwrap_or(0);
+        let style = terminal_style(&self.styles, cue.id());
+        // Compute the deadline once, not by scanning all affected cells on
+        // every frame. Reduced motion keeps its readable pose for 350 ms.
+        let lifetime = (f64::from(last_step) * style.step_seconds()
+            + style.frame_seconds() * style.frames().len() as f64
+            + style.linger_seconds())
+        .max(0.35);
         self.active.push(ActiveVisualCue {
             cue,
             started_at,
+            lifetime,
+            last_step,
             steps,
             links,
         });
@@ -143,6 +156,10 @@ impl VisualCuePlayer {
             .retain(|active| matches!(active.cue.target(), VisualCueTarget::Interface));
     }
 
+    pub fn prune(&mut self, now: f64) {
+        self.active.retain(|active| !active.expired(now));
+    }
+
     pub fn sample_world_with_motion(
         &self,
         position: GridPos,
@@ -161,22 +178,26 @@ impl VisualCuePlayer {
                 return None;
             }
             let style = terminal_style(&self.styles, active.cue.id());
-            let last_step = active.steps.values().copied().max().unwrap_or(0);
             let sampled_step = if matches!(
                 style.family(),
                 TerminalEffectFamily::ImpactWave | TerminalEffectFamily::BearerWave
             ) {
-                last_step
+                active.last_step
             } else {
                 *active.steps.get(&position)?
             };
-            active.sample_world(
-                position,
-                active.started_at
-                    + f64::from(sampled_step) * style.step_seconds()
-                    + style.frame_seconds() * 0.5,
-                &self.styles,
-            )
+            active
+                .sample_world(
+                    position,
+                    active.started_at
+                        + f64::from(sampled_step) * style.step_seconds()
+                        + style.frame_seconds() * 0.5,
+                    &self.styles,
+                )
+                .map(|mut sample| {
+                    sample.motion_progress = 0.42;
+                    sample
+                })
         })
     }
 
@@ -245,6 +266,7 @@ impl VisualCuePlayer {
             outline: None,
             family: style.family(),
             progress,
+            motion_progress: progress,
             sustained: true,
             variant,
             links: 0,
@@ -261,6 +283,8 @@ impl VisualCuePlayer {
 struct ActiveVisualCue {
     cue: VisualCue,
     started_at: f64,
+    lifetime: f64,
+    last_step: u16,
     steps: std::collections::BTreeMap<GridPos, u16>,
     links: std::collections::BTreeMap<GridPos, u8>,
 }
@@ -329,10 +353,18 @@ impl ActiveVisualCue {
             outline,
             family: style.family(),
             progress: progress as f32,
+            motion_progress: {
+                let variant = (position.x.wrapping_mul(31) ^ position.y.wrapping_mul(17)) as u8;
+                let duration = animation_duration.max(0.8);
+                (now / duration + f64::from(variant) / 256.0).rem_euclid(1.0) as f32
+            },
             sustained: false,
             variant: (position.x.wrapping_mul(31) ^ position.y.wrapping_mul(17)) as u8,
             links: self.links.get(&position).copied().unwrap_or(0),
-            direction: if style.family() == TerminalEffectFamily::FlameJet {
+            direction: if matches!(
+                style.family(),
+                TerminalEffectFamily::FlameJet | TerminalEffectFamily::Resonance
+            ) {
                 // Cone rows have several possible predecessors. Use the
                 // bearer-to-cell ray, not an arbitrary neighboring branch.
                 match self.cue.target() {
@@ -353,6 +385,7 @@ impl ActiveVisualCue {
                     | TerminalEffectFamily::Fracture
                     | TerminalEffectFamily::Alternation
                     | TerminalEffectFamily::Ricochet
+                    | TerminalEffectFamily::Signal
             ) {
                 self.piercing_direction(position, step)
             } else {
@@ -382,18 +415,8 @@ impl ActiveVisualCue {
         (dx / major, dy / major)
     }
 
-    fn expired(&self, now: f64, styles: &VisualCueCatalog) -> bool {
-        let style = terminal_style(styles, self.cue.id());
-        let maximum_step = match self.cue.target() {
-            VisualCueTarget::Interface => 0,
-            VisualCueTarget::World { cells, .. } => {
-                cells.iter().map(|cell| cell.delay_step).max().unwrap_or(0)
-            }
-        };
-        now - self.started_at
-            >= f64::from(maximum_step) * style.step_seconds()
-                + style.frame_seconds() * style.frames().len() as f64
-                + style.linger_seconds()
+    fn expired(&self, now: f64) -> bool {
+        now - self.started_at >= self.lifetime
     }
 }
 
@@ -442,6 +465,8 @@ impl ResolvedTerminalCueStyle<'_> {
             TerminalEffectGlyph::Echo => TerminalEffectFamily::Echo,
             TerminalEffectGlyph::Ricochet => TerminalEffectFamily::Ricochet,
             TerminalEffectGlyph::FlameJet => TerminalEffectFamily::FlameJet,
+            TerminalEffectGlyph::Resonance => TerminalEffectFamily::Resonance,
+            TerminalEffectGlyph::Signal => TerminalEffectFamily::Signal,
             TerminalEffectGlyph::Catalysis => TerminalEffectFamily::Catalysis,
             TerminalEffectGlyph::Frost => TerminalEffectFamily::Frost,
             TerminalEffectGlyph::Impulse => TerminalEffectFamily::Impulse,
@@ -533,6 +558,7 @@ fn terminal_style<'a>(
 const fn terminal_symbol(glyph: TerminalEffectGlyph) -> char {
     match glyph {
         TerminalEffectGlyph::Dot => '.',
+        TerminalEffectGlyph::Signal => ':',
         TerminalEffectGlyph::Projectile => '-',
         TerminalEffectGlyph::Spark => '*',
         TerminalEffectGlyph::Burst => '+',
@@ -563,6 +589,7 @@ const fn terminal_symbol(glyph: TerminalEffectGlyph) -> char {
         TerminalEffectGlyph::Echo => ':',
         TerminalEffectGlyph::Ricochet => '•',
         TerminalEffectGlyph::FlameJet => '^',
+        TerminalEffectGlyph::Resonance => '~',
         TerminalEffectGlyph::Frost => '*',
     }
 }
@@ -574,6 +601,87 @@ mod tests {
 
     fn cue_id(value: &str) -> project_rl::presentation::VisualCueId {
         value.parse().expect("valid cue ID")
+    }
+
+    #[test]
+    fn short_flames_share_live_motion_phase_and_expired_cues_are_pruned() {
+        let mut catalog = VisualCueCatalog::default();
+        for (id, millis) in [("test:burst", 75), ("test:live", 120)] {
+            catalog
+                .register(VisualCueDefinition::new(
+                    cue_id(id),
+                    TerminalCueStyle::new(
+                        vec![TerminalEffectGlyph::Flame],
+                        [255, 100, 20, 255],
+                        millis,
+                        40,
+                        100,
+                    )
+                    .unwrap(),
+                ))
+                .unwrap();
+        }
+        let mut player = VisualCuePlayer::with_catalog(catalog);
+        let at = GridPos::new(3, 2);
+        player.play(VisualCue::point(cue_id("test:burst"), at), 10.0);
+        for now in [10.01, 10.05, 10.10] {
+            let transient = player.sample_world(at, true, now).unwrap();
+            let live = player.sample_sustained(&cue_id("test:live"), at, now, false);
+            assert_eq!(transient.motion_progress, live.motion_progress);
+        }
+        assert_eq!(
+            player.sample_world_with_motion(at, true, 10.01, true),
+            player.sample_world_with_motion(at, true, 10.10, true)
+        );
+        player.prune(10.10);
+        assert_eq!(player.active_count(), 1);
+        player.prune(10.25);
+        assert!(
+            player
+                .sample_world_with_motion(at, true, 10.25, true)
+                .is_some()
+        );
+        player.prune(11.0);
+        assert_eq!(player.active_count(), 0);
+    }
+
+    #[test]
+    fn resonance_is_not_electric_and_moves_outward_only_on_visible_affected_cells() {
+        use project_rl::presentation::VisualCueCell;
+        let id = cue_id("test:resonance");
+        let mut catalog = VisualCueCatalog::default();
+        catalog
+            .register(VisualCueDefinition::new(
+                id.clone(),
+                TerminalCueStyle::new(
+                    vec![TerminalEffectGlyph::Resonance],
+                    [180, 180, 230, 255],
+                    315,
+                    115,
+                    100,
+                )
+                .unwrap(),
+            ))
+            .unwrap();
+        let mut player = VisualCuePlayer::with_catalog(catalog);
+        let origin = GridPos::new(4, 4);
+        let at = GridPos::new(6, 3);
+        player.play(
+            VisualCue::world(id, origin, [VisualCueCell::new(at, 2)]).unwrap(),
+            0.0,
+        );
+        assert!(player.sample_world(at, true, 0.1).is_none());
+        let sample = player.sample_world(at, true, 0.3).unwrap();
+        assert_eq!(sample.family, TerminalEffectFamily::Resonance);
+        assert_eq!(sample.direction, (1.0, -0.5));
+        assert_eq!(sample.links, 0);
+        assert!(player.sample_world(at, false, 0.3).is_none());
+        assert!(player.sample_world(origin, true, 0.3).is_none());
+        assert!(player.sample_world(at, true, 0.8).is_none());
+        assert_eq!(
+            player.sample_world_with_motion(at, true, 0.1, true),
+            player.sample_world_with_motion(at, true, 0.2, true)
+        );
     }
 
     #[test]
