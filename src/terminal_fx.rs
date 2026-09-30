@@ -9,6 +9,11 @@ mod elements;
 
 pub(super) fn draw(rect: Rect, effect: TerminalEffectSample, occupied: bool) {
     match effect.family {
+        TerminalEffectFamily::Buckshot => buckshot(rect, effect, occupied),
+        TerminalEffectFamily::Ballistic
+        | TerminalEffectFamily::Rocket
+        | TerminalEffectFamily::Grenade => ordnance(rect, effect),
+        TerminalEffectFamily::Blast => blast(rect, effect),
         TerminalEffectFamily::Signal => signal(rect, effect),
         TerminalEffectFamily::Ricochet => ricochet(rect, effect),
         TerminalEffectFamily::Alternation => alternation(rect, effect),
@@ -43,6 +48,204 @@ pub(super) fn draw(rect: Rect, effect: TerminalEffectSample, occupied: bool) {
 fn faded(mut color: Color, strength: f32) -> Color {
     color.a *= strength.clamp(0.0, 1.0);
     color
+}
+
+fn ordnance(rect: Rect, effect: TerminalEffectSample) {
+    let mut axis = vec2(effect.direction.0, effect.direction.1).normalize_or_zero();
+    if axis == Vec2::ZERO {
+        axis = vec2(1.0, 0.0);
+    }
+    let tangent = vec2(-axis.y, axis.x);
+    let (x, y) = effect.anchor.unwrap_or((0.5, 0.5));
+    let head = vec2(x, y);
+    let light = effect.highlight_color.unwrap_or(effect.color);
+    let dark = effect.accent_color.unwrap_or(effect.color);
+    match effect.family {
+        TerminalEffectFamily::Ballistic => {
+            stroke(rect, head - axis * 0.18, head, 1.4, dark);
+            stroke(rect, head - axis * 0.06, head + axis * 0.06, 1.8, light);
+        }
+        TerminalEffectFamily::Rocket => {
+            for index in (1..=9).rev() {
+                let age = index as f32 / 9.0;
+                pixel(
+                    rect,
+                    head - axis * (0.18 + age * 0.55)
+                        + tangent * (age * 13.0 + effect.progress * 19.0).sin() * age * 0.09,
+                    1.2 + age * 3.0,
+                    faded(dark, (1.0 - age) * 0.6),
+                );
+            }
+            // A single exhaust flame, behind a single metal body.
+            stroke(
+                rect,
+                head - axis * 0.40,
+                head - axis * 0.13,
+                2.4,
+                faded(light, 0.75),
+            );
+            stroke(
+                rect,
+                head - axis * 0.24,
+                head - axis * 0.11,
+                1.4,
+                Color::from_rgba(255, 244, 195, 255),
+            );
+            stroke(
+                rect,
+                head - axis * 0.13,
+                head + axis * 0.11,
+                3.4,
+                effect.color,
+            );
+            stroke(
+                rect,
+                head - axis * 0.07 + tangent * 0.09,
+                head - axis * 0.07 - tangent * 0.09,
+                1.2,
+                dark,
+            );
+            stroke(
+                rect,
+                head + axis * 0.09,
+                head + axis * 0.20,
+                2.0,
+                effect.color,
+            );
+            stroke(
+                rect,
+                head - tangent * 0.055 - axis * 0.08,
+                head - tangent * 0.055 + axis * 0.10,
+                0.8,
+                WHITE,
+            );
+        }
+        _ => {
+            let spin = effect.progress * 12.0;
+            let seam = vec2(spin.cos(), spin.sin()) * 0.1;
+            pixel(rect, head + vec2(0.02, 0.02), 4.2, dark);
+            pixel(rect, head, 3.2, effect.color);
+            stroke(rect, head - seam, head + seam, 0.8, dark);
+            pixel(rect, head - vec2(0.04, 0.055), 1.1, light);
+            pixel(rect, head + axis * 0.13, 1.1, light);
+        }
+    }
+}
+
+fn blast(rect: Rect, effect: TerminalEffectSample) {
+    let progress = effect.progress.clamp(0.0, 1.0);
+    let light = effect.highlight_color.unwrap_or(effect.color);
+    let dark = effect.accent_color.unwrap_or(effect.color);
+    let (x, y) = effect.anchor.unwrap_or((0.5, 0.5));
+    let center = vec2(x, y);
+    let radius = effect.radius.max(0.5);
+    let growth = (progress * 4.5).min(1.0);
+    let fire_radius = radius * (0.15 + growth * 0.72) * (1.0 - progress * 0.30);
+    // Rasterize one billowing fireball in world coordinates. Each tile clips
+    // its part, so there is one epicenter even on diagonals or behind cover.
+    let side = rect.w.min(rect.h).round().clamp(8.0, 24.0) as usize;
+    for row in 0..side {
+        for column in 0..side {
+            let p = vec2(
+                (column as f32 + 0.5) / side as f32,
+                (row as f32 + 0.5) / side as f32,
+            );
+            let delta = p - center;
+            let distance = delta.length();
+            let angle = delta.y.atan2(delta.x);
+            let billow = 1.0
+                + (angle * 7.0 + progress * 4.0).sin() * 0.12
+                + (angle * 11.0 - progress * 7.0).sin() * 0.07;
+            let texture = (delta.x * 19.0 + (delta.y * 12.0).sin() + progress * 9.0).sin()
+                * (delta.y * 17.0 - progress * 12.0).cos();
+            let smoke_distance = (delta + vec2(0.0, progress * 0.22)).length();
+            let smoke_edge = radius * (0.35 + progress * 0.75) * billow;
+            let mut tone = None;
+            if progress > 0.25 && smoke_distance < smoke_edge && texture > -0.55 {
+                tone = Some(faded(dark, (0.35 + texture * 0.15) * (1.0 - progress)));
+            }
+            if progress < 0.72 && distance < fire_radius * billow {
+                let heat =
+                    1.0 - distance / (fire_radius * billow) + texture * 0.18 - progress * 0.65;
+                let color = if heat > 0.48 {
+                    light
+                } else if heat > 0.12 {
+                    effect.color
+                } else {
+                    Color::new(0.86, 0.23, 0.055, effect.color.a)
+                };
+                tone = Some(faded(color, (1.0 - progress / 0.78).min(0.85)));
+            }
+            let shock_radius = radius * (progress * 3.4).min(1.12);
+            if progress < 0.34 && (distance - shock_radius).abs() < 0.035 {
+                tone = Some(faded(light, (1.0 - progress / 0.34) * 0.8));
+            }
+            if let Some(color) = tone {
+                draw_rectangle(
+                    rect.x + column as f32 * rect.w / side as f32,
+                    rect.y + row as f32 * rect.h / side as f32,
+                    rect.w / side as f32,
+                    rect.h / side as f32,
+                    color,
+                );
+            }
+        }
+    }
+    for i in 0..13 {
+        let angle = i as f32 * 2.39996;
+        let axis = vec2(angle.cos(), angle.sin());
+        let reach = radius * (0.22 + progress * (1.05 + (i % 3) as f32 * 0.12));
+        let head = center + axis * reach + vec2(0.0, progress * progress * 0.28);
+        stroke(
+            rect,
+            head - axis * (0.04 + (1.0 - progress) * 0.13),
+            head,
+            1.3,
+            faded(
+                if i % 3 == 0 { light } else { effect.color },
+                1.0 - progress,
+            ),
+        );
+    }
+}
+
+fn buckshot(rect: Rect, effect: TerminalEffectSample, occupied: bool) {
+    let mut axis = vec2(effect.direction.0, effect.direction.1).normalize_or_zero();
+    if axis == Vec2::ZERO {
+        axis = vec2(1.0, 0.0);
+    }
+    let tangent = vec2(-axis.y, axis.x);
+    let light = effect.highlight_color.unwrap_or(effect.color);
+    let dark = effect.accent_color.unwrap_or(effect.color);
+    let progress = effect.progress.clamp(0.0, 1.0);
+    let stagger = f32::from(effect.variant % 7) * 0.012;
+    // Separate metal grains, never a solid trail, ray or flame. Each visible
+    // cone cell receives the bearer-to-cell direction, so the volley fans out.
+    for (index, lateral) in [-0.27_f32, 0.02, 0.29].into_iter().enumerate() {
+        let travel = (progress * 1.45 - index as f32 * 0.07 - stagger).clamp(0.0, 1.0);
+        let point = vec2(0.5, 0.5) + axis * (travel - 0.5) + tangent * (lateral + stagger);
+        pixel(rect, point, 2.1, faded(dark, 0.7));
+        pixel(
+            rect,
+            point,
+            1.25,
+            if index == 1 { light } else { effect.color },
+        );
+    }
+    // Small peripheral impact flecks leave the actor's glyph readable.
+    // Purely visual: the shot is still one hit per affected actor, not pellets
+    // independently rolling damage, affixes or ammunition consumption.
+    if occupied && progress > 0.55 {
+        let spread = 0.18 + (progress - 0.55) * 0.35;
+        for side in [-1.0, 1.0] {
+            pixel(
+                rect,
+                vec2(0.5, 0.5) + tangent * side * spread - axis * 0.08,
+                1.3,
+                light,
+            );
+        }
+    }
 }
 
 fn signal(rect: Rect, effect: TerminalEffectSample) {

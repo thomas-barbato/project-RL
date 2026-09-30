@@ -239,7 +239,10 @@ const PARALLAX_RECOVERY_GENERATION_VERSION: u8 = SHARED_WEAPON_SUPPLIES_GENERATI
 const CONTINUOUS_ENERGY_FIRE_GENERATION_VERSION: u8 = PARALLAX_RECOVERY_GENERATION_VERSION + 1;
 const MAINTAINED_ENERGY_GENERATION_VERSION: u8 = CONTINUOUS_ENERGY_FIRE_GENERATION_VERSION + 1;
 const CLASS_WEAPON_SUPPLIES_GENERATION_VERSION: u8 = MAINTAINED_ENERGY_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = CLASS_WEAPON_SUPPLIES_GENERATION_VERSION;
+const TACTICAL_WEAPON_FAMILIES_GENERATION_VERSION: u8 =
+    CLASS_WEAPON_SUPPLIES_GENERATION_VERSION + 1;
+const ARSENAL_GENERATION_VERSION: u8 = TACTICAL_WEAPON_FAMILIES_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = ARSENAL_GENERATION_VERSION;
 #[path = "bestiary_batch_app.rs"]
 mod bestiary_batch;
 #[path = "cave_anemone_app.rs"]
@@ -287,14 +290,19 @@ mod mixed_encounters;
 mod strange_fauna;
 const _: () = assert!(CURRENT_GENERATION_VERSION == suspension::MAX_GENERATION_VERSION);
 
+#[path = "arsenal_app.rs"]
+mod arsenal_app;
 #[path = "energy_reservation_app.rs"]
 mod energy_reservation_app;
 #[path = "hud_resources.rs"]
 mod hud_resources;
 #[path = "statistics_help.rs"]
 mod statistics_help;
+#[path = "weapon_families_app.rs"]
+mod weapon_families_app;
 #[path = "weapon_supplies_app.rs"]
 mod weapon_supplies_app;
+use weapon_families_app::weapon_distance_damage_label;
 const LOG_CAPACITY: usize = 6;
 const FLOATING_MESSAGE_CAPACITY: usize = 32;
 const DISPLAY_LOCALE: &str = "fr";
@@ -3125,6 +3133,24 @@ impl AsciiApp {
             "generated-equipment" | "deep-equipment" => {
                 app.prepare_generated_equipment_diagnostic(scene == "deep-equipment")?
             }
+            scene if scene.starts_with("arsenal-") => {
+                app.prepare_arsenal_diagnostic(scene)?;
+                if scene.ends_with("-960") {
+                    request_new_screen_size(960.0, 540.0);
+                }
+            }
+            "shotgun-preview"
+            | "shotgun-shot"
+            | "shotgun-preview-960"
+            | "shotgun-inventory"
+            | "shotgun-inventory-960"
+            | "spear-inventory"
+            | "spear-inventory-960" => {
+                app.prepare_weapon_family_diagnostic(scene)?;
+                if scene.ends_with("-960") {
+                    request_new_screen_size(960.0, 540.0);
+                }
+            }
             "enemy-loot" | "enemy-loot-inventory" => {
                 app.prepare_enemy_loot_diagnostic(scene.ends_with("inventory"))?
             }
@@ -4161,6 +4187,69 @@ impl AsciiApp {
                 app.draw();
                 next_frame().await;
             }
+        }
+        if scene == "shotgun-shot" {
+            let aim = app
+                .attack_aim
+                .take()
+                .ok_or("Prévisualisation du fusil absente")?;
+            if app.execute_command(GameCommand::AttackAt {
+                slot: aim.slot,
+                target: aim.cursor,
+            }) != CommandOutcome::Applied
+            {
+                return Err("Tir du fusil à pompe refusé".into());
+            }
+            app.capture_events_at(Some(get_time() - 0.10));
+        }
+        if scene.starts_with("arsenal-")
+            && !scene.contains("assault")
+            && (scene.contains("flight") || scene.contains("blast") || scene.contains("countdown"))
+        {
+            let aim = app.attack_aim.take().ok_or("Visée de l'arme absente")?;
+            if app.execute_command(GameCommand::AttackAt {
+                slot: aim.slot,
+                target: aim.cursor,
+            }) != CommandOutcome::Applied
+            {
+                return Err("Tir du lanceur refusé".into());
+            }
+            if scene.contains("grenade-blast") {
+                app.game.drain_events();
+                app.execute_command(GameCommand::Wait);
+                app.execute_command(GameCommand::Wait);
+            }
+            let age = if scene.contains("countdown") {
+                3.0
+            } else if scene.contains("rocket-blast") {
+                let origin = app
+                    .game
+                    .actors()
+                    .get(app.game.player_id())
+                    .unwrap()
+                    .position();
+                app.visual_cues.flight_seconds(
+                    &visual_cue_id("core:lance_roquettes"),
+                    origin,
+                    aim.cursor,
+                ) + if scene.contains("smoke") { 0.62 } else { 0.19 }
+            } else if scene.contains("grenade-blast") {
+                0.19
+            } else {
+                0.12
+            };
+            app.capture_events_at(Some(get_time() - age));
+        }
+        if scene == "arsenal-assault-flight" {
+            let target = app.selected_target.ok_or("Cible de rafale absente")?;
+            app.execute_command(GameCommand::Attack { slot: 0, target });
+            app.capture_events_at(Some(get_time() - 0.17));
+        }
+        if scene.starts_with("arsenal-grenade-input") {
+            app.verify_grenade_pointer_input()?;
+        }
+        if scene.starts_with("arsenal-grenade-direct-input") {
+            app.verify_grenade_direct_pointer_input()?;
         }
         app.draw();
         let path = output.join("cold-start.png");
@@ -5385,9 +5474,15 @@ impl AsciiApp {
             && let Some(target) = self
                 .attack_pointer_cell(input)
                 .filter(|position| self.game.player_visibility().is_visible(*position))
-            && (self.toggle_pointer_target_at(target)
-                || self.begin_pointer_attack_aim(target, input.pointer))
         {
+            if !self.toggle_pointer_target_at(target)
+                && !self.begin_pointer_attack_aim(target, input.pointer)
+            {
+                self.selected_target = None;
+                self.push_log("Cette arme doit viser une cible.".to_owned());
+            }
+            // Consume even an unsupported ground selection: a mouse-bound
+            // Attack must never fall through and fire at the previous actor.
             return;
         }
 
@@ -5437,6 +5532,17 @@ impl AsciiApp {
             self.corrosion_command()
         } else if self.controls.pressed(Action::Pulse, input) {
             self.ability_command()
+        } else if self.controls.pressed(Action::AimGround, input) {
+            if self
+                .game
+                .resolved_equipped_player_weapon(self.active_weapon_slot)
+                .is_some_and(|weapon| weapon.requires_area_aim())
+            {
+                self.begin_attack_aim(input.pointer);
+            } else {
+                self.push_log("Cette arme doit viser une cible.".to_owned());
+            }
+            None
         } else if self.controls.pressed(Action::Attack, input) {
             self.weapon_command(input.pointer)
         } else {
@@ -10325,6 +10431,7 @@ impl AsciiApp {
         open_level_up_screen: bool,
     ) {
         let mut player_attack_confirmation = None;
+        let mut native_shots: BTreeMap<(EntityId, WeaponId), u16> = BTreeMap::new();
         let mut level_up_notice: Option<LevelUpNotice> = None;
         let mut floating_alert_positions = Vec::new();
         let visual_time = replay_time.unwrap_or_else(get_time);
@@ -10862,6 +10969,32 @@ impl AsciiApp {
                         .map(|id| self.item_name(id))
                         .unwrap_or_else(|| "Attaque".to_owned());
                     let visibility = self.game.player_visibility();
+                    if let Some(id) = weapon.as_ref()
+                        && let Some(launcher) = self.game.rules().weapons.get(id).and_then(project_rl::weapon::WeaponDefinition::launcher)
+                    {
+                        if visibility.is_visible(origin) && visibility.is_visible(target_at) {
+                            if let Ok(cue) = VisualCue::line(id.clone(), origin, target_at) {
+                                self.visual_cues.play(cue, visual_time);
+                            }
+                            if launcher.delay_turns == 0 {
+                                let flight = self.visual_cues.flight_seconds(id, origin, target_at);
+                                if let Ok(cue) = VisualCue::world(visual_cue_id("core:explosive_blast"), target_at,
+                                    affected_cells.iter().filter(|cell| visibility.is_visible(cell.position))
+                                        .map(|cell| VisualCueCell::new(cell.position, cell.step))) {
+                                    self.visual_cues.play(cue, visual_time + flight);
+                                }
+                            }
+                        }
+                        if attacker == self.game.player_id() { player_attack_confirmation = Some(format!("ATTAQUE CONFIRMÉE · {weapon_name}")); }
+                        continue;
+                    }
+                    let mut shot_delay = 0.0;
+                    if let Some(id) = weapon.as_ref()
+                        && self.game.rules().weapons.get(id).is_some_and(|weapon| weapon.burst().is_some()) {
+                        let index = native_shots.entry((attacker, id.clone())).or_default();
+                        shot_delay = f64::from(*index) * 0.085;
+                        *index += 1;
+                    }
                     let id = weapon.unwrap_or_else(|| visual_cue_id(match self.game.actors().get(attacker).and_then(Actor::ai).map(|ai| ai.behavior) {
                         Some(project_rl::ai::AiBehavior::TelegraphedResonator) => "core:howler_pulse",
                         Some(project_rl::ai::AiBehavior::TelegraphedProjector) => "core:sentinel_projection",
@@ -10887,7 +11020,7 @@ impl AsciiApp {
                     };
                     if let Ok(cue) = cue {
                         self.visual_cues
-                            .play(cue, replay_time.unwrap_or_else(get_time));
+                            .play(cue, visual_time + shot_delay);
                     }
                     if attacker == self.game.player_id() {
                         player_attack_confirmation =
@@ -10962,6 +11095,10 @@ impl AsciiApp {
                     if entity == self.game.player_id()
                         || self.game.player_visibility().is_visible(at)
                     {
+                        if let Some(launcher) = self.game.rules().weapons.get(&material).and_then(project_rl::weapon::WeaponDefinition::launcher) {
+                            self.push_log(format!("Grenade lancée : explosion dans {} tours.", launcher.delay_turns));
+                            continue;
+                        }
                         self.push_floating_message(
                             "CHARGE POSÉE",
                             at,
@@ -11022,7 +11159,7 @@ impl AsciiApp {
                         .map(|cell| VisualCueCell::new(cell.position, cell.step))
                         .collect::<Vec<_>>();
                     if let Ok(cue) =
-                        VisualCue::world(visual_cue_id("core:radial_damage"), at, visible)
+                        VisualCue::world(visual_cue_id("core:explosive_blast"), at, visible)
                     {
                         self.visual_cues
                             .play(cue, replay_time.unwrap_or_else(get_time));
@@ -13637,6 +13774,29 @@ impl AsciiApp {
             ));
             return None;
         };
+        // Grenades can strike a selected actor directly. Free ground aiming
+        // remains explicit; immediate area attacks still require a preview.
+        if weapon
+            .launcher()
+            .is_some_and(|launcher| launcher.delay_turns > 0)
+            && !weapon.effects().iter().any(|effect| {
+                matches!(
+                    effect.kind(),
+                    project_rl::weapon::WeaponEffectKind::CatalyticCone { .. }
+                )
+            })
+            && let Some(target) = self.selected_target.filter(|target| {
+                self.game
+                    .actors()
+                    .get(*target)
+                    .is_some_and(|actor| self.game.player_visibility().is_visible(actor.position()))
+            })
+        {
+            return Some(GameCommand::Attack {
+                slot: self.active_weapon_slot,
+                target,
+            });
+        }
         if weapon.requires_area_aim() {
             self.begin_attack_aim(pointer);
             return None;
@@ -13663,6 +13823,9 @@ impl AsciiApp {
             return false;
         }
         self.begin_attack_aim_at(Some(target), pointer, None);
+        if self.attack_aim.is_some() {
+            self.selected_target = None;
+        }
         self.attack_aim.is_some()
     }
 
@@ -13741,13 +13904,18 @@ impl AsciiApp {
             })
             .unwrap_or_else(|| origin.step(self.facing));
         self.attack_aim = Some(AttackAim { slot, cursor });
+        self.selected_target = self
+            .game
+            .actors()
+            .entity_at(cursor)
+            .filter(|target| self.visible_targets().contains(target));
         self.attack_aim_technique = technique;
         self.attack_aim_pointer = pointer;
         self.push_log(if self.attack_aim_technique.is_some() {
-            "VISÉE DE TECHNIQUE · DÉPLACEMENT/CURSEUR · ATTAQUER POUR CONFIRMER · ÉCHAP POUR ANNULER"
+            "VISÉE DE TECHNIQUE · CLIC POUR CIBLER · ATTAQUER POUR CONFIRMER · ÉCHAP POUR ANNULER"
                 .to_owned()
         } else {
-            "VISÉE DE ZONE · DÉPLACEMENT/CURSEUR · ATTAQUER POUR CONFIRMER · ÉCHAP POUR ANNULER"
+            "VISÉE DE ZONE · CLIC POUR CIBLER · ATTAQUER POUR CONFIRMER · ÉCHAP POUR ANNULER"
                 .to_owned()
         });
     }
@@ -13795,22 +13963,52 @@ impl AsciiApp {
         }
 
         let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
-        let pointer_moved = input.pointer.is_some() && input.pointer != self.attack_aim_pointer;
-        let hovered = if pointer_moved || clicked {
+        // A world click only changes selection. Moving the pointer toward the
+        // HUD must not drag the selected cell along, nor may a second click fire.
+        let confirm_hovered = input.viewport.is_some_and(|(width, height)| {
+            input.pointer.is_some_and(|pointer| {
+                Self::attack_aim_confirm_rect(width, height).contains(pointer.into())
+            })
+        });
+        if confirm_hovered {
+            self.menu_focus.hovered = Some(50_040);
+        }
+        let clicked_cell = if clicked && !confirm_hovered {
             self.attack_pointer_cell(input)
                 .filter(|position| self.game.player_visibility().is_visible(*position))
         } else {
             None
         };
         self.attack_aim_pointer = input.pointer;
-        if !keyboard_moved && let Some(position) = hovered {
+        if !keyboard_moved && let Some(position) = clicked_cell {
+            if self.attack_aim_technique.is_none()
+                && aim.cursor == position
+                && self.selected_target.is_some()
+                && self.selected_target == self.game.actors().entity_at(position)
+            {
+                self.selected_target = None;
+                self.attack_aim = None;
+                self.attack_aim_pointer = None;
+                self.push_log("Cible désélectionnée.".to_owned());
+                return;
+            }
             aim.cursor = position;
+        }
+        if keyboard_moved || clicked_cell.is_some() {
+            self.selected_target = self
+                .game
+                .actors()
+                .entity_at(aim.cursor)
+                .filter(|target| self.visible_targets().contains(target));
         }
         self.attack_aim = Some(aim);
 
-        let keyboard_confirmed = self.controls.pressed(Action::Attack, input) && !clicked;
-        let mouse_confirmed = clicked && hovered.is_some();
-        if !keyboard_confirmed && !mouse_confirmed {
+        // HUD actions are forwarded without pointer coordinates, including
+        // when Attack was rebound to MouseLeft. Actual map clicks never fire.
+        let confirmed = (self.controls.pressed(Action::Attack, input)
+            && (!clicked || input.pointer.is_none()))
+            || (clicked && confirm_hovered);
+        if !confirmed {
             return;
         }
         if let Err(reason) = self.aimed_attack_preview(aim) {
@@ -15192,9 +15390,24 @@ impl AsciiApp {
         }
     }
 
+    pub(super) fn attack_aim_confirm_rect(width: f32, height: f32) -> Rect {
+        Rect::new(width - 196.0, height - 82.0, 172.0, 32.0)
+    }
+
     fn draw_footer(&self) {
         if let Some(aim) = self.attack_aim {
             let footprint = self.aimed_attack_footprint(aim);
+            let launcher = self
+                .game
+                .equipped_player_weapon(aim.slot)
+                .and_then(|weapon| weapon.launcher());
+            let blast_warning = launcher.is_some()
+                && footprint.as_ref().is_ok_and(|preview| {
+                    preview
+                        .cells()
+                        .iter()
+                        .any(|cell| Some(cell.position) == self.game.player_position())
+                });
             let affected = footprint.as_ref().map_or(0, |preview| {
                 preview
                     .cells()
@@ -15209,15 +15422,24 @@ impl AsciiApp {
             });
             let (state, state_color, confirmation) = match self.aimed_attack_preview(aim) {
                 Ok(_) => (
-                    "ZONE VALIDE",
-                    UiTheme.success(),
-                    format!(
-                        "{} ou clic gauche · CONFIRMER",
-                        self.controls.label(Action::Attack)
-                    ),
+                    if blast_warning {
+                        "DANGER : VOUS ÊTES DANS LA ZONE".to_owned()
+                    } else if let Some(launcher) =
+                        launcher.filter(|launcher| launcher.delay_turns > 0)
+                    {
+                        format!("EXPLOSION DANS {} TOURS", launcher.delay_turns)
+                    } else {
+                        "ZONE VALIDE".to_owned()
+                    },
+                    if blast_warning {
+                        UiTheme.danger()
+                    } else {
+                        UiTheme.success()
+                    },
+                    "Clic : sélectionner".to_owned(),
                 ),
                 Err(reason) => (
-                    "ZONE INVALIDE",
+                    "ZONE INVALIDE".to_owned(),
                     UiTheme.danger(),
                     attack_preview_rejection_label(&reason).to_owned(),
                 ),
@@ -15225,7 +15447,7 @@ impl AsciiApp {
             let rect = Rect::new(12.0, self.ui_height() - 94.0, self.ui_width() - 24.0, 82.0);
             UiTheme.hud_panel(rect);
             draw_rectangle(rect.x + 14.0, rect.y + 17.0, 6.0, 6.0, state_color);
-            draw_text_bold(state, rect.x + 28.0, rect.y + 27.0, 18.0, state_color);
+            draw_text_bold(&state, rect.x + 28.0, rect.y + 27.0, 18.0, state_color);
             draw_text(
                 format!(
                     "{} case(s) · {}",
@@ -15241,16 +15463,29 @@ impl AsciiApp {
                 16.0,
                 UiTheme.text(),
             );
-            draw_text_bold(
+            let confirm = Self::attack_aim_confirm_rect(self.ui_width(), self.ui_height());
+            UiTheme.button(
+                confirm,
+                &format!("Attaquer [{}]", self.controls.label(Action::Attack)),
+                self.menu_focus.hovered == Some(50_040),
+                false,
+                self.aimed_attack_preview(aim).is_ok(),
+                ButtonTone::Primary,
+            );
+            crate::ui_theme::draw_text_in_rect(
                 &confirmation,
-                rect.x + rect.w * 0.42,
-                rect.y + 29.0,
-                17.0,
+                Rect::new(
+                    rect.x + rect.w * 0.42,
+                    rect.y + 13.0,
+                    (confirm.x - (rect.x + rect.w * 0.42) - 10.0).max(0.0),
+                    22.0,
+                ),
+                14,
                 state_color,
             );
             draw_text(
                 format!(
-                    "Déplacer : {} {} {} {} / souris · Annuler : Échap ou clic droit",
+                    "Visée : {} {} {} {} ou clic · Annuler : Échap ou clic droit",
                     self.controls.label(Action::MoveNorth),
                     self.controls.label(Action::MoveWest),
                     self.controls.label(Action::MoveSouth),
@@ -15488,11 +15723,9 @@ impl AsciiApp {
     fn inventory_glyph(&self, entry: &InventoryEntry) -> InventoryGlyph {
         if let Some(weapon) = self.game.rules().weapons.get(entry.item()) {
             let attack = weapon.attack();
-            if attack.damage().contains(DamageType::Thermal)
-                || matches!(attack.area(), AttackArea::Cone(_))
-            {
+            if attack.damage().contains(DamageType::Thermal) {
                 InventoryGlyph::FlameProjector
-            } else if attack.range() <= 1 {
+            } else if attack.delivery() == project_rl::combat::AttackDelivery::Melee {
                 InventoryGlyph::Blade
             } else {
                 InventoryGlyph::RangedWeapon
@@ -16576,16 +16809,28 @@ impl AsciiApp {
                         )
                     },
                 );
-                let area = match attack.area() {
-                    AttackArea::Single => "Cible unique".to_owned(),
-                    AttackArea::Adjacent => "Cases voisines".to_owned(),
-                    AttackArea::Pulse(pulse) => format!("Onde · rayon {}", pulse.radius()),
-                    AttackArea::Cone(cone) => format!(
-                        "Cône · largeur 1 à {}",
-                        cone.maximum_half_width()
-                            .saturating_mul(2)
-                            .saturating_add(1)
-                    ),
+                let area = if let Some(launcher) = weapon.launcher() {
+                    format!(
+                        "Explosion · rayon {} · {}",
+                        launcher.radius,
+                        if launcher.delay_turns == 0 {
+                            "à l’impact".into()
+                        } else {
+                            format!("{} tours", launcher.delay_turns)
+                        }
+                    )
+                } else {
+                    match attack.area() {
+                        AttackArea::Single => "Cible unique".to_owned(),
+                        AttackArea::Adjacent => "Cases voisines".to_owned(),
+                        AttackArea::Pulse(pulse) => format!("Onde · rayon {}", pulse.radius()),
+                        AttackArea::Cone(cone) => format!(
+                            "Cône · largeur 1 à {}",
+                            cone.maximum_half_width()
+                                .saturating_mul(2)
+                                .saturating_add(1)
+                        ),
+                    }
                 };
                 rows.extend([
                     (
@@ -16615,6 +16860,42 @@ impl AsciiApp {
                     ),
                     ("Zone", area),
                 ]);
+                if !weapon.distance_damage_percentages().is_empty() {
+                    rows.push(("Distance", weapon_distance_damage_label(weapon, damage)));
+                }
+                if let Some(burst) = weapon.burst() {
+                    rows.push((
+                        "Rafale",
+                        format!(
+                            "{} balles · {} dégâts chacune",
+                            burst.shots,
+                            damage.raw_total()
+                        ),
+                    ));
+                    if burst.sustained_accuracy > 0 {
+                        rows.push((
+                            "Tir soutenu",
+                            format!(
+                                "+{} précision par rafale · max. +{}",
+                                burst.sustained_accuracy,
+                                burst.sustained_accuracy * 3
+                            ),
+                        ));
+                        rows.push(("Chaleur", format!("+{} par rafale", burst.heat)));
+                    }
+                }
+                if let Some(launcher) = weapon
+                    .launcher()
+                    .filter(|launcher| launcher.delay_turns > 0)
+                {
+                    rows.push((
+                        "Explosion",
+                        format!(
+                            "{} dégâts · après {} tours",
+                            launcher.damage.amount, launcher.delay_turns
+                        ),
+                    ));
+                }
                 if let Some(supply) = self
                     .game
                     .weapon_supply(weapon.id())
@@ -21080,6 +21361,24 @@ const fn prototype_enemy_base_armor(index: usize, generation_version: u8) -> u16
 }
 
 fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules {
+    if version < ARSENAL_GENERATION_VERSION {
+        for id in equipment_generation::ARSENAL_BASE_IDS.map(|id| id.parse().unwrap()) {
+            rules.weapons = rules.weapons.without_id(&id);
+            rules.items = rules.items.without_id(&id);
+        }
+        rules.weapons = rules.weapons.without_effect_affixes(
+            &equipment_generation::ARSENAL_EFFECT_IDS.map(|id| id.parse().unwrap()),
+        );
+        for id in equipment_generation::ARSENAL_STATUS_IDS.map(|id| id.parse().unwrap()) {
+            rules.statuses = rules.statuses.without_id(&id);
+        }
+    }
+    if version < TACTICAL_WEAPON_FAMILIES_GENERATION_VERSION {
+        for id in equipment_generation::TACTICAL_BASE_IDS.map(|id| id.parse().unwrap()) {
+            rules.weapons = rules.weapons.without_id(&id);
+            rules.items = rules.items.without_id(&id);
+        }
+    }
     if version < MAINTAINED_ENERGY_GENERATION_VERSION {
         rules.maintained_energy_reservations = false;
         rules.player_companion_limit = None;
@@ -21492,6 +21791,14 @@ fn loot_for_generation_version(
     } else {
         loot.clone()
     };
+    if version < TACTICAL_WEAPON_FAMILIES_GENERATION_VERSION {
+        compatible = compatible
+            .without_items(&equipment_generation::TACTICAL_BASE_IDS.map(|id| id.parse().unwrap()));
+    }
+    if version < ARSENAL_GENERATION_VERSION {
+        compatible = compatible
+            .without_items(&equipment_generation::ARSENAL_BASE_IDS.map(|id| id.parse().unwrap()));
+    }
     if version < INSTANCE_LOOT_GENERATION_VERSION {
         compatible = compatible.without_equipment_generation();
     } else if version < DEPTH_EQUIPMENT_GENERATION_VERSION {
@@ -21858,6 +22165,8 @@ fn status_display_name(id: &project_rl::content::ContentId) -> String {
         "lab:percussion_recovery" => "RECHARGE PERCUSSION".to_owned(),
         "lab:impact_aegis" => "ÉGIDE".to_owned(),
         "core:burning" => "BRÛLURE".to_owned(),
+        "core:bleeding" => "SAIGNEMENT".to_owned(),
+        "core:poisoned" => "POISON".to_owned(),
         "lab:fracture_mark" => "MARQUAGE".to_owned(),
         "core:corroded" => "CORROSION".to_owned(),
         "core:armor_fragilized" => "ARMURE FRAGILISÉE".to_owned(),

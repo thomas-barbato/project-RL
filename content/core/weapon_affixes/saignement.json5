@@ -1,0 +1,13 @@
+{
+  "id": "core:affix_saignement",
+  "suffix_key": "equipment.affix_saignement.suffix",
+  "description_key": "equipment.affix_saignement.description",
+  "effects": [
+    {
+      "type": "apply_status",
+      "status": "core:bleeding",
+      "stacks": 1,
+      "trigger": "on_damage"
+    }
+  ]
+}

@@ -22,6 +22,24 @@ pub enum WeaponSupply {
     Energy { amount: u16 },
 }
 
+/// Native handling, independent of learned techniques and instance affixes.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct BurstFire {
+    pub shots: u16,
+    #[serde(default)]
+    pub sustained_accuracy: i16,
+    #[serde(default)]
+    pub heat: u16,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct Launcher {
+    pub radius: u16,
+    pub delay_turns: u16,
+    pub damage: DamagePacket,
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum WeaponEffectKind {
     /// One ranged rebound; never remembers a previous attack or chains itself.
@@ -578,6 +596,10 @@ pub struct WeaponDefinition {
     ammunition_capacity: Option<u16>,
     supply: Option<WeaponSupply>,
     power_draw: Option<u16>,
+    // Percentages at grid distances 1..=range. Empty preserves legacy damage.
+    distance_damage_percentages: Vec<u16>,
+    burst: Option<BurstFire>,
+    launcher: Option<Launcher>,
 }
 
 // Empty effects are intentionally omitted to preserve the exact historical
@@ -607,6 +629,18 @@ impl Debug for WeaponDefinition {
         }
         if let Some(supply) = self.supply {
             weapon.field("supply", &supply);
+        }
+        if !self.distance_damage_percentages.is_empty() {
+            weapon.field(
+                "distance_damage_percentages",
+                &self.distance_damage_percentages,
+            );
+        }
+        if let Some(burst) = self.burst {
+            weapon.field("burst", &burst);
+        }
+        if let Some(launcher) = self.launcher {
+            weapon.field("launcher", &launcher);
         }
         weapon.finish()
     }
@@ -642,12 +676,50 @@ impl WeaponDefinition {
             ammunition_capacity: None,
             supply: None,
             power_draw: None,
+            distance_damage_percentages: Vec::new(),
+            burst: None,
+            launcher: None,
         })
     }
 
     pub fn with_effects(mut self, effects: impl IntoIterator<Item = WeaponEffect>) -> Self {
         self.effects.extend(effects);
         self
+    }
+
+    pub fn with_burst(mut self, burst: BurstFire) -> Result<Self, WeaponDefinitionError> {
+        if !(2..=6).contains(&burst.shots)
+            || !(0..=15).contains(&burst.sustained_accuracy)
+            || self.attack.delivery() != crate::combat::AttackDelivery::Ranged
+            || !matches!(self.attack.area(), crate::combat::AttackArea::Single)
+            || self.launcher.is_some()
+        {
+            return Err(WeaponDefinitionError::InvalidFiringPattern);
+        }
+        self.capabilities = self.capabilities.with_automatic_fire();
+        self.burst = Some(burst);
+        Ok(self)
+    }
+
+    pub fn with_launcher(mut self, launcher: Launcher) -> Result<Self, WeaponDefinitionError> {
+        if !(1..=3).contains(&launcher.radius)
+            || launcher.delay_turns > 2
+            || launcher.damage.amount == 0
+            || self.attack.delivery() != crate::combat::AttackDelivery::Ranged
+            || !matches!(self.attack.area(), crate::combat::AttackArea::Single)
+            || self.burst.is_some()
+        {
+            return Err(WeaponDefinitionError::InvalidFiringPattern);
+        }
+        self.launcher = Some(launcher);
+        Ok(self)
+    }
+
+    pub const fn burst(&self) -> Option<BurstFire> {
+        self.burst
+    }
+    pub const fn launcher(&self) -> Option<Launcher> {
+        self.launcher
     }
 
     pub fn with_supply(mut self, supply: WeaponSupply) -> Result<Self, WeaponDefinitionError> {
@@ -664,6 +736,38 @@ impl WeaponDefinition {
 
     pub const fn supply(&self) -> Option<WeaponSupply> {
         self.supply
+    }
+
+    pub fn with_distance_damage_percentages(
+        mut self,
+        percentages: Vec<u16>,
+    ) -> Result<Self, WeaponDefinitionError> {
+        if percentages.len() != usize::from(self.attack.range())
+            || percentages.iter().any(|value| !(1..=100).contains(value))
+        {
+            return Err(WeaponDefinitionError::InvalidDistanceDamage);
+        }
+        self.distance_damage_percentages = percentages;
+        Ok(self)
+    }
+
+    pub fn distance_damage_percentages(&self) -> &[u16] {
+        &self.distance_damage_percentages
+    }
+
+    /// Chebyshev distance, shared with the grid's eight movement directions.
+    /// Use actual positions, not a cone's zero-based propagation step.
+    pub fn damage_percentage_at(
+        &self,
+        origin: crate::world::GridPos,
+        target: crate::world::GridPos,
+    ) -> u16 {
+        let distance = origin.x.abs_diff(target.x).max(origin.y.abs_diff(target.y));
+        self.distance_damage_percentages
+            .get(distance.saturating_sub(1) as usize)
+            .or_else(|| self.distance_damage_percentages.last())
+            .copied()
+            .unwrap_or(100)
     }
 
     pub const fn with_capabilities(mut self, capabilities: WeaponCapabilities) -> Self {
@@ -736,7 +840,8 @@ impl WeaponDefinition {
     /// A secondary cone needs the same confirmation step as a native area
     /// attack, without changing the intrinsic attack profile.
     pub fn requires_area_aim(&self) -> bool {
-        !matches!(self.attack.area(), crate::combat::AttackArea::Single)
+        self.launcher.is_some()
+            || !matches!(self.attack.area(), crate::combat::AttackArea::Single)
             || self
                 .effects
                 .iter()
@@ -789,6 +894,8 @@ impl WeaponDefinition {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum WeaponDefinitionError {
+    InvalidFiringPattern,
+    InvalidDistanceDamage,
     EmptyNameKey,
     EmptyDescriptionKey,
     ZeroRange,
@@ -811,6 +918,11 @@ pub enum WeaponDefinitionError {
 impl Display for WeaponDefinitionError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::InvalidFiringPattern => write!(formatter, "invalid native firing pattern"),
+            Self::InvalidDistanceDamage => write!(
+                formatter,
+                "distance damage needs one integer percentage in 1..=100 per range cell"
+            ),
             Self::EmptyNameKey => write!(formatter, "weapon name_key must not be empty"),
             Self::EmptyDescriptionKey => {
                 write!(formatter, "weapon description_key must not be empty")

@@ -2,6 +2,44 @@
 
 25 septembre 2026 — génération de monde 108. Équilibrage provisoire.
 
+## Ajout du 30 septembre 2026 : lance et fusil à pompe
+
+La génération 128 ajoute deux bases approuvées, sans tir préparé ni nouvelle armure :
+
+- **Lance** : vraie attaque de mêlée à deux cases, dégâts réduits de moitié au contact. La Puissance et les techniques de mêlée restent applicables selon leurs conditions habituelles. Les murs bloquent l'allonge.
+- **Fusil à pompe** : cône de quatre cases, une case de large au départ puis trois, prévisualisé avant confirmation. Dégâts de base 8 / 6 / 4 / 2 à une / deux / trois / quatre cases, avant armure. Un tir coûte deux munitions pour toute la zone, pas par cible. Aucun délai de récupération ajouté.
+
+Le fusil projette une gerbe de chevrotines : grains métalliques distincts qui s'écartent selon le cône, puis petits éclats sur les cases occupées. Ce dessin ne multiplie ni les dégâts, ni les activations d'effets : une cible reçoit un seul impact direct par tir.
+
+Ces valeurs sont provisoires. Les deux modèles sont distribués dans les caches humanoïdes de surface et de première couche, ainsi que dans les stocks blancs des marchands correspondants. Les paris de surface peuvent proposer leurs versions à bonus cachés. Les règles ordinaires d'affixes et de revente s'appliquent. Aucun robot ni animal ne reçoit ces objets par défaut ; les porteurs ennemis existants ne changent pas.
+
+Une limite de distribution `maximum_depth: 1` évite que ces deux familles, qui n'ont pour l'instant qu'un modèle de début de partie, prennent la place d'équipement profond. Elle n'empêche ni de conserver l'objet, ni de le porter ou de le revendre plus bas. Les modèles supérieurs et leurs noms restent à proposer avant intégration.
+
+Le profil de dégâts par distance appartient à la base, pas à un affixe : il s'applique aux dégâts directs après les bonus et avant les défenses, sans réduire les dégâts secondaires des effets. L'inventaire affiche les valeurs par distance. Les exemplaires sans bonus sont aussi disponibles au laboratoire.
+
+Les générations 127 et antérieures retirent uniquement ces deux bases des règles et des tirages : aucune redistribution dans une partie déjà suspendue. Les sauvegardes conservent leur version.
+
+## Arsenal approuvé du 30 septembre : génération 129
+
+| Base | Fonctionnement initial | Coût d'une action |
+|---|---|---|
+| Fusil d'assaut | Trois balles de 3 dégâts, portée 7, précision -8 | 3 munitions |
+| Mitrailleuse lourde | Quatre balles de 3 dégâts, portée 8, précision -25. Chaque rafale consécutive sans déplacement ajoute 8 de précision, jusqu'à +24 | 4 munitions et 8 chaleur |
+| Lance-roquettes | Explosion immédiate de 10 dégâts, rayon 1, portée 7. Une seule application par cible, tireur inclus s'il est dans le souffle | 5 munitions |
+| Lance-grenades | Impact de 2 dégâts sur l'occupant éventuel, puis grenade fixe au sol. Explosion de 9 dégâts, rayon 1, après deux actions suivantes. Portée 6 | 4 munitions |
+| Hache de combat | 8 dégâts de base, précision -12, plafond matériel 20 | Aucun consommable |
+| Marteau de guerre | 6 dégâts de base, pénétration 4, précision -8, plafond matériel 16 | Aucun consommable |
+
+Ces valeurs sont provisoires. La Puissance affecte les impacts de mêlée suivant les règles existantes. Les rafales utilisent un impact et les défenses par balle, mais n'accordent qu'une activation réussie des effets secondaires par action. Le vol de vie additionne les dégâts directs réellement infligés puis applique son plafond une seule fois. Le tir soutenu se perd après une pause, un déplacement ou un changement d'arme. La surchauffe refuse le tir avant toute dépense.
+
+Le lance-grenades peut viser un ennemi ou une case vide. La prévisualisation montre l'explosion future ; le compteur reste visible sur la grenade même si sa cible initiale meurt. Le délai est déterministe. Les murs bloquent la propagation. Dans cette première version, les affixes du lance-grenades se déclenchent sur le contact direct ; l'explosion différée est un payload autonome qui ne relance pas les effets de l'arme.
+
+Deux effets d'instance supplémentaires : **de saignée** (2 dégâts par tour, 3 tours) et **de venin** (1 dégât par tour, 5 tours). Une blessure directe est nécessaire ; les cibles admises sont explicitement définies dans les statuts, sans deviner leur nature à partir du glyphe. Les machines non admises ne saignent pas et ne sont pas empoisonnées. Réappliquer un même statut rafraîchit sa durée sans additionner sa puissance ; les statuts différents restent indépendants.
+
+Ces six bases proviennent uniquement des caches humanoïdes et des commerces correspondants, jamais automatiquement des robots ou de la faune. Les quatre modèles P1 sont distribués jusqu'à la profondeur 1 ; mitrailleuse et lance-roquettes sont P2, distribués jusqu'à la profondeur 2. Achat ordinaire sans bonus, paris masqués et revente conservent leurs règles. Leurs futurs modèles profonds restent à concevoir.
+
+Les générations 128 et antérieures excluent uniquement ces bases, leurs deux nouveaux affixes et leurs statuts. Le cache binaire passe à `RLWS` v8 pour conserver le tir soutenu ; les caches plus anciens utilisent le journal de commandes vérifié. Aucune sauvegarde utilisateur n'est supprimée.
+
 ## Une base, plusieurs exemplaires
 
 Une définition décrit le modèle : nom, dégâts, portée, capacité et contraintes.
@@ -100,7 +138,7 @@ négatifs/non entiers, paliers invalides, effets inconnus ou offensifs sur une a
 Les poids et profils participent à l'empreinte du catalogue de butin.
 
 Les propriétés sont enregistrées aussi dans les zones non encore visitées.
-Le cache moteur utilise `RLWS` v6 ; les caches v1 à v5 utilisent le journal vérifié.
+Le cache moteur utilise `RLWS` v8 ; les caches v1 à v7 utilisent le journal vérifié.
 Les parties de génération 107 conservent les rencontres sans armes récupérables.
 Les parties de génération 106 conservent leurs anciennes offres et leurs paris.
 Les parties de génération 105 gardent leurs six bases P1/P2, leurs tirages

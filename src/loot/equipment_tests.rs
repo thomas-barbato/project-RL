@@ -13,7 +13,7 @@ fn content() -> LoadedContent {
 fn real_bases_generate_distinct_persistent_instances_without_changing_definitions() {
     let content = content();
     let catalogue = content.loot().equipment();
-    assert_eq!(catalogue.iter().count(), 18);
+    assert_eq!(catalogue.iter().count(), 26);
     let before = format!("{:?}{:?}", content.weapons(), content.items());
     let mut a = GameRng::from_seed(17);
     let mut b = a;
@@ -86,7 +86,7 @@ fn real_bases_generate_distinct_persistent_instances_without_changing_definition
             whites += 1;
         }
     }
-    assert_eq!(models.len(), 18);
+    assert_eq!(models.len(), 26);
     assert!(whites > magical && magical > 400 && effects > 5);
     assert_eq!(a.state(), b.state());
     assert_eq!(
@@ -132,7 +132,16 @@ fn absent_provenance_and_invalid_requests_never_consume_randomness() {
 #[test]
 fn depth_favors_available_upper_tiers_but_surface_exceptions_remain_possible() {
     let content = content();
-    let catalogue = content.loot().equipment();
+    // Check depth weighting inside the complete six-tier families. Early-only
+    // families are covered separately and cannot dilute deep-region draws.
+    let early: Vec<_> = content
+        .loot()
+        .equipment()
+        .iter()
+        .filter(|(_, base)| base.maximum_depth.is_some())
+        .map(|(id, _)| id.clone())
+        .collect();
+    let catalogue = content.loot().equipment().without_items(&early);
     let mut rng = GameRng::from_seed(7);
     for depth in 0..6 {
         let mut counts = [0usize; 6];
@@ -170,12 +179,40 @@ fn depth_favors_available_upper_tiers_but_surface_exceptions_remain_possible() {
 }
 
 #[test]
-fn each_live_family_has_one_named_base_for_every_playable_layer() {
+fn live_families_cover_every_layer_or_declare_an_early_distribution_limit() {
     let content = content();
     let design: serde_json::Value =
         serde_json::from_str(include_str!("../../docs/catalogues/equipements.json")).unwrap();
     let mut families = BTreeMap::<ContentId, BTreeSet<u8>>::new();
     for (_, base) in content.loot().equipment().iter() {
+        if let Some(maximum) = base.maximum_depth {
+            let heavy = matches!(
+                base.item.as_str(),
+                "core:mitrailleuse_lourde" | "core:lance_roquettes"
+            );
+            assert_eq!(maximum, if heavy { 2 } else { 1 });
+            assert_eq!(base.tier, if heavy { 2 } else { 1 });
+            assert!(matches!(
+                base.item.as_str(),
+                "core:lance"
+                    | "core:fusil_a_pompe"
+                    | "core:fusil_d_assaut"
+                    | "core:mitrailleuse_lourde"
+                    | "core:lance_roquettes"
+                    | "core:lance_grenades"
+                    | "core:hache_de_combat"
+                    | "core:marteau_de_guerre"
+            ));
+            assert!(
+                content
+                    .weapons()
+                    .get(&base.item)
+                    .unwrap()
+                    .effects()
+                    .is_empty()
+            );
+            continue;
+        }
         assert!(
             families
                 .entry(base.family.clone())
@@ -401,9 +438,9 @@ fn adding_models_does_not_make_their_family_more_frequent() {
             .entry(catalogue.bases[&item.item].family.clone())
             .or_default() += 1;
     }
-    assert_eq!(counts.len(), 3);
+    assert_eq!(counts.len(), 11);
     assert!(
-        counts.values().all(|count| (1700..2300).contains(count)),
+        counts.values().all(|count| (400..700).contains(count)),
         "{counts:?}"
     );
 }

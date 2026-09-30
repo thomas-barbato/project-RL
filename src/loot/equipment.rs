@@ -62,7 +62,7 @@ pub struct EquipmentEffectChoice {
     pub weight: u32,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Deserialize)]
+#[derive(Clone, PartialEq, Eq, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct EquipmentBaseDefinition {
     #[serde(deserialize_with = "deserialize_id")]
@@ -78,6 +78,27 @@ pub struct EquipmentBaseDefinition {
     pub stats: Vec<EquipmentStatChoice>,
     #[serde(default)]
     pub effects: Vec<EquipmentEffectChoice>,
+    /// Optional distribution limit for early models, not an equip requirement.
+    pub maximum_depth: Option<u16>,
+}
+
+impl std::fmt::Debug for EquipmentBaseDefinition {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut base = f.debug_struct("EquipmentBaseDefinition");
+        base.field("item", &self.item)
+            .field("family", &self.family)
+            .field("tier", &self.tier)
+            .field("grammar", &self.grammar)
+            .field("form", &self.form)
+            .field("sources", &self.sources)
+            .field("stats", &self.stats)
+            .field("effects", &self.effects);
+        // Old content retains its exact suspension fingerprint.
+        if let Some(depth) = self.maximum_depth {
+            base.field("maximum_depth", &depth);
+        }
+        base.finish()
+    }
 }
 
 fn deserialize_id<'de, D: serde::Deserializer<'de>>(
@@ -259,6 +280,7 @@ impl EquipmentLootCatalog {
             .bases
             .values()
             .filter(|base| base.sources.contains(&source))
+            .filter(|base| base.maximum_depth.is_none_or(|maximum| depth <= maximum))
             .collect();
         if eligible.is_empty() {
             return Ok(None);

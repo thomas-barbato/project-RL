@@ -1,0 +1,26 @@
+{
+  "id": "core:mitrailleuse_lourde",
+  "name_key": "equipment.mitrailleuse_lourde.name",
+  "description_key": "equipment.mitrailleuse_lourde.description",
+  "mass_grams": 8500,
+  "attack": {
+    "range": 8,
+    "distance_metric": "chebyshev",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": -25,
+    "damage": {
+      "amount": 3,
+      "damage_type": "piercing",
+      "penetration": 0
+    }
+  },
+  "supply": {
+    "kind": "matter",
+    "amount": 4
+  },
+  "burst": {
+    "shots": 4,
+    "sustained_accuracy": 8,
+    "heat": 8
+  }
+}

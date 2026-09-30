@@ -10,6 +10,11 @@ const FALLBACK_PALETTE: [[u8; 4]; 1] = [[151, 229, 255, 255]];
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TerminalEffectFamily {
     Glyph,
+    Buckshot,
+    Ballistic,
+    Rocket,
+    Grenade,
+    Blast,
     ImpactWave,
     BearerWave,
     Conduction,
@@ -66,6 +71,9 @@ pub struct TerminalEffectSample {
     pub links: u8,
     /// Local direction of a piercing trace, never a world-space destination.
     pub direction: (f32, f32),
+    /// Shared world-space shape translated into this tile, then clipped there.
+    pub anchor: Option<(f32, f32)>,
+    pub radius: f32,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -87,6 +95,14 @@ impl Default for VisualCuePlayer {
 }
 
 impl VisualCuePlayer {
+    pub fn flight_seconds(
+        &self,
+        id: &project_rl::presentation::VisualCueId,
+        from: GridPos,
+        to: GridPos,
+    ) -> f64 {
+        flight_seconds(terminal_style(&self.styles, id).family(), from, to)
+    }
     pub const fn with_catalog(styles: VisualCueCatalog) -> Self {
         Self {
             active: Vec::new(),
@@ -95,7 +111,9 @@ impl VisualCuePlayer {
     }
 
     pub fn play(&mut self, cue: VisualCue, started_at: f64) {
-        self.prune(started_at);
+        // started_at can be in the future (impact or later burst bullet).
+        // Only the frame clock may prune: scheduling an impact must not erase
+        // the projectile that is still on its way there.
         let steps: std::collections::BTreeMap<GridPos, u16> = match cue.target() {
             VisualCueTarget::World { cells, .. } => cells
                 .iter()
@@ -121,6 +139,18 @@ impl VisualCuePlayer {
             + style.frame_seconds() * style.frames().len() as f64
             + style.linger_seconds())
         .max(0.35);
+        let lifetime = if is_ordnance(style.family()) {
+            match cue.target() {
+                VisualCueTarget::World { origin, .. } => steps
+                    .iter()
+                    .max_by_key(|(_, step)| *step)
+                    .map(|(end, _)| flight_seconds(style.family(), *origin, *end).max(0.35))
+                    .unwrap_or(lifetime),
+                _ => lifetime,
+            }
+        } else {
+            lifetime
+        };
         self.active.push(ActiveVisualCue {
             cue,
             started_at,
@@ -178,6 +208,18 @@ impl VisualCuePlayer {
                 return None;
             }
             let style = terminal_style(&self.styles, active.cue.id());
+            if is_ordnance(style.family()) || style.family() == TerminalEffectFamily::Blast {
+                return active.sample_world(
+                    position,
+                    active.started_at
+                        + if is_ordnance(style.family()) {
+                            active.flight_duration(style.family()) * 0.55
+                        } else {
+                            0.18
+                        },
+                    &self.styles,
+                );
+            }
             let sampled_step = if matches!(
                 style.family(),
                 TerminalEffectFamily::ImpactWave | TerminalEffectFamily::BearerWave
@@ -271,6 +313,8 @@ impl VisualCuePlayer {
             variant,
             links: 0,
             direction: (0.0, 0.0),
+            anchor: None,
+            radius: 0.0,
         }
     }
 
@@ -290,16 +334,84 @@ struct ActiveVisualCue {
 }
 
 impl ActiveVisualCue {
+    fn flight_duration(&self, family: TerminalEffectFamily) -> f64 {
+        match self.cue.target() {
+            VisualCueTarget::World { origin, .. } => self
+                .steps
+                .iter()
+                .max_by_key(|(_, step)| *step)
+                .map(|(end, _)| flight_seconds(family, *origin, *end))
+                .unwrap_or(0.2),
+            _ => 0.2,
+        }
+    }
+
+    fn sample_ordnance(
+        &self,
+        position: GridPos,
+        elapsed: f64,
+        style: &ResolvedTerminalCueStyle<'_>,
+    ) -> Option<TerminalEffectSample> {
+        let VisualCueTarget::World { origin, .. } = self.cue.target() else {
+            return None;
+        };
+        let (&end, _) = self.steps.iter().max_by_key(|(_, step)| *step)?;
+        let duration = self.flight_duration(style.family());
+        if !(0.0..duration).contains(&elapsed) {
+            return None;
+        }
+        let progress = (elapsed / duration) as f32;
+        let dx = (end.x - origin.x) as f32;
+        let dy = (end.y - origin.y) as f32;
+        let lift = if style.family() == TerminalEffectFamily::Grenade {
+            (progress * std::f32::consts::PI).sin() * 0.55
+        } else {
+            0.0
+        };
+        let anchor = (
+            origin.x as f32 + 0.5 + dx * progress - position.x as f32,
+            origin.y as f32 + 0.5 + dy * progress - lift - position.y as f32,
+        );
+        // Neighboring visible tiles clip parts of the SAME shape, not copies.
+        if anchor.0 < -1.0 || anchor.0 > 2.0 || anchor.1 < -1.0 || anchor.1 > 2.0 {
+            return None;
+        }
+        let length = dx.hypot(dy).max(1.0);
+        let palette = style.palette();
+        Some(TerminalEffectSample {
+            symbol: terminal_symbol(style.frames()[0]),
+            color: palette.color,
+            accent_color: palette.accent_color,
+            highlight_color: palette.highlight_color,
+            outline: None,
+            family: style.family(),
+            progress,
+            motion_progress: progress,
+            sustained: false,
+            variant: 0,
+            links: 0,
+            direction: (dx / length, dy / length),
+            anchor: Some(anchor),
+            radius: 0.0,
+        })
+    }
     fn sample_world(
         &self,
         position: GridPos,
         now: f64,
         styles: &VisualCueCatalog,
     ) -> Option<TerminalEffectSample> {
-        let step = *self.steps.get(&position)?;
         let style = terminal_style(styles, self.cue.id());
         let elapsed = now - self.started_at;
-        let local_time = elapsed - f64::from(step) * style.step_seconds();
+        if is_ordnance(style.family()) {
+            return self.sample_ordnance(position, elapsed, &style);
+        }
+        let step = *self.steps.get(&position)?;
+        let local_time = if style.family() == TerminalEffectFamily::Blast {
+            elapsed
+        } else {
+            elapsed - f64::from(step) * style.step_seconds()
+        };
         if local_time < 0.0 {
             return None;
         }
@@ -361,9 +473,23 @@ impl ActiveVisualCue {
             sustained: false,
             variant: (position.x.wrapping_mul(31) ^ position.y.wrapping_mul(17)) as u8,
             links: self.links.get(&position).copied().unwrap_or(0),
+            anchor: if style.family() == TerminalEffectFamily::Blast {
+                match self.cue.target() {
+                    VisualCueTarget::World { origin, .. } => Some((
+                        (origin.x - position.x) as f32 + 0.5,
+                        (origin.y - position.y) as f32 + 0.5,
+                    )),
+                    _ => None,
+                }
+            } else {
+                None
+            },
+            radius: f32::from(self.last_step) + 0.5,
             direction: if matches!(
                 style.family(),
-                TerminalEffectFamily::FlameJet | TerminalEffectFamily::Resonance
+                TerminalEffectFamily::FlameJet
+                    | TerminalEffectFamily::Resonance
+                    | TerminalEffectFamily::Buckshot
             ) {
                 // Cone rows have several possible predecessors. Use the
                 // bearer-to-cell ray, not an arbitrary neighboring branch.
@@ -379,6 +505,9 @@ impl ActiveVisualCue {
             } else if matches!(
                 style.family(),
                 TerminalEffectFamily::Piercing
+                    | TerminalEffectFamily::Ballistic
+                    | TerminalEffectFamily::Rocket
+                    | TerminalEffectFamily::Grenade
                     | TerminalEffectFamily::Impulse
                     | TerminalEffectFamily::ImpulseBlocked
                     | TerminalEffectFamily::Catalysis
@@ -417,6 +546,24 @@ impl ActiveVisualCue {
 
     fn expired(&self, now: f64) -> bool {
         now - self.started_at >= self.lifetime
+    }
+}
+
+fn is_ordnance(family: TerminalEffectFamily) -> bool {
+    matches!(
+        family,
+        TerminalEffectFamily::Ballistic
+            | TerminalEffectFamily::Rocket
+            | TerminalEffectFamily::Grenade
+    )
+}
+
+fn flight_seconds(family: TerminalEffectFamily, from: GridPos, to: GridPos) -> f64 {
+    let distance = f64::from(to.x - from.x).hypot(f64::from(to.y - from.y));
+    if family == TerminalEffectFamily::Ballistic {
+        (distance * 0.026).clamp(0.10, 0.32)
+    } else {
+        (distance * 0.065).clamp(0.22, 0.65)
     }
 }
 
@@ -460,6 +607,11 @@ enum ResolvedTerminalCueStyle<'a> {
 impl ResolvedTerminalCueStyle<'_> {
     fn family(&self) -> TerminalEffectFamily {
         match self.frames()[0] {
+            TerminalEffectGlyph::Buckshot => TerminalEffectFamily::Buckshot,
+            TerminalEffectGlyph::Ballistic => TerminalEffectFamily::Ballistic,
+            TerminalEffectGlyph::Rocket => TerminalEffectFamily::Rocket,
+            TerminalEffectGlyph::Grenade => TerminalEffectFamily::Grenade,
+            TerminalEffectGlyph::Blast => TerminalEffectFamily::Blast,
             TerminalEffectGlyph::Fracture => TerminalEffectFamily::Fracture,
             TerminalEffectGlyph::Alternation => TerminalEffectFamily::Alternation,
             TerminalEffectGlyph::Echo => TerminalEffectFamily::Echo,
@@ -558,6 +710,11 @@ fn terminal_style<'a>(
 const fn terminal_symbol(glyph: TerminalEffectGlyph) -> char {
     match glyph {
         TerminalEffectGlyph::Dot => '.',
+        TerminalEffectGlyph::Buckshot => '·',
+        TerminalEffectGlyph::Ballistic => '·',
+        TerminalEffectGlyph::Rocket => '>',
+        TerminalEffectGlyph::Grenade => '●',
+        TerminalEffectGlyph::Blast => '*',
         TerminalEffectGlyph::Signal => ':',
         TerminalEffectGlyph::Projectile => '-',
         TerminalEffectGlyph::Spark => '*',
@@ -601,6 +758,183 @@ mod tests {
 
     fn cue_id(value: &str) -> project_rl::presentation::VisualCueId {
         value.parse().expect("valid cue ID")
+    }
+
+    #[test]
+    fn ordnance_has_one_continuous_head_in_all_directions_and_reduced_motion() {
+        let content = project_rl::content::ContentLoader::load(
+            &[std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content")],
+            &semver::Version::new(0, 1, 0),
+        )
+        .unwrap();
+        let origin = GridPos::new(10, 10);
+        for name in [
+            "core:lance_roquettes",
+            "core:lance_grenades",
+            "core:fusil_d_assaut",
+        ] {
+            for (dx, dy) in [
+                (5, 0),
+                (0, 5),
+                (3, 3),
+                (-3, 3),
+                (-3, -3),
+                (3, -3),
+                (5, 2),
+                (-5, -2),
+            ] {
+                let id = cue_id(name);
+                let end = GridPos::new(origin.x + dx, origin.y + dy);
+                let mut player = VisualCuePlayer::with_catalog(content.visual_cues().clone());
+                let duration = player.flight_seconds(&id, origin, end);
+                player.play(VisualCue::line(id, origin, end).unwrap(), 0.0);
+                for progress in [0.05, 0.23, 0.51, 0.79, 0.98] {
+                    for reduced in [false, true] {
+                        let fraction = if reduced { 0.55 } else { progress as f32 };
+                        let lift = if name == "core:lance_grenades" {
+                            (fraction * std::f32::consts::PI).sin() * 0.55
+                        } else {
+                            0.0
+                        };
+                        let expected = (
+                            10.5 + dx as f32 * fraction,
+                            10.5 + dy as f32 * fraction - lift,
+                        );
+                        let mut heads = 0;
+                        for y in 3..18 {
+                            for x in 3..18 {
+                                let at = GridPos::new(x, y);
+                                let now = if reduced { 0.1 } else { duration * progress };
+                                assert!(
+                                    player
+                                        .sample_world_with_motion(at, false, now, reduced)
+                                        .is_none()
+                                );
+                                if let Some(sample) =
+                                    player.sample_world_with_motion(at, true, now, reduced)
+                                {
+                                    let (ax, ay) = sample.anchor.unwrap();
+                                    assert!((x as f32 + ax - expected.0).abs() < 0.0001);
+                                    assert!((y as f32 + ay - expected.1).abs() < 0.0001);
+                                    let length = (dx as f32).hypot(dy as f32);
+                                    assert!(
+                                        (sample.direction.0 - dx as f32 / length).abs() < 0.0001
+                                    );
+                                    if (0.0..1.0).contains(&ax) && (0.0..1.0).contains(&ay) {
+                                        heads += 1;
+                                    }
+                                }
+                            }
+                        }
+                        assert_eq!(
+                            heads, 1,
+                            "{name}, ({dx}, {dy}), {progress}, reduced={reduced}"
+                        );
+                    }
+                }
+                assert!(player.sample_world(end, true, duration + 0.001).is_none());
+            }
+        }
+    }
+
+    #[test]
+    fn explosion_tiles_share_one_epicenter_phase_and_do_not_reveal_hidden_cells() {
+        use project_rl::presentation::VisualCueCell;
+        let content = project_rl::content::ContentLoader::load(
+            &[std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content")],
+            &semver::Version::new(0, 1, 0),
+        )
+        .unwrap();
+        let origin = GridPos::new(5, 5);
+        let edge = GridPos::new(6, 6);
+        let mut player = VisualCuePlayer::with_catalog(content.visual_cues().clone());
+        player.play(
+            VisualCue::world(
+                cue_id("core:explosive_blast"),
+                origin,
+                [VisualCueCell::new(origin, 0), VisualCueCell::new(edge, 1)],
+            )
+            .unwrap(),
+            0.0,
+        );
+        let center = player.sample_world(origin, true, 0.18).unwrap();
+        let corner = player.sample_world(edge, true, 0.18).unwrap();
+        assert_eq!(center.anchor, Some((0.5, 0.5)));
+        assert_eq!(corner.anchor, Some((-0.5, -0.5)));
+        assert_eq!(center.progress, corner.progress);
+        assert_eq!(center.radius, corner.radius);
+        assert!(player.sample_world(edge, false, 0.18).is_none());
+        assert!(
+            player
+                .sample_world(GridPos::new(5, 6), true, 0.18)
+                .is_none()
+        );
+        assert!(player.sample_world(origin, true, 0.85).is_none());
+    }
+
+    #[test]
+    fn scheduling_a_distant_explosion_keeps_the_rocket_in_flight() {
+        let content = project_rl::content::ContentLoader::load(
+            &[std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content")],
+            &semver::Version::new(0, 1, 0),
+        )
+        .unwrap();
+        let mut player = VisualCuePlayer::with_catalog(content.visual_cues().clone());
+        let start = GridPos::new(2, 2);
+        let end = GridPos::new(9, 9);
+        let id = cue_id("core:lance_roquettes");
+        let duration = player.flight_seconds(&id, start, end);
+        assert!(duration > 0.35);
+        player.play(VisualCue::line(id, start, end).unwrap(), 0.0);
+        player.play(
+            VisualCue::point(cue_id("core:explosive_blast"), end),
+            duration,
+        );
+        player.prune(duration * 0.5);
+        let sample = player
+            .sample_world(GridPos::new(6, 6), true, duration * 0.5)
+            .unwrap();
+        assert_eq!(sample.family, TerminalEffectFamily::Rocket);
+        assert!(player.sample_world(end, true, duration * 0.5).is_none());
+        assert_eq!(
+            player
+                .sample_world(end, true, duration + 0.1)
+                .unwrap()
+                .family,
+            TerminalEffectFamily::Blast
+        );
+    }
+
+    #[test]
+    fn buckshot_uses_diverging_rays_without_revealing_hidden_cells() {
+        use project_rl::presentation::VisualCueCell;
+        let content = project_rl::content::ContentLoader::load(
+            &[std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content")],
+            &semver::Version::new(0, 1, 0),
+        )
+        .unwrap();
+        let id = cue_id("core:fusil_a_pompe");
+        let mut player = VisualCuePlayer::with_catalog(content.visual_cues().clone());
+        let origin = GridPos::new(2, 2);
+        let center = GridPos::new(4, 2);
+        let edge = GridPos::new(4, 3);
+        player.play(
+            VisualCue::world(
+                id,
+                origin,
+                [VisualCueCell::new(center, 1), VisualCueCell::new(edge, 1)],
+            )
+            .unwrap(),
+            10.0,
+        );
+        assert!(player.sample_world(edge, true, 10.01).is_none());
+        let middle = player.sample_world(center, true, 10.08).unwrap();
+        let side = player.sample_world(edge, true, 10.08).unwrap();
+        assert_eq!(middle.family, TerminalEffectFamily::Buckshot);
+        assert_eq!(middle.direction, (1.0, 0.0));
+        assert_eq!(side.direction, (1.0, 0.5));
+        assert!(player.sample_world(edge, false, 10.08).is_none());
+        assert!(player.sample_world(edge, true, 10.30).is_none());
     }
 
     #[test]

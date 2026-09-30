@@ -1,0 +1,30 @@
+{
+  "id": "core:lance_roquettes",
+  "name_key": "equipment.lance_roquettes.name",
+  "description_key": "equipment.lance_roquettes.description",
+  "mass_grams": 7000,
+  "attack": {
+    "range": 7,
+    "distance_metric": "chebyshev",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": 0,
+    "damage": {
+      "amount": 10,
+      "damage_type": "explosive",
+      "penetration": 1
+    }
+  },
+  "supply": {
+    "kind": "matter",
+    "amount": 5
+  },
+  "launcher": {
+    "radius": 1,
+    "delay_turns": 0,
+    "damage": {
+      "amount": 10,
+      "damage_type": "explosive",
+      "penetration": 1
+    }
+  }
+}

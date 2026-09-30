@@ -20,6 +20,8 @@ mod instance_effect_tests;
 #[cfg(test)]
 #[path = "level_health_tests.rs"]
 mod level_health_tests;
+#[path = "native_weapons.rs"]
+mod native_weapons;
 #[cfg(test)]
 #[path = "weapon_area_tests.rs"]
 mod weapon_area_tests;
@@ -33,6 +35,7 @@ mod weapon_followups;
 mod weapon_fracture;
 #[path = "weapon_supplies.rs"]
 mod weapon_supplies;
+use native_weapons::SustainedFire;
 
 #[cfg(test)]
 #[path = "weapon_supplies_tests.rs"]
@@ -343,6 +346,7 @@ impl Debug for PreparedTechniquePayload {
 }
 
 pub struct GameState {
+    sustained_fire: Option<SustainedFire>,
     weapon_echoes: WeaponEchoState,
     pub(super) map: Map,
     pub(super) actors: ActorRegistry,
@@ -405,6 +409,8 @@ pub struct GameState {
 // full field list makes missing Serde contracts fail during ordinary checking.
 #[derive(Serialize, Deserialize)]
 pub(super) struct GameStateSnapshot {
+    #[serde(default)]
+    sustained_fire: Option<SustainedFire>,
     weapon_echoes: WeaponEchoState,
     map: Map,
     actors: ActorRegistry,
@@ -465,6 +471,7 @@ impl GameState {
         }
         Ok(GameStateSnapshot {
             weapon_echoes: self.weapon_echoes.clone(),
+            sustained_fire: self.sustained_fire.clone(),
             map: self.map.clone(),
             actors: self.actors.clone(),
             player: self.player,
@@ -522,6 +529,7 @@ impl GameState {
     pub(super) fn from_snapshot(snapshot: GameStateSnapshot, rules: GameRules) -> Self {
         Self {
             weapon_echoes: snapshot.weapon_echoes,
+            sustained_fire: snapshot.sustained_fire,
             map: snapshot.map,
             actors: snapshot.actors,
             player: snapshot.player,
@@ -642,6 +650,9 @@ impl Debug for GameState {
         }
         if !self.weapon_echoes.is_empty() {
             state.field("weapon_echoes", &self.weapon_echoes);
+        }
+        if let Some(sustained) = &self.sustained_fire {
+            state.field("sustained_fire", sustained);
         }
         if let Some(preparation) = &self.player_preparation {
             state.field("player_preparation", preparation);
@@ -1059,6 +1070,7 @@ impl GameState {
             electronic_warfare: ElectronicWarfareState::default(),
             threat_sources: Vec::new(),
             weapon_echoes: WeaponEchoState::default(),
+            sustained_fire: None,
         })
     }
 
@@ -2492,6 +2504,7 @@ impl GameState {
         let previous_weapon_ammunition = self.player_weapon_ammunition.clone();
         let previous_player_inventory = self.player_inventory.clone();
         let previous_explosive_devices = self.explosive_devices.clone();
+        let previous_sustained_fire = self.sustained_fire.clone();
         let previous_wrecks = self.wrecks.clone();
         let previous_equipment_engineering = self.equipment_engineering.clone();
         let previous_salvaged_components = self.salvaged_components.clone();
@@ -2772,6 +2785,7 @@ impl GameState {
                 self.player_weapon_ammunition = previous_weapon_ammunition;
                 self.player_inventory = previous_player_inventory;
                 self.explosive_devices = previous_explosive_devices;
+                self.sustained_fire = previous_sustained_fire;
                 self.wrecks = previous_wrecks;
                 self.equipment_engineering = previous_equipment_engineering;
                 self.salvaged_components = previous_salvaged_components;
@@ -10352,8 +10366,7 @@ impl GameState {
             prepared = self.prepare_targeted_attack(attacker, slot, interceptor)?;
         }
         let recovery = prepared.attack.recovery_after_attack();
-        self.spend_prepared_attack_usage(&prepared, 1)?;
-        self.resolve_prepared_attack(prepared, ActionOrigin::Normal)?;
+        self.execute_native_weapon(prepared)?;
         if let Some(recovery) = recovery {
             self.start_action_recovery(attacker, recovery);
         }
@@ -10489,6 +10502,7 @@ impl GameState {
             return Ok(());
         }
         self.ensure_player_weapon_ammunition(prepared.weapon.as_ref(), required)?;
+        self.ensure_native_heat(prepared)?;
         let Some(module_use) = prepared.module_use else {
             return Ok(());
         };
@@ -10641,7 +10655,7 @@ impl GameState {
 
         let origin = attacker_state.position();
         let target_at = target_state.position();
-        let affected_cells = attack.affected_cells(&self.map, origin, target_at);
+        let affected_cells = self.weapon_attack_cells(attack, weapon.as_ref(), origin, target_at);
         Ok(PreparedAttack {
             attacker,
             target: Some(target),
@@ -10662,8 +10676,7 @@ impl GameState {
     fn perform_player_area_attack(&mut self, slot: u8, target: GridPos) -> Result<(), AttackError> {
         let prepared = self.prepare_player_area_attack(slot, target)?;
         let recovery = prepared.attack.recovery_after_attack();
-        self.spend_prepared_attack_usage(&prepared, 1)?;
-        self.resolve_prepared_attack(prepared, ActionOrigin::Normal)?;
+        self.execute_native_weapon(prepared)?;
         if let Some(recovery) = recovery {
             self.start_action_recovery(self.player, recovery);
         }
@@ -10681,7 +10694,9 @@ impl GameState {
         if self.map.is_protected(origin) || self.map.is_protected(target_at) {
             return Err(AttackError::ProtectedZone);
         }
-        if matches!(attack.area(), AttackArea::Single) {
+        if matches!(attack.area(), AttackArea::Single)
+            && self.prepared_launcher(&prepared).is_none()
+        {
             // An on-hit cone still needs an actual primary target. Empty-cell
             // aiming may show its shape but cannot spend a turn or fire it.
             let target = prepared
@@ -10708,6 +10723,11 @@ impl GameState {
             self.attack_details(self.player, slot)?;
         let origin = attacker_state.position();
         if matches!(attack.area(), AttackArea::Single)
+            && weapon
+                .as_ref()
+                .and_then(|id| self.rules.weapons.get(id))
+                .and_then(WeaponDefinition::launcher)
+                .is_none()
             && !weapon_effects
                 .iter()
                 .any(|effect| matches!(effect.kind(), WeaponEffectKind::CatalyticCone { .. }))
@@ -10720,7 +10740,7 @@ impl GameState {
         if target_at == origin {
             return Err(AttackError::TargetIsOrigin);
         }
-        let affected_cells = attack.affected_cells(&self.map, origin, target_at);
+        let affected_cells = self.weapon_attack_cells(attack, weapon.as_ref(), origin, target_at);
         Ok(PreparedAttack {
             attacker: self.player,
             target: self
@@ -10739,6 +10759,31 @@ impl GameState {
             technique_on_hit_effect: None,
             damage_target: AttackDamageTarget::Body,
         })
+    }
+
+    fn weapon_attack_cells(
+        &self,
+        attack: AttackProfile,
+        weapon: Option<&WeaponId>,
+        origin: GridPos,
+        target: GridPos,
+    ) -> Vec<AttackAreaCell> {
+        if let Some(launcher) = weapon
+            .and_then(|id| self.rules.weapons.get(id))
+            .and_then(WeaponDefinition::launcher)
+        {
+            return native_weapons::launcher_cells(&self.map, target, launcher);
+        }
+        let mut cells = attack.affected_cells(&self.map, origin, target);
+        if weapon
+            .and_then(|id| self.rules.weapons.get(id))
+            .is_some_and(|weapon| !weapon.distance_damage_percentages().is_empty())
+        {
+            // An oblique cone's lateral edge may otherwise extend past its
+            // declared range. Keep legacy shapes unchanged for old content.
+            cells.retain(|cell| attack.is_in_range(origin, cell.position));
+        }
+        cells
     }
 
     fn attack_details(&self, attacker: EntityId, slot: u8) -> Result<AttackDetails, AttackError> {
@@ -10764,6 +10809,11 @@ impl GameState {
                 .player_item_weapon(entry.instance())
                 .ok_or(AttackError::MissingAttackSlot(slot))?;
             let mut attack = self.apply_equipped_attack_bonuses(weapon.attack());
+            attack = attack.with_accuracy_modifier(
+                attack
+                    .accuracy_modifier()
+                    .saturating_add(self.native_accuracy(&weapon, attacker_state.position())),
+            );
             let module_state = self.equipment_engineering.get(&module).copied();
             if module_state
                 .is_some_and(|state| state.durability() == 0 || state.is_suspended_as_donor())
@@ -10909,6 +10959,7 @@ impl GameState {
             .collect();
         let mut hit_positions = BTreeSet::new();
         let mut hit_targets = BTreeSet::new();
+        let mut primary_damage = BTreeMap::new();
         let mut hit_impacts: BTreeMap<GridPos, EntityId> = BTreeMap::new();
         let mut catalysis_hits: BTreeMap<usize, BTreeMap<GridPos, EntityId>> = BTreeMap::new();
         let mut fracture_hits: BTreeMap<usize, BTreeMap<GridPos, (EntityId, u16)>> =
@@ -10921,7 +10972,12 @@ impl GameState {
             if self.actors.get(attacker).is_none() {
                 break;
             }
-            let hit = self.resolve_hit(attacker, affected_target, attack)?;
+            let native_blast = weapon
+                .as_ref()
+                .and_then(|id| self.rules.weapons.get(id))
+                .and_then(WeaponDefinition::launcher)
+                .is_some_and(|launcher| launcher.delay_turns == 0);
+            let hit = native_blast || self.resolve_hit(attacker, affected_target, attack)?;
             if !hit {
                 continue;
             }
@@ -10966,7 +11022,17 @@ impl GameState {
                 attacker,
                 affected_target,
                 attack,
-                resolved_damage,
+                // The base weapon's range profile applies once to the direct
+                // hit, after Power/output tuning and before reactions/Armor.
+                // Secondary affix damage has its own authored rules.
+                weapon
+                    .as_ref()
+                    .and_then(|id| self.rules.weapons.get(id))
+                    .map_or(resolved_damage, |weapon| {
+                        resolved_damage.scaled_percentage(
+                            weapon.damage_percentage_at(origin, affected_position),
+                        )
+                    }),
                 action_origin,
             );
             let target_damage = if self.directional_guard_blocks(affected_target, origin) {
@@ -11008,6 +11074,7 @@ impl GameState {
             };
             if application.amount > 0 {
                 damaged_positions.insert(affected_position);
+                primary_damage.insert(affected_target, application.amount);
                 for index in eligible_effects {
                     let total = life_steal_damage.entry(index).or_default();
                     *total = total.saturating_add(u32::from(application.amount));
@@ -11358,7 +11425,10 @@ impl GameState {
             self.resolve_melee_counterattack(reactor, source, technique);
         }
 
-        Ok(AttackResolution { hit_targets })
+        Ok(AttackResolution {
+            hit_targets,
+            primary_damage,
+        })
     }
 
     fn resolve_evasive_steps_before_attack(
@@ -12647,6 +12717,9 @@ impl GameState {
             // A previous primitive in the same ability may already have removed the target.
             return Ok(());
         };
+        if !definition.admits_target(target_actor.tags()) {
+            return Ok(());
+        }
         let outcome = target_actor.apply_status(&definition, effect.stacks(), source);
         self.events.push(GameEvent::StatusApplied {
             source,
@@ -16713,6 +16786,7 @@ enum AttackError {
     },
 }
 
+#[derive(Clone)]
 struct PreparedAttack {
     attacker: EntityId,
     target: Option<EntityId>,
@@ -16748,6 +16822,7 @@ enum AttackDamageTarget {
 #[derive(Clone, Debug, Default, PartialEq, Eq)]
 struct AttackResolution {
     hit_targets: BTreeSet<EntityId>,
+    primary_damage: BTreeMap<EntityId, u16>,
 }
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]

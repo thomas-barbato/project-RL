@@ -131,6 +131,7 @@ pub struct StatusDefinition {
     family: Option<StatusFamilyId>,
     blocked_families: Vec<StatusFamilyId>,
     expiration_transition: Option<StatusTransition>,
+    required_any_target_tags: Vec<StatusId>,
 }
 
 impl std::fmt::Debug for StatusDefinition {
@@ -152,6 +153,9 @@ impl std::fmt::Debug for StatusDefinition {
         }
         if let Some(transition) = &self.expiration_transition {
             definition.field("expiration_transition", transition);
+        }
+        if !self.required_any_target_tags.is_empty() {
+            definition.field("required_any_target_tags", &self.required_any_target_tags);
         }
         definition.finish()
     }
@@ -179,6 +183,7 @@ impl StatusDefinition {
             family: None,
             blocked_families: Vec::new(),
             expiration_transition: None,
+            required_any_target_tags: Vec::new(),
         })
     }
 
@@ -254,6 +259,19 @@ impl StatusDefinition {
     pub fn with_family(mut self, family: StatusFamilyId) -> Self {
         self.family = Some(family);
         self
+    }
+
+    pub fn with_required_any_target_tags(mut self, tags: Vec<StatusId>) -> Self {
+        self.required_any_target_tags = tags;
+        self
+    }
+
+    pub fn admits_target(&self, tags: &std::collections::BTreeSet<StatusId>) -> bool {
+        self.required_any_target_tags.is_empty()
+            || self
+                .required_any_target_tags
+                .iter()
+                .any(|tag| tags.contains(tag))
     }
 
     pub fn with_blocked_families(
@@ -333,6 +351,7 @@ impl StatusDefinition {
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum StatusDefinitionError {
+    InvalidTargetTag,
     ZeroDamageGuard,
     DuplicateDamageGuard,
     UnboundedDamageGuard,
@@ -350,6 +369,7 @@ pub enum StatusDefinitionError {
 impl Display for StatusDefinitionError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::InvalidTargetTag => write!(formatter, "invalid status target tag"),
             Self::ZeroDamageGuard => write!(formatter, "damage guard must be positive"),
             Self::DuplicateDamageGuard => {
                 write!(formatter, "a status cannot define damage guard twice")

@@ -45,6 +45,7 @@ actions! {
     MoveEast, "Se déplacer vers l'est", "D", GAME;
     Wait, "Attendre un tour", "Space", GAME;
     Attack, "Attaquer la cible", "F", GAME;
+    AimGround, "Viser une case", "T", GAME;
     CycleTarget, "Cible suivante", "Tab", GAME;
     Interact, "Interagir / ramasser", "E", GAME;
     Inventory, "Ouvrir / fermer l'inventaire", "I", ALL;
@@ -439,6 +440,7 @@ impl Controls {
             Action::Inspect,
             Action::CompanionOrder,
             Action::Laboratory,
+            Action::AimGround,
         ] {
             if result.bindings.contains_key(&action) {
                 continue;
@@ -1035,6 +1037,21 @@ mod tests {
         let migrated = Controls::decode(&document.to_string()).unwrap();
         assert_eq!(migrated.binding(Action::Report), &Binding::key("V"));
         assert_ne!(migrated.binding(Action::Interact), &Binding::key("V"));
+        migrated.validate().unwrap();
+    }
+
+    #[test]
+    fn legacy_controls_gain_ground_aim_without_overwriting_custom_t() {
+        let mut document =
+            serde_json::to_value(Controls::preset(Layout::Azerty, KeySemantics::native())).unwrap();
+        document["bindings"]
+            .as_object_mut()
+            .unwrap()
+            .remove("aim_ground");
+        document["bindings"]["attack"] = serde_json::json!({"type":"key", "value":"T"});
+        let migrated = Controls::decode(&document.to_string()).unwrap();
+        assert_eq!(migrated.binding(Action::Attack), &Binding::key("T"));
+        assert_ne!(migrated.binding(Action::AimGround), &Binding::key("T"));
         migrated.validate().unwrap();
     }
 

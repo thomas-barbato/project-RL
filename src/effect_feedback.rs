@@ -397,15 +397,33 @@ impl AsciiApp {
         if !self.game.player_visibility().is_visible(at) {
             return Vec::new();
         }
+        let mut badges = Vec::new();
+        if let Some(turns) = self
+            .game
+            .explosive_devices()
+            .at(at)
+            .filter(|device| device.is_identified() && !device.is_neutralized())
+            .filter_map(|device| match device.activation() {
+                project_rl::explosive::ExplosiveActivation::Timed { trigger_turn } => Some(
+                    trigger_turn
+                        .saturating_sub(self.game.turn())
+                        .saturating_add(1)
+                        .min(u64::from(u16::MAX)) as u16,
+                ),
+                _ => None,
+            })
+            .min()
+        {
+            badges.push(TerminalEffectBadge::Grenade { turns });
+        }
         let Some(actor) = self
             .game
             .actors()
             .entity_at(at)
             .and_then(|id| self.game.actors().get(id))
         else {
-            return Vec::new();
+            return badges;
         };
-        let mut badges = Vec::new();
         if self
             .game
             .alternation_previous(self.game.player_id())
@@ -446,6 +464,14 @@ impl AsciiApp {
                 })
             {
                 badges.push(TerminalEffectBadge::Guard);
+                continue;
+            }
+            if status.definition.as_str() == "core:bleeding" {
+                badges.push(TerminalEffectBadge::Bleeding);
+                continue;
+            }
+            if status.definition.as_str() == "core:poisoned" {
+                badges.push(TerminalEffectBadge::Poisoned);
                 continue;
             }
             let damage_type =

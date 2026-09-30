@@ -539,6 +539,11 @@ impl RawTerminalCueStyle {
 #[serde(rename_all = "snake_case")]
 enum RawTerminalEffectGlyph {
     Dot,
+    Buckshot,
+    Ballistic,
+    Rocket,
+    Grenade,
+    Blast,
     Projectile,
     Spark,
     Burst,
@@ -578,6 +583,11 @@ impl RawTerminalEffectGlyph {
     const fn into_runtime(self) -> TerminalEffectGlyph {
         match self {
             Self::Dot => TerminalEffectGlyph::Dot,
+            Self::Buckshot => TerminalEffectGlyph::Buckshot,
+            Self::Ballistic => TerminalEffectGlyph::Ballistic,
+            Self::Rocket => TerminalEffectGlyph::Rocket,
+            Self::Grenade => TerminalEffectGlyph::Grenade,
+            Self::Blast => TerminalEffectGlyph::Blast,
             Self::Projectile => TerminalEffectGlyph::Projectile,
             Self::Spark => TerminalEffectGlyph::Spark,
             Self::Burst => TerminalEffectGlyph::Burst,
@@ -3739,6 +3749,8 @@ struct RawStatusDefinition {
     #[serde(default)]
     blocked_families: Vec<String>,
     expiration_transition: Option<RawStatusTransition>,
+    #[serde(default)]
+    required_any_target_tags: Vec<String>,
 }
 
 #[derive(Deserialize)]
@@ -3776,6 +3788,15 @@ impl RawStatusDefinition {
         if let Some(transition) = expiration_transition {
             definition = definition.with_expiration_transition(transition);
         }
+        definition = definition.with_required_any_target_tags(
+            self.required_any_target_tags
+                .iter()
+                .map(|tag| {
+                    tag.parse()
+                        .map_err(|_| StatusDefinitionError::InvalidTargetTag)
+                })
+                .collect::<Result<Vec<_>, _>>()?,
+        );
         Ok(definition)
     }
 }
@@ -3946,11 +3967,22 @@ struct RawWeaponDefinition {
     ammunition_capacity: Option<u16>,
     supply: Option<crate::weapon::WeaponSupply>,
     power_draw: Option<u16>,
+    distance_damage_percentages: Option<Vec<serde_json::Value>>,
+    burst: Option<crate::weapon::BurstFire>,
+    launcher: Option<RawLauncher>,
     attack: RawWeaponAttack,
     #[serde(default)]
     effects: Vec<RawWeaponEffect>,
     #[serde(default)]
     capabilities: RawWeaponCapabilities,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct RawLauncher {
+    radius: u16,
+    delay_turns: u16,
+    damage: RawWeaponDamage,
 }
 
 impl RawWeaponDefinition {
@@ -3986,6 +4018,32 @@ impl RawWeaponDefinition {
                     Some(supply) => definition.with_supply(supply),
                     None => Ok(definition),
                 }?;
+                let definition = match self.distance_damage_percentages {
+                    Some(values) => definition.with_distance_damage_percentages(
+                        values
+                            .iter()
+                            .map(|value| {
+                                value
+                                    .as_u64()
+                                    .and_then(|value| u16::try_from(value).ok())
+                                    .ok_or(WeaponDefinitionError::InvalidDistanceDamage)
+                            })
+                            .collect::<Result<Vec<_>, _>>()?,
+                    ),
+                    None => Ok(definition),
+                }?;
+                let definition = match self.burst {
+                    Some(burst) => definition.with_burst(burst)?,
+                    None => definition,
+                };
+                let definition = match self.launcher {
+                    Some(launcher) => definition.with_launcher(crate::weapon::Launcher {
+                        radius: launcher.radius,
+                        delay_turns: launcher.delay_turns,
+                        damage: launcher.damage.into_runtime(),
+                    })?,
+                    None => definition,
+                };
                 match power_draw {
                     Some(power_draw) => definition.with_power_draw(power_draw),
                     None => Ok(definition),
@@ -6842,6 +6900,35 @@ mod tests {
 
         assert_eq!(attack.delivery(), AttackDelivery::Ranged);
         assert_eq!(attack.accuracy_modifier(), -7);
+    }
+
+    #[test]
+    fn weapon_families_distance_damage_rejects_invalid_percentages() {
+        for (values, valid) in [
+            ("[50, 100]", true),
+            ("[100]", false),
+            ("[]", false),
+            ("[0, 100]", false),
+            ("[100, 101]", false),
+            ("[-1, 100]", false),
+            ("[50.5, 100]", false),
+        ] {
+            let source = format!(
+                r#"{{
+                id: "test:reach", name_key: "name", description_key: "description",
+                distance_damage_percentages: {values},
+                attack: {{ range: 2, distance_metric: "chebyshev", requires_line_of_sight: true,
+                    delivery: "melee", damage: {{ amount: 4, damage_type: "piercing" }} }},
+            }}"#
+            );
+            let raw: RawWeaponDefinition = json5::from_str(&source).unwrap();
+            assert_eq!(
+                raw.into_runtime("test:reach".parse().unwrap(), &StatusCatalog::default())
+                    .is_ok(),
+                valid,
+                "{values}"
+            );
+        }
     }
 
     #[test]

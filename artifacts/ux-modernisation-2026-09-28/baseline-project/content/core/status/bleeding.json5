@@ -1,0 +1,32 @@
+{
+  "id": "core:bleeding",
+  "duration_turns": 3,
+  "required_any_target_tags": [
+    "core:fauna_scavengers",
+    "core:fauna_burrowers",
+    "core:fauna_carapaces",
+    "core:humanoid_rifle_carrier",
+    "core:humanoid_knife_carrier",
+    "core:cave_scaled",
+    "core:cave_anemone",
+    "core:ruin_bat",
+    "lab:healing_target"
+  ],
+  "stacking": {
+    "mode": "refresh_duration"
+  },
+  "hooks": [
+    {
+      "trigger": "turn_end",
+      "effects": [
+        {
+          "type": "deal_damage",
+          "amount": 2,
+          "damage_type": "piercing",
+          "penetration": 65535,
+          "multiply_by_stacks": false
+        }
+      ]
+    }
+  ]
+}

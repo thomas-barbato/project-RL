@@ -21,6 +21,11 @@ pub const MAX_TERMINAL_LINGER_MILLIS: u16 = 10_000;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TerminalEffectGlyph {
     Dot,
+    Buckshot,
+    Ballistic,
+    Rocket,
+    Grenade,
+    Blast,
     Projectile,
     Spark,
     Burst,

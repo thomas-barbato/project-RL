@@ -6,6 +6,13 @@ campagne, ni une quête, ni une nouvelle partie sauvegardable.
 
 ## Utilisation
 
+- Le nouvel arsenal comprend le **Fusil d'assaut**, la **Mitrailleuse lourde**, le **Lance-roquettes**, le **Lance-grenades**, la **Hache de combat** et le **Marteau de guerre**, sans bonus. Une hache de saignée et une lance de venin sont aussi présentes, chacune avec et sans bonus statistiques. Le laboratoire contient désormais 71 objets pour 80 places.
+- Le **lance-grenades** tire avec **F** ou le bouton **Attaquer** sur la sélection. Un clic sur un personnage ou sur une case vide change la sélection, sans tirer, y compris pendant la visée. Bouger la souris seul ne change pas la sélection. Au clavier, **T** (commande réattribuable « Viser une case ») ouvre la visée libre et les touches de déplacement choisissent la case. Sans cible sélectionnée, F ouvre aussi la visée libre. La grenade reste au sol avec un compteur de deux tours ; les explosions peuvent vous toucher.
+- Le **lance-roquettes** conserve sa prévisualisation avec **F** avant confirmation. La commande **T** ouvre également la visée libre des armes de zone.
+- La mitrailleuse gagne en précision lors des rafales consécutives sans déplacement et produit de la chaleur. Une pause permet de refroidir mais perd le bonus de tir soutenu.
+
+- La **Lance** et le **Fusil à pompe** de campagne sont présents sans bonus dans l'inventaire. La lance frappe à deux cases et perd la moitié de ses dégâts au contact. Le fusil à pompe couvre un cône court et utilise deux munitions par tir ; ses dégâts diminuent avec la distance. Leur fiche affiche ces différences.
+
 - Ouvrir l'inventaire avec la commande habituelle et équiper une variante dans
   un emplacement d'arme. Les raccourcis restent ceux des options du joueur.
 - Attaquer les cibles immobiles `X` : seules, regroupées, dans l'eau ou séparées
@@ -34,7 +41,7 @@ campagne, ni une quête, ni une nouvelle partie sauvegardable.
 - Deux armes supplémentaires permettent de tester les ressources : le **Fusil
   de patrouille** consomme 1 munition par tir, le **Fusil de parallaxe** consomme
   6 énergie par tir. Elles se trouvent dans l'inventaire, catégorie **Armes**.
-  Une pile de **40 munitions** est fournie, et l'énergie récupère
+  Une pile de **600 munitions** est fournie pour essayer tout l'arsenal, et l'énergie récupère
   1 point par tour terminé. Réinitialiser le laboratoire restaure ces réserves.
   Les tirs du parallaxe peuvent s'enchaîner sans déplacement ni attente, tant
   que l'énergie suffit. Sous le nom de l'arme, une jauge indique la réserve.
@@ -383,3 +390,12 @@ sélectionne, désélectionne et change de cible sans tour ni attaque, y compris
 si l'attaque est réattribuée au clic gauche. La capture finale montre soit la
 cible sélectionnée, soit l'absence de cible. La variante 1080 utilise une
 échelle d'interface de 125 % ; aucun réglage du joueur n'est chargé ou modifié.
+
+Arsenal : les diagnostics `--ui-cold-arsenal-rocket-flight-diagonal` et
+`--ui-cold-arsenal-grenade-flight-oblique` montrent un projectile unique,
+orienté selon la trajectoire complète. `--ui-cold-arsenal-rocket-blast-oblique`
+et `--ui-cold-arsenal-rocket-blast-smoke` montrent deux phases de l'explosion.
+`--ui-cold-arsenal-grenade-blast-diagonal-960` vérifie le rendu compact.
+L'explosion partage un seul centre entre ses cases visibles : boule de feu,
+onde de choc, éclats puis fumée. Ces animations ne modifient ni la zone de
+dégâts ni les deux tours d'attente de la grenade.

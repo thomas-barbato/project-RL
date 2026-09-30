@@ -15,6 +15,7 @@ use project_rl::weapon::{
 use project_rl::world::{FieldOfViewRules, Map, NeighborMode, TerrainPropagationPolicy};
 
 const LAB_SEED: u64 = 0x1ab;
+const LAB_AMMUNITION: u16 = 600;
 const LAB_AFFIX_TIER: u8 = 1;
 
 fn roll_lab_bonuses(
@@ -831,12 +832,21 @@ impl AsciiApp {
         // Real campaign weapons exercise supply costs without changing the
         // unlimited effect-testing variants built below.
         let matter: ContentId = "core:weapon_matter".parse().unwrap();
-        let supply_weapons: Vec<ContentId> =
-            ["core:fusil_de_patrouille", "core:fusil_de_parallaxe"]
-                .into_iter()
-                .map(|id| id.parse().unwrap())
-                .collect();
-        if rules.weapon_matter_item.is_none() {
+        let supply_weapons: Vec<ContentId> = [
+            "core:fusil_de_patrouille",
+            "core:fusil_de_parallaxe",
+            "core:lance",
+            "core:fusil_a_pompe",
+        ]
+        .into_iter()
+        .chain(equipment_generation::ARSENAL_BASE_IDS)
+        .map(|id| id.parse().unwrap())
+        .collect();
+        if rules.weapon_matter_item.is_none()
+            || supply_weapons
+                .iter()
+                .any(|id| rules.weapons.get(id).is_none())
+        {
             let (current, _, _, _) = ascii_game_content()?;
             rules.items = rules.items.without_id(&matter);
             rules
@@ -850,6 +860,22 @@ impl AsciiApp {
                     .register(current.weapons.get(id).unwrap().clone())
                     .map_err(|e| e.to_string())?;
             }
+            for id in equipment_generation::ARSENAL_STATUS_IDS.map(|id| id.parse().unwrap()) {
+                rules.statuses = rules.statuses.without_id(&id);
+                rules
+                    .statuses
+                    .register(current.statuses.get(&id).unwrap().clone())
+                    .map_err(|e| e.to_string())?;
+            }
+            rules.weapons = rules.weapons.without_effect_affixes(
+                &equipment_generation::ARSENAL_EFFECT_IDS.map(|id| id.parse().unwrap()),
+            );
+            for id in equipment_generation::ARSENAL_EFFECT_IDS.map(|id| id.parse().unwrap()) {
+                rules
+                    .weapons
+                    .register_effect_affix(current.weapons.effect_affix(&id).unwrap().clone())
+                    .map_err(|e| e.to_string())?;
+            }
         }
         rules.weapon_matter_item = Some(matter.clone());
         rules.player_energy_regeneration = 1;
@@ -857,8 +883,11 @@ impl AsciiApp {
         rules.player_starting_weapons.extend(supply_weapons);
         rules
             .player_starting_items
-            .push(project_rl::game::StartingItemStack::new(matter, 40));
-        rules.player_inventory_capacity = 64;
+            .push(project_rl::game::StartingItemStack::new(
+                matter,
+                LAB_AMMUNITION,
+            ));
+        rules.player_inventory_capacity = 80;
         rules.player_field_of_view = FieldOfViewRules {
             radius: 12,
             distance_metric: DistanceMetric::Chebyshev,
@@ -868,6 +897,20 @@ impl AsciiApp {
         rules.hit_rules = Some(rules.hit_rules.unwrap_or_default());
         rules.player_system_resources = Some(rules.player_system_resources.unwrap_or_default());
         let mut magic = Vec::new();
+        for (base, effect) in [
+            ("core:hache_de_combat", "core:affix_saignement"),
+            ("core:lance", "core:affix_poison"),
+        ] {
+            magic.push((
+                base.parse().unwrap(),
+                project_rl::entity::MagicItemModifiers::effect_only(effect.parse().unwrap()),
+            ));
+            magic.push((
+                base.parse().unwrap(),
+                roll_lab_bonuses(&mut bonus_rng, EquipmentNameGrammar::FeminineSingular)
+                    .with_effect_affix(effect.parse().unwrap()),
+            ));
+        }
         let mut instance_effects = Vec::new();
         for (prefix, base_id, label) in [
             ("blade", "core:integrity_blade", "Lame"),
@@ -1269,7 +1312,8 @@ impl AsciiApp {
             "LABORATOIRE DE TEST · session temporaire, sans sauvegarde.".into(),
             "X : cibles immobiles · eau : conduction · mur : arrêt de propagation.".into(),
             "54 armes et 2 armures d'essai, avec/sans bonus aléatoires. Ricochet : fusils uniquement.".into(),
-            "Ressources : fusil de patrouille, fusil de parallaxe et 40 munitions dans l'inventaire.".into(),
+            format!("Ressources : {LAB_AMMUNITION} munitions partagées entre les armes. Réinitialiser le laboratoire restaure la réserve."),
+            "À essayer : lance à deux cases et fusil à pompe à courte portée, sans bonus.".into(),
             "Vol de vie : départ blessé ; 50 % des dégâts, au plus 3 PV par attaque. Mannequins autorisés ici seulement.".into(),
             "Inventaire : choisissez une variante. Réinitialiser le laboratoire tire de nouveaux bonus."
                 .into(),
@@ -2115,12 +2159,12 @@ mod tests {
         let mut app = main_menu();
         let campaign = suspension::fingerprint(&app.game);
         app.enter_test_lab().unwrap();
-        assert_eq!(app.game.player_matter(), Some(40));
+        assert_eq!(app.game.player_matter(), Some(u32::from(LAB_AMMUNITION)));
         let initial_energy = app.game.player_energy().available();
         let target = app.selected_target.unwrap();
         for (id, expected_matter) in [
-            ("core:fusil_de_patrouille", 39),
-            ("core:fusil_de_parallaxe", 39),
+            ("core:fusil_de_patrouille", u32::from(LAB_AMMUNITION) - 1),
+            ("core:fusil_de_parallaxe", u32::from(LAB_AMMUNITION) - 1),
         ] {
             let id: ContentId = id.parse().unwrap();
             let item = app
@@ -2149,7 +2193,7 @@ mod tests {
             }
         }
         app.reset_test_lab().unwrap();
-        assert_eq!(app.game.player_matter(), Some(40));
+        assert_eq!(app.game.player_matter(), Some(u32::from(LAB_AMMUNITION)));
         assert_eq!(app.game.player_energy().available(), initial_energy);
         app.leave_test_lab();
         assert_eq!(suspension::fingerprint(&app.game), campaign);
@@ -2159,8 +2203,10 @@ mod tests {
     fn all_profiles_have_melee_ranged_and_real_stat_bonus_variants() {
         let mut app = main_menu();
         app.enter_test_lab().unwrap();
-        assert_eq!(app.game.player_inventory().len(), 59);
-        let mut expected_mass = 4_000_u64 + 3_500 + 3_700; // Armor pair and supply-testing rifles.
+        assert_eq!(app.game.player_inventory().len(), 71);
+        let mut expected_mass = 4_000_u64 + 3_500 + 3_700 + 2_100 + 3_400; // Armor pair and four campaign weapons.
+        expected_mass += 3_200 + 8_500 + 7_000 + 4_500 + 2_400 + 4_000 + 2_400 + 2_100;
+        expected_mass += 2_400 + 2_100;
         for (prefix, base) in [
             ("blade", "core:integrity_blade"),
             ("rifle", "core:needle_launcher"),

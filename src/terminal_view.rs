@@ -323,6 +323,9 @@ impl TerminalStatusIcon {
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TerminalEffectBadge {
+    Grenade { turns: u16 },
+    Bleeding,
+    Poisoned,
     Fracture { charges: u16, threshold: u16 },
     Alternation,
     Echo { turns: u16 },
@@ -3781,6 +3784,18 @@ fn draw_effect_badges(rect: Rect, badges: &[TerminalEffectBadge]) {
             Color::from_rgba(3, 12, 17, 240),
         );
         let (pattern, color) = match icon {
+            TerminalEffectBadge::Grenade { turns } => {
+                draw_text(
+                    &turns.to_string(),
+                    badge.x + 2.0,
+                    badge.y + badge.h - 1.0,
+                    badge.h,
+                    Color::from_rgba(255, 180, 65, 255),
+                );
+                continue;
+            }
+            TerminalEffectBadge::Bleeding => (&ACID_DROP, Color::from_rgba(247, 92, 108, 255)),
+            TerminalEffectBadge::Poisoned => (&BADGE_POISON, Color::from_rgba(184, 112, 235, 255)),
             TerminalEffectBadge::Alternation => {
                 (&BADGE_ALTERNATION, Color::from_rgba(195, 177, 255, 255))
             }
@@ -4141,6 +4156,9 @@ const BADGE_GUARD: PixelGlyph = [
 ];
 const BADGE_TIMED: PixelGlyph = [
     ".######.", "..#..#..", "...##...", "...##...", "..#..#..", ".######.", "........", "........",
+];
+const BADGE_POISON: PixelGlyph = [
+    "..####..", ".######.", ".#..#.#.", ".######.", "..#..#..", "..####..", "...##...", "........",
 ];
 const BADGE_SLOWED: PixelGlyph = [
     "........", "..#..#..", "..#..#..", "..#..#..", "..#..#..", "........", "........", "........",

@@ -249,6 +249,13 @@ fn equipped_probe(rules: &GameRules, weapon: &str, jacket: &str, seed: u64) -> G
     rules.player_starting_weapons = vec![weapon.parse().unwrap()];
     rules.player_starting_equipment = vec![Some(weapon.parse().unwrap())];
     rules.player_starting_items = vec![StartingItemStack::new(jacket.parse().unwrap(), 1)];
+    // This fixture replaces the inventory, including the shared ammunition.
+    // Supply the probe without disabling the real weapon's consumption rules.
+    if let Some(ammunition) = rules.weapon_matter_item.clone() {
+        rules
+            .player_starting_items
+            .push(StartingItemStack::new(ammunition, 40));
+    }
     let mut game = GameState::new_with_rules(arena(), PLAYER_AT, seed, rules).unwrap();
     let item = game
         .player_inventory()

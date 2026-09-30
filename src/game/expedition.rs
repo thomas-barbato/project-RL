@@ -44,7 +44,7 @@ use super::{
 
 const MAX_WORLD_SNAPSHOT_BYTES: usize = 12 * 1024 * 1024;
 // Binary snapshots are caches; older layouts must use verified command replay.
-const WORLD_SNAPSHOT_HEADER: &[u8] = b"RLWS\x07";
+const WORLD_SNAPSHOT_HEADER: &[u8] = b"RLWS\x08";
 
 #[path = "equipment_trade.rs"]
 mod equipment_trade;

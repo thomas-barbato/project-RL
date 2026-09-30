@@ -12,6 +12,17 @@ pub(super) const BASE_IDS: [&str; 6] = [
     "core:veste_de_veille",
 ];
 pub(super) const EFFECT_IDS: [&str; 2] = ["core:affix_braise", "core:affix_decharge"];
+pub(super) const TACTICAL_BASE_IDS: [&str; 2] = ["core:lance", "core:fusil_a_pompe"];
+pub(super) const ARSENAL_BASE_IDS: [&str; 6] = [
+    "core:fusil_d_assaut",
+    "core:mitrailleuse_lourde",
+    "core:lance_roquettes",
+    "core:lance_grenades",
+    "core:hache_de_combat",
+    "core:marteau_de_guerre",
+];
+pub(super) const ARSENAL_EFFECT_IDS: [&str; 2] = ["core:affix_saignement", "core:affix_poison"];
+pub(super) const ARSENAL_STATUS_IDS: [&str; 2] = ["core:bleeding", "core:poisoned"];
 pub(super) const DEEP_BASE_IDS: [&str; 12] = [
     "core:couteau_ceramique",
     "core:couteau_de_chitine",
@@ -160,7 +171,15 @@ mod tests {
     #[test]
     fn weapon_families_preserve_version_127() {
         let app = app(127);
-        println!("v127 rules={} loot={}", rules_fingerprint_for_version(&app.rules, 127), suspension::fingerprint(&app.loot));
+        assert_eq!(
+            rules_fingerprint_for_version(&app.rules, 127),
+            4887016499305801953
+        );
+        assert_eq!(suspension::fingerprint(&app.loot), 17749085145699605428);
+        for id in TACTICAL_BASE_IDS.map(|id| id.parse().unwrap()) {
+            assert!(app.rules.weapons.get(&id).is_none());
+            assert!(app.loot.equipment().iter().all(|(item, _)| item != &id));
+        }
     }
 
     fn app(version: u8) -> AsciiApp {
@@ -217,7 +236,8 @@ mod tests {
             after.loot[..8]
                 .iter()
                 .all(|item| BASE_IDS.contains(&item.item().as_str())
-                    || DEEP_BASE_IDS.contains(&item.item().as_str()))
+                    || DEEP_BASE_IDS.contains(&item.item().as_str())
+                    || TACTICAL_BASE_IDS.contains(&item.item().as_str()))
         );
         let mut again = before.clone();
         app.populate_regional_equipment(&mut again, &"core:human_habitat".parse().unwrap(), 91)

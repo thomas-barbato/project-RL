@@ -396,6 +396,8 @@ mod tests {
             variant: 7,
             links: 0,
             direction: (0.0, 0.0),
+            anchor: None,
+            radius: 0.0,
         }
     }
 

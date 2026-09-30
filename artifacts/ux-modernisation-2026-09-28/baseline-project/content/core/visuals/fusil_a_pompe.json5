@@ -1,0 +1,11 @@
+{
+  id: "core:fusil_a_pompe",
+  terminal: {
+    frames: ["buckshot", "buckshot", "buckshot"],
+    color: [215, 220, 222, 255],
+    accent_colors: [[117, 129, 139, 255], [255, 241, 198, 255]],
+    frame_millis: 45,
+    step_millis: 45,
+    linger_millis: 15,
+  },
+}

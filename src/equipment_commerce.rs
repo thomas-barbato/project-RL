@@ -9,6 +9,14 @@ fn base_price(family: &str, tier: u8) -> Option<u32> {
     let prices = match family {
         "core:knives" => [50, 85, 130, 190, 280, 410],
         "core:rifles" => [85, 130, 200, 300, 440, 640],
+        "core:spears" => [65, 100, 150, 220, 320, 470],
+        "core:shotguns" => [100, 150, 225, 330, 480, 700],
+        "core:assault_rifles" => [120, 175, 260, 370, 540, 790],
+        "core:machine_guns" => [150, 220, 320, 460, 660, 960],
+        "core:rocket_launchers" => [160, 240, 350, 500, 720, 1050],
+        "core:grenade_launchers" => [135, 200, 290, 420, 610, 890],
+        "core:axes" => [70, 110, 165, 240, 350, 510],
+        "core:war_hammers" => [80, 120, 180, 265, 380, 555],
         "core:protective_jackets" => [70, 105, 160, 240, 350, 510],
         _ => return None,
     };
@@ -39,6 +47,10 @@ pub(super) fn shop_definition(
             continue;
         };
         quotes.push((id.clone(), price / 3, price));
+        // Keep buyback quotes at every depth, including player-sold variants.
+        if base.maximum_depth.is_some_and(|maximum| depth > maximum) {
+            continue;
+        }
         if base.tier == tier || (tier > 1 && base.tier == tier - 1) {
             definition.offers.push(MerchantOfferDefinition {
                 item: id.clone(),

@@ -79,6 +79,7 @@ impl EquipmentTradeRules {
                     item: item.clone(),
                     family: "core:merchant_equipment".parse().unwrap(),
                     tier: pool.tier,
+                    maximum_depth: None,
                     grammar: pool.grammar,
                     form: EquipmentForm::HumanoidEquipment,
                     sources: vec![EquipmentSource::HumanoidSite],

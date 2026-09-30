@@ -5,7 +5,11 @@ Le [premier raccordement jouable](GENERATION_EQUIPEMENT.md) concerne les couteau
 fusils et vestes P1 à P6 : six modèles par famille, couvrant les six couches
 accessibles, surface comprise. Les autres familles restent des propositions.
 
+**Mise à jour du 30 septembre :** vingt bases jouables avec l'ajout approuvé de **Lance** et **Fusil à pompe**, limité pour l'instant à deux modèles de début de partie. Voir [leur intégration](GENERATION_EQUIPEMENT.md). Les autres noms et familles du catalogue restent des propositions ; cet ajout ne valide pas leurs variantes profondes.
+
 ## Périmètre
+
+La génération 129 porte le total à **26 bases jouables** : Fusil d'assaut, Mitrailleuse lourde, Lance-roquettes, Lance-grenades, Hache de combat et Marteau de guerre rejoignent les vingt précédentes. Ce sont les six premières bases du nouvel arsenal approuvé, pas encore des séries complètes à tous les paliers. Les propriétés de saignement et de poison sont des affixes d'instance, pas des variantes de base à dupliquer. Les autres propositions du catalogue ne sont pas automatiquement validées.
 
 **144 bases nommées dans 24 familles**, chacune déclinée sur six paliers de puissance :
 84 armes et modules offensifs, 60 protections et modules utilitaires. Les noms
