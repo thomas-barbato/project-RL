@@ -1,0 +1,9 @@
+{
+  id: "core:spectre_echo",
+  terminal: {
+    frames: ["echo"],
+    color: [145, 154, 202, 220],
+    accent_colors: [[201, 183, 240, 245], [243, 236, 255, 255]],
+    frame_millis: 320, step_millis: 0, linger_millis: 120,
+  },
+}

@@ -1,0 +1,29 @@
+Prototype indépendant : apercu-natif.html
+Date : 2026-10-04
+
+Révision : objets en 2D et retour au personnage précédent.
+Export de build-native-assets.cjs réussi : 4 objets de 32 x 32,
+16 motifs de sol et 1 mur de 32 x 32.
+Les trois apparences de BRÈCHE sont reprises de classes-v1.png avec le même
+rendu de case entière à 32 pixels que dans apercu.html, sans nouveau dessin.
+node --check : native-art.js, build-native-assets.cjs et native-preview.js.
+
+Dans le navigateur local :
+- Chargement des quatre illustrations et du portrait, sans erreur console.
+- Carte : buffer 320 x 256 et affichage CSS 320 x 256 ; cases de 32 pixels.
+- Les quatre PNG d'objets ont une taille source et CSS de 32 x 32.
+- Soin rectangulaire vu de dessus ; munitions représentées par une cartouche
+  de profil, fusil de profil et armure de face.
+- Les quatre images du sac ont une taille de 64 x 64 et utilisent directement
+  les sources de 999, 720, 199 et 192 pixels de large après découpe native.
+- Les quatre cibles d'objet affichent leur illustration en 128 x 128.
+- Ciblage du personnage, d'un sol et d'un mur ; trois variantes d'équipement
+  et quatre familles de sol vérifiées.
+- Ramassage du fusil : case devenue libre, quantité de démonstration 1 -> 2.
+  Remise au sol : fusil visible sur sa case, quantité 2 -> 1.
+- Réinitialisation : quatre objets au sol et cible boîte de soins.
+
+Limites : pas d'intégration au moteur, pas de conversion du catalogue complet,
+pas de validation artistique finale des nouveaux objets ou équipements modulaires.
+La simulation regroupe des quantités de démonstration, sans gestion des piles
+ni des règles d'inventaire de la partie réelle.

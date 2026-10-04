@@ -1,0 +1,89 @@
+
+running 38 tests
+test ascii_app::city_feedback_tests::city_feedback_old_starts_and_loot_remain_unchanged ... ok
+test ascii_app::city_feedback_tests::city_feedback_saved_run_diagnostic ... ignored
+test ascii_app::equipment_generation::accessory_models::tests::accessory_models_follow_layers_and_never_drop_from_robots_or_animals ... ok
+test ascii_app::equipment_generation::accessory_models::tests::accessory_models_have_approved_names_slots_and_reduced_persistent_bonuses ... ok
+test ascii_app::city_feedback_tests::city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses ... ok
+test ascii_app::equipment_generation::armor_models::tests::reinforced_armor_models_are_layer_bound_white_or_enchanted_and_tradeable ... ok
+test ascii_app::equipment_generation::armor_models::tests::reinforced_armor_models_keep_names_tradeoff_and_only_protection_progresses ... ok
+test ascii_app::city_feedback_tests::city_feedback_resident_and_clinic_move_on_all_four_edges ... ok
+test ascii_app::equipment_generation::enemy_equipment::tests::actual_kill_feedback_and_pickup_show_the_same_generated_weapon ... ok
+test ascii_app::equipment_generation::enemy_equipment::tests::carried_weapons_are_explicit_bounded_varied_and_independent_of_actor_order ... ok
+test ascii_app::equipment_generation::firearm_models::tests::firearm_models_are_ordinary_layer_loot_with_independent_affixes_and_provenance ... ok
+test ascii_app::equipment_generation::firearm_models::tests::firearm_models_have_six_tiers_and_only_damage_changes_within_a_family ... ok
+test ascii_app::equipment_generation::melee_models::tests::melee_models_have_six_tiers_with_only_damage_changes_and_complete_presentation ... ok
+test ascii_app::city_feedback_tests::city_feedback_new_starts_see_elias_inside_the_randomly_placed_town ... ok
+test ascii_app::equipment_generation::melee_models::tests::melee_models_remain_common_white_or_enchanted_at_every_layer_and_in_shops ... ok
+
+thread 'ascii_app::equipment_generation::tests::accessory_models_preserve_version_133' (30080) panicked at src\equipment_generation.rs:366:9:
+assertion `left == right` failed
+  left: 1782011318931060307
+ right: 8547453497967341830
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test ascii_app::equipment_generation::tests::accessory_models_preserve_version_133 ... FAILED
+test ascii_app::equipment_generation::enemy_equipment::tests::regional_carriers_survive_real_travel_snapshot_and_journal_replay ... ok
+test ascii_app::equipment_generation::melee_models::tests::melee_models_increase_actual_damage_without_changing_reach_or_spending_ammunition ... ok
+
+thread 'ascii_app::equipment_generation::tests::firearm_models_preserve_version_129' (24800) panicked at src\equipment_generation.rs:306:9:
+assertion `left == right` failed
+  left: 12821491141838654528
+ right: 5015229487898651663
+test ascii_app::equipment_generation::tests::firearm_models_preserve_version_129 ... FAILED
+
+thread 'ascii_app::equipment_generation::tests::melee_models_preserve_version_130' (26104) panicked at src\equipment_generation.rs:319:9:
+assertion `left == right` failed
+  left: 1293324344745390349
+ right: 4364533401394836414
+test ascii_app::equipment_generation::tests::melee_models_preserve_version_130 ... FAILED
+
+thread 'ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132' (15824) panicked at src\equipment_generation.rs:349:9:
+assertion `left == right` failed
+  left: 2546150270975769363
+ right: 7514443169048286002
+test ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132 ... FAILED
+test ascii_app::hub_layout_tests::random_home_new_game_samples_once_and_rebuilds_with_the_chosen_seed ... ok
+test ascii_app::equipment_generation::firearm_models::tests::firearm_models_all_fire_with_native_resources_and_current_runs_resume ... ok
+test ascii_app::playable_trial::tests::playable_trial_keeps_normal_character_creation ... ok
+test ascii_app::playable_trial::tests::playable_trial_profile_preserves_the_complete_campaign_and_save_format ... ok
+
+thread 'ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot' (24624) panicked at src\playable_trial_app.rs:268:9:
+assertion failed: app.navigation_signal_summary().unwrap().starts_with("RETOUR EN VILLE")
+test ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot ... FAILED
+test ascii_app::surface_density_tests::dense_surface_doors_open_and_furniture_blocks_movement_and_vision_in_the_engine ... ok
+test ascii_app::hub_layout_tests::random_home_services_quests_intro_and_resume_follow_the_physical_placement ... ok
+test ascii_app::playable_trial::tests::playable_trial_survives_verified_resume_and_restart ... ok
+density 1 RegionCoord { x: -1, y: 0, depth: 0 }: 29 buildings, 113.6806ms
+density 1 RegionCoord { x: 1, y: 0, depth: 0 }: 33 buildings, 123.4563ms
+density 1 RegionCoord { x: 0, y: -1, depth: 0 }: 29 buildings, 88.3761ms
+test ascii_app::tests::current_runs_wake_in_recycling_while_older_runs_keep_the_city_start ... ok
+density 1 RegionCoord { x: 0, y: 1, depth: 0 }: 27 buildings, 91.4427ms
+density 17 RegionCoord { x: -1, y: 0, depth: 0 }: 28 buildings, 107.8287ms
+density 17 RegionCoord { x: 1, y: 0, depth: 0 }: 29 buildings, 104.4113ms
+test ascii_app::tests::persistent_intro_objective_is_separate_from_footer_messages ... ok
+density 17 RegionCoord { x: 0, y: -1, depth: 0 }: 34 buildings, 90.2266ms
+density 17 RegionCoord { x: 0, y: 1, depth: 0 }: 30 buildings, 125.9456ms
+density 20260909 RegionCoord { x: -1, y: 0, depth: 0 }: 29 buildings, 128.1675ms
+test ascii_app::tests::recycling_main_route_completes_the_first_city_milestone ... ok
+density 20260909 RegionCoord { x: 1, y: 0, depth: 0 }: 28 buildings, 124.4524ms
+density 20260909 RegionCoord { x: 0, y: -1, depth: 0 }: 31 buildings, 144.502ms
+density 20260909 RegionCoord { x: 0, y: 1, depth: 0 }: 28 buildings, 131.8713ms
+test ascii_app::surface_density_tests::dense_surface_regions_preserve_sites_loot_actors_and_all_passages ... ok
+test ascii_app::tests::version_sixty_three_keeps_the_city_without_retroactive_residents ... ok
+test ascii_app::surface_density_tests::dense_surface_generations_resume_without_rewriting_previous_maps ... ok
+test surface_layout::tests::dense_surface_is_repeatable_and_varies_between_seeds ... ok
+test ascii_app::hub_layout_tests::random_home_preserves_authored_terrain_controls_and_all_exits_on_every_edge has been running for over 60 seconds
+test surface_layout::tests::dense_surface_has_connected_furnished_buildings_and_preserves_authored_content ... ok
+test ascii_app::hub_layout_tests::random_home_preserves_authored_terrain_controls_and_all_exits_on_every_edge ... ok
+
+failures:
+
+failures:
+    ascii_app::equipment_generation::tests::accessory_models_preserve_version_133
+    ascii_app::equipment_generation::tests::firearm_models_preserve_version_129
+    ascii_app::equipment_generation::tests::melee_models_preserve_version_130
+    ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132
+    ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot
+
+test result: FAILED. 32 passed; 5 failed; 1 ignored; 0 measured; 539 filtered out; finished in 113.67s
+

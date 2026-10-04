@@ -1,0 +1,34 @@
+Lecture tactique intégrée — 4 octobre 2026
+
+Fonctionnement
+- F2 (reconfigurable) affiche ou masque ensemble vision des PNJ visibles (vert) et portée des émissions sonores visibles (ambre). REC-06 reste nécessaire. Aucun tour ni coût en énergie.
+- Les portées proviennent des règles existantes. Murs et propagation sonore restent pris en compte. Aucun acteur ni aucune source cachée n'est révélé.
+- Les pictogrammes rouges sans fond restent affichés indépendamment de REC-06 et de F2 : œil pour la détection optique actuelle, oreille pour un bruit réellement audible ou entendu par l'IA pendant le dernier tour. L'œil est prioritaire.
+- Les bruits brefs restent consultables jusqu'au prochain tour achevé. Une action refusée conserve cette indication.
+- Projection mise en cache entre les images ; invalidation après une action, des événements ou un changement de zone. Le contour radial rejoint les cases par leurs portions courbes : aucun centre de case hors portée n'est coloré. Les cellules bloquées à l'intérieur de la portée restent exclues.
+- La minimap garde son cadrage connu et reprend les deux portées. La description de REC-06 et l'aide des commandes ont été mises à jour.
+
+Vérifications
+- cargo test --locked --lib : 806 réussis, aucun échec.
+- 8 tests client ciblés réussis : lecture tactique/cache/expiration, contrôle F2/REC-06, versions 72 et 73, géométrie des cercles, compatibilité des instantanés, installations et badges de quête.
+- cargo check --locked --all-targets : réussi.
+- cargo fmt --all --check et git diff --check sur les sources touchées : réussis.
+- cargo build --locked --bin project-rl et cargo build --locked --release --bin project-rl : réussis ; avertissements préexistants.
+- captures-final : six captures natives du rendu ordinaire, à 1600 x 900 et 960 x 600 ; affichage/masquage via la touche configurée, véritable apprentissage de REC-06, bruit expiré et détection optique réelle. Le dessin et F2 conservent les octets de l'état moteur.
+- La préparation de cette scène accélère uniquement sa progression pour apprendre REC-06. Le diagnostic réalise le gain de niveau dans l'annexe, car la ville interdit le combat. Les tentatives initiales captures-01/02 ont échoué pendant cette préparation, avant les captures ; captures-final a entièrement réussi.
+
+Mesures debug locales
+- Déplacement moteur sans dessin : médiane 1.7421 ms, p95 2.0831 ms, maximum 2.2668 ms (80 commandes).
+- Profilage : les sauvegardes normale et profilée restent strictement identiques.
+- Rendu annexe, 120 images par état : médiane 7,3187 ms avec les zones, 6,3979 ms sans ; p95 11,0459 / 8,8551 ms. Ces mesures concernent cette scène, pas une garantie de FPS sur toutes les cartes.
+- Diagnostic UI froid : 10 scènes vérifiées sans mutation. Monde stabilisé : médiane 8,1399 ms, p95 8,417 ms. Premier dessin froid : 385,0712 ms ; à distinguer des images stabilisées. L'ancienne capture textures-ombres/performance-isolee relevait déjà 611,9516 ms au premier dessin.
+- La comparaison avec les sauvegardes du diagnostic précédent montre aussi les affiliations/propriétaires de l'annexe corrigés avant cette intervention ; elle n'est donc pas une comparaison d'états identiques entre les deux versions. La compatibilité des octets et empreintes est validée par les tests ciblés.
+
+Essai
+- Voir_lecture_tactique.cmd compile et lance désormais --essai-lecture-tactique : scène jouable, compétence apprise, commandes ordinaires, sauvegarde isolée dans artifacts/lecture-tactique-integration-2026-10-04/essai/diagnostic.json.
+- L'ancien aperçu figé demeure accessible par --apercu-lecture-tactique ; il ne sert pas aux captures finales.
+
+Portée
+- changes.patch et scope.json comparent les 14 fichiers au début de cette intervention ; les autres modifications du workspace sont conservées.
+- Les données de présentation récentes ne sont pas ajoutées au format de sauvegarde ni aux empreintes Debug. À la reprise, les émissions persistantes restent restaurées ; les indications des bruits brefs repartent au prochain tour.
+- La suite client complète n'a pas été relancée. Aucun commit ni push.

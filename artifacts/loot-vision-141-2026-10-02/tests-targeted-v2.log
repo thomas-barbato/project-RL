@@ -1,0 +1,48 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 27.99s
+     Running unittests src\lib.rs (target\debug\deps\project_rl-2e9ad6618a1c2637.exe)
+
+running 13 tests
+test world::fov::tests::two_touching_walls_block_diagonal_corner_vision ... ok
+test world::fov::tests::explored_tiles_remain_known_after_moving_away ... ok
+test world::fov::tests::wall_is_visible_but_tiles_behind_it_are_hidden ... ok
+test world::fov::tests::placed_obstacles_apply_independent_sight_to_both_visibility_queries ... ok
+test world::fov::tests::single_tile_queries_match_complete_fields_with_doors_corners_and_bounds ... ok
+test game::game_state::actor_loot_tests::environmental_death_transfers_same_weapon_and_natural_attacks_never_become_loot ... ok
+test game::game_state::actor_loot_tests::carried_weapon_drives_enemy_attack_passives_and_real_special_effect ... ok
+test game::game_state::actor_loot_tests::death_drops_once_without_reroll_on_occupied_tile_and_both_objects_can_be_picked_up ... ok
+test game::game_state::actor_loot_tests::recovered_weapon_can_be_sold_saved_and_bought_back_with_identical_properties ... ok
+test game::game_state::actor_loot_tests::snapshot_preserves_wounded_carrier_and_refuses_falsified_weapon ... ok
+test game::game_state::actor_loot_tests::monster_rewards_cover_unarmed_hostiles_but_exclude_civilians_and_duplicate_deaths ... ok
+test game::game_state::actor_loot_tests::monster_rewards_resume_keeps_next_draw_and_rejected_commands_are_atomic ... ok
+600 actual kills: 127 models, 18 families, tiers {1, 2, 3, 4, 5, 6}, bonus counts {0, 1, 2, 3, 4, 5, 6}, no consecutive duplicates
+test game::game_state::actor_loot_tests::monster_rewards_actual_kills_vary_models_families_tiers_and_rarity_without_repeating ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 778 filtered out; finished in 1.05s
+
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 14 tests
+test ascii_app::city_feedback_tests::city_feedback_saved_run_diagnostic ... ignored
+test terminal_view::terminal_fx::tests::effect_pixels_remain_inside_their_visible_cell_at_every_zoom ... ok
+test terminal_view::terminal_vision::tests::radial_fringe_fits_inside_visible_tile_union_at_every_angle_and_zoom ... ok
+test ascii_app::playable_trial::tests::playable_trial_profile_preserves_the_complete_campaign_and_save_format ... ok
+test ascii_app::city_feedback_tests::monster_reward_current_client_uses_new_pool_and_legacy_runs_keep_the_old_rules ... ok
+test ascii_app::equipment_generation::enemy_equipment::tests::actual_kill_feedback_and_pickup_show_the_same_generated_weapon ... ok
+test ascii_app::playable_trial::tests::playable_trial_keeps_normal_character_creation ... ok
+test ascii_app::city_feedback_tests::city_feedback_old_starts_and_loot_remain_unchanged ... ok
+test ascii_app::playable_trial::tests::playable_trial_survives_verified_resume_and_restart ... ok
+test ascii_app::city_feedback_tests::city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses ... ok
+test ascii_app::city_feedback_tests::city_feedback_resident_and_clinic_move_on_all_four_edges ... ok
+test ascii_app::equipment_generation::enemy_equipment::tests::regional_carriers_survive_real_travel_snapshot_and_journal_replay ... ok
+test ascii_app::city_feedback_tests::city_feedback_new_starts_see_elias_inside_the_randomly_placed_town ... ok
+test ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot ... ok
+
+test result: ok. 13 passed; 0 failed; 1 ignored; 0 measured; 565 filtered out; finished in 25.54s
+
+   Doc-tests project_rl
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

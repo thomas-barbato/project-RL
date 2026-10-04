@@ -1,0 +1,21 @@
+
+running 1 test
+version=139 seed=15818763151788624140 zone=Some(ZoneInfo { id: ContentId { raw: "core:starter_city", namespace: PackageId("core"), name: "starter_city" }, name: "Ville de départ / Friches", kind: ContentId { raw: "core:surface", namespace: PackageId("core"), name: "surface" }, depth: 0 }) player=Some(GridPos { x: 51, y: 25 }) interior=[129, 34, 62, 44] intro=false objective=Some("OBJECTIF · REJOINDRE LA VILLE INTÉRIEURE") nav=Some("VILLE INTÉRIEURE · X 129 · Y 54 · EST · LOINTAIN")
+gate=GridPos { x: 129, y: 54 } terrain=Some(TileState { terrain: Door(Closed), protected: true })
+npc position=GridPos { x: 166, y: 51 } resident=false healer=false merchant=true quests=false tags={}
+npc position=GridPos { x: 176, y: 44 } resident=false healer=true merchant=false quests=false tags={ContentId { raw: "core:seve", namespace: PackageId("core"), name: "seve" }}
+npc position=GridPos { x: 151, y: 56 } resident=true healer=false merchant=false quests=false tags={}
+npc position=GridPos { x: 180, y: 60 } resident=false healer=false merchant=false quests=true tags={ContentId { raw: "core:orme", namespace: PackageId("core"), name: "orme" }}
+inventory=core:integrity_blade
+inventory=core:repair_patch
+inventory=core:patched_plating
+inventory=core:weapon_matter
+inventory=core:power_regulator
+inventory=core:melee_couteau_de_camp
+inventory=core:modele_veyr_r12
+inventory=core:modele_veyr_r12
+inventory=core:modele_veyr_r12
+test ascii_app::city_feedback_tests::city_feedback_saved_run_diagnostic ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 576 filtered out; finished in 8.53s
+

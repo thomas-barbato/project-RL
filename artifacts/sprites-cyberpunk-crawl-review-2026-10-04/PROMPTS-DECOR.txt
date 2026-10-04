@@ -1,0 +1,27 @@
+Générateur : imagegen intégré. Proposition pour affichage à32pixels.
+
+SOLS
+Use case: stylized-concept. Asset type: ONE original seamless floor texture atlas for a cyberpunk tiled roguelike review.
+Supporting image 1 is the approved Project RL character sprite style: chunky deliberate clusters, readable ivory and graphite clothing, muted olive and orange accents. Supporting image 2 is the old terrain texture style, to improve and adapt, not to reuse its objects or layout.
+Create ONE SQUARE OPAQUE texture atlas in an EXACT 4-column by 4-row GRID, 16 square floor textures, each cell fully filled edge-to-edge. NO margins, gutters, grid lines, text, labels, object sprites, walls or border frames. No perspective or side surfaces: rigorously overhead flat floor seen from a vertical camera.
+Every texture is designed to become a 32x32 game tile: logical 32-pixel art with large deliberate pixel clusters, restrained limited palette, strong material identity yet quiet surfaces. It should have the quality of careful classic roguelike tile craftsmanship adapted to an original grimy cyberpunk world. Do not copy any existing game assets. Do not make a realistic high-detail painting that loses all meaning when reduced. No gradients or photorealistic noise. Small stains and few meaningful chips, never dense speckling.
+FOUR rows are four floor families, with FOUR coherent variations of the SAME material in each row:
+Row 1: dark charcoal worn ASPHALT, muted bluish gray, sparse subdued cracks and brown wear. No lane markings, no paving slabs, no tile grid.
+Row 2: industrial CONCRETE floor, mid-dark cool gray, broad quiet patches, sparse hairline cracks and dirty footprints-like scuffs. No borders, no outlined square slabs, no regular joints.
+Row 3: worn dark STEEL floor, graphite gray, subtle broad worn brushed areas, sparse dull rust at irregular positions, one or two subdued rivet-like tiny details only if useful. No fully outlined plates, no full-cell grille, no bright trim.
+Row 4: urban RUIN GROUND, muted dark brown-gray compact soil and dust, sparse small gray stone chips, quiet ochre wear. No green grass or loose giant rocks.
+All four variations in a row share EXACT same edge values, color range and scale so variants can tile together without visible square seams. Patterns disperse organically across tile boundaries. NO artificial rim or border band on ANY cell. Do not add a decorative frame around each tile. Keep floors noticeably darker and less contrasted than the reference characters so characters stand out.
+Give enough medium dark value to read material without being black. The atlas itself is an asset sheet, not an illustrated scene. Exact regular 4x4 grid is crucial. Entire output is opaque.
+
+MURS
+Use case: stylized-concept. Asset type: ONE original TOP SURFACE wall-material texture atlas for a 32x32 cyberpunk roguelike review.
+Supporting image 1 is the existing worn metal wall material and muted palette. Its oblique edges and face arrangement are NOT a geometry requirement. Supporting image 2 is the character sprite style.
+Create ONE SQUARE OPAQUE image containing an EXACT regular 2-column x2-row grid of FOUR seamless flat material squares. Each square fully covers its complete cell edge-to-edge with wall TOP SURFACE material only. NO margins, empty backgrounds, gutters, labels, numbers, scene or cell outlines.
+The game constructs connected wall contours from these material textures. Therefore do NOT draw a standalone wall block, a vertical wall face, isometric thickness, door, room, border frame or geometric bevel at the image edges. Materials must tile without producing a grid of boxed cells. All cells are seen strictly from above.
+Style: deliberate crisp hand-drawn PIXEL ART appropriate to a logical 32x32 game tile, chunky clusters, restrained palette and sparse scratches. Craft quality and readability inspired by classic roguelike tiles but fully original and industrial cyberpunk. No photographic surfaces, no smooth painted gradients, no tiny high-resolution speckle.
+Cell top-left: cold worn CONCRETE wall top, medium gray, irregular chips and a few dark hairline cracks, no fabricated stone blocks.
+Cell top-right: worn industrial STEEL wall top, medium steel gray and subdued blue-gray panels, occasional small rivet or rust chip. No framed whole-cell plate.
+Cell bottom-left: reinforced SECURITY ALLOY wall top, dark gray gunmetal with small irregular ivory worn strips and a few amber maintenance marks, never a glowing neon floor stripe or emblem.
+Cell bottom-right: RUIN MASONRY wall top, uneven muted gray-brown stone and broken concrete fragments, broad readable irregular shapes, not a regular brick grid.
+Wall material should be 1-2 tonal steps lighter than charcoal floor yet less bright than ivory player armor. Four materials have readable distinction at actual32px. Quiet contrast; only a few purposeful wear marks. NO black bands along cell edges. Accurate regular2x2 layout. Opaque fully filled squares.
+

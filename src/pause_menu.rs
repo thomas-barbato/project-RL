@@ -199,7 +199,7 @@ impl MenuScreen {
                 "Mode",
                 "Résolution",
                 "Interface",
-                "Rendu",
+                "Thème de l'interface",
                 "Taille des cases",
                 "Contraste renforcé",
                 "Animations réduites",

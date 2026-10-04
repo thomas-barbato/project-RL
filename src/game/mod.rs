@@ -1,10 +1,12 @@
 mod command;
+mod equipment_upgrade;
 mod event;
 mod expedition;
 mod game_state;
 mod preparation;
 mod rng;
 mod rules;
+pub use equipment_upgrade::{EquipmentUpgradeQuote, EquipmentUpgradeRules};
 mod threat;
 mod turn;
 
@@ -26,7 +28,7 @@ pub use expedition::{
 pub use game_state::{
     ActorObservationField, CommandOutcome, CommandRejection, DroneSpawnError, GameInitError,
     GameState, GroundItemSpawnError, MaintainedEffectId, MaintainedEnergyReservation, RunStatus,
-    SpawnError,
+    SoundObservationSource, SpawnError,
 };
 pub use preparation::{PreparationCancellationReason, TechniquePreparationView};
 pub use rng::GameRng;

@@ -22,6 +22,14 @@ use crate::world::{
 /// construct it later without replacing simulation code.
 #[derive(Clone, PartialEq, Eq)]
 pub struct GameRules {
+    /// Crossing into a deeper layer closes access to every previous layer.
+    /// Disabled for historical runs; travel within one layer remains reversible.
+    pub irreversible_layer_travel: bool,
+    /// Optional reward pool for hostile deaths; separate from combat equipment.
+    pub monster_equipment_loot: Option<crate::loot::EquipmentLootCatalog>,
+    pub equipment_upgrade: Option<super::EquipmentUpgradeRules>,
+    /// Generation 135+: weighted counts of one to six properties, also for restored gambles.
+    pub weighted_equipment_bonuses: bool,
     pub player_field_of_view: FieldOfViewRules,
     pub damage: DamageRules,
     /// `None` retains the legacy percentage-resistance resolver. Current runs
@@ -119,6 +127,18 @@ pub struct GameRules {
 impl Debug for GameRules {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         let mut rules = formatter.debug_struct("GameRules");
+        if self.irreversible_layer_travel {
+            rules.field("irreversible_layer_travel", &true);
+        }
+        if let Some(catalog) = &self.monster_equipment_loot {
+            rules.field("monster_equipment_loot", catalog);
+        }
+        if let Some(upgrade) = &self.equipment_upgrade {
+            rules.field("equipment_upgrade", upgrade);
+        }
+        if self.weighted_equipment_bonuses {
+            rules.field("weighted_equipment_bonuses", &true);
+        }
         if self.player_full_heal_on_level_up {
             rules.field("player_full_heal_on_level_up", &true);
         }
@@ -270,6 +290,10 @@ impl StartingItemStack {
 impl Default for GameRules {
     fn default() -> Self {
         Self {
+            irreversible_layer_travel: false,
+            monster_equipment_loot: None,
+            equipment_upgrade: None,
+            weighted_equipment_bonuses: false,
             player_field_of_view: FieldOfViewRules::default(),
             damage: DamageRules::default(),
             armor_rules: None,

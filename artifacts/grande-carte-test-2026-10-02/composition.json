@@ -1,0 +1,356 @@
+{
+  "map": "artifacts\\map-editor\\maps\\grande-ville-et-nature-2026-10-02.json",
+  "dimensions": [
+    160,
+    112
+  ],
+  "seed": 20261002,
+  "buildings": [
+    {
+      "name": "Épicerie",
+      "rect": [
+        13,
+        13,
+        24,
+        27
+      ],
+      "door": [
+        18,
+        27
+      ]
+    },
+    {
+      "name": "Clinique",
+      "rect": [
+        27,
+        13,
+        37,
+        27
+      ],
+      "door": [
+        32,
+        27
+      ]
+    },
+    {
+      "name": "Centre de données",
+      "rect": [
+        46,
+        13,
+        59,
+        27
+      ],
+      "door": [
+        52,
+        27
+      ]
+    },
+    {
+      "name": "Armurerie",
+      "rect": [
+        66,
+        13,
+        79,
+        27
+      ],
+      "door": [
+        72,
+        27
+      ]
+    },
+    {
+      "name": "Atelier",
+      "rect": [
+        13,
+        36,
+        24,
+        47
+      ],
+      "door": [
+        18,
+        47
+      ]
+    },
+    {
+      "name": "Restaurant",
+      "rect": [
+        27,
+        36,
+        37,
+        47
+      ],
+      "door": [
+        32,
+        47
+      ]
+    },
+    {
+      "name": "Auberge",
+      "rect": [
+        66,
+        36,
+        79,
+        47
+      ],
+      "door": [
+        72,
+        47
+      ]
+    },
+    {
+      "name": "Logement 1",
+      "rect": [
+        13,
+        55,
+        24,
+        62
+      ],
+      "door": [
+        18,
+        55
+      ]
+    },
+    {
+      "name": "Logement 2",
+      "rect": [
+        27,
+        55,
+        37,
+        62
+      ],
+      "door": [
+        32,
+        55
+      ]
+    },
+    {
+      "name": "Logement 3",
+      "rect": [
+        46,
+        55,
+        59,
+        62
+      ],
+      "door": [
+        52,
+        55
+      ]
+    },
+    {
+      "name": "Logement 4",
+      "rect": [
+        66,
+        55,
+        79,
+        62
+      ],
+      "door": [
+        72,
+        55
+      ]
+    },
+    {
+      "name": "Logement 5",
+      "rect": [
+        13,
+        65,
+        24,
+        72
+      ],
+      "door": [
+        18,
+        72
+      ]
+    },
+    {
+      "name": "Logement 6",
+      "rect": [
+        27,
+        65,
+        37,
+        72
+      ],
+      "door": [
+        32,
+        72
+      ]
+    },
+    {
+      "name": "Logement 7",
+      "rect": [
+        46,
+        65,
+        59,
+        72
+      ],
+      "door": [
+        52,
+        72
+      ]
+    },
+    {
+      "name": "Logement 8",
+      "rect": [
+        66,
+        65,
+        79,
+        72
+      ],
+      "door": [
+        72,
+        72
+      ]
+    },
+    {
+      "name": "Entrepôt",
+      "rect": [
+        13,
+        78,
+        25,
+        86
+      ],
+      "door": [
+        19,
+        78
+      ]
+    },
+    {
+      "name": "Maintenance",
+      "rect": [
+        67,
+        76,
+        79,
+        83
+      ],
+      "door": [
+        73,
+        76
+      ]
+    },
+    {
+      "name": "Maison du hameau 1",
+      "rect": [
+        120,
+        55,
+        129,
+        63
+      ],
+      "door": [
+        124,
+        63
+      ]
+    },
+    {
+      "name": "Maison du hameau 2",
+      "rect": [
+        134,
+        54,
+        144,
+        63
+      ],
+      "door": [
+        139,
+        63
+      ]
+    },
+    {
+      "name": "Maison du hameau 3",
+      "rect": [
+        120,
+        72,
+        129,
+        80
+      ],
+      "door": [
+        124,
+        72
+      ]
+    },
+    {
+      "name": "Maison du hameau 4",
+      "rect": [
+        134,
+        72,
+        144,
+        80
+      ],
+      "door": [
+        139,
+        72
+      ]
+    },
+    {
+      "name": "Atelier du hameau",
+      "rect": [
+        148,
+        62,
+        158,
+        71
+      ],
+      "door": [
+        148,
+        66
+      ]
+    },
+    {
+      "name": "Réserve du hameau",
+      "rect": [
+        148,
+        74,
+        158,
+        82
+      ],
+      "door": [
+        148,
+        78
+      ]
+    }
+  ],
+  "landmarks": [
+    {
+      "name": "Ville",
+      "rect": [
+        10,
+        10,
+        80,
+        75
+      ]
+    },
+    {
+      "name": "Hameau",
+      "rect": [
+        119,
+        55,
+        147,
+        81
+      ]
+    },
+    {
+      "name": "Grotte du bois",
+      "cell": [
+        139,
+        21
+      ]
+    },
+    {
+      "name": "Ancienne carrière",
+      "cell": [
+        29,
+        96
+      ]
+    },
+    {
+      "name": "Lac",
+      "cell": [
+        143,
+        96
+      ]
+    }
+  ],
+  "counts": {
+    "structures": 934,
+    "props": 1518,
+    "paint": 104,
+    "markers": 5
+  }
+}

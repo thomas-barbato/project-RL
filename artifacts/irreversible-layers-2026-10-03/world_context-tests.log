@@ -1,0 +1,55 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 48 tests
+test ascii_app::world_context::tests::world_context_changed_item_cancels_pending_pickup ... ok
+test ascii_app::world_context::tests::world_context_attack_tracks_same_moving_visible_actor ... ok
+test ascii_app::world_context::tests::world_context_area_attack_previews_then_explicit_confirmation_fires ... ok
+test ascii_app::world_context::tests::world_context_cancel_at_arrival_never_picks_up_later ... ok
+test ascii_app::world_context::tests::world_context_click_selection_exits_cursor_and_toggles_without_turn ... ok
+test ascii_app::world_context::tests::world_context_attack_without_ammo_never_walks ... ok
+test ascii_app::world_context::tests::world_context_approach_stops_on_enemy_and_does_not_resume ... ok
+test ascii_app::world_context::tests::world_context_cancel_examine_does_not_open_inspector ... ok
+test ascii_app::world_context::tests::world_context_cancel_attack_approach_never_fires_later ... ok
+test ascii_app::world_context::tests::world_context_direct_attack_hits_clicked_actor ... ok
+test ascii_app::world_context::tests::world_context_area_attack_approaches_then_waits_for_confirmation ... ok
+test ascii_app::world_context::tests::world_context_drone_is_named_visible_and_can_be_summoned_from_ground ... ok
+test ascii_app::world_context::tests::world_context_door_approach_interacts_exactly_once ... ok
+test ascii_app::world_context::tests::world_context_door_detour_tracks_both_axes_behind_a_wall ... ok
+test ascii_app::world_context::tests::world_context_holding_trigger_does_not_abort_approach_but_other_input_does ... ok
+test ascii_app::world_context::tests::world_context_interact_can_leave_attack_preview_and_collect_selected_ground_item ... ok
+test ascii_app::world_context::tests::world_context_empty_skills_open_and_offer_learning_without_a_turn ... ok
+test ascii_app::world_context::tests::world_context_examine_approaches_without_spending_an_inspection_turn ... ok
+test ascii_app::world_context::tests::world_context_held_mouse_does_not_cancel_walk_but_new_input_does ... ok
+test ascii_app::world_context::tests::world_context_keyboard_attack_approaches_and_fires ... ok
+test ascii_app::world_context::tests::world_context_keyboard_examine_approaches_before_opening ... ok
+test ascii_app::world_context::tests::world_context_held_menu_shortcut_completes_attack_once ... ok
+test ascii_app::world_context::tests::world_context_keyboard_cursor_pickup_and_cancel_are_safe ... ok
+test ascii_app::world_context::tests::world_context_drone_without_free_adjacent_cell_is_disabled ... ok
+test ascii_app::world_context::tests::world_context_keyboard_door_detours_around_wall ... ok
+test ascii_app::world_context::tests::world_context_keyboard_grenade_still_hits_selected_actor_directly ... ok
+test ascii_app::world_context::tests::world_context_keyboard_navigation_and_escape_are_non_destructive ... ok
+test ascii_app::world_context::tests::world_context_known_door_survives_temporary_occlusion ... ok
+test ascii_app::world_context::tests::world_context_all_learned_actives_remain_accessible_with_scrolling ... ok
+test ascii_app::world_context::tests::world_context_known_hostile_allows_walk_but_new_hostile_interrupts_it ... ok
+test ascii_app::world_context::tests::world_context_mouse_walk_completes_visible_route ... ok
+test ascii_app::world_context::tests::world_context_selected_loot_disappears_after_keyboard_pickup ... ok
+test ascii_app::world_context::tests::world_context_open_close_and_disabled_action_spend_nothing ... ok
+test ascii_app::world_context::tests::world_context_learned_skill_stays_visible_and_targets_clicked_actor ... ok
+test ascii_app::world_context::tests::world_context_remote_pickup_walks_then_takes_one_action ... ok
+test ascii_app::world_context::tests::world_context_selected_door_shortcut_approaches_without_mouse ... ok
+test ascii_app::world_context::tests::world_context_attack_approaches_at_weapon_maximum_range_on_both_axes ... ok
+test ascii_app::world_context::tests::world_context_npc_talk_approaches_then_opens_without_extra_turn ... ok
+test ascii_app::world_context::tests::world_context_noncombat_selection_never_attacks_an_unrelated_actor ... ok
+test ascii_app::world_context::tests::world_context_shortcut_uses_menu_cell_not_previous_target ... ok
+test ascii_app::world_context::tests::world_context_selection_cycles_interactive_cells_and_clicks_toggle_them ... ok
+test ascii_app::world_context::tests::world_context_service_npc_selection_displays_talk_and_opens_dialogue ... ok
+test ascii_app::world_context::tests::world_context_tab_exits_cell_cursor_and_keeps_target_for_attack ... ok
+test ascii_app::world_context::tests::world_context_selection_excludes_walls_floor_player_and_hidden_elements ... ok
+test ascii_app::world_context::tests::world_context_tab_in_area_aim_can_select_interactive_terrain ... ok
+test ascii_app::world_context::tests::world_context_unknown_cells_and_occupied_destinations_are_rejected ... ok
+test ascii_app::world_context::tests::world_context_unreachable_interaction_does_not_move ... ok
+test ascii_app::world_context::tests::world_context_walk_reaches_vertical_and_oblique_destinations ... ok
+
+test result: ok. 48 passed; 0 failed; 0 ignored; 0 measured; 543 filtered out; finished in 30.19s
+

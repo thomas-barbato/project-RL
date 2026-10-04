@@ -1,0 +1,19 @@
+{
+  "id": "core:melee_bardiche",
+  "name_key": "equipment.melee_bardiche.name",
+  "description_key": "equipment.hache_de_combat.description",
+  "mass_grams": 2400,
+  "attack": {
+    "impact": { "material_cap": 20 },
+    "range": 1,
+    "distance_metric": "chebyshev",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": -12,
+    "damage": {
+      "amount": 18,
+      "damage_type": "kinetic",
+      "penetration": 0
+    },
+    "delivery": "melee"
+  }
+}

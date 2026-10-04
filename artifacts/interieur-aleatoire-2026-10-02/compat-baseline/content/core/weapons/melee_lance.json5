@@ -1,0 +1,13 @@
+{
+  id: "core:melee_lance",
+  name_key: "equipment.melee_lance.name",
+  description_key: "equipment.lance.description",
+  mass_grams: 2100,
+  distance_damage_percentages: [50, 100],
+  attack: {
+    range: 2, distance_metric: "chebyshev", requires_line_of_sight: true,
+    delivery: "melee", accuracy_modifier: 5,
+    impact: { material_cap: 12 },
+    damage: { amount: 4, damage_type: "piercing", penetration: 0 },
+  },
+}

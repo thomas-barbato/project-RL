@@ -1,0 +1,12 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 05s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 4 tests
+test ascii_app::tests::version_seventy_two_keeps_installed_links_without_tactical_reading ... ok
+test ascii_app::tests::version_seventy_three_keeps_tactical_reading_without_conductive_relays ... ok
+test ascii_app::tests::f2_requires_tactical_reading_then_toggles_without_advancing_the_run ... ok
+test ascii_app::tactical_reading_app::tests::tactical_projection_reuses_frames_and_tracks_emitter_expiry_without_mutation ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 610 filtered out; finished in 5.72s
+

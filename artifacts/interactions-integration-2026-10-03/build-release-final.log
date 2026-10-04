@@ -1,0 +1,40 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+warning: unused import: `super::*`
+ --> src\arsenal_app.rs:2:5
+  |
+2 | use super::*;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: methods `open_level_up_screen`, `resume_loading_panel`, `finish_resume_request`, and `resume_run` are never used
+     --> src\ascii_app.rs:15047:8
+      |
+ 1521 | impl AsciiApp {
+      | ------------- methods in this implementation
+...
+15047 |     fn open_level_up_screen(&mut self, notice: LevelUpNotice) {
+      |        ^^^^^^^^^^^^^^^^^^^^
+...
+21741 |     fn resume_loading_panel(&self) -> Rect {
+      |        ^^^^^^^^^^^^^^^^^^^^
+...
+22047 |     fn finish_resume_request(&mut self) {
+      |        ^^^^^^^^^^^^^^^^^^^^^
+...
+22134 |     fn resume_run(&mut self) -> Result<(), String> {
+      |        ^^^^^^^^^^
+      |
+      = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: method `wall_joins` is never used
+   --> src\terminal_view.rs:758:8
+    |
+544 | impl TerminalView {
+    | ----------------- method in this implementation
+...
+758 |     fn wall_joins(&self, position: GridPos) -> [bool; 4] {
+    |        ^^^^^^^^^^
+
+warning: `project-rl` (bin "project-rl") generated 3 warnings (run `cargo fix --bin "project-rl" -p project-rl` to apply 1 suggestion)
+    Finished `release` profile [optimized] target(s) in 2m 25s

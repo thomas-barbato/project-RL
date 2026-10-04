@@ -44,7 +44,10 @@ use super::{
 
 const MAX_WORLD_SNAPSHOT_BYTES: usize = 12 * 1024 * 1024;
 // Binary snapshots are caches; older layouts must use verified command replay.
-const WORLD_SNAPSHOT_HEADER: &[u8] = b"RLWS\x08";
+const WORLD_SNAPSHOT_HEADER: &[u8] = b"RLWS\x0b";
+
+#[path = "facility_interactions.rs"]
+mod facility_interactions;
 
 #[path = "equipment_trade.rs"]
 mod equipment_trade;
@@ -80,6 +83,7 @@ pub struct NpcInteraction {
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum NpcRole {
+    Artisan,
     Worker(WorkerRole),
     Merchant,
     Healer,
@@ -89,6 +93,7 @@ pub enum NpcRole {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum NpcService {
+    EquipmentUpgrade,
     FacilityMaintenance {
         order: WorkOrderId,
         required_item: ItemId,
@@ -706,6 +711,7 @@ impl Debug for ZoneState {
     }
 }
 
+#[derive(Clone)]
 pub struct WorldState {
     narrative: Option<NarrativeState>,
     active: GameState,
@@ -1002,6 +1008,28 @@ impl WorldState {
         self.links.get(&(zone.clone(), at))
     }
 
+    fn layer_travel_allowed(&self, source: &ContentId, destination: &ContentId) -> bool {
+        !self.rules().irreversible_layer_travel
+            || self
+                .zone_info(source)
+                .zip(self.zone_info(destination))
+                .is_some_and(|(source, destination)| destination.depth >= source.depth)
+    }
+
+    pub fn passage_returns_to_previous_layer(&self, link: &ZoneLink) -> bool {
+        self.current
+            .as_ref()
+            .is_some_and(|source| !self.layer_travel_allowed(source, &link.destination))
+    }
+
+    pub fn passage_is_irreversible(&self, link: &ZoneLink) -> bool {
+        self.rules().irreversible_layer_travel
+            && self
+                .current_zone()
+                .zip(self.zone_info(&link.destination))
+                .is_some_and(|(source, destination)| destination.depth > source.depth)
+    }
+
     /// Returns the first passage of a route that only crosses zones the player
     /// has already visited. Presentations can guide a return trip without
     /// exposing an unmaterialized map or an undiscovered shortcut.
@@ -1023,6 +1051,7 @@ impl WorldState {
             for ((source, position), link) in &self.links {
                 if source != &zone
                     || !visited_zones.contains(&link.destination)
+                    || !self.layer_travel_allowed(source, &link.destination)
                     || !searched.insert(link.destination.clone())
                 {
                     continue;
@@ -1089,6 +1118,16 @@ impl WorldState {
             .and_then(|facility| facility.worker_role(worker))
     }
 
+    pub fn active_artisan(&self, provider: crate::entity::EntityId) -> bool {
+        self.rules().equipment_upgrade.is_some()
+            && self.actors().get(provider).is_some_and(|actor| {
+                actor
+                    .tags()
+                    .iter()
+                    .any(|id| id.as_str() == "core:equipment_artisan")
+            })
+    }
+
     pub fn active_merchant(&self, provider: crate::entity::EntityId) -> bool {
         self.current
             .as_ref()
@@ -1150,8 +1189,9 @@ impl WorldState {
             .rules()
             .items
             .get(&item)
-            .ok_or_else(|| format!("Unknown diagnostic item '{item}'"))?
-            .maximum_stack();
+            .map(|definition| definition.maximum_stack())
+            .or_else(|| self.active.rules().weapons.get(&item).map(|_| 1))
+            .ok_or_else(|| format!("Unknown diagnostic item '{item}'"))?;
         self.active
             .player_inventory_mut()
             .add(item, quantity, maximum_stack)
@@ -1179,6 +1219,18 @@ impl WorldState {
             .local_alert()
             .is_some_and(|alert| alert.is_active(self.active.turn));
         let quests = self.npc_quest_views(provider);
+        if self.active_artisan(provider) {
+            return Some(NpcInteraction {
+                provider,
+                position,
+                role: NpcRole::Artisan,
+                locally_alerted,
+                resident_routine: None,
+                contextual_dialogue_key: None,
+                services: vec![NpcService::EquipmentUpgrade],
+                quests,
+            });
+        }
         if let Some(merchant) = self
             .current
             .as_ref()
@@ -2327,6 +2379,38 @@ impl WorldState {
         to: ContentId,
         arrival: GridPos,
     ) -> Result<(), String> {
+        self.connect_validated(from, at, to, arrival, MapValidationRules::default())
+    }
+
+    /// An optional connection may coexist with sealed rooms elsewhere in the
+    /// source zone. Both anchors must still be reachable and borders sealed.
+    pub fn connect_optional(
+        &mut self,
+        from: ContentId,
+        at: GridPos,
+        to: ContentId,
+        arrival: GridPos,
+    ) -> Result<(), String> {
+        self.connect_validated(
+            from,
+            at,
+            to,
+            arrival,
+            MapValidationRules {
+                require_all_walkable_connected: false,
+                ..MapValidationRules::default()
+            },
+        )
+    }
+
+    fn connect_validated(
+        &mut self,
+        from: ContentId,
+        at: GridPos,
+        to: ContentId,
+        arrival: GridPos,
+        validation: MapValidationRules,
+    ) -> Result<(), String> {
         if from == to
             || self.links.contains_key(&(from.clone(), at))
             || self.links.contains_key(&(to.clone(), arrival))
@@ -2338,7 +2422,7 @@ impl WorldState {
             if !map.is_walkable(anchor) {
                 return Err("Blocked passage".into());
             }
-            validate_interactive_map(map, start, anchor, &[], MapValidationRules::default())
+            validate_interactive_map(map, start, anchor, &[], validation)
                 .map_err(|e| e.to_string())?;
             if self
                 .pending
@@ -2565,6 +2649,9 @@ impl WorldState {
             && (origin == at || origin.cardinal_neighbors().contains(&at))
             && self.active.player_visibility.is_visible(at)
             && self.active.map.is_walkable(at)
+            && self
+                .passage(at)
+                .is_some_and(|link| !self.passage_returns_to_previous_layer(link))
             && self.unmaterialized_passage_destination(at).is_some()
     }
 
@@ -2859,6 +2946,8 @@ impl WorldState {
     }
 
     pub fn process_player_command(&mut self, command: GameCommand) -> CommandOutcome {
+        #[cfg(debug_assertions)]
+        let _profile = crate::action_profile::Scope::new("world.command");
         self.sync_away_companions();
         let previous_turn = self.active.turn;
         let event_checkpoint = self.active.events.len();
@@ -2884,6 +2973,31 @@ impl WorldState {
             _ => None,
         };
         let world_action = match &command {
+            GameCommand::UseInstallation { target, action } => {
+                Some(self.use_installation(*target, action))
+            }
+            GameCommand::ImproveEquipment { artisan, item } => {
+                let allowed = self
+                    .npc_interaction(*artisan)
+                    .is_some_and(|view| view.role == NpcRole::Artisan);
+                Some(if !allowed {
+                    CommandOutcome::Rejected(CommandRejection::UpgradeUnavailable)
+                } else {
+                    match self.active.equipment_upgrade_quote(*item) {
+                        Err(reason) => CommandOutcome::Rejected(reason),
+                        Ok(quote) if self.player_credits < quote.credits => {
+                            CommandOutcome::Rejected(CommandRejection::InsufficientCredits)
+                        }
+                        Ok(quote) => {
+                            let outcome = self.active.process_player_command(command.clone());
+                            if outcome == CommandOutcome::Applied {
+                                self.player_credits -= quote.credits;
+                            }
+                            outcome
+                        }
+                    }
+                })
+            }
             GameCommand::BuyItem { merchant, item } => {
                 Some(self.buy_from_merchant(*merchant, item.clone(), command.clone()))
             }
@@ -3036,6 +3150,8 @@ impl WorldState {
                 if let Some(current) = self.current.clone()
                     && let Some(facility) = self.facilities.get_mut(&current)
                 {
+                    #[cfg(debug_assertions)]
+                    let _profile = crate::action_profile::Scope::new("world.facility");
                     let result = (|| {
                         let mut events = facility.expire_security_alarm_responses(
                             &mut self.active.map,
@@ -3085,11 +3201,15 @@ impl WorldState {
                     .and_then(|zone| self.residents.get_mut(zone))
                 {
                     for resident in residents {
+                        #[cfg(debug_assertions)]
+                        let _profile = crate::action_profile::Scope::new("world.resident");
                         tick_resident_routine(resident, &self.active.map, &mut self.active.actors);
                     }
                 }
                 // BTreeMap order + independent RNG streams make the result stable.
                 for (id, zone) in &mut self.inactive {
+                    #[cfg(debug_assertions)]
+                    let _profile = crate::action_profile::Scope::new("world.inactive");
                     self.active.tick_background(zone, elapsed_turn);
                     if let Some(facility) = self.facilities.get_mut(id) {
                         let _ = facility.expire_security_alarm_responses(
@@ -4119,6 +4239,72 @@ impl WorldState {
                     required,
                 }
             }));
+        self.finish_local_investigation(record);
+    }
+
+    /// New runs resolve the introductory investigation where its evidence is
+    /// found. Its former report and surface installation effect are absent
+    /// from this authored variant; discovery never consumes an extra turn.
+    fn finish_local_investigation(&mut self, record: &ContentId) {
+        if !self.rules().irreversible_layer_travel {
+            return;
+        }
+        let Some(investigation) = self
+            .narrative
+            .as_ref()
+            .map(|state| &state.definition.investigation)
+        else {
+            return;
+        };
+        if &investigation.record != record {
+            return;
+        }
+        let Some((zone, index)) = self.quests.iter().find_map(|(zone, quests)| {
+            quests
+                .iter()
+                .position(|quest| {
+                    quest.definition.id() == &investigation.id
+                        && quest.accepted
+                        && !quest.completed
+                        && matches!(
+                            quest.progress,
+                            QuestProgress::AccessDataRecord { accessed: true }
+                        )
+                        && quest.reward_items.is_empty()
+                        && quest.completion_world_effects.is_empty()
+                })
+                .map(|index| (zone.clone(), index))
+        }) else {
+            return;
+        };
+        let quest = self.quests[&zone][index].clone();
+        let Some(credits) = self
+            .player_credits
+            .checked_add(quest.definition.reward_credits())
+        else {
+            return;
+        };
+        self.quests.get_mut(&zone).expect("located investigation")[index].completed = true;
+        self.player_credits = credits;
+        if quest.reward_experience > 0 {
+            let key = RewardKey::new(format!("quest:{}", quest.definition.id().as_str()))
+                .expect("validated quest ID");
+            self.active
+                .award_one_time_experience(quest.reward_experience, key);
+        }
+        self.active.events.push(GameEvent::QuestCompleted {
+            giver: quest.provider,
+            quest: quest.definition.id().clone(),
+            objective: QuestCompletion::AccessDataRecord {
+                record: record.clone(),
+            },
+            reward_credits: quest.definition.reward_credits(),
+            reward_experience: quest.reward_experience,
+            reward_items: quest.reward_items,
+            world_states: quest.completion_world_states,
+            world_effects: quest.completion_world_effects,
+            player_credits: credits,
+        });
     }
 
     fn record_defeat_quest_progress(&mut self, tags: &[ContentId]) {
@@ -4176,6 +4362,9 @@ impl WorldState {
         }
         if !self.active.map.is_walkable(at) {
             return reject(CommandRejection::PassageUnavailable);
+        }
+        if self.passage_returns_to_previous_layer(&link) {
+            return reject(CommandRejection::PreviousLayerUnavailable);
         }
         let Some(arrival) = link.arrival else {
             return reject(CommandRejection::PassageUnavailable);
@@ -4900,6 +5089,116 @@ mod tests {
             "#########\n#.......#\n#.......#\n#.......#\n#.......#\n#.......#\n#########",
         )
         .unwrap()
+    }
+
+    #[test]
+    fn irreversible_layers_allow_local_returns_and_survive_recovery() {
+        let rules = GameRules {
+            irreversible_layer_travel: true,
+            ..GameRules::default()
+        };
+        let game = GameState::new_with_rules(map(), GridPos::new(1, 1), 42, rules.clone()).unwrap();
+        let mut world = WorldState::single(game);
+        world.enable(info("a", 0)).unwrap();
+        for (name, depth) in [("b", 1), ("c", 1), ("d", 2)] {
+            world
+                .add_zone(ZoneBlueprint {
+                    info: info(name, depth),
+                    map: map(),
+                    entrance: GridPos::new(1, 1),
+                    seed: 888,
+                    actors: vec![],
+                    loot: vec![],
+                    threat_sources: vec![],
+                })
+                .unwrap();
+        }
+        world
+            .connect(id("a"), GridPos::new(2, 1), id("b"), GridPos::new(1, 1))
+            .unwrap();
+        world
+            .connect(id("b"), GridPos::new(2, 1), id("c"), GridPos::new(1, 1))
+            .unwrap();
+        world
+            .connect(id("b"), GridPos::new(3, 1), id("d"), GridPos::new(1, 1))
+            .unwrap();
+        assert!(world.passage_is_irreversible(world.passage(GridPos::new(2, 1)).unwrap()));
+        apply(
+            &mut world,
+            GameCommand::Interact {
+                target: GridPos::new(2, 1),
+            },
+        );
+        let before = world.recovery_snapshot_bytes().unwrap();
+        let debug_before = format!("{world:?}");
+        assert_eq!(
+            world.process_player_command(GameCommand::Interact {
+                target: GridPos::new(1, 1)
+            }),
+            CommandOutcome::Rejected(CommandRejection::PreviousLayerUnavailable)
+        );
+        assert_eq!(world.recovery_snapshot_bytes().unwrap(), before);
+        assert_eq!(format!("{world:?}"), debug_before);
+        assert_eq!(world.next_visited_passage_towards(&id("a")), None);
+        assert!(!world.passage_is_irreversible(world.passage(GridPos::new(2, 1)).unwrap()));
+        apply(
+            &mut world,
+            GameCommand::Interact {
+                target: GridPos::new(2, 1),
+            },
+        );
+        assert_eq!(
+            world.next_visited_passage_towards(&id("b")),
+            Some(GridPos::new(1, 1))
+        );
+        apply(
+            &mut world,
+            GameCommand::Interact {
+                target: GridPos::new(1, 1),
+            },
+        );
+        assert_eq!(world.current_zone().unwrap().id, id("b"));
+        apply(
+            &mut world,
+            GameCommand::Interact {
+                target: GridPos::new(3, 1),
+            },
+        );
+        let bytes = world.recovery_snapshot_bytes().unwrap();
+        let mut restored = WorldState::from_recovery_snapshot_bytes(&bytes, rules).unwrap();
+        assert_eq!(restored.current_zone().unwrap().id, id("d"));
+        assert_eq!(
+            restored.process_player_command(GameCommand::Interact {
+                target: GridPos::new(1, 1)
+            }),
+            CommandOutcome::Rejected(CommandRejection::PreviousLayerUnavailable)
+        );
+        assert_eq!(restored.recovery_snapshot_bytes().unwrap(), bytes);
+        assert_eq!(restored.next_visited_passage_towards(&id("b")), None);
+    }
+
+    #[test]
+    fn irreversible_layers_refuse_deferred_ascent_before_generation() {
+        let rules = GameRules {
+            irreversible_layer_travel: true,
+            ..GameRules::default()
+        };
+        let game = GameState::new_with_rules(map(), GridPos::new(1, 1), 42, rules).unwrap();
+        let mut world = WorldState::single(game);
+        world.enable(info("a", 2)).unwrap();
+        world
+            .declare_deferred_connection(id("a"), GridPos::new(2, 1), info("b", 1))
+            .unwrap();
+        let before = world.recovery_snapshot_bytes().unwrap();
+        assert!(!world.can_materialize_passage(GridPos::new(2, 1)));
+        assert_eq!(
+            world.process_player_command(GameCommand::Interact {
+                target: GridPos::new(2, 1)
+            }),
+            CommandOutcome::Rejected(CommandRejection::PreviousLayerUnavailable)
+        );
+        assert_eq!(world.recovery_snapshot_bytes().unwrap(), before);
+        assert_eq!(world.visited_zone_count(), 1);
     }
     fn world() -> WorldState {
         let mut rules = GameRules::default();

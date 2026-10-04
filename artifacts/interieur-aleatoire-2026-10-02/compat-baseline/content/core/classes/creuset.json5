@@ -1,0 +1,28 @@
+{
+  id: "core:creuset",
+  name_key: "class.creuset.name",
+  role_key: "class.creuset.role",
+  description_key: "class.creuset.description",
+
+  recommended_attributes: {
+    power: 4,
+    coordination: 5,
+    resilience: 7,
+    perception: 5,
+    processing: 7,
+  },
+  starting_weapons: ["core:flamethrower"],
+  starting_items: [
+    { item: "core:repair_patch", quantity: 3 },
+    { item: "core:engineering_tool", quantity: 1 },
+    { item: "core:repair_parts", quantity: 4 },
+    { item: "core:tuning_parts", quantity: 2 },
+    { item: "core:charged_battery", quantity: 2 },
+    { item: "core:fragmentation_charge", quantity: 3 },
+    { item: "core:breach_charge", quantity: 3 },
+    { item: "core:proximity_mine", quantity: 2 },
+    { item: "core:configurable_charge", quantity: 3 },
+    { item: "core:structural_charge", quantity: 2 },
+  ],
+  starting_equipment: [null, null, "core:flamethrower"],
+}

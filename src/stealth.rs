@@ -21,7 +21,7 @@ pub enum SignatureChannel {
 ///
 /// Geometry and sensor range are checked before this calculation. The result
 /// therefore cannot reveal through a wall or manufacture a sensor channel.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct StealthRules {
     pub base_detection: i16,
     pub perception_points_per_attribute: i16,
@@ -32,6 +32,43 @@ pub struct StealthRules {
     pub partial_cover_occultation: i16,
     pub sound_attenuation_per_cell: u16,
     pub sound_wall_attenuation_multiplier: u16,
+    pub circular_sound_fields: bool,
+}
+
+// Preserve historical rules fingerprints while the new generation flag is off.
+impl std::fmt::Debug for StealthRules {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut value = formatter.debug_struct("StealthRules");
+        value
+            .field("base_detection", &self.base_detection)
+            .field(
+                "perception_points_per_attribute",
+                &self.perception_points_per_attribute,
+            )
+            .field(
+                "base_concealment_difficulty",
+                &self.base_concealment_difficulty,
+            )
+            .field(
+                "coordination_points_per_attribute",
+                &self.coordination_points_per_attribute,
+            )
+            .field("distance_penalty_start", &self.distance_penalty_start)
+            .field("distance_penalty_per_cell", &self.distance_penalty_per_cell)
+            .field("partial_cover_occultation", &self.partial_cover_occultation)
+            .field(
+                "sound_attenuation_per_cell",
+                &self.sound_attenuation_per_cell,
+            )
+            .field(
+                "sound_wall_attenuation_multiplier",
+                &self.sound_wall_attenuation_multiplier,
+            );
+        if self.circular_sound_fields {
+            value.field("circular_sound_fields", &true);
+        }
+        value.finish()
+    }
 }
 
 impl StealthRules {
@@ -105,6 +142,8 @@ impl StealthRules {
         origin: GridPos,
         listener: GridPos,
     ) -> bool {
+        #[cfg(debug_assertions)]
+        let _profile = crate::action_profile::Scope::new("engine.sound-query");
         if intensity == 0 || self.sound_attenuation_per_cell == 0 {
             return false;
         }
@@ -112,22 +151,57 @@ impl StealthRules {
             .saturating_sub(1)
             .checked_div(self.sound_attenuation_per_cell)
             .unwrap_or(0);
-        propagate(
-            map,
-            PropagationRequest {
-                origin,
-                maximum_cost,
-                neighbor_mode: NeighborMode::CardinalAndDiagonal,
-            },
-            &TerrainPropagationPolicy {
-                floor_cost: Some(1),
-                shallow_water_cost: Some(1),
-                deep_water_cost: Some(self.sound_wall_attenuation_multiplier),
-                wall_cost: Some(self.sound_wall_attenuation_multiplier),
-            },
-        )
-        .iter()
-        .any(|cell| cell.position == listener)
+        if self.circular_sound_fields {
+            let dx = i128::from(origin.x) - i128::from(listener.x);
+            let dy = i128::from(origin.y) - i128::from(listener.y);
+            if dx * dx + dy * dy > i128::from(maximum_cost).pow(2) {
+                return false;
+            }
+        }
+        self.sound_field_on_map(map, intensity, origin)
+            .any(|position| position == listener)
+    }
+
+    /// The same propagation as hearing, computed once for a presentation field.
+    pub fn sound_field_on_map(
+        self,
+        map: &Map,
+        intensity: u16,
+        origin: GridPos,
+    ) -> impl Iterator<Item = GridPos> {
+        let maximum_cost = intensity
+            .saturating_sub(1)
+            .checked_div(self.sound_attenuation_per_cell)
+            .unwrap_or(0);
+        let cells = if intensity == 0 || self.sound_attenuation_per_cell == 0 {
+            Vec::new()
+        } else {
+            propagate(
+                map,
+                PropagationRequest {
+                    origin,
+                    maximum_cost,
+                    neighbor_mode: NeighborMode::CardinalAndDiagonal,
+                },
+                &TerrainPropagationPolicy {
+                    floor_cost: Some(1),
+                    shallow_water_cost: Some(1),
+                    deep_water_cost: Some(self.sound_wall_attenuation_multiplier),
+                    wall_cost: Some(self.sound_wall_attenuation_multiplier),
+                },
+            )
+        };
+        cells
+            .into_iter()
+            .filter(move |cell| {
+                if !self.circular_sound_fields {
+                    return true;
+                }
+                let dx = i128::from(origin.x) - i128::from(cell.position.x);
+                let dy = i128::from(origin.y) - i128::from(cell.position.y);
+                dx * dx + dy * dy <= i128::from(maximum_cost).pow(2)
+            })
+            .map(|cell| cell.position)
     }
 }
 
@@ -143,6 +217,7 @@ impl Default for StealthRules {
             partial_cover_occultation: 15,
             sound_attenuation_per_cell: 5,
             sound_wall_attenuation_multiplier: 3,
+            circular_sound_fields: false,
         }
     }
 }
@@ -383,5 +458,68 @@ mod tests {
         assert_eq!(emitters.get(first).unwrap().remaining_phases(), 1);
         assert_eq!(emitters.elapse(), vec![first]);
         assert!(emitters.is_empty());
+    }
+}
+
+#[cfg(test)]
+mod circular_field_tests {
+    use super::*;
+    #[test]
+    fn sound_fields_match_hearing_queries_with_walls_and_legacy_rules() {
+        let map =
+            Map::from_ascii("#########\n#.......#\n#..#....#\n#..#....#\n#.......#\n#########")
+                .unwrap();
+        let origin = GridPos::new(2, 2);
+        for circular_sound_fields in [false, true] {
+            for intensity in [0, 1, 10, 25, 40] {
+                let rules = StealthRules {
+                    circular_sound_fields,
+                    ..StealthRules::default()
+                };
+                let field: std::collections::BTreeSet<_> =
+                    rules.sound_field_on_map(&map, intensity, origin).collect();
+                for y in 0..6 {
+                    for x in 0..9 {
+                        let at = GridPos::new(x, y);
+                        assert_eq!(
+                            field.contains(&at),
+                            rules.sound_reaches_on_map(&map, intensity, origin, at)
+                        );
+                    }
+                }
+            }
+        }
+    }
+    #[test]
+    fn circular_sound_uses_the_same_radius_in_every_direction_and_obeys_walls() {
+        let open = Map::from_ascii("###########\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n###########").unwrap();
+        let source = GridPos::new(5, 5);
+        let rules = StealthRules {
+            circular_sound_fields: true,
+            ..StealthRules::default()
+        };
+        for at in [
+            GridPos::new(1, 5),
+            GridPos::new(9, 5),
+            GridPos::new(5, 1),
+            GridPos::new(5, 9),
+            GridPos::new(8, 7),
+        ] {
+            assert!(rules.sound_reaches_on_map(&open, 25, source, at));
+        }
+        assert!(!rules.sound_reaches_on_map(&open, 25, source, GridPos::new(9, 9)));
+        assert!(StealthRules::default().sound_reaches_on_map(
+            &open,
+            25,
+            source,
+            GridPos::new(9, 9)
+        ));
+        let mut blocked = open.clone();
+        for y in 1..10 {
+            blocked
+                .set_terrain(GridPos::new(7, y), crate::world::Terrain::Wall)
+                .unwrap();
+        }
+        assert!(!rules.sound_reaches_on_map(&blocked, 25, source, GridPos::new(9, 5)));
     }
 }

@@ -26,6 +26,9 @@ use crate::world::{
 pub type InstallationId = ContentId;
 pub type WorkOrderId = ContentId;
 
+mod interactions;
+pub use interactions::{InstallationAction, InstallationIntel};
+
 pub const MAX_INSTALLATIONS: usize = 256;
 pub const MAX_WORKERS: usize = 128;
 pub const MAX_WORK_ORDERS: usize = 256;
@@ -56,6 +59,23 @@ pub enum InstallationCapability {
         record: ContentId,
     },
     Storage,
+    // Append-only: existing binary snapshot discriminants stay unchanged.
+    IntelTerminal {
+        records: Vec<InstallationIntel>,
+    },
+    PowerControl {
+        relay: InstallationId,
+    },
+    SwitchableRelay {
+        door: GridPos,
+        powered: bool,
+    },
+    DiversionPost {
+        outlet: GridPos,
+        charges: u8,
+        intensity: u16,
+        duration: u16,
+    },
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -818,6 +838,7 @@ impl FacilityState {
             ));
         }
         validate_dependencies(&installations)?;
+        interactions::validate_interactive_installations(&installations)?;
 
         for installation in installations.values() {
             if installation.security_alarm_profile.is_some()
@@ -1004,7 +1025,22 @@ impl FacilityState {
                 return Err(FacilityBuildError::InvalidInstallation(installation.id));
             }
             for capability in &installation.capabilities {
-                if let InstallationCapability::DoorActuator { door } = capability
+                if let InstallationCapability::DiversionPost { outlet, .. } = capability
+                    && (!map.is_walkable(*outlet)
+                        || (*outlet != installation.position
+                            && !installation.position.cardinal_neighbors().contains(outlet)))
+                {
+                    return Err(FacilityBuildError::InvalidInstallation(installation.id));
+                }
+                if let InstallationCapability::IntelTerminal { records } = capability
+                    && records
+                        .iter()
+                        .any(|record| record.target.is_some_and(|target| !map.contains(target)))
+                {
+                    return Err(FacilityBuildError::InvalidInstallation(installation.id));
+                }
+                if let InstallationCapability::DoorActuator { door }
+                | InstallationCapability::SwitchableRelay { door, .. } = capability
                     && !matches!(
                         map.tile(*door).map(|tile| tile.terrain),
                         Some(Terrain::Door(_))
@@ -1126,6 +1162,9 @@ impl FacilityState {
         };
         facility
             .synchronize_outputs(map)
+            .map_err(|_| FacilityBuildError::OutputInitializationFailed)?;
+        facility
+            .synchronize_interactive_outputs(map, actors, None)
             .map_err(|_| FacilityBuildError::OutputInitializationFailed)?;
         for (source, profile) in property_reports {
             actors
@@ -1588,7 +1627,9 @@ impl FacilityState {
     }
 
     pub fn is_player_interactive_at(&self, position: GridPos) -> bool {
-        self.is_depot_at(position) || self.data_terminal_record_at(position).is_some()
+        self.is_depot_at(position)
+            || self.data_terminal_record_at(position).is_some()
+            || self.has_interaction_menu_at(position)
     }
 
     /// Reads a terminal through the real installation graph. Re-reading is
@@ -1794,6 +1835,7 @@ impl FacilityState {
         ground: &mut GroundItemRegistry,
     ) -> Result<Vec<FacilityEvent>, FacilityRuntimeError> {
         let mut events = Vec::new();
+        self.synchronize_interactive_outputs(map, actors, Some(ground))?;
         self.reconcile_missing_workers(map, actors, ground, &mut events)?;
         self.refresh_available_material();
 
@@ -1896,7 +1938,15 @@ impl FacilityState {
         let Some(installation) = self.installations.get(id) else {
             return false;
         };
-        if installation.integrity == 0 || !visiting.insert(id.clone()) {
+        if installation.integrity == 0
+            || installation.capabilities.iter().any(|capability| {
+                matches!(
+                    capability,
+                    InstallationCapability::SwitchableRelay { powered: false, .. }
+                )
+            })
+            || !visiting.insert(id.clone())
+        {
             return false;
         }
         let operational = installation
@@ -2250,25 +2300,45 @@ impl FacilityState {
             return;
         };
         let occupied: BTreeSet<_> = actors.iter().map(|(_, actor)| actor.position()).collect();
-        let mut paths: Vec<_> = target
+        let mut goals: Vec<_> = target
             .cardinal_neighbors()
             .into_iter()
             .filter(|goal| map.is_walkable(*goal) && (*goal == origin || !occupied.contains(goal)))
-            .filter_map(|goal| {
-                find_path_with(
-                    map,
-                    origin,
-                    goal,
-                    self.maximum_path_search,
-                    worker_can_traverse,
-                    |position| !occupied.contains(&position),
-                )
-                .map(|path| (path.len(), goal, path))
-            })
             .collect();
-        paths.sort_by_key(|(length, goal, _)| (*length, *goal));
-        if let Some((_, _, path)) = paths.first() {
-            self.apply_path_step(worker, origin, path, map, actors, events);
+        goals.sort_by_key(|goal| (manhattan(origin, *goal), *goal));
+        let mut best: Option<(usize, GridPos, Vec<GridPos>)> = None;
+        for goal in goals {
+            // A cardinal path includes its origin and cannot be shorter than
+            // Manhattan distance + 1. Skip only goals that cannot win the
+            // existing (length, position) tie-break, retaining each search budget.
+            let minimum_length = usize::try_from(manhattan(origin, goal))
+                .unwrap_or(usize::MAX)
+                .saturating_add(1);
+            if best
+                .as_ref()
+                .is_some_and(|(length, selected, _)| (minimum_length, goal) >= (*length, *selected))
+            {
+                continue;
+            }
+            if worker_goal_is_in_small_disconnected_area(map, origin, goal) {
+                continue;
+            }
+            if let Some(path) = find_path_with(
+                map,
+                origin,
+                goal,
+                self.maximum_path_search,
+                worker_can_traverse,
+                |position| !occupied.contains(&position),
+            ) && best
+                .as_ref()
+                .is_none_or(|(length, selected, _)| (path.len(), goal) < (*length, *selected))
+            {
+                best = Some((path.len(), goal, path));
+            }
+        }
+        if let Some((_, _, path)) = best {
+            self.apply_path_step(worker, origin, &path, map, actors, events);
         }
     }
 
@@ -2360,6 +2430,31 @@ fn worker_can_traverse(map: &Map, position: GridPos) -> bool {
             map.tile(position).map(|tile| tile.terrain),
             Some(Terrain::Door(DoorState::Closed))
         )
+}
+
+/// Reject a small sealed destination before A* searches the much larger area
+/// around the worker. Static reachability is a necessary condition even with
+/// dynamic actors. A capped or origin-reaching flood proves nothing and falls
+/// back to the original search, including its original expansion budget.
+fn worker_goal_is_in_small_disconnected_area(map: &Map, origin: GridPos, goal: GridPos) -> bool {
+    const LIMIT: usize = 128;
+    if origin == goal || !worker_can_traverse(map, goal) {
+        return false;
+    }
+    let mut seen = BTreeSet::from([goal]);
+    let mut frontier = vec![goal];
+    while let Some(current) = frontier.pop() {
+        for next in current.cardinal_neighbors() {
+            if !worker_can_traverse(map, next) || !seen.insert(next) {
+                continue;
+            }
+            if next == origin || seen.len() > LIMIT {
+                return false;
+            }
+            frontier.push(next);
+        }
+    }
+    true
 }
 
 fn validate_limits(blueprint: &FacilityBlueprint) -> Result<(), FacilityBuildError> {
@@ -2673,6 +2768,167 @@ mod tests {
                 .unwrap();
         }
         actors
+    }
+
+    #[test]
+    fn interaction_routes_preserve_legacy_steps_doors_and_ties_under_search_limits() {
+        for layout in 0..24_u32 {
+            for origin in [
+                GridPos::new(1, 1),
+                GridPos::new(2, 3),
+                GridPos::new(5, 2),
+                GridPos::new(9, 4),
+            ] {
+                let mut terrain = map();
+                let mut registry = actors(&[origin], GridPos::new(1, 4));
+                let worker = registry.entity_at(origin).unwrap();
+                let mut facility = FacilityState::instantiate(
+                    blueprint(&[origin], GridPos::new(1, 4)),
+                    &mut terrain,
+                    &mut registry,
+                )
+                .unwrap();
+                for y in 1..5 {
+                    for x in 1..10 {
+                        let at = GridPos::new(x, y);
+                        if at == origin || registry.entity_at(at).is_some() {
+                            continue;
+                        }
+                        let hash = (x as u32 * 37 + y as u32 * 53 + layout * 71) % 19;
+                        let cell = match hash {
+                            0..=2 => Terrain::Wall,
+                            3 => Terrain::Door(DoorState::Closed),
+                            4 => Terrain::Door(DoorState::Locked),
+                            5 => Terrain::Door(DoorState::Unpowered),
+                            _ => Terrain::Floor,
+                        };
+                        terrain.set_terrain(at, cell).unwrap();
+                    }
+                }
+                let occupied: BTreeSet<_> =
+                    registry.iter().map(|(_, actor)| actor.position()).collect();
+                for budget in [1, 2, 4, 12, 256] {
+                    facility.maximum_path_search = budget;
+                    for target in [GridPos::new(2, 1), GridPos::new(5, 2), GridPos::new(8, 3)] {
+                        // Reference is the previous exhaustive selection, including
+                        // its per-goal cap and (path length, position) ordering.
+                        let mut paths: Vec<_> = target
+                            .cardinal_neighbors()
+                            .into_iter()
+                            .filter(|goal| {
+                                terrain.is_walkable(*goal)
+                                    && (*goal == origin || !occupied.contains(goal))
+                            })
+                            .filter_map(|goal| {
+                                find_path_with(
+                                    &terrain,
+                                    origin,
+                                    goal,
+                                    budget,
+                                    worker_can_traverse,
+                                    |at| !occupied.contains(&at),
+                                )
+                                .map(|path| (path.len(), goal, path))
+                            })
+                            .collect();
+                        paths.sort_by_key(|(length, goal, _)| (*length, *goal));
+                        let mut expected_map = terrain.clone();
+                        let mut expected_actors = registry.clone();
+                        let mut expected_events = Vec::new();
+                        if let Some((_, _, path)) = paths.first() {
+                            facility.apply_path_step(
+                                worker,
+                                origin,
+                                path,
+                                &mut expected_map,
+                                &mut expected_actors,
+                                &mut expected_events,
+                            );
+                        }
+                        let mut actual_map = terrain.clone();
+                        let mut actual_actors = registry.clone();
+                        let mut actual_events = Vec::new();
+                        facility.move_towards_interaction(
+                            worker,
+                            target,
+                            &mut actual_map,
+                            &mut actual_actors,
+                            &mut actual_events,
+                        );
+                        assert_eq!(
+                            bincode::serialize(&actual_map).unwrap(),
+                            bincode::serialize(&expected_map).unwrap(),
+                            "layout={layout}, origin={origin:?}, target={target:?}, budget={budget}"
+                        );
+                        assert_eq!(
+                            bincode::serialize(&actual_actors).unwrap(),
+                            bincode::serialize(&expected_actors).unwrap()
+                        );
+                        assert_eq!(actual_events, expected_events);
+                    }
+                }
+            }
+        }
+    }
+
+    #[test]
+    #[cfg(debug_assertions)]
+    fn interaction_routes_skip_goals_that_cannot_win_the_distance_tie() {
+        let origin = GridPos::new(1, 2);
+        let target = GridPos::new(2, 1);
+        let mut terrain = map();
+        let mut registry = actors(&[origin], GridPos::new(9, 4));
+        let worker = registry.entity_at(origin).unwrap();
+        let facility = FacilityState::instantiate(
+            blueprint(&[origin], GridPos::new(9, 4)),
+            &mut terrain,
+            &mut registry,
+        )
+        .unwrap();
+        crate::action_profile::start();
+        let mut events = Vec::new();
+        facility.move_towards_interaction(worker, target, &mut terrain, &mut registry, &mut events);
+        let samples = crate::action_profile::finish();
+        assert_eq!(samples["engine.path-search"].len(), 1);
+        assert_eq!(registry.get(worker).unwrap().position(), GridPos::new(1, 1));
+    }
+
+    #[test]
+    fn interaction_component_probe_respects_openable_doors_and_its_cap() {
+        let mut terrain =
+            Map::from_ascii("#########\n#...#...#\n#...#...#\n#...#...#\n#########").unwrap();
+        let origin = GridPos::new(1, 2);
+        let goal = GridPos::new(6, 2);
+        assert!(worker_goal_is_in_small_disconnected_area(
+            &terrain, origin, goal
+        ));
+        for (state, disconnected) in [
+            (DoorState::Closed, false),
+            (DoorState::Open, false),
+            (DoorState::Locked, true),
+            (DoorState::Unpowered, true),
+        ] {
+            terrain
+                .set_terrain(GridPos::new(4, 2), Terrain::Door(state))
+                .unwrap();
+            assert_eq!(
+                worker_goal_is_in_small_disconnected_area(&terrain, origin, goal),
+                disconnected,
+                "{state:?}"
+            );
+            let path = find_path_with(&terrain, origin, goal, 256, worker_can_traverse, |_| true);
+            assert_eq!(path.is_none(), disconnected);
+        }
+        let mut rows = vec!["#".repeat(50)];
+        rows.extend((0..8).map(|_| format!("#...#{}#", ".".repeat(44))));
+        rows.push("#".repeat(50));
+        let large = Map::from_ascii(&rows.join("\n")).unwrap();
+        // An unfinished probe is inconclusive and must retain the legacy A*.
+        assert!(!worker_goal_is_in_small_disconnected_area(
+            &large,
+            GridPos::new(1, 3),
+            GridPos::new(40, 3)
+        ));
     }
 
     #[test]

@@ -1,6 +1,6 @@
 # Descente vers le numérique
 
-27 septembre 2026.
+3 octobre 2026.
 
 **Statut :** direction générale validée. Une première application aux proportions
 des milieux est intégrée en [génération 117](REPARTITION_DES_PROFONDEURS.md) ; les
@@ -15,8 +15,10 @@ leurs habitants et les rencontres. Elle prolonge « moins humain » sans le réd
 
 En surface, la technologie occupe le monde. En profondeur, elle semble de moins
 en moins séparable du vivant, des mouvements et de la matière elle-même.
-Cela ne décide pas que le monde est une simulation : son explication narrative
-reste à définir.
+Le joueur cherche à fuir la simulation, selon la direction confirmée le 3 octobre.
+Le passage à une couche plus profonde ferme définitivement le retour aux couches
+précédentes. L'origine de la simulation et les détails de l'évasion restent à
+définir ; cette règle ne fixe pas de nouveaux personnages ou jalons narratifs.
 
 ## 2. Une progression, pas quatre cases étanches
 

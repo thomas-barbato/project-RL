@@ -1,0 +1,24 @@
+{
+  "files": [
+    "src\\ascii_app.rs",
+    "src\\main.rs",
+    "src\\stealth.rs",
+    "src\\suspension.rs",
+    "src\\terminal_view.rs",
+    "src\\ui_theme.rs",
+    "src\\facility\\mod.rs",
+    "src\\game\\command.rs",
+    "src\\game\\expedition.rs",
+    "src\\game\\game_state.rs",
+    "src/facility/interactions.rs",
+    "src/game/facility_interactions.rs",
+    "src/installation_interactions_app.rs",
+    "content/core/locales/fr_interactions.json5",
+    "Essayer_interactions.cmd"
+  ],
+  "baseline": "before",
+  "generation": 143,
+  "legacy_generation_max": 142,
+  "perception_overlay": "proposal only in native diagnostic",
+  "pictograms": "Integrated: shared UI icons, quests, status/effect and alert markers, sensor-map contacts and companion orders; larger without individual backdrops."
+}

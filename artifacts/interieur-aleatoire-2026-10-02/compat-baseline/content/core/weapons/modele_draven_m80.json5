@@ -1,0 +1,26 @@
+{
+  "id": "core:modele_draven_m80",
+  "name_key": "equipment.modele_draven_m80.name",
+  "description_key": "equipment.mitrailleuse_lourde.description",
+  "mass_grams": 8500,
+  "attack": {
+    "range": 8,
+    "distance_metric": "chebyshev",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": -25,
+    "damage": {
+      "amount": 5,
+      "damage_type": "piercing",
+      "penetration": 0
+    }
+  },
+  "supply": {
+    "kind": "matter",
+    "amount": 4
+  },
+  "burst": {
+    "shots": 4,
+    "sustained_accuracy": 8,
+    "heat": 8
+  }
+}

@@ -1,0 +1,204 @@
+
+running 40 tests
+test ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134 ... FAILED
+test ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132 ... FAILED
+test ascii_app::equipment_generation::tests::melee_models_preserve_version_130 ... FAILED
+test ascii_app::equipment_generation::tests::accessory_models_preserve_version_133 ... FAILED
+test ascii_app::equipment_generation::tests::sword_models_preserve_version_131 ... FAILED
+test ascii_app::equipment_generation::tests::firearm_models_preserve_version_129 ... FAILED
+test ascii_app::equipment_generation::tests::improvement_preserves_version_135 ... FAILED
+test ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume ... FAILED
+test ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume ... FAILED
+test ascii_app::surface_density::tests::version_108_surface_fingerprint ... FAILED
+test ascii_app::narrative::tests::accepted_investigation_points_to_the_authored_entrance_without_discovering_it ... ok
+test ascii_app::tests::area_aiming_moves_a_preview_without_time_and_commits_an_empty_tile ... ok
+test ascii_app::tests::authored_hub_quests_attach_to_services_or_spawn_a_dedicated_contact ... ok
+test ascii_app::tests::context_key_offers_pickup_and_nearby_interaction_without_spending_a_turn ... ok
+test ascii_app::tests::crash_recovery_alternates_slots_and_falls_back_to_the_last_valid_one ... FAILED
+test ascii_app::tests::cross_build_replay_rejects_incompatible_data_and_preserves_file_and_game ... FAILED
+test ascii_app::tests::failed_suspension_or_incompatible_resume_never_quits_or_consumes_data ... FAILED
+test ascii_app::equipment_generation::firearm_models::tests::firearm_models_all_fire_with_native_resources_and_current_runs_resume ... FAILED
+test ascii_app::tests::current_runs_wake_in_recycling_while_older_runs_keep_the_city_start ... ok
+test ascii_app::tests::current_regions_materialize_guarded_encounters_loot_and_threat_sources_once ... ok
+test ascii_app::narrative::tests::narrative_reward_versions_preserve_old_replays ... FAILED
+test ascii_app::tests::interactions_use_the_binding_and_replay_door_console_and_remembered_states ... ok
+test ascii_app::tests::pointer_attack_starts_area_aim_on_the_clicked_empty_cell_without_time ... ok
+test ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay ... ok
+test ascii_app::tests::approved_names_keep_old_surface_suspensions_compatible ... ok
+test ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention ... ok
+test ascii_app::tests::pointer_target_selection_does_not_open_area_aim_with_a_zone_weapon ... ok
+test ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints ... FAILED
+test ascii_app::tests::recycling_main_route_completes_the_first_city_milestone ... ok
+test ascii_app::tests::resume_animates_before_consuming_the_suspension ... FAILED
+test ascii_app::tests::suspension_persists_the_resolved_package_versions ... FAILED
+test ascii_app::tests::ux_history_is_bounded_modal_and_restored_with_legacy_fallback ... FAILED
+test ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble ... FAILED
+test ascii_app::tests::surface_cast_contacts_are_protected_optional_and_keep_their_conversation_on_resume ... ok
+test ascii_app::tests::window_close_reverts_unconfirmed_graphics_and_saves_the_active_run ... FAILED
+test ascii_app::tests::version_sixty_four_keeps_the_resident_without_retroactive_quests ... ok
+test ascii_app::tests::a_click_resumes_an_older_build_only_after_an_identical_replay ... ok
+test ascii_app::narrative::tests::underground_passage_leads_to_the_record_and_a_completable_investigation has been running for over 60 seconds
+test ascii_app::weapon_supplies_app::tests::creuset_creation_keeps_ammunition_and_confirms_flamethrower_preview ... ok
+test ascii_app::tests::suspension_replays_the_complete_run_and_is_consumed_only_once ... ok
+test ascii_app::narrative::tests::underground_passage_leads_to_the_record_and_a_completable_investigation ... ok
+
+failures:
+
+---- ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134' (29804) panicked at src\equipment_generation.rs:281:9:
+assertion `left == right` failed
+  left: 10895948859345438833
+ right: 11827607781388651990
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132' (19632) panicked at src\equipment_generation.rs:339:9:
+assertion `left == right` failed
+  left: 2546150270975769363
+ right: 7514443169048286002
+
+---- ascii_app::equipment_generation::tests::melee_models_preserve_version_130 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::melee_models_preserve_version_130' (31648) panicked at src\equipment_generation.rs:309:9:
+assertion `left == right` failed
+  left: 1293324344745390349
+ right: 4364533401394836414
+
+---- ascii_app::equipment_generation::tests::accessory_models_preserve_version_133 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::accessory_models_preserve_version_133' (25792) panicked at src\equipment_generation.rs:356:9:
+assertion `left == right` failed
+  left: 1782011318931060307
+ right: 8547453497967341830
+
+---- ascii_app::equipment_generation::tests::sword_models_preserve_version_131 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::sword_models_preserve_version_131' (4824) panicked at src\equipment_generation.rs:322:9:
+assertion `left == right` failed
+  left: 5605329425965655092
+ right: 2731019285769788187
+
+---- ascii_app::equipment_generation::tests::firearm_models_preserve_version_129 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::firearm_models_preserve_version_129' (11280) panicked at src\equipment_generation.rs:296:9:
+assertion `left == right` failed
+  left: 12821491141838654528
+ right: 5015229487898651663
+
+---- ascii_app::equipment_generation::tests::improvement_preserves_version_135 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::improvement_preserves_version_135' (4028) panicked at src\equipment_generation.rs:254:9:
+assertion `left == right` failed
+  left: 17562185062364210838
+ right: 13575184762297074475
+
+---- ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume stdout ----
+
+thread 'ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume' (29644) panicked at src\equipment_generation.rs:561:9:
+assertion `left == right` failed
+  left: 10178542183831598534
+ right: 7122100530405190243
+
+---- ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume stdout ----
+
+thread 'ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume' (9024) panicked at src\equipment_generation.rs:575:9:
+assertion `left == right` failed
+  left: 4332965440649476052
+ right: 14919163715656792865
+
+---- ascii_app::surface_density::tests::version_108_surface_fingerprint stdout ----
+
+thread 'ascii_app::surface_density::tests::version_108_surface_fingerprint' (2000) panicked at src\surface_density.rs:241:9:
+assertion `left == right` failed
+  left: 10178542183831598534
+ right: 7122100530405190243
+
+---- ascii_app::tests::crash_recovery_alternates_slots_and_falls_back_to_the_last_valid_one stdout ----
+[RECOVERY] Initial checkpoint failed: L'état moteur contient encore des données transitoires.
+
+thread 'ascii_app::tests::crash_recovery_alternates_slots_and_falls_back_to_the_last_valid_one' (1924) panicked at src\ascii_app.rs:27525:9:
+assertion `left == right` failed
+  left: 0
+ right: 1
+
+---- ascii_app::tests::cross_build_replay_rejects_incompatible_data_and_preserves_file_and_game stdout ----
+
+thread 'ascii_app::tests::cross_build_replay_rejects_incompatible_data_and_preserves_file_and_game' (31088) panicked at src\ascii_app.rs:27684:46:
+called `Result::unwrap()` on an `Err` value: "L'état moteur contient encore des données transitoires."
+
+---- ascii_app::tests::failed_suspension_or_incompatible_resume_never_quits_or_consumes_data stdout ----
+
+thread 'ascii_app::tests::failed_suspension_or_incompatible_resume_never_quits_or_consumes_data' (30900) panicked at src\ascii_app.rs:27762:42:
+called `Result::unwrap()` on an `Err` value: "L'état moteur contient encore des données transitoires."
+
+---- ascii_app::equipment_generation::firearm_models::tests::firearm_models_all_fire_with_native_resources_and_current_runs_resume stdout ----
+
+thread 'ascii_app::equipment_generation::firearm_models::tests::firearm_models_all_fire_with_native_resources_and_current_runs_resume' (24628) panicked at src\firearm_models_tests.rs:192:34:
+called `Result::unwrap()` on an `Err` value: "L'état moteur contient encore des données transitoires."
+
+---- ascii_app::narrative::tests::narrative_reward_versions_preserve_old_replays stdout ----
+
+thread 'ascii_app::narrative::tests::narrative_reward_versions_preserve_old_replays' (13748) panicked at src\narrative_app.rs:760:46:
+called `Result::unwrap()` on an `Err` value: "L'état moteur contient encore des données transitoires."
+
+---- ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints stdout ----
+
+thread 'ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints' (31172) panicked at src\ascii_app.rs:29581:9:
+assertion `left == right` failed
+  left: 14484299988026994332
+ right: 200606596581755117
+
+---- ascii_app::tests::resume_animates_before_consuming_the_suspension stdout ----
+
+thread 'ascii_app::tests::resume_animates_before_consuming_the_suspension' (30768) panicked at src\ascii_app.rs:27342:14:
+called `Result::unwrap()` on an `Err` value: "L'état moteur contient encore des données transitoires."
+
+---- ascii_app::tests::suspension_persists_the_resolved_package_versions stdout ----
+
+thread 'ascii_app::tests::suspension_persists_the_resolved_package_versions' (29756) panicked at src\ascii_app.rs:24197:38:
+called `Result::unwrap()` on an `Err` value: "L'état moteur contient encore des données transitoires."
+
+---- ascii_app::tests::ux_history_is_bounded_modal_and_restored_with_legacy_fallback stdout ----
+
+thread 'ascii_app::tests::ux_history_is_bounded_modal_and_restored_with_legacy_fallback' (28004) panicked at src\ux_tests.rs:239:32:
+called `Result::unwrap()` on an `Err` value: "L'état moteur contient encore des données transitoires."
+
+---- ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble stdout ----
+
+thread 'ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble' (27188) panicked at src\ascii_app.rs:25241:9:
+Rejected(MerchantOfferUnavailable)
+
+---- ascii_app::tests::window_close_reverts_unconfirmed_graphics_and_saves_the_active_run stdout ----
+[SUSPENSION] Save failed: L'état moteur contient encore des données transitoires.
+
+thread 'ascii_app::tests::window_close_reverts_unconfirmed_graphics_and_saves_the_active_run' (26588) panicked at src\ascii_app.rs:25945:9:
+assertion failed: app.should_quit()
+
+
+failures:
+    ascii_app::equipment_generation::firearm_models::tests::firearm_models_all_fire_with_native_resources_and_current_runs_resume
+    ascii_app::equipment_generation::tests::accessory_models_preserve_version_133
+    ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134
+    ascii_app::equipment_generation::tests::firearm_models_preserve_version_129
+    ascii_app::equipment_generation::tests::improvement_preserves_version_135
+    ascii_app::equipment_generation::tests::melee_models_preserve_version_130
+    ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132
+    ascii_app::equipment_generation::tests::sword_models_preserve_version_131
+    ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume
+    ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume
+    ascii_app::narrative::tests::narrative_reward_versions_preserve_old_replays
+    ascii_app::surface_density::tests::version_108_surface_fingerprint
+    ascii_app::tests::crash_recovery_alternates_slots_and_falls_back_to_the_last_valid_one
+    ascii_app::tests::cross_build_replay_rejects_incompatible_data_and_preserves_file_and_game
+    ascii_app::tests::failed_suspension_or_incompatible_resume_never_quits_or_consumes_data
+    ascii_app::tests::resume_animates_before_consuming_the_suspension
+    ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints
+    ascii_app::tests::suspension_persists_the_resolved_package_versions
+    ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble
+    ascii_app::tests::ux_history_is_bounded_modal_and_restored_with_legacy_fallback
+    ascii_app::tests::window_close_reverts_unconfirmed_graphics_and_saves_the_active_run
+
+test result: FAILED. 19 passed; 21 failed; 0 ignored; 0 measured; 524 filtered out; finished in 124.68s
+

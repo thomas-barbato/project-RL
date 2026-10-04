@@ -1,0 +1,24 @@
+{
+  "id": "core:modele_darven_a10",
+  "name_key": "equipment.modele_darven_a10.name",
+  "description_key": "equipment.fusil_d_assaut.description",
+  "mass_grams": 3200,
+  "attack": {
+    "range": 7,
+    "distance_metric": "chebyshev",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": -8,
+    "damage": {
+      "amount": 3,
+      "damage_type": "piercing",
+      "penetration": 0
+    }
+  },
+  "supply": {
+    "kind": "matter",
+    "amount": 3
+  },
+  "burst": {
+    "shots": 3
+  }
+}

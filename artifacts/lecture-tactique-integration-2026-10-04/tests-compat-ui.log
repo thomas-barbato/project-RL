@@ -1,0 +1,10 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 3 tests
+test terminal_view::tests::quest_badges_cannot_cover_a_character_in_the_cell_above ... ok
+test ascii_app::tests::borrowed_recovery_snapshot_preserves_legacy_bytes_and_fingerprints ... ok
+test ascii_app::installation_interactions_app::tests::installations_new_generation_is_optional_and_old_runs_keep_their_map ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 611 filtered out; finished in 10.59s
+

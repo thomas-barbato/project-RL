@@ -1,0 +1,263 @@
+{
+  "id": "core:accessory_models",
+  "stats": [
+    {
+      "affix": "affix:power",
+      "weight": 100
+    },
+    {
+      "affix": "affix:coordination",
+      "weight": 100
+    },
+    {
+      "affix": "affix:resilience",
+      "weight": 100
+    },
+    {
+      "affix": "affix:perception",
+      "weight": 80
+    },
+    {
+      "affix": "affix:processing",
+      "weight": 80
+    },
+    {
+      "affix": "affix:accuracy",
+      "weight": 70
+    },
+    {
+      "affix": "affix:armor_penetration",
+      "weight": 35
+    },
+    {
+      "affix": "affix:vitality",
+      "weight": 100
+    },
+    {
+      "affix": "affix:energy_reserve",
+      "weight": 70
+    },
+    {
+      "affix": "affix:heat_dissipation",
+      "weight": 35
+    }
+  ],
+  "bases": [
+    {
+      "item": "core:calotte_cognefer",
+      "family": "core:helmets",
+      "tier": 1,
+      "grammar": "fs",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 0,
+      "maximum_depth": 0
+    },
+    {
+      "item": "core:heaume_bastion",
+      "family": "core:helmets",
+      "tier": 2,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 1,
+      "maximum_depth": 1
+    },
+    {
+      "item": "core:casque_cerbere",
+      "family": "core:helmets",
+      "tier": 3,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 2,
+      "maximum_depth": 2
+    },
+    {
+      "item": "core:masque_chrysalide",
+      "family": "core:helmets",
+      "tier": 4,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 3,
+      "maximum_depth": 3
+    },
+    {
+      "item": "core:capuche_de_mue",
+      "family": "core:helmets",
+      "tier": 5,
+      "grammar": "fs",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 4,
+      "maximum_depth": 4
+    },
+    {
+      "item": "core:visiere_fantome",
+      "family": "core:helmets",
+      "tier": 6,
+      "grammar": "fs",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 5,
+      "maximum_depth": null
+    },
+    {
+      "item": "core:gants_cognefer",
+      "family": "core:gauntlets",
+      "tier": 1,
+      "grammar": "mp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 0,
+      "maximum_depth": 0
+    },
+    {
+      "item": "core:gantelets_bastion",
+      "family": "core:gauntlets",
+      "tier": 2,
+      "grammar": "mp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 1,
+      "maximum_depth": 1
+    },
+    {
+      "item": "core:mitaines_cerbere",
+      "family": "core:gauntlets",
+      "tier": 3,
+      "grammar": "fp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 2,
+      "maximum_depth": 2
+    },
+    {
+      "item": "core:gantelets_chrysalide",
+      "family": "core:gauntlets",
+      "tier": 4,
+      "grammar": "mp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 3,
+      "maximum_depth": 3
+    },
+    {
+      "item": "core:gants_de_mue",
+      "family": "core:gauntlets",
+      "tier": 5,
+      "grammar": "mp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 4,
+      "maximum_depth": 4
+    },
+    {
+      "item": "core:gants_fantome",
+      "family": "core:gauntlets",
+      "tier": 6,
+      "grammar": "mp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 5,
+      "maximum_depth": null
+    },
+    {
+      "item": "core:brodequins_cognefer",
+      "family": "core:boots",
+      "tier": 1,
+      "grammar": "mp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 0,
+      "maximum_depth": 0
+    },
+    {
+      "item": "core:solerets_bastion",
+      "family": "core:boots",
+      "tier": 2,
+      "grammar": "mp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 1,
+      "maximum_depth": 1
+    },
+    {
+      "item": "core:bottes_cerbere",
+      "family": "core:boots",
+      "tier": 3,
+      "grammar": "fp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 2,
+      "maximum_depth": 2
+    },
+    {
+      "item": "core:bottines_chrysalide",
+      "family": "core:boots",
+      "tier": 4,
+      "grammar": "fp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 3,
+      "maximum_depth": 3
+    },
+    {
+      "item": "core:bottes_de_mue",
+      "family": "core:boots",
+      "tier": 5,
+      "grammar": "fp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 4,
+      "maximum_depth": 4
+    },
+    {
+      "item": "core:bottines_fantome",
+      "family": "core:boots",
+      "tier": 6,
+      "grammar": "fp",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 5,
+      "maximum_depth": null
+    }
+  ]
+}

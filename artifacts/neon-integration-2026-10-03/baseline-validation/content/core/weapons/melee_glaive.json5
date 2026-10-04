@@ -1,0 +1,21 @@
+{
+  "id": "core:melee_glaive",
+  "name_key": "equipment.melee_glaive.name",
+  "description_key": "equipment.swords.description",
+  "mass_grams": 1400,
+  "attack": {
+    "impact": {
+      "material_cap": 14
+    },
+    "range": 1,
+    "distance_metric": "chebyshev",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": 0,
+    "damage": {
+      "amount": 7,
+      "damage_type": "kinetic",
+      "penetration": 0
+    },
+    "delivery": "melee"
+  }
+}

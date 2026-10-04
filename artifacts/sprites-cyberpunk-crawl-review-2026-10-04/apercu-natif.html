@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project RL · Essai de sprites natifs</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101920;color:#e5e4d8;font-size:13px}
+*{box-sizing:border-box}body{margin:0}main{max-width:1060px;margin:auto;padding:16px}
+a{color:#8ddad3}h1{font-size:23px;margin:7px 0}h2{font-size:15px;margin:0 0 10px}h3{font-size:14px;margin:8px 0 4px}
+p{line-height:1.5;margin:5px 0 12px}.muted,small{color:#a8b9c2}.eyebrow{color:#89d9cc;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.stage{display:grid;grid-template-columns:minmax(340px,1fr) 216px;gap:12px;align-items:start;margin-top:16px}
+.panel{border:1px solid #344752;border-radius:7px;background:#18242c;padding:10px;min-width:0}
+.map-wrap{width:320px;height:256px;position:relative;margin:0 auto;background:#28343d}
+#board{width:320px;height:256px;image-rendering:pixelated;display:block}
+#cells{position:absolute;inset:0;display:grid;grid-template-columns:repeat(10,32px);grid-template-rows:repeat(8,32px)}
+.cell{border:0;background:transparent;border-radius:0;padding:0;min-height:0;cursor:crosshair}.cell:hover,.cell:focus-visible{box-shadow:inset 0 0 0 1px #abded5;outline:0}
+button,select{font:inherit;color:inherit;background:#24353f;border:1px solid #49616c;border-radius:4px;padding:6px 8px;cursor:pointer}
+button:hover{background:#314650}button:focus-visible,select:focus-visible{outline:2px solid #8ddad3;outline-offset:2px}button:disabled{opacity:.4;cursor:default}
+button[aria-pressed=true]{border-color:#92d8ca;background:#2d4d53}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.options label{display:grid;gap:4px;font-size:12px}
+.small-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.sample{display:flex;gap:8px;align-items:center;text-align:left;min-height:38px;padding:6px;font-size:11px}
+.sample img{width:32px;height:32px;image-rendering:pixelated;flex:none}.sample span{line-height:1.3}
+.actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.actions button{font-size:12px}
+#status{font-size:12px;min-height:36px;margin:9px 0 0;line-height:1.4}
+.side{display:grid;gap:12px}.inventory{display:grid;gap:4px;max-height:300px;overflow:auto}
+.inventory-row{display:grid;grid-template-columns:64px 1fr;gap:7px;align-items:center;text-align:left;padding:3px;font-size:11px;min-height:70px}.inventory-row strong{display:block;line-height:1.3}.inventory-row small{display:block;margin-top:4px;font-size:10px}
+.large-art{width:64px;height:64px;background:#21313a;border-radius:4px;display:block}
+#preview-panel{border-color:#557e83}.target-art{width:128px;height:128px;display:block;margin:0 auto;background:#21313a;border-radius:5px}
+#target-name{overflow-wrap:anywhere}#target-type{font-size:11px}.target-caption{font-size:11px;margin-bottom:0}
+.native-note{font-size:12px;line-height:1.5;margin-top:12px}.proof{margin-top:18px;border-top:1px solid #344752;padding-top:12px}.proof summary{cursor:pointer;color:#8ddad3}
+.zoom-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}.zoom-card{text-align:center;font-size:11px}.zoom-card img{display:block;width:100%;max-width:160px;height:auto;image-rendering:pixelated;margin:0 auto 6px;background:#28343d;border:1px solid #40545f}
+footer{margin-top:15px;font-size:11px;color:#a8b9c2;line-height:1.6}
+@media(max-width:603px){main{padding:10px}.stage{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr}.zoom-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:359px){.map-wrap{margin-left:0}.panel{overflow:auto}.side{grid-template-columns:1fr}}
+</style>
+<main>
+  <span class="eyebrow">Proposition à examiner · 4 objets</span>
+  <h1>Objets en 2D · plateau de 32 pixels</h1>
+  <p class="muted">Arme et cartouche de profil, armure de face, boîte de soins vue de dessus. Le personnage précédent est conservé.</p>
+  <p><a href="apercu-face.html">Examiner les personnages et le bestiaire de face</a></p>
+  <div class="stage">
+    <section class="panel" aria-labelledby="map-title">
+      <h2 id="map-title">Plateau · cases de 32 pixels</h2>
+      <div class="map-wrap">
+        <canvas id="board" width="320" height="256" aria-label="Carte avec BRÈCHE et quatre objets"></canvas>
+        <div id="cells" aria-label="Cibler une case"></div>
+      </div>
+      <div class="options">
+        <label>Sol<select id="floor-choice"><option value="0">Asphalte sombre</option><option value="1">Béton</option><option value="2">Métal</option><option value="3">Ruines</option></select></label>
+        <label>Équipement de BRÈCHE<select id="gear-choice"><option value="0">Tenue de base</option><option value="1" selected>Lame et plastron</option><option value="2">Fusil et armure renforcée</option></select></label>
+      </div>
+      <div class="small-grid" id="samples" aria-label="Choisir un objet"></div>
+      <div class="actions"><button id="pickup">Ramasser</button><button id="drop">Reposer</button><button id="reset">Réinitialiser</button></div>
+      <p id="status" role="status">Chargement des illustrations…</p>
+      <p class="native-note muted">Survole ou clique une case : la cible apparaît en bas à droite. Les objets sont dessinés sur une grille de <strong>32 × 32 pixels</strong>.</p>
+    </section>
+    <aside class="side">
+      <section class="panel" aria-labelledby="inventory-title"><h2 id="inventory-title">Inventaire</h2><div class="inventory" id="inventory"></div><small>Illustrations de 64 pixels.</small></section>
+      <section class="panel" id="preview-panel" aria-labelledby="preview-title">
+        <h2 id="preview-title">Cible</h2><canvas id="target-art" class="target-art" width="128" height="128" aria-label="Illustration de la cible"></canvas>
+        <h3 id="target-name">Boîte de soins</h3><div id="target-type"></div><p class="target-caption muted" id="target-caption"></p>
+      </section>
+    </aside>
+  </div>
+  <details class="proof"><summary>Voir les pixels de ces quatre sprites</summary><p class="muted">Agrandissement × 5 de la grille d’origine, sans ajouter de détail.</p><div class="zoom-grid" id="zoom-grid"></div><p><a href="native/native-grid-source.json">Grilles et palettes sources</a> · <a href="native/manifest.json">Dimensions des PNG</a></p></details>
+  <footer>Échantillon : quatre objets en 32 pixels et les apparences précédentes de BRÈCHE. Le reste du catalogue attend cette refonte. Les illustrations de l’inventaire et de la cible sont conservées.<br><a href="apercu.html#loot">Revenir à l’aperçu précédent</a> · Simulation indépendante de la partie.</footer>
+</main>
+<script src="equipment-catalog.js"></script><script src="pickup-catalog.js"></script><script src="native-art.js"></script><script src="native-preview.js"></script>
+</html>

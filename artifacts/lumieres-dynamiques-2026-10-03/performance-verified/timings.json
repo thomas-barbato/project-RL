@@ -1,0 +1,305 @@
+{
+  "build": "debug",
+  "frames_per_mode": 120,
+  "movement_checks": {
+    "autosave_enabled": false,
+    "identical_engine_and_view_bytes_after_80_steps": true
+  },
+  "pixel_checks": {
+    "dynamic_leds_animate": true,
+    "no_memory_or_unknown_spill": true,
+    "off_mask_black": true,
+    "opaque_walls_unlit": true,
+    "reduced_motion_identical_pixels": true
+  },
+  "scenes": [
+    {
+      "cpu": {
+        "median_ms": 9.6654,
+        "p95_ms": 13.8762
+      },
+      "floor_quads": 0,
+      "frame_with_present": {
+        "median_ms": 10.2476,
+        "p95_ms": 15.2478
+      },
+      "lighting_cpu": {
+        "median_ms": 0.0,
+        "p95_ms": 0.0
+      },
+      "mode": "off",
+      "rebuild_ms": [],
+      "repeat": 0,
+      "scene": "recycling",
+      "sources": 0
+    },
+    {
+      "cpu": {
+        "median_ms": 9.185799999999999,
+        "p95_ms": 14.169899999999998
+      },
+      "floor_quads": 0,
+      "frame_with_present": {
+        "median_ms": 9.9784,
+        "p95_ms": 15.9819
+      },
+      "lighting_cpu": {
+        "median_ms": 0.0193,
+        "p95_ms": 0.0314
+      },
+      "mode": "fixed",
+      "rebuild_ms": [
+        0.0698
+      ],
+      "repeat": 0,
+      "scene": "recycling",
+      "sources": 2
+    },
+    {
+      "cpu": {
+        "median_ms": 8.9166,
+        "p95_ms": 14.6478
+      },
+      "floor_quads": 0,
+      "frame_with_present": {
+        "median_ms": 9.8443,
+        "p95_ms": 15.5892
+      },
+      "lighting_cpu": {
+        "median_ms": 0.0188,
+        "p95_ms": 0.0292
+      },
+      "mode": "dynamic",
+      "rebuild_ms": [],
+      "repeat": 0,
+      "scene": "recycling",
+      "sources": 2
+    },
+    {
+      "cpu": {
+        "median_ms": 10.0739,
+        "p95_ms": 15.7502
+      },
+      "floor_quads": 0,
+      "frame_with_present": {
+        "median_ms": 10.7823,
+        "p95_ms": 16.9587
+      },
+      "lighting_cpu": {
+        "median_ms": 0.019899999999999998,
+        "p95_ms": 0.0316
+      },
+      "mode": "dynamic",
+      "rebuild_ms": [],
+      "repeat": 1,
+      "scene": "recycling",
+      "sources": 2
+    },
+    {
+      "cpu": {
+        "median_ms": 10.423399999999999,
+        "p95_ms": 17.2222
+      },
+      "floor_quads": 0,
+      "frame_with_present": {
+        "median_ms": 11.0832,
+        "p95_ms": 17.930600000000002
+      },
+      "lighting_cpu": {
+        "median_ms": 0.0208,
+        "p95_ms": 0.030800000000000004
+      },
+      "mode": "fixed",
+      "rebuild_ms": [],
+      "repeat": 1,
+      "scene": "recycling",
+      "sources": 2
+    },
+    {
+      "cpu": {
+        "median_ms": 9.9294,
+        "p95_ms": 14.5808
+      },
+      "floor_quads": 0,
+      "frame_with_present": {
+        "median_ms": 10.5042,
+        "p95_ms": 15.4947
+      },
+      "lighting_cpu": {
+        "median_ms": 0.0,
+        "p95_ms": 0.0
+      },
+      "mode": "off",
+      "rebuild_ms": [],
+      "repeat": 1,
+      "scene": "recycling",
+      "sources": 0
+    },
+    {
+      "cpu": {
+        "median_ms": 7.4812,
+        "p95_ms": 12.5783
+      },
+      "floor_quads": 0,
+      "frame_with_present": {
+        "median_ms": 9.993500000000001,
+        "p95_ms": 15.1478
+      },
+      "lighting_cpu": {
+        "median_ms": 0.0,
+        "p95_ms": 0.0
+      },
+      "mode": "off",
+      "rebuild_ms": [],
+      "repeat": 0,
+      "scene": "lighting-room",
+      "sources": 0
+    },
+    {
+      "cpu": {
+        "median_ms": 7.182499999999999,
+        "p95_ms": 11.6609
+      },
+      "floor_quads": 70,
+      "frame_with_present": {
+        "median_ms": 10.0144,
+        "p95_ms": 12.4869
+      },
+      "lighting_cpu": {
+        "median_ms": 0.09330000000000001,
+        "p95_ms": 0.1343
+      },
+      "mode": "fixed",
+      "rebuild_ms": [
+        0.2042
+      ],
+      "repeat": 0,
+      "scene": "lighting-room",
+      "sources": 11
+    },
+    {
+      "cpu": {
+        "median_ms": 7.5515,
+        "p95_ms": 11.321100000000001
+      },
+      "floor_quads": 70,
+      "frame_with_present": {
+        "median_ms": 10.0123,
+        "p95_ms": 12.0796
+      },
+      "lighting_cpu": {
+        "median_ms": 0.0896,
+        "p95_ms": 0.1452
+      },
+      "mode": "dynamic",
+      "rebuild_ms": [],
+      "repeat": 0,
+      "scene": "lighting-room",
+      "sources": 11
+    },
+    {
+      "cpu": {
+        "median_ms": 7.5157,
+        "p95_ms": 11.383000000000001
+      },
+      "floor_quads": 70,
+      "frame_with_present": {
+        "median_ms": 9.9955,
+        "p95_ms": 12.2309
+      },
+      "lighting_cpu": {
+        "median_ms": 0.0915,
+        "p95_ms": 0.1408
+      },
+      "mode": "dynamic",
+      "rebuild_ms": [],
+      "repeat": 1,
+      "scene": "lighting-room",
+      "sources": 11
+    },
+    {
+      "cpu": {
+        "median_ms": 7.4101,
+        "p95_ms": 11.3557
+      },
+      "floor_quads": 70,
+      "frame_with_present": {
+        "median_ms": 10.012,
+        "p95_ms": 12.1522
+      },
+      "lighting_cpu": {
+        "median_ms": 0.09040000000000001,
+        "p95_ms": 0.13899999999999998
+      },
+      "mode": "fixed",
+      "rebuild_ms": [],
+      "repeat": 1,
+      "scene": "lighting-room",
+      "sources": 11
+    },
+    {
+      "cpu": {
+        "median_ms": 7.2794,
+        "p95_ms": 10.0433
+      },
+      "floor_quads": 0,
+      "frame_with_present": {
+        "median_ms": 10.001,
+        "p95_ms": 10.4624
+      },
+      "lighting_cpu": {
+        "median_ms": 0.0,
+        "p95_ms": 0.0
+      },
+      "mode": "off",
+      "rebuild_ms": [],
+      "repeat": 1,
+      "scene": "lighting-room",
+      "sources": 0
+    },
+    {
+      "autosave_enabled": false,
+      "command_cpu": {
+        "median_ms": 0.544,
+        "p95_ms": 0.8341000000000001
+      },
+      "cpu": {
+        "median_ms": 7.0056,
+        "p95_ms": 11.035
+      },
+      "geometry_rebuilds": 0,
+      "lighting_cpu": {
+        "median_ms": 0.0,
+        "p95_ms": 0.0
+      },
+      "mode": "off",
+      "scene": "lighting-walk",
+      "steps": 80
+    },
+    {
+      "autosave_enabled": false,
+      "command_cpu": {
+        "median_ms": 0.495,
+        "p95_ms": 0.7028
+      },
+      "cpu": {
+        "median_ms": 7.285299999999999,
+        "p95_ms": 11.0989
+      },
+      "geometry_rebuilds": 80,
+      "lighting_cpu": {
+        "median_ms": 0.1938,
+        "p95_ms": 0.297
+      },
+      "mode": "dynamic",
+      "scene": "lighting-walk",
+      "steps": 80
+    }
+  ],
+  "simulation_and_snapshot_unchanged": true,
+  "size": [
+    1280.0,
+    800.0
+  ],
+  "warmup_frames": 10
+}

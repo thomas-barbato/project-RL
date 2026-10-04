@@ -1,0 +1,19 @@
+{
+  "id": "core:modele_oryx_e48",
+  "name_key": "equipment.modele_oryx_e48.name",
+  "description_key": "equipment.fusil_de_parallaxe.description",
+  "mass_grams": 3700,
+  "ammunition_capacity": 6,
+  supply: { kind: "energy", amount: 6 },
+  "attack": {
+    "range": 10,
+    "distance_metric": "euclidean",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": 15,
+    "damage": {
+      "amount": 8,
+      "damage_type": "piercing",
+      "penetration": 2
+    }
+  }
+}

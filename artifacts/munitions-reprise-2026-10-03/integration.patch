@@ -1,0 +1,1014 @@
+--- a/src/ascii_app.rs
++++ b/src/ascii_app.rs
+@@ -92,6 +92,8 @@
+ #[cfg(debug_assertions)]
+ #[path = "performance_capture.rs"]
+ mod performance_capture;
++#[path = "recovery_worker.rs"]
++mod recovery_worker;
+ #[path = "ux.rs"]
+ mod ux;
+ #[path = "world_context.rs"]
+@@ -1507,6 +1509,8 @@
+     crash_recovery_enabled: bool,
+     crash_recovery_sequence: u64,
+     last_crash_recovery_command_count: usize,
++    last_crash_recovery_attempt_count: usize,
++    crash_recovery_worker: recovery_worker::RecoveryWorker,
+     session_lock: Option<std::fs::File>,
+ }
+ 
+@@ -6048,6 +6052,7 @@
+     }
+ 
+     fn update_input_at(&mut self, input: &InputFrame, captured_at: Option<f64>) {
++        self.update_crash_recovery();
+         if !self.inventory_open || !input.mouse_left_down {
+             self.inventory_scroll_drag = None;
+         }
+@@ -10647,6 +10652,8 @@
+             crash_recovery_enabled: false,
+             crash_recovery_sequence: 0,
+             last_crash_recovery_command_count: 0,
++            last_crash_recovery_attempt_count: 0,
++            crash_recovery_worker: recovery_worker::RecoveryWorker::default(),
+             session_lock: None,
+         })
+     }
+@@ -20255,6 +20262,8 @@
+         if self.test_lab {
+             return Ok(());
+         }
++        // No earlier writer may recreate a slot after cleanup or run replacement.
++        self.crash_recovery_worker.barrier();
+         for path in self.crash_recovery_paths() {
+             if keep.is_some_and(|kept| kept == path) {
+                 continue;
+@@ -20272,6 +20281,7 @@
+     }
+ 
+     fn write_crash_recovery_checkpoint(&mut self) -> Result<std::path::PathBuf, String> {
++        self.poll_crash_recovery_worker(true);
+         if self.test_lab {
+             return Err("Le laboratoire temporaire ne crée pas de sauvegarde.".into());
+         }
+@@ -20288,7 +20298,23 @@
+         checkpoint.write_replacing(&target)?;
+         self.crash_recovery_sequence = sequence;
+         self.last_crash_recovery_command_count = self.history.len();
++        self.last_crash_recovery_attempt_count = self.history.len();
+         Ok(target)
++    }
++
++    fn poll_crash_recovery_worker(&mut self, wait: bool) {
++        if let Some(result) = self.crash_recovery_worker.take_completion(wait) {
++            match result {
++                Ok(completed) => {
++                    self.crash_recovery_sequence = completed.sequence;
++                    self.last_crash_recovery_command_count = completed.command_count;
++                }
++                Err(error) => {
++                    eprintln!("[RECOVERY] Periodic checkpoint failed: {error}");
++                    self.push_log("Point de récupération périodique impossible.".to_owned());
++                }
++            }
++        }
+     }
+ 
+     fn start_crash_recovery(&mut self) {
+@@ -20305,6 +20331,7 @@
+     }
+ 
+     fn update_crash_recovery(&mut self) {
++        self.poll_crash_recovery_worker(false);
+         if !self.crash_recovery_enabled || self.session_lock.is_none() || self.is_main_menu_flow() {
+             return;
+         }
+@@ -20319,10 +20346,25 @@
+             .len()
+             .saturating_sub(self.last_crash_recovery_command_count)
+             < CRASH_RECOVERY_COMMAND_INTERVAL
++            || self.history.len() == self.last_crash_recovery_attempt_count
++            || self.crash_recovery_worker.has_work()
+         {
+             return;
+         }
+-        if let Err(error) = self.write_crash_recovery_checkpoint() {
++        self.last_crash_recovery_attempt_count = self.history.len();
++        let result = (|| {
++            let sequence = self
++                .crash_recovery_sequence
++                .checked_add(1)
++                .ok_or("Compteur de récupération épuisé.")?;
++            let paths = self.crash_recovery_paths();
++            self.crash_recovery_worker.start(
++                recovery_worker::CheckpointCapture::from_app(self)?,
++                sequence,
++                paths[sequence as usize % paths.len()].clone(),
++            )
++        })();
++        if let Err(error) = result {
+             eprintln!("[RECOVERY] Periodic checkpoint failed: {error}");
+             self.push_log("Point de récupération périodique impossible.".to_owned());
+         }
+@@ -20638,6 +20680,13 @@
+             .iter()
+             .position(Option::is_some)
+             .unwrap_or(0) as u8;
++        self.poll_crash_recovery_worker(true);
++        if !creation.replace_suspension && self.has_resume_data() {
++            return Err(
++                "Une partie peut être reprise ; confirmez son remplacement depuis le menu."
++                    .to_owned(),
++            );
++        }
+         if creation.replace_suspension {
+             self.remove_crash_recovery_files_except(None)?;
+         }
+@@ -21648,23 +21697,9 @@
+         }
+     }
+ 
++    #[cfg(any(debug_assertions, test))]
+     fn encode_recovery_snapshot(&self) -> Result<String, String> {
+-        let presentation = self.recovery_presentation();
+-        let engine = self.game.recovery_snapshot_bytes()?;
+-        let snapshot = AppRecoverySnapshotRef {
+-            engine: &engine,
+-            presentation_fingerprint: suspension::fingerprint(&presentation),
+-            presentation,
+-        };
+-        let mut bytes = Vec::new();
+-        // serialize() first walks the entire object to calculate its size. A
+-        // growing buffer lets us visit the presentation once instead of twice.
+-        bincode::serialize_into(&mut bytes, &snapshot)
+-            .map_err(|error| format!("Impossible d'encoder la reprise : {error}"))?;
+-        if bytes.len() > MAX_APP_RECOVERY_SNAPSHOT_BYTES {
+-            return Err("Instantané de reprise trop volumineux.".to_owned());
+-        }
+-        Ok(base64::engine::general_purpose::STANDARD.encode(bytes))
++        recovery_worker::encode_snapshot(&self.game, self.recovery_presentation())
+     }
+ 
+     fn decode_recovery_snapshot(
+@@ -21696,7 +21731,7 @@
+         })
+     }
+ 
+-    fn suspension(&self) -> Result<Suspension, String> {
++    fn suspension_metadata(&self) -> Result<Suspension, String> {
+         if self.test_lab {
+             return Err(
+                 "Le laboratoire temporaire ne peut pas être sauvegardé comme une partie.".into(),
+@@ -21706,20 +21741,13 @@
+             return Err("Une partie terminée ne peut pas être suspendue.".to_owned());
+         }
+         let commands = self.history.clone();
+-        let snapshot = self.encode_recovery_snapshot()?;
+         let saved = Suspension {
+             version: self.generation_version,
+             build: env!("PROJECT_RL_BUILD_FINGERPRINT").to_owned(),
+-            rules: rules_fingerprint_for_version(&self.rules, self.generation_version),
++            rules: 0,
+             packages: Some(self.active_packages.clone()),
+-            loot_rules: (self.generation_version >= 3).then(|| suspension::fingerprint(&self.loot)),
+-            world_rules: (self.generation_version >= 4).then(|| {
+-                world_fingerprint_for_version(
+-                    &self.expeditions,
+-                    &self.regional_worlds,
+-                    self.generation_version,
+-                )
+-            }),
++            loot_rules: None,
++            world_rules: None,
+             seed: self.seed,
+             character_class: self.character_class.as_ref().map(ToString::to_string),
+             starting_attributes: self
+@@ -21727,13 +21755,9 @@
+                 .as_ref()
+                 .and_then(|_| self.game.player_primary_attributes())
+                 .map(PrimaryAttributes::values),
+-            recovery: Some(RecoveryPayload::snapshot(commands.len(), snapshot)?),
++            recovery: None,
+             commands,
+-            state: if self.generation_version == 1 {
+-                suspension::fingerprint(self.game.active_game())
+-            } else {
+-                suspension::fingerprint(&self.game)
+-            },
++            state: 0,
+             active_weapon_slot: self.active_weapon_slot,
+             selected_target: self.selected_target.map(|id| id.get()),
+             report: self.observation_report.clone(),
+@@ -21741,8 +21765,21 @@
+             observed_events: self.ux.history.clone(),
+             tracked_quest: self.ux.tracked_quest.as_ref().map(ToString::to_string),
+         };
+-        saved.validate()?;
+         Ok(saved)
++    }
++
++    fn suspension(&self) -> Result<Suspension, String> {
++        recovery_worker::finish_suspension(
++            self.suspension_metadata()?,
++            &self.game,
++            self.recovery_presentation(),
++            recovery_worker::SaveContent {
++                rules: &self.rules,
++                loot: &self.loot,
++                expeditions: &self.expeditions,
++                regional_worlds: &self.regional_worlds,
++            },
++        )
+     }
+ 
+     fn restore_suspension(
+@@ -21918,6 +21955,7 @@
+     }
+ 
+     fn suspend_run(&self) -> Result<(), String> {
++        self.crash_recovery_worker.barrier();
+         let saved = self.suspension()?;
+         // Prove both the exact-build snapshot and the journal fallback before writing.
+         Self::restore_suspension(
+@@ -22006,6 +22044,7 @@
+     }
+ 
+     fn start_resume_worker(&mut self) -> Result<(), String> {
++        self.poll_crash_recovery_worker(true);
+         let path = self.suspension_path.clone();
+         let rules = self.rules.clone();
+         let texts = self.texts.clone();
+@@ -22033,6 +22072,7 @@
+     }
+ 
+     fn resume_run(&mut self) -> Result<(), String> {
++        self.poll_crash_recovery_worker(true);
+         let (saved, source) = Self::read_resume_candidate_from(&self.suspension_path)?;
+         let restored = Self::restore_suspension(
+             &saved,
+@@ -22049,6 +22089,7 @@
+         mut restored: Self,
+         source: ResumeSource,
+     ) -> Result<(), String> {
++        self.poll_crash_recovery_worker(true);
+         // A fresh emergency checkpoint is durable before the one-use source is
+         // consumed, so even a second crash during installation keeps the run.
+         restored.controls = self.controls.clone();
+@@ -28743,6 +28784,7 @@
+             );
+             app.capture_events();
+         }
++        app.poll_crash_recovery_worker(true);
+         let latest_state = suspension::fingerprint(&app.game);
+         assert_eq!(app.crash_recovery_sequence, 2);
+         assert!(paths.iter().all(|path| path.exists()));
+@@ -28770,7 +28812,11 @@
+         app.session_lock = Some(suspension::session_lock(&lock_path).unwrap());
+         app.crash_recovery_enabled = true;
+         app.start_crash_recovery();
+-        apply(&mut app, GameCommand::Wait);
++        for _ in 0..CRASH_RECOVERY_COMMAND_INTERVAL {
++            apply(&mut app, GameCommand::Wait);
++        }
++        app.update_crash_recovery();
++        assert!(app.crash_recovery_worker.has_work());
+         let expected = suspension::fingerprint(&app.game);
+ 
+         app.suspend_run().unwrap();
+--- a/src/hud_resources.rs
++++ b/src/hud_resources.rs
+@@ -1,5 +1,7 @@
+ //! The same resolved resource values feed both HUD layouts.
+ use super::*;
++
++const AMMUNITION_COLOR: Color = Color::from_rgba(229, 183, 109, 255);
+ 
+ pub(super) struct ResourceGauge {
+     pub label: &'static str,
+@@ -325,7 +327,7 @@
+                 color: if stock == 0 {
+                     theme.danger()
+                 } else {
+-                    theme.accent()
++                    AMMUNITION_COLOR
+                 },
+             });
+         } else if let Some((left, capacity)) = self
+@@ -342,7 +344,7 @@
+                 color: if left == 0 {
+                     theme.danger()
+                 } else {
+-                    theme.accent()
++                    AMMUNITION_COLOR
+                 },
+             });
+         }
+--- a/src/game/game_state.rs
++++ b/src/game/game_state.rs
+@@ -345,6 +345,7 @@
+     }
+ }
+ 
++#[derive(Clone)]
+ pub struct GameState {
+     last_monster_loot: Option<ItemId>,
+     sustained_fire: Option<SustainedFire>,
+--- a/src/game/expedition.rs
++++ b/src/game/expedition.rs
+@@ -708,6 +708,7 @@
+     }
+ }
+ 
++#[derive(Clone)]
+ pub struct WorldState {
+     narrative: Option<NarrativeState>,
+     active: GameState,
+--- a/src/suspension.rs
++++ b/src/suspension.rs
+@@ -1594,10 +1594,13 @@
+             let _ = std::fs::remove_file(&temporary);
+             return Err(error.to_string());
+         }
+-        if path.try_exists().map_err(|error| error.to_string())? {
+-            std::fs::remove_file(path).map_err(|error| error.to_string())?;
+-        }
+-        if let Err(error) = std::fs::rename(&temporary, path) {
++        let replacement = (|| {
++            if path.try_exists()? {
++                std::fs::remove_file(path)?;
++            }
++            std::fs::rename(&temporary, path)
++        })();
++        if let Err(error) = replacement {
+             let _ = std::fs::remove_file(&temporary);
+             return Err(error.to_string());
+         }
+--- a/src/performance_capture.rs
++++ b/src/performance_capture.rs
+@@ -280,9 +280,13 @@
+             "content-fingerprints",
+             "suspension",
+             "checkpoint",
++            "checkpoint-capture",
++            "checkpoint-submit",
+         ] {
+             let mut times = Vec::new();
+-            for _ in 0..8 {
++            let mut total_times = Vec::new();
++            for sample in 0..8 {
++                let mut captured = None;
+                 let start = Instant::now();
+                 match operation {
+                     "wait" => {
+@@ -321,18 +325,190 @@
+                     "checkpoint" => {
+                         self.write_crash_recovery_checkpoint()?;
+                     }
++                    "checkpoint-capture" => {
++                        captured = Some(recovery_worker::CheckpointCapture::from_app(self)?);
++                    }
++                    "checkpoint-submit" => {
++                        let sequence = self.crash_recovery_sequence + 1;
++                        let path = self.crash_recovery_paths()[sequence as usize % 2].clone();
++                        self.crash_recovery_worker.start(
++                            recovery_worker::CheckpointCapture::from_app(self)?,
++                            sequence,
++                            path,
++                        )?;
++                    }
+                     _ => unreachable!(),
+                 }
+                 times.push(start.elapsed().as_secs_f64() * 1000.0);
++                if operation == "checkpoint-submit" {
++                    self.poll_crash_recovery_worker(true);
++                    total_times.push(start.elapsed().as_secs_f64() * 1000.0);
++                }
++                if let Some(captured) = captured {
++                    if sample == 0 {
++                        let legacy =
++                            serde_json::to_vec(&self.suspension()?).map_err(|e| e.to_string())?;
++                        let threaded = std::thread::spawn(move || captured.encode())
++                            .join()
++                            .map_err(|_| "Capture worker interrupted")??;
++                        if legacy != serde_json::to_vec(&threaded).map_err(|e| e.to_string())? {
++                            return Err(format!("{scene}: captured save bytes changed"));
++                        }
++                        rows.push(serde_json::json!({"scene":scene,"operation":"captured-save-compatibility","identical_json_bytes":true}));
++                    } else {
++                        drop(captured);
++                    }
++                }
+             }
+             times.sort_by(f64::total_cmp);
+             let row = serde_json::json!({"scene":scene,"operation":operation,"median_ms":times[times.len()/2],"max_ms":times.last()});
+             eprintln!("[PERF ACTION] {row}");
+             rows.push(row);
++            if !total_times.is_empty() {
++                rows.push(serde_json::json!({"scene":scene,"operation":"checkpoint-background-total","timing":timing_summary(&total_times)}));
++            }
+         }
+         let snapshot = self.game.recovery_snapshot_bytes()?;
+         rows.push(serde_json::json!({"scene":scene,"operation":"state", "commands":self.history.len(), "fingerprint":suspension::fingerprint(&self.game), "snapshot_bytes":snapshot.len(), "snapshot_fingerprint":suspension::fingerprint(&snapshot)}));
+         Ok(())
++    }
++
++    /// Compare the original synchronous checkpoint with the bounded writer in
++    /// the same native build, along identical movement, without user saves.
++    pub async fn capture_recovery_performance(output: &std::path::Path) -> Result<(), String> {
++        std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
++        let (rules, texts, loot, expeditions) = ascii_game_content()?;
++        request_new_screen_size(1280., 800.);
++        for _ in 0..5 {
++            next_frame().await;
++        }
++        let mut rows = Vec::new();
++        let mut engines = Vec::new();
++        let mut presentations = Vec::new();
++        let mut saves = Vec::new();
++        for asynchronous in [false, true] {
++            let mode = if asynchronous {
++                "background"
++            } else {
++                "synchronous"
++            };
++            let folder = output.join(mode);
++            std::fs::create_dir_all(&folder).map_err(|e| e.to_string())?;
++            let mut app = Self::from_seed(
++                INITIAL_SEED,
++                rules.clone(),
++                texts.clone(),
++                loot.clone(),
++                expeditions.clone(),
++            )?;
++            app.suspension_path = folder.join("diagnostic-run.json");
++            app.graphics.active.mode = WindowMode::Windowed;
++            app.graphics.active.world_cell_px = 20;
++            app.graphics.active.interface_theme = graphics::InterfaceTheme::Violet;
++            app.walk_fixture_out_of_recycling()?;
++            app.walk_fixture_to(app.home_position(GridPos::new(65, 21)))?;
++            let origin = app.game.player_position().ok_or("Missing player")?;
++            let (outward, returning) = [
++                (Direction::East, Direction::West),
++                (Direction::West, Direction::East),
++                (Direction::North, Direction::South),
++                (Direction::South, Direction::North),
++            ]
++            .into_iter()
++            .find(|(direction, _)| {
++                let at = origin.step(*direction);
++                app.game.map().is_walkable(at)
++                    && !app
++                        .game
++                        .actors()
++                        .iter()
++                        .any(|(_, actor)| actor.position() == at)
++            })
++            .ok_or("Missing movement fixture")?;
++            app.session_lock = Some(suspension::session_lock(&folder.join("session.lock"))?);
++            app.write_crash_recovery_checkpoint()?;
++            app.crash_recovery_enabled = asynchronous;
++            for _ in 0..30 {
++                app.draw();
++                next_frame().await;
++            }
++            let mut cpu = Vec::new();
++            let mut frames = Vec::new();
++            let mut command_cpu = Vec::new();
++            let mut checkpoint_cpu = Vec::new();
++            let mut execute_cpu = Vec::new();
++            let mut event_cpu = Vec::new();
++            let mut idle_cpu = Vec::new();
++            let mut commands = 0;
++            for frame in 0..600 {
++                let start = Instant::now();
++                if asynchronous {
++                    app.update_crash_recovery();
++                }
++                let moving = frame % 10 == 0;
++                if moving {
++                    let command_start = Instant::now();
++                    let direction = if commands % 2 == 0 {
++                        outward
++                    } else {
++                        returning
++                    };
++                    if app.execute_command(GameCommand::Move(direction)) != CommandOutcome::Applied
++                    {
++                        return Err(format!("{mode}: move rejected"));
++                    }
++                    execute_cpu.push(command_start.elapsed().as_secs_f64() * 1000.);
++                    let events_start = Instant::now();
++                    app.capture_events_at(Some(0.));
++                    event_cpu.push(events_start.elapsed().as_secs_f64() * 1000.);
++                    commands += 1;
++                    let checkpoint_start = Instant::now();
++                    if asynchronous {
++                        app.update_crash_recovery();
++                    } else if commands % CRASH_RECOVERY_COMMAND_INTERVAL == 0 {
++                        app.write_crash_recovery_checkpoint()?;
++                    }
++                    if commands % CRASH_RECOVERY_COMMAND_INTERVAL == 0 {
++                        checkpoint_cpu.push(checkpoint_start.elapsed().as_secs_f64() * 1000.);
++                    }
++                    command_cpu.push(command_start.elapsed().as_secs_f64() * 1000.);
++                }
++                app.draw();
++                let cost = start.elapsed().as_secs_f64() * 1000.;
++                cpu.push(cost);
++                if !moving {
++                    idle_cpu.push(cost);
++                }
++                next_frame().await;
++                frames.push(start.elapsed().as_secs_f64() * 1000.);
++            }
++            // Drain and catch up outside frame measurements before inspecting durability.
++            if asynchronous {
++                app.poll_crash_recovery_worker(true);
++                app.update_crash_recovery();
++                app.poll_crash_recovery_worker(true);
++            }
++            let (saved, _) = Self::read_resume_candidate_from(&app.suspension_path)?;
++            if saved.commands.len() != app.history.len()
++                || saved.state != suspension::fingerprint(&app.game)
++            {
++                return Err(format!("{mode}: last movement was not durable"));
++            }
++            let row = serde_json::json!({"mode":mode,"scene":"hub-walk","commands":commands,"frames":600,"command_every_n_frames":10,"checkpoints":app.crash_recovery_sequence-1,"cpu":timing_summary(&cpu),"frame_with_present":timing_summary(&frames),"movement_cpu":timing_summary(&command_cpu),"checkpoint_main_cpu":timing_summary(&checkpoint_cpu),"execute_cpu":timing_summary(&execute_cpu),"event_cpu":timing_summary(&event_cpu),"idle_cpu":timing_summary(&idle_cpu),"final_checkpoint_current":true});
++            eprintln!("[PERF RECOVERY] {row}");
++            rows.push(row);
++            engines.push(app.game.recovery_snapshot_bytes()?);
++            presentations
++                .push(bincode::serialize(&app.recovery_presentation()).map_err(|e| e.to_string())?);
++            saves.push(serde_json::to_vec(&saved).map_err(|e| e.to_string())?);
++            app.remove_crash_recovery_files_except(None)?;
++            drop(app.session_lock.take());
++        }
++        if engines[0] != engines[1] || presentations[0] != presentations[1] || saves[0] != saves[1]
++        {
++            return Err("Background recovery changed engine, presentation or save bytes".into());
++        }
++        std::fs::write(output.join("timings.json"), serde_json::to_vec_pretty(&serde_json::json!({"build":"debug","size":[screen_width(),screen_height()],"identical_engine_presentation_save_bytes":true,"scenes":rows})).map_err(|e|e.to_string())?).map_err(|e|e.to_string())
+     }
+ 
+     pub async fn capture_performance(output: &std::path::Path) -> Result<(), String> {
+@@ -410,3 +586,9 @@
+         .map_err(|e| e.to_string())
+     }
+ }
++
++fn timing_summary(values: &[f64]) -> serde_json::Value {
++    let mut sorted = values.to_vec();
++    sorted.sort_by(f64::total_cmp);
++    serde_json::json!({"median_ms":sorted[sorted.len()/2],"p95_ms":sorted[sorted.len()*95/100],"p99_ms":sorted[sorted.len()*99/100],"max_ms":sorted.last()})
++}
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -44,6 +44,8 @@
+         let mode = std::env::args().nth(1).unwrap_or_default();
+         let result = if mode == "--ui-cold-performance-actions" {
+             AsciiApp::capture_action_performance(&output)
++        } else if mode == "--ui-cold-performance-recovery" {
++            AsciiApp::capture_recovery_performance(&output).await
+         } else if mode == "--ui-cold-performance-lights" {
+             AsciiApp::capture_lighting_performance(&output).await
+         } else if mode == "--ui-cold-performance" {
+--- /dev/null
++++ b/src/recovery_worker.rs
+@@ -0,0 +1,436 @@
++//! Immutable recovery capture and a single bounded background writer.
++use super::*;
++use std::cell::RefCell;
++use std::path::PathBuf;
++use std::thread::JoinHandle;
++
++pub(super) struct SaveContent<'a> {
++    pub rules: &'a GameRules,
++    pub loot: &'a LootCatalog,
++    pub expeditions: &'a ExpeditionCatalog,
++    pub regional_worlds: &'a RegionalWorldCatalog,
++}
++
++pub(super) fn encode_snapshot(
++    game: &WorldState,
++    presentation: RecoveryPresentationRef<'_>,
++) -> Result<String, String> {
++    let engine = game.recovery_snapshot_bytes()?;
++    let snapshot = AppRecoverySnapshotRef {
++        engine: &engine,
++        presentation_fingerprint: suspension::fingerprint(&presentation),
++        presentation,
++    };
++    let mut bytes = Vec::new();
++    bincode::serialize_into(&mut bytes, &snapshot)
++        .map_err(|error| format!("Impossible d'encoder la reprise : {error}"))?;
++    if bytes.len() > MAX_APP_RECOVERY_SNAPSHOT_BYTES {
++        return Err("Instantané de reprise trop volumineux.".to_owned());
++    }
++    Ok(base64::engine::general_purpose::STANDARD.encode(bytes))
++}
++
++pub(super) fn finish_suspension(
++    mut saved: Suspension,
++    game: &WorldState,
++    presentation: RecoveryPresentationRef<'_>,
++    content: SaveContent<'_>,
++) -> Result<Suspension, String> {
++    let version = saved.version;
++    saved.rules = rules_fingerprint_for_version(content.rules, version);
++    saved.loot_rules = (version >= 3).then(|| suspension::fingerprint(content.loot));
++    saved.world_rules = (version >= 4).then(|| {
++        world_fingerprint_for_version(content.expeditions, content.regional_worlds, version)
++    });
++    saved.recovery = Some(RecoveryPayload::snapshot(
++        saved.commands.len(),
++        encode_snapshot(game, presentation)?,
++    )?);
++    saved.state = if version == 1 {
++        suspension::fingerprint(game.active_game())
++    } else {
++        suspension::fingerprint(game)
++    };
++    saved.validate()?;
++    Ok(saved)
++}
++
++pub(super) struct CheckpointCapture {
++    game: WorldState,
++    presentation: RecoveryPresentation,
++    rules: GameRules,
++    loot: LootCatalog,
++    expeditions: ExpeditionCatalog,
++    regional_worlds: RegionalWorldCatalog,
++    metadata: Suspension,
++}
++
++impl CheckpointCapture {
++    pub(super) fn from_app(app: &AsciiApp) -> Result<Self, String> {
++        let metadata = app.suspension_metadata()?;
++        Ok(Self {
++            game: app.game.clone(),
++            presentation: RecoveryPresentation {
++                terminal: app.terminal.clone(),
++                zone_views: app.zone_views.clone(),
++                zone_decor: app.zone_decor.clone(),
++                facing: app.facing,
++                regional_zones: app.regional_zones.clone(),
++                actor_glyphs: app.actor_glyphs.clone(),
++                intro_city_reached: app.intro_city_reached,
++            },
++            rules: app.rules.clone(),
++            loot: app.loot.clone(),
++            expeditions: app.expeditions.clone(),
++            regional_worlds: app.regional_worlds.clone(),
++            metadata,
++        })
++    }
++
++    pub(super) fn encode(self) -> Result<Suspension, String> {
++        let p = &self.presentation;
++        finish_suspension(
++            self.metadata,
++            &self.game,
++            RecoveryPresentationRef {
++                terminal: &p.terminal,
++                zone_views: &p.zone_views,
++                zone_decor: &p.zone_decor,
++                facing: p.facing,
++                regional_zones: &p.regional_zones,
++                actor_glyphs: &p.actor_glyphs,
++                intro_city_reached: p.intro_city_reached,
++            },
++            SaveContent {
++                rules: &self.rules,
++                loot: &self.loot,
++                expeditions: &self.expeditions,
++                regional_worlds: &self.regional_worlds,
++            },
++        )
++    }
++}
++
++pub(super) struct Completion {
++    pub sequence: u64,
++    pub command_count: usize,
++}
++
++#[derive(Default)]
++pub(super) struct RecoveryWorker {
++    pending: RefCell<Option<JoinHandle<Result<Completion, String>>>>,
++    completed: RefCell<Option<Result<Completion, String>>>,
++}
++
++impl RecoveryWorker {
++    pub(super) fn has_work(&self) -> bool {
++        self.pending.borrow().is_some() || self.completed.borrow().is_some()
++    }
++
++    pub(super) fn start(
++        &self,
++        capture: CheckpointCapture,
++        sequence: u64,
++        path: PathBuf,
++    ) -> Result<(), String> {
++        if self.has_work() {
++            return Err("Une récupération est déjà en cours.".into());
++        }
++        let worker = std::thread::Builder::new()
++            .name("rl-recovery".into())
++            .spawn(move || {
++                let saved = capture.encode()?;
++                let command_count = saved.commands.len();
++                CrashRecovery::new(sequence, saved)?.write_replacing(&path)?;
++                Ok(Completion {
++                    sequence,
++                    command_count,
++                })
++            })
++            .map_err(|error| format!("Impossible de préparer la récupération : {error}"))?;
++        *self.pending.borrow_mut() = Some(worker);
++        Ok(())
++    }
++
++    fn finish(&self, wait: bool) {
++        let ready = self
++            .pending
++            .borrow()
++            .as_ref()
++            .is_some_and(|worker| wait || worker.is_finished());
++        if ready {
++            let worker = self.pending.borrow_mut().take().unwrap();
++            let result = worker
++                .join()
++                .unwrap_or_else(|_| Err("Le travailleur de récupération a été interrompu.".into()));
++            *self.completed.borrow_mut() = Some(result);
++        }
++    }
++
++    pub(super) fn take_completion(&self, wait: bool) -> Option<Result<Completion, String>> {
++        self.finish(wait);
++        self.completed.borrow_mut().take()
++    }
++
++    // Keep the completion until the app can update its counters, even if a
++    // voluntary suspension fails and the player continues the current run.
++    pub(super) fn barrier(&self) {
++        self.finish(true);
++    }
++}
++
++impl Drop for RecoveryWorker {
++    fn drop(&mut self) {
++        self.finish(true);
++        if let Some(Err(error)) = self.completed.get_mut().take() {
++            eprintln!("[RECOVERY] Final checkpoint failed: {error}");
++        }
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    use std::sync::mpsc;
++
++    fn app(prefix: &str) -> AsciiApp {
++        let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
++        let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
++        let folder = std::env::temp_dir().join(format!(
++            "rl-recovery-{prefix}-{}-{}",
++            std::process::id(),
++            std::time::SystemTime::now()
++                .duration_since(std::time::UNIX_EPOCH)
++                .unwrap()
++                .as_nanos()
++        ));
++        std::fs::create_dir(&folder).unwrap();
++        app.suspension_path = folder.join("suspended-run.json");
++        app.session_lock = Some(suspension::session_lock(&folder.join("session.lock")).unwrap());
++        app.crash_recovery_enabled = true;
++        app.start_crash_recovery();
++        assert_eq!(app.crash_recovery_sequence, 1);
++        app
++    }
++
++    fn clean(mut app: AsciiApp) {
++        app.remove_crash_recovery_files_except(None).unwrap();
++        let folder = app.suspension_path.parent().unwrap().to_owned();
++        if app.suspension_path.exists() {
++            std::fs::remove_file(&app.suspension_path).unwrap();
++        }
++        drop(app.session_lock.take());
++        drop(app);
++        std::fs::remove_file(folder.join("session.lock")).unwrap();
++        std::fs::remove_dir(folder).unwrap();
++    }
++
++    fn step(app: &mut AsciiApp) {
++        assert_eq!(
++            app.execute_command(GameCommand::Wait),
++            CommandOutcome::Applied
++        );
++        app.capture_events_at(Some(0.));
++    }
++
++    // A channel holds the writer before encoding, making lifecycle assertions
++    // independent of CPU and disk speed, without sleeps or timing races.
++    fn gated_writer(app: &AsciiApp) -> mpsc::Sender<()> {
++        let (send, receive) = mpsc::channel();
++        let capture = CheckpointCapture::from_app(app).unwrap();
++        let sequence = app.crash_recovery_sequence + 1;
++        let path = app.crash_recovery_paths()[sequence as usize % 2].clone();
++        *app.crash_recovery_worker.pending.borrow_mut() = Some(std::thread::spawn(move || {
++            receive.recv().unwrap();
++            let saved = capture.encode()?;
++            let command_count = saved.commands.len();
++            CrashRecovery::new(sequence, saved)?.write_replacing(&path)?;
++            Ok(Completion {
++                sequence,
++                command_count,
++            })
++        }));
++        send
++    }
++
++    #[test]
++    fn recovery_capture_preserves_exact_save_bytes_after_live_changes() {
++        let mut app = app("immutable");
++        step(&mut app);
++        let before = serde_json::to_vec(&app.suspension().unwrap()).unwrap();
++        let capture = CheckpointCapture::from_app(&app).unwrap();
++        step(&mut app);
++        app.facing = Direction::West;
++        app.log.push("Nouvel événement après la capture".into());
++        let saved = std::thread::spawn(move || capture.encode().unwrap())
++            .join()
++            .unwrap();
++        assert_eq!(serde_json::to_vec(&saved).unwrap(), before);
++        assert_ne!(saved.state, suspension::fingerprint(&app.game));
++        let restored = AsciiApp::restore_suspension(
++            &saved,
++            app.rules.clone(),
++            app.texts.clone(),
++            app.loot.clone(),
++            app.expeditions.clone(),
++        )
++        .unwrap();
++        assert_eq!(suspension::fingerprint(&restored.game), saved.state);
++        clean(app);
++    }
++
++    #[test]
++    fn recovery_queue_is_bounded_and_catches_up_to_the_latest_commands() {
++        let mut app = app("bounded");
++        let release = gated_writer(&app);
++        for _ in 0..12 {
++            step(&mut app);
++            app.update_crash_recovery();
++        }
++        assert_eq!(app.crash_recovery_sequence, 1);
++        assert!(app.crash_recovery_worker.pending.borrow().is_some());
++        assert!(
++            app.crash_recovery_worker
++                .start(
++                    CheckpointCapture::from_app(&app).unwrap(),
++                    3,
++                    app.crash_recovery_paths()[1].clone()
++                )
++                .is_err()
++        );
++        release.send(()).unwrap();
++        app.poll_crash_recovery_worker(true);
++        assert_eq!(app.crash_recovery_sequence, 2);
++        app.update_crash_recovery();
++        app.poll_crash_recovery_worker(true);
++        let (saved, source) = AsciiApp::read_resume_candidate_from(&app.suspension_path).unwrap();
++        assert_eq!(source, ResumeSource::CrashRecovery { sequence: 3 });
++        assert_eq!(saved.commands.len(), 12);
++        assert_eq!(saved.state, suspension::fingerprint(&app.game));
++        clean(app);
++    }
++
++    #[test]
++    fn recovery_failure_keeps_the_other_slot_and_does_not_retry_while_idle() {
++        let mut app = app("failure");
++        let blocked = app.crash_recovery_paths()[0].clone();
++        std::fs::create_dir(&blocked).unwrap();
++        for _ in 0..5 {
++            step(&mut app);
++            app.update_crash_recovery();
++        }
++        app.poll_crash_recovery_worker(true);
++        assert_eq!(app.crash_recovery_sequence, 1);
++        assert_eq!(
++            AsciiApp::read_resume_candidate_from(&app.suspension_path)
++                .unwrap()
++                .1,
++            ResumeSource::CrashRecovery { sequence: 1 }
++        );
++        app.update_crash_recovery();
++        assert!(!app.crash_recovery_worker.has_work());
++        std::fs::remove_dir(&blocked).unwrap();
++        step(&mut app);
++        app.update_crash_recovery();
++        app.poll_crash_recovery_worker(true);
++        assert_eq!(app.crash_recovery_sequence, 2);
++        assert_eq!(app.last_crash_recovery_command_count, 6);
++        clean(app);
++    }
++
++    #[test]
++    fn recovery_cleanup_and_restart_wait_for_the_previous_writer() {
++        let mut app = app("restart");
++        let release = gated_writer(&app);
++        release.send(()).unwrap();
++        app.remove_crash_recovery_files_except(None).unwrap();
++        assert!(app.crash_recovery_worker.pending.borrow().is_none());
++        assert!(app.crash_recovery_paths().iter().all(|path| !path.exists()));
++        app.poll_crash_recovery_worker(false);
++        let release = gated_writer(&app);
++        release.send(()).unwrap();
++        let old_seed = app.seed;
++        app.restart_current_profile();
++        assert_eq!(app.seed, old_seed + 1);
++        let (saved, source) = AsciiApp::read_resume_candidate_from(&app.suspension_path).unwrap();
++        assert_eq!(source, ResumeSource::CrashRecovery { sequence: 1 });
++        assert_eq!(saved.seed, app.seed);
++        assert_eq!(saved.state, suspension::fingerprint(&app.game));
++        clean(app);
++    }
++
++    #[test]
++    fn recovery_resume_reads_the_completed_writer_and_rearms_the_latest_state() {
++        let mut app = app("resume");
++        step(&mut app);
++        let expected = suspension::fingerprint(&app.game);
++        let release = gated_writer(&app);
++        step(&mut app);
++        release.send(()).unwrap();
++        app.resume_run().unwrap();
++        assert_eq!(app.history.len(), 1);
++        assert_eq!(suspension::fingerprint(&app.game), expected);
++        let (saved, source) = AsciiApp::read_resume_candidate_from(&app.suspension_path).unwrap();
++        assert_eq!(source, ResumeSource::CrashRecovery { sequence: 3 });
++        assert_eq!(saved.state, expected);
++        clean(app);
++    }
++
++    #[test]
++    fn recovery_character_creation_waits_and_requires_replacement_before_discarding() {
++        let mut app = app("creation");
++        step(&mut app);
++        let release = gated_writer(&app);
++        release.send(()).unwrap();
++        let attributes = app
++            .character_classes
++            .iter()
++            .next()
++            .unwrap()
++            .1
++            .recommended_attributes();
++        let mut creation = CharacterCreation {
++            seed: INITIAL_SEED + 5,
++            stage: CharacterCreationStage::Attributes,
++            selected_class: 0,
++            selected_attribute: 0,
++            attributes,
++            replace_suspension: false,
++            message: String::new(),
++            hovered: None,
++        };
++        assert!(app.rebuild_run_with_character_class(&creation).is_err());
++        let (saved, source) = AsciiApp::read_resume_candidate_from(&app.suspension_path).unwrap();
++        assert_eq!(source, ResumeSource::CrashRecovery { sequence: 2 });
++        assert_eq!(saved.seed, INITIAL_SEED);
++        let release = gated_writer(&app);
++        release.send(()).unwrap();
++        creation.replace_suspension = true;
++        app.rebuild_run_with_character_class(&creation).unwrap();
++        let (saved, source) = AsciiApp::read_resume_candidate_from(&app.suspension_path).unwrap();
++        assert_eq!(source, ResumeSource::CrashRecovery { sequence: 1 });
++        assert_eq!(saved.seed, creation.seed);
++        assert_eq!(saved.state, suspension::fingerprint(&app.game));
++        clean(app);
++    }
++
++    #[test]
++    fn recovery_drop_joins_the_writer_before_releasing_the_session() {
++        let app = app("drop");
++        let path = app.suspension_path.clone();
++        let release = gated_writer(&app);
++        release.send(()).unwrap();
++        drop(app);
++        let (saved, source) = AsciiApp::read_resume_candidate_from(&path).unwrap();
++        assert_eq!(source, ResumeSource::CrashRecovery { sequence: 2 });
++        assert_eq!(saved.seed, INITIAL_SEED);
++        for slot in AsciiApp::crash_recovery_paths_for(&path) {
++            std::fs::remove_file(slot).unwrap();
++        }
++        let folder = path.parent().unwrap();
++        let lock = suspension::session_lock(&folder.join("session.lock")).unwrap();
++        drop(lock);
++        std::fs::remove_file(folder.join("session.lock")).unwrap();
++        std::fs::remove_dir(folder).unwrap();
++    }
++}

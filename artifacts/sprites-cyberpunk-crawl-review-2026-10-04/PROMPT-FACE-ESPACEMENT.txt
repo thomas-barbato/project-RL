@@ -1,0 +1,13 @@
+Retouche de la planche du bestiaire par imagegen intégré : corriger uniquement
+le placement des silhouettes dans les cases, après observation à 32 pixels.
+
+Precise layout correction ONLY. Image 1 is the edit target, our already approved-style FRONT-FACING 24-sprite cyberpunk bestiary atlas.
+Preserve ALL 24 exact character identities, frontal poses, body plans, colors and pixel-art style from this image. No redesign, no new creatures, no new costume. Correct ONLY placement and scale so sprites do not overlap adjacent atlas cells and no head, paw, wing, tail or floating fragment is cut off by a cell boundary.
+OUTPUT exact 1536x1024 landscape image, REAL transparent background. EXACT 6 columns x 4 rows, equal 256x256 cells. The centers of the columns are x=128,384,640,896,1152,1408; the centers of the rows are y=128,384,640,896.
+Each complete subject MUST be wholly contained in the INNER 216x216 box of its own 256x256 cell, with at least 20 actual pixels of completely transparent margin on EVERY side. Scale the whole subject down uniformly as needed, never crop limbs. In particular: the bat and the domed six-legged creature must not leak into each other's cells; the worm and anemone must be fully separate; row 4 human heads must begin BELOW y=788, NOT in row 3. Row 3 creatures and human blade fighter must end ABOVE y=748. Row 4 feet end ABOVE y=1004. Keep the bodies readable and complete. No labels, no grid lines, no border, no floor, no background gradient, no colored matte, no glow in empty background.
+Keep EXACT same row-major ordering:
+Row1: gray large-ear rodent; tawny quadruped predator; huge bone-ridged quadruped; pale burrower; domed SIX-legged arthropod; bat.
+Row2: coiled organic segmented worm; blue radial anemone; hollow mineral resonator; tripod sentinel; two-legged riveting machine; mineral scale rosette.
+Row3: knotted ribbon organism; paired cyan-white contour loops; olive SIX-legged arthropod with yellow chemical sac; purple offset ribbon anomaly; fragmented empty-center ring anomaly; human brown jacket blade fighter.
+Row4: hooded rifleman; armored amber-visor guard with baton; olive medic with satchel; hooded cargo carrier with large square backpack; orange-overall worker with wrench; blue-gray infected human.
+ALL face the viewer, exactly as in the edit target. Maintain original cyberpunk pixel-art quality, purposeful crisp large pixel clusters. Transparent background alpha0 around each isolated sprite and inside appropriate holes. The equal atlas-cell geometry and complete containment are the single essential changes.

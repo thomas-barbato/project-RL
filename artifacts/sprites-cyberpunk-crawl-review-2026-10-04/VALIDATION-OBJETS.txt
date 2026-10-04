@@ -1,0 +1,46 @@
+Vérification de l'aperçu indépendant - 4 octobre 2026
+
+Catalogue :
+- 133 références d'armes et de protections conservées.
+- 17 définitions supplémentaires relevées dans content/core/items.
+- 150 identifiants de base uniques ; aucune définition locale omise.
+- 17 images de fournitures présentes, transparentes RGBA, non vides,
+  sans image source strictement identique.
+- Soin : boîte v4 ; munitions v3 ; batterie v2, références chargées.
+- Syntaxe JavaScript validée par node --check.
+
+Vérification dans le navigateur local :
+- 150 choix disponibles ; 150 cartes dans le filtre complet, 17 fournitures.
+- Recherche « repair kit » : une référence, Boîte de soins.
+- Ramasser le soin : quantité 1 -> 2 dans le sac, ramassage désactivé.
+- Le dépôt du soin a été vérifié pendant l'essai précédent : quantité 2 -> 1.
+- Mine, plastron, arme à distance et dague : image présente après ramassage.
+- Deux plastrons apparaissent en deux piles distinctes de quantité 1.
+- Choix 20 / 24 / 32 px au sol : légende et rendu actualisés.
+- Images d'inventaire : canvases 32 x 32.
+- Carte à 48 px / sol ruines : 1056 x 672 ; retour à 32 px / asphalte.
+- Aucune erreur JavaScript relevée dans le journal du navigateur.
+
+Présentation finale :
+- Butin centré, plus petit : 20 pixels dans les cases de 32 pixels.
+- Rendu d'aplats pour les autres objets ; soin et munitions conservent
+  leurs couleurs et ombres dessinées afin de garder du volume.
+- Croix médicale préservée comme signe principal de la boîte de soins.
+- Taille et sources des sprites de personnages inchangées.
+- Capture : apercu-loot-boite-soins-20px.jpg.
+
+Limites : ce sont des propositions graphiques et une simulation de ramassage.
+Les règles, sauvegardes et inventaires de la partie ne sont pas modifiés.
+La couverture technique ne prouve pas que chaque dessin convient artistiquement.
+Les modules réellement portés sur les classes et l'intégration moteur restent
+à préparer après acceptation visuelle.
+
+Dernière révision de contraste :
+- Boîte de soins v5 : couvercle et protections rouges au lieu de noirs.
+- Munitions v5 : simple caisse verte ; dessin en volume sans accessoires.
+- 17 fournitures / 150 références : contrôle de couverture réussi à nouveau.
+- Les deux silhouettes sont visibles à 20 pixels sur asphalte et sol métallique,
+  inspection effectuée dans le navigateur ; inventaire conservé à 32 pixels.
+- 150 choix disponibles ; aucune erreur JavaScript dans le journal.
+- Aperçu final remis sur asphalte, taille au sol 20 pixels.
+- Capture actuelle : apercu-loot-rouge-vert-20px.jpg.

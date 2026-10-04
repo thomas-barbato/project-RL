@@ -1,0 +1,8 @@
+{
+  id: "core:caustic_ground",
+  terminal: {
+    frames: ["acid_drop", "acid_splash", "acid_pool"],
+    color: [38, 106, 36, 220], accent_colors: [[122, 210, 52, 245], [219, 251, 137, 255]],
+    frame_millis: 170, step_millis: 25, linger_millis: 170,
+  },
+}

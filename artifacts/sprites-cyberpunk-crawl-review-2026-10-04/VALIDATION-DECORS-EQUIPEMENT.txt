@@ -1,0 +1,36 @@
+Revue des décors et modèles de base - 4 octobre 2026
+
+Catalogue relevé depuis les définitions locales :
+- 101 fichiers weapons => 61 armes à distance et 40 armes de mêlée.
+- 32 objets de kind armor => 14 corps, 6 tête, 6 mains, 6 pieds.
+- Identifiants de base uniquement, aucun affixe ou suffixe comme modèle.
+- Anciennes références incluses ; 2 noms sans entrée locale utilisent leur
+  identifiant humanisé, comme la présentation existante.
+
+check_equipment_catalog.py : réussi.
+- 133 identifiants uniques et 133 cases sources uniques.
+- Aucune case liée à un modèle n'est vide.
+- Aucune paire de cases sources strictement identique.
+- Les quatre planches retenues possèdent un canal alpha de 0 à 255.
+- Le premier atlas d'armes incomplet n'est pas référencé ; les deux banques v2
+  sont celles chargées et contrôlées.
+
+Vérification dans le navigateur intégré :
+- Nouveaux décors affichés à 32 px, grille masquée par défaut.
+- Sol métal et mur acier sélectionnés : le libellé suit la scène.
+- Retour au décor initial puis aux nouvelles textures : contrôles fonctionnels.
+- Catalogue complet : 133 cartes affichées.
+- Filtres : 61 armes à distance, 40 armes de mêlée, 32 protections.
+- Recherche Bastion : 4 pièces (corps, tête, mains, pieds).
+- Sélection Heaume Bastion : nom et rendu 32px / agrandissement présents.
+- Console navigateur : aucune erreur.
+- Captures : apercu-decors-32px.jpg, apercu-modeles-bastion.jpg.
+- Aperçu laissé ouvert sur la recherche Bastion, filtre protections.
+
+Vérification à portée limitée : contrôle de données et de couverture des images,
+pas de validation sémantique complète des 133 dessins. Le rendu sur chaque
+personnage équipé, les calques, orientations et animations restent à préparer.
+Le sampler affiche les concepts de terrain à 32px avec des contours de murs
+continus ; leur intégration réelle et les raccords en jeu restent non validés.
+Pas de modification des sources, règles, sauvegardes ou paramètres du jeu.
+Pas de commit ni de push. La compilation du jeu n'est pas requise pour ce HTML.

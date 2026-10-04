@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-02",
+  "change": "Coordonnées locales du joueur à droite, sous l'objectif",
+  "format": "X … · Y …",
+  "captures_inspected": [
+    "ville-1280/cold-start.png",
+    "ville-960/cold-start.png",
+    "deplacement/cold-start.png",
+    "ville-interface-150/cold-start.png",
+    "jeu-normal-1280/cold-start.png",
+    "jeu-normal-960/cold-start.png"
+  ],
+  "observed_positions": [[27, 23], [65, 21], [82, 11]],
+  "normal_game_without_trial_profile": "verified in both native captures; shared HUD without a trial condition",
+  "checks": {
+    "debug_build": "passed",
+    "all_targets_check": "passed",
+    "format_check": "passed",
+    "git_diff_check": "passed",
+    "release_build": "passed"
+  },
+  "user_save_loaded_or_written": false
+}

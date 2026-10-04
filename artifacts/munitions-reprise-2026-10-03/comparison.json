@@ -1,0 +1,60 @@
+{
+  "engine_and_history_identical_to_baseline": true,
+  "states": {
+    "recycling": {
+      "commands": 8,
+      "fingerprint": 2991894855690289480,
+      "operation": "state",
+      "scene": "recycling",
+      "snapshot_bytes": 175027,
+      "snapshot_fingerprint": 6140180832003225667
+    },
+    "hub": {
+      "commands": 287,
+      "fingerprint": 11882789014455561887,
+      "operation": "state",
+      "scene": "hub",
+      "snapshot_bytes": 193044,
+      "snapshot_fingerprint": 17073920363391741202
+    },
+    "surface": {
+      "commands": 296,
+      "fingerprint": 13383272765439144542,
+      "operation": "state",
+      "scene": "surface",
+      "snapshot_bytes": 264263,
+      "snapshot_fingerprint": 6736100289963970123
+    },
+    "depth-one": {
+      "commands": 375,
+      "fingerprint": 16312769497899629684,
+      "operation": "state",
+      "scene": "depth-one",
+      "snapshot_bytes": 329960,
+      "snapshot_fingerprint": 17631772770156081351
+    }
+  },
+  "captured_saves": [
+    {
+      "identical_json_bytes": true,
+      "operation": "captured-save-compatibility",
+      "scene": "recycling"
+    },
+    {
+      "identical_json_bytes": true,
+      "operation": "captured-save-compatibility",
+      "scene": "hub"
+    },
+    {
+      "identical_json_bytes": true,
+      "operation": "captured-save-compatibility",
+      "scene": "surface"
+    },
+    {
+      "identical_json_bytes": true,
+      "operation": "captured-save-compatibility",
+      "scene": "depth-one"
+    }
+  ],
+  "full_suspension_unchanged_except_build_id": true
+}

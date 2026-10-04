@@ -1,0 +1,22 @@
+{
+  id: "core:breche",
+  name_key: "class.breche.name",
+  role_key: "class.breche.role",
+  description_key: "class.breche.description",
+
+  // A recommendation, not a permanent restriction. The player may redistribute
+  // the same 28 points before the run begins.
+  recommended_attributes: {
+    power: 8,
+    coordination: 5,
+    resilience: 7,
+    perception: 4,
+    processing: 4,
+  },
+  starting_weapons: ["core:integrity_blade"],
+  starting_items: [
+    { item: "core:repair_patch", quantity: 2 },
+    { item: "core:patched_plating", quantity: 1 },
+  ],
+  starting_equipment: ["core:integrity_blade", null, null],
+}

@@ -1,0 +1,23 @@
+{
+  id: "core:needle_launcher",
+  name_key: "weapon.needle_launcher.name",
+  description_key: "weapon.needle_launcher.description",
+  ammunition_capacity: 30,
+  supply: { kind: "matter", amount: 1 },
+  power_draw: 5,
+
+  capabilities: {
+    automatic_fire: true,
+  },
+
+  attack: {
+    range: 7,
+    distance_metric: "euclidean",
+    requires_line_of_sight: true,
+    damage: {
+      amount: 3,
+      damage_type: "piercing",
+      penetration: 1,
+    },
+  },
+}

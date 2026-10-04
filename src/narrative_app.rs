@@ -30,6 +30,15 @@ impl AsciiApp {
     }
 
     pub(super) fn narrative_text(&self, key: &str, fallback: &str) -> String {
+        let key = if self.generation_version >= IRREVERSIBLE_LAYERS_GENERATION_VERSION {
+            match key {
+                "narrative.abs.summary" => "narrative.abs.local_summary",
+                "narrative.abs-d02" => "narrative.abs.local_directions",
+                _ => key,
+            }
+        } else {
+            key
+        };
         let text = self.texts.resolve(DISPLAY_LOCALE, key).unwrap_or(fallback);
         if !text.contains("{passage_coordinates}") {
             return text.to_owned();
@@ -117,6 +126,11 @@ impl AsciiApp {
                 choice: 4,
             },
         ] {
+            if self.game.rules().irreversible_layer_travel
+                && matches!(command, GameCommand::ChooseDialogue { choice: 4, .. })
+            {
+                continue;
+            }
             if let CommandOutcome::Rejected(reason) = self.execute_command(command) {
                 return Err(format!("Rapport de diagnostic refusé : {reason:?}"));
             }
@@ -132,7 +146,7 @@ impl AsciiApp {
         } else {
             GridPos::new(40, 22)
         };
-        self.walk_fixture_to(approach)?;
+        self.walk_fixture_to(self.home_position(approach))?;
         let giver = self
             .game
             .actors()
@@ -289,12 +303,7 @@ impl AsciiApp {
     }
 
     pub(super) fn enable_narrative(&mut self) -> Result<(), String> {
-        let id: ContentId = "core:starter_expedition".parse().unwrap();
-        let Some(definition) = self
-            .expeditions
-            .get(&id)
-            .and_then(|expedition| expedition.narrative.clone())
-        else {
+        let Some(definition) = self.starter_hub_definition()?.narrative else {
             return Ok(());
         };
         for key in definition
@@ -354,12 +363,25 @@ impl AsciiApp {
                 authored.reward_experience = self.narrative_reward_experience();
                 authored.completion_world_states.push(
                     QuestWorldStateDefinition::new(
-                        "core:relay_reported".parse().unwrap(),
-                        "narrative.abs.reported".into(),
+                        if self.generation_version >= IRREVERSIBLE_LAYERS_GENERATION_VERSION {
+                            "core:relay_investigated"
+                        } else {
+                            "core:relay_reported"
+                        }
+                        .parse()
+                        .unwrap(),
+                        if self.generation_version >= IRREVERSIBLE_LAYERS_GENERATION_VERSION {
+                            "narrative.abs.resolved"
+                        } else {
+                            "narrative.abs.reported"
+                        }
+                        .into(),
                     )
                     .map_err(|error| error.to_string())?,
                 );
-                if self.generation_version >= ORME_DIRECTION_BOARD_GENERATION_VERSION {
+                if self.generation_version >= ORME_DIRECTION_BOARD_GENERATION_VERSION
+                    && self.generation_version < IRREVERSIBLE_LAYERS_GENERATION_VERSION
+                {
                     authored.completion_world_effects.push(
                         QuestWorldEffectDefinition::update_data_terminal(
                             "core:orme_direction_board".parse().unwrap(),
@@ -645,6 +667,191 @@ mod tests {
         app
     }
 
+    #[test]
+    fn irreversible_layers_resolve_both_investigation_paths_on_site_and_replay() {
+        for by_dialogue in [false, true] {
+            let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+            let mut app = AsciiApp::from_seed(
+                INITIAL_SEED,
+                rules.clone(),
+                texts.clone(),
+                loot.clone(),
+                expeditions.clone(),
+            )
+            .unwrap();
+            assert!(app.game.rules().irreversible_layer_travel);
+            assert!(
+                app.narrative_text("narrative.abs.summary", "")
+                    .contains("sans retour")
+            );
+            assert!(
+                !app.narrative_text("narrative.abs-d02", "")
+                    .contains("Revenez")
+            );
+            app.prepare_narrative_directions_diagnostic().unwrap();
+            app.npc_interaction = None;
+            let passage = TestSector::EXPANDED_EXPEDITION_PASSAGE;
+            app.walk_fixture_to(passage.step(Direction::West)).unwrap();
+            assert!(
+                app.game
+                    .passage_is_irreversible(app.game.passage(passage).unwrap())
+            );
+            assert_eq!(
+                app.execute_command(GameCommand::Interact { target: passage }),
+                CommandOutcome::Applied
+            );
+            app.capture_events_at(Some(0.0));
+            let entry = app.game.player_position().unwrap();
+            let before = app.game.recovery_snapshot_bytes().unwrap();
+            assert_eq!(
+                app.execute_command(GameCommand::Interact { target: entry }),
+                CommandOutcome::Rejected(CommandRejection::PreviousLayerUnavailable)
+            );
+            assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), before);
+            assert!(
+                app.game
+                    .next_visited_passage_towards(&"core:starter_city".parse().unwrap())
+                    .is_none()
+            );
+            let register = app
+                .game
+                .active_facility()
+                .unwrap()
+                .installations()
+                .find_map(|(id, installation)| {
+                    (id.as_str() == "core:relay_register").then_some(installation.position())
+                })
+                .unwrap();
+            let rivet = app
+                .game
+                .actors()
+                .iter()
+                .find_map(|(id, actor)| {
+                    actor
+                        .tags()
+                        .contains(&"core:rivet".parse().unwrap())
+                        .then_some(id)
+                })
+                .unwrap();
+            let approach = if by_dialogue {
+                app.game
+                    .actors()
+                    .get(rivet)
+                    .unwrap()
+                    .position()
+                    .step(Direction::North)
+            } else {
+                register
+                    .cardinal_neighbors()
+                    .into_iter()
+                    .find(|position| {
+                        app.game.map().is_walkable(*position)
+                            && app.game.actors().entity_at(*position).is_none()
+                    })
+                    .unwrap()
+            };
+            app.walk_fixture_to_unchecked(approach).unwrap();
+            let credits = app.game.player_credits();
+            let xp = app.game.player_progression().experience();
+            let turn = app.game.turn();
+            let command = if by_dialogue {
+                assert_eq!(
+                    app.execute_command(GameCommand::ChooseDialogue {
+                        speaker: rivet,
+                        node: "ABS-D04".into(),
+                        choice: 0
+                    }),
+                    CommandOutcome::AppliedWithoutTime
+                );
+                GameCommand::ChooseDialogue {
+                    speaker: rivet,
+                    node: "ABS-D05".into(),
+                    choice: 0,
+                }
+            } else {
+                GameCommand::Interact { target: register }
+            };
+            assert_eq!(
+                app.execute_command(command),
+                if by_dialogue {
+                    CommandOutcome::AppliedWithoutTime
+                } else {
+                    CommandOutcome::Applied
+                }
+            );
+            assert_eq!(app.game.turn(), turn + if by_dialogue { 0 } else { 1 });
+            assert_eq!(
+                app.game.quest_journal()[0].quest.status,
+                QuestStatus::Completed
+            );
+            assert_eq!(app.game.player_credits(), credits + 30);
+            assert_eq!(app.game.player_progression().experience(), xp + 12);
+            assert!(
+                app.game.quest_journal()[0]
+                    .quest
+                    .completion_world_effects
+                    .is_empty()
+            );
+            app.capture_events_at(Some(0.0));
+            assert!(
+                !app.navigation_signal_summary()
+                    .is_some_and(|text| text.contains("RETOURNER"))
+            );
+            let mut saved = app.suspension().unwrap();
+            if by_dialogue {
+                saved.build = "0000000000000000".into();
+                saved.recovery = None;
+            }
+            let mut restored =
+                AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
+            assert_eq!(
+                restored.game.recovery_snapshot_bytes().unwrap(),
+                app.game.recovery_snapshot_bytes().unwrap()
+            );
+            let credits = restored.game.player_credits();
+            let xp = restored.game.player_progression().experience();
+            let approach = register
+                .cardinal_neighbors()
+                .into_iter()
+                .find(|position| {
+                    restored.game.map().is_walkable(*position)
+                        && restored.game.actors().entity_at(*position).is_none()
+                })
+                .unwrap();
+            restored.walk_fixture_to_unchecked(approach).unwrap();
+            assert_eq!(
+                restored.execute_command(GameCommand::Interact { target: register }),
+                CommandOutcome::Applied
+            );
+            assert_eq!(restored.game.player_credits(), credits);
+            assert_eq!(restored.game.player_progression().experience(), xp);
+            assert_eq!(
+                restored.game.quest_journal()[0].quest.status,
+                QuestStatus::Completed
+            );
+        }
+    }
+
+    #[test]
+    fn irreversible_layers_preserve_generation_141_rules_and_directions() {
+        let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+        let app = AsciiApp::from_seed_version(
+            INITIAL_SEED,
+            rules,
+            texts,
+            loot,
+            expeditions,
+            MONSTER_REWARDS_GENERATION_VERSION,
+        )
+        .unwrap();
+        assert!(!app.game.rules().irreversible_layer_travel);
+        assert!(!format!("{:?}", app.game.rules()).contains("irreversible_layer_travel"));
+        assert!(
+            app.narrative_text("narrative.abs.summary", "")
+                .contains("revenir voir Elias")
+        );
+    }
+
     fn choose(
         world: &mut WorldState,
         speaker: EntityId,
@@ -737,15 +944,19 @@ mod tests {
             let giver_position = app.game.actors().get(giver).unwrap().position();
             assert_eq!(
                 giver_position,
-                if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
+                app.home_position(if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
                     GridPos::new(11, 27)
                 } else {
                     GridPos::new(12, 27)
-                }
+                })
             );
             if version >= STATIONARY_QUEST_CONTACT_GENERATION_VERSION {
                 assert!(!app.game.active_resident(giver));
-                let resident = app.game.actors().entity_at(GridPos::new(12, 27)).unwrap();
+                let resident = app
+                    .game
+                    .actors()
+                    .entity_at(app.home_position(GridPos::new(12, 27)))
+                    .unwrap();
                 assert!(app.game.active_resident(resident));
                 assert_ne!(resident, giver);
             }
@@ -814,17 +1025,18 @@ mod tests {
     #[test]
     fn underground_passage_leads_to_the_record_and_a_completable_investigation() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let mut app = AsciiApp::from_seed(
+        let mut app = AsciiApp::from_seed_version(
             INITIAL_SEED,
             rules.clone(),
             texts.clone(),
             loot.clone(),
             expeditions.clone(),
+            MONSTER_REWARDS_GENERATION_VERSION,
         )
         .unwrap();
         app.prepare_narrative_directions_diagnostic().unwrap();
         let board_id: ContentId = "core:orme_direction_board".parse().unwrap();
-        let board_position = GridPos::new(10, 28);
+        let board_position = app.home_position(GridPos::new(10, 28));
         assert_eq!(
             app.game
                 .active_facility()
@@ -961,7 +1173,7 @@ mod tests {
             app.game.player_position().is_some(),
             "player lost on return, integrity before: {integrity_before_return:?}"
         );
-        app.walk_fixture_to_unchecked_with_repairs(GridPos::new(11, 26), true)
+        app.walk_fixture_to_unchecked_near(app.home_position(GridPos::new(11, 26)), true, 0, true)
             .unwrap();
         let credits = app.game.player_credits();
         let experience = app.game.player_progression().experience();
@@ -993,7 +1205,8 @@ mod tests {
             app.terminal.decor.cells.get(&board_position),
             Some(&crate::test_sector::Decor::DirectionBoardUpdated)
         );
-        app.walk_fixture_to(GridPos::new(10, 27)).unwrap();
+        app.walk_fixture_to(app.home_position(GridPos::new(10, 27)))
+            .unwrap();
         assert_eq!(
             app.execute_command(GameCommand::Interact {
                 target: board_position
@@ -1291,10 +1504,7 @@ mod tests {
         );
         assert_eq!(app.game.quest_marker_at(terminal), None);
         assert_eq!(app.game.quest_marker_at(GridPos::new(4, 5)), None);
-        assert_eq!(
-            app.game.quest_marker(orme),
-            Some(QuestMarker::ReadyToComplete)
-        );
+        assert_eq!(app.game.quest_marker(orme), None);
     }
 
     #[test]

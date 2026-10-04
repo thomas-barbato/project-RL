@@ -1,0 +1,143 @@
+[
+  {
+    "armor": 1,
+    "current_damage_per_hit": 0,
+    "penetration": 0,
+    "proposed_damage_per_hit": 2,
+    "scenario": "proposal-only-ranged-base-damage-three"
+  },
+  {
+    "armor": 2,
+    "current_damage_per_hit": 0,
+    "penetration": 0,
+    "proposed_damage_per_hit": 1,
+    "scenario": "proposal-only-ranged-base-damage-three"
+  },
+  {
+    "armor": 3,
+    "current_damage_per_hit": 0,
+    "penetration": 0,
+    "proposed_damage_per_hit": 0,
+    "scenario": "proposal-only-ranged-base-damage-three"
+  },
+  {
+    "contact": [
+      29,
+      37
+    ],
+    "seed": 20260909,
+    "separation": 1,
+    "terminal": [
+      30,
+      37
+    ]
+  },
+  {
+    "contact": [
+      22,
+      43
+    ],
+    "seed": 20260910,
+    "separation": 1,
+    "terminal": [
+      23,
+      43
+    ]
+  },
+  {
+    "contact": [
+      103,
+      57
+    ],
+    "seed": 20260911,
+    "separation": 1,
+    "terminal": [
+      104,
+      57
+    ]
+  },
+  {
+    "contact": [
+      66,
+      51
+    ],
+    "seed": 20260912,
+    "separation": 1,
+    "terminal": [
+      67,
+      51
+    ]
+  },
+  {
+    "contact": [
+      66,
+      44
+    ],
+    "seed": 20260913,
+    "separation": 1,
+    "terminal": [
+      67,
+      44
+    ]
+  },
+  {
+    "contact": [
+      20,
+      78
+    ],
+    "seed": 20260914,
+    "separation": 1,
+    "terminal": [
+      21,
+      78
+    ]
+  },
+  {
+    "contact": [
+      102,
+      37
+    ],
+    "seed": 20260915,
+    "separation": 1,
+    "terminal": [
+      103,
+      37
+    ]
+  },
+  {
+    "contact": [
+      50,
+      11
+    ],
+    "seed": 20260916,
+    "separation": 1,
+    "terminal": [
+      51,
+      11
+    ]
+  },
+  {
+    "absorbed_by_armor": 7,
+    "applied_damage": 14,
+    "attack": "AttackProfile { range: 1, distance_metric: Chebyshev, requires_line_of_sight: false, damage: DamagePacket { amount: 2, damage_type: Kinetic, penetration: 0 }, melee_impact: MeleeImpactProfile { material_cap: 11, impact_modifier: 0 } }",
+    "attacks": 8,
+    "hits": 7,
+    "range": 1,
+    "remaining_hp": 6,
+    "role": "melee",
+    "scenario": "open-floor-starting-player-eight-waits",
+    "starting_hp": 20
+  },
+  {
+    "absorbed_by_armor": 7,
+    "applied_damage": 0,
+    "attack": "AttackProfile { range: 4, distance_metric: Euclidean, requires_line_of_sight: true, damage: DamagePacket { amount: 1, damage_type: Piercing, penetration: 0 } }",
+    "attacks": 8,
+    "hits": 7,
+    "range": 4,
+    "remaining_hp": 20,
+    "role": "ranged",
+    "scenario": "open-floor-starting-player-eight-waits",
+    "starting_hp": 20
+  }
+]

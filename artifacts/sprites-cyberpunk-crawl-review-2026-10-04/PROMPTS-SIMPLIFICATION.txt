@@ -1,0 +1,14 @@
+Imagegen intégré : trois dessins remplacés par une proposition plus simple (v2).
+
+Consigne commune :
+Use case: stylized-concept. Asset type: ONE ORIGINAL truly SIMPLE low-resolution pixel-art inventory and ground-loot icon for a cyberpunk roguelike. The user explicitly says fine details are useless at this tiny size. Draw on a very coarse logical 24x24 pixel grid, enlarged with crisp nearest-neighbor square pixels, single centered object occupying at most20x20 logical pixels with transparent margin. READABILITY OVER DETAIL. Maximum SIX flat solid colors for the entire icon, each color region is a large purposeful cluster at least2x2logicalpixels; one dark outline, one dark shadow color, one main body color, one light highlight color and one large identification accent. ONLY large clean silhouettes and essential identifying signs. No internal textures, NO wear, NO scratches, NO stitching, NO dotted surfaces, NO tiny gadgets, NO glints, NO tiny bevels, NO gradients, NO soft shading, NO isolated single-pixel speckles, NO photorealistic surfaces, NO pseudo high-resolution pixel art. Muted industrial cyberpunk, not medieval. Slight overhead front view. REAL transparent RGBA background alpha0, no background, no floor, no shadow outside object, no frame, no labels, no watermark, no text. The object is a readable game symbol that fits inside a32pixel tile and will also be shown smaller at20pixels. Subject: 
+
+Sujets :
+core:repair_patch | pickup-repair_patch-v2.png
+A single small ivory medical satchel, one broad graphite carrying handle, dark rim, one LARGE orange plus symbol on front. Only handle, pouch body and medical plus. The plus must remain unmistakable when the entire icon is shrunk to20pixels. No straps across the plus. No tools, mechanical fittings, screens, seams or tiny patches.
+
+core:weapon_matter | pickup-weapon_matter-v2.png
+A single small rectangular olive ammunition box, graphite lid and a simple pair of broad brass cartridge shapes on the front. Clear box silhouette. No text. Only the box, its broad lid and two cartridge shapes. No hardware, hinges, seams, separate scattered bullets or tiny scratches.
+
+core:charged_battery | pickup-charged_battery-v2.png
+A single small vertical graphite electric battery block, TWO large brass contacts on top, ONE broad cyan band on the front, ivory rim. Only battery body, contacts and large colored band. No tiny controls, screws, vents, thin lines or extra panels.

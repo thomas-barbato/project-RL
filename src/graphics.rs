@@ -24,9 +24,32 @@ const RESOLUTIONS: &[[u32; 2]] = &[
     [1920, 1080],
 ];
 const UI_SCALES: &[u16] = &[75, 100, 125, 150, 175, 200];
-const CELL_SIZES: &[u16] = &[24, 32, 40, 48];
+const CELL_SIZES: &[u16] = &[16, 20, 24, 32, 40, 48];
 fn default_cell_size() -> u16 {
-    32
+    20
+}
+
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum InterfaceTheme {
+    Blue,
+    #[default]
+    Violet,
+    Green,
+    Red,
+}
+
+impl InterfaceTheme {
+    pub const ALL: [Self; 4] = [Self::Blue, Self::Violet, Self::Green, Self::Red];
+
+    pub const fn label(self) -> &'static str {
+        match self {
+            Self::Blue => "Bleu électrique",
+            Self::Violet => "Violet ultraviolet",
+            Self::Green => "Vert néon",
+            Self::Red => "Rouge néon",
+        }
+    }
 }
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -56,6 +79,8 @@ pub struct GraphicsSettings {
     #[serde(default = "default_cell_size")]
     pub world_cell_px: u16,
     #[serde(default)]
+    pub interface_theme: InterfaceTheme,
+    #[serde(default)]
     pub high_contrast: bool,
     #[serde(default)]
     pub reduced_motion: bool,
@@ -69,6 +94,7 @@ impl Default for GraphicsSettings {
             windowed_size: [1280, 800],
             ui_scale_percent: 100,
             world_cell_px: default_cell_size(),
+            interface_theme: InterfaceTheme::default(),
             high_contrast: false,
             reduced_motion: false,
         }
@@ -171,6 +197,10 @@ impl GraphicsSettings {
                 self.windowed_size = cycle_value(RESOLUTIONS, self.windowed_size, forward);
             }
             2 => self.ui_scale_percent = cycle_value(UI_SCALES, self.ui_scale_percent, forward),
+            3 => {
+                self.interface_theme =
+                    cycle_value(&InterfaceTheme::ALL, self.interface_theme, forward)
+            }
             4 => self.world_cell_px = cycle_value(CELL_SIZES, self.world_cell_px, forward),
             5 => self.high_contrast = !self.high_contrast,
             6 => self.reduced_motion = !self.reduced_motion,
@@ -346,6 +376,7 @@ mod tests {
         let valid = serde_json::to_value(GraphicsSettings::default()).unwrap();
         for (field, value) in [
             ("mode", serde_json::json!("exclusive")),
+            ("interface_theme", serde_json::json!("steel")),
             ("windowed_size", serde_json::json!([0, 800])),
             ("windowed_size", serde_json::json!([1280, 999999])),
             ("ui_scale_percent", serde_json::json!(0)),
@@ -399,16 +430,48 @@ mod tests {
         document.as_object_mut().unwrap().remove("world_cell_px");
         document.as_object_mut().unwrap().remove("high_contrast");
         document.as_object_mut().unwrap().remove("reduced_motion");
+        document.as_object_mut().unwrap().remove("interface_theme");
         document["ui_scale_percent"] = serde_json::json!(150);
         let mut settings = GraphicsSettings::decode(&document.to_string()).unwrap();
-        assert_eq!(settings.world_cell_px, 32);
+        assert_eq!(settings.world_cell_px, 20);
+        assert_eq!(settings.interface_theme, InterfaceTheme::Violet);
         assert!(!settings.high_contrast);
         assert!(!settings.reduced_motion);
         settings.cycle(4, true);
-        assert_eq!(settings.world_cell_px, 40);
+        assert_eq!(settings.world_cell_px, 24);
         assert_eq!(settings.ui_scale_percent, 150);
         document["world_cell_px"] = serde_json::json!(1);
         assert!(GraphicsSettings::decode(&document.to_string()).is_err());
+    }
+
+    #[test]
+    fn themes_roundtrip_and_preserve_existing_display_preferences() {
+        let mut settings = GraphicsSettings {
+            world_cell_px: 32,
+            ui_scale_percent: 150,
+            mode: WindowMode::Windowed,
+            ..Default::default()
+        };
+        let mut legacy = serde_json::to_value(settings).unwrap();
+        legacy.as_object_mut().unwrap().remove("interface_theme");
+        assert_eq!(
+            GraphicsSettings::decode(&legacy.to_string()).unwrap(),
+            settings
+        );
+        for theme in InterfaceTheme::ALL {
+            settings.interface_theme = theme;
+            let encoded = serde_json::to_string(&settings).unwrap();
+            assert_eq!(GraphicsSettings::decode(&encoded).unwrap(), settings);
+            settings.cycle(3, true);
+            assert_ne!(settings.interface_theme, theme);
+            settings.cycle(3, false);
+            assert_eq!(settings.interface_theme, theme);
+            assert_eq!(settings.world_cell_px, 32);
+            assert_eq!(settings.ui_scale_percent, 150);
+        }
+        settings.interface_theme = InterfaceTheme::Red;
+        settings.cycle(3, true);
+        assert_eq!(settings.interface_theme, InterfaceTheme::Blue);
     }
 
     #[test]

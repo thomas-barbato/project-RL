@@ -1,0 +1,17 @@
+{
+  id: "core:vigie",
+  name_key: "class.vigie.name",
+  role_key: "class.vigie.role",
+  description_key: "class.vigie.description",
+
+  recommended_attributes: {
+    power: 4,
+    coordination: 8,
+    resilience: 4,
+    perception: 8,
+    processing: 4,
+  },
+  starting_weapons: ["core:needle_launcher"],
+  starting_items: [{ item: "core:repair_patch", quantity: 2 }],
+  starting_equipment: [null, "core:needle_launcher", null],
+}

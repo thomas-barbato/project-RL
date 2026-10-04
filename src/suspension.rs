@@ -20,7 +20,7 @@ use std::{
 };
 
 pub const MAX_COMMANDS: usize = 50_000;
-pub const MAX_GENERATION_VERSION: u8 = 129;
+pub const MAX_GENERATION_VERSION: u8 = 143;
 const REPLAY_RECOVERY_SCHEMA: u8 = 1;
 pub const CURRENT_RECOVERY_SCHEMA: u8 = 2;
 const CURRENT_CRASH_RECOVERY_SCHEMA: u8 = 1;
@@ -475,11 +475,25 @@ pub enum RecordedCommand {
         technique: String,
         directive: RecordedElectronicDirective,
     },
+    Improve {
+        artisan: u64,
+        item: u64,
+    },
+    Installation {
+        x: i32,
+        y: i32,
+        operation: project_rl::facility::InstallationAction,
+    },
 }
 
 impl RecordedCommand {
     pub fn record(command: &GameCommand) -> Self {
         match command {
+            GameCommand::UseInstallation { target, action } => Self::Installation {
+                x: target.x,
+                y: target.y,
+                operation: action.clone(),
+            },
             GameCommand::Move(direction) => Self::Move {
                 direction: match direction {
                     Direction::North => 0,
@@ -536,6 +550,10 @@ impl RecordedCommand {
             },
             GameCommand::SellItem { merchant, item } => Self::Sell {
                 merchant: merchant.get(),
+                item: item.get(),
+            },
+            GameCommand::ImproveEquipment { artisan, item } => Self::Improve {
+                artisan: artisan.get(),
                 item: item.get(),
             },
             GameCommand::ReceiveTreatment { healer } => Self::Treatment {
@@ -657,6 +675,10 @@ impl RecordedCommand {
                 .ok_or_else(|| format!("Carcasse absente du rejeu : {value}"))
         };
         Ok(match self {
+            Self::Installation { x, y, operation } => GameCommand::UseInstallation {
+                target: GridPos::new(*x, *y),
+                action: operation.clone(),
+            },
             Self::Move { direction } => GameCommand::Move(match direction {
                 0 => Direction::North,
                 1 => Direction::East,
@@ -729,6 +751,13 @@ impl RecordedCommand {
                 item: instance,
             } => GameCommand::SellItem {
                 merchant: entity(*merchant)?,
+                item: item(*instance)?,
+            },
+            Self::Improve {
+                artisan,
+                item: instance,
+            } => GameCommand::ImproveEquipment {
+                artisan: entity(*artisan)?,
                 item: item(*instance)?,
             },
             Self::Treatment { healer } => GameCommand::ReceiveTreatment {
@@ -1579,10 +1608,13 @@ impl CrashRecovery {
             let _ = std::fs::remove_file(&temporary);
             return Err(error.to_string());
         }
-        if path.try_exists().map_err(|error| error.to_string())? {
-            std::fs::remove_file(path).map_err(|error| error.to_string())?;
-        }
-        if let Err(error) = std::fs::rename(&temporary, path) {
+        let replacement = (|| {
+            if path.try_exists()? {
+                std::fs::remove_file(path)?;
+            }
+            std::fs::rename(&temporary, path)
+        })();
+        if let Err(error) = replacement {
             let _ = std::fs::remove_file(&temporary);
             return Err(error.to_string());
         }

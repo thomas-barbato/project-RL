@@ -1,6 +1,8 @@
 //! The same resolved resource values feed both HUD layouts.
 use super::*;
 
+const AMMUNITION_COLOR: Color = Color::from_rgba(229, 183, 109, 255);
+
 pub(super) struct ResourceGauge {
     pub label: &'static str,
     pub value: String,
@@ -83,10 +85,28 @@ impl AsciiApp {
             15,
             UiTheme.text(),
         );
+        let coordinates = crate::terminal_view::local_coordinates(self.game.player_position());
+        let coordinates_width = measure_text(&coordinates, None, 14, 1.0).width.min(width);
+        crate::ui_theme::draw_text_in_rect(
+            &coordinates,
+            Rect::new(
+                panel.right() - 12.0 - coordinates_width,
+                panel.bottom() - 26.0,
+                coordinates_width,
+                18.0,
+            ),
+            14,
+            UiTheme.text(),
+        );
         if !self.test_lab {
             crate::ui_theme::draw_text_in_rect(
                 format!("Journal [{}]", self.controls.label(Action::QuestJournal)),
-                Rect::new(x, panel.bottom() - 26.0, width, 18.0),
+                Rect::new(
+                    x,
+                    panel.bottom() - 26.0,
+                    (width - coordinates_width - 12.0).max(0.0),
+                    18.0,
+                ),
                 12,
                 if self.menu_focus.hovered == Some(50_023) {
                     UiTheme.accent()
@@ -307,7 +327,7 @@ impl AsciiApp {
                 color: if stock == 0 {
                     theme.danger()
                 } else {
-                    theme.accent()
+                    AMMUNITION_COLOR
                 },
             });
         } else if let Some((left, capacity)) = self
@@ -324,7 +344,7 @@ impl AsciiApp {
                 color: if left == 0 {
                     theme.danger()
                 } else {
-                    theme.accent()
+                    AMMUNITION_COLOR
                 },
             });
         }

@@ -1,5 +1,22 @@
 # Armes portées et butin des ennemis
 
+## Depuis la génération 141 : équipement porté et récompense distincts
+
+La mort d'un ennemi hostile tire maintenant une arme ou une protection dans le
+catalogue complet, avec modèle, qualité et bonus aléatoires. Le modèle précédent
+est exclu pour éviter deux résultats identiques consécutifs. Le tirage n'est plus
+limité à l'arme portée par le monstre, à son espèce ou à la profondeur de la carte.
+Les alliés, compagnons et civils ne fournissent pas ces récompenses.
+
+Les profils de combat et les armes utilisées par les humanoïdes restent ceux de
+la génération 140. La récompense ne remplace pas leur arme avant le combat.
+Les anciennes parties gardent leur fonctionnement. Voir
+[Génération d'équipement](GENERATION_EQUIPEMENT.md) pour les probabilités et la reprise.
+
+Les sections ci-dessous décrivent le premier raccordement historique. Le
+diagnostic `--ui-cold-monster-rewards` utilise les nouvelles règles et ramasse
+le butin de dix morts réelles d'ennemis identiques.
+
 25 septembre 2026 — génération 108, premier raccordement jouable.
 
 Depuis la génération 109, les mêmes humanoïdes équipés sont aussi présents dans

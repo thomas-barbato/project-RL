@@ -1,10 +1,77 @@
 # Interface et accessibilité
 
+## Rendu du jeu — 3 octobre 2026
+
+Le jeu utilise des symboles dessinés vus de dessus sur un fond noir. Les
+personnages, les murs, les serveurs, les terminaux et les portes sont intégrés
+au rendu existant, dans leurs cases actuelles. Aucun gros objet, tuyau ou nouvel
+obstacle n'est ajouté. Les portes reprennent les montants et les panneaux des
+captures de l'éditeur ; l'état ouvert conserve un passage visuellement dégagé.
+
+L'interface propose quatre accents persistants : bleu électrique, violet
+ultraviolet, vert néon et rouge néon. Ce choix ne recolore ni les personnages,
+ni les matériaux, ni les lumières des décors. Les surfaces restent presque
+noires et les panneaux du HUD n'ajoutent pas de rails décoratifs près des PV,
+du secteur ou de l'objectif. Le zoom de carte propose aussi des cases de 16 et
+20 unités logiques, indépendamment de la taille de l'interface. Les préférences
+de zoom déjà enregistrées sont conservées.
+
+Les sols n'affichent plus de bordure de case ni de point répété dans les angles.
+Métal, chaussée, béton, gravier, herbe, friche et boue possèdent un grain discret
+et des traces d'usure propres au matériau. Les motifs traversent les limites des
+cases et restent ancrés aux coordonnées du monde pendant les déplacements et le
+zoom. L'atlas est produit une seule fois et partagé par les sols ; il n'utilise
+pas le générateur aléatoire de la simulation. La grille logique, les déplacements,
+la mémoire et les effets gardent leur fonctionnement.
+
+## Voirie et décors — 3 octobre 2026
+
+Les voies et chaussées utilisent du goudron sombre à grain fin. Leurs pointillés
+suivent l'axe des rues larges et sont interrompus aux carrefours. Les limites
+sont déduites du terrain connu uniquement ; les passages étroits et les abords
+encore inconnus ne reçoivent pas de lignes supposées.
+
+Les décors urbains et industriels gardent des silhouettes compactes vues
+de dessus, avec un corps, une ombre et quelques détails de matière. Neuf symboles
+complètent les objets existants : baril, palette, ventilation, armoire électrique,
+borne incendie, borne de voirie, grille d'évacuation, bobine de câbles et paillasson.
+Ils occupent les mêmes emplacements et conservent le caractère bloquant ou
+traversable des décors remplacés. Leurs noms sont visibles au survol et dans le
+guide des symboles. La variation est fixée par les coordonnées et ne consomme
+pas le hasard du jeu.
+
+Les T isolés et les enseignes abstraites au sol ont été retirés. Les anciens
+emplacements deviennent de la chaussée libre, parfois une grille d'évacuation,
+ou un paillasson à l'entrée d'une boutique. Les anciennes références de sauvegarde
+restent lisibles mais ne réaffichent pas ces symboles.
+
+Diagnostics natifs : `--ui-cold-city-decor-palette`, `--ui-cold-floor-palette`
+et `--ui-cold-road-city`, suivis d'un nouveau dossier de sortie.
+
+## Bord de vision circulaire — 2 octobre 2026
+
+Le rayon euclidien est maintenant dessiné avec un masque circulaire continu,
+adouci sur moins d'une case. Le bord est placé à l'intérieur des cases visibles
+pour supprimer leur silhouette en escalier. La transition rejoint la teinte du
+terrain mémorisé lorsqu'il est connu et le noir dans les zones inconnues.
+Elle ne peint plus de carrés noirs autour du
+cercle lorsque les alentours ont déjà été explorés. Le masque s'applique au terrain ;
+acteurs, objets perçus, marqueurs et effets sont dessinés ensuite et gardent leur
+lisibilité. Les cellules hors de portée restent soumises aux règles de mémoire.
+
+La carte des capteurs utilise des arcs pour la limite de portée ; les obstacles
+conservent leur contour réel. Le champ de vision du moteur, la grille, les murs
+opaques, les informations connues et le rayon de détection ne changent pas.
+Diagnostic de terrain dégagé : `--ui-cold-vision-circle <nouveau-dossier>`.
+Diagnostic avec mémoire autour du joueur :
+`--ui-cold-vision-circle-memory <nouveau-dossier>` ; le suffixe `-small`
+contrôle la fenêtre de 960 × 540. Les cases inconnues restent noires.
+
 L'interface de Project RL est une couche de présentation indépendante du moteur et du rendu du monde. Le mode « terminal à glyphes » et le futur mode texturé doivent partager les mêmes menus, le même HUD, les mêmes informations autorisées et les mêmes commandes. Changer de rendu ne doit donc jamais modifier les règles, la portée des capteurs ni révéler une information supplémentaire.
 
 ## Socle visuel
 
-L'interface utilise Atkinson Hyperlegible en graisses normale et forte, embarquée dans l'exécutable sous licence SIL Open Font License 1.1. Les glyphes de la carte conservent la police terminal : deux polices ont deux responsabilités distinctes, sans faire dépendre la simulation de leur disponibilité.
+L'interface utilise Atkinson Hyperlegible en graisses normale et forte, embarquée dans l'exécutable sous licence SIL Open Font License 1.1. Les acteurs et les principaux décors utilisent un atlas de symboles dessinés ; les marqueurs textuels conservent la police terminal, sans faire dépendre la simulation de leur disponibilité.
 
 `ui_theme.rs` centralise les couleurs sémantiques, les surfaces, les états de sélection, les mesures de texte et les composants communs. Les écrans ne doivent pas coder la signification d'un état par la couleur seule : texte, bordure, symbole ou motif doivent rester suffisants en niveaux de gris.
 
@@ -12,7 +79,7 @@ L'interface doit se lire comme un jeu tactique, pas comme un logiciel d'administ
 
 Le menu principal emploie une composition d'accueil propre : fond uniforme et motif discret d'invite de terminal en pixels lorsque la fenêtre laisse assez d'espace, actions disposées à droite sans cadre commun ; sur une fenêtre étroite, le nom du jeu précède la même liste d'actions centrée, toujours sans cadre commun. Le nom du jeu et les actions suffisent : aucun slogan, sous-titre, texte d'ambiance ou légende des commandes élémentaires n'encombre l'accueil. La sélection est turquoise, signalée aussi par le fond, le texte et un repère court ; aucun jaune n'est utilisé sur cet écran. Les zones cliquables et le focus clavier proviennent du même placement responsive. Les autres menus gardent leurs fonctions et leur hiérarchie.
 
-L'interface normale ne montre jamais les informations de mise au point du développement : graine de génération, version interne, empreinte, identifiant de contenu brut, nom d'énumération, coordonnées de grille ou commentaire sur l'état d'un prototype. Un emplacement est décrit relativement au joueur lorsque cette précision aide à agir. Les mesures utiles aux règles — portée, coût, dégâts, durée, profondeur ou résultat d'un jet — restent visibles. Une référence comme `REC-01` est conservée uniquement lorsqu'elle a été volontairement intégrée à la fiction et placée en second niveau visuel.
+L'interface normale ne montre jamais les informations de mise au point du développement : graine de génération, version interne, empreinte, identifiant de contenu brut, nom d'énumération ou commentaire sur l'état d'un prototype. À la demande de l'utilisateur, les coordonnées locales du joueur restent visibles en bas du bloc de droite, sous l'objectif, sous la forme « X … · Y … », dans les présentations large et compacte. Un autre emplacement est décrit relativement au joueur lorsque cette précision aide à agir. Les mesures utiles aux règles — portée, coût, dégâts, durée, profondeur ou résultat d'un jet — restent visibles. Une référence comme `REC-01` est conservée uniquement lorsqu'elle a été volontairement intégrée à la fiction et placée en second niveau visuel.
 
 Les composants interactifs partagent un langage visuel de jeu commun : surface légèrement surélevée, ombre courte, angles adoucis et accent discret plutôt que cadres complets systématiques. Le texte d'un bouton est centré à partir des limites réellement rendues par la police, horizontalement et verticalement. Les actions principales, secondaires et destructrices sont distinguées par leur forme d'accentuation, leur libellé et leur couleur ; le survol, le focus clavier et l'état désactivé restent cohérents dans tous les écrans.
 
@@ -38,10 +105,10 @@ Maintenir une touche de navigation déclenche une première sélection immédiat
 - Une montée de niveau produit une notification après la résolution du tour, sans imposer un écran. Le bouton de points disponibles du HUD ouvre les compétences ; les points peuvent être dépensés plus tard. Le rejeu d'une sauvegarde n'ouvre pas cet écran.
 - La création présente un résumé fonctionnel de chacun des cinq attributs avant toute répartition. La fiche de personnage et la seconde étape de création permettent ensuite de sélectionner un attribut au clavier ou au clic et affichent son explication complète, afin qu'aucune statistique ne repose sur une devinette tout en évitant cinq paragraphes permanents. La fiche regroupe aussi PV, Armure, énergie, expérience et points disponibles dans un état compact issu du moteur.
 - Le dossier accepte la molette, affiche le lieu et le cycle de consultation, distingue visuellement relevés et archives, masque les identifiants internes des enregistrements et offre une fermeture cliquable.
-- La légende F1 décrit uniquement le rendu actif. Tant que les textures n'existent pas, elle porte explicitement le titre « Terminal à glyphes » et classe les entrées par fonction. Les dangers persistants y possèdent des formes et des libellés propres : le feu `^`, le champ électrique `z`, le conteneur incendiaire `o` et le relais conducteur `q` restent distinguables sans dépendre uniquement de leur couleur.
+- La légende F1 décrit uniquement le rendu actif. Elle porte le titre « Symboles dessinés » et classe les entrées par fonction. Les dangers persistants y possèdent des formes et des libellés propres : le feu `^`, le champ électrique `z`, le conteneur incendiaire `o` et le relais conducteur `q` restent distinguables sans dépendre uniquement de leur couleur.
 - Lorsqu'au moins un compagnon est contrôlé, une palette flottante collective montre son intégrité, sa batterie et l'état de la liaison sans occuper toute la largeur du monde. Quatre boutons carrés à icônes choisissent **Suivre**, **Défensif**, **Agressif** ou **Passif** ; leur infobulle donne le nom et l'effet au survol. La palette est déjà générique pour plusieurs alliés, même si seuls les drones l'utilisent actuellement. Une coupure rend le groupe de commandes rouge et affiche **Retour auto** en plus de la couleur ; revenir à portée restaure aussitôt les boutons. Avancer sur la case d'un drone contrôlé échange les positions avec lui : le compagnon ne bloque pas un passage et un déplacement n'est jamais converti en attaque alliée.
 - Sur une largeur confortable, le HUD place **Niveau**, **Arme active** et **État** dans une colonne verticale à gauche. Expérience, PV, énergie, munitions et compagnons associent une valeur numérique et une barre ; les anciennes parties conservent leurs ressources historiques. Un groupe compact **Défenses** expose les valeurs réellement résolues par le moteur : Armure, Esquive, Stabilité système, Défense numérique lorsqu'un système compatible existe, puis résistances thermique, électrique, chimique, radiation et corruption, y compris lorsqu'elles valent 0 %. L'absence réelle d'un système est représentée par un tiret et jamais par un faux zéro. Les dégâts cinétiques, perforants et explosifs ne reçoivent pas de résistance parallèle puisqu'ils rencontrent déjà l'Armure. **Arme active** indique l'arme réellement utilisée et ses munitions éventuelles, sans nommer un emplacement technique. L'espace supérieur ainsi libéré agrandit le monde ; il redevient un bandeau seulement lorsqu'une alerte prioritaire doit être affichée. Sur une fenêtre trop étroite pour les colonnes, ces informations reviennent dans des cartes compactes afin de rester accessibles.
-- La colonne droite réserve davantage de place à **CAPTEURS**. Ce panneau n'est pas une seconde copie miniature du plateau : il projette les données autorisées comme un écran embarqué, avec fond phosphore, grille technique, balayage animé, géométrie simplifiée et signatures de contacts. Il cadre dynamiquement les cases mémorisées avec une marge bornée au lieu de réduire toute la très grande zone à quelques pixels. Les contours pleins délimitent la perception actuelle, tandis que la mémoire ancienne devient sombre, échantillonnée et pointillée. L'animation ne retarde jamais une information disponible. **En vue** précède **Cible**. Une cible perçue révèle seulement son identité observable, sa distance et ses états visibles ; ses PV, son Armure et ses résistances restent masqués jusqu'à une **Analyse de cible** (`REC-01`) réellement résolue par le moteur. Après apprentissage de `REC-06`, le raccourci remappable `F2` superpose les champs visuels de tous les PNJ visibles et place ces mêmes PNJ dans CAPTEURS sous forme de signatures géométriques distinctes pour menace, service, présence neutre et signal non classé. Le rendu emploie forme, remplissage, contour et motifs plutôt que la seule couleur ; aucun PNJ caché ni terrain inconnu n'est ajouté.
+- La colonne droite réserve davantage de place à **CAPTEURS**. Ce panneau n'est pas une seconde copie miniature du plateau : il projette les données autorisées comme un écran embarqué, avec fond phosphore, grille technique, balayage animé, géométrie simplifiée et signatures de contacts. Il cadre dynamiquement les cases mémorisées avec une marge bornée au lieu de réduire toute la très grande zone à quelques pixels. Les contours pleins délimitent la perception actuelle, tandis que la mémoire ancienne devient sombre, échantillonnée et pointillée. L'animation ne retarde jamais une information disponible. **En vue** précède **Cible**. Une cible perçue révèle seulement son identité observable, sa distance et ses états visibles ; ses PV, son Armure et ses résistances restent masqués jusqu'à une **Analyse de cible** (`REC-01`) réellement résolue par le moteur. Après apprentissage de `REC-06`, le raccourci remappable `F2` affiche ou masque ensemble les champs visuels des PNJ visibles (vert) et la portée des sons réellement émis depuis une source visible (ambre). Les zones sont rondes, limitées aux cases actuellement visibles et au résultat du moteur ; les murs atténuent le son. L’affichage ne consomme ni tour ni énergie. Les bruits brefs du dernier tour restent lisibles jusqu’au suivant. Un œil rouge indique qu’un hostile visible repère actuellement le joueur ; une oreille rouge indique qu’il entend un bruit ou en a entendu pendant le dernier tour. Ces pictogrammes, sans fond, restent visibles sans `REC-06` et lorsque F2 masque les zones ; l’œil est prioritaire si les deux perceptions sont présentes. Les mêmes PNJ apparaissent dans CAPTEURS sous forme de signatures géométriques distinctes pour menace, service, présence neutre et signal non classé. Le rendu emploie forme, remplissage, contour et motifs plutôt que la seule couleur ; aucun PNJ caché ni terrain inconnu n'est ajouté.
 
 Les raccourcis permanents du bas d'écran restent limités aux actions immédiates. Les commandes détaillées appartiennent à F1 et aux écrans concernés. La prévisualisation d'une attaque de zone remplace ce rappel par une carte contextuelle indiquant validité, nombre de cases, nombre de cibles, confirmation et annulation.
 
@@ -53,7 +120,7 @@ Dans la vue de jeu, le lieu, l'itinéraire éventuel, la carte et les deux colon
 
 Le bandeau vertical décrit la destination réelle : `RETOUR SURFACE` seulement pour une montée de la couche 1 vers la surface, `ACCÈS SUPÉRIEUR` pour une remontée entre deux couches profondes et `ACCÈS INFÉRIEUR` pour une descente. Lorsque le joueur se tient déjà sur une montée ou une descente, ce passage sous ses pieds est annoncé avant un autre accès de la même zone. Une quête prête à rendre devient prioritaire : `RETOURNER PARLER À {désignation du donneur}` indique le premier passage d'un chemin formé uniquement de secteurs déjà visités vers la zone du donneur. Il ne révèle ni raccourci inconnu ni position cachée du PNJ et disparaît dès que le joueur retrouve la bonne zone, afin de ne pas contredire l'objectif avec une route d'exploration secondaire. L'objectif du bas conserve la désignation du donneur une fois cette zone atteinte ; les PNJ possèdent encore des désignations de rôle plutôt que des noms individuels.
 
-Une ville régionale emploie son nom propre dans le titre au lieu du nom de biome et des coordonnées génériques. Dans le Nœud de maintenance, le dallage, les caillebotis, les voies, les baies, les cuves et le mobilier médical différencient les fonctions sans changer les collisions du moteur. Les personnages restent des ASCII lisibles par rôle (`v`, `h`, `i`) et les deux accès verticaux conservent leurs glyphes et libellés habituels. Le futur rendu dessiné devra reprendre exactement les mêmes zones, acteurs, informations et commandes.
+Une ville régionale emploie son nom propre dans le titre au lieu du nom de biome et des coordonnées génériques. Dans le Nœud de maintenance, le dallage, les caillebotis, les voies, les baies, les cuves et le mobilier médical différencient les fonctions sans changer les collisions du moteur. Les personnages dessinés se distinguent par leur silhouette et leur équipement. Les deux accès verticaux conservent leurs symboles et libellés habituels. Les zones, acteurs, informations et commandes restent ceux de la simulation.
 
 Échap ferme toujours d'abord la surcouche active : légende, inventaire, personnage, compétences, dossier ou visée de zone. Il n'ouvre le menu pause que depuis le jeu dégagé. Dans une hiérarchie de menus, il remonte d'un niveau ; pendant la création, il revient d'abord à l'étape précédente.
 
@@ -64,6 +131,7 @@ Les événements immédiatement perceptibles peuvent produire un message flottan
 Les options d'affichage proposent :
 
 - une taille d'interface persistante, en plus de l'adaptation automatique ;
+- un thème d'interface bleu, violet, vert ou rouge et un zoom de carte indépendant ;
 - un contraste renforcé, qui épaissit et accentue les contours porteurs d'information ;
 - des animations réduites, qui suppriment notamment la pulsation des alertes sans masquer leur bandeau, leur texte ni leur symbole.
 
@@ -80,7 +148,7 @@ Toute modification importante de l'interface doit être contrôlée au minimum e
 
 ## Parcours de confort et composants natifs
 
-L'accueil et la création rendent l'action principale visible au repos, avec une surface turquoise et un texte sombre. Le danger emploie un libellé explicite et une surface rouge ; le focus clavier clair se distingue de la sélection turquoise. Les cartes et lecteurs partagent leurs surfaces, marges et tailles de texte dans `ui_theme.rs` et `ux.rs`. Les animations existantes continuent de respecter l'option d'animations réduites.
+L'accueil et la création rendent l'action principale visible au repos, avec une surface utilisant l'accent choisi et un texte sombre. Le danger emploie un libellé explicite et une surface rouge ; le focus clavier se distingue aussi par son contour. Les cartes et lecteurs partagent leurs surfaces, marges et tailles de texte dans `ui_theme.rs` et `ux.rs`. Les animations existantes continuent de respecter l'option d'animations réduites.
 
 La création peut démarrer directement avec un profil recommandé. La personnalisation est une action secondaire : retirer un point avant de le réattribuer, afficher la réserve près des attributs, désactiver les modifications impossibles et préserver les valeurs lors d'un retour aux profils sans changement de protocole. La relance d'une partie active demande une confirmation sélectionnant d'abord Continuer. Un survol d'équipement ne déclenche jamais un équipement.
 

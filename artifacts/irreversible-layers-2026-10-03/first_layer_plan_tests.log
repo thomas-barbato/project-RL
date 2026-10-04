@@ -1,0 +1,13 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 6 tests
+test ascii_app::first_layer_plan_tests::first_layer_plan_is_opt_in_and_rejects_invalid_anchors ... ok
+test ascii_app::first_layer_plan_tests::first_layer_plan_is_seeded_connected_open_and_keeps_other_shafts ... ok
+test ascii_app::first_layer_plan_tests::first_layer_plan_generated_places_and_landing_keep_all_passages_reachable ... ok
+test ascii_app::first_layer_plan_tests::first_layer_encounters_are_opt_in_and_do_not_change_terrain_or_outside_regions ... ok
+test ascii_app::first_layer_plan_tests::first_layer_landscapes_annex_budget_shortcut_and_persistence ... ok
+test ascii_app::first_layer_plan_tests::first_layer_plan_runtime_round_trip_snapshot_and_replay ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 585 filtered out; finished in 39.23s
+

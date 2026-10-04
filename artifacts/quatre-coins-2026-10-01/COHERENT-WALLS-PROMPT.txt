@@ -1,0 +1,16 @@
+Use case: stylized-concept.
+Asset type: ONE coherent game-wall tileset atlas, exactly 3 columns by 2 rows of equally sized square cells. True transparent background. Every cell represents 64x64 logical pixels, enlarged crisply. No gutters, no text, no labels, no ground.
+Primary request: Draw six matching top-down industrial metal WALL tiles: two straight walls and four corners. They must form one continuous rectangular building frame when tiled. The previous reference's light cap flips sides and mismatches at corners; solve that by using one consistent OVERHEAD construction throughout the kit. This is a new purpose-built coherent set, not six independent illustrations.
+Style reference: same industrial muted graphite / blue-gray / subtle rust pixel art as the reference. Keep the same dark readable game-art value range, small bolts, clean thin bevel lines, weathered steel. All tiles have the same wall thickness and rendering construction.
+Rendering construction: strict orthographic overhead, no front-facing elevation panels, no perspective, no isometric side faces. The entire wall band is the continuous dark gray steel top surface, with a subtle light gray bevel along its outlines, graphite outer edge, restrained small rust scratches and bolts. This identical top surface turns around the corners. One global upper-left light, never rotating the light with a tile. No broad stripe that switches from one side of a beam to another. Horizontal and vertical beams share the same material and brightness; corners are clean continuous mitered joints.
+Logical 64x64 silhouette: all wall bands are centered at 8..55 (48 pixels thick). Attachments reach the exact cell edge at full width without end caps. All other space is alpha transparent. Keep scale and origin consistent.
+Cell order, read left to right:
+Top row:
+0: Horizontal straight, connected west and east. Only rows 8..55 opaque, extending across full cell width.
+1: Building top left corner, connected east and south. Center square 8..55 plus east arm x56..63 y8..55 and south arm x8..55 y56..63. Outer top and left 8-pixel margins and inner bottom-right 8x8 are transparent.
+2: Building top right corner, connected west and south. Center plus west and south arms. Outer top and right margins and inner bottom-left 8x8 transparent.
+Bottom row:
+3: Vertical straight, connected north and south. Only columns 8..55 opaque, extending across full cell height.
+4: Building bottom left corner, connected east and north. Center plus east and north arms. Outer bottom and left margins and inner top-right 8x8 transparent.
+5: Building bottom right corner, connected west and north. Center plus west and north arms. Outer bottom and right margins and inner top-left 8x8 transparent.
+The endpoints of ALL connected beams and corners must have the identical cross-section and top-surface color, no seam or sudden cap shift. Do not close connected ends with a black outline. Designed for native 64x64 pixel art. Avoid extra modules, pillars, corner towers, floating parts, floor fills, checkerboard pixels, grids, baked shadows outside the wall silhouette, shiny chrome, smooth anti-aliased digital painting, or any front-facing broad panel.

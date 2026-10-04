@@ -1,0 +1,10 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 37.54s
+     Running unittests src\lib.rs (target\debug\deps\project_rl-2e9ad6618a1c2637.exe)
+
+running 2 tests
+test game::game_state::perception::tests::sound_projection_uses_actual_emitters_and_never_discloses_hidden_sources ... ok
+test game::game_state::perception::tests::brief_sound_presentation_tracks_real_hearing_then_clears_without_changing_saves ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 803 filtered out; finished in 0.00s
+

@@ -1,0 +1,19 @@
+Vérification de l'aperçu indépendant - 4 octobre 2026
+
+- Sources classes et bestiaire : PNG RGBA, canaux alpha vérifiés.
+- Vue initiale affichée dans le navigateur intégré à 32 px par case.
+- BRÈCHE équipée : lame et plastron lisibles dans la vue agrandie à partir du raster 32 px.
+- Changement vers CREUSET avec autre équipement : nom et texte de matériel mis à jour.
+- Changement vers VIGIE équipée et cases 24 px : canvas 528 x 336, soit 22 x 14 cases.
+- Retour à 32 px et catalogue du bestiaire : 24 cartes affichées.
+- Sélection zombie : indication explicite de proposition affichée.
+- Retour final : BRÈCHE, équipement de référence, 32 px ; onglet laissé ouvert.
+- Console navigateur : aucune erreur relevée après les interactions.
+- Capture conservée : apercu-32px.jpg.
+- Correction du débordement des contrôles dans le panneau étroit vérifiée visuellement.
+
+La mise à l'échelle des images n'est pas une validation de pixel art natif à 32 px.
+Les assets finaux, calques d'équipement, orientations, animations et intégration
+au moteur restent à faire après revue. Aucun fichier source du jeu modifié.
+Serveur de revue local : http://127.0.0.1:8776/apercu.html
+Le HTML peut aussi s'ouvrir directement depuis le disque, sans serveur.

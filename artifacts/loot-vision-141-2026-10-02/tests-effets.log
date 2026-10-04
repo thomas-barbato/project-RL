@@ -1,0 +1,11 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.32s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 3 tests
+test ascii_app::effects_lab::tests::sustained_burning_follows_its_bearer_without_leaving_false_ground_fire ... ok
+test ascii_app::effects_lab::tests::sustained_statuses_coexist_and_stop_with_their_actual_status ... ok
+test ascii_app::effects_lab::tests::badges_show_all_three_timed_statuses_and_disappear_on_expiration_or_hidden_cells ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 576 filtered out; finished in 6.78s
+

@@ -1,0 +1,31 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+warning: unused import: `super::*`
+ --> src\arsenal_app.rs:2:5
+  |
+2 | use super::*;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: methods `open_level_up_screen`, `resume_loading_panel`, `finish_resume_request`, and `resume_run` are never used
+     --> src\ascii_app.rs:14408:8
+      |
+ 1500 | impl AsciiApp {
+      | ------------- methods in this implementation
+...
+14408 |     fn open_level_up_screen(&mut self, notice: LevelUpNotice) {
+      |        ^^^^^^^^^^^^^^^^^^^^
+...
+20951 |     fn resume_loading_panel(&self) -> Rect {
+      |        ^^^^^^^^^^^^^^^^^^^^
+...
+21268 |     fn finish_resume_request(&mut self) {
+      |        ^^^^^^^^^^^^^^^^^^^^^
+...
+21354 |     fn resume_run(&mut self) -> Result<(), String> {
+      |        ^^^^^^^^^^
+      |
+      = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `project-rl` (bin "project-rl") generated 2 warnings (run `cargo fix --bin "project-rl" -p project-rl` to apply 1 suggestion)
+    Finished `release` profile [optimized] target(s) in 1m 38s

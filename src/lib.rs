@@ -3,6 +3,8 @@
 //! This library deliberately has no dependency on Macroquad types. The binary
 //! and future presentation layers consume its commands, state and events.
 
+#[cfg(debug_assertions)]
+pub mod action_profile;
 pub mod ai;
 pub mod character_class;
 pub mod combat;

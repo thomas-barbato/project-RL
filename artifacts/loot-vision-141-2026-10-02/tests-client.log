@@ -1,0 +1,37 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+error[E0433]: cannot find type `Map` in this scope
+    --> src\ascii_app.rs:3454:27
+     |
+3454 |                 let map = Map::filled(48, 36, Terrain::Floor).map_err(|e| e.to_string())?;
+     |                           ^^^ use of undeclared type `Map`
+     |
+help: consider importing this struct
+     |
+   1 + use std::iter::Map;
+     |
+
+error[E0624]: method `prepare_monster_reward_diagnostic` is private
+    --> src\ascii_app.rs:3452:38
+     |
+3452 |             "monster-rewards" => app.prepare_monster_reward_diagnostic()?,
+     |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ private method
+     |
+    ::: src\enemy_equipment.rs:8:5
+     |
+   8 |     pub(super) fn prepare_monster_reward_diagnostic(&mut self) -> Result<(), String> {
+     |     -------------------------------------------------------------------------------- private method defined here
+
+error[E0624]: method `prepare_monster_reward_diagnostic` is private
+  --> src\city_feedback_tests.rs:11:9
+   |
+11 |     app.prepare_monster_reward_diagnostic().unwrap();
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ private method
+   |
+  ::: src\enemy_equipment.rs:8:5
+   |
+ 8 |     pub(super) fn prepare_monster_reward_diagnostic(&mut self) -> Result<(), String> {
+   |     -------------------------------------------------------------------------------- private method defined here
+
+Some errors have detailed explanations: E0433, E0624.
+For more information about an error, try `rustc --explain E0433`.
+error: could not compile `project-rl` (bin "project-rl" test) due to 3 previous errors

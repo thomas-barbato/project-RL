@@ -1,0 +1,1561 @@
+--- a/src/ascii_app.rs
++++ b/src/ascii_app.rs
+@@ -327,6 +327,11 @@
+ #[cfg(test)]
+ #[path = "surface_density_tests.rs"]
+ mod surface_density_tests;
++#[path = "tactical_reading_app.rs"]
++mod tactical_reading_app;
++#[cfg(debug_assertions)]
++#[path = "tactical_reading_capture.rs"]
++mod tactical_reading_capture;
+ #[cfg(debug_assertions)]
+ #[path = "tactical_reading_proposal.rs"]
+ mod tactical_reading_proposal;
+@@ -1490,6 +1495,7 @@
+     context_menu: Option<ContextMenu>,
+     legend_open: bool,
+     npc_vision_overlay_open: bool,
++    tactical_projection: std::cell::RefCell<tactical_reading_app::TacticalCache>,
+     controls: Controls,
+     movement_repeat: controls::MovementRepeater,
+     menu_repeat: controls::MenuRepeater,
+@@ -6382,10 +6388,11 @@
+                 .player_has_learned_improvement(TechniqueImprovement::NpcVisionOverlay)
+             {
+                 self.npc_vision_overlay_open = !self.npc_vision_overlay_open;
++                self.tactical_projection.borrow_mut().invalidate();
+                 self.push_log(if self.npc_vision_overlay_open {
+-                    "LECTURE TACTIQUE · CHAMPS DE VISION AFFICHÉS".to_owned()
++                    "LECTURE TACTIQUE · VISION ET BRUITS AFFICHÉS".to_owned()
+                 } else {
+-                    "LECTURE TACTIQUE · CHAMPS DE VISION MASQUÉS".to_owned()
++                    "LECTURE TACTIQUE · VISION ET BRUITS MASQUÉS".to_owned()
+                 });
+             } else {
+                 self.push_log("LECTURE TACTIQUE REQUISE · REC-06".to_owned());
+@@ -6857,11 +6864,8 @@
+             })
+             .collect();
+         let target_summary = self.terminal_target_summary();
+-        let observation_fields = if self.npc_vision_overlay_open {
+-            self.game.actor_observation_fields()
+-        } else {
+-            Vec::new()
+-        };
++        let mut tactical_cache = self.tactical_projection.borrow_mut();
++        let tactical = tactical_cache.projection(&self.game, self.npc_vision_overlay_open);
+         self.terminal.draw(
+             &self.game,
+             TerminalDrawOptions {
+@@ -6881,7 +6885,10 @@
+                 navigation_signal: navigation_signal.as_deref(),
+                 target_summary: target_summary.as_ref(),
+                 selected_cell: self.selected_visible_cell(),
+-                observation_fields: &observation_fields,
++                observation_fields: &tactical.vision,
++                sound_fields: &tactical.sounds,
++                perception_signals: &tactical.signals,
++                tactical_overlay_open: self.npc_vision_overlay_open,
+             },
+             |position| {
+                 let effect = self.visual_cues.sample_world_with_motion(
+@@ -6927,6 +6934,7 @@
+             },
+             |position| self.interaction_display_name(position),
+         );
++        drop(tactical_cache);
+ 
+         if self.menu == MenuScreen::Hidden
+             && !self.legend_open
+@@ -10686,6 +10694,9 @@
+             legend_open: false,
+             ux: ux::UxState::default(),
+             npc_vision_overlay_open: false,
++            tactical_projection: std::cell::RefCell::new(
++                tactical_reading_app::TacticalCache::default(),
++            ),
+             controls: Controls::preset(controls::Layout::Qwerty, KeySemantics::native()),
+             movement_repeat: controls::MovementRepeater::default(),
+             menu_repeat: controls::MenuRepeater::default(),
+@@ -11830,6 +11841,7 @@
+         let previous_zone = self.game.current_zone().map(|zone| zone.id.clone());
+         let outcome = self.game.process_player_command(command);
+         if !matches!(outcome, CommandOutcome::Rejected(_)) {
++            self.tactical_projection.borrow_mut().invalidate();
+             self.ux.moved |= moved;
+             self.ux.interacted |= interacted;
+             self.history.push(recorded);
+@@ -11896,7 +11908,11 @@
+         let mut damage_totals: BTreeMap<EntityId, (GridPos, u32)> = BTreeMap::new();
+         let mut missed_hits: BTreeMap<(GridPos, bool), u16> = BTreeMap::new();
+         let mut guarded_impacts = std::collections::BTreeSet::new();
+-        for event in self.game.drain_events() {
++        let events = self.game.drain_events();
++        if !events.is_empty() {
++            self.tactical_projection.borrow_mut().invalidate();
++        }
++        for event in events {
+             self.update_npc_art(&event);
+             if let GameEvent::DamageApplied { target, amount, .. }
+             | GameEvent::DamageImpactApplied { target, amount, .. } = &event
+@@ -15109,6 +15125,8 @@
+         let now = get_time();
+         let bounds = self.terminal_bounds();
+         let scale = self.ui_scale();
++        let mut tactical_cache = self.tactical_projection.borrow_mut();
++        let tactical = tactical_cache.projection(&self.game, self.npc_vision_overlay_open);
+         let mut occupied_labels = Vec::new();
+         for message in &self.floating_messages {
+             let elapsed = (now - message.started_at).max(0.0);
+@@ -15144,8 +15162,14 @@
+                 (bounds.x + bounds.w - measured.width - 5.0).max(bounds.x),
+             );
+             let badge_rows = self.effect_badges_at(message.at).len().div_ceil(4) as f32;
++            let perception_height = if tactical.signals.iter().any(|s| s.position == message.at) {
++                26.0 * (cell.w / 32.0).clamp(0.75, 1.25)
++            } else {
++                0.0
++            };
+             let baseline = (cell.y
+                 - badge_rows * 20.0
++                - perception_height
+                 - 13.0 * scale
+                 - f32::from(message.lane) * 21.0 * scale
+                 - rise)
+--- a/src/terminal_view.rs
++++ b/src/terminal_view.rs
+@@ -51,6 +51,8 @@
+ 
+ #[path = "terminal_lighting.rs"]
+ mod terminal_lighting;
++#[path = "terminal_perception.rs"]
++mod terminal_perception;
+ #[path = "terminal_vision.rs"]
+ mod terminal_vision;
+ 
+@@ -117,6 +119,21 @@
+     pub decor: Decor,
+ }
+ 
++#[derive(Clone, Debug)]
++pub struct TerminalSoundField {
++    pub origin: GridPos,
++    pub radius: u16,
++    pub circular: bool,
++    pub positions: BTreeSet<GridPos>,
++}
++
++#[derive(Clone, Copy, Debug)]
++pub struct TerminalPerceptionSignal {
++    pub position: GridPos,
++    pub seen: bool,
++    pub heard: bool,
++}
++
+ #[derive(Clone, Copy, Debug)]
+ pub struct TerminalDrawOptions<'a> {
+     pub bounds: Rect,
+@@ -136,6 +153,9 @@
+     pub target_summary: Option<&'a TerminalTargetSummary>,
+     pub selected_cell: Option<GridPos>,
+     pub observation_fields: &'a [ActorObservationField],
++    pub sound_fields: &'a [TerminalSoundField],
++    pub perception_signals: &'a [TerminalPerceptionSignal],
++    pub tactical_overlay_open: bool,
+ }
+ 
+ #[derive(Clone, Debug, PartialEq, Eq)]
+@@ -786,6 +806,9 @@
+             target_summary,
+             selected_cell,
+             observation_fields,
++            sound_fields,
++            perception_signals,
++            tactical_overlay_open,
+         } = options;
+         let cyan = UiTheme.accent();
+         let muted = UiTheme.muted();
+@@ -917,10 +940,7 @@
+                 let position = GridPos::new(camera.first.x + column, camera.first.y + row);
+                 let rect = camera.rect(position);
+                 let known = known_at(position);
+-                let observed = observation_fields
+-                    .iter()
+-                    .any(|field| field.contains(position) || field.origin() == position);
+-                if known.is_none() && !observed {
++                if known.is_none() {
+                     continue;
+                 }
+                 let visible = visibility.is_visible(position);
+@@ -945,11 +965,11 @@
+                 } else {
+                     draw_rectangle(rect.x, rect.y, rect.w, rect.h, BLACK);
+                 }
+-                draw_observation_fields(rect, observation_fields, position);
+             }
+         }
+         terminal_lighting::draw(&camera, visibility, known_at, reduced_motion);
+         terminal_vision::draw(game, &camera, |at| known_at(at).is_some());
++        terminal_perception::draw_fields(game, &camera, observation_fields, sound_fields);
+         for position in visibility
+             .visible_positions()
+             .filter(|at| camera.contains(*at))
+@@ -1046,6 +1066,18 @@
+                 quest_marker_rise,
+                 occupied_above,
+             );
++        }
++        for signal in perception_signals {
++            if visibility.is_visible(signal.position) && camera.contains(signal.position) {
++                let badge_rows =
++                    overlay(signal.position).map_or(0, |cell| cell.effect_badges.len().div_ceil(4));
++                terminal_perception::draw_signal(
++                    camera.rect(signal.position),
++                    signal.seen,
++                    signal.heard,
++                    badge_rows,
++                );
++            }
+         }
+         // Show the real committed footprint, never a hidden actor or cell.
+         for (entity, actor) in game.actors().iter() {
+@@ -1397,6 +1429,15 @@
+             }
+         });
+         let description = if inspected.is_some_and(|(position, _)| {
++            sound_fields
++                .iter()
++                .any(|field| field.positions.contains(&position))
++        }) {
++            format!("{description} · PORTÉE SONORE")
++        } else {
++            description
++        };
++        let description = if inspected.is_some_and(|(position, _)| {
+             overlay(position).is_none()
+                 && game.quest_marker_at(position) == Some(project_rl::game::QuestMarker::Objective)
+         }) {
+@@ -1427,6 +1468,8 @@
+                 ),
+                 target_summary,
+                 observation_fields,
++                sound_fields,
++                tactical_overlay_open,
+                 observation_label,
+                 &sensor_contacts,
+                 layout.objective,
+@@ -1444,6 +1487,8 @@
+         visible_counts: (usize, usize, usize, usize, usize, usize),
+         target: Option<&TerminalTargetSummary>,
+         observation_fields: &[ActorObservationField],
++        sound_fields: &[TerminalSoundField],
++        tactical_overlay_open: bool,
+         observation_label: &str,
+         sensor_contacts: &[SensorContact],
+         objective: Rect,
+@@ -1475,7 +1520,7 @@
+         .into_iter()
+         .filter(|count| *count > 0)
+         .count()
+-            + usize::from(!observation_fields.is_empty());
++            + usize::from(tactical_overlay_open);
+         let map_area = Rect::new(
+             rect.x,
+             rect.y + 34.0,
+@@ -1484,22 +1529,12 @@
+                 .clamp(100.0, 230.0)
+                 .min((rect.h - 360.0 - extra_lines as f32 * 23.0).max(60.0)),
+         );
+-        let (known_min, known_max) = if observation_fields.is_empty() {
+-            remembered_bounds(
+-                &self.remembered,
+-                game.player_position(),
+-                game.map().width(),
+-                game.map().height(),
+-            )
+-        } else {
+-            (
+-                GridPos::new(0, 0),
+-                GridPos::new(
+-                    i32::try_from(game.map().width().saturating_sub(1)).unwrap_or(i32::MAX),
+-                    i32::try_from(game.map().height().saturating_sub(1)).unwrap_or(i32::MAX),
+-                ),
+-            )
+-        };
++        let (known_min, known_max) = remembered_bounds(
++            &self.remembered,
++            game.player_position(),
++            game.map().width(),
++            game.map().height(),
++        );
+         let known_width = (known_max.x - known_min.x + 1).max(1) as f32;
+         let known_height = (known_max.y - known_min.y + 1).max(1) as f32;
+         let pixel = (map_area.w / known_width)
+@@ -1521,6 +1556,7 @@
+             pixel,
+             origin,
+             observation_fields,
++            sound_fields,
+             sensor_contacts,
+         );
+         let mut y = map_area.bottom() + 36.0;
+@@ -1561,14 +1597,10 @@
+             );
+         }
+ 
+-        if !observation_fields.is_empty() {
+-            let observers: BTreeSet<_> = observation_fields
+-                .iter()
+-                .map(ActorObservationField::observer)
+-                .collect();
++        if tactical_overlay_open {
+             y += 23.0;
+             draw_bounded_text(
+-                &format!("{observation_label} · {} champs visuels", observers.len()),
++                &format!("{observation_label} · Vision / bruit"),
+                 rect.x,
+                 y,
+                 rect.w,
+@@ -1672,6 +1704,7 @@
+     pixel: f32,
+     origin: Vec2,
+     observation_fields: &[ActorObservationField],
++    sound_fields: &[TerminalSoundField],
+     contacts: &[SensorContact],
+ ) {
+     let phosphor = crate::ui_theme::UiTheme.accent();
+@@ -1848,7 +1881,10 @@
+     // dotted fill never draws terrain that is absent from remembered data.
+     for field in observation_fields {
+         for position in field.positions() {
+-            if !sensor_position_is_inside(position, known_min, known_max) {
++            if !sensor_position_is_inside(position, known_min, known_max)
++                || !game.player_visibility().is_visible(position)
++                || !game.map().is_walkable(position)
++            {
+                 continue;
+             }
+             let cell = sensor_cell_rect(position, known_min, pixel, origin);
+@@ -1891,6 +1927,22 @@
+         }
+     }
+ 
++    for field in sound_fields {
++        for &position in &field.positions {
++            if sensor_position_is_inside(position, known_min, known_max)
++                && game.player_visibility().is_visible(position)
++                && game.map().is_walkable(position)
++            {
++                let cell = sensor_cell_rect(position, known_min, pixel, origin);
++                draw_circle(
++                    cell.x + cell.w * 0.5,
++                    cell.y + cell.h * 0.5,
++                    (pixel * 0.24).clamp(0.7, 1.3),
++                    Color::from_rgba(240, 184, 79, 150),
++                );
++            }
++        }
++    }
+     // Live affordances live on the sensor map; they never appear in stale
+     // explored memory, even when the underlying terrain remains drawn there.
+     for position in game.player_visibility().visible_positions() {
+@@ -2185,78 +2237,6 @@
+     ] {
+         draw_line(x, y, x + arm * x_direction, y, 2.0, color);
+         draw_line(x, y, x, y + arm * y_direction, 2.0, color);
+-    }
+-}
+-
+-fn draw_observation_fields(rect: Rect, fields: &[ActorObservationField], position: GridPos) {
+-    for field in fields
+-        .iter()
+-        .filter(|field| field.contains(position) || field.origin() == position)
+-    {
+-        let base = Color::from_rgba(55, 208, 174, 255);
+-        if field.contains(position) {
+-            let dx = (position.x - field.origin().x) as f32;
+-            let dy = (position.y - field.origin().y) as f32;
+-            let distance = (dx * dx + dy * dy).sqrt();
+-            let ratio = (distance / f32::from(field.radius().max(1))).clamp(0.0, 1.0);
+-            let fill_alpha = 0.19 - ratio * 0.09;
+-            draw_rectangle(
+-                rect.x + 0.5,
+-                rect.y + 0.5,
+-                rect.w - 1.0,
+-                rect.h - 1.0,
+-                Color::new(base.r, base.g, base.b, fill_alpha),
+-            );
+-
+-            let line = (rect.w * 0.055).clamp(0.8, 1.6);
+-            let [north, east, south, west] = position.cardinal_neighbors();
+-            let boundary = Color::new(base.r, base.g, base.b, 0.78);
+-            if !field.contains(north) {
+-                draw_line(rect.x, rect.y, rect.x + rect.w, rect.y, line, boundary);
+-            }
+-            if !field.contains(east) {
+-                draw_line(
+-                    rect.x + rect.w,
+-                    rect.y,
+-                    rect.x + rect.w,
+-                    rect.y + rect.h,
+-                    line,
+-                    boundary,
+-                );
+-            }
+-            if !field.contains(south) {
+-                draw_line(
+-                    rect.x,
+-                    rect.y + rect.h,
+-                    rect.x + rect.w,
+-                    rect.y + rect.h,
+-                    line,
+-                    boundary,
+-                );
+-            }
+-            if !field.contains(west) {
+-                draw_line(rect.x, rect.y, rect.x, rect.y + rect.h, line, boundary);
+-            }
+-        }
+-
+-        if field.origin() == position {
+-            let center = vec2(rect.x + rect.w * 0.5, rect.y + rect.h * 0.5);
+-            let radius = (rect.w * 0.2).clamp(2.0, 4.5);
+-            draw_circle(center.x, center.y, radius, Color::from_rgba(4, 10, 15, 220));
+-            draw_circle_lines(
+-                center.x,
+-                center.y,
+-                radius,
+-                (rect.w * 0.07).clamp(1.0, 1.8),
+-                Color::new(base.r, base.g, base.b, 0.95),
+-            );
+-            draw_circle(
+-                center.x,
+-                center.y,
+-                (radius * 0.32).max(1.0),
+-                Color::new(base.r, base.g, base.b, 0.95),
+-            );
+-        }
+     }
+ }
+ 
+--- a/src/stealth.rs
++++ b/src/stealth.rs
+@@ -158,22 +158,50 @@
+                 return false;
+             }
+         }
+-        propagate(
+-            map,
+-            PropagationRequest {
+-                origin,
+-                maximum_cost,
+-                neighbor_mode: NeighborMode::CardinalAndDiagonal,
+-            },
+-            &TerrainPropagationPolicy {
+-                floor_cost: Some(1),
+-                shallow_water_cost: Some(1),
+-                deep_water_cost: Some(self.sound_wall_attenuation_multiplier),
+-                wall_cost: Some(self.sound_wall_attenuation_multiplier),
+-            },
+-        )
+-        .iter()
+-        .any(|cell| cell.position == listener)
++        self.sound_field_on_map(map, intensity, origin)
++            .any(|position| position == listener)
++    }
++
++    /// The same propagation as hearing, computed once for a presentation field.
++    pub fn sound_field_on_map(
++        self,
++        map: &Map,
++        intensity: u16,
++        origin: GridPos,
++    ) -> impl Iterator<Item = GridPos> {
++        let maximum_cost = intensity
++            .saturating_sub(1)
++            .checked_div(self.sound_attenuation_per_cell)
++            .unwrap_or(0);
++        let cells = if intensity == 0 || self.sound_attenuation_per_cell == 0 {
++            Vec::new()
++        } else {
++            propagate(
++                map,
++                PropagationRequest {
++                    origin,
++                    maximum_cost,
++                    neighbor_mode: NeighborMode::CardinalAndDiagonal,
++                },
++                &TerrainPropagationPolicy {
++                    floor_cost: Some(1),
++                    shallow_water_cost: Some(1),
++                    deep_water_cost: Some(self.sound_wall_attenuation_multiplier),
++                    wall_cost: Some(self.sound_wall_attenuation_multiplier),
++                },
++            )
++        };
++        cells
++            .into_iter()
++            .filter(move |cell| {
++                if !self.circular_sound_fields {
++                    return true;
++                }
++                let dx = i128::from(origin.x) - i128::from(cell.position.x);
++                let dy = i128::from(origin.y) - i128::from(cell.position.y);
++                dx * dx + dy * dy <= i128::from(maximum_cost).pow(2)
++            })
++            .map(|cell| cell.position)
+     }
+ }
+ 
+@@ -437,6 +465,32 @@
+ mod circular_field_tests {
+     use super::*;
+     #[test]
++    fn sound_fields_match_hearing_queries_with_walls_and_legacy_rules() {
++        let map =
++            Map::from_ascii("#########\n#.......#\n#..#....#\n#..#....#\n#.......#\n#########")
++                .unwrap();
++        let origin = GridPos::new(2, 2);
++        for circular_sound_fields in [false, true] {
++            for intensity in [0, 1, 10, 25, 40] {
++                let rules = StealthRules {
++                    circular_sound_fields,
++                    ..StealthRules::default()
++                };
++                let field: std::collections::BTreeSet<_> =
++                    rules.sound_field_on_map(&map, intensity, origin).collect();
++                for y in 0..6 {
++                    for x in 0..9 {
++                        let at = GridPos::new(x, y);
++                        assert_eq!(
++                            field.contains(&at),
++                            rules.sound_reaches_on_map(&map, intensity, origin, at)
++                        );
++                    }
++                }
++            }
++        }
++    }
++    #[test]
+     fn circular_sound_uses_the_same_radius_in_every_direction_and_obeys_walls() {
+         let open = Map::from_ascii("###########\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n###########").unwrap();
+         let source = GridPos::new(5, 5);
+--- a/src/game/game_state.rs
++++ b/src/game/game_state.rs
+@@ -141,6 +141,10 @@
+     ThreatReinforcementRequestError, ThreatSourceBlueprint, ThreatSourceState, TurnPhase,
+ };
+ 
++#[path = "perception.rs"]
++mod perception;
++pub use perception::SoundObservationSource;
++
+ /// One live visual field from an actor in the active zone.
+ #[derive(Clone, Debug, PartialEq, Eq)]
+ pub struct ActorObservationField {
+@@ -392,6 +396,10 @@
+     player_silenced_emissions: BTreeSet<SignatureChannel>,
+     player_movement_concealment_bonus: i16,
+     transient_noises: Vec<TransientNoise>,
++    // Presentation audit only: deliberately absent from snapshots and Debug
++    // fingerprints. Brief noises remain readable until the next completed turn.
++    presentation_recent_noises: Vec<TransientNoise>,
++    presentation_heard_incidents: BTreeMap<EntityId, GridPos>,
+     pub(super) sound_emitters: SoundEmitterMap,
+     manifested_sound_emitters: BTreeMap<SoundEmitterId, TechniqueManifestationReservation>,
+     pub(super) ground_effects: GroundEffectMap,
+@@ -577,6 +585,8 @@
+             player_silenced_emissions: snapshot.player_silenced_emissions,
+             player_movement_concealment_bonus: snapshot.player_movement_concealment_bonus,
+             transient_noises: snapshot.transient_noises,
++            presentation_recent_noises: Vec::new(),
++            presentation_heard_incidents: BTreeMap::new(),
+             sound_emitters: snapshot.sound_emitters,
+             manifested_sound_emitters: snapshot.manifested_sound_emitters,
+             ground_effects: snapshot.ground_effects,
+@@ -1066,6 +1076,8 @@
+             player_silenced_emissions: BTreeSet::new(),
+             player_movement_concealment_bonus: 0,
+             transient_noises: Vec::new(),
++            presentation_recent_noises: Vec::new(),
++            presentation_heard_incidents: BTreeMap::new(),
+             sound_emitters: SoundEmitterMap::default(),
+             manifested_sound_emitters: BTreeMap::new(),
+             ground_effects: GroundEffectMap::default(),
+@@ -9945,7 +9957,8 @@
+         }
+         Some((
+             self.actor_optically_detects_player(observer),
+-            self.audible_incident_for(observer).is_some(),
++            self.presentation_heard_incidents.contains_key(&observer)
++                || self.audible_incident_for(observer).is_some(),
+         ))
+     }
+ 
+@@ -13460,6 +13473,8 @@
+     pub(super) fn complete_turn(&mut self) {
+         #[cfg(debug_assertions)]
+         let _profile = crate::action_profile::Scope::new("engine.complete-turn");
++        self.presentation_heard_incidents.clear();
++        self.presentation_recent_noises.clear();
+         self.phase = TurnPhase::ResolvingActors;
+         if self.status == RunStatus::Active {
+             self.resolve_status_trigger(StatusTrigger::TurnStart);
+@@ -14118,6 +14133,8 @@
+             });
+         }
+         self.player_movement_concealment_bonus = 0;
++        self.presentation_recent_noises
++            .clone_from(&self.transient_noises);
+         self.transient_noises.clear();
+     }
+ 
+@@ -14323,6 +14340,9 @@
+                 .get(target_entity)
+                 .map_or(player_position, Actor::position);
+             let audible_incident = self.audible_incident_for(entity);
++            if let Some(incident) = audible_incident {
++                self.presentation_heard_incidents.insert(entity, incident);
++            }
+             if matches!(actor.ai_state(), AiState::Unaware)
+                 && let (Some(incident), Some(lifecycle)) =
+                     (audible_incident, profile.pursuit_lifecycle())
+--- a/src/game/mod.rs
++++ b/src/game/mod.rs
+@@ -28,7 +28,7 @@
+ pub use game_state::{
+     ActorObservationField, CommandOutcome, CommandRejection, DroneSpawnError, GameInitError,
+     GameState, GroundItemSpawnError, MaintainedEffectId, MaintainedEnergyReservation, RunStatus,
+-    SpawnError,
++    SoundObservationSource, SpawnError,
+ };
+ pub use preparation::{PreparationCancellationReason, TechniquePreparationView};
+ pub use rng::GameRng;
+--- a/src/controls.rs
++++ b/src/controls.rs
+@@ -60,7 +60,7 @@
+     Laboratory, "Laboratoire : choisir un essai", "F5", GAME;
+     Inspect, "Consulter la fiche complète / état et cible", "F4", ALL;
+     EventHistory, "Historique des tours", "V", GAME;
+-    NpcVision, "Afficher / masquer les champs de vision", "F2", GAME;
++    NpcVision, "Afficher / masquer vision et bruit", "F2", GAME;
+     Restart, "Nouvelle partie", "R", GAME;
+     Analyze, "Analyse de cible", "C", GAME;
+     Traces, "Lecture de traces", "L", GAME;
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -42,7 +42,9 @@
+     #[cfg(debug_assertions)]
+     if let Some(output) = graphics::ui_smoke_output() {
+         let mode = std::env::args().nth(1).unwrap_or_default();
+-        let result = if mode == "--ui-cold-tactical-listening" {
++        let result = if mode == "--ui-cold-tactical-reading" {
++            AsciiApp::capture_tactical_reading_integration(&output).await
++        } else if mode == "--ui-cold-tactical-listening" {
+             AsciiApp::capture_tactical_reading_proposal(&output).await
+         } else if mode == "--ui-cold-installations" {
+             AsciiApp::capture_installation_interactions(&output).await
+@@ -77,13 +79,19 @@
+     }
+     let trial = std::env::args().any(|arg| arg == "--essai-expedition");
+     let installation_trial = std::env::args().any(|arg| arg == "--essai-interactions");
+-    let mut app = match if installation_trial {
+-        AsciiApp::new_installation_trial()
+-    } else if trial {
+-        AsciiApp::new_playable_trial()
+-    } else {
+-        AsciiApp::new()
+-    } {
++    let mut app = match (|| {
++        #[cfg(debug_assertions)]
++        if std::env::args().any(|arg| arg == "--essai-lecture-tactique") {
++            return AsciiApp::new_tactical_reading_trial();
++        }
++        if installation_trial {
++            AsciiApp::new_installation_trial()
++        } else if trial {
++            AsciiApp::new_playable_trial()
++        } else {
++            AsciiApp::new()
++        }
++    })() {
+         Ok(app) => app,
+         Err(error) => {
+             run_error_screen(&error).await;
+--- a/content/core/locales/fr.json5
++++ b/content/core/locales/fr.json5
+@@ -302,7 +302,7 @@
+     "technique.rec_03.description": "Recherche les indices de pièges, caches, commandes dissimulées ou passages secrets dans les cases observables.",
+     "technique.rec_04.description": "Examine les parois observables pour identifier un matériau peu résistant ou une dégradation exploitable.",
+     "technique.rec_05.description": "Précise les possibilités offensives et défensives d'un adversaire à partir de ce qui est observable ou documenté.",
+-    "technique.rec_06.description": "Projette les champs visuels de tous les PNJ actuellement visibles, quels que soient leur rôle ou leur comportement. Cet affichage tactique est gratuit.",
++    "technique.rec_06.description": "Affiche la vision des PNJ visibles et la portée des bruits autour de leur source. Les murs atténuent le son. Cet affichage est gratuit.",
+     "technique.rec_08.description": "Examine la chaleur, l'alimentation et le stockage d'énergie accessibles d'une machine pour guider vos choix.",
+     "technique.rec_09.description": "Applique Analyse de cible à plusieurs cibles perçues au cours d'une même action.",
+     "technique.mel_01.description": "Porte une frappe de mêlée plus dévastatrice, suivie d'un temps de récupération.",
+--- a/docs/INTERFACE.md
++++ b/docs/INTERFACE.md
+@@ -108,7 +108,7 @@
+ - La légende F1 décrit uniquement le rendu actif. Elle porte le titre « Symboles dessinés » et classe les entrées par fonction. Les dangers persistants y possèdent des formes et des libellés propres : le feu `^`, le champ électrique `z`, le conteneur incendiaire `o` et le relais conducteur `q` restent distinguables sans dépendre uniquement de leur couleur.
+ - Lorsqu'au moins un compagnon est contrôlé, une palette flottante collective montre son intégrité, sa batterie et l'état de la liaison sans occuper toute la largeur du monde. Quatre boutons carrés à icônes choisissent **Suivre**, **Défensif**, **Agressif** ou **Passif** ; leur infobulle donne le nom et l'effet au survol. La palette est déjà générique pour plusieurs alliés, même si seuls les drones l'utilisent actuellement. Une coupure rend le groupe de commandes rouge et affiche **Retour auto** en plus de la couleur ; revenir à portée restaure aussitôt les boutons. Avancer sur la case d'un drone contrôlé échange les positions avec lui : le compagnon ne bloque pas un passage et un déplacement n'est jamais converti en attaque alliée.
+ - Sur une largeur confortable, le HUD place **Niveau**, **Arme active** et **État** dans une colonne verticale à gauche. Expérience, PV, énergie, munitions et compagnons associent une valeur numérique et une barre ; les anciennes parties conservent leurs ressources historiques. Un groupe compact **Défenses** expose les valeurs réellement résolues par le moteur : Armure, Esquive, Stabilité système, Défense numérique lorsqu'un système compatible existe, puis résistances thermique, électrique, chimique, radiation et corruption, y compris lorsqu'elles valent 0 %. L'absence réelle d'un système est représentée par un tiret et jamais par un faux zéro. Les dégâts cinétiques, perforants et explosifs ne reçoivent pas de résistance parallèle puisqu'ils rencontrent déjà l'Armure. **Arme active** indique l'arme réellement utilisée et ses munitions éventuelles, sans nommer un emplacement technique. L'espace supérieur ainsi libéré agrandit le monde ; il redevient un bandeau seulement lorsqu'une alerte prioritaire doit être affichée. Sur une fenêtre trop étroite pour les colonnes, ces informations reviennent dans des cartes compactes afin de rester accessibles.
+-- La colonne droite réserve davantage de place à **CAPTEURS**. Ce panneau n'est pas une seconde copie miniature du plateau : il projette les données autorisées comme un écran embarqué, avec fond phosphore, grille technique, balayage animé, géométrie simplifiée et signatures de contacts. Il cadre dynamiquement les cases mémorisées avec une marge bornée au lieu de réduire toute la très grande zone à quelques pixels. Les contours pleins délimitent la perception actuelle, tandis que la mémoire ancienne devient sombre, échantillonnée et pointillée. L'animation ne retarde jamais une information disponible. **En vue** précède **Cible**. Une cible perçue révèle seulement son identité observable, sa distance et ses états visibles ; ses PV, son Armure et ses résistances restent masqués jusqu'à une **Analyse de cible** (`REC-01`) réellement résolue par le moteur. Après apprentissage de `REC-06`, le raccourci remappable `F2` superpose les champs visuels de tous les PNJ visibles et place ces mêmes PNJ dans CAPTEURS sous forme de signatures géométriques distinctes pour menace, service, présence neutre et signal non classé. Le rendu emploie forme, remplissage, contour et motifs plutôt que la seule couleur ; aucun PNJ caché ni terrain inconnu n'est ajouté.
++- La colonne droite réserve davantage de place à **CAPTEURS**. Ce panneau n'est pas une seconde copie miniature du plateau : il projette les données autorisées comme un écran embarqué, avec fond phosphore, grille technique, balayage animé, géométrie simplifiée et signatures de contacts. Il cadre dynamiquement les cases mémorisées avec une marge bornée au lieu de réduire toute la très grande zone à quelques pixels. Les contours pleins délimitent la perception actuelle, tandis que la mémoire ancienne devient sombre, échantillonnée et pointillée. L'animation ne retarde jamais une information disponible. **En vue** précède **Cible**. Une cible perçue révèle seulement son identité observable, sa distance et ses états visibles ; ses PV, son Armure et ses résistances restent masqués jusqu'à une **Analyse de cible** (`REC-01`) réellement résolue par le moteur. Après apprentissage de `REC-06`, le raccourci remappable `F2` affiche ou masque ensemble les champs visuels des PNJ visibles (vert) et la portée des sons réellement émis depuis une source visible (ambre). Les zones sont rondes, limitées aux cases actuellement visibles et au résultat du moteur ; les murs atténuent le son. L’affichage ne consomme ni tour ni énergie. Les bruits brefs du dernier tour restent lisibles jusqu’au suivant. Un œil rouge indique qu’un hostile visible repère actuellement le joueur ; une oreille rouge indique qu’il entend un bruit ou en a entendu pendant le dernier tour. Ces pictogrammes, sans fond, restent visibles sans `REC-06` et lorsque F2 masque les zones ; l’œil est prioritaire si les deux perceptions sont présentes. Les mêmes PNJ apparaissent dans CAPTEURS sous forme de signatures géométriques distinctes pour menace, service, présence neutre et signal non classé. Le rendu emploie forme, remplissage, contour et motifs plutôt que la seule couleur ; aucun PNJ caché ni terrain inconnu n'est ajouté.
+ 
+ Les raccourcis permanents du bas d'écran restent limités aux actions immédiates. Les commandes détaillées appartiennent à F1 et aux écrans concernés. La prévisualisation d'une attaque de zone remplace ce rappel par une carte contextuelle indiquant validité, nombre de cases, nombre de cibles, confirmation et annulation.
+ 
+--- a/Voir_lecture_tactique.cmd
++++ b/Voir_lecture_tactique.cmd
+@@ -2,10 +2,10 @@
+ cd /d "%~dp0"
+ cargo build --locked --bin project-rl
+ if errorlevel 1 (
+-  echo Impossible de compiler l'apercu.
++  echo Impossible de compiler l'essai.
+   pause
+   exit /b 1
+ )
+-echo Apercu independant : aucun chargement ni enregistrement de partie.
+-echo F2 : afficher / masquer vision et bruit. Echap : fermer.
+-"target\debug\project-rl.exe" --apercu-lecture-tactique
++echo Essai jouable avec Lecture tactique apprise. Sauvegarde de test separee.
++echo F2 : afficher / masquer vision et bruit. E : installations. Echap : menu.
++"target\debug\project-rl.exe" --essai-lecture-tactique
+--- /dev/null
++++ b/src/game/perception.rs
+@@ -0,0 +1,158 @@
++//! Read-only sound presentation. This projection has no recovery schema.
++use super::*;
++
++#[derive(Clone, Copy, Debug, PartialEq, Eq)]
++pub struct SoundObservationSource {
++    pub position: GridPos,
++    pub intensity: u16,
++    pub ongoing: bool,
++}
++
++impl GameState {
++    /// Actual visible emissions, including the most recent turn's brief sounds.
++    /// A hidden source is never disclosed by this optional tactical display.
++    pub fn sound_observation_sources(&self) -> Vec<SoundObservationSource> {
++        let mut sources = BTreeMap::<GridPos, SoundObservationSource>::new();
++        for source in self
++            .presentation_recent_noises
++            .iter()
++            .chain(&self.transient_noises)
++            .map(|noise| SoundObservationSource {
++                position: noise.at,
++                intensity: noise.intensity,
++                ongoing: false,
++            })
++            .chain(
++                self.sound_emitters
++                    .iter()
++                    .map(|emitter| SoundObservationSource {
++                        position: emitter.position(),
++                        intensity: emitter.intensity(),
++                        ongoing: true,
++                    }),
++            )
++        {
++            if source.intensity == 0 || !self.player_visibility.is_visible(source.position) {
++                continue;
++            }
++            let entry = sources.entry(source.position).or_insert(source);
++            if source.intensity > entry.intensity {
++                *entry = source;
++            } else if source.intensity == entry.intensity {
++                entry.ongoing |= source.ongoing;
++            }
++        }
++        sources.into_values().collect()
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    use crate::ai::{AiProfile, PursuitLifecycle};
++    use crate::social::PlayerRelation;
++    use crate::stealth::StealthRules;
++    use std::num::NonZeroU16;
++
++    #[test]
++    fn brief_sound_presentation_tracks_real_hearing_then_clears_without_changing_saves() {
++        let mut rules = GameRules::default();
++        rules.stealth_rules = Some(StealthRules {
++            base_detection: 0,
++            circular_sound_fields: true,
++            ..StealthRules::default()
++        });
++        let mut game = GameState::new_with_rules(
++            Map::from_ascii("########\n#......#\n#......#\n#......#\n########").unwrap(),
++            GridPos::new(2, 2),
++            17,
++            rules,
++        )
++        .unwrap();
++        let enemy = game
++            .spawn_actor(
++                Actor::new(GridPos::new(4, 2), 10)
++                    .unwrap()
++                    .with_player_relation(PlayerRelation::Hostile)
++                    .with_ai(AiProfile::hunter(4, 128).with_pursuit_lifecycle(
++                        PursuitLifecycle::new(
++                            NonZeroU16::new(8).unwrap(),
++                            NonZeroU16::new(2).unwrap(),
++                            NonZeroU16::new(2).unwrap(),
++                        ),
++                    )),
++            )
++            .unwrap();
++        let mut game = crate::game::WorldState::single(game);
++        assert_eq!(
++            game.process_player_command(GameCommand::Move(Direction::East)),
++            CommandOutcome::Applied
++        );
++        assert!(game.transient_noises.is_empty());
++        assert_eq!(game.actor_perception_signals(enemy), Some((false, true)));
++        assert_eq!(
++            game.sound_observation_sources(),
++            vec![SoundObservationSource {
++                position: GridPos::new(3, 2),
++                intensity: 10,
++                ongoing: false,
++            }]
++        );
++        let before_sources = game.sound_observation_sources();
++        let before_signals = game.actor_perception_signals(enemy);
++        assert!(matches!(
++            game.process_player_command(GameCommand::Attack {
++                slot: 7,
++                target: enemy
++            }),
++            CommandOutcome::Rejected(_)
++        ));
++        assert_eq!(game.sound_observation_sources(), before_sources);
++        assert_eq!(game.actor_perception_signals(enemy), before_signals);
++        game.drain_events();
++        let bytes = game.recovery_snapshot_bytes().unwrap();
++        let fingerprint = format!("{game:?}");
++        let restored =
++            crate::game::WorldState::from_recovery_snapshot_bytes(&bytes, game.rules().clone())
++                .unwrap();
++        assert_eq!(bytes, restored.recovery_snapshot_bytes().unwrap());
++        assert_eq!(fingerprint, format!("{restored:?}"));
++        game.process_player_command(GameCommand::Wait);
++        assert!(game.sound_observation_sources().is_empty());
++        assert_eq!(game.actor_perception_signals(enemy), Some((false, false)));
++    }
++
++    #[test]
++    fn sound_projection_uses_actual_emitters_and_never_discloses_hidden_sources() {
++        let mut rules = GameRules::default();
++        rules.player_field_of_view.radius = 2;
++        rules.stealth_rules = Some(StealthRules::default());
++        let mut game = GameState::new_with_rules(
++            Map::from_ascii("##########\n#........#\n#........#\n##########").unwrap(),
++            GridPos::new(2, 1),
++            17,
++            rules,
++        )
++        .unwrap();
++        game.sound_emitters
++            .deploy(GridPos::new(3, 1), 30, 2, 1)
++            .unwrap();
++        game.sound_emitters
++            .deploy(GridPos::new(7, 1), 60, 2, 1)
++            .unwrap();
++        let mut game = crate::game::WorldState::single(game);
++        let bytes = game.recovery_snapshot_bytes().unwrap();
++        let expected = vec![SoundObservationSource {
++            position: GridPos::new(3, 1),
++            intensity: 30,
++            ongoing: true,
++        }];
++        assert_eq!(game.sound_observation_sources(), expected);
++        assert_eq!(game.sound_observation_sources(), expected);
++        assert_eq!(bytes, game.recovery_snapshot_bytes().unwrap());
++        game.process_player_command(GameCommand::Wait);
++        assert_eq!(game.sound_observation_sources(), expected);
++        game.process_player_command(GameCommand::Wait);
++        assert!(game.sound_observation_sources().is_empty());
++    }
++}
+--- /dev/null
++++ b/src/tactical_reading_app.rs
+@@ -0,0 +1,143 @@
++//! Cached, client-only projection; refreshing it never advances the simulation.
++use super::*;
++use crate::terminal_view;
++
++#[derive(Default)]
++pub(super) struct TacticalProjection {
++    pub vision: Vec<project_rl::game::ActorObservationField>,
++    pub sounds: Vec<terminal_view::TerminalSoundField>,
++    pub signals: Vec<terminal_view::TerminalPerceptionSignal>,
++}
++
++#[derive(Default)]
++pub(super) struct TacticalCache {
++    key: Option<(Option<ContentId>, u64, Option<GridPos>, bool)>,
++    projection: TacticalProjection,
++    #[cfg(test)]
++    rebuilds: usize,
++}
++
++impl TacticalCache {
++    pub fn invalidate(&mut self) {
++        self.key = None;
++    }
++
++    pub fn projection(&mut self, game: &WorldState, shown: bool) -> &TacticalProjection {
++        let key = (
++            game.current_zone().map(|z| z.id.clone()),
++            game.turn(),
++            game.player_position(),
++            shown,
++        );
++        if self.key.as_ref() != Some(&key) {
++            let signals = game
++                .actors()
++                .iter()
++                .filter_map(|(entity, actor)| {
++                    let (seen, heard) = game.actor_perception_signals(entity)?;
++                    (seen || heard).then_some(terminal_view::TerminalPerceptionSignal {
++                        position: actor.position(),
++                        seen,
++                        heard,
++                    })
++                })
++                .collect();
++            let vision = if shown {
++                game.actor_observation_fields()
++            } else {
++                Vec::new()
++            };
++            let sounds = if shown {
++                game.rules()
++                    .stealth_rules
++                    .map(|rules| {
++                        game.sound_observation_sources()
++                            .into_iter()
++                            .map(|source| terminal_view::TerminalSoundField {
++                                origin: source.position,
++                                radius: source
++                                    .intensity
++                                    .saturating_sub(1)
++                                    .checked_div(rules.sound_attenuation_per_cell)
++                                    .unwrap_or(0),
++                                circular: rules.circular_sound_fields,
++                                positions: rules
++                                    .sound_field_on_map(
++                                        game.map(),
++                                        source.intensity,
++                                        source.position,
++                                    )
++                                    .filter(|&at| {
++                                        game.player_visibility().is_visible(at)
++                                            && game.map().is_walkable(at)
++                                    })
++                                    .collect(),
++                            })
++                            .collect()
++                    })
++                    .unwrap_or_default()
++            } else {
++                Vec::new()
++            };
++            self.projection = TacticalProjection {
++                vision,
++                sounds,
++                signals,
++            };
++            self.key = Some(key);
++            #[cfg(test)]
++            {
++                self.rebuilds += 1;
++            }
++        }
++        &self.projection
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    #[test]
++    fn tactical_projection_reuses_frames_and_tracks_emitter_expiry_without_mutation() {
++        let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
++        let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
++        app.enter_installation_annex().unwrap();
++        let source = GridPos::new(10, 7);
++        app.walk_fixture_to_unchecked(source.step(Direction::East))
++            .unwrap();
++        app.execute_command(GameCommand::UseInstallation {
++            target: source,
++            action: project_rl::facility::InstallationAction::ActivateDiversion,
++        });
++        app.game.drain_events();
++        let before = app.game.recovery_snapshot_bytes().unwrap();
++        let mut cache = TacticalCache::default();
++        let projection = cache.projection(&app.game, true);
++        assert!(!projection.vision.is_empty());
++        assert!(!projection.sounds.is_empty());
++        assert!(projection.signals.iter().any(|s| s.heard));
++        for field in &projection.sounds {
++            assert!(app.game.player_visibility().is_visible(field.origin));
++            assert!(
++                field
++                    .positions
++                    .iter()
++                    .all(|&at| app.game.player_visibility().is_visible(at)
++                        && app.game.map().is_walkable(at))
++            );
++        }
++        for _ in 0..20 {
++            cache.projection(&app.game, true);
++        }
++        assert_eq!(cache.rebuilds, 1);
++        assert_eq!(before, app.game.recovery_snapshot_bytes().unwrap());
++        let hidden = cache.projection(&app.game, false);
++        assert!(hidden.vision.is_empty() && hidden.sounds.is_empty());
++        assert!(hidden.signals.iter().any(|s| s.heard));
++        assert_eq!(before, app.game.recovery_snapshot_bytes().unwrap());
++        app.execute_command(GameCommand::Wait);
++        assert!(!cache.projection(&app.game, true).sounds.is_empty());
++        app.execute_command(GameCommand::Wait);
++        assert!(cache.projection(&app.game, true).sounds.is_empty());
++    }
++}
+--- /dev/null
++++ b/src/tactical_reading_capture.rs
+@@ -0,0 +1,210 @@
++//! Native captures of the ordinary renderer, real skill unlock and F2 input.
++use super::*;
++use project_rl::facility::InstallationAction;
++
++impl AsciiApp {
++    fn prepare_tactical_reading_trial(output: &std::path::Path) -> Result<Self, String> {
++        std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
++        let (mut rules, texts, loot, expeditions) = ascii_game_content()?;
++        // Only this diagnostic speeds up learning; the actual technique and
++        // production input/render paths are exercised without bypassing REC-06.
++        rules.progression.curve =
++            project_rl::progression::ExperienceCurve::new(vec![1]).map_err(|e| e.to_string())?;
++        rules.progression.skill_points_per_level = 1;
++        rules.hit_rules = None;
++        let mut app = Self::from_seed(INITIAL_SEED, rules, texts, loot, expeditions)?;
++        app.suspension_path = output.join("diagnostic.json");
++        app.menu = MenuScreen::Hidden;
++        let input = InputFrame {
++            pressed: [app.controls.binding(Action::NpcVision).clone()]
++                .into_iter()
++                .collect(),
++            ..InputFrame::default()
++        };
++        app.update_input(&input);
++        if app.npc_vision_overlay_open {
++            return Err("REC-06 n’a pas bloqué F2".into());
++        }
++        app.enter_installation_annex()?;
++        let player = app.game.player_position().ok_or("Joueur absent")?;
++        let at = player
++            .cardinal_neighbors()
++            .into_iter()
++            .find(|&at| app.game.map().is_walkable(at) && app.game.actors().entity_at(at).is_none())
++            .ok_or("Case de diagnostic absente")?;
++        let target = app
++            .game
++            .spawn_actor(
++                Actor::new(at, 1)
++                    .map_err(|e| e.to_string())?
++                    .with_player_relation(PlayerRelation::Hostile)
++                    .with_defeat_reward(DefeatReward::persistent(10, 1)),
++            )
++            .map_err(|e| e.to_string())?;
++        let outcome = app.execute_command(GameCommand::Attack { slot: 0, target });
++        if outcome != CommandOutcome::Applied {
++            return Err(format!(
++                "Le gain de niveau du diagnostic a échoué : {outcome:?}"
++            ));
++        }
++        for name in ["core:rec_01", "core:rec_06"] {
++            if app.execute_command(GameCommand::LearnTechnique {
++                technique: technique_id(name).ok_or("Technique absente")?,
++            }) != CommandOutcome::AppliedWithoutTime
++            {
++                return Err(format!("Apprentissage du diagnostic impossible : {name}"));
++            }
++        }
++        app.level_up_notice = None;
++        let post = GridPos::new(10, 7);
++        app.walk_fixture_to_unchecked(post.step(Direction::East))?;
++        if app.execute_command(GameCommand::UseInstallation {
++            target: post,
++            action: InstallationAction::ActivateDiversion,
++        }) != CommandOutcome::Applied
++        {
++            return Err("Diversion inactive".into());
++        }
++        app.capture_events_at(Some(0.0));
++        app.level_up_notice = None;
++        app.floating_messages.clear();
++        app.graphics.active.world_cell_px = 32;
++        Ok(app)
++    }
++
++    pub fn new_tactical_reading_trial() -> Result<Self, String> {
++        let output =
++            std::path::Path::new("artifacts/lecture-tactique-integration-2026-10-04/essai");
++        let mut app = Self::prepare_tactical_reading_trial(output)?;
++        app.npc_vision_overlay_open = true;
++        app.push_log(
++            "ESSAI · F2 : vision / bruit · E : installations · Attendre : expiration du bruit"
++                .into(),
++        );
++        Ok(app)
++    }
++
++    pub async fn capture_tactical_reading_integration(
++        output: &std::path::Path,
++    ) -> Result<(), String> {
++        let mut app = Self::prepare_tactical_reading_trial(output)?;
++        let input = InputFrame {
++            pressed: [app.controls.binding(Action::NpcVision).clone()]
++                .into_iter()
++                .collect(),
++            ..InputFrame::default()
++        };
++        let before = app.game.recovery_snapshot_bytes()?;
++        app.update_input(&input);
++        if !app.npc_vision_overlay_open {
++            return Err("F2 appris n’affiche pas les zones".into());
++        }
++        {
++            let mut cache = app.tactical_projection.borrow_mut();
++            let tactical = cache.projection(&app.game, true);
++            if tactical.vision.is_empty()
++                || tactical.sounds.is_empty()
++                || !tactical.signals.iter().any(|s| s.heard)
++            {
++                return Err("Les perceptions réelles sont absentes de l’affichage".into());
++            }
++        }
++        let mut render_performance = Vec::new();
++        for (width, height) in [(1600.0, 900.0), (960.0, 600.0)] {
++            request_new_screen_size(width, height);
++            for _ in 0..5 {
++                next_frame().await;
++            }
++            app.save_tactical_frame(output, &format!("vision-et-bruit-{width:.0}.png"))
++                .await?;
++            if width == 1600.0 {
++                render_performance.push(app.measure_tactical_render(true).await);
++            }
++            app.update_input(&input);
++            if app.npc_vision_overlay_open {
++                return Err("F2 n’a pas masqué les zones".into());
++            }
++            {
++                let mut cache = app.tactical_projection.borrow_mut();
++                let tactical = cache.projection(&app.game, false);
++                if !tactical.vision.is_empty()
++                    || !tactical.sounds.is_empty()
++                    || !tactical.signals.iter().any(|s| s.heard)
++                {
++                    return Err("L’alerte disparaît avec les zones".into());
++                }
++            }
++            app.save_tactical_frame(output, &format!("zones-masquees-{width:.0}.png"))
++                .await?;
++            if width == 1600.0 {
++                render_performance.push(app.measure_tactical_render(false).await);
++            }
++            app.update_input(&input);
++        }
++        if before != app.game.recovery_snapshot_bytes()? {
++            return Err("F2 ou le rendu a modifié la simulation".into());
++        }
++        for _ in 0..3 {
++            app.execute_command(GameCommand::Wait);
++            app.capture_events_at(Some(0.0));
++        }
++        if !app.game.sound_observation_sources().is_empty() {
++            return Err("Le bruit n’a pas expiré".into());
++        }
++        request_new_screen_size(1600.0, 900.0);
++        for _ in 0..5 {
++            next_frame().await;
++        }
++        app.floating_messages.clear();
++        app.save_tactical_frame(output, "bruit-expire.png").await?;
++        app.walk_fixture_to_unchecked(GridPos::new(12, 8))?;
++        app.capture_events_at(Some(0.0));
++        app.floating_messages.clear();
++        if !app.game.actors().iter().any(|(entity, _)| {
++            app.game
++                .actor_perception_signals(entity)
++                .is_some_and(|(seen, _)| seen)
++        }) {
++            return Err("L’alerte visuelle n’a pas de détection réelle".into());
++        }
++        app.save_tactical_frame(output, "joueur-repere.png").await?;
++        std::fs::write(
++            output.join("render-performance.json"),
++            serde_json::to_vec_pretty(&render_performance).map_err(|e| e.to_string())?,
++        )
++        .map_err(|e| e.to_string())?;
++        std::fs::write(output.join("validation.json"),
++            "{\"ordinary_renderer\":true,\"rec06_gate_and_real_unlock\":true,\"configured_f2_toggles_both_fields\":true,\"red_cue_survives_hidden_fields\":true,\"display_preserves_snapshot\":true,\"emission_expires\":true,\"real_optical_detection\":true}")
++            .map_err(|e| e.to_string())?;
++        Ok(())
++    }
++
++    async fn save_tactical_frame(
++        &self,
++        output: &std::path::Path,
++        name: &str,
++    ) -> Result<(), String> {
++        for _ in 0..3 {
++            self.draw();
++            next_frame().await;
++        }
++        self.draw();
++        crate::ui_capture::framebuffer()?.export_png(output.join(name).to_str().ok_or("Path")?);
++        Ok(())
++    }
++
++    async fn measure_tactical_render(&self, shown: bool) -> serde_json::Value {
++        let mut samples = Vec::new();
++        for _ in 0..120 {
++            let start = std::time::Instant::now();
++            self.draw();
++            samples.push(start.elapsed().as_secs_f64() * 1000.0);
++            next_frame().await;
++        }
++        let mut steady = samples[10..].to_vec();
++        steady.sort_by(f64::total_cmp);
++        serde_json::json!({"scene":"annexe-diversion", "zones_shown":shown,
++            "build":"debug", "frames":samples.len(), "cpu_median_ms":steady[steady.len()/2],
++            "cpu_p95_ms":steady[steady.len()*95/100], "cpu_max_ms":steady.last()})
++    }
++}
+--- /dev/null
++++ b/src/terminal_perception.rs
+@@ -0,0 +1,314 @@
++//! Circular, visibility-clipped tactical ranges and bare perception warnings.
++use super::*;
++
++const SEGMENTS: usize = 96;
++
++pub(super) fn draw_fields(
++    game: &WorldState,
++    camera: &GridCamera,
++    vision: &[ActorObservationField],
++    sounds: &[TerminalSoundField],
++) {
++    for field in vision {
++        draw_field(
++            game,
++            camera,
++            field.origin(),
++            field.radius(),
++            true,
++            field.positions(),
++            Color::from_rgba(55, 208, 174, 255),
++        );
++    }
++    for field in sounds {
++        draw_field(
++            game,
++            camera,
++            field.origin,
++            field.radius,
++            field.circular,
++            field.positions.iter().copied(),
++            Color::from_rgba(240, 184, 79, 255),
++        );
++    }
++}
++
++fn display_radius(radius: u16, circular: bool) -> f32 {
++    // Every genuinely reachable cell centre remains inside the graphic,
++    // including radius-one footsteps. Legacy saves retain their sound rules.
++    (f32::from(radius)
++        * if circular {
++            1.0
++        } else {
++            std::f32::consts::SQRT_2
++        })
++    .max(0.45)
++}
++
++fn circle_points(
++    center: Vec2,
++    radius: f32,
++    boundary_centres: impl Iterator<Item = Vec2>,
++) -> Vec<Vec2> {
++    let mut angles: Vec<_> = (0..SEGMENTS)
++        .map(|i| i as f32 * std::f32::consts::TAU / SEGMENTS as f32)
++        .collect();
++    let inner = radius * (std::f32::consts::PI / SEGMENTS as f32).cos();
++    // Add exact grid boundary directions so an inscribed polygon cannot omit
++    // a reachable centre (e.g. the 3/4/5 triangle). No radius inflation.
++    for p in boundary_centres {
++        let delta = p - center;
++        if delta.length_squared() >= inner * inner && delta.length_squared() <= radius * radius {
++            angles.push(delta.y.atan2(delta.x).rem_euclid(std::f32::consts::TAU));
++        }
++    }
++    angles.sort_by(f32::total_cmp);
++    angles.dedup();
++    angles
++        .into_iter()
++        .map(|angle| center + vec2(angle.cos(), angle.sin()) * radius)
++        .collect()
++}
++
++fn radial_rim_cell(at: GridPos, origin: GridPos, radius: u16, allowed: &BTreeSet<GridPos>) -> bool {
++    let dx = i64::from(at.x) - i64::from(origin.x);
++    let dy = i64::from(at.y) - i64::from(origin.y);
++    dx * dx + dy * dy > i64::from(radius).pow(2)
++        && at.cardinal_neighbors().iter().any(|p| allowed.contains(p))
++}
++
++fn draw_field(
++    game: &WorldState,
++    camera: &GridCamera,
++    origin: GridPos,
++    radius: u16,
++    circular: bool,
++    positions: impl Iterator<Item = GridPos>,
++    color: Color,
++) {
++    let visible = game.player_visibility();
++    if !visible.is_visible(origin) {
++        return;
++    }
++    let allowed: BTreeSet<_> = positions
++        .filter(|&at| visible.is_visible(at) && game.map().is_walkable(at))
++        .collect();
++    let center = camera.rect(origin).center();
++    let grid_radius = radius;
++    let radius = display_radius(radius, circular) * camera.cell;
++    let circle = circle_points(
++        center,
++        radius,
++        allowed.iter().map(|&at| camera.rect(at).center()),
++    );
++    let mut drawable = allowed.clone();
++    if circular {
++        // Continue only the curved sub-cell rim across a radial boundary.
++        // These outer centres stay outside the exact circle. Cells blocked
++        // inside its radius, walls and hidden terrain never enter this mask.
++        drawable.extend(visible.visible_positions().filter(|&at| {
++            game.map().is_walkable(at) && radial_rim_cell(at, origin, grid_radius, &allowed)
++        }));
++    }
++    let fill = Color::new(color.r, color.g, color.b, 0.14);
++    let mut polygon = Vec::with_capacity(SEGMENTS + 4);
++    let mut scratch = Vec::with_capacity(SEGMENTS + 4);
++    for &at in drawable.iter().filter(|&&at| camera.contains(at)) {
++        let rect = camera.rect(at);
++        let corners = [
++            vec2(rect.x, rect.y),
++            vec2(rect.right(), rect.y),
++            vec2(rect.right(), rect.bottom()),
++            vec2(rect.x, rect.bottom()),
++        ];
++        if corners
++            .iter()
++            .all(|&p| p.distance_squared(center) <= radius * radius)
++        {
++            draw_rectangle(rect.x, rect.y, rect.w, rect.h, fill);
++            continue;
++        }
++        polygon.clone_from(&circle);
++        clip_to_rect(&mut polygon, &mut scratch, rect);
++        if polygon.len() >= 3 {
++            for i in 1..polygon.len() - 1 {
++                draw_triangle(polygon[0], polygon[i], polygon[i + 1], fill);
++            }
++        }
++    }
++    let at_point = |p: Vec2| {
++        GridPos::new(
++            camera.first.x + ((p.x - camera.origin.x) / camera.cell).floor() as i32,
++            camera.first.y + ((p.y - camera.origin.y) / camera.cell).floor() as i32,
++        )
++    };
++    for i in 0..circle.len() {
++        let a = circle[i];
++        let b = circle[(i + 1) % circle.len()];
++        let at_a = at_point(a);
++        let at_b = at_point(b);
++        if drawable.contains(&at_a)
++            && drawable.contains(&at_b)
++            && camera.contains(at_a)
++            && camera.contains(at_b)
++        {
++            draw_line(
++                a.x,
++                a.y,
++                b.x,
++                b.y,
++                1.3,
++                Color::new(color.r, color.g, color.b, 0.7),
++            );
++        }
++    }
++}
++
++fn clip_to_rect(polygon: &mut Vec<Vec2>, scratch: &mut Vec<Vec2>, rect: Rect) {
++    for (axis, boundary, lower) in [
++        (0, rect.x, true),
++        (0, rect.right(), false),
++        (1, rect.y, true),
++        (1, rect.bottom(), false),
++    ] {
++        if polygon.is_empty() {
++            return;
++        }
++        scratch.clear();
++        let coordinate = |p: Vec2| if axis == 0 { p.x } else { p.y };
++        let inside = |p: Vec2| {
++            if lower {
++                coordinate(p) >= boundary
++            } else {
++                coordinate(p) <= boundary
++            }
++        };
++        let mut previous = *polygon.last().unwrap();
++        for &current in polygon.iter() {
++            if inside(previous) != inside(current) {
++                let t = (boundary - coordinate(previous))
++                    / (coordinate(current) - coordinate(previous));
++                scratch.push(previous + (current - previous) * t);
++            }
++            if inside(current) {
++                scratch.push(current);
++            }
++            previous = current;
++        }
++        std::mem::swap(polygon, scratch);
++    }
++}
++
++pub(super) fn draw_signal(rect: Rect, seen: bool, heard: bool, badge_rows: usize) {
++    if !seen && !heard {
++        return;
++    }
++    let scale = (rect.w / 32.0).clamp(0.75, 1.25);
++    let center = vec2(
++        rect.x + rect.w * 0.5,
++        rect.y - 13.0 * scale - badge_rows as f32 * 20.0,
++    );
++    let red = Color::from_rgba(255, 58, 73, 255);
++    let stroke = 2.6 * scale;
++    if seen {
++        draw_ellipse_lines(
++            center.x,
++            center.y,
++            12.0 * scale,
++            7.0 * scale,
++            0.0,
++            stroke,
++            red,
++        );
++        draw_circle(center.x, center.y, 3.5 * scale, red);
++    } else {
++        draw_ellipse_lines(
++            center.x + scale,
++            center.y - scale,
++            7.0 * scale,
++            10.0 * scale,
++            0.0,
++            stroke,
++            red,
++        );
++        for (a, b) in [
++            (vec2(2.0, -5.0), vec2(-2.0, 1.0)),
++            (vec2(-2.0, 1.0), vec2(2.0, 5.0)),
++            (vec2(-11.0, -4.0), vec2(-11.0, 4.0)),
++        ] {
++            let a = center + a * scale;
++            let b = center + b * scale;
++            draw_line(a.x, a.y, b.x, b.y, stroke, red);
++        }
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    #[test]
++    fn circular_ranges_cover_reachable_centres_and_clip_without_spilling() {
++        for radius in 0..=8u16 {
++            let r = display_radius(radius, true);
++            let positions: BTreeSet<_> = (-i32::from(radius)..=i32::from(radius))
++                .flat_map(|y| {
++                    (-i32::from(radius)..=i32::from(radius)).filter_map(move |x| {
++                        (x * x + y * y <= i32::from(radius).pow(2)).then_some(GridPos::new(x, y))
++                    })
++                })
++                .collect();
++            let circle = circle_points(
++                Vec2::ZERO,
++                r,
++                positions.iter().map(|p| vec2(p.x as f32, p.y as f32)),
++            );
++            for y in -i32::from(radius)..=i32::from(radius) {
++                for x in -i32::from(radius)..=i32::from(radius) {
++                    if x * x + y * y > i32::from(radius).pow(2) {
++                        continue;
++                    }
++                    let centre = vec2(x as f32, y as f32);
++                    let rect = Rect::new(centre.x - 0.5, centre.y - 0.5, 1.0, 1.0);
++                    let mut polygon = circle.clone();
++                    clip_to_rect(&mut polygon, &mut Vec::new(), rect);
++                    assert!(polygon.len() >= 3);
++                    assert!(polygon.iter().all(|p| p.x >= rect.x - 0.00001
++                        && p.x <= rect.right() + 0.00001
++                        && p.y >= rect.y - 0.00001
++                        && p.y <= rect.bottom() + 0.00001));
++                    assert!(
++                        polygon
++                            .iter()
++                            .zip(polygon.iter().cycle().skip(1))
++                            .all(|(&a, &b)| (b - a).perp_dot(centre - a) >= -0.00001)
++                    );
++                }
++            }
++            for y in -i32::from(radius) - 1..=i32::from(radius) + 1 {
++                for x in -i32::from(radius) - 1..=i32::from(radius) + 1 {
++                    let at = GridPos::new(x, y);
++                    if positions.contains(&at) {
++                        continue;
++                    }
++                    let p = vec2(x as f32, y as f32);
++                    assert!(
++                        circle
++                            .iter()
++                            .zip(circle.iter().cycle().skip(1))
++                            .any(|(&a, &b)| (b - a).perp_dot(p - a) < -0.00001),
++                        "An unreachable centre was painted: {at:?} radius {radius}"
++                    );
++                }
++            }
++            let mut blocked = positions.clone();
++            blocked.remove(&GridPos::new(0, 0));
++            assert!(!radial_rim_cell(
++                GridPos::new(0, 0),
++                GridPos::new(0, 0),
++                radius,
++                &blocked
++            ));
++            assert!(display_radius(radius, false) >= f32::from(radius) * std::f32::consts::SQRT_2);
++        }
++    }
++}

@@ -1,0 +1,10 @@
+{
+  id: "core:melee_hallebarde",
+  terminal: {
+    frames: ["projectile", "impact"],
+    color: [227, 229, 215, 255],
+    frame_millis: 45,
+    step_millis: 20,
+    linger_millis: 25,
+  },
+}

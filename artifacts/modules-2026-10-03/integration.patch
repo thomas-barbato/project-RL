@@ -1,0 +1,1164 @@
+--- before/src/terminal_player.rs
++++ after/src/terminal_player.rs
+@@ -1,10 +1,15 @@
+-//! Approved upright player art, packed once into a small nearest-filtered atlas.
+-//! Facing and equipment are presentation only; the world and save schema stay separate.
++//! Approved top-down modules, rasterized once into one nearest-filtered atlas.
++//! Equipment and horizontal facing are presentation data, outside the save schema.
+ use macroquad::prelude::*;
+ use project_rl::combat::AttackDelivery;
+ 
+-const SIDE: usize = 24;
+-const SOURCE: &[u8] = include_bytes!("../assets/sprites/player-upright-v1.png");
++const SIDE: usize = 20;
++const POSES: [PlayerWeaponPose; 3] = [
++    PlayerWeaponPose::Unarmed,
++    PlayerWeaponPose::Melee,
++    PlayerWeaponPose::Ranged,
++];
++const KINDS: [ModuleKind; 3] = [ModuleKind::Player, ModuleKind::Service, ModuleKind::Hostile];
+ 
+ #[derive(Clone, Copy, Debug, PartialEq, Eq)]
+ #[repr(usize)]
+@@ -30,79 +35,117 @@
+     pub facing_left: bool,
+ }
+ 
+-// Source poses share a baseline. Anchor each one at its feet so that the wider
+-// knife/rifle cannot displace the body when the active weapon changes.
++#[derive(Clone, Copy, Debug, PartialEq, Eq)]
++#[repr(usize)]
++pub enum ModuleKind {
++    Player,
++    Service,
++    Hostile,
++}
++
++#[derive(Clone, Copy, Debug, PartialEq, Eq)]
++pub struct ActorAppearance {
++    pub kind: ModuleKind,
++    pub pose: PlayerWeaponPose,
++    pub facing_left: bool,
++}
++
++impl From<PlayerAppearance> for ActorAppearance {
++    fn from(player: PlayerAppearance) -> Self {
++        Self {
++            kind: ModuleKind::Player,
++            pose: player.pose,
++            facing_left: player.facing_left,
++        }
++    }
++}
++
++impl ModuleKind {
++    pub const fn for_symbol(symbol: char) -> Option<Self> {
++        match symbol {
++            '@' => Some(ModuleKind::Player),
++            'c' | 'm' | 'v' | 'h' | 'i' | 'u' | 'G' | 'N' | 'I' | 'E' => Some(ModuleKind::Service),
++            'd' | 't' | 'r' | 'j' | 'w' | 'B' | 'V' | 'K' | 'W' | 'J' | 'Q' | 'P' | 'U' | 'Z'
++            | 'O' | 'C' | 'D' | 'F' | 'H' | 'X' | 'Y' | 'L' | 'A' => Some(ModuleKind::Hostile),
++            _ => None,
++        }
++    }
++}
++
++// Integer coordinates and colours reproduce the approved 20 px mockup.
++// Transparent padding keeps the body and its attachment inside one cell.
++fn module_pixels(kind: ModuleKind, pose: PlayerWeaponPose) -> [[u8; 4]; SIDE * SIDE] {
++    let [light, middle, dark, core] = match kind {
++        ModuleKind::Player => [0xeef0e6, 0x94a2ad, 0x41505c, 0x61e3e9],
++        ModuleKind::Service => [0xb7e7ba, 0x6aa987, 0x3f6057, 0xdceeb3],
++        ModuleKind::Hostile => [0xffa99a, 0xd66365, 0x723b49, 0xffd47c],
++    };
++    let mut pixels = [[0; 4]; SIDE * SIDE];
++    let mut rect = |x: usize, y: usize, w: usize, h: usize, color: u32| {
++        let rgba = [(color >> 16) as u8, (color >> 8) as u8, color as u8, 255];
++        for py in y..y + h {
++            for px in x..x + w {
++                pixels[py * SIDE + px] = rgba;
++            }
++        }
++    };
++    match kind {
++        ModuleKind::Player => {
++            rect(4, 4, 9, 13, light);
++            rect(2, 6, 13, 9, light);
++            rect(5, 7, 7, 7, dark);
++            rect(7, 9, 3, 3, core);
++            rect(4, 5, 3, 1, middle);
++            rect(3, 6, 1, 3, middle);
++        }
++        ModuleKind::Service => {
++            rect(3, 6, 12, 10, light);
++            rect(5, 8, 8, 6, dark);
++            rect(6, 9, 2, 4, core);
++            rect(10, 9, 2, 4, core);
++            rect(14, 10, 2, 2, core);
++        }
++        ModuleKind::Hostile => {
++            for x in 3..=15 {
++                let half = (15 - x) * 52 / 100;
++                rect(x, 10 - half, 1, half * 2 + 1, light);
++            }
++            rect(6, 8, 2, 5, dark);
++        }
++    }
++    match pose {
++        PlayerWeaponPose::Unarmed => {}
++        PlayerWeaponPose::Melee => {
++            rect(14, 5, 4, 3, light);
++            rect(16, 8, 2, 1, middle);
++            rect(14, 13, 4, 3, light);
++            rect(16, 12, 2, 1, middle);
++        }
++        PlayerWeaponPose::Ranged => {
++            rect(14, 8, 5, 5, dark);
++            rect(15, 9, 4, 3, light);
++            rect(17, 10, 2, 1, core);
++        }
++    }
++    pixels
++}
++
+ fn atlas_image() -> Image {
+-    let source = Image::from_file_with_format(SOURCE, None).expect("embedded player sprite PNG");
+-    let width = source.width as usize;
+-    let height = source.height as usize;
+-    let pixel = |x: usize, y: usize| -> &[u8] {
+-        &source.bytes[(y * width + x) * 4..(y * width + x + 1) * 4]
+-    };
+-    let mut bytes = vec![0; SIDE * 3 * (20 + SIDE) * 4];
+-    for pose in 0..3 {
+-        let start = pose * width / 3;
+-        let end = (pose + 1) * width / 3;
+-        let (mut left, mut top, mut right, mut bottom) = (end, height, start, 0);
+-        for y in 0..height {
+-            for x in start..end {
+-                if pixel(x, y)[3] >= 128 {
+-                    left = left.min(x);
+-                    top = top.min(y);
+-                    right = right.max(x + 1);
+-                    bottom = bottom.max(y + 1);
+-                }
+-            }
+-        }
+-        assert!(right > left && bottom > top, "empty embedded player pose");
+-        let (mut foot_left, mut foot_right) = (right, left);
+-        for y in bottom - (bottom - top) / 10..bottom {
+-            for x in left..right {
+-                if pixel(x, y)[3] >= 128 {
+-                    foot_left = foot_left.min(x);
+-                    foot_right = foot_right.max(x + 1);
+-                }
+-            }
+-        }
+-        let foot_center = (foot_left + foot_right) as f32 * 0.5;
+-        // The default 20 px zoom has its own native row. Scaling down the 24 px
+-        // row could discard a one-pixel visor or toe during texture sampling.
+-        for (native, row) in [(20, 0), (SIDE, 20)] {
+-            let scale = ((native - 2) as f32 / (bottom - top) as f32)
+-                .min((native / 2 - 1) as f32 / (foot_center - left as f32))
+-                .min((native / 2 - 1) as f32 / (right as f32 - foot_center));
+-            for y in 1..native - 1 {
+-                for x in 1..native - 1 {
+-                    let sx = foot_center + (x as f32 + 0.5 - native as f32 * 0.5) / scale;
+-                    let sy = bottom as f32 - (native as f32 - 1.0 - y as f32 - 0.5) / scale;
+-                    if sx < left as f32 || sx >= right as f32 || sy < top as f32 {
+-                        continue;
+-                    }
+-                    let rgba = pixel(sx as usize, sy as usize);
+-                    if rgba[3] < 128 {
+-                        continue;
+-                    }
+-                    let [r, g, b, _] = <[u8; 4]>::try_from(rgba).unwrap();
+-                    let luma = (r as u16 * 3 + g as u16 * 6 + b as u16) / 10;
+-                    let color = if g.saturating_sub(r) > 20 && b.saturating_sub(r) > 20 {
+-                        [46, 225, 229, 255]
+-                    } else if luma >= 185 {
+-                        [238, 233, 221, 255]
+-                    } else if luma >= 100 {
+-                        [151, 155, 155, 255]
+-                    } else {
+-                        [76, 81, 85, 255]
+-                    };
+-                    let at = ((row + y) * SIDE * 3 + pose * SIDE + x) * 4;
+-                    bytes[at..at + 4].copy_from_slice(&color);
+-                }
++    let width = SIDE * POSES.len() * KINDS.len();
++    let mut bytes = vec![0; width * SIDE * 4];
++    for kind in KINDS {
++        for pose in POSES {
++            let index = kind as usize * POSES.len() + pose as usize;
++            for (offset, rgba) in module_pixels(kind, pose).iter().enumerate() {
++                let at = ((offset / SIDE) * width + index * SIDE + offset % SIDE) * 4;
++                bytes[at..at + 4].copy_from_slice(rgba);
+             }
+         }
+     }
+     Image {
+         bytes,
+-        width: (SIDE * 3) as u16,
+-        height: (20 + SIDE) as u16,
++        width: width as u16,
++        height: SIDE as u16,
+     }
+ }
+ 
+@@ -118,25 +161,21 @@
+     ATLAS.with(|_| {});
+ }
+ 
+-pub(super) fn draw(rect: Rect, appearance: PlayerAppearance, opacity: f32) {
++pub(super) fn draw(rect: Rect, appearance: ActorAppearance, opacity: f32) {
+     let side = rect.w.min(rect.h);
+-    let (native, row) = if side <= 20.0 {
+-        (20.0, 0.0)
+-    } else {
+-        (SIDE as f32, 20.0)
+-    };
++    let index = appearance.kind as usize * POSES.len() + appearance.pose as usize;
+     ATLAS.with(|texture| {
+         draw_texture_ex(
+             texture,
+-            rect.x + (rect.w - side) * 0.5,
+-            rect.y + (rect.h - side) * 0.5,
++            (rect.x + (rect.w - side) * 0.5).floor(),
++            (rect.y + (rect.h - side) * 0.5).floor(),
+             Color::new(1.0, 1.0, 1.0, opacity),
+             DrawTextureParams {
+                 source: Some(Rect::new(
+-                    (appearance.pose as usize * SIDE) as f32,
+-                    row,
+-                    native,
+-                    native,
++                    (index * SIDE) as f32,
++                    0.0,
++                    SIDE as f32,
++                    SIDE as f32,
+                 )),
+                 dest_size: Some(vec2(side, side)),
+                 flip_x: appearance.facing_left,
+@@ -150,78 +189,62 @@
+ pub(super) fn draw_gallery() {
+     use crate::ui_theme::{draw_text, draw_text_bold};
+     clear_background(Color::from_rgba(3, 4, 7, 255));
+-    draw_text_bold("JOUEUR · RENDU NATIF", 40.0, 48.0, 26.0, WHITE);
++    draw_text_bold("MODULES · VUE DE DESSUS", 40.0, 40.0, 26.0, WHITE);
+     draw_text(
+-        "Trois poses, retournement horizontal, pieds clairs",
++        "Gauche / droite · pince et émetteur suivent l'orientation",
+         40.0,
+-        80.0,
++        68.0,
+         18.0,
+         GRAY,
+     );
+-    for (column, (pose, label)) in [
+-        (PlayerWeaponPose::Unarmed, "MAINS VIDES"),
+-        (PlayerWeaponPose::Melee, "MÊLÉE"),
+-        (PlayerWeaponPose::Ranged, "DISTANCE"),
++    for (column, (kind, label)) in [
++        (ModuleKind::Player, "JOUEUR"),
++        (ModuleKind::Service, "NPC DE SERVICE"),
++        (ModuleKind::Hostile, "NPC HOSTILE"),
+     ]
+     .into_iter()
+     .enumerate()
+     {
+-        let x = 155.0 + column as f32 * 330.0;
+-        draw_text_bold(label, x, 132.0, 20.0, WHITE);
+-        for (row, size) in [96.0, 24.0, 20.0].into_iter().enumerate() {
+-            let y = 170.0 + row as f32 * 155.0;
+-            draw_text(
+-                &format!("{} px", size as u16),
+-                40.0,
+-                y + size * 0.5,
+-                18.0,
+-                GRAY,
+-            );
+-            for (facing_left, dx) in [(true, 0.0), (false, 140.0)] {
+-                let rect = Rect::new(x + dx, y, size, size);
+-                draw_rectangle(
+-                    rect.x - 8.0,
+-                    rect.y - 8.0,
+-                    size + 16.0,
+-                    size + 16.0,
+-                    Color::from_rgba(15, 19, 24, 255),
+-                );
+-                draw(rect, PlayerAppearance { pose, facing_left }, 1.0);
+-            }
+-        }
+-    }
+-}
+-
+-#[cfg(test)]
+-mod tests {
+-    use super::*;
+-
+-    #[test]
+-    fn native_player_poses_fit_one_cell_with_a_visible_visor_and_light_feet() {
+-        let atlas = atlas_image();
+-        assert_eq!((atlas.width, atlas.height), (72, 44));
+-        for (native, row) in [(20, 0), (SIDE, 20)] {
+-            for pose in 0..3 {
+-                let mut cyan = 0;
+-                let mut bright_feet = 0;
+-                for y in 0..native {
+-                    for x in 0..native {
+-                        let at = ((row + y) * SIDE * 3 + pose * SIDE + x) * 4;
+-                        let pixel = &atlas.bytes[at..at + 4];
+-                        if x == 0 || x == native - 1 || y == 0 || y == native - 1 {
+-                            assert_eq!(pixel[3], 0, "pose {pose} exceeds its cell");
+-                        }
+-                        if y < native / 3 && pixel == [46, 225, 229, 255] {
+-                            cyan += 1;
+-                        }
+-                        if y >= native - 4 && pixel == [238, 233, 221, 255] {
+-                            bright_feet += 1;
+-                        }
+-                    }
++        let x = 135.0 + column as f32 * 375.0;
++        draw_text_bold(label, x, 105.0, 20.0, WHITE);
++        for (row, (pose, label)) in [
++            (PlayerWeaponPose::Unarmed, "NEUTRE"),
++            (PlayerWeaponPose::Melee, "MÊLÉE"),
++            (PlayerWeaponPose::Ranged, "DISTANCE"),
++        ]
++        .into_iter()
++        .enumerate()
++        {
++            let y = 145.0 + row as f32 * 150.0;
++            draw_text(label, x, y - 12.0, 17.0, GRAY);
++            for (facing_left, dx) in [(true, 0.0), (false, 100.0)] {
++                for (size, sx, sy) in [(80.0, 0.0, 0.0), (24.0, 0.0, 92.0), (20.0, 36.0, 92.0)] {
++                    let rect = Rect::new(x + dx + sx, y + sy, size, size);
++                    draw_rectangle(
++                        rect.x,
++                        rect.y,
++                        size,
++                        size,
++                        Color::from_rgba(15, 19, 24, 255),
++                    );
++                    draw(
++                        rect,
++                        ActorAppearance {
++                            kind,
++                            pose,
++                            facing_left,
++                        },
++                        1.0,
++                    );
+                 }
+-                assert!(cyan > 0, "pose {pose} lost its visor");
+-                assert!(bright_feet >= 2, "pose {pose} lost its light feet");
+-            }
+-        }
+-    }
+-}
++            }
++        }
++    }
++    draw_text(
++        "Agrandissement ×4, puis tailles réelles : 24 et 20 px",
++        40.0,
++        610.0,
++        16.0,
++        GRAY,
++    );
++}
+--- before/src/terminal_view.rs
++++ after/src/terminal_view.rs
+@@ -78,7 +78,7 @@
+ mod terminal_art;
+ #[path = "terminal_player.rs"]
+ mod terminal_player;
+-pub use terminal_player::{PlayerAppearance, PlayerWeaponPose};
++pub use terminal_player::{ActorAppearance, ModuleKind, PlayerAppearance, PlayerWeaponPose};
+ 
+ pub(crate) fn initialize_player_art() {
+     terminal_player::prewarm();
+@@ -433,6 +433,7 @@
+ #[derive(Clone, Debug)]
+ pub struct TerminalOverlay {
+     pub symbol: char,
++    pub npc_appearance: Option<ActorAppearance>,
+     pub color: Color,
+     pub accent_color: Option<Color>,
+     pub highlight_color: Option<Color>,
+@@ -934,7 +935,7 @@
+                 // Effects never replace the occupant glyph or its identity
+                 // in the sensor panel during the animation.
+                 if cell.symbol != '\0' {
+-                    draw_entity_with_player(
++                    draw_entity_with_appearance(
+                         rect,
+                         cell.symbol,
+                         TerminalGlyphPalette::new(
+@@ -945,7 +946,11 @@
+                         cell.selected,
+                         cell.alert.is_some(),
+                         cell.status_icon.filter(|icon| !icon.is_quest()),
+-                        (cell.symbol == '@').then_some(player_appearance),
++                        if cell.symbol == '@' {
++                            Some(player_appearance.into())
++                        } else {
++                            cell.npc_appearance
++                        },
+                     );
+                 }
+             }
+@@ -3760,32 +3765,44 @@
+     alerted: bool,
+     status_icon: Option<TerminalStatusIcon>,
+ ) {
+-    draw_entity_with_player(
++    draw_entity_with_appearance(
+         rect,
+         symbol,
+         palette,
+         selected,
+         alerted,
+         status_icon,
+-        (symbol == '@').then_some(PlayerAppearance {
+-            pose: PlayerWeaponPose::Unarmed,
+-            facing_left: false,
+-        }),
++        (symbol == '@').then_some(
++            PlayerAppearance {
++                pose: PlayerWeaponPose::Unarmed,
++                facing_left: false,
++            }
++            .into(),
++        ),
+     );
+ }
+ 
+-fn draw_entity_with_player(
++fn draw_entity_with_appearance(
+     rect: Rect,
+     symbol: char,
+     palette: TerminalGlyphPalette,
+     selected: bool,
+     alerted: bool,
+     status_icon: Option<TerminalStatusIcon>,
+-    player_appearance: Option<PlayerAppearance>,
++    actor_appearance: Option<ActorAppearance>,
+ ) {
+-    if let Some(appearance) = player_appearance {
++    if let Some(appearance) = actor_appearance {
+         terminal_player::draw(rect, appearance, palette.primary.a);
+-    } else if terminal_art::draw_actor(rect, symbol, palette.primary) {
++    } else if let Some(kind) = ModuleKind::for_symbol(symbol) {
++        terminal_player::draw(
++            rect,
++            ActorAppearance {
++                kind,
++                pose: PlayerWeaponPose::Unarmed,
++                facing_left: false,
++            },
++            palette.primary.a,
++        );
+         // Status badges, alerts and selections below keep their existing semantics.
+     } else if let Some(ascii) = actor_ascii_glyph(symbol) {
+         draw_ascii_actor(rect, ascii, palette.primary);
+@@ -4496,6 +4513,7 @@
+                 calls.set(calls.get() + 1);
+                 (position == at).then(|| TerminalOverlay {
+                     symbol: '@',
++                    npc_appearance: None,
+                     color: WHITE,
+                     accent_color: None,
+                     highlight_color: None,
+@@ -4530,6 +4548,7 @@
+         effect.family = TerminalEffectFamily::Flame;
+         let mut cell = TerminalOverlay {
+             symbol: '\0',
++            npc_appearance: None,
+             color: WHITE,
+             accent_color: None,
+             highlight_color: None,
+--- before/src/terminal_art.rs
++++ after/src/terminal_art.rs
+@@ -7,11 +7,6 @@
+ use crate::test_sector::Decor;
+ 
+ const SIDE: usize = 16;
+-const ACTORS: &[char] = &[
+-    '@', 'c', 'm', 'v', 'h', 'i', 'u', 'd', 't', 'r', 'j', 'w', 'B', 'V', 'G', 'N', 'K', 'W', 'J',
+-    'Q', 'P', 'U', 'Z', 'O', 'C', 'D', 'F', 'H', 'I', 'X', 'Y', 'L', 'A', 'E',
+-];
+-
+ #[derive(Clone, Copy)]
+ #[repr(usize)]
+ enum Prop {
+@@ -84,196 +79,6 @@
+         }
+         self.disk(cx, cy, 1, 0xbde0d7);
+     }
+-}
+-
+-fn actor(symbol: char) -> Raster {
+-    let mut p = Raster::new();
+-    if matches!(
+-        symbol,
+-        'B' | 'V'
+-            | 'G'
+-            | 'N'
+-            | 'K'
+-            | 'W'
+-            | 'J'
+-            | 'Q'
+-            | 'U'
+-            | 'Z'
+-            | 'O'
+-            | 'C'
+-            | 'D'
+-            | 'F'
+-            | 'H'
+-            | 'I'
+-    ) {
+-        let (base, light, shade) = match symbol {
+-            'G' | 'N' => (0xa39b7b, 0xd3cea5, 0x4d513f),
+-            'V' | 'H' | 'Z' => (0x908daa, 0xc4bbdd, 0x393747),
+-            'W' | 'C' => (0x8d9e72, 0xc1d49b, 0x3a5140),
+-            'J' | 'O' => (0xa07399, 0xdb9bbb, 0x463044),
+-            'I' => (0x80a9a1, 0xb9e3ce, 0x304a4b),
+-            _ => (0xb07672, 0xe5b799, 0x573841),
+-        };
+-        match symbol {
+-            'W' => {
+-                for (x, y) in [(6, 3), (9, 5), (8, 8), (5, 10), (7, 13)] {
+-                    p.disk(x, y, 2, shade);
+-                    p.disk(x, y - 1, 1, base);
+-                    p.rect(x, y - 2, 1, 1, light);
+-                }
+-            }
+-            'J' | 'Q' => {
+-                for (x, y, w, h) in [
+-                    (7, 1, 2, 14),
+-                    (1, 7, 14, 2),
+-                    (3, 3, 2, 2),
+-                    (11, 3, 2, 2),
+-                    (3, 11, 2, 2),
+-                    (11, 11, 2, 2),
+-                ] {
+-                    p.rect(x, y, w, h, base);
+-                }
+-                p.disk(8, 8, 4, shade);
+-                p.disk(8, 8, 3, base);
+-                p.disk(8, 7, 1, light);
+-            }
+-            'H' => {
+-                for (x, y, w, h) in [(1, 5, 5, 2), (0, 7, 6, 3), (10, 5, 5, 2), (10, 7, 6, 3)] {
+-                    p.rect(x, y, w, h, base);
+-                }
+-                p.roof(6, 4, 4, 9, base, light, shade);
+-                p.rect(7, 3, 2, 2, light);
+-            }
+-            _ => {
+-                let heavy = matches!(symbol, 'G' | 'K' | 'D');
+-                p.roof(3, 5, if heavy { 10 } else { 9 }, 8, base, light, shade);
+-                p.disk(8, 4, if heavy { 3 } else { 2 }, shade);
+-                p.disk(8, 3, 2, base);
+-                p.rect(7, 2, 2, 1, light);
+-                for (x, y) in [(1, 6), (12, 6), (2, 12), (11, 12)] {
+-                    p.rect(x, y, 3, 2, shade);
+-                    p.rect(x, y, 2, 1, light);
+-                }
+-                p.rect(7, 6, 2, 5, shade);
+-                if matches!(symbol, 'B' | 'K' | 'D') {
+-                    p.rect(5, 2, 1, 2, light);
+-                    p.rect(11, 2, 1, 2, light);
+-                }
+-                if matches!(symbol, 'N' | 'V' | 'F') {
+-                    p.rect(6, 13, 2, 2, base);
+-                    p.rect(5, 14, 2, 1, light);
+-                }
+-                if symbol == 'C' {
+-                    for y in [6, 9, 12] {
+-                        p.rect(3, y, 10, 1, light);
+-                    }
+-                }
+-                if matches!(symbol, 'O' | 'I') {
+-                    p.disk(10, 9, 2, 0x99d7b1);
+-                    p.rect(9, 8, 1, 1, 0xe0f0c2);
+-                }
+-                if symbol == 'Z' {
+-                    p.rect(4, 6, 1, 6, light);
+-                    p.rect(11, 6, 1, 6, light);
+-                }
+-            }
+-        }
+-        return p;
+-    }
+-    if matches!(symbol, 'u' | 'P' | 'Y') {
+-        p.disk(8, 8, 6, 0x26363e);
+-        p.disk(8, 8, 5, 0x99aab1);
+-        p.disk(8, 8, 3, 0x435c63);
+-        for (x, y) in [(1, 2), (12, 2), (1, 12), (12, 12)] {
+-            p.rect(x, y, 3, 2, 0x82939e);
+-            p.rect(x, y, 2, 1, 0xc9d9d7);
+-        }
+-        if symbol == 'P' {
+-            p.rect(7, 0, 2, 8, 0xb6b9aa);
+-            p.rect(7, 0, 1, 7, 0xe8ddbf);
+-        } else {
+-            p.rect(6, 6, 4, 3, 0x91d8d0);
+-        }
+-        return p;
+-    }
+-    let (base, light, shade) = match symbol {
+-        '@' => (0xbcc9cf, 0xeff8f6, 0x5f7180),
+-        'm' => (0xb2a377, 0xede2af, 0x655d46),
+-        'v' => (0xb9a47c, 0xf1ddb0, 0x675645),
+-        'h' | 'w' => (0x82ada7, 0xd4efe2, 0x385553),
+-        'c' | 'i' => (0x98ad85, 0xd0dcad, 0x4a604c),
+-        'X' | 'L' | 'A' | 'E' => (0xb49c82, 0xedddac, 0x63544b),
+-        _ => (0xb96177, 0xf9a4a3, 0x653247),
+-    };
+-    p.rect(2, 7, 4, 4, shade);
+-    p.rect(2, 7, 4, 1, light);
+-    p.rect(3, 8, 3, 2, base);
+-    p.rect(11, 7, 3, 4, shade);
+-    p.rect(11, 7, 3, 1, light);
+-    p.rect(11, 8, 2, 2, base);
+-    p.roof(5, 7, 7, 6, base, light, shade);
+-    p.disk(8, 5, 3, shade);
+-    p.disk(8, 4, 2, base);
+-    p.rect(7, 2, 2, 1, light);
+-    p.rect(6, 9, 4, 3, shade);
+-    p.rect(6, 9, 4, 1, light);
+-    p.rect(5, 13, 2, 1, 0x3e4c5a);
+-    p.rect(10, 12, 2, 2, 0x3e4c5a);
+-    match symbol {
+-        '@' => {
+-            p.rect(14, 2, 1, 7, 0x91ecf5);
+-            p.rect(13, 8, 2, 2, shade);
+-        }
+-        'm' => {
+-            p.rect(13, 5, 2, 5, 0x79858a);
+-            p.rect(12, 5, 4, 1, 0xd5dde1);
+-            p.rect(6, 10, 4, 2, 0x657d69);
+-        }
+-        'h' | 'w' => {
+-            p.rect(5, 10, 6, 2, 0x47665b);
+-            p.rect(7, 9, 2, 4, 0xdfefe1);
+-            p.rect(6, 10, 4, 2, 0xdfefe1);
+-        }
+-        'v' => {
+-            p.rect(2, 10, 3, 3, 0x736446);
+-            p.rect(2, 10, 3, 1, 0xe3ce98);
+-        }
+-        'c' => {
+-            p.rect(5, 9, 6, 3, 0x394b45);
+-            p.rect(6, 9, 4, 1, 0x9fc998);
+-        }
+-        'i' => {
+-            p.rect(4, 9, 8, 4, shade);
+-            p.rect(4, 9, 8, 1, light);
+-        }
+-        'd' => {
+-            p.rect(3, 5, 2, 7, 0x864559);
+-            p.rect(3, 5, 1, 6, light);
+-        }
+-        'r' => {
+-            p.rect(13, 1, 2, 10, 0x8e7c87);
+-            p.rect(13, 1, 1, 9, 0xe2ced0);
+-        }
+-        'j' => {
+-            p.roof(3, 9, 9, 5, 0x493745, 0xad748b, shade);
+-            p.rect(12, 0, 3, 10, 0x90858d);
+-            p.rect(12, 0, 1, 10, 0xe9c9c6);
+-        }
+-        't' | 'L' | 'A' => {
+-            p.rect(1, 7, 4, 6, base);
+-            p.rect(1, 7, 4, 1, light);
+-            p.rect(13, 2, 2, 8, 0xb8aeb0);
+-        }
+-        'E' => {
+-            p.rect(1, 8, 3, 2, light);
+-            p.rect(12, 11, 3, 2, light);
+-        }
+-        'X' => {
+-            p.rect(7, 7, 2, 6, 0xdccb93);
+-        }
+-        _ => {}
+-    }
+-    p
+ }
+ 
+ fn prop(kind: Prop) -> Raster {
+@@ -387,16 +192,12 @@
+ 
+ thread_local! {
+     static ATLAS: Texture2D = {
+-        let count = ACTORS.len() + PROPS.len();
++        let count = PROPS.len();
+         let mut image = Image::gen_image_color(
+             (count * SIDE) as u16, SIDE as u16, Color::new(0., 0., 0., 0.),
+         );
+         for index in 0..count {
+-            let raster = if index < ACTORS.len() {
+-                actor(ACTORS[index])
+-            } else {
+-                prop(PROPS[index - ACTORS.len()])
+-            };
++            let raster = prop(PROPS[index]);
+             for (offset, rgba) in raster.pixels.iter().enumerate() {
+                 let pixel = ((offset / SIDE) * count * SIDE + index * SIDE + offset % SIDE) * 4;
+                 image.bytes[pixel..pixel + 4].copy_from_slice(rgba);
+@@ -436,21 +237,6 @@
+     });
+ }
+ 
+-pub(super) fn draw_actor(rect: Rect, symbol: char, semantic: Color) -> bool {
+-    let Some(index) = ACTORS.iter().position(|&actor| actor == symbol) else {
+-        return false;
+-    };
+-    // Preserve observable colour cues without letting UI appearance recolour the world.
+-    let tint = Color::new(
+-        0.72 + semantic.r * 0.28,
+-        0.72 + semantic.g * 0.28,
+-        0.72 + semantic.b * 0.28,
+-        semantic.a,
+-    );
+-    draw(rect, index, tint, 0.);
+-    true
+-}
+-
+ pub(super) fn draw_prop(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool) -> bool {
+     let art = match kind {
+         Decor::Server => Prop::Server,
+@@ -477,12 +263,7 @@
+     } else {
+         0.
+     };
+-    draw(
+-        rect,
+-        ACTORS.len() + art as usize,
+-        dim(WHITE, visible),
+-        rotation,
+-    );
++    draw(rect, art as usize, dim(WHITE, visible), rotation);
+     true
+ }
+ 
+@@ -599,20 +380,4 @@
+             }
+         }
+     }
+-    #[test]
+-    fn every_actor_has_drawn_art_and_equipment_distinguishes_service_roles() {
+-        for &symbol in ACTORS {
+-            assert!(
+-                actor(symbol).pixels.iter().any(|pixel| pixel[3] > 0),
+-                "{symbol}"
+-            );
+-        }
+-        for a in ['@', 'm', 'v', 'h', 'c', 'i'] {
+-            for b in ['@', 'm', 'v', 'h', 'c', 'i'] {
+-                if a != b {
+-                    assert_ne!(actor(a).pixels, actor(b).pixels);
+-                }
+-            }
+-        }
+-    }
+-}
++}
+--- before/src/ascii_app.rs
++++ after/src/ascii_app.rs
+@@ -7,10 +7,10 @@
+     self, CrashRecovery, RecordedCommand, RecoveryPayload, SavedPackage, Suspension,
+ };
+ use crate::terminal_view::{
+-    PlayerAppearance, PlayerWeaponPose, TerminalAlertKind, TerminalAttackPreview,
+-    TerminalDrawOptions, TerminalOverlay, TerminalStatusIcon, TerminalTargetAnalysis,
+-    TerminalTargetSummary, TerminalView, approximate_direction, player_location_name,
+-    terminal_status_panel,
++    ActorAppearance, ModuleKind, PlayerAppearance, PlayerWeaponPose, TerminalAlertKind,
++    TerminalAttackPreview, TerminalDrawOptions, TerminalOverlay, TerminalStatusIcon,
++    TerminalTargetAnalysis, TerminalTargetSummary, TerminalView, approximate_direction,
++    player_location_name, terminal_status_panel,
+ };
+ use crate::test_sector::{SectorDecor, TestSector};
+ use crate::ui_theme::{
+@@ -1393,6 +1393,12 @@
+     selected: usize,
+ }
+ 
++#[derive(Clone, Copy, Debug, Default)]
++struct NpcArtState {
++    facing_left: bool,
++    attack_slot: u8,
++}
++
+ pub struct AsciiApp {
+     world_context: Option<world_context::WorldContextMenu>,
+     mouse_walk: Option<world_context::MouseWalk>,
+@@ -1408,6 +1414,7 @@
+     zone_decor: BTreeMap<project_rl::content::ContentId, crate::test_sector::SectorDecor>,
+     facing: Direction,
+     player_art_left: bool,
++    npc_art: BTreeMap<EntityId, NpcArtState>,
+     rules: GameRules,
+     character_classes: CharacterClassCatalog,
+     character_class: Option<CharacterClassId>,
+@@ -1696,6 +1703,73 @@
+         self.npc_interaction = Some(technician);
+         self.npc_interaction_mode = NpcInteractionMode::Service;
+         self.npc_interaction_message.clear();
++        Ok(())
++    }
++
++    #[cfg(debug_assertions)]
++    fn prepare_module_diagnostic(&mut self, facing_left: bool) -> Result<(), String> {
++        let map = project_rl::world::Map::from_ascii(
++            "############\n#..........#\n#..........#\n#..........#\n#..........#\n############",
++        )
++        .map_err(|error| error.to_string())?;
++        let mut game =
++            GameState::new_with_rules(map, GridPos::new(5, 3), INITIAL_SEED, self.rules.clone())
++                .map_err(|error| error.to_string())?;
++        let ranged = AttackProfile::new(
++            5,
++            DistanceMetric::Euclidean,
++            true,
++            DamageType::Kinetic,
++            2,
++            0,
++        );
++        let melee = AttackProfile::melee(DamageType::Kinetic, 2);
++        let mut glyphs = BTreeMap::new();
++        self.npc_art.clear();
++        for (position, relation, attack, glyph) in [
++            (GridPos::new(3, 2), PlayerRelation::Neutral, None, 'i'),
++            (
++                GridPos::new(7, 3),
++                PlayerRelation::Hostile,
++                Some(melee),
++                'd',
++            ),
++            (
++                GridPos::new(9, 2),
++                PlayerRelation::Hostile,
++                Some(ranged),
++                'r',
++            ),
++        ] {
++            let mut actor = Actor::new(position, 12)
++                .map_err(|error| error.to_string())?
++                .with_player_relation(relation)
++                .with_ai(AiProfile::idle());
++            if let Some(attack) = attack {
++                actor = actor.with_attack(attack);
++                if glyph == 'r' {
++                    actor = actor.with_attack(melee);
++                }
++            }
++            let entity = game.spawn_actor(actor).map_err(|error| error.to_string())?;
++            glyphs.insert(entity, glyph);
++            self.npc_art.insert(
++                entity,
++                NpcArtState {
++                    facing_left,
++                    attack_slot: 0,
++                },
++            );
++        }
++        game.drain_events();
++        self.terminal =
++            TerminalView::new(SectorDecor::default(), game.map(), game.player_visibility());
++        self.terminal.title = "Modules · joueur et NPC".to_owned();
++        self.game = WorldState::single(game);
++        self.actor_glyphs = glyphs;
++        self.player_art_left = facing_left;
++        self.npc_interaction = None;
++        self.npc_vision_overlay_open = false;
+         Ok(())
+     }
+ 
+@@ -2981,7 +3055,7 @@
+         .unwrap_or((scene, GraphicsSettings::default().world_cell_px));
+         app.graphics.active.world_cell_px = cell_size;
+         if scene == "player-art" {
+-            request_new_screen_size(1280.0, 560.0);
++            request_new_screen_size(1280.0, 620.0);
+             for _ in 0..3 {
+                 app.terminal.draw_debug_player_art();
+                 next_frame().await;
+@@ -3316,6 +3390,9 @@
+                 if app.npc_interaction.is_none() {
+                     return Err("Éclaireuse absente".into());
+                 }
++            }
++            "npc-modules-left" | "npc-modules-right" => {
++                app.prepare_module_diagnostic(scene.ends_with("left"))?;
+             }
+             "player-melee-left"
+             | "player-melee-right"
+@@ -6635,6 +6712,17 @@
+         });
+         let navigation_signal = self.navigation_signal_summary();
+         let effect_time = get_time();
++        // Sample each perceived NPC once; no additional linear entity_at
++        // search for each actor drawn on the map.
++        let npc_appearances: BTreeMap<_, _> = self
++            .game
++            .actors()
++            .iter()
++            .filter_map(|(entity, actor)| {
++                self.npc_appearance(entity, actor)
++                    .map(|appearance| (actor.position(), appearance))
++            })
++            .collect();
+         let target_summary = self.terminal_target_summary();
+         let observation_fields = if self.npc_vision_overlay_open {
+             self.game.actor_observation_fields()
+@@ -6683,6 +6771,9 @@
+                         let alert = self.visible_alert_at(position).map(|(kind, _)| kind);
+                         TerminalOverlay {
+                             symbol: glyph,
++                            npc_appearance: (glyph != 's')
++                                .then(|| npc_appearances.get(&position).copied())
++                                .flatten(),
+                             color: if alert.is_some() {
+                                 Color::from_rgba(255, 175, 83, 255)
+                             } else {
+@@ -10339,6 +10430,7 @@
+             zone_decor: BTreeMap::new(),
+             facing: Direction::North,
+             player_art_left: false,
++            npc_art: BTreeMap::new(),
+             rules,
+             character_classes: ascii_character_class_catalog()?,
+             character_class: None,
+@@ -11630,6 +11722,7 @@
+         let mut missed_hits: BTreeMap<(GridPos, bool), u16> = BTreeMap::new();
+         let mut guarded_impacts = std::collections::BTreeSet::new();
+         for event in self.game.drain_events() {
++            self.update_npc_art(&event);
+             if let GameEvent::DamageApplied { target, amount, .. }
+             | GameEvent::DamageImpactApplied { target, amount, .. } = &event
+                 && guarded_impacts.remove(target)
+@@ -14995,6 +15088,93 @@
+         }
+     }
+ 
++    fn npc_appearance(&self, entity: EntityId, actor: &Actor) -> Option<ActorAppearance> {
++        if entity == self.game.player_id()
++            || !self.game.player_visibility().is_visible(actor.position())
++            || actor.destruction_effect().is_some()
++            || self
++                .game
++                .electronic_warfare_state()
++                .beacon(entity)
++                .is_some()
++        {
++            return None;
++        }
++        let art = self.npc_art.get(&entity).copied().unwrap_or_default();
++        Some(ActorAppearance {
++            kind: if actor.player_relation() == PlayerRelation::Hostile
++                || (self.generation_version < PLAYER_RELATIONS_GENERATION_VERSION
++                    && ModuleKind::for_symbol(self.hostile_glyph(entity))
++                        == Some(ModuleKind::Hostile))
++            {
++                ModuleKind::Hostile
++            } else {
++                ModuleKind::Service
++            },
++            pose: PlayerWeaponPose::from_delivery(
++                actor
++                    .attack(art.attack_slot)
++                    .or_else(|| actor.attack(0))
++                    .map(|attack| attack.delivery()),
++            ),
++            facing_left: art.facing_left,
++        })
++    }
++
++    fn update_npc_art(&mut self, event: &GameEvent) {
++        let visibility = self.game.player_visibility();
++        let (entity, from, to, slot, perceived) = match *event {
++            GameEvent::EntityMoved { entity, from, to } => (
++                entity,
++                from,
++                to,
++                None,
++                visibility.is_visible(from) || visibility.is_visible(to),
++            ),
++            GameEvent::AttackPerformed {
++                attacker,
++                origin,
++                target_at,
++                slot,
++                ..
++            } => (
++                attacker,
++                origin,
++                target_at,
++                Some(slot),
++                visibility.is_visible(origin),
++            ),
++            GameEvent::AttackTelegraphed {
++                attacker,
++                origin,
++                target_at,
++            } => (
++                attacker,
++                origin,
++                target_at,
++                None,
++                visibility.is_visible(origin),
++            ),
++            GameEvent::EntityDied { entity, .. }
++            | GameEvent::DroneEnergyDepleted { entity, .. } => {
++                self.npc_art.remove(&entity);
++                return;
++            }
++            _ => return,
++        };
++        if entity == self.game.player_id() || !perceived || self.game.actors().get(entity).is_none()
++        {
++            return;
++        }
++        let art = self.npc_art.entry(entity).or_default();
++        if to.x != from.x {
++            art.facing_left = to.x < from.x;
++        }
++        if let Some(slot) = slot {
++            art.attack_slot = slot;
++        }
++    }
++
+     fn select_weapon_slot(&mut self, slot: u8) {
+         let Some(weapon) = self.game.equipped_player_weapon(slot) else {
+             self.push_log(format!("L'emplacement d'arme {} est vide.", slot + 1));
+@@ -24924,6 +25104,126 @@
+     }
+ 
+     #[test]
++    fn npc_art_follows_real_ai_movement_and_preserves_the_side_on_vertical_motion() {
++        let mut app = app_with_test_controls();
++        app.prepare_tactical_vision_diagnostic().unwrap();
++        let enemy = app
++            .game
++            .actors()
++            .iter()
++            .find_map(|(entity, actor)| {
++                (actor.player_relation() == PlayerRelation::Hostile).then_some(entity)
++            })
++            .unwrap();
++        let before = app.game.actors().get(enemy).unwrap().position();
++        app.execute_command(GameCommand::Wait);
++        app.capture_events_at(Some(0.0));
++        let actor = app.game.actors().get(enemy).unwrap();
++        assert!(
++            actor.position().x < before.x,
++            "fixture enemy must actually approach the player"
++        );
++        assert!(app.npc_appearance(enemy, actor).unwrap().facing_left);
++        let from = actor.position();
++        let state = app.game.recovery_snapshot_bytes().unwrap();
++        let history = app.history.clone();
++        app.update_npc_art(&GameEvent::EntityMoved {
++            entity: enemy,
++            from,
++            to: GridPos::new(from.x, from.y - 1),
++        });
++        assert!(
++            app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
++                .unwrap()
++                .facing_left
++        );
++        app.update_npc_art(&GameEvent::EntityMoved {
++            entity: enemy,
++            from,
++            to: GridPos::new(from.x + 1, from.y),
++        });
++        assert!(
++            !app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
++                .unwrap()
++                .facing_left
++        );
++        assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), state);
++        assert_eq!(app.history, history);
++    }
++
++    #[test]
++    fn npc_art_uses_the_performed_attack_without_changing_or_revealing_the_run() {
++        let mut app = app_with_test_controls();
++        app.prepare_module_diagnostic(false).unwrap();
++        let enemy = app
++            .game
++            .actors()
++            .iter()
++            .find_map(|(entity, actor)| (actor.position() == GridPos::new(9, 2)).then_some(entity))
++            .unwrap();
++        let actor = app.game.actors().get(enemy).unwrap();
++        assert_eq!(
++            app.npc_appearance(enemy, actor).unwrap().pose,
++            PlayerWeaponPose::Ranged
++        );
++        assert_eq!(
++            app.npc_appearance(enemy, actor).unwrap().kind,
++            ModuleKind::Hostile
++        );
++        let origin = actor.position();
++        let state = app.game.recovery_snapshot_bytes().unwrap();
++        let history = app.history.clone();
++        app.update_npc_art(&GameEvent::AttackPerformed {
++            attacker: enemy,
++            target: Some(app.game.player_id()),
++            slot: 1,
++            origin,
++            target_at: app.game.player_position().unwrap(),
++            weapon: None,
++            damage_type: DamageType::Kinetic,
++            affected_cells: Vec::new(),
++        });
++        assert!(
++            app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
++                .unwrap()
++                .facing_left
++        );
++        assert_eq!(
++            app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
++                .unwrap()
++                .pose,
++            PlayerWeaponPose::Melee
++        );
++        app.update_npc_art(&GameEvent::AttackTelegraphed {
++            attacker: enemy,
++            origin,
++            target_at: GridPos::new(origin.x + 1, origin.y),
++        });
++        assert!(
++            !app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
++                .unwrap()
++                .facing_left
++        );
++        let player = app.game.actors().get(app.game.player_id()).unwrap();
++        assert!(app.npc_appearance(app.game.player_id(), player).is_none());
++        let hidden = Actor::new(GridPos::new(500, 500), 12).unwrap();
++        assert!(app.npc_appearance(enemy, &hidden).is_none());
++        app.update_npc_art(&GameEvent::AttackTelegraphed {
++            attacker: enemy,
++            origin: GridPos::new(500, 500),
++            target_at: origin,
++        });
++        assert!(!app.npc_art.get(&enemy).unwrap().facing_left);
++        app.update_npc_art(&GameEvent::EntityDied {
++            entity: enemy,
++            at: origin,
++        });
++        assert!(!app.npc_art.contains_key(&enemy));
++        assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), state);
++        assert_eq!(app.history, history);
++    }
++
++    #[test]
+     fn player_art_follows_the_active_weapon_without_changing_the_run() {
+         let mut app = app_with_test_controls();
+         let state = app.game.recovery_snapshot_bytes().unwrap();

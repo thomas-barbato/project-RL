@@ -1,8 +1,6 @@
 //! Shared presentation shell for menus and overlays.
 //!
-//! World glyphs deliberately keep their terminal renderer.  This module owns
-//! the readable interface layer that can be reused by terminal and textured
-//! world renderers alike.
+//! Interface accents are independent of the world's material and actor colors.
 use std::collections::{BTreeMap, HashMap};
 use std::sync::OnceLock;
 
@@ -18,6 +16,7 @@ static BOLD_FONT: OnceLock<Font> = OnceLock::new();
 thread_local! {
     static TEXT_PANE: std::cell::Cell<Option<(Rect, f32)>> = const { std::cell::Cell::new(None) };
     static HIGH_CONTRAST: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+    static INTERFACE_THEME: std::cell::Cell<crate::graphics::InterfaceTheme> = const { std::cell::Cell::new(crate::graphics::InterfaceTheme::Violet) };
     static TEXT_MEASUREMENTS: std::cell::RefCell<TextMeasurements> = std::cell::RefCell::new(TextMeasurements::default());
 }
 
@@ -85,6 +84,9 @@ fn measure_builtin(text: &str, bold: bool, size: u16, scale: f32) -> TextDimensi
 
 pub fn set_high_contrast(enabled: bool) {
     HIGH_CONTRAST.set(enabled);
+}
+pub fn set_interface_theme(theme: crate::graphics::InterfaceTheme) {
+    INTERFACE_THEME.set(theme);
 }
 pub fn begin_text_pane(rect: Rect, offset: f32) {
     TEXT_PANE.set(Some((rect, offset)));
@@ -346,19 +348,25 @@ pub struct UiTheme;
 
 impl UiTheme {
     pub const fn backdrop(self) -> Color {
-        Color::new(0.008, 0.027, 0.043, 0.94)
+        Color::new(0.008, 0.008, 0.012, 0.96)
     }
 
     pub const fn surface(self) -> Color {
-        Color::new(0.10, 0.15, 0.19, 0.99)
+        Color::from_rgba(8, 9, 11, 255)
     }
 
     pub const fn surface_raised(self) -> Color {
-        Color::new(0.15, 0.21, 0.26, 1.0)
+        Color::from_rgba(17, 19, 22, 255)
     }
 
-    pub const fn surface_selected(self) -> Color {
-        Color::new(0.12, 0.32, 0.35, 0.98)
+    pub fn surface_selected(self) -> Color {
+        let accent = self.accent();
+        Color::new(
+            0.035 + accent.r * 0.10,
+            0.035 + accent.g * 0.10,
+            0.04 + accent.b * 0.10,
+            1.0,
+        )
     }
 
     pub const fn text(self) -> Color {
@@ -369,15 +377,21 @@ impl UiTheme {
         if HIGH_CONTRAST.get() {
             Color::new(0.80, 0.87, 0.88, 1.0)
         } else {
-            Color::new(0.64, 0.73, 0.76, 1.0)
+            Color::from_rgba(164, 170, 178, 255)
         }
     }
 
-    pub const fn accent(self) -> Color {
-        Color::new(0.39, 0.95, 0.82, 1.0)
+    pub fn accent(self) -> Color {
+        use crate::graphics::InterfaceTheme;
+        match INTERFACE_THEME.get() {
+            InterfaceTheme::Blue => Color::from_rgba(54, 185, 255, 255),
+            InterfaceTheme::Violet => Color::from_rgba(151, 128, 255, 255),
+            InterfaceTheme::Green => Color::from_rgba(135, 232, 117, 255),
+            InterfaceTheme::Red => Color::from_rgba(255, 110, 138, 255),
+        }
     }
 
-    pub const fn focus(self) -> Color {
+    pub fn focus(self) -> Color {
         self.accent()
     }
 
@@ -424,20 +438,17 @@ impl UiTheme {
     }
 
     pub fn hud_panel(self, rect: Rect) {
-        surface_shadow(rect, 8.0);
         rounded_outline(
             rect,
-            8.0,
+            3.0,
             1.0,
-            Color::new(0.32, 0.54, 0.57, 0.34),
-            Color::new(0.075, 0.13, 0.17, 0.97),
+            Color::from_rgba(44, 48, 55, 255),
+            self.surface(),
         );
-        surface_relief(rect, 8.0);
     }
 
     pub fn hud_chip(self, rect: Rect) {
-        rounded_rectangle(rect, 5.0, Color::new(0.12, 0.21, 0.25, 0.96));
-        surface_relief(rect, 5.0);
+        rounded_rectangle(rect, 3.0, self.surface_raised());
     }
 
     /// Compact floating menus have a quiet rim, soft shadow and opaque content.
@@ -490,14 +501,12 @@ impl UiTheme {
         rounded_rectangle(
             rect,
             5.0,
-            Color::new(
-                0.065 + 0.025 * hover,
-                0.17 + 0.10 * hover,
-                0.19 + 0.09 * hover,
-                0.98 + 0.02 * hover,
-            ),
+            if hover > 0.0 {
+                self.surface_selected()
+            } else {
+                self.surface_raised()
+            },
         );
-        surface_relief(rect, 5.0);
     }
 
     pub fn hud_alert(self, rect: Rect, pulse: f32) {
@@ -513,12 +522,10 @@ impl UiTheme {
 
     /// Dialogue choices use a filled state and a small chevron instead of rails or box outlines.
     pub fn dialogue_choice(self, rect: Rect, selected: bool, hovered: bool) {
-        let fill = if hovered {
-            Color::new(0.085, 0.27, 0.28, 1.0)
-        } else if selected {
+        let fill = if hovered || selected {
             self.surface_selected()
         } else {
-            Color::new(0.055, 0.145, 0.17, 1.0)
+            self.surface_raised()
         };
         rounded_rectangle(rect, 6.0, fill);
         if selected || hovered {
@@ -531,11 +538,11 @@ impl UiTheme {
 
     pub fn dialogue_action(self, rect: Rect, label: &str, hovered: bool, enabled: bool) {
         let fill = if !enabled {
-            Color::new(0.035, 0.06, 0.07, 0.94)
+            self.surface()
         } else if hovered {
-            Color::new(0.085, 0.27, 0.28, 1.0)
+            self.surface_selected()
         } else {
-            Color::new(0.055, 0.145, 0.17, 1.0)
+            self.surface_raised()
         };
         rounded_rectangle(rect, 6.0, fill);
         let color = if !enabled {
@@ -611,7 +618,13 @@ impl UiTheme {
             match tone {
                 ButtonTone::Primary => {
                     if focused {
-                        Color::new(0.53, 1.0, 0.88, 1.0)
+                        let accent = self.accent();
+                        Color::new(
+                            (accent.r + 0.12).min(1.0),
+                            (accent.g + 0.12).min(1.0),
+                            (accent.b + 0.12).min(1.0),
+                            1.0,
+                        )
                     } else {
                         self.accent()
                     }
@@ -719,7 +732,7 @@ impl UiTheme {
         draw_text_bold_centered(label, label_rect, font_size, color);
     }
 
-    /// The title screen uses quiet surfaces and one turquoise focus cue.
+    /// The title screen uses quiet surfaces and the chosen focus accent.
     /// Keeping the label centered leaves the icon and chevron as secondary cues.
     pub fn main_menu_action(
         self,
@@ -731,13 +744,13 @@ impl UiTheme {
         primary: bool,
     ) {
         let fill = if !enabled {
-            Color::new(0.07, 0.10, 0.12, 0.82)
+            self.surface()
         } else if primary {
             self.accent()
         } else if focused {
-            Color::new(0.075, 0.23, 0.25, 0.98)
+            self.surface_selected()
         } else {
-            Color::new(0.075, 0.13, 0.15, 0.94)
+            self.surface_raised()
         };
         rounded_rectangle(rect, 7.0, fill);
         let foreground = if !enabled {
@@ -848,7 +861,7 @@ fn button_foreground(
     if !enabled {
         theme.muted()
     } else if tone == ButtonTone::Primary {
-        Color::new(0.025, 0.12, 0.13, 1.0)
+        theme.surface()
     } else if tone == ButtonTone::Danger {
         theme.danger()
     } else if focused || active {
@@ -862,8 +875,8 @@ pub fn draw_ui_icon(icon: UiIcon, rect: Rect, color: Color) {
     let size = rect.w.min(rect.h);
     let cx = rect.x + rect.w * 0.5;
     let cy = rect.y + rect.h * 0.5;
-    let radius = size * 0.34;
-    let line = (size * 0.095).clamp(1.2, 2.2);
+    let radius = size * 0.44;
+    let line = (size * 0.11).clamp(1.6, 3.0);
     let left = cx - radius;
     let right = cx + radius;
     let top = cy - radius;

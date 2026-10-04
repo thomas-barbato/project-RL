@@ -1,0 +1,1430 @@
+--- before/src/graphics.rs
++++ src/graphics.rs
+@@ -24,9 +24,32 @@
+     [1920, 1080],
+ ];
+ const UI_SCALES: &[u16] = &[75, 100, 125, 150, 175, 200];
+-const CELL_SIZES: &[u16] = &[24, 32, 40, 48];
++const CELL_SIZES: &[u16] = &[16, 20, 24, 32, 40, 48];
+ fn default_cell_size() -> u16 {
+-    32
++    20
++}
++
++#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
++#[serde(rename_all = "snake_case")]
++pub enum InterfaceTheme {
++    Blue,
++    #[default]
++    Violet,
++    Green,
++    Red,
++}
++
++impl InterfaceTheme {
++    pub const ALL: [Self; 4] = [Self::Blue, Self::Violet, Self::Green, Self::Red];
++
++    pub const fn label(self) -> &'static str {
++        match self {
++            Self::Blue => "Bleu électrique",
++            Self::Violet => "Violet ultraviolet",
++            Self::Green => "Vert néon",
++            Self::Red => "Rouge néon",
++        }
++    }
+ }
+ 
+ #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+@@ -56,6 +79,8 @@
+     #[serde(default = "default_cell_size")]
+     pub world_cell_px: u16,
+     #[serde(default)]
++    pub interface_theme: InterfaceTheme,
++    #[serde(default)]
+     pub high_contrast: bool,
+     #[serde(default)]
+     pub reduced_motion: bool,
+@@ -69,6 +94,7 @@
+             windowed_size: [1280, 800],
+             ui_scale_percent: 100,
+             world_cell_px: default_cell_size(),
++            interface_theme: InterfaceTheme::default(),
+             high_contrast: false,
+             reduced_motion: false,
+         }
+@@ -171,6 +197,10 @@
+                 self.windowed_size = cycle_value(RESOLUTIONS, self.windowed_size, forward);
+             }
+             2 => self.ui_scale_percent = cycle_value(UI_SCALES, self.ui_scale_percent, forward),
++            3 => {
++                self.interface_theme =
++                    cycle_value(&InterfaceTheme::ALL, self.interface_theme, forward)
++            }
+             4 => self.world_cell_px = cycle_value(CELL_SIZES, self.world_cell_px, forward),
+             5 => self.high_contrast = !self.high_contrast,
+             6 => self.reduced_motion = !self.reduced_motion,
+@@ -346,6 +376,7 @@
+         let valid = serde_json::to_value(GraphicsSettings::default()).unwrap();
+         for (field, value) in [
+             ("mode", serde_json::json!("exclusive")),
++            ("interface_theme", serde_json::json!("steel")),
+             ("windowed_size", serde_json::json!([0, 800])),
+             ("windowed_size", serde_json::json!([1280, 999999])),
+             ("ui_scale_percent", serde_json::json!(0)),
+@@ -399,16 +430,48 @@
+         document.as_object_mut().unwrap().remove("world_cell_px");
+         document.as_object_mut().unwrap().remove("high_contrast");
+         document.as_object_mut().unwrap().remove("reduced_motion");
++        document.as_object_mut().unwrap().remove("interface_theme");
+         document["ui_scale_percent"] = serde_json::json!(150);
+         let mut settings = GraphicsSettings::decode(&document.to_string()).unwrap();
+-        assert_eq!(settings.world_cell_px, 32);
++        assert_eq!(settings.world_cell_px, 20);
++        assert_eq!(settings.interface_theme, InterfaceTheme::Violet);
+         assert!(!settings.high_contrast);
+         assert!(!settings.reduced_motion);
+         settings.cycle(4, true);
+-        assert_eq!(settings.world_cell_px, 40);
++        assert_eq!(settings.world_cell_px, 24);
+         assert_eq!(settings.ui_scale_percent, 150);
+         document["world_cell_px"] = serde_json::json!(1);
+         assert!(GraphicsSettings::decode(&document.to_string()).is_err());
++    }
++
++    #[test]
++    fn themes_roundtrip_and_preserve_existing_display_preferences() {
++        let mut settings = GraphicsSettings {
++            world_cell_px: 32,
++            ui_scale_percent: 150,
++            mode: WindowMode::Windowed,
++            ..Default::default()
++        };
++        let mut legacy = serde_json::to_value(settings).unwrap();
++        legacy.as_object_mut().unwrap().remove("interface_theme");
++        assert_eq!(
++            GraphicsSettings::decode(&legacy.to_string()).unwrap(),
++            settings
++        );
++        for theme in InterfaceTheme::ALL {
++            settings.interface_theme = theme;
++            let encoded = serde_json::to_string(&settings).unwrap();
++            assert_eq!(GraphicsSettings::decode(&encoded).unwrap(), settings);
++            settings.cycle(3, true);
++            assert_ne!(settings.interface_theme, theme);
++            settings.cycle(3, false);
++            assert_eq!(settings.interface_theme, theme);
++            assert_eq!(settings.world_cell_px, 32);
++            assert_eq!(settings.ui_scale_percent, 150);
++        }
++        settings.interface_theme = InterfaceTheme::Red;
++        settings.cycle(3, true);
++        assert_eq!(settings.interface_theme, InterfaceTheme::Blue);
+     }
+ 
+     #[test]
+--- before/src/ui_theme.rs
++++ src/ui_theme.rs
+@@ -1,8 +1,6 @@
+ //! Shared presentation shell for menus and overlays.
+ //!
+-//! World glyphs deliberately keep their terminal renderer.  This module owns
+-//! the readable interface layer that can be reused by terminal and textured
+-//! world renderers alike.
++//! Interface accents are independent of the world's material and actor colors.
+ use std::collections::{BTreeMap, HashMap};
+ use std::sync::OnceLock;
+ 
+@@ -18,6 +16,7 @@
+ thread_local! {
+     static TEXT_PANE: std::cell::Cell<Option<(Rect, f32)>> = const { std::cell::Cell::new(None) };
+     static HIGH_CONTRAST: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
++    static INTERFACE_THEME: std::cell::Cell<crate::graphics::InterfaceTheme> = const { std::cell::Cell::new(crate::graphics::InterfaceTheme::Violet) };
+     static TEXT_MEASUREMENTS: std::cell::RefCell<TextMeasurements> = std::cell::RefCell::new(TextMeasurements::default());
+ }
+ 
+@@ -85,6 +84,9 @@
+ 
+ pub fn set_high_contrast(enabled: bool) {
+     HIGH_CONTRAST.set(enabled);
++}
++pub fn set_interface_theme(theme: crate::graphics::InterfaceTheme) {
++    INTERFACE_THEME.set(theme);
+ }
+ pub fn begin_text_pane(rect: Rect, offset: f32) {
+     TEXT_PANE.set(Some((rect, offset)));
+@@ -346,19 +348,25 @@
+ 
+ impl UiTheme {
+     pub const fn backdrop(self) -> Color {
+-        Color::new(0.008, 0.027, 0.043, 0.94)
++        Color::new(0.008, 0.008, 0.012, 0.96)
+     }
+ 
+     pub const fn surface(self) -> Color {
+-        Color::new(0.10, 0.15, 0.19, 0.99)
++        Color::from_rgba(8, 9, 11, 255)
+     }
+ 
+     pub const fn surface_raised(self) -> Color {
+-        Color::new(0.15, 0.21, 0.26, 1.0)
+-    }
+-
+-    pub const fn surface_selected(self) -> Color {
+-        Color::new(0.12, 0.32, 0.35, 0.98)
++        Color::from_rgba(17, 19, 22, 255)
++    }
++
++    pub fn surface_selected(self) -> Color {
++        let accent = self.accent();
++        Color::new(
++            0.035 + accent.r * 0.10,
++            0.035 + accent.g * 0.10,
++            0.04 + accent.b * 0.10,
++            1.0,
++        )
+     }
+ 
+     pub const fn text(self) -> Color {
+@@ -369,15 +377,21 @@
+         if HIGH_CONTRAST.get() {
+             Color::new(0.80, 0.87, 0.88, 1.0)
+         } else {
+-            Color::new(0.64, 0.73, 0.76, 1.0)
+-        }
+-    }
+-
+-    pub const fn accent(self) -> Color {
+-        Color::new(0.39, 0.95, 0.82, 1.0)
+-    }
+-
+-    pub const fn focus(self) -> Color {
++            Color::from_rgba(164, 170, 178, 255)
++        }
++    }
++
++    pub fn accent(self) -> Color {
++        use crate::graphics::InterfaceTheme;
++        match INTERFACE_THEME.get() {
++            InterfaceTheme::Blue => Color::from_rgba(54, 185, 255, 255),
++            InterfaceTheme::Violet => Color::from_rgba(151, 128, 255, 255),
++            InterfaceTheme::Green => Color::from_rgba(135, 232, 117, 255),
++            InterfaceTheme::Red => Color::from_rgba(255, 110, 138, 255),
++        }
++    }
++
++    pub fn focus(self) -> Color {
+         self.accent()
+     }
+ 
+@@ -424,20 +438,17 @@
+     }
+ 
+     pub fn hud_panel(self, rect: Rect) {
+-        surface_shadow(rect, 8.0);
+         rounded_outline(
+             rect,
+-            8.0,
++            3.0,
+             1.0,
+-            Color::new(0.32, 0.54, 0.57, 0.34),
+-            Color::new(0.075, 0.13, 0.17, 0.97),
+-        );
+-        surface_relief(rect, 8.0);
++            Color::from_rgba(44, 48, 55, 255),
++            self.surface(),
++        );
+     }
+ 
+     pub fn hud_chip(self, rect: Rect) {
+-        rounded_rectangle(rect, 5.0, Color::new(0.12, 0.21, 0.25, 0.96));
+-        surface_relief(rect, 5.0);
++        rounded_rectangle(rect, 3.0, self.surface_raised());
+     }
+ 
+     /// Compact floating menus have a quiet rim, soft shadow and opaque content.
+@@ -490,14 +501,12 @@
+         rounded_rectangle(
+             rect,
+             5.0,
+-            Color::new(
+-                0.065 + 0.025 * hover,
+-                0.17 + 0.10 * hover,
+-                0.19 + 0.09 * hover,
+-                0.98 + 0.02 * hover,
+-            ),
+-        );
+-        surface_relief(rect, 5.0);
++            if hover > 0.0 {
++                self.surface_selected()
++            } else {
++                self.surface_raised()
++            },
++        );
+     }
+ 
+     pub fn hud_alert(self, rect: Rect, pulse: f32) {
+@@ -513,12 +522,10 @@
+ 
+     /// Dialogue choices use a filled state and a small chevron instead of rails or box outlines.
+     pub fn dialogue_choice(self, rect: Rect, selected: bool, hovered: bool) {
+-        let fill = if hovered {
+-            Color::new(0.085, 0.27, 0.28, 1.0)
+-        } else if selected {
++        let fill = if hovered || selected {
+             self.surface_selected()
+         } else {
+-            Color::new(0.055, 0.145, 0.17, 1.0)
++            self.surface_raised()
+         };
+         rounded_rectangle(rect, 6.0, fill);
+         if selected || hovered {
+@@ -531,11 +538,11 @@
+ 
+     pub fn dialogue_action(self, rect: Rect, label: &str, hovered: bool, enabled: bool) {
+         let fill = if !enabled {
+-            Color::new(0.035, 0.06, 0.07, 0.94)
++            self.surface()
+         } else if hovered {
+-            Color::new(0.085, 0.27, 0.28, 1.0)
++            self.surface_selected()
+         } else {
+-            Color::new(0.055, 0.145, 0.17, 1.0)
++            self.surface_raised()
+         };
+         rounded_rectangle(rect, 6.0, fill);
+         let color = if !enabled {
+@@ -611,7 +618,13 @@
+             match tone {
+                 ButtonTone::Primary => {
+                     if focused {
+-                        Color::new(0.53, 1.0, 0.88, 1.0)
++                        let accent = self.accent();
++                        Color::new(
++                            (accent.r + 0.12).min(1.0),
++                            (accent.g + 0.12).min(1.0),
++                            (accent.b + 0.12).min(1.0),
++                            1.0,
++                        )
+                     } else {
+                         self.accent()
+                     }
+@@ -719,7 +732,7 @@
+         draw_text_bold_centered(label, label_rect, font_size, color);
+     }
+ 
+-    /// The title screen uses quiet surfaces and one turquoise focus cue.
++    /// The title screen uses quiet surfaces and the chosen focus accent.
+     /// Keeping the label centered leaves the icon and chevron as secondary cues.
+     pub fn main_menu_action(
+         self,
+@@ -731,13 +744,13 @@
+         primary: bool,
+     ) {
+         let fill = if !enabled {
+-            Color::new(0.07, 0.10, 0.12, 0.82)
++            self.surface()
+         } else if primary {
+             self.accent()
+         } else if focused {
+-            Color::new(0.075, 0.23, 0.25, 0.98)
++            self.surface_selected()
+         } else {
+-            Color::new(0.075, 0.13, 0.15, 0.94)
++            self.surface_raised()
+         };
+         rounded_rectangle(rect, 7.0, fill);
+         let foreground = if !enabled {
+@@ -848,7 +861,7 @@
+     if !enabled {
+         theme.muted()
+     } else if tone == ButtonTone::Primary {
+-        Color::new(0.025, 0.12, 0.13, 1.0)
++        theme.surface()
+     } else if tone == ButtonTone::Danger {
+         theme.danger()
+     } else if focused || active {
+--- before/src/pause_menu.rs
++++ src/pause_menu.rs
+@@ -199,7 +199,7 @@
+                 "Mode",
+                 "Résolution",
+                 "Interface",
+-                "Rendu",
++                "Thème de l'interface",
+                 "Taille des cases",
+                 "Contraste renforcé",
+                 "Animations réduites",
+--- before/src/ascii_app.rs
++++ src/ascii_app.rs
+@@ -2955,10 +2955,27 @@
+         } else {
+             (scene, None)
+         };
+-        let (scene, cell_size) = [("-cell24", 24), ("-cell40", 40), ("-cell48", 48)]
+-            .into_iter()
+-            .find_map(|(suffix, cell)| scene.strip_suffix(suffix).map(|base| (base, cell)))
+-            .unwrap_or((scene, 32));
++        let (scene, theme) = [
++            ("-blue", graphics::InterfaceTheme::Blue),
++            ("-violet", graphics::InterfaceTheme::Violet),
++            ("-green", graphics::InterfaceTheme::Green),
++            ("-red", graphics::InterfaceTheme::Red),
++        ]
++        .into_iter()
++        .find_map(|(suffix, theme)| scene.strip_suffix(suffix).map(|base| (base, theme)))
++        .unwrap_or((scene, graphics::InterfaceTheme::default()));
++        app.graphics.active.interface_theme = theme;
++        let (scene, cell_size) = [
++            ("-cell16", 16),
++            ("-cell20", 20),
++            ("-cell24", 24),
++            ("-cell32", 32),
++            ("-cell40", 40),
++            ("-cell48", 48),
++        ]
++        .into_iter()
++        .find_map(|(suffix, cell)| scene.strip_suffix(suffix).map(|base| (base, cell)))
++        .unwrap_or((scene, GraphicsSettings::default().world_cell_px));
+         app.graphics.active.world_cell_px = cell_size;
+         if matches!(
+             scene,
+@@ -6524,6 +6541,7 @@
+ 
+     pub fn draw(&self) {
+         crate::ui_theme::set_high_contrast(self.graphics.active.high_contrast);
++        crate::ui_theme::set_interface_theme(self.graphics.active.interface_theme);
+         self.ux.hud_points.set(None);
+         self.ux.hud_objective.set(None);
+         clear_background(Color::from_rgba(5, 8, 12, 255));
+@@ -20427,7 +20445,7 @@
+         if ((clicked && hovered.is_some()) || activate)
+             && self.menu_row_enabled(self.menu_selection)
+         {
+-            if self.menu == MenuScreen::Graphics && matches!(self.menu_selection,0..=2|4..=6) {
++            if self.menu == MenuScreen::Graphics && matches!(self.menu_selection, 0..=6) {
+                 let rect = MenuLayout::for_screen(
+                     self.menu,
+                     input.viewport.unwrap_or((1280.0, 800.0)).0,
+@@ -20486,8 +20504,7 @@
+                 (MenuScreen::Options, 1) => self.open_menu(MenuScreen::Graphics),
+                 (MenuScreen::Options, 2) => self.open_menu(self.options_return),
+                 (MenuScreen::ConfirmAbandon, 0) => self.open_menu(MenuScreen::Pause),
+-                (MenuScreen::Graphics, row @ 0..=2) => self.graphics.draft.cycle(row, true),
+-                (MenuScreen::Graphics, row @ 4..=6) => self.graphics.draft.cycle(row, true),
++                (MenuScreen::Graphics, row @ 0..=6) => self.graphics.draft.cycle(row, true),
+                 (MenuScreen::Graphics, 7) => self.graphics.draft = GraphicsSettings::default(),
+                 (MenuScreen::Graphics, 8) => {
+                     if self.graphics.begin_preview() {
+@@ -20535,7 +20552,7 @@
+             return false;
+         }
+         self.menu != MenuScreen::Graphics
+-            || (index != 3 && (index != 1 || self.graphics.draft.mode == WindowMode::Windowed))
++            || (index != 1 || self.graphics.draft.mode == WindowMode::Windowed)
+     }
+ 
+     fn menu_labels(&self) -> Vec<String> {
+@@ -20595,7 +20612,10 @@
+                     "Résolution : bureau (automatique)".to_owned()
+                 },
+                 format!("Taille de l'interface : {} %", settings.ui_scale_percent),
+-                "Rendu : Terminal à glyphes".to_owned(),
++                format!(
++                    "Thème de l'interface : {}",
++                    settings.interface_theme.label()
++                ),
+                 format!("Taille des cases : {} px", settings.world_cell_px),
+                 format!(
+                     "Contraste renforcé : {}",
+@@ -26399,17 +26419,24 @@
+         app.open_menu(MenuScreen::Options);
+         app.update_input(&menu_pointer(MenuScreen::Options, 1, true));
+         assert_eq!(app.menu, MenuScreen::Graphics);
+-        // The automatic desktop resolution and future renderer cannot be selected.
++        // The automatic desktop resolution is skipped; the theme is editable.
+         app.update_input(&input("Down"));
+         assert_eq!(app.menu_selection, 2);
+         app.update_input(&input("Right"));
+         assert_eq!(app.graphics.draft.ui_scale_percent, 125);
+         assert_eq!(app.graphics.active.ui_scale_percent, 100);
+         app.update_input(&input("Down"));
+-        assert_eq!(app.menu_selection, 4);
++        assert_eq!(app.menu_selection, 3);
+         app.update_input(&menu_pointer(MenuScreen::Graphics, 3, true));
+-        assert_eq!(app.menu_selection, 4);
+-        assert_eq!(app.menu_focus.hovered, None);
++        assert_eq!(app.menu_selection, 3);
++        assert_eq!(
++            app.graphics.draft.interface_theme,
++            graphics::InterfaceTheme::Green
++        );
++        assert_eq!(
++            app.graphics.active.interface_theme,
++            graphics::InterfaceTheme::Violet
++        );
+         app.update_input(&menu_pointer(MenuScreen::Graphics, 0, true));
+         assert_eq!(app.graphics.draft.mode, WindowMode::Windowed);
+         app.update_input(&menu_pointer(MenuScreen::Graphics, 1, true));
+--- before/src/terminal_view.rs
++++ src/terminal_view.rs
+@@ -1,5 +1,5 @@
+-//! A code-native terminal tileset: square pixel scenery, ASCII actors, no
+-//! raster assets. Only remembered terrain and currently perceived overlays
++//! A code-native overhead tileset: drawn actors and single-cell scenery.
++//! Only remembered terrain and currently perceived overlays
+ //! reach the renderer.
+ use std::collections::{BTreeMap, BTreeSet};
+ 
+@@ -74,6 +74,8 @@
+     Decor::CableCoil,
+ ];
+ 
++#[path = "terminal_art.rs"]
++mod terminal_art;
+ #[cfg(debug_assertions)]
+ #[path = "terminal_city_preview.rs"]
+ mod terminal_city_preview;
+@@ -720,23 +722,15 @@
+             selected_cell,
+             observation_fields,
+         } = options;
+-        let cyan = Color::from_rgba(104, 201, 201, 255);
+-        let muted = Color::from_rgba(135, 162, 167, 255);
++        let cyan = UiTheme.accent();
++        let muted = UiTheme.muted();
+         let layout = terminal_ui_layout(bounds, ui_scale, navigation_signal.is_some());
+         draw_rectangle(
+             bounds.x,
+             bounds.y,
+             bounds.w,
+             bounds.h,
+-            Color::from_rgba(7, 15, 21, 255),
+-        );
+-        draw_rectangle_lines(
+-            bounds.x,
+-            bounds.y,
+-            bounds.w,
+-            bounds.h,
+-            1.0,
+-            Color::from_rgba(45, 79, 86, 185),
++            Color::from_rgba(2, 2, 3, 255),
+         );
+         // Undiscovered map cells inherit pure black. Remembered tiles retain
+         // their existing dimmed rendering when they leave the field of view.
+@@ -806,7 +800,7 @@
+                 signal_rect.y + 19.0,
+                 signal_rect.w - 104.0,
+                 15,
+-                Color::from_rgba(142, 234, 215, 255),
++                UiTheme.accent(),
+             );
+         }
+         let (sidebar, camera) = terminal_grid_camera(
+@@ -1368,9 +1362,9 @@
+             visible_security_alarms,
+             visible_security_lockdowns,
+         ) = visible_counts;
+-        let bright = Color::from_rgba(203, 222, 221, 255);
+-        let muted = Color::from_rgba(133, 163, 170, 255);
+-        let cyan = Color::from_rgba(100, 221, 201, 255);
++        let bright = UiTheme.text();
++        let muted = UiTheme.muted();
++        let cyan = UiTheme.accent();
+         UiTheme.hud_panel(panel);
+         let rect = Rect::new(
+             panel.x + 16.0,
+@@ -1586,15 +1580,16 @@
+     observation_fields: &[ActorObservationField],
+     contacts: &[SensorContact],
+ ) {
+-    let phosphor = Color::from_rgba(74, 207, 187, 255);
+-    let phosphor_dim = Color::from_rgba(38, 104, 105, 255);
+-    let memory = Color::from_rgba(57, 81, 91, 255);
++    let phosphor = crate::ui_theme::UiTheme.accent();
++    let tint = |alpha| Color::new(phosphor.r, phosphor.g, phosphor.b, alpha);
++    let phosphor_dim = Color::new(phosphor.r * 0.45, phosphor.g * 0.45, phosphor.b * 0.45, 1.0);
++    let memory = Color::from_rgba(61, 65, 72, 255);
+     draw_rectangle(
+         area.x,
+         area.y,
+         area.w,
+         area.h,
+-        Color::from_rgba(2, 8, 12, 255),
++        Color::from_rgba(3, 3, 5, 255),
+     );
+ 
+     // A hardware-like phosphor grid. It is purely presentational and never
+@@ -1602,26 +1597,12 @@
+     let grid_step = 16.0;
+     let mut grid_x = area.x + grid_step;
+     while grid_x < area.right() {
+-        draw_line(
+-            grid_x,
+-            area.y,
+-            grid_x,
+-            area.bottom(),
+-            1.0,
+-            Color::from_rgba(24, 62, 68, 74),
+-        );
++        draw_line(grid_x, area.y, grid_x, area.bottom(), 1.0, tint(0.07));
+         grid_x += grid_step;
+     }
+     let mut grid_y = area.y + grid_step;
+     while grid_y < area.bottom() {
+-        draw_line(
+-            area.x,
+-            grid_y,
+-            area.right(),
+-            grid_y,
+-            1.0,
+-            Color::from_rgba(24, 62, 68, 74),
+-        );
++        draw_line(area.x, grid_y, area.right(), grid_y, 1.0, tint(0.07));
+         grid_y += grid_step;
+     }
+     let mut scanline_y = area.y + 3.0;
+@@ -1715,7 +1696,7 @@
+         }
+         let cell = sensor_cell_rect(position, known_min, pixel, origin);
+         let [north, east, south, west] = position.cardinal_neighbors();
+-        let boundary = Color::from_rgba(88, 225, 201, 125);
++        let boundary = tint(0.49);
+         if occlusion_edge(north) {
+             draw_line(cell.x, cell.y, cell.right(), cell.y, 1.0, boundary);
+         }
+@@ -1763,7 +1744,7 @@
+                 let a = center + vec2(angle.cos(), angle.sin()) * radius * pixel;
+                 let b = center + vec2(end.cos(), end.sin()) * radius * pixel;
+                 if area.contains(a) && area.contains(b) {
+-                    draw_line(a.x, a.y, b.x, b.y, 1.0, Color::from_rgba(88, 225, 201, 125));
++                    draw_line(a.x, a.y, b.x, b.y, 1.0, tint(0.49));
+                 }
+             }
+         }
+@@ -1858,7 +1839,7 @@
+         area.y + 1.0,
+         (sweep - area.x).min(8.0),
+         area.h - 2.0,
+-        Color::from_rgba(45, 185, 165, 18),
++        tint(0.07),
+     );
+     draw_line(
+         sweep,
+@@ -1866,23 +1847,16 @@
+         sweep,
+         area.bottom() - 1.0,
+         1.0,
+-        Color::from_rgba(110, 246, 216, 155),
++        tint(0.61),
+     );
+     draw_triangle(
+         vec2(sweep - 3.0, area.y + 1.0),
+         vec2(sweep + 3.0, area.y + 1.0),
+         vec2(sweep, area.y + 5.0),
+-        Color::from_rgba(110, 246, 216, 190),
++        tint(0.75),
+     );
+ 
+-    draw_rectangle_lines(
+-        area.x,
+-        area.y,
+-        area.w,
+-        area.h,
+-        1.0,
+-        Color::from_rgba(44, 105, 111, 255),
+-    );
++    draw_rectangle_lines(area.x, area.y, area.w, area.h, 1.0, phosphor_dim);
+     draw_sensor_corners(area, phosphor);
+ }
+ 
+@@ -2398,27 +2372,22 @@
+ }
+ 
+ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
+-    let bright = Color::from_rgba(218, 234, 232, 255);
+-    let muted = Color::from_rgba(146, 174, 179, 255);
+-    let cyan = Color::from_rgba(100, 221, 201, 255);
++    let theme = crate::ui_theme::UiTheme;
++    let bright = theme.text();
++    let muted = theme.muted();
++    let cyan = theme.accent();
+     let panel = legend_panel(bounds);
+-    draw_rectangle(
+-        panel.x,
+-        panel.y,
+-        panel.w,
+-        panel.h,
+-        Color::from_rgba(5, 12, 18, 248),
+-    );
++    draw_rectangle(panel.x, panel.y, panel.w, panel.h, theme.surface());
+     draw_rectangle_lines(
+         panel.x,
+         panel.y,
+         panel.w,
+         panel.h,
+         2.0,
+-        Color::from_rgba(73, 139, 145, 255),
++        Color::from_rgba(44, 48, 55, 255),
+     );
+     draw_ui_text_bold(
+-        "LÉGENDE · TERMINAL À GLYPHES",
++        "LÉGENDE · SYMBOLES DESSINÉS",
+         panel.x + 22.0,
+         panel.y + 38.0,
+         25.0,
+@@ -3449,12 +3418,17 @@
+     } else {
+         kind
+     };
++    if terminal_art::draw_wall(rect, kind, joins, visible, position) {
++        return;
++    }
+     if sidewalk {
+         terminal_floor::draw_sidewalk(rect, visible, position);
+     } else {
+         terminal_floor::draw(rect, kind, visible, position);
+     }
+-    if terminal_scenery::draw(rect, kind, visible) {
++    if terminal_art::draw_prop(rect, kind, joins, visible)
++        || terminal_scenery::draw(rect, kind, visible)
++    {
+         return;
+     }
+     // These materials now carry their own continuous world-space details.
+@@ -3735,7 +3709,9 @@
+     alerted: bool,
+     status_icon: Option<TerminalStatusIcon>,
+ ) {
+-    if let Some(ascii) = actor_ascii_glyph(symbol) {
++    if terminal_art::draw_actor(rect, symbol, palette.primary) {
++        // Status badges, alerts and selections below keep their existing semantics.
++    } else if let Some(ascii) = actor_ascii_glyph(symbol) {
+         draw_ascii_actor(rect, ascii, palette.primary);
+     } else {
+         let pattern = match symbol {
+--- before/src/terminal_floor.rs
++++ src/terminal_floor.rs
+@@ -103,10 +103,10 @@
+ 
+     fn base(self) -> [u8; 3] {
+         match self {
+-            Self::Deck => [18, 31, 38],
++            Self::Deck => [9, 10, 13],
+             Self::Street => [29, 32, 33],
+             Self::Lane => [29, 32, 33],
+-            Self::Grate => [20, 34, 39],
++            Self::Grate => [14, 16, 20],
+             Self::Concrete => [43, 42, 39],
+             Self::Gravel => [27, 31, 30],
+             Self::Grass => [24, 44, 33],
+@@ -122,7 +122,7 @@
+             Self::Memory => [8, 12, 13],
+             Self::Window => [10, 15, 16],
+             Self::Fault => [19, 8, 9],
+-            Self::Network => [23, 34, 35],
++            Self::Network => [12, 17, 19],
+             Self::Wall => [61, 78, 84],
+             Self::Membrane => [71, 43, 86],
+             Self::Void => [52, 35, 28],
+--- before/docs/INTERFACE.md
++++ docs/INTERFACE.md
+@@ -1,9 +1,20 @@
+ # Interface et accessibilité
+ 
+-## Rendu du jeu — 2 octobre 2026
++## Rendu du jeu — 3 octobre 2026
+ 
+-Le jeu conserve son rendu actuel à glyphes et décors natifs. Les essais du
+-nouveau style ont été retirés.
++Le jeu utilise des symboles dessinés vus de dessus sur un fond noir. Les
++personnages, les murs, les serveurs, les terminaux et les portes sont intégrés
++au rendu existant, dans leurs cases actuelles. Aucun gros objet, tuyau ou nouvel
++obstacle n'est ajouté. Les portes reprennent les montants et les panneaux des
++captures de l'éditeur ; l'état ouvert conserve un passage visuellement dégagé.
++
++L'interface propose quatre accents persistants : bleu électrique, violet
++ultraviolet, vert néon et rouge néon. Ce choix ne recolore ni les personnages,
++ni les matériaux, ni les lumières des décors. Les surfaces restent presque
++noires et les panneaux du HUD n'ajoutent pas de rails décoratifs près des PV,
++du secteur ou de l'objectif. Le zoom de carte propose aussi des cases de 16 et
++20 unités logiques, indépendamment de la taille de l'interface. Les préférences
++de zoom déjà enregistrées sont conservées.
+ 
+ Les sols n'affichent plus de bordure de case ni de point répété dans les angles.
+ Métal, chaussée, béton, gravier, herbe, friche et boue possèdent un grain discret
+@@ -20,8 +31,8 @@
+ sont déduites du terrain connu uniquement ; les passages étroits et les abords
+ encore inconnus ne reçoivent pas de lignes supposées.
+ 
+-Les décors urbains et industriels gardent des silhouettes de huit pixels vues
+-de dessus, avec un corps, une ombre et quelques détails de matière. Neuf glyphes
++Les décors urbains et industriels gardent des silhouettes compactes vues
++de dessus, avec un corps, une ombre et quelques détails de matière. Neuf symboles
+ complètent les objets existants : baril, palette, ventilation, armoire électrique,
+ borne incendie, borne de voirie, grille d'évacuation, bobine de câbles et paillasson.
+ Ils occupent les mêmes emplacements et conservent le caractère bloquant ou
+@@ -60,7 +71,7 @@
+ 
+ ## Socle visuel
+ 
+-L'interface utilise Atkinson Hyperlegible en graisses normale et forte, embarquée dans l'exécutable sous licence SIL Open Font License 1.1. Les glyphes de la carte conservent la police terminal : deux polices ont deux responsabilités distinctes, sans faire dépendre la simulation de leur disponibilité.
++L'interface utilise Atkinson Hyperlegible en graisses normale et forte, embarquée dans l'exécutable sous licence SIL Open Font License 1.1. Les acteurs et les principaux décors utilisent un atlas de symboles dessinés ; les marqueurs textuels conservent la police terminal, sans faire dépendre la simulation de leur disponibilité.
+ 
+ `ui_theme.rs` centralise les couleurs sémantiques, les surfaces, les états de sélection, les mesures de texte et les composants communs. Les écrans ne doivent pas coder la signification d'un état par la couleur seule : texte, bordure, symbole ou motif doivent rester suffisants en niveaux de gris.
+ 
+@@ -94,7 +105,7 @@
+ - Une montée de niveau produit une notification après la résolution du tour, sans imposer un écran. Le bouton de points disponibles du HUD ouvre les compétences ; les points peuvent être dépensés plus tard. Le rejeu d'une sauvegarde n'ouvre pas cet écran.
+ - La création présente un résumé fonctionnel de chacun des cinq attributs avant toute répartition. La fiche de personnage et la seconde étape de création permettent ensuite de sélectionner un attribut au clavier ou au clic et affichent son explication complète, afin qu'aucune statistique ne repose sur une devinette tout en évitant cinq paragraphes permanents. La fiche regroupe aussi PV, Armure, énergie, expérience et points disponibles dans un état compact issu du moteur.
+ - Le dossier accepte la molette, affiche le lieu et le cycle de consultation, distingue visuellement relevés et archives, masque les identifiants internes des enregistrements et offre une fermeture cliquable.
+-- La légende F1 décrit uniquement le rendu actif. Tant que les textures n'existent pas, elle porte explicitement le titre « Terminal à glyphes » et classe les entrées par fonction. Les dangers persistants y possèdent des formes et des libellés propres : le feu `^`, le champ électrique `z`, le conteneur incendiaire `o` et le relais conducteur `q` restent distinguables sans dépendre uniquement de leur couleur.
++- La légende F1 décrit uniquement le rendu actif. Elle porte le titre « Symboles dessinés » et classe les entrées par fonction. Les dangers persistants y possèdent des formes et des libellés propres : le feu `^`, le champ électrique `z`, le conteneur incendiaire `o` et le relais conducteur `q` restent distinguables sans dépendre uniquement de leur couleur.
+ - Lorsqu'au moins un compagnon est contrôlé, une palette flottante collective montre son intégrité, sa batterie et l'état de la liaison sans occuper toute la largeur du monde. Quatre boutons carrés à icônes choisissent **Suivre**, **Défensif**, **Agressif** ou **Passif** ; leur infobulle donne le nom et l'effet au survol. La palette est déjà générique pour plusieurs alliés, même si seuls les drones l'utilisent actuellement. Une coupure rend le groupe de commandes rouge et affiche **Retour auto** en plus de la couleur ; revenir à portée restaure aussitôt les boutons. Avancer sur la case d'un drone contrôlé échange les positions avec lui : le compagnon ne bloque pas un passage et un déplacement n'est jamais converti en attaque alliée.
+ - Sur une largeur confortable, le HUD place **Niveau**, **Arme active** et **État** dans une colonne verticale à gauche. Expérience, PV, énergie, munitions et compagnons associent une valeur numérique et une barre ; les anciennes parties conservent leurs ressources historiques. Un groupe compact **Défenses** expose les valeurs réellement résolues par le moteur : Armure, Esquive, Stabilité système, Défense numérique lorsqu'un système compatible existe, puis résistances thermique, électrique, chimique, radiation et corruption, y compris lorsqu'elles valent 0 %. L'absence réelle d'un système est représentée par un tiret et jamais par un faux zéro. Les dégâts cinétiques, perforants et explosifs ne reçoivent pas de résistance parallèle puisqu'ils rencontrent déjà l'Armure. **Arme active** indique l'arme réellement utilisée et ses munitions éventuelles, sans nommer un emplacement technique. L'espace supérieur ainsi libéré agrandit le monde ; il redevient un bandeau seulement lorsqu'une alerte prioritaire doit être affichée. Sur une fenêtre trop étroite pour les colonnes, ces informations reviennent dans des cartes compactes afin de rester accessibles.
+ - La colonne droite réserve davantage de place à **CAPTEURS**. Ce panneau n'est pas une seconde copie miniature du plateau : il projette les données autorisées comme un écran embarqué, avec fond phosphore, grille technique, balayage animé, géométrie simplifiée et signatures de contacts. Il cadre dynamiquement les cases mémorisées avec une marge bornée au lieu de réduire toute la très grande zone à quelques pixels. Les contours pleins délimitent la perception actuelle, tandis que la mémoire ancienne devient sombre, échantillonnée et pointillée. L'animation ne retarde jamais une information disponible. **En vue** précède **Cible**. Une cible perçue révèle seulement son identité observable, sa distance et ses états visibles ; ses PV, son Armure et ses résistances restent masqués jusqu'à une **Analyse de cible** (`REC-01`) réellement résolue par le moteur. Après apprentissage de `REC-06`, le raccourci remappable `F2` superpose les champs visuels de tous les PNJ visibles et place ces mêmes PNJ dans CAPTEURS sous forme de signatures géométriques distinctes pour menace, service, présence neutre et signal non classé. Le rendu emploie forme, remplissage, contour et motifs plutôt que la seule couleur ; aucun PNJ caché ni terrain inconnu n'est ajouté.
+@@ -109,7 +120,7 @@
+ 
+ Le bandeau vertical décrit la destination réelle : `RETOUR SURFACE` seulement pour une montée de la couche 1 vers la surface, `ACCÈS SUPÉRIEUR` pour une remontée entre deux couches profondes et `ACCÈS INFÉRIEUR` pour une descente. Lorsque le joueur se tient déjà sur une montée ou une descente, ce passage sous ses pieds est annoncé avant un autre accès de la même zone. Une quête prête à rendre devient prioritaire : `RETOURNER PARLER À {désignation du donneur}` indique le premier passage d'un chemin formé uniquement de secteurs déjà visités vers la zone du donneur. Il ne révèle ni raccourci inconnu ni position cachée du PNJ et disparaît dès que le joueur retrouve la bonne zone, afin de ne pas contredire l'objectif avec une route d'exploration secondaire. L'objectif du bas conserve la désignation du donneur une fois cette zone atteinte ; les PNJ possèdent encore des désignations de rôle plutôt que des noms individuels.
+ 
+-Une ville régionale emploie son nom propre dans le titre au lieu du nom de biome et des coordonnées génériques. Dans le Nœud de maintenance, le dallage, les caillebotis, les voies, les baies, les cuves et le mobilier médical différencient les fonctions sans changer les collisions du moteur. Les personnages restent des ASCII lisibles par rôle (`v`, `h`, `i`) et les deux accès verticaux conservent leurs glyphes et libellés habituels. Le futur rendu dessiné devra reprendre exactement les mêmes zones, acteurs, informations et commandes.
++Une ville régionale emploie son nom propre dans le titre au lieu du nom de biome et des coordonnées génériques. Dans le Nœud de maintenance, le dallage, les caillebotis, les voies, les baies, les cuves et le mobilier médical différencient les fonctions sans changer les collisions du moteur. Les personnages dessinés se distinguent par leur silhouette et leur équipement. Les deux accès verticaux conservent leurs symboles et libellés habituels. Les zones, acteurs, informations et commandes restent ceux de la simulation.
+ 
+ Échap ferme toujours d'abord la surcouche active : légende, inventaire, personnage, compétences, dossier ou visée de zone. Il n'ouvre le menu pause que depuis le jeu dégagé. Dans une hiérarchie de menus, il remonte d'un niveau ; pendant la création, il revient d'abord à l'étape précédente.
+ 
+@@ -120,6 +131,7 @@
+ Les options d'affichage proposent :
+ 
+ - une taille d'interface persistante, en plus de l'adaptation automatique ;
++- un thème d'interface bleu, violet, vert ou rouge et un zoom de carte indépendant ;
+ - un contraste renforcé, qui épaissit et accentue les contours porteurs d'information ;
+ - des animations réduites, qui suppriment notamment la pulsation des alertes sans masquer leur bandeau, leur texte ni leur symbole.
+ 
+@@ -136,7 +148,7 @@
+ 
+ ## Parcours de confort et composants natifs
+ 
+-L'accueil et la création rendent l'action principale visible au repos, avec une surface turquoise et un texte sombre. Le danger emploie un libellé explicite et une surface rouge ; le focus clavier clair se distingue de la sélection turquoise. Les cartes et lecteurs partagent leurs surfaces, marges et tailles de texte dans `ui_theme.rs` et `ux.rs`. Les animations existantes continuent de respecter l'option d'animations réduites.
++L'accueil et la création rendent l'action principale visible au repos, avec une surface utilisant l'accent choisi et un texte sombre. Le danger emploie un libellé explicite et une surface rouge ; le focus clavier se distingue aussi par son contour. Les cartes et lecteurs partagent leurs surfaces, marges et tailles de texte dans `ui_theme.rs` et `ux.rs`. Les animations existantes continuent de respecter l'option d'animations réduites.
+ 
+ La création peut démarrer directement avec un profil recommandé. La personnalisation est une action secondaire : retirer un point avant de le réattribuer, afficher la réserve près des attributs, désactiver les modifications impossibles et préserver les valeurs lors d'un retour aux profils sans changement de protocole. La relance d'une partie active demande une confirmation sélectionnant d'abord Continuer. Un survol d'équipement ne déclenche jamais un équipement.
+ 
+--- /dev/null
++++ src/terminal_art.rs
+@@ -0,0 +1,618 @@
++//! Orthographic 16-pixel symbols. Every drawing occupies one existing map cell.
++//! The atlas contains only presentation data; it never changes terrain or actors.
++use macroquad::prelude::*;
++use project_rl::world::GridPos;
++
++use super::dim;
++use crate::test_sector::Decor;
++
++const SIDE: usize = 16;
++const ACTORS: &[char] = &[
++    '@', 'c', 'm', 'v', 'h', 'i', 'u', 'd', 't', 'r', 'j', 'w', 'B', 'V', 'G', 'N', 'K', 'W', 'J',
++    'Q', 'P', 'U', 'Z', 'O', 'C', 'D', 'F', 'H', 'I', 'X', 'Y', 'L', 'A', 'E',
++];
++
++#[derive(Clone, Copy)]
++#[repr(usize)]
++enum Prop {
++    Server,
++    Cabinet,
++    Terminal,
++    TerminalOff,
++    TerminalUsed,
++    Tank,
++    Barrel,
++    Crate,
++    Vent,
++    DoorOpen,
++    DoorClosed,
++    DoorLocked,
++    DoorOff,
++}
++const PROPS: [Prop; 13] = [
++    Prop::Server,
++    Prop::Cabinet,
++    Prop::Terminal,
++    Prop::TerminalOff,
++    Prop::TerminalUsed,
++    Prop::Tank,
++    Prop::Barrel,
++    Prop::Crate,
++    Prop::Vent,
++    Prop::DoorOpen,
++    Prop::DoorClosed,
++    Prop::DoorLocked,
++    Prop::DoorOff,
++];
++
++struct Raster {
++    pixels: [[u8; 4]; SIDE * SIDE],
++}
++impl Raster {
++    fn new() -> Self {
++        Self {
++            pixels: [[0; 4]; SIDE * SIDE],
++        }
++    }
++    fn rect(&mut self, x: i32, y: i32, w: i32, h: i32, color: u32) {
++        let rgba = [(color >> 16) as u8, (color >> 8) as u8, color as u8, 255];
++        for py in y.max(0)..(y + h).min(SIDE as i32) {
++            for px in x.max(0)..(x + w).min(SIDE as i32) {
++                self.pixels[py as usize * SIDE + px as usize] = rgba;
++            }
++        }
++    }
++    fn disk(&mut self, cx: i32, cy: i32, radius: i32, color: u32) {
++        for y in -radius..=radius {
++            let span = ((radius * radius - y * y) as f32).sqrt().floor() as i32;
++            self.rect(cx - span, cy + y, span * 2 + 1, 1, color);
++        }
++    }
++    fn roof(&mut self, x: i32, y: i32, w: i32, h: i32, base: u32, light: u32, shade: u32) {
++        self.rect(x + 2, y, w - 4, h, base);
++        self.rect(x, y + 2, w, h - 4, base);
++        self.rect(x + 2, y, w - 4, 1, light);
++        self.rect(x, y + 2, 1, h - 4, light);
++        self.rect(x + 2, y + h - 1, w - 4, 1, shade);
++        self.rect(x + w - 1, y + 2, 1, h - 4, shade);
++    }
++    fn fan(&mut self, cx: i32, cy: i32, radius: i32) {
++        self.disk(cx, cy, radius, 0x718a92);
++        self.disk(cx, cy, radius - 1, 0x15262f);
++        for (x, y, w, h) in [(-3, -2, 3, 2), (1, -3, 2, 3), (1, 1, 3, 2), (-2, 1, 2, 3)] {
++            self.rect(cx + x, cy + y, w, h, 0x71a5a2);
++        }
++        self.disk(cx, cy, 1, 0xbde0d7);
++    }
++}
++
++fn actor(symbol: char) -> Raster {
++    let mut p = Raster::new();
++    if matches!(
++        symbol,
++        'B' | 'V'
++            | 'G'
++            | 'N'
++            | 'K'
++            | 'W'
++            | 'J'
++            | 'Q'
++            | 'U'
++            | 'Z'
++            | 'O'
++            | 'C'
++            | 'D'
++            | 'F'
++            | 'H'
++            | 'I'
++    ) {
++        let (base, light, shade) = match symbol {
++            'G' | 'N' => (0xa39b7b, 0xd3cea5, 0x4d513f),
++            'V' | 'H' | 'Z' => (0x908daa, 0xc4bbdd, 0x393747),
++            'W' | 'C' => (0x8d9e72, 0xc1d49b, 0x3a5140),
++            'J' | 'O' => (0xa07399, 0xdb9bbb, 0x463044),
++            'I' => (0x80a9a1, 0xb9e3ce, 0x304a4b),
++            _ => (0xb07672, 0xe5b799, 0x573841),
++        };
++        match symbol {
++            'W' => {
++                for (x, y) in [(6, 3), (9, 5), (8, 8), (5, 10), (7, 13)] {
++                    p.disk(x, y, 2, shade);
++                    p.disk(x, y - 1, 1, base);
++                    p.rect(x, y - 2, 1, 1, light);
++                }
++            }
++            'J' | 'Q' => {
++                for (x, y, w, h) in [
++                    (7, 1, 2, 14),
++                    (1, 7, 14, 2),
++                    (3, 3, 2, 2),
++                    (11, 3, 2, 2),
++                    (3, 11, 2, 2),
++                    (11, 11, 2, 2),
++                ] {
++                    p.rect(x, y, w, h, base);
++                }
++                p.disk(8, 8, 4, shade);
++                p.disk(8, 8, 3, base);
++                p.disk(8, 7, 1, light);
++            }
++            'H' => {
++                for (x, y, w, h) in [(1, 5, 5, 2), (0, 7, 6, 3), (10, 5, 5, 2), (10, 7, 6, 3)] {
++                    p.rect(x, y, w, h, base);
++                }
++                p.roof(6, 4, 4, 9, base, light, shade);
++                p.rect(7, 3, 2, 2, light);
++            }
++            _ => {
++                let heavy = matches!(symbol, 'G' | 'K' | 'D');
++                p.roof(3, 5, if heavy { 10 } else { 9 }, 8, base, light, shade);
++                p.disk(8, 4, if heavy { 3 } else { 2 }, shade);
++                p.disk(8, 3, 2, base);
++                p.rect(7, 2, 2, 1, light);
++                for (x, y) in [(1, 6), (12, 6), (2, 12), (11, 12)] {
++                    p.rect(x, y, 3, 2, shade);
++                    p.rect(x, y, 2, 1, light);
++                }
++                p.rect(7, 6, 2, 5, shade);
++                if matches!(symbol, 'B' | 'K' | 'D') {
++                    p.rect(5, 2, 1, 2, light);
++                    p.rect(11, 2, 1, 2, light);
++                }
++                if matches!(symbol, 'N' | 'V' | 'F') {
++                    p.rect(6, 13, 2, 2, base);
++                    p.rect(5, 14, 2, 1, light);
++                }
++                if symbol == 'C' {
++                    for y in [6, 9, 12] {
++                        p.rect(3, y, 10, 1, light);
++                    }
++                }
++                if matches!(symbol, 'O' | 'I') {
++                    p.disk(10, 9, 2, 0x99d7b1);
++                    p.rect(9, 8, 1, 1, 0xe0f0c2);
++                }
++                if symbol == 'Z' {
++                    p.rect(4, 6, 1, 6, light);
++                    p.rect(11, 6, 1, 6, light);
++                }
++            }
++        }
++        return p;
++    }
++    if matches!(symbol, 'u' | 'P' | 'Y') {
++        p.disk(8, 8, 6, 0x26363e);
++        p.disk(8, 8, 5, 0x99aab1);
++        p.disk(8, 8, 3, 0x435c63);
++        for (x, y) in [(1, 2), (12, 2), (1, 12), (12, 12)] {
++            p.rect(x, y, 3, 2, 0x82939e);
++            p.rect(x, y, 2, 1, 0xc9d9d7);
++        }
++        if symbol == 'P' {
++            p.rect(7, 0, 2, 8, 0xb6b9aa);
++            p.rect(7, 0, 1, 7, 0xe8ddbf);
++        } else {
++            p.rect(6, 6, 4, 3, 0x91d8d0);
++        }
++        return p;
++    }
++    let (base, light, shade) = match symbol {
++        '@' => (0xbcc9cf, 0xeff8f6, 0x5f7180),
++        'm' => (0xb2a377, 0xede2af, 0x655d46),
++        'v' => (0xb9a47c, 0xf1ddb0, 0x675645),
++        'h' | 'w' => (0x82ada7, 0xd4efe2, 0x385553),
++        'c' | 'i' => (0x98ad85, 0xd0dcad, 0x4a604c),
++        'X' | 'L' | 'A' | 'E' => (0xb49c82, 0xedddac, 0x63544b),
++        _ => (0xb96177, 0xf9a4a3, 0x653247),
++    };
++    p.rect(2, 7, 4, 4, shade);
++    p.rect(2, 7, 4, 1, light);
++    p.rect(3, 8, 3, 2, base);
++    p.rect(11, 7, 3, 4, shade);
++    p.rect(11, 7, 3, 1, light);
++    p.rect(11, 8, 2, 2, base);
++    p.roof(5, 7, 7, 6, base, light, shade);
++    p.disk(8, 5, 3, shade);
++    p.disk(8, 4, 2, base);
++    p.rect(7, 2, 2, 1, light);
++    p.rect(6, 9, 4, 3, shade);
++    p.rect(6, 9, 4, 1, light);
++    p.rect(5, 13, 2, 1, 0x3e4c5a);
++    p.rect(10, 12, 2, 2, 0x3e4c5a);
++    match symbol {
++        '@' => {
++            p.rect(14, 2, 1, 7, 0x91ecf5);
++            p.rect(13, 8, 2, 2, shade);
++        }
++        'm' => {
++            p.rect(13, 5, 2, 5, 0x79858a);
++            p.rect(12, 5, 4, 1, 0xd5dde1);
++            p.rect(6, 10, 4, 2, 0x657d69);
++        }
++        'h' | 'w' => {
++            p.rect(5, 10, 6, 2, 0x47665b);
++            p.rect(7, 9, 2, 4, 0xdfefe1);
++            p.rect(6, 10, 4, 2, 0xdfefe1);
++        }
++        'v' => {
++            p.rect(2, 10, 3, 3, 0x736446);
++            p.rect(2, 10, 3, 1, 0xe3ce98);
++        }
++        'c' => {
++            p.rect(5, 9, 6, 3, 0x394b45);
++            p.rect(6, 9, 4, 1, 0x9fc998);
++        }
++        'i' => {
++            p.rect(4, 9, 8, 4, shade);
++            p.rect(4, 9, 8, 1, light);
++        }
++        'd' => {
++            p.rect(3, 5, 2, 7, 0x864559);
++            p.rect(3, 5, 1, 6, light);
++        }
++        'r' => {
++            p.rect(13, 1, 2, 10, 0x8e7c87);
++            p.rect(13, 1, 1, 9, 0xe2ced0);
++        }
++        'j' => {
++            p.roof(3, 9, 9, 5, 0x493745, 0xad748b, shade);
++            p.rect(12, 0, 3, 10, 0x90858d);
++            p.rect(12, 0, 1, 10, 0xe9c9c6);
++        }
++        't' | 'L' | 'A' => {
++            p.rect(1, 7, 4, 6, base);
++            p.rect(1, 7, 4, 1, light);
++            p.rect(13, 2, 2, 8, 0xb8aeb0);
++        }
++        'E' => {
++            p.rect(1, 8, 3, 2, light);
++            p.rect(12, 11, 3, 2, light);
++        }
++        'X' => {
++            p.rect(7, 7, 2, 6, 0xdccb93);
++        }
++        _ => {}
++    }
++    p
++}
++
++fn prop(kind: Prop) -> Raster {
++    let mut p = Raster::new();
++    match kind {
++        Prop::Server | Prop::Cabinet => {
++            p.roof(2, 1, 12, 14, 0x34464d, 0x9db9bc, 0x14232b);
++            p.fan(8, 7, 5);
++            p.rect(4, 12, 6, 1, 0x758f91);
++            p.rect(11, 12, 1, 1, 0xbbf4b1);
++            p.rect(12, 3, 1, 1, 0x90c9c9);
++            if matches!(kind, Prop::Cabinet) {
++                p.rect(5, 6, 6, 3, 0x889f92);
++                p.rect(7, 7, 2, 1, 0xd3c799);
++            }
++        }
++        Prop::Terminal | Prop::TerminalOff | Prop::TerminalUsed => {
++            p.roof(1, 2, 14, 12, 0x3c474a, 0x99b0b2, 0x1d292e);
++            p.rect(3, 3, 10, 3, 0x152326);
++            p.rect(4, 3, 8, 1, 0x728d8e);
++            p.rect(
++                4,
++                5,
++                8,
++                1,
++                match kind {
++                    Prop::TerminalOff => 0x52656a,
++                    Prop::TerminalUsed => 0x8ea999,
++                    _ => 0xa9d6bd,
++                },
++            );
++            p.rect(3, 8, 7, 4, 0x1b2429);
++            for x in [4, 6, 8] {
++                p.rect(x, 8, 1, 1, 0xc1c6b7);
++                p.rect(x, 10, 1, 1, 0x8d9995);
++            }
++            p.disk(12, 10, 1, 0xd3c695);
++            p.rect(6, 12, 3, 1, 0x85918a);
++        }
++        Prop::Tank | Prop::Barrel => {
++            let green = matches!(kind, Prop::Tank);
++            p.disk(8, 8, 6, if green { 0x335045 } else { 0x67405c });
++            p.disk(8, 8, 5, if green { 0x7e9b77 } else { 0xaa709b });
++            p.disk(8, 8, 4, if green { 0x526e4b } else { 0x76516e });
++            p.rect(5, 7, 6, 2, if green { 0xafc7a0 } else { 0xbf93b4 });
++            p.disk(10, 5, 1, 0x324048);
++            p.rect(10, 4, 1, 1, 0xd4dcd4);
++        }
++        Prop::Crate => {
++            p.roof(2, 2, 12, 12, 0x716b4a, 0xc4b77b, 0x353527);
++            p.rect(4, 4, 8, 8, 0x5a593e);
++            p.rect(7, 3, 2, 10, 0xa7a06c);
++            p.rect(3, 7, 10, 2, 0xa7a06c);
++            p.rect(7, 7, 2, 2, 0x444837);
++        }
++        Prop::Vent => {
++            p.roof(2, 2, 12, 12, 0x424751, 0xadb5be, 0x1e252e);
++            for y in [4, 7, 10] {
++                p.rect(4, y, 8, 2, 0x212b36);
++                p.rect(4, y, 8, 1, 0x85919e);
++            }
++        }
++        Prop::DoorOpen | Prop::DoorClosed | Prop::DoorLocked | Prop::DoorOff => {
++            p.rect(0, 0, 4, 16, 0x353f49);
++            p.rect(0, 0, 1, 16, 0xa0adb4);
++            p.rect(3, 1, 1, 14, 0x10191f);
++            p.rect(12, 0, 4, 16, 0x303a44);
++            p.rect(12, 0, 1, 16, 0x7d919c);
++            p.rect(15, 0, 1, 16, 0x111a22);
++            for y in [2, 12] {
++                p.rect(1, y, 2, 2, 0x141c24);
++                p.rect(1, y, 1, 1, 0xacb9bd);
++                p.rect(13, y, 2, 2, 0x141c24);
++                p.rect(13, y, 1, 1, 0x83959e);
++            }
++            let indicator = match kind {
++                Prop::DoorOpen => 0xa5d1b7,
++                Prop::DoorLocked => 0xee9877,
++                Prop::DoorOff => 0x63717a,
++                _ => 0xd6b978,
++            };
++            if !matches!(kind, Prop::DoorOpen) {
++                p.rect(4, 0, 8, 16, 0x5a646c);
++                p.rect(4, 0, 8, 1, 0xb3bec2);
++                p.rect(4, 15, 8, 1, 0x212c34);
++                p.rect(7, 1, 2, 14, 0x202d35);
++                p.rect(6, 2, 1, 11, 0x8c999e);
++                p.rect(9, 2, 1, 11, 0x3c4b56);
++                p.rect(4, 4, 3, 1, 0x73828c);
++                p.rect(9, 4, 3, 1, 0x73828c);
++                p.rect(4, 10, 3, 1, 0x394853);
++                p.rect(9, 10, 3, 1, 0x394853);
++                for x in [4, 6, 9, 11] {
++                    p.rect(x, 13, 1, 2, indicator);
++                }
++                if matches!(kind, Prop::DoorLocked) {
++                    p.rect(6, 6, 4, 4, 0x382b30);
++                    p.rect(7, 7, 2, 2, indicator);
++                }
++                if matches!(kind, Prop::DoorOff) {
++                    p.rect(5, 5, 6, 1, 0x87919a);
++                    p.rect(5, 10, 6, 1, 0x87919a);
++                }
++            }
++            p.rect(2, 6, 1, 3, indicator);
++            p.rect(13, 6, 1, 3, indicator);
++        }
++    }
++    p
++}
++
++thread_local! {
++    static ATLAS: Texture2D = {
++        let count = ACTORS.len() + PROPS.len();
++        let mut image = Image::gen_image_color(
++            (count * SIDE) as u16, SIDE as u16, Color::new(0., 0., 0., 0.),
++        );
++        for index in 0..count {
++            let raster = if index < ACTORS.len() {
++                actor(ACTORS[index])
++            } else {
++                prop(PROPS[index - ACTORS.len()])
++            };
++            for (offset, rgba) in raster.pixels.iter().enumerate() {
++                let pixel = ((offset / SIDE) * count * SIDE + index * SIDE + offset % SIDE) * 4;
++                image.bytes[pixel..pixel + 4].copy_from_slice(rgba);
++            }
++        }
++        let texture = Texture2D::from_image(&image);
++        texture.set_filter(FilterMode::Nearest);
++        texture
++    };
++}
++
++fn draw(rect: Rect, index: usize, color: Color, rotation: f32) {
++    // Fill the available cell at intermediate zooms too: rounding down to a
++    // multiple of 16 made actors shrink abruptly on fitted 20–31 px cameras.
++    let size = rect.w.min(rect.h);
++    let x = (rect.x + (rect.w - size) * 0.5).floor();
++    let y = (rect.y + (rect.h - size) * 0.5).floor();
++    ATLAS.with(|texture| {
++        draw_texture_ex(
++            texture,
++            x,
++            y,
++            color,
++            DrawTextureParams {
++                source: Some(Rect::new(
++                    (index * SIDE) as f32,
++                    0.,
++                    SIDE as f32,
++                    SIDE as f32,
++                )),
++                dest_size: Some(vec2(size, size)),
++                rotation,
++                pivot: Some(vec2(x + size * 0.5, y + size * 0.5)),
++                ..Default::default()
++            },
++        )
++    });
++}
++
++pub(super) fn draw_actor(rect: Rect, symbol: char, semantic: Color) -> bool {
++    let Some(index) = ACTORS.iter().position(|&actor| actor == symbol) else {
++        return false;
++    };
++    // Preserve observable colour cues without letting UI appearance recolour the world.
++    let tint = Color::new(
++        0.72 + semantic.r * 0.28,
++        0.72 + semantic.g * 0.28,
++        0.72 + semantic.b * 0.28,
++        semantic.a,
++    );
++    draw(rect, index, tint, 0.);
++    true
++}
++
++pub(super) fn draw_prop(rect: Rect, kind: Decor, joins: [bool; 4], visible: bool) -> bool {
++    let art = match kind {
++        Decor::Server => Prop::Server,
++        Decor::ElectricalCabinet => Prop::Cabinet,
++        Decor::Console | Decor::ControlReady | Decor::DataTerminalOnline => Prop::Terminal,
++        Decor::DataTerminalOffline => Prop::TerminalOff,
++        Decor::ControlUsed | Decor::DataTerminalUpdated => Prop::TerminalUsed,
++        Decor::Coolant => Prop::Tank,
++        Decor::Barrel => Prop::Barrel,
++        Decor::Crate => Prop::Crate,
++        Decor::VentUnit => Prop::Vent,
++        Decor::DoorOpen => Prop::DoorOpen,
++        Decor::DoorClosed => Prop::DoorClosed,
++        Decor::DoorLocked => Prop::DoorLocked,
++        Decor::DoorUnpowered => Prop::DoorOff,
++        _ => return false,
++    };
++    let door = matches!(
++        art,
++        Prop::DoorOpen | Prop::DoorClosed | Prop::DoorLocked | Prop::DoorOff
++    );
++    let rotation = if door && joins[0] && joins[2] {
++        std::f32::consts::FRAC_PI_2
++    } else {
++        0.
++    };
++    draw(
++        rect,
++        ACTORS.len() + art as usize,
++        dim(WHITE, visible),
++        rotation,
++    );
++    true
++}
++
++pub(super) fn draw_wall(
++    rect: Rect,
++    kind: Decor,
++    joins: [bool; 4],
++    visible: bool,
++    at: GridPos,
++) -> bool {
++    if !matches!(
++        kind,
++        Decor::Wall | Decor::MembraneWall | Decor::VoidWall | Decor::DeadScreen
++    ) {
++        return false;
++    }
++    let [north, east, south, west] = joins;
++    let (base, light, dark) = match kind {
++        Decor::MembraneWall => (0x372c42, 0x8c759f, 0x18131e),
++        Decor::VoidWall => (0x3b3430, 0x8b8072, 0x1c1716),
++        Decor::DeadScreen => (0x15191d, 0x47535a, 0x090b0e),
++        _ => (0x25272d, 0x848892, 0x15171c),
++    };
++    let color = |hex: u32| {
++        dim(
++            Color::from_rgba((hex >> 16) as u8, (hex >> 8) as u8, hex as u8, 255),
++            visible,
++        )
++    };
++    let paint = |x: f32, y: f32, w: f32, h: f32, ink: u32| {
++        draw_rectangle(rect.x + x, rect.y + y, w.max(0.), h.max(0.), color(ink))
++    };
++    let s = rect.w;
++    let l = if west { 0. } else { 1. };
++    let t = if north { 0. } else { 1. };
++    let r = if east { s } else { s - 1. };
++    let b = if south { s } else { s - 1. };
++    paint(l, t, r - l, b - t, base);
++    if !north {
++        paint(l, t, r - l, 2., 0x444851);
++        paint(l + 1., t, r - l - 2., 1., light);
++    }
++    if !west {
++        paint(l, t, 2., b - t, 0x444851);
++        paint(l, t + 1., 1., b - t - 2., light);
++    }
++    if !south {
++        paint(l, b - 4., r - l, 4., dark);
++        paint(l + 1., b - 4., r - l - 2., 1., 0x5b606b);
++    }
++    if !east {
++        paint(r - 3., t, 3., b - t, dark);
++        paint(r - 3., t + 1., 1., b - t - 2., 0x5b606b);
++    }
++    let horizontal = east || west;
++    if horizontal {
++        paint(2., t + 4., s - 4., 1., 0x3e414c);
++        paint(2., t + 7., s - 4., 1., 0x3e414c);
++    } else {
++        paint(l + 4., 2., 1., s - 4., 0x3e414c);
++        paint(l + 7., 2., 1., s - 4., 0x3e414c);
++    }
++    if (if horizontal { at.x } else { at.y }).rem_euclid(3) == 0 {
++        if horizontal {
++            paint(1., t + 3., 1., b - t - 7., 0x0a0b0e);
++        } else {
++            paint(l + 3., 1., r - l - 6., 1., 0x0a0b0e);
++        }
++    }
++    if (!north && !west) || (!south && !east) {
++        paint(2., 2., 3., 3., 0x08090b);
++        paint(3., 3., 1., 1., 0x8b909a);
++    }
++    if kind == Decor::Wall && (if horizontal { at.x } else { at.y }).rem_euclid(4) == 1 {
++        // Fixed neutral lighting belongs to the wall material, never to the interface theme.
++        if horizontal {
++            paint(
++                5.,
++                if south { t + 3. } else { b - 3. },
++                (s - 10.).max(3.),
++                1.,
++                0xadcbd0,
++            );
++        } else {
++            paint(
++                if east { l + 3. } else { r - 2. },
++                5.,
++                1.,
++                (s - 10.).max(3.),
++                0xadcbd0,
++            );
++        }
++    }
++    true
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    #[test]
++    fn open_door_preserves_a_clear_passage_and_closed_states_fill_it() {
++        let open = prop(Prop::DoorOpen);
++        for y in 0..SIDE {
++            for x in 4..12 {
++                assert_eq!(open.pixels[y * SIDE + x][3], 0);
++            }
++        }
++        for kind in [Prop::DoorClosed, Prop::DoorLocked, Prop::DoorOff] {
++            let closed = prop(kind);
++            for y in 0..SIDE {
++                for x in 4..12 {
++                    assert_eq!(closed.pixels[y * SIDE + x][3], 255);
++                }
++            }
++        }
++    }
++    #[test]
++    fn every_actor_has_drawn_art_and_equipment_distinguishes_service_roles() {
++        for &symbol in ACTORS {
++            assert!(
++                actor(symbol).pixels.iter().any(|pixel| pixel[3] > 0),
++                "{symbol}"
++            );
++        }
++        for a in ['@', 'm', 'v', 'h', 'c', 'i'] {
++            for b in ['@', 'm', 'v', 'h', 'c', 'i'] {
++                if a != b {
++                    assert_ne!(actor(a).pixels, actor(b).pixels);
++                }
++            }
++        }
++    }
++}

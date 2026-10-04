@@ -1,0 +1,8 @@
+{
+  id: "core:weapon_impact_wave",
+  terminal: {
+    frames: ["shock_small", "shock_wide", "ring_wide"],
+    color: [99, 173, 235, 220], accent_colors: [[159, 222, 255, 255], [236, 252, 255, 255]],
+    frame_millis: 95, step_millis: 65, linger_millis: 80,
+  },
+}

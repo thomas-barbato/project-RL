@@ -1,0 +1,30 @@
+Validation de l'aperçu des ombres et équipements — 2026-10-04
+
+Portée : apercu-face.html, face-preview.js, ground-equipment.js et leurs
+exports native-equipment/. Aucun fichier du moteur ou du contenu de jeu
+n'a été modifié dans cette révision.
+
+Contrôles réalisés :
+- Syntaxe JavaScript : node --check sur les deux sources de rendu.
+- Export : build-ground-equipment.cjs, 133 modèles, 133 PNG distincts.
+- Couverture : 61 armes à distance, 40 armes de mêlée, 32 armures.
+- Les 133 fichiers de définition référencés par le catalogue existent.
+- Toutes les grilles exportées font 32 x 32 avec fond transparent et contenu.
+  Aucun pixel opaque ne touche un bord de la case ; aucune silhouette vide.
+- Dans le navigateur, sélection des 133 modèles par leurs listes : chaque
+  cible porte le bon identifiant et le bon nom, possède son illustration
+  source et laisse quatre lignes dans l'inventaire de démonstration.
+  Résultat : 133 sélections contrôlées, zéro échec.
+- Le catalogue affiche 133 comparaisons et le filtre armures en affiche 32.
+- Ramassage et remise au sol du Brenek contrôlés dans le navigateur :
+  l'inventaire passe à deux exemplaires, puis revient à un après la remise.
+- Bascule Ombres contrôlée : le rendu passe de true à false puis à true.
+- Inspection visuelle sur asphalte, béton et métal : objets à 32 pixels,
+  palette chaude/ivoire/olive/charbon et accents des références d'inventaire.
+- Personnages et bestiaire : sources classes-face-v1.png et
+  bestiaire-face-v2.png conservées, ombres tracées derrière leurs pieds.
+
+Il s'agit d'une validation de couverture et de fonctionnement de l'aperçu.
+La qualité et la lisibilité de chaque proposition restent à juger par
+l'utilisateur. Les illustrations d'inventaire ne sont pas présentées comme
+de nouveaux dessins natifs ; elles gardent leur résolution d'origine.

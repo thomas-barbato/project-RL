@@ -7,6 +7,7 @@ use crate::suspension::{
     self, CrashRecovery, RecordedCommand, RecoveryPayload, SavedPackage, Suspension,
 };
 use crate::terminal_view::{
+    ActorAppearance, ModuleFacing, ModuleKind, PlayerAppearance, PlayerWeaponPose,
     TerminalAlertKind, TerminalAttackPreview, TerminalDrawOptions, TerminalOverlay,
     TerminalStatusIcon, TerminalTargetAnalysis, TerminalTargetSummary, TerminalView,
     approximate_direction, player_location_name, terminal_status_panel,
@@ -91,6 +92,8 @@ mod equipment_affix_names;
 #[cfg(debug_assertions)]
 #[path = "performance_capture.rs"]
 mod performance_capture;
+#[path = "recovery_worker.rs"]
+mod recovery_worker;
 #[path = "ux.rs"]
 mod ux;
 #[path = "world_context.rs"]
@@ -220,6 +223,8 @@ const CARRIED_WEAPON_GENERATION_VERSION: u8 = EQUIPMENT_COMMERCE_GENERATION_VERS
 mod equipment_commerce;
 #[path = "equipment_generation.rs"]
 mod equipment_generation;
+#[path = "equipment_upgrade_app.rs"]
+mod equipment_upgrade_app;
 #[path = "surface_density.rs"]
 mod surface_density;
 const SURFACE_DENSITY_GENERATION_VERSION: u8 = CARRIED_WEAPON_GENERATION_VERSION + 1;
@@ -244,11 +249,28 @@ const CLASS_WEAPON_SUPPLIES_GENERATION_VERSION: u8 = MAINTAINED_ENERGY_GENERATIO
 const TACTICAL_WEAPON_FAMILIES_GENERATION_VERSION: u8 =
     CLASS_WEAPON_SUPPLIES_GENERATION_VERSION + 1;
 const ARSENAL_GENERATION_VERSION: u8 = TACTICAL_WEAPON_FAMILIES_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = ARSENAL_GENERATION_VERSION;
+const FIREARM_MODELS_GENERATION_VERSION: u8 = ARSENAL_GENERATION_VERSION + 1;
+const MELEE_MODELS_GENERATION_VERSION: u8 = FIREARM_MODELS_GENERATION_VERSION + 1;
+const SWORD_MODELS_GENERATION_VERSION: u8 = MELEE_MODELS_GENERATION_VERSION + 1;
+const REINFORCED_ARMOR_GENERATION_VERSION: u8 = SWORD_MODELS_GENERATION_VERSION + 1;
+const ACCESSORY_MODELS_GENERATION_VERSION: u8 = REINFORCED_ARMOR_GENERATION_VERSION + 1;
+const BONUS_RARITY_GENERATION_VERSION: u8 = ACCESSORY_MODELS_GENERATION_VERSION + 1;
+const EQUIPMENT_UPGRADE_GENERATION_VERSION: u8 = BONUS_RARITY_GENERATION_VERSION + 1;
+const DENSE_SURFACE_GENERATION_VERSION: u8 = EQUIPMENT_UPGRADE_GENERATION_VERSION + 1;
+const RANDOM_HOME_GENERATION_VERSION: u8 = DENSE_SURFACE_GENERATION_VERSION + 1;
+const CITY_DECOR_GENERATION_VERSION: u8 = RANDOM_HOME_GENERATION_VERSION + 1;
+const CITY_LIFE_AND_LOOT_GENERATION_VERSION: u8 = CITY_DECOR_GENERATION_VERSION + 1;
+const MONSTER_REWARDS_GENERATION_VERSION: u8 = CITY_LIFE_AND_LOOT_GENERATION_VERSION + 1;
+const IRREVERSIBLE_LAYERS_GENERATION_VERSION: u8 = MONSTER_REWARDS_GENERATION_VERSION + 1;
+const INSTALLATION_INTERACTIONS_GENERATION_VERSION: u8 = IRREVERSIBLE_LAYERS_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = INSTALLATION_INTERACTIONS_GENERATION_VERSION;
 #[path = "bestiary_batch_app.rs"]
 mod bestiary_batch;
 #[path = "cave_anemone_app.rs"]
 mod cave_anemone;
+#[cfg(test)]
+#[path = "city_feedback_tests.rs"]
+mod city_feedback_tests;
 #[cfg(test)]
 #[path = "combat_balance_app.rs"]
 mod combat_balance_tests;
@@ -275,8 +297,18 @@ pub(crate) mod first_layer_landscapes;
 #[path = "first_layer_plan_tests.rs"]
 mod first_layer_plan_tests;
 #[cfg(test)]
+#[path = "gameplay_review_tests.rs"]
+mod gameplay_review_tests;
+#[cfg(test)]
 #[path = "generated_survival_tests.rs"]
 mod generated_survival_tests;
+#[path = "hub_layout_app.rs"]
+mod hub_layout_app;
+#[cfg(test)]
+#[path = "hub_layout_tests.rs"]
+mod hub_layout_tests;
+#[path = "installation_interactions_app.rs"]
+mod installation_interactions_app;
 #[cfg(test)]
 #[path = "layer_balance_app.rs"]
 mod layer_balance_tests;
@@ -288,8 +320,21 @@ mod marsh_spitter;
 #[cfg(any(test, debug_assertions))]
 #[path = "mixed_encounters_app.rs"]
 mod mixed_encounters;
+#[path = "playable_trial_app.rs"]
+mod playable_trial;
 #[path = "strange_fauna_app.rs"]
 mod strange_fauna;
+#[cfg(test)]
+#[path = "surface_density_tests.rs"]
+mod surface_density_tests;
+#[path = "tactical_reading_app.rs"]
+mod tactical_reading_app;
+#[cfg(debug_assertions)]
+#[path = "tactical_reading_capture.rs"]
+mod tactical_reading_capture;
+#[cfg(debug_assertions)]
+#[path = "tactical_reading_proposal.rs"]
+mod tactical_reading_proposal;
 const _: () = assert!(CURRENT_GENERATION_VERSION == suspension::MAX_GENERATION_VERSION);
 
 #[path = "arsenal_app.rs"]
@@ -459,6 +504,9 @@ enum InventoryGlyph {
     RangedWeapon,
     FlameProjector,
     Armor,
+    Helmet,
+    Gloves,
+    Boots,
     Consumable,
     Material,
     Unknown,
@@ -500,6 +548,7 @@ enum CharacterCreationHover {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 struct CharacterCreation {
+    seed: u64,
     stage: CharacterCreationStage,
     selected_class: usize,
     selected_attribute: usize,
@@ -532,6 +581,7 @@ struct InventoryLayout {
     character_details: Option<Rect>,
     first_visible: usize,
     visible_rows: usize,
+    maximum_first: usize,
 }
 
 /// Dedicated, non-overlapping lanes for feedback, the item name and its glyph.
@@ -560,12 +610,24 @@ impl InventoryLayout {
         Self::with_equipment(width, height, selection, count, 0)
     }
 
+    #[cfg(test)]
     fn with_equipment(
         width: f32,
         height: f32,
         selection: usize,
         count: usize,
         equipped_count: usize,
+    ) -> Self {
+        Self::with_scroll(width, height, selection, count, equipped_count, None)
+    }
+
+    fn with_scroll(
+        width: f32,
+        height: f32,
+        selection: usize,
+        count: usize,
+        equipped_count: usize,
+        scroll: Option<usize>,
     ) -> Self {
         let margin = 32.0;
         let top = 30.0;
@@ -586,19 +648,28 @@ impl InventoryLayout {
         let heading_height = 25.0;
         let equipped_count = equipped_count.min(count);
         let selected = selection.min(count.saturating_sub(1));
-        let mut first_visible = selected;
-        while first_visible > 0 {
-            let previous = first_visible - 1;
-            let headings = if previous < equipped_count && selected >= equipped_count {
-                2.0
-            } else {
-                1.0
-            };
-            if (selected - previous + 1) as f32 * row_height + headings * heading_height > list.h {
-                break;
+        let first_for = |selected: usize| {
+            let mut first_visible = selected;
+            while first_visible > 0 {
+                let previous = first_visible - 1;
+                let headings = if previous < equipped_count && selected >= equipped_count {
+                    2.0
+                } else {
+                    1.0
+                };
+                if (selected - previous + 1) as f32 * row_height + headings * heading_height
+                    > list.h
+                {
+                    break;
+                }
+                first_visible = previous;
             }
-            first_visible = previous;
-        }
+            first_visible
+        };
+        let maximum_first = first_for(count.saturating_sub(1));
+        let first_visible = scroll
+            .unwrap_or_else(|| first_for(selected))
+            .min(maximum_first);
         let mut rows = Vec::new();
         let mut sections = Vec::new();
         let mut y = list.y;
@@ -678,7 +749,25 @@ impl InventoryLayout {
             character_details,
             first_visible,
             visible_rows,
+            maximum_first,
         }
+    }
+
+    fn scrollbar(&self, count: usize) -> Option<(Rect, Rect)> {
+        if self.maximum_first == 0 {
+            return None;
+        }
+        let track = Rect::new(self.list.right() + 2.0, self.list.y, 8.0, self.list.h);
+        // A stable thumb size also keeps dragging smooth across section headings.
+        let thumb_h =
+            (track.h * (count - self.maximum_first) as f32 / count as f32).clamp(20.0, track.h);
+        let thumb_y =
+            track.y + (track.h - thumb_h) * self.first_visible as f32 / self.maximum_first as f32;
+        Some((track, Rect::new(track.x, thumb_y, track.w, thumb_h)))
+    }
+
+    fn scroll_hit(&self, point: (f32, f32)) -> bool {
+        Rect::new(self.list.right(), self.list.y, 12.0, self.list.h).contains(point.into())
     }
 }
 
@@ -1320,6 +1409,12 @@ struct ContextMenu {
     selected: usize,
 }
 
+#[derive(Clone, Copy, Debug, Default)]
+struct NpcArtState {
+    facing: ModuleFacing,
+    attack_slot: u8,
+}
+
 pub struct AsciiApp {
     world_context: Option<world_context::WorldContextMenu>,
     mouse_walk: Option<world_context::MouseWalk>,
@@ -1334,6 +1429,8 @@ pub struct AsciiApp {
     zone_views: BTreeMap<project_rl::content::ContentId, TerminalView>,
     zone_decor: BTreeMap<project_rl::content::ContentId, crate::test_sector::SectorDecor>,
     facing: Direction,
+    player_art_facing: ModuleFacing,
+    npc_art: BTreeMap<EntityId, NpcArtState>,
     rules: GameRules,
     character_classes: CharacterClassCatalog,
     character_class: Option<CharacterClassId>,
@@ -1346,6 +1443,7 @@ pub struct AsciiApp {
     regional_zones: BTreeMap<ContentId, RegionCoord>,
     generation_version: u8,
     seed: u64,
+    home_placement: crate::hub_layout::HomePlacement,
     actor_glyphs: BTreeMap<EntityId, char>,
     intro_city_reached: bool,
     selected_target: Option<EntityId>,
@@ -1362,6 +1460,8 @@ pub struct AsciiApp {
     active_weapon_slot: u8,
     inventory_open: bool,
     inventory_selection: usize,
+    inventory_scroll: Option<usize>,
+    inventory_scroll_drag: Option<f32>,
     inventory_filter: InventoryFilter,
     inventory_sort: InventorySort,
     inventory_message: String,
@@ -1383,16 +1483,19 @@ pub struct AsciiApp {
     report_scroll: usize,
     quest_journal_open: bool,
     quest_journal_selection: usize,
+    installation_menu: Option<installation_interactions_app::InstallationMenu>,
     npc_interaction: Option<EntityId>,
     npc_dialogue_services: bool,
     npc_interaction_message: String,
     npc_interaction_mode: NpcInteractionMode,
     npc_trade_mode: NpcTradeMode,
     npc_trade_selection: usize,
+    upgrade_confirmation: Option<(EntityId, ItemInstanceId)>,
     npc_quest_selection: usize,
     context_menu: Option<ContextMenu>,
     legend_open: bool,
     npc_vision_overlay_open: bool,
+    tactical_projection: std::cell::RefCell<tactical_reading_app::TacticalCache>,
     controls: Controls,
     movement_repeat: controls::MovementRepeater,
     menu_repeat: controls::MenuRepeater,
@@ -1419,13 +1522,20 @@ pub struct AsciiApp {
     crash_recovery_enabled: bool,
     crash_recovery_sequence: u64,
     last_crash_recovery_command_count: usize,
+    last_crash_recovery_attempt_count: usize,
+    crash_recovery_worker: recovery_worker::RecoveryWorker,
     session_lock: Option<std::fs::File>,
 }
 
 impl AsciiApp {
     pub fn new() -> Result<Self, String> {
+        Self::new_with_session_path(controls::config_path().with_file_name("city-test-run.json"))
+    }
+
+    fn new_with_session_path(suspension_path: std::path::PathBuf) -> Result<Self, String> {
         let (rules, texts, loot, expeditions) = ascii_game_content()?;
         let mut app = Self::from_seed(INITIAL_SEED, rules, texts, loot, expeditions)?;
+        app.suspension_path = suspension_path;
         let (bindings, message) = Controls::load(&app.controls_path, controls::detect_layout());
         app.controls = bindings;
         app.options_message = message;
@@ -1617,6 +1727,162 @@ impl AsciiApp {
     }
 
     #[cfg(debug_assertions)]
+    fn prepare_lighting_diagnostic(&mut self) -> Result<(), String> {
+        use crate::test_sector::Decor;
+        use project_rl::world::{DoorState, FieldOfViewRules};
+        let mut map = project_rl::world::Map::filled(20, 12, Terrain::Floor)
+            .map_err(|error| error.to_string())?;
+        for y in 0..12 {
+            for x in 0..20 {
+                if x == 0 || y == 0 || x == 19 || y == 11 || x == 11 {
+                    map.set_terrain(GridPos::new(x, y), Terrain::Wall)
+                        .map_err(|e| e.to_string())?;
+                }
+            }
+        }
+        let mut decor = SectorDecor::default();
+        for (at, kind) in [
+            (GridPos::new(3, 3), Decor::Server),
+            (GridPos::new(10, 4), Decor::Server),
+            (GridPos::new(13, 4), Decor::Server),
+            (GridPos::new(6, 8), Decor::DataTerminalOnline),
+            (GridPos::new(3, 8), Decor::DataTerminalOffline),
+        ] {
+            map.set_terrain(at, Terrain::Wall)
+                .map_err(|e| e.to_string())?;
+            decor.cells.insert(at, kind);
+        }
+        map.set_terrain(
+            GridPos::new(8, 2),
+            Terrain::ControlPanel {
+                door: GridPos::new(11, 6),
+                activated: false,
+            },
+        )
+        .map_err(|e| e.to_string())?;
+        map.set_terrain(GridPos::new(11, 6), Terrain::Door(DoorState::Closed))
+            .map_err(|e| e.to_string())?;
+        let mut game =
+            GameState::new_with_rules(map, GridPos::new(7, 6), INITIAL_SEED, self.rules.clone())
+                .map_err(|e| e.to_string())?;
+        self.actor_glyphs.clear();
+        self.npc_art.clear();
+        for (at, relation, glyph) in [
+            (GridPos::new(5, 5), PlayerRelation::Neutral, 'i'),
+            (GridPos::new(9, 8), PlayerRelation::Hostile, 'd'),
+        ] {
+            let actor = Actor::new(at, 12)
+                .map_err(|e| e.to_string())?
+                .with_player_relation(relation)
+                .with_ai(AiProfile::idle());
+            let actor = if relation == PlayerRelation::Hostile {
+                actor.with_attack(AttackProfile::melee(DamageType::Kinetic, 2))
+            } else {
+                actor
+            };
+            let id = game.spawn_actor(actor).map_err(|e| e.to_string())?;
+            self.actor_glyphs.insert(id, glyph);
+            self.npc_art.insert(
+                id,
+                NpcArtState {
+                    facing: ModuleFacing::Left,
+                    attack_slot: 0,
+                },
+            );
+        }
+        game.drain_events();
+        // Remembered neighbouring room tests that its apparatus stays unlit.
+        let mut memory = project_rl::world::VisibilityState::default();
+        memory.recompute(
+            game.map(),
+            GridPos::new(14, 6),
+            FieldOfViewRules {
+                radius: 30,
+                distance_metric: DistanceMetric::Euclidean,
+                block_closed_corners: true,
+            },
+        );
+        self.terminal = TerminalView::new(decor, game.map(), &memory);
+        self.terminal.observe(game.map(), game.player_visibility());
+        self.terminal.title = "Éclairage local · atelier".to_owned();
+        self.game = WorldState::single(game);
+        self.player_art_facing = ModuleFacing::Up;
+        self.installation_menu = None;
+        self.npc_interaction = None;
+        self.selected_target = None;
+        self.npc_vision_overlay_open = false;
+        Ok(())
+    }
+
+    #[cfg(debug_assertions)]
+    fn prepare_module_diagnostic(&mut self, facing: ModuleFacing) -> Result<(), String> {
+        let map = project_rl::world::Map::from_ascii(
+            "############\n#..........#\n#..........#\n#..........#\n#..........#\n############",
+        )
+        .map_err(|error| error.to_string())?;
+        let mut game =
+            GameState::new_with_rules(map, GridPos::new(5, 3), INITIAL_SEED, self.rules.clone())
+                .map_err(|error| error.to_string())?;
+        let ranged = AttackProfile::new(
+            5,
+            DistanceMetric::Euclidean,
+            true,
+            DamageType::Kinetic,
+            2,
+            0,
+        );
+        let melee = AttackProfile::melee(DamageType::Kinetic, 2);
+        let mut glyphs = BTreeMap::new();
+        self.npc_art.clear();
+        for (position, relation, attack, glyph) in [
+            (GridPos::new(3, 2), PlayerRelation::Neutral, None, 'i'),
+            (
+                GridPos::new(7, 3),
+                PlayerRelation::Hostile,
+                Some(melee),
+                'd',
+            ),
+            (
+                GridPos::new(9, 2),
+                PlayerRelation::Hostile,
+                Some(ranged),
+                'r',
+            ),
+        ] {
+            let mut actor = Actor::new(position, 12)
+                .map_err(|error| error.to_string())?
+                .with_player_relation(relation)
+                .with_ai(AiProfile::idle());
+            if let Some(attack) = attack {
+                actor = actor.with_attack(attack);
+                if glyph == 'r' {
+                    actor = actor.with_attack(melee);
+                }
+            }
+            let entity = game.spawn_actor(actor).map_err(|error| error.to_string())?;
+            glyphs.insert(entity, glyph);
+            self.npc_art.insert(
+                entity,
+                NpcArtState {
+                    facing,
+                    attack_slot: 0,
+                },
+            );
+        }
+        game.drain_events();
+        self.terminal =
+            TerminalView::new(SectorDecor::default(), game.map(), game.player_visibility());
+        self.terminal.title = "Modules · joueur et NPC".to_owned();
+        self.game = WorldState::single(game);
+        self.actor_glyphs = glyphs;
+        self.player_art_facing = facing;
+        self.installation_menu = None;
+        self.npc_interaction = None;
+        self.npc_vision_overlay_open = false;
+        Ok(())
+    }
+
+    #[cfg(debug_assertions)]
     fn prepare_tactical_vision_diagnostic(&mut self) -> Result<(), String> {
         let map = project_rl::world::Map::from_ascii(
             "####################\n#.......#..........#\n#.......#..........#\n#.......#..........#\n#..................#\n#.......#..........#\n#.......#..........#\n#.......#..........#\n####################",
@@ -1690,6 +1956,7 @@ impl AsciiApp {
         self.actor_glyphs.insert(hostile, 'd');
         self.actor_glyphs.insert(merchant, 'm');
         self.actor_glyphs.insert(resident, 'i');
+        self.installation_menu = None;
         self.npc_interaction = None;
         self.npc_vision_overlay_open = true;
         Ok(())
@@ -2110,6 +2377,7 @@ impl AsciiApp {
         self.game = world;
         self.actor_glyphs.clear();
         self.facing = Direction::East;
+        self.installation_menu = None;
         self.npc_interaction = None;
         self.npc_interaction_message.clear();
         Ok(())
@@ -2241,6 +2509,7 @@ impl AsciiApp {
             .observe(self.game.map(), self.game.player_visibility());
         self.actor_glyphs.clear();
         self.facing = Direction::North;
+        self.installation_menu = None;
         self.npc_interaction = None;
         self.npc_interaction_message.clear();
         Ok(())
@@ -2377,6 +2646,7 @@ impl AsciiApp {
         self.inventory_open = true;
         self.inventory_message =
             "Le droit de prise est acquis ; le lot conserve son attribution.".to_owned();
+        self.installation_menu = None;
         self.npc_interaction = None;
         self.npc_interaction_message.clear();
         Ok(())
@@ -2584,6 +2854,7 @@ impl AsciiApp {
         self.actor_glyphs.clear();
         self.facing = Direction::East;
         self.inventory_open = false;
+        self.installation_menu = None;
         self.npc_interaction = None;
         self.npc_interaction_message.clear();
         self.capture_events_at(Some(replay_time));
@@ -2667,6 +2938,7 @@ impl AsciiApp {
         self.game = world;
         self.actor_glyphs.clear();
         self.facing = Direction::North;
+        self.installation_menu = None;
         self.npc_interaction = None;
         self.npc_interaction_message.clear();
         Ok(())
@@ -2833,7 +3105,31 @@ impl AsciiApp {
     pub async fn capture_cold_start(output: &std::path::Path, scene: &str) -> Result<(), String> {
         std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
         let (rules, texts, loot, expeditions) = ascii_game_content()?;
-        let mut app = Self::from_seed(INITIAL_SEED, rules, texts, loot, expeditions)?;
+        let preview_side = [
+            ("home-north", Direction::North),
+            ("home-east", Direction::East),
+            ("home-south", Direction::South),
+            ("home-west", Direction::West),
+        ]
+        .into_iter()
+        .find_map(|(prefix, side)| scene.starts_with(prefix).then_some(side));
+        let preview_seed = preview_side.map_or(INITIAL_SEED, |side| {
+            (1..=64)
+                .find(|seed| crate::hub_layout::HomePlacement::for_seed(*seed).side == side)
+                .unwrap()
+        });
+        let mut app = if scene.starts_with("surface-before") {
+            Self::from_seed_version(
+                INITIAL_SEED,
+                rules,
+                texts,
+                loot,
+                expeditions,
+                EQUIPMENT_UPGRADE_GENERATION_VERSION,
+            )?
+        } else {
+            Self::from_seed(preview_seed, rules, texts, loot, expeditions)?
+        };
         app.suspension_path = output.join("diagnostic-run.json");
         app.graphics.active.mode = WindowMode::Windowed;
         for _ in 0..60 {
@@ -2851,7 +3147,180 @@ impl AsciiApp {
         } else {
             (scene, None)
         };
+        let (scene, theme) = [
+            ("-blue", graphics::InterfaceTheme::Blue),
+            ("-violet", graphics::InterfaceTheme::Violet),
+            ("-green", graphics::InterfaceTheme::Green),
+            ("-red", graphics::InterfaceTheme::Red),
+        ]
+        .into_iter()
+        .find_map(|(suffix, theme)| scene.strip_suffix(suffix).map(|base| (base, theme)))
+        .unwrap_or((scene, graphics::InterfaceTheme::default()));
+        app.graphics.active.interface_theme = theme;
+        let (scene, cell_size) = [
+            ("-cell16", 16),
+            ("-cell20", 20),
+            ("-cell24", 24),
+            ("-cell32", 32),
+            ("-cell40", 40),
+            ("-cell48", 48),
+        ]
+        .into_iter()
+        .find_map(|(suffix, cell)| scene.strip_suffix(suffix).map(|base| (base, cell)))
+        .unwrap_or((scene, GraphicsSettings::default().world_cell_px));
+        app.graphics.active.world_cell_px = cell_size;
+        if scene == "player-art" {
+            request_new_screen_size(1280.0, 620.0);
+            for _ in 0..3 {
+                app.terminal.draw_debug_player_art();
+                next_frame().await;
+            }
+            app.terminal.draw_debug_player_art();
+            crate::ui_capture::framebuffer()?.export_png(
+                output
+                    .join("cold-start.png")
+                    .to_str()
+                    .ok_or("Chemin non UTF-8")?,
+            );
+            return Ok(());
+        }
+        if matches!(
+            scene,
+            "floor-palette" | "floor-palette-depth" | "floor-palette-walls"
+        ) {
+            let page = match scene {
+                "floor-palette-depth" => 1,
+                "floor-palette-walls" => 2,
+                _ => 0,
+            };
+            for _ in 0..3 {
+                crate::terminal_view::draw_debug_floor_palette(page);
+                next_frame().await;
+            }
+            crate::terminal_view::draw_debug_floor_palette(page);
+            crate::ui_capture::framebuffer()?.export_png(
+                output
+                    .join("cold-start.png")
+                    .to_str()
+                    .ok_or("Chemin non UTF-8")?,
+            );
+            return Ok(());
+        }
+        if matches!(scene, "city-decor-palette" | "city-visual-proposal") {
+            for _ in 0..3 {
+                if scene == "city-visual-proposal" {
+                    app.terminal.draw_debug_city_proposal();
+                } else {
+                    app.terminal.draw_debug_city_palette();
+                }
+                next_frame().await;
+            }
+            if scene == "city-visual-proposal" {
+                app.terminal.draw_debug_city_proposal();
+            } else {
+                app.terminal.draw_debug_city_palette();
+            }
+            crate::ui_capture::framebuffer()?.export_png(
+                output
+                    .join("cold-start.png")
+                    .to_str()
+                    .ok_or("Chemin non UTF-8")?,
+            );
+            return Ok(());
+        }
+        if matches!(scene, "surface-plan" | "surface-before-plan")
+            || (scene.starts_with("home-") && scene.ends_with("-plan"))
+        {
+            if let Some((width, height, _)) = size {
+                request_new_screen_size(width, height);
+                for _ in 0..3 {
+                    next_frame().await;
+                }
+            }
+            for _ in 0..3 {
+                app.terminal.draw_debug_overview(&app.game);
+                next_frame().await;
+            }
+            app.terminal.draw_debug_overview(&app.game);
+            crate::ui_capture::framebuffer()?.export_png(
+                output
+                    .join("cold-start.png")
+                    .to_str()
+                    .ok_or("Chemin non UTF-8")?,
+            );
+            let buildings = app
+                .terminal
+                .decor
+                .zones
+                .iter()
+                .filter(|z| {
+                    matches!(
+                        z.name.as_str(),
+                        "Atelier abandonné"
+                            | "Entrepôt de surface"
+                            | "Local technique"
+                            | "Bloc urbain"
+                    )
+                })
+                .count();
+            let report = serde_json::json!({"generation": app.generation_version,
+                "size": [app.game.map().width(), app.game.map().height()],
+                "new_buildings": buildings,
+                "seed": app.seed,
+                "interior_edge": format!("{:?}", app.home_layout().side),
+                "interior_bounds": app.home_layout().rectangle([1,1,62,44]),
+                "player_start": app.game.player_position().map(|p| [p.x,p.y]),
+                "regional_passages": app.home_regional_passages().iter().map(|(d,p)|
+                    (format!("{d:?}"),[p.x,p.y])).collect::<Vec<_>>(),
+                "blocking_cells": app.terminal.decor.cells.values().filter(|d| d.blocks()).count(),
+                "source": "Native debug overview; complete map, outside ordinary gameplay."});
+            std::fs::write(
+                output.join("layout.json"),
+                serde_json::to_vec_pretty(&report).map_err(|e| e.to_string())?,
+            )
+            .map_err(|e| e.to_string())?;
+            return Ok(());
+        }
         match scene {
+            "layer-descent" | "layer-return-closed" => {
+                let passage = TestSector::EXPANDED_EXPEDITION_PASSAGE;
+                app.walk_fixture_to(passage.step(Direction::West))?;
+                let selected = if scene == "layer-return-closed" {
+                    if app.execute_command(GameCommand::Interact { target: passage })
+                        != CommandOutcome::Applied
+                    {
+                        return Err("Descente de diagnostic refusée".into());
+                    }
+                    app.capture_events_at(Some(0.0));
+                    app.game.player_position().ok_or("Arrivée absente")?
+                } else {
+                    passage
+                };
+                app.select_world_target(Some(selected));
+            }
+            "surface-before" => {
+                app.walk_fixture_to(GridPos::new(65, 51))?;
+            }
+            "surface-dense" => {
+                app.begin_character_creation_with_seed(false, app.seed)?;
+                let creation = app
+                    .character_creation
+                    .clone()
+                    .ok_or("Création de diagnostic absente")?;
+                app.rebuild_run_with_character_class(&creation)?;
+                app.open_menu(MenuScreen::Hidden);
+                app.walk_fixture_to(app.home_position(GridPos::new(27, 23)))?;
+                app.walk_fixture_to_unchecked_near(GridPos::new(76, 51), true, 3, true)?;
+            }
+            "playtest-main"
+            | "playtest-creation"
+            | "playtest-town"
+            | "playtest-outside"
+            | "playtest-underground"
+            | "playtest-return" => {
+                app.suspension_path = output.join(playable_trial::SAVE_NAME);
+                app.prepare_playable_trial_capture(scene)?;
+            }
             "ux-end" => {
                 app.prepare_end_diagnostic()?;
             }
@@ -2880,7 +3349,7 @@ impl AsciiApp {
                     .rebind(Action::Legend, controls::Binding::key("F7"))?;
                 app.legend_open = true;
             }
-            "ux-symbols" => {
+            "ux-symbols" | "ux-symbols-bottom" => {
                 app.legend_open = true;
                 app.ux.help_tab = 1;
             }
@@ -3037,7 +3506,48 @@ impl AsciiApp {
                     return Err("Éclaireuse absente".into());
                 }
             }
+            "lighting" | "lighting-off" | "lighting-fixed" | "lighting-reduced" => {
+                app.prepare_lighting_diagnostic()?;
+                crate::terminal_view::set_debug_lighting(
+                    scene != "lighting-off",
+                    scene == "lighting-fixed",
+                    Some(1.25),
+                );
+                app.graphics.active.reduced_motion = scene == "lighting-reduced";
+            }
+            "npc-modules-left" | "npc-modules-right" | "npc-modules-up" | "npc-modules-down" => {
+                let facing = match scene {
+                    "npc-modules-left" => ModuleFacing::Left,
+                    "npc-modules-up" => ModuleFacing::Up,
+                    "npc-modules-down" => ModuleFacing::Down,
+                    _ => ModuleFacing::Right,
+                };
+                app.prepare_module_diagnostic(facing)?;
+            }
+            "player-melee-left"
+            | "player-melee-right"
+            | "player-ranged-left"
+            | "player-ranged-right" => {
+                app.active_weapon_slot = if scene.contains("ranged") { 2 } else { 0 };
+                if app
+                    .game
+                    .equipped_player_weapon(app.active_weapon_slot)
+                    .is_none()
+                {
+                    return Err("Arme de diagnostic du joueur absente".into());
+                }
+                app.set_facing(if scene.ends_with("left") {
+                    Direction::West
+                } else {
+                    Direction::East
+                });
+            }
             "game" => {}
+            "road-city" => {
+                app.walk_fixture_to(app.home_position(GridPos::new(17, 22)))?;
+                app.capture_events_at(Some(0.0));
+                app.selected_target = None;
+            }
             "game-hover" => {
                 app.menu_focus.hovered = Some(QUEST_JOURNAL_FOCUS);
                 app.hud_action_hover[1] = 1.0;
@@ -3146,6 +3656,60 @@ impl AsciiApp {
             "generated-equipment" | "deep-equipment" => {
                 app.prepare_generated_equipment_diagnostic(scene == "deep-equipment")?
             }
+            "melee-equipment" => app.prepare_generated_equipment_model_diagnostic(
+                true,
+                Some("core:melee_dague_a_rouelles"),
+            )?,
+            "reinforced-armor" => app.prepare_generated_equipment_model_diagnostic(
+                true,
+                Some("core:combinaison_fantome"),
+            )?,
+            "accessory-equipment" => app.prepare_accessory_equipment_diagnostic()?,
+            "rarity-equipment" => app.prepare_rarity_equipment_diagnostic()?,
+            "equipment-upgrade" | "equipment-upgrade-confirm" | "equipment-upgrade-result" => {
+                app.prepare_equipment_upgrade_diagnostic()?;
+                if scene != "equipment-upgrade" {
+                    let provider = app.npc_interaction.unwrap();
+                    let input = InputFrame {
+                        pressed: [app.controls.binding(Action::Learn).clone()]
+                            .into_iter()
+                            .collect(),
+                        ..InputFrame::default()
+                    };
+                    app.update_equipment_upgrade(&input, provider);
+                    if scene == "equipment-upgrade-result" {
+                        app.update_equipment_upgrade(&input, provider);
+                    }
+                }
+            }
+            "inventory-scroll" => {
+                app.open_menu(MenuScreen::Main);
+                app.enter_test_lab()?;
+                app.inventory_open = true;
+                let (width, height, _) = size.unwrap_or((1280.0, 800.0, 100));
+                let count = app.inventory_entries().len();
+                let layout = InventoryLayout::with_scroll(
+                    width,
+                    height,
+                    0,
+                    count,
+                    app.inventory_equipped_count(),
+                    None,
+                );
+                let (track, _) = layout.scrollbar(count).ok_or("Liste trop courte")?;
+                app.update_input(&InputFrame {
+                    viewport: Some((width, height)),
+                    pointer: Some((track.x + track.w / 2.0, track.y + track.h / 2.0)),
+                    pressed: [controls::Binding::MouseLeft].into(),
+                    ..InputFrame::default()
+                });
+                if app.inventory_scroll.unwrap_or(0) == 0 {
+                    return Err("La barre d'inventaire ne défile pas".into());
+                }
+            }
+            "sword-equipment" => {
+                app.prepare_generated_equipment_model_diagnostic(true, Some("core:melee_espadon"))?
+            }
             scene if scene.starts_with("world-context-") => {
                 app.prepare_arsenal_diagnostic("arsenal-grenade-preview")?;
                 if scene.contains("-route") {
@@ -3192,6 +3756,59 @@ impl AsciiApp {
             }
             "enemy-loot" | "enemy-loot-inventory" => {
                 app.prepare_enemy_loot_diagnostic(scene.ends_with("inventory"))?
+            }
+            "monster-rewards" => app.prepare_monster_reward_diagnostic()?,
+            "vision-circle"
+            | "vision-circle-memory"
+            | "vision-shadows"
+            | "vision-shadows-memory" => {
+                let mut map = project_rl::world::Map::filled(48, 36, Terrain::Floor)
+                    .map_err(|e| e.to_string())?;
+                if scene.starts_with("vision-shadows") {
+                    for p in [
+                        GridPos::new(27, 16),
+                        GridPos::new(27, 17),
+                        GridPos::new(27, 18),
+                        GridPos::new(21, 21),
+                        GridPos::new(22, 21),
+                    ] {
+                        map.set_terrain(p, Terrain::Wall)
+                            .map_err(|e| e.to_string())?;
+                    }
+                }
+                let game = GameState::new_with_rules(
+                    map,
+                    GridPos::new(24, 18),
+                    141,
+                    app.game.rules().clone(),
+                )
+                .map_err(|e| e.to_string())?;
+                app.terminal = TerminalView::new(
+                    crate::test_sector::SectorDecor::default(),
+                    game.map(),
+                    game.player_visibility(),
+                );
+                if scene.ends_with("-memory") {
+                    // Synthetic prior visits reproduce the edge against known
+                    // terrain. The live perception radius and rules stay intact.
+                    let mut previously_seen = project_rl::world::VisibilityState::default();
+                    for dy in [-4, 0, 4] {
+                        for dx in [-4, 0, 4] {
+                            previously_seen.recompute(
+                                game.map(),
+                                GridPos::new(24 + dx, 18 + dy),
+                                game.rules().player_field_of_view,
+                            );
+                            app.terminal.observe(game.map(), &previously_seen);
+                        }
+                    }
+                }
+                app.game = WorldState::single(game);
+                app.actor_glyphs.clear();
+                app.selected_target = None;
+                app.intro_city_reached = true;
+                app.log =
+                    vec!["Diagnostic du cercle de vision · règles de perception inchangées".into()];
             }
             "shared-matter"
             | "shared-matter-960"
@@ -3435,7 +4052,7 @@ impl AsciiApp {
             "controls" => app.open_menu(MenuScreen::Controls),
             "legend" => app.legend_open = true,
             "character" => {
-                app.begin_character_creation(false)?;
+                app.begin_character_creation_with_seed(false, app.seed)?;
                 let creation = app
                     .character_creation
                     .take()
@@ -3443,9 +4060,9 @@ impl AsciiApp {
                 app.rebuild_run_with_character_class(&creation)?;
                 app.character_open = true;
             }
-            "character-creation" => app.begin_character_creation(false)?,
+            "character-creation" => app.begin_character_creation_with_seed(false, app.seed)?,
             "character-attributes" => {
-                app.begin_character_creation(false)?;
+                app.begin_character_creation_with_seed(false, app.seed)?;
                 if let Some(creation) = &mut app.character_creation {
                     creation.stage = CharacterCreationStage::Attributes;
                 }
@@ -3713,7 +4330,8 @@ impl AsciiApp {
                 app.walk_expedition_fixture(1)?;
             }
             "regional" => {
-                let passage = TestSector::EXPANDED_REGIONAL_PASSAGES
+                let passage = app
+                    .home_regional_passages()
                     .into_iter()
                     .find_map(|(direction, passage)| {
                         (direction == Direction::West).then_some(passage)
@@ -3732,7 +4350,8 @@ impl AsciiApp {
             | "regional-depth-three"
             | "regional-depth-four"
             | "regional-depth-five" => {
-                let passage = TestSector::EXPANDED_REGIONAL_PASSAGES
+                let passage = app
+                    .home_regional_passages()
                     .into_iter()
                     .find_map(|(direction, passage)| {
                         (direction == Direction::West).then_some(passage)
@@ -3943,7 +4562,8 @@ impl AsciiApp {
                 }
             }
             "regional-signal" => {
-                let passage = TestSector::EXPANDED_REGIONAL_PASSAGES
+                let passage = app
+                    .home_regional_passages()
                     .into_iter()
                     .find_map(|(direction, passage)| {
                         (direction == Direction::East).then_some(passage)
@@ -4216,6 +4836,7 @@ impl AsciiApp {
                     .map(|(index, (_, class))| (index, class.recommended_attributes()))
                     .ok_or("Le diagnostic d'inventaire ne trouve pas la Brèche")?;
                 app.rebuild_run_with_character_class(&CharacterCreation {
+                    seed: INITIAL_SEED,
                     stage: CharacterCreationStage::Attributes,
                     selected_class,
                     selected_attribute: 0,
@@ -4263,7 +4884,9 @@ impl AsciiApp {
             app.draw();
             next_frame().await;
         }
-        if scene == "ux-statistics-bottom" {
+        if scene == "ux-symbols-bottom" {
+            app.ux.help_scroll.offset = app.ux.help_scroll.maximum.get();
+        } else if scene == "ux-statistics-bottom" {
             app.ux.help_scroll.offset = app.ux.help_scroll.maximum.get();
         } else if scene == "ux-statistics-resources" {
             app.ux.help_scroll.offset = 370.0;
@@ -4473,7 +5096,15 @@ impl AsciiApp {
                 next_frame().await;
             }
         }
+        let shadow_fingerprint = scene
+            .starts_with("vision-shadows")
+            .then(|| suspension::fingerprint(&app.game));
         app.draw();
+        if let Some(before) = shadow_fingerprint {
+            if before != suspension::fingerprint(&app.game) {
+                return Err("Le dessin a modifié la simulation".into());
+            }
+        }
         let path = output.join("cold-start.png");
         if path.exists() {
             return Err("Capture déjà présente".to_owned());
@@ -4482,6 +5113,211 @@ impl AsciiApp {
         // readback may change the texture bindings before the reproduction.
         let screenshot = crate::ui_capture::framebuffer()?;
         screenshot.export_png(path.to_str().ok_or("Chemin non UTF-8")?);
+        if scene.starts_with("vision-shadows") {
+            let focus = app.game.player_position().ok_or("Joueur absent")?;
+            let navigation = app.navigation_signal_summary().is_some();
+            let scale = screenshot.width as f32 / screen_width();
+            let rect_at = |p| {
+                app.terminal.world_cell_rect(
+                    &app.game,
+                    app.terminal_bounds(),
+                    app.ui_scale(),
+                    app.graphics.active.world_cell_px,
+                    navigation,
+                    p,
+                )
+            };
+            let rgb_at = |p: Vec2| {
+                let point = p * scale;
+                let color = screenshot.get_pixel(
+                    point.x as u32,
+                    u32::from(screenshot.height) - 1 - point.y as u32,
+                );
+                [color.r, color.g, color.b]
+            };
+            let mut hidden = Vec::new();
+            for y in focus.y - 5..=focus.y + 5 {
+                for x in focus.x - 5..=focus.x + 5 {
+                    let p = GridPos::new(x, y);
+                    if app.game.player_visibility().is_visible(p)
+                        || app
+                            .game
+                            .map()
+                            .tile(p)
+                            .is_none_or(|t| t.terrain != Terrain::Floor)
+                    {
+                        continue;
+                    }
+                    let Some(rect) = rect_at(p) else {
+                        continue;
+                    };
+                    let actual = rgb_at(rect.center());
+                    let expected = if app.terminal.known(p).is_some() {
+                        crate::terminal_view::diagnostic_remembered_floor_center(p)
+                    } else {
+                        [0.0; 3]
+                    };
+                    if actual
+                        .iter()
+                        .zip(expected)
+                        .any(|(a, b)| (a - b).abs() > 2.0 / 255.0)
+                    {
+                        return Err(format!(
+                            "Terrain caché éclairci : {p:?}, {actual:?}, {expected:?}"
+                        ));
+                    }
+                    hidden.push(
+                        serde_json::json!({"cell": [x,y], "rgb": actual, "expected": expected}),
+                    );
+                }
+            }
+            if hidden.len() < 5 {
+                return Err("Pas assez de cellules cachées contrôlées".into());
+            }
+            let mut gradient = None;
+            'search: for p in app.game.player_visibility().visible_positions() {
+                let dx = p.x - focus.x;
+                let dy = p.y - focus.y;
+                if dx * dx + dy * dy > 25
+                    || app
+                        .game
+                        .map()
+                        .tile(p)
+                        .is_none_or(|t| t.terrain != Terrain::Floor)
+                {
+                    continue;
+                }
+                let Some(rect) = rect_at(p) else {
+                    continue;
+                };
+                for q in p.cardinal_neighbors() {
+                    if app.game.player_visibility().is_visible(q)
+                        || app
+                            .game
+                            .map()
+                            .tile(q)
+                            .is_none_or(|t| t.terrain != Terrain::Floor)
+                    {
+                        continue;
+                    }
+                    let direction = vec2((q.x - p.x) as f32, (q.y - p.y) as f32);
+                    let mut samples = Vec::new();
+                    let mut shades = Vec::new();
+                    for t in [0.0, 0.04, 0.08, 0.12, 0.16, 0.20, 0.24, 0.31, 0.46] {
+                        let point = rect.center() + direction * rect.w * t;
+                        let actual = rgb_at(point);
+                        let pixel_center = ((point * scale).floor() + Vec2::splat(0.5)) / scale;
+                        let full = crate::terminal_view::diagnostic_visible_floor_sample(
+                            p,
+                            (pixel_center - rect.point()) / rect.size(),
+                        );
+                        let shade = actual
+                            .iter()
+                            .zip(full)
+                            .map(|(a, b)| a / b.max(1.0 / 255.0))
+                            .sum::<f32>()
+                            / 3.0;
+                        shades.push(shade);
+                        samples.push(serde_json::json!({"offset": t,"rgb": actual,"relative_brightness": shade}));
+                    }
+                    if shades[0] > 0.9
+                        && *shades.last().unwrap() < 0.48
+                        && shades.iter().filter(|s| **s > 0.48 && **s < 0.9).count() >= 2
+                    {
+                        gradient = Some(
+                            serde_json::json!({"visible": [p.x,p.y], "hidden": [q.x,q.y], "samples": samples}),
+                        );
+                        break 'search;
+                    }
+                }
+            }
+            let gradient = gradient.ok_or("L'ombre n'a pas de transition progressive mesurable")?;
+            std::fs::write(output.join("shadow-pixels.json"), serde_json::to_vec_pretty(&serde_json::json!({"simulation_unchanged":true,"hidden_cells":hidden,"gradient":gradient})).map_err(|e| e.to_string())?).map_err(|e| e.to_string())?;
+        }
+        if matches!(scene, "vision-circle" | "vision-circle-memory") {
+            // Exercise the actual GPU blend against the remembered tone of
+            // each sampled floor pixel. Adjacent cells have different grain.
+            let focus = app.game.player_position().ok_or("Joueur absent")?;
+            let radius = i32::from(app.game.rules().player_field_of_view.radius);
+            let navigation = app.navigation_signal_summary().is_some();
+            let pixel_scale = screenshot.width as f32 / screen_width();
+            let mut edge_probes = Vec::new();
+            for (dx, dy) in [(1, 0), (-1, 0), (0, 1), (0, -1)] {
+                let edge = GridPos::new(focus.x + dx * radius, focus.y + dy * radius);
+                let memory = GridPos::new(focus.x + dx * (radius + 1), focus.y + dy * (radius + 1));
+                let sample = |position| {
+                    app.terminal
+                        .world_cell_rect(
+                            &app.game,
+                            app.terminal_bounds(),
+                            app.ui_scale(),
+                            app.graphics.active.world_cell_px,
+                            navigation,
+                            position,
+                        )
+                        .map(|rect| {
+                            let p = rect.center() * pixel_scale;
+                            // Readback rows start at the bottom; screen-space
+                            // rectangles and the exported PNG start at the top.
+                            let color = screenshot.get_pixel(
+                                p.x as u32,
+                                u32::from(screenshot.height) - 1 - p.y as u32,
+                            );
+                            [color.r, color.g, color.b]
+                        })
+                };
+                let (Some(edge_color), Some(memory_color)) = (sample(edge), sample(memory)) else {
+                    continue;
+                };
+                let remembered = scene == "vision-circle-memory";
+                let expected_edge = if remembered {
+                    crate::terminal_view::diagnostic_remembered_floor_center(edge)
+                } else {
+                    [0.0; 3]
+                };
+                let expected_memory = if remembered {
+                    crate::terminal_view::diagnostic_remembered_floor_center(memory)
+                } else {
+                    [0.0; 3]
+                };
+                if !app.game.player_visibility().is_visible(edge)
+                    || app.game.player_visibility().is_visible(memory)
+                    || (app.terminal.known(memory).is_some() != remembered)
+                    || edge_color
+                        .iter()
+                        .zip(expected_edge)
+                        .any(|(a, b)| (a - b).abs() > 2.0 / 255.0)
+                    || memory_color
+                        .iter()
+                        .zip(expected_memory)
+                        .any(|(a, b)| (a - b).abs() > 2.0 / 255.0)
+                {
+                    return Err(format!(
+                        "Le bord de vision diffère du terrain mémorisé : {edge:?}, bord={edge_color:?}, mémoire={memory_color:?}"
+                    ));
+                }
+                edge_probes.push(serde_json::json!({
+                    "edge": [edge.x, edge.y], "edge_rgb": edge_color,
+                    "edge_expected_rgb": expected_edge,
+                    "memory": [memory.x, memory.y], "memory_rgb": memory_color,
+                    "memory_expected_rgb": expected_memory
+                }));
+            }
+            if edge_probes.len() < 2 {
+                return Err("Contrôle du bord de vision incomplet".into());
+            }
+            std::fs::write(
+                output.join("vision-pixels.json"),
+                serde_json::to_vec_pretty(&serde_json::json!({
+                    "viewport": [screen_width(), screen_height()],
+                    "radius": radius, "edge_matches_background": true,
+                    "surroundings": if scene == "vision-circle-memory" { "memory" } else { "unknown" },
+                    "probes": edge_probes
+                }))
+                .map_err(|error| error.to_string())?,
+            )
+            .map_err(|error| error.to_string())?;
+        }
         let mut probes = if app.resume_requested {
             let panel = app.resume_loading_panel();
             vec![
@@ -4568,6 +5404,11 @@ impl AsciiApp {
                     .take(dialogue.choices.len().min(4)),
             );
             probes
+        } else if app
+            .npc_interaction
+            .is_some_and(|id| app.game.active_artisan(id))
+        {
+            app.equipment_upgrade_capture_probes()
         } else if app.npc_interaction.is_some() {
             let layout = app.npc_layout(app.ui_width(), app.ui_height());
             let interaction = app
@@ -4971,7 +5812,11 @@ impl AsciiApp {
         } else {
             TestSector::LEGACY_EXPEDITION_PASSAGE
         };
-        self.walk_fixture_to(source.step(Direction::West))?;
+        if self.generation_version >= DENSE_SURFACE_GENERATION_VERSION {
+            self.walk_playable_trial_outbound()?;
+        } else {
+            self.walk_fixture_to(source.step(Direction::West))?;
+        }
         self.game
             .passage(source)
             .ok_or("Missing expedition passage")?;
@@ -5021,7 +5866,7 @@ impl AsciiApp {
 
     #[cfg(any(test, debug_assertions))]
     fn walk_fixture_to(&mut self, goal: GridPos) -> Result<(), String> {
-        let [x, y, width, height] = TestSector::RECYCLING_BOUNDS;
+        let [x, y, width, height] = self.home_layout().rectangle(TestSector::RECYCLING_BOUNDS);
         let goal_is_inside_recycling =
             goal.x >= x && goal.x < x + width && goal.y >= y && goal.y < y + height;
         if self.generation_version >= RECYCLING_INTRO_GENERATION_VERSION
@@ -5035,18 +5880,22 @@ impl AsciiApp {
 
     #[cfg(any(test, debug_assertions))]
     fn walk_fixture_out_of_recycling(&mut self) -> Result<(), String> {
-        self.walk_fixture_to_unchecked(TestSector::RECYCLING_CONTROL.step(Direction::South))?;
+        self.walk_fixture_to_unchecked(
+            self.home_position(TestSector::RECYCLING_CONTROL.step(Direction::South)),
+        )?;
         let control = self.execute_command(GameCommand::Interact {
-            target: TestSector::RECYCLING_CONTROL,
+            target: self.home_position(TestSector::RECYCLING_CONTROL),
         });
         if control != CommandOutcome::Applied {
             return Err(format!("Réarmement du prologue refusé : {control:?}"));
         }
         self.capture_events_at(Some(0.0));
 
-        self.walk_fixture_to_unchecked(TestSector::RECYCLING_MAIN_DOOR.step(Direction::East))?;
+        self.walk_fixture_to_unchecked(
+            self.home_position(TestSector::RECYCLING_MAIN_DOOR.step(Direction::East)),
+        )?;
         let recycling_door = self.execute_command(GameCommand::Interact {
-            target: TestSector::RECYCLING_MAIN_DOOR,
+            target: self.home_position(TestSector::RECYCLING_MAIN_DOOR),
         });
         if recycling_door != CommandOutcome::Applied {
             return Err(format!(
@@ -5055,15 +5904,15 @@ impl AsciiApp {
         }
         self.capture_events_at(Some(0.0));
 
-        self.walk_fixture_to_unchecked(TestSector::GATE.step(Direction::East))?;
+        self.walk_fixture_to_unchecked(self.home_position(TestSector::GATE.step(Direction::East)))?;
         let city_gate = self.execute_command(GameCommand::Interact {
-            target: TestSector::GATE,
+            target: self.home_position(TestSector::GATE),
         });
         if city_gate != CommandOutcome::Applied {
             return Err(format!("Ouverture de la ville refusée : {city_gate:?}"));
         }
         self.capture_events_at(Some(0.0));
-        self.walk_fixture_to_unchecked(TestSector::GATE)?;
+        self.walk_fixture_to_unchecked(self.home_position(TestSector::GATE))?;
         if !self.intro_city_reached {
             return Err("Le trajet de prologue n'a pas validé l'arrivée en ville.".to_owned());
         }
@@ -5081,9 +5930,25 @@ impl AsciiApp {
         goal: GridPos,
         use_repairs: bool,
     ) -> Result<(), String> {
-        for _ in 0..300 {
+        self.walk_fixture_to_unchecked_near(goal, use_repairs, 0, false)
+    }
+
+    #[cfg(any(test, debug_assertions))]
+    fn walk_fixture_to_unchecked_near(
+        &mut self,
+        goal: GridPos,
+        use_repairs: bool,
+        radius: u32,
+        defend: bool,
+    ) -> Result<(), String> {
+        let budget = if self.generation_version >= DENSE_SURFACE_GENERATION_VERSION {
+            1500
+        } else {
+            300
+        };
+        for _ in 0..budget {
             let origin = self.game.player_position().ok_or("Joueur absent")?;
-            if origin == goal {
+            if grid_distance(origin, goal) <= radius {
                 return Ok(());
             }
             let repair_item = if use_repairs
@@ -5108,6 +5973,32 @@ impl AsciiApp {
                 self.capture_events_at(Some(0.0));
                 continue;
             }
+            if defend {
+                let attack = self
+                    .game
+                    .actors()
+                    .iter()
+                    .filter(|(id, a)| {
+                        *id != self.game.player_id()
+                            && a.player_relation() == project_rl::social::PlayerRelation::Hostile
+                            && self.game.player_visibility().is_visible(a.position())
+                    })
+                    .find_map(|(target, _)| {
+                        [1, 0].into_iter().find_map(|slot| {
+                            self.game
+                                .player_targeted_attack_preview(slot, target)
+                                .is_ok()
+                                .then_some(GameCommand::Attack { slot, target })
+                        })
+                    });
+                if let Some(command) = attack {
+                    if self.execute_command(command) != CommandOutcome::Applied {
+                        return Err("Défense de contrôle refusée".to_owned());
+                    }
+                    self.capture_events_at(Some(0.0));
+                    continue;
+                }
+            }
             let mut navigation = self.game.map().clone();
             for y in 0..navigation.height() as i32 {
                 for x in 0..navigation.width() as i32 {
@@ -5121,16 +6012,30 @@ impl AsciiApp {
                     }
                 }
             }
-            if project_rl::world::find_path(&navigation, origin, goal, 15000, |p| {
+            let target = if radius == 0 {
+                goal
+            } else {
+                let r = radius as i32;
+                (goal.y - r..=goal.y + r)
+                    .flat_map(|y| (goal.x - r..=goal.x + r).map(move |x| GridPos::new(x, y)))
+                    .filter(|p| {
+                        navigation.is_walkable(*p) && self.game.actors().entity_at(*p).is_none()
+                    })
+                    .min_by_key(|p| (grid_distance(origin, *p), grid_distance(goal, *p)))
+                    .ok_or("Point de passage de contrôle occupé")?
+            };
+            if project_rl::world::find_path(&navigation, origin, target, 15000, |p| {
                 Some(p) != self.game.exit()
             })
             .is_none()
             {
                 return Err("Trajet de contrôle introuvable".to_owned());
             }
-            let Some(path) = project_rl::world::find_path(&navigation, origin, goal, 15000, |p| {
-                self.game.actors().entity_at(p).is_none() && Some(p) != self.game.exit()
-            }) else {
+            let Some(path) =
+                project_rl::world::find_path(&navigation, origin, target, 15000, |p| {
+                    self.game.actors().entity_at(p).is_none() && Some(p) != self.game.exit()
+                })
+            else {
                 // A worker can temporarily occupy the only doorway. Diagnostic
                 // traversal waits through the real turn loop instead of
                 // teleporting or declaring the static route invalid.
@@ -5153,7 +6058,10 @@ impl AsciiApp {
             }
             self.capture_events_at(Some(0.0));
         }
-        Err("Trajet de contrôle trop long".to_owned())
+        Err(format!(
+            "Trajet de contrôle trop long vers {goal:?}, position {:?}",
+            self.game.player_position()
+        ))
     }
 
     #[cfg(any(debug_assertions, test))]
@@ -5165,6 +6073,10 @@ impl AsciiApp {
     }
 
     fn update_input_at(&mut self, input: &InputFrame, captured_at: Option<f64>) {
+        self.update_crash_recovery();
+        if !self.inventory_open || !input.mouse_left_down {
+            self.inventory_scroll_drag = None;
+        }
         let trigger = self
             .mouse_walk
             .as_ref()
@@ -5253,7 +6165,8 @@ impl AsciiApp {
         if self.menu != MenuScreen::Hidden {
             return Some(MenuNavigationContext::Screen(self.menu));
         }
-        if self.world_context.is_some()
+        if self.installation_menu.is_some()
+            || self.world_context.is_some()
             || self.context_menu.is_some()
             || self.world_cursor.is_some()
         {
@@ -5337,6 +6250,7 @@ impl AsciiApp {
             || self.technique_menu_open
             || self.report_open
             || self.quest_journal_open
+            || self.installation_menu.is_some()
             || self.npc_interaction.is_some()
             || self.context_menu.is_some()
             || self.attack_aim.is_some()
@@ -5384,6 +6298,10 @@ impl AsciiApp {
                 self.report_open = false;
             } else if self.quest_journal_open {
                 self.quest_journal_open = false;
+            } else if self.installation_menu.take().is_some() {
+                // Opening and closing an installation menu costs no turn.
+            } else if self.npc_interaction.is_some() && self.upgrade_confirmation.take().is_some() {
+                // Escape cancels the pending reroll before closing the conversation.
             } else if self.npc_interaction.take().is_some() {
                 self.npc_interaction_message.clear();
             } else if self.context_menu.take().is_some() {
@@ -5448,6 +6366,10 @@ impl AsciiApp {
             self.update_quest_journal(input);
             return;
         }
+        if self.installation_menu.is_some() {
+            self.update_installation_menu(input);
+            return;
+        }
         if self.npc_interaction.is_some() {
             self.update_npc_interaction(input);
             return;
@@ -5466,10 +6388,11 @@ impl AsciiApp {
                 .player_has_learned_improvement(TechniqueImprovement::NpcVisionOverlay)
             {
                 self.npc_vision_overlay_open = !self.npc_vision_overlay_open;
+                self.tactical_projection.borrow_mut().invalidate();
                 self.push_log(if self.npc_vision_overlay_open {
-                    "LECTURE TACTIQUE · CHAMPS DE VISION AFFICHÉS".to_owned()
+                    "LECTURE TACTIQUE · VISION ET BRUITS AFFICHÉS".to_owned()
                 } else {
-                    "LECTURE TACTIQUE · CHAMPS DE VISION MASQUÉS".to_owned()
+                    "LECTURE TACTIQUE · VISION ET BRUITS MASQUÉS".to_owned()
                 });
             } else {
                 self.push_log("LECTURE TACTIQUE REQUISE · REC-06".to_owned());
@@ -5805,12 +6728,12 @@ impl AsciiApp {
             (Action::MoveWest, Direction::West),
         ] {
             if self.controls.pressed(action, input) {
-                self.facing = direction;
+                self.set_facing(direction);
                 break;
             }
         }
         if let Some(direction) = repeated_movement {
-            self.facing = direction;
+            self.set_facing(direction);
         }
         let command = if self.controls.pressed(Action::Interact, input) {
             if let Some(at) = self.keyboard_action_cell(input) {
@@ -5887,6 +6810,7 @@ impl AsciiApp {
 
     pub fn draw(&self) {
         crate::ui_theme::set_high_contrast(self.graphics.active.high_contrast);
+        crate::ui_theme::set_interface_theme(self.graphics.active.interface_theme);
         self.ux.hud_points.set(None);
         self.ux.hud_objective.set(None);
         clear_background(Color::from_rgba(5, 8, 12, 255));
@@ -5928,12 +6852,20 @@ impl AsciiApp {
         });
         let navigation_signal = self.navigation_signal_summary();
         let effect_time = get_time();
+        // Sample each perceived NPC once; no additional linear entity_at
+        // search for each actor drawn on the map.
+        let npc_appearances: BTreeMap<_, _> = self
+            .game
+            .actors()
+            .iter()
+            .filter_map(|(entity, actor)| {
+                self.npc_appearance(entity, actor)
+                    .map(|appearance| (actor.position(), appearance))
+            })
+            .collect();
         let target_summary = self.terminal_target_summary();
-        let observation_fields = if self.npc_vision_overlay_open {
-            self.game.actor_observation_fields()
-        } else {
-            Vec::new()
-        };
+        let mut tactical_cache = self.tactical_projection.borrow_mut();
+        let tactical = tactical_cache.projection(&self.game, self.npc_vision_overlay_open);
         self.terminal.draw(
             &self.game,
             TerminalDrawOptions {
@@ -5941,6 +6873,7 @@ impl AsciiApp {
                 ui_scale: self.ui_scale(),
                 cell_size: self.graphics.active.world_cell_px,
                 reduced_motion: self.graphics.active.reduced_motion,
+                player_appearance: self.player_appearance(),
                 interact_label: &self.controls.label(Action::Interact),
                 interaction_focus: self.interaction_choice().0,
                 multiple_interactions: self.context_choices().len() > 1,
@@ -5952,7 +6885,10 @@ impl AsciiApp {
                 navigation_signal: navigation_signal.as_deref(),
                 target_summary: target_summary.as_ref(),
                 selected_cell: self.selected_visible_cell(),
-                observation_fields: &observation_fields,
+                observation_fields: &tactical.vision,
+                sound_fields: &tactical.sounds,
+                perception_signals: &tactical.signals,
+                tactical_overlay_open: self.npc_vision_overlay_open,
             },
             |position| {
                 let effect = self.visual_cues.sample_world_with_motion(
@@ -5975,6 +6911,9 @@ impl AsciiApp {
                         let alert = self.visible_alert_at(position).map(|(kind, _)| kind);
                         TerminalOverlay {
                             symbol: glyph,
+                            npc_appearance: (glyph != 's')
+                                .then(|| npc_appearances.get(&position).copied())
+                                .flatten(),
                             color: if alert.is_some() {
                                 Color::from_rgba(255, 175, 83, 255)
                             } else {
@@ -5995,6 +6934,7 @@ impl AsciiApp {
             },
             |position| self.interaction_display_name(position),
         );
+        drop(tactical_cache);
 
         if self.menu == MenuScreen::Hidden
             && !self.legend_open
@@ -6005,6 +6945,7 @@ impl AsciiApp {
             && !self.report_open
             && !self.quest_journal_open
             && self.npc_interaction.is_none()
+            && self.installation_menu.is_none()
             && self.context_menu.is_none()
             && self.component_selection.is_none()
             && self.character_creation.is_none()
@@ -6055,6 +6996,7 @@ impl AsciiApp {
         if self.npc_interaction.is_some() {
             self.draw_npc_interaction();
         }
+        self.draw_installation_menu();
         if self.menu == MenuScreen::Controls {
             self.draw_options();
         } else if self.menu != MenuScreen::Hidden {
@@ -6095,6 +7037,7 @@ impl AsciiApp {
         self.report_open = false;
         self.legend_open = false;
         self.close_technique_menu();
+        self.installation_menu = None;
         self.npc_interaction = None;
         self.npc_interaction_message.clear();
         self.quest_journal_open = true;
@@ -6431,6 +7374,7 @@ impl AsciiApp {
             return;
         };
         let Some(interaction) = self.game.npc_interaction(provider) else {
+            self.installation_menu = None;
             self.npc_interaction = None;
             self.npc_interaction_message.clear();
             self.push_log(
@@ -6438,6 +7382,10 @@ impl AsciiApp {
             );
             return;
         };
+        if interaction.role == NpcRole::Artisan {
+            self.update_equipment_upgrade(input, provider);
+            return;
+        }
         if let Some(dialogue) = self.game.dialogue_view(provider) {
             let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
             let layout = self.npc_layout(width, height);
@@ -6665,6 +7613,7 @@ impl AsciiApp {
                 .or_else(|| close_hovered.then_some(1))
                 .or_else(|| mode_hovered.then_some(2));
             if self.controls.pressed(Action::Interact, input) || clicked && close_hovered {
+                self.installation_menu = None;
                 self.npc_interaction = None;
                 self.npc_interaction_message.clear();
                 return;
@@ -6795,6 +7744,7 @@ impl AsciiApp {
             .or_else(|| close_hovered.then_some(1))
             .or_else(|| mode_hovered.then_some(2));
         if self.controls.pressed(Action::Interact, input) || clicked && close_hovered {
+            self.installation_menu = None;
             self.npc_interaction = None;
             self.npc_interaction_message.clear();
             return;
@@ -6914,6 +7864,7 @@ impl AsciiApp {
                 };
                 self.capture_events();
                 if self.game.npc_interaction(provider).is_none() {
+                    self.installation_menu = None;
                     self.npc_interaction = None;
                 }
             }
@@ -6938,6 +7889,10 @@ impl AsciiApp {
         else {
             return;
         };
+        if interaction.role == NpcRole::Artisan {
+            self.draw_equipment_upgrade(&interaction);
+            return;
+        }
         let theme = UiTheme;
         let layout = self.npc_layout(self.ui_width(), self.ui_height());
         draw_rectangle(
@@ -7375,7 +8330,12 @@ impl AsciiApp {
                             &entry.item,
                             entry.magic_modifiers.clone(),
                             if entry.magic_modifiers.is_some() {
-                                "revendu · magique".to_owned()
+                                format!(
+                                    "revendu · {}",
+                                    equipment_affix_names::bonus_count_label(
+                                        entry.magic_modifiers.as_ref()
+                                    )
+                                )
                             } else {
                                 "revendu · blanc".to_owned()
                             },
@@ -7391,9 +8351,11 @@ impl AsciiApp {
                         format!(
                             "{} · possédé {}",
                             if entry.magic_modifiers.is_some() {
-                                "magique"
+                                equipment_affix_names::bonus_count_label(
+                                    entry.magic_modifiers.as_ref(),
+                                )
                             } else {
-                                "blanc"
+                                "blanc".to_owned()
                             },
                             entry.quantity
                         ),
@@ -7412,6 +8374,8 @@ impl AsciiApp {
             };
             let right = format!("{detail}  ·  {price} cr");
             let measured = measure_text(&right, None, 14, 1.0).width;
+            let rarity_color =
+                equipment_affix_names::trade_rarity_color(self.npc_trade_mode, modifiers.as_ref());
             draw_text_bold(
                 fit_inventory_label(
                     &self.trade_item_name(self.npc_trade_mode, item, modifiers),
@@ -7422,11 +8386,7 @@ impl AsciiApp {
                 row.x + 26.0,
                 row.y + 25.0,
                 16.0,
-                if selected {
-                    theme.accent()
-                } else {
-                    theme.text()
-                },
+                rarity_color,
             );
             draw_text(
                 &right,
@@ -7559,6 +8519,9 @@ impl AsciiApp {
     }
 
     fn npc_name(&self, role: NpcRole) -> &str {
+        if role == NpcRole::Artisan {
+            return "Artisan";
+        }
         let key = match role {
             NpcRole::Worker(WorkerRole::Retriever) => "npc.maintenance_retriever.name",
             NpcRole::Worker(WorkerRole::Technician) => "npc.maintenance_technician.name",
@@ -7566,6 +8529,7 @@ impl AsciiApp {
             NpcRole::Healer => "npc.healer.name",
             NpcRole::Resident => "npc.resident.name",
             NpcRole::QuestContact => "npc.quest_contact.name",
+            NpcRole::Artisan => unreachable!(),
         };
         self.texts
             .resolve(DISPLAY_LOCALE, key)
@@ -7576,6 +8540,7 @@ impl AsciiApp {
                 NpcRole::Healer => "Soigneur de la clinique",
                 NpcRole::Resident => "Habitant du quartier",
                 NpcRole::QuestContact => "Contact local",
+                NpcRole::Artisan => "Artisan",
             })
     }
 
@@ -7595,6 +8560,9 @@ impl AsciiApp {
     }
 
     fn npc_role(&self, role: NpcRole) -> &str {
+        if role == NpcRole::Artisan {
+            return "Amélioration";
+        }
         let key = match role {
             NpcRole::Worker(WorkerRole::Retriever) => "npc.maintenance_retriever.role",
             NpcRole::Worker(WorkerRole::Technician) => "npc.maintenance_technician.role",
@@ -7602,6 +8570,7 @@ impl AsciiApp {
             NpcRole::Healer => "npc.healer.role",
             NpcRole::Resident => "npc.resident.role",
             NpcRole::QuestContact => "npc.quest_contact.role",
+            NpcRole::Artisan => unreachable!(),
         };
         self.texts
             .resolve(DISPLAY_LOCALE, key)
@@ -7612,6 +8581,7 @@ impl AsciiApp {
                 NpcRole::Healer => "Soins médicaux de proximité",
                 NpcRole::Resident => "Vie locale",
                 NpcRole::QuestContact => "Quêtes et informations",
+                NpcRole::Artisan => "Amélioration",
             })
     }
 
@@ -7625,6 +8595,7 @@ impl AsciiApp {
             .and_then(|key| self.texts.resolve(DISPLAY_LOCALE, key))
             .map(str::to_owned)
             .unwrap_or_else(|| match interaction.role {
+            NpcRole::Artisan => "Je peux retravailler ton équipement. À toi de tenter ta chance.".to_owned(),
             NpcRole::Worker(WorkerRole::Retriever) => {
                 "Je garde les voies dégagées et je ramène les pièces utiles au dépôt. Si je passe, laissez-moi simplement un couloir.".to_owned()
             }
@@ -7681,7 +8652,7 @@ impl AsciiApp {
                 }) => {
                     "Le relais tient. Le poste de contrôle et ses systèmes sont de nouveau alimentés.".to_owned()
                 }
-                None | Some(NpcService::Trade { .. }) | Some(NpcService::Treatment { .. }) => {
+                None | Some(NpcService::Trade { .. }) | Some(NpcService::Treatment { .. }) | Some(NpcService::EquipmentUpgrade) => {
                     "Je surveille les installations locales. Rien ne demande d'intervention pour le moment.".to_owned()
                 }
             },
@@ -7775,6 +8746,7 @@ impl AsciiApp {
     fn npc_service_summary(&self, interaction: &NpcInteraction) -> (String, String, Color) {
         let theme = UiTheme;
         match interaction.services.first() {
+            Some(NpcService::EquipmentUpgrade) => ("Amélioration".into(), "1 à 6 nouveaux bonus".into(), theme.accent()),
             Some(NpcService::FacilityMaintenance {
                 required_item,
                 missing_quantity,
@@ -8206,12 +9178,19 @@ impl AsciiApp {
             return Vec::new();
         };
         let mut candidates = Vec::new();
-        if self.game.passage(origin).is_some() {
+        if self
+            .game
+            .passage(origin)
+            .is_some_and(|link| !self.game.passage_returns_to_previous_layer(link))
+        {
             candidates.push(origin);
         }
         candidates.extend(origin.cardinal_neighbors().into_iter().filter(|p| {
             self.game.player_visibility().is_visible(*p)
-                && (self.game.passage(*p).is_some()
+                && (self
+                    .game
+                    .passage(*p)
+                    .is_some_and(|link| !self.game.passage_returns_to_previous_layer(link))
                     || self
                         .game
                         .threat_sources()
@@ -8224,6 +9203,7 @@ impl AsciiApp {
                     || self.game.actors().entity_at(*p).is_some_and(|entity| {
                         self.game.active_worker_role(entity).is_some()
                             || self.game.active_merchant(entity)
+                            || self.game.active_artisan(entity)
                             || self.game.active_clinic(entity)
                             || self.game.active_resident(entity)
                             || self.game.active_quest_provider(entity)
@@ -8265,10 +9245,14 @@ impl AsciiApp {
     }
 
     fn interaction_command_at(&mut self, target: GridPos) -> Option<GameCommand> {
+        if self.open_installation_menu(target) {
+            return None;
+        }
         if let Some(provider) = self.game.actors().entity_at(target)
             && self.game.npc_interaction(provider).is_some()
         {
             self.npc_interaction = Some(provider);
+            self.upgrade_confirmation = None;
             self.npc_dialogue_services = false;
             self.npc_interaction_mode = NpcInteractionMode::Service;
             self.npc_interaction_message.clear();
@@ -8374,8 +9358,15 @@ impl AsciiApp {
                         })
                 });
                 let name = actor_name.unwrap_or_else(|| {
-                    if self.game.passage(position).is_some() {
-                        "passage".to_owned()
+                    if let Some(link) = self.game.passage(position) {
+                        if self.game.passage_is_irreversible(link) {
+                            "passage sans retour"
+                        } else if self.game.passage_returns_to_previous_layer(link) {
+                            "accès fermé"
+                        } else {
+                            "passage"
+                        }
+                        .to_owned()
                     } else {
                         match self.game.map().tile(position).map(|tile| tile.terrain) {
                             Some(Terrain::Door(_)) => "porte",
@@ -8816,18 +9807,20 @@ impl AsciiApp {
         if version >= SURFACE_DENSITY_GENERATION_VERSION {
             app.populate_starter_encounters()?;
         }
+        app.ensure_local_artisan()?;
+        if version >= INSTALLATION_INTERACTIONS_GENERATION_VERSION {
+            app.enable_installation_interactions()?;
+        }
+        if version >= RANDOM_HOME_GENERATION_VERSION {
+            // Construction is complete before the initial recovery checkpoint.
+            // Spawn notifications are not unresolved player actions.
+            app.game.drain_events();
+        }
         Ok(app)
     }
 
     fn enable_expedition(&mut self) -> Result<(), String> {
-        let expedition_id = "core:starter_expedition"
-            .parse()
-            .map_err(|error: project_rl::content::ContentIdError| error.to_string())?;
-        let definition = self
-            .expeditions
-            .get(&expedition_id)
-            .ok_or("Définition d'expédition de départ absente.")?
-            .clone();
+        let definition = self.starter_hub_definition()?;
         if self.generation_version >= 7 {
             for owner in definition.player_property_take_authorizations() {
                 self.game
@@ -8896,7 +9889,7 @@ impl AsciiApp {
         Self::insert_regional_zone(&mut next_regions, hub.id.clone(), origin)?;
 
         let mut connections = Vec::new();
-        for (direction, passage) in TestSector::EXPANDED_REGIONAL_PASSAGES {
+        for (direction, passage) in self.home_regional_passages() {
             let regional_direction = region_direction(direction);
             let coordinate = origin
                 .step(regional_direction)
@@ -8960,8 +9953,8 @@ impl AsciiApp {
         crate::test_regional::zone_info(world, &descriptor)
     }
 
-    fn hub_regional_passage(direction: RegionDirection) -> Option<GridPos> {
-        TestSector::EXPANDED_REGIONAL_PASSAGES
+    fn hub_regional_passage(&self, direction: RegionDirection) -> Option<GridPos> {
+        self.home_regional_passages()
             .into_iter()
             .find_map(|(candidate, passage)| {
                 (region_direction(candidate) == direction).then_some(passage)
@@ -8969,13 +9962,7 @@ impl AsciiApp {
     }
 
     fn enable_maintenance_fixture(&mut self) -> Result<(), String> {
-        let expedition_id = "core:starter_expedition"
-            .parse()
-            .map_err(|error: project_rl::content::ContentIdError| error.to_string())?;
-        let definition = self
-            .expeditions
-            .get(&expedition_id)
-            .ok_or("Définition d'expédition de départ absente.")?;
+        let definition = self.starter_hub_definition()?;
         let mut facility = definition
             .hub_facility
             .clone()
@@ -9041,6 +10028,9 @@ impl AsciiApp {
                 }
             }
         }
+        if self.generation_version >= INSTALLATION_INTERACTIONS_GENERATION_VERSION {
+            self.add_city_installation_intel(&mut facility.blueprint);
+        }
         for worker in &facility.blueprint.workers {
             let mut actor = Actor::new(worker.actor_position, worker.maximum_integrity)
                 .map_err(|error| error.to_string())?
@@ -9078,13 +10068,7 @@ impl AsciiApp {
     }
 
     fn enable_commerce_fixture(&mut self) -> Result<(), String> {
-        let expedition_id = "core:starter_expedition"
-            .parse()
-            .map_err(|error: project_rl::content::ContentIdError| error.to_string())?;
-        let definition = self
-            .expeditions
-            .get(&expedition_id)
-            .ok_or("Définition d'expédition de départ absente.")?;
+        let definition = self.starter_hub_definition()?;
         let merchant = definition
             .hub_merchant
             .clone()
@@ -9112,13 +10096,7 @@ impl AsciiApp {
     }
 
     fn enable_clinic_fixture(&mut self) -> Result<(), String> {
-        let expedition_id = "core:starter_expedition"
-            .parse()
-            .map_err(|error: project_rl::content::ContentIdError| error.to_string())?;
-        let definition = self
-            .expeditions
-            .get(&expedition_id)
-            .ok_or("Définition d'expédition de départ absente.")?;
+        let definition = self.starter_hub_definition()?;
         let clinic = definition
             .hub_clinic
             .clone()
@@ -9141,13 +10119,7 @@ impl AsciiApp {
     }
 
     fn enable_resident_fixtures(&mut self) -> Result<(), String> {
-        let expedition_id = "core:starter_expedition"
-            .parse()
-            .map_err(|error: project_rl::content::ContentIdError| error.to_string())?;
-        let definition = self
-            .expeditions
-            .get(&expedition_id)
-            .ok_or("Définition d'expédition de départ absente.")?;
+        let definition = self.starter_hub_definition()?;
         let zone = definition.hub.id.clone();
         for resident in definition.hub_residents.clone() {
             let provider = self
@@ -9168,13 +10140,7 @@ impl AsciiApp {
     }
 
     fn enable_hub_quests(&mut self) -> Result<(), String> {
-        let expedition_id = "core:starter_expedition"
-            .parse()
-            .map_err(|error: project_rl::content::ContentIdError| error.to_string())?;
-        let definition = self
-            .expeditions
-            .get(&expedition_id)
-            .ok_or("Définition d'expédition de départ absente.")?;
+        let definition = self.starter_hub_definition()?;
         let zone = definition.hub.id.clone();
         for mut authored in definition.hub_quests.clone() {
             if self.generation_version < SITE_SURVEY_GENERATION_VERSION
@@ -9256,6 +10222,22 @@ impl AsciiApp {
                     .contains(&InstallationCapability::Storage)
                 {
                     crate::test_sector::Decor::Depot
+                } else if installation.capabilities().iter().any(|capability| {
+                    matches!(
+                        capability,
+                        InstallationCapability::PowerControl { .. }
+                            | InstallationCapability::DiversionPost { .. }
+                    )
+                }) {
+                    crate::test_sector::Decor::ControlReady
+                } else if installation.capabilities().iter().any(|capability| {
+                    matches!(capability, InstallationCapability::SwitchableRelay { .. })
+                }) {
+                    if operational {
+                        crate::test_sector::Decor::RelayOnline
+                    } else {
+                        crate::test_sector::Decor::RelayOffline
+                    }
                 } else if installation
                     .capabilities()
                     .contains(&InstallationCapability::PowerRelay)
@@ -9275,7 +10257,11 @@ impl AsciiApp {
                         crate::test_sector::Decor::SensorOffline
                     }
                 } else if installation.capabilities().iter().any(|capability| {
-                    matches!(capability, InstallationCapability::DataTerminal { .. })
+                    matches!(
+                        capability,
+                        InstallationCapability::DataTerminal { .. }
+                            | InstallationCapability::IntelTerminal { .. }
+                    )
                 }) {
                     if operational {
                         if facility.data_terminal_was_updated(id) {
@@ -9353,6 +10339,28 @@ impl AsciiApp {
         } else {
             sector
         };
+        let mut sector = if generation_version >= CITY_DECOR_GENERATION_VERSION {
+            crate::surface_layout::densify_hub_with_city_decor(sector, seed)?
+        } else if generation_version >= RANDOM_HOME_GENERATION_VERSION {
+            crate::surface_layout::densify_hub_at_random_edge(sector, seed)?
+        } else if generation_version >= DENSE_SURFACE_GENERATION_VERSION {
+            crate::surface_layout::densify_hub(sector, seed)?
+        } else {
+            sector
+        };
+        if generation_version >= CITY_LIFE_AND_LOOT_GENERATION_VERSION {
+            let start = crate::hub_layout::HomePlacement::for_seed(seed)
+                .position(TestSector::HABITED_START);
+            let required: Vec<_> = sector.enemies.iter().chain(&sector.loot).copied().collect();
+            sector.level = project_rl::world::generation::GeneratedMap::from_layout(
+                sector.level.map().clone(),
+                start,
+                sector.level.exit(),
+                &required,
+                project_rl::world::generation::MapValidationRules::default(),
+            )
+            .map_err(|error| format!("Départ en ville inaccessible : {error}"))?;
+        }
         let exit = sector.level.exit();
         let mut game = GameState::from_generated(sector.level, seed, rules.clone())
             .map_err(|error| error.to_string())?;
@@ -9598,6 +10606,8 @@ impl AsciiApp {
             zone_views: BTreeMap::new(),
             zone_decor: BTreeMap::new(),
             facing: Direction::North,
+            player_art_facing: ModuleFacing::Right,
+            npc_art: BTreeMap::new(),
             rules,
             character_classes: ascii_character_class_catalog()?,
             character_class: None,
@@ -9610,8 +10620,14 @@ impl AsciiApp {
             regional_zones: BTreeMap::new(),
             generation_version,
             seed,
+            home_placement: if generation_version >= RANDOM_HOME_GENERATION_VERSION {
+                crate::hub_layout::HomePlacement::for_seed(seed)
+            } else {
+                crate::hub_layout::HomePlacement::identity()
+            },
             actor_glyphs,
-            intro_city_reached: generation_version < RECYCLING_INTRO_GENERATION_VERSION,
+            intro_city_reached: generation_version < RECYCLING_INTRO_GENERATION_VERSION
+                || generation_version >= CITY_LIFE_AND_LOOT_GENERATION_VERSION,
             selected_target: None,
             selected_world_cell: None,
             attack_aim: None,
@@ -9622,7 +10638,12 @@ impl AsciiApp {
             floating_messages: Vec::new(),
             trace_cells: BTreeMap::new(),
             traces_visible_until: 0.0,
-            log: if generation_version >= RECYCLING_INTRO_GENERATION_VERSION {
+            log: if generation_version >= CITY_LIFE_AND_LOOT_GENERATION_VERSION {
+                vec![
+                    "Tu arrives dans le quartier habité. Elias se trouve à quelques pas."
+                        .to_owned(),
+                ]
+            } else if generation_version >= RECYCLING_INTRO_GENERATION_VERSION {
                 vec![
                     "PROCESSUS RESTAURÉ · mémoire personnelle partielle.".to_owned(),
                     "OBJECTIF · Quitter la zone de recyclage et rejoindre le secteur habité."
@@ -9637,6 +10658,8 @@ impl AsciiApp {
             active_weapon_slot: 0,
             inventory_open: false,
             inventory_selection: 0,
+            inventory_scroll: None,
+            inventory_scroll_drag: None,
             inventory_filter: InventoryFilter::default(),
             inventory_sort: InventorySort::default(),
             inventory_message: String::new(),
@@ -9658,17 +10681,22 @@ impl AsciiApp {
             report_scroll: 0,
             quest_journal_open: false,
             quest_journal_selection: 0,
+            installation_menu: None,
             npc_interaction: None,
             npc_dialogue_services: false,
             npc_interaction_message: String::new(),
             npc_interaction_mode: NpcInteractionMode::Service,
             npc_trade_mode: NpcTradeMode::Buy,
             npc_trade_selection: 0,
+            upgrade_confirmation: None,
             npc_quest_selection: 0,
             context_menu: None,
             legend_open: false,
             ux: ux::UxState::default(),
             npc_vision_overlay_open: false,
+            tactical_projection: std::cell::RefCell::new(
+                tactical_reading_app::TacticalCache::default(),
+            ),
             controls: Controls::preset(controls::Layout::Qwerty, KeySemantics::native()),
             movement_repeat: controls::MovementRepeater::default(),
             menu_repeat: controls::MenuRepeater::default(),
@@ -9695,6 +10723,8 @@ impl AsciiApp {
             crash_recovery_enabled: false,
             crash_recovery_sequence: 0,
             last_crash_recovery_command_count: 0,
+            last_crash_recovery_attempt_count: 0,
+            crash_recovery_worker: recovery_worker::RecoveryWorker::default(),
             session_lock: None,
         })
     }
@@ -9715,6 +10745,7 @@ impl AsciiApp {
             if let Some(entity) = self.game.actors().entity_at(position) {
                 let role = self.game.active_worker_role(entity);
                 let merchant = self.game.active_merchant(entity);
+                let artisan = self.game.active_artisan(entity);
                 let clinic = self.game.active_clinic(entity);
                 let resident = self.game.active_resident(entity)
                     || self.game.current_zone().is_some_and(|zone| {
@@ -9734,6 +10765,8 @@ impl AsciiApp {
                     || {
                         if merchant {
                             'v'
+                        } else if artisan {
+                            'a'
                         } else if clinic {
                             'h'
                         } else if resident {
@@ -9759,7 +10792,7 @@ impl AsciiApp {
                     .is_some_and(|actor| actor.statuses().next().is_some());
                 let color = if drone {
                     Color::from_rgba(105, 205, 238, 255)
-                } else if role.is_some() || merchant || clinic || resident {
+                } else if role.is_some() || merchant || artisan || clinic || resident {
                     Color::from_rgba(112, 207, 190, 255)
                 } else if matches!(glyph, 'G' | 'N' | 'I') {
                     Color::from_rgba(161, 204, 137, 255)
@@ -9974,6 +11007,9 @@ impl AsciiApp {
         {
             return Some(self.equipment_name(stack.item(), stack.magic_modifiers()));
         }
+        if let Some(name) = self.installation_name_at(position) {
+            return Some(name.to_owned());
+        }
         let entity = self.game.actors().entity_at(position)?;
         if self
             .game
@@ -10080,7 +11116,13 @@ impl AsciiApp {
         (self.generation_version >= RECYCLING_INTRO_GENERATION_VERSION
             && self.recycling_intro_is_current_map()
             && !self.intro_city_reached)
-            .then_some("OBJECTIF · REJOINDRE LE SECTEUR HABITÉ")
+            .then_some(
+                if self.generation_version >= RANDOM_HOME_GENERATION_VERSION {
+                    "OBJECTIF · REJOINDRE LA VILLE INTÉRIEURE"
+                } else {
+                    "OBJECTIF · REJOINDRE LE SECTEUR HABITÉ"
+                },
+            )
     }
 
     fn primary_objective(&self) -> Option<String> {
@@ -10114,6 +11156,12 @@ impl AsciiApp {
             });
         }
         if let Some(objective) = self.intro_primary_objective() {
+            return Some(objective.to_owned());
+        }
+        if self.home_first_contact().is_some() {
+            return Some("OBJECTIF · PARLER À ELIAS DANS LA VILLE INTÉRIEURE".to_owned());
+        }
+        if let Some(objective) = self.playable_trial_objective() {
             return Some(objective.to_owned());
         }
         if self.generation_version < RECYCLING_INTRO_GENERATION_VERSION || !self.intro_city_reached
@@ -10210,12 +11258,9 @@ impl AsciiApp {
     fn recycling_intro_is_current_map(&self) -> bool {
         self.game.map().width() == TestSector::EXPANDED_WIDTH
             && self.game.map().height() == TestSector::EXPANDED_HEIGHT
-            && self
-                .terminal
-                .decor
-                .zones
-                .iter()
-                .any(|zone| zone.bounds == TestSector::RECYCLING_BOUNDS)
+            && self.terminal.decor.zones.iter().any(|zone| {
+                zone.bounds == self.home_layout().rectangle(TestSector::RECYCLING_BOUNDS)
+            })
     }
 
     fn update_intro_milestone(&mut self) {
@@ -10225,9 +11270,10 @@ impl AsciiApp {
         {
             return;
         }
-        let reached_city = self.game.player_position().is_some_and(|position| {
-            (1..=62).contains(&position.x) && (1..=44).contains(&position.y)
-        });
+        let reached_city = self
+            .game
+            .player_position()
+            .is_some_and(|position| self.home_layout().town_contains(position));
         if reached_city {
             self.intro_city_reached = true;
             self.push_log("OBJECTIF ACCOMPLI · secteur habité atteint.".to_owned());
@@ -10237,25 +11283,61 @@ impl AsciiApp {
     fn navigation_signal_summary(&self) -> Option<String> {
         if self.intro_primary_objective().is_some() {
             let observer = self.game.player_position()?;
-            let target = TestSector::GATE;
+            let target = self.home_position(TestSector::GATE);
+            let label = if self.generation_version >= RANDOM_HOME_GENERATION_VERSION {
+                format!(
+                    "VILLE INTÉRIEURE · {}",
+                    crate::terminal_view::local_coordinates(Some(target))
+                )
+            } else {
+                "SECTEUR HABITÉ".to_owned()
+            };
             return Some(crate::terminal_view::directional_signal_summary(
-                "SECTEUR HABITÉ",
+                &label,
                 observer,
                 target,
                 grid_distance(observer, target),
                 1,
             ));
         }
+        if let Some(target) = self.home_first_contact() {
+            let observer = self.game.player_position()?;
+            return Some(crate::terminal_view::directional_signal_summary(
+                &format!(
+                    "ELIAS · {}",
+                    crate::terminal_view::local_coordinates(Some(target))
+                ),
+                observer,
+                target,
+                grid_distance(observer, target),
+                1,
+            ));
+        }
+        if self.is_playable_trial()
+            && !self.test_lab
+            && !self.ux.tracked_quest.as_ref().is_some_and(|id| {
+                self.game.quest_journal().iter().any(|entry| {
+                    &entry.quest.id == id && entry.quest.status != QuestStatus::Completed
+                })
+            })
+        {
+            return self.playable_trial_navigation_signal_summary();
+        }
         let journal = self.game.quest_journal();
         if let Some(entry) = journal
             .iter()
             .find(|entry| entry.quest.status == QuestStatus::ReadyToComplete)
         {
-            if self.game.current_zone().map(|zone| &zone.id) == Some(&entry.zone.id) {
-                return None;
-            }
             let observer = self.game.player_position()?;
-            let target = self.game.next_visited_passage_towards(&entry.zone.id)?;
+            let target = if self.game.current_zone().map(|zone| &zone.id) == Some(&entry.zone.id) {
+                let target = self.game.actors().get(entry.giver)?.position();
+                if grid_distance(observer, target) <= 1 {
+                    return None;
+                }
+                target
+            } else {
+                self.game.next_visited_passage_towards(&entry.zone.id)?
+            };
             let label = format!("RETOURNER PARLER À {}", self.quest_giver_name(entry));
             return Some(crate::terminal_view::directional_signal_summary(
                 &label,
@@ -10279,9 +11361,12 @@ impl AsciiApp {
                 )
         }) {
             if self.recycling_intro_is_current_map()
-                && let Some(target) = TestSector::EXPANDED_REGIONAL_PASSAGES.into_iter().find_map(
-                    |(direction, position)| (direction == Direction::West).then_some(position),
-                )
+                && let Some(target) =
+                    self.home_regional_passages()
+                        .into_iter()
+                        .find_map(|(direction, position)| {
+                            (direction == Direction::West).then_some(position)
+                        })
                 && self.game.passage(target).is_some()
             {
                 let observer = self.game.player_position()?;
@@ -10332,7 +11417,10 @@ impl AsciiApp {
                 }
                 // Compatibility catalogues may expose more links than the active
                 // generation. Only a passage installed in the runtime may be shown.
-                self.game.passage(target).map(|_| (*direction, target))
+                self.game
+                    .passage(target)
+                    .filter(|link| !self.game.passage_returns_to_previous_layer(link))
+                    .map(|_| (*direction, target))
             })
             .min_by_key(|(direction, target)| {
                 (
@@ -10400,7 +11488,7 @@ impl AsciiApp {
             let destination_id = crate::test_regional::zone_id(&world, destination).ok()?;
             self.game.next_visited_passage_towards(&destination_id)?
         } else if coordinate == RegionCoord::new(0, 0, 0) {
-            Self::hub_regional_passage(direction)?
+            self.hub_regional_passage(direction)?
         } else {
             project_rl::world::generation::cardinal_passage(
                 world.map_size_at(coordinate),
@@ -10565,6 +11653,19 @@ impl AsciiApp {
                 player_relations: self.generation_version >= PLAYER_RELATIONS_GENERATION_VERSION,
             },
         )?;
+        if self.generation_version >= DENSE_SURFACE_GENERATION_VERSION
+            && coordinate.depth == 0
+            && world.city_at(coordinate).is_none()
+        {
+            if self.generation_version >= CITY_DECOR_GENERATION_VERSION {
+                crate::surface_layout::densify_regional_with_city_decor(
+                    &mut generated,
+                    descriptor.seed,
+                )?;
+            } else {
+                crate::surface_layout::densify_regional(&mut generated, descriptor.seed)?;
+            }
+        }
         if self.generation_version >= INSTANCE_LOOT_GENERATION_VERSION {
             self.populate_regional_equipment(
                 &mut generated.blueprint,
@@ -10586,7 +11687,7 @@ impl AsciiApp {
             }
             let neighbor_info = self.regional_zone_info(&world, neighbor)?;
             let arrival = if neighbor == RegionCoord::new(0, 0, 0) {
-                Self::hub_regional_passage(direction.opposite())
+                self.hub_regional_passage(direction.opposite())
                     .ok_or("Passage régional de la ville absent.")?
             } else {
                 project_rl::world::generation::cardinal_passage(
@@ -10634,6 +11735,7 @@ impl AsciiApp {
     }
 
     fn install_active_regional_city_services(&mut self) -> Result<(), String> {
+        self.ensure_local_artisan()?;
         if self.generation_version < REGIONAL_CITY_GENERATION_VERSION {
             return Ok(());
         }
@@ -10717,10 +11819,16 @@ impl AsciiApp {
         } else if resident_count != city.residents().len() {
             return Err("Population de la ville régionale partiellement enregistrée.".into());
         }
+        self.ensure_local_artisan()?;
         Ok(())
     }
 
     fn execute_command(&mut self, command: GameCommand) -> CommandOutcome {
+        // Mouse paths also use this entry point. Turn only the drawing here;
+        // the existing interaction/aim direction remains unchanged.
+        if let GameCommand::Move(direction) = &command {
+            self.update_player_art_facing(*direction);
+        }
         if self.selected_target.is_some() {
             self.selected_world_cell = None;
         }
@@ -10733,6 +11841,7 @@ impl AsciiApp {
         let previous_zone = self.game.current_zone().map(|zone| zone.id.clone());
         let outcome = self.game.process_player_command(command);
         if !matches!(outcome, CommandOutcome::Rejected(_)) {
+            self.tactical_projection.borrow_mut().invalidate();
             self.ux.moved |= moved;
             self.ux.interacted |= interacted;
             self.history.push(recorded);
@@ -10799,7 +11908,12 @@ impl AsciiApp {
         let mut damage_totals: BTreeMap<EntityId, (GridPos, u32)> = BTreeMap::new();
         let mut missed_hits: BTreeMap<(GridPos, bool), u16> = BTreeMap::new();
         let mut guarded_impacts = std::collections::BTreeSet::new();
-        for event in self.game.drain_events() {
+        let events = self.game.drain_events();
+        if !events.is_empty() {
+            self.tactical_projection.borrow_mut().invalidate();
+        }
+        for event in events {
+            self.update_npc_art(&event);
             if let GameEvent::DamageApplied { target, amount, .. }
             | GameEvent::DamageImpactApplied { target, amount, .. } = &event
                 && guarded_impacts.remove(target)
@@ -14011,6 +15125,8 @@ impl AsciiApp {
         let now = get_time();
         let bounds = self.terminal_bounds();
         let scale = self.ui_scale();
+        let mut tactical_cache = self.tactical_projection.borrow_mut();
+        let tactical = tactical_cache.projection(&self.game, self.npc_vision_overlay_open);
         let mut occupied_labels = Vec::new();
         for message in &self.floating_messages {
             let elapsed = (now - message.started_at).max(0.0);
@@ -14046,8 +15162,14 @@ impl AsciiApp {
                 (bounds.x + bounds.w - measured.width - 5.0).max(bounds.x),
             );
             let badge_rows = self.effect_badges_at(message.at).len().div_ceil(4) as f32;
+            let perception_height = if tactical.signals.iter().any(|s| s.position == message.at) {
+                26.0 * (cell.w / 32.0).clamp(0.75, 1.25)
+            } else {
+                0.0
+            };
             let baseline = (cell.y
-                - badge_rows * 15.0
+                - badge_rows * 20.0
+                - perception_height
                 - 13.0 * scale
                 - f32::from(message.lane) * 21.0 * scale
                 - rise)
@@ -14138,6 +15260,113 @@ impl AsciiApp {
         self.select_world_target(None);
         if !self.begin_pointer_attack_aim(at, pointer) {
             self.push_log("Cette arme doit viser une cible.".to_owned());
+        }
+    }
+
+    fn update_player_art_facing(&mut self, direction: Direction) {
+        self.player_art_facing = ModuleFacing::from_direction(direction);
+    }
+
+    fn set_facing(&mut self, direction: Direction) {
+        self.facing = direction;
+        self.update_player_art_facing(direction);
+    }
+
+    fn player_appearance(&self) -> PlayerAppearance {
+        PlayerAppearance {
+            pose: PlayerWeaponPose::from_delivery(
+                self.game
+                    .equipped_player_weapon(self.active_weapon_slot)
+                    .map(|weapon| weapon.attack().delivery()),
+            ),
+            facing: self.player_art_facing,
+        }
+    }
+
+    fn npc_appearance(&self, entity: EntityId, actor: &Actor) -> Option<ActorAppearance> {
+        if entity == self.game.player_id()
+            || !self.game.player_visibility().is_visible(actor.position())
+            || actor.destruction_effect().is_some()
+            || self
+                .game
+                .electronic_warfare_state()
+                .beacon(entity)
+                .is_some()
+        {
+            return None;
+        }
+        let art = self.npc_art.get(&entity).copied().unwrap_or_default();
+        Some(ActorAppearance {
+            kind: if actor.player_relation() == PlayerRelation::Hostile
+                || (self.generation_version < PLAYER_RELATIONS_GENERATION_VERSION
+                    && ModuleKind::for_symbol(self.hostile_glyph(entity))
+                        == Some(ModuleKind::Hostile))
+            {
+                ModuleKind::Hostile
+            } else {
+                ModuleKind::Service
+            },
+            pose: PlayerWeaponPose::from_delivery(
+                actor
+                    .attack(art.attack_slot)
+                    .or_else(|| actor.attack(0))
+                    .map(|attack| attack.delivery()),
+            ),
+            facing: art.facing,
+        })
+    }
+
+    fn update_npc_art(&mut self, event: &GameEvent) {
+        let visibility = self.game.player_visibility();
+        let (entity, from, to, slot, perceived) = match *event {
+            GameEvent::EntityMoved { entity, from, to } => (
+                entity,
+                from,
+                to,
+                None,
+                visibility.is_visible(from) || visibility.is_visible(to),
+            ),
+            GameEvent::AttackPerformed {
+                attacker,
+                origin,
+                target_at,
+                slot,
+                ..
+            } => (
+                attacker,
+                origin,
+                target_at,
+                Some(slot),
+                visibility.is_visible(origin),
+            ),
+            GameEvent::AttackTelegraphed {
+                attacker,
+                origin,
+                target_at,
+            } => (
+                attacker,
+                origin,
+                target_at,
+                None,
+                visibility.is_visible(origin),
+            ),
+            GameEvent::EntityDied { entity, .. }
+            | GameEvent::DroneEnergyDepleted { entity, .. } => {
+                self.npc_art.remove(&entity);
+                return;
+            }
+            _ => return,
+        };
+        if entity == self.game.player_id() || !perceived || self.game.actors().get(entity).is_none()
+        {
+            return;
+        }
+        let art = self.npc_art.entry(entity).or_default();
+        if let Some(facing) = ModuleFacing::toward(from, to) {
+            art.facing = facing;
+        }
+        if let Some(slot) = slot {
+            art.attack_slot = slot;
         }
     }
 
@@ -14333,7 +15562,7 @@ impl AsciiApp {
                 let candidate = aim.cursor.step(direction);
                 if self.game.player_visibility().is_visible(candidate) {
                     aim.cursor = candidate;
-                    self.facing = direction;
+                    self.set_facing(direction);
                 }
                 keyboard_moved = true;
                 break;
@@ -15969,6 +17198,7 @@ impl AsciiApp {
     }
 
     fn clamp_inventory_selection(&mut self) {
+        self.inventory_scroll = None;
         let count = self.inventory_entries().len();
         self.inventory_selection = self.inventory_selection.min(count.saturating_sub(1));
     }
@@ -16127,7 +17357,19 @@ impl AsciiApp {
                 .get(entry.item())
                 .map(|item| item.kind())
             {
-                Some(ItemKind::Armor) => InventoryGlyph::Armor,
+                Some(ItemKind::Armor) => match self
+                    .game
+                    .rules()
+                    .items
+                    .get(entry.item())
+                    .and_then(|item| item.equipment())
+                    .map(|profile| profile.slot().as_str())
+                {
+                    Some("core:head_armor") => InventoryGlyph::Helmet,
+                    Some("core:hand_armor") => InventoryGlyph::Gloves,
+                    Some("core:foot_armor") => InventoryGlyph::Boots,
+                    _ => InventoryGlyph::Armor,
+                },
                 Some(ItemKind::Consumable) => InventoryGlyph::Consumable,
                 Some(ItemKind::Material) => InventoryGlyph::Material,
                 None => InventoryGlyph::Unknown,
@@ -16153,6 +17395,7 @@ impl AsciiApp {
                     .rules()
                     .player_weapon_slots
                     .iter()
+                    .chain(self.game.rules().player_armor_slots.iter())
                     .position(|candidate| candidate == slot)
             });
             let (category, name) = match self.inventory_sort {
@@ -16187,6 +17430,7 @@ impl AsciiApp {
     }
 
     fn select_inventory_instance(&mut self, item: ItemInstanceId) {
+        self.inventory_scroll = None;
         if let Some(index) = self
             .inventory_entries()
             .iter()
@@ -16605,15 +17849,31 @@ impl AsciiApp {
         self.capture_events();
     }
 
-    fn update_inventory(&mut self, input: &InputFrame) {
-        let count = self.inventory_entries().len();
-        let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
-        let layout = InventoryLayout::with_equipment(
+    fn scroll_inventory_to(&mut self, width: f32, height: f32, count: usize, first: usize) {
+        let layout = InventoryLayout::with_scroll(
             width,
             height,
             self.inventory_selection,
             count,
             self.inventory_equipped_count(),
+            Some(first),
+        );
+        self.inventory_scroll = Some(layout.first_visible);
+        if let (Some((first, _)), Some((last, _))) = (layout.rows.first(), layout.rows.last()) {
+            self.inventory_selection = self.inventory_selection.clamp(*first, *last);
+        }
+    }
+
+    fn update_inventory(&mut self, input: &InputFrame) {
+        let count = self.inventory_entries().len();
+        let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
+        let layout = InventoryLayout::with_scroll(
+            width,
+            height,
+            self.inventory_selection,
+            count,
+            self.inventory_equipped_count(),
+            self.inventory_scroll,
         );
         let details = Rect::new(32.0 + layout.left_width + 12.0, 47.0, 145.0, 31.0);
         if self.controls.pressed(Action::Inspect, input)
@@ -16673,6 +17933,8 @@ impl AsciiApp {
                 })
         });
         if let Some(index) = filter_index {
+            self.inventory_scroll = None;
+            self.inventory_scroll_drag = None;
             self.inventory_filter = InventoryFilter::ALL[index];
             self.inventory_selection = 0;
             if let Some(item) = selected_before {
@@ -16685,6 +17947,8 @@ impl AsciiApp {
             return;
         }
         if (clicked && hovered_sort) || self.controls.pressed(Action::InventorySort, input) {
+            self.inventory_scroll = None;
+            self.inventory_scroll_drag = None;
             self.inventory_sort = self.inventory_sort.other();
             self.inventory_selection = 0;
             if let Some(item) = selected_before {
@@ -16705,21 +17969,45 @@ impl AsciiApp {
             return;
         }
         if count == 0 {
+            self.inventory_scroll = None;
+            self.inventory_scroll_drag = None;
             return;
+        }
+        if !input.mouse_left_down && !clicked {
+            self.inventory_scroll_drag = None;
+        }
+        if let Some((track, thumb)) = layout.scrollbar(count)
+            && let Some(point) = input.pointer
+        {
+            if clicked && layout.scroll_hit(point) {
+                self.inventory_scroll_drag = Some(if thumb.contains(point.into()) {
+                    point.1 - thumb.y
+                } else {
+                    thumb.h * 0.5
+                });
+            }
+            if let Some(grab) = self.inventory_scroll_drag {
+                let ratio = ((point.1 - track.y - grab) / (track.h - thumb.h)).clamp(0.0, 1.0);
+                let first = (ratio * layout.maximum_first as f32).round() as usize;
+                self.scroll_inventory_to(width, height, count, first);
+                return;
+            }
         }
         if input.wheel_y != 0.0
             && input
                 .pointer
-                .is_some_and(|point| layout.list.contains(point.into()))
+                .is_some_and(|point| layout.list.contains(point.into()) || layout.scroll_hit(point))
         {
             let steps = wheel_steps(input.wheel_y);
-            self.inventory_selection = if input.wheel_y > 0.0 {
-                self.inventory_selection.saturating_sub(steps)
+            let first = if input.wheel_y > 0.0 {
+                layout.first_visible.saturating_sub(steps)
             } else {
-                self.inventory_selection
+                layout
+                    .first_visible
                     .saturating_add(steps)
-                    .min(count - 1)
+                    .min(layout.maximum_first)
             };
+            self.scroll_inventory_to(width, height, count, first);
             return;
         }
         if clicked && let Some(index) = hovered_row {
@@ -16727,10 +18015,12 @@ impl AsciiApp {
             return;
         }
         if self.controls.pressed(Action::MenuUp, input) {
+            self.inventory_scroll = None;
             self.inventory_selection = self.inventory_selection.saturating_sub(1);
             return;
         }
         if self.controls.pressed(Action::MenuDown, input) {
+            self.inventory_scroll = None;
             self.inventory_selection = (self.inventory_selection + 1).min(count - 1);
             return;
         }
@@ -16797,7 +18087,7 @@ impl AsciiApp {
                 .map(|entry| self.inventory_entry_name(entry))
                 .unwrap_or_else(|| "Armure inconnue".to_owned());
             if self.game.player_equipment().equipped(&slot) == Some(item) {
-                self.inventory_message = format!("{item_name} est déjà équipée.");
+                self.inventory_message = format!("{item_name} est déjà en place.");
                 return;
             }
             let outcome = self.execute_command(GameCommand::EquipItem { slot, item });
@@ -16808,7 +18098,7 @@ impl AsciiApp {
                         .actor_armor_profile(self.game.player_id())
                         .map_or(0, project_rl::combat::ArmorProfile::after_fragilization);
                     self.inventory_message =
-                        format!("{item_name} équipée · Armure totale {armor}.");
+                        format!("Équipement mis à jour · Armure totale {armor}.");
                 }
                 CommandOutcome::Rejected(reason) => {
                     self.inventory_message = command_rejection_message(reason).to_owned();
@@ -16896,12 +18186,13 @@ impl AsciiApp {
         let inventory = self.game.player_inventory();
         let entries = self.inventory_entries();
         let equipped_count = self.inventory_equipped_count();
-        let layout = InventoryLayout::with_equipment(
+        let layout = InventoryLayout::with_scroll(
             self.ui_width(),
             self.ui_height(),
             self.inventory_selection,
             entries.len(),
             equipped_count,
+            self.inventory_scroll,
         );
         let left_width = layout.left_width;
         let detail_right = layout.stats_panel.map_or(margin + width, |stats| stats.x);
@@ -17062,9 +18353,18 @@ impl AsciiApp {
                 row.x + 42.0,
                 row.y + 21.0,
                 20.0,
-                text,
+                equipment_affix_names::rarity_color(entry.magic_modifiers().as_ref()),
             );
             let mut classification = equipped_label.clone().unwrap_or_else(|| {
+                if let Some(profile) = self
+                    .game
+                    .rules()
+                    .items
+                    .get(entry.item())
+                    .and_then(|item| item.equipment())
+                {
+                    return self.equipment_slot_name(profile.slot()).to_uppercase();
+                }
                 if self.game.rules().weapons.get(entry.item()).is_some() {
                     "ARME".to_owned()
                 } else {
@@ -17081,7 +18381,11 @@ impl AsciiApp {
                 }
             });
             if entry.magic_modifiers().is_some() {
-                classification.push_str(" · BONUS");
+                classification.push_str(&format!(
+                    " · {}",
+                    equipment_affix_names::bonus_count_label(entry.magic_modifiers().as_ref())
+                        .to_uppercase()
+                ));
             }
             if let Some(owner) = entry.owner() {
                 classification.push_str(if self.game.player_may_take_property_of(owner) {
@@ -17150,7 +18454,7 @@ impl AsciiApp {
                 detail_x,
                 detail_header.title.bottom() - 7.0,
                 f32::from(title_size),
-                amber,
+                equipment_affix_names::rarity_color(entry.magic_modifiers().as_ref()),
             );
             draw_inventory_glyph(detail_header.glyph, self.inventory_glyph(entry), cyan);
             let content_width = detail_right - detail_x - 20.0;
@@ -17183,16 +18487,23 @@ impl AsciiApp {
                 draw_text(label, detail_x, bonus_start, 17.0, muted);
                 bonus_start
             } else {
+                let columns = if compact_detail && bonus_lines.len() > 3 {
+                    2
+                } else {
+                    1
+                };
+                let column_width = content_width / columns as f32;
+                let bonus_size = if columns == 2 { 16 } else { 20 };
                 for (index, line) in bonus_lines.iter().enumerate() {
                     draw_text_bold(
-                        fit_inventory_label(line, content_width, 20, true),
-                        detail_x,
-                        bonus_start + index as f32 * bonus_gap,
-                        20.0,
+                        fit_inventory_label(line, column_width - 8.0, bonus_size, true),
+                        detail_x + (index % columns) as f32 * column_width,
+                        bonus_start + (index / columns) as f32 * bonus_gap,
+                        f32::from(bonus_size),
                         Color::from_rgba(158, 255, 219, 255),
                     );
                 }
-                bonus_start + bonus_lines.len().saturating_sub(1) as f32 * bonus_gap
+                bonus_start + (bonus_lines.len().saturating_sub(1) / columns) as f32 * bonus_gap
             };
             let mut rows = Vec::new();
             if let Some(weapon) = weapon {
@@ -17334,6 +18645,9 @@ impl AsciiApp {
                         "Emplacement",
                         self.equipment_slot_name(equipment.slot()).to_owned(),
                     ));
+                    if equipment.evasion_penalty() > 0 {
+                        rows.push(("Esquive", format!("-{}", equipment.evasion_penalty())));
+                    }
                     if let Some(bonus) = magic
                         .as_ref()
                         .filter(|bonus| bonus.mass_reduction_percent() > 0)
@@ -17344,13 +18658,11 @@ impl AsciiApp {
                         ));
                     }
                     rows.push((
-                        "Qualité",
-                        if magic.is_some() {
-                            "Magique"
-                        } else {
-                            "Normale"
-                        }
-                        .to_owned(),
+                        "Bonus",
+                        magic
+                            .as_ref()
+                            .map_or(0, project_rl::entity::MagicItemModifiers::bonus_count)
+                            .to_string(),
                     ));
                 } else {
                     rows.push(("Pile maximale", definition.maximum_stack().to_string()));
@@ -17493,15 +18805,9 @@ impl AsciiApp {
             );
         }
 
-        if entries.len() > layout.visible_rows {
-            let track = Rect::new(layout.list.right() + 3.0, layout.list.y, 3.0, layout.list.h);
+        if let Some((track, thumb)) = layout.scrollbar(entries.len()) {
             draw_rectangle(track.x, track.y, track.w, track.h, UiTheme.surface_raised());
-            let thumb_h =
-                (track.h * layout.visible_rows as f32 / entries.len() as f32).clamp(20.0, track.h);
-            let maximum_first = entries.len().saturating_sub(layout.visible_rows).max(1);
-            let thumb_y =
-                track.y + (track.h - thumb_h) * layout.first_visible as f32 / maximum_first as f32;
-            draw_rectangle(track.x, thumb_y, track.w, thumb_h, cyan);
+            draw_rectangle(thumb.x, thumb.y, thumb.w, thumb.h, cyan);
         }
 
         let selected_is_weapon =
@@ -19043,6 +20349,8 @@ impl AsciiApp {
         if self.test_lab {
             return Ok(());
         }
+        // No earlier writer may recreate a slot after cleanup or run replacement.
+        self.crash_recovery_worker.barrier();
         for path in self.crash_recovery_paths() {
             if keep.is_some_and(|kept| kept == path) {
                 continue;
@@ -19060,6 +20368,7 @@ impl AsciiApp {
     }
 
     fn write_crash_recovery_checkpoint(&mut self) -> Result<std::path::PathBuf, String> {
+        self.poll_crash_recovery_worker(true);
         if self.test_lab {
             return Err("Le laboratoire temporaire ne crée pas de sauvegarde.".into());
         }
@@ -19076,7 +20385,23 @@ impl AsciiApp {
         checkpoint.write_replacing(&target)?;
         self.crash_recovery_sequence = sequence;
         self.last_crash_recovery_command_count = self.history.len();
+        self.last_crash_recovery_attempt_count = self.history.len();
         Ok(target)
+    }
+
+    fn poll_crash_recovery_worker(&mut self, wait: bool) {
+        if let Some(result) = self.crash_recovery_worker.take_completion(wait) {
+            match result {
+                Ok(completed) => {
+                    self.crash_recovery_sequence = completed.sequence;
+                    self.last_crash_recovery_command_count = completed.command_count;
+                }
+                Err(error) => {
+                    eprintln!("[RECOVERY] Periodic checkpoint failed: {error}");
+                    self.push_log("Point de récupération périodique impossible.".to_owned());
+                }
+            }
+        }
     }
 
     fn start_crash_recovery(&mut self) {
@@ -19093,6 +20418,7 @@ impl AsciiApp {
     }
 
     fn update_crash_recovery(&mut self) {
+        self.poll_crash_recovery_worker(false);
         if !self.crash_recovery_enabled || self.session_lock.is_none() || self.is_main_menu_flow() {
             return;
         }
@@ -19107,10 +20433,25 @@ impl AsciiApp {
             .len()
             .saturating_sub(self.last_crash_recovery_command_count)
             < CRASH_RECOVERY_COMMAND_INTERVAL
+            || self.history.len() == self.last_crash_recovery_attempt_count
+            || self.crash_recovery_worker.has_work()
         {
             return;
         }
-        if let Err(error) = self.write_crash_recovery_checkpoint() {
+        self.last_crash_recovery_attempt_count = self.history.len();
+        let result = (|| {
+            let sequence = self
+                .crash_recovery_sequence
+                .checked_add(1)
+                .ok_or("Compteur de récupération épuisé.")?;
+            let paths = self.crash_recovery_paths();
+            self.crash_recovery_worker.start(
+                recovery_worker::CheckpointCapture::from_app(self)?,
+                sequence,
+                paths[sequence as usize % paths.len()].clone(),
+            )
+        })();
+        if let Err(error) = result {
             eprintln!("[RECOVERY] Periodic checkpoint failed: {error}");
             self.push_log("Point de récupération périodique impossible.".to_owned());
         }
@@ -19138,6 +20479,17 @@ impl AsciiApp {
     }
 
     fn begin_character_creation(&mut self, replace_suspension: bool) -> Result<(), String> {
+        self.begin_character_creation_with_seed(
+            replace_suspension,
+            crate::hub_layout::fresh_campaign_seed(),
+        )
+    }
+
+    fn begin_character_creation_with_seed(
+        &mut self,
+        replace_suspension: bool,
+        seed: u64,
+    ) -> Result<(), String> {
         let first = self
             .character_classes
             .iter()
@@ -19152,6 +20504,7 @@ impl AsciiApp {
         self.report_open = false;
         self.legend_open = false;
         self.character_creation = Some(CharacterCreation {
+            seed,
             stage: CharacterCreationStage::Protocol,
             selected_class: 0,
             selected_attribute: 0,
@@ -19400,7 +20753,7 @@ impl AsciiApp {
 
         // The complete run is built before the optional old suspension is consumed.
         let mut fresh = Self::from_seed(
-            INITIAL_SEED,
+            creation.seed,
             rules,
             self.texts.clone(),
             self.loot.clone(),
@@ -19414,6 +20767,13 @@ impl AsciiApp {
             .iter()
             .position(Option::is_some)
             .unwrap_or(0) as u8;
+        self.poll_crash_recovery_worker(true);
+        if !creation.replace_suspension && self.has_resume_data() {
+            return Err(
+                "Une partie peut être reprise ; confirmez son remplacement depuis le menu."
+                    .to_owned(),
+            );
+        }
         if creation.replace_suspension {
             self.remove_crash_recovery_files_except(None)?;
         }
@@ -19602,7 +20962,7 @@ impl AsciiApp {
         if ((clicked && hovered.is_some()) || activate)
             && self.menu_row_enabled(self.menu_selection)
         {
-            if self.menu == MenuScreen::Graphics && matches!(self.menu_selection,0..=2|4..=6) {
+            if self.menu == MenuScreen::Graphics && matches!(self.menu_selection, 0..=6) {
                 let rect = MenuLayout::for_screen(
                     self.menu,
                     input.viewport.unwrap_or((1280.0, 800.0)).0,
@@ -19661,8 +21021,7 @@ impl AsciiApp {
                 (MenuScreen::Options, 1) => self.open_menu(MenuScreen::Graphics),
                 (MenuScreen::Options, 2) => self.open_menu(self.options_return),
                 (MenuScreen::ConfirmAbandon, 0) => self.open_menu(MenuScreen::Pause),
-                (MenuScreen::Graphics, row @ 0..=2) => self.graphics.draft.cycle(row, true),
-                (MenuScreen::Graphics, row @ 4..=6) => self.graphics.draft.cycle(row, true),
+                (MenuScreen::Graphics, row @ 0..=6) => self.graphics.draft.cycle(row, true),
                 (MenuScreen::Graphics, 7) => self.graphics.draft = GraphicsSettings::default(),
                 (MenuScreen::Graphics, 8) => {
                     if self.graphics.begin_preview() {
@@ -19710,7 +21069,7 @@ impl AsciiApp {
             return false;
         }
         self.menu != MenuScreen::Graphics
-            || (index != 3 && (index != 1 || self.graphics.draft.mode == WindowMode::Windowed))
+            || (index != 1 || self.graphics.draft.mode == WindowMode::Windowed)
     }
 
     fn menu_labels(&self) -> Vec<String> {
@@ -19731,7 +21090,11 @@ impl AsciiApp {
                 } else {
                     "Reprendre la partie (indisponible)".to_owned()
                 },
-                "Nouvelle partie".to_owned(),
+                if self.is_playable_trial() {
+                    "Nouvel essai d'expédition".to_owned()
+                } else {
+                    "Nouvelle partie".to_owned()
+                },
                 "Laboratoire de test".to_owned(),
                 "Options".to_owned(),
                 "Quitter".to_owned(),
@@ -19766,7 +21129,10 @@ impl AsciiApp {
                     "Résolution : bureau (automatique)".to_owned()
                 },
                 format!("Taille de l'interface : {} %", settings.ui_scale_percent),
-                "Rendu : Terminal à glyphes".to_owned(),
+                format!(
+                    "Thème de l'interface : {}",
+                    settings.interface_theme.label()
+                ),
                 format!("Taille des cases : {} px", settings.world_cell_px),
                 format!(
                     "Contraste renforcé : {}",
@@ -20418,23 +21784,9 @@ impl AsciiApp {
         }
     }
 
+    #[cfg(any(debug_assertions, test))]
     fn encode_recovery_snapshot(&self) -> Result<String, String> {
-        let presentation = self.recovery_presentation();
-        let engine = self.game.recovery_snapshot_bytes()?;
-        let snapshot = AppRecoverySnapshotRef {
-            engine: &engine,
-            presentation_fingerprint: suspension::fingerprint(&presentation),
-            presentation,
-        };
-        let mut bytes = Vec::new();
-        // serialize() first walks the entire object to calculate its size. A
-        // growing buffer lets us visit the presentation once instead of twice.
-        bincode::serialize_into(&mut bytes, &snapshot)
-            .map_err(|error| format!("Impossible d'encoder la reprise : {error}"))?;
-        if bytes.len() > MAX_APP_RECOVERY_SNAPSHOT_BYTES {
-            return Err("Instantané de reprise trop volumineux.".to_owned());
-        }
-        Ok(base64::engine::general_purpose::STANDARD.encode(bytes))
+        recovery_worker::encode_snapshot(&self.game, self.recovery_presentation())
     }
 
     fn decode_recovery_snapshot(
@@ -20466,7 +21818,7 @@ impl AsciiApp {
         })
     }
 
-    fn suspension(&self) -> Result<Suspension, String> {
+    fn suspension_metadata(&self) -> Result<Suspension, String> {
         if self.test_lab {
             return Err(
                 "Le laboratoire temporaire ne peut pas être sauvegardé comme une partie.".into(),
@@ -20476,20 +21828,13 @@ impl AsciiApp {
             return Err("Une partie terminée ne peut pas être suspendue.".to_owned());
         }
         let commands = self.history.clone();
-        let snapshot = self.encode_recovery_snapshot()?;
         let saved = Suspension {
             version: self.generation_version,
             build: env!("PROJECT_RL_BUILD_FINGERPRINT").to_owned(),
-            rules: rules_fingerprint_for_version(&self.rules, self.generation_version),
+            rules: 0,
             packages: Some(self.active_packages.clone()),
-            loot_rules: (self.generation_version >= 3).then(|| suspension::fingerprint(&self.loot)),
-            world_rules: (self.generation_version >= 4).then(|| {
-                world_fingerprint_for_version(
-                    &self.expeditions,
-                    &self.regional_worlds,
-                    self.generation_version,
-                )
-            }),
+            loot_rules: None,
+            world_rules: None,
             seed: self.seed,
             character_class: self.character_class.as_ref().map(ToString::to_string),
             starting_attributes: self
@@ -20497,13 +21842,9 @@ impl AsciiApp {
                 .as_ref()
                 .and_then(|_| self.game.player_primary_attributes())
                 .map(PrimaryAttributes::values),
-            recovery: Some(RecoveryPayload::snapshot(commands.len(), snapshot)?),
+            recovery: None,
             commands,
-            state: if self.generation_version == 1 {
-                suspension::fingerprint(self.game.active_game())
-            } else {
-                suspension::fingerprint(&self.game)
-            },
+            state: 0,
             active_weapon_slot: self.active_weapon_slot,
             selected_target: self.selected_target.map(|id| id.get()),
             report: self.observation_report.clone(),
@@ -20511,8 +21852,21 @@ impl AsciiApp {
             observed_events: self.ux.history.clone(),
             tracked_quest: self.ux.tracked_quest.as_ref().map(ToString::to_string),
         };
-        saved.validate()?;
         Ok(saved)
+    }
+
+    fn suspension(&self) -> Result<Suspension, String> {
+        recovery_worker::finish_suspension(
+            self.suspension_metadata()?,
+            &self.game,
+            self.recovery_presentation(),
+            recovery_worker::SaveContent {
+                rules: &self.rules,
+                loot: &self.loot,
+                expeditions: &self.expeditions,
+                regional_worlds: &self.regional_worlds,
+            },
+        )
     }
 
     fn restore_suspension(
@@ -20607,7 +21961,7 @@ impl AsciiApp {
                 restored.terminal = snapshot.presentation.terminal;
                 restored.zone_views = snapshot.presentation.zone_views;
                 restored.zone_decor = snapshot.presentation.zone_decor;
-                restored.facing = snapshot.presentation.facing;
+                restored.set_facing(snapshot.presentation.facing);
                 restored.regional_zones = snapshot.presentation.regional_zones;
                 restored.actor_glyphs = snapshot.presentation.actor_glyphs;
                 restored.intro_city_reached = snapshot.presentation.intro_city_reached;
@@ -20688,6 +22042,7 @@ impl AsciiApp {
     }
 
     fn suspend_run(&self) -> Result<(), String> {
+        self.crash_recovery_worker.barrier();
         let saved = self.suspension()?;
         // Prove both the exact-build snapshot and the journal fallback before writing.
         Self::restore_suspension(
@@ -20776,6 +22131,7 @@ impl AsciiApp {
     }
 
     fn start_resume_worker(&mut self) -> Result<(), String> {
+        self.poll_crash_recovery_worker(true);
         let path = self.suspension_path.clone();
         let rules = self.rules.clone();
         let texts = self.texts.clone();
@@ -20803,6 +22159,7 @@ impl AsciiApp {
     }
 
     fn resume_run(&mut self) -> Result<(), String> {
+        self.poll_crash_recovery_worker(true);
         let (saved, source) = Self::read_resume_candidate_from(&self.suspension_path)?;
         let restored = Self::restore_suspension(
             &saved,
@@ -20819,6 +22176,7 @@ impl AsciiApp {
         mut restored: Self,
         source: ResumeSource,
     ) -> Result<(), String> {
+        self.poll_crash_recovery_worker(true);
         // A fresh emergency checkpoint is durable before the one-use source is
         // consumed, so even a second crash during installation keeps the run.
         restored.controls = self.controls.clone();
@@ -21772,6 +23130,48 @@ const fn prototype_enemy_base_armor(index: usize, generation_version: u8) -> u16
 }
 
 fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules {
+    rules.irreversible_layer_travel = version >= IRREVERSIBLE_LAYERS_GENERATION_VERSION;
+    if let Some(stealth) = &mut rules.stealth_rules {
+        stealth.circular_sound_fields = version >= INSTALLATION_INTERACTIONS_GENERATION_VERSION;
+    }
+    if version < MONSTER_REWARDS_GENERATION_VERSION {
+        rules.monster_equipment_loot = None;
+    }
+    if version < EQUIPMENT_UPGRADE_GENERATION_VERSION {
+        rules.equipment_upgrade = None;
+        rules.items = rules
+            .items
+            .without_id(&"core:unstable_fragment".parse().unwrap());
+    }
+    rules.weighted_equipment_bonuses = version >= BONUS_RARITY_GENERATION_VERSION;
+    if version < ACCESSORY_MODELS_GENERATION_VERSION {
+        for id in equipment_generation::accessory_model_ids() {
+            rules.items = rules.items.without_id(&id);
+        }
+        rules
+            .player_armor_slots
+            .retain(|id| !equipment_generation::ACCESSORY_SLOTS.contains(&id.as_str()));
+    }
+    if version < REINFORCED_ARMOR_GENERATION_VERSION {
+        for id in equipment_generation::armor_model_ids() {
+            rules.items = rules.items.without_id(&id);
+        }
+    }
+    if version < SWORD_MODELS_GENERATION_VERSION {
+        for id in equipment_generation::sword_model_ids() {
+            rules.weapons = rules.weapons.without_id(&id);
+        }
+    }
+    if version < MELEE_MODELS_GENERATION_VERSION {
+        for id in equipment_generation::melee_model_ids() {
+            rules.weapons = rules.weapons.without_id(&id);
+        }
+    }
+    if version < FIREARM_MODELS_GENERATION_VERSION {
+        for id in equipment_generation::firearm_model_ids() {
+            rules.weapons = rules.weapons.without_id(&id);
+        }
+    }
     if version < ARSENAL_GENERATION_VERSION {
         for id in equipment_generation::ARSENAL_BASE_IDS.map(|id| id.parse().unwrap()) {
             rules.weapons = rules.weapons.without_id(&id);
@@ -22202,6 +23602,35 @@ fn loot_for_generation_version(
     } else {
         loot.clone()
     };
+    compatible
+        .equipment_mut()
+        .set_weighted_bonus_counts(version >= BONUS_RARITY_GENERATION_VERSION);
+    if version < EQUIPMENT_UPGRADE_GENERATION_VERSION {
+        compatible = compatible.without_items(&["core:unstable_fragment".parse().unwrap()]);
+    }
+    if version < ACCESSORY_MODELS_GENERATION_VERSION {
+        compatible = compatible.without_items(&equipment_generation::accessory_model_ids());
+    }
+    if version < REINFORCED_ARMOR_GENERATION_VERSION {
+        compatible = compatible.without_items(&equipment_generation::armor_model_ids());
+    }
+    if version < SWORD_MODELS_GENERATION_VERSION {
+        compatible = compatible.without_items(&equipment_generation::sword_model_ids());
+    }
+    if version < MELEE_MODELS_GENERATION_VERSION {
+        compatible = compatible.without_items(&equipment_generation::melee_model_ids());
+    } else {
+        compatible = compatible
+            .without_items(&equipment_generation::LEGACY_MELEE_IDS.map(|id| id.parse().unwrap()));
+    }
+    if version < FIREARM_MODELS_GENERATION_VERSION {
+        compatible = compatible.without_items(&equipment_generation::firearm_model_ids());
+    } else {
+        // Historical definitions remain available to existing inventories and
+        // authored loadouts, but new caches and shops use the named models.
+        compatible = compatible
+            .without_items(&equipment_generation::LEGACY_FIREARM_IDS.map(|id| id.parse().unwrap()));
+    }
     if version < TACTICAL_WEAPON_FAMILIES_GENERATION_VERSION {
         compatible = compatible
             .without_items(&equipment_generation::TACTICAL_BASE_IDS.map(|id| id.parse().unwrap()));
@@ -22241,6 +23670,11 @@ fn loot_for_generation_version(
             .parse()
             .expect("built-in surface salvage table ID must remain valid");
         compatible = compatible.without_table(&salvage);
+    }
+    if version >= CITY_LIFE_AND_LOOT_GENERATION_VERSION {
+        compatible
+            .equipment_mut()
+            .allow_adjacent_model_tiers(&equipment_generation::current_model_ids());
     }
     compatible
 }
@@ -22316,6 +23750,7 @@ fn ascii_game_content() -> Result<(GameRules, TextCatalog, LootCatalog, Expediti
     .map_err(|error| error.to_string())?;
     let player_armor_slots = ["core:body_armor"]
         .into_iter()
+        .chain(equipment_generation::ACCESSORY_SLOTS)
         .map(str::parse)
         .collect::<Result<Vec<_>, project_rl::content::ContentIdError>>()
         .map_err(|error| error.to_string())?;
@@ -22400,6 +23835,14 @@ fn ascii_game_content() -> Result<(GameRules, TextCatalog, LootCatalog, Expediti
             ApplyStatusEffect::new(corrosion_id, 1).map_err(|error| error.to_string())?,
         )],
     ));
+    let mut catalog = loot.equipment().clone();
+    catalog.set_weighted_bonus_counts(true);
+    rules.monster_equipment_loot = Some(catalog.clone());
+    rules.equipment_upgrade = Some(project_rl::game::EquipmentUpgradeRules {
+        catalog,
+        material: "core:unstable_fragment".parse().unwrap(),
+        costs: [(1, 25), (1, 40), (2, 60), (2, 90), (3, 130), (3, 180)],
+    });
     Ok((rules, texts, loot, expeditions))
 }
 
@@ -22964,6 +24407,15 @@ fn draw_inventory_glyph(rect: Rect, glyph: InventoryGlyph, color: Color) {
         InventoryGlyph::Armor => [
             0b0111110, 0b1111111, 0b1100011, 0b1100011, 0b0111110, 0b0011100, 0b0001000,
         ],
+        InventoryGlyph::Helmet => [
+            0b0011100, 0b0111110, 0b1111111, 0b1100011, 0b1100011, 0b0110110, 0b0010100,
+        ],
+        InventoryGlyph::Gloves => [
+            0b0100100, 0b1110110, 0b1111111, 0b0111111, 0b0110110, 0b0110110, 0b0110110,
+        ],
+        InventoryGlyph::Boots => [
+            0b1101100, 0b1101100, 0b1101100, 0b1101100, 0b1111111, 0b1111111, 0b0000000,
+        ],
         InventoryGlyph::Consumable => [
             0b0011100, 0b0010100, 0b1111111, 0b1010101, 0b1111111, 0b0010100, 0b0011100,
         ],
@@ -23052,8 +24504,14 @@ const fn inventory_filter_icon(filter: InventoryFilter) -> UiIcon {
 
 fn command_rejection_message(reason: CommandRejection) -> &'static str {
     match reason {
+        CommandRejection::EquipmentAlreadyImproved => "Amélioration déjà effectuée.",
+        CommandRejection::MissingUpgradeFragments => {
+            "Vous n’avez pas assez de fragments instables."
+        }
+        CommandRejection::UpgradeUnavailable => "Cet équipement ne peut pas être amélioré.",
         CommandRejection::MaintainedEffectUnavailable => "Cet effet n'est plus maintenu.",
         CommandRejection::PassageUnavailable => "Passage indisponible.",
+        CommandRejection::PreviousLayerUnavailable => "Cette couche a été quittée définitivement.",
         CommandRejection::PassageObstructed => "Arrivée encombrée : attendez avant de réessayer.",
         CommandRejection::InteractionOutOfReach => {
             "Interaction hors de portée : placez-vous juste à côté."
@@ -23462,6 +24920,7 @@ fn npc_service_available(interaction: &NpcInteraction) -> bool {
             price,
             ..
         } => *restore_amount > 0 && *player_credits >= *price,
+        NpcService::EquipmentUpgrade => true,
         NpcService::Trade { .. } | NpcService::FacilityMaintenance { .. } => false,
     })
 }
@@ -23510,96 +24969,42 @@ const fn companion_button_tone(linked: bool) -> ButtonTone {
 fn draw_companion_behavior_icon(rect: Rect, behavior: CompanionBehavior, color: Color) {
     let center_x = rect.x + rect.w * 0.5;
     let center_y = rect.y + rect.h * 0.5 - 1.0;
+    let scale = (rect.w.min(rect.h) * 0.04).min(1.25);
+    let point = |x: f32, y: f32| vec2(center_x + x * scale, center_y + y * scale);
+    let stroke = |from: (f32, f32), to: (f32, f32), width: f32| {
+        let from = point(from.0, from.1);
+        let to = point(to.0, to.1);
+        draw_line(from.x, from.y, to.x, to.y, width * scale, color);
+    };
     match behavior {
         CompanionBehavior::Follow => {
-            draw_line(
-                center_x - 9.0,
-                center_y,
-                center_x + 6.0,
-                center_y,
-                2.0,
-                color,
-            );
-            draw_triangle(
-                vec2(center_x + 9.0, center_y),
-                vec2(center_x + 3.0, center_y - 5.0),
-                vec2(center_x + 3.0, center_y + 5.0),
-                color,
-            );
+            stroke((-9.0, 0.0), (6.0, 0.0), 2.0);
+            draw_triangle(point(9.0, 0.0), point(3.0, -5.0), point(3.0, 5.0), color);
         }
         CompanionBehavior::Defensive => {
             let points = [
-                (center_x, center_y - 9.0),
-                (center_x + 7.0, center_y - 5.0),
-                (center_x + 5.0, center_y + 5.0),
-                (center_x, center_y + 9.0),
-                (center_x - 5.0, center_y + 5.0),
-                (center_x - 7.0, center_y - 5.0),
+                (0.0, -9.0),
+                (7.0, -5.0),
+                (5.0, 5.0),
+                (0.0, 9.0),
+                (-5.0, 5.0),
+                (-7.0, -5.0),
             ];
             for edge in points.windows(2) {
-                draw_line(edge[0].0, edge[0].1, edge[1].0, edge[1].1, 2.0, color);
+                stroke(edge[0], edge[1], 2.0);
             }
-            draw_line(
-                points[5].0,
-                points[5].1,
-                points[0].0,
-                points[0].1,
-                2.0,
-                color,
-            );
+            stroke(points[5], points[0], 2.0);
         }
         CompanionBehavior::Aggressive => {
-            draw_circle_lines(center_x, center_y, 6.0, 2.0, color);
-            draw_line(
-                center_x - 10.0,
-                center_y,
-                center_x - 4.0,
-                center_y,
-                2.0,
-                color,
-            );
-            draw_line(
-                center_x + 4.0,
-                center_y,
-                center_x + 10.0,
-                center_y,
-                2.0,
-                color,
-            );
-            draw_line(
-                center_x,
-                center_y - 10.0,
-                center_x,
-                center_y - 4.0,
-                2.0,
-                color,
-            );
-            draw_line(
-                center_x,
-                center_y + 4.0,
-                center_x,
-                center_y + 10.0,
-                2.0,
-                color,
-            );
+            draw_circle_lines(center_x, center_y, 6.0 * scale, 2.0 * scale, color);
+            stroke((-10.0, 0.0), (-4.0, 0.0), 2.0);
+            stroke((4.0, 0.0), (10.0, 0.0), 2.0);
+            stroke((0.0, -10.0), (0.0, -4.0), 2.0);
+            stroke((0.0, 4.0), (0.0, 10.0), 2.0);
         }
         CompanionBehavior::Passive => {
-            draw_line(
-                center_x - 4.0,
-                center_y - 8.0,
-                center_x - 4.0,
-                center_y + 8.0,
-                3.0,
-                color,
-            );
-            draw_line(
-                center_x + 4.0,
-                center_y - 8.0,
-                center_x + 4.0,
-                center_y + 8.0,
-                3.0,
-                color,
-            );
+            stroke((-4.0, -8.0), (-4.0, 8.0), 3.0);
+            stroke((4.0, -8.0), (4.0, 8.0), 3.0);
         }
     }
 }
@@ -23877,6 +25282,198 @@ mod tests {
     }
 
     #[test]
+    fn npc_art_follows_real_ai_movement_in_four_directions() {
+        let mut app = app_with_test_controls();
+        app.prepare_tactical_vision_diagnostic().unwrap();
+        let enemy = app
+            .game
+            .actors()
+            .iter()
+            .find_map(|(entity, actor)| {
+                (actor.player_relation() == PlayerRelation::Hostile).then_some(entity)
+            })
+            .unwrap();
+        let before = app.game.actors().get(enemy).unwrap().position();
+        app.execute_command(GameCommand::Wait);
+        app.capture_events_at(Some(0.0));
+        let actor = app.game.actors().get(enemy).unwrap();
+        assert!(
+            actor.position().x < before.x,
+            "fixture enemy must actually approach the player"
+        );
+        assert_eq!(
+            app.npc_appearance(enemy, actor).unwrap().facing,
+            ModuleFacing::Left
+        );
+        let from = actor.position();
+        let state = app.game.recovery_snapshot_bytes().unwrap();
+        let history = app.history.clone();
+        for direction in [
+            Direction::North,
+            Direction::South,
+            Direction::East,
+            Direction::West,
+        ] {
+            app.update_npc_art(&GameEvent::EntityMoved {
+                entity: enemy,
+                from,
+                to: from.step(direction),
+            });
+            assert_eq!(
+                app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
+                    .unwrap()
+                    .facing,
+                ModuleFacing::from_direction(direction)
+            );
+        }
+        assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), state);
+        assert_eq!(app.history, history);
+    }
+
+    #[test]
+    fn npc_art_uses_the_performed_attack_without_changing_or_revealing_the_run() {
+        let mut app = app_with_test_controls();
+        app.prepare_module_diagnostic(ModuleFacing::Right).unwrap();
+        let enemy = app
+            .game
+            .actors()
+            .iter()
+            .find_map(|(entity, actor)| (actor.position() == GridPos::new(9, 2)).then_some(entity))
+            .unwrap();
+        let actor = app.game.actors().get(enemy).unwrap();
+        assert_eq!(
+            app.npc_appearance(enemy, actor).unwrap().pose,
+            PlayerWeaponPose::Ranged
+        );
+        assert_eq!(
+            app.npc_appearance(enemy, actor).unwrap().kind,
+            ModuleKind::Hostile
+        );
+        let origin = actor.position();
+        let state = app.game.recovery_snapshot_bytes().unwrap();
+        let history = app.history.clone();
+        app.update_npc_art(&GameEvent::AttackPerformed {
+            attacker: enemy,
+            target: Some(app.game.player_id()),
+            slot: 1,
+            origin,
+            target_at: app.game.player_position().unwrap(),
+            weapon: None,
+            damage_type: DamageType::Kinetic,
+            affected_cells: Vec::new(),
+        });
+        assert_eq!(
+            app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
+                .unwrap()
+                .facing,
+            ModuleFacing::Left
+        );
+        assert_eq!(
+            app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
+                .unwrap()
+                .pose,
+            PlayerWeaponPose::Melee
+        );
+        app.update_npc_art(&GameEvent::AttackTelegraphed {
+            attacker: enemy,
+            origin,
+            target_at: GridPos::new(origin.x + 1, origin.y),
+        });
+        assert_eq!(
+            app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
+                .unwrap()
+                .facing,
+            ModuleFacing::Right
+        );
+        for direction in [Direction::North, Direction::South] {
+            app.update_npc_art(&GameEvent::AttackTelegraphed {
+                attacker: enemy,
+                origin,
+                target_at: origin.step(direction),
+            });
+            assert_eq!(
+                app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
+                    .unwrap()
+                    .facing,
+                ModuleFacing::from_direction(direction)
+            );
+        }
+        let player = app.game.actors().get(app.game.player_id()).unwrap();
+        assert!(app.npc_appearance(app.game.player_id(), player).is_none());
+        let hidden = Actor::new(GridPos::new(500, 500), 12).unwrap();
+        assert!(app.npc_appearance(enemy, &hidden).is_none());
+        app.update_npc_art(&GameEvent::AttackTelegraphed {
+            attacker: enemy,
+            origin: GridPos::new(500, 500),
+            target_at: origin,
+        });
+        assert_eq!(app.npc_art.get(&enemy).unwrap().facing, ModuleFacing::Down);
+        app.update_npc_art(&GameEvent::EntityDied {
+            entity: enemy,
+            at: origin,
+        });
+        assert!(!app.npc_art.contains_key(&enemy));
+        assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), state);
+        assert_eq!(app.history, history);
+    }
+
+    #[test]
+    fn player_art_follows_the_active_weapon_without_changing_the_run() {
+        let mut app = app_with_test_controls();
+        let state = app.game.recovery_snapshot_bytes().unwrap();
+        let history = app.history.clone();
+        app.select_weapon_slot(0);
+        assert_eq!(app.player_appearance().pose, PlayerWeaponPose::Melee);
+        app.select_weapon_slot(2);
+        assert_eq!(app.player_appearance().pose, PlayerWeaponPose::Ranged);
+        // An emptied active slot must never retain the previous weapon drawing.
+        app.active_weapon_slot = u8::MAX;
+        assert_eq!(app.player_appearance().pose, PlayerWeaponPose::Unarmed);
+        assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), state);
+        assert_eq!(app.history, history);
+    }
+
+    #[test]
+    fn player_art_turns_in_four_directions_for_keyboard_and_mouse_path_commands() {
+        let mut app = app_with_test_controls();
+        let state = app.game.recovery_snapshot_bytes().unwrap();
+        app.set_facing(Direction::West);
+        app.set_facing(Direction::North);
+        assert_eq!(app.player_appearance().facing, ModuleFacing::Up);
+        app.set_facing(Direction::East);
+        app.set_facing(Direction::South);
+        assert_eq!(app.player_appearance().facing, ModuleFacing::Down);
+        assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), state);
+
+        app.character_creation = None;
+        for (action, facing) in [
+            (Action::MoveWest, ModuleFacing::Left),
+            (Action::MoveNorth, ModuleFacing::Up),
+            (Action::MoveEast, ModuleFacing::Right),
+            (Action::MoveSouth, ModuleFacing::Down),
+        ] {
+            app.update_input(&InputFrame {
+                pressed: [app.controls.binding(action).clone()].into(),
+                ..Default::default()
+            });
+            assert_eq!(app.player_appearance().facing, facing);
+        }
+        assert_eq!(app.facing, Direction::South);
+
+        // Mouse walking sends commands directly instead of using key presses.
+        app.execute_command(GameCommand::Move(Direction::West));
+        assert_eq!(app.player_appearance().facing, ModuleFacing::Left);
+        assert_eq!(app.facing, Direction::South);
+        app.execute_command(GameCommand::Move(Direction::North));
+        assert_eq!(app.player_appearance().facing, ModuleFacing::Up);
+        app.execute_command(GameCommand::Move(Direction::East));
+        assert_eq!(app.player_appearance().facing, ModuleFacing::Right);
+        app.execute_command(GameCommand::Move(Direction::South));
+        assert_eq!(app.player_appearance().facing, ModuleFacing::Down);
+        assert_eq!(app.facing, Direction::South);
+    }
+
+    #[test]
     fn approved_names_keep_old_surface_suspensions_compatible() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         // Recreate the previous localized names without changing stable keys,
@@ -23915,7 +25512,9 @@ mod tests {
             .unwrap();
             assert!(
                 original
-                    .context_choice_label(ContextChoice::Interact(GridPos::new(36, 26)))
+                    .context_choice_label(ContextChoice::Interact(
+                        original.home_position(GridPos::new(36, 26))
+                    ))
                     .contains("Opérateur du tri")
             );
             original.execute_command(GameCommand::Wait);
@@ -23945,6 +25544,7 @@ mod tests {
                     (GridPos::new(68, 26), "Lina"),
                     (GridPos::new(11, 27), "Elias"),
                 ] {
+                    let position = restored.home_position(position);
                     assert_eq!(
                         restored.context_choice_label(ContextChoice::Interact(position)),
                         format!(
@@ -24016,7 +25616,11 @@ mod tests {
     #[test]
     fn surface_cast_contacts_are_protected_optional_and_keep_their_conversation_on_resume() {
         let mut app = app_with_test_controls();
-        for at in [GridPos::new(36, 26), GridPos::new(68, 26)] {
+        let home = app.home_layout();
+        for at in [
+            home.position(GridPos::new(36, 26)),
+            home.position(GridPos::new(68, 26)),
+        ] {
             let entity = app
                 .game
                 .actors()
@@ -24029,8 +25633,13 @@ mod tests {
             );
             assert!(app.game.quest_marker(entity).is_none());
         }
-        app.walk_fixture_to(GridPos::new(69, 26)).unwrap();
-        let scout = app.game.actors().entity_at(GridPos::new(68, 26)).unwrap();
+        app.walk_fixture_to(home.position(GridPos::new(69, 26)))
+            .unwrap();
+        let scout = app
+            .game
+            .actors()
+            .entity_at(home.position(GridPos::new(68, 26)))
+            .unwrap();
         assert_eq!(
             app.execute_command(GameCommand::ChooseDialogue {
                 speaker: scout,
@@ -24653,10 +26262,12 @@ mod tests {
     #[test]
     fn context_key_offers_pickup_and_nearby_interaction_without_spending_a_turn() {
         let mut app = app_with_test_controls();
-        app.walk_fixture_to(GridPos::new(76, 8)).unwrap();
+        let home = app.home_layout();
+        app.walk_fixture_to(home.position(GridPos::new(76, 8)))
+            .unwrap();
         assert!(
             app.interaction_candidates()
-                .contains(&TestSector::RECYCLING_CONTROL)
+                .contains(&home.position(TestSector::RECYCLING_CONTROL))
         );
         let position = app.game.player_position().unwrap();
         let item: ItemId = "core:power_regulator".parse().unwrap();
@@ -24665,10 +26276,9 @@ mod tests {
         assert_eq!(app.context_command(), None);
         let menu = app.context_menu.as_ref().unwrap();
         assert!(menu.choices.contains(&ContextChoice::PickUp));
-        assert!(
-            menu.choices
-                .contains(&ContextChoice::Interact(TestSector::RECYCLING_CONTROL))
-        );
+        assert!(menu.choices.contains(&ContextChoice::Interact(
+            home.position(TestSector::RECYCLING_CONTROL)
+        )));
         assert_eq!(app.game.turn(), before);
         app.update_context_menu(&InputFrame {
             pressed: [controls::Binding::key("Down")].into(),
@@ -24684,15 +26294,15 @@ mod tests {
 
     #[test]
     fn current_runs_wake_in_recycling_while_older_runs_keep_the_city_start() {
-        let current = app_with_test_controls();
-        assert_eq!(current.generation_version, CURRENT_GENERATION_VERSION);
+        let current = app_with_test_controls_version(CITY_DECOR_GENERATION_VERSION);
+        assert_eq!(current.generation_version, CITY_DECOR_GENERATION_VERSION);
         assert_eq!(
             current.game.player_position(),
-            Some(TestSector::RECYCLING_START)
+            Some(current.home_position(TestSector::RECYCLING_START))
         );
         assert_eq!(
             current.intro_primary_objective(),
-            Some("OBJECTIF · REJOINDRE LE SECTEUR HABITÉ")
+            Some("OBJECTIF · REJOINDRE LA VILLE INTÉRIEURE")
         );
         assert!(
             current
@@ -24794,7 +26404,7 @@ mod tests {
 
     #[test]
     fn persistent_intro_objective_is_separate_from_footer_messages() {
-        let mut app = app_with_test_controls();
+        let mut app = app_with_test_controls_version(CITY_DECOR_GENERATION_VERSION);
         app.ux.moved = true;
         app.ux.interacted = true;
         app.ux.targeted = true;
@@ -24810,15 +26420,15 @@ mod tests {
                 ("Dernier message de jeu.".to_owned(), false),
             ]
         );
-        assert!(
-            app.navigation_signal_summary()
-                .is_some_and(|signal| signal.starts_with("SECTEUR HABITÉ · SUD-OUEST"))
-        );
+        assert!(app.navigation_signal_summary().is_some_and(|signal| {
+            signal.starts_with("VILLE INTÉRIEURE ·") && signal.contains("SUD-OUEST")
+        }));
     }
 
     #[test]
     fn recycling_main_route_completes_the_first_city_milestone() {
-        let mut app = app_with_test_controls();
+        let mut app = app_with_test_controls_version(CITY_DECOR_GENERATION_VERSION);
+        let home = app.home_layout();
         for direction in [Direction::West; 6]
             .into_iter()
             .chain([Direction::North; 3])
@@ -24828,7 +26438,7 @@ mod tests {
         apply(
             &mut app,
             GameCommand::Interact {
-                target: TestSector::RECYCLING_CONTROL,
+                target: home.position(TestSector::RECYCLING_CONTROL),
             },
         );
         for direction in [Direction::South; 3] {
@@ -24840,7 +26450,7 @@ mod tests {
         apply(
             &mut app,
             GameCommand::Interact {
-                target: TestSector::RECYCLING_MAIN_DOOR,
+                target: home.position(TestSector::RECYCLING_MAIN_DOOR),
             },
         );
         for direction in [Direction::West; 9]
@@ -24850,21 +26460,27 @@ mod tests {
         {
             apply(&mut app, GameCommand::Move(direction));
         }
-        assert_eq!(app.game.player_position(), Some(GridPos::new(63, 21)));
+        assert_eq!(
+            app.game.player_position(),
+            Some(home.position(GridPos::new(63, 21)))
+        );
         apply(
             &mut app,
             GameCommand::Interact {
-                target: TestSector::GATE,
+                target: home.position(TestSector::GATE),
             },
         );
         apply(&mut app, GameCommand::Move(Direction::West));
 
-        assert_eq!(app.game.player_position(), Some(TestSector::GATE));
+        assert_eq!(
+            app.game.player_position(),
+            Some(home.position(TestSector::GATE))
+        );
         assert!(app.intro_city_reached);
         assert_eq!(app.intro_primary_objective(), None);
         assert_eq!(
             app.primary_objective().as_deref(),
-            Some("OBJECTIF · PARLER À L'HABITANT DE LA PLACE")
+            Some("OBJECTIF · PARLER À ELIAS DANS LA VILLE INTÉRIEURE")
         );
         assert!(
             app.log
@@ -25315,7 +26931,8 @@ mod tests {
         assert!(app.rebinding);
         assert_eq!(app.options_selection, selection);
         app.rebinding = false;
-        app.begin_character_creation(false).unwrap();
+        app.begin_character_creation_with_seed(false, INITIAL_SEED)
+            .unwrap();
         app.update_input_at(&held_menu_key("Down", true), Some(6.0));
         app.update_input_at(&held_menu_key("Down", false), Some(6.36));
         assert_eq!(app.character_creation.as_ref().unwrap().selected_class, 2);
@@ -25454,17 +27071,24 @@ mod tests {
         app.open_menu(MenuScreen::Options);
         app.update_input(&menu_pointer(MenuScreen::Options, 1, true));
         assert_eq!(app.menu, MenuScreen::Graphics);
-        // The automatic desktop resolution and future renderer cannot be selected.
+        // The automatic desktop resolution is skipped; the theme is editable.
         app.update_input(&input("Down"));
         assert_eq!(app.menu_selection, 2);
         app.update_input(&input("Right"));
         assert_eq!(app.graphics.draft.ui_scale_percent, 125);
         assert_eq!(app.graphics.active.ui_scale_percent, 100);
         app.update_input(&input("Down"));
-        assert_eq!(app.menu_selection, 4);
+        assert_eq!(app.menu_selection, 3);
         app.update_input(&menu_pointer(MenuScreen::Graphics, 3, true));
-        assert_eq!(app.menu_selection, 4);
-        assert_eq!(app.menu_focus.hovered, None);
+        assert_eq!(app.menu_selection, 3);
+        assert_eq!(
+            app.graphics.draft.interface_theme,
+            graphics::InterfaceTheme::Green
+        );
+        assert_eq!(
+            app.graphics.active.interface_theme,
+            graphics::InterfaceTheme::Violet
+        );
         app.update_input(&menu_pointer(MenuScreen::Graphics, 0, true));
         assert_eq!(app.graphics.draft.mode, WindowMode::Windowed);
         app.update_input(&menu_pointer(MenuScreen::Graphics, 1, true));
@@ -26536,7 +28160,8 @@ mod tests {
     #[test]
     fn suspension_rebuilds_the_selected_protocol_before_replay() {
         let mut app = app_with_test_controls();
-        app.begin_character_creation(false).unwrap();
+        app.begin_character_creation_with_seed(false, INITIAL_SEED)
+            .unwrap();
         {
             let creation = app.character_creation.as_mut().unwrap();
             creation.selected_class = 2; // VIGIE in stable content-ID order.
@@ -26578,6 +28203,200 @@ mod tests {
     }
 
     #[test]
+    fn accessory_slots_equip_by_keyboard_and_mouse_replace_independently_and_resume() {
+        let mut app = app_with_test_controls();
+        let ids: Vec<ContentId> = [
+            "core:veste_matelassee",
+            "core:visiere_fantome",
+            "core:gants_fantome",
+            "core:bottines_fantome",
+        ]
+        .into_iter()
+        .map(|s| s.parse().unwrap())
+        .collect();
+        let spare: ContentId = "core:calotte_cognefer".parse().unwrap();
+        let mut rules = app.rules.clone();
+        rules.player_starting_items =
+            vec![project_rl::game::StartingItemStack::new(spare.clone(), 1)];
+        let bonus =
+            project_rl::entity::MagicItemModifiers::weapon_bonuses([0, 1, 0, 0, 0], 0, 0).unwrap();
+        let game = GameState::new_with_rules(
+            Map::filled(12, 10, Terrain::Floor).unwrap(),
+            GridPos::new(5, 5),
+            134,
+            rules,
+        )
+        .unwrap()
+        .with_starting_magic_equipment(ids.iter().map(|id| (id.clone(), bonus.clone())))
+        .unwrap();
+        app.game = WorldState::single(game);
+        app.inventory_open = true;
+        app.inventory_filter = InventoryFilter::Armor;
+        let base_coordination = app
+            .game
+            .player_effective_primary_attributes()
+            .unwrap()
+            .value(PrimaryAttribute::Coordination);
+        let movement = app.game.actor_movement_time_units(app.game.player_id());
+        let mut instances = Vec::new();
+        for (index, id) in ids.iter().enumerate() {
+            let item = app
+                .game
+                .player_inventory()
+                .iter()
+                .find(|entry| entry.item() == id)
+                .unwrap()
+                .instance();
+            let slot = app
+                .game
+                .rules()
+                .items
+                .get(id)
+                .unwrap()
+                .equipment()
+                .unwrap()
+                .slot()
+                .clone();
+            app.select_inventory_instance(item);
+            if index % 2 == 0 {
+                app.update_input(&input("E"));
+            } else {
+                let layout = InventoryLayout::new(
+                    1280.0,
+                    800.0,
+                    app.inventory_selection,
+                    app.inventory_entries().len(),
+                );
+                app.update_input(&rect_pointer(layout.actions[0], 0.0));
+            }
+            assert_eq!(app.game.player_equipment().equipped(&slot), Some(item));
+            assert!(
+                app.inventory_equipped_label(item)
+                    .unwrap()
+                    .contains(&app.equipment_slot_name(&slot).to_uppercase())
+            );
+            instances.push((slot, item));
+        }
+        assert_eq!(
+            app.game
+                .player_effective_primary_attributes()
+                .unwrap()
+                .value(PrimaryAttribute::Coordination),
+            base_coordination + 4
+        );
+        assert_eq!(
+            app.game.actor_movement_time_units(app.game.player_id()),
+            movement
+        );
+        let replacement = app
+            .game
+            .player_inventory()
+            .iter()
+            .find(|entry| entry.item() == &spare)
+            .unwrap()
+            .instance();
+        app.select_inventory_instance(replacement);
+        app.open_inventory_card();
+        let lines = &app.ux.item_card.as_ref().unwrap().1;
+        assert!(lines.iter().any(|line| line == "Actuellement : Tête"));
+        assert!(lines.iter().any(|line| line.contains("Visière Fantôme")));
+        app.ux.item_card = None;
+        app.update_input(&input("E"));
+        assert_eq!(
+            app.game.player_equipment().equipped(&instances[1].0),
+            Some(replacement)
+        );
+        for index in [0, 2, 3] {
+            assert_eq!(
+                app.game.player_equipment().equipped(&instances[index].0),
+                Some(instances[index].1)
+            );
+        }
+        assert_eq!(
+            app.game
+                .player_effective_primary_attributes()
+                .unwrap()
+                .value(PrimaryAttribute::Coordination),
+            base_coordination + 3
+        );
+        app.game.drain_events();
+        let restored = WorldState::from_recovery_snapshot_bytes(
+            &app.game.recovery_snapshot_bytes().unwrap(),
+            app.game.rules().clone(),
+        )
+        .unwrap();
+        assert_eq!(restored.player_equipment(), app.game.player_equipment());
+        assert_eq!(
+            restored.player_effective_primary_attributes(),
+            app.game.player_effective_primary_attributes()
+        );
+    }
+
+    #[test]
+    fn inventory_scrollbar_handles_wheel_track_drag_and_keyboard_without_turns() {
+        let mut app = app_with_test_controls();
+        app.open_menu(MenuScreen::Main);
+        app.enter_test_lab().unwrap();
+        app.inventory_open = true;
+        app.inventory_selection = 0;
+        let count = app.inventory_entries().len();
+        let before = app.game.recovery_snapshot_bytes().unwrap();
+        for (width, height) in [(960.0, 540.0), (1920.0, 1080.0)] {
+            app.inventory_selection = 0;
+            app.inventory_scroll = None;
+            let layout = InventoryLayout::with_equipment(
+                width,
+                height,
+                0,
+                count,
+                app.inventory_equipped_count(),
+            );
+            let (track, thumb) = layout.scrollbar(count).unwrap();
+            let mut event = InputFrame {
+                viewport: Some((width, height)),
+                pointer: Some((track.x + track.w / 2.0, track.y + 10.0)),
+                wheel_y: -1.0,
+                ..InputFrame::default()
+            };
+            app.update_input(&event);
+            assert_eq!(app.inventory_scroll, Some(1));
+            event.pointer = Some((layout.list.x + 10.0, layout.list.y + 10.0));
+            event.wheel_y = 1.0;
+            app.update_input(&event);
+            assert_eq!(app.inventory_scroll, Some(0));
+
+            event.wheel_y = 0.0;
+            event.pointer = Some((thumb.x + thumb.w / 2.0, thumb.y + thumb.h / 2.0));
+            event.pressed.insert(controls::Binding::MouseLeft);
+            event.mouse_left_down = true;
+            app.update_input(&event);
+            assert!(app.inventory_scroll_drag.is_some());
+            event.pressed.clear();
+            // Continue dragging even outside the scrollbar's horizontal bounds.
+            event.pointer = Some((track.x + 80.0, track.bottom() + 80.0));
+            app.update_input(&event);
+            assert_eq!(app.inventory_scroll, Some(layout.maximum_first));
+            event.mouse_left_down = false;
+            app.update_input(&event);
+            assert!(app.inventory_scroll_drag.is_none());
+            event.pointer = Some((track.x + 4.0, track.y));
+            event.pressed.insert(controls::Binding::MouseLeft);
+            app.update_input(&event);
+            assert_eq!(app.inventory_scroll, Some(0));
+            let selection = app.inventory_selection;
+            let mut down = input("Down");
+            down.viewport = Some((width, height));
+            app.update_input(&down);
+            assert_eq!(app.inventory_selection, selection + 1);
+            assert_eq!(app.inventory_scroll, None);
+            app.update_input(&input("U"));
+            assert!(app.inventory_open);
+            assert!(!app.skills_open);
+        }
+        assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), before);
+    }
+
+    #[test]
     fn breche_armor_can_be_equipped_by_click_and_survives_replay() {
         let mut app = app_with_test_controls();
         let breche: CharacterClassId = "core:breche".parse().unwrap();
@@ -26589,6 +28408,7 @@ mod tests {
             .map(|(index, (_, class))| (index, class.recommended_attributes()))
             .unwrap();
         app.rebuild_run_with_character_class(&CharacterCreation {
+            seed: INITIAL_SEED,
             stage: CharacterCreationStage::Attributes,
             selected_class,
             selected_attribute: 0,
@@ -26611,7 +28431,12 @@ mod tests {
         );
 
         let layout = InventoryLayout::new(1280.0, 800.0, 0, 1);
+        // The inventory must consume the click even if the hidden HUD has a
+        // skills shortcut at these same coordinates.
+        app.ux.hud_points.set(Some(layout.actions[0]));
         app.update_input(&rect_pointer(layout.actions[0], 0.0));
+        assert!(app.inventory_open);
+        assert!(!app.skills_open);
 
         let body_slot: ContentId = "core:body_armor".parse().unwrap();
         assert_eq!(
@@ -26650,7 +28475,16 @@ mod tests {
         let (mut rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         rules.progression.starting_skill_points = 2;
         rules.player_maximum_integrity = 500;
-        let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
+        // This fixture installs or scripts the canonical interior layout.
+        let mut app = AsciiApp::from_seed_version(
+            INITIAL_SEED,
+            rules,
+            texts,
+            loot,
+            expeditions,
+            DENSE_SURFACE_GENERATION_VERSION,
+        )
+        .unwrap();
         let folder = temporary_folder("suspension");
         app.suspension_path = folder.join("suspended-run.json");
         app.session_lock = Some(suspension::session_lock(&folder.join("session.lock")).unwrap());
@@ -26806,13 +28640,13 @@ mod tests {
         assert!(app.resume_requested);
         assert!(app.suspension_path.exists());
 
-        let deadline = std::time::Instant::now() + std::time::Duration::from_secs(5);
+        let deadline = std::time::Instant::now() + std::time::Duration::from_secs(30);
         while std::time::Instant::now() < deadline {
             app.poll_resume_request(2.75);
             if !app.resume_requested {
                 break;
             }
-            std::thread::yield_now();
+            std::thread::sleep(std::time::Duration::from_millis(1));
         }
 
         assert!(!app.resume_requested);
@@ -26902,7 +28736,7 @@ mod tests {
         let mut app = app_with_test_controls();
         apply(&mut app, GameCommand::Wait);
         let expected = suspension::fingerprint(&app.game);
-        for version in [1_u8, 2, 3, 4, 5] {
+        for version in [1_u8, 2, 3, 4, 5, 6, 7, 8, 9] {
             let mut saved = app.suspension().unwrap();
             // The envelope must be rejected before any attempt to interpret the
             // obsolete nested layout; its journal remains the authoritative state.
@@ -26986,6 +28820,7 @@ mod tests {
             );
             app.capture_events();
         }
+        app.poll_crash_recovery_worker(true);
         let latest_state = suspension::fingerprint(&app.game);
         assert_eq!(app.crash_recovery_sequence, 2);
         assert!(paths.iter().all(|path| path.exists()));
@@ -27013,7 +28848,11 @@ mod tests {
         app.session_lock = Some(suspension::session_lock(&lock_path).unwrap());
         app.crash_recovery_enabled = true;
         app.start_crash_recovery();
-        apply(&mut app, GameCommand::Wait);
+        for _ in 0..CRASH_RECOVERY_COMMAND_INTERVAL {
+            apply(&mut app, GameCommand::Wait);
+        }
+        app.update_crash_recovery();
+        assert!(app.crash_recovery_worker.has_work());
         let expected = suspension::fingerprint(&app.game);
 
         app.suspend_run().unwrap();
@@ -27086,13 +28925,11 @@ mod tests {
     fn a_click_resumes_an_older_build_only_after_an_identical_replay() {
         for key in [false, true] {
             let mut app = app_with_test_controls();
-            app.walk_fixture_to(GridPos::new(32, 16)).unwrap();
-            apply(
-                &mut app,
-                GameCommand::Interact {
-                    target: GridPos::new(32, 15),
-                },
-            );
+            let home = app.home_layout();
+            app.walk_fixture_to(home.position(GridPos::new(32, 16)))
+                .unwrap();
+            let door = home.position(GridPos::new(32, 15));
+            apply(&mut app, GameCommand::Interact { target: door });
             let mut saved = app.suspension().unwrap();
             saved.build = "617e393cfa1b13c7".to_owned();
             assert_ne!(saved.build, env!("PROJECT_RL_BUILD_FINGERPRINT"));
@@ -27109,8 +28946,8 @@ mod tests {
             assert_eq!(suspension::fingerprint(&next.game), saved.state);
             assert_eq!(next.history, saved.commands);
             assert_eq!(
-                next.game.map().tile(GridPos::new(32, 15)),
-                app.game.map().tile(GridPos::new(32, 15))
+                next.game.map().tile(home.position(GridPos::new(32, 15))),
+                app.game.map().tile(home.position(GridPos::new(32, 15)))
             );
             assert!(!next.suspension_path.exists());
             assert!(next.resume_run().is_err());
@@ -27323,8 +29160,10 @@ mod tests {
     #[test]
     fn interactions_use_the_binding_and_replay_door_console_and_remembered_states() {
         let mut app = app_with_test_controls();
-        app.walk_fixture_to(GridPos::new(32, 16)).unwrap();
-        let door = GridPos::new(32, 15);
+        let home = app.home_layout();
+        app.walk_fixture_to(home.position(GridPos::new(32, 16)))
+            .unwrap();
+        let door = home.position(GridPos::new(32, 15));
         let turn = app.game.turn();
         app.update_input(&input("E"));
         assert_eq!(
@@ -27337,21 +29176,23 @@ mod tests {
             app.game.map().tile(door).unwrap().terrain,
             Terrain::Door(project_rl::world::DoorState::Closed)
         );
-        app.walk_fixture_to(GridPos::new(50, 18)).unwrap();
+        app.walk_fixture_to(home.position(GridPos::new(50, 18)))
+            .unwrap();
         apply(
             &mut app,
             GameCommand::Interact {
-                target: TestSector::CONTROL,
+                target: home.position(TestSector::CONTROL),
             },
         );
-        app.walk_fixture_to(GridPos::new(52, 16)).unwrap();
+        app.walk_fixture_to(home.position(GridPos::new(52, 16)))
+            .unwrap();
         apply(
             &mut app,
             GameCommand::Interact {
-                target: TestSector::LOCKED_DOOR,
+                target: home.position(TestSector::LOCKED_DOOR),
             },
         );
-        app.walk_fixture_to(TestSector::ARCHIVE_TERMINAL.step(Direction::West))
+        app.walk_fixture_to(home.position(TestSector::ARCHIVE_TERMINAL.step(Direction::West)))
             .unwrap();
         app.facing = Direction::East;
         let terminal_turn = app.game.turn();
@@ -27572,13 +29413,13 @@ mod tests {
         else {
             panic!("shop absent")
         };
-        assert_eq!(offers.len(), 7);
-        assert_eq!(gambles.len(), 3);
+        assert_eq!(offers.len(), 20);
+        assert_eq!(gambles.len(), 18);
         for gamble in gambles {
             let label = app.trade_item_name(NpcTradeMode::Gamble, &gamble.item, None);
             assert_eq!(label, app.item_name(&gamble.item));
         }
-        // Selling one carried supply adds an eighth listing, exceeding the
+        // Selling one carried supply adds another listing, exceeding the
         // seven visible rows. Mouse hit tests must use the scrolled offset.
         app.update_input(&input("Right"));
         app.update_input(&input("Enter"));
@@ -27592,7 +29433,10 @@ mod tests {
         assert_eq!(app.game.turn(), turn);
         let layout = app.npc_layout(1280.0, 800.0);
         app.update_input(&rect_pointer(layout.merchant_rows()[0], 0.0));
-        assert_eq!(app.npc_trade_selection, 1);
+        assert_eq!(
+            app.npc_trade_selection,
+            offers.len() + 1 - layout.merchant_rows().len()
+        );
         app.update_input(&rect_pointer(layout.trade_tabs[2], 0.0));
         assert_eq!(app.npc_trade_mode, NpcTradeMode::Gamble);
         app.update_input(&rect_pointer(layout.trade_rows[0], 0.0));
@@ -28180,7 +30024,8 @@ mod tests {
 
     #[test]
     fn authored_hub_quests_attach_to_services_or_spawn_a_dedicated_contact() {
-        let mut app = app_with_test_controls();
+        // This fixture installs or scripts the canonical interior layout.
+        let mut app = app_with_test_controls_version(DENSE_SURFACE_GENERATION_VERSION);
         let player_position = app
             .game
             .actors()
@@ -28552,11 +30397,14 @@ mod tests {
         }
         let mut app =
             AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, alarm_expeditions).unwrap();
+        let home = app.home_layout();
         for _ in 0..96 {
             apply(&mut app, GameCommand::Wait);
         }
-        app.walk_fixture_to(GridPos::new(52, 29)).unwrap();
-        app.walk_fixture_to(GridPos::new(52, 27)).unwrap();
+        app.walk_fixture_to(home.position(GridPos::new(52, 29)))
+            .unwrap();
+        app.walk_fixture_to(home.position(GridPos::new(52, 27)))
+            .unwrap();
         apply(&mut app, GameCommand::PickUp);
 
         assert_eq!(app.visible_security_alarm_summary(), Some((1, 8)));
@@ -28566,14 +30414,21 @@ mod tests {
                 .any(|line| line.contains("VERROUILLAGE DE SÉCURITÉ ACTIF"))
         );
         assert_eq!(
-            app.game.map().tile(GridPos::new(52, 28)).unwrap().terrain,
+            app.game
+                .map()
+                .tile(home.position(GridPos::new(52, 28)))
+                .unwrap()
+                .terrain,
             Terrain::Door(project_rl::world::DoorState::Locked)
         );
         assert_eq!(
             app.game
                 .active_facility()
                 .and_then(|facility| {
-                    facility.security_door_lockdown_at(GridPos::new(52, 28), app.game.turn())
+                    facility.security_door_lockdown_at(
+                        home.position(GridPos::new(52, 28)),
+                        app.game.turn(),
+                    )
                 })
                 .map(|lockdown| lockdown.remaining_turns(app.game.turn())),
             Some(8)
@@ -28594,8 +30449,10 @@ mod tests {
             restored
                 .game
                 .active_facility()
-                .and_then(|facility| facility
-                    .security_door_lockdown_at(GridPos::new(52, 28), restored.game.turn()))
+                .and_then(|facility| facility.security_door_lockdown_at(
+                    home.position(GridPos::new(52, 28)),
+                    restored.game.turn()
+                ))
                 .is_some()
         );
     }
@@ -28603,9 +30460,10 @@ mod tests {
     #[test]
     fn player_can_deliver_the_requested_material_and_replay_the_intervention() {
         let mut app = app_with_test_controls();
+        let home = app.home_layout();
         let regulator: ItemId = "core:power_regulator".parse().unwrap();
         let order = "core:restore_checkpoint_power".parse().unwrap();
-        app.walk_fixture_to(TestSector::RECYCLING_REPAIR_PART)
+        app.walk_fixture_to(home.position(TestSector::RECYCLING_REPAIR_PART))
             .unwrap();
         apply(&mut app, GameCommand::PickUp);
         assert!(
@@ -28632,19 +30490,20 @@ mod tests {
                 .all(|(_, actor)| actor.observed_property_takes().is_empty())
         );
         assert_eq!(app.visible_local_alert_summary(), None);
-        app.walk_fixture_to(GridPos::new(27, 31)).unwrap();
+        app.walk_fixture_to(home.position(GridPos::new(27, 31)))
+            .unwrap();
         app.facing = Direction::East;
         assert_eq!(
             app.interaction_command(),
             Some(GameCommand::Interact {
-                target: GridPos::new(28, 31),
+                target: home.position(GridPos::new(28, 31)),
             })
         );
 
         let before_turn = app.game.turn();
         assert_eq!(
             app.execute_command(GameCommand::Interact {
-                target: GridPos::new(28, 31),
+                target: home.position(GridPos::new(28, 31)),
             }),
             CommandOutcome::Applied
         );
@@ -28660,7 +30519,7 @@ mod tests {
         let after_delivery = suspension::fingerprint(&app.game);
         assert_eq!(
             app.execute_command(GameCommand::Interact {
-                target: GridPos::new(28, 31),
+                target: home.position(GridPos::new(28, 31)),
             }),
             CommandOutcome::Rejected(CommandRejection::NoMaterialForDepot)
         );
@@ -29102,7 +30961,8 @@ mod tests {
     #[test]
     fn current_regions_materialize_guarded_encounters_loot_and_threat_sources_once() {
         let mut app = app_with_test_controls();
-        let west_hub_passage = TestSector::EXPANDED_REGIONAL_PASSAGES
+        let west_hub_passage = app
+            .home_regional_passages()
             .into_iter()
             .find_map(|(direction, passage)| (direction == Direction::West).then_some(passage))
             .unwrap();
@@ -30381,7 +32241,7 @@ mod tests {
         assert_eq!(suspension::fingerprint(&restored.game), saved.state);
 
         let current = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
-        assert_eq!(current.rules.player_armor_slots.len(), 1);
+        assert_eq!(current.rules.player_armor_slots.len(), 4);
         assert_eq!(
             current.rules.items.get(&patched).map(|item| item.kind()),
             Some(ItemKind::Armor)
@@ -31327,7 +33187,7 @@ mod tests {
                 .iter()
                 .filter(|(entity, _)| current.game.active_resident(*entity))
                 .count(),
-            1
+            5
         );
     }
 
@@ -31362,7 +33222,7 @@ mod tests {
         let contact = current
             .game
             .actors()
-            .entity_at(GridPos::new(11, 27))
+            .entity_at(current.home_position(GridPos::new(11, 27)))
             .expect("current generation must add a fixed quest contact");
         assert_ne!(contact, resident);
         assert!(current.game.active_quest_provider(contact));
@@ -33645,7 +35505,9 @@ mod tests {
     #[test]
     fn area_aiming_moves_a_preview_without_time_and_commits_an_empty_tile() {
         let mut app = app_with_test_controls();
-        app.walk_fixture_to(GridPos::new(65, 21)).unwrap();
+        let home = app.home_layout();
+        app.walk_fixture_to(home.position(GridPos::new(65, 21)))
+            .unwrap();
         app.active_weapon_slot = 2;
         app.facing = Direction::East;
         let turn_before_aiming = app.game.turn();
@@ -33840,9 +35702,11 @@ mod tests {
     #[test]
     fn pointer_target_selection_does_not_open_area_aim_with_a_zone_weapon() {
         let mut app = app_with_test_controls();
-        app.walk_fixture_to(GridPos::new(65, 21)).unwrap();
+        let home = app.home_layout();
+        app.walk_fixture_to(home.position(GridPos::new(65, 21)))
+            .unwrap();
         app.active_weapon_slot = 2;
-        let at = GridPos::new(70, 20);
+        let at = home.position(GridPos::new(70, 20));
         assert!(app.game.player_visibility().is_visible(at));
         let target = app.game.spawn_actor(Actor::new(at, 20).unwrap()).unwrap();
         app.game.drain_events();
@@ -33859,11 +35723,13 @@ mod tests {
     #[test]
     fn pointer_attack_starts_area_aim_on_the_clicked_empty_cell_without_time() {
         let mut app = app_with_test_controls();
-        app.walk_fixture_to(GridPos::new(65, 21)).unwrap();
+        let home = app.home_layout();
+        app.walk_fixture_to(home.position(GridPos::new(65, 21)))
+            .unwrap();
         app.active_weapon_slot = 2;
         let turn_before = app.game.turn();
         let history_before = app.history.len();
-        let clicked = GridPos::new(70, 20);
+        let clicked = home.position(GridPos::new(70, 20));
         assert!(app.game.player_visibility().is_visible(clicked));
         assert_eq!(app.game.actors().entity_at(clicked), None);
 

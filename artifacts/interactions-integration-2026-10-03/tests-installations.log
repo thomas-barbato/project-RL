@@ -1,0 +1,25 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 01s
+     Running unittests src\lib.rs (target\debug\deps\project_rl-2e9ad6618a1c2637.exe)
+
+running 9 tests
+test facility::tests::one_installation_cannot_silently_discard_a_second_terminal_record ... ok
+test facility::tests::duplicate_installation_positions_and_worker_mismatches_are_rejected ... ok
+test facility::tests::operational_navigation_beacons_are_detected_without_revealing_other_installations ... ok
+test game::expedition::facility_interactions::tests::installation_cut_keeps_ground_items_accessible_and_does_not_detect_new_theft ... ok
+test game::expedition::facility_interactions::tests::installation_power_preserves_existing_alarms_and_defers_occupied_door ... ok
+test game::expedition::facility_interactions::tests::installation_diversion_never_overrides_visible_player ... ok
+test game::expedition::facility_interactions::tests::installation_invalid_queries_and_distance_refuse_atomically ... ok
+test game::expedition::facility_interactions::tests::installation_intel_is_durable_and_rereading_is_free_without_revealing_terrain ... ok
+test game::expedition::facility_interactions::tests::installation_diversion_investigates_sound_and_expires_without_refilling ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 793 filtered out; finished in 0.01s
+
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 2 tests
+test ascii_app::tests::version_sixty_eight_keeps_installation_effects_without_retroactive_authorizations ... ok
+test ascii_app::installation_interactions_app::tests::installations_new_generation_is_optional_and_old_runs_keep_their_map ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 610 filtered out; finished in 14.54s
+

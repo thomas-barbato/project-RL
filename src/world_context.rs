@@ -1739,6 +1739,7 @@ impl AsciiApp {
         self.game.actors().entity_at(at).is_some_and(|id| {
             self.game.active_worker_role(id).is_some()
                 || self.game.active_merchant(id)
+                || self.game.active_artisan(id)
                 || self.game.active_clinic(id)
                 || self.game.active_resident(id)
                 || self.game.active_quest_provider(id)
@@ -2430,13 +2431,21 @@ impl AsciiApp {
                 Choice::Interact,
                 if npc {
                     "Parler"
-                } else if self.game.passage(at).is_some() {
-                    "Emprunter le passage"
+                } else if let Some(link) = self.game.passage(at) {
+                    if self.game.passage_is_irreversible(link) {
+                        "Descendre sans retour"
+                    } else {
+                        "Emprunter le passage"
+                    }
                 } else {
                     "Interagir"
                 }
                 .into(),
-                self.approach_blocked(at, false),
+                self.game
+                    .passage(at)
+                    .filter(|link| self.game.passage_returns_to_previous_layer(link))
+                    .map(|_| "Couche quittée définitivement".to_owned())
+                    .or_else(|| self.approach_blocked(at, false)),
             );
         }
         if !own

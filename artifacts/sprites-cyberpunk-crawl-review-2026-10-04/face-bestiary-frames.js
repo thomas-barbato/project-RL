@@ -1,0 +1,314 @@
+window.faceBestiaryFrames = [
+  {
+    "index": 0,
+    "x": 0,
+    "y": 0,
+    "width": 256,
+    "height": 256,
+    "opaque_bounds": [
+      43,
+      83,
+      171,
+      244
+    ]
+  },
+  {
+    "index": 1,
+    "x": 256,
+    "y": 0,
+    "width": 256,
+    "height": 256,
+    "opaque_bounds": [
+      13,
+      47,
+      210,
+      244
+    ]
+  },
+  {
+    "index": 2,
+    "x": 512,
+    "y": 0,
+    "width": 256,
+    "height": 256,
+    "opaque_bounds": [
+      4,
+      25,
+      235,
+      244
+    ]
+  },
+  {
+    "index": 3,
+    "x": 768,
+    "y": 0,
+    "width": 256,
+    "height": 256,
+    "opaque_bounds": [
+      20,
+      115,
+      218,
+      248
+    ]
+  },
+  {
+    "index": 4,
+    "x": 1024,
+    "y": 0,
+    "width": 240,
+    "height": 256,
+    "opaque_bounds": [
+      3,
+      91,
+      222,
+      244
+    ]
+  },
+  {
+    "index": 5,
+    "x": 1264,
+    "y": 0,
+    "width": 272,
+    "height": 256,
+    "opaque_bounds": [
+      12,
+      69,
+      247,
+      240
+    ]
+  },
+  {
+    "index": 6,
+    "x": 0,
+    "y": 256,
+    "width": 231,
+    "height": 256,
+    "opaque_bounds": [
+      43,
+      33,
+      191,
+      233
+    ]
+  },
+  {
+    "index": 7,
+    "x": 231,
+    "y": 256,
+    "width": 281,
+    "height": 256,
+    "opaque_bounds": [
+      20,
+      28,
+      253,
+      236
+    ]
+  },
+  {
+    "index": 8,
+    "x": 512,
+    "y": 256,
+    "width": 256,
+    "height": 256,
+    "opaque_bounds": [
+      19,
+      17,
+      217,
+      235
+    ]
+  },
+  {
+    "index": 9,
+    "x": 768,
+    "y": 256,
+    "width": 256,
+    "height": 256,
+    "opaque_bounds": [
+      24,
+      19,
+      212,
+      232
+    ]
+  },
+  {
+    "index": 10,
+    "x": 1024,
+    "y": 256,
+    "width": 256,
+    "height": 256,
+    "opaque_bounds": [
+      15,
+      33,
+      204,
+      234
+    ]
+  },
+  {
+    "index": 11,
+    "x": 1280,
+    "y": 256,
+    "width": 256,
+    "height": 256,
+    "opaque_bounds": [
+      6,
+      28,
+      219,
+      234
+    ]
+  },
+  {
+    "index": 12,
+    "x": 0,
+    "y": 512,
+    "width": 256,
+    "height": 224,
+    "opaque_bounds": [
+      29,
+      13,
+      226,
+      198
+    ]
+  },
+  {
+    "index": 13,
+    "x": 256,
+    "y": 512,
+    "width": 256,
+    "height": 224,
+    "opaque_bounds": [
+      16,
+      40,
+      222,
+      195
+    ]
+  },
+  {
+    "index": 14,
+    "x": 512,
+    "y": 512,
+    "width": 256,
+    "height": 224,
+    "opaque_bounds": [
+      9,
+      34,
+      227,
+      203
+    ]
+  },
+  {
+    "index": 15,
+    "x": 768,
+    "y": 512,
+    "width": 256,
+    "height": 224,
+    "opaque_bounds": [
+      19,
+      23,
+      226,
+      201
+    ]
+  },
+  {
+    "index": 16,
+    "x": 1024,
+    "y": 512,
+    "width": 256,
+    "height": 224,
+    "opaque_bounds": [
+      12,
+      23,
+      230,
+      209
+    ]
+  },
+  {
+    "index": 17,
+    "x": 1280,
+    "y": 512,
+    "width": 256,
+    "height": 224,
+    "opaque_bounds": [
+      34,
+      10,
+      224,
+      215
+    ]
+  },
+  {
+    "index": 18,
+    "x": 0,
+    "y": 736,
+    "width": 256,
+    "height": 288,
+    "opaque_bounds": [
+      47,
+      6,
+      212,
+      255
+    ]
+  },
+  {
+    "index": 19,
+    "x": 256,
+    "y": 736,
+    "width": 256,
+    "height": 288,
+    "opaque_bounds": [
+      26,
+      6,
+      220,
+      255
+    ]
+  },
+  {
+    "index": 20,
+    "x": 512,
+    "y": 736,
+    "width": 256,
+    "height": 288,
+    "opaque_bounds": [
+      25,
+      7,
+      196,
+      255
+    ]
+  },
+  {
+    "index": 21,
+    "x": 768,
+    "y": 736,
+    "width": 256,
+    "height": 288,
+    "opaque_bounds": [
+      37,
+      8,
+      203,
+      255
+    ]
+  },
+  {
+    "index": 22,
+    "x": 1024,
+    "y": 736,
+    "width": 256,
+    "height": 288,
+    "opaque_bounds": [
+      29,
+      10,
+      230,
+      255
+    ]
+  },
+  {
+    "index": 23,
+    "x": 1280,
+    "y": 736,
+    "width": 256,
+    "height": 288,
+    "opaque_bounds": [
+      31,
+      17,
+      199,
+      255
+    ]
+  }
+];

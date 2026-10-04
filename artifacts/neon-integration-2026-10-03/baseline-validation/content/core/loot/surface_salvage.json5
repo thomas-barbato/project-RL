@@ -1,0 +1,23 @@
+// A voluntary volatile-cache detour trades danger for useful preparations.
+// These prototype weights favor tools and expedition supplies over scrap.
+{
+  id: "core:surface_salvage",
+  entries: [
+    { item: "core:repair_parts", weight: 180, maximum_depth: 0,
+      sources: ["core:surface_salvage"], quantity: [2, 3] },
+    { item: "core:charged_battery", weight: 150, maximum_depth: 0,
+      sources: ["core:surface_salvage"] },
+    { item: "core:tuning_parts", weight: 120, maximum_depth: 0,
+      sources: ["core:surface_salvage"] },
+    { item: "core:engineering_tool", weight: 90, maximum_depth: 0,
+      sources: ["core:surface_salvage"] },
+    { item: "core:patched_plating", weight: 110, maximum_depth: 0,
+      sources: ["core:surface_salvage"] },
+    { item: "core:needle_launcher", weight: 110, maximum_depth: 0,
+      sources: ["core:surface_salvage"] },
+    { item: "core:integrity_blade", weight: 30, maximum_depth: 0,
+      sources: ["core:surface_salvage"] },
+    { item: "core:saturation_beacon", weight: 10, maximum_depth: 0,
+      sources: ["core:surface_salvage"] },
+  ],
+}

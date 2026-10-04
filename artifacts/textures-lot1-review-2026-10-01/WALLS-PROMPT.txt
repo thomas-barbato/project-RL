@@ -1,0 +1,19 @@
+Use case: stylized-concept.
+Asset type: a precise replacement atlas of FOUR modular wall/door tiles for an overhead pixel-art roguelike.
+Input image 1: material and style reference only. Keep the approved worn slate-gray steel, gray concrete, tiny restrained cyan indicator and yellow hazard marking. The geometry of the reference wall corner is wrong for tile assembly; correct that geometry in this new image.
+
+Create exactly FOUR square sprites in a precise 2 by 2 atlas. Every cell is the same square size, no margins, no gutters, no labels, no text. Transparent background outside wall shapes. The output square is divided by its exact horizontal and vertical midlines. Each tile represents an economical logical 32 by 32 pixel grid with crisp integer enlarged blocks. This is functional game pixel art, no illustration or scene.
+
+CRITICAL MODULAR GEOMETRY, common to all four tiles:
+At logical 32 x 32 resolution, the wall band is exactly 12 pixels thick. Its centerline passes through the center of the cell (16,16).
+A horizontal wall occupies y=10 through y=21 inclusive and extends from x=0 through x=31 with NO transparent gap at the left and right cell edges.
+The connection points are the MIDPOINTS of the cell edges. Never place a vertical arm at the rightmost or leftmost edge of the cell. Unused areas remain completely transparent.
+All solid wall regions have the same material, thickness, brightness and profile. Thin top metal rail and slightly darker body; details remain subordinate to this exact modular silhouette. No pillars protruding from the connection footprint.
+
+Exact row-major contents:
+TOP LEFT — straight horizontal wall. Exactly the full-width horizontal band x=0..31,y=10..21. Transparent above and below. Wall geometry is vertically centered, not hanging near the bottom of the cell.
+TOP RIGHT — upper-left connecting elbow, two arms WEST and NORTH. Its shape is the union of the west arm rectangle x=0..21,y=10..21 and north arm rectangle x=10..21,y=0..21. Thus it reaches the LEFT EDGE at its midpoint and the TOP EDGE at its midpoint, and the two arms meet solidly at the tile center. The right and bottom edges are empty. The elbow has no spur, no hollow center, no third arm. This single west/north elbow must connect correctly to the horizontal band when rotated.
+BOTTOM LEFT — closed door in that exact horizontal wall footprint. Solid jambs x=0..5 and x=26..31 within y=10..21, closed door leaf x=6..25 within y=10..21. Its outer left and right connections must meet the straight-wall band at the same mid-edge coordinates. Simple restrained yellow marks and one small cyan status indicator. No giant vertical posts, no freestanding door frame, no shape extending above y=10 or below y=21.
+BOTTOM RIGHT — open version of the EXACT same door. Preserve jambs x=0..5 and x=26..31 within y=10..21. Door leaf retracted. The middle x=6..25 is genuinely transparent across the whole tile, a readable walking gap from top to bottom. The only deliberate gap in this atlas is the open door's central passage. Do not draw a black rectangle or floor in it.
+
+Preserve the approved original material identity. The materials are worn but readable, with quiet sparse marks. Flat even overhead lighting that tolerates rotating the sprites. Hard square pixels only, no glow, no shadows cast into transparent space, no smooth gradients, no isometric view. No floor tiles, no extra objects, no duplicate panels, no characters.

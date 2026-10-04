@@ -1,0 +1,31 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src\lib.rs (target\debug\deps\project_rl-2e9ad6618a1c2637.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 791 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 1 test
+version=140 seed=5983807250498994333 zone=Some(ZoneInfo { id: ContentId { raw: "core:starter_city", namespace: PackageId("core"), name: "starter_city" }, name: "Ville de départ / Friches", kind: ContentId { raw: "core:surface", namespace: PackageId("core"), name: "surface" }, depth: 0 }) player=Some(GridPos { x: 27, y: 16 }) interior=[129, 8, 62, 44] intro=true objective=Some("OBJECTIF · PARLER À L'HABITANT DE LA PLACE") nav=Some("ROUTE VERS LES PROFONDEURS · SUD-OUEST · À DISTANCE")
+gate=GridPos { x: 129, y: 28 } terrain=Some(TileState { terrain: Door(Open), protected: true })
+npc position=GridPos { x: 166, y: 25 } resident=false healer=false merchant=true quests=false tags={}
+npc position=GridPos { x: 176, y: 18 } resident=false healer=true merchant=false quests=false tags={ContentId { raw: "core:seve", namespace: PackageId("core"), name: "seve" }}
+npc position=GridPos { x: 160, y: 34 } resident=true healer=false merchant=false quests=false tags={}
+npc position=GridPos { x: 154, y: 30 } resident=true healer=false merchant=false quests=false tags={}
+npc position=GridPos { x: 168, y: 28 } resident=true healer=false merchant=false quests=false tags={}
+npc position=GridPos { x: 148, y: 38 } resident=true healer=false merchant=false quests=false tags={}
+npc position=GridPos { x: 176, y: 31 } resident=true healer=false merchant=false quests=false tags={}
+npc position=GridPos { x: 180, y: 34 } resident=false healer=false merchant=false quests=true tags={ContentId { raw: "core:orme", namespace: PackageId("core"), name: "orme" }}
+inventory=core:integrity_blade
+inventory=core:patched_plating
+inventory=core:weapon_matter
+inventory=example.arc_arsenal:arc_lance
+inventory=core:modele_veyr_r12
+inventory=core:modele_veyr_r12
+inventory=core:modele_veyr_r12
+test ascii_app::city_feedback_tests::city_feedback_saved_run_diagnostic ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 578 filtered out; finished in 9.91s
+

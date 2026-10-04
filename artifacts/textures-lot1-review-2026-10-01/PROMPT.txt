@@ -1,0 +1,32 @@
+Use case: stylized-concept.
+Asset type: an original game tile atlas for review, based on the approved art direction in the reference image.
+Input image 1: approved STYLE AND MATERIAL REFERENCE only. Create a new tile atlas, not an edit of the board.
+Primary request: a cohesive initial set of EXACTLY SIXTEEN game tiles in a precise 4-column by 4-row atlas, suitable for rendering each tile at 32 by 32 screen pixels. Retain the approved worn steel, warm-gray concrete, earthy wasteland, subdued olive grass and restrained blue/cyan from the reference.
+
+Canvas and alignment: a square atlas filling the entire output. Exactly four equal square cells across and four down. NO margins, NO gutters, NO headings, NO labels, NO border, NO review-board decoration. The 16 tile cells divide the square image precisely. Each individual tile should be composed on a strict logical 32 by 32 pixel art grid, enlarged by nearest-neighbor only for the atlas output. At a 1024 by 1024 canvas this means 256 by 256 cells, with every logical pixel an exact 8 by 8 block. Do not draw tiny physical single-pixel details. Clustered pixels, short deliberate lines, no gradients, no smooth shading. A 32 pixel tile must read clearly when reduced to its intended size. Original economical pixel art in the approved overhead RPG view, aligned square tile axes. No isometric camera.
+
+Tile contents in EXACT row-major order:
+Row 1:
+1. Worn steel floor panel A: dark slate-gray, subtle inset square seam and four quiet corner rivets, very sparse wear.
+2. Worn steel floor panel B: same dimensions, seam, lighting and palette as A, slightly different sparse wear.
+3. Warm gray concrete paving A: flat slab, restrained surface, a small fine irregular crack that is clearly quieter than props.
+4. Warm gray concrete paving B: compatible slab variant, different small crack and chips.
+Row 2:
+5. Steel grate floor: dark steel square framing with a clear regular grid of holes, comparable brightness to the other floors.
+6. Gravel: subdued earthy gray-brown fine stones clustered sparingly, seamless across tile edges; no large blocking rocks.
+7. Compact earth: subdued brown soil, few small marks, seamless full-cell ground.
+8. Sparse dry grass: olive tufts on the SAME earth as tile 7, still mostly legible ground, seamless full-cell ground.
+Row 3:
+9. Shallow water: muted slate turquoise, a few readable submerged small stones and restrained pixel ripples, full-cell seamless ground.
+10. Deeper water: darker muted blue, sparse deliberate ripples, no stones, full-cell seamless ground, clearly distinct from shallow water.
+11. Connected horizontal settlement wall: worn dark steel and concrete, runs from left tile edge to right tile edge through the center; clear solid blocking silhouette, slim overhead cap and a short visible front face as in the approved reference.
+12. Matching wall corner: an L shape joining the left-edge wall to the top-edge wall. Precisely the same wall thickness, materials and lighting as 11.
+Row 4:
+13. Closed metal door: horizontal wall opening across the middle of the tile, door fills the opening between two narrow fixed side jambs; restrained yellow hazard marks, one cyan status light. Door at the same scale as the walls.
+14. Open version of that EXACT door: same jambs and footprint, door leaf retracted, wide clearly empty central walking gap. No blocking black wall in the opening.
+15. One storage crate: muted olive painted steel, simple sturdy readable square silhouette centered within one tile, same perspective as the reference, no extra contents.
+16. One functional terminal: compact freestanding slate metal case, distinctive cyan screen, sparse large readout bars; contained within one tile, same perspective as the reference.
+
+Palette: limited tones per material, matching the reference. Surface materials remain recognizable and restrained. Character visibility takes priority over ground noise. No glossy science fiction, no fantasy, no dominant red, no neon bloom.
+Transparency: terrain tiles 1 through 10 are fully opaque and fill their cells. Wall, corner, doors, crate and terminal in cells 11 through 16 have genuinely transparent unused background surrounding the solid object; do not paint a floor beneath those six sprites. No checkerboard drawn into the artwork.
+Constraints: preserve the approved material identity. Exactly sixteen correct tiles. No scene assembly, no humans, no animals, no player design, no extra objects or props, no title or writing.

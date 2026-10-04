@@ -1,0 +1,26 @@
+[package]
+name = "project-rl-compat-baseline"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+base64 = "0.22"
+bincode = "1.3"
+json5 = "0.4"
+macroquad = "0.4.16"
+semver = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.9"
+
+[patch.crates-io]
+# Keep OpenGL's texture-binding cache coherent when the font atlas grows.
+miniquad = { path = "C:/Users/User/Desktop/project-RL/vendor/miniquad" }
+
+[lib]
+name = "project_rl"
+path = "src/lib.rs"
+
+[[bin]]
+name = "compat-baseline"
+path = "src/main.rs"

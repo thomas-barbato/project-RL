@@ -1,0 +1,119 @@
+{
+  "id": "core:reinforced_armor_models",
+  "stats": [
+    {
+      "affix": "affix:power",
+      "weight": 100
+    },
+    {
+      "affix": "affix:coordination",
+      "weight": 100
+    },
+    {
+      "affix": "affix:resilience",
+      "weight": 100
+    },
+    {
+      "affix": "affix:perception",
+      "weight": 80
+    },
+    {
+      "affix": "affix:processing",
+      "weight": 80
+    },
+    {
+      "affix": "affix:accuracy",
+      "weight": 70
+    },
+    {
+      "affix": "affix:armor_penetration",
+      "weight": 35
+    },
+    {
+      "affix": "affix:vitality",
+      "weight": 100
+    },
+    {
+      "affix": "affix:energy_reserve",
+      "weight": 70
+    },
+    {
+      "affix": "affix:heat_dissipation",
+      "weight": 35
+    }
+  ],
+  "bases": [
+    {
+      "item": "core:brigandine_cognefer",
+      "family": "core:reinforced_armor",
+      "tier": 1,
+      "grammar": "fs",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 0,
+      "maximum_depth": 0
+    },
+    {
+      "item": "core:plastron_bastion",
+      "family": "core:reinforced_armor",
+      "tier": 2,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 1,
+      "maximum_depth": 1
+    },
+    {
+      "item": "core:armure_cerbere",
+      "family": "core:reinforced_armor",
+      "tier": 3,
+      "grammar": "fs",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 2,
+      "maximum_depth": 2
+    },
+    {
+      "item": "core:carapace_chrysalide",
+      "family": "core:reinforced_armor",
+      "tier": 4,
+      "grammar": "fs",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 3,
+      "maximum_depth": 3
+    },
+    {
+      "item": "core:manteau_de_mue",
+      "family": "core:reinforced_armor",
+      "tier": 5,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 4,
+      "maximum_depth": 4
+    },
+    {
+      "item": "core:combinaison_fantome",
+      "family": "core:reinforced_armor",
+      "tier": 6,
+      "grammar": "fs",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 5,
+      "maximum_depth": null
+    }
+  ]
+}

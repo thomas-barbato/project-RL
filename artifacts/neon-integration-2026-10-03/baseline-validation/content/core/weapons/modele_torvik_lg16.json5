@@ -1,0 +1,30 @@
+{
+  "id": "core:modele_torvik_lg16",
+  "name_key": "equipment.modele_torvik_lg16.name",
+  "description_key": "equipment.lance_grenades.description",
+  "mass_grams": 4500,
+  "attack": {
+    "range": 6,
+    "distance_metric": "chebyshev",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": 0,
+    "damage": {
+      "amount": 6,
+      "damage_type": "kinetic",
+      "penetration": 0
+    }
+  },
+  "supply": {
+    "kind": "matter",
+    "amount": 4
+  },
+  "launcher": {
+    "radius": 1,
+    "delay_turns": 2,
+    "damage": {
+      "amount": 21,
+      "damage_type": "explosive",
+      "penetration": 1
+    }
+  }
+}

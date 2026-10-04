@@ -1,0 +1,53 @@
+warning: method `walk_playable_trial_outbound` is never used
+  --> src\playable_trial_app.rs:93:19
+   |
+ 7 | impl AsciiApp {
+   | ------------- method in this implementation
+...
+93 |     pub(super) fn walk_playable_trial_outbound(&mut self) -> Result<(), String> {
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `project-rl-compat-baseline` (bin "compat-baseline" test) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.35s
+     Running unittests src\main.rs (target\debug\deps\compat_baseline-79a2b25c551cd0f8.exe)
+
+running 3 tests
+test ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132 ... FAILED
+test ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134 ... FAILED
+test ascii_app::equipment_generation::tests::improvement_preserves_version_135 ... FAILED
+
+failures:
+
+---- ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132' (27512) panicked at src\equipment_generation.rs:339:9:
+assertion `left == right` failed
+  left: 2546150270975769363
+ right: 7514443169048286002
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134' (20876) panicked at src\equipment_generation.rs:281:9:
+assertion `left == right` failed
+  left: 10895948859345438833
+ right: 11827607781388651990
+
+---- ascii_app::equipment_generation::tests::improvement_preserves_version_135 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::improvement_preserves_version_135' (25732) panicked at src\equipment_generation.rs:254:9:
+assertion `left == right` failed
+  left: 17562185062364210838
+ right: 13575184762297074475
+
+
+failures:
+    ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134
+    ascii_app::equipment_generation::tests::improvement_preserves_version_135
+    ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 561 filtered out; finished in 7.79s
+
+error: test failed, to rerun pass `--bin compat-baseline`

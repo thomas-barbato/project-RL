@@ -1,0 +1,35 @@
+# Aperçu artistique : ambiance sombre et point de vue
+
+2 octobre 2026. Production avec **imagegen intégré**, en mode génération puis édition ciblée. Ces images sont des maquettes pour discussion, séparées du catalogue et du rendu natif du jeu. Aucun code, carte ou texture active n'a été remplacé.
+
+`comparatif-v2.png` est le comparatif final. `comparatif-v1.png` conserve le premier résultat, dont la vue verticale montrait trop de faces. La correction rend la différence plus lisible ; elle conserve encore quelques conventions illustratives, notamment sur les murs et la chaise. Les projections devront être normalisées pour fabriquer des sprites utilisables. La vue de droite utilise un cadrage oblique avec les axes du décor inclinés : elle ne représente pas une modification du moteur ou de la grille.
+
+Le but est de choisir une ambiance et un point de vue sur une petite composition avant de décider d'une reprise éventuelle du mode texturé. L'inspiration Quasimorph porte sur l'atmosphère industrielle inquiétante ; les dessins sont originaux et ne constituent pas une reproduction de ses assets.
+
+## Génération
+
+```text
+Use case: stylized-concept.
+Asset type: one raster art-direction comparison board for an original 2D tactical roguelike game; preview only, not a playable screenshot or finished tileset.
+Primary request: create two side-by-side views of EXACTLY THE SAME SMALL SCENE, to compare a genuinely vertical overhead camera against a coherent steep three-quarter overhead camera. The user finds our current sprites too clean, bright, friendly, and incorrectly lying flat on the ground. We need a grim, worn industrial science-fiction atmosphere, with the oppressive material character of Quasimorph as an inspiration, but original designs and no copied assets or interface.
+Composition: wide landscape board, two equal large panels, narrow dark separator, camera comparison immediately obvious. Each panel shows the same footprint, positions, scale of a small L-shaped concrete-and-steel building corner: one open metal doorway, one room with an industrial workbench and a chair, one standing armored human, and ONE upright outdoor streetlamp near the entrance. Show enough cracked exterior paving to understand where the streetlamp is rooted. Roughly 12 by 10 simulation cells per scene, but no visible grid. Show the small scene close enough to judge individual props. No miniature sprawling city.
+LEFT PANEL, label exactly "VUE VERTICALE": true 90-degree camera looking vertically down. All geometry, character and furniture must obey that overhead view. Only tops of objects are visible. Character shows helmet, shoulders and weapon from above, NOT a full front-facing human. Streetlamp shows a compact lamp head seen from above and its grounded cast shadow; do NOT show a long vertical pole sprite stretched across the paving. Building walls show their thick top surfaces, door opening reads in plan view, table shows its tabletop, chair shows seat/back top. No upright facades or side elevations anywhere in this panel.
+RIGHT PANEL, label exactly "VUE PLONGEANTE": coherent orthographic steep three-quarter overhead view, looking from the south with high elevation, NOT an isometric diamond grid. Building fronts, workbench, chair, standing human and streetlamp show consistent upper surfaces and shortened visible side faces. Vertical props rise visibly from their BASE points on the ground, slightly toward the top of the image. The lamp pole stays upright, with a small head overhead, a clear base contact shadow and coherent overlaps. NO objects lying flat. Same arrangement as left; no extra architecture.
+Style: deliberately crafted crisp pixel art, chunky readable pixel clusters, no smooth digital painting, no pixel-noise overlay, no photographic surfaces, no toy-like rounded props. Uniform pixel scale within both scenes. Functional silhouettes and imperfect, damaged materials.
+Mood and lighting: oppressive, abandoned, cold, threatening industrial infrastructure. Deep charcoal and dirty gray concrete, soot-black metal, muted rust brown, sickly desaturated olive accents. Limited pale cyan from a door control and dirty amber from the streetlamp, with local lighting and dark occluded corners. Keep floors, character and doorway readable; do not hide the scene in black. Weathering should form purposeful cracks, stains, dents and chipped patches, not repetitive grain. Uneven cracked paving, exposed cable conduit along a wall. No cheerful green grass, bright beige floors, pristine suburb, glossy showroom, oversaturated neon or cute decoration.
+Text: only the two exact French labels, small restrained off-white lettering above each panel. No HUD, logos, branding, watermarks, captions, arrows or explanatory text.
+Constraints: this is a controlled camera comparison, same content and mood in both panels; all depicted shadows, perspective, prop height and anchoring must agree with their own camera.
+```
+
+## Correction du point de vue gauche
+
+Image cible : `comparatif-v1.png`.
+
+```text
+Use case: precise-object-edit.
+Edit target: the supplied two-panel original game art-direction comparison image.
+Single correction: make the entire LEFT PANEL genuinely orthographic vertical overhead, camera at exactly 90 degrees from the ground, like a high-quality detailed floor plan drawn in pixel art. It is currently an oblique view with incorrectly visible wall facades, table drawers, chair legs, and full standing human body. Remove that projection inconsistency while preserving the same scene footprint, object base positions, dark industrial palette, purposeful wear, local lighting, labels and composition.
+LEFT PANEL strict requirements: every wall becomes ONLY a thick chipped concrete top strip; no visible wall front or side height. The open doorway is a gap in the bottom wall showing a worn threshold, not a tall frontal portal. Door control is a tiny top-view box at the jamb. Workbench shows ONLY its rectangular top surface and tools, without any visible front drawers, handles, sides or legs. Chair shows only seat and backrest top, no front-facing seat shape or legs. Storage cabinets show only their top surfaces. Streetlamp remains a small rectangular lamp head seen directly from above at the same position, with a shadow on the paving indicating the tall pole beneath it; no large visible plinth or frontal pole. Human shows top of helmet and shoulders, small backpack/weapon geometry from directly above; absolutely no visible face, chest, belt, front thighs or boot fronts, and no full vertical standing character silhouette. Keep all paving grid axes horizontal and vertical in the left panel. Walls and furniture should not cast fake frontal elevation lines.
+Preserve RIGHT PANEL exactly: its oblique camera, upright lamp pole, standing character, height, shadows, furniture, walls, door, materials, palette and layout are unchanged.
+Preserve exact labels "VUE VERTICALE" and "VUE PLONGEANTE". Do not add text, HUD, annotations, objects, bright colors or new scenery.
+```

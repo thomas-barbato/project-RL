@@ -1,0 +1,511 @@
+{
+  "enter_test_ms": 15.5145,
+  "painting_eight_points_ms": 0.0605,
+  "placement_ms": 15.575800000000001,
+  "samples": [
+    {
+      "cost": {
+        "ground_ms": 14.739000000000019,
+        "objects_ms": 0.08639999999996917,
+        "total_ms": 414.6182,
+        "ui_ms": 23.86129999999997
+      },
+      "frame": 0,
+      "frame_ms": 423.24420000000003,
+      "rasterized_tiles": 680,
+      "view": "ville-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.19180000000000005,
+        "objects_ms": 0.03739999999999999,
+        "total_ms": 2.7243,
+        "ui_ms": 0.057299999999999685
+      },
+      "frame": 1,
+      "frame_ms": 6.122,
+      "rasterized_tiles": 0,
+      "view": "ville-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.3302,
+        "objects_ms": 0.03849999999999998,
+        "total_ms": 3.0378,
+        "ui_ms": 0.04699999999999971
+      },
+      "frame": 2,
+      "frame_ms": 114.9214,
+      "rasterized_tiles": 0,
+      "view": "ville-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.19029999999999997,
+        "objects_ms": 0.03539999999999999,
+        "total_ms": 2.6844,
+        "ui_ms": 0.05550000000000033
+      },
+      "frame": 3,
+      "frame_ms": 4.982,
+      "rasterized_tiles": 0,
+      "view": "ville-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.21690000000000004,
+        "objects_ms": 0.033399999999999985,
+        "total_ms": 2.5688,
+        "ui_ms": 0.04610000000000003
+      },
+      "frame": 4,
+      "frame_ms": 9.9931,
+      "rasterized_tiles": 0,
+      "view": "ville-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.21979999999999997,
+        "objects_ms": 0.03550000000000003,
+        "total_ms": 2.5709,
+        "ui_ms": 0.04590000000000005
+      },
+      "frame": 5,
+      "frame_ms": 9.9689,
+      "rasterized_tiles": 0,
+      "view": "ville-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.22170000000000004,
+        "objects_ms": 0.035599999999999965,
+        "total_ms": 2.5631999999999997,
+        "ui_ms": 0.04789999999999983
+      },
+      "frame": 6,
+      "frame_ms": 9.9817,
+      "rasterized_tiles": 0,
+      "view": "ville-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 38.8503,
+        "objects_ms": 0.0362000000000009,
+        "total_ms": 44.263400000000004,
+        "ui_ms": 0.06510000000000105
+      },
+      "frame": 0,
+      "frame_ms": 45.0333,
+      "rasterized_tiles": 680,
+      "view": "nature-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.14429999999999998,
+        "objects_ms": 0.028799999999999992,
+        "total_ms": 2.5896,
+        "ui_ms": 0.0411999999999999
+      },
+      "frame": 1,
+      "frame_ms": 4.881,
+      "rasterized_tiles": 0,
+      "view": "nature-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.17160000000000003,
+        "objects_ms": 0.03239999999999993,
+        "total_ms": 2.7025,
+        "ui_ms": 0.044800000000000395
+      },
+      "frame": 2,
+      "frame_ms": 10.0147,
+      "rasterized_tiles": 0,
+      "view": "nature-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.1805,
+        "objects_ms": 0.03309999999999996,
+        "total_ms": 2.7813,
+        "ui_ms": 0.04229999999999956
+      },
+      "frame": 3,
+      "frame_ms": 9.9512,
+      "rasterized_tiles": 0,
+      "view": "nature-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.17950000000000002,
+        "objects_ms": 0.032999999999999974,
+        "total_ms": 2.7123,
+        "ui_ms": 0.04039999999999999
+      },
+      "frame": 4,
+      "frame_ms": 10.008899999999999,
+      "rasterized_tiles": 0,
+      "view": "nature-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.1901,
+        "objects_ms": 0.03410000000000002,
+        "total_ms": 2.9971,
+        "ui_ms": 0.05279999999999996
+      },
+      "frame": 5,
+      "frame_ms": 9.9804,
+      "rasterized_tiles": 0,
+      "view": "nature-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.19090000000000004,
+        "objects_ms": 0.032899999999999985,
+        "total_ms": 2.8276999999999997,
+        "ui_ms": 0.04559999999999942
+      },
+      "frame": 6,
+      "frame_ms": 9.948699999999999,
+      "rasterized_tiles": 0,
+      "view": "nature-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 48.319700000000005,
+        "objects_ms": 0.19299999999999784,
+        "total_ms": 91.0336,
+        "ui_ms": 0.06840000000001112
+      },
+      "frame": 0,
+      "frame_ms": 91.8398,
+      "rasterized_tiles": 1996,
+      "view": "ville-16"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.7338,
+        "objects_ms": 0.07610000000000006,
+        "total_ms": 8.9575,
+        "ui_ms": 0.054999999999999716
+      },
+      "frame": 1,
+      "frame_ms": 9.8949,
+      "rasterized_tiles": 0,
+      "view": "ville-16"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.8823,
+        "objects_ms": 0.08709999999999996,
+        "total_ms": 9.2045,
+        "ui_ms": 0.05679999999999907
+      },
+      "frame": 2,
+      "frame_ms": 9.934099999999999,
+      "rasterized_tiles": 0,
+      "view": "ville-16"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.7001000000000001,
+        "objects_ms": 0.07050000000000001,
+        "total_ms": 8.8022,
+        "ui_ms": 0.049099999999999255
+      },
+      "frame": 3,
+      "frame_ms": 9.528500000000001,
+      "rasterized_tiles": 0,
+      "view": "ville-16"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.8869999999999999,
+        "objects_ms": 0.07830000000000004,
+        "total_ms": 9.0467,
+        "ui_ms": 0.05460000000000065
+      },
+      "frame": 4,
+      "frame_ms": 9.755700000000001,
+      "rasterized_tiles": 0,
+      "view": "ville-16"
+    },
+    {
+      "cost": {
+        "ground_ms": 260.2927,
+        "objects_ms": 0.07920000000001437,
+        "total_ms": 291.9018,
+        "ui_ms": 0.07380000000000564
+      },
+      "frame": 0,
+      "frame_ms": 292.935,
+      "rasterized_tiles": 2470,
+      "view": "nature-16"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.6651999999999999,
+        "objects_ms": 0.05900000000000005,
+        "total_ms": 12.5173,
+        "ui_ms": 0.06890000000000107
+      },
+      "frame": 1,
+      "frame_ms": 13.2669,
+      "rasterized_tiles": 0,
+      "view": "nature-16"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.6958,
+        "objects_ms": 0.05669999999999997,
+        "total_ms": 12.4709,
+        "ui_ms": 0.07429999999999914
+      },
+      "frame": 2,
+      "frame_ms": 14.2493,
+      "rasterized_tiles": 0,
+      "view": "nature-16"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.6819999999999999,
+        "objects_ms": 0.06219999999999992,
+        "total_ms": 12.7243,
+        "ui_ms": 0.08099999999999952
+      },
+      "frame": 3,
+      "frame_ms": 13.745999999999999,
+      "rasterized_tiles": 0,
+      "view": "nature-16"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.6994,
+        "objects_ms": 0.0857,
+        "total_ms": 13.1102,
+        "ui_ms": 0.07260000000000133
+      },
+      "frame": 4,
+      "frame_ms": 15.3438,
+      "rasterized_tiles": 0,
+      "view": "nature-16"
+    },
+    {
+      "cost": {
+        "ground_ms": 53.3173,
+        "objects_ms": 0.03719999999999857,
+        "total_ms": 56.5028,
+        "ui_ms": 0.06370000000000431
+      },
+      "frame": 0,
+      "frame_ms": 58.2603,
+      "rasterized_tiles": 660,
+      "view": "defilement-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 2.9492,
+        "objects_ms": 0.033800000000000274,
+        "total_ms": 5.957,
+        "ui_ms": 0.05939999999999923
+      },
+      "frame": 1,
+      "frame_ms": 7.0205,
+      "rasterized_tiles": 20,
+      "view": "defilement-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 2.8352999999999997,
+        "objects_ms": 0.03440000000000021,
+        "total_ms": 5.8793999999999995,
+        "ui_ms": 0.06130000000000013
+      },
+      "frame": 2,
+      "frame_ms": 7.2873,
+      "rasterized_tiles": 20,
+      "view": "defilement-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.17659999999999998,
+        "objects_ms": 0.03390000000000004,
+        "total_ms": 2.8903000000000003,
+        "ui_ms": 0.04670000000000041
+      },
+      "frame": 3,
+      "frame_ms": 7.1757,
+      "rasterized_tiles": 0,
+      "view": "defilement-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 2.3826,
+        "objects_ms": 0.037799999999999834,
+        "total_ms": 5.5763,
+        "ui_ms": 0.06709999999999994
+      },
+      "frame": 4,
+      "frame_ms": 9.9857,
+      "rasterized_tiles": 20,
+      "view": "defilement-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.813,
+        "objects_ms": 0.039200000000000124,
+        "total_ms": 4.2951999999999995,
+        "ui_ms": 0.0671999999999997
+      },
+      "frame": 5,
+      "frame_ms": 9.9785,
+      "rasterized_tiles": 4,
+      "view": "defilement-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.25749999999999995,
+        "objects_ms": 0.05659999999999993,
+        "total_ms": 3.7651,
+        "ui_ms": 0.07539999999999969
+      },
+      "frame": 6,
+      "frame_ms": 10.0314,
+      "rasterized_tiles": 0,
+      "view": "defilement-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.6784,
+        "objects_ms": 0.03739999999999999,
+        "total_ms": 4.0595,
+        "ui_ms": 0.07069999999999999
+      },
+      "frame": 7,
+      "frame_ms": 10.473700000000001,
+      "rasterized_tiles": 4,
+      "view": "defilement-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.3271,
+        "objects_ms": 0.04849999999999999,
+        "total_ms": 3.9534000000000002,
+        "ui_ms": 0.06879999999999997
+      },
+      "frame": 8,
+      "frame_ms": 9.4492,
+      "rasterized_tiles": 0,
+      "view": "defilement-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 0.7484999999999999,
+        "objects_ms": 0.03950000000000009,
+        "total_ms": 4.1045,
+        "ui_ms": 0.07179999999999964
+      },
+      "frame": 9,
+      "frame_ms": 9.8595,
+      "rasterized_tiles": 4,
+      "view": "defilement-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 34.187999999999995,
+        "objects_ms": 0.044299999999999784,
+        "total_ms": 56.7213,
+        "ui_ms": 0.0007999999999981355
+      },
+      "frame": 0,
+      "frame_ms": 60.076499999999996,
+      "rasterized_tiles": 813,
+      "view": "test-jouable-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 2.0661,
+        "objects_ms": 0.04919999999999991,
+        "total_ms": 5.0411,
+        "ui_ms": 0.000700000000000145
+      },
+      "frame": 1,
+      "frame_ms": 6.1403,
+      "rasterized_tiles": 38,
+      "view": "test-jouable-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 1.8703999999999998,
+        "objects_ms": 0.04490000000000016,
+        "total_ms": 4.8241,
+        "ui_ms": 0.000600000000000378
+      },
+      "frame": 2,
+      "frame_ms": 29.3167,
+      "rasterized_tiles": 38,
+      "view": "test-jouable-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 1.9983999999999997,
+        "objects_ms": 0.04330000000000034,
+        "total_ms": 5.1557,
+        "ui_ms": 0.000700000000000145
+      },
+      "frame": 3,
+      "frame_ms": 6.2189000000000005,
+      "rasterized_tiles": 38,
+      "view": "test-jouable-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 1.8294999999999997,
+        "objects_ms": 0.04010000000000069,
+        "total_ms": 4.6661,
+        "ui_ms": 0.00039999999999995595
+      },
+      "frame": 4,
+      "frame_ms": 7.2104,
+      "rasterized_tiles": 38,
+      "view": "test-jouable-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 2.2146000000000003,
+        "objects_ms": 0.03469999999999995,
+        "total_ms": 4.5015,
+        "ui_ms": 0.0005999999999994898
+      },
+      "frame": 5,
+      "frame_ms": 10.3042,
+      "rasterized_tiles": 41,
+      "view": "test-jouable-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 1.9631000000000003,
+        "objects_ms": 0.03559999999999963,
+        "total_ms": 4.1874,
+        "ui_ms": 0.0004000000000008441
+      },
+      "frame": 6,
+      "frame_ms": 9.5581,
+      "rasterized_tiles": 41,
+      "view": "test-jouable-32"
+    },
+    {
+      "cost": {
+        "ground_ms": 2.7689,
+        "objects_ms": 0.051000000000000156,
+        "total_ms": 6.6996,
+        "ui_ms": 0.000700000000000145
+      },
+      "frame": 7,
+      "frame_ms": 9.7605,
+      "rasterized_tiles": 41,
+      "view": "test-jouable-32"
+    }
+  ]
+}

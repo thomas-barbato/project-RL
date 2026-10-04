@@ -1,0 +1,21 @@
+Lecture tactique — proposition du 4 octobre 2026
+
+Choix proposé : une même compétence REC-06 et une même commande F2 pour afficher ou masquer ensemble la vision et la portée des bruits.
+- Vert : champs visuels autour des NPC visibles.
+- Ambre : propagation d'un son autour de sa source, limitée par son intensité et l'atténuation du terrain.
+- Rouge : pictogrammes de perception réelle, conservés lorsque les zones sont masquées.
+
+Essai interactif : Voir_lecture_tactique.cmd.
+La scène est figée, indépendante des parties sauvegardées. F2 ou le bouton affiche/masque les zones ; Échap ferme la fenêtre.
+Cet essai représente le fonctionnement après apprentissage de REC-06. La commande F2 et le contenu de la compétence dans le jeu normal ne sont pas encore modifiés.
+
+Validation :
+- cargo check --locked --all-targets : réussi (avertissement wall_joins préexistant).
+- cargo test --locked --bin project-rl f2_requires_tactical_reading_then_toggles_without_advancing_the_run : réussi.
+- cargo build --locked --bin project-rl : réussi.
+- Captures natives --ui-cold-tactical-listening : réussies, zones affichées puis masquées.
+- Vérifications natives : audition réelle du poste, champs issus des règles du moteur, snapshot moteur identique avant/après les affichages.
+- cargo fmt --all --check et git diff --check sur les fichiers touchés : réussis.
+
+L'aperçu ne montre que l'émission réelle du poste de diversion de cette scène. Il ne simule pas encore tous les types de bruits ni une nouvelle jauge d'audition par ennemi.
+Aucune modification des règles de détection, des coûts, des sauvegardes ou de la génération du monde.

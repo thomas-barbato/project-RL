@@ -1,0 +1,43 @@
+Validation locale — interactions et pictogrammes — 4 octobre 2026
+
+Rendu intégré
+- Icônes communes de l'interface : dessin environ 29 % plus grand, traits épaissis.
+- Carte : marqueurs de quête, effets, états et alertes agrandis ; fonds individuels retirés.
+- Mini-carte : interactions, contacts, joueur et quêtes agrandis ; pastille sombre des interactions retirée.
+- Ordres des compagnons : dessins et traits agrandis de 25 %.
+- Les surfaces des boutons et des panneaux restent celles de l'interface.
+
+Interactions jouables
+- Renseignements, alimentation et poste de diversion dans une annexe facultative accessible depuis la ville.
+- Génération 143 ; les parties de génération 142 ou antérieure gardent leur contenu et leurs règles historiques.
+- État du relais, renseignements déjà lus et charges du poste conservés lors d'une reprise.
+- Le poste émet depuis une case praticable : le garde peut réellement rejoindre la source.
+- La réserve et le garde utilisent la faction existante core:system_security ; la collecte n'est pas autorisée par défaut.
+- Couper le relais désactive le capteur de la réserve et ferme le passage court, sans annuler une alarme déjà déclenchée ni fermer une porte occupée.
+- Le capteur détecte les prélèvements non autorisés. La vision et l'audition propres au garde restent actives.
+
+Aperçu proposé, encore limité au diagnostic natif
+- Zones circulaires de vision et de bruit, découpées par le terrain et la visibilité.
+- Œil rouge lorsqu'un hostile visible détecte réellement le joueur ; oreille rouge lorsqu'il entend réellement un bruit.
+- Aucun fond individuel derrière ces deux pictogrammes. Priorité à l'œil si les deux perceptions sont actives.
+- Aucune commande supplémentaire d'affichage tactique n'a été ajoutée au jeu normal.
+- Portée acoustique circulaire effective pour la génération 143 ; atténuation des murs conservée.
+
+Vérifications
+- cargo test --locked --lib : 803 tests réussis, aucun échec.
+- Test client installations_new_generation_is_optional_and_old_runs_keep_their_map : réussi.
+- Test client borrowed_recovery_snapshot_preserves_legacy_bytes_and_fingerprints : réussi.
+- Test client quest_badges_cannot_cover_a_character_in_the_cell_above : réussi.
+- cargo check --locked --all-targets : réussi.
+- cargo fmt --all --check et git diff --check sur les fichiers modifiés : réussis.
+- cargo build --locked --release --bin project-rl : réussi (avertissements préexistants).
+- Captures natives à 960 x 600, 1280 x 800 et 1600 x 900 : neuf captures dans captures-final.
+- Les captures vérifient l'absence de mutation pendant le menu et le dessin des zones, puis une audition et une détection optique réelles.
+- Captures complémentaires de la quête et des effets à petite résolution : icons-quest-final et icons-effects-960.
+- Diagnostic de mouvement, moteur debug : p95 2,8563 ms, maximum 3,4384 ms ; profilage et sauvegardes strictement identiques.
+- La suite client complète n'a pas été relancée ; les succès indiqués sont ceux des tests ciblés.
+
+Artefacts
+- scope.json indique la portée des modifications.
+- changes.patch compare les fichiers au début de cette intervention ; les autres changements du workspace sont préservés.
+- Essayer_interactions.cmd compile et lance l'essai avec sa sauvegarde indépendante essai-interactions.json.

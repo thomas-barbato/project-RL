@@ -1,0 +1,25 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 16.58s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 3 tests
+test ascii_app::hub_layout_tests::random_home_new_game_samples_once_and_rebuilds_with_the_chosen_seed ... FAILED
+test ascii_app::hub_layout_tests::random_home_services_quests_intro_and_resume_follow_the_physical_placement ... ok
+test ascii_app::hub_layout_tests::random_home_preserves_authored_terrain_controls_and_all_exits_on_every_edge has been running for over 60 seconds
+test ascii_app::hub_layout_tests::random_home_preserves_authored_terrain_controls_and_all_exits_on_every_edge ... ok
+
+failures:
+
+---- ascii_app::hub_layout_tests::random_home_new_game_samples_once_and_rebuilds_with_the_chosen_seed stdout ----
+
+thread 'ascii_app::hub_layout_tests::random_home_new_game_samples_once_and_rebuilds_with_the_chosen_seed' (18764) panicked at src\hub_layout_tests.rs:18:33:
+called `Result::unwrap()` on an `Err` value: "L'état moteur contient encore des données transitoires."
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    ascii_app::hub_layout_tests::random_home_new_game_samples_once_and_rebuilds_with_the_chosen_seed
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 569 filtered out; finished in 133.81s
+
+error: test failed, to rerun pass `--bin project-rl`

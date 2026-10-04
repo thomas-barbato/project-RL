@@ -3,6 +3,8 @@
 {
   id: "core:regional_cache",
   entries: [
+    { item: "core:unstable_fragment", weight: 100,
+      sources: ["core:regional_cache"], quantity: [1, 2] },
     { item: "core:repair_patch", weight: 690, maximum_depth: 0,
       map_kinds: ["core:human_habitat", "core:surface_wilds"],
       sources: ["core:regional_cache"] },

@@ -1,0 +1,11 @@
+{
+  id: "core:couteau_de_camp",
+  name_key: "equipment.couteau_de_camp.name",
+  description_key: "equipment.couteau_de_camp.description",
+  mass_grams: 700,
+  attack: {
+    range: 1, distance_metric: "chebyshev", requires_line_of_sight: false,
+    accuracy_modifier: 10, impact: { material_cap: 10 },
+    damage: { amount: 3, damage_type: "piercing", penetration: 0 },
+  },
+}

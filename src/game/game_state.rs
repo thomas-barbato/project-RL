@@ -141,6 +141,10 @@ use super::{
     ThreatReinforcementRequestError, ThreatSourceBlueprint, ThreatSourceState, TurnPhase,
 };
 
+#[path = "perception.rs"]
+mod perception;
+pub use perception::SoundObservationSource;
+
 /// One live visual field from an actor in the active zone.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct ActorObservationField {
@@ -345,7 +349,9 @@ impl Debug for PreparedTechniquePayload {
     }
 }
 
+#[derive(Clone)]
 pub struct GameState {
+    last_monster_loot: Option<ItemId>,
     sustained_fire: Option<SustainedFire>,
     weapon_echoes: WeaponEchoState,
     pub(super) map: Map,
@@ -390,6 +396,10 @@ pub struct GameState {
     player_silenced_emissions: BTreeSet<SignatureChannel>,
     player_movement_concealment_bonus: i16,
     transient_noises: Vec<TransientNoise>,
+    // Presentation audit only: deliberately absent from snapshots and Debug
+    // fingerprints. Brief noises remain readable until the next completed turn.
+    presentation_recent_noises: Vec<TransientNoise>,
+    presentation_heard_incidents: BTreeMap<EntityId, GridPos>,
     pub(super) sound_emitters: SoundEmitterMap,
     manifested_sound_emitters: BTreeMap<SoundEmitterId, TechniqueManifestationReservation>,
     pub(super) ground_effects: GroundEffectMap,
@@ -409,6 +419,8 @@ pub struct GameState {
 // full field list makes missing Serde contracts fail during ordinary checking.
 #[derive(Serialize, Deserialize)]
 pub(super) struct GameStateSnapshot {
+    #[serde(default)]
+    last_monster_loot: Option<ItemId>,
     #[serde(default)]
     sustained_fire: Option<SustainedFire>,
     weapon_echoes: WeaponEchoState,
@@ -486,6 +498,7 @@ impl GameState {
             player_inventory: self.player_inventory.clone(),
             player_equipment: self.player_equipment.clone(),
             ground_items: self.ground_items.clone(),
+            last_monster_loot: self.last_monster_loot.clone(),
             movement_traces: self.movement_traces.clone(),
             player_energy: self.player_energy,
             maintained_energy: self.maintained_energy.clone(),
@@ -546,6 +559,7 @@ impl GameState {
             player_inventory: snapshot.player_inventory,
             player_equipment: snapshot.player_equipment,
             ground_items: snapshot.ground_items,
+            last_monster_loot: snapshot.last_monster_loot,
             movement_traces: snapshot.movement_traces,
             player_energy: snapshot.player_energy,
             maintained_energy: snapshot.maintained_energy,
@@ -571,6 +585,8 @@ impl GameState {
             player_silenced_emissions: snapshot.player_silenced_emissions,
             player_movement_concealment_bonus: snapshot.player_movement_concealment_bonus,
             transient_noises: snapshot.transient_noises,
+            presentation_recent_noises: Vec::new(),
+            presentation_heard_incidents: BTreeMap::new(),
             sound_emitters: snapshot.sound_emitters,
             manifested_sound_emitters: snapshot.manifested_sound_emitters,
             ground_effects: snapshot.ground_effects,
@@ -593,6 +609,9 @@ impl GameState {
 impl Debug for GameState {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         let mut state = formatter.debug_struct("GameState");
+        if let Some(item) = &self.last_monster_loot {
+            state.field("last_monster_loot", item);
+        }
         state
             .field("map", &self.map)
             .field("actors", &self.actors)
@@ -1032,6 +1051,7 @@ impl GameState {
             player_inventory,
             player_equipment,
             ground_items: GroundItemRegistry::default(),
+            last_monster_loot: None,
             movement_traces: MovementTraceMap::default(),
             player_energy,
             maintained_energy: BTreeMap::new(),
@@ -1056,6 +1076,8 @@ impl GameState {
             player_silenced_emissions: BTreeSet::new(),
             player_movement_concealment_bonus: 0,
             transient_noises: Vec::new(),
+            presentation_recent_noises: Vec::new(),
+            presentation_heard_incidents: BTreeMap::new(),
             sound_emitters: SoundEmitterMap::default(),
             manifested_sound_emitters: BTreeMap::new(),
             ground_effects: GroundEffectMap::default(),
@@ -1138,7 +1160,7 @@ impl GameState {
             rules
                 .evasion(
                     self.actor_effective_primary_attributes(entity),
-                    actor.evasion_modifier(),
+                    self.actor_equipped_evasion_modifier(entity),
                 )
                 .clamp(0, i32::from(u16::MAX)) as u16,
         )
@@ -2509,6 +2531,8 @@ impl GameState {
     }
 
     pub fn process_player_command(&mut self, command: GameCommand) -> CommandOutcome {
+        #[cfg(debug_assertions)]
+        let _profile = crate::action_profile::Scope::new("engine.command");
         if self.status != RunStatus::Active {
             return CommandOutcome::Rejected(CommandRejection::RunEnded);
         }
@@ -2576,6 +2600,7 @@ impl GameState {
         let previous_player_heat = self.player_heat;
         let previous_player_preparation_bandwidth = self.player_preparation_bandwidth;
         let previous_rng = self.rng;
+        let previous_monster_loot = self.last_monster_loot.clone();
         let previous_reaction_state = if starts_normal_action {
             self.actors.get(self.player).map(Actor::reaction_state)
         } else {
@@ -2716,6 +2741,11 @@ impl GameState {
                 Ok(()) => CommandOutcome::Applied,
                 Err(error) => CommandOutcome::Rejected(error.into()),
             },
+            GameCommand::ImproveEquipment { item, .. } => match self.improve_player_equipment(item)
+            {
+                Ok(()) => CommandOutcome::Applied,
+                Err(reason) => CommandOutcome::Rejected(reason),
+            },
             // WorldState validates and commits town commerce before routing
             // these world-scoped actions through the normal turn lifecycle.
             GameCommand::BuyItem { .. }
@@ -2726,6 +2756,9 @@ impl GameState {
             | GameCommand::CompleteQuest { .. } => CommandOutcome::Applied,
             GameCommand::AcceptQuest { .. } | GameCommand::ChooseDialogue { .. } => {
                 CommandOutcome::AppliedWithoutTime
+            }
+            GameCommand::UseInstallation { .. } => {
+                CommandOutcome::Rejected(CommandRejection::FacilityUnavailable)
             }
             GameCommand::UseAbility { slot, target } => {
                 match self.perform_ability(self.player, slot, target) {
@@ -2855,6 +2888,7 @@ impl GameState {
                 self.player_heat = previous_player_heat;
                 self.player_preparation_bandwidth = previous_player_preparation_bandwidth;
                 self.rng = previous_rng;
+                self.last_monster_loot = previous_monster_loot;
                 if let Some(previous_reaction_state) = previous_reaction_state
                     && let Some(player) = self.actors.get_mut(self.player)
                 {
@@ -9911,6 +9945,23 @@ impl GameState {
             })
     }
 
+    /// Read-only presentation of the real detection rules for a visible hostile.
+    /// A heard noise does not imply that its source was identified as the player.
+    pub fn actor_perception_signals(&self, observer: EntityId) -> Option<(bool, bool)> {
+        let actor = self.actors.get(observer)?;
+        if observer == self.player
+            || actor.player_relation() != crate::social::PlayerRelation::Hostile
+            || !self.player_visibility.is_visible(actor.position())
+        {
+            return None;
+        }
+        Some((
+            self.actor_optically_detects_player(observer),
+            self.presentation_heard_incidents.contains_key(&observer)
+                || self.audible_incident_for(observer).is_some(),
+        ))
+    }
+
     fn actor_optically_detects_player(&self, observer: EntityId) -> bool {
         let Some(player_position) = self.player_position() else {
             return false;
@@ -9933,16 +9984,16 @@ impl GameState {
             })
             .fold(0_u16, u16::saturating_add);
         let radius = profile.perception_radius.saturating_sub(reduction);
-        let visible = compute_visible_tiles(
+        let visible = crate::world::is_tile_visible(
             &self.map,
             actor.position(),
+            player_position,
             FieldOfViewRules {
                 radius,
                 distance_metric: DistanceMetric::Euclidean,
                 block_closed_corners: true,
             },
-        )
-        .contains(&player_position);
+        );
         if !visible {
             return false;
         }
@@ -10032,16 +10083,16 @@ impl GameState {
                     _ => None,
                 })
                 .fold(0_u16, u16::saturating_add);
-            compute_visible_tiles(
+            crate::world::is_tile_visible(
                 &self.map,
                 actor.position(),
+                player_position,
                 FieldOfViewRules {
                     radius: profile.perception_radius.saturating_sub(reduction),
                     distance_metric: DistanceMetric::Euclidean,
                     block_closed_corners: true,
                 },
             )
-            .contains(&player_position)
         })
     }
 
@@ -12239,7 +12290,7 @@ impl GameState {
         }
         let target_at = target_state.position();
         let target_attributes = self.actor_effective_primary_attributes(target);
-        let evasion_modifier = target_state.evasion_modifier();
+        let evasion_modifier = self.actor_equipped_evasion_modifier(target);
         let chance = hit_rules.hit_chance(
             attack.delivery(),
             attacker_attributes,
@@ -13237,7 +13288,7 @@ impl GameState {
                 });
             }
             if let Some(dead) = self.actors.remove(target) {
-                self.drop_actor_weapon(target, &dead);
+                self.drop_actor_equipment(target, &dead);
                 self.drop_actor_matter(&dead);
             }
             self.resolve_pending_status_effects(
@@ -13420,6 +13471,10 @@ impl GameState {
     }
 
     pub(super) fn complete_turn(&mut self) {
+        #[cfg(debug_assertions)]
+        let _profile = crate::action_profile::Scope::new("engine.complete-turn");
+        self.presentation_heard_incidents.clear();
+        self.presentation_recent_noises.clear();
         self.phase = TurnPhase::ResolvingActors;
         if self.status == RunStatus::Active {
             self.resolve_status_trigger(StatusTrigger::TurnStart);
@@ -14078,10 +14133,14 @@ impl GameState {
             });
         }
         self.player_movement_concealment_bonus = 0;
+        self.presentation_recent_noises
+            .clone_from(&self.transient_noises);
         self.transient_noises.clear();
     }
 
     fn audible_incident_for(&self, observer: EntityId) -> Option<GridPos> {
+        #[cfg(debug_assertions)]
+        let _profile = crate::action_profile::Scope::new("engine.hearing");
         let rules = self.rules.stealth_rules?;
         let listener = self.actors.get(observer)?.position();
         let mut candidates = self
@@ -14202,6 +14261,8 @@ impl GameState {
     }
 
     fn resolve_ai_turn(&mut self) {
+        #[cfg(debug_assertions)]
+        let _profile = crate::action_profile::Scope::new("engine.ai");
         self.resolve_player_drone_turns();
         self.relay_watcher_alerts();
         let actors_to_resolve: Vec<EntityId> = self
@@ -14222,6 +14283,8 @@ impl GameState {
             .collect();
 
         for entity in actors_to_resolve {
+            #[cfg(debug_assertions)]
+            let _profile = crate::action_profile::Scope::new("engine.ai-actor");
             if self.status != RunStatus::Active {
                 break;
             }
@@ -14277,6 +14340,9 @@ impl GameState {
                 .get(target_entity)
                 .map_or(player_position, Actor::position);
             let audible_incident = self.audible_incident_for(entity);
+            if let Some(incident) = audible_incident {
+                self.presentation_heard_incidents.insert(entity, incident);
+            }
             if matches!(actor.ai_state(), AiState::Unaware)
                 && let (Some(incident), Some(lifecycle)) =
                     (audible_incident, profile.pursuit_lifecycle())
@@ -16053,8 +16119,12 @@ pub enum CommandOutcome {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum CommandRejection {
+    EquipmentAlreadyImproved,
+    MissingUpgradeFragments,
+    UpgradeUnavailable,
     MaintainedEffectUnavailable,
     PassageUnavailable,
+    PreviousLayerUnavailable,
     PassageObstructed,
     InteractionOutOfReach,
     NothingToInteract,

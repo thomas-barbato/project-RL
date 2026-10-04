@@ -1,0 +1,1416 @@
+{
+  id: "core:firearm_models",
+  // One ordinary model per family and layer; affix rarity is independent.
+  stats: [
+    { affix: "affix:power", weight: 100 },
+    { affix: "affix:coordination", weight: 100 },
+    { affix: "affix:resilience", weight: 100 },
+    { affix: "affix:perception", weight: 80 },
+    { affix: "affix:processing", weight: 80 },
+    { affix: "affix:accuracy", weight: 70 },
+    { affix: "affix:armor_penetration", weight: 35 },
+    { affix: "affix:vitality", weight: 100 },
+    { affix: "affix:energy_reserve", weight: 70 },
+    { affix: "affix:heat_dissipation", weight: 35 },
+  ],
+  bases: [
+  {
+    "item": "core:modele_veyr_r12",
+    "family": "core:rifles",
+    "tier": 1,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_equipped",
+      "humanoid_site"
+    ],
+    "minimum_depth": 0,
+    "maximum_depth": 0,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_kardan_r24",
+    "family": "core:rifles",
+    "tier": 2,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_equipped",
+      "humanoid_site"
+    ],
+    "minimum_depth": 1,
+    "maximum_depth": 1,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_orvek_r36",
+    "family": "core:rifles",
+    "tier": 3,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_equipped",
+      "humanoid_site"
+    ],
+    "minimum_depth": 2,
+    "maximum_depth": 2,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_tervan_r48",
+    "family": "core:rifles",
+    "tier": 4,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_equipped",
+      "humanoid_site"
+    ],
+    "minimum_depth": 3,
+    "maximum_depth": 3,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_serdak_r60",
+    "family": "core:rifles",
+    "tier": 5,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_equipped",
+      "humanoid_site"
+    ],
+    "minimum_depth": 4,
+    "maximum_depth": 4,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_noryk_r72",
+    "family": "core:rifles",
+    "tier": 6,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_equipped",
+      "humanoid_site"
+    ],
+    "minimum_depth": 5,
+    "maximum_depth": null,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_darven_a10",
+    "family": "core:assault_rifles",
+    "tier": 1,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 0,
+    "maximum_depth": 0,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_korsan_a30",
+    "family": "core:assault_rifles",
+    "tier": 2,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 1,
+    "maximum_depth": 1,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_vektor_a60",
+    "family": "core:assault_rifles",
+    "tier": 3,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 2,
+    "maximum_depth": 2,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_brenek_a80",
+    "family": "core:assault_rifles",
+    "tier": 4,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 3,
+    "maximum_depth": 3,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_talvek_a90",
+    "family": "core:assault_rifles",
+    "tier": 5,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 4,
+    "maximum_depth": 4,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_vornek_a120",
+    "family": "core:assault_rifles",
+    "tier": 6,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 5,
+    "maximum_depth": null,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_brask_p12",
+    "family": "core:shotguns",
+    "tier": 1,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 0,
+    "maximum_depth": 0,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_morn_p24",
+    "family": "core:shotguns",
+    "tier": 2,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 1,
+    "maximum_depth": 1,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_drek_p40",
+    "family": "core:shotguns",
+    "tier": 3,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 2,
+    "maximum_depth": 2,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_korven_p50",
+    "family": "core:shotguns",
+    "tier": 4,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 3,
+    "maximum_depth": 3,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_darsk_p70",
+    "family": "core:shotguns",
+    "tier": 5,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 4,
+    "maximum_depth": 4,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_valdran_p90",
+    "family": "core:shotguns",
+    "tier": 6,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 5,
+    "maximum_depth": null,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_kordal_m20",
+    "family": "core:machine_guns",
+    "tier": 1,
+    "grammar": "fs",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 0,
+    "maximum_depth": 0,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_varkan_m40",
+    "family": "core:machine_guns",
+    "tier": 2,
+    "grammar": "fs",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 1,
+    "maximum_depth": 1,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_draven_m80",
+    "family": "core:machine_guns",
+    "tier": 3,
+    "grammar": "fs",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 2,
+    "maximum_depth": 2,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_torgal_m100",
+    "family": "core:machine_guns",
+    "tier": 4,
+    "grammar": "fs",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 3,
+    "maximum_depth": 3,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_kraven_m120",
+    "family": "core:machine_guns",
+    "tier": 5,
+    "grammar": "fs",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 4,
+    "maximum_depth": 4,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_vornak_m160",
+    "family": "core:machine_guns",
+    "tier": 6,
+    "grammar": "fs",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 5,
+    "maximum_depth": null,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_torven_lr2",
+    "family": "core:rocket_launchers",
+    "tier": 1,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 0,
+    "maximum_depth": 0,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_karvek_lr6",
+    "family": "core:rocket_launchers",
+    "tier": 2,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 1,
+    "maximum_depth": 1,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_ordan_lr9",
+    "family": "core:rocket_launchers",
+    "tier": 3,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 2,
+    "maximum_depth": 2,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_bravan_lr12",
+    "family": "core:rocket_launchers",
+    "tier": 4,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 3,
+    "maximum_depth": 3,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_dorek_lr16",
+    "family": "core:rocket_launchers",
+    "tier": 5,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 4,
+    "maximum_depth": 4,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_karsen_lr20",
+    "family": "core:rocket_launchers",
+    "tier": 6,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 5,
+    "maximum_depth": null,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_rovak_lg3",
+    "family": "core:grenade_launchers",
+    "tier": 1,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 0,
+    "maximum_depth": 0,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_darsen_lg6",
+    "family": "core:grenade_launchers",
+    "tier": 2,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 1,
+    "maximum_depth": 1,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_korven_lg9",
+    "family": "core:grenade_launchers",
+    "tier": 3,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 2,
+    "maximum_depth": 2,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_merdan_lg12",
+    "family": "core:grenade_launchers",
+    "tier": 4,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 3,
+    "maximum_depth": 3,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_torvik_lg16",
+    "family": "core:grenade_launchers",
+    "tier": 5,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 4,
+    "maximum_depth": 4,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_valrek_lg20",
+    "family": "core:grenade_launchers",
+    "tier": 6,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 5,
+    "maximum_depth": null,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      },
+      {
+        "effect": "core:affix_saignement",
+        "minimum_tier": 1,
+        "weight": 16
+      },
+      {
+        "effect": "core:affix_poison",
+        "minimum_tier": 1,
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "item": "core:modele_varek_f10",
+    "family": "core:flamethrowers",
+    "tier": 1,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 0,
+    "maximum_depth": 0,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_torak_f30",
+    "family": "core:flamethrowers",
+    "tier": 2,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 1,
+    "maximum_depth": 1,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_karn_f60",
+    "family": "core:flamethrowers",
+    "tier": 3,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 2,
+    "maximum_depth": 2,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_derven_f80",
+    "family": "core:flamethrowers",
+    "tier": 4,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 3,
+    "maximum_depth": 3,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_korgan_f100",
+    "family": "core:flamethrowers",
+    "tier": 5,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 4,
+    "maximum_depth": 4,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_vardek_f120",
+    "family": "core:flamethrowers",
+    "tier": 6,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 5,
+    "maximum_depth": null,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_neral_e12",
+    "family": "core:energy_rifles",
+    "tier": 1,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 0,
+    "maximum_depth": 0,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_seryn_e24",
+    "family": "core:energy_rifles",
+    "tier": 2,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 1,
+    "maximum_depth": 1,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_oryx_e48",
+    "family": "core:energy_rifles",
+    "tier": 3,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 2,
+    "maximum_depth": 2,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_telvar_e60",
+    "family": "core:energy_rifles",
+    "tier": 4,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 3,
+    "maximum_depth": 3,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_nerys_e80",
+    "family": "core:energy_rifles",
+    "tier": 5,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 4,
+    "maximum_depth": 4,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "item": "core:modele_odran_e100",
+    "family": "core:energy_rifles",
+    "tier": 6,
+    "grammar": "ms",
+    "form": "humanoid_equipment",
+    "sources": [
+      "humanoid_site"
+    ],
+    "minimum_depth": 5,
+    "maximum_depth": null,
+    "effects": [
+      {
+        "effect": "core:affix_braise",
+        "minimum_tier": 1,
+        "weight": 20
+      },
+      {
+        "effect": "core:affix_decharge",
+        "minimum_tier": 1,
+        "weight": 8
+      }
+    ]
+  }
+]
+}

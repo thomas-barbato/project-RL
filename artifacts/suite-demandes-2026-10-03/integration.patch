@@ -1,0 +1,773 @@
+--- before/src/terminal_player.rs
++++ src/terminal_player.rs
+@@ -1,7 +1,8 @@
+ //! Approved top-down modules, rasterized once into one nearest-filtered atlas.
+-//! Equipment and horizontal facing are presentation data, outside the save schema.
++//! Equipment and facing are presentation data, outside the save schema.
+ use macroquad::prelude::*;
+ use project_rl::combat::AttackDelivery;
++use project_rl::world::{Direction, GridPos};
+ 
+ const SIDE: usize = 20;
+ const POSES: [PlayerWeaponPose; 3] = [
+@@ -10,6 +11,45 @@
+     PlayerWeaponPose::Ranged,
+ ];
+ const KINDS: [ModuleKind; 3] = [ModuleKind::Player, ModuleKind::Service, ModuleKind::Hostile];
++const FACINGS: [ModuleFacing; 4] = [
++    ModuleFacing::Right,
++    ModuleFacing::Left,
++    ModuleFacing::Up,
++    ModuleFacing::Down,
++];
++
++#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
++#[repr(usize)]
++pub enum ModuleFacing {
++    #[default]
++    Right,
++    Left,
++    Up,
++    Down,
++}
++
++impl ModuleFacing {
++    pub const fn from_direction(direction: Direction) -> Self {
++        match direction {
++            Direction::East => Self::Right,
++            Direction::West => Self::Left,
++            Direction::North => Self::Up,
++            Direction::South => Self::Down,
++        }
++    }
++
++    pub fn toward(from: GridPos, to: GridPos) -> Option<Self> {
++        let dx = i64::from(to.x) - i64::from(from.x);
++        let dy = i64::from(to.y) - i64::from(from.y);
++        if dx == 0 && dy == 0 {
++            None
++        } else if dx.abs() >= dy.abs() {
++            Some(if dx < 0 { Self::Left } else { Self::Right })
++        } else {
++            Some(if dy < 0 { Self::Up } else { Self::Down })
++        }
++    }
++}
+ 
+ #[derive(Clone, Copy, Debug, PartialEq, Eq)]
+ #[repr(usize)]
+@@ -32,7 +72,7 @@
+ #[derive(Clone, Copy, Debug, PartialEq, Eq)]
+ pub struct PlayerAppearance {
+     pub pose: PlayerWeaponPose,
+-    pub facing_left: bool,
++    pub facing: ModuleFacing,
+ }
+ 
+ #[derive(Clone, Copy, Debug, PartialEq, Eq)]
+@@ -47,7 +87,7 @@
+ pub struct ActorAppearance {
+     pub kind: ModuleKind,
+     pub pose: PlayerWeaponPose,
+-    pub facing_left: bool,
++    pub facing: ModuleFacing,
+ }
+ 
+ impl From<PlayerAppearance> for ActorAppearance {
+@@ -55,7 +95,7 @@
+         Self {
+             kind: ModuleKind::Player,
+             pose: player.pose,
+-            facing_left: player.facing_left,
++            facing: player.facing,
+         }
+     }
+ }
+@@ -132,20 +172,29 @@
+ 
+ fn atlas_image() -> Image {
+     let width = SIDE * POSES.len() * KINDS.len();
+-    let mut bytes = vec![0; width * SIDE * 4];
++    let mut bytes = vec![0; width * SIDE * FACINGS.len() * 4];
+     for kind in KINDS {
+         for pose in POSES {
+             let index = kind as usize * POSES.len() + pose as usize;
+             for (offset, rgba) in module_pixels(kind, pose).iter().enumerate() {
+-                let at = ((offset / SIDE) * width + index * SIDE + offset % SIDE) * 4;
+-                bytes[at..at + 4].copy_from_slice(rgba);
++                let (x, y) = (offset % SIDE, offset / SIDE);
++                for facing in FACINGS {
++                    let (x, y) = match facing {
++                        ModuleFacing::Right => (x, y),
++                        ModuleFacing::Left => (SIDE - 1 - x, y),
++                        ModuleFacing::Up => (y, SIDE - 1 - x),
++                        ModuleFacing::Down => (SIDE - 1 - y, x),
++                    };
++                    let at = ((facing as usize * SIDE + y) * width + index * SIDE + x) * 4;
++                    bytes[at..at + 4].copy_from_slice(rgba);
++                }
+             }
+         }
+     }
+     Image {
+         bytes,
+         width: width as u16,
+-        height: SIDE as u16,
++        height: (SIDE * FACINGS.len()) as u16,
+     }
+ }
+ 
+@@ -173,12 +222,11 @@
+             DrawTextureParams {
+                 source: Some(Rect::new(
+                     (index * SIDE) as f32,
+-                    0.0,
++                    (appearance.facing as usize * SIDE) as f32,
+                     SIDE as f32,
+                     SIDE as f32,
+                 )),
+                 dest_size: Some(vec2(side, side)),
+-                flip_x: appearance.facing_left,
+                 ..Default::default()
+             },
+         );
+@@ -191,7 +239,7 @@
+     clear_background(Color::from_rgba(3, 4, 7, 255));
+     draw_text_bold("MODULES · VUE DE DESSUS", 40.0, 40.0, 26.0, WHITE);
+     draw_text(
+-        "Gauche / droite · pince et émetteur suivent l'orientation",
++        "Gauche / droite / haut / bas · pince et émetteur suivent l'orientation",
+         40.0,
+         68.0,
+         18.0,
+@@ -205,7 +253,7 @@
+     .into_iter()
+     .enumerate()
+     {
+-        let x = 135.0 + column as f32 * 375.0;
++        let x = 90.0 + column as f32 * 375.0;
+         draw_text_bold(label, x, 105.0, 20.0, WHITE);
+         for (row, (pose, label)) in [
+             (PlayerWeaponPose::Unarmed, "NEUTRE"),
+@@ -217,7 +265,12 @@
+         {
+             let y = 145.0 + row as f32 * 150.0;
+             draw_text(label, x, y - 12.0, 17.0, GRAY);
+-            for (facing_left, dx) in [(true, 0.0), (false, 100.0)] {
++            for (facing, dx) in [
++                (ModuleFacing::Left, 0.0),
++                (ModuleFacing::Right, 88.0),
++                (ModuleFacing::Up, 176.0),
++                (ModuleFacing::Down, 264.0),
++            ] {
+                 for (size, sx, sy) in [(80.0, 0.0, 0.0), (24.0, 0.0, 92.0), (20.0, 36.0, 92.0)] {
+                     let rect = Rect::new(x + dx + sx, y + sy, size, size);
+                     draw_rectangle(
+@@ -227,15 +280,7 @@
+                         size,
+                         Color::from_rgba(15, 19, 24, 255),
+                     );
+-                    draw(
+-                        rect,
+-                        ActorAppearance {
+-                            kind,
+-                            pose,
+-                            facing_left,
+-                        },
+-                        1.0,
+-                    );
++                    draw(rect, ActorAppearance { kind, pose, facing }, 1.0);
+                 }
+             }
+         }
+--- before/src/terminal_view.rs
++++ src/terminal_view.rs
+@@ -78,7 +78,9 @@
+ mod terminal_art;
+ #[path = "terminal_player.rs"]
+ mod terminal_player;
+-pub use terminal_player::{ActorAppearance, ModuleKind, PlayerAppearance, PlayerWeaponPose};
++pub use terminal_player::{
++    ActorAppearance, ModuleFacing, ModuleKind, PlayerAppearance, PlayerWeaponPose,
++};
+ 
+ pub(crate) fn initialize_player_art() {
+     terminal_player::prewarm();
+@@ -3775,7 +3777,7 @@
+         (symbol == '@').then_some(
+             PlayerAppearance {
+                 pose: PlayerWeaponPose::Unarmed,
+-                facing_left: false,
++                facing: ModuleFacing::Right,
+             }
+             .into(),
+         ),
+@@ -3799,7 +3801,7 @@
+             ActorAppearance {
+                 kind,
+                 pose: PlayerWeaponPose::Unarmed,
+-                facing_left: false,
++                facing: ModuleFacing::Right,
+             },
+             palette.primary.a,
+         );
+--- before/src/ascii_app.rs
++++ src/ascii_app.rs
+@@ -7,10 +7,10 @@
+     self, CrashRecovery, RecordedCommand, RecoveryPayload, SavedPackage, Suspension,
+ };
+ use crate::terminal_view::{
+-    ActorAppearance, ModuleKind, PlayerAppearance, PlayerWeaponPose, TerminalAlertKind,
+-    TerminalAttackPreview, TerminalDrawOptions, TerminalOverlay, TerminalStatusIcon,
+-    TerminalTargetAnalysis, TerminalTargetSummary, TerminalView, approximate_direction,
+-    player_location_name, terminal_status_panel,
++    ActorAppearance, ModuleFacing, ModuleKind, PlayerAppearance, PlayerWeaponPose,
++    TerminalAlertKind, TerminalAttackPreview, TerminalDrawOptions, TerminalOverlay,
++    TerminalStatusIcon, TerminalTargetAnalysis, TerminalTargetSummary, TerminalView,
++    approximate_direction, player_location_name, terminal_status_panel,
+ };
+ use crate::test_sector::{SectorDecor, TestSector};
+ use crate::ui_theme::{
+@@ -294,6 +294,9 @@
+ #[path = "first_layer_plan_tests.rs"]
+ mod first_layer_plan_tests;
+ #[cfg(test)]
++#[path = "gameplay_review_tests.rs"]
++mod gameplay_review_tests;
++#[cfg(test)]
+ #[path = "generated_survival_tests.rs"]
+ mod generated_survival_tests;
+ #[path = "hub_layout_app.rs"]
+@@ -1395,7 +1398,7 @@
+ 
+ #[derive(Clone, Copy, Debug, Default)]
+ struct NpcArtState {
+-    facing_left: bool,
++    facing: ModuleFacing,
+     attack_slot: u8,
+ }
+ 
+@@ -1413,7 +1416,7 @@
+     zone_views: BTreeMap<project_rl::content::ContentId, TerminalView>,
+     zone_decor: BTreeMap<project_rl::content::ContentId, crate::test_sector::SectorDecor>,
+     facing: Direction,
+-    player_art_left: bool,
++    player_art_facing: ModuleFacing,
+     npc_art: BTreeMap<EntityId, NpcArtState>,
+     rules: GameRules,
+     character_classes: CharacterClassCatalog,
+@@ -1707,7 +1710,7 @@
+     }
+ 
+     #[cfg(debug_assertions)]
+-    fn prepare_module_diagnostic(&mut self, facing_left: bool) -> Result<(), String> {
++    fn prepare_module_diagnostic(&mut self, facing: ModuleFacing) -> Result<(), String> {
+         let map = project_rl::world::Map::from_ascii(
+             "############\n#..........#\n#..........#\n#..........#\n#..........#\n############",
+         )
+@@ -1756,7 +1759,7 @@
+             self.npc_art.insert(
+                 entity,
+                 NpcArtState {
+-                    facing_left,
++                    facing,
+                     attack_slot: 0,
+                 },
+             );
+@@ -1767,7 +1770,7 @@
+         self.terminal.title = "Modules · joueur et NPC".to_owned();
+         self.game = WorldState::single(game);
+         self.actor_glyphs = glyphs;
+-        self.player_art_left = facing_left;
++        self.player_art_facing = facing;
+         self.npc_interaction = None;
+         self.npc_vision_overlay_open = false;
+         Ok(())
+@@ -3391,8 +3394,14 @@
+                     return Err("Éclaireuse absente".into());
+                 }
+             }
+-            "npc-modules-left" | "npc-modules-right" => {
+-                app.prepare_module_diagnostic(scene.ends_with("left"))?;
++            "npc-modules-left" | "npc-modules-right" | "npc-modules-up" | "npc-modules-down" => {
++                let facing = match scene {
++                    "npc-modules-left" => ModuleFacing::Left,
++                    "npc-modules-up" => ModuleFacing::Up,
++                    "npc-modules-down" => ModuleFacing::Down,
++                    _ => ModuleFacing::Right,
++                };
++                app.prepare_module_diagnostic(facing)?;
+             }
+             "player-melee-left"
+             | "player-melee-right"
+@@ -10429,7 +10438,7 @@
+             zone_views: BTreeMap::new(),
+             zone_decor: BTreeMap::new(),
+             facing: Direction::North,
+-            player_art_left: false,
++            player_art_facing: ModuleFacing::Right,
+             npc_art: BTreeMap::new(),
+             rules,
+             character_classes: ascii_character_class_catalog()?,
+@@ -15065,11 +15074,7 @@
+     }
+ 
+     fn update_player_art_facing(&mut self, direction: Direction) {
+-        match direction {
+-            Direction::West => self.player_art_left = true,
+-            Direction::East => self.player_art_left = false,
+-            Direction::North | Direction::South => {}
+-        }
++        self.player_art_facing = ModuleFacing::from_direction(direction);
+     }
+ 
+     fn set_facing(&mut self, direction: Direction) {
+@@ -15084,7 +15089,7 @@
+                     .equipped_player_weapon(self.active_weapon_slot)
+                     .map(|weapon| weapon.attack().delivery()),
+             ),
+-            facing_left: self.player_art_left,
++            facing: self.player_art_facing,
+         }
+     }
+ 
+@@ -15117,7 +15122,7 @@
+                     .or_else(|| actor.attack(0))
+                     .map(|attack| attack.delivery()),
+             ),
+-            facing_left: art.facing_left,
++            facing: art.facing,
+         })
+     }
+ 
+@@ -15167,8 +15172,8 @@
+             return;
+         }
+         let art = self.npc_art.entry(entity).or_default();
+-        if to.x != from.x {
+-            art.facing_left = to.x < from.x;
++        if let Some(facing) = ModuleFacing::toward(from, to) {
++            art.facing = facing;
+         }
+         if let Some(slot) = slot {
+             art.attack_slot = slot;
+@@ -25104,7 +25109,7 @@
+     }
+ 
+     #[test]
+-    fn npc_art_follows_real_ai_movement_and_preserves_the_side_on_vertical_motion() {
++    fn npc_art_follows_real_ai_movement_in_four_directions() {
+         let mut app = app_with_test_controls();
+         app.prepare_tactical_vision_diagnostic().unwrap();
+         let enemy = app
+@@ -25123,30 +25128,31 @@
+             actor.position().x < before.x,
+             "fixture enemy must actually approach the player"
+         );
+-        assert!(app.npc_appearance(enemy, actor).unwrap().facing_left);
++        assert_eq!(
++            app.npc_appearance(enemy, actor).unwrap().facing,
++            ModuleFacing::Left
++        );
+         let from = actor.position();
+         let state = app.game.recovery_snapshot_bytes().unwrap();
+         let history = app.history.clone();
+-        app.update_npc_art(&GameEvent::EntityMoved {
+-            entity: enemy,
+-            from,
+-            to: GridPos::new(from.x, from.y - 1),
+-        });
+-        assert!(
+-            app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
+-                .unwrap()
+-                .facing_left
+-        );
+-        app.update_npc_art(&GameEvent::EntityMoved {
+-            entity: enemy,
+-            from,
+-            to: GridPos::new(from.x + 1, from.y),
+-        });
+-        assert!(
+-            !app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
+-                .unwrap()
+-                .facing_left
+-        );
++        for direction in [
++            Direction::North,
++            Direction::South,
++            Direction::East,
++            Direction::West,
++        ] {
++            app.update_npc_art(&GameEvent::EntityMoved {
++                entity: enemy,
++                from,
++                to: from.step(direction),
++            });
++            assert_eq!(
++                app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
++                    .unwrap()
++                    .facing,
++                ModuleFacing::from_direction(direction)
++            );
++        }
+         assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), state);
+         assert_eq!(app.history, history);
+     }
+@@ -25154,7 +25160,7 @@
+     #[test]
+     fn npc_art_uses_the_performed_attack_without_changing_or_revealing_the_run() {
+         let mut app = app_with_test_controls();
+-        app.prepare_module_diagnostic(false).unwrap();
++        app.prepare_module_diagnostic(ModuleFacing::Right).unwrap();
+         let enemy = app
+             .game
+             .actors()
+@@ -25183,10 +25189,11 @@
+             damage_type: DamageType::Kinetic,
+             affected_cells: Vec::new(),
+         });
+-        assert!(
++        assert_eq!(
+             app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
+                 .unwrap()
+-                .facing_left
++                .facing,
++            ModuleFacing::Left
+         );
+         assert_eq!(
+             app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
+@@ -25199,11 +25206,25 @@
+             origin,
+             target_at: GridPos::new(origin.x + 1, origin.y),
+         });
+-        assert!(
+-            !app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
++        assert_eq!(
++            app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
+                 .unwrap()
+-                .facing_left
+-        );
++                .facing,
++            ModuleFacing::Right
++        );
++        for direction in [Direction::North, Direction::South] {
++            app.update_npc_art(&GameEvent::AttackTelegraphed {
++                attacker: enemy,
++                origin,
++                target_at: origin.step(direction),
++            });
++            assert_eq!(
++                app.npc_appearance(enemy, app.game.actors().get(enemy).unwrap())
++                    .unwrap()
++                    .facing,
++                ModuleFacing::from_direction(direction)
++            );
++        }
+         let player = app.game.actors().get(app.game.player_id()).unwrap();
+         assert!(app.npc_appearance(app.game.player_id(), player).is_none());
+         let hidden = Actor::new(GridPos::new(500, 500), 12).unwrap();
+@@ -25213,7 +25234,7 @@
+             origin: GridPos::new(500, 500),
+             target_at: origin,
+         });
+-        assert!(!app.npc_art.get(&enemy).unwrap().facing_left);
++        assert_eq!(app.npc_art.get(&enemy).unwrap().facing, ModuleFacing::Down);
+         app.update_npc_art(&GameEvent::EntityDied {
+             entity: enemy,
+             at: origin,
+@@ -25240,40 +25261,42 @@
+     }
+ 
+     #[test]
+-    fn player_art_turns_horizontally_for_keyboard_and_mouse_path_commands() {
++    fn player_art_turns_in_four_directions_for_keyboard_and_mouse_path_commands() {
+         let mut app = app_with_test_controls();
+         let state = app.game.recovery_snapshot_bytes().unwrap();
+         app.set_facing(Direction::West);
+         app.set_facing(Direction::North);
+-        assert!(app.player_appearance().facing_left);
++        assert_eq!(app.player_appearance().facing, ModuleFacing::Up);
+         app.set_facing(Direction::East);
+         app.set_facing(Direction::South);
+-        assert!(!app.player_appearance().facing_left);
++        assert_eq!(app.player_appearance().facing, ModuleFacing::Down);
+         assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), state);
+ 
+         app.character_creation = None;
+-        for (action, facing_left) in [
+-            (Action::MoveWest, true),
+-            (Action::MoveNorth, true),
+-            (Action::MoveEast, false),
+-            (Action::MoveSouth, false),
++        for (action, facing) in [
++            (Action::MoveWest, ModuleFacing::Left),
++            (Action::MoveNorth, ModuleFacing::Up),
++            (Action::MoveEast, ModuleFacing::Right),
++            (Action::MoveSouth, ModuleFacing::Down),
+         ] {
+             app.update_input(&InputFrame {
+                 pressed: [app.controls.binding(action).clone()].into(),
+                 ..Default::default()
+             });
+-            assert_eq!(app.player_appearance().facing_left, facing_left);
++            assert_eq!(app.player_appearance().facing, facing);
+         }
+         assert_eq!(app.facing, Direction::South);
+ 
+         // Mouse walking sends commands directly instead of using key presses.
+         app.execute_command(GameCommand::Move(Direction::West));
+-        assert!(app.player_appearance().facing_left);
++        assert_eq!(app.player_appearance().facing, ModuleFacing::Left);
+         assert_eq!(app.facing, Direction::South);
+         app.execute_command(GameCommand::Move(Direction::North));
+-        assert!(app.player_appearance().facing_left);
++        assert_eq!(app.player_appearance().facing, ModuleFacing::Up);
+         app.execute_command(GameCommand::Move(Direction::East));
+-        assert!(!app.player_appearance().facing_left);
++        assert_eq!(app.player_appearance().facing, ModuleFacing::Right);
++        app.execute_command(GameCommand::Move(Direction::South));
++        assert_eq!(app.player_appearance().facing, ModuleFacing::Down);
+         assert_eq!(app.facing, Direction::South);
+     }
+ 
+--- before/src/game/game_state.rs
++++ src/game/game_state.rs
+@@ -9949,16 +9949,16 @@
+             })
+             .fold(0_u16, u16::saturating_add);
+         let radius = profile.perception_radius.saturating_sub(reduction);
+-        let visible = compute_visible_tiles(
++        let visible = crate::world::is_tile_visible(
+             &self.map,
+             actor.position(),
++            player_position,
+             FieldOfViewRules {
+                 radius,
+                 distance_metric: DistanceMetric::Euclidean,
+                 block_closed_corners: true,
+             },
+-        )
+-        .contains(&player_position);
++        );
+         if !visible {
+             return false;
+         }
+@@ -10048,16 +10048,16 @@
+                     _ => None,
+                 })
+                 .fold(0_u16, u16::saturating_add);
+-            compute_visible_tiles(
++            crate::world::is_tile_visible(
+                 &self.map,
+                 actor.position(),
++                player_position,
+                 FieldOfViewRules {
+                     radius: profile.perception_radius.saturating_sub(reduction),
+                     distance_metric: DistanceMetric::Euclidean,
+                     block_closed_corners: true,
+                 },
+             )
+-            .contains(&player_position)
+         })
+     }
+ 
+--- before/src/gameplay_review_tests.rs
++++ src/gameplay_review_tests.rs
+@@ -0,0 +1,197 @@
++//! Probes use current authored actors and rules; no production balance changes.
++use super::*;
++use project_rl::world::{Map, generation::*};
++use std::collections::BTreeSet;
++
++#[test]
++fn gameplay_review_authored_surface_melee_and_ranged_enemies_really_attack() {
++    let (rules, _, _, _) = ascii_game_content().unwrap();
++    let worlds = ascii_regional_world_catalog().unwrap();
++    let world = worlds
++        .get(&"core:simulation_overworld".parse().unwrap())
++        .unwrap();
++    let biome = world.biome(&"core:human_habitat".parse().unwrap()).unwrap();
++    let map = Map::filled(64, 64, Terrain::Floor).unwrap();
++    let mut specimens = BTreeMap::new();
++    for seed in 0..32 {
++        for actor in generate_regional_population(
++            &map,
++            &[],
++            biome.population(),
++            seed,
++            RegionalPopulationFeatures {
++                pursuit_lifecycle: true,
++                primary_attributes: true,
++                physical_profiles: true,
++                electronic_systems: true,
++                player_relations: true,
++            },
++        )
++        .unwrap()
++        {
++            if let Some(attack) = actor.attack(0) {
++                specimens
++                    .entry(matches!(attack.delivery(), AttackDelivery::Ranged))
++                    .or_insert(actor);
++            }
++        }
++        if specimens.len() == 2 {
++            break;
++        }
++    }
++    assert_eq!(specimens.len(), 2, "both authored roles must be sampled");
++    for (ranged, actor) in specimens {
++        let at = actor.position();
++        let distance = if ranged { 3 } else { 1 };
++        let player_at = [
++            Direction::West,
++            Direction::East,
++            Direction::North,
++            Direction::South,
++        ]
++        .into_iter()
++        .map(|direction| {
++            let (dx, dy) = direction.delta();
++            GridPos::new(at.x + dx * distance, at.y + dy * distance)
++        })
++        .find(|position| map.is_walkable(*position))
++        .unwrap();
++        let mut game =
++            GameState::new_with_rules(map.clone(), player_at, 42, rules.clone()).unwrap();
++        let attack = actor.attack(0).unwrap();
++        let id = game.spawn_actor(actor).unwrap();
++        let player = game.player_id();
++        let hp = game.actors().get(player).unwrap().integrity();
++        let mut attacks = 0;
++        let mut hits = 0;
++        let mut damage = 0;
++        let mut absorbed = 0;
++        for _ in 0..8 {
++            if game.status() != RunStatus::Active {
++                break;
++            }
++            assert_eq!(
++                game.process_player_command(GameCommand::Wait),
++                CommandOutcome::Applied
++            );
++            for event in game.drain_events() {
++                match event {
++                    GameEvent::AttackPerformed { attacker, .. } if attacker == id => attacks += 1,
++                    GameEvent::AttackHitResolved {
++                        attacker,
++                        hit: true,
++                        ..
++                    } if attacker == id => hits += 1,
++                    GameEvent::DamageApplied {
++                        target,
++                        amount,
++                        absorbed_by_armor,
++                        ..
++                    } if target == player => {
++                        damage += u32::from(amount);
++                        absorbed += u32::from(absorbed_by_armor);
++                    }
++                    _ => {}
++                }
++            }
++        }
++        assert!(attacks > 0, "authored role must attack in its valid range");
++        println!(
++            "GAMEPLAY_REVIEW {}",
++            serde_json::json!({
++                "role": if ranged { "ranged" } else { "melee" },
++                "scenario": "open-floor-starting-player-eight-waits",
++                "range": attack.range(), "attack": format!("{attack:?}"),
++                "attacks": attacks, "hits": hits, "applied_damage": damage,
++                "absorbed_by_armor": absorbed,
++                "starting_hp": hp,
++                "remaining_hp": game.actors().get(player).map_or(0, Actor::integrity),
++            })
++        );
++    }
++}
++
++#[test]
++fn gameplay_review_ranged_damage_proposal_preserves_armor_as_a_counter() {
++    use project_rl::combat::{
++        ArmorProfile, DamageImpact, DamagePacket, ResistanceProfile,
++        resolve_damage_impact_with_armor,
++    };
++    let (rules, _, _, _) = ascii_game_content().unwrap();
++    for armor in [1, 2, 3] {
++        let impact = |amount| {
++            resolve_damage_impact_with_armor(
++                DamageImpact::single(DamagePacket::new(amount, DamageType::Piercing, 0)),
++                ResistanceProfile::default(),
++                ArmorProfile::new(armor, 0, 0, 0),
++                rules.damage,
++                rules.armor_rules.unwrap(),
++            )
++            .amount()
++        };
++        let proposed = impact(3);
++        assert_eq!(impact(1), 0);
++        assert_eq!(proposed, 3 - armor);
++        println!(
++            "GAMEPLAY_REVIEW {}",
++            serde_json::json!({"scenario":"proposal-only-ranged-base-damage-three","armor":armor,"current_damage_per_hit":impact(1),"proposed_damage_per_hit":proposed,"penetration":0})
++        );
++    }
++}
++
++#[test]
++fn gameplay_review_relay_locations_and_alternative_separation() {
++    let (rules, _, loot, expeditions) = ascii_game_content().unwrap();
++    let definition = expeditions
++        .get(&"core:starter_expedition".parse().unwrap())
++        .unwrap();
++    let narrative = definition.narrative.as_ref().unwrap();
++    let mut placements = BTreeSet::new();
++    for seed in INITIAL_SEED..INITIAL_SEED + 8 {
++        let mut generated = crate::test_expedition::generate_destination(
++            &rules,
++            seed,
++            Some(&loot),
++            definition,
++            crate::test_expedition::ExpeditionGenerationFeatures {
++                defined_population: true,
++                expanded_world: true,
++                pursuit_limits: true,
++                pursuit_lifecycle: true,
++                primary_attributes: true,
++                physical_profiles: true,
++                electronic_systems: true,
++                preparation_disruption: true,
++                player_relations: true,
++            },
++        )
++        .unwrap();
++        let facility = crate::test_expedition::install_narrative_relay_with_service_route(
++            &mut generated,
++            narrative,
++        )
++        .unwrap();
++        let terminal = facility
++            .installations
++            .iter()
++            .find(|installation| installation.id.as_str() == "core:relay_register")
++            .unwrap()
++            .position;
++        let contact = generated
++            .blueprint
++            .actors
++            .iter()
++            .find(|actor| actor.tags().contains(&narrative.relay_character))
++            .unwrap()
++            .position();
++        placements.insert(terminal);
++        println!(
++            "GAMEPLAY_REVIEW {}",
++            serde_json::json!({"seed":seed,"terminal":[terminal.x,terminal.y],"contact":[contact.x,contact.y],"separation":terminal.x.abs_diff(contact.x)+terminal.y.abs_diff(contact.y)})
++        );
++    }
++    assert!(
++        placements.len() > 1,
++        "changing the seed must already change the relay position"
++    );
++}

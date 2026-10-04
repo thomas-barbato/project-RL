@@ -3,8 +3,8 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
 
 use macroquad::prelude::{
-    KeyCode, MouseButton, get_keys_pressed, is_key_down, is_mouse_button_pressed, mouse_position,
-    mouse_wheel, screen_height, screen_width,
+    KeyCode, MouseButton, get_keys_pressed, is_key_down, is_mouse_button_down,
+    is_mouse_button_pressed, mouse_position, mouse_wheel, screen_height, screen_width,
 };
 use serde::{Deserialize, Serialize};
 
@@ -60,7 +60,7 @@ actions! {
     Laboratory, "Laboratoire : choisir un essai", "F5", GAME;
     Inspect, "Consulter la fiche complète / état et cible", "F4", ALL;
     EventHistory, "Historique des tours", "V", GAME;
-    NpcVision, "Afficher / masquer les champs de vision", "F2", GAME;
+    NpcVision, "Afficher / masquer vision et bruit", "F2", GAME;
     Restart, "Nouvelle partie", "R", GAME;
     Analyze, "Analyse de cible", "C", GAME;
     Traces, "Lecture de traces", "L", GAME;
@@ -77,7 +77,7 @@ actions! {
     MenuLeft, "Valeur / discipline précédente", "Left", SKILLS | SETTINGS;
     MenuRight, "Valeur / discipline suivante", "Right", SKILLS | SETTINGS;
     Learn, "Apprendre / réattribuer une commande", "Enter", SKILLS | SETTINGS;
-    Use, "Utiliser la sélection", "U", INVENTORY | SKILLS;
+    Use, "Équiper / utiliser la sélection", "E", INVENTORY | SKILLS;
     Drop, "Déposer la sélection", "X", INVENTORY;
     InventoryFilter, "Catégorie / filtre de compétences / personnalisation", "Tab", INVENTORY | SKILLS | SETTINGS;
     InventorySort, "Inventaire : changer le tri", "T", INVENTORY;
@@ -329,7 +329,7 @@ impl Controls {
             })
             .collect();
         Self {
-            version: 2,
+            version: 3,
             layout,
             semantics,
             bindings,
@@ -384,7 +384,7 @@ impl Controls {
         Ok(())
     }
     fn validate(&self) -> Result<(), String> {
-        if self.version != 2 {
+        if self.version != 3 {
             return Err("Version des commandes incompatible.".to_owned());
         }
         if self.bindings.len() != Action::ALL.len() {
@@ -422,8 +422,16 @@ impl Controls {
                 }
             }
         }
+        let migrate_use = document["version"] == 2;
+        if migrate_use {
+            document["version"] = serde_json::json!(3);
+        }
         let mut result: Self =
             serde_json::from_value(document).map_err(|error| error.to_string())?;
+        // Only migrate the old default; keep custom bindings and any conflict.
+        if migrate_use && result.bindings.get(&Action::Use) == Some(&Binding::key("U")) {
+            let _ = result.rebind(Action::Use, Binding::key("E"));
+        }
         // Add actions introduced after a user's file was saved without resetting
         // custom bindings. Prefer each new default, then the first free key.
         // Loading a legacy file never writes it back automatically.
@@ -523,6 +531,8 @@ pub struct InputFrame {
     pub pointer: Option<(f32, f32)>,
     pub viewport: Option<(f32, f32)>,
     pub wheel_y: f32,
+    /// Drag state only; never injected into pressed/held action bindings.
+    pub mouse_left_down: bool,
 }
 
 impl InputFrame {
@@ -555,6 +565,7 @@ impl InputFrame {
             pointer: Some(mouse_position()),
             viewport: Some((screen_width(), screen_height())),
             wheel_y: mouse_wheel().1,
+            mouse_left_down: is_mouse_button_down(MouseButton::Left),
         }
     }
 }
@@ -701,6 +712,34 @@ pub fn detect_layout() -> Option<Layout> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn equip_uses_e_and_legacy_profiles_preserve_personal_bindings() {
+        for layout in [Layout::Azerty, Layout::Qwerty] {
+            let controls = Controls::preset(layout, KeySemantics::Physical);
+            controls.validate().unwrap();
+            assert_eq!(controls.binding(Action::Use), &Binding::key("E"));
+            assert_eq!(
+                controls.binding(Action::QuickTechniques),
+                &Binding::key("U")
+            );
+            let mut document = serde_json::to_value(controls).unwrap();
+            document["version"] = serde_json::json!(2);
+            document["bindings"]["use"] = serde_json::json!({"type":"key", "value":"U"});
+            let migrated = Controls::decode(&document.to_string()).unwrap();
+            assert_eq!(migrated.binding(Action::Use), &Binding::key("E"));
+            assert_eq!(migrated.version, 3);
+
+            document["bindings"]["drop"] = serde_json::json!({"type":"key", "value":"E"});
+            let migrated = Controls::decode(&document.to_string()).unwrap();
+            assert_eq!(migrated.binding(Action::Drop), &Binding::key("E"));
+            assert_eq!(migrated.binding(Action::Use), &Binding::key("U"));
+
+            document["bindings"]["use"] = serde_json::json!({"type":"key", "value":"F8"});
+            let migrated = Controls::decode(&document.to_string()).unwrap();
+            assert_eq!(migrated.binding(Action::Use), &Binding::key("F8"));
+        }
+    }
 
     #[test]
     fn presets_are_single_binding_and_match_backend_semantics() {

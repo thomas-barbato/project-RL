@@ -1,0 +1,24 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 21.08s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 3 tests
+GAMEPLAY_REVIEW {"armor":1,"current_damage_per_hit":0,"penetration":0,"proposed_damage_per_hit":2,"scenario":"proposal-only-ranged-base-damage-three"}
+GAMEPLAY_REVIEW {"armor":2,"current_damage_per_hit":0,"penetration":0,"proposed_damage_per_hit":1,"scenario":"proposal-only-ranged-base-damage-three"}
+GAMEPLAY_REVIEW {"armor":3,"current_damage_per_hit":0,"penetration":0,"proposed_damage_per_hit":0,"scenario":"proposal-only-ranged-base-damage-three"}
+test ascii_app::gameplay_review_tests::gameplay_review_ranged_damage_proposal_preserves_armor_as_a_counter ... ok
+GAMEPLAY_REVIEW {"contact":[29,37],"seed":20260909,"separation":1,"terminal":[30,37]}
+GAMEPLAY_REVIEW {"contact":[22,43],"seed":20260910,"separation":1,"terminal":[23,43]}
+GAMEPLAY_REVIEW {"contact":[103,57],"seed":20260911,"separation":1,"terminal":[104,57]}
+GAMEPLAY_REVIEW {"contact":[66,51],"seed":20260912,"separation":1,"terminal":[67,51]}
+GAMEPLAY_REVIEW {"contact":[66,44],"seed":20260913,"separation":1,"terminal":[67,44]}
+GAMEPLAY_REVIEW {"contact":[20,78],"seed":20260914,"separation":1,"terminal":[21,78]}
+GAMEPLAY_REVIEW {"contact":[102,37],"seed":20260915,"separation":1,"terminal":[103,37]}
+GAMEPLAY_REVIEW {"contact":[50,11],"seed":20260916,"separation":1,"terminal":[51,11]}
+test ascii_app::gameplay_review_tests::gameplay_review_relay_locations_and_alternative_separation ... ok
+GAMEPLAY_REVIEW {"absorbed_by_armor":7,"applied_damage":14,"attack":"AttackProfile { range: 1, distance_metric: Chebyshev, requires_line_of_sight: false, damage: DamagePacket { amount: 2, damage_type: Kinetic, penetration: 0 }, melee_impact: MeleeImpactProfile { material_cap: 11, impact_modifier: 0 } }","attacks":8,"hits":7,"range":1,"remaining_hp":6,"role":"melee","scenario":"open-floor-starting-player-eight-waits","starting_hp":20}
+GAMEPLAY_REVIEW {"absorbed_by_armor":7,"applied_damage":0,"attack":"AttackProfile { range: 4, distance_metric: Euclidean, requires_line_of_sight: true, damage: DamagePacket { amount: 1, damage_type: Piercing, penetration: 0 } }","attacks":8,"hits":7,"range":4,"remaining_hp":20,"role":"ranged","scenario":"open-floor-starting-player-eight-waits","starting_hp":20}
+test ascii_app::gameplay_review_tests::gameplay_review_authored_surface_melee_and_ranged_enemies_really_attack ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 595 filtered out; finished in 1.56s
+

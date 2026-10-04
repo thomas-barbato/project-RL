@@ -65,6 +65,10 @@ pub enum GameCommand {
         merchant: EntityId,
         item: ItemInstanceId,
     },
+    ImproveEquipment {
+        artisan: EntityId,
+        item: ItemInstanceId,
+    },
     ReceiveTreatment {
         healer: EntityId,
     },
@@ -123,6 +127,10 @@ pub enum GameCommand {
     UseElectronicWarfareTechnique {
         technique: TechniqueId,
         directive: ElectronicDirective,
+    },
+    UseInstallation {
+        target: GridPos,
+        action: crate::facility::InstallationAction,
     },
 }
 

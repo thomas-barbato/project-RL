@@ -1,0 +1,6 @@
+{
+  id: "core:locomotion_hindrance_protection",
+  duration_turns: 1,
+  stacking: { mode: "keep_existing" },
+  blocked_families: ["core:locomotion_hindrance"],
+}

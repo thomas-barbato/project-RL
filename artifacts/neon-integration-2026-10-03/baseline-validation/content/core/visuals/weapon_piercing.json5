@@ -1,0 +1,9 @@
+{
+  id: "core:weapon_piercing",
+  terminal: {
+    frames: ["piercing", "piercing", "piercing"],
+    color: [144, 115, 86, 210],
+    accent_colors: [[241, 189, 120, 245], [255, 247, 220, 255]],
+    frame_millis: 70, step_millis: 75, linger_millis: 60,
+  },
+}

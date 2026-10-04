@@ -63,6 +63,8 @@ where
     T: Fn(&Map, GridPos) -> bool,
     F: Fn(GridPos) -> bool,
 {
+    #[cfg(debug_assertions)]
+    let _profile = crate::action_profile::Scope::new("engine.path-search");
     if !can_traverse(map, start) || !can_traverse(map, goal) {
         return None;
     }
@@ -79,9 +81,14 @@ where
     let mut visited = 0;
     while let Some(current) = frontier.pop() {
         if current.position == goal {
-            return reconstruct_path(previous, start, goal);
+            let path = reconstruct_path(previous, start, goal);
+            #[cfg(debug_assertions)]
+            _profile.path_result(start, goal, visited, path.as_ref().map(Vec::len));
+            return path;
         }
         if visited >= maximum_visited {
+            #[cfg(debug_assertions)]
+            _profile.path_result(start, goal, visited, None);
             return None;
         }
         visited += 1;
@@ -107,6 +114,8 @@ where
         }
     }
 
+    #[cfg(debug_assertions)]
+    _profile.path_result(start, goal, visited, None);
     None
 }
 

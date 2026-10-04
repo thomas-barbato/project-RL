@@ -1,0 +1,871 @@
+--- before/content/core/locales/fr.json5
++++ content/core/locales/fr.json5
+@@ -60,6 +60,9 @@
+     "narrative.rivet.name": "Milo",
+     "narrative.rivet.role": "Récupérateur au relais",
+     "narrative.abs.title": "Le chemin des absents",
++    "narrative.abs.local_summary": "Enquêter sur le relais signalé par Elias. Descendre par le passage souterrain en {passage_coordinates}, au sud-est des friches. Ce passage est sans retour. Dans le secteur industriel, obtenir un témoignage ou consulter le registre : l'enquête se termine sur place.",
++    "narrative.abs.local_directions": "Il est sous les friches, dans le secteur industriel. Le passage est au sud-est, en {passage_coordinates}. Une fois descendu, vous ne pourrez plus revenir ici. Sur place, cherchez quelqu'un à qui parler ou consultez le registre pour savoir ce qu'ils sont devenus.",
++    "narrative.abs.resolved": "Vous avez confirmé que le relais est encore occupé et que ses habitants utilisent une autre voie.",
+     "narrative.abs.summary": "Descendre par le passage souterrain en {passage_coordinates}, au sud-est des friches. Dans le secteur industriel, trouver le relais, parler à ses occupants ou consulter leur registre, puis revenir voir Elias.",
+     "narrative.abs.reported": "Elias sait que le relais est encore occupé et que ses habitants utilisent une autre voie.",
+     "world_effect.orme_direction_board_updated.summary": "le panneau d'Elias indique que le relais est occupé et que l'ancien accès reste fermé",
+--- before/docs/DESCENTE_VERS_LE_NUMERIQUE.md
++++ docs/DESCENTE_VERS_LE_NUMERIQUE.md
+@@ -1,6 +1,6 @@
+ # Descente vers le numérique
+ 
+-27 septembre 2026.
++3 octobre 2026.
+ 
+ **Statut :** direction générale validée. Une première application aux proportions
+ des milieux est intégrée en [génération 117](REPARTITION_DES_PROFONDEURS.md) ; les
+@@ -15,8 +15,10 @@
+ 
+ En surface, la technologie occupe le monde. En profondeur, elle semble de moins
+ en moins séparable du vivant, des mouvements et de la matière elle-même.
+-Cela ne décide pas que le monde est une simulation : son explication narrative
+-reste à définir.
++Le joueur cherche à fuir la simulation, selon la direction confirmée le 3 octobre.
++Le passage à une couche plus profonde ferme définitivement le retour aux couches
++précédentes. L'origine de la simulation et les détails de l'évasion restent à
++définir ; cette règle ne fixe pas de nouveaux personnages ou jalons narratifs.
+ 
+ ## 2. Une progression, pas quatre cases étanches
+ 
+--- before/docs/MONDE_EXPLORATION_ET_PROGRESSION.md
++++ docs/MONDE_EXPLORATION_ET_PROGRESSION.md
+@@ -1,19 +1,22 @@
+ # Monde, exploration et progression
+ 
+-**Mise à jour :** 27 septembre 2026. L'état du prototype en section 7 reste daté du 22 septembre.
++**Mise à jour :** 3 octobre 2026. L'état du prototype en section 7 reste daté du 22 septembre.
+ 
+ **Statut :** direction de conception validée par l'utilisateur ; mise en œuvre encore partielle. Les valeurs d'essai et les exemples signalés comme propositions ne sont pas des paramètres approuvés.
+ 
+ ## 1. Expérience recherchée
+ 
+-Le jeu doit proposer une aventure longue, exigeante et rejouable. Le joueur doit pouvoir consacrer des sessions à explorer, découvrir des lieux, faire évoluer son personnage et expérimenter les systèmes sans avancer immédiatement la quête principale. L'évasion demeure l'objectif de victoire ; le monde doit aussi donner envie d'être parcouru pour lui-même.
++Le jeu doit proposer une aventure longue, exigeante et rejouable. Le joueur doit pouvoir consacrer des sessions à explorer, découvrir des lieux, faire évoluer son personnage et expérimenter les systèmes sans avancer immédiatement vers la sortie. Fuir la simulation est l'objectif de victoire ; les quêtes locales apportent des occasions et des conséquences sans constituer une chaîne obligatoire.
+ 
+-Deux références éclairent cette direction :
++### Passage irréversible entre couches
+ 
+-- **Diablo II :** une structure d'aventure et des lieux nécessaires aux quêtes, intégrés dans des territoires dont une partie de la géographie est générée. La présence du contenu indispensable est garantie par la construction du monde.
+-- **Caves of Qud :** l'intérêt propre de l'exploration et de l'expérimentation, dans un monde combinant contenu écrit et génération procédurale.
++Direction validée le 3 octobre : quitter une couche pour une couche plus profonde interdit définitivement de revenir dans les couches précédentes. Les déplacements et retours entre lieux de la couche actuelle restent possibles. L'interface annonce « sans retour » avant le passage ; les anciens accès ne proposent plus de remontée utilisable ni d'itinéraire de retour.
+ 
+-Ces références ne fixent ni une quantité de contenu comparable, ni leurs règles de combat, de retour en ville ou de renouvellement des ennemis. Project RL conserve son tour par tour, son corps principal durable, ses règles de perception et sa persistance pendant une run.
++Cette règle s'applique aux nouvelles parties de génération 142. Les parties de générations antérieures conservent leurs trajets et leurs quêtes historiques. Dans les nouvelles parties, l'enquête d'Elias se résout sur place au relais, par témoignage ou lecture du registre : journal, crédits et expérience sont attribués une seule fois, sans tour supplémentaire de rapport. Aucun message reçu par Elias ni mise à jour de son panneau n'est simulé.
++
++La référence principale pour la progression est désormais **Cogmind** : un objectif d'évasion, des choix d'itinéraire et des passages sans retour. La recherche précédente d'un mélange avec Caves of Qud est écartée. Project RL conserve son tour par tour, son corps principal durable, ses règles de perception et sa persistance pendant une run ; les proportions des cartes et la liberté dans une couche restent des choix propres au projet.
++
++Une introduction devra présenter la situation et le but au joueur. Ce besoin est identifié le 3 octobre et volontairement reporté ; aucun nouveau prologue n'est intégré avec cette règle de passage.
+ 
+ ## 2. Deux échelles à développer ensemble
+ 
+@@ -24,7 +27,7 @@
+ | Carte locale | De grands extérieurs dotés de reliefs, d'obstacles, de repères et de lieux distincts. La taille peut varier selon le rôle du lieu. |
+ | Couche | Un territoire comprenant une ville propre à cette couche, plusieurs zones sauvages, des destinations et des branches facultatives. |
+ | Progression verticale | Des expéditions entre les étapes importantes. Les arrivées, villes et accès profonds ne doivent pas former systématiquement un même puits urbain direct. |
+-| Exploration libre | Des régions et des lieux intéressants en dehors du trajet nécessaire à la victoire, avec des boucles et des retours possibles. |
++| Exploration libre | Des régions et des lieux intéressants en dehors du trajet nécessaire à la victoire, avec des boucles et des retours possibles dans la couche actuelle. |
+ 
+ Une ville sert de refuge et de point d'ancrage. Elle conserve son identité et peut garder un plan conçu à la main. Son rôle dans le territoire, les chemins alentour et les accès doivent être pensés à l'échelle de la couche.
+ 
+@@ -117,7 +120,7 @@
+ 
+ La durée ne doit pas être produite par des trajets vides, des dialogues à répéter, une multiplication de clés équivalentes, des niveaux obligatoires, des ennemis artificiellement gonflés ou du farming sans risque. Explorer doit améliorer les options du personnage tout en conservant des défis ; un ajustement automatique de tous les ennemis au niveau du joueur n'est pas adopté par ce document.
+ 
+-Les retours connus devront rester confortables. Voyage automatique interrompu par un danger perçu et raccourcis ouverts par les actes du joueur sont des pistes à concevoir. Ils doivent respecter le temps simulé et les informations disponibles. Aucun portail gratuit ni voyage instantané universel n'est décidé ici.
++Les retours connus dans la couche actuelle devront rester confortables. Voyage automatique interrompu par un danger perçu et raccourcis ouverts par les actes du joueur sont des pistes à concevoir. Ils doivent respecter le temps simulé et les informations disponibles. Aucun portail gratuit ni voyage instantané universel n'est décidé ici.
+ 
+ ## 7. État actuel et valeurs encore à éprouver
+ 
+--- before/src/ascii_app.rs
++++ src/ascii_app.rs
+@@ -258,7 +258,8 @@
+ const CITY_DECOR_GENERATION_VERSION: u8 = RANDOM_HOME_GENERATION_VERSION + 1;
+ const CITY_LIFE_AND_LOOT_GENERATION_VERSION: u8 = CITY_DECOR_GENERATION_VERSION + 1;
+ const MONSTER_REWARDS_GENERATION_VERSION: u8 = CITY_LIFE_AND_LOOT_GENERATION_VERSION + 1;
+-const CURRENT_GENERATION_VERSION: u8 = MONSTER_REWARDS_GENERATION_VERSION;
++const IRREVERSIBLE_LAYERS_GENERATION_VERSION: u8 = MONSTER_REWARDS_GENERATION_VERSION + 1;
++const CURRENT_GENERATION_VERSION: u8 = IRREVERSIBLE_LAYERS_GENERATION_VERSION;
+ #[path = "bestiary_batch_app.rs"]
+ mod bestiary_batch;
+ #[path = "cave_anemone_app.rs"]
+@@ -3075,6 +3076,22 @@
+             return Ok(());
+         }
+         match scene {
++            "layer-descent" | "layer-return-closed" => {
++                let passage = TestSector::EXPANDED_EXPEDITION_PASSAGE;
++                app.walk_fixture_to(passage.step(Direction::West))?;
++                let selected = if scene == "layer-return-closed" {
++                    if app.execute_command(GameCommand::Interact { target: passage })
++                        != CommandOutcome::Applied
++                    {
++                        return Err("Descente de diagnostic refusée".into());
++                    }
++                    app.capture_events_at(Some(0.0));
++                    app.game.player_position().ok_or("Arrivée absente")?
++                } else {
++                    passage
++                };
++                app.select_world_target(Some(selected));
++            }
+             "surface-before" => {
+                 app.walk_fixture_to(GridPos::new(65, 51))?;
+             }
+@@ -8886,12 +8903,19 @@
+             return Vec::new();
+         };
+         let mut candidates = Vec::new();
+-        if self.game.passage(origin).is_some() {
++        if self
++            .game
++            .passage(origin)
++            .is_some_and(|link| !self.game.passage_returns_to_previous_layer(link))
++        {
+             candidates.push(origin);
+         }
+         candidates.extend(origin.cardinal_neighbors().into_iter().filter(|p| {
+             self.game.player_visibility().is_visible(*p)
+-                && (self.game.passage(*p).is_some()
++                && (self
++                    .game
++                    .passage(*p)
++                    .is_some_and(|link| !self.game.passage_returns_to_previous_layer(link))
+                     || self
+                         .game
+                         .threat_sources()
+@@ -9056,8 +9080,15 @@
+                         })
+                 });
+                 let name = actor_name.unwrap_or_else(|| {
+-                    if self.game.passage(position).is_some() {
+-                        "passage".to_owned()
++                    if let Some(link) = self.game.passage(position) {
++                        if self.game.passage_is_irreversible(link) {
++                            "passage sans retour"
++                        } else if self.game.passage_returns_to_previous_layer(link) {
++                            "accès fermé"
++                        } else {
++                            "passage"
++                        }
++                        .to_owned()
+                     } else {
+                         match self.game.map().tile(position).map(|tile| tile.terrain) {
+                             Some(Terrain::Door(_)) => "porte",
+@@ -11071,7 +11102,10 @@
+                 }
+                 // Compatibility catalogues may expose more links than the active
+                 // generation. Only a passage installed in the runtime may be shown.
+-                self.game.passage(target).map(|_| (*direction, target))
++                self.game
++                    .passage(target)
++                    .filter(|link| !self.game.passage_returns_to_previous_layer(link))
++                    .map(|_| (*direction, target))
+             })
+             .min_by_key(|(direction, target)| {
+                 (
+@@ -22621,6 +22655,7 @@
+ }
+ 
+ fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules {
++    rules.irreversible_layer_travel = version >= IRREVERSIBLE_LAYERS_GENERATION_VERSION;
+     if version < MONSTER_REWARDS_GENERATION_VERSION {
+         rules.monster_equipment_loot = None;
+     }
+@@ -23998,6 +24033,7 @@
+         CommandRejection::UpgradeUnavailable => "Cet équipement ne peut pas être amélioré.",
+         CommandRejection::MaintainedEffectUnavailable => "Cet effet n'est plus maintenu.",
+         CommandRejection::PassageUnavailable => "Passage indisponible.",
++        CommandRejection::PreviousLayerUnavailable => "Cette couche a été quittée définitivement.",
+         CommandRejection::PassageObstructed => "Arrivée encombrée : attendez avant de réessayer.",
+         CommandRejection::InteractionOutOfReach => {
+             "Interaction hors de portée : placez-vous juste à côté."
+--- before/src/game/expedition.rs
++++ src/game/expedition.rs
+@@ -1004,6 +1004,28 @@
+         self.links.get(&(zone.clone(), at))
+     }
+ 
++    fn layer_travel_allowed(&self, source: &ContentId, destination: &ContentId) -> bool {
++        !self.rules().irreversible_layer_travel
++            || self
++                .zone_info(source)
++                .zip(self.zone_info(destination))
++                .is_some_and(|(source, destination)| destination.depth >= source.depth)
++    }
++
++    pub fn passage_returns_to_previous_layer(&self, link: &ZoneLink) -> bool {
++        self.current
++            .as_ref()
++            .is_some_and(|source| !self.layer_travel_allowed(source, &link.destination))
++    }
++
++    pub fn passage_is_irreversible(&self, link: &ZoneLink) -> bool {
++        self.rules().irreversible_layer_travel
++            && self
++                .current_zone()
++                .zip(self.zone_info(&link.destination))
++                .is_some_and(|(source, destination)| destination.depth > source.depth)
++    }
++
+     /// Returns the first passage of a route that only crosses zones the player
+     /// has already visited. Presentations can guide a return trip without
+     /// exposing an unmaterialized map or an undiscovered shortcut.
+@@ -1025,6 +1047,7 @@
+             for ((source, position), link) in &self.links {
+                 if source != &zone
+                     || !visited_zones.contains(&link.destination)
++                    || !self.layer_travel_allowed(source, &link.destination)
+                     || !searched.insert(link.destination.clone())
+                 {
+                     continue;
+@@ -2590,6 +2613,9 @@
+             && (origin == at || origin.cardinal_neighbors().contains(&at))
+             && self.active.player_visibility.is_visible(at)
+             && self.active.map.is_walkable(at)
++            && self
++                .passage(at)
++                .is_some_and(|link| !self.passage_returns_to_previous_layer(link))
+             && self.unmaterialized_passage_destination(at).is_some()
+     }
+ 
+@@ -4166,6 +4192,72 @@
+                     required,
+                 }
+             }));
++        self.finish_local_investigation(record);
++    }
++
++    /// New runs resolve the introductory investigation where its evidence is
++    /// found. Its former report and surface installation effect are absent
++    /// from this authored variant; discovery never consumes an extra turn.
++    fn finish_local_investigation(&mut self, record: &ContentId) {
++        if !self.rules().irreversible_layer_travel {
++            return;
++        }
++        let Some(investigation) = self
++            .narrative
++            .as_ref()
++            .map(|state| &state.definition.investigation)
++        else {
++            return;
++        };
++        if &investigation.record != record {
++            return;
++        }
++        let Some((zone, index)) = self.quests.iter().find_map(|(zone, quests)| {
++            quests
++                .iter()
++                .position(|quest| {
++                    quest.definition.id() == &investigation.id
++                        && quest.accepted
++                        && !quest.completed
++                        && matches!(
++                            quest.progress,
++                            QuestProgress::AccessDataRecord { accessed: true }
++                        )
++                        && quest.reward_items.is_empty()
++                        && quest.completion_world_effects.is_empty()
++                })
++                .map(|index| (zone.clone(), index))
++        }) else {
++            return;
++        };
++        let quest = self.quests[&zone][index].clone();
++        let Some(credits) = self
++            .player_credits
++            .checked_add(quest.definition.reward_credits())
++        else {
++            return;
++        };
++        self.quests.get_mut(&zone).expect("located investigation")[index].completed = true;
++        self.player_credits = credits;
++        if quest.reward_experience > 0 {
++            let key = RewardKey::new(format!("quest:{}", quest.definition.id().as_str()))
++                .expect("validated quest ID");
++            self.active
++                .award_one_time_experience(quest.reward_experience, key);
++        }
++        self.active.events.push(GameEvent::QuestCompleted {
++            giver: quest.provider,
++            quest: quest.definition.id().clone(),
++            objective: QuestCompletion::AccessDataRecord {
++                record: record.clone(),
++            },
++            reward_credits: quest.definition.reward_credits(),
++            reward_experience: quest.reward_experience,
++            reward_items: quest.reward_items,
++            world_states: quest.completion_world_states,
++            world_effects: quest.completion_world_effects,
++            player_credits: credits,
++        });
+     }
+ 
+     fn record_defeat_quest_progress(&mut self, tags: &[ContentId]) {
+@@ -4223,6 +4315,9 @@
+         }
+         if !self.active.map.is_walkable(at) {
+             return reject(CommandRejection::PassageUnavailable);
++        }
++        if self.passage_returns_to_previous_layer(&link) {
++            return reject(CommandRejection::PreviousLayerUnavailable);
+         }
+         let Some(arrival) = link.arrival else {
+             return reject(CommandRejection::PassageUnavailable);
+@@ -4948,6 +5043,116 @@
+         )
+         .unwrap()
+     }
++
++    #[test]
++    fn irreversible_layers_allow_local_returns_and_survive_recovery() {
++        let rules = GameRules {
++            irreversible_layer_travel: true,
++            ..GameRules::default()
++        };
++        let game = GameState::new_with_rules(map(), GridPos::new(1, 1), 42, rules.clone()).unwrap();
++        let mut world = WorldState::single(game);
++        world.enable(info("a", 0)).unwrap();
++        for (name, depth) in [("b", 1), ("c", 1), ("d", 2)] {
++            world
++                .add_zone(ZoneBlueprint {
++                    info: info(name, depth),
++                    map: map(),
++                    entrance: GridPos::new(1, 1),
++                    seed: 888,
++                    actors: vec![],
++                    loot: vec![],
++                    threat_sources: vec![],
++                })
++                .unwrap();
++        }
++        world
++            .connect(id("a"), GridPos::new(2, 1), id("b"), GridPos::new(1, 1))
++            .unwrap();
++        world
++            .connect(id("b"), GridPos::new(2, 1), id("c"), GridPos::new(1, 1))
++            .unwrap();
++        world
++            .connect(id("b"), GridPos::new(3, 1), id("d"), GridPos::new(1, 1))
++            .unwrap();
++        assert!(world.passage_is_irreversible(world.passage(GridPos::new(2, 1)).unwrap()));
++        apply(
++            &mut world,
++            GameCommand::Interact {
++                target: GridPos::new(2, 1),
++            },
++        );
++        let before = world.recovery_snapshot_bytes().unwrap();
++        let debug_before = format!("{world:?}");
++        assert_eq!(
++            world.process_player_command(GameCommand::Interact {
++                target: GridPos::new(1, 1)
++            }),
++            CommandOutcome::Rejected(CommandRejection::PreviousLayerUnavailable)
++        );
++        assert_eq!(world.recovery_snapshot_bytes().unwrap(), before);
++        assert_eq!(format!("{world:?}"), debug_before);
++        assert_eq!(world.next_visited_passage_towards(&id("a")), None);
++        assert!(!world.passage_is_irreversible(world.passage(GridPos::new(2, 1)).unwrap()));
++        apply(
++            &mut world,
++            GameCommand::Interact {
++                target: GridPos::new(2, 1),
++            },
++        );
++        assert_eq!(
++            world.next_visited_passage_towards(&id("b")),
++            Some(GridPos::new(1, 1))
++        );
++        apply(
++            &mut world,
++            GameCommand::Interact {
++                target: GridPos::new(1, 1),
++            },
++        );
++        assert_eq!(world.current_zone().unwrap().id, id("b"));
++        apply(
++            &mut world,
++            GameCommand::Interact {
++                target: GridPos::new(3, 1),
++            },
++        );
++        let bytes = world.recovery_snapshot_bytes().unwrap();
++        let mut restored = WorldState::from_recovery_snapshot_bytes(&bytes, rules).unwrap();
++        assert_eq!(restored.current_zone().unwrap().id, id("d"));
++        assert_eq!(
++            restored.process_player_command(GameCommand::Interact {
++                target: GridPos::new(1, 1)
++            }),
++            CommandOutcome::Rejected(CommandRejection::PreviousLayerUnavailable)
++        );
++        assert_eq!(restored.recovery_snapshot_bytes().unwrap(), bytes);
++        assert_eq!(restored.next_visited_passage_towards(&id("b")), None);
++    }
++
++    #[test]
++    fn irreversible_layers_refuse_deferred_ascent_before_generation() {
++        let rules = GameRules {
++            irreversible_layer_travel: true,
++            ..GameRules::default()
++        };
++        let game = GameState::new_with_rules(map(), GridPos::new(1, 1), 42, rules).unwrap();
++        let mut world = WorldState::single(game);
++        world.enable(info("a", 2)).unwrap();
++        world
++            .declare_deferred_connection(id("a"), GridPos::new(2, 1), info("b", 1))
++            .unwrap();
++        let before = world.recovery_snapshot_bytes().unwrap();
++        assert!(!world.can_materialize_passage(GridPos::new(2, 1)));
++        assert_eq!(
++            world.process_player_command(GameCommand::Interact {
++                target: GridPos::new(2, 1)
++            }),
++            CommandOutcome::Rejected(CommandRejection::PreviousLayerUnavailable)
++        );
++        assert_eq!(world.recovery_snapshot_bytes().unwrap(), before);
++        assert_eq!(world.visited_zone_count(), 1);
++    }
+     fn world() -> WorldState {
+         let mut rules = GameRules::default();
+         rules
+--- before/src/game/game_state.rs
++++ src/game/game_state.rs
+@@ -16074,6 +16074,7 @@
+     UpgradeUnavailable,
+     MaintainedEffectUnavailable,
+     PassageUnavailable,
++    PreviousLayerUnavailable,
+     PassageObstructed,
+     InteractionOutOfReach,
+     NothingToInteract,
+--- before/src/game/rules.rs
++++ src/game/rules.rs
+@@ -22,6 +22,9 @@
+ /// construct it later without replacing simulation code.
+ #[derive(Clone, PartialEq, Eq)]
+ pub struct GameRules {
++    /// Crossing into a deeper layer closes access to every previous layer.
++    /// Disabled for historical runs; travel within one layer remains reversible.
++    pub irreversible_layer_travel: bool,
+     /// Optional reward pool for hostile deaths; separate from combat equipment.
+     pub monster_equipment_loot: Option<crate::loot::EquipmentLootCatalog>,
+     pub equipment_upgrade: Option<super::EquipmentUpgradeRules>,
+@@ -124,6 +127,9 @@
+ impl Debug for GameRules {
+     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+         let mut rules = formatter.debug_struct("GameRules");
++        if self.irreversible_layer_travel {
++            rules.field("irreversible_layer_travel", &true);
++        }
+         if let Some(catalog) = &self.monster_equipment_loot {
+             rules.field("monster_equipment_loot", catalog);
+         }
+@@ -284,6 +290,7 @@
+ impl Default for GameRules {
+     fn default() -> Self {
+         Self {
++            irreversible_layer_travel: false,
+             monster_equipment_loot: None,
+             equipment_upgrade: None,
+             weighted_equipment_bonuses: false,
+--- before/src/narrative_app.rs
++++ src/narrative_app.rs
+@@ -30,6 +30,15 @@
+     }
+ 
+     pub(super) fn narrative_text(&self, key: &str, fallback: &str) -> String {
++        let key = if self.generation_version >= IRREVERSIBLE_LAYERS_GENERATION_VERSION {
++            match key {
++                "narrative.abs.summary" => "narrative.abs.local_summary",
++                "narrative.abs-d02" => "narrative.abs.local_directions",
++                _ => key,
++            }
++        } else {
++            key
++        };
+         let text = self.texts.resolve(DISPLAY_LOCALE, key).unwrap_or(fallback);
+         if !text.contains("{passage_coordinates}") {
+             return text.to_owned();
+@@ -117,6 +126,11 @@
+                 choice: 4,
+             },
+         ] {
++            if self.game.rules().irreversible_layer_travel
++                && matches!(command, GameCommand::ChooseDialogue { choice: 4, .. })
++            {
++                continue;
++            }
+             if let CommandOutcome::Rejected(reason) = self.execute_command(command) {
+                 return Err(format!("Rapport de diagnostic refusé : {reason:?}"));
+             }
+@@ -349,12 +363,25 @@
+                 authored.reward_experience = self.narrative_reward_experience();
+                 authored.completion_world_states.push(
+                     QuestWorldStateDefinition::new(
+-                        "core:relay_reported".parse().unwrap(),
+-                        "narrative.abs.reported".into(),
++                        if self.generation_version >= IRREVERSIBLE_LAYERS_GENERATION_VERSION {
++                            "core:relay_investigated"
++                        } else {
++                            "core:relay_reported"
++                        }
++                        .parse()
++                        .unwrap(),
++                        if self.generation_version >= IRREVERSIBLE_LAYERS_GENERATION_VERSION {
++                            "narrative.abs.resolved"
++                        } else {
++                            "narrative.abs.reported"
++                        }
++                        .into(),
+                     )
+                     .map_err(|error| error.to_string())?,
+                 );
+-                if self.generation_version >= ORME_DIRECTION_BOARD_GENERATION_VERSION {
++                if self.generation_version >= ORME_DIRECTION_BOARD_GENERATION_VERSION
++                    && self.generation_version < IRREVERSIBLE_LAYERS_GENERATION_VERSION
++                {
+                     authored.completion_world_effects.push(
+                         QuestWorldEffectDefinition::update_data_terminal(
+                             "core:orme_direction_board".parse().unwrap(),
+@@ -640,6 +667,191 @@
+         app
+     }
+ 
++    #[test]
++    fn irreversible_layers_resolve_both_investigation_paths_on_site_and_replay() {
++        for by_dialogue in [false, true] {
++            let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
++            let mut app = AsciiApp::from_seed(
++                INITIAL_SEED,
++                rules.clone(),
++                texts.clone(),
++                loot.clone(),
++                expeditions.clone(),
++            )
++            .unwrap();
++            assert!(app.game.rules().irreversible_layer_travel);
++            assert!(
++                app.narrative_text("narrative.abs.summary", "")
++                    .contains("sans retour")
++            );
++            assert!(
++                !app.narrative_text("narrative.abs-d02", "")
++                    .contains("Revenez")
++            );
++            app.prepare_narrative_directions_diagnostic().unwrap();
++            app.npc_interaction = None;
++            let passage = TestSector::EXPANDED_EXPEDITION_PASSAGE;
++            app.walk_fixture_to(passage.step(Direction::West)).unwrap();
++            assert!(
++                app.game
++                    .passage_is_irreversible(app.game.passage(passage).unwrap())
++            );
++            assert_eq!(
++                app.execute_command(GameCommand::Interact { target: passage }),
++                CommandOutcome::Applied
++            );
++            app.capture_events_at(Some(0.0));
++            let entry = app.game.player_position().unwrap();
++            let before = app.game.recovery_snapshot_bytes().unwrap();
++            assert_eq!(
++                app.execute_command(GameCommand::Interact { target: entry }),
++                CommandOutcome::Rejected(CommandRejection::PreviousLayerUnavailable)
++            );
++            assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), before);
++            assert!(
++                app.game
++                    .next_visited_passage_towards(&"core:starter_city".parse().unwrap())
++                    .is_none()
++            );
++            let register = app
++                .game
++                .active_facility()
++                .unwrap()
++                .installations()
++                .find_map(|(id, installation)| {
++                    (id.as_str() == "core:relay_register").then_some(installation.position())
++                })
++                .unwrap();
++            let rivet = app
++                .game
++                .actors()
++                .iter()
++                .find_map(|(id, actor)| {
++                    actor
++                        .tags()
++                        .contains(&"core:rivet".parse().unwrap())
++                        .then_some(id)
++                })
++                .unwrap();
++            let approach = if by_dialogue {
++                app.game
++                    .actors()
++                    .get(rivet)
++                    .unwrap()
++                    .position()
++                    .step(Direction::North)
++            } else {
++                register
++                    .cardinal_neighbors()
++                    .into_iter()
++                    .find(|position| {
++                        app.game.map().is_walkable(*position)
++                            && app.game.actors().entity_at(*position).is_none()
++                    })
++                    .unwrap()
++            };
++            app.walk_fixture_to_unchecked(approach).unwrap();
++            let credits = app.game.player_credits();
++            let xp = app.game.player_progression().experience();
++            let turn = app.game.turn();
++            let command = if by_dialogue {
++                assert_eq!(
++                    app.execute_command(GameCommand::ChooseDialogue {
++                        speaker: rivet,
++                        node: "ABS-D04".into(),
++                        choice: 0
++                    }),
++                    CommandOutcome::AppliedWithoutTime
++                );
++                GameCommand::ChooseDialogue {
++                    speaker: rivet,
++                    node: "ABS-D05".into(),
++                    choice: 0,
++                }
++            } else {
++                GameCommand::Interact { target: register }
++            };
++            assert_eq!(
++                app.execute_command(command),
++                if by_dialogue {
++                    CommandOutcome::AppliedWithoutTime
++                } else {
++                    CommandOutcome::Applied
++                }
++            );
++            assert_eq!(app.game.turn(), turn + if by_dialogue { 0 } else { 1 });
++            assert_eq!(
++                app.game.quest_journal()[0].quest.status,
++                QuestStatus::Completed
++            );
++            assert_eq!(app.game.player_credits(), credits + 30);
++            assert_eq!(app.game.player_progression().experience(), xp + 12);
++            assert!(
++                app.game.quest_journal()[0]
++                    .quest
++                    .completion_world_effects
++                    .is_empty()
++            );
++            app.capture_events_at(Some(0.0));
++            assert!(
++                !app.navigation_signal_summary()
++                    .is_some_and(|text| text.contains("RETOURNER"))
++            );
++            let mut saved = app.suspension().unwrap();
++            if by_dialogue {
++                saved.build = "0000000000000000".into();
++                saved.recovery = None;
++            }
++            let mut restored =
++                AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
++            assert_eq!(
++                restored.game.recovery_snapshot_bytes().unwrap(),
++                app.game.recovery_snapshot_bytes().unwrap()
++            );
++            let credits = restored.game.player_credits();
++            let xp = restored.game.player_progression().experience();
++            let approach = register
++                .cardinal_neighbors()
++                .into_iter()
++                .find(|position| {
++                    restored.game.map().is_walkable(*position)
++                        && restored.game.actors().entity_at(*position).is_none()
++                })
++                .unwrap();
++            restored.walk_fixture_to_unchecked(approach).unwrap();
++            assert_eq!(
++                restored.execute_command(GameCommand::Interact { target: register }),
++                CommandOutcome::Applied
++            );
++            assert_eq!(restored.game.player_credits(), credits);
++            assert_eq!(restored.game.player_progression().experience(), xp);
++            assert_eq!(
++                restored.game.quest_journal()[0].quest.status,
++                QuestStatus::Completed
++            );
++        }
++    }
++
++    #[test]
++    fn irreversible_layers_preserve_generation_141_rules_and_directions() {
++        let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
++        let app = AsciiApp::from_seed_version(
++            INITIAL_SEED,
++            rules,
++            texts,
++            loot,
++            expeditions,
++            MONSTER_REWARDS_GENERATION_VERSION,
++        )
++        .unwrap();
++        assert!(!app.game.rules().irreversible_layer_travel);
++        assert!(!format!("{:?}", app.game.rules()).contains("irreversible_layer_travel"));
++        assert!(
++            app.narrative_text("narrative.abs.summary", "")
++                .contains("revenir voir Elias")
++        );
++    }
++
+     fn choose(
+         world: &mut WorldState,
+         speaker: EntityId,
+@@ -813,12 +1025,13 @@
+     #[test]
+     fn underground_passage_leads_to_the_record_and_a_completable_investigation() {
+         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+-        let mut app = AsciiApp::from_seed(
++        let mut app = AsciiApp::from_seed_version(
+             INITIAL_SEED,
+             rules.clone(),
+             texts.clone(),
+             loot.clone(),
+             expeditions.clone(),
++            MONSTER_REWARDS_GENERATION_VERSION,
+         )
+         .unwrap();
+         app.prepare_narrative_directions_diagnostic().unwrap();
+@@ -1291,10 +1504,7 @@
+         );
+         assert_eq!(app.game.quest_marker_at(terminal), None);
+         assert_eq!(app.game.quest_marker_at(GridPos::new(4, 5)), None);
+-        assert_eq!(
+-            app.game.quest_marker(orme),
+-            Some(QuestMarker::ReadyToComplete)
+-        );
++        assert_eq!(app.game.quest_marker(orme), None);
+     }
+ 
+     #[test]
+--- before/src/suspension.rs
++++ src/suspension.rs
+@@ -20,7 +20,7 @@
+ };
+ 
+ pub const MAX_COMMANDS: usize = 50_000;
+-pub const MAX_GENERATION_VERSION: u8 = 141;
++pub const MAX_GENERATION_VERSION: u8 = 142;
+ const REPLAY_RECOVERY_SCHEMA: u8 = 1;
+ pub const CURRENT_RECOVERY_SCHEMA: u8 = 2;
+ const CURRENT_CRASH_RECOVERY_SCHEMA: u8 = 1;
+--- before/src/terminal_view.rs
++++ src/terminal_view.rs
+@@ -141,10 +141,22 @@
+     }
+     if let Some(link) = game.passage(position) {
+         return Some(InteractionHint {
+-            title: format!("Vers {}", player_location_name(game.destination_name(link))),
++            title: format!(
++                "{}Vers {}",
++                if game.passage_is_irreversible(link) {
++                    "SANS RETOUR · "
++                } else if game.passage_returns_to_previous_layer(link) {
++                    "ACCÈS FERMÉ · "
++                } else {
++                    ""
++                },
++                player_location_name(game.destination_name(link)),
++            ),
+             is_loot: false,
+             verb: "voyager",
+-            unavailable: None,
++            unavailable: game
++                .passage_returns_to_previous_layer(link)
++                .then_some("couche quittée définitivement"),
+         });
+     }
+     if game
+@@ -1137,11 +1149,20 @@
+                         lockdown.remaining_turns(game.turn())
+                     )
+                 } else if let Some(link) = game.passage(position) {
+-                    format!(
+-                        "Vers {} · {} à proximité pour voyager",
+-                        player_location_name(game.destination_name(link)),
+-                        interact_label
+-                    )
++                    if game.passage_returns_to_previous_layer(link) {
++                        "Accès fermé · couche quittée définitivement".to_owned()
++                    } else {
++                        format!(
++                            "{}Vers {} · {} à proximité pour voyager",
++                            if game.passage_is_irreversible(link) {
++                                "SANS RETOUR · "
++                            } else {
++                                ""
++                            },
++                            player_location_name(game.destination_name(link)),
++                            interact_label,
++                        )
++                    }
+                 } else if let Some(source) = game
+                     .threat_sources()
+                     .iter()
+@@ -1264,11 +1285,20 @@
+             .filter(|p| visibility.is_visible(*p))
+             .find_map(|p| game.passage(p))
+         {
+-            format!(
+-                "{} : rejoindre {} · retour possible",
+-                interact_label,
+-                player_location_name(game.destination_name(link))
+-            )
++            if game.passage_returns_to_previous_layer(link) {
++                "Accès fermé · couche quittée définitivement".to_owned()
++            } else {
++                format!(
++                    "{} : rejoindre {} · {}",
++                    interact_label,
++                    player_location_name(game.destination_name(link)),
++                    if game.passage_is_irreversible(link) {
++                        "SANS RETOUR"
++                    } else {
++                        "retour possible"
++                    }
++                )
++            }
+         } else {
+             format!(
+                 "{}  ·  survolez une case pour l'inspecter",
+--- before/src/world_context.rs
++++ src/world_context.rs
+@@ -2431,13 +2431,21 @@
+                 Choice::Interact,
+                 if npc {
+                     "Parler"
+-                } else if self.game.passage(at).is_some() {
+-                    "Emprunter le passage"
++                } else if let Some(link) = self.game.passage(at) {
++                    if self.game.passage_is_irreversible(link) {
++                        "Descendre sans retour"
++                    } else {
++                        "Emprunter le passage"
++                    }
+                 } else {
+                     "Interagir"
+                 }
+                 .into(),
+-                self.approach_blocked(at, false),
++                self.game
++                    .passage(at)
++                    .filter(|link| self.game.passage_returns_to_previous_layer(link))
++                    .map(|_| "Couche quittée définitivement".to_owned())
++                    .or_else(|| self.approach_blocked(at, false)),
+             );
+         }
+         if !own

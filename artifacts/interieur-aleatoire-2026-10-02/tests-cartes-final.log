@@ -1,0 +1,22 @@
+
+running 16 tests
+test ascii_app::hub_layout_tests::random_home_new_game_samples_once_and_rebuilds_with_the_chosen_seed ... ok
+test ascii_app::hub_layout_tests::random_home_services_quests_intro_and_resume_follow_the_physical_placement ... ok
+test ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot ... ok
+test ascii_app::playable_trial::tests::playable_trial_keeps_normal_character_creation ... ok
+test ascii_app::narrative::tests::underground_passage_leads_to_the_record_and_a_completable_investigation ... ok
+test ascii_app::hub_layout_tests::random_home_preserves_authored_terrain_controls_and_all_exits_on_every_edge has been running for over 60 seconds
+test ascii_app::surface_density_tests::dense_surface_doors_open_and_furniture_blocks_movement_and_vision_in_the_engine ... ok
+test ascii_app::playable_trial::tests::playable_trial_profile_preserves_the_complete_campaign_and_save_format ... ok
+test ascii_app::playable_trial::tests::playable_trial_survives_verified_resume_and_restart ... ok
+test ascii_app::surface_density_tests::dense_surface_regions_preserve_sites_loot_actors_and_all_passages ... ok
+test ascii_app::tests::recycling_main_route_completes_the_first_city_milestone ... ok
+test ascii_app::surface_density_tests::dense_surface_generations_resume_without_rewriting_previous_maps ... ok
+test ascii_app::tests::resume_animates_before_consuming_the_suspension ... ok
+test ascii_app::tests::approved_names_keep_old_surface_suspensions_compatible ... ok
+test surface_layout::tests::dense_surface_is_repeatable_and_varies_between_seeds ... ok
+test surface_layout::tests::dense_surface_has_connected_furnished_buildings_and_preserves_authored_content ... ok
+test ascii_app::hub_layout_tests::random_home_preserves_authored_terrain_controls_and_all_exits_on_every_edge ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 556 filtered out; finished in 147.81s
+

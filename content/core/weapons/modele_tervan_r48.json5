@@ -1,0 +1,12 @@
+{
+  id: "core:modele_tervan_r48",
+  name_key: "equipment.modele_tervan_r48.name",
+  description_key: "equipment.fusil_de_patrouille.description",
+  mass_grams: 3500, ammunition_capacity: 12,
+  supply: { kind: "matter", amount: 1 },
+  attack: {
+    range: 7, distance_metric: "euclidean", requires_line_of_sight: true,
+    accuracy_modifier: 5,
+    damage: { amount: 10, damage_type: "piercing", penetration: 0 },
+  },
+}

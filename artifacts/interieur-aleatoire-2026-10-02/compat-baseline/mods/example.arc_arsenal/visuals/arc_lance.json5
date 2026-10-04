@@ -1,0 +1,10 @@
+{
+  id: "example.arc_arsenal:arc_lance",
+  terminal: {
+    frames: ["dot", "projectile", "spark", "burst"],
+    color: [121, 204, 255, 255],
+    frame_millis: 50,
+    step_millis: 30,
+    linger_millis: 90,
+  },
+}

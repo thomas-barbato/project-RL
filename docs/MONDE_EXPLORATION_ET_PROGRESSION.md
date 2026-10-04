@@ -1,19 +1,22 @@
 # Monde, exploration et progression
 
-**Mise à jour :** 27 septembre 2026. L'état du prototype en section 7 reste daté du 22 septembre.
+**Mise à jour :** 3 octobre 2026. L'état du prototype en section 7 reste daté du 22 septembre.
 
 **Statut :** direction de conception validée par l'utilisateur ; mise en œuvre encore partielle. Les valeurs d'essai et les exemples signalés comme propositions ne sont pas des paramètres approuvés.
 
 ## 1. Expérience recherchée
 
-Le jeu doit proposer une aventure longue, exigeante et rejouable. Le joueur doit pouvoir consacrer des sessions à explorer, découvrir des lieux, faire évoluer son personnage et expérimenter les systèmes sans avancer immédiatement la quête principale. L'évasion demeure l'objectif de victoire ; le monde doit aussi donner envie d'être parcouru pour lui-même.
+Le jeu doit proposer une aventure longue, exigeante et rejouable. Le joueur doit pouvoir consacrer des sessions à explorer, découvrir des lieux, faire évoluer son personnage et expérimenter les systèmes sans avancer immédiatement vers la sortie. Fuir la simulation est l'objectif de victoire ; les quêtes locales apportent des occasions et des conséquences sans constituer une chaîne obligatoire.
 
-Deux références éclairent cette direction :
+### Passage irréversible entre couches
 
-- **Diablo II :** une structure d'aventure et des lieux nécessaires aux quêtes, intégrés dans des territoires dont une partie de la géographie est générée. La présence du contenu indispensable est garantie par la construction du monde.
-- **Caves of Qud :** l'intérêt propre de l'exploration et de l'expérimentation, dans un monde combinant contenu écrit et génération procédurale.
+Direction validée le 3 octobre : quitter une couche pour une couche plus profonde interdit définitivement de revenir dans les couches précédentes. Les déplacements et retours entre lieux de la couche actuelle restent possibles. L'interface annonce « sans retour » avant le passage ; les anciens accès ne proposent plus de remontée utilisable ni d'itinéraire de retour.
 
-Ces références ne fixent ni une quantité de contenu comparable, ni leurs règles de combat, de retour en ville ou de renouvellement des ennemis. Project RL conserve son tour par tour, son corps principal durable, ses règles de perception et sa persistance pendant une run.
+Cette règle s'applique aux nouvelles parties de génération 142. Les parties de générations antérieures conservent leurs trajets et leurs quêtes historiques. Dans les nouvelles parties, l'enquête d'Elias se résout sur place au relais, par témoignage ou lecture du registre : journal, crédits et expérience sont attribués une seule fois, sans tour supplémentaire de rapport. Aucun message reçu par Elias ni mise à jour de son panneau n'est simulé.
+
+La référence principale pour la progression est désormais **Cogmind** : un objectif d'évasion, des choix d'itinéraire et des passages sans retour. La recherche précédente d'un mélange avec Caves of Qud est écartée. Project RL conserve son tour par tour, son corps principal durable, ses règles de perception et sa persistance pendant une run ; les proportions des cartes et la liberté dans une couche restent des choix propres au projet.
+
+Une introduction devra présenter la situation et le but au joueur. Ce besoin est identifié le 3 octobre et volontairement reporté ; aucun nouveau prologue n'est intégré avec cette règle de passage.
 
 ## 2. Deux échelles à développer ensemble
 
@@ -24,7 +27,7 @@ La demande porte à la fois sur la taille des cartes extérieures et sur l'éten
 | Carte locale | De grands extérieurs dotés de reliefs, d'obstacles, de repères et de lieux distincts. La taille peut varier selon le rôle du lieu. |
 | Couche | Un territoire comprenant une ville propre à cette couche, plusieurs zones sauvages, des destinations et des branches facultatives. |
 | Progression verticale | Des expéditions entre les étapes importantes. Les arrivées, villes et accès profonds ne doivent pas former systématiquement un même puits urbain direct. |
-| Exploration libre | Des régions et des lieux intéressants en dehors du trajet nécessaire à la victoire, avec des boucles et des retours possibles. |
+| Exploration libre | Des régions et des lieux intéressants en dehors du trajet nécessaire à la victoire, avec des boucles et des retours possibles dans la couche actuelle. |
 
 Une ville sert de refuge et de point d'ancrage. Elle conserve son identité et peut garder un plan conçu à la main. Son rôle dans le territoire, les chemins alentour et les accès doivent être pensés à l'échelle de la couche.
 
@@ -117,7 +120,7 @@ Une longue exploration doit offrir des occasions raisonnables de maintenir son s
 
 La durée ne doit pas être produite par des trajets vides, des dialogues à répéter, une multiplication de clés équivalentes, des niveaux obligatoires, des ennemis artificiellement gonflés ou du farming sans risque. Explorer doit améliorer les options du personnage tout en conservant des défis ; un ajustement automatique de tous les ennemis au niveau du joueur n'est pas adopté par ce document.
 
-Les retours connus devront rester confortables. Voyage automatique interrompu par un danger perçu et raccourcis ouverts par les actes du joueur sont des pistes à concevoir. Ils doivent respecter le temps simulé et les informations disponibles. Aucun portail gratuit ni voyage instantané universel n'est décidé ici.
+Les retours connus dans la couche actuelle devront rester confortables. Voyage automatique interrompu par un danger perçu et raccourcis ouverts par les actes du joueur sont des pistes à concevoir. Ils doivent respecter le temps simulé et les informations disponibles. Aucun portail gratuit ni voyage instantané universel n'est décidé ici.
 
 ## 7. État actuel et valeurs encore à éprouver
 

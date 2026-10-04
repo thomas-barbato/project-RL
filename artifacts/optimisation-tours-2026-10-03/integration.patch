@@ -1,0 +1,616 @@
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -3,6 +3,8 @@
+ //! This library deliberately has no dependency on Macroquad types. The binary
+ //! and future presentation layers consume its commands, state and events.
+ 
++#[cfg(debug_assertions)]
++pub mod action_profile;
+ pub mod ai;
+ pub mod character_class;
+ pub mod combat;
+--- /dev/null
++++ b/src/action_profile.rs
+@@ -0,0 +1,96 @@
++//! Opt-in, thread-local CPU measurements. Never part of engine or save state.
++use std::cell::RefCell;
++use std::collections::BTreeMap;
++use std::time::Instant;
++
++#[derive(Default)]
++struct Profile {
++    enabled: bool,
++    samples: BTreeMap<&'static str, Vec<f64>>,
++    paths: Vec<PathSample>,
++}
++
++#[derive(serde::Serialize)]
++pub struct PathSample {
++    start: crate::world::GridPos,
++    goal: crate::world::GridPos,
++    visited: usize,
++    length: Option<usize>,
++    elapsed_ms: f64,
++}
++
++thread_local! {
++    static PROFILE: RefCell<Profile> = RefCell::new(Profile::default());
++}
++
++pub fn start() {
++    PROFILE.with(|profile| {
++        *profile.borrow_mut() = Profile {
++            enabled: true,
++            ..Default::default()
++        };
++    });
++}
++
++pub fn finish() -> BTreeMap<&'static str, Vec<f64>> {
++    PROFILE.with(|profile| {
++        let mut profile = profile.borrow_mut();
++        profile.enabled = false;
++        std::mem::take(&mut profile.samples)
++    })
++}
++
++pub fn take_paths() -> Vec<PathSample> {
++    PROFILE.with(|profile| std::mem::take(&mut profile.borrow_mut().paths))
++}
++
++pub struct Scope {
++    name: &'static str,
++    start: Option<Instant>,
++}
++
++impl Scope {
++    pub fn new(name: &'static str) -> Self {
++        Self {
++            name,
++            start: PROFILE.with(|profile| profile.borrow().enabled.then(Instant::now)),
++        }
++    }
++
++    pub fn path_result(
++        &self,
++        start: crate::world::GridPos,
++        goal: crate::world::GridPos,
++        visited: usize,
++        length: Option<usize>,
++    ) {
++        if let Some(time) = self.start {
++            let elapsed_ms = time.elapsed().as_secs_f64() * 1000.;
++            PROFILE.with(|profile| {
++                profile.borrow_mut().paths.push(PathSample {
++                    start,
++                    goal,
++                    visited,
++                    length,
++                    elapsed_ms,
++                })
++            });
++        }
++    }
++}
++
++impl Drop for Scope {
++    fn drop(&mut self) {
++        if let Some(start) = self.start {
++            let elapsed = start.elapsed().as_secs_f64() * 1000.;
++            PROFILE.with(|profile| {
++                profile
++                    .borrow_mut()
++                    .samples
++                    .entry(self.name)
++                    .or_default()
++                    .push(elapsed)
++            });
++        }
++    }
++}
+--- a/src/facility/mod.rs
++++ b/src/facility/mod.rs
+@@ -2250,25 +2250,45 @@
+             return;
+         };
+         let occupied: BTreeSet<_> = actors.iter().map(|(_, actor)| actor.position()).collect();
+-        let mut paths: Vec<_> = target
++        let mut goals: Vec<_> = target
+             .cardinal_neighbors()
+             .into_iter()
+             .filter(|goal| map.is_walkable(*goal) && (*goal == origin || !occupied.contains(goal)))
+-            .filter_map(|goal| {
+-                find_path_with(
+-                    map,
+-                    origin,
+-                    goal,
+-                    self.maximum_path_search,
+-                    worker_can_traverse,
+-                    |position| !occupied.contains(&position),
+-                )
+-                .map(|path| (path.len(), goal, path))
+-            })
+             .collect();
+-        paths.sort_by_key(|(length, goal, _)| (*length, *goal));
+-        if let Some((_, _, path)) = paths.first() {
+-            self.apply_path_step(worker, origin, path, map, actors, events);
++        goals.sort_by_key(|goal| (manhattan(origin, *goal), *goal));
++        let mut best: Option<(usize, GridPos, Vec<GridPos>)> = None;
++        for goal in goals {
++            // A cardinal path includes its origin and cannot be shorter than
++            // Manhattan distance + 1. Skip only goals that cannot win the
++            // existing (length, position) tie-break, retaining each search budget.
++            let minimum_length = usize::try_from(manhattan(origin, goal))
++                .unwrap_or(usize::MAX)
++                .saturating_add(1);
++            if best
++                .as_ref()
++                .is_some_and(|(length, selected, _)| (minimum_length, goal) >= (*length, *selected))
++            {
++                continue;
++            }
++            if worker_goal_is_in_small_disconnected_area(map, origin, goal) {
++                continue;
++            }
++            if let Some(path) = find_path_with(
++                map,
++                origin,
++                goal,
++                self.maximum_path_search,
++                worker_can_traverse,
++                |position| !occupied.contains(&position),
++            ) && best
++                .as_ref()
++                .is_none_or(|(length, selected, _)| (path.len(), goal) < (*length, *selected))
++            {
++                best = Some((path.len(), goal, path));
++            }
++        }
++        if let Some((_, _, path)) = best {
++            self.apply_path_step(worker, origin, &path, map, actors, events);
+         }
+     }
+ 
+@@ -2360,6 +2380,31 @@
+             map.tile(position).map(|tile| tile.terrain),
+             Some(Terrain::Door(DoorState::Closed))
+         )
++}
++
++/// Reject a small sealed destination before A* searches the much larger area
++/// around the worker. Static reachability is a necessary condition even with
++/// dynamic actors. A capped or origin-reaching flood proves nothing and falls
++/// back to the original search, including its original expansion budget.
++fn worker_goal_is_in_small_disconnected_area(map: &Map, origin: GridPos, goal: GridPos) -> bool {
++    const LIMIT: usize = 128;
++    if origin == goal || !worker_can_traverse(map, goal) {
++        return false;
++    }
++    let mut seen = BTreeSet::from([goal]);
++    let mut frontier = vec![goal];
++    while let Some(current) = frontier.pop() {
++        for next in current.cardinal_neighbors() {
++            if !worker_can_traverse(map, next) || !seen.insert(next) {
++                continue;
++            }
++            if next == origin || seen.len() > LIMIT {
++                return false;
++            }
++            frontier.push(next);
++        }
++    }
++    true
+ }
+ 
+ fn validate_limits(blueprint: &FacilityBlueprint) -> Result<(), FacilityBuildError> {
+@@ -2676,6 +2721,167 @@
+     }
+ 
+     #[test]
++    fn interaction_routes_preserve_legacy_steps_doors_and_ties_under_search_limits() {
++        for layout in 0..24_u32 {
++            for origin in [
++                GridPos::new(1, 1),
++                GridPos::new(2, 3),
++                GridPos::new(5, 2),
++                GridPos::new(9, 4),
++            ] {
++                let mut terrain = map();
++                let mut registry = actors(&[origin], GridPos::new(1, 4));
++                let worker = registry.entity_at(origin).unwrap();
++                let mut facility = FacilityState::instantiate(
++                    blueprint(&[origin], GridPos::new(1, 4)),
++                    &mut terrain,
++                    &mut registry,
++                )
++                .unwrap();
++                for y in 1..5 {
++                    for x in 1..10 {
++                        let at = GridPos::new(x, y);
++                        if at == origin || registry.entity_at(at).is_some() {
++                            continue;
++                        }
++                        let hash = (x as u32 * 37 + y as u32 * 53 + layout * 71) % 19;
++                        let cell = match hash {
++                            0..=2 => Terrain::Wall,
++                            3 => Terrain::Door(DoorState::Closed),
++                            4 => Terrain::Door(DoorState::Locked),
++                            5 => Terrain::Door(DoorState::Unpowered),
++                            _ => Terrain::Floor,
++                        };
++                        terrain.set_terrain(at, cell).unwrap();
++                    }
++                }
++                let occupied: BTreeSet<_> =
++                    registry.iter().map(|(_, actor)| actor.position()).collect();
++                for budget in [1, 2, 4, 12, 256] {
++                    facility.maximum_path_search = budget;
++                    for target in [GridPos::new(2, 1), GridPos::new(5, 2), GridPos::new(8, 3)] {
++                        // Reference is the previous exhaustive selection, including
++                        // its per-goal cap and (path length, position) ordering.
++                        let mut paths: Vec<_> = target
++                            .cardinal_neighbors()
++                            .into_iter()
++                            .filter(|goal| {
++                                terrain.is_walkable(*goal)
++                                    && (*goal == origin || !occupied.contains(goal))
++                            })
++                            .filter_map(|goal| {
++                                find_path_with(
++                                    &terrain,
++                                    origin,
++                                    goal,
++                                    budget,
++                                    worker_can_traverse,
++                                    |at| !occupied.contains(&at),
++                                )
++                                .map(|path| (path.len(), goal, path))
++                            })
++                            .collect();
++                        paths.sort_by_key(|(length, goal, _)| (*length, *goal));
++                        let mut expected_map = terrain.clone();
++                        let mut expected_actors = registry.clone();
++                        let mut expected_events = Vec::new();
++                        if let Some((_, _, path)) = paths.first() {
++                            facility.apply_path_step(
++                                worker,
++                                origin,
++                                path,
++                                &mut expected_map,
++                                &mut expected_actors,
++                                &mut expected_events,
++                            );
++                        }
++                        let mut actual_map = terrain.clone();
++                        let mut actual_actors = registry.clone();
++                        let mut actual_events = Vec::new();
++                        facility.move_towards_interaction(
++                            worker,
++                            target,
++                            &mut actual_map,
++                            &mut actual_actors,
++                            &mut actual_events,
++                        );
++                        assert_eq!(
++                            bincode::serialize(&actual_map).unwrap(),
++                            bincode::serialize(&expected_map).unwrap(),
++                            "layout={layout}, origin={origin:?}, target={target:?}, budget={budget}"
++                        );
++                        assert_eq!(
++                            bincode::serialize(&actual_actors).unwrap(),
++                            bincode::serialize(&expected_actors).unwrap()
++                        );
++                        assert_eq!(actual_events, expected_events);
++                    }
++                }
++            }
++        }
++    }
++
++    #[test]
++    #[cfg(debug_assertions)]
++    fn interaction_routes_skip_goals_that_cannot_win_the_distance_tie() {
++        let origin = GridPos::new(1, 2);
++        let target = GridPos::new(2, 1);
++        let mut terrain = map();
++        let mut registry = actors(&[origin], GridPos::new(9, 4));
++        let worker = registry.entity_at(origin).unwrap();
++        let facility = FacilityState::instantiate(
++            blueprint(&[origin], GridPos::new(9, 4)),
++            &mut terrain,
++            &mut registry,
++        )
++        .unwrap();
++        crate::action_profile::start();
++        let mut events = Vec::new();
++        facility.move_towards_interaction(worker, target, &mut terrain, &mut registry, &mut events);
++        let samples = crate::action_profile::finish();
++        assert_eq!(samples["engine.path-search"].len(), 1);
++        assert_eq!(registry.get(worker).unwrap().position(), GridPos::new(1, 1));
++    }
++
++    #[test]
++    fn interaction_component_probe_respects_openable_doors_and_its_cap() {
++        let mut terrain =
++            Map::from_ascii("#########\n#...#...#\n#...#...#\n#...#...#\n#########").unwrap();
++        let origin = GridPos::new(1, 2);
++        let goal = GridPos::new(6, 2);
++        assert!(worker_goal_is_in_small_disconnected_area(
++            &terrain, origin, goal
++        ));
++        for (state, disconnected) in [
++            (DoorState::Closed, false),
++            (DoorState::Open, false),
++            (DoorState::Locked, true),
++            (DoorState::Unpowered, true),
++        ] {
++            terrain
++                .set_terrain(GridPos::new(4, 2), Terrain::Door(state))
++                .unwrap();
++            assert_eq!(
++                worker_goal_is_in_small_disconnected_area(&terrain, origin, goal),
++                disconnected,
++                "{state:?}"
++            );
++            let path = find_path_with(&terrain, origin, goal, 256, worker_can_traverse, |_| true);
++            assert_eq!(path.is_none(), disconnected);
++        }
++        let mut rows = vec!["#".repeat(50)];
++        rows.extend((0..8).map(|_| format!("#...#{}#", ".".repeat(44))));
++        rows.push("#".repeat(50));
++        let large = Map::from_ascii(&rows.join("\n")).unwrap();
++        // An unfinished probe is inconclusive and must retain the legacy A*.
++        assert!(!worker_goal_is_in_small_disconnected_area(
++            &large,
++            GridPos::new(1, 3),
++            GridPos::new(40, 3)
++        ));
++    }
++
++    #[test]
+     fn authored_property_report_resolves_one_worker_and_rejects_implicit_links() {
+         let reporter_position = GridPos::new(5, 3);
+         let recipient_position = GridPos::new(3, 3);
+--- a/src/game/game_state.rs
++++ b/src/game/game_state.rs
+@@ -2519,6 +2519,8 @@
+     }
+ 
+     pub fn process_player_command(&mut self, command: GameCommand) -> CommandOutcome {
++        #[cfg(debug_assertions)]
++        let _profile = crate::action_profile::Scope::new("engine.command");
+         if self.status != RunStatus::Active {
+             return CommandOutcome::Rejected(CommandRejection::RunEnded);
+         }
+@@ -13437,6 +13439,8 @@
+     }
+ 
+     pub(super) fn complete_turn(&mut self) {
++        #[cfg(debug_assertions)]
++        let _profile = crate::action_profile::Scope::new("engine.complete-turn");
+         self.phase = TurnPhase::ResolvingActors;
+         if self.status == RunStatus::Active {
+             self.resolve_status_trigger(StatusTrigger::TurnStart);
+@@ -14099,6 +14103,8 @@
+     }
+ 
+     fn audible_incident_for(&self, observer: EntityId) -> Option<GridPos> {
++        #[cfg(debug_assertions)]
++        let _profile = crate::action_profile::Scope::new("engine.hearing");
+         let rules = self.rules.stealth_rules?;
+         let listener = self.actors.get(observer)?.position();
+         let mut candidates = self
+@@ -14219,6 +14225,8 @@
+     }
+ 
+     fn resolve_ai_turn(&mut self) {
++        #[cfg(debug_assertions)]
++        let _profile = crate::action_profile::Scope::new("engine.ai");
+         self.resolve_player_drone_turns();
+         self.relay_watcher_alerts();
+         let actors_to_resolve: Vec<EntityId> = self
+@@ -14239,6 +14247,8 @@
+             .collect();
+ 
+         for entity in actors_to_resolve {
++            #[cfg(debug_assertions)]
++            let _profile = crate::action_profile::Scope::new("engine.ai-actor");
+             if self.status != RunStatus::Active {
+                 break;
+             }
+--- a/src/game/expedition.rs
++++ b/src/game/expedition.rs
+@@ -2911,6 +2911,8 @@
+     }
+ 
+     pub fn process_player_command(&mut self, command: GameCommand) -> CommandOutcome {
++        #[cfg(debug_assertions)]
++        let _profile = crate::action_profile::Scope::new("world.command");
+         self.sync_away_companions();
+         let previous_turn = self.active.turn;
+         let event_checkpoint = self.active.events.len();
+@@ -3110,6 +3112,8 @@
+                 if let Some(current) = self.current.clone()
+                     && let Some(facility) = self.facilities.get_mut(&current)
+                 {
++                    #[cfg(debug_assertions)]
++                    let _profile = crate::action_profile::Scope::new("world.facility");
+                     let result = (|| {
+                         let mut events = facility.expire_security_alarm_responses(
+                             &mut self.active.map,
+@@ -3159,11 +3163,15 @@
+                     .and_then(|zone| self.residents.get_mut(zone))
+                 {
+                     for resident in residents {
++                        #[cfg(debug_assertions)]
++                        let _profile = crate::action_profile::Scope::new("world.resident");
+                         tick_resident_routine(resident, &self.active.map, &mut self.active.actors);
+                     }
+                 }
+                 // BTreeMap order + independent RNG streams make the result stable.
+                 for (id, zone) in &mut self.inactive {
++                    #[cfg(debug_assertions)]
++                    let _profile = crate::action_profile::Scope::new("world.inactive");
+                     self.active.tick_background(zone, elapsed_turn);
+                     if let Some(facility) = self.facilities.get_mut(id) {
+                         let _ = facility.expire_security_alarm_responses(
+--- a/src/stealth.rs
++++ b/src/stealth.rs
+@@ -105,6 +105,8 @@
+         origin: GridPos,
+         listener: GridPos,
+     ) -> bool {
++        #[cfg(debug_assertions)]
++        let _profile = crate::action_profile::Scope::new("engine.sound-query");
+         if intensity == 0 || self.sound_attenuation_per_cell == 0 {
+             return false;
+         }
+--- a/src/world/pathfinding.rs
++++ b/src/world/pathfinding.rs
+@@ -63,6 +63,8 @@
+     T: Fn(&Map, GridPos) -> bool,
+     F: Fn(GridPos) -> bool,
+ {
++    #[cfg(debug_assertions)]
++    let _profile = crate::action_profile::Scope::new("engine.path-search");
+     if !can_traverse(map, start) || !can_traverse(map, goal) {
+         return None;
+     }
+@@ -79,9 +81,14 @@
+     let mut visited = 0;
+     while let Some(current) = frontier.pop() {
+         if current.position == goal {
+-            return reconstruct_path(previous, start, goal);
++            let path = reconstruct_path(previous, start, goal);
++            #[cfg(debug_assertions)]
++            _profile.path_result(start, goal, visited, path.as_ref().map(Vec::len));
++            return path;
+         }
+         if visited >= maximum_visited {
++            #[cfg(debug_assertions)]
++            _profile.path_result(start, goal, visited, None);
+             return None;
+         }
+         visited += 1;
+@@ -107,6 +114,8 @@
+         }
+     }
+ 
++    #[cfg(debug_assertions)]
++    _profile.path_result(start, goal, visited, None);
+     None
+ }
+ 
+--- a/src/performance_capture.rs
++++ b/src/performance_capture.rs
+@@ -3,6 +3,99 @@
+ use std::time::Instant;
+ 
+ impl AsciiApp {
++    pub fn capture_turn_performance(output: &std::path::Path) -> Result<(), String> {
++        std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
++        let (rules, texts, loot, expeditions) = ascii_game_content()?;
++        let mut rows = Vec::new();
++        for moving in [true, false] {
++            let scene = if moving { "hub-walk" } else { "hub-wait" };
++            let mut results = Vec::new();
++            for profiled in [false, true] {
++                let mut app = Self::from_seed(
++                    INITIAL_SEED,
++                    rules.clone(),
++                    texts.clone(),
++                    loot.clone(),
++                    expeditions.clone(),
++                )?;
++                app.suspension_path = output.join(format!(
++                    "{scene}-{}.json",
++                    if profiled { "profiled" } else { "normal" }
++                ));
++                app.walk_fixture_out_of_recycling()?;
++                app.walk_fixture_to(app.home_position(GridPos::new(65, 21)))?;
++                let origin = app.game.player_position().ok_or("Missing player")?;
++                let (outward, returning) = [
++                    (Direction::East, Direction::West),
++                    (Direction::West, Direction::East),
++                    (Direction::North, Direction::South),
++                    (Direction::South, Direction::North),
++                ]
++                .into_iter()
++                .find(|(direction, _)| {
++                    let at = origin.step(*direction);
++                    app.game.map().is_walkable(at)
++                        && !app
++                            .game
++                            .actors()
++                            .iter()
++                            .any(|(_, actor)| actor.position() == at)
++                })
++                .ok_or("Missing movement fixture")?;
++                let mut command_times = Vec::new();
++                let mut details = Vec::new();
++                let mut stage_totals: BTreeMap<&str, Vec<f64>> = BTreeMap::new();
++                let mut stage_calls: BTreeMap<&str, Vec<f64>> = BTreeMap::new();
++                for step in 0..80 {
++                    if profiled {
++                        project_rl::action_profile::start();
++                    }
++                    let start = Instant::now();
++                    let command = if moving {
++                        GameCommand::Move(if step % 2 == 0 { outward } else { returning })
++                    } else {
++                        GameCommand::Wait
++                    };
++                    if app.execute_command(command) != CommandOutcome::Applied {
++                        return Err(format!("{scene}: command rejected"));
++                    }
++                    let elapsed = start.elapsed().as_secs_f64() * 1000.;
++                    command_times.push(elapsed);
++                    if profiled {
++                        let samples = project_rl::action_profile::finish();
++                        let mut totals = BTreeMap::new();
++                        for (stage, values) in samples {
++                            let total: f64 = values.iter().sum();
++                            stage_totals.entry(stage).or_default().push(total);
++                            stage_calls.entry(stage).or_default().extend(values);
++                            totals.insert(stage, total);
++                        }
++                        details.push(serde_json::json!({"step":step,"turn":app.game.turn(),"position":app.game.player_position(),"command_ms":elapsed,"inclusive_stage_ms":totals,"path_searches":project_rl::action_profile::take_paths()}));
++                    }
++                    app.capture_events_at(Some(0.));
++                }
++                let stages: BTreeMap<_, _> = stage_totals
++                    .iter()
++                    .map(|(name, values)| (*name, timing_summary(values)))
++                    .collect();
++                let calls: BTreeMap<_,_> = stage_calls.iter().map(|(name, values)| (*name, serde_json::json!({"count":values.len(),"timing":timing_summary(values)}))).collect();
++                let saved = app.suspension()?;
++                saved.write(&app.suspension_path)?;
++                results.push(serde_json::to_vec(&saved).map_err(|e| e.to_string())?);
++                let row = serde_json::json!({"scene":scene,"profiled":profiled,"commands":80,"command_cpu":timing_summary(&command_times),"inclusive_stages_per_command":stages,"inclusive_stage_calls":calls,"commands_detail":details,"autosave_enabled":false,"rendering_enabled":false});
++                eprintln!(
++                    "[PERF TURN] {scene} profiled={profiled}: {}",
++                    timing_summary(&command_times)
++                );
++                rows.push(row);
++            }
++            if results[0] != results[1] {
++                return Err(format!("{scene}: profiling changed saved state"));
++            }
++        }
++        std::fs::write(output.join("turns.json"), serde_json::to_vec_pretty(&serde_json::json!({"build":"debug","profiling_preserves_exact_save_bytes":true,"scenes":rows})).map_err(|e| e.to_string())?).map_err(|e| e.to_string())
++    }
++
+     pub async fn capture_lighting_performance(output: &std::path::Path) -> Result<(), String> {
+         std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
+         let (rules, texts, loot, expeditions) = ascii_game_content()?;
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -44,6 +44,8 @@
+         let mode = std::env::args().nth(1).unwrap_or_default();
+         let result = if mode == "--ui-cold-performance-actions" {
+             AsciiApp::capture_action_performance(&output)
++        } else if mode == "--ui-cold-performance-turns" {
++            AsciiApp::capture_turn_performance(&output)
+         } else if mode == "--ui-cold-performance-recovery" {
+             AsciiApp::capture_recovery_performance(&output).await
+         } else if mode == "--ui-cold-performance-lights" {

@@ -1,0 +1,14 @@
+{
+  id: "core:repair_patch",
+  name_key: "item.repair_patch.name",
+  description_key: "item.repair_patch.description",
+  maximum_stack: 3,
+  kind: "consumable",
+
+  effects: [
+    {
+      type: "restore_integrity",
+      amount: 6,
+    },
+  ],
+}

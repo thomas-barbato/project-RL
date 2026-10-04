@@ -1,0 +1,55 @@
+{
+  "models": 133,
+  "counts": {
+    "firearms": 61,
+    "melee": 40,
+    "armor": 32
+  },
+  "unique_ids": 133,
+  "unique_mapped_cells": 133,
+  "empty_cells": [],
+  "identical_source_cells": [],
+  "images": {
+    "equipment-firearms-1-v2.png": {
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    "equipment-armor-v1.png": {
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    "equipment-firearms-2-v2.png": {
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    "equipment-melee-v1.png": {
+      "size": [
+        1586,
+        992
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    }
+  },
+  "limitation": "Checks coverage and cell identity, not the semantic accuracy or final worn model of each generated item."
+}

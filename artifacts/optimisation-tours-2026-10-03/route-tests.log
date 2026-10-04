@@ -1,0 +1,10 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 36.04s
+     Running unittests src\lib.rs (target\debug\deps\project_rl-2e9ad6618a1c2637.exe)
+
+running 2 tests
+test facility::tests::interaction_routes_skip_goals_that_cannot_win_the_distance_tie ... ok
+test facility::tests::interaction_routes_preserve_legacy_steps_doors_and_ties_under_search_limits ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 793 filtered out; finished in 0.17s
+

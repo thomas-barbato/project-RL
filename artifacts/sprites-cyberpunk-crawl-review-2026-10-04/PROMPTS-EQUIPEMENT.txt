@@ -1,0 +1,210 @@
+Création par imagegen intégré. Catalogue complet des bases locales, hors affixes et suffixes.
+
+melee
+Use case: stylized-concept. Asset type: ONE ORIGINAL equipment BASE MODEL review atlas for a cyberpunk pixel-art roguelike.
+Supporting image is ONLY the character style reference. The user requires a DISTINCT original visual shape for EVERY base equipment ID, independently of random affixes/suffixes. This sheet is a collection of physical items, not characters.
+Draw sharp purposeful LOW-RESOLUTION pixel art, logical 32x32 per item enlarged for review, chunky pixel clusters and clear shapes, crisp silhouette outlines. Worn industrial cyberpunk, graphite black and ivory steel, muted olive and rust, restrained cyan/amber controls. Handcrafted classic roguelike tile quality adapted to original futuristic subjects. No painting, no photograph, no blurry miniature fine detail. Each object's silhouette, stock/blade/grip/armor form must be distinguishable from its neighbors after display at32px. NOT repeated identical models with color swaps.
+Use ACTUAL transparent RGBA alpha0 throughout every empty region. NO gradient or tinted board, no fake checkerboard, no cast shadows, no labels, text or numbers, no cell borders. Uniform perfectly regular atlas cell grid; each item centered inside its own square, fits entirely with 2 logical pixels transparent margin. All cells equal size.
+IMPORTANT ordering: follow the numbered ROW-MAJOR list exactly, left to right then next row. Distinct IDs sometimes have the same display name because older versions are still supported; draw different old and new versions. All drawings are proposals of base equipment only. No affix glow, suffix decorations, particle effects, flames or floating magic.
+Exact grid: EIGHT columns x 5 rows. 40 item drawings.
+All melee tools drawn diagonally from handle LOWER LEFT to working head or tip UPPER RIGHT, slight side view, fitting26x28 logicalpixels. Knives short and compact; swords recognizably longer; spear shafts and long axes kept in same32x32 icon but visibly elongated; mauls blunt heads, war hammer distinct from axe.
+Retain the actual named weapon morphology: halberd has blade/spike/hooks, bardiche elongated crescent blade on pole, rouelle dagger two round disks, stylet very narrow spike, bec-de-corbin has a hooked beak opposite striking head, flanged mace has radial metal wings. Pole weapons have futuristic industrial grips and fittings yet remain that weapon type. Knives described as ceramic/chitin/biological have correspondingly clear material shapes. Ordinary named models can have practical cyberpunk grip fittings and subtle wear. NO neon lightsabers, no invented technological powers. Two IDs with same name get visibly older versus newer grips/head profiles.
+
+EXACT ORDER:
+1. Bardiche | category axes | ID core:melee_bardiche
+2. Hache danoise | category axes | ID core:melee_hache_danoise
+3. Hache de combat | category axes | ID core:hache_de_combat
+4. Hache de guerre | category axes | ID core:melee_hache_de_guerre
+5. Hache d’abordage | category axes | ID core:melee_hache_d_abordage
+6. Hache d’armes | category axes | ID core:melee_hache_d_armes
+7. Hachette | category axes | ID core:melee_hachette
+8. Couteau céramique | category knives | ID core:couteau_ceramique
+9. Couteau de camp | category knives | ID core:couteau_de_camp
+10. Couteau de camp | category knives | ID core:melee_couteau_de_camp
+11. Couteau de chasse | category knives | ID core:melee_couteau_de_chasse
+12. Couteau de chitine | category knives | ID core:couteau_de_chitine
+13. Couteau de sapeur | category knives | ID core:couteau_de_sapeur
+14. Couteau du dernier seuil | category knives | ID core:couteau_du_dernier_seuil
+15. Couteau à dent vivante | category knives | ID core:couteau_a_dent_vivante
+16. Dague | category knives | ID core:melee_dague
+17. Dague à rouelles | category knives | ID core:melee_dague_a_rouelles
+18. Poignard | category knives | ID core:melee_poignard
+19. Stylet | category knives | ID core:melee_stylet
+20. Integrity Blade | category melee | ID core:integrity_blade
+21. Hallebarde | category spears | ID core:melee_hallebarde
+22. Lance | category spears | ID core:lance
+23. Lance | category spears | ID core:melee_lance
+24. Pertuisane | category spears | ID core:melee_pertuisane
+25. Pique | category spears | ID core:melee_pique
+26. Vouge | category spears | ID core:melee_vouge
+27. Épieu | category spears | ID core:melee_epieu
+28. Espadon | category swords | ID core:melee_espadon
+29. Fauchon | category swords | ID core:melee_fauchon
+30. Glaive | category swords | ID core:melee_glaive
+31. Épée bâtarde | category swords | ID core:melee_epee_batarde
+32. Épée courte | category swords | ID core:melee_epee_courte
+33. Épée longue | category swords | ID core:melee_epee_longue
+34. Bec de corbin | category war_hammers | ID core:melee_bec_de_corbin
+35. Gourdin | category war_hammers | ID core:melee_gourdin
+36. Gourdin ferré | category war_hammers | ID core:melee_gourdin_ferre
+37. Marteau de guerre | category war_hammers | ID core:marteau_de_guerre
+38. Marteau de guerre | category war_hammers | ID core:melee_marteau_de_guerre
+39. Masse d’armes | category war_hammers | ID core:melee_masse_d_armes
+40. Masse à ailettes | category war_hammers | ID core:melee_masse_a_ailettes
+
+armor
+Use case: stylized-concept. Asset type: ONE ORIGINAL equipment BASE MODEL review atlas for a cyberpunk pixel-art roguelike.
+Supporting image is ONLY the character style reference. The user requires a DISTINCT original visual shape for EVERY base equipment ID, independently of random affixes/suffixes. This sheet is a collection of physical items, not characters.
+Draw sharp purposeful LOW-RESOLUTION pixel art, logical 32x32 per item enlarged for review, chunky pixel clusters and clear shapes, crisp silhouette outlines. Worn industrial cyberpunk, graphite black and ivory steel, muted olive and rust, restrained cyan/amber controls. Handcrafted classic roguelike tile quality adapted to original futuristic subjects. No painting, no photograph, no blurry miniature fine detail. Each object's silhouette, stock/blade/grip/armor form must be distinguishable from its neighbors after display at32px. NOT repeated identical models with color swaps.
+Use ACTUAL transparent RGBA alpha0 throughout every empty region. NO gradient or tinted board, no fake checkerboard, no cast shadows, no labels, text or numbers, no cell borders. Uniform perfectly regular atlas cell grid; each item centered inside its own square, fits entirely with 2 logical pixels transparent margin. All cells equal size.
+IMPORTANT ordering: follow the numbered ROW-MAJOR list exactly, left to right then next row. Distinct IDs sometimes have the same display name because older versions are still supported; draw different old and new versions. All drawings are proposals of base equipment only. No affix glow, suffix decorations, particle effects, flames or floating magic.
+Exact grid: EIGHT columns x 4 rows. 32 item drawings.
+Show ONLY the actual equipment pieces, no body or wearer. BODY items: wearable torso armor, coat, carapace or suit as named, three-quarter front towardright. HEAD items: helmet, cap, hood, mask or visor as named, three-quarterfront. HANDS items: a matching visible PAIR of gloves, side-by-side; FEET items: a matching PAIR of boots, side-by-side. No unrelated extra pieces. Every physical base model gets its OWN distinct construction.
+Keep six set styles coherent across matching body/head/hands/feet:
+Cognefer = worn riveted squat ivory-gray plates, brown underlayers.
+Bastion = broad angular fortified heavy plating.
+Cerbere = industrial charcoal/ivory segmented armor, small amber controls.
+Chrysalide = smooth overlapping organic-looking composite shells with mutedolive/cyan.
+Mue = layered dark pliant fabric/membrane coat/hood/gloves/boots, muted warmbrown.
+Fantome = fitted slim graphite technical fabric with sparse icy cyan optical trim.
+Other body items: patched plating visibly mismatched salvaged metal pieces; composite carapace rounded hard shell; padded vest soft quilted shape; crossed-fiber jacket diagonal woven bands; watch jacket sturdy gray utility cut; second-shadow jacket dark asymmetrical silhouette; membrane jacket layered soft panels; second-skin jacket very close-fitting.
+No bright supernatural glow. Technical cloth and materials can look futuristic without claiming new powers.
+
+EXACT ORDER:
+1. Armure Cerbère | category body | ID core:armure_cerbere
+2. Brigandine Cognefer | category body | ID core:brigandine_cognefer
+3. Carapace Chrysalide | category body | ID core:carapace_chrysalide
+4. Carapace composite | category body | ID core:composite_carapace
+5. Combinaison Fantôme | category body | ID core:combinaison_fantome
+6. Manteau de mue | category body | ID core:manteau_de_mue
+7. Plastron Bastion | category body | ID core:plastron_bastion
+8. Plastron rapiécé | category body | ID core:patched_plating
+9. Veste de la seconde ombre | category body | ID core:veste_de_la_seconde_ombre
+10. Veste de membranes | category body | ID core:veste_de_membranes
+11. Veste de peau seconde | category body | ID core:veste_de_peau_seconde
+12. Veste de veille | category body | ID core:veste_de_veille
+13. Veste matelassée | category body | ID core:veste_matelassee
+14. Veste à fibres croisées | category body | ID core:veste_a_fibres_croisees
+15. Calotte Cognefer | category head | ID core:calotte_cognefer
+16. Capuche de mue | category head | ID core:capuche_de_mue
+17. Casque Cerbère | category head | ID core:casque_cerbere
+18. Heaume Bastion | category head | ID core:heaume_bastion
+19. Masque Chrysalide | category head | ID core:masque_chrysalide
+20. Visière Fantôme | category head | ID core:visiere_fantome
+21. Gantelets Bastion | category hands | ID core:gantelets_bastion
+22. Gantelets Chrysalide | category hands | ID core:gantelets_chrysalide
+23. Gants Cognefer | category hands | ID core:gants_cognefer
+24. Gants Fantôme | category hands | ID core:gants_fantome
+25. Gants de mue | category hands | ID core:gants_de_mue
+26. Mitaines Cerbère | category hands | ID core:mitaines_cerbere
+27. Bottes Cerbère | category feet | ID core:bottes_cerbere
+28. Bottes de mue | category feet | ID core:bottes_de_mue
+29. Bottines Chrysalide | category feet | ID core:bottines_chrysalide
+30. Bottines Fantôme | category feet | ID core:bottines_fantome
+31. Brodequins Cognefer | category feet | ID core:brodequins_cognefer
+32. Solerets Bastion | category feet | ID core:solerets_bastion
+FIREARMS BANK1
+Use case: stylized-concept. Asset type: ONE ORIGINAL equipment BASE MODEL review atlas for a cyberpunk pixel-art roguelike.
+Supporting image is ONLY the character style reference. The user requires a DISTINCT original visual shape for EVERY base equipment ID, independently of random affixes/suffixes. This sheet is a collection of physical items, not characters.
+Draw sharp purposeful LOW-RESOLUTION pixel art, logical 32x32 per item enlarged for review, chunky pixel clusters and clear shapes, crisp silhouette outlines. Worn industrial cyberpunk, graphite black and ivory steel, muted olive and rust, restrained cyan/amber controls. Handcrafted classic roguelike tile quality adapted to original futuristic subjects. No painting, no photograph, no blurry miniature fine detail. Each object's silhouette, stock/blade/grip/armor form must be distinguishable from its neighbors after display at32px. NOT repeated identical models with color swaps.
+Use ACTUAL transparent RGBA alpha0 throughout every empty region. NO gradient or tinted board, no fake checkerboard, no cast shadows, no labels, text or numbers, no cell borders. Uniform perfectly regular atlas cell grid; each item centered inside its own square, fits entirely with 2 logical pixels transparent margin. All cells equal size.
+IMPORTANT ordering: follow the numbered ROW-MAJOR list exactly, left to right then next row. Distinct IDs sometimes have the same display name because older versions are still supported; draw different old and new versions. All drawings are proposals of base equipment only. No affix glow, suffix decorations, particle effects, flames or floating magic.
+Exact grid: EIGHT columns by FOUR rows, a 2:1 landscape sheet. There are 32 items. 0 last cells stay empty. There must be FOUR full equally spaced horizontal rows.
+All firearms point HORIZONTALLY RIGHT, seen side-on as carried equipment. Recognizable trigger handle in lower-left-mid area, barrel and muzzle at right, stock at left. All fit in about28x14 logicalpixels, handgun-like short models only if the named type allows. Each successive model differs by stock outline, receiver profile, muzzle housing and magazine or fuel-system layout. Avoid more detail than needed at32px.
+Family shape rules: assault_rifles = angular compact stock and distinct curved/box magazine; rifles = longer single barrel and clear stock, optical housing varies; shotguns = thick broad muzzle, pump or chunky receiver; machine_guns = heavier barrel and box/drum feed; rocket_launchers = long thick tube with large muzzle, no conventional rifle barrel; grenade_launchers = stubby broad tube or drum chamber; flamethrowers = industrial nozzle, compact fuel canister and hose, NO firing flame; energy_rifles = distinct enclosed coil or capacitor chamber with tinycyan optic, no beams. Needle Launcher = compact injection rifle with narrow needle muzzle. Lance-flammes industriel = old heavy industrial flame tool.
+Numbers in model names refer to the model identity and feed capacity; do not add written markings. Futuristic but mechanically coherent. 61 completely different weapon forms.
+
+
+CRITICAL: draw 4x8 slots and one weapon for EVERY specified slot. No white/gray grid lines, no border, no labels. Completely transparent background. Do not omit any listed weapon. THIS SHEET is bank1.
+ROW 1 LEFT TO RIGHT:
+1. Brenek A-80, assault_rifles, core:modele_brenek_a80
+2. Darven A-10, assault_rifles, core:modele_darven_a10
+3. Fusil d’assaut, assault_rifles, core:fusil_d_assaut
+4. Korsan A-30, assault_rifles, core:modele_korsan_a30
+5. Talvek A-90, assault_rifles, core:modele_talvek_a90
+6. Vektor A-60, assault_rifles, core:modele_vektor_a60
+7. Vornek A-120, assault_rifles, core:modele_vornek_a120
+8. Neral E-12, energy_rifles, core:modele_neral_e12
+
+ROW 2 LEFT TO RIGHT:
+1. Nerys E-80, energy_rifles, core:modele_nerys_e80
+2. Odran E-100, energy_rifles, core:modele_odran_e100
+3. Oryx E-48, energy_rifles, core:modele_oryx_e48
+4. Seryn E-24, energy_rifles, core:modele_seryn_e24
+5. Telvar E-60, energy_rifles, core:modele_telvar_e60
+6. Lance-flammes industriel, firearms, core:flamethrower
+7. Needle Launcher, firearms, core:needle_launcher
+8. Derven F-80, flamethrowers, core:modele_derven_f80
+
+ROW 3 LEFT TO RIGHT:
+1. Karn F-60, flamethrowers, core:modele_karn_f60
+2. Korgan F-100, flamethrowers, core:modele_korgan_f100
+3. Torak F-30, flamethrowers, core:modele_torak_f30
+4. Vardek F-120, flamethrowers, core:modele_vardek_f120
+5. Varek F-10, flamethrowers, core:modele_varek_f10
+6. Darsen LG-6, grenade_launchers, core:modele_darsen_lg6
+7. Korven LG-9, grenade_launchers, core:modele_korven_lg9
+8. Lance-grenades, grenade_launchers, core:lance_grenades
+
+ROW 4 LEFT TO RIGHT:
+1. Merdan LG-12, grenade_launchers, core:modele_merdan_lg12
+2. Rovak LG-3, grenade_launchers, core:modele_rovak_lg3
+3. Torvik LG-16, grenade_launchers, core:modele_torvik_lg16
+4. Valrek LG-20, grenade_launchers, core:modele_valrek_lg20
+5. Draven M-80, machine_guns, core:modele_draven_m80
+6. Kordal M-20, machine_guns, core:modele_kordal_m20
+7. Kraven M-120, machine_guns, core:modele_kraven_m120
+8. Mitrailleuse lourde, machine_guns, core:mitrailleuse_lourde
+
+FIREARMS BANK2
+Use case: stylized-concept. Asset type: ONE ORIGINAL equipment BASE MODEL review atlas for a cyberpunk pixel-art roguelike.
+Supporting image is ONLY the character style reference. The user requires a DISTINCT original visual shape for EVERY base equipment ID, independently of random affixes/suffixes. This sheet is a collection of physical items, not characters.
+Draw sharp purposeful LOW-RESOLUTION pixel art, logical 32x32 per item enlarged for review, chunky pixel clusters and clear shapes, crisp silhouette outlines. Worn industrial cyberpunk, graphite black and ivory steel, muted olive and rust, restrained cyan/amber controls. Handcrafted classic roguelike tile quality adapted to original futuristic subjects. No painting, no photograph, no blurry miniature fine detail. Each object's silhouette, stock/blade/grip/armor form must be distinguishable from its neighbors after display at32px. NOT repeated identical models with color swaps.
+Use ACTUAL transparent RGBA alpha0 throughout every empty region. NO gradient or tinted board, no fake checkerboard, no cast shadows, no labels, text or numbers, no cell borders. Uniform perfectly regular atlas cell grid; each item centered inside its own square, fits entirely with 2 logical pixels transparent margin. All cells equal size.
+IMPORTANT ordering: follow the numbered ROW-MAJOR list exactly, left to right then next row. Distinct IDs sometimes have the same display name because older versions are still supported; draw different old and new versions. All drawings are proposals of base equipment only. No affix glow, suffix decorations, particle effects, flames or floating magic.
+Exact grid: EIGHT columns by FOUR rows, a 2:1 landscape sheet. There are 29 items. 3 last cells stay empty. There must be FOUR full equally spaced horizontal rows.
+All firearms point HORIZONTALLY RIGHT, seen side-on as carried equipment. Recognizable trigger handle in lower-left-mid area, barrel and muzzle at right, stock at left. All fit in about28x14 logicalpixels, handgun-like short models only if the named type allows. Each successive model differs by stock outline, receiver profile, muzzle housing and magazine or fuel-system layout. Avoid more detail than needed at32px.
+Family shape rules: assault_rifles = angular compact stock and distinct curved/box magazine; rifles = longer single barrel and clear stock, optical housing varies; shotguns = thick broad muzzle, pump or chunky receiver; machine_guns = heavier barrel and box/drum feed; rocket_launchers = long thick tube with large muzzle, no conventional rifle barrel; grenade_launchers = stubby broad tube or drum chamber; flamethrowers = industrial nozzle, compact fuel canister and hose, NO firing flame; energy_rifles = distinct enclosed coil or capacitor chamber with tinycyan optic, no beams. Needle Launcher = compact injection rifle with narrow needle muzzle. Lance-flammes industriel = old heavy industrial flame tool.
+Numbers in model names refer to the model identity and feed capacity; do not add written markings. Futuristic but mechanically coherent. 61 completely different weapon forms.
+
+
+CRITICAL: draw 4x8 slots and one weapon for EVERY specified slot. No white/gray grid lines, no border, no labels. Completely transparent background. Do not omit any listed weapon. THIS SHEET is bank2.
+ROW 1 LEFT TO RIGHT:
+1. Torgal M-100, machine_guns, core:modele_torgal_m100
+2. Varkan M-40, machine_guns, core:modele_varkan_m40
+3. Vornak M-160, machine_guns, core:modele_vornak_m160
+4. Fusil de guetteur, rifles, core:fusil_de_guetteur
+5. Fusil de l'horizon fendu, rifles, core:fusil_de_l_horizon_fendu
+6. Fusil de parallaxe, rifles, core:fusil_de_parallaxe
+7. Fusil de patrouille, rifles, core:fusil_de_patrouille
+8. Fusil à induction, rifles, core:fusil_a_induction
+
+ROW 2 LEFT TO RIGHT:
+1. Fusil à nerf tendu, rifles, core:fusil_a_nerf_tendu
+2. Kardan R-24, rifles, core:modele_kardan_r24
+3. Noryk R-72, rifles, core:modele_noryk_r72
+4. Orvek R-36, rifles, core:modele_orvek_r36
+5. Serdak R-60, rifles, core:modele_serdak_r60
+6. Tervan R-48, rifles, core:modele_tervan_r48
+7. Veyr R-12, rifles, core:modele_veyr_r12
+8. Bravan LR-12, rocket_launchers, core:modele_bravan_lr12
+
+ROW 3 LEFT TO RIGHT:
+1. Dorek LR-16, rocket_launchers, core:modele_dorek_lr16
+2. Karsen LR-20, rocket_launchers, core:modele_karsen_lr20
+3. Karvek LR-6, rocket_launchers, core:modele_karvek_lr6
+4. Lance-roquettes, rocket_launchers, core:lance_roquettes
+5. Ordan LR-9, rocket_launchers, core:modele_ordan_lr9
+6. Torven LR-2, rocket_launchers, core:modele_torven_lr2
+7. Brask P-12, shotguns, core:modele_brask_p12
+8. Darsk P-70, shotguns, core:modele_darsk_p70
+
+ROW 4 LEFT TO RIGHT:
+1. Drek P-40, shotguns, core:modele_drek_p40
+2. Fusil à pompe, shotguns, core:fusil_a_pompe
+3. Korven P-50, shotguns, core:modele_korven_p50
+4. Morn P-24, shotguns, core:modele_morn_p24
+5. Valdran P-90, shotguns, core:modele_valdran_p90
+6. EMPTY TRANSPARENT
+7. EMPTY TRANSPARENT
+8. EMPTY TRANSPARENT

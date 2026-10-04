@@ -1,0 +1,68 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 20.96s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 39 tests
+test ascii_app::tests::check_suspension_file_without_consuming ... ignored, Set PROJECT_RL_CHECK_SUSPENSION to a file to verify without consuming it
+test ascii_app::tests::changed_loot_tables_preserve_a_version_three_suspension_and_active_run ... ok
+test ascii_app::tests::changed_world_definitions_preserve_a_version_four_suspension_and_active_run ... ok
+test ascii_app::tests::legacy_suspension_is_verified_then_upgraded_and_can_be_resuspended ... ok
+test ascii_app::tests::suspension_persists_the_resolved_package_versions ... ok
+test ascii_app::tests::version_eight_suspensions_keep_alarms_without_lockdown_responses ... ok
+test ascii_app::tests::version_eleven_suspensions_keep_the_smaller_world_layout ... ok
+test ascii_app::tests::version_five_suspensions_keep_the_pre_social_facility_state ... ok
+test ascii_app::tests::version_seven_suspensions_keep_the_pre_installed_alarm_state ... ok
+test ascii_app::tests::version_six_suspensions_keep_the_pre_alert_social_state ... ok
+test ascii_app::tests::version_ten_suspensions_keep_the_legacy_population_and_flamethrower ... ok
+test ascii_app::tests::suspension_replays_an_in_progress_multi_ut_preparation ... ok
+test ascii_app::tests::version_two_suspensions_keep_fixed_loot_and_do_not_depend_on_new_tables ... ok
+test suspension::tests::recorded_clinic_treatment_preserves_the_provider ... ok
+test suspension::tests::recorded_companion_behavior_round_trips_without_consuming_an_actor_id ... ok
+test suspension::tests::recorded_drone_technique_preserves_physical_assignments_and_roles ... ok
+test suspension::tests::recorded_electronic_warfare_preserves_every_directive_shape ... ok
+test suspension::tests::recorded_engineering_technique_preserves_explicit_component_assignment ... ok
+test suspension::tests::recorded_intrusion_technique_preserves_subnet_targets_and_command ... ok
+test suspension::tests::recorded_quest_commands_preserve_the_giver_and_quest_id ... ok
+test suspension::tests::recorded_technique_preserves_weapon_slot_and_reads_legacy_commands ... ok
+test suspension::tests::recovery_schema_is_independent_and_bound_to_its_command_journal ... ok
+test suspension::tests::saved_package_requires_canonical_id_and_semantic_version ... ok
+test suspension::tests::streaming_fingerprint_preserves_legacy_debug_bytes ... ok
+test ascii_app::tests::version_thirteen_suspensions_keep_the_eager_destination ... ok
+test ascii_app::tests::resume_animates_before_consuming_the_suspension ... ok
+[SUSPENSION] Resume failed: L'état reconstruit ne correspond pas à la suspension ; fichier conservé.
+test ascii_app::tests::surface_size_trial_keeps_version_91_suspensions_on_the_old_map ... ok
+test ascii_app::tests::version_twelve_suspensions_keep_unlimited_historical_pursuit ... ok
+test ascii_app::effects_lab::tests::lab_cannot_write_or_clean_normal_suspension_or_recovery_files ... ok
+
+thread 'ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble' (21108) panicked at src\ascii_app.rs:26469:9:
+Rejected(MerchantOfferUnavailable)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble ... FAILED
+test ascii_app::tests::surface_variety_keeps_version_93_roster_loot_and_suspension ... ok
+test ascii_app::tests::suspension_rebuilds_the_selected_protocol_before_replay ... ok
+[SUSPENSION] Save failed: Une suspension existe déjà ; elle n'a pas été remplacée.
+[SUSPENSION] Save failed: Une suspension existe déjà ; elle n'a pas été remplacée.
+[SUSPENSION] Resume failed: Les tables de butin ont changé ; suspension conservée.
+
+thread 'ascii_app::tests::suspension_replays_the_complete_run_and_is_consumed_only_once' (12364) panicked at src\ascii_app.rs:28567:9:
+assertion `left == right` failed: Reprise impossible : la sauvegarde ne peut pas être chargée. Elle a été conservée intacte.
+  left: Main
+ right: Hidden
+test ascii_app::tests::suspension_replays_the_complete_run_and_is_consumed_only_once ... FAILED
+test ascii_app::tests::leaving_the_main_menu_or_abandoning_never_removes_an_existing_suspension ... ok
+test ascii_app::tests::voluntary_suspension_supersedes_recovery_and_resume_rearms_it ... ok
+[SUSPENSION] Save failed: Impossible de créer un fichier déjà existant. (os error 183)
+test ascii_app::tests::failed_suspension_or_incompatible_resume_never_quits_or_consumes_data ... ok
+test ascii_app::tests::suspension_replays_active_r1_and_version_forty_strips_recovery_metadata ... ok
+test ascii_app::tests::approved_names_keep_old_surface_suspensions_compatible ... ok
+test ascii_app::underground_fauna::tests::underground_fauna_keeps_v109_v110_and_v111_suspensions_resumable ... ok
+
+failures:
+
+failures:
+    ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble
+    ascii_app::tests::suspension_replays_the_complete_run_and_is_consumed_only_once
+
+test result: FAILED. 36 passed; 2 failed; 1 ignored; 0 measured; 572 filtered out; finished in 50.62s
+
+error: test failed, to rerun pass `--bin project-rl`

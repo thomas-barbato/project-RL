@@ -1,0 +1,65 @@
+Génération par imagegen intégré. Aperçu uniquement, aucune intégration.
+Référence de taille : https://github.com/crawl/crawl/blob/master/crawl-ref/docs/options_guide.txt (tile_cell_pixels = 32)
+
+CLASSES
+Use case: stylized-concept. Asset type: ONE review sprite atlas for an original cyberpunk roguelike, not a finished integrated game asset.
+Create a SQUARE TRANSPARENT image containing an exact regular 3-column by 3-row grid of NINE separate full-body character sprites. Each cell is the same square size, with the subject centered horizontally, feet aligned at the bottom with a small margin, generous transparent separation. No text, no numbers, no cell borders, no environment, no cast floor shadows. All characters fit entirely inside their cells.
+Input image is ONLY a supporting style and silhouette reference: the existing Project RL upright ivory-armored human-looking explorer with cyan visor. Make new designs consistent with this readable upright three-quarter right-facing silhouette. Chunky intentional pixel clusters, approximately 28 pixels high and 22-30 pixels wide when rendered in a 32x32 game cell. NOT photorealistic, NOT painterly, NO fine noise or tiny decorative lines. Full head, torso, arms, legs and both boots remain clearly distinguishable. Moderate proportions, no large cartoon heads. Worn industrial cyberpunk materials, graphite undersuit, pale gray/ivory plates, muted olive/rust details, restrained cyan or amber indicators. Strong light/dark shapes survive reduction to 32 pixels.
+Columns are three different restoration protocols / classes of the same human-looking cybernetic protagonist:
+Column 1 BRECHE: broad sturdy assault build, short dark hair, broad shoulders, ivory/gray silhouette.
+Column 2 VIGIE: lean reconnaissance build, short close-fitting charcoal jacket, olive/cool gray panels, cyan optical implant.
+Column 3 CREUSET: industrial engineering build, robust work suit, orange-brown utility details, small industrial breathing collar.
+Maintain the SAME body identity and relative height in each column across the three rows. Equipment changes appearance but does not change identity.
+Row 1: the three base bodies WITHOUT weapons or armor plates; wearable simple undersuits and boots. Arms relaxed and visible.
+Row 2: same bodies with their reference loadout visibly fitted. BRECHE has a worn patched chest plate and short light-colored integrity blade in hand. VIGIE has a compact clearly recognizable needle-launching rifle held in hands, light tactical armor. CREUSET has an industrial flamethrower in hands with barrel/nozzle, small fuel cylinder and hose, protective work armor. No flames shooting.
+Row 3: same bodies with CHANGED gear to show any class can use any equipment: BRECHE wears heavier helmet and broad segmented armor, holding a rifle; VIGIE wears a heavier pale plated torso and holds a long compact sword; CREUSET wears dark reinforced armor and holds a shorter needle rifle. Different helmet / torso / weapon shapes must be obvious.
+Priority: exact 3x3 grid, transparent background, same identity per column, all equipment carried in hands or worn on body, readable entire silhouettes. This is one art-direction proposal board; do not copy any existing game's sprites.
+
+BESTIAIRE PREMIÈRE GÉNÉRATION
+Use case: stylized-concept. Asset type: ONE review sprite atlas for the bestiary of an original industrial cyberpunk roguelike.
+Create a LANDSCAPE TRANSPARENT image in an EXACT regular SIX columns by FOUR rows grid, 24 separate isolated creature/character sprites. Every grid cell is the same square size. Each creature is centered in its square, visually occupies 70-85% of its cell, entirely inside it, transparent separation. No text, labels, numbers, cell borders, environment, floor, vignette or cast floor shadows. Camera convention: upright three-quarter side-facing-right sprites like a classic tiled roguelike, not an isometric scene. Animals and machines show their recognizable whole silhouette.
+Handcrafted readable pixel-art look, bold purposeful pixel clusters with very limited detail that can survive displaying the whole creature in a 32x32 tile. Worn future industrial world, cold desaturated gray, muted rusty brown and olive, restrained cyan and amber indicators for machines. Bright enough midtones for readable silhouettes against dark pavement. Organic animals remain organic, no cyber implants added to animals. Each type has strongly different silhouette rather than color variations. No licensed characters or copied assets.
+Grid contents in EXACT row-major order, left to right:
+ROW 1:
+1 Grignoteur: small low gray scavenger mammal with large ears, naked curved tail, squat rodentlike body.
+2 Mordeur des friches: lean tawny four-legged pack predator, long legs, short mane, hollow flanks, large jaw.
+3 Brise-os: stocky very broad predatory quadruped, high shoulders, barely any neck, bone ridge, huge jaw.
+4 Fouisseur pale: pale squat burrowing mammal, small eyes, sensor snout, broad digging forepaws.
+5 Dos-rond: organic SIX-legged arthropod, smooth round domed mossy gray shell, low compact harmless looking body, not a tortoise.
+6 Chauve-souris des ruines: lightweight flying mammal, broad folded membrane wings visibly outstretched, small body.
+ROW 2:
+1 Ver cuirasse: thick organic annelid worm with rigid tan/gray segmented rings, bent S silhouette. Not a robot.
+2 Anemone des caves: organic radial anchored mass of soft blue-gray tentacles around low central body, cave organism, no mechanical parts.
+3 Hurleur des failles: hollow irregular gray mineral shell with a central resonance cavity, asymmetrical upright stone organism. Not a humanoid.
+4 Sentinelle MACHINE: tall defensive machine on three supports with large central projector, dark steel with ivory panels and small amber optic.
+5 Riveuse: low working machine on two supports, one prominent rivet-tool arm, worn industrial steel, neutral worker. Not a humanoid.
+6 Ecailleux des cavernes: MINERAL ROSETTE of overlapping directional stone scales around an asymmetric core, protective scales facing right. NOT a reptile, NOT a lizard.
+ROW 3:
+1 Guetteur: NON-HUMANOID strange organism composed of gray blue meshed knotted ribbons, coherent looped silhouette, not a guard, not a robot.
+2 Spectre: NON-HUMANOID disjoint bifurcated pale luminous repeated contours joined together, two linked abstract outlines, no ghost sheet, no humanoid face.
+3 Cracheur des mares: organic SIX-legged arthropod with elongated olive shell, prominent ventral chemical sac, head pointing right.
+4 Trainard: NON-HUMANOID anomaly of two gray-purple ribbon bodies slightly offset in time, tangled parallel curved bands. Not a zombie or slow human.
+5 Gueule du vide: abstract broken ring around an empty dark transparent center, gray-violet separated rim fragments, geometric alien anomaly, NO teeth or mouth.
+6 Human melee opponent: rugged human scavenger with visible head, torn tactical coat, fixed short blade, dirty boots.
+ROW 4:
+1 Human rifle opponent: slim human in worn future street combat jacket, compact rifle held, distinct sideways aiming silhouette.
+2 Human security guard: broad human in heavy corporate gray armor, rounded helmet, fixed baton, no insignia.
+3 Human field medic: human in olive utility coat, small medical satchel and white medical cross patch.
+4 Human cargo carrier: human with tall bulky square backpack and load straps, heavy boots, stooped carrying pose.
+5 Human scrap worker: human in dirty orange-gray overalls, tool belt, large wrench held at side.
+6 PROPOSED zombie: cyberpunk infected human, asymmetrical slumped posture, pallid face, damaged future work clothes, one loose arm, subtle dark circuitry injury. This is a new visual proposal only, not an existing species.
+Priority: EXACT 6x4 grid, actual transparency, sharply different full-body shapes, no extra creatures, no text, 32px readability. All opponents use fixed complete appearances, not modular equipment.
+
+BESTIAIRE RETOUCHE RETENUE
+Use case: style-transfer and background-extraction.
+Edit target: image 1, the 6-column x4-row bestiary review atlas. Supporting STYLE reference: image 2, the 3x3 class atlas.
+REDRAW the bestiary in the SAME chunky, clean, low-resolution sprite style as the class atlas. The user wants the visual craftsmanship and readability of classic Dungeon Crawl Stone Soup tiles, adapted to original CYBERPUNK subjects. Do not copy any Crawl asset. Current creature image is too finely shaded, muddy and painterly for 32x32 game tiles. Simplify shadows and textures into bold intentional pixel clusters. Each cell must represent a LOGICAL 32x32 pixel game sprite enlarged by an integer factor for viewing. Every creature should occupy about 26-29 logical pixels of height or width. Work within roughly 10-18 opaque palette colors per creature with purposeful light-mid-dark volumes, a thin dark silhouette outline, clear bright accents, crisp geometry. No subpixel strokes, no smooth gradient shading, no fuzzy glow, no realistic textures, no scattered noise.
+Preserve EXACTLY 24 subjects in EXACT same 6x4 regular square cell grid, same row-major order and essential morphology. Keep actual organic animals organic. Keep mineral rosette a rosette, abstract ribbon anomalies nonhumanoid. The 3 human infected/scavenger/medic style must be graphically consistent with the class board: angular legible gray/ivory plates, graphite fabric, amber/cyan technological details.
+CRITICAL: The ENTIRE background must be ACTUALLY TRANSPARENT RGBA alpha0, not a colored board, not gradient, not fake checkerboard, no shadows on floor. All empty space around every creature is transparent. The spectral creature is two crisp opaque cyan-white joined abstract contour loops with dark outlines, with a transparent center and NO background glow. The broken-ring anomaly has a genuinely transparent empty center.
+No text, labels, numbers, interface or borders. Every subject fits inside its own cell with at least 2 logical pixels transparent margin. No extra subjects. Align character feet at bottom within cells. Preserve the exact species and relative silhouette recognition, while discarding all the excessive fine shading.
+Contents row1: small gray long-ear rodent, tawny lean predator, heavy bone-ridged quadruped, pale burrower, six-legged domed shell arthropod, bat.
+Row2: ringed organic worm, radial cave anemone, hollow mineral resonator, tripod sentinel machine, two-legged riveting machine, directional mineral scale rosette.
+Row3: meshed ribbon organism, bifurcated abstract cyan contour organism, elongated shell arthropod with ventral chemical sac, doubled offset ribbon anomaly, broken-ring void anomaly, human with blade.
+Row4: human rifleman, corporate armored human guard, field medic, cargo human, orange-overall scrap worker, slumped cyberpunk infected human.
+One clean original production-style pixel-art review atlas with transparent background and strong 32px readability.
+

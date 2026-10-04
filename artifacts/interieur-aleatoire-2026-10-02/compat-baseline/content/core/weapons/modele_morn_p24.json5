@@ -1,0 +1,14 @@
+{
+  id: "core:modele_morn_p24",
+  name_key: "equipment.modele_morn_p24.name",
+  description_key: "equipment.fusil_a_pompe.description",
+  mass_grams: 3400,
+  ammunition_capacity: 8,
+  supply: { kind: "matter", amount: 2 },
+  distance_damage_percentages: [100, 75, 50, 25],
+  attack: {
+    range: 4, distance_metric: "chebyshev", requires_line_of_sight: true,
+    area: { type: "cone", narrow_length: 1, maximum_half_width: 1, widen_every: 1 },
+    damage: { amount: 11, damage_type: "piercing", penetration: 0 },
+  },
+}

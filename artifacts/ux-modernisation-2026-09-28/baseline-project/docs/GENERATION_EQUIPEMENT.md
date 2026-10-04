@@ -1,6 +1,319 @@
-# Génération d'équipement — premier raccordement jouable
+# Génération d'équipement
 
-25 septembre 2026 — génération de monde 108. Équilibrage provisoire.
+2 octobre 2026. Génération de monde 141. Équilibrage provisoire.
+
+## Récompense aléatoire à chaque mort hostile : génération 141
+
+Chaque ennemi hostile mort laisse un exemplaire d'équipement tiré dans le
+catalogue complet : armes de toutes les familles, protections corporelles,
+tête, mains et pieds. Le modèle est choisi avec la même probabilité que chaque
+autre modèle, sans contrainte de famille portée, de provenance ni de profondeur.
+Tous les niveaux de modèle peuvent donc apparaître dès la surface. Le dernier
+modèle obtenu est exclu du tirage suivant tant qu'un autre candidat existe.
+
+La qualité et les propriétés sont ensuite tirées séparément avec les taux
+validés de 0 à 6 bonus. L'objet de récompense ne détermine pas les attaques de
+l'ennemi : son équipement de combat conserve ses règles de génération 140.
+Les civils, alliés, compagnons et le joueur ne fournissent pas ces récompenses.
+Un robot ou un animal hostile peut en fournir, comme demandé pour les monstres.
+
+Le tirage utilise le hasard du moteur au moment de la mort. Une mort ne peut
+produire qu'une récompense, y compris sur une case déjà occupée par des objets.
+Le modèle précédent et le hasard sont conservés lors des voyages et des reprises.
+Ramasser, consulter ou recharger ne relance pas les propriétés de l'objet.
+
+Les caches, stocks de boutique et paris gardent leurs règles existantes. Les
+parties jusqu'à la génération 140 gardent leur ancien butin ; une nouvelle partie
+est nécessaire pour obtenir ce système. Le cache RLWS v11 conserve le modèle
+précédent ; les caches plus anciens sont repris par le journal vérifié.
+
+Le test de 600 morts réelles d'ennemis portant tous le même fusil a obtenu 127
+modèles dans 18 familles, les six niveaux et les sept qualités, sans répétition
+immédiate. Diagnostic natif : `--ui-cold-monster-rewards <nouveau-dossier>`.
+
+## Diversité des modèles : génération 140
+
+Cette section décrit le contrat historique de génération 140 pour les porteurs
+et le contrat encore utilisé par les caches. La récompense de mort 141 est décrite
+ci-dessus.
+
+Le tirage choisit une famille, un niveau de modèle pondéré par la profondeur,
+puis une base ; les bonus sont tirés séparément. Les modèles nommés ne sont
+plus limités à une seule couche : un modèle peut apparaître jusqu'à deux
+couches avant sa couche habituelle, et reste ensuite admissible.
+
+À la surface, les trois premiers modèles de chaque famille sont disponibles.
+Au sein d'une famille de modèles nommés, les niveaux 1/2/3 ont des poids
+7000/2200/600, soit environ 71/22/6 %. Les porteurs humanoïdes restent dans
+leur famille d'arme ; leur arme réellement équipée est celle qui tombe.
+Les caches humanoïdes peuvent fournir les autres familles et les armures.
+Les robots et animaux n'acquièrent pas de butin humanoïde.
+
+La répartition de 0 à 6 bonus reste inchangée. Les boutiques et paris
+conservent leurs stocks de niveau local. Les sauvegardes jusqu'à la génération
+139 conservent leur pool historique, leur équipement et leurs tirages.
+
+Les sections suivantes décrivent les révisions précédentes.
+
+## Rareté par nombre de bonus : génération 135
+
+Répartition validée pour chaque équipement généré dans les caches et sur les
+porteurs humanoïdes admissibles, indépendamment de la chance de laisser un objet :
+
+| Bonus | Probabilité | Couleur du nom |
+|---|---|---|
+| 0 | 40 % | Blanc |
+| 1 | 20 % | Bleu |
+| 2 | 16 % | Bleu |
+| 3 | 11 % | Violet |
+| 4 | 7 % | Violet |
+| 5 | 4 % | Doré |
+| 6 | 2 % | Doré |
+
+Le nombre est tiré avant les propriétés. Celles-ci sont toutes distinctes et
+compatibles avec l'objet, avec au maximum un effet spécial d'arme, compté dans
+le total. Les poids propres aux affixes ne changent pas. La profondeur conserve
+son rôle sur les modèles et les valeurs, pas sur la fréquence des grandes
+combinaisons. Les petites protections peuvent aussi recevoir six bonus, mais
+gardent leurs valeurs réduites. Un pool de mod comportant moins de six propriétés
+admissibles exclut les nombres impossibles et renormalise les poids restants.
+
+Les paris utilisent les poids 20/16/11/7/4/2, sans résultat blanc. Leur nom ne
+révèle ni couleur de rareté, ni nombre, ni affixe avant l'achat. Les achats neufs
+restent blancs ; une revente conserve les propriétés exactes de l'exemplaire.
+L'inventaire affiche le nombre en plus de la couleur ; les petits écrans affichent
+les longues listes de bonus sur deux colonnes.
+
+Les générations 134 et antérieures conservent leurs tirages et empreintes.
+Le cache moteur passe à RLWS v9 pour les six propriétés ; les caches antérieurs
+sont refusés avant décodage et la reprise utilise leur journal vérifié. Les
+anciens bonus JSON et les exemplaires possédés ne sont ni supprimés ni modifiés.
+Diagnostic : `--ui-cold-rarity-equipment-small` et `--ui-cold-rarity-equipment-wide`.
+
+Le futur service d'amélioration remplacera tous les bonus par un tirage complet
+de 1 à 6 bonus, jamais zéro. Il n'est pas intégré par cette étape.
+
+Les sections suivantes décrivent les étapes historiques et leurs anciens taux.
+
+## Tête, mains et pieds : génération 134
+
+Trois nouveaux emplacements indépendants complètent la protection corporelle.
+Le catalogue compte 78 armes et 30 protections, soit 108 bases distribuées.
+
+| Couche | Tête | Mains | Pieds |
+|---|---|---|---|
+| P1 | Calotte Cognefer | Gants Cognefer | Brodequins Cognefer |
+| P2 | Heaume Bastion | Gantelets Bastion | Solerets Bastion |
+| P3 | Casque Cerbère | Mitaines Cerbère | Bottes Cerbère |
+| P4 | Masque Chrysalide | Gantelets Chrysalide | Bottines Chrysalide |
+| P5 | Capuche de mue | Gants de mue | Bottes de mue |
+| P6 | Visière Fantôme | Gants Fantôme | Bottines Fantôme |
+
+Les noms communs désignent des modèles apparentés, pas un bonus d'ensemble.
+Les protections peuvent être mélangées librement. Une paire de gants ou de
+chaussures constitue un seul objet, dans un seul emplacement.
+
+Valeurs provisoires : les mains et pieds apportent chacun 1 point d'armure.
+La tête apporte 1 point en P1 à P4, puis 2 en P5 et P6. Ces pièces ne pénalisent
+ni l'esquive ni le déplacement. Leurs noms ne confèrent aucun pouvoir inné.
+L'armure de torse conserve une progression plus forte, de 1 à 6 ou de 2 à 7.
+
+Les exemplaires magiques ont une ou deux propriétés. Le palier de leurs bonus
+suit la progression 1, 1, 2, 2, 3, 3 : les valeurs sont plus modestes en profondeur,
+sans modifier les bonus des objets existants. Les probabilités relatives des
+affixes restent inchangées. Aucun effet offensif d'arme n'est ajouté.
+Ce budget est porté par `equipment.reduced_affixes` dans la définition de l'objet.
+Le générateur et les paris restaurés depuis une sauvegarde en déduisent le même
+budget, sans modifier le format des propriétés de marchand déjà sauvegardées.
+
+Les modèles locaux sont ordinaires : caches humanoïdes, achats blancs et paris
+aux propriétés cachées. Ils ne tombent pas sur les robots ou les animaux. Les
+bonus d'un exemplaire vendu restent conservés au rachat. Une nouvelle pièce ne
+remplace que l'objet du même emplacement. L'inventaire précise Tête, Mains ou Pieds,
+emploie trois icônes distinctes et trie les pièces équipées par emplacement.
+La fiche Détails / comparer montre également l'objet actuellement porté.
+
+Noms : `content/core/locales/fr_accessory_models.json5`.
+Distribution : `content/core/equipment_loot/accessory_models.json5`.
+Statistiques : les 18 définitions correspondantes dans `content/core/items/`.
+Les générations 133 et antérieures conservent un seul emplacement corporel et
+excluent ces nouveaux modèles. Les anciens inventaires et tirages restent intacts.
+Diagnostic : `--ui-cold-accessory-equipment-small` ou
+`--ui-cold-accessory-equipment-wide`, suivi du dossier de capture.
+
+## Protections renforcées validées : génération 133
+
+Une seconde famille de protections corporelles complète les six vestes existantes.
+Le catalogue distribué compte désormais 78 armes et 12 armures, soit 90 bases.
+Ces six modèles occupent le même emplacement, sans créer de nouveaux slots.
+
+| Palier | Modèle | Protection | Malus d'esquive |
+|---|---|---|---|
+| P1 | Brigandine Cognefer | 2 | 5 |
+| P2 | Plastron Bastion | 3 | 5 |
+| P3 | Armure Cerbère | 4 | 5 |
+| P4 | Carapace Chrysalide | 5 | 5 |
+| P5 | Manteau de mue | 6 | 5 |
+| P6 | Combinaison Fantôme | 7 | 5 |
+
+Seule la protection progresse entre modèles de cette famille. Le malus est fixe,
+s'applique uniquement lorsque l'armure est équipée et ne ralentit pas les déplacements.
+L'esquive affichée et les jets réels utilisent la même pénalité. Les vestes gardent
+leur protection de 1 à 6 sans ce malus. Les chiffres restent provisoires.
+La masse de jeu reste fixée à 2 600 g pour chaque modèle ; aucun pouvoir inné de
+régénération ou de furtivité n'est déduit du nom ou de l'apparence.
+
+Les caches humanoïdes et les stocks neufs des marchands proposent le modèle de
+la couche. P6 reste utilisé au-delà. Les armures blanches sont ordinaires ; qualité,
+affixes et suffixes sont tirés séparément avec les poids existants. Aucun effet
+offensif d'arme n'est ajouté aux armures. Les prix suivent ceux des vestes du même
+palier : le compromis porte sur la protection et l'esquive, pas sur la rareté.
+Les paris cachent leurs bonus avant l'achat et les exemplaires vendus conservent
+leurs propriétés. Les robots et la faune ne laissent pas tomber ces vêtements.
+
+Noms : `content/core/locales/fr_armor_models.json5`.
+Distribution : `content/core/equipment_loot/armor_models.json5`.
+Définitions : `content/core/items/brigandine_cognefer.json5` et les cinq autres
+modèles. Le champ `equipment.evasion_penalty` vaut zéro s'il est absent.
+Les générations 132 et antérieures retirent ces nouveaux modèles et gardent
+leurs empreintes et tirages. Aucun changement imposé aux anciennes parties.
+Diagnostic : `--ui-cold-reinforced-armor-small` ou
+`--ui-cold-reinforced-armor-wide`, suivi du dossier de capture.
+
+## Épées validées du 30 septembre 2026 : génération 132
+
+Six épées complètent le catalogue de campagne : 78 modèles d'armes au total,
+répartis en treize familles, plus les six bases d'armure existantes.
+
+| Palier | Modèle | Dégâts de base |
+|---|---|---|
+| P1 | Épée courte | 5 |
+| P2 | Glaive | 7 |
+| P3 | Fauchon | 9 |
+| P4 | Épée longue | 11 |
+| P5 | Épée bâtarde | 13 |
+| P6 | Espadon | 15 |
+
+Profil commun : une seule cible à une case, précision neutre, dégâts cinétiques,
+aucune pénétration ni effet inné, un tour par attaque, sans munitions. La Puissance
+continue de modifier les dégâts avec un plafond d'Impact de 14. La masse de jeu
+reste fixée à 1 400 g pour tous les modèles. Seuls les dégâts de base progressent.
+Les noms ne confèrent ni allonge, ni parade, ni attaque de zone supplémentaire.
+Ce classement sert le jeu et ne prétend pas établir une hiérarchie historique.
+
+Les caches humanoïdes et les marchands proposent le modèle de leur couche,
+P6 restant disponible au-delà. La famille est tirée sans rareté supplémentaire.
+Les bonus sont tirés séparément : mêmes statistiques et poids que les autres
+armes de mêlée, avec les effets braise, décharge, saignement et poison déjà
+disponibles sur les haches. Les achats neufs restent sans bonus ; les paris
+masquent les propriétés jusqu'à l'achat. La revente reste possible partout.
+Les robots et animaux ne reçoivent pas ces armes. Les porteurs ennemis existants
+ne changent pas de famille d'arme dans ce lot.
+
+Noms : `content/core/locales/fr_sword_models.json5`.
+Distribution : `content/core/equipment_loot/sword_models.json5`.
+Statistiques et animations : `content/core/weapons/melee_*.json5` et
+`content/core/visuals/melee_*.json5`. Les accords des affixes suivent le genre du nom.
+
+Les générations 131 et antérieures excluent ces six modèles et conservent leurs
+catalogues, empreintes et tirages. Les anciennes parties restent inchangées.
+Diagnostic d'inventaire : `--ui-cold-sword-equipment-small` ou
+`--ui-cold-sword-equipment-wide`, suivi du dossier de capture.
+
+## Mêlée validée du 30 septembre 2026 : génération 131
+
+24 modèles de mêlée rejoignent les 48 armes à distance. Chaque famille dispose
+d'une base ordinaire par couche, avec qualité et affixes tirés séparément.
+Ce classement est une progression de jeu, pas une hiérarchie historique.
+
+| Palier | Couteaux et dagues | Armes d'hast | Haches | Masses et marteaux |
+|---|---|---|---|---|
+| P1 | Couteau de camp | Lance | Hachette | Gourdin |
+| P2 | Couteau de chasse | Épieu | Hache de guerre | Gourdin ferré |
+| P3 | Poignard | Pique | Hache d'abordage | Masse d'armes |
+| P4 | Dague | Vouge | Hache d'armes | Masse à ailettes |
+| P5 | Stylet | Pertuisane | Hache danoise | Marteau de guerre |
+| P6 | Dague à rouelles | Hallebarde | Bardiche | Bec de corbin |
+
+Seuls les dégâts de base changent entre modèles d'une même famille :
+
+- Couteaux et dagues : 3, 4, 5, 6, 7, 8.
+- Armes d'hast : 4, 6, 8, 10, 12, 14.
+- Haches : 8, 10, 12, 14, 16, 18.
+- Masses et marteaux : 6, 8, 10, 12, 14, 16.
+
+Ces chiffres restent provisoires. Les modificateurs de Puissance et les défenses
+continuent de s'appliquer. Portée, précision, pénétration, masse, plafond d'Impact,
+cadence et animations restent identiques au sein de chaque famille. Les armes
+d'hast gardent leur allonge à deux cases et leur pénalité de dégâts au contact.
+Un nom historique n'accorde pas de capacité supplémentaire : pas de lancer de
+hache, de parade ou d'attaque de zone ajoutés implicitement.
+
+Les modèles locaux sont disponibles dans les caches humanoïdes, les achats
+blancs et les paris aux propriétés cachées. Les porteurs humanoïdes de couteaux
+utilisent le modèle de leur couche et laissent leur exemplaire à leur mort.
+Tous les modèles gardent un prix de revente même hors de leur couche d'origine.
+Les bonus conservent leurs poids précédents et ne changent pas la base.
+
+Les noms sont dans `content/core/locales/fr_melee_models.json5`, la distribution
+dans `content/core/equipment_loot/melee_models.json5` et les statistiques dans
+`content/core/weapons/melee_*.json5`. Les accords des bonus suivent le genre de
+chaque nom (par exemple une dague précise, un stylet précis).
+
+Les anciennes parties gardent leurs armes et tirages : la génération 130 et les
+précédentes retirent les nouveaux modèles des catalogues. Les neuf anciennes
+bases de mêlée restent chargées mais ne sont plus proposées par les nouveaux
+tirages de génération 131. Les épées et les changements d'armures ne font pas
+partie de ce lot.
+
+## Modèles validés du 30 septembre 2026 : génération 130
+
+Les nouvelles parties distribuent 48 modèles d'armes à distance : huit familles,
+avec un modèle par palier P1 à P6 (surface = P1). Les noms ont été validés par
+le joueur. Ils sont éditables dans `content/core/locales/fr_firearm_models.json5`.
+Les sections précédentes et suivantes restent l'historique des prototypes.
+
+| Famille | P1 | P2 | P3 | P4 | P5 | P6 |
+|---|---|---|---|---|---|---|
+| Fusil à tir unique | Veyr R-12 | Kardan R-24 | Orvek R-36 | Tervan R-48 | Serdak R-60 | Noryk R-72 |
+| Fusil d'assaut | Darven A-10 | Korsan A-30 | Vektor A-60 | Brenek A-80 | Talvek A-90 | Vornek A-120 |
+| Fusil à pompe | Brask P-12 | Morn P-24 | Drek P-40 | Korven P-50 | Darsk P-70 | Valdran P-90 |
+| Mitrailleuse lourde | Kordal M-20 | Varkan M-40 | Draven M-80 | Torgal M-100 | Kraven M-120 | Vornak M-160 |
+| Lance-roquettes | Torven LR-2 | Karvek LR-6 | Ordan LR-9 | Bravan LR-12 | Dorek LR-16 | Karsen LR-20 |
+| Lance-grenades | Rovak LG-3 | Darsen LG-6 | Korven LG-9 | Merdan LG-12 | Torvik LG-16 | Valrek LG-20 |
+| Lance-flammes | Varek F-10 | Torak F-30 | Karn F-60 | Derven F-80 | Korgan F-100 | Vardek F-120 |
+| Fusil à énergie | Neral E-12 | Seryn E-24 | Oryx E-48 | Telvar E-60 | Nerys E-80 | Odran E-100 |
+
+Dans chaque famille, seuls les montants des dégâts directs et, pour les lanceurs,
+de l'explosion progressent. Portée, précision, pénétration, cadence, nombre de
+projectiles, zone, délai, consommation et effets intrinsèques restent identiques.
+Les dégâts provisoires P1 à P6 sont respectivement :
+
+- Fusils à tir unique et à énergie : 4, 6, 8, 10, 12, 14.
+- Fusils d'assaut et mitrailleuses : 3, 4, 5, 6, 7, 8 par balle.
+- Fusils à pompe : 8, 11, 14, 17, 20, 23 avant décroissance avec la distance.
+- Lance-roquettes : 10, 13, 16, 19, 22, 25.
+- Lance-grenades : impact 2, 3, 4, 5, 6, 7 ; explosion 9, 12, 15, 18, 21, 24.
+- Lance-flammes : impact 4, 6, 8, 10, 12, 14 ; brûlure et feu au sol inchangés.
+
+La famille reste tirée uniformément parmi celles admises par la provenance.
+Les bornes `minimum_depth` et `maximum_depth` sélectionnent le modèle de la couche,
+sans rareté supplémentaire pour une arme blanche. P6 reste utilisé au-delà de la
+dernière couche prévue. Ces bornes limitent les trouvailles et les stocks neufs,
+jamais l'utilisation ni la revente d'un objet déjà obtenu.
+
+La qualité puis les affixes restent tirés séparément : mêmes poids relatifs,
+1 à 3 propriétés, au maximum un effet spécial. Aucun effet de laboratoire
+supplémentaire n'est introduit par ce changement. Les magasins proposent les
+huit modèles locaux sans bonus ; les paris cachent leurs propriétés avant achat.
+Les porteurs humanoïdes de fusils utilisent le modèle local à tir unique.
+Ni les robots ni les créatures sans équipement ne reçoivent ces armes humaines.
+
+Les onze anciens modèles distribués restent chargés pour les inventaires et les
+profils initiaux existants, mais sont exclus des nouveaux tirages en génération
+130. Les générations 129 et antérieures retirent seulement les 48 nouveaux
+modèles et gardent leurs catalogues, empreintes et tirages précédents. Les autres
+familles de mêlée et d'armures ne sont pas modifiées dans ce lot.
 
 ## Ajout du 30 septembre 2026 : lance et fusil à pompe
 
@@ -138,7 +451,9 @@ négatifs/non entiers, paliers invalides, effets inconnus ou offensifs sur une a
 Les poids et profils participent à l'empreinte du catalogue de butin.
 
 Les propriétés sont enregistrées aussi dans les zones non encore visitées.
-Le cache moteur utilise `RLWS` v8 ; les caches v1 à v7 utilisent le journal vérifié.
+Le cache moteur utilise `RLWS` v10 ; les caches v1 à v9 utilisent le journal vérifié.
+La génération 136 ajoute les fragments instables et l'artisan d'amélioration.
+La génération 135 conserve exactement ses empreintes de règles, butin et monde.
 Les parties de génération 107 conservent les rencontres sans armes récupérables.
 Les parties de génération 106 conservent leurs anciennes offres et leurs paris.
 Les parties de génération 105 gardent leurs six bases P1/P2, leurs tirages

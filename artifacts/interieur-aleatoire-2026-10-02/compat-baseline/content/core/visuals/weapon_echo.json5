@@ -1,0 +1,11 @@
+{
+  id: "core:weapon_echo",
+  terminal: {
+    frames: ["echo", "echo", "echo", "echo"],
+    color: [117, 147, 184, 230],
+    accent_colors: [[164, 200, 231, 245], [233, 245, 255, 255]],
+    frame_millis: 130,
+    step_millis: 0,
+    linger_millis: 70,
+  },
+}

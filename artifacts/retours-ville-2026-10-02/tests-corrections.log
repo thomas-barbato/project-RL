@@ -1,0 +1,13 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 15.38s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 5 tests
+test ascii_app::city_feedback_tests::city_feedback_saved_run_diagnostic ... ignored
+test ascii_app::city_feedback_tests::city_feedback_old_starts_and_loot_remain_unchanged ... ok
+test ascii_app::city_feedback_tests::city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses ... ok
+test ascii_app::city_feedback_tests::city_feedback_resident_and_clinic_move_on_all_four_edges ... ok
+test ascii_app::city_feedback_tests::city_feedback_new_starts_see_elias_inside_the_randomly_placed_town ... ok
+
+test result: ok. 4 passed; 0 failed; 1 ignored; 0 measured; 572 filtered out; finished in 19.67s
+

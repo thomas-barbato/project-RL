@@ -1,0 +1,12 @@
+// Optional example: select this table via the expedition's loot_table field.
+// 1 / 1000 at depths 0..2, 300 / 1000 deeper. These are demonstration weights,
+// NOT final power tiers or an assertion that the arc lance is a higher tier.
+{
+  id: "example.arc_arsenal:industrial_floor",
+  entries: [
+    { item: "core:repair_patch", weight: 999, maximum_depth: 2 },
+    { item: "example.arc_arsenal:arc_lance", weight: 1, maximum_depth: 2 },
+    { item: "core:repair_patch", weight: 700, minimum_depth: 3 },
+    { item: "example.arc_arsenal:arc_lance", weight: 300, minimum_depth: 3 },
+  ],
+}

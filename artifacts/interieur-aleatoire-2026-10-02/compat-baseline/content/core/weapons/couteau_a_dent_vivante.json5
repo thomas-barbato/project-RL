@@ -1,0 +1,20 @@
+{
+  "id": "core:couteau_a_dent_vivante",
+  "name_key": "equipment.couteau_a_dent_vivante.name",
+  "description_key": "equipment.couteau_a_dent_vivante.description",
+  "mass_grams": 850,
+  "attack": {
+    "range": 1,
+    "distance_metric": "chebyshev",
+    "requires_line_of_sight": false,
+    "accuracy_modifier": 12,
+    "impact": {
+      "material_cap": 16
+    },
+    "damage": {
+      "amount": 6,
+      "damage_type": "piercing",
+      "penetration": 2
+    }
+  }
+}

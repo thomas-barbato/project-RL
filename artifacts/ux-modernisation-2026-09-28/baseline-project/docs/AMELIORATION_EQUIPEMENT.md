@@ -3,7 +3,59 @@
 25 septembre 2026 — recommandations retenues ; bonus chiffrés et effets spéciaux
 persistants par exemplaire testables au laboratoire et premier
 [générateur de butin de campagne](GENERATION_EQUIPEMENT.md) raccordé.
-Le service d'amélioration auprès d'un PNJ reste à intégrer.
+Le service d'amélioration auprès d'un PNJ est intégré le 1 octobre 2026,
+pour les nouvelles parties de génération 136.
+
+## Décisions du 1 octobre 2026
+
+L'intervention supprime tous les bonus de l'exemplaire puis effectue un nouveau
+tirage complet. Le résultat comporte de 1 à 6 bonus distincts et compatibles,
+jamais zéro : l'amélioration ne peut pas produire un objet blanc. Les poids des
+nombres sont 20/16/11/7/4/2, renormalisés sur ces six résultats. La base de l'objet
+reste intacte. Le nombre détermine la couleur de rareté commune aux équipements :
+1 ou 2 en bleu, 3 ou 4 en violet, 5 ou 6 en doré ; zéro reste blanc pour les
+trouvailles ordinaires. Voir les taux validés dans GENERATION_EQUIPEMENT.md.
+Un artisan est disponible près du marchand dans chacune des six villes.
+Une intervention unique par exemplaire retire tous ses bonus et les remplace.
+Elle conserve son identifiant, sa base et son emplacement équipé. Le marqueur
+d'intervention suit l'objet lors d'une vente, d'un rachat, d'un dépôt et d'une
+sauvegarde. Les capacités du porteur sont recalculées sans soin gratuit.
+
+### Ressource et coût
+
+La ressource dédiée est le **Fragment instable**, distinct du Lot de réglage.
+Description validée : « Une matière aux reflets changeants. Certains artisans
+savent l’utiliser pour modifier un équipement. » Elle se trouve dans les caches
+et chez chaque marchand de ville : stock initial de six, prix provisoire de
+15 crédits, revente à 5. Le stock ne se renouvelle pas en revisitant la ville.
+
+| Palier de la base | Fragments | Crédits |
+| --- | ---: | ---: |
+| P1 | 1 | 25 |
+| P2 | 1 | 40 |
+| P3 | 2 | 60 |
+| P4 | 2 | 90 |
+| P5 | 3 | 130 |
+| P6 | 3 | 180 |
+
+La ville et les anciens bonus ne changent pas ce tarif. Le tirage compte au
+maximum un effet spécial, compris dans les six bonus. Parcourir le menu ou
+annuler la confirmation ne consomme ni ressource, ni crédit, ni aléatoire.
+Les anciennes générations conservent leurs règles, caches et stocks.
+
+### Textes validés
+
+- « Je peux retravailler ton équipement. À toi de tenter ta chance. »
+- « Les bonus actuels seront perdus et remplacés au hasard. Cet objet ne pourra
+  être amélioré qu’une seule fois. »
+- « Vous n’avez pas assez de fragments instables. »
+- « Votre {ancien nom} a été amélioré en {nouveau nom}. »
+
+Le code du menu et du message de résultat se trouve dans
+`src/equipment_upgrade_app.rs` ; la description du fragment est dans
+`content/core/locales/fr_equipment_upgrade.json5`.
+Les sections historiques ci-dessous décrivent les étapes de conception ; les
+décisions ci-dessus remplacent leurs anciennes mentions « à décider ».
 
 ## 1. Décisions confirmées
 

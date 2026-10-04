@@ -1,0 +1,21 @@
+Use case: stylized-concept.
+Asset type: eight modular furniture/decoration sprites for an original top-down science-fiction roguelike town, matching the approved materials.
+Input image 1: exact art style and palette reference only. Make a new furniture atlas.
+Primary request: furnish the inhabited surface settlement with recognizable useful everyday objects. Preserve the worn slate-gray steel, warm gray, earthy restrained tones and olive paint of the reference. No new narrative, logos, factions or flashy equipment.
+
+Composition: exactly EIGHT square sprite cells, four columns and two rows, each the same size. Entire atlas divided exactly into four equal horizontal intervals and two equal vertical intervals. No outer margins, gutters, captions or labels. Each sprite represents economical 32 by 32 logical pixel art, enlarged in crisp integer blocks. Readable at 32 screen pixels. Transparent unused background in every cell, no floors, no drawn checkerboard, no shadows extending into adjacent cells.
+
+Camera: the same aligned overhead RPG view as the reference crate and terminal. Square grid axes, restrained front faces, no isometric diagonals. Consistent object scale, short shadows contained within each sprite. Low detail clustered pixels rather than noisy tiny tool parts.
+Exact row-major contents:
+Row 1:
+1. Compact industrial workbench, gray steel legs, a worn brown-gray working surface with one small vise and a few neatly arranged hand tools. One-tile footprint.
+2. Simple olive-gray chair, readable seat and backrest, no armrests, one-tile footprint.
+3. Tall closed steel storage locker with two narrow doors and modest handles, no lettering. One-tile footprint.
+4. Steel shelving unit with three shelves holding two small storage boxes and a few indistinct supplies, no logos or labels. One-tile footprint.
+Row 2:
+5. Small square everyday table, a muted worn brown top and dark metal base, one simple cup. One-tile footprint.
+6. Narrow simple bed, neutral gray frame, olive blanket and light gray pillow, clearly recognizable from overhead, length within one tile. No people.
+7. Plain short two-seat bench made from muted worn wood and steel, no ornate furniture. One-tile footprint.
+8. Small cared-for plant in a square salvaged metal planter, modest desaturated green foliage, evidence that the settlement is inhabited. One-tile footprint.
+
+Constraints: eight correct separate props, same approved original pixel-art family, restrained and coherent, not a ruined dungeon. No neon glow, no dominant red, no fantasy chest, no giant decorative machinery, no additional furniture, no duplicate sprites, no text. Every sprite contained in its cell. Solid object pixels and genuinely transparent outside.

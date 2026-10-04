@@ -1,0 +1,174 @@
+   Compiling miniquad v0.4.11 (C:\Users\User\Desktop\project-RL\artifacts\neon-integration-2026-10-03\baseline-validation\vendor\miniquad)
+   Compiling macroquad v0.4.16
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL\artifacts\neon-integration-2026-10-03\baseline-validation)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 23s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 18 tests
+test ascii_app::equipment_commerce::tests::shops_cover_every_layer_with_white_stock_and_current_tier_gambles ... FAILED
+test ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints ... FAILED
+test ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume ... FAILED
+test ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume ... FAILED
+test ascii_app::equipment_generation::tests::accessory_models_preserve_version_133 ... FAILED
+test ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134 ... FAILED
+test ascii_app::surface_density::tests::version_108_surface_fingerprint ... FAILED
+test ascii_app::equipment_generation::tests::sword_models_preserve_version_131 ... FAILED
+test ascii_app::equipment_generation::tests::firearm_models_preserve_version_129 ... FAILED
+test ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together ... FAILED
+test ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132 ... FAILED
+test ascii_app::equipment_generation::tests::melee_models_preserve_version_130 ... FAILED
+test ascii_app::equipment_generation::tests::improvement_preserves_version_135 ... FAILED
+test ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention ... FAILED
+test ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay ... FAILED
+test ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click ... FAILED
+test ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble ... FAILED
+test ascii_app::tests::suspension_replays_the_complete_run_and_is_consumed_only_once ... FAILED
+
+failures:
+
+---- ascii_app::equipment_commerce::tests::shops_cover_every_layer_with_white_stock_and_current_tier_gambles stdout ----
+
+thread 'ascii_app::equipment_commerce::tests::shops_cover_every_layer_with_white_stock_and_current_tier_gambles' (30620) panicked at src\equipment_commerce_tests.rs:27:9:
+assertion `left == right` failed
+  left: 36
+ right: 19
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints stdout ----
+
+thread 'ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints' (26288) panicked at src\ascii_app.rs:30201:9:
+assertion `left == right` failed
+  left: Some(16042920297450063641)
+ right: Some(15180535885259714919)
+
+---- ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume stdout ----
+
+thread 'ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume' (10988) panicked at src\equipment_generation.rs:568:9:
+assertion `left == right` failed
+  left: 1241121429891134676
+ right: 6198306336801966463
+
+---- ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume stdout ----
+
+thread 'ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume' (31240) panicked at src\equipment_generation.rs:582:9:
+assertion `left == right` failed
+  left: 1241121429891134676
+ right: 6198306336801966463
+
+---- ascii_app::equipment_generation::tests::accessory_models_preserve_version_133 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::accessory_models_preserve_version_133' (29288) panicked at src\equipment_generation.rs:364:9:
+assertion `left == right` failed
+  left: 4513843979887198805
+ right: 4249746003871922540
+
+---- ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134' (27908) panicked at src\equipment_generation.rs:289:9:
+assertion `left == right` failed
+  left: 15690849857549026324
+ right: 4694782463596524963
+
+---- ascii_app::surface_density::tests::version_108_surface_fingerprint stdout ----
+
+thread 'ascii_app::surface_density::tests::version_108_surface_fingerprint' (27864) panicked at src\surface_density.rs:242:9:
+assertion `left == right` failed
+  left: 1241121429891134676
+ right: 6198306336801966463
+
+---- ascii_app::equipment_generation::tests::sword_models_preserve_version_131 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::sword_models_preserve_version_131' (28856) panicked at src\equipment_generation.rs:330:9:
+assertion `left == right` failed
+  left: 3428541422278291175
+ right: 1185258536419116580
+
+---- ascii_app::equipment_generation::tests::firearm_models_preserve_version_129 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::firearm_models_preserve_version_129' (21724) panicked at src\equipment_generation.rs:304:9:
+assertion `left == right` failed
+  left: 12860060328827468259
+ right: 10666186962048973248
+
+---- ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together stdout ----
+
+thread 'ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together' (27560) panicked at src\ascii_app.rs:28732:9:
+assertion `left == right` failed
+  left: 37
+ right: 20
+
+---- ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132' (29784) panicked at src\equipment_generation.rs:347:9:
+assertion `left == right` failed
+  left: 4042197556322011289
+ right: 15135589561427297114
+
+---- ascii_app::equipment_generation::tests::melee_models_preserve_version_130 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::melee_models_preserve_version_130' (30500) panicked at src\equipment_generation.rs:317:9:
+assertion `left == right` failed
+  left: 6029788169939676095
+ right: 7889956807676227788
+
+---- ascii_app::equipment_generation::tests::improvement_preserves_version_135 stdout ----
+
+thread 'ascii_app::equipment_generation::tests::improvement_preserves_version_135' (29920) panicked at src\equipment_generation.rs:262:9:
+assertion `left == right` failed
+  left: 10713624288255435856
+ right: 13250525110189897679
+
+---- ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention stdout ----
+
+thread 'ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention' (22876) panicked at src\ascii_app.rs:25833:9:
+Rejected(NoItemToPickUp)
+
+---- ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay stdout ----
+
+thread 'ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay' (30436) panicked at src\ascii_app.rs:29721:14:
+called `Result::unwrap()` on an `Err` value: "Trajet de contrôle introuvable"
+
+---- ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click stdout ----
+
+thread 'ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click' (25144) panicked at src\ux_tests.rs:6:5:
+assertion `left == right` failed
+  left: Some("PARLER À ELIAS DANS LA VILLE INTÉRIEURE")
+ right: Some("Rejoindre le secteur habité.")
+
+---- ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble stdout ----
+
+thread 'ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble' (24140) panicked at src\ascii_app.rs:25833:9:
+Rejected(MerchantOfferUnavailable)
+
+---- ascii_app::tests::suspension_replays_the_complete_run_and_is_consumed_only_once stdout ----
+[SUSPENSION] Resume failed: Les tables de butin ont changé ; suspension conservée.
+
+thread 'ascii_app::tests::suspension_replays_the_complete_run_and_is_consumed_only_once' (28584) panicked at src\ascii_app.rs:27924:9:
+assertion `left == right` failed: Reprise impossible : la sauvegarde ne peut pas être chargée. Elle a été conservée intacte.
+  left: Main
+ right: Hidden
+
+
+failures:
+    ascii_app::equipment_commerce::tests::shops_cover_every_layer_with_white_stock_and_current_tier_gambles
+    ascii_app::equipment_generation::tests::accessory_models_preserve_version_133
+    ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134
+    ascii_app::equipment_generation::tests::firearm_models_preserve_version_129
+    ascii_app::equipment_generation::tests::improvement_preserves_version_135
+    ascii_app::equipment_generation::tests::melee_models_preserve_version_130
+    ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132
+    ascii_app::equipment_generation::tests::sword_models_preserve_version_131
+    ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume
+    ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume
+    ascii_app::surface_density::tests::version_108_surface_fingerprint
+    ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together
+    ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay
+    ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention
+    ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints
+    ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble
+    ascii_app::tests::suspension_replays_the_complete_run_and_is_consumed_only_once
+    ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click
+
+test result: FAILED. 0 passed; 18 failed; 0 ignored; 0 measured; 568 filtered out; finished in 20.46s
+
+error: test failed, to rerun pass `--bin project-rl`

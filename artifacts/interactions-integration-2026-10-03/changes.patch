@@ -1,0 +1,2852 @@
+diff --git "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\ascii_app.rs" "b/src\\ascii_app.rs"
+index ca079cc..1d98813 100644
+--- "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\ascii_app.rs"
++++ "b/src\\ascii_app.rs"
+@@ -262,7 +262,8 @@ const CITY_DECOR_GENERATION_VERSION: u8 = RANDOM_HOME_GENERATION_VERSION + 1;
+ const CITY_LIFE_AND_LOOT_GENERATION_VERSION: u8 = CITY_DECOR_GENERATION_VERSION + 1;
+ const MONSTER_REWARDS_GENERATION_VERSION: u8 = CITY_LIFE_AND_LOOT_GENERATION_VERSION + 1;
+ const IRREVERSIBLE_LAYERS_GENERATION_VERSION: u8 = MONSTER_REWARDS_GENERATION_VERSION + 1;
+-const CURRENT_GENERATION_VERSION: u8 = IRREVERSIBLE_LAYERS_GENERATION_VERSION;
++const INSTALLATION_INTERACTIONS_GENERATION_VERSION: u8 = IRREVERSIBLE_LAYERS_GENERATION_VERSION + 1;
++const CURRENT_GENERATION_VERSION: u8 = INSTALLATION_INTERACTIONS_GENERATION_VERSION;
+ #[path = "bestiary_batch_app.rs"]
+ mod bestiary_batch;
+ #[path = "cave_anemone_app.rs"]
+@@ -306,6 +307,8 @@ mod hub_layout_app;
+ #[cfg(test)]
+ #[path = "hub_layout_tests.rs"]
+ mod hub_layout_tests;
++#[path = "installation_interactions_app.rs"]
++mod installation_interactions_app;
+ #[cfg(test)]
+ #[path = "layer_balance_app.rs"]
+ mod layer_balance_tests;
+@@ -1472,6 +1475,7 @@ pub struct AsciiApp {
+     report_scroll: usize,
+     quest_journal_open: bool,
+     quest_journal_selection: usize,
++    installation_menu: Option<installation_interactions_app::InstallationMenu>,
+     npc_interaction: Option<EntityId>,
+     npc_dialogue_services: bool,
+     npc_interaction_message: String,
+@@ -1794,6 +1798,7 @@ impl AsciiApp {
+         self.terminal.title = "Éclairage local · atelier".to_owned();
+         self.game = WorldState::single(game);
+         self.player_art_facing = ModuleFacing::Up;
++        self.installation_menu = None;
+         self.npc_interaction = None;
+         self.selected_target = None;
+         self.npc_vision_overlay_open = false;
+@@ -1862,6 +1867,7 @@ impl AsciiApp {
+         self.game = WorldState::single(game);
+         self.actor_glyphs = glyphs;
+         self.player_art_facing = facing;
++        self.installation_menu = None;
+         self.npc_interaction = None;
+         self.npc_vision_overlay_open = false;
+         Ok(())
+@@ -1941,6 +1947,7 @@ impl AsciiApp {
+         self.actor_glyphs.insert(hostile, 'd');
+         self.actor_glyphs.insert(merchant, 'm');
+         self.actor_glyphs.insert(resident, 'i');
++        self.installation_menu = None;
+         self.npc_interaction = None;
+         self.npc_vision_overlay_open = true;
+         Ok(())
+@@ -2361,6 +2368,7 @@ impl AsciiApp {
+         self.game = world;
+         self.actor_glyphs.clear();
+         self.facing = Direction::East;
++        self.installation_menu = None;
+         self.npc_interaction = None;
+         self.npc_interaction_message.clear();
+         Ok(())
+@@ -2492,6 +2500,7 @@ impl AsciiApp {
+             .observe(self.game.map(), self.game.player_visibility());
+         self.actor_glyphs.clear();
+         self.facing = Direction::North;
++        self.installation_menu = None;
+         self.npc_interaction = None;
+         self.npc_interaction_message.clear();
+         Ok(())
+@@ -2628,6 +2637,7 @@ impl AsciiApp {
+         self.inventory_open = true;
+         self.inventory_message =
+             "Le droit de prise est acquis ; le lot conserve son attribution.".to_owned();
++        self.installation_menu = None;
+         self.npc_interaction = None;
+         self.npc_interaction_message.clear();
+         Ok(())
+@@ -2835,6 +2845,7 @@ impl AsciiApp {
+         self.actor_glyphs.clear();
+         self.facing = Direction::East;
+         self.inventory_open = false;
++        self.installation_menu = None;
+         self.npc_interaction = None;
+         self.npc_interaction_message.clear();
+         self.capture_events_at(Some(replay_time));
+@@ -2918,6 +2929,7 @@ impl AsciiApp {
+         self.game = world;
+         self.actor_glyphs.clear();
+         self.facing = Direction::North;
++        self.installation_menu = None;
+         self.npc_interaction = None;
+         self.npc_interaction_message.clear();
+         Ok(())
+@@ -6144,7 +6156,8 @@ impl AsciiApp {
+         if self.menu != MenuScreen::Hidden {
+             return Some(MenuNavigationContext::Screen(self.menu));
+         }
+-        if self.world_context.is_some()
++        if self.installation_menu.is_some()
++            || self.world_context.is_some()
+             || self.context_menu.is_some()
+             || self.world_cursor.is_some()
+         {
+@@ -6228,6 +6241,7 @@ impl AsciiApp {
+             || self.technique_menu_open
+             || self.report_open
+             || self.quest_journal_open
++            || self.installation_menu.is_some()
+             || self.npc_interaction.is_some()
+             || self.context_menu.is_some()
+             || self.attack_aim.is_some()
+@@ -6275,6 +6289,8 @@ impl AsciiApp {
+                 self.report_open = false;
+             } else if self.quest_journal_open {
+                 self.quest_journal_open = false;
++            } else if self.installation_menu.take().is_some() {
++                // Opening and closing an installation menu costs no turn.
+             } else if self.npc_interaction.is_some() && self.upgrade_confirmation.take().is_some() {
+                 // Escape cancels the pending reroll before closing the conversation.
+             } else if self.npc_interaction.take().is_some() {
+@@ -6341,6 +6357,10 @@ impl AsciiApp {
+             self.update_quest_journal(input);
+             return;
+         }
++        if self.installation_menu.is_some() {
++            self.update_installation_menu(input);
++            return;
++        }
+         if self.npc_interaction.is_some() {
+             self.update_npc_interaction(input);
+             return;
+@@ -6914,6 +6934,7 @@ impl AsciiApp {
+             && !self.report_open
+             && !self.quest_journal_open
+             && self.npc_interaction.is_none()
++            && self.installation_menu.is_none()
+             && self.context_menu.is_none()
+             && self.component_selection.is_none()
+             && self.character_creation.is_none()
+@@ -6964,6 +6985,7 @@ impl AsciiApp {
+         if self.npc_interaction.is_some() {
+             self.draw_npc_interaction();
+         }
++        self.draw_installation_menu();
+         if self.menu == MenuScreen::Controls {
+             self.draw_options();
+         } else if self.menu != MenuScreen::Hidden {
+@@ -7004,6 +7026,7 @@ impl AsciiApp {
+         self.report_open = false;
+         self.legend_open = false;
+         self.close_technique_menu();
++        self.installation_menu = None;
+         self.npc_interaction = None;
+         self.npc_interaction_message.clear();
+         self.quest_journal_open = true;
+@@ -7340,6 +7363,7 @@ impl AsciiApp {
+             return;
+         };
+         let Some(interaction) = self.game.npc_interaction(provider) else {
++            self.installation_menu = None;
+             self.npc_interaction = None;
+             self.npc_interaction_message.clear();
+             self.push_log(
+@@ -7578,6 +7602,7 @@ impl AsciiApp {
+                 .or_else(|| close_hovered.then_some(1))
+                 .or_else(|| mode_hovered.then_some(2));
+             if self.controls.pressed(Action::Interact, input) || clicked && close_hovered {
++                self.installation_menu = None;
+                 self.npc_interaction = None;
+                 self.npc_interaction_message.clear();
+                 return;
+@@ -7708,6 +7733,7 @@ impl AsciiApp {
+             .or_else(|| close_hovered.then_some(1))
+             .or_else(|| mode_hovered.then_some(2));
+         if self.controls.pressed(Action::Interact, input) || clicked && close_hovered {
++            self.installation_menu = None;
+             self.npc_interaction = None;
+             self.npc_interaction_message.clear();
+             return;
+@@ -7827,6 +7853,7 @@ impl AsciiApp {
+                 };
+                 self.capture_events();
+                 if self.game.npc_interaction(provider).is_none() {
++                    self.installation_menu = None;
+                     self.npc_interaction = None;
+                 }
+             }
+@@ -9207,6 +9234,9 @@ impl AsciiApp {
+     }
+ 
+     fn interaction_command_at(&mut self, target: GridPos) -> Option<GameCommand> {
++        if self.open_installation_menu(target) {
++            return None;
++        }
+         if let Some(provider) = self.game.actors().entity_at(target)
+             && self.game.npc_interaction(provider).is_some()
+         {
+@@ -9767,6 +9797,9 @@ impl AsciiApp {
+             app.populate_starter_encounters()?;
+         }
+         app.ensure_local_artisan()?;
++        if version >= INSTALLATION_INTERACTIONS_GENERATION_VERSION {
++            app.enable_installation_interactions()?;
++        }
+         if version >= RANDOM_HOME_GENERATION_VERSION {
+             // Construction is complete before the initial recovery checkpoint.
+             // Spawn notifications are not unresolved player actions.
+@@ -9984,6 +10017,9 @@ impl AsciiApp {
+                 }
+             }
+         }
++        if self.generation_version >= INSTALLATION_INTERACTIONS_GENERATION_VERSION {
++            self.add_city_installation_intel(&mut facility.blueprint);
++        }
+         for worker in &facility.blueprint.workers {
+             let mut actor = Actor::new(worker.actor_position, worker.maximum_integrity)
+                 .map_err(|error| error.to_string())?
+@@ -10175,6 +10211,22 @@ impl AsciiApp {
+                     .contains(&InstallationCapability::Storage)
+                 {
+                     crate::test_sector::Decor::Depot
++                } else if installation.capabilities().iter().any(|capability| {
++                    matches!(
++                        capability,
++                        InstallationCapability::PowerControl { .. }
++                            | InstallationCapability::DiversionPost { .. }
++                    )
++                }) {
++                    crate::test_sector::Decor::ControlReady
++                } else if installation.capabilities().iter().any(|capability| {
++                    matches!(capability, InstallationCapability::SwitchableRelay { .. })
++                }) {
++                    if operational {
++                        crate::test_sector::Decor::RelayOnline
++                    } else {
++                        crate::test_sector::Decor::RelayOffline
++                    }
+                 } else if installation
+                     .capabilities()
+                     .contains(&InstallationCapability::PowerRelay)
+@@ -10194,7 +10246,11 @@ impl AsciiApp {
+                         crate::test_sector::Decor::SensorOffline
+                     }
+                 } else if installation.capabilities().iter().any(|capability| {
+-                    matches!(capability, InstallationCapability::DataTerminal { .. })
++                    matches!(
++                        capability,
++                        InstallationCapability::DataTerminal { .. }
++                            | InstallationCapability::IntelTerminal { .. }
++                    )
+                 }) {
+                     if operational {
+                         if facility.data_terminal_was_updated(id) {
+@@ -10614,6 +10670,7 @@ impl AsciiApp {
+             report_scroll: 0,
+             quest_journal_open: false,
+             quest_journal_selection: 0,
++            installation_menu: None,
+             npc_interaction: None,
+             npc_dialogue_services: false,
+             npc_interaction_message: String::new(),
+@@ -10936,6 +10993,9 @@ impl AsciiApp {
+         {
+             return Some(self.equipment_name(stack.item(), stack.magic_modifiers()));
+         }
++        if let Some(name) = self.installation_name_at(position) {
++            return Some(name.to_owned());
++        }
+         let entity = self.game.actors().entity_at(position)?;
+         if self
+             .game
+@@ -15082,7 +15142,7 @@ impl AsciiApp {
+             );
+             let badge_rows = self.effect_badges_at(message.at).len().div_ceil(4) as f32;
+             let baseline = (cell.y
+-                - badge_rows * 15.0
++                - badge_rows * 20.0
+                 - 13.0 * scale
+                 - f32::from(message.lane) * 21.0 * scale
+                 - rise)
+@@ -23044,6 +23104,9 @@ const fn prototype_enemy_base_armor(index: usize, generation_version: u8) -> u16
+ 
+ fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules {
+     rules.irreversible_layer_travel = version >= IRREVERSIBLE_LAYERS_GENERATION_VERSION;
++    if let Some(stealth) = &mut rules.stealth_rules {
++        stealth.circular_sound_fields = version >= INSTALLATION_INTERACTIONS_GENERATION_VERSION;
++    }
+     if version < MONSTER_REWARDS_GENERATION_VERSION {
+         rules.monster_equipment_loot = None;
+     }
+@@ -24879,96 +24942,42 @@ const fn companion_button_tone(linked: bool) -> ButtonTone {
+ fn draw_companion_behavior_icon(rect: Rect, behavior: CompanionBehavior, color: Color) {
+     let center_x = rect.x + rect.w * 0.5;
+     let center_y = rect.y + rect.h * 0.5 - 1.0;
++    let scale = (rect.w.min(rect.h) * 0.04).min(1.25);
++    let point = |x: f32, y: f32| vec2(center_x + x * scale, center_y + y * scale);
++    let stroke = |from: (f32, f32), to: (f32, f32), width: f32| {
++        let from = point(from.0, from.1);
++        let to = point(to.0, to.1);
++        draw_line(from.x, from.y, to.x, to.y, width * scale, color);
++    };
+     match behavior {
+         CompanionBehavior::Follow => {
+-            draw_line(
+-                center_x - 9.0,
+-                center_y,
+-                center_x + 6.0,
+-                center_y,
+-                2.0,
+-                color,
+-            );
+-            draw_triangle(
+-                vec2(center_x + 9.0, center_y),
+-                vec2(center_x + 3.0, center_y - 5.0),
+-                vec2(center_x + 3.0, center_y + 5.0),
+-                color,
+-            );
++            stroke((-9.0, 0.0), (6.0, 0.0), 2.0);
++            draw_triangle(point(9.0, 0.0), point(3.0, -5.0), point(3.0, 5.0), color);
+         }
+         CompanionBehavior::Defensive => {
+             let points = [
+-                (center_x, center_y - 9.0),
+-                (center_x + 7.0, center_y - 5.0),
+-                (center_x + 5.0, center_y + 5.0),
+-                (center_x, center_y + 9.0),
+-                (center_x - 5.0, center_y + 5.0),
+-                (center_x - 7.0, center_y - 5.0),
++                (0.0, -9.0),
++                (7.0, -5.0),
++                (5.0, 5.0),
++                (0.0, 9.0),
++                (-5.0, 5.0),
++                (-7.0, -5.0),
+             ];
+             for edge in points.windows(2) {
+-                draw_line(edge[0].0, edge[0].1, edge[1].0, edge[1].1, 2.0, color);
++                stroke(edge[0], edge[1], 2.0);
+             }
+-            draw_line(
+-                points[5].0,
+-                points[5].1,
+-                points[0].0,
+-                points[0].1,
+-                2.0,
+-                color,
+-            );
++            stroke(points[5], points[0], 2.0);
+         }
+         CompanionBehavior::Aggressive => {
+-            draw_circle_lines(center_x, center_y, 6.0, 2.0, color);
+-            draw_line(
+-                center_x - 10.0,
+-                center_y,
+-                center_x - 4.0,
+-                center_y,
+-                2.0,
+-                color,
+-            );
+-            draw_line(
+-                center_x + 4.0,
+-                center_y,
+-                center_x + 10.0,
+-                center_y,
+-                2.0,
+-                color,
+-            );
+-            draw_line(
+-                center_x,
+-                center_y - 10.0,
+-                center_x,
+-                center_y - 4.0,
+-                2.0,
+-                color,
+-            );
+-            draw_line(
+-                center_x,
+-                center_y + 4.0,
+-                center_x,
+-                center_y + 10.0,
+-                2.0,
+-                color,
+-            );
++            draw_circle_lines(center_x, center_y, 6.0 * scale, 2.0 * scale, color);
++            stroke((-10.0, 0.0), (-4.0, 0.0), 2.0);
++            stroke((4.0, 0.0), (10.0, 0.0), 2.0);
++            stroke((0.0, -10.0), (0.0, -4.0), 2.0);
++            stroke((0.0, 4.0), (0.0, 10.0), 2.0);
+         }
+         CompanionBehavior::Passive => {
+-            draw_line(
+-                center_x - 4.0,
+-                center_y - 8.0,
+-                center_x - 4.0,
+-                center_y + 8.0,
+-                3.0,
+-                color,
+-            );
+-            draw_line(
+-                center_x + 4.0,
+-                center_y - 8.0,
+-                center_x + 4.0,
+-                center_y + 8.0,
+-                3.0,
+-                color,
+-            );
++            stroke((-4.0, -8.0), (-4.0, 8.0), 3.0);
++            stroke((4.0, -8.0), (4.0, 8.0), 3.0);
+         }
+     }
+ }
+diff --git "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\main.rs" "b/src\\main.rs"
+index 58d4df9..c62565b 100644
+--- "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\main.rs"
++++ "b/src\\main.rs"
+@@ -42,7 +42,9 @@ async fn main() {
+     #[cfg(debug_assertions)]
+     if let Some(output) = graphics::ui_smoke_output() {
+         let mode = std::env::args().nth(1).unwrap_or_default();
+-        let result = if mode == "--ui-cold-performance-actions" {
++        let result = if mode == "--ui-cold-installations" {
++            AsciiApp::capture_installation_interactions(&output).await
++        } else if mode == "--ui-cold-performance-actions" {
+             AsciiApp::capture_action_performance(&output)
+         } else if mode == "--ui-cold-performance-turns" {
+             AsciiApp::capture_turn_performance(&output)
+@@ -65,7 +67,10 @@ async fn main() {
+         return;
+     }
+     let trial = std::env::args().any(|arg| arg == "--essai-expedition");
+-    let mut app = match if trial {
++    let installation_trial = std::env::args().any(|arg| arg == "--essai-interactions");
++    let mut app = match if installation_trial {
++        AsciiApp::new_installation_trial()
++    } else if trial {
+         AsciiApp::new_playable_trial()
+     } else {
+         AsciiApp::new()
+diff --git "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\stealth.rs" "b/src\\stealth.rs"
+index 5de3747..43b1142 100644
+--- "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\stealth.rs"
++++ "b/src\\stealth.rs"
+@@ -21,7 +21,7 @@ pub enum SignatureChannel {
+ ///
+ /// Geometry and sensor range are checked before this calculation. The result
+ /// therefore cannot reveal through a wall or manufacture a sensor channel.
+-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
++#[derive(Clone, Copy, PartialEq, Eq)]
+ pub struct StealthRules {
+     pub base_detection: i16,
+     pub perception_points_per_attribute: i16,
+@@ -32,6 +32,43 @@ pub struct StealthRules {
+     pub partial_cover_occultation: i16,
+     pub sound_attenuation_per_cell: u16,
+     pub sound_wall_attenuation_multiplier: u16,
++    pub circular_sound_fields: bool,
++}
++
++// Preserve historical rules fingerprints while the new generation flag is off.
++impl std::fmt::Debug for StealthRules {
++    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
++        let mut value = formatter.debug_struct("StealthRules");
++        value
++            .field("base_detection", &self.base_detection)
++            .field(
++                "perception_points_per_attribute",
++                &self.perception_points_per_attribute,
++            )
++            .field(
++                "base_concealment_difficulty",
++                &self.base_concealment_difficulty,
++            )
++            .field(
++                "coordination_points_per_attribute",
++                &self.coordination_points_per_attribute,
++            )
++            .field("distance_penalty_start", &self.distance_penalty_start)
++            .field("distance_penalty_per_cell", &self.distance_penalty_per_cell)
++            .field("partial_cover_occultation", &self.partial_cover_occultation)
++            .field(
++                "sound_attenuation_per_cell",
++                &self.sound_attenuation_per_cell,
++            )
++            .field(
++                "sound_wall_attenuation_multiplier",
++                &self.sound_wall_attenuation_multiplier,
++            );
++        if self.circular_sound_fields {
++            value.field("circular_sound_fields", &true);
++        }
++        value.finish()
++    }
+ }
+ 
+ impl StealthRules {
+@@ -114,6 +151,13 @@ impl StealthRules {
+             .saturating_sub(1)
+             .checked_div(self.sound_attenuation_per_cell)
+             .unwrap_or(0);
++        if self.circular_sound_fields {
++            let dx = i128::from(origin.x) - i128::from(listener.x);
++            let dy = i128::from(origin.y) - i128::from(listener.y);
++            if dx * dx + dy * dy > i128::from(maximum_cost).pow(2) {
++                return false;
++            }
++        }
+         propagate(
+             map,
+             PropagationRequest {
+@@ -145,6 +189,7 @@ impl Default for StealthRules {
+             partial_cover_occultation: 15,
+             sound_attenuation_per_cell: 5,
+             sound_wall_attenuation_multiplier: 3,
++            circular_sound_fields: false,
+         }
+     }
+ }
+@@ -387,3 +432,40 @@ mod tests {
+         assert!(emitters.is_empty());
+     }
+ }
++
++#[cfg(test)]
++mod circular_field_tests {
++    use super::*;
++    #[test]
++    fn circular_sound_uses_the_same_radius_in_every_direction_and_obeys_walls() {
++        let open = Map::from_ascii("###########\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n#.........#\n###########").unwrap();
++        let source = GridPos::new(5, 5);
++        let rules = StealthRules {
++            circular_sound_fields: true,
++            ..StealthRules::default()
++        };
++        for at in [
++            GridPos::new(1, 5),
++            GridPos::new(9, 5),
++            GridPos::new(5, 1),
++            GridPos::new(5, 9),
++            GridPos::new(8, 7),
++        ] {
++            assert!(rules.sound_reaches_on_map(&open, 25, source, at));
++        }
++        assert!(!rules.sound_reaches_on_map(&open, 25, source, GridPos::new(9, 9)));
++        assert!(StealthRules::default().sound_reaches_on_map(
++            &open,
++            25,
++            source,
++            GridPos::new(9, 9)
++        ));
++        let mut blocked = open.clone();
++        for y in 1..10 {
++            blocked
++                .set_terrain(GridPos::new(7, y), crate::world::Terrain::Wall)
++                .unwrap();
++        }
++        assert!(!rules.sound_reaches_on_map(&blocked, 25, source, GridPos::new(9, 5)));
++    }
++}
+diff --git "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\suspension.rs" "b/src\\suspension.rs"
+index 374a5f0..16ea4b9 100644
+--- "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\suspension.rs"
++++ "b/src\\suspension.rs"
+@@ -20,7 +20,7 @@ use std::{
+ };
+ 
+ pub const MAX_COMMANDS: usize = 50_000;
+-pub const MAX_GENERATION_VERSION: u8 = 142;
++pub const MAX_GENERATION_VERSION: u8 = 143;
+ const REPLAY_RECOVERY_SCHEMA: u8 = 1;
+ pub const CURRENT_RECOVERY_SCHEMA: u8 = 2;
+ const CURRENT_CRASH_RECOVERY_SCHEMA: u8 = 1;
+@@ -479,11 +479,21 @@ pub enum RecordedCommand {
+         artisan: u64,
+         item: u64,
+     },
++    Installation {
++        x: i32,
++        y: i32,
++        operation: project_rl::facility::InstallationAction,
++    },
+ }
+ 
+ impl RecordedCommand {
+     pub fn record(command: &GameCommand) -> Self {
+         match command {
++            GameCommand::UseInstallation { target, action } => Self::Installation {
++                x: target.x,
++                y: target.y,
++                operation: action.clone(),
++            },
+             GameCommand::Move(direction) => Self::Move {
+                 direction: match direction {
+                     Direction::North => 0,
+@@ -665,6 +675,10 @@ impl RecordedCommand {
+                 .ok_or_else(|| format!("Carcasse absente du rejeu : {value}"))
+         };
+         Ok(match self {
++            Self::Installation { x, y, operation } => GameCommand::UseInstallation {
++                target: GridPos::new(*x, *y),
++                action: operation.clone(),
++            },
+             Self::Move { direction } => GameCommand::Move(match direction {
+                 0 => Direction::North,
+                 1 => Direction::East,
+diff --git "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\terminal_view.rs" "b/src\\terminal_view.rs"
+index 108811a..88892ef 100644
+--- "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\terminal_view.rs"
++++ "b/src\\terminal_view.rs"
+@@ -1995,7 +1995,7 @@ fn draw_sensor_edge(from_x: f32, from_y: f32, to_x: f32, to_y: f32, color: Color
+ 
+ fn draw_sensor_interaction(cell: Rect, hint: &InteractionHint) {
+     let center = vec2(cell.x + cell.w * 0.5, cell.y + cell.h * 0.5);
+-    let radius = (cell.w * 0.65).clamp(3.5, 5.2);
++    let radius = (cell.w * 0.80).clamp(4.3, 6.5);
+     let color = if hint.is_loot {
+         Color::from_rgba(255, 211, 92, 255)
+     } else if hint.unavailable.is_some() {
+@@ -2003,14 +2003,8 @@ fn draw_sensor_interaction(cell: Rect, hint: &InteractionHint) {
+     } else {
+         Color::from_rgba(121, 231, 218, 255)
+     };
+-    draw_circle(
+-        center.x,
+-        center.y,
+-        radius + 1.2,
+-        Color::from_rgba(2, 8, 12, 255),
+-    );
+     if hint.is_loot {
+-        draw_circle_lines(center.x, center.y, radius, 1.5, color);
++        draw_circle_lines(center.x, center.y, radius, 1.9, color);
+         draw_circle(center.x, center.y, 1.0, color);
+     } else if hint.unavailable.is_some() {
+         draw_line(
+@@ -2018,7 +2012,7 @@ fn draw_sensor_interaction(cell: Rect, hint: &InteractionHint) {
+             center.y - radius,
+             center.x + radius,
+             center.y + radius,
+-            1.5,
++            1.9,
+             color,
+         );
+         draw_line(
+@@ -2026,7 +2020,7 @@ fn draw_sensor_interaction(cell: Rect, hint: &InteractionHint) {
+             center.y - radius,
+             center.x - radius,
+             center.y + radius,
+-            1.5,
++            1.9,
+             color,
+         );
+     } else {
+@@ -2035,7 +2029,7 @@ fn draw_sensor_interaction(cell: Rect, hint: &InteractionHint) {
+             center.y,
+             center.x + radius,
+             center.y,
+-            1.5,
++            1.9,
+             color,
+         );
+         draw_line(
+@@ -2043,7 +2037,7 @@ fn draw_sensor_interaction(cell: Rect, hint: &InteractionHint) {
+             center.y - radius,
+             center.x,
+             center.y + radius,
+-            1.5,
++            1.9,
+             color,
+         );
+     }
+@@ -2056,12 +2050,12 @@ fn draw_sensor_quest_marker(cell: Rect, marker: project_rl::game::QuestMarker) {
+         project_rl::game::QuestMarker::InProgress => "…",
+         project_rl::game::QuestMarker::Objective => "*",
+     };
+-    let size = (cell.w * 1.5).round().clamp(11.0, 14.0) as u16;
++    let size = (cell.w * 1.8).round().clamp(13.0, 17.0) as u16;
+     let rect = Rect::new(
+-        cell.x + cell.w * 0.5 - 7.0,
+-        cell.y + cell.h * 0.5 - 7.0,
+-        14.0,
+-        14.0,
++        cell.x + cell.w * 0.5 - 9.0,
++        cell.y + cell.h * 0.5 - 9.0,
++        18.0,
++        18.0,
+     );
+     let shadow = Rect::new(rect.x + 1.0, rect.y + 1.0, rect.w, rect.h);
+     draw_ui_text_bold_centered(symbol, shadow, size, Color::from_rgba(2, 8, 12, 255));
+@@ -2070,7 +2064,7 @@ fn draw_sensor_quest_marker(cell: Rect, marker: project_rl::game::QuestMarker) {
+ 
+ fn draw_sensor_contact(cell: Rect, contact: SensorContact) {
+     let center = vec2(cell.x + cell.w * 0.5, cell.y + cell.h * 0.5);
+-    let radius = (cell.w * 0.65).clamp(2.7, 5.0);
++    let radius = (cell.w * 0.80).clamp(3.4, 6.2);
+     let color = match contact.kind {
+         SensorContactKind::Hostile => Color::from_rgba(255, 134, 105, 255),
+         SensorContactKind::Service => Color::from_rgba(112, 222, 212, 255),
+@@ -2165,7 +2159,7 @@ fn draw_sensor_contact(cell: Rect, contact: SensorContact) {
+ 
+ fn draw_sensor_player(cell: Rect) {
+     let center = vec2(cell.x + cell.w * 0.5, cell.y + cell.h * 0.5);
+-    let radius = (cell.w * 0.72).clamp(4.0, 5.8);
++    let radius = (cell.w * 0.88).clamp(5.0, 7.2);
+     let color = Color::from_rgba(109, 243, 218, 255);
+     draw_triangle(
+         vec2(center.x, center.y - radius),
+@@ -4000,7 +3994,7 @@ fn draw_interaction_tooltip(anchor: Rect, map: Rect, title: &str, action: &str)
+ fn draw_effect_badges(rect: Rect, badges: &[TerminalEffectBadge]) {
+     // Four per row; more rows never discard an effect or impose a gameplay cap.
+     let columns = badges.len().min(4).max(1);
+-    let size = (rect.w / columns as f32).clamp(8.0, 13.0);
++    let size = (rect.w / columns as f32).clamp(12.0, 18.0);
+     for (index, icon) in badges.iter().enumerate() {
+         let badge = Rect::new(
+             rect.center().x - columns as f32 * size * 0.5 + (index % 4) as f32 * size,
+@@ -4008,13 +4002,6 @@ fn draw_effect_badges(rect: Rect, badges: &[TerminalEffectBadge]) {
+             size,
+             size,
+         );
+-        draw_rectangle(
+-            badge.x,
+-            badge.y,
+-            badge.w,
+-            badge.h,
+-            Color::from_rgba(3, 12, 17, 240),
+-        );
+         let (pattern, color) = match icon {
+             TerminalEffectBadge::Grenade { turns } => {
+                 draw_text(
+@@ -4080,10 +4067,10 @@ fn draw_effect_badges(rect: Rect, badges: &[TerminalEffectBadge]) {
+ 
+ fn quest_badge_rect(rect: Rect, rise: f32, occupied_above: bool) -> Rect {
+     if occupied_above {
+-        let size = (rect.w * 0.43).clamp(9.0, 12.0);
++        let size = (rect.w * 0.55).clamp(12.0, 16.0);
+         Rect::new(rect.x + rect.w - size - 1.0, rect.y + 1.0, size, size)
+     } else {
+-        let size = (rect.w * 0.70).clamp(20.0, 24.0);
++        let size = (rect.w * 0.85).clamp(24.0, 30.0);
+         Rect::new(
+             rect.x + (rect.w - size) * 0.5,
+             rect.y - size * 0.65 - rise,
+@@ -4103,9 +4090,9 @@ fn draw_quest_badge(rect: Rect, icon: TerminalStatusIcon, rise: f32, occupied_ab
+         _ => unreachable!(),
+     };
+     let size = if occupied_above {
+-        (badge.h * 0.95).round().clamp(9.0, 11.0) as u16
++        (badge.h * 0.95).round().clamp(12.0, 15.0) as u16
+     } else {
+-        (badge.h * 1.1).round().clamp(18.0, 23.0) as u16
++        (badge.h * 1.1).round().clamp(22.0, 28.0) as u16
+     };
+     let shadow = Rect::new(badge.x + 1.0, badge.y + 1.0, badge.w, badge.h);
+     draw_ui_text_bold_centered(marker, shadow, size, Color::from_rgba(2, 8, 12, 255));
+@@ -4117,7 +4104,7 @@ fn draw_status_icon(rect: Rect, icon: TerminalStatusIcon) {
+         draw_quest_badge(rect, icon, 0.0, false);
+         return;
+     }
+-    let badge_size = (rect.w * 0.43).clamp(11.0, 15.0);
++    let badge_size = (rect.w * 0.60).clamp(16.0, 22.0);
+     let badge = Rect::new(
+         rect.x + rect.w - badge_size + 1.0,
+         rect.y + rect.h - badge_size + 1.0,
+@@ -4181,21 +4168,6 @@ fn draw_status_icon(rect: Rect, icon: TerminalStatusIcon) {
+         }
+         return;
+     }
+-    draw_rectangle(
+-        badge.x,
+-        badge.y,
+-        badge.w,
+-        badge.h,
+-        Color::from_rgba(7, 15, 21, 245),
+-    );
+-    draw_rectangle_lines(
+-        badge.x,
+-        badge.y,
+-        badge.w,
+-        badge.h,
+-        1.0,
+-        Color::from_rgba(255, 218, 135, 255),
+-    );
+     match icon {
+         TerminalStatusIcon::Burning => draw_pixel_glyph_palette(
+             badge,
+@@ -4233,28 +4205,18 @@ fn draw_alert_marker(rect: Rect) {
+         2.0,
+         Color::from_rgba(255, 222, 145, 255),
+     );
+-    let badge_size = (rect.w * 0.55).clamp(12.0, 18.0);
+-    draw_rectangle(
+-        rect.x + rect.w - badge_size + 2.0,
+-        rect.y - 3.0,
+-        badge_size,
+-        badge_size,
+-        Color::from_rgba(171, 48, 17, 255),
+-    );
+-    draw_rectangle_lines(
+-        rect.x + rect.w - badge_size + 2.0,
+-        rect.y - 3.0,
++    let badge_size = (rect.w * 0.75).clamp(20.0, 28.0);
++    let badge = Rect::new(
++        rect.right() - badge_size * 0.3,
++        rect.y - badge_size * 0.7,
+         badge_size,
+         badge_size,
+-        2.0,
+-        Color::from_rgba(255, 226, 151, 255),
+     );
+-    draw_text(
++    draw_ui_text_bold_centered(
+         "!",
+-        rect.x + rect.w - badge_size + 5.0,
+-        rect.y + badge_size - 5.0,
+-        badge_size + 2.0,
+-        WHITE,
++        badge,
++        badge_size as u16,
++        Color::from_rgba(255, 83, 67, 255),
+     );
+ }
+ 
+diff --git "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\ui_theme.rs" "b/src\\ui_theme.rs"
+index a8352ce..bd93239 100644
+--- "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\ui_theme.rs"
++++ "b/src\\ui_theme.rs"
+@@ -875,8 +875,8 @@ pub fn draw_ui_icon(icon: UiIcon, rect: Rect, color: Color) {
+     let size = rect.w.min(rect.h);
+     let cx = rect.x + rect.w * 0.5;
+     let cy = rect.y + rect.h * 0.5;
+-    let radius = size * 0.34;
+-    let line = (size * 0.095).clamp(1.2, 2.2);
++    let radius = size * 0.44;
++    let line = (size * 0.11).clamp(1.6, 3.0);
+     let left = cx - radius;
+     let right = cx + radius;
+     let top = cy - radius;
+diff --git "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\facility\\mod.rs" "b/src\\facility\\mod.rs"
+index d9dc8e2..81daabb 100644
+--- "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\facility\\mod.rs"
++++ "b/src\\facility\\mod.rs"
+@@ -26,6 +26,9 @@ use crate::world::{
+ pub type InstallationId = ContentId;
+ pub type WorkOrderId = ContentId;
+ 
++mod interactions;
++pub use interactions::{InstallationAction, InstallationIntel};
++
+ pub const MAX_INSTALLATIONS: usize = 256;
+ pub const MAX_WORKERS: usize = 128;
+ pub const MAX_WORK_ORDERS: usize = 256;
+@@ -56,6 +59,23 @@ pub enum InstallationCapability {
+         record: ContentId,
+     },
+     Storage,
++    // Append-only: existing binary snapshot discriminants stay unchanged.
++    IntelTerminal {
++        records: Vec<InstallationIntel>,
++    },
++    PowerControl {
++        relay: InstallationId,
++    },
++    SwitchableRelay {
++        door: GridPos,
++        powered: bool,
++    },
++    DiversionPost {
++        outlet: GridPos,
++        charges: u8,
++        intensity: u16,
++        duration: u16,
++    },
+ }
+ 
+ #[derive(Clone, Debug, PartialEq, Eq)]
+@@ -818,6 +838,7 @@ impl FacilityState {
+             ));
+         }
+         validate_dependencies(&installations)?;
++        interactions::validate_interactive_installations(&installations)?;
+ 
+         for installation in installations.values() {
+             if installation.security_alarm_profile.is_some()
+@@ -1004,7 +1025,22 @@ impl FacilityState {
+                 return Err(FacilityBuildError::InvalidInstallation(installation.id));
+             }
+             for capability in &installation.capabilities {
+-                if let InstallationCapability::DoorActuator { door } = capability
++                if let InstallationCapability::DiversionPost { outlet, .. } = capability
++                    && (!map.is_walkable(*outlet)
++                        || (*outlet != installation.position
++                            && !installation.position.cardinal_neighbors().contains(outlet)))
++                {
++                    return Err(FacilityBuildError::InvalidInstallation(installation.id));
++                }
++                if let InstallationCapability::IntelTerminal { records } = capability
++                    && records
++                        .iter()
++                        .any(|record| record.target.is_some_and(|target| !map.contains(target)))
++                {
++                    return Err(FacilityBuildError::InvalidInstallation(installation.id));
++                }
++                if let InstallationCapability::DoorActuator { door }
++                | InstallationCapability::SwitchableRelay { door, .. } = capability
+                     && !matches!(
+                         map.tile(*door).map(|tile| tile.terrain),
+                         Some(Terrain::Door(_))
+@@ -1127,6 +1163,9 @@ impl FacilityState {
+         facility
+             .synchronize_outputs(map)
+             .map_err(|_| FacilityBuildError::OutputInitializationFailed)?;
++        facility
++            .synchronize_interactive_outputs(map, actors, None)
++            .map_err(|_| FacilityBuildError::OutputInitializationFailed)?;
+         for (source, profile) in property_reports {
+             actors
+                 .get_mut(source)
+@@ -1588,7 +1627,9 @@ impl FacilityState {
+     }
+ 
+     pub fn is_player_interactive_at(&self, position: GridPos) -> bool {
+-        self.is_depot_at(position) || self.data_terminal_record_at(position).is_some()
++        self.is_depot_at(position)
++            || self.data_terminal_record_at(position).is_some()
++            || self.has_interaction_menu_at(position)
+     }
+ 
+     /// Reads a terminal through the real installation graph. Re-reading is
+@@ -1794,6 +1835,7 @@ impl FacilityState {
+         ground: &mut GroundItemRegistry,
+     ) -> Result<Vec<FacilityEvent>, FacilityRuntimeError> {
+         let mut events = Vec::new();
++        self.synchronize_interactive_outputs(map, actors, Some(ground))?;
+         self.reconcile_missing_workers(map, actors, ground, &mut events)?;
+         self.refresh_available_material();
+ 
+@@ -1896,7 +1938,15 @@ impl FacilityState {
+         let Some(installation) = self.installations.get(id) else {
+             return false;
+         };
+-        if installation.integrity == 0 || !visiting.insert(id.clone()) {
++        if installation.integrity == 0
++            || installation.capabilities.iter().any(|capability| {
++                matches!(
++                    capability,
++                    InstallationCapability::SwitchableRelay { powered: false, .. }
++                )
++            })
++            || !visiting.insert(id.clone())
++        {
+             return false;
+         }
+         let operational = installation
+diff --git "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\game\\command.rs" "b/src\\game\\command.rs"
+index 253ab09..93bf7ee 100644
+--- "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\game\\command.rs"
++++ "b/src\\game\\command.rs"
+@@ -128,6 +128,10 @@ pub enum GameCommand {
+         technique: TechniqueId,
+         directive: ElectronicDirective,
+     },
++    UseInstallation {
++        target: GridPos,
++        action: crate::facility::InstallationAction,
++    },
+ }
+ 
+ impl GameCommand {
+diff --git "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\game\\expedition.rs" "b/src\\game\\expedition.rs"
+index 7281d0a..136a502 100644
+--- "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\game\\expedition.rs"
++++ "b/src\\game\\expedition.rs"
+@@ -46,6 +46,9 @@ const MAX_WORLD_SNAPSHOT_BYTES: usize = 12 * 1024 * 1024;
+ // Binary snapshots are caches; older layouts must use verified command replay.
+ const WORLD_SNAPSHOT_HEADER: &[u8] = b"RLWS\x0b";
+ 
++#[path = "facility_interactions.rs"]
++mod facility_interactions;
++
+ #[path = "equipment_trade.rs"]
+ mod equipment_trade;
+ use equipment_trade::EquipmentTradeRules;
+@@ -2375,6 +2378,38 @@ impl WorldState {
+         at: GridPos,
+         to: ContentId,
+         arrival: GridPos,
++    ) -> Result<(), String> {
++        self.connect_validated(from, at, to, arrival, MapValidationRules::default())
++    }
++
++    /// An optional connection may coexist with sealed rooms elsewhere in the
++    /// source zone. Both anchors must still be reachable and borders sealed.
++    pub fn connect_optional(
++        &mut self,
++        from: ContentId,
++        at: GridPos,
++        to: ContentId,
++        arrival: GridPos,
++    ) -> Result<(), String> {
++        self.connect_validated(
++            from,
++            at,
++            to,
++            arrival,
++            MapValidationRules {
++                require_all_walkable_connected: false,
++                ..MapValidationRules::default()
++            },
++        )
++    }
++
++    fn connect_validated(
++        &mut self,
++        from: ContentId,
++        at: GridPos,
++        to: ContentId,
++        arrival: GridPos,
++        validation: MapValidationRules,
+     ) -> Result<(), String> {
+         if from == to
+             || self.links.contains_key(&(from.clone(), at))
+@@ -2387,7 +2422,7 @@ impl WorldState {
+             if !map.is_walkable(anchor) {
+                 return Err("Blocked passage".into());
+             }
+-            validate_interactive_map(map, start, anchor, &[], MapValidationRules::default())
++            validate_interactive_map(map, start, anchor, &[], validation)
+                 .map_err(|e| e.to_string())?;
+             if self
+                 .pending
+@@ -2938,6 +2973,9 @@ impl WorldState {
+             _ => None,
+         };
+         let world_action = match &command {
++            GameCommand::UseInstallation { target, action } => {
++                Some(self.use_installation(*target, action))
++            }
+             GameCommand::ImproveEquipment { artisan, item } => {
+                 let allowed = self
+                     .npc_interaction(*artisan)
+diff --git "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\game\\game_state.rs" "b/src\\game\\game_state.rs"
+index 190d0f0..039ee6d 100644
+--- "a/artifacts\\interactions-integration-2026-10-03\\before\\src\\game\\game_state.rs"
++++ "b/src\\game\\game_state.rs"
+@@ -2745,6 +2745,9 @@ impl GameState {
+             GameCommand::AcceptQuest { .. } | GameCommand::ChooseDialogue { .. } => {
+                 CommandOutcome::AppliedWithoutTime
+             }
++            GameCommand::UseInstallation { .. } => {
++                CommandOutcome::Rejected(CommandRejection::FacilityUnavailable)
++            }
+             GameCommand::UseAbility { slot, target } => {
+                 match self.perform_ability(self.player, slot, target) {
+                     Ok(()) => {
+@@ -9930,6 +9933,22 @@ impl GameState {
+             })
+     }
+ 
++    /// Read-only presentation of the real detection rules for a visible hostile.
++    /// A heard noise does not imply that its source was identified as the player.
++    pub fn actor_perception_signals(&self, observer: EntityId) -> Option<(bool, bool)> {
++        let actor = self.actors.get(observer)?;
++        if observer == self.player
++            || actor.player_relation() != crate::social::PlayerRelation::Hostile
++            || !self.player_visibility.is_visible(actor.position())
++        {
++            return None;
++        }
++        Some((
++            self.actor_optically_detects_player(observer),
++            self.audible_incident_for(observer).is_some(),
++        ))
++    }
++
+     fn actor_optically_detects_player(&self, observer: EntityId) -> bool {
+         let Some(player_position) = self.player_position() else {
+             return false;
+diff --git a/src/facility/interactions.rs b/src/facility/interactions.rs
+new file mode 100644
+index 0000000..e6a9f04
+--- /dev/null
++++ b/src/facility/interactions.rs
+@@ -0,0 +1,235 @@
++//! Small, persistent installations. State lives in append-only capabilities,
++//! preserving the binary representation of facilities without these devices.
++use super::*;
++
++#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
++pub struct InstallationIntel {
++    pub record: ContentId,
++    pub label: String,
++    pub target: Option<GridPos>,
++    pub consumes_turn: bool,
++}
++
++#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
++pub enum InstallationAction {
++    ReadIntel { index: u8 },
++    SetPower { powered: bool },
++    ActivateDiversion,
++}
++
++pub(super) fn validate_interactive_installations(
++    installations: &BTreeMap<InstallationId, InstallationState>,
++) -> Result<(), FacilityBuildError> {
++    let mut controlled_doors = BTreeSet::new();
++    for installation in installations.values() {
++        for capability in &installation.capabilities {
++            if let InstallationCapability::DoorActuator { door } = capability {
++                controlled_doors.insert(*door);
++            }
++        }
++    }
++    for installation in installations.values() {
++        let mut kinds = BTreeSet::new();
++        for capability in &installation.capabilities {
++            let kind = match capability {
++                InstallationCapability::IntelTerminal { .. } => Some(0),
++                InstallationCapability::PowerControl { .. } => Some(1),
++                InstallationCapability::SwitchableRelay { .. } => Some(2),
++                InstallationCapability::DiversionPost { .. } => Some(3),
++                _ => None,
++            };
++            if kind.is_some_and(|kind| !kinds.insert(kind)) {
++                return Err(FacilityBuildError::InvalidInstallation(
++                    installation.id.clone(),
++                ));
++            }
++            let valid = match capability {
++                InstallationCapability::IntelTerminal { records } => {
++                    !records.is_empty()
++                        && records.len() <= 8
++                        && records.iter().all(|record| {
++                            !record.label.trim().is_empty() && record.label.len() <= 160
++                        })
++                        && records
++                            .iter()
++                            .map(|record| &record.record)
++                            .collect::<BTreeSet<_>>()
++                            .len()
++                            == records.len()
++                }
++                InstallationCapability::PowerControl { relay } => {
++                    installations.get(relay).is_some_and(|target| {
++                        target.capabilities.iter().any(|capability| {
++                            matches!(capability, InstallationCapability::SwitchableRelay { .. })
++                        })
++                    })
++                }
++                InstallationCapability::SwitchableRelay { door, .. } => {
++                    controlled_doors.insert(*door)
++                }
++                InstallationCapability::DiversionPost {
++                    intensity,
++                    duration,
++                    ..
++                } => *intensity > 0 && *intensity <= 100 && *duration > 0 && *duration <= 100,
++                _ => true,
++            };
++            if !valid {
++                return Err(FacilityBuildError::InvalidInstallation(
++                    installation.id.clone(),
++                ));
++            }
++        }
++    }
++    Ok(())
++}
++
++impl FacilityState {
++    pub fn has_interaction_menu_at(&self, position: GridPos) -> bool {
++        self.installation_at(position).is_some_and(|installation| {
++            installation.capabilities.iter().any(|capability| {
++                matches!(
++                    capability,
++                    InstallationCapability::IntelTerminal { .. }
++                        | InstallationCapability::PowerControl { .. }
++                        | InstallationCapability::DiversionPost { .. }
++                )
++            })
++        })
++    }
++
++    pub fn intel_at(&self, position: GridPos) -> &[InstallationIntel] {
++        self.installation_at(position)
++            .and_then(|installation| {
++                installation
++                    .capabilities
++                    .iter()
++                    .find_map(|capability| match capability {
++                        InstallationCapability::IntelTerminal { records } => {
++                            Some(records.as_slice())
++                        }
++                        _ => None,
++                    })
++            })
++            .unwrap_or(&[])
++    }
++
++    pub fn power_setting_at(&self, position: GridPos) -> Option<bool> {
++        let relay = self
++            .installation_at(position)?
++            .capabilities
++            .iter()
++            .find_map(|capability| match capability {
++                InstallationCapability::PowerControl { relay } => Some(relay),
++                _ => None,
++            })?;
++        self.installation(relay)?
++            .capabilities
++            .iter()
++            .find_map(|capability| match capability {
++                InstallationCapability::SwitchableRelay { powered, .. } => Some(*powered),
++                _ => None,
++            })
++    }
++
++    pub fn diversion_at(&self, position: GridPos) -> Option<(u8, u16, u16)> {
++        self.installation_at(position)?
++            .capabilities
++            .iter()
++            .find_map(|capability| match capability {
++                InstallationCapability::DiversionPost {
++                    charges,
++                    intensity,
++                    duration,
++                    ..
++                } => Some((*charges, *intensity, *duration)),
++                _ => None,
++            })
++    }
++
++    pub fn diversion_outlet_at(&self, position: GridPos) -> Option<GridPos> {
++        self.installation_at(position)?
++            .capabilities
++            .iter()
++            .find_map(|capability| match capability {
++                InstallationCapability::DiversionPost { outlet, .. } => Some(*outlet),
++                _ => None,
++            })
++    }
++
++    pub fn intel_was_read(&self, record: &ContentId) -> bool {
++        self.retained_data_terminal_records.contains(record)
++    }
++
++    pub(crate) fn remember_intel(&mut self, record: ContentId) {
++        self.retained_data_terminal_records.insert(record);
++    }
++
++    pub(crate) fn set_power_at(&mut self, position: GridPos, powered: bool) {
++        let relay = self
++            .installation_at(position)
++            .unwrap()
++            .capabilities
++            .iter()
++            .find_map(|capability| match capability {
++                InstallationCapability::PowerControl { relay } => Some(relay.clone()),
++                _ => None,
++            })
++            .unwrap();
++        for capability in &mut self.installations.get_mut(&relay).unwrap().capabilities {
++            if let InstallationCapability::SwitchableRelay {
++                powered: setting, ..
++            } = capability
++            {
++                *setting = powered;
++            }
++        }
++    }
++
++    pub(crate) fn spend_diversion_charge(&mut self, position: GridPos) {
++        let id = self.installation_at(position).unwrap().id.clone();
++        for capability in &mut self.installations.get_mut(&id).unwrap().capabilities {
++            if let InstallationCapability::DiversionPost { charges, .. } = capability {
++                *charges -= 1;
++            }
++        }
++    }
++
++    pub(crate) fn synchronize_interactive_outputs(
++        &self,
++        map: &mut Map,
++        actors: &ActorRegistry,
++        ground: Option<&GroundItemRegistry>,
++    ) -> Result<(), FacilityRuntimeError> {
++        for installation in self.installations.values() {
++            for capability in &installation.capabilities {
++                let InstallationCapability::SwitchableRelay { door, .. } = capability else {
++                    continue;
++                };
++                let operational = self.is_operational(&installation.id);
++                let current = map
++                    .tile(*door)
++                    .ok_or(FacilityRuntimeError::InvalidControlledDoor(*door))?
++                    .terrain;
++                if !matches!(current, Terrain::Door(_)) {
++                    return Err(FacilityRuntimeError::InvalidControlledDoor(*door));
++                }
++                let occupied = actors.entity_at(*door).is_some()
++                    || ground.is_some_and(|ground| ground.item_at(*door).is_some());
++                if !operational && occupied && current == Terrain::Door(DoorState::Open) {
++                    continue;
++                }
++                let next = Terrain::Door(if operational {
++                    DoorState::Open
++                } else {
++                    DoorState::Unpowered
++                });
++                if next != current {
++                    map.set_terrain(*door, next)
++                        .map_err(|_| FacilityRuntimeError::InvalidControlledDoor(*door))?;
++                }
++            }
++        }
++        Ok(())
++    }
++}
+diff --git a/src/game/facility_interactions.rs b/src/game/facility_interactions.rs
+new file mode 100644
+index 0000000..75a3ec7
+--- /dev/null
++++ b/src/game/facility_interactions.rs
+@@ -0,0 +1,490 @@
++use super::*;
++use crate::facility::InstallationAction;
++
++impl WorldState {
++    pub(super) fn use_installation(
++        &mut self,
++        target: GridPos,
++        action: &InstallationAction,
++    ) -> CommandOutcome {
++        let reject = CommandOutcome::Rejected;
++        if self.active.status != RunStatus::Active {
++            return reject(CommandRejection::RunEnded);
++        }
++        if self.active.phase != TurnPhase::AwaitingPlayer {
++            return reject(CommandRejection::NotPlayersTurn);
++        }
++        let Some(origin) = self.active.player_position() else {
++            return reject(CommandRejection::MissingPlayer);
++        };
++        if !origin.cardinal_neighbors().contains(&target)
++            || !self.active.player_visibility.is_visible(target)
++        {
++            return reject(CommandRejection::InteractionOutOfReach);
++        }
++        let Some(zone) = self.current.clone() else {
++            return reject(CommandRejection::FacilityUnavailable);
++        };
++        let Some(facility) = self.facilities.get(&zone) else {
++            return reject(CommandRejection::FacilityUnavailable);
++        };
++        let Some(installation) = facility.installation_at(target) else {
++            return reject(CommandRejection::NothingToInteract);
++        };
++        if !facility.is_operational(installation.id()) {
++            return reject(CommandRejection::FacilityUnavailable);
++        }
++        match action {
++            InstallationAction::ReadIntel { index } => {
++                let Some(intel) = facility.intel_at(target).get(usize::from(*index)).cloned()
++                else {
++                    return reject(CommandRejection::NothingToInteract);
++                };
++                if facility.intel_was_read(&intel.record) {
++                    return CommandOutcome::AppliedWithoutTime;
++                }
++                let first_access = !self
++                    .discovered_data_terminal_records()
++                    .contains(&intel.record);
++                let installation = installation.id().clone();
++                self.facilities
++                    .get_mut(&zone)
++                    .unwrap()
++                    .remember_intel(intel.record.clone());
++                self.active
++                    .events
++                    .push(GameEvent::Facility(FacilityEvent::DataTerminalAccessed {
++                        player: self.active.player,
++                        installation,
++                        at: target,
++                        record: intel.record.clone(),
++                        first_access,
++                    }));
++                self.record_data_record_quest_progress(&intel.record);
++                if !intel.consumes_turn {
++                    return CommandOutcome::AppliedWithoutTime;
++                }
++            }
++            InstallationAction::SetPower { powered } => {
++                let Some(current) = facility.power_setting_at(target) else {
++                    return reject(CommandRejection::NothingToInteract);
++                };
++                if current == *powered {
++                    return CommandOutcome::AppliedWithoutTime;
++                }
++                let facility = self.facilities.get_mut(&zone).unwrap();
++                // A validated branch controls only real doors. Preflight on a copy
++                // prevents malformed state from spending a turn or partly switching.
++                let mut next = facility.clone();
++                let mut map = self.active.map.clone();
++                next.set_power_at(target, *powered);
++                if next
++                    .synchronize_interactive_outputs(
++                        &mut map,
++                        &self.active.actors,
++                        Some(&self.active.ground_items),
++                    )
++                    .is_err()
++                {
++                    return reject(CommandRejection::FacilityUnavailable);
++                }
++                *facility = next;
++                self.active.map = map;
++                self.active.player_visibility.recompute(
++                    &self.active.map,
++                    origin,
++                    self.active.rules.player_field_of_view,
++                );
++            }
++            InstallationAction::ActivateDiversion => {
++                let Some((charges, intensity, duration)) = facility.diversion_at(target) else {
++                    return reject(CommandRejection::NothingToInteract);
++                };
++                if charges == 0 {
++                    return reject(CommandRejection::FacilityUnavailable);
++                }
++                let Some(outlet) = facility.diversion_outlet_at(target) else {
++                    return reject(CommandRejection::FacilityUnavailable);
++                };
++                if !self.active.map.is_walkable(outlet)
++                    || self.active.rules.stealth_rules.is_none()
++                    || self.active.sound_emitters.at(outlet).next().is_some()
++                {
++                    return reject(CommandRejection::FacilityUnavailable);
++                }
++                let Ok(emitter) = self
++                    .active
++                    .sound_emitters
++                    .deploy(outlet, intensity, duration, 1)
++                else {
++                    return reject(CommandRejection::FacilityUnavailable);
++                };
++                self.facilities
++                    .get_mut(&zone)
++                    .unwrap()
++                    .spend_diversion_charge(target);
++                self.active.events.push(GameEvent::SoundEmitterDeployed {
++                    entity: self.active.player,
++                    emitter,
++                    at: outlet,
++                    intensity,
++                    remaining_phases: duration,
++                });
++            }
++        }
++        self.active.complete_turn();
++        CommandOutcome::Applied
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    use crate::ai::{AiProfile, AiState, PursuitLifecycle};
++    use crate::facility::{
++        FacilityBlueprint, InstallationBlueprint, InstallationCapability, InstallationIntel,
++        SecurityAlarmProfile,
++    };
++    use crate::game::GameRules;
++    use crate::world::{DistanceMetric, DoorState, Terrain};
++    const ORIGIN: GridPos = GridPos::new(2, 2);
++    const PANEL: GridPos = GridPos::new(3, 2);
++    const TERMINAL: GridPos = GridPos::new(2, 1);
++    const POST: GridPos = GridPos::new(1, 2);
++    const DOOR: GridPos = GridPos::new(4, 2);
++    fn id(value: &str) -> ContentId {
++        format!("test:{value}").parse().unwrap()
++    }
++    fn fixture(powered: bool) -> WorldState {
++        let mut map = Map::from_ascii(
++            "#########\n#...#...#\n#.......#\n#...#...#\n#...#...#\n#.......#\n#########",
++        )
++        .unwrap();
++        map.set_terrain(DOOR, Terrain::Door(DoorState::Closed))
++            .unwrap();
++        let mut rules = GameRules {
++            stealth_rules: Some(crate::stealth::StealthRules::default()),
++            ..GameRules::default()
++        };
++        for name in ["material", "other_material"] {
++            rules
++                .items
++                .register(
++                    crate::item::ItemDefinition::new(
++                        id(name),
++                        "Material".into(),
++                        "Material".into(),
++                        4,
++                        crate::item::ItemKind::Material,
++                        None,
++                        vec![],
++                    )
++                    .unwrap(),
++                )
++                .unwrap();
++        }
++        let mut world =
++            WorldState::single(GameState::new_with_rules(map, ORIGIN, 42, rules).unwrap());
++        world
++            .enable(ZoneInfo {
++                id: id("zone"),
++                name: "Interactions".into(),
++                kind: id("industrial"),
++                depth: 0,
++            })
++            .unwrap();
++        let make = |name, position, capability| InstallationBlueprint {
++            id: id(name),
++            position,
++            integrity: 10,
++            maximum_integrity: 10,
++            capabilities: vec![capability],
++            dependencies: vec![],
++            security_alarm_profile: None,
++        };
++        let mut sensor = make(
++            "sensor",
++            GridPos::new(6, 2),
++            InstallationCapability::SecuritySensor,
++        );
++        sensor.dependencies = vec![id("relay")];
++        sensor.security_alarm_profile =
++            Some(SecurityAlarmProfile::new(6, DistanceMetric::Euclidean, false, 10).unwrap());
++        world
++            .register_facility(
++                id("zone"),
++                FacilityBlueprint {
++                    installations: vec![
++                        make("depot", GridPos::new(1, 1), InstallationCapability::Storage),
++                        make(
++                            "terminal",
++                            TERMINAL,
++                            InstallationCapability::IntelTerminal {
++                                records: vec![InstallationIntel {
++                                    record: id("record"),
++                                    label: "Issue".into(),
++                                    target: Some(GridPos::new(1, 5)),
++                                    consumes_turn: true,
++                                }],
++                            },
++                        ),
++                        make(
++                            "panel",
++                            PANEL,
++                            InstallationCapability::PowerControl { relay: id("relay") },
++                        ),
++                        make(
++                            "relay",
++                            GridPos::new(3, 1),
++                            InstallationCapability::SwitchableRelay {
++                                door: DOOR,
++                                powered,
++                            },
++                        ),
++                        make(
++                            "post",
++                            POST,
++                            InstallationCapability::DiversionPost {
++                                outlet: POST,
++                                charges: 2,
++                                intensity: 60,
++                                duration: 3,
++                            },
++                        ),
++                        sensor,
++                    ],
++                    depot: id("depot"),
++                    workers: vec![],
++                    repair_orders: vec![],
++                    maximum_path_search: 128,
++                    owner: Some(id("owner")),
++                },
++            )
++            .unwrap();
++        world.drain_events();
++        world
++    }
++    fn command(target: GridPos, action: InstallationAction) -> GameCommand {
++        GameCommand::UseInstallation { target, action }
++    }
++    fn observer(world: &mut WorldState, position: GridPos) -> crate::entity::EntityId {
++        world
++            .spawn_actor(
++                Actor::new(position, 20)
++                    .unwrap()
++                    .with_player_relation(crate::social::PlayerRelation::Hostile)
++                    .with_ai(AiProfile::hunter(8, 0).with_pursuit_lifecycle(
++                        PursuitLifecycle::new(
++                            std::num::NonZeroU16::new(6).unwrap(),
++                            std::num::NonZeroU16::new(2).unwrap(),
++                            std::num::NonZeroU16::new(2).unwrap(),
++                        ),
++                    )),
++            )
++            .unwrap()
++    }
++    #[test]
++    fn installation_intel_is_durable_and_rereading_is_free_without_revealing_terrain() {
++        let mut world = fixture(false);
++        let known = world.active.player_visibility.clone();
++        assert_eq!(
++            world.process_player_command(command(
++                TERMINAL,
++                InstallationAction::ReadIntel { index: 0 }
++            )),
++            CommandOutcome::Applied
++        );
++        assert!(
++            world
++                .discovered_data_terminal_records()
++                .contains(&id("record"))
++        );
++        assert_eq!(world.active.player_visibility, known);
++        world.drain_events();
++        let bytes = world.recovery_snapshot_bytes().unwrap();
++        assert_eq!(
++            world.process_player_command(command(
++                TERMINAL,
++                InstallationAction::ReadIntel { index: 0 }
++            )),
++            CommandOutcome::AppliedWithoutTime
++        );
++        assert_eq!(bytes, world.recovery_snapshot_bytes().unwrap());
++        let restored =
++            WorldState::from_recovery_snapshot_bytes(&bytes, world.rules().clone()).unwrap();
++        assert_eq!(bytes, restored.recovery_snapshot_bytes().unwrap());
++        assert!(
++            restored
++                .active_facility()
++                .unwrap()
++                .intel_was_read(&id("record"))
++        );
++    }
++    #[test]
++    fn installation_invalid_queries_and_distance_refuse_atomically() {
++        let mut world = fixture(false);
++        for cmd in [
++            command(TERMINAL, InstallationAction::ReadIntel { index: 8 }),
++            command(GridPos::new(6, 2), InstallationAction::ActivateDiversion),
++            command(PANEL, InstallationAction::ReadIntel { index: 0 }),
++        ] {
++            let before = world.recovery_snapshot_bytes().unwrap();
++            assert!(matches!(
++                world.process_player_command(cmd),
++                CommandOutcome::Rejected(_)
++            ));
++            assert_eq!(before, world.recovery_snapshot_bytes().unwrap());
++        }
++    }
++    #[test]
++    fn installation_power_preserves_existing_alarms_and_defers_occupied_door() {
++        let mut world = fixture(true);
++        // A real unauthorized property event activates the existing security system.
++        world
++            .active
++            .spawn_ground_item_with_owner(ORIGIN, id("material"), 1, Some(id("owner")))
++            .unwrap();
++        world.process_player_command(GameCommand::PickUp);
++        assert!(
++            world
++                .active_facility()
++                .unwrap()
++                .security_alarm_at(GridPos::new(6, 2), world.turn())
++                .is_some()
++        );
++        let occupant = world.spawn_actor(Actor::new(DOOR, 10).unwrap()).unwrap();
++        assert_eq!(
++            world.process_player_command(command(
++                PANEL,
++                InstallationAction::SetPower { powered: false }
++            )),
++            CommandOutcome::Applied
++        );
++        assert!(
++            !world
++                .active_facility()
++                .unwrap()
++                .is_operational(&id("sensor"))
++        );
++        assert!(
++            world
++                .active_facility()
++                .unwrap()
++                .security_alarm_at(GridPos::new(6, 2), world.turn())
++                .is_some()
++        );
++        assert_eq!(
++            world.map().tile(DOOR).unwrap().terrain,
++            Terrain::Door(DoorState::Open)
++        );
++        world
++            .active
++            .actors
++            .move_to(occupant, GridPos::new(5, 2))
++            .unwrap();
++        world.process_player_command(GameCommand::Wait);
++        assert_eq!(
++            world.map().tile(DOOR).unwrap().terrain,
++            Terrain::Door(DoorState::Unpowered)
++        );
++        assert_eq!(
++            world.process_player_command(command(
++                PANEL,
++                InstallationAction::SetPower { powered: true }
++            )),
++            CommandOutcome::Applied
++        );
++        assert!(
++            world
++                .active_facility()
++                .unwrap()
++                .is_operational(&id("sensor"))
++        );
++        assert_eq!(
++            world.map().tile(DOOR).unwrap().terrain,
++            Terrain::Door(DoorState::Open)
++        );
++    }
++    #[test]
++    fn installation_cut_keeps_ground_items_accessible_and_does_not_detect_new_theft() {
++        let mut world = fixture(true);
++        world
++            .active
++            .spawn_ground_item(DOOR, id("material"), 1)
++            .unwrap();
++        world.process_player_command(command(
++            PANEL,
++            InstallationAction::SetPower { powered: false },
++        ));
++        assert_eq!(
++            world.map().tile(DOOR).unwrap().terrain,
++            Terrain::Door(DoorState::Open)
++        );
++        world
++            .active
++            .spawn_ground_item_with_owner(ORIGIN, id("other_material"), 1, Some(id("owner")))
++            .unwrap();
++        world.process_player_command(GameCommand::PickUp);
++        assert!(
++            world
++                .active_facility()
++                .unwrap()
++                .security_alarm_at(GridPos::new(6, 2), world.turn())
++                .is_none()
++        );
++    }
++    #[test]
++    fn installation_diversion_investigates_sound_and_expires_without_refilling() {
++        let mut world = fixture(false);
++        let enemy = observer(&mut world, GridPos::new(6, 2));
++        assert_eq!(
++            world.process_player_command(command(POST, InstallationAction::ActivateDiversion)),
++            CommandOutcome::Applied
++        );
++        assert!(
++            matches!(world.actors().get(enemy).unwrap().ai_state(), AiState::Responding { incident, .. } if incident == POST)
++        );
++        world.drain_events();
++        let bytes = world.recovery_snapshot_bytes().unwrap();
++        let mut world =
++            WorldState::from_recovery_snapshot_bytes(&bytes, world.rules().clone()).unwrap();
++        assert_eq!(
++            world
++                .active_facility()
++                .unwrap()
++                .diversion_at(POST)
++                .unwrap()
++                .0,
++            1
++        );
++        let before = world.recovery_snapshot_bytes().unwrap();
++        assert!(matches!(
++            world.process_player_command(command(POST, InstallationAction::ActivateDiversion)),
++            CommandOutcome::Rejected(_)
++        ));
++        assert_eq!(before, world.recovery_snapshot_bytes().unwrap());
++        world.process_player_command(GameCommand::Wait);
++        world.process_player_command(GameCommand::Wait);
++        assert!(world.active.sound_emitters.is_empty());
++        world.process_player_command(command(POST, InstallationAction::ActivateDiversion));
++        world.process_player_command(GameCommand::Wait);
++        world.process_player_command(GameCommand::Wait);
++        world.drain_events();
++        let before = world.recovery_snapshot_bytes().unwrap();
++        assert!(matches!(
++            world.process_player_command(command(POST, InstallationAction::ActivateDiversion)),
++            CommandOutcome::Rejected(_)
++        ));
++        assert_eq!(before, world.recovery_snapshot_bytes().unwrap());
++    }
++    #[test]
++    fn installation_diversion_never_overrides_visible_player() {
++        let mut world = fixture(true);
++        let enemy = observer(&mut world, GridPos::new(5, 2));
++        world.process_player_command(command(POST, InstallationAction::ActivateDiversion));
++        assert!(
++            matches!(world.actors().get(enemy).unwrap().ai_state(), AiState::Pursuing { last_seen, .. } if last_seen == ORIGIN)
++        );
++        assert_eq!(world.actor_perception_signals(enemy), Some((true, true)));
++    }
++}
+diff --git a/src/installation_interactions_app.rs b/src/installation_interactions_app.rs
+new file mode 100644
+index 0000000..b1214e3
+--- /dev/null
++++ b/src/installation_interactions_app.rs
+@@ -0,0 +1,998 @@
++//! Optional small installations, using the existing perception and sound rules.
++use super::*;
++use project_rl::facility::{
++    FacilityBlueprint, InstallationAction, InstallationBlueprint, InstallationIntel,
++};
++use project_rl::world::DoorState;
++#[cfg(debug_assertions)]
++use std::collections::BTreeSet;
++
++pub(super) struct InstallationMenu {
++    target: GridPos,
++    selected: usize,
++    message: String,
++}
++
++const PANEL: GridPos = GridPos::new(9, 3);
++const TERMINAL: GridPos = GridPos::new(3, 12);
++const POST: GridPos = GridPos::new(10, 7);
++const GATE: GridPos = GridPos::new(10, 4);
++const ENTRANCE: GridPos = GridPos::new(2, 10);
++
++fn cid(value: &str) -> ContentId {
++    value.parse().expect("authored installation id")
++}
++fn installation(
++    name: &str,
++    position: GridPos,
++    capability: InstallationCapability,
++) -> InstallationBlueprint {
++    InstallationBlueprint {
++        id: cid(name),
++        position,
++        integrity: 10,
++        maximum_integrity: 10,
++        capabilities: vec![capability],
++        dependencies: vec![],
++        security_alarm_profile: None,
++    }
++}
++
++impl AsciiApp {
++    pub fn new_installation_trial() -> Result<Self, String> {
++        Self::new_with_session_path(
++            controls::config_path().with_file_name("essai-interactions.json"),
++        )
++    }
++
++    fn installation_annex_anchor(&self) -> GridPos {
++        self.home_position(GridPos::new(44, 7))
++    }
++
++    pub(super) fn add_city_installation_intel(&self, blueprint: &mut FacilityBlueprint) {
++        for terminal in blueprint.installations.iter_mut().filter(|installation| {
++            installation
++                .capabilities
++                .iter()
++                .any(|capability| matches!(capability, InstallationCapability::DataTerminal { .. }))
++        }) {
++            terminal
++                .capabilities
++                .push(InstallationCapability::IntelTerminal {
++                    records: vec![InstallationIntel {
++                        record: cid("core:intel_transit_annex"),
++                        label: "Trouver l’annexe de transit".into(),
++                        target: Some(self.installation_annex_anchor()),
++                        consumes_turn: false,
++                    }],
++                });
++        }
++    }
++
++    pub(super) fn enable_installation_interactions(&mut self) -> Result<(), String> {
++        let zone = cid("core:transit_annex");
++        let hub = self.starter_hub_definition()?.hub.id.clone();
++        let mut map = project_rl::world::Map::from_ascii("#####################\n#.........#.........#\n#.........#.........#\n#.........#.........#\n#...................#\n#.........#.........#\n#.........#.........#\n#.........#.........#\n#.........#.........#\n#.........#.........#\n#...................#\n#...................#\n#####################").map_err(|e| e.to_string())?;
++        map.set_terrain(PANEL, Terrain::Wall)
++            .map_err(|e| e.to_string())?;
++        map.set_terrain(GATE, Terrain::Door(DoorState::Closed))
++            .map_err(|e| e.to_string())?;
++        let lifecycle = project_rl::ai::PursuitLifecycle::new(
++            std::num::NonZeroU16::new(10).unwrap(),
++            std::num::NonZeroU16::new(3).unwrap(),
++            std::num::NonZeroU16::new(3).unwrap(),
++        );
++        let observer = Actor::new(GridPos::new(15, 6), 14)
++            .map_err(|e| e.to_string())?
++            .with_ai(AiProfile::hunter(4, 0).with_pursuit_lifecycle(lifecycle))
++            .with_player_relation(PlayerRelation::Hostile)
++            .with_affiliation(cid("core:system_security"))
++            .with_attack(project_rl::combat::AttackProfile::new(
++                1,
++                project_rl::world::DistanceMetric::Chebyshev,
++                true,
++                project_rl::combat::DamageType::Kinetic,
++                3,
++                0,
++            ));
++        self.game.add_zone(project_rl::game::ZoneBlueprint {
++            info: project_rl::game::ZoneInfo {
++                id: zone.clone(),
++                name: "Annexe de transit".into(),
++                kind: cid("core:industrial"),
++                depth: 0,
++            },
++            map,
++            entrance: ENTRANCE,
++            seed: self.seed ^ 0x5452_414e_5349_54,
++            actors: vec![observer],
++            loot: vec![
++                project_rl::game::GroundLootBlueprint::new(
++                    GridPos::new(15, 4),
++                    cid("core:power_regulator"),
++                    1,
++                )
++                .with_owner(cid("core:system_security")),
++            ],
++            threat_sources: vec![],
++        })?;
++        self.game.connect_optional(
++            hub.clone(),
++            self.installation_annex_anchor(),
++            zone.clone(),
++            ENTRANCE,
++        )?;
++        let mut sensor = installation(
++            "core:transit_sensor",
++            GridPos::new(10, 5),
++            InstallationCapability::SecuritySensor,
++        );
++        sensor.dependencies.push(cid("core:transit_relay"));
++        sensor.security_alarm_profile = Some(
++            project_rl::facility::SecurityAlarmProfile::new(
++                6,
++                project_rl::world::DistanceMetric::Euclidean,
++                true,
++                6,
++            )
++            .map_err(|e| e.to_string())?,
++        );
++        self.game.register_facility(
++            zone.clone(),
++            FacilityBlueprint {
++                installations: vec![
++                    installation(
++                        "core:transit_depot",
++                        GridPos::new(1, 0),
++                        InstallationCapability::Storage,
++                    ),
++                    installation(
++                        "core:transit_terminal",
++                        TERMINAL,
++                        InstallationCapability::IntelTerminal {
++                            records: vec![
++                                InstallationIntel {
++                                    record: cid("core:intel_transit_return"),
++                                    label: "Localiser le retour en ville".into(),
++                                    target: Some(ENTRANCE),
++                                    consumes_turn: true,
++                                },
++                                InstallationIntel {
++                                    record: cid("core:intel_transit_power"),
++                                    label: "Lire le plan d’alimentation".into(),
++                                    target: Some(PANEL),
++                                    consumes_turn: true,
++                                },
++                                InstallationIntel {
++                                    record: cid("core:intel_transit_diversion"),
++                                    label: "Repérer le poste sonore".into(),
++                                    target: Some(POST),
++                                    consumes_turn: true,
++                                },
++                            ],
++                        },
++                    ),
++                    installation(
++                        "core:transit_panel",
++                        PANEL,
++                        InstallationCapability::PowerControl {
++                            relay: cid("core:transit_relay"),
++                        },
++                    ),
++                    installation(
++                        "core:transit_relay",
++                        GridPos::new(10, 2),
++                        InstallationCapability::SwitchableRelay {
++                            door: GATE,
++                            powered: true,
++                        },
++                    ),
++                    sensor,
++                    installation(
++                        "core:transit_post",
++                        POST,
++                        InstallationCapability::DiversionPost {
++                            outlet: POST.step(Direction::East),
++                            charges: 2,
++                            intensity: 30,
++                            duration: 3,
++                        },
++                    ),
++                ],
++                depot: cid("core:transit_depot"),
++                workers: vec![],
++                repair_orders: vec![],
++                maximum_path_search: 256,
++                owner: Some(cid("core:system_security")),
++            },
++        )?;
++        let mut decor = crate::test_sector::SectorDecor::default();
++        decor.fallback_name = Some("Annexe de transit".into());
++        for y in 1..12 {
++            for x in 1..20 {
++                if x != 10 || y >= 10 {
++                    decor
++                        .cells
++                        .insert(GridPos::new(x, y), crate::test_sector::Decor::Deck);
++                }
++            }
++        }
++        decor
++            .cells
++            .insert(ENTRANCE, crate::test_sector::Decor::Passage);
++        self.zone_decor.insert(zone, decor);
++        let anchor = self.installation_annex_anchor();
++        self.zone_decor
++            .entry(hub)
++            .or_default()
++            .cells
++            .insert(anchor, crate::test_sector::Decor::Passage);
++        // The active town uses its own presentation until the next zone change.
++        self.terminal.decor.cells.insert(
++            self.installation_annex_anchor(),
++            crate::test_sector::Decor::Passage,
++        );
++        Ok(())
++    }
++
++    pub(super) fn installation_name_at(&self, target: GridPos) -> Option<&'static str> {
++        let facility = self.game.active_facility()?;
++        if !facility.intel_at(target).is_empty() {
++            Some("Terminal de renseignements")
++        } else if facility.power_setting_at(target).is_some() {
++            Some("Alimentation du passage")
++        } else if facility.diversion_at(target).is_some() {
++            Some("Poste de diversion")
++        } else {
++            None
++        }
++    }
++
++    pub(super) fn open_installation_menu(&mut self, target: GridPos) -> bool {
++        if !self.game.player_visibility().is_visible(target)
++            || !self
++                .game
++                .player_position()
++                .is_some_and(|p| p.cardinal_neighbors().contains(&target))
++            || !self
++                .game
++                .active_facility()
++                .is_some_and(|f| f.has_interaction_menu_at(target))
++        {
++            return false;
++        }
++        self.installation_menu = Some(InstallationMenu {
++            target,
++            selected: 0,
++            message: String::new(),
++        });
++        self.movement_repeat.clear();
++        self.mouse_walk = None;
++        self.world_context = None;
++        self.world_cursor = None;
++        self.attack_aim = None;
++        true
++    }
++
++    fn installation_choices(&self, target: GridPos) -> Vec<(String, Option<GameCommand>)> {
++        let Some(facility) = self.game.active_facility() else {
++            return vec![];
++        };
++        let mut choices = Vec::new();
++        for (index, intel) in facility.intel_at(target).iter().enumerate() {
++            let cost = if !intel.consumes_turn {
++                "gratuit"
++            } else if facility.intel_was_read(&intel.record) {
++                "relire gratuitement"
++            } else {
++                "1 tour"
++            };
++            choices.push((
++                format!("{} · {cost}", intel.label),
++                Some(GameCommand::UseInstallation {
++                    target,
++                    action: InstallationAction::ReadIntel { index: index as u8 },
++                }),
++            ));
++        }
++        if let Some(powered) = facility.power_setting_at(target) {
++            choices.push((
++                format!(
++                    "{} · 1 tour",
++                    if powered {
++                        "Couper l’alimentation"
++                    } else {
++                        "Rétablir l’alimentation"
++                    }
++                ),
++                Some(GameCommand::UseInstallation {
++                    target,
++                    action: InstallationAction::SetPower { powered: !powered },
++                }),
++            ));
++        }
++        if let Some((charges, _, duration)) = facility.diversion_at(target) {
++            choices.push((
++                format!("Émettre un bruit · {duration} tours · {charges} charges · 1 tour"),
++                Some(GameCommand::UseInstallation {
++                    target,
++                    action: InstallationAction::ActivateDiversion,
++                }),
++            ));
++        }
++        if facility
++            .installation_at(target)
++            .is_some_and(|installation| {
++                installation.capabilities().iter().any(|capability| {
++                    matches!(capability, InstallationCapability::DataTerminal { .. })
++                })
++            })
++        {
++            choices.push((
++                "Consulter les archives · 1 tour".into(),
++                Some(GameCommand::Interact { target }),
++            ));
++        }
++        choices.push(("Fermer".into(), None));
++        choices
++    }
++
++    fn installation_panel(width: f32, height: f32) -> Rect {
++        let w = (width - 40.0).min(660.0);
++        Rect::new(
++            (width - w) * 0.5,
++            (height - 420.0).max(20.0) * 0.5,
++            w,
++            420.0_f32.min(height - 40.0),
++        )
++    }
++    fn installation_row(panel: Rect, index: usize) -> Rect {
++        Rect::new(
++            panel.x + 20.0,
++            panel.y + 86.0 + index as f32 * 42.0,
++            panel.w - 40.0,
++            36.0,
++        )
++    }
++
++    pub(super) fn update_installation_menu(&mut self, input: &InputFrame) {
++        let Some(mut menu) = self.installation_menu.take() else {
++            return;
++        };
++        if !self
++            .game
++            .player_position()
++            .is_some_and(|p| p.cardinal_neighbors().contains(&menu.target))
++        {
++            return;
++        }
++        let choices = self.installation_choices(menu.target);
++        if choices.is_empty() {
++            return;
++        }
++        if input.pressed.contains(&controls::Binding::MouseRight) {
++            return;
++        }
++        if self.controls.pressed(Action::MenuUp, input) {
++            menu.selected = menu.selected.saturating_sub(1);
++        }
++        if self.controls.pressed(Action::MenuDown, input) {
++            menu.selected = (menu.selected + 1).min(choices.len() - 1);
++        }
++        let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
++        let panel = Self::installation_panel(width, height);
++        let hovered = input.pointer.and_then(|p| {
++            (0..choices.len()).find(|&i| Self::installation_row(panel, i).contains(p.into()))
++        });
++        let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
++        if clicked && let Some(index) = hovered {
++            menu.selected = index;
++        }
++        let confirmed = self.controls.pressed(Action::Interact, input)
++            || self.controls.pressed(Action::Learn, input)
++            || clicked && hovered.is_some();
++        if confirmed {
++            let Some(command) = choices[menu.selected].1.clone() else {
++                return;
++            };
++            let intel = match &command {
++                GameCommand::UseInstallation {
++                    action: InstallationAction::ReadIntel { index },
++                    ..
++                } => self
++                    .game
++                    .active_facility()
++                    .and_then(|f| f.intel_at(menu.target).get(*index as usize))
++                    .cloned(),
++                _ => None,
++            };
++            let outcome = self.execute_command(command);
++            self.capture_events();
++            menu.message = if let CommandOutcome::Rejected(reason) = outcome {
++                command_rejection_message(reason).into()
++            } else if let Some(intel) = intel {
++                let text = self
++                    .texts
++                    .resolve(DISPLAY_LOCALE, intel.record.as_str())
++                    .unwrap_or("Renseignement enregistré dans le dossier.");
++                let direction = intel
++                    .target
++                    .and_then(|target| {
++                        self.game.player_position().map(|origin| {
++                            format!(
++                                " {}.",
++                                crate::terminal_view::directional_signal_summary(
++                                    "REPÈRE",
++                                    origin,
++                                    target,
++                                    grid_distance(origin, target),
++                                    1
++                                )
++                            )
++                        })
++                    })
++                    .unwrap_or_default();
++                format!("{text}{direction}")
++            } else {
++                "Commande exécutée. L’état de l’installation est conservé.".into()
++            };
++        }
++        if self.game.status() == RunStatus::Active {
++            self.installation_menu = Some(menu);
++        }
++    }
++
++    pub(super) fn draw_installation_menu(&self) {
++        let Some(menu) = &self.installation_menu else {
++            return;
++        };
++        let panel = Self::installation_panel(self.ui_width(), self.ui_height());
++        let theme = UiTheme;
++        draw_rectangle(
++            0.0,
++            0.0,
++            self.ui_width(),
++            self.ui_height(),
++            theme.backdrop(),
++        );
++        theme.card(panel, false);
++        draw_text_bold(
++            self.installation_name_at(menu.target)
++                .unwrap_or("Installation"),
++            panel.x + 20.0,
++            panel.y + 32.0,
++            21.0,
++            theme.text(),
++        );
++        let subtitle = if let Some(powered) = self
++            .game
++            .active_facility()
++            .and_then(|f| f.power_setting_at(menu.target))
++        {
++            if powered {
++                "Passage ouvert · capteur alimenté"
++            } else {
++                "Passage coupé · capteur hors tension · détour au sud"
++            }
++        } else if self
++            .game
++            .active_facility()
++            .and_then(|f| f.diversion_at(menu.target))
++            .is_some()
++        {
++            "Attire les ennemis qui l’entendent. S’ils vous voient, vous restez leur cible."
++        } else {
++            "Le coût est indiqué pour chaque lecture. Les renseignements restent dans le dossier."
++        };
++        draw_text(
++            subtitle,
++            panel.x + 20.0,
++            panel.y + 62.0,
++            15.0,
++            theme.muted(),
++        );
++        let choices = self.installation_choices(menu.target);
++        for (index, (label, _)) in choices.iter().enumerate() {
++            let row = Self::installation_row(panel, index);
++            if index == menu.selected {
++                draw_rectangle(row.x, row.y, row.w, row.h, theme.surface_selected());
++            }
++            draw_text(label, row.x + 10.0, row.y + 24.0, 17.0, theme.text());
++        }
++        let message_y = panel.y + 86.0 + choices.len() as f32 * 42.0 + 12.0;
++        draw_wrapped_text(
++            &menu.message,
++            panel.x + 20.0,
++            message_y,
++            panel.w - 40.0,
++            4,
++            15,
++            theme.text(),
++        );
++        draw_text(
++            "Haut/Bas choisir · E/Entrée valider · Échap fermer",
++            panel.x + 20.0,
++            panel.y + panel.h - 18.0,
++            14.0,
++            theme.muted(),
++        );
++    }
++}
++
++#[cfg(any(test, debug_assertions))]
++impl AsciiApp {
++    fn enter_installation_annex(&mut self) -> Result<(), String> {
++        let anchor = self.installation_annex_anchor();
++        self.walk_fixture_to(anchor)?;
++        let outcome = self.execute_command(GameCommand::Interact { target: anchor });
++        if outcome != CommandOutcome::Applied {
++            return Err(format!("Annexe inaccessible : {outcome:?}"));
++        }
++        self.capture_events_at(Some(0.0));
++        Ok(())
++    }
++}
++
++#[cfg(debug_assertions)]
++impl AsciiApp {
++    pub async fn capture_installation_interactions(output: &std::path::Path) -> Result<(), String> {
++        std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
++        let (rules, texts, loot, expeditions) = ascii_game_content()?;
++        let mut app = Self::from_seed(INITIAL_SEED, rules, texts, loot, expeditions)?;
++        app.suspension_path = output.join("diagnostic.json");
++        app.menu = MenuScreen::Hidden;
++        app.enter_installation_annex()?;
++        for (width, height) in [(1280.0, 800.0), (960.0, 600.0)] {
++            request_new_screen_size(width, height);
++            for _ in 0..5 {
++                next_frame().await;
++            }
++            app.walk_fixture_to_unchecked(TERMINAL.step(Direction::North))?;
++            app.open_installation_menu(TERMINAL);
++            for _ in 0..3 {
++                app.draw();
++                next_frame().await;
++            }
++            app.draw();
++            crate::ui_capture::framebuffer()?.export_png(
++                output
++                    .join(format!("renseignements-{width:.0}.png"))
++                    .to_str()
++                    .ok_or("Path")?,
++            );
++            app.installation_menu = None;
++            app.walk_fixture_to_unchecked(PANEL.step(Direction::West))?;
++            app.open_installation_menu(PANEL);
++            for _ in 0..3 {
++                app.draw();
++                next_frame().await;
++            }
++            app.draw();
++            crate::ui_capture::framebuffer()?.export_png(
++                output
++                    .join(format!("alimentation-{width:.0}.png"))
++                    .to_str()
++                    .ok_or("Path")?,
++            );
++            app.installation_menu = None;
++        }
++        app.walk_fixture_to_unchecked(POST.step(Direction::West))?;
++        app.open_installation_menu(POST);
++        for _ in 0..3 {
++            app.draw();
++            next_frame().await;
++        }
++        app.draw();
++        crate::ui_capture::framebuffer()?
++            .export_png(output.join("diversion-960.png").to_str().ok_or("Path")?);
++        let before = app.game.recovery_snapshot_bytes()?;
++        for _ in 0..8 {
++            app.update_installation_menu(&InputFrame::default());
++        }
++        if before != app.game.recovery_snapshot_bytes()? {
++            return Err("Menu altered the simulation".into());
++        }
++        app.installation_menu = None;
++        app.walk_fixture_to_unchecked(PANEL.step(Direction::West))?;
++        app.execute_command(GameCommand::UseInstallation {
++            target: PANEL,
++            action: InstallationAction::SetPower { powered: false },
++        });
++        app.capture_events_at(Some(0.0));
++        for _ in 0..3 {
++            app.draw();
++            next_frame().await;
++        }
++        app.draw();
++        crate::ui_capture::framebuffer()?.export_png(
++            output
++                .join("passage-coupe-960.png")
++                .to_str()
++                .ok_or("Path")?,
++        );
++        app.execute_command(GameCommand::UseInstallation {
++            target: PANEL,
++            action: InstallationAction::SetPower { powered: true },
++        });
++        app.capture_events_at(Some(0.0));
++        request_new_screen_size(1600.0, 900.0);
++        app.graphics.active.world_cell_px = 32;
++        for _ in 0..5 {
++            next_frame().await;
++        }
++        app.walk_fixture_to_unchecked(GridPos::new(11, 7))?;
++        app.npc_vision_overlay_open = false; // Proposal capture only: no skill or setting is changed.
++        let sounds = app.installation_sound_preview();
++        if app.game.actor_observation_fields().is_empty() {
++            return Err("No visible observer in range preview".into());
++        }
++        let before = app.game.recovery_snapshot_bytes()?;
++        for _ in 0..3 {
++            app.draw();
++            app.draw_installation_sound_proposal(&sounds);
++            next_frame().await;
++        }
++        app.draw();
++        app.draw_installation_sound_proposal(&sounds);
++        crate::ui_capture::framebuffer()?.export_png(
++            output
++                .join("proposition-portees-1600.png")
++                .to_str()
++                .ok_or("Path")?,
++        );
++        if before != app.game.recovery_snapshot_bytes()? {
++            return Err("Range preview altered simulation".into());
++        }
++        app.execute_command(GameCommand::UseInstallation {
++            target: POST,
++            action: InstallationAction::ActivateDiversion,
++        });
++        app.capture_events_at(Some(0.0));
++        if !app
++            .game
++            .actors()
++            .iter()
++            .any(|(entity, _)| app.game.actor_perception_signals(entity) == Some((false, true)))
++        {
++            return Err("Hearing pictogram has no real heard sound".into());
++        }
++        for _ in 0..3 {
++            app.draw();
++            app.draw_installation_sound_proposal(&sounds);
++            next_frame().await;
++        }
++        app.draw();
++        app.draw_installation_sound_proposal(&sounds);
++        crate::ui_capture::framebuffer()?.export_png(
++            output
++                .join("proposition-entendu-1600.png")
++                .to_str()
++                .ok_or("Path")?,
++        );
++        for _ in 0..3 {
++            app.execute_command(GameCommand::Wait);
++            app.capture_events_at(Some(0.0));
++        }
++        // Leave the cover beside the post; the player's real concealment can
++        // otherwise prevent detection even inside the geometric field.
++        app.walk_fixture_to_unchecked(GridPos::new(12, 8))?;
++        if !app.game.actors().iter().any(|(entity, _)| {
++            app.game
++                .actor_perception_signals(entity)
++                .is_some_and(|(seen, _)| seen)
++        }) {
++            return Err(format!(
++                "Eye pictogram has no real detection: player={:?}, actors={:?}",
++                app.game.player_position(),
++                app.game
++                    .actors()
++                    .iter()
++                    .map(|(id, a)| (
++                        a.position(),
++                        a.ai_state(),
++                        app.game.actor_perception_signals(id)
++                    ))
++                    .collect::<Vec<_>>()
++            ));
++        }
++        for _ in 0..3 {
++            app.draw();
++            app.draw_installation_sound_proposal(&sounds);
++            next_frame().await;
++        }
++        app.draw();
++        app.draw_installation_sound_proposal(&sounds);
++        crate::ui_capture::framebuffer()?.export_png(
++            output
++                .join("proposition-vu-1600.png")
++                .to_str()
++                .ok_or("Path")?,
++        );
++        std::fs::write(
++            output.join("validation.json"),
++            "{\"menu_without_turns\":true,\"range_preview_without_mutation\":true,\"hearing_from_real_sound\":true,\"eye_from_real_detection\":true}",
++        )
++        .map_err(|e| e.to_string())?;
++        Ok(())
++    }
++}
++
++// This rendering is a reviewable proposal, accessible only in native diagnostics.
++// The game menu does not yet gain a sound overlay or bypass the existing vision skill.
++#[cfg(debug_assertions)]
++impl AsciiApp {
++    fn installation_sound_preview(&self) -> BTreeSet<GridPos> {
++        let Some(rules) = self.game.rules().stealth_rules else {
++            return BTreeSet::new();
++        };
++        let Some((_, intensity, _)) = self
++            .game
++            .active_facility()
++            .and_then(|f| f.diversion_at(POST))
++        else {
++            return BTreeSet::new();
++        };
++        (0..self.game.map().height() as i32)
++            .flat_map(|y| (0..self.game.map().width() as i32).map(move |x| GridPos::new(x, y)))
++            .filter(|&at| {
++                self.game.player_visibility().is_visible(at)
++                    && self.game.map().is_walkable(at)
++                    && rules.sound_reaches_on_map(
++                        self.game.map(),
++                        intensity,
++                        POST.step(Direction::East),
++                        at,
++                    )
++            })
++            .collect()
++    }
++    fn draw_installation_sound_proposal(&self, sounds: &BTreeSet<GridPos>) {
++        for field in self.game.actor_observation_fields() {
++            self.draw_circular_field_proposal(
++                field.origin(),
++                field.radius(),
++                &field.positions().collect(),
++                Color::from_rgba(55, 208, 174, 255),
++            );
++        }
++        if let Some(rules) = self.game.rules().stealth_rules {
++            if let Some((_, intensity, _)) = self
++                .game
++                .active_facility()
++                .and_then(|f| f.diversion_at(POST))
++            {
++                let radius = (intensity - 1) / rules.sound_attenuation_per_cell;
++                self.draw_circular_field_proposal(
++                    POST.step(Direction::East),
++                    radius,
++                    sounds,
++                    Color::from_rgba(240, 184, 79, 255),
++                );
++            }
++        }
++        for (entity, actor) in self.game.actors().iter() {
++            let Some((seen, heard)) = self.game.actor_perception_signals(entity) else {
++                continue;
++            };
++            if !seen && !heard {
++                continue;
++            }
++            let Some(cell) = self.terminal.world_cell_rect(
++                &self.game,
++                self.terminal_bounds(),
++                self.ui_scale(),
++                self.graphics.active.world_cell_px,
++                self.navigation_signal_summary().is_some(),
++                actor.position(),
++            ) else {
++                continue;
++            };
++            let center = vec2(cell.x + cell.w * 0.5, cell.y - 13.0);
++            let red = Color::from_rgba(255, 58, 73, 255);
++            if seen {
++                draw_ellipse_lines(center.x, center.y, 12.0, 7.0, 0.0, 2.6, red);
++                draw_circle(center.x, center.y, 3.5, red);
++            } else {
++                draw_ellipse_lines(center.x + 1.0, center.y - 1.0, 7.0, 10.0, 0.0, 2.6, red);
++                draw_line(
++                    center.x + 2.0,
++                    center.y - 5.0,
++                    center.x - 2.0,
++                    center.y + 1.0,
++                    2.6,
++                    red,
++                );
++                draw_line(
++                    center.x - 2.0,
++                    center.y + 1.0,
++                    center.x + 2.0,
++                    center.y + 5.0,
++                    2.6,
++                    red,
++                );
++                draw_line(
++                    center.x - 11.0,
++                    center.y - 4.0,
++                    center.x - 11.0,
++                    center.y + 4.0,
++                    2.6,
++                    red,
++                );
++            }
++        }
++        let y = screen_height() - 62.0;
++        draw_rectangle(
++            20.0,
++            y,
++            screen_width() - 40.0,
++            44.0,
++            Color::from_rgba(5, 7, 12, 255),
++        );
++        draw_text(
++            "PROPOSITION · Vision : vert · Bruit du poste : ambre",
++            32.0,
++            y + 19.0,
++            17.0,
++            WHITE,
++        );
++        draw_text(
++            "Ennemis visibles uniquement · Terrain visible uniquement · Aucune certitude de détection",
++            32.0,
++            y + 37.0,
++            14.0,
++            Color::from_rgba(172, 187, 200, 255),
++        );
++    }
++
++    fn draw_circular_field_proposal(
++        &self,
++        origin: GridPos,
++        radius: u16,
++        positions: &BTreeSet<GridPos>,
++        color: Color,
++    ) {
++        let rect_at = |at| {
++            self.terminal.world_cell_rect(
++                &self.game,
++                self.terminal_bounds(),
++                self.ui_scale(),
++                self.graphics.active.world_cell_px,
++                self.navigation_signal_summary().is_some(),
++                at,
++            )
++        };
++        let Some(origin_cell) = rect_at(origin) else {
++            return;
++        };
++        let center = origin_cell.center();
++        // Same conservative analytic edge as the player's visibility circle.
++        let r = (f32::from(radius) - std::f32::consts::FRAC_1_SQRT_2).max(0.5) * origin_cell.w;
++        let circle: Vec<_> = (0..96)
++            .map(|i| {
++                let angle = i as f32 * std::f32::consts::TAU / 96.0;
++                center + vec2(angle.cos(), angle.sin()) * r
++            })
++            .collect();
++        for &at in positions {
++            if !self.game.player_visibility().is_visible(at) || !self.game.map().is_walkable(at) {
++                continue;
++            }
++            let Some(cell) = rect_at(at) else {
++                continue;
++            };
++            let mut polygon = vec![
++                vec2(cell.x, cell.y),
++                vec2(cell.x + cell.w, cell.y),
++                vec2(cell.x + cell.w, cell.y + cell.h),
++                vec2(cell.x, cell.y + cell.h),
++            ];
++            for edge in 0..circle.len() {
++                if polygon.is_empty() {
++                    break;
++                }
++                let a = circle[edge];
++                let b = circle[(edge + 1) % circle.len()];
++                let line = b - a;
++                let side = |p: Vec2| line.perp_dot(p - a);
++                let mut clipped = Vec::new();
++                let mut previous = *polygon.last().unwrap();
++                let mut previous_side = side(previous);
++                for &current in &polygon {
++                    let current_side = side(current);
++                    if (previous_side >= 0.0) != (current_side >= 0.0) {
++                        clipped.push(
++                            previous
++                                + (current - previous)
++                                    * (previous_side / (previous_side - current_side)),
++                        );
++                    }
++                    if current_side >= 0.0 {
++                        clipped.push(current);
++                    }
++                    previous = current;
++                    previous_side = current_side;
++                }
++                polygon = clipped;
++            }
++            for i in 1..polygon.len().saturating_sub(1) {
++                draw_triangle(
++                    polygon[0],
++                    polygon[i],
++                    polygon[i + 1],
++                    Color::new(color.r, color.g, color.b, 0.15),
++                );
++            }
++        }
++        for i in 0..circle.len() {
++            let a = circle[i];
++            let b = circle[(i + 1) % circle.len()];
++            let at = |p: Vec2| {
++                GridPos::new(
++                    origin.x + ((p.x - center.x) / origin_cell.w).round() as i32,
++                    origin.y + ((p.y - center.y) / origin_cell.h).round() as i32,
++                )
++            };
++            if [at(a), at(b)].into_iter().all(|p| {
++                positions.contains(&p)
++                    && self.game.player_visibility().is_visible(p)
++                    && self.game.map().is_walkable(p)
++            }) {
++                draw_line(
++                    a.x,
++                    a.y,
++                    b.x,
++                    b.y,
++                    1.4,
++                    Color::new(color.r, color.g, color.b, 0.85),
++                );
++            }
++        }
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    fn app(version: u8) -> AsciiApp {
++        let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
++        AsciiApp::from_seed_version(INITIAL_SEED, rules, texts, loot, expeditions, version).unwrap()
++    }
++    #[test]
++    fn installations_new_generation_is_optional_and_old_runs_keep_their_map() {
++        let old = app(IRREVERSIBLE_LAYERS_GENERATION_VERSION);
++        assert!(old.game.zone_info(&cid("core:transit_annex")).is_none());
++        let mut new = app(CURRENT_GENERATION_VERSION);
++        assert!(new.game.zone_info(&cid("core:transit_annex")).is_some());
++        new.enter_installation_annex().unwrap();
++        assert!(
++            !new.game
++                .player_may_take_property_of(&cid("core:system_security"))
++        );
++        assert!(
++            !new.game
++                .passage_is_irreversible(new.game.passage(ENTRANCE).unwrap())
++        );
++        new.walk_fixture_to_unchecked(TERMINAL.step(Direction::North))
++            .unwrap();
++        let before = new.game.recovery_snapshot_bytes().unwrap();
++        assert!(new.open_installation_menu(TERMINAL));
++        new.update_installation_menu(&InputFrame::default());
++        assert_eq!(before, new.game.recovery_snapshot_bytes().unwrap());
++        new.installation_menu = None;
++        assert_eq!(
++            new.execute_command(GameCommand::UseInstallation {
++                target: TERMINAL,
++                action: InstallationAction::ReadIntel { index: 0 }
++            }),
++            CommandOutcome::Applied
++        );
++        new.game.drain_events();
++        let expected = new.game.recovery_snapshot_bytes().unwrap();
++        let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
++        let mut saved = new.suspension().unwrap();
++        saved.build = "0000000000000000".into();
++        let restored =
++            AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
++        assert_eq!(expected, restored.game.recovery_snapshot_bytes().unwrap());
++    }
++}
+diff --git a/content/core/locales/fr_interactions.json5 b/content/core/locales/fr_interactions.json5
+new file mode 100644
+index 0000000..da90248
+--- /dev/null
++++ b/content/core/locales/fr_interactions.json5
+@@ -0,0 +1,9 @@
++{
++  locale: "fr",
++  entries: {
++    "core:intel_transit_annex": "L’annexe de transit est accessible près des archives de la ville.",
++    "core:intel_transit_return": "Le passage au sud-ouest rejoint la ville.",
++    "core:intel_transit_power": "Le panneau ouest alimente le passage direct et le capteur. Le couloir sud reste ouvert. Le capteur surveille la réserve.",
++    "core:intel_transit_diversion": "Le poste ouest émet un bruit pendant trois tours. Il dispose de deux charges.",
++  },
++}
+diff --git a/Essayer_interactions.cmd b/Essayer_interactions.cmd
+new file mode 100644
+index 0000000..5bb01f8
+--- /dev/null
++++ b/Essayer_interactions.cmd
+@@ -0,0 +1,12 @@
++@echo off
++cd /d "%~dp0"
++cargo build --locked --release --bin project-rl
++if errorlevel 1 (
++  echo Impossible de compiler l'essai des interactions.
++  pause
++  exit /b 1
++)
++echo Sauvegarde independante : essai-interactions.json
++echo Nouvelle partie : gagnez la ville puis l'annexe pres des archives.
++echo Un terminal indique le chemin. E pour interagir, echap pour fermer.
++"target\release\project-rl.exe" --essai-interactions

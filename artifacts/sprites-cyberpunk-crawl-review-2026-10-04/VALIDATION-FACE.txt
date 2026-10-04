@@ -1,0 +1,35 @@
+Proposition : apercu-face.html — 2026-10-04
+
+Sources : retouches imagegen intégré, classes-face-v1.png (1254 x 1254,
+grille 3 x 3) et bestiaire-face-v2.png (1536 x 1024, 24 sujets sur quatre lignes).
+PNG RGBA avec transparence. Chaque rectangle source contient un sujet non vide.
+Le bestiaire généré n'a pas des lignes exactement égales : les rectangles
+face-bestiary-frames.json conservent les têtes et les corps complets, évitent
+les fragments du voisin et préservent les proportions au rendu de 32 pixels.
+check-face-atlases.py vérifie les 33 rectangles, sans contact opaque avec
+leurs bordures. Rapport : face-atlas-validation.json.
+Ce contrôle ne prouve pas l'approbation artistique ni un dessin natif à la main.
+
+JavaScript : node --check face-catalog.js, face-bestiary-frames.js et
+face-preview.js réussis.
+
+Vérifications dans le navigateur local :
+- Les neuf choix classe/equipement affichent le nom, le bon équipement et
+  la planche de face dans la cible.
+- Les 24 choix de créature affichent le nom et la planche bestiaire de face.
+- Le catalogue comporte neuf personnages ou 24 créatures selon le choix.
+  Chaque carte contient un dessin en 32 x 32 et un agrandissement en 64 x 64.
+- Le clic dans chaque type de catalogue met le sujet sur le plateau.
+- Le sélecteur de comparaison affiche les planches précédentes, puis rétablit
+  les planches de face, pour le personnage comme pour le bestiaire.
+- Carte de 320 x 256 pixels affichée à 320 x 256 ; cases de 32 pixels,
+  un personnage, cinq créatures et quatre objets de démonstration.
+- Les quatre sources d'inventaire restent celles de l'aperçu précédent,
+  affichées en 64 x 64. Les cibles ont un buffer de 128 x 128.
+- Ramassage et remise au sol du fusil : comportement de démonstration conservé.
+- Aucune erreur console observée.
+
+Limites : aucune intégration au moteur Rust, aucun changement de contenu canon,
+pas encore de pièces d'équipement portées indépendantes pour chaque modèle.
+Les nouveaux sprites proviennent de planches générées affichées à 32 pixels ;
+ils ne sont pas décrits comme des PNG de 32 pixels retouchés manuellement.

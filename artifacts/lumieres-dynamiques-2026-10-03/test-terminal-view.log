@@ -1,0 +1,48 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 28.39s
+     Running unittests src\main.rs (target\debug\deps\project_rl-0ba222474f2d20c2.exe)
+
+running 40 tests
+test terminal_view::terminal_art::tests::open_door_preserves_a_clear_passage_and_closed_states_fill_it ... ok
+test terminal_view::terminal_fx::tests::effect_pixels_remain_inside_their_visible_cell_at_every_zoom ... ok
+test terminal_view::terminal_fx::elements::tests::flame_motion_does_not_accelerate_with_short_transient_lifetime ... ok
+test terminal_view::terminal_fx::elements::tests::flame_jet_rotates_its_silhouette_with_the_actual_attack_direction ... ok
+test terminal_view::terminal_fx::elements::tests::elements_have_filled_distinct_silhouettes_even_without_color ... ok
+test terminal_view::terminal_lighting::tests::reduced_motion_is_constant_and_dynamic_variation_is_gentle ... ok
+test terminal_view::terminal_roads::tests::pavement_uses_known_streets_and_stops_at_building_entrances ... ok
+test terminal_view::terminal_roads::tests::road_paint_follows_both_axes_and_stops_at_crossroads ... ok
+test terminal_view::terminal_roads::tests::unknown_cells_cannot_define_road_boundaries ... ok
+test terminal_view::terminal_scenery::tests::every_new_scenery_has_a_readable_pattern_and_a_distinct_label ... ok
+test terminal_view::terminal_lighting::tests::unknown_cells_and_closed_diagonal_corners_block_light ... ok
+test terminal_view::terminal_lighting::tests::wall_lamps_only_light_the_side_where_their_strip_is_drawn ... ok
+test terminal_view::terminal_lighting::tests::closed_partition_and_doors_stop_a_local_light ... ok
+test terminal_view::terminal_lighting::tests::offline_and_inactive_terminals_do_not_emit ... ok
+test terminal_view::terminal_lighting::tests::hidden_and_remembered_sources_cannot_enter_the_render_plan ... ok
+test terminal_view::terminal_vision::tests::radial_fringe_fits_inside_visible_tile_union_at_every_angle_and_zoom ... ok
+test terminal_view::terminal_scenery::tests::scenery_variants_preserve_authored_obstacles_and_walkable_marks ... ok
+test terminal_view::tests::ascii_actors_are_unique_and_terminal_shapes_are_well_formed ... ok
+test terminal_view::tests::cartography_focuses_the_remembered_region_with_a_bounded_margin ... ok
+test terminal_view::tests::camera_tiles_and_pointer_agree_at_every_zoom_and_window_size ... ok
+test terminal_view::terminal_scenery::tests::legacy_saved_floor_symbols_are_removed_without_refreshing_hidden_terrain ... ok
+test terminal_view::tests::navigation_signal_uses_stable_approximate_directions_and_distance_bands ... ok
+test terminal_view::tests::objective_panel_has_a_fixed_place_outside_the_map_in_both_layouts ... ok
+test terminal_view::tests::live_flames_replace_duplicate_fire_but_keep_distinct_attack_feedback ... ok
+test terminal_view::tests::memory_never_refreshes_hidden_terrain_or_joins_unknown_walls ... ok
+test terminal_view::tests::frame_overlays_sample_visible_cells_once_and_do_not_reuse_stale_data ... ok
+test terminal_view::tests::procedural_location_names_hide_internal_coordinates_and_use_player_language ... ok
+test terminal_view::tests::quest_badges_cannot_cover_a_character_in_the_cell_above ... ok
+test terminal_view::tests::ground_hover_labels_keep_all_live_fields_without_an_occupant_glyph ... ok
+test terminal_view::tests::interaction_hint_only_advertises_a_key_when_it_can_target_the_element ... ok
+test terminal_view::tests::route_map_and_cartography_use_separate_non_overlapping_regions ... ok
+test terminal_view::tests::legend_panel_stays_inside_responsive_world_bounds ... ok
+test terminal_view::tests::small_windows_fit_the_default_sensor_footprint_without_altering_range ... ok
+test terminal_view::tests::sensor_projection_rejects_positions_outside_its_authorized_bounds ... ok
+test terminal_view::tests::sensor_contacts_use_shapes_with_stable_semantic_categories ... ok
+test terminal_view::tests::scaled_status_panel_preserves_text_space_and_world_pointer_alignment ... ok
+test terminal_view::terminal_fx::elements::tests::merged_runs_preserve_every_pixel_and_occupant_opacity ... ok
+test terminal_view::terminal_fx::elements::tests::sustained_flames_and_pools_never_vanish_or_replay_their_creation ... ok
+test terminal_view::terminal_vision::tests::shadow_field_ignores_hidden_changes_and_refreshes_after_opening_a_door ... ok
+test terminal_view::terminal_fx::elements::tests::elemental_samples_animate_deterministically_with_bounded_palette ... ok
+
+test result: ok. 40 passed; 0 failed; 0 ignored; 0 measured; 564 filtered out; finished in 0.03s
+

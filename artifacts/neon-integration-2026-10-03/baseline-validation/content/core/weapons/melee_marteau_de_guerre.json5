@@ -1,0 +1,19 @@
+{
+  "id": "core:melee_marteau_de_guerre",
+  "name_key": "equipment.melee_marteau_de_guerre.name",
+  "description_key": "equipment.marteau_de_guerre.description",
+  "mass_grams": 4000,
+  "attack": {
+    "impact": { "material_cap": 16 },
+    "range": 1,
+    "distance_metric": "chebyshev",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": -8,
+    "damage": {
+      "amount": 14,
+      "damage_type": "kinetic",
+      "penetration": 4
+    },
+    "delivery": "melee"
+  }
+}

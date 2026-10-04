@@ -1,7 +1,9 @@
 mod ascii_app;
 mod controls;
 mod graphics;
+mod hub_layout;
 mod pause_menu;
+mod surface_layout;
 mod suspension;
 mod terminal_view;
 mod test_expedition;
@@ -36,11 +38,24 @@ async fn main() {
     if let Err(error) = ui_theme::initialize_fonts() {
         eprintln!("[UI] Police embarquée indisponible, police de secours utilisée : {error}");
     }
+    terminal_view::initialize_player_art();
     #[cfg(debug_assertions)]
     if let Some(output) = graphics::ui_smoke_output() {
         let mode = std::env::args().nth(1).unwrap_or_default();
-        let result = if mode == "--ui-cold-performance-actions" {
+        let result = if mode == "--ui-cold-tactical-reading" {
+            AsciiApp::capture_tactical_reading_integration(&output).await
+        } else if mode == "--ui-cold-tactical-listening" {
+            AsciiApp::capture_tactical_reading_proposal(&output).await
+        } else if mode == "--ui-cold-installations" {
+            AsciiApp::capture_installation_interactions(&output).await
+        } else if mode == "--ui-cold-performance-actions" {
             AsciiApp::capture_action_performance(&output)
+        } else if mode == "--ui-cold-performance-turns" {
+            AsciiApp::capture_turn_performance(&output)
+        } else if mode == "--ui-cold-performance-recovery" {
+            AsciiApp::capture_recovery_performance(&output).await
+        } else if mode == "--ui-cold-performance-lights" {
+            AsciiApp::capture_lighting_performance(&output).await
         } else if mode == "--ui-cold-performance" {
             AsciiApp::capture_performance(&output).await
         } else if mode.starts_with("--ui-cold") {
@@ -55,7 +70,28 @@ async fn main() {
         }
         return;
     }
-    let mut app = match AsciiApp::new() {
+    #[cfg(debug_assertions)]
+    if std::env::args().any(|arg| arg == "--apercu-lecture-tactique") {
+        if let Err(error) = AsciiApp::run_tactical_reading_proposal().await {
+            run_error_screen(&error).await;
+        }
+        return;
+    }
+    let trial = std::env::args().any(|arg| arg == "--essai-expedition");
+    let installation_trial = std::env::args().any(|arg| arg == "--essai-interactions");
+    let mut app = match (|| {
+        #[cfg(debug_assertions)]
+        if std::env::args().any(|arg| arg == "--essai-lecture-tactique") {
+            return AsciiApp::new_tactical_reading_trial();
+        }
+        if installation_trial {
+            AsciiApp::new_installation_trial()
+        } else if trial {
+            AsciiApp::new_playable_trial()
+        } else {
+            AsciiApp::new()
+        }
+    })() {
         Ok(app) => app,
         Err(error) => {
             run_error_screen(&error).await;

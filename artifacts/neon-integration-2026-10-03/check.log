@@ -1,0 +1,16 @@
+    Checking miniquad v0.4.11 (C:\Users\User\Desktop\project-RL\vendor\miniquad)
+    Checking macroquad v0.4.16
+    Checking project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+warning: method `wall_joins` is never used
+   --> src\terminal_view.rs:694:8
+    |
+507 | impl TerminalView {
+    | ----------------- method in this implementation
+...
+694 |     fn wall_joins(&self, position: GridPos) -> [bool; 4] {
+    |        ^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `project-rl` (bin "project-rl") generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 6.32s

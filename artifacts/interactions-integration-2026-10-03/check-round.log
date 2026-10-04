@@ -1,0 +1,34 @@
+   Compiling project-rl v0.1.0 (C:\Users\User\Desktop\project-RL)
+error[E0027]: pattern does not mention field `outlet`
+   --> src\facility\interactions.rs:140:17
+    |
+140 | /                 InstallationCapability::DiversionPost {
+141 | |                     charges,
+142 | |                     intensity,
+143 | |                     duration,
+144 | |                 } => Some((*charges, *intensity, *duration)),
+    | |_________________^ missing field `outlet`
+    |
+help: include the missing field in the pattern
+    |
+143 -                     duration,
+144 -                 } => Some((*charges, *intensity, *duration)),
+143 +                     duration, outlet } => Some((*charges, *intensity, *duration)),
+    |
+help: if you don't care about this missing field, you can explicitly ignore it
+    |
+143 -                     duration,
+144 -                 } => Some((*charges, *intensity, *duration)),
+143 +                     duration, outlet: _ } => Some((*charges, *intensity, *duration)),
+    |
+help: or always ignore missing fields here
+    |
+143 -                     duration,
+144 -                 } => Some((*charges, *intensity, *duration)),
+143 +                     duration, .. } => Some((*charges, *intensity, *duration)),
+    |
+
+For more information about this error, try `rustc --explain E0027`.
+error: could not compile `project-rl` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `project-rl` (lib test) due to 1 previous error

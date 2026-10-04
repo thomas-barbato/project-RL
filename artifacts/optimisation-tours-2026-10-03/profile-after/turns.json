@@ -1,0 +1,3641 @@
+{
+  "build": "debug",
+  "profiling_preserves_exact_save_bytes": true,
+  "scenes": [
+    {
+      "autosave_enabled": false,
+      "command_cpu": {
+        "max_ms": 63.4599,
+        "median_ms": 2.4516999999999998,
+        "p95_ms": 58.9779,
+        "p99_ms": 63.4599
+      },
+      "commands": 80,
+      "commands_detail": [],
+      "inclusive_stage_calls": {},
+      "inclusive_stages_per_command": {},
+      "profiled": false,
+      "rendering_enabled": false,
+      "scene": "hub-walk"
+    },
+    {
+      "autosave_enabled": false,
+      "command_cpu": {
+        "max_ms": 84.84,
+        "median_ms": 2.4985,
+        "p95_ms": 61.487899999999996,
+        "p99_ms": 84.84
+      },
+      "commands": 80,
+      "commands_detail": [
+        {
+          "command_ms": 2.6478,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3737000000000001,
+            "engine.ai-actor": 1.3170999999999997,
+            "engine.command": 1.6924,
+            "engine.complete-turn": 1.4655,
+            "engine.hearing": 0.6906000000000002,
+            "engine.path-search": 0.5035000000000001,
+            "engine.sound-query": 0.6437,
+            "world.command": 2.5278,
+            "world.facility": 0.526,
+            "world.resident": 0.29769999999999996
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 0,
+          "turn": 153
+        },
+        {
+          "command_ms": 2.5489,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3613,
+            "engine.ai-actor": 1.3139,
+            "engine.command": 1.661,
+            "engine.complete-turn": 1.4434,
+            "engine.hearing": 0.7176000000000001,
+            "engine.path-search": 0.4405,
+            "engine.sound-query": 0.6719999999999999,
+            "world.command": 2.4409,
+            "world.facility": 0.48990000000000006,
+            "world.resident": 0.27870000000000006
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 1,
+          "turn": 154
+        },
+        {
+          "command_ms": 2.5228,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3282,
+            "engine.ai-actor": 1.2731999999999999,
+            "engine.command": 1.6743000000000001,
+            "engine.complete-turn": 1.4156,
+            "engine.hearing": 0.6870000000000003,
+            "engine.path-search": 0.38289999999999996,
+            "engine.sound-query": 0.6441,
+            "world.command": 2.3769,
+            "world.facility": 0.4532,
+            "world.resident": 0.23979999999999996
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 2,
+          "turn": 155
+        },
+        {
+          "command_ms": 2.3892,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.324,
+            "engine.ai-actor": 1.2787000000000002,
+            "engine.command": 1.6161,
+            "engine.complete-turn": 1.4044999999999999,
+            "engine.hearing": 0.6843000000000001,
+            "engine.path-search": 0.3372,
+            "engine.sound-query": 0.6414999999999997,
+            "world.command": 2.2622,
+            "world.facility": 0.4212,
+            "world.resident": 0.2149
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 3,
+          "turn": 156
+        },
+        {
+          "command_ms": 2.3579,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3327,
+            "engine.ai-actor": 1.287,
+            "engine.command": 1.6301,
+            "engine.complete-turn": 1.4124999999999999,
+            "engine.hearing": 0.6910000000000002,
+            "engine.path-search": 0.31410000000000005,
+            "engine.sound-query": 0.6457999999999999,
+            "world.command": 2.251,
+            "world.facility": 0.4157,
+            "world.resident": 0.1379
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 4,
+          "turn": 157
+        },
+        {
+          "command_ms": 2.334,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3802,
+            "engine.ai-actor": 1.3349,
+            "engine.command": 1.6682000000000001,
+            "engine.complete-turn": 1.4604,
+            "engine.hearing": 0.7183000000000003,
+            "engine.path-search": 0.2782,
+            "engine.sound-query": 0.6720999999999999,
+            "world.command": 2.2335,
+            "world.facility": 0.3814,
+            "world.resident": 0.12890000000000001
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 5,
+          "turn": 158
+        },
+        {
+          "command_ms": 2.2445,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2717,
+            "engine.ai-actor": 1.2268999999999997,
+            "engine.command": 1.5962,
+            "engine.complete-turn": 1.3494,
+            "engine.hearing": 0.6571000000000002,
+            "engine.path-search": 0.2419,
+            "engine.sound-query": 0.6150999999999999,
+            "world.command": 2.1339,
+            "world.facility": 0.3749,
+            "world.resident": 0.11920000000000001
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 6,
+          "turn": 159
+        },
+        {
+          "command_ms": 2.8226,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3194000000000001,
+            "engine.ai-actor": 1.2751,
+            "engine.command": 1.6078,
+            "engine.complete-turn": 1.4008,
+            "engine.hearing": 0.6684000000000002,
+            "engine.path-search": 0.6611,
+            "engine.sound-query": 0.6251,
+            "world.command": 2.7144999999999997,
+            "world.facility": 0.47550000000000003,
+            "world.resident": 0.5682
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 7,
+          "turn": 160
+        },
+        {
+          "command_ms": 2.9656000000000002,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.5034,
+            "engine.ai-actor": 1.4519000000000004,
+            "engine.command": 1.896,
+            "engine.complete-turn": 1.5925,
+            "engine.hearing": 0.7639000000000002,
+            "engine.path-search": 0.6551999999999999,
+            "engine.sound-query": 0.7123,
+            "world.command": 2.8571,
+            "world.facility": 0.3585,
+            "world.resident": 0.5902999999999999
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 8,
+          "turn": 161
+        },
+        {
+          "command_ms": 2.5136999999999996,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2686,
+            "engine.ai-actor": 1.2244,
+            "engine.command": 1.5629000000000002,
+            "engine.complete-turn": 1.3533,
+            "engine.hearing": 0.6591000000000001,
+            "engine.path-search": 0.5626,
+            "engine.sound-query": 0.6174000000000001,
+            "world.command": 2.4129,
+            "world.facility": 0.33980000000000005,
+            "world.resident": 0.5005
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 9,
+          "turn": 162
+        },
+        {
+          "command_ms": 2.5752,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2715,
+            "engine.ai-actor": 1.2278,
+            "engine.command": 1.5719,
+            "engine.complete-turn": 1.3493,
+            "engine.hearing": 0.6602000000000003,
+            "engine.path-search": 0.5874999999999999,
+            "engine.sound-query": 0.6185,
+            "world.command": 2.4656000000000002,
+            "world.facility": 0.3389,
+            "world.resident": 0.5448
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 10,
+          "turn": 163
+        },
+        {
+          "command_ms": 2.4592,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3491,
+            "engine.ai-actor": 1.3002,
+            "engine.command": 1.646,
+            "engine.complete-turn": 1.4287,
+            "engine.hearing": 0.7097000000000002,
+            "engine.path-search": 0.3846,
+            "engine.sound-query": 0.6634000000000001,
+            "world.command": 2.3577,
+            "world.facility": 0.3549,
+            "world.resident": 0.3464
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 11,
+          "turn": 164
+        },
+        {
+          "command_ms": 2.6407000000000003,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3306,
+            "engine.ai-actor": 1.2855999999999996,
+            "engine.command": 1.6260999999999999,
+            "engine.complete-turn": 1.4096,
+            "engine.hearing": 0.6826000000000003,
+            "engine.path-search": 0.5548,
+            "engine.sound-query": 0.6374000000000001,
+            "world.command": 2.5331,
+            "world.facility": 0.3081,
+            "world.resident": 0.5359999999999999
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 12,
+          "turn": 165
+        },
+        {
+          "command_ms": 2.8876,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.517,
+            "engine.ai-actor": 1.4716,
+            "engine.command": 1.8136,
+            "engine.complete-turn": 1.6042999999999998,
+            "engine.hearing": 0.8262000000000002,
+            "engine.path-search": 0.5363,
+            "engine.sound-query": 0.7782,
+            "world.command": 2.7294,
+            "world.facility": 0.30269999999999997,
+            "world.resident": 0.5553
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 13,
+          "turn": 166
+        },
+        {
+          "command_ms": 3.6006,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.9837000000000002,
+            "engine.ai-actor": 1.9111999999999998,
+            "engine.command": 2.4332999999999996,
+            "engine.complete-turn": 2.0867,
+            "engine.hearing": 1.0111000000000003,
+            "engine.path-search": 0.5325000000000001,
+            "engine.sound-query": 0.9507000000000001,
+            "world.command": 3.4402,
+            "world.facility": 0.38470000000000004,
+            "world.resident": 0.5625
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 14,
+          "turn": 167
+        },
+        {
+          "command_ms": 3.648,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.9197000000000002,
+            "engine.ai-actor": 1.8578000000000003,
+            "engine.command": 2.3348,
+            "engine.complete-turn": 2.0294000000000003,
+            "engine.hearing": 0.9905000000000002,
+            "engine.path-search": 0.6779000000000001,
+            "engine.sound-query": 0.9330999999999999,
+            "world.command": 3.4965,
+            "world.facility": 0.3475,
+            "world.resident": 0.7586
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 15,
+          "turn": 168
+        },
+        {
+          "command_ms": 3.6725,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.9838,
+            "engine.ai-actor": 1.9239,
+            "engine.command": 2.3945,
+            "engine.complete-turn": 2.0812999999999997,
+            "engine.hearing": 1.0509,
+            "engine.path-search": 0.6125,
+            "engine.sound-query": 0.9925000000000002,
+            "world.command": 3.512,
+            "world.facility": 0.3873,
+            "world.resident": 0.7164
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 16,
+          "turn": 169
+        },
+        {
+          "command_ms": 4.0054,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.9880000000000002,
+            "engine.ai-actor": 1.9122000000000001,
+            "engine.command": 2.3912999999999998,
+            "engine.complete-turn": 2.0963000000000003,
+            "engine.hearing": 1.041,
+            "engine.path-search": 0.9837,
+            "engine.sound-query": 0.9798000000000001,
+            "world.command": 3.8647,
+            "world.facility": 0.34469999999999995,
+            "world.resident": 1.1116
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 17,
+          "turn": 170
+        },
+        {
+          "command_ms": 2.4986,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3198,
+            "engine.ai-actor": 1.2727,
+            "engine.command": 1.6551,
+            "engine.complete-turn": 1.4017000000000002,
+            "engine.hearing": 0.6792000000000002,
+            "engine.path-search": 0.39430000000000004,
+            "engine.sound-query": 0.6356,
+            "world.command": 2.3737,
+            "world.facility": 0.2415,
+            "world.resident": 0.4663
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 18,
+          "turn": 171
+        },
+        {
+          "command_ms": 2.2801,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2856,
+            "engine.ai-actor": 1.2415,
+            "engine.command": 1.5824,
+            "engine.complete-turn": 1.3634000000000002,
+            "engine.hearing": 0.6682,
+            "engine.path-search": 0.2858,
+            "engine.sound-query": 0.6253999999999997,
+            "world.command": 2.1774,
+            "world.facility": 0.2239,
+            "world.resident": 0.3611
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 19,
+          "turn": 172
+        },
+        {
+          "command_ms": 2.2874000000000003,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2746000000000002,
+            "engine.ai-actor": 1.2310000000000003,
+            "engine.command": 1.5682,
+            "engine.complete-turn": 1.3519999999999999,
+            "engine.hearing": 0.6637000000000004,
+            "engine.path-search": 0.2529,
+            "engine.sound-query": 0.6225000000000002,
+            "world.command": 2.1641999999999997,
+            "world.facility": 0.24860000000000002,
+            "world.resident": 0.3355
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 20,
+          "turn": 173
+        },
+        {
+          "command_ms": 4.143400000000001,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3519,
+            "engine.ai-actor": 1.3064999999999998,
+            "engine.command": 1.6686999999999999,
+            "engine.complete-turn": 1.4514,
+            "engine.hearing": 0.7075000000000001,
+            "engine.path-search": 1.6055000000000001,
+            "engine.sound-query": 0.6625999999999999,
+            "world.command": 3.8861999999999997,
+            "world.facility": 0.38249999999999995,
+            "world.resident": 1.7972999999999997
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 21,
+          "turn": 174
+        },
+        {
+          "command_ms": 2.5681,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3768,
+            "engine.ai-actor": 1.3204,
+            "engine.command": 1.7894,
+            "engine.complete-turn": 1.4818,
+            "engine.hearing": 0.6761000000000004,
+            "engine.path-search": 0.2949,
+            "engine.sound-query": 0.6308,
+            "world.command": 2.4434,
+            "world.facility": 0.2408,
+            "world.resident": 0.3987
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 22,
+          "turn": 175
+        },
+        {
+          "command_ms": 3.3822,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.8879000000000001,
+            "engine.ai-actor": 1.8380999999999996,
+            "engine.command": 2.1982999999999997,
+            "engine.complete-turn": 1.9823000000000002,
+            "engine.hearing": 0.9983000000000001,
+            "engine.path-search": 0.5402,
+            "engine.sound-query": 0.9386,
+            "world.command": 3.2194,
+            "world.facility": 0.298,
+            "world.resident": 0.7088
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 23,
+          "turn": 176
+        },
+        {
+          "command_ms": 84.84,
+          "inclusive_stage_ms": {
+            "engine.ai": 2.0040999999999998,
+            "engine.ai-actor": 1.9403000000000004,
+            "engine.command": 2.4499,
+            "engine.complete-turn": 2.1102,
+            "engine.hearing": 1.0328000000000004,
+            "engine.path-search": 81.71790000000001,
+            "engine.sound-query": 0.9711000000000001,
+            "world.command": 84.6901,
+            "world.facility": 81.66629999999999,
+            "world.resident": 0.5455000000000001
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 24,
+          "turn": 177
+        },
+        {
+          "command_ms": 61.487899999999996,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.406,
+            "engine.ai-actor": 1.3474999999999993,
+            "engine.command": 1.7956999999999999,
+            "engine.complete-turn": 1.5173,
+            "engine.hearing": 0.7001000000000001,
+            "engine.path-search": 59.105199999999996,
+            "engine.sound-query": 0.6524999999999999,
+            "world.command": 61.349399999999996,
+            "world.facility": 59.1664,
+            "world.resident": 0.3645
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 25,
+          "turn": 178
+        },
+        {
+          "command_ms": 62.5834,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3771,
+            "engine.ai-actor": 1.3216999999999994,
+            "engine.command": 1.7738,
+            "engine.complete-turn": 1.4852,
+            "engine.hearing": 0.6859000000000002,
+            "engine.path-search": 60.1767,
+            "engine.sound-query": 0.6396999999999998,
+            "world.command": 62.4245,
+            "world.facility": 60.2722,
+            "world.resident": 0.3549
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 26,
+          "turn": 179
+        },
+        {
+          "command_ms": 58.9938,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.4671,
+            "engine.ai-actor": 1.4080999999999997,
+            "engine.command": 1.8902999999999999,
+            "engine.complete-turn": 1.5833,
+            "engine.hearing": 0.7249000000000003,
+            "engine.path-search": 56.503099999999996,
+            "engine.sound-query": 0.6729999999999998,
+            "world.command": 58.854499999999994,
+            "world.facility": 56.6234,
+            "world.resident": 0.3176
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 27,
+          "turn": 180
+        },
+        {
+          "command_ms": 60.8133,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3844,
+            "engine.ai-actor": 1.3281,
+            "engine.command": 1.833,
+            "engine.complete-turn": 1.4935,
+            "engine.hearing": 0.6941000000000002,
+            "engine.path-search": 58.3338,
+            "engine.sound-query": 0.6472999999999999,
+            "world.command": 60.661,
+            "world.facility": 58.4484,
+            "world.resident": 0.2718
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 28,
+          "turn": 181
+        },
+        {
+          "command_ms": 65.62419999999999,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.4025999999999998,
+            "engine.ai-actor": 1.3468999999999998,
+            "engine.command": 1.8672,
+            "engine.complete-turn": 1.5376999999999998,
+            "engine.hearing": 0.7001000000000001,
+            "engine.path-search": 63.1616,
+            "engine.sound-query": 0.6538999999999999,
+            "world.command": 65.4811,
+            "world.facility": 63.315,
+            "world.resident": 0.2045
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 29,
+          "turn": 182
+        },
+        {
+          "command_ms": 2.7991,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.4174,
+            "engine.ai-actor": 1.3580999999999999,
+            "engine.command": 1.9146,
+            "engine.complete-turn": 1.5973000000000002,
+            "engine.hearing": 0.6976000000000002,
+            "engine.path-search": 0.39570000000000005,
+            "engine.sound-query": 0.6486999999999998,
+            "world.command": 2.6812,
+            "world.facility": 0.5255000000000001,
+            "world.resident": 0.18580000000000002
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 30,
+          "turn": 183
+        },
+        {
+          "command_ms": 2.3877,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3375,
+            "engine.ai-actor": 1.2923999999999995,
+            "engine.command": 1.6287,
+            "engine.complete-turn": 1.4173,
+            "engine.hearing": 0.6912,
+            "engine.path-search": 0.33540000000000003,
+            "engine.sound-query": 0.6465999999999998,
+            "world.command": 2.2785,
+            "world.facility": 0.43429999999999996,
+            "world.resident": 0.17340000000000003
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 31,
+          "turn": 184
+        },
+        {
+          "command_ms": 2.5824,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.5727,
+            "engine.ai-actor": 1.5196999999999996,
+            "engine.command": 1.8860000000000001,
+            "engine.complete-turn": 1.6627,
+            "engine.hearing": 0.8120000000000002,
+            "engine.path-search": 0.2304,
+            "engine.sound-query": 0.7617999999999998,
+            "world.command": 2.458,
+            "world.facility": 0.40259999999999996,
+            "world.resident": 0.1547
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 32,
+          "turn": 185
+        },
+        {
+          "command_ms": 2.1838,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2910000000000001,
+            "engine.ai-actor": 1.2382999999999997,
+            "engine.command": 1.5887,
+            "engine.complete-turn": 1.3694,
+            "engine.hearing": 0.6662000000000001,
+            "engine.path-search": 0.2218,
+            "engine.sound-query": 0.6240999999999998,
+            "world.command": 2.0795000000000003,
+            "world.facility": 0.3469,
+            "world.resident": 0.13400000000000004
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 33,
+          "turn": 186
+        },
+        {
+          "command_ms": 2.4911999999999996,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.4146,
+            "engine.ai-actor": 1.3679999999999999,
+            "engine.command": 1.722,
+            "engine.complete-turn": 1.4948,
+            "engine.hearing": 0.7366000000000001,
+            "engine.path-search": 0.3497,
+            "engine.sound-query": 0.6871999999999998,
+            "world.command": 2.3819000000000004,
+            "world.facility": 0.3507,
+            "world.resident": 0.2988
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 34,
+          "turn": 187
+        },
+        {
+          "command_ms": 2.4292,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2763,
+            "engine.ai-actor": 1.2311999999999999,
+            "engine.command": 1.5740999999999998,
+            "engine.complete-turn": 1.3619999999999999,
+            "engine.hearing": 0.6564000000000003,
+            "engine.path-search": 0.43080000000000007,
+            "engine.sound-query": 0.6146999999999999,
+            "world.command": 2.3259000000000003,
+            "world.facility": 0.3262,
+            "world.resident": 0.4152
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 35,
+          "turn": 188
+        },
+        {
+          "command_ms": 2.6644,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3301999999999998,
+            "engine.ai-actor": 1.2858999999999996,
+            "engine.command": 1.6333,
+            "engine.complete-turn": 1.4133,
+            "engine.hearing": 0.6883000000000002,
+            "engine.path-search": 0.5236000000000001,
+            "engine.sound-query": 0.6446999999999999,
+            "world.command": 2.5499,
+            "world.facility": 0.339,
+            "world.resident": 0.5097
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 36,
+          "turn": 189
+        },
+        {
+          "command_ms": 2.6009,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3929,
+            "engine.ai-actor": 1.3441999999999996,
+            "engine.command": 1.6926,
+            "engine.complete-turn": 1.4768,
+            "engine.hearing": 0.7099999999999997,
+            "engine.path-search": 0.44739999999999996,
+            "engine.sound-query": 0.6623999999999999,
+            "world.command": 2.4974,
+            "world.facility": 0.3223,
+            "world.resident": 0.42800000000000005
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 37,
+          "turn": 190
+        },
+        {
+          "command_ms": 2.4819,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2918999999999998,
+            "engine.ai-actor": 1.2362999999999997,
+            "engine.command": 1.5951,
+            "engine.complete-turn": 1.3769,
+            "engine.hearing": 0.6619000000000002,
+            "engine.path-search": 0.4047,
+            "engine.sound-query": 0.6200999999999999,
+            "world.command": 2.3726,
+            "world.facility": 0.3342,
+            "world.resident": 0.39870000000000005
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 38,
+          "turn": 191
+        },
+        {
+          "command_ms": 2.4591000000000003,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3349,
+            "engine.ai-actor": 1.2903999999999995,
+            "engine.command": 1.6297,
+            "engine.complete-turn": 1.4179,
+            "engine.hearing": 0.7028000000000001,
+            "engine.path-search": 0.36970000000000003,
+            "engine.sound-query": 0.6501999999999999,
+            "world.command": 2.3560999999999996,
+            "world.facility": 0.324,
+            "world.resident": 0.3613
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 39,
+          "turn": 192
+        },
+        {
+          "command_ms": 3.1706999999999996,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.7893,
+            "engine.ai-actor": 1.7388,
+            "engine.command": 2.1162,
+            "engine.complete-turn": 1.8946,
+            "engine.hearing": 0.9308,
+            "engine.path-search": 0.412,
+            "engine.sound-query": 0.8662999999999998,
+            "world.command": 3.0282999999999998,
+            "world.facility": 0.4236,
+            "world.resident": 0.4751
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 40,
+          "turn": 193
+        },
+        {
+          "command_ms": 2.3238,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3079999999999998,
+            "engine.ai-actor": 1.2638999999999998,
+            "engine.command": 1.6277,
+            "engine.complete-turn": 1.3877,
+            "engine.hearing": 0.6837000000000002,
+            "engine.path-search": 0.2636,
+            "engine.sound-query": 0.6404,
+            "world.command": 2.222,
+            "world.facility": 0.2823,
+            "world.resident": 0.3023
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 41,
+          "turn": 194
+        },
+        {
+          "command_ms": 2.267,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2787,
+            "engine.ai-actor": 1.2339,
+            "engine.command": 1.5958,
+            "engine.complete-turn": 1.3568,
+            "engine.hearing": 0.6613000000000002,
+            "engine.path-search": 0.21969999999999998,
+            "engine.sound-query": 0.6181000000000001,
+            "world.command": 2.1538,
+            "world.facility": 0.27530000000000004,
+            "world.resident": 0.273
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 42,
+          "turn": 195
+        },
+        {
+          "command_ms": 2.3275,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.4401,
+            "engine.ai-actor": 1.3944000000000003,
+            "engine.command": 1.7262,
+            "engine.complete-turn": 1.5191000000000001,
+            "engine.hearing": 0.7641000000000002,
+            "engine.path-search": 0.1794,
+            "engine.sound-query": 0.7134999999999998,
+            "world.command": 2.2251,
+            "world.facility": 0.2619,
+            "world.resident": 0.22709999999999997
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 43,
+          "turn": 196
+        },
+        {
+          "command_ms": 2.193,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2889,
+            "engine.ai-actor": 1.2443,
+            "engine.command": 1.5920999999999998,
+            "engine.complete-turn": 1.3664,
+            "engine.hearing": 0.6648000000000002,
+            "engine.path-search": 0.1442,
+            "engine.sound-query": 0.621,
+            "world.command": 2.0774,
+            "world.facility": 0.2782,
+            "world.resident": 0.1948
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 44,
+          "turn": 197
+        },
+        {
+          "command_ms": 2.0932,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2725,
+            "engine.ai-actor": 1.2284999999999997,
+            "engine.command": 1.56,
+            "engine.complete-turn": 1.3512000000000002,
+            "engine.hearing": 0.6594000000000002,
+            "engine.path-search": 0.1257,
+            "engine.sound-query": 0.6174000000000002,
+            "world.command": 1.9908000000000001,
+            "world.facility": 0.23550000000000001,
+            "world.resident": 0.18370000000000003
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 45,
+          "turn": 198
+        },
+        {
+          "command_ms": 2.3906,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2695,
+            "engine.ai-actor": 1.2257,
+            "engine.command": 1.5654,
+            "engine.complete-turn": 1.3466,
+            "engine.hearing": 0.6577000000000003,
+            "engine.path-search": 0.16620000000000001,
+            "engine.sound-query": 0.6148,
+            "world.command": 2.2451,
+            "world.facility": 0.3877,
+            "world.resident": 0.2682
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 46,
+          "turn": 199
+        },
+        {
+          "command_ms": 2.4077,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3983,
+            "engine.ai-actor": 1.3515,
+            "engine.command": 1.7807000000000002,
+            "engine.complete-turn": 1.4954,
+            "engine.hearing": 0.7136999999999998,
+            "engine.path-search": 0.1184,
+            "engine.sound-query": 0.6682999999999997,
+            "world.command": 2.2792,
+            "world.facility": 0.2938,
+            "world.resident": 0.1918
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 47,
+          "turn": 200
+        },
+        {
+          "command_ms": 3.3872,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3213000000000001,
+            "engine.ai-actor": 1.2757999999999998,
+            "engine.command": 1.6212,
+            "engine.complete-turn": 1.4008,
+            "engine.hearing": 0.6761000000000001,
+            "engine.path-search": 0.8617999999999999,
+            "engine.sound-query": 0.6326,
+            "world.command": 3.2173000000000003,
+            "world.facility": 0.6267999999999999,
+            "world.resident": 0.9485999999999999
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 48,
+          "turn": 201
+        },
+        {
+          "command_ms": 2.4985,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3171000000000002,
+            "engine.ai-actor": 1.2667,
+            "engine.command": 1.6434,
+            "engine.complete-turn": 1.4022,
+            "engine.hearing": 0.6771000000000001,
+            "engine.path-search": 0.4358,
+            "engine.sound-query": 0.6354999999999998,
+            "world.command": 2.3630999999999998,
+            "world.facility": 0.1941,
+            "world.resident": 0.5129999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 49,
+          "turn": 202
+        },
+        {
+          "command_ms": 2.3893999999999997,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2973999999999999,
+            "engine.ai-actor": 1.2538,
+            "engine.command": 1.5944,
+            "engine.complete-turn": 1.3760000000000001,
+            "engine.hearing": 0.6610000000000003,
+            "engine.path-search": 0.40790000000000004,
+            "engine.sound-query": 0.6192,
+            "world.command": 2.2735,
+            "world.facility": 0.19019999999999998,
+            "world.resident": 0.479
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 50,
+          "turn": 203
+        },
+        {
+          "command_ms": 2.5361,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3202,
+            "engine.ai-actor": 1.2749999999999997,
+            "engine.command": 1.6061999999999999,
+            "engine.complete-turn": 1.3979000000000001,
+            "engine.hearing": 0.6790000000000003,
+            "engine.path-search": 0.5342000000000001,
+            "engine.sound-query": 0.6350000000000001,
+            "world.command": 2.4254,
+            "world.facility": 0.1802,
+            "world.resident": 0.629
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 51,
+          "turn": 204
+        },
+        {
+          "command_ms": 2.7554,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3034,
+            "engine.ai-actor": 1.2511999999999999,
+            "engine.command": 1.6063,
+            "engine.complete-turn": 1.3875,
+            "engine.hearing": 0.6601000000000004,
+            "engine.path-search": 0.6599,
+            "engine.sound-query": 0.6175999999999999,
+            "world.command": 2.6402,
+            "world.facility": 0.2223,
+            "world.resident": 0.7174
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 52,
+          "turn": 205
+        },
+        {
+          "command_ms": 2.5693,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2907000000000002,
+            "engine.ai-actor": 1.2448999999999997,
+            "engine.command": 1.5974,
+            "engine.complete-turn": 1.371,
+            "engine.hearing": 0.6641000000000002,
+            "engine.path-search": 0.5439,
+            "engine.sound-query": 0.6220999999999999,
+            "world.command": 2.4632,
+            "world.facility": 0.1825,
+            "world.resident": 0.6204000000000001
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 53,
+          "turn": 206
+        },
+        {
+          "command_ms": 2.4728,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2914999999999999,
+            "engine.ai-actor": 1.2467999999999997,
+            "engine.command": 1.5874000000000001,
+            "engine.complete-turn": 1.3696,
+            "engine.hearing": 0.6640000000000001,
+            "engine.path-search": 0.4473,
+            "engine.sound-query": 0.6216,
+            "world.command": 2.3626,
+            "world.facility": 0.2043,
+            "world.resident": 0.5214
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 54,
+          "turn": 207
+        },
+        {
+          "command_ms": 2.693,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3500999999999999,
+            "engine.ai-actor": 1.3045,
+            "engine.command": 1.6533,
+            "engine.complete-turn": 1.4442000000000002,
+            "engine.hearing": 0.6982000000000002,
+            "engine.path-search": 0.5951,
+            "engine.sound-query": 0.6517999999999997,
+            "world.command": 2.5878,
+            "world.facility": 0.1841,
+            "world.resident": 0.7037
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 55,
+          "turn": 208
+        },
+        {
+          "command_ms": 2.5334,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3256,
+            "engine.ai-actor": 1.2795999999999994,
+            "engine.command": 1.6213,
+            "engine.complete-turn": 1.4040000000000001,
+            "engine.hearing": 0.6788000000000001,
+            "engine.path-search": 0.5136000000000001,
+            "engine.sound-query": 0.6341999999999998,
+            "world.command": 2.4238,
+            "world.facility": 0.2063,
+            "world.resident": 0.5857
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 56,
+          "turn": 209
+        },
+        {
+          "command_ms": 2.4171,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2849000000000002,
+            "engine.ai-actor": 1.2396999999999996,
+            "engine.command": 1.5775,
+            "engine.complete-turn": 1.3703999999999998,
+            "engine.hearing": 0.6646000000000001,
+            "engine.path-search": 0.4747,
+            "engine.sound-query": 0.6224,
+            "world.command": 2.3156000000000003,
+            "world.facility": 0.1818,
+            "world.resident": 0.5464
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 57,
+          "turn": 210
+        },
+        {
+          "command_ms": 2.4683,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2808,
+            "engine.ai-actor": 1.2375999999999998,
+            "engine.command": 1.574,
+            "engine.complete-turn": 1.3587,
+            "engine.hearing": 0.6711000000000003,
+            "engine.path-search": 0.48460000000000003,
+            "engine.sound-query": 0.6288,
+            "world.command": 2.3571999999999997,
+            "world.facility": 0.1994,
+            "world.resident": 0.5722
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 58,
+          "turn": 211
+        },
+        {
+          "command_ms": 2.4259,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3468,
+            "engine.ai-actor": 1.3004999999999998,
+            "engine.command": 1.6443,
+            "engine.complete-turn": 1.4266999999999999,
+            "engine.hearing": 0.6934999999999999,
+            "engine.path-search": 0.40080000000000005,
+            "engine.sound-query": 0.6463999999999998,
+            "world.command": 2.3216,
+            "world.facility": 0.1831,
+            "world.resident": 0.48419999999999996
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 59,
+          "turn": 212
+        },
+        {
+          "command_ms": 2.5500000000000003,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3378,
+            "engine.ai-actor": 1.2931,
+            "engine.command": 1.6343,
+            "engine.complete-turn": 1.4163,
+            "engine.hearing": 0.7003000000000001,
+            "engine.path-search": 0.479,
+            "engine.sound-query": 0.6521,
+            "world.command": 2.4404,
+            "world.facility": 0.2001,
+            "world.resident": 0.536
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 60,
+          "turn": 213
+        },
+        {
+          "command_ms": 2.4097,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2807000000000002,
+            "engine.ai-actor": 1.2372999999999998,
+            "engine.command": 1.5658,
+            "engine.complete-turn": 1.3584999999999998,
+            "engine.hearing": 0.6705,
+            "engine.path-search": 0.4276,
+            "engine.sound-query": 0.6275999999999999,
+            "world.command": 2.307,
+            "world.facility": 0.18780000000000002,
+            "world.resident": 0.4921
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 61,
+          "turn": 214
+        },
+        {
+          "command_ms": 2.3965,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2894,
+            "engine.ai-actor": 1.2451,
+            "engine.command": 1.5831,
+            "engine.complete-turn": 1.3668,
+            "engine.hearing": 0.6631000000000002,
+            "engine.path-search": 0.3846,
+            "engine.sound-query": 0.6204999999999999,
+            "world.command": 2.2826999999999997,
+            "world.facility": 0.1915,
+            "world.resident": 0.45870000000000005
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 62,
+          "turn": 215
+        },
+        {
+          "command_ms": 2.4312,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3586,
+            "engine.ai-actor": 1.3137999999999999,
+            "engine.command": 1.6444999999999999,
+            "engine.complete-turn": 1.4376,
+            "engine.hearing": 0.7021000000000003,
+            "engine.path-search": 0.3634,
+            "engine.sound-query": 0.6549999999999999,
+            "world.command": 2.3154999999999997,
+            "world.facility": 0.1821,
+            "world.resident": 0.4426
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 63,
+          "turn": 216
+        },
+        {
+          "command_ms": 4.718,
+          "inclusive_stage_ms": {
+            "engine.ai": 3.3028,
+            "engine.ai-actor": 3.228,
+            "engine.command": 3.6336,
+            "engine.complete-turn": 3.408,
+            "engine.hearing": 1.7804999999999995,
+            "engine.path-search": 0.5876,
+            "engine.sound-query": 1.6574000000000004,
+            "world.command": 4.589099999999999,
+            "world.facility": 0.22949999999999998,
+            "world.resident": 0.7099999999999999
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 64,
+          "turn": 217
+        },
+        {
+          "command_ms": 2.5082,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3294,
+            "engine.ai-actor": 1.2807,
+            "engine.command": 1.6636000000000002,
+            "engine.complete-turn": 1.4263,
+            "engine.hearing": 0.6818000000000002,
+            "engine.path-search": 0.3762,
+            "engine.sound-query": 0.6382000000000001,
+            "world.command": 2.3962,
+            "world.facility": 0.2187,
+            "world.resident": 0.5012
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 65,
+          "turn": 218
+        },
+        {
+          "command_ms": 2.5463,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.4436,
+            "engine.ai-actor": 1.3961,
+            "engine.command": 1.774,
+            "engine.complete-turn": 1.5249000000000001,
+            "engine.hearing": 0.7413,
+            "engine.path-search": 0.3407,
+            "engine.sound-query": 0.6902000000000001,
+            "world.command": 2.4329,
+            "world.facility": 0.1932,
+            "world.resident": 0.4557
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 66,
+          "turn": 219
+        },
+        {
+          "command_ms": 2.3135999999999997,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3347,
+            "engine.ai-actor": 1.2878999999999998,
+            "engine.command": 1.6391,
+            "engine.complete-turn": 1.4146,
+            "engine.hearing": 0.6748000000000001,
+            "engine.path-search": 0.2831,
+            "engine.sound-query": 0.6301,
+            "world.command": 2.2083,
+            "world.facility": 0.1818,
+            "world.resident": 0.3774
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 67,
+          "turn": 220
+        },
+        {
+          "command_ms": 2.3016,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2853999999999999,
+            "engine.ai-actor": 1.2413999999999998,
+            "engine.command": 1.5807,
+            "engine.complete-turn": 1.3637000000000001,
+            "engine.hearing": 0.6710000000000003,
+            "engine.path-search": 0.2834,
+            "engine.sound-query": 0.6273999999999998,
+            "world.command": 2.1908000000000003,
+            "world.facility": 0.20249999999999999,
+            "world.resident": 0.3969
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 68,
+          "turn": 221
+        },
+        {
+          "command_ms": 2.3135,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2960999999999998,
+            "engine.ai-actor": 1.2526999999999995,
+            "engine.command": 1.582,
+            "engine.complete-turn": 1.375,
+            "engine.hearing": 0.675,
+            "engine.path-search": 0.34309999999999996,
+            "engine.sound-query": 0.6318,
+            "world.command": 2.2093,
+            "world.facility": 0.1818,
+            "world.resident": 0.435
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 69,
+          "turn": 222
+        },
+        {
+          "command_ms": 2.4255,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.4074,
+            "engine.ai-actor": 1.3607,
+            "engine.command": 1.7184,
+            "engine.complete-turn": 1.4888,
+            "engine.hearing": 0.7301000000000001,
+            "engine.path-search": 0.28519999999999995,
+            "engine.sound-query": 0.6808,
+            "world.command": 2.3105,
+            "world.facility": 0.1938,
+            "world.resident": 0.3879000000000001
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 70,
+          "turn": 223
+        },
+        {
+          "command_ms": 2.3093,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3290000000000002,
+            "engine.ai-actor": 1.2844999999999998,
+            "engine.command": 1.6766,
+            "engine.complete-turn": 1.4112,
+            "engine.hearing": 0.6853000000000001,
+            "engine.path-search": 0.20090000000000002,
+            "engine.sound-query": 0.6421999999999999,
+            "world.command": 2.2028,
+            "world.facility": 0.208,
+            "world.resident": 0.3034
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 71,
+          "turn": 224
+        },
+        {
+          "command_ms": 2.1687999999999996,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2905,
+            "engine.ai-actor": 1.2470999999999997,
+            "engine.command": 1.5854000000000001,
+            "engine.complete-turn": 1.3686,
+            "engine.hearing": 0.6734000000000001,
+            "engine.path-search": 0.17,
+            "engine.sound-query": 0.6306999999999998,
+            "world.command": 2.0577,
+            "world.facility": 0.1997,
+            "world.resident": 0.2626
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 72,
+          "turn": 225
+        },
+        {
+          "command_ms": 2.1036,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2873999999999999,
+            "engine.ai-actor": 1.2439,
+            "engine.command": 1.5773,
+            "engine.complete-turn": 1.3688,
+            "engine.hearing": 0.6581000000000002,
+            "engine.path-search": 0.1416,
+            "engine.sound-query": 0.6163,
+            "world.command": 2.0017,
+            "world.facility": 0.1811,
+            "world.resident": 0.2337
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 73,
+          "turn": 226
+        },
+        {
+          "command_ms": 2.2972,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3329,
+            "engine.ai-actor": 1.2884000000000002,
+            "engine.command": 1.6282,
+            "engine.complete-turn": 1.4124,
+            "engine.hearing": 0.6822,
+            "engine.path-search": 0.2642,
+            "engine.sound-query": 0.6370999999999999,
+            "world.command": 2.1885,
+            "world.facility": 0.1931,
+            "world.resident": 0.35719999999999996
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 74,
+          "turn": 227
+        },
+        {
+          "command_ms": 2.2497,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3242,
+            "engine.ai-actor": 1.2788000000000002,
+            "engine.command": 1.631,
+            "engine.complete-turn": 1.4125999999999999,
+            "engine.hearing": 0.6814000000000003,
+            "engine.path-search": 0.2299,
+            "engine.sound-query": 0.6365,
+            "world.command": 2.1464000000000003,
+            "world.facility": 0.183,
+            "world.resident": 0.3222
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 75,
+          "turn": 228
+        },
+        {
+          "command_ms": 2.276,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3372,
+            "engine.ai-actor": 1.2913999999999999,
+            "engine.command": 1.6311,
+            "engine.complete-turn": 1.4155000000000002,
+            "engine.hearing": 0.6802000000000001,
+            "engine.path-search": 0.2217,
+            "engine.sound-query": 0.635,
+            "world.command": 2.1675,
+            "world.facility": 0.1915,
+            "world.resident": 0.2731
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 76,
+          "turn": 229
+        },
+        {
+          "command_ms": 2.3023000000000002,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2796999999999998,
+            "engine.ai-actor": 1.2329999999999997,
+            "engine.command": 1.6517000000000002,
+            "engine.complete-turn": 1.3595,
+            "engine.hearing": 0.6628000000000002,
+            "engine.path-search": 0.23409999999999997,
+            "engine.sound-query": 0.6206999999999998,
+            "world.command": 2.1978,
+            "world.facility": 0.1812,
+            "world.resident": 0.3024
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 77,
+          "turn": 230
+        },
+        {
+          "command_ms": 2.155,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.2724,
+            "engine.ai-actor": 1.2289999999999999,
+            "engine.command": 1.5658,
+            "engine.complete-turn": 1.3494,
+            "engine.hearing": 0.6618000000000003,
+            "engine.path-search": 0.1533,
+            "engine.sound-query": 0.6193,
+            "world.command": 2.0474,
+            "world.facility": 0.2046,
+            "world.resident": 0.2263
+          },
+          "position": {
+            "x": 66,
+            "y": 55
+          },
+          "step": 78,
+          "turn": 231
+        },
+        {
+          "command_ms": 3.2478,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.368,
+            "engine.ai-actor": 1.3219999999999998,
+            "engine.command": 1.655,
+            "engine.complete-turn": 1.4476,
+            "engine.hearing": 0.6961000000000002,
+            "engine.path-search": 0.9369999999999999,
+            "engine.sound-query": 0.6506999999999998,
+            "world.command": 3.0005,
+            "world.facility": 0.1847,
+            "world.resident": 1.1088
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 79,
+          "turn": 232
+        }
+      ],
+      "inclusive_stage_calls": {
+        "engine.ai": {
+          "count": 80,
+          "timing": {
+            "max_ms": 3.3028,
+            "median_ms": 1.3327,
+            "p95_ms": 1.9838,
+            "p99_ms": 3.3028
+          }
+        },
+        "engine.ai-actor": {
+          "count": 3680,
+          "timing": {
+            "max_ms": 0.43389999999999995,
+            "median_ms": 0.0266,
+            "p95_ms": 0.0466,
+            "p99_ms": 0.0684
+          }
+        },
+        "engine.command": {
+          "count": 80,
+          "timing": {
+            "max_ms": 3.6336,
+            "median_ms": 1.6391,
+            "p95_ms": 2.3945,
+            "p99_ms": 3.6336
+          }
+        },
+        "engine.complete-turn": {
+          "count": 80,
+          "timing": {
+            "max_ms": 3.408,
+            "median_ms": 1.4146,
+            "p95_ms": 2.0867,
+            "p99_ms": 3.408
+          }
+        },
+        "engine.hearing": {
+          "count": 3680,
+          "timing": {
+            "max_ms": 0.3946,
+            "median_ms": 0.0141,
+            "p95_ms": 0.0234,
+            "p99_ms": 0.036399999999999995
+          }
+        },
+        "engine.path-search": {
+          "count": 394,
+          "timing": {
+            "max_ms": 80.8597,
+            "median_ms": 0.0569,
+            "p95_ms": 0.3239,
+            "p99_ms": 58.561299999999996
+          }
+        },
+        "engine.sound-query": {
+          "count": 3680,
+          "timing": {
+            "max_ms": 0.3906,
+            "median_ms": 0.0132,
+            "p95_ms": 0.0219,
+            "p99_ms": 0.031900000000000005
+          }
+        },
+        "world.command": {
+          "count": 80,
+          "timing": {
+            "max_ms": 84.6901,
+            "median_ms": 2.3737,
+            "p95_ms": 61.349399999999996,
+            "p99_ms": 84.6901
+          }
+        },
+        "world.facility": {
+          "count": 80,
+          "timing": {
+            "max_ms": 81.66629999999999,
+            "median_ms": 0.2938,
+            "p95_ms": 59.1664,
+            "p99_ms": 81.66629999999999
+          }
+        },
+        "world.resident": {
+          "count": 400,
+          "timing": {
+            "max_ms": 1.4147999999999998,
+            "median_ms": 0.06420000000000001,
+            "p95_ms": 0.2738,
+            "p99_ms": 0.575
+          }
+        }
+      },
+      "inclusive_stages_per_command": {
+        "engine.ai": {
+          "max_ms": 3.3028,
+          "median_ms": 1.3327,
+          "p95_ms": 1.9838,
+          "p99_ms": 3.3028
+        },
+        "engine.ai-actor": {
+          "max_ms": 3.228,
+          "median_ms": 1.287,
+          "p95_ms": 1.9122000000000001,
+          "p99_ms": 3.228
+        },
+        "engine.command": {
+          "max_ms": 3.6336,
+          "median_ms": 1.6391,
+          "p95_ms": 2.3945,
+          "p99_ms": 3.6336
+        },
+        "engine.complete-turn": {
+          "max_ms": 3.408,
+          "median_ms": 1.4146,
+          "p95_ms": 2.0867,
+          "p99_ms": 3.408
+        },
+        "engine.hearing": {
+          "max_ms": 1.7804999999999995,
+          "median_ms": 0.6843000000000001,
+          "p95_ms": 1.0328000000000004,
+          "p99_ms": 1.7804999999999995
+        },
+        "engine.path-search": {
+          "max_ms": 81.71790000000001,
+          "median_ms": 0.4047,
+          "p95_ms": 59.105199999999996,
+          "p99_ms": 81.71790000000001
+        },
+        "engine.sound-query": {
+          "max_ms": 1.6574000000000004,
+          "median_ms": 0.6404,
+          "p95_ms": 0.9711000000000001,
+          "p99_ms": 1.6574000000000004
+        },
+        "world.command": {
+          "max_ms": 84.6901,
+          "median_ms": 2.3737,
+          "p95_ms": 61.349399999999996,
+          "p99_ms": 84.6901
+        },
+        "world.facility": {
+          "max_ms": 81.66629999999999,
+          "median_ms": 0.2938,
+          "p95_ms": 59.1664,
+          "p99_ms": 81.66629999999999
+        },
+        "world.resident": {
+          "max_ms": 1.7972999999999997,
+          "median_ms": 0.39870000000000005,
+          "p95_ms": 0.9485999999999999,
+          "p99_ms": 1.7972999999999997
+        }
+      },
+      "profiled": true,
+      "rendering_enabled": false,
+      "scene": "hub-walk"
+    },
+    {
+      "autosave_enabled": false,
+      "command_cpu": {
+        "max_ms": 68.14630000000001,
+        "median_ms": 1.498,
+        "p95_ms": 60.8302,
+        "p99_ms": 68.14630000000001
+      },
+      "commands": 80,
+      "commands_detail": [],
+      "inclusive_stage_calls": {},
+      "inclusive_stages_per_command": {},
+      "profiled": false,
+      "rendering_enabled": false,
+      "scene": "hub-wait"
+    },
+    {
+      "autosave_enabled": false,
+      "command_cpu": {
+        "max_ms": 78.5304,
+        "median_ms": 2.0265999999999997,
+        "p95_ms": 66.3711,
+        "p99_ms": 78.5304
+      },
+      "commands": 80,
+      "commands_detail": [
+        {
+          "command_ms": 2.2622,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7933,
+            "engine.ai-actor": 0.7265000000000001,
+            "engine.command": 0.9404,
+            "engine.complete-turn": 0.9086,
+            "engine.hearing": 0.0248,
+            "engine.path-search": 0.7378,
+            "world.command": 2.0807,
+            "world.facility": 0.6363,
+            "world.resident": 0.4881
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 0,
+          "turn": 153
+        },
+        {
+          "command_ms": 2.1423,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8873000000000001,
+            "engine.ai-actor": 0.8334999999999999,
+            "engine.command": 1.0159,
+            "engine.complete-turn": 0.9898999999999999,
+            "engine.hearing": 0.030600000000000002,
+            "engine.path-search": 0.5700999999999999,
+            "world.command": 1.97,
+            "world.facility": 0.4684,
+            "world.resident": 0.4727
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 1,
+          "turn": 154
+        },
+        {
+          "command_ms": 2.0265999999999997,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9279,
+            "engine.ai-actor": 0.8716,
+            "engine.command": 1.0395999999999999,
+            "engine.complete-turn": 1.0127000000000002,
+            "engine.hearing": 0.031799999999999995,
+            "engine.path-search": 0.4527,
+            "world.command": 1.8932,
+            "world.facility": 0.5133,
+            "world.resident": 0.323
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 2,
+          "turn": 155
+        },
+        {
+          "command_ms": 2.3517,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.0228,
+            "engine.ai-actor": 0.9361999999999997,
+            "engine.command": 1.1663000000000001,
+            "engine.complete-turn": 1.1239,
+            "engine.hearing": 0.0358,
+            "engine.path-search": 0.5331,
+            "world.command": 2.1808,
+            "world.facility": 0.6865,
+            "world.resident": 0.3132
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 3,
+          "turn": 156
+        },
+        {
+          "command_ms": 1.8873,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7852,
+            "engine.ai-actor": 0.7220999999999999,
+            "engine.command": 0.9483999999999999,
+            "engine.complete-turn": 0.9150999999999999,
+            "engine.hearing": 0.025799999999999997,
+            "engine.path-search": 0.4276,
+            "world.command": 1.707,
+            "world.facility": 0.5012000000000001,
+            "world.resident": 0.184
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 4,
+          "turn": 157
+        },
+        {
+          "command_ms": 3.381,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.6779,
+            "engine.ai-actor": 1.0677999999999996,
+            "engine.command": 1.8663,
+            "engine.complete-turn": 1.8192,
+            "engine.hearing": 0.03589999999999999,
+            "engine.path-search": 0.6125,
+            "world.command": 3.1445000000000003,
+            "world.facility": 0.9407000000000001,
+            "world.resident": 0.22210000000000002
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 5,
+          "turn": 158
+        },
+        {
+          "command_ms": 2.0728999999999997,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8376,
+            "engine.ai-actor": 0.7787000000000002,
+            "engine.command": 1.0425,
+            "engine.complete-turn": 0.9711000000000001,
+            "engine.hearing": 0.02559999999999999,
+            "engine.path-search": 0.38430000000000003,
+            "world.command": 1.8827,
+            "world.facility": 0.5651999999999999,
+            "world.resident": 0.1961
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 6,
+          "turn": 159
+        },
+        {
+          "command_ms": 2.7697,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.0051999999999999,
+            "engine.ai-actor": 0.9440999999999998,
+            "engine.command": 1.1436,
+            "engine.complete-turn": 1.108,
+            "engine.hearing": 0.03339999999999999,
+            "engine.path-search": 1.0109000000000001,
+            "world.command": 2.6477,
+            "world.facility": 0.5577,
+            "world.resident": 0.8736999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 7,
+          "turn": 160
+        },
+        {
+          "command_ms": 2.4488000000000003,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9126,
+            "engine.ai-actor": 0.8593999999999999,
+            "engine.command": 1.0221,
+            "engine.complete-turn": 0.9962000000000001,
+            "engine.hearing": 0.03160000000000001,
+            "engine.path-search": 0.7998000000000001,
+            "world.command": 2.2726,
+            "world.facility": 0.4783,
+            "world.resident": 0.7565
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 8,
+          "turn": 161
+        },
+        {
+          "command_ms": 2.2912000000000003,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7828,
+            "engine.ai-actor": 0.7197999999999999,
+            "engine.command": 0.9388000000000001,
+            "engine.complete-turn": 0.8972,
+            "engine.hearing": 0.024499999999999994,
+            "engine.path-search": 0.801,
+            "world.command": 2.1386,
+            "world.facility": 0.49620000000000003,
+            "world.resident": 0.6863000000000001
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 9,
+          "turn": 162
+        },
+        {
+          "command_ms": 2.4746,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9161,
+            "engine.ai-actor": 0.8610000000000002,
+            "engine.command": 1.0463,
+            "engine.complete-turn": 1.0156,
+            "engine.hearing": 0.027799999999999988,
+            "engine.path-search": 0.8356,
+            "world.command": 2.311,
+            "world.facility": 0.41140000000000004,
+            "world.resident": 0.835
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 10,
+          "turn": 163
+        },
+        {
+          "command_ms": 2.2701000000000002,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.0085000000000002,
+            "engine.ai-actor": 0.9433000000000001,
+            "engine.command": 1.1509999999999998,
+            "engine.complete-turn": 1.1171,
+            "engine.hearing": 0.03249999999999999,
+            "engine.path-search": 0.5608000000000001,
+            "world.command": 2.1385,
+            "world.facility": 0.4653,
+            "world.resident": 0.506
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 11,
+          "turn": 164
+        },
+        {
+          "command_ms": 2.7761,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.0854000000000001,
+            "engine.ai-actor": 1.0284999999999993,
+            "engine.command": 1.2232,
+            "engine.complete-turn": 1.1968,
+            "engine.hearing": 0.034,
+            "engine.path-search": 0.9339000000000001,
+            "world.command": 2.6469,
+            "world.facility": 0.3665,
+            "world.resident": 0.9282
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 12,
+          "turn": 165
+        },
+        {
+          "command_ms": 1.9446,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7705000000000001,
+            "engine.ai-actor": 0.7140999999999998,
+            "engine.command": 0.9133,
+            "engine.complete-turn": 0.878,
+            "engine.hearing": 0.024799999999999996,
+            "engine.path-search": 0.4785000000000001,
+            "world.command": 1.8355,
+            "world.facility": 0.4555,
+            "world.resident": 0.38630000000000003
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 13,
+          "turn": 166
+        },
+        {
+          "command_ms": 1.9157,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9509,
+            "engine.ai-actor": 0.8813999999999997,
+            "engine.command": 1.0717999999999999,
+            "engine.complete-turn": 1.0415999999999999,
+            "engine.hearing": 0.03040000000000001,
+            "engine.path-search": 0.37079999999999996,
+            "world.command": 1.8029000000000002,
+            "world.facility": 0.2829,
+            "world.resident": 0.3845
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 14,
+          "turn": 167
+        },
+        {
+          "command_ms": 1.8188,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7387,
+            "engine.ai-actor": 0.6746999999999999,
+            "engine.command": 0.8587999999999999,
+            "engine.complete-turn": 0.8286,
+            "engine.hearing": 0.022600000000000012,
+            "engine.path-search": 0.4918,
+            "world.command": 1.7049999999999998,
+            "world.facility": 0.2503,
+            "world.resident": 0.5550999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 15,
+          "turn": 168
+        },
+        {
+          "command_ms": 1.7057,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7278,
+            "engine.ai-actor": 0.6790999999999999,
+            "engine.command": 0.8339000000000001,
+            "engine.complete-turn": 0.8096,
+            "engine.hearing": 0.022900000000000018,
+            "engine.path-search": 0.4316,
+            "world.command": 1.6002,
+            "world.facility": 0.25,
+            "world.resident": 0.5062
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 16,
+          "turn": 169
+        },
+        {
+          "command_ms": 2.1868,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9058,
+            "engine.ai-actor": 0.8536000000000002,
+            "engine.command": 1.0115,
+            "engine.complete-turn": 0.9872,
+            "engine.hearing": 0.030900000000000007,
+            "engine.path-search": 0.5896999999999999,
+            "world.command": 2.0429,
+            "world.facility": 0.34640000000000004,
+            "world.resident": 0.6705
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 17,
+          "turn": 170
+        },
+        {
+          "command_ms": 2.0471999999999997,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7958999999999999,
+            "engine.ai-actor": 0.7309999999999999,
+            "engine.command": 0.9393,
+            "engine.complete-turn": 0.9037999999999999,
+            "engine.hearing": 0.02590000000000002,
+            "engine.path-search": 0.5229,
+            "world.command": 1.9391,
+            "world.facility": 0.3768,
+            "world.resident": 0.6064999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 18,
+          "turn": 171
+        },
+        {
+          "command_ms": 2.1868,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.0111,
+            "engine.ai-actor": 0.9413000000000001,
+            "engine.command": 1.1508,
+            "engine.complete-turn": 1.1221,
+            "engine.hearing": 0.032999999999999995,
+            "engine.path-search": 0.3245,
+            "world.command": 2.0494,
+            "world.facility": 0.3268,
+            "world.resident": 0.5549999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 19,
+          "turn": 172
+        },
+        {
+          "command_ms": 1.8362,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7413,
+            "engine.ai-actor": 0.6915,
+            "engine.command": 0.875,
+            "engine.complete-turn": 0.8462,
+            "engine.hearing": 0.0248,
+            "engine.path-search": 0.33519999999999994,
+            "world.command": 1.6561,
+            "world.facility": 0.3265,
+            "world.resident": 0.4396
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 20,
+          "turn": 173
+        },
+        {
+          "command_ms": 1.7096,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7944,
+            "engine.ai-actor": 0.7336999999999999,
+            "engine.command": 0.9384,
+            "engine.complete-turn": 0.9055,
+            "engine.hearing": 0.026300000000000004,
+            "engine.path-search": 0.23720000000000002,
+            "world.command": 1.6063,
+            "world.facility": 0.3366,
+            "world.resident": 0.3178
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 21,
+          "turn": 174
+        },
+        {
+          "command_ms": 1.6865999999999999,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.5950000000000001,
+            "engine.ai-actor": 0.5512000000000001,
+            "engine.command": 0.6943,
+            "engine.complete-turn": 0.6712,
+            "engine.hearing": 0.0179,
+            "engine.path-search": 0.49950000000000006,
+            "world.command": 1.5843999999999998,
+            "world.facility": 0.21350000000000002,
+            "world.resident": 0.6645999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 22,
+          "turn": 175
+        },
+        {
+          "command_ms": 1.6377,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.5977,
+            "engine.ai-actor": 0.5532000000000001,
+            "engine.command": 0.6978000000000001,
+            "engine.complete-turn": 0.6745,
+            "engine.hearing": 0.017899999999999996,
+            "engine.path-search": 0.4556,
+            "world.command": 1.5164,
+            "world.facility": 0.1839,
+            "world.resident": 0.6226
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 23,
+          "turn": 176
+        },
+        {
+          "command_ms": 72.82039999999999,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.669,
+            "engine.ai-actor": 0.6086,
+            "engine.command": 0.7744,
+            "engine.complete-turn": 0.7496,
+            "engine.hearing": 0.020900000000000005,
+            "engine.path-search": 71.1421,
+            "world.command": 72.61370000000001,
+            "world.facility": 71.09989999999999,
+            "world.resident": 0.7098
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 24,
+          "turn": 177
+        },
+        {
+          "command_ms": 78.5304,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9663999999999999,
+            "engine.ai-actor": 0.8911,
+            "engine.command": 1.1881000000000002,
+            "engine.complete-turn": 1.1150000000000002,
+            "engine.hearing": 0.0324,
+            "engine.path-search": 76.60170000000001,
+            "world.command": 78.2828,
+            "world.facility": 76.6315,
+            "world.resident": 0.4376
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 25,
+          "turn": 178
+        },
+        {
+          "command_ms": 72.7359,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8383,
+            "engine.ai-actor": 0.7730000000000001,
+            "engine.command": 1.0296,
+            "engine.complete-turn": 0.9586,
+            "engine.hearing": 0.028700000000000007,
+            "engine.path-search": 71.00460000000002,
+            "world.command": 72.59309999999999,
+            "world.facility": 71.0045,
+            "world.resident": 0.5316000000000001
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 26,
+          "turn": 179
+        },
+        {
+          "command_ms": 66.3711,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9806000000000001,
+            "engine.ai-actor": 0.9150999999999999,
+            "engine.command": 1.1471,
+            "engine.complete-turn": 1.0932,
+            "engine.hearing": 0.03379999999999999,
+            "engine.path-search": 64.5494,
+            "world.command": 66.23,
+            "world.facility": 64.7215,
+            "world.resident": 0.3378
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 27,
+          "turn": 180
+        },
+        {
+          "command_ms": 60.030300000000004,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7094999999999999,
+            "engine.ai-actor": 0.6454000000000001,
+            "engine.command": 0.8936000000000001,
+            "engine.complete-turn": 0.8346,
+            "engine.hearing": 0.022700000000000012,
+            "engine.path-search": 58.48520000000001,
+            "world.command": 59.8862,
+            "world.facility": 58.6017,
+            "world.resident": 0.2814
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 28,
+          "turn": 181
+        },
+        {
+          "command_ms": 63.572199999999995,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6985,
+            "engine.ai-actor": 0.6409999999999999,
+            "engine.command": 0.8688,
+            "engine.complete-turn": 0.8148,
+            "engine.hearing": 0.02230000000000001,
+            "engine.path-search": 62.0483,
+            "world.command": 63.361200000000004,
+            "world.facility": 62.1753,
+            "world.resident": 0.21989999999999998
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 29,
+          "turn": 182
+        },
+        {
+          "command_ms": 2.2038,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7109,
+            "engine.ai-actor": 0.6498000000000002,
+            "engine.command": 0.8849,
+            "engine.complete-turn": 0.8269,
+            "engine.hearing": 0.021800000000000007,
+            "engine.path-search": 0.6321999999999999,
+            "world.command": 2.0551,
+            "world.facility": 0.7339,
+            "world.resident": 0.3038
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 30,
+          "turn": 183
+        },
+        {
+          "command_ms": 1.5372000000000001,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6489,
+            "engine.ai-actor": 0.6013000000000001,
+            "engine.command": 0.7575999999999999,
+            "engine.complete-turn": 0.73,
+            "engine.hearing": 0.0192,
+            "engine.path-search": 0.34620000000000006,
+            "world.command": 1.4228,
+            "world.facility": 0.44880000000000003,
+            "world.resident": 0.1749
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 31,
+          "turn": 184
+        },
+        {
+          "command_ms": 1.6848,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9142,
+            "engine.ai-actor": 0.861,
+            "engine.command": 1.0205,
+            "engine.complete-turn": 0.9948999999999999,
+            "engine.hearing": 0.030900000000000007,
+            "engine.path-search": 0.2533,
+            "world.command": 1.574,
+            "world.facility": 0.3535,
+            "world.resident": 0.1884
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 32,
+          "turn": 185
+        },
+        {
+          "command_ms": 1.3722,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6135,
+            "engine.ai-actor": 0.5679000000000001,
+            "engine.command": 0.7148,
+            "engine.complete-turn": 0.691,
+            "engine.hearing": 0.018699999999999998,
+            "engine.path-search": 0.213,
+            "world.command": 1.2648,
+            "world.facility": 0.3382,
+            "world.resident": 0.20180000000000003
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 33,
+          "turn": 186
+        },
+        {
+          "command_ms": 1.785,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6342,
+            "engine.ai-actor": 0.5877999999999999,
+            "engine.command": 0.7605,
+            "engine.complete-turn": 0.737,
+            "engine.hearing": 0.020399999999999998,
+            "engine.path-search": 0.4989,
+            "world.command": 1.6719,
+            "world.facility": 0.41340000000000005,
+            "world.resident": 0.4827
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 34,
+          "turn": 187
+        },
+        {
+          "command_ms": 1.5421,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6068,
+            "engine.ai-actor": 0.5615000000000001,
+            "engine.command": 0.7086,
+            "engine.complete-turn": 0.6849,
+            "engine.hearing": 0.018399999999999996,
+            "engine.path-search": 0.4082,
+            "world.command": 1.4407,
+            "world.facility": 0.3384,
+            "world.resident": 0.3837
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 35,
+          "turn": 188
+        },
+        {
+          "command_ms": 1.7,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.609,
+            "engine.ai-actor": 0.5645,
+            "engine.command": 0.7087,
+            "engine.complete-turn": 0.6864,
+            "engine.hearing": 0.0186,
+            "engine.path-search": 0.48950000000000005,
+            "world.command": 1.5506,
+            "world.facility": 0.3205,
+            "world.resident": 0.46009999999999995
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 36,
+          "turn": 189
+        },
+        {
+          "command_ms": 1.8006,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7891,
+            "engine.ai-actor": 0.7254,
+            "engine.command": 0.9051,
+            "engine.complete-turn": 0.8764000000000001,
+            "engine.hearing": 0.030900000000000025,
+            "engine.path-search": 0.43979999999999997,
+            "world.command": 1.6992,
+            "world.facility": 0.31930000000000003,
+            "world.resident": 0.4209
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 37,
+          "turn": 190
+        },
+        {
+          "command_ms": 1.6248,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.5995,
+            "engine.ai-actor": 0.5557000000000001,
+            "engine.command": 0.6981999999999999,
+            "engine.complete-turn": 0.6758,
+            "engine.hearing": 0.0182,
+            "engine.path-search": 0.4511,
+            "world.command": 1.5222,
+            "world.facility": 0.35359999999999997,
+            "world.resident": 0.4254
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 38,
+          "turn": 191
+        },
+        {
+          "command_ms": 1.7853999999999999,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6189,
+            "engine.ai-actor": 0.5744,
+            "engine.command": 0.7195,
+            "engine.complete-turn": 0.6964,
+            "engine.hearing": 0.019,
+            "engine.path-search": 0.44289999999999996,
+            "world.command": 1.5398,
+            "world.facility": 0.31020000000000003,
+            "world.resident": 0.4682
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 39,
+          "turn": 192
+        },
+        {
+          "command_ms": 2.0997,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9003,
+            "engine.ai-actor": 0.8198000000000001,
+            "engine.command": 1.0498,
+            "engine.complete-turn": 1.0164,
+            "engine.hearing": 0.02969999999999999,
+            "engine.path-search": 0.41879999999999995,
+            "world.command": 1.9932,
+            "world.facility": 0.464,
+            "world.resident": 0.4648
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 40,
+          "turn": 193
+        },
+        {
+          "command_ms": 1.4539,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6074999999999999,
+            "engine.ai-actor": 0.5625999999999999,
+            "engine.command": 0.7081999999999999,
+            "engine.complete-turn": 0.6851,
+            "engine.hearing": 0.018799999999999997,
+            "engine.path-search": 0.2625,
+            "world.command": 1.3028,
+            "world.facility": 0.2845,
+            "world.resident": 0.30069999999999997
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 41,
+          "turn": 194
+        },
+        {
+          "command_ms": 1.5549,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7937000000000001,
+            "engine.ai-actor": 0.7295,
+            "engine.command": 0.9094,
+            "engine.complete-turn": 0.8801,
+            "engine.hearing": 0.02610000000000002,
+            "engine.path-search": 0.2172,
+            "world.command": 1.4549,
+            "world.facility": 0.266,
+            "world.resident": 0.2698
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 42,
+          "turn": 195
+        },
+        {
+          "command_ms": 1.2930000000000001,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6119,
+            "engine.ai-actor": 0.5687000000000002,
+            "engine.command": 0.7142000000000001,
+            "engine.complete-turn": 0.6919,
+            "engine.hearing": 0.018199999999999997,
+            "engine.path-search": 0.1755,
+            "world.command": 1.1939,
+            "world.facility": 0.24879999999999997,
+            "world.resident": 0.2219
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 43,
+          "turn": 196
+        },
+        {
+          "command_ms": 1.4482,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6135999999999999,
+            "engine.ai-actor": 0.5697000000000002,
+            "engine.command": 0.7125,
+            "engine.complete-turn": 0.6905,
+            "engine.hearing": 0.018900000000000004,
+            "engine.path-search": 0.24950000000000003,
+            "world.command": 1.3123,
+            "world.facility": 0.24509999999999998,
+            "world.resident": 0.3392
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 44,
+          "turn": 197
+        },
+        {
+          "command_ms": 1.2541,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6388,
+            "engine.ai-actor": 0.5780000000000001,
+            "engine.command": 0.7485999999999999,
+            "engine.complete-turn": 0.7208,
+            "engine.hearing": 0.0196,
+            "engine.path-search": 0.12080000000000002,
+            "world.command": 1.1549,
+            "world.facility": 0.2309,
+            "world.resident": 0.16570000000000001
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 45,
+          "turn": 198
+        },
+        {
+          "command_ms": 2.2409,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.3940000000000001,
+            "engine.ai-actor": 1.3299999999999998,
+            "engine.command": 1.5776,
+            "engine.complete-turn": 1.5410000000000001,
+            "engine.hearing": 0.14559999999999995,
+            "engine.path-search": 0.1333,
+            "world.command": 2.1016,
+            "world.facility": 0.3264,
+            "world.resident": 0.17600000000000002
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 46,
+          "turn": 199
+        },
+        {
+          "command_ms": 1.5241,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9027,
+            "engine.ai-actor": 0.8349000000000002,
+            "engine.command": 1.0250000000000001,
+            "engine.complete-turn": 0.9890999999999999,
+            "engine.hearing": 0.02860000000000001,
+            "engine.path-search": 0.09290000000000001,
+            "world.command": 1.4133,
+            "world.facility": 0.22949999999999998,
+            "world.resident": 0.14800000000000002
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 47,
+          "turn": 200
+        },
+        {
+          "command_ms": 1.859,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8689,
+            "engine.ai-actor": 0.8184999999999999,
+            "engine.command": 0.9864999999999999,
+            "engine.complete-turn": 0.9628,
+            "engine.hearing": 0.029699999999999997,
+            "engine.path-search": 0.4674,
+            "world.command": 1.7546,
+            "world.facility": 0.2299,
+            "world.resident": 0.5279
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 48,
+          "turn": 201
+        },
+        {
+          "command_ms": 2.3237,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8975,
+            "engine.ai-actor": 0.8478000000000001,
+            "engine.command": 1.0245,
+            "engine.complete-turn": 0.9988,
+            "engine.hearing": 0.0252,
+            "engine.path-search": 0.7091999999999999,
+            "world.command": 2.1676,
+            "world.facility": 0.29300000000000004,
+            "world.resident": 0.8369999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 49,
+          "turn": 202
+        },
+        {
+          "command_ms": 2.0707,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9280999999999999,
+            "engine.ai-actor": 0.8664999999999997,
+            "engine.command": 1.0616,
+            "engine.complete-turn": 1.0321,
+            "engine.hearing": 0.0275,
+            "engine.path-search": 0.5154000000000001,
+            "world.command": 1.9667000000000001,
+            "world.facility": 0.2862,
+            "world.resident": 0.6061
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 50,
+          "turn": 203
+        },
+        {
+          "command_ms": 1.8973,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6134,
+            "engine.ai-actor": 0.5685,
+            "engine.command": 0.7239,
+            "engine.complete-turn": 0.7002,
+            "engine.hearing": 0.019499999999999997,
+            "engine.path-search": 0.7652000000000001,
+            "world.command": 1.794,
+            "world.facility": 0.1783,
+            "world.resident": 0.8809999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 51,
+          "turn": 204
+        },
+        {
+          "command_ms": 1.6068,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.5957,
+            "engine.ai-actor": 0.5513,
+            "engine.command": 0.6964,
+            "engine.complete-turn": 0.6729,
+            "engine.hearing": 0.0184,
+            "engine.path-search": 0.5101,
+            "world.command": 1.5086,
+            "world.facility": 0.179,
+            "world.resident": 0.5615
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 52,
+          "turn": 205
+        },
+        {
+          "command_ms": 1.8474,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6166,
+            "engine.ai-actor": 0.5553999999999999,
+            "engine.command": 0.7464999999999999,
+            "engine.complete-turn": 0.7178,
+            "engine.hearing": 0.0184,
+            "engine.path-search": 0.5911,
+            "world.command": 1.7011,
+            "world.facility": 0.1988,
+            "world.resident": 0.6898999999999998
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 53,
+          "turn": 206
+        },
+        {
+          "command_ms": 1.935,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8455999999999999,
+            "engine.ai-actor": 0.7828,
+            "engine.command": 0.9842,
+            "engine.complete-turn": 0.9539000000000001,
+            "engine.hearing": 0.0277,
+            "engine.path-search": 0.48480000000000006,
+            "world.command": 1.8304,
+            "world.facility": 0.2256,
+            "world.resident": 0.5670999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 54,
+          "turn": 207
+        },
+        {
+          "command_ms": 1.9195,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6991999999999999,
+            "engine.ai-actor": 0.6531,
+            "engine.command": 0.8074,
+            "engine.complete-turn": 0.7801,
+            "engine.hearing": 0.023299999999999998,
+            "engine.path-search": 0.5846,
+            "world.command": 1.7619,
+            "world.facility": 0.2174,
+            "world.resident": 0.6843
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 55,
+          "turn": 208
+        },
+        {
+          "command_ms": 2.1538999999999997,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9594999999999999,
+            "engine.ai-actor": 0.8938000000000001,
+            "engine.command": 1.0881,
+            "engine.complete-turn": 1.0560999999999998,
+            "engine.hearing": 0.031900000000000005,
+            "engine.path-search": 0.5841000000000001,
+            "world.command": 2.0146,
+            "world.facility": 0.2479,
+            "world.resident": 0.6635
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 56,
+          "turn": 209
+        },
+        {
+          "command_ms": 1.8455,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7961999999999999,
+            "engine.ai-actor": 0.7315,
+            "engine.command": 0.9039,
+            "engine.complete-turn": 0.8775999999999999,
+            "engine.hearing": 0.026099999999999998,
+            "engine.path-search": 0.5426,
+            "world.command": 1.7411,
+            "world.facility": 0.2002,
+            "world.resident": 0.624
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 57,
+          "turn": 210
+        },
+        {
+          "command_ms": 2.2277,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9269000000000001,
+            "engine.ai-actor": 0.8716999999999998,
+            "engine.command": 1.0460999999999998,
+            "engine.complete-turn": 1.0207,
+            "engine.hearing": 0.038700000000000005,
+            "engine.path-search": 0.663,
+            "world.command": 2.0764,
+            "world.facility": 0.2537,
+            "world.resident": 0.7639999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 58,
+          "turn": 211
+        },
+        {
+          "command_ms": 2.1481999999999997,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8984000000000001,
+            "engine.ai-actor": 0.8386000000000001,
+            "engine.command": 1.0231000000000001,
+            "engine.complete-turn": 0.995,
+            "engine.hearing": 0.025800000000000003,
+            "engine.path-search": 0.5841999999999999,
+            "world.command": 2.0005,
+            "world.facility": 0.2791,
+            "world.resident": 0.6849999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 59,
+          "turn": 212
+        },
+        {
+          "command_ms": 2.3987000000000003,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9388000000000001,
+            "engine.ai-actor": 0.8785999999999998,
+            "engine.command": 1.0723,
+            "engine.complete-turn": 1.0432,
+            "engine.hearing": 0.027799999999999995,
+            "engine.path-search": 0.7121999999999999,
+            "world.command": 2.2498,
+            "world.facility": 0.2903,
+            "world.resident": 0.7917
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 60,
+          "turn": 213
+        },
+        {
+          "command_ms": 2.3582,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9426,
+            "engine.ai-actor": 0.8723000000000001,
+            "engine.command": 1.0707,
+            "engine.complete-turn": 1.042,
+            "engine.hearing": 0.029799999999999997,
+            "engine.path-search": 0.6616,
+            "world.command": 2.1879,
+            "world.facility": 0.27549999999999997,
+            "world.resident": 0.7605
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 61,
+          "turn": 214
+        },
+        {
+          "command_ms": 2.2878,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9162,
+            "engine.ai-actor": 0.8521000000000002,
+            "engine.command": 1.053,
+            "engine.complete-turn": 1.0221,
+            "engine.hearing": 0.027600000000000003,
+            "engine.path-search": 0.6167,
+            "world.command": 2.1354,
+            "world.facility": 0.2833,
+            "world.resident": 0.7298
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 62,
+          "turn": 215
+        },
+        {
+          "command_ms": 2.6409,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9585,
+            "engine.ai-actor": 0.8964000000000001,
+            "engine.command": 1.09,
+            "engine.complete-turn": 1.0601,
+            "engine.hearing": 0.030299999999999987,
+            "engine.path-search": 0.8260000000000001,
+            "world.command": 2.422,
+            "world.facility": 0.2721,
+            "world.resident": 0.994
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 63,
+          "turn": 216
+        },
+        {
+          "command_ms": 2.1411,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8683000000000001,
+            "engine.ai-actor": 0.8048999999999997,
+            "engine.command": 1.0106,
+            "engine.complete-turn": 0.9732999999999999,
+            "engine.hearing": 0.028500000000000015,
+            "engine.path-search": 0.5917,
+            "world.command": 2.0197000000000003,
+            "world.facility": 0.25730000000000003,
+            "world.resident": 0.7321000000000001
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 64,
+          "turn": 217
+        },
+        {
+          "command_ms": 2.1948,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8379000000000001,
+            "engine.ai-actor": 0.7841,
+            "engine.command": 0.976,
+            "engine.complete-turn": 0.9384,
+            "engine.hearing": 0.024799999999999996,
+            "engine.path-search": 0.5971000000000001,
+            "world.command": 2.0318,
+            "world.facility": 0.2712,
+            "world.resident": 0.7707999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 65,
+          "turn": 218
+        },
+        {
+          "command_ms": 2.2931000000000004,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9662,
+            "engine.ai-actor": 0.9008999999999998,
+            "engine.command": 1.1016000000000001,
+            "engine.complete-turn": 1.0705,
+            "engine.hearing": 0.02969999999999999,
+            "engine.path-search": 0.5538,
+            "world.command": 2.1186,
+            "world.facility": 0.2706,
+            "world.resident": 0.7288
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 66,
+          "turn": 219
+        },
+        {
+          "command_ms": 2.1527,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9615,
+            "engine.ai-actor": 0.8960999999999999,
+            "engine.command": 1.1008,
+            "engine.complete-turn": 1.0689,
+            "engine.hearing": 0.03009999999999999,
+            "engine.path-search": 0.43970000000000004,
+            "world.command": 1.9928,
+            "world.facility": 0.2902,
+            "world.resident": 0.588
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 67,
+          "turn": 220
+        },
+        {
+          "command_ms": 2.2236000000000002,
+          "inclusive_stage_ms": {
+            "engine.ai": 1.0015,
+            "engine.ai-actor": 0.9309000000000003,
+            "engine.command": 1.1460000000000001,
+            "engine.complete-turn": 1.113,
+            "engine.hearing": 0.03159999999999998,
+            "engine.path-search": 0.4481,
+            "world.command": 2.0549,
+            "world.facility": 0.2799,
+            "world.resident": 0.6141
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 68,
+          "turn": 221
+        },
+        {
+          "command_ms": 2.2493000000000003,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9594999999999999,
+            "engine.ai-actor": 0.8943999999999999,
+            "engine.command": 1.1193,
+            "engine.complete-turn": 1.0758,
+            "engine.hearing": 0.029299999999999993,
+            "engine.path-search": 0.5267000000000001,
+            "world.command": 2.0883,
+            "world.facility": 0.2918,
+            "world.resident": 0.6613999999999999
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 69,
+          "turn": 222
+        },
+        {
+          "command_ms": 2.1456,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.9344,
+            "engine.ai-actor": 0.8714,
+            "engine.command": 1.0854000000000001,
+            "engine.complete-turn": 1.0407000000000002,
+            "engine.hearing": 0.028000000000000004,
+            "engine.path-search": 0.40879999999999994,
+            "world.command": 1.9751999999999998,
+            "world.facility": 0.3036,
+            "world.resident": 0.5664
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 70,
+          "turn": 223
+        },
+        {
+          "command_ms": 1.7929,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8787,
+            "engine.ai-actor": 0.8233999999999999,
+            "engine.command": 1.0102,
+            "engine.complete-turn": 0.9773,
+            "engine.hearing": 0.027500000000000007,
+            "engine.path-search": 0.2878,
+            "world.command": 1.6414000000000002,
+            "world.facility": 0.2074,
+            "world.resident": 0.41009999999999996
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 71,
+          "turn": 224
+        },
+        {
+          "command_ms": 1.3735,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6746,
+            "engine.ai-actor": 0.6201999999999999,
+            "engine.command": 0.7843,
+            "engine.complete-turn": 0.7555,
+            "engine.hearing": 0.020700000000000007,
+            "engine.path-search": 0.18730000000000002,
+            "world.command": 1.2688000000000001,
+            "world.facility": 0.19110000000000002,
+            "world.resident": 0.2825
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 72,
+          "turn": 225
+        },
+        {
+          "command_ms": 1.5,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8437,
+            "engine.ai-actor": 0.7916,
+            "engine.command": 0.9617,
+            "engine.complete-turn": 0.9375,
+            "engine.hearing": 0.028100000000000014,
+            "engine.path-search": 0.1432,
+            "world.command": 1.3901000000000001,
+            "world.facility": 0.1828,
+            "world.resident": 0.2356
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 73,
+          "turn": 226
+        },
+        {
+          "command_ms": 1.6521000000000001,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6723,
+            "engine.ai-actor": 0.5993999999999999,
+            "engine.command": 0.7764,
+            "engine.complete-turn": 0.7532,
+            "engine.hearing": 0.018899999999999997,
+            "engine.path-search": 0.3543,
+            "world.command": 1.5471000000000001,
+            "world.facility": 0.2726,
+            "world.resident": 0.48340000000000005
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 74,
+          "turn": 227
+        },
+        {
+          "command_ms": 1.8626999999999998,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8518,
+            "engine.ai-actor": 0.7876000000000002,
+            "engine.command": 0.9705,
+            "engine.complete-turn": 0.9419,
+            "engine.hearing": 0.02790000000000001,
+            "engine.path-search": 0.31079999999999997,
+            "world.command": 1.7338,
+            "world.facility": 0.3042,
+            "world.resident": 0.44229999999999997
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 75,
+          "turn": 228
+        },
+        {
+          "command_ms": 1.5505,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6395,
+            "engine.ai-actor": 0.5936000000000001,
+            "engine.command": 0.7418,
+            "engine.complete-turn": 0.7178,
+            "engine.hearing": 0.019300000000000005,
+            "engine.path-search": 0.3544,
+            "world.command": 1.4357,
+            "world.facility": 0.1806,
+            "world.resident": 0.4389
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 76,
+          "turn": 229
+        },
+        {
+          "command_ms": 1.3313000000000001,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.6087,
+            "engine.ai-actor": 0.5567000000000001,
+            "engine.command": 0.7196,
+            "engine.complete-turn": 0.6933,
+            "engine.hearing": 0.018899999999999997,
+            "engine.path-search": 0.18730000000000002,
+            "world.command": 1.2296,
+            "world.facility": 0.1847,
+            "world.resident": 0.24719999999999998
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 77,
+          "turn": 230
+        },
+        {
+          "command_ms": 1.7344000000000002,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.8626,
+            "engine.ai-actor": 0.8114000000000001,
+            "engine.command": 0.9644,
+            "engine.complete-turn": 0.9415,
+            "engine.hearing": 0.029600000000000022,
+            "engine.path-search": 0.23160000000000003,
+            "world.command": 1.6015000000000001,
+            "world.facility": 0.221,
+            "world.resident": 0.3398
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 78,
+          "turn": 231
+        },
+        {
+          "command_ms": 1.6397,
+          "inclusive_stage_ms": {
+            "engine.ai": 0.7844,
+            "engine.ai-actor": 0.7348999999999999,
+            "engine.command": 0.8936999999999999,
+            "engine.complete-turn": 0.8706,
+            "engine.hearing": 0.0258,
+            "engine.path-search": 0.2934,
+            "world.command": 1.5089000000000001,
+            "world.facility": 0.17880000000000001,
+            "world.resident": 0.3905
+          },
+          "position": {
+            "x": 65,
+            "y": 55
+          },
+          "step": 79,
+          "turn": 232
+        }
+      ],
+      "inclusive_stage_calls": {
+        "engine.ai": {
+          "count": 80,
+          "timing": {
+            "max_ms": 1.6779,
+            "median_ms": 0.8383,
+            "p95_ms": 1.0228,
+            "p99_ms": 1.6779
+          }
+        },
+        "engine.ai-actor": {
+          "count": 3680,
+          "timing": {
+            "max_ms": 0.3771,
+            "median_ms": 0.0143,
+            "p95_ms": 0.0282,
+            "p99_ms": 0.0399
+          }
+        },
+        "engine.command": {
+          "count": 80,
+          "timing": {
+            "max_ms": 1.8663,
+            "median_ms": 0.9705,
+            "p95_ms": 1.1881000000000002,
+            "p99_ms": 1.8663
+          }
+        },
+        "engine.complete-turn": {
+          "count": 80,
+          "timing": {
+            "max_ms": 1.8192,
+            "median_ms": 0.9415,
+            "p95_ms": 1.1239,
+            "p99_ms": 1.8192
+          }
+        },
+        "engine.hearing": {
+          "count": 3680,
+          "timing": {
+            "max_ms": 0.1186,
+            "median_ms": 0.00039999999999999996,
+            "p95_ms": 0.001,
+            "p99_ms": 0.0019
+          }
+        },
+        "engine.path-search": {
+          "count": 394,
+          "timing": {
+            "max_ms": 76.02250000000001,
+            "median_ms": 0.066,
+            "p95_ms": 0.3817,
+            "p99_ms": 63.891799999999996
+          }
+        },
+        "world.command": {
+          "count": 80,
+          "timing": {
+            "max_ms": 78.2828,
+            "median_ms": 1.8827,
+            "p95_ms": 66.23,
+            "p99_ms": 78.2828
+          }
+        },
+        "world.facility": {
+          "count": 80,
+          "timing": {
+            "max_ms": 76.6315,
+            "median_ms": 0.29300000000000004,
+            "p95_ms": 64.7215,
+            "p99_ms": 76.6315
+          }
+        },
+        "world.resident": {
+          "count": 400,
+          "timing": {
+            "max_ms": 0.6764,
+            "median_ms": 0.07540000000000001,
+            "p95_ms": 0.3379,
+            "p99_ms": 0.5268999999999999
+          }
+        }
+      },
+      "inclusive_stages_per_command": {
+        "engine.ai": {
+          "max_ms": 1.6779,
+          "median_ms": 0.8383,
+          "p95_ms": 1.0228,
+          "p99_ms": 1.6779
+        },
+        "engine.ai-actor": {
+          "max_ms": 1.3299999999999998,
+          "median_ms": 0.7828,
+          "p95_ms": 0.9440999999999998,
+          "p99_ms": 1.3299999999999998
+        },
+        "engine.command": {
+          "max_ms": 1.8663,
+          "median_ms": 0.9705,
+          "p95_ms": 1.1881000000000002,
+          "p99_ms": 1.8663
+        },
+        "engine.complete-turn": {
+          "max_ms": 1.8192,
+          "median_ms": 0.9415,
+          "p95_ms": 1.1239,
+          "p99_ms": 1.8192
+        },
+        "engine.hearing": {
+          "max_ms": 0.14559999999999995,
+          "median_ms": 0.026300000000000004,
+          "p95_ms": 0.0358,
+          "p99_ms": 0.14559999999999995
+        },
+        "engine.path-search": {
+          "max_ms": 76.60170000000001,
+          "median_ms": 0.4918,
+          "p95_ms": 64.5494,
+          "p99_ms": 76.60170000000001
+        },
+        "world.command": {
+          "max_ms": 78.2828,
+          "median_ms": 1.8827,
+          "p95_ms": 66.23,
+          "p99_ms": 78.2828
+        },
+        "world.facility": {
+          "max_ms": 76.6315,
+          "median_ms": 0.29300000000000004,
+          "p95_ms": 64.7215,
+          "p99_ms": 76.6315
+        },
+        "world.resident": {
+          "max_ms": 0.994,
+          "median_ms": 0.48340000000000005,
+          "p95_ms": 0.8736999999999999,
+          "p99_ms": 0.994
+        }
+      },
+      "profiled": true,
+      "rendering_enabled": false,
+      "scene": "hub-wait"
+    }
+  ]
+}
