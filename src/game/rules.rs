@@ -22,6 +22,11 @@ use crate::world::{
 /// construct it later without replacing simulation code.
 #[derive(Clone, PartialEq, Eq)]
 pub struct GameRules {
+    pub agent_class_start: Option<crate::agent_class::AgentClassStart>,
+    /// Authored skills supplied by a real equipped item, never by carrying it
+    /// or using its appearance. Ranks belong to that source, not to progression.
+    pub equipment_agent_skills:
+        std::collections::BTreeMap<ItemId, std::collections::BTreeMap<String, u8>>,
     /// Crossing into a deeper layer closes access to every previous layer.
     /// Disabled for historical runs; travel within one layer remains reversible.
     pub irreversible_layer_travel: bool,
@@ -30,7 +35,10 @@ pub struct GameRules {
     pub equipment_upgrade: Option<super::EquipmentUpgradeRules>,
     /// Generation 135+: weighted counts of one to six properties, also for restored gambles.
     pub weighted_equipment_bonuses: bool,
+    pub equipment_color_variants: bool,
     pub player_field_of_view: FieldOfViewRules,
+    /// Explicit ordinary NPC sight; None retains the legacy shared fallback.
+    pub ordinary_actor_field_of_view: Option<FieldOfViewRules>,
     pub damage: DamageRules,
     /// `None` retains the legacy percentage-resistance resolver. Current runs
     /// use fixed Armor for the configured physical damage families.
@@ -127,6 +135,12 @@ pub struct GameRules {
 impl Debug for GameRules {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         let mut rules = formatter.debug_struct("GameRules");
+        if let Some(start) = &self.agent_class_start {
+            rules.field("agent_class_start", start);
+        }
+        if !self.equipment_agent_skills.is_empty() {
+            rules.field("equipment_agent_skills", &self.equipment_agent_skills);
+        }
         if self.irreversible_layer_travel {
             rules.field("irreversible_layer_travel", &true);
         }
@@ -135,6 +149,9 @@ impl Debug for GameRules {
         }
         if let Some(upgrade) = &self.equipment_upgrade {
             rules.field("equipment_upgrade", upgrade);
+        }
+        if self.equipment_color_variants {
+            rules.field("equipment_color_variants", &true);
         }
         if self.weighted_equipment_bonuses {
             rules.field("weighted_equipment_bonuses", &true);
@@ -147,6 +164,9 @@ impl Debug for GameRules {
                 "player_hit_points_per_level",
                 &self.player_hit_points_per_level,
             );
+        }
+        if let Some(profile) = self.ordinary_actor_field_of_view {
+            rules.field("ordinary_actor_field_of_view", &profile);
         }
         rules
             .field("player_field_of_view", &self.player_field_of_view)
@@ -290,11 +310,15 @@ impl StartingItemStack {
 impl Default for GameRules {
     fn default() -> Self {
         Self {
+            agent_class_start: None,
+            equipment_agent_skills: Default::default(),
             irreversible_layer_travel: false,
             monster_equipment_loot: None,
             equipment_upgrade: None,
             weighted_equipment_bonuses: false,
+            equipment_color_variants: false,
             player_field_of_view: FieldOfViewRules::default(),
+            ordinary_actor_field_of_view: None,
             damage: DamageRules::default(),
             armor_rules: None,
             hit_rules: None,

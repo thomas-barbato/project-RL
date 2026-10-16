@@ -16,3 +16,12 @@ toml = "0.9"
 [patch.crates-io]
 # Keep OpenGL's texture-binding cache coherent when the font atlas grows.
 miniquad = { path = "vendor/miniquad" }
+
+# Keep local development caches small. Compiled outputs remain disposable.
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false

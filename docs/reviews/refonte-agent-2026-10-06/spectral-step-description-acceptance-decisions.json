@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "T02",
+  "title": "Pas spectral",
+  "user_message": "je valide",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T02-01.json",
+  "previous_description_sha256": "02de69e34f79b4f0db022622e663b3ba440053ac9c52c4d8fe30f9c47dfb9478",
+  "accepted_player_copy_sha256": "b0553f2194df309c66ef62d1e6199a905c13a751b8c1a4fdc63ef0f8db4f1c78",
+  "approval_scope": "Full displayed RP, current/next values, costs/cooldown and destination/movement-reaction conditions accepted as provisional balance. Unshown full curves, detailed movement/stacking/turn cases and native visuals remain pending.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "movement_cells": 1,
+      "dodge_bonus_points": 45,
+      "duration_turns": 4,
+      "energy_cost": 11,
+      "cooldown_turns": 6
+    },
+    "next": {
+      "effective_rank": 12,
+      "movement_cells": 1,
+      "dodge_bonus_points": 48,
+      "duration_turns": 4,
+      "energy_cost": 11,
+      "cooldown_turns": 6
+    }
+  },
+  "accepted_conditions": [
+    "Adjacent free known passable destination; walls and obstacles block movement.",
+    "Dodge bonus added to ordinary dodge; available for reactions caused by movement."
+  ],
+  "unshown_rules_approval": "Full rank curves, ordinary dodge/hit bounds, exact duration/turn counting, diagonal/corner movement cases, recast stacking/refresh and resource atomicity, attribute/implant combinations and magic cost reductions remain pending where not already accepted. No teleport through walls, forced enemy miss, attack, percentage dodge chance, incompatible-weapon lock or heavy-weapon exclusion introduced.",
+  "visual_approval": "existing_catalogue_direction_only; native_preview_and_animation_pending",
+  "runtime_integration": "not_integrated"
+}

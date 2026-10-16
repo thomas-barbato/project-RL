@@ -1,0 +1,206 @@
+{
+  "date": "2026-10-07",
+  "review_id": "AR-FO-REMOVE01",
+  "user_message": "on va supprimer la branche de foudre.",
+  "approval_status": "explicit_entire_branch_removal",
+  "removed_branch": "Foudre",
+  "former_catalogue_number": 9,
+  "removed_skill_ids": [
+    "FO01",
+    "FO02",
+    "FO03",
+    "FO04",
+    "FO05",
+    "FO06"
+  ],
+  "removed_skills": [
+    {
+      "id": "FO01",
+      "title": "Chaîne conductrice",
+      "previous_candidate": {
+        "id": "FO01",
+        "title": "Chaîne conductrice",
+        "role": "active",
+        "effect_proposal": "L'éclair saute entre plusieurs ennemis proches, sans rebond illimité.",
+        "visual_proposal": "Arcs brisés reliant les cibles dans l'ordre des sauts.",
+        "row_sha256": "79a305c5df82dd6e94f1be3c0efaa19c57c8b7f9de5a0cb3dcfec7d1ccd18247",
+        "text_approval": "accepted_as_displayed",
+        "mechanic_approval": "displayed_damage_chain44_35_28_22_18_then47_37_30_24_19_targets5_initial_range5_jump2_cost13_CD4_accepted;full_curves_unshown_pending;displayed_initial_hostile_choice_then_nearest_visible_eligible_hostile_walls_no_repeat_chain_ends_without_target_accepted;unshown_cases_pending",
+        "visual_approval": "pending_preview_and_user_review",
+        "runtime_integration": "not_integrated",
+        "name_approval": "accepted_existing_catalogue_name_preserved",
+        "visual_intention_approval": "displayed_broken_arcs_in_jump_order_direction_accepted;native_pixels_pending",
+        "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FO01-02.json"
+      },
+      "previous_complete_block_sha256": "17035ba4106f44b02ddad9a35664c7f87c9e25dded26d1fbbe2213f421b6d9de"
+    },
+    {
+      "id": "FO02",
+      "title": "Champ statique",
+      "previous_candidate": {
+        "id": "FO02",
+        "title": "Champ statique",
+        "role": "active",
+        "effect_proposal": "Retire une part des PV actuels des ennemis proches, avec un plancher de vie à définir.",
+        "visual_proposal": "Cercle de décharge très bref et flash intérieur sur les victimes.",
+        "row_sha256": "a90a33d619c49f6785923195b88660bf2339676a0fdde6394bb008e8f3a7dae5",
+        "text_approval": "proposed_pending_individual_user_review",
+        "mechanic_approval": "displayed_current_HP_percent35.8_then36.4_floor50_radius2_cost15_CD6_proposed;full_curves_unshown_pending;displayed_hostiles_in_caster_radius50%_max_HP_floor_no_damage_below_floor_walls_stop_pulse_and_lightning_resistance_proposed;unshown_cases_pending",
+        "visual_approval": "pending_preview_and_user_review",
+        "runtime_integration": "not_integrated",
+        "name_approval": "accepted_existing_catalogue_name_preserved",
+        "visual_intention_approval": "existing_catalogue_brief_discharge_circle_and_inner_flash_direction_preserved;exact_current_wording_proposed_pending_review",
+        "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FO02-01.json"
+      },
+      "previous_complete_block_sha256": "18444209db64450daa27188b34a1bd805d5d339569fe05d7964ddcfee5cbad69"
+    },
+    {
+      "id": "FO03",
+      "title": "Champ répulsif",
+      "previous_candidate": {
+        "id": "FO03",
+        "title": "Champ répulsif",
+        "role": "active",
+        "effect_proposal": "Repousse les ennemis proches vers des cases libres.",
+        "visual_proposal": "Onde électrique sortante, étincelles sous les déplacements.",
+        "row_sha256": "28e56606239279e1c69d0e688bc97dbd91788b986fb045b56cd509a61be56099",
+        "text_approval": "final_description_pending_individual_user_review",
+        "mechanic_approval": "displayed_catalogue_effect_accepted_unshown_details_pending",
+        "visual_approval": "pending_preview_and_user_review",
+        "runtime_integration": "not_integrated",
+        "name_approval": "accepted_as_presented",
+        "visual_intention_approval": "accepted_as_presented"
+      },
+      "previous_complete_block_sha256": "d80187593e5e774813de5636e4bf699d917a0e62c9d4050c53b2870101678305"
+    },
+    {
+      "id": "FO04",
+      "title": "Orage fixé",
+      "previous_candidate": {
+        "id": "FO04",
+        "title": "Orage fixé",
+        "role": "active",
+        "effect_proposal": "Une zone choisie reçoit des éclairs périodiques visant un ennemi à la fois.",
+        "visual_proposal": "Nœud orageux au-dessus du sol et frappes verticales espacées.",
+        "row_sha256": "4a5e7ad9177cc68fe7458e118b1d3c25398c40c03cc584f0511c6a2929f9b4a0",
+        "text_approval": "final_description_pending_individual_user_review",
+        "mechanic_approval": "displayed_catalogue_effect_accepted_unshown_details_pending",
+        "visual_approval": "pending_preview_and_user_review",
+        "runtime_integration": "not_integrated",
+        "name_approval": "accepted_as_presented",
+        "visual_intention_approval": "accepted_as_presented"
+      },
+      "previous_complete_block_sha256": "38872ab156235232d4d0c63568e1cf2842a893f3fedb0a1cd54963c046f8dad7"
+    },
+    {
+      "id": "FO05",
+      "title": "Circuit fermé",
+      "previous_candidate": {
+        "id": "FO05",
+        "title": "Circuit fermé",
+        "role": "active",
+        "effect_proposal": "Relie deux ancrages par une ligne électrique qui blesse au franchissement.",
+        "visual_proposal": "Deux bornes runiques et fil électrique tremblant entre elles.",
+        "row_sha256": "8e3715d28fef91e4dfd6a044a3d64e4b0763a5aea240a5743997f83c24479aa3",
+        "text_approval": "final_description_pending_individual_user_review",
+        "mechanic_approval": "displayed_catalogue_effect_accepted_unshown_details_pending",
+        "visual_approval": "pending_preview_and_user_review",
+        "runtime_integration": "not_integrated",
+        "name_approval": "accepted_as_presented",
+        "visual_intention_approval": "accepted_as_presented"
+      },
+      "previous_complete_block_sha256": "01f36c337e71b3cd4c23a223888c28354b74365d8447dd4c6ee66a6462665b85"
+    },
+    {
+      "id": "FO06",
+      "title": "Accumulation électrique",
+      "previous_candidate": {
+        "id": "FO06",
+        "title": "Accumulation électrique",
+        "role": "passive",
+        "effect_proposal": "Les sorts électriques chargent l'agent ; un seuil ouvre une décharge supplémentaire limitée.",
+        "visual_proposal": "Charges tournant autour des implants puis libération en étoile.",
+        "row_sha256": "d107ec382dbd81cb8975c7c753571b2b35072f292fbcd09584b4caf9d23d09ff",
+        "text_approval": "final_description_pending_individual_user_review",
+        "mechanic_approval": "displayed_catalogue_effect_accepted_unshown_details_pending",
+        "visual_approval": "pending_preview_and_user_review",
+        "runtime_integration": "not_integrated",
+        "name_approval": "accepted_as_presented",
+        "visual_intention_approval": "accepted_as_presented"
+      },
+      "previous_complete_block_sha256": "5ef4fa5ed0e95bc3b82be9e62c7ab9f9ef4ddf4764873da38df9f1b0968f0e14"
+    }
+  ],
+  "replacement_branch": null,
+  "replacement_skill_ids": [],
+  "effects_transferred_to_other_branches": false,
+  "stable_ids_reused": false,
+  "prior_review_status": "Previous FO01 approval and FO02 pending card remain historical;no removed skill active or awaiting further review.",
+  "archive_policy": "Existing manifests,calculations,review cards and generators preserved as historical evidence;removed skills excluded from current catalogue/manifests.",
+  "counts": {
+    "before": {
+      "primary_branches": 14,
+      "primary_skills": 83,
+      "new_primary_rule_blocks": 57,
+      "secondary_rule_blocks": 14,
+      "complete_rule_blocks": 71
+    },
+    "after": {
+      "primary_branches": 13,
+      "primary_skills": 77,
+      "new_primary_rule_blocks": 51,
+      "secondary_rule_blocks": 14,
+      "complete_rule_blocks": 65
+    }
+  },
+  "dependent_proposal_change": {
+    "id": "HY03",
+    "removed_compatible_skill_ids": [
+      "FO01",
+      "FO04"
+    ],
+    "remaining_compatible_skill_ids": [
+      "FE01",
+      "FR01",
+      "A01",
+      "A02",
+      "FE04",
+      "FR05"
+    ],
+    "other_values_and_review_status": "unchanged"
+  },
+  "scope_boundary": "Player primary Foudre branch only;no global removal of electricity damage,monster skills,equipment effects or existing runtime content inferred.",
+  "documents": [
+    {
+      "path": "docs/CADRAGE_COMPETENCES_AGENT_COMPLET.md",
+      "before_sha256": "5abeac2982793f7bcb34a2574cfc19006607836f4d37d9ebc7681322e4cc94a7",
+      "after_sha256": "6944ccf1d672622333d920942721adff9f126663a565e90129fe2ec502d116ac",
+      "previous_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-revision-44.md"
+    },
+    {
+      "path": "docs/PROPOSITION_COMPETENCES_PRINCIPALES_AGENT.md",
+      "before_sha256": "bc5b60d846e17cb2aa710e15256d3f34d0b9d1d87698301578ef6c74b9dc1924",
+      "after_sha256": "8caba4a4610c1ac71100ceb1096608a1daf56d67bb3b6026457c4762aae0d394",
+      "previous_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-primary-catalogue-revision-69.md"
+    },
+    {
+      "path": "docs/REVUE_ARBRES_COMPETENCES_AGENT.md",
+      "before_sha256": "d13a3c1cc023673f5d446f40a68cdf614964a43117c691d93e36b3b6c9ac2e8c",
+      "after_sha256": "0dfeef2018a900b5b38e8c86d09ccb5849ff423096ec46bf1e02834a5cba4b7b",
+      "previous_snapshot": "docs/reviews/refonte-agent-2026-10-06/lightning-removal-before-REVUE_ARBRES_COMPETENCES_AGENT.md"
+    },
+    {
+      "path": "docs/REFONTE_AGENT_CRYOGENISE.md",
+      "before_sha256": "688a93818977e96cda98accf5506894b20559988d93eea1e156d3b79394a5bea",
+      "after_sha256": "9c7f370aa73d7fabc32093c956c1d7e1fd025ad4e6075f1b0a16390a67c2dc90",
+      "previous_snapshot": "docs/reviews/refonte-agent-2026-10-06/lightning-removal-before-REFONTE_AGENT_CRYOGENISE.md"
+    },
+    {
+      "path": "docs/REVUE_COMPETENCES_AGENT_LOT_02.md",
+      "before_sha256": "4933c36142a82f222b286b305e1b6cf276add5c9f37eb39cb74bba300cf317d8",
+      "after_sha256": "6d50089f3d2e8fa87aff8a1f810cdaaec3ce9bb8949619c986c30d15724b6487",
+      "previous_snapshot": "docs/reviews/refonte-agent-2026-10-06/lightning-removal-before-REVUE_COMPETENCES_AGENT_LOT_02.md"
+    }
+  ],
+  "runtime_integration": "not_integrated"
+}

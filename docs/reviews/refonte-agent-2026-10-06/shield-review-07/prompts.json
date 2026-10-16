@@ -1,0 +1,64 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "created_at": "2026-10-10",
+  "revision": 7,
+  "revised_candidates_against_last_user_review": [
+    "EQ-S02"
+  ],
+  "assets": [
+    {
+      "candidate_id": "EQ-S01",
+      "source_path": "../../../../assets/source-art/refonte-agent-2026-10-06/shield-review-07/sources/EQ-S01.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated front-facing shield sprite for a dark cyberpunk occult roguelike, no character. Supporting reference image: existing 32-pixel human game sprites, ONLY to match coarse pixel scale and industrial metal palette; do not reproduce any character or text. Candidate EQ-S01: compact solid symmetric trapezoid shield, clipped upper corners and gently tapered lower half; graphite black steel outer rim, one broad ivory central vertical plate, two dark side plates. Flat orthographic face viewed straight on, zero tilt, zero perspective, centered shield, fully solid central area because the center will cover the character's hand. Industrial utilitarian construction. A bold simple silhouette, no fine detailing: target a logical sprite only about 10 pixels wide and 14 pixels high, rendered as large perfectly square nearest-neighbor pixels on the output canvas. Outline roughly one logical pixel, only 2-3 values per material. Light from top-left. Transparent background with transparent corners outside shield. Shield only; no hands, arms, grip protrusion, floor, cast shadow, glow, particles, text, numbers, logos or watermark. No pink. Generous transparent margin; artwork must not touch canvas edges. This is a low-resolution game sprite, not a painted illustration or 3D product render.",
+      "source_revision": 1,
+      "edit_references": [
+        "artifacts/weapon-integration-2026-10-09/crawl-agents-final/cold-start.png"
+      ]
+    },
+    {
+      "candidate_id": "EQ-S02",
+      "source_path": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-671f97cc-238c-4d5c-9761-8e16b1334076.png",
+      "prompt": "Use case: precise-object-edit. Image 1 is the existing EQ-S02 shield sprite and is the EDIT TARGET.\nMake one very localized correction: the two vertical SILVER strips immediately below the central dark horizontal brace are thin. DOUBLE their thickness toward the CENTER of the shield, so they join the already wide diagonal lower silver band with no thin connections.\nImportant directional edits: grow the lower LEFT silver strip to its RIGHT, into the interior green/black area. Grow the lower RIGHT silver strip to its LEFT, into the interior green/black area. DO NOT grow either strip outward. The whole black exterior backing, alpha silhouette, outer black border, canvas and shield scale must remain EXACTLY as in the input. Preserve the original upper half, horizontal gray reinforcement, bottom silver diagonal band and broad bottom silver cap exactly. The dark outline must remain at least one full native sprite pixel around all the steel. Preserve the olive panel even though it becomes slightly narrower beside the thicker lower strips.\nKeep source framing and proportions exactly. Coarse square pixel art. Upper and lower rim should form one consistent sturdy steel frame. Only change the two lower silver vertical strips. No new colors, texture, detail, glow, ornaments, hands, character or text. Real transparent background.",
+      "source_revision": 7,
+      "edit_references": [
+        "../../../../assets/source-art/refonte-agent-2026-10-06/shield-review-05/sources/EQ-S02.png"
+      ]
+    },
+    {
+      "candidate_id": "EQ-S03",
+      "source_path": "../../../../assets/source-art/refonte-agent-2026-10-06/shield-review-07/sources/EQ-S03.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated front-facing shield sprite for a dark cyberpunk occult roguelike, no character. Supporting reference image: existing 32-pixel human game sprites, ONLY to match coarse pixel scale and industrial metal palette; do not reproduce any character or text. Candidate EQ-S03: compact upright rectangular riot shield with chamfered corners, steel silver outside frame and two broad cobalt-blue panels divided by a dark vertical reinforcement. Near width-to-height ratio 0.7. Entire face solid metal; no glass window or hole. Flat orthographic face viewed straight on, zero tilt, zero perspective, centered shield, fully solid central area because the center will cover the character's hand. Industrial utilitarian construction. A bold simple silhouette, no fine detailing: target a logical sprite only about 10 pixels wide and 14 pixels high, rendered as large perfectly square nearest-neighbor pixels on the output canvas. Outline roughly one logical pixel, only 2-3 values per material. Light from top-left. Transparent background with transparent corners outside shield. Shield only; no hands, arms, grip protrusion, floor, cast shadow, glow, particles, text, numbers, logos or watermark. No pink. Generous transparent margin; artwork must not touch canvas edges. This is a low-resolution game sprite, not a painted illustration or 3D product render.",
+      "source_revision": 1,
+      "edit_references": [
+        "artifacts/weapon-integration-2026-10-09/crawl-agents-final/cold-start.png"
+      ]
+    },
+    {
+      "candidate_id": "EQ-S04",
+      "source_path": "../../../../assets/source-art/refonte-agent-2026-10-06/shield-review-07/sources/EQ-S04.png",
+      "prompt": "Use case: precise-object-edit. The input is the existing shield drawing. Change ONLY its outer silhouette edge. Add a MUCH THICKER, uninterrupted near-black external silhouette band, approximately 12-15 percent of the shield width on EACH side at source scale, so it will remain at least one FULL dark pixel after reduction to 13x17 pixels. The entire alpha boundary MUST be dark, around the upper edge, all stepped corner diagonals, the vertical sides and lower edge. Recess EVERY pale steel plate or bright corner bump INSIDE this black perimeter; no pale-metal pixel should touch transparency. Especially wrap the existing silver corner pieces and lower border in dark backing instead of allowing them to define the outside edge. Keep the original overall shield silhouette, flat front-facing orientation, proportions, center panels, palette and industrial design exactly. Keep the copper-orange panels and wide charcoal center reinforcement; keep its flat bottom. Keep only a few broad 2-3-value planes, coarse square pixels with no noise. Transparent background preserved. Shield only, no character, text, floor, glowing outline, new ornament, shadows or perspective. This is a deliberately bold dark contour correction for a tiny game sprite; do not add more details.",
+      "source_revision": 4,
+      "edit_references": [
+        "assets/source-art/refonte-agent-2026-10-06/shield-review-03/sources/EQ-S04.png"
+      ]
+    },
+    {
+      "candidate_id": "EQ-S05",
+      "source_path": "../../../../assets/source-art/refonte-agent-2026-10-06/shield-review-07/sources/EQ-S05.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated front-facing shield sprite for a dark cyberpunk occult roguelike, no character. Supporting reference image: existing 32-pixel human game sprites, ONLY to match coarse pixel scale and industrial metal palette; do not reproduce any character or text. Candidate EQ-S05: compact wide octagonal shield, dark steel perimeter, two broad saturated red armored plates, one charcoal horizontal reinforcement across its solid center. Near width-to-height ratio 1.0. Extremely simple bold industrial shape. Flat orthographic face viewed straight on, zero tilt, zero perspective, centered shield, fully solid central area because the center will cover the character's hand. Industrial utilitarian construction. A bold simple silhouette, no fine detailing: target a logical sprite only about 10 pixels wide and 14 pixels high, rendered as large perfectly square nearest-neighbor pixels on the output canvas. Outline roughly one logical pixel, only 2-3 values per material. Light from top-left. Transparent background with transparent corners outside shield. Shield only; no hands, arms, grip protrusion, floor, cast shadow, glow, particles, text, numbers, logos or watermark. No pink. Generous transparent margin; artwork must not touch canvas edges. This is a low-resolution game sprite, not a painted illustration or 3D product render.",
+      "source_revision": 1,
+      "edit_references": [
+        "artifacts/weapon-integration-2026-10-09/crawl-agents-final/cold-start.png"
+      ]
+    },
+    {
+      "candidate_id": "EQ-S06",
+      "source_path": "../../../../assets/source-art/refonte-agent-2026-10-06/shield-review-07/sources/EQ-S06.png",
+      "prompt": "Use case: precise-object-edit. Edit target: the rectangular dark metal shield in the input. Rebuild the entire former gold/amber right-side module using the visual construction of the rest of the shield. This is a geometry and design change, not a gold-to-gray recolor. Remove the protruding accessory module, the segmented side housing and the oversized central clasp that belonged to it. Continue the same broad charcoal front plate across that space. Reconstruct its right border with the same understated pale-steel structural rim, shallow straight reinforcing lines, angular cut corners and industrial plate style as the left and bottom of the existing shield. One coherent integrated physical shield, with no separate side ornament or contrasting module. Preserve the rest's rectangular silhouette, top shallow notch, flat bottom, front-facing orientation, solid center and graphite/steel palette. Add a continuous near-black outermost silhouette contour one logical pixel thick; the pale steel border is INSIDE that contour, so the shape is clear on bright, dark and patterned game floors. Target a held size of 13 logical pixels wide and 17 high, rendered as coarse hard square pixels, 2-3 shades per material and broad calm planes. No gold, yellow, amber, orange, copper, colored module, medieval crest, decorative cross, tiny rivets or texture specks. Preserve genuine transparent background. Shield only; no hand, arm, character, text, glow or floor.",
+      "source_revision": 3,
+      "edit_references": [
+        "assets/source-art/refonte-agent-2026-10-06/shield-review-02/sources/EQ-S06.png"
+      ]
+    }
+  ]
+}

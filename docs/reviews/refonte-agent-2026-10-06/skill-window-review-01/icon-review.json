@@ -1,0 +1,2200 @@
+{
+  "review_id": "SKILLS-IC01",
+  "status": "revision_required_after_user_feedback",
+  "scope": "icon_drawings_only",
+  "count": 94,
+  "sizes": [
+    64,
+    32,
+    24
+  ],
+  "boards": [
+    {
+      "file": "icon-board-1.png",
+      "title": "Combat et technologie",
+      "count": 38,
+      "width": 1150,
+      "height": 2254
+    },
+    {
+      "file": "icon-board-2.png",
+      "title": "Magie et métamorphose",
+      "count": 29,
+      "width": 1150,
+      "height": 1746
+    },
+    {
+      "file": "icon-board-3.png",
+      "title": "Renforcements et outils",
+      "count": 27,
+      "width": 1150,
+      "height": 1792
+    }
+  ],
+  "icons": [
+    {
+      "id": "A01",
+      "title": "Trait arcanique",
+      "file": "icons/A01.svg"
+    },
+    {
+      "id": "A02",
+      "title": "Déflagration occulte",
+      "file": "icons/A02.svg"
+    },
+    {
+      "id": "A03",
+      "title": "Canalisation",
+      "file": "icons/A03.svg"
+    },
+    {
+      "id": "AF02",
+      "title": "Faille d'armure",
+      "file": "icons/AF02.svg"
+    },
+    {
+      "id": "AF03",
+      "title": "Silence",
+      "file": "icons/AF03.svg"
+    },
+    {
+      "id": "AF04",
+      "title": "Rupture de régénération",
+      "file": "icons/AF04.svg"
+    },
+    {
+      "id": "AF05",
+      "title": "Désorientation",
+      "file": "icons/AF05.svg"
+    },
+    {
+      "id": "AF06",
+      "title": "Contagion",
+      "file": "icons/AF06.svg"
+    },
+    {
+      "id": "B01",
+      "title": "Frappe de rupture",
+      "file": "icons/B01.svg"
+    },
+    {
+      "id": "B02",
+      "title": "Égide occulte",
+      "file": "icons/B02.svg"
+    },
+    {
+      "id": "B03",
+      "title": "Vitalité améliorée",
+      "file": "icons/B03.svg"
+    },
+    {
+      "id": "BD04",
+      "title": "Visée stable",
+      "file": "icons/BD04.svg"
+    },
+    {
+      "id": "BD06",
+      "title": "Récupération d’énergie",
+      "file": "icons/BD06.svg"
+    },
+    {
+      "id": "BM01",
+      "title": "Lame incendiaire",
+      "file": "icons/BM01.svg"
+    },
+    {
+      "id": "BM02",
+      "title": "Faim vampirique",
+      "file": "icons/BM02.svg"
+    },
+    {
+      "id": "BM03",
+      "title": "Tempo offensif",
+      "file": "icons/BM03.svg"
+    },
+    {
+      "id": "BM05",
+      "title": "Sceau de vindicte",
+      "file": "icons/BM05.svg"
+    },
+    {
+      "id": "D56",
+      "title": "Invocation de l'Éclaireur",
+      "file": "icons/D56.svg"
+    },
+    {
+      "id": "D57",
+      "title": "Invocation de la Mule",
+      "file": "icons/D57.svg"
+    },
+    {
+      "id": "D58",
+      "title": "Invocation du drone Traqueur",
+      "file": "icons/D58.svg"
+    },
+    {
+      "id": "D59",
+      "title": "Invocation de l'Artilleur",
+      "file": "icons/D59.svg"
+    },
+    {
+      "id": "D66",
+      "title": "Invocation du Gardien",
+      "file": "icons/D66.svg"
+    },
+    {
+      "id": "DI01",
+      "title": "Tir perforant",
+      "file": "icons/DI01.svg"
+    },
+    {
+      "id": "DI02",
+      "title": "Feu nourri",
+      "file": "icons/DI02.svg"
+    },
+    {
+      "id": "DI03",
+      "title": "Volée",
+      "file": "icons/DI03.svg"
+    },
+    {
+      "id": "DI04",
+      "title": "Tir de précision",
+      "file": "icons/DI04.svg"
+    },
+    {
+      "id": "DI05",
+      "title": "Tir de harpon",
+      "file": "icons/DI05.svg"
+    },
+    {
+      "id": "DI07",
+      "title": "Tir vampirique",
+      "file": "icons/DI07.svg"
+    },
+    {
+      "id": "DP01",
+      "title": "Maintenance des drones",
+      "file": "icons/DP01.svg"
+    },
+    {
+      "id": "DP02",
+      "title": "Blindage amélioré",
+      "file": "icons/DP02.svg"
+    },
+    {
+      "id": "DR01",
+      "title": "Réparation ciblée",
+      "file": "icons/DR01.svg"
+    },
+    {
+      "id": "ES03",
+      "title": "Leurre holographique",
+      "file": "icons/ES03.svg"
+    },
+    {
+      "id": "ES05",
+      "title": "Traversée de phase",
+      "file": "icons/ES05.svg"
+    },
+    {
+      "id": "ES06",
+      "title": "Réflexes balistiques",
+      "file": "icons/ES06.svg"
+    },
+    {
+      "id": "FE01",
+      "title": "Braise",
+      "file": "icons/FE01.svg"
+    },
+    {
+      "id": "FE02",
+      "title": "Souffle de feu",
+      "file": "icons/FE02.svg"
+    },
+    {
+      "id": "FE03",
+      "title": "Mur de feu",
+      "file": "icons/FE03.svg"
+    },
+    {
+      "id": "FE04",
+      "title": "Émanation soudaine",
+      "file": "icons/FE04.svg"
+    },
+    {
+      "id": "FE05",
+      "title": "Boule de feu",
+      "file": "icons/FE05.svg"
+    },
+    {
+      "id": "FE06",
+      "title": "Combustion",
+      "file": "icons/FE06.svg"
+    },
+    {
+      "id": "FR01",
+      "title": "Aiguille de givre",
+      "file": "icons/FR01.svg"
+    },
+    {
+      "id": "FR02",
+      "title": "Nova de givre",
+      "file": "icons/FR02.svg"
+    },
+    {
+      "id": "FR03",
+      "title": "Mur de glace",
+      "file": "icons/FR03.svg"
+    },
+    {
+      "id": "FR04",
+      "title": "Vague de froid",
+      "file": "icons/FR04.svg"
+    },
+    {
+      "id": "FR05",
+      "title": "Blizzard",
+      "file": "icons/FR05.svg"
+    },
+    {
+      "id": "FR06",
+      "title": "Explosion cristalline",
+      "file": "icons/FR06.svg"
+    },
+    {
+      "id": "HL01",
+      "title": "Barrage",
+      "file": "icons/HL01.svg"
+    },
+    {
+      "id": "HL02",
+      "title": "Impact assommant",
+      "file": "icons/HL02.svg"
+    },
+    {
+      "id": "HL03",
+      "title": "Déluge d’acier",
+      "file": "icons/HL03.svg"
+    },
+    {
+      "id": "HL04",
+      "title": "Maîtrise des armes lourdes",
+      "file": "icons/HL04.svg"
+    },
+    {
+      "id": "HL05",
+      "title": "Déflagration amplifiée",
+      "file": "icons/HL05.svg"
+    },
+    {
+      "id": "HL06",
+      "title": "Drain d’impact",
+      "file": "icons/HL06.svg"
+    },
+    {
+      "id": "HY04",
+      "title": "Échange de position",
+      "file": "icons/HY04.svg"
+    },
+    {
+      "id": "HY05",
+      "title": "Ponction spirituelle",
+      "file": "icons/HY05.svg"
+    },
+    {
+      "id": "HY06",
+      "title": "Lien de domination",
+      "file": "icons/HY06.svg"
+    },
+    {
+      "id": "HY07",
+      "title": "Autodestruction",
+      "file": "icons/HY07.svg"
+    },
+    {
+      "id": "M01",
+      "title": "Mue prédatrice",
+      "file": "icons/M01.svg"
+    },
+    {
+      "id": "M02",
+      "title": "Décharge mutagène",
+      "file": "icons/M02.svg"
+    },
+    {
+      "id": "M03",
+      "title": "Puissance métamorphe",
+      "file": "icons/M03.svg"
+    },
+    {
+      "id": "ME02",
+      "title": "Fauchage",
+      "file": "icons/ME02.svg"
+    },
+    {
+      "id": "ME03",
+      "title": "Percée",
+      "file": "icons/ME03.svg"
+    },
+    {
+      "id": "ME04",
+      "title": "Repousser",
+      "file": "icons/ME04.svg"
+    },
+    {
+      "id": "ME05",
+      "title": "Charge",
+      "file": "icons/ME05.svg"
+    },
+    {
+      "id": "ME06",
+      "title": "Tourbillon",
+      "file": "icons/ME06.svg"
+    },
+    {
+      "id": "O02",
+      "title": "Interférence",
+      "file": "icons/O02.svg"
+    },
+    {
+      "id": "O03",
+      "title": "Algorithmes de combat améliorés",
+      "file": "icons/O03.svg"
+    },
+    {
+      "id": "OC04",
+      "title": "Prison sigillaire",
+      "file": "icons/OC04.svg"
+    },
+    {
+      "id": "OC05",
+      "title": "Rayon vorace",
+      "file": "icons/OC05.svg"
+    },
+    {
+      "id": "OC07",
+      "title": "Réanimation",
+      "file": "icons/OC07.svg"
+    },
+    {
+      "id": "SF00",
+      "title": "Furtivité",
+      "file": "icons/SF00.svg"
+    },
+    {
+      "id": "SF01",
+      "title": "Économie de mouvement furtif",
+      "file": "icons/SF01.svg"
+    },
+    {
+      "id": "SF02",
+      "title": "Discrétion renforcée",
+      "file": "icons/SF02.svg"
+    },
+    {
+      "id": "SG00",
+      "title": "Lancer de grenade",
+      "file": "icons/SG00.svg"
+    },
+    {
+      "id": "SG01",
+      "title": "Grenade aveuglante",
+      "file": "icons/SG01.svg"
+    },
+    {
+      "id": "SG02",
+      "title": "Leurre",
+      "file": "icons/SG02.svg"
+    },
+    {
+      "id": "SG03",
+      "title": "Portée de lancer",
+      "file": "icons/SG03.svg"
+    },
+    {
+      "id": "SG04",
+      "title": "Puissance des grenades",
+      "file": "icons/SG04.svg"
+    },
+    {
+      "id": "SM00",
+      "title": "Pose de mine",
+      "file": "icons/SM00.svg"
+    },
+    {
+      "id": "SM01",
+      "title": "Réseau de mines",
+      "file": "icons/SM01.svg"
+    },
+    {
+      "id": "SM02",
+      "title": "Mines de poison",
+      "file": "icons/SM02.svg"
+    },
+    {
+      "id": "SM03",
+      "title": "Mines de glace",
+      "file": "icons/SM03.svg"
+    },
+    {
+      "id": "SM04",
+      "title": "Explosion étendue",
+      "file": "icons/SM04.svg"
+    },
+    {
+      "id": "SM05",
+      "title": "Résidu persistant",
+      "file": "icons/SM05.svg"
+    },
+    {
+      "id": "SU03",
+      "title": "Barrière d’épine",
+      "file": "icons/SU03.svg"
+    },
+    {
+      "id": "SU04",
+      "title": "Régénération",
+      "file": "icons/SU04.svg"
+    },
+    {
+      "id": "SU05",
+      "title": "Purge",
+      "file": "icons/SU05.svg"
+    },
+    {
+      "id": "SU06",
+      "title": "Dernier sursaut",
+      "file": "icons/SU06.svg"
+    },
+    {
+      "id": "T01",
+      "title": "Marquage balistique",
+      "file": "icons/T01.svg"
+    },
+    {
+      "id": "T02",
+      "title": "Pas spectral",
+      "file": "icons/T02.svg"
+    },
+    {
+      "id": "T03",
+      "title": "Maîtrise des attaques à distance",
+      "file": "icons/T03.svg"
+    },
+    {
+      "id": "TR61",
+      "title": "Colosse biomécanique",
+      "file": "icons/TR61.svg"
+    },
+    {
+      "id": "TR63",
+      "title": "Cuirassé",
+      "file": "icons/TR63.svg"
+    },
+    {
+      "id": "TR64",
+      "title": "Possédé",
+      "file": "icons/TR64.svg"
+    },
+    {
+      "id": "TR65",
+      "title": "Abysse",
+      "file": "icons/TR65.svg"
+    }
+  ],
+  "raster_assets": [
+    {
+      "id": "A01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/A01.png",
+      "sha256": "12343cdf6a2a4a9fee91e883ec7153b56a5d8cf001ffaf1e6e5578a3cbdd0502"
+    },
+    {
+      "id": "A01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/A01.png",
+      "sha256": "6a6c35247f4aa57154704121d6d1b1e1e88833c5158f1e685ce46dddf1c868d5"
+    },
+    {
+      "id": "A01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/A01.png",
+      "sha256": "90178066ba59511731f8986915fb628240418953e748dc0b969796a4c8686d11"
+    },
+    {
+      "id": "A02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/A02.png",
+      "sha256": "e2594b170d1cfb09af4bfa374034864da20d4fecd3a9c841f05486e245e32847"
+    },
+    {
+      "id": "A02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/A02.png",
+      "sha256": "d002d789e25609e53a3ac23f2fcf6fdce30927c7bacbd9f7770a5daf0dda8ea1"
+    },
+    {
+      "id": "A02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/A02.png",
+      "sha256": "0a69a8a8bc318b02fb0ddbc7b64de92faef90b32234609881a26048ed6d78fa6"
+    },
+    {
+      "id": "A03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/A03.png",
+      "sha256": "09e3a916940fbde6f67ea03803e7030a952d92909438d45f0fbffcdb3bb28f83"
+    },
+    {
+      "id": "A03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/A03.png",
+      "sha256": "e2870b63197d8fbaf11dd4fb3d29e0b3cc61eda2a9130e5bbffb3e4f0f1416f1"
+    },
+    {
+      "id": "A03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/A03.png",
+      "sha256": "4b857ca1d36059adde02f4820b8d0c949f8b91c3ef7c756d61b576deb87eed72"
+    },
+    {
+      "id": "AF02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/AF02.png",
+      "sha256": "06c0568f8aa736808bd1eb1c7d9a07f5e8d8e3018e9529ef661150116303f643"
+    },
+    {
+      "id": "AF02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/AF02.png",
+      "sha256": "0b28c2a15db40a55014ba2068319feb381a0045f3e4b67432242f0034ccfda10"
+    },
+    {
+      "id": "AF02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/AF02.png",
+      "sha256": "34c6ad93b086aea70ce25ab51155cc21afdeeccff03b0edcd7bacc39e62a375c"
+    },
+    {
+      "id": "AF03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/AF03.png",
+      "sha256": "e0e807a031a7f5903864fcc72e0397e1635d037bf84a282b8fc29537bc19294e"
+    },
+    {
+      "id": "AF03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/AF03.png",
+      "sha256": "aff381cd907257a71b0f6130861603cbc9ebaa341020bb0a69e7b972f53a7462"
+    },
+    {
+      "id": "AF03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/AF03.png",
+      "sha256": "1c2566e8c16271566348bba39412d483cebbca6e5fee5636cb7448b9f5e358ac"
+    },
+    {
+      "id": "AF04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/AF04.png",
+      "sha256": "9e4e314ca2112e3e0c75d87505a2999a1624e505dbeb08533d19fcf54de9f670"
+    },
+    {
+      "id": "AF04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/AF04.png",
+      "sha256": "86dda93f33c23aed947404624885abc403545578f661914c06c2046db7a521cf"
+    },
+    {
+      "id": "AF04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/AF04.png",
+      "sha256": "0d4ee9270521cc24f177dbf00a0cf5a63dc8f13b06d551f9287cff6e18cfd160"
+    },
+    {
+      "id": "AF05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/AF05.png",
+      "sha256": "9b6a9d1954b02f4ea86e161ddc3069c48ded6854c6d4475977a7c4733e98b57f"
+    },
+    {
+      "id": "AF05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/AF05.png",
+      "sha256": "ca2ca4b49d5bba81bd7202c2a8b7f3538964ae4b3b511eaa731009f44250fdc4"
+    },
+    {
+      "id": "AF05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/AF05.png",
+      "sha256": "f401835b4374ce804cbff7fbb766b4a255dd26d47fb081d43ade97a283808286"
+    },
+    {
+      "id": "AF06",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/AF06.png",
+      "sha256": "70028519ac28971548e031f0a0513aeb0aa19dfaa21e41575ae4b6de32ac1ac8"
+    },
+    {
+      "id": "AF06",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/AF06.png",
+      "sha256": "943c248ea87a63c09e376ce2185e65cde8440bf8952d355c07dc5831b0713d37"
+    },
+    {
+      "id": "AF06",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/AF06.png",
+      "sha256": "bbd4e43857ab0c7d6544e6514abca7f7eefa7b18c34587d152befa0661854f24"
+    },
+    {
+      "id": "B01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/B01.png",
+      "sha256": "8609aa250a68e15b7b955a238fe04c56b995672d712b928d4a8b2efbd59ae580"
+    },
+    {
+      "id": "B01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/B01.png",
+      "sha256": "e5297d3690267be9ab7212adde4183b924c9ec25cf745355313440ff781c8323"
+    },
+    {
+      "id": "B01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/B01.png",
+      "sha256": "ec453d0f0e445e38a9a40dcf6fb654341b3d60b79a7a781015516bdd0bdd1f64"
+    },
+    {
+      "id": "B02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/B02.png",
+      "sha256": "da8c533dc0bd1960703285bc38bbbdd44bd3eaef4a7d7734d34c3456a27b8234"
+    },
+    {
+      "id": "B02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/B02.png",
+      "sha256": "ecbdfb57c2095532430842abf7fd973956560d61fe1f85f3ad4dd6b411947f14"
+    },
+    {
+      "id": "B02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/B02.png",
+      "sha256": "e6bd733720e2cd97d734aa74138d8cc6279758eabbfba801fb638e78dda36cf2"
+    },
+    {
+      "id": "B03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/B03.png",
+      "sha256": "0cd89a7d7a16e77e5255fdae25b113b6a2b6c25064d75d380eb40b61a393bbc6"
+    },
+    {
+      "id": "B03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/B03.png",
+      "sha256": "02e4060bc5bca39bbb192c4bf2b0e98fa533f3039988064e5761827c0f0557f4"
+    },
+    {
+      "id": "B03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/B03.png",
+      "sha256": "2c44256ad316a8481985dba187e656a9858a082239c4b5c6e8ea077e1946735c"
+    },
+    {
+      "id": "BD04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/BD04.png",
+      "sha256": "42c2e16e35db490f9e3c0221fc02f22dc10081b80167317e0e20d9f9aa974e1c"
+    },
+    {
+      "id": "BD04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/BD04.png",
+      "sha256": "3e5e7435ece1fd2a2d46a9c788df0a73c85f2c45b6b148d4c87d5b94127f2de8"
+    },
+    {
+      "id": "BD04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/BD04.png",
+      "sha256": "f16788014946d9ca648f01c9d0e9e7c3a1410694943edbef6058659d7a6a9abc"
+    },
+    {
+      "id": "BD06",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/BD06.png",
+      "sha256": "b689d36fba592119ba2fdc2a8ea2a9c909546dce7daf1108d1188973d58bb2f6"
+    },
+    {
+      "id": "BD06",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/BD06.png",
+      "sha256": "766df4aef81930d6f312aeeb59f55d877ca464af645a7c9bbf841ace472798ff"
+    },
+    {
+      "id": "BD06",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/BD06.png",
+      "sha256": "d187ba6dc9c731298ee60d7dc74f540adeb455b56644ddbc7aba63f663553ed1"
+    },
+    {
+      "id": "BM01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/BM01.png",
+      "sha256": "1e8cc3562ad58fa4872b68d893181807bb4394b93c7bb37e99458f0475c06a1c"
+    },
+    {
+      "id": "BM01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/BM01.png",
+      "sha256": "15f9c2c31dd579f03234514ebc5ab1ede3817b95a6e64c2057ddd3c32c180c49"
+    },
+    {
+      "id": "BM01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/BM01.png",
+      "sha256": "57dec2a6da3ad7b8dbeadb471062555215431bad5a86edccbb62fd10d095d4ee"
+    },
+    {
+      "id": "BM02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/BM02.png",
+      "sha256": "1f20849e6b18fd03d56c0894f6f07f65682efdabd82162fe26d526f3b9ac260c"
+    },
+    {
+      "id": "BM02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/BM02.png",
+      "sha256": "4833119820c6b2fb450cb3751237f12f5fbcb1d46727bb9462b78549d5faa13b"
+    },
+    {
+      "id": "BM02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/BM02.png",
+      "sha256": "d0edab56c342220cb4e41ca8a6de2263d5b4221ffb36759f345230dc7cc60cea"
+    },
+    {
+      "id": "BM03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/BM03.png",
+      "sha256": "793c2e7962bbf0daac536953d78021c4ead9f976362157df61238eb9bf541218"
+    },
+    {
+      "id": "BM03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/BM03.png",
+      "sha256": "9f311f365173eb59226aec3e4dcc8213dae9e6d41a7e40d236f34258fead13d5"
+    },
+    {
+      "id": "BM03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/BM03.png",
+      "sha256": "1e34ceecca6f5f9e1a2c43517054477d7012aaf337da7e30214d4f79d61de970"
+    },
+    {
+      "id": "BM05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/BM05.png",
+      "sha256": "91173e488308b2320f56fc91f1f8d0a0f18eacda1209564ce871dd687be7ff29"
+    },
+    {
+      "id": "BM05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/BM05.png",
+      "sha256": "4a92dc4572fa465e71904feed49e34cd908079ed651b0590f706965f8bd30737"
+    },
+    {
+      "id": "BM05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/BM05.png",
+      "sha256": "9ee6996a168e2cc61bf7ce36560415131d971190b8ecfef4c3e45450d73ff6ae"
+    },
+    {
+      "id": "D56",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/D56.png",
+      "sha256": "8cb96c79e79f16f7fa9cb69c41f66a5caa26c8984963a2e144e6713a30de7d06"
+    },
+    {
+      "id": "D56",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/D56.png",
+      "sha256": "60a706a4e23ab877b2cacdd09ec63965954f1fe66aeaf3b97b7b0aacf6709d69"
+    },
+    {
+      "id": "D56",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/D56.png",
+      "sha256": "e1127be1ec178467d98925870e4a22a39d0dad2018c447b91132cf3d157a3f43"
+    },
+    {
+      "id": "D57",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/D57.png",
+      "sha256": "4040d841d25146c3310ba9c45577a0c43029c5cb0e210cbb02afd13e7898f281"
+    },
+    {
+      "id": "D57",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/D57.png",
+      "sha256": "4c815de435e2308c8aba43003c56ef959678a65e6998369a0260f1a8122cd4a5"
+    },
+    {
+      "id": "D57",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/D57.png",
+      "sha256": "aa86b08c17fb448b6dabfb6770e38e2d46cfaaf19ae9cd3fd0e7256b4dc1048e"
+    },
+    {
+      "id": "D58",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/D58.png",
+      "sha256": "e464bdf3e283c56a62e6a7df99eb0a2394919b2eb14278a8546d09e0b74cf224"
+    },
+    {
+      "id": "D58",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/D58.png",
+      "sha256": "5549aff21cfe0c9224a12dc64076abac63dae2b01c0d602c37e6b6cd3d1a9b3a"
+    },
+    {
+      "id": "D58",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/D58.png",
+      "sha256": "5be3497afe3fa82ed815a06db2cdbe969761357a679599ea8fb639ebec717c92"
+    },
+    {
+      "id": "D59",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/D59.png",
+      "sha256": "2738af5cada58947aae011c50168e81e5f04c8107ad461cadc6516e0c8439a55"
+    },
+    {
+      "id": "D59",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/D59.png",
+      "sha256": "839f5c275a093d2e3d4e7283a0efdb11a192fe247d76e64d20c44deeca74b5fe"
+    },
+    {
+      "id": "D59",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/D59.png",
+      "sha256": "33924c08c9cacf2f22f56d3e3752b61ce811535cc35ee5be5310ea454703ac60"
+    },
+    {
+      "id": "D66",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/D66.png",
+      "sha256": "b282350161405fc1aaf2de60e9bf510986f819d3d78a00bf6688ae70bc02b7ef"
+    },
+    {
+      "id": "D66",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/D66.png",
+      "sha256": "87aba4d81a1ca0da1d7bd3bb64f87cce09bb706a77ebef545094917b438a537d"
+    },
+    {
+      "id": "D66",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/D66.png",
+      "sha256": "31574eca5de3d637df2ae93e6fe0c7d3924a6edf00a4ea92281b284e5e6f9356"
+    },
+    {
+      "id": "DI01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/DI01.png",
+      "sha256": "e4a46602a5d4144f1bfe303c0fe7079a8d04619321baf4be3221dc31954e36d2"
+    },
+    {
+      "id": "DI01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/DI01.png",
+      "sha256": "5c1832e4e714374fe21370a304ecac1d9cbc71357243f55ce274bfd35ed1568b"
+    },
+    {
+      "id": "DI01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/DI01.png",
+      "sha256": "036e26c4b898870b54bd953c57cc1a3bc18468efad64adb3c610407637f8b525"
+    },
+    {
+      "id": "DI02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/DI02.png",
+      "sha256": "16f59f1fb0cf77c34822df42fc8b8f42e23bab66cd62312038bc1f0537268677"
+    },
+    {
+      "id": "DI02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/DI02.png",
+      "sha256": "cd4af2be215a948b6018d3bb4f9ffd46cbb58c292e6a1d04e7615bfb24fdf8e0"
+    },
+    {
+      "id": "DI02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/DI02.png",
+      "sha256": "7adcb1217b590f3d9188347ce317184653ce909cdb17e0d1dc1254d7af43b057"
+    },
+    {
+      "id": "DI03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/DI03.png",
+      "sha256": "640d439730fae74c6c0dd3b3218b6531f7ce4597afa12448d524e68685aafb7a"
+    },
+    {
+      "id": "DI03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/DI03.png",
+      "sha256": "1e27401b5d38e650c628ac5d5382598a7888fccc192ebcc5b924ed6fe34a1ffc"
+    },
+    {
+      "id": "DI03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/DI03.png",
+      "sha256": "4c27a23bd748c457a0979948f25793ac1a9ca821467198b45f3dd98162b66ac4"
+    },
+    {
+      "id": "DI04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/DI04.png",
+      "sha256": "eb3c3fd8e16aa72196d2365ee17b977b0940524456d49fecda0652761edeeda2"
+    },
+    {
+      "id": "DI04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/DI04.png",
+      "sha256": "2cc8098fc9143542ea626fcdb9d9870732d3cf706010825bab183f6c1d33afc8"
+    },
+    {
+      "id": "DI04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/DI04.png",
+      "sha256": "05fed1d6e6b3b75f61cf92dbe218ad20223541aa84660d75a643289302971518"
+    },
+    {
+      "id": "DI05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/DI05.png",
+      "sha256": "9b3701d6e1040f2efaf7f1a7e8ce32bc666ecae636b37bee7858fa85fa96f488"
+    },
+    {
+      "id": "DI05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/DI05.png",
+      "sha256": "f03850be3c28a5761b56d6fcd115ff6aa04a28c20d051d2dc48c11e90e74b453"
+    },
+    {
+      "id": "DI05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/DI05.png",
+      "sha256": "e7b055aabc3d2e6f0974eb446adc64eb41977351505e2fbdeb02947b5e23122c"
+    },
+    {
+      "id": "DI07",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/DI07.png",
+      "sha256": "f2ac4f516899cf8909e6c27def93cca922d409633a43fd028367e203976396c1"
+    },
+    {
+      "id": "DI07",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/DI07.png",
+      "sha256": "0faff42d47d550b836bad74647bdd8fd0bd6aa459a2927ad60f0b481b7a694e9"
+    },
+    {
+      "id": "DI07",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/DI07.png",
+      "sha256": "a77b0b24cf6732e81010d8cd7be4887a98af8b224cdd44762bed7338942c3fce"
+    },
+    {
+      "id": "DP01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/DP01.png",
+      "sha256": "648c5a8170aca624769e6634e1403dbbaa34d95fd4e6ab219d78136062effbbd"
+    },
+    {
+      "id": "DP01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/DP01.png",
+      "sha256": "1d014b92f9c44596c6047a34f96a1c30c768c95b6ce41758fcf177bba140f48e"
+    },
+    {
+      "id": "DP01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/DP01.png",
+      "sha256": "0fb15d08c206e55f9edacb2bbdddfd6b0bc2963b284e51fa5d65d43997b0a538"
+    },
+    {
+      "id": "DP02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/DP02.png",
+      "sha256": "f59f9decfcd85067038c20118afd6a7ff43b23eda26b8e9d20e021d30da10244"
+    },
+    {
+      "id": "DP02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/DP02.png",
+      "sha256": "f0a2c9906ee1a880b02eafb1b63530be77ad7a9ed33d88d38c0d2a27fe0c715e"
+    },
+    {
+      "id": "DP02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/DP02.png",
+      "sha256": "bd5274ab7b190de022addb5852d512e935d4b5323786f4695fb3f77a322211be"
+    },
+    {
+      "id": "DR01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/DR01.png",
+      "sha256": "89c7589a93c3e5a08ae6cbd29653e9475fdb7c29623645595de7efc1c67a30c7"
+    },
+    {
+      "id": "DR01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/DR01.png",
+      "sha256": "099bcdabb839f8402379e0bed3690e8d1958e147579fd75d02d8f8adf9ed04f6"
+    },
+    {
+      "id": "DR01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/DR01.png",
+      "sha256": "75b34659061de7a980adf085caf4bfc1bb968587722dc44c6a030202e8fd72be"
+    },
+    {
+      "id": "ES03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/ES03.png",
+      "sha256": "63faa8a3f2307809ce39f11006d72f48398ada1ac22c68a3d0b11b1a8c4ad46d"
+    },
+    {
+      "id": "ES03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/ES03.png",
+      "sha256": "05dce4a688ef79a6de3556bc728414efaca3a0014c7135d2bf2f560c458f845f"
+    },
+    {
+      "id": "ES03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/ES03.png",
+      "sha256": "3517d1af06a62ba16019a62731ea9b28d684487e5028d23d40a3547bd94a14ed"
+    },
+    {
+      "id": "ES05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/ES05.png",
+      "sha256": "4dc95d2ab5a189aa0204209f8dc5c0416f42f83d9c153ae619e119a44deb56a8"
+    },
+    {
+      "id": "ES05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/ES05.png",
+      "sha256": "6cf97abdda6af97ef51673275fe57369d6e2778734a4a5e6f19f63b6a56c85e9"
+    },
+    {
+      "id": "ES05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/ES05.png",
+      "sha256": "cb78e10e2be658452437c11966d862fd53c9e42f90dad073ab1d85e5ea424311"
+    },
+    {
+      "id": "ES06",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/ES06.png",
+      "sha256": "6be909a654e6c3c5f67d77e7de9e0746799f3cffd938c5046fde0478db13f777"
+    },
+    {
+      "id": "ES06",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/ES06.png",
+      "sha256": "fc97c4281bfc569364aaf153a71289e6318c1b537e8e6fe2e458945af87ec916"
+    },
+    {
+      "id": "ES06",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/ES06.png",
+      "sha256": "0a54a4d4207ad94452296ce7d96508b1b0ac77059f0508a9e62d9e9c488ef50a"
+    },
+    {
+      "id": "FE01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FE01.png",
+      "sha256": "473d7bdd5b6797ea6add3a51f89e926603e9e3488e8deed82dd2d7ed9d4c196f"
+    },
+    {
+      "id": "FE01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FE01.png",
+      "sha256": "1634706b0b256dbaac3c5c5d9dbc4217561b71241ca416e8b08b1593c9f76900"
+    },
+    {
+      "id": "FE01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FE01.png",
+      "sha256": "bf7f89a88a85f284bb236b354f115d6084bbeefcc3da0d40ad4491989009f0f3"
+    },
+    {
+      "id": "FE02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FE02.png",
+      "sha256": "251abebe5ceed3f1c9c5e1ab10eba13f96c1b7d542d8b2e7dd766e9e0417024d"
+    },
+    {
+      "id": "FE02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FE02.png",
+      "sha256": "80ff5f2984dccc09096add5cafcdaa192d1d5e01d1921ce06d60cf75502840ae"
+    },
+    {
+      "id": "FE02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FE02.png",
+      "sha256": "ed2249dea942cd3dd592933e89c14c9d64b9766a80d7b3da3318c114e0e72e35"
+    },
+    {
+      "id": "FE03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FE03.png",
+      "sha256": "3ce011f060ae4f70c370dd33851aa8e2eeb829bf1b8e5a5b9b86583b944bdfd9"
+    },
+    {
+      "id": "FE03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FE03.png",
+      "sha256": "cd093efd81da92abb8ad4e1240eff938c080975b8539b30ce59e62f4cdcf848b"
+    },
+    {
+      "id": "FE03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FE03.png",
+      "sha256": "379cae59feac904a15830a34fe5290e817d140cffae71c048b2db4356d26d19a"
+    },
+    {
+      "id": "FE04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FE04.png",
+      "sha256": "a566917243901e422994d1d99ede5bbfd9692db6d0e82551d074bb018d14ea0f"
+    },
+    {
+      "id": "FE04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FE04.png",
+      "sha256": "3d9de389d7b911408b1536473b9b7d8a2deac44c3c8dc34f84cfd880ae66d3be"
+    },
+    {
+      "id": "FE04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FE04.png",
+      "sha256": "47b98eb7bb6f95c412abc05c4e909b8bc302db33350461a5129e4286fa8f35e0"
+    },
+    {
+      "id": "FE05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FE05.png",
+      "sha256": "c6a5f7a83fd3f1abc02db07b4215adda3a9a1280f4da998be410bf46c1e27821"
+    },
+    {
+      "id": "FE05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FE05.png",
+      "sha256": "744321191f3f357c5e4bc74430e9851c721f6b9a6db1e7eb9c3faf5e5e35ec4e"
+    },
+    {
+      "id": "FE05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FE05.png",
+      "sha256": "1fe3cff717f8f8e7f6ed1332b3de6317b951aa54b1a423f18b67735ce4d27f7b"
+    },
+    {
+      "id": "FE06",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FE06.png",
+      "sha256": "87544ff670df9ca6505eebe37f03d04f273ca3d25964fa007a9da245c769135b"
+    },
+    {
+      "id": "FE06",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FE06.png",
+      "sha256": "db9d2f5cc6fd6af29a9752922138377bc6c35241fa5dc6a722dc79a1da51d5ea"
+    },
+    {
+      "id": "FE06",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FE06.png",
+      "sha256": "a0682f529aac7fd39c511e90d781e0d2af33c9ae3a40ccc9b21b6746d3f686d0"
+    },
+    {
+      "id": "FR01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FR01.png",
+      "sha256": "5079995c5711e6a2ed99907ac75e62616eaa650233368cdb84e1798494ad6bd1"
+    },
+    {
+      "id": "FR01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FR01.png",
+      "sha256": "cb14765101586de9fc541b5a4bc47b98bdd9dafc81c7be4f14f356449a1891a9"
+    },
+    {
+      "id": "FR01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FR01.png",
+      "sha256": "5b03c43a7aa1173cca38d38b682bc7925c7668ed611f9715a19f10fd10b6eebf"
+    },
+    {
+      "id": "FR02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FR02.png",
+      "sha256": "bd26ab9765d6a5749d7a696ba637a4c60ce38c50a681a71c84fed12fc864d46e"
+    },
+    {
+      "id": "FR02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FR02.png",
+      "sha256": "7fe8844688c02a13f45ddc1db55c103e4a3412f418c86e07470a00cd1db773c0"
+    },
+    {
+      "id": "FR02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FR02.png",
+      "sha256": "055238bc99483e5f3d8c4b80a14bb2e0d508c9f56bced24ce09308606df6bae4"
+    },
+    {
+      "id": "FR03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FR03.png",
+      "sha256": "cd8baa194668e7c900f2c754a9cbd86e8ba9b7f7211a42dcb36b87d47d7ecedd"
+    },
+    {
+      "id": "FR03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FR03.png",
+      "sha256": "3deb7edddcd61d4da6818fc3a76191df75b28ddeee8cc6a9b1a07823f9cf9e49"
+    },
+    {
+      "id": "FR03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FR03.png",
+      "sha256": "39e1b7b04bc34e1fa606dcdfe741c12d4c93a9c8b3c98b15ec5c9b06ef8a2c97"
+    },
+    {
+      "id": "FR04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FR04.png",
+      "sha256": "0eccb3da27314115845e1515e564d220ab5b0b335bde5a5a34d8e8dbcd81e3f5"
+    },
+    {
+      "id": "FR04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FR04.png",
+      "sha256": "ebf3c50bd78d81b39d95158824f67707d2a81c64384befc560873a944303449e"
+    },
+    {
+      "id": "FR04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FR04.png",
+      "sha256": "5eae96e01af6d3ac934a038f3e8e9c97b6a2e59968fb66d66723cc5d23ac8ffd"
+    },
+    {
+      "id": "FR05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FR05.png",
+      "sha256": "8bba43c3b2ceda26f83bdf9ad84e1460d5347b6cf32bc7f639a4ffd57abb58cb"
+    },
+    {
+      "id": "FR05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FR05.png",
+      "sha256": "d5eed97475de4787bd3468000d9ebd6b9119fa715d896a1cc7bed65711562db2"
+    },
+    {
+      "id": "FR05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FR05.png",
+      "sha256": "ea29d4bfea6cd4a5b31b3bc86dd4423b1199ae2fb71ffffcaa27becbc191060f"
+    },
+    {
+      "id": "FR06",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/FR06.png",
+      "sha256": "63c3f3a4f9654613b1bc270ed6838696869de5302fb7d65595545bd190ad76d7"
+    },
+    {
+      "id": "FR06",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/FR06.png",
+      "sha256": "4e0d764476c8894c113ab8b224f188e34855de8712dfdc7250e5067bc3cd1936"
+    },
+    {
+      "id": "FR06",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/FR06.png",
+      "sha256": "53e878596ea31ada6f73e92c29388dc2154566ce2b2581314e90519467509a6d"
+    },
+    {
+      "id": "HL01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/HL01.png",
+      "sha256": "8c57048b3932b45dd7a0a8df6edbc0efd1908a327b341bd5cb751d0861e51353"
+    },
+    {
+      "id": "HL01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/HL01.png",
+      "sha256": "ac0e3544eddf0a8456aa04b5a28e65e3c61e7718810e973b0f4ad815c75b219d"
+    },
+    {
+      "id": "HL01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/HL01.png",
+      "sha256": "3778708e4b4dd45fbcf7c48e65d6fb7136f837fb7adf32839d6343b611286fab"
+    },
+    {
+      "id": "HL02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/HL02.png",
+      "sha256": "9618fda69ed9cb3aca409c1e87304926cb001d4fc760f78199ab6234ac42078d"
+    },
+    {
+      "id": "HL02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/HL02.png",
+      "sha256": "c1bdd324b0b98fbb5cb2cd3a74355dcf65da643cdee2068739cc4a360294ee20"
+    },
+    {
+      "id": "HL02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/HL02.png",
+      "sha256": "b17d2dad8f8a54057735ce8257728412f308dcaad9b98fc11b7a572c6a988282"
+    },
+    {
+      "id": "HL03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/HL03.png",
+      "sha256": "ba026a5d22304333e4fd1952087d2fccaac29c58a986a6478d4119fa26022477"
+    },
+    {
+      "id": "HL03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/HL03.png",
+      "sha256": "8d63a3b71999fadba5d25f2aa756ed1ac02ff3ccf2cfad1c238fbc0b89ebc3f7"
+    },
+    {
+      "id": "HL03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/HL03.png",
+      "sha256": "5d18ecf3dafdd9ca51a13d9c08f8e271e3692dd9d9ae4718041afc8882314085"
+    },
+    {
+      "id": "HL04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/HL04.png",
+      "sha256": "22b20a5804bf84aff5013e2ed6a0491c558ecf49a6437a88c6b5cbf582bfa7a4"
+    },
+    {
+      "id": "HL04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/HL04.png",
+      "sha256": "b980748cfba81938157093bcbd73387d1f9f807763b401324b91bd4c66a8d13b"
+    },
+    {
+      "id": "HL04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/HL04.png",
+      "sha256": "e794684780762aab118b51e55c1b4825912965fa717e9a8b6656c407ee387969"
+    },
+    {
+      "id": "HL05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/HL05.png",
+      "sha256": "efd8ee80c69f9fdc27986fe43cfcd0c1f34731714c53eb7d6375cdcf04e97754"
+    },
+    {
+      "id": "HL05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/HL05.png",
+      "sha256": "d7cbeb191d9ae558f2f52161d9c0dab3e1d7049d28da1dbc51d3ba72485bd15e"
+    },
+    {
+      "id": "HL05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/HL05.png",
+      "sha256": "d3d5a03788d65facd04c6928e0916e46bcabda566364e838a0c713f13f19cf06"
+    },
+    {
+      "id": "HL06",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/HL06.png",
+      "sha256": "810a07b3018cd1bac543469c3cf805b2e3023db26efb42d293c64a148398741c"
+    },
+    {
+      "id": "HL06",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/HL06.png",
+      "sha256": "6e301165226074e7386aff4f5b1d64cad6d3ac01ecb5de730a68ff97c5c31e29"
+    },
+    {
+      "id": "HL06",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/HL06.png",
+      "sha256": "46679324ecffb50d0fced51eb025e9db039d24ec92accd048fcb1639dba0d85a"
+    },
+    {
+      "id": "HY04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/HY04.png",
+      "sha256": "8fd2a3391b00c7c6f03630d024373074329a5cb9b2564bb46ebd0605908a3e01"
+    },
+    {
+      "id": "HY04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/HY04.png",
+      "sha256": "4279e1cc5ae3e4ee8a83e83732de340335e184dea01ec0139f0569a5be2719e4"
+    },
+    {
+      "id": "HY04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/HY04.png",
+      "sha256": "dd2d0222035cd70cd5d7e64be0d38d6152f52a99efc16ac99270dcbdac5e37f0"
+    },
+    {
+      "id": "HY05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/HY05.png",
+      "sha256": "9cbc4ad84d5847837130fb7efc0cb2fd705f3813e8021a7f40383d153c72087a"
+    },
+    {
+      "id": "HY05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/HY05.png",
+      "sha256": "909ae7fd91743604d8afd392ec4d1aa82523c7c367821f86e6fe5d1a11f67c86"
+    },
+    {
+      "id": "HY05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/HY05.png",
+      "sha256": "ce70cf04271156e4cd7355376585f1bcf137f437292e6a4bdc2145e3cf4f065d"
+    },
+    {
+      "id": "HY06",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/HY06.png",
+      "sha256": "f135c050c63f76278cadc5cf6b67215b87f794f98e78e542f46e90a5f0e9b821"
+    },
+    {
+      "id": "HY06",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/HY06.png",
+      "sha256": "8a680c2e2b2336fd911a010dfce05507f337570bdf7ed995d18c5b5f9fd48b25"
+    },
+    {
+      "id": "HY06",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/HY06.png",
+      "sha256": "7ceca1befb97b5cc3ae6e5ed9000824ac3b9e34f413450a1ee9eaca57c1c64f0"
+    },
+    {
+      "id": "HY07",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/HY07.png",
+      "sha256": "8cb20927020d6dd4db282739cdf40ec6291bde08a7b67ce754e9d3fd80179e9b"
+    },
+    {
+      "id": "HY07",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/HY07.png",
+      "sha256": "3f783940f3d14e5659412031627b5add794b36ded6580948f7687319f6fc61b1"
+    },
+    {
+      "id": "HY07",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/HY07.png",
+      "sha256": "66b8428cfcdac73de52b70e0a6a8b5f833c272a8b3e47321343cdf6e47791938"
+    },
+    {
+      "id": "M01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/M01.png",
+      "sha256": "cd77d96bbc862c96d6aff7e63127c9b6dde0719d31cb784c5e17073cb9b3a259"
+    },
+    {
+      "id": "M01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/M01.png",
+      "sha256": "6d17627e73019c056a5b4361ba8522950db72bf8a2146f277b3dfb446f69c2db"
+    },
+    {
+      "id": "M01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/M01.png",
+      "sha256": "a69f4371f2faaff9508aea4fa4bd122944030b119495e2c6c03227dd7905d479"
+    },
+    {
+      "id": "M02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/M02.png",
+      "sha256": "52cae6f06bb4f3d760167ad38275066ce0ebfe442e9ec74dd53862fda4d83588"
+    },
+    {
+      "id": "M02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/M02.png",
+      "sha256": "e623a31a69b5ddf4bc2b50d0b4f702f70ea55f5888c2bd9b84acf0575b57fd18"
+    },
+    {
+      "id": "M02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/M02.png",
+      "sha256": "54f7382ecdb1d1e1905d3ef60f72b809afc3ad048273e2d51dcc310e8a14cf27"
+    },
+    {
+      "id": "M03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/M03.png",
+      "sha256": "1478f1267dd3b24e8ac0c361ffaf49eff18e33df9e06f2e156cbe3880ae1f1c0"
+    },
+    {
+      "id": "M03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/M03.png",
+      "sha256": "82bcdca5ab9c4fd60ac083408edc30e118289118b9f5cd82b7b7a0e3acd2a7ba"
+    },
+    {
+      "id": "M03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/M03.png",
+      "sha256": "c8b2a86eb91a1555a2492b205c482b2f5dcb33150c5a472ab1966f6f822c057e"
+    },
+    {
+      "id": "ME02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/ME02.png",
+      "sha256": "6bea570185b9e803c7825b5fc83741ea1e5fa3a3f923ebb3a00e2c41d68d8720"
+    },
+    {
+      "id": "ME02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/ME02.png",
+      "sha256": "72dcf7dbd796667b7c4c355c8c530855065d37e22179e0c195d5d2b30c0435f0"
+    },
+    {
+      "id": "ME02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/ME02.png",
+      "sha256": "7a832e57512b01efcc7d9913ccff0faffab7045182a604459c49f6bd0d80d1e7"
+    },
+    {
+      "id": "ME03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/ME03.png",
+      "sha256": "96b0ba8a86b265de85dbd14fcaa097f7faf73e41dd7d407bd447b0c9a26587a7"
+    },
+    {
+      "id": "ME03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/ME03.png",
+      "sha256": "d81574e85ee9470220273512fc2cf4c8e62c3007f9a90a7190b47e24f46661f0"
+    },
+    {
+      "id": "ME03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/ME03.png",
+      "sha256": "81965f1c3c2ab3b891683884f0d4347e5ccaa22367c7e835eedd953e26330f50"
+    },
+    {
+      "id": "ME04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/ME04.png",
+      "sha256": "015da544ecdeaa41d180970a1498fadafbd4c74c0e3da2bf1495feb3cf8b49a1"
+    },
+    {
+      "id": "ME04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/ME04.png",
+      "sha256": "4b447f695773e9a7a66a757fa7f89ddbcbd3dbced7d64cd216909f2579a2a752"
+    },
+    {
+      "id": "ME04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/ME04.png",
+      "sha256": "1d4c0ce25122540be880168f2b3fde60acaf837c209c21fe721baa97d479fc36"
+    },
+    {
+      "id": "ME05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/ME05.png",
+      "sha256": "09319d031a5926c03f10e386b5fd15abaecae5cd1fe9a86a6e3439ab29add7e8"
+    },
+    {
+      "id": "ME05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/ME05.png",
+      "sha256": "9e87baea369deba84787f070f75e82cbcbe92709603b67bc5a927e9ca4ca8698"
+    },
+    {
+      "id": "ME05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/ME05.png",
+      "sha256": "1238eccbfad574aaeda138d3dd0051413a91300c2893957228a9053964036640"
+    },
+    {
+      "id": "ME06",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/ME06.png",
+      "sha256": "847a8078e4d3501f079d0ea70e0fad6718039010ea0444a765460e44ad584a81"
+    },
+    {
+      "id": "ME06",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/ME06.png",
+      "sha256": "2fdf7d793245ea12dd2f35db1003fa6c89e931af4d5c0e7769b6515bce34e30d"
+    },
+    {
+      "id": "ME06",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/ME06.png",
+      "sha256": "3f62afd6350e032c1cffc90bab20ff86bd72c96f3b63cc77bb9c59c1768a4ad7"
+    },
+    {
+      "id": "O02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/O02.png",
+      "sha256": "a3bee68b4ec98bf9f6d4a7327a0a8c7d3d69e7610b7a57d14371a30c5d17d7c5"
+    },
+    {
+      "id": "O02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/O02.png",
+      "sha256": "ed780f852ca600108d15b1a03491f9dd1c45de73b2eda41ac8580388c7e1e45b"
+    },
+    {
+      "id": "O02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/O02.png",
+      "sha256": "434b77379b6881174ed8c2fc10501c6984adf2af8ff7c1ee15743cc3fdfa9895"
+    },
+    {
+      "id": "O03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/O03.png",
+      "sha256": "e360db88ca8f385a7dcf556b80ff53d509381daa64e656b818097e47bf69f5cc"
+    },
+    {
+      "id": "O03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/O03.png",
+      "sha256": "eb9845b7337d94f5564008ab80242c4dd380b7c0e7a3ecda4862339630604506"
+    },
+    {
+      "id": "O03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/O03.png",
+      "sha256": "33f591c166abef14c32690a6e497fbfadecc17e74c8e6d4827bccd084ad5c518"
+    },
+    {
+      "id": "OC04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/OC04.png",
+      "sha256": "62975e6362b89df79728819c5f5a58a036ba7b8b46c145e41be67f8165d8bc56"
+    },
+    {
+      "id": "OC04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/OC04.png",
+      "sha256": "d151d5c6b74a2380a3f41e4aec0005db8340ac396d9cb0ebb26ec76f42c0d581"
+    },
+    {
+      "id": "OC04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/OC04.png",
+      "sha256": "1e774155401d80f5a838b3f2b07eeb9302c715f3751040cd1663574d4430f23e"
+    },
+    {
+      "id": "OC05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/OC05.png",
+      "sha256": "5b7488d3b16e4f40cebb50f1dfecbb0559d1c436c3685ab66d85dda82510fcc9"
+    },
+    {
+      "id": "OC05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/OC05.png",
+      "sha256": "dedadbc08283c4870d0b336a2c9a603fb2b1742f4038c482a7d9f54362d75757"
+    },
+    {
+      "id": "OC05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/OC05.png",
+      "sha256": "d8efe6d707bc132394df81f9269fe80b7fdfcc4c1fdbe0136c66892befed1e06"
+    },
+    {
+      "id": "OC07",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/OC07.png",
+      "sha256": "29bf9e842a7e6d5d311033ab70cb9eb6b6d5ada36682ceaef428b7617c81a03a"
+    },
+    {
+      "id": "OC07",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/OC07.png",
+      "sha256": "459128c1f488c852e4074498dadb27ba4f2cbe2a7865abc3d9d16b31748c598d"
+    },
+    {
+      "id": "OC07",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/OC07.png",
+      "sha256": "db619fe7466da73b4cce50b682a9183930e639c76b830e2e5f0b71d0c8568d02"
+    },
+    {
+      "id": "SF00",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SF00.png",
+      "sha256": "aaf6e5aed3d24b117606ad77079a7e739829f7fdcd240cd5415ec33bda94cadf"
+    },
+    {
+      "id": "SF00",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SF00.png",
+      "sha256": "c8e3f53ca2ba5cb7c38340f5b22e11df1cc388b3153716b0917a6df28b7e785d"
+    },
+    {
+      "id": "SF00",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SF00.png",
+      "sha256": "da87507de262506d26cf849f3f212834f439d0a1c4fc53be6ff59294a2c3632d"
+    },
+    {
+      "id": "SF01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SF01.png",
+      "sha256": "02f99cd7d4e50d8f343ae02ab98bc7e699f6ba1437e3629c0140846f861a7730"
+    },
+    {
+      "id": "SF01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SF01.png",
+      "sha256": "2430eb2ba5fcf45f38d9453388d3d03b9fe7f2175eff913d9c1ffe7860376f43"
+    },
+    {
+      "id": "SF01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SF01.png",
+      "sha256": "48f46e662ba3503d5d7eff3a9dec1326d8c503b2c3a28a4c97647c53f150acee"
+    },
+    {
+      "id": "SF02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SF02.png",
+      "sha256": "bee9734d6e5a1461dd46c591ba144f1271529895828d1b6076ddc836c2c42695"
+    },
+    {
+      "id": "SF02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SF02.png",
+      "sha256": "f8f99d8f8402becff89734ffc98b51c8f8eb94dd94ba10713212cbe551c9f4db"
+    },
+    {
+      "id": "SF02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SF02.png",
+      "sha256": "28aba2beb3ae48cc7085f318bb747e6037f7e3d9aeaf3fea819dd485d9b3fb25"
+    },
+    {
+      "id": "SG00",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SG00.png",
+      "sha256": "fab53f8164a8a95c691b199ec8d92dd19278f493c170fdb91f46d417294152fe"
+    },
+    {
+      "id": "SG00",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SG00.png",
+      "sha256": "28e765440406311754608fe8f4a972fb1399f3e692b077cc885b0fa5c9535a0c"
+    },
+    {
+      "id": "SG00",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SG00.png",
+      "sha256": "9f2a2492f8eab27e30a89a73bc758a0da34f4ab48caed60abdbcb389824f2991"
+    },
+    {
+      "id": "SG01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SG01.png",
+      "sha256": "635c15a21bcf3be10fb489816b741f9494602d9c2225c53399f8d8cb4ff16f72"
+    },
+    {
+      "id": "SG01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SG01.png",
+      "sha256": "e259e868d5022af0e33de8014dd473e3447213997865b4e821213c27869b7aeb"
+    },
+    {
+      "id": "SG01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SG01.png",
+      "sha256": "d2f8179cc878a99eb8815babe8905f2fc4797386d89a05030adfcf502b24c464"
+    },
+    {
+      "id": "SG02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SG02.png",
+      "sha256": "cb679bc22e07ac45e28c5347c04381d61c5995abbcba43888f0dc5dbe426b5a0"
+    },
+    {
+      "id": "SG02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SG02.png",
+      "sha256": "750aaddb5d5accd00219ce2979fc0c0897b023af3226f75497ffbdff6c9d3598"
+    },
+    {
+      "id": "SG02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SG02.png",
+      "sha256": "029b6059e9c81ac5794762999e03fee0737ebb05706d17babbfb90d11db31250"
+    },
+    {
+      "id": "SG03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SG03.png",
+      "sha256": "caffdd6ff873987a091697ff827f94f63b0b69c6e2819b330ff7e79b7558a62f"
+    },
+    {
+      "id": "SG03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SG03.png",
+      "sha256": "f19be0df8abf8b9076c22149f48c162e25b08843dbe1e46a1cc58b74540ad360"
+    },
+    {
+      "id": "SG03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SG03.png",
+      "sha256": "88b50b401e38739857d200e38703f0a0f540fa9fd97a970d0beef7650656fe23"
+    },
+    {
+      "id": "SG04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SG04.png",
+      "sha256": "034f4e1f741f97a4f9903b5c1594920bc9bb81b24bc6361af512393590e1c574"
+    },
+    {
+      "id": "SG04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SG04.png",
+      "sha256": "95f0d840d2197daf48238418fd7650f98225262333ae0e2ff19f1592cb233aab"
+    },
+    {
+      "id": "SG04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SG04.png",
+      "sha256": "0881a5f1459ac0150397a8c9e9b22b81279bf63a2c708977d778abe490623870"
+    },
+    {
+      "id": "SM00",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SM00.png",
+      "sha256": "d58c40fdc1dbcaa8c6d75416a8943a24507dc3c8828e18d0644de10ccc0234c3"
+    },
+    {
+      "id": "SM00",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SM00.png",
+      "sha256": "f290ff9996bf8aebd910a1ca6da367b438e07313a65d4689fd89f8f523187c47"
+    },
+    {
+      "id": "SM00",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SM00.png",
+      "sha256": "ec7c3ef16509ba0bba4b13811d73f1a4642eedde6b046c9c0442de409873d884"
+    },
+    {
+      "id": "SM01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SM01.png",
+      "sha256": "291c96d5d257fa6c2f622aba1b4f09645d5616bc1646ca5390a3babb184ec1a1"
+    },
+    {
+      "id": "SM01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SM01.png",
+      "sha256": "7a263d736cb012eaffea3294238dffc8696eeb6944b678fedbe8cc720aabe0c4"
+    },
+    {
+      "id": "SM01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SM01.png",
+      "sha256": "e596d8a1a55bf7229defb464e99e29ab75975193011336377ca630aa93ee7749"
+    },
+    {
+      "id": "SM02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SM02.png",
+      "sha256": "3c5119765a7499a9367b5b77ac0745084ef06320efe252500381a669a9926a86"
+    },
+    {
+      "id": "SM02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SM02.png",
+      "sha256": "baa28c6049e8af4edf167996c7b47464fd8dad819ff1d5c8974c895a96238626"
+    },
+    {
+      "id": "SM02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SM02.png",
+      "sha256": "0afd83571c6685a4c7a13f124a5ddac4d9d704ca1573fb216b3cb614c4f0c57c"
+    },
+    {
+      "id": "SM03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SM03.png",
+      "sha256": "493e8d691312a4e7b0604906b7a86aff64aed285e4453b18c274837d8481ee62"
+    },
+    {
+      "id": "SM03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SM03.png",
+      "sha256": "5302d4ecc0242e977151824dca3acad3fb22d4d71839878ba57ec15cfa2eb80a"
+    },
+    {
+      "id": "SM03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SM03.png",
+      "sha256": "73eeb2a82e1a1f70cb132369f912d1bccafdf2fe6cad926859b868198c5ddced"
+    },
+    {
+      "id": "SM04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SM04.png",
+      "sha256": "d356571deeda61d26c737b93d1b4d2f0fa0044aebd8336ac1015233fb4905853"
+    },
+    {
+      "id": "SM04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SM04.png",
+      "sha256": "686624a897dae49633d464db33d1287a6a69d261a416faf927617399b3e6708f"
+    },
+    {
+      "id": "SM04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SM04.png",
+      "sha256": "9248d475b9c9943651631fb0234203c7c9e7192e65cec5cd3ca41547f37ceac5"
+    },
+    {
+      "id": "SM05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SM05.png",
+      "sha256": "f8f555db72190337e3804b085c1d38bd7eadb6714e3bf67ad9f8c88636232dc9"
+    },
+    {
+      "id": "SM05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SM05.png",
+      "sha256": "751c845b05987afc92bda73e737113d7a4bcb6f034e0b27c0c9486046f9fe43c"
+    },
+    {
+      "id": "SM05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SM05.png",
+      "sha256": "f2ffd996b8936b109cc4e45a36641312e6b1f8696f2c0d4a471dd62b6775b900"
+    },
+    {
+      "id": "SU03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SU03.png",
+      "sha256": "734f14544aaa781347648b0617050413a07f2068d82bf813814b9335de046468"
+    },
+    {
+      "id": "SU03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SU03.png",
+      "sha256": "118caad02f35977ed9efe42dbb18c5cecec5ca5b9eca3b8815cb984934e1ed75"
+    },
+    {
+      "id": "SU03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SU03.png",
+      "sha256": "5f7da3c07d761af1ac4533fad9226e7ea36e03d482a5cd5bf475a0c4e567d8c3"
+    },
+    {
+      "id": "SU04",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SU04.png",
+      "sha256": "e35695bb2843830a6f02e6b3cf804d24c8aa88fc5bb2e513cf0558547acfc852"
+    },
+    {
+      "id": "SU04",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SU04.png",
+      "sha256": "2532a664a91c08e529b1928d3c61e6a76d950b976117b678de8d0e660e6813f8"
+    },
+    {
+      "id": "SU04",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SU04.png",
+      "sha256": "8e860f4ecac28863ceb076ff9495eb3e5b418c90a70b07b2047203230c662c37"
+    },
+    {
+      "id": "SU05",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SU05.png",
+      "sha256": "761b6f9f34f474d34dbc81642019b975cf1420c67287e2f2b89964aca08276e4"
+    },
+    {
+      "id": "SU05",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SU05.png",
+      "sha256": "f8bdd6e2d2d6fcfb0ca23a4a8e569f55b7c54a7effeb99f637f90fbae7d5cd20"
+    },
+    {
+      "id": "SU05",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SU05.png",
+      "sha256": "fe7b1cc0e67b2533b2ecb677526c09a1e94768ffd4d614c6ae392fd377492761"
+    },
+    {
+      "id": "SU06",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/SU06.png",
+      "sha256": "e1b073f52df2ce1cea3f2f7c51acfce0a305dcdd57bfe93c7a509107a18a33f6"
+    },
+    {
+      "id": "SU06",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/SU06.png",
+      "sha256": "7875e43889983aeab16cf38abb623eb5942257af05c3d5f33ea556f6f6aa26a6"
+    },
+    {
+      "id": "SU06",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/SU06.png",
+      "sha256": "05b18ea3be3f703c950a299e5448093d8fbec39d2eac72cb0e469b2e3f604faa"
+    },
+    {
+      "id": "T01",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/T01.png",
+      "sha256": "bfa8570b2cc6753e5c56084f94674a095017c09a80893130deb5301e72be382d"
+    },
+    {
+      "id": "T01",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/T01.png",
+      "sha256": "dc99f8c4ab97a8272bdbfa1354caae40531ddbd5b2509c51b9c7fc428b239829"
+    },
+    {
+      "id": "T01",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/T01.png",
+      "sha256": "fe57b67e009a0d2b49663d272a258e4271fbb9def45d2d99c71e7cfb0944221c"
+    },
+    {
+      "id": "T02",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/T02.png",
+      "sha256": "6dc9e87a14e292860d1a6a73951c9d4aad7f9eccb05a2725820736f419343553"
+    },
+    {
+      "id": "T02",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/T02.png",
+      "sha256": "f7899ce50c0da66274d5329d563cf74ad07bd76bccaf46a1f4c1699e0dc79b4e"
+    },
+    {
+      "id": "T02",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/T02.png",
+      "sha256": "526c681b446a69900fcc7134de307952559b89450f6b3d1b53aaa287e70ad685"
+    },
+    {
+      "id": "T03",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/T03.png",
+      "sha256": "c5bfc6f7a0b2df5d114e0bfcc05f3307419c44ab50a813e05f64f9ecc8c91a42"
+    },
+    {
+      "id": "T03",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/T03.png",
+      "sha256": "21916740c4bcc23266bccf4c79f486c6ea681d0e472ad367fdc70a6f7be8f35a"
+    },
+    {
+      "id": "T03",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/T03.png",
+      "sha256": "d3909d2a705ef1bccded6a251cc5369db42d9dafdabb353114a1faa9c5900157"
+    },
+    {
+      "id": "TR61",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/TR61.png",
+      "sha256": "b67e9e035fd3e105faaa09877036193c303f16e1e2b58f20df2f3cbbba62446a"
+    },
+    {
+      "id": "TR61",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/TR61.png",
+      "sha256": "9ab70750e6a5d7020c2ee484351c814b15da99c09301448d7d0ae81d2fa7b3ee"
+    },
+    {
+      "id": "TR61",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/TR61.png",
+      "sha256": "1995cfbdd6e0bbde2d65fc575f45ce02ebe2f5e541580c4ba45a87e0464f06dd"
+    },
+    {
+      "id": "TR63",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/TR63.png",
+      "sha256": "03954d81d60b465e8404cc0d09656e7677bf85bd82244ab789ce916e3b4a10a9"
+    },
+    {
+      "id": "TR63",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/TR63.png",
+      "sha256": "1bc2c79d9642577dde2a7e874694d3b67d10f77bcfc069f9674c9b0d2119ce4f"
+    },
+    {
+      "id": "TR63",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/TR63.png",
+      "sha256": "953dc8d0ef736e6116d5371b325dd5cf1454dac7bbf8bcb2bcc7fb33791e2cac"
+    },
+    {
+      "id": "TR64",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/TR64.png",
+      "sha256": "7a340ceb5c0209649858a8654f35ee4765a762404526dc30052fb16bb7d9a8d4"
+    },
+    {
+      "id": "TR64",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/TR64.png",
+      "sha256": "bde45403ab6e96a378dc501eb3922fb193b1d7b44cb4ec6c2330129aef8ecf3f"
+    },
+    {
+      "id": "TR64",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/TR64.png",
+      "sha256": "8e4e31161b50700e3023947ebe7b4662400139a55d94ec0269a174cfbec95c5b"
+    },
+    {
+      "id": "TR65",
+      "size": 64,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-64/TR65.png",
+      "sha256": "767c363c3762be3976f20e933f19541018e62b372aec347f41b5b6be1c17271f"
+    },
+    {
+      "id": "TR65",
+      "size": 32,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-32/TR65.png",
+      "sha256": "d05c91e0293547ab8cd3af41090834b226db2db42fbbe765ae438b06702b31cb"
+    },
+    {
+      "id": "TR65",
+      "size": 24,
+      "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-01/icons-24/TR65.png",
+      "sha256": "e31145aa429ef9166a6a4a0156279457e661e330dfe20ee2b0373bcaf773dfda"
+    }
+  ]
+}

@@ -1,0 +1,580 @@
+{
+  "review_id": "SKILLS-IC53",
+  "title": "Grenades cylindriques",
+  "date": "2026-10-11",
+  "generation_mode": "built-in",
+  "status": "accepted",
+  "description": "93 et 94 : un même boîtier cylindrique, différencié uniquement par sa couleur.",
+  "style_references": [
+    {
+      "title": "Style industriel proposé",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-icon-review-52/SG00-C01-32.png"
+    }
+  ],
+  "previous_review": {
+    "file": "../skill-icon-review-52/index.html",
+    "title": "Les trois autres propositions de Grenades"
+  },
+  "candidates": [
+    {
+      "id": "SG01",
+      "number": 93,
+      "variant": "SG01-C02",
+      "title": "Grenade aveuglante",
+      "branch": "Grenades",
+      "kind": "passive",
+      "roleplay": "Un éclair brutal trouble la vue et sature les capteurs de vos ennemis.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/SG01-C02.txt",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11010-433f-7fc2-ac29-ffb696dec5ea\\exec-57792b98-e262-497f-b0d2-aed16cc07ca8.png",
+      "source_sha256": "c7b85d46c0c4d4b237eca91ab53647718679b4d08bc36fbb014a65054897138a",
+      "master": {
+        "file": "../../../../assets/animations/agent/skill-icon-review-53/SG01-C02-master.png",
+        "sha256": "c7b85d46c0c4d4b237eca91ab53647718679b4d08bc36fbb014a65054897138a",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "SG01-C02-24.png",
+          "sha256": "c38d687b023bf14bc6bc4504c7505e7799d91b52981f5246af5be959a699007a",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "SG01-C02-32.png",
+          "sha256": "861da01fea7a9f9a04654d2a41715ea64bf390fbe8825af2ed4217a263d8293e",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-53/SG01-C02-64.png",
+          "sha256": "6f7a2c0955b13e73dc0e3da7b5d3e2cfa31a716e1d7e79eff96c682367be7460",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "SG01-C02-128.png",
+          "sha256": "c74aba88db29a21da61edabacd098e030931029c2c5303cf6535a66fe3686b0a",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "SG01-C02-192.png",
+          "sha256": "e27006c54066857296ab6a5fc22c86afd37229e6bd7458528b1128907bfabb2d",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-52/SG01-C01-master.png",
+          "sha256": "4d10dec3a492ff46884b99d94effdbdc701f6b4ce4cdb29138ed9a71912b7ea1"
+        }
+      ]
+    },
+    {
+      "id": "SG02",
+      "number": 94,
+      "variant": "SG02-C02",
+      "title": "Leurre",
+      "branch": "Grenades",
+      "kind": "passive",
+      "roleplay": "Votre grenade déchire le silence d’un vacarme qui détourne les ennemis vers un piège.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/SG02-C02.txt",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11010-433f-7fc2-ac29-ffb696dec5ea\\exec-8223fc9f-b69c-4b93-afd4-7deee4790045.png",
+      "source_sha256": "4df1f81bb98ba7cd0ff4efaa3589806477173caa263820d831be5a63cc1c00cc",
+      "master": {
+        "file": "../../../../assets/animations/agent/skill-icon-review-53/SG02-C02-master.png",
+        "sha256": "4df1f81bb98ba7cd0ff4efaa3589806477173caa263820d831be5a63cc1c00cc",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "SG02-C02-24.png",
+          "sha256": "fcc4b3d810ecc032d5b1f58194563f3256f9370fce572bfd74f277d8599d7807",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "SG02-C02-32.png",
+          "sha256": "2fafd49e1aae69bf2be6b973ad88e763b19b9feba493b1638faf7d942ca2cd5f",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-53/SG02-C02-64.png",
+          "sha256": "4692606d4ffd1c8d47b4ec5f4b31b967830165c19a7f562b6c8e9182543cf1d8",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "SG02-C02-128.png",
+          "sha256": "e13baa34d803f2045488857469a37252ebe7b208c2a52a1d72bf430c5567518a",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "SG02-C02-192.png",
+          "sha256": "96b1cc526dd82572e4cbdb969c88e6f9f20d5b98a430de69e0fe3b26772c0c4f",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:\\Users\\User\\.codex\\generated_images\\01a11010-433f-7fc2-ac29-ffb696dec5ea\\exec-57792b98-e262-497f-b0d2-aed16cc07ca8.png",
+          "sha256": "c7b85d46c0c4d4b237eca91ab53647718679b4d08bc36fbb014a65054897138a"
+        }
+      ]
+    }
+  ],
+  "protected_hashes": [
+    {
+      "file": "assets/skills/agent/A01-compact.png",
+      "sha256": "162b5526f9c33610b808bd350c97881dc57ccb48e78a028e57ddae7952b8b0a0"
+    },
+    {
+      "file": "assets/skills/agent/A02-compact.png",
+      "sha256": "17325c49b1c11ce5dc899bc70b0246ed9b02318a9d669c5552b787c1e24b772a"
+    },
+    {
+      "file": "assets/skills/agent/A03-compact.png",
+      "sha256": "d37193de59e564c9907ed16d5febb56424d65fcc5097e4ce5fb4dcd41b0a46c6"
+    },
+    {
+      "file": "assets/skills/agent/A03-illustration.png",
+      "sha256": "5583745698e12316a2026610ca66d40dbb62bd09971dda33f0b4d9e0bd7bdc3e"
+    },
+    {
+      "file": "assets/skills/agent/AF02-compact.png",
+      "sha256": "a81658fdfd61c5aa8b4a615f6b240c69ae1b2d2c380cb0158ae5d6e519a82dac"
+    },
+    {
+      "file": "assets/skills/agent/AF03-compact.png",
+      "sha256": "094682804aac356ef23dec91d1499a7169bc4d8ff1804f203dca80e1495ff135"
+    },
+    {
+      "file": "assets/skills/agent/AF04-compact.png",
+      "sha256": "0f9c803363fe473532da669bd51cecaa6a7ac80feecc8815140fdbf512f1636b"
+    },
+    {
+      "file": "assets/skills/agent/AF05-compact.png",
+      "sha256": "a8d5dd7140048df0c59813ef36e34bfd2bcfd6fbeea8e1f790960d2bb7daa233"
+    },
+    {
+      "file": "assets/skills/agent/AF06-compact.png",
+      "sha256": "e82d8f10d5806be0ed61cb24265b5bd6283ed576b9f08d7934c175c2f532a37f"
+    },
+    {
+      "file": "assets/skills/agent/B01-compact.png",
+      "sha256": "711eb82061c5113815703670cdcd1ecdd3fda32032c681e908cc56a945fd972b"
+    },
+    {
+      "file": "assets/skills/agent/B01-illustration.png",
+      "sha256": "2ba69010e33526675639d47d6c730f7ad1b5de548dc2f5e3243219c36b644a33"
+    },
+    {
+      "file": "assets/skills/agent/B02-compact.png",
+      "sha256": "4a83ebbb454129d5be6254083f8c72cea9aeac17801b0fc02a394222aa080c85"
+    },
+    {
+      "file": "assets/skills/agent/B03-compact.png",
+      "sha256": "fe03b345514568df50133246c98c9c53d50b46f5aeff04e3dc249d2c85ea5092"
+    },
+    {
+      "file": "assets/skills/agent/B03-illustration.png",
+      "sha256": "614d4dee2c88d7893f7778a2beeb0d904f508cee32c1741bd97dc2db9460849c"
+    },
+    {
+      "file": "assets/skills/agent/BD04-compact.png",
+      "sha256": "9d812190d63fe37712a9b70ce3d9051d1fa5404d2a46f03d2027fa4b2a1a058a"
+    },
+    {
+      "file": "assets/skills/agent/BD06-compact.png",
+      "sha256": "90f4f2fd71c90ad29d9fb322868d11a7521d445e8f54d892bc20b56672884af6"
+    },
+    {
+      "file": "assets/skills/agent/BM01-compact.png",
+      "sha256": "0a0acaf74e5040ab33e55f3f09dea51a89bcbc7ddf6581ad3c08c3dae445f588"
+    },
+    {
+      "file": "assets/skills/agent/BM02-compact.png",
+      "sha256": "8001906983c8da126d0e59ffb660b352b21c1532768837d7fcadaea9678cec11"
+    },
+    {
+      "file": "assets/skills/agent/BM02-illustration.png",
+      "sha256": "69cf7e8176be6d3739ccb76325accc4e6ba3b2953d366af127a8254a6796a24b"
+    },
+    {
+      "file": "assets/skills/agent/BM03-compact.png",
+      "sha256": "4a141a4aeb0a3ea411d0304fe8ebc515401fa86b500f94ee68e079e0e7c3bd0c"
+    },
+    {
+      "file": "assets/skills/agent/BM05-compact.png",
+      "sha256": "c58d71ab17c6ac5e7c8901bcf0e67216f1a497cbeca4adaff65f2d705483879a"
+    },
+    {
+      "file": "assets/skills/agent/catalogue.json",
+      "sha256": "5a2b875a7a03ef286ea2f462e4e2c362d2f3a0ffdd0c70334bcdd27cc4c8574a"
+    },
+    {
+      "file": "assets/skills/agent/D56-compact.png",
+      "sha256": "54ef69b44e9a1ea63871f9fe6b82df73a84d213aca2e7d85cdad8ddf0ec29ba9"
+    },
+    {
+      "file": "assets/skills/agent/D57-compact.png",
+      "sha256": "e89ed543dc0c50d220b0beb569b43660c8f4dfbe997b07f9c4c207fec8c0cc2e"
+    },
+    {
+      "file": "assets/skills/agent/D58-compact.png",
+      "sha256": "75e1bba54d9f031b28f8306db93ffa3ed2ccd9eb47480952218c0cf64d3882ed"
+    },
+    {
+      "file": "assets/skills/agent/D59-compact.png",
+      "sha256": "79399dce4495293c558671531b77da469f67e1df4b7fa853bb0f3ce5aa500f84"
+    },
+    {
+      "file": "assets/skills/agent/D59-illustration.png",
+      "sha256": "1ea7634e2367f137fa5a9cefabdc176be760f10dcdd19bc197cedcd9d38e917f"
+    },
+    {
+      "file": "assets/skills/agent/D66-compact.png",
+      "sha256": "7618e5357cb117b422339ad17db0f0beaa1e3559c1486b4d75bb386064d202cf"
+    },
+    {
+      "file": "assets/skills/agent/DI01-compact.png",
+      "sha256": "8628fb41500430c59efc83db98340b4eaccd327d4a2d279159d1a75509951dcd"
+    },
+    {
+      "file": "assets/skills/agent/DI02-compact.png",
+      "sha256": "7729dfe3242f0282d997cf05740c793e6548db49a65d4cf69b663ca59b3a3e5e"
+    },
+    {
+      "file": "assets/skills/agent/DI03-compact.png",
+      "sha256": "5027cc176f0f3922090d3887f0210d4026a89e306c5cc9bda14195d536f41455"
+    },
+    {
+      "file": "assets/skills/agent/DI04-compact.png",
+      "sha256": "a53ebdbada781cf0082420a8c06a94a60ef199843630ef462154138ede7d87cb"
+    },
+    {
+      "file": "assets/skills/agent/DI05-compact.png",
+      "sha256": "cd9bb83a65504b9807c8df4533a7f6a74cf3d4b76ce5af4c4b1be03effe93126"
+    },
+    {
+      "file": "assets/skills/agent/DI07-compact.png",
+      "sha256": "b117c2675b27c25aa80560aa782e9cf4a0cd2683da2dd5931824017ea6a9461c"
+    },
+    {
+      "file": "assets/skills/agent/DP01-compact.png",
+      "sha256": "c305030b5125ae989424d70b880cc3efd8dbdb0f7f9cf6d68c6916fcb54ad643"
+    },
+    {
+      "file": "assets/skills/agent/DP02-compact.png",
+      "sha256": "62332bbdc8219adc0990ef4dde0940619f85e6d8ab2da972577f292caa49b653"
+    },
+    {
+      "file": "assets/skills/agent/DR01-compact.png",
+      "sha256": "18e620e89d87da2075c4a437bbae3790a5fa70b9df42f1845858f0bd8c299f4d"
+    },
+    {
+      "file": "assets/skills/agent/ES03-compact.png",
+      "sha256": "c0c0e55dfb51a2352884d4a46c0c469829f506d626167f8fd8f1d925f7c3af99"
+    },
+    {
+      "file": "assets/skills/agent/ES05-compact.png",
+      "sha256": "a1af2deb51142441f999e5a886deb0d2c8d3ed194193dd27b1b1e994084cb19c"
+    },
+    {
+      "file": "assets/skills/agent/ES06-compact.png",
+      "sha256": "fb4c46f1296d963b92a60af3a147cb3a59b1cfa41cd9916de23f436dd9d68213"
+    },
+    {
+      "file": "assets/skills/agent/FE01-compact.png",
+      "sha256": "c6d969ea5f6191870d928aa4a79d84bbfd1c8bbe1e1b198efc7f726858afc6ee"
+    },
+    {
+      "file": "assets/skills/agent/FE01-illustration.png",
+      "sha256": "bf75d01f3b80e70ee6f06b510601ac3162f7047ee6dccba528657f2d2a5a22b0"
+    },
+    {
+      "file": "assets/skills/agent/FE02-compact.png",
+      "sha256": "5e3d5b70f344b93e0e28136038c265f38573ba1d562e63974ee00bee771ff17b"
+    },
+    {
+      "file": "assets/skills/agent/FE03-compact.png",
+      "sha256": "5d7a2edab0a4e2007aa2c15ec062565e359ea664e0485a82d2cc33366ff973fd"
+    },
+    {
+      "file": "assets/skills/agent/FE04-compact.png",
+      "sha256": "42c26d985dded663de172cc99c696eadbc7d2bcfd1a049d564e08c6049f41b4b"
+    },
+    {
+      "file": "assets/skills/agent/FE05-compact.png",
+      "sha256": "76950f863092019cccb32feacf0c19386ed076ee3a562041b8ebcc47f4fe9b66"
+    },
+    {
+      "file": "assets/skills/agent/FE05-illustration.png",
+      "sha256": "9ae15e20dc75200cc42ad727ee646798307389683afa20cc0442d90f97e748a8"
+    },
+    {
+      "file": "assets/skills/agent/FE06-compact.png",
+      "sha256": "50c5f375182586c148d312face98aa2c3ebf69eb0a48d60fd97b6a40974c4473"
+    },
+    {
+      "file": "assets/skills/agent/FR01-compact.png",
+      "sha256": "4439cf4e89b963e337c5dc2f8999b399f193f587d31e4ce1fdfeed6cfb7fbea5"
+    },
+    {
+      "file": "assets/skills/agent/FR02-compact.png",
+      "sha256": "80f7ed77337f5550e1dc1bf680a398cf8ff79e8ba29f409d09ba348f667f0cc2"
+    },
+    {
+      "file": "assets/skills/agent/FR03-compact.png",
+      "sha256": "b92bfef56362261acb66f97d684501af352cf3b826cc98c6c716164fc020696a"
+    },
+    {
+      "file": "assets/skills/agent/FR03-illustration.png",
+      "sha256": "231928d6de6faed720bfdd612f9c200b8d96282842f4fc398546963bb2c800cc"
+    },
+    {
+      "file": "assets/skills/agent/FR04-compact.png",
+      "sha256": "f5c2c27510f5e5d58e51a68bb2f65b3ec46de92c21470ae8248ce2e322c4cc0a"
+    },
+    {
+      "file": "assets/skills/agent/FR05-compact.png",
+      "sha256": "535bf634c021ea1bee18f7c3d7e9579c44bd15f42dcc58f26f106ca13d2e37aa"
+    },
+    {
+      "file": "assets/skills/agent/FR06-compact.png",
+      "sha256": "22f7eeafdd05565fa23066b4a1d7e43ead08f5912ea9fe057e679466e6edeed9"
+    },
+    {
+      "file": "assets/skills/agent/HL01-compact.png",
+      "sha256": "d813f194a45b332be9ae391e99348e4c7a9fcb8e17dde2b4aeeab777f0d43d3f"
+    },
+    {
+      "file": "assets/skills/agent/HL02-compact.png",
+      "sha256": "386b1be4c22aa9bf68bbdbdfa1caa02983b3ac15f8f94500b32b8963800b4da2"
+    },
+    {
+      "file": "assets/skills/agent/HL03-compact.png",
+      "sha256": "bfdb2d5bbffbf03369bc5a50f0b644017e574f0f6a6887d13b9fb94ac480f9cb"
+    },
+    {
+      "file": "assets/skills/agent/HL04-compact.png",
+      "sha256": "2cdebe2044879481afb7a9b52b07bf645fc949f954eeed675934de65f5d8b0bd"
+    },
+    {
+      "file": "assets/skills/agent/HL05-compact.png",
+      "sha256": "e7f4405402bb3f226a13d06a39d7ce61e43cbc4638f4284ca5022165c47ffee2"
+    },
+    {
+      "file": "assets/skills/agent/HL06-compact.png",
+      "sha256": "72e554d493470fa362011f1d75dcf7196e0411e08f762511dfcc7e5174342fb2"
+    },
+    {
+      "file": "assets/skills/agent/HY04-compact.png",
+      "sha256": "8f1f8512095fcdc748e91f523b9a0c44e7158ec1a5db25c3cdb7436289d5a93e"
+    },
+    {
+      "file": "assets/skills/agent/HY05-compact.png",
+      "sha256": "096b021cc293f961503872c650269b09493e1775ccaa6b472d6508e97b7c07ee"
+    },
+    {
+      "file": "assets/skills/agent/HY06-compact.png",
+      "sha256": "90bf7266af1ecfac98d58c247e931f3dbda7251cb1adb0a6b28e8378f88eac36"
+    },
+    {
+      "file": "assets/skills/agent/HY07-compact.png",
+      "sha256": "e2ac0ca895ecd677076b734e4683c957961428596570182af207c2720ee5bb8d"
+    },
+    {
+      "file": "assets/skills/agent/M01-compact.png",
+      "sha256": "5c7b9642379d12361ef4ce59ec53057f3a8a6fa011dd238ca4628d312a1c6ee1"
+    },
+    {
+      "file": "assets/skills/agent/M01-illustration.png",
+      "sha256": "6a139c376988a6946f0b6bd5a2a814cdc9e8fcfb38f19091025a2d5ed191872e"
+    },
+    {
+      "file": "assets/skills/agent/M02-compact.png",
+      "sha256": "38f4b8f2bbd082b96896419048646a6daf76e6a59b5ee60bdce70ba8717db8af"
+    },
+    {
+      "file": "assets/skills/agent/M03-compact.png",
+      "sha256": "112602ea05c80c1e24797c8fc3d268a3b31bc4c4a7bfb2b763d680b3c12fb457"
+    },
+    {
+      "file": "assets/skills/agent/M03-illustration.png",
+      "sha256": "daeeffb775e7c604cd73ddbd505c57ba3bffaf704ad9af9ad692cd7146dc85df"
+    },
+    {
+      "file": "assets/skills/agent/manifest.json",
+      "sha256": "9dbb379af242fcd8aab546eec56984c433d540e30616d5b2ea0f67f1d2892dc7"
+    },
+    {
+      "file": "assets/skills/agent/ME02-compact.png",
+      "sha256": "58356d5b157d6a8f0a05baba5940ed1f63d1f49490b48d42cd6522d42ae58ee2"
+    },
+    {
+      "file": "assets/skills/agent/ME03-compact.png",
+      "sha256": "94fc93bf8807a01229576df1babcbc64553238aad58e815afa09e65afcb4c307"
+    },
+    {
+      "file": "assets/skills/agent/ME04-compact.png",
+      "sha256": "e83e22bf0d8ab99f3b76f612a928ab3ba0ffa45aa8e9ea3ee34f80f8edf6b30b"
+    },
+    {
+      "file": "assets/skills/agent/ME04-illustration.png",
+      "sha256": "b244788ac01e16f4399d263ceb403795ffa2c2c59e9cd0d60e6aaa1589a330b4"
+    },
+    {
+      "file": "assets/skills/agent/ME05-compact.png",
+      "sha256": "c31d9c0f11f67a0cc089c7ac99f5c712360f25ab17f843f1bcaae80f1563a0a1"
+    },
+    {
+      "file": "assets/skills/agent/ME06-compact.png",
+      "sha256": "753df0d1c6335f88f3bd9fda15251fa22e05cd025ceaade09dc77d71fe800740"
+    },
+    {
+      "file": "assets/skills/agent/O02-compact.png",
+      "sha256": "caf9d085980476d3b55f981a3bd7d9b14822e91760c584bb2020038b2f0b0c9e"
+    },
+    {
+      "file": "assets/skills/agent/O03-compact.png",
+      "sha256": "514ee6c56ccda56d2a770428d948bc07b3e540f515044b07c300c39fbce0051a"
+    },
+    {
+      "file": "assets/skills/agent/O03-illustration.png",
+      "sha256": "2a70e75bd3b82ba8c19c5360a3d8dce397e6aa7520c80462a75fa9a054370162"
+    },
+    {
+      "file": "assets/skills/agent/OC04-compact.png",
+      "sha256": "b6ccd33e5c265c63ea6189be4a44a4af1a041a97f5a1fead56a88911e2a4472c"
+    },
+    {
+      "file": "assets/skills/agent/OC05-compact.png",
+      "sha256": "2cbe72066ed2320603eaa8a20c73bdeb65443e3c5d21bad6a66e780191cbc3b8"
+    },
+    {
+      "file": "assets/skills/agent/OC07-compact.png",
+      "sha256": "bb1f1765ad359f1a16003ddc847d3e4a6e84aea27d7745f57dfb40ba5d8b36e2"
+    },
+    {
+      "file": "assets/skills/agent/SF00-compact.png",
+      "sha256": "efdd472610655e413caae463102b3d7eb8ba1110f8523c5d2d243bd4146c5102"
+    },
+    {
+      "file": "assets/skills/agent/SF00-illustration.png",
+      "sha256": "99cab81ec7f7da9b229ac23093a1f5371ff0dcaee4de106e5ef1cf67111def02"
+    },
+    {
+      "file": "assets/skills/agent/SF01-compact.png",
+      "sha256": "fe0cc4ed02d65a012306a92b31aecaf2cd83abdb4381db1af9590e8762148328"
+    },
+    {
+      "file": "assets/skills/agent/SF02-compact.png",
+      "sha256": "7ed939feb2a5d614c2ccc4430195732fe63c9a424bbe51df13daaa1fa4fc6c80"
+    },
+    {
+      "file": "assets/skills/agent/SM00-compact.png",
+      "sha256": "4c8d20e81b3778039b3e6fd6b7c979687350f7741f5f5034058d0b77b7fd082b"
+    },
+    {
+      "file": "assets/skills/agent/SM01-compact.png",
+      "sha256": "db2c063d876b64a4be887839c7f05bc8d923aaaf678f6de750e28a218669e27b"
+    },
+    {
+      "file": "assets/skills/agent/SM02-compact.png",
+      "sha256": "e038e92e4b429c943f956af5f7c6948cfa240623111ceabc2e870828c66c3265"
+    },
+    {
+      "file": "assets/skills/agent/SM03-compact.png",
+      "sha256": "7322cf71c5b56499f6f7f6226fc9052f499c936c3c379a1f50d9be6d317ffc60"
+    },
+    {
+      "file": "assets/skills/agent/SM04-compact.png",
+      "sha256": "661a659c11fac09a8c6f0c0cf5319c13bd98d3eef36a2da6102a6d875ac18f60"
+    },
+    {
+      "file": "assets/skills/agent/SM05-compact.png",
+      "sha256": "fcc0ad70bec460891653d1656845142e281891bc1518d806771e867516a3eb21"
+    },
+    {
+      "file": "assets/skills/agent/SU03-compact.png",
+      "sha256": "7867ca1cf20417b85fff92ae2cf80e518a00e86c180273f7949e0b4e853a8986"
+    },
+    {
+      "file": "assets/skills/agent/SU04-compact.png",
+      "sha256": "269b0206ca3d061eddf12e16a6153e963e509a6806870b6322f1f7cd26e67ec9"
+    },
+    {
+      "file": "assets/skills/agent/SU04-illustration.png",
+      "sha256": "8c7ebb5714b9ef938dd509080b90b6435f5038fd721d0fee320f65da6cc45154"
+    },
+    {
+      "file": "assets/skills/agent/SU05-compact.png",
+      "sha256": "036b842f70ade3ec268a474039ad7c1b31bfd2abf8f16c69dfc1ec5e3624baa6"
+    },
+    {
+      "file": "assets/skills/agent/SU06-compact.png",
+      "sha256": "fc0ca0b9da6550e61a3b0b263e78ea68a7c1e9e1eaa3afc691f762d6a7c95a48"
+    },
+    {
+      "file": "assets/skills/agent/T01-compact.png",
+      "sha256": "7804db615fa6ef2a0a3dab8cceb46729e592b7dafb5902d22f1114cdf6f6f91f"
+    },
+    {
+      "file": "assets/skills/agent/T01-illustration.png",
+      "sha256": "0e5b70be8f4501b7c16b883d7d90d29aa67076c949718238a8f401f743430fd8"
+    },
+    {
+      "file": "assets/skills/agent/T02-compact.png",
+      "sha256": "6525df776569afff66c53f8ed69af9aa59b086b07feae2ee26df44541424090e"
+    },
+    {
+      "file": "assets/skills/agent/T03-compact.png",
+      "sha256": "53607ef4da1c7b3ce1346635ceb625dd43480d3ab4492be10e94eb8131b82501"
+    },
+    {
+      "file": "assets/skills/agent/T03-illustration.png",
+      "sha256": "408696a7089fe81a4e14854d537859b31833058286e974bfc65371af1cad55fd"
+    },
+    {
+      "file": "assets/skills/agent/TR61-compact.png",
+      "sha256": "32aa424110fb1b15bb4840ebfc5fa94aa5d1f53b98c771098e99c48df753c7ad"
+    },
+    {
+      "file": "assets/skills/agent/TR63-compact.png",
+      "sha256": "d2068aeb03f320eead86930f3cb2b554637e76ff629087ddf256f53f6c84688f"
+    },
+    {
+      "file": "assets/skills/agent/TR64-compact.png",
+      "sha256": "8f407b843430fc3ca964dd649f86574bfda8c3e2f3f62e28cd8a7233addc9196"
+    },
+    {
+      "file": "assets/skills/agent/TR65-compact.png",
+      "sha256": "bf41eb84e273ca838b227937257a18890204cb2d51f8d8e1a2549e48a047adb0"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-icon-acceptance.json",
+      "sha256": "e3edc0922a40131684f771cd5e08ee9505129c23b368311a796014618b99bf8a"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-window-review-05/skills.json",
+      "sha256": "cb23dca3cf283e6eb12faa58e01dc637c78a8309614f213cd86ef12d06ce0ef2"
+    }
+  ],
+  "accepted_export_hashes_preserved": 526,
+  "no_new_approval_inferred": true,
+  "no_runtime_changes": true,
+  "acceptance_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-53/visual-acceptance-01.json"
+}

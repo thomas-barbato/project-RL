@@ -1,0 +1,33 @@
+{
+  "batch": "ANIM-S22",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 53,
+      "id": "BM03",
+      "name": "Tempo offensif",
+      "variant": "BM03-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 54,
+      "id": "BM05",
+      "name": "Sceau de vindicte",
+      "variant": "BM05-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "approved_values": "BM03 +25% per charge, max3, max75%. BM05 direct magic return40% of damage suffered, duration6, energy13, cooldown8.",
+  "prepared_numbers": "Base20 physical gives20/25/30/35 on consecutive hits, with0/5/10/15 included bonus. Incoming20 direct occult damage after prepared protections gives8 returned. These are illustrated fixtures, not weapon/monster stats or a new global variance/defense/rounding formula.",
+  "visuals": "Compact buff icons, automatic charge count and hover bonus without a timer; original occult projectile turns back with unchanged appearance; brief shared harmful reaction; no magical blood.",
+  "cases": "Open four directions, quiet waiting, walls/hidden contact, active ranged weapon and Silence; miss/move/other action reset series; no-time menu preserves; poison/indirect/melee do not reflect; human-form casting restriction; six-turn expiry still allows prepared damage without return.",
+  "pending": "Mixed elements, multi-hit/target, absorption/overkill/lethal damage, reflected victim defenses/recursive reflection, hidden/offscreen author eligibility, transformation compatibility for Tempo, and dense-combat composition not resolved by this visual review.",
+  "turn_scope": "Steps are independent prepared actions per panel, no new campaign action resolution order. Tempo panel rests after fourth strike without a time-consuming wait. Menu stage consumes no game turn. BM05 hidden-author scene has no prepared incoming hit and establishes no new visibility restriction on reactive return.",
+  "temporary_actors": "Existing enemy32px art enlarged to64; bestiary adaptation scheduled after animations.",
+  "acceptance": "visual-acceptance-01.json",
+  "accepted_date": "2026-10-13"
+}

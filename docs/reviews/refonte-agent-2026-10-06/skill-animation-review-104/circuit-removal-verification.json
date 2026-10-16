@@ -1,0 +1,30 @@
+{
+  "mechanical_source_unchanged": true,
+  "only_renderer_function_and_call_removed": true,
+  "both_O03_entry_points_checked": true,
+  "accepted_body_assets_preserved": true,
+  "previous_protected_references": 84,
+  "authorized_source_exceptions": [
+    {
+      "path": "src/agent_skill_lab_review/fire_painted/combat_algorithms.rs",
+      "before_sha256": "f6837db196c8f097b982d47aba508b500f7e05aa18ca2bd67f2695a1f69b6f87",
+      "after_sha256_before_format": "a14dd6e5e4fb41131f464f1b61d7cd8928abf2e92dca041827d7e983e51fef84",
+      "scope": "Remove O03 circuit renderer and its call only; attack state and native body art unchanged.",
+      "after_sha256": "a14dd6e5e4fb41131f464f1b61d7cd8928abf2e92dca041827d7e983e51fef84"
+    },
+    {
+      "path": "src/agent_skill_lab_review/fire_painted/drone_guardian.rs",
+      "before_sha256": "489ca7b100d21771f94376d547855725eea6a78b9c402cfccad9394e397ca6d0",
+      "after_sha256_before_format": "eff8a05775522f8a0894e22528796594928b7f4a35d35874fb4d980b00837619",
+      "scope": "Remove O03 circuit renderer and its call only; attack state and native body art unchanged.",
+      "after_sha256": "eff8a05775522f8a0894e22528796594928b7f4a35d35874fb4d980b00837619"
+    }
+  ],
+  "page_uses_no_circuit_playback": true,
+  "extra_world_animation": false,
+  "targeted_tests_passed": 5,
+  "debug_build": "passed",
+  "new_capture_files": 0,
+  "old_circuit_playbacks_removed": 33,
+  "page_contains_no_world_animation": true
+}

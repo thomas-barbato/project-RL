@@ -1,0 +1,24 @@
+{
+  "unchanged_views": [
+    "B03-A01-DROITE",
+    "B03-A01-GAUCHE",
+    "B03-A01-HAUT",
+    "B03-A01-BAS",
+    "B03-A01-ATTENTE",
+    "B03-A01-PERSISTANT",
+    "B03-A01-RECHARGE",
+    "B03-A01-SECOND",
+    "SU06-A01-PERSISTANT",
+    "SU06-A01-RECHARGE"
+  ],
+  "cue_frame": 27,
+  "changed_bounds": [
+    271,
+    261,
+    356,
+    321
+  ],
+  "off_icon_pixels": 16,
+  "off_icon_max_channel_delta": 1,
+  "scope": "Floating icon background removed; shared contour shader has at most one-channel-unit rounding differences on 16 off-icon pixels at this frame. Source PNG and mechanics preserved."
+}

@@ -1,0 +1,775 @@
+{
+  "review_id": "SKILLS-IC11",
+  "date": "2026-10-10",
+  "status": "revision_requested",
+  "scope": "Compact-only gallery: 8 existing accepted compact designs, 4 existing pending melee designs and 8 new compact counterparts. Detailed drawings reserved for the separate skill description.",
+  "generation_tool": "image_gen.imagegen",
+  "generation_mode": "built-in",
+  "candidates": [
+    {
+      "id": "B03",
+      "number": 1,
+      "variant": "B03-C01",
+      "title": "Vitalité améliorée",
+      "kind": "compact",
+      "visual_status": "accepted",
+      "prompt": null,
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/B03-C01-master.png",
+        "sha256": "1f09fea4480385d53d7c75601d31f4cb98b28525f71835b5c972c0f994ec9edf",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "B03-C01-24.png",
+          "sha256": "3772b909908780bb39a9806f7fe5e7541ce3ec033e6515106f5d243385fa27fd"
+        },
+        "32": {
+          "file": "B03-C01-32.png",
+          "sha256": "fdd3e7c4bd7046a14918d61dbbce93b8de7aadba93299390225ff7fb84948321"
+        },
+        "64": {
+          "file": "B03-C01-64.png",
+          "sha256": "00d8a2546bb732cc696d984a2782c55bc52ff6b11ef390c010a6c4eed9fc5b6e"
+        },
+        "128": {
+          "file": "B03-C01-128.png",
+          "sha256": "b909d8d0c1a922fdbca1f62e49e4760a4d27f0e00703cdf1bd311de80db5f2f1"
+        },
+        "192": {
+          "file": "B03-C01-192.png",
+          "sha256": "29ed2b5b52984ec5facbe851e123fca6d9a245d633d01bfdb8e2f77586c205a4"
+        }
+      }
+    },
+    {
+      "id": "O03",
+      "number": 2,
+      "variant": "O03-C01",
+      "title": "Algorithmes de combat améliorés",
+      "kind": "compact",
+      "visual_status": "accepted",
+      "prompt": null,
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/O03-C01-master.png",
+        "sha256": "49ab1d9401b47c6f2f136803cf3c4113c0f485be1a802fa0799cfac8b7e3e8da",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "O03-C01-24.png",
+          "sha256": "96407a014f90762b68fc11c26b274eefe4787a644e95ea9f5b0d52b46a885268"
+        },
+        "32": {
+          "file": "O03-C01-32.png",
+          "sha256": "171be66d6124ddd59e6506be9877601c3e0875a0e0b51f6f79163c7223c69dba"
+        },
+        "64": {
+          "file": "O03-C01-64.png",
+          "sha256": "ee324a4c3114e171d009c10545fbfdae1ee567c14c745f4b8625117ad773c156"
+        },
+        "128": {
+          "file": "O03-C01-128.png",
+          "sha256": "b1b3a4348a4292960c14d0822717424d673ec07a4d52bbf8ea4656e798ea6d2a"
+        },
+        "192": {
+          "file": "O03-C01-192.png",
+          "sha256": "057b41adb53014a15e25ca92e0babdb88cdc3d7086bc5b5ec15ebd2f6dfc358b"
+        }
+      }
+    },
+    {
+      "id": "T01",
+      "number": 3,
+      "variant": "T01-C01",
+      "title": "Marquage balistique",
+      "kind": "compact",
+      "visual_status": "accepted",
+      "prompt": null,
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/T01-C01-master.png",
+        "sha256": "0c8d0f6a218354183f6fd562026371e3b512e7dcc31ccd104505b6edbdaa6b8d",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "T01-C01-24.png",
+          "sha256": "eb407dd68633d15d19555a5304df920301e17e67d846ea81f7c29902c94592e7"
+        },
+        "32": {
+          "file": "T01-C01-32.png",
+          "sha256": "58cfa8948d9e2eb73654d306354d1edb14adc3f8409073e05a6a67a433d70668"
+        },
+        "64": {
+          "file": "T01-C01-64.png",
+          "sha256": "fa71345b7694f4bb1efd878cb7f832a9afe94609634ae1e81963d86bb1aa36b6"
+        },
+        "128": {
+          "file": "T01-C01-128.png",
+          "sha256": "cb0259515640075b21947989a5fe108700f0bb49312df76366852f72ee93cdf1"
+        },
+        "192": {
+          "file": "T01-C01-192.png",
+          "sha256": "23bcbe3fd8216b19a99a924283ea37bafc853e6fb37368bd89010f6541c272bd"
+        }
+      }
+    },
+    {
+      "id": "T03",
+      "number": 4,
+      "variant": "T03-C01",
+      "title": "Maîtrise des attaques à distance",
+      "kind": "compact",
+      "visual_status": "accepted",
+      "prompt": null,
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/T03-C01-master.png",
+        "sha256": "a3b1a8c9cca231c462d2c40efe8edfe08b715f40eb7f3f6337c2ee74f38334a8",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "T03-C01-24.png",
+          "sha256": "da70db6a5b4eb667abf35baade5a5dd58d26c3e7da6715c8184d169cda292950"
+        },
+        "32": {
+          "file": "T03-C01-32.png",
+          "sha256": "9569477a55a0baa3bd077796b81b8756bb61d74902f69c720e8464d88d29093c"
+        },
+        "64": {
+          "file": "T03-C01-64.png",
+          "sha256": "ebd3f0ad07fba5fa4af87f6dad4bbb6fb5943edf43eacef7c4c31a496603bf0e"
+        },
+        "128": {
+          "file": "T03-C01-128.png",
+          "sha256": "658aafcbbec5b5f325458d2116755a7cac0e43d44d7b65ad9e4e210c873e7186"
+        },
+        "192": {
+          "file": "T03-C01-192.png",
+          "sha256": "feaf9a78af62119a657cc626a98836a8537e11770a6825392afcba1599145bc4"
+        }
+      }
+    },
+    {
+      "id": "A03",
+      "number": 5,
+      "variant": "A03-C01",
+      "title": "Canalisation",
+      "kind": "compact",
+      "visual_status": "accepted",
+      "prompt": null,
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/A03-C01-master.png",
+        "sha256": "dcc9c59730aba7ff8ef4fcaf3a14b2eb1918f8e00d1f711921a73c82a58e707a",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "A03-C01-24.png",
+          "sha256": "41f709972e74c3458b94d4c55a67ba13b473a4d707f82da8cc6ae0d52a72ec6c"
+        },
+        "32": {
+          "file": "A03-C01-32.png",
+          "sha256": "54bdd0f0c1430fab786067587eedd9730641a316d5aacc31dce33660df752f47"
+        },
+        "64": {
+          "file": "A03-C01-64.png",
+          "sha256": "f3333fe5f1c5740cc40af97f32ae3b2df190017319d300103619ff0e9db1982d"
+        },
+        "128": {
+          "file": "A03-C01-128.png",
+          "sha256": "3ff56e7dea67b99e8119fa8e1285f3d0c098ac024f9231c28627232afd4447ff"
+        },
+        "192": {
+          "file": "A03-C01-192.png",
+          "sha256": "611406fc90c6cf733b5ba812a946ffefffc5cffd59c8465d6bf7971e0e131e80"
+        }
+      }
+    },
+    {
+      "id": "FE01",
+      "number": 6,
+      "variant": "FE01-C01",
+      "title": "Braise",
+      "kind": "compact",
+      "visual_status": "accepted",
+      "prompt": null,
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/FE01-C01-master.png",
+        "sha256": "74ff3a8985c50245fc2a8a9a56a42cd9cee96706a28d5db3db5f4ffcb48742c8",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "FE01-C01-24.png",
+          "sha256": "ddd78009a1b10651c0eb8cfc26993015a1793412f37e90cb24c13bbb91cc8825"
+        },
+        "32": {
+          "file": "FE01-C01-32.png",
+          "sha256": "279fd0bd7e8d5acd882c61d649b3c379a8ebe79edc2dd34b970705ba60e9f012"
+        },
+        "64": {
+          "file": "FE01-C01-64.png",
+          "sha256": "258cc5678da7608e2a86c089026645ba4073c18cfa522a9518f76240537235aa"
+        },
+        "128": {
+          "file": "FE01-C01-128.png",
+          "sha256": "ed3d982eb78e521b81d4fef0fb8be53971de2adc790ef81544d9bef9420cc95b"
+        },
+        "192": {
+          "file": "FE01-C01-192.png",
+          "sha256": "a5d5c30145a24fe0be4f05aff988e328d3a57771938147bd91d9719fb0a70204"
+        }
+      }
+    },
+    {
+      "id": "M01",
+      "number": 7,
+      "variant": "M01-C01",
+      "title": "Mue prédatrice",
+      "kind": "compact",
+      "visual_status": "accepted",
+      "prompt": null,
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/M01-C01-master.png",
+        "sha256": "c834836aeebd304407e1e153b83baa86e5504b5d852fe8235af2547f6598d8f0",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "M01-C01-24.png",
+          "sha256": "dd1093ea2c58b4caf6c89977d8021b3e276430f03bd6972c840172d6629c158d"
+        },
+        "32": {
+          "file": "M01-C01-32.png",
+          "sha256": "7c815dde41984b6089e6f9ec5aa5dd7fdf3de5ba1f2ab5fdb53d8d412d522680"
+        },
+        "64": {
+          "file": "M01-C01-64.png",
+          "sha256": "42db01f571cf9893c17f70cd5e1145c5b9df5cb270bb2e49e0d582c108dea014"
+        },
+        "128": {
+          "file": "M01-C01-128.png",
+          "sha256": "5a130756165a3aca0e5c66f6488b1e2f1e8b92513eda3fe1213bd1af35428c12"
+        },
+        "192": {
+          "file": "M01-C01-192.png",
+          "sha256": "f470cd6ed4c23620aff21f17cc66b59372f0a2cc3857471938db17f9d4abd8d1"
+        }
+      }
+    },
+    {
+      "id": "M03",
+      "number": 8,
+      "variant": "M03-C01",
+      "title": "Puissance métamorphe",
+      "kind": "compact",
+      "visual_status": "accepted",
+      "prompt": null,
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-master.png",
+        "sha256": "c2604531e02d735854696a52353e55968466f15f9ea3a7a3f7d61a25f934d81e",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "M03-C01-24.png",
+          "sha256": "b4e4eb19f1cbf5f1912a6b1db71eedeb89acbd7584230628f6501dac373f4f4c"
+        },
+        "32": {
+          "file": "M03-C01-32.png",
+          "sha256": "0b2667b4701262c015e170aa7e1da3a185d925c510694ff5ad456b25d7db1b39"
+        },
+        "64": {
+          "file": "M03-C01-64.png",
+          "sha256": "99e7d50e0a6c2aa863ce6861d8b7af0e1bf5d6cf2a679d834af93809be581828"
+        },
+        "128": {
+          "file": "M03-C01-128.png",
+          "sha256": "cae3f66f2bd73d0d21432032a1d406e8fdc42adae88fd4f222ebbdbe95577d4c"
+        },
+        "192": {
+          "file": "M03-C01-192.png",
+          "sha256": "c1f33f477f5af585eec24997da4909e62e13616c3c18622d6a564537bda8d901"
+        }
+      }
+    },
+    {
+      "id": "ME02",
+      "number": 9,
+      "variant": "ME02-C02",
+      "title": "Fauchage",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/ME02-C02.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/ME02-C02-master.png",
+        "sha256": "a312856b2687697afd3c9e09c47054353a5671f16aa210c54e514329f2872ddf",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "ME02-C02-24.png",
+          "sha256": "de7890feb8edb243329123889d1be8cffc609a719e52f667b7a40b2986d66392"
+        },
+        "32": {
+          "file": "ME02-C02-32.png",
+          "sha256": "d6969bbe1d003c05e78d27eede320776b3e94d266cb900eb7815a3abb0ea487e"
+        },
+        "64": {
+          "file": "ME02-C02-64.png",
+          "sha256": "db9311265a55c00cc35634eaab57ad0807f2f1f7d8c5d98bb3363f036abf0fb4"
+        },
+        "128": {
+          "file": "ME02-C02-128.png",
+          "sha256": "8ffb1afc304ba213a76cfea7032ae580cf1f12ff0efa57226d01d1baba25854d"
+        },
+        "192": {
+          "file": "ME02-C02-192.png",
+          "sha256": "bbc057a37ccf4ed516cd7e352c89c448c95e936d03b243549a256e9f09878570"
+        }
+      }
+    },
+    {
+      "id": "ME03",
+      "number": 10,
+      "variant": "ME03-C01",
+      "title": "Percée",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/ME03-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/ME03-C01-master.png",
+        "sha256": "2a72efa14652d425af8f3be6137cf33a7955e1e0b3ff8fdadb09c33241eb08ea",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "ME03-C01-24.png",
+          "sha256": "b9eb234fd158774f3a6c279df89c6fe86c408c761cd2781e61782afa23a8050b"
+        },
+        "32": {
+          "file": "ME03-C01-32.png",
+          "sha256": "53abf0299d3b39509cc00b3fdc45561ed6942557dc6fd18a9271e6d9241fa745"
+        },
+        "64": {
+          "file": "ME03-C01-64.png",
+          "sha256": "d6c3c03295deb61cc02be447a4ad44725f7632014c567e8acacf01d96ca6c96e"
+        },
+        "128": {
+          "file": "ME03-C01-128.png",
+          "sha256": "8a55f04a1434cc01d81676308fb89c0609f906a0aff636e35e9c304476c75040"
+        },
+        "192": {
+          "file": "ME03-C01-192.png",
+          "sha256": "6f030f1252244b991c9a6382fb99997a3c7b5c5b97f04d9d1533bbca3eff86e1"
+        }
+      }
+    },
+    {
+      "id": "ME05",
+      "number": 11,
+      "variant": "ME05-C01",
+      "title": "Charge",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/ME05-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/ME05-C01-master.png",
+        "sha256": "5db0d1ead6f150010b099747c380fb26c6938f0b20deabe094de146deb1230f1",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "ME05-C01-24.png",
+          "sha256": "d6d3783ebb566c80c931e0b1788911e85d7d300355ebd752a7cc64435fc7277e"
+        },
+        "32": {
+          "file": "ME05-C01-32.png",
+          "sha256": "2b506292acd05175566162040a0a671258d4dacd544ab62454c863d212ff214e"
+        },
+        "64": {
+          "file": "ME05-C01-64.png",
+          "sha256": "bb34748d20ebaeb1ff27e3201bc492cc591ac6676be12b045a2364330322fb5b"
+        },
+        "128": {
+          "file": "ME05-C01-128.png",
+          "sha256": "39be4d70c57248399f7b02f967c01b0648aff2b304bd0886716987dc84571fb5"
+        },
+        "192": {
+          "file": "ME05-C01-192.png",
+          "sha256": "7b289e6322712d21143e133cc271775912a2201d65e8c5fb9da2da521f610090"
+        }
+      }
+    },
+    {
+      "id": "ME06",
+      "number": 12,
+      "variant": "ME06-C01",
+      "title": "Tourbillon",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/ME06-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/ME06-C01-master.png",
+        "sha256": "12fedb8cd8f1cf66034b0a8356c6aab5f68aaa63554f855ca83f4ce38353f777",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "ME06-C01-24.png",
+          "sha256": "16ebbf7e829a14cdcf5800f14d96aa28a17c932634569daff231079d255580ee"
+        },
+        "32": {
+          "file": "ME06-C01-32.png",
+          "sha256": "ef8426d31c1eaae209b16a35a99ce9da05366756cdc24ccf65050db757f93448"
+        },
+        "64": {
+          "file": "ME06-C01-64.png",
+          "sha256": "6fbfae8ed8042e7b8a47f6951bec887389e8ea2690252cd6b5a162041b9c4239"
+        },
+        "128": {
+          "file": "ME06-C01-128.png",
+          "sha256": "e28afc8d40c9a71bc69f2e25ff8a15bb373866a7a8cc6b12b7de55fd2cd600c2"
+        },
+        "192": {
+          "file": "ME06-C01-192.png",
+          "sha256": "7ad6384809452b984335253a7fb424cd965ce0a23c50e7eda52b6d099123efbc"
+        }
+      }
+    },
+    {
+      "id": "B01",
+      "number": 13,
+      "variant": "B01-C01",
+      "title": "Frappe de rupture",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/B01-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/B01-C01-master.png",
+        "sha256": "e6cd1e031b5897c4f07589278d44b4e3570b932bc6144bfb349f20ca1293d998",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "B01-C01-24.png",
+          "sha256": "94e0500218cba4811b244113cad940e16f4bfddf93d92f9117e0a75db4f00179"
+        },
+        "32": {
+          "file": "B01-C01-32.png",
+          "sha256": "ecbc5769ec3b25c48ac12a74d8f94b6d16c2671b01f229949c915318b54acec5"
+        },
+        "64": {
+          "file": "B01-C01-64.png",
+          "sha256": "b111fc33a22453133f9ebc4abd9f55325b650eb5b70a57e55e414dd090c73a6e"
+        },
+        "128": {
+          "file": "B01-C01-128.png",
+          "sha256": "3c57bb4c718d8f43bb6256cbbcef9b0d6f8c3fbc5892b13cd41f5d0f2efe5c89"
+        },
+        "192": {
+          "file": "B01-C01-192.png",
+          "sha256": "90227e67e0e121e9e403fbf2bc6e0657f15f6a16869224dad5ddf91504b8fe51"
+        }
+      }
+    },
+    {
+      "id": "ME04",
+      "number": 14,
+      "variant": "ME04-C01",
+      "title": "Repousser",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/ME04-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/ME04-C01-master.png",
+        "sha256": "557144b97b606019c621f11cfe1052552abcb300f8e45ec37cb4e8923291575d",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "ME04-C01-24.png",
+          "sha256": "bb8bad9c9296e448914950f43fe8a1ab7bd38ec9dd6b41f8dce08be00d608c93"
+        },
+        "32": {
+          "file": "ME04-C01-32.png",
+          "sha256": "ae502c66e1de94f0aa301d71c6796ff9fa261897c5ae3d8d3f732127e43c2e11"
+        },
+        "64": {
+          "file": "ME04-C01-64.png",
+          "sha256": "a911f9dc19ac9038ecfcefcd62fae05bdde3fbc4e6fd5797b2ee0dea2c5724ab"
+        },
+        "128": {
+          "file": "ME04-C01-128.png",
+          "sha256": "ae6812a3948490eef017aea3636557f1dd6fd59f60a2dd9747676f8c44c91b87"
+        },
+        "192": {
+          "file": "ME04-C01-192.png",
+          "sha256": "43f806350c5591106309a165206968b09ea09ecb29a7e2344fb731f4b7b819ff"
+        }
+      }
+    },
+    {
+      "id": "SU04",
+      "number": 15,
+      "variant": "SU04-C01",
+      "title": "Régénération",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/SU04-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/SU04-C01-master.png",
+        "sha256": "10e672e5c247bdc8c32233534296354e0b8ba2deaf5a8a34d43a70feaf56925b",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "SU04-C01-24.png",
+          "sha256": "ef8b2fe99e1d7f94b31cd60589f7fef1196534818fec9b3c37eea033eb5285f8"
+        },
+        "32": {
+          "file": "SU04-C01-32.png",
+          "sha256": "8da6752ac929d49023f8d692e9dc94063ae5b23d2e14498adf68b786d9e6bc7c"
+        },
+        "64": {
+          "file": "SU04-C01-64.png",
+          "sha256": "425aa7f2770735927f5bd2558139e5873dc2339cef0e18d46b50521ad877add8"
+        },
+        "128": {
+          "file": "SU04-C01-128.png",
+          "sha256": "bf078411b7cb132c7dfd25b24a755c3d51916309115f23a3af033423343af2ba"
+        },
+        "192": {
+          "file": "SU04-C01-192.png",
+          "sha256": "d575b0a57ef3e231aab8edac3342fdb81fff4d0748ae9a1638606a53c1d3129c"
+        }
+      }
+    },
+    {
+      "id": "D59",
+      "number": 16,
+      "variant": "D59-C01",
+      "title": "Invocation de l'Artilleur",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/D59-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/D59-C01-master.png",
+        "sha256": "5f61804ecc87280f9d78bfd3bb584b59aeb4116db347ee7bec7dc5f5b1fbe6eb",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "D59-C01-24.png",
+          "sha256": "d9681f5dff9df894133f2831a84a30d7e44a01ea4e2373f6451c122f5ceae631"
+        },
+        "32": {
+          "file": "D59-C01-32.png",
+          "sha256": "17246aae20292b8945a941a9f922f1090e3527745af3c39035e5545f3c76fb6f"
+        },
+        "64": {
+          "file": "D59-C01-64.png",
+          "sha256": "c7daf0535280688e2994975fb741ea8b65408f32c6901a13f4399b4d00898e52"
+        },
+        "128": {
+          "file": "D59-C01-128.png",
+          "sha256": "b3e7dfe20b9f24a3ad74f7abfbfebeb4500f50537b4497d32adb29da19f28139"
+        },
+        "192": {
+          "file": "D59-C01-192.png",
+          "sha256": "5f4f2331edde34fffaafc6eec1eab393c9fd518f86857b18e3a69f0901ad31c5"
+        }
+      }
+    },
+    {
+      "id": "FE05",
+      "number": 17,
+      "variant": "FE05-C01",
+      "title": "Boule de feu",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/FE05-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/FE05-C01-master.png",
+        "sha256": "96b2b83d74531c7f149d2806b58aff732c82bcd3bccae93e035cedbfff233b5a",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "FE05-C01-24.png",
+          "sha256": "a5205e8c69702c7beaf38141fefe5de1a816385fe9f0e969970139879d1f30d1"
+        },
+        "32": {
+          "file": "FE05-C01-32.png",
+          "sha256": "0b56a62a20e1a5a6d3898d06e9de6a26e8ca3e5e664e5402ffa4c0f08157864e"
+        },
+        "64": {
+          "file": "FE05-C01-64.png",
+          "sha256": "e9c18567d5da54e9bfb8d529738fae05d20b78f1642fffd9d318928c4f1607d3"
+        },
+        "128": {
+          "file": "FE05-C01-128.png",
+          "sha256": "32a78d1be62254613896260b495bb5233739d37175de9f81397c8b9ddf3a7fff"
+        },
+        "192": {
+          "file": "FE05-C01-192.png",
+          "sha256": "79ffb4ed270c573cdaae32efcdca3ba6086f207e4cb8d866b2b57adeca53056d"
+        }
+      }
+    },
+    {
+      "id": "FR03",
+      "number": 18,
+      "variant": "FR03-C01",
+      "title": "Mur de glace",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/FR03-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/FR03-C01-master.png",
+        "sha256": "3c4bd6cca6c0feb0a4db1b12d9977994839f41f290585d7e64f5a67c9666f30e",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "FR03-C01-24.png",
+          "sha256": "935f8682a160f10569db2fcc08f62f5571e6e34d94f558d17579c906b44ac5ec"
+        },
+        "32": {
+          "file": "FR03-C01-32.png",
+          "sha256": "6b85e3251469394852657e174bbf53db73e34b21d1a7baa36b3c21d52605c13e"
+        },
+        "64": {
+          "file": "FR03-C01-64.png",
+          "sha256": "505d46c0d9ec3d128a6aaf01685daa11ee1fb3057672e5879a43416cb8000f10"
+        },
+        "128": {
+          "file": "FR03-C01-128.png",
+          "sha256": "246731a2ec3c44135cd8338b958e81172f69e71f44c037a9c28500be50482d72"
+        },
+        "192": {
+          "file": "FR03-C01-192.png",
+          "sha256": "4778580be64c745d4c72ad94450a4e1bd08957d085112f4eb6bedd0af697dab5"
+        }
+      }
+    },
+    {
+      "id": "BM02",
+      "number": 19,
+      "variant": "BM02-C01",
+      "title": "Faim vampirique",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/BM02-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/BM02-C01-master.png",
+        "sha256": "57e4c3c065d516ecb2e16caa8b07619fcba730d4b910f18a5fa2c8bdf5d3a2c1",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "BM02-C01-24.png",
+          "sha256": "b3f53d6c801df25fa41bdeaa4997b4b4f43f3b4452d2ee45217362639dd4cd37"
+        },
+        "32": {
+          "file": "BM02-C01-32.png",
+          "sha256": "af9a934bce436b574485b9192e6f1fa4fdb6d3c8100719330e96951d8eafe5ad"
+        },
+        "64": {
+          "file": "BM02-C01-64.png",
+          "sha256": "e486786fd7767b7f83f084b541c0c6b083b1c05bcd4d38654b36ff4fc0af90de"
+        },
+        "128": {
+          "file": "BM02-C01-128.png",
+          "sha256": "820a23c1e958ca7efb5a86c9b3837c81885ba7aff1533f9c5d23e89719299a7c"
+        },
+        "192": {
+          "file": "BM02-C01-192.png",
+          "sha256": "4d68a65fe4500fbd042ea380e973f8a98acab3dc99ce4c5c9de7dd85dc848300"
+        }
+      }
+    },
+    {
+      "id": "SF00",
+      "number": 20,
+      "variant": "SF00-C01",
+      "title": "Furtivité",
+      "kind": "compact",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/SF00-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/SF00-C01-master.png",
+        "sha256": "1277e317fb8fdebff4e7f8c131493bb48f90f9820d24a5c494d4d684512941cf",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "SF00-C01-24.png",
+          "sha256": "a66869aeb8419198950a5ca975de0b4b854557e786620aea3cd213bc380ce373"
+        },
+        "32": {
+          "file": "SF00-C01-32.png",
+          "sha256": "3d48dc5f0e6e7105e6a7f5219c375f9fc34631bdbd8bbb87458761b594232d6e"
+        },
+        "64": {
+          "file": "SF00-C01-64.png",
+          "sha256": "f4d9a63573b0838e0830600fe7b691cfd263351766ca49da4e0aeb710d697ee1"
+        },
+        "128": {
+          "file": "SF00-C01-128.png",
+          "sha256": "eb00a6129bb30c8c414d7effc5eea598205993c0ad0f07039973187de90a078f"
+        },
+        "192": {
+          "file": "SF00-C01-192.png",
+          "sha256": "117c764989ea5a8093728cab1899ace4ddc915ee7195f98a7f1686434eda7049"
+        }
+      }
+    }
+  ],
+  "new_ids": [
+    "B01",
+    "ME04",
+    "SU04",
+    "D59",
+    "FE05",
+    "FR03",
+    "BM02",
+    "SF00"
+  ],
+  "layout_review": "SKILLS-UI02",
+  "preserved_accepted_exports": 121,
+  "no_new_approval_inferred": true,
+  "revision_requested_ids": [
+    "B01",
+    "ME04",
+    "SU04",
+    "D59",
+    "FE05",
+    "FR03",
+    "BM02",
+    "SF00"
+  ],
+  "follow_up_review": "SKILLS-IC12",
+  "feedback": "Le style des huit dernières compactes diverge des premières, jugées plus belles. Reprendre leur style."
+}

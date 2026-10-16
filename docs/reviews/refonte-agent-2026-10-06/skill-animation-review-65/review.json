@@ -1,0 +1,40 @@
+{
+  "review_id": "SM05-ANIM02-SQUARE",
+  "date": "2026-10-14",
+  "status": "awaiting_visual_review",
+  "candidate_number": 73,
+  "skill": "SM05",
+  "variants": [
+    "FEU",
+    "POISON",
+    "FROID"
+  ],
+  "new_visuals": "Square ground marker after burst, all nine affected cells; low fire, toxic gas, ice floor; entrant then expiry.",
+  "references": [
+    "mine-square-footprint-direction-decisions.json",
+    "mine-residue-full-zone-marker-direction-decisions.json",
+    "mine-residue-elemental-ground-visual-direction-decisions.json",
+    "mine-residue-visual-handoff-direction-decisions.json",
+    "persistent-immediate-application-count-acceptance-decisions.json",
+    "review-individual-description-SM05-02.json"
+  ],
+  "duration": 13,
+  "radius_fixture": 1,
+  "SM04_in_fixture": false,
+  "geometry": "Square3x3 in open floor, clipped by obstacles",
+  "damage_prepared": {
+    "ground_fire": 3,
+    "ground_poison": 4,
+    "explosions": [
+      13,
+      19,
+      16
+    ],
+    "poison_status": 42
+  },
+  "first_application": "Immediate; counts among13; replaces historical delay under INTERACT-TIME01.",
+  "source_assets_reused": true,
+  "native_visual_approval": false,
+  "campaign_integration": false,
+  "pending": "Full resolver, AI, status aggregation and resistances; SM04 extended footprint remains a separate review."
+}

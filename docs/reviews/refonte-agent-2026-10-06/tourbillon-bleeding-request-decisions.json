@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-06",
+  "skill_id": "ME06",
+  "title": "Tourbillon",
+  "user_request": "j'aimerais qu'on ajoute un effet de saignement à cette attaque avec de leger dégats ,",
+  "accepted_scope": "add a light bleeding effect to Tourbillon by explicit user request",
+  "proposed_bleeding": {
+    "application": "on each enemy successfully hit by Tourbillon",
+    "chance_percent_on_successful_hit": 100,
+    "damage_per_turn_percent_of_actual_initial_hit_damage": 10,
+    "duration_turns": 3,
+    "stacking": "no stacking from repeated Tourbillon; refresh duration",
+    "rank_scaling": "fixed percentage and duration; damage scales with the actual initial hit",
+    "approval": "new exact numbers, stacking rule and wording pending explicit user review"
+  },
+  "baseline_current_next_values": "retain previous displayed proposal; user request does not approve all previous card values",
+  "additional_unshown_details_pending": [
+    "fractional damage rounding",
+    "tick timing within turns",
+    "interaction with other bleeding sources",
+    "damage defenses and bleeding immunity cases"
+  ],
+  "previous_individual_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME06-01.json",
+  "visual_render": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

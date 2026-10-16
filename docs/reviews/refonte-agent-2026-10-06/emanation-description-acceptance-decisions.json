@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "FE04",
+  "title": "Émanation soudaine",
+  "user_message": "ok on peut continuer",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE04-02.json",
+  "previous_description_sha256": "be7a66d834a19e1cf5b72980968651bd51241268eca6c5bf1ce24d53081f874e",
+  "accepted_player_copy_sha256": "17bb414980b9fee1eef7b34eb4e35b6405a23e4afd6a7824dda95f9e7362e9e8",
+  "approval_scope": "Agreement to continue after the displayed FE04-02 card accepts its RP, current-next values, proposed maximum10% center-to-edge damage decrease, radius/range/delay/cost/cooldown and shown targeting, walls, allies, burn start and own nonstacking conditions as provisional balance. Prior rename and EL-ZONE01 increasing exposure/reset decisions preserved. Unshown full curves, intermediate distance weighting, exact timing/geometry, other burns and native visuals remain pending.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "center_fire_damage": 59,
+      "edge_fire_damage": 53,
+      "burn_chance_percent": 30,
+      "burn_fire_damage_per_turn": 6,
+      "burn_duration_turns": 3,
+      "explosion_radius_cells": 1,
+      "range_cells": 5,
+      "explosion_delay_complete_turns": 1,
+      "energy_cost": 15,
+      "cooldown_turns": 6
+    },
+    "next": {
+      "effective_rank": 12,
+      "center_fire_damage": 63,
+      "edge_fire_damage": 57,
+      "burn_chance_percent": 32,
+      "burn_fire_damage_per_turn": 7,
+      "burn_duration_turns": 3,
+      "explosion_radius_cells": 1,
+      "range_cells": 5,
+      "explosion_delay_complete_turns": 1,
+      "energy_cost": 15,
+      "cooldown_turns": 6
+    }
+  },
+  "accepted_conditions": [
+    "Maximum10% raw damage decrease from center to edge; displayed center59/edge53 then63/57.",
+    "Burn30% then32% per touched target;6 then7 fire damage per turn for3 turns.",
+    "Visible center within range5, radius1, zone marked before explosion after1 complete turn; occupants may leave.",
+    "Walls block flames; allies can be hit; displayed damage before target defenses.",
+    "Burn starts next complete turn after explosion; own FE04 burn applications do not stack."
+  ],
+  "unshown_rules_approval": "Full rank/attribute curves, exact intermediate-distance formula, center legality/passability, radial and wall/corner/large-actor geometry, turn/reaction order, caster damage eligibility, multiple markers, burn resistances, critical and modifier order, replacement/refresh and cross-skill burn stacking, interrupted casts, empty zones and layer transitions remain pending where not previously accepted. The existing Braise burn is preserved. No persistent ground exposure created for FE04.",
+  "visual_approval": "Existing catalogue visual direction only; native marker/burn icon and animation review pending",
+  "runtime_integration": "not_integrated"
+}

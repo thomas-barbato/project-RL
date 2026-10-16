@@ -43,6 +43,14 @@ impl VisibilityState {
         self.explored.extend(self.visible.iter().copied());
     }
 
+    /// Merge a live allied sensor field into both current sight and map memory.
+    pub(crate) fn merge_visible(&mut self, positions: impl IntoIterator<Item = GridPos>) {
+        for position in positions {
+            self.visible.insert(position);
+            self.explored.insert(position);
+        }
+    }
+
     pub fn is_visible(&self, position: GridPos) -> bool {
         self.visible.contains(&position)
     }

@@ -1,0 +1,455 @@
+{
+  "id": "core:one_hand_firearms",
+  "stats": [
+    {
+      "affix": "affix:power",
+      "weight": 100
+    },
+    {
+      "affix": "affix:coordination",
+      "weight": 100
+    },
+    {
+      "affix": "affix:resilience",
+      "weight": 100
+    },
+    {
+      "affix": "affix:perception",
+      "weight": 80
+    },
+    {
+      "affix": "affix:processing",
+      "weight": 80
+    },
+    {
+      "affix": "affix:accuracy",
+      "weight": 70
+    },
+    {
+      "affix": "affix:armor_penetration",
+      "weight": 35
+    },
+    {
+      "affix": "affix:vitality",
+      "weight": 100
+    },
+    {
+      "affix": "affix:energy_reserve",
+      "weight": 70
+    },
+    {
+      "affix": "affix:heat_dissipation",
+      "weight": 35
+    }
+  ],
+  "bases": [
+    {
+      "item": "core:modele_cogneur_p01",
+      "family": "core:pistols",
+      "tier": 1,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 0,
+      "maximum_depth": 0,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "item": "core:modele_cogneur_p02",
+      "family": "core:pistols",
+      "tier": 2,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 1,
+      "maximum_depth": 1,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "item": "core:modele_cogneur_p03",
+      "family": "core:pistols",
+      "tier": 3,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 2,
+      "maximum_depth": 2,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "item": "core:modele_cogneur_p04",
+      "family": "core:pistols",
+      "tier": 4,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 3,
+      "maximum_depth": 3,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "item": "core:modele_cogneur_p05",
+      "family": "core:pistols",
+      "tier": 5,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 4,
+      "maximum_depth": 4,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "item": "core:modele_cogneur_p06",
+      "family": "core:pistols",
+      "tier": 6,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 5,
+      "maximum_depth": null,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "item": "core:modele_crache_fer_pm01",
+      "family": "core:submachine_guns",
+      "tier": 1,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 0,
+      "maximum_depth": 0,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "item": "core:modele_crache_fer_pm02",
+      "family": "core:submachine_guns",
+      "tier": 2,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 1,
+      "maximum_depth": 1,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "item": "core:modele_crache_fer_pm03",
+      "family": "core:submachine_guns",
+      "tier": 3,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 2,
+      "maximum_depth": 2,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "item": "core:modele_crache_fer_pm04",
+      "family": "core:submachine_guns",
+      "tier": 4,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 3,
+      "maximum_depth": 3,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "item": "core:modele_crache_fer_pm05",
+      "family": "core:submachine_guns",
+      "tier": 5,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 4,
+      "maximum_depth": 4,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "item": "core:modele_crache_fer_pm06",
+      "family": "core:submachine_guns",
+      "tier": 6,
+      "grammar": "ms",
+      "form": "humanoid_equipment",
+      "sources": [
+        "humanoid_site"
+      ],
+      "minimum_depth": 5,
+      "maximum_depth": null,
+      "effects": [
+        {
+          "effect": "core:affix_braise",
+          "minimum_tier": 1,
+          "weight": 20
+        },
+        {
+          "effect": "core:affix_decharge",
+          "minimum_tier": 1,
+          "weight": 8
+        },
+        {
+          "effect": "core:affix_saignement",
+          "minimum_tier": 1,
+          "weight": 16
+        },
+        {
+          "effect": "core:affix_poison",
+          "minimum_tier": 1,
+          "weight": 10
+        }
+      ]
+    }
+  ]
+}

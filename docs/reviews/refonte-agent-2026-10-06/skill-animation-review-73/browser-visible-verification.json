@@ -1,0 +1,1208 @@
+{
+  "browser": "Edge Chromium headless",
+  "scheme": "file",
+  "native_tile": 64,
+  "views_checked": 32,
+  "errors": [],
+  "projectile_then_ephemeral_burst": "passed",
+  "preview_removed_after_launch": "passed",
+  "idle_counters_stable": "passed",
+  "manual_turns_and_cooldown": "passed",
+  "blocked_attack_no_cost": "passed",
+  "self_damage_immunity": "passed",
+  "directional_gif_links_exist": "passed",
+  "captures": [
+    {
+      "label": "projectile",
+      "samples": [
+        {
+          "variant": "SG00-A02-C0-HAUT",
+          "frame": 20,
+          "expected_native_png": "frames/SG00-A02-C0-HAUT/020.png",
+          "browser_png": "browser-projectile-0.png"
+        },
+        {
+          "variant": "SG03-A02-C0-HAUT",
+          "frame": 20,
+          "expected_native_png": "frames/SG03-A02-C0-HAUT/020.png",
+          "browser_png": "browser-projectile-1.png"
+        }
+      ]
+    },
+    {
+      "label": "impact",
+      "samples": [
+        {
+          "variant": "SG00-A02-C0-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG00-A02-C0-HAUT/027.png",
+          "browser_png": "browser-impact-0.png"
+        },
+        {
+          "variant": "SG03-A02-C0-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG03-A02-C0-HAUT/027.png",
+          "browser_png": "browser-impact-1.png"
+        }
+      ]
+    },
+    {
+      "label": "finished",
+      "samples": [
+        {
+          "variant": "SG00-A02-C0-HAUT",
+          "frame": 40,
+          "expected_native_png": "frames/SG00-A02-C0-HAUT/038.png",
+          "browser_png": "browser-finished-0.png"
+        },
+        {
+          "variant": "SG03-A02-C0-HAUT",
+          "frame": 40,
+          "expected_native_png": "frames/SG03-A02-C0-HAUT/038.png",
+          "browser_png": "browser-finished-1.png"
+        }
+      ]
+    },
+    {
+      "label": "wall",
+      "samples": [
+        {
+          "variant": "SG00-A02-C1-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG00-A02-C1-HAUT/027.png",
+          "browser_png": "browser-wall-0.png"
+        },
+        {
+          "variant": "SG03-A02-C1-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG03-A02-C1-HAUT/027.png",
+          "browser_png": "browser-wall-1.png"
+        }
+      ]
+    },
+    {
+      "label": "blocked",
+      "samples": [
+        {
+          "variant": "SG00-A02-C2-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG00-A02-C2-HAUT/000.png",
+          "browser_png": "browser-blocked-0.png"
+        },
+        {
+          "variant": "SG03-A02-C2-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG03-A02-C2-HAUT/000.png",
+          "browser_png": "browser-blocked-1.png"
+        }
+      ]
+    },
+    {
+      "label": "self",
+      "samples": [
+        {
+          "variant": "SG00-A02-C3-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG00-A02-C3-HAUT/027.png",
+          "browser_png": "browser-self-0.png"
+        },
+        {
+          "variant": "SG03-A02-C3-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG03-A02-C3-HAUT/027.png",
+          "browser_png": "browser-self-1.png"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "case": 0,
+      "direction": 0,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "cooldown": 2,
+          "damage": [
+            0,
+            0,
+            24,
+            12
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            76,
+            88
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 0,
+      "direction": 1,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "cooldown": 2,
+          "damage": [
+            0,
+            0,
+            24,
+            12
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            76,
+            88
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 0,
+      "direction": 2,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "cooldown": 2,
+          "damage": [
+            0,
+            0,
+            24,
+            12
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            76,
+            88
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 0,
+      "direction": 3,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "cooldown": 2,
+          "damage": [
+            0,
+            0,
+            24,
+            12
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            76,
+            88
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 1,
+      "direction": 0,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 1,
+      "direction": 1,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 1,
+      "direction": 2,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 1,
+      "direction": 3,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            76,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 2,
+      "direction": 0,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cooldown": 0,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 100,
+          "explosion": false,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": true,
+          "projectile": false,
+          "range": 4,
+          "turn": 0,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cooldown": 0,
+          "damage": [
+            0,
+            0,
+            24,
+            12
+          ],
+          "energy": 100,
+          "explosion": false,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": true,
+          "projectile": false,
+          "range": 8,
+          "turn": 0,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 2,
+      "direction": 1,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cooldown": 0,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 100,
+          "explosion": false,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": true,
+          "projectile": false,
+          "range": 4,
+          "turn": 0,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cooldown": 0,
+          "damage": [
+            0,
+            0,
+            24,
+            12
+          ],
+          "energy": 100,
+          "explosion": false,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": true,
+          "projectile": false,
+          "range": 8,
+          "turn": 0,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 2,
+      "direction": 2,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cooldown": 0,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 100,
+          "explosion": false,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": true,
+          "projectile": false,
+          "range": 4,
+          "turn": 0,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cooldown": 0,
+          "damage": [
+            0,
+            0,
+            24,
+            12
+          ],
+          "energy": 100,
+          "explosion": false,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": true,
+          "projectile": false,
+          "range": 8,
+          "turn": 0,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 2,
+      "direction": 3,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cooldown": 0,
+          "damage": [
+            24,
+            12,
+            0,
+            0
+          ],
+          "energy": 100,
+          "explosion": false,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": true,
+          "projectile": false,
+          "range": 4,
+          "turn": 0,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cooldown": 0,
+          "damage": [
+            0,
+            0,
+            24,
+            12
+          ],
+          "energy": 100,
+          "explosion": false,
+          "falloff": true,
+          "hp": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": true,
+          "projectile": false,
+          "range": 8,
+          "turn": 0,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 3,
+      "direction": 0,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            12,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            88,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            12,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            88,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 3,
+      "direction": 1,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            12,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            88,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            12,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            88,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 3,
+      "direction": 2,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            12,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            88,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            12,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            88,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    },
+    {
+      "case": 3,
+      "direction": 3,
+      "states": [
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            12,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            88,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 4,
+          "turn": 1,
+          "valid": false
+        },
+        {
+          "clock": 1.125,
+          "contacts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cooldown": 2,
+          "damage": [
+            12,
+            12,
+            0,
+            0
+          ],
+          "energy": 92,
+          "explosion": true,
+          "falloff": true,
+          "hp": [
+            88,
+            88,
+            100,
+            100
+          ],
+          "player_hp": 100,
+          "preview": false,
+          "projectile": false,
+          "range": 8,
+          "turn": 1,
+          "valid": false
+        }
+      ]
+    }
+  ]
+}

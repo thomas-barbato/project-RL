@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-07",
+  "id": "ES05",
+  "title": "Traversée de phase",
+  "revision": 1,
+  "player_copy_markdown": "**ES05 · Traversée de phase — Rang 11**\n\n*Vous traversez votre adversaire dans un bref déphasage et réapparaissez derrière lui.*\n\n**Effet actuel**\n\n- Déplacement : de l’autre côté d’un ennemi adjacent, **2 cases**.\n- Bonus d’esquive : **+30**.\n- Durée du bonus : **2 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus d’esquive : **+32**.\n\n**Coût : 13 énergie · Recharge : 8 tours.**\n\nL’ennemi doit être visible et adjacent. La case d’arrivée doit être libre, connue et franchissable. Les murs et les portes fermées bloquent le passage.\n\nLe bonus s’ajoute à votre esquive habituelle et s’applique aux réactions provoquées par le déplacement.",
+  "player_copy_sha256": "7e8208998e55a34934050d1527b29ec1c7882fba6d508fcb6b32280d2234f606",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-16.json",
+  "source_skill_block_sha256": "e473abd127124f6135e20d4b6d40d735bcb842b479d56bbac5471e2df25c2250",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/evasion-riposte-removal-decisions.json",
+  "latest_decisions_sha256": "8cc98256cf7d3f1622d16dfe0f665f51dd6684aed6dbae46b13ede5e4d1101ea",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08; targeting_landing_and_movement_reaction_conditions_retained",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "proposed_pending_individual_user_review",
+  "current_profile_status": "illustrative_not_a_user_save; additive dodge bonus, no fixed total dodge or chance created",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "agility": 10,
+    "ordinary_dodge_total": null,
+    "other_skill_implant_or_cost_modifiers": false,
+    "attribute_and_equipment_dodge": "ordinary contributions retained and added to skill bonus"
+  },
+  "formulas": {
+    "movement_cells": 2,
+    "dodge_bonus_points": "10 + 2 * (effective_rank - 1)",
+    "duration_turns": 2,
+    "energy_cost": "10 + floor((effective_rank - 1)/3)",
+    "cooldown_turns": 8
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "movement_cells": 2,
+    "dodge_bonus_points": 30,
+    "duration_turns": 2,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "movement_cells": 2,
+    "dodge_bonus_points": 32,
+    "duration_turns": 2,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "dodge_bonus_points"
+    ],
+    "unchanged_effects_omitted": [
+      "movement_cells",
+      "duration_turns",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "self_movement_power_not_a_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no_heavy_weapon_exclusion_added"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true
+  },
+  "movement_conditions": {
+    "target": "currently visible adjacent hostile",
+    "landing": "opposite side, free known passable tile",
+    "target_actor_crossing_allowed": true,
+    "walls_closed_doors_other_actors_or_forbidden_corners_crossed": false,
+    "normal_movement_reactions_retained": true,
+    "dodge_bonus_before_reactions": true,
+    "enemy_damage_or_control_created": false,
+    "invulnerability_or_free_attack_created": false,
+    "dodge_bonus_unit": "flat dodge score points, not percentage points of avoidance chance"
+  },
+  "unshown_rules_approval": "Full rank curves, ordinary dodge/hit bounds, exact diagonal/corner geometry, large actor footprints, landing eligibility, path hazards and reaction ordering, two-turn duration accounting, recast/stacking with other dodge buffs, interrupted movement/refusal atomicity and attribute/implant cost interactions remain pending where not already accepted. No wall teleport, enemy displacement/control, damage, invulnerability, free attack, weapon requirement or hidden actor reveal introduced.",
+  "visual_intention_approval": "existing_catalogue_fragmented_silhouette_across_target_direction_accepted_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable ES05 existing catalogue item, not ES04 replacement; RP/current-next card proposed for individual review.",
+    "Effective rank 11 +30 dodge, next 12 +32; movement two tiles, duration two turns, cost 13 energy and cooldown eight unchanged.",
+    "Learned 9 to 10 with equipment +2 unchanged; same attributes/modifiers and one-point purchase within cap.",
+    "Next block only changed dodge; no table/player formula/rank breakdown/ordinary timing reminder.",
+    "Visible adjacent target crossed; landing free known passable; walls/closed doors blocked; dodge added to ordinary value and active for movement reactions.",
+    "83 primary skills, Esquive four skills, all DI06/ES02/ES04 retired; no native visual or runtime integration."
+  ]
+}

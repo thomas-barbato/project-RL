@@ -1,0 +1,1170 @@
+[
+  {
+    "number": 56,
+    "review_id": "visual-proposal:056",
+    "name": "Éclaireur",
+    "name_status": "provisoire",
+    "family": "Drones du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-companion",
+    "content_id": null,
+    "description": "Compact airborne inspection drone: large ivory oval central shell with cyan underside and a broad dark rectangular front sensor. Exactly TWO short side lift pods attached by thick cyan horizontal struts. No exposed thin rotors, no wings, no legs, no manipulator arms, no separate props. Distinct horizontal silhouette, floating body with open transparent space beneath.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      18
+    ],
+    "flying": true,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/056-r2.png",
+    "living": "../../../assets/sprites/bestiary/tiles/056-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/056-corpse-32.png",
+    "inactive_label": "Épave",
+    "corpse_includes_blood": false,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "revision": 2,
+    "blood_layer_status": "none; dry mechanical wreck, no blood or replacement fluid pool",
+    "source_kind": "corpse-only",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        776,
+        404
+      ],
+      "native_bounds": [
+        2,
+        10,
+        30,
+        25
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "hover, six native pixels above ground baseline"
+    },
+    "living_preserved_sha256": "ddf5be81d47ddba7d75bab7d36a4ab13051744f60552f83a07b8c824d3593e29",
+    "corpse_encoding": {
+      "source_bounds": [
+        39,
+        745,
+        1215,
+        1175
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "e2e60b2b3269069b068edda7ae857c19a351782d5c94d4ee782ae8e5dded8f14",
+    "review_description": "Coque volante compacte, deux nacelles latérales et un large capteur."
+  },
+  {
+    "number": 57,
+    "review_id": "visual-proposal:057",
+    "name": "Mule",
+    "name_status": "provisoire",
+    "family": "Drones du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-companion",
+    "content_id": null,
+    "description": "A simple driverless cargo crate mounted DIRECTLY on exactly TWO broad dark caterpillar tracks. NO separate robot body: the crate IS the entire body. Broad ivory rectangular cargo box with two dark vertical securing bands, orange reinforced lower edge, black charcoal tracks with three large wheel masses. Slight three-quarter front view. NO face, eyes, front sensor, head, arms, claw, antenna, gun, humanoid features or extra luggage. Minimal brutally industrial freight container on tracks.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      24
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/057-r2.png",
+    "living": "../../../assets/sprites/bestiary/tiles/057-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/057-corpse-32.png",
+    "inactive_label": "Épave",
+    "corpse_includes_blood": false,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "revision": 2,
+    "blood_layer_status": "none; dry mechanical wreck, no blood or replacement fluid pool",
+    "source_kind": "pair",
+    "review_description": "Une caisse de transport sur deux chenilles, sans visage ni bras.",
+    "previous_living": "../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/references/057-vivant-r1.png",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        848,
+        591
+      ],
+      "native_bounds": [
+        1,
+        10,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        758,
+        408
+      ],
+      "native_bounds": [
+        3,
+        17,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "ffda5bc3f70abfebbee2c09fdb3e5b2103c39bfa6e9edcd16a862838802d0c75"
+  },
+  {
+    "number": 58,
+    "review_id": "visual-proposal:058",
+    "name": "Traqueur",
+    "name_status": "provisoire",
+    "family": "Drones du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-companion",
+    "content_id": null,
+    "description": "Mechanical dog-like quadruped with a wedge-shaped ivory head, broad purple back, charcoal joints and cyan lower legs. Exactly FOUR sturdy articulated legs and no other limbs. One large dark visor at front, no tail or antenna. Low forward-leaning broad silhouette, three-quarter view; distinguish head from torso with a clear short neck.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      24
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/058-r2.png",
+    "living": "../../../assets/sprites/bestiary/tiles/058-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/058-corpse-32.png",
+    "inactive_label": "Épave",
+    "corpse_includes_blood": false,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "revision": 2,
+    "blood_layer_status": "none; dry mechanical wreck, no blood or replacement fluid pool",
+    "source_kind": "corpse-only",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        735,
+        636
+      ],
+      "native_bounds": [
+        2,
+        7,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "living_preserved_sha256": "d56130cf890b2a38954c8473f9df77e67eef316b1931ce9fb505d0510b7da265",
+    "corpse_encoding": {
+      "source_bounds": [
+        73,
+        462,
+        1219,
+        944
+      ],
+      "native_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "284360aa61b4b7d94dcc328d099cf16271f05e70f06ba3e0a8730de7395271b5",
+    "review_description": "Quadrupède mécanique : tête en coin et quatre pattes articulées."
+  },
+  {
+    "number": 59,
+    "review_id": "visual-proposal:059",
+    "name": "Artilleur",
+    "name_status": "provisoire",
+    "family": "Drones du joueur",
+    "status": "accepted-art",
+    "usage": "player-companion",
+    "content_id": null,
+    "description": "Industrial tracked combat robot inspired by user-supplied T-1 reference; steel/charcoal with broad dark red panels, no green/purple. Exactly two tracks and two lateral rotary gun pods.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/059-r4.png",
+    "living": "../../../assets/sprites/bestiary/tiles/059-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/059-corpse-32.png",
+    "inactive_label": "Épave",
+    "corpse_includes_blood": false,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "two rotary weapons fixed to lateral mechanical mounts, not human hands",
+    "revision": 4,
+    "blood_layer_status": "none; dry mechanical wreck, no blood or replacement fluid pool",
+    "source_kind": "pair",
+    "review_description": "Silhouette inspirée du T‑1 : deux chenilles, corps central surélevé et deux armes latérales. Acier et rouge sombre.",
+    "previous_living": "../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/references/059-vivant-avant-t1.png",
+    "previous_corpse": "../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/references/059-epave-avant-t1.png",
+    "review_round": "t1-and-merged-guardian",
+    "design_reference": "../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/references/t1-user-reference.png",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        817,
+        575
+      ],
+      "native_bounds": [
+        1,
+        10,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        827,
+        342
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "1a15e7cdec95120dd0e13eb73f89cdb904821396bfb9e02d23cb44b1cddbdf9b",
+    "art_approval_date": "2026-10-06",
+    "art_approval_record": "review-decisions-2026-10-06.json",
+    "integration_status": "not integrated"
+  },
+  {
+    "number": 66,
+    "review_id": "visual-proposal:066",
+    "name": "Gardien",
+    "name_status": "provisoire",
+    "family": "Drones du joueur",
+    "status": "accepted-art",
+    "usage": "player-companion",
+    "content_id": null,
+    "description": "Existing #66 guardian humanoid machine, shield removed from both living and wreck; body shape retained, orange and blue-gray steel palette.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      29
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/066-r2.png",
+    "source_kind": "pair",
+    "living": "../../../assets/sprites/bestiary/tiles/066-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/066-corpse-32.png",
+    "inactive_label": "Épave",
+    "corpse_includes_blood": false,
+    "gameplay_status": "visual proposal only; single intended guardian role retained, no tank behavior or stats implemented",
+    "equipment_status": "no held shield or weapon; two empty mechanical hands",
+    "review_description": "Forme du 66 conservée : torse dégagé, mains libres, épaules orange et plaques d’acier bleuté. Modèle unique issu de 60/66.",
+    "revision": 2,
+    "previous_living": "../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/references/066-vivant-avant-t1.png",
+    "previous_corpse": "../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/references/066-epave-avant-t1.png",
+    "review_round": "t1-and-merged-guardian",
+    "blood_layer_status": "none; dry mechanical wreck",
+    "merged_review_numbers": [
+      60
+    ],
+    "search_aliases": [
+      "Rempart"
+    ],
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        692,
+        705
+      ],
+      "native_bounds": [
+        2,
+        2,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        803,
+        315
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "62b43ece2347d3e5e8f29fd9ecc0e7fe76158f309cc45a0534632397aad03bf9",
+    "art_approval_date": "2026-10-06",
+    "art_approval_record": "review-decisions-2026-10-06.json",
+    "integration_status": "not integrated"
+  },
+  {
+    "number": 61,
+    "review_id": "visual-proposal:061",
+    "name": "Colosse biomécanique",
+    "name_status": "provisoire",
+    "family": "Transformations du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-transformation",
+    "content_id": null,
+    "description": "Player transformation, near-front full humanoid body with exactly TWO arms and TWO legs. Large ivory bony plates over crimson muscle, dark blue joints, very broad squared shoulders and short powerful forearms, small recessed helmet-like head. Thick fists empty; two short broad feet. Brutal biomechanical silhouette without a held weapon, no horns, no exposed organs, no floating particles. Keep body about same thirty-pixel height as human reference, just bulkier.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/061.png",
+    "living": "../../../assets/sprites/bestiary/tiles/061-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/061-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        786,
+        788
+      ],
+      "native_bounds": [
+        1,
+        1,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        835,
+        346
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "6b9ecf1519cd7ac86044f7ca459edd9bd96d874b17ddfa4ccf6ce134ebe9ef3c",
+    "review_description": "Corps biomécanique massif : plaques ivoire et muscles rouges.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 62,
+    "review_id": "visual-proposal:062",
+    "name": "Prédateur",
+    "name_status": "provisoire",
+    "family": "Transformations du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-transformation",
+    "content_id": null,
+    "description": "Player transformation, lean upright predatory humanoid, near-front slight three-quarter stance. Steel-blue elongated angular head and chest, broad copper-orange shoulder and thigh masses, charcoal waist. Exactly TWO bent claw arms and TWO digitigrade legs, connected anatomy. Three large hooked fingers on each empty hand, claws point outward. Distinct taller narrow predator silhouette, no extra tails, wings, carried weapons or spikes scattered everywhere. Thirty-pixel height.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/062.png",
+    "living": "../../../assets/sprites/bestiary/tiles/062-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/062-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        791,
+        839
+      ],
+      "native_bounds": [
+        2,
+        1,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        825,
+        299
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "c8d4ed323256a5189d939d9837f5e7790f4199ce0f0025cb8952863f70e6f2a4",
+    "review_description": "Forme élancée : tête angulaire, jambes pliées et grandes griffes.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 63,
+    "review_id": "visual-proposal:063",
+    "name": "Cuirassé",
+    "name_status": "provisoire",
+    "family": "Transformations du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-transformation",
+    "content_id": null,
+    "description": "Player transformation into upright chitinous humanoid, near-front. Broad emerald shell plates on shoulders and chest, ivory abdominal segments, violet joints and boots. Exactly TWO arms, TWO legs and one broad armored insect-like head, tiny paired mandibles. Heavy folded forearms end in attached broad pincers, both empty. Human-like standing posture with wide feet. No additional insect legs, no wings, no carried blades or shields. Distinct layered carapace, not a recolor of biomechanical brute. Thirty-pixel height.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/063.png",
+    "living": "../../../assets/sprites/bestiary/tiles/063-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/063-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        776,
+        814
+      ],
+      "native_bounds": [
+        2,
+        2,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        900,
+        360
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "b15a2f862c3930f4511b03cc1df278a0326dc9e015593572f51aa3ff21b9376b",
+    "review_description": "Corps cuirassé : carapace verte, ventre segmenté et deux pinces.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 64,
+    "review_id": "visual-proposal:064",
+    "name": "Possédé",
+    "name_status": "provisoire",
+    "family": "Transformations du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-transformation",
+    "content_id": null,
+    "description": "Player transformation into near-front demonic humanoid, exactly TWO arms and TWO legs. Crimson upper torso and bent thick arms, broad violet hip and thigh masses, ivory face and exactly TWO short curved horns pointing outward. Angular shoulders with one large blunt protrusion per side. Strong empty claw hands, planted broad feet. Small recognizable face, no robe, staff, fire, weapons, armor crest or medieval clothing. Human-sized thirty-pixel height.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/064.png",
+    "living": "../../../assets/sprites/bestiary/tiles/064-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/064-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        750,
+        735
+      ],
+      "native_bounds": [
+        2,
+        4,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        804,
+        319
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "3a5277eb1a207886c6a8daa8473664d066ea854e375fb839e886fa723f7a6af2",
+    "review_description": "Forme démoniaque : deux cornes, épaules angulaires et mains griffues.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 65,
+    "review_id": "visual-proposal:065",
+    "name": "Abysse",
+    "name_status": "provisoire",
+    "family": "Transformations du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-transformation",
+    "content_id": null,
+    "description": "Player transformation into upright lovecraftian humanoid, near-front. Deep violet head and torso framing a single broad ivory eye, bright teal thick forearms and lower legs, charcoal hollow oval aperture at chest center with TRUE transparency inside. Exactly TWO main arms and TWO planted legs. Exactly TWO short thick purple folded tendrils connected behind shoulders, no thin filaments, no more appendages. Empty hands. Compact readable thirty-pixel silhouette, no robe, equipment, glow or smoke.",
+    "tile_size": 32,
+    "maximum": [
+      29,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/065.png",
+    "living": "../../../assets/sprites/bestiary/tiles/065-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/065-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        710,
+        823
+      ],
+      "native_bounds": [
+        3,
+        1,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        834,
+        376
+      ],
+      "native_bounds": [
+        1,
+        17,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "223f40cdc49f4003db05d9214fc9064bb9db70975e701c1179e7e69aa9761e3b",
+    "review_description": "Forme abyssale : œil unique, cavité du torse et deux vrilles arrière.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 9,
+    "review_id": "visual-proposal:009",
+    "name": "Pillard",
+    "name_status": "nom conservé",
+    "family": "Pillard à reprendre",
+    "status": "awaiting-art-review",
+    "usage": "enemy",
+    "content_id": null,
+    "description": "Near-front human scavenger in a solid industrial teal helmet and amber respirator, broad amber work jacket over teal armored vest, navy work trousers and steel-toed boots. Two ordinary human arms and two legs, matching the current human player height. Hold ONE short heavy steel impact baton in the right hand, straight shaft, thick blunt end, absolutely no sword guard. Left hand empty. Thick utility belt, only one broad chest pocket. NO hood, cloak, robe, medieval helmet, leather jerkin or fantasy ornament.",
+    "tile_size": 32,
+    "maximum": [
+      27,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/009.png",
+    "living": "../../../assets/sprites/bestiary/tiles/009-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/009-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        527,
+        736
+      ],
+      "native_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        848,
+        291
+      ],
+      "native_bounds": [
+        2,
+        21,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "015edb8574c29fbd3ecbf7c141b203d3272f8c455513a523ab1f14557d844e3a",
+    "review_description": "Casque, respirateur et tenue de travail industrielle ; la capuche médiévale disparaît.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 21,
+    "review_id": "visual-proposal:021",
+    "name": "Broyeur",
+    "name_status": "nom conservé",
+    "family": "Machines ennemies — épaves",
+    "status": "awaiting-corpse-art-review",
+    "usage": "enemy-machine",
+    "content_id": null,
+    "description": "Existing mechanical enemy; living artwork preserved exactly. Dry collapsed wreck with no blood.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/021-r2.png",
+    "source_kind": "corpse-only",
+    "living": "../../../assets/sprites/bestiary/tiles/021-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/021-corpse-32.png",
+    "inactive_label": "Épave",
+    "corpse_includes_blood": false,
+    "gameplay_status": "visual revision only; no gameplay change",
+    "equipment_status": "existing living artwork preserved",
+    "living_approval": "accepted 2026-10-06; original living pixels unchanged",
+    "review_description": "Dessin vivant conservé ; épave mécanique sans sang.",
+    "living_encoding": {
+      "native_bounds": [
+        1,
+        9,
+        31,
+        31
+      ],
+      "resampling": "unchanged original pixels",
+      "palette_limit": 24
+    },
+    "living_preserved_sha256": "6e2b436413882d0881d32a4c06d36af092e0a258263e8d2fd413aa60192290bf",
+    "corpse_encoding": {
+      "source_bounds": [
+        77,
+        705,
+        1137,
+        1176
+      ],
+      "native_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "86814949dade029e92b9e7772483bb7785d72764c73858c13772759a355b6e4e",
+    "blood_layer_status": "none; dry mechanical wreck, no blood or replacement fluid pool"
+  },
+  {
+    "number": 22,
+    "review_id": "visual-proposal:022",
+    "name": "Veilleur",
+    "name_status": "nom conservé",
+    "family": "Machines ennemies — épaves",
+    "status": "awaiting-corpse-art-review",
+    "usage": "enemy-machine",
+    "content_id": null,
+    "description": "Existing mechanical enemy; living artwork preserved exactly. Dry collapsed wreck with no blood.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/022-r2.png",
+    "source_kind": "corpse-only",
+    "living": "../../../assets/sprites/bestiary/tiles/022-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/022-corpse-32.png",
+    "inactive_label": "Épave",
+    "corpse_includes_blood": false,
+    "gameplay_status": "visual revision only; no gameplay change",
+    "equipment_status": "existing living artwork preserved",
+    "living_approval": "accepted 2026-10-06; original living pixels unchanged",
+    "review_description": "Dessin vivant conservé ; épave mécanique sans sang.",
+    "living_encoding": {
+      "native_bounds": [
+        1,
+        11,
+        30,
+        31
+      ],
+      "resampling": "unchanged original pixels",
+      "palette_limit": 24
+    },
+    "living_preserved_sha256": "418c9ba3345475cf65c63290d5a0baf4d4e98685f41b2761f0d1dcf57140b675",
+    "corpse_encoding": {
+      "source_bounds": [
+        40,
+        744,
+        1215,
+        1176
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "7a2fc24779dfdd08dd399e6648568627fd0b5a7afdc80d1f90177d1ec454a2df",
+    "blood_layer_status": "none; dry mechanical wreck, no blood or replacement fluid pool"
+  },
+  {
+    "number": 23,
+    "review_id": "visual-proposal:023",
+    "name": "Androïde",
+    "name_status": "nom conservé",
+    "family": "Machines ennemies — épaves",
+    "status": "awaiting-corpse-art-review",
+    "usage": "enemy-machine",
+    "content_id": null,
+    "description": "Existing mechanical enemy; living artwork preserved exactly. Dry collapsed wreck with no blood.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/023-r2.png",
+    "source_kind": "corpse-only",
+    "living": "../../../assets/sprites/bestiary/tiles/023-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/023-corpse-32.png",
+    "inactive_label": "Épave",
+    "corpse_includes_blood": false,
+    "gameplay_status": "visual revision only; no gameplay change",
+    "equipment_status": "existing living artwork preserved",
+    "living_approval": "accepted 2026-10-06; original living pixels unchanged",
+    "review_description": "Dessin vivant conservé ; épave mécanique sans sang.",
+    "living_encoding": {
+      "native_bounds": [
+        6,
+        1,
+        25,
+        31
+      ],
+      "resampling": "unchanged original pixels",
+      "palette_limit": 24
+    },
+    "living_preserved_sha256": "b2e8660fa92f92f6b673f11c7b1d6671c3bc9f694fe988a972fd91aa73340fd6",
+    "corpse_encoding": {
+      "source_bounds": [
+        72,
+        743,
+        1218,
+        1176
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "d26e56a3cc7e0633cc5574ec20f1bd2a4da5eba3f084fb2e531f544b6a3490e2",
+    "blood_layer_status": "none; dry mechanical wreck, no blood or replacement fluid pool"
+  },
+  {
+    "number": 24,
+    "review_id": "visual-proposal:024",
+    "name": "Araignée d’acier",
+    "name_status": "nom conservé",
+    "family": "Machines ennemies — épaves",
+    "status": "awaiting-corpse-art-review",
+    "usage": "enemy-machine",
+    "content_id": null,
+    "description": "Existing mechanical enemy; living artwork preserved exactly. Dry collapsed wreck with no blood.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/024-r2.png",
+    "source_kind": "corpse-only",
+    "living": "../../../assets/sprites/bestiary/tiles/024-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/024-corpse-32.png",
+    "inactive_label": "Épave",
+    "corpse_includes_blood": false,
+    "gameplay_status": "visual revision only; no gameplay change",
+    "equipment_status": "existing living artwork preserved",
+    "living_approval": "accepted 2026-10-06; original living pixels unchanged",
+    "review_description": "Dessin vivant conservé ; épave mécanique sans sang.",
+    "living_encoding": {
+      "native_bounds": [
+        2,
+        11,
+        30,
+        31
+      ],
+      "resampling": "unchanged original pixels",
+      "palette_limit": 24
+    },
+    "living_preserved_sha256": "54225d8e465da7d535d547bc375c7b7ce195c152e3b2ef78e694d9b975351dd9",
+    "corpse_encoding": {
+      "source_bounds": [
+        30,
+        713,
+        1225,
+        1186
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "518b1740a9f9205de984b2b03064d27a89f820797453849a92e384e73a8460ba",
+    "blood_layer_status": "none; dry mechanical wreck, no blood or replacement fluid pool"
+  },
+  {
+    "number": 42,
+    "review_id": "visual-proposal:042",
+    "name": "Sentinelle · machine",
+    "name_status": "nom conservé",
+    "family": "Machines ennemies — épaves",
+    "status": "awaiting-corpse-art-review",
+    "usage": "enemy-machine",
+    "content_id": "core:sentinel_projector",
+    "description": "Existing mechanical enemy; living artwork preserved exactly. Dry collapsed wreck with no blood.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/042-r2.png",
+    "source_kind": "corpse-only",
+    "living": "../../../assets/sprites/bestiary/tiles/042-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/042-corpse-32.png",
+    "inactive_label": "Épave",
+    "corpse_includes_blood": false,
+    "gameplay_status": "visual revision only; no gameplay change",
+    "equipment_status": "existing living artwork preserved",
+    "living_approval": "accepted 2026-10-06; original living pixels unchanged",
+    "review_description": "Dessin vivant conservé ; épave mécanique sans sang.",
+    "living_encoding": {
+      "native_bounds": [
+        2,
+        3,
+        30,
+        32
+      ],
+      "resampling": "unchanged original pixels",
+      "palette_limit": 24
+    },
+    "living_preserved_sha256": "ff6b7aad296bb584a3d259747bac23f91cf6d0e6c9e106a981d3fe89bfab18b3",
+    "corpse_encoding": {
+      "source_bounds": [
+        64,
+        803,
+        1151,
+        1175
+      ],
+      "native_bounds": [
+        1,
+        21,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "ea710e4fe045a1089b01462336a24ec0fdfd554de7270bd4f116e60228e0f6ef",
+    "blood_layer_status": "none; dry mechanical wreck, no blood or replacement fluid pool"
+  },
+  {
+    "number": 43,
+    "review_id": "visual-proposal:043",
+    "name": "Riveuse",
+    "name_status": "nom conservé",
+    "family": "Machines ennemies — épaves",
+    "status": "awaiting-corpse-art-review",
+    "usage": "enemy-machine",
+    "content_id": "core:riveter",
+    "description": "Existing mechanical enemy; living artwork preserved exactly. Dry collapsed wreck with no blood.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      30
+    ],
+    "flying": false,
+    "source": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/043-r2.png",
+    "source_kind": "corpse-only",
+    "living": "../../../assets/sprites/bestiary/tiles/043-living-32.png",
+    "corpse": "../../../assets/sprites/bestiary/tiles/043-corpse-32.png",
+    "inactive_label": "Épave",
+    "corpse_includes_blood": false,
+    "gameplay_status": "visual revision only; no gameplay change",
+    "equipment_status": "existing living artwork preserved",
+    "living_approval": "accepted 2026-10-06; original living pixels unchanged",
+    "review_description": "Dessin vivant conservé ; épave mécanique sans sang.",
+    "living_encoding": {
+      "native_bounds": [
+        4,
+        11,
+        28,
+        32
+      ],
+      "resampling": "unchanged original pixels",
+      "palette_limit": 24
+    },
+    "living_preserved_sha256": "4ae10872fe60a293d3aa3b463f3a539ef7d3cada576ac8ab976d7da9e8e84475",
+    "corpse_encoding": {
+      "source_bounds": [
+        72,
+        781,
+        1181,
+        1198
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "54b29cd5557048a0c2ae28665c4adede15b972d8a92216ba892ccc8711e2febe",
+    "blood_layer_status": "none; dry mechanical wreck, no blood or replacement fluid pool"
+  }
+]

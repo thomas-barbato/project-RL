@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-09",
+  "browser": "bundled_playwright_headless_chromium",
+  "visible_classes": 5,
+  "native_canvases": 5,
+  "zoom_canvases": 5,
+  "tested_configurations": [
+    "gray_pistol",
+    "two_handed_rocket_launcher",
+    "right_knife_left_pistol"
+  ],
+  "backgrounds": [
+    "game_floor",
+    "light"
+  ],
+  "two_handed_disables_left": true,
+  "dual_selection_updates_all_classes": true,
+  "mobile_viewport": [
+    375,
+    900
+  ],
+  "mobile_horizontal_overflow": false,
+  "mobile_zoom": 2,
+  "console_errors": [],
+  "scope": "review_gallery;not_live_game_capture",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-08",
+  "review_ids": [
+    "HUD01-ALL01",
+    "BM03-VIS02",
+    "HUD09"
+  ],
+  "user_answer": "Oui je valide, et on contnue mais donc tu confirmes que tu as bien noté que toutes les compétences qui donnent un status au joueur auront une petite icone dans la barre de buff / débuff ?",
+  "acceptance_scope": "explicit_approval_of_last_shown_status_and_damage_display_synthesis;reaffirmed_general_status_icons",
+  "all_skills_producing_player_status": "small_icon_in_player_buff_debuff_bar_for_each_actual_active_status",
+  "includes_passive_triggered_statuses": true,
+  "hover": "name_current_effect_and_remaining_turns_when_status_has_duration",
+  "BM03": "passive_generates_automatic_buff;icon_shows_charge_count;hover_shows_current_bonus",
+  "damage_display": {
+    "format": "145 (+45)",
+    "meaning": "145_total_including45_bonus;no_double_count",
+    "example_is_typographic_not_weapon_balance": true
+  },
+  "earlier_BM03_RP_numeric_and_reset_rules": "no_explicit_full_numeric_card_acceptance_in_this_display_confirmation;remain_pending",
+  "unchanged_cases_pending": "zero_charge_icon_presence_multiple_bonuses_damage_attribution_and_native_shape_palette_layout",
+  "native_render": "pending_prototype_review",
+  "runtime_integration": "not_integrated"
+}

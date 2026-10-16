@@ -1,0 +1,265 @@
+{
+  "status": "awaiting_visual_review",
+  "protected_files_unchanged": 3831,
+  "native_capture": "native/capture.json",
+  "scene_resampling": false,
+  "wall_cover_checks": [
+    {
+      "variant": "FE02-A06-COULOIR-DROITE",
+      "solid_wall_cells_unchanged": 32,
+      "protected_targets_without_burn": [
+        "D"
+      ]
+    },
+    {
+      "variant": "FE02-A06-COULOIR-GAUCHE",
+      "solid_wall_cells_unchanged": 32,
+      "protected_targets_without_burn": [
+        "D"
+      ]
+    },
+    {
+      "variant": "FE02-A06-COULOIR-HAUT",
+      "solid_wall_cells_unchanged": 32,
+      "protected_targets_without_burn": [
+        "D"
+      ]
+    },
+    {
+      "variant": "FE02-A06-COULOIR-BAS",
+      "solid_wall_cells_unchanged": 32,
+      "protected_targets_without_burn": [
+        "D"
+      ]
+    },
+    {
+      "variant": "FE02-A06-CLOISON-DROITE",
+      "solid_wall_cells_unchanged": 29,
+      "protected_targets_without_burn": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "variant": "FE02-A06-CLOISON-GAUCHE",
+      "solid_wall_cells_unchanged": 29,
+      "protected_targets_without_burn": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "variant": "FE02-A06-CLOISON-HAUT",
+      "solid_wall_cells_unchanged": 29,
+      "protected_targets_without_burn": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "variant": "FE02-A06-CLOISON-BAS",
+      "solid_wall_cells_unchanged": 29,
+      "protected_targets_without_burn": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "variant": "FE02-A06-OBSTACLE-DROITE",
+      "solid_wall_cells_unchanged": 25,
+      "protected_targets_without_burn": [
+        "C"
+      ]
+    },
+    {
+      "variant": "FE02-A06-OBSTACLE-GAUCHE",
+      "solid_wall_cells_unchanged": 25,
+      "protected_targets_without_burn": [
+        "C"
+      ]
+    },
+    {
+      "variant": "FE02-A06-OBSTACLE-HAUT",
+      "solid_wall_cells_unchanged": 25,
+      "protected_targets_without_burn": [
+        "C"
+      ]
+    },
+    {
+      "variant": "FE02-A06-OBSTACLE-BAS",
+      "solid_wall_cells_unchanged": 25,
+      "protected_targets_without_burn": [
+        "C"
+      ]
+    }
+  ],
+  "preview_blink": "Each of twelve views: bright vs dim cyan contour pixels differ by more than 30 green levels, low phase stays visible.",
+  "animations": [
+    {
+      "file": "FE02-A06-COULOIR-DROITE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 52,
+      "frames": 52,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A06-COULOIR-GAUCHE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 53,
+      "frames": 53,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A06-COULOIR-HAUT-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 52,
+      "frames": 52,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A06-COULOIR-BAS-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 52,
+      "frames": 52,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A06-CLOISON-DROITE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 52,
+      "frames": 52,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A06-CLOISON-GAUCHE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 55,
+      "frames": 56,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A06-CLOISON-HAUT-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 52,
+      "frames": 52,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A06-CLOISON-BAS-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 52,
+      "frames": 52,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A06-OBSTACLE-DROITE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 52,
+      "frames": 52,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A06-OBSTACLE-GAUCHE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 53,
+      "frames": 53,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A06-OBSTACLE-HAUT-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 52,
+      "frames": 52,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A06-OBSTACLE-BAS-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 52,
+      "frames": 52,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "couloir-quatre-directions-64.gif",
+      "native_size": [
+        952,
+        1000
+      ],
+      "distinct_frames": 56,
+      "frames": 56,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "cloison-quatre-directions-64.gif",
+      "native_size": [
+        952,
+        1000
+      ],
+      "distinct_frames": 52,
+      "frames": 52,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "obstacle-quatre-directions-64.gif",
+      "native_size": [
+        952,
+        1000
+      ],
+      "distinct_frames": 53,
+      "frames": 53,
+      "duration_ms": 3000,
+      "loop": 0
+    }
+  ],
+  "directions": "Twelve native views, cardinal rotations without flipping or rotating character art."
+}

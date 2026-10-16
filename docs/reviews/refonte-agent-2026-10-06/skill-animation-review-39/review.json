@@ -1,0 +1,33 @@
+{
+  "batch": "ANIM-S13",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 27,
+      "id": "M01",
+      "name": "Mue prédatrice",
+      "variant": "M01-A01",
+      "body_variant": "M01-BODY01",
+      "existing_body_reference": 62,
+      "visual_status": "visually_approved",
+      "body_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 28,
+      "id": "TR61",
+      "name": "Colosse biomécanique",
+      "variant": "TR61-A01",
+      "body_variant": "TR61-BODY01",
+      "existing_body_reference": 61,
+      "visual_status": "visually_approved",
+      "body_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "visuals": "New directly rendered 64 px comic bodies preserve the existing reference silhouettes and palettes. Green organic ribbons for Predator, visible purple angular ribbons/facets for Colossus. Rapid .38s entry and .30s return; central body stays visible through the VFX.",
+  "rules_retained": "At rank11/Willpower10 both forms last22 turns with10-turn cooldowns. The form activates logically at launch; animations add no preparation. Renewal after cooldown restores22 turns without an intermediate human pose. The displayed costs are15 and17 energy; the fixture does not resolve any energy or HP.",
+  "scope": "Debug-only appearance/transition proposal. No form attacks yet, real combat, skills/stat bonuses, HP ratio changes, healing, loot, AI, RNG, inventory or saves. No campaign integration and no replacement of the existing bestiary bank.",
+  "acceptance": "visual-acceptance-01.json"
+}

@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-REANIM02",
+  "revision": 1,
+  "title": "Recharges et première action du ressuscité",
+  "status": "proposed_awaiting_user_review;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-and-birth-INTERACT-REANIM01-02.json",
+      "reference_sha256": "35eec1b1baf1ccc125e83ecfe24c3d1893b3a7ee8f3519aa083d14c9b4231385"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-raised-starting-resources-PETS-EQ12-01.json",
+      "reference_sha256": "3ff957b92a39e80c1098115e9c889b7a048da4fc35ca9da42b21ff40c697911d"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-stat-updates-PETS-EQ13-02.json",
+      "reference_sha256": "74435f8a5b27b55805b598012f6c3f1532295034de2a0c5c0561ff4919491c01"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-raised-origin-profile-PETS-EQ11-02.json",
+      "reference_sha256": "f0d49ae272697181302cc8344b2c05b3ea9a33fd00aa4b489abf7498f1326496"
+    }
+  ],
+  "scope": "OC07_newly_raised_actors_remaining_original_combat_skill_cooldowns_and_first_action_eligibility;not_drone_or_map_arrival_rules",
+  "already_accepted": "original_native_combat_skills_retained;birth_HP_energy_full;duration_fixed_at_birth;autonomous_enemy_only_actions",
+  "proposed_rule": {
+    "cooldown_state": "for_retained_original_native_combat_skills_copy_actual_remaining_cooldown_at_enemy_death;zero_remains_ready;no_cooldown_reset_on_reanimation",
+    "eligible_skills": "only_original_skills_retained_under_accepted_intrinsic_profile_rule;do_not_add_old_equipment_or_temporary_granted_skills",
+    "first_action": "raised_actor_appears_at_reanimation_but_cannot_act_in_game_turn_of_birth;first_normal_AI_action_eligible_from_following_game_turn",
+    "later_cooldowns": "ordinary_remaining_cooldown_progression_continues_under_existing_turn_rules",
+    "duration": "fixed_presence_duration_starts_at_birth;first_action_wait_does_not_extend_or_restart_it",
+    "resources": "full_final_birth_HP_and_energy_are_preserved;cooldown_copy_is_separate_from_resource_refill",
+    "scope_boundary": "no_new_monster_skill_catalogue_global_actor_speed_action_budget_or_drone_birth_delay_rule"
+  },
+  "shown_example": {
+    "retained_skill_cooldown_before_death_turns": 3,
+    "retained_skill_cooldown_at_birth_turns": 3,
+    "later": "ordinary_countdown",
+    "birth_turn_action": "none",
+    "first_eligible_action": "following_game_turn",
+    "values_are_illustrative_not_a_new_ability_cooldown": true
+  },
+  "shown_copy_markdown": "Pour les compétences et la première action du ressuscité, je propose :\n\n- Il conserve les recharges restantes de ses compétences d'origine. Une compétence déjà disponible reste disponible.\n- Il se relève à la mort de la cible, puis commence à agir à partir du tour suivant son relèvement.\n\nExemple : une compétence avait encore 3 tours de recharge lorsque le monstre est mort ; elle possède 3 tours restants au moment où il se relève, puis la recharge continue normalement.\n\nSes PV et son énergie commencent au maximum, comme validé. Sa durée de présence commence au relèvement ; attendre sa première action ne prolonge pas cette durée.",
+  "shown_copy_sha256": "0fcc1b79d12651f15591e94e16bd1b734f5e2964f775d14c1f480dec9030bd4e",
+  "not_resolved_here": [
+    "exact_cooldown_decrement_death_birth_expiry_phase_order",
+    "late_or_waiting_placement_first_action_timing",
+    "same_target_multiple_caster_marks_and_mark_reapplication_identity",
+    "concrete_monster_AI_skill_choice_and_native_feedback"
+  ],
+  "mechanic_approval": "pending_user_review",
+  "text_approval": "design_explanation_pending;no_new_skill_RP_or_name",
+  "visual_approval": "no_new_native_art_or_animation_proposed",
+  "runtime_integration": "not_integrated"
+}

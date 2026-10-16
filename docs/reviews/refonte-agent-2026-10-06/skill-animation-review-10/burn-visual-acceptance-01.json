@@ -1,0 +1,23 @@
+{
+  "review_id": "ANIM-BURN01",
+  "date": "2026-10-12",
+  "visual_shape_accepted": true,
+  "user_acceptance": "parcontre j’ai noté que tu avais fait un effet \"flammes\" sur les personnages :) c’est génial et ca , ca devra etre l’animation de l’effet temporaire \"brulure\"",
+  "layer_instruction": "fait passer les flammes derrières les personnages s’il te plais :) ca rend super",
+  "scope": "Small existing painted flames assigned to the temporary Burn status. Shape approval and behind-body instruction; no damage, chance, duration or other status rule changed.",
+  "source_function": "    fn burn(&self, at: Vec2, time: f32, phase: u32, opacity: f32) {\n        self.plume(at + vec2(-9.0, 19.0), time, phase, 0.33, opacity);\n        self.plume(at + vec2(10.0, 19.0), time, phase + 3, 0.27, opacity);\n    }",
+  "source_function_sha256": "f64a41c65d2eae0b2dd6a0e8672c220cf5ebfdb042813aa1d56f59b9d87b4efa",
+  "assets": {
+    "assets/animations/agent/skill-animation-review-06/flame-atlas.png": "2ef54f2b5a41fc272ab1cd1e753316ac713407e017ff2e4b0d02e1fee1bbb855",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-06/drawn-frames/flame/00.png": "501765437bfe069660a5bd2dfc8161b0b05acb31b5469aeb95caaf50db217db8",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-06/drawn-frames/flame/01.png": "7df08e821200a72aa9f76c59a785d2a8c31b1ffea310f53bdd77e0958e661d4d",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-06/drawn-frames/flame/02.png": "3badb9180ea45a53a9f3ec5cc4f140f29b449aa478d57b463b75b1b4af34bdee",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-06/drawn-frames/flame/03.png": "392af75efe993666c56ad446f989ede1a0dab1c484936682892481851aec5594",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-06/drawn-frames/flame/04.png": "aafca210f5c629dd28beacfabb940851a87b379a208d708ffd6f7e69f3a7a71b",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-06/drawn-frames/flame/05.png": "c3a60c2ad5bc2043d2ad76a38469d10e929e61a35c4e5ba1a0c292bcfd56ea6d",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-06/drawn-frames/flame/06.png": "982c17e039a7521c7fe9753936eeef31ab468808e32e936a10aae490f54904cc",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-06/drawn-frames/flame/07.png": "1036e4bf591713517c687b3d5da738294653e4196d4c73658b3ef2314b42299d"
+  },
+  "campaign_integration": false,
+  "new_overlay_preview_accepted": false
+}

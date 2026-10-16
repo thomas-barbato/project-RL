@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-15",
+  "id": "T02",
+  "title": "Pas spectral",
+  "revision": 3,
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T02-02.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/spectral-step-range-and-choice-decisions.json",
+  "player_copy_markdown": "**T02 · Pas spectral — Rang 11**\n\n*Votre silhouette se trouble tandis que vous vous écartez du danger.*\n\n**Effet actuel**\n\n- Déplacement maximum : **8 cases**.\n- Bonus d’esquive : **+45**.\n- Durée du bonus : **4 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus d’esquive : **+48**.\n\n**Coût : 11 énergie · Recharge : 6 tours.**\n\nChoisissez votre case d’arrivée dans la portée maximale. Vous pouvez parcourir une distance plus courte. La case doit être libre, connue et franchissable ; les murs et les obstacles bloquent le trajet.\n\nLe bonus s’ajoute à votre esquive habituelle et s’applique aux réactions provoquées par ce déplacement.",
+  "name_and_roleplay": "unchanged and previously accepted",
+  "mechanical_approval": "SPECTRAL-RANGE01 explicit doubling and optional shorter destination; remaining catalogue parameters preserved",
+  "movement_conditions": {
+    "distance_is_maximum": true,
+    "shorter_positive_distance_allowed": true,
+    "destination": "free known passable tile within maximum range",
+    "walls_or_obstacles_crossed": false
+  },
+  "visual_approval": "ES06-A01 and T02-A01 style accepted in ANIM-S38-ACCEPT01; existing one-tile example remains a legal shorter choice",
+  "runtime_integration": "catalogue and targeting laboratory; campaign effects still deferred"
+}

@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-15",
+  "review_id": "DRONE-PASSIVE-VISUAL01",
+  "user_messages": [
+    "je pense que la réparation devrait etre bleue :)",
+    "concernant blindage amélioré c'est bien un passif non ? qui a toujours effet ? si c'est le cas alors il n'y a besoin de rien, à part une petite icone dans la future fenetre des pets :)"
+  ],
+  "repair_palette_direction": "Blue for drone repairs; exact native effects still to review.",
+  "DP02": {
+    "role": "Permanent passive, no activation needed",
+    "animation": "No world animation requested or required",
+    "presentation": "Small existing skill icon in the future pets window",
+    "existing_icon": "assets/skills/agent/DP02-compact.png",
+    "pet_window_integration": "future work; not implemented here"
+  },
+  "scope": "Visual presentation policy. No new approval of numerical reduction values or campaign implementation.",
+  "next_visual_lot": ["DP01", "DR01"],
+  "campaign_integration": false
+}

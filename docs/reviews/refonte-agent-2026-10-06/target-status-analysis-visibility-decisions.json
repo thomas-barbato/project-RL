@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-07",
+  "review_id": "HUD06",
+  "user_message": "a noter que pour toutes les attaques qui donnent un \"status\" à la cible , ca devra etre ajouté dans sa barre de \"buff\" et \"debuff\" (barre consultable dans l'action d'analyse de la cible, valeurs visibles mêmes sans drone)",
+  "accepted_requirements": {
+    "every_attack_applied_status_in_target_buff_debuff_bar": true,
+    "target_bar_consultable_from_target_analysis_action": true,
+    "status_effect_values_visible_without_reconnaissance_drone": true
+  },
+  "approval_scope": "Explicit user requirement for target status listing and access to its effect values without a drone. Supersedes the previous name/image/coordinates/text-only restriction for this specific information. Does not grant access to other detailed target statistics or change target visibility rules.",
+  "previous_observation_decisions": "docs/reviews/refonte-agent-2026-10-06/eclaireur-observation-and-first-drone-decisions.json",
+  "unshown_interface_details": "Exact icon artwork, labels, layout, hover contents, status stacking/grouping and permanent-state presentation remain to review; no new effect mechanics or application chances inferred.",
+  "visual_approval": "requested_bar_direction_accepted_specific_native_render_pending",
+  "runtime_integration": "not_integrated"
+}

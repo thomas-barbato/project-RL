@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-VIS01-FEEDBACK02",
+  "prior_scoped_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/equipped-class-visual-acceptance-decisions-01.json",
+    "reference_sha256": "74f56dcce34f0010e58fe8d85dbff8fe9bcad43218b1d75666b742591081e3b0"
+  },
+  "user_feedback": [
+    "le pistolet du technomancien est toujours mal orienté, en faite l'arme devrait poitée vers le bas si tu mets le bras comme ca.",
+    "Aussi, penses tu qu'il serait possible d'adapter toutes les armes du jeu à l'affichage en jeu ? apres tout, on vient de le faire pour des armes de base :) .",
+    "Et peut-être changer la couleur de l'arcaniste pour une robe rouge.",
+    "le rouge n'est pas assez petant :)",
+    "beaucoup mieux oui :)"
+  ],
+  "requested_direction": [
+    "Technomancien_muzzle_down_with_existing_lowered_arm",
+    "Arcaniste_vivid_saturated_red_primary_robe_material",
+    "verify_feasibility_of_adapting_all_weapon_family_layers_to_new_character_rendering"
+  ],
+  "rejected_or_superseded_parts": [
+    "upward_pistol_orientation_from_revision3",
+    "muted_red_palette_from_revision4"
+  ],
+  "revised_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-05.json",
+    "reference_sha256": "7da947a843409a0111c90a50b5b91525b22a7eb733e5e8f7c5757fc02c668a28"
+  },
+  "superseded_muted_palette_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-04.json",
+    "reference_sha256": "b779cd5902e5544955b1e715e36c29f135bde75056756296e07e9fa4ad6c5b09"
+  },
+  "current_weapon_coverage": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-held-family-coverage-2026-10-09.json",
+    "reference_sha256": "31f453ea868c4955ac9cd6c43bdd16ea5f0d1cbc5196f4f99041ad162ea0a46e"
+  },
+  "accepted_vivid_red_palette": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/red-robe-visual-acceptance-decisions-01.json",
+    "reference_sha256": "3550788f81bacb62d9d3d1a08832eaee6513caaab3f8cfa0e8e11fa19f0f258b"
+  },
+  "approval_boundary": "vivid_red_palette4_accepted;downward_pistol2_remains_pending_separate_explicit_visual_acceptance;unshown_configurations_not_approved",
+  "mechanical_changes": "none",
+  "runtime_integration": "not_integrated"
+}

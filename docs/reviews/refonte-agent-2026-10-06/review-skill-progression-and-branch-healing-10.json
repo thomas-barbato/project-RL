@@ -1,0 +1,230 @@
+{
+  "date": "2026-10-08",
+  "revision": 10,
+  "review_ids": [
+    "SKILL-PROG01",
+    "SKILL-HEAL01",
+    "SKILL-HEAL01-SCOPE02-ACCEPT01"
+  ],
+  "decision_reference": "docs/reviews/refonte-agent-2026-10-06/skill-progression-and-branch-healing-decisions.json",
+  "direction_approval": "explicit_user_confirmation",
+  "primary_branch_coverage": [
+    {
+      "branch": "Mêlée",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    },
+    {
+      "branch": "Survie",
+      "existing_healing_candidates": [
+        "SU04"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    },
+    {
+      "branch": "Drones",
+      "existing_healing_candidates": [
+        "DP01",
+        "DR01"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble",
+      "requested_active_robot_repair": "DR01_shown_card_already_accepted;allocation_and_native_pending"
+    },
+    {
+      "branch": "Affaiblissements",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    },
+    {
+      "branch": "Attaques à distance",
+      "existing_healing_candidates": [
+        "DI07"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    },
+    {
+      "branch": "Esquive",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "no_new_heal_requested;Tir_supplies_group_healing"
+    },
+    {
+      "branch": "Feu",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    },
+    {
+      "branch": "Froid",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    },
+    {
+      "branch": "Énergie occulte",
+      "existing_healing_candidates": [
+        "OC05"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    },
+    {
+      "branch": "Transformations",
+      "existing_healing_candidates": [
+        "TR64"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    },
+    {
+      "branch": "Pouvoirs hybrides",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    },
+    {
+      "branch": "Buffs de mêlée",
+      "existing_healing_candidates": [
+        "BM02"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    },
+    {
+      "branch": "Buffs à distance",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    },
+    {
+      "branch": "Armes lourdes",
+      "existing_healing_candidates": [
+        "HL06"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "inventory_only;coverage_assessed_per_accepted_main_ensemble"
+    }
+  ],
+  "future_heavy_weapon_tree": "existing_heavy_tree_has_accepted_HL06_displayed_heal_card;curves_and_cases_pending",
+  "secondary_tree_healing_targets_and_qualification": "no_requirement_for_secondary_tree_heals",
+  "progression_review_scope": "whole catalogue including previously approved skills; quantitative changes must be individually reapproved",
+  "sequence": [
+    "review_attributes_and_remaining_unshown_parameters",
+    "retain_partial_receipt_reconciliation_backlog",
+    "prototype_native_animations_then_runtime_attributes_and_balance"
+  ],
+  "catalogue_counts_unchanged": {
+    "skills": 79,
+    "branches": 14
+  },
+  "new_gameplay_skill_ids_created": "DI07_proposal_reused;DR01_preserved;no_runtime_IDs_created",
+  "runtime_integration": "not_integrated",
+  "previous_review": "docs/reviews/refonte-agent-2026-10-06/review-skill-progression-and-branch-healing-09.json",
+  "previous_review_sha256": "8136939f1ad24fb508fe013b8de01b9ce95c475aaa71f69ed05d2c279bb286a2",
+  "catalogue_count_revision_reason": "DI07_shown_card_accepted_and_added_to_Tir;DR01_prior_accepted_card_tracked_separately_pending_catalogue_allocation",
+  "primary_manifest_before_this_turn": "docs/reviews/refonte-agent-2026-10-06/review-primary-catalogue-170.json",
+  "primary_manifest_before_this_turn_sha256": "95e83e9076205da12d470554fe6933f9c72ef91a5bb6f52960696a6fe6f5a359",
+  "primary_branch_count": 14,
+  "existing_primary_candidates": 79,
+  "existing_first_pass_cards_remaining": 0,
+  "proposed_candidates": 0,
+  "new_catalogue_proposal": "docs/reviews/refonte-agent-2026-10-06/review-branch-healing-complements-02.json",
+  "new_catalogue_proposal_sha256": "ebe0a6a5ac351ad0188dfc85076877441e9fd5a53c1c2c909918995fc863e086",
+  "missing_heals_not_implemented": "no_new_heal_required;runtime_not_integrated",
+  "native_animations_runtime_and_balance": "following_phases_not_started_here",
+  "scope_correction": "docs/reviews/refonte-agent-2026-10-06/healing-main-tree-scope-correction-decisions.json",
+  "scope_correction_sha256": "b4231ef8550306885be12da0e5777550612ed1dcba7690fd32eb9ee34f798a7c",
+  "healing_scope": "one_per_six_main_ensembles;Tir_only_no_Esquive_heal",
+  "scope_acceptance": "docs/reviews/refonte-agent-2026-10-06/healing-six-main-tree-scope-acceptance-decisions.json",
+  "scope_acceptance_sha256": "7d0d091cf43a8a2b9d65bc4e303be6ef9b1ff6dec9882c668b0826b8a6b7f936",
+  "accepted_main_ensembles": [
+    {
+      "name": "Mêlée/Survie",
+      "branches": [
+        "Mêlée",
+        "Survie"
+      ],
+      "existing_heals": [
+        "SU04"
+      ],
+      "healed_actor": "agent"
+    },
+    {
+      "name": "Drones/Affaiblissements",
+      "branches": [
+        "Drones",
+        "Affaiblissements"
+      ],
+      "existing_heals": [
+        "DP01",
+        "DR01"
+      ],
+      "healed_actor": "drones_or_allied_robots;not_agent",
+      "scope": "DR01_displayed_card_previously_accepted;robot_target_scope_preserved;catalogue_allocation_and_native_pending"
+    },
+    {
+      "name": "Tir/Esquive",
+      "branches": [
+        "Attaques à distance",
+        "Esquive"
+      ],
+      "existing_heals": [
+        "DI07"
+      ],
+      "required_healing_branch": "Attaques à distance",
+      "no_new_heal_in_Esquive": true,
+      "status": "DI07_shown_card_accepted;no_new_heal_in_Esquive"
+    },
+    {
+      "name": "Magie",
+      "branches": [
+        "Feu",
+        "Froid",
+        "Énergie occulte"
+      ],
+      "existing_heals": [
+        "OC05"
+      ],
+      "healed_actor": "agent"
+    },
+    {
+      "name": "Transformations/Hybrides",
+      "branches": [
+        "Transformations",
+        "Pouvoirs hybrides"
+      ],
+      "existing_heals": [
+        "TR64"
+      ],
+      "healed_actor": "agent_in_Possede_form;no_new_per_form_requirement_inferred"
+    },
+    {
+      "name": "Armes lourdes",
+      "branches": [
+        "Armes lourdes"
+      ],
+      "existing_heals": [
+        "HL06"
+      ],
+      "healed_actor": "agent"
+    }
+  ],
+  "main_tree_count": 6,
+  "new_individual_card_proposal": null,
+  "new_individual_card_proposal_sha256": null,
+  "DR01_card_acceptance": "docs/reviews/refonte-agent-2026-10-06/targeted-repair-description-acceptance-decisions.json",
+  "DR01_card_acceptance_sha256": "91b9e3f57f4f657b6cd59894238adacf3cc6331961c3c964a14add828d271aed",
+  "DR01_current_accepted_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DR01-02.json",
+  "DR01_current_accepted_card_sha256": "beeff863ced45e37ea2dc16b618bf3dcef12bf5d580f0ad57d149af4ce31ae4d",
+  "DR01_status": "shown_name_RP_numbers_and_robot_conditions_already_accepted;allocation_unshown_cases_native_pending;do_not_repropose_those_accepted_values",
+  "accepted_DI07_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI07-02.json",
+  "accepted_DI07_card_sha256": "b27466edb9943af166a39f38a2a998598946624d0e3e2b96e9f361ddf9243eed",
+  "accepted_DI07_decisions": "docs/reviews/refonte-agent-2026-10-06/vampiric-shot-description-acceptance-decisions.json",
+  "accepted_DI07_decisions_sha256": "d7032f849daa14ff5414b3e22305b8b1b5e50c8b91b2da92a65fe31078afbc79",
+  "healing_coverage": "all_six_main_ensembles_have_healing_defined_in_displayed_accepted_scope;robot_healing_target_preserved"
+}

@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-RANK05-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-residue-access-loss-INTERACT-RANK05-01.json",
+    "reference_sha256": "f92029ac59b6750b2e1c7a821eefebf4432c962f5f68e0e4a5321318d3af9947"
+  },
+  "user_acceptance": "parfait :) on continue",
+  "shown_explanation": "Pour les mines qui ont déjà explosé, je propose que perdre le passif nécessaire supprime aussi les zones concernées : nuages de poison si Mines de poison devient indisponible, zones de glace si Mines de glace devient indisponible, et toutes les zones laissées par vos mines si Résidu persistant devient indisponible.\n\nLes statuts déjà appliqués par l'explosion, comme Empoisonnement ou Gel, continuent jusqu'à leur fin normale. Le Gel maintenu uniquement par une zone supprimée prend fin avec elle.\n\nCette suppression ne produit pas de nouvelle explosion ni de remboursement d'énergie. Elle concerne les zones de vos mines, sans supprimer les zones provenant d'autres sorts.",
+  "approved_rule": {
+    "SM02_access_loss": "remove_own_SM00_poison_residue_zones_depending_on_SM02",
+    "SM03_access_loss": "remove_own_SM00_cold_residue_zones_depending_on_SM03",
+    "SM05_access_loss": "remove_all_own_SM00_residue_zones_depending_on_SM05",
+    "independent_explosion_status": "already_applied_explosion_Poisoned_or_Gel_instances_keep_ordinary_remaining_duration_and_existing_reapplication_removal_rules",
+    "zone_only_Gel": "Gel_maintained_only_by_removed_zone_ends_under_existing_zone_Gel_lifetime_rule",
+    "cleanup": "no_new_explosion_damage_or_energy_refund;do_not_remove_other_skill_zones_or_other_caster_zones",
+    "no_restore": "does_not_restore_a_previous_status_instance_already_overwritten_by_later_successful_reapplication"
+  },
+  "approval_boundary": "shown_post_explosion_residue_zone_cleanup_on_loss_of_required_passive_access_and_status_duration_distinction;partial_rank_loss_radius_and_merged_status_provenance_not_newly_approved",
+  "runtime_integration": "not_integrated"
+}

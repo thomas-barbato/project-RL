@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-O01-ACCEPT01",
+  "name_review_id": "CLASS-NAME-O02",
+  "user_acceptance": "ca me va :)",
+  "source_batch": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-starts-START-ALL01-01.json",
+    "reference_sha256": "0c7423689245985626b2d55636b2541c6867952ec16feee3d0f83ab56b568afc"
+  },
+  "prior_class_authority": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/class-start-delegation-decisions.json",
+    "reference_sha256": "74e874981b767dc8c47b101f283a344a5f9fb67c3ac85307bb7e76018dbc696d"
+  },
+  "shown_copy_markdown": "Pour remplacer Opérateur, je propose Technomancien.\n\nVous déployez vos drones et infiltrez les défenses ennemies par la technologie et l’occulte.\n\nSon départ proposé :\n- Actif : Invocation de l’Artilleur, rang 1, un drone d’attaque.\n- Passif : Algorithmes de combat améliorés, +25 % de dégâts des drones.\n- Implant : +15 % de PV aux drones, +1 tour aux affaiblissements techno-occultes ; −10 % de dégâts des armes.\n- Réserves : 30 PV et 38 énergie.\n- Équipement : pistolet et tenue technique.\n\nLes cinq départs sont préparés dans le dossier des classes, encore au stade de conception.",
+  "shown_copy_sha256": "7249c08316c95b57aacc1cee48f7ce9839fc370cc7aa420a9542a7d0aa6e0ceb",
+  "approved_shown_fields": {
+    "public_class_name": "Technomancien",
+    "roleplay": "Vous déployez vos drones et infiltrez les défenses ennemies par la technologie et l’occulte.",
+    "starting_active": {
+      "skill_id": "D59",
+      "title": "Invocation de l’Artilleur",
+      "learned_rank": 1
+    },
+    "starting_passive": {
+      "skill_id": "O03",
+      "title": "Algorithmes de combat améliorés",
+      "learned_rank": 1,
+      "drone_damage_bonus_percent": 25
+    },
+    "implant_values": {
+      "drone_maximum_HP_bonus_percent": 15,
+      "techno_occult_weakening_duration_bonus_turns": 1,
+      "weapon_damage_penalty_percent": 10
+    },
+    "starting_reserves": {
+      "maximum_HP": 30,
+      "current_HP": 30,
+      "maximum_energy": 38,
+      "current_energy": 38
+    },
+    "equipment_direction": {
+      "weapon": "pistolet",
+      "clothing": "tenue technique"
+    }
+  },
+  "unshown_not_implicitly_approved": [
+    "exact_initial_attribute_vector_prepared_under_numeric_class_delegation_not_displayed_in_last_message",
+    "specific_weapon_and_armor_values_damage_ranges_and_other_equipment_slots",
+    "shared_consumable_names_counts_values_and_icons",
+    "precise_implant_effect_eligibility_and_relative_penalty_pipeline",
+    "native_equipped_creation_preview_and_new_visuals",
+    "other_class_RP_and_start_cards_not_approved_by_link_only"
+  ],
+  "stable_identity": "START-O01_remains_class_profile_anchor;Operator_name_is_historical_alias;D56_drone_name_unchanged",
+  "runtime_integration": "not_integrated"
+}

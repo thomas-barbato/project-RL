@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-12",
+  "scope": "Isolated debug laboratory review; no gameplay integration or full-suite claim.",
+  "cargo_build_locked": "passed",
+  "cargo_test_locked_agent_skill_lab_review": {
+    "passed": 9,
+    "failed": 0
+  },
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "python_syntax": "passed",
+  "gallery_javascript_syntax": "passed",
+  "native_capture": {
+    "framebuffer": [
+      512,
+      512
+    ],
+    "tile": 64,
+    "scenarios": 3,
+    "frames_per_scenario": 120,
+    "stderr_empty": true
+  },
+  "occlusion_evidence": "verification.json: comparison at frame 60 with a control render, zero changed pixels on 113 excluded cells across three fixtures.",
+  "protected_files_unchanged": 1034,
+  "visual_review": "pending explicit player acceptance",
+  "known_visual_limit": "Mask follows discrete cells, with approximately two pixels of inward feather; geometric cuts remain visible."
+}

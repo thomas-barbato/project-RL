@@ -379,6 +379,175 @@ mod tests {
         assert!(app.world_context.is_some());
     }
 
+    #[test]
+    fn mixed_weapon_context_attack_uses_the_same_automatic_choice_as_keyboard() {
+        let mut app = AsciiApp::new_mixed_weapon_trial().unwrap();
+        for (at, slot, turn) in [(GridPos::new(5, 4), 0, 1), (GridPos::new(4, 7), 1, 2)] {
+            let before = suspension::fingerprint(&app.game);
+            open(&mut app, at);
+            let row = app
+                .world_context
+                .as_ref()
+                .unwrap()
+                .rows
+                .iter()
+                .find(|r| r.choice == Choice::Attack)
+                .unwrap();
+            assert!(row.blocked.is_none(), "{:?}", row.blocked);
+            assert_eq!(suspension::fingerprint(&app.game), before);
+            click(&mut app, Choice::Attack);
+            assert_eq!(app.game.turn(), turn);
+            assert!(
+                matches!(app.history.last(),Some(RecordedCommand::Attack { slot:actual,.. }) if *actual==slot)
+            );
+            assert!(app.mouse_walk.is_none());
+        }
+    }
+
+    #[test]
+    fn rupture_right_click_skill_targets_the_clicked_enemy_and_never_spends_on_preview() {
+        let mut app = AsciiApp::new_agent_melee_trial().unwrap();
+        let at = GridPos::new(5, 4);
+        let before = suspension::fingerprint(&app.game);
+        open(&mut app, at);
+        click(&mut app, Choice::Skills);
+        let choice = Choice::Technique(project_rl::skills::agent::technique("B01"));
+        let row = app
+            .world_context
+            .as_ref()
+            .unwrap()
+            .rows
+            .iter()
+            .find(|r| r.choice == choice)
+            .unwrap();
+        assert!(row.blocked.is_none(), "{:?}", row.blocked);
+        click(&mut app, choice);
+        assert!(app.world_context.is_none());
+        let aim = app.attack_aim.unwrap();
+        assert_eq!((aim.slot, aim.cursor), (0, at));
+        assert_eq!(suspension::fingerprint(&app.game), before);
+        app.update_input(&InputFrame {
+            pressed: [app.controls.binding(Action::Attack).clone()].into(),
+            ..Default::default()
+        });
+        assert_eq!(app.game.turn(), 1);
+        assert!(app.attack_aim.is_none());
+        // A distant target is visibly unavailable, without moving into melee.
+        open(&mut app, GridPos::new(4, 7));
+        click(&mut app, Choice::Skills);
+        let row = app
+            .world_context
+            .as_ref()
+            .unwrap()
+            .rows
+            .iter()
+            .find(|r| r.choice == Choice::Technique(project_rl::skills::agent::technique("B01")))
+            .unwrap();
+        assert!(row.blocked.is_some());
+    }
+
+    #[test]
+    fn fireball_right_click_can_select_an_empty_epicentre() {
+        let mut app = AsciiApp::new_agent_fireball_trial().unwrap();
+        let at = GridPos::new(6, 3);
+        let before = suspension::fingerprint(&app.game);
+        open(&mut app, at);
+        click(&mut app, Choice::Skills);
+        let choice = Choice::Technique(project_rl::skills::agent::technique("FE05"));
+        assert!(
+            app.world_context
+                .as_ref()
+                .unwrap()
+                .rows
+                .iter()
+                .find(|r| r.choice == choice)
+                .unwrap()
+                .blocked
+                .is_none()
+        );
+        click(&mut app, choice);
+        assert_eq!(app.attack_aim.unwrap().cursor, at);
+        assert_eq!(suspension::fingerprint(&app.game), before);
+        app.update_input(&InputFrame {
+            pressed: [app.controls.binding(Action::Attack).clone()].into(),
+            ..Default::default()
+        });
+        assert_eq!(app.game.turn(), 1);
+        assert!(app.attack_aim.is_none());
+        assert!(
+            app.game
+                .actors()
+                .iter()
+                .any(|(id, a)| id != app.game.player_id() && a.integrity() < 500)
+        );
+    }
+    #[test]
+    fn occult_blast_right_click_can_select_an_empty_epicentre() {
+        let mut app = AsciiApp::new_agent_blast_trial().unwrap();
+        let at = GridPos::new(6, 3);
+        let before = suspension::fingerprint(&app.game);
+        open(&mut app, at);
+        click(&mut app, Choice::Skills);
+        let choice = Choice::Technique(project_rl::skills::agent::technique("A02"));
+        assert!(
+            app.world_context
+                .as_ref()
+                .unwrap()
+                .rows
+                .iter()
+                .find(|r| r.choice == choice)
+                .unwrap()
+                .blocked
+                .is_none()
+        );
+        click(&mut app, choice);
+        assert_eq!(app.attack_aim.unwrap().cursor, at);
+        assert_eq!(suspension::fingerprint(&app.game), before);
+        app.update_input(&InputFrame {
+            pressed: [app.controls.binding(Action::Attack).clone()].into(),
+            ..Default::default()
+        });
+        assert_eq!(app.game.turn(), 1);
+        assert!(app.attack_aim.is_none());
+        assert!(
+            app.game
+                .actors()
+                .iter()
+                .any(|(id, a)| id != app.game.player_id() && a.integrity() < 500)
+        );
+    }
+    #[test]
+    fn drone_right_click_skills_place_a_real_drone_on_the_selected_free_cell() {
+        for id in ["D58", "D59", "D66"] {
+            let mut app = AsciiApp::new_agent_drone_trial().unwrap();
+            let at = GridPos::new(4, 3);
+            let before = suspension::fingerprint(&app.game);
+            open(&mut app, at);
+            click(&mut app, Choice::Skills);
+            click(
+                &mut app,
+                Choice::Technique(project_rl::skills::agent::technique(id)),
+            );
+            assert_eq!(app.attack_aim.unwrap().cursor, at);
+            assert_eq!(suspension::fingerprint(&app.game), before);
+            app.update_input(&InputFrame {
+                pressed: [app.controls.binding(Action::Attack).clone()].into(),
+                ..Default::default()
+            });
+            assert_eq!(app.game.turn(), 1);
+            assert_eq!(app.game.player_agent_drone_count(), 1);
+            let drone = app
+                .game
+                .actors()
+                .get(app.game.actors().entity_at(at).unwrap())
+                .unwrap();
+            assert_eq!(
+                drone.drone().unwrap().profile().visual_profile().as_str(),
+                format!("agent:{}", id.to_ascii_lowercase())
+            );
+        }
+    }
+
     fn click(app: &mut AsciiApp, choice: Choice) {
         let menu = app.world_context.as_mut().unwrap();
         let index = menu.rows.iter().position(|r| r.choice == choice).unwrap();
@@ -1834,6 +2003,22 @@ impl AsciiApp {
         if self.game.player_technique_preparation().is_some() {
             return false;
         }
+        if action == Action::Attack
+            && let Some(technique) = self.game.agent_form_default_technique()
+        {
+            self.select_world_target(Some(at));
+            if let Err(reason) = self.game.agent_form_action_preview(&technique, at) {
+                self.push_log(command_rejection_message(reason).to_owned());
+            } else {
+                self.execute_command(GameCommand::UseTechniqueAt {
+                    technique,
+                    target: at,
+                    weapon_slot: self.active_weapon_slot,
+                });
+                self.capture_events();
+            }
+            return true;
+        }
         let choice = match action {
             Action::Attack => Choice::Attack,
             Action::Interact if self.game.ground_items().item_at(at).is_some() => Choice::PickUp,
@@ -1998,13 +2183,14 @@ impl AsciiApp {
     }
 
     fn attack_arrival(&self, at: GridPos) -> Option<ArrivalAction> {
+        let slot = self
+            .game
+            .player_default_attack_slot(self.active_weapon_slot, at);
         Some(ArrivalAction::Attack {
             at,
             actor: self.game.actors().entity_at(at),
-            slot: self.active_weapon_slot,
-            weapon: self
-                .game
-                .equipped_player_weapon_item(self.active_weapon_slot)?,
+            slot,
+            weapon: self.game.equipped_player_weapon_item(slot)?,
         })
     }
 
@@ -2037,9 +2223,12 @@ impl AsciiApp {
         else {
             unreachable!()
         };
-        let area = self.context_attack_needs_aim(*slot, *actor);
+        let slot = self
+            .game
+            .player_default_attack_slot_from(*slot, origin, *at);
+        let area = self.context_attack_needs_aim(slot, *actor);
         self.game.player_attack_approach_preview(
-            *slot,
+            slot,
             origin,
             *at,
             if area { None } else { *actor },
@@ -2163,7 +2352,7 @@ impl AsciiApp {
                 slot,
                 weapon,
             } => {
-                self.active_weapon_slot == *slot
+                self.weapon_configuration_active(usize::from(*slot))
                     && self.game.equipped_player_weapon_item(*slot) == Some(*weapon)
                     && actor.is_none_or(|id| {
                         self.game
@@ -2250,6 +2439,7 @@ impl AsciiApp {
             ArrivalAction::Attack {
                 at, actor, slot, ..
             } => {
+                let slot = self.game.player_default_attack_slot(slot, at);
                 self.selected_world_cell = None;
                 self.selected_target = actor;
                 if self.context_attack_needs_aim(slot, actor) {
@@ -2308,8 +2498,37 @@ impl AsciiApp {
     }
 
     fn context_technique_blocked(&self, id: &TechniqueId, at: GridPos) -> Option<String> {
+        if id.as_str() == "agent:form_return" {
+            return self.quick_technique_status(id).1;
+        }
+        if self.game.agent_form_action_profile(id).is_some() {
+            return self.quick_technique_status(id).1.or_else(|| {
+                self.game
+                    .agent_form_action_preview(id, at)
+                    .err()
+                    .map(|e| attack_preview_rejection_label(&e).to_owned())
+            });
+        }
         if let Some(reason) = self.quick_technique_status(id).1 {
             return Some(reason);
+        }
+        if project_rl::skills::agent::from_technique(id).is_some() {
+            if project_rl::skills::agent::from_technique(id)
+                .is_some_and(|s| matches!(s.id.as_str(), "D58" | "D59" | "D66"))
+                && self.game.player_position() == Some(at)
+            {
+                return None;
+            }
+            return self
+                .game
+                .player_weapon_technique_preview(
+                    id,
+                    self.game
+                        .player_weapon_slot_for_technique(self.active_weapon_slot, id),
+                    at,
+                )
+                .err()
+                .map(|e| attack_preview_rejection_label(&e).to_owned());
         }
         let action = self.game.rules().skills.technique(id)?.action()?;
         if matches!(action, TechniqueAction::ManifestDrone { .. }) {
@@ -2322,7 +2541,12 @@ impl AsciiApp {
         if world_aim(action) {
             return self
                 .game
-                .player_weapon_technique_preview(id, self.active_weapon_slot, at)
+                .player_weapon_technique_preview(
+                    id,
+                    self.game
+                        .player_weapon_slot_for_technique(self.active_weapon_slot, id),
+                    at,
+                )
                 .err()
                 .map(|e| attack_preview_rejection_label(&e).to_owned());
         }
@@ -2346,8 +2570,11 @@ impl AsciiApp {
             let candidates = if ordinary {
                 self.game.player_technique_targets(id)
             } else {
-                self.game
-                    .player_weapon_technique_targets(id, self.active_weapon_slot)
+                self.game.player_weapon_technique_targets(
+                    id,
+                    self.game
+                        .player_weapon_slot_for_technique(self.active_weapon_slot, id),
+                )
             };
             if !candidates.contains(&entity) {
                 return Some("Cible incompatible ou hors de portée".into());
@@ -2450,9 +2677,24 @@ impl AsciiApp {
         }
         if !own
             && !npc
-            && let Some(weapon) = self
-                .game
-                .resolved_equipped_player_weapon(self.active_weapon_slot)
+            && let Some(technique) = self.game.agent_form_default_technique()
+        {
+            add(
+                Choice::Attack,
+                "Attaquer".into(),
+                self.game
+                    .agent_form_action_preview(&technique, at)
+                    .err()
+                    .map(|e| attack_preview_rejection_label(&e).to_owned()),
+            );
+        }
+        if self.game.player_agent_form().is_none()
+            && !own
+            && !npc
+            && let Some(weapon) = self.game.resolved_equipped_player_weapon(
+                self.game
+                    .player_default_attack_slot(self.active_weapon_slot, at),
+            )
             && (entity.is_some() || weapon.requires_area_aim())
         {
             add(
@@ -2575,10 +2817,18 @@ impl AsciiApp {
         self.select_world_target(Some(menu.at));
         let command = match choice {
             Choice::Attack => {
-                if let Some(action) = self.attack_arrival(menu.at) {
-                    self.start_approach_action(action, now);
+                if let Some(technique) = self.game.agent_form_default_technique() {
+                    Some(GameCommand::UseTechniqueAt {
+                        technique,
+                        target: menu.at,
+                        weapon_slot: self.active_weapon_slot,
+                    })
+                } else {
+                    if let Some(action) = self.attack_arrival(menu.at) {
+                        self.start_approach_action(action, now);
+                    }
+                    None
                 }
-                None
             }
             Choice::Interact | Choice::PickUp => {
                 self.start_approach(menu.at, choice == Choice::PickUp, now);
@@ -2606,9 +2856,15 @@ impl AsciiApp {
                     .rules()
                     .skills
                     .technique(&id)
-                    .and_then(|d| d.action())
-                    .unwrap();
-                if world_aim(action) {
+                    .and_then(|d| d.action());
+                let self_cast = project_rl::skills::agent::from_technique(&id)
+                    .is_some_and(|skill| self.game.agent_skill_is_self_targeted(&skill.id));
+                if id.as_str() == "agent:form_return" || self_cast {
+                    self.technique_command(id)
+                } else if self.game.agent_form_action_profile(&id).is_some()
+                    || project_rl::skills::agent::from_technique(&id).is_some()
+                    || action.is_some_and(world_aim)
+                {
                     self.begin_attack_aim_at(Some(menu.at), None, Some(id));
                     None
                 } else {

@@ -1,0 +1,130 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "user_corrections": {
+    "operator": "One learned point in attack-drone invocation; prior passive accepted",
+    "tracker": "Instant mark, +15% accuracy rating; permanent +10% ranged weapon and attack-skill damage",
+    "arcanist": "One learned point in damage magic; prior passive accepted",
+    "metamorph": "One learned point in a transformation; +10% damage while transformed",
+    "drones": "Each existing model gets an upgradable invocation; common lifespan, percentage resistance and percentage damage passives"
+  },
+  "accuracy_reply": {
+    "question": "accuracy rating times 1.15 or add 15 percentage points to hit chance",
+    "answer": "la 1 .",
+    "accepted_rating_multiplier": 1.15
+  },
+  "accepted_initial_effects": {
+    "O03": {
+      "drone_damage_bonus_percent": 25
+    },
+    "T01": {
+      "activation_turns": 0,
+      "accuracy_rating_multiplier": 1.15
+    },
+    "T03": {
+      "ranged_weapon_and_attack_skill_damage_bonus_percent": 10,
+      "permanent": true
+    },
+    "A03": {
+      "magic_energy_cost_reduction_percent": 20
+    },
+    "M03": {
+      "transformed_personal_damage_bonus_percent": 10
+    }
+  },
+  "bastion": "Preserved as melee-survival class; prior B01-B03 approvals remain unchanged",
+  "drones_structure": {
+    "invocation_ids": [
+      "D56",
+      "D57",
+      "D58",
+      "D59",
+      "D66"
+    ],
+    "global_passive_ids": [
+      "DP01",
+      "DP02",
+      "O03"
+    ],
+    "D59_and_O01": "one proposed skill, not two purchases"
+  },
+  "pending": [
+    "Choice versus fixed first spell/form at character creation",
+    "Artilleur 59 assignment as the operator starting attack drone",
+    "New names and texts, growth curves, costs, durations and targets",
+    "Interpret lifespan as activity turns; other drone roles, limits and cargo/map transitions",
+    "All new effects and action/interface visuals before gameplay integration"
+  ],
+  "sprite_bindings": [
+    {
+      "skill_review_id": "D56",
+      "number": 56,
+      "name": "Éclaireur",
+      "art_id": "rl-art:056",
+      "sprite": "assets/sprites/bestiary/tiles/056-living-32.png",
+      "sprite_sha256": "ddf5be81d47ddba7d75bab7d36a4ab13051744f60552f83a07b8c824d3593e29",
+      "native_size": [
+        32,
+        32
+      ],
+      "sprite_modified": false,
+      "skill_binding_approval": "proposed_pending_user_review"
+    },
+    {
+      "skill_review_id": "D57",
+      "number": 57,
+      "name": "Mule",
+      "art_id": "rl-art:057",
+      "sprite": "assets/sprites/bestiary/tiles/057-living-32.png",
+      "sprite_sha256": "0664e18c95292603f855af32b0a0a3ad155bbb1adc0c48bb5886670712bea200",
+      "native_size": [
+        32,
+        32
+      ],
+      "sprite_modified": false,
+      "skill_binding_approval": "proposed_pending_user_review"
+    },
+    {
+      "skill_review_id": "D58",
+      "number": 58,
+      "name": "Traqueur",
+      "art_id": "rl-art:058",
+      "sprite": "assets/sprites/bestiary/tiles/058-living-32.png",
+      "sprite_sha256": "d56130cf890b2a38954c8473f9df77e67eef316b1931ce9fb505d0510b7da265",
+      "native_size": [
+        32,
+        32
+      ],
+      "sprite_modified": false,
+      "skill_binding_approval": "proposed_pending_user_review"
+    },
+    {
+      "skill_review_id": "D59",
+      "number": 59,
+      "name": "Artilleur",
+      "art_id": "rl-art:059",
+      "sprite": "assets/sprites/bestiary/tiles/059-living-32.png",
+      "sprite_sha256": "914e9917df6448b2a1b40190354a21a5a291088ac62cabbcc26a49a525ac5b62",
+      "native_size": [
+        32,
+        32
+      ],
+      "sprite_modified": false,
+      "skill_binding_approval": "proposed_pending_user_review"
+    },
+    {
+      "skill_review_id": "D66",
+      "number": 66,
+      "name": "Gardien",
+      "art_id": "rl-art:066",
+      "sprite": "assets/sprites/bestiary/tiles/066-living-32.png",
+      "sprite_sha256": "a3d200696497051ca82a3cf278b0aabbb95e8b95b6341c049cf559c5b2a9502e",
+      "native_size": [
+        32,
+        32
+      ],
+      "sprite_modified": false,
+      "skill_binding_approval": "proposed_pending_user_review"
+    }
+  ]
+}

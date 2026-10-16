@@ -1,0 +1,962 @@
+{
+  "date": "2026-10-09",
+  "review_id": "STAT-MODEL34",
+  "status": "accepted_familiar_native_and_equipped_weapon_damage_base_and_variance;PETS_EQ01_complements_pending;other_accepted_rules_preserved",
+  "previous_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-33.json",
+  "previous_model_sha256": "443a6af102d614170daab4fc6fb3cf0a2e5ad6e552341223a462d270b910f5b5",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-02.json",
+  "source_proposal_sha256": "449d4d200adb5fd39028eff5d8ca673fd240b05c3de08b96511eaf313c5d1b82",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/attribute-model-perception-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "e18f863af6beadd00595d37d05a27234625da8d2c83f3fed90f208b7409fa288",
+  "accepted_coefficients": {
+    "S01": {
+      "melee_weapon_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "includes_melee_weapon_skills": true,
+      "previous_physical_transformation_scope": "preserved_by_general_agreement;exact_components_unreviewed"
+    },
+    "S02": {
+      "accuracy_units_per_point": 2,
+      "evasion_units_per_point": 2,
+      "attribute_damage_bonus": "none;additional_ranged_bonus_requested_in_previous_turn_retracted_by_current_instruction;old_general_physical_bonus_superseded"
+    },
+    "S03": {
+      "maximum_HP_per_point": 4
+    },
+    "S04": {
+      "ranged_weapon_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "scope": "ranged_weapon_attacks_and_their_skills_including_ranged_heavy_weapons"
+    },
+    "S05": {
+      "drone_damage_percentage_points_per_attribute_point": 1,
+      "drone_maximum_HP_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "maximum_energy_per_point": 2
+    },
+    "S06": {
+      "spell_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "maximum_energy_per_point": 2,
+      "magical_transformed_attacks_included": true,
+      "occult_resistance_units_per_attribute_point": 2,
+      "occult_resistance_reference_attribute": 5
+    }
+  },
+  "accepted_constraints": {
+    "attribute_points_per_level": 5,
+    "character_level_cap": null
+  },
+  "accepted_stacking": "attribute and applicable weapon-skill damage bonuses are additive; previously shown example150% with Force10 is155%, Force15 is160%; other stacking cases remain unreviewed",
+  "resolved_clarification": {
+    "review_id": "S04-MAPPING01",
+    "question": "Le bonus de dégâts à distance de l’Agilité remplace-t-il celui proposé pour la Perception, ou souhaites-tu que les deux se cumulent ?",
+    "answer": "en faite non je vais accepter ta proposition avec perception.",
+    "status": "resolved_by_user_return_to_original_model;no_Agilite_ranged_damage_bonus_and_no_double_attribute_bonus"
+  },
+  "pending_clarification": null,
+  "balance_context": "Current_character_level_cap_none;100_is_user_conditional_preference_if_a_cap_is_later_introduced_and_upper_balance_reference;not_a_cap_or_expected_playthrough_level;single_life_and_limited_healing",
+  "unshown_cases_pending": [
+    "ordinary_player_maximum_bonus_order_and_current_clamping_accepted_under_J01;other_unshown_reserve_interactions_and_energy_regeneration_tick_order_pending",
+    "other modifiers and gear/class/passive stacking",
+    "unshown_accuracy_evasion_edges_and_other_control_probability_rules",
+    "other_unshown_vision_interactions;fixed_player_base_radius8_and_no_Perception_radius_growth_accepted",
+    "control potency and duration",
+    "transformation duration",
+    "physical versus elemental attack components",
+    "drone base and rank scaling and HP modifier ordering",
+    "healing and indirect/reflected damage scaling",
+    "rounding and weapon damage variance",
+    "all other unshown details",
+    "unshown_resistance_profiles_affixes_penetration_component_allocation_Gel_zone_order_and_native_UI;shown_common_R01_R05_rules_accepted",
+    "critical_loot_affixes_familiar_and_NPC_profiles_mixed_components_precise_impact_definition_RNG_overkill_and_native_feedback;shown_C01_rules_accepted"
+  ],
+  "runtime_integration": "not_integrated",
+  "level_context_decisions": "docs/reviews/refonte-agent-2026-10-06/level-cap-optional100-context-decisions.json",
+  "level_context_decisions_sha256": "4244228b906ca8cb63c79c8dc0b6057519bfca872a9161da603cbbe104281fee",
+  "accepted_derived_stats": {
+    "HP01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-HP01-02.json",
+      "reference_sha256": "d5d98b3775e77ba92d1b979cda9c35a3d0edcb4f47aee1816b1185749be77887",
+      "accepted_rules": {
+        "base_maximum_HP_at_level1_Vitalite5": 30,
+        "automatic_maximum_HP_gain_per_level_after_level1": 2,
+        "maximum_HP_per_Vitalite_point": 4
+      }
+    },
+    "E01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-E01-02.json",
+      "reference_sha256": "b328fb9688deb721ab5245dee508b2a9a940735468b389194f7bc141c3d7011a",
+      "accepted_rules": {
+        "base_maximum_energy_at_level1_Intelligence5_Volonte5": 30,
+        "automatic_maximum_energy_gain_per_level_after_level1": 2,
+        "maximum_energy_per_Intelligence_point": 2,
+        "maximum_energy_per_Volonte_point": 2
+      }
+    },
+    "E01-REG": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-energy-regeneration-E01-02.json",
+      "reference_sha256": "420e1020cc964535dade37ae37ff14113af9794310e54981ba45d51e3b6ece4f",
+      "accepted_rules": {
+        "combat_and_accalmie_percent_of_maximum_energy_per_turn": 1,
+        "combat_and_accalmie_minimum_energy_per_turn": 1,
+        "calm_percent_of_maximum_energy_per_turn": 3,
+        "calm_minimum_energy_per_turn": 3,
+        "rounding": "ceiling_before_missing_energy_limit",
+        "cannot_overfill": true,
+        "menus_or_realtime_wait_regenerate_energy": false
+      }
+    },
+    "S02-HIT": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-accuracy-evasion-02.json",
+      "reference_sha256": "393616f746489ff1c4cc505d7a945ee06782ef335b958b77df5afda2c0fb9af3",
+      "accepted_rules": {
+        "base_accuracy_at_Agilite5": 100,
+        "base_evasion_at_Agilite5": 25,
+        "probability_formula": "clamp(100*attacker_accuracy/(attacker_accuracy+target_evasion),5,95)",
+        "minimum_hit_chance_percent": 5,
+        "maximum_hit_chance_percent": 95,
+        "scope": "weapon_attacks_and_physical_transformation_attacks"
+      }
+    },
+    "S04-VISION": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-perception-vision-03.json",
+      "reference_sha256": "5f28b7daff1cfde2a8698315a551024eba2bc032156f697bbccbe56f7b1355af",
+      "accepted_rules": {
+        "fixed_player_base_vision_radius_cells": 8,
+        "Perception_does_not_increase_player_base_vision_radius": true
+      }
+    },
+    "S06-RESIST": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-occult-resistance-02.json",
+      "reference_sha256": "5e2d068636b68790afab5eaf458168f08960d9e022de417b7eb4359e321c4261",
+      "accepted_rules": {
+        "base_occult_resistance_at_Volonte5": 25,
+        "occult_resistance_units_per_Volonte_point": 2,
+        "minimum_occult_resistance": 1,
+        "occult_resistance_formula": "max(1,25+2*(Volonte-5))",
+        "hostile_effect_success_chance_formula": "clamp(100*hostile_power/(hostile_power+occult_resistance),5,95)",
+        "minimum_hostile_effect_success_percent": 5,
+        "maximum_hostile_effect_success_percent": 95,
+        "scope": "player_application_resistance_to_occult_controls_and_curses;examples_Silence_and_Desorientation",
+        "damage_and_Gel_Burn_Poison_rules": "unchanged;not_implicitly_scaled_by_this_new_occult_resistance"
+      }
+    },
+    "R03-GEL": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/freeze-elemental-chance-formula-acceptance-decisions.json",
+      "reference_sha256": "fbefb43b47922ef0cdc964199d3f20e382a46c9ebc76bec5ab5af28da6dddf04",
+      "accepted_rules": {
+        "Gel_Cold_resistance_formula_as_shown": "chance_before_Cold_resistance*(100-Cold_resistance)/100",
+        "Gel_duration": "unchanged",
+        "boss_importance_multiplier": "previous_accepted1/2_after_the_shown_Cold_modifier",
+        "elemental_associations": "Burn_Fire_Poison_Poison_Gel_Cold_preserved",
+        "occult_controls": "accepted_S06_occult_resistance_scope_preserved"
+      },
+      "accepted_examples": [
+        {
+          "chance_before_Cold_resistance_percent": 80,
+          "Cold_resistance_percent": 40,
+          "ordinary_Gel_chance_percent": 48,
+          "boss_Gel_chance_percent": 24,
+          "duration": "unchanged"
+        }
+      ]
+    },
+    "C01-CRIT": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-critical-hits-02.json",
+      "reference_sha256": "8e2978d7eda6e226169a762aa4fe3e77152de69236cb273a57cf484ee2ce9067",
+      "accepted_RP": "Vous exploitez une ouverture pour infliger une blessure dévastatrice.",
+      "accepted_rules": {
+        "agent_base_critical_chance_percent": 5,
+        "ordinary_direct_critical_damage_multiplier": 2,
+        "critical_damage_percent_of_noncritical_predefense_damage": 200,
+        "critical_chance_stacking": "add_percentage_point_modifiers_then_clamp0_100",
+        "critical_chance_minimum_percent": 0,
+        "critical_chance_maximum_percent": 100,
+        "damage_order": "apply_critical_multiplier_before_armor_resistances_and_final_ordinary_damage_floor;no_extra_armor_bypass",
+        "eligible_player_actions": [
+          "melee_direct_damage",
+          "ranged_direct_damage",
+          "heavy_weapon_direct_damage",
+          "direct_damage_spells",
+          "transformed_direct_attacks"
+        ],
+        "multihit_and_area_sampling": "independent_critical_decision_for_each_impact_on_each_target",
+        "no_independent_critical_roll": [
+          "periodic_damage",
+          "reflected_damage",
+          "collision_damage"
+        ],
+        "actual_initial_damage_derivatives": "existing_bleed_and_collision_calculations_include_actual_critical_initial_damage;no_second_critical_multiplier",
+        "status_probability_and_duration": "not_modified_by_critical",
+        "missed_attack": "cannot_critical"
+      },
+      "accepted_examples": {
+        "physical_attack": {
+          "predefense_noncritical_damage": 40,
+          "armor": 12,
+          "normal_suffered_damage": 28,
+          "critical_predefense_damage": 80,
+          "critical_suffered_damage": 68
+        },
+        "DI04_rank11": {
+          "proposed_agent_base_chance_percent": 5,
+          "already_accepted_bonus_percentage_points": 15,
+          "shown_final_chance_percent": 20
+        }
+      }
+    }
+  },
+  "latest_derived_stat_acceptance": "docs/reviews/refonte-agent-2026-10-06/drone-invocation-rank-bonus-acceptance-decisions.json",
+  "latest_derived_stat_acceptance_sha256": "1b8572b43bab9281c48769c7797338a1a82cf9745d6def458384e29a9c5478f3",
+  "accepted_progression_reserves": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-current-reserves-on-progression-02.json",
+    "reference_sha256": "4977465f395a22813f03d5702347e9bd2888f8eb5b185025251689e4419c82b9",
+    "accepted_rules": {
+      "level_gain": "apply_level_gains_and_updated_maximums_then_fully_restore_current_HP_and_energy_to_their_maximums",
+      "attribute_point_investment": "update_affected_maximums_without_restoring_current_HP_or_energy",
+      "equipment_equip_or_remove": "recalculate_affected_maximums_without_healing_or_energy_restoration"
+    }
+  },
+  "latest_progression_acceptance": "docs/reviews/refonte-agent-2026-10-06/level-full-restoration-and-no-stat-equipment-refill-decisions.json",
+  "latest_progression_acceptance_sha256": "b1ce41154e7b73f38f5b30d1d151d5bb741710b7a9ade15e0a07bcbffbcc2318",
+  "latest_attribute_feedback": "docs/reviews/refonte-agent-2026-10-06/perception-vision-growth-reservation-and-withdrawal-decisions.json",
+  "latest_attribute_feedback_sha256": "c6b6c59620618e500d9425fe5f690cc96e090618566425f4e45956dff62b1dab",
+  "Perception_vision_growth_status": "withdrawn_unaccepted_proposal;fixed_base8_accepted_without_attribute_radius_growth",
+  "latest_resistance_feedback": "docs/reviews/refonte-agent-2026-10-06/common-resistance-system-acceptance-decisions.json",
+  "latest_resistance_feedback_sha256": "b420384467efaf95c472751d15970b8ac95cd12b416c8756e17b32a29167eda2",
+  "accepted_elemental_status_resistance_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/radiation-placeholder-withdrawal-and-elemental-status-resistance-decisions.json",
+    "reference_sha256": "6a4a54be839e5de3101ef3cf11138225b205470edb62d75934866274321d7096",
+    "Burn_damage": "Fire_resistance",
+    "Poison_damage": "Poison_resistance",
+    "Gel": "Cold_resistance_affects_cold_damage_and_Gel_chance;duration_unchanged;numeric_curve_pending"
+  },
+  "accepted_common_resistance_rules": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-resistance-system-04.json",
+    "reference_sha256": "8eefe5062f23f68cde76b3b8b7db55016a3fce5aeafdc45d83bc9238f95af279",
+    "accepted_rules": {
+      "R01": {
+        "damage_families": [
+          "Fire",
+          "Cold",
+          "Electrical",
+          "Poison",
+          "Occult_damage"
+        ],
+        "base_resistance_percent_before_bonuses": 0,
+        "minimum_effective_resistance_percent": -50,
+        "maximum_effective_resistance_percent": 75,
+        "scope": "player_and_monsters;individual_monster_profiles_not_created",
+        "stacking": "sum_bonuses_then_subtract_maluses_then_clamp;retain_surplus_before_maluses",
+        "damage_formula": "ordinary_damage_before_resistance*(100-effective_resistance)/100",
+        "RP": "Vos protections atténuent les dégâts. Vos faiblesses les amplifient."
+      },
+      "R02": {
+        "armor_points_to_physical_damage_removed": 1,
+        "armor_applications_per_impact": 1,
+        "scope": "physical_part_of_a_single_impact",
+        "physical_damage_floor": 0,
+        "RP": "Votre blindage absorbe une partie des impacts."
+      },
+      "R03": {
+        "resistance_evaluation_time": "current_resistance_at_each_new_ordinary_impact_or_periodic_damage_tick",
+        "net_damage_based_bleeding": "no_second_armor_application",
+        "ordinary_damage_rounding": "floor_after_applicable_protections",
+        "negative_Cold_resistance_Gel": "increases_Gel_probability_under_accepted_linear_formula",
+        "Gel_chance_upper_bound_before_importance_percent": 100,
+        "Gel_importance_modifier": "existing_applicable_elite_or_boss_multiplier_after_cap"
+      },
+      "R05": {
+        "current_effective_resistances": "shown_in_player_statistics_and_detailed_target_analysis_accessible_with_scout",
+        "temporary_modifications": "existing_buff_debuff_bars",
+        "shown_example_copy": "Résistance au froid : 40 %",
+        "native_layout_colors_and_assets": "not_presented_or_approved"
+      }
+    }
+  },
+  "latest_weapon_variance_feedback": "docs/reviews/refonte-agent-2026-10-06/revised-weapon-variance-acceptance-decisions.json",
+  "latest_weapon_variance_feedback_sha256": "85be1a5ab46ea6a6b3b8f000e868d73274148d1e0b281f9f7eb9e5f3c823529a",
+  "accepted_weapon_variance_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-level-variance-and-per-victim-explosion-decisions.json",
+    "reference_sha256": "4467ec762840fc91c4735f0101408f512860e4d8e601d11607ee359fd7684c6d",
+    "accepted_user_directions": {
+      "weapon_damage_range": "minimum_and_maximum_depend_on_weapon_level_and_model;larger_absolute_damage_span_at_high_weapon_levels_as_balance_direction",
+      "balance_context": "weapon_damage_and_variance_to_be_balanced_against_monster_and_player_HP_at_the_relevant_progression_stage;no_fixed_universal_curve",
+      "low_level_dagger_1_3": "user_illustration_of_small_low_level_range;no_real_item_balance_entry_created",
+      "explosion_sampling": "independent_base_damage_draw_for_each_victim_of_the_same_explosion",
+      "level_dependency_scope": "range_boundaries_and_amplitude;no_level_biased_probability_distribution_or_automatic_leveling_of_equipped_items_inferred"
+    }
+  },
+  "accepted_weapon_variance_rules": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-weapon-damage-variance-03.json",
+    "reference_sha256": "c91ee9ca2aa1798000720b4acd791129f6aaffa3347b78f9e31e67723ae6c368",
+    "accepted_shown_rules": {
+      "weapon_range": "minimum_and_maximum_depend_on_weapon_level_and_model;larger_absolute_span_at_higher_levels_as_balance_direction",
+      "balance_context": "exact_ranges_to_be_balanced_with_player_and_monster_HP_at_relevant_progression_stage;no_universal_growth_curve_created",
+      "distribution": "same_probability_for_each_integer_in_the_weapon_range;inclusive_minimum_and_maximum",
+      "explosions": "independent_base_damage_draw_per_victim_of_the_same_explosion;independent_target_critical_and_target_defenses_preserved",
+      "tooltip": "minimum_maximum_damage_calculated_with_active_weapon_and_current_applicable_bonuses",
+      "low_level_dagger_1_3": "illustrative_only;not_a_real_equipment_balance_entry"
+    }
+  },
+  "accepted_mixed_weapon_damage_rules": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mixed-weapon-damage-02.json",
+    "reference_sha256": "8a1f99e419822dfe0c959e5d1d80a82b0ea6b7b830ed9faa14cdf44a63aeb7f5",
+    "accepted_shown_rules": {
+      "component_distribution": "separate_minimum_maximum_and_independent_uniform_integer_base_draw_per_direct_weapon_damage_family",
+      "critical_sharing": "one_critical_decision_per_impact_on_one_target_shared_by_all_eligible_direct_damage_components;accepted_2x_before_defenses",
+      "physical_protection": "aggregate_physical_subtypes_then_apply_armor_once_with_floor_zero",
+      "elemental_protection": "apply_current_effective_corresponding_resistance_to_each_elemental_damage_family",
+      "rounding": "sum_protected_components_then_floor_total_once;no_intermediate_component_floor",
+      "attribute_mapping": "accepted_melee_Force_or_ranged_including_heavy_Perception_damage_bonus_applies_to_all_direct_weapon_components;Volonte_bonus_applies_to_spells_not_automatically_to_elemental_weapon_components",
+      "tooltip": "show_damage_family_minimum_maximum_and_total_minimum_maximum_before_target_defenses_and_excluding_critical;applicable_current_bonuses_already_included"
+    },
+    "accepted_examples": {
+      "tooltip": {
+        "physical_minimum": 20,
+        "physical_maximum": 30,
+        "cold_minimum": 5,
+        "cold_maximum": 10,
+        "total_minimum": 25,
+        "total_maximum": 40,
+        "bonuses_already_included": true,
+        "noncritical_and_predefense": true,
+        "actual_equipment_balance": "none;fictional_example"
+      },
+      "impact": {
+        "rolled_physical": 24,
+        "rolled_cold": 8,
+        "armor": 6,
+        "cold_resistance_percent": 50,
+        "normal_protected_physical": 18,
+        "normal_protected_cold": 4,
+        "normal_total": 22,
+        "critical_protected_physical": 42,
+        "critical_protected_cold": 8,
+        "critical_total": 50
+      }
+    }
+  },
+  "accepted_direct_weapon_bonus_stacking": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-direct-weapon-bonus-stacking-02.json",
+    "reference_sha256": "353af3396bb9de10e8c398ae45eda25f052e52d9efd1b0194ac4a1598ae42cef",
+    "accepted_shown_rules": {
+      "scope": "direct_player_weapon_attacks_and_weapon_skills_only;no_implicit_drone_spell_transformation_or_indirect_extension",
+      "general_percent_damage_pool": "sum_compatible_attribute_skill_extra_damage_passive_equipment_and_active_buff_percentage_point_bonuses_before_applying_once_to_base_component_damage",
+      "weapon_skill_damage_percent_mapping": "displayed_skill_coefficient150_percent_contributes_extra50_percentage_points_above_ordinary100_percent",
+      "fixed_damage_bonus_order": "add_fixed_bonus_to_corresponding_base_damage_family_before_percent_damage_modifiers",
+      "family_specific_percent_bonus": "add_to_compatible_percent_pool_for_that_damage_family_only;does_not_boost_other_families",
+      "general_percent_bonus": "affects_all_eligible_direct_components_under_accepted_D02_mapping",
+      "later_order": "accepted_critical_multiplier_then_armor_and_corresponding_resistances_then_one_final_total_damage_floor",
+      "current_next_tooltip": "current_computed_range_and_next_rank_range_use_same_current_equipment_attributes_and_other_modifiers_except_next_purchased_skill_rank",
+      "general_positive_damage_bonus_upper_cap": null,
+      "illustrative_100_percent_total_is_not_cap": true
+    },
+    "accepted_examples": {
+      "fictional_weapon_minimum": 20,
+      "fictional_weapon_maximum": 30,
+      "skill_extra_bonus_percentage_points": 50,
+      "Force": 10,
+      "accepted_Force_bonus_percentage_points": 5,
+      "illustrative_applicable_passive_bonus_percentage_points": 10,
+      "illustrative_equipment_bonus_percentage_points": 15,
+      "illustrative_buff_bonus_percentage_points": 20,
+      "total_bonus_percentage_points": 100,
+      "total_damage_coefficient_percent": 200,
+      "displayed_noncritical_predefense_minimum": 40,
+      "displayed_noncritical_predefense_maximum": 60,
+      "real_loot_or_new_skill_values_created": false
+    },
+    "accepted_no_cap_examples": [
+      {
+        "weapon_minimum": 20,
+        "weapon_maximum": 30,
+        "bonus_percent": 100,
+        "damage_minimum": 40,
+        "damage_maximum": 60
+      },
+      {
+        "weapon_minimum": 20,
+        "weapon_maximum": 30,
+        "bonus_percent": 250,
+        "damage_minimum": 70,
+        "damage_maximum": 105
+      },
+      {
+        "weapon_minimum": 20,
+        "weapon_maximum": 30,
+        "bonus_percent": 400,
+        "damage_minimum": 100,
+        "damage_maximum": 150
+      }
+    ]
+  },
+  "accepted_outgoing_weapon_reductions": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-outgoing-weapon-damage-reductions-02.json",
+    "reference_sha256": "f1029cf5b668a7c087e11205ff918578a2181910a725a42f7dd2e14333eac9a0",
+    "accepted_shown_rules": {
+      "scope": "outgoing_damage_reduction_statuses_on_direct_player_weapon_attacks_and_weapon_skills;not_incoming_defensive_reductions_or_all_other_stat_maluses",
+      "order": "accepted_weapon_flat_bonus_plus_additive_positive_percent_pool_then_shared_critical_then_outgoing_reduction_then_target_armor_and_elemental_resistances_then_final_total_floor",
+      "single_reduction": "multiply_current_boosted_damage_by_1_minus_reduction_percentage_over100;not_subtract_percentage_points_from_positive_bonus_pool",
+      "distinct_reductions": "apply_successive_multipliers;no_intermediate_rounding",
+      "family_eligibility": "each_general_outgoing_reduction_affects_all_eligible_direct_components;family_specific_reduction_affects_only_that_family",
+      "damage_lower_bound": 0,
+      "same_effect_reapplication": "not_defined_by_this_distinct_effect_proposal;existing_individual_skill_rules_preserved",
+      "stat_damage_bonus_cap": "accepted_no_general_upper_cap_preserved"
+    },
+    "accepted_examples": {
+      "weapon_minimum": 20,
+      "weapon_maximum": 30,
+      "accepted_bonus_percent": 100,
+      "boosted_minimum": 40,
+      "boosted_maximum": 60,
+      "first_reduction_percent": 25,
+      "after_first_minimum": 30,
+      "after_first_maximum": 45,
+      "second_reduction_percent": 20,
+      "after_second_minimum": 24,
+      "after_second_maximum": 36,
+      "combined_reduction_percent": 40,
+      "example_scope": "fictional_noncritical_predefense;no_new_skill_or_actual_loot"
+    }
+  },
+  "accepted_incoming_percent_protections": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-incoming-percent-protections-02.json",
+    "reference_sha256": "6bb052d604533760966e10bc1481a883a78025cc46cf988826d81c67e3f38081",
+    "accepted_shown_rules": {
+      "scope": "incoming_ordinary_direct_damage_eligible_for_the_target_percent_protection;individual_coverage_and_existing_bypass_exceptions_preserved",
+      "order": "attacker_damage_and_outgoing_reductions_already_resolved_then_target_physical_armor_and_elemental_resistances_then_eligible_incoming_percent_protections_then_final_total_floor",
+      "distinct_protections": "successive_relative_reduction_multipliers_on_each_eligible_remaining_component;not_additive_percentage_point_pool",
+      "component_eligibility": "protection_affects_only_covered_damage_families_and_direct_or_periodic_categories_under_its_existing_skill_rules",
+      "rounding": "preserve_internal_fractions_through_armor_resistances_and_eligible_percent_protections;sum_remaining_components_and_floor_total_once",
+      "minimum_suffered_damage": 0,
+      "same_protection_reapplication": "existing_skill_specific_rules_preserved;no_global_replace_or_refusal_policy_created",
+      "shield_or_absorption_creation": "none;deleted_energy_shield_and_old_reactive_absorption_not_restored"
+    },
+    "accepted_example": {
+      "incoming_physical": 100,
+      "incoming_cold": 40,
+      "source_damage_modifiers_already_included": true,
+      "armor": 20,
+      "cold_resistance_percent": 50,
+      "after_armor_physical": 80,
+      "after_resistance_cold": 20,
+      "total_before_percent_protections": 100,
+      "first_protection_percent": 25,
+      "total_after_first_protection": 75,
+      "second_protection_percent": 20,
+      "total_after_second_protection": 60,
+      "combined_percent_protection_reduction": 40,
+      "scope": "fictional;does_not_set_any_new_skill_or_equipment_values"
+    }
+  },
+  "accepted_floating_damage_format_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/floating-total-and-type-icon-damage-direction-decisions.json",
+    "reference_sha256": "c5f8af4d268e136437241024ba2828678572568627e6e9fcc5f6dcc47a3914f0",
+    "accepted_user_direction": {
+      "targets": "floating_damage_above_player_and_monsters",
+      "format": "total_damage_first_then_parenthesized_split_by_damage_type_with_small_icon_for_each_type",
+      "native_icons_palette_and_animation": "not_presented_or_approved;no_new_assets_created",
+      "damage_mechanics": "format_instruction_only;does_not_change_damage_amounts_or_protection_order"
+    }
+  },
+  "latest_interface_acceptance": "docs/reviews/refonte-agent-2026-10-06/floating-damage-type-breakdown-acceptance-decisions.json",
+  "latest_interface_acceptance_sha256": "07f55360e18432775051bb7e30fabdce203ce975e612d0c4eb0a0a7873d2ea91",
+  "accepted_floating_damage_display": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-floating-damage-type-breakdown-HUD-DMG01-02.json",
+    "reference_sha256": "9f06aa15ce0912aa490627e72ae6e877a3b28d54b591d8756835df50fced2376",
+    "accepted_shown_rules": {
+      "targets": "floating_damage_above_player_and_monsters",
+      "format": "total_damage_first_then_parenthesized_per_damage_type_amount_with_small_type_icon",
+      "values": "after_applicable_protections",
+      "integer_components": "display_integer_components_with_sum_equal_to_computed_integer_total_without_changing_damage_mechanics",
+      "element_colors": "accepted_HUD08_type_color_direction_preserved",
+      "shown_example": "75 (⚔ 60 · ❄ 15);symbols_are_illustrative_placeholders_not_native_asset_approval"
+    }
+  },
+  "accepted_player_healing_and_drain": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-player-healing-and-drain-02.json",
+    "reference_sha256": "0ff725e4e078608ce57688923723f551232d2dda71e0fc1cfd1eaf1cc37b5505",
+    "accepted_shown_rules": {
+      "scope": "player_healing_and_life_drain;drone_repair_fractional_rules_preserved_separately",
+      "heal_rounding": "ceiling_once_per_heal_resolution_before_missing_HP_and_remaining_skill_budget_clamps",
+      "percent_maximum_HP_budget_rounding": "floor_current_maximum_HP_times_skill_limit_percentage_over100",
+      "maximum_restore": "minimum_of_rounded_heal_current_missing_HP_and_applicable_remaining_skill_turn_or_cast_budget",
+      "skill_budget_scope": "existing_per_turn_per_use_and_primary_target_rules_preserved;no_new_global_heal_cap",
+      "drain_basis": "eligible_actual_target_HP_removed_after_all_protections_limited_to_target_HP_remaining_before_damage;overkill_and_absorption_do_not_generate_drain",
+      "drain_upper_bound": "healing_from_one_drain_resolution_cannot_exceed_eligible_actual_HP_removed",
+      "zero_HP_loss": "zero_drain_healing",
+      "attribute_percentage_mapping": "maximum_HP_based_heal_and_caps_benefit_from_maximum_HP_changes;drain_benefits_from_damage_attribute_through_actual_HP_loss;no_second_attribute_multiplier_on_heal_or_drain_percentage",
+      "already_accepted_skill_values": "no_change_to_RP_names_percentages_costs_cooldowns_durations_or_target_eligibility"
+    },
+    "accepted_examples": {
+      "regeneration": {
+        "maximum_HP": 130,
+        "already_accepted_SU04_rank11_heal_percent": 12,
+        "heal_per_turn_after_ceiling": 16
+      },
+      "skill_cap": {
+        "maximum_HP": 135,
+        "illustrative_cap_percent": 10,
+        "integer_heal_budget": 13
+      },
+      "missing_HP_limit": {
+        "missing_HP": 4,
+        "maximum_actual_heal": 4
+      },
+      "drain": {
+        "postprotection_damage": 40,
+        "target_remaining_HP": 12,
+        "actual_HP_removed": 12,
+        "illustrative_drain_percent": 25,
+        "before_player_missing_HP_and_skill_cap_heal": 3
+      }
+    }
+  },
+  "accepted_ordinary_maximum_reserve_modifiers": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-maximum-reserve-modifiers-02.json",
+    "reference_sha256": "aac0706bb48ccfc090d644e5bc6eed8cea663bf72e621cbdbc554e9cd0b5f32a",
+    "accepted_shown_rules": {
+      "scope": "ordinary_player_maximum_HP_and_energy_modifiers;transformation_specific_maximum_HP_layer_and_ratio_rules_not_redefined",
+      "base": "accepted_level_and_attribute_derived_maximum_before_ordinary_item_passive_and_buff_modifiers",
+      "flat_bonus_order": "sum_compatible_flat_reserve_bonuses_and_add_to_base_before_percentage_bonuses",
+      "percent_bonus_order": "sum_compatible_percentage_point_reserve_bonuses_apply_once_to_base_plus_flat_bonuses",
+      "rounding": "floor_final_maximum_once",
+      "increase_current_resource": "no_restore_or_heal;keep_existing_absolute_current_amount",
+      "decrease_current_resource": "current_becomes_minimum_of_old_current_and_new_maximum",
+      "reequip": "does_not_restore_lost_current_resource_after_prior_maximum_clamp",
+      "clamp_event_classification": "maximum_recalculation_and_current_clamp_are_not_damage_or_energy_spending_events",
+      "exceptions": "accepted_level_gain_full_restoration_and_Colosse_transformation_current_HP_ratio_preservation_retained"
+    },
+    "accepted_examples": {
+      "maximum_calculation": {
+        "base_maximum_HP": 100,
+        "flat_bonus_HP": 20,
+        "percent_bonuses": [
+          10,
+          15
+        ],
+        "combined_percent_bonus": 25,
+        "after_flat": 120,
+        "final_maximum_HP": 150
+      },
+      "maximum_increase": {
+        "old_current": 80,
+        "old_maximum": 100,
+        "new_maximum": 150,
+        "new_current": 80
+      },
+      "maximum_decrease": {
+        "old_current": 120,
+        "old_maximum": 150,
+        "new_maximum": 100,
+        "new_current": 100
+      },
+      "scope": "fictional_numbers;no_new_loot_affix_values_or_skill_bonuses_created"
+    }
+  },
+  "accepted_direct_spell_damage_bonuses": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-direct-spell-damage-bonuses-02.json",
+    "reference_sha256": "d39d838f99ece76344effa46b3154356244d1da304d02c95903b823a7ce49119",
+    "accepted_shown_rules": {
+      "scope": "ordinary_player_direct_damage_impacts_of_Fire_Cold_Occult_spells;no_implicit_periodic_damage_drone_secondary_mine_grenade_or_transformation_component_extension",
+      "skill_rank_base": "use_spell_base_direct_damage_at_current_effective_rank;do_not_add_rank_progression_again_as_an_extra_damage_percentage",
+      "flat_bonus_order": "add_compatible_flat_damage_bonuses_to_corresponding_spell_damage_family_before_percent_bonuses",
+      "percentage_pool": "sum_compatible_Volonte_passive_equipment_and_active_buff_percentage_point_damage_bonuses_apply_once_to_base_plus_flat_component_damage",
+      "Volonte": "preserve_accepted_one_percentage_point_per_attribute_point_above_reference5;all_other_unshown_attribute_edges_pending",
+      "element_eligibility": "element_specific_bonus_only_affects_matching_direct_spell_damage_component",
+      "general_positive_percentage_bonus_upper_cap": null,
+      "later_order": "critical_then_eligible_outgoing_damage_weakenings_then_corresponding_elemental_resistance_then_eligible_incoming_percent_protections_then_one_final_total_damage_floor",
+      "critical_rules": "preserve_accepted_C01_direct_spell_critical_multiplier2_and_per_target_impact_rolls",
+      "weakening_and_protection_rules": "use_previously_reviewed_relative_sequential_multipliers_under_their_compatible_scope;do_not_change_individual_skill_values_or_coverage",
+      "no_double_scaling": "spell_damage_bonus_does_not_change_status_application_chance_duration_energy_cost_range_or_cooldown",
+      "current_next_tooltip": "existing_current_and_next_buyable_rank_rules_preserved;hold_current_equipment_attributes_and_other_modifiers_constant"
+    },
+    "accepted_examples": {
+      "scope": "fictional_spell_and_bonus_values;no_actual_skill_damage_or_loot_affix_created",
+      "base_Fire_damage": 40,
+      "effective_Volonte": 25,
+      "reference_Volonte": 5,
+      "Volonte_damage_bonus_percent": 20,
+      "compatible_passive_bonus_percent": 25,
+      "compatible_equipment_bonus_percent": 15,
+      "total_percent_bonus": 60,
+      "normal_predefense_damage": 64,
+      "critical_predefense_damage": 128,
+      "target_Fire_resistance_percent": 25,
+      "normal_suffered_damage_without_other_modifiers": 48,
+      "critical_suffered_damage_without_other_modifiers": 96
+    }
+  },
+  "accepted_fixed_reserve_item_bonus_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/fixed-reserve-item-bonus-clarification-confirmation-decisions.json",
+    "reference_sha256": "4e5cfd88fd0d0552e3d7174ac7a5b7f5455800c6d151b7ca92d31ac12864f72c",
+    "scope": "fixed_item_maximum_HP_and_energy_bonus_support_and_prepercentage_addition_confirmed;no_refill_on_equip_retained;example_amounts_do_not_define_actual_generated_affixes"
+  },
+  "accepted_direct_drone_damage_bonuses": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-direct-drone-damage-bonuses-02.json",
+    "reference_sha256": "4109314c2da333a254103d53121b9d5886c3a7c8b5e75241a8cd86412e045752",
+    "accepted_shown_rules": {
+      "scope": "direct_damage_of_controlled_armed_drones_Traqueur_D58_Artilleur_D59_Gardien_D66;other_sources_not_implicitly_extended",
+      "rank_base": "use_base_drone_damage_from_invocation_current_effective_rank_before_attribute_and_other_damage_modifiers",
+      "flat_bonus_order": "add_eligible_drone_flat_damage_bonus_to_its_damage_family_before_percent_pool",
+      "percentage_pool": "sum_eligible_Intelligence_armed_drone_passive_equipment_and_active_buff_percentage_point_damage_bonuses_apply_once_to_base_plus_flat_components",
+      "Intelligence": "retain_accepted_one_percentage_point_drone_damage_per_point_above_reference5",
+      "element_eligibility": "type_specific_bonus_only_affects_matching_drone_damage_component",
+      "general_positive_percentage_bonus_upper_cap": null,
+      "player_bonus_eligibility": "personal_melee_ranged_or_spell_damage_bonuses_not_automatically_eligible;gear_or_buff_must_apply_to_drones",
+      "unarmed_models": "damage_bonuses_do_not_create_attacks_for_Eclaireur_or_Mule",
+      "non_damage_parameters": "damage_pool_does_not_change_vision_transport_capacity_cost_or_cooldown;drone_HP_order_review_follows",
+      "old_profile_recalculation": "recalculate_old_illustrative_drone_damage_snapshots_under_this_additive_pool_and_already_accepted_Intelligence_coefficient_if_pool_accepted;do_not_rewrite_historical_skill_cards_or_infer_full_rank_curves"
+    },
+    "accepted_examples": {
+      "scope": "fictional_drone_base_damage_Intelligence_and_equipment;O03_rank11_45_percent_preserved_from_shown_card;no_actual_loot_affix_created",
+      "base_direct_damage": 25,
+      "Intelligence": 25,
+      "reference_Intelligence": 5,
+      "Intelligence_bonus_percent": 20,
+      "O03_effective_rank": 11,
+      "O03_damage_bonus_percent": 45,
+      "eligible_drone_equipment_bonus_percent": 15,
+      "total_bonus_percent": 80,
+      "current_damage_before_defenses": 45
+    }
+  },
+  "accepted_familiar_equipment_directions": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/familiar-equipment-level-type-expiry-and-drone-level-decisions.json",
+    "reference_sha256": "4a54b262874a60aafc8f1a180cf1528ae340479b351d747bc2e6caecdee22d18",
+    "accepted_explicit_directions": {
+      "familiar_equipment": "design_direction_for_equipping_drones_raised_monsters_and_possible_future_familiars_with_compatible_weapons_and_armor_confirmed_by_follow_up_constraints;exact_slots_catalogue_and_mechanics_pending",
+      "compatibility_axes": "familiar_level_and_combat_type",
+      "combat_types": [
+        "melee",
+        "physical_ranged",
+        "magical_ranged"
+      ],
+      "death": "items_worn_by_familiar_fall_to_ground",
+      "raised_lifetime_end": "items_fall_to_ground_when_resurrection_expires",
+      "drone_equipment_level": "follows_player_level",
+      "drone_power": "invocation_rank_Intelligence_and_existing_applicable_modifiers_retained;equipment_level_does_not_create_an_extra_automatic_damage_HP_level_formula"
+    }
+  },
+  "accepted_drone_actor_statistics_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/drone-level-own-attributes-and-shared-stat-rules-decisions.json",
+    "reference_sha256": "28fb09d327ebf8c4350a21fe0fd96d8b87d43b0ae53748d95a9f51616dba1e7b",
+    "accepted_explicit_rules": {
+      "scope": "all_drone_models_including_noncombat_models",
+      "level": "always_current_player_level_regardless_of_learned_or_equipment_effective_invocation_rank",
+      "base_statistics": "own_actor_statistics_progressing_at_shared_player_level_under_common_player_and_monster_stat_calculation_rules;not_equipment_requirement_only",
+      "attributes": "own_six_attribute_profile_per_drone_model;not_copy_of_player_allocated_or_equipment_attributes",
+      "invocation_rank": "distinct_from_drone_level;existing_invocation_power_improvement_direction_retained_but_new_exact_bonus_formula_pending",
+      "preserved_functions": "existing_armed_models_and_no_attack_for_Eclaireur_Mule_retained"
+    }
+  },
+  "active_rule_overrides": {
+    "drone_equipment_only_level_scope": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/drone-level-own-attributes-and-shared-stat-rules-decisions.json",
+      "reference_sha256": "28fb09d327ebf8c4350a21fe0fd96d8b87d43b0ae53748d95a9f51616dba1e7b",
+      "replaces": "accepted_familiar_equipment_directions.accepted_explicit_directions.drone_power:no_automatic_level_stat_formula",
+      "current_rule": "level_also_drives_own_base_actor_statistics;model_values_pending"
+    },
+    "drone_rank_only_base_damage": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/drone-level-own-attributes-and-shared-stat-rules-decisions.json",
+      "reference_sha256": "28fb09d327ebf8c4350a21fe0fd96d8b87d43b0ae53748d95a9f51616dba1e7b",
+      "replaces": "accepted_direct_drone_damage_bonuses.accepted_shown_rules.rank_base",
+      "current_rule": "own_level_attributes_and_eligible_equipment_base_with_separate_rank_improvement;exact_formula_pending",
+      "other_D08_rules": "preserved"
+    }
+  },
+  "accepted_drone_attribute_growth": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-actor-statistics-02.json",
+    "reference_sha256": "1d141fd7bd22192b71bbada167affa253abd283685a69f29a7ce860fa31011b8",
+    "accepted_shown_rules": {
+      "drone_attribute_growth_points_per_gained_level": 5,
+      "allocation": "automatically_distribute_points_according_to_per_model_profile",
+      "allocation_orientation": {
+        "melee": "prefer_Force",
+        "physical_ranged": "prefer_Perception",
+        "protective": "prefer_Vitalite"
+      },
+      "exact_distribution": "not_proposed;review_separately",
+      "rank_bonus_curve": "not_proposed;preserve_useful_investment_direction_review_separately"
+    },
+    "accepted_examples": {
+      "player_level": 20,
+      "invocation_rank1_drone_level": 20,
+      "invocation_rank10_drone_level": 20,
+      "scope": "illustrative_level_only;no_actual_drone_HP_damage_or_attribute_values_defined"
+    }
+  },
+  "accepted_drone_attribute_profiles": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-attribute-profiles-02.json",
+    "reference_sha256": "c2fcf0cd81117a7dd0df4b60a4ab6b60f90b3e835e4588e4d827a670c9853a4c",
+    "accepted_shown_rules": {
+      "level1_attribute_total_per_model": 36,
+      "unspecified_level1_attributes": 5,
+      "profiles": {
+        "D56": {
+          "name": "Éclaireur",
+          "level1_attributes": {
+            "Force": 5,
+            "Agilite": 9,
+            "Vitalite": 7,
+            "Perception": 5,
+            "Intelligence": 5,
+            "Volonte": 5
+          },
+          "per_level_growth": {
+            "Force": 0,
+            "Agilite": 3,
+            "Vitalite": 2,
+            "Perception": 0,
+            "Intelligence": 0,
+            "Volonte": 0
+          },
+          "can_attack": false
+        },
+        "D57": {
+          "name": "Mule",
+          "level1_attributes": {
+            "Force": 5,
+            "Agilite": 7,
+            "Vitalite": 9,
+            "Perception": 5,
+            "Intelligence": 5,
+            "Volonte": 5
+          },
+          "per_level_growth": {
+            "Force": 0,
+            "Agilite": 2,
+            "Vitalite": 3,
+            "Perception": 0,
+            "Intelligence": 0,
+            "Volonte": 0
+          },
+          "can_attack": false
+        },
+        "D58": {
+          "name": "Traqueur",
+          "level1_attributes": {
+            "Force": 9,
+            "Agilite": 6,
+            "Vitalite": 6,
+            "Perception": 5,
+            "Intelligence": 5,
+            "Volonte": 5
+          },
+          "per_level_growth": {
+            "Force": 3,
+            "Agilite": 1,
+            "Vitalite": 1,
+            "Perception": 0,
+            "Intelligence": 0,
+            "Volonte": 0
+          },
+          "can_attack": true
+        },
+        "D59": {
+          "name": "Artilleur",
+          "level1_attributes": {
+            "Force": 5,
+            "Agilite": 6,
+            "Vitalite": 6,
+            "Perception": 9,
+            "Intelligence": 5,
+            "Volonte": 5
+          },
+          "per_level_growth": {
+            "Force": 0,
+            "Agilite": 1,
+            "Vitalite": 1,
+            "Perception": 3,
+            "Intelligence": 0,
+            "Volonte": 0
+          },
+          "can_attack": true
+        },
+        "D66": {
+          "name": "Gardien",
+          "level1_attributes": {
+            "Force": 7,
+            "Agilite": 5,
+            "Vitalite": 9,
+            "Perception": 5,
+            "Intelligence": 5,
+            "Volonte": 5
+          },
+          "per_level_growth": {
+            "Force": 1,
+            "Agilite": 1,
+            "Vitalite": 3,
+            "Perception": 0,
+            "Intelligence": 0,
+            "Volonte": 0
+          },
+          "can_attack": true
+        }
+      },
+      "profile_at_any_level": "level1_attribute_value+(current_player_level-1)*model_per_level_attribute_growth",
+      "late_invocation": "assign_full_profile_corresponding_to_current_player_level_immediately;invocation_history_does_not_change_base_profile",
+      "shown_HP_base": "apply_shared_player_base_HP_formula30+4*(drone_Vitalite-5)+2*(drone_level-1)_before_equipment_rank_and_owner_modifiers",
+      "other_stats": "own_attribute_growth_does_not_change_vision_cargo_capacity_or_add_unarmed_drone_attacks_by_extension"
+    },
+    "accepted_examples": {
+      "level": 20,
+      "D58": {
+        "Vitalite": 25,
+        "maximum_HP_before_other_modifiers": 148
+      },
+      "D66": {
+        "Vitalite": 66,
+        "maximum_HP_before_other_modifiers": 312
+      },
+      "scope": "proposed_derived_drone_profiles;not_a_player_save_or_balanced_monster_profile"
+    }
+  },
+  "accepted_drone_owner_and_actor_attribute_mapping": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-owner-and-actor-attribute-mapping-02.json",
+    "reference_sha256": "fce33ec0e1a72b98cd93f8a786ce90148dcce8f6ebadf9deba4d977881071f0c",
+    "accepted_shown_rules": {
+      "scope": "controlled_drones_with_own_actor_profiles;no_implicit_extension_of_owner_Intelligence_to_raised_or_future_non_drone_familiars",
+      "own_damage_attributes": {
+        "melee": "own_drone_Force",
+        "physical_ranged": "own_drone_Perception",
+        "magical_powers": "own_drone_Volonte"
+      },
+      "own_damage_coefficients": "preserve_common_one_percentage_point_per_corresponding_own_attribute_point_above_reference5;own_Force_and_Perception_cover_eligible_direct_weapon_components;Volonte_for_magical_powers_not_automatic_elemental_weapon_reclassification",
+      "own_other_statistics": "derive_from_drone_own_attributes_under_common_actor_rules;no_copy_of_player_attributes_or_personal_equipment",
+      "owner_Intelligence": "one_percentage_point_drone_damage_and_maximum_HP_bonus_per_agent_Intelligence_point_above_reference5",
+      "own_Intelligence": "contributes_to_own_energy_under_common_attribute_rules;does_not_add_the_owner_summoning_damage_and_HP_bonus_a_second_time_from_own_Intelligence",
+      "damage_pool": "add_eligible_own_attack_attribute_bonus_owner_Intelligence_bonus_and_other_compatible_drone_damage_percentage_points_in_one_pool;actual_invocation_rank_bonus_values_remain_pending",
+      "maximum_HP_modifier_order": "accepted_own_level_and_Vitalite_base_plus_compatible_flat_HP_modifiers_then_one_additive_compatible_percent_pool_including_owner_Intelligence_then_floor_final_maximum_once",
+      "damage_readout": "integer_predefense_readout_floor;preserve_exact_intermediate_fractions_for_later_damage_defenses_and_final_ordinary_damage_floor;no_intermediate_mechanical_damage_rounding_introduced"
+    },
+    "accepted_examples": {
+      "scope": "isolated_damage_bonus_pool_and_maximum_HP_examples;native_base20_fictional;invocation_rank_and_equipment_bonuses_omitted;no_new_attack_item_or_damage_variance",
+      "drone_model": "D58",
+      "level": 20,
+      "own_Force": 66,
+      "own_Force_damage_bonus_percent": 61,
+      "own_Vitalite": 25,
+      "base_maximum_HP": 148,
+      "owner_Intelligence": 25,
+      "owner_Intelligence_damage_and_HP_bonus_percent": 20,
+      "O03_rank": 11,
+      "O03_damage_bonus_percent": 45,
+      "total_damage_bonus_percent": 126,
+      "fictional_attack_base_damage": 20,
+      "exact_predefense_damage": {
+        "numerator": 226,
+        "denominator": 5
+      },
+      "integer_predefense_damage_readout": 45,
+      "exact_maximum_HP_before_floor": {
+        "numerator": 888,
+        "denominator": 5
+      },
+      "maximum_HP_after_owner_bonus_floor": 177
+    }
+  },
+  "accepted_drone_invocation_rank_bonuses": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-invocation-rank-bonuses-02.json",
+    "reference_sha256": "58d1bcc70e7ddda3cfb92c80e1f7bc3a9d0a1dce884e86bd00c547641a66340c",
+    "accepted_shown_rules": {
+      "scope": "existing_drone_invocations_D56_D57_D58_D59_D66;not_raised_monster_spell_OC07",
+      "model_scope": "each_invocation_effective_rank_affects_only_its_corresponding_drone_model",
+      "effective_rank_minimum_shown": 1,
+      "maximum_HP_bonus_percent": "10*(effective_invocation_rank-1)",
+      "armed_direct_damage_bonus_percent": "10*(effective_invocation_rank-1)",
+      "armed_eligibility": [
+        "D58",
+        "D59",
+        "D66"
+      ],
+      "HP_all_current_models": true,
+      "damage_pool": "add_rank_bonus_percentage_points_to_accepted_pool_with_own_matching_attack_attribute_owner_Intelligence_and_other_eligible_drone_damage_bonuses",
+      "HP_pool": "add_rank_HP_bonus_percentage_points_to_accepted_HP_pool_after_own_level_Vitalite_base_and_compatible_flat_HP_bonuses;floor_final_maximum_once",
+      "learned_and_equipment_ranks": "learned_cap10_and_cost1_per_rank_retained;equipment_increases_effective_rank_and_linear_bonus_beyond10",
+      "shown_curve_references": {
+        "rank1": 0,
+        "rank10": 90,
+        "rank11": 100,
+        "rank12": 110
+      },
+      "current_next": "current_learned_rank9_effective11_and_next_learned10_effective12_hold_equipment_bonus2_and_other_modifiers_constant;no_rank_breakdown_line_in_player_copy",
+      "non_damage_effects": "reconnaissance_transport_Gardien_protection_costs_cooldowns_and_other_source_card_parameters_not_revised_by_this_bonus_curve"
+    },
+    "accepted_examples": {
+      "scope": "D58_level20_profile_and_accepted_owner_mapping_with_fictional_native_base20;other_damage_or_HP_bonuses_excluded;no_new_weapon_or_attack_variance",
+      "drone_model": "D58",
+      "level": 20,
+      "own_Force": 66,
+      "own_Force_damage_bonus_percent": 61,
+      "base_maximum_HP": 148,
+      "owner_Intelligence": 25,
+      "owner_Intelligence_damage_and_HP_bonus_percent": 20,
+      "O03_rank": 11,
+      "O03_damage_bonus_percent": 45,
+      "fictional_base_damage": 20,
+      "current_rank11": {
+        "rank_bonus_percent": 100,
+        "combined_damage_bonus_percent": 226,
+        "exact_predefense_damage": {
+          "numerator": 326,
+          "denominator": 5
+        },
+        "integer_damage_readout": 65,
+        "combined_HP_bonus_percent": 120,
+        "exact_maximum_HP": {
+          "numerator": 1628,
+          "denominator": 5
+        },
+        "integer_maximum_HP": 325
+      },
+      "next_rank12": {
+        "rank_bonus_percent": 110,
+        "combined_damage_bonus_percent": 236,
+        "exact_predefense_damage": {
+          "numerator": 336,
+          "denominator": 5
+        },
+        "integer_damage_readout": 67,
+        "combined_HP_bonus_percent": 130,
+        "exact_maximum_HP": {
+          "numerator": 1702,
+          "denominator": 5
+        },
+        "integer_maximum_HP": 340
+      }
+    }
+  },
+  "latest_familiar_weapon_damage_acceptance": "docs/reviews/refonte-agent-2026-10-06/familiar-weapon-damage-base-acceptance-decisions.json",
+  "latest_familiar_weapon_damage_acceptance_sha256": "d7da064266e7ba41c595cb84bfbbb2897978b5e28bb9438b5cb58bb9caf1c2db",
+  "accepted_familiar_weapon_damage_base": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-weapon-damage-base-PETS-EQ02-02.json",
+    "reference_sha256": "0b1faee1634503b5f634f2f15222e24a993be39ada644e92e951e6d3e8c79fea",
+    "accepted_shown_rules": {
+      "scope": "familiar_ordinary_attacks_of_drones_and_raised_monsters_with_compatible_active_equipped_weapons;future_familiar_models_require_own_approved_slots_and_functions",
+      "native_fallback": "use_original_native_attack_without_player_supplied_active_weapon",
+      "drone_native_base": "integrated_weapon_damage_range_depends_on_drone_model_and_own_player_matched_level;actual_ranges_and_curve_not_proposed",
+      "equipped_weapon_base": "replace_ordinary_attack_base_range_with_compatible_equipped_active_weapon_range;do_not_add_native_damage_base_and_equipped_weapon_base",
+      "post_base_modifiers": "apply_own_actor_attributes_and_compatible_modifiers_once_to_selected_base_under_accepted_actor_drone_rules;exact_raised_power_modifier_mapping_remains_pending",
+      "other_skills": "preserve_separate_skill_conditions_and_mechanics;no_automatic_replacement_of_spell_damage_or_other_power_base_by_weapon_range",
+      "weapon_removal": "return_to_original_native_attack",
+      "drone_specific_bonuses": "accepted_invocation_rank_owner_Intelligence_and_O03_bonuses_apply_to_compatible_native_or_equipped_drone_attacks;not_implicitly_extended_to_raised_or_non_drone_familiars",
+      "damage_variance": "each_damage_type_independently_samples_an_inclusive_uniform_integer_from_its_base_minimum_to_maximum;exact_multi_projectile_hit_grouping_and_RNG_timing_pending",
+      "native_object_generation": "original_native_attack_is_combat_profile_not_new_recoverable_inventory_item;do_not_materialize_free_native_weapon_on_spawn_death_or_resurrection",
+      "supplied_weapon_lifecycle": "real_weapons_transferred_to_familiar_keep_item_identity_and_ground_drop_on_death_or_raised_expiry_direction",
+      "noncombat_models": "Eclaireur_Mule_do_not_gain_attacks_from_equipment",
+      "not_fixed_here": "slot_counts_ammunition_storage_or_consumption_attack_modes_ranges_projectile_counts_reload_or_action_timing"
+    },
+    "accepted_examples": {
+      "scope": "fictional_base_range_only_before_attributes_and_other_modifiers;no_actual_drone_weapon_or_item_curve",
+      "native_base_min": 10,
+      "native_base_max": 15,
+      "supplied_weapon_min": 20,
+      "supplied_weapon_max": 30,
+      "selected_base_min": 20,
+      "selected_base_max": 30
+    }
+  }
+}

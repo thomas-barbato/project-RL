@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-MINE01",
+  "revision": 2,
+  "title": "Valeurs d'une mine fixées à sa pose",
+  "status": "mine_placement_power_explicitly_accepted;arming_scheduler_and_other_cases_pending;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-passive-rank-dependencies-INTERACT-RANK06-02.json",
+      "reference_sha256": "57cc2644818d7c2a17df9b03540298165cac1f198813c40176bf06212ddefccb"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-power-snapshot-INTERACT-POWER01-02.json",
+      "reference_sha256": "9d7c2be630dfec22019a53a944c53046278d4fa0d65af5cbbb391ced05256e77"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-residue-access-loss-INTERACT-RANK05-02.json",
+      "reference_sha256": "64e357edfbab7d869cf7a8635db1106afe9277059e61e14dff522196d14aa9c3"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-current-level-skill-power-02.json",
+      "reference_sha256": "2f726bc55e4fa77079582abc7e6f518bc4d805c78cc8a36e6f56e9d5a7316933"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM00-02.json",
+      "reference_sha256": "fe9a39d758b8022e9a5f9bd43726135e7c7c3bc4783f7fb1fa4ea3261e2c6010"
+    }
+  ],
+  "scope": "caster_side_parameters_of_successfully_placed_SM00_mine_and_its_later_explosion_statuses_and_residue;no_new_attribute_mapping_or_numeric_curve",
+  "illustration": {
+    "event": "place_mine_then_gain_level_or_raise_Mines_de_poison_rank_before_it_explodes",
+    "old_mine": "retains_placement_parameters",
+    "future_mine": "uses_current_new_parameters",
+    "residue_from_old_mine": "uses_old_mine_placement_parameters"
+  },
+  "shown_copy_markdown": "Je propose qu'une mine conserve les valeurs calculées au moment de sa pose : élément choisi, puissance des dégâts, chances de statut avant les défenses de la cible, rayon et effets prévus, y compris les valeurs de sa future zone persistante.\n\nGagner un niveau, augmenter un attribut ou améliorer une compétence renforce les prochaines mines. Les mines déjà posées gardent leurs valeurs. Leur zone utilise les valeurs fixées à la pose, même si l'explosion survient plus tard.\n\nLes résistances et autres protections de chaque cible sont prises en compte au moment où elle subit l'effet. Les règles déjà validées de suppression lors d'une baisse de rang ou d'une perte de passif restent prioritaires.",
+  "shown_copy_sha256": "4f7feec241b156912732aba6906f1341563f892a16988cc2089ef7c742bc6ea0",
+  "not_resolved_here": [
+    "exact_arming_trigger_explosion_tick_and_cleanup_scheduler",
+    "merged_multi_source_Gel_provenance",
+    "predeath_resurrection_mark_cleanup_and_birth_sampling",
+    "native_feedback_and_placement_geometry"
+  ],
+  "mechanic_approval": "accepted_as_displayed",
+  "text_approval": "design_explanation_accepted;no_new_skill_RP_or_name",
+  "visual_approval": "no_new_native_art_or_animation_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-placement-power-INTERACT-MINE01-01.json",
+    "reference_sha256": "5e39bf840dbe6b15ac659d9d83884312fd820b1a12e5568d7f973ec581838941"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/mine-placement-power-acceptance-decisions.json",
+    "reference_sha256": "3d1a105360b8511deb492ece59ae02e056dfc56f6831fee0d2afff0156eb2e3e"
+  },
+  "accepted_rule": {
+    "sampling": "calculate_eligible_caster_current_level_attributes_effective_ranks_and_equipment_modifiers_when_mine_is_successfully_placed",
+    "stored_parameters": [
+      "chosen_element",
+      "explosion_outgoing_damage_power",
+      "status_base_chance_before_current_target_defenses_and_importance",
+      "explosion_and_residue_radius",
+      "explosion_status_power_and_duration",
+      "residue_enabled_and_outgoing_power_status_chance_duration"
+    ],
+    "later_caster_changes": "level_attribute_or_rank_increases_and_other_eligible_modifier_changes_affect_future_placements;do_not_retroactively_recalculate_surviving_mines",
+    "delayed_residue": "zone_created_later_by_mine_uses_parameters_captured_at_mine_placement;duration_and_effect_start_still_follow_existing_zone_creation_rules",
+    "target_defenses": "evaluate_current_eligible_target_defenses_resistances_and_importance_when_explosion_or_periodic_effect_applies",
+    "rank_or_dependency_loss": "accepted_SM00_creator_and_SM02_SM03_SM04_SM05_dependency_cleanup_rules_take_precedence_over_parameter_retention",
+    "capacity": "SM01_current_limit_and_oldest_excess_cleanup_rule_not_frozen_per_mine",
+    "randomness": "store_caster_power_parameters_not_a_single_final_damage_or_status_roll_for_all_victims;existing_per_victim_explosion_sampling_rule_preserved;no_new_variance_distribution_introduced"
+  }
+}

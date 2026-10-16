@@ -1,0 +1,167 @@
+{
+  "date": "2026-10-07",
+  "id": "DI02",
+  "title": "Feu nourri",
+  "revision": 2,
+  "player_copy_markdown": "**DI02 · Feu nourri — Rang 11**\n\n*Vous concentrez votre feu sur une seule cible et l’accablez de tirs.*\n\n**Effet actuel**\n\n- Séquences de tir : **2**.\n- Projectiles tirés avec cette arme : **2**.\n- Dégâts par projectile : **18–22** (**90 %** de l’attaque).\n- Précision par projectile : **90 % de votre précision habituelle**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts par projectile : **18–23** (**93 %** de l’attaque).\n\n**Coût : 13 énergie + 2 munitions · Recharge : 4 tours.**\n**Portée : celle de l’arme active.**\n\nChaque projectile peut toucher ou manquer sa cible.\n\nDégâts indiqués avant les défenses de la cible.\n\n**Nécessite une arme à distance active.**",
+  "player_copy_sha256": "fe4863076e66c9e5dfed9a0f1f21e3abd9bfdf84a866b66dcf2128b516a966d0",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-04.json",
+  "source_skill_block_sha256": "fb9eea0abc39df051af2c80358ae684fcd83cb9e8c9f0a686f384517d0eab7d1",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/piercing-shot-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "43a4fb347b774281a9c61c18cfca466df8db5c276ca2b658e2176b458f5bad6d",
+  "name_approval": "explicit_user_acceptance_of_proposed_rename",
+  "roleplay_text_approval": "revised_roleplay_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "revised_copy_pending_individual_user_review",
+  "numeric_rules_approval": "two_fixed_sequences_and_native_projectile_ammunition_scaling_accepted; exact_coefficients_ranges_energy_and_cooldown_pending",
+  "detailed_conditions_approval": "same_target_native_mode_preservation_fixed_sequences_damage_rank_progression_and_reduced_accuracy_direction_accepted; detailed_resolution_pending",
+  "current_profile_status": "illustrative_not_a_user_save; not a proposed universal weapon variance",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "perception": 10,
+    "agility": 10,
+    "reference_weapon_min_damage_before_attributes": 18,
+    "reference_weapon_max_damage_before_attributes": 22,
+    "range_status": "ordinary weapon range; no fictional numeric range assigned",
+    "ranged_attribute_multiplier_exact": {
+      "numerator": 451,
+      "denominator": 400
+    },
+    "active_compatible_ranged_weapon": true,
+    "other_damage_or_cost_modifiers": false,
+    "active_firing_mode": "single_shot",
+    "native_projectiles_per_sequence": 1,
+    "mode_profile_status": "illustrative; actual weapon mode determines projectile and ammunition display"
+  },
+  "formulas": {
+    "projectile_count": "2 * native projectile count of active firing mode",
+    "damage_percent_per_projectile": "60 + 3 * (effective_rank - 1)",
+    "damage_per_projectile": "floor(base damage * percent/100 * ranged attribute multiplier), once at end",
+    "accuracy_multiplier": "9/10 of ordinary accuracy score, not a fixed 90 percent hit chance",
+    "ammunition_cost": "number of projectiles fired for compatible one-ammunition-per-projectile modes; timings and other weapon profiles pending",
+    "energy_cost": "10 + floor((effective_rank - 1)/3)",
+    "cooldown_turns": 4,
+    "sequence_count": "2, fixed at all skill ranks"
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "projectile_count": 2,
+    "damage_percent_per_projectile": 90,
+    "damage_min_per_projectile_before_defenses": 18,
+    "damage_max_per_projectile_before_defenses": 22,
+    "damage_min_exact_before_rounding": {
+      "numerator": 36531,
+      "denominator": 2000
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 44649,
+      "denominator": 2000
+    },
+    "accuracy_multiplier_percent": 90,
+    "ammunition_cost": 2,
+    "energy_cost": 13,
+    "cooldown_turns": 4,
+    "range": "ordinary range of the active compatible weapon",
+    "sequence_count": 2,
+    "native_projectiles_per_sequence": 1
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "projectile_count": 2,
+    "damage_percent_per_projectile": 93,
+    "damage_min_per_projectile_before_defenses": 18,
+    "damage_max_per_projectile_before_defenses": 23,
+    "damage_min_exact_before_rounding": {
+      "numerator": 377487,
+      "denominator": 20000
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 461373,
+      "denominator": 20000
+    },
+    "accuracy_multiplier_percent": 90,
+    "ammunition_cost": 2,
+    "energy_cost": 13,
+    "cooldown_turns": 4,
+    "range": "ordinary range of the active compatible weapon",
+    "sequence_count": 2,
+    "native_projectiles_per_sequence": 1
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_weapon_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "damage_percent_per_projectile",
+      "damage_max_per_projectile_before_defenses"
+    ],
+    "unchanged_effects_omitted": [
+      "projectile_count",
+      "accuracy_multiplier_percent",
+      "ammunition_cost",
+      "energy_cost",
+      "cooldown_turns",
+      "range",
+      "sequence_count",
+      "native_projectiles_per_sequence"
+    ],
+    "damage_range_display": "Both range endpoints displayed together; minimum unchanged."
+  },
+  "active_weapon_requirement": {
+    "type": "ranged",
+    "equipped_and_active_required": true,
+    "approval": "explicit_user_requirement",
+    "incompatible_warning": "Nécessite une arme à distance active.",
+    "warning_approval": "accepted_as_presented"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true
+  },
+  "unshown_rules_approval": "Full damage/cost curves, exact accuracy-score/defense calculation, compatible weapon families and active modes, per-projectile defense resolution, random damage distribution, ammunition prepayment/refusal and early target death, interruptions, actor visibility, affixes and native-mode modifiers remain pending where not previously accepted. No fixed 90% hit chance assumed. The two fixed native firing sequences and their mode-dependent projectile/ammunition count are accepted.",
+  "visual_intention_approval": "accepted_catalogue_intention_only: closely spaced impacts and repeated short weapon recoil",
+  "visual_approval": "pending_native_animation_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Source document and revised DI02 block hashes verified.",
+    "Two fixed native firing sequences accepted; one-shot mode gives 2 projectiles/munitions, three-shot burst gives 6, independent of skill rank.",
+    "Same 18-22 illustrative per-projectile weapon base, Perception 10, Agility 10 and multiplier 451/400; current coefficient 90% gives 18-22, next 93% gives 18-23.",
+    "Learned 9 to 10, equipment +2, fixed active firing mode and other modifiers; next block only changed damage row.",
+    "Name and concept accepted; revised RP and exact numeric balance still pending individual review.",
+    "No redundant functional paragraph, formula/table, rank breakdown or ordinary action-time reminder in tooltip.",
+    "Historical proposal kept; no runtime, artwork or animation integration."
+  ],
+  "previous_title": "Rafale concentrée",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI02-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/sustained-fire-name-and-native-sequences-decisions.json",
+  "latest_decisions_sha256": "8b7d933ba0a4101b6d0916aca23a580c7951466c13f1f2af6b43cf161f47b702",
+  "native_mode_examples": [
+    {
+      "native_projectiles_per_sequence": 1,
+      "sequence_count": 2,
+      "projectile_count": 2,
+      "ammunition_cost": 2
+    },
+    {
+      "native_projectiles_per_sequence": 3,
+      "sequence_count": 2,
+      "projectile_count": 6,
+      "ammunition_cost": 6
+    }
+  ],
+  "superseded_mechanics": [
+    "Skill-defined 3-to-6 projectile count independent of weapon mode.",
+    "Five-projectile rank-11/12 example.",
+    "Native burst replaced by skill-defined projectile count."
+  ]
+}

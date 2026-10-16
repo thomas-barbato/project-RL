@@ -1,0 +1,23 @@
+{
+  "status": "passed_in_schematic_preview_not_game_runtime",
+  "viewport_widths": [
+    736,
+    320
+  ],
+  "verified": [
+    "hover highlights only visible hostiles",
+    "hover does not advance a turn",
+    "mouse leave clears highlight",
+    "hidden targets leave count and highlight",
+    "three quiet turns before repair",
+    "four eligible repairs total 21 HP",
+    "maximum HP respected",
+    "combat possible with zero visible hostiles",
+    "ongoing damage suspends repair",
+    "keyboard focus highlight",
+    "no narrow layout overflow",
+    "no JavaScript runtime errors"
+  ],
+  "user_approval": "pending_text_mechanics_and_visual_review",
+  "engine_integration": false
+}

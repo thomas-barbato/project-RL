@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-REANIM03-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-reapplications-INTERACT-REANIM03-01.json",
+    "reference_sha256": "3853d1b2b410bc480bef73f08573b122a1aaa825d06dc7f25a36dee72ef3c94d"
+  },
+  "user_acceptance": "parfait :)",
+  "shown_explanation": "Pour les marques de Réanimation, je propose :\n\n- Un ennemi ne peut porter qu'une seule marque de Réanimation.\n- S'il porte déjà votre marque, le lancement est refusé sans dépenser d'énergie, faire passer de tour ou modifier la recharge.\n- Si un autre lanceur dispose un jour de ce pouvoir, sa dernière marque posée avec succès remplace la précédente. La cible ne produit qu'un seul ressuscité, pour le propriétaire de la marque restante.\n- Un monstre déjà ressuscité ne peut pas recevoir une nouvelle marque de Réanimation.\n\nLe rang utilisé au relèvement reste celui du propriétaire de la marque, selon la règle validée. Cette proposition n'attribue pas le pouvoir à un nouveau monstre et ne définit aucun nouveau texte de refus dans l'interface.",
+  "approved_rule": {
+    "unique_mark": "one_live_OC07_mark_per_target;one_target_death_can_produce_at_most_one_raised_from_that_mark",
+    "same_owner_reapplication": "target_already_marked_by_same_caster_is_invalid;refuse_without_energy_spend_elapsed_turn_or_cooldown_change;existing_mark_retained",
+    "other_owner": "if_other_caster_has_this_ability_latest_successful_valid_mark_replaces_previous_mark_and_owner;failed_or_refused_cast_does_not_replace_it",
+    "birth_owner": "remaining_mark_owner_receives_single_raised_using_accepted_current_rank_birth_rule;does_not_create_one_actor_for_each_historical_caster",
+    "raised_target": "actor_already_created_by_reanimation_is_not_eligible_for_new_OC07_mark_even_if_currently_hostile;no_chain_reanimation_of_that_actor",
+    "replaced_source": "previous_mark_is_not_restored_when_replacement_is_lost;prior_cast_costs_are_not_refunded",
+    "scope_boundary": "no_new_NPC_skill_assignment_faction_rule_or_UI_error_message;other_status_kinds_keep_existing_reapplication_rules"
+  },
+  "approval_boundary": "displayed_unique_mark_same_owner_refusal_conditional_other_owner_replacement_and_raised_target_exclusion;owner_loss_map_cleanup_and_native_feedback_not_newly_approved",
+  "runtime_integration": "not_integrated"
+}

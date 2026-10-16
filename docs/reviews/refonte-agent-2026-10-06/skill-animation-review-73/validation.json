@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-14",
+  "debug_build": "passed",
+  "locked_all_targets_check": "passed",
+  "targeted_tests": {
+    "damage_shells": 2,
+    "grenade_states": 4
+  },
+  "native_views": 32,
+  "native_readbacks": 3424,
+  "native_tile_px": 64,
+  "browser_errors": [],
+  "native_canvas_pixel_parity": 12,
+  "wall_clipping": "passed",
+  "integer_damage": "passed; odd damage rounds down",
+  "square_3x3_centre24_corner12": "passed",
+  "larger_5x5_11x11_rule_grid": "passed",
+  "player_immunity": "passed",
+  "blocked_cast_atomic": "passed",
+  "idle_counters_stable": "passed",
+  "preserved_previous_gallery_and_catalogue_inputs": 8,
+  "visual_inspection": [
+    "browser-impact.png",
+    "browser-rule-5x5.png"
+  ],
+  "campaign_integration": false,
+  "numeric_and_visual_approval_pending": true,
+  "native_source": "native-clear-labels",
+  "damage_label_clearance": "revised fixture positions and native capture inspected"
+}

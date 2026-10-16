@@ -1,0 +1,34 @@
+{
+  "batch": "ANIM-S31",
+  "date": "2026-10-14",
+  "status": "awaiting_visual_review",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 70,
+      "id": "SM02",
+      "name": "Mines de poison",
+      "variant": "SM02-A01"
+    },
+    {
+      "number": 71,
+      "id": "SM03",
+      "name": "Mines de glace",
+      "variant": "SM03-A01"
+    }
+  ],
+  "approved_cards": [
+    "review-individual-description-SM02-07.json",
+    "review-individual-description-SM03-02.json",
+    "persistent-immediate-application-count-acceptance-decisions.json",
+    "mine-led-type-color-palette-acceptance-01.json",
+    "mine-explosion-type-and-residue-visual-direction-decisions.json",
+    "mine-residue-elemental-ground-visual-direction-decisions.json"
+  ],
+  "mechanics": "One mine, radius1, energy10, cooldown1, arming1; inherited valid sample. Effective11 poison19+42 per application with5total, rank12=20+47. Cold16/17, Gel5turns, chance69.2/73.8 displayed; prepared outcomes, no RNG. First poison at explosion counts as first; four later ticks only, no extra tick from idle. Exact expiry-phase integration separate.",
+  "visuals": "Same immutable mine texture; native shader recolors only red central lens to green or ice-blue, with accepted blink. New painted toxic6stage burst164px/.42s/.78alpha; existing crystalline6stage burst164px/.42s/.80alpha. Poison vapour attached to victims, existing foregroundGel coating. Shared recoil on initial hit and periodic poison. Skill-cause icons/durations on victims and colored total with type/cause pictogram; first poison total61 or67 combines explosion and immediate toxin. No blood or terrain residue.",
+  "prepared_numbers": "Victims400HP to remain alive. Poison final171HP at11 or145at12; Cold384/383. Wall-protected victim400. Player100 remains protected. Prepared chance outcomes do not define success, defense, attribute curves or variance rules.",
+  "scope": "Independent debug fixtures; no GameState, save, campaign, actual AI/perception/RNG, inventory or generalized resource resolver. Native body32 enemy enlarged64 kept until later adaptation. Frost successful/failed cases and diagonal escape are visual fixtures; no universal movement/geometry convention inferred.",
+  "pending": "Native rendered palettes, toxic burst, attachedPoison feedback and variantHUD await user approval. Full combat targeting/status aggregation/resistances/importance, timer-expiry ordering, familiar eligibility, diagonals/large footprints, reapplication/Burn interactions and gear snapshot integration separate.",
+  "SM05": "Absent in this batch. Next dedicated residue preview will show burning ground forFire, gas cloud forPoison, frozen ground forCold, fixed to terrain, following latestMINE-VFX-TYPE02 direction."
+}

@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-09",
+  "review_id": "SKILL-RANK-DELEGATE01",
+  "user_message": "je te laisse t'occuper des rangs de compétences de toi meme pour l'instant mais le gain doit être perceptible au fil de la progression. :)\nDe toutes facon on équilibrera plus tard",
+  "source_review": "docs/reviews/refonte-agent-2026-10-06/review-skill-progression-B01-PROG01-01.json",
+  "source_review_sha256": "c9810a785e11c9042c336c40cf45344913b0bd44d2bf637a1d2ebf2f989774b7",
+  "authorized_scope": "autonomously complete and provisionally adjust numerical rank progression of retained skills with perceptible gains;no per-rank user confirmation required for this provisional pass",
+  "scope_boundary": "does not authorize new or removed skills, new gameplay effects, roleplay changes, new attribute mappings, native art or final balancing;existing effect and visual approvals preserved",
+  "constraints": [
+    "learned_cap10_and_equipment_effective_rank_beyond10",
+    "secondary_actives_once_and_associated_learned_active_purchase_prerequisite",
+    "fixed_class_rank1_effects_and_explicit_user_numeric_constraints_preserved",
+    "damage_and_healing_final_integer_presentation_using_accepted_pipelines",
+    "positive_energy_cost_minimum1_where_previously_required",
+    "SF01_rank10_step_cost1_never_zero",
+    "SM01_rank10_maximum5_then_further_equipment_rank_growth",
+    "raised_limit5_through10_then_plus1_per_effective_rank_above10",
+    "drone_level_and_attributes_profiles_and_invocation_percent_pool_not_replaced_by_obsolete_rank_only_base_HP",
+    "no_new_duration_for_persistent_drones",
+    "no_new_Foudre_or_removed_skill_content"
+  ],
+  "progression_goal": "prefer meaningful direct gains;grid sizes and actor counts use discrete steps;probabilities_reductions_and_costs_keep_legal_caps_and_floors",
+  "previous_B01_proposal_status": "numerical progression may be finalized under current delegation;no separate pending individual-rank approval gate remains",
+  "balancing_timing": "progressively_later_after_functional_implementation_and_testing",
+  "runtime_integration": "not_integrated"
+}

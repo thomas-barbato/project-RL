@@ -1,0 +1,60 @@
+{
+  "batch": "ANIM-S16",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 37,
+      "id": "TR63-HEURT",
+      "name": "Heurt",
+      "variant": "TR63-HEURT-A01",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 38,
+      "id": "TR63-DECHARGE",
+      "name": "Décharge de plaques",
+      "variant": "TR63-DECHARGE-A01",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 39,
+      "id": "TR63-FERMETURE",
+      "name": "Fermeture des plaques",
+      "variant": "TR63-FERMETURE-A01",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 40,
+      "id": "TR64-TRAIT",
+      "name": "Trait corporel",
+      "variant": "TR64-TRAIT-A01",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 41,
+      "id": "TR64-PULSATION",
+      "name": "Pulsation occulte",
+      "variant": "TR64-PULSATION-A01",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 42,
+      "id": "TR64-DRAIN",
+      "name": "Drain organique",
+      "variant": "TR64-DRAIN-A01",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "approved_bodies": "TR63-BODY01 and TR64-BODY01 retained; new temporary closed-plates variant for Fermeture only.",
+  "visuals": "Physical Heurt and radial chitin discharge; visible armour closure with28px plate badge for3 turns; swift red-black corporeal dart; organic radial pulse; thick single blood-coloured return filament for Drain.",
+  "rules_retained": "Contact1 cell, discharge radius1, pulse radius2, Trait/Drain targets within4 cells. Closure3 turns; cooldowns0/4/6/0/4/4. Reserve consumption and permitted movement/strike events prepared. Silence case applies only to Possede; blocks Pulse/Drain but not Trait.",
+  "scope": "No actual HP, healing, damage, energy, RNG, AI, inventory, equipment, loot, saves or campaign integration. No new Bleeding/Stun or permanent armour reduction. Geometry is a visual review example, not a complete game targeting contract.",
+  "excluded_trials": [
+    "first-capture-badge/**",
+    "first-capture-badge-02/**",
+    "native-check-01.png",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-42/native-check-02.png",
+    "first-capture-wall-audit.json"
+  ]
+}

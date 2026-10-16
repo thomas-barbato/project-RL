@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-06",
+  "skill_id": "SU05",
+  "user_message": "dans les effets on peut faire grandir le nombre d'effet maximum purgés d'un coup :) .",
+  "mechanical_direction_approval": "Explicit requested growth of maximum effects removed per use with skill rank.",
+  "preserved_decisions": {
+    "title": "Purge",
+    "roleplay": "Vous chassez les poisons et les effets néfastes de votre corps.",
+    "selection_priority": "most recent compatible harmful effects first, automatically"
+  },
+  "superseded_interpretation": "Fixed one-effect-per-use reading of previous singular wording.",
+  "proposed_numeric_progression": "Restore previous proposal 1 + floor((effective_rank - 1) / 5); exact thresholds still pending review.",
+  "illustrative_profile": "Rank 10 = 8 learned + 2 equipment; next rank 11 = 9 learned + 2 equipment. This example shows a threshold; it does not imply every rank changes the maximum.",
+  "cost_and_cooldown": "Previous energy curve and cooldown 6 retained as proposals; no blanket numeric approval.",
+  "previous_presentation": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU05-02.json",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

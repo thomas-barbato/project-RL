@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-09",
+  "review_id": "GEAR-SK01",
+  "revision": 2,
+  "title": "Compétences accordées par les objets",
+  "status": "shown_player_equipment_granted_skill_interactions_accepted;ongoing_effect_lifecycle_and_native_pending",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-55.json",
+  "current_attribute_model_sha256": "540429f3be06d55983ef37f865607b049eb6955054bc95670f78595de9c25e55",
+  "explicit_user_direction": "docs/reviews/refonte-agent-2026-10-06/player-equipment-grants-unlearned-skill-decisions.json",
+  "explicit_user_direction_sha256": "b4e621980ca48fb65eb27dbb6e684874a782268ab6fe7551fa6950c70137838d",
+  "shown_copy_markdown": "**GEAR-SK01 · Compétences accordées par les objets**\n\nTa règle est notée. Je propose ces précisions :\n\n- Un objet donnant **+3 à Braise** permet de l’utiliser au **rang 3**, même sans point appris, tant que ce bonus d’équipement est actif.\n- Cela s’applique aussi aux **passifs**, avec leurs conditions habituelles.\n- Le bonus ne dépense aucun point et ne rend pas l’apprentissage permanent. Si vous perdez le dernier bonus sans avoir appris la compétence, **vous ne pouvez plus la lancer** ; un passif ainsi accordé cesse de fonctionner.\n- Les conditions d’utilisation restent applicables : **arme adaptée, énergie et recharge**. Retirer puis remettre l’objet ne réinitialise pas la recharge.\n- Pour **acheter les passifs d’un arbre secondaire avec vos points**, l’actif associé doit toujours être appris. L’accès donné par un objet permet de l’utiliser, mais ne remplace pas cet apprentissage.\n\nCes précisions restent à valider.",
+  "shown_copy_sha256": "2d81e7b9802306028c09817d5f1febd155047621850157e29d1b460b80b0fc5f",
+  "already_requested_rule": "player_can_use_skill_targeted_by_eligible_equipment_skill_bonus_even_without_having_personally_unlocked_or_learned_it",
+  "scope_audit": {
+    "direct_user_rule": "direct_unlearned_player_skill_access_and_shown_rank_passive_loss_cooldown_purchase_details_explicitly_accepted",
+    "familiar_scope": "PETS_EQ04_only_existing_compatible_owned_familiar_skills_receive_bonuses_unchanged;user_explicitly_said_player",
+    "purchase_vs_use": "all_primary_purchase_access_and_secondary_learned_active_purchase_prerequisite_preserved;temporary_access_is_not_a_free_permanent_skill_point",
+    "rank_UI": "accepted_effective_rank_color_and_no_learned_plus_equipment_tooltip_breakdown_preserved;Braise_example_is_design_explanation_not_new_tooltip_breakdown",
+    "once_purchase_skills": "no_new_effective_rank_curve_or_extra_learned_levels_for_secondary_actives_introduced",
+    "affixes": "no_new_specific_bonus_branch_or_all_skills_loot_family_values_chances_or_generation_implemented",
+    "ongoing_effects": "only_new_activation_and_passive_modifier_loss_shown;buffs_zones_transformations_marks_and_summoned_actor_persistence_need_separate_review"
+  },
+  "unshown_cases_pending": [
+    "already_cast_buffs_zones_transformations_marks_or_living_drones_raised_when_grant_is_lost",
+    "OC07_effective_rank0_after_item_loss_and_remaining_raised_capacity_power",
+    "removing_invocation_grant_own_drone_HP_damage_dynamic_rank_update_without_free_heal",
+    "specific_skill_vs_branch_or_all_skill_bonus_affix_scope_and_stacking",
+    "first_learned_point_and_next_rank_preview_when_skill_exists_only_from_gear",
+    "native_tree_action_bar_granted_skill_visibility_and_boosted_rank_color"
+  ],
+  "player_copy_approval": "shown_copy_accepted",
+  "mechanical_approval": "shown_player_granted_effective_rank_passive_eligibility_gear_loss_cooldown_and_secondary_purchase_rules_accepted",
+  "visual_intention_approval": "existing_boosted_effective_rank_color_and_no_rank_breakdown_preserved;new_native_skill_visibility_not_presented",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-equipment-granted-skills-GEAR-SK01-01.json",
+  "source_proposal_sha256": "37b05611ac9bf2bc8e39ae895b1d53eb5ab97bf0f77f467c47f57cddde94d27e",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/equipment-granted-skill-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "1e78872861336b564093a3a906ac96807d968a752629ee3a0f9e47eb0302dcd7",
+  "accepted_shown_rules": {
+    "scope": "player_skills_only_with_eligible_active_equipment_bonus_targeting_skill;not_stored_inventory_or_unknown_familiar_skill_grant",
+    "effective_rank": "already_accepted_learned_plus_eligible_equipment_rank_accounting_extends_from_zero_learned;positive_bonus_grants_use_at_positive_effective_rank_without_free_learned_rank",
+    "example": "Braise_unlearned_plus3_eligible_equipment_bonus_is_usable_at_effective_rank3_while_bonus_applies",
+    "passives": "eligible_gear_bonus_can_activate_unlearned_passive_effect_at_granted_effective_rank_subject_to_ordinary_conditions",
+    "point_accounting": "no_points_spent_or_permanent_learned_rank_added_by_equipment;existing_learned_caps_and_once_purchase_secondary_actives_preserved_without_new_rank_effect_curves",
+    "bonus_loss": "if_effective_granted_rank_drops_to_zero_and_no_learned_rank_exists_disallow_new_cast_or_activation_and_remove_that_gear_granted_passive_modifier;do_not_infer_cancellation_of_already_cast_effects_or_existing_familiars",
+    "ordinary_use_conditions": "proper_active_weapon_when_required_energy_targeting_range_and_cooldown_conditions_preserved",
+    "cooldowns": "retain_remaining_ability_cooldown_when_grant_disappears_and_returns;item_removal_or_reequip_not_a_cooldown_reset",
+    "secondary_purchase": "associated_active_must_have_actual_learned_rank_before_spending_points_on_secondary_passives;temporary_equipment_granted_active_use_does_not_satisfy_purchase_prerequisite",
+    "scope_boundary": "ongoing_effect_and_familiar_behavior_after_grant_loss_actual_affix_families_and_native_equipment_skill_UI_pending"
+  }
+}

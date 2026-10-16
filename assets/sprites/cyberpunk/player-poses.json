@@ -1,0 +1,61 @@
+{
+  "version": 3,
+  "outfit_count": 17,
+  "armor_armed_variants": 98,
+  "base_classes": [
+    "breche",
+    "vigie",
+    "creuset"
+  ],
+  "torso_start": 101,
+  "outfit_start": 3,
+  "torso_models": [
+    "armure_cerbere",
+    "brigandine_cognefer",
+    "carapace_chrysalide",
+    "composite_carapace",
+    "combinaison_fantome",
+    "manteau_de_mue",
+    "plastron_bastion",
+    "patched_plating",
+    "veste_de_la_seconde_ombre",
+    "veste_de_membranes",
+    "veste_de_peau_seconde",
+    "veste_de_veille",
+    "veste_matelassee",
+    "veste_a_fibres_croisees"
+  ],
+  "appearance": "torso chooses complete outfit; weapon category chooses authored armed figure",
+  "poses": [
+    "unarmed",
+    "side",
+    "melee-two-handed",
+    "two-handed",
+    "raised",
+    "dual-melee",
+    "dual-raised",
+    "dual-mixed"
+  ],
+  "layering": "one complete figure, weapon and hands included",
+  "source_frame": 192,
+  "body_height": 120,
+  "world_cell": 48,
+  "world_body_height": 30,
+  "feet_baseline": 187,
+  "sources": {
+    "assets/source-art/joueur-quatre-prises-2026-10-05/classes-side.png": "d04004d16e19680023b8e73757898a31b4b08b705a859a1cd34a952b9b987ed2",
+    "assets/source-art/joueur-quatre-prises-2026-10-05/tenues-side.png": "35ad244115854645a2d8ec615fef205d2c08ba003be91144c7774e52fc249408",
+    "assets/source-art/joueur-quatre-prises-2026-10-05/classes-melee-two-handed.png": "68fb4e5b5114ccf738fd439deab3df0e79de8124984f8b21c9ece7f8a1155bac",
+    "assets/source-art/joueur-quatre-prises-2026-10-05/tenues-melee-two-handed.png": "6e32a023e86363cb726d9b3c6401f9793bb6443a58c69208f6ac574b397980c9",
+    "assets/source-art/joueur-quatre-prises-2026-10-05/classes-dual-melee.png": "7f2adc54ed70a8dfe757ba912e3b13f6ce3092fc625cbc78cecf0fc56048b89d",
+    "assets/source-art/joueur-quatre-prises-2026-10-05/tenues-dual-melee.png": "65bbd7e720dae4bb3a05b364da5015202b9196d6c2ae966cbb61c470ed100739",
+    "assets/source-art/palettes-integration-2026-10-05/tenues-two-handed.png": "87b0f201deb4a0ec2ccdcab792c543382ec355bd3bba57782ad4249219aa5a66",
+    "assets/source-art/palettes-integration-2026-10-05/tenues-raised.png": "c7e57ecff37c5b0aa07718f8d0a1bdbdf97577b840cb83c0b15585026ba6b9bd",
+    "assets/source-art/palettes-integration-2026-10-05/tenues-dual-raised.png": "27a58a6c369e1995142d4a58d339223c1cbf9771c53ca050eb1b1d8e67e22c49",
+    "assets/source-art/palettes-integration-2026-10-05/tenues-dual-mixed.png": "31e1ee18fefe28301e01974f9ac58b8f897b4f09df91e0c060f9c129b1a631a1"
+  },
+  "unarmed_sources": {
+    "classes-casquees-poses.png": "951cace53c6dc69f8eddef26b64226110dbfa73d92e8a77d03783b4385c74372",
+    "tenues-side-final.png": "824ab53ad4321b3034f9e7763fdd7c874ce747775f4659adf7139346943d65e3"
+  }
+}

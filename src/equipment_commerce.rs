@@ -15,6 +15,8 @@ fn base_price(family: &str, tier: u8) -> Option<u32> {
         "core:spears" => [65, 100, 150, 220, 320, 470],
         "core:shotguns" => [100, 150, 225, 330, 480, 700],
         "core:assault_rifles" => [120, 175, 260, 370, 540, 790],
+        "core:pistols" => [65, 100, 150, 220, 320, 470],
+        "core:submachine_guns" => [95, 140, 210, 305, 440, 640],
         "core:machine_guns" => [150, 220, 320, 460, 660, 960],
         "core:rocket_launchers" => [160, 240, 350, 500, 720, 1050],
         "core:grenade_launchers" => [135, 200, 290, 420, 610, 890],

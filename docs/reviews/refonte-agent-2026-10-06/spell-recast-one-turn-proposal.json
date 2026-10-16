@@ -1,0 +1,23 @@
+{
+  "review_id": "SPELL-CADENCE01",
+  "status": "superseded_by_expanded_accepted_policy",
+  "user_direction": "Supprimer les longues recharges des sorts, avec une reutilisation a un tour pour se rapprocher du hack and slash.",
+  "proposed_rule": "Un lancement consomme son action habituelle. Le meme sort peut etre relance a la prochaine action du joueur, sans tour intermediaire obligatoire.",
+  "example": [
+    "action 1: Boule de feu",
+    "action 2: Boule de feu",
+    "action 3: un autre sort ou un deplacement"
+  ],
+  "primary_limit": "Le cout en energie est paye a chaque lancement. Aucun changement automatique des couts n'est propose.",
+  "preserved": [
+    "resolution des actions ennemies",
+    "durees des effets",
+    "animations rapides validees",
+    "portees et zones validees"
+  ],
+  "caution": "Les soins, controles et zones persistantes devront etre testes pour eviter les cumuls ou verrouillages excessifs. Aucun nouveau cumul, rendement degressif ou cout n'est autorise par cette proposition.",
+  "scope": "Sorts uniquement. Les competences physiques, drones et autres dispositifs ne sont pas automatiquement modifies.",
+  "runtime_change_applied": false,
+  "implementation_note": "Le compteur historique exclut le tour d'activation. Mettre sa duree a 1 sans adapter la semantique imposerait encore une action d'attente, contrairement au comportement propose.",
+  "accepted_successor": "agent-next-action-cadence-acceptance.json"
+}

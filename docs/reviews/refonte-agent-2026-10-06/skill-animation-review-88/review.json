@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S41-REV03",
+  "status": "visually_accepted",
+  "campaign_integration": false,
+  "native_tile": 64,
+  "candidates": [
+    {
+      "number": 91,
+      "id": "O02",
+      "variant": "O02-A03",
+      "title": "Interférence"
+    },
+    {
+      "number": 92,
+      "id": "AF02",
+      "variant": "AF02-A03",
+      "title": "Faille d’armure"
+    }
+  ],
+  "effective_rank": 1,
+  "accepted_mechanics": "../afflictions-area-acceptance-01.json",
+  "prepared_values": {
+    "zone_width_cells": 3,
+    "casting_range_cells": 5,
+    "duration_turns": 3,
+    "cooldown_turns": 5,
+    "O02_energy": 8,
+    "AF02_energy": 9,
+    "O02_direct_damage_reduction_percent": 15,
+    "AF02_physical_armor_reduction_percent": 20
+  },
+  "scope": "Visual revision only: two small 24 px transparent overhead status icons, 14 px duration counter; no cast flash, body animation or ground decoration. Shared recoil and accepted area mechanics retained.",
+  "scenes": 18,
+  "cases": [
+    "four group directions",
+    "player receiving",
+    "real-time waiting",
+    "closed-corner obstacles",
+    "individual resistance",
+    "victim leaves, newcomer enters"
+  ],
+  "preview": "../apercu-animations.html?lot=88",
+  "native_lab": "--apercu-laboratoire-competences --lot-affaiblissements-zone",
+  "source": "src/agent_skill_lab_review/fire_painted/afflictions_area.rs",
+  "source_sha256": "a362a0d16aaab8278c20e0a26fc9190374ccf1e7f51902235d512754d08ef850",
+  "shared_art_source": "src/agent_skill_lab_review/fire_painted/afflictions_opening.rs",
+  "shared_art_source_sha256": "9d04af3a5ebcb9d3ba7beec63364fe3be3a0a8154839164739ce21bb9f0cc41e",
+  "catalogue_sha256": "459b572632cd0bdba78a8120fe1b3244b52199bb8f23bc0bd3ea9c7d246facfb",
+  "supersedes": "../skill-animation-review-87/review.json",
+  "remaining_unshown": 19,
+  "branch_followup": [
+    "AF03",
+    "AF04",
+    "AF05",
+    "AF06"
+  ],
+  "pending_separately": "B03 Vitalité améliorée mechanics.",
+  "verification": {
+    "debug_build": true,
+    "format_check": true,
+    "scoped_diff_check": true,
+    "native_visual_QA": true,
+    "all_18_mechanical_timelines_identical_to_review87": true,
+    "lossless_native_pixel_verification": true,
+    "marker_transparency_native_alpha_readback": "marker-transparency.json",
+    "unchanged_world_maximum_rgb_delta": 1,
+    "viewer_controller": "Six scenarios, four directions, manual turns; offline mock DOM, no browser rendering claim.",
+    "previous_accepted_art_and_catalogue_preserved": true
+  },
+  "temporary_capture_policy": "Reuse same HTML; delete native captures and QA screenshots after lossless packaging. Old point-target playback can be removed after the revised playback is verified; retain shared source artwork and review records.",
+  "launcher": "ouvrir-laboratoire.cmd",
+  "marker": {
+    "size_px": 24,
+    "duration_text_px": 14,
+    "transparent_backdrop": true,
+    "source_icon_files_unchanged": true
+  },
+  "playback_bytes": 0,
+  "cleanup": "cleanup.json",
+  "visual_acceptance": "visual-acceptance-01.json",
+  "historical_playback_bytes": 1424416,
+  "playback_removed_after_verified_successor89": true,
+  "accepted_native_preview_reproducible_with": "--ui-cold-agent-skill-animations <fresh output> --lot-affaiblissements-zone"
+}

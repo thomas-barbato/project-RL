@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-PETS02-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-zone-arrival-INTERACT-PETS02-01.json",
+    "reference_sha256": "bb14dde5808bc8b05eb5205804f6c58792e744fce7974af93e271f7238f7d37e"
+  },
+  "user_acceptance": "parfait :) on continue",
+  "approved_rule": {
+    "new_raised": "preserve_no_action_on_birth_turn_and_first_normal_action_from_following_reference_turn;no_new_delay_on_later_map_arrival",
+    "existing_actor": "map_arrival_or_Repositionner_preserves_same_actor_remaining_action_cycle_delays_and_eligibility;no_bonus_action_or_cooldown_reset;normal_remaining_actions_if_otherwise_eligible",
+    "progressive_arrival_phase": "after_successful_actual_player_grid_movement_place_one_eligible_waiting_surviving_familiar_under_accepted_priority_and_cell_rules_before_periodic_and_familiar_actor_phases;state_continuity_not_new_birth",
+    "zone_entry": "creation_reanimation_map_arrival_or_reposition_into_zone_counts_as_entry_for_that_actor_if_zone_target_rules_eligible;immediate_effect_under_shared_zone_target_reference_turn_budget;within_same_zone_reposition_follows_existing_internal_movement_rule",
+    "target_and_friendly_rules": "respect_each_zone_target_eligibility_resistance_and_existing_per_skill_ally_damage_rule;no_general_ally_immunity_or_automatic_all_zone_damage_created",
+    "own_mines": "existing_player_SM00_mines_not_triggered_by_nonhostile_familiars;no_change_to_existing_ally_explosion_victim_rules",
+    "death": "if_entry_hazard_kills_familiar_resolve_death_before_any_familiar_action_and_drop_existing_real_equipment_and_cargo_on_placed_actor_cell;no_duplicate_rewards",
+    "preserved": "birth_resource_initialization;living_arrival_no_refill_or_timer_restart;existing_raised_remaining_lifetime;waiting_state_effects_no_map_actions;cell_priority_and_map_transfer_rules",
+    "scope_boundary": "no_new_dangerous_tile_exclusion_or_immunity_no_extra_turn_cost_no_universal_actor_speed_rule_no_new_native_feedback"
+  },
+  "approval_boundary": "displayed_eligible_zone_arrival_reposition_application_budget_death_items_and_progressive_arrival_phase_accepted;native_feedback_and_other_commands_not_approved",
+  "runtime_integration": "not_integrated"
+}

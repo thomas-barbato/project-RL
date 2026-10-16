@@ -1,0 +1,19 @@
+{
+  "cargo_build_locked": "passed",
+  "targeted_tests": {
+    "passed": 23,
+    "failed": 0
+  },
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "native_turn_lifetime_controls": "passed",
+  "browser_controller_checks": {
+    "ten_minutes_wait_without_turn": "passed",
+    "pause_preserves_turn": "passed",
+    "next_turn_ends_large_effect": "passed",
+    "burn_remaining_turns": "passed",
+    "cooldown_blocks_recast": "passed"
+  },
+  "native_frame_links": 288,
+  "scope": "Debug preview only; no campaign integration."
+}

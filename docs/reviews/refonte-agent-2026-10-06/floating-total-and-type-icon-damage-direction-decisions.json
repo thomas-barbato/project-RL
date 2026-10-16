@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-09",
+  "review_id": "HUD-DMG01-DIRECTION01",
+  "user_message": "ca me va :) .\n\nA noter que en jeu, l'affichage des dégats (au dessus de la tête du joueur ou du monstre) devra se faire ainsi :\n\ndégats totaux (split des dégats par type avec petite icone).",
+  "accepted_user_direction": {
+    "targets": "floating_damage_above_player_and_monsters",
+    "format": "total_damage_first_then_parenthesized_split_by_damage_type_with_small_icon_for_each_type",
+    "native_icons_palette_and_animation": "not_presented_or_approved;no_new_assets_created",
+    "damage_mechanics": "format_instruction_only;does_not_change_damage_amounts_or_protection_order"
+  },
+  "approval_scope": "Explicit instruction on total-first parenthesized per-type icon breakdown above player and monster heads;exact example, integer attribution, icon art and native rendering still to review.",
+  "already_accepted_elemental_feedback": "docs/reviews/refonte-agent-2026-10-06/elemental-damage-text-feedback-decisions.json",
+  "already_accepted_elemental_feedback_sha256": "d17ae0530e1c78f992800b3af64c8fe18300f2d5710db8390a89761b84acf7c9",
+  "already_accepted_tempo_feedback": "docs/reviews/refonte-agent-2026-10-06/status-bar-general-and-tempo-feedback-acceptance-decisions.json",
+  "already_accepted_tempo_feedback_sha256": "dada8959f3e632131ad19d4f91246f9c08ce62b9053cdd71db994897b86b71a1",
+  "previous_tempo_bonus_display": "accepted_bonus_part_readout_not_silently_removed;coexistence_with_new_general_per_type_parenthesis_pending_prototype",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-13",
+  "build": {
+    "command": "cargo build --locked",
+    "exit_code": 0
+  },
+  "targeted_tests": {
+    "command": "cargo test --locked agent_skill_lab_review",
+    "passed": 70,
+    "failed": 0
+  },
+  "format": {
+    "command": "cargo fmt --all -- --check",
+    "exit_code": 0
+  },
+  "diff_check": {
+    "command": "git diff --check",
+    "exit_code": 0
+  },
+  "native_render": {
+    "views": 14,
+    "animations": 9,
+    "protected_files_unchanged": 71024,
+    "pixel_controls": "passed"
+  },
+  "direct_64px_bodies": "Both native body PNGs are uniformly resized directly from new high-resolution imagegen drawings, not 32px sprites. Original active bestiary bank preserved.",
+  "gif_colour_encoding": {
+    "animations_checked": 9,
+    "common_palette": "64 background colours and 192 chromatic actor/transition colours",
+    "peak_mean_max_channel_error_range": [
+      5.61,
+      8.32
+    ],
+    "peak_p95_max_channel_error_range": [
+      12,
+      18
+    ],
+    "native_png_frames_unchanged": true,
+    "final_decoded_frame_visually_checked": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-39/gif-inspection-final.png"
+  },
+  "gallery_controller": "Offline VM verified22 explicit turns, waiting, pause, loading and prepared renewal matching native frames.",
+  "gallery_links": {
+    "checked": 13,
+    "missing": 0
+  },
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Native captures and offline controller verified.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "M01-BODY01, TR61-BODY01, M01-A01 and TR61-A01 visually approved.",
+  "fixture_scope": "Only proposed bodies and cosmetic entry/return transitions with prepared duration/cooldowns. No actual stats, HP ratio changes, form attacks, healing, energy, AI, loot, RNG, inventory or save changes.",
+  "acceptance": "visual-acceptance-01.json"
+}

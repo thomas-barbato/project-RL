@@ -11,11 +11,70 @@ pub(super) struct SaveContent<'a> {
     pub regional_worlds: &'a RegionalWorldCatalog,
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+struct CombatRecovery {
+    terminal: crate::combat_visuals::CombatResidue,
+    zone_views: BTreeMap<ContentId, crate::combat_visuals::CombatResidue>,
+}
+
+#[derive(Serialize, Deserialize)]
+pub(super) struct CombatRecoveryTail {
+    schema: u8,
+    residue: CombatRecovery,
+    fingerprint: u64,
+}
+
+impl CombatRecoveryTail {
+    fn capture(presentation: &RecoveryPresentationRef<'_>) -> Option<Self> {
+        let residue = CombatRecovery {
+            terminal: presentation.terminal.combat_residue.clone(),
+            zone_views: presentation
+                .zone_views
+                .iter()
+                .filter(|(_, view)| !view.combat_residue.cells.is_empty())
+                .map(|(zone, view)| (zone.clone(), view.combat_residue.clone()))
+                .collect(),
+        };
+        if residue.terminal.cells.is_empty() && residue.zone_views.is_empty() {
+            return None;
+        }
+        Some(Self {
+            schema: 1,
+            fingerprint: suspension::fingerprint(&residue),
+            residue,
+        })
+    }
+
+    pub(super) fn restore(self, presentation: &mut RecoveryPresentation) -> Result<(), String> {
+        if self.schema != 1 || self.fingerprint != suspension::fingerprint(&self.residue) {
+            return Err("Traces de combat de reprise incompatibles ou altérées.".into());
+        }
+        if self
+            .residue
+            .zone_views
+            .keys()
+            .any(|zone| !presentation.zone_views.contains_key(zone))
+        {
+            return Err("Zone inconnue dans les traces de combat de reprise.".into());
+        }
+        presentation.terminal.combat_residue = self.residue.terminal;
+        for (zone, residue) in self.residue.zone_views {
+            presentation
+                .zone_views
+                .get_mut(&zone)
+                .unwrap()
+                .combat_residue = residue;
+        }
+        Ok(())
+    }
+}
+
 pub(super) fn encode_snapshot(
     game: &WorldState,
     presentation: RecoveryPresentationRef<'_>,
 ) -> Result<String, String> {
     let engine = game.recovery_snapshot_bytes()?;
+    let combat = CombatRecoveryTail::capture(&presentation);
     let snapshot = AppRecoverySnapshotRef {
         engine: &engine,
         presentation_fingerprint: suspension::fingerprint(&presentation),
@@ -24,6 +83,10 @@ pub(super) fn encode_snapshot(
     let mut bytes = Vec::new();
     bincode::serialize_into(&mut bytes, &snapshot)
         .map_err(|error| format!("Impossible d'encoder la reprise : {error}"))?;
+    if let Some(combat) = combat {
+        bincode::serialize_into(&mut bytes, &combat)
+            .map_err(|error| format!("Impossible d'encoder les traces de combat : {error}"))?;
+    }
     if bytes.len() > MAX_APP_RECOVERY_SNAPSHOT_BYTES {
         return Err("Instantané de reprise trop volumineux.".to_owned());
     }

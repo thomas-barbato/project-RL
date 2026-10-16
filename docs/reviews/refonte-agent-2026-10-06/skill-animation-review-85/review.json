@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S40",
+  "status": "visually_accepted",
+  "campaign_integration": false,
+  "native_tile": 64,
+  "candidates": [
+    {
+      "number": 89,
+      "id": "A03",
+      "variant": "A03-A01",
+      "title": "Canalisation"
+    },
+    {
+      "number": 90,
+      "id": "M03",
+      "variant": "M03-A01",
+      "title": "Puissance métamorphe"
+    }
+  ],
+  "effective_rank": 11,
+  "prepared_values": {
+    "A03_reduction_percent": 49,
+    "A01_energy_before_reduction": 9,
+    "A01_energy_paid": 5,
+    "M03_damage_bonus_percent": 60,
+    "damage_before_bonus": 20,
+    "transformed_damage_after_bonus": 32,
+    "initial_energy": 100,
+    "initial_target_HP": 100
+  },
+  "scope": "Permanent passives shown through three independent prepared actions with powers ready. No proc, new aura, learning effect, healing or temporary buff. M03 starts in an already-approved prepared transformed form. The fixed 20 damage is illustrative before defenses, not a new weapon variance or balance curve. Casting cooldowns and full combat resolution are outside this visual fixture.",
+  "visuals": "Existing accepted arcane projectile and true-purple grading, native-64 predator, claws, blood and compact icons. Shared damage recoil. Numerical feedback uses the current catalogue bounds and integer cost rounding.",
+  "scenes": 14,
+  "preview": "../apercu-animations.html?lot=85",
+  "native_lab": "--apercu-laboratoire-competences --lot-passifs-puissance",
+  "source": "src/agent_skill_lab_review/fire_painted/power_passives.rs",
+  "remaining_unshown": 21,
+  "pending_separately": "B03 Vitalité améliorée mechanics, then revised preview.",
+  "previous_acceptance": "../skill-animation-review-84/visual-acceptance-01.json",
+  "temporary_capture_policy": "Reuse the same HTML; delete native PNG captures and proof screenshots after verification. Keep source assets, compact playback and review records.",
+  "source_sha256": "5312beefcdcd03367c2864b06ca95b5a0f5b2fb0151df8a99371733821c57f4c",
+  "verification": {
+    "debug_build": true,
+    "format_check": true,
+    "scenes": 14,
+    "lossless_native_pixel_verification": true,
+    "initial_viewer_controls_and_timelines_tested": true,
+    "final_native_HUD_inspected": true,
+    "previous_accepted_art_preserved": true,
+    "automatic_refresh_blocked": "Browser UI policy disallows file: pages; user refresh required."
+  },
+  "playback_bytes": 14612408,
+  "acceptance": "visual-acceptance-01.json"
+}

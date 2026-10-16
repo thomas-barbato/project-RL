@@ -1,0 +1,44 @@
+{
+  "browser": "Edge Chromium",
+  "schemes": [
+    "file: controls and display",
+    "localhost: pixel equality"
+  ],
+  "views": 12,
+  "checks": [
+    {
+      "scenario": "COMPLET",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "ATTENTE",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "INTERRUPTION",
+      "direction": 0,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "INTERRUPTION",
+      "direction": 1,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "INTERRUPTION",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "INTERRUPTION",
+      "direction": 3,
+      "pixel_equality": true
+    }
+  ],
+  "manual_idle_stable": true,
+  "interruption": true,
+  "no_purge_healing": true,
+  "errors": []
+}

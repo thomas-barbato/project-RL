@@ -1,0 +1,222 @@
+{
+  "protected_files_unchanged": 61394,
+  "controls": [
+    {
+      "variant": "OC04-A01-HAUT",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": false,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC07-A01-HAUT",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": false,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC04-A01-DROITE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": false,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC07-A01-DROITE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": false,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC04-A01-GAUCHE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": false,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC07-A01-GAUCHE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": false,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC04-A01-BAS",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": false,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC07-A01-BAS",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": false,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC04-A01-OBSTACLE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": true,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC07-A01-OBSTACLE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": false,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC04-A01-CLOISON",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": true,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC07-A01-CLOISON",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": true,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC04-A01-ATTENTE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": false,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    },
+    {
+      "variant": "OC07-A01-ATTENTE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "prepared_timeline_checked": true,
+      "refused_placement_atomic": false,
+      "circle_segments_independent": true,
+      "persistent_mark_and_ally_duration_checked": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "OC04-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 41,
+      "frames": 42,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "OC07-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 50,
+      "frames": 55,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "OC07-A01-OBSTACLE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 50,
+      "frames": 55,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "OC04-A01-ATTENTE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 22,
+      "frames": 47,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "OC07-A01-ATTENTE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 22,
+      "frames": 47,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "rituels-haut-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 57,
+      "frames": 59,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "rituels-obstacle-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 50,
+      "frames": 55,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "rituels-attente-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 22,
+      "frames": 47,
+      "duration_ms": 6000,
+      "loop": 0
+    }
+  ],
+  "resampling_of_native_capture": false
+}

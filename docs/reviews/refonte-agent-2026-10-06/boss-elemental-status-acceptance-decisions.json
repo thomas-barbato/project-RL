@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-07",
+  "review_id": "CTRL-EL01",
+  "user_message": "tres bien :) on continue",
+  "previous_proposal": "docs/reviews/refonte-agent-2026-10-06/boss-elemental-status-exception-proposal.json",
+  "previous_proposal_sha256": "7d05cf126415c9edf88cfc71be0c0cac61c5b22992a05248b9e54dc23bf5d76b",
+  "accepted_review_copy_sha256": "8c462d86c6f20cdf362eed57ab5b91ebfcefe75d421059b8369e4ad3134d2244",
+  "accepted_rules": {
+    "boss_Gel_immunity_removed": true,
+    "boss_chance_modifier_statuses": [
+      "Gel",
+      "Brûlure"
+    ],
+    "boss_final_chance_multiplier": "1/2",
+    "boss_relative_probability_penalty_percent": 50,
+    "other_controls_boss_immunity_preserved": true,
+    "Poison_importance_probability_penalty": false,
+    "Poison_ordinary_resistances_preserved": true,
+    "damage_and_duration_not_reduced_by_probability_modifier": true
+  },
+  "accepted_displayed_examples": {
+    "FR01_rank11_boss_Gel_percent": 38.9,
+    "FE05_rank11_boss_Burn_percent": 30,
+    "FE01_boss_Burn_percent": 50,
+    "FE01_ordinary_specific_Burn_guarantee_preserved": true
+  },
+  "approval_scope": "Positive response accepts displayed50% relative boss chance penalty for Gel and Burn,shown examples including Braise boss-only success chance,Poison no importance penalty with ordinary resistances,and no reduction of damage/duration. Prior elite/other-control and reciprocal status rules retained. This does not accept full FR01 card/RP/damage/cost/visuals or unshown timing/source rules.",
+  "unshown_examples_and_rules": "Derived FR01 next41.3%,zone sequences,exact half-tie rounding,importance taxonomy,simultaneous effects and resource/resistance ordering remain pending where not explicitly covered by displayed rules. General final-chance multiplication is accepted.",
+  "native_visual_approval": "pending;no new visual rendering approved",
+  "runtime_integration": "not_integrated"
+}

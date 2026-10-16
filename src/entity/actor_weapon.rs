@@ -86,7 +86,7 @@ impl Actor {
                     attribute,
                     attributes
                         .value(attribute)
-                        .saturating_add(bonus.attribute_bonus(attribute)),
+                        .saturating_add(u16::from(bonus.attribute_bonus(attribute))),
                 );
             }
         }

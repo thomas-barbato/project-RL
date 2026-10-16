@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-08",
+  "review_id": "STAT-MODEL02",
+  "status": "proposed_pending_explicit_review",
+  "user_feedback": "le joueur a droit à 5 points par monté de niveau (et je ne désire pas de niveau maximum pour le moment), je pense donc que ca serait bien trop fort . Comment les statistiques interragissent dans diablo 2?",
+  "user_request": "d’accord et que proposes tu ?",
+  "accepted_constraints": {
+    "attribute_points_per_level": 5,
+    "character_level_cap": null
+  },
+  "superseded_proposal": "docs/reviews/refonte-agent-2026-10-06/review-individual-attribute-S01-01.json",
+  "superseded_proposal_sha256": "507fb4a330ceebe9d6703b053ae6efd8a7e8fd52ec1f6365c8106567a91b0b57",
+  "shown_proposal_markdown": "Je propose **une progression linéaire, avec des bonus compatibles qui s’additionnent**, en conservant **5 points par niveau et aucun niveau maximum**.\n\nPour une première base d’équilibrage :\n\n- **Force** : **+1 point de pourcentage de dégâts de mêlée par point**, y compris les compétences de mêlée et les attaques physiques des transformations.\n- **Agilité** : **+2 en précision et +2 en esquive par point**. Ces valeurs sont comparées à celles de l’adversaire pour déterminer les chances de toucher et d’éviter une attaque.\n- **Vitalité** : **+4 PV maximum par point**.\n- **Perception** : **+1 point de pourcentage de dégâts d’armes à distance par point**, y compris les armes lourdes à distance.\n- **Intelligence** : **+1 point de pourcentage aux dégâts et aux PV maximum des drones**, et **+2 énergie maximum par point**.\n- **Volonté** : **+1 point de pourcentage aux dégâts des sorts**, y compris les attaques magiques des transformations, et **+2 énergie maximum par point**.\n\nPour les bonus en pourcentage, **5 dans l’attribut reste la référence à 0 %**.\n\n**Le changement important concerne le cumul des dégâts.** Pour une compétence fondée sur les dégâts de l’arme, son bonus et celui de l’attribut s’additionnent.\n\nExemple avec une compétence qui inflige **150 % des dégâts de l’arme** :\n\n- **Force 10** : bonus de Force **+5 %** → la compétence inflige **155 % des dégâts de l’arme**.\n- Après avoir investi les cinq points du niveau, **Force 15** : bonus **+10 %** → **160 % des dégâts de l’arme**.\n\nDans cet exemple, le gain réel est d’environ **3,2 % de dégâts**. L’investissement reste utile, et son poids relatif diminue à mesure que les autres bonus augmentent.\n\nJe retirerais aussi le bonus de dégâts physiques initialement proposé pour l’Agilité : avec la précision et l’esquive, elle possède déjà deux intérêts concrets. Les effets sur la vision, les contrôles et les durées de transformation seraient examinés séparément.\n\n**Sans niveau maximum, les gains resteront illimités.** Leur équilibre dépendra donc aussi de la progression des armes et des monstres. Je partirais sur ces coefficients, puis comparerais plusieurs profils aux niveaux 10, 50, 100 et 200 lors des essais d’équilibrage. **Cette base reste une proposition à valider.**",
+  "shown_proposal_sha256": "48bfc95023a87e77d07acab38db2bd4eb21faecdf959b2263b65e79f5cd647c6",
+  "proposed_coefficients": {
+    "S01": {
+      "percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "scope": "melee attacks, melee skills, physical transformed attacks"
+    },
+    "S02": {
+      "accuracy_units_per_point": 2,
+      "evasion_units_per_point": 2,
+      "remove_previously_proposed_physical_damage_bonus": true
+    },
+    "S03": {
+      "maximum_HP_per_point": 4
+    },
+    "S04": {
+      "percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "scope": "ranged weapon damage including ranged heavy weapons"
+    },
+    "S05": {
+      "drone_damage_percentage_points_per_point": 1,
+      "drone_maximum_HP_percentage_points_per_point": 1,
+      "reference_attribute": 5,
+      "maximum_energy_per_point": 2
+    },
+    "S06": {
+      "spell_damage_percentage_points_per_point": 1,
+      "reference_attribute": 5,
+      "scope": "spell damage including magical transformed attacks",
+      "maximum_energy_per_point": 2
+    }
+  },
+  "proposed_stacking": "attribute damage bonus and the damage bonus of an applicable weapon-based skill are additive; other compatible bonus pools require individual scope review",
+  "shown_example": {
+    "skill_weapon_damage_percent": 150,
+    "Force10_bonus_percent": 5,
+    "Force10_total_weapon_damage_percent": 155,
+    "Force15_bonus_percent": 10,
+    "Force15_total_weapon_damage_percent": 160,
+    "actual_relative_gain_percent_approx": 3.2
+  },
+  "unreviewed_details": [
+    "base HP and energy and automatic level gains",
+    "other modifiers and gear/class/passive stacking",
+    "exact probability formulas and bounds",
+    "vision and hearing effects",
+    "control potency and duration",
+    "transformation duration",
+    "physical versus elemental attack components",
+    "drone base and rank scaling and HP modifier ordering",
+    "healing and indirect/reflected damage scaling",
+    "rounding and weapon damage variance",
+    "all other unshown details"
+  ],
+  "validation_plan_proposed": "compare representative builds at levels 10, 50, 100 and 200 during later balance trials; not performed this turn",
+  "visual_change_proposed": false,
+  "runtime_integration": "not_integrated"
+}

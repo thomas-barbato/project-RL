@@ -1,0 +1,116 @@
+{
+  "batch": "ANIM-OVER01",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-COULOIR-DROITE",
+      "name": "Souffle · couloir · droite",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-COULOIR-GAUCHE",
+      "name": "Souffle · couloir · gauche",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-COULOIR-HAUT",
+      "name": "Souffle · couloir · haut",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-COULOIR-BAS",
+      "name": "Souffle · couloir · bas",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-CLOISON-DROITE",
+      "name": "Souffle · cloison · droite",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-CLOISON-GAUCHE",
+      "name": "Souffle · cloison · gauche",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-CLOISON-HAUT",
+      "name": "Souffle · cloison · haut",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-CLOISON-BAS",
+      "name": "Souffle · cloison · bas",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-OBSTACLE-DROITE",
+      "name": "Souffle · obstacle · droite",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-OBSTACLE-GAUCHE",
+      "name": "Souffle · obstacle · gauche",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-OBSTACLE-HAUT",
+      "name": "Souffle · obstacle · haut",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A06-OBSTACLE-BAS",
+      "name": "Souffle · obstacle · bas",
+      "description": "Le dessin reste complet sur les sols libres. Les surfaces des murs le masquent, les personnages restent devant et les contours clignotants indiquent les cases touchées.",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "user_direction": "Large complete animation, more visible blinking targeting preview, four cardinal aiming directions. Flames behind characters. User agrees to mask only the part on a solid wall, without removing the entire visual area behind that wall.",
+  "source_art": "Exact original ANIM-STYLE01 painted cone and plume atlases; no new generated images, recolouring or deformations.",
+  "rendering": "One complete cone drawing rotated by 0/180/-90/90 degrees. Opaque wall tiles repaint above it; free floor receives no visual-footprint clipping or projected shadow. Bodies stay frontal and above all flames. Target contours and review labels stay above the effect.",
+  "preview": "Cyan contours 4px thick, pale inner line, dark backing and translucent fill. One brightness cycle per second, alternating full and 42% brightness so the affected zone never disappears. Contours remain visible during the animation.",
+  "mechanics": "Affected-cell lists and target flags retain the earlier footprint, rotated into each direction. Decorative flames may be visible on a protected free floor behind a wall; this never grants damage, status, extra range or altered propagation.",
+  "burn": "Original small flame animation selected by the user for temporary Brûlure. It is displayed behind affected actors, remains upright regardless of spell aim, and is not shown on protected targets.",
+  "scope": "Isolated native debug review. No campaign, GameState, damage calculations, RNG, skill text, cooldown, save, icon or balance changes.",
+  "timing": "0.7-second targeting segment is a review montage only. Visual playback and blinking never advance turns or add a preparation delay.",
+  "laboratory_ui_candidate": {
+    "variant": "LAB-OVER01",
+    "status": "awaiting_separate_review"
+  },
+  "prior_work": "ANIM-OCC02 remains intact as fallback. Rejected ANIM-PART01 remains archived."
+}

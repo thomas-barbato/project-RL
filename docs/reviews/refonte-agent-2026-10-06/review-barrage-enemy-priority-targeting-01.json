@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-08",
+  "review_id": "HL01-TARGET01",
+  "revision": 1,
+  "skill_id": "HL01",
+  "title": "Barrage",
+  "feedback_decisions": "docs/reviews/refonte-agent-2026-10-06/barrage-description-and-enemy-priority-decisions.json",
+  "feedback_decisions_sha256": "0d261ca1d7cfcf6b470a70c18d8f19fe68eb74b1af99148219e1c7dc821a5356",
+  "current_turn_shown_copy_markdown": "Oui : **Barrage visera automatiquement les ennemis repérés dans la zone choisie**.\n\nJe propose :\n\n- **Une salve par ennemi, jusqu’à trois ennemis différents.**\n- Avec seulement un ou deux ennemis, **une ou deux salves**, avec le coût de matière correspondant.\n- Sans ennemi repéré dans la zone, le lancement est refusé sans consommation.\n- L’aperçu montre les ennemis sélectionnés et les zones d’explosion.\n\nLa ligne devient : **« Salves : jusqu’à 3, une par ennemi repéré dans la zone choisie. »**\n\nLes salves visent leur position au lancement. Avec une grenade à retardement, les monstres peuvent ensuite se déplacer avant l’explosion.",
+  "current_turn_shown_copy_sha256": "6fdbc8bed85feb784613840d1b87dab4bfcd3c691a0637dd82b60c34f0b15d47",
+  "replacement_effect_line": "Salves : jusqu’à 3, une par ennemi repéré dans la zone choisie.",
+  "proposed_rules": {
+    "chosen_zone": "geometry_size_and_orientation_not_yet_presented",
+    "target_pool": "observed_hostile_enemies_in_chosen_zone;no_hidden_enemy_disclosure;legal_native_weapon_targets",
+    "salvos": "one_native_sequence_per_distinct_selected_enemy;up_to_three",
+    "fewer_than_three_targets": "fire_only_one_or_two_sequences;no_extra_empty_sequence",
+    "no_observed_target": "refuse_without_resource_consumption",
+    "native_weapon_supply": "pay_for_sequences_actually_planned;reference5_matter_per_sequence",
+    "energy": "previous18_for_cast_unchanged;not_scaled_by_target_count",
+    "damage_cooldown_range_explosion_radius": "previous_displayed_values_unchanged",
+    "preview": "mark_selected_enemies_and_actual_known_affected_areas",
+    "aim_position": "target_position_at_launch;no_guaranteed_hit_or_homing_added",
+    "delayed_explosions": "native_delay_preserved;enemy_may_move_before_explosion"
+  },
+  "approval": "requested_enemy_priority_direction_recorded;detailed_rules_above_proposed_pending_explicit_review",
+  "unshown_cases_pending": [
+    "aim_zone_geometry_size_orientation_and_selection_controls",
+    "selection_order_when_more_than_three_legal_targets",
+    "target_dies_moves_or_becomes_hidden_between_native_sequences",
+    "native_accuracy_precision_and_weapon_modes",
+    "exact_atomic_payment_heat_cooldown_turn_RNG_handling",
+    "large_actor_footprints_and_ally_eligibility",
+    "native_preview_pixels_and_all_other_unshown_cases"
+  ],
+  "runtime_integration": "not_integrated"
+}

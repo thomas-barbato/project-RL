@@ -1,0 +1,331 @@
+{
+  "status": "awaiting_corrected_render_review",
+  "protected_files_unchanged": 5218,
+  "native_capture": "native/capture.json",
+  "resampling": false,
+  "controls": [
+    {
+      "variant": "FE02-A07-COULOIR-DROITE",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-COULOIR-GAUCHE",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-COULOIR-HAUT",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-COULOIR-BAS",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-CLOISON-DROITE",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-CLOISON-GAUCHE",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-CLOISON-HAUT",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-CLOISON-BAS",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-OBSTACLE-DROITE",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-OBSTACLE-GAUCHE",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-OBSTACLE-HAUT",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-OBSTACLE-BAS",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-LONG-DROITE",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-LONG-GAUCHE",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-LONG-CLOISON-DROITE",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "FE02-A07-LONG-CLOISON-GAUCHE",
+      "walls_and_protected_targets_unchanged": true,
+      "blink_before_cast_only": true,
+      "burn_after_breath_then_expires": true
+    },
+    {
+      "variant": "BRULURE-A02-AGENT-MONSTRE",
+      "player_and_monster_burn_without_breath": true,
+      "ends_with_status": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "FE02-A07-COULOIR-DROITE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-COULOIR-GAUCHE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-COULOIR-HAUT-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-COULOIR-BAS-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-CLOISON-DROITE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-CLOISON-GAUCHE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-CLOISON-HAUT-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-CLOISON-BAS-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-OBSTACLE-DROITE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-OBSTACLE-GAUCHE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-OBSTACLE-HAUT-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-OBSTACLE-BAS-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-LONG-DROITE-64.gif",
+      "native_size": [
+        832,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-LONG-GAUCHE-64.gif",
+      "native_size": [
+        832,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-LONG-CLOISON-DROITE-64.gif",
+      "native_size": [
+        832,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A07-LONG-CLOISON-GAUCHE-64.gif",
+      "native_size": [
+        832,
+        448
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "BRULURE-A02-AGENT-MONSTRE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 9,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "couloir-directions-64.gif",
+      "native_size": [
+        952,
+        1000
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "cloison-directions-64.gif",
+      "native_size": [
+        952,
+        1000
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "obstacle-directions-64.gif",
+      "native_size": [
+        952,
+        1000
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "long-directions-64.gif",
+      "native_size": [
+        856,
+        1000
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "long-cloison-directions-64.gif",
+      "native_size": [
+        856,
+        1000
+      ],
+      "distinct_frames": 38,
+      "duration_ms": 3000,
+      "loop": 0
+    }
+  ]
+}

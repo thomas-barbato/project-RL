@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-RANK03-RANK04-DECISIONS",
+  "capacity": {
+    "review_id": "INTERACT-RANK03-ACCEPT",
+    "source_proposal": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-passive-capacity-loss-INTERACT-RANK03-01.json",
+      "reference_sha256": "b3e43a22302be18b53e4134a7770e0183575a06195a12c6891340962cfcd5869"
+    },
+    "user_acceptance": "oui :)",
+    "shown_rule": "Pour Réseau de mines, je propose que perdre des rangs du passif applique immédiatement la nouvelle limite. Seules les mines en trop disparaissent, en commençant par les plus anciennes, sans explosion ni remboursement d'énergie. Les mines en attente d'activation comptent aussi dans cette limite.\n\nExemple : avec neuf rangs appris et un rang d'équipement, vous pouvez avoir cinq mines. Vous retirez ce bonus : la limite passe à quatre. Si cinq mines sont présentes, la plus ancienne disparaît et les quatre autres restent.\n\nSi c'est Pose de mine qui perd un rang, toutes les mines qu'elle a créées disparaissent, conformément à la règle déjà validée.",
+    "approved_rule": {
+      "capacity": "use_new_current_SM01_passive_limit_immediately;when_passive_unavailable_use_existing_SM00_baseline_capacity",
+      "overcapacity": "remove_only_excess_own_placed_mines_oldest_placement_first_until_count_fits;retain_mines_if_count_already_fits",
+      "counted": "armed_and_not_yet_armed_placed_mines",
+      "removal": "no_explosion_damage_or_energy_refund",
+      "retained_mines": "ordinary_existing_activation_and_trigger_rules_preserved;no_recast_or_free_rearming",
+      "creator_rank_loss": "accepted_all_creations_cleanup_takes_precedence_if_SM00_rank_also_decreases;no_capacity_trim_exception_to_creator_rule"
+    }
+  },
+  "variant": {
+    "review_id": "INTERACT-RANK04-DIRECT",
+    "context": "assistant announces review of already placed mines when the passive granting poison, cold or persistent effect is lost",
+    "user_directive": "si ces mines etaient des mines de poison , de froid ou un effet persistant, alors la mine disparait, elle n'est pas remplacée par une mine \"de base\"",
+    "approved_rule": "remove_mines_depending_on_lost_variant_or_persistent_effect_passive;do_not_replace_with_base_mine",
+    "not_inferred": "no_new_rule_for_partial_rank_loss_when_passive_remains_available_or_for_existing_residue_zones"
+  },
+  "approval_boundary": "capacity_proposal_accepted_and_direct_variant_loss_instruction_recorded;new_residue_zone_cleanup_still_proposed;no_new_RP_name_or_native_visual",
+  "runtime_integration": "not_integrated"
+}

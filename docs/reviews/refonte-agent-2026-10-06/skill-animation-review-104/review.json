@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-15",
+  "review_id": "O03-FINAL01",
+  "status": "no_dedicated_animation_required",
+  "candidate": {
+    "number": 102,
+    "id": "O03",
+    "variant": "O03-A01",
+    "title": "Algorithmes de combat améliorés"
+  },
+  "previous_proposal": "../skill-animation-review-93/review.json",
+  "source": "src/agent_skill_lab_review/fire_painted/combat_algorithms.rs",
+  "source_sha256": "a14dd6e5e4fb41131f464f1b61d7cd8928abf2e92dca041827d7e983e51fef84",
+  "native_lab": "--apercu-laboratoire-competences --lot-algorithmes-combat",
+  "native_tile": 64,
+  "native_scenes": 16,
+  "native_frames": 144,
+  "fps": 24,
+  "visual_scope": "No additional O03 world animation; permanent passive damage bonus.",
+  "accepted_body_references": {
+    "D66": "../skill-animation-review-94/gardien-size01/visual-acceptance-01.json",
+    "D58": "../skill-animation-review-96/visual-acceptance-01.json",
+    "D56": "../skill-animation-review-97/visual-acceptance-01.json",
+    "D59": "../skill-animation-review-92/visual-acceptance-01.json"
+  },
+  "accepted_rank_one_bonus_percent": 25,
+  "illustrative_base_damage": 20,
+  "illustrative_modified_damage": 25,
+  "original_mechanical_timelines_preserved": true,
+  "historical_source_unchanged": true,
+  "campaign_integration": false,
+  "new_drone_drawings": false,
+  "approval_scope": "Explicit removal of proposed O03 circuit; no acceptance of that effect inferred.",
+  "separate_pending_mechanics": [
+    "B03 Vitalité améliorée",
+    "Shared drone capacity and taunt numbers"
+  ],
+  "preview_published": true,
+  "compact_export_bytes": 0,
+  "cleanup": "cleanup.json",
+  "decision": "no-circuit-decision.json",
+  "preview_type": "Static decision summary; circuit animations retired.",
+  "previous_proposal_scope": "Circuit VFX shown in 16 native scenes, now removed following player feedback."
+}

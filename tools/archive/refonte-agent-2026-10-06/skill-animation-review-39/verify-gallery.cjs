@@ -1,0 +1,27 @@
+// Offline local-frame/controller checks only; no browser or network.
+const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert');
+const root=__dirname,els=new Map();
+for(const id of ['scenario','next','cast','reset','pause','status'])els.set(id,{value:id==='scenario'?'HAUT':'',disabled:false,textContent:''});
+const canvases=['M01','TR61'].map(id=>({dataset:{skill:id},getContext:()=>({drawImage(image){assert(image);}})}));
+class LocalFrame {set src(p){assert(fs.existsSync(path.join(root,p)),p);this.onload();}}
+const ctx=vm.createContext({Image:LocalFrame,Map,Promise,Math,String,document:{getElementById:id=>els.get(id),querySelectorAll:()=>canvases},requestAnimationFrame(){}});
+vm.runInContext(fs.readFileSync(path.join(root,'gallery-script.js'),'utf8'),ctx);
+const run=s=>vm.runInContext(s,ctx),settle=()=>new Promise(resolve=>setImmediate(resolve));
+(async()=>{
+    await settle();assert(run('ready'));assert.strictEqual(run('frame()'),17);
+    run('elapsed=10000;ui()');assert.strictEqual(run('turn'),0);assert.strictEqual(run('remaining()'),22);assert.strictEqual(run('frame()'),47);
+    els.get('pause').onclick();const clock=run('elapsed');run('tick(600)');assert.strictEqual(run('elapsed'),clock);els.get('pause').onclick();
+    for(let t=1;t<=22;t++){els.get('next').onclick();assert.strictEqual(run('turn'),t);assert.strictEqual(run('remaining()'),22-t);assert.strictEqual(run('frame()'),run('entry().turn_frames[turn-1]'));run('elapsed=10000;ui()');}
+    assert(els.get('next').disabled);assert.strictEqual(run('frame()'),179);assert.strictEqual(run('remaining()'),0);
+    els.get('scenario').value='RENOUVELLEMENT';els.get('scenario').onchange();assert(els.get('next').disabled);await settle();run('elapsed=10000;ui()');
+    for(let t=1;t<=10;t++){els.get('next').onclick();assert.strictEqual(run('turn'),t);run('elapsed=10000;ui()');}
+    run('elapsed=0;ui()');assert.strictEqual(run('frame()'),110);assert.strictEqual(run('remaining()'),12);
+    run('elapsed=250;ui()');assert.strictEqual(run('frame()'),116);assert.strictEqual(run('remaining()'),22);
+    run('elapsed=10000;ui()');assert.strictEqual(run('frame()'),125);
+    for(let t=11;t<=22;t++){els.get('next').onclick();assert.strictEqual(run('turn'),t);assert.strictEqual(run('remaining()'),32-t);run('elapsed=10000;ui()');}
+    assert.strictEqual(run('remaining()'),10);assert(els.get('next').disabled);
+    els.get('scenario').value='ATTENTE';els.get('scenario').onchange();await settle();run('elapsed=100000;ui()');assert.strictEqual(run('turn'),0);assert.strictEqual(run('remaining()'),22);assert.strictEqual(run('frame()'),47);assert(els.get('next').disabled);
+    els.get('reset').onclick();assert(!run('launched'));assert(!els.get('cast').disabled);assert(els.get('next').disabled);els.get('cast').onclick();assert.strictEqual(run('frame()'),17);
+    const report={syntax:'passed',controller:'passed',all_frames_exist:true,explicit_twenty_two_turns_to_expiry:true,waiting_does_not_advance_turns:true,renewal_timeline_matches_native:true,pause_freezes_clock:true,inputs_disabled_during_loading:true,browser_validation:'Not performed: file protocol blocked by browser automation policy. Native captures and offline controller verified.'};
+    fs.writeFileSync(path.join(root,'gallery-controller-verification.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
+})().catch(e=>{console.error(e);process.exitCode=1;});

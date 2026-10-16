@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S39",
+  "revision": 2,
+  "status": "superseded_animation_removed_shared_icon_source_retained",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 88,
+      "id": "SU06",
+      "variant": "SU06-A02",
+      "icon_variant": "SU06-C02",
+      "title": "Dernier sursaut"
+    }
+  ],
+  "on_hold": {
+    "number": 87,
+    "id": "B03",
+    "decision": "../vitality-proc-design-pending.json"
+  },
+  "effective_rank": 11,
+  "native_tile": 64,
+  "rendering": "Original angel wings, no heart, true transparency. Same short gold outline, native actor, damage reaction, blood and prepared save rules.",
+  "scenes": 8,
+  "preview": "../apercu-animations.html?lot=83",
+  "native_lab": "--apercu-laboratoire-competences --lot-passifs-survie",
+  "source": "src/agent_skill_lab_review/fire_painted/survival_passives.rs",
+  "source_sha256": "d7f555dfbac3b8799c6725d5512b2bcbb57008445c12eed16f13c975d000af6e",
+  "protected_campaign_icon_sha256": "fc0ca0b9da6550e61a3b0b263e78ea68a7c1e9e1eaa3afc691f762d6a7c95a48",
+  "protected_catalogue_sha256": "bf176f625980f6c6ec53e8943fc0195b351a7e69ff880554fb2379317483c2ac",
+  "remaining_unshown": 23,
+  "temporary_capture_policy": "Remove native PNG captures, proof images and logs after verification; retain original art, exports, prompt, compact playback and review records.",
+  "mechanics": "Unchanged example: fatal direct hit saves at 1 HP if ready; 60-turn cooldown at effective rank 11; poison excluded; later hit can kill.",
+  "verification": {
+    "debug_build": true,
+    "native_capture_exit": 0,
+    "browser_views": 8,
+    "native_pixel_equality": true,
+    "manual_turns": true,
+    "prepared_timelines_identical_to_review82": true,
+    "native_icon_sizes": [
+      32,
+      64
+    ],
+    "campaign_icon_and_catalogue_unchanged": true,
+    "format_check": true,
+    "visual_inspection": true
+  },
+  "playback_bytes": 3523332,
+  "superseded_by": "SU06-A03",
+  "superseded_cleanup": "../skill-animation-review-84/superseded-variant-cleanup-plan.json"
+}

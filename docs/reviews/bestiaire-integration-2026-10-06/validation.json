@@ -1,0 +1,78 @@
+{
+  "models": 65,
+  "native_pairs": 65,
+  "exact_native_pngs": 130,
+  "bosses_64": 4,
+  "legacy_actor_indices_preserved": 23,
+  "retired_numbers": [
+    60
+  ],
+  "shadows": "separate runtime contact layer for living sprites and corpses",
+  "production_files_changed": [
+    "src/ascii_app.rs",
+    "src/combat_visuals.rs",
+    "src/combat_visuals_app.rs",
+    "src/crawl_art_capture.rs",
+    "src/game_art.rs",
+    "docs/DIRECTION_ARTISTIQUE_TILES.md",
+    "tools/art/build_bestiary_assets.py",
+    "tools/art/README.md"
+  ],
+  "unrelated_files_changed": [],
+  "new_runtime_module": "src/game_art_bestiary.rs",
+  "gameplay_content_changed": false,
+  "captures": [
+    {
+      "page": 1,
+      "path": "captures/bank-1/cold-start.png",
+      "sha256": "b04cf65e92c7719618177e83472374f780dccb89a016efe175deb9e0ad94b341",
+      "state_unchanged": true,
+      "existing_caches_stable": true
+    },
+    {
+      "page": 2,
+      "path": "captures/bank-2/cold-start.png",
+      "sha256": "60c0cc5f024a79fac542116ae9a85088a1442a40c610f0e11c3edcd50079073d",
+      "state_unchanged": true,
+      "existing_caches_stable": true
+    },
+    {
+      "page": 3,
+      "path": "captures/bank-3/cold-start.png",
+      "sha256": "9324098b62c2736033c89f273647bb1c0d70778c3d0b9c4a7945c78a5c031f12",
+      "state_unchanged": true,
+      "existing_caches_stable": true
+    },
+    {
+      "page": 4,
+      "path": "captures/bank-4/cold-start.png",
+      "sha256": "4d07d586659051ea9c9bb30265172932688df4144442af55478c612c1c054969",
+      "state_unchanged": true,
+      "existing_caches_stable": true
+    }
+  ],
+  "targeted_tests": 26,
+  "engine_tests": 817,
+  "full_client_suite": {
+    "passed": 620,
+    "failed": 28,
+    "ignored": 15,
+    "baseline_comparison": "28 failures also reproduced before this integration, with identical content and mods"
+  },
+  "baseline_comparison": "baseline-comparison.json",
+  "debug_build": "passed",
+  "release_build": "passed (4 existing warning locations; no new bank warnings)",
+  "format_check": "passed",
+  "diff_check": "passed",
+  "native_atlas_checks": "reproducible",
+  "fixed_bank_textures": 4,
+  "capture_zoom_factors": {
+    "32px_models": [
+      2,
+      3
+    ],
+    "64px_bosses": [
+      2
+    ]
+  }
+}

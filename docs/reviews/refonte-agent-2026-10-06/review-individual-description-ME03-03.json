@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-06",
+  "id": "ME03",
+  "title": "Percée",
+  "revision": 3,
+  "player_copy_markdown": "**Percée — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Vous visez une faille dans l'armure et y concentrez votre frappe.*\n\nPortez un coup de mêlée qui ignore une partie de l’armure de la cible.\n\n**Effet actuel**\n- Dégâts : **36–44** (**180 %** de l’attaque).\n- Armure ignorée : **47,3 %** pour ce coup.\n\n**Prochain rang — 12 · 1 point de compétence**\n- Dégâts : **38–46** (**188 %** de l’attaque).\n- Armure ignorée : **48,7 %** pour ce coup.\n\nDégâts indiqués avant les défenses de la cible.\n\n**Coût : 11 énergie · Recharge : 4 tours · Portée : 1 case.**\n**Nécessite une arme de mêlée active.**",
+  "player_copy_sha256": "8d32e0aabc6ed393ade6f3f1399ba18c93a32a8d75f0d6a691e4a25a8ea0e9e4",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-11.json",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/weapon-warning-acceptance-and-ME03-review-start-decisions.json",
+  "review_start_decisions_sha256": "34d7180a8807a4a06f40dbebf1363a3e261b9189097bf3022fb957caae4df56d",
+  "previous_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-melee-04.json",
+  "previous_skill_block_sha256": "fd6a529edbcd06907e7381c7a1da0541890c925a1c7146234631e9ae5a2b49f0",
+  "name_approval": "preserve_previous_approval",
+  "roleplay_text_approval": "preserve_previously_accepted_text_exactly",
+  "functional_description_approval": "explicit_user_validation",
+  "simplified_progression_copy_approval": "superseded_by_accepted_current_next_effect_blocks",
+  "numeric_rules_approval": "displayed_current_next_values_accepted_provisional_balance_for_illustrative_profile; unshown_formulas_and_variance_balance_pending",
+  "armor_progression_presentation": "evaluate original diminishing returns formula at the current and next effective ranks",
+  "formulas": {
+    "damage_percent": "100 + 8 * (effective_rank - 1)",
+    "armor_ignored_percent": "20 + 60 * (effective_rank - 1) / (effective_rank + 11)",
+    "energy": "8 + floor((effective_rank - 1) / 3)"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "strength": 10,
+    "agility": 10,
+    "reference_melee_attack_min_damage": 18,
+    "reference_melee_attack_max_damage": 22,
+    "range_status": "illustrative_only",
+    "strength_factor": "1.1",
+    "agility_factor": "1.025",
+    "active_compatible_melee_weapon": true,
+    "weapon_range_cells": 1,
+    "other_damage_or_cost_modifiers": false
+  },
+  "default_values": {
+    "rank": 1,
+    "damage_percent": 100,
+    "damage_before_defenses": 20,
+    "armor_ignored_percent": 20,
+    "energy_cost": 8,
+    "cooldown_turns": 4
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "damage_percent": 180,
+    "damage_min_before_defenses": 36,
+    "damage_max_before_defenses": 44,
+    "armor_ignored_percent_display": 47.3,
+    "armor_ignored_percent_exact": {
+      "numerator": 520,
+      "denominator": 11
+    },
+    "energy_cost": 11,
+    "cooldown_turns": 4,
+    "range_cells": 1
+  },
+  "target": "one target at melee weapon attack range",
+  "active_weapon_requirement": {
+    "type": "melee",
+    "approval": "explicit_user_requirement",
+    "incompatible_warning": "Nécessite une arme de mêlée active.",
+    "warning_approval": "accepted_as_presented"
+  },
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "previously accepted roleplay preserved exactly",
+    "current and next bounds calculated using exact fractions",
+    "current learned rank 9 and next learned rank 10 respect the cap",
+    "no random result sampled during preview",
+    "no table, progression formula or ordinary execution time reminder"
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME03-02.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/percee-current-next-acceptance-decisions.json",
+  "latest_decisions_sha256": "0f1f41d4109329213953891714ccf4a4474ce2e3ebb25167e775e7a13fb29803",
+  "default_reference_status": "previous default fixed-damage example preserved as historical comparison; not the future damage display",
+  "next_values": {
+    "effective_rank": 12,
+    "damage_percent": 188,
+    "damage_min_before_defenses": 38,
+    "damage_max_before_defenses": 46,
+    "armor_ignored_percent_display": 48.7,
+    "armor_ignored_percent_exact": {
+      "numerator": 1120,
+      "denominator": 23
+    },
+    "energy_cost": 11,
+    "cooldown_turns": 4,
+    "range_cells": 1
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_weapon_attributes_and_other_modifiers": true,
+    "can_purchase_with_sufficient_points": true,
+    "learned_cap_respected": true
+  },
+  "learned_rank_cap_behavior": {
+    "cap": 10,
+    "next_purchase_at_cap": false,
+    "cap_label_proposal": "Rang appris maximum atteint.",
+    "cap_label_approval": "pending_user_review",
+    "equipment_bonus_ranks_still_allowed": true
+  },
+  "current_next_effect_copy_approval": "explicit_user_validation"
+}

@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-08",
+  "id": "BM05",
+  "review_id": "BM05",
+  "revision": 1,
+  "title": "Sceau de vindicte",
+  "branch": "Buffs de mêlée",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-93.json",
+  "source_skill_manifest_sha256": "f2a26c4da492b17ff830a4ccc12a623ae9960ca38678ff0be06ad7bc18dbd612",
+  "source_skill_block_sha256": "b1076bcef27eca4a97813850e575339c8f49ee078e0625bbeb8e90108bc04d25",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "currently_transformed": false,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "direct_magic_damage_reflected_percent": 40,
+    "duration_turns": 6,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "direct_magic_damage_reflected_percent": 43,
+    "duration_turns": 6,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "formulas_proposed": {
+    "direct_magic_damage_reflected_percent": "min(100,10+3*(effective_rank-1))",
+    "duration_turns": "4+floor((effective_rank-1)/5)",
+    "energy_cost": "10+floor((effective_rank-1)/3)",
+    "cooldown_turns": 8,
+    "status": "new_percentage_curve_proposed_under_SKILL_PROG01;unshown_full_curves_defaults_cap100_rounding_and_clock_order_pending"
+  },
+  "conditions_proposed": {
+    "direct_magical_damage_returned_to_author": "previous_explicit_user_scope_preserved",
+    "poison_and_all_indirect_damage_excluded": "previous_explicit_user_scope_preserved",
+    "damage_basis": "actually_suffered_after_protections;exact_HP_vs_absorption_accounting_unshown_pending",
+    "human_form_required_to_cast": true,
+    "blocked_by_Silence": true,
+    "no_extra_melee_weapon_requirement": "self_buff_not_weapon_attack",
+    "reflecting_does_not_block_initial_damage": "previous_visual_scope_preserved",
+    "new_hit_roll": "none_inferred_from_visual_return"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "displayed_current40_next43_duration6_energy13_CD8_proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "direct_magic_and_poison_all_indirect_exclusions_previously_accepted;shown_damage_basis_human_Silence_pending_review",
+  "visual_intention_approval": "literal_original_spell_or_magic_projectile_return_previously_requested;player_status_icon_explicit_HUD01-ALL01;native_pending",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "pending_individual_user_review",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "no_fictitious_damage_range": "percent_of_received_damage_without_invented_weapon_damage_variance"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "direct_magic_damage_reflected_percent"
+    ]
+  },
+  "player_copy_markdown": "**BM05 · Sceau de vindicte — Rang 11 · Actif**\n\n*Un sceau vengeur retourne une part de la magie ennemie contre ses auteurs.*\n\n**Effets actuels**\n\n- Dégâts magiques directs renvoyés : **40 % des dégâts réellement subis après vos protections**.\n- Durée : **6 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts magiques directs renvoyés : **43 %**.\n\n**Coût : 13 énergie · Recharge : 8 tours.**\n\nPoison et tous les dégâts indirects exclus, notamment le saignement et les effets persistants.\n\nForme humaine requise pour lancer le buff ; Silence empêche son utilisation.",
+  "player_copy_sha256": "072ab353bcb59e95f877a29342474dd9a631f49ef20a426a788fbe9697ff438a",
+  "visual_copy_markdown": "**Visuel retenu :** le sort ou le projectile magique repart vers son lanceur avec son apparence d’origine. Une icône dans la barre des buffs indique la durée restante du sceau.",
+  "visual_copy_sha256": "6b10e4c723e575d2afa468c9c9a96192d5948fea3b9f47d2001fc2126a2ed6e5",
+  "current_turn_shown_copy_markdown": "**BM05 · Sceau de vindicte — Rang 11 · Actif**\n\n*Un sceau vengeur retourne une part de la magie ennemie contre ses auteurs.*\n\n**Effets actuels**\n\n- Dégâts magiques directs renvoyés : **40 % des dégâts réellement subis après vos protections**.\n- Durée : **6 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts magiques directs renvoyés : **43 %**.\n\n**Coût : 13 énergie · Recharge : 8 tours.**\n\nPoison et tous les dégâts indirects exclus, notamment le saignement et les effets persistants.\n\nForme humaine requise pour lancer le buff ; Silence empêche son utilisation.\n\n**Visuel retenu :** le sort ou le projectile magique repart vers son lanceur avec son apparence d’origine. Une icône dans la barre des buffs indique la durée restante du sceau.",
+  "current_turn_shown_copy_sha256": "ce6e4ba38dacaa08662bceb62dccb46f3bb9276f0e737f31f429305a5e6c4554",
+  "unshown_cases_pending": [
+    "full_curves_defaults_cap100_rounding_snapshot_and_modifier_order",
+    "return_recipient_defenses_damage_types_author_eligibility_and_visibility",
+    "mixed_attacks_lethal_hits_overkill_absorption_and_reflection_recursion",
+    "nonmagical_projectiles_and_secondary_attack_eligibility",
+    "duration_and_cooldown_start_refresh_map_change_and_transformation",
+    "native_return_animation_per_spell_paths_delay_dense_combat_and_status_icon"
+  ]
+}

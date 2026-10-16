@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-06",
+  "id": "SU03",
+  "title": "Barrière d’épine",
+  "revision": 3,
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU03-02.json",
+  "player_copy_markdown": "**Barrière d’épine — Rang 11**\nBuff actif · 9 rangs appris + 2 grâce à l’équipement.\n\n*Votre protection se hérisse d’épines occultes qui punissent ceux qui vous frappent au corps à corps.*\n\nRenvoie à chaque attaquant une portion des dégâts directs de mêlée qu’il vous inflige.\n\n**Effet actuel**\n- Dégâts de mêlée renvoyés : **30 %**.\n- Durée : **5 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n- Dégâts de mêlée renvoyés : **31 %**.\n\n**Coût : 15 énergie · Recharge : 10 tours.**\n\nLe renvoi est calculé sur les dégâts réellement subis après vos protections. Vous subissez les dégâts du coup normalement. Les dégâts renvoyés s’appliquent directement à l’attaquant, sans nouvelle réduction par ses défenses.\n\nLe poison, le saignement et tous les dégâts indirects sont exclus. Un renvoi ne déclenche pas d’autre renvoi.",
+  "player_copy_sha256": "869b884789becef12e23a63a0f8ab8b585a182dfd9ebe5fa753bcf9dca41ad38",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/reflection-scope-split-and-exclusion-decisions.json",
+  "latest_decisions_sha256": "50978919043dcb902cbbd6c216e9a9aaaf856e761c4f27e79acc2db4db372a8b",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-05.json",
+  "source_skill_block_sha256": "1e53f015fe3948b77442bb2ea848df44edf52505dd2328a31e7ddacfec12f48c",
+  "name_approval": "explicit_user_rename",
+  "mechanic_direction_approval": "explicit direct melee reflection direction; poison and all indirect damage exclusions accepted",
+  "role": "active_buff",
+  "role_approval": "proposed_active_temporary_buff_pending_user_review",
+  "roleplay_text_approval": "revised_melee_only_roleplay_pending_user_review",
+  "functional_description_approval": "revised_melee_only_copy_pending_user_review",
+  "current_next_effect_copy_approval": "pending_user_review",
+  "numeric_rules_approval": "new_numbers_and_unshown_formula_pending_user_review",
+  "superseded_mechanics": [
+    "old absorption capacity",
+    "passive automatic reformation",
+    "four damage-free turn delay",
+    "global calm/HP-based absorption references"
+  ],
+  "formulas": {
+    "reflection_percent": "10 + 40 * (effective_rank - 1) / (effective_rank + 9)",
+    "energy_cost": "12 + floor((effective_rank - 1) / 3)"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_reflection_duration_cost_or_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "reflection_percent_exact": {
+      "numerator": 30,
+      "denominator": 1
+    },
+    "reflection_percent_display": 30.0,
+    "duration_turns": 5,
+    "energy_cost": 15,
+    "cooldown_turns": 10
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "reflection_percent_exact": {
+      "numerator": 650,
+      "denominator": 21
+    },
+    "reflection_percent_display": 31.0,
+    "duration_turns": 5,
+    "energy_cost": 15,
+    "cooldown_turns": 10
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "reflection_percent"
+    ],
+    "unchanged_effects_omitted": [
+      "duration_turns",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "reflection_rules": {
+    "scope": "direct melee damage only; explicitly accepted user scope",
+    "damage_reference": "actual HP lost after player protections",
+    "recipient": "the author of each corresponding attack, not all nearby attackers",
+    "damage_received": "normal damage remains; this buff does not absorb it",
+    "damage_application": "direct; no second defense reduction; proposed",
+    "explicit_exclusion": [
+      "poison",
+      "bleeding",
+      "all indirect damage"
+    ],
+    "chain": "reflected damage cannot trigger another reflection; proposed",
+    "approval": "direct melee scope and all indirect/poison exclusions accepted; numeric rules, direct attacker application and anti-chain wording remain in proposed card"
+  },
+  "remaining_scope_clarification": "mixed magical melee components and eligibility of ordinary ranged projectiles remain unresolved; SU03 no longer includes ranged/spell attacks by default",
+  "catalogue_overlap": {
+    "skill_id": "BM05",
+    "title": "Sceau de vindicte",
+    "conversation_alias": "glyphe",
+    "status": "resolved by human direction: retain two effects with direct melee versus direct magic scope; BM05 numerical/full copy review pending"
+  },
+  "unshown_conditions_approval": "fractional rounding, lethal hit order, source eligibility, recast/stacking and interactions with secondary effects remain pending",
+  "visual_intention_approval": "previous_absorption_intention_superseded; new_intention_not_yet_presented",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "exact reflection fractions calculated before rounding display at ranks 11 and 12",
+    "cost 15 and fixed duration 5/cooldown 10 checked",
+    "proposed percentage remains below 50 beyond learned cap",
+    "old absorption fields and damage-free delay absent from new current-next values",
+    "unchanged duration/cost/cooldown omitted from next-rank block; learned cap respected",
+    "bleeding explicitly excluded; additional exclusions marked as proposals",
+    "accepted category split and poison/all indirect damage exclusions recorded; numerical proposal and fixed parameters unchanged"
+  ]
+}

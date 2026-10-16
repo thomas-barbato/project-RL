@@ -518,4 +518,20 @@ mod tests {
         assert_eq!(format!("{game:?}"), format!("{restored:?}"));
         assert_eq!(game.events(), restored.events());
     }
+    #[test]
+    fn already_net_agent_damage_does_not_consume_a_second_guard() {
+        let mut g = fixture(false);
+        grant(&mut g);
+        let player = g.player;
+        let hp = g.actors.get(player).unwrap().integrity();
+        assert_eq!(
+            g.apply_agent_net_damage(None, player, 2, DamageType::Kinetic)
+                .unwrap()
+                .amount,
+            2
+        );
+        assert_eq!(g.actors.get(player).unwrap().integrity(), hp - 2);
+        assert!(has_guard(&g));
+        assert!(absorptions(&g).is_empty());
+    }
 }

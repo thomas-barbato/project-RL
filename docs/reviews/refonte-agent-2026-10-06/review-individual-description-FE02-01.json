@@ -1,0 +1,150 @@
+{
+  "date": "2026-10-07",
+  "id": "FE02",
+  "title": "Souffle de fournaise",
+  "revision": 1,
+  "player_copy_markdown": "**FE02 · Souffle de fournaise — Rang 11**\n\n*Vous déchaînez un torrent de flammes devant vous.*\n\n**Effets actuels**\n\n- Dégâts de feu : **28 par cible et par souffle**.\n- Zone : **cône de 90° sur 5 cases**.\n- Canalisation : **3 souffles maximum**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de feu : **30 par cible et par souffle**.\n\n**Coût : 8 énergie par souffle · Recharge : 6 tours.**\n\nUtilisez « Maintenir » pour prolonger le souffle jusqu’à deux fois, un souffle par tour, même pendant la recharge. Vous déplacer, effectuer une autre action ou perdre des PV interrompt la canalisation.\n\nLes murs arrêtent les flammes. Les alliés dans le cône peuvent être touchés. Dégâts affichés avant les défenses des cibles.",
+  "player_copy_sha256": "a82fb9944f81294f1dff9601b6b69dded67fa455c2d00a5cfdecd376f164b03e",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-19.json",
+  "source_skill_block_sha256": "b8c7d62b7b3a4bbc05cb52b5764164319368ddb5769cdb8f13e68098e7704dbf",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/ember-rename-and-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "ccf6fe5e8955ca7f168695498b055a45a890bd92493210d075ec1fad95f70e1e",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08; manual_maintenance_interruptions_and_cone_conditions_retained",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "proposed_pending_individual_user_review",
+  "current_profile_status": "illustrative_not_a_user_save; existing Willpower scaling proposal used; damage before target defenses",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "attribute_scaling_approval": "shown FE02 profile subject to individual review; unshown full attribute curves not silently accepted",
+  "formulas": {
+    "fire_damage_per_target_per_breath": "floor((6 + 2 * (effective_rank - 1)) * magic_multiplier)",
+    "magic_multiplier": "1 + 0.02 * (Willpower - 5)",
+    "cone_range_cells": "min(5, 3 + floor((effective_rank - 1)/5))",
+    "cone_angle_degrees": 90,
+    "maximum_breaths": 3,
+    "energy_per_breath": "6 + floor((effective_rank - 1)/4)",
+    "cooldown_turns": 6
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "fire_damage_per_target_per_breath": 28,
+    "cone_range_cells": 5,
+    "cone_angle_degrees": 90,
+    "maximum_breaths": 3,
+    "energy_per_breath": 8,
+    "cooldown_turns": 6
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "fire_damage_per_target_per_breath": 30,
+    "cone_range_cells": 5,
+    "cone_angle_degrees": 90,
+    "maximum_breaths": 3,
+    "energy_per_breath": 8,
+    "cooldown_turns": 6
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "fire_damage_per_target_per_breath": 6,
+    "cone_range_cells": 3,
+    "cone_angle_degrees": 90,
+    "maximum_breaths": 3,
+    "energy_per_breath": 6,
+    "cooldown_turns": 6,
+    "approval": "unshown full curve remains pending"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "fire_damage_per_target_per_breath"
+    ],
+    "unchanged_effects_omitted": [
+      "cone_range_cells",
+      "cone_angle_degrees",
+      "maximum_breaths",
+      "energy_per_breath",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "magic_cone_not_a_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy weapon exclusion added to spell"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "exceptional_manual_channel_turn_cadence_shown": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "channel_conditions": {
+    "initial_activation": "first breath produced on ordinary cast activation; no preparation wait added",
+    "additional_breaths_maximum": 2,
+    "maintenance_action_label": "Maintenir",
+    "maintenance_action_label_approval": "proposed_pending_individual_user_review",
+    "maintenance_manual": true,
+    "one_breath_per_maintenance_turn": true,
+    "energy_paid_for_each_breath": true,
+    "maintenance_available_while_cast_on_cooldown": true,
+    "automatic_extra_breaths": false,
+    "interruption_triggers": [
+      "movement",
+      "different action",
+      "loss of HP"
+    ],
+    "total_energy_if_all_three_breaths_used": 24,
+    "cooldown_start_and_exact_count": "unshown pending review",
+    "orientation_changes_and_interrupt_refusal_cases": "unshown pending review"
+  },
+  "effect_conditions": {
+    "damage_type": "fire",
+    "damage_scope": "each affected target and each breath",
+    "zone": "forward cone, range five, angle ninety degrees",
+    "walls_stop_flames": true,
+    "allies_can_be_hit": true,
+    "damage_display": "before target defenses",
+    "persistent_burn_status_created": false,
+    "hit_probability_or_automatic_hit_rule": "not chosen in card; full hit model pending",
+    "cone_exact_geometry_corner_and_actor_footprint_rules": "unshown pending review",
+    "hidden_actor_reveal_created": false,
+    "control_effect_created": false
+  },
+  "unshown_rules_approval": "Full rank curves, spell hit and defense order, exact cone and corner/footprint geometry, orientation changes between breaths, cooldown start/count, turn/reaction order, HP-loss interruption timing and energy-insufficiency/refusal atomicity, other skill/equipment/implant cost and damage modifiers remain pending where not already accepted. No automatic channel turns, preparation delay, persistent burn, active weapon scaling, general spell variance, new control or hidden actor reveal introduced.",
+  "visual_intention_approval": "existing_catalogue_layered_flame_tongues_before_hands_direction_accepted_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable FE02 existing Fire cone skill; RP/current-next/manual-maintenance card proposed for review.",
+    "Willpower10 M=11/10: rank11 floor26*1.1=28, next12 floor28*1.1=30.",
+    "Both ranks cone90 degrees range5, maximum3 breaths, energy8 per breath, cooldown6; next only changed damage.",
+    "Learned9 to10, gear+2 unchanged, one point within cap; attributes/modifiers unchanged.",
+    "Manual Maintenir up to twice, one breath per turn even during recharge; movement/other action/HP loss interrupt.",
+    "Walls stop cone, allies eligible, damage before defenses; no burn status, general spell variance or guaranteed hit invented.",
+    "83 primary skills and 71 blocks preserved; no runtime or native visual integration."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-ZONE02-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-overlapping-zone-status-INTERACT-ZONE02-01.json",
+    "reference_sha256": "90c097aef75fcd55bbf30a62200876aa3e378a8634a817503e8707217af176f4"
+  },
+  "user_acceptance": "parfait",
+  "accepted_as_displayed": {
+    "zone_damage": "cumulative_own_damage_contributions",
+    "status_chance": "independent_application_attempt_and_exposure_counter_per_zone",
+    "status_instances": "one_per_kind;reapplication_replaces_power_and_restarts_duration",
+    "same_turn_order": "oldest_zone_to_newest;latest_successful_application_counts",
+    "failed_attempt": "does_not_replace_existing_status"
+  },
+  "shown_example": {
+    "zone_damage20_plus30": 50,
+    "older_successful_Burn_power": 8,
+    "newer_successful_Burn_power": 5,
+    "resulting_unique_Burn_power": 5,
+    "duration": "restarted",
+    "values_are_fictional_before_defenses": true
+  },
+  "approval_boundary": "displayed_same_turn_zone_rules_only;old_zone_only_refresh_full_scheduler_multi_caster_credit_and_native_visuals_remain_separate",
+  "runtime_integration": "not_integrated"
+}

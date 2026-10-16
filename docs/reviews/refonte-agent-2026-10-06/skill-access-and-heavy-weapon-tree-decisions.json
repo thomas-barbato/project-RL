@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "AR-ACCESS01",
+    "AR-SEC01",
+    "AR-HL01"
+  ],
+  "user_request_summary": "Add a heavy ranged weapon tree after the current skill catalogue review; exclude heavy weapons from the ordinary shooting tree; remove primary skill unlock tiers and require associated secondary active before passive purchases.",
+  "user_confirmation": "Oui parfait :)",
+  "accepted_rules": {
+    "primary_unlock_tiers": false,
+    "primary_character_level_unlock_thresholds": false,
+    "primary_invested_branch_points_unlock_thresholds": false,
+    "primary_skills_available_from_start_with_skill_points": true,
+    "secondary_active_required_before_associated_passive_purchase": true,
+    "secondary_additional_tiers": false,
+    "secondary_passive_prerequisites": {
+      "SF01": "SF00",
+      "SF02": "SF00",
+      "SM01": "SM00",
+      "SM02": "SM00",
+      "SM03": "SM00",
+      "SM04": "SM00",
+      "SM05": "SM00",
+      "SG01": "SG00",
+      "SG02": "SG00",
+      "SG03": "SG00",
+      "SG04": "SG00"
+    },
+    "tree_rows": "visual organization only, no unlock stages"
+  },
+  "heavy_weapon_tree": {
+    "title": "Armes lourdes",
+    "status": "accepted_planned_after_all_current_skill_descriptions_validated",
+    "scope": "existing and future heavy ranged weapons",
+    "excluded_from_existing_tree": "ordinary shooting tree / Attaques à distance",
+    "catalogue_created": false,
+    "count_and_branches": "not decided",
+    "common_buff_and_secondary_launcher_interactions": "not silently reclassified; future compatibility review"
+  },
+  "supersedes": [
+    "Branch-point tier unlocking.",
+    "Current proposed 0/5/10 primary thresholds.",
+    "Secondary passive purchases before their associated active."
+  ],
+  "preserved_rules": [
+    "Shared level skill points; one point per learned rank.",
+    "Primary learned cap 10 and secondary active purchased once/passive learned cap 10.",
+    "Equipment effective ranks beyond learned cap.",
+    "All classes can use all trees; usage conditions remain."
+  ],
+  "unshown_cases": "Respec removing prerequisite, equipment-granted skills, exact families/weapon compatibility and native UI remain pending where not already accepted.",
+  "text_approval": "New exact interface warnings remain subject to review.",
+  "visual_approval": "No new icon, tree layout or weapon artwork approved.",
+  "runtime_integration": "not_integrated"
+}

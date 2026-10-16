@@ -1,0 +1,42 @@
+{
+  "batch": "ANIM-S05-CADENCE01",
+  "status": "cadence_and_drawing_approved_with_turn_lifetime_revision_requested",
+  "user_feedback": "ca me semble tres bien :) meme si peut-être que l'animation des flammes est un peu rapide ?",
+  "previous_review": "skill-animation-review-13",
+  "feedback_scope": "Favorable render feedback, with flame cadence comparison requested. No final approval inferred for the new cadence.",
+  "candidates": [
+    {
+      "number": 11,
+      "skill_id": "FE03",
+      "variant": "FE03-A04-LIBRE",
+      "status": "cadence_and_drawing_approved"
+    },
+    {
+      "number": 12,
+      "skill_id": "FE04",
+      "variant": "FE04-A04-LIBRE",
+      "status": "cadence_and_drawing_approved"
+    },
+    {
+      "number": 11,
+      "skill_id": "FE03",
+      "variant": "FE03-A04-CLOISON",
+      "status": "cadence_and_drawing_approved"
+    },
+    {
+      "number": 12,
+      "skill_id": "FE04",
+      "variant": "FE04-A04-CLOISON",
+      "status": "cadence_and_drawing_approved"
+    }
+  ],
+  "cadences": {
+    "original_drawn_frames_per_second": 12,
+    "candidate_drawn_frames_per_second": 8
+  },
+  "change": "Only sampling of the existing eight painted flame frames is slowed by one third, including attached Burn. No new art or recolouring.",
+  "preserved": "Movement, rise/fade of the eruption, preparation, targeting blink and expiry, scripted turn events, durations, cooldowns, direction, footprint and clipping retain their original clocks.",
+  "scope": "Separate debug visual preview. Original review and default cadence preserved. Campaign and approved Souffle de feu unchanged.",
+  "acceptance": "visual-acceptance-01.json",
+  "timing_revision": "Keep visual effect present until the relevant game turn passes; no automatic expiry in seconds."
+}

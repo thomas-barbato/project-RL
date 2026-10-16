@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-09",
+  "review_id": "D03-STACK01",
+  "stable_rule_id": "D03",
+  "revision": 2,
+  "title": "Bonus de dégâts",
+  "status": "shown_direct_weapon_bonus_pool_order_example_and_no_general_positive_cap_explicitly_accepted;outgoing_malus_and_unshown_cases_pending",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-20.json",
+  "current_attribute_model_sha256": "16082bf93729f47e787381663f8b026c5dc41f9e9a2ba71ac31d48bfa80991b4",
+  "shown_copy_markdown": "Les **dégâts mixtes sont validés**. Passons au cumul des bonus.\n\n**D03 · Bonus de dégâts — proposition**\n\nPour les dégâts directs des armes et de leurs compétences, je propose d’additionner tous les bonus compatibles en pourcentage : **attribut, compétence utilisée, passifs, équipement et buffs**.\n\nUne technique infligeant **150 % des dégâts de l’arme** apporte donc **+50 %** dans cette somme.\n\n**Exemple fictif**\n\nArme : **20–30 dégâts**.\n\n- Technique : **+50 %**.\n- Force 10 : **+5 %**.\n- Passif applicable : **+10 %**.\n- Équipement : **+15 %**.\n- Buff actif : **+20 %**.\n\n**Bonus total : +100 %.**\n**Dégâts actuels : 40–60**, avant les défenses et hors critique.\n\n**Bonus fixes et bonus élémentaires**\n\n- Les bonus fixes, comme **+5 dégâts de froid**, s’ajoutent aux dégâts de base de leur type avant l’application des pourcentages.\n- Un bonus réservé à un élément, comme **+20 % de dégâts de froid**, renforce uniquement cette composante.\n- Les bonus généraux compatibles renforcent toutes les composantes de l’attaque, selon les règles déjà validées.\n\nLe critique s’applique ensuite, puis les protections de la cible. La fiche affiche la plage obtenue avec les bonus actuels ; le prochain rang conserve les mêmes autres conditions.\n\nLes chiffres de l’exemple ne fixent aucun objet ni nouvelle compétence. **Ce cumul reste à valider.**",
+  "shown_copy_sha256": "19e9fa1fc6f722954af0142276e78c22b5939fecb6cf378ceef944467100c877",
+  "shown_example": {
+    "fictional_weapon_minimum": 20,
+    "fictional_weapon_maximum": 30,
+    "skill_extra_bonus_percentage_points": 50,
+    "Force": 10,
+    "accepted_Force_bonus_percentage_points": 5,
+    "illustrative_applicable_passive_bonus_percentage_points": 10,
+    "illustrative_equipment_bonus_percentage_points": 15,
+    "illustrative_buff_bonus_percentage_points": 20,
+    "total_bonus_percentage_points": 100,
+    "total_damage_coefficient_percent": 200,
+    "displayed_noncritical_predefense_minimum": 40,
+    "displayed_noncritical_predefense_maximum": 60,
+    "real_loot_or_new_skill_values_created": false
+  },
+  "prior_accepted_rules_preserved": {
+    "attribute_plus_weapon_skill_addition": "attribute and applicable weapon-skill damage bonuses are additive; previously shown example150% with Force10 is155%, Force15 is160%; other stacking cases remain unreviewed",
+    "mixed_weapon_damage": "docs/reviews/refonte-agent-2026-10-06/review-mixed-weapon-damage-02.json",
+    "mixed_weapon_damage_sha256": "8a1f99e419822dfe0c959e5d1d80a82b0ea6b7b830ed9faa14cdf44a63aeb7f5",
+    "existing_individual_cards": "not_rewritten;eligible_scopes_and_displayed_percentages_preserved;previous_historical_attribute_formulas_not_restored"
+  },
+  "scope_audit": {
+    "T03_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T03-02.json",
+    "T03_reference_sha256": "067b2948fc7b3ac5592b7ae451015a881900ef097c5c8fe47d0acbb121b0b1a6",
+    "BM03_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM03-05.json",
+    "BM03_reference_sha256": "7b7d5880a40dd8bf3b10c98eb9b02b06f166749cec03b59edabe896b5a73f263",
+    "finding": "current_passive_percentages_accepted;their_general_modifier_order_remained_unshown;new_pool_proposed_only_for_currently_eligible_direct_weapon_damage",
+    "drone_and_transformation_combination": "separate_rules_pending;not_changed_by_this_weapon_pool_proposal"
+  },
+  "unshown_cases_pending": [
+    "damage_malus_percentage_pools_clamps_and_other_nonpositive_coefficient_cases",
+    "local_weapon_modifier_vs_equipment_global_modifier_labels_and_real_affix_values",
+    "skill_damage_conversion_vs_new_component_and_percent_eligibility",
+    "T03_heavy_weapon_eligibility_and_each_individual_skill_scope_not_silently_expanded",
+    "multiple_weapons_transformed_attacks_spell_drone_familiar_and_NPC_modifier_order",
+    "secondary_periodic_reflected_collision_and_net_damage_based_effects_no_duplicate_boost",
+    "other_stat_percentage_bonus_stacking_HP_energy_accuracy_resistance_not_defined_here",
+    "RNG_draw_order_flat_bonus_ranges_and_component_variance_mapping",
+    "native_tooltip_damage_feedback_and_all_other_unshown_cases"
+  ],
+  "player_copy_approval": "explicit_agreement_with_shown_copy_and_clarification",
+  "numeric_and_scope_approval": "shown_rules_and_no_cap_clarification_accepted;other_cases_pending",
+  "new_native_visuals_proposed": false,
+  "runtime_integration": "not_integrated",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-direct-weapon-bonus-stacking-01.json",
+  "source_proposal_sha256": "0be5b376545ef16d273c61aadb5550f4bc01fdda908ccfafd765a86ce1c289d3",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/direct-weapon-bonus-stacking-and-no-cap-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "a11e552364b39f3275a66a3fe2ae7d029e06292be091f64d7ca300435c2e50a9",
+  "accepted_shown_rules": {
+    "scope": "direct_player_weapon_attacks_and_weapon_skills_only;no_implicit_drone_spell_transformation_or_indirect_extension",
+    "general_percent_damage_pool": "sum_compatible_attribute_skill_extra_damage_passive_equipment_and_active_buff_percentage_point_bonuses_before_applying_once_to_base_component_damage",
+    "weapon_skill_damage_percent_mapping": "displayed_skill_coefficient150_percent_contributes_extra50_percentage_points_above_ordinary100_percent",
+    "fixed_damage_bonus_order": "add_fixed_bonus_to_corresponding_base_damage_family_before_percent_damage_modifiers",
+    "family_specific_percent_bonus": "add_to_compatible_percent_pool_for_that_damage_family_only;does_not_boost_other_families",
+    "general_percent_bonus": "affects_all_eligible_direct_components_under_accepted_D02_mapping",
+    "later_order": "accepted_critical_multiplier_then_armor_and_corresponding_resistances_then_one_final_total_damage_floor",
+    "current_next_tooltip": "current_computed_range_and_next_rank_range_use_same_current_equipment_attributes_and_other_modifiers_except_next_purchased_skill_rank",
+    "general_positive_damage_bonus_upper_cap": null,
+    "illustrative_100_percent_total_is_not_cap": true
+  },
+  "accepted_no_cap_examples": [
+    {
+      "weapon_minimum": 20,
+      "weapon_maximum": 30,
+      "bonus_percent": 100,
+      "damage_minimum": 40,
+      "damage_maximum": 60
+    },
+    {
+      "weapon_minimum": 20,
+      "weapon_maximum": 30,
+      "bonus_percent": 250,
+      "damage_minimum": 70,
+      "damage_maximum": 105
+    },
+    {
+      "weapon_minimum": 20,
+      "weapon_maximum": 30,
+      "bonus_percent": 400,
+      "damage_minimum": 100,
+      "damage_maximum": 150
+    }
+  ],
+  "clarification": "docs/reviews/refonte-agent-2026-10-06/weapon-damage-bonus-no-cap-clarification-decisions.json",
+  "clarification_sha256": "a1f24d7d1290770f4250cab3a575fce463560337f7725ccc33fc3a05102d8cca",
+  "original_proposed_rules": {
+    "scope": "direct_player_weapon_attacks_and_weapon_skills_only;no_implicit_drone_spell_transformation_or_indirect_extension",
+    "general_percent_damage_pool": "sum_compatible_attribute_skill_extra_damage_passive_equipment_and_active_buff_percentage_point_bonuses_before_applying_once_to_base_component_damage",
+    "weapon_skill_damage_percent_mapping": "displayed_skill_coefficient150_percent_contributes_extra50_percentage_points_above_ordinary100_percent",
+    "fixed_damage_bonus_order": "add_fixed_bonus_to_corresponding_base_damage_family_before_percent_damage_modifiers",
+    "family_specific_percent_bonus": "add_to_compatible_percent_pool_for_that_damage_family_only;does_not_boost_other_families",
+    "general_percent_bonus": "affects_all_eligible_direct_components_under_accepted_D02_mapping",
+    "later_order": "accepted_critical_multiplier_then_armor_and_corresponding_resistances_then_one_final_total_damage_floor",
+    "current_next_tooltip": "current_computed_range_and_next_rank_range_use_same_current_equipment_attributes_and_other_modifiers_except_next_purchased_skill_rank"
+  }
+}

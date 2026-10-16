@@ -1,0 +1,28 @@
+{
+  "review_id": "MINE-VFX-COVERAGE01",
+  "date": "2026-10-14",
+  "user_replies": [
+    "avec la persistance c'est toute la zone d'explosion qui doit être recouverte :)",
+    "oui ca doit servir de marqueur pour signifier que si un monstre marche dans la zone il risque d'en subir les effets :)"
+  ],
+  "accepted_visual_direction": {
+    "coverage": "Avec SM05, le résidu matérialise toute la zone effectivement affectée par l'explosion, en respectant les obstacles et le rayon déjà définis.",
+    "purpose": "Marqueur de danger persistant : un monstre qui entre dans cette zone risque d'en subir les effets.",
+    "feu": "Sol enflammé sur toute la zone concernée.",
+    "poison": "Nuage de gaz toxique couvrant toute la zone concernée.",
+    "froid": "Sol gelé sur toute la zone concernée.",
+    "attachment": "Zone fixe sur le terrain, distincte des statuts attachés aux victimes.",
+    "handoff": "Après la détonation brève, le résidu reste visible pendant sa durée mécanique. Le relais visuel ne retarde pas les premières applications déjà validées."
+  },
+  "current_review_62_has_SM05": false,
+  "current_review_62_remaining_victim_effects": "Empoisonné ou Gel sur les monstres, sans zone persistante au sol.",
+  "preserved_references": [
+    "mine-residue-elemental-ground-visual-direction-decisions.json",
+    "mine-residue-visual-handoff-direction-decisions.json",
+    "review-individual-description-SM05-02.json"
+  ],
+  "new_numeric_mechanics_created": false,
+  "rendered_residue_approval_inferred": false,
+  "campaign_integration": false,
+  "next_preview_scope": "Présenter SM05 avec le relais explosion-vers-résidu, la couverture de toute la zone, un ennemi entrant dans cette zone et la disparition du marqueur à l'expiration."
+}

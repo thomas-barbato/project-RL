@@ -148,7 +148,9 @@ fn firearm_models_are_ordinary_layer_loot_with_independent_affixes_and_provenanc
 
 #[test]
 fn firearm_models_all_fire_with_native_resources_and_current_runs_resume() {
-    let (base, texts, loot, expeditions) = projected_content();
+    // A current suspension must use the current loot catalogue. Historical
+    // layer-bound family draws are checked separately with projected_content.
+    let (base, texts, loot, expeditions) = ascii_game_content().unwrap();
     for id in firearm_model_ids() {
         let mut rules = base.clone();
         rules.hit_rules = None;

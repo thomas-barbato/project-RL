@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-06",
+  "review_id": "UX-PETS-01",
+  "user_message": "ok on va faire comme ca :)",
+  "proposal_reference": "docs/reviews/refonte-agent-2026-10-06/pet-control-window-proposal.json",
+  "proposal_reference_sha256": "7edb196c7715dca2f73370a1e5b82bd63a3748cdf4e3cf8d331ab2dd86130812",
+  "accepted_direction": {
+    "single_window": true,
+    "movable": true,
+    "collapsible": true,
+    "scrollable_pet_list": true,
+    "one_row_per_controlled_pet": true,
+    "action_icons_per_pet": true
+  },
+  "approval_scope": "Presented control-window organization and interaction direction; specific layout, icons, labels, dimensions and native rendering remain pending review.",
+  "existing_drone_limit": 5,
+  "future_extension": "More pets and a cap increase remain future possibilities; no new cap value or pet-purchase mechanics approved here.",
+  "visual_approval": "pending_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

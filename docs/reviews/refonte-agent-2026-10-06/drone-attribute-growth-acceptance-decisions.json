@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-09",
+  "review_id": "DRONE-STAT01-ACCEPT01",
+  "user_reply": "parfait :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-drone-actor-statistics-01.json",
+  "source_proposal_sha256": "5cb3c04e5c0a87ce516e4a7b504615d3f59633ebad8cf27d8348007e2bf7b1bf",
+  "accepted_shown_copy_markdown": "D’accord, **chaque modèle aura ses propres attributs**, avec le même niveau que le joueur.\n\n**DRONE-STAT01 · Statistiques des drones**\n\n- **Niveau du drone = niveau du joueur**, quel que soit le rang de l’invocation.\n- Chaque modèle possède ses propres **Force, Agilité, Vitalité, Perception, Intelligence et Volonté**.\n- Ses statistiques suivent les **mêmes règles de calcul que celles du joueur et des monstres**, avec des valeurs propres à son modèle.\n- Son équipement et les bonus compatibles modifient ses statistiques.\n- Le rang d’invocation reste une **amélioration supplémentaire**, distincte de son niveau.\n\n**Exemple**\n\nJoueur niveau **20** :\n\n- Invocation au rang **1** → drone niveau **20**.\n- Invocation au rang **10** → drone toujours niveau **20**, avec les améliorations apportées par les rangs investis.\n\nLes anciennes valeurs de PV et de dégâts devront donc être recalculées sur cette nouvelle base.\n\n**Progression proposée**\n\nÀ chaque niveau gagné, les **5 points d’attributs** du drone seraient répartis **automatiquement selon son modèle** : davantage de Force pour un drone de mêlée, de Perception pour un tireur, de Vitalité pour un protecteur.\n\nLes répartitions exactes et les bonus des rangs seront présentés séparément. **Cette répartition automatique reste à valider.**",
+  "accepted_shown_copy_sha256": "376d59d5aca6bac395e396d93c0fa02df7b5b2292b2b1bfff92c2e843501f302",
+  "accepted_shown_rules": {
+    "drone_attribute_growth_points_per_gained_level": 5,
+    "allocation": "automatically_distribute_points_according_to_per_model_profile",
+    "allocation_orientation": {
+      "melee": "prefer_Force",
+      "physical_ranged": "prefer_Perception",
+      "protective": "prefer_Vitalite"
+    },
+    "exact_distribution": "not_proposed;review_separately",
+    "rank_bonus_curve": "not_proposed;preserve_useful_investment_direction_review_separately"
+  },
+  "accepted_examples": {
+    "player_level": 20,
+    "invocation_rank1_drone_level": 20,
+    "invocation_rank10_drone_level": 20,
+    "scope": "illustrative_level_only;no_actual_drone_HP_damage_or_attribute_values_defined"
+  },
+  "already_accepted_rules": {
+    "scope": "all_drone_models_including_noncombat_models",
+    "level": "always_current_player_level_regardless_of_learned_or_equipment_effective_invocation_rank",
+    "base_statistics": "own_actor_statistics_progressing_at_shared_player_level_under_common_player_and_monster_stat_calculation_rules;not_equipment_requirement_only",
+    "attributes": "own_six_attribute_profile_per_drone_model;not_copy_of_player_allocated_or_equipment_attributes",
+    "invocation_rank": "distinct_from_drone_level;existing_invocation_power_improvement_direction_retained_but_new_exact_bonus_formula_pending",
+    "preserved_functions": "existing_armed_models_and_no_attack_for_Eclaireur_Mule_retained"
+  },
+  "approval_scope": "Five_attribute_points_per_gained_drone_level_automatically_allocated_by_model, shown preference_Force_melee_Perception_ranged_Vitalite_protector and level20_examples accepted. Exact starts, distributions, rank_bonuses, current_resource_behavior and PETS_EQ01_complements remain pending.",
+  "unshown_cases_pending": [
+    "exact_six_attribute_starts_and_growth_per_model",
+    "exact_native_attack_and_equipped_weapon_base_and_invocation_rank_improvement",
+    "owner_Intelligence_bonus_vs_drone_own_attributes_and_double_scaling_prevention",
+    "current_HP_energy_and_healing_on_player_level_gain_or_attribute_equipment_updates",
+    "drone_energy_usage_regeneration_critical_base_profiles_and_other_actor_rules",
+    "PETS_EQ01_equipment_complements_and_native_UI",
+    "per_level_attribute_point_distribution_sums_and_spawn_at_high_player_level",
+    "Force_Perception_Volonte_and_owner_Intelligence_exact_damage_pool_mapping",
+    "exact_common_core_base_values_vs_per_model_values_for_HP_energy_accuracy_evasion_resistance_and_crit",
+    "native_stat_sheet_copy_icons_and_actor_equipment_body_layers"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

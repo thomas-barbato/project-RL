@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-08",
+  "review_id": "BAL-REF01",
+  "skill_balance_note_id": "SM02-BAL01",
+  "skill_id": "SM02",
+  "user_response": "3 dégats c'est pas terrible ... je veux dire à terme ca represente 15 dégats ce qui n'est vraiment pas grand chose quand meme ... Mais bon, on fera ces équilibrage quand on fera les statistiques réelles du jeu avec les points de vie etc (j'aimerais à ce niveau qu'on se rapproche de diablo 2 :) que ce soit dans la distribution des statistiques, mais aussi leurs effets, les HP des monstres etc , enfin on verra ca apres)",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM02-02.json",
+  "reviewed_description_sha256": "e33de4ceda9d4fe0bbd5d8742c588f8f047bd925ab354cd0b378d51bf8f1d842",
+  "poison_balance_feedback": {
+    "displayed_damage_per_turn": 3,
+    "displayed_duration_turns": 5,
+    "displayed_total_before_resistances": 15,
+    "user_assessment": "too_low_or_unappealing_at_presented_rank",
+    "rebalancing": "deferred_until_real_game_statistics_are_defined",
+    "current_values": "retained_as_provisional_placeholders_without_numeric_increase_this_turn"
+  },
+  "later_statistics_direction": {
+    "inspiration_reference": "Diablo II",
+    "attribute_distribution": "explicit_requested_direction",
+    "attribute_effects": "explicit_requested_direction",
+    "monster_HP_and_stat_scale": "explicit_requested_direction",
+    "new_values_formulas_or_global_multipliers": "not_fixed"
+  },
+  "existing_six_attributes_and_level_point_rules": "preserved_until_explicitly_reviewed_revision",
+  "approval_scope": "balance_deferment_and_reference_direction;no_full_SM02_RP_rules_or_visual_acceptance_inferred",
+  "runtime_integration": "not_integrated"
+}

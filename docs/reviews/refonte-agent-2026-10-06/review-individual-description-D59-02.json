@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-06",
+  "id": "D59",
+  "alias_id": "O01",
+  "title": "Invocation de l'Artilleur",
+  "revision": 2,
+  "player_copy_markdown": "**Invocation de l’Artilleur — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Votre artilleur verrouille une cible et ouvre le feu à vos côtés.*\n\nDéploie un drone qui tire sur les ennemis à distance.\n\n**Effet actuel**\n\n- Vie maximale du drone : **66 PV**.\n- Dégâts cinétiques par tir : **22**.\n- Portée de tir : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Vie maximale du drone : **70 PV**.\n- Dégâts cinétiques par tir : **24**.\n\n**Coût : 15 énergie · Recharge : 6 tours.**\n\nUn seul Artilleur peut être déployé à la fois. Ses tirs ne consomment pas vos munitions.\n\nLes dégâts affichés sont calculés avant les défenses de la cible.",
+  "player_copy_sha256": "02fe3ba8176328d8059c25a7513759d97240f66ced34aaa795b004d2c2dd8a1f",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-03.json",
+  "source_skill_block_sha256": "0dd25ab9245ee7b84e5f08c7a7be530b26c4079569556629f943945306baf6d4",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/dernier-sursaut-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "5dfe080b411026dd130c200b43b57f54c338b4b577059affde82450bf950e57c",
+  "name_approval": "accepted_catalogue_name",
+  "catalogue_effect_approval": "accepted_as_presented",
+  "roleplay_text_approval": "displayed_description_accepted_with_unlimited_activity_line_omitted",
+  "functional_description_approval": "displayed_description_accepted_with_unlimited_activity_line_omitted",
+  "current_next_effect_copy_approval": "displayed_description_accepted_with_unlimited_activity_line_omitted",
+  "numeric_rules_approval": "displayed_current_next_values_range_cost_cooldown_and_conditions_accepted; unshown_formulas_and_conditions_pending",
+  "formulas": {
+    "base_hp": "20 + 4 * (effective_rank - 1)",
+    "base_kinetic_damage": "4 + (effective_rank - 1)",
+    "energy_cost": "12 + floor((effective_rank - 1) / 3)",
+    "intelligence_factor": "1 + (Intelligence - 5) / 50; proposed",
+    "link_bonus_percent": "25 + 2 * (Lien_renforcé_effective_rank - 1); proposed",
+    "rounding": "floor once after applicable modifiers; proposed"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "intelligence": 10,
+    "intelligence_factor": {
+      "numerator": 11,
+      "denominator": 10
+    },
+    "link_effective_rank": 12,
+    "link_damage_bonus_percent": 47,
+    "other_drone_hp_damage_cost_or_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_hp": 66,
+    "maximum_hp_exact_before_floor": {
+      "numerator": 66,
+      "denominator": 1
+    },
+    "damage_before_defenses": 22,
+    "damage_exact_before_floor": {
+      "numerator": 11319,
+      "denominator": 500
+    },
+    "damage_type": "kinetic",
+    "attack_range_cells": 4,
+    "activity_duration": "unlimited",
+    "energy_cost": 15,
+    "cooldown_turns": 6
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "maximum_hp": 70,
+    "maximum_hp_exact_before_floor": {
+      "numerator": 352,
+      "denominator": 5
+    },
+    "damage_before_defenses": 24,
+    "damage_exact_before_floor": {
+      "numerator": 4851,
+      "denominator": 200
+    },
+    "damage_type": "kinetic",
+    "attack_range_cells": 4,
+    "activity_duration": "unlimited",
+    "energy_cost": 15,
+    "cooldown_turns": 6
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_passive_ranks_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "maximum_hp",
+      "damage_before_defenses"
+    ],
+    "unchanged_effects_omitted": [
+      "attack_range_cells",
+      "activity_duration",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "accepted_existing_rules": "No expiration; maximum 5 active drones, one per model; shared deployment energy, no per-turn upkeep; persistence rules preserved.",
+  "presented_conditions": "Summons a ranged attacking drone; only one Artilleur deployed; does not consume player ammunition; displayed damage before target defenses.",
+  "unshown_rules_approval": "Full-rank formulas, Intelligence and Link coefficients across all ranks, rounding, placement constraints, targeting and accuracy, actor action timing, parameter snapshot and recall/redeployment details remain separately pending.",
+  "drone_damage_variance_status": "Existing drone proposal uses fixed damage; no weapon-variance amplitude or distribution introduced by this card.",
+  "active_weapon_requirement": "none; drone invocation is not an attack using the active player weapon",
+  "visual_intention_approval": "accepted_as_presented",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Exact fractional HP and damage checked at ranks 11 and 12 with fixed Intelligence 10 and Link bonus +47%.",
+    "Values: 66 -> 70 HP, 22 -> 24 kinetic damage, energy 15, cooldown 6, range 4.",
+    "Unlimited duration and one-model limit preserved; old expiration calculations not reused.",
+    "No new name, sprite, damage variance or active-player-weapon requirement introduced.",
+    "Only changing HP and damage shown in next-rank block; learned cap respected.",
+    "Explicit user validation recorded; activity line omitted from copy, duration rule and all numeric values unchanged."
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-D59-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/artilleur-description-acceptance-and-duration-omission-decisions.json",
+  "latest_decisions_sha256": "36458d645689ca52b1818882beb877d3237772874ac00c6843a0249c2c880c2e"
+}

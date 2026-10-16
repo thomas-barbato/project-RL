@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-06",
+  "user_message": "ah attends, tu as raison on devrait donc plutot : faire un sort (actif) qui soigne un robot, et le passif que tu viens de décrire .",
+  "supersedes_previous_steering": "Earlier suggestion to make passive Maintenance work during combat with a player-attack interruption is replaced by separate active robot healing and retained passive Maintenance.",
+  "resolved_clarification": "User chooses two distinct skills instead of choosing between automatic combat maintenance and an activated maintenance mode.",
+  "retained_passive": {
+    "id": "DP01",
+    "title": "Maintenance des drones",
+    "context": "Calm-phase automatic repair as described before latest steering; exact tooltip and 7/7.5% rates still pending individual review."
+  },
+  "requested_additional_active": {
+    "id": "DR01",
+    "proposed_title": "Réparation ciblée",
+    "name_approval": "proposed_pending_user_review",
+    "role": "Active skill heals one robot; usable during combat.",
+    "role_approval": "user_requested",
+    "numeric_rules_approval": "pending_separate_individual_review",
+    "target_eligibility": "Robot requested; controlled/allied/enemy eligibility not yet fixed.",
+    "placement": "Proposed in Drones; exact branch and tier placement pending review.",
+    "activation_and_channel_conditions": "Instant heal versus channel, costs, range, cooldown and player-attack restrictions not fixed by this request.",
+    "visual_approval": "pending_separate_native_preview_and_user_review"
+  },
+  "original_passive_draft": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DP01-01.json",
+  "original_passive_draft_sha256": "61f51c6832b8ae64f03a918874286b289a2dca29acf31b21441b21e9970f0dbf",
+  "catalogue_status": "Additional requested active tracked separately; no silent changes to existing skill identities or tier allocation.",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,424 @@
+{
+  "date": "2026-10-09",
+  "review_id": "STAT-MODEL22",
+  "status": "accepted_core_weapon_damage_bonus_and_outgoing_reduction_rules_preserved;incoming_percent_protections_and_other_unshown_cases_pending",
+  "previous_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-21.json",
+  "previous_model_sha256": "3e43752fe3fee2eb01e5dc44b5d33935b567b30a48d6a29c36b5241acbef92b5",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-02.json",
+  "source_proposal_sha256": "449d4d200adb5fd39028eff5d8ca673fd240b05c3de08b96511eaf313c5d1b82",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/attribute-model-perception-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "e18f863af6beadd00595d37d05a27234625da8d2c83f3fed90f208b7409fa288",
+  "accepted_coefficients": {
+    "S01": {
+      "melee_weapon_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "includes_melee_weapon_skills": true,
+      "previous_physical_transformation_scope": "preserved_by_general_agreement;exact_components_unreviewed"
+    },
+    "S02": {
+      "accuracy_units_per_point": 2,
+      "evasion_units_per_point": 2,
+      "attribute_damage_bonus": "none;additional_ranged_bonus_requested_in_previous_turn_retracted_by_current_instruction;old_general_physical_bonus_superseded"
+    },
+    "S03": {
+      "maximum_HP_per_point": 4
+    },
+    "S04": {
+      "ranged_weapon_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "scope": "ranged_weapon_attacks_and_their_skills_including_ranged_heavy_weapons"
+    },
+    "S05": {
+      "drone_damage_percentage_points_per_attribute_point": 1,
+      "drone_maximum_HP_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "maximum_energy_per_point": 2
+    },
+    "S06": {
+      "spell_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "maximum_energy_per_point": 2,
+      "magical_transformed_attacks_included": true,
+      "occult_resistance_units_per_attribute_point": 2,
+      "occult_resistance_reference_attribute": 5
+    }
+  },
+  "accepted_constraints": {
+    "attribute_points_per_level": 5,
+    "character_level_cap": null
+  },
+  "accepted_stacking": "attribute and applicable weapon-skill damage bonuses are additive; previously shown example150% with Force10 is155%, Force15 is160%; other stacking cases remain unreviewed",
+  "resolved_clarification": {
+    "review_id": "S04-MAPPING01",
+    "question": "Le bonus de dégâts à distance de l’Agilité remplace-t-il celui proposé pour la Perception, ou souhaites-tu que les deux se cumulent ?",
+    "answer": "en faite non je vais accepter ta proposition avec perception.",
+    "status": "resolved_by_user_return_to_original_model;no_Agilite_ranged_damage_bonus_and_no_double_attribute_bonus"
+  },
+  "pending_clarification": null,
+  "balance_context": "Current_character_level_cap_none;100_is_user_conditional_preference_if_a_cap_is_later_introduced_and_upper_balance_reference;not_a_cap_or_expected_playthrough_level;single_life_and_limited_healing",
+  "unshown_cases_pending": [
+    "maximum_decrease_clamping_and_other_unshown_reserve_interactions;energy_regeneration_tick_order_and_special_interactions",
+    "other modifiers and gear/class/passive stacking",
+    "unshown_accuracy_evasion_edges_and_other_control_probability_rules",
+    "other_unshown_vision_interactions;fixed_player_base_radius8_and_no_Perception_radius_growth_accepted",
+    "control potency and duration",
+    "transformation duration",
+    "physical versus elemental attack components",
+    "drone base and rank scaling and HP modifier ordering",
+    "healing and indirect/reflected damage scaling",
+    "rounding and weapon damage variance",
+    "all other unshown details",
+    "unshown_resistance_profiles_affixes_penetration_component_allocation_Gel_zone_order_and_native_UI;shown_common_R01_R05_rules_accepted",
+    "critical_loot_affixes_familiar_and_NPC_profiles_mixed_components_precise_impact_definition_RNG_overkill_and_native_feedback;shown_C01_rules_accepted"
+  ],
+  "runtime_integration": "not_integrated",
+  "level_context_decisions": "docs/reviews/refonte-agent-2026-10-06/level-cap-optional100-context-decisions.json",
+  "level_context_decisions_sha256": "4244228b906ca8cb63c79c8dc0b6057519bfca872a9161da603cbbe104281fee",
+  "accepted_derived_stats": {
+    "HP01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-HP01-02.json",
+      "reference_sha256": "d5d98b3775e77ba92d1b979cda9c35a3d0edcb4f47aee1816b1185749be77887",
+      "accepted_rules": {
+        "base_maximum_HP_at_level1_Vitalite5": 30,
+        "automatic_maximum_HP_gain_per_level_after_level1": 2,
+        "maximum_HP_per_Vitalite_point": 4
+      }
+    },
+    "E01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-E01-02.json",
+      "reference_sha256": "b328fb9688deb721ab5245dee508b2a9a940735468b389194f7bc141c3d7011a",
+      "accepted_rules": {
+        "base_maximum_energy_at_level1_Intelligence5_Volonte5": 30,
+        "automatic_maximum_energy_gain_per_level_after_level1": 2,
+        "maximum_energy_per_Intelligence_point": 2,
+        "maximum_energy_per_Volonte_point": 2
+      }
+    },
+    "E01-REG": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-energy-regeneration-E01-02.json",
+      "reference_sha256": "420e1020cc964535dade37ae37ff14113af9794310e54981ba45d51e3b6ece4f",
+      "accepted_rules": {
+        "combat_and_accalmie_percent_of_maximum_energy_per_turn": 1,
+        "combat_and_accalmie_minimum_energy_per_turn": 1,
+        "calm_percent_of_maximum_energy_per_turn": 3,
+        "calm_minimum_energy_per_turn": 3,
+        "rounding": "ceiling_before_missing_energy_limit",
+        "cannot_overfill": true,
+        "menus_or_realtime_wait_regenerate_energy": false
+      }
+    },
+    "S02-HIT": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-accuracy-evasion-02.json",
+      "reference_sha256": "393616f746489ff1c4cc505d7a945ee06782ef335b958b77df5afda2c0fb9af3",
+      "accepted_rules": {
+        "base_accuracy_at_Agilite5": 100,
+        "base_evasion_at_Agilite5": 25,
+        "probability_formula": "clamp(100*attacker_accuracy/(attacker_accuracy+target_evasion),5,95)",
+        "minimum_hit_chance_percent": 5,
+        "maximum_hit_chance_percent": 95,
+        "scope": "weapon_attacks_and_physical_transformation_attacks"
+      }
+    },
+    "S04-VISION": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-perception-vision-03.json",
+      "reference_sha256": "5f28b7daff1cfde2a8698315a551024eba2bc032156f697bbccbe56f7b1355af",
+      "accepted_rules": {
+        "fixed_player_base_vision_radius_cells": 8,
+        "Perception_does_not_increase_player_base_vision_radius": true
+      }
+    },
+    "S06-RESIST": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-occult-resistance-02.json",
+      "reference_sha256": "5e2d068636b68790afab5eaf458168f08960d9e022de417b7eb4359e321c4261",
+      "accepted_rules": {
+        "base_occult_resistance_at_Volonte5": 25,
+        "occult_resistance_units_per_Volonte_point": 2,
+        "minimum_occult_resistance": 1,
+        "occult_resistance_formula": "max(1,25+2*(Volonte-5))",
+        "hostile_effect_success_chance_formula": "clamp(100*hostile_power/(hostile_power+occult_resistance),5,95)",
+        "minimum_hostile_effect_success_percent": 5,
+        "maximum_hostile_effect_success_percent": 95,
+        "scope": "player_application_resistance_to_occult_controls_and_curses;examples_Silence_and_Desorientation",
+        "damage_and_Gel_Burn_Poison_rules": "unchanged;not_implicitly_scaled_by_this_new_occult_resistance"
+      }
+    },
+    "R03-GEL": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/freeze-elemental-chance-formula-acceptance-decisions.json",
+      "reference_sha256": "fbefb43b47922ef0cdc964199d3f20e382a46c9ebc76bec5ab5af28da6dddf04",
+      "accepted_rules": {
+        "Gel_Cold_resistance_formula_as_shown": "chance_before_Cold_resistance*(100-Cold_resistance)/100",
+        "Gel_duration": "unchanged",
+        "boss_importance_multiplier": "previous_accepted1/2_after_the_shown_Cold_modifier",
+        "elemental_associations": "Burn_Fire_Poison_Poison_Gel_Cold_preserved",
+        "occult_controls": "accepted_S06_occult_resistance_scope_preserved"
+      },
+      "accepted_examples": [
+        {
+          "chance_before_Cold_resistance_percent": 80,
+          "Cold_resistance_percent": 40,
+          "ordinary_Gel_chance_percent": 48,
+          "boss_Gel_chance_percent": 24,
+          "duration": "unchanged"
+        }
+      ]
+    },
+    "C01-CRIT": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-critical-hits-02.json",
+      "reference_sha256": "8e2978d7eda6e226169a762aa4fe3e77152de69236cb273a57cf484ee2ce9067",
+      "accepted_RP": "Vous exploitez une ouverture pour infliger une blessure dévastatrice.",
+      "accepted_rules": {
+        "agent_base_critical_chance_percent": 5,
+        "ordinary_direct_critical_damage_multiplier": 2,
+        "critical_damage_percent_of_noncritical_predefense_damage": 200,
+        "critical_chance_stacking": "add_percentage_point_modifiers_then_clamp0_100",
+        "critical_chance_minimum_percent": 0,
+        "critical_chance_maximum_percent": 100,
+        "damage_order": "apply_critical_multiplier_before_armor_resistances_and_final_ordinary_damage_floor;no_extra_armor_bypass",
+        "eligible_player_actions": [
+          "melee_direct_damage",
+          "ranged_direct_damage",
+          "heavy_weapon_direct_damage",
+          "direct_damage_spells",
+          "transformed_direct_attacks"
+        ],
+        "multihit_and_area_sampling": "independent_critical_decision_for_each_impact_on_each_target",
+        "no_independent_critical_roll": [
+          "periodic_damage",
+          "reflected_damage",
+          "collision_damage"
+        ],
+        "actual_initial_damage_derivatives": "existing_bleed_and_collision_calculations_include_actual_critical_initial_damage;no_second_critical_multiplier",
+        "status_probability_and_duration": "not_modified_by_critical",
+        "missed_attack": "cannot_critical"
+      },
+      "accepted_examples": {
+        "physical_attack": {
+          "predefense_noncritical_damage": 40,
+          "armor": 12,
+          "normal_suffered_damage": 28,
+          "critical_predefense_damage": 80,
+          "critical_suffered_damage": 68
+        },
+        "DI04_rank11": {
+          "proposed_agent_base_chance_percent": 5,
+          "already_accepted_bonus_percentage_points": 15,
+          "shown_final_chance_percent": 20
+        }
+      }
+    }
+  },
+  "latest_derived_stat_acceptance": "docs/reviews/refonte-agent-2026-10-06/outgoing-weapon-damage-reductions-acceptance-decisions.json",
+  "latest_derived_stat_acceptance_sha256": "d7885aa74606309c53415943487a4c9d5609cb458ad18369c68e600ba2f3a7fc",
+  "accepted_progression_reserves": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-current-reserves-on-progression-02.json",
+    "reference_sha256": "4977465f395a22813f03d5702347e9bd2888f8eb5b185025251689e4419c82b9",
+    "accepted_rules": {
+      "level_gain": "apply_level_gains_and_updated_maximums_then_fully_restore_current_HP_and_energy_to_their_maximums",
+      "attribute_point_investment": "update_affected_maximums_without_restoring_current_HP_or_energy",
+      "equipment_equip_or_remove": "recalculate_affected_maximums_without_healing_or_energy_restoration"
+    }
+  },
+  "latest_progression_acceptance": "docs/reviews/refonte-agent-2026-10-06/level-full-restoration-and-no-stat-equipment-refill-decisions.json",
+  "latest_progression_acceptance_sha256": "b1ce41154e7b73f38f5b30d1d151d5bb741710b7a9ade15e0a07bcbffbcc2318",
+  "latest_attribute_feedback": "docs/reviews/refonte-agent-2026-10-06/perception-vision-growth-reservation-and-withdrawal-decisions.json",
+  "latest_attribute_feedback_sha256": "c6b6c59620618e500d9425fe5f690cc96e090618566425f4e45956dff62b1dab",
+  "Perception_vision_growth_status": "withdrawn_unaccepted_proposal;fixed_base8_accepted_without_attribute_radius_growth",
+  "latest_resistance_feedback": "docs/reviews/refonte-agent-2026-10-06/common-resistance-system-acceptance-decisions.json",
+  "latest_resistance_feedback_sha256": "b420384467efaf95c472751d15970b8ac95cd12b416c8756e17b32a29167eda2",
+  "accepted_elemental_status_resistance_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/radiation-placeholder-withdrawal-and-elemental-status-resistance-decisions.json",
+    "reference_sha256": "6a4a54be839e5de3101ef3cf11138225b205470edb62d75934866274321d7096",
+    "Burn_damage": "Fire_resistance",
+    "Poison_damage": "Poison_resistance",
+    "Gel": "Cold_resistance_affects_cold_damage_and_Gel_chance;duration_unchanged;numeric_curve_pending"
+  },
+  "accepted_common_resistance_rules": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-resistance-system-04.json",
+    "reference_sha256": "8eefe5062f23f68cde76b3b8b7db55016a3fce5aeafdc45d83bc9238f95af279",
+    "accepted_rules": {
+      "R01": {
+        "damage_families": [
+          "Fire",
+          "Cold",
+          "Electrical",
+          "Poison",
+          "Occult_damage"
+        ],
+        "base_resistance_percent_before_bonuses": 0,
+        "minimum_effective_resistance_percent": -50,
+        "maximum_effective_resistance_percent": 75,
+        "scope": "player_and_monsters;individual_monster_profiles_not_created",
+        "stacking": "sum_bonuses_then_subtract_maluses_then_clamp;retain_surplus_before_maluses",
+        "damage_formula": "ordinary_damage_before_resistance*(100-effective_resistance)/100",
+        "RP": "Vos protections atténuent les dégâts. Vos faiblesses les amplifient."
+      },
+      "R02": {
+        "armor_points_to_physical_damage_removed": 1,
+        "armor_applications_per_impact": 1,
+        "scope": "physical_part_of_a_single_impact",
+        "physical_damage_floor": 0,
+        "RP": "Votre blindage absorbe une partie des impacts."
+      },
+      "R03": {
+        "resistance_evaluation_time": "current_resistance_at_each_new_ordinary_impact_or_periodic_damage_tick",
+        "net_damage_based_bleeding": "no_second_armor_application",
+        "ordinary_damage_rounding": "floor_after_applicable_protections",
+        "negative_Cold_resistance_Gel": "increases_Gel_probability_under_accepted_linear_formula",
+        "Gel_chance_upper_bound_before_importance_percent": 100,
+        "Gel_importance_modifier": "existing_applicable_elite_or_boss_multiplier_after_cap"
+      },
+      "R05": {
+        "current_effective_resistances": "shown_in_player_statistics_and_detailed_target_analysis_accessible_with_scout",
+        "temporary_modifications": "existing_buff_debuff_bars",
+        "shown_example_copy": "Résistance au froid : 40 %",
+        "native_layout_colors_and_assets": "not_presented_or_approved"
+      }
+    }
+  },
+  "latest_weapon_variance_feedback": "docs/reviews/refonte-agent-2026-10-06/revised-weapon-variance-acceptance-decisions.json",
+  "latest_weapon_variance_feedback_sha256": "85be1a5ab46ea6a6b3b8f000e868d73274148d1e0b281f9f7eb9e5f3c823529a",
+  "accepted_weapon_variance_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-level-variance-and-per-victim-explosion-decisions.json",
+    "reference_sha256": "4467ec762840fc91c4735f0101408f512860e4d8e601d11607ee359fd7684c6d",
+    "accepted_user_directions": {
+      "weapon_damage_range": "minimum_and_maximum_depend_on_weapon_level_and_model;larger_absolute_damage_span_at_high_weapon_levels_as_balance_direction",
+      "balance_context": "weapon_damage_and_variance_to_be_balanced_against_monster_and_player_HP_at_the_relevant_progression_stage;no_fixed_universal_curve",
+      "low_level_dagger_1_3": "user_illustration_of_small_low_level_range;no_real_item_balance_entry_created",
+      "explosion_sampling": "independent_base_damage_draw_for_each_victim_of_the_same_explosion",
+      "level_dependency_scope": "range_boundaries_and_amplitude;no_level_biased_probability_distribution_or_automatic_leveling_of_equipped_items_inferred"
+    }
+  },
+  "accepted_weapon_variance_rules": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-weapon-damage-variance-03.json",
+    "reference_sha256": "c91ee9ca2aa1798000720b4acd791129f6aaffa3347b78f9e31e67723ae6c368",
+    "accepted_shown_rules": {
+      "weapon_range": "minimum_and_maximum_depend_on_weapon_level_and_model;larger_absolute_span_at_higher_levels_as_balance_direction",
+      "balance_context": "exact_ranges_to_be_balanced_with_player_and_monster_HP_at_relevant_progression_stage;no_universal_growth_curve_created",
+      "distribution": "same_probability_for_each_integer_in_the_weapon_range;inclusive_minimum_and_maximum",
+      "explosions": "independent_base_damage_draw_per_victim_of_the_same_explosion;independent_target_critical_and_target_defenses_preserved",
+      "tooltip": "minimum_maximum_damage_calculated_with_active_weapon_and_current_applicable_bonuses",
+      "low_level_dagger_1_3": "illustrative_only;not_a_real_equipment_balance_entry"
+    }
+  },
+  "accepted_mixed_weapon_damage_rules": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mixed-weapon-damage-02.json",
+    "reference_sha256": "8a1f99e419822dfe0c959e5d1d80a82b0ea6b7b830ed9faa14cdf44a63aeb7f5",
+    "accepted_shown_rules": {
+      "component_distribution": "separate_minimum_maximum_and_independent_uniform_integer_base_draw_per_direct_weapon_damage_family",
+      "critical_sharing": "one_critical_decision_per_impact_on_one_target_shared_by_all_eligible_direct_damage_components;accepted_2x_before_defenses",
+      "physical_protection": "aggregate_physical_subtypes_then_apply_armor_once_with_floor_zero",
+      "elemental_protection": "apply_current_effective_corresponding_resistance_to_each_elemental_damage_family",
+      "rounding": "sum_protected_components_then_floor_total_once;no_intermediate_component_floor",
+      "attribute_mapping": "accepted_melee_Force_or_ranged_including_heavy_Perception_damage_bonus_applies_to_all_direct_weapon_components;Volonte_bonus_applies_to_spells_not_automatically_to_elemental_weapon_components",
+      "tooltip": "show_damage_family_minimum_maximum_and_total_minimum_maximum_before_target_defenses_and_excluding_critical;applicable_current_bonuses_already_included"
+    },
+    "accepted_examples": {
+      "tooltip": {
+        "physical_minimum": 20,
+        "physical_maximum": 30,
+        "cold_minimum": 5,
+        "cold_maximum": 10,
+        "total_minimum": 25,
+        "total_maximum": 40,
+        "bonuses_already_included": true,
+        "noncritical_and_predefense": true,
+        "actual_equipment_balance": "none;fictional_example"
+      },
+      "impact": {
+        "rolled_physical": 24,
+        "rolled_cold": 8,
+        "armor": 6,
+        "cold_resistance_percent": 50,
+        "normal_protected_physical": 18,
+        "normal_protected_cold": 4,
+        "normal_total": 22,
+        "critical_protected_physical": 42,
+        "critical_protected_cold": 8,
+        "critical_total": 50
+      }
+    }
+  },
+  "accepted_direct_weapon_bonus_stacking": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-direct-weapon-bonus-stacking-02.json",
+    "reference_sha256": "353af3396bb9de10e8c398ae45eda25f052e52d9efd1b0194ac4a1598ae42cef",
+    "accepted_shown_rules": {
+      "scope": "direct_player_weapon_attacks_and_weapon_skills_only;no_implicit_drone_spell_transformation_or_indirect_extension",
+      "general_percent_damage_pool": "sum_compatible_attribute_skill_extra_damage_passive_equipment_and_active_buff_percentage_point_bonuses_before_applying_once_to_base_component_damage",
+      "weapon_skill_damage_percent_mapping": "displayed_skill_coefficient150_percent_contributes_extra50_percentage_points_above_ordinary100_percent",
+      "fixed_damage_bonus_order": "add_fixed_bonus_to_corresponding_base_damage_family_before_percent_damage_modifiers",
+      "family_specific_percent_bonus": "add_to_compatible_percent_pool_for_that_damage_family_only;does_not_boost_other_families",
+      "general_percent_bonus": "affects_all_eligible_direct_components_under_accepted_D02_mapping",
+      "later_order": "accepted_critical_multiplier_then_armor_and_corresponding_resistances_then_one_final_total_damage_floor",
+      "current_next_tooltip": "current_computed_range_and_next_rank_range_use_same_current_equipment_attributes_and_other_modifiers_except_next_purchased_skill_rank",
+      "general_positive_damage_bonus_upper_cap": null,
+      "illustrative_100_percent_total_is_not_cap": true
+    },
+    "accepted_examples": {
+      "fictional_weapon_minimum": 20,
+      "fictional_weapon_maximum": 30,
+      "skill_extra_bonus_percentage_points": 50,
+      "Force": 10,
+      "accepted_Force_bonus_percentage_points": 5,
+      "illustrative_applicable_passive_bonus_percentage_points": 10,
+      "illustrative_equipment_bonus_percentage_points": 15,
+      "illustrative_buff_bonus_percentage_points": 20,
+      "total_bonus_percentage_points": 100,
+      "total_damage_coefficient_percent": 200,
+      "displayed_noncritical_predefense_minimum": 40,
+      "displayed_noncritical_predefense_maximum": 60,
+      "real_loot_or_new_skill_values_created": false
+    },
+    "accepted_no_cap_examples": [
+      {
+        "weapon_minimum": 20,
+        "weapon_maximum": 30,
+        "bonus_percent": 100,
+        "damage_minimum": 40,
+        "damage_maximum": 60
+      },
+      {
+        "weapon_minimum": 20,
+        "weapon_maximum": 30,
+        "bonus_percent": 250,
+        "damage_minimum": 70,
+        "damage_maximum": 105
+      },
+      {
+        "weapon_minimum": 20,
+        "weapon_maximum": 30,
+        "bonus_percent": 400,
+        "damage_minimum": 100,
+        "damage_maximum": 150
+      }
+    ]
+  },
+  "accepted_outgoing_weapon_reductions": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-outgoing-weapon-damage-reductions-02.json",
+    "reference_sha256": "f1029cf5b668a7c087e11205ff918578a2181910a725a42f7dd2e14333eac9a0",
+    "accepted_shown_rules": {
+      "scope": "outgoing_damage_reduction_statuses_on_direct_player_weapon_attacks_and_weapon_skills;not_incoming_defensive_reductions_or_all_other_stat_maluses",
+      "order": "accepted_weapon_flat_bonus_plus_additive_positive_percent_pool_then_shared_critical_then_outgoing_reduction_then_target_armor_and_elemental_resistances_then_final_total_floor",
+      "single_reduction": "multiply_current_boosted_damage_by_1_minus_reduction_percentage_over100;not_subtract_percentage_points_from_positive_bonus_pool",
+      "distinct_reductions": "apply_successive_multipliers;no_intermediate_rounding",
+      "family_eligibility": "each_general_outgoing_reduction_affects_all_eligible_direct_components;family_specific_reduction_affects_only_that_family",
+      "damage_lower_bound": 0,
+      "same_effect_reapplication": "not_defined_by_this_distinct_effect_proposal;existing_individual_skill_rules_preserved",
+      "stat_damage_bonus_cap": "accepted_no_general_upper_cap_preserved"
+    },
+    "accepted_examples": {
+      "weapon_minimum": 20,
+      "weapon_maximum": 30,
+      "accepted_bonus_percent": 100,
+      "boosted_minimum": 40,
+      "boosted_maximum": 60,
+      "first_reduction_percent": 25,
+      "after_first_minimum": 30,
+      "after_first_maximum": 45,
+      "second_reduction_percent": 20,
+      "after_second_minimum": 24,
+      "after_second_maximum": 36,
+      "combined_reduction_percent": 40,
+      "example_scope": "fictional_noncritical_predefense;no_new_skill_or_actual_loot"
+    }
+  }
+}

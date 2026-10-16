@@ -1,4 +1,5 @@
 //! Arsenal acceptance scenarios use actual campaign content.
+#[cfg(debug_assertions)]
 use super::*;
 
 #[cfg(debug_assertions)]
@@ -166,8 +167,8 @@ impl AsciiApp {
             .find(|entry| entry.item().as_str() == id)
             .ok_or("Arme absente")?
             .instance();
-        self.execute_command(GameCommand::EquipWeapon { slot: 0, item });
-        self.active_weapon_slot = 0;
+        self.equip_diagnostic_weapon(item, 0);
+        self.active_weapon_slot = self.preferred_starting_weapon_slot();
         if scene.contains("inventory") {
             self.inventory_filter = InventoryFilter::Weapons;
             self.inventory_selection = self
@@ -502,22 +503,21 @@ mod tests {
                     .unwrap()
                     .instance();
                 assert_eq!(
-                    app.execute_command(GameCommand::EquipWeapon { slot: 0, item }),
+                    app.equip_diagnostic_weapon(item, 0),
                     CommandOutcome::Applied
                 );
-                app.active_weapon_slot = 0;
                 assert!(
                     app.active_weapon_hud_cost()
                         .contains(&format!("{cost} munitions"))
                 );
                 let command = if name == "core:fusil_d_assaut" {
                     GameCommand::Attack {
-                        slot: 0,
+                        slot: app.active_weapon_slot,
                         target: app.game.actors().entity_at(GridPos::new(10, 12)).unwrap(),
                     }
                 } else {
                     GameCommand::AttackAt {
-                        slot: 0,
+                        slot: app.active_weapon_slot,
                         target: GridPos::new(11, 11),
                     }
                 };
@@ -717,7 +717,7 @@ mod tests {
         let aim = app.attack_aim.unwrap();
         assert_eq!(
             app.execute_command(GameCommand::AttackAt {
-                slot: 0,
+                slot: app.active_weapon_slot,
                 target: aim.cursor
             }),
             CommandOutcome::Applied

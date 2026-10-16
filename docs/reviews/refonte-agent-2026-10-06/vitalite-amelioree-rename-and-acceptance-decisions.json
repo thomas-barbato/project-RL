@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-06",
+  "skill_id": "B03",
+  "user_message": "Renomme le en \"Vitalité améliorée\".\n\nSinon je valide :)",
+  "previous_title": "Endurance de combat",
+  "accepted_title": "Vitalité améliorée",
+  "accepted_presentation": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-B03-01.json",
+  "accepted_presentation_sha256": "bf0ffc340187354cdc0067df2416ca245e79c5b538374ce72b4e4ba2819ba098",
+  "approval_scope": "exact requested new name, displayed roleplay and functional copy, permanent passive, current and next bonus percentages +30/+32 and illustrative 130/132 maximum HP, maximum HP increase without healing",
+  "stable_content_id_preserved": true,
+  "illustrative_profile": "100 maximum HP before this passive, example only; no new attribute HP formula approval",
+  "unshown_formulas_and_edge_cases": "remain pending; includes percentage bonus stacking, rounding and current HP clamping",
+  "visual_render": "pending_native_preview_and_user_review",
+  "next_skill_review": "B02",
+  "runtime_integration": "not_integrated",
+  "additional_document_snapshot": {
+    "document": "docs/REFONTE_AGENT_CRYOGENISE.md",
+    "snapshot": "docs/reviews/refonte-agent-2026-10-06/refonte-agent-before-B03-rename.md",
+    "sha256": "27a3bcee6462967a3974078916be520c631b968ae069ebc0f7c0f46509cfb64d"
+  }
+}

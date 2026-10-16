@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ14-CLARIFY01",
+  "user_question": "ce que tu appelles \"redéploiement\" c'est quand on \"tue\" un drone nous meme ? et qu'on le fait revenir via la compétence ?",
+  "source_accepted_rules": "docs/reviews/refonte-agent-2026-10-06/review-drone-deployment-resources-PETS-EQ14-02.json",
+  "source_accepted_rules_sha256": "f91644351803553afb64058707a02c704b5233bb460c817410e5ff34816f64a4",
+  "clarification": "Recall keeps the same living drone and its current HP/energy, equipment and Mule cargo. Redeployment uses its invocation skill to return this preserved drone to the map at accepted skill cost/cooldown. Destruction followed by legal invocation creates a new full-reserve drone, while old real items remain ground.",
+  "mechanical_change": false,
+  "review_effect": "Question clarifies existing PETS_EQ14 vocabulary;does_not_accept_unshown_PETS_EQ17_or_pending_PETS_EQ15",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-08",
+  "id": "HY04",
+  "review_id": "HY04-ACCEPT01",
+  "user_answer": "Toute la fiche et la direction visuelle ; animation à revoir sur prototype",
+  "approval": "explicit_user_full_card_and_visual_direction_acceptance",
+  "accepted_RP": "Vous pliez l’espace entre vous et un drone, échangeant vos positions.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "drone_distance_cells": 6,
+    "energy_cost": 8,
+    "cooldown_turns": 6
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "drone_distance_cells": 6,
+    "energy_cost": 7,
+    "cooldown_turns": 6
+  },
+  "accepted_shown_conditions": [
+    "controlled visible drone in range",
+    "same map position exchange",
+    "both cells legal for new occupants",
+    "drone cargo preserved",
+    "human form required",
+    "Silence or player Gel blocks use"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** vos deux silhouettes se fragmentent en particules sombres, puis se reforment sur les cases échangées.",
+  "native_animation_approval": "pending_prototype_user_review",
+  "unshown_full_curves_cases_and_cost_floor3": "pending_individual_review",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY04-01.json",
+  "previous_card_sha256": "4b633066cc3de16ee30e3a556c79b42b06f35dabe7c1a89b32e4db9a233a25fc",
+  "runtime_integration": "not_integrated"
+}

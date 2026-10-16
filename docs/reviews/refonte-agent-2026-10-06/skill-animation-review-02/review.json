@@ -1,0 +1,56 @@
+{
+  "status": "visually_approved",
+  "batch": "ANIM-S01",
+  "workflow": "Animated numbered batches, explicit approval after each preview.",
+  "user_instruction": "il va falloir des animations globalement beaucoup plus marquées que ca (et penses les pour des cases en 64 px, à terme le 32 px va disparaitre) . il faut que ca en mette pleins les yeux :)",
+  "batch_choice": "Valider par lots après chaque aperçu",
+  "candidates": [
+    {
+      "number": 1,
+      "skill_id": "ME02",
+      "variant": "ME02-A02",
+      "name": "Fauchage",
+      "status": "visually_approved",
+      "description": "Un large croissant de lame, une traînée lumineuse et des impacts francs sur les trois cibles."
+    },
+    {
+      "number": 2,
+      "skill_id": "FE01",
+      "variant": "FE01-A02",
+      "name": "Braise",
+      "status": "visually_approved",
+      "description": "Une braise incandescente, une longue traînée de feu, un impact flamboyant et des flammes sur la cible."
+    },
+    {
+      "number": 3,
+      "skill_id": "FR01",
+      "variant": "FR01-A02",
+      "name": "Aiguille de givre",
+      "status": "visually_approved",
+      "description": "Une aiguille lumineuse, un sillage de givre, une gerbe d’éclats et des cristaux autour des pieds."
+    }
+  ],
+  "laboratory_ui_candidate": {
+    "variant": "LAB-S01",
+    "status": "awaiting_separate_review"
+  },
+  "scope": "Debug-only native visual prototype; combat damage and real character progression not connected.",
+  "timing": "Visual real time is separate from turns and status/cooldown timers.",
+  "freeze_preview": "Gel is deliberately shown; this preview does not change the accepted chance of applying it.",
+  "unchanged": "Accepted skill icons, actor art, catalogue parameters, campaign and saves.",
+  "revision": 2,
+  "native_tile_size": 64,
+  "previous_candidates": "ME02-A01, FE01-A01, FR01-A01: too discreet; retained for comparison, not approved.",
+  "native_capture": "native-final/capture.json",
+  "draft_capture_retained": "native/capture.json",
+  "melee_refinement": "Shared-vertex crescent removes segment seams visible in the intermediate capture.",
+  "verification_scope": "Six targeted agent skill tests passed before the revision; two laboratory timing tests passed during revision; native captures, formatting and debug build checked.",
+  "visual_acceptance": "visual-acceptance-01.json",
+  "blood_request": {
+    "user_instruction": "c'est tres bien, n'oublie pas aussi les effets de sang sur les blessures :)",
+    "scope": "Remember visual blood on wounds; new or modified blood renderings still require animated review.",
+    "followup_question": "parcontre pas sur que concernant les sorts de magie (feu, glace..) il faille mettre du sang durant le combat ? qu'en penses tu ?",
+    "application_policy_status": "approved",
+    "application_policy_acceptance": "blood-policy-acceptance-01.json"
+  }
+}

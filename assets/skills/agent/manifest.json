@@ -1,0 +1,780 @@
+{
+  "review_id": "SKILLS-NATIVE01",
+  "source": "docs/reviews/refonte-agent-2026-10-06/skill-window-review-05/skills.json",
+  "source_sha256": "cb23dca3cf283e6eb12faa58e01dc637c78a8309614f213cd86ef12d06ce0ef2",
+  "skills": 94,
+  "drawings": [
+    {
+      "skill": "B03",
+      "category": "compact",
+      "file": "B03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/B03-C02-64.png",
+      "sha256": "fe03b345514568df50133246c98c9c53d50b46f5aeff04e3dc249d2c85ea5092"
+    },
+    {
+      "skill": "O03",
+      "category": "compact",
+      "file": "O03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/O03-C02-64.png",
+      "sha256": "514ee6c56ccda56d2a770428d948bc07b3e540f515044b07c300c39fbce0051a"
+    },
+    {
+      "skill": "T01",
+      "category": "compact",
+      "file": "T01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-55/T01-C03-64.png",
+      "sha256": "300275d112dbf045e449be67c07afb2e8fb6f4939f8ff62bb1aaa73b8bfffb8f",
+      "acceptance_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-55/visual-acceptance-01.json"
+    },
+    {
+      "skill": "T03",
+      "category": "compact",
+      "file": "T03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/T03-C02-64.png",
+      "sha256": "53607ef4da1c7b3ce1346635ceb625dd43480d3ab4492be10e94eb8131b82501"
+    },
+    {
+      "skill": "A03",
+      "category": "compact",
+      "file": "A03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/A03-C02-64.png",
+      "sha256": "d37193de59e564c9907ed16d5febb56424d65fcc5097e4ce5fb4dcd41b0a46c6"
+    },
+    {
+      "skill": "FE01",
+      "category": "compact",
+      "file": "FE01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/FE01-C02-64.png",
+      "sha256": "c6d969ea5f6191870d928aa4a79d84bbfd1c8bbe1e1b198efc7f726858afc6ee"
+    },
+    {
+      "skill": "M01",
+      "category": "compact",
+      "file": "M01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/M01-C02-64.png",
+      "sha256": "5c7b9642379d12361ef4ce59ec53057f3a8a6fa011dd238ca4628d312a1c6ee1"
+    },
+    {
+      "skill": "M03",
+      "category": "compact",
+      "file": "M03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-37/M03-C05-64.png",
+      "sha256": "112602ea05c80c1e24797c8fc3d268a3b31bc4c4a7bfb2b763d680b3c12fb457"
+    },
+    {
+      "skill": "ME02",
+      "category": "compact",
+      "file": "ME02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/ME02-C03-64.png",
+      "sha256": "58356d5b157d6a8f0a05baba5940ed1f63d1f49490b48d42cd6522d42ae58ee2"
+    },
+    {
+      "skill": "ME03",
+      "category": "compact",
+      "file": "ME03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/ME03-C02-64.png",
+      "sha256": "94fc93bf8807a01229576df1babcbc64553238aad58e815afa09e65afcb4c307"
+    },
+    {
+      "skill": "ME05",
+      "category": "compact",
+      "file": "ME05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/ME05-C02-64.png",
+      "sha256": "c31d9c0f11f67a0cc089c7ac99f5c712360f25ab17f843f1bcaae80f1563a0a1"
+    },
+    {
+      "skill": "ME06",
+      "category": "compact",
+      "file": "ME06-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/ME06-C02-64.png",
+      "sha256": "753df0d1c6335f88f3bd9fda15251fa22e05cd025ceaade09dc77d71fe800740"
+    },
+    {
+      "skill": "ME04",
+      "category": "compact",
+      "file": "ME04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/ME04-C03-64.png",
+      "sha256": "e83e22bf0d8ab99f3b76f612a928ab3ba0ffa45aa8e9ea3ee34f80f8edf6b30b"
+    },
+    {
+      "skill": "SU04",
+      "category": "compact",
+      "file": "SU04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/SU04-C03-64.png",
+      "sha256": "269b0206ca3d061eddf12e16a6153e963e509a6806870b6322f1f7cd26e67ec9"
+    },
+    {
+      "skill": "D59",
+      "category": "compact",
+      "file": "D59-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/D59-C04-64.png",
+      "sha256": "79399dce4495293c558671531b77da469f67e1df4b7fa853bb0f3ce5aa500f84"
+    },
+    {
+      "skill": "FR03",
+      "category": "compact",
+      "file": "FR03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/FR03-C03-64.png",
+      "sha256": "b92bfef56362261acb66f97d684501af352cf3b826cc98c6c716164fc020696a"
+    },
+    {
+      "skill": "BM02",
+      "category": "compact",
+      "file": "BM02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/BM02-C03-64.png",
+      "sha256": "8001906983c8da126d0e59ffb660b352b21c1532768837d7fcadaea9678cec11"
+    },
+    {
+      "skill": "SF00",
+      "category": "compact",
+      "file": "SF00-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/SF00-C04-64.png",
+      "sha256": "efdd472610655e413caae463102b3d7eb8ba1110f8523c5d2d243bd4146c5102"
+    },
+    {
+      "skill": "D56",
+      "category": "compact",
+      "file": "D56-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-14/D56-C01-64.png",
+      "sha256": "54ef69b44e9a1ea63871f9fe6b82df73a84d213aca2e7d85cdad8ddf0ec29ba9"
+    },
+    {
+      "skill": "D57",
+      "category": "compact",
+      "file": "D57-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/D57-C02-64.png",
+      "sha256": "e89ed543dc0c50d220b0beb569b43660c8f4dfbe997b07f9c4c207fec8c0cc2e"
+    },
+    {
+      "skill": "D58",
+      "category": "compact",
+      "file": "D58-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/D58-C02-64.png",
+      "sha256": "75e1bba54d9f031b28f8306db93ffa3ed2ccd9eb47480952218c0cf64d3882ed"
+    },
+    {
+      "skill": "D66",
+      "category": "compact",
+      "file": "D66-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/D66-C02-64.png",
+      "sha256": "7618e5357cb117b422339ad17db0f0beaa1e3559c1486b4d75bb386064d202cf"
+    },
+    {
+      "skill": "DP01",
+      "category": "compact",
+      "file": "DP01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/DP01-C02-64.png",
+      "sha256": "c305030b5125ae989424d70b880cc3efd8dbdb0f7f9cf6d68c6916fcb54ad643"
+    },
+    {
+      "skill": "DR01",
+      "category": "compact",
+      "file": "DR01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/DR01-C02-64.png",
+      "sha256": "18e620e89d87da2075c4a437bbae3790a5fa70b9df42f1845858f0bd8c299f4d"
+    },
+    {
+      "skill": "DP02",
+      "category": "compact",
+      "file": "DP02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/DP02-C02-64.png",
+      "sha256": "62332bbdc8219adc0990ef4dde0940619f85e6d8ab2da972577f292caa49b653"
+    },
+    {
+      "skill": "HY07",
+      "category": "compact",
+      "file": "HY07-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/HY07-C02-64.png",
+      "sha256": "e2ac0ca895ecd677076b734e4683c957961428596570182af207c2720ee5bb8d"
+    },
+    {
+      "skill": "O02",
+      "category": "compact",
+      "file": "O02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/O02-C02-64.png",
+      "sha256": "caf9d085980476d3b55f981a3bd7d9b14822e91760c584bb2020038b2f0b0c9e"
+    },
+    {
+      "skill": "AF02",
+      "category": "compact",
+      "file": "AF02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/AF02-C02-64.png",
+      "sha256": "a81658fdfd61c5aa8b4a615f6b240c69ae1b2d2c380cb0158ae5d6e519a82dac"
+    },
+    {
+      "skill": "AF03",
+      "category": "compact",
+      "file": "AF03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/AF03-C03-64.png",
+      "sha256": "094682804aac356ef23dec91d1499a7169bc4d8ff1804f203dca80e1495ff135"
+    },
+    {
+      "skill": "AF04",
+      "category": "compact",
+      "file": "AF04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/AF04-C02-64.png",
+      "sha256": "0f9c803363fe473532da669bd51cecaa6a7ac80feecc8815140fdbf512f1636b"
+    },
+    {
+      "skill": "AF05",
+      "category": "compact",
+      "file": "AF05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-17/AF05-C02-64.png",
+      "sha256": "a8d5dd7140048df0c59813ef36e34bfd2bcfd6fbeea8e1f790960d2bb7daa233"
+    },
+    {
+      "skill": "DI01",
+      "category": "compact",
+      "file": "DI01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-20/DI01-C03-64.png",
+      "sha256": "8628fb41500430c59efc83db98340b4eaccd327d4a2d279159d1a75509951dcd"
+    },
+    {
+      "skill": "DI02",
+      "category": "compact",
+      "file": "DI02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-20/DI02-C02-64.png",
+      "sha256": "7729dfe3242f0282d997cf05740c793e6548db49a65d4cf69b663ca59b3a3e5e"
+    },
+    {
+      "skill": "DI03",
+      "category": "compact",
+      "file": "DI03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-20/DI03-C03-64.png",
+      "sha256": "5027cc176f0f3922090d3887f0210d4026a89e306c5cc9bda14195d536f41455"
+    },
+    {
+      "skill": "DI04",
+      "category": "compact",
+      "file": "DI04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-20/DI04-C03-64.png",
+      "sha256": "a53ebdbada781cf0082420a8c06a94a60ef199843630ef462154138ede7d87cb"
+    },
+    {
+      "skill": "DI05",
+      "category": "compact",
+      "file": "DI05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-18/DI05-C01-64.png",
+      "sha256": "cd9bb83a65504b9807c8df4533a7f6a74cf3d4b76ce5af4c4b1be03effe93126"
+    },
+    {
+      "skill": "DI07",
+      "category": "compact",
+      "file": "DI07-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-20/DI07-C02-64.png",
+      "sha256": "b117c2675b27c25aa80560aa782e9cf4a0cd2683da2dd5931824017ea6a9461c"
+    },
+    {
+      "skill": "B02",
+      "category": "compact",
+      "file": "B02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-23/B02-C03-64.png",
+      "sha256": "4a83ebbb454129d5be6254083f8c72cea9aeac17801b0fc02a394222aa080c85"
+    },
+    {
+      "skill": "SU03",
+      "category": "compact",
+      "file": "SU03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-23/SU03-C02-64.png",
+      "sha256": "7867ca1cf20417b85fff92ae2cf80e518a00e86c180273f7949e0b4e853a8986"
+    },
+    {
+      "skill": "SU05",
+      "category": "compact",
+      "file": "SU05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-23/SU05-C02-64.png",
+      "sha256": "036b842f70ade3ec268a474039ad7c1b31bfd2abf8f16c69dfc1ec5e3624baa6"
+    },
+    {
+      "skill": "SU06",
+      "category": "compact",
+      "file": "SU06-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-23/SU06-C01-64.png",
+      "sha256": "fc0ca0b9da6550e61a3b0b263e78ea68a7c1e9e1eaa3afc691f762d6a7c95a48"
+    },
+    {
+      "skill": "BD06",
+      "category": "compact",
+      "file": "BD06-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-23/BD06-C01-64.png",
+      "sha256": "90f4f2fd71c90ad29d9fb322868d11a7521d445e8f54d892bc20b56672884af6"
+    },
+    {
+      "skill": "ES03",
+      "category": "compact",
+      "file": "ES03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-27/ES03-C01-64.png",
+      "sha256": "c0c0e55dfb51a2352884d4a46c0c469829f506d626167f8fd8f1d925f7c3af99"
+    },
+    {
+      "skill": "ES05",
+      "category": "compact",
+      "file": "ES05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-27/ES05-C03-64.png",
+      "sha256": "a1af2deb51142441f999e5a886deb0d2c8d3ed194193dd27b1b1e994084cb19c"
+    },
+    {
+      "skill": "ES06",
+      "category": "compact",
+      "file": "ES06-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-27/ES06-C02-64.png",
+      "sha256": "fb4c46f1296d963b92a60af3a147cb3a59b1cfa41cd9916de23f436dd9d68213"
+    },
+    {
+      "skill": "T02",
+      "category": "compact",
+      "file": "T02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-27/T02-C04-64.png",
+      "sha256": "6525df776569afff66c53f8ed69af9aa59b086b07feae2ee26df44541424090e"
+    },
+    {
+      "skill": "FE02",
+      "category": "compact",
+      "file": "FE02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-28/FE02-C01-64.png",
+      "sha256": "5e3d5b70f344b93e0e28136038c265f38573ba1d562e63974ee00bee771ff17b"
+    },
+    {
+      "skill": "FE03",
+      "category": "compact",
+      "file": "FE03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-28/FE03-C01-64.png",
+      "sha256": "5d7a2edab0a4e2007aa2c15ec062565e359ea664e0485a82d2cc33366ff973fd"
+    },
+    {
+      "skill": "FE04",
+      "category": "compact",
+      "file": "FE04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-28/FE04-C01-64.png",
+      "sha256": "42c26d985dded663de172cc99c696eadbc7d2bcfd1a049d564e08c6049f41b4b"
+    },
+    {
+      "skill": "FE05",
+      "category": "compact",
+      "file": "FE05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-28/FE05-C03-64.png",
+      "sha256": "76950f863092019cccb32feacf0c19386ed076ee3a562041b8ebcc47f4fe9b66"
+    },
+    {
+      "skill": "FE06",
+      "category": "compact",
+      "file": "FE06-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-28/FE06-C01-64.png",
+      "sha256": "50c5f375182586c148d312face98aa2c3ebf69eb0a48d60fd97b6a40974c4473"
+    },
+    {
+      "skill": "FR01",
+      "category": "compact",
+      "file": "FR01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR01-C01-64.png",
+      "sha256": "4439cf4e89b963e337c5dc2f8999b399f193f587d31e4ce1fdfeed6cfb7fbea5"
+    },
+    {
+      "skill": "FR02",
+      "category": "compact",
+      "file": "FR02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR02-C01-64.png",
+      "sha256": "80f7ed77337f5550e1dc1bf680a398cf8ff79e8ba29f409d09ba348f667f0cc2"
+    },
+    {
+      "skill": "FR04",
+      "category": "compact",
+      "file": "FR04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR04-C01-64.png",
+      "sha256": "f5c2c27510f5e5d58e51a68bb2f65b3ec46de92c21470ae8248ce2e322c4cc0a"
+    },
+    {
+      "skill": "FR05",
+      "category": "compact",
+      "file": "FR05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR05-C03-64.png",
+      "sha256": "535bf634c021ea1bee18f7c3d7e9579c44bd15f42dcc58f26f106ca13d2e37aa"
+    },
+    {
+      "skill": "FR06",
+      "category": "compact",
+      "file": "FR06-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR06-C02-64.png",
+      "sha256": "22f7eeafdd05565fa23066b4a1d7e43ead08f5912ea9fe057e679466e6edeed9"
+    },
+    {
+      "skill": "A01",
+      "category": "compact",
+      "file": "A01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/A01-C01-64.png",
+      "sha256": "162b5526f9c33610b808bd350c97881dc57ccb48e78a028e57ddae7952b8b0a0"
+    },
+    {
+      "skill": "HY05",
+      "category": "compact",
+      "file": "HY05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/HY05-C01-64.png",
+      "sha256": "096b021cc293f961503872c650269b09493e1775ccaa6b472d6508e97b7c07ee"
+    },
+    {
+      "skill": "OC04",
+      "category": "compact",
+      "file": "OC04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/OC04-C01-64.png",
+      "sha256": "b6ccd33e5c265c63ea6189be4a44a4af1a041a97f5a1fead56a88911e2a4472c"
+    },
+    {
+      "skill": "OC05",
+      "category": "compact",
+      "file": "OC05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/OC05-C01-64.png",
+      "sha256": "2cbe72066ed2320603eaa8a20c73bdeb65443e3c5d21bad6a66e780191cbc3b8"
+    },
+    {
+      "skill": "OC07",
+      "category": "compact",
+      "file": "OC07-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/OC07-C01-64.png",
+      "sha256": "bb1f1765ad359f1a16003ddc847d3e4a6e84aea27d7745f57dfb40ba5d8b36e2"
+    },
+    {
+      "skill": "A02",
+      "category": "compact",
+      "file": "A02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-33/A02-C02-64.png",
+      "sha256": "17325c49b1c11ce5dc899bc70b0246ed9b02318a9d669c5552b787c1e24b772a"
+    },
+    {
+      "skill": "TR61",
+      "category": "compact",
+      "file": "TR61-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-34/TR61-C01-64.png",
+      "sha256": "32aa424110fb1b15bb4840ebfc5fa94aa5d1f53b98c771098e99c48df753c7ad"
+    },
+    {
+      "skill": "TR63",
+      "category": "compact",
+      "file": "TR63-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-34/TR63-C01-64.png",
+      "sha256": "d2068aeb03f320eead86930f3cb2b554637e76ff629087ddf256f53f6c84688f"
+    },
+    {
+      "skill": "TR64",
+      "category": "compact",
+      "file": "TR64-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-34/TR64-C01-64.png",
+      "sha256": "8f407b843430fc3ca964dd649f86574bfda8c3e2f3f62e28cd8a7233addc9196"
+    },
+    {
+      "skill": "TR65",
+      "category": "compact",
+      "file": "TR65-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-34/TR65-C01-64.png",
+      "sha256": "bf41eb84e273ca838b227937257a18890204cb2d51f8d8e1a2549e48a047adb0"
+    },
+    {
+      "skill": "M02",
+      "category": "compact",
+      "file": "M02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-41/M02-C03-64.png",
+      "sha256": "38f4b8f2bbd082b96896419048646a6daf76e6a59b5ee60bdce70ba8717db8af"
+    },
+    {
+      "skill": "HY04",
+      "category": "compact",
+      "file": "HY04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-39/HY04-C01-64.png",
+      "sha256": "8f1f8512095fcdc748e91f523b9a0c44e7158ec1a5db25c3cdb7436289d5a93e"
+    },
+    {
+      "skill": "HY06",
+      "category": "compact",
+      "file": "HY06-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-39/HY06-C01-64.png",
+      "sha256": "90bf7266af1ecfac98d58c247e931f3dbda7251cb1adb0a6b28e8378f88eac36"
+    },
+    {
+      "skill": "AF06",
+      "category": "compact",
+      "file": "AF06-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-43/AF06-C01-64.png",
+      "sha256": "e82d8f10d5806be0ed61cb24265b5bd6283ed576b9f08d7934c175c2f532a37f"
+    },
+    {
+      "skill": "B01",
+      "category": "compact",
+      "file": "B01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-43/B01-C01-64.png",
+      "sha256": "711eb82061c5113815703670cdcd1ecdd3fda32032c681e908cc56a945fd972b"
+    },
+    {
+      "skill": "BD04",
+      "category": "compact",
+      "file": "BD04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-43/BD04-C01-64.png",
+      "sha256": "9d812190d63fe37712a9b70ce3d9051d1fa5404d2a46f03d2027fa4b2a1a058a"
+    },
+    {
+      "skill": "BM01",
+      "category": "compact",
+      "file": "BM01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-43/BM01-C01-64.png",
+      "sha256": "0a0acaf74e5040ab33e55f3f09dea51a89bcbc7ddf6581ad3c08c3dae445f588"
+    },
+    {
+      "skill": "BM03",
+      "category": "compact",
+      "file": "BM03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-43/BM03-C01-64.png",
+      "sha256": "4a141a4aeb0a3ea411d0304fe8ebc515401fa86b500f94ee68e079e0e7c3bd0c"
+    },
+    {
+      "skill": "BM05",
+      "category": "compact",
+      "file": "BM05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-43/BM05-C01-64.png",
+      "sha256": "c58d71ab17c6ac5e7c8901bcf0e67216f1a497cbeca4adaff65f2d705483879a"
+    },
+    {
+      "skill": "HL04",
+      "category": "compact",
+      "file": "HL04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-48/HL04-C05-64.png",
+      "sha256": "2cdebe2044879481afb7a9b52b07bf645fc949f954eeed675934de65f5d8b0bd"
+    },
+    {
+      "skill": "HL01",
+      "category": "compact",
+      "file": "HL01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-49/HL01-C01-64.png",
+      "sha256": "d813f194a45b332be9ae391e99348e4c7a9fcb8e17dde2b4aeeab777f0d43d3f"
+    },
+    {
+      "skill": "HL02",
+      "category": "compact",
+      "file": "HL02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-49/HL02-C01-64.png",
+      "sha256": "386b1be4c22aa9bf68bbdbdfa1caa02983b3ac15f8f94500b32b8963800b4da2"
+    },
+    {
+      "skill": "HL03",
+      "category": "compact",
+      "file": "HL03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-49/HL03-C01-64.png",
+      "sha256": "bfdb2d5bbffbf03369bc5a50f0b644017e574f0f6a6887d13b9fb94ac480f9cb"
+    },
+    {
+      "skill": "HL05",
+      "category": "compact",
+      "file": "HL05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-49/HL05-C01-64.png",
+      "sha256": "e7f4405402bb3f226a13d06a39d7ce61e43cbc4638f4284ca5022165c47ffee2"
+    },
+    {
+      "skill": "HL06",
+      "category": "compact",
+      "file": "HL06-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-49/HL06-C01-64.png",
+      "sha256": "72e554d493470fa362011f1d75dcf7196e0411e08f762511dfcc7e5174342fb2"
+    },
+    {
+      "skill": "SM00",
+      "category": "compact",
+      "file": "SM00-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-50/SM00-C01-64.png",
+      "sha256": "4c8d20e81b3778039b3e6fd6b7c979687350f7741f5f5034058d0b77b7fd082b"
+    },
+    {
+      "skill": "SM01",
+      "category": "compact",
+      "file": "SM01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-50/SM01-C01-64.png",
+      "sha256": "db2c063d876b64a4be887839c7f05bc8d923aaaf678f6de750e28a218669e27b"
+    },
+    {
+      "skill": "SM02",
+      "category": "compact",
+      "file": "SM02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-50/SM02-C01-64.png",
+      "sha256": "e038e92e4b429c943f956af5f7c6948cfa240623111ceabc2e870828c66c3265"
+    },
+    {
+      "skill": "SM03",
+      "category": "compact",
+      "file": "SM03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-50/SM03-C01-64.png",
+      "sha256": "7322cf71c5b56499f6f7f6226fc9052f499c936c3c379a1f50d9be6d317ffc60"
+    },
+    {
+      "skill": "SM04",
+      "category": "compact",
+      "file": "SM04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-50/SM04-C01-64.png",
+      "sha256": "661a659c11fac09a8c6f0c0cf5319c13bd98d3eef36a2da6102a6d875ac18f60"
+    },
+    {
+      "skill": "SM05",
+      "category": "compact",
+      "file": "SM05-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-50/SM05-C01-64.png",
+      "sha256": "fcc0ad70bec460891653d1656845142e281891bc1518d806771e867516a3eb21"
+    },
+    {
+      "skill": "SF01",
+      "category": "compact",
+      "file": "SF01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-51/SF01-C02-64.png",
+      "sha256": "fe0cc4ed02d65a012306a92b31aecaf2cd83abdb4381db1af9590e8762148328"
+    },
+    {
+      "skill": "SF02",
+      "category": "compact",
+      "file": "SF02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-51/SF02-C03-64.png",
+      "sha256": "7ed939feb2a5d614c2ccc4430195732fe63c9a424bbe51df13daaa1fa4fc6c80"
+    },
+    {
+      "skill": "SG01",
+      "category": "compact",
+      "file": "SG01-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-53/SG01-C02-64.png",
+      "sha256": "6f7a2c0955b13e73dc0e3da7b5d3e2cfa31a716e1d7e79eff96c682367be7460"
+    },
+    {
+      "skill": "SG02",
+      "category": "compact",
+      "file": "SG02-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-53/SG02-C02-64.png",
+      "sha256": "4692606d4ffd1c8d47b4ec5f4b31b967830165c19a7f562b6c8e9182543cf1d8"
+    },
+    {
+      "skill": "SG00",
+      "category": "compact",
+      "file": "SG00-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-54/SG00-C01-64.png",
+      "sha256": "a449786589ab0bb3ee83349644d38ff03a722ee794a22cdafd08671668f0eb83"
+    },
+    {
+      "skill": "SG03",
+      "category": "compact",
+      "file": "SG03-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-54/SG03-C01-64.png",
+      "sha256": "fbef79aeac4809cbdfc16a1bc3b742b1c4d6ddccc0583621a1d5f46348e86ed2"
+    },
+    {
+      "skill": "SG04",
+      "category": "compact",
+      "file": "SG04-compact.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-54/SG04-C01-64.png",
+      "sha256": "7abdeb9f1495e5e7d046e3bdff391775b41233de0b78ba6c387845fb028ec980"
+    },
+    {
+      "skill": "B01",
+      "category": "illustration",
+      "file": "B01-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-02/B01-192.png",
+      "sha256": "2ba69010e33526675639d47d6c730f7ad1b5de548dc2f5e3243219c36b644a33"
+    },
+    {
+      "skill": "ME04",
+      "category": "illustration",
+      "file": "ME04-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-02/ME04-192.png",
+      "sha256": "b244788ac01e16f4399d263ceb403795ffa2c2c59e9cd0d60e6aaa1589a330b4"
+    },
+    {
+      "skill": "SU04",
+      "category": "illustration",
+      "file": "SU04-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-02/SU04-192.png",
+      "sha256": "8c7ebb5714b9ef938dd509080b90b6435f5038fd721d0fee320f65da6cc45154"
+    },
+    {
+      "skill": "FE05",
+      "category": "illustration",
+      "file": "FE05-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-02/FE05-192.png",
+      "sha256": "9ae15e20dc75200cc42ad727ee646798307389683afa20cc0442d90f97e748a8"
+    },
+    {
+      "skill": "FR03",
+      "category": "illustration",
+      "file": "FR03-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-02/FR03-192.png",
+      "sha256": "231928d6de6faed720bfdd612f9c200b8d96282842f4fc398546963bb2c800cc"
+    },
+    {
+      "skill": "BM02",
+      "category": "illustration",
+      "file": "BM02-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-02/BM02-192.png",
+      "sha256": "69cf7e8176be6d3739ccb76325accc4e6ba3b2953d366af127a8254a6796a24b"
+    },
+    {
+      "skill": "D59",
+      "category": "illustration",
+      "file": "D59-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-04/D59-v4-192.png",
+      "sha256": "1ea7634e2367f137fa5a9cefabdc176be760f10dcdd19bc197cedcd9d38e917f"
+    },
+    {
+      "skill": "SF00",
+      "category": "illustration",
+      "file": "SF00-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-03/SF00-v2-192.png",
+      "sha256": "99cab81ec7f7da9b229ac23093a1f5371ff0dcaee4de106e5ef1cf67111def02"
+    },
+    {
+      "skill": "O03",
+      "category": "illustration",
+      "file": "O03-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-06/O03-v2-192.png",
+      "sha256": "2a70e75bd3b82ba8c19c5360a3d8dce397e6aa7520c80462a75fa9a054370162"
+    },
+    {
+      "skill": "T03",
+      "category": "illustration",
+      "file": "T03-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-06/T03-v2-192.png",
+      "sha256": "408696a7089fe81a4e14854d537859b31833058286e974bfc65371af1cad55fd"
+    },
+    {
+      "skill": "FE01",
+      "category": "illustration",
+      "file": "FE01-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-06/FE01-v2-192.png",
+      "sha256": "bf75d01f3b80e70ee6f06b510601ac3162f7047ee6dccba528657f2d2a5a22b0"
+    },
+    {
+      "skill": "B03",
+      "category": "illustration",
+      "file": "B03-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-07/B03-v3-192.png",
+      "sha256": "614d4dee2c88d7893f7778a2beeb0d904f508cee32c1741bd97dc2db9460849c"
+    },
+    {
+      "skill": "T01",
+      "category": "illustration",
+      "file": "T01-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/T01-192.png",
+      "sha256": "0e5b70be8f4501b7c16b883d7d90d29aa67076c949718238a8f401f743430fd8"
+    },
+    {
+      "skill": "A03",
+      "category": "illustration",
+      "file": "A03-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/A03-192.png",
+      "sha256": "5583745698e12316a2026610ca66d40dbb62bd09971dda33f0b4d9e0bd7bdc3e"
+    },
+    {
+      "skill": "M01",
+      "category": "illustration",
+      "file": "M01-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/M01-192.png",
+      "sha256": "6a139c376988a6946f0b6bd5a2a814cdc9e8fcfb38f19091025a2d5ed191872e"
+    },
+    {
+      "skill": "M03",
+      "category": "illustration",
+      "file": "M03-illustration.png",
+      "source": "assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/M03-192.png",
+      "sha256": "daeeffb775e7c604cd73ddbd505c57ba3bffaf704ad9af9ad692cd7146dc85df"
+    }
+  ],
+  "scope": "Reviewed catalogue reader; combat effects and purchases are not enabled."
+}

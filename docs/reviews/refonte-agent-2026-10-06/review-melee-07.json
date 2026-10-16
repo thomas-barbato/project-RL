@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-06",
+  "batch_revision": 7,
+  "document": "docs/REVUE_MELEE_AGENT_LOT_03.md",
+  "document_sha256": "338dcdf4aafddcd06e27fc3e143a0a7e8ce5e6fc5027382233c0bb171daf251b",
+  "blocks": [
+    {
+      "id": "B01",
+      "title": "Frappe de rupture",
+      "revision": 4,
+      "block_sha256": "adcd0e18ed34946567d70ec4deacbefbc4b1c91e7eb0c6155b624008c29ac933",
+      "text_sha256": "b2182a4ac75a35aa8465e65b89f0dd2c28ac5f3d9218a5b9975c7396702f9992",
+      "mechanic_sha256": "8efc7da3e20e9f009c0fa8692ec2295fb96126b07f7202ba5e4929969bd4bbca",
+      "name_approval": "accepted_as_presented",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "accepted_as_presented",
+      "numeric_rules_approval": "displayed_tables_accepted_provisional_balance_unshown_formulas_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "accepted_visible_effect_examples": {
+        "1": {
+          "extra_damage_percent": 40
+        },
+        "10": {
+          "extra_damage_percent": 130
+        },
+        "12": {
+          "extra_damage_percent": 150
+        }
+      },
+      "previous_block_manifest": "docs/reviews/refonte-agent-2026-10-06/review-lot-01-revision-04.json",
+      "presented_conditions_approval": "accepted_as_presented",
+      "detailed_conditions_approval": "additional_unshown_details_pending"
+    },
+    {
+      "id": "ME02",
+      "title": "Fauchage",
+      "revision": 2,
+      "block_sha256": "ed20420298f6936b09aa030eb49281873aec2f8adc9c04f3adfe92ddfd9c13a9",
+      "text_sha256": "8f95c5dd2545c6441f90e134df68454a650f6111f089ec05cef57398be6a0656",
+      "mechanic_sha256": "3aac2f00d769344a88b243978917bfb650dc39b4086892fa14382c658bb13a5c",
+      "name_approval": "explicit_user_rename",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "displayed_individual_description_accepted",
+      "numeric_rules_approval": "displayed_values_and_simplified_damage_and_energy_progressions_accepted_provisional_balance; unshown_details_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "presented_conditions_approval": "accepted_as_presented",
+      "detailed_conditions_approval": "additional_unshown_details_pending",
+      "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME02-02.json"
+    },
+    {
+      "id": "ME03",
+      "title": "Percée",
+      "revision": 1,
+      "block_sha256": "fd6a529edbcd06907e7381c7a1da0541890c925a1c7146234631e9ae5a2b49f0",
+      "text_sha256": "774a7d22607bb37667f37b277776adcb5c4835df2244fad18b6f0b9769334dd3",
+      "mechanic_sha256": "5aff13ee6ef92cce147c0ba04d7e471751b70bdbeda45d6da9463f5b90ad9da8",
+      "name_approval": "accepted_as_presented",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "displayed_current_next_description_accepted",
+      "numeric_rules_approval": "displayed_current_next_values_accepted_provisional_balance; unshown_formulas_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "presented_conditions_approval": "accepted_as_presented",
+      "detailed_conditions_approval": "additional_unshown_details_pending",
+      "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME03-03.json"
+    },
+    {
+      "id": "ME04",
+      "title": "Repousser",
+      "revision": 3,
+      "block_sha256": "13e2f58ee7139ced8bfb563a4be429d0d68929509ef59bb7f17d58b8f2a7c784",
+      "text_sha256": "15ca8c5f62c3c9b80c5918feb0f091b4df0a3250835b9887b859f03b46144933",
+      "mechanic_sha256": "ca92d718f7d2da2b213433930765250c68cba037f0e5e5b3e09ada5f57994bcb",
+      "name_approval": "explicit_user_rename",
+      "catalogue_effect_approval": "collision_damage_added_by_explicit_user_request",
+      "text_approval": "displayed_current_next_and_collision_description_accepted",
+      "numeric_rules_approval": "displayed_current_next_values_and_collision_percentages_accepted_provisional_balance; unshown_formulas_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "presented_conditions_approval": "accepted_as_presented",
+      "detailed_conditions_approval": "additional_unshown_details_pending",
+      "collision_mechanics_approval": "25_percent_actual_initial_hit_damage_applied_directly_to_both_victims_accepted",
+      "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME04-03.json"
+    },
+    {
+      "id": "ME05",
+      "title": "Charge",
+      "revision": 1,
+      "block_sha256": "573f011580ea3839f0e1be55c053943a3072a65b671cf1f4e9c3d77dd4c17697",
+      "text_sha256": "4572d17629aa9a56d14df86bda1c0bf057579890d7397cfcf7165791b0b90c8c",
+      "mechanic_sha256": "1d047dacce35d094a4421ad6abda6776fb1272e5e26ed8f00725f137cbcd9512",
+      "name_approval": "accepted_as_presented",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "accepted_as_presented",
+      "numeric_rules_approval": "displayed_tables_accepted_provisional_balance_unshown_formulas_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "presented_conditions_approval": "accepted_as_presented",
+      "detailed_conditions_approval": "additional_unshown_details_pending"
+    },
+    {
+      "id": "ME06",
+      "title": "Tourbillon",
+      "revision": 1,
+      "block_sha256": "42f772d582977f72d4cc8eceba63c65252295340ffb5a83dd28da760f761ee15",
+      "text_sha256": "3ce869c21a6bddaefe34c1e48e03ac2d428aa5285d4b5b429a82e0b214c74be4",
+      "mechanic_sha256": "3caf9eefdd31f6c283fae334af57e6a72deac9ef7a7ca6d55690b68f119c54b3",
+      "name_approval": "accepted_as_presented",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "accepted_as_presented",
+      "numeric_rules_approval": "displayed_tables_accepted_provisional_balance_unshown_formulas_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "presented_conditions_approval": "accepted_as_presented",
+      "detailed_conditions_approval": "additional_unshown_details_pending"
+    }
+  ],
+  "accepted_catalogue_reference": "docs/reviews/refonte-agent-2026-10-06/review-primary-catalogue-02.json",
+  "calculation_examples": "docs/reviews/refonte-agent-2026-10-06/melee-description-examples.json",
+  "calculation_examples_sha256": "db6d27ba44732ca603b9d32f5fd4f6422d279e617933c4f3f71f7a61014ea27e",
+  "default_reference_approval": "accepted_as_displayed_reference",
+  "current_profile_status": "illustrative_not_a_user_save",
+  "runtime_integration": "not_integrated",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/repousser-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "44777d7a121c297abe35774388cc9043f3bedbdb1a5b61c7838260ab3ab0cdde",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-melee-06.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-melee-revision-06.md",
+  "common_active_weapon_requirement": {
+    "approval": "explicit_user_requirement",
+    "rule": "weapon based melee actives require an active melee weapon; weapon based ranged actives require an active ranged weapon",
+    "natural_attack_exception": "previous unapproved exception removed for weapon techniques"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-08",
+  "scope": "remaining_individual_cards_after_SG02_Leurre_acceptance_including_pending_SF00_SM02_and_current_SG03",
+  "primary_cards": [],
+  "secondary_cards": [
+    {
+      "id": "SF00",
+      "title": "Furtivité"
+    },
+    {
+      "id": "SM02",
+      "title": "Mines de poison"
+    },
+    {
+      "id": "SG03",
+      "title": "Portée de lancer"
+    },
+    {
+      "id": "SG04",
+      "title": "Puissance des grenades"
+    }
+  ],
+  "remaining_first_pass_primary": 0,
+  "remaining_first_pass_secondary": 4,
+  "remaining_first_pass_total": 4,
+  "additional_work_not_quantified": [
+    "planned_heavy_weapon_tree",
+    "missing_branch_healing_options",
+    "earlier_pending_or_revised_card_parts_and_progression_review"
+  ],
+  "native_animations_runtime_and_balance": "separate_following_phases;not_counted_as_skill_cards",
+  "previous_count": "docs/reviews/refonte-agent-2026-10-06/remaining-individual-skill-review-counts-17.json",
+  "accepted_skill_this_turn": "SG02",
+  "next_review_skill": "SG03",
+  "pending_prior_secondary_card_parts": [
+    "SF00",
+    "SM02"
+  ],
+  "accepted_skill_title": "Leurre"
+}

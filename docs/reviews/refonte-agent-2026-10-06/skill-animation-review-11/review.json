@@ -1,0 +1,18 @@
+{
+  "batch": "ANIM-OVER02",
+  "status": "awaiting_corrected_render_review",
+  "native_tile_size": 64,
+  "base_direction_accepted": true,
+  "new_variants": "FE02-A07 / BRULURE-A02-AGENT-MONSTRE",
+  "obstacles": "Per-pixel rays from the existing emitter stop at physical wall rectangles. The source drawing is neither deformed nor cut by gameplay-cell borders. A blocking wall cuts its shadow too; other open rays continue.",
+  "preview": "Same blinking cyan outline before launch only. No fill or outline survives confirmation.",
+  "burn": "Accepted small flame art attached to the affected body. Main flames behind it, sparse foreground tongues on the silhouette. Independent status phase after the breath, with no friendly fire. Corrected arrangement awaiting visual review.",
+  "long_corridor": "13 by 7 cells; eleven free cells in a straight corridor, and a second version barred by a wall. Five-cell skill range retained. Horizontal views captured; all four directions selectable in the native laboratory.",
+  "source_art": "Original review-06 cone and plume; no image regeneration, recolouring, body changes or source art deformation.",
+  "timing": "0.7s targeting, breath until 1.8s, Burn until 2.7s in the review montage only. These durations never replace skill turns or advance GameState.",
+  "scope": "Debug visual prototype. No campaign damage, chance, status duration, range, saves, balance or icons changed.",
+  "laboratory_ui_candidate": {
+    "variant": "LAB-OVER02",
+    "status": "awaiting_separate_review"
+  }
+}

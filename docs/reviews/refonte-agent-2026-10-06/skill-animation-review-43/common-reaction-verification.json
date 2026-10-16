@@ -1,0 +1,42 @@
+{
+  "cases": [
+    {
+      "variant": "RX01-DMG-M-R01",
+      "logical_position_unchanged": true,
+      "two_contacts_visible": true,
+      "returns_to_rest": true,
+      "walls_clear": true
+    },
+    {
+      "variant": "RX01-DMG-J-R01",
+      "logical_position_unchanged": true,
+      "two_contacts_visible": true,
+      "returns_to_rest": true,
+      "walls_clear": true
+    },
+    {
+      "variant": "RX01-STATUS-M-R01",
+      "logical_position_unchanged": true,
+      "two_contacts_visible": true,
+      "returns_to_rest": true,
+      "walls_clear": true
+    },
+    {
+      "variant": "RX01-STATUS-J-R01",
+      "logical_position_unchanged": true,
+      "two_contacts_visible": true,
+      "returns_to_rest": true,
+      "walls_clear": true
+    }
+  ],
+  "combined_animation": {
+    "file": "reaction-commune-64.gif",
+    "native_size": [
+      576,
+      740
+    ],
+    "duration_ms": 4000,
+    "distinct_frames": 5,
+    "palette": "128 neutral/background/font,64 green body,64 purple body; native actor samples retained"
+  }
+}

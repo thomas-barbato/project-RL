@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-06",
+  "review_id": "AR-BUFFS-01",
+  "user_question": "est-ce que tu es sur que ces 2 sorts ne devraient pas être dans l'arbre des buffs ?",
+  "current_documented_placement": {
+    "SU03": "Survie",
+    "BM05": "Buffs de mêlée"
+  },
+  "proposed_grouping": {
+    "tree_label": "Buffs",
+    "group_label": "Protection et renvoi",
+    "skill_ids": [
+      "SU03",
+      "BM05"
+    ],
+    "reason": "Both proposed abilities are active temporary reflection buffs; old SU03 absorption passive placement no longer describes their role."
+  },
+  "grouping_approval": "proposal_pending_user_review",
+  "placement_and_tiers": "Current specialized branch structure and thresholds are not moved or expanded by this proposal. Full allocation must be reviewed separately.",
+  "skill_copy_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU03-03.json",
+  "mechanical_scope_reference": "docs/reviews/refonte-agent-2026-10-06/reflection-scope-split-and-exclusion-decisions.json",
+  "numeric_rules": "existing reflection card numerical proposal unchanged; still pending individual review",
+  "runtime_integration": "not_integrated"
+}

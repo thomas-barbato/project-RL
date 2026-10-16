@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ12",
+  "revision": 1,
+  "title": "PV et énergie au relèvement",
+  "status": "full_starting_HP_and_energy_accepted_by_direct_user_instruction",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/raised-starting-resources-user-decisions.json",
+  "acceptance_decisions_sha256": "56edf5140e14e84daeb2c54829d574d777a5d3820ec065a84a317cae2599f0eb",
+  "source_user_reply": "pv et energie rechargé au maximum.",
+  "rule_summary_markdown": "À son relèvement, le ressuscité possède **100 % de ses PV maximum et de son énergie maximale**.",
+  "rule_summary_sha256": "3e597bd7379f03ea9d9b3f130a144cbcbeabf92617e3907e0999efc10515789c",
+  "accepted_rules": {
+    "scope": "OC07_raised_monster_current_HP_and_energy_at_birth;not_drone_spawn_recall_or_power_update",
+    "birth_HP": "current_HP_equals_final_calculated_maximum_HP_after_accepted_origin_profile_and_Reanimation_power",
+    "birth_energy": "current_energy_equals_final_calculated_maximum_energy_under_accepted_profile_rules",
+    "source_current_reserves": "do_not_carry_dead_enemy_zero_HP_or_depleted_current_energy",
+    "later_item_changes": "preserve_PETS_EQ04_no_refill_on_equipment_updates_and_clamp_on_lower_maximum",
+    "scope_boundary": "no_decision_on_original_skill_cooldowns_energy_regeneration_costs_drone_spawn_or_later_rank_level_changes"
+  },
+  "player_copy_approval": "mechanical_summary_of_direct_instruction;final_tooltip_wording_not_presented",
+  "mechanical_approval": "full_starting_HP_and_energy_explicitly_instructed_by_user",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "unshown_cases_pending": [
+    "current_HP_energy_on_later_owner_rank_or_level_updates",
+    "original_skill_cooldowns_and_actions_at_birth",
+    "exact_energy_baselines_regeneration_costs",
+    "resource_minimums_and_death_birth_zone_tick_order"
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S45",
+  "status": "awaiting_visual_review",
+  "campaign_integration": false,
+  "native_tile": 64,
+  "candidates": [
+    {
+      "number": 99,
+      "id": "D58",
+      "variant": "D58-A01",
+      "title": "Invocation du drone Traqueur"
+    },
+    {
+      "number": 100,
+      "id": "D59",
+      "variant": "D59-A02",
+      "title": "Invocation de l’Artilleur",
+      "body": "D59-BODY03",
+      "icon": "D59-C06"
+    }
+  ],
+  "effective_rank": 1,
+  "scenes": 22,
+  "scenario_ids": [
+    "COMBAT",
+    "CONTACT",
+    "DEPLACEMENT",
+    "CLOISON",
+    "MACHINE",
+    "ATTENTE",
+    "ENERGIE",
+    "EXISTANT"
+  ],
+  "prepared_values": {
+    "energy_cost": 12,
+    "cooldown": 6,
+    "player_energy": 100,
+    "insufficient_energy": 11,
+    "model_ids": [
+      58,
+      59
+    ],
+    "maximum_per_model": 1,
+    "arrival_seconds": 0.34,
+    "damage_fixtures": [
+      18,
+      12
+    ],
+    "target_hp": 100,
+    "ranged_travel_seconds": 0.1,
+    "melee_impact_seconds": 0.12
+  },
+  "accepted_mechanics": [
+    "../drone-persistence-acceptance-decisions.json",
+    "../drone-deployment-resources-acceptance-decisions.json",
+    "../drone-first-action-acceptance-decisions.json",
+    "../drone-combat-order-costs-acceptance-decisions.json"
+  ],
+  "preview_copy": [
+    "Déploie un drone qui poursuit sa cible et la frappe au contact. L’exemple montre son arrivée, son approche puis ses attaques. Au rang 1 : coût de 12 énergie, recharge de 6 tours. Un seul Traqueur peut être présent.",
+    "Déploie un drone qui tire sur les ennemis à distance. L’Artilleur utilise ici son nouveau modèle à chenilles et l’icône assortie. Au rang 1 : coût de 12 énergie, recharge de 6 tours. Un seul Artilleur peut être présent."
+  ],
+  "source": "src/agent_skill_lab_review/fire_painted/drone_combat.rs",
+  "catalogue_sha256": "459b572632cd0bdba78a8120fe1b3244b52199bb8f23bc0bd3ea9c7d246facfb",
+  "scope": "Isolated prepared familiar phases and physical attack visuals. The normal invocation-turn familiar phase is included, not an extra free action. The Traqueur retains legacy body58; the Artilleur uses isolated direct64 candidate D59-BODY03 with caterpillar tracks and matching icon D59-C06. Existing bank59 is not replaced. One prepared movement order replaces an attack in the next illustrated phase. Straight pursuit, targets, phase count, targetHP100 and damage18/12 are visual fixtures, not new native attack statistics, balancing, accuracy, enemyAI, autonomous mode priorities, weapon equipment rules, drone energy costs, speed or campaign scheduling. No new turn, regeneration, upkeep or attack accrues from wallclock waiting. World fixture view is shown for comparison, not a campaign FOV simulation. No save, active combat or catalogue integration.",
+  "native_lab": "--apercu-laboratoire-competences --lot-drones-combat",
+  "preview": "../apercu-animations.html?lot=92",
+  "remaining_unshown": 11,
+  "still_unshown": [
+    "D66",
+    "O03",
+    "DP01",
+    "DP02",
+    "DR01",
+    "DI01",
+    "DI02",
+    "DI03",
+    "DI04",
+    "DI05",
+    "DI07"
+  ],
+  "pending_separately": "B03 Vitalité améliorée mechanics; review90 visuals not explicitly accepted.",
+  "previous_accepted_review": "../skill-animation-review-91/visual-acceptance-01.json",
+  "temporary_capture_policy": "Reuse the same HTML; delete intermediate captures, QA and logs after verification. Retain art, receipts and pending90 compact playback.",
+  "source_sha256": "9da80de4043c51e67538c6f7b43d8493f4f39bd4dcb0b2036c080ab2649e8b55",
+  "preview_published": true,
+  "body_review": "artilleur-body03/review.json",
+  "user_body_feedback": "pour le coup je le vois tout de suite, l'artilleur n'est pas bon du tout (il n'est pas du tout à la meme qualité que les autres )",
+  "preview_type": "animated native laboratory, two scenes side by side",
+  "cleanup": "cleanup.json",
+  "frames": 144,
+  "capture_fps": 24,
+  "track_request": "en faite, j’aimerais mieux que ce soit des chenilles plutot que des roues :) puis ensuite tu me montreras l’animation :)",
+  "latest_user_reply": "je valide :)",
+  "latest_reply_scope": "Track direction approved during preparation; no approval inferred for unshown animated attacks or numeric fixtures.",
+  "playback_bytes": 4830094,
+  "inline_animation": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-chenilles-64.webp",
+  "verification": {
+    "debug_build": true,
+    "targeted_tests_passed": 4,
+    "format_check": true,
+    "diff_check": true,
+    "native_visual_QA": true,
+    "native_lossless_scene_count": 22,
+    "native_tile": 64,
+    "prepared_move_replaces_an_attack": true,
+    "atomic_refusals": true,
+    "wall_blocks_attacks": true,
+    "machine_no_blood": true,
+    "inline_144_native_frames_pixel_verified": true,
+    "viewer_controller": "8 scenarios and4directions; offline mock DOM, no browser render claim.",
+    "campaign_integration": false
+  }
+}

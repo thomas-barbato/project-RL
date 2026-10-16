@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-12",
+  "user_reply": "okay je valide :)",
+  "reviewed_artifact": "mur-varie-comparaison-64.gif",
+  "accepted": {
+    "number": 16,
+    "skill_id": "FR03",
+    "variant": "FR03-A02",
+    "status": "visually_approved",
+    "tile_size": 64,
+    "block_models": 3,
+    "states": [
+      "intact",
+      "cracked",
+      "shattered"
+    ],
+    "shared_ground_base": true,
+    "growth_seconds": 0.22,
+    "independent_collapse_seconds": 0.3
+  },
+  "scope": "Visual approval of the revised ice wall shown in review 24: three joined irregular models, continuous rise, distinct cracks and independent collapse. No new player copy, numerical combat rules or campaign integration.",
+  "other_candidates": "FR02-A01 Nova and GEL-A03 retain their existing pending review state; this wall-only comparison does not implicitly approve them.",
+  "temporal_policy": "Wall duration, Gel and cooldowns advance only by explicit game turns. The rise and collapse animations do not advance those timers.",
+  "artifact_hashes": {
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-24/wall-source.png": "4cb443f6cd1568028abcad29ff376fec1ae5bfcb161564b119c601d24975631f",
+    "../../../../assets/animations/agent/skill-animation-review-24/wall-atlas.png": "1ddf77cdd58397a896c1d270847b1e677abd95e8cad8f83b486c8b4caf48d9db",
+    "imagegen-wall-prompt.txt": "2cae23e1c45597848af33c791638ed160a3d14095f8d866bb1241135a8133c8c",
+    "drawing-pack.json": "c8310f5bbd9f1985274bacdc130cd5df10cb00e108f61897d2fe447e8506bd63",
+    "render-source.rs": "1dd6d4771fb55bf50f99e1fcff0df4acf94df7a532651957d97a887834d706e3",
+    "clip-source.rs": "eb67041760cc2a960e4c22c815e3a5c47b23d79de22ed20c91dd5967ac96e624",
+    "gallery-script.js": "a210c4ff89a0136ddbd6b2f9ff27755506483838dd1771c407675c2a55fb8cff",
+    "index.html": "91b3ac7045b743c6387d9db2d78886b9c27d716d468767b4a021f95cbde5dce8",
+    "verification.json": "03c73f1a4c957767a28b75d7faacf6de7b3db11cfab35fa7bfc3da2bb140fd60",
+    "revision-verification.json": "692d581e42aa3f25dbbb7dda8a9fcbb3ce44d781dcd151a1369f6fa2425f9b02",
+    "native/capture.json": "beb48c6b10f2a1a337a5e42966d37f1661d6db81f951ec5320da4d7642cdff40",
+    "mur-varie-comparaison-64.gif": "0695394c00ff554b37f2fb636dda02b39843ddad94f004ef6380c41d7355a81b",
+    "mur-varie-cloison-64.gif": "516045bc8204917d2d9e72e2a41d8f9a11e8c541a844d216fc8a32707987749c",
+    "FR03-A02-BAS-64.gif": "cb0dd99f010fc7c2e35418ca1eaa70c78b3b871e1e3540c1760ce0af11dca5d7",
+    "FR03-A02-CLOISON-64.gif": "c68b2e583bcdce6446ea7c57d70a77ea92ed15bfb3f0b1cea5627d914440efc5",
+    "FR03-A02-DROITE-64.gif": "26da9c3a1f10d6ea197c8830c297e6b72caf392ac1661f2ef556d6216be9a328",
+    "FR03-A02-GAUCHE-64.gif": "db37fdb065325fd7cfe31a0abdc4a2a28092db0d1b960bb7c86d8c888858b9c4",
+    "FR03-A02-HAUT-64.gif": "4161f49812c35340823906e8144be1c92e1d5c43f7edd23b6c755ee7510ec30c"
+  }
+}

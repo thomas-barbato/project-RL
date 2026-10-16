@@ -1,0 +1,256 @@
+{
+  "review_id": "BD-REPAIR02",
+  "approval": "pending;review_only",
+  "source_drawings_modified": 0,
+  "current_game_assets": {
+    "assets\\sprites\\cyberpunk\\agent-rigs\\arm-materials-64.png": "1e825a312d878cc115183b451f5ad97f9d0f86745d376e45e13e1ef0d6882970",
+    "assets\\sprites\\cyberpunk\\agent-rigs\\arms-64.png": "a7778444dd0f7249e056799196f099eaab37ccd627e082b81058ef0f75f6cb20",
+    "assets\\sprites\\cyberpunk\\agent-rigs\\bodies-32.png": "dec4dfee81a5a237b95ba97e81410664a5cc7905bdcbcf8a084aab55fa1190ee",
+    "assets\\sprites\\cyberpunk\\agent-rigs\\body-materials-32.png": "71ba7a9915490a67f230d31b03d5d8ced9389b99b82585fd9ed5737f1089e64d",
+    "assets\\sprites\\cyberpunk\\agent-rigs\\families-48.png": "f269106ce7a4befd34a8bdf2e4b87fc65301db09dc05873ec413f8e7497ed38d",
+    "assets\\sprites\\cyberpunk\\agent-rigs\\fingers-64.png": "aa90c2694444b24eaab1d22113f70181b13dd4d1fd71f10b5b3aeee08ffab48b",
+    "assets\\sprites\\cyberpunk\\agent-rigs\\manifest.json": "85f7165a3d9ce2eaa27fd066bccf184115b695171e9f091a4c44ff28cb97573a",
+    "assets\\sprites\\cyberpunk\\agent-rigs\\weapon-materials-64.png": "ff0f9e9dce4b881b0c7b025d01eaa98fec7d69f093198f9f7ea8277133f77c4a",
+    "assets\\sprites\\cyberpunk\\agent-rigs\\weapons-64.png": "157f11ac198ee4ada8e4349134c70fc4f66f9a64879eb50b4dad849e81e66194"
+  },
+  "cases": [
+    {
+      "review_id": "BD-REPAIR02-01",
+      "title": "Bastion — armure seule",
+      "body": "BD-A007",
+      "weapon": null,
+      "metadata": {
+        "body_source": "BD-A007",
+        "weapon_source": null,
+        "body_scale": 0.026823134953897737,
+        "body_width_registration": 1.3442253521126761,
+        "logical_body_height": 32,
+        "same_source_for_large_and_native": true,
+        "old_pixel_layers_used": false,
+        "draw_order": [
+          "registered_body",
+          "source_forearms",
+          "weapon",
+          "source_gloves"
+        ],
+        "contacts": [],
+        "weapon_extent": null,
+        "weapon_extent_axis": null
+      }
+    },
+    {
+      "review_id": "BD-REPAIR02-02",
+      "title": "Bastion — couteau céramique",
+      "body": "BD-A007",
+      "weapon": "BD-W069",
+      "metadata": {
+        "body_source": "BD-A007",
+        "weapon_source": "BD-W069",
+        "body_scale": 0.026823134953897737,
+        "body_width_registration": 1.3442253521126761,
+        "logical_body_height": 32,
+        "same_source_for_large_and_native": true,
+        "old_pixel_layers_used": false,
+        "draw_order": [
+          "registered_body",
+          "source_forearms",
+          "weapon",
+          "source_gloves"
+        ],
+        "contacts": [
+          {
+            "side": "R",
+            "target": [
+              42.816901408450704,
+              33.38139145012573
+            ]
+          }
+        ],
+        "weapon_extent": 9,
+        "weapon_extent_axis": "height"
+      }
+    },
+    {
+      "review_id": "BD-REPAIR02-03",
+      "title": "Bastion — Cogneur P-01",
+      "body": "BD-A007",
+      "weapon": "BD-W102",
+      "metadata": {
+        "body_source": "BD-A007",
+        "weapon_source": "BD-W102",
+        "body_scale": 0.026823134953897737,
+        "body_width_registration": 1.3442253521126761,
+        "logical_body_height": 32,
+        "same_source_for_large_and_native": true,
+        "old_pixel_layers_used": false,
+        "draw_order": [
+          "registered_body",
+          "source_forearms",
+          "weapon",
+          "source_gloves"
+        ],
+        "contacts": [
+          {
+            "side": "R",
+            "target": [
+              42.816901408450704,
+              33.38139145012573
+            ]
+          }
+        ],
+        "weapon_extent": 8.5,
+        "weapon_extent_axis": "width"
+      }
+    },
+    {
+      "review_id": "BD-REPAIR02-04",
+      "title": "Bastion — Brenek A-80",
+      "body": "BD-A007",
+      "weapon": "BD-W001",
+      "metadata": {
+        "body_source": "BD-A007",
+        "weapon_source": "BD-W001",
+        "body_scale": 0.026823134953897737,
+        "body_width_registration": 1.3442253521126761,
+        "logical_body_height": 32,
+        "same_source_for_large_and_native": true,
+        "old_pixel_layers_used": false,
+        "draw_order": [
+          "registered_body",
+          "source_forearms",
+          "weapon",
+          "source_gloves"
+        ],
+        "contacts": [
+          {
+            "side": "L",
+            "target": [
+              24.2512676056338,
+              33.0
+            ],
+            "forearm_length_ratio": 0.884
+          },
+          {
+            "side": "R",
+            "target": [
+              32.87216675508702,
+              31.863912515188336
+            ],
+            "forearm_length_ratio": 1.309
+          }
+        ],
+        "weapon_extent": 22,
+        "weapon_extent_axis": "width"
+      }
+    },
+    {
+      "review_id": "BD-REPAIR02-05",
+      "title": "Bastion — bouclier EQ-S02",
+      "body": "BD-A007",
+      "weapon": "BD-EQ-S02",
+      "metadata": {
+        "body_source": "BD-A007",
+        "weapon_source": "BD-EQ-S02",
+        "body_scale": 0.026823134953897737,
+        "body_width_registration": 1.3442253521126761,
+        "logical_body_height": 32,
+        "same_source_for_large_and_native": true,
+        "old_pixel_layers_used": false,
+        "draw_order": [
+          "registered_body",
+          "source_forearms",
+          "weapon",
+          "source_gloves"
+        ],
+        "contacts": [
+          {
+            "side": "L",
+            "target": [
+              21.83211267605634,
+              33.408214585079634
+            ]
+          }
+        ],
+        "weapon_extent": 18,
+        "weapon_extent_axis": "height"
+      }
+    },
+    {
+      "review_id": "BD-REPAIR02-06",
+      "title": "Technomancien — Cogneur P-01",
+      "body": "BD-B003",
+      "weapon": "BD-W102",
+      "metadata": {
+        "body_source": "BD-B003",
+        "weapon_source": "BD-W102",
+        "body_scale": 0.02689075630252101,
+        "body_width_registration": 1.324141267537494,
+        "logical_body_height": 32,
+        "same_source_for_large_and_native": true,
+        "old_pixel_layers_used": false,
+        "draw_order": [
+          "registered_body",
+          "source_forearms",
+          "weapon",
+          "source_gloves"
+        ],
+        "contacts": [
+          {
+            "side": "R",
+            "target": [
+              42.41509433962264,
+              33.5327731092437
+            ]
+          }
+        ],
+        "weapon_extent": 8.5,
+        "weapon_extent_axis": "width"
+      }
+    },
+    {
+      "review_id": "BD-REPAIR02-07",
+      "title": "Arcaniste — Brenek A-80",
+      "body": "BD-A009",
+      "weapon": "BD-W001",
+      "metadata": {
+        "body_source": "BD-A009",
+        "weapon_source": "BD-W001",
+        "body_scale": 0.026556016597510373,
+        "body_width_registration": 1.2417114695340503,
+        "logical_body_height": 32,
+        "same_source_for_large_and_native": true,
+        "old_pixel_layers_used": false,
+        "draw_order": [
+          "registered_body",
+          "source_forearms",
+          "weapon",
+          "source_gloves"
+        ],
+        "contacts": [
+          {
+            "side": "L",
+            "target": [
+              24.22222222222222,
+              33.0
+            ],
+            "forearm_length_ratio": 0.885
+          },
+          {
+            "side": "R",
+            "target": [
+              32.84312137167544,
+              31.863912515188336
+            ],
+            "forearm_length_ratio": 1.346
+          }
+        ],
+        "weapon_extent": 22,
+        "weapon_extent_axis": "width"
+      }
+    }
+  ],
+  "limitations": [
+    "Only three bodies and four equipment models are registered in this diagnostic pilot.",
+    "Source glove pose remains the unarmed pose; wrapping fingers needs its own visual review."
+  ]
+}

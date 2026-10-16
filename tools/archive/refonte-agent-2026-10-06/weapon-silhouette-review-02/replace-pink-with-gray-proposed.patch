@@ -1,0 +1,122 @@
+--- a/src/entity/equipment_palette.rs
++++ b/src/entity/equipment_palette.rs
+@@ -21,7 +21,8 @@
+     Violet,
+     Turquoise,
+     Yellow,
+-    Pink,
++    #[serde(alias = "Pink")]
++    Gray,
+ }
+ 
+ impl EquipmentPalette {
+@@ -32,7 +33,7 @@
+         Self::Violet,
+         Self::Turquoise,
+         Self::Yellow,
+-        Self::Pink,
++        Self::Gray,
+     ];
+ 
+     pub const fn index(self) -> usize {
+@@ -47,7 +48,7 @@
+             Self::Violet => "Violet",
+             Self::Turquoise => "Turquoise",
+             Self::Yellow => "Jaune",
+-            Self::Pink => "Rose",
++            Self::Gray => "Gris",
+         }
+     }
+ 
+@@ -60,7 +61,20 @@
+             Self::Violet => Some([[61, 27, 97], [153, 81, 219], [217, 168, 255]]),
+             Self::Turquoise => Some([[10, 73, 74], [19, 182, 182], [147, 249, 223]]),
+             Self::Yellow => Some([[104, 80, 26], [225, 196, 48], [255, 242, 154]]),
+-            Self::Pink => Some([[104, 28, 82], [221, 67, 156], [255, 160, 216]]),
++            Self::Gray => Some([[38, 43, 48], [161, 171, 181], [232, 239, 245]]),
+         }
+     }
+ }
++
++#[cfg(test)]
++mod palette_compatibility_tests {
++    use super::EquipmentPalette;
++
++    #[test]
++    fn legacy_pink_json_and_binary_position_resolve_to_gray() {
++        let palette: EquipmentPalette = serde_json::from_str(r#""Pink""#).unwrap();
++        assert_eq!(palette, EquipmentPalette::Gray);
++        assert_eq!(EquipmentPalette::Gray.index(), 6);
++        assert_eq!(serde_json::to_string(&palette).unwrap(), r#""Gray""#);
++    }
++}
+--- a/src/game_art_palette.rs
++++ b/src/game_art_palette.rs
+@@ -21,7 +21,7 @@
+         Violet => Turquoise,
+         Turquoise => Violet,
+         Yellow => Violet,
+-        Pink => Blue,
++        Gray => Gray,
+     }
+ }
+ pub(super) fn recolor(image: &mut Image, mask: &Image, palette: EquipmentPalette) {
+--- a/src/game/equipment_colors.rs
++++ b/src/game/equipment_colors.rs
+@@ -198,7 +198,7 @@
+         let stack = game
+             .spawn_ground_item(GridPos::new(2, 2), id("melee_couteau_de_camp"), 1)
+             .unwrap();
+-        game.ground_items.set_palette(stack, EquipmentPalette::Pink);
++        game.ground_items.set_palette(stack, EquipmentPalette::Gray);
+         let bonus = MagicItemModifiers::new(2, 3).unwrap();
+         game.ground_items
+             .retain_magic_modifiers(stack, bonus.clone());
+@@ -217,14 +217,14 @@
+         ));
+         assert_eq!(
+             game.player_inventory().get(instance).unwrap().palette(),
+-            EquipmentPalette::Pink
++            EquipmentPalette::Gray
+         );
+         assert_eq!(
+             game.process_player_command(GameCommand::DropItem { item: instance }),
+             CommandOutcome::Applied
+         );
+         let dropped = game.ground_items().iter().next().unwrap().1;
+-        assert_eq!(dropped.palette(), EquipmentPalette::Pink);
++        assert_eq!(dropped.palette(), EquipmentPalette::Gray);
+         assert_eq!(dropped.magic_modifiers(), Some(bonus));
+         assert_eq!(
+             game.process_player_command(GameCommand::PickUp),
+@@ -237,7 +237,7 @@
+         game.improve_player_equipment(instance).unwrap();
+         assert_eq!(
+             game.player_inventory().get(instance).unwrap().palette(),
+-            EquipmentPalette::Pink
++            EquipmentPalette::Gray
+         );
+         assert!(
+             game.player_inventory()
+--- a/src/game_art_worn.rs
++++ b/src/game_art_worn.rs
+@@ -575,7 +575,7 @@
+             [
+                 EquipmentPalette::Original,
+                 EquipmentPalette::Red,
+-                EquipmentPalette::Pink,
++                EquipmentPalette::Gray,
+             ],
+         ] {
+             let colored = compose(&source, (9, layers, colors));
+--- a/src/game/game_state.rs
++++ b/src/game/game_state.rs
+@@ -28174,7 +28174,7 @@
+     #[test]
+     fn drone_cargo_preserves_equipment_palette_through_resume_and_delivery() {
+         use crate::entity::EquipmentPalette;
+-        for palette in [EquipmentPalette::Original, EquipmentPalette::Pink] {
++        for palette in [EquipmentPalette::Original, EquipmentPalette::Gray] {
+             let mut game = game_with_core_drones(
+                 "########\n#......#\n#......#\n########",
+                 GridPos::new(2, 1),

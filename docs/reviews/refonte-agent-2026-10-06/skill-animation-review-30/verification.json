@@ -1,0 +1,258 @@
+{
+  "protected_files_unchanged": 42837,
+  "controls": [
+    {
+      "variant": "A01-A02-HAUT",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A02-A02-HAUT",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A01-A02-DROITE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A02-A02-DROITE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A01-A02-GAUCHE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A02-A02-GAUCHE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A01-A02-BAS",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A02-A02-BAS",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A01-A02-OBSTACLE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A02-A02-OBSTACLE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A01-A02-CLOISON",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": true,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A02-A02-CLOISON",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A01-A02-PROCHE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    },
+    {
+      "variant": "A02-A02-PROCHE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "contacts_once_per_launch": true,
+      "timers_turn_driven": true,
+      "blocked_bolt_refused": false,
+      "agent_not_hurt_by_own_zone": true,
+      "instant_effect_ends": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "A01-A02-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 22,
+      "frames": 22,
+      "duration_ms": 4670,
+      "loop": 0
+    },
+    {
+      "file": "A02-A02-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 24,
+      "frames": 24,
+      "duration_ms": 4670,
+      "loop": 0
+    },
+    {
+      "file": "A01-A02-OBSTACLE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 22,
+      "frames": 22,
+      "duration_ms": 4670,
+      "loop": 0
+    },
+    {
+      "file": "A02-A02-OBSTACLE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 24,
+      "frames": 24,
+      "duration_ms": 4670,
+      "loop": 0
+    },
+    {
+      "file": "A02-A02-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 24,
+      "frames": 24,
+      "duration_ms": 4670,
+      "loop": 0
+    },
+    {
+      "file": "A01-A02-PROCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 22,
+      "frames": 22,
+      "duration_ms": 4670,
+      "loop": 0
+    },
+    {
+      "file": "A02-A02-PROCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 24,
+      "frames": 24,
+      "duration_ms": 4670,
+      "loop": 0
+    },
+    {
+      "file": "occulte-haut-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 24,
+      "frames": 24,
+      "duration_ms": 4670,
+      "loop": 0
+    },
+    {
+      "file": "occulte-cloison-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 24,
+      "frames": 24,
+      "duration_ms": 4670,
+      "loop": 0
+    },
+    {
+      "file": "occulte-proche-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 24,
+      "frames": 24,
+      "duration_ms": 4670,
+      "loop": 0
+    }
+  ],
+  "resampling_of_native_capture": false
+}

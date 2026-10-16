@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-08",
+  "review_id": "S04-VISION-ACCEPT01",
+  "user_reply": "ok :)",
+  "approval_context": "Confirmation of the last presented fixed player base radius8 proposal, following the withdrawal of Perception-based vision growth.",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-perception-vision-02.json",
+  "source_card_sha256": "d3c7160cbaed736905c00c2c9b8ab7331ef015a04513288eacbb64cd2e55dd43",
+  "accepted_shown_copy_markdown": "Je retire donc la proposition d’augmentation de la vision par la Perception.\n\nJe propose une **portée de vision de base fixe de 8 cases**, indépendante de cet attribut.\n\nLa **Perception garde son bonus de dégâts à distance déjà validé** :\n\n- Perception 10 : **+5 %**.\n- Perception 15 : **+10 %**.\n- Progression : **+1 point de pourcentage par point**, référence 5.\n\nElle conserve ainsi un intérêt pour les armes à distance et les armes lourdes. **La portée de base fixe de 8 cases reste à valider.**",
+  "accepted_shown_copy_sha256": "2b68b67ffc40d35c42f7c0a0b7d2017a6fa9328a60381844a612db7bccfa2dab",
+  "accepted_rules": {
+    "fixed_player_base_vision_radius_cells": 8,
+    "Perception_does_not_increase_player_base_vision_radius": true
+  },
+  "scope": "player_base_radius_only;does_not_revoke_accepted_drone_shared_vision_or_existing_skill_requirements",
+  "already_accepted_ranged_damage_rules": {
+    "ranged_weapon_damage_percentage_points_per_Perception_point": 1,
+    "reference_Perception": 5,
+    "includes_heavy_ranged_weapons": true
+  },
+  "previous_growth_status": "withdrawn_unaccepted_proposal;not_reinstated",
+  "RP_approval": "no_new_vision_RP_presented",
+  "unshown_cases_pending": [
+    "existing_FOV_metric_obstacles_and_boundary_rules",
+    "drone_shared_vision_and_observation_interactions",
+    "lighting_and_vision_status_modifiers",
+    "other_equipment_or_skill_vision_effects_and_limits",
+    "native_rendering_and_range_previews",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

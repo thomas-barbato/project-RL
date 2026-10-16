@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-07",
+  "id": "AF04",
+  "title": "Rupture de régénération",
+  "revision": 2,
+  "player_copy_markdown": "**Rupture de régénération — Rang 11**\n\n*Une trame occulte entrave les chairs et les circuits. Les blessures restent ouvertes, les réparations n’aboutissent plus.*\n\n**Effet actuel**\n\n- Vie récupérée par soins, régénération et réparations : **0 PV**.\n- Durée : **5 tours**.\n- Portée : **5 cases**.\n- Chance d’application sur la cible : **86,5 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Chance d’application sur la cible : **86,8 %**.\n\n**Coût : 13 énergie · Recharge : 6 tours.**\n\nCible : un hostile visible en ligne de vue.\n\nLes PV déjà présents et la récupération d’énergie restent inchangés.",
+  "player_copy_sha256": "a47b39d12cda4ac1d7aee2fa745840b969b3850af13fa29e3472870c87ba8e9f",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-affliction-descriptions-06.json",
+  "source_skill_block_sha256": "06f70ff4a4532164df32ede3ce4577ad9ed57178580e99d1ac9f0a101abeb93b",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/silence-roleplay-acceptance-decisions.json",
+  "review_start_decisions_sha256": "adf402e625298a4733e3e4f33eabb7883d01af58d1b977f6bb566e07d60ce9b0",
+  "name_approval": "accepted_catalogue_name",
+  "catalogue_effect_approval": "accepted_as_presented",
+  "roleplay_text_approval": "displayed_individual_roleplay_explicitly_accepted",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "displayed_individual_current_next_copy_explicitly_accepted",
+  "numeric_rules_approval": "displayed_0_HP_duration_5_range_5_energy_13_cooldown_6_and_target_chance_preview_explicitly_accepted; unshown_full_curves_pending",
+  "formulas": {
+    "duration_turns": "3 + floor((effective_rank - 1) / 4) + min(3, floor(max(0, Intelligence - 5) / 20)); source proposal",
+    "energy_cost": "10 + floor((effective_rank - 1) / 3); source proposal",
+    "application_power": "max(1, 100 + 5 * (effective_rank - 1) + 2 * (Intelligence - 5)); source proposal",
+    "application_chance_percent": "clamp(100 * power / (power + max(1, occult_resistance)), 5, 95); source proposal",
+    "display_rounding": "Exact fractions, nearest tenth displayed; source proposal"
+  },
+  "current_profile_status": "illustrative_character_and_target_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "intelligence": 10,
+    "target_occult_resistance": 25,
+    "other_duration_application_reduction_range_cost_modifiers": false,
+    "O00_implant_duration_bonus": 0,
+    "A03_energy_discount": 0
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "duration_turns": 5,
+    "range_cells": 5,
+    "application_power": 160,
+    "target_occult_resistance": 25,
+    "application_chance_percent_exact": {
+      "numerator": 3200,
+      "denominator": 37
+    },
+    "application_chance_percent_display": 86.5,
+    "energy_cost": 13,
+    "cooldown_turns": 6,
+    "healing_regeneration_repair_HP_restored": 0,
+    "existing_HP_not_removed": true,
+    "energy_recovery_unchanged": true
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "duration_turns": 5,
+    "range_cells": 5,
+    "application_power": 165,
+    "target_occult_resistance": 25,
+    "application_chance_percent_exact": {
+      "numerator": 1650,
+      "denominator": 19
+    },
+    "application_chance_percent_display": 86.8,
+    "energy_cost": 13,
+    "cooldown_turns": 6,
+    "healing_regeneration_repair_HP_restored": 0,
+    "existing_HP_not_removed": true,
+    "energy_recovery_unchanged": true
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_target_resistance_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "application_chance_percent_display"
+    ],
+    "unchanged_effects_omitted": [
+      "healing_regeneration_repair_HP_restored",
+      "duration_turns",
+      "range_cells",
+      "energy_cost",
+      "cooldown_turns",
+      "existing_HP_not_removed",
+      "energy_recovery_unchanged"
+    ]
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "target_specific_chance": "Illustrative target resistance 25 disclosed outside tooltip; real displayed chance depends on target.",
+    "exact_chance_ui_when_observation_access_limited": "pending_separate_interface_review; no hidden target information policy changed"
+  },
+  "presented_conditions": "One hostile visible in player line of sight within 5 cells; 0 HP restored by healing/regeneration/repairs; existing HP and energy recovery unchanged. Chance shown for fixed example resistance 25. Source all-target-nature direction preserved.",
+  "unshown_rules_approval": "Full-rank curves, resistance formula, exact turn ordering, modifier/snapshot timing, reapplication, self/allied/passive source classification, maximum HP changes, blocked-heal storage, future resurrection behavior, resisted-attempt expenditure and restricted-observation chance display remain pending where not previously presented/accepted.",
+  "active_weapon_requirement": "none; techno-occult weakening is not a weapon-based attack",
+  "visual_intention_approval": "accepted_catalogue_intention_only",
+  "visual_approval": "pending_native_animation_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Effective ranks 11/12 at Intelligence 10 both give duration 5 turns, energy 13, cooldown 6, range 5.",
+    "Application power 160 -> 165; target resistance 25 gives exact chances 3200/37 -> 1650/19%, displayed 86.5 -> 86.8%.",
+    "Learned 9 -> 10 with fixed gear +2; learned cap respected; same target and attributes.",
+    "Next block shows only changing application chance; constant healing block/duration/cost omitted there.",
+    "Source roleplay words preserved as one paragraph; healing, regeneration and repairs restore 0 HP; no removal of existing HP or interference with energy recovery.",
+    "No duplicated functional paragraph, rank breakdown, table/formula or ordinary action-time reminder.",
+    "HUD06 requirement retained: applied status in target analysis with effect values visible without drone. Native rendering remains pending."
+  ],
+  "target_status_analysis_requirement": "docs/reviews/refonte-agent-2026-10-06/target-status-analysis-visibility-decisions.json",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-AF04-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/regeneration-rupture-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "50558f9f7bbe7e62117d2ecaea95885c0bf8352a11e8dba77f82c8b1af123a91",
+  "presented_conditions_approval": "displayed_conditions_explicitly_accepted"
+}

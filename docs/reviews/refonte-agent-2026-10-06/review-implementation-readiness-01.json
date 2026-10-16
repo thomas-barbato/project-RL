@@ -1,0 +1,176 @@
+{
+  "date": "2026-10-09",
+  "review_id": "IMPLEMENT-READY01",
+  "status": "read_only_design_inventory_and_recommendations;no_new_player_text_mechanic_or_native_visual_approval",
+  "user_question": "que reste t-il a définir avant d'implementer tout le travail qu'on fait depuis plusieurs jours ?",
+  "sources": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/remaining-individual-skill-review-counts-98.json",
+      "reference_sha256": "2b67401437b31cc13b532f884b37e55b246c6df23bad426ad2736449d038bb66"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-primary-catalogue-229.json",
+      "reference_sha256": "f1428b02978a64160a6e5dca499aaca64e5b94c9ad69d72c7d0e11e57eecdeb3"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-204.json",
+      "reference_sha256": "5377b6e3717767269c4d5e78aca87be0a0a7cfa094efeed6fb8ccce6232689ee"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-57.json",
+      "reference_sha256": "43af1c6449fa0294a21dd35c2ccd1a48b0043ee54b4a1bd2a1dfa70a59981327"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-skill-approval-reconciliation-01.json",
+      "reference_sha256": "c752358621b8d493b3617d51fde25d4822b32143a25737d50a58250b5de7f6f9"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipment-grant-loss-effects-GEAR-SK02-03.json",
+      "reference_sha256": "a646e897d619ac7906ea08ddf0122650635c9b53ea1dbaf092ad4a57357433cf"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/skill-implementation-sequence-decisions.json",
+      "reference_sha256": "bb1a2fd427c6880047d8adddba7fa954d9eebd3a2fd6e02d0d2501153f92cb3d"
+    },
+    {
+      "reference": "docs/REFONTE_AGENT_CRYOGENISE.md",
+      "reference_sha256": "dc3d72c970b3b6cfa51a57484f4705dbc0cf09e7c221cc96816132eee28c2a61"
+    },
+    {
+      "reference": "docs/REVUE_COMPETENCES_MONSTRES_AGENT.md",
+      "reference_sha256": "323008520390a2ca74cb9611aa11dd9a71bb32e10995b820d9a13e02a9dfd8af"
+    },
+    {
+      "reference": "docs/REVUE_INTERFACE_EFFETS_AGENT.md",
+      "reference_sha256": "2a1675713db6637e877e8dabf0749c87383206fe9c036decc2aecaf03d04b4f5"
+    },
+    {
+      "reference": "docs/REVUE_PERSONNAGE_TEST_AGENT.md",
+      "reference_sha256": "d96fa4ca278ddf4faa2f72c6b607171be395cb393c1a3ee2775a40671c672a3d"
+    }
+  ],
+  "confirmed_readiness": {
+    "first_pass_skill_cards_remaining": 0,
+    "first_pass_is_not_full_design_certificate": true,
+    "primary_catalogue_candidates": 79,
+    "primary_branches": 14,
+    "agreed_foundations": [
+      "six_attributes_and_level_point_awards",
+      "shown_HP_energy_hit_resistance_damage_and_healing_rules",
+      "learned_cap10_gear_beyond10_and_gear_grants_from_zero",
+      "shown_familiar_equipment_cargo_level_rank_updates_commands_arrival_rules",
+      "shown_status_cooldown_preview_and_floating_feedback_directions"
+    ],
+    "latest_GEAR_SK02": "shown_final_grant_loss_cleanup_and_familiar_real_item_drop_now_accepted",
+    "approved_foundations_can_be_implemented_incrementally": true,
+    "implementation_sequence_preserved": "approved_skills_and_attribute_rules_then_animations_review_then_progressive_balance;test_configuration_menu_after_skills_and_animations"
+  },
+  "before_affected_complete_system_integration": [
+    {
+      "id": "READY01",
+      "topic": "skill_progression_and_receipts",
+      "remaining": [
+        "complete_actual_rank1_through10_and_equipment_rank_beyond10_curves_where_only_sample_values_shown",
+        "preserve_accepted_names_RP_and_values;show_only_missing_or_revised_parts",
+        "reconcile_eight_older_partial_receipts_against_exact_existing_approvals;do_not_treat_stale_pending_labels_as_unapproved_everything",
+        "allocate_already_accepted_DR01_Repair_card_in_final_catalogue_without_altering_it"
+      ],
+      "partial_receipt_ids": [
+        "SU05",
+        "D56",
+        "DP02",
+        "O03",
+        "AF02",
+        "AF03",
+        "AF06",
+        "FR01"
+      ]
+    },
+    {
+      "id": "READY02",
+      "topic": "coupled_turn_status_and_rank_cases",
+      "remaining": [
+        "status_refresh_replace_stack_rules_for_identical_and_overlapping_sources",
+        "tick_order_for_zones_DOT_regeneration_freeze_burn_interaction_and_cooldown_expiry",
+        "source_cleanup_and_partial_gear_rank_loss_while_another_grant_remains",
+        "mine_and_raised_overcapacity_when_rank_decreases",
+        "command_action_budget_for_Destroy_and_Mule_start_stop_where_not_shown",
+        "arrival_placement_queue_order_and_geometry_where_not_shown"
+      ],
+      "boundary": "technical choices preserving accepted observable behavior may be implemented;new_player_visible_rules_or_effects_require_review"
+    },
+    {
+      "id": "READY03",
+      "topic": "equipment_and_familiar_content",
+      "remaining": [
+        "skill_affix_targets_specific_branch_all_ranges_eligibility_and_loot_weights",
+        "actual_weapon_level_models_and_damage_ranges_with_accepted_variance_rule",
+        "remaining_native_drone_attack_energy_armor_resistance_and_ability_profiles_using_accepted_level_attributes",
+        "remaining_weapon_ammo_multihit_and_elemental_transfer_cases"
+      ],
+      "boundary": "balance_later_does_not_implicitly_approve_unshown_numeric_defaults"
+    },
+    {
+      "id": "READY04",
+      "topic": "five_class_starts",
+      "remaining": [
+        "final_initial_weapon_armor_and_consumables_by_class",
+        "initial_implant_bonus_malus_numbers_and_replacement_implant_options_not_yet_explicitly_accepted",
+        "complete_initial_attribute_allocations_and_exact_granted_skill_mapping_review_where_pending",
+        "native_character_creation_layout_and_equipped_preview_using_approved_silhouette_assignments"
+      ],
+      "boundary": "five_names_orientations_initial_active_and_passive_rules_and_approved_silhouette_assignments_remain_accepted"
+    }
+  ],
+  "needed_for_complete_new_campaign_but_not_initial_system_foundations": [
+    {
+      "id": "READY05",
+      "topic": "monsters_and_combat_density",
+      "remaining": [
+        "new_enemy_roles_levels_importance_profiles",
+        "HP_damage_resistance_and_skill_sets_by_role_level_importance",
+        "AI_skill_choice_targeting_and_attack_of_blocking_spell_objects",
+        "encounter_density_and_portal_difficulty_rewards"
+      ],
+      "boundary": "dedicated_monster_skill_catalogue_requested;do_not_give_entire_player_catalogue_to_all_monsters"
+    },
+    {
+      "id": "READY06",
+      "topic": "campaign_base_refuges_portals",
+      "remaining": [
+        "organisation_names_and_first_mission_briefing_quest_dialogue_texts",
+        "new_base_and_successive_refuge_services_characters_maps",
+        "discoveries_routing_and_root_of_evil_details",
+        "bonus_portal_frequency_map_lifetime_and_return_conditions",
+        "inventory_and_replace_old_story_dependent_texts_quests_and_content"
+      ],
+      "boundary": "accepted_new_lore_skeleton_retained;no_new_canon_invented_as_approved"
+    }
+  ],
+  "prototype_and_later_phases": [
+    {
+      "id": "READY07",
+      "topic": "native_UI_art_and_animations",
+      "remaining": [
+        "skill_tree_skill_icons_and_live_current_next_tooltips",
+        "Familiers_equipment_cargo_and_target_analysis_windows",
+        "status_icons_hostile_phase_display_targeting_area_previews",
+        "integer_total_type_damage_feedback_and_skill_name_floating_text",
+        "spell_transformation_drone_and_barrier_native_frames"
+      ],
+      "timing": "functional_prototypes_then_explicit_native_review_before_integration_of_new_visuals;accepted_directions_not_final_pixel_approval"
+    },
+    {
+      "id": "READY08",
+      "topic": "progressive_balance_and_test_menu",
+      "remaining": [
+        "actual_player_enemy_HP_damage_XP_and_loot_balance_after_playable_systems",
+        "repeatable_respec_level_configuration_menu_after_all_skills_and_animations_as_requested"
+      ],
+      "timing": "explicitly_deferred_by_user;not_prerequisite_to_start_approved_foundations"
+    }
+  ],
+  "recommendation": "consolidate_missing_skill_curves_and_observable_cross_effect_rules_then_lock_class_starts_and_first_campaign_slice;implement_approved_foundations_in_batches_while_later_campaign_and_native_prototypes_are_reviewed",
+  "new_user_approval_requested": false,
+  "runtime_integration": "not_integrated"
+}

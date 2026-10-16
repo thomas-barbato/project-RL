@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-06",
+  "id": "D57",
+  "title": "Invocation de la Mule",
+  "revision": 1,
+  "player_copy_markdown": "**Invocation de la Mule — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Votre mule mécanique porte le matériel qui alourdit vos pas.*\n\nDéploie un drone qui transporte votre matériel.\n\n**Effet actuel**\n\n- Vie maximale du drone : **74 PV**.\n- Capacité de transport : **132 kg**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Vie maximale du drone : **79 PV**.\n- Capacité de transport : **140,8 kg**.\n\n**Coût : 13 énergie · Recharge : 6 tours.**\n\nUne seule Mule peut être déployée à la fois. Elle n’attaque pas.\n\nSon chargement est conservé lors d’un rappel ou d’un changement de couche. Si elle est détruite, ses objets tombent au sol.",
+  "player_copy_sha256": "8f2ed045dc66e416d9d39ee703ce9562dcd5d2615f92a8a829106b0f981986ae",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-06.json",
+  "source_skill_block_sha256": "d790c1e8a3550ed6cc0a4950cce4b470ece7199c74bbe9c9ea32a1777b8b84e0",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/eclaireur-target-analysis-wording-confirmation-decisions.json",
+  "review_start_decisions_sha256": "7eebe7e45c154b89b0839687dac2ed9bf68400dcf05797f36eb5211713f1e614",
+  "name_approval": "accepted_catalogue_name",
+  "catalogue_effect_approval": "accepted_as_presented",
+  "roleplay_text_approval": "pending_user_review",
+  "functional_description_approval": "pending_user_review",
+  "current_next_effect_copy_approval": "pending_user_review",
+  "numeric_rules_approval": "pending_user_review",
+  "formulas": {
+    "base_hp": "28 + 4 * (effective_rank - 1)",
+    "base_cargo_capacity_grams": "40000 + 8000 * (effective_rank - 1)",
+    "intelligence_factor": "1 + (Intelligence - 5) / 50; proposed",
+    "energy_cost": "10 + floor((effective_rank - 1) / 3)",
+    "rounding": "floor once after applicable modifiers; proposed"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "intelligence": 10,
+    "other_drone_hp_cargo_cost_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_hp": 74,
+    "maximum_hp_exact_before_floor": {
+      "numerator": 374,
+      "denominator": 5
+    },
+    "cargo_capacity_grams": 132000,
+    "cargo_capacity_kg_display": 132.0,
+    "energy_cost": 13,
+    "cooldown_turns": 6,
+    "activity_duration": "unlimited",
+    "can_attack": false
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "maximum_hp": 79,
+    "maximum_hp_exact_before_floor": {
+      "numerator": 396,
+      "denominator": 5
+    },
+    "cargo_capacity_grams": 140800,
+    "cargo_capacity_kg_display": 140.8,
+    "energy_cost": 13,
+    "cooldown_turns": 6,
+    "activity_duration": "unlimited",
+    "can_attack": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_passive_ranks_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "maximum_hp",
+      "cargo_capacity_grams"
+    ],
+    "unchanged_effects_omitted": [
+      "energy_cost",
+      "cooldown_turns",
+      "unlimited_activity",
+      "no_attack",
+      "cargo_persistence"
+    ]
+  },
+  "accepted_existing_rules": "Unlimited activity, one drone per model; cargo retained on recall/layer transitions and dropped on destruction. No duration line in player copy.",
+  "presented_conditions": "One Mule active, no attack, transports real equipment, cargo retained on recall/layer changes, drops cargo when destroyed.",
+  "unshown_conditions_approval": "Full-rank formulas and Intelligence factor, rounding, transfer range/time/cost, item masses, inventory dimensions/slots and overcapacity rules remain pending.",
+  "active_weapon_requirement": "none; transport drone invocation is not a player weapon attack",
+  "visual_intention_approval": "accepted_as_presented",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Exact fractions verified with fixed Intelligence 10: 74 -> 79 HP, 132000 -> 140800 grams.",
+    "Energy 13/cooldown 6 unchanged; learned ranks 9 -> 10 within cap.",
+    "Only changing HP and cargo capacity displayed in next-rank block.",
+    "Unlimited activity omitted; previously accepted cargo persistence preserved.",
+    "No table, formula or ordinary action-time reminder in player copy."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-07",
+  "review_id": "HUD-ALLIES01",
+  "revision": 2,
+  "request_reference": "docs/reviews/refonte-agent-2026-10-06/familiar-window-and-distinct-allied-marker-decisions.json",
+  "request_reference_sha256": "d34c81459be111f56a331ea830381ea60761a0fe7cc5522f5cbebd4f9a204cf5",
+  "scope": [
+    "deployed_allied_drones",
+    "OC07_reanimated_allies"
+  ],
+  "proposed_hover_copy": {
+    "drone": "Allié — drone",
+    "reanimated_monster": "Allié — réanimé"
+  },
+  "visibility_scope": "Only actors already visible by existing approved perception rules; marker does not grant vision or expose hidden actors or statistics.",
+  "request_approval": "explicit_user_request",
+  "exact_direction_approval": "skull_for_reanimated_allies_and_green_dot_for_drones_explicit_user_choice;native_pixels_pending",
+  "tooltip_copy_approval": "affirmative_reply_to_displayed_copy;native_tooltip_rendering_pending",
+  "native_dimensions_placement_pixels": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": "docs/reviews/refonte-agent-2026-10-06/review-allied-actor-marker-HUD-ALLIES01-01.json",
+  "previous_proposal_sha256": "05666a5b8eccd43c568c9470f0ef5eb0f106613a9901c0c5d62dd0c7326893fc",
+  "superseded_visual_direction": {
+    "symbol": "◆",
+    "shape": "small_diamond",
+    "color": "cyan",
+    "position": "above_visible_allied_actor",
+    "animation": "fixed",
+    "independent_of_health_bar_visibility": true,
+    "uses_color_and_shape": true
+  },
+  "accepted_visual_direction": {
+    "reanimated_monsters": {
+      "shape": "skull",
+      "color": "not_specified;pending_review"
+    },
+    "drones": {
+      "shape": "dot",
+      "color": "green"
+    }
+  },
+  "preserved_displayed_presentation": {
+    "position": "above_visible_allied_actor",
+    "animation": "fixed",
+    "independent_of_health_bar_visibility": true,
+    "approval": "affirmative_reply_to_displayed_proposal;native_details_pending"
+  }
+}

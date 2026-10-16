@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-07",
+  "review_id": "FR06",
+  "redesign_review_id": "FR06-DET01",
+  "user_message": "je propose plutot une attaque qui fait exploser tous les monstres gelés visibles .",
+  "requested_direction": [
+    "Replace proposed rear-shard passive with active attack.",
+    "Trigger explosions on all visible frozen hostile monsters.",
+    "No prerequisite of first landing a separate direct weapon/spell hit.",
+    "Retain FR06 as a single skill rather than adding another ability."
+  ],
+  "superseded_individual_proposal": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR06-01.json",
+  "superseded_individual_proposal_sha256": "03b028ce95744a88006266c0bcedd70f675096ba0401eada3eb724c24c371b1a",
+  "pending_clarification_question": "Quand les monstres gelés explosent, quel effet souhaites-tu ?",
+  "pending_clarification_options": [
+    "Dégâts sur chaque monstre gelé et autour de lui, puis son Gel disparaît",
+    "Dégâts uniquement sur chaque monstre gelé, puis son Gel disparaît",
+    "Dégâts sur chaque monstre gelé et autour de lui, en conservant son Gel"
+  ],
+  "pending_review_scope": "Explosion damage vs automatic death,blast area,damage stacking,neighbor targets,Gel removal/retention/new application,numerical values,cost/cooldown,player RP and visual direction not decided by this direction alone.",
+  "existing_common_rules": "Boss Gel eligibility,elite/boss status chance modifiers,reciprocal Gel/Burn,observed-actor restrictions,learned10/gear bonuses and other skill approvals preserved.",
+  "native_visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

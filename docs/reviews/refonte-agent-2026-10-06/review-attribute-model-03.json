@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-08",
+  "review_id": "STAT-MODEL03",
+  "status": "shown_core_rules_accepted_with_explicit_Agilite_ranged_addition;Perception_mapping_pending_clarification;unshown_details_pending",
+  "previous_proposal": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-02.json",
+  "previous_proposal_sha256": "449d4d200adb5fd39028eff5d8ca673fd240b05c3de08b96511eaf313c5d1b82",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/attribute-model-acceptance-and-weapon-mapping-decisions.json",
+  "acceptance_decisions_sha256": "6e6b8d32b6586b07b2e75a7ff61d7882a0a91aeb552ba399dfa58f25aa4b6561",
+  "accepted_coefficients": {
+    "S01": {
+      "melee_weapon_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "includes_melee_weapon_skills": true,
+      "previous_physical_transformation_scope": "preserved_by_general_agreement;exact_components_unreviewed"
+    },
+    "S02": {
+      "ranged_weapon_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "accuracy_units_per_point": 2,
+      "evasion_units_per_point": 2,
+      "includes_ranged_weapon_skills": true,
+      "heavy_ranged_scope": "preserved_when_ranged_damage_attribute_is_Agilite"
+    },
+    "S03": {
+      "maximum_HP_per_point": 4
+    },
+    "S05": {
+      "drone_damage_percentage_points_per_attribute_point": 1,
+      "drone_maximum_HP_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "maximum_energy_per_point": 2
+    },
+    "S06": {
+      "spell_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "maximum_energy_per_point": 2,
+      "magical_transformed_attacks_included": true
+    }
+  },
+  "accepted_constraints": {
+    "attribute_points_per_level": 5,
+    "character_level_cap": null
+  },
+  "accepted_stacking": "attribute and applicable weapon-skill damage bonuses are additive; previously shown example150% with Force10 is155%, Force15 is160%; other stacking cases remain unreviewed",
+  "pending_clarification": {
+    "review_id": "S04-MAPPING01",
+    "question": "Le bonus de dégâts à distance de l’Agilité remplace-t-il celui proposé pour la Perception, ou souhaites-tu que les deux se cumulent ?",
+    "options": [
+      "Il remplace celui de la Perception",
+      "Les deux se cumulent"
+    ],
+    "answer": null
+  },
+  "balance_context": "No maximum level. User expects ordinary playthroughs not to reach extremely high levels; no numerical expected-level range established.",
+  "unshown_cases_pending": [
+    "base HP and energy and automatic level gains",
+    "other modifiers and gear/class/passive stacking",
+    "exact probability formulas and bounds",
+    "vision and hearing effects",
+    "control potency and duration",
+    "transformation duration",
+    "physical versus elemental attack components",
+    "drone base and rank scaling and HP modifier ordering",
+    "healing and indirect/reflected damage scaling",
+    "rounding and weapon damage variance",
+    "all other unshown details"
+  ],
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,32 @@
+{
+  "batch": "ANIM-S20",
+  "visual_status": "visually_approved",
+  "native_tile_size": 64,
+  "native_views": 27,
+  "animations": 28,
+  "native_gpu_readbacks": 2970,
+  "lossless_readback_to_png": true,
+  "native_capture_resampling": false,
+  "walls_positions_cargo_status_and_turn_timelines": "passed",
+  "previous_approved_artifacts_unchanged": 5636,
+  "lab_tests": {
+    "passed": 102,
+    "failed": 0
+  },
+  "locked_debug_build": "passed",
+  "format_check": "passed",
+  "diff_check": "passed",
+  "local_links": {
+    "checked": 8,
+    "missing": 0
+  },
+  "gallery_controller": "offline Node verification passed",
+  "campaign_integration": false,
+  "not_run": [
+    "Full engine suite",
+    "Release build",
+    "Browser rendering; native GPU readbacks and offline controller checked."
+  ],
+  "visual_approval": "HY04-A01 and HY06-A01 accepted.",
+  "acceptance": "visual-acceptance-01.json"
+}

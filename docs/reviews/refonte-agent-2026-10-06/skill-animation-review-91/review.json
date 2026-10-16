@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S44",
+  "status": "visually_accepted",
+  "campaign_integration": false,
+  "native_tile": 64,
+  "candidates": [
+    {
+      "number": 97,
+      "id": "D56",
+      "variant": "D56-A01",
+      "title": "Invocation de l’Éclaireur"
+    },
+    {
+      "number": 98,
+      "id": "D57",
+      "variant": "D57-A01",
+      "title": "Invocation de la Mule"
+    }
+  ],
+  "effective_rank": 1,
+  "scenes": 22,
+  "scenario_ids": [
+    "DEPLOIEMENT",
+    "ATTENTE",
+    "MUR",
+    "OCCUPEE",
+    "ENERGIE",
+    "EXISTANT",
+    "COLLECTE",
+    "CACHE"
+  ],
+  "prepared_values": {
+    "energy_cost": 10,
+    "cooldown": 6,
+    "player_energy": 100,
+    "insufficient_energy": 9,
+    "model_ids": [
+      56,
+      57
+    ],
+    "maximum_per_model": 1,
+    "arrival_seconds": 0.34,
+    "body_fade_seconds": 0.16
+  },
+  "accepted_mechanics": [
+    "../drone-persistence-acceptance-decisions.json",
+    "../drone-deployment-resources-acceptance-decisions.json",
+    "../drone-first-action-acceptance-decisions.json",
+    "../mule-loot-collection-acceptance-decisions.json"
+  ],
+  "preview_copy": [
+    "Déploie un drone de reconnaissance qui partage sa vision et enrichit l’analyse des cibles. Il n’attaque pas. Au rang 1 : coût de 10 énergie, recharge de 6 tours. Un seul Éclaireur peut être présent.",
+    "Déploie un drone de transport qui n’attaque pas. Au rang 1 : coût de 10 énergie, recharge de 6 tours. Une seule Mule peut être présente. La scène « Ramassage » montre un déplacement, puis le transfert d’un couteau dans son chargement avec son nom au-dessus d’elle."
+  ],
+  "source": "src/agent_skill_lab_review/fire_painted/drone_support.rs",
+  "source_sha256": "504192f2da33876bc25cc5dc8483563ad9f03361ab6d867f3d76fcc31f579686",
+  "catalogue_sha256": "459b572632cd0bdba78a8120fe1b3244b52199bb8f23bc0bd3ea9c7d246facfb",
+  "scope": "New deployment appearance and one prepared Mule pickup in an isolated lab. Existing legacy drone models 56/57 are reused, not redrawn or approved as native 64 px replacements. No campaign inventory, AI, observation-action cost, drone stats, newborn action scheduler or save mutation. Prepared item review:camp-knife-01 exists once, on ground then in Mule cargo. Collection order is issued after deployment for this scenario; no new command timing rule. Hidden-loot scene uses current map line of sight and the catalogue rank-one Scout radius: player OR deployed Scout vision reveals the item; Mule private vision does not.",
+  "native_lab": "--apercu-laboratoire-competences --lot-drones-soutien",
+  "preview": "../apercu-animations.html?lot=91",
+  "remaining_unshown": 13,
+  "still_unshown": [
+    "D58",
+    "D59",
+    "D66",
+    "O03",
+    "DP01",
+    "DP02",
+    "DR01",
+    "DI01",
+    "DI02",
+    "DI03",
+    "DI04",
+    "DI05",
+    "DI07"
+  ],
+  "pending_separately": "B03 Vitalité améliorée mechanics.",
+  "previous_visual_review": "../skill-animation-review-90/review.json",
+  "previous_review_note": "User asked to continue after clarification about missing monster AI; no separate visual approval inferred. Its compact playback is retained pending clear visual acceptance.",
+  "launcher": "ouvrir-laboratoire.cmd",
+  "temporary_capture_policy": "Reuse same active HTML. Remove intermediate captures and logs after verification; retain source assets, review receipts and previous pending review playback.",
+  "playback_bytes": 1060514,
+  "cleanup": "cleanup.json",
+  "verification": {
+    "debug_build": true,
+    "targeted_tests_passed": 2,
+    "format_check": true,
+    "scoped_diff_check": true,
+    "native_visual_QA": true,
+    "lossless_native_pixel_verification": true,
+    "shared_scout_vision_and_mule_private_view": "shared-vision-verification.json",
+    "atomic_refusals": true,
+    "persistent_deployment_without_attacks": true,
+    "one_pickup_with_same_item_identity_and_floating_name": true,
+    "previous_art_catalogue_and_curse_source_preserved": true,
+    "viewer_controller": "Eight scenarios and four directions with manual turns; offline mock DOM. No browser rendering claim."
+  },
+  "visual_acceptance": "visual-acceptance-01.json"
+}

@@ -1,0 +1,64 @@
+{
+  "review_id": "SKILLS-UI04",
+  "date": "2026-10-11",
+  "status": "awaiting_layout_review",
+  "prototype_only": true,
+  "large": {
+    "entries": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "boosted": true,
+        "border": "0px",
+        "iconWidth": 64,
+        "name": "Braise",
+        "overflow": false,
+        "rankGap": 6,
+        "shadow": "none",
+        "typeGap": 2
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "boosted": false,
+        "border": "0px",
+        "iconWidth": 64,
+        "name": "Boule de feu",
+        "overflow": false,
+        "rankGap": 6,
+        "shadow": "none",
+        "typeGap": 2
+      }
+    ],
+    "horizontalOverflow": false,
+    "loadedImages": true,
+    "viewport": {
+      "height": 884,
+      "width": 1304
+    }
+  },
+  "small": {
+    "entries": [
+      {
+        "kind": "Passif",
+        "name": "Vitalité améliorée",
+        "overflow": false,
+        "rankGap": 6,
+        "typeGap": 2
+      },
+      {
+        "kind": "Actif",
+        "name": "Régénération",
+        "overflow": false,
+        "rankGap": 6,
+        "typeGap": 2
+      }
+    ],
+    "horizontalOverflow": false,
+    "shellWidth": 960
+  },
+  "checks": {
+    "skill_data_identical": true,
+    "art_map_identical": true,
+    "script_syntax": true,
+    "gameplay_changed": false
+  }
+}

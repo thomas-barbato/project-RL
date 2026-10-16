@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-15",
+  "review_id": "D57-LIMIT01-ACCEPT01",
+  "user_reply": "okay, j'ai oublié une regle pour les drones : limitation de 1 drone \"mule\" .\n\nEnsuite je valide et on passe à la suite :)",
+  "accepted_rule": "At most one active Mule (D57) at a time.",
+  "active_model_limits": {
+    "D56": 1,
+    "D57": 1
+  },
+  "multiple_models_preserved": [
+    "D58",
+    "D59",
+    "D66"
+  ],
+  "supersedes": "D57 multiple simultaneous units in DRONE-ARMY01-ACCEPT01 only",
+  "unchanged": [
+    "Content IDs and accepted artwork",
+    "Mule noncombat role",
+    "Persistence, remaining HP and real cargo retention",
+    "No free recall heal and no duplicated cargo",
+    "Shared army capacity direction; exact values still pending"
+  ],
+  "campaign_integration": false,
+  "scope": "Confirmed rule for subsequent drone integration; animation-first workflow preserved."
+}

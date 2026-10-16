@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-15",
+  "review_id": "ANIM-S51",
+  "status": "visually_accepted_pending_campaign_integration",
+  "candidates": [
+    {
+      "number": 113,
+      "id": "DI05",
+      "variant": "DI05-A01",
+      "title": "Tir de harpon"
+    },
+    {
+      "number": 114,
+      "id": "DI07",
+      "variant": "DI07-A01",
+      "title": "Tir vampirique"
+    }
+  ],
+  "native_tile": 64,
+  "native_lab": "--apercu-laboratoire-competences --lot-harpon-vampirique",
+  "source": "src/agent_skill_lab_review/fire_painted/ranged_harpoon_vampiric.rs",
+  "source_texts": [
+    "review-individual-description-DI05-02.json",
+    "review-individual-description-DI07-02.json"
+  ],
+  "scope": "Prepared finite visual fixtures, not campaign effects or new balance approval.",
+  "fixture_rules": [
+    "DI05:one rapid barbed projectile, short steel cable, three-cell straight pull after successful hit",
+    "Anchored target and prepared elite resistance keep shot damage without displacement",
+    "DI07:one ordinary physical shot, green agent healing pulse and actual +X PV label",
+    "Rank11 life return50% of actual primary HP removed, shared cast cap10% maxHP, missing HP limit",
+    "Exact even prepared impacts avoid deciding rounding; maxHP100 is a scene fixture",
+    "Current accepted spatial growth: example active normal weapon6 plus3 range cells",
+    "Active normal ranged weapon required, heavy weapons excluded; no extra preparation turn",
+    "Preview disappears at confirmation, finite impact, accepted physical blood and shared hit reaction"
+  ],
+  "fixture_hit_values": {
+    "DI05": 31,
+    "DI07": 36,
+    "reduced_after_defence_either_skill": 12,
+    "maximum_target_hp": 240,
+    "player_max_hp": 100,
+    "player_start_hp": 40,
+    "almost_full_start_hp": 98
+  },
+  "not_new_rules": [
+    "No new critical, variance, defence, RNG or elite chance law",
+    "Prepared elite failure does not replace accepted conditional75% traction chance",
+    "Only a straight pull is illustrated; diagonals, ties and general actor interception remain separate",
+    "No overkill, shield, machine healing, full-health cast policy or early target death is arbitrated",
+    "No healing from indirect/reflected damage, no persistent status and no collision bonus introduced"
+  ],
+  "active_catalogue_assets_campaign_rng_or_saves_changed": false,
+  "pending_separate": [
+    "D66 taunt animation and marker",
+    "O03 animation",
+    "AF05/AF06 review90",
+    "B03 mechanics",
+    "Control capacity and taunt numbers"
+  ],
+  "visual_acceptance": "visual-acceptance-01.json"
+}

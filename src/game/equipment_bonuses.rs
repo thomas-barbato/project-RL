@@ -471,8 +471,24 @@ impl GameState {
         let accuracy = self.equipped_bonus_total(crate::entity::MagicItemModifiers::accuracy_bonus);
         let penetration =
             self.equipped_bonus_total(crate::entity::MagicItemModifiers::armor_penetration_bonus);
-        crate::entity::MagicItemModifiers::weapon_bonuses([0; 5], accuracy, penetration)
-            .map_or(attack, |bonus| bonus.modify_weapon_attack(attack))
+        let attack =
+            crate::entity::MagicItemModifiers::weapon_bonuses([0; 5], accuracy, penetration)
+                .map_or(attack, |bonus| bonus.modify_weapon_attack(attack));
+        if let Some(start) = &self.rules.agent_class_start {
+            let style = match attack.delivery() {
+                crate::combat::AttackDelivery::Melee => start.melee_damage_percent,
+                crate::combat::AttackDelivery::Ranged => start.ranged_damage_percent,
+            };
+            attack.with_damage_output_percentage(crate::agent_class::percent(
+                crate::agent_class::percent(
+                    attack.damage_output_percentage(),
+                    start.weapon_damage_percent,
+                ),
+                style,
+            ))
+        } else {
+            attack
+        }
     }
 
     pub fn player_attribute_bonus(&self, attribute: PrimaryAttribute) -> u16 {
@@ -498,8 +514,7 @@ impl GameState {
                     .saturating_add(self.player_attribute_bonus(attribute));
                 // The 1..10 rule is for intrinsic character data, not an
                 // implicit deletion of equipment bonuses above that value.
-                attributes =
-                    attributes.with_value(attribute, u8::try_from(total).unwrap_or(u8::MAX));
+                attributes = attributes.with_value(attribute, total);
             }
         }
         Some(attributes)
@@ -575,10 +590,35 @@ impl GameState {
         }
         .saturating_add(hp)
         .saturating_add(self.player_level_hit_point_bonus());
+        let maximum = self
+            .rules
+            .agent_class_start
+            .as_ref()
+            .map_or(maximum, |start| start.maximum_hp(maximum));
+        let vitality = self.player_agent_skill_rank("B03");
+        let maximum = if vitality > 0 {
+            let bonus = crate::skills::agent::definition("B03")
+                .unwrap()
+                .value("maximum_HP_bonus_percent", vitality);
+            (u32::from(maximum) * (100 + u32::from(bonus)) / 100).clamp(1, 65535) as u16
+        } else {
+            maximum
+        };
+        let maximum = self.agent_transform_maximum_hp(maximum);
         if let Some(actor) = self.actors.get_mut(self.player) {
             actor.resize_integrity_without_healing(maximum);
         }
-        let capacity = self.rules.player_energy_capacity.saturating_add(energy);
+        let capacity = self.rules.agent_class_start.as_ref().map_or_else(
+            || self.rules.player_energy_capacity.saturating_add(energy),
+            |start| {
+                start.maximum_energy(
+                    self.player_effective_primary_attributes()
+                        .unwrap_or(self.rules.player_starting_attributes),
+                    self.player_progression.level(),
+                    energy,
+                )
+            },
+        );
         self.fit_maintained_energy_capacity(capacity);
         self.player_energy.set_capacity(capacity);
         if let (Some(heat), Some(rules)) = (

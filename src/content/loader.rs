@@ -751,9 +751,13 @@ fn load_character_class_definitions(
             starting_equipment,
         )
         .and_then(|definition| {
-            definition
-                .validate_references(weapons, items)
-                .map(|()| definition)
+            definition.validate_references(weapons, items).map(|()| {
+                if let Some(start) = raw.agent_start {
+                    definition.with_agent_start(start)
+                } else {
+                    definition
+                }
+            })
         })
         .map_err(|error| ContentLoadError::CharacterClassDefinition {
             package: package.manifest.id.clone(),
@@ -2803,11 +2807,13 @@ impl RawBodyProfile {
 #[derive(Clone, Copy, Deserialize)]
 #[serde(deny_unknown_fields)]
 struct RawPrimaryAttributes {
-    power: u8,
-    coordination: u8,
-    resilience: u8,
-    perception: u8,
-    processing: u8,
+    power: u16,
+    coordination: u16,
+    resilience: u16,
+    perception: u16,
+    processing: u16,
+    #[serde(default)]
+    willpower: u16,
 }
 
 impl RawPrimaryAttributes {
@@ -2819,6 +2825,7 @@ impl RawPrimaryAttributes {
             self.perception,
             self.processing,
         )
+        .with_willpower(self.willpower)
     }
 }
 
@@ -4709,6 +4716,8 @@ struct RawCharacterClassDefinition {
     starting_items: Vec<RawClassStartingItem>,
     #[serde(default)]
     starting_equipment: Vec<Option<String>>,
+    #[serde(default)]
+    agent_start: Option<crate::agent_class::AgentClassStart>,
 }
 
 #[derive(Deserialize)]
@@ -4766,12 +4775,14 @@ impl RawItemKind {
 #[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
 enum RawItemEffect {
     RestoreIntegrity { amount: u16 },
+    RestoreEnergy { amount: u16 },
 }
 
 impl RawItemEffect {
     const fn into_runtime(self) -> ItemEffect {
         match self {
             Self::RestoreIntegrity { amount } => ItemEffect::RestoreIntegrity { amount },
+            Self::RestoreEnergy { amount } => ItemEffect::RestoreEnergy { amount },
         }
     }
 }
@@ -7697,7 +7708,7 @@ mod tests {
             vec!["core"]
         );
         assert!(loaded.statuses().contains(&corrosion));
-        assert_eq!(loaded.character_classes().iter().count(), 3);
+        assert_eq!(loaded.character_classes().iter().count(), 5);
         assert_eq!(
             loaded
                 .character_classes()

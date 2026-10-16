@@ -1,6 +1,7 @@
 mod experience;
 mod meta;
 mod save;
+pub(crate) use save::encode_player_progression_with_agent_state;
 
 pub use experience::{
     DefeatReward, ExperienceAward, ExperienceAwardOutcome, ExperienceCurve, ExperienceCurveError,

@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-08",
+  "id": "HL04",
+  "title": "Maîtrise des armes lourdes",
+  "revision": 1,
+  "player_copy_markdown": "**HL04 · Maîtrise des armes lourdes — Rang 11 · Passif**\n\n*Vous frappez plus durement en exploitant toute la puissance de vos armes lourdes.*\n\n**Effets actuels**\n\n- Dégâts des armes lourdes et de leurs compétences : **+110 %**.\n- Dégâts de l’attaque ordinaire avec l’arme active : **37–46**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts des armes lourdes et de leurs compétences : **+120 %**.\n- Dégâts de l’attaque ordinaire avec l’arme active : **39–48**.\n\nS’applique à toutes les familles d’armes lourdes à distance, y compris leurs explosions.\n\nDégâts indiqués avant les défenses.",
+  "player_copy_sha256": "7537de6989f8a6d91718b27e8e904099624427750306c128adb3a34b3de79524",
+  "current_turn_shown_copy_markdown": "**Déluge d’acier** est validé sous son nouveau nom. On garde l’arme lourde d’exemple à **18–22 dégâts**.\n\n**HL04 · Maîtrise des armes lourdes — Rang 11 · Passif**\n\n*Vous frappez plus durement en exploitant toute la puissance de vos armes lourdes.*\n\n**Effets actuels**\n\n- Dégâts des armes lourdes et de leurs compétences : **+110 %**.\n- Dégâts de l’attaque ordinaire avec l’arme active : **37–46**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts des armes lourdes et de leurs compétences : **+120 %**.\n- Dégâts de l’attaque ordinaire avec l’arme active : **39–48**.\n\nS’applique à toutes les familles d’armes lourdes à distance, y compris leurs explosions.\n\nDégâts indiqués avant les défenses.\n\n**Visuel proposé :** Icône représentant un canon lourd ; valeurs de dégâts actualisées dans les fiches concernées.",
+  "current_turn_shown_copy_sha256": "6e93b61124185a02c16a222c971cb66877a6fc2560377560a4a34c53b6e07a5b",
+  "source_catalogue_acceptance": "docs/reviews/refonte-agent-2026-10-06/heavy-weapon-catalogue-acceptance-decisions.json",
+  "source_catalogue_acceptance_sha256": "53045807aa43ce3dd3e25938a2acf3f6ec2dcbdc15e150a11e9b3560499ee40a",
+  "prior_skill_acceptance": "docs/reviews/refonte-agent-2026-10-06/deluge-acier-description-acceptance-decisions.json",
+  "prior_skill_acceptance_sha256": "ab8a77b3b8a6471d9b8e16a9198410bb771af4841e2cb8eec5d64d9147537ace",
+  "name_approval": "accepted_catalogue_AR_HL02_ACCEPT01",
+  "roleplay_text_approval": "proposed_pending_explicit_review",
+  "numeric_rules_approval": "shown_current_next_values_proposed_pending_review",
+  "detailed_conditions_approval": "shown_all_heavy_ranged_families_weapon_skill_damage_and_explosions_proposed;unshown_cases_pending",
+  "current_profile_status": "same_18_22_illustrative_resolved_active_heavy_weapon_profile;no_real_weapon_model_or_universal_variance_created",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "active_heavy_ranged_weapon": true,
+    "native_mode": "single_shot",
+    "native_projectiles_per_sequence": 1,
+    "resolved_ordinary_explosion_damage_min_before_skill": 18,
+    "resolved_ordinary_explosion_damage_max_before_skill": 22,
+    "range_origin": "previous_18_22_illustrative_review_fixture;resolved_reference_for_skill_multiplication_only",
+    "attributes_and_other_modifiers": "held_fixed_and_already_in_reference_range;heavy_attribute_formula_not_decided",
+    "actual_runtime_model": "none",
+    "weapon_range_cells": 7,
+    "explosion_radius_cells": 1,
+    "delay_turns": 0,
+    "native_supply": "matter",
+    "native_supply_per_sequence": 5,
+    "native_fields_origin": "current_core_lance_roquettes_range_radius_delay_supply;damage_range_is_review_fixture_only",
+    "ordinary_damage_reference_before_HL04_bonus": [
+      18,
+      22
+    ],
+    "HL04_bonus_in_reference_range": "not_included;computed_once_below",
+    "other_skill_and_equipment_damage_bonus_in_example": "held_fixed;none_added_for_this_demonstration"
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "heavy_weapon_and_weapon_skill_damage_bonus_percent": 110,
+    "ordinary_active_weapon_damage_min_before_defenses": 37,
+    "ordinary_active_weapon_damage_max_before_defenses": 46
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "heavy_weapon_and_weapon_skill_damage_bonus_percent": 120,
+    "ordinary_active_weapon_damage_min_before_defenses": 39,
+    "ordinary_active_weapon_damage_max_before_defenses": 48
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "equipment_attributes_other_modifiers_and_active_weapon": "unchanged",
+    "only_changed_display_values": [
+      "heavy_weapon_and_weapon_skill_damage_bonus_percent",
+      "ordinary_active_weapon_damage_min_before_defenses",
+      "ordinary_active_weapon_damage_max_before_defenses"
+    ]
+  },
+  "formulas_proposed_not_approved": {
+    "bonus_percent": "10 * effective_rank",
+    "illustrative_ordinary_attack": "floor(reference_resolved_ordinary_damage * (100 + bonus_percent) / 100)",
+    "stacking_with_other_skill_buffs": "not_yet_decided;no_additive_or_multiplicative_rule_inferred"
+  },
+  "scope_direction": {
+    "eligible_family": "all_heavy_ranged_families;not_an_item_mass_threshold",
+    "eligible_actions": "ordinary_heavy_weapon_attacks_and_player_skills_that_use_heavy_weapons",
+    "explosions": "native_heavy_weapon_explosions_included;detailed_components_and_delay_rules_pending",
+    "player_owned_damage": "drone_or_other_familiar_damage_not_implicitly_reclassified_as_player_weapon_damage",
+    "hand_thrown_grenades": "not_a_heavy_weapon_action;SG04_scope_preserved",
+    "indirect_status_damage": "not_yet_presented_pending_review"
+  },
+  "previous_rules_preserved": {
+    "passives": "all_learned_passives_automatically_active",
+    "access": "all_classes_no_tiers_one_point_per_rank_ten_learned_gear_above_ten",
+    "ordinary_shooting_tree": "DI01_DI05_remain_excluded_from_heavy",
+    "common_buffs_and_SG04": "previous_scopes_preserved;stacking_order_pending",
+    "rank_color": "different_if_equipment_bonus;no_learned_plus_gear_breakdown_in_tooltip"
+  },
+  "unshown_cases_pending": [
+    "full_rank_curve",
+    "heavy_attribute_formulas",
+    "weapon_skill_modifier_order_and_integer_rounding_policy",
+    "T03_SG04_and_other_passive_or_buff_stacking",
+    "native_direct_elemental_added_delayed_and_indirect_damage_components",
+    "snapshot_vs_live_equipment_change_for_existing_delayed_projectiles",
+    "transformation_weapon_effect_inheritance_and_eligibility",
+    "classification_of_future_heavy_models",
+    "wrong_active_weapon_preview_warning_without_fabricated_damage_range",
+    "native_icon_pixels_and_all_other_unshown_cases"
+  ],
+  "tooltip_format": {
+    "one_RP_paragraph": true,
+    "no_table": true,
+    "no_player_formula": true,
+    "only_changes_in_next_rank": true,
+    "ordinary_action_time_and_single_salvo_count_omitted": true,
+    "learned_plus_gear_breakdown_omitted": true,
+    "passive_no_timed_duration_added": true
+  },
+  "visual_proposal": "Icône représentant un canon lourd ; valeurs de dégâts actualisées dans les fiches concernées.",
+  "visual_intention_approval": "proposed_pending_review;damage_value_refresh_existing_direction_preserved",
+  "native_visual_approval": "pending_not_created",
+  "runtime_integration": "not_integrated",
+  "checks": {
+    "current_min": 37,
+    "current_max": 46,
+    "next_min": 39,
+    "next_max": 48,
+    "bonus_current": 110,
+    "bonus_next": 120,
+    "next_learned_rank": 10
+  }
+}

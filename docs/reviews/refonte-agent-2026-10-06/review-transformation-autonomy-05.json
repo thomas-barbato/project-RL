@@ -1,0 +1,202 @@
+{
+  "date": "2026-10-07",
+  "review_id": "TRANS-AUTO01",
+  "revision": 5,
+  "document": "docs/PROPOSITION_AUTONOMIE_TRANSFORMATIONS_AGENT.md",
+  "document_sha256": "601a59cedbb71a37e03b910c47a6ec2fea8031a9c6814ea8d9f9085e72e03e21",
+  "direction_decisions": "docs/reviews/refonte-agent-2026-10-06/transformation-autonomy-direction-decisions.json",
+  "direction_decisions_sha256": "cf3a7df43e22b769cb6a6f5ed30b90c6e4da92895c157764e4deaab0895628f9",
+  "forms": [
+    {
+      "id": "M01",
+      "title": "Mue prédatrice",
+      "art_number": 62,
+      "review_ids": [
+        "M01-A03"
+      ],
+      "actions": [
+        "Griffe",
+        "Lacération",
+        "Bond"
+      ],
+      "proposal": "Lacération frappe les trois cases adjacentes devant l’agent, avec une chance de saignement sur chaque ennemi touché. Griffe et Bond sont conservés.",
+      "roles": [
+        "sustained_single_target_bleed",
+        "frontal_group_attack",
+        "repositioning"
+      ],
+      "new_or_changed_actions": [
+        "Lacération"
+      ],
+      "numeric_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M01-06.json",
+      "named_action_roles_approval": "as_last_shown_outline_explicitly_accepted;numbers_conditions_and_native_render_still_need_individual_review",
+      "displayed_numeric_approval": "M01_05_current_next_values_accepted;unshown_curves_defaults_and_cases_pending"
+    },
+    {
+      "id": "TR61",
+      "title": "Colosse biomécanique",
+      "art_number": 61,
+      "review_ids": [
+        "TR61-A03"
+      ],
+      "actions": [
+        "Coup lourd",
+        "Onde de choc",
+        "Écrasement"
+      ],
+      "proposal": "Écrasement ajoute une frappe concentrée qui ignore une partie de l’armure de la cible, utile contre les boss. Onde de choc garde la chance d’assommer en zone demandée ; défense et PV restent ses moyens de survie.",
+      "roles": [
+        "sustained_heavy_hit",
+        "area_damage_and_stun",
+        "boss_hit_supported_by_intrinsic_defense_HP"
+      ],
+      "new_or_changed_actions": [
+        "Écrasement"
+      ],
+      "numeric_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-TR61-04.json",
+      "named_action_roles_approval": "as_last_shown_outline_explicitly_accepted;numbers_conditions_and_native_render_still_need_individual_review",
+      "displayed_numeric_approval": "TR61_03_displayed_current_next_values_explicitly_accepted;unshown_curves_defaults_and_cases_pending",
+      "displayed_conditions_approval": "TR61_03_displayed_conditions_explicitly_accepted;unshown_cases_pending",
+      "displayed_visual_direction_approval": "TR61_03_displayed_direction_explicitly_accepted;native_pixels_pending",
+      "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/colossus-full-description-acceptance-decisions.json"
+    },
+    {
+      "id": "TR63",
+      "title": "Cuirassé",
+      "art_number": 63,
+      "review_ids": [
+        "TR63-A02",
+        "TR63-A03"
+      ],
+      "actions": [
+        "Heurt",
+        "Décharge de plaques",
+        "Fermeture des plaques"
+      ],
+      "proposal": "Décharge de plaques devient une attaque sur les ennemis adjacents alimentée par la réserve de riposte. Fermeture des plaques donne une protection temporaire pour anticiper une attaque dangereuse.",
+      "roles": [
+        "ordinary_contact_hit",
+        "area_counterattack_from_damage_reserve",
+        "active_temporary_protection"
+      ],
+      "new_or_changed_actions": [
+        "Décharge de plaques",
+        "Fermeture des plaques"
+      ],
+      "numeric_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-TR63-02.json",
+      "named_action_roles_approval": "as_last_shown_outline_explicitly_accepted;numbers_conditions_and_native_render_still_need_individual_review",
+      "displayed_numeric_approval": "TR63_01_displayed_current_next_values_explicitly_accepted;unshown_curves_defaults_and_cases_pending",
+      "displayed_conditions_approval": "TR63_01_displayed_reserve_closure_renewal_and_equipment_conditions_explicitly_accepted;unshown_cases_pending",
+      "displayed_visual_direction_approval": "TR63_01_displayed_direction_explicitly_accepted;native_pixels_pending",
+      "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/cuirasse-full-description-acceptance-decisions.json"
+    },
+    {
+      "id": "TR64",
+      "title": "Possédé",
+      "art_number": 64,
+      "review_ids": [
+        "TR64-A03"
+      ],
+      "actions": [
+        "Trait corporel",
+        "Pulsation occulte",
+        "Drain organique"
+      ],
+      "proposal": "Drain organique inflige des dégâts à une cible et rend une partie des PV réellement retirés. Trait corporel conserve le tir naturel et Pulsation occulte la réponse de zone.",
+      "roles": [
+        "sustained_ranged_attack",
+        "area_occult_attack",
+        "damage_based_self_recovery"
+      ],
+      "new_or_changed_actions": [
+        "Drain organique"
+      ],
+      "numeric_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-TR64-02.json",
+      "named_action_roles_approval": "as_last_shown_outline_explicitly_accepted;numbers_conditions_and_native_render_still_need_individual_review",
+      "displayed_numeric_approval": "TR64_01_displayed_current_next_values_explicitly_accepted;unshown_curves_defaults_and_cases_pending",
+      "displayed_conditions_approval": "TR64_01_displayed_targeting_drain_Silence_renewal_and_equipment_conditions_explicitly_accepted;unshown_cases_pending",
+      "displayed_visual_direction_approval": "TR64_01_displayed_direction_explicitly_accepted;native_pixels_pending",
+      "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/possessed-full-description-acceptance-decisions.json"
+    },
+    {
+      "id": "TR65",
+      "title": "Abysse",
+      "art_number": 65,
+      "review_ids": [
+        "TR65-A03"
+      ],
+      "actions": [
+        "Allonge",
+        "Fente abyssale",
+        "Pas d’ombre"
+      ],
+      "proposal": "Fente abyssale frappe plusieurs ennemis alignés. Allonge conserve le contact à distance et Pas d’ombre le repositionnement.",
+      "roles": [
+        "sustained_reach_attack",
+        "line_group_attack",
+        "shadow_repositioning"
+      ],
+      "new_or_changed_actions": [
+        "Fente abyssale"
+      ],
+      "numeric_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-TR65-01.json",
+      "named_action_roles_approval": "as_last_shown_outline_explicitly_accepted;numbers_conditions_and_native_render_still_need_individual_review",
+      "displayed_numeric_approval": "all_displayed_TR65_current_next_values_proposed_pending_explicit_review",
+      "displayed_conditions_approval": "named_three_action_roles_and_displayed_shared_renewal_previously_accepted;TR65_line_shadow_destination_obstacle_crossing_and_Silence_conditions_pending"
+    }
+  ],
+  "same_form_renewal_proposal": {
+    "review_id": "TRANS-RENEW01",
+    "approval": "displayed_cooldown_start_renew_same_form_pay_energy_restore_duration_no_heal_and_action_cooldown_preservation_explicitly_accepted;unshown_reserve_M02_budget_and_sampling_cases_pending",
+    "cooldown_starts_on_activation": true,
+    "same_active_form_can_be_renewed_when_its_cooldown_is_ready": true,
+    "renewal_pays_current_form_energy_cost": true,
+    "renewal_resets_remaining_duration_to_current_full_duration": true,
+    "renewal_preserves_HP_percentage_and_grants_no_healing": true,
+    "renewal_preserves_intrinsic_action_cooldowns_and_accumulated_form_reserve": true,
+    "renewal_does_not_reset_M02_extension_budget_for_same_continuous_form": true,
+    "new_form_switch": "existing_human_return_rule_retained;not_general_permission_to_cast_other_learned_actives",
+    "equipment_type_effect_source": "original_pre_form_active_weapon_group_preserved;exact_parameter_resampling_cases_pending",
+    "accepted_scope": [
+      "transformation_cooldown_starts_on_activation",
+      "renew_same_active_form_once_cooldown_is_ready",
+      "pay_current_form_energy_and_restore_full_current_duration",
+      "renewal_does_not_heal",
+      "intrinsic_action_cooldowns_preserved"
+    ],
+    "unshown_cases_pending": [
+      "other_form_reserve_preservation",
+      "M02_extension_budget_on_renewal",
+      "HP_rounding_changed_equipment_parameter_sampling_and_exact_tick_order"
+    ],
+    "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/predatory-molt-autonomy-and-renewal-acceptance-decisions.json",
+    "accepted_TR63_reserve_preservation": {
+      "review_id": "TR63-RES01",
+      "same_form_renewal_preserves_reserve": true,
+      "exit_clears_reserve": true,
+      "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/cuirasse-full-description-acceptance-decisions.json",
+      "other_form_scope": false
+    }
+  },
+  "duration_review_id": "TRANS-DUR01",
+  "initial_duration_example": {
+    "skill_id": "M01",
+    "current_effective_rank": 11,
+    "current_turns": 22,
+    "next_effective_rank": 12,
+    "next_turns": 23,
+    "approval": "M01_TR61_TR63_TR64_displayed22_and23_explicitly_accepted;TR65_pending"
+  },
+  "intrinsic_action_purchase": "included_with_form;no_separate_skill_points",
+  "new_learned_skill_count": 0,
+  "monsters_and_full_run_balance_validation": "not_yet_defined_or_tested;design_target_only",
+  "runtime_integration": "not_integrated",
+  "previous_review": "docs/reviews/refonte-agent-2026-10-06/review-transformation-autonomy-04.json",
+  "previous_review_sha256": "f9ecc0ce093cde77493be7e9a414a891a0a7f678a5b147b9a2b3cba0f63cce92",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/transformation-autonomy-revision-04.md",
+  "previous_document_sha256": "89d76d2592190b47b5aa2df3c1c7f752ae1d67e94c78fd2e42b67420c2d3db65",
+  "named_roles_and_M01_acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/predatory-molt-autonomy-and-renewal-acceptance-decisions.json",
+  "named_roles_and_M01_acceptance_decisions_sha256": "002968d49fa5a52e7bbb034cacfd460a7c5bd1c6fc9a2ae108867702d185c34a",
+  "latest_acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/possessed-full-description-acceptance-decisions.json",
+  "latest_acceptance_decisions_sha256": "0f9c44f76a01f354e967afe57edc2df55aaf612f16825a23a5d9d63ef9baaab0"
+}

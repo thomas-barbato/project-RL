@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-10",
+  "review_id": "AMMO-BOX01",
+  "revision": 1,
+  "user_confirmation": "oui, est-ce que ca te semble correcte ?",
+  "accepted_synthesis_scope": "replace_consumed_ammunition_with_equipped_box;new_equipment_slot_on_character_silhouette;shop_and_loot_with_magical_versions;slightly_lower_ordinary_ranged_weapon_skill_damage_than_melee;heavy_weapons_excluded_from_that_reduction",
+  "accepted_direction": {
+    "item_family_label": "Boîte de munitions",
+    "requires_equipped_box_for_agent_ranged_weapons_including_heavy": true,
+    "inventory_presence_alone_satisfies_requirement": false,
+    "quantity_consumption_per_attack": false,
+    "new_dedicated_equipment_slot": true,
+    "silhouette_equipment_slot": true,
+    "shop_and_loot": true,
+    "magical_versions": true,
+    "ranged_skill_balance": "slightly_lower_damage_than_comparable_melee_skills;not_a_change_to_heavy_weapon_skills"
+  },
+  "supersedes": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/universal-ammunition-and-matter-removal-decisions.json",
+      "reference_sha256": "aee8578f5b4dc465e68f2308e13e81dcc19ac1df64a4b3b9cb75f54ac8d29760"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-universal-ammunition-AMMO02-02.json",
+      "reference_sha256": "bcdd5742ab29c0307fa913c7d4e675c8fe5f7e9b34cc93e462b5643128a6272b"
+    }
+  ],
+  "superseded_start_parameters": "START_GEAR01_40_ammunition_stacks_and1_per_projectile_no_longer_apply;remaining_accepted_start_gear_and_consumables_preserved",
+  "preserved": "common_skill_energy_and_energy_only_secondary_mine_and_grenade_skills;no_change_to_accepted_implants_attributes_or_skill_effects_except_requested_future_ranged_damage_rebalance",
+  "still_to_review": [
+    "exact_box_models_names_RP_stats_and_magical_affixes",
+    "shop_prices_and_loot_distribution",
+    "native_art_and_equipment_UI_slot_placement",
+    "starting_boxes_for_gun_users",
+    "familiar_and_monster_requirements",
+    "exact_ranged_vs_melee_damage_values"
+  ],
+  "no_inferred_rules": "no_new_charges_durability_lifetime_or_energy_cost_for_box;no_mandatory_box_for_spellcasting_inferred",
+  "runtime_integration": "not_integrated"
+}

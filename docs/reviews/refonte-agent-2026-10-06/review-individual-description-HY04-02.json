@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-08",
+  "id": "HY04",
+  "review_id": "HY04",
+  "revision": 2,
+  "title": "Échange de position",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-82.json",
+  "source_skill_block_sha256": "0ad6367cc2c2622cfcdc6f04133406c60f8e8219ea17b0a601879f417add2970",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "currently_transformed": false,
+    "other_passive_implant_or_cost_modifiers": false,
+    "attributes": "unchanged; displayed range cost cooldown proposals scale with skill rank"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "drone_distance_cells": 6,
+    "energy_cost": 8,
+    "cooldown_turns": 6
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "drone_distance_cells": 6,
+    "energy_cost": 7,
+    "cooldown_turns": 6
+  },
+  "formulas_proposed": {
+    "drone_distance_cells": "min(8,4+floor((effective_rank-1)/5))",
+    "energy_cost": "max(3,10-floor(effective_rank/4))",
+    "cooldown_turns": "ceil(3+50/(effective_rank+9))",
+    "full_curves_defaults_minimum_cost_and_rounding_approval": "unshown_pending_review"
+  },
+  "historical_energy_formula_status": "Old ceil(10-4*(effective_rank-1)/(effective_rank+9)) yields8 at both ranks11 and12; unapproved working curve revised for shown next7. Old artifacts preserved as history. Current energy formula and floor3 remain proposed.",
+  "conditions_proposed": {
+    "select_controlled_visible_deployed_drone_in_range": true,
+    "positions_exchanged": "player and chosen drone; same map",
+    "both_destinations_must_be_legal_for_new_occupants": true,
+    "drone_cargo_stays_with_drone": true,
+    "human_form_required": true,
+    "blocked_by_Silence": true,
+    "player_Gel_blocks_voluntary_exchange": true,
+    "actor_and_destination_hazards": "ordinary existing rules;SELF_DMG01 preserved",
+    "no_hidden_actor_or_cell_reveal": true,
+    "no_additional_spell_drone_heal_damage_dodge_bonus_or_free_cargo_transfer": true,
+    "line_of_effect_obstacles_drone_Gel_Ancrage_and_movement_reactions": "unshown_pending_review"
+  },
+  "name_approval": "explicit_full_card_user_acceptance",
+  "roleplay_text_approval": "explicit_full_card_user_acceptance",
+  "numeric_rules_approval": "displayed_range6_current_energy8_next7_CD6_explicitly_accepted;full_curves_defaults_floor3_unshown_pending",
+  "detailed_conditions_approval": "displayed_drone_control_visibility_range_same_map_legal_destinations_cargo_human_form_Silence_and_player_Gel_explicitly_accepted;unshown_cases_pending",
+  "visual_intention_approval": "displayed_two_dark_particle_silhouettes_fragment_and_reform_on_exchanged_cells_explicitly_accepted",
+  "visual_approval": "native_animation_pending_prototype_user_review",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "energy_cost"
+    ]
+  },
+  "player_copy_markdown": "**HY04 · Échange de position — Rang 11 · Actif**\n\n*Vous pliez l’espace entre vous et un drone, échangeant vos positions.*\n\n**Effets actuels**\n\n- Distance maximale du drone : **6 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Coût en énergie : **7**.\n\n**Coût : 8 énergie · Recharge : 6 tours.**\n\nChoisissez un drone contrôlé, visible et à portée. Vos positions sont échangées sur la même carte. Les deux cases doivent pouvoir accueillir leur nouvel occupant.\n\nLe drone conserve les objets qu’il transporte.\n\nForme humaine requise. Silence ou Gel empêche son utilisation.",
+  "player_copy_sha256": "e6298b4f40c005016dca526e30a9f7a90a8b69ad8e79662c4b39ff782735e9c3",
+  "visual_copy_markdown": "**Visuel proposé :** vos deux silhouettes se fragmentent en particules sombres, puis se reforment sur les cases échangées.",
+  "visual_copy_sha256": "58d5be8dd210293d1607668d7bc61657af8a0c0f5f67a33b6414c85307c7f970",
+  "current_turn_shown_copy_markdown": "**HY04 · Échange de position — Rang 11 · Actif**\n\n*Vous pliez l’espace entre vous et un drone, échangeant vos positions.*\n\n**Effets actuels**\n\n- Distance maximale du drone : **6 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Coût en énergie : **7**.\n\n**Coût : 8 énergie · Recharge : 6 tours.**\n\nChoisissez un drone contrôlé, visible et à portée. Vos positions sont échangées sur la même carte. Les deux cases doivent pouvoir accueillir leur nouvel occupant.\n\nLe drone conserve les objets qu’il transporte.\n\nForme humaine requise. Silence ou Gel empêche son utilisation.\n\n**Visuel proposé :** vos deux silhouettes se fragmentent en particules sombres, puis se reforment sur les cases échangées.",
+  "current_turn_shown_copy_sha256": "8712486c69096854c6c360a704e8bedc3b60269b70f4c23e0b70b806f9ff9b8f",
+  "unshown_cases_pending": [
+    "full_rank_curves_defaults_minimum_cost_modifiers_and_rounding",
+    "distance_metric_observation_union_corners_and_large_footprints",
+    "intermediate_obstacle_line_of_effect_and_destination_hazard_order",
+    "drone_Gel_Ancrage_other_movement_locks_and_status_classification",
+    "reaction_attacks_noise_and_perception_updates_after_swap",
+    "same_frame_drone_target_death_or_movement_and_suspension",
+    "cooldown_start_counting_and_atomic_refusals_no_energy_time_or_RNG",
+    "native_actor_and_drone_fragment_reformation_frames_selection_preview_and_ground_layers"
+  ],
+  "runtime_integration": "not_integrated",
+  "previous_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY04-01.json",
+  "previous_review_sha256": "4b633066cc3de16ee30e3a556c79b42b06f35dabe7c1a89b32e4db9a233a25fc",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/position-exchange-description-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "cd985a0243d428be48cc1f527784e562317e2f0f383921e2d722eccf210edd70"
+}

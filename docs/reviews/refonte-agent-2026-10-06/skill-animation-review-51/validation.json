@@ -1,0 +1,52 @@
+{
+  "batch": "ANIM-S22",
+  "date": "2026-10-13",
+  "visual_status": "visually_approved",
+  "campaign_integration": false,
+  "compile": "cargo build --locked: passed",
+  "targeted_tests": "cargo test --locked --bin project-rl agent_skill_lab_review: 109 passed, 0 failed",
+  "format": "cargo fmt --all -- --check: passed",
+  "diff_check": "Scoped git diff --check: passed",
+  "native_capture": {
+    "tile": 64,
+    "world": [
+      576,
+      576
+    ],
+    "gpu_readback": [
+      640,
+      720
+    ],
+    "views": 28,
+    "frames_per_view": 192,
+    "fps": 24,
+    "readbacks_with_controls": 6048,
+    "lossless_png_verified_before_raw_removal": true,
+    "resampling_of_native_capture": false
+  },
+  "animations": 29,
+  "checked": [
+    "four directions with unchanged actor and equipment pose",
+    "automatic charges benefit following hits, maximum3, no timer",
+    "miss, movement and other action rupture; no-time menu preservation",
+    "original projectile appearance and size preserved on return",
+    "victim and attacker share cosmetic harmful-hit reaction",
+    "physical wound blood, no magical blood",
+    "received prepared damage persists despite return, exclusions and expiry",
+    "six-turn buff and cooldown change only with prepared actions",
+    "quiet waiting never replays impacts",
+    "world VFX and actor recoil respect obstacles; HUD identical in controls",
+    "browser side-by-side page, native size, fullscreen and scaled hover controls",
+    "GIF palette preserves original purple actor and projectile colors",
+    "identical world frames shared in browser without resampling or pixel changes",
+    "6103 prior approved or reused files remain byte-identical"
+  ],
+  "browser_runtime": "Not automated; native GPU images and GIF phases visually inspected, HTML controller and local paths verified offline.",
+  "rule_scope": "Existing BM03-05 and BM05-02 values retained. Prepared base20 and return8 examples establish no real weapon/monster stats, variance, defense, rounding or game action-resolution order.",
+  "pending": "Mixed types, multiple hits or targets, absorption and lethal hits, recipient defenses, reflection recursion, hidden/offscreen author eligibility, transformed Tempo compatibility and dense combat composition.",
+  "temporary_actors": "Existing enemy32px drawings enlarged to64; adaptation scheduled after animations.",
+  "source_art": "Existing approved icons, blood and occult projectile reused without raster redraw. Existing approved violet-franc shader applies only to VFX.",
+  "full_engine_suite_or_release_build": "Not run for this isolated animation review.",
+  "acceptance": "visual-acceptance-01.json",
+  "visual_approval": "BM03-A01 and BM05-A01 accepted."
+}

@@ -1,0 +1,26 @@
+{
+  "batch": "ANIM-S10",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 21,
+      "id": "A01",
+      "variant": "A01-A01",
+      "name": "Trait arcanique",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 22,
+      "id": "A02",
+      "variant": "A02-A01",
+      "name": "Déflagration occulte",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "bolt": "Short violet dart with dark filaments, .18-second cosmetic flight and .22-second black-knot impact. No added status or piercing/interception rule.",
+  "blast": "Blood-colored ground seal ruptures into angular black/violet fragments. Six drawings played once over .55 seconds, no remaining field or blood injury status.",
+  "timing": "Cosmetic motion does not advance turns, recharges or repeat prepared contacts. Both impacts disappear without waiting for a turn.",
+  "geometry": "Prepared target and 3x3 zone use current catalogue ranges. Physical walls cut drawings; a full cloison refuses the hidden bolt target and keeps the blast on the accessible side. The close case places the agent in its own zone without contact. Diagonal/final geometry remains separate.",
+  "scope": "Isolated debug fixture, no damage, RNG, real FOV/AI, saves or campaign integration. Previous rules, catalogue, approved frost/fire and actors are preserved."
+}

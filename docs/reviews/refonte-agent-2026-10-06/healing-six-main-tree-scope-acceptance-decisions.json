@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SKILL-HEAL01-SCOPE02-ACCEPT01",
+  "user_instructions": [
+    "Oui, ces six ensembles",
+    "soin de tir oui, mais pas esquive ^^"
+  ],
+  "accepted_question": "Pour les soins, les grands arbres concernés sont-ils ces six ensembles : Mêlée/Survie, Drones/Affaiblissements, Tir/Esquive, Magie (Feu/Froid/Occulte), Transformations/Hybrides et Armes lourdes ? Un soin par ensemble suffirait, sans en imposer aux branches de buffs ni aux arbres secondaires.",
+  "accepted_scope": "one_healing_option_in_each_of_six_major_ensembles;not_every_specialized_branch;no_heal_required_in_buffs_or_secondary_trees",
+  "ranged_clarification": "healing_goes_in_Tir_only;no_healing_skill_added_to_Esquive",
+  "accepted_groups": [
+    "Mêlée/Survie",
+    "Drones/Affaiblissements",
+    "Tir/Esquive",
+    "Magie",
+    "Transformations/Hybrides",
+    "Armes lourdes"
+  ],
+  "previous_scope_correction": "docs/reviews/refonte-agent-2026-10-06/healing-main-tree-scope-correction-decisions.json",
+  "previous_scope_correction_sha256": "b4231ef8550306885be12da0e5777550612ed1dcba7690fd32eb9ee34f798a7c",
+  "existing_skills_preserved": true,
+  "DR01_prior_acceptance": "docs/reviews/refonte-agent-2026-10-06/targeted-repair-description-acceptance-decisions.json",
+  "DR01_prior_acceptance_sha256": "91b9e3f57f4f657b6cd59894238adacf3cc6331961c3c964a14add828d271aed",
+  "new_names_RP_values_and_visuals": "not_accepted_by_scope_confirmation;DI07_full_card_proposed_separately",
+  "runtime_integration": "not_integrated"
+}

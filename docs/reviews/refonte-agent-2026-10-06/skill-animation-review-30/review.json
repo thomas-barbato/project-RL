@@ -1,0 +1,25 @@
+{
+  "batch": "ANIM-S10",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 21,
+      "id": "A01",
+      "variant": "A01-A02",
+      "name": "Trait arcanique",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 22,
+      "id": "A02",
+      "variant": "A02-A02",
+      "name": "Déflagration occulte",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "feedback": "The user likes the drawings but finds the dark violet hard to see on the game board.",
+  "revision": "Only the native effect shader lifts colored violet highlights toward pale lavender. Dark cores and crimson seal stay dark; textures and alpha are unchanged.",
+  "retained": "Exact previous drawings, sizes, placement, timings, walls, prepared contacts and gameplay rules.",
+  "scope": "Isolated review; no campaign integration or general palette approval. Previous review remains intact."
+}

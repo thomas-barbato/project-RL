@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-13",
+  "build": { "command": "cargo build --locked", "exit_code": 0 },
+  "targeted_tests": { "command": "cargo test --locked agent_skill_lab_review", "passed": 55, "failed": 0 },
+  "format": { "command": "cargo fmt --all -- --check", "exit_code": 0 },
+  "diff_check": { "command": "git diff --check", "exit_code": 0 },
+  "native_render": { "views": 16, "animations": 9, "additional_comparison": true, "protected_files_unchanged": 54040, "pixel_controls": "passed" },
+  "revision": "HY05-A02 travelling spirit shards have 2x perpendicular thickness and 1.5x length. The source drawings, source alpha, palette, opacity, path, timing, initial shadow and all prepared state are identical. No new raster drawing or repainting.",
+  "comparison": "Visible effect pixel count increased by more than 50% on every valid native scene at frame 24. Rayon vorace renders identically; timelines and actor/terrain controls match. Only transient skill-name antialias differences are excluded inside the known name rectangle at frames 17-33.",
+  "gallery_controller": "Both thickness profiles load valid frames. Explicit-turn loops, interruptions, pause and loading controls passed offline VM checks.",
+  "gallery_links": { "checked": 9, "missing": 0 },
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Native captures and offline controller verified.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "HY05-A02 pending; OC05-A01 previously approved",
+  "ray_acceptance": "../skill-animation-review-33/ray-acceptance-01.json"
+}

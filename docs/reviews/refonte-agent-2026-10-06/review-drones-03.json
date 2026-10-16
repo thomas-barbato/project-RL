@@ -1,0 +1,202 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/drone-persistence-acceptance-decisions.json",
+  "latest_decisions_sha256": "5508b7e6b7a33237a191c26bdc24c404c21d740538dbbb7d064bbbf83a104dfe",
+  "batch_revision": 3,
+  "document": "docs/REVUE_DRONES_AGENT.md",
+  "document_sha256": "8028dab27928f00f34eee8664336609d277e27c3051bf682fc8a9da61d36a91f",
+  "status": "historical_expiry_and_autonomy_superseded",
+  "blocks": [
+    {
+      "id": "D56",
+      "title": "Invocation de l'Éclaireur",
+      "revision": 1,
+      "block_sha256": "7545f3e3b6a48128d3c0c1102b87c4041abea3f55e814dd876159ce9795ab4d3",
+      "text_sha256": "01aef9aa1800992f5e3a39b0c2cb63395760e66f4336e935a69fbee76651122b",
+      "mechanic_sha256": "750fc3eac48d09c542d241cdfcc5f883076109a728e328f7b56d0d6d10a0f305",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "requested_structure_confirmed_values_and_behaviors_pending_review",
+      "visual_approval": "existing_sprite_accepted_new_actions_and_bindings_pending_review",
+      "runtime_integration": "not_integrated",
+      "name_approval": "accepted_catalogue_name",
+      "catalogue_role_approval": "accepted_as_presented",
+      "superseded_duration_reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-02.json"
+    },
+    {
+      "id": "D57",
+      "title": "Invocation de la Mule",
+      "revision": 1,
+      "block_sha256": "0cc8c12596d90509330eec85757b96bf76769453c62f7bee5e3b75bd525eb9a0",
+      "text_sha256": "d9b6cb9d5de92b0c51cfeef35d9672b6297bf08c9fc797b7084f15aa1733eb15",
+      "mechanic_sha256": "20b3ec508a6d881227b7d552f167dc4c938c86e94309fb885b7c9775c08642cf",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "requested_structure_confirmed_values_and_behaviors_pending_review",
+      "visual_approval": "existing_sprite_accepted_new_actions_and_bindings_pending_review",
+      "runtime_integration": "not_integrated",
+      "name_approval": "accepted_catalogue_name",
+      "catalogue_role_approval": "accepted_as_presented",
+      "superseded_duration_reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-02.json"
+    },
+    {
+      "id": "D58",
+      "title": "Invocation du drone Traqueur",
+      "revision": 1,
+      "block_sha256": "8cde5aead3290fcce8b68401281c62ce82c39532d75df16e3595ddd3c58ce7fa",
+      "text_sha256": "0cedabf2b6193fe54890e0aef0be193cdf68c1d2fedb99d672de29621b232663",
+      "mechanic_sha256": "e4d0fd3c78080f31a6a3b0dbbb46f769d4e3d7d6de5fa5c62299c769874f06fa",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "requested_structure_confirmed_values_and_behaviors_pending_review",
+      "visual_approval": "existing_sprite_accepted_new_actions_and_bindings_pending_review",
+      "runtime_integration": "not_integrated",
+      "name_approval": "accepted_catalogue_name",
+      "catalogue_role_approval": "accepted_as_presented",
+      "superseded_duration_reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-02.json"
+    },
+    {
+      "id": "D59",
+      "title": "Invocation de l'Artilleur",
+      "revision": 1,
+      "block_sha256": "aa85a9e6aa5ab3e494134b616f4ce77f49c3b309673dcb4673de6ce03209bfb2",
+      "text_sha256": "6d7234a9c3da3f9ab0502ec6c17efa7bac68452034ce496c0fae2383689abdf7",
+      "mechanic_sha256": "efa7d2488fda1a92ee41cbeb5b2e92423fe34e7b5a34c85e33834fb240cc5899",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "requested_structure_confirmed_values_and_behaviors_pending_review",
+      "visual_approval": "existing_sprite_accepted_new_actions_and_bindings_pending_review",
+      "runtime_integration": "not_integrated",
+      "name_approval": "accepted_catalogue_name",
+      "catalogue_role_approval": "accepted_as_presented",
+      "superseded_duration_reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-02.json"
+    },
+    {
+      "id": "D66",
+      "title": "Invocation du Gardien",
+      "revision": 1,
+      "block_sha256": "5d68453bd84fd667916c1c4bb0f8846ca16afd09c133fc761fb002a680e0bb51",
+      "text_sha256": "279f8000e1412a7c7438db610b09cb7ad0def60681b718bf158f9327d025f121",
+      "mechanic_sha256": "f285d0d2bd934b898aa9af40ca3f0b6e441261e284b5a6d5e1d62dc2f6dc6a02",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "requested_structure_confirmed_values_and_behaviors_pending_review",
+      "visual_approval": "existing_sprite_accepted_new_actions_and_bindings_pending_review",
+      "runtime_integration": "not_integrated",
+      "name_approval": "accepted_catalogue_name",
+      "catalogue_role_approval": "accepted_as_presented",
+      "superseded_duration_reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-02.json"
+    },
+    {
+      "id": "DP01",
+      "title": "Autonomie des drones",
+      "revision": 1,
+      "block_sha256": "427d197531ea457928afdc705f1189f48f33b59304e781de33fac86eec983edb",
+      "text_sha256": "cfaf1ae537f78aea38f4f49044a9465a868067d03df577483a746b073b0f1b1a",
+      "mechanic_sha256": "0e59b863b7f2ba094a4124201902ed5d4aab66dbce6e4df242ebfbe9ab0ad74d",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "requested_structure_confirmed_values_and_behaviors_pending_review",
+      "visual_approval": "existing_sprite_accepted_new_actions_and_bindings_pending_review",
+      "runtime_integration": "not_integrated",
+      "name_approval": "accepted_catalogue_name",
+      "catalogue_role_approval": "accepted_as_presented",
+      "superseded_duration_reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-02.json"
+    },
+    {
+      "id": "DP02",
+      "title": "Blindage des drones",
+      "revision": 1,
+      "block_sha256": "c9e55694ef49d6e10272dc0ddf63da259775f48f8afa11522c3ab34c19e3f95f",
+      "text_sha256": "1f920980ef86e62d5e7c78cd698e0a298cfb03d409a76148d434e9e3095baf91",
+      "mechanic_sha256": "1a8ed857317a036c8f6b154c2aef178439640f6dbfb64dadbced0c119fbbcdff",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "requested_structure_confirmed_values_and_behaviors_pending_review",
+      "visual_approval": "existing_sprite_accepted_new_actions_and_bindings_pending_review",
+      "runtime_integration": "not_integrated",
+      "name_approval": "accepted_catalogue_name",
+      "catalogue_role_approval": "accepted_as_presented",
+      "superseded_duration_reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-02.json"
+    }
+  ],
+  "existing_damage_passive_reference": "O03",
+  "duplicate_skill_alias": {
+    "D59": "O01"
+  },
+  "sprite_bindings": [
+    {
+      "skill_review_id": "D56",
+      "number": 56,
+      "name": "Éclaireur",
+      "art_id": "rl-art:056",
+      "sprite": "assets/sprites/bestiary/tiles/056-living-32.png",
+      "sprite_sha256": "ddf5be81d47ddba7d75bab7d36a4ab13051744f60552f83a07b8c824d3593e29",
+      "native_size": [
+        32,
+        32
+      ],
+      "sprite_modified": false,
+      "skill_binding_approval": "catalogue_role_association_accepted_runtime_render_pending"
+    },
+    {
+      "skill_review_id": "D57",
+      "number": 57,
+      "name": "Mule",
+      "art_id": "rl-art:057",
+      "sprite": "assets/sprites/bestiary/tiles/057-living-32.png",
+      "sprite_sha256": "0664e18c95292603f855af32b0a0a3ad155bbb1adc0c48bb5886670712bea200",
+      "native_size": [
+        32,
+        32
+      ],
+      "sprite_modified": false,
+      "skill_binding_approval": "catalogue_role_association_accepted_runtime_render_pending"
+    },
+    {
+      "skill_review_id": "D58",
+      "number": 58,
+      "name": "Traqueur",
+      "art_id": "rl-art:058",
+      "sprite": "assets/sprites/bestiary/tiles/058-living-32.png",
+      "sprite_sha256": "d56130cf890b2a38954c8473f9df77e67eef316b1931ce9fb505d0510b7da265",
+      "native_size": [
+        32,
+        32
+      ],
+      "sprite_modified": false,
+      "skill_binding_approval": "catalogue_role_association_accepted_runtime_render_pending"
+    },
+    {
+      "skill_review_id": "D59",
+      "number": 59,
+      "name": "Artilleur",
+      "art_id": "rl-art:059",
+      "sprite": "assets/sprites/bestiary/tiles/059-living-32.png",
+      "sprite_sha256": "914e9917df6448b2a1b40190354a21a5a291088ac62cabbcc26a49a525ac5b62",
+      "native_size": [
+        32,
+        32
+      ],
+      "sprite_modified": false,
+      "skill_binding_approval": "catalogue_role_association_accepted_runtime_render_pending"
+    },
+    {
+      "skill_review_id": "D66",
+      "number": 66,
+      "name": "Gardien",
+      "art_id": "rl-art:066",
+      "sprite": "assets/sprites/bestiary/tiles/066-living-32.png",
+      "sprite_sha256": "a3d200696497051ca82a3cf278b0aabbb95e8b95b6341c049cf559c5b2a9502e",
+      "native_size": [
+        32,
+        32
+      ],
+      "sprite_modified": false,
+      "skill_binding_approval": "catalogue_role_association_accepted_runtime_render_pending"
+    }
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-drones-02.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-drones-revision-02.md",
+  "accepted_drone_limit": {
+    "maximum_active": 5,
+    "maximum_each_model": 1,
+    "five_models_together_allowed": true
+  },
+  "historical_document": true,
+  "current_drone_review": "docs/REVUE_DRONES_AGENT_LOT_05.md"
+}

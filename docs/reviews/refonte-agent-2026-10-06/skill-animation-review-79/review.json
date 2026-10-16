@@ -1,0 +1,41 @@
+{
+  "batch": "ANIM-S36-REV03",
+  "date": "2026-10-15",
+  "status": "authorized_cleanup_verified",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 81,
+      "id": "SU04",
+      "variant": "SU04-A01",
+      "scope": "unchanged healing"
+    },
+    {
+      "number": 82,
+      "id": "SU05",
+      "variant": "SU05-A03",
+      "scope": "cleanup of approved golden pulse and floating text"
+    }
+  ],
+  "approval": "../skill-animation-review-78/visual-acceptance-01.json",
+  "change": "Remove the prepared burning actor overlay and the extra poison reapplication demonstration. Keep affliction HUD markers before cleansing. Purge shows only its approved golden filaments and floating name; no burning, poison popup, extra hit reaction or expelled icons.",
+  "preserved": "Same golden source PNG and pulse; green healing; game rules, costs, healing, cooldowns and status removal. The shared burning-status renderer and actual combat are unchanged.",
+  "source": "../../../../assets/animations/agent/skill-animation-review-78/purge-source.png",
+  "preview": "../apercu-animations.html",
+  "remaining_unshown": 29,
+  "revision_only": true,
+  "verification": {
+    "build": "cargo build --locked --bin project-rl",
+    "browser_views": 12,
+    "browser_phases": [
+      "before",
+      "golden_pulse",
+      "after"
+    ],
+    "healing_112_frames_unchanged": true,
+    "approved_purge_pulse_unchanged": true,
+    "precast_fire_removed": true,
+    "extra_poison_demo_removed": true,
+    "temporary_captures_removed": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-06",
+  "document": "docs/REVUE_ARBRES_COMPETENCES_AGENT.md",
+  "document_sha256": "189bb4d17adefe637c46f8d22a46245af1c635b07af5dde91382caa3e39e0143",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-tree-shape-decisions.json",
+  "latest_decisions_sha256": "7bf272ada294f2bf1379bc722ba646ae812e4556483bafc5fd861eba83a95a2f",
+  "preserved_initial_proposal_sha256": "776e6e20bae74efeee2e89338e71e69c78acb566f9df6e6b6fd7e6016cdb8687",
+  "status": "shape_and_nonexclusive_learning_accepted_scope_and_catalog_pending",
+  "accepted_requirements": {
+    "unlock_by_points_invested_in_branch": true,
+    "choose_thresholds_after_branch_catalog": true,
+    "minimum_tier_rows": 4,
+    "skill_options_per_tier": 3,
+    "all_three_options_learnable_with_points": true,
+    "exclusive_choice_between_tier_options": false
+  },
+  "text_approval": "pending_user_review",
+  "visual_approval": "pending_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

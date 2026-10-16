@@ -1,0 +1,40 @@
+{
+  "review_id": "BD-CATALOGUE03",
+  "checks": {
+    "complete_catalogue": {
+      "models": 178,
+      "compositions": 822,
+      "kinds": {
+        "weapon": 137,
+        "outfit": 17,
+        "head": 6,
+        "hands": 6,
+        "feet": 6,
+        "shield": 6
+      }
+    },
+    "identities_and_rules_unchanged": true,
+    "distinct_source_drawings": 178,
+    "exact_native32_to_display64_doubling": 822,
+    "edge_clipping_at_alpha96": [],
+    "non_torso_slots_keep_whole_character_unchanged": 90,
+    "fixed_upper_head_pixels_across_arm_poses": {
+      "comparisons": 17,
+      "native_region": [
+        0,
+        0,
+        64,
+        24
+      ]
+    },
+    "original_reference_files_unchanged": 15,
+    "active_game_rig_files_unchanged": 8
+  },
+  "scope": "review resources only, no runtime integration",
+  "limits": [
+    "Visual acceptance pending.",
+    "Weapons shown on the five canonical complete outfits.",
+    "The 17 torso outfits are reviewed individually; all possible torso and weapon combinations are not shown.",
+    "Numerical checks do not validate artistic quality."
+  ]
+}

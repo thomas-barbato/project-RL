@@ -1,0 +1,787 @@
+{
+  "review_id": "AGENT-CADENCE01",
+  "date": "2026-10-15",
+  "status": "accepted",
+  "user_reply": "oui ca me va :)",
+  "accepted_scope": "Sorts, techniques physiques offensives et invocations reutilisables des la prochaine action, sans action intermediaire obligatoire.",
+  "accepted_drone_scope": "Une invocation ne donne pas une attaque supplementaire immediate a toute l armee. Les attaques autonomes gardent leur propre cadence.",
+  "preserved": [
+    "couts en energie",
+    "munitions",
+    "prerequis arme active",
+    "capacite de controle",
+    "limites Eclaireur et Mule",
+    "durées et regles de cumul",
+    "cadence autonome et provocation des drones"
+  ],
+  "not_extended_to": [
+    "SF00 Furtivite (activation technologique)",
+    "ES03 Leurre holographique",
+    "DR01 Reparation ciblee",
+    "SU06 Dernier sursaut (passif automatique)"
+  ],
+  "numeric_semantics": "1 designe l intervalle entre actions de lancement. Aucun tour d attente ne s ajoute au tour du lancement.",
+  "source_catalogue_sha256": "459b572632cd0bdba78a8120fe1b3244b52199bb8f23bc0bd3ea9c7d246facfb",
+  "parameters": [
+    {
+      "skill": "A01",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 2,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "A02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "AF02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 5,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "AF03",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "AF04",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "AF05",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 7,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "B01",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 3,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "B02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "BM01",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "BM02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 12,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "BM05",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "D56",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "D57",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "D58",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "D59",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "D66",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "DI01",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "DI02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "DI03",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "DI04",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "DI05",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "DI07",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "ES05",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FE01",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 3,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FE02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FE03",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FE04",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FE05",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FE06",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 3,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FR01",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 2,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FR02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FR03",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FR04",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FR05",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 10,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "FR06",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "HL01",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 5,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "HL02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "HL03",
+      "key": "cooldown_after_end_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "HL06",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 10,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "HY04",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "stepped",
+        "base": 8,
+        "every_ranks": 2,
+        "gain_per_step": -1,
+        "rank_offset": 0,
+        "direction": "decrease",
+        "minimum": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "HY05",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "HY06",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 10,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "HY07",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "M01",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 10,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "M01",
+      "key": "leap_cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 3,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "M01",
+      "key": "laceration_cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 3,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "M02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 2,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "ME02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 3,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "ME03",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "ME04",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 3,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "ME05",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 5,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "ME06",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "O02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 5,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "OC04",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 10,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "OC05",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "OC07",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "SG00",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 2,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "SM00",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 1,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "SU03",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 10,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "SU04",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 8,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "SU05",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "T01",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 3,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "T02",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR61",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 10,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR61",
+      "key": "shockwave_cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR61",
+      "key": "crushing_cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR63",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 10,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR63",
+      "key": "discharge_cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR63",
+      "key": "closure_cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 6,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR64",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 10,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR64",
+      "key": "pulse_cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR64",
+      "key": "drain_cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR65",
+      "key": "cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 10,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR65",
+      "key": "line_strike_cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 4,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    },
+    {
+      "skill": "TR65",
+      "key": "shadow_step_cooldown_turns",
+      "previous": {
+        "kind": "constant",
+        "value": 3,
+        "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
+        "benefit": true
+      }
+    }
+  ],
+  "runtime_integration": "A01 playable first batch; remaining skills follow their integration batches, catalogue and laboratory use this accepted cadence.",
+  "description_presentation": {
+    "user_direction": "du coup il faudra supprimer la notion de cooldown dans la fiche descriptive des compétences",
+    "decision": "hide all cooldown parameter rows in current and next rank descriptions; preserve costs, durations and other mechanics"
+  }
+}

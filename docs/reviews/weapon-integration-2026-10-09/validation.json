@@ -1,0 +1,177 @@
+{
+  "date": "2026-10-09",
+  "review_id": "WEAPON-SIL01-INTEGRATION01",
+  "status": "integrated_and_validated",
+  "acceptance": {
+    "path": "docs/reviews/refonte-agent-2026-10-06/weapon-silhouette-visual-acceptance-01.json",
+    "binary_sha256": "e6e525e993a4d61d6f97b905a750e3abbd1a1a210d41ae70b3473fd91691c6c0"
+  },
+  "active_manifest": {
+    "path": "assets/sprites/cyberpunk/agent-rigs/manifest.json",
+    "binary_sha256": "85f7165a3d9ce2eaa27fd066bccf184115b695171e9f091a4c44ff28cb97573a"
+  },
+  "native_body": [
+    32,
+    32
+  ],
+  "canvas": [
+    64,
+    64
+  ],
+  "models": 113,
+  "families": 18,
+  "silhouettes": 5,
+  "approved_configurations": 375,
+  "approved_reference_pixel_differences": 0,
+  "graphics_tests_passed": 23,
+  "palette_and_persistence_tests_passed": 9,
+  "baseline_old_composition_tests_passed": 11,
+  "cargo_check_locked_all_targets": "passed",
+  "debug_build": "passed",
+  "release_build": "passed",
+  "release_warnings": {
+    "count": 4,
+    "scope": "unused_import_methods_variant_function_in_other_existing_modules;no_build_error"
+  },
+  "cargo_fmt_all_check": "passed",
+  "scoped_git_diff_check": "passed",
+  "review_hash_references_checked": 1803,
+  "review_script_syntax_checks": 2,
+  "runtime_captures": [
+    {
+      "scene": "crawl-agents-final",
+      "validation": {
+        "path": "docs/reviews/weapon-integration-2026-10-09/crawl-agents-final/art-validation.json",
+        "binary_sha256": "6207c171d6e4ed54a1ed962db896f89847444461c608c80392dfb0db17fc033b"
+      },
+      "capture": {
+        "path": "artifacts/weapon-integration-2026-10-09/crawl-agents-final/cold-start.png",
+        "binary_sha256": "006e209479be4fd98324d95ebb0902ab899fe4f103d06952e567cd9c6368941d"
+      },
+      "warm_cache": [
+        [
+          29,
+          29
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "scene": "crawl-idle",
+      "validation": {
+        "path": "docs/reviews/weapon-integration-2026-10-09/crawl-idle/art-validation.json",
+        "binary_sha256": "4fc690588cd6d7a5299e91831055dae3dfa0db0c8b3d495dccfe7f12e80cb3c7"
+      },
+      "capture": {
+        "path": "artifacts/weapon-integration-2026-10-09/crawl-idle/cold-start.png",
+        "binary_sha256": "b7818dcf36a4ba099a513a859df5ddfe20c636ae07e6c49be73e01b8fb9a292d"
+      },
+      "warm_cache": [
+        [
+          42,
+          42
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "scene": "crawl-grips-dual",
+      "validation": {
+        "path": "docs/reviews/weapon-integration-2026-10-09/crawl-grips-dual/art-validation.json",
+        "binary_sha256": "a7ca66f8cff9067ff56c24fd8b035c5017671eff1ce1845cd5f5d2d5c12525a8"
+      },
+      "capture": {
+        "path": "artifacts/weapon-integration-2026-10-09/crawl-grips-dual/cold-start.png",
+        "binary_sha256": "4ee73f08f24c38dc793c8b0759ed6ee64da3c668bdf70a230972cbc508b7b630"
+      },
+      "warm_cache": [
+        [
+          53,
+          53
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "scene": "terminal-console-proposal",
+      "validation": {
+        "path": "docs/reviews/weapon-integration-2026-10-09/terminal-console-proposal/art-validation.json",
+        "binary_sha256": "e59fb1612c78f216264fc30f66671339b8b2c3e6d1dc8b2357e11ec41d0b2a5c"
+      },
+      "capture": {
+        "path": "artifacts/weapon-integration-2026-10-09/terminal-console-proposal/cold-start.png",
+        "binary_sha256": "893854187feed75045c892bfe17c3d770f5aa1975428f8fbbd4a9fa1e5fc90b7"
+      },
+      "warm_cache": [
+        [
+          12,
+          12
+        ],
+        [
+          16,
+          16
+        ]
+      ]
+    }
+  ],
+  "performance_diagnostic": {
+    "status": "passed",
+    "timings": {
+      "path": "artifacts/weapon-integration-2026-10-09/performance/timings.json",
+      "binary_sha256": "d855f619c3f832efe0d117283444c4ee4a3522b1b35332e6f1a1b9d1f651b920"
+    },
+    "scope": "current_absolute_debug_measurement;no_before_after_timing_claim"
+  },
+  "palette_compatibility": {
+    "Pink_choice_removed": true,
+    "legacy_JSON_Pink_reads_as": "Gray",
+    "legacy_bincode_discriminant6_reads_as": "Gray",
+    "ALL_variants": 7,
+    "models_stats_bonuses_and_gameplay_rng_preserved": true
+  },
+  "gameplay_scope": "graphics_and_cosmetic_palette_only;five_new_playable_class_rules_and_other_refonte_systems_unchanged_by_this_step",
+  "test_scope": "targeted_tests_and_runtime_captures;full_test_suite_not_run",
+  "code_files": [
+    {
+      "path": "src/game_art_agent_rigs.rs",
+      "binary_sha256": "f4bb43b14ff217fc5833d27915d9d05d02dcc7035a85f2bcb36b388184d21ba3"
+    },
+    {
+      "path": "src/game_art_worn.rs",
+      "binary_sha256": "63d2b05809af57ebef153da36ee02c27221cd32eb3d1276edf0a662e6635512d"
+    },
+    {
+      "path": "src/game_art_palette.rs",
+      "binary_sha256": "95e53c24dbb3fd4651c18a8070e24627f45cde3c052c4516a73aa0bd3ee42230"
+    },
+    {
+      "path": "src/entity/equipment_palette.rs",
+      "binary_sha256": "dc941527c5c3afab32098fb3376a265bd5364668f28d258178d176133c3e330e"
+    },
+    {
+      "path": "src/game/equipment_colors.rs",
+      "binary_sha256": "aa13ac5651c6dcf6a6f1eab0fb0f4ac4051b31e79bd198e104b4320b78282257"
+    },
+    {
+      "path": "src/game/game_state.rs",
+      "binary_sha256": "5ddfaa6babffd1308e94139f86308c644e53ab249a1661ce0b2e8166b3699f8a"
+    },
+    {
+      "path": "src/crawl_art_capture.rs",
+      "binary_sha256": "5db280a0ee5ae0572c62767467467a818cce70261826629c318858d388d16cac"
+    },
+    {
+      "path": "src/ascii_app.rs",
+      "binary_sha256": "8a8848de8eef4263ffe55129bfbfc0a9d181468ee0b74e63dcf647bd3649004d"
+    }
+  ]
+}

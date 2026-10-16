@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-06",
+  "id": "DR01",
+  "title": "Réparation ciblée",
+  "revision": 1,
+  "player_copy_markdown": "**Réparation ciblée — Rang 11**\n\n*Vous restaurez les circuits endommagés d’un robot allié par une impulsion d’énergie.*\n\n**Effet actuel**\n\n- Vie rendue : **46 PV**.\n- Portée : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Vie rendue : **49 PV**.\n\n**Coût : 12 énergie · Recharge : 4 tours.**\n\nCible : un robot allié en ligne de vue.\n\nLes soins sont limités aux PV manquants. Ne réactive pas les robots détruits.",
+  "player_copy_sha256": "8b3ad4bf5c6248781e5118539fade14d0f084751930a9b8b8e7f03fdaa6b25a2",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-11.json",
+  "source_skill_reference_kind": "requested_additional_active",
+  "source_skill_block_sha256": "95c33b7c9decfb04b7b710fe12436452393120564a9caba557cef97fc394729e",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/maintenance-acceptance-and-roleplay-only-description-decisions.json",
+  "review_start_decisions_sha256": "e642c0649b7fabf932c1b9d8050e7ed5f0049eb05c9b0fac4ddb9a7e7c0f4e7f",
+  "requested_role_reference": "docs/reviews/refonte-agent-2026-10-06/robot-active-heal-and-passive-maintenance-decisions.json",
+  "name_approval": "proposed_pending_user_review",
+  "catalogue_effect_approval": "active_robot_healing_role_user_requested; proposed_details_pending",
+  "roleplay_text_approval": "pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "pending_individual_user_review",
+  "numeric_rules_approval": "new_heal_example_and_all_rules_pending_user_review",
+  "formulas": {
+    "base_healed_hp": "12 + 3 * (effective_rank - 1); new proposal",
+    "intelligence_factor": "1 + (Intelligence - 5) / 50; proposed",
+    "energy_cost": "10 + floor((effective_rank - 1) / 4); new proposal",
+    "rounding": "floor once after applicable healing modifiers; proposed",
+    "healing_cap": "missing target HP; proposed"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "intelligence": 10,
+    "intelligence_factor": {
+      "numerator": 11,
+      "denominator": 10
+    },
+    "other_healing_range_cost_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "healed_hp": 46,
+    "healed_hp_exact_before_floor": {
+      "numerator": 231,
+      "denominator": 5
+    },
+    "range_cells": 4,
+    "energy_cost": 12,
+    "cooldown_turns": 4,
+    "works_during_combat": true,
+    "channelled": false,
+    "maintained_effect": false,
+    "requires_allied_robot": true,
+    "requires_player_line_of_sight": true,
+    "revives_destroyed_robot": false
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "healed_hp": 49,
+    "healed_hp_exact_before_floor": {
+      "numerator": 99,
+      "denominator": 2
+    },
+    "range_cells": 4,
+    "energy_cost": 12,
+    "cooldown_turns": 4,
+    "works_during_combat": true,
+    "channelled": false,
+    "maintained_effect": false,
+    "requires_allied_robot": true,
+    "requires_player_line_of_sight": true,
+    "revives_destroyed_robot": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_passive_ranks_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "healed_hp"
+    ],
+    "unchanged_effects_omitted": [
+      "range_cells",
+      "energy_cost",
+      "cooldown_turns",
+      "target_eligibility",
+      "line_of_sight"
+    ]
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "effective_rank_visible": true,
+    "tree_icon_and_boosted_level_color_direction": "CD07; native render pending"
+  },
+  "presented_conditions": "One allied robot in player line of sight within 4 cells; restores missing HP up to target maximum; no revival. One-off healing usable in combat, with no channel or maintained effect.",
+  "unshown_rules_approval": "Full-rank healing/cost curves, Intelligence coefficient, rounding, exact ally/robot taxonomy, geometry metric, full-HP refusal, resource atomicity, equipment-only access and other modifiers remain pending.",
+  "active_weapon_requirement": "none; robot healing is not an attack using the active player weapon",
+  "tree_placement": "Drones proposed; exact tier and catalogue allocation pending",
+  "visual_intention_approval": "new_animation_not_yet_submitted_for_review",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Exact fractions: rank 11 base 42 * 11/10 = 46.2 -> 46 HP; next 45 * 11/10 = 49.5 -> 49 HP.",
+    "Energy 10 + floor(10/4) = 12; rank 12 remains 12. Range 4 and cooldown 4 unchanged.",
+    "Learned ranks 9 -> 10 with fixed equipment bonus +2; effective ranks 11 -> 12.",
+    "Only changing healing HP appears in next-rank block.",
+    "One roleplay paragraph, no duplicate functional paragraph or learned/bonus breakdown.",
+    "No table, formula, ordinary immediate-execution or one-turn reminder in player copy.",
+    "All new name/copy/numbers/conditions remain proposed; no changes to existing gameplay or artwork."
+  ]
+}

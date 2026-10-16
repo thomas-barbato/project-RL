@@ -1,2 +1,74 @@
+# Rust builds, distributions and local game data.
 /target/
+/build/
+/dist/
 /config/ProjectRL/
+/saves/
+/savegames/
+
+# Disposable captures, prototypes and diagnostics. Durable artwork belongs in
+# assets/; decisions and validation records belong in docs/reviews/.
+/artifacts/**
+!/artifacts/map-editor/
+!/artifacts/map-editor/maps/
+!/artifacts/map-editor/maps/**
+!/artifacts/map-editor/ensembles/
+!/artifacts/map-editor/ensembles/**
+!/artifacts/refonte-agent-2026-10-06/
+/artifacts/refonte-agent-2026-10-06/*
+!/artifacts/refonte-agent-2026-10-06/apercu-animations.html
+
+# Compiler output and debugger files, including standalone preview programs.
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.obj
+*.o
+*.rlib
+*.rmeta
+*.lib
+*.exp
+
+# Python, browser-tool and package caches.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+node_modules/
+.npm/
+.cache/
+
+# Logs, editor backups and temporary process files.
+*.log
+*.stdout
+*.stderr
+*.pid
+*.tmp
+*.temp
+*.bak
+*.orig
+# Vendored crates retain their original source manifest under this name.
+!Cargo.toml.orig
+*~
+*.swp
+*.swo
+
+# Personal IDE state; keep shared project configuration.
+.idea/
+.vs/
+/.vscode/*
+!/.vscode/settings.json
+!/.vscode/extensions.json
+!/.vscode/launch.json
+!/.vscode/tasks.json
+
+# Operating-system metadata.
+.DS_Store
+Thumbs.db
+[Dd]esktop.ini

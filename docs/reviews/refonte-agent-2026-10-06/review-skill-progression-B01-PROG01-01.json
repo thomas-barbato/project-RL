@@ -1,0 +1,204 @@
+{
+  "date": "2026-10-09",
+  "review_id": "B01-PROG01",
+  "skill_id": "B01",
+  "revision": 1,
+  "title": "Frappe de rupture",
+  "status": "full_rank_numeric_progression_and_continuation_proposed;accepted_anchors_and_current_attribute_pipeline_preserved",
+  "current_attribute_model": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-59.json",
+    "reference_sha256": "f018b7ceedabac30c0ffb908a7556fce876d5fd6f64297e70118c83595254301"
+  },
+  "prior_melee_review": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-melee-11.json",
+    "reference_sha256": "fe8ef918e2d68367a4d8b19e3dc9a3c93f285061a64901abbfde90727d5815a9"
+  },
+  "prior_melee_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/melee-acceptance-survival-and-test-decisions.json",
+    "reference_sha256": "acd8e45652e01c4a414dee255cb38445dd7fe98685019ccc0a0d981341a9820d"
+  },
+  "current_weapon_pool": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-direct-weapon-bonus-stacking-02.json",
+    "reference_sha256": "353af3396bb9de10e8c398ae45eda25f052e52d9efd1b0194ac4a1598ae42cef"
+  },
+  "accepted_anchors": {
+    "extra_damage_percent_by_rank": {
+      "1": 40,
+      "10": 130,
+      "12": 150
+    },
+    "energy_by_rank": {
+      "1": 6,
+      "12": 9
+    },
+    "cooldown_turns": 3,
+    "target_limit": 1
+  },
+  "retained_roleplay": "Vos implants libèrent toute leur puissance dans un coup brutal.",
+  "retained_active_weapon_requirement": "Nécessite une arme de mêlée active.",
+  "proposed_full_curve": {
+    "domain": "positive_effective_rank;learned_cap10_equipment_continuation_preserved",
+    "skill_extra_damage_percentage_points": "40+10*(effective_rank-1)",
+    "energy": "6+floor((effective_rank-1)/3)",
+    "cooldown_turns": 3,
+    "target_limit": 1,
+    "range": "current_active_compatible_melee_weapon_attack_range",
+    "no_new_status_push_armor_penetration_or_secondary_hit": true
+  },
+  "rank1_through10": [
+    {
+      "effective_rank": 1,
+      "skill_extra_damage_percentage_points": 40,
+      "energy": 6,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 2,
+      "skill_extra_damage_percentage_points": 50,
+      "energy": 6,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 3,
+      "skill_extra_damage_percentage_points": 60,
+      "energy": 6,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 4,
+      "skill_extra_damage_percentage_points": 70,
+      "energy": 7,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 5,
+      "skill_extra_damage_percentage_points": 80,
+      "energy": 7,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 6,
+      "skill_extra_damage_percentage_points": 90,
+      "energy": 7,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 7,
+      "skill_extra_damage_percentage_points": 100,
+      "energy": 8,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 8,
+      "skill_extra_damage_percentage_points": 110,
+      "energy": 8,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 9,
+      "skill_extra_damage_percentage_points": 120,
+      "energy": 8,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 10,
+      "skill_extra_damage_percentage_points": 130,
+      "energy": 9,
+      "cooldown_turns": 3
+    }
+  ],
+  "shown_equipment_ranks": [
+    {
+      "effective_rank": 11,
+      "skill_extra_damage_percentage_points": 140,
+      "energy": 9,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 12,
+      "skill_extra_damage_percentage_points": 150,
+      "energy": 9,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 13,
+      "skill_extra_damage_percentage_points": 160,
+      "energy": 10,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 14,
+      "skill_extra_damage_percentage_points": 170,
+      "energy": 10,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 15,
+      "skill_extra_damage_percentage_points": 180,
+      "energy": 10,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 20,
+      "skill_extra_damage_percentage_points": 230,
+      "energy": 12,
+      "cooldown_turns": 3
+    },
+    {
+      "effective_rank": 30,
+      "skill_extra_damage_percentage_points": 330,
+      "energy": 15,
+      "cooldown_turns": 3
+    }
+  ],
+  "current_next_example": {
+    "fictional_weapon_minimum": 18,
+    "fictional_weapon_maximum": 22,
+    "weapon_is_active_melee": true,
+    "Force": 10,
+    "accepted_Force_bonus_percentage_points": 5,
+    "other_damage_modifiers": false,
+    "learned_rank_internal": 9,
+    "equipment_rank_bonus_internal": 2,
+    "next_learned_rank_internal": 10,
+    "current_effective_rank": 11,
+    "next_effective_rank": 12,
+    "current_damage_minimum": 44,
+    "current_damage_maximum": 53,
+    "next_damage_minimum": 45,
+    "next_damage_maximum": 56,
+    "critical_excluded": true,
+    "target_defenses_excluded": true,
+    "current_next_equipment_attributes_identical": true,
+    "tooltip_rank_breakdown_shown": false,
+    "real_save_or_real_weapon_balance_entry": false
+  },
+  "scope_audit": {
+    "text": "retained_approved_roleplay_and_name;new_progression_display_and_tooltip_values_pending",
+    "numbers": "preserve_damage_anchors1_10_12_and_cost_anchors1_12;intermediate_ranks_and_positive_effective_rank_continuation_explicitly_proposed",
+    "damage_order": "current_accepted_additive_Force_skill_pool_and_final_floor_used;historical_Force_Agility_multiplication_not_restored",
+    "rank_purchase": "example_current_learned9_plusgear2_then_learned10_plusgear2;at_learned_cap10_no_further_purchase;gear_may_continue",
+    "visibility": "one_RP_only;no_ordinary_execution_time;next_block_only_changed_values;no_table",
+    "balance": "provisional_design_not_engine_balance_validation",
+    "native": "no_pixels_icons_animations_or_window_added"
+  },
+  "shown_copy_markdown": "**B01-PROG01 · Frappe de rupture — progression proposée**\n\nLes repères déjà validés sont conservés. Voici le barème complet proposé, avec une continuation au-delà de 10.\n\n**Bonus de dégâts — rangs 1 à 10, dans l’ordre**\n\n**+40 % · +50 % · +60 % · +70 % · +80 % · +90 % · +100 % · +110 % · +120 % · +130 %**\n\n**Coût en énergie**\n\n- Rangs 1–3 : **6**.\n- Rangs 4–6 : **7**.\n- Rangs 7–9 : **8**.\n- Rangs 10–12 : **9**.\n\n**Au-delà de 10, avec les bonus d’équipement**\n\n- Rang 11 : **+140 %**, **9 énergie**.\n- Rang 12 : **+150 %**, **9 énergie**.\n- Rang 13 : **+160 %**, **10 énergie**.\n- Rang 14 : **+170 %**, **10 énergie**.\n- Rang 15 : **+180 %**, **10 énergie**.\n- Rang 20 : **+230 %**, **12 énergie**.\n- Rang 30 : **+330 %**, **15 énergie**.\n\nLes mêmes écarts se poursuivent au-delà des rangs affichés. La recharge reste de **3 tours** et la compétence frappe **une cible à portée de l’arme**.\n\n**Exemple de tooltip**\n\nArme fictive à **18–22 dégâts**, Force **10**, sans autre bonus.\n\n*Vos implants libèrent toute leur puissance dans un coup brutal.*\n\n**Effet actuel — rang 11**\n\n- Bonus de dégâts : **+140 %**.\n- Dégâts : **44–53**, avant les défenses et hors critique.\n- Énergie : **9**.\n- Recharge : **3 tours**.\n\n**Prochain rang — 12**\n\n- Bonus de dégâts : **+150 %**.\n- Dégâts : **45–56**.\n\n**Nécessite une arme de mêlée active.**\n\nCette progression et cet exemple actualisé restent à valider.",
+  "shown_copy_sha256": "7901be9b0ffc33f2028fc351275606731806e688d811ee6bc4a790e526cbd765",
+  "calculation_checks": {
+    "accepted_anchor_checks_passed": true,
+    "current_next_damage_checks_passed": true,
+    "ranks1_through1000_monotonic_damage_and_nondecreasing_energy_checked": true,
+    "scope": "proposal_arithmetic_only;not_engine_tests_or_approval_of_unshown_high_rank_values"
+  },
+  "player_copy_approval": "retained_RP_name_weapon_requirement_accepted;new_progression_presentation_and_updated_example_pending",
+  "mechanical_approval": "accepted_anchors_preserved;complete_curve_and_intermediate_values_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "remaining_unshown_cases": [
+    "multi_weapon_active_attack_selection",
+    "range_modifiers_and_multihit_weapon_resolution",
+    "positive_curve_extreme_value_storage_and_overflow",
+    "other_general_action_budget_targeting_and_rng_cases",
+    "native_tooltip_layout_icons_and_boosted_level_color"
+  ]
+}

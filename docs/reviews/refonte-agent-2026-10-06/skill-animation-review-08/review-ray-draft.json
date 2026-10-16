@@ -1,0 +1,45 @@
+{
+  "batch": "ANIM-OCC02",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "user_direction": "Preview the actual affected cells first; let the animation move continuously like a current, respecting obstacles rather than affected-cell edges. Principle confirmed by the player; rendered variants still require review.",
+  "candidates": [
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A04-COULOIR",
+      "name": "Souffle de feu · couloir",
+      "description": "Le ciblage indique les cases touchées, puis les flammes se déploient avec un contour continu dans l’ouverture.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A04-CLOISON",
+      "name": "Souffle de feu · cloison devant",
+      "description": "Le courant se déforme près de la cloison et s’arrête contre sa surface. Les cibles derrière restent protégées.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A04-OBSTACLE",
+      "name": "Souffle de feu · obstacle partiel",
+      "description": "Le courant se déforme autour du bloc, avec une ombre continue. La cible située derrière le bloc reste protégée.",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "previous_review": "ANIM-OCC01: per-affected-cell visual clipping disliked; original files preserved for comparison.",
+  "scope": "Isolated debug laboratory. The targeting footprint, demonstrated affected targets, rank, duration and cooldown rules remain unchanged. No campaign or combat integration.",
+  "source_art": "Unchanged painted fire atlas from ANIM-STYLE01. Shader sampling deforms the displayed masses near physical surfaces; source raster assets remain intact.",
+  "visual_field": "Continuous per-pixel rays from the illustrated emitter to physical wall rectangles, surface normals and an inward fade. Texture motion bends the drawn current near walls. Solid wall pixels always discard fire.",
+  "visual_vs_gameplay": "The displayed current may use free parts of a cell independently of whether that whole cell is in the gameplay footprint. Cosmetic fragments grant no damage or new propagation. Protected targets remain unaffected.",
+  "fluid_scope": "A stylized visual current, not a complete hydrodynamic simulation. No gameplay spreading around a blocking wall, extra range or extra hits are introduced.",
+  "targeting_preview": "Discrete affected-cell preview stays identical to ANIM-OCC01. The 0.7-second targeting segment is a review montage, not skill preparation or world-turn advancement.",
+  "blood_policy": "Fire without blood. Actors, equipment and compact skill icons unchanged.",
+  "style_rule": "General animation style and exact rendered variants still await player validation.",
+  "laboratory_ui_candidate": {
+    "variant": "LAB-OCC02",
+    "status": "awaiting_separate_review"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "batch": "ANIM-S05",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 11,
+      "skill_id": "FE03",
+      "variant": "FE03-A03-LIBRE",
+      "name": "Mur de feu · zone ouverte",
+      "description": "Un rideau de flammes traversable ; A en sort et conserve sa Brûlure.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 12,
+      "skill_id": "FE04",
+      "variant": "FE04-A03-LIBRE",
+      "name": "Émanation soudaine · zone ouverte",
+      "description": "Les fissures annoncent la préparation, puis les gerbes jaillissent après un tour.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 11,
+      "skill_id": "FE03",
+      "variant": "FE03-A03-CLOISON",
+      "name": "Mur de feu · cloison",
+      "description": "La ligne et ses flammes sont interrompues par le décor. C reste protégé derrière la cloison.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 12,
+      "skill_id": "FE04",
+      "variant": "FE04-A03-CLOISON",
+      "name": "Émanation soudaine · cloison",
+      "description": "Les dessins peuvent dépasser les cases libres ; ils ne traversent pas la cloison. F reste protégé.",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "style": "Accepted ANIM-OVER03 policy. Exact original painted plume atlas; no new images, recolouring or actor modifications.",
+  "wall": "Rank-11 example uses the existing seven-cell maximum and five-turn duration. Dense half-cell visual spacing joins drawn plumes into one curtain. A moves across the wall on the first scripted turn; attached Burn follows its body after exit. No displacement blocking.",
+  "eruption": "Same radius-one cross fixture as the earlier review. Targeting vanishes on launch, cracks remain as the actual preparation marker, and the burst requires one explicit +1-turn event. Large central and smaller surrounding plumes are visual emphasis only; no damage values changed.",
+  "obstacles": "Physical wall cells are covered and disconnected floor behind the full cloison is excluded from the zone drawing. The mask does not follow gameplay-zone borders on free floor.",
+  "burn": "Accepted back/body flame layers attached to targets, with staged successful applications. Real chance, damage, resistance and status interactions are not calculated here.",
+  "timing": "Five-second montage at 24 capture fps. Launch at 0.7s; explicit scripted turn events at 1.35/1.90/2.40/2.85/3.30/3.80/4.30s. Montage seconds do not become game turns automatically in the native laboratory.",
+  "lab": "Manual turns, disabled launch during cooldown, replay/pause/speed, four aiming directions and effective rank controls. LAB-S05 awaits separate review.",
+  "scope": "Debug visual fixture only. No campaign mechanics, attributes, loot, saves, skill descriptions, balance or icon changes.",
+  "blood": "No blood in these pure Fire effects, following ANIM-BLOOD01."
+}

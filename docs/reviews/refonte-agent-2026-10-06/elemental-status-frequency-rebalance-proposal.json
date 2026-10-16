@@ -1,0 +1,151 @@
+{
+  "date": "2026-10-07",
+  "review_id": "EL-FREQ01",
+  "user_message": "au rang 11 une chance de gel à 21,6% ? c'est peu non ? en faite les effets de gel et de brulure doivent etre plus communs que ca, surtout à ce genre de rangs.",
+  "accepted_request": "make Gel and Burn more common especially at high effective ranks;not an approval of replacement numeric values",
+  "numeric_proposal_approval": "pending_explicit_user_review",
+  "previous_individual_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR01-02.json",
+  "previous_individual_description_sha256": "530aff4c249ce36f0bd5e3fccb71e4dbab533248b22cf069b55fbe3f6b966c10",
+  "FR01": {
+    "proposed_skill_factor_curve": "min(100,max(0,40+5*(effective_rank-1)))",
+    "current_effective_rank": 11,
+    "current_skill_factor_percent": 90,
+    "next_effective_rank": 12,
+    "next_skill_factor_percent": 95,
+    "current_final_Gel_chance_percent": 77.8,
+    "current_elite_Gel_chance_percent": 58.4,
+    "next_final_Gel_chance_percent": 82.5,
+    "next_elite_Gel_chance_percent": 61.9,
+    "target_example_resistance": 25,
+    "willpower": 10,
+    "resistance_factor_preserved": true,
+    "single_Gel_test_preserved": true,
+    "full_curve_approval": "unshown_pending_review"
+  },
+  "Fire_chance_proposals": [
+    {
+      "id": "FE02",
+      "title": "Souffle de feu",
+      "accepted_baseline": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE02-05.json",
+      "accepted_baseline_sha256": "f58fabfe1984e6e6ae63513eb3d8af0df03cd238dfe5330b52fbd80c03ec63fa",
+      "approval": "revised_burn_chances_proposed_pending_explicit_user_review;accepted_baseline_other_values_preserved",
+      "chance_curve_proposal": "min(100,max(0,10+3*(effective_rank-1)))",
+      "full_curve_approval": "unshown_pending_review",
+      "current_effective_rank": 11,
+      "next_effective_rank": 12,
+      "current_base_chance_percent": 40,
+      "next_base_chance_percent": 43,
+      "unchanged_damage_potency_duration_cost_cooldown_and_other_conditions": true,
+      "resistance_and_application_order": "existing accepted/unshown status retained;no new resistance formula introduced",
+      "current_exposure_chances_percent": [
+        40,
+        80,
+        100
+      ],
+      "next_exposure_chances_percent": [
+        43,
+        86,
+        100
+      ],
+      "exposure_rules": "same per-roll consecutive exposure growth,exit reset,attempt policy and ceiling;no constant-roll cumulative probability substitution"
+    },
+    {
+      "id": "FE03",
+      "title": "Mur de feu",
+      "accepted_baseline": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE03-04.json",
+      "accepted_baseline_sha256": "c8aaad03594bb4e88fe77db27d2607f94577ddf7c0de8eb56fc37cdf9eedb885",
+      "approval": "revised_burn_chances_proposed_pending_explicit_user_review;accepted_baseline_other_values_preserved",
+      "chance_curve_proposal": "min(100,max(0,15+3*(effective_rank-1)))",
+      "full_curve_approval": "unshown_pending_review",
+      "current_effective_rank": 11,
+      "next_effective_rank": 12,
+      "current_base_chance_percent": 45,
+      "next_base_chance_percent": 48,
+      "unchanged_damage_potency_duration_cost_cooldown_and_other_conditions": true,
+      "resistance_and_application_order": "existing accepted/unshown status retained;no new resistance formula introduced",
+      "current_exposure_chances_percent": [
+        45,
+        90,
+        100,
+        100,
+        100
+      ],
+      "next_exposure_chances_percent": [
+        48,
+        96,
+        100,
+        100,
+        100
+      ],
+      "exposure_rules": "same per-roll consecutive exposure growth,exit reset,attempt policy and ceiling;no constant-roll cumulative probability substitution"
+    },
+    {
+      "id": "FE04",
+      "title": "Émanation soudaine",
+      "accepted_baseline": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE04-03.json",
+      "accepted_baseline_sha256": "dd06dcb8636f3aad75c881bbcbb352f2d5cb7a326cff0924c4b2093018ff5cf8",
+      "approval": "revised_burn_chances_proposed_pending_explicit_user_review;accepted_baseline_other_values_preserved",
+      "chance_curve_proposal": "min(100,max(0,35+3*(effective_rank-1)))",
+      "full_curve_approval": "unshown_pending_review",
+      "current_effective_rank": 11,
+      "next_effective_rank": 12,
+      "current_base_chance_percent": 65,
+      "next_base_chance_percent": 68,
+      "unchanged_damage_potency_duration_cost_cooldown_and_other_conditions": true,
+      "resistance_and_application_order": "existing accepted/unshown status retained;no new resistance formula introduced"
+    },
+    {
+      "id": "FE05",
+      "title": "Boule de feu",
+      "accepted_baseline": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE05-03.json",
+      "accepted_baseline_sha256": "e3fce2aa8e8c4a9c2be553c6a725211d655cebbe2e274dd1f186875473e7b5a5",
+      "approval": "revised_burn_chances_proposed_pending_explicit_user_review;accepted_baseline_other_values_preserved",
+      "chance_curve_proposal": "min(100,max(0,30+3*(effective_rank-1)))",
+      "full_curve_approval": "unshown_pending_review",
+      "current_effective_rank": 11,
+      "next_effective_rank": 12,
+      "current_base_chance_percent": 60,
+      "next_base_chance_percent": 63,
+      "unchanged_damage_potency_duration_cost_cooldown_and_other_conditions": true,
+      "resistance_and_application_order": "existing accepted/unshown status retained;no new resistance formula introduced"
+    },
+    {
+      "id": "FE06",
+      "title": "Combustion",
+      "accepted_baseline": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE06-02.json",
+      "accepted_baseline_sha256": "e88817564873cdea3cb79ad45d7950ab5631dad0689073042b4efdc6d442fa1e",
+      "approval": "revised_burn_chances_proposed_pending_explicit_user_review;accepted_baseline_other_values_preserved",
+      "chance_curve_proposal": "min(100,max(0,35+3*(effective_rank-1)))",
+      "full_curve_approval": "unshown_pending_review",
+      "current_effective_rank": 11,
+      "next_effective_rank": 12,
+      "current_base_chance_percent": 65,
+      "next_base_chance_percent": 68,
+      "unchanged_damage_potency_duration_cost_cooldown_and_other_conditions": true,
+      "resistance_and_application_order": "existing accepted/unshown status retained;no new resistance formula introduced"
+    }
+  ],
+  "FR01_displayed_delta_markdown": "**Aiguille de givre — Effet actuel au rang 11**\n\n- Chance de Gel : **77,8 % · Élites : 58,4 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Chance de Gel : **82,5 % · Élites : 61,9 %**.",
+  "FR01_displayed_delta_sha256": "cd10c1676c10e042697197d9f1de325fff9df40e9efb85eec4dfa0629cc23509",
+  "Fire_displayed_delta_markdown": "**Brûlure — Corrections proposées au rang 11**\n\n- **Souffle de feu :** **40 % → 80 % → 100 %**, selon les tours dans le cône. Prochain rang : **43 % → 86 %…**.\n- **Mur de feu :** **45 % → 90 % → 100 %**, selon les tours dans les flammes. Prochain rang : **48 % → 96 %…**.\n- **Émanation soudaine :** **65 %**. Prochain rang : **68 %**.\n- **Boule de feu :** **60 %**. Prochain rang : **63 %**.\n- **Combustion :** **65 %** de nouvelle Brûlure. Prochain rang : **68 %**.",
+  "Fire_displayed_delta_sha256": "91ed35395ff27db0d04a03e45db21e9ddef76a09dc2cac34184c0d61f9529c05",
+  "FE01_Braise": {
+    "guaranteed_specific_Burn_preserved": true,
+    "new_success_roll_created": false,
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE01-02.json",
+    "reference_sha256": "c3c343998541309d456d7c6be730b95afdba0872104db3612f135e0a5d2c708a"
+  },
+  "preserved_rules": [
+    "different chances per skill",
+    "single final FR01 Gel roll",
+    "boss control immunity and final elite control chance multiplied by3/4 once",
+    "no implicit Burn boss immunity or elite control penalty",
+    "reciprocal successful Burn/Gel replacement",
+    "FR01 five-turn movement lock allowing other actions",
+    "Cold slightly less direct damage than comparable Fire",
+    "persistent zones increasing per-roll chance and resetting on exit"
+  ],
+  "scope": "main Fire/Cold branches;no automatic weapon/secondary status additions or passive/nonattacking trigger invention",
+  "visual_approval": "no new visual direction;existing previews pending;frequency does not approve native graphics",
+  "runtime_integration": "not_integrated"
+}

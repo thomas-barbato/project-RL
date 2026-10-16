@@ -1,0 +1,49 @@
+{
+  "batch": "ANIM-S02",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 4,
+      "skill_id": "B01",
+      "variant": "B01-A01",
+      "name": "Frappe de rupture",
+      "description": "Une frappe ample, un impact puissant et une projection de sang sur la cible.",
+      "status": "visually_approved"
+    },
+    {
+      "number": 5,
+      "skill_id": "ME03",
+      "variant": "ME03-A01",
+      "name": "Percée",
+      "description": "Une frappe étroite, des éclats de plaques et une blessure sanglante.",
+      "status": "visually_approved"
+    },
+    {
+      "number": 6,
+      "skill_id": "ME04",
+      "variant": "ME04-A01-MUR",
+      "name": "Repousser · mur",
+      "description": "La cible recule jusqu’à la cloison ; la collision projette des fragments et du sang provenant de la cible.",
+      "status": "visually_approved"
+    },
+    {
+      "number": 7,
+      "skill_id": "ME04",
+      "variant": "ME04-A01-CIBLE",
+      "name": "Repousser · monstre",
+      "description": "La cible heurte un autre monstre ; un second impact blesse les deux créatures.",
+      "status": "visually_approved"
+    }
+  ],
+  "scope": "Visual fixtures only; no GameState, combat calculation or campaign integration.",
+  "blood_policy": "ANIM-BLOOD01: flesh wounds bleed; metal wall fragments do not bleed.",
+  "push_preview": "At effective rank 11, example obstacles stop the three-cell maximum push after two free cells.",
+  "timing": "Frame time is independent of turns, cooldowns and combat resolution.",
+  "unchanged": "Previously approved icons, actor art, catalogue and A02 animations.",
+  "laboratory_ui_candidate": {
+    "variant": "LAB-S02",
+    "status": "awaiting_separate_review"
+  },
+  "visual_acceptance": "visual-acceptance-01.json"
+}

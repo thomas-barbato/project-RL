@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-06",
+  "id": "B03",
+  "title": "Endurance de combat",
+  "revision": 1,
+  "player_copy_markdown": "**Endurance de combat — Rang 11**\nPassif permanent · 9 rangs appris + 2 grâce à l’équipement.\n\n*Votre corps renforcé supporte davantage de blessures avant de céder.*\n\nAugmente votre maximum de vie, sans vous soigner.\n\n**Effet actuel**\n- Bonus de PV maximum : **+30 %**.\n- Maximum de vie : **130 PV**.\n\n**Prochain rang — 12 · 1 point de compétence**\n- Bonus de PV maximum : **+32 %**.\n- Maximum de vie : **132 PV**.",
+  "player_copy_sha256": "4856b497073bb4b5feb791a0d853c529ce1b81826b4a4543846c053298ce68ce",
+  "example_context": "Illustrative character with 100 maximum HP before this passive; already includes its other HP contributions.",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/tourbillon-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "2acde7bfa3d56ecd8bffa36fb77aaba01766554d9165bd3b39421103945d556d",
+  "previous_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-01.json",
+  "previous_skill_block_sha256": "27c943b632025647f35fd6b5b3d39972b00c8067c83f5093acfd2539b41cbc2b",
+  "name_approval": "preserve_previous_approval",
+  "roleplay_text_approval": "pending_individual_user_review; exact existing proposal preserved",
+  "functional_description_approval": "pending_user_review",
+  "current_next_effect_copy_approval": "pending_user_review",
+  "numeric_rules_approval": "previously displayed rank 1 10 and 12 bonus values preserved; new rank 11 value and current-next presentation pending",
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_hp_before_this_passive": 100,
+    "other_percentage_hp_bonuses": false,
+    "includes_other_level_attribute_and_fixed_equipment_hp_contributions": true
+  },
+  "formulas": {
+    "maximum_hp_extra_percent": "10 + 2 * (effective_rank - 1)",
+    "example_maximum_hp": "floor(maximum_hp_before_this_passive * (1 + maximum_hp_extra_percent / 100))"
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_hp_extra_percent": 30,
+    "maximum_hp": 130,
+    "passive_permanent": true
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "maximum_hp_extra_percent": 32,
+    "maximum_hp": 132,
+    "passive_permanent": true
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_attributes_equipment_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "maximum_hp_extra_percent",
+      "maximum_hp"
+    ]
+  },
+  "presented_conditions_approval": "permanent passive and maximum HP gain without healing presented for individual review",
+  "unshown_conditions_approval": "HP bonus stacking, rounding and clamping current HP on reduced maximum remain pending",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "current and next HP bonuses and totals calculated with exact fractions",
+    "learned cap respected",
+    "existing proposed roleplay copied exactly; no table or progression formula in player copy",
+    "unchanged parameters omitted from next-rank effect block"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ18",
+  "revision": 1,
+  "title": "Familiers — changement de carte",
+  "status": "map_and_layer_transfer_of_all_living_familiars_with_preserved_state_and_raised_lifetime_proposed_pending_explicit_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-50.json",
+  "current_attribute_model_sha256": "d2a4a3311596997411fbde6931cf2a2132cd83a16e9cd06d51de21bd48a95074",
+  "previous_review": "docs/reviews/refonte-agent-2026-10-06/review-drone-recall-command-PETS-EQ15-03.json",
+  "previous_review_sha256": "63c5827ac9459bc2ccb73aed14e833a448c1d2f0dbea5bf32c62515805f90fcd",
+  "shown_copy_markdown": "**PETS-EQ18 · Familiers — changement de carte**\n\nJe propose ce fonctionnement pour les descentes, les refuges et les portails, y compris le retour d’une carte bonus :\n\n- **Tous vos familiers vivants vous suivent automatiquement**, même s’ils sont éloignés ou hors de vue. Ils arrivent près de vous sur des cases libres et praticables.\n- Ils conservent **leurs PV, leur énergie, leur équipement et leurs effets en cours**. La Mule conserve aussi tout son chargement. Le passage ne soigne pas et ne recharge pas leurs réserves.\n- Les monstres relevés conservent **leur durée restante**. Les durées d’effets et les recharges continuent normalement : le passage ne les réinitialise pas.\n- Les ordres de combat et de ramassage liés à l’ancienne carte sont annulés. Les familiers reprennent votre suivi.\n- Si aucune disposition ne permet d’accueillir tous vos familiers, **le passage reste indisponible** et vous restez sur la carte actuelle.\n\n**Aucune nouvelle invocation · Aucun coût d’énergie pour le transfert des familiers.**\n\nCes modalités restent à valider.",
+  "shown_copy_sha256": "022f1f48ac9b7993028330807f20e838a8b693fe64a89c9f4aa51ed530e9c5bc",
+  "already_accepted_direction": {
+    "drones": "existing_drones_follow_layer_transitions_preserving_current_HP_and_Mule_real_cargo_without_free_healing;historical_manual_recall_storage_superseded_by_PETS_EQ15",
+    "items": "real_equipment_and_Mule_cargo_not_duplicated_or_silently_lost;all_ground_items_can_coexist_on_one_cell",
+    "raised": "autonomous_raised_allies_duration_at_birth_and_equipment_terminal_drops_preserved;map_transfer_not_previously_accepted"
+  },
+  "new_proposed_rules": {
+    "scope": "player_map_changes_on_descent_refuge_entry_and_demonic_bonus_portal_entry_or_return;same_map_movement_and_Repositionner_command_not_changed",
+    "source_familiars": "all_currently_living_controlled_drones_and_autonomous_raised_allies_on_departure_map;source_distance_visibility_and_path_to_player_do_not_gate_transfer;unrelated_dominated_enemies_not_inferred_as_familiars",
+    "identity": "transfer_same_actor_and_real_items_without_new_invocation_spawn_loot_copy_or_recovery_of_destroyed_expired_actors",
+    "arrival": "place_each_transferred_actor_on_a_distinct_free_walkable_cell_in_walkable_arrival_area_near_player;precise_order_metric_and_tie_breaks_not_shown",
+    "reserves": "preserve_current_HP_and_energy;no_refill_heal_or_effect_purge_granted_by_transfer;ordinary_actual_game_turn_effects_still_apply",
+    "equipment_cargo": "retain_real_worn_items_and_Mule_cargo_on_same_actor;no_forced_ground_or_player_inventory_transfer_and_no_item_duplication",
+    "statuses": "preserve_current_buffs_and_debuffs_with_remaining_duration;normal_actual_game_turn_ticks_continue_without_reset_or_extra_transition_pause",
+    "raised_lifetime": "preserve_existing_remaining_lifetime_without_new_birth_or_refresh;normal_actual_game_turn_count_applies",
+    "cooldowns": "retain_actor_and_owner_invocation_cooldowns_including_Repositionner_remaining_six_turn_per_drone_timer;no_reset_or_new_reposition_cooldown_from_automatic_map_transfer",
+    "old_orders": "cancel_departure_map_attack_targets_and_Mule_ground_collection_order;resume_ordinary_player_follow_behavior_without_granting_raised_control_buttons",
+    "arrival_unavailable": "if_no_valid_placement_exists_for_entire_living_entourage_keep_player_familiars_and_items_on_departure_map_and_refuse_transfer;never_drop_or_delete_overflow_familiars",
+    "invocation_cost": "no_new_invocation_and_no_energy_cost_for_familiar_transfer;normal_transition_action_budget_not_defined_here",
+    "scope_boundary": "native_scene_and_exact_transition_event_order_placement_metric_hazards_and_save_atomicity_still_pending"
+  },
+  "dependencies": {
+    "reposition": "docs/reviews/refonte-agent-2026-10-06/review-drone-recall-command-PETS-EQ15-03.json",
+    "reposition_sha256": "63c5827ac9459bc2ccb73aed14e833a448c1d2f0dbea5bf32c62515805f90fcd",
+    "Mule_collection": "docs/reviews/refonte-agent-2026-10-06/review-mule-loot-collection-PETS-EQ16-02.json",
+    "Mule_collection_sha256": "1338ca4d45bd5ccc6b4deb3b99a05bfbf64f30963f041f99f7dff95b1669bd53",
+    "raised_rewards": "docs/reviews/refonte-agent-2026-10-06/review-raised-equipment-and-rewards-PETS-EQ09-02.json",
+    "raised_rewards_sha256": "bcc003bdd6d747dbb6413bd7c2eba9992d590899ea1b8287b153a99773b9f3dd",
+    "familiar_stats": "docs/reviews/refonte-agent-2026-10-06/review-familiar-stat-updates-PETS-EQ13-02.json",
+    "familiar_stats_sha256": "74435f8a5b27b55805b598012f6c3f1532295034de2a0c5c0561ff4919491c01",
+    "Mule_cargo": "docs/reviews/refonte-agent-2026-10-06/review-mule-cargo-transfers-PETS-EQ06-02.json",
+    "Mule_cargo_sha256": "55800bf793fa7bf3e7a482f399ce9782a3d85227c420028435fd265d50b4aa98",
+    "existing_drone_persistence_document": "docs/PROPOSITION_DRONES_PERSISTANTS_AGENT.md",
+    "existing_drone_persistence_document_sha256": "be576fa6b54d0194066aee4f347a5f6a2b6549edf80fa6a14215fe7342090ebe",
+    "existing_drone_review_document": "docs/REVUE_DRONES_AGENT_LOT_05.md",
+    "existing_drone_review_document_sha256": "d8fb8be6bfd742c572c742cc996962d2994107b73e9036b51d7285b1453b8ec5"
+  },
+  "scope_audit": {
+    "drones": "already_accepted_layer_persistence_retained;source_visibility_range_and_all_map_types_explicitly_proposed",
+    "raised": "following_player_to_new_maps_is_new_proposal;duration_and_actual_supplied_gear_preserved_not_recreated",
+    "recall": "no_manual_offmap_recall_storage_or_paused_statuses_reintroduced;PETS_EQ17_withdrawn_draft_not_used",
+    "Mule": "accepted_current_player_FOV_collection_and_capacity_unchanged;old_map_collection_order_cancellation_explicitly_proposed",
+    "phase": "accepted_layer_change_quiet_counter_reset_and_fractional_Maintenance_progress_preservation_not_revised_here;exact_portal_phase_tick_order_not_newly_approved",
+    "arrival_failure": "explicit_proposal_can_be_revised_by_user;implementation_should_prepare_sufficient_arrival_cells_and_must_not_silently_bypass_placement_failure",
+    "visual": "no_new_sprite_icon_native_animation_or_teleport_renderer_created"
+  },
+  "unshown_cases_pending": [
+    "precise_placement_metric_order_tie_breaks_and_arrival_cell_generation",
+    "ordinary_map_transition_action_cost_and_effect_lifetime_tick_order_before_or_after_placement",
+    "status_expiry_or_death_during_transition_and_exact_terminal_real_item_drop_cell",
+    "arrival_hazards_mines_zones_barriers_and_recomputed_visibility",
+    "portal_phase_counter_handling_and_save_transaction_atomicity",
+    "future_familiar_types_and_temporarily_dominated_actor_lifecycle",
+    "native_arrival_feedback_and_blocked_transition_reason_copy"
+  ],
+  "player_copy_approval": "shown_copy_pending_explicit_review",
+  "mechanical_approval": "existing_drone_layer_HP_cargo_persistence_retained;shown_extension_and_full_transfer_conditions_pending",
+  "visual_intention_approval": "near_player_arrival_function_proposed_pending;native_rendering_not_presented",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

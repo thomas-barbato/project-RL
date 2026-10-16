@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ14",
+  "revision": 2,
+  "title": "Déploiement et rappel des drones",
+  "status": "shown_drone_birth_full_reserves_recall_redeploy_no_refill_and_recalled_level_gain_restore_accepted;unshown_cases_pending",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-45.json",
+  "current_attribute_model_sha256": "6dab3f54073e1d9434e985749950760c0d23bb18a5fdce01ae92e7bde2040500",
+  "shown_copy_markdown": "Les **mises à jour de puissance et des jauges des familiers sont validées**.\n\n**PETS-EQ14 · Déploiement et rappel des drones — proposition**\n\n**Drone neuf**\n\nLors de son premier déploiement, il possède **100 % de ses PV maximum et de son énergie maximale**.\n\n**Rappel et redéploiement**\n\n- Le rappel conserve **le même drone**, ses jauges, son équipement et, pour la Mule, son chargement.\n- Le redéployer **ne restaure ni ses PV ni son énergie**.\n- Un gain de niveau du joueur restaure aussi les jauges des drones rappelés. Les changements de bonus suivent les règles validées.\n\n**Après destruction**\n\nUne nouvelle invocation crée un **nouveau drone aux jauges pleines**. Les objets déposés par l’ancien restent au sol : ils ne sont pas transférés automatiquement au nouveau.\n\nChaque déploiement conserve le coût d’énergie et la recharge de sa compétence.\n\n**Exemple fictif — sans autre événement entre les deux**\n\n- Avant le rappel : **30 / 100 PV · 12 / 40 énergie**.\n- Après redéploiement : **30 / 100 PV · 12 / 40 énergie**.\n\n**Ces règles de déploiement restent à valider.**",
+  "shown_copy_sha256": "372aff922ea5fbdc5ecedb426151a086c8d93afff8cbeae2bac5205530c07e52",
+  "new_proposed_rules": {
+    "scope": "existing_five_drone_models;not_raised_birth_which_is_accepted_under_PETS_EQ12_or_future_familiar_models",
+    "first_deployment": "new_drone_current_HP_and_energy_equal_final_calculated_maximums",
+    "recall_identity": "preserve_same_drone_actor_identity_current_reserves_real_equipment_and_Mule_cargo",
+    "redeployment_reserves": "no_HP_or_energy_refill_for_recalled_drone;apply_accepted_maximum_update_clamps_if_inputs_changed",
+    "recalled_level_gain": "recalled_owned_drones_also_follow_player_level_and_restore_current_HP_and_energy_after_real_player_level_gain;explicit_extension_of_PETS_EQ13_level_gain_rule",
+    "recalled_bonus_changes": "apply_accepted_stat_updates_without_refill_for_non_level_gain_rank_attribute_or_equipment_changes",
+    "after_destruction": "later_legal_invocation_creates_new_actor_with_full_current_reserves_not_revival_of_destroyed_actor",
+    "destroyed_actor_items": "previous_real_supplied_equipment_and_Mule_cargo_remain_ground_under_accepted_terminal_drop_rules;no_automatic_new_drone_item_transfer_or_duplication",
+    "invocation_costs": "each_deployment_keeps_accepted_individual_skill_energy_cost_and_cooldown;no_value_change_or_recall_cooldown_reset",
+    "scope_boundary": "recall_action_cost_distance_and_conditions_buffs_cooldown_hidden_regeneration_and_exact_spawn_event_order_not_defined"
+  },
+  "shown_examples": {
+    "scope": "fictional_recall_redeploy_sequence_with_no_intervening_level_stat_equipment_or_restore_event",
+    "before_recall": {
+      "current_HP": 30,
+      "maximum_HP": 100,
+      "current_energy": 12,
+      "maximum_energy": 40
+    },
+    "after_redeployment": {
+      "current_HP": 30,
+      "maximum_HP": 100,
+      "current_energy": 12,
+      "maximum_energy": 40
+    }
+  },
+  "dependencies": {
+    "familiar_updates": "docs/reviews/refonte-agent-2026-10-06/review-familiar-stat-updates-PETS-EQ13-02.json",
+    "familiar_updates_sha256": "74435f8a5b27b55805b598012f6c3f1532295034de2a0c5c0561ff4919491c01",
+    "equipped_bonus_rules": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-bonuses-PETS-EQ04-02.json",
+    "equipped_bonus_rules_sha256": "5ceb4f70dc8edef336507b9eeeef58990bc74f6b42095fa9818ac4b4b420b66e",
+    "equipment_identity": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-PETS-EQ01-03.json",
+    "equipment_identity_sha256": "8f3a02daa23df9637fda5a92fd91a3f7267c538d70be8610442ee92994abc7a5",
+    "Mule_cargo": "docs/reviews/refonte-agent-2026-10-06/review-mule-cargo-transfers-PETS-EQ06-02.json",
+    "Mule_cargo_sha256": "55800bf793fa7bf3e7a482f399ce9782a3d85227c420028435fd265d50b4aa98"
+  },
+  "scope_audit": {
+    "recall_HP": "accepted_no_free_HP_on_recall_and_Mule_cargo_equipment_identity_preserved;own_energy_reserve_and_new_actor_birth_explicitly_proposed",
+    "level_gain": "recalled_drone_level_gain_restoration_presented_separately_here;prior_PETS_EQ13_deployed_scope_not_silently_extended",
+    "maintenance": "accepted_Maintenance_only_repairs_deployed_drones;no_recalled_HP_regeneration_created",
+    "destruction_replacement": "new_drone_full_reserves_after_destruction_proposed;accepted_energy_cost_and_cooldown_preserved_and_no_free_same_actor_refill_on_recall",
+    "stats": "use_accepted_final_stat_rules;no_new_energy_base_curve_or_enemy_stat_profile",
+    "item_lifecycle": "no_new_native_item_or_ground_stack_rule;actual_items_still_require_accepted_real_transfers",
+    "native_visual": "no_new_actor_tile_drone_creation_animation_or_window_layout"
+  },
+  "unshown_cases_pending": [
+    "exact_recall_command_cost_range_visibility_combat_conditions_and_atomic_refusals",
+    "first_spawn_and_redeploy_initial_skill_cooldowns_and_action_timing",
+    "recalled_drone_temporary_effect_duration_DOT_and_energy_regeneration",
+    "layer_transition_deployment_and_survival_cleanup_order",
+    "familiar_energy_baselines_and_action_costs",
+    "normal_drone_destruction_versus_Autodestruction_skill_death_effects_and_cooldowns",
+    "native_familiar_window_and_spawn_feedback"
+  ],
+  "player_copy_approval": "explicit_user_acceptance_of_shown_copy",
+  "mechanical_approval": "shown_first_new_actor_full_reserves_recall_redeploy_no_refill_and_recalled_level_gain_restore_accepted;unshown_cases_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-drone-deployment-resources-PETS-EQ14-01.json",
+  "source_proposal_sha256": "0588cfb836787dde6d5e06e6b5dad7991688e34af345b483201b682e2b5eabc1",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/drone-deployment-resources-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "b0415bd138ddb4743866f4b6f98504d893ba10c901cdd09d4cc8bd5ea5a810b5",
+  "accepted_shown_rules": {
+    "scope": "existing_five_drone_models;not_raised_birth_which_is_accepted_under_PETS_EQ12_or_future_familiar_models",
+    "first_deployment": "new_drone_current_HP_and_energy_equal_final_calculated_maximums",
+    "recall_identity": "preserve_same_drone_actor_identity_current_reserves_real_equipment_and_Mule_cargo",
+    "redeployment_reserves": "no_HP_or_energy_refill_for_recalled_drone;apply_accepted_maximum_update_clamps_if_inputs_changed",
+    "recalled_level_gain": "recalled_owned_drones_also_follow_player_level_and_restore_current_HP_and_energy_after_real_player_level_gain;explicit_extension_of_PETS_EQ13_level_gain_rule",
+    "recalled_bonus_changes": "apply_accepted_stat_updates_without_refill_for_non_level_gain_rank_attribute_or_equipment_changes",
+    "after_destruction": "later_legal_invocation_creates_new_actor_with_full_current_reserves_not_revival_of_destroyed_actor",
+    "destroyed_actor_items": "previous_real_supplied_equipment_and_Mule_cargo_remain_ground_under_accepted_terminal_drop_rules;no_automatic_new_drone_item_transfer_or_duplication",
+    "invocation_costs": "each_deployment_keeps_accepted_individual_skill_energy_cost_and_cooldown;no_value_change_or_recall_cooldown_reset",
+    "scope_boundary": "recall_action_cost_distance_and_conditions_buffs_cooldown_hidden_regeneration_and_exact_spawn_event_order_not_defined"
+  },
+  "accepted_shown_examples": {
+    "scope": "fictional_recall_redeploy_sequence_with_no_intervening_level_stat_equipment_or_restore_event",
+    "before_recall": {
+      "current_HP": 30,
+      "maximum_HP": 100,
+      "current_energy": 12,
+      "maximum_energy": 40
+    },
+    "after_redeployment": {
+      "current_HP": 30,
+      "maximum_HP": 100,
+      "current_energy": 12,
+      "maximum_energy": 40
+    }
+  }
+}

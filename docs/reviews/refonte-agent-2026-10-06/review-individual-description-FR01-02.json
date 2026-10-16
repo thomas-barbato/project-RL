@@ -1,0 +1,238 @@
+{
+  "date": "2026-10-07",
+  "id": "FR01",
+  "title": "Aiguille de givre",
+  "revision": 2,
+  "player_copy_markdown": "**FR01 · Aiguille de givre — Rang 11**\n\n*Vous projetez une aiguille glacée qui engourdit les membres de votre cible.*\n\n**Effets actuels**\n\n- Dégâts de froid : **35**.\n- Gel : **5 tours**.\n- Chance de gel : **21,6 % · Élites : 16,2 %**.\n- Portée : **5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de froid : **38**.\n- Chance de gel : **23,4 % · Élites : 17,6 %**.\n\n**Coût : 9 énergie · Recharge : 2 tours.**\n\nVisez un hostile visible à portée, avec une trajectoire dégagée.\n\nLe Gel bloque les déplacements, tout en laissant la cible attaquer et utiliser ses autres actions.\n\nUn Gel appliqué supprime la Brûlure de la cible. Une Brûlure appliquée supprime son Gel.\n\nLes boss sont immunisés au Gel. Les dégâts restent applicables.\n\nDégâts affichés avant les défenses des cibles.",
+  "player_copy_sha256": "562cb76c4c2e4be11b1291da48fb835bf9b9c0e6100fb884513768289adde45f",
+  "visual_copy_markdown": "**Visuel proposé :** une aiguille blanche frappe la cible ; si le Gel s’applique, la glace se referme autour de ses pieds et les flammes d’une éventuelle Brûlure s’éteignent.",
+  "visual_copy_sha256": "f7c8dc571d21c4c239db65d5726909f16f7fd2a81f319468c63d9a868a3353c8",
+  "review_context_markdown": "Les chiffres révisés restent proposés. Les chances sont calculées sur une cible d’exemple.",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-30.json",
+  "source_skill_block_sha256": "b485128ef7baea9fae0c72bbb083b077182c3f38bcea3337330826518cd43f2d",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/frost-freeze-and-burning-interaction-decisions.json",
+  "latest_decisions_sha256": "d66d24e0f51e1ce8fa8c9df054ca6fce063ae729cf79d97f3af1c416e1c783fb",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_global_CD08;necessary_target_and_control_conditions_retained",
+  "current_next_effect_copy_approval": "revised_copy_pending_individual_user_review;requested_five_turn_Freeze_and_reciprocal_status_replacement_accepted",
+  "numeric_rules_approval": "five_turn_FR01_Freeze_explicitly_requested;damage35/38,chance21.6/23.4,other_displayed_values_and_unshown_curves_pending;CTRL01_retained",
+  "detailed_conditions_approval": "slowdown_removed,movement_only_Freeze,burning_target_eligible_and_reciprocal_successful_status_replacement_accepted;additional_target_and_unshown_cases_pending",
+  "current_profile_status": "illustrative_not_a_user_save;example_target_not_all_monsters;damage_before_defenses",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "target_occult_resistance": 25,
+    "target_status": "fictional ordinary hostile;elite column uses same resistance",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "attribute_scaling_approval": "revised_FR01_example_and_full_Willpower_curve_pending_review",
+  "formulas": {
+    "cold_damage": "floor((8+3*(effective_rank-1))*magic_multiplier*85/100)",
+    "damage_coefficient_scope": "FR01 proposal only;not a universal Cold coefficient",
+    "magic_multiplier": "1+0.02*(Willpower-5)",
+    "control_power": "100+5*(effective_rank-1)+2*(Willpower-5)",
+    "resistance_factor_percent": "clamp(100*max(1,control_power)/(max(1,control_power)+max(1,target_occult_resistance)),5,95)",
+    "skill_freeze_chance_factor_percent": "min(100,max(0,5+2*(effective_rank-1)))",
+    "freeze_success_chance_percent": "resistance_factor_percent*skill_freeze_chance_factor_percent/100;single_final_freeze_roll",
+    "elite_final_control_chance": "calculated_final_freeze_chance*3/4;once;before_display_rounding",
+    "boss_control_chance_percent": 0,
+    "freeze_duration_turns": 5,
+    "range_cells": 5,
+    "energy_cost": "6+floor((effective_rank-1)/3)",
+    "cooldown_turns": 2,
+    "display_rounding": "nearest tenth after exact fraction calculation and elite modifier"
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "cold_damage": 35,
+    "control_power": 160,
+    "skill_freeze_chance_factor_percent": 25,
+    "freeze_success_chance_percent": 21.6,
+    "elite_freeze_success_chance_percent": 16.2,
+    "freeze_duration_turns": 5,
+    "range_cells": 5,
+    "energy_cost": 9,
+    "cooldown_turns": 2,
+    "boss_freeze_success_chance_percent": 0
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "cold_damage": 38,
+    "control_power": 165,
+    "skill_freeze_chance_factor_percent": 27,
+    "freeze_success_chance_percent": 23.4,
+    "elite_freeze_success_chance_percent": 17.6,
+    "freeze_duration_turns": 5,
+    "range_cells": 5,
+    "energy_cost": 9,
+    "cooldown_turns": 2,
+    "boss_freeze_success_chance_percent": 0
+  },
+  "exact_current_percentages": {
+    "resistance_factor_percent": "3200/37",
+    "freeze_success_chance_percent": "800/37",
+    "elite_freeze_success_chance_percent": "600/37"
+  },
+  "exact_next_percentages": {
+    "resistance_factor_percent": "1650/19",
+    "freeze_success_chance_percent": "891/38",
+    "elite_freeze_success_chance_percent": "2673/152"
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "cold_damage": 6,
+    "control_power": 100,
+    "skill_freeze_chance_factor_percent": 5,
+    "freeze_duration_turns": 5,
+    "range_cells": 5,
+    "energy_cost": 6,
+    "cooldown_turns": 2,
+    "approval": "unshown full curve pending;five-turn FR01 duration requested;total chance depends on target resistance"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "same_target_resistance": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "cold_damage",
+      "freeze_success_chance_percent",
+      "elite_freeze_success_chance_percent"
+    ],
+    "unchanged_effects_omitted": [
+      "freeze_duration_turns",
+      "range_cells",
+      "energy_cost",
+      "cooldown_turns",
+      "boss_freeze_success_chance_percent"
+    ],
+    "internal_parameters_not_shown": [
+      "control_power",
+      "skill_freeze_chance_factor_percent"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "magic_single_target_projectile_not_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy weapon exclusion added to spell"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "effect_conditions": {
+    "target": "one visible hostile within range with clear projectile path",
+    "damage_type": "cold",
+    "damage_display": "before target defenses",
+    "slowdown_created": false,
+    "freeze_is_single_success_test": true,
+    "freeze_blocks_movement": true,
+    "freeze_blocks_attacks_or_other_actions": false,
+    "successful_Freeze_application_removes_existing_Burn": true,
+    "successful_Burn_application_removes_existing_Freeze": true,
+    "burning_target_can_receive_Freeze": true,
+    "burning_target_Freeze_immunity": false,
+    "elemental_damage_alone_is_status_application": false,
+    "bosses_immune_to_Freeze": true,
+    "elite_final_control_chance_multiplier": "3/4",
+    "elite_penalty_applied_once": true,
+    "control_failure_or_immunity_does_not_cancel_damage": true,
+    "one_projectile_no_piercing_no_knockback": true,
+    "creates_persistent_ground_zone": false,
+    "hit_collision_defense_status_order_and_dead_target_cases": "unshown pending review",
+    "control_resistance_bounds_stacking_refresh_forced_special_movements_simultaneous_statuses_and_exact_timers": "unshown pending review"
+  },
+  "contextual_chance_preview": {
+    "sample_is_fictional": true,
+    "selected_target_resistance_must_be_used_when_available": true,
+    "unknown_target_resistance_UI_and_reveal_rules": "pending review;fictional internal resistance not permission to expose hidden target statistics",
+    "no_drone_status_visibility_does_not_unlock_other_target_stats": true
+  },
+  "existing_control_formula_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-AF05-03.json",
+  "existing_control_formula_reference_sha256": "4f2ab6a7bbd832b6a76214828f92ff93f935de7845d96f4dce6f780eb44a190c",
+  "existing_control_formula_scope": "proposed resistance factor with FR01 Willpower;old slowdown gate retired;one final Freeze test preserving former total chance;no AF or universal formula rewrite",
+  "control_rules_dependency": {
+    "review_id": "CTRL01",
+    "reference": "docs/reviews/refonte-agent-2026-10-06/control-boss-immunity-and-elite-penalty-decisions.json",
+    "sha256": "139e1615bfedbc7a4ad3df16d614e39d3616fcff387f6bdcc2b96c82cb85c145",
+    "bosses_immune": true,
+    "elite_relative_penalty_percent": 25,
+    "damage_preserved": true
+  },
+  "elemental_status_dependency": {
+    "review_id": "EL-STAT01",
+    "reference": "docs/reviews/refonte-agent-2026-10-06/elemental-status-and-emanation-redesign-decisions.json",
+    "sha256": "1455a5b1f4ec31f3dcdc0fcaa8d40e34a1c1664a764100cf0b6fd6d1dcdec548",
+    "per_skill_freeze_chance": "revised single Freeze roll proposed;all Cold Freeze direction and common interaction accepted",
+    "latest_interaction_reference": "docs/reviews/refonte-agent-2026-10-06/frost-freeze-and-burning-interaction-decisions.json"
+  },
+  "target_status_visibility_dependency": {
+    "review_id": "HUD06",
+    "reference": "docs/reviews/refonte-agent-2026-10-06/target-status-analysis-visibility-decisions.json",
+    "sha256": "d1e57c5798ede4cbfa9a715cf1db628415a8c4784b630bbbcf1bba709cf628b1",
+    "other_target_stats_unlocked": false,
+    "native_rendering": "pending",
+    "active_status_values_visible_without_recon_drone": true,
+    "removed_status_no_longer_active": true
+  },
+  "zone_exposure_scope": "EL-ZONE01 not applicable:single projectile,no persistent zone",
+  "unshown_rules_approval": "Revised numbers/RP/targeting/visual extension and full rank/attribute curves pending except requested five-turn FR01 duration and accepted reciprocal status replacement. Hit/collision/resistance bounds,impact/control order/dead targets,role classification,forced/special movement,stacking/refresh/exact timers,simultaneous status order and unknown-target chance presentation pending. No burning-target Freeze immunity,global five-turn duration,universal Cold coefficient,weapon magic variance or hidden target reveal.",
+  "visual_intention_approval": "catalogue_white_projectile_and_crystals_preserved;ice_at_feet_and_extinction_of_replaced_burn_flames_proposed_pending_review",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Latest human correction supersedes burning-target Freeze immunity;Freeze and Burn remove each other on successful application.",
+    "Requested FR01 movement lock for5 turns replaces old slowdown and two-turn conditional Freeze.",
+    "Proposed cold35/38 versus same-profile Braise direct41/45;85% raw coefficient only a FR01 proposal.",
+    "One final Freeze chance21.6/23.4 with elite16.2/17.6;elite multiplier once before rounding;bosses0;damage preserved.",
+    "Same learned9 to10,gear+2,attributes/modifiers/targetresistance;one point within cap10;only changed effects in next block.",
+    "No slowdown UI/formulas,rank breakdown,ordinary activation timing,weapon variance or persistent exposure zone.",
+    "RP/new numeric copy/visual direction pending;no runtime integration or native graphics created."
+  ],
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR01-01.json",
+  "previous_description_sha256": "769bd66452d76797aec95ff9f318c82f55413992a4c5602836b8298b237306f6",
+  "previous_description_status": "superseded_slowdown_plus_conditional_two_turn_freeze_model_preserved_as_history",
+  "freeze_burn_interaction_dependency": {
+    "review_id": "EL-GEL01",
+    "reference": "docs/reviews/refonte-agent-2026-10-06/frost-freeze-and-burning-interaction-decisions.json",
+    "sha256": "d66d24e0f51e1ce8fa8c9df054ca6fce063ae729cf79d97f3af1c416e1c783fb",
+    "reciprocal_successful_status_replacement_accepted": true,
+    "burning_target_immune_to_Freeze": false,
+    "former_immunity_choice": "explicitly_superseded",
+    "simultaneous_application_order": "pending_review"
+  },
+  "damage_balance_dependency": {
+    "review_id": "EL-BAL01",
+    "reference": "docs/reviews/refonte-agent-2026-10-06/frost-freeze-and-burning-interaction-decisions.json",
+    "sha256": "d66d24e0f51e1ce8fa8c9df054ca6fce063ae729cf79d97f3af1c416e1c783fb",
+    "cold_less_damage_than_comparable_fire": "accepted_qualitative_direction",
+    "FR01_85_percent_raw_coefficient": "proposed_pending_review",
+    "reference_spell": "FE01 Braise direct damage only",
+    "reference_spell_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE01-02.json",
+    "reference_spell_description_sha256": "c3c343998541309d456d7c6be730b95afdba0872104db3612f135e0a5d2c708a",
+    "current_reference_fire_damage": 41,
+    "next_reference_fire_damage": 45,
+    "same_rank_attributes_and_modifiers": true,
+    "reference_burn_damage_included": false,
+    "universal_Cold_percentage_approved": false
+  }
+}

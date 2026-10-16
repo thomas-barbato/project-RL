@@ -1,0 +1,57 @@
+{
+  "id": "core:traqueur",
+  "name_key": "class.traqueur.name",
+  "role_key": "class.traqueur.role",
+  "description_key": "class.traqueur.description",
+  "recommended_attributes": {
+    "power": 4,
+    "coordination": 8,
+    "resilience": 5,
+    "perception": 7,
+    "processing": 4,
+    "willpower": 6
+  },
+  "starting_weapons": [
+    "core:fusil_de_patrouille"
+  ],
+  "starting_items": [
+    {
+      "item": "core:tenue_traque",
+      "quantity": 1
+    },
+    {
+      "item": "core:agent_dose_soin",
+      "quantity": 2
+    },
+    {
+      "item": "core:agent_cellule_energie",
+      "quantity": 1
+    }
+  ],
+  "starting_equipment": [
+    "core:fusil_de_patrouille",
+    null,
+    null
+  ],
+  "agent_start": {
+    "maximum_hp_percent": 100,
+    "maximum_energy_percent": 100,
+    "weapon_damage_percent": 100,
+    "melee_damage_percent": 90,
+    "ranged_damage_percent": 120,
+    "spell_damage_percent": 100,
+    "magic_energy_percent": 100,
+    "drone_hp_percent": 100,
+    "drone_damage_percent": 100,
+    "transformed_damage_percent": 100,
+    "human_skill_energy_percent": 100,
+    "armor": 0,
+    "evasion": 2,
+    "transformation_duration_bonus": 0,
+    "weakening_duration_bonus": 0,
+    "skills": [
+      "T01",
+      "T03"
+    ]
+  }
+}

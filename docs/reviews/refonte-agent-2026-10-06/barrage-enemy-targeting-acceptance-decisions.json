@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-08",
+  "review_id": "HL01-TARGET01-ACCEPT01",
+  "user_instruction": "ok :) je valide",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-barrage-enemy-priority-targeting-01.json",
+  "source_proposal_sha256": "6b9c375cc726d6899ffd4d5b9da4a8fa8c5ed9b605480307161dc392777fc224",
+  "accepted_scope": "shown_automatic_targeting_of_observed_enemies_in_chosen_zone;one_salvo_per_distinct_enemy_up_to_three;one_or_two_salvos_if_fewer_enemies;weapon_supply_follows_actual_salvo_count;no_observed_enemy_refuse_without_consumption;preview_selected_enemies_and_explosion_areas;target_launch_position_native_grenade_delay_and_target_movement;replacement_effect_line",
+  "unchanged_prior_card_acceptance": "docs/reviews/refonte-agent-2026-10-06/barrage-description-and-enemy-priority-decisions.json",
+  "unchanged_prior_card_acceptance_sha256": "0d261ca1d7cfcf6b470a70c18d8f19fe68eb74b1af99148219e1c7dc821a5356",
+  "accepted_visual_direction": "selected_enemy_positions_and_affected_known_areas_in_preview;native_pixels_pending",
+  "unshown_cases_pending": [
+    "chosen_zone_geometry_size_orientation",
+    "selection_order_if_more_than_three_targets",
+    "native_accuracy_and_weapon_modes",
+    "target_changes_between_sequences",
+    "exact_atomic_time_RNG_heat_cooldown_resource_order",
+    "large_footprints_allied_actor_damage_and_other_unshown_cases"
+  ],
+  "native_visual_approval": "pending_not_created",
+  "runtime_integration": "not_integrated"
+}

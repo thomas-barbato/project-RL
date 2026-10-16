@@ -1,0 +1,608 @@
+{
+  "date": "2026-10-06",
+  "status": "proposed_design_calculations_not_engine_tests",
+  "default_profile": {
+    "effective_rank": 1,
+    "intelligence": 5,
+    "other_passives": false
+  },
+  "current_profile": {
+    "learned_rank": 10,
+    "equipment_rank_bonus": 2,
+    "effective_rank": 12,
+    "intelligence": 10,
+    "common_passive_ranks": 12,
+    "actual_user_save": false
+  },
+  "models": [
+    {
+      "id": "D56",
+      "rank_samples_without_modifiers": [
+        {
+          "effective_rank": 1,
+          "maximum_hp": 16,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 10,
+          "cooldown_turns": 6,
+          "vision_cells": 4
+        },
+        {
+          "effective_rank": 5,
+          "maximum_hp": 28,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 11,
+          "cooldown_turns": 6,
+          "vision_cells": 5
+        },
+        {
+          "effective_rank": 10,
+          "maximum_hp": 43,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 13,
+          "cooldown_turns": 6,
+          "vision_cells": 7
+        },
+        {
+          "effective_rank": 12,
+          "maximum_hp": 49,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 13,
+          "cooldown_turns": 6,
+          "vision_cells": 7
+        },
+        {
+          "effective_rank": 100,
+          "maximum_hp": 313,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 43,
+          "cooldown_turns": 6,
+          "vision_cells": 8
+        },
+        {
+          "effective_rank": 1000,
+          "maximum_hp": 3013,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 343,
+          "cooldown_turns": 6,
+          "vision_cells": 8
+        }
+      ],
+      "default": {
+        "maximum_hp": 16,
+        "damage_before_defenses": 0,
+        "duration_turns": null,
+        "unlimited_activity": true,
+        "energy": 10,
+        "cooldown_turns": 6,
+        "vision_cells": 4
+      },
+      "current_example": {
+        "maximum_hp": 53,
+        "damage_before_defenses": 0,
+        "duration_turns": null,
+        "unlimited_activity": true,
+        "energy": 13,
+        "cooldown_turns": 6,
+        "vision_cells": 7
+      },
+      "current_repair_hp_per_eligible_turn": {
+        "numerator": 159,
+        "denominator": 40,
+        "display": 3.975
+      }
+    },
+    {
+      "id": "D57",
+      "rank_samples_without_modifiers": [
+        {
+          "effective_rank": 1,
+          "maximum_hp": 28,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 10,
+          "cooldown_turns": 6,
+          "cargo_capacity_grams": 40000
+        },
+        {
+          "effective_rank": 5,
+          "maximum_hp": 44,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 11,
+          "cooldown_turns": 6,
+          "cargo_capacity_grams": 72000
+        },
+        {
+          "effective_rank": 10,
+          "maximum_hp": 64,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 13,
+          "cooldown_turns": 6,
+          "cargo_capacity_grams": 112000
+        },
+        {
+          "effective_rank": 12,
+          "maximum_hp": 72,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 13,
+          "cooldown_turns": 6,
+          "cargo_capacity_grams": 128000
+        },
+        {
+          "effective_rank": 100,
+          "maximum_hp": 424,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 43,
+          "cooldown_turns": 6,
+          "cargo_capacity_grams": 832000
+        },
+        {
+          "effective_rank": 1000,
+          "maximum_hp": 4024,
+          "damage_before_defenses": 0,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 343,
+          "cooldown_turns": 6,
+          "cargo_capacity_grams": 8032000
+        }
+      ],
+      "default": {
+        "maximum_hp": 28,
+        "damage_before_defenses": 0,
+        "duration_turns": null,
+        "unlimited_activity": true,
+        "energy": 10,
+        "cooldown_turns": 6,
+        "cargo_capacity_grams": 40000
+      },
+      "current_example": {
+        "maximum_hp": 79,
+        "damage_before_defenses": 0,
+        "duration_turns": null,
+        "unlimited_activity": true,
+        "energy": 13,
+        "cooldown_turns": 6,
+        "cargo_capacity_grams": 140800
+      },
+      "current_repair_hp_per_eligible_turn": {
+        "numerator": 237,
+        "denominator": 40,
+        "display": 5.925
+      }
+    },
+    {
+      "id": "D58",
+      "rank_samples_without_modifiers": [
+        {
+          "effective_rank": 1,
+          "maximum_hp": 22,
+          "damage_before_defenses": 5,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 12,
+          "cooldown_turns": 6,
+          "attack_range_cells": 1
+        },
+        {
+          "effective_rank": 5,
+          "maximum_hp": 38,
+          "damage_before_defenses": 13,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 13,
+          "cooldown_turns": 6,
+          "attack_range_cells": 1
+        },
+        {
+          "effective_rank": 10,
+          "maximum_hp": 58,
+          "damage_before_defenses": 23,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 15,
+          "cooldown_turns": 6,
+          "attack_range_cells": 1
+        },
+        {
+          "effective_rank": 12,
+          "maximum_hp": 66,
+          "damage_before_defenses": 27,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 15,
+          "cooldown_turns": 6,
+          "attack_range_cells": 1
+        },
+        {
+          "effective_rank": 100,
+          "maximum_hp": 418,
+          "damage_before_defenses": 203,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 45,
+          "cooldown_turns": 6,
+          "attack_range_cells": 1
+        },
+        {
+          "effective_rank": 1000,
+          "maximum_hp": 4018,
+          "damage_before_defenses": 2003,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 345,
+          "cooldown_turns": 6,
+          "attack_range_cells": 1
+        }
+      ],
+      "default": {
+        "maximum_hp": 22,
+        "damage_before_defenses": 5,
+        "duration_turns": null,
+        "unlimited_activity": true,
+        "energy": 12,
+        "cooldown_turns": 6,
+        "attack_range_cells": 1
+      },
+      "current_example": {
+        "maximum_hp": 72,
+        "damage_before_defenses": 43,
+        "duration_turns": null,
+        "unlimited_activity": true,
+        "energy": 15,
+        "cooldown_turns": 6,
+        "attack_range_cells": 1
+      },
+      "current_repair_hp_per_eligible_turn": {
+        "numerator": 27,
+        "denominator": 5,
+        "display": 5.4
+      }
+    },
+    {
+      "id": "D59",
+      "rank_samples_without_modifiers": [
+        {
+          "effective_rank": 1,
+          "maximum_hp": 20,
+          "damage_before_defenses": 4,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 12,
+          "cooldown_turns": 6,
+          "attack_range_cells": 4
+        },
+        {
+          "effective_rank": 5,
+          "maximum_hp": 36,
+          "damage_before_defenses": 8,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 13,
+          "cooldown_turns": 6,
+          "attack_range_cells": 4
+        },
+        {
+          "effective_rank": 10,
+          "maximum_hp": 56,
+          "damage_before_defenses": 13,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 15,
+          "cooldown_turns": 6,
+          "attack_range_cells": 4
+        },
+        {
+          "effective_rank": 12,
+          "maximum_hp": 64,
+          "damage_before_defenses": 15,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 15,
+          "cooldown_turns": 6,
+          "attack_range_cells": 4
+        },
+        {
+          "effective_rank": 100,
+          "maximum_hp": 416,
+          "damage_before_defenses": 103,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 45,
+          "cooldown_turns": 6,
+          "attack_range_cells": 4
+        },
+        {
+          "effective_rank": 1000,
+          "maximum_hp": 4016,
+          "damage_before_defenses": 1003,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 345,
+          "cooldown_turns": 6,
+          "attack_range_cells": 4
+        }
+      ],
+      "default": {
+        "maximum_hp": 20,
+        "damage_before_defenses": 4,
+        "duration_turns": null,
+        "unlimited_activity": true,
+        "energy": 12,
+        "cooldown_turns": 6,
+        "attack_range_cells": 4
+      },
+      "current_example": {
+        "maximum_hp": 70,
+        "damage_before_defenses": 24,
+        "duration_turns": null,
+        "unlimited_activity": true,
+        "energy": 15,
+        "cooldown_turns": 6,
+        "attack_range_cells": 4
+      },
+      "current_repair_hp_per_eligible_turn": {
+        "numerator": 21,
+        "denominator": 4,
+        "display": 5.25
+      }
+    },
+    {
+      "id": "D66",
+      "rank_samples_without_modifiers": [
+        {
+          "effective_rank": 1,
+          "maximum_hp": 30,
+          "damage_before_defenses": 3,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 14,
+          "cooldown_turns": 6,
+          "protection_percent": {
+            "numerator": 5,
+            "denominator": 1,
+            "display": 5.0
+          },
+          "protection_radius_cells": 2,
+          "attack_range_cells": 1
+        },
+        {
+          "effective_rank": 5,
+          "maximum_hp": 50,
+          "damage_before_defenses": 7,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 15,
+          "cooldown_turns": 6,
+          "protection_percent": {
+            "numerator": 85,
+            "denominator": 7,
+            "display": 12.143
+          },
+          "protection_radius_cells": 2,
+          "attack_range_cells": 1
+        },
+        {
+          "effective_rank": 10,
+          "maximum_hp": 75,
+          "damage_before_defenses": 12,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 17,
+          "cooldown_turns": 6,
+          "protection_percent": {
+            "numerator": 320,
+            "denominator": 19,
+            "display": 16.842
+          },
+          "protection_radius_cells": 2,
+          "attack_range_cells": 1
+        },
+        {
+          "effective_rank": 12,
+          "maximum_hp": 85,
+          "damage_before_defenses": 14,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 17,
+          "cooldown_turns": 6,
+          "protection_percent": {
+            "numerator": 380,
+            "denominator": 21,
+            "display": 18.095
+          },
+          "protection_radius_cells": 2,
+          "attack_range_cells": 1
+        },
+        {
+          "effective_rank": 100,
+          "maximum_hp": 525,
+          "damage_before_defenses": 102,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 47,
+          "cooldown_turns": 6,
+          "protection_percent": {
+            "numerator": 3020,
+            "denominator": 109,
+            "display": 27.706
+          },
+          "protection_radius_cells": 2,
+          "attack_range_cells": 1
+        },
+        {
+          "effective_rank": 1000,
+          "maximum_hp": 5025,
+          "damage_before_defenses": 1002,
+          "duration_turns": null,
+          "unlimited_activity": true,
+          "energy": 347,
+          "cooldown_turns": 6,
+          "protection_percent": {
+            "numerator": 30020,
+            "denominator": 1009,
+            "display": 29.752
+          },
+          "protection_radius_cells": 2,
+          "attack_range_cells": 1
+        }
+      ],
+      "default": {
+        "maximum_hp": 30,
+        "damage_before_defenses": 3,
+        "duration_turns": null,
+        "unlimited_activity": true,
+        "energy": 14,
+        "cooldown_turns": 6,
+        "protection_percent": {
+          "numerator": 5,
+          "denominator": 1,
+          "display": 5.0
+        },
+        "protection_radius_cells": 2,
+        "attack_range_cells": 1
+      },
+      "current_example": {
+        "maximum_hp": 93,
+        "damage_before_defenses": 22,
+        "duration_turns": null,
+        "unlimited_activity": true,
+        "energy": 17,
+        "cooldown_turns": 6,
+        "protection_percent": {
+          "numerator": 380,
+          "denominator": 21,
+          "display": 18.095
+        },
+        "protection_radius_cells": 2,
+        "attack_range_cells": 1
+      },
+      "current_repair_hp_per_eligible_turn": {
+        "numerator": 279,
+        "denominator": 40,
+        "display": 6.975
+      }
+    }
+  ],
+  "common_passive_samples": [
+    {
+      "effective_rank": 1,
+      "repair_percent_maximum_hp": {
+        "numerator": 2,
+        "denominator": 1,
+        "display": 2.0
+      },
+      "damage_reduction_percent": {
+        "numerator": 10,
+        "denominator": 1,
+        "display": 10.0
+      },
+      "damage_extra_percent": 25
+    },
+    {
+      "effective_rank": 5,
+      "repair_percent_maximum_hp": {
+        "numerator": 4,
+        "denominator": 1,
+        "display": 4.0
+      },
+      "damage_reduction_percent": {
+        "numerator": 150,
+        "denominator": 7,
+        "display": 21.429
+      },
+      "damage_extra_percent": 33
+    },
+    {
+      "effective_rank": 10,
+      "repair_percent_maximum_hp": {
+        "numerator": 13,
+        "denominator": 2,
+        "display": 6.5
+      },
+      "damage_reduction_percent": {
+        "numerator": 550,
+        "denominator": 19,
+        "display": 28.947
+      },
+      "damage_extra_percent": 43
+    },
+    {
+      "effective_rank": 12,
+      "repair_percent_maximum_hp": {
+        "numerator": 15,
+        "denominator": 2,
+        "display": 7.5
+      },
+      "damage_reduction_percent": {
+        "numerator": 650,
+        "denominator": 21,
+        "display": 30.952
+      },
+      "damage_extra_percent": 47
+    },
+    {
+      "effective_rank": 100,
+      "repair_percent_maximum_hp": {
+        "numerator": 103,
+        "denominator": 2,
+        "display": 51.5
+      },
+      "damage_reduction_percent": {
+        "numerator": 5050,
+        "denominator": 109,
+        "display": 46.33
+      },
+      "damage_extra_percent": 223
+    },
+    {
+      "effective_rank": 1000,
+      "repair_percent_maximum_hp": {
+        "numerator": 1003,
+        "denominator": 2,
+        "display": 501.5
+      },
+      "damage_reduction_percent": {
+        "numerator": 50050,
+        "denominator": 1009,
+        "display": 49.604
+      },
+      "damage_extra_percent": 2023
+    }
+  ],
+  "fractional_repair_example": {
+    "maximum_hp": 70,
+    "effective_rank": 12,
+    "eligible_turn_repairs": [
+      5,
+      5,
+      5,
+      6
+    ]
+  },
+  "guardian_plus_blindage_current_reduction_percent": {
+    "numerator": 19160,
+    "denominator": 441,
+    "display": 43.447
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SG02-ACCEPT01",
+  "skill_id": "SG02",
+  "user_response": "On va renommer la compétence \"Leurre\" et je valide",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG02-01.json",
+  "reviewed_description_sha256": "de120969997924e4ea651595c79e2bdbce19ba2250a00091009f423334b665a8",
+  "accepted_player_copy": "**SG02 · Leurre — Rang 11 · Passif**\n\n*Votre grenade déchire le silence d’un vacarme qui détourne les ennemis vers un piège.*\n\n**Effets actuels**\n\n- Portée sonore en terrain dégagé : **13 cases**.\n- Durée d’émission du bruit : **2 tours**.\n- Chance d’attraction : **100 % · Élites : 75 % · Boss : immunisés**.\n- Portée de lancer : **4 cases**.\n- Coût de la variante : **8 énergie**.\n- Recharge : **2 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Portée sonore en terrain dégagé : **14 cases**.\n\nNécessite **Lancer de grenade** apprise. Débloque la variante sonore dès le premier rang. Aucun dégât.\n\nLes ennemis qui entendent le bruit cherchent à rejoindre la case d’impact par un chemin praticable, même après l’arrêt du bruit. Ceux qui peuvent déjà attaquer leur cible restent au combat.\n\nUne seule tentative d’attraction par ennemi et par grenade. Les murs atténuent le bruit et modifient la zone atteinte.",
+  "accepted_current_values": {
+    "open_terrain_sound_reach_cells": 13,
+    "sound_emission_duration_turns": 2,
+    "ordinary_conditional_attraction_chance_percent": 100,
+    "elite_conditional_attraction_chance_percent": 75,
+    "boss_conditional_attraction_chance_percent": 0,
+    "throw_range_cells": 4,
+    "variant_energy_cost": 8,
+    "variant_cooldown_turns": 2,
+    "damage": 0
+  },
+  "accepted_next_values": {
+    "open_terrain_sound_reach_cells": 14,
+    "sound_emission_duration_turns": 2,
+    "ordinary_conditional_attraction_chance_percent": 100,
+    "elite_conditional_attraction_chance_percent": 75,
+    "boss_conditional_attraction_chance_percent": 0,
+    "throw_range_cells": 4,
+    "variant_energy_cost": 8,
+    "variant_cooldown_turns": 2,
+    "damage": 0
+  },
+  "accepted_displayed_conditions": [
+    "SG00_learned_prerequisite",
+    "rank1_opens_sound_variant",
+    "no_damage",
+    "hearing_required_for_attraction",
+    "control_chance100_normal75_elite_boss_immunity",
+    "one_attempt_per_enemy_per_grenade",
+    "legal_path_to_impact_center",
+    "search_continues_after_noise_stops",
+    "immediately_attackable_target_has_priority",
+    "walls_attenuate_noise"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** la grenade émet deux pulsations d’ondes ambrées autour du point d’impact. Avant le lancer, l’aperçu montre la zone sonore réelle, plus grande que celle des autres variantes et adaptée aux obstacles.",
+  "explicit_rename": {
+    "review_id": "SG02-NAME01",
+    "old_title": "Grenade sonore",
+    "new_title": "Leurre",
+    "approval": "explicit_user_request",
+    "same_skill_id": true
+  },
+  "accepted_revision": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG02-02.json",
+  "accepted_revision_sha256": "71ce68cf98933bae4cefe5459cfbc0d60ef9b4bd84aeb2fb55e2e0284b06a645",
+  "approval_scope": "displayed_RP_current_next_values_conditions_and_visual_direction_explicitly_accepted_with_Leurre_title;unshown_rank1_numbers_curves_AI_cases_and_native_pending",
+  "unshown_cases_pending": [
+    "full_unshown_rank_and_equipment_bonus_curve_review",
+    "louder_noise_priority_and_AI_state_transition_on_new_targets",
+    "search_duration_memory_bounds_after_emission_end_and_unreachable_or_occupied_center",
+    "first_emission_order_and_exact_two_turn_expiry",
+    "ineligible_attack_ready_enemy_later_eligibility_and_roll_timing",
+    "deafness_and_other_monster_sensor_rules_not_yet_defined",
+    "bosses_hearing_alerting_vs_forced_attraction",
+    "unknown_terrain_preview_and_native_sound_field_representation",
+    "native_wave_palette_grenade_flight_variant_choice_and_analysis_state_display"
+  ],
+  "native_visuals": "pending_native_review",
+  "runtime_integration": "not_integrated"
+}

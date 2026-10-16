@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-M01",
+  "revision": 1,
+  "title": "Métamorphe — départ proposé",
+  "status": "class_core_proposed_for_review;not_runtime_integrated",
+  "source_batch": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-starts-START-ALL01-01.json",
+    "reference_sha256": "0c7423689245985626b2d55636b2541c6867952ec16feee3d0f83ab56b568afc"
+  },
+  "authority": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/class-start-delegation-decisions.json",
+    "reference_sha256": "74e874981b767dc8c47b101f283a344a5f9fb67c3ac85307bb7e76018dbc696d"
+  },
+  "proposed_core_profile": {
+    "roleplay": "Vous changez de forme pour libérer la violence enfouie dans votre corps.",
+    "starting_level": 1,
+    "attributes": {
+      "Force": 6,
+      "Agilité": 6,
+      "Vitalité": 6,
+      "Perception": 5,
+      "Intelligence": 4,
+      "Volonté": 7
+    },
+    "fixed_start_attribute_budget": 34,
+    "learned_start_skills": [
+      {
+        "skill_id": "M01",
+        "learned_rank": 1,
+        "kind": "active"
+      },
+      {
+        "skill_id": "M03",
+        "learned_rank": 1,
+        "kind": "passive"
+      }
+    ],
+    "initial_implant_pair": {
+      "replacement": "found_implant_replaces_entire_pair;learned_skills_retained",
+      "resource_changes": "ordinary_maximum_change_keeps_absolute_current_resource_then_clamps;no_heal",
+      "transformation_duration_bonus_turns": 2,
+      "human_skill_energy_cost_increase_percent": 10
+    },
+    "derived_level1_reserves": {
+      "base_maximum_HP": 34,
+      "maximum_HP": 34,
+      "current_HP": 34,
+      "base_maximum_energy": 32,
+      "maximum_energy": 32,
+      "current_energy": 32,
+      "equipment_HP_or_energy_bonuses": 0
+    }
+  },
+  "player_copy_markdown": "**START-M01 · Métamorphe — proposition**\n\n*Vous changez de forme pour libérer la violence enfouie dans votre corps.*\n\nForce **6** · Agilité **6** · Vitalité **6** · Perception **5** · Intelligence **4** · Volonté **7**.\n\n- **Mue prédatrice — rang 1 :** durée **14 tours** avec l’implant ; **14 énergie** avec le malus sous forme humaine ; recharge **10 tours**. Vous disposez des actions propres à la forme déjà validées.\n- **Puissance métamorphe — rang 1 :** **+10 % de dégâts lorsque vous êtes transformé**.\n- **Implant :** **+2 tours aux transformations** ; **+10 % au coût en énergie des compétences sous forme humaine**.\n- **Départ : 34 / 34 PV · 32 / 32 énergie.** Matériel prévu : couteau et tenue métamorphe.",
+  "player_copy_sha256": "d2a1cec078e82d023a9eca622407a9c112d2b6252a91398082ac21f611be00b8",
+  "copy_scope": "character_creation_start_summary;not_a_replacement_for_full_skill_current_next_rank_tooltips",
+  "existing_skill_rules": "preserve_current_approved_skill_cards_and_global_interaction_overrides;no_new_cost_curve_status_or_visual_created",
+  "equipment_scope": "weapon_and_clothing_role_only;exact_START_ALL01_equipment_values_remain_separate",
+  "mechanic_approval": "proposed_for_explicit_review;delegated_balance_not_reopened",
+  "text_approval": "new_class_RP_proposed;approved_skill_names_preserved",
+  "visual_approval": "existing_class_silhouette_assignment_preserved;native_equipped_preview_pending",
+  "runtime_integration": "not_integrated"
+}

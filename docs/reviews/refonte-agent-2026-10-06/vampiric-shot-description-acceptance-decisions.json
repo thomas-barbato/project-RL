@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-08",
+  "review_id": "DI07-ACCEPT01",
+  "user_instruction": "parfait :) je valide",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI07-01.json",
+  "source_card_sha256": "46c4fcae30feda0fd693c64ea60c4e0ae026812a4ed67983ea43d6fb939986d4",
+  "accepted_shown_copy_markdown": "Oui, le soin sera dans l’arbre de **Tir**, sans ajout à **Esquive**. Voici la proposition pour **Tir vampirique**, avec la même arme d’exemple et les mêmes attributs que pour les autres tirs.\n\n**DI07 · Tir vampirique — Rang 11 · Actif**\n\n*Votre tir puise dans la vitalité de sa cible pour refermer vos blessures.*\n\n**Effets actuels**\n\n- Dégâts : **34–42** (**170 %** de l’attaque).\n- Vie rendue : **50 % des PV réellement retirés à la cible principale**.\n- Soin maximal par utilisation : **10 % de vos PV maximum**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts : **35–43** (**175 %** de l’attaque).\n- Vie rendue : **54 %**.\n\n**Coût : 12 énergie + 1 munition · Recharge : 8 tours.**\n**Portée : celle de l’arme active.**\n\nLes dégâts indirects et renvoyés ne rendent pas de vie. Le soin est limité aux PV manquants.\n\nDégâts indiqués avant les défenses. **Nécessite une arme à distance équipée et active, hors armes lourdes.**\n\n**Visuel proposé :** le tir conserve l’effet de l’arme. Une brève impulsion verte accompagne le soin, avec « +X PV » au-dessus de l’agent.",
+  "accepted_shown_copy_sha256": "450652d487e50e82da52bbc9a3521e843435d516ce1d78cca4366c2fd9266580",
+  "accepted_scope": "full_shown_name_RP_current11_damage34_42_170pct_return50pct_cap10pct_maxHP_next12_damage35_43_175pct_return54pct_same_weapon_and_attributes_energy12_ammo1_CD8_native_range",
+  "accepted_conditions": "actual_primary_enemy_HP_removed_only;shared_heal_limit_per_use;missing_HP_limit;indirect_and_reflected_damage_excluded;damage_before_defenses;ordinary_ranged_equipped_active_weapon_required;heavy_excluded;Tir_branch_only_no_heal_in_Esquive",
+  "accepted_visual_direction": "native_weapon_shot_effect;brief_green_agent_heal_impulse;actual_plus_X_PV_above_agent",
+  "unshown_rules_pending": [
+    "full_damage_heal_cost_curves_and_caps",
+    "ranged_attribute_formulas_and_other_skill_bonus_order",
+    "exact_healing_integer_rounding_and_shared_cast_cap_budget_order",
+    "primary_HP_shields_absorption_overkill_and_affiliation",
+    "burst_mode_projectile_hit_miss_target_death_and_resource_consumption",
+    "LOS_range_walls_and_large_footprints",
+    "indirect_added_components_future_delayed_nonheavy_weapons_and_snapshots",
+    "player_missing_HP_at_resolution_and_fullHP_cast_refusal",
+    "allied_damage_and_future_families",
+    "Silence_and_other_status_compatibility",
+    "native_icon_pulse_color_duration_and_heal_label",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "pending_not_created",
+  "runtime_integration": "not_integrated"
+}

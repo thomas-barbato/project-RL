@@ -1,0 +1,51 @@
+{
+  "review_id": "BD64-REFERENCE04",
+  "source_reference_files_verified": 15,
+  "exact_rgba_nearest_pixels_verified": 81920,
+  "active_rig_files_unchanged": 8,
+  "browser": {
+    "viewport_canvas_css": [
+      511,
+      448
+    ],
+    "viewport_canvas_bitmap": [
+      511,
+      448
+    ],
+    "loaded_comparison_images": 10,
+    "source32_composition_dimensions": [
+      64,
+      64
+    ],
+    "display64_composition_dimensions": [
+      128,
+      128
+    ],
+    "horizontal_document_overflow": false,
+    "scale32_visible_cells": [
+      15,
+      14
+    ],
+    "scale64_visible_cells": [
+      7,
+      7
+    ],
+    "verified_controls": [
+      "class selection",
+      "terrain and light backgrounds",
+      "32 and 64 px"
+    ]
+  },
+  "rust": {
+    "graphics_tests_passed": 10,
+    "zoom_tests_passed": 5,
+    "graphics_test_also_present_in_zoom_filter": 1,
+    "scaled_status_panel_test_passed": 1,
+    "distinct_targeted_tests_passed": 15,
+    "debug_build": "cargo build --locked --bin project-rl: passed",
+    "rustfmt_check": "passed",
+    "scope": "targeted checks; full suite not run"
+  },
+  "artwork_integration": "none",
+  "graphics_64px_option": "implemented; existing default and saved preferences preserved"
+}

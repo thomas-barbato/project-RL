@@ -1,0 +1,2395 @@
+{
+  "version": 5,
+  "columns": 16,
+  "item_count": 162,
+  "individual_item_count": 150,
+  "icon_keys": [
+    "ranged",
+    "melee",
+    "armor",
+    "health",
+    "ammo",
+    "explosive",
+    "battery",
+    "beacon",
+    "sound",
+    "camouflage",
+    "parts",
+    "component",
+    "tuning",
+    "tool",
+    "regulator",
+    "fragment"
+  ],
+  "actor_count": 27,
+  "terrain_count": 17,
+  "items": [
+    {
+      "id": "core:modele_brenek_a80",
+      "illustration": 0,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_darven_a10",
+      "illustration": 1,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:fusil_d_assaut",
+      "illustration": 2,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_korsan_a30",
+      "illustration": 3,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_talvek_a90",
+      "illustration": 4,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_vektor_a60",
+      "illustration": 5,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_vornek_a120",
+      "illustration": 6,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_neral_e12",
+      "illustration": 7,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_nerys_e80",
+      "illustration": 8,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_odran_e100",
+      "illustration": 9,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_oryx_e48",
+      "illustration": 10,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_seryn_e24",
+      "illustration": 11,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_telvar_e60",
+      "illustration": 12,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:flamethrower",
+      "illustration": 13,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:needle_launcher",
+      "illustration": 14,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_derven_f80",
+      "illustration": 15,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_karn_f60",
+      "illustration": 16,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_korgan_f100",
+      "illustration": 17,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_torak_f30",
+      "illustration": 18,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_vardek_f120",
+      "illustration": 19,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_varek_f10",
+      "illustration": 20,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_darsen_lg6",
+      "illustration": 21,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_korven_lg9",
+      "illustration": 22,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:lance_grenades",
+      "illustration": 23,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_merdan_lg12",
+      "illustration": 24,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_rovak_lg3",
+      "illustration": 25,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_torvik_lg16",
+      "illustration": 26,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_valrek_lg20",
+      "illustration": 27,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_draven_m80",
+      "illustration": 28,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_kordal_m20",
+      "illustration": 29,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_kraven_m120",
+      "illustration": 30,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:mitrailleuse_lourde",
+      "illustration": 31,
+      "icon": 0,
+      "source": "equipment-firearms-1-v2.png"
+    },
+    {
+      "id": "core:modele_torgal_m100",
+      "illustration": 32,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_varkan_m40",
+      "illustration": 33,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_vornak_m160",
+      "illustration": 34,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:fusil_de_guetteur",
+      "illustration": 35,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:fusil_de_l_horizon_fendu",
+      "illustration": 36,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:fusil_de_parallaxe",
+      "illustration": 37,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:fusil_de_patrouille",
+      "illustration": 38,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:fusil_a_induction",
+      "illustration": 39,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:fusil_a_nerf_tendu",
+      "illustration": 40,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_kardan_r24",
+      "illustration": 41,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_noryk_r72",
+      "illustration": 42,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_orvek_r36",
+      "illustration": 43,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_serdak_r60",
+      "illustration": 44,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_tervan_r48",
+      "illustration": 45,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_veyr_r12",
+      "illustration": 46,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_bravan_lr12",
+      "illustration": 47,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_dorek_lr16",
+      "illustration": 48,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_karsen_lr20",
+      "illustration": 49,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_karvek_lr6",
+      "illustration": 50,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:lance_roquettes",
+      "illustration": 51,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_ordan_lr9",
+      "illustration": 52,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_torven_lr2",
+      "illustration": 53,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_brask_p12",
+      "illustration": 54,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_darsk_p70",
+      "illustration": 55,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_drek_p40",
+      "illustration": 56,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:fusil_a_pompe",
+      "illustration": 57,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_korven_p50",
+      "illustration": 58,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_morn_p24",
+      "illustration": 59,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:modele_valdran_p90",
+      "illustration": 60,
+      "icon": 0,
+      "source": "equipment-firearms-2-v2.png"
+    },
+    {
+      "id": "core:melee_bardiche",
+      "illustration": 61,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_hache_danoise",
+      "illustration": 62,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:hache_de_combat",
+      "illustration": 63,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_hache_de_guerre",
+      "illustration": 64,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_hache_d_abordage",
+      "illustration": 65,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_hache_d_armes",
+      "illustration": 66,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_hachette",
+      "illustration": 67,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:couteau_ceramique",
+      "illustration": 68,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:couteau_de_camp",
+      "illustration": 69,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_couteau_de_camp",
+      "illustration": 70,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_couteau_de_chasse",
+      "illustration": 71,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:couteau_de_chitine",
+      "illustration": 72,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:couteau_de_sapeur",
+      "illustration": 73,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:couteau_du_dernier_seuil",
+      "illustration": 74,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:couteau_a_dent_vivante",
+      "illustration": 75,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_dague",
+      "illustration": 76,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_dague_a_rouelles",
+      "illustration": 77,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_poignard",
+      "illustration": 78,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_stylet",
+      "illustration": 79,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:integrity_blade",
+      "illustration": 80,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_hallebarde",
+      "illustration": 81,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:lance",
+      "illustration": 82,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_lance",
+      "illustration": 83,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_pertuisane",
+      "illustration": 84,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_pique",
+      "illustration": 85,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_vouge",
+      "illustration": 86,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_epieu",
+      "illustration": 87,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_espadon",
+      "illustration": 88,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_fauchon",
+      "illustration": 89,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_glaive",
+      "illustration": 90,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_epee_batarde",
+      "illustration": 91,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_epee_courte",
+      "illustration": 92,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_epee_longue",
+      "illustration": 93,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_bec_de_corbin",
+      "illustration": 94,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_gourdin",
+      "illustration": 95,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_gourdin_ferre",
+      "illustration": 96,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:marteau_de_guerre",
+      "illustration": 97,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_marteau_de_guerre",
+      "illustration": 98,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_masse_d_armes",
+      "illustration": 99,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:melee_masse_a_ailettes",
+      "illustration": 100,
+      "icon": 1,
+      "source": "equipment-melee-v1.png"
+    },
+    {
+      "id": "core:armure_cerbere",
+      "illustration": 101,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:brigandine_cognefer",
+      "illustration": 102,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:carapace_chrysalide",
+      "illustration": 103,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:composite_carapace",
+      "illustration": 104,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:combinaison_fantome",
+      "illustration": 105,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:manteau_de_mue",
+      "illustration": 106,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:plastron_bastion",
+      "illustration": 107,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:patched_plating",
+      "illustration": 108,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:veste_de_la_seconde_ombre",
+      "illustration": 109,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:veste_de_membranes",
+      "illustration": 110,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:veste_de_peau_seconde",
+      "illustration": 111,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:veste_de_veille",
+      "illustration": 112,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:veste_matelassee",
+      "illustration": 113,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:veste_a_fibres_croisees",
+      "illustration": 114,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:calotte_cognefer",
+      "illustration": 115,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:capuche_de_mue",
+      "illustration": 116,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:casque_cerbere",
+      "illustration": 117,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:heaume_bastion",
+      "illustration": 118,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:masque_chrysalide",
+      "illustration": 119,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:visiere_fantome",
+      "illustration": 120,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:gantelets_bastion",
+      "illustration": 121,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:gantelets_chrysalide",
+      "illustration": 122,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:gants_cognefer",
+      "illustration": 123,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:gants_fantome",
+      "illustration": 124,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:gants_de_mue",
+      "illustration": 125,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:mitaines_cerbere",
+      "illustration": 126,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:bottes_cerbere",
+      "illustration": 127,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:bottes_de_mue",
+      "illustration": 128,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:bottines_chrysalide",
+      "illustration": 129,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:bottines_fantome",
+      "illustration": 130,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:brodequins_cognefer",
+      "illustration": 131,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:solerets_bastion",
+      "illustration": 132,
+      "icon": 2,
+      "source": "equipment-armor-v1.png"
+    },
+    {
+      "id": "core:repair_patch",
+      "illustration": 133,
+      "icon": 3,
+      "source": "pickup-repair_patch-v5.png"
+    },
+    {
+      "id": "core:saturation_beacon",
+      "illustration": 134,
+      "icon": 7,
+      "source": "pickup-saturation_beacon-v1.png"
+    },
+    {
+      "id": "core:charged_battery",
+      "illustration": 135,
+      "icon": 6,
+      "source": "pickup-charged_battery-v2.png"
+    },
+    {
+      "id": "core:configurable_charge",
+      "illustration": 136,
+      "icon": 5,
+      "source": "pickup-configurable_charge-v1.png"
+    },
+    {
+      "id": "core:breach_charge",
+      "illustration": 137,
+      "icon": 5,
+      "source": "pickup-breach_charge-v1.png"
+    },
+    {
+      "id": "core:structural_charge",
+      "illustration": 138,
+      "icon": 5,
+      "source": "pickup-structural_charge-v1.png"
+    },
+    {
+      "id": "core:salvaged_component",
+      "illustration": 139,
+      "icon": 11,
+      "source": "pickup-salvaged_component-v1.png"
+    },
+    {
+      "id": "core:fragmentation_charge",
+      "illustration": 140,
+      "icon": 5,
+      "source": "pickup-fragmentation_charge-v1.png"
+    },
+    {
+      "id": "core:unstable_fragment",
+      "illustration": 141,
+      "icon": 15,
+      "source": "pickup-unstable_fragment-v1.png"
+    },
+    {
+      "id": "core:sound_decoy",
+      "illustration": 142,
+      "icon": 8,
+      "source": "pickup-sound_decoy-v1.png"
+    },
+    {
+      "id": "core:camouflage_bundle",
+      "illustration": 143,
+      "icon": 9,
+      "source": "pickup-camouflage_bundle-v1.png"
+    },
+    {
+      "id": "core:repair_parts",
+      "illustration": 144,
+      "icon": 10,
+      "source": "pickup-repair_parts-v1.png"
+    },
+    {
+      "id": "core:tuning_parts",
+      "illustration": 145,
+      "icon": 12,
+      "source": "pickup-tuning_parts-v1.png"
+    },
+    {
+      "id": "core:proximity_mine",
+      "illustration": 146,
+      "icon": 5,
+      "source": "pickup-proximity_mine-v1.png"
+    },
+    {
+      "id": "core:weapon_matter",
+      "illustration": 147,
+      "icon": 4,
+      "source": "pickup-weapon_matter-v5.png"
+    },
+    {
+      "id": "core:engineering_tool",
+      "illustration": 148,
+      "icon": 13,
+      "source": "pickup-engineering_tool-v1.png"
+    },
+    {
+      "id": "core:power_regulator",
+      "illustration": 149,
+      "icon": 14,
+      "source": "pickup-power_regulator-v1.png"
+    },
+    {
+      "id": "core:modele_cogneur_p01",
+      "illustration": 150,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 8
+    },
+    {
+      "id": "core:modele_cogneur_p02",
+      "illustration": 151,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 8
+    },
+    {
+      "id": "core:modele_cogneur_p03",
+      "illustration": 152,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 8
+    },
+    {
+      "id": "core:modele_cogneur_p04",
+      "illustration": 153,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 8
+    },
+    {
+      "id": "core:modele_cogneur_p05",
+      "illustration": 154,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 8
+    },
+    {
+      "id": "core:modele_cogneur_p06",
+      "illustration": 155,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 8
+    },
+    {
+      "id": "core:modele_crache_fer_pm01",
+      "illustration": 156,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 9
+    },
+    {
+      "id": "core:modele_crache_fer_pm02",
+      "illustration": 157,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 9
+    },
+    {
+      "id": "core:modele_crache_fer_pm03",
+      "illustration": 158,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 9
+    },
+    {
+      "id": "core:modele_crache_fer_pm04",
+      "illustration": 159,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 9
+    },
+    {
+      "id": "core:modele_crache_fer_pm05",
+      "illustration": 160,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 9
+    },
+    {
+      "id": "core:modele_crache_fer_pm06",
+      "illustration": 161,
+      "icon": 0,
+      "source": "ranged-families-128.png",
+      "family_cell": 9
+    }
+  ],
+  "actor_contacts": [
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      15,
+      31,
+      20
+    ],
+    [
+      15,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      15,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      15,
+      31,
+      20
+    ],
+    [
+      15,
+      31,
+      20
+    ],
+    [
+      15,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      15,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      15,
+      31,
+      20
+    ],
+    [
+      15,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      15,
+      31,
+      20
+    ],
+    [
+      15,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ],
+    [
+      16,
+      31,
+      20
+    ]
+  ],
+  "actor_bounds": [
+    [
+      4,
+      2,
+      28,
+      32
+    ],
+    [
+      4,
+      2,
+      27,
+      32
+    ],
+    [
+      4,
+      2,
+      27,
+      32
+    ],
+    [
+      6,
+      19,
+      26,
+      32
+    ],
+    [
+      1,
+      10,
+      30,
+      32
+    ],
+    [
+      1,
+      6,
+      31,
+      32
+    ],
+    [
+      4,
+      15,
+      27,
+      32
+    ],
+    [
+      2,
+      16,
+      29,
+      32
+    ],
+    [
+      1,
+      12,
+      30,
+      32
+    ],
+    [
+      4,
+      7,
+      28,
+      32
+    ],
+    [
+      2,
+      10,
+      29,
+      32
+    ],
+    [
+      2,
+      5,
+      30,
+      32
+    ],
+    [
+      2,
+      3,
+      30,
+      32
+    ],
+    [
+      4,
+      11,
+      28,
+      32
+    ],
+    [
+      5,
+      10,
+      27,
+      32
+    ],
+    [
+      3,
+      6,
+      29,
+      32
+    ],
+    [
+      4,
+      8,
+      28,
+      32
+    ],
+    [
+      1,
+      14,
+      31,
+      32
+    ],
+    [
+      2,
+      12,
+      30,
+      32
+    ],
+    [
+      2,
+      6,
+      30,
+      32
+    ],
+    [
+      4,
+      2,
+      27,
+      32
+    ],
+    [
+      5,
+      2,
+      26,
+      32
+    ],
+    [
+      4,
+      2,
+      28,
+      32
+    ],
+    [
+      5,
+      2,
+      26,
+      32
+    ],
+    [
+      4,
+      2,
+      27,
+      32
+    ],
+    [
+      5,
+      2,
+      27,
+      32
+    ],
+    [
+      5,
+      2,
+      27,
+      32
+    ]
+  ],
+  "class_bodies": [
+    {
+      "id": "core:breche",
+      "body": 0,
+      "color": "red"
+    },
+    {
+      "id": "core:vigie",
+      "body": 1,
+      "color": "blue"
+    },
+    {
+      "id": "core:creuset",
+      "body": 2,
+      "color": "green"
+    }
+  ],
+  "held_weapons": [
+    {
+      "id": "core:modele_brenek_a80",
+      "index": 0,
+      "hold": "TwoHanded",
+      "family": 8
+    },
+    {
+      "id": "core:modele_darven_a10",
+      "index": 1,
+      "hold": "TwoHanded",
+      "family": 8
+    },
+    {
+      "id": "core:fusil_d_assaut",
+      "index": 2,
+      "hold": "TwoHanded",
+      "family": 8
+    },
+    {
+      "id": "core:modele_korsan_a30",
+      "index": 3,
+      "hold": "TwoHanded",
+      "family": 8
+    },
+    {
+      "id": "core:modele_talvek_a90",
+      "index": 4,
+      "hold": "TwoHanded",
+      "family": 8
+    },
+    {
+      "id": "core:modele_vektor_a60",
+      "index": 5,
+      "hold": "TwoHanded",
+      "family": 8
+    },
+    {
+      "id": "core:modele_vornek_a120",
+      "index": 6,
+      "hold": "TwoHanded",
+      "family": 8
+    },
+    {
+      "id": "core:modele_neral_e12",
+      "index": 7,
+      "hold": "TwoHanded",
+      "family": 11
+    },
+    {
+      "id": "core:modele_nerys_e80",
+      "index": 8,
+      "hold": "TwoHanded",
+      "family": 11
+    },
+    {
+      "id": "core:modele_odran_e100",
+      "index": 9,
+      "hold": "TwoHanded",
+      "family": 11
+    },
+    {
+      "id": "core:modele_oryx_e48",
+      "index": 10,
+      "hold": "TwoHanded",
+      "family": 11
+    },
+    {
+      "id": "core:modele_seryn_e24",
+      "index": 11,
+      "hold": "TwoHanded",
+      "family": 11
+    },
+    {
+      "id": "core:modele_telvar_e60",
+      "index": 12,
+      "hold": "TwoHanded",
+      "family": 11
+    },
+    {
+      "id": "core:flamethrower",
+      "index": 13,
+      "hold": "TwoHanded",
+      "family": 12
+    },
+    {
+      "id": "core:needle_launcher",
+      "index": 14,
+      "hold": "TwoHanded",
+      "family": 15
+    },
+    {
+      "id": "core:modele_derven_f80",
+      "index": 15,
+      "hold": "TwoHanded",
+      "family": 12
+    },
+    {
+      "id": "core:modele_karn_f60",
+      "index": 16,
+      "hold": "TwoHanded",
+      "family": 12
+    },
+    {
+      "id": "core:modele_korgan_f100",
+      "index": 17,
+      "hold": "TwoHanded",
+      "family": 12
+    },
+    {
+      "id": "core:modele_torak_f30",
+      "index": 18,
+      "hold": "TwoHanded",
+      "family": 12
+    },
+    {
+      "id": "core:modele_vardek_f120",
+      "index": 19,
+      "hold": "TwoHanded",
+      "family": 12
+    },
+    {
+      "id": "core:modele_varek_f10",
+      "index": 20,
+      "hold": "TwoHanded",
+      "family": 12
+    },
+    {
+      "id": "core:modele_darsen_lg6",
+      "index": 21,
+      "hold": "TwoHanded",
+      "family": 13
+    },
+    {
+      "id": "core:modele_korven_lg9",
+      "index": 22,
+      "hold": "TwoHanded",
+      "family": 13
+    },
+    {
+      "id": "core:lance_grenades",
+      "index": 23,
+      "hold": "TwoHanded",
+      "family": 13
+    },
+    {
+      "id": "core:modele_merdan_lg12",
+      "index": 24,
+      "hold": "TwoHanded",
+      "family": 13
+    },
+    {
+      "id": "core:modele_rovak_lg3",
+      "index": 25,
+      "hold": "TwoHanded",
+      "family": 13
+    },
+    {
+      "id": "core:modele_torvik_lg16",
+      "index": 26,
+      "hold": "TwoHanded",
+      "family": 13
+    },
+    {
+      "id": "core:modele_valrek_lg20",
+      "index": 27,
+      "hold": "TwoHanded",
+      "family": 13
+    },
+    {
+      "id": "core:modele_draven_m80",
+      "index": 28,
+      "hold": "TwoHanded",
+      "family": 10
+    },
+    {
+      "id": "core:modele_kordal_m20",
+      "index": 29,
+      "hold": "TwoHanded",
+      "family": 10
+    },
+    {
+      "id": "core:modele_kraven_m120",
+      "index": 30,
+      "hold": "TwoHanded",
+      "family": 10
+    },
+    {
+      "id": "core:mitrailleuse_lourde",
+      "index": 31,
+      "hold": "TwoHanded",
+      "family": 10
+    },
+    {
+      "id": "core:modele_torgal_m100",
+      "index": 32,
+      "hold": "TwoHanded",
+      "family": 10
+    },
+    {
+      "id": "core:modele_varkan_m40",
+      "index": 33,
+      "hold": "TwoHanded",
+      "family": 10
+    },
+    {
+      "id": "core:modele_vornak_m160",
+      "index": 34,
+      "hold": "TwoHanded",
+      "family": 10
+    },
+    {
+      "id": "core:fusil_de_guetteur",
+      "index": 35,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:fusil_de_l_horizon_fendu",
+      "index": 36,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:fusil_de_parallaxe",
+      "index": 37,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:fusil_de_patrouille",
+      "index": 38,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:fusil_a_induction",
+      "index": 39,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:fusil_a_nerf_tendu",
+      "index": 40,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:modele_kardan_r24",
+      "index": 41,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:modele_noryk_r72",
+      "index": 42,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:modele_orvek_r36",
+      "index": 43,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:modele_serdak_r60",
+      "index": 44,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:modele_tervan_r48",
+      "index": 45,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:modele_veyr_r12",
+      "index": 46,
+      "hold": "TwoHanded",
+      "family": 17
+    },
+    {
+      "id": "core:modele_bravan_lr12",
+      "index": 47,
+      "hold": "TwoHanded",
+      "family": 14
+    },
+    {
+      "id": "core:modele_dorek_lr16",
+      "index": 48,
+      "hold": "TwoHanded",
+      "family": 14
+    },
+    {
+      "id": "core:modele_karsen_lr20",
+      "index": 49,
+      "hold": "TwoHanded",
+      "family": 14
+    },
+    {
+      "id": "core:modele_karvek_lr6",
+      "index": 50,
+      "hold": "TwoHanded",
+      "family": 14
+    },
+    {
+      "id": "core:lance_roquettes",
+      "index": 51,
+      "hold": "TwoHanded",
+      "family": 14
+    },
+    {
+      "id": "core:modele_ordan_lr9",
+      "index": 52,
+      "hold": "TwoHanded",
+      "family": 14
+    },
+    {
+      "id": "core:modele_torven_lr2",
+      "index": 53,
+      "hold": "TwoHanded",
+      "family": 14
+    },
+    {
+      "id": "core:modele_brask_p12",
+      "index": 54,
+      "hold": "TwoHanded",
+      "family": 9
+    },
+    {
+      "id": "core:modele_darsk_p70",
+      "index": 55,
+      "hold": "TwoHanded",
+      "family": 9
+    },
+    {
+      "id": "core:modele_drek_p40",
+      "index": 56,
+      "hold": "TwoHanded",
+      "family": 9
+    },
+    {
+      "id": "core:fusil_a_pompe",
+      "index": 57,
+      "hold": "TwoHanded",
+      "family": 9
+    },
+    {
+      "id": "core:modele_korven_p50",
+      "index": 58,
+      "hold": "TwoHanded",
+      "family": 9
+    },
+    {
+      "id": "core:modele_morn_p24",
+      "index": 59,
+      "hold": "TwoHanded",
+      "family": 9
+    },
+    {
+      "id": "core:modele_valdran_p90",
+      "index": 60,
+      "hold": "TwoHanded",
+      "family": 9
+    },
+    {
+      "id": "core:melee_bardiche",
+      "index": 61,
+      "hold": "MeleeTwoHanded",
+      "family": 3
+    },
+    {
+      "id": "core:melee_hache_danoise",
+      "index": 62,
+      "hold": "MeleeTwoHanded",
+      "family": 3
+    },
+    {
+      "id": "core:hache_de_combat",
+      "index": 63,
+      "hold": "MeleeTwoHanded",
+      "family": 3
+    },
+    {
+      "id": "core:melee_hache_de_guerre",
+      "index": 64,
+      "hold": "MeleeTwoHanded",
+      "family": 3
+    },
+    {
+      "id": "core:melee_hache_d_abordage",
+      "index": 65,
+      "hold": "MeleeTwoHanded",
+      "family": 3
+    },
+    {
+      "id": "core:melee_hache_d_armes",
+      "index": 66,
+      "hold": "MeleeTwoHanded",
+      "family": 3
+    },
+    {
+      "id": "core:melee_hachette",
+      "index": 67,
+      "hold": "MeleeTwoHanded",
+      "family": 3
+    },
+    {
+      "id": "core:couteau_ceramique",
+      "index": 68,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:couteau_de_camp",
+      "index": 69,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:melee_couteau_de_camp",
+      "index": 70,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:melee_couteau_de_chasse",
+      "index": 71,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:couteau_de_chitine",
+      "index": 72,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:couteau_de_sapeur",
+      "index": 73,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:couteau_du_dernier_seuil",
+      "index": 74,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:couteau_a_dent_vivante",
+      "index": 75,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:melee_dague",
+      "index": 76,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:melee_dague_a_rouelles",
+      "index": 77,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:melee_poignard",
+      "index": 78,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:melee_stylet",
+      "index": 79,
+      "hold": "Side",
+      "family": 0
+    },
+    {
+      "id": "core:integrity_blade",
+      "index": 80,
+      "hold": "Side",
+      "family": 1
+    },
+    {
+      "id": "core:melee_hallebarde",
+      "index": 81,
+      "hold": "Side",
+      "family": 5
+    },
+    {
+      "id": "core:lance",
+      "index": 82,
+      "hold": "Side",
+      "family": 5
+    },
+    {
+      "id": "core:melee_lance",
+      "index": 83,
+      "hold": "Side",
+      "family": 5
+    },
+    {
+      "id": "core:melee_pertuisane",
+      "index": 84,
+      "hold": "Side",
+      "family": 5
+    },
+    {
+      "id": "core:melee_pique",
+      "index": 85,
+      "hold": "Side",
+      "family": 5
+    },
+    {
+      "id": "core:melee_vouge",
+      "index": 86,
+      "hold": "Side",
+      "family": 5
+    },
+    {
+      "id": "core:melee_epieu",
+      "index": 87,
+      "hold": "Side",
+      "family": 5
+    },
+    {
+      "id": "core:melee_espadon",
+      "index": 88,
+      "hold": "MeleeTwoHanded",
+      "family": 2
+    },
+    {
+      "id": "core:melee_fauchon",
+      "index": 89,
+      "hold": "MeleeTwoHanded",
+      "family": 2
+    },
+    {
+      "id": "core:melee_glaive",
+      "index": 90,
+      "hold": "MeleeTwoHanded",
+      "family": 2
+    },
+    {
+      "id": "core:melee_epee_batarde",
+      "index": 91,
+      "hold": "MeleeTwoHanded",
+      "family": 2
+    },
+    {
+      "id": "core:melee_epee_courte",
+      "index": 92,
+      "hold": "MeleeTwoHanded",
+      "family": 2
+    },
+    {
+      "id": "core:melee_epee_longue",
+      "index": 93,
+      "hold": "MeleeTwoHanded",
+      "family": 2
+    },
+    {
+      "id": "core:melee_bec_de_corbin",
+      "index": 94,
+      "hold": "Side",
+      "family": 16
+    },
+    {
+      "id": "core:melee_gourdin",
+      "index": 95,
+      "hold": "Side",
+      "family": 4
+    },
+    {
+      "id": "core:melee_gourdin_ferre",
+      "index": 96,
+      "hold": "Side",
+      "family": 4
+    },
+    {
+      "id": "core:marteau_de_guerre",
+      "index": 97,
+      "hold": "Side",
+      "family": 16
+    },
+    {
+      "id": "core:melee_marteau_de_guerre",
+      "index": 98,
+      "hold": "Side",
+      "family": 16
+    },
+    {
+      "id": "core:melee_masse_d_armes",
+      "index": 99,
+      "hold": "Side",
+      "family": 4
+    },
+    {
+      "id": "core:melee_masse_a_ailettes",
+      "index": 100,
+      "hold": "Side",
+      "family": 4
+    },
+    {
+      "id": "core:modele_cogneur_p01",
+      "index": 101,
+      "hold": "Raised",
+      "family": 6
+    },
+    {
+      "id": "core:modele_cogneur_p02",
+      "index": 102,
+      "hold": "Raised",
+      "family": 6
+    },
+    {
+      "id": "core:modele_cogneur_p03",
+      "index": 103,
+      "hold": "Raised",
+      "family": 6
+    },
+    {
+      "id": "core:modele_cogneur_p04",
+      "index": 104,
+      "hold": "Raised",
+      "family": 6
+    },
+    {
+      "id": "core:modele_cogneur_p05",
+      "index": 105,
+      "hold": "Raised",
+      "family": 6
+    },
+    {
+      "id": "core:modele_cogneur_p06",
+      "index": 106,
+      "hold": "Raised",
+      "family": 6
+    },
+    {
+      "id": "core:modele_crache_fer_pm01",
+      "index": 107,
+      "hold": "Raised",
+      "family": 7
+    },
+    {
+      "id": "core:modele_crache_fer_pm02",
+      "index": 108,
+      "hold": "Raised",
+      "family": 7
+    },
+    {
+      "id": "core:modele_crache_fer_pm03",
+      "index": 109,
+      "hold": "Raised",
+      "family": 7
+    },
+    {
+      "id": "core:modele_crache_fer_pm04",
+      "index": 110,
+      "hold": "Raised",
+      "family": 7
+    },
+    {
+      "id": "core:modele_crache_fer_pm05",
+      "index": 111,
+      "hold": "Raised",
+      "family": 7
+    },
+    {
+      "id": "core:modele_crache_fer_pm06",
+      "index": 112,
+      "hold": "Raised",
+      "family": 7
+    }
+  ],
+  "actor_sources": [
+    "assets/source-art/personnages-echelle-32-2026-10-04/classes-couleurs-v3.png",
+    "bestiaire-face-v2.png",
+    "face-bestiary-frames.json"
+  ],
+  "source_review": "artifacts/crawl-methode-2026-10-05",
+  "method": "native fixed bodies + authored per-family grips + weapons + fingers",
+  "native_tile": 32,
+  "composition_canvas": 48,
+  "held_source": "assets/source-art/crawl-integration-2026-10-05/held-source.png",
+  "axe_source": "assets/source-art/crawl-integration-2026-10-05/axe-outward-source.png",
+  "grip_source": "assets/source-art/prises-audit-2026-10-05/grips-clean-source.png",
+  "greatsword_source": "assets/source-art/prises-audit-2026-10-05/greatsword-outward-source.png",
+  "weapon_families": [
+    {
+      "index": 0,
+      "name": "Couteau",
+      "anchor": [
+        35,
+        29
+      ],
+      "placement_guide": [
+        35,
+        29
+      ],
+      "hands": [
+        [
+          35,
+          29
+        ]
+      ]
+    },
+    {
+      "index": 1,
+      "name": "Épée",
+      "anchor": [
+        35,
+        29
+      ],
+      "placement_guide": [
+        35,
+        29
+      ],
+      "hands": [
+        [
+          35,
+          29
+        ]
+      ]
+    },
+    {
+      "index": 2,
+      "name": "Épée à deux mains",
+      "anchor": [
+        24,
+        30
+      ],
+      "placement_guide": [
+        25,
+        28
+      ],
+      "hands": [
+        [
+          24,
+          30
+        ],
+        [
+          27,
+          26
+        ]
+      ]
+    },
+    {
+      "index": 3,
+      "name": "Hache",
+      "anchor": [
+        26,
+        27
+      ],
+      "placement_guide": [
+        25,
+        29
+      ],
+      "hands": [
+        [
+          26,
+          27
+        ],
+        [
+          26,
+          23
+        ]
+      ]
+    },
+    {
+      "index": 4,
+      "name": "Matraque",
+      "anchor": [
+        35,
+        28
+      ],
+      "placement_guide": [
+        35,
+        28
+      ],
+      "hands": [
+        [
+          35,
+          28
+        ]
+      ]
+    },
+    {
+      "index": 5,
+      "name": "Arme d’hast",
+      "anchor": [
+        35,
+        28
+      ],
+      "placement_guide": [
+        35,
+        28
+      ],
+      "hands": [
+        [
+          35,
+          28
+        ]
+      ]
+    },
+    {
+      "index": 6,
+      "name": "Pistolet",
+      "anchor": [
+        35,
+        22
+      ],
+      "placement_guide": [
+        35,
+        22
+      ],
+      "hands": [
+        [
+          35,
+          22
+        ]
+      ]
+    },
+    {
+      "index": 7,
+      "name": "Pistolet mitrailleur",
+      "anchor": [
+        35,
+        22
+      ],
+      "placement_guide": [
+        35,
+        22
+      ],
+      "hands": [
+        [
+          35,
+          22
+        ]
+      ]
+    },
+    {
+      "index": 8,
+      "name": "Fusil d’assaut",
+      "anchor": [
+        18,
+        29
+      ],
+      "placement_guide": [
+        23,
+        28
+      ],
+      "hands": [
+        [
+          18,
+          29
+        ],
+        [
+          33,
+          22
+        ]
+      ]
+    },
+    {
+      "index": 9,
+      "name": "Fusil à pompe",
+      "anchor": [
+        24,
+        28
+      ],
+      "placement_guide": [
+        23,
+        28
+      ],
+      "hands": [
+        [
+          24,
+          28
+        ],
+        [
+          33,
+          22
+        ]
+      ]
+    },
+    {
+      "index": 10,
+      "name": "Mitrailleuse",
+      "anchor": [
+        20,
+        30
+      ],
+      "placement_guide": [
+        23,
+        28
+      ],
+      "hands": [
+        [
+          20,
+          30
+        ],
+        [
+          33,
+          22
+        ]
+      ]
+    },
+    {
+      "index": 11,
+      "name": "Fusil à énergie",
+      "anchor": [
+        21,
+        29
+      ],
+      "placement_guide": [
+        23,
+        28
+      ],
+      "hands": [
+        [
+          21,
+          29
+        ],
+        [
+          33,
+          22
+        ]
+      ]
+    },
+    {
+      "index": 12,
+      "name": "Lance-flammes",
+      "anchor": [
+        19,
+        29
+      ],
+      "placement_guide": [
+        23,
+        28
+      ],
+      "hands": [
+        [
+          19,
+          29
+        ],
+        [
+          31,
+          21
+        ]
+      ]
+    },
+    {
+      "index": 13,
+      "name": "Lance-grenades",
+      "anchor": [
+        21,
+        29
+      ],
+      "placement_guide": [
+        23,
+        28
+      ],
+      "hands": [
+        [
+          21,
+          29
+        ],
+        [
+          31,
+          21
+        ]
+      ]
+    },
+    {
+      "index": 14,
+      "name": "Lance-roquettes",
+      "anchor": [
+        24,
+        29
+      ],
+      "placement_guide": [
+        23,
+        28
+      ],
+      "hands": [
+        [
+          24,
+          29
+        ],
+        [
+          32,
+          22
+        ]
+      ]
+    },
+    {
+      "index": 15,
+      "name": "Lance-aiguilles",
+      "anchor": [
+        22,
+        30
+      ],
+      "placement_guide": [
+        23,
+        28
+      ],
+      "hands": [
+        [
+          22,
+          30
+        ],
+        [
+          31,
+          23
+        ]
+      ]
+    },
+    {
+      "index": 16,
+      "name": "Marteau",
+      "anchor": [
+        35,
+        26
+      ],
+      "placement_guide": [
+        35,
+        28
+      ],
+      "hands": [
+        [
+          35,
+          26
+        ]
+      ]
+    },
+    {
+      "index": 17,
+      "name": "Fusil de précision",
+      "anchor": [
+        19,
+        30
+      ],
+      "placement_guide": [
+        23,
+        28
+      ],
+      "hands": [
+        [
+          19,
+          30
+        ],
+        [
+          31,
+          23
+        ]
+      ]
+    }
+  ],
+  "body_count": 23,
+  "material_maps": "per-pixel labels: 0 protected, 1 primary, 2 secondary"
+}

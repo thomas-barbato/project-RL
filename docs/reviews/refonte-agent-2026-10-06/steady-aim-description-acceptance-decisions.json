@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-08",
+  "review_id": "BD04-ACCEPT01",
+  "skill_id": "BD04",
+  "title": "Visée stable",
+  "user_answer": "oui je valide :)",
+  "approval": "explicit_full_displayed_individual_card_acceptance",
+  "accepted_roleplay": "Vous stabilisez votre posture et laissez votre viseur se refermer sur votre proie.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "relative_precision_bonus_per_stationary_turn_percent": 15,
+    "maximum_relative_precision_bonus_percent": 45,
+    "maximum_stationary_turns": 3
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "relative_precision_bonus_per_stationary_turn_percent": 16,
+    "maximum_relative_precision_bonus_percent": 48,
+    "maximum_stationary_turns": 3
+  },
+  "accepted_conditions": [
+    "relative_precision_of_own_ranged_attacks;not_hit_probability_points",
+    "stationary_attacks_and_other_elapsed_turn_actions_add_stacks",
+    "any_position_change_including_forced_movement_clears_stacks",
+    "menus_and_actions_without_elapsed_turn_add_no_stacks"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** le viseur se resserre à chaque tour immobile. Une icône dans la barre des buffs affiche le nombre de cumuls ; son tooltip indique le bonus de précision actuel.",
+  "accepted_copy_sha256": "b92da8ddfe64c954da9246251751b203db7e75d7879692d79e0096726a1984c3",
+  "accepted_visual_copy_sha256": "49d76bbe01b6f9dfb73953bbc8eed887fb0e4a45f38b51207bd780907bf8736c",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BD04-01.json",
+  "source_card_sha256": "c24c4210a69938270e0a3dd225ecb89c508e74f96c76797be0a2e6ed397663d0",
+  "unshown_cases_pending": [
+    "full_curve_defaults_rounding_base_precision_and_modifier_order",
+    "stack_gain_timing_before_or_after_attack_and_wait_rest_turns",
+    "map_changes_teleports_transformation_and_partial_turns",
+    "exact_weapon_spell_form_heavy_weapon_eligibility_and_summon_exclusions",
+    "native_reticle_stack_icon_tooltip_and_visibility"
+  ],
+  "unshown_full_curve_rounding_modifier_order_and_stack_timing": "pending_review",
+  "native_render": "pending_prototype_review",
+  "runtime_integration": "not_integrated"
+}

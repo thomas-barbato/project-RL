@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-12",
+  "review": "ANIM-OVER03",
+  "user_reply": "cette animation est validée :) on gardera les regles pour les prochaines animations :)",
+  "accepted": [
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A08-COULOIR-DROITE",
+      "file": "FE02-A08-COULOIR-DROITE-64.gif",
+      "sha256": "bf980b703be8521722b3c14b8520883010bf86c4e670f590eeeee796dbe41944",
+      "status": "visually_approved"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A08-COULOIR-GAUCHE",
+      "file": "FE02-A08-COULOIR-GAUCHE-64.gif",
+      "sha256": "ff083f12466fe97ac615bb0f44fe8dfe89fba388006d47d7491967fb1e5573de",
+      "status": "visually_approved"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A08-COULOIR-HAUT",
+      "file": "FE02-A08-COULOIR-HAUT-64.gif",
+      "sha256": "069731272ac0493349c27aecfed4eccf3d6cb63562c17cd00d3a318a06056978",
+      "status": "visually_approved"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A08-COULOIR-BAS",
+      "file": "FE02-A08-COULOIR-BAS-64.gif",
+      "sha256": "38683095907c4dde2bb466a3d6280a80fc32502f8071e10044229976f8337d92",
+      "status": "visually_approved"
+    }
+  ],
+  "scope": "Souffle de feu A08 as shown in the four cardinal native previews and A07/A08 comparison. Painted fire geometry, physical obstacle cuts, preview dismissal and Burn shown on affected target bodies. No skill figures changed.",
+  "common_art_rules_accepted": true,
+  "common_art_rules_document": "docs/DIRECTION_ARTISTIQUE_TILES.md",
+  "assets_and_render_sources": {
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-12/comparaison-ouverture-64.gif": "e5223df2110ad88a69b2af16cf25f018be38b0151cb3b92d4ef2ec0a5e35a81e",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-12/couloir-piece-quatre-directions-64.gif": "dbc57b3d63cf787d7f3e6baff152aad5c0c02b039b3ab1f36a3176665239ffb6",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-12/FE02-A08-COULOIR-BAS-64.gif": "38683095907c4dde2bb466a3d6280a80fc32502f8071e10044229976f8337d92",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-12/FE02-A08-COULOIR-DROITE-64.gif": "bf980b703be8521722b3c14b8520883010bf86c4e670f590eeeee796dbe41944",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-12/FE02-A08-COULOIR-GAUCHE-64.gif": "ff083f12466fe97ac615bb0f44fe8dfe89fba388006d47d7491967fb1e5573de",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-12/FE02-A08-COULOIR-HAUT-64.gif": "069731272ac0493349c27aecfed4eccf3d6cb63562c17cd00d3a318a06056978",
+    "tools/archive/refonte-agent-2026-10-06/skill-animation-review-12/opening-source.rs": "fdc0e589c189d68a851180ffaccb8295245a64cafb169fbc955fd22e13ac7c68",
+    "tools/archive/refonte-agent-2026-10-06/skill-animation-review-12/render-source.rs": "e0e7c9c6909c83b0d67a3b81d679a9ef57888e1761e8b14c34c7e40b6e893fd9",
+    "tools/archive/refonte-agent-2026-10-06/skill-animation-review-12/painted-source.rs": "79b4f9212984f0371dfd3529f6db7c8a7d4229aa1bc3e468c7e022db6b5db5c2",
+    "tools/archive/refonte-agent-2026-10-06/skill-animation-review-12/render-parent-source.rs": "b3f883e6844a9972bec028d97d0db035a8eb4e8a49932495410362fece9b0de3",
+    "assets/animations/agent/skill-animation-review-06/cone-atlas.png": "aa5da876eab2b32b7def7857304f5ad6e8a21f31ebcb6557274261ea058ab68e",
+    "assets/animations/agent/skill-animation-review-06/flame-atlas.png": "2ef54f2b5a41fc272ab1cd1e753316ac713407e017ff2e4b0d02e1fee1bbb855"
+  },
+  "laboratory_ui": "LAB-OVER03 remains awaiting separate review.",
+  "campaign_integration": false,
+  "other_skills": "New visual batches still require review."
+}

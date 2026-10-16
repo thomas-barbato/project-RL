@@ -1,0 +1,65 @@
+{
+  "review_id": "ZONE-GROWTH01",
+  "date": "2026-10-14",
+  "user_request": "Améliorer la progression des compétences de zone pour éviter que l'étendue des mines déséquilibre les autres branches.",
+  "explicit_constraint": "Les compétences de corps à corps ne devraient pas avoir une zone aussi étendue.",
+  "discussion_proposal": "Progression par paliers du rayon, de la largeur ou de la longueur selon la compétence. Zone d'impact courte pour la mêlée, distincte des déplacements de Charge. Ajuster les grandes zones selon dégâts par cible, contrôle, durée, coût et recharge ; préserver l'intérêt du monocible.",
+  "new_numeric_curves_approved": false,
+  "global_mechanics_changed": false,
+  "implementation_request": "parfait on met tout ca en place puis on continue :)",
+  "rank_curves_authorized_under_delegation": true,
+  "catalogue_spatial_progression_updated": true,
+  "implementation_review": "skill-spatial-review-01/index.html",
+  "implementation_review_id": "ZONE-GROWTH02",
+  "current_preview": "Progressions de 46 compétences en revue spatiale ; cercle de vision 12 validé. La revue animée 71 reste distincte.",
+  "accepted_direction": {
+    "progression": "Portée croissante avec le rang de compétence, par paliers perceptibles ; valeurs adaptées à chaque compétence.",
+    "scope": "Toutes les compétences magiques et d'attaque à distance disposant d'une portée, ainsi que les compétences de mêlée qui permettent de rejoindre une cible ou d'échanger sa position.",
+    "area": "Coordonner la portée de lancement avec la croissance de la surface d'effet pour conserver la liberté de placement.",
+    "melee": "Une distance de déplacement ou d'échange croissante ne donne pas une grande zone d'impact à la mêlée.",
+    "empty_player_square": "Le joueur abandonne le carré de 3x3 sans effet autour de lui ; il peut choisir le placement de la zone.",
+    "obstacles": "Le décor doit couper les zones et la prévisualisation doit montrer les cases réellement affectées. Les cas d'obstacles isolés restent à corriger dans le prototype."
+  },
+  "vision_revision": {
+    "review_id": "ZONE-VISION01",
+    "request": "Agrandir aussi le cercle visible du joueur pour accompagner les nouvelles portées de compétences.",
+    "existing_accepted_base_radius": 8,
+    "new_radius": 12,
+    "candidate_radius": 12,
+    "candidate_review_id": "ZONE-VISION02",
+    "growth_mode": "À définir ; le joueur n'a pas demandé de progression automatique par rang de sort ou par attribut.",
+    "review_criteria": "Conserver le cercle et les obstacles qui limitent la vision ; vérifier l'accès aux cibles, la lisibilité en 64 px et l'intérêt de l'exploration.",
+    "direction_accepted": true,
+    "direction_acceptance": {
+      "date": "2026-10-14",
+      "user_reply": "oui ca me va :)",
+      "scope": "Agrandissement mesuré du cercle visible pour accompagner les nouvelles portées, avec blocage par les obstacles et prévisualisation du rayon et du cadrage en 64 px.",
+      "automatic_growth_per_skill_rank_approved": false,
+      "new_numeric_radius_approved": false,
+      "new_visual_approved": false
+    },
+    "numeric_and_visual_approval_pending": false,
+    "campaign_changed": true,
+    "numeric_and_visual_acceptance": {
+      "review_id": "ZONE-VISION02",
+      "date": "2026-10-14",
+      "user_reply": "ok ca me semble bien :) on peut continuer",
+      "review": "skill-spatial-review-01/index.html",
+      "numeric_radius_approved": true,
+      "displayed_circle_approved": true,
+      "radius_cells": 12,
+      "growth_per_skill_rank": false,
+      "integration_scope": {
+        "new_games_and_current_laboratory": 12,
+        "current_generation_version": 147,
+        "previous_generations_through_146": "Retain radius 8 and historical rule fingerprints.",
+        "ordinary_npc_radius": 8,
+        "specific_npc_profiles": "unchanged",
+        "occlusion_and_circular_distance": "unchanged",
+        "existing_save_files_modified": false
+      },
+      "other_animation_approvals": false,
+      "compatibility_validation": "2 player_vision_revision_tests passed, including version-146 suspension restoration."
+    }
+  }
+}

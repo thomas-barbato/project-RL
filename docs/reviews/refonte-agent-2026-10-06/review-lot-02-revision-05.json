@@ -1,0 +1,230 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/drone-persistence-acceptance-decisions.json",
+  "latest_decisions_sha256": "5508b7e6b7a33237a191c26bdc24c404c21d740538dbbb7d064bbbf83a104dfe",
+  "batch_revision": 5,
+  "document": "docs/REVUE_COMPETENCES_AGENT_LOT_02.md",
+  "document_sha256": "4933c36142a82f222b286b305e1b6cf276add5c9f37eb39cb74bba300cf317d8",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-lot-02-revision-04.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-lot-02-revision-04.md",
+  "status": "O01_persistence_and_DP01_role_updated_other_details_pending",
+  "blocks": [
+    {
+      "id": "O00",
+      "revision": 1,
+      "title": "Implant initial de l'Opérateur",
+      "block_sha256": "c14d0906e8e96474b0e2427f368adf629ffaef2e34a8d67858d00df8876a1428",
+      "text_sha256": "138dbf1627373762d5bd4a0e1a871e0d1234dd5794254e867d82a1d6dff732ac",
+      "mechanic_sha256": "188242093f115f63dc124aabc3da6b8572ee4386366ae6e71189dc9bd0d3db0e",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "pending_preview_and_user_review"
+    },
+    {
+      "id": "O01",
+      "revision": 3,
+      "title": "Invocation du drone d'attaque",
+      "block_sha256": "21697ae35e936a79a52ca89b26e6eb0c92477df1ac25205e8b18c6535769c6b2",
+      "text_sha256": "6d7234a9c3da3f9ab0502ec6c17efa7bac68452034ce496c0fae2383689abdf7",
+      "mechanic_sha256": "b21ab3dffb169e02a47463e1baed7e027214f5acc8bc54d247d1cfdfb818f0b6",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "pending_preview_and_user_review",
+      "starter_approval": "skill_category_confirmed_specific_binding_pending_user_review",
+      "accepted_activity_duration": "unlimited"
+    },
+    {
+      "id": "O02",
+      "revision": 1,
+      "title": "Interférence",
+      "block_sha256": "e965d4f84f24086138f46a8044d5e7019a61146252befa99134dd428313ed2de",
+      "text_sha256": "84139bc0c7c8c6f17721abb088e6dcd48615942db786dc147cdb807ac274a6db",
+      "mechanic_sha256": "256604c94a1c75ecdbb14b4c228f2712ecf434d33ef84c2676f2c91ccec24704",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "pending_preview_and_user_review"
+    },
+    {
+      "id": "O03",
+      "revision": 4,
+      "title": "Lien renforcé",
+      "block_sha256": "d40d47ecfc178bd25d7195cac3c2f10594b8298614a79f82efbec29f86de64b2",
+      "text_sha256": "a7e96fec97a016f088e517eb63241d3214d203fa89bb6a76eabd9ea2d727a70c",
+      "mechanic_sha256": "f2ccfba7815c47be2a644ab6e332233e5efd435278fb83ce232ac20a995ad443",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "initial_effect_accepted_other_details_pending_user_review",
+      "visual_approval": "pending_preview_and_user_review",
+      "accepted_initial_effect": {
+        "drone_damage_bonus_percent": 25
+      }
+    },
+    {
+      "id": "T00",
+      "revision": 1,
+      "title": "Implant initial du Traqueur",
+      "block_sha256": "fce066e327d4ddb90e2d67fc0acafd5f3b12daa01fa5b39adab2ae2b4bc565c0",
+      "text_sha256": "7d49167b1ea08e99ee8ea2720a4a74a96f0b039b75da2d278965f61c682ab6d7",
+      "mechanic_sha256": "44fb8627679880e93bc702e175da3aeeb4df3562d0bd3a8a5da7229080493603",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "pending_preview_and_user_review"
+    },
+    {
+      "id": "T01",
+      "revision": 2,
+      "title": "Marquage balistique",
+      "block_sha256": "e0d33fcfec2a85434f53e6936b891c40a26520111cbb8bda954fe1721ed0bd9d",
+      "text_sha256": "242761af2ec8054924e3d8698f6ba04ba79e6f4e749be222ed1f7357aa5baba0",
+      "mechanic_sha256": "455017d2dabb97a93e8276fb0bcdf08d64ed4578ec4c97ca75728dd105482893",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "initial_effect_accepted_other_details_pending_user_review",
+      "visual_approval": "pending_preview_and_user_review",
+      "accepted_initial_effect": {
+        "activation_turns": 0,
+        "accuracy_rating_multiplier": 1.15
+      }
+    },
+    {
+      "id": "T02",
+      "revision": 2,
+      "title": "Pas spectral",
+      "block_sha256": "35e176cbb68f2da6f6cd8bee6547d3e596b3344717aab88d5c3b966b75fd246e",
+      "text_sha256": "84c4713ac7b157f3b9828d80ed7036aea17c96495981d075c5d2e73255a190b3",
+      "mechanic_sha256": "60320161f566d73f9fdd58f7b62e148e34e115e8b495db96303b642b293ef889",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "pending_preview_and_user_review"
+    },
+    {
+      "id": "T03",
+      "revision": 2,
+      "title": "Maîtrise des attaques à distance",
+      "block_sha256": "51712242ee42049f6e2b3eaf7bb7ea75907ce625d4c6fdfc1f103bfde3e05f16",
+      "text_sha256": "8bf633633fd7234b5b5ccbe9166a2b3cb09aeb78c6f06982f1ac2791fcfd7753",
+      "mechanic_sha256": "a9ba43bc6c94d65e1a17aaf14097b4fd9256a05afa09b6ce02d54ff146f0d635",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "initial_effect_accepted_other_details_pending_user_review",
+      "visual_approval": "pending_preview_and_user_review",
+      "accepted_initial_effect": {
+        "ranged_weapon_and_attack_skill_damage_bonus_percent": 10,
+        "permanent": true
+      }
+    },
+    {
+      "id": "A00",
+      "revision": 1,
+      "title": "Implant initial de l'Arcaniste",
+      "block_sha256": "0dc66d927d279125f283972b1591199814a91e64ff5492310cd3456002aa95fb",
+      "text_sha256": "3fdc65432fed96eb2ccd044a5f97990f629a17d65aef17de02d86a335f8529fa",
+      "mechanic_sha256": "05d8bc31466b8e8e1dd9bbb11313fd7bf40b7b1a90b5d9d913b7568cac0e5c32",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "pending_preview_and_user_review"
+    },
+    {
+      "id": "A01",
+      "revision": 2,
+      "title": "Trait arcanique",
+      "block_sha256": "f694355fb80aea742e010911dc4be7a055056f36ea0faa9e0cba2f5bd191934d",
+      "text_sha256": "8ca7909b7577403b7a7631a0eb437ef2a53296cb65655b6e41df04f68ae6a740",
+      "mechanic_sha256": "7dc6ab3b255dd0bad1bba952f43cd9d70f46c4f27f9842dcb0ff98d6a0f2c130",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "pending_preview_and_user_review",
+      "starter_approval": "skill_category_confirmed_specific_binding_pending_user_review"
+    },
+    {
+      "id": "A02",
+      "revision": 1,
+      "title": "Déflagration occulte",
+      "block_sha256": "5a7a9c7a5caa80bead5a9f5c91350b9a1bbbd59327ac7c84d4f3afeecb7770ae",
+      "text_sha256": "e3f8bca74645a81d839656e6090ec1cf01c8517dc659668e5f98b5d7ebb22c05",
+      "mechanic_sha256": "2915cfa0bd9be521fc1739b02fcb507fe5780702c1884f3c0e803f2b1859723a",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "pending_preview_and_user_review"
+    },
+    {
+      "id": "A03",
+      "revision": 2,
+      "title": "Canalisation",
+      "block_sha256": "2302251696424550522031f4f65c03baf33861bd0f43571a21ec7ee59e19703b",
+      "text_sha256": "bfe86bb2832c5e4c184fc50237627b2874c514e7d5f0df84e579d3b7dad02c0a",
+      "mechanic_sha256": "5a5d71111dc1d1dd6c50e392075f53c258030c4862923259fefa6b0e057676f4",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "initial_effect_accepted_other_details_pending_user_review",
+      "visual_approval": "pending_preview_and_user_review",
+      "accepted_initial_effect": {
+        "magic_energy_cost_reduction_percent": 20
+      }
+    },
+    {
+      "id": "M00",
+      "revision": 1,
+      "title": "Implant initial du Métamorphe",
+      "block_sha256": "e5cf1d27bb0891265d145cd8b84c9ef49285e8af5a1b1dd6beebc44450d9496f",
+      "text_sha256": "0ecab0354945a3185f0a08150b47765338df41b29865208a131f425f3f867053",
+      "mechanic_sha256": "3f6cf7b6bf7cba20d78440f76858a5659aac3e8f995b446d09333f1438267760",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "pending_preview_and_user_review"
+    },
+    {
+      "id": "M01",
+      "revision": 2,
+      "title": "Mue prédatrice",
+      "block_sha256": "ead1f5f4122693b8094ac4d8d9d649cafec4877513b882c24a6ad47e2318ada0",
+      "text_sha256": "a2e73b1ca9311de7138c38f0b2aae3326f74ec71dc822f2b0595dce4f60d5093",
+      "mechanic_sha256": "ff3906cebe845c5b68a99036064baf2a99993e42940231368d69d8fa86c6c6bf",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "pending_preview_and_user_review",
+      "starter_approval": "skill_category_confirmed_specific_binding_pending_user_review"
+    },
+    {
+      "id": "M02",
+      "revision": 2,
+      "title": "Décharge mutagène",
+      "block_sha256": "e5860b64d2e2b54cbde3e0e2fe61a66ffccec7dc366293a7ea5c7a2d018a38a1",
+      "text_sha256": "eb994134fe5f1bb4a966d8a56d751fd6701612ea92ffa6b70f1355951711f4fb",
+      "mechanic_sha256": "c70a3c6e3c3d849453adbc0cde97cea98b147a8113e04f6543da08f9d85c3d5c",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "catalogue_damage_and_bounded_form_extension_accepted_numeric_details_pending",
+      "visual_approval": "pending_preview_and_user_review",
+      "accepted_catalogue_effect": "direct damage and bounded transformation extension on a successful hit accepted; extension amount, limit and rank curve pending",
+      "name_approval": "accepted_as_presented"
+    },
+    {
+      "id": "M03",
+      "revision": 2,
+      "title": "Puissance métamorphe",
+      "block_sha256": "be2baeebac9caf334aeac8d2381b1adb88681a0ddf0c28eb9be2a0a6632a0dc9",
+      "text_sha256": "992b402408b02072f081ffe65bcb38b992d2295fe4596a41b30615b85595fb45",
+      "mechanic_sha256": "2050a002d42cbb04295a4ad55bc49cb834241cfa606585ca7f0abd37d9bd7b71",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "initial_effect_accepted_other_details_pending_user_review",
+      "visual_approval": "pending_preview_and_user_review",
+      "accepted_initial_effect": {
+        "transformed_personal_damage_bonus_percent": 10
+      }
+    }
+  ],
+  "catalogue_approval_reference": "docs/reviews/refonte-agent-2026-10-06/review-primary-catalogue-03.json"
+}

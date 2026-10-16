@@ -1,0 +1,37 @@
+{
+  "batch": "ANIM-S23",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 55,
+      "id": "BD04",
+      "name": "Visée stable",
+      "variant": "BD04-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 56,
+      "id": "BD06",
+      "name": "Récupération d’énergie",
+      "variant": "BD06-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "approved_cards": [
+    "review-individual-description-BD04-02.json",
+    "review-individual-description-BD06-04.json"
+  ],
+  "approved_values": "BD04 +15% ranged precision per stationary turn, maximum3 charges (+45%). BD06 22% max energy per eligible kill, interval3 turns.",
+  "visuals": "Outlined red tightening reticle, charge icon and hover; short violet transfer spark and numerical energy gain at gauge, no timed recovery buff. Existing physical wound blood and shared recoil. No damage or proc just from waiting.",
+  "prepared_numbers": "20 damage and100 maximum energy are fixtures only. Energy40 to62 then84, or95 to100. No real weapon/monster/stat curve, hit chance, variance or rounding introduced.",
+  "scope": "Two independent prepared passive scenes. HUD resource transfer deliberately reaches the gauge outside the world damage mask. Excluded-source deaths are prepared without a player-fired projectile; no familiar AI or reflection resolver added.",
+  "pending": "Actual precision computation and before/after action order, exact weapon/spell/heavy/form eligibility, per-action multi-kill/full-energy interval cases, persistent kill attribution and dense combat composition remain outside this visual review.",
+  "temporary_actors": "Existing enemy32px art enlarged to64; adaptation after animations.",
+  "excluded_draft": "native-feedback-draft and native-menu-draft are unpresented intermediate captures; exclude both from visual acceptance.",
+  "acceptance": "visual-acceptance-01.json",
+  "accepted_date": "2026-10-13"
+}

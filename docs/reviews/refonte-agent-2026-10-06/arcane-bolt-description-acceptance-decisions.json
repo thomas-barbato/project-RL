@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-07",
+  "review_id": "A01",
+  "title": "Trait arcanique",
+  "user_message": "oui ca me va :)",
+  "approval_status": "accepted_as_displayed",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-A01-01.json",
+  "previous_description_sha256": "fe5afdb3430c43fb32f8c831867097b14959837eacc1881e4bf5c94ab5cfe56d",
+  "accepted_player_copy_sha256": "5adea8a77e7fd65ebb813f3427e33ce7578492a3af2b4ca0a4d1391905183663",
+  "accepted_visual_copy_sha256": "8bc077bbaf28dbb1a10f290c08940bba1c9d04639369abfa6210d397a9142e44",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "occult_damage_before_defenses": 41,
+    "range_cells": 5,
+    "energy_cost": 9,
+    "cooldown_turns": 2
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "occult_damage_before_defenses": 45,
+    "range_cells": 5,
+    "energy_cost": 9,
+    "cooldown_turns": 2
+  },
+  "approval_scope": "Displayed RP,occult damage41/45,range5,cost9/CD2,visible hostile without obstacle and no weapon-accuracy dependency;damage before defenses. Displayed short violet trait with black node at impact accepted as visual direction.",
+  "accepted_visual_direction": "**Visuel proposé :** un trait violet court frappe la cible, avec un nœud noir au centre de l’impact.",
+  "unshown_rules_approval": "Full rank/attribute/energy curves,equipment/other passive/implant stacking,exact line of sight and corner/large-footprint geometry,visibility union of player/drones,other actors on projectile path,ordinary occult resistance/defense details,stat snapshots and damage ordering,preview,target failure costs/time/RNG/cooldown behavior and absorption interactions,map transitions and other effects remain pending. Earlier A01 lot02 no-target refusal proposal is retained historically,not additionally approved by this displayed card.",
+  "native_visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

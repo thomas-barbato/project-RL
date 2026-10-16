@@ -1,0 +1,522 @@
+{
+  "candidates": 17,
+  "numbers": [
+    56,
+    57,
+    58,
+    59,
+    66,
+    61,
+    62,
+    63,
+    64,
+    65,
+    9,
+    21,
+    22,
+    23,
+    24,
+    42,
+    43
+  ],
+  "native_tiles": 34,
+  "active_files_checked": 765,
+  "active_files_changed": [],
+  "document_edits": {
+    "docs/DIRECTION_ARTISTIQUE_TILES.md": {
+      "previous_sha256": "8d8c8a541cd082f1adc09ae2ad7596edb56b56107c619ecbfd0a2976b1ba1270",
+      "current_sha256": "4cc1d914fd347ebba8c7d8b88e8fbc6dcc805919d60a42edaed800374072ed6f",
+      "reason": "User rule: purely mechanical robots do not bleed; organic hybrids may."
+    }
+  },
+  "preserved_previous_tiles": [
+    "assets/sprites/bestiary/tiles/009-corpse-32.png",
+    "assets/sprites/bestiary/tiles/009-living-32.png",
+    "assets/sprites/bestiary/tiles/056-living-32.png",
+    "assets/sprites/bestiary/tiles/058-living-32.png",
+    "assets/sprites/bestiary/tiles/061-corpse-32.png",
+    "assets/sprites/bestiary/tiles/061-living-32.png",
+    "assets/sprites/bestiary/tiles/062-corpse-32.png",
+    "assets/sprites/bestiary/tiles/062-living-32.png",
+    "assets/sprites/bestiary/tiles/063-corpse-32.png",
+    "assets/sprites/bestiary/tiles/063-living-32.png",
+    "assets/sprites/bestiary/tiles/064-corpse-32.png",
+    "assets/sprites/bestiary/tiles/064-living-32.png",
+    "assets/sprites/bestiary/tiles/065-corpse-32.png",
+    "assets/sprites/bestiary/tiles/065-living-32.png",
+    "assets/sprites/bestiary/tiles/021-living-32.png",
+    "assets/sprites/bestiary/tiles/022-living-32.png",
+    "assets/sprites/bestiary/tiles/023-living-32.png",
+    "assets/sprites/bestiary/tiles/024-living-32.png",
+    "assets/sprites/bestiary/tiles/042-living-32.png",
+    "assets/sprites/bestiary/tiles/043-living-32.png"
+  ],
+  "preserved_round_tiles": [
+    "assets/sprites/bestiary/tiles/009-corpse-32.png",
+    "assets/sprites/bestiary/tiles/009-living-32.png",
+    "assets/sprites/bestiary/tiles/021-corpse-32.png",
+    "assets/sprites/bestiary/tiles/021-living-32.png",
+    "assets/sprites/bestiary/tiles/022-corpse-32.png",
+    "assets/sprites/bestiary/tiles/022-living-32.png",
+    "assets/sprites/bestiary/tiles/023-corpse-32.png",
+    "assets/sprites/bestiary/tiles/023-living-32.png",
+    "assets/sprites/bestiary/tiles/024-corpse-32.png",
+    "assets/sprites/bestiary/tiles/024-living-32.png",
+    "assets/sprites/bestiary/tiles/042-corpse-32.png",
+    "assets/sprites/bestiary/tiles/042-living-32.png",
+    "assets/sprites/bestiary/tiles/043-corpse-32.png",
+    "assets/sprites/bestiary/tiles/043-living-32.png",
+    "assets/sprites/bestiary/tiles/056-corpse-32.png",
+    "assets/sprites/bestiary/tiles/056-living-32.png",
+    "assets/sprites/bestiary/tiles/057-corpse-32.png",
+    "assets/sprites/bestiary/tiles/057-living-32.png",
+    "assets/sprites/bestiary/tiles/058-corpse-32.png",
+    "assets/sprites/bestiary/tiles/058-living-32.png",
+    "assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/tiles/060-cadavre.png",
+    "assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/tiles/060-vivant.png",
+    "assets/sprites/bestiary/tiles/061-corpse-32.png",
+    "assets/sprites/bestiary/tiles/061-living-32.png",
+    "assets/sprites/bestiary/tiles/062-corpse-32.png",
+    "assets/sprites/bestiary/tiles/062-living-32.png",
+    "assets/sprites/bestiary/tiles/063-corpse-32.png",
+    "assets/sprites/bestiary/tiles/063-living-32.png",
+    "assets/sprites/bestiary/tiles/064-corpse-32.png",
+    "assets/sprites/bestiary/tiles/064-living-32.png",
+    "assets/sprites/bestiary/tiles/065-corpse-32.png",
+    "assets/sprites/bestiary/tiles/065-living-32.png"
+  ],
+  "current_revision": {
+    "round": "t1-and-merged-guardian",
+    "numbers": [
+      59,
+      66
+    ],
+    "retired": [
+      60
+    ],
+    "guardian_count": 1,
+    "integration_status": "accepted art; not integrated",
+    "review_status": "accepted-art",
+    "approval_record": "review-decisions-2026-10-06.json"
+  },
+  "checks": [
+    {
+      "number": 56,
+      "kind": "living",
+      "colors": 21,
+      "bounds": [
+        2,
+        10,
+        30,
+        25
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 56,
+      "kind": "corpse",
+      "colors": 12,
+      "bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 57,
+      "kind": "living",
+      "colors": 23,
+      "bounds": [
+        1,
+        10,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 57,
+      "kind": "corpse",
+      "colors": 22,
+      "bounds": [
+        3,
+        17,
+        29,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 58,
+      "kind": "living",
+      "colors": 22,
+      "bounds": [
+        2,
+        7,
+        30,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 58,
+      "kind": "corpse",
+      "colors": 24,
+      "bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 59,
+      "kind": "living",
+      "colors": 18,
+      "bounds": [
+        1,
+        10,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 59,
+      "kind": "corpse",
+      "colors": 18,
+      "bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 66,
+      "kind": "living",
+      "colors": 21,
+      "bounds": [
+        2,
+        2,
+        30,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 66,
+      "kind": "corpse",
+      "colors": 21,
+      "bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 61,
+      "kind": "living",
+      "colors": 23,
+      "bounds": [
+        1,
+        1,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 61,
+      "kind": "corpse",
+      "colors": 23,
+      "bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 62,
+      "kind": "living",
+      "colors": 23,
+      "bounds": [
+        2,
+        1,
+        30,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 62,
+      "kind": "corpse",
+      "colors": 23,
+      "bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 63,
+      "kind": "living",
+      "colors": 24,
+      "bounds": [
+        2,
+        2,
+        30,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 63,
+      "kind": "corpse",
+      "colors": 22,
+      "bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 64,
+      "kind": "living",
+      "colors": 24,
+      "bounds": [
+        2,
+        4,
+        30,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 64,
+      "kind": "corpse",
+      "colors": 23,
+      "bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 65,
+      "kind": "living",
+      "colors": 21,
+      "bounds": [
+        3,
+        1,
+        29,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 65,
+      "kind": "corpse",
+      "colors": 21,
+      "bounds": [
+        1,
+        17,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 9,
+      "kind": "living",
+      "colors": 22,
+      "bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 9,
+      "kind": "corpse",
+      "colors": 22,
+      "bounds": [
+        2,
+        21,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 21,
+      "kind": "living",
+      "colors": 22,
+      "bounds": [
+        1,
+        9,
+        31,
+        31
+      ],
+      "margin_status": "accepted original unchanged; existing boundary contact preserved"
+    },
+    {
+      "number": 21,
+      "kind": "corpse",
+      "colors": 24,
+      "bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 22,
+      "kind": "living",
+      "colors": 24,
+      "bounds": [
+        1,
+        11,
+        30,
+        31
+      ],
+      "margin_status": "accepted original unchanged; existing boundary contact preserved"
+    },
+    {
+      "number": 22,
+      "kind": "corpse",
+      "colors": 20,
+      "bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 23,
+      "kind": "living",
+      "colors": 24,
+      "bounds": [
+        6,
+        1,
+        25,
+        31
+      ],
+      "margin_status": "accepted original unchanged; existing boundary contact preserved"
+    },
+    {
+      "number": 23,
+      "kind": "corpse",
+      "colors": 20,
+      "bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 24,
+      "kind": "living",
+      "colors": 23,
+      "bounds": [
+        2,
+        11,
+        30,
+        31
+      ],
+      "margin_status": "accepted original unchanged; existing boundary contact preserved"
+    },
+    {
+      "number": 24,
+      "kind": "corpse",
+      "colors": 20,
+      "bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 42,
+      "kind": "living",
+      "colors": 23,
+      "bounds": [
+        2,
+        3,
+        30,
+        32
+      ],
+      "margin_status": "accepted original unchanged; existing boundary contact preserved"
+    },
+    {
+      "number": 42,
+      "kind": "corpse",
+      "colors": 15,
+      "bounds": [
+        1,
+        21,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    },
+    {
+      "number": 43,
+      "kind": "living",
+      "colors": 24,
+      "bounds": [
+        4,
+        11,
+        28,
+        32
+      ],
+      "margin_status": "accepted original unchanged; existing boundary contact preserved"
+    },
+    {
+      "number": 43,
+      "kind": "corpse",
+      "colors": 20,
+      "bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "margin_status": "one-pixel transparent margin"
+    }
+  ],
+  "scenes": [
+    "../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/review/scene-09.png",
+    "../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/review/scene-56-59-et-66.png",
+    "../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/review/scene-61-65.png",
+    "../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/review/scene-epaves-ennemies.png"
+  ],
+  "preview_only": true,
+  "engine_tests": "not run; no production code or assets changed",
+  "review_status": "current revision accepted; other candidates retain their existing review status",
+  "art_approval_record": "review-decisions-2026-10-06.json"
+}

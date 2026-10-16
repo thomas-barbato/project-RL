@@ -1,0 +1,160 @@
+{
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "date": "2026-10-07",
+  "id": "OC04",
+  "title": "Prison sigillaire",
+  "revision": 3,
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-51.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/occult-black-magic-direction-decisions.json",
+  "latest_decisions_sha256": "a5da55c41707b156279ca7f9ebc789ef1f7e3fe0e05834dcc9b38e4f50abacee",
+  "name_approval": "accepted_existing_catalogue_name_preserved",
+  "roleplay_text_approval": "new_blood_circle_black_magic_RP_proposed_pending_individual_review",
+  "functional_description_approval": "paragraph_omitted_by_global_CD08;ground_segment_placement_and_destructible_movement_barrier_conditions_proposed",
+  "current_next_effect_copy_approval": "revised_segment_wording_proposed_pending_individual_review",
+  "numeric_rules_approval": "same_proposed33/35_HP_per_segment_eight_segments_total3x3_center1_duration4_range4_cost17_CD10;not_approved_by_visual_direction_request",
+  "detailed_conditions_approval": "ritual_circle_direction_requested;independent_segment_HP_and_breaks_with_previous_placement_and_movement_rules_proposed_pending_review",
+  "attribute_scaling_approval": "displayed_Willpower10_example_and_full_curves_pending",
+  "current_profile_status": "illustrative caster,not user save;Willpower scales each ritual segments HP;no other passive or initial implant assumed",
+  "formulas": {
+    "HP_per_ritual_segment": "floor((10+2*(effective_rank-1))*magic_multiplier)",
+    "magic_multiplier": "1+0.02*(Willpower-5)",
+    "duration_turns": "2+floor((effective_rank-1)/5)",
+    "ritual_segment_count": 8,
+    "geometry": "eight ground-glyph perimeter segments of total3x3 footprint;central1 cell has no barrier",
+    "center_range_cells": 4,
+    "energy_cost": "14+floor((effective_rank-1)/3)",
+    "cooldown_turns": 10
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "HP_per_ritual_segment": 33,
+    "ritual_segment_count": 8,
+    "total_footprint_width_cells": 3,
+    "total_footprint_height_cells": 3,
+    "center_cells_without_barrier": 1,
+    "duration_turns": 4,
+    "center_range_cells": 4,
+    "energy_cost": 17,
+    "cooldown_turns": 10
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "HP_per_ritual_segment": 35,
+    "ritual_segment_count": 8,
+    "total_footprint_width_cells": 3,
+    "total_footprint_height_cells": 3,
+    "center_cells_without_barrier": 1,
+    "duration_turns": 4,
+    "center_range_cells": 4,
+    "energy_cost": 17,
+    "cooldown_turns": 10
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "HP_per_ritual_segment": 10,
+    "ritual_segment_count": 8,
+    "duration_turns": 2,
+    "center_range_cells": 4,
+    "energy_cost": 14,
+    "cooldown_turns": 10,
+    "approval": "unshown_curve_pending"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "HP_per_ritual_segment"
+    ],
+    "unchanged_effects_omitted": [
+      "ritual_segment_count",
+      "total_footprint_width_cells",
+      "total_footprint_height_cells",
+      "center_cells_without_barrier",
+      "duration_turns",
+      "center_range_cells",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "magic_ground_ritual_movement_barrier_creation_not_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy exclusion added"
+  },
+  "geometry_review_note": "Same proposed total3x3 footprint,eight perimeter segments,one center with no barrier;rounded visual circle on the ground does not silently change blocked cells or radius.",
+  "effect_conditions": {
+    "type": "active_magic_ritual_barrier_creation",
+    "center": "chosen visible case within range",
+    "all_eight_perimeter_cells_required": "visible,free,walkable",
+    "center_may_contain_actor": true,
+    "no_actor_moved_on_creation": "prior_unshown_proposal_retained_pending_review",
+    "expiry_or_destruction_extra_damage_XP_loot": "prior_no_damage_XP_or_loot_proposal_retained_pending_review",
+    "creates_control_status_or_status_chance_roll": false,
+    "hidden_actor_or_stat_reveal_created": false,
+    "ritual_segments_block_movement": true,
+    "ritual_segments_separately_breakable": true,
+    "shared_circle_HP_or_whole_ring_collapse_added": false
+  },
+  "control_and_elemental_scope": "Destructible ground ritual movement-barrier segments proposed instead of perspective pillars;no new control status/success roll. Existing CTRL01/Gel/Burn rules unchanged;boss/elite,forced movement and special traversal interactions remain unshown pending review. No damage,elemental status or Fire/Cold balance coefficient added. Foudre remains removed.",
+  "unshown_rules_approval": "Full rank/attribute/energy curves,exact visibility union and casting line of sight/corners,center/ring placement preview and input,partial-placement refusal accounting,large actors and geometry,boss/elite and special traversal,projectile and spell transmission,ritual-segment targeting and damage defenses,targeting and AI destruction priorities,expiry timing/stat snapshots/multiple prisons/map transitions,XP/loot/extra damage at destruction or expiry and other environment effects remain pending.",
+  "visual_intention_approval": "blood_circle_requested;no_luminous_or_emissive_circle;exact_dark_red_ground_seals_and_break_animation_pending_review",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**OC04 · Prison sigillaire — Rang 11 · Actif**\n\n*Un cercle de sang se referme autour de votre cible et l’enferme dans ses sceaux impies.*\n\n**Effets actuels**\n\n- PV par segment rituel : **33**.\n- Segments : **8**.\n- Enceinte : **3 × 3 cases**, avec une case centrale sans barrière.\n- Durée : **4 tours**.\n- Portée : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- PV par segment rituel : **35**.\n\n**Coût : 17 énergie · Recharge : 10 tours.**\n\nChoisissez une case centrale visible. Les huit cases autour doivent être visibles, libres et praticables.\n\nLe centre peut être occupé par un acteur. Chaque segment bloque le passage sur sa case et peut être brisé séparément.",
+  "player_copy_sha256": "d0d38dd75d5b77f9443a6e2a9a3006ff9f2301cfd36731d033c2dacacb8d7407",
+  "visual_copy_markdown": "**Visuel proposé :** un cercle sanglant tracé au sol, composé de huit segments de sceaux rouge sombre. Un segment s’efface lorsqu’il est détruit.",
+  "visual_copy_sha256": "5aac69775be3530d6e456f286b9b6db641f15fb9ae6da65ac0e12cfc51629db1",
+  "checks": [
+    "Stable OC04 and catalogue name Prison sigillaire retained;requested ritual circle replaces perspective pillars.",
+    "Same learned9/10,gear+2,Willpower10;effective11/12 and one point within learnedcap10.",
+    "Same HP33/35 per segment;count8,total3x3,central1,duration4,range4,cost17,CD10;no numeric change.",
+    "Same independent destruction and blocked cells proposed;no shared ring HP,no automatic entire-circle collapse or mechanics approval inferred from visual request.",
+    "Next displays changed segment HP only;no weapon variance,hidden reveal,damage or new control/status added.",
+    "New RP and glyph/ground/break visuals plus all not-yet-approved numbers/conditions pending;native pixels and runtime not integrated.",
+    "User requests bloody circle and black-magic identity for occult branch;no luminous circle or mechanical/HP-cost change inferred.",
+    "Current turn presents changed RP/visual and qualitative direction;prior unapproved numbers/conditions are not validated by this style request."
+  ],
+  "source_skill_block_sha256": "7bf4a5b7f332411de2d21f1ba93f1121d5a96008b7411c323ccd799082591d21",
+  "redesign_review_id": "OC04-CERCLE01",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC04-02.json",
+  "previous_description_sha256": "6b47564d7debaff23c2fb857a53976e47bf0141bb14102e25fe2191be974d232",
+  "branch_style_review_id": "OC-NOIR01",
+  "blood_visual_review_id": "OC04-SANG01",
+  "current_turn_shown_copy_markdown": "**Direction de branche :** La branche Énergie occulte adopte une identité de magie noire : sang, ombres et sceaux impies.\n\n**OC04 · Prison sigillaire — texte proposé**\n\n*Un cercle de sang se referme autour de votre cible et l’enferme dans ses sceaux impies.*\n\n**Visuel proposé :** un cercle sanglant tracé au sol, composé de huit segments de sceaux rouge sombre. Un segment s’efface lorsqu’il est détruit.",
+  "current_turn_shown_copy_sha256": "34a1aa00dab404d48cfcddbca6d42b3dc0be20ccb6fb7648b62fa6a729d67dab",
+  "current_turn_shown_scope": "Branch qualitative black-magic direction and OC04 RP/visual only;unchanged numbers/conditions still pending.",
+  "branch_style_dependency": {
+    "review_id": "OC-NOIR01",
+    "decisions": "docs/reviews/refonte-agent-2026-10-06/occult-black-magic-direction-decisions.json",
+    "sha256": "a5da55c41707b156279ca7f9ebc789ef1f7e3fe0e05834dcc9b38e4f50abacee",
+    "requested_direction": "black_magic",
+    "exact_other_skill_revisions": "not yet proposed or approved"
+  }
+}

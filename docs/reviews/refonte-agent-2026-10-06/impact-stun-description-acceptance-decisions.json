@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-08",
+  "review_id": "HL02-ACCEPT01",
+  "user_instruction": "je valide :)",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HL02-02.json",
+  "source_card_sha256": "d0c7814c03c28ee749f5d4fc94b7b14dbd22a4e50e06f73e16fffd88007173c7",
+  "accepted_scope": "full_shown_RP_current32_39_180percent_next34_41_190percent_chance60_45_next64_48_stun2turns_no_movement_or_other_action_radius1_range7_explosion1_energy14_matter5_CD6;single_stun_roll_per_enemy_hit;explosive_weapon_stun_at_explosion;boss_stun_immunity_damage_preserved;before_defenses_active_equipped_heavy_weapon",
+  "accepted_copy_omission": "single_salvo_count_not_repeated;HL02_COPY01_preserved",
+  "accepted_visual_direction": "brief_impact_shock_wave_rotating_symbol_above_stunned_enemy_and_target_status_bar;native_pixels_pending",
+  "not_approved_by_this_acceptance": [
+    "unshown_full_damage_and_chance_curves_cap95",
+    "heavy_attribute_formulas",
+    "native_modes_accuracy_resistance_and_damage_components",
+    "stun_stacking_refresh_and_exact_turn_order",
+    "allied_actor_damage_eligibility",
+    "resource_heat_atomic_refusal_and_other_unshown_cases",
+    "native_icons_tiles_and_animations"
+  ],
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-08",
+  "review_id": "BM06-REDESIGN01",
+  "skill_id": "BM06",
+  "previous_title": "Protection offensive",
+  "title": "Bouclier d’énergie",
+  "user_instruction": "ca me semble trop fort. Je pense que l'ont peut faire un sort de bouclier oui, qui deviendrait prioritaire sur la perte de vie (un peu comme dans diablo 2), le sort \"**Bouclier d'énergie**\" .",
+  "clarification_question": "Pour Bouclier d’énergie, les dégâts doivent-ils vider directement votre réserve d’énergie avant de toucher vos PV, ou consommer un bouclier séparé créé en payant de l’énergie au lancement ?",
+  "clarification_answer": "Les dégâts consomment directement l’énergie",
+  "accepted_direction": "replace_hit_generated_passive_with_cast_shield;direct_shared_energy_consumption_before_HP",
+  "name_and_active_role_approval": "explicit_user_requested_name_and_cast_shield_spell",
+  "energy_source_approval": "explicit_user_selected_direct_energy_consumption",
+  "old_passive": "rejected_as_too_strong;hit_refills_HP_shield_two_turn_refresh_retired",
+  "separate_extra_shield_pool": "not_selected",
+  "stable_skill_id": "BM06",
+  "catalogue_count_unchanged": 75,
+  "numeric_RP_and_visual_approval": "new_individual_card_pending_review;old_values_not_inherited",
+  "inspiration_source": {
+    "title": "The Arreat Summit — Sorceress Lightning Spells, Energy Shield",
+    "url": "https://classic.battle.net/diablo2exp/skills/sorceress-lightning.shtml",
+    "scope": "resource_for_protection_concept;our_values_order_exclusions_are_separate_proposals"
+  },
+  "native_render": "pending_prototype_review",
+  "runtime_integration": "not_integrated"
+}

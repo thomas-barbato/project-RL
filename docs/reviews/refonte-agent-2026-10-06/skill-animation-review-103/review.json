@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-15",
+  "review_id": "D66-TAUNT-FINAL01",
+  "status": "visually_accepted_pending_campaign_integration",
+  "original_review": "../skill-animation-review-94/review.json",
+  "candidates": [
+    {
+      "number": 101,
+      "id": "D66",
+      "variant": "D66-TAUNT-A01",
+      "title": "Provocation du Gardien"
+    },
+    {
+      "number": 103,
+      "id": "D66",
+      "variant": "D66-TAUNT-I01",
+      "title": "Marqueur de provocation"
+    }
+  ],
+  "body_and_size_already_accepted": "../skill-animation-review-94/gardien-size01/visual-acceptance-01.json",
+  "native_tile": 64,
+  "native_scenes": 8,
+  "directions": 4,
+  "scope": "Existing taunt impulse and marker only. Native pixels and original timelines preserved; no body reapproval.",
+  "separate_pending": [
+    "O03-A01 visual",
+    "B03 mechanics",
+    "Shared drone capacity and taunt numbers"
+  ],
+  "campaign_integration": false,
+  "source": "src/agent_skill_lab_review/fire_painted/guardian_taunt.rs",
+  "source_sha256": "564edc4429df2430f030b3260df9be581608a9f57a893be39d67a4d09b722cea",
+  "status_icon": {
+    "path": "skill-animation-review-94/D66-TAUNT-I01-native32.png",
+    "sha256": "7639a104ffda57908eb060518fffb11f73a6b405c36e6863cb5c2d4cd5a9d565"
+  },
+  "standalone_animation": {
+    "path": "skill-animation-review-94/provocation-gardien-64.webp",
+    "sha256": "8fde99cb1005411edb2bfe114f6960d41d54df8ad7e41ffb067d25ed2db805c0"
+  },
+  "preview": "../apercu-animations.html",
+  "visual_acceptance": "visual-acceptance-01.json"
+}

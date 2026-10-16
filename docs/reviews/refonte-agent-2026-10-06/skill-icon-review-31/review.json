@@ -1,0 +1,646 @@
+{
+  "review_id": "SKILLS-IC31",
+  "title": "Froid · icônes sombres",
+  "date": "2026-10-11",
+  "description": "Blizzard descend du haut vers le bas. Les quatre autres dessins sont conservés sans retouche et restent en attente de validation.",
+  "generation_mode": "built-in",
+  "status": "accepted",
+  "style_references": [
+    {
+      "title": "Mur de glace",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-icon-review-17/FR03-C03-32.png"
+    },
+    {
+      "title": "Boule de feu",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-icon-review-28/FE05-C03-32.png"
+    }
+  ],
+  "previous_review": {
+    "file": "../skill-icon-review-30/index.html",
+    "title": "Révision précédente du Froid"
+  },
+  "candidates": [
+    {
+      "id": "FR01",
+      "number": 54,
+      "variant": "FR01-C01",
+      "title": "Aiguille de givre",
+      "branch": "Froid",
+      "kind": "active",
+      "roleplay": "Vous projetez une aiguille glacée qui engourdit les membres de votre cible.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/FR01-C01.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-7ba26c5c-a191-4463-8f42-4c261f94974c.png",
+      "source_sha256": "e635f9723861e3b8ae4b90f9b190ce0880c89eb90545f7c43b4556b8bc586455",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR01-C01-master.png",
+        "sha256": "e635f9723861e3b8ae4b90f9b190ce0880c89eb90545f7c43b4556b8bc586455",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "FR01-C01-24.png",
+          "sha256": "910f24946ddbe21d201b9d7ccd3930ec9077876dc3025b54ab7227beb1f9255d",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "FR01-C01-32.png",
+          "sha256": "9ad307a0fd17ef50963c1181add200d18949fbb8fd295f39527c4193b07efde0",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR01-C01-64.png",
+          "sha256": "4439cf4e89b963e337c5dc2f8999b399f193f587d31e4ce1fdfeed6cfb7fbea5",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "FR01-C01-128.png",
+          "sha256": "7e53206b5946788e8a74acc02fa0b53707f6f1bfdfcf478553ef63fe4c99a222",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "FR01-C01-192.png",
+          "sha256": "9e0a494aaaf2096c0ee0e1895916854c3c71902cb6f1ce9db7533f98982ccf43",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/FR03-C03-192.png",
+          "sha256": "52a19e4736ac34d9638edda0926fbebd9c7367af18e751d768089cf9d279f328"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-28/FE05-C03-192.png",
+          "sha256": "65b3872d669d9f7cf56947c33e02cb9597f096e5a7d8273039993f3bb0f0b508"
+        }
+      ],
+      "carried_forward_from": "SKILLS-IC30",
+      "no_visual_change": true
+    },
+    {
+      "id": "FR02",
+      "number": 55,
+      "variant": "FR02-C01",
+      "title": "Nova de givre",
+      "branch": "Froid",
+      "kind": "active",
+      "roleplay": "Vous libérez une onde glaciale qui se referme sur les ennemis proches.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/FR02-C01.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-d259ce2e-dd44-4fdf-9a6d-578987cf97c6.png",
+      "source_sha256": "39dbd15886e7067c51439759edbedacfbae40909d1736a665c3061f5408c9017",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR02-C01-master.png",
+        "sha256": "39dbd15886e7067c51439759edbedacfbae40909d1736a665c3061f5408c9017",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "FR02-C01-24.png",
+          "sha256": "0c0dc3242449c04c5bbb1ca23829d2b4ab9679cf97621fc277fd430a2f596f8e",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "FR02-C01-32.png",
+          "sha256": "791572437e8999e78f134fba3a1a107c674e3e02e74b98b944f467f570fefd73",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR02-C01-64.png",
+          "sha256": "80f7ed77337f5550e1dc1bf680a398cf8ff79e8ba29f409d09ba348f667f0cc2",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "FR02-C01-128.png",
+          "sha256": "094eef65179a6026647adced0bd6e98ac163bd36381cd0e49c7484a2f2b1ffee",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "FR02-C01-192.png",
+          "sha256": "47b04667554ce09601b7b85e141d217013401b15a398e44a373a1a21ce1eea6b",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/FR03-C03-192.png",
+          "sha256": "52a19e4736ac34d9638edda0926fbebd9c7367af18e751d768089cf9d279f328"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-28/FE05-C03-192.png",
+          "sha256": "65b3872d669d9f7cf56947c33e02cb9597f096e5a7d8273039993f3bb0f0b508"
+        }
+      ],
+      "carried_forward_from": "SKILLS-IC30",
+      "no_visual_change": true
+    },
+    {
+      "id": "FR04",
+      "number": 56,
+      "variant": "FR04-C01",
+      "title": "Vague de froid",
+      "branch": "Froid",
+      "kind": "active",
+      "roleplay": "Vous déchaînez une vague glaciale qui balaie les ennemis devant vous.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/FR04-C01.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-e7bd363f-107d-4194-a478-247bdd8270e9.png",
+      "source_sha256": "b491e2066201a7454ac1530b896a959d38a63919495e2c34f2324a444eca8a6b",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR04-C01-master.png",
+        "sha256": "b491e2066201a7454ac1530b896a959d38a63919495e2c34f2324a444eca8a6b",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "FR04-C01-24.png",
+          "sha256": "bd7c0dd7e4d07017dacb493bdac24ae3a4aa937ea57356168236cddf9de64031",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "FR04-C01-32.png",
+          "sha256": "64ff6b08581af5c73a39874014767febbbfee0e24807aa4e138ce92c8a39bdd5",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR04-C01-64.png",
+          "sha256": "f5c2c27510f5e5d58e51a68bb2f65b3ec46de92c21470ae8248ce2e322c4cc0a",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "FR04-C01-128.png",
+          "sha256": "a8ec7f1ac1207c893e79f2883f48633c85d1eb76751e6edfc4ca411c33498eca",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "FR04-C01-192.png",
+          "sha256": "5d922f018c003fe615911928a3e54762091727fcc207fe421ea89fc13a4d904b",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/FR03-C03-192.png",
+          "sha256": "52a19e4736ac34d9638edda0926fbebd9c7367af18e751d768089cf9d279f328"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-28/FE05-C03-192.png",
+          "sha256": "65b3872d669d9f7cf56947c33e02cb9597f096e5a7d8273039993f3bb0f0b508"
+        }
+      ],
+      "carried_forward_from": "SKILLS-IC30",
+      "no_visual_change": true
+    },
+    {
+      "id": "FR05",
+      "number": 57,
+      "variant": "FR05-C03",
+      "title": "Blizzard",
+      "branch": "Froid",
+      "kind": "active",
+      "roleplay": "Vous déchaînez une tempête de glace qui pilonne la zone choisie.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/FR05-C03.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-e76d9c46-1cdb-406c-8504-c6da8031166c.png",
+      "source_sha256": "84d4f6c29cd3bbc094c45288447a7b761017d402f1c43ff998f4408556ad6882",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR05-C03-master.png",
+        "sha256": "84d4f6c29cd3bbc094c45288447a7b761017d402f1c43ff998f4408556ad6882",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "FR05-C03-24.png",
+          "sha256": "85292b13f0e09edf58771eabd4bd4ef4c62089ec7a969b13061225972ab6abb6",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "FR05-C03-32.png",
+          "sha256": "10ce6ae65bc9cbd11ee4ce605d475050548fb39670b0bfd0d51096cc1fcbad5d",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR05-C03-64.png",
+          "sha256": "535bf634c021ea1bee18f7c3d7e9579c44bd15f42dcc58f26f106ca13d2e37aa",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "FR05-C03-128.png",
+          "sha256": "047c404c048f30e331cc089806b5c0533397a7a1ee44e3d6ae645d51e0dab6ae",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "FR05-C03-192.png",
+          "sha256": "97b3d8f104dae2f2271383ccb859e6c82c1915c19067bcad8000f50e8b12a177",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-30/FR05-C02-192.png",
+          "sha256": "37803d9ab32edfb02d8b30fa83abbd133fb4a303b0862c13b856902f8a056d5e"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/FR03-C03-192.png",
+          "sha256": "52a19e4736ac34d9638edda0926fbebd9c7367af18e751d768089cf9d279f328"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-28/FE05-C03-192.png",
+          "sha256": "65b3872d669d9f7cf56947c33e02cb9597f096e5a7d8273039993f3bb0f0b508"
+        }
+      ],
+      "replaces_pending_variant": "FR05-C02"
+    },
+    {
+      "id": "FR06",
+      "number": 58,
+      "variant": "FR06-C02",
+      "title": "Explosion cristalline",
+      "branch": "Froid",
+      "kind": "active",
+      "roleplay": "Vous faites voler en éclats la glace qui emprisonne vos ennemis.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/FR06-C02.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-8cadde3b-249f-42f2-a127-fc14f2e81fb5.png",
+      "source_sha256": "ebe1509aececa7b62a24037bb528442db0bb8877592fa2aff22d6ae4d62016ba",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR06-C02-master.png",
+        "sha256": "ebe1509aececa7b62a24037bb528442db0bb8877592fa2aff22d6ae4d62016ba",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "FR06-C02-24.png",
+          "sha256": "74522ad64f6c904829ede9e0ed6c9cbd4ccdd309ad58042bbdb797fc8f4a9470",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "FR06-C02-32.png",
+          "sha256": "ed81f56260c771ac27f6d7ce5d5821d3b521a69c1330c222f81852a55a2c6a81",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-31/FR06-C02-64.png",
+          "sha256": "22f7eeafdd05565fa23066b4a1d7e43ead08f5912ea9fe057e679466e6edeed9",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "FR06-C02-128.png",
+          "sha256": "27cd66ebcf20062f84cb9b938fe070d139f8068171363289b7fc9362d1b3e7c7",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "FR06-C02-192.png",
+          "sha256": "80dd1aff12fc5dbad31cfaa7448979a6c053253c72daf7cce287d431fc7e98f9",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-29/FR06-C01-192.png",
+          "sha256": "2527c07541034ce6aef4a8af38bf1bb6b784611a9ffe799e77bae054a72a46c3"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/FR03-C03-192.png",
+          "sha256": "52a19e4736ac34d9638edda0926fbebd9c7367af18e751d768089cf9d279f328"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-28/FE05-C03-192.png",
+          "sha256": "65b3872d669d9f7cf56947c33e02cb9597f096e5a7d8273039993f3bb0f0b508"
+        }
+      ],
+      "carried_forward_from": "SKILLS-IC30",
+      "no_visual_change": true
+    }
+  ],
+  "protected_hashes": [
+    {
+      "file": "assets/skills/agent/A03-compact.png",
+      "sha256": "d37193de59e564c9907ed16d5febb56424d65fcc5097e4ce5fb4dcd41b0a46c6"
+    },
+    {
+      "file": "assets/skills/agent/A03-illustration.png",
+      "sha256": "5583745698e12316a2026610ca66d40dbb62bd09971dda33f0b4d9e0bd7bdc3e"
+    },
+    {
+      "file": "assets/skills/agent/AF02-compact.png",
+      "sha256": "a81658fdfd61c5aa8b4a615f6b240c69ae1b2d2c380cb0158ae5d6e519a82dac"
+    },
+    {
+      "file": "assets/skills/agent/AF03-compact.png",
+      "sha256": "094682804aac356ef23dec91d1499a7169bc4d8ff1804f203dca80e1495ff135"
+    },
+    {
+      "file": "assets/skills/agent/AF04-compact.png",
+      "sha256": "0f9c803363fe473532da669bd51cecaa6a7ac80feecc8815140fdbf512f1636b"
+    },
+    {
+      "file": "assets/skills/agent/AF05-compact.png",
+      "sha256": "a8d5dd7140048df0c59813ef36e34bfd2bcfd6fbeea8e1f790960d2bb7daa233"
+    },
+    {
+      "file": "assets/skills/agent/B01-illustration.png",
+      "sha256": "2ba69010e33526675639d47d6c730f7ad1b5de548dc2f5e3243219c36b644a33"
+    },
+    {
+      "file": "assets/skills/agent/B02-compact.png",
+      "sha256": "4a83ebbb454129d5be6254083f8c72cea9aeac17801b0fc02a394222aa080c85"
+    },
+    {
+      "file": "assets/skills/agent/B03-compact.png",
+      "sha256": "fe03b345514568df50133246c98c9c53d50b46f5aeff04e3dc249d2c85ea5092"
+    },
+    {
+      "file": "assets/skills/agent/B03-illustration.png",
+      "sha256": "614d4dee2c88d7893f7778a2beeb0d904f508cee32c1741bd97dc2db9460849c"
+    },
+    {
+      "file": "assets/skills/agent/BD06-compact.png",
+      "sha256": "90f4f2fd71c90ad29d9fb322868d11a7521d445e8f54d892bc20b56672884af6"
+    },
+    {
+      "file": "assets/skills/agent/BM02-compact.png",
+      "sha256": "8001906983c8da126d0e59ffb660b352b21c1532768837d7fcadaea9678cec11"
+    },
+    {
+      "file": "assets/skills/agent/BM02-illustration.png",
+      "sha256": "69cf7e8176be6d3739ccb76325accc4e6ba3b2953d366af127a8254a6796a24b"
+    },
+    {
+      "file": "assets/skills/agent/catalogue.json",
+      "sha256": "20322691c73897d7755f9bad8ce35ba55b1b3af32ec5fd4d25345d685a292d54"
+    },
+    {
+      "file": "assets/skills/agent/D56-compact.png",
+      "sha256": "54ef69b44e9a1ea63871f9fe6b82df73a84d213aca2e7d85cdad8ddf0ec29ba9"
+    },
+    {
+      "file": "assets/skills/agent/D57-compact.png",
+      "sha256": "e89ed543dc0c50d220b0beb569b43660c8f4dfbe997b07f9c4c207fec8c0cc2e"
+    },
+    {
+      "file": "assets/skills/agent/D58-compact.png",
+      "sha256": "75e1bba54d9f031b28f8306db93ffa3ed2ccd9eb47480952218c0cf64d3882ed"
+    },
+    {
+      "file": "assets/skills/agent/D59-compact.png",
+      "sha256": "79399dce4495293c558671531b77da469f67e1df4b7fa853bb0f3ce5aa500f84"
+    },
+    {
+      "file": "assets/skills/agent/D59-illustration.png",
+      "sha256": "1ea7634e2367f137fa5a9cefabdc176be760f10dcdd19bc197cedcd9d38e917f"
+    },
+    {
+      "file": "assets/skills/agent/D66-compact.png",
+      "sha256": "7618e5357cb117b422339ad17db0f0beaa1e3559c1486b4d75bb386064d202cf"
+    },
+    {
+      "file": "assets/skills/agent/DI01-compact.png",
+      "sha256": "8628fb41500430c59efc83db98340b4eaccd327d4a2d279159d1a75509951dcd"
+    },
+    {
+      "file": "assets/skills/agent/DI02-compact.png",
+      "sha256": "7729dfe3242f0282d997cf05740c793e6548db49a65d4cf69b663ca59b3a3e5e"
+    },
+    {
+      "file": "assets/skills/agent/DI03-compact.png",
+      "sha256": "5027cc176f0f3922090d3887f0210d4026a89e306c5cc9bda14195d536f41455"
+    },
+    {
+      "file": "assets/skills/agent/DI04-compact.png",
+      "sha256": "a53ebdbada781cf0082420a8c06a94a60ef199843630ef462154138ede7d87cb"
+    },
+    {
+      "file": "assets/skills/agent/DI05-compact.png",
+      "sha256": "cd9bb83a65504b9807c8df4533a7f6a74cf3d4b76ce5af4c4b1be03effe93126"
+    },
+    {
+      "file": "assets/skills/agent/DI07-compact.png",
+      "sha256": "b117c2675b27c25aa80560aa782e9cf4a0cd2683da2dd5931824017ea6a9461c"
+    },
+    {
+      "file": "assets/skills/agent/DP01-compact.png",
+      "sha256": "c305030b5125ae989424d70b880cc3efd8dbdb0f7f9cf6d68c6916fcb54ad643"
+    },
+    {
+      "file": "assets/skills/agent/DP02-compact.png",
+      "sha256": "62332bbdc8219adc0990ef4dde0940619f85e6d8ab2da972577f292caa49b653"
+    },
+    {
+      "file": "assets/skills/agent/DR01-compact.png",
+      "sha256": "18e620e89d87da2075c4a437bbae3790a5fa70b9df42f1845858f0bd8c299f4d"
+    },
+    {
+      "file": "assets/skills/agent/ES03-compact.png",
+      "sha256": "c0c0e55dfb51a2352884d4a46c0c469829f506d626167f8fd8f1d925f7c3af99"
+    },
+    {
+      "file": "assets/skills/agent/ES05-compact.png",
+      "sha256": "a1af2deb51142441f999e5a886deb0d2c8d3ed194193dd27b1b1e994084cb19c"
+    },
+    {
+      "file": "assets/skills/agent/ES06-compact.png",
+      "sha256": "fb4c46f1296d963b92a60af3a147cb3a59b1cfa41cd9916de23f436dd9d68213"
+    },
+    {
+      "file": "assets/skills/agent/FE01-compact.png",
+      "sha256": "c6d969ea5f6191870d928aa4a79d84bbfd1c8bbe1e1b198efc7f726858afc6ee"
+    },
+    {
+      "file": "assets/skills/agent/FE01-illustration.png",
+      "sha256": "bf75d01f3b80e70ee6f06b510601ac3162f7047ee6dccba528657f2d2a5a22b0"
+    },
+    {
+      "file": "assets/skills/agent/FE02-compact.png",
+      "sha256": "5e3d5b70f344b93e0e28136038c265f38573ba1d562e63974ee00bee771ff17b"
+    },
+    {
+      "file": "assets/skills/agent/FE03-compact.png",
+      "sha256": "5d7a2edab0a4e2007aa2c15ec062565e359ea664e0485a82d2cc33366ff973fd"
+    },
+    {
+      "file": "assets/skills/agent/FE04-compact.png",
+      "sha256": "42c26d985dded663de172cc99c696eadbc7d2bcfd1a049d564e08c6049f41b4b"
+    },
+    {
+      "file": "assets/skills/agent/FE05-compact.png",
+      "sha256": "76950f863092019cccb32feacf0c19386ed076ee3a562041b8ebcc47f4fe9b66"
+    },
+    {
+      "file": "assets/skills/agent/FE05-illustration.png",
+      "sha256": "9ae15e20dc75200cc42ad727ee646798307389683afa20cc0442d90f97e748a8"
+    },
+    {
+      "file": "assets/skills/agent/FE06-compact.png",
+      "sha256": "50c5f375182586c148d312face98aa2c3ebf69eb0a48d60fd97b6a40974c4473"
+    },
+    {
+      "file": "assets/skills/agent/FR03-compact.png",
+      "sha256": "b92bfef56362261acb66f97d684501af352cf3b826cc98c6c716164fc020696a"
+    },
+    {
+      "file": "assets/skills/agent/FR03-illustration.png",
+      "sha256": "231928d6de6faed720bfdd612f9c200b8d96282842f4fc398546963bb2c800cc"
+    },
+    {
+      "file": "assets/skills/agent/HY07-compact.png",
+      "sha256": "e2ac0ca895ecd677076b734e4683c957961428596570182af207c2720ee5bb8d"
+    },
+    {
+      "file": "assets/skills/agent/M01-compact.png",
+      "sha256": "5c7b9642379d12361ef4ce59ec53057f3a8a6fa011dd238ca4628d312a1c6ee1"
+    },
+    {
+      "file": "assets/skills/agent/M01-illustration.png",
+      "sha256": "6a139c376988a6946f0b6bd5a2a814cdc9e8fcfb38f19091025a2d5ed191872e"
+    },
+    {
+      "file": "assets/skills/agent/M03-compact.png",
+      "sha256": "b32562370832d21586c813735cf1b2094d8b2e15f731a41fb35633d8a7c85c28"
+    },
+    {
+      "file": "assets/skills/agent/M03-illustration.png",
+      "sha256": "daeeffb775e7c604cd73ddbd505c57ba3bffaf704ad9af9ad692cd7146dc85df"
+    },
+    {
+      "file": "assets/skills/agent/manifest.json",
+      "sha256": "ade219eab101e115db0f22140c36de403d085867ca7b22ac7020193c6c7da2d0"
+    },
+    {
+      "file": "assets/skills/agent/ME02-compact.png",
+      "sha256": "58356d5b157d6a8f0a05baba5940ed1f63d1f49490b48d42cd6522d42ae58ee2"
+    },
+    {
+      "file": "assets/skills/agent/ME03-compact.png",
+      "sha256": "94fc93bf8807a01229576df1babcbc64553238aad58e815afa09e65afcb4c307"
+    },
+    {
+      "file": "assets/skills/agent/ME04-compact.png",
+      "sha256": "e83e22bf0d8ab99f3b76f612a928ab3ba0ffa45aa8e9ea3ee34f80f8edf6b30b"
+    },
+    {
+      "file": "assets/skills/agent/ME04-illustration.png",
+      "sha256": "b244788ac01e16f4399d263ceb403795ffa2c2c59e9cd0d60e6aaa1589a330b4"
+    },
+    {
+      "file": "assets/skills/agent/ME05-compact.png",
+      "sha256": "c31d9c0f11f67a0cc089c7ac99f5c712360f25ab17f843f1bcaae80f1563a0a1"
+    },
+    {
+      "file": "assets/skills/agent/ME06-compact.png",
+      "sha256": "753df0d1c6335f88f3bd9fda15251fa22e05cd025ceaade09dc77d71fe800740"
+    },
+    {
+      "file": "assets/skills/agent/O02-compact.png",
+      "sha256": "caf9d085980476d3b55f981a3bd7d9b14822e91760c584bb2020038b2f0b0c9e"
+    },
+    {
+      "file": "assets/skills/agent/O03-compact.png",
+      "sha256": "514ee6c56ccda56d2a770428d948bc07b3e540f515044b07c300c39fbce0051a"
+    },
+    {
+      "file": "assets/skills/agent/O03-illustration.png",
+      "sha256": "2a70e75bd3b82ba8c19c5360a3d8dce397e6aa7520c80462a75fa9a054370162"
+    },
+    {
+      "file": "assets/skills/agent/SF00-compact.png",
+      "sha256": "efdd472610655e413caae463102b3d7eb8ba1110f8523c5d2d243bd4146c5102"
+    },
+    {
+      "file": "assets/skills/agent/SF00-illustration.png",
+      "sha256": "99cab81ec7f7da9b229ac23093a1f5371ff0dcaee4de106e5ef1cf67111def02"
+    },
+    {
+      "file": "assets/skills/agent/SU03-compact.png",
+      "sha256": "7867ca1cf20417b85fff92ae2cf80e518a00e86c180273f7949e0b4e853a8986"
+    },
+    {
+      "file": "assets/skills/agent/SU04-compact.png",
+      "sha256": "269b0206ca3d061eddf12e16a6153e963e509a6806870b6322f1f7cd26e67ec9"
+    },
+    {
+      "file": "assets/skills/agent/SU04-illustration.png",
+      "sha256": "8c7ebb5714b9ef938dd509080b90b6435f5038fd721d0fee320f65da6cc45154"
+    },
+    {
+      "file": "assets/skills/agent/SU05-compact.png",
+      "sha256": "036b842f70ade3ec268a474039ad7c1b31bfd2abf8f16c69dfc1ec5e3624baa6"
+    },
+    {
+      "file": "assets/skills/agent/SU06-compact.png",
+      "sha256": "fc0ca0b9da6550e61a3b0b263e78ea68a7c1e9e1eaa3afc691f762d6a7c95a48"
+    },
+    {
+      "file": "assets/skills/agent/T01-compact.png",
+      "sha256": "7804db615fa6ef2a0a3dab8cceb46729e592b7dafb5902d22f1114cdf6f6f91f"
+    },
+    {
+      "file": "assets/skills/agent/T01-illustration.png",
+      "sha256": "0e5b70be8f4501b7c16b883d7d90d29aa67076c949718238a8f401f743430fd8"
+    },
+    {
+      "file": "assets/skills/agent/T02-compact.png",
+      "sha256": "6525df776569afff66c53f8ed69af9aa59b086b07feae2ee26df44541424090e"
+    },
+    {
+      "file": "assets/skills/agent/T03-compact.png",
+      "sha256": "53607ef4da1c7b3ce1346635ceb625dd43480d3ab4492be10e94eb8131b82501"
+    },
+    {
+      "file": "assets/skills/agent/T03-illustration.png",
+      "sha256": "408696a7089fe81a4e14854d537859b31833058286e974bfc65371af1cad55fd"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-icon-acceptance.json",
+      "sha256": "48441b852ac260cac4d842f6c9dafd76de0a2446a98c7daa763e13a0dc29e8a1"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-window-review-05/skills.json",
+      "sha256": "cb23dca3cf283e6eb12faa58e01dc637c78a8309614f213cd86ef12d06ce0ef2"
+    }
+  ],
+  "accepted_export_hashes_preserved": 336,
+  "no_new_approval_inferred": false,
+  "no_runtime_changes": true,
+  "acceptance_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-31/visual-acceptance-01.json"
+}

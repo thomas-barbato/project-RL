@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-12",
+  "user_replies": [
+    "je valide :)",
+    "je valide mais j'aimerais qu'on accelere legerement le mouvement de la boule de feu (avant qu'elle n'explose)"
+  ],
+  "accepted": [
+    {
+      "number": 13,
+      "skill_id": "FE05",
+      "variant": "FE05-A05",
+      "status": "visually_approved",
+      "scope": "Shown projectile, six-step explosion, wall clipping and attached Burn. Flight movement speed is requested for a separate revision."
+    },
+    {
+      "number": 14,
+      "skill_id": "FE06",
+      "variant": "FE06-A03",
+      "status": "visually_approved",
+      "scope": "Shown targeted shock, finite animation and prepared Burn cases."
+    }
+  ],
+  "temporal_policy": "ANIM-TEMPS02: instantaneous impacts finish in real time; attached statuses and cooldowns retain their game-turn counters.",
+  "pending_revision": "Slightly faster fireball movement before impact. Keep the accepted explosion and other effects.",
+  "scope": "Visual approval of this review; no new skill figures, damage rules or campaign integration.",
+  "artifact_hashes": {
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-22/explosion-source.png": "626c19902fa1adebd360f7d0b69b0b3b6c2d059ab78c5c79a7f131606c62d8fc",
+    "../../../../assets/animations/agent/skill-animation-review-20/burst-atlas.png": "373c6dd5831e9d5f4e6728e51a84ddf8e197aca1fd557cd2aebc954d67d31efa",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-22/projectile-atlas.png": "5f02965b8c3fae95b76a4a88d80a336ad53492dc85ba662aa192163ed873c01b",
+    "render-source.rs": "ea433776d180b4d4d450b2a9ca4f4f221fdf61c14f5d4bea15dae959f4d3c933",
+    "clip-source.rs": "eb67041760cc2a960e4c22c815e3a5c47b23d79de22ed20c91dd5967ac96e624",
+    "gallery-script.js": "6152724870d20cd9af837d060ad94041bbcd05c48578438d1d899af035693698",
+    "verification.json": "3de1f8a37c9d87755d865ff0422c46d513aa26550f94ea906b05df839b2b16a0",
+    "FE05-A05-CLOISON-BAS-64.gif": "2e3baba05dba4edfeb6a2d666e3d05f6bcca935161cc3041be3dfee8a5dc07da",
+    "FE05-A05-DROITE-64.gif": "71aa6bb5b095a56d3c2ef31a893f4ea85768d5907506e1f910c14b1478a647b7",
+    "FE05-A05-GAUCHE-64.gif": "36ebdc9ef8b192cd2033abb5803a70cb7088285551eac0ee8ef56d1bac66dcd7",
+    "FE05-A05-HAUT-64.gif": "bedce19a732674839849583fbca01b96dbaad1b126ca02d14d1ba89563e43246",
+    "FE05-A05-INTERCEPTION-64.gif": "812421b416e0843ed6809c9e5076a7ac439d967a67f3b9298d81597393cba5c6",
+    "FE06-A03-CLOISON-BAS-64.gif": "b02a2932aeaa473cd061fa11057181f17f663252af0dc5a2398e38dd285295d2",
+    "FE06-A03-DROITE-64.gif": "9abcd1447c3143af3a2942a6c09782ebdfbce01fe3d16f31ffbd1d3497dcf381",
+    "FE06-A03-GAUCHE-64.gif": "048fa856f4a1240a0b778409a04539b60a202edb8b9b2aa449850b79468b1345",
+    "FE06-A03-HAUT-64.gif": "ec933ca4214006945f1757f810cebc98bbad1f61e1939fb15b058bf014e577f7",
+    "FE06-A03-INTERCEPTION-64.gif": "9abcd1447c3143af3a2942a6c09782ebdfbce01fe3d16f31ffbd1d3497dcf381",
+    "feu-final-64.gif": "7088955e9e8a5dd31b2e7837418f63c9b08f11f395b68f08d727d3db9f4000cb",
+    "feu-final-cloison-64.gif": "c194e3b9c8d5a52a13830aa5927b03067830bcff22cb30048a147ca9eeeb7e8a",
+    "feu-final-interception-64.gif": "02cb44f229ba789b508e327add3e4d34fcf6ca45d288b671ae81137b90246c20"
+  }
+}

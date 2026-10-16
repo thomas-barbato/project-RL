@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project RL · Provocation du Gardien</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101519;color:#e9e2d8}body{margin:0;padding:24px;max-width:1240px;margin-inline:auto}h1{font-size:27px;margin:0 0 8px}h2{font-size:20px}p{line-height:1.5}.muted{color:#b3b3ac;font-size:14px}.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0}button,select{font:inherit;color:inherit;background:#272b2c;border:1px solid #61615b;border-radius:5px;padding:9px 13px;cursor:pointer}button:hover,select:hover{border-color:#d49c6b}button:disabled{opacity:.38;cursor:default}.layout{display:grid;grid-template-columns:576px minmax(240px,1fr);gap:26px;align-items:start}.stage{width:576px;height:576px;max-width:none;background:#151819;image-rendering:pixelated;display:block}figure{margin:0}.frame{max-width:100%;overflow:auto;border:1px solid #4c4a43}figcaption{color:#aeb4b5;font-size:13px;margin-top:8px}.status{padding:12px 0;color:#eac19a;min-height:48px;line-height:1.5}.icon-row{display:flex;align-items:center;gap:20px;margin:18px 0}.icon{display:inline-block;width:32px;height:32px;image-rendering:pixelated}.proof{padding:14px;background:#c6c5b8;border-radius:4px}.light{padding:14px;background:#282c30;border-radius:4px}.notice{border-left:3px solid #aa754e;padding-left:12px}a{color:#e8b58a}details{margin-top:24px}details img{max-width:100%;image-rendering:pixelated}#loading{color:#e4b884}@media(max-width:920px){.layout{grid-template-columns:1fr}body{padding:16px}.stage{width:576px;height:576px}}
+</style></head><body>
+<h1>101 · Provocation du Gardien</h1>
+<p>Une impulsion cuivrée au lancement, puis une petite icône sans fond au-dessus de chaque monstre provoqué.</p>
+<p class="muted">ANIM-S47 · D66-TAUNT-A01 / D66-TAUNT-I01 · Proposition visuelle à valider · Cases natives de 64 px.</p>
+<div class="controls">
+<label>Situation <select id="case"><option value="LIBRE">Zone ouverte</option><option value="CLOISON">Cloison</option><option value="DEUX_GARDIENS">Deux Gardiens</option><option value="RAPPEL">Gardien rappelé</option><option value="ATTENTE">Attendre sans passer de tour</option></select></label>
+<label>Orientation <select id="direction"><option value="2">Haut</option><option value="0">Droite</option><option value="1">Gauche</option><option value="3">Bas</option></select></label>
+<button id="mode">Passer en contrôle manuel</button><button id="action">Provoquer</button><button id="turn">Passer un tour</button><button id="replay">Rejouer</button><button id="pause">Pause</button>
+</div>
+<p id="loading">Chargement de l’aperçu…</p>
+<div class="layout"><figure><div class="frame"><canvas id="stage" class="stage" width="576" height="576"></canvas></div><figcaption>Un pixel dessiné = un pixel affiché. La scène ne rétrécit pas sur un petit écran : elle défile horizontalement.</figcaption><div class="status" id="status" aria-live="polite"></div></figure>
+<aside><h2>104 · Gardien plus massif</h2><p>Son corps passe de 48 à <strong>64 px de haut</strong>, avec le même dessin et les mêmes proportions. Ses bras occupent 80 px de large : ils dépassent de 8 px de chaque côté de sa case.</p><p class="muted">Export direct depuis la source détaillée. Cette nouvelle taille est validée.</p><div class="frame"><img src="skill-animation-review-94/gardien-size01/D66-SIZE01-comparison-native.png" width="520" height="220" style="display:block;max-width:none;image-rendering:pixelated" alt="104 : comparaison à taille native du Gardien haut de 48 puis de 64 pixels sur trois sols"></div><h2>103 · Icône de provocation</h2><div class="icon-row"><span class="light"><img class="icon" src="skill-animation-review-94/D66-TAUNT-I01-native32.png" alt="Symbole de provocation sans fond"></span><span class="proof"><img class="icon" src="skill-animation-review-94/D66-TAUNT-I01-native32.png" alt="Le même symbole sur fond clair"></span></div><p>Le symbole occupe environ 24 px dans son image transparente de 32 px. Une seule icône reste attachée à chaque cible. L’icône ne tourne pas avec la scène.</p>
+<p>Les monstres font le petit mouvement de réaction prévu à l’application de l’effet. La grande impulsion disparaît ; le marqueur reste jusqu’à la fin de la provocation.</p>
+<p>Dans « Deux Gardiens », les cibles se répartissent entre les deux sources sans cumul. Dans « Cloison », la cible derrière le mur ne reçoit pas de marqueur.</p>
+<p class="notice muted">Aperçu du rendu uniquement : les monstres n’y simulent pas encore leurs attaques. Le rayon de 2 cases et la durée de 2 tours servent à cet essai ; leurs chiffres restent proposés. Aucun changement au combat de la campagne.</p>
+<p class="muted">Le mode automatique passe deux tours pour montrer la fin de l’effet. En mode manuel, l’attente ne fait pas avancer les tours.</p>
+</aside></div>
+<details><summary>Animation d’Algorithmes de combat encore à examiner</summary><p class="muted">Son accord visuel reste distinct de cette nouvelle provocation.</p><img src="skill-animation-review-93/algorithmes-combat-64.webp" alt="Aperçu précédent d’Algorithmes de combat améliorés"></details>
+<script>
+const entries=__ENTRIES__;
+const $=id=>document.getElementById(id),ctx=$('stage').getContext('2d');ctx.imageSmoothingEnabled=false;
+const images=new Map();let entry,atlas,frame=0,elapsed=0,prev=null,manual=false,paused=false,launched=false,manualTurn=0,ready=false,revision=0;
+function state(){return entry.timeline[Math.min(entry.frames-1,Math.floor(frame))];}
+function refresh(){
+ if(!ready)return;
+ const s=state();
+ $('mode').textContent=manual?'Reprendre la démonstration automatique':'Passer en contrôle manuel';
+ $('action').disabled=!manual||launched;$('turn').disabled=!manual||!launched||manualTurn>=2||entry.case==='ATTENTE';
+ $('pause').textContent=paused?'Reprendre':'Pause';
+ $('status').textContent=!s.launched?'Avant confirmation : zone de l’essai.':s.recalled?'Gardien rappelé : les marqueurs disparaissent.':s.icons===0?'Provocation terminée : les marqueurs disparaissent.':`${s.icons} monstres provoqués · Tour ${s.turn} · ${Math.max(...s.remaining)} tour(s) restant(s)`;
+}
+function reset(){frame=0;elapsed=0;prev=null;launched=false;manualTurn=0;refresh();}
+async function select(){
+ const token=++revision;ready=false;$('loading').hidden=false;
+ const choice=$('case').value;$('direction').disabled=choice!=='LIBRE';
+ const direction=choice==='LIBRE'?Number($('direction').value):2;
+ const next=entries.find(e=>e.case===choice&&e.direction===direction);
+ try {
+  if(!images.has(next.atlas))images.set(next.atlas,new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=()=>reject(Error('Chargement impossible : '+next.atlas));im.src=next.atlas;}));
+  const im=await images.get(next.atlas);if(token!==revision)return;entry=next;atlas=im;ready=true;$('loading').hidden=true;reset();
+ }catch(error){$('loading').textContent=error.message;}
+}
+function tick(now){
+ const dt=prev===null?0:Math.min(Math.max((now-prev)/1000,0),0.1);prev=now;
+ if(ready){
+  if(!paused){
+   elapsed+=dt;
+   if(!manual)frame=Math.floor(elapsed*entry.fps)%entry.frames;
+   else if(launched){const stop=manualTurn===0?entry.turn_frames[0]-1:manualTurn===1?entry.turn_frames[1]-1:entry.frames-1;frame=Math.min(stop,frame+dt*entry.fps);}
+  }
+  const idx=entry.indices[Math.floor(frame)],x=(idx%entry.columns)*576,y=Math.floor(idx/entry.columns)*576;
+  ctx.clearRect(0,0,576,576);ctx.drawImage(atlas,x,y,576,576,0,0,576,576);refresh();
+ }
+ requestAnimationFrame(tick);
+}
+$('case').onchange=select;$('direction').onchange=select;
+$('mode').onclick=()=>{manual=!manual;reset();};$('replay').onclick=reset;$('pause').onclick=()=>{paused=!paused;refresh();};
+$('action').onclick=()=>{if(!ready||!manual||launched)return;launched=true;frame=entry.cast_frame;refresh();};
+$('turn').onclick=()=>{if(!ready||!manual||!launched||manualTurn>=2||entry.case==='ATTENTE')return;frame=entry.turn_frames[manualTurn++];refresh();};
+window.guardianTauntReview={isReady:()=>ready,state:()=>state(),entry:()=>entry,frame:()=>Math.floor(frame)};
+select();requestAnimationFrame(tick);
+</script></body></html>

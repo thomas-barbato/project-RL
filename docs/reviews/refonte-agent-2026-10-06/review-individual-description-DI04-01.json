@@ -1,0 +1,144 @@
+{
+  "date": "2026-10-07",
+  "id": "DI04",
+  "title": "Ricochet",
+  "revision": 1,
+  "player_copy_markdown": "**DI04 · Ricochet — Rang 11**\n\n*Vous exploitez un mur pour dévier votre tir et atteindre votre cible sous un autre angle.*\n\n**Effet actuel**\n\n- Dégâts après rebond : **30–37** (**150 %** de l’attaque).\n- Rebonds : **1**.\n- Précision après rebond : **80 % de votre précision habituelle**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts après rebond : **31–38** (**156 %** de l’attaque).\n\n**Coût : 11 énergie + 1 munition · Recharge : 4 tours.**\n**Trajet total : 6 cases maximum, avant et après le rebond.**\n\nChoisissez un mur visible, puis une cible actuellement visible. Le trajet avant et après le rebond doit être dégagé.\n\nDégâts indiqués avant les défenses de la cible.\n\n**Nécessite une arme à distance active. Armes lourdes exclues.**",
+  "player_copy_sha256": "7d0c18215822a2caf43d1290075c75d213b2e68cf1b9cab76af4476cc6a5b1ef",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-06.json",
+  "source_skill_block_sha256": "5fc710b0284d7ed626159a185513b314702025720f555aea5d8cf1da6b865313",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/volley-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "06c3851497e4f77b0583a17667513175600723dc986782eeafc652d30636ba90",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "accepted_catalogue_name_preserved",
+  "roleplay_text_approval": "pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "displayed_visible_wall_and_currently_visible_target_clear_segments_and_total_range_proposed_pending_review; heavy_exclusion_rule_already_accepted",
+  "current_profile_status": "illustrative_not_a_user_save; no universal weapon variance or range proposed",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "perception": 10,
+    "agility": 10,
+    "reference_weapon_min_damage_before_attributes": 18,
+    "reference_weapon_max_damage_before_attributes": 22,
+    "range_status": "illustrative active weapon range 6, shared by both path segments; not a universal weapon range",
+    "ranged_attribute_multiplier_exact": {
+      "numerator": 451,
+      "denominator": 400
+    },
+    "active_compatible_ranged_weapon": true,
+    "other_damage_or_cost_modifiers": false,
+    "reference_damage_basis": "one projectile before attributes",
+    "active_weapon_range_cells": 6,
+    "active_weapon_is_heavy": false
+  },
+  "formulas": {
+    "damage_percent_after_bounce": "90 + 6 * (effective_rank - 1)",
+    "damage_after_bounce": "floor(base projectile damage * damage percent/100 * ranged attribute multiplier), once at end",
+    "bounces": 1,
+    "accuracy_multiplier_after_bounce": "4/5 of ordinary accuracy score, not a fixed 80% hit chance",
+    "maximum_total_path": "active compatible weapon range; both segments combined; exact grid geometry pending",
+    "energy_cost": "8 + floor((effective_rank - 1)/3)",
+    "ammunition_cost": 1,
+    "cooldown_turns": 4
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "damage_percent_after_bounce": 150,
+    "damage_min_after_bounce_before_defenses": 30,
+    "damage_max_after_bounce_before_defenses": 37,
+    "damage_min_exact_before_rounding": {
+      "numerator": 12177,
+      "denominator": 400
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 14883,
+      "denominator": 400
+    },
+    "bounces": 1,
+    "accuracy_multiplier_after_bounce_percent": 80,
+    "ammunition_cost": 1,
+    "energy_cost": 11,
+    "cooldown_turns": 4,
+    "maximum_total_path_cells": 6
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "damage_percent_after_bounce": 156,
+    "damage_min_after_bounce_before_defenses": 31,
+    "damage_max_after_bounce_before_defenses": 38,
+    "damage_min_exact_before_rounding": {
+      "numerator": 158301,
+      "denominator": 5000
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 193479,
+      "denominator": 5000
+    },
+    "bounces": 1,
+    "accuracy_multiplier_after_bounce_percent": 80,
+    "ammunition_cost": 1,
+    "energy_cost": 11,
+    "cooldown_turns": 4,
+    "maximum_total_path_cells": 6
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_weapon_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "damage_percent_after_bounce",
+      "damage_min_after_bounce_before_defenses",
+      "damage_max_after_bounce_before_defenses"
+    ],
+    "unchanged_effects_omitted": [
+      "bounces",
+      "accuracy_multiplier_after_bounce_percent",
+      "ammunition_cost",
+      "energy_cost",
+      "cooldown_turns",
+      "maximum_total_path_cells"
+    ]
+  },
+  "active_weapon_requirement": {
+    "type": "ranged",
+    "equipped_and_active_required": true,
+    "approval": "explicit_user_requirement",
+    "incompatible_warning": "Nécessite une arme à distance active.",
+    "warning_approval": "accepted_as_presented",
+    "excluded_category": "heavy_ranged_weapon",
+    "heavy_exclusion_approval": "explicit_AR-HL01_user_confirmation",
+    "heavy_exclusion_copy": "Armes lourdes exclues.",
+    "heavy_exclusion_copy_approval": "proposed_pending_individual_user_review"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true
+  },
+  "unshown_rules_approval": "Full curves, supported ordinary weapon families, exact legal wall faces and reflection-angle selection, geometry/path lengths/ties, line of fire/target observations, per-projectile hit/defense and affix resolution, ammunition/cost refusal and random damage distribution remain pending where not previously accepted. No targeting of unseen or merely remembered enemies, extra range, armor bypass, native-burst multiplication, second bounce or automatic hit assumed. Preview path rendering remains separately pending. Heavy exclusion is an accepted common rule; new exact warning wording is part of this pending card.",
+  "visual_intention_approval": "accepted_catalogue_intention_only: angular trajectory and spark at bounce point",
+  "visual_approval": "pending_native_animation_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Current source document and unchanged DI04 block hash verified.",
+    "Rank 11 coefficient 150% gives 30-37; rank 12 coefficient 156% gives 31-38, using exact multiplier 451/400 and 18-22 base damage.",
+    "One bounce, 80% ordinary accuracy score, ammo 1, energy 11, cooldown 4 and total range 6 unchanged.",
+    "Learned 9 to 10, gear +2, same illustrative weapon range 6, attributes and modifiers; only damage changes in next block.",
+    "One RP paragraph, no player table/formula/rank breakdown or ordinary timing reminder.",
+    "Primary access has no tiers; heavy exclusion accepted; new RP/numbers/conditions/warning and native rendering remain pending.",
+    "No runtime or native visual integration."
+  ]
+}

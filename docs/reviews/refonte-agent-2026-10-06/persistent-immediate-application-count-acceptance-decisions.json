@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-TIME01-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-timer-accounting-INTERACT-TIME01-02.json",
+    "reference_sha256": "bbdd042db0586dbb4b7705b7d7ce33dfbf6d694b8c0a306f048db65245d001d5"
+  },
+  "user_acceptance": "parfait on continue",
+  "shown_explanation": "Un effet persistant commence dès son application : premiers dégâts de Poison, Brûlure et Saignement immédiatement ; première application d'une zone persistante dès sa création ; à l'explosion ou à l'impact pour une mine ou attaque différée. Cette application compte dans le total annoncé, sans deuxième application automatique pendant le même tour. Un effet prévu pour trois applications agit immédiatement puis pendant les deux tours suivants, en conservant son total de dégâts.",
+  "approved_rule": {
+    "first_application_count": "immediate_first_application_counts_as_first_of_existing_announced_number;does_not_add_a_bonus_damage_tick",
+    "following_applications": "remaining_applications_once_per_subsequent_reference_game_turn_while_effect_exists_under_normal_conditions",
+    "same_turn_automatic_pass": "same_new_effect_does_not_get_second_automatic_periodic_application_from_end_of_its_creation_turn;independent_overlapping_zones_keep_own_applications",
+    "illustration": "three_announced_Poison_applications_at_application_turn_then_next_turn_then_second_following_turn;not_a_new_skill_duration_or_damage_value",
+    "preserved": "accepted_damage_power_target_defenses_last_successful_status_power_full_duration_refresh_Gel_Burn_replacement_overlap_and_rank_loss_cleanup;no_new_player_self_damage",
+    "scope_boundary": "already_active_status_reapplication_immediate_damage_vs_refresh_and_exact_phase_order_pending;no_buff_cooldown_familiar_lifetime_or_channel_timing_change_approved_here"
+  },
+  "approval_boundary": "new_persistent_effect_immediate_first_application_total_count_and_no_same_turn_second_automatic_application;existing_status_refresh_and_buff_cooldown_draft_not_newly_approved",
+  "runtime_integration": "not_integrated"
+}

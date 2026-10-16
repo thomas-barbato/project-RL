@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-08",
+  "id": "SM02",
+  "review_id": "SM02",
+  "revision": 5,
+  "title": "Mines de poison",
+  "branch": "Mines",
+  "kind": "secondary_passive",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-131.json",
+  "source_skill_manifest_sha256": "4ed0a8966642b9fa8f50c2288599b2fcc891d3ae343e0ad1ff24df91a6f31b41",
+  "source_skill_block_sha256": "60d063e1a5cc8dc21c31e9d90282c43ae4e8bb0f937bfa0a4efa1588632d193a",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "SM00_learned_rank": 1,
+    "intelligence": 10,
+    "M_technique_exact": "11/10",
+    "other_mine_passives": false,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "mine_type_unlocked": "Poison",
+    "poison_variant_damage_bonus_percent": 50,
+    "poison_damage_before_defenses": 19,
+    "poisoned_damage_per_turn_before_defenses": 3,
+    "poisoned_duration_turns": 5
+  },
+  "next_values_proposal": {
+    "mine_type_unlocked": "Poison",
+    "poison_variant_damage_bonus_percent": 55,
+    "poison_damage_before_defenses": 20,
+    "poisoned_damage_per_turn_before_defenses": 3,
+    "poisoned_duration_turns": 5
+  },
+  "formula_proposed": "bonus_percent=5*(effective_rank-1);poison_explosion=floor(12*M_technique*(1+bonus_percent/100));Poisoned_per_turn=floor(2*M_technique*(1+bonus_percent/100));Poisoned_duration=3+floor((effective_rank-1)/5);full_curve_attribute_scaling_and_snapshot_time_pending",
+  "calculation_evidence": {
+    "current_exact_before_rounding": "99/5",
+    "next_exact_before_rounding": "1023/50",
+    "single_final_floor": true,
+    "no_rounding_of_SM00_before_variant_multiplier": true,
+    "Poisoned_current_exact_before_rounding": "33/10",
+    "Poisoned_next_exact_before_rounding": "341/100",
+    "Poisoned_current_and_next_final_damage": 3,
+    "Poisoned_current_and_next_duration_turns": 5,
+    "variant_bonus_applied_once_to_each_damage_component": true
+  },
+  "conditions_proposed": {
+    "SM00_prerequisite": true,
+    "automatic_learned_passive": true,
+    "rank1_opens_poison_choice": true,
+    "mine_type_selected_before_placement": true,
+    "fire_and_cold_variant_damage_unchanged": true,
+    "future_poison_residue_variant_bonus": "proposed_to_review_with_SM05",
+    "no_new_activation_or_timed_buff": true,
+    "poison_explosion_applies_Poisoned": "explicit_user_requirement",
+    "Poisoned_requires_SM05": false,
+    "ground_poison_cloud_requires_SM05": true,
+    "Poisoned_follows_affected_target_after_leaving_explosion_area": "proposed",
+    "periodic_damage_first_tick": "next_complete_turn_proposed",
+    "Poisoned_stacking_refresh_reapplication_and_cloud_combination": "pending_review",
+    "importance_penalty_for_Poisoned": false,
+    "ordinary_poison_resistance_rules_preserved": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "poison_variant_damage_bonus_percent",
+      "poison_damage_before_defenses"
+    ]
+  },
+  "name_approval": "existing_secondary_catalogue_name_preserved",
+  "roleplay_text_approval": "displayed_RP_explicitly_accepted_under_SM02-ACCEPT01",
+  "numeric_rules_approval": "shown_current_next_values_explicitly_accepted_as_provisional_balance;Poisoned_damage_weakness_and_later_rebalance_preserved;unshown_curve_pending",
+  "detailed_conditions_approval": "shown_SM00_prerequisite_poison_choice_multi_turn_Poisoned_independent_of_SM05_and_persistence_after_departure_accepted;unshown_cases_pending",
+  "visual_intention_approval": "shown_brief_green_explosion_direction_accepted;previously_accepted_armed_red_blink_preserved;native_pending",
+  "visual_approval": "native_tile_animation_and_UI_pending_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**SM02 · Mines de poison — Rang 11 · Passif**\n\n*Vos mines dispersent des toxines à chaque explosion.*\n\n**Effets actuels**\n\n- Type de mine débloqué : **Poison**.\n- Bonus aux dégâts des mines de poison : **+50 %**.\n- Dégâts à l’explosion : **19 de poison**, avant résistances.\n- Empoisonnement : **3 dégâts de poison par tour pendant 5 tours**, avant résistances.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus aux dégâts des mines de poison : **+55 %**.\n- Dégâts à l’explosion : **20 de poison**.\n\nNécessite **Pose de mine** apprise. L’empoisonnement reste actif sur la cible lorsqu’elle s’éloigne.",
+  "player_copy_sha256": "26c1f237ae5ba3967c8c7e96dac1ae955bc22e7dd0109e059589de205a8d487f",
+  "visual_copy_markdown": "**Visuel proposé :** une brève explosion verte. Le voyant rouge de la mine conserve son clignotement lorsqu’elle est armée.",
+  "visual_copy_sha256": "769c971182193f012e8a9d4c600bff3880959d9565cd5186d648b4128fd58623",
+  "unshown_cases_pending": [
+    "full_rank1_to10_and_equipment_bonus_curve",
+    "damage_attributes_rounding_resistances_and_snapshot_time",
+    "other_variant_and_other_mine_bonus_stacking_order",
+    "familiar_damage_and_other_allied_actor_eligibility_inherited_from_SM00_review",
+    "native_explosion_palette_damage_feedback_and_updated_SM00_variant_values",
+    "Poisoned_success_immunity_first_tick_stacking_refresh_and_reapplication",
+    "Poisoned_and_SM05_ground_cloud_damage_combination",
+    "Poisoned_familiar_and_other_allied_actor_eligibility"
+  ],
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM02-04.json",
+  "previous_description_sha256": "a9cbcfc560cdfebf1b95d37d79b99fcd4490b94301548495b31f3519ffcd230c",
+  "status_direction_decisions": "docs/reviews/refonte-agent-2026-10-06/poison-mine-poisoned-status-direction-decisions.json",
+  "status_direction_decisions_sha256": "abb7cf7ebad65328aba19aff5142fdf23b9f66d674aa646f67449f6c4bfeb1e6",
+  "status_direction_approval": "explicit_user_request_SM02-POISON01",
+  "balance_direction_decisions": "docs/reviews/refonte-agent-2026-10-06/later-statistics-and-diablo-inspired-balance-direction-decisions.json",
+  "balance_direction_decisions_sha256": "432a905124ab90aeda1b663c9a8ed8ae76fc9994c394d6374c4b984e8d8af450",
+  "balance_status": {
+    "review_id": "SM02-BAL01",
+    "current_Poisoned_total_before_resistances": 15,
+    "damage_per_turn_and_duration": "unchanged_placeholders;to_rebalance_with_real_monster_HP_and_statistics",
+    "full_card_approval": "shown_card_accepted_as_provisional_balance;unshown_cases_and_native_pending"
+  },
+  "review_continuation_decisions": "docs/reviews/refonte-agent-2026-10-06/stealth-short-copy-confirmation-and-review-continuation-decisions.json",
+  "review_continuation_decisions_sha256": "17f52e307467ac4c09fb2738b7474ed25b03aea4350df54efe3b524a89d3c7bf",
+  "revision_scope": "acceptance_metadata_and_existing_bonus_calculation_clarification_only;player_copy_and_numbers_unchanged",
+  "full_card_shown_this_turn": false,
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/poison-mine-description-acceptance-and-bonus-clarification-decisions.json",
+  "acceptance_decisions_sha256": "974d6e2906d618a375c2d4455e9ce79a7439ec34fa0ed4e8cfcdf0ab3ce5813f",
+  "accepted_full_card_copy_markdown": "Passons à **Mines de poison**. Les dégâts restent provisoires, comme convenu pour l’équilibrage futur.\n\n**SM02 · Mines de poison — Rang 11 · Passif**\n\n*Vos mines dispersent des toxines à chaque explosion.*\n\n**Effets actuels**\n\n- Type de mine débloqué : **Poison**.\n- Bonus aux dégâts des mines de poison : **+50 %**.\n- Dégâts à l’explosion : **19 de poison**, avant résistances.\n- Empoisonnement : **3 dégâts de poison par tour pendant 5 tours**, avant résistances.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus aux dégâts des mines de poison : **+55 %**.\n- Dégâts à l’explosion : **20 de poison**.\n\nNécessite **Pose de mine** apprise. L’empoisonnement reste actif sur la cible lorsqu’elle s’éloigne.\n\n**Visuel proposé :** une brève explosion verte. Le voyant rouge de la mine conserve son clignotement lorsqu’elle est armée.",
+  "accepted_full_card_copy_sha256": "f4c4491a99084482a37ff28b962b9804fdf75b06c27484fc4c805c1aa2aaf81d",
+  "bonus_clarification": {
+    "review_id": "SM02-BONUS01",
+    "applies_to_explosion_and_Poisoned_periodic_damage": "already_in_proposed_formula",
+    "verified_calculations": [
+      {
+        "effective_rank": 11,
+        "variant_bonus_percent": 50,
+        "poison_per_turn_exact_before_final_rounding": "33/10",
+        "poison_per_turn_decimal": 3.3,
+        "poison_per_turn_after_floor": 3
+      },
+      {
+        "effective_rank": 12,
+        "variant_bonus_percent": 55,
+        "poison_per_turn_exact_before_final_rounding": "341/100",
+        "poison_per_turn_decimal": 3.41,
+        "poison_per_turn_after_floor": 3
+      }
+    ],
+    "why_next_block_omits_Poisoned": "final_integer_value_unchanged_at_both_shown_ranks;only_changed_values_are_displayed"
+  }
+}

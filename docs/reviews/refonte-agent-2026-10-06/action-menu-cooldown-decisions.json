@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "user_request": "et je note qu'il y a un timer en durée de tour, ca me convient parfaitement parcontre, dans le menu des actions j'aimerais qu'il soit noté le nombre de tour restant avant de pouvoir réutiliser la compétence, et que l'on empeche de clicker sur une action qui est encore en cooldown.",
+  "review_id": "HUD05",
+  "accepted_requirements": {
+    "timer_unit": "game turns",
+    "show_remaining_cooldown_turns_in_action_menu": true,
+    "prevent_activation_by_click_while_on_cooldown": true
+  },
+  "proposed_copy": [
+    "Interférence — Recharge : 3 tours",
+    "Interférence — Recharge : 1 tour"
+  ],
+  "proposed_details_pending": [
+    "disabled gray presentation with readable text",
+    "hover remains available for skill information",
+    "keyboard shortcuts respect the same cooldown block",
+    "ceil fractional remaining turns for display",
+    "remove the recharge label when no time remains"
+  ],
+  "previous_approvals_preserved": true,
+  "prototype_modified": false,
+  "numeric_skill_cooldowns_modified": false,
+  "actual_action_menu_integration": "not_started_in_design_review"
+}

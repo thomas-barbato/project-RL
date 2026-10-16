@@ -1,0 +1,13 @@
+{
+  "id": "core:agent_cellule_energie",
+  "name_key": "item.agent_cellule_energie.name",
+  "description_key": "item.agent_cellule_energie.name",
+  "maximum_stack": 1,
+  "kind": "consumable",
+  "effects": [
+    {
+      "type": "restore_energy",
+      "amount": 12
+    }
+  ]
+}

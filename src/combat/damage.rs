@@ -10,10 +10,11 @@ pub enum DamageType {
     Chemical,
     Radiation,
     Corruption,
+    Cold,
 }
 
 impl DamageType {
-    pub const COUNT: usize = 8;
+    pub const COUNT: usize = 9;
 
     pub const ALL: [Self; Self::COUNT] = [
         Self::Kinetic,
@@ -24,6 +25,7 @@ impl DamageType {
         Self::Chemical,
         Self::Radiation,
         Self::Corruption,
+        Self::Cold,
     ];
 
     const fn index(self) -> usize {
@@ -36,6 +38,7 @@ impl DamageType {
             Self::Chemical => 5,
             Self::Radiation => 6,
             Self::Corruption => 7,
+            Self::Cold => 8,
         }
     }
 
@@ -86,9 +89,11 @@ impl DamageComponent {
 /// content file split one impact into several rows.
 #[derive(Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DamageImpact {
+    #[serde(with = "damage_array")]
     amounts: [u16; DamageType::COUNT],
     primary_damage_type: DamageType,
     armor_penetration: u16,
+    #[serde(with = "damage_array")]
     resistance_penetrations: [u16; DamageType::COUNT],
     legacy_penetration: Option<u16>,
 }
@@ -189,6 +194,20 @@ impl DamageImpact {
                 product / 100
             };
             *amount = u16::try_from(scaled.clamp(1, u32::from(u16::MAX))).unwrap_or(u16::MAX);
+        }
+        self
+    }
+
+    /// Spatial retention may round tiny components to zero. All defense metadata
+    /// stays attached to the original impact, without a second scale or a floor.
+    pub(crate) fn map_amounts(mut self, mut scale: impl FnMut(u16) -> u16) -> Self {
+        for amount in &mut self.amounts {
+            *amount = scale(*amount);
+        }
+        if self.raw_amount(self.primary_damage_type) == 0
+            && let Some(component) = self.components().next()
+        {
+            self.primary_damage_type = component.damage_type;
         }
         self
     }
@@ -409,7 +428,7 @@ impl Default for DamageRules {
 /// Selects which damage families meet fixed Armor rather than a percentage
 /// resistance. Keeping this in run rules lets a total-conversion mod change
 /// the classification without branching in combat resolution.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ArmorRules {
     protected_damage_types: [bool; DamageType::COUNT],
 }
@@ -492,8 +511,9 @@ impl ArmorProfile {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ResistanceProfile {
+    #[serde(with = "damage_array")]
     percentages: [i16; DamageType::COUNT],
 }
 
@@ -625,6 +645,61 @@ pub fn resolve_damage_impact_with_armor(
         Some((armor, armor_rules)),
         damage_rules,
     )
+}
+
+/// A single spell component keeps its source multiplier fractional until its
+/// elemental defense is applied. Ordinary weapon resolution remains unchanged.
+pub fn resolve_scaled_spell_damage(
+    packet: DamagePacket,
+    numerator: u128,
+    denominator: u128,
+    resistances: ResistanceProfile,
+    armor: ArmorProfile,
+    rules: DamageRules,
+    armor_rules: Option<ArmorRules>,
+) -> ResolvedDamageImpact {
+    let denominator = u128::from(denominator.max(1));
+    let raw = u128::from(packet.amount) * u128::from(numerator);
+    let whole = (raw / denominator).min(u128::from(u16::MAX)) as u16;
+    let impact = DamageImpact::single(DamagePacket::new(
+        whole,
+        packet.damage_type,
+        packet.penetration,
+    ));
+    let mut resolved = armor_rules.map_or_else(
+        || resolve_damage_impact(impact, resistances, rules),
+        |profile| resolve_damage_impact_with_armor(impact, resistances, armor, rules, profile),
+    );
+    if !armor_rules.is_some_and(|profile| profile.protects(packet.damage_type)) {
+        let resistance =
+            (i32::from(resistances.get(packet.damage_type)) - i32::from(packet.penetration)).clamp(
+                i32::from(
+                    rules
+                        .minimum_resistance_percent
+                        .min(rules.maximum_resistance_percent),
+                ),
+                i32::from(
+                    rules
+                        .minimum_resistance_percent
+                        .max(rules.maximum_resistance_percent),
+                ),
+            );
+        let factor = (100 - resistance).max(0) as u128;
+        let capped_raw = raw.min(u128::from(u16::MAX) * denominator);
+        let amount = (capped_raw * factor / (denominator * 100))
+            .max(if raw == 0 {
+                0
+            } else {
+                u128::from(rules.minimum_damage_after_resistance)
+            })
+            .min(u128::from(u16::MAX)) as u16;
+        resolved.amount = amount;
+        if let Some(component) = &mut resolved.components[packet.damage_type.index()] {
+            component.amount = amount;
+            component.effective_resistance_percent = resistance as i16;
+        }
+    }
+    resolved
 }
 
 fn resolve_damage_impact_internal(
@@ -918,6 +993,44 @@ mod tests {
     }
 
     #[test]
+    fn scaled_spells_round_after_elemental_resistance_and_critical() {
+        let result = resolve_scaled_spell_damage(
+            DamagePacket::new(8, DamageType::Corruption, 0),
+            22,
+            10,
+            ResistanceProfile::default().with(DamageType::Corruption, 25),
+            ArmorProfile::new(100, 0, 0, 0),
+            DamageRules::specialized(),
+            Some(ArmorRules::default()),
+        );
+        assert_eq!(result.amount(), 13); // floor(8 * 1.1 * 2 * 0.75), not floor(8 * 1.1) * 2.
+        assert_eq!(result.effective_armor, 0);
+        assert_eq!(result.component(DamageType::Corruption).unwrap().amount, 13);
+        for resistance in [-50, 0, 25, 75, 100] {
+            let defenses = ResistanceProfile::default().with(DamageType::Corruption, resistance);
+            let ordinary = resolve_damage_impact_with_armor(
+                DamageImpact::single(DamagePacket::new(19, DamageType::Corruption, 0)),
+                defenses,
+                ArmorProfile::new(100, 0, 0, 0),
+                DamageRules::specialized(),
+                ArmorRules::default(),
+            );
+            assert_eq!(
+                resolve_scaled_spell_damage(
+                    DamagePacket::new(19, DamageType::Corruption, 0),
+                    1,
+                    1,
+                    defenses,
+                    ArmorProfile::new(100, 0, 0, 0),
+                    DamageRules::specialized(),
+                    Some(ArmorRules::default()),
+                ),
+                ordinary
+            );
+        }
+    }
+
+    #[test]
     fn mixed_impact_rejects_ambiguous_or_ungrouped_content() {
         assert_eq!(
             DamageImpact::mixed([DamageComponent::new(3, DamageType::Kinetic)], 0, [],),
@@ -947,5 +1060,72 @@ mod tests {
                 DamageType::Electrical
             ))
         );
+    }
+}
+
+// Nine current damage families; binary saves through v14 carried eight.
+mod damage_array {
+    use serde::{Deserialize, Serialize};
+    pub fn serialize<T: Serialize + Copy, S: serde::Serializer>(
+        value: &[T; 9],
+        serializer: S,
+    ) -> Result<S::Ok, S::Error> {
+        if !serializer.is_human_readable()
+            && crate::game::game_state::agent_runtime::legacy_encoding()
+        {
+            let old: [T; 8] = std::array::from_fn(|i| value[i]);
+            old.serialize(serializer)
+        } else {
+            value.serialize(serializer)
+        }
+    }
+    pub fn deserialize<'de, T: Deserialize<'de> + Copy + Default, D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> Result<[T; 9], D::Error> {
+        if deserializer.is_human_readable() {
+            let values = Vec::<T>::deserialize(deserializer)?;
+            if values.len() != 8 && values.len() != 9 {
+                return Err(serde::de::Error::custom(
+                    "expected eight or nine damage families",
+                ));
+            }
+            let mut result = [T::default(); 9];
+            result[..values.len()].copy_from_slice(&values);
+            Ok(result)
+        } else if crate::game::game_state::agent_runtime::legacy_encoding() {
+            let old = <[T; 8]>::deserialize(deserializer)?;
+            let mut result = [T::default(); 9];
+            result[..8].copy_from_slice(&old);
+            Ok(result)
+        } else {
+            <[T; 9]>::deserialize(deserializer)
+        }
+    }
+}
+impl std::fmt::Debug for ResistanceProfile {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let values: &[i16] = if self.percentages[8] == 0 {
+            &self.percentages[..8]
+        } else {
+            &self.percentages
+        };
+        f.debug_struct("ResistanceProfile")
+            .field("percentages", &values)
+            .finish()
+    }
+}
+
+// Existing run fingerprints must keep their original eight-family rules when
+// the appended Cold family does not use Armor.
+impl std::fmt::Debug for ArmorRules {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let values: &[bool] = if !self.protected_damage_types[DamageType::Cold.index()] {
+            &self.protected_damage_types[..8]
+        } else {
+            &self.protected_damage_types
+        };
+        f.debug_struct("ArmorRules")
+            .field("protected_damage_types", &values)
+            .finish()
     }
 }

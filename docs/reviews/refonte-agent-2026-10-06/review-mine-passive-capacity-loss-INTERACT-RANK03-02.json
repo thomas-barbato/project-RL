@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-RANK03",
+  "revision": 2,
+  "title": "Perte de rang de Réseau de mines",
+  "status": "mine_passive_capacity_loss_explicitly_accepted;variant_and_other_cases_separate;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-invoked-creation-scope-INTERACT-RANK02-02.json",
+      "reference_sha256": "5084d9e1336229bdf283545959f5134cd86efd74fae0b7a39e75370051dc8a09"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM01-02.json",
+      "reference_sha256": "c30182e65b0183ba04b965f177422d8cb200bd71c15912cc0be7af12c8698521"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/skill-rank-curves-provisional-02.json",
+      "reference_sha256": "44ff8b1f8df86320562f82a00529b5e92c3e9118dd0a89bb051e7b2100e50bdb"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipment-grant-loss-effects-GEAR-SK02-03.json",
+      "reference_sha256": "a646e897d619ac7906ea08ddf0122650635c9b53ea1dbaf092ad4a57357433cf"
+    }
+  ],
+  "scope": "SM01_supporting_capacity_passive_loss_when_SM00_creator_rank_and_access_remain_unchanged",
+  "already_accepted": "SM01_is_not_mine_creator;SM00_rank_loss_removes_all_own_SM00_creations;new_placement_at_capacity_replaces_oldest_mine;one_mine_per_cell;learned_cap10_and_gear_growth_preserved",
+  "shown_example": {
+    "learned_SM01_rank": 9,
+    "old_equipment_bonus": 1,
+    "new_equipment_bonus": 0,
+    "old_effective_rank": 10,
+    "new_effective_rank": 9,
+    "old_capacity": 5,
+    "new_capacity": 4,
+    "placed_mines_before": [
+      "oldest",
+      "second",
+      "third",
+      "fourth",
+      "newest"
+    ],
+    "removed": [
+      "oldest"
+    ],
+    "retained": [
+      "second",
+      "third",
+      "fourth",
+      "newest"
+    ],
+    "source_of_numbers": "existing_delegated_SM01_curve;illustrative_inventory_not_real_save"
+  },
+  "shown_copy_markdown": "Pour Réseau de mines, je propose que perdre des rangs du passif applique immédiatement la nouvelle limite. Seules les mines en trop disparaissent, en commençant par les plus anciennes, sans explosion ni remboursement d'énergie. Les mines en attente d'activation comptent aussi dans cette limite.\n\nExemple : avec neuf rangs appris et un rang d'équipement, vous pouvez avoir cinq mines. Vous retirez ce bonus : la limite passe à quatre. Si cinq mines sont présentes, la plus ancienne disparaît et les quatre autres restent.\n\nSi c'est Pose de mine qui perd un rang, toutes les mines qu'elle a créées disparaissent, conformément à la règle déjà validée.",
+  "shown_copy_sha256": "b5a5dc2514a3f0880c3879bf0a58978ad765384b983cfd8b9b4034aa03cfbfe4",
+  "not_resolved_here": [
+    "lost_mine_element_or_persistent_residue_variant_passive_and_existing_clouds",
+    "predeath_resurrection_marks_and_raised_birth_sampling",
+    "exact_cleanup_and_equipment_transaction_event_order",
+    "same_age_technical_tiebreakers_and_native_removal_feedback"
+  ],
+  "mechanic_approval": "accepted_as_displayed",
+  "text_approval": "design_explanation_accepted;no_new_skill_RP_or_name",
+  "visual_approval": "no_new_native_art_or_animation_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-passive-capacity-loss-INTERACT-RANK03-01.json",
+    "reference_sha256": "b3e43a22302be18b53e4134a7770e0183575a06195a12c6891340962cfcd5869"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/mine-capacity-and-variant-loss-acceptance-decisions.json",
+    "reference_sha256": "6ab886656b9b26e5a0a473a154fafe83ee56adea509cde3959f10bcfbe8f6141"
+  },
+  "accepted_rule": {
+    "capacity": "use_new_current_SM01_passive_limit_immediately;when_passive_unavailable_use_existing_SM00_baseline_capacity",
+    "overcapacity": "remove_only_excess_own_placed_mines_oldest_placement_first_until_count_fits;retain_mines_if_count_already_fits",
+    "counted": "armed_and_not_yet_armed_placed_mines",
+    "removal": "no_explosion_damage_or_energy_refund",
+    "retained_mines": "ordinary_existing_activation_and_trigger_rules_preserved;no_recast_or_free_rearming",
+    "creator_rank_loss": "accepted_all_creations_cleanup_takes_precedence_if_SM00_rank_also_decreases;no_capacity_trim_exception_to_creator_rule"
+  }
+}

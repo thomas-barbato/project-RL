@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-08",
+  "review_id": "HL04-ACCEPT01",
+  "user_instruction": "oui je valide :)",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HL04-01.json",
+  "source_card_sha256": "8cf35e8b0385a8bd07bce48055f0d99e89987732999e1c79e655d54fac943096",
+  "accepted_scope": "full_shown_RP_current_damage_bonus110_next120_ordinary_active_weapon37_46_next39_48_all_heavy_ranged_families_including_explosions_and_weapon_skills_before_defenses",
+  "accepted_visual_direction": "heavy_cannon_icon_and_damage_values_updated_in_related_cards;native_pixels_pending",
+  "unshown_rules_pending": [
+    "full_rank_curve",
+    "heavy_attribute_formulas",
+    "weapon_skill_modifier_order_and_integer_rounding_policy",
+    "T03_SG04_and_other_passive_or_buff_stacking",
+    "native_direct_elemental_added_delayed_and_indirect_damage_components",
+    "snapshot_vs_live_equipment_change_for_existing_delayed_projectiles",
+    "transformation_weapon_effect_inheritance_and_eligibility",
+    "classification_of_future_heavy_models",
+    "wrong_active_weapon_preview_warning_without_fabricated_damage_range",
+    "native_icon_pixels_and_all_other_unshown_cases"
+  ],
+  "native_visual_approval": "pending_not_created",
+  "runtime_integration": "not_integrated"
+}

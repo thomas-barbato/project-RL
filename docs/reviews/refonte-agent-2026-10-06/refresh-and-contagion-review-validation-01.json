@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-TIME02-AF06-COMPAT02-CONTAGION01-CHECK01",
+  "scope": "design_reference_integrity_and_preserved_rules;not_runtime_or_balance_tests",
+  "files_checked": [
+    "persistent-status-reapplication-acceptance-decisions.json",
+    "review-persistent-status-reapplication-INTERACT-TIME02-02.json",
+    "contagion-expanded-status-compatibility-user-decisions.json",
+    "review-contagion-compatibility-AF06-COMPAT02-01.json",
+    "review-contagion-transfer-rules-INTERACT-CONTAGION01-01.json",
+    "review-implementation-readiness-21.json",
+    "review-attribute-model-79.json",
+    "review-primary-catalogue-251.json",
+    "review-complete-skill-design-226.json",
+    "remaining-individual-skill-review-counts-120.json"
+  ],
+  "hash_references_checked": 1325,
+  "hash_errors": [],
+  "previous_accepted_fields_catalogues_curves_and_overrides": "preserved",
+  "TIME02": "accepted",
+  "AF06_COMPAT02": "nine_statuses_and_one_effect_per_death_accepted",
+  "CONTAGION01": "proposal_only",
+  "runtime_integration": "not_integrated"
+}

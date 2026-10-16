@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "user_reply": "On est d'accord que quand tu dis que \"les actifs prennent une action\", ca veut dire que \"tu lances la compétences et elle se déclanche\" ? pas besoin de bouger ou d'attendre ? Si c'est le ca sc'est bon :)",
+  "conditional_approval": "presented Affaiblissements lot accepted provided the five active skills resolve immediately on confirmed activation without movement or preparation turns",
+  "confirmed_activation_rule": {
+    "skills": [
+      "O02",
+      "AF02",
+      "AF03",
+      "AF04",
+      "AF05"
+    ],
+    "target_selection_before_confirmation": true,
+    "effect_resolution": "immediate upon confirmation, subject to target resistance",
+    "preparation_turns": 0,
+    "requires_player_movement": false,
+    "ordinary_action_time_consumed": true,
+    "enemy_reactions": "after the skill effect is resolved, as permitted by normal time progression"
+  },
+  "approval_scope": [
+    "roleplay texts presented in the preceding reply",
+    "reference and current numeric tables presented in the preceding reply",
+    "common action, range and application-power values presented",
+    "specific limits presented in the preceding reply"
+  ],
+  "not_implicitly_approved": [
+    "unshown detailed formulas and interaction cases",
+    "native animations",
+    "other branches or secondary activation timings"
+  ],
+  "existing_exception_preserved": "T01 Marquage balistique is instant and does not advance time; mines retain their one-turn arming delay",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-affliction-descriptions-01.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-affliction-descriptions-revision-01.md",
+  "previous_document_sha256": "fa520db8ae1486278aaaf25447d2d94d50f817fc40f30037a3ea5f886fdc2240"
+}

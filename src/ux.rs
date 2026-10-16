@@ -4,6 +4,13 @@ use std::cell::Cell;
 
 #[derive(Default)]
 pub(super) struct UxState {
+    pub skill_bar: [Option<String>; 6],
+    pub skill_drag: Option<super::agent_skill_bar::Drag>,
+    pub skill_bar_pointer: Option<(f32, f32)>,
+    pub inventory_tooltip: Option<ItemInstanceId>,
+    pub inventory_tooltip_scroll: ScrollState,
+    pub inventory_keyboard_preview: bool,
+    pub inventory_pointer: Option<(f32, f32)>,
     pub history_open: bool,
     pub history: Vec<(u64, String)>,
     pub history_scroll: ScrollState,
@@ -210,6 +217,32 @@ impl AsciiApp {
     // Only report blockers that can be established from the current visible state.
     // Placement, component selection and specialised conditions remain in the full card.
     pub(super) fn quick_technique_status(&self, id: &TechniqueId) -> (String, Option<String>) {
+        if id.as_str() == "agent:form_return" {
+            return (
+                String::new(),
+                self.game
+                    .player_agent_form()
+                    .is_none()
+                    .then(|| "Technique indisponible".into()),
+            );
+        }
+        if let Some(profile) = self.game.agent_form_action_profile(id) {
+            let blocked = (self.game.player_energy().available() < profile.energy)
+                .then(|| "Énergie insuffisante".into());
+            return (format!("{} énergie", profile.energy), blocked);
+        }
+        if let Some(skill) = project_rl::skills::agent::from_technique(id) {
+            if !project_rl::skills::agent::implemented(&skill.id) {
+                return (String::new(), Some("Technique indisponible".to_owned()));
+            }
+            return match self.agent_skill_use_profile(&skill.id) {
+                Ok(profile) => (format!("{} énergie", profile.energy), None),
+                Err(reason) => (
+                    String::new(),
+                    Some(command_rejection_message(reason).to_owned()),
+                ),
+            };
+        }
         let Some(definition) = self.game.rules().skills.technique(id) else {
             return (String::new(), Some("Technique indisponible".to_owned()));
         };
@@ -320,7 +353,11 @@ impl AsciiApp {
                 | TechniqueAction::Breakthrough { .. },
             ) => self
                 .game
-                .player_weapon_technique_targets(id, self.active_weapon_slot)
+                .player_weapon_technique_targets(
+                    id,
+                    self.game
+                        .player_weapon_slot_for_technique(self.active_weapon_slot, id),
+                )
                 .is_empty(),
             _ => false,
         };
@@ -602,8 +639,10 @@ impl AsciiApp {
                 }
             }
             for effect in item.effects() {
-                let ItemEffect::RestoreIntegrity { amount } = effect;
-                lines.push(format!("Restaure {amount} PV"));
+                lines.push(match effect {
+                    ItemEffect::RestoreIntegrity { amount } => format!("Restaure {amount} PV"),
+                    ItemEffect::RestoreEnergy { amount } => format!("Restaure {amount} énergie"),
+                });
             }
         }
         if lines.is_empty() {
@@ -1061,8 +1100,6 @@ impl AsciiApp {
         width: f32,
         height: f32,
     ) -> Vec<(Rect, Option<Action>, &'static str, UiIcon)> {
-        let start = quest_journal_button_rect(height).right() + 8.0;
-        let stride = (width - start - 12.0) / 8.0;
         [
             (Some(Action::Interact), "Interagir", UiIcon::Interact),
             (Some(Action::Attack), "Attaquer", UiIcon::Attack),
@@ -1081,7 +1118,7 @@ impl AsciiApp {
         .enumerate()
         .map(|(i, (a, l, icon))| {
             (
-                Rect::new(start + i as f32 * stride, height - 94.0, stride - 4.0, 34.0),
+                crate::terminal_chrome::command_rect(width, height, i + 2),
                 a,
                 l,
                 icon,
@@ -1109,49 +1146,14 @@ impl AsciiApp {
                 ButtonTone::Secondary,
             );
         }
-        for (index, (rect, action, label, icon)) in
+        for (index, (rect, action, label, _icon)) in
             Self::hud_shortcuts(self.ui_width(), self.ui_height())
                 .into_iter()
                 .enumerate()
         {
             let hovered = self.menu_focus.hovered == Some(50_000 + index);
-            UiTheme.hud_action(rect, if hovered { 1.0 } else { 0.0 });
             let key = action.map_or_else(|| "Esc".to_owned(), |a| self.controls.label(a));
-            draw_ui_icon(
-                icon,
-                Rect::new(rect.x + 7.0, rect.y + 10.0, 15.0, 15.0),
-                UiTheme.accent(),
-            );
-            if rect.w >= 100.0 {
-                draw_wrapped_text(
-                    label,
-                    rect.x + 28.0,
-                    rect.y + 14.0,
-                    rect.w - 34.0,
-                    1,
-                    12,
-                    UiTheme.text(),
-                );
-                draw_wrapped_text(
-                    &key,
-                    rect.x + 28.0,
-                    rect.y + 28.0,
-                    rect.w - 34.0,
-                    1,
-                    11,
-                    UiTheme.accent(),
-                );
-            } else {
-                draw_wrapped_text(
-                    &key,
-                    rect.x + 27.0,
-                    rect.y + 23.0,
-                    rect.w - 32.0,
-                    1,
-                    13,
-                    UiTheme.text(),
-                );
-            }
+            crate::terminal_chrome::command(rect, label, &key, hovered);
             if hovered {
                 draw_text_bold(
                     label,

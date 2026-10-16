@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-07",
+  "id": "ES03",
+  "title": "Leurre holographique",
+  "revision": 1,
+  "preparation_authorization_user_message": "ok on continue :)",
+  "player_copy_markdown": "**ES03 · Leurre holographique — Rang 8**\n\n*Vous projetez un double de vous-même pour attirer les attaques loin de votre position.*\n\n**Effet actuel**\n\n- Durée : **4 tours**.\n- Leurres actifs : **1 maximum**.\n- Disparition : après **1 impact**.\n- Chance de diversion sur un ennemi voyant le leurre : **100 %** contre un ennemi ordinaire, **75 %** contre une élite.\n\n**Prochain rang — 9 · 1 point de compétence**\n\n- Durée : **5 tours**.\n\n**Coût : 10 énergie · Recharge : 6 tours.**\n**Portée de placement : 3 cases.**\n\nPlacez le leurre sur une case libre et visible. Il ne bloque pas le passage.\n\nLes boss ignorent le leurre. Si vous utilisez une action offensive contre un ennemi détourné, il vous prend de nouveau pour cible.",
+  "player_copy_sha256": "3bf7129e3f4a43cba0c4908521e0c58bd53277ad85d718f5f05c759e323f1ed8",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-14.json",
+  "source_skill_block_sha256": "209d35b07a125fbb68bbae2ab85faec0d45c130edad87e249d5e131f25cac599",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "common_control_decisions": "docs/reviews/refonte-agent-2026-10-06/control-boss-immunity-and-elite-penalty-decisions.json",
+  "common_control_decisions_sha256": "139e1615bfedbc7a4ad3df16d614e39d3616fcff387f6bdcc2b96c82cb85c145",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08; placement_visibility_and_target_priority_conditions_retained",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "proposed_pending_individual_user_review",
+  "current_profile_status": "illustrative_not_a_user_save; rank 8 chosen for duration comparison, not a revision of the existing curve",
+  "current_profile": {
+    "learned_rank": 6,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 8,
+    "intelligence": 10,
+    "other_skill_implant_or_cost_modifiers": false,
+    "same_attributes_equipment_and_other_modifiers_in_preview": true
+  },
+  "formulas": {
+    "duration_turns": "3 + floor((effective_rank - 1)/4)",
+    "energy_cost": "8 + floor((effective_rank - 1)/3)",
+    "maximum_simultaneous_lures": 1,
+    "impacts_to_destroy": 1,
+    "placement_range_cells": 3,
+    "cooldown_turns": 6,
+    "normal_diversion_chance_percent_if_lure_seen": 100,
+    "elite_diversion_chance_percent": "calculated normal diversion chance * 0.75 = 75 in proposed profile",
+    "boss_diversion_chance_percent": 0
+  },
+  "current_values": {
+    "effective_rank": 8,
+    "duration_turns": 4,
+    "maximum_simultaneous_lures": 1,
+    "impacts_to_destroy": 1,
+    "normal_enemy_diversion_chance_percent_if_lure_seen": 100,
+    "elite_diversion_chance_percent_if_lure_seen": 75,
+    "boss_diversion_chance_percent": 0,
+    "energy_cost": 10,
+    "cooldown_turns": 6,
+    "placement_range_cells": 3
+  },
+  "next_values": {
+    "effective_rank": 9,
+    "duration_turns": 5,
+    "maximum_simultaneous_lures": 1,
+    "impacts_to_destroy": 1,
+    "normal_enemy_diversion_chance_percent_if_lure_seen": 100,
+    "elite_diversion_chance_percent_if_lure_seen": 75,
+    "boss_diversion_chance_percent": 0,
+    "energy_cost": 10,
+    "cooldown_turns": 6,
+    "placement_range_cells": 3
+  },
+  "next_rank_preview": {
+    "learned_rank": 7,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 9,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "duration_turns"
+    ],
+    "unchanged_effects_omitted": [
+      "maximum_simultaneous_lures",
+      "impacts_to_destroy",
+      "normal_enemy_diversion_chance_percent_if_lure_seen",
+      "elite_diversion_chance_percent_if_lure_seen",
+      "boss_diversion_chance_percent",
+      "energy_cost",
+      "cooldown_turns",
+      "placement_range_cells"
+    ]
+  },
+  "rank_curve_dependency": {
+    "full_curve_approval": "pending",
+    "existing_curve_preserved": true,
+    "effective_ranks_11_and_12": "both duration 5, cost 11; no change between those two ranks",
+    "ranks_without_changed_effect": "still_pending_balance_review; not hidden as approved complete curve"
+  },
+  "weapon_compatibility": {
+    "scope": "projection_utility_not_a_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no_heavy_weapon_exclusion_added_to_this_skill"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true
+  },
+  "lure_conditions": {
+    "placement": "free currently visible tile, within three cells",
+    "maximum_active": 1,
+    "blocks_passage": false,
+    "damage_dealt": 0,
+    "xp_or_loot_produced": false,
+    "drone_summon_or_pet_cap_used": false,
+    "first_impact_destroys": true,
+    "offensive_action_against_diverted_foe": "agent regains target priority; exact action and source definitions pending"
+  },
+  "control_effect": {
+    "classification": "proposed_control_pending_individual_validation",
+    "CTRL01_global_rule": "already_explicitly_accepted",
+    "individual_baseline_and_success_condition": "100% normal, 75% elite after enemy actually sees lure; pending review",
+    "bosses_ignore_diversion": true,
+    "successful_diversion": "foe selects lure as target; exact eligibility/priority algorithm pending",
+    "roll_frequency_retries_visibility_loss_and_failure_handling": "not fixed; pending review",
+    "resistance_formula_created": false,
+    "contagion_transmissible_status_added": false,
+    "hidden_enemy_revealed": false
+  },
+  "unshown_rules_approval": "Full rank curves including intermediate ranks with unchanged effects, exact placement geometry, optical visibility and actor target selection, control classification/normal success baseline, number and timing of diversion rolls/retries, failed or unreachable lure behavior, loss of visibility, attack/projectile/area impact definitions, lure destruction/expiry timing, actions restoring agent priority, recast/refusal atomicity and attribute/implant cost interactions remain pending where not already accepted. No drone summon, pet cap, invulnerability, damage, loot, forced boss attack or transferable Contagion effect introduced.",
+  "visual_intention_approval": "existing_catalogue_translucent_double_with_vertical_scan_lines_direction_accepted_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable ES03 role/name; RP/current-next card proposed; no gameplay integration.",
+    "Effective ranks 8 to 9: duration 4 to 5; both 10 energy, cooldown 6, placement range 3, max one lure destroyed by first impact.",
+    "Learned 6 to 7 with equipment +2 unchanged; same modifiers and one-point purchase within learned cap.",
+    "Next block only changed duration; no table, player formula, equipment rank breakdown or ordinary timing reminder.",
+    "Existing duration curve retained; identical 11/12 values and unshown intermediate ranks explicitly tracked for later balance review.",
+    "Diversion/control classification and proposed normal 100%, elite 75%, boss 0% explicitly pending individual review; no shared resistance formula or retry frequency invented.",
+    "84 primary skills and both retired DI06/ES02 retained unchanged; visual intention alone accepted, native rendering pending."
+  ]
+}

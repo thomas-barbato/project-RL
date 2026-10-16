@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-07",
+  "review_id": "UX-PETS-02",
+  "revision": 2,
+  "request_reference": "docs/reviews/refonte-agent-2026-10-06/familiar-window-and-distinct-allied-marker-decisions.json",
+  "request_reference_sha256": "d34c81459be111f56a331ea830381ea60761a0fe7cc5522f5cbebd4f9a204cf5",
+  "extends_review_id": "UX-PETS-01",
+  "preserved_accepted_direction": {
+    "single_window": true,
+    "movable": true,
+    "collapsible": true,
+    "scrollable_pet_list": true,
+    "one_row_per_pet": true
+  },
+  "requested_extension": {
+    "include_drones": true,
+    "include_reanimated_monsters": true,
+    "reanimated_monsters_remain_autonomous": true,
+    "no_reanimated_combat_order_buttons": true
+  },
+  "proposed_title": "Familiers",
+  "proposed_common_row_information": [
+    "portrait",
+    "name",
+    "current_and_maximum_HP",
+    "remaining_turns_only_for_temporary_reanimated_monsters"
+  ],
+  "drone_commands": "Preserve previously approved drone controls; no new controls for autonomous reanimated monsters.",
+  "optional_common_destruction_action": {
+    "button_copy": "Détruire",
+    "scope": [
+      "drones",
+      "reanimated_monsters"
+    ],
+    "approval": "displayed_Detruire_button_direction_accepted_by_affirmative_reply;unshown_mechanics_pending",
+    "mule_inventory_approval": "explicit_user_same_cell_transfer_and_multiple_items_requirement",
+    "cost_timing_cooldown_rewards_and_cleanup": "not_yet_defined;no_explosion_or_new_damage_effect_inferred",
+    "mule_inventory_rule": {
+      "trigger": "mule_destruction",
+      "deposit": "all_carried_items_on_mule_current_cell",
+      "multiple_distinct_items_may_coexist_on_same_cell": true,
+      "existing_ground_items_preserved": true,
+      "item_identity_quantity_and_equipment_bonuses_preserved": true,
+      "no_nearby_scatter_or_item_loss": true
+    },
+    "ground_item_inspection_and_pickup_details": "pending_review;must_preserve_access_to_every_deposited_item"
+  },
+  "allied_marker_reference": "docs/reviews/refonte-agent-2026-10-06/review-allied-actor-marker-HUD-ALLIES01-02.json",
+  "allied_marker_sha256": "9efa540e9344b0a8797a5f84c40722ebb0bf4e959b2358997ec9390b36f48d5a",
+  "reanimated_cap": 5,
+  "existing_drone_cap": 5,
+  "one_drone_per_model_preserved": true,
+  "new_combined_cap_inferred": false,
+  "title_and_row_copy_approval": "affirmative_reply_to_displayed_Familiers_title_portrait_name_HP_and_reanimated_duration;native_layout_pending",
+  "exact_icons_layout_native_rendering": "pending_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": "docs/reviews/refonte-agent-2026-10-06/review-familiar-window-UX-PETS-02-01.json",
+  "previous_proposal_sha256": "18d84dbd1111794ff9834cde4d9bfecb063a7fbae0b0385ff6b921d2bbbdc2bc",
+  "same_existing_drone_window": true
+}

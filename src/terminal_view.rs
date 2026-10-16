@@ -1,12 +1,12 @@
-//! A code-native overhead tileset: drawn actors and single-cell scenery.
+//! Reviewed sprites and materials on the game's existing single-cell scenery.
 //! Only remembered terrain and currently perceived overlays
 //! reach the renderer.
 use std::collections::{BTreeMap, BTreeSet};
 
 use crate::ui_theme::{
-    UiIcon, UiTheme, draw_text as draw_ui_text, draw_text_bold as draw_ui_text_bold,
-    draw_text_bold_centered as draw_ui_text_bold_centered, draw_ui_icon,
-    measure_text as measure_ui_text, measure_text_bold as measure_ui_text_bold,
+    UiTheme, draw_text as draw_ui_text, draw_text_bold as draw_ui_text_bold,
+    draw_text_bold_centered as draw_ui_text_bold_centered, measure_text as measure_ui_text,
+    measure_text_bold as measure_ui_text_bold,
 };
 
 pub(crate) fn player_location_name(name: &str) -> String {
@@ -47,6 +47,23 @@ use project_rl::explosive::ExplosiveActivation;
 use project_rl::game::{ActorObservationField, GameState, WorldState};
 use project_rl::world::{DoorState, GridPos, Map, Terrain, VisibilityState};
 
+/// The painted burn is attached to the actual visible bearer, never its old cell.
+pub(crate) fn burning_actor(
+    game: &WorldState,
+    position: GridPos,
+) -> Option<project_rl::entity::EntityId> {
+    if !game.player_visibility().is_visible(position) {
+        return None;
+    }
+    game.actors().entity_at(position).filter(|id| {
+        game.actors().get(*id).is_some_and(|actor| {
+            actor
+                .statuses()
+                .any(|status| status.definition.as_str() == "core:burning")
+        })
+    })
+}
+
 use crate::test_sector::{Decor, SectorDecor, TestSector};
 
 #[path = "terminal_lighting.rs"]
@@ -80,6 +97,8 @@ const CITY_DECOR_KINDS: [Decor; 19] = [
 
 #[path = "terminal_art.rs"]
 mod terminal_art;
+#[path = "terminal_materials.rs"]
+mod terminal_materials;
 #[path = "terminal_player.rs"]
 mod terminal_player;
 pub use terminal_player::{
@@ -88,6 +107,7 @@ pub use terminal_player::{
 
 pub(crate) fn initialize_player_art() {
     terminal_player::prewarm();
+    terminal_materials::prewarm();
     terminal_lighting::prewarm();
 }
 
@@ -140,6 +160,8 @@ pub struct TerminalDrawOptions<'a> {
     pub ui_scale: f32,
     pub cell_size: u16,
     pub reduced_motion: bool,
+    pub combat_motion: &'a crate::combat_visuals::CombatMotion,
+    pub combat_time: f64,
     pub player_appearance: PlayerAppearance,
     pub interact_label: &'a str,
     pub interaction_focus: Option<GridPos>,
@@ -373,6 +395,7 @@ fn inside_actor_visual_field(fields: &[ActorObservationField], position: GridPos
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct TerminalTargetSummary {
     pub name: String,
+    pub visual: Option<crate::game_art::Visual>,
     pub distance: u32,
     pub visible_state: String,
     pub analysis: Option<TerminalTargetAnalysis>,
@@ -386,10 +409,21 @@ pub fn interactive_target_summary(
     name: Option<String>,
     key: &str,
 ) -> Option<TerminalTargetSummary> {
+    if !game.player_visibility().is_visible(at) {
+        return None;
+    }
     let hint = interaction_hint(game, at)?;
     let origin = game.player_position()?;
     Some(TerminalTargetSummary {
         name: name.unwrap_or(hint.title),
+        visual: game
+            .ground_items()
+            .item_at(at)
+            .and_then(|id| game.ground_items().get(id))
+            .and_then(|stack| {
+                crate::game_art::item(stack.item().as_str())
+                    .map(|art| crate::game_art::Visual::ColoredItem(art, stack.palette()))
+            }),
         distance: origin.x.abs_diff(at.x).max(origin.y.abs_diff(at.y)),
         visible_state: String::new(),
         analysis: None,
@@ -468,6 +502,7 @@ pub enum TerminalEffectBadge {
 #[derive(Clone, Debug)]
 pub struct TerminalOverlay {
     pub symbol: char,
+    pub visual: Option<crate::game_art::Visual>,
     pub npc_appearance: Option<ActorAppearance>,
     pub color: Color,
     pub accent_color: Option<Color>,
@@ -533,6 +568,24 @@ fn sensor_contact_kind(symbol: char) -> SensorContactKind {
     }
 }
 
+// Only called for overlays already visible to the player. A controlled actor or
+// hologram keeps its original glyph, but that glyph no longer defines its side.
+fn sensor_actor_contact_kind(
+    symbol: char,
+    relation: Option<project_rl::social::PlayerRelation>,
+) -> SensorContactKind {
+    use project_rl::social::PlayerRelation;
+    let kind = sensor_contact_kind(symbol);
+    match (kind, relation) {
+        (SensorContactKind::Unknown, _) => SensorContactKind::Unknown,
+        (_, Some(PlayerRelation::Hostile)) => SensorContactKind::Hostile,
+        (SensorContactKind::Hostile, Some(PlayerRelation::Allied | PlayerRelation::Neutral)) => {
+            SensorContactKind::Neutral
+        }
+        _ => kind,
+    }
+}
+
 #[derive(Clone, Copy, Debug)]
 struct TerminalGlyphPalette {
     primary: Color,
@@ -554,11 +607,25 @@ impl TerminalGlyphPalette {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct TerminalView {
     pub title: String,
     pub decor: SectorDecor,
     remembered: BTreeMap<GridPos, KnownTile>,
+    // Stored in the optional recovery tail, preserving the original bincode layout.
+    #[serde(skip)]
+    pub(crate) combat_residue: crate::combat_visuals::CombatResidue,
+}
+
+impl std::fmt::Debug for TerminalView {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        // Historical presentation fingerprints must keep their three-field shape.
+        f.debug_struct("TerminalView")
+            .field("title", &self.title)
+            .field("decor", &self.decor)
+            .field("remembered", &self.remembered)
+            .finish()
+    }
 }
 
 impl TerminalView {
@@ -688,6 +755,7 @@ impl TerminalView {
             title: TestSector::NAME.to_owned(),
             decor,
             remembered: BTreeMap::new(),
+            combat_residue: crate::combat_visuals::CombatResidue::default(),
         };
         view.observe(map, visibility);
         view
@@ -775,6 +843,7 @@ impl TerminalView {
     }
 
     /// Neighbour joins never consult unknown terrain, including in the minimap.
+    #[cfg(test)]
     fn wall_joins(&self, position: GridPos) -> [bool; 4] {
         position
             .cardinal_neighbors()
@@ -793,6 +862,8 @@ impl TerminalView {
             ui_scale,
             cell_size,
             reduced_motion,
+            combat_motion,
+            combat_time,
             player_appearance,
             interact_label,
             interaction_focus,
@@ -812,7 +883,7 @@ impl TerminalView {
         } = options;
         let cyan = UiTheme.accent();
         let muted = UiTheme.muted();
-        let layout = terminal_ui_layout(bounds, ui_scale, navigation_signal.is_some());
+        let layout = actor_ui_layout(game, bounds, ui_scale, navigation_signal.is_some());
         draw_rectangle(
             bounds.x,
             bounds.y,
@@ -837,12 +908,28 @@ impl TerminalView {
         } else {
             "ZONE HOSTILE"
         };
-        let safety_width = measure_ui_text_bold(safety_label, 16).width + 24.0;
-        let title_width = if layout.header.w > 560.0 {
-            (layout.header.w - safety_width) * 0.5 - 16.0
-        } else {
-            layout.header.w
+        // Terminal chrome lives in logical UI pixels, independently of native map tiles.
+        set_camera(&crate::graphics::ui_camera(
+            screen_width() / ui_scale,
+            screen_height() / ui_scale,
+        ));
+        let logical = |r: Rect| {
+            Rect::new(
+                r.x / ui_scale,
+                r.y / ui_scale,
+                r.w / ui_scale,
+                r.h / ui_scale,
+            )
         };
+        let header = logical(layout.header);
+        draw_rectangle(
+            header.x,
+            header.y,
+            header.w,
+            header.h,
+            crate::terminal_chrome::ink(),
+        );
+        let safety_width = measure_ui_text_bold(safety_label, 12).width + 24.0;
         let title = if self.title == TestSector::NAME
             || self.title.eq_ignore_ascii_case("ville de départ / friches")
         {
@@ -851,46 +938,39 @@ impl TerminalView {
             &self.title
         };
         draw_bounded_text(
-            title,
-            layout.header.x,
-            layout.header.y + 23.0,
-            title_width,
-            18,
+            &player_location_name(title),
+            header.x + 10.0,
+            header.y + 21.0,
+            (header.w - safety_width - 20.0).max(60.0),
+            16,
             cyan,
         );
-        if layout.header.w > 560.0 {
-            let safety_chip = Rect::new(
-                layout.header.x + (layout.header.w - safety_width) * 0.5,
-                layout.header.y + (layout.header.h - 28.0) * 0.5,
-                safety_width,
-                28.0,
-            );
-            UiTheme.hud_chip(safety_chip);
-            draw_ui_text_bold_centered(
-                safety_label,
-                safety_chip,
-                16,
-                if protected { cyan } else { ORANGE },
-            );
-        }
-        if let (Some(signal), Some(signal_rect)) = (navigation_signal, layout.route) {
-            UiTheme.hud_chip(signal_rect);
-            draw_ui_text_bold(
-                "ITINÉRAIRE",
-                signal_rect.x + 10.0,
-                signal_rect.y + 19.0,
-                13.0,
-                muted,
-            );
+        draw_ui_text_bold_centered(
+            safety_label,
+            Rect::new(
+                header.right() - safety_width,
+                header.y + 1.0,
+                safety_width - 8.0,
+                header.h - 2.0,
+            ),
+            12,
+            if protected { cyan } else { UiTheme.attention() },
+        );
+        crate::terminal_chrome::bezel(header);
+        if let (Some(signal), Some(route)) = (navigation_signal, layout.route) {
+            let route = logical(route);
+            crate::terminal_chrome::button(route, false, false, true);
+            draw_ui_text_bold("ITINÉRAIRE", route.x + 10.0, route.y + 19.0, 12.0, muted);
             draw_bounded_text(
                 signal,
-                signal_rect.x + 94.0,
-                signal_rect.y + 19.0,
-                signal_rect.w - 104.0,
-                15,
-                UiTheme.accent(),
+                route.x + 92.0,
+                route.y + 19.0,
+                route.w - 102.0,
+                14,
+                cyan,
             );
         }
+        set_default_camera();
         let (sidebar, camera) = terminal_grid_camera(
             game,
             bounds,
@@ -970,6 +1050,27 @@ impl TerminalView {
         terminal_lighting::draw(&camera, visibility, known_at, reduced_motion);
         terminal_vision::draw(game, &camera, |at| known_at(at).is_some());
         terminal_perception::draw_fields(game, &camera, observation_fields, sound_fields);
+        for (position, cell) in &self.combat_residue.cells {
+            if camera.contains(*position) && known_at(*position).is_some() {
+                crate::combat_visuals::draw_residue(
+                    camera.rect(*position),
+                    cell,
+                    visibility.is_visible(*position),
+                );
+            }
+        }
+        combat_motion.draw_blasts(game.map(), combat_time, reduced_motion, true, |at| {
+            (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
+        });
+        combat_motion.draw_fireballs(game.map(), combat_time, reduced_motion, true, |at| {
+            (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
+        });
+        combat_motion.draw_agent_world(game, combat_time, reduced_motion, true, |at| {
+            (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
+        });
+        combat_motion.draw_taunts(game.map(), combat_time, reduced_motion, |at| {
+            (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
+        });
         for position in visibility
             .visible_positions()
             .filter(|at| camera.contains(*at))
@@ -993,8 +1094,33 @@ impl TerminalView {
                 // Effects never replace the occupant glyph or its identity
                 // in the sensor panel during the animation.
                 if cell.symbol != '\0' {
+                    let offset = game
+                        .actors()
+                        .entity_at(position)
+                        .map_or(Vec2::ZERO, |entity| {
+                            combat_motion.offset(entity, combat_time, reduced_motion) * rect.w
+                        });
+                    let actor_rect =
+                        Rect::new(rect.x + offset.x, rect.y + offset.y, rect.w, rect.h);
+                    let burning = burning_actor(game, position);
+                    let frozen = game.actors().entity_at(position).filter(|id| {
+                        game.actors().get(*id).is_some_and(|a| {
+                            a.statuses().any(|s| {
+                                matches!(
+                                    s.definition.as_str(),
+                                    "agent:frozen" | "agent:mine_frozen"
+                                )
+                            })
+                        })
+                    });
+                    if let Some(id) = frozen {
+                        combat_motion.draw_gel(id, actor_rect, combat_time, reduced_motion, true);
+                    }
+                    if let Some(id) = burning {
+                        combat_motion.draw_burn(id, actor_rect, combat_time, reduced_motion, true);
+                    }
                     draw_entity_with_appearance(
-                        rect,
+                        actor_rect,
                         cell.symbol,
                         TerminalGlyphPalette::new(
                             cell.color,
@@ -1004,12 +1130,20 @@ impl TerminalView {
                         cell.selected,
                         cell.alert.is_some(),
                         cell.status_icon.filter(|icon| !icon.is_quest()),
+                        cell.visual,
                         if cell.symbol == '@' {
                             Some(player_appearance.into())
                         } else {
                             cell.npc_appearance
                         },
+                        (!reduced_motion && offset == Vec2::ZERO).then_some(combat_time),
                     );
+                    if let Some(id) = burning {
+                        combat_motion.draw_burn(id, actor_rect, combat_time, reduced_motion, false);
+                    }
+                    if let Some(id) = frozen {
+                        combat_motion.draw_gel(id, actor_rect, combat_time, reduced_motion, false);
+                    }
                 }
             }
             if visible
@@ -1034,6 +1168,18 @@ impl TerminalView {
                 draw_attack_preview_cursor(rect, preview.valid);
             }
         }
+        combat_motion.draw_fireballs(game.map(), combat_time, reduced_motion, false, |at| {
+            (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
+        });
+        combat_motion.draw_agent_world(game, combat_time, reduced_motion, false, |at| {
+            (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
+        });
+        combat_motion.draw_spells(combat_time, reduced_motion, |at| {
+            (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
+        });
+        combat_motion.draw_blasts(game.map(), combat_time, reduced_motion, false, |at| {
+            (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
+        });
         // A second pass keeps overhead markers above neighbouring terrain and
         // supports installations even when no actor/item overlay occupies them.
         // A gentle 0–3 px float every 2.4 seconds uses presentation time only.
@@ -1047,7 +1193,34 @@ impl TerminalView {
             .filter(|position| camera.contains(*position))
         {
             if let Some(cell) = overlay(position) {
-                draw_effect_badges(camera.rect(position), &cell.effect_badges);
+                let mut badge_rect = camera.rect(position);
+                if game
+                    .actors()
+                    .entity_at(position)
+                    .and_then(|id| game.actors().get(id))
+                    .is_some_and(|actor| {
+                        actor.statuses().any(|status| {
+                            crate::combat_visuals::has_agent_status_icon(status.definition.as_str())
+                        })
+                    })
+                {
+                    // Leave the reviewed skill icon in the first overhead row;
+                    // unrelated core badges use the row above rather than cover it.
+                    badge_rect.y -= badge_rect.h * 24. / 64.;
+                }
+                draw_effect_badges(badge_rect, &cell.effect_badges);
+            }
+            if game
+                .actors()
+                .entity_at(position)
+                .and_then(|id| game.actors().get(id))
+                .is_some_and(|a| {
+                    a.statuses()
+                        .any(|s| s.definition.as_str() == "agent:provoked")
+                })
+            {
+                let r = camera.rect(position);
+                crate::guardian_taunt_visuals::marker(r.center() + vec2(0., -r.h * 0.72), 1.);
             }
             let Some(marker) = game.quest_marker_at(position) else {
                 continue;
@@ -1161,7 +1334,17 @@ impl TerminalView {
                 visible_security_lockdowns += 1;
             }
             if let Some(cell) = overlay(position) {
-                let contact_kind = sensor_contact_kind(cell.symbol);
+                let relation = game
+                    .rules()
+                    .player_relation_targeting
+                    .then(|| {
+                        game.actors()
+                            .entity_at(position)
+                            .and_then(|id| game.actors().get(id))
+                            .map(|actor| actor.player_relation())
+                    })
+                    .flatten();
+                let contact_kind = sensor_actor_contact_kind(cell.symbol, relation);
                 match contact_kind {
                     SensorContactKind::Hostile => visible_hostiles += 1,
                     SensorContactKind::Service | SensorContactKind::Neutral => {
@@ -1194,6 +1377,46 @@ impl TerminalView {
         // Mouse inspection takes priority; keyboard target selection remains a
         // complete alternative when no known map cell is hovered.
         let inspected = pointer_inspected.or(selected_inspected);
+        let hover_target = pointer_inspected
+            .filter(|(at, _)| visibility.is_visible(*at))
+            .and_then(|(at, tile)| {
+                let cell = overlay(at);
+                let visual = cell.and_then(|cell| cell.visual).or_else(|| {
+                    cell.is_none_or(|cell| cell.symbol == '\0')
+                        .then(|| crate::game_art::terrain_visual(tile.decor, at.x, at.y))
+                        .flatten()
+                })?;
+                if selected_cell == Some(at)
+                    && let Some(summary) = target_summary
+                {
+                    let mut summary = summary.clone();
+                    summary.visual = summary.visual.or(Some(visual));
+                    return Some(summary);
+                }
+                let mut summary =
+                    interactive_target_summary(game, at, interaction_name(at), interact_label)
+                        .unwrap_or_else(|| TerminalTargetSummary {
+                            name: cell
+                                .map_or(tile.decor.label(), |cell| overlay_label(cell.symbol))
+                                .split(" · ")
+                                .next()
+                                .unwrap_or(tile.decor.label())
+                                .to_owned(),
+                            visual: None,
+                            distance: focus.x.abs_diff(at.x).max(focus.y.abs_diff(at.y)),
+                            visible_state: String::new(),
+                            analysis: None,
+                            interaction: None,
+                            health: game
+                                .actors()
+                                .entity_at(at)
+                                .and_then(|id| game.actors().get(id))
+                                .map(|actor| (actor.integrity(), actor.maximum_integrity())),
+                        });
+                summary.visual = summary.visual.or(Some(visual));
+                Some(summary)
+            });
+        let target_summary = hover_target.as_ref().or(target_summary);
         if let Some((position, _)) = inspected
             && game.player_position() != Some(position)
         {
@@ -1445,15 +1668,54 @@ impl TerminalView {
         } else {
             description
         };
-        let description = if sidebar { description } else { description };
+        set_camera(&crate::graphics::ui_camera(
+            screen_width() / ui_scale,
+            screen_height() / ui_scale,
+        ));
+        let world = logical(layout.map);
+        crate::terminal_chrome::bezel(Rect::new(
+            world.x - 2.0,
+            world.y - 2.0,
+            world.w + 4.0,
+            world.h + 4.0,
+        ));
+        let footer = logical(layout.footer);
+        draw_rectangle(
+            footer.x,
+            footer.y,
+            footer.w,
+            footer.h,
+            crate::terminal_chrome::ink(),
+        );
+        draw_line(
+            footer.x,
+            footer.y,
+            footer.right(),
+            footer.y,
+            1.0,
+            crate::terminal_chrome::tint(0.32),
+        );
+        let prefix = if footer.w > 430.0 {
+            format!(
+                "TOUR {:04} / X {:02} Y {:02}",
+                game.turn(),
+                focus.x,
+                focus.y
+            )
+        } else {
+            format!("TOUR {:04}", game.turn())
+        };
+        let prefix_w = prefix.chars().count() as f32 * 12.0 * 0.62 + 16.0;
+        crate::terminal_chrome::heading(&prefix, footer.x + 6.0, footer.y + 16.0, 12, cyan);
         draw_bounded_text(
             &description,
-            layout.footer.x,
-            layout.footer.y + 17.0,
-            layout.footer.w,
-            16,
+            footer.x + prefix_w,
+            footer.y + 16.0,
+            footer.w - prefix_w - 6.0,
+            12,
             muted,
         );
+        set_default_camera();
         if sidebar {
             self.draw_sidebar(
                 game,
@@ -1473,7 +1735,17 @@ impl TerminalView {
                 observation_label,
                 &sensor_contacts,
                 layout.objective,
+                ui_scale,
             );
+        } else if let Some(target) = target_summary.filter(|target| target.visual.is_some())
+            && let Some(panel) = compact_preview_panel(bounds, ui_scale, layout.objective)
+        {
+            set_camera(&crate::graphics::ui_camera(
+                screen_width() / ui_scale,
+                screen_height() / ui_scale,
+            ));
+            draw_compact_preview(logical(panel), target);
+            set_default_camera();
         }
         if legend_open {
             draw_legend_overlay(game, bounds, legend_label);
@@ -1492,6 +1764,7 @@ impl TerminalView {
         observation_label: &str,
         sensor_contacts: &[SensorContact],
         objective: Rect,
+        ui_scale: f32,
     ) {
         let (
             visible_hostiles,
@@ -1504,14 +1777,29 @@ impl TerminalView {
         let bright = UiTheme.text();
         let muted = UiTheme.muted();
         let cyan = UiTheme.accent();
-        UiTheme.hud_panel(panel);
-        let rect = Rect::new(
-            panel.x + 16.0,
-            panel.y + 16.0,
-            panel.w - 32.0,
-            objective.y - panel.y - 32.0,
+        set_camera(&crate::graphics::ui_camera(
+            screen_width() / ui_scale,
+            screen_height() / ui_scale,
+        ));
+        let logical = |r: Rect| {
+            Rect::new(
+                r.x / ui_scale,
+                r.y / ui_scale,
+                r.w / ui_scale,
+                r.h / ui_scale,
+            )
+        };
+        let panel = logical(panel);
+        let objective = logical(objective);
+        let available = objective.y - panel.y - 16.0;
+        let sensors = Rect::new(panel.x, panel.y, panel.w, (available * 0.60).min(283.0));
+        let inspection = Rect::new(
+            panel.x,
+            sensors.bottom() + 8.0,
+            panel.w,
+            objective.y - sensors.bottom() - 16.0,
         );
-        draw_ui_text_bold("CAPTEURS", rect.x, rect.y + 18.0, 18.0, bright);
+        crate::terminal_chrome::module(sensors, "05 / CAPTEURS");
         let extra_lines = [
             visible_local_alerts,
             visible_security_alarms,
@@ -1522,12 +1810,10 @@ impl TerminalView {
         .count()
             + usize::from(tactical_overlay_open);
         let map_area = Rect::new(
-            rect.x,
-            rect.y + 34.0,
-            rect.w,
-            (rect.h * 0.28)
-                .clamp(100.0, 230.0)
-                .min((rect.h - 360.0 - extra_lines as f32 * 23.0).max(60.0)),
+            sensors.x + 12.0,
+            sensors.y + 40.0,
+            sensors.w - 24.0,
+            (sensors.h - 129.0 - extra_lines as f32 * 18.0).clamp(60.0, 154.0),
         );
         let (known_min, known_max) = remembered_bounds(
             &self.remembered,
@@ -1541,11 +1827,9 @@ impl TerminalView {
             .min(map_area.h / known_height)
             .floor()
             .clamp(1.0, 12.0);
-        let map_width = known_width * pixel;
-        let map_height = known_height * pixel;
         let origin = vec2(
-            map_area.x + (map_area.w - map_width) * 0.5,
-            map_area.y + (map_area.h - map_height) * 0.5,
+            map_area.x + (map_area.w - known_width * pixel) * 0.5,
+            map_area.y + (map_area.h - known_height * pixel) * 0.5,
         );
         draw_sensor_scope(
             map_area,
@@ -1558,27 +1842,23 @@ impl TerminalView {
             observation_fields,
             sound_fields,
             sensor_contacts,
+            true,
         );
-        let mut y = map_area.bottom() + 36.0;
-        UiTheme.hud_chip(Rect::new(rect.x, y - 21.0, rect.w, 29.0));
-        draw_ui_icon(UiIcon::All, Rect::new(rect.x, y - 15.0, 16.0, 16.0), cyan);
-        draw_ui_text_bold("EN VUE", rect.x + 24.0, y, 16.0, bright);
-        y += 31.0;
-        for (index, (count, label)) in [
-            (visible_hostiles, "Hostiles"),
-            (visible_neutrals, "Neutres"),
-            (visible_items, "Objets"),
+        let y = map_area.bottom() + 25.0;
+        for (i, (count, label, color)) in [
+            (visible_hostiles, "Hostiles", UiTheme.danger()),
+            (visible_neutrals, "Neutres", cyan),
+            (visible_items, "Objets", UiTheme.attention()),
         ]
         .into_iter()
         .enumerate()
         {
-            let x = rect.x + index as f32 * rect.w / 3.0;
-            draw_ui_text_bold(count.to_string(), x, y, 20.0, bright);
-            draw_ui_text(label, x, y + 20.0, 14.0, muted);
+            let x = map_area.x + i as f32 * map_area.w / 3.0;
+            draw_ui_text_bold(count.to_string(), x, y, 20.0, color);
+            draw_ui_text(label, x, y + 18.0, 13.0, muted);
         }
-        y += 20.0;
-        let alert = Color::from_rgba(255, 175, 83, 255);
-        for line in [
+        let mut y = map_area.bottom() + 63.0;
+        for (count, label) in [
             (visible_local_alerts, "Alertes locales"),
             (visible_security_alarms, "Alarmes réseau"),
             (visible_security_lockdowns, "Verrouillages"),
@@ -1586,41 +1866,47 @@ impl TerminalView {
         .into_iter()
         .filter(|(count, _)| *count > 0)
         {
-            y += 23.0;
             draw_bounded_text(
-                &format!("{} {}", line.1, line.0),
-                rect.x,
+                &format!("{label} {count}"),
+                map_area.x,
                 y,
-                rect.w,
-                14,
-                alert,
+                map_area.w,
+                12,
+                UiTheme.attention(),
             );
+            y += 18.0;
         }
-
         if tactical_overlay_open {
-            y += 23.0;
             draw_bounded_text(
                 &format!("{observation_label} · Vision / bruit"),
-                rect.x,
+                map_area.x,
                 y,
-                rect.w,
-                14,
+                map_area.w,
+                12,
                 cyan,
             );
         }
-
-        y += 44.0;
-        UiTheme.hud_chip(Rect::new(rect.x, y - 21.0, rect.w, 29.0));
-        draw_ui_icon(
-            UiIcon::Target,
-            Rect::new(rect.x, y - 15.0, 16.0, 16.0),
-            cyan,
+        crate::terminal_chrome::module(inspection, "06 / INSPECTION");
+        let rect = Rect::new(
+            inspection.x + 12.0,
+            inspection.y + 34.0,
+            inspection.w - 24.0,
+            inspection.h - 42.0,
         );
-        draw_ui_text_bold("CIBLE", rect.x + 24.0, y, 16.0, bright);
-        y += 34.0;
         if let Some(target) = target {
-            y = draw_wrapped_lines(&target.name, rect.x, y, rect.w, 19, 2, bright);
-            y += 5.0;
+            let portrait = target.visual.map(|visual| {
+                let side = if target.analysis.is_some() || inspection.h < 180.0 {
+                    64.0
+                } else {
+                    96.0
+                };
+                let image = Rect::new(rect.right() - side, rect.y + 3.0, side, side);
+                crate::game_art::draw_portrait(image, visual);
+                image
+            });
+            let width = portrait.map_or(rect.w, |p| p.x - rect.x - 8.0);
+            let mut y =
+                draw_wrapped_lines(&target.name, rect.x, rect.y + 16.0, width, 15, 3, bright);
             draw_bounded_text(
                 &format!(
                     "À {} case{}",
@@ -1628,70 +1914,138 @@ impl TerminalView {
                     if target.distance > 1 { "s" } else { "" }
                 ),
                 rect.x,
-                y,
-                rect.w,
-                16,
+                y + 3.0,
+                width,
+                13,
                 muted,
             );
-            y += 32.0;
+            y += 23.0;
+            if let Some(image) = portrait {
+                y = y.max(image.bottom() + 16.0);
+            }
             if let Some((hp, maximum)) = target.health {
                 draw_hud_progress(
-                    Rect::new(rect.x, y - 8.0, rect.w, 7.0),
+                    Rect::new(rect.x, y - 6.0, rect.w, 6.0),
                     hp,
                     maximum,
                     UiTheme.success(),
                 );
-                y += 22.0;
+                crate::terminal_chrome::segment(Rect::new(rect.x, y - 6.0, rect.w, 6.0), 20);
+                y += 15.0;
             }
+            let remaining_lines = |y: f32| ((rect.bottom() - y) / 18.0).floor().max(0.0) as usize;
             if let Some(action) = &target.interaction {
-                y = draw_wrapped_lines(action, rect.x, y, rect.w, 16, 3, cyan);
+                y = draw_wrapped_lines(
+                    action,
+                    rect.x,
+                    y,
+                    rect.w,
+                    13,
+                    remaining_lines(y).min(3),
+                    cyan,
+                );
             } else if let Some(analysis) = &target.analysis {
-                draw_ui_text_bold(
-                    format!("PV {} / {}", analysis.integrity, analysis.maximum_integrity),
-                    rect.x,
-                    y,
-                    17.0,
-                    bright,
-                );
-                y += 28.0;
-                draw_ui_text(
-                    format!("Armure {}", analysis.armor),
-                    rect.x,
-                    y,
-                    16.0,
-                    bright,
-                );
-                y += 24.0;
-                let lines = ((rect.bottom() - y) / 20.0).floor().max(0.0) as usize;
+                if remaining_lines(y) > 0 {
+                    draw_bounded_text(
+                        &format!(
+                            "PV {} / {} · Armure {}",
+                            analysis.integrity, analysis.maximum_integrity, analysis.armor
+                        ),
+                        rect.x,
+                        y,
+                        rect.w,
+                        13,
+                        bright,
+                    );
+                    y += 18.0;
+                }
                 y = draw_wrapped_lines(
                     &analysis.resistances,
                     rect.x,
                     y,
                     rect.w,
-                    15,
-                    lines.min(3),
+                    12,
+                    remaining_lines(y).min(3),
                     muted,
                 );
             } else {
                 y = draw_wrapped_lines(
-                    "Analysez cette cible pour connaître ses défenses.",
+                    "Analysez la cible pour connaître ses défenses.",
                     rect.x,
                     y,
                     rect.w,
-                    15,
-                    2,
+                    12,
+                    remaining_lines(y).min(2),
                     muted,
                 );
             }
-            y += 20.0;
-            let lines = ((rect.bottom() - y) / 21.0).floor().max(0.0) as usize;
-            if lines > 0 && target.visible_state != "Aucun état visible" {
-                draw_wrapped_lines(&target.visible_state, rect.x, y, rect.w, 16, lines, cyan);
+            if target.visible_state != "Aucun état visible" && remaining_lines(y) > 0 {
+                draw_wrapped_lines(
+                    &target.visible_state,
+                    rect.x,
+                    y + 3.0,
+                    rect.w,
+                    12,
+                    remaining_lines(y),
+                    cyan,
+                );
             }
         } else {
-            draw_ui_text("Aucune cible sélectionnée", rect.x, y, 15.0, muted);
+            draw_ui_text("Survolez une cible", rect.x, rect.y + 16.0, 14.0, muted);
         }
+        set_default_camera();
     }
+}
+
+fn compact_preview_panel(bounds: Rect, scale: f32, objective: Rect) -> Option<Rect> {
+    let top = objective.bottom() + 8.0 * scale;
+    let height = (bounds.bottom() - top - 8.0 * scale).min(208.0 * scale);
+    (height >= 48.0).then(|| {
+        Rect::new(
+            objective.x,
+            bounds.bottom() - height - 8.0 * scale,
+            objective.w,
+            height,
+        )
+    })
+}
+
+fn draw_compact_preview(panel: Rect, target: &TerminalTargetSummary) {
+    let Some(visual) = target.visual else {
+        return;
+    };
+    crate::terminal_chrome::module(panel, "06 / INSPECTION");
+    if panel.h < 160.0 {
+        let side = (panel.h - 36.0).clamp(12.0, 96.0);
+        crate::game_art::draw_portrait(
+            Rect::new(panel.right() - side - 8.0, panel.y + 30.0, side, side),
+            visual,
+        );
+        draw_wrapped_lines(
+            &target.name,
+            panel.x + 10.0,
+            panel.y + 39.0,
+            panel.w - side - 26.0,
+            14,
+            2,
+            UiTheme.text(),
+        );
+        return;
+    }
+    let side = (panel.h - 76.0).min(128.0).min(panel.w - 24.0).max(48.0);
+    crate::game_art::draw_portrait(
+        Rect::new(panel.x + (panel.w - side) * 0.5, panel.y + 30.0, side, side),
+        visual,
+    );
+    draw_wrapped_lines(
+        &target.name,
+        panel.x + 12.0,
+        panel.y + side + 48.0,
+        panel.w - 24.0,
+        16,
+        2,
+        UiTheme.text(),
+    );
 }
 
 #[allow(clippy::too_many_arguments)]
@@ -1706,6 +2060,7 @@ fn draw_sensor_scope(
     observation_fields: &[ActorObservationField],
     sound_fields: &[TerminalSoundField],
     contacts: &[SensorContact],
+    themed_floor: bool,
 ) {
     let phosphor = crate::ui_theme::UiTheme.accent();
     let tint = |alpha| Color::new(phosphor.r, phosphor.g, phosphor.b, alpha);
@@ -1791,7 +2146,11 @@ fn draw_sensor_scope(
                 cell.x + cell.w * 0.5,
                 cell.y + cell.h * 0.5,
                 dot,
-                Color::from_rgba(56, 159, 149, 150),
+                if themed_floor {
+                    tint(0.55)
+                } else {
+                    Color::from_rgba(56, 159, 149, 150)
+                },
             );
         } else if sensor_memory_sample(*position) {
             let dot = (pixel * 0.13).clamp(0.5, 0.9);
@@ -3191,13 +3550,12 @@ pub struct GridCamera {
     cell: f32,
 }
 
-fn fitted_cell_size(bounds: Rect, preferred: u16, radius: u16) -> f32 {
-    let diameter = f32::from(radius) * 2.0 + 1.0;
-    // Fit the entire normal sensor footprint on small windows. Large modded
-    // ranges may exceed the 8px legibility floor; perception itself is unchanged.
+fn fitted_cell_size(bounds: Rect, preferred: u16) -> f32 {
+    // Keep the chosen sprite size. The camera shows fewer cells on a small
+    // window, rather than shrinking native artwork to fit the entire FOV.
     f32::from(preferred)
-        .min(bounds.w / diameter)
-        .min(bounds.h / diameter)
+        .min(bounds.w)
+        .min(bounds.h)
         .floor()
         .max(8.0)
 }
@@ -3252,10 +3610,10 @@ fn terminal_ui_layout(
         },
         |panel| {
             Rect::new(
-                panel.x + 16.0,
-                panel.bottom() - 16.0 - 144.0 * ui_scale,
-                panel.w - 32.0,
-                144.0 * ui_scale,
+                panel.x,
+                panel.bottom() - (panel.h * 0.27).clamp(144.0 * ui_scale, 182.0 * ui_scale),
+                panel.w,
+                (panel.h * 0.27).clamp(144.0 * ui_scale, 182.0 * ui_scale),
             )
         },
     );
@@ -3288,6 +3646,37 @@ fn terminal_ui_layout(
     }
 }
 
+fn actor_ui_layout(
+    game: &WorldState,
+    bounds: Rect,
+    scale: f32,
+    navigation: bool,
+) -> TerminalUiLayout {
+    let mut layout = terminal_ui_layout(bounds, scale, navigation);
+    if game.rules().agent_class_start.is_some() {
+        layout.map.h = (layout.map.h - 60. * scale).max(40.);
+    }
+    layout
+}
+
+pub fn terminal_skill_bar_panel(
+    game: &WorldState,
+    bounds: Rect,
+    scale: f32,
+    navigation: bool,
+) -> Option<Rect> {
+    if game.rules().agent_class_start.is_none() {
+        return None;
+    }
+    let layout = terminal_ui_layout(bounds, scale, navigation);
+    Some(Rect::new(
+        layout.map.x,
+        layout.map.bottom() - 56. * scale,
+        layout.map.w,
+        52. * scale,
+    ))
+}
+
 fn terminal_grid_camera(
     game: &WorldState,
     bounds: Rect,
@@ -3295,13 +3684,9 @@ fn terminal_grid_camera(
     preferred_cell: u16,
     navigation_signal_visible: bool,
 ) -> (bool, GridCamera) {
-    let layout = terminal_ui_layout(bounds, ui_scale, navigation_signal_visible);
+    let layout = actor_ui_layout(game, bounds, ui_scale, navigation_signal_visible);
     let focus = game.player_position().unwrap_or(GridPos::new(12, 12));
-    let effective_cell = fitted_cell_size(
-        layout.map,
-        preferred_cell,
-        game.rules().player_field_of_view.radius,
-    );
+    let effective_cell = fitted_cell_size(layout.map, preferred_cell);
     (
         layout.sidebar.is_some(),
         GridCamera::new(layout.map, effective_cell, focus),
@@ -3715,6 +4100,10 @@ fn draw_tile_on_surface(
     draw_pixel_glyph(rect, pattern, dim(color, visible));
 }
 
+pub(crate) fn draw_scenery_preview(rect: Rect, kind: Decor, position: GridPos) {
+    draw_tile(rect, kind, [false; 4], true, position);
+}
+
 fn attack_preview_color(valid: bool) -> Color {
     if valid {
         Color::from_rgba(255, 174, 64, 255)
@@ -3784,6 +4173,13 @@ fn draw_entity(
         selected,
         alerted,
         status_icon,
+        crate::game_art::actor_for_symbol(symbol).or_else(|| {
+            (symbol == '@').then_some(crate::game_art::player(
+                None,
+                PlayerWeaponPose::Unarmed,
+                None,
+            ))
+        }),
         (symbol == '@').then_some(
             PlayerAppearance {
                 pose: PlayerWeaponPose::Unarmed,
@@ -3791,6 +4187,23 @@ fn draw_entity(
             }
             .into(),
         ),
+        None,
+    );
+}
+
+pub(crate) fn draw_corpse_symbol(rect: Rect, symbol: char, opacity: f32) {
+    draw_entity(
+        Rect::new(
+            rect.x + rect.w * 0.08,
+            rect.y + rect.h * 0.54,
+            rect.w * 0.84,
+            rect.h * 0.36,
+        ),
+        symbol,
+        TerminalGlyphPalette::monochrome(Color::new(0.48, 0.41, 0.40, opacity)),
+        false,
+        false,
+        None,
     );
 }
 
@@ -3801,9 +4214,17 @@ fn draw_entity_with_appearance(
     selected: bool,
     alerted: bool,
     status_icon: Option<TerminalStatusIcon>,
+    visual: Option<crate::game_art::Visual>,
     actor_appearance: Option<ActorAppearance>,
+    idle_time: Option<f64>,
 ) {
-    if let Some(appearance) = actor_appearance {
+    if let Some(visual) = visual {
+        if idle_time.is_some() {
+            crate::game_art::draw_world_animated(rect, visual, palette.primary.a, idle_time);
+        } else {
+            crate::game_art::draw_world(rect, visual, palette.primary.a);
+        }
+    } else if let Some(appearance) = actor_appearance {
         terminal_player::draw(rect, appearance, palette.primary.a);
     } else if let Some(kind) = ModuleKind::for_symbol(symbol) {
         terminal_player::draw(
@@ -4493,6 +4914,7 @@ mod tests {
                 calls.set(calls.get() + 1);
                 (position == at).then(|| TerminalOverlay {
                     symbol: '@',
+                    visual: None,
                     npc_appearance: None,
                     color: WHITE,
                     accent_color: None,
@@ -4528,6 +4950,7 @@ mod tests {
         effect.family = TerminalEffectFamily::Flame;
         let mut cell = TerminalOverlay {
             symbol: '\0',
+            visual: None,
             npc_appearance: None,
             color: WHITE,
             accent_color: None,
@@ -4665,7 +5088,7 @@ mod tests {
             (1280.0, 800.0),
             (3440.0, 1440.0),
         ] {
-            for size in [24.0, 32.0, 40.0, 48.0] {
+            for size in [24.0, 32.0, 40.0, 48.0, 64.0] {
                 let camera = GridCamera::new(
                     Rect::new(24.0, 110.0, width - 48.0, height - 220.0),
                     size,
@@ -4721,6 +5144,14 @@ mod tests {
             assert!(objective.x > layout.map.right());
             assert!(objective.right() <= bounds.right());
             assert!(objective.y >= bounds.y && objective.bottom() <= bounds.bottom());
+            if layout.sidebar.is_none()
+                && let Some(preview) = compact_preview_panel(bounds, scale, objective)
+            {
+                assert!(preview.y > objective.bottom());
+                assert!(preview.bottom() <= bounds.bottom());
+                assert!(preview.x > layout.map.right());
+                assert!(preview.right() <= bounds.right());
+            }
         }
     }
 
@@ -4764,7 +5195,7 @@ mod tests {
                         assert!(layout.map.w >= width - 80.0 - layout.objective.w);
                         assert!(layout.map.right() < layout.objective.x);
                     }
-                    for cell_size in [24, 32, 40, 48] {
+                    for cell_size in [24, 32, 40, 48, 64] {
                         let at = game.player_position().unwrap();
                         let cell = view
                             .world_cell_rect(&game, bounds, scale, cell_size, navigation, at)
@@ -4827,6 +5258,33 @@ mod tests {
     }
 
     #[test]
+    fn agent_sensors_follow_the_actual_side_of_holograms_and_controlled_monsters() {
+        use project_rl::social::PlayerRelation;
+        for relation in [PlayerRelation::Allied, PlayerRelation::Neutral] {
+            assert_eq!(
+                sensor_actor_contact_kind('d', Some(relation)),
+                SensorContactKind::Neutral
+            );
+        }
+        assert_eq!(
+            sensor_actor_contact_kind('d', Some(PlayerRelation::Hostile)),
+            SensorContactKind::Hostile
+        );
+        assert_eq!(
+            sensor_actor_contact_kind('m', Some(PlayerRelation::Neutral)),
+            SensorContactKind::Service
+        );
+        assert_eq!(
+            sensor_actor_contact_kind('@', Some(PlayerRelation::Allied)),
+            SensorContactKind::Unknown
+        );
+        assert_eq!(
+            sensor_actor_contact_kind('d', None),
+            SensorContactKind::Hostile
+        );
+    }
+
+    #[test]
     fn sensor_projection_rejects_positions_outside_its_authorized_bounds() {
         let minimum = GridPos::new(4, 7);
         let maximum = GridPos::new(11, 16);
@@ -4874,18 +5332,23 @@ mod tests {
     }
 
     #[test]
-    fn small_windows_fit_the_default_sensor_footprint_without_altering_range() {
+    fn small_windows_keep_native_zoom_and_camera_pointer_alignment() {
         for bounds in [
             Rect::new(28.0, 110.0, 584.0, 250.0),
             Rect::new(28.0, 110.0, 920.0, 260.0),
         ] {
-            for preferred in [24, 32, 40, 48] {
+            for preferred in [24, 32, 40, 48, 64] {
                 let camera = GridCamera::new(
                     bounds,
-                    fitted_cell_size(bounds, preferred, 8),
+                    fitted_cell_size(bounds, preferred),
                     GridPos::new(20, 20),
                 );
-                assert!(camera.rows >= 17 && camera.columns >= 17);
+                assert_eq!(camera.cell, f32::from(preferred));
+                let rect = camera.rect(GridPos::new(20, 20));
+                assert_eq!(
+                    camera.hit((rect.x + rect.w * 0.5, rect.y + rect.h * 0.5)),
+                    Some(GridPos::new(20, 20))
+                );
             }
         }
     }

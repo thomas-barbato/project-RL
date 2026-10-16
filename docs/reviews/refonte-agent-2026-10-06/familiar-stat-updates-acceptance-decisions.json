@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ13-ACCEPT01",
+  "user_reply": "parfait :) on peut continuer",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-familiar-stat-updates-PETS-EQ13-01.json",
+  "source_proposal_sha256": "ef575e72c45f73ad8f828f99bca924ad53a03bd3959a6333bdfca00b98a64df8",
+  "accepted_shown_copy_markdown": "Le **profil conservé par les ressuscités est validé**. À leur relèvement, leurs **PV et leur énergie sont au maximum**, comme demandé.\n\n**PETS-EQ13 · Évolution des familiers déjà présents — proposition**\n\n**Drones**\n\n- Ils suivent votre niveau, y compris lorsqu’ils sont déjà déployés.\n- Quand vous gagnez un niveau, leurs **PV et leur énergie sont restaurés au maximum**, comme les vôtres.\n- Leur puissance est recalculée quand le rang de leur invocation ou votre Intelligence change.\n\n**Ressuscités**\n\n- Ils conservent leur niveau d’origine.\n- Leur puissance est recalculée quand le rang effectif de Réanimation change.\n- Leur durée reste celle fixée au relèvement : ces changements ne prolongent pas leur présence.\n\n**Changements de bonus**\n\nModifier un rang, un attribut ou un équipement **ne restaure pas les jauges**. Si un maximum augmente, la réserve actuelle reste identique ; s’il baisse sous cette réserve, elle est ramenée au nouveau maximum.\n\n**Exemple fictif — hors gain de niveau**\n\n- Avant un bonus : **70 / 100 PV**.\n- Après un bonus augmentant le maximum : **70 / 130 PV**.\n- Si le maximum descend ensuite à 60 : **60 / 60 PV**.\n\n**Ces règles de mise à jour restent à valider.**",
+  "accepted_shown_copy_sha256": "9730dd2af49ec66a71be6a0007549fe06f762e6aef03fa3540a3b3ac8db9cef4",
+  "accepted_shown_rules": {
+    "scope": "already_deployed_existing_drones_and_OC07_raised_allies;not_future_familiar_models_or_spawn_recall_rules",
+    "drone_level": "already_deployed_drones_track_current_player_level_and_automatic_accepted_per_model_attribute_growth",
+    "drone_level_gain_reserves": "on_player_level_gain_update_drone_level_and_final_maximums_then_restore_current_HP_and_energy_to_final_maximums",
+    "drone_owner_updates": "recalculate_accepted_model_invocation_rank_and_agent_Intelligence_HP_damage_bonuses_when_inputs_change_including_owner_gear_or_attribute_changes;no_spawn_only_snapshot_for_these_inputs",
+    "raised_level": "retain_original_monster_level;player_level_gain_is_not_raised_level_gain_or_refill",
+    "raised_power": "recalculate_accepted_OC07_HP_damage_power_using_current_effective_rank_when_rank_changes_including_agent_equipment_rank_bonuses;no_new_power_curve_or_unapproved_owner_attribute_factor",
+    "raised_duration": "fix_total_duration_at_birth_and_continue_existing_remaining_timer;rank_or_bonus_updates_do_not_extend_or_restart_it",
+    "bonus_update_current_reserves": "rank_attribute_or_equipment_change_does_not_restore_HP_or_energy;preserve_absolute_current_when_maximum_increases;clamp_current_to_new_maximum_when_lower",
+    "exception": "actual_drone_level_gain_restores_after_final_stat_update;independent_attribute_or_gear_update_is_not_level_gain",
+    "other_rules": "normal_damage_healing_and_energy_restoration_sources_continue_under_their_accepted_rules"
+  },
+  "accepted_shown_examples": {
+    "scope": "fictional_HP_sequence_for_bonus_updates_only;not_actual_actor_profile",
+    "before": {
+      "current_HP": 70,
+      "maximum_HP": 100
+    },
+    "after_increase": {
+      "current_HP": 70,
+      "maximum_HP": 130
+    },
+    "after_decrease": {
+      "current_HP": 60,
+      "maximum_HP": 60
+    }
+  },
+  "approval_scope": "Already-present drones follow current player level and restore HP/energy after true level gain; accepted invocation-rank and owner Intelligence HP/damage bonuses recalculate when inputs change. Raised allies retain original level, update power with effective Reanimation rank and keep birth duration. Rank/attribute/equipment changes do not refill current reserves; increased maximum preserves absolute current and decreased maximum clamps it. Shown fictional example accepted. Recalled drone lifecycle/resource details remain pending.",
+  "unshown_cases_pending": [
+    "drone_first_spawn_recall_redeployment_death_and_replacement_resource_state",
+    "raised_original_skill_cooldown_state_and_first_action_timing",
+    "ordered_atomic_updates_when_multiple_level_rank_item_changes_coincide",
+    "actual_familiar_energy_baselines_regeneration_and_costs",
+    "full_rank_curves_and_familiar_skill_item_bonus_mapping",
+    "native_familiar_resource_and_power_tooltip_layout"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

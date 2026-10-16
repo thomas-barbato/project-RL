@@ -245,6 +245,7 @@ impl GameState {
             return Err(AttackError::NoLineOfSightAt(target_at));
         }
         Ok(PreparedAttack {
+            agent_weapon: None,
             attacker,
             target: self
                 .actors

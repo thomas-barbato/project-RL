@@ -1,0 +1,33 @@
+{
+  "batch": "ANIM-S07",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 15,
+      "skill_id": "FR02",
+      "variant": "FR02-A01",
+      "name": "Nova de givre",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 16,
+      "skill_id": "FR03",
+      "variant": "FR03-A01",
+      "name": "Mur de glace",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "nova": "One fast expanding ice wave, 0.45 seconds, centred on the caster. Floor spill is allowed; full solid walls clip it. No persistent floor zone. Prepared successful Gel is attached to targets only.",
+  "wall": "Blocks rise in 0.22 seconds. Each block occupies one free cell, blocks movement, and can break separately. Prepared melee contact freezes the attacker; the second prepared hit breaks a block. The frozen attacker can still attack. Once Gel ends it crosses the gap.",
+  "gel_candidate": {
+    "variant": "GEL-A03",
+    "status": "awaiting_visual_review",
+    "description": "Small translucent ice facets around the feet, behind and in front of the unchanged body. Upper body stays readable. The previous FR01 visual is not replaced."
+  },
+  "timing": "Animation clock never advances turns, cooldowns, Gel or wall duration. Nova ends once; the wall/Gel remain until explicit turns. At rank 11 the fixture uses catalogue Gel=4, wall=5 and contact Gel=2 turns.",
+  "scope": "Debug-only visual fixture. No campaign, GameState, damage, RNG, real AI or save changes. Freeze success and block destruction are prepared examples, not balance claims. Final combat targeting/geometry is separate.",
+  "preview": "Blinking cyan cells disappear upon cast. Four cardinal orientations and solid-cloison case.",
+  "blood": "No blood for pure Frost. Prepared initial Burn is removed by successful Gel.",
+  "unchanged": "Previously approved icons, catalogue, actor bodies/equipment, fire drawings and reviews."
+}

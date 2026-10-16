@@ -1,0 +1,194 @@
+{
+  "date": "2026-10-15",
+  "review_id": "ANIM-S43-ACCEPT01",
+  "status": "prior_visual_approval_confirmed_and_register_corrected",
+  "original_candidates": [
+    {
+      "number": 95,
+      "id": "AF05",
+      "variant": "AF05-A01",
+      "title": "DÃ©sorientation"
+    },
+    {
+      "number": 96,
+      "id": "AF06",
+      "variant": "AF06-A01",
+      "title": "Contagion"
+    }
+  ],
+  "original_review": "skill-animation-review-90/review.json",
+  "source": "src/agent_skill_lab_review/fire_painted/afflictions_area.rs",
+  "source_sha256": "aabb705c6c726cd7da66fcac810c9e6339db3d062e118cdb4f1cb6e86c4393be",
+  "original_review_sha256_before_status_correction": "07af8f62418be6b7609b83f36a4c6340842151b234b9179504b26f48bfff4322",
+  "reprise_review_sha256_before_status_correction": "d740e635c5dab78f0587d5a0676c765894eba41c7ee02dfc8d2fcf4b7f443cf4",
+  "visual_checks": [
+    {
+      "variant": "AF05-A01-DROITE",
+      "atlas": "apercu-animations-data/AF05-A01-DROITE.webp",
+      "sha256": "7ecdafd95309b1e68880012967ea1bde2870fb453f179dd39bb481570cb244b8",
+      "pixels_identical_to_review90": true,
+      "bytes": 60962
+    },
+    {
+      "variant": "AF05-A01-GAUCHE",
+      "atlas": "apercu-animations-data/AF05-A01-GAUCHE.webp",
+      "sha256": "4f6037ec2cc6eaa7629c0f9514d53ff35937761b7f3233b1a60969671ce4e8d0",
+      "pixels_identical_to_review90": true,
+      "bytes": 62778
+    },
+    {
+      "variant": "AF05-A01-HAUT",
+      "atlas": "apercu-animations-data/AF05-A01-HAUT.webp",
+      "sha256": "da9766a10d4ba5c30898f262e26cdd61e4b6dabd6f8c78f9285a66a71c144504",
+      "pixels_identical_to_review90": true,
+      "bytes": 59802
+    },
+    {
+      "variant": "AF05-A01-BAS",
+      "atlas": "apercu-animations-data/AF05-A01-BAS.webp",
+      "sha256": "9df61edcb540c52dbd112a8d4bd417339f522524b65646196c2966961ff6ea90",
+      "pixels_identical_to_review90": true,
+      "bytes": 60526
+    },
+    {
+      "variant": "AF05-A01-JOUEUR",
+      "atlas": "apercu-animations-data/AF05-A01-JOUEUR.webp",
+      "sha256": "cd65714deda35153d7a7cfa10b485249d4d0884ee0e908e436678ed997660487",
+      "pixels_identical_to_review90": true,
+      "bytes": 51440
+    },
+    {
+      "variant": "AF05-A01-ATTENTE",
+      "atlas": "apercu-animations-data/AF05-A01-ATTENTE.webp",
+      "sha256": "4c62dd65ae89c1eacef41713958c8496f69ef05389c6696f1beefbd62d52c708",
+      "pixels_identical_to_review90": true,
+      "bytes": 59352
+    },
+    {
+      "variant": "AF05-A01-MUR",
+      "atlas": "apercu-animations-data/AF05-A01-MUR.webp",
+      "sha256": "1a3737d9f23518a6a61857b9b6061d0d2ce6470569829e869b09009eaf7f34cf",
+      "pixels_identical_to_review90": true,
+      "bytes": 51518
+    },
+    {
+      "variant": "AF05-A01-RESISTE",
+      "atlas": "apercu-animations-data/AF05-A01-RESISTE.webp",
+      "sha256": "1b8c5abf157fb656dee9266fa38d2263b6db8c33d26680c29bc030e105624d0e",
+      "pixels_identical_to_review90": true,
+      "bytes": 122016
+    },
+    {
+      "variant": "AF05-A01-DEPLACEMENT",
+      "atlas": "apercu-animations-data/AF05-A01-DEPLACEMENT.webp",
+      "sha256": "0cfabfe16422643c3af67ce35feab1d98554d1fe00d470152d3314014c2bc580",
+      "pixels_identical_to_review90": true,
+      "bytes": 98494
+    },
+    {
+      "variant": "AF05-A01-DEGATS",
+      "atlas": "apercu-animations-data/AF05-A01-DEGATS.webp",
+      "sha256": "6637174019c9b204fecd411c307d6369d48f561a46990f1036cfeb9868d68dad",
+      "pixels_identical_to_review90": true,
+      "bytes": 192920
+    },
+    {
+      "variant": "AF05-A01-CHAINE",
+      "atlas": "apercu-animations-data/AF05-A01-CHAINE.webp",
+      "sha256": "6663b106d9fc5d710f4d22b8eb8862b61baf615282a26eed4ae68c3a71c91cb1",
+      "pixels_identical_to_review90": true,
+      "bytes": 60524
+    },
+    {
+      "variant": "AF06-A01-DROITE",
+      "atlas": "apercu-animations-data/AF06-A01-DROITE.webp",
+      "sha256": "3a0450ab4df2a9ce1812cf312d0218e5e32281de59d871627ed43bbef2e47926",
+      "pixels_identical_to_review90": true,
+      "bytes": 80592
+    },
+    {
+      "variant": "AF06-A01-GAUCHE",
+      "atlas": "apercu-animations-data/AF06-A01-GAUCHE.webp",
+      "sha256": "a8200b78c8c45a96ffec7ad6b310ce770190d2bc705e6b112e753faaea096f53",
+      "pixels_identical_to_review90": true,
+      "bytes": 81060
+    },
+    {
+      "variant": "AF06-A01-HAUT",
+      "atlas": "apercu-animations-data/AF06-A01-HAUT.webp",
+      "sha256": "465099fbe55f3e066b0a9eaba5ec81a8a4d90a1288d46694d38ec9d531abc9eb",
+      "pixels_identical_to_review90": true,
+      "bytes": 77186
+    },
+    {
+      "variant": "AF06-A01-BAS",
+      "atlas": "apercu-animations-data/AF06-A01-BAS.webp",
+      "sha256": "eaef91dfbff0456162d461fd3150acc2b5ad6bf9b0f46bb6e6ae36816e18a0a7",
+      "pixels_identical_to_review90": true,
+      "bytes": 76020
+    },
+    {
+      "variant": "AF06-A01-JOUEUR",
+      "atlas": "apercu-animations-data/AF06-A01-JOUEUR.webp",
+      "sha256": "8a02133a97c8276f59ec18caf018e14b35f32fa13507e9dd2c18252a332b3ed8",
+      "pixels_identical_to_review90": true,
+      "bytes": 59392
+    },
+    {
+      "variant": "AF06-A01-ATTENTE",
+      "atlas": "apercu-animations-data/AF06-A01-ATTENTE.webp",
+      "sha256": "96833565bd08538605e4312359b268e058e75bb13e16697c8f4cabb11b067867",
+      "pixels_identical_to_review90": true,
+      "bytes": 64242
+    },
+    {
+      "variant": "AF06-A01-MUR",
+      "atlas": "apercu-animations-data/AF06-A01-MUR.webp",
+      "sha256": "6ecc6fa99538cb299d99ac7398538dd05baec53e3642d723e0e388a17da08512",
+      "pixels_identical_to_review90": true,
+      "bytes": 66074
+    },
+    {
+      "variant": "AF06-A01-RESISTE",
+      "atlas": "apercu-animations-data/AF06-A01-RESISTE.webp",
+      "sha256": "c946213bd450ff011755e6f396b726529f20e37d0d67286dae8077d33313999b",
+      "pixels_identical_to_review90": true,
+      "bytes": 140124
+    },
+    {
+      "variant": "AF06-A01-DEPLACEMENT",
+      "atlas": "apercu-animations-data/AF06-A01-DEPLACEMENT.webp",
+      "sha256": "42324e65d09ab1afd1d218fccf6cfdcd01e7602a548119a61a193d18302f7dc9",
+      "pixels_identical_to_review90": true,
+      "bytes": 110402
+    },
+    {
+      "variant": "AF06-A01-DEGATS",
+      "atlas": "apercu-animations-data/AF06-A01-DEGATS.webp",
+      "sha256": "dae1eee52912ec044d89173cd9d5d18c913fc0b8f0c22ecb65a3039d1634d255",
+      "pixels_identical_to_review90": true,
+      "bytes": 224460
+    },
+    {
+      "variant": "AF06-A01-CHAINE",
+      "atlas": "apercu-animations-data/AF06-A01-CHAINE.webp",
+      "sha256": "a9507619a394d1c50a0836baa17594cfe11a77facc9e2fe176fe2cd0d7aa7bec",
+      "pixels_identical_to_review90": true,
+      "bytes": 70170
+    }
+  ],
+  "standalone_animations": [
+    {
+      "path": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-101/AF05-unchanged-native-64.webp",
+      "sha256": "f39c91190aa83fcfdbcd70b1ea6467aea792b4dac4da89fe50e64ffcb54b88b9"
+    },
+    {
+      "path": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-101/AF06-unchanged-native-64.webp",
+      "sha256": "3e5b4cb03ff8d278d83afebcae88ea594d4513c37c07de7ec2fe7bb9fc12bb7d"
+    }
+  ],
+  "user_clarification": "je comprend pas , on l'a déjà validé ca non ?",
+  "subsequent_request": "Modify only Contagion transmission into creepy organic tentacles reaching every affected target.",
+  "scope": "AF05-A01 and AF06-A01 prior visual approval confirmed; the new AF06 tentacle revision alone will need visual review. Existing mechanics and deferred playable AI tests preserved.",
+  "campaign_integration": false
+}

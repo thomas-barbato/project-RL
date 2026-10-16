@@ -1,0 +1,23 @@
+{
+  "review_id": "MINE-VFX-TYPE01",
+  "date": "2026-10-14",
+  "user_reply": "d'ailleurs il faudra changer l'explosion en fonction du type de dégats :) et évidement de si y'a ou non l'amélioration pour faire de l'explosion un nuage qui reste statique",
+  "accepted_visual_direction": {
+    "explosion": "Le rendu de l'explosion correspond au type de dégâts de la mine : Feu, Poison ou Froid, et autres types uniquement s'ils sont définis par ailleurs.",
+    "without_SM05": "Impact bref adapté au type, sans nuage de terrain persistant ajouté.",
+    "with_SM05": "L'explosion laisse un nuage ou résidu visuel correspondant au type de la mine. Il reste fixe sur la zone au sol pendant la durée déjà définie de Résidu persistant.",
+    "LED": "Correspondance acceptée séparément : Feu rouge, Poison vert, Gel bleu glacé ; clignotement dès la pose."
+  },
+  "preserved_mechanics": [
+    "La présence de la zone au sol dépend de Résidu persistant (SM05).",
+    "Le type de zone dépend du type de mine et des passifs de variante appris.",
+    "Le rayon et la durée suivent les règles déjà acceptées de l'explosion et de Résidu persistant.",
+    "Les obstacles et cases affectées restent ceux du ciblage ; le nuage ne suit pas une victime.",
+    "Empoisonné ou Gel appliqué à une cible par l'explosion reste distinct du résidu au sol et ne nécessite pas SM05."
+  ],
+  "new_damage_types_or_numeric_rules_created": false,
+  "native_new_render_approval_inferred": false,
+  "campaign_integration": false,
+  "approved_fire_baseline_preserved": "skill-animation-review-60/cote-a-cote.html",
+  "next_scope": "Présenter les variantes de dégâts puis la présence ou l'absence de Résidu persistant dans les prochains lots animés."
+}

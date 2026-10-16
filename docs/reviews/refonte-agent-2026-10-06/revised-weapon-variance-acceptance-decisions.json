@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-09",
+  "review_id": "D01-VAR02-ACCEPT01",
+  "user_reply": "ok :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-weapon-damage-variance-02.json",
+  "source_proposal_sha256": "25886c84a046a88792192a966835505c4e45481a1c4f7c611c00a25bc65fb697",
+  "accepted_shown_copy_markdown": "Oui :) **La plage de dégâts dépendra du niveau de l’arme**, et son amplitude sera équilibrée avec les PV des monstres et du joueur à ce stade de progression.\n\n**D01 · Variance des armes — version corrigée**\n\n- **Bas niveau :** une petite plage, comme ta dague à **1–3 dégâts**.\n- **Haut niveau :** des dégâts plus élevés et un écart minimum–maximum plus grand, adapté au modèle de l’arme et aux PV attendus.\n- Les plages exactes seront fixées lors de l’équilibrage des armes et des monstres.\n\n**Explosions**\n\n**Un tirage indépendant pour chaque victime.** Une même explosion peut donc infliger des dégâts de base différents aux ennemis touchés. Chaque cible conserve ensuite son propre jet de critique et l’application de ses défenses.\n\n**Affichage**\n\nLa fiche de compétence continue d’afficher **les dégâts minimum–maximum avec l’arme active et les bonus actuels**.\n\nPour le tirage lui-même, je conserve comme proposition **la même probabilité pour chaque valeur entière de la plage**. Le niveau de l’arme détermine donc sa plage de dégâts ; les valeurs exactes restent à définir.",
+  "accepted_shown_copy_sha256": "6dabc40a5e972ad9c086a6fe4bf45888a13e2127af03b8a1bf1dbb18aa7ed88a",
+  "accepted_shown_rules": {
+    "weapon_range": "minimum_and_maximum_depend_on_weapon_level_and_model;larger_absolute_span_at_higher_levels_as_balance_direction",
+    "balance_context": "exact_ranges_to_be_balanced_with_player_and_monster_HP_at_relevant_progression_stage;no_universal_growth_curve_created",
+    "distribution": "same_probability_for_each_integer_in_the_weapon_range;inclusive_minimum_and_maximum",
+    "explosions": "independent_base_damage_draw_per_victim_of_the_same_explosion;independent_target_critical_and_target_defenses_preserved",
+    "tooltip": "minimum_maximum_damage_calculated_with_active_weapon_and_current_applicable_bonuses",
+    "low_level_dagger_1_3": "illustrative_only;not_a_real_equipment_balance_entry"
+  },
+  "approval_scope": "Explicit agreement with the revised shown D01-VAR02 copy, level-related range direction, uniform integer distribution, per-victim explosion draws and current range display;not approval of unshown D01-VAR01 rules or actual equipment values.",
+  "previous_explicit_user_directions": "docs/reviews/refonte-agent-2026-10-06/weapon-level-variance-and-per-victim-explosion-decisions.json",
+  "previous_explicit_user_directions_sha256": "4467ec762840fc91c4735f0101408f512860e4d8e601d11607ee359fd7684c6d",
+  "unshown_cases_pending": [
+    "actual_weapon_level_definition_and_model_ranges_HP_balance_and_growth",
+    "individual_sampling_for_burst_projectiles_melee_sweeps_multiple_weapons_and_natural_or_transformed_attacks;not_represented_in_revised_shown_copy",
+    "mixed_damage_component_sampling_and_attribute_mapping",
+    "spell_drone_NPC_and_secondary_skill_variance_not_automatically_added",
+    "RNG_draw_order_misses_replay_modifier_stacking_and_absorption",
+    "native_display_and_other_unshown_cases"
+  ],
+  "native_visual_approval": "not_presented;range_display_direction_does_not_approve_native_rendering",
+  "runtime_integration": "not_integrated"
+}

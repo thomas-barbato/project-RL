@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-08",
+  "review_ids": [
+    "BM03-VIS02",
+    "HUD01-ALL01",
+    "HUD09"
+  ],
+  "skill_id": "BM03",
+  "user_instruction": "Ce sort etant un buff, je pense qu'il faudra l'ajouter surtout à la barre de buff / debuff du joueur qui va être ajoutée. Ca sera là qu'on affichera ce status (et tous les status affectant le personnage), par-contre si tu veux tu peux afficher au dessus de la tête de la cible un bonus , par exemple \"Nombre de dégats totaux\" (nombre bonus).",
+  "requested_status_direction": "Tempo offensif state displayed primarily in player buff/debuff bar;all statuses actually affecting player displayed there",
+  "all_affecting_statuses_scope": "actual ongoing beneficial_or_harmful_states;does_not_require_every_learned_passive_as_permanent_icon",
+  "superseded_BM03_direction": "weapon_grip_markers_and_growing_weapon_trail_retired_for_status_readout",
+  "requested_direction_approval": "explicit_user_request",
+  "passive_mechanics": "unchanged;automatic_charges_not_converted_to_manual_active_skill",
+  "optional_floating_damage_direction": "user_proposes_total_damage_with_bonus_amount_in_parentheses_above_target;retained_as_display_proposal",
+  "example_proposal": {
+    "text": "145 (+45)",
+    "total_damage": 145,
+    "bonus_included_in_total": 45,
+    "status": "illustrative_display_proposal_not_weapon_balance_or_new_damage_rule"
+  },
+  "charge_counter_and_hover_proposal": "icon_charge_count;hover_name_current_effect_and_remaining_turns_when_effect_has_duration;BM03_has_no_invented_timer",
+  "exact_numbers_and_RP_approval": "no_full_card_acceptance_in_this_message;previous_BM03_numeric_and_RP_proposals_remain_pending",
+  "native_render_and_copy_approval": "exact_icon_layout_colors_font_damage_attribution_mixed_bonuses_and_new_display_copy_pending_review",
+  "runtime_integration": "not_integrated"
+}

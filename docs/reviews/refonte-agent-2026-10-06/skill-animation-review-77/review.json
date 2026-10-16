@@ -1,0 +1,47 @@
+{
+  "batch": "ANIM-S36",
+  "date": "2026-10-15",
+  "status": "partial_visual_feedback",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 81,
+      "id": "SU04",
+      "title": "Régénération",
+      "variant": "SU04-A01",
+      "visual_feedback": "liked and preserved unchanged"
+    },
+    {
+      "number": 82,
+      "id": "SU05",
+      "title": "Purge",
+      "variant": "SU05-A01",
+      "visual_feedback": "rejected; revision SU05-A02 in review78 awaits approval"
+    }
+  ],
+  "rank": 11,
+  "scope": "Prepared visual fixtures; current catalogue curves, 100 maximum HP and 40 initial HP. Regeneration shows three paid pulses, real-time idle stability and interruption by an 8 HP physical wound. Purge removes two prepared compatible statuses, never heals and does not prevent a new poison status. No recency tie or engine poison/burn damage simulation is decided.",
+  "generation": "built-in imagegen; genuine alpha and unchanged final PNG sources",
+  "status_markers": "Reused approved SU04 buff icon, cropped green droplet from SM02 and fire drawing from FE06. Presentation only, no catalogue icon file is modified.",
+  "persistent_feedback": "Repair filaments animate as long as the prepared channel remains active, including manual wait. Purge is a brief descending cleansing sweep. Common hit reaction and approved blood appear on the physical interruption; no blood on cleansing or poison application.",
+  "preview": "../apercu-animations.html",
+  "laboratory": "--apercu-laboratoire-competences --lot-soins-survie",
+  "remaining_unshown_before": 31,
+  "remaining_unshown_after_preparation": 29,
+  "verification": {
+    "build": "cargo build --locked --bin project-rl",
+    "formatting": true,
+    "native_views": 12,
+    "browser_file_scheme": true,
+    "pixel_equality": true,
+    "manual_idle_stable": true,
+    "interruption": true,
+    "no_purge_healing": true,
+    "temporary_captures_removed": true,
+    "temporary_bytes_removed": 179635267.0,
+    "source_sha256": {
+      "regeneration": "6F5BCC069ECF6E76E0163675A86B3DAC6C4A31CA0572B42DE9DCBA52A4E00ACB",
+      "purge": "5EABD427A4BAFED49C88FEDB136FBB83B2E9708C1A2FCF4113FD400C64746145"
+    }
+  }
+}

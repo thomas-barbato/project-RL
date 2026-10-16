@@ -1,0 +1,57 @@
+{
+  "batch": "ANIM-S24",
+  "date": "2026-10-14",
+  "visual_status": "awaiting_visual_review",
+  "campaign_integration": false,
+  "compile": "cargo build --locked: passed on final renderer",
+  "targeted_tests": "Six shot_buffs tests passed; visual mark-reaction change validated separately by native capture.",
+  "format": "cargo fmt --all -- --check: passed",
+  "diff_check": "Scoped git diff --check: passed",
+  "native_capture": {
+    "tile": 64,
+    "world": [
+      576,
+      576
+    ],
+    "gpu_readback": [
+      640,
+      720
+    ],
+    "views": 25,
+    "frames_per_view": 160,
+    "fps": 24,
+    "readbacks_with_controls": 4600,
+    "resampling_of_native_capture": false,
+    "PNG_pixels_identical_to_native_readbacks": true,
+    "mark_reaction_revision": "Fifteen mark views recaptured with shared negative reaction; ten mastery views retained unchanged."
+  },
+  "animations": 26,
+  "checked": [
+    "instant mark with no turn, held between actions",
+    "next shot consumption even on miss, burst precision snapshot",
+    "replacement and six-turn expiry",
+    "cast refusals and preserved resource/cooldown on refusal",
+    "permanent mastery without temporary buff",
+    "melee and drone exclusions",
+    "physical blood and shared negative/hit reaction",
+    "world walls and four directions",
+    "numeric total includes bonus and physical component"
+  ],
+  "full_engine_suite_or_release_build": "Not run for this isolated review.",
+  "browser_runtime": "Not automated; native captures inspected and offline controls checked separately.",
+  "rule_scope": "Existing accepted cards retained. Fixed hits20/28/60 and precision snapshot1.35 establish no actual combat accuracy roll, equipment damage range or variance, defense, real AI, perception, or action resolution order.",
+  "excluded_draft": "native-mark-reaction-draft is unpresented and excluded from future visual approval.",
+  "pending": "Real precision/damage formulas, mage/form/heavy weapon eligibility, multi-target bursts, actual analysis UI and dense combat integration.",
+  "browser_controller": {
+    "controller": "passed",
+    "all_local_frame_paths": true,
+    "no_future_actions_or_idle_turns": true,
+    "mark_duration_consumption_miss_burst_replacement_and_expiry": true,
+    "atomic_cast_refusals": true,
+    "permanent_mastery_and_exclusions": true,
+    "responsive_comparison_scaled_hover_native_and_fullscreen": true,
+    "browser_runtime": "Not automated; native GPU captures and offline controls checked."
+  },
+  "gif_palette": "Eight directional GIF phases inspected at native scale; color error bounds passed.",
+  "prior_approved_artifacts": "7607 protected references remain byte-identical."
+}

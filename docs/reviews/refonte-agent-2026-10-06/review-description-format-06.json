@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-06",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/cooldown-acceptance-and-complete-design-decisions.json",
+  "latest_decisions_sha256": "65e8c73b5956f2876aa22af1b905a64f4cea6e2d6395535e10f855b7e1881726",
+  "runtime_integration": "not_integrated",
+  "batch_revision": 6,
+  "document": "docs/REVUE_DESCRIPTIFS_COMPETENCES_AGENT.md",
+  "document_sha256": "cab522949106aa6f4c6fecbb6869bc78d371d195acbc80f81f5adc6fbcfc2d93",
+  "blocks": [
+    {
+      "id": "CD01",
+      "title": "Trois parties sur chaque fiche",
+      "revision": 1,
+      "block_sha256": "b81a8a6a6b0169395c9c674ed83be7fdf7815bf23088172ff16908588d289f71",
+      "mechanic_approval": "explicit_user_requirements_recorded_proposed_details_pending",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "CD02",
+      "title": "Référence et résultat actuel",
+      "revision": 2,
+      "block_sha256": "bfa90dcca88db43b6e86464e8f50aaaf3be3d4ef9dc6ec51563630666d39b465",
+      "mechanic_approval": "explicit_user_requirements_recorded_proposed_details_pending",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "CD03",
+      "title": "Validation individuelle",
+      "revision": 6,
+      "block_sha256": "01c84640b11a95c3322c008d2ac4d6b897aee31951be3f3e5b22bc4f2f92ddde",
+      "mechanic_approval": "explicit_user_requirements_recorded_proposed_details_pending",
+      "runtime_integration": "not_integrated"
+    }
+  ],
+  "accepted_requirements": {
+    "user_requirement": "Texte descrptif roleplay, effets chiffrés de ce que fais la compétence par defaut et affiche aussi la valeur actuelle",
+    "required_parts": [
+      "roleplay description",
+      "default numeric effects",
+      "current numeric values"
+    ],
+    "each_final_description_requires_user_review": true,
+    "default_reference_definition": "rank 1 before other bonuses, as displayed in the accepted first review"
+  },
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-description-format-05.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-description-format-revision-05.md",
+  "first_melee_review": "docs/REVUE_MELEE_AGENT_LOT_03.md",
+  "survival_review": "docs/REVUE_SURVIE_AGENT_LOT_04.md",
+  "drone_review": "docs/REVUE_DRONES_AGENT_LOT_05.md",
+  "afflictions_review": "docs/REVUE_AFFAIBLISSEMENTS_AGENT_LOT_06.md",
+  "complete_design_document": "docs/CADRAGE_COMPETENCES_AGENT_COMPLET.md",
+  "next_stage": "individual descriptions and approval after completed numeric design"
+}

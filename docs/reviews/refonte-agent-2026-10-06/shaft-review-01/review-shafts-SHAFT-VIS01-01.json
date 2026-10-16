@@ -1,0 +1,2634 @@
+{
+  "date": "2026-10-10",
+  "review_id": "SHAFT-VIS01",
+  "revision": 1,
+  "status": "numbered_native_review_pending_pixels_and_concrete_grips",
+  "direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/caster-shield-heavy-expansion-directions-01.json",
+    "reference_sha256": "463e682fbf175117b92c0daf4fb85998db0464114c6f788e0ce705d98c3d7ae6"
+  },
+  "series": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipment-series-EQUIP-SERIES01-05.json",
+    "reference_sha256": "b87860946109460157a82eb45efe5955d47fe4e83831b9238e1625d2e196289a"
+  },
+  "source_rig": {
+    "reference": "assets/sprites/cyberpunk/agent-rigs/manifest.json",
+    "reference_sha256": "85f7165a3d9ce2eaa27fd066bccf184115b695171e9f091a4c44ff28cb97573a"
+  },
+  "source_weapon_bank": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-silhouette-review-03/review-weapon-silhouettes-WEAPON-SIL01-03.json",
+    "reference_sha256": "e51d2c67a4cd92b2d88405d39ecd89b4711c357aaa989204383774c30e934868"
+  },
+  "arm_source": {
+    "path": "assets/sprites/cyberpunk/agent-rigs/arms-64.png",
+    "binary_sha256": "a7778444dd0f7249e056799196f099eaab37ccd627e082b81058ef0f75f6cb20"
+  },
+  "finger_source": {
+    "path": "assets/sprites/cyberpunk/agent-rigs/fingers-64.png",
+    "binary_sha256": "aa90c2694444b24eaab1d22113f70181b13dd4d1fd71f10b5b3aeee08ffab48b"
+  },
+  "reused_pose_family": 2,
+  "generator": {
+    "path": "tools/archive/refonte-agent-2026-10-06/build_shaft_review_01.py",
+    "binary_sha256": "fbb429b5c96a36177cae76f70b70e2dee0fd9a03a4b0ec3a9eb310c28607ceca"
+  },
+  "template": {
+    "path": "artifacts/refonte-agent-2026-10-06/shaft_gallery_template_01.html",
+    "binary_sha256": "5688610b891361dc6ed2e8f37dc21965c4b53f405f77187ad6c06fee5ea175cf"
+  },
+  "prompts": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/shaft-review-01/prompts.json",
+    "reference_sha256": "43cbfd3b6f45f6b4a1ca628c87feefa8947396d1df697da7086e671e4a8353eb"
+  },
+  "candidates": [
+    {
+      "candidate_id": "EQ-H01",
+      "review_number": 1,
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/sources/EQ-H01.png",
+        "binary_sha256": "2bb9765ab1827271289b7ca9b0402fbef07f060a19a24fc5c81ca979cc795ea0"
+      },
+      "source_crop": [
+        497,
+        51,
+        686,
+        1281
+      ],
+      "held_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H01-held.png",
+        "binary_sha256": "0ecfb14720920bc48d492c2b2d29216a6bb2c6a7632501976e4387a43861ff47",
+        "dimensions": [
+          9,
+          34
+        ]
+      },
+      "inventory_tile": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H01-inventory-native32.png",
+        "binary_sha256": "c259a6d081dd2b097f2d90b56aeb696e81ae0e302ae109f53dced1aeeed07e79",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "held_grips": [
+        [
+          4,
+          26
+        ],
+        [
+          4,
+          21
+        ]
+      ],
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "opaque_colors": [
+        [
+          0,
+          2,
+          9
+        ],
+        [
+          3,
+          5,
+          12
+        ],
+        [
+          6,
+          9,
+          19
+        ],
+        [
+          19,
+          20,
+          25
+        ],
+        [
+          38,
+          39,
+          42
+        ],
+        [
+          62,
+          64,
+          66
+        ],
+        [
+          75,
+          224,
+          226
+        ],
+        [
+          86,
+          89,
+          91
+        ],
+        [
+          123,
+          125,
+          128
+        ],
+        [
+          148,
+          150,
+          153
+        ],
+        [
+          234,
+          234,
+          235
+        ],
+        [
+          248,
+          248,
+          249
+        ]
+      ],
+      "conditioning": "nearest;source-derived_12-color_palette_no_dither;binary_alpha_128",
+      "visual_approval": "pending_explicit_user_review",
+      "source_prompt": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/shaft-review-01/prompts.json",
+        "reference_sha256": "43cbfd3b6f45f6b4a1ca628c87feefa8947396d1df697da7086e671e4a8353eb"
+      }
+    },
+    {
+      "candidate_id": "EQ-H02",
+      "review_number": 2,
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/sources/EQ-H02.png",
+        "binary_sha256": "8d3bfe2998e74c85dd2c7b95550acaba730dacf119b6ea1964a04a4775ee80fb"
+      },
+      "source_crop": [
+        543,
+        32,
+        694,
+        1240
+      ],
+      "held_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H02-held.png",
+        "binary_sha256": "509f429475fc110764a7cb30af4470a9a75facba4a4d69b0db94a81fc220d090",
+        "dimensions": [
+          9,
+          34
+        ]
+      },
+      "inventory_tile": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H02-inventory-native32.png",
+        "binary_sha256": "2610f02d05861facf3cee01b1049d970ccf3449a2c3f9de6f245205883f81ac3",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "held_grips": [
+        [
+          4,
+          26
+        ],
+        [
+          4,
+          21
+        ]
+      ],
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "opaque_colors": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          4,
+          4,
+          4
+        ],
+        [
+          27,
+          26,
+          25
+        ],
+        [
+          41,
+          42,
+          41
+        ],
+        [
+          70,
+          71,
+          74
+        ],
+        [
+          112,
+          10,
+          7
+        ],
+        [
+          129,
+          128,
+          135
+        ],
+        [
+          192,
+          195,
+          201
+        ],
+        [
+          224,
+          226,
+          230
+        ]
+      ],
+      "conditioning": "nearest;source-derived_12-color_palette_no_dither;binary_alpha_128",
+      "visual_approval": "pending_explicit_user_review",
+      "source_prompt": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/shaft-review-01/prompts.json",
+        "reference_sha256": "43cbfd3b6f45f6b4a1ca628c87feefa8947396d1df697da7086e671e4a8353eb"
+      }
+    },
+    {
+      "candidate_id": "EQ-H03",
+      "review_number": 3,
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/sources/EQ-H03.png",
+        "binary_sha256": "c1542edab6cd5f6afd7ea4a3a703bede45535760011e6ed38ec99de9e637b9fd"
+      },
+      "source_crop": [
+        154,
+        110,
+        559,
+        2096
+      ],
+      "held_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H03-held.png",
+        "binary_sha256": "4b6d7b3fa7a081255755bb4e110dc38c87ae1234b5800477a21bbfe6223851df",
+        "dimensions": [
+          11,
+          34
+        ]
+      },
+      "inventory_tile": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H03-inventory-native32.png",
+        "binary_sha256": "8532fcbb33a3213750dabf04fc4af31b3872aca289c3b50e7fc7c5bad3c9ad27",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "held_grips": [
+        [
+          5,
+          26
+        ],
+        [
+          5,
+          21
+        ]
+      ],
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "opaque_colors": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          5,
+          5,
+          4
+        ],
+        [
+          34,
+          125,
+          51
+        ],
+        [
+          41,
+          41,
+          43
+        ],
+        [
+          54,
+          75,
+          66
+        ],
+        [
+          87,
+          92,
+          98
+        ],
+        [
+          120,
+          125,
+          132
+        ],
+        [
+          144,
+          196,
+          158
+        ],
+        [
+          238,
+          238,
+          240
+        ]
+      ],
+      "conditioning": "nearest;source-derived_12-color_palette_no_dither;binary_alpha_128",
+      "visual_approval": "pending_explicit_user_review",
+      "source_prompt": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/shaft-review-01/prompts.json",
+        "reference_sha256": "43cbfd3b6f45f6b4a1ca628c87feefa8947396d1df697da7086e671e4a8353eb"
+      }
+    },
+    {
+      "candidate_id": "EQ-H04",
+      "review_number": 4,
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/sources/EQ-H04.png",
+        "binary_sha256": "80a2765b500cdc5b3048af71c6d691e6fac6d37b3786cb1afc8070c585595b06"
+      },
+      "source_crop": [
+        505,
+        26,
+        730,
+        1251
+      ],
+      "held_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H04-held.png",
+        "binary_sha256": "c32e9565314fcfd42c6d7965a8f7f86d01f3fdfcb3057286920ee704a04b9ce8",
+        "dimensions": [
+          11,
+          34
+        ]
+      },
+      "inventory_tile": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H04-inventory-native32.png",
+        "binary_sha256": "e20554e6a31b4a0291d8cb5f1c209b4bcb71ef20fcaaffd0f58e157210347676",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "held_grips": [
+        [
+          5,
+          26
+        ],
+        [
+          5,
+          21
+        ]
+      ],
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "opaque_colors": [
+        [
+          11,
+          11,
+          15
+        ],
+        [
+          14,
+          14,
+          19
+        ],
+        [
+          15,
+          15,
+          21
+        ],
+        [
+          20,
+          20,
+          27
+        ],
+        [
+          22,
+          29,
+          69
+        ],
+        [
+          38,
+          44,
+          76
+        ],
+        [
+          66,
+          70,
+          88
+        ],
+        [
+          93,
+          95,
+          102
+        ],
+        [
+          95,
+          101,
+          117
+        ],
+        [
+          118,
+          120,
+          127
+        ],
+        [
+          156,
+          159,
+          167
+        ],
+        [
+          214,
+          215,
+          217
+        ]
+      ],
+      "conditioning": "nearest;source-derived_12-color_palette_no_dither;binary_alpha_128",
+      "visual_approval": "pending_explicit_user_review",
+      "source_prompt": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/shaft-review-01/prompts.json",
+        "reference_sha256": "43cbfd3b6f45f6b4a1ca628c87feefa8947396d1df697da7086e671e4a8353eb"
+      }
+    },
+    {
+      "candidate_id": "EQ-H05",
+      "review_number": 5,
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/sources/EQ-H05.png",
+        "binary_sha256": "c52df8fd6a2844fcaf864a173872767cc9943d70775efd83ed702f38694bc451"
+      },
+      "source_crop": [
+        116,
+        123,
+        665,
+        1899
+      ],
+      "held_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H05-held.png",
+        "binary_sha256": "0f3d281e9cd5b75b8601d7125c50951d15d7cc81e4e03974e319656b3a79dc55",
+        "dimensions": [
+          13,
+          34
+        ]
+      },
+      "inventory_tile": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H05-inventory-native32.png",
+        "binary_sha256": "e0bf4353db71a4c050d97ddc315b84bc295a1ad3dcc8c1fbce2cbb6b76758f7a",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "held_grips": [
+        [
+          6,
+          26
+        ],
+        [
+          6,
+          21
+        ]
+      ],
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "opaque_colors": [
+        [
+          9,
+          8,
+          9
+        ],
+        [
+          12,
+          12,
+          11
+        ],
+        [
+          13,
+          13,
+          13
+        ],
+        [
+          16,
+          15,
+          15
+        ],
+        [
+          22,
+          22,
+          21
+        ],
+        [
+          59,
+          59,
+          60
+        ],
+        [
+          60,
+          34,
+          19
+        ],
+        [
+          105,
+          106,
+          111
+        ],
+        [
+          131,
+          133,
+          138
+        ],
+        [
+          157,
+          144,
+          127
+        ],
+        [
+          201,
+          189,
+          170
+        ]
+      ],
+      "conditioning": "nearest;source-derived_12-color_palette_no_dither;binary_alpha_128",
+      "visual_approval": "pending_explicit_user_review",
+      "source_prompt": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/shaft-review-01/prompts.json",
+        "reference_sha256": "43cbfd3b6f45f6b4a1ca628c87feefa8947396d1df697da7086e671e4a8353eb"
+      }
+    },
+    {
+      "candidate_id": "EQ-H06",
+      "review_number": 6,
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/sources/EQ-H06.png",
+        "binary_sha256": "4e620c44bff410a885b2605fb7a604b62d3500ab64527beec741465c454ff736"
+      },
+      "source_crop": [
+        190,
+        31,
+        526,
+        2174
+      ],
+      "held_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H06-held.png",
+        "binary_sha256": "80317204bbfabec3de432941b102d55309c34b40230ee88c253355f54e628c50",
+        "dimensions": [
+          11,
+          34
+        ]
+      },
+      "inventory_tile": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/EQ-H06-inventory-native32.png",
+        "binary_sha256": "447f4c8c6e5cc4debb2bc4afb38e36cf28121010351ebb3642553e500eb1bac6",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "held_grips": [
+        [
+          5,
+          26
+        ],
+        [
+          5,
+          21
+        ]
+      ],
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "opaque_colors": [
+        [
+          13,
+          12,
+          15
+        ],
+        [
+          17,
+          20,
+          26
+        ],
+        [
+          21,
+          24,
+          29
+        ],
+        [
+          22,
+          24,
+          30
+        ],
+        [
+          27,
+          29,
+          35
+        ],
+        [
+          29,
+          23,
+          41
+        ],
+        [
+          61,
+          62,
+          68
+        ],
+        [
+          91,
+          92,
+          98
+        ],
+        [
+          104,
+          56,
+          149
+        ],
+        [
+          126,
+          127,
+          132
+        ],
+        [
+          162,
+          163,
+          167
+        ],
+        [
+          224,
+          224,
+          224
+        ]
+      ],
+      "conditioning": "nearest;source-derived_12-color_palette_no_dither;binary_alpha_128",
+      "visual_approval": "pending_explicit_user_review",
+      "source_prompt": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/shaft-review-01/prompts.json",
+        "reference_sha256": "43cbfd3b6f45f6b4a1ca628c87feefa8947396d1df697da7086e671e4a8353eb"
+      }
+    }
+  ],
+  "placements": [
+    {
+      "candidate_id": "EQ-H01",
+      "class_number": 1,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-weapon.png",
+        "binary_sha256": "eb5afa6d036852c8fb500a94f233ab350efe544b77d06a8cc67e6b7ff7620d71",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 2,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-arms.png",
+        "binary_sha256": "4f92a3276931bffe5abc6fd7669794aa204cb914b97b52e28a997bda32a54942",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H01",
+      "class_number": 2,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-weapon.png",
+        "binary_sha256": "eb5afa6d036852c8fb500a94f233ab350efe544b77d06a8cc67e6b7ff7620d71",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 27,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C2-arms.png",
+        "binary_sha256": "eb29ab391ae89822104ec393850d7b2de55097c06b050cb2411888dbc80be600",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H01",
+      "class_number": 3,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-weapon.png",
+        "binary_sha256": "eb5afa6d036852c8fb500a94f233ab350efe544b77d06a8cc67e6b7ff7620d71",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 52,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C3-arms.png",
+        "binary_sha256": "b395515113169b13ed79c97abcf8243c09fea2643294a3ee5a82591e72ae22d8",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H01",
+      "class_number": 4,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-weapon.png",
+        "binary_sha256": "eb5afa6d036852c8fb500a94f233ab350efe544b77d06a8cc67e6b7ff7620d71",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 77,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C4-arms.png",
+        "binary_sha256": "2c430de5eb8d8dc6961f9c3258d808a139ea40be5723171af0f54f9e88c9244b",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H01",
+      "class_number": 5,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-weapon.png",
+        "binary_sha256": "eb5afa6d036852c8fb500a94f233ab350efe544b77d06a8cc67e6b7ff7620d71",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 102,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C5-arms.png",
+        "binary_sha256": "836803a1e98aff0dadce1d1fc5d7e8e6b02406a902d8e1c1381ec98cc5f75b02",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H02",
+      "class_number": 1,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H02-C1-weapon.png",
+        "binary_sha256": "7395c433c3e6f5b4927b35265c5a69a2edb884c68218503c34964b24a80af192",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        16,
+        15
+      ],
+      "approved_arm_atlas_index": 2,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-arms.png",
+        "binary_sha256": "4f92a3276931bffe5abc6fd7669794aa204cb914b97b52e28a997bda32a54942",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H02",
+      "class_number": 2,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H02-C1-weapon.png",
+        "binary_sha256": "7395c433c3e6f5b4927b35265c5a69a2edb884c68218503c34964b24a80af192",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        16,
+        15
+      ],
+      "approved_arm_atlas_index": 27,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C2-arms.png",
+        "binary_sha256": "eb29ab391ae89822104ec393850d7b2de55097c06b050cb2411888dbc80be600",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H02",
+      "class_number": 3,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H02-C1-weapon.png",
+        "binary_sha256": "7395c433c3e6f5b4927b35265c5a69a2edb884c68218503c34964b24a80af192",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        16,
+        15
+      ],
+      "approved_arm_atlas_index": 52,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C3-arms.png",
+        "binary_sha256": "b395515113169b13ed79c97abcf8243c09fea2643294a3ee5a82591e72ae22d8",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H02",
+      "class_number": 4,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H02-C1-weapon.png",
+        "binary_sha256": "7395c433c3e6f5b4927b35265c5a69a2edb884c68218503c34964b24a80af192",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        16,
+        15
+      ],
+      "approved_arm_atlas_index": 77,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C4-arms.png",
+        "binary_sha256": "2c430de5eb8d8dc6961f9c3258d808a139ea40be5723171af0f54f9e88c9244b",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H02",
+      "class_number": 5,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H02-C1-weapon.png",
+        "binary_sha256": "7395c433c3e6f5b4927b35265c5a69a2edb884c68218503c34964b24a80af192",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        16,
+        15
+      ],
+      "approved_arm_atlas_index": 102,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C5-arms.png",
+        "binary_sha256": "836803a1e98aff0dadce1d1fc5d7e8e6b02406a902d8e1c1381ec98cc5f75b02",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H03",
+      "class_number": 1,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H03-C1-weapon.png",
+        "binary_sha256": "546110d2385519c72b4d765260d107a166d3cca3d662d4c078a0cf5b125475d4",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 2,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-arms.png",
+        "binary_sha256": "4f92a3276931bffe5abc6fd7669794aa204cb914b97b52e28a997bda32a54942",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H03",
+      "class_number": 2,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H03-C1-weapon.png",
+        "binary_sha256": "546110d2385519c72b4d765260d107a166d3cca3d662d4c078a0cf5b125475d4",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 27,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C2-arms.png",
+        "binary_sha256": "eb29ab391ae89822104ec393850d7b2de55097c06b050cb2411888dbc80be600",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H03",
+      "class_number": 3,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H03-C1-weapon.png",
+        "binary_sha256": "546110d2385519c72b4d765260d107a166d3cca3d662d4c078a0cf5b125475d4",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 52,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C3-arms.png",
+        "binary_sha256": "b395515113169b13ed79c97abcf8243c09fea2643294a3ee5a82591e72ae22d8",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H03",
+      "class_number": 4,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H03-C1-weapon.png",
+        "binary_sha256": "546110d2385519c72b4d765260d107a166d3cca3d662d4c078a0cf5b125475d4",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 77,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C4-arms.png",
+        "binary_sha256": "2c430de5eb8d8dc6961f9c3258d808a139ea40be5723171af0f54f9e88c9244b",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H03",
+      "class_number": 5,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H03-C1-weapon.png",
+        "binary_sha256": "546110d2385519c72b4d765260d107a166d3cca3d662d4c078a0cf5b125475d4",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 102,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C5-arms.png",
+        "binary_sha256": "836803a1e98aff0dadce1d1fc5d7e8e6b02406a902d8e1c1381ec98cc5f75b02",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H04",
+      "class_number": 1,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H04-C1-weapon.png",
+        "binary_sha256": "d764d7f05023bc27346c8af85d6d7c0877be051a7ebef117d8d3a89a437b992e",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 2,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-arms.png",
+        "binary_sha256": "4f92a3276931bffe5abc6fd7669794aa204cb914b97b52e28a997bda32a54942",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H04",
+      "class_number": 2,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H04-C1-weapon.png",
+        "binary_sha256": "d764d7f05023bc27346c8af85d6d7c0877be051a7ebef117d8d3a89a437b992e",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 27,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C2-arms.png",
+        "binary_sha256": "eb29ab391ae89822104ec393850d7b2de55097c06b050cb2411888dbc80be600",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H04",
+      "class_number": 3,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H04-C1-weapon.png",
+        "binary_sha256": "d764d7f05023bc27346c8af85d6d7c0877be051a7ebef117d8d3a89a437b992e",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 52,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C3-arms.png",
+        "binary_sha256": "b395515113169b13ed79c97abcf8243c09fea2643294a3ee5a82591e72ae22d8",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H04",
+      "class_number": 4,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H04-C1-weapon.png",
+        "binary_sha256": "d764d7f05023bc27346c8af85d6d7c0877be051a7ebef117d8d3a89a437b992e",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 77,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C4-arms.png",
+        "binary_sha256": "2c430de5eb8d8dc6961f9c3258d808a139ea40be5723171af0f54f9e88c9244b",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H04",
+      "class_number": 5,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H04-C1-weapon.png",
+        "binary_sha256": "d764d7f05023bc27346c8af85d6d7c0877be051a7ebef117d8d3a89a437b992e",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 102,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C5-arms.png",
+        "binary_sha256": "836803a1e98aff0dadce1d1fc5d7e8e6b02406a902d8e1c1381ec98cc5f75b02",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H05",
+      "class_number": 1,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H05-C1-weapon.png",
+        "binary_sha256": "b46c6f0133c3db36522664788205b436dcec85f6fda25b49bbe07582d242ce18",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 2,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-arms.png",
+        "binary_sha256": "4f92a3276931bffe5abc6fd7669794aa204cb914b97b52e28a997bda32a54942",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H05",
+      "class_number": 2,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H05-C1-weapon.png",
+        "binary_sha256": "b46c6f0133c3db36522664788205b436dcec85f6fda25b49bbe07582d242ce18",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 27,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C2-arms.png",
+        "binary_sha256": "eb29ab391ae89822104ec393850d7b2de55097c06b050cb2411888dbc80be600",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H05",
+      "class_number": 3,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H05-C1-weapon.png",
+        "binary_sha256": "b46c6f0133c3db36522664788205b436dcec85f6fda25b49bbe07582d242ce18",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 52,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C3-arms.png",
+        "binary_sha256": "b395515113169b13ed79c97abcf8243c09fea2643294a3ee5a82591e72ae22d8",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H05",
+      "class_number": 4,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H05-C1-weapon.png",
+        "binary_sha256": "b46c6f0133c3db36522664788205b436dcec85f6fda25b49bbe07582d242ce18",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 77,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C4-arms.png",
+        "binary_sha256": "2c430de5eb8d8dc6961f9c3258d808a139ea40be5723171af0f54f9e88c9244b",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H05",
+      "class_number": 5,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H05-C1-weapon.png",
+        "binary_sha256": "b46c6f0133c3db36522664788205b436dcec85f6fda25b49bbe07582d242ce18",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 102,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C5-arms.png",
+        "binary_sha256": "836803a1e98aff0dadce1d1fc5d7e8e6b02406a902d8e1c1381ec98cc5f75b02",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H06",
+      "class_number": 1,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H06-C1-weapon.png",
+        "binary_sha256": "e50d8d2986b268ecb16f8d93be6e0d8b9b49a30c1d52bc830f8cabf186ff3ec3",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 2,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-arms.png",
+        "binary_sha256": "4f92a3276931bffe5abc6fd7669794aa204cb914b97b52e28a997bda32a54942",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H06",
+      "class_number": 2,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H06-C1-weapon.png",
+        "binary_sha256": "e50d8d2986b268ecb16f8d93be6e0d8b9b49a30c1d52bc830f8cabf186ff3ec3",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 27,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C2-arms.png",
+        "binary_sha256": "eb29ab391ae89822104ec393850d7b2de55097c06b050cb2411888dbc80be600",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H06",
+      "class_number": 3,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H06-C1-weapon.png",
+        "binary_sha256": "e50d8d2986b268ecb16f8d93be6e0d8b9b49a30c1d52bc830f8cabf186ff3ec3",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 52,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C3-arms.png",
+        "binary_sha256": "b395515113169b13ed79c97abcf8243c09fea2643294a3ee5a82591e72ae22d8",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H06",
+      "class_number": 4,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H06-C1-weapon.png",
+        "binary_sha256": "e50d8d2986b268ecb16f8d93be6e0d8b9b49a30c1d52bc830f8cabf186ff3ec3",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 77,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C4-arms.png",
+        "binary_sha256": "2c430de5eb8d8dc6961f9c3258d808a139ea40be5723171af0f54f9e88c9244b",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    },
+    {
+      "candidate_id": "EQ-H06",
+      "class_number": 5,
+      "weapon_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H06-C1-weapon.png",
+        "binary_sha256": "e50d8d2986b268ecb16f8d93be6e0d8b9b49a30c1d52bc830f8cabf186ff3ec3",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "canvas_grips": [
+        [
+          32,
+          38
+        ],
+        [
+          35,
+          34
+        ]
+      ],
+      "angle_from_vertical": -36.86989764584402,
+      "finger_weapon_contacts": [
+        14,
+        12
+      ],
+      "approved_arm_atlas_index": 102,
+      "arm_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C5-arms.png",
+        "binary_sha256": "836803a1e98aff0dadce1d1fc5d7e8e6b02406a902d8e1c1381ec98cc5f75b02",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "finger_layer": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/layers/EQ-H01-C1-fingers.png",
+        "binary_sha256": "e4989f623685dd258b6967b6ad4901c6fbf0d7694be2496c2ae86a32057f2099",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "new_arm_or_finger_pixels": 0,
+      "clipped_weapon_pixels": 0
+    }
+  ],
+  "compositions": [
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H01-C1.png",
+      "binary_sha256": "29e1d44f50a0fab150e44e0133527ec3e778474064cce5d390fc9aae62239ccb",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H01",
+      "class_number": 1,
+      "class_name": "Bastion",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-1-native32.png",
+        "binary_sha256": "1c6874905505253d8f39adffb5b0bb0b8d5eb43ddde4c65d7eeaa1e978654089"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H01-C2.png",
+      "binary_sha256": "f00cbfc6cad7b4c053f1e8f24507619ac71a8064819b9327b690646fc158900e",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H01",
+      "class_number": 2,
+      "class_name": "Technomancien",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-2-native32.png",
+        "binary_sha256": "c327a54abe7722212d3f06b427abe56a54acb0f6605e2595daa7778644bd27c0"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H01-C3.png",
+      "binary_sha256": "1947342cf76c8c0d4487a336951b4ee573ed88843106523954e44eeac75383b8",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H01",
+      "class_number": 3,
+      "class_name": "Traqueur",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-3-native32.png",
+        "binary_sha256": "37cc4ba091f3f5d44bf565cbfd588d681c90c30462184e35fa123a4829052dcd"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H01-C4.png",
+      "binary_sha256": "e93496a2527cf7319c18e1b0f24fe93f249efaf8e0ee2fede2511dc2e5338cc2",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H01",
+      "class_number": 4,
+      "class_name": "Arcaniste",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-4-native32.png",
+        "binary_sha256": "951409ff21176ef0ae377b71bde6f2e87a56b4884a9a830502b222123f3448c4"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H01-C5.png",
+      "binary_sha256": "cad445a6eb98cd75f8ba45a16fbd01fa1668048cdac58f3975cd1e5b1aedc4ce",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H01",
+      "class_number": 5,
+      "class_name": "Métamorphe",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-5-native32.png",
+        "binary_sha256": "778c6768088165bd8a40b3f3c9ed7f0ab575049d656766f39a5cbdf401f56fec"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H02-C1.png",
+      "binary_sha256": "053f348d858183b73167bd6cc675ff3bc5d0a0c2df6155b60fda0c9bfb1b88fb",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H02",
+      "class_number": 1,
+      "class_name": "Bastion",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-1-native32.png",
+        "binary_sha256": "1c6874905505253d8f39adffb5b0bb0b8d5eb43ddde4c65d7eeaa1e978654089"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H02-C2.png",
+      "binary_sha256": "b8c376fa816abf29dde99d44efdee0949f93ff292327a6df0d0235611b6a9a35",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H02",
+      "class_number": 2,
+      "class_name": "Technomancien",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-2-native32.png",
+        "binary_sha256": "c327a54abe7722212d3f06b427abe56a54acb0f6605e2595daa7778644bd27c0"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H02-C3.png",
+      "binary_sha256": "78e33b8aac3150fec53176c07b650c6ff3ebe286283452a38afd35a8d338ca6d",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H02",
+      "class_number": 3,
+      "class_name": "Traqueur",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-3-native32.png",
+        "binary_sha256": "37cc4ba091f3f5d44bf565cbfd588d681c90c30462184e35fa123a4829052dcd"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H02-C4.png",
+      "binary_sha256": "4bd7757a0342ada1ff243b6f238578f8d3e634f068a898862ba5d4ff20c47477",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H02",
+      "class_number": 4,
+      "class_name": "Arcaniste",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-4-native32.png",
+        "binary_sha256": "951409ff21176ef0ae377b71bde6f2e87a56b4884a9a830502b222123f3448c4"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H02-C5.png",
+      "binary_sha256": "56af9e8d938851d67e102a927c9ca881490522387cda74cb2b3c369d9c720109",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H02",
+      "class_number": 5,
+      "class_name": "Métamorphe",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-5-native32.png",
+        "binary_sha256": "778c6768088165bd8a40b3f3c9ed7f0ab575049d656766f39a5cbdf401f56fec"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H03-C1.png",
+      "binary_sha256": "d8f1cda2d58db9a809b4eb1d15a2c3cbbc500c4909af484e75210bfea4423d76",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H03",
+      "class_number": 1,
+      "class_name": "Bastion",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-1-native32.png",
+        "binary_sha256": "1c6874905505253d8f39adffb5b0bb0b8d5eb43ddde4c65d7eeaa1e978654089"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H03-C2.png",
+      "binary_sha256": "6867446cbeeff8b11428b493ab86564eed00638b7996c81340e498fd66aa5061",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H03",
+      "class_number": 2,
+      "class_name": "Technomancien",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-2-native32.png",
+        "binary_sha256": "c327a54abe7722212d3f06b427abe56a54acb0f6605e2595daa7778644bd27c0"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H03-C3.png",
+      "binary_sha256": "e0e51acf1e66151b163df2b36d7ee483d637d7025a4d9f7e46f3e79176d4f3e2",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H03",
+      "class_number": 3,
+      "class_name": "Traqueur",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-3-native32.png",
+        "binary_sha256": "37cc4ba091f3f5d44bf565cbfd588d681c90c30462184e35fa123a4829052dcd"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H03-C4.png",
+      "binary_sha256": "31d028bcab51c4135c4b0bb2048adf1f3cd2e5d543b81dbd96b30f06e1be5369",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H03",
+      "class_number": 4,
+      "class_name": "Arcaniste",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-4-native32.png",
+        "binary_sha256": "951409ff21176ef0ae377b71bde6f2e87a56b4884a9a830502b222123f3448c4"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H03-C5.png",
+      "binary_sha256": "bee62cb075f9b8b4825c9ab94726c0c19d8b32489ba912c00dfe596637f69ea5",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H03",
+      "class_number": 5,
+      "class_name": "Métamorphe",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-5-native32.png",
+        "binary_sha256": "778c6768088165bd8a40b3f3c9ed7f0ab575049d656766f39a5cbdf401f56fec"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H04-C1.png",
+      "binary_sha256": "b80b62e6774821c741cafdc8e54203095235b59ab355435606b83d4cace35f03",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H04",
+      "class_number": 1,
+      "class_name": "Bastion",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-1-native32.png",
+        "binary_sha256": "1c6874905505253d8f39adffb5b0bb0b8d5eb43ddde4c65d7eeaa1e978654089"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H04-C2.png",
+      "binary_sha256": "35f9b9e089584cc260a8edc31871d21ac7174716981f75f506b622835bbdc437",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H04",
+      "class_number": 2,
+      "class_name": "Technomancien",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-2-native32.png",
+        "binary_sha256": "c327a54abe7722212d3f06b427abe56a54acb0f6605e2595daa7778644bd27c0"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H04-C3.png",
+      "binary_sha256": "fcca85184818011b65425fd94471859e2da59a4bae0e18352d6a77d0842f1327",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H04",
+      "class_number": 3,
+      "class_name": "Traqueur",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-3-native32.png",
+        "binary_sha256": "37cc4ba091f3f5d44bf565cbfd588d681c90c30462184e35fa123a4829052dcd"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H04-C4.png",
+      "binary_sha256": "50911b298a7e350ac170c40e5338f70643934cc829ec7f111465eb4470ee2000",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H04",
+      "class_number": 4,
+      "class_name": "Arcaniste",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-4-native32.png",
+        "binary_sha256": "951409ff21176ef0ae377b71bde6f2e87a56b4884a9a830502b222123f3448c4"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H04-C5.png",
+      "binary_sha256": "487919104b6aabf33ce09a9c21e290047eea48a876b1df8ac6cf5e9a3959b1a2",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H04",
+      "class_number": 5,
+      "class_name": "Métamorphe",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-5-native32.png",
+        "binary_sha256": "778c6768088165bd8a40b3f3c9ed7f0ab575049d656766f39a5cbdf401f56fec"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H05-C1.png",
+      "binary_sha256": "c21acdd31d192978c040f5382f80dae8436fcec49e3363d865824e5873cecd2e",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H05",
+      "class_number": 1,
+      "class_name": "Bastion",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-1-native32.png",
+        "binary_sha256": "1c6874905505253d8f39adffb5b0bb0b8d5eb43ddde4c65d7eeaa1e978654089"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H05-C2.png",
+      "binary_sha256": "9aac87f20c2fe2f30faa63aeb9aa677934afd508ff6ad259c8881888ff0fb84c",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H05",
+      "class_number": 2,
+      "class_name": "Technomancien",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-2-native32.png",
+        "binary_sha256": "c327a54abe7722212d3f06b427abe56a54acb0f6605e2595daa7778644bd27c0"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H05-C3.png",
+      "binary_sha256": "ecb1f531cc60b3f3a38e81565e9849b4ddad169c3473edd8afeb200edb7f3ff4",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H05",
+      "class_number": 3,
+      "class_name": "Traqueur",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-3-native32.png",
+        "binary_sha256": "37cc4ba091f3f5d44bf565cbfd588d681c90c30462184e35fa123a4829052dcd"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H05-C4.png",
+      "binary_sha256": "9b8d9590ca824a737f452ebe6eb8dc2159a8787f08cccf61e56dd1326dbbd728",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H05",
+      "class_number": 4,
+      "class_name": "Arcaniste",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-4-native32.png",
+        "binary_sha256": "951409ff21176ef0ae377b71bde6f2e87a56b4884a9a830502b222123f3448c4"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H05-C5.png",
+      "binary_sha256": "139b91ee29c8872caf5deea81b9fe2acf1d18a9a742c1ea18a2be3491bc34af0",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H05",
+      "class_number": 5,
+      "class_name": "Métamorphe",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-5-native32.png",
+        "binary_sha256": "778c6768088165bd8a40b3f3c9ed7f0ab575049d656766f39a5cbdf401f56fec"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H06-C1.png",
+      "binary_sha256": "eb9f5630f7bc5dbb70dac847304ef5f513886c3c2d352614fd0340002add5e73",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H06",
+      "class_number": 1,
+      "class_name": "Bastion",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-1-native32.png",
+        "binary_sha256": "1c6874905505253d8f39adffb5b0bb0b8d5eb43ddde4c65d7eeaa1e978654089"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H06-C2.png",
+      "binary_sha256": "2717f912b6dd942e25ed23927268a88fb6a28d0588f2c680566d92c697f3a54f",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H06",
+      "class_number": 2,
+      "class_name": "Technomancien",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-2-native32.png",
+        "binary_sha256": "c327a54abe7722212d3f06b427abe56a54acb0f6605e2595daa7778644bd27c0"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H06-C3.png",
+      "binary_sha256": "853af54310b73eed293818328612df3ec9e1afb1b90e4b25b4a8cda2406a942d",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H06",
+      "class_number": 3,
+      "class_name": "Traqueur",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-3-native32.png",
+        "binary_sha256": "37cc4ba091f3f5d44bf565cbfd588d681c90c30462184e35fa123a4829052dcd"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H06-C4.png",
+      "binary_sha256": "3b072fca76bba5e161403d3ecd158aa70727a269bcffa989ae7f807ee4ab521c",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H06",
+      "class_number": 4,
+      "class_name": "Arcaniste",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-4-native32.png",
+        "binary_sha256": "951409ff21176ef0ae377b71bde6f2e87a56b4884a9a830502b222123f3448c4"
+      },
+      "outside_equipment_changes": 0
+    },
+    {
+      "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/frames/EQ-H06-C5.png",
+      "binary_sha256": "8ada416fe110314231dd5e7d7ce4ae1ef49a1ab4f1fbdcce40354fda49d8b63d",
+      "dimensions": [
+        64,
+        64
+      ],
+      "candidate_id": "EQ-H06",
+      "class_number": 5,
+      "class_name": "Métamorphe",
+      "source_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-5-native32.png",
+        "binary_sha256": "778c6768088165bd8a40b3f3c9ed7f0ab575049d656766f39a5cbdf401f56fec"
+      },
+      "outside_equipment_changes": 0
+    }
+  ],
+  "overview": {
+    "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/shafts-native-and-zoom.png",
+    "binary_sha256": "98bf5aca829a63333db3c7bf8c354828e74cb98f6a47ccea4f89ea699145d1b1",
+    "dimensions": [
+      1110,
+      705
+    ]
+  },
+  "readability": {
+    "path": "assets/source-art/refonte-agent-2026-10-06/shaft-review-01/shafts-readability-30-32.png",
+    "binary_sha256": "38d5ce1672f30d38746434786d777495a34106e454b175dd1b24e29fbcae17f1",
+    "dimensions": [
+      790,
+      625
+    ]
+  },
+  "gallery": {
+    "path": "artifacts/refonte-agent-2026-10-06/shaft-review-01/shaft-gallery-01.html",
+    "binary_sha256": "c43607c4184893dde5c50fbcc1a8ed303ab88017d8ceeb536efa847b95cbb5bb"
+  },
+  "qa": {
+    "candidates": 6,
+    "two_hand_placements": 30,
+    "compositions": 30,
+    "outside_equipment_changes": 0,
+    "new_arm_or_finger_pixels": 0,
+    "body_geometry_changes": 0,
+    "clipped_pixels": 0,
+    "alpha": "binary",
+    "weapon_palette_independent_from_armor": true
+  },
+  "approval": {
+    "family_direction": "accepted",
+    "new_pixels_and_concrete_grips": "pending",
+    "item_names_RP_stats": "not_defined_here"
+  },
+  "runtime_integration": "not_integrated;review_only"
+}

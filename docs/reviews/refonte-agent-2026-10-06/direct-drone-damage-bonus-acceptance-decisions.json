@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-09",
+  "review_id": "D08-DRONE01-ACCEPT01",
+  "user_reply": "je me demande si ca serait pas fun de créer un inventaire pour les pets aussi ? (ressucités / drones et eventuellement d'autres si nous en créons d'autres dans le futur)\n\nPar exemple pouvoir leurs donner des armes (compatibles avec leur vocation) et des armures ? et quand le pet meurt les objets qu'il portait tombent au sol .\n\nMais sinon oui, je valide tes recommendations.",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-direct-drone-damage-bonuses-01.json",
+  "source_proposal_sha256": "256067740506a2828a4a4a5e1fdda04d459e3830c1b143c1cfc09eebfd12aac4",
+  "accepted_shown_copy_markdown": "Les **bonus fixes des objets sont confirmés**, et le cumul proposé pour les sorts est validé.\n\n**D08 · Bonus de dégâts des drones — proposition**\n\nPour le **Traqueur, l’Artilleur et le Gardien** :\n\n- L’invocation fournit les dégâts de base au **rang effectif actuel**.\n- Les bonus fixes compatibles s’ajoutent d’abord, dans leur type de dégâts.\n- Les bonus en pourcentage d’**Intelligence, passifs, équipement et buffs dédiés aux drones** s’additionnent, sans plafond général.\n- Les bonus réservés à un type renforcent uniquement les dégâts de ce type.\n\nL’Intelligence conserve son bonus validé : **+1 % de dégâts par point au-dessus de 5**.\n\n**Exemple fictif**\n\n- Drone : **25 dégâts de base**.\n- Intelligence 25 : **+20 %**.\n- Algorithmes de combat améliorés, rang 11 : **+45 %**.\n- Équipement renforçant les drones : **+15 %**.\n\n**Bonus total : +80 %.**\n**Dégâts actuels : 45**, avant les défenses de la cible.\n\nCe cumul additif servira à recalculer les valeurs des anciennes fiches avec le coefficient d’Intelligence validé.\n\nLes bonus personnels de mêlée, de tir ou de sorts ne renforcent pas automatiquement les drones. L’Éclaireur et la Mule conservent leurs fonctions sans attaque.\n\nLe bonus de dégâts ne modifie pas la vision, la capacité de transport, les coûts ou les recharges. Les PV des drones feront l’objet du calcul suivant.\n\nLes chiffres de l’exemple ne créent aucun objet. **Ce cumul pour les drones reste à valider.**",
+  "accepted_shown_copy_sha256": "439d95f87f4b4d50c35f5811101d50280dd7d69b0600cbec1f87762d5297be27",
+  "accepted_shown_rules": {
+    "scope": "direct_damage_of_controlled_armed_drones_Traqueur_D58_Artilleur_D59_Gardien_D66;other_sources_not_implicitly_extended",
+    "rank_base": "use_base_drone_damage_from_invocation_current_effective_rank_before_attribute_and_other_damage_modifiers",
+    "flat_bonus_order": "add_eligible_drone_flat_damage_bonus_to_its_damage_family_before_percent_pool",
+    "percentage_pool": "sum_eligible_Intelligence_armed_drone_passive_equipment_and_active_buff_percentage_point_damage_bonuses_apply_once_to_base_plus_flat_components",
+    "Intelligence": "retain_accepted_one_percentage_point_drone_damage_per_point_above_reference5",
+    "element_eligibility": "type_specific_bonus_only_affects_matching_drone_damage_component",
+    "general_positive_percentage_bonus_upper_cap": null,
+    "player_bonus_eligibility": "personal_melee_ranged_or_spell_damage_bonuses_not_automatically_eligible;gear_or_buff_must_apply_to_drones",
+    "unarmed_models": "damage_bonuses_do_not_create_attacks_for_Eclaireur_or_Mule",
+    "non_damage_parameters": "damage_pool_does_not_change_vision_transport_capacity_cost_or_cooldown;drone_HP_order_review_follows",
+    "old_profile_recalculation": "recalculate_old_illustrative_drone_damage_snapshots_under_this_additive_pool_and_already_accepted_Intelligence_coefficient_if_pool_accepted;do_not_rewrite_historical_skill_cards_or_infer_full_rank_curves"
+  },
+  "accepted_examples": {
+    "scope": "fictional_drone_base_damage_Intelligence_and_equipment;O03_rank11_45_percent_preserved_from_shown_card;no_actual_loot_affix_created",
+    "base_direct_damage": 25,
+    "Intelligence": 25,
+    "reference_Intelligence": 5,
+    "Intelligence_bonus_percent": 20,
+    "O03_effective_rank": 11,
+    "O03_damage_bonus_percent": 45,
+    "eligible_drone_equipment_bonus_percent": 15,
+    "total_bonus_percent": 80,
+    "current_damage_before_defenses": 45
+  },
+  "approval_scope": "Explicit approval of D08 recommendations: armed_drone native_invocation_rank_base, flat_then_additive_compatible_Intelligence_passive_equipment_buff_damage_pool, no_general_positive_percent_cap, family_matching, accepted_Intelligence_coefficient1_percent, personal_player_bonuses_not_automatic, no_attacks_for_Eclaireur_Mule, other_parameters_unchanged and fictional45_damage_example. New familiar_equipment discussion recorded separately;weapon_replacement_or_augmentation_formula_not_inferred.",
+  "unshown_cases_pending": [
+    "all_actual_drone_damage_rank_curves_and_recomputed_individual_current_next_profiles",
+    "drone_maximum_HP_modifier_order_and_current_HP_adjustments",
+    "Intelligence_scaling_of_Mule_capacity_and_other_unshown_non_damage_parameters",
+    "drone_accuracy_critical_profiles_and_actual_source_damage_type_mapping",
+    "outgoing_weakening_and_incoming_defense_pipeline_for_drone_attacks_and_exact_fractional_damage_rounding",
+    "cast_deployment_vs_attack_snapshot_and_modifier_update_timing",
+    "autodestruction_attribute_source_and_bonus_mapping",
+    "periodic_drone_damage_status_proc_scaling_and_indirect_components",
+    "actual_drone_affix_values_weights_future_models_and_eligibility",
+    "all_other_unshown_cases_and_native_feedback"
+  ],
+  "native_visual_approval": "not_presented;no_native_drone_or_equipment_art_approved",
+  "runtime_integration": "not_integrated"
+}

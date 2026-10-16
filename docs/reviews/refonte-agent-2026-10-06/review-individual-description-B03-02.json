@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-06",
+  "id": "B03",
+  "title": "Vitalité améliorée",
+  "revision": 2,
+  "player_copy_markdown": "**Vitalité améliorée — Rang 11**\nPassif permanent · 9 rangs appris + 2 grâce à l’équipement.\n\n*Votre corps renforcé supporte davantage de blessures avant de céder.*\n\nAugmente votre maximum de vie, sans vous soigner.\n\n**Effet actuel**\n- Bonus de PV maximum : **+30 %**.\n- Maximum de vie : **130 PV**.\n\n**Prochain rang — 12 · 1 point de compétence**\n- Bonus de PV maximum : **+32 %**.\n- Maximum de vie : **132 PV**.",
+  "player_copy_sha256": "e58a9846a284e9773e358b0eb557ae96539f87eb8ec6ef95cb7965bd27322cf6",
+  "example_context": "Illustrative character with 100 maximum HP before this passive; already includes its other HP contributions.",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/tourbillon-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "2acde7bfa3d56ecd8bffa36fb77aaba01766554d9165bd3b39421103945d556d",
+  "previous_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-01.json",
+  "previous_skill_block_sha256": "27c943b632025647f35fd6b5b3d39972b00c8067c83f5093acfd2539b41cbc2b",
+  "name_approval": "explicit_user_rename",
+  "roleplay_text_approval": "displayed_text_accepted",
+  "functional_description_approval": "displayed_maximum_HP_gain_without_healing_accepted",
+  "current_next_effect_copy_approval": "displayed_current_next_copy_accepted",
+  "numeric_rules_approval": "displayed_30_and_32_percent_bonuses_and_130_and_132_example_HP_accepted; unshown_formulas_pending",
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_hp_before_this_passive": 100,
+    "other_percentage_hp_bonuses": false,
+    "includes_other_level_attribute_and_fixed_equipment_hp_contributions": true
+  },
+  "formulas": {
+    "maximum_hp_extra_percent": "10 + 2 * (effective_rank - 1)",
+    "example_maximum_hp": "floor(maximum_hp_before_this_passive * (1 + maximum_hp_extra_percent / 100))"
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_hp_extra_percent": 30,
+    "maximum_hp": 130,
+    "passive_permanent": true
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "maximum_hp_extra_percent": 32,
+    "maximum_hp": 132,
+    "passive_permanent": true
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_attributes_equipment_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "maximum_hp_extra_percent",
+      "maximum_hp"
+    ]
+  },
+  "presented_conditions_approval": "permanent_passive_and_no_healing_on_maximum_HP_gain_accepted",
+  "unshown_conditions_approval": "HP bonus stacking, rounding and clamping current HP on reduced maximum remain pending",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "current and next HP bonuses and totals calculated with exact fractions",
+    "learned cap respected",
+    "existing proposed roleplay copied exactly; no table or progression formula in player copy",
+    "unchanged parameters omitted from next-rank effect block"
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-B03-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/vitalite-amelioree-rename-and-acceptance-decisions.json",
+  "latest_decisions_sha256": "01e76855272bc7cc86af006c9cc13732dcafe8a09eaaab148cff59def0acf621"
+}

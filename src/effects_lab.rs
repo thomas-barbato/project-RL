@@ -198,16 +198,18 @@ impl AsciiApp {
         rules.weapons.register(weapon).map_err(|e| e.to_string())?;
         rules.player_starting_weapons = vec![id.clone()];
         rules.player_starting_equipment = vec![Some(id)];
+        rules.enable_weapon_hands();
         let game = GameState::new_with_rules(self.game.map().clone(), LAB_START, LAB_SEED, rules)
             .map_err(|e| e.to_string())?;
         self.game = WorldState::single(game);
+        self.active_weapon_slot = self.preferred_starting_weapon_slot();
         self.actor_glyphs.clear();
         self.selected_target = None;
         self.game.drain_events();
         self.visual_cues.clear_world();
         self.floating_messages.clear();
         if self.execute_command(GameCommand::AttackAt {
-            slot: 0,
+            slot: self.active_weapon_slot,
             target: GridPos::new(13, 12),
         }) != CommandOutcome::Applied
         {
@@ -218,6 +220,10 @@ impl AsciiApp {
 
     #[cfg(any(test, debug_assertions))]
     fn prime_lab_catalysis(&mut self, target: EntityId) -> Result<(), String> {
+        let previous = self
+            .game
+            .equipped_player_weapon_item(self.active_weapon_slot);
+        let previous_slot = self.active_weapon_slot;
         let brand = self
             .game
             .player_inventory()
@@ -225,13 +231,16 @@ impl AsciiApp {
             .find(|entry| entry.item() == &lab_id("rifle_burning"))
             .ok_or("Brandon de diagnostic absent")?
             .instance();
-        self.execute_command(GameCommand::EquipWeapon {
-            slot: 1,
-            item: brand,
-        });
-        if self.execute_command(GameCommand::Attack { slot: 1, target }) != CommandOutcome::Applied
+        self.equip_diagnostic_weapon(brand, 1);
+        if self.execute_command(GameCommand::Attack {
+            slot: self.active_weapon_slot,
+            target,
+        }) != CommandOutcome::Applied
         {
             return Err("Préparation de la brûlure refusée".into());
+        }
+        if let Some(previous) = previous {
+            self.equip_diagnostic_weapon(previous, previous_slot);
         }
         self.game.drain_events();
         self.visual_cues.clear_world();
@@ -267,6 +276,7 @@ impl AsciiApp {
             )
             .map_err(|e| e.to_string())?;
         self.game = WorldState::single(game);
+        self.active_weapon_slot = self.preferred_starting_weapon_slot();
         self.actor_glyphs.clear();
         self.actor_glyphs.insert(target, 'X');
         self.selected_target = Some(target);
@@ -408,7 +418,7 @@ impl AsciiApp {
                 })
                 .map(|(item, _)| item)
                 .ok_or("Arme de diagnostic avec trois bonus et effet absente")?;
-            self.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+            self.equip_diagnostic_weapon(item, 0);
             self.inventory_filter = InventoryFilter::All;
             self.select_inventory_instance(item);
             self.update_input(&InputFrame {
@@ -453,7 +463,7 @@ impl AsciiApp {
                 });
                 self.inventory_filter = InventoryFilter::Armor;
             } else {
-                self.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+                self.equip_diagnostic_weapon(item, 0);
             }
             self.inventory_selection = self
                 .inventory_entries()
@@ -487,7 +497,10 @@ impl AsciiApp {
             self.game.drain_events();
             self.visual_cues.clear_world();
             self.floating_messages.clear();
-            self.execute_command(GameCommand::Attack { slot: 0, target });
+            self.execute_command(GameCommand::Attack {
+                slot: self.active_weapon_slot,
+                target,
+            });
             if self.game.actors().get(target).is_some()
                 || self.game.pending_weapon_echoes().count() != 1
             {
@@ -607,7 +620,7 @@ impl AsciiApp {
             .ok_or("Arme de diagnostic inconnue")?
             .instance();
         if self.game.equipped_player_weapon_item(0) != Some(item) {
-            self.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+            self.equip_diagnostic_weapon(item, 0);
         }
         if scene.ends_with("-inventory") {
             self.inventory_selection = self
@@ -681,7 +694,7 @@ impl AsciiApp {
         }
         if scene == "catalysis-multi" {
             self.execute_command(GameCommand::Attack {
-                slot: 0,
+                slot: self.active_weapon_slot,
                 target: self.selected_target.ok_or("Cible absente")?,
             });
         } else if kind == "catalysis" && scene != "catalysis-empty" {
@@ -695,7 +708,7 @@ impl AsciiApp {
         self.floating_messages.clear();
         self.trace_cells.clear();
         if self.execute_command(GameCommand::Attack {
-            slot: 0,
+            slot: self.active_weapon_slot,
             target: self.selected_target.ok_or("Cible absente")?,
         }) != CommandOutcome::Applied
         {
@@ -721,7 +734,7 @@ impl AsciiApp {
                 self.visual_cues.clear_world();
                 self.floating_messages.clear();
                 if self.execute_command(GameCommand::Attack {
-                    slot: 0,
+                    slot: self.active_weapon_slot,
                     target: self.selected_target.ok_or("Cible absente")?,
                 }) != CommandOutcome::Applied
                 {
@@ -778,6 +791,14 @@ impl AsciiApp {
         let mut bonus_rng = project_rl::game::GameRng::from_seed(bonus_seed);
         let base = self.lab_return.as_deref().unwrap_or(self);
         let mut rules = base.rules.clone();
+        if let Some(start) = rules.agent_class_start.as_mut() {
+            start.skills = project_rl::skills::agent::definitions()
+                .iter()
+                .map(|s| s.id.clone())
+                .collect();
+            rules.progression.starting_skill_points = 1000;
+            rules.player_energy_regeneration = u16::MAX;
+        }
         // The disposable lab always exercises the latest contract, even when
         // the menu retains a historical campaign for deterministic resume.
         rules.statuses = rules.statuses.with_compatibility_stacking(
@@ -1101,6 +1122,7 @@ impl AsciiApp {
             Some(lab_id("rifle_impact")),
             Some(lab_id("blade_bearer")),
         ];
+        rules.enable_weapon_hands();
         let mut app = Self::from_seed_base(
             LAB_SEED,
             rules,
@@ -1301,6 +1323,7 @@ impl AsciiApp {
             .map_err(|e| e.to_string())?;
         app.visual_cues = VisualCuePlayer::with_catalog(visuals);
         app.intro_city_reached = true;
+        app.character_class = base.character_class.clone();
         app.controls = self.controls.clone();
         app.controls_path = self.controls_path.clone();
         app.graphics = self.graphics.clone();
@@ -1451,12 +1474,12 @@ mod tests {
                 .requires_area_aim()
         );
         assert_eq!(
-            game.process_player_command(GameCommand::EquipWeapon { slot: 0, item }),
+            game.process_player_command(GameCommand::EquipWeapon { slot: 2, item }),
             CommandOutcome::Applied
         );
         app.game = WorldState::single(game);
         app.selected_target = Some(target);
-        app.active_weapon_slot = 0;
+        app.active_weapon_slot = 2;
         let before = suspension::fingerprint(&app.game);
         assert!(app.weapon_command(None).is_none());
         let aim = app
@@ -1520,7 +1543,7 @@ mod tests {
             app.inventory_entries().len(),
             app.inventory_equipped_count(),
         );
-        let equip = layout.actions[1];
+        let equip = layout.actions[2];
         app.update_input(&InputFrame {
             pressed: [Binding::MouseLeft].into(),
             pointer: Some((equip.x + 10.0, equip.y + 10.0)),
@@ -1533,9 +1556,12 @@ mod tests {
         );
         assert_eq!(
             app.inventory_equipped_label(weapon).as_deref(),
-            Some("EN MAIN · 2")
+            Some("Deux mains · actif")
         );
-        assert_eq!(app.inventory_selection, 1);
+        assert_eq!(
+            app.inventory_entries()[app.inventory_selection].instance(),
+            weapon
+        );
         let ordered = app
             .inventory_entries()
             .iter()
@@ -1544,7 +1570,7 @@ mod tests {
         app.active_weapon_slot = 0;
         assert_eq!(
             app.inventory_equipped_label(weapon).as_deref(),
-            Some("ÉQUIPÉ · 2")
+            Some("Deux mains")
         );
         assert_eq!(
             app.inventory_entries()
@@ -1740,12 +1766,18 @@ mod tests {
         app.prepare_lab_status_fixture().unwrap();
         app.capture_events_at(Some(10.0));
         let at = GridPos::new(8, 12);
+        let bearer = app.game.actors().entity_at(at).unwrap();
+        assert_eq!(
+            crate::terminal_view::burning_actor(&app.game, at),
+            Some(bearer)
+        );
         let samples = app.sustained_effects_at(at, 30_000.0, false);
-        assert_eq!(samples.len(), 2); // Flame + corrosion, not the movement debuff.
+        // Burning now follows the body renderer; corrosion stays in this queue.
+        assert_eq!(samples.len(), 1);
         assert!(
             samples
                 .iter()
-                .any(|sample| sample.family == TerminalEffectFamily::Flame)
+                .all(|sample| sample.family != TerminalEffectFamily::Flame)
         );
         assert!(
             samples
@@ -1757,6 +1789,15 @@ mod tests {
             app.execute_command(GameCommand::Wait);
         }
         app.capture_events_at(Some(10.0));
+        assert!(
+            app.game
+                .actors()
+                .get(bearer)
+                .unwrap()
+                .status(&"core:burning".parse().unwrap())
+                .is_none()
+        );
+        assert_eq!(crate::terminal_view::burning_actor(&app.game, at), None);
         assert!(app.sustained_effects_at(at, 10.01, false).is_empty());
         assert!(
             app.visual_cues
@@ -1794,15 +1835,36 @@ mod tests {
             }),
             CommandOutcome::Applied
         );
-        assert_eq!(app.sustained_effects_at(LAB_START, 50.0, false).len(), 1);
+        let bearer = app.game.player_id();
+        assert_eq!(
+            crate::terminal_view::burning_actor(&app.game, LAB_START),
+            Some(bearer)
+        );
+        assert!(app.sustained_effects_at(LAB_START, 50.0, false).is_empty());
         assert_eq!(
             app.execute_command(GameCommand::Move(Direction::West)),
             CommandOutcome::Applied
         );
         let moved = app.game.player_position().unwrap();
         assert_ne!(moved, LAB_START);
+        assert_eq!(
+            crate::terminal_view::burning_actor(&app.game, LAB_START),
+            None
+        );
         assert!(app.sustained_effects_at(LAB_START, 50.0, false).is_empty());
-        assert_eq!(app.sustained_effects_at(moved, 50.0, false).len(), 1);
+        assert_eq!(
+            crate::terminal_view::burning_actor(&app.game, moved),
+            Some(bearer)
+        );
+        assert!(
+            app.game
+                .actors()
+                .get(bearer)
+                .unwrap()
+                .status(&"core:burning".parse().unwrap())
+                .is_some()
+        );
+        assert!(app.sustained_effects_at(moved, 50.0, false).is_empty());
         assert!(app.game.ground_effects().is_empty());
     }
 
@@ -1920,14 +1982,8 @@ mod tests {
         };
         let rifle = find(&app, "rifle_reference", false);
         let blade = find(&app, "blade_healing", true);
-        app.execute_command(GameCommand::EquipWeapon {
-            slot: 0,
-            item: rifle,
-        });
-        app.execute_command(GameCommand::EquipWeapon {
-            slot: 1,
-            item: blade,
-        });
+        app.equip_diagnostic_weapon(rifle, 0);
+        app.equip_diagnostic_weapon(blade, 1);
         let before = suspension::fingerprint(&app.game);
         for slot in [1, 0, 1, 0] {
             app.select_weapon_slot(slot);
@@ -1936,10 +1992,16 @@ mod tests {
         let player = app.game.player_id();
         let hp = app.game.actors().get(player).unwrap().integrity();
         let target = app.selected_target.unwrap();
-        app.execute_command(GameCommand::Attack { slot: 0, target });
+        app.execute_command(GameCommand::Attack {
+            slot: app.active_weapon_slot,
+            target,
+        });
         assert_eq!(app.game.actors().get(player).unwrap().integrity(), hp);
         app.select_weapon_slot(1);
-        app.execute_command(GameCommand::Attack { slot: 1, target });
+        app.execute_command(GameCommand::Attack {
+            slot: app.active_weapon_slot,
+            target,
+        });
         assert!(app.game.actors().get(player).unwrap().integrity() > hp);
     }
 
@@ -2041,10 +2103,7 @@ mod tests {
             })
             .unwrap()
             .instance();
-        app.execute_command(GameCommand::EquipWeapon {
-            slot: 1,
-            item: weapon,
-        });
+        app.equip_diagnostic_weapon(weapon, 1);
         let base = app.game.player_effective_primary_attributes().unwrap();
         let max_hp = app
             .game
@@ -2067,7 +2126,7 @@ mod tests {
                     .player_effective_primary_attributes()
                     .unwrap()
                     .value(attribute),
-                base.value(attribute) + bonus.attribute_bonus(attribute)
+                base.value(attribute) + u16::from(bonus.attribute_bonus(attribute))
             );
         }
         assert_eq!(
@@ -2127,7 +2186,10 @@ mod tests {
             .instance();
         app.inventory_open = true;
         app.select_inventory_instance(item);
-        app.update_input(&key("Key1"));
+        app.update_input(&InputFrame {
+            pressed: [app.controls.binding(Action::Slot3).clone()].into(),
+            ..Default::default()
+        });
         app.update_input(&key("Escape"));
         assert!(!app.inventory_open);
         assert_eq!(
@@ -2180,13 +2242,16 @@ mod tests {
                 .unwrap()
                 .instance();
             assert_eq!(
-                app.execute_command(GameCommand::EquipWeapon { slot: 0, item }),
+                app.equip_diagnostic_weapon(item, 0),
                 CommandOutcome::Applied
             );
             let energy = app.game.player_energy().available();
             let turn = app.game.turn();
             assert_eq!(
-                app.execute_command(GameCommand::Attack { slot: 0, target }),
+                app.execute_command(GameCommand::Attack {
+                    slot: app.active_weapon_slot,
+                    target
+                }),
                 CommandOutcome::Applied
             );
             assert_eq!(app.game.player_matter(), Some(expected_matter));
@@ -2284,7 +2349,10 @@ mod tests {
         app.enter_test_lab().unwrap();
         let target = app.selected_target.unwrap();
         let before = app.game.actors().get(target).unwrap().integrity();
-        app.execute_command(GameCommand::Attack { slot: 0, target });
+        app.execute_command(GameCommand::Attack {
+            slot: app.active_weapon_slot,
+            target,
+        });
         let applied = before - app.game.actors().get(target).unwrap().integrity();
         let fingerprint = suspension::fingerprint(app.game.actors());
         app.capture_events_at(Some(2.0));
@@ -2370,7 +2438,7 @@ mod tests {
             .find(|entry| entry.item() == &id)
             .unwrap()
             .instance();
-        app.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+        app.equip_diagnostic_weapon(item, 0);
         let target = app.selected_target.unwrap();
         let player = app.game.player_id();
         for index in 0..10 {
@@ -2378,7 +2446,10 @@ mod tests {
             app.visual_cues.clear_world();
             app.floating_messages.clear();
             let before = app.game.actors().get(player).unwrap().integrity();
-            app.execute_command(GameCommand::Attack { slot: 0, target });
+            app.execute_command(GameCommand::Attack {
+                slot: app.active_weapon_slot,
+                target,
+            });
             let after = app.game.actors().get(player).unwrap().integrity();
             app.capture_events_at(Some(2.0));
             let cue = app.visual_cues.sample_world(LAB_START, true, 2.14);
@@ -2449,10 +2520,13 @@ mod tests {
             .find(|entry| entry.item() == &lab_id("blade_caustic"))
             .unwrap()
             .instance();
-        app.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+        app.equip_diagnostic_weapon(item, 0);
         let target = app.selected_target.unwrap();
         for _ in 0..2 {
-            app.execute_command(GameCommand::Attack { slot: 0, target });
+            app.execute_command(GameCommand::Attack {
+                slot: app.active_weapon_slot,
+                target,
+            });
         }
         assert_eq!(app.game.ground_effects().at(GridPos::new(8, 12)).count(), 1);
         assert_eq!(
@@ -2478,10 +2552,13 @@ mod tests {
             .find(|entry| entry.item() == &lab_id("rifle_aegis"))
             .unwrap()
             .instance();
-        app.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+        app.equip_diagnostic_weapon(item, 0);
         let target = app.selected_target.unwrap();
         for expected_turns in [2, 1, 0] {
-            app.execute_command(GameCommand::Attack { slot: 0, target });
+            app.execute_command(GameCommand::Attack {
+                slot: app.active_weapon_slot,
+                target,
+            });
             let status = app
                 .game
                 .actors()
@@ -2515,7 +2592,7 @@ mod tests {
         app.visual_cues.clear_world();
         app.floating_messages.clear();
         app.execute_command(GameCommand::Attack {
-            slot: 0,
+            slot: app.active_weapon_slot,
             target: probe,
         });
         let at = GridPos::new(7, 18);
@@ -2585,10 +2662,13 @@ mod tests {
             .find(|entry| entry.item() == &lab_id("blade_catalysis"))
             .unwrap()
             .instance();
-        app.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+        app.equip_diagnostic_weapon(item, 0);
         let at = GridPos::new(8, 12);
         let target = app.game.actors().entity_at(at).unwrap();
-        app.execute_command(GameCommand::Attack { slot: 0, target });
+        app.execute_command(GameCommand::Attack {
+            slot: app.active_weapon_slot,
+            target,
+        });
         assert!(
             !app.game
                 .events()
@@ -2608,7 +2688,10 @@ mod tests {
         assert!(app.visual_cues.sample_world(at, false, 10.2).is_none());
         app.floating_messages.clear();
         app.visual_cues.clear_world();
-        app.execute_command(GameCommand::Attack { slot: 0, target });
+        app.execute_command(GameCommand::Attack {
+            slot: app.active_weapon_slot,
+            target,
+        });
         let bursts = app
             .game
             .events()
@@ -2664,14 +2747,17 @@ mod tests {
             .find(|entry| entry.item() == &lab_id("rifle_percussion"))
             .unwrap()
             .instance();
-        app.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+        app.equip_diagnostic_weapon(item, 0);
         assert_eq!(
             app.percussion_readiness().as_deref(),
             Some("PERCUSSION PRÊTE")
         );
         let target = app.selected_target.unwrap();
         app.game.drain_events();
-        app.execute_command(GameCommand::Attack { slot: 0, target });
+        app.execute_command(GameCommand::Attack {
+            slot: app.active_weapon_slot,
+            target,
+        });
         app.capture_events_at(Some(10.0));
         let at = GridPos::new(9, 12);
         assert_eq!(app.game.actors().get(target).unwrap().position(), at);
@@ -2696,7 +2782,10 @@ mod tests {
         assert_eq!(damage.len(), 1);
         assert_eq!(damage[0].at, at);
         for _ in 0..2 {
-            app.execute_command(GameCommand::Attack { slot: 0, target });
+            app.execute_command(GameCommand::Attack {
+                slot: app.active_weapon_slot,
+                target,
+            });
         }
         assert_eq!(app.game.actors().get(target).unwrap().position(), at);
         assert_eq!(
@@ -2707,7 +2796,10 @@ mod tests {
         app.visual_cues.clear_world();
         app.floating_messages.clear();
         // Next cell is occupied by another mannequin: the push is blocked.
-        app.execute_command(GameCommand::Attack { slot: 0, target });
+        app.execute_command(GameCommand::Attack {
+            slot: app.active_weapon_slot,
+            target,
+        });
         app.capture_events_at(Some(11.0));
         assert_eq!(
             app.visual_cues
@@ -2750,7 +2842,7 @@ mod tests {
                         .unwrap()
                         .instance();
                     if app.game.equipped_player_weapon_item(0) != Some(item) {
-                        let equip = app.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+                        let equip = app.equip_diagnostic_weapon(item, 0);
                         assert!(
                             matches!(
                                 equip,
@@ -2765,7 +2857,10 @@ mod tests {
                     }
                     app.game.drain_events();
                     assert_eq!(
-                        app.execute_command(GameCommand::Attack { slot: 0, target }),
+                        app.execute_command(GameCommand::Attack {
+                            slot: app.active_weapon_slot,
+                            target
+                        }),
                         CommandOutcome::Applied,
                         "{prefix}/{kind}/{bonus}"
                     );
@@ -2852,13 +2947,16 @@ mod tests {
                 })
                 .unwrap()
                 .instance();
-            app.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+            app.equip_diagnostic_weapon(item, 0);
             app.game.drain_events();
             app.visual_cues.clear_world();
             app.floating_messages.clear();
             let hp = app.game.actors().get(target).unwrap().integrity();
             assert_eq!(
-                app.execute_command(GameCommand::Attack { slot: 0, target }),
+                app.execute_command(GameCommand::Attack {
+                    slot: app.active_weapon_slot,
+                    target
+                }),
                 CommandOutcome::Applied
             );
             let loss = hp - app.game.actors().get(target).unwrap().integrity();
@@ -2925,7 +3023,10 @@ mod tests {
             assert!(totals[0].text.contains(&loss.to_string()));
         }
         // Reapply one charge, then expire it without any burst.
-        app.execute_command(GameCommand::Attack { slot: 0, target });
+        app.execute_command(GameCommand::Attack {
+            slot: app.active_weapon_slot,
+            target,
+        });
         for _ in 0..4 {
             app.execute_command(GameCommand::Wait);
         }
@@ -2950,14 +3051,17 @@ mod tests {
             .find(|entry| entry.item() == &lab_id("rifle_ricochet"))
             .unwrap()
             .instance();
-        app.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+        app.equip_diagnostic_weapon(item, 0);
         let a = app.game.actors().entity_at(GridPos::new(8, 12)).unwrap();
         let b = app.game.actors().entity_at(GridPos::new(10, 12)).unwrap();
         app.game.drain_events();
         app.floating_messages.clear();
         app.visual_cues.clear_world();
         let before = app.game.actors().get(b).unwrap().integrity();
-        app.execute_command(GameCommand::Attack { slot: 0, target: a });
+        app.execute_command(GameCommand::Attack {
+            slot: app.active_weapon_slot,
+            target: a,
+        });
         assert_eq!(app.game.actors().get(b).unwrap().integrity(), before - 3);
         assert!(
             app.game
@@ -2997,10 +3101,13 @@ mod tests {
             .find(|entry| entry.item() == &lab_id("blade_echo"))
             .unwrap()
             .instance();
-        app.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+        app.equip_diagnostic_weapon(item, 0);
         let at = GridPos::new(8, 12);
         let target = app.game.actors().entity_at(at).unwrap();
-        app.execute_command(GameCommand::Attack { slot: 0, target });
+        app.execute_command(GameCommand::Attack {
+            slot: app.active_weapon_slot,
+            target,
+        });
         app.capture_events_at(Some(1.0));
         assert_eq!(
             app.effect_badges_at(at),
@@ -3067,7 +3174,10 @@ mod tests {
         let first_seed = app.lab_bonus_seed;
         let initial_actors = suspension::fingerprint(app.game.actors());
         let target = app.selected_target.unwrap();
-        app.execute_command(GameCommand::Attack { slot: 0, target });
+        app.execute_command(GameCommand::Attack {
+            slot: app.active_weapon_slot,
+            target,
+        });
         assert_ne!(suspension::fingerprint(&app.game), initial);
         app.open_menu(MenuScreen::Pause);
         assert_eq!(app.menu_labels()[2], "Réinitialiser le laboratoire");
@@ -3189,7 +3299,7 @@ mod tests {
             .unwrap()
             .instance();
         assert!(matches!(
-            app.execute_command(GameCommand::EquipWeapon { slot: 0, item }),
+            app.equip_diagnostic_weapon(item, 0),
             CommandOutcome::Applied | CommandOutcome::AppliedWithoutTime
         ));
         app.controls
@@ -3213,7 +3323,7 @@ mod tests {
         assert_eq!(
             app.history.last(),
             Some(&RecordedCommand::record(&GameCommand::Attack {
-                slot: 0,
+                slot: app.active_weapon_slot,
                 target
             }))
         );
@@ -3253,7 +3363,7 @@ mod tests {
             .find(|entry| entry.item() == &lab_id("blade_catalysis"))
             .unwrap()
             .instance();
-        app.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+        app.equip_diagnostic_weapon(item, 0);
         let before = suspension::fingerprint(&app.game);
         let turn = app.game.turn();
         let history = app.history.len();
@@ -3289,7 +3399,7 @@ mod tests {
             .find(|entry| entry.item() == &lab_id("blade_catalysis"))
             .unwrap()
             .instance();
-        app.execute_command(GameCommand::EquipWeapon { slot: 0, item });
+        app.equip_diagnostic_weapon(item, 0);
         let before = suspension::fingerprint(&app.game);
         let at = GridPos::new(8, 11);
         assert!(app.begin_pointer_attack_aim(at, None));
@@ -3346,5 +3456,29 @@ mod tests {
             )])
             .is_err()
         );
+    }
+}
+
+impl AsciiApp {
+    pub fn new_agent_skill_laboratory() -> Result<Self, String> {
+        let (mut rules, texts, loot, expeditions) = ascii_game_content()?;
+        let classes = ascii_character_class_catalog()?;
+        let class_id: CharacterClassId = "core:arcaniste".parse().unwrap();
+        let class = classes.get(&class_id).ok_or("Classe Arcaniste absente")?;
+        class
+            .apply_to_rules(&mut rules, class.recommended_attributes())
+            .map_err(|e| e.to_string())?;
+        // This entry point is disposable in debug and release alike: do not
+        // open the campaign session or acquire its suspension lock.
+        let mut base = Self::from_seed(INITIAL_SEED, rules, texts, loot, expeditions)?;
+        base.character_class = Some(class_id);
+        let (bindings, message) = Controls::load(&base.controls_path, controls::detect_layout());
+        base.controls = bindings;
+        base.options_message = message;
+        let (settings, message) = graphics::startup();
+        base.graphics.active = *settings;
+        base.graphics.draft = *settings;
+        base.graphics.message = message.clone();
+        base.build_test_lab()
     }
 }

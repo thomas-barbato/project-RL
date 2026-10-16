@@ -1,0 +1,69 @@
+{
+  "review_id": "SKILLS-NATIVE01",
+  "status": "integrated_catalogue_reader",
+  "user_choice": "Nouveau catalogue, puis intégration des effets",
+  "catalogue_count": 94,
+  "branches": 17,
+  "accepted_compact_drawings": 8,
+  "accepted_illustrations": 16,
+  "input_tests": {
+    "passed": 4,
+    "classes_checked": [
+      "bastion",
+      "technomancien",
+      "traqueur",
+      "arcaniste",
+      "metamorphe"
+    ],
+    "scope": "U/K shared native window, navigation and unavailable inputs preserve simulation fingerprint and command history",
+    "test_room_without_class": "passed; disabled learning/use mouse buttons preserve fingerprint and history"
+  },
+  "layout_dimensions_checked": [
+    [
+      684,
+      460
+    ],
+    [
+      960,
+      540
+    ],
+    [
+      1280,
+      800
+    ],
+    [
+      1920,
+      1080
+    ]
+  ],
+  "captures": [
+    {
+      "file": "arcaniste-960-final/cold-start.png",
+      "sha256": "2fcd02ed5164221fde9f2a1fdffce9a2652b851208ec7e057080912022b7426a"
+    },
+    {
+      "file": "bastion-1280/cold-start.png",
+      "sha256": "7d298fa762532a132c8c810433030a63f1c205e32cba8599534e801b4a1f0c77"
+    }
+  ],
+  "validation": {
+    "all_targets_check": "passed",
+    "format": "passed",
+    "diff_whitespace": "passed",
+    "debug_build": "passed",
+    "release_build": "passed"
+  },
+  "not_enabled": [
+    "new combat effects",
+    "rank purchases",
+    "equipment skill bonuses",
+    "new effect animations",
+    "unapproved compact drawings"
+  ],
+  "unchanged_scope": [
+    "player and NPC rendering",
+    "armor and weapon placement",
+    "gameplay rules",
+    "existing save rank metadata"
+  ]
+}

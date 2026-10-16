@@ -1,0 +1,50 @@
+{
+  "browser": "Edge Chromium",
+  "views": 14,
+  "schemes": [
+    "file: playback and controls",
+    "localhost: exact native RGB equality"
+  ],
+  "checks": [
+    {
+      "scenario": "ESQUIVE",
+      "direction": 0,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "ESQUIVE",
+      "direction": 1,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "ESQUIVE",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "ESQUIVE",
+      "direction": 3,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "TOUCHE",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "ATTENTE",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "OBSTACLE",
+      "direction": 2,
+      "pixel_equality": true
+    }
+  ],
+  "manual_idle_stable": true,
+  "blocked_step_no_consumption": true,
+  "prepared_hit_not_guaranteed_dodge": true,
+  "passive_no_aura_or_timer": true,
+  "errors": []
+}

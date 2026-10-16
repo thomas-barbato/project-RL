@@ -20,7 +20,7 @@ use std::{
 };
 
 pub const MAX_COMMANDS: usize = 50_000;
-pub const MAX_GENERATION_VERSION: u8 = 143;
+pub const MAX_GENERATION_VERSION: u8 = 147;
 const REPLAY_RECOVERY_SCHEMA: u8 = 1;
 pub const CURRENT_RECOVERY_SCHEMA: u8 = 2;
 const CURRENT_CRASH_RECOVERY_SCHEMA: u8 = 1;
@@ -441,6 +441,12 @@ pub enum RecordedCommand {
     Learn {
         technique: String,
     },
+    LearnAgentSkill {
+        skill: String,
+    },
+    AllocateAttribute {
+        attribute: String,
+    },
     Technique {
         technique: String,
         targets: Vec<u64>,
@@ -484,11 +490,23 @@ pub enum RecordedCommand {
         y: i32,
         operation: project_rl::facility::InstallationAction,
     },
+    AgentMineVariant {
+        variant: project_rl::game::AgentMineVariant,
+    },
+    AgentGrenadeVariant {
+        variant: project_rl::game::AgentGrenadeVariant,
+    },
 }
 
 impl RecordedCommand {
     pub fn record(command: &GameCommand) -> Self {
         match command {
+            GameCommand::SetAgentMineVariant { variant } => {
+                Self::AgentMineVariant { variant: *variant }
+            }
+            GameCommand::SetAgentGrenadeVariant { variant } => {
+                Self::AgentGrenadeVariant { variant: *variant }
+            }
             GameCommand::UseInstallation { target, action } => Self::Installation {
                 x: target.x,
                 y: target.y,
@@ -583,6 +601,12 @@ impl RecordedCommand {
             },
             GameCommand::LearnTechnique { technique } => Self::Learn {
                 technique: technique.to_string(),
+            },
+            GameCommand::LearnAgentSkill { skill } => Self::LearnAgentSkill {
+                skill: skill.clone(),
+            },
+            GameCommand::AllocateAttribute { attribute } => Self::AllocateAttribute {
+                attribute: attribute.to_string(),
             },
             GameCommand::UseTechnique {
                 technique,
@@ -797,6 +821,21 @@ impl RecordedCommand {
                 technique: technique
                     .parse()
                     .map_err(|error| format!("Technique invalide : {error}"))?,
+            },
+            Self::AgentMineVariant { variant } => {
+                GameCommand::SetAgentMineVariant { variant: *variant }
+            }
+            Self::AgentGrenadeVariant { variant } => {
+                GameCommand::SetAgentGrenadeVariant { variant: *variant }
+            }
+            Self::LearnAgentSkill { skill } => GameCommand::LearnAgentSkill {
+                skill: skill.clone(),
+            },
+            Self::AllocateAttribute { attribute } => GameCommand::AllocateAttribute {
+                attribute: project_rl::stats::PrimaryAttribute::ALL
+                    .into_iter()
+                    .find(|a| a.to_string() == *attribute)
+                    .ok_or("Unknown primary attribute")?,
             },
             Self::Technique {
                 technique,
@@ -1369,6 +1408,8 @@ pub struct Suspension {
     pub observed_events: Vec<(u64, String)>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tracked_quest: Option<String>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub agent_skill_bar: Vec<Option<String>>,
 }
 
 pub fn fingerprint(value: &impl std::fmt::Debug) -> u64 {
@@ -1393,6 +1434,13 @@ pub fn fingerprint(value: &impl std::fmt::Debug) -> u64 {
 
 impl Suspension {
     pub fn validate(&self) -> Result<(), String> {
+        if self.agent_skill_bar.len() > 6
+            || self.agent_skill_bar.iter().flatten().any(|id| {
+                id.len() > 48 || !id.bytes().all(|c| c.is_ascii_alphanumeric() || c == b'_')
+            })
+        {
+            return Err("Commandes incomplètes.".to_owned());
+        }
         if !(1..=MAX_GENERATION_VERSION).contains(&self.version) {
             return Err(
                 "Format de sauvegarde non pris en charge ; partie suspendue conservée.".to_owned(),
@@ -1664,6 +1712,28 @@ mod tests {
             legacy(&Some(f64::INFINITY))
         );
         assert_eq!(fingerprint(&[0_u8, 127, 255]), legacy(&[0_u8, 127, 255]));
+    }
+
+    #[test]
+    fn recorded_agent_purchases_and_attribute_allocation_round_trip() {
+        let game = GameState::new(
+            Map::from_ascii("#####\n#...#\n#####").unwrap(),
+            GridPos::new(1, 1),
+            7,
+        )
+        .unwrap();
+        for command in [
+            GameCommand::LearnAgentSkill {
+                skill: "FE01".to_owned(),
+            },
+            GameCommand::AllocateAttribute {
+                attribute: project_rl::stats::PrimaryAttribute::Willpower,
+            },
+        ] {
+            let json = serde_json::to_string(&RecordedCommand::record(&command)).unwrap();
+            let recorded: RecordedCommand = serde_json::from_str(&json).unwrap();
+            assert_eq!(recorded.command(&game), Ok(command));
+        }
     }
 
     #[test]

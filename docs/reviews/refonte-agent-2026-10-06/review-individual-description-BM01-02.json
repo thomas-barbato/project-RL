@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-08",
+  "id": "BM01",
+  "review_id": "BM01",
+  "revision": 2,
+  "title": "Lame incendiaire",
+  "branch": "Buffs de mêlée",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-85.json",
+  "source_skill_block_sha256": "e2d505b2e0f1b13eac6e54dc65233c99417deb5921e0aab399146662d112c92a",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "Volonté": 10,
+    "magic_multiplier_exact": "11/10",
+    "currently_transformed": false,
+    "equipped_and_active_weapon_type": "melee",
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "added_fire_damage_per_successful_primary_melee_hit": 14,
+    "duration_turns": 6,
+    "energy_cost": 11,
+    "cooldown_turns": 6
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "added_fire_damage_per_successful_primary_melee_hit": 15,
+    "duration_turns": 6,
+    "energy_cost": 11,
+    "cooldown_turns": 6
+  },
+  "formulas_proposed": {
+    "added_fire_damage": "floor((3+effective_rank-1)*M_magie)",
+    "duration_turns": "4+floor((effective_rank-1)/5)",
+    "energy_cost": "8+floor((effective_rank-1)/3)",
+    "cooldown_turns": 6,
+    "full_curves_defaults_rounding_and_modifier_order": "unshown_pending_review"
+  },
+  "conditions_proposed": {
+    "requires_equipped_and_active_melee_weapon": "accepted_common_weapon_requirement applied;weapon merely equipped inactive insufficient",
+    "human_form_required_to_cast": true,
+    "blocked_by_Silence": true,
+    "successful_primary_melee_hits_only": true,
+    "compatible_melee_weapon_skill_hits_receive_bonus": true,
+    "added_fire_reduced_by_target_fire_resistance": true,
+    "no_Brulure_applied_by_this_buff": true,
+    "compatible_natural_attacks_after_transformation": "unshown_existing_proposal_pending_review;does_not_authorize_cast_while_transformed",
+    "drone_projectile_reflection_and_secondary_hits_not_buffed": "unshown_existing_proposal_pending_review",
+    "duration_rank_attribute_snapshot_swap_and_refresh": "unshown_pending_review",
+    "buff_in_player_status_bar": "existing_buff_HUD_rule_applies;native_presentation_pending"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "displayed_RP_explicitly_accepted",
+  "numeric_rules_approval": "displayed_added_fire14_next15_duration6_energy11_CD6_explicitly_accepted;unshown_curves_pending",
+  "detailed_conditions_approval": "displayed_primary_successful_hit_resistance_active_melee_weapon_human_Silence_compatible_melee_skills_no_Brulure_explicitly_accepted;unshown_cases_pending",
+  "visual_intention_approval": "user_supplied_elemental_damage_number_color_and_explicit_log_type_accepted_HUD08;weapon_flame_overlay_retired;native_palette_layout_pending",
+  "visual_approval": "per_skill_native_animation_pending_review",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "displayed_damage_is_added_fire_bonus_not_total_weapon_damage": true,
+    "weapon_damage_variance": "no_total_weapon_damage_range_or_unreviewed_global_variance_introduced;actual_weapon_skill_total_preview_requires_real_active_weapon_range"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "added_fire_damage_per_successful_primary_melee_hit"
+    ]
+  },
+  "presentation_context_markdown": "Exemple avec Volonté 10 et une arme de mêlée active.",
+  "player_copy_markdown": "**BM01 · Lame incendiaire — Rang 11 · Actif**\n\n*Vous enveloppez votre arme de flammes qui mordent vos ennemis à chaque coup.*\n\n**Effets actuels**\n\n- Dégâts de feu ajoutés par frappe principale réussie : **14**, avant les résistances de la cible.\n- Durée : **6 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de feu ajoutés : **15**.\n\n**Coût : 11 énergie · Recharge : 6 tours.**\n\nArme de mêlée équipée et active requise. Forme humaine requise pour lancer le buff ; Silence empêche son utilisation.\n\nLe bonus s’applique aussi aux compétences de mêlée compatibles. Il ne provoque pas de Brûlure.",
+  "player_copy_sha256": "d86535c3dba77735b5bf14a5acf2eab956fb883756c0d64c7689eb72322e5e81",
+  "visual_copy_markdown": "**Visuel validé :** les dégâts de feu affichés au-dessus de la cible prennent la couleur associée au feu ; leur type est explicitement indiqué dans les logs.",
+  "visual_copy_sha256": "c7612fc102696ae88571c7fdbd4c11683bdcaeded5bf8ea309219b751e1a7c5e",
+  "current_turn_shown_copy_markdown": "**BM01 · Lame incendiaire — Rang 11 · Actif**\n\n*Vous enveloppez votre arme de flammes qui mordent vos ennemis à chaque coup.*\n\n**Effets actuels**\n\n- Dégâts de feu ajoutés par frappe principale réussie : **14**, avant les résistances de la cible.\n- Durée : **6 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de feu ajoutés : **15**.\n\n**Coût : 11 énergie · Recharge : 6 tours.**\n\nArme de mêlée équipée et active requise. Forme humaine requise pour lancer le buff ; Silence empêche son utilisation.\n\nLe bonus s’applique aussi aux compétences de mêlée compatibles. Il ne provoque pas de Brûlure.\n\n**Visuel validé :** les dégâts de feu affichés au-dessus de la cible prennent la couleur associée au feu ; leur type est explicitement indiqué dans les logs.",
+  "current_turn_shown_copy_sha256": "039fbc0c779008b1305032e657f9995e5dd8c7ca0d03575cf54f27441eed87ef",
+  "unshown_cases_pending": [
+    "full_rank_curves_defaults_rounding_and_modifier_order",
+    "buff_snapshot_weapon_swap_refresh_duration_and_cooldown_clock",
+    "dual_wield_multi_target_multi_hit_primary_hit_classification",
+    "elemental_bonus_with_weapon_variance_other_gear_and_resistance_order",
+    "compatible_natural_attacks_transformation_equipment_inheritance",
+    "damage_attribution_reflection_secondary_attacks_and_own_spell_protection",
+    "atomic_refusal_resources_time_RNG_and_map_changes",
+    "elemental_number_palette_mixed_damage_log_copy_native_layout_and_player_buff_icon"
+  ],
+  "runtime_integration": "not_integrated",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM01-01.json",
+  "previous_card_sha256": "c0536ba8e7a951f48c1f7766af9235d88180534917d684c44006356cfe0b2753",
+  "description_acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/incendiary-blade-description-acceptance-decisions.json",
+  "elemental_feedback_decisions": "docs/reviews/refonte-agent-2026-10-06/elemental-damage-text-feedback-decisions.json",
+  "superseded_visual_copy_markdown": "**Visuel proposé :** des flammes restent attachées à votre arme pendant la durée du buff."
+}

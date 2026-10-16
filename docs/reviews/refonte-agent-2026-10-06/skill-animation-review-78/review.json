@@ -1,0 +1,42 @@
+{
+  "batch": "ANIM-S36-REV02",
+  "date": "2026-10-15",
+  "status": "visually_approved_with_requested_cleanup_completed",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 81,
+      "id": "SU04",
+      "title": "Régénération",
+      "variant": "SU04-A01",
+      "scope": "retained unchanged after positive user feedback"
+    },
+    {
+      "number": 82,
+      "id": "SU05",
+      "title": "Purge",
+      "variant": "SU05-A02",
+      "scope": "golden filaments and text approved; extra demo effects removed in SU05-A03"
+    }
+  ],
+  "change": "Replace rejected white sweep and expelled icons with brief ivory-gold repair filaments, matching the green healing movement. Add centered floating Purge text, 22 px, with contrast shadow. Positive cleansing never displays a healing amount.",
+  "preserved": "Green Regeneration source and six compact scene atlases; all skill mechanics, counters, statuses, costs, cooldowns, characters, body/weapon rendering, negative-hit recoil and physical blood.",
+  "generation": "built-in imagegen edit of the green filament drawing; selected PNG copied unchanged, native animation implemented in the existing laboratory",
+  "source": "../../../../assets/animations/agent/skill-animation-review-78/purge-source.png",
+  "prompts": "prompts.txt",
+  "preview": "../apercu-animations.html",
+  "laboratory": "--apercu-laboratoire-competences --lot-soins-survie",
+  "remaining_unshown": 29,
+  "revision_only": true,
+  "verification": {
+    "build": "cargo build --locked --bin project-rl",
+    "formatting": true,
+    "browser_views": 12,
+    "healing_112_frames_unchanged": true,
+    "all_prepared_mechanics_unchanged": true,
+    "pixel_equality": true,
+    "temporary_captures_removed": true,
+    "source_sha256": "6c1eb98f65c1568003ba7c76ef443d8e59e7745d764932cc5504d733195a5795"
+  },
+  "cleanup": "../skill-animation-review-79/review.json"
+}

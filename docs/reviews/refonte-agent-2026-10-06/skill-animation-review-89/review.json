@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S42",
+  "status": "visually_accepted",
+  "campaign_integration": false,
+  "native_tile": 64,
+  "candidates": [
+    {
+      "number": 93,
+      "id": "AF03",
+      "variant": "AF03-A01",
+      "title": "Silence"
+    },
+    {
+      "number": 94,
+      "id": "AF04",
+      "variant": "AF04-A01",
+      "title": "Rupture de régénération"
+    }
+  ],
+  "effective_rank": 1,
+  "accepted_mechanics": "../afflictions-area-acceptance-01.json",
+  "marker_presentation_reference": "../skill-animation-review-88/visual-acceptance-01.json",
+  "marker": {
+    "size_px": 24,
+    "duration_text_px": 14,
+    "transparent_backdrop": true,
+    "source_icon_files_unchanged": true
+  },
+  "prepared_values": {
+    "zone_width_cells": 3,
+    "casting_range_cells": 5,
+    "AF03": {
+      "energy": 12,
+      "duration": 2,
+      "cooldown": 8
+    },
+    "AF04": {
+      "energy": 10,
+      "duration": 3,
+      "cooldown": 6
+    }
+  },
+  "preview_copy": [
+    "Bloque les compétences actives des ennemis touchés. Leurs déplacements et attaques ordinaires restent possibles ; leurs passifs restent actifs. Au rang 1 : carré de 3 × 3 cases, durée de 2 tours. Coût : 12 énergie. Recharge : 8 tours.",
+    "Empêche les ennemis touchés de récupérer des PV par soins, régénération et réparations. Leurs PV présents et leur récupération d’énergie restent conservés. Au rang 1 : carré de 3 × 3 cases, durée de 3 tours. Coût : 10 énergie. Recharge : 6 tours."
+  ],
+  "preview": "../apercu-animations.html?lot=89",
+  "native_lab": "--apercu-laboratoire-competences --lot-silence-regeneration",
+  "source": "src/agent_skill_lab_review/fire_painted/afflictions_area.rs",
+  "scenes": 18,
+  "cases": [
+    "four group directions",
+    "player receiving",
+    "real-time waiting",
+    "closed-corner obstacles",
+    "individual resistance",
+    "victim leaves, newcomer enters"
+  ],
+  "scope": "Animation review: shared actor-bound area-curse harness with 24 px transparent overhead markers, duration counter and harmful-effect recoil; no body or ground decoration. Prepared resistance outcomes and rank-one values from current catalogue; no campaign skill commands or saves changed. The preview does not simulate combat AI or healing commands.",
+  "remaining_unshown": 17,
+  "still_unshown": [
+    "AF05",
+    "AF06",
+    "D56",
+    "D57",
+    "D58",
+    "D59",
+    "D66",
+    "O03",
+    "DP01",
+    "DP02",
+    "DR01",
+    "DI01",
+    "DI02",
+    "DI03",
+    "DI04",
+    "DI05",
+    "DI07"
+  ],
+  "pending_separately": "B03 Vitalité améliorée mechanics.",
+  "temporary_capture_policy": "Reuse same HTML. Remove temporary native captures, QA images and superseded playback after verification; preserve original skill icons, code and review receipts.",
+  "launcher": "ouvrir-laboratoire.cmd",
+  "source_sha256": "246a594f2e5e518fd304a61ff8aa13497a312c414081b5f892e07c058c97dadf",
+  "catalogue_sha256": "459b572632cd0bdba78a8120fe1b3244b52199bb8f23bc0bd3ea9c7d246facfb",
+  "verification": {
+    "debug_build": true,
+    "targeted_tests_passed": 4,
+    "format_check": true,
+    "scoped_diff_check": true,
+    "native_visual_QA": true,
+    "lossless_native_pixel_verification": true,
+    "native_marker_transparency": "marker-transparency.json",
+    "different_expiry_turns_verified": true,
+    "unchanged_before_cast_and_expired_world": "world-preservation.json",
+    "previous_accepted_art_and_catalogue_preserved": true,
+    "viewer_controller": "Six scenarios and four directions; manual turns and separate duration expiry. Offline mock DOM; no browser rendering claim."
+  },
+  "playback_bytes": 0,
+  "cleanup": "cleanup.json",
+  "visual_acceptance": "visual-acceptance-01.json",
+  "historical_playback_bytes": 1374032,
+  "playback_removed_after_verified_successor90": true,
+  "accepted_native_preview_reproducible_with": "--ui-cold-agent-skill-animations <fresh output> --lot-silence-regeneration"
+}

@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-TURN01-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-turn-resolution-INTERACT-TURN01-01.json",
+    "reference_sha256": "fc9b51457f7256a2d57f07a4ef48efea8bc65c5f1243750c0973ceb0f3f6f5e5"
+  },
+  "user_acceptance": "parfait oui",
+  "shown_explanation": "INTERACT-TURN01 · Ordre de résolution d'un tour — proposition\n\nPour un tour ordinaire, je propose cet ordre :\n\n1. Votre action et ses effets immédiats : attaque, sort, premiers dégâts persistants ou création d'une zone, suivant les règles validées.\n2. Les zones déjà actives, de la plus ancienne à la plus récente, puis les dégâts périodiques de Poison, Brûlure et Saignement. Les effets ayant déjà produit leur première application ce tour ne reçoivent pas une application automatique supplémentaire.\n3. Les familiers pouvant agir, puis les ennemis encore vivants. Un ressuscité commence toujours à agir au tour suivant son relèvement.\n4. La fin du tour : diminution des durées et recharges, expiration des effets arrivés à leur terme et récupération prévue par les règles déjà validées.\n5. Mise à jour des hostiles repérés, de la phase Combat/Calme et des compteurs affichés.\n\nChaque mort est résolue dès les dégâts mortels, avant de poursuivre : objets au sol, récompenses et effets de mort applicables, dont Contagion et le relèvement. Une cible morte ne joue pas son action prévue. Une récupération ultérieure ne sauve pas un personnage dont les PV sont déjà tombés à zéro.\n\nExemple : un monstre possède 6 PV et doit subir 8 dégâts de poison ce tour. Il meurt avant les actions des familiers et des ennemis ; il ne peut pas attaquer ensuite. Ces nombres illustrent l'ordre, sans fixer de statistiques.\n\nLes réactions et déclenchements immédiats déjà prévus conservent leur moment propre. Cet ordre n'ajoute aucune action aux familiers et ne modifie pas leurs vitesses ni leurs délais. Les détails d'entrée dans une zone, des mines et des événements simultanés restent à préciser.\n\nCet ordre reste proposé, en attente de validation.",
+  "approved_rule": {
+    "phase1_player": "resolve_player_action_and_its_immediate_effects_with_existing_reaction_trigger_timing;first_persistent_damage_and_new_zone_creation_effect_immediate_under_accepted_rules",
+    "phase2_environment": "eligible_existing_ground_zone_applications_oldest_to_newest_then_actor_Poison_Burn_Bleed_ordinary_periodic_applications;skip_new_effect_automatic_repeat_as_accepted_TIME01_TIME02;automatic_zone_refresh_does_not_add_extra_status_damage",
+    "phase3_actors": "eligible_familiars_then_living_enemies;preserve_actor_speeds_delays_action_budgets_and_existing_first_action_rules;new_raised_actor_cannot_act_on_birth_turn",
+    "phase4_end": "advance_elapsed_duration_and_cooldown_counters;expire_effects_after_their_last_covered_turn;then_recovery_per_existing_accepted_rules_without_reviving_dead_actors",
+    "phase5_presentation": "update_perception_threat_phase_and_shared_remaining_counters_after_resolved_events",
+    "death_priority": "at_each_fatal_damage_resolve_death_and_applicable_real_item_drops_rewards_Contagion_and_reanimation_before_continuing_to_next_event_or_actor;dead_actor_has_no_later_scheduled_action",
+    "terminal_HP": "HP_reaching_zero_is_terminal_for_actor_before_any_later_recovery;no_end_turn_regeneration_rescue;existing_explicit_reanimation_of_marked_enemy_is_separate",
+    "scope_boundary": "preserve_immediate_reactions_and_explicit_trigger_delays;not_a_new_all_actors_one_action_rule;no_zone_entry_or_mine_arming_timing_proposal_no_simultaneous_multi_target_death_proc_tie_order_no_extra_familiar_action"
+  },
+  "approval_boundary": "shown_core_phase_order_and_immediate_death_resolution_accepted;zone_entry_mine_arming_specific_arrival_hazards_simultaneous_proc_ties_and_native_feedback_not_approved",
+  "runtime_integration": "not_integrated"
+}

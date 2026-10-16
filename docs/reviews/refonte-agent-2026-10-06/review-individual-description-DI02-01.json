@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-07",
+  "id": "DI02",
+  "title": "Rafale concentrée",
+  "revision": 1,
+  "player_copy_markdown": "**DI02 · Rafale concentrée — Rang 11**\n\n*Vous concentrez votre feu sur une seule cible et l’accablez d’une rafale serrée.*\n\n**Effet actuel**\n\n- Projectiles tirés : **5**.\n- Dégâts par projectile : **18–22** (**90 %** de l’attaque).\n- Précision par projectile : **90 % de votre précision habituelle**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts par projectile : **18–23** (**93 %** de l’attaque).\n\n**Coût : 13 énergie + 5 munitions · Recharge : 4 tours.**\n**Portée : celle de l’arme active.**\n\nChaque projectile peut toucher ou manquer sa cible. Cette rafale remplace celle de l’arme.\n\nDégâts indiqués avant les défenses de la cible.\n\n**Nécessite une arme à distance active.**",
+  "player_copy_sha256": "44aa3453c963859b8976bb973e9f49c1684453d1871e8823afffd442888a664e",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-03.json",
+  "source_skill_block_sha256": "13f5776b1a9ad2a04a5bfbbc06f219281b5003f7fa347a83be78b20a6e588b29",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/piercing-shot-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "43a4fb347b774281a9c61c18cfca466df8db5c276ca2b658e2176b458f5bad6d",
+  "name_approval": "accepted_catalogue_name_preserved",
+  "roleplay_text_approval": "pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "displayed_individual_hit_tests_and_replacement_of_native_burst_proposed_pending_review; other cases pending",
+  "current_profile_status": "illustrative_not_a_user_save; not a proposed universal weapon variance",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "perception": 10,
+    "agility": 10,
+    "reference_weapon_min_damage_before_attributes": 18,
+    "reference_weapon_max_damage_before_attributes": 22,
+    "range_status": "ordinary weapon range; no fictional numeric range assigned",
+    "ranged_attribute_multiplier_exact": {
+      "numerator": 451,
+      "denominator": 400
+    },
+    "active_compatible_ranged_weapon": true,
+    "other_damage_or_cost_modifiers": false
+  },
+  "formulas": {
+    "projectile_count": "min(6, 3 + floor((effective_rank - 1)/4))",
+    "damage_percent_per_projectile": "60 + 3 * (effective_rank - 1)",
+    "damage_per_projectile": "floor(base damage * percent/100 * ranged attribute multiplier), once at end",
+    "accuracy_multiplier": "9/10 of ordinary accuracy score, not a fixed 90 percent hit chance",
+    "ammunition_cost": "projectile_count",
+    "energy_cost": "10 + floor((effective_rank - 1)/3)",
+    "cooldown_turns": 4
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "projectile_count": 5,
+    "damage_percent_per_projectile": 90,
+    "damage_min_per_projectile_before_defenses": 18,
+    "damage_max_per_projectile_before_defenses": 22,
+    "damage_min_exact_before_rounding": {
+      "numerator": 36531,
+      "denominator": 2000
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 44649,
+      "denominator": 2000
+    },
+    "accuracy_multiplier_percent": 90,
+    "ammunition_cost": 5,
+    "energy_cost": 13,
+    "cooldown_turns": 4,
+    "range": "ordinary range of the active compatible weapon"
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "projectile_count": 5,
+    "damage_percent_per_projectile": 93,
+    "damage_min_per_projectile_before_defenses": 18,
+    "damage_max_per_projectile_before_defenses": 23,
+    "damage_min_exact_before_rounding": {
+      "numerator": 377487,
+      "denominator": 20000
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 461373,
+      "denominator": 20000
+    },
+    "accuracy_multiplier_percent": 90,
+    "ammunition_cost": 5,
+    "energy_cost": 13,
+    "cooldown_turns": 4,
+    "range": "ordinary range of the active compatible weapon"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_weapon_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "damage_percent_per_projectile",
+      "damage_max_per_projectile_before_defenses"
+    ],
+    "unchanged_effects_omitted": [
+      "projectile_count",
+      "accuracy_multiplier_percent",
+      "ammunition_cost",
+      "energy_cost",
+      "cooldown_turns",
+      "range"
+    ],
+    "damage_range_display": "Both range endpoints displayed together; minimum unchanged."
+  },
+  "active_weapon_requirement": {
+    "type": "ranged",
+    "equipped_and_active_required": true,
+    "approval": "explicit_user_requirement",
+    "incompatible_warning": "Nécessite une arme à distance active.",
+    "warning_approval": "accepted_as_presented"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true
+  },
+  "unshown_rules_approval": "Full curves, exact hit-score/defense calculation, compatible weapon families and projectile profiles, per-projectile defense resolution, independent random damage distribution, entire burst prepayment, interrupted bursts, target death before burst completion, refusers, actor visibility, affixes and ammo interactions remain pending where not previously accepted. No fixed 90% success chance or automatic hit assumed.",
+  "visual_intention_approval": "accepted_catalogue_intention_only: closely spaced impacts and repeated short weapon recoil",
+  "visual_approval": "pending_native_animation_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Source document and DI02 block hashes verified.",
+    "Rank 11 per-projectile coefficient 90%, damage 18-22; rank 12 coefficient 93%, damage 18-23 with exact multiplier 451/400.",
+    "Five projectiles, accuracy multiplier 90%, energy 13, ammunition 5, cooldown 4 and ordinary weapon range unchanged.",
+    "Same illustrative weapon, attributes, learned 9 to 10 and equipment +2; no universal damage distribution or fixed hit chance invented.",
+    "Next block contains only changed damage row; one RP paragraph, no formula/table/rank breakdown or ordinary timing reminder.",
+    "All new copy and numbers pending user review; no native or runtime integration."
+  ]
+}

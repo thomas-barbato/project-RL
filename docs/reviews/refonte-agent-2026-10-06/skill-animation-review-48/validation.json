@@ -1,0 +1,33 @@
+{
+  "batch": "ANIM-S19",
+  "visual_status": "visually_approved",
+  "native_tile_size": 64,
+  "native_views": 27,
+  "animations": 28,
+  "native_gpu_readbacks": 2943,
+  "lossless_readback_to_png": true,
+  "native_capture_resampling": false,
+  "walls_controls_and_turn_timelines": "passed",
+  "previous_approved_artifacts_unchanged": 6264,
+  "lab_tests": {
+    "passed": 98,
+    "failed": 0
+  },
+  "locked_debug_build": "passed",
+  "format_check": "passed",
+  "diff_check": "passed",
+  "local_links": {
+    "checked": 8,
+    "missing": 0
+  },
+  "gallery_controller": "offline Node verification passed",
+  "temporary_32px_actor_drawings": "Adaptation and extensive bestiary creation explicitly scheduled after skills and animations.",
+  "campaign_integration": false,
+  "not_run": [
+    "Full engine suite",
+    "Release build",
+    "Browser rendering; native GPU captures and offline controller checked."
+  ],
+  "visual_approval": "M02-A01 and HY07-A01 accepted.",
+  "acceptance": "visual-acceptance-01.json"
+}

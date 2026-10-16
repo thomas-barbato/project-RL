@@ -1,0 +1,137 @@
+{
+  "date": "2026-10-08",
+  "id": "M02",
+  "review_id": "M02",
+  "revision": 1,
+  "title": "Décharge mutagène",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-72.json",
+  "source_skill_block_sha256": "a0a991d5df446461cdfb69887b06939461028743fc75270fb598df35eaf6ff6a",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "Force": 10,
+    "Agilité": 10,
+    "Volonté": 10,
+    "other_passive_implant_or_cost_modifiers": false,
+    "elemental_equipment_effects_in_numeric_example": false,
+    "raw_weapon_damage_inheritance": "not_decided_by_source_selection;example_uses_natural_base",
+    "magic_multiplier_exact": "11/10",
+    "magic_multiplier_display": 1.1,
+    "damage_attribute": "Volonté",
+    "currently_transformed": false,
+    "M03_damage_bonus_applicable_in_reference_example": false,
+    "learned_M03_in_example": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "direct_occult_damage": 55,
+    "form_extension_turns_per_eligible_hit": 2,
+    "maximum_added_turns_per_continuous_transformation": 4,
+    "range_cells": 3,
+    "energy_cost": 9,
+    "cooldown_turns": 2
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "direct_occult_damage": 59,
+    "form_extension_turns_per_eligible_hit": 2,
+    "maximum_added_turns_per_continuous_transformation": 4,
+    "range_cells": 3,
+    "energy_cost": 9,
+    "cooldown_turns": 2
+  },
+  "formulas_proposed": {
+    "direct_damage": "floor((10+4*(effective_rank-1))*magic_multiplier*applicable_damage_modifiers);one_final_floor_proposed",
+    "previous_unaccepted_damage_curve": "floor((7+2*(effective_rank-1))*magic_multiplier);superseded_by_stronger_damage_proposal",
+    "turns_per_eligible_hit": "min(2,1+floor((effective_rank-1)/10))",
+    "maximum_added_turns": "min(6,2+floor((effective_rank-1)/5))",
+    "energy_cost": "6+floor((effective_rank-1)/3)",
+    "full_curves_defaults_caps_and_rounding_approval": "unshown_pending_review"
+  },
+  "targeting_proposed": {
+    "visible_hostile_required": true,
+    "clear_path_required": true,
+    "range_cells": 3,
+    "single_target": true,
+    "damage_type": "occult",
+    "boss_eligible": true,
+    "extension_is_not_a_target_control": true,
+    "weapon_required": false,
+    "weapon_accuracy_roll": "not_added;legal_spell_target_then_defenses;exact_collision_and_accuracy_cases_pending"
+  },
+  "extension_rules_proposed": {
+    "review_id": "M02-EXT01",
+    "requires_player_currently_transformed": true,
+    "requires_actual_HP_removed_from_hostile": true,
+    "zero_actual_HP_removed_no_extension": true,
+    "one_extension_per_cast": true,
+    "counter_scope": "continuous_transformation;renewal_does_not_reset",
+    "same_form_renewal_preserves_used_extension_counter": true,
+    "return_to_human_then_new_form_starts_new_counter": true,
+    "damage_preserved_when_extension_cap_reached": true,
+    "equipment_bonus_change_does_not_reset_used_counter": true,
+    "exact_counter_tick_order_cap_resampling_and_partial_extension": "pending_review"
+  },
+  "availability_proposed": {
+    "human_form": true,
+    "all_five_transformations": true,
+    "blocked_by_Silence": true,
+    "no_automatic_access_to_other_learned_actives_in_form": true
+  },
+  "damage_modifier_scope": {
+    "Volonté_scales_damage": true,
+    "M03_applies_only_when_currently_transformed": true,
+    "preview_updates_using_current_form_and_modifiers": true,
+    "current_reference_fixture_human_and_no_other_passives": true,
+    "weapon_type_or_proc_interactions": "not_silently_extended_to_M02;exact_damage_component_review_pending"
+  },
+  "common_rule_decisions": "docs/reviews/refonte-agent-2026-10-06/transformation-actions-equipment-and-power-decisions.json",
+  "autonomy_review": "docs/reviews/refonte-agent-2026-10-06/review-transformation-autonomy-07.json",
+  "name_approval": "existing_Décharge_mutagène_name_preserved",
+  "roleplay_text_approval": "proposed_pending_explicit_user_review",
+  "numeric_rules_approval": "displayed_M02_current55_next59_damage_extension2_cap4_range3_energy9_cooldown2_proposed_pending_review",
+  "detailed_conditions_approval": "human_and_all_form_availability_and_damage_extension_role_previously_accepted;actual_HP_extension_continuous_budget_renewal_preservation_and_Silence_conditions_pending_review",
+  "visual_intention_approval": "dark_organic_projectile_form_pulse_and_duration_update_direction_proposed_pending_review",
+  "visual_approval": "per_skill_native_effect_pending_review",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "direct_occult_damage"
+    ]
+  },
+  "review_context_markdown": "Exemple chiffré en forme humaine, avec Volonté 10 et sans autre bonus de dégâts.",
+  "review_context_sha256": "4b400a33336e12ac5c1115ff1736f758886d1a0acd95f8e1f99b161c872fb87e",
+  "player_copy_markdown": "**M02 · Décharge mutagène — Rang 11 · Actif**\n\n*Vous projetez une décharge occulte qui déchire votre cible et nourrit votre métamorphose.*\n\n**Effets actuels**\n\n- Dégâts occultes : **55**.\n- Portée : **3 cases**.\n- Prolongation de votre forme par impact : **+2 tours**.\n- Prolongation maximale par transformation continue : **+4 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts occultes : **59**.\n\n**Coût : 9 énergie · Recharge : 2 tours.**\n\nCible ennemie visible, trajet dégagé. La prolongation exige de retirer réellement des PV à la cible. Hors transformation, la compétence inflige uniquement ses dégâts.\n\nLe renouvellement de la forme ne remet pas le compteur de prolongation à zéro. Une fois le plafond atteint, la décharge continue d’infliger ses dégâts.\n\nUtilisable sous forme humaine et sous chacune des cinq transformations. Silence empêche son utilisation.\n\nDégâts affichés avant les défenses de la cible.",
+  "player_copy_sha256": "fa51add4b944dbc4499fa469ba62dcea9fac27ac001a94e05ece3d6b13a0c272",
+  "visual_copy_markdown": "**Visuel proposé :** un jet d’énergie organique sombre frappe la cible. Lorsqu’une transformation gagne des tours, ses marques pulsent brièvement et sa durée affichée se met à jour.",
+  "visual_copy_sha256": "6fe553e8d55b3549225d67c06d248eb9cd38dd357924d76f784ac0151428f5d5",
+  "current_turn_shown_copy_markdown": "Exemple chiffré en forme humaine, avec Volonté 10 et sans autre bonus de dégâts.\n\n**M02 · Décharge mutagène — Rang 11 · Actif**\n\n*Vous projetez une décharge occulte qui déchire votre cible et nourrit votre métamorphose.*\n\n**Effets actuels**\n\n- Dégâts occultes : **55**.\n- Portée : **3 cases**.\n- Prolongation de votre forme par impact : **+2 tours**.\n- Prolongation maximale par transformation continue : **+4 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts occultes : **59**.\n\n**Coût : 9 énergie · Recharge : 2 tours.**\n\nCible ennemie visible, trajet dégagé. La prolongation exige de retirer réellement des PV à la cible. Hors transformation, la compétence inflige uniquement ses dégâts.\n\nLe renouvellement de la forme ne remet pas le compteur de prolongation à zéro. Une fois le plafond atteint, la décharge continue d’infliger ses dégâts.\n\nUtilisable sous forme humaine et sous chacune des cinq transformations. Silence empêche son utilisation.\n\nDégâts affichés avant les défenses de la cible.\n\n**Visuel proposé :** un jet d’énergie organique sombre frappe la cible. Lorsqu’une transformation gagne des tours, ses marques pulsent brièvement et sa durée affichée se met à jour.",
+  "current_turn_shown_copy_sha256": "cfb76573d6019c23e649feb2752bc8682059df51b48d1503548ca78f3a3efe32",
+  "unshown_cases_pending": [
+    "full_rank_curves_default_rank1_values_and_6_turn_extension_cap",
+    "one_final_damage_rounding_modifier_order_defenses_and_equipment_proc_interactions",
+    "projectile_collision_range_metric_visibility_and_large_footprints",
+    "extension_tick_order_zero_HP_overkill_partial_budget_and_expiration_boundary",
+    "form_skill_or_equipment_changes_cap_resampling_and_M02_counter",
+    "Silence_compatibility_for_form_entry_and_renewal_remains_separate",
+    "rejected_casts_energy_turn_and_RNG_atomicity",
+    "native_projectile_form_pulse_and_timer_update_frames"
+  ],
+  "runtime_integration": "not_integrated",
+  "autonomy_review_sha256": "973060b6f6d1e38cc1117a6acc8e176acca1b868c82a2dc9f8baec66afa3525b"
+}

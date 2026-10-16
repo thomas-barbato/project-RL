@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "DI02",
+  "previous_title": "Rafale concentrée",
+  "title": "Feu nourri",
+  "user_message": "okay ca me va",
+  "approval_scope": "Accepted revised name and concept from preceding proposal: two fixed sequences of the active weapon firing mode against one target; preserve native per-sequence projectile count; ammunition scales to projectiles fired; skill ranks improve per-projectile damage rather than sequence count. Reduced accuracy direction retained. Revised exact numbers and RP were not displayed and remain pending.",
+  "accepted_rules": {
+    "sequences_per_activation": 2,
+    "sequence_count_increases_with_skill_rank": false,
+    "native_firing_mode_preserved": true,
+    "same_primary_target": true,
+    "ammunition_scales_to_actual_mode": true,
+    "examples": {
+      "single_shot_projectiles": 2,
+      "three_round_burst_projectiles": 6
+    },
+    "rank_progression": "per-projectile damage",
+    "reduced_accuracy_direction": true
+  },
+  "superseded_proposals": [
+    "Fixed five-projectile individual example.",
+    "Skill-rank-driven three-to-six total projectiles regardless of native firing mode.",
+    "Replacement of ordinary weapon burst by skill-defined projectile count."
+  ],
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI02-01.json",
+  "previous_description_sha256": "97dde59f2351824bf585ebdb1283ea6dcf766d81f1a5ff0d5de639b275af4f5f",
+  "remaining_review": "Revised RP, exact damage coefficients/ranges, accuracy multiplier, energy, cooldown, weapon compatibility, projectile resolution and early target death/ammunition timing remain pending where not previously accepted.",
+  "visual_approval": "Existing intention only; native rendering not presented or approved.",
+  "runtime_integration": "not_integrated"
+}

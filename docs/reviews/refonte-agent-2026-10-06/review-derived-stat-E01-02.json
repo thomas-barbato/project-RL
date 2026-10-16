@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-08",
+  "review_id": "E01-CAP-ACCEPTED02",
+  "stat_id": "E01",
+  "title": "Énergie",
+  "revision": 2,
+  "status": "shown_capacity_RP_base_and_level_gain_and_examples_accepted;unshown_cases_pending",
+  "accepted_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-06.json",
+  "accepted_attribute_model_sha256": "d2e8b72ffc3466136c74be5ad61d6fcfd5c21358b242892fb163147697b73b76",
+  "shown_copy_markdown": "Les **PV de base et leur progression sont validés**. Passons à la capacité d’énergie.\n\n**E01 · Énergie**\n\n*Votre réserve alimente vos pouvoirs technologiques et occultes.*\n\n**Base proposée**\n\n- Niveau 1, Intelligence 5 et Volonté 5 : **30 énergie maximum**.\n- Gain automatique par niveau : **+2 énergie maximum**.\n- Chaque point d’Intelligence : **+2 énergie maximum**, déjà validé.\n- Chaque point de Volonté : **+2 énergie maximum**, déjà validé.\n\n**Exemple actuel — Niveau 10, Intelligence 10, Volonté 10**\n\n- Énergie maximum : **68**.\n\n**Au niveau 11**\n\n- Sans dépenser les nouveaux points : **70 énergie maximum**.\n- Avec les cinq points répartis entre Intelligence et Volonté : **80 énergie maximum**.\n\nCes exemples sont calculés avant les bonus d’équipements, implants et passifs. **Les 30 points de base et les +2 automatiques par niveau sont les nouvelles valeurs à valider.**",
+  "shown_copy_sha256": "1599a31228168c08d069dc1f5e2afe77a9e9c1136cb893decba15e2e7cc290be",
+  "already_accepted_rules": {
+    "maximum_energy_per_Intelligence_point": 2,
+    "maximum_energy_per_Volonte_point": 2,
+    "common_reserve_for_technological_and_magical_powers": true
+  },
+  "new_proposed_rules": {
+    "base_maximum_energy_at_level1_Intelligence5_Volonte5": 30,
+    "automatic_maximum_energy_gain_per_level_after_level1": 2
+  },
+  "formula_proposed_before_other_energy_bonuses": "30 + 2*(Intelligence-5) + 2*(Volonte-5) + 2*(level-1)",
+  "shown_examples": [
+    {
+      "level": 10,
+      "Intelligence": 10,
+      "Volonte": 10,
+      "maximum_energy": 68
+    },
+    {
+      "level": 11,
+      "Intelligence": 10,
+      "Volonte": 10,
+      "maximum_energy": 70
+    },
+    {
+      "level": 11,
+      "five_new_points_split_between_Intelligence_and_Volonte": true,
+      "combined_Intelligence_and_Volonte": 25,
+      "maximum_energy": 80
+    }
+  ],
+  "example_profile": "before_equipment_implant_and_passive_bonuses;five_level_points_are_free;third_example_assigns_exactly_five_total_points_across_Intelligence_and_Volonte",
+  "RP_approval": "shown_capacity_RP_accepted",
+  "numeric_approval": "base30_and_automatic2_per_level_accepted;attribute_contributions_previously_accepted",
+  "unshown_cases_pending": [
+    "current_energy_on_creation_level_gain_and_maximum_changes",
+    "regeneration_rates_phase_and_tick_order",
+    "equipment_implant_and_passive_bonus_order",
+    "minimum_attribute_and_energy_bounds",
+    "rounding_of_percentage_energy_bonuses",
+    "all_other_unshown_cases"
+  ],
+  "level_cap": null,
+  "new_visuals_proposed": false,
+  "runtime_integration": "not_integrated",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-E01-01.json",
+  "previous_card_sha256": "ca54f14710ee436a5d99185c00038bff8565b5129df26710c1a0980e77cb58c6",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/energy-capacity-and-level-gain-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "d844943d04b901c7d4ae8afc6bd96bd33093e008a023d2dd147deab91691a8cc",
+  "accepted_rules": {
+    "base_maximum_energy_at_level1_Intelligence5_Volonte5": 30,
+    "automatic_maximum_energy_gain_per_level_after_level1": 2,
+    "maximum_energy_per_Intelligence_point": 2,
+    "maximum_energy_per_Volonte_point": 2
+  }
+}

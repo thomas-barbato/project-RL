@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-10",
+  "review_id": "HEAVY-POSE01",
+  "user_direction": "alors parcontre les poses pour les armes lourdes sont differentes elles s'affichent plutot à l'horizontale :)",
+  "previous_series_plan_acceptance": "parfait :)",
+  "accepted_count_scope": "six_models_per_each_of_eight_presented_series;48_series_models_to_create_or_adapt;existing_models_preserved;boxes_separate",
+  "accepted_orientation": "predominantly_horizontal_held_heavy_weapons;two_grips_adapted_to_each_of_five_fixed_character_silhouettes",
+  "families": [
+    "heavy:flamethrower",
+    "heavy:rocket_launcher",
+    "heavy:gatling",
+    "heavy:plasma_launcher",
+    "heavy:grenade_launcher"
+  ],
+  "not_fixed": [
+    "exact_native_pixels",
+    "exact_grip_coordinates_and_forearm_masks",
+    "individual_model_head_and_barrel_shapes",
+    "numerical_angle"
+  ],
+  "preserved": "body_anatomy_scale_collision_and_equipment_identities;caster_and_shield_directions_unchanged",
+  "visual_approval": "orientation_direction_accepted;numbered_native_candidates_still_required",
+  "runtime_integration": "not_integrated"
+}

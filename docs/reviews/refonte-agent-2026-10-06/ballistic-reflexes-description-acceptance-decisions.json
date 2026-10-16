@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "ES06",
+  "title": "Réflexes balistiques",
+  "user_message": "oui ca me va :)",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ES06-01.json",
+  "previous_description_sha256": "dbb190a9bfb680ff4be614529d9f82ae75fd48cd8622c4dfffeb4aa746a94b96",
+  "accepted_player_copy_sha256": "d320ef5339b1a620ab41ce455755733ee8fe960302656f4fa48ae87a94217ca9",
+  "approval_scope": "Full displayed RP, additive projectile-dodge current/next values and limitation to projectiles resolved by an accuracy check accepted as provisional balance. Unshown full curves, projectile taxonomy, detailed stacking/hit cases and native visuals remain pending.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "projectile_dodge_bonus_points": 42
+    },
+    "next": {
+      "effective_rank": 12,
+      "projectile_dodge_bonus_points": 45
+    }
+  },
+  "accepted_conditions": [
+    "Bonus added to ordinary dodge only against projectiles using an accuracy/hit check."
+  ],
+  "unshown_rules_approval": "Full rank curves, ordinary dodge/hit bounds, physical/magical projectile taxonomy, pellets/rays/multiple-hit and area component eligibility, additive stacking with other dodge effects and attribute/implant/equipment interactions remain pending where not already accepted. No automatic miss, invulnerability, projectile reflection, area damage resistance or new hit check for automatic effects introduced.",
+  "visual_approval": "existing_catalogue_direction_only; native_preview_and_animation_pending",
+  "runtime_integration": "not_integrated"
+}

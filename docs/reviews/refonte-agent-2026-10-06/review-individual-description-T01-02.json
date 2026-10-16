@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-08",
+  "id": "T01",
+  "review_id": "T01",
+  "revision": 2,
+  "title": "Marquage balistique",
+  "branch": "Buffs à distance",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-96.json",
+  "source_skill_manifest_sha256": "0c3980181d04e3b871c4859d3af8e5ffe0f2fdcfec30f06e2ef22e7bb4651901",
+  "source_skill_block_sha256": "891dfabad52a257ef26c5c621c386918ef867bca0cdfc355f5c1aea9e4d24bf1",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "currently_transformed": false,
+    "equipped_and_active_weapon_type": "ranged",
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "precision_multiplier_exact": "27/20",
+    "precision_multiplier_display": "1,35",
+    "maximum_mark_duration_turns": 6,
+    "range_cells": 6,
+    "energy_cost": 9,
+    "cooldown_turns": 3
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "precision_multiplier_exact": "137/100",
+    "precision_multiplier_display": "1,37",
+    "maximum_mark_duration_turns": 6,
+    "range_cells": 6,
+    "energy_cost": 9,
+    "cooldown_turns": 3
+  },
+  "formulas_proposed": {
+    "precision_multiplier": "1+(15+2*(effective_rank-1))/100",
+    "duration_turns": "4+floor((effective_rank-1)/5)",
+    "energy_cost": "6+floor((effective_rank-1)/3)",
+    "range_cells": 6,
+    "cooldown_turns": 3,
+    "unshown_full_curves_defaults_rounding_and_clock_order": "pending_review"
+  },
+  "previously_accepted_rules": {
+    "rank1_precision_multiplier": "1.15;relative_precision_not_hit_probability_points",
+    "instant_mark_no_time_or_enemy_reaction": "existing_T01_direction_preserved;ordinary_immediate_execution_copy_omitted_under_AGENTS"
+  },
+  "conditions_proposed": {
+    "next_eligible_ranged_attack_consumes_mark_even_on_miss": true,
+    "native_burst_each_primary_target_hit_check_benefits": true,
+    "maximum_marked_targets": 1,
+    "drones_and_spells_without_accuracy_check_excluded": true,
+    "requires_equipped_and_active_ranged_weapon": "proposed_weapon_precision_buff_requirement;common_active_weapon_rule_applied",
+    "human_form_required": true,
+    "blocked_by_Silence": true,
+    "mark_requires_observed_in_range_target_and_geometric_line_of_sight": "unshown_pending_review",
+    "status_icons": "player_buff_under_HUD01-ALL01_and_target_status_in_analysis_under_existing_rule;native_pending",
+    "removed_covering_shot_DI06_dependency": "no_removed_skill_reference_or_mechanics_retained"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "displayed_roleplay_explicitly_accepted",
+  "numeric_rules_approval": "displayed_current_next_values_explicitly_accepted;unshown_curves_pending",
+  "detailed_conditions_approval": "displayed_conditions_explicitly_accepted;unshown_cases_pending",
+  "visual_intention_approval": "displayed_reticle_buff_icon_and_target_analysis_direction_accepted;native_pending",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "displayed_card_explicitly_accepted;unshown_cases_and_native_pending",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "no_fictitious_weapon_damage_range_or_hit_probability": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "precision_multiplier_display"
+    ]
+  },
+  "player_copy_markdown": "**T01 · Marquage balistique — Rang 11 · Actif**\n\n*Vous désignez les failles de votre cible pour guider vos tirs.*\n\n**Effets actuels**\n\n- Précision contre la cible marquée : **×1,35**.\n- Durée maximale de la marque : **6 tours**.\n- Portée : **6 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Précision contre la cible marquée : **×1,37**.\n\n**Coût : 9 énergie · Recharge : 3 tours.**\n\nVotre prochaine attaque à distance contre cette cible consomme la marque, même si elle manque. Pour une rafale, tous les projectiles dirigés vers la cible principale bénéficient du bonus.\n\nUne seule cible marquée à la fois. Les drones et les sorts sans jet de précision ne bénéficient pas du bonus.\n\nArme à distance équipée et active requise. Forme humaine requise ; Silence empêche son utilisation.",
+  "player_copy_sha256": "2b9e59e64dfb8053a1f99f373b0481b9b23e0dfb87f6575b87d7560fca01f711",
+  "visual_copy_markdown": "**Visuel proposé :** quatre traits de viseur se referment brièvement sur la cible. L’icône du buff indique la marque active et sa durée restante ; la marque figure aussi parmi les statuts de la cible dans son analyse.",
+  "visual_copy_sha256": "2e8f91a0db459b9ba63c5e78ce6ab49d7826b37502db22f064f82f8143b775c6",
+  "current_turn_shown_copy_markdown": "**T01 · Marquage balistique — Rang 11 · Actif**\n\n*Vous désignez les failles de votre cible pour guider vos tirs.*\n\n**Effets actuels**\n\n- Précision contre la cible marquée : **×1,35**.\n- Durée maximale de la marque : **6 tours**.\n- Portée : **6 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Précision contre la cible marquée : **×1,37**.\n\n**Coût : 9 énergie · Recharge : 3 tours.**\n\nVotre prochaine attaque à distance contre cette cible consomme la marque, même si elle manque. Pour une rafale, tous les projectiles dirigés vers la cible principale bénéficient du bonus.\n\nUne seule cible marquée à la fois. Les drones et les sorts sans jet de précision ne bénéficient pas du bonus.\n\nArme à distance équipée et active requise. Forme humaine requise ; Silence empêche son utilisation.\n\n**Visuel proposé :** quatre traits de viseur se referment brièvement sur la cible. L’icône du buff indique la marque active et sa durée restante ; la marque figure aussi parmi les statuts de la cible dans son analyse.",
+  "current_turn_shown_copy_sha256": "c31a0367ab4882fed0608f1f957a9f08216bb6481b15aa4e6476ea534a36e10e",
+  "unshown_cases_pending": [
+    "full_curves_defaults_rounding_modifier_order_and_snapshot",
+    "target_geometry_visibility_drone_vision_and_line_of_sight",
+    "ranged_magic_heavy_weapon_eligibility_and_multi_target_attacks",
+    "instant_refusal_no_time_energy_RNG_consumption_and_cooldown_boundary",
+    "retargeting_reapplication_duration_expiry_map_change_weapon_swap_transformation",
+    "native_reticle_player_icon_target_status_tooltip_and_visibility"
+  ],
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/ballistic-marking-description-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "b4437bc2111545d8977f7b1bff17bf9f03566a1406f68d80b41cb01a4c8647c3",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T01-01.json",
+  "previous_description_sha256": "83a382dc4460f225c38e998dcbcfe34d43753978bc45efe89f764d229c2ca25b"
+}

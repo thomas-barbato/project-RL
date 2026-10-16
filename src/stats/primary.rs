@@ -1,7 +1,7 @@
 use std::error::Error;
 use std::fmt::{Display, Formatter};
 
-pub const PRIMARY_ATTRIBUTE_COUNT: usize = 5;
+pub const PRIMARY_ATTRIBUTE_COUNT: usize = 6;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum PrimaryAttribute {
@@ -10,6 +10,7 @@ pub enum PrimaryAttribute {
     Resilience,
     Perception,
     Processing,
+    Willpower,
 }
 
 impl PrimaryAttribute {
@@ -19,6 +20,7 @@ impl PrimaryAttribute {
         Self::Resilience,
         Self::Perception,
         Self::Processing,
+        Self::Willpower,
     ];
 }
 
@@ -30,31 +32,113 @@ impl Display for PrimaryAttribute {
             Self::Resilience => "resilience",
             Self::Perception => "perception",
             Self::Processing => "processing",
+            Self::Willpower => "willpower",
         };
         formatter.write_str(name)
     }
 }
 
-/// The five intrinsic attributes of one character.
+/// Intrinsic attributes, including Willpower for cryogenic agents.
 ///
 /// Construction does not silently apply creation limits: a loaded class,
 /// save, temporary test profile, or character-creation screen must validate
 /// the values against the active [`PrimaryAttributeRules`] explicitly.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct PrimaryAttributes {
-    values: [u8; PRIMARY_ATTRIBUTE_COUNT],
+    values: [u16; 5],
+    willpower: u16,
+}
+
+thread_local! {
+    static LEGACY_ATTRIBUTE_ENCODING: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+}
+
+/// The v12 recovery format stored attributes in bytes. Scope that codec to
+/// decoding old snapshots; current saves can represent normal high-level stats.
+pub(crate) fn with_legacy_attribute_encoding<T>(operation: impl FnOnce() -> T) -> T {
+    struct Reset(bool);
+    impl Drop for Reset {
+        fn drop(&mut self) {
+            LEGACY_ATTRIBUTE_ENCODING.set(self.0);
+        }
+    }
+    let _reset = Reset(LEGACY_ATTRIBUTE_ENCODING.replace(true));
+    crate::status::with_legacy_status_encoding(operation)
+}
+
+#[derive(serde::Serialize, serde::Deserialize)]
+struct WideAttributes {
+    values: [u16; 5],
+    #[serde(default)]
+    willpower: u16,
+}
+#[derive(serde::Serialize, serde::Deserialize)]
+struct LegacyAttributes {
+    values: [u8; 5],
+    #[serde(default)]
+    willpower: u8,
+}
+impl serde::Serialize for PrimaryAttributes {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        if LEGACY_ATTRIBUTE_ENCODING.get() && !serializer.is_human_readable() {
+            let mut values = [0; 5];
+            for (destination, value) in values.iter_mut().zip(self.values) {
+                *destination = u8::try_from(value).map_err(serde::ser::Error::custom)?;
+            }
+            LegacyAttributes {
+                values,
+                willpower: u8::try_from(self.willpower).map_err(serde::ser::Error::custom)?,
+            }
+            .serialize(serializer)
+        } else {
+            WideAttributes {
+                values: self.values,
+                willpower: self.willpower,
+            }
+            .serialize(serializer)
+        }
+    }
+}
+impl<'de> serde::Deserialize<'de> for PrimaryAttributes {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        if LEGACY_ATTRIBUTE_ENCODING.get() && !deserializer.is_human_readable() {
+            let value = LegacyAttributes::deserialize(deserializer)?;
+            Ok(Self {
+                values: value.values.map(u16::from),
+                willpower: u16::from(value.willpower),
+            })
+        } else {
+            let value = WideAttributes::deserialize(deserializer)?;
+            Ok(Self {
+                values: value.values,
+                willpower: value.willpower,
+            })
+        }
+    }
+}
+
+impl std::fmt::Debug for PrimaryAttributes {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut values = f.debug_struct("PrimaryAttributes");
+        values.field("values", &self.values);
+        if self.willpower > 0 {
+            values.field("willpower", &self.willpower);
+        }
+        values.finish()
+    }
 }
 
 impl PrimaryAttributes {
     pub const fn new(
-        power: u8,
-        coordination: u8,
-        resilience: u8,
-        perception: u8,
-        processing: u8,
+        power: u16,
+        coordination: u16,
+        resilience: u16,
+        perception: u16,
+        processing: u16,
     ) -> Self {
         Self {
             values: [power, coordination, resilience, perception, processing],
+            willpower: 0,
         }
     }
 
@@ -65,27 +149,47 @@ impl PrimaryAttributes {
         Self::new(6, 6, 6, 5, 5)
     }
 
-    pub const fn value(self, attribute: PrimaryAttribute) -> u8 {
-        self.values[attribute as usize]
+    pub const fn value(self, attribute: PrimaryAttribute) -> u16 {
+        if matches!(attribute, PrimaryAttribute::Willpower) {
+            self.willpower
+        } else {
+            self.values[attribute as usize]
+        }
     }
 
-    pub fn with_value(mut self, attribute: PrimaryAttribute, value: u8) -> Self {
-        self.values[attribute as usize] = value;
+    pub const fn with_willpower(mut self, value: u16) -> Self {
+        self.willpower = value;
         self
     }
 
-    pub const fn values(self) -> [u8; PRIMARY_ATTRIBUTE_COUNT] {
+    pub fn with_value(mut self, attribute: PrimaryAttribute, value: u16) -> Self {
+        if matches!(attribute, PrimaryAttribute::Willpower) {
+            self.willpower = value;
+        } else {
+            self.values[attribute as usize] = value;
+        }
+        self
+    }
+
+    pub const fn values(self) -> [u16; 5] {
         self.values
     }
 
-    pub fn iter(self) -> impl Iterator<Item = (PrimaryAttribute, u8)> {
+    pub fn iter(self) -> impl Iterator<Item = (PrimaryAttribute, u16)> {
         PrimaryAttribute::ALL
             .into_iter()
+            .filter(move |attribute| {
+                !matches!(attribute, PrimaryAttribute::Willpower) || self.willpower > 0
+            })
             .map(move |attribute| (attribute, self.value(attribute)))
     }
 
-    pub fn total(self) -> u16 {
-        self.values.iter().map(|value| u16::from(*value)).sum()
+    pub fn total(self) -> u32 {
+        self.values
+            .iter()
+            .map(|value| u32::from(*value))
+            .sum::<u32>()
+            + u32::from(self.willpower)
     }
 
     pub fn validate_for_creation(
@@ -96,7 +200,9 @@ impl PrimaryAttributes {
             .validate()
             .map_err(PrimaryAttributesError::InvalidRules)?;
         for (attribute, value) in self.iter() {
-            if !(rules.creation_minimum..=rules.creation_maximum).contains(&value) {
+            if !(u16::from(rules.creation_minimum)..=u16::from(rules.creation_maximum))
+                .contains(&value)
+            {
                 return Err(PrimaryAttributesError::OutsideCreationRange {
                     attribute,
                     value,
@@ -106,7 +212,7 @@ impl PrimaryAttributes {
             }
         }
         let actual = self.total();
-        if actual != rules.creation_total {
+        if actual != u32::from(rules.creation_total) {
             return Err(PrimaryAttributesError::WrongCreationTotal {
                 actual,
                 expected: rules.creation_total,
@@ -123,7 +229,9 @@ impl PrimaryAttributes {
             .validate()
             .map_err(PrimaryAttributesError::InvalidRules)?;
         for (attribute, value) in self.iter() {
-            if !(rules.absolute_minimum..=rules.absolute_maximum).contains(&value) {
+            if !(u16::from(rules.absolute_minimum)..=u16::from(rules.absolute_maximum))
+                .contains(&value)
+            {
                 return Err(PrimaryAttributesError::OutsideAbsoluteRange {
                     attribute,
                     value,
@@ -225,18 +333,18 @@ pub enum PrimaryAttributesError {
     InvalidRules(PrimaryAttributeRulesError),
     OutsideAbsoluteRange {
         attribute: PrimaryAttribute,
-        value: u8,
+        value: u16,
         minimum: u8,
         maximum: u8,
     },
     OutsideCreationRange {
         attribute: PrimaryAttribute,
-        value: u8,
+        value: u16,
         minimum: u8,
         maximum: u8,
     },
     WrongCreationTotal {
-        actual: u16,
+        actual: u32,
         expected: u16,
     },
 }
@@ -328,8 +436,8 @@ mod tests {
             rules.validate(),
             Err(PrimaryAttributeRulesError::ImpossibleCreationTotal {
                 total: 50,
-                minimum: 15,
-                maximum: 40,
+                minimum: 18,
+                maximum: 48,
             })
         );
     }

@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-08",
+  "id": "BM06",
+  "review_id": "BM06",
+  "revision": 2,
+  "title": "Bouclier d’énergie",
+  "branch": "Buffs de mêlée",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM06-01.json",
+  "previous_card_sha256": "19eba3752081079400bfa2f821e9d0bb00c41e11a23c0e4db3d1011fab12e861",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-95.json",
+  "source_skill_manifest_sha256": "31a184a8c7e62a5df3b4001dbdda2e076e1b88a8589630175935f3849bbc3dc3",
+  "source_skill_block_sha256": "185cbb5990044cf4988ccdb10671e3ac79ec710e00d399e5312cefcb2126b1de",
+  "redesign_direction_decisions": "docs/reviews/refonte-agent-2026-10-06/energy-shield-redesign-decisions.json",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "currently_transformed": false,
+    "other_modifiers": false,
+    "energy_available": "actual_shared_energy_after_cast;no_fictitious_total"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "direct_damage_absorbed_percent_when_energy_sufficient": 100,
+    "energy_cost_per_ten_damage_absorbed": 10,
+    "duration_turns": 5,
+    "activation_energy_cost": 6,
+    "cooldown_turns": 10
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "direct_damage_absorbed_percent_when_energy_sufficient": 100,
+    "energy_cost_per_ten_damage_absorbed": 9,
+    "duration_turns": 5,
+    "activation_energy_cost": 6,
+    "cooldown_turns": 10
+  },
+  "formulas_proposed": {
+    "energy_cost_per_ten_damage_absorbed": "max(5,20-(effective_rank-1))",
+    "absorption_energy_cost": "ceil(absorbed_damage*energy_cost_per_ten_damage_absorbed/10)",
+    "maximum_damage_absorbable_with_energy": "floor(current_energy*10/energy_cost_per_ten_damage_absorbed)",
+    "eligible_damage_basis": "after_protections;exact_order_pending",
+    "remaining_HP_damage": "eligible_damage-absorbed_damage",
+    "duration_turns": 5,
+    "activation_energy_cost": 6,
+    "cooldown_turns": 10,
+    "full_curve_floor5_defaults_rounding_order": "unshown_pending_review"
+  },
+  "conditions_proposed": {
+    "active_cast_replaces_passive": "explicit_user_direction",
+    "direct_shared_energy_before_HP": "explicit_user_answer",
+    "no_separate_shield_pool": true,
+    "direct_damage_only": "new_scope_pending_review",
+    "poison_bleeding_and_other_indirect_excluded": "new_proposal_not_inherited_from_reflection_rules",
+    "proportional_cost_not_blocks_of_ten": true,
+    "insufficient_energy": "absorb_what_remaining_energy_pays_for;overflow_to_HP",
+    "energy_depletion_ends_buff": "new_proposal_pending",
+    "after_protections": "new_order_proposal_pending",
+    "human_form_required_to_cast": true,
+    "blocked_by_Silence": true,
+    "weapon_requirement": "self_buff_not_weapon_attack;no_extra_weapon_requirement",
+    "other_powers_share_energy": "existing_common_energy_direction;spending_order_pending",
+    "status_icon": "required_by_confirmed_HUD01-ALL01",
+    "no_hit_generated_shield_refill": true
+  },
+  "name_approval": "Bouclier_d_energie_explicitly_requested",
+  "active_and_energy_priority_direction_approval": "explicit_user_request_and_direct_energy_answer",
+  "roleplay_text_approval": "new_RP_pending_individual_user_review",
+  "numeric_rules_approval": "current100_energy10_per10_next9_per10_duration5_activation6_CD10_pending_individual_review",
+  "detailed_conditions_approval": "direct_shared_energy_before_HP_accepted;new_scope_order_exclusions_depletion_cast_conditions_pending",
+  "visual_intention_approval": "status_icon_required;new_activation_circle_directional_impact_arc_proposed;old_passive_half_arc_retired",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "name_active_energy_priority_accepted;RP_numbers_conditions_visual_proposed",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "no_fictitious_damage_or_energy_total": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "energy_cost_per_ten_damage_absorbed"
+    ]
+  },
+  "player_copy_markdown": "**BM06 · Bouclier d’énergie — Rang 11 · Actif**\n\n*Vous enveloppez votre corps d’un bouclier qui puise dans votre énergie pour préserver votre vie.*\n\n**Effets actuels**\n\n- Dégâts directs absorbés : **100 % tant que votre énergie le permet**.\n- Coût d’absorption : **10 énergie pour 10 dégâts**.\n- Durée : **5 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Coût d’absorption : **9 énergie pour 10 dégâts**.\n\n**Coût d’activation : 6 énergie · Recharge : 10 tours.**\n\nLe coût d’absorption est proportionnel aux dégâts, calculés après vos protections.\n\nÀ court d’énergie, les dégâts restants atteignent vos PV et le bouclier prend fin.\n\nLe poison, le saignement et les autres dégâts indirects ne sont pas absorbés.\n\nForme humaine requise pour lancer le buff ; Silence empêche son utilisation.",
+  "player_copy_sha256": "5fb84adca63ab09a92562c3d4fd1a41c257ea1b437e33890c19eb4875ab94ecf",
+  "visual_copy_markdown": "**Visuel proposé :** un cercle d’énergie apparaît brièvement autour de vous à l’activation ; un arc se forme du côté d’un impact absorbé. L’icône du buff indique sa durée restante.",
+  "visual_copy_sha256": "c0a5a4218d16a1492ffaa17098192cdeef58f23cf8644bd1430f317839feb6d0",
+  "current_turn_shown_copy_markdown": "**BM06 · Bouclier d’énergie — Rang 11 · Actif**\n\n*Vous enveloppez votre corps d’un bouclier qui puise dans votre énergie pour préserver votre vie.*\n\n**Effets actuels**\n\n- Dégâts directs absorbés : **100 % tant que votre énergie le permet**.\n- Coût d’absorption : **10 énergie pour 10 dégâts**.\n- Durée : **5 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Coût d’absorption : **9 énergie pour 10 dégâts**.\n\n**Coût d’activation : 6 énergie · Recharge : 10 tours.**\n\nLe coût d’absorption est proportionnel aux dégâts, calculés après vos protections.\n\nÀ court d’énergie, les dégâts restants atteignent vos PV et le bouclier prend fin.\n\nLe poison, le saignement et les autres dégâts indirects ne sont pas absorbés.\n\nForme humaine requise pour lancer le buff ; Silence empêche son utilisation.\n\n**Visuel proposé :** un cercle d’énergie apparaît brièvement autour de vous à l’activation ; un arc se forme du côté d’un impact absorbé. L’icône du buff indique sa durée restante.",
+  "current_turn_shown_copy_sha256": "ff549a0942763d78e21c8450bde8a138dc2afef95a33ef0ff1da372bfdf0e8fc",
+  "unshown_cases_pending": [
+    "full_curve_floor5_defaults_high_gear_ranks_rounding",
+    "energy_depletion_other_power_spending_regeneration_and_clock_order",
+    "armor_resistance_absorption_reflection_and_indirect_damage_order",
+    "mixed_poison_direct_attacks_status_application_and_overkill",
+    "self_cost_sacrifice_and_energy_burn",
+    "zero_energy_after_cast_refusal_refresh_and_map_change",
+    "pre_cast_transformation_persistence_Silence_after_activation",
+    "native_circle_impact_arc_icon_palette_visibility_tooltip"
+  ]
+}

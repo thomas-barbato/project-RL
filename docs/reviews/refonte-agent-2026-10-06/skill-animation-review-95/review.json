@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S48",
+  "status": "visual_accepted_pending_campaign_integration",
+  "candidates": [
+    {
+      "number": 105,
+      "id": "DP01",
+      "variant": "DP01-A01",
+      "title": "Maintenance des drones"
+    },
+    {
+      "number": 106,
+      "id": "DR01",
+      "variant": "DR01-A01",
+      "title": "Réparation ciblée"
+    }
+  ],
+  "palette_direction": "Blue repair direction and both shown native renderings accepted under ANIM-S48-ACCEPT01.",
+  "policy": "../drone-passive-visual-policy-decisions.json",
+  "native_tile": 64,
+  "scenes": 22,
+  "maintenance_profile": {
+    "source": "../review-individual-description-DP01-03.json",
+    "effective_rank": 11,
+    "maximum_hp_percent": 7,
+    "quiet_full_turns_before_repair": 3,
+    "no_cost_or_cooldown": true
+  },
+  "targeted_profile": {
+    "source": "../review-individual-description-DR01-02.json",
+    "effective_rank": 11,
+    "healed_hp": 46,
+    "energy": 12,
+    "cooldown_turns": 4,
+    "one_allied_robot_in_line_of_sight": true
+  },
+  "visuals": {
+    "DP01": "Short blue repair pulse on every deployed damaged drone actually receiving HP; no permanent aura.",
+    "DR01": "100ms blue energy impulse toward one allied robot, then a stronger blue repair pulse. HP apply immediately; flight is cosmetic only.",
+    "DP02": "No world animation: permanent passive, existing small icon reserved for the future pets window."
+  },
+  "fixtures_not_new_game_rules": {
+    "drone_maximum_hp": 200,
+    "starting_hp": [
+      70,
+      110,
+      40
+    ],
+    "maintenance_gain_example": 14,
+    "partial_heal_case": "One HP missing; gains capped to one.",
+    "unavailable_targets": "Recalled/destroyed/blocked/insufficient-energy examples remain unchanged without a cast. This does not settle unshown campaign resource ordering or taxonomy.",
+    "hostile_case": "Maintenance repairs on quiet turn four, then visible hostile interrupts from turn five. Active repair can act with an already visible hostile.",
+    "ranges": "All shown successful active targets are three cells away; no new range curve or distance metric is chosen.",
+    "scope": "Prepared laboratory scenes, not campaign AI or damage simulation."
+  },
+  "accepted_guardian_size": "../skill-animation-review-94/gardien-size01/visual-acceptance-01.json",
+  "previous_pending": [
+    "D66-TAUNT-A01",
+    "D66-TAUNT-I01",
+    "O03-A01",
+    "review90 visual acceptance",
+    "B03 mechanics"
+  ],
+  "campaign_integration": false,
+  "active_assets_changed": false,
+  "visual_acceptance": "visual-acceptance-01.json"
+}

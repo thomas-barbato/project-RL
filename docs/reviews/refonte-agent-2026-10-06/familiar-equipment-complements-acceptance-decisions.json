@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ01-ACCEPT01",
+  "user_reply": "je valide :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-PETS-EQ01-02.json",
+  "source_proposal_sha256": "53d881f15e540548d4d9a691caf7fe9d9f79d6260cae829e28d636335cefa0b3",
+  "accepted_shown_copy_markdown": "Les **règles d’armes des familiers sont validées**.\n\n**PETS-EQ01 · Équipement des familiers — compléments proposés**\n\nPour compléter ce système, je propose :\n\n- **Conditions d’équipement :** chaque objet indique son niveau minimum et les types de familiers compatibles. Le familier doit remplir les deux conditions : niveau suffisant et type compatible — mêlée, distance physique ou distance magique.\n- **Niveau des ressuscités :** ils conservent le niveau du monstre d’origine. Les drones suivent le niveau du joueur, comme validé.\n- **Bonus d’équipement :** les effets compatibles bénéficient au familier qui porte l’objet.\n- **Récupération :** à sa mort, à la fin d’une résurrection ou lors d’une destruction volontaire, les objets portés tombent sur sa case, avec les objets déjà présents. Un drone rappelé conserve son équipement.\n- **Accès :** un bouton **« Équipement »** dans la fenêtre **« Familiers »** ouvre la fiche du familier choisi. La Mule conserve aussi son rôle de transport.\n\nCes compléments restent à valider. Nous pourrons ensuite définir les emplacements et les familles d’objets autorisées pour chaque modèle ou type de familier.",
+  "accepted_shown_copy_sha256": "0557a0fad2f2a04142119f39bdf04c7c80849c8581fda774ae4881d0ac961546",
+  "accepted_shown_rules": {
+    "item_compatibility": "item_minimum_required_level<=familiar_level_AND_familiar_combat_type_in_item_compatible_types",
+    "type_categories": [
+      "melee",
+      "physical_ranged",
+      "magical_ranged"
+    ],
+    "raised_level": "retain_origin_monster_level",
+    "item_bonus_recipient": "equipped_item_eligible_effects_apply_to_wearing_familiar;no_automatic_owner_bonus_transfer",
+    "ground_location": "all_worn_items_deposit_on_familiar_current_cell_preserving_existing_objects_and_item_properties",
+    "voluntary_destruction": "also_deposit_worn_items_on_current_cell",
+    "drone_recall": "retain_worn_equipment",
+    "interface_entry": "Equipement_button_on_existing_Familiers_window_opens_selected_familiar_equipment_sheet",
+    "Mule": "cargo_transport_role_retained_in_addition_to_familiar_equipment;no_new_all_familiar_cargo_capacity_defined"
+  },
+  "approval_scope": "Shown item minimum-level and compatible familiar-type requirements must both be met; raised level is original monster level; drone current player level preserved; eligible item bonuses benefit the wearing familiar; death/raised expiry/voluntary destruction drop worn items on the familiar cell alongside existing items; recalled drone retains equipment; Equipement entry in Familiers opens selected familiar sheet; Mule transport role retained. Slot counts, exact item family compatibility and native rendering not inferred.",
+  "unshown_cases_pending": [
+    "slot_counts_and_exact_compatible_item_families_per_familiar_model_and_type",
+    "armor_requirements_and_shared_classification_of_player_vs_familiar_items",
+    "equipment_storage_vs_non_Mule_cargo_capacity",
+    "weapon_native_modes_ammunition_energy_costs_ranges_reload_and_pet_AI",
+    "equipment_stat_affix_status_proc_skill_bonus_eligibility_and_summoner_bonus_interactions",
+    "pet_maximum_HP_adjustment_equipment_no_refill_rules_and_modifier_timing",
+    "item_transfer_distance_actions_costs_and_equip_during_combat",
+    "raised_origin_equipment_original_loot_ownership_and_no_duplicate_item_generation",
+    "recall_redeployment_saves_layer_transitions_disappearance_and_invalid_drop_cells",
+    "equipment_body_visual_layers_native_icons_inventory_layout_and_item_comparison",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "entry_label_and_function_accepted;native_layout_sprites_and_equipment_layers_not_presented",
+  "runtime_integration": "not_integrated"
+}

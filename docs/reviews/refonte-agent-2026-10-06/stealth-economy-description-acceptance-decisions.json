@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SF01-ACCEPT01",
+  "skill_id": "SF01",
+  "user_response": "okay je valide",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF01-01.json",
+  "reviewed_description_sha256": "0b58cc9d59462fdb355407ca8105501866a9aaf114bc48b4776792df054ae5d8",
+  "accepted_player_copy": "**SF01 · Économie de mouvement furtif — Rang 11 · Passif**\n\n*Vos implants ajustent votre camouflage pour limiter l’énergie consommée à chaque pas.*\n\n**Effets actuels**\n\n- Énergie par pas en furtivité : **1 point**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nCoût minimal déjà atteint.\n\nNécessite **Furtivité** apprise.",
+  "accepted_current_values": {
+    "energy_per_successful_stealth_step": 1
+  },
+  "accepted_next_values": {
+    "energy_per_successful_stealth_step": 1
+  },
+  "accepted_next_rank_marker": "Coût minimal déjà atteint.",
+  "accepted_display_direction": "**Affichage proposé :** le coût actualisé apparaît dans la fiche de Furtivité.",
+  "active_prerequisite_and_permanent_passive_rules": "preserved",
+  "unshown_cases_pending": [
+    "cost_curve_effective_ranks1_to9_and_rounding",
+    "pending_SF00_base2_cost_and_resource_regeneration_order",
+    "preview_without_current_equipment_bonus_and_all_other_energy_modifiers",
+    "native_skill_rank_bonus_color_and_SF00_numeric_refresh"
+  ],
+  "native_UI_approval": "pending_preview_review",
+  "runtime_integration": "not_integrated"
+}

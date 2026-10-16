@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S39",
+  "revision": 3,
+  "status": "visually_accepted",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 88,
+      "id": "SU06",
+      "variant": "SU06-A03",
+      "icon_variant": "SU06-C02",
+      "title": "Dernier sursaut"
+    }
+  ],
+  "on_hold": {
+    "id": "B03",
+    "decision": "../vitality-proc-design-pending.json"
+  },
+  "effective_rank": 11,
+  "native_tile": 64,
+  "rendering": "Wings behind the complete actor, soft white halo behind the wings, same brief lifetime and unchanged prepared survival outcomes. High-resolution wing source; original icon remains intact.",
+  "new_scenes": 8,
+  "comparison_scenes": 0,
+  "preview": "../apercu-animations.html?lot=84",
+  "native_lab": "--apercu-laboratoire-competences --lot-passifs-survie",
+  "source": "src/agent_skill_lab_review/fire_painted/survival_passives.rs",
+  "source_sha256": "9d6bb6d2a55f5fd7b9028b67ebf9b7d075e1f46bff50ec8a1d3ae8f765971239",
+  "protected_campaign_icon_sha256": "fc0ca0b9da6550e61a3b0b263e78ea68a7c1e9e1eaa3afc691f762d6a7c95a48",
+  "protected_catalogue_sha256": "bf176f625980f6c6ec53e8943fc0195b351a7e69ff880554fb2379317483c2ac",
+  "remaining_unshown": 23,
+  "temporary_capture_policy": "Remove native PNG captures and browser screenshots after verification; keep original art and compact playback.",
+  "verification": {
+    "debug_build": true,
+    "native_capture_exit": 0,
+    "browser_views": 16,
+    "native_pixel_equality": true,
+    "manual_turns": true,
+    "prepared_results_unchanged": true,
+    "comparison_keeps_same_frame_and_state": true,
+    "original_A02_files_and_renderer_preserved": true,
+    "icon_exports_unchanged": true,
+    "campaign_icon_and_catalogue_unchanged": true,
+    "format_check": true,
+    "visual_inspection": true
+  },
+  "new_playback_bytes": 4277740,
+  "reused_playback_bytes": 0,
+  "acceptance": "visual-acceptance-01.json",
+  "obsolete_variant_removed": "SU06-A02",
+  "post_cleanup_verification": {
+    "browser_views": 8,
+    "approved_browser_pixels_identical": true,
+    "native_frames": 896,
+    "graphics_and_outcomes_preserved": true,
+    "label_antialiasing_max_RGB_delta": 3,
+    "receipt": "post-cleanup-native-verification.json"
+  }
+}

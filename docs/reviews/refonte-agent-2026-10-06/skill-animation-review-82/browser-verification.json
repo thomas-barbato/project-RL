@@ -1,0 +1,56 @@
+{
+  "browser": "Edge Chromium",
+  "views": 16,
+  "schemes": [
+    "file: playback and controls",
+    "localhost: exact native RGB equality"
+  ],
+  "checks": [
+    {
+      "scenario": "DIRECT",
+      "direction": 0,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "DIRECT",
+      "direction": 1,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "DIRECT",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "DIRECT",
+      "direction": 3,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "ATTENTE",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "PERSISTANT",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "RECHARGE",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "SECOND",
+      "direction": 2,
+      "pixel_equality": true
+    }
+  ],
+  "manual_idle_stable": true,
+  "no_maximum_hp_healing": true,
+  "no_persistent_save": true,
+  "no_second_save": true,
+  "no_energy_cost": true,
+  "errors": []
+}

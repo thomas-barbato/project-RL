@@ -1,0 +1,42 @@
+{
+  "batch": "ANIM-S35",
+  "date": "2026-10-14",
+  "status": "visually_approved",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 79,
+      "id": "B02",
+      "title": "Égide occulte",
+      "variant": "B02-A01"
+    },
+    {
+      "number": 80,
+      "id": "SU03",
+      "title": "Barrière d’épine",
+      "variant": "SU03-A01"
+    }
+  ],
+  "rank": 11,
+  "scope": "Prepared direct physical melee/ranged contacts, persistent damage exclusion, quiet wait, Silence refusal and expiry; no new gameplay or rounding rule. Current catalogue values. Buff icons persist in state bar; cast/impact drawings are brief. Shared hit reaction and physical blood reused.",
+  "generation": "built-in imagegen, transparent background; exact PNG sources preserved",
+  "source_images": {
+    "../../../../assets/animations/agent/skill-animation-review-76/egide-source.png": "ab345164e6eb0e4b65598d2c4fc8d87d2e64fd6d038c28a5e2085aa4ebaa3677",
+    "../../../../assets/animations/agent/skill-animation-review-76/epines-source.png": "84d15d869187d2f3769aa242d76b89b6a060b07eba2cc30bf6956b43f8fe8722"
+  },
+  "preview": "../apercu-animations.html",
+  "laboratory": "--apercu-laboratoire-competences --lot-protections-survie",
+  "remaining_unshown_before": 33,
+  "remaining_unshown_after_preparation": 31,
+  "validation": {
+    "build": "cargo build --locked --bin project-rl",
+    "formatting": true,
+    "diff_check": true,
+    "native_scenes": 16,
+    "browser_file_scheme": true,
+    "browser_pixel_equality": true,
+    "temporary_captures_removed": true,
+    "temporary_bytes_removed": 238580986.0
+  },
+  "blood_rule": "Thorn reflected damage must show the approved physical blood on the living recipient, player or monster; machines keep their no-blood rule."
+}

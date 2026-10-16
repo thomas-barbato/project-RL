@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-09",
+  "review_id": "HEAVY-FAMILY01",
+  "revision": 1,
+  "user_request": "ah oui il faudra créer aussi plusieurs séries d'arme lourdes par familles d'armes lourdes (et faire en sorte de les adapter aux personnages). Lance flammes (mais déjà existants eux), Lance roquette, Gatling, Lance plasma, Lance grenades. Et je n'ai pas d'autres idées.",
+  "requested_families": [
+    {
+      "stable_family_id": "heavy:flamethrower",
+      "display_name": "Lance-flammes",
+      "existing_models": true
+    },
+    {
+      "stable_family_id": "heavy:rocket_launcher",
+      "display_name": "Lance-roquettes",
+      "existing_models": true
+    },
+    {
+      "stable_family_id": "heavy:gatling",
+      "display_name": "Gatling",
+      "existing_models": "existing_heavy_machineguns_are_references;new_Gatling_series_not_yet_drawn"
+    },
+    {
+      "stable_family_id": "heavy:plasma_launcher",
+      "display_name": "Lance-plasma",
+      "existing_models": "energy_weapons_are_references;new_heavy_plasma_series_not_yet_drawn"
+    },
+    {
+      "stable_family_id": "heavy:grenade_launcher",
+      "display_name": "Lance-grenades",
+      "existing_models": true
+    }
+  ],
+  "accepted_direction": "prepare_multiple_model_series_per_requested_heavy_weapon_family_and_adapt_held_layers_grips_and_poses_to_characters;reuse_existing_flamethrowers_as_starting_sources",
+  "requested_family_names": "user_authored_direction;player_item_names_and_RP_to_be_reviewed_per_model",
+  "not_fixed": [
+    "model_count_per_series",
+    "levels_damage_variance_effects_accuracy_range",
+    "weight_and_attribute_requirements",
+    "ammo_costs_reload",
+    "new_native_art_and_animations",
+    "individual_model_names_RP_and_loot_distribution"
+  ],
+  "scope": "additional_heavy_weapon_catalogue_work;does_not_delete_other_existing_weapon_families_or_modify_current_models",
+  "art_review": "follow_docs_DIRECTION_ARTISTIQUE_TILES;numbered_native32_candidates_and_character_grips_before_integration",
+  "ammunition_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/universal-ammunition-and-matter-removal-decisions.json",
+    "reference_sha256": "aee8578f5b4dc465e68f2308e13e81dcc19ac1df64a4b3b9cb75f54ac8d29760"
+  },
+  "mechanic_approval": "family_catalogue_direction_only",
+  "visual_approval": "new_series_pending_numbered_native_review",
+  "runtime_integration": "not_integrated"
+}

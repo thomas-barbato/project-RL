@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SF00-ENERGY02-MOVE01",
+  "related_review_id": "SF00-ENERGY02",
+  "question": "Quand un pas annule la furtivité faute d’énergie, ce même pas doit-il être effectué à découvert, ou le personnage doit-il rester sur place ?",
+  "user_answer": "Effectuer le pas à découvert",
+  "source_cancellation_decisions": "docs/reviews/refonte-agent-2026-10-06/stealth-no-energy-cancellation-decisions.json",
+  "source_cancellation_decisions_sha256": "c944030d9a004a8482bfc18626b3a66b45214d4fefd03d775938fddc46759a7f",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF00-07.json",
+  "source_proposal_sha256": "cf57bde558356900a956040f9b04292f6d55ff87f02da45649a7d4979f579625",
+  "accepted_rule": {
+    "zero_energy_attempted_movement_cancels_stealth": true,
+    "same_attempted_step_continues_normally_outside_stealth": true
+  },
+  "rule_approval": "explicit_user_instruction_and_explicit_async_answer",
+  "player_copy_proposed": "« Sans énergie, tenter de vous déplacer met fin à la furtivité. Vous effectuez alors votre pas à découvert. »",
+  "player_copy_proposed_sha256": "8233ee7593860039ec4e6ef1c511e294ab0a12d6cd1b645c76d04dd29f0b52e4",
+  "changed_copy_approval": "pending_explicit_review_of_paraphrase;mechanical_rule_already_authorized",
+  "unresolved_cases": [
+    "positive_energy_below_effective_step_cost",
+    "ordinary_blocked_movement_and_detailed_resource_turn_reaction_order"
+  ],
+  "preserved_scope": "accepted_cost_curve_RP_and_other_cards_unchanged;remaining_SF00_values_conditions_visuals_not_inferred_accepted",
+  "runtime_integration": "not_integrated"
+}

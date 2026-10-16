@@ -1,0 +1,191 @@
+{
+  "art_tests": 15,
+  "weapon_hands_tests": 3,
+  "single_grip_combinations": 575,
+  "dual_combinations_tested": 1127,
+  "native_body_height": 30,
+  "native_tile": 32,
+  "idle_integrated": false,
+  "debug_build": true,
+  "release_build": true,
+  "release_warnings_preexisting": 4,
+  "full_suite_rerun": false,
+  "body_bytes_preserved": true,
+  "source_mode": "built-in imagegen edit",
+  "captures": [
+    {
+      "body_height": 30,
+      "cache_after_repeated_frames": [
+        [
+          19,
+          19
+        ],
+        [
+          18,
+          18
+        ]
+      ],
+      "cache_after_warmup": [
+        [
+          19,
+          19
+        ],
+        [
+          18,
+          18
+        ]
+      ],
+      "native_tile": 32,
+      "no_new_textures_after_warmup": true,
+      "scene": "crawl-weapons",
+      "state_unchanged_after_render": true,
+      "weapon_families": 18,
+      "weapon_models": 113
+    },
+    {
+      "body_height": 30,
+      "cache_after_repeated_frames": [
+        [
+          168,
+          168
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "cache_after_warmup": [
+        [
+          168,
+          168
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "native_tile": 32,
+      "no_new_textures_after_warmup": true,
+      "scene": "crawl-grips-one-1",
+      "state_unchanged_after_render": true,
+      "weapon_families": 18,
+      "weapon_models": 113
+    },
+    {
+      "body_height": 30,
+      "cache_after_repeated_frames": [
+        [
+          155,
+          155
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "cache_after_warmup": [
+        [
+          155,
+          155
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "native_tile": 32,
+      "no_new_textures_after_warmup": true,
+      "scene": "crawl-grips-one-2",
+      "state_unchanged_after_render": true,
+      "weapon_families": 18,
+      "weapon_models": 113
+    },
+    {
+      "body_height": 30,
+      "cache_after_repeated_frames": [
+        [
+          133,
+          133
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "cache_after_warmup": [
+        [
+          133,
+          133
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "native_tile": 32,
+      "no_new_textures_after_warmup": true,
+      "scene": "crawl-grips-two-1",
+      "state_unchanged_after_render": true,
+      "weapon_families": 18,
+      "weapon_models": 113
+    },
+    {
+      "body_height": 30,
+      "cache_after_repeated_frames": [
+        [
+          122,
+          122
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "cache_after_warmup": [
+        [
+          122,
+          122
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "native_tile": 32,
+      "no_new_textures_after_warmup": true,
+      "scene": "crawl-grips-two-2",
+      "state_unchanged_after_render": true,
+      "weapon_families": 18,
+      "weapon_models": 113
+    },
+    {
+      "body_height": 30,
+      "cache_after_repeated_frames": [
+        [
+          50,
+          50
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "cache_after_warmup": [
+        [
+          50,
+          50
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "native_tile": 32,
+      "no_new_textures_after_warmup": true,
+      "scene": "crawl-grips-dual",
+      "state_unchanged_after_render": true,
+      "weapon_families": 18,
+      "weapon_models": 113
+    }
+  ]
+}

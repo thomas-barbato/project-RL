@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-14",
+  "review_id": "SF00-SNEAK01-ACCEPT01",
+  "skill_id": "SF00",
+  "user_reply": "parfait je valide :)",
+  "shown_summary_markdown": "Les deux animations sont validées :)\n\nJe propose **+5 % de dégâts directs par rang** pour l’attaque sournoise :\n\n- Rang 1 : **+5 %**\n- Rang 10 : **+50 %**\n- Rang 11 : **+55 %**\n- Rang 12 : **+60 %**\n\nLe bonus concerne les **armes et les sorts**. L’attaque bénéficie du bonus et met fin à la furtivité.\n\nFurtivité devient donc montable jusqu’à **10 rangs appris**, avec les bonus d’équipement au-delà.",
+  "shown_summary_sha256": "d0d2661b4d30406b7096e5a611a5267261c55e01529cba33a57f55e4cb7e4153",
+  "prepared_card": "review-individual-description-SF00-12.json",
+  "prepared_card_sha256": "56fb80b4d4d15159a425d3daff107c007366b7ad260ab4fcd83aa5d73f7a1c9b",
+  "accepted_numeric_rules": {
+    "direct_damage_bonus_percent_per_effective_rank": 5,
+    "rank1_bonus_percent": 5,
+    "rank10_bonus_percent": 50,
+    "rank11_bonus_percent": 55,
+    "rank12_bonus_percent": 60,
+    "no_rank10_effective_bonus_plateau": true,
+    "max_learned_ranks": 10,
+    "equipment_can_raise_effective_rank_above10": true
+  },
+  "accepted_attack_scope": "Weapons and spells: the attack initiated while stealth is active receives its direct damage bonus and ends stealth.",
+  "accepted_ranked_purchase_direction": "Replaces unique once-only SF00 purchase with a ranked active; existing common one-point-per-rank learning rules remain.",
+  "copy_approval": "Shown summary explicitly accepted; previous RP remains accepted. The full consolidated tooltip in the prepared card was not re-shown and is not newly approved by inference.",
+  "visual_scope": "Camouflage and movement economy already accepted separately under ANIM-S28-ACCEPT01. No new bonus attack animation is shown by this response.",
+  "unshown_mechanical_cases": [
+    "exact multiplication/addition order with other damage bonuses and criticals",
+    "native bursts/multiple projectiles/areas and per-component snapshot",
+    "channelled attacks and delayed direct impacts",
+    "rejected attacks without resource or valid target",
+    "equipment rank changes during a pending attack",
+    "offensive non-damage controls and indirect-only skills"
+  ],
+  "campaign_integration": false,
+  "runtime_integration": "not_integrated"
+}

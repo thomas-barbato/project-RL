@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-07",
+  "id": "M01",
+  "review_id": "M01",
+  "revision": 1,
+  "title": "Mue prédatrice",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-61.json",
+  "source_skill_block_sha256": "701b4ac94fefb1630e9fce7c38c254b1a031a9e1ac460860c18817e0548baec5",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "Force": 10,
+    "Agilité": 10,
+    "Volonté": 10,
+    "melee_multiplier_exact": "451/400",
+    "melee_multiplier_display": 1.1275,
+    "other_passive_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "claw_kinetic_damage": 31,
+    "duration_turns": 9,
+    "claw_reach_cells": 1,
+    "leap_maximum_cells": 2,
+    "leap_energy_cost": 4,
+    "leap_cooldown_turns": 3,
+    "energy_cost": 15,
+    "cooldown_turns": 10
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "claw_kinetic_damage": 33,
+    "duration_turns": 9,
+    "claw_reach_cells": 1,
+    "leap_maximum_cells": 2,
+    "leap_energy_cost": 4,
+    "leap_cooldown_turns": 3,
+    "energy_cost": 15,
+    "cooldown_turns": 10
+  },
+  "formulas_proposed": {
+    "claw_damage": "floor((8+2*(effective_rank-1))*melee_multiplier)",
+    "melee_multiplier_current": "451/400 from existing Force10/Agilité10 profile",
+    "duration": "6+floor((effective_rank-1)/3)+min(3,floor(max(0,Volonté-5)/20))",
+    "transform_energy": "12+floor((effective_rank-1)/3)",
+    "claw_energy": 0,
+    "claw_reach_cells": 1,
+    "leap_cells": 2,
+    "leap_energy": 4,
+    "leap_cooldown_turns": 3,
+    "transform_cooldown_turns": 10
+  },
+  "natural_actions_proposed": {
+    "Griffe": {
+      "role": "ordinary_natural_kinetic_melee_attack",
+      "range_cells": 1,
+      "energy_cost": 0,
+      "can_miss": true,
+      "damage_basis": "natural_base_and_current_Force_Agilité;no_active_weapon_damage_or_weapon_attack_affixes"
+    },
+    "Bond": {
+      "role": "natural_movement_action",
+      "maximum_cells": 2,
+      "path": "free_known_passable_path",
+      "energy_cost": 4,
+      "cooldown_turns": 3,
+      "free_attack_inferred": false
+    }
+  },
+  "equipment_and_weapon_rules_proposed": {
+    "equipment_retained": true,
+    "armor_attribute_and_skill_bonuses_preserved": true,
+    "ordinary_weapons_unavailable_in_form": true,
+    "weapon_requiring_techniques_unavailable_in_form": true,
+    "historical_Frappe_de_rupture_using_Griffe_exception": "superseded_unapproved_proposal;common_active_weapon_requirement_preserved",
+    "return_restores_equipment_and_normal_appearance": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "claw_kinetic_damage"
+    ]
+  },
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_natural_attack": true,
+    "natural_actions_included_with_form_purchase": true
+  },
+  "name_approval": "existing_Mue_prédatrice_name_preserved;Prédateur62_is_art_reference_not_player_skill_name",
+  "roleplay_text_approval": "proposed_pending_explicit_user_review",
+  "numeric_rules_approval": "existing_curves_used_for_current31_next33_duration9_cost15;displayed_values_and_full_curves_pending_explicit_user_review",
+  "detailed_conditions_approval": "proposed_pending_explicit_user_review;common_weapon_requirement_preserved",
+  "visual_intention_approval": "existing_predator_claw_and_compact_leap_direction_preserved;exact_animation_proposed_pending_review",
+  "visual_approval": "existing_art_bank_accepted;per_skill_native_animation_pending_review",
+  "original_art_reference": {
+    "reference_number": 62,
+    "name": "Prédateur",
+    "new_character_image_created": false
+  },
+  "player_copy_markdown": "**M01 · Mue prédatrice — Rang 11 · Actif**\n\n*L’occulte déforme votre corps en prédateur, armé pour lacérer ses proies et bondir au cœur de la mêlée.*\n\n**Effets actuels**\n\n- Durée de la transformation : **9 tours**.\n- Griffe : **31 dégâts cinétiques**, à **1 case**.\n- Bond : déplacement de **2 cases maximum**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Griffe : **33 dégâts cinétiques**.\n\n**Transformation : 15 énergie · Recharge : 10 tours.**\n\n**Bond : 4 énergie · Recharge : 3 tours.**\n\nGriffe ne coûte pas d’énergie. Bond demande un trajet libre et franchissable.\n\nVos armures, attributs et bonus de compétences restent actifs. Les armes et les techniques qui exigent une arme sont indisponibles pendant la forme.\n\nDégâts affichés avant les défenses de la cible.",
+  "player_copy_sha256": "f9a6709558ed4ff714800c23fc62d36d88a7d7d252bf858ce4778e7a57e3c791",
+  "visual_copy_markdown": "**Visuel proposé :** la forme reprend le Prédateur 62 déjà dessiné. Griffe produit de courtes griffures au contact ; Bond anime un saut bref et compact vers la case choisie.",
+  "visual_copy_sha256": "3bde95dc15aeb1c3aa6343d60929dcadd3cd5e5f075dd8ca8ba5fd1b74021624",
+  "current_turn_shown_copy_markdown": "**M01 · Mue prédatrice — Rang 11 · Actif**\n\n*L’occulte déforme votre corps en prédateur, armé pour lacérer ses proies et bondir au cœur de la mêlée.*\n\n**Effets actuels**\n\n- Durée de la transformation : **9 tours**.\n- Griffe : **31 dégâts cinétiques**, à **1 case**.\n- Bond : déplacement de **2 cases maximum**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Griffe : **33 dégâts cinétiques**.\n\n**Transformation : 15 énergie · Recharge : 10 tours.**\n\n**Bond : 4 énergie · Recharge : 3 tours.**\n\nGriffe ne coûte pas d’énergie. Bond demande un trajet libre et franchissable.\n\nVos armures, attributs et bonus de compétences restent actifs. Les armes et les techniques qui exigent une arme sont indisponibles pendant la forme.\n\nDégâts affichés avant les défenses de la cible.\n\n**Visuel proposé :** la forme reprend le Prédateur 62 déjà dessiné. Griffe produit de courtes griffures au contact ; Bond anime un saut bref et compact vers la case choisie.",
+  "current_turn_shown_copy_sha256": "0530673ea1a9b88b4018cc37e348561b808e5dfec9e6c215e45755df3af494ce",
+  "unshown_rules_pending": [
+    "full_attribute_rank_damage_duration_energy_curves",
+    "natural_hit_critical_status_damage_variance_and_equipment_interactions",
+    "exact_leap_path_diagonals_large_footprints_known_cells_reactions_and_no_free_attack_details",
+    "form_entry_expiry_voluntary_return_switching_and_cooldown_tick_order",
+    "HP_and_status_behavior_on_entry_exit",
+    "other_weaponless_skill_and_silence_compatibility",
+    "form_parameter_snapshot_and_gear_swap_timing",
+    "refusal_accounting_and_cost_reduction_details",
+    "exact_native_form_transition_claw_and_leap_frames"
+  ],
+  "runtime_integration": "not_integrated"
+}

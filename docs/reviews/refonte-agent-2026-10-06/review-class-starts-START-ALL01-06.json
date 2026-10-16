@@ -1,0 +1,601 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-ALL01",
+  "revision": 6,
+  "status": "scoped_visual_acceptance_recorded;vivid_red_robe_accepted;downward_pistol_proposed;numeric_profiles_unchanged",
+  "authority": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/class-start-delegation-decisions.json",
+    "reference_sha256": "74e874981b767dc8c47b101f283a344a5f9fb67c3ac85307bb7e76018dbc696d"
+  },
+  "accepted_Bastion": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-bastion-START-B01-02.json",
+    "reference_sha256": "f5fc094ac99ffa19f6192d9d4bd6d7e9252240da66ff804bac557c160d850320"
+  },
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/class-approval.json",
+      "reference_sha256": "10fbebdf6b1c3078a8adb7bebf1d00d7d13e2ca3983a0733f8ee149d13d2c976"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/class-candidates.json",
+      "reference_sha256": "cac3344c9ffc846c94bbf9f3425f0fc6c753ab7ea3d44aa0acd101c648f0e83b"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/class-drone-corrections.json",
+      "reference_sha256": "a423c8439c4ec7334febad12bc330ef48477cfbe5fb7a075f8a518e0d5a2154f"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/skill-rank-curves-provisional-02.json",
+      "reference_sha256": "44ff8b1f8df86320562f82a00529b5e92c3e9118dd0a89bb051e7b2100e50bdb"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-90.json",
+      "reference_sha256": "bfb8cf389ddebd9cfdec4a6734c29f9e8329ea3cd225894609a5344309048271"
+    }
+  ],
+  "profiles": [
+    {
+      "review_id": "START-B01",
+      "approved_class_identity": "Bastion",
+      "proposed_display_name": "Bastion",
+      "name_status": "previously_accepted",
+      "roleplay": "Vous encaissez les coups et ouvrez un passage au cœur de la mêlée.",
+      "starting_level": 1,
+      "attributes": {
+        "Force": 7,
+        "Agilité": 5,
+        "Vitalité": 7,
+        "Perception": 5,
+        "Intelligence": 4,
+        "Volonté": 6
+      },
+      "fixed_start_attribute_budget": 34,
+      "learned_start_skills": [
+        {
+          "skill_id": "B01",
+          "learned_rank": 1,
+          "kind": "active"
+        },
+        {
+          "skill_id": "B03",
+          "learned_rank": 1,
+          "kind": "passive"
+        }
+      ],
+      "initial_implant_pair": {
+        "replacement": "found_implant_replaces_entire_pair;learned_skills_retained",
+        "resource_changes": "ordinary_maximum_change_keeps_absolute_current_resource_then_clamps;no_heal",
+        "flat_armor_bonus": 1,
+        "maximum_energy_penalty_percent": 10
+      },
+      "starting_equipment": {
+        "active_weapon": {
+          "draft_id": "start:hachette",
+          "display_name": "Hachette",
+          "level": 1,
+          "damage_minimum": 6,
+          "damage_maximum": 10,
+          "damage_family": "physical",
+          "physical_subtype": "kinetic",
+          "range_cells": 1,
+          "accuracy_modifier": -12,
+          "reference_model": "core:melee_hachette",
+          "reference_content": {
+            "reference": "content/core/weapons/melee_hachette.json5",
+            "reference_sha256": "022d2a8c51daa3c1da7ecb436829753c13e227be778d03894d67d5bf21b9035e"
+          }
+        },
+        "body_armor": {
+          "draft_id": "start:tenue_assaut",
+          "display_name": "Tenue d’assaut",
+          "armor": 3,
+          "evasion_penalty": 5,
+          "other_stat_or_skill_bonus": null,
+          "art_assignment": "approved_class_silhouette_only;new_equipped_preview_not_approved"
+        },
+        "other_equipment_slots": "no_additional_start_bonus_in_this_draft"
+      },
+      "derived_level1_reserves": {
+        "base_maximum_HP": 38,
+        "maximum_HP": 41,
+        "current_HP": 41,
+        "base_maximum_energy": 30,
+        "maximum_energy": 27,
+        "current_energy": 27,
+        "equipment_HP_or_energy_bonuses": 0
+      },
+      "core_approval": "accepted_as_displayed_under_START_B01",
+      "new_player_copy": "accepted_START_B01_RP_preserved",
+      "equipment_balance": "specific_level1_proposal_for_review;not_a_general_weapon_progression_curve",
+      "native_creation_preview": "existing_numbered_class_silhouette_preserved;equipped_composition_pending_native_review",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "review_id": "START-O01",
+      "approved_class_identity": "Technomancien",
+      "proposed_display_name": "Technomancien",
+      "name_status": "accepted_as_displayed_under_CLASS_NAME_O02",
+      "roleplay": "Vous déployez vos drones et infiltrez les défenses ennemies par la technologie et l’occulte.",
+      "starting_level": 1,
+      "attributes": {
+        "Force": 4,
+        "Agilité": 5,
+        "Vitalité": 5,
+        "Perception": 6,
+        "Intelligence": 8,
+        "Volonté": 6
+      },
+      "fixed_start_attribute_budget": 34,
+      "learned_start_skills": [
+        {
+          "skill_id": "D59",
+          "learned_rank": 1,
+          "kind": "active"
+        },
+        {
+          "skill_id": "O03",
+          "learned_rank": 1,
+          "kind": "passive"
+        }
+      ],
+      "initial_implant_pair": {
+        "replacement": "found_implant_replaces_entire_pair;learned_skills_retained",
+        "resource_changes": "ordinary_maximum_change_keeps_absolute_current_resource_then_clamps;no_heal",
+        "drone_maximum_HP_bonus_percent": 15,
+        "techno_occult_weakening_duration_bonus_turns": 1,
+        "weapon_damage_penalty_percent": 10
+      },
+      "starting_equipment": {
+        "active_weapon": {
+          "draft_id": "start:pistolet",
+          "display_name": "Pistolet",
+          "level": 1,
+          "damage_minimum": 3,
+          "damage_maximum": 5,
+          "damage_family": "physical",
+          "physical_subtype": "piercing",
+          "range_cells": 5,
+          "accuracy_modifier": 5,
+          "reference_model": "core:modele_cogneur_p01",
+          "reference_content": {
+            "reference": "content/core/weapons/modele_cogneur_p01.json5",
+            "reference_sha256": "62f483906a5430b461f44f87acf28af2a0ad5dd695344a5246768bf0d799263a"
+          }
+        },
+        "body_armor": {
+          "draft_id": "start:tenue_technique",
+          "display_name": "Tenue technique",
+          "armor": 2,
+          "evasion_penalty": 0,
+          "other_stat_or_skill_bonus": null,
+          "art_assignment": "approved_class_silhouette_only;new_equipped_preview_not_approved"
+        },
+        "other_equipment_slots": "no_additional_start_bonus_in_this_draft"
+      },
+      "derived_level1_reserves": {
+        "base_maximum_HP": 30,
+        "maximum_HP": 30,
+        "current_HP": 30,
+        "base_maximum_energy": 38,
+        "maximum_energy": 38,
+        "current_energy": 38,
+        "equipment_HP_or_energy_bonuses": 0
+      },
+      "core_approval": "shown_START_O01_name_RP_skills_implant_numbers_reserves_and_gear_direction_accepted;attributes_prepared_under_delegation;unshown_details_separate",
+      "new_player_copy": "shown_class_RP_accepted",
+      "equipment_balance": "specific_level1_proposal_for_review;not_a_general_weapon_progression_curve",
+      "native_creation_preview": "existing_numbered_class_silhouette_preserved;equipped_composition_pending_native_review",
+      "runtime_integration": "not_integrated",
+      "historical_class_name": "Opérateur",
+      "acceptance": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-technomancien-START-O01-01.json",
+        "reference_sha256": "588d3073dd8f6354e73b09e4edc81b80d365837deabb457d2d4c3711e462e720"
+      }
+    },
+    {
+      "review_id": "START-T01",
+      "approved_class_identity": "Traqueur",
+      "proposed_display_name": "Traqueur",
+      "name_status": "previously_accepted",
+      "roleplay": "Vous traquez vos cibles à distance et échappez à leurs ripostes.",
+      "starting_level": 1,
+      "attributes": {
+        "Force": 4,
+        "Agilité": 8,
+        "Vitalité": 5,
+        "Perception": 7,
+        "Intelligence": 4,
+        "Volonté": 6
+      },
+      "fixed_start_attribute_budget": 34,
+      "learned_start_skills": [
+        {
+          "skill_id": "T01",
+          "learned_rank": 1,
+          "kind": "active"
+        },
+        {
+          "skill_id": "T03",
+          "learned_rank": 1,
+          "kind": "passive"
+        }
+      ],
+      "initial_implant_pair": {
+        "replacement": "found_implant_replaces_entire_pair;learned_skills_retained",
+        "resource_changes": "ordinary_maximum_change_keeps_absolute_current_resource_then_clamps;no_heal",
+        "ranged_weapon_damage_bonus_percent": 10,
+        "flat_evasion_bonus": 2,
+        "melee_weapon_damage_penalty_percent": 10
+      },
+      "starting_equipment": {
+        "active_weapon": {
+          "draft_id": "start:fusil",
+          "display_name": "Fusil de patrouille",
+          "level": 1,
+          "damage_minimum": 3,
+          "damage_maximum": 5,
+          "damage_family": "physical",
+          "physical_subtype": "piercing",
+          "range_cells": 7,
+          "accuracy_modifier": 5,
+          "reference_model": "core:fusil_de_patrouille",
+          "reference_content": {
+            "reference": "content/core/weapons/fusil_de_patrouille.json5",
+            "reference_sha256": "8aa49c0055e6abdfdd86c403f9228988c0a6de9d374b9419cf7f094779410bbd"
+          }
+        },
+        "body_armor": {
+          "draft_id": "start:tenue_traque",
+          "display_name": "Tenue de traque",
+          "armor": 1,
+          "evasion_penalty": 0,
+          "other_stat_or_skill_bonus": null,
+          "art_assignment": "approved_class_silhouette_only;new_equipped_preview_not_approved"
+        },
+        "other_equipment_slots": "no_additional_start_bonus_in_this_draft"
+      },
+      "derived_level1_reserves": {
+        "base_maximum_HP": 30,
+        "maximum_HP": 30,
+        "current_HP": 30,
+        "base_maximum_energy": 30,
+        "maximum_energy": 30,
+        "current_energy": 30,
+        "equipment_HP_or_energy_bonuses": 0
+      },
+      "core_approval": "displayed_class_core_accepted",
+      "new_player_copy": "shown_class_RP_accepted",
+      "equipment_balance": "specific_level1_proposal_for_review;not_a_general_weapon_progression_curve",
+      "native_creation_preview": "existing_numbered_class_silhouette_preserved;equipped_composition_pending_native_review",
+      "runtime_integration": "not_integrated",
+      "previous_core_proposal": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-traqueur-START-T01-01.json",
+        "reference_sha256": "5da2d1eb988cf13f5ca79d0da9206a7e14679a1e588bc3ad222d5e2c44678a94"
+      },
+      "accepted_core_card": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-traqueur-START-T01-02.json",
+        "reference_sha256": "419be071bde6a76e0707e64fd80503211103677bc09ac2559f331133e6adae12"
+      }
+    },
+    {
+      "review_id": "START-A01",
+      "approved_class_identity": "Arcaniste",
+      "proposed_display_name": "Arcaniste",
+      "name_status": "previously_accepted",
+      "roleplay": "Vous canalisez les forces occultes pour consumer les menaces qui vous barrent la route.",
+      "starting_level": 1,
+      "attributes": {
+        "Force": 4,
+        "Agilité": 5,
+        "Vitalité": 6,
+        "Perception": 6,
+        "Intelligence": 5,
+        "Volonté": 8
+      },
+      "fixed_start_attribute_budget": 34,
+      "learned_start_skills": [
+        {
+          "skill_id": "FE01",
+          "learned_rank": 1,
+          "kind": "active"
+        },
+        {
+          "skill_id": "A03",
+          "learned_rank": 1,
+          "kind": "passive"
+        }
+      ],
+      "initial_implant_pair": {
+        "replacement": "found_implant_replaces_entire_pair;learned_skills_retained",
+        "resource_changes": "ordinary_maximum_change_keeps_absolute_current_resource_then_clamps;no_heal",
+        "magic_damage_bonus_percent": 15,
+        "maximum_HP_penalty_percent": 10
+      },
+      "starting_equipment": {
+        "active_weapon": {
+          "draft_id": "start:couteau",
+          "display_name": "Couteau",
+          "level": 1,
+          "damage_minimum": 2,
+          "damage_maximum": 4,
+          "damage_family": "physical",
+          "physical_subtype": "piercing",
+          "range_cells": 1,
+          "accuracy_modifier": 10,
+          "reference_model": "core:melee_couteau_de_camp",
+          "reference_content": {
+            "reference": "content/core/weapons/melee_couteau_de_camp.json5",
+            "reference_sha256": "99b6ec2990c1b8084a600d4ec587b56f179cecf17755608d2d4836eeebd1deba"
+          }
+        },
+        "body_armor": {
+          "draft_id": "start:tenue_rituelle",
+          "display_name": "Tenue rituelle",
+          "armor": 1,
+          "evasion_penalty": 0,
+          "other_stat_or_skill_bonus": null,
+          "art_assignment": "approved_class_silhouette_only;new_equipped_preview_not_approved"
+        },
+        "other_equipment_slots": "no_additional_start_bonus_in_this_draft"
+      },
+      "derived_level1_reserves": {
+        "base_maximum_HP": 34,
+        "maximum_HP": 30,
+        "current_HP": 30,
+        "base_maximum_energy": 36,
+        "maximum_energy": 36,
+        "current_energy": 36,
+        "equipment_HP_or_energy_bonuses": 0
+      },
+      "core_approval": "displayed_class_core_accepted",
+      "new_player_copy": "shown_class_RP_accepted",
+      "equipment_balance": "specific_level1_proposal_for_review;not_a_general_weapon_progression_curve",
+      "native_creation_preview": "existing_numbered_class_silhouette_preserved;equipped_composition_pending_native_review",
+      "runtime_integration": "not_integrated",
+      "previous_core_proposal": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-arcaniste-START-A01-01.json",
+        "reference_sha256": "ee7b40882143efd1db6dab817da1e2907b8a9e8830df3d5f72f3432afcce0384"
+      },
+      "accepted_core_card": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-arcaniste-START-A01-02.json",
+        "reference_sha256": "6b35f5a78e3968f575287c8338d8f9fb37ee67c6635efe2b50b3a50e3b8c3a32"
+      }
+    },
+    {
+      "review_id": "START-M01",
+      "approved_class_identity": "Métamorphe",
+      "proposed_display_name": "Métamorphe",
+      "name_status": "previously_accepted",
+      "roleplay": "Vous changez de forme pour libérer la violence enfouie dans votre corps.",
+      "starting_level": 1,
+      "attributes": {
+        "Force": 6,
+        "Agilité": 6,
+        "Vitalité": 6,
+        "Perception": 5,
+        "Intelligence": 4,
+        "Volonté": 7
+      },
+      "fixed_start_attribute_budget": 34,
+      "learned_start_skills": [
+        {
+          "skill_id": "M01",
+          "learned_rank": 1,
+          "kind": "active"
+        },
+        {
+          "skill_id": "M03",
+          "learned_rank": 1,
+          "kind": "passive"
+        }
+      ],
+      "initial_implant_pair": {
+        "replacement": "found_implant_replaces_entire_pair;learned_skills_retained",
+        "resource_changes": "ordinary_maximum_change_keeps_absolute_current_resource_then_clamps;no_heal",
+        "transformation_duration_bonus_turns": 2,
+        "human_skill_energy_cost_increase_percent": 10
+      },
+      "starting_equipment": {
+        "active_weapon": {
+          "draft_id": "start:couteau",
+          "display_name": "Couteau",
+          "level": 1,
+          "damage_minimum": 2,
+          "damage_maximum": 4,
+          "damage_family": "physical",
+          "physical_subtype": "piercing",
+          "range_cells": 1,
+          "accuracy_modifier": 10,
+          "reference_model": "core:melee_couteau_de_camp",
+          "reference_content": {
+            "reference": "content/core/weapons/melee_couteau_de_camp.json5",
+            "reference_sha256": "99b6ec2990c1b8084a600d4ec587b56f179cecf17755608d2d4836eeebd1deba"
+          }
+        },
+        "body_armor": {
+          "draft_id": "start:tenue_metamorphe",
+          "display_name": "Tenue métamorphe",
+          "armor": 2,
+          "evasion_penalty": 0,
+          "other_stat_or_skill_bonus": null,
+          "art_assignment": "approved_class_silhouette_only;new_equipped_preview_not_approved"
+        },
+        "other_equipment_slots": "no_additional_start_bonus_in_this_draft"
+      },
+      "derived_level1_reserves": {
+        "base_maximum_HP": 34,
+        "maximum_HP": 34,
+        "current_HP": 34,
+        "base_maximum_energy": 32,
+        "maximum_energy": 32,
+        "current_energy": 32,
+        "equipment_HP_or_energy_bonuses": 0
+      },
+      "core_approval": "displayed_class_core_accepted",
+      "new_player_copy": "shown_class_RP_accepted",
+      "equipment_balance": "specific_level1_proposal_for_review;not_a_general_weapon_progression_curve",
+      "native_creation_preview": "existing_numbered_class_silhouette_preserved;equipped_composition_pending_native_review",
+      "runtime_integration": "not_integrated",
+      "previous_core_proposal": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-metamorphe-START-M01-01.json",
+        "reference_sha256": "a399812edbae94e5c78597a10906971af1bc7bd55e6ffe906aa3a2c9b800b218"
+      },
+      "accepted_core_card": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-metamorphe-START-M01-02.json",
+        "reference_sha256": "7396b182f8b0cdadfd3751c216efd8f5e669c0fcf5d4a9606041c77bb7953500"
+      }
+    }
+  ],
+  "rename": {
+    "review_id": "CLASS-NAME-O02",
+    "approved_old_name": "Opérateur",
+    "proposed_new_name": "Technomancien",
+    "stable_profile_id": "START-O01",
+    "text_approval": "accepted_as_displayed_under_CLASS_NAME_O02",
+    "no_drone_name_changed": true,
+    "approved_new_name": "Technomancien",
+    "acceptance": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/class-start-technomancien-acceptance-decisions.json",
+      "reference_sha256": "156b8b45457fbc9b44fb9ca4db97b0ff2f25dee4c229fd5ed2e501782ea36f5a"
+    }
+  },
+  "shared_proposed_consumables": [
+    {
+      "draft_id": "start:dose_soin",
+      "display_name": "Dose de soin",
+      "quantity": 2,
+      "restores_HP": 12
+    },
+    {
+      "draft_id": "start:cellule_energie",
+      "display_name": "Cellule d’énergie",
+      "quantity": 1,
+      "restores_energy": 12
+    }
+  ],
+  "common_equipment_policy": "level1_common_no_affixes_or_skill_bonuses;own_proposed_entries_not_overwriting_existing_model_IDs;integer_uniform_damage_draw_uses_existing_variance_rule",
+  "derived_preview_checks": {
+    "Arcaniste_Braise_direct_predefense_damage": 9,
+    "Arcaniste_Braise_energy": 7,
+    "Metamorphe_Mue_duration": 14,
+    "Metamorphe_Mue_energy": 14
+  },
+  "implant_conditions": {
+    "damage_penalties": "relative0.90_multiplier_after_compatible_positive_bonus_pool;no_intermediate_rounding;only_compatible_player_weapon_damage",
+    "O00_extended_effects": [
+      "Interférence",
+      "Faille d’armure",
+      "Silence",
+      "Rupture de régénération",
+      "Désorientation"
+    ],
+    "O00_duration_snapshot": "one_extra_turn_at_new_compatible_cast;no_retroactive_extension_of_active_effects;not_Burn_Poison_Bleed_or_Gel_by_extension",
+    "M00": "temporary_form_duration_plus2_at_entry;all_human_skill_energy_costs_times1.10_including_form_entry;ceil_once_after_all_compatible_cost_modifiers;normal_weapon_ammo_and_energy_recovery_unchanged",
+    "classification_boundary": "does_not_resolve_pending_heavy_weapon_indirect_hybrid_or_other_unshown_skill_eligibility"
+  },
+  "numeric_authority": "provisional_class_balance_prepared_under_explicit_delegation;not_final_playtest_balance",
+  "new_text_approval": "shown_class_and_START_GEAR01_copy_accepted;unshown_item_and_implant_copy_separate",
+  "equipment_approval": "START_GEAR01_shown_names_numbers_consumables_and_stocks_accepted",
+  "visual_approval": "revision3_parts_and_vivid_red_palette4_accepted;revised_orientation2_pending;unchanged1_and_unshown_weapon_groups_not_inferred_approved",
+  "remaining": [
+    "unshown_initial_implant_scope_and_penalty_pipeline",
+    "ammo_model_costs_reload_and_actor_management",
+    "START_VIS01_numbered_equipped_compositions_and_later_creation_UI",
+    "found_replacement_implant_loot_catalogue",
+    "HEAVY_FAMILY01_model_series_and_numbered_native_character_compositions"
+  ],
+  "runtime_integration": "not_integrated",
+  "previous_batch": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-starts-START-ALL01-05.json",
+    "reference_sha256": "97ea13161e8db5a0d3ab664ff2a8f11875d95810173a1a291ada87c6d73a60fd"
+  },
+  "latest_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/class-three-core-starts-acceptance-decisions.json",
+    "reference_sha256": "40e43fbd4989e77add69828b4c8555c22e8c3df90492c673921350b3f9360deb"
+  },
+  "accepted_Technomancien": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-technomancien-START-O01-01.json",
+    "reference_sha256": "588d3073dd8f6354e73b09e4edc81b80d365837deabb457d2d4c3711e462e720"
+  },
+  "pending_core_starts": {},
+  "accepted_remaining_core_starts": {
+    "START-T01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-traqueur-START-T01-02.json",
+      "reference_sha256": "419be071bde6a76e0707e64fd80503211103677bc09ac2559f331133e6adae12"
+    },
+    "START-A01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-arcaniste-START-A01-02.json",
+      "reference_sha256": "6b35f5a78e3968f575287c8338d8f9fb37ee67c6635efe2b50b3a50e3b8c3a32"
+    },
+    "START-M01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-metamorphe-START-M01-02.json",
+      "reference_sha256": "7396b182f8b0cdadfd3751c216efd8f5e669c0fcf5d4a9606041c77bb7953500"
+    }
+  },
+  "previous_pending_core_starts": {
+    "START-T01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-traqueur-START-T01-01.json",
+      "reference_sha256": "5da2d1eb988cf13f5ca79d0da9206a7e14679a1e588bc3ad222d5e2c44678a94"
+    },
+    "START-A01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-arcaniste-START-A01-01.json",
+      "reference_sha256": "ee7b40882143efd1db6dab817da1e2907b8a9e8830df3d5f72f3432afcce0384"
+    },
+    "START-M01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-metamorphe-START-M01-01.json",
+      "reference_sha256": "a399812edbae94e5c78597a10906971af1bc7bd55e6ffe906aa3a2c9b800b218"
+    }
+  },
+  "pending_starting_equipment": null,
+  "accepted_ammunition_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/universal-ammunition-and-matter-removal-decisions.json",
+    "reference_sha256": "aee8578f5b4dc465e68f2308e13e81dcc19ac1df64a4b3b9cb75f54ac8d29760"
+  },
+  "latest_equipment_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/starting-equipment-acceptance-decisions.json",
+    "reference_sha256": "67117d9351d3052af0befe671fc2545a7e4547dfe8a90552292d3ca1dde6b576"
+  },
+  "previous_pending_starting_equipment": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-starting-equipment-START-GEAR01-01.json",
+    "reference_sha256": "817cad3814d1764b5c97e240692b5005d09dd513102804da00d955a38cc566ce"
+  },
+  "accepted_starting_equipment": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-starting-equipment-START-GEAR01-02.json",
+    "reference_sha256": "38a12d0f1473ec2662ddc94e3476ba85b3a0fabbe330a28906e1b53b85b5d095"
+  },
+  "pending_equipped_class_visual_review": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-05.json",
+    "reference_sha256": "7da947a843409a0111c90a50b5b91525b22a7eb733e5e8f7c5757fc02c668a28"
+  },
+  "accepted_heavy_weapon_family_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/heavy-weapon-family-series-decisions.json",
+    "reference_sha256": "8df1aa63a1813e05960e3c7251d879022e1ee83d8d4feefebe1c529c5ea8b3dc"
+  },
+  "profile_equipment_metadata_precedence": "historical_proposed_markers_in_preserved_profiles_are_superseded_only_for_shown_values_by_START_GEAR01_rev2;unshown_implant_appendix_still_pending",
+  "previous_player_review_document": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-starts-START-ALL01-03.md",
+    "reference_sha256": "236672c208adab56133a99d62838c6593c37356c0dc42138813449a32421814f"
+  },
+  "current_review_document_path": "docs/REVUE_TEXTES_EFFETS_AGENT.md",
+  "previous_pending_equipped_class_visual_review": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-03.json",
+    "reference_sha256": "9362168dbe2540a0f5fbdb2d9582bbc602b9f37e6d6200a34cdec7ab62fbf36b"
+  },
+  "latest_equipped_visual_feedback": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/pistol-red-robe-visual-feedback-decisions-01.json",
+    "reference_sha256": "a8cda4a7aa1edc6bb9e3f7a183669e4eda33a103dbd8f1c202a55e4007236fbf"
+  },
+  "visual_integration_boundary": "one_hand_rule_is_a_prototype;Traqueur_simplified_complete_pose_requires_layer_preparation_and_group_review_before_runtime_use",
+  "equipped_visual_acceptance_history": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/equipped-class-visual-acceptance-decisions-01.json",
+    "reference_sha256": "74f56dcce34f0010e58fe8d85dbff8fe9bcad43218b1d75666b742591081e3b0"
+  },
+  "accepted_arcaniste_red_robe_visual": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/red-robe-visual-acceptance-decisions-01.json",
+    "reference_sha256": "3550788f81bacb62d9d3d1a08832eaee6513caaab3f8cfa0e8e11fa19f0f258b"
+  },
+  "current_weapon_family_coverage_audit": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-held-family-coverage-2026-10-09.json",
+    "reference_sha256": "31f453ea868c4955ac9cd6c43bdd16ea5f0d1cbc5196f4f99041ad162ea0a46e"
+  }
+}

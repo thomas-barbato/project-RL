@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SM05-ACCEPT01",
+  "skill_id": "SM05",
+  "user_response": "ok je valide :)",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM05-01.json",
+  "reviewed_description_sha256": "c8bf87e395712ed91cfdbf5af43608acc679909031cfbd913b1bc7a057fd56a6",
+  "accepted_review_context": "Exemple avec Mines de poison, Mines de glace et Explosion étendue au rang 11.",
+  "accepted_player_copy": "**SM05 · Résidu persistant — Rang 11 · Passif**\n\n*L’explosion passée, le terrain reste chargé de flammes, de toxines ou de givre.*\n\n**Effets actuels**\n\n- Durée de la zone : **13 tours**.\n- Rayon : **4 cases**.\n- Zone de feu : **3 dégâts de feu par tour**.\n- Nuage de poison : **4 dégâts de poison par tour**.\n- Glace, chance de Gel au premier tour : **69,2 % · Élites : 51,9 % · Boss : 34,6 %**.\n- Dès le deuxième tour dans la glace : **100 % · Élites : 75 % · Boss : 50 %**.\n- Début des effets : **1 tour après l’explosion**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Durée de la zone : **14 tours**.\n\nNécessite **Pose de mine** apprise. Le type de zone dépend de la mine utilisée ; les variantes poison et glace nécessitent leurs passifs correspondants.\n\nLe Gel provoqué par la zone bloque les déplacements en laissant les autres actions possibles. Il prend fin lorsque la cible sort de la zone ou que celle-ci disparaît ; Brûlure peut aussi le supprimer. Le cumul de chance repart à zéro à la sortie.\n\nLes dégâts du nuage s’ajoutent à l’empoisonnement appliqué par l’explosion. Dégâts indiqués avant résistances ; chances de Gel variables selon la cible.",
+  "accepted_current_values": {
+    "zone_duration_turns": 13,
+    "zone_radius_cells": 4,
+    "fire_zone_damage_per_turn_before_defenses": 3,
+    "poison_cloud_damage_per_turn_before_defenses": 4,
+    "first_exposure_freeze_chance_percent": 69.2,
+    "first_exposure_elite_freeze_chance_percent": 51.9,
+    "first_exposure_boss_freeze_chance_percent": 34.6,
+    "second_and_later_exposure_freeze_chance_percent": 100,
+    "second_and_later_exposure_elite_freeze_chance_percent": 75,
+    "second_and_later_exposure_boss_freeze_chance_percent": 50,
+    "first_effect_delay_after_explosion_turns": 1
+  },
+  "accepted_next_values": {
+    "zone_duration_turns": 14,
+    "zone_radius_cells": 4,
+    "fire_zone_damage_per_turn_before_defenses": 3,
+    "poison_cloud_damage_per_turn_before_defenses": 4,
+    "first_exposure_freeze_chance_percent": 69.2,
+    "first_exposure_elite_freeze_chance_percent": 51.9,
+    "first_exposure_boss_freeze_chance_percent": 34.6,
+    "second_and_later_exposure_freeze_chance_percent": 100,
+    "second_and_later_exposure_elite_freeze_chance_percent": 75,
+    "second_and_later_exposure_boss_freeze_chance_percent": 50,
+    "first_effect_delay_after_explosion_turns": 1
+  },
+  "accepted_displayed_conditions": [
+    "SM00_learned_prerequisite",
+    "mine_type_and_associated_passives_determine_zone",
+    "one_turn_after_explosion_first_effect",
+    "zone_Gel_movement_only_ends_on_exit_expiry_or_Burn",
+    "consecutive_exposure_chance_growth_reset_on_exit",
+    "poison_cloud_damage_adds_to_explosion_Poisoned",
+    "per_target_resistance_and_displayed_importance_modifiers"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** des flammes basses, une nappe toxique verte ou du givre au sol, selon la mine. La zone reste visible jusqu’à sa disparition.",
+  "approval_scope": "displayed_RP_values_conditions_and_visual_direction_accepted;balance_later;unshown_curve_overlaps_timer_components_cleanup_and_native_pixels_pending;other_SM02_pending_parts_not_inferred",
+  "unshown_cases_pending": [
+    "full_SM05_and_associated_skill_rank_curves_and_attribute_scaling",
+    "zone_damage_overlaps_and_strongest_or_combined_effects",
+    "zone_Gel_and_explosion_Gel_status_components_timers_and_forced_exit",
+    "Burn_Gel_zone_reapplication_and_failed_control_tick_order",
+    "first_tick_boundary_sampling_death_and_duration_expiry_phases",
+    "familiar_and_other_allied_ground_damage_eligibility",
+    "cleanup_for_same_layer_portals_and_map_return",
+    "equipment_snapshot_and_unknown_cell_zone_preview",
+    "native_zone_readability_status_icons_and_inspection"
+  ],
+  "native_visuals": "pending_native_review",
+  "runtime_integration": "not_integrated"
+}

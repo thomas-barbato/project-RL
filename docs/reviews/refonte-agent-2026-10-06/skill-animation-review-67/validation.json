@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-14",
+  "build": "cargo build --locked passed",
+  "format": "cargo fmt --all -- --check passed",
+  "whitespace": "targeted git diff --check passed",
+  "effective_native_readbacks": 4800,
+  "native_pixel_preserving_encoding": true,
+  "browser": "Edge Chromium file scheme passed",
+  "native_browser_canvas_matches": 6,
+  "GIF_colour_checks": [
+    {
+      "variant": "SM05-A03-FEU-HAUT",
+      "ground_effect_pixels": 18294,
+      "mean_GIF_color_error": 3.78
+    },
+    {
+      "variant": "SM05-A03-FEU-CLOISON",
+      "ground_effect_pixels": 11211,
+      "mean_GIF_color_error": 3.95
+    },
+    {
+      "variant": "SM05-A03-POISON-HAUT",
+      "ground_effect_pixels": 12759,
+      "mean_GIF_color_error": 3.7
+    },
+    {
+      "variant": "SM05-A03-POISON-CLOISON",
+      "ground_effect_pixels": 7432,
+      "mean_GIF_color_error": 4.0
+    },
+    {
+      "variant": "SM05-A03-FROID-HAUT",
+      "ground_effect_pixels": 28341,
+      "mean_GIF_color_error": 2.29
+    },
+    {
+      "variant": "SM05-A03-FROID-CLOISON",
+      "ground_effect_pixels": 17858,
+      "mean_GIF_color_error": 2.42
+    }
+  ],
+  "mechanics": "Immediate first of13; twelve later applications only; late entrant, idle, player protection, zone clipping and expiry checked.",
+  "full_suite": "Not run; isolated debug visual review",
+  "prior_review": "65 preserved",
+  "revision": "SM05-A03",
+  "source": "New transparent ice painting; no uniform ground wash; desynchronised gas",
+  "campaign_integration": false
+}

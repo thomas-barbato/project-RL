@@ -1,0 +1,170 @@
+{
+  "date": "2026-10-07",
+  "id": "DI05",
+  "title": "Tir de harpon",
+  "revision": 1,
+  "player_copy_markdown": "**DI05 · Tir de harpon — Rang 11**\n\n*Votre projectile s’ancre dans la cible et la ramène vers vous d’une traction sèche.*\n\n**Effet actuel**\n\n- Dégâts : **28–34** (**140 %** de l’attaque).\n- Rapprochement : jusqu’à **3 cases**.\n- Chance de traction après un tir réussi : **100 %** contre un ennemi ordinaire, **75 %** contre une élite.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts : **29–35** (**144 %** de l’attaque).\n\n**Coût : 13 énergie + 1 munition · Recharge : 6 tours.**\n**Portée : 6 cases.**\n\nLa cible doit être visible et le trajet du tir dégagé. Les obstacles et les cases occupées arrêtent la traction.\n\nLes boss et les cibles ancrées ne peuvent pas être déplacés, mais subissent les dégâts du tir.\n\nDégâts indiqués avant les défenses de la cible.\n\n**Nécessite une arme à distance active. Armes lourdes exclues.**",
+  "player_copy_sha256": "d0b470930fc290ea7c6342e66f26d188faeef03b28fbbb7e3cfc9eba8f85c3ba",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-08.json",
+  "source_skill_block_sha256": "90ba63cbca9d61f92fdbcbbcabe14507ff1cfdaaa0f715f6adef000eecf5428d",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/precision-shot-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "d968f51c740b9612b10988a5b076df1a2274faf48b8de43c0872b6b47a5a7fec",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "common_control_decisions": "docs/reviews/refonte-agent-2026-10-06/control-boss-immunity-and-elite-penalty-decisions.json",
+  "common_control_decisions_sha256": "139e1615bfedbc7a4ad3df16d614e39d3616fcff387f6bdcc2b96c82cb85c145",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "CTRL01_global_rule_accepted; new_conditional_traction_baseline_and_individual_cases_pending",
+  "current_profile_status": "illustrative_not_a_user_save; weapon damage and range are comparison inputs, not universal rules",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "perception": 10,
+    "agility": 10,
+    "reference_weapon_min_damage_before_attributes": 18,
+    "reference_weapon_max_damage_before_attributes": 22,
+    "range_status": "illustrative ordinary active ranged weapon range 6",
+    "ranged_attribute_multiplier_exact": {
+      "numerator": 451,
+      "denominator": 400
+    },
+    "active_compatible_ranged_weapon": true,
+    "other_damage_or_cost_modifiers": false,
+    "reference_damage_basis": "one projectile before attributes",
+    "active_weapon_range_cells": 6,
+    "active_weapon_is_heavy": false
+  },
+  "formulas": {
+    "damage_percent": "100 + 4 * (effective_rank - 1)",
+    "damage": "floor(base projectile damage * ranged attribute multiplier * damage percent / 100), once at end",
+    "maximum_pull_cells": "min(3, 1 + floor((effective_rank - 1)/5))",
+    "energy_cost": "10 + floor((effective_rank - 1)/3)",
+    "ammunition_cost": 1,
+    "cooldown_turns": 6,
+    "range": "ordinary compatible active weapon range",
+    "normal_mobile_target_traction_after_hit_percent": 100,
+    "elite_traction_after_hit_percent": "calculated normal traction chance * 0.75 = 75 in this proposed profile",
+    "boss_traction_percent": 0
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "damage_percent": 140,
+    "damage_min_before_defenses": 28,
+    "damage_max_before_defenses": 34,
+    "damage_min_exact_before_rounding": {
+      "numerator": 28413,
+      "denominator": 1000
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 34727,
+      "denominator": 1000
+    },
+    "maximum_pull_cells": 3,
+    "normal_mobile_target_pull_chance_percent_after_successful_shot": 100,
+    "elite_mobile_target_pull_chance_percent_after_successful_shot": 75,
+    "boss_pull_chance_percent": 0,
+    "energy_cost": 13,
+    "ammunition_cost": 1,
+    "cooldown_turns": 6,
+    "range_cells": 6
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "damage_percent": 144,
+    "damage_min_before_defenses": 29,
+    "damage_max_before_defenses": 35,
+    "damage_min_exact_before_rounding": {
+      "numerator": 36531,
+      "denominator": 1250
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 44649,
+      "denominator": 1250
+    },
+    "maximum_pull_cells": 3,
+    "normal_mobile_target_pull_chance_percent_after_successful_shot": 100,
+    "elite_mobile_target_pull_chance_percent_after_successful_shot": 75,
+    "boss_pull_chance_percent": 0,
+    "energy_cost": 13,
+    "ammunition_cost": 1,
+    "cooldown_turns": 6,
+    "range_cells": 6
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_weapon_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "damage_percent",
+      "damage_min_before_defenses",
+      "damage_max_before_defenses"
+    ],
+    "unchanged_effects_omitted": [
+      "maximum_pull_cells",
+      "normal_mobile_target_pull_chance_percent_after_successful_shot",
+      "elite_mobile_target_pull_chance_percent_after_successful_shot",
+      "boss_pull_chance_percent",
+      "energy_cost",
+      "ammunition_cost",
+      "cooldown_turns",
+      "range_cells"
+    ]
+  },
+  "active_weapon_requirement": {
+    "type": "ranged",
+    "equipped_and_active_required": true,
+    "approval": "explicit_user_requirement",
+    "incompatible_warning": "Nécessite une arme à distance active.",
+    "warning_approval": "accepted_as_presented",
+    "excluded_category": "heavy_ranged_weapon",
+    "heavy_exclusion_approval": "explicit_AR-HL01_user_confirmation",
+    "heavy_exclusion_copy": "Armes lourdes exclues.",
+    "heavy_exclusion_copy_approval": "accepted_as_presented_in_full_revised_card"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true
+  },
+  "control_effect": {
+    "kind": "instant_forced_movement_towards_agent",
+    "CTRL01_approval": "explicit_global_acceptance",
+    "individual_baseline_and_extra_elite_test_approval": "proposed_pending_review",
+    "successful_shot_required": true,
+    "chance_is_conditional_on_hit_and_mobile_target": true,
+    "ordinary_hit_chance": "not_fixed_here; uses ordinary compatible active weapon rules pending detailed resolution",
+    "anchored_target_moves": false,
+    "boss_moves": false,
+    "damage_preserved_when_movement_immune": true,
+    "obstacles_or_occupied_cells_stop_pull": true,
+    "cannot_cross_walls_actors_or_forbidden_cells": true,
+    "cannot_end_on_agent_cell": true,
+    "persistent_buff_debuff_created": false,
+    "repousser_collision_bonus_inherited": false
+  },
+  "unshown_rules_approval": "Full curves, exact pull path/ties/diagonals, anchored target taxonomy, success draw order and extra elite roll timing, ordinary shot hit/defense/critical resolution, supported ordinary weapon families, damage distribution, resource refusal/payment, affix and attribute stacking remain pending where not already accepted. No shared STR/INT control formula, status duration, or Repousser collision damage invented.",
+  "visual_intention_approval": "existing_catalogue_filament_and_retraction_direction_accepted_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable DI05, pending single RP paragraph and compact numeric current/next card; no table or player formula.",
+    "Illustrative 18-22 projectile with exact ranged multiplier 451/400 gives 28-34 at 140%, then 29-35 at 144%.",
+    "Learned 9 to 10 with gear +2 unchanged; one point; active range and modifiers preserved; learned cap respected.",
+    "Next block only changed damage values; pull/cost/ammo/cooldown/range unchanged.",
+    "CTRL01 applied to traction only; conditional normal 100% and elite 75% baseline displayed as proposal, boss 0%; attack damage preserved.",
+    "No ordinary timing reminder, rank breakdown, persistent control status, critical multiplier or collision bonus introduced.",
+    "No runtime integration or native visual rendering."
+  ]
+}

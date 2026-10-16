@@ -1,0 +1,65 @@
+{
+  "themes": [
+    {
+      "theme": "violet",
+      "resources_match_hud": true,
+      "native_pixels_verified": true
+    },
+    {
+      "theme": "blue",
+      "resources_match_hud": true,
+      "native_pixels_verified": true
+    },
+    {
+      "theme": "green",
+      "resources_match_hud": true,
+      "native_pixels_verified": true
+    },
+    {
+      "theme": "red",
+      "resources_match_hud": true,
+      "native_pixels_verified": true
+    }
+  ],
+  "native_diagnostics": [
+    "terminal-hud-live-blue",
+    "terminal-hud-live-green",
+    "terminal-hud-live-red",
+    "terminal-hud-live-violet",
+    "terminal-hud-live-violet-largeui",
+    "terminal-hud-live-violet-small",
+    "terminal-hud-live-violet-wide",
+    "terminal-inventory-live-bag-blue",
+    "terminal-inventory-live-hands-equipped-blue",
+    "terminal-inventory-live-hands-equipped-green",
+    "terminal-inventory-live-hands-equipped-red",
+    "terminal-inventory-live-hands-equipped-violet",
+    "terminal-inventory-live-hands-violet-largeui",
+    "terminal-inventory-live-hands-violet-small"
+  ],
+  "inventory_font_warmup_max_channel_delta": 1,
+  "inventory_font_warmup_changed_pixels": 5,
+  "death_capture_identical_to_approved_baseline": true,
+  "targeted_tests": 33,
+  "performance": {
+    "world": {
+      "previous_median_ms": 8.3561,
+      "median_ms": 9.381799999999998,
+      "previous_first_ms": 363.34119999999996,
+      "first_ms": 380.61440000000005
+    },
+    "world-return": {
+      "previous_median_ms": 8.3855,
+      "median_ms": 8.345699999999999,
+      "previous_first_ms": 8.777999999999999,
+      "first_ms": 9.0128
+    },
+    "inventory": {
+      "previous_median_ms": 11.559800000000001,
+      "median_ms": 12.119100000000001,
+      "previous_first_ms": 27.578,
+      "first_ms": 24.5831
+    }
+  },
+  "full_suite_run": false
+}

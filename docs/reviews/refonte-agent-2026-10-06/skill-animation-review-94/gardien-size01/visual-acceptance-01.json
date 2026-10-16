@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-15",
+  "review_id": "D66-SIZE01-ACCEPT01",
+  "candidate_number": 104,
+  "candidate": "D66-SIZE01",
+  "user_reply": "parfait :)",
+  "source_proposal": "review.json",
+  "source_proposal_sha256": "006a3168d279ca7eb9a7740868842ee3cf94600013bcb8ab2e4e203990f15fe4",
+  "accepted_scope": "Shown Guardian body scale only: 64px high instead of 48px, unchanged drawing and proportions, slight lateral overhang.",
+  "accepted_body_size": [
+    80,
+    64
+  ],
+  "canvas": [
+    128,
+    128
+  ],
+  "logical_tile": [
+    64,
+    64
+  ],
+  "horizontal_overhang_per_side": 8,
+  "accepted_asset_sha256": {
+    "../../../../../assets/animations/agent/skill-animation-review-94/gardien-size01/D66-BODY02-SIZE01-native128.png": "cf18f98b1c17727878c9055566ee876ae18128920c10c4fe1aa425b247d5a24b",
+    "D66-SIZE01-comparison-native.png": "6f5481cd46a6e183cb6981f92175e698284d4a109abbefa8f3a35c430efe96cb"
+  },
+  "supersedes": "Previous 48px-high world-body framing only. Original source and accepted drawing remain preserved.",
+  "not_approved_by_this_reply": [
+    "D66-TAUNT-A01 animation",
+    "D66-TAUNT-I01 status marker",
+    "O03-A01 animation",
+    "Unaccepted control capacity, taunt radius, duration or cooldown numbers",
+    "Campaign combat, AI or save integration"
+  ],
+  "campaign_integration": false,
+  "active_assets_changed": false
+}

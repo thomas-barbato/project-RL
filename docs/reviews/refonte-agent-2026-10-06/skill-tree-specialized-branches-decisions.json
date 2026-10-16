@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "previous_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-tree-shape-decisions.json",
+  "user_answer": "À chaque branche spécialisée : au moins 12 chacune",
+  "accepted_requirements": {
+    "grid_scope": "each_specialized_branch",
+    "minimum_tier_rows_per_branch": 4,
+    "skill_options_per_tier": 3,
+    "minimum_distinct_skills_per_branch": 12,
+    "all_three_options_learnable_with_points": true,
+    "unlock_by_points_invested_in_branch": true,
+    "choose_thresholds_after_branch_catalog": true
+  },
+  "derived_counts": {
+    "minimum_skills_for_fire_cold_lightning_occult_branches": 48,
+    "learned_ranks_for_twelve_skills_at_rank_ten_before_free_starters": 120
+  },
+  "pending": [
+    "Exact number and scope of specialized branches",
+    "Skill catalog, names, effects and placement",
+    "Exact point thresholds",
+    "Counting learned starter ranks for thresholds while excluding equipment bonuses",
+    "All new player-facing text and exact interface visuals before integration"
+  ],
+  "supersedes_pending_question": "Whether the grid applies to a major tree or a specialized branch",
+  "review_document": "docs/REVUE_ARBRES_COMPETENCES_AGENT.md",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-trees-revision-01.md"
+}

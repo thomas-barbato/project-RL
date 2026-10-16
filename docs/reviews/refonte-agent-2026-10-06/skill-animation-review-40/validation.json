@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-13",
+  "build": {
+    "command": "cargo build --locked",
+    "exit_code": 0
+  },
+  "targeted_tests": {
+    "command": "cargo test --locked agent_skill_lab_review",
+    "passed": 76,
+    "failed": 0
+  },
+  "format": {
+    "command": "cargo fmt --all -- --check",
+    "exit_code": 0
+  },
+  "diff_check": {
+    "command": "git diff --check",
+    "exit_code": 0
+  },
+  "native_render": {
+    "views": 42,
+    "animations": 16,
+    "protected_files_unchanged": 75034,
+    "pixel_controls": "passed",
+    "resampling": false
+  },
+  "approved_bodies": "M01-BODY01 and TR61-BODY01 unchanged from review39",
+  "visual_inspection": "Decoded final GIF overview, native steel-colour correction, leftward attacks and turn-zero Bleeding state inspected.",
+  "gallery_controller": "Offline VM passed six views, three explicit turns, waiting, pause and loading controls.",
+  "gallery_links": {
+    "checked": 14,
+    "missing": 0
+  },
+  "browser_validation": "Not performed: file protocol blocked by browser automation policy. Native captures and offline controller verified.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "All six shown attacks, wound spray, Bleeding drops and Stun marker visually approved.",
+  "fixture_scope": "Prepared footprints, displacement and status successes only. No real HP, damage, energy, RNG, AI, loot, equipment, stats or save modifications.",
+  "encoding_correction": "A fully blocked attack is expected to have one static GIF frame. Duration and native refusal checks still apply. Final graphics retain source colours without occult shader recolouring.",
+  "acceptance": "visual-acceptance-01.json"
+}

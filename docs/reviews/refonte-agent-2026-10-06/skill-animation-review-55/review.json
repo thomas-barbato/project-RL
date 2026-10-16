@@ -1,0 +1,31 @@
+{
+  "batch": "ANIM-S25",
+  "date": "2026-10-14",
+  "status": "awaiting_visual_review",
+  "candidates": [
+    {
+      "number": 59,
+      "id": "HL01",
+      "name": "Barrage",
+      "variant": "HL01-A01"
+    },
+    {
+      "number": 60,
+      "id": "HL02",
+      "name": "Impact assommant",
+      "variant": "HL02-A01"
+    }
+  ],
+  "approved_cards": [
+    "review-individual-description-HL01-03.json",
+    "review-individual-description-HL02-03.json"
+  ],
+  "mechanics": "Rank11: Barrage up to3 distinct observed enemies, damage200%, energy18, cooldown5. Impact assommant damage180%, ordinary stun60%, elite45%, bosses immune to stun, duration2turns, energy14, cooldown6. Native weapon radius1 and range7 retained in this rocket fixture.",
+  "visuals": "Short new steel rocket, fast travel, accepted burst and physical blood; shared target recoil. Stun orbit and target-state strip persist until turns pass. Numbered blinking affected areas disappear on confirmation.",
+  "prepared_values": "Damage40 per barrage blast and36 per stun blast are fixed pre-defense samples, not final character/weapon values. Overlap yields80/120/80. A fixed50% stun sample succeeds ordinarily but fails against the prepared elite and boss.",
+  "scope": "Independent prepared rocket scenes, with selected enemies and contacts fixed for visual review. No AI, campaign resolver, actual perception, RNG, equipment/stat curve, damage variance or final damage rounding added.",
+  "supply_revision": "Matter/ammunition consumption omitted under later accepted equipped ammunition-box direction. The missing-box scene is a prepared refusal; no new box object or shop/drop implementation.",
+  "pending": "Other heavy-family native shots, native bursts/delays, more-than-three target selection, individual inspected-target navigation, actual armor/element splits, friendly-source damage attribution and dense combat integration remain separate.",
+  "temporary_actors": "Existing enemy32 artwork enlarged64; bestiary adaptation follows completion of animations.",
+  "campaign_integration": false
+}

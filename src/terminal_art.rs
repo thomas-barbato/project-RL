@@ -1,4 +1,4 @@
-//! Orthographic 16-pixel symbols. Every drawing occupies one existing map cell.
+//! Orthographic native 32-pixel scenery, preserving the original footprints.
 //! The atlas contains only presentation data; it never changes terrain or actors.
 use macroquad::prelude::*;
 use project_rl::world::GridPos;
@@ -6,7 +6,7 @@ use project_rl::world::GridPos;
 use super::dim;
 use crate::test_sector::Decor;
 
-const SIDE: usize = 16;
+const SIDE: usize = 32;
 #[derive(Clone, Copy)]
 #[repr(usize)]
 enum Prop {
@@ -50,6 +50,11 @@ impl Raster {
         }
     }
     fn rect(&mut self, x: i32, y: i32, w: i32, h: i32, color: u32) {
+        // The established outlines use a 16px design grid. Fine material and
+        // hardware details below occupy actual single pixels in the 32px tile.
+        self.fine_rect(x * 2, y * 2, w * 2, h * 2, color);
+    }
+    fn fine_rect(&mut self, x: i32, y: i32, w: i32, h: i32, color: u32) {
         let rgba = [(color >> 16) as u8, (color >> 8) as u8, color as u8, 255];
         for py in y.max(0)..(y + h).min(SIDE as i32) {
             for px in x.max(0)..(x + w).min(SIDE as i32) {
@@ -78,6 +83,89 @@ impl Raster {
             self.rect(cx + x, cy + y, w, h, 0x71a5a2);
         }
         self.disk(cx, cy, 1, 0xbde0d7);
+    }
+    fn bolt(&mut self, x: i32, y: i32) {
+        self.fine_rect(x, y, 2, 2, 0x17252b);
+        self.fine_rect(x, y, 1, 1, 0xaab9b7);
+    }
+    fn finish(&mut self, kind: Prop) {
+        match kind {
+            Prop::Server | Prop::Cabinet => {
+                for (x, y) in [(8, 4), (23, 4), (8, 26), (23, 26)] {
+                    self.bolt(x, y);
+                }
+                for y in [9, 13, 17] {
+                    self.fine_rect(7, y, 3, 1, 0x627f85);
+                    self.fine_rect(23, y, 2, 1, 0x172a30);
+                }
+                self.fine_rect(11, 25, 8, 1, 0x394c53);
+                self.fine_rect(22, 24, 1, 1, 0xe0edd2);
+                if matches!(kind, Prop::Cabinet) {
+                    self.fine_rect(11, 13, 10, 1, 0xb2c1ac);
+                    self.fine_rect(20, 15, 2, 2, 0x34483f);
+                } else {
+                    self.fine_rect(14, 9, 3, 1, 0x8fc1bb);
+                    self.fine_rect(10, 17, 1, 3, 0x8fc1bb);
+                    self.fine_rect(19, 18, 3, 1, 0x8fc1bb);
+                }
+            }
+            Prop::Terminal | Prop::TerminalOff | Prop::TerminalUsed => {
+                self.fine_rect(8, 8, 5, 1, 0x657f7d);
+                self.fine_rect(16, 8, 7, 1, 0x425b59);
+                for y in [17, 20, 23] {
+                    for x in [8, 11, 14, 17] {
+                        self.fine_rect(x, y, 2, 1, 0x929f96);
+                    }
+                }
+                self.fine_rect(23, 20, 2, 1, 0xf2deb0);
+                self.bolt(5, 24);
+                self.bolt(26, 5);
+            }
+            Prop::Tank | Prop::Barrel => {
+                let green = matches!(kind, Prop::Tank);
+                self.fine_rect(11, 6, 10, 1, if green { 0xa0b798 } else { 0xc798b8 });
+                self.fine_rect(9, 23, 14, 1, if green { 0x334b35 } else { 0x54364e });
+                self.fine_rect(11, 14, 8, 1, if green { 0xc5d8b4 } else { 0xd7b3c9 });
+                self.fine_rect(20, 9, 1, 3, 0x121f25);
+                self.fine_rect(21, 10, 1, 1, 0x849b99);
+            }
+            Prop::Crate => {
+                for (x, y) in [(8, 8), (23, 8), (8, 23), (23, 23)] {
+                    self.bolt(x, y);
+                }
+                for (x, y, w) in [(10, 10, 3), (19, 11, 4), (8, 21, 5), (20, 22, 3)] {
+                    self.fine_rect(x, y, w, 1, 0x777347);
+                }
+                self.fine_rect(15, 7, 1, 18, 0xc2b87b);
+                self.fine_rect(7, 15, 18, 1, 0xc2b87b);
+                self.fine_rect(14, 14, 4, 4, 0x414333);
+                self.fine_rect(15, 15, 2, 1, 0xaba66f);
+            }
+            Prop::Vent => {
+                for y in [9, 15, 21] {
+                    self.fine_rect(8, y, 16, 1, 0xc0c7cb);
+                    self.fine_rect(9, y + 2, 14, 1, 0x111d28);
+                }
+                for (x, y) in [(6, 6), (24, 6), (6, 24), (24, 24)] {
+                    self.bolt(x, y);
+                }
+            }
+            Prop::DoorOpen | Prop::DoorClosed | Prop::DoorLocked | Prop::DoorOff => {
+                for y in [5, 25] {
+                    self.bolt(4, y);
+                    self.bolt(27, y);
+                }
+                self.fine_rect(5, 13, 1, 2, 0xdddfbb);
+                if !matches!(kind, Prop::DoorOpen) {
+                    self.fine_rect(11, 6, 1, 5, 0xa3afb3);
+                    self.fine_rect(20, 17, 1, 6, 0x25343e);
+                    self.fine_rect(9, 25, 5, 1, 0x9a9990);
+                    self.fine_rect(18, 25, 5, 1, 0x9a9990);
+                    self.fine_rect(14, 14, 1, 5, 0x111e28);
+                    self.fine_rect(17, 14, 1, 5, 0x85979e);
+                }
+            }
+        }
     }
 }
 
@@ -187,6 +275,7 @@ fn prop(kind: Prop) -> Raster {
             p.rect(13, 6, 1, 3, indicator);
         }
     }
+    p.finish(kind);
     p
 }
 
@@ -210,8 +299,7 @@ thread_local! {
 }
 
 fn draw(rect: Rect, index: usize, color: Color, rotation: f32) {
-    // Fill the available cell at intermediate zooms too: rounding down to a
-    // multiple of 16 made actors shrink abruptly on fitted 20–31 px cameras.
+    // Native 32px pixels remain crisp; other chosen zooms fill the same cell.
     let size = rect.w.min(rect.h);
     let x = (rect.x + (rect.w - size) * 0.5).floor();
     let y = (rect.y + (rect.h - size) * 0.5).floor();
@@ -274,6 +362,10 @@ pub(super) fn draw_wall(
     visible: bool,
     at: GridPos,
 ) -> bool {
+    if kind == Decor::Wall {
+        super::terminal_materials::wall(rect, joins, visible, at);
+        return true;
+    }
     if !matches!(
         kind,
         Decor::Wall | Decor::MembraneWall | Decor::VoidWall | Decor::DeadScreen
@@ -322,9 +414,17 @@ pub(super) fn draw_wall(
     if horizontal {
         paint(2., t + 4., s - 4., 1., 0x3e414c);
         paint(2., t + 7., s - 4., 1., 0x3e414c);
+        if s >= 28. {
+            paint(2., t + 13., s - 4., 1., 0x333640);
+            paint(2., t + 14., s - 4., 1., 0x1b1e25);
+        }
     } else {
         paint(l + 4., 2., 1., s - 4., 0x3e414c);
         paint(l + 7., 2., 1., s - 4., 0x3e414c);
+        if s >= 28. {
+            paint(l + 13., 2., 1., s - 4., 0x333640);
+            paint(l + 14., 2., 1., s - 4., 0x1b1e25);
+        }
     }
     if (if horizontal { at.x } else { at.y }).rem_euclid(3) == 0 {
         if horizontal {
@@ -382,14 +482,14 @@ mod tests {
     fn open_door_preserves_a_clear_passage_and_closed_states_fill_it() {
         let open = prop(Prop::DoorOpen);
         for y in 0..SIDE {
-            for x in 4..12 {
+            for x in 8..24 {
                 assert_eq!(open.pixels[y * SIDE + x][3], 0);
             }
         }
         for kind in [Prop::DoorClosed, Prop::DoorLocked, Prop::DoorOff] {
             let closed = prop(kind);
             for y in 0..SIDE {
-                for x in 4..12 {
+                for x in 8..24 {
                     assert_eq!(closed.pixels[y * SIDE + x][3], 255);
                 }
             }

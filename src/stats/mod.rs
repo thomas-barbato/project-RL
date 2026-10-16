@@ -1,6 +1,7 @@
 mod physical;
 mod primary;
 mod stability;
+pub(crate) use primary::with_legacy_attribute_encoding;
 
 pub use physical::{
     BodyProfile, DisplacementProfile, HitPointRules, ImpactRules, LocomotionProfile, PhysicalRules,

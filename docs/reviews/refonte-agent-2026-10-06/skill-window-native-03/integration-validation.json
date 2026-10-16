@@ -1,0 +1,138 @@
+{
+  "review_id": "SKILLS-IC14-NATIVE01",
+  "accepted_compact_count": 18,
+  "accepted_illustration_count": 16,
+  "accepted_export_hashes_verified": 171,
+  "packaged_asset_hashes_verified": 34,
+  "previous_images_unchanged": 26,
+  "exactly_eight_new_compact_files": true,
+  "native_asset_dimensions": [
+    64,
+    64
+  ],
+  "skills_labels_previous_art_and_approvals_unchanged": true,
+  "other_pending_icons_not_integrated": true,
+  "status": "integrated",
+  "accepted_compacts": [
+    "D56-C01",
+    "D57-C01",
+    "D58-C01",
+    "D66-C01",
+    "DP01-C01",
+    "DR01-C01",
+    "DP02-C01",
+    "HY07-C01"
+  ],
+  "tests": {
+    "command": "cargo test --locked --bin project-rl agent_skill -- --nocapture",
+    "passed": 4,
+    "failed": 0
+  },
+  "validation": {
+    "format": "passed",
+    "diff_whitespace": "passed",
+    "debug_build": "passed",
+    "release_build": "passed",
+    "release_warnings": "4 pre-existing warnings"
+  },
+  "captures": [
+    {
+      "skill": "D56",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-03/D56-960-verified/cold-start.png",
+      "sha256": "41de1e079a46629e47d812df9b1cbe6332b981bfef03dd9f6938dc9f9edc9630",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "visual_inspection": "passed"
+    },
+    {
+      "skill": "D57",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-03/D57-960/cold-start.png",
+      "sha256": "787942c70a29e909adaba3bffb2a2dc0345e488ae75e3a9476bf43d8cc535c69",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "visual_inspection": "passed"
+    },
+    {
+      "skill": "D58",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-03/D58-960/cold-start.png",
+      "sha256": "b12744ef66001a07c4122f5f796a6e1c3122fdc575e20a2644b5bd5451e867c3",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "visual_inspection": "passed"
+    },
+    {
+      "skill": "D66",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-03/D66-960/cold-start.png",
+      "sha256": "22d51608c421e1e16a2bc0002e442e225696241ea482d2a2956fc501591a2769",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "visual_inspection": "passed"
+    },
+    {
+      "skill": "DP01",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-03/DP01-960/cold-start.png",
+      "sha256": "10ebbd7d8f84ce8cf52cf8b7ec432089dc96f0e5cdab62e20c0d0a78aaad74e1",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "visual_inspection": "passed"
+    },
+    {
+      "skill": "DR01",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-03/DR01-960/cold-start.png",
+      "sha256": "83419785d90f067e63b4611c32991886532e842af4e652dd8669e0ab0df1fd50",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "visual_inspection": "passed"
+    },
+    {
+      "skill": "DP02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-03/DP02-960/cold-start.png",
+      "sha256": "4d91a616bb04b5a89b5f7e79d1a4c55659658f2f453d4697906e64e7175f6e9c",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "visual_inspection": "passed"
+    },
+    {
+      "skill": "HY07",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-03/HY07-960/cold-start.png",
+      "sha256": "39eb0313f8a2203cf329d78332708213526e8e0c49aefdae318a4dae4ec2e215",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "visual_inspection": "passed"
+    }
+  ],
+  "builds": {
+    "debug": {
+      "file": "target/debug/project-rl.exe",
+      "sha256": "c4d2ac4cb043fdab04a2f90462c25cd5c9914ca0fff12b21ccbff54e114bd66d"
+    },
+    "release": {
+      "file": "target/release/project-rl.exe",
+      "sha256": "eae0a9430471f5f8d61a2d0a174b62ad208c86bda415db630b7c9dd29597497b"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-09",
+  "review_id": "WEAPON-SIL01-CHECK01",
+  "files_checked": [
+    "review-equipped-classes-START-VIS01-07.json",
+    "weapon-gray-and-family-adaptation-decisions-01.json",
+    "review-class-starts-START-ALL01-08.json",
+    "weapon-silhouette-review-03/review-weapon-silhouettes-WEAPON-SIL01-03.json",
+    "weapon-silhouette-review-03/weapon-silhouette-review-presentation-02.json",
+    "review-implementation-readiness-40.json",
+    "review-attribute-model-98.json",
+    "review-primary-catalogue-270.json",
+    "review-complete-skill-design-245.json",
+    "remaining-individual-skill-review-counts-139.json"
+  ],
+  "hash_references_checked": 2237,
+  "hash_errors": [],
+  "models": 113,
+  "families": 18,
+  "classes": 5,
+  "configurations": 375,
+  "source_asset_or_palette_patch_target_changes": 0,
+  "accepted_gameplay": "unchanged",
+  "browser_validation": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-silhouette-review-03/gallery-browser-validation-01.json",
+    "reference_sha256": "47959921d4ffa348d1ec2f9de69e75cce6d731c7f063bf67779af8d9ef766685"
+  },
+  "verification_scope": "native_proposal_and_browser_gallery;prepared_unapplied_palette_patch;not_live_game_capture",
+  "runtime_integration": "not_integrated"
+}

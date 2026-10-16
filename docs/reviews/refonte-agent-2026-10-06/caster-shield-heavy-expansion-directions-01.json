@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-10",
+  "review_id": "EQUIP-EXPAND01",
+  "revision": 1,
+  "user_acceptance": "parfait :) , il faudra là aussi en faire plusieurs variété (autant que celles des armes normales) . Il faudra aussi faire les armes lourdes , on les a pas encore traitées .",
+  "accepted_family_directions": [
+    {
+      "id": "caster:focalizer",
+      "label": "Focaliseur occulte",
+      "held_direction": "one_hand;short_grip_forked_head_and_contrasting_core;aligned_with_existing_hand_and_forearm"
+    },
+    {
+      "id": "caster:channeling_shaft",
+      "label": "Hampe de canalisation",
+      "held_direction": "two_hands;continuous_metal_shaft_and_simple_industrial_head;separate_main_and_support_grips"
+    },
+    {
+      "id": "defense:shield",
+      "label": "Bouclier",
+      "held_direction": "one_hand;compact_solid_metal_trapezoid_or_hexagon;forearm_attachment_and_rear_grip;torso_and_other_weapon_readable"
+    }
+  ],
+  "variety_direction": "several_models_per_family_comparable_to_ordinary_weapon_series;not_only_cosmetic_recolors",
+  "heavy_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/heavy-weapon-family-series-decisions.json",
+    "reference_sha256": "8df1aa63a1813e05960e3c7251d879022e1ee83d8d4feefebe1c529c5ea8b3dc"
+  },
+  "deferred_options": "ritual_gauntlet_and_sealed_relic_not_first_production_families",
+  "approval_boundary": "accepted_labels_hand_count_and_visual_intent;no_specific_new_pixels_item_RP_stats_shield_block_rules_or_mandatory_caster_weapon_requirement_approved",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-RANK04",
+  "revision": 1,
+  "title": "Perte du passif autorisant une mine spéciale",
+  "status": "direct_user_mechanical_instruction;not_runtime_integrated",
+  "user_decision": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/mine-capacity-and-variant-loss-acceptance-decisions.json",
+    "reference_sha256": "6ab886656b9b26e5a0a473a154fafe83ee56adea509cde3959f10bcfbe8f6141"
+  },
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-invoked-creation-scope-INTERACT-RANK02-02.json",
+      "reference_sha256": "5084d9e1336229bdf283545959f5134cd86efd74fae0b7a39e75370051dc8a09"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-passive-capacity-loss-INTERACT-RANK03-02.json",
+      "reference_sha256": "4ebd3acc532f567e5c162d015c34c6a417917347f667b55abb3d004fedba8784"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipment-granted-skills-GEAR-SK01-02.json",
+      "reference_sha256": "59a9b43d1be513fa5e7a939881b9f29691af188278005bce39f05ec1e6694f7b"
+    }
+  ],
+  "accepted_rule": {
+    "condition": "supporting_passive_becomes_unavailable;no_personal_rank_and_no_remaining_eligible_equipment_grant",
+    "SM02": "remove_own_placed_poison_mines_if_Mines_de_poison_access_is_lost",
+    "SM03": "remove_own_placed_cold_mines_if_Mines_de_glace_access_is_lost",
+    "SM05": "remove_own_placed_mines_configured_with_persistent_residue_if_Residue_persistant_access_is_lost",
+    "replacement": "none;never_convert_removed_mine_to_base_fire_mine",
+    "unrelated": "other_own_mines_without_lost_dependency_and_other_casters_creations_follow_existing_rules",
+    "creator": "SM00_remains_mine_creator;supporting_passive_dependency_can_require_cleanup_without_becoming_creator"
+  },
+  "unshown_cases_pending": [
+    "partial_passive_rank_loss_while_passive_still_available",
+    "lost_SM04_radius_passive",
+    "already_exploded_mine_residue_zone_cleanup",
+    "exact_cleanup_event_order_and_native_feedback"
+  ],
+  "mechanic_approval": "direct_user_instruction",
+  "text_approval": "no_new_skill_RP_or_name",
+  "visual_approval": "no_new_native_art_or_animation",
+  "runtime_integration": "not_integrated"
+}

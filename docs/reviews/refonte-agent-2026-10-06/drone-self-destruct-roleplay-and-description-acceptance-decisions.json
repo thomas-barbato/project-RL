@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-08",
+  "id": "HY07",
+  "review_id": "HY07-RP02",
+  "skill": "Autodestruction",
+  "user_roleplay_request": "On va reformuler le texte rp : \"Vous surchargez le coeur d'un drone de combat de votre choix et le réduisez en une gerbe de feu\".",
+  "user_acceptance": "et je valide",
+  "accepted_roleplay": "Vous surchargez le cœur d’un drone de combat de votre choix et le réduisez en une gerbe de feu.",
+  "orthographic_normalization": {
+    "coeur": "cœur",
+    "apostrophe": "typographic apostrophe",
+    "final_period": true,
+    "meaning_and_wording_preserved": true
+  },
+  "scope": "Previously displayed HY07-01 card accepted with the requested RP replacement; only shown values, conditions and visual direction, not unshown curves or native animation.",
+  "accepted_name": "Autodestruction",
+  "accepted_shown_current_values": {
+    "effective_rank": 11,
+    "fire_damage_per_target": 57,
+    "blast_radius_cells": 2,
+    "command_range_cells": 6,
+    "energy_cost": 6,
+    "cooldown_turns": 4
+  },
+  "accepted_shown_next_values": {
+    "effective_rank": 12,
+    "fire_damage_per_target": 61,
+    "blast_radius_cells": 2,
+    "command_range_cells": 6,
+    "energy_cost": 6,
+    "cooldown_turns": 4
+  },
+  "accepted_shown_conditions": [
+    "controlled visible Traqueur, Artilleur or Gardien within range",
+    "one drone destroyed on its cell",
+    "enemy-only explosion",
+    "walls stop blast",
+    "area preview before confirmation",
+    "human form required",
+    "Silence blocks use",
+    "damage before target defenses"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** le cœur du drone rougit brièvement, puis une explosion de feu et de fragments se propage autour de sa position. Les cases concernées sont indiquées avant confirmation.",
+  "unshown_curves_cases_and_native_animation": "pending_individual_review",
+  "catalogue_before": 76,
+  "catalogue_after": 77,
+  "branch_count": 13,
+  "active_complete_blocks_before": 64,
+  "active_complete_blocks_after": 65,
+  "prior_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY07-01.json",
+  "prior_card_sha256": "2c1da991fa5a8e37b78ef131807ea4137936a61e1fd9248468ec6e5c33f276a7",
+  "old_HY02_reserved_not_reused": true,
+  "runtime_integration": "not_integrated"
+}

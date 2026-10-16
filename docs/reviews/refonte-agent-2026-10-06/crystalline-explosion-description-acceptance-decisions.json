@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-07",
+  "review_id": "FR06",
+  "redesign_review_id": "FR06-DET01",
+  "title": "Explosion cristalline",
+  "user_message": "Je valide mais change le nom en \"Explosion cristalline\".",
+  "approval_status": "accepted_as_displayed_with_explicit_name_change",
+  "previous_title": "Fragilité cristalline",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR06-02.json",
+  "previous_description_sha256": "f72c7d718a76c4c294f374ad70d75245ec50728f676150ee77ef7faa2dd516d3",
+  "accepted_player_copy_sha256": "a8f1ca468ecc4e1737b6164d6950a7126bd096b4af263f8ed586713534afae99",
+  "previous_player_copy_sha256": "8676d4892dd2117f3d1df140b6313bad2d7c3361143be12216e7889a293f1405",
+  "accepted_visual_copy_sha256": "7f99419fe44167b8f1cfb7b789f768f550a455c45be7b49c0609f3ea74c162a7",
+  "player_copy_change": "Header skill name only:Fragilité cristalline -> Explosion cristalline;all other player wording unchanged.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "cold_damage_on_each_frozen_source": 44,
+    "cold_splash_damage_per_explosion": 22,
+    "explosion_radius_cells": 1,
+    "eligible_source_count": "all visible frozen hostile actors",
+    "energy_cost": 20,
+    "cooldown_turns": 8,
+    "Gel_consumed_on_exploding_sources": true,
+    "new_Gel_roll_created": false,
+    "overlapping_explosion_damage_can_stack": true
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "cold_damage_on_each_frozen_source": 47,
+    "cold_splash_damage_per_explosion": 23,
+    "explosion_radius_cells": 1,
+    "eligible_source_count": "all visible frozen hostile actors",
+    "energy_cost": 20,
+    "cooldown_turns": 8,
+    "Gel_consumed_on_exploding_sources": true,
+    "new_Gel_roll_created": false,
+    "overlapping_explosion_damage_can_stack": true
+  },
+  "approval_scope": "Displayed RP,center44/47 and splash22/23 cold damage,radius1,all initial visible frozen hostiles,cost20/CD8,one detonation per source then remove Gel,hostile collateral including unfrozen targets,overlap damage stacking,walls limiting explosions,no new Gel explicitly accepted as FR06-only exception. Damage not automatic death. Displayed frost-burst/ice-shatter/survivors-in-place visual direction accepted.",
+  "new_Gel_exception": {
+    "scope": "FR06_only",
+    "new_Gel": false,
+    "source_Gel_consumed": true,
+    "other_cold_skills": "unchanged"
+  },
+  "accepted_visual_direction": "**Visuel proposé :** une détonation de givre éclate autour de chaque cible gelée, tandis que la glace qui l’immobilisait se brise. Les cibles qui survivent restent visibles à leur emplacement.",
+  "unshown_rules_approval": "Full rank/attribute/energy curves,observed actor visibility union/exact radius and diagonals/large footprints/walls,source snapshot and casualties before individual detonation,simultaneous Gel cleanup and damage packet/defense order,overlap statistics,target deaths and other death triggers,stat snapshots,preview and targeting UI,no-target/failed cast time-energy-RNG-cooldown behavior,map transitions and other effect interactions remain pending.",
+  "native_visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

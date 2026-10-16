@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-08",
+  "id": "M03",
+  "review_id": "M03",
+  "revision": 2,
+  "title": "Puissance métamorphe",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-72.json",
+  "source_skill_block_sha256": "cb979860fb28c0e7197b550177cc464fbd2364b0bcba49effc3f4578063757d2",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "Force": 10,
+    "Agilité": 10,
+    "Volonté": 10,
+    "melee_multiplier_exact": "451/400",
+    "melee_multiplier_display": 1.1275,
+    "other_passive_implant_or_cost_modifiers": false,
+    "elemental_equipment_effects_in_numeric_example": false,
+    "natural_damage_basis_in_numeric_example": true,
+    "raw_weapon_damage_inheritance": "not_decided_by_source_selection;example_uses_natural_base",
+    "weapon_damage_type_effect_source": "active_weapon_group_immediately_before_transformation",
+    "damage_bonus_attribute_scaling": "none;rank_based_percentage_only"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "damage_bonus_while_transformed_percent": 30
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "damage_bonus_while_transformed_percent": 32
+  },
+  "formulas_proposed": {
+    "damage_bonus_percent": "10+2*(effective_rank-1)",
+    "default_rank1_percent": 10,
+    "default_rank1_approval": "explicit_prior_user_validation",
+    "full_rank_curve_approval": "unshown_curve_pending_review"
+  },
+  "passive_scope_proposed": {
+    "requires_player_transformed": true,
+    "player_physical_damage": true,
+    "player_magical_damage": true,
+    "player_familiar_damage": false,
+    "learned_passive_always_active_under_condition": true,
+    "attribute_scaling_of_percentage": false,
+    "applies_to_intrinsic_form_attacks_and_eligible_M02_in_form": true,
+    "periodic_and_derived_damage_order": "unshown_pending_review;no_implicit_duplicate_multiplier_on_bleed_derived_from_already_boosted_hit"
+  },
+  "common_rule_decisions": "docs/reviews/refonte-agent-2026-10-06/transformation-actions-equipment-and-power-decisions.json",
+  "autonomy_review": "docs/reviews/refonte-agent-2026-10-06/review-transformation-autonomy-06.json",
+  "name_approval": "existing_Puissance_métamorphe_name_preserved",
+  "roleplay_text_approval": "M03_01_displayed_RP_explicitly_accepted",
+  "numeric_rules_approval": "M03_01_displayed_current30_and_next32_percent_explicitly_accepted;rank1_10_percent_retained;unshown_curve_and_cases_pending",
+  "detailed_conditions_approval": "M03_01_displayed_transformed_player_physical_magic_damage_and_familiar_exclusion_explicitly_accepted;unshown_cases_pending",
+  "visual_intention_approval": "M03_01_displayed_brief_form_mark_pulse_direction_explicitly_accepted;native_pixels_pending",
+  "visual_approval": "per_skill_native_effect_pending_review",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "no_ordinary_execution_timing": true,
+    "passive_no_action_cost_or_cooldown": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "damage_bonus_while_transformed_percent"
+    ]
+  },
+  "player_copy_markdown": "**M03 · Puissance métamorphe — Rang 11 · Passif**\n\n*L’énergie occulte imprègne votre corps métamorphosé et amplifie la violence de vos attaques.*\n\n**Effet actuel**\n\n- Dégâts infligés lorsque vous êtes transformé : **+30 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts infligés lorsque vous êtes transformé : **+32 %**.\n\nCe bonus concerne les dégâts physiques et magiques infligés par votre personnage tant qu’il est transformé. Il ne s’applique pas aux familiers.",
+  "player_copy_sha256": "08ff4bc70779780cd0c71af043fb2e34cae89587526cce7a25fb965f8f133bca",
+  "visual_copy_markdown": "**Visuel proposé :** un bref éclat parcourt les marques de votre forme lors d’une attaque renforcée.",
+  "visual_copy_sha256": "28bda015e16d6704c56260fbaac8e04c1e7633f5eabb7c5625d0c43041d9338c",
+  "current_turn_shown_copy_markdown": "**M03 · Puissance métamorphe — Rang 11 · Passif**\n\n*L’énergie occulte imprègne votre corps métamorphosé et amplifie la violence de vos attaques.*\n\n**Effet actuel**\n\n- Dégâts infligés lorsque vous êtes transformé : **+30 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts infligés lorsque vous êtes transformé : **+32 %**.\n\nCe bonus concerne les dégâts physiques et magiques infligés par votre personnage tant qu’il est transformé. Il ne s’applique pas aux familiers.\n\n**Visuel proposé :** un bref éclat parcourt les marques de votre forme lors d’une attaque renforcée.",
+  "current_turn_shown_copy_sha256": "7c6067910874c6693215412b391aeff389f1296fdb56761883226532e453d530",
+  "unshown_cases_pending": [
+    "full_rank_curve_and_general_bonus_stacking_order",
+    "damage_component_armor_and_resistance_application_order",
+    "periodic_effect_snapshot_current_form_gating_and_derived_bleed_double_application_avoidance",
+    "Cuirasse_reserve_and_reflected_damage_special_cases",
+    "M02_individual_values_and_component_interactions",
+    "native_pulse_appearance_timing_and_each_form_readability"
+  ],
+  "runtime_integration": "not_integrated",
+  "autonomy_review_sha256": "c9aa4ca97bf4dff10f2136832354f1eadb89de32a4e3dd991d107892952a431c",
+  "previous_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M03-01.json",
+  "previous_review_sha256": "32fb91360bfefcd3663cf861d50cc867a04b01baf8f87fbf2865e63077152eee",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/metamorph-power-full-description-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "6f29361c53f0bf517e68b5361867db8b7bda54bc1e4f7a91b457c3284fb0440d",
+  "current_turn_review_scope": "acceptance_only_of_previously_shown_M03_01;no_player_copy_or_numeric_revision"
+}

@@ -1,0 +1,12 @@
+{
+  "build": { "command": "cargo build --locked", "exit_code": 0 },
+  "targeted_tests": { "command": "cargo test --locked agent_skill_lab_review", "passed": 44, "failed": 0 },
+  "format": { "command": "cargo fmt --all -- --check", "exit_code": 0 },
+  "diff_check": { "command": "git diff --check", "exit_code": 0 },
+  "native_render": { "views": 9, "animations": 4, "protected_files_unchanged": 34052, "pixel_controls": "passed" },
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Offline controller and native renders checked.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "pending"
+}

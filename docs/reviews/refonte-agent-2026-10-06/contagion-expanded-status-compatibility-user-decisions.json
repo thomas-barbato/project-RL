@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-09",
+  "review_id": "AF06-COMPAT02-ACCEPT",
+  "skill_id": "AF06",
+  "previous_compatibility": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/seal-contagion-disorientation-compatibility-decisions.json",
+    "reference_sha256": "287d393e8a6ac41dfe978e749290d0052d0ecd6e619c190beb7de1737d5fce38"
+  },
+  "user_question": "ah oui ca ne transmet pas ces effets là ? ca me semble anormal, qu'en penses tu ?",
+  "shown_proposal": "Ajouter Poison, Brûlure, Saignement et Gel créerait des synergies avec les autres branches. Je prépare cette extension avec une transmission limitée à un effet par mort.",
+  "user_acceptance": "oui on va changer ca, ca me plait pas trop .",
+  "accepted_compatibility": [
+    "Interférence",
+    "Faille d’armure",
+    "Silence",
+    "Rupture de régénération",
+    "Désorientation",
+    "Poison",
+    "Brûlure",
+    "Saignement",
+    "Gel"
+  ],
+  "effects_transmitted_per_death": 1,
+  "approval_boundary": "explicit_extension_by_four_named_statuses_and_shown_one_effect_per_death;no_implicit_approval_of_other_statuses_selection_no_chain_transfer_numbers_zone_only_Gel_or_native_art",
+  "name_and_roleplay": "existing_user_approved_Contagion_name_and_RP_unchanged",
+  "previous_TIME02_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/persistent-status-reapplication-acceptance-decisions.json",
+    "reference_sha256": "bbafb932282694c01ee649ad1a93ffa35515346ef3900bb2f3ca9c2ed63110e8"
+  },
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,34 @@
+{
+  "build": "cargo build --locked passed",
+  "targeted_tests": "shot_buffs: 6 passed",
+  "format": "cargo fmt --all -- --check passed",
+  "native_views": 15,
+  "bank_files_unchanged": 112,
+  "native_icon_center_empty": [
+    {
+      "direction": "HAUT",
+      "center_matches_unmarked_terrain": true,
+      "visible_red_pixels": 76,
+      "absent_before_and_after_consumption": true
+    },
+    {
+      "direction": "DROITE",
+      "center_matches_unmarked_terrain": true,
+      "visible_red_pixels": 72,
+      "absent_before_and_after_consumption": true
+    },
+    {
+      "direction": "GAUCHE",
+      "center_matches_unmarked_terrain": true,
+      "visible_red_pixels": 72,
+      "absent_before_and_after_consumption": true
+    },
+    {
+      "direction": "BAS",
+      "center_matches_unmarked_terrain": true,
+      "visible_red_pixels": 72,
+      "absent_before_and_after_consumption": true
+    }
+  ],
+  "gallery_static_links": "all resolve"
+}

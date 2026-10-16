@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-13",
+  "batch": "ANIM-S18",
+  "build_locked_debug": "passed",
+  "animation_lab_tests": {
+    "passed": 95,
+    "failed": 0,
+    "new_abysse_cases": 7
+  },
+  "format_check": "passed",
+  "diff_check": "passed",
+  "native_views": 29,
+  "animations": 30,
+  "lossless_native_frames": 3364,
+  "cropped_frames": 2784,
+  "resampling_of_native_captures": false,
+  "walls_preview_turns_contacts_positions": "passed",
+  "four_directions_and_shared_target_reaction": "captured and checked",
+  "shadow_step_refusals": "hidden, occupied, outside range, no adjacent opaque obstacle, Silence",
+  "prepared_visibility_not_real_fov": true,
+  "approved_body_unchanged": "TR65-BODY02 / review44",
+  "review44_acceptance_hashes_unchanged": true,
+  "old_review_files_unchanged": 118374,
+  "gif_palette": {
+    "samples": 30,
+    "max_chromatic_mean_error": 9.55,
+    "max_chromatic_p95_error": 34
+  },
+  "gallery_controller": {
+    "syntax": "passed",
+    "controller": "passed",
+    "all_frame_paths_exist": true,
+    "native_canvas_count": 3,
+    "explicit_three_turn_sequence": true,
+    "waiting_does_not_advance_turns": true,
+    "pause_freezes_clock": true,
+    "inputs_disabled_during_loading": true,
+    "refused_destinations_and_silence_checked": true,
+    "partial_line_view_checked": true,
+    "browser_validation": "Not performed: file protocol blocked; native GPU and offline controller verified."
+  },
+  "local_links": {
+    "checked": 8,
+    "missing": 0
+  },
+  "drawing_tool": "Built-in imagegen",
+  "prompts": [
+    "imagegen-allonge-prompt.txt",
+    "imagegen-fente-prompt.txt"
+  ],
+  "campaign_integration": false,
+  "visual_approval": "Three Abysse own-action compositions visually approved.",
+  "not_run": [
+    "Full engine suite",
+    "Release build",
+    "Browser rendering: file protocol blocked; native GPU/offline controller checked."
+  ],
+  "acceptance": "visual-acceptance-01.json"
+}

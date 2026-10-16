@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ16",
+  "revision": 1,
+  "title": "Mule — Ramasser",
+  "status": "Mule_collection_control_player_FOV_and_floating_names_requested;autonomous_pickup_modalities_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-47.json",
+  "current_attribute_model_sha256": "e238e27cb0aa505c07f6af817c7bb51b3abca2d2f20a47a4b1b0f9205e82586a",
+  "explicit_direction": "docs/reviews/refonte-agent-2026-10-06/mule-loot-collection-direction-decisions.json",
+  "explicit_direction_sha256": "400145775b3d31720374dc9b818eee967c833599af91414dea647569a05a05b2",
+  "shown_copy_markdown": "**PETS-EQ16 · Mule — Ramasser**\n\nDans la fenêtre **Familiers**, la Mule aura un bouton **« Ramasser »**. Elle cherchera les loots dans **le champ de vision actuel du joueur**.\n\nÀ chaque objet réellement ramassé, **son nom apparaîtra au-dessus de la Mule dans un message flottant**.\n\n**Fonctionnement proposé**\n\n- Elle se déplace vers le loot accessible le plus proche, en restant dans votre champ de vision.\n- Elle range les objets dans **son sac**, dans la limite de sa capacité. Ceux qui ne tiennent pas restent au sol.\n- Les déplacements et le ramassage utilisent ses propres tours : **1 case par tour**, puis **1 tour par case pour ramasser les objets qui tiennent dans son sac**. Vous pouvez continuer à agir pendant sa collecte.\n- Quand aucun loot visible et accessible ne peut être stocké, elle reprend votre suivi.\n- Pendant la collecte, le bouton devient **« Arrêter »** pour interrompre l’ordre et reprendre le suivi.\n\n**Coût proposé : 0 énergie · Aucune recharge propre.**\n\n**Les modalités de ramassage restent à valider.**",
+  "shown_copy_sha256": "b9b3dbf076f54c974156b44524da5de2bc3bf5b8a85b4955c6199ae837159113",
+  "already_requested_direction": {
+    "Mule_action_button": "add_Mule_loot_collection_control_to_planned_Familiers_window",
+    "loot_visibility_source": "player_field_of_view;latest_user_correction_replaces_initial_Mule_field_of_view_request",
+    "pickup_feedback": "every_actual_Mule_ground_item_pickup_generates_floating_message_above_Mule_with_item_name"
+  },
+  "new_proposed_rules": {
+    "scope": "existing_deployed_Mule_D57_real_transportable_ground_loot_collection_command;not_new_learned_skill_or_general_familiar_inventory",
+    "interface": "Ramasser_control_on_Mule_row_in_planned_Familiers_window;while_collecting_same_control_label_Arrêter",
+    "target_visibility": "only_loot_currently_in_player_field_of_view;reevaluate_as_player_moves;not_Mule_private_sight_or_remembered_hidden_loot",
+    "path_visibility": "collection_paths_and_target_cells_stay_in_current_player_field_of_view;only_reachable_visible_loot_candidates",
+    "target_choice": "nearest_currently_visible_reachable_ground_loot_that_can_fit_cargo;exact_tie_and_item_priority_not_defined",
+    "physical_pickup": "move_to_real_ground_item_cell_before_real_item_transfer;no_remote_teleport_pickup",
+    "movement": "one_grid_cell_per_Mule_reference_turn_using_ordinary_Mule_action",
+    "pickup_action": "one_Mule_reference_turn_to_collect_transportable_objects_that_fit_from_its_current_ground_cell;not_one_extra_agent_action_per_item",
+    "capacity": "obey_current_accepted_Mule_cargo_capacity;leave_nonfitting_items_on_ground;stored_objects_grant_no_modifiers",
+    "objects": "transfer_existing_item_identity_ground_to_Mule_cargo_without_duplicate_or_loot_generation;equipment_eligibility_not_required_for_storage",
+    "pickup_feedback": "one_floating_item_name_event_at_Mule_location_per_actual_item_transfer;no_message_for_unmoved_item",
+    "completion": "when_no_visible_accessible_candidate_fits_or_user_stops_collection_clear_order_and_resume_ordinary_follow_behavior",
+    "energy_cost": 0,
+    "own_cooldown_turns": 0,
+    "scope_boundary": "command_start_stop_agent_action_budget_and_exact_phase_native_layout_and_feedback_animation_pending"
+  },
+  "dependencies": {
+    "Mule_cargo": "docs/reviews/refonte-agent-2026-10-06/review-mule-cargo-transfers-PETS-EQ06-02.json",
+    "Mule_cargo_sha256": "55800bf793fa7bf3e7a482f399ce9782a3d85227c420028435fd265d50b4aa98",
+    "Mule_capacity": "docs/reviews/refonte-agent-2026-10-06/review-mule-strength-and-carrying-PETS-EQ07-02.json",
+    "Mule_capacity_sha256": "8c3301628db11145f457c73f18b65f4f6e657d7b38d7d8580bfb0209eae4b147",
+    "Mule_overcapacity": "docs/reviews/refonte-agent-2026-10-06/review-mule-overcapacity-PETS-EQ08-02.json",
+    "Mule_overcapacity_sha256": "480a4331d04ecc8b663fdb84ce2f9cbffb6fd5e5d62079c68ade0b42433b9fa8"
+  },
+  "scope_audit": {
+    "prior_review": "PETS_EQ15_recall_proposal_is_not_accepted_by_these_additive_requests_and_remains_pending",
+    "visibility_correction": "player_FOV_is_authoritative_latest_user_instruction;Mule_private_FOV_request_replaced_before_proposal",
+    "AI_scope": "do_not_infer_all_drones_or_Scout_stop_acting_outside_player_FOV_from_user_rationale;only_this_Mule_collection_scope_defined",
+    "item_capacity": "accepted_real_cargo_weight_equipped_armor_exclusion_and_overcapacity_preservation_unchanged",
+    "storage_vs_equipment": "no_auto_equip_and_no_new_level_restriction_on_cargo",
+    "time_copy": "collective_command_completes_over_multiple_Mule_turns_so_delayed_movement_and_pickup_are_shown_explicitly",
+    "floating_names": "explicit_user_requested_visual_direction_only;existing_actual_item_names_used;no_new_item_copy_created",
+    "native_visual": "no_new_Mule_tile_window_icon_font_color_float_duration_or_message_stack_created"
+  },
+  "unshown_cases_pending": [
+    "command_start_stop_agent_action_cost_and_combat_conditions",
+    "exact_loot_type_exclusions_stack_quantities_and_item_priority_when_not_all_fit",
+    "path_replanning_occupied_cells_lost_visibility_and_interruption_while_Mule_outside_current_player_view",
+    "multiple_pickup_message_order_duration_overlap_and_render_visibility",
+    "field_of_view_interaction_with_shared_Scout_view",
+    "recall_destruction_layer_transition_and_save_of_active_collection_order",
+    "native_Familiers_button_layout_icon_and_item_float_preview"
+  ],
+  "player_copy_approval": "Ramasser_Arrêter_labels_and_shown_collection_copy_pending_explicit_review",
+  "mechanical_approval": "player_FOV_loot_command_requested;shown_pathing_per_turn_pickup_capacity_completion_cancellation_zero_energy_no_own_cooldown_pending",
+  "visual_intention_approval": "floating_actual_item_name_above_Mule_on_each_pickup_explicitly_requested",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

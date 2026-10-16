@@ -1,0 +1,169 @@
+{
+  "protected_files_unchanged": 115630,
+  "controls": [
+    {
+      "variant": "TR65-A01-HAUT",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR65-A01-DROITE",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR65-A01-GAUCHE",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR65-A01-BAS",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR65-A01-MUR",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR65-A01-ATTENTE",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR65-A01-RENOUVELLEMENT",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "TR65-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "peak_purple_mean_error": 6.87,
+      "peak_purple_p95_error": 25
+    },
+    {
+      "file": "TR65-A01-MUR-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "peak_purple_mean_error": 7.16,
+      "peak_purple_p95_error": 27
+    },
+    {
+      "file": "TR65-A01-RENOUVELLEMENT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 44,
+      "peak_purple_mean_error": 6.17,
+      "peak_purple_p95_error": 20
+    },
+    {
+      "file": "transformations-haut-64.gif",
+      "native_size": [
+        616,
+        650
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "peak_purple_mean_error": 6.88,
+      "peak_purple_p95_error": 25
+    },
+    {
+      "file": "transformations-mur-64.gif",
+      "native_size": [
+        616,
+        650
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "peak_purple_mean_error": 7.16,
+      "peak_purple_p95_error": 27
+    },
+    {
+      "file": "transformations-renouvellement-64.gif",
+      "native_size": [
+        616,
+        650
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 44,
+      "peak_purple_mean_error": 6.16,
+      "peak_purple_p95_error": 20
+    },
+    {
+      "file": "TR65-A01-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "peak_purple_mean_error": 6.76,
+      "peak_purple_p95_error": 26
+    },
+    {
+      "file": "TR65-A01-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "peak_purple_mean_error": 6.8,
+      "peak_purple_p95_error": 26
+    },
+    {
+      "file": "TR65-A01-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "peak_purple_mean_error": 7.37,
+      "peak_purple_p95_error": 25
+    },
+    {
+      "file": "TR65-A01-ATTENTE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 20,
+      "peak_purple_mean_error": 6.66,
+      "peak_purple_p95_error": 24
+    }
+  ],
+  "resampling_of_native_capture": false,
+  "native_body_sources": "Direct64 px PNGs from new high-resolution drawings; the 192px views are explicit nearest-neighbour inspection zooms only.",
+  "native_views": 7
+}

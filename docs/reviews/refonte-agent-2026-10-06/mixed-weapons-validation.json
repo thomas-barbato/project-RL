@@ -1,0 +1,60 @@
+{
+  "review": "AGENT-MIXED01",
+  "status": "implemented_and_verified",
+  "validation_date": "2026-10-15",
+  "cargo_check_locked": "passed",
+  "cargo_build_locked": "passed",
+  "cargo_fmt_all_check": "passed",
+  "scoped_git_diff_check": "passed",
+  "engine_library_tests": {
+    "passed": 853,
+    "failed": 0
+  },
+  "targeted_ui_tests": {
+    "passed": 64,
+    "failed": 0,
+    "modules": [
+      "world_context::tests",
+      "agent_spell_trial::tests",
+      "weapon_hands_app::tests",
+      "agent_skill_bar::tests"
+    ]
+  },
+  "full_ui_suite": "not_run",
+  "native_preview": {
+    "viewport": [
+      1280,
+      800
+    ],
+    "frames": 3,
+    "visually_verified": true,
+    "asset": "assets/source-art/refonte-agent-2026-10-06/skill-playable-review-01/trait-arcanique.webp",
+    "bytes": 154634
+  },
+  "native_checks": {
+    "actions": 2,
+    "actual_command_slots": [
+      0,
+      1
+    ],
+    "ammunition_spent": 1,
+    "checked_viewports": [
+      [
+        1280,
+        800
+      ]
+    ],
+    "inactive_set_excluded": true,
+    "matching_hand_for_skills": true,
+    "new_catalogue_effects": "integration_by_batches_unchanged",
+    "one_weapon_per_action": true,
+    "ordinary_attacks": "melee_at_contact_ranged_farther",
+    "review": "AGENT-MIXED01",
+    "saves_untouched": true
+  },
+  "limits": [
+    "New catalogue skill effects remain integrated by batches; compatible weapon selection does not enable missing effects.",
+    "Existing range, line of sight, resource and damage rules are preserved."
+  ],
+  "cleanup": "Pending existing automatic approval review block; no deletion attempted in this change."
+}

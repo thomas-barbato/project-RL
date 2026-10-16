@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-15",
+  "review_id": "ANIM-S45-ACCEPT01",
+  "user_reply": "parfait :)",
+  "approved": [
+    {
+      "number": 99,
+      "id": "D58",
+      "variant": "D58-A02",
+      "title": "Invocation du drone Traqueur",
+      "palette": "D58-PAL01",
+      "icon_palette": "D58-PAL01"
+    },
+    {
+      "number": 100,
+      "id": "D59",
+      "variant": "D59-A02",
+      "title": "Invocation de l’Artilleur",
+      "body": "D59-BODY03",
+      "icon": "D59-C06"
+    }
+  ],
+  "scope": "Visual approval of the shown twenty-two 64 px tile laboratory scenes: deployment, pursuit and contact strikes, ranged fire in four directions, impacts, recoil, blood on living targets, dry machine impacts, obstacle blocking, waiting and atomic refusals. D58-PAL01 graphite/military-olive palette and its matching icon are accepted on the unchanged legacy Traqueur geometry. D59-BODY03 direct64 tracked body and matching D59-C06 compact64/32 icons are accepted. Prepared movement replaces an attack. This approval does not define campaign AI or new numerical balancing.",
+  "campaign_integration": false,
+  "accepted_mechanics": [
+    "../drone-persistence-acceptance-decisions.json",
+    "../drone-deployment-resources-acceptance-decisions.json",
+    "../drone-first-action-acceptance-decisions.json",
+    "../drone-combat-order-costs-acceptance-decisions.json"
+  ],
+  "source_sha256": "5f4cff53bd4849c2bd5f7edf79b7e3e6f61ddf905b6d3589e4e6e4762377c4c3",
+  "catalogue_sha256_at_capture": "459b572632cd0bdba78a8120fe1b3244b52199bb8f23bc0bd3ea9c7d246facfb",
+  "accepted_atlas_sha256": {
+    "D58-A02-DROITE": "bcca776fd58fabfa220dc060a804846e0fa70f8b5889dade0560412d7fc64dd0",
+    "D58-A02-GAUCHE": "afa447536ed2ac4cba4f40c254c3f9b366c1435b997c723ee82016a9506324aa",
+    "D58-A02-HAUT": "fe6514fca457e0a8ce2a0d61277ec210152b5ffbd20d680ee7ff67aaa5fa98ee",
+    "D58-A02-BAS": "bc1dd329661f14ce922bb31eb459ed5cd0186bcc98d40f8ef277417d475ff9e7",
+    "D58-A02-CONTACT": "4f249169252e6ba846cb280961fcfaa152164f21f8d5d2dc1dd18d8a9f0c08e4",
+    "D58-A02-DEPLACEMENT": "12eba0841d9ff2e39f2e69ff5c41a9e423af375254b0c5630b7cdca4fa424c64",
+    "D58-A02-CLOISON": "92eed8a3ffc3b073648ce5d79ebd58dfcbf4519a7f7add7800dbcec4a466d609",
+    "D58-A02-MACHINE": "21f7fdf94bba4c4302856d247843fbbd8f8024d5b089df1e30381abdd8cfa900",
+    "D58-A02-ATTENTE": "fd824ce21cea489406687690ec2379e687aebae8166a5b36cbdbc5a679765659",
+    "D58-A02-ENERGIE": "2c2ff1bda65869f6d5ba9bda628c5a7848c8c9ca6fc26962d33917f5fe478818",
+    "D58-A02-EXISTANT": "54f6d0b5f35484943de899e77bb83268bd35985a790050a9b3b70f8f3dc97a46",
+    "D59-A02-DROITE": "b9c7cfd59e2cff97d290595c9436f40ad7cadc25be2bf160ab166fdc09c13079",
+    "D59-A02-GAUCHE": "17fcb0809b0a00ea4b9fa129666be1d27669d59d7bbe3fe1cbd0ee973d91352f",
+    "D59-A02-HAUT": "b4063c223e4aac81af3c31480836a781a6d5bf0a9d56622d49915b659b1f9eac",
+    "D59-A02-BAS": "c095543f87836c1f8426668e5bc7998c5545849a8518cee350a8bad71e59b773",
+    "D59-A02-CONTACT": "17e83410341e4f1a26159c82732776d18128abfbc2ca119c29edcc27b1c2acf6",
+    "D59-A02-DEPLACEMENT": "27e814abead78ee0eb26c75c9dd5156c32e453e023e391279d5235e2336ec30c",
+    "D59-A02-CLOISON": "44a67bce05e32963ffa3d9c070179dc09a329657efba7773074873dfb16e67eb",
+    "D59-A02-MACHINE": "03a22fa7a7f50c1c23c3332daee7d2504bcd3bb0b216bef4afd6cd1ad967daca",
+    "D59-A02-ATTENTE": "b78dc17e91e5f1fe412311687b457ed65579b510a59e88fd982359829bbda220",
+    "D59-A02-ENERGIE": "2c2ff1bda65869f6d5ba9bda628c5a7848c8c9ca6fc26962d33917f5fe478818",
+    "D59-A02-EXISTANT": "1e412611d119caa4017c013574e4cffd187279226b2e613e28c339eaa23a573c"
+  },
+  "accepted_asset_sha256": {
+    "../../../../assets/animations/agent/skill-animation-review-92/artilleur-body03/D59-BODY03-native64.png": "6f570942b9fb19772b1600187b249ac2958e665e40c53b006f39051b3930cec8",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body03/D59-BODY03-source.png": "12e6fb0d60549b76d600a55c6af3200d511e129769c2fee05c0fde8807c3fa98",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body03/D59-C06-compact32.png": "de88b509625fb6a7e1989235efa06aacf4c1832558f983bfd9d148c59850ef0c",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body03/D59-C06-compact64.png": "d8305245bc86938a1766d0677a3ae50ae66b4bbc8d2f26dd389fee221b1b3491",
+    "artilleur-body03/prompt.json": "78a89ecdc19e138fb42700775c1aa4e41643556f7f18044dcdc1e8918ce03558",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-93/traqueur-palette02/D58-PAL02-icon64.png": "716f387bbe9743bfca4e3f15925f440798898b99e63d0ef37d9bf55e82281dae",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/traqueur-palette01/D58-PAL01-native64.png": "0419b3e5c7616ad9f04c61337f3f4615184c3d85c91d6731144774eb138e2f88",
+    "traqueur-palette01/palette-proof.json": "0297cdd7e2e5fa1212fd60865f4c121ed020c29252e22d600311294418987507"
+  },
+  "accepted_inline_sha256": {
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-chenilles-64.webp": "797d76e8caaac1151130ffeb7f7374cd0ab2ab7a57a8bf6a9287fddb81d9a99b",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/traqueur-graphite-64.webp": "3a511e9af75f476f07f25083550f152f67652dfd5e36ba08a5154936fd6e19f3"
+  },
+  "preview_copy_sha256": [
+    "c4ac8987575f612aae5f272de9ba76e3dfbfc0070f62fc673638539bf4358f18",
+    "5f715018b41943d728b911703fcf5274b284a41f65e44f0cbe033e5c0f73767f"
+  ],
+  "remaining_unshown": 11,
+  "still_unshown": [
+    "D66",
+    "O03",
+    "DP01",
+    "DP02",
+    "DR01",
+    "DI01",
+    "DI02",
+    "DI03",
+    "DI04",
+    "DI05",
+    "DI07"
+  ],
+  "excluded_from_approval": [
+    "Prepared damage18/12 and targetHP100 are illustrative fixtures, not approved balancing.",
+    "New Traqueur native64 body drawing; the source geometry remains32.",
+    "Campaign integration, full AI, autonomous priorities, native actor attack statistics, weapon variance, accuracy, speed, drone energy costs and scheduling.",
+    "New corpse or wreck art and unshown remaining skills.",
+    "Review90 visual approval and B03 Vitalite amelioree mechanics remain separate."
+  ],
+  "verification": {
+    "accepted_atlases": 22,
+    "asset_hashes": 8,
+    "previous_preserved_files": 51,
+    "source_hash_matches": true
+  },
+  "cleanup": {
+    "status": "complete",
+    "receipt": "cleanup.json",
+    "removed_bytes": 167575236,
+    "previous_receipts": [
+      "cleanup-tracks.json",
+      "cleanup-before-tracks.json"
+    ]
+  }
+}

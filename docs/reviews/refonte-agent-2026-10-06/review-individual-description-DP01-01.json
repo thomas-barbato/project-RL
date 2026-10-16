@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-06",
+  "id": "DP01",
+  "title": "Maintenance des drones",
+  "revision": 1,
+  "player_copy_markdown": "**Maintenance des drones — Rang 11**\n\n*Vos drones réparent leurs dommages lorsque les combats leur laissent un répit.*\n\nVos drones déployés récupèrent automatiquement de la vie pendant les phases de calme.\n\n**Effet actuel**\n\n- Vie réparée par tour de calme : **7 % de la vie maximale de chaque drone**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Vie réparée par tour de calme : **7,5 % de la vie maximale de chaque drone**.\n\n**Passif · Aucun coût ni recharge.**\n\nAprès trois tours complets d’accalmie, la réparation commence au tour suivant. Un hostile repéré, une attaque ou des dégâts sur vous ou un drone interrompent la réparation.\n\nLes drones rappelés ne se réparent pas. Ce passif ne réactive pas les drones détruits.",
+  "player_copy_sha256": "3535091a9b9aa5be30b4365b467738a66e8b10085059f232e2f66627c1019361",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-13.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-09.json",
+  "source_skill_block_sha256": "f0b47afe34010d81ba0cd15edbf4440cad66553aab605a8e2bbd4a9f2818ade7",
+  "shared_phase_reference": "docs/REVUE_INTERFACE_EFFETS_AGENT.md#hud03-phase-de-combat-et-retour-au-calme",
+  "shared_phase_manifest": "docs/reviews/refonte-agent-2026-10-06/review-interface-effects-08.json",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-tooltip-format-confirmation-and-maintenance-review-decisions.json",
+  "review_start_decisions_sha256": "3970aa8d3cdbf29e1df33b746606496b995a99a695f17abee828029066821827",
+  "name_approval": "accepted_persistence_revision_name",
+  "catalogue_effect_approval": "repair_outside_combat_role_accepted",
+  "roleplay_text_approval": "pending_individual_user_review",
+  "functional_description_approval": "pending_individual_user_review",
+  "current_next_effect_copy_approval": "pending_individual_user_review",
+  "numeric_rules_approval": "displayed_7_7_5_percent_and_conditions_proposed_pending_individual_review; shared_three_turn_calm_direction_previously_accepted",
+  "formulas": {
+    "repair_percent_of_maximum_hp": "2 + 0.5 * (effective_rank - 1); proposed",
+    "repair_basis": "current maximum HP of each eligible deployed drone; no second Intelligence multiplier",
+    "fraction_handling": "source proposal accumulates fractional HP, adds whole HP, clears remainder at full health; unshown details pending"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_maintenance_modifiers": false,
+    "drone_maximum_hp": "each drone current maximum; no single fictive HP value shown"
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "repair_maximum_hp_percent": 7.0,
+    "repair_maximum_hp_percent_exact": {
+      "numerator": 7,
+      "denominator": 1
+    },
+    "quiet_full_turns_required": 3,
+    "first_eligible_consecutive_quiet_turn": 4,
+    "energy_cost": 0,
+    "cooldown_turns": 0,
+    "requires_deployed_drone": true,
+    "works_during_combat": false
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "repair_maximum_hp_percent": 7.5,
+    "repair_maximum_hp_percent_exact": {
+      "numerator": 15,
+      "denominator": 2
+    },
+    "quiet_full_turns_required": 3,
+    "first_eligible_consecutive_quiet_turn": 4,
+    "energy_cost": 0,
+    "cooldown_turns": 0,
+    "requires_deployed_drone": true,
+    "works_during_combat": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_passive_ranks_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "repair_maximum_hp_percent"
+    ],
+    "unchanged_effects_omitted": [
+      "quiet_full_turns_required",
+      "first_eligible_consecutive_quiet_turn",
+      "energy_cost",
+      "cooldown_turns",
+      "requires_deployed_drone"
+    ]
+  },
+  "tooltip_format": {
+    "rank_breakdown_line_omitted": true,
+    "effective_rank_visible": true,
+    "tree_icon_and_boosted_level_color_direction": "CD07; native render pending"
+  },
+  "presented_conditions": "All deployed drones regenerate in common calm phase; three full quiet turns then first repair on next turn; detected hostile, attack or damage affecting player/drone interrupts repair. Recalled drones do not repair; destroyed drones are not revived.",
+  "unshown_rules_approval": "Full-rank curve, exact phase event ordering, start/layer/recall counters, HP fractional carry/reset, HP cap handling, dispel exclusions and dynamic modifier timing remain separately pending.",
+  "active_weapon_requirement": "none; drone passive is independent of the active player weapon",
+  "visual_intention_approval": "repair pulse proposal pending separate user review",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Exact rate: 2 + (11 - 1)/2 = 7%; next rank 12 gives 7.5%.",
+    "Learned ranks 9 -> 10, same equipment bonus +2; next effective 12 respects learned cap.",
+    "No learned/equipment breakdown in player copy; only changing repair percentage in next-rank block.",
+    "No table or formula in player copy; required repair delay and phase conditions explicit.",
+    "Maintenance remains repair passive rather than superseded drone lifetime passive.",
+    "No current-drone HP total or universal per-tick rounding invented.",
+    "Native animation and runtime remain unintegrated."
+  ]
+}

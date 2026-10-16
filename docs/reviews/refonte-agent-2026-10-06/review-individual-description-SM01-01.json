@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-08",
+  "id": "SM01",
+  "review_id": "SM01",
+  "revision": 1,
+  "title": "Réseau de mines",
+  "branch": "Mines",
+  "kind": "secondary_passive",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-112.json",
+  "source_skill_manifest_sha256": "c9ceb099b4a986120a6840bb842acd1e8a9c5f1031ab33067cc81e37db5291d5",
+  "source_skill_block_sha256": "f20cb12933061e7e8b93991483174b823d47d7289b2186b016bf7f13ec8806be",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "SM00_learned_rank": 1,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "maximum_simultaneous_mines": 5
+  },
+  "next_values_proposal": {
+    "maximum_simultaneous_mines": 5
+  },
+  "formula_proposed": "1+ceil(effective_rank/3);full_curve_and_bonus_rank_continuation_unshown_pending_review",
+  "previously_confirmed_numeric_basis": {
+    "rank10_maximum_simultaneous_mines": 5,
+    "one_mine_per_cell": true,
+    "cost_per_learned_rank_skill_points": 1
+  },
+  "conditions": {
+    "SM00_prerequisite": true,
+    "automatic_learned_passive": true,
+    "one_mine_per_cell": true,
+    "oldest_mine_replaced_at_limit": true,
+    "armed_and_unarmed_mine_count_in_capacity": "unshown_pending",
+    "no_new_activation_or_timed_buff": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [],
+    "unchanged_marker": "Capacité inchangée à ce rang.",
+    "not_global_capacity_cap_marker": true,
+    "not_learned_cap_marker": true
+  },
+  "name_approval": "existing_secondary_catalogue_name_preserved",
+  "roleplay_text_approval": "new_individual_RP_pending_explicit_review",
+  "numeric_rules_approval": "rank10_capacity5_previously_confirmed;displayed_current11_next12_capacity5_pending_review;full_curve_and_future_bonus_capacity_pending",
+  "detailed_conditions_approval": "active_prerequisite_one_mine_per_cell_and_oldest_replacement_previously_confirmed;unshown_cases_pending",
+  "visual_intention_approval": "updated_SM00_capacity_display_proposed_pending_review",
+  "visual_approval": "native_UI_preview_pending_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**SM01 · Réseau de mines — Rang 11 · Passif**\n\n*Vos implants coordonnent plusieurs charges pour transformer le terrain en champ de mines.*\n\n**Effets actuels**\n\n- Mines simultanées : **5**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nCapacité inchangée à ce rang.\n\nUne mine par case. À la limite de capacité, une nouvelle pose remplace la mine la plus ancienne.\n\nNécessite **Pose de mine** apprise.",
+  "player_copy_sha256": "0069e82030192a19b1218adb7fbb2f8711288cc1fbb4dde062897a31a6b2131e",
+  "visual_copy_markdown": "**Affichage proposé :** la capacité actualisée apparaît dans la fiche de Pose de mine.",
+  "visual_copy_sha256": "fa1463c88cadb5b196d03265bd6eeb7076785e18b953594c038539c3f3d1c5cb",
+  "current_turn_shown_copy_markdown": "**SM01 · Réseau de mines — Rang 11 · Passif**\n\n*Vos implants coordonnent plusieurs charges pour transformer le terrain en champ de mines.*\n\n**Effets actuels**\n\n- Mines simultanées : **5**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nCapacité inchangée à ce rang.\n\nUne mine par case. À la limite de capacité, une nouvelle pose remplace la mine la plus ancienne.\n\nNécessite **Pose de mine** apprise.\n\n**Affichage proposé :** la capacité actualisée apparaît dans la fiche de Pose de mine.",
+  "current_turn_shown_copy_sha256": "af6a93191618a922d2e2df7cdc4e9f1600b4ae56a076e0171bf430597ea0a062",
+  "unshown_cases_pending": [
+    "full_learned_rank1_to10_curve_and_equipment_bonus_continuation_beyond12",
+    "counting_armed_unarmed_mines_and_persistent_zones",
+    "atomic_oldest_mine_replacement_for_refused_placement",
+    "oldest_mine_cleanup_explosion_and_energy_refund_cases",
+    "equipment_change_while_more_mines_than_new_capacity_exist",
+    "native_rank_bonus_color_and_SM00_capacity_refresh"
+  ]
+}

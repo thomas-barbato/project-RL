@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-B01",
+  "revision": 1,
+  "title": "Bastion — profil de départ",
+  "status": "proposed_awaiting_user_review;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/class-approval.json",
+      "reference_sha256": "10fbebdf6b1c3078a8adb7bebf1d00d7d13e2ca3983a0733f8ee149d13d2c976"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/progression-decisions.json",
+      "reference_sha256": "44d2cbb8a73c940ade9c2c5fbd93e7df7b7cd540e48c704db3bd55c50e7f5889"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/class-drone-corrections.json",
+      "reference_sha256": "a423c8439c4ec7334febad12bc330ef48477cfbe5fb7a075f8a518e0d5a2154f"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-HP01-02.json",
+      "reference_sha256": "d5d98b3775e77ba92d1b979cda9c35a3d0edcb4f47aee1816b1185749be77887"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-E01-02.json",
+      "reference_sha256": "b328fb9688deb721ab5245dee508b2a9a940735468b389194f7bc141c3d7011a"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-maximum-reserve-modifiers-02.json",
+      "reference_sha256": "aac0706bb48ccfc090d644e5bc6eed8cea663bf72e621cbdbc554e9cd0b5f32a"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/skill-rank-curves-provisional-02.json",
+      "reference_sha256": "44ff8b1f8df86320562f82a00529b5e92c3e9118dd0a89bb051e7b2100e50bdb"
+    }
+  ],
+  "existing_design_source": "docs/REFONTE_AGENT_CRYOGENISE.md:five_class_profiles_34_points_and_initial_Bastion_skills",
+  "scope": "one_class_start_RP_attribute_allocation_and_initial_implant_pair_numbers;no_new_skills_or_equipment_models",
+  "already_accepted": "Bastion_name_melee_survival_direction_and_silhouette1;one_active_and_one_passive_learned_rank1;B01_identity_and_B03_initial10percent_HP;found_implant_replacement_without_skill_reset;level_gain5_attributes1_skill_point",
+  "proposed_profile": {
+    "class": "Bastion",
+    "starting_level": 1,
+    "roleplay": "Vous encaissez les coups et ouvrez un passage au cœur de la mêlée.",
+    "attributes": {
+      "Force": 7,
+      "Agilité": 5,
+      "Vitalité": 7,
+      "Perception": 5,
+      "Intelligence": 4,
+      "Volonté": 6
+    },
+    "fixed_start_attribute_budget": 34,
+    "learned_start_skills": [
+      {
+        "skill_id": "B01",
+        "title": "Frappe de rupture",
+        "learned_rank": 1
+      },
+      {
+        "skill_id": "B03",
+        "title": "Vitalité améliorée",
+        "learned_rank": 1
+      }
+    ],
+    "initial_implant_pair": {
+      "flat_armor_bonus": 1,
+      "maximum_energy_penalty_percent": 10,
+      "replacement": "existing_found_implant_replaces_pair_and_preserves_learned_skills;no_new_implant_name_or_loot_affix"
+    }
+  },
+  "retained_rank1_skill_values": {
+    "B01": {
+      "weapon_damage_bonus_percentage_points": 40,
+      "energy": 6,
+      "cooldown_turns": 3,
+      "active_weapon_requirement": "melee"
+    },
+    "B03": {
+      "maximum_HP_bonus_percent": 10
+    }
+  },
+  "derived_preview": {
+    "level": 1,
+    "equipment_bonus_scope": "none_in_this_preview",
+    "base_maximum_HP": 38,
+    "maximum_HP": 41,
+    "current_HP": 41,
+    "base_maximum_energy": 30,
+    "maximum_energy": 27,
+    "current_energy": 27,
+    "formula_scope": "accepted_attributes_reserve_modifier_order_and_final_floor;includes_B03_and_implant_only",
+    "not_final_equipped_profile": true
+  },
+  "equipment_direction": {
+    "weapon": "hache",
+    "clothing": "tenue d'assaut",
+    "consumables": "soins",
+    "scope": "historical_role_direction_only;exact_models_values_counts_and_weapon_variance_pending_separate_review"
+  },
+  "visual_boundary": "existing_approved_class1_silhouette_unchanged;no_new_character_equipment_pixels_native_preview_layout_or_animation",
+  "not_resolved_here": [
+    "exact_starting_equipment_and_consumables",
+    "four_other_class_profiles",
+    "other_new_replacement_implant_pairs",
+    "remaining_older_partial_skill_receipts_and_final_tooltip_copy",
+    "native_creation_UI_and_equipped_preview"
+  ],
+  "shown_copy_markdown": "START-B01 · Bastion — profil de départ proposé\n\nVous encaissez les coups et ouvrez un passage au cœur de la mêlée.\n\nAttributs fixes\nForce 7 · Agilité 5 · Vitalité 7\nPerception 5 · Intelligence 4 · Volonté 6\n\nCompétences déjà apprises\n- Frappe de rupture, rang 1 : +40 % de dégâts d'arme de mêlée ; 6 énergie ; recharge de 3 tours. Arme de mêlée active requise.\n- Vitalité améliorée, rang 1 : +10 % de PV maximum.\n\nImplant initial\n- Bonus : +1 point d'armure.\n- Malus : −10 % d'énergie maximum.\nCette paire peut être remplacée plus tard par un implant trouvé. Les compétences apprises restent acquises.\n\nAu niveau 1, avant les bonus d'équipement : 41 / 41 PV et 27 / 27 énergie. Ces valeurs incluent le passif et le malus de l'implant.\n\nLe matériel envisagé reste une hache, une tenue d'assaut et des soins. Les modèles exacts, leurs chiffres et quantités seront présentés avec l'équipement de départ. Les nouvelles plages de dégâts ne sont pas inventées dans cette fiche.\n\nLe nom, l'orientation et la silhouette déjà validés restent conservés. Le texte de présentation, la répartition d'attributs et les chiffres de l'implant restent proposés, en attente de validation.",
+  "shown_copy_sha256": "069e6f943c6a67bbbe63ec06633bb559f6bad6d87e94188d5a640b174d271c36",
+  "mechanic_approval": "pending_user_review",
+  "text_approval": "new_class_RP_pending;skill_names_and_existing_skill_RP_unchanged",
+  "visual_approval": "existing_silhouette_assignment_retained;no_new_native_art_approval_requested",
+  "runtime_integration": "not_integrated"
+}

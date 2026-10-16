@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-06",
+  "id": "SU05",
+  "title": "Purge",
+  "revision": 3,
+  "player_copy_markdown": "**Purge — Rang 10**\n8 rangs appris + 2 grâce à l’équipement.\n\n*Vous chassez les poisons et les effets néfastes de votre corps.*\n\nRetire automatiquement les effets néfastes compatibles les plus récents, dans la limite de la compétence.\n\n**Effet actuel**\n\n- Effets néfastes retirés : **jusqu’à 2**.\n\n**Prochain rang — 11 · 1 point de compétence**\n\n- Effets néfastes retirés : **jusqu’à 3**.\n- Coût : **8 énergie**.\n\n**Coût : 9 énergie · Recharge : 6 tours.**\n\nPeut retirer le poison, la brûlure, le ralentissement et l’aveuglement. Les malus d’équipement et d’implant sont exclus.\n\nNe rend pas de vie et ne protège pas contre une nouvelle application de ces effets.",
+  "player_copy_sha256": "e2d4aa215fa32f1ae4be2d512a9fe52779d540b7d776f6fa8a88b01d4e1f2b66",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-09.json",
+  "source_skill_block_sha256": "e5254c97a7a5ce969d190d54142eb3a786417b9663d146ad1b964caa04b56e18",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/regeneration-rename-and-acceptance-decisions.json",
+  "review_start_decisions_sha256": "d0fdbc3fa442438601a6f98b1f15d1f39c7187a9285922aeb069224c8d21a8ee",
+  "name_approval": "explicit_user_rename",
+  "catalogue_effect_approval": "rank_growing_maximum_and_most_recent_first_automatic_removal_direction_requested",
+  "roleplay_text_approval": "exact_user_supplied_replacement",
+  "functional_description_approval": "pending_user_review",
+  "current_next_effect_copy_approval": "pending_user_review",
+  "numeric_rules_approval": "pending_user_review",
+  "formulas": {
+    "energy_cost": "ceil(10 * (1 - 0.4 * (effective_rank - 1) / (effective_rank + 9)))",
+    "maximum_cleansed_statuses": "1 + floor((effective_rank - 1) / 5); restored prior numeric proposal, exact thresholds pending review"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 8,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 10,
+    "other_cost_or_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 8,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 10,
+    "maximum_cleansed_statuses": 2,
+    "energy_cost_exact_before_ceil": {
+      "numerator": 154,
+      "denominator": 19
+    },
+    "energy_cost": 9,
+    "cooldown_turns": 6,
+    "direct_healing": 0,
+    "temporary_immunity": false
+  },
+  "next_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_cleansed_statuses": 3,
+    "energy_cost_exact_before_ceil": {
+      "numerator": 8,
+      "denominator": 1
+    },
+    "energy_cost": 8,
+    "cooldown_turns": 6,
+    "direct_healing": 0,
+    "temporary_immunity": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "maximum_cleansed_statuses",
+      "energy_cost"
+    ],
+    "no_effect_change_notice_shown": false,
+    "unchanged_values_omitted": [
+      "cooldown_turns"
+    ]
+  },
+  "presented_conditions": "Automatic removal of up to the rank-dependent maximum, most recent compatible harmful effects first; eligibility, no healing and no immunity remain as previously presented proposals.",
+  "unshown_conditions_approval": "Full-rank limit thresholds and energy formula, all other compatibility, refusal without compatible effects, action-blocking effects, ties/simultaneous application and whether refresh changes recency remain pending.",
+  "active_weapon_requirement": "none; cleansing is not a weapon attack",
+  "visual_intention_approval": "accepted_as_presented",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Requested name and roleplay unchanged.",
+    "Rank-growing maximum restores prior numeric proposal while preserving automatic most-recent-first priority.",
+    "Exact fractional costs verified: 9 at rank 10 and 8 at rank 11.",
+    "Same equipment/modifiers in current and next preview; learned ranks 8 -> 9 within cap 10.",
+    "Maximum continues beyond rank 10; plateau at ranks 11 -> 12 openly recorded.",
+    "Only changed limit and energy displayed in next-rank block; no formula or ordinary execution-time reminder."
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU05-02.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/purge-growing-limit-decisions.json",
+  "latest_decisions_sha256": "1361b79e2680aaa2862d0587a7d01ec32e55b6308c500501a1472f5f82df3a95",
+  "removal_rule": {
+    "maximum": "rank-scaled proposal",
+    "priority": "most recent compatible harmful effects first",
+    "player_selection": false,
+    "direction_approval": "growth and most-recent-first requested",
+    "exact_threshold_approval": "pending_user_review"
+  },
+  "profile_change_reason": "Rank 10 -> 11 selected to show an actual threshold. Rank 11 -> 12 still has no changed limit/cost under the provisional curves."
+}

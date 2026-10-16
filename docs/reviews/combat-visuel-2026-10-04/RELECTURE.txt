@@ -1,0 +1,51 @@
+État de la mise à jour visuelle — 4 octobre 2026
+
+Intégré dans le client local :
+- Les 32 modèles d'armure ont des couches indépendantes pour le joueur : tête, corps, mains, pieds. Le portrait et la carte lisent le même équipement réel.
+- Nouveau visage, avec cheveux courts et traits plus lisibles dans le portrait.
+- Les 40 armes de mêlée restent sur le côté du joueur. Les 61 fusils et lanceurs passent devant le torse, avec deux points de prise. Les catégories de pistolets et revolvers utilisent une pose à coude plié et canon vers le haut ; le catalogue actuel n'en contient pas encore, la capture emploie une référence graphique isolée.
+- Animation de mêlée vers la cible et recul lors des dégâts : 180 ms, désactivés avec l'option de mouvement réduit. Aucune case, collision, règle ou valeur de simulation modifiée.
+- Sang après les dégâts visibles, traces sur les surfaces adjacentes et cadavres dans une flaque. Les traces persistent par zone et dans les reprises de partie.
+- Les libellés des trois armes deviennent Arme primaire, Arme secondaire et Arme de secours.
+- L'inventaire réel affiche la silhouette fil de fer approuvée, sans barre d'arme, avec les sept slots reliés aux bonnes zones et les objets réellement équipés.
+- Les détails et comparaisons d'objets sont accessibles au survol du sac et des slots équipés, avec défilement à la molette. F4 conserve la fiche complète. Le survol ne sélectionne pas d'objet, ne l'équipe pas et ne consomme pas de tour.
+- L'interface de l'inventaire et les cadres du HUD reprennent le style terminal approuvé ; les jauges et leurs valeurs sont conservées.
+
+Captures natives de l'interface intégrée :
+- integration/terminal-inventory-live/cold-start.png : inventaire réel, silhouette et slots.
+- integration/terminal-inventory-live-equipped/cold-start.png : tooltip du plastron réellement équipé.
+- integration/terminal-inventory-live-bag-small/cold-start.png : survol du sac en 960 × 540.
+- integration/terminal-inventory-live-largeui/cold-start.png : interface agrandie à 150 %, raccourcis et catégories lisibles.
+- integration/terminal-hud-live/cold-start.png : habillage terminal dans le jeu, jauges conservées.
+
+Propositions approuvées et étapes conservées pour référence :
+- inventaire-fil-de-fer-corrige/cold-start.png : proportions humaines, contours courbes et maillage creux, slots d'équipement et exemple de tooltip.
+- terminal-final/cold-start.png : retouche terminal avec les jauges existantes.
+- combat-final/cold-start.png : visage, couches d'armure, arme de côté, phases de combat et cadavre.
+Les anciennes captures conservent les étapes antérieures de la proposition.
+
+Vérifications :
+- 806 tests du moteur réussis.
+- 5 tests de combat, 2 tests des couches graphiques, 1 test d'inventaire et 1 test de compatibilité binaire réussis après les ajustements.
+- Après intégration de l'interface : 16 tests liés à l'inventaire, 5 tests de combat et 1 test de compatibilité binaire réussis. Les tests d'inventaire vérifient notamment les vrais objets survolés, l'absence de changement de simulation et la géométrie à plusieurs tailles.
+- Ancien format bincode et anciennes empreintes de mémoire visuelle conservés. Les traces sont un complément optionnel versionné et contrôlé, également testé pour les zones mises en cache et les données altérées.
+- Captures natives des trois propositions : code de sortie 0.
+- Diagnostic --ui-cold-performance : code de sortie 0 ; chiffres complets dans performance/timings.json. Ces mesures de débogage ne constituent pas une comparaison avant/après ni une mesure de FPS.
+- Diagnostic répété après intégration : code de sortie 0, 120 images par scène, résultats dans integration/performance/timings.json. Médiane CPU : monde 9,13 ms, inventaire 12,30 ms. Ces chiffres restent un diagnostic de débogage, sans comparaison contrôlée avant/après.
+- La suite générale du client exécutée pendant la mise à jour avait 583 succès, 28 échecs et 15 tests ignorés. L'échec dû à l'ancien libellé d'arme a été corrigé, puis son test a réussi. La suite entière n'a pas été répétée.
+- Trois autres échecs reproduits à l'identique sur une copie du code d'avant la mise à jour : accessoires v133, empreinte de surface v108, version attendue du butin de monstres. Journaux controle-avant-*.log. Les autres échecs ne sont pas tous diagnostiqués.
+
+Idées pour une prochaine étape :
+- Très bref éclair d'impact sur le personnage touché.
+- Étincelles lorsqu'une armure absorbe le coup, particules différentes pour les machines.
+- Poussière et débris discrets sur les objets détruits.
+
+Compilation optimisée, vérification de toutes les cibles, formatage et contrôle des différences : réussis.
+
+Silhouette corrigée : représentation de l'arme retirée ; liaisons des slots ancrées sur leurs zones anatomiques, notamment la main. Compilation et capture natives réussies.
+
+Retouche du joueur après retour visuel : les anciennes couches ajustées à partir des objets d'inventaire et le visage peint par-dessus sont remplacés par des dessins portés dans la pose du corps. Le détail de cette étape se trouve dans ../joueur-equipe-2026-10-04/VALIDATION.md.
+
+Nouvel ajustement des armes de tir : pose à deux mains devant le torse pour les fusils/lanceurs et pose à une main levée pour les pistolets/revolvers. Les manches et les gants sont redessinés dans ces deux poses ; le visage, les jambes et les autres protections sont conservés. Les doigts passent devant les poignées. Sources imagegen, prompts, captures natives et vérification : ../joueur-tir-deux-mains-2026-10-04/VALIDATION.md. L'inventaire, la silhouette fil de fer et les quatre banques de la pose latérale approuvée sont conservés exactement. Aucun pistolet n'est ajouté au jeu.
+
+Correction suivante : torse continu derrière les mains, pistolet tourné sans miroir, paumes derrière l'arme et doigts sans fragments rouges devant la poignée. Chaque main rejoint les ouvertures de manches propres au modèle de torse ; l'arme suit ses prises. L'avant-bras baissé au pistolet est raccourci. Sources, captures des 14 torses et validation : ../joueur-calques-corriges-2026-10-04/VALIDATION.md. L'inventaire approuvé est toujours identique en RVB.

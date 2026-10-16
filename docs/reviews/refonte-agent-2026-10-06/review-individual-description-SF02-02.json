@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-08",
+  "id": "SF02",
+  "review_id": "SF02",
+  "revision": 2,
+  "title": "Discrétion renforcée",
+  "branch": "Furtivité",
+  "kind": "secondary_passive",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-110.json",
+  "source_skill_manifest_sha256": "cab41a932647d0e1d771eb39ccdfc6353f48bf472172074c369b6c9f2523ad9b",
+  "source_skill_block_sha256": "3fe1305d5376245427db52a0d787c0dedf331b7af7ae2d535e71f5017c430065",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "SF00_learned_rank": 1,
+    "agility": 10,
+    "SF00_factor_proposed": 0.25,
+    "example_enemy_ordinary_visual_range_cells": 8,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "detection_distance_cells": 1
+  },
+  "next_values_proposal": {
+    "detection_distance_cells": 1
+  },
+  "formula_proposed": "max(1,SF00_modified_enemy_visual_range*(4/5)^effective_rank);full_curve_and_cell_rounding_pending_individual_review",
+  "calculation_evidence": {
+    "current_unclamped_cells_exact": "8388608/48828125",
+    "next_unclamped_cells_exact": "33554432/244140625",
+    "both_under_one_cell_before_minimum": true,
+    "ordinary_range_comparison_not_in_player_copy": true
+  },
+  "conditions_proposed": {
+    "SF00_prerequisite": true,
+    "works_while_stealth_is_active": true,
+    "learned_passive_automatic": true,
+    "minimum_detection_distance_cells": 1,
+    "sounds_still_can_reveal_player": true,
+    "last_known_position_memory_not_erased": true,
+    "normal_vision_obstacles_preserved": true,
+    "no_new_activation_or_timed_buff": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [],
+    "plateau_marker": "Distance minimale déjà atteinte.",
+    "not_learned_cap_marker": true
+  },
+  "name_approval": "existing_secondary_catalogue_name_preserved",
+  "roleplay_text_approval": "displayed_individual_RP_explicitly_accepted",
+  "numeric_rules_approval": "displayed_current11_next12_one_cell_and_minimum_marker_explicitly_accepted;full_curve_and_other_profiles_pending",
+  "detailed_conditions_approval": "displayed_SF00_prerequisite_and_sound_condition_accepted;unshown_cases_pending",
+  "visual_intention_approval": "displayed_updated_SF00_detection_direction_accepted;native_UI_pending",
+  "visual_approval": "native_UI_preview_pending_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**SF02 · Discrétion renforcée — Rang 11 · Passif**\n\n*Votre camouflage brouille vos contours jusqu’à rendre votre présence presque imperceptible.*\n\n**Effets actuels**\n\n- Distance de repérage : **1 case**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nDistance minimale déjà atteinte.\n\nNécessite **Furtivité** apprise. Les sons peuvent toujours révéler votre présence.",
+  "player_copy_sha256": "0763854479ab99c05beea252a1a176f979581c233d2caa914554c3cc5197674e",
+  "visual_copy_markdown": "**Affichage proposé :** la distance actualisée apparaît dans la fiche de Furtivité.",
+  "visual_copy_sha256": "abc078b64762cea3b55ca0b4f08ef1b568e5d3ade1d51ac5f842bbd7f8862898",
+  "current_turn_shown_copy_markdown": "**SF02 · Discrétion renforcée — Rang 11 · Passif**\n\n*Votre camouflage brouille vos contours jusqu’à rendre votre présence presque imperceptible.*\n\n**Effets actuels**\n\n- Distance de repérage : **1 case**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nDistance minimale déjà atteinte.\n\nNécessite **Furtivité** apprise. Les sons peuvent toujours révéler votre présence.\n\n**Affichage proposé :** la distance actualisée apparaît dans la fiche de Furtivité.",
+  "current_turn_shown_copy_sha256": "1afae09c6f122097c2c1cd26c89548382c3df58587c1668ca4c11cb5b0a82f6c",
+  "unshown_cases_pending": [
+    "full_rank1_to10_curve_with_variable_enemy_vision_and_agility",
+    "cell_rounding_metrics_diagonals_and_adjacent_detection_checks",
+    "pending_SF00_base_detection_and_step_noise_values",
+    "sound_propagation_and_AI_memory_or_alert_state_details",
+    "native_bonus_rank_color_and_SF00_distance_refresh"
+  ],
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF02-01.json",
+  "previous_description_sha256": "247af04181bd8fb6e9c970853d2b95243fa2695918f83913fb6dfd5f33a27406",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/stealth-discretion-description-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "3e97ee47a55156909eb578984a2e615796167551dc0cbff4645305f061c7084a"
+}

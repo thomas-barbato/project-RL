@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-15",
+  "review_id": "ANIM-S49",
+  "status": "visually_accepted_pending_campaign_integration",
+  "candidates": [
+    {
+      "number": 109,
+      "id": "DI01",
+      "variant": "DI01-A01",
+      "title": "Tir perforant"
+    },
+    {
+      "number": 110,
+      "id": "DI02",
+      "variant": "DI02-A01",
+      "title": "Feu nourri"
+    }
+  ],
+  "native_tile": 64,
+  "native_lab": "--apercu-laboratoire-competences --lot-tirs-ouverture",
+  "source": "src/agent_skill_lab_review/fire_painted/ranged_opening.rs",
+  "source_texts": [
+    "review-individual-description-DI01-02.json",
+    "review-individual-description-DI02-03.json"
+  ],
+  "scope": "Prepared visual fixtures, not campaign effects or new balance approval.",
+  "fixture_rules": [
+    "DI01: one projectile, wall stop, up to four prepared aligned targets, 75% retention",
+    "DI02: two native firing sequences; single mode2 and three-round burst6 projectiles",
+    "Fixed sample impacts, no new RNG or weapon variance distribution",
+    "Rank11 displayed cost examples; whole curves and unresolved weapon/defence/death details remain separate",
+    "Blinking preview removed on launch; rapid finite shots, shared hit reaction, physical blood only on living targets"
+  ],
+  "fixture_hit_values": {
+    "DI01": [
+      38,
+      28,
+      21,
+      16
+    ],
+    "DI02_per_projectile": 20,
+    "maximum_target_hp": 240
+  },
+  "not_new_rules": [
+    "Prepared misses do not establish an accuracy probability",
+    "Preview range is a six-cell scene fixture, not a new universal weapon range",
+    "No target dies during the demonstration; early-death rules remain pending",
+    "Cosmetic flight does not introduce an extra preparation turn"
+  ],
+  "active_catalogue_assets_campaign_rng_or_saves_changed": false,
+  "pending_separate": [
+    "D66 taunt animation and marker",
+    "O03 animation",
+    "AF05/AF06 review90",
+    "B03 mechanics",
+    "Control capacity and taunt numbers"
+  ],
+  "acceptance": "visual-acceptance-01.json"
+}

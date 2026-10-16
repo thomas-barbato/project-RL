@@ -1,0 +1,21 @@
+{
+  "id": "core:modele_cogneur_p06",
+  "name_key": "equipment.modele_cogneur_p06.name",
+  "description_key": "equipment.pistols.description",
+  "mass_grams": 1200,
+  "attack": {
+    "range": 5,
+    "distance_metric": "euclidean",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": 5,
+    "damage": {
+      "amount": 14,
+      "damage_type": "piercing",
+      "penetration": 0
+    }
+  },
+  "supply": {
+    "kind": "matter",
+    "amount": 1
+  }
+}

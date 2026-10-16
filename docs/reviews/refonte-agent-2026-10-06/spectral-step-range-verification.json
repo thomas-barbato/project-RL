@@ -1,0 +1,22 @@
+{
+  "review_id": "SPECTRAL-RANGE01-VERIFY01",
+  "date": "2026-10-15",
+  "catalogue_sha256": "bf176f625980f6c6ec53e8943fc0195b351a7e69ff880554fb2379317483c2ac",
+  "range_progression_checked_effective_ranks": 255,
+  "doubling_exact": true,
+  "policy_idempotent": true,
+  "other_skills_parameters_labels_and_art_preserved": true,
+  "build": "cargo build --locked --bin project-rl",
+  "test": "agent_skill_lab_review::spatial_growth::movement_selection_tests::spectral_step_accepts_shorter_destinations_but_not_out_of_range_or_through_walls",
+  "tests_passed": 1,
+  "directions_checked": 4,
+  "checks": [
+    "All shorter positive distances accepted within the maximum",
+    "Out-of-range destinations refused",
+    "Walls and destinations beyond walls refused",
+    "Zero-distance movement refused",
+    "Rank-one animation remains a legal chosen distance of one within maximum two"
+  ],
+  "campaign_effect_integration": false,
+  "temporary_screenshots_created": 0
+}

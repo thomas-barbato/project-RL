@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-13",
+  "build": {
+    "command": "cargo build --locked",
+    "exit_code": 0
+  },
+  "targeted_tests": {
+    "command": "cargo test --locked agent_skill_lab_review",
+    "passed": 64,
+    "failed": 0
+  },
+  "format": {
+    "command": "cargo fmt --all -- --check",
+    "exit_code": 0
+  },
+  "diff_check": {
+    "command": "git diff --check",
+    "exit_code": 0
+  },
+  "native_render": {
+    "views": 14,
+    "animations": 9,
+    "protected_files_unchanged": 64601,
+    "pixel_controls": "passed"
+  },
+  "revision": {
+    "ids": [
+      "OC04-A02",
+      "OC07-A02"
+    ],
+    "changes": "Brighter graded crimson, thicker independent arc strokes, enlarged thicker blood seal and resurrection surge. Existing drawings and alpha reused; no white bloom."
+  },
+  "invariants": {
+    "timeline_identical_to_review36": true,
+    "actors_and_terrain_identical": true,
+    "ivory_ally_marker_identical": true,
+    "source_pngs_and_alpha_identical": true
+  },
+  "gallery_controller": "Passed offline VM checks including previous/current version selector, loading, pause, quiet persistence and thirteen manual turns to expiry.",
+  "gallery_links": {
+    "checked": 9,
+    "missing": 0
+  },
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Native captures and offline controller verified.",
+  "fixture_scope": "Debug-only scripted visual fixture. No combat, AI, damage, healing, loot, XP, stats, RNG, saves or campaign integration.",
+  "campaign_integration": false,
+  "full_suite": "not run",
+  "release_build": "not run",
+  "visual_approval": "Both revised variants awaiting explicit user validation.",
+  "retained_trial": "Earlier too-uniform grading preserved separately in native-first-trial; gallery uses only final native captures."
+}

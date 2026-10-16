@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-08",
+  "scope": "remaining_individual_cards_including_pending_SF00_SM02_parts_and_current_SM03;no_full_SM02_acceptance_inferred",
+  "primary_cards": [],
+  "secondary_cards": [
+    {
+      "id": "SF00",
+      "title": "Furtivité"
+    },
+    {
+      "id": "SM02",
+      "title": "Mines de poison"
+    },
+    {
+      "id": "SM03",
+      "title": "Mines de glace"
+    },
+    {
+      "id": "SM04",
+      "title": "Explosion étendue"
+    },
+    {
+      "id": "SM05",
+      "title": "Résidu persistant"
+    },
+    {
+      "id": "SG00",
+      "title": "Lancer de grenade"
+    },
+    {
+      "id": "SG01",
+      "title": "Grenade aveuglante"
+    },
+    {
+      "id": "SG02",
+      "title": "Grenade sonore"
+    },
+    {
+      "id": "SG03",
+      "title": "Portée de lancer"
+    },
+    {
+      "id": "SG04",
+      "title": "Puissance des grenades"
+    }
+  ],
+  "remaining_first_pass_primary": 0,
+  "remaining_first_pass_secondary": 10,
+  "remaining_first_pass_total": 10,
+  "additional_work_not_quantified": [
+    "planned_heavy_weapon_tree",
+    "missing_branch_healing_options",
+    "earlier_pending_or_revised_card_parts_and_progression_review"
+  ],
+  "native_animations_runtime_and_balance": "separate_following_phases;not_counted_as_skill_cards",
+  "previous_count": "docs/reviews/refonte-agent-2026-10-06/remaining-individual-skill-review-counts-11.json",
+  "accepted_skill_this_turn": null,
+  "next_review_skill": "SM03",
+  "pending_prior_secondary_card_parts": [
+    "SF00",
+    "SM02"
+  ]
+}

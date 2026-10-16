@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-06",
+  "batch_revision": 1,
+  "runtime_integration": "not_integrated",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/drone-persistence-acceptance-decisions.json",
+  "latest_decisions_sha256": "5508b7e6b7a33237a191c26bdc24c404c21d740538dbbb7d064bbbf83a104dfe",
+  "document": "docs/PROPOSITION_DRONES_PERSISTANTS_AGENT.md",
+  "document_sha256": "be576fa6b54d0194066aee4f347a5f6a2b6549edf80fa6a14215fe7342090ebe",
+  "blocks": [
+    {
+      "id": "D57",
+      "title": "Invocation de la Mule",
+      "block_sha256": "c644c06b0283e05105d2b4d60d5030dc3019b012b55fd0236189cc8e6b1b70b4",
+      "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mechanic_sha256": "c644c06b0283e05105d2b4d60d5030dc3019b012b55fd0236189cc8e6b1b70b4",
+      "revision": 2,
+      "mechanic_approval": "presented_persistence_and_maintenance_role_accepted",
+      "roleplay_text_approval": "no_roleplay_text_in_this_decision_document",
+      "numeric_repair_approval": "pending_separate_DP01_review",
+      "visual_approval": "pending_native_preview_and_user_review"
+    },
+    {
+      "id": "DRP01",
+      "title": "Persistance des cinq modèles",
+      "block_sha256": "c85de62a3362334e33a012fc0be2662712d3dd56dd501f86620322aa5b96ba6a",
+      "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mechanic_sha256": "c85de62a3362334e33a012fc0be2662712d3dd56dd501f86620322aa5b96ba6a",
+      "revision": 2,
+      "mechanic_approval": "presented_persistence_and_maintenance_role_accepted",
+      "roleplay_text_approval": "no_roleplay_text_in_this_decision_document",
+      "numeric_repair_approval": "pending_separate_DP01_review",
+      "visual_approval": "pending_native_preview_and_user_review"
+    },
+    {
+      "id": "DP01",
+      "title": "Maintenance des drones",
+      "block_sha256": "cf96173b6748483fb86b8a5c91fb82def2edb8603b65e949db0ab7ad4623449c",
+      "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mechanic_sha256": "cf96173b6748483fb86b8a5c91fb82def2edb8603b65e949db0ab7ad4623449c",
+      "revision": 2,
+      "mechanic_approval": "presented_persistence_and_maintenance_role_accepted",
+      "roleplay_text_approval": "no_roleplay_text_in_this_decision_document",
+      "numeric_repair_approval": "pending_separate_DP01_review",
+      "visual_approval": "pending_native_preview_and_user_review"
+    }
+  ]
+}

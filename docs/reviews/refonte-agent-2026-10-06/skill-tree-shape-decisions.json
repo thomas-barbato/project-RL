@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "user_statements": [
+    "Seuil de points investis par branche",
+    "On verra, ca dépendra du nombre de compétences par branches, sachant que j'aimerais que à chaque palier le joueur puisse choisir entre 3 compétences (à minima 4 lignes).",
+    "Les trois restent apprenables avec des points"
+  ],
+  "accepted_requirements": {
+    "unlock_by_points_invested_in_branch": true,
+    "choose_thresholds_after_branch_catalog": true,
+    "minimum_tier_rows": 4,
+    "skill_options_per_tier": 3,
+    "all_three_options_learnable_with_points": true,
+    "exclusive_choice_between_tier_options": false
+  },
+  "existing_progression_preserved": {
+    "attribute_points_per_gained_level": 5,
+    "skill_points_per_gained_level": 1,
+    "cost_per_learned_skill_rank": 1,
+    "max_learned_skill_rank": 10,
+    "equipment_can_raise_effective_rank_above_ten": true,
+    "all_classes_can_learn_all_trees": true
+  },
+  "superseded_proposals": [
+    "Three-row layout with advanced thresholds 5 and 10",
+    "Provisional placements of individual drone, survival and occult skills into those tiers"
+  ],
+  "pending": [
+    "Whether a four-by-three grid applies per major tree or per specialized branch",
+    "Exact number and scope of branches",
+    "Skill catalog, names, effects and placement",
+    "Exact point thresholds",
+    "Counting learned starter ranks for thresholds while excluding equipment bonuses",
+    "All new player-facing text and exact interface visuals before integration"
+  ],
+  "review_document": "docs/REVUE_ARBRES_COMPETENCES_AGENT.md",
+  "preserved_previous_proposal": "docs/reviews/refonte-agent-2026-10-06/review-trees-initial-proposal.md"
+}

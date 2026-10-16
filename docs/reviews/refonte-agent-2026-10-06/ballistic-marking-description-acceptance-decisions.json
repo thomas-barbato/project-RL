@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-08",
+  "review_id": "T01-ACCEPT01",
+  "skill_id": "T01",
+  "title": "Marquage balistique",
+  "user_answer": "D'accord ca me va :)",
+  "approval": "explicit_full_displayed_individual_card_acceptance",
+  "accepted_roleplay": "Vous désignez les failles de votre cible pour guider vos tirs.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "precision_multiplier_exact": "27/20",
+    "precision_multiplier_display": "1,35",
+    "maximum_mark_duration_turns": 6,
+    "range_cells": 6,
+    "energy_cost": 9,
+    "cooldown_turns": 3
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "precision_multiplier_exact": "137/100",
+    "precision_multiplier_display": "1,37",
+    "maximum_mark_duration_turns": 6,
+    "range_cells": 6,
+    "energy_cost": 9,
+    "cooldown_turns": 3
+  },
+  "accepted_conditions": [
+    "next ranged attack against marked target consumes mark even on miss",
+    "all primary-target projectiles of native burst benefit",
+    "one marked target at a time",
+    "drones and spells without accuracy check excluded",
+    "equipped and active ranged weapon required",
+    "human form required;Silence prevents use"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** quatre traits de viseur se referment brièvement sur la cible. L’icône du buff indique la marque active et sa durée restante ; la marque figure aussi parmi les statuts de la cible dans son analyse.",
+  "accepted_copy_sha256": "2b9e59e64dfb8053a1f99f373b0481b9b23e0dfb87f6575b87d7560fca01f711",
+  "accepted_visual_copy_sha256": "2e8f91a0db459b9ba63c5e78ce6ab49d7826b37502db22f064f82f8143b775c6",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T01-01.json",
+  "source_card_sha256": "83a382dc4460f225c38e998dcbcfe34d43753978bc45efe89f764d229c2ca25b",
+  "rank1_1_15_and_instant_rule": "previously_accepted_preserved",
+  "unshown_cases_pending": [
+    "full_curves_defaults_rounding_modifier_order_and_snapshot",
+    "target_geometry_visibility_drone_vision_and_line_of_sight",
+    "ranged_magic_heavy_weapon_eligibility_and_multi_target_attacks",
+    "instant_refusal_no_time_energy_RNG_consumption_and_cooldown_boundary",
+    "retargeting_reapplication_duration_expiry_map_change_weapon_swap_transformation",
+    "native_reticle_player_icon_target_status_tooltip_and_visibility"
+  ],
+  "unshown_full_curves_defaults_rounding_and_clock_order": "pending_review",
+  "native_render": "pending_prototype_review",
+  "runtime_integration": "not_integrated"
+}

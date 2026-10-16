@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/primary-catalogue-and-ui-decisions.json",
+  "latest_decisions_sha256": "63a1ec34b1c0c1b6cef7d39f09f17d608157ed58d09bb4e9780bc8f3b8d11646",
+  "text_approval": "pending_user_review",
+  "visual_approval": "pending_preview_and_user_review",
+  "batch_revision": 4,
+  "document": "docs/REVUE_ARBRES_COMPETENCES_AGENT.md",
+  "document_sha256": "1eaf0ff0dd9202115a5991aa7eb78e2e78f93036005d1b530215cb87b1af412c",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-trees-03.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-trees-revision-03.md",
+  "status": "fourteen_branches_accepted_counts_and_tiers_under_review",
+  "accepted_requirements": {
+    "specialized_branch_count": 14,
+    "branch_names": [
+      "Mêlée",
+      "Survie",
+      "Drones",
+      "Affaiblissements",
+      "Attaques à distance",
+      "Esquive",
+      "Feu",
+      "Froid",
+      "Foudre",
+      "Énergie occulte",
+      "Transformations",
+      "Pouvoirs hybrides",
+      "Buffs de mêlée",
+      "Buffs à distance"
+    ],
+    "catalogue_before_final_counts_and_tiers": true,
+    "distinct_gameplay_and_visual_for_each_candidate": true,
+    "diablo_two_skill_inspiration_requested": true,
+    "unlock_by_points_invested_in_branch": true,
+    "all_tier_choices_learnable": true,
+    "all_classes_can_access_all_branches": true,
+    "learned_rank_cap": 10,
+    "cost_per_rank": 1
+  },
+  "historical_grid_under_reconsideration": {
+    "grid_scope": "each_specialized_branch",
+    "minimum_tier_rows_per_branch": 4,
+    "skill_options_per_tier": 3,
+    "minimum_distinct_skills_per_branch": 12,
+    "all_three_options_learnable_with_points": true,
+    "unlock_by_points_invested_in_branch": true,
+    "choose_thresholds_after_branch_catalog": true
+  },
+  "proposed_catalogue_counts": {
+    "normal_branch_candidates": 6,
+    "drone_candidates": 8,
+    "total_candidates": 86,
+    "approval": "pending_user_selection"
+  }
+}

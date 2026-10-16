@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-09",
+  "review_id": "D03-CAP01",
+  "user_question": "d'accord mais , on peut pas faire dépasser 100% ? Je veux dire par la que si toutes les valeurs sont plus hautes que celles que tu me montre . \n\nExplique moi la raison de ce choix s'il te plais :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-direct-weapon-bonus-stacking-01.json",
+  "source_proposal_sha256": "0be5b376545ef16d273c61aadb5550f4bc01fdda908ccfafd765a86ce1c289d3",
+  "shown_clarification_markdown": "Oui :) **+100 % n’est pas un plafond**, c’était simplement le total de mon exemple. J’ai choisi ces chiffres pour montrer facilement des dégâts doublés.\n\nAvec une arme à **20–30 dégâts** :\n\n- Bonus total **+100 %** → **40–60 dégâts**.\n- Bonus total **+250 %** → **70–105 dégâts**.\n- Bonus total **+400 %** → **100–150 dégâts**.\n\n**La proposition ne fixe donc aucun plafond général aux bonus de dégâts.**\n\nLe choix concerne leur **addition** : chaque bonus apporte une portion supplémentaire des dégâts de base. Cela rend la progression lisible et facilite l’équilibrage quand le personnage cumule attributs, compétences, équipement et buffs, tout en permettant des dégâts très élevés.",
+  "shown_clarification_sha256": "f81bd7c1906a8e483d2dabe5989aab4d31caf74a25492a960105ee157084ab4c",
+  "explained_rule": "no_general_upper_cap_on_compatible_positive_direct_weapon_damage_bonus_pool;+100_percent_is_illustrative_total_not_a_cap",
+  "explained_examples": [
+    {
+      "weapon_minimum": 20,
+      "weapon_maximum": 30,
+      "bonus_percent": 100,
+      "damage_minimum": 40,
+      "damage_maximum": 60
+    },
+    {
+      "weapon_minimum": 20,
+      "weapon_maximum": 30,
+      "bonus_percent": 250,
+      "damage_minimum": 70,
+      "damage_maximum": 105
+    },
+    {
+      "weapon_minimum": 20,
+      "weapon_maximum": 30,
+      "bonus_percent": 400,
+      "damage_minimum": 100,
+      "damage_maximum": 150
+    }
+  ],
+  "user_reply": "ca me va :)",
+  "approval_scope": "direct_weapon_damage_bonus_pool_addition_and_no_general_positive_bonus_cap;no_stat_or_resistance_cap_reopened",
+  "runtime_integration": "not_integrated"
+}

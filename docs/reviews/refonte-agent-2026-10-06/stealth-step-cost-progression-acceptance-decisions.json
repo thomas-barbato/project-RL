@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SF01-COST02-ACCEPT01",
+  "related_review_id": "SF00-COST03",
+  "user_instruction": "parfait :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-stealth-step-cost-revision-01.json",
+  "source_proposal_sha256": "873c15766f36b68ea15e8457edeb83842981c8d3f620b43d17fbdf3a02722354",
+  "accepted_shown_cost_proposal_markdown": "Oui : **1 énergie par pas doit être atteint au rang 10 du passif**.\n\nJe propose une baisse d’**1 énergie par rang**, avec ce barème :\n\n- Sans le passif : **11 énergie par pas**.\n- Rang 1 : **10 énergie**.\n- Rang 5 : **6 énergie**.\n- Rang 9 : **2 énergie**.\n- Rang 10 : **1 énergie**.\n\nChaque point investi apporterait ainsi un gain concret. Le coût resterait au minimum de **1 énergie**, même avec les bonus d’équipement.",
+  "accepted_shown_cost_proposal_sha256": "9770f28e02ed5a0ab3f7f478634f4156e248441c8b226044a5ec0a3d866844e5",
+  "accepted_numbers": {
+    "energy_per_step_without_SF01": 11,
+    "energy_saved_per_effective_rank": 1,
+    "effective_rank1_cost": 10,
+    "effective_rank5_cost": 6,
+    "effective_rank9_cost": 2,
+    "effective_rank10_cost": 1,
+    "minimum_with_equipment_bonus_ranks": 1
+  },
+  "accepted_cost_curve": [
+    {
+      "effective_rank": 0,
+      "energy_per_successful_step": 11
+    },
+    {
+      "effective_rank": 1,
+      "energy_per_successful_step": 10
+    },
+    {
+      "effective_rank": 2,
+      "energy_per_successful_step": 9
+    },
+    {
+      "effective_rank": 3,
+      "energy_per_successful_step": 8
+    },
+    {
+      "effective_rank": 4,
+      "energy_per_successful_step": 7
+    },
+    {
+      "effective_rank": 5,
+      "energy_per_successful_step": 6
+    },
+    {
+      "effective_rank": 6,
+      "energy_per_successful_step": 5
+    },
+    {
+      "effective_rank": 7,
+      "energy_per_successful_step": 4
+    },
+    {
+      "effective_rank": 8,
+      "energy_per_successful_step": 3
+    },
+    {
+      "effective_rank": 9,
+      "energy_per_successful_step": 2
+    },
+    {
+      "effective_rank": 10,
+      "energy_per_successful_step": 1
+    },
+    {
+      "effective_rank": 11,
+      "energy_per_successful_step": 1
+    },
+    {
+      "effective_rank": 12,
+      "energy_per_successful_step": 1
+    }
+  ],
+  "accepted_formula": "max(1,11-SF01_effective_rank);rank0_without_passive=11",
+  "approval_scope": "explicit_acceptance_of_base11_one_energy_saved_per_effective_rank_rank10_cost1_and_equipment_floor1;intermediate_values_defined_by_shown_linear_rule",
+  "other_SF00_numbers_conditions_and_visuals": "remain_pending;full_card_not_approved_by_cost_only_reply",
+  "prior_SF01_RP_conditions_and_visual_direction": "preserved_earlier_acceptances;native_UI_pending",
+  "other_skills": "unchanged",
+  "runtime_integration": "not_integrated"
+}

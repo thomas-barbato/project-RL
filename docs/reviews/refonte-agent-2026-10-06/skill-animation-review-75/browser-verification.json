@@ -1,0 +1,286 @@
+{
+  "browser": "Edge Chromium headless",
+  "scheme": "file",
+  "native_tile": 64,
+  "views_checked": 48,
+  "errors": [],
+  "manual_idle_stability": "passed",
+  "manual_expiry": "passed",
+  "checks": [
+    {
+      "pair": 0,
+      "case": 0,
+      "direction": 0
+    },
+    {
+      "pair": 0,
+      "case": 0,
+      "direction": 1
+    },
+    {
+      "pair": 0,
+      "case": 0,
+      "direction": 2
+    },
+    {
+      "pair": 0,
+      "case": 0,
+      "direction": 3
+    },
+    {
+      "pair": 0,
+      "case": 1,
+      "direction": 0
+    },
+    {
+      "pair": 0,
+      "case": 1,
+      "direction": 1
+    },
+    {
+      "pair": 0,
+      "case": 1,
+      "direction": 2
+    },
+    {
+      "pair": 0,
+      "case": 1,
+      "direction": 3
+    },
+    {
+      "pair": 0,
+      "case": 2,
+      "direction": 0
+    },
+    {
+      "pair": 0,
+      "case": 2,
+      "direction": 1
+    },
+    {
+      "pair": 0,
+      "case": 2,
+      "direction": 2
+    },
+    {
+      "pair": 0,
+      "case": 2,
+      "direction": 3
+    },
+    {
+      "pair": 1,
+      "case": 0,
+      "direction": 0
+    },
+    {
+      "pair": 1,
+      "case": 0,
+      "direction": 1
+    },
+    {
+      "pair": 1,
+      "case": 0,
+      "direction": 2
+    },
+    {
+      "pair": 1,
+      "case": 0,
+      "direction": 3
+    },
+    {
+      "pair": 1,
+      "case": 1,
+      "direction": 0
+    },
+    {
+      "pair": 1,
+      "case": 1,
+      "direction": 1
+    },
+    {
+      "pair": 1,
+      "case": 1,
+      "direction": 2
+    },
+    {
+      "pair": 1,
+      "case": 1,
+      "direction": 3
+    },
+    {
+      "pair": 1,
+      "case": 2,
+      "direction": 0
+    },
+    {
+      "pair": 1,
+      "case": 2,
+      "direction": 1
+    },
+    {
+      "pair": 1,
+      "case": 2,
+      "direction": 2
+    },
+    {
+      "pair": 1,
+      "case": 2,
+      "direction": 3
+    }
+  ],
+  "captures": [
+    {
+      "label": "projectiles",
+      "samples": [
+        {
+          "variant": "SG01-A02-C0-HAUT",
+          "frame": 20,
+          "expected_native_png": "frames/SG01-A02-C0-HAUT/020.png",
+          "browser_png": "browser-projectiles-0.png"
+        },
+        {
+          "variant": "SG02-A02-C0-HAUT",
+          "frame": 20,
+          "expected_native_png": "frames/SG02-A02-C0-HAUT/020.png",
+          "browser_png": "browser-projectiles-1.png"
+        }
+      ]
+    },
+    {
+      "label": "utility-impact",
+      "samples": [
+        {
+          "variant": "SG01-A02-C0-HAUT",
+          "frame": 24,
+          "expected_native_png": "frames/SG01-A02-C0-HAUT/024.png",
+          "browser_png": "browser-utility-impact-0.png"
+        },
+        {
+          "variant": "SG02-A02-C0-HAUT",
+          "frame": 24,
+          "expected_native_png": "frames/SG02-A02-C0-HAUT/024.png",
+          "browser_png": "browser-utility-impact-1.png"
+        }
+      ]
+    },
+    {
+      "label": "status-and-sound",
+      "samples": [
+        {
+          "variant": "SG01-A02-C0-HAUT",
+          "frame": 45,
+          "expected_native_png": "frames/SG01-A02-C0-HAUT/038.png",
+          "browser_png": "browser-status-and-sound-0.png"
+        },
+        {
+          "variant": "SG02-A02-C0-HAUT",
+          "frame": 45,
+          "expected_native_png": "frames/SG02-A02-C0-HAUT/045.png",
+          "browser_png": "browser-status-and-sound-1.png"
+        }
+      ]
+    },
+    {
+      "label": "two-turns",
+      "samples": [
+        {
+          "variant": "SG01-A02-C0-HAUT",
+          "frame": 92,
+          "expected_native_png": "frames/SG01-A02-C0-HAUT/088.png",
+          "browser_png": "browser-two-turns-0.png"
+        },
+        {
+          "variant": "SG02-A02-C0-HAUT",
+          "frame": 92,
+          "expected_native_png": "frames/SG02-A02-C0-HAUT/088.png",
+          "browser_png": "browser-two-turns-1.png"
+        }
+      ]
+    },
+    {
+      "label": "blindness-expired",
+      "samples": [
+        {
+          "variant": "SG01-A02-C0-HAUT",
+          "frame": 118,
+          "expected_native_png": "frames/SG01-A02-C0-HAUT/112.png",
+          "browser_png": "browser-blindness-expired-0.png"
+        },
+        {
+          "variant": "SG02-A02-C0-HAUT",
+          "frame": 118,
+          "expected_native_png": "frames/SG02-A02-C0-HAUT/112.png",
+          "browser_png": "browser-blindness-expired-1.png"
+        }
+      ]
+    },
+    {
+      "label": "utility-wall-right",
+      "samples": [
+        {
+          "variant": "SG01-A02-C1-DROITE",
+          "frame": 27,
+          "expected_native_png": "frames/SG01-A02-C1-DROITE/027.png",
+          "browser_png": "browser-utility-wall-right-0.png"
+        },
+        {
+          "variant": "SG02-A02-C1-DROITE",
+          "frame": 27,
+          "expected_native_png": "frames/SG02-A02-C1-DROITE/027.png",
+          "browser_png": "browser-utility-wall-right-1.png"
+        }
+      ]
+    },
+    {
+      "label": "power-impact",
+      "samples": [
+        {
+          "variant": "SG00-A03-C0-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG00-A03-C0-HAUT/027.png",
+          "browser_png": "browser-power-impact-0.png"
+        },
+        {
+          "variant": "SG04-A02-C0-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG04-A02-C0-HAUT/027.png",
+          "browser_png": "browser-power-impact-1.png"
+        }
+      ]
+    },
+    {
+      "label": "power-wall-left",
+      "samples": [
+        {
+          "variant": "SG00-A03-C1-GAUCHE",
+          "frame": 27,
+          "expected_native_png": "frames/SG00-A03-C1-GAUCHE/027.png",
+          "browser_png": "browser-power-wall-left-0.png"
+        },
+        {
+          "variant": "SG04-A02-C1-GAUCHE",
+          "frame": 27,
+          "expected_native_png": "frames/SG04-A02-C1-GAUCHE/027.png",
+          "browser_png": "browser-power-wall-left-1.png"
+        }
+      ]
+    },
+    {
+      "label": "blocked",
+      "samples": [
+        {
+          "variant": "SG01-A02-C2-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG01-A02-C2-HAUT/000.png",
+          "browser_png": "browser-blocked-0.png"
+        },
+        {
+          "variant": "SG02-A02-C2-HAUT",
+          "frame": 27,
+          "expected_native_png": "frames/SG02-A02-C2-HAUT/000.png",
+          "browser_png": "browser-blocked-1.png"
+        }
+      ]
+    }
+  ]
+}

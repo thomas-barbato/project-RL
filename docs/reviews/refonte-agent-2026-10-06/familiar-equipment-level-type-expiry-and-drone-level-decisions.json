@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ-DIRECTION01",
+  "user_messages": [
+    "je me demande si ca serait pas fun de créer un inventaire pour les pets aussi ? (ressucités / drones et eventuellement d'autres si nous en créons d'autres dans le futur)\n\nPar exemple pouvoir leurs donner des armes (compatibles avec leur vocation) et des armures ? et quand le pet meurt les objets qu'il portait tombent au sol .\n\nMais sinon oui, je valide tes recommendations.",
+    "quand la resurection prend fin, l'objet tombe au sol tout simplement.",
+    "En faite, je dirais que pour savoir quel genre d'objet un pet pourra porter, il faudra voir son level et son type (distance physique / distance magique / mélée)"
+  ],
+  "drone_level_question": {
+    "question": "Pour déterminer l’équipement autorisé, comment veux-tu définir le niveau d’un drone ? Je propose de suivre le niveau du joueur, en conservant le rang d’invocation et l’Intelligence pour calculer sa puissance.",
+    "options": [
+      "Il suit le niveau du joueur",
+      "Il correspond au rang de l’invocation",
+      "Il progresse indépendamment"
+    ],
+    "answer": "Il suit le niveau du joueur"
+  },
+  "accepted_explicit_directions": {
+    "familiar_equipment": "design_direction_for_equipping_drones_raised_monsters_and_possible_future_familiars_with_compatible_weapons_and_armor_confirmed_by_follow_up_constraints;exact_slots_catalogue_and_mechanics_pending",
+    "compatibility_axes": "familiar_level_and_combat_type",
+    "combat_types": [
+      "melee",
+      "physical_ranged",
+      "magical_ranged"
+    ],
+    "death": "items_worn_by_familiar_fall_to_ground",
+    "raised_lifetime_end": "items_fall_to_ground_when_resurrection_expires",
+    "drone_equipment_level": "follows_player_level",
+    "drone_power": "invocation_rank_Intelligence_and_existing_applicable_modifiers_retained;equipment_level_does_not_create_an_extra_automatic_damage_HP_level_formula"
+  },
+  "approval_scope": "Explicit human constraints only. Minimum_required_level inequality, exact families, armor requirements, raised_origin_level, on_cell_death_drop, destruction_and_recall_loadout_handling, slot_counts, cargo_for_other_pets, item_bonus_mapping, equipped_weapon_damage_formula, UI_copy_and_native_render_not_accepted_by_extension.",
+  "preserved_dependencies": {
+    "familiar_window": "docs/reviews/refonte-agent-2026-10-06/review-familiar-window-UX-PETS-02-03.json",
+    "familiar_window_sha256": "25f5f49902cc790bdcd104cf4c2b56c52b26f3f61f20b4fe8e19c72a709ff3ce",
+    "ground_items": "docs/reviews/refonte-agent-2026-10-06/general-ground-item-coexistence-tooltip-acceptance-decisions.json",
+    "ground_items_sha256": "ef26db4476d1f7702ae00ee144a7684c6f6d098cd6298acfe2c9d4a3bc7cef9e",
+    "drone_damage": "docs/reviews/refonte-agent-2026-10-06/review-direct-drone-damage-bonuses-02.json",
+    "drone_damage_sha256": "4109314c2da333a254103d53121b9d5886c3a7c8b5e75241a8cd86412e045752"
+  },
+  "runtime_integration": "not_integrated"
+}

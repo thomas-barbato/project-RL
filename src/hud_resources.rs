@@ -70,16 +70,15 @@ impl AsciiApp {
             physical.h / scale,
         );
         self.ux.hud_objective.set(Some(panel));
-        UiTheme.hud_chip(panel);
+        crate::terminal_chrome::module(panel, "07 / OBJECTIF");
         let x = panel.x + 12.0;
         let width = panel.w - 24.0;
-        draw_text_bold("OBJECTIF", x, panel.y + 22.0, 13.0, UiTheme.accent());
         draw_wrapped_text(
             &self
                 .objective_panel_text()
                 .unwrap_or_else(|| "Aucun objectif suivi.".into()),
             x,
-            panel.y + 46.0,
+            panel.y + 49.0,
             width,
             4,
             15,
@@ -242,27 +241,29 @@ impl AsciiApp {
             ] {
                 values.push((label, format!("{} %", player.resistances().get(kind))));
             }
+            if self.game.rules().agent_class_start.is_some()
+                || player.resistances().get(DamageType::Cold) != 0
+            {
+                values.push((
+                    "Froid",
+                    format!("{} %", player.resistances().get(DamageType::Cold)),
+                ));
+            }
         }
         values
     }
 
     fn draw_defense_values(&self, rect: Rect, compact: bool) {
         let theme = UiTheme;
-        theme.hud_chip(rect);
-        crate::ui_theme::draw_text_in_rect(
-            "DÉFENSES",
-            Rect::new(rect.x + 10.0, rect.y + 7.0, rect.w - 20.0, 16.0),
-            12,
-            theme.muted(),
-        );
+        crate::terminal_chrome::module(rect, "03 / DÉFENSES");
         let values = self.player_defense_values();
         let columns = if compact { 3 } else { 1 };
         let rows = values.len().div_ceil(columns);
-        let pitch = ((rect.h - 30.0) / rows as f32).min(24.0);
+        let pitch = ((rect.h - 32.0) / rows as f32).min(24.0);
         let width = (rect.w - 20.0) / columns as f32;
         for (i, (label, value)) in values.iter().enumerate() {
             let x = rect.x + 10.0 + (i % columns) as f32 * width;
-            let y = rect.y + 27.0 + (i / columns) as f32 * pitch;
+            let y = rect.y + 30.0 + (i / columns) as f32 * pitch;
             crate::ui_theme::draw_text_in_rect(
                 label,
                 Rect::new(x, y, width - 44.0, pitch - 2.0),
@@ -366,31 +367,24 @@ impl AsciiApp {
                 },
             });
         }
-        if let Some(heat) = self.game.player_heat().filter(|_| {
-            !self.game.rules().maintained_energy_reservations
-                || !self.overclock_resource_lines().is_empty()
-        }) {
-            gauges.push(ResourceGauge {
-                reserved_ratio: 0.0,
-                companion_slots: None,
-                label: "Chaleur",
-                value: format!(
-                    "{} / {} critique",
-                    heat.current(),
-                    heat.critical_threshold()
-                ),
-                ratio: normalized_ratio(heat.current(), heat.critical_threshold()),
-                color: if heat.current() >= heat.critical_threshold() {
-                    theme.danger()
-                } else if heat.current() >= heat.alert_threshold() {
-                    theme.attention()
-                } else {
-                    theme.muted()
-                },
-            });
+        if (!self.game.rules().maintained_energy_reservations
+            || !self.overclock_resource_lines().is_empty())
+            && let Some(gauge) = self.heat_resource_gauge()
+        {
+            gauges.push(gauge);
         }
         if let Some(maximum) = self.game.rules().player_companion_limit {
-            let count = self.game.player_companion_count();
+            let agent = self.game.rules().agent_class_start.is_some();
+            let maximum = if agent {
+                self.game.player_agent_drone_capacity()
+            } else {
+                maximum
+            };
+            let count = if agent {
+                self.game.player_agent_drone_count()
+            } else {
+                self.game.player_companion_count()
+            };
             gauges.push(ResourceGauge {
                 label: "Compagnons",
                 value: format!("{count} / {maximum}"),
@@ -403,24 +397,86 @@ impl AsciiApp {
         gauges
     }
 
+    pub(super) fn heat_resource_gauge(&self) -> Option<ResourceGauge> {
+        let heat = self.game.player_heat()?;
+        Some(ResourceGauge {
+            label: "Chaleur",
+            value: format!(
+                "{} / {} critique",
+                heat.current(),
+                heat.critical_threshold()
+            ),
+            ratio: normalized_ratio(heat.current(), heat.critical_threshold()),
+            color: if heat.current() >= heat.critical_threshold() {
+                UiTheme.danger()
+            } else if heat.current() >= heat.alert_threshold() {
+                UiTheme.attention()
+            } else {
+                UiTheme.muted()
+            },
+            reserved_ratio: 0.0,
+            companion_slots: None,
+        })
+    }
+
+    pub(super) fn experience_resource_gauge(&self) -> ResourceGauge {
+        let progression = self.game.player_progression();
+        let level = progression.level();
+        let curve = &self.game.rules().progression.curve;
+        let next = curve.next_threshold_after(level);
+        let previous = if level > 1 {
+            curve.next_threshold_after(level - 1).unwrap_or(0)
+        } else {
+            0
+        };
+        ResourceGauge {
+            label: "Expérience",
+            value: next.map_or_else(
+                || format!("Niveau {level} · MAX"),
+                |next| {
+                    format!(
+                        "Niveau {level} · {} / {}",
+                        progression.experience().saturating_sub(previous),
+                        next.saturating_sub(previous)
+                    )
+                },
+            ),
+            ratio: next.map_or(1.0, |next| {
+                progression.experience().saturating_sub(previous) as f32
+                    / next.saturating_sub(previous).max(1) as f32
+            }),
+            color: UiTheme.accent(),
+            reserved_ratio: 0.0,
+            companion_slots: None,
+        }
+    }
+
     pub(super) fn compact_resource_rects(width: f32, count: usize) -> Vec<Rect> {
         let gap = 6.0;
         let w = (width - 24.0 - gap * count.saturating_sub(1) as f32) / count.max(1) as f32;
         (0..count)
-            .map(|i| Rect::new(12.0 + i as f32 * (w + gap), 7.0, w, 56.0))
+            .map(|i| Rect::new(12.0 + i as f32 * (w + gap), 7.0, w, 66.0))
             .collect()
     }
 
     pub(super) fn draw_resource_gauge(rect: Rect, gauge: &ResourceGauge) {
-        crate::ui_theme::draw_text_in_rect(
-            gauge.label,
-            Rect::new(rect.x, rect.y, rect.w, 16.0),
-            14,
-            UiTheme.text(),
-        );
+        let compact = rect.h < 36.0;
+        if !compact {
+            crate::ui_theme::draw_text_in_rect(
+                gauge.label,
+                Rect::new(rect.x, rect.y, rect.w, 16.0),
+                14,
+                UiTheme.text(),
+            );
+        }
         crate::ui_theme::draw_text_in_rect(
             &gauge.value,
-            Rect::new(rect.x, rect.y + 17.0, rect.w, 15.0),
+            Rect::new(
+                rect.x,
+                rect.y + if compact { 0.0 } else { 17.0 },
+                rect.w,
+                15.0,
+            ),
             13,
             gauge.color,
         );
@@ -458,6 +514,7 @@ impl AsciiApp {
             bar.h,
             gauge.color,
         );
+        crate::terminal_chrome::segment(bar, 20);
         let reserved_width = bar.w * gauge.reserved_ratio.clamp(0.0, 1.0);
         if reserved_width > 0.0 {
             let left = bar.right() - reserved_width;
@@ -527,79 +584,112 @@ impl AsciiApp {
     }
 
     pub(super) fn draw_resource_sidebar(&self, panel: Rect) {
-        let theme = UiTheme;
-        theme.hud_panel(panel);
-        let x = panel.x + 14.0;
-        let width = panel.w - 28.0;
-        let mut y = panel.y + 12.0;
-        for gauge in self.resource_gauges() {
-            self.draw_hud_resource_gauge(Rect::new(x, y, width, 38.0), &gauge);
-            y += 44.0;
+        use crate::terminal_chrome::{button, module};
+        let gauges = self.resource_gauges();
+        let weapon_h = if panel.h < 640.0 { 80.0 } else { 94.0 };
+        let progression_h = 92.0;
+        let pitch = ((panel.h - weapon_h - progression_h - 24.0 - 145.0 - 41.0)
+            / gauges.len().max(1) as f32)
+            .clamp(38.0, 46.0);
+        let state = Rect::new(
+            panel.x,
+            panel.y,
+            panel.w,
+            41.0 + pitch * gauges.len() as f32,
+        );
+        module(state, "01 / ÉTAT DU PERSONNAGE");
+        for (i, gauge) in gauges.iter().enumerate() {
+            self.draw_hud_resource_gauge(
+                Rect::new(
+                    panel.x + 13.0,
+                    panel.y + 38.0 + i as f32 * pitch,
+                    panel.w - 26.0,
+                    38.0,
+                ),
+                gauge,
+            );
         }
-        draw_text_bold("Arme en main", x, y + 14.0, 14.0, theme.muted());
+        let weapon = Rect::new(panel.x, state.bottom() + 8.0, panel.w, weapon_h);
+        module(weapon, "02 / ARME ACTIVE");
         let bottom = draw_wrapped_text(
             &self.active_weapon_hud_label(),
-            x,
-            y + 37.0,
-            width,
+            weapon.x + 13.0,
+            weapon.y + 48.0,
+            weapon.w - 26.0,
             2,
-            16,
-            theme.text(),
+            15,
+            UiTheme.text(),
         );
         crate::ui_theme::draw_text_in_rect(
             self.active_weapon_hud_cost(),
-            Rect::new(x, bottom, width, 17.0),
-            12,
-            theme.muted(),
-        );
-        let defense_top = bottom + 29.0;
-        self.draw_defense_values(
-            Rect::new(x, defense_top, width, panel.bottom() - 108.0 - defense_top),
-            false,
-        );
-        let progression = self.game.player_progression();
-        let available = progression.unspent_skill_points();
-        let points = Rect::new(x, panel.bottom() - 88.0, width, 32.0);
-        theme.button(
-            points,
-            &format!(
-                "{available} point{} de compétence",
-                if available > 1 { "s" } else { "" }
+            Rect::new(
+                weapon.x + 13.0,
+                bottom,
+                weapon.w - 26.0,
+                (weapon.bottom() - bottom - 5.0).max(12.0),
             ),
-            self.menu_focus.hovered == Some(50_020),
-            false,
-            true,
-            if available > 0 {
-                ButtonTone::Primary
-            } else {
-                ButtonTone::Secondary
-            },
+            12,
+            UiTheme.muted(),
+        );
+        let progress = Rect::new(
+            panel.x,
+            panel.bottom() - progression_h,
+            panel.w,
+            progression_h,
+        );
+        let defenses = Rect::new(
+            panel.x,
+            weapon.bottom() + 8.0,
+            panel.w,
+            progress.y - weapon.bottom() - 16.0,
+        );
+        module(defenses, "03 / DÉFENSES");
+        let values = self.player_defense_values();
+        let row_h = ((defenses.h - 36.0) / values.len() as f32).min(20.0);
+        let size = if row_h < 14.0 { 11 } else { 13 };
+        for (i, (label, value)) in values.iter().enumerate() {
+            let y = defenses.y + 33.0 + i as f32 * row_h;
+            crate::ui_theme::draw_text_in_rect(
+                label,
+                Rect::new(defenses.x + 13.0, y, defenses.w - 77.0, row_h),
+                size,
+                UiTheme.text(),
+            );
+            crate::ui_theme::draw_text_in_rect(
+                value,
+                Rect::new(defenses.right() - 59.0, y, 46.0, row_h),
+                size,
+                UiTheme.accent(),
+            );
+        }
+        module(progress, "04 / PROGRESSION");
+        Self::draw_resource_gauge(
+            Rect::new(
+                progress.x + 13.0,
+                progress.y + 34.0,
+                progress.w - 26.0,
+                27.0,
+            ),
+            &self.experience_resource_gauge(),
+        );
+        let points = Rect::new(
+            progress.x + 13.0,
+            progress.bottom() - 28.0,
+            progress.w - 26.0,
+            22.0,
+        );
+        button(points, self.menu_focus.hovered == Some(50_020), false, true);
+        crate::ui_theme::draw_text_in_rect(
+            format!(
+                "{} point(s) · Compétences [{}]",
+                self.game.player_progression().unspent_skill_points(),
+                self.controls.label(Action::Skills)
+            ),
+            Rect::new(points.x + 4.0, points.y, points.w - 8.0, points.h),
+            12,
+            UiTheme.accent(),
         );
         self.ux.hud_points.set(Some(points));
-        let level = progression.level();
-        let curve = &self.game.rules().progression.curve;
-        let next = curve.next_threshold_after(level);
-        let previous = curve
-            .cumulative_thresholds()
-            .get(usize::from(level.saturating_sub(2)))
-            .copied()
-            .filter(|_| level > 1)
-            .unwrap_or(0);
-        let ratio = next.map_or(1.0, |next| {
-            progression.experience().saturating_sub(previous) as f32
-                / next.saturating_sub(previous).max(1) as f32
-        });
-        draw_status_bar(
-            Rect::new(x, panel.bottom() - 43.0, width, 31.0),
-            &format!("XP · niveau {level}"),
-            &next.map_or_else(
-                || "MAX".to_owned(),
-                |next| format!("{}/{next}", progression.experience()),
-            ),
-            ratio,
-            UiIcon::Level,
-            theme.accent(),
-        );
     }
 
     pub(super) fn draw_compact_resource_header(&self) {
@@ -609,15 +699,26 @@ impl AsciiApp {
             .into_iter()
             .zip(&gauges)
         {
-            theme.hud_panel(rect);
+            crate::terminal_chrome::module(
+                rect,
+                &format!(
+                    "{:02} / {}",
+                    gauges
+                        .iter()
+                        .position(|g| g.label == gauge.label)
+                        .unwrap_or(0)
+                        + 1,
+                    gauge.label.to_uppercase()
+                ),
+            );
             self.draw_hud_resource_gauge(
-                Rect::new(rect.x + 9.0, rect.y + 6.0, rect.w - 18.0, 43.0),
+                Rect::new(rect.x + 9.0, rect.y + 33.0, rect.w - 18.0, 27.0),
                 gauge,
             );
         }
-        let points = Rect::new(12.0, 69.0, (self.ui_width() * 0.34).min(290.0), 30.0);
+        let points = Rect::new(12.0, 79.0, (self.ui_width() * 0.34).min(290.0), 30.0);
         let progression = self.game.player_progression();
-        theme.button(
+        inventory_terminal::terminal_button(
             points,
             &format!(
                 "Niv. {} · {} point(s) [{}]",
@@ -628,7 +729,6 @@ impl AsciiApp {
             self.menu_focus.hovered == Some(50_020),
             false,
             true,
-            ButtonTone::Secondary,
         );
         self.ux.hud_points.set(Some(points));
         let weapon = Rect::new(
@@ -637,7 +737,7 @@ impl AsciiApp {
             self.ui_width() - points.right() - 20.0,
             points.h,
         );
-        theme.hud_chip(weapon);
+        crate::terminal_chrome::button(weapon, false, false, true);
         let cost = self.active_weapon_hud_cost();
         let name = self.active_weapon_hud_label();
         crate::ui_theme::draw_text_in_rect(
@@ -656,20 +756,20 @@ impl AsciiApp {
             theme.text(),
         );
         let defense_width = (self.ui_width() - 30.0) * 0.66;
-        self.draw_defense_values(Rect::new(12.0, 105.0, defense_width, 88.0), true);
+        self.draw_defense_values(Rect::new(12.0, 115.0, defense_width, 78.0), true);
         let target_rect = Rect::new(
             18.0 + defense_width,
-            105.0,
+            115.0,
             self.ui_width() - defense_width - 30.0,
-            88.0,
+            78.0,
         );
-        theme.hud_panel(target_rect);
+        crate::terminal_chrome::module(target_rect, "06 / CIBLE");
         let summary = self.terminal_target_summary();
         crate::ui_theme::draw_text_in_rect(
             summary.as_ref().map_or("Aucune cible", |s| s.name.as_str()),
             Rect::new(
                 target_rect.x + 10.0,
-                target_rect.y + 8.0,
+                target_rect.y + 29.0,
                 target_rect.w - 20.0,
                 20.0,
             ),
@@ -699,7 +799,7 @@ impl AsciiApp {
                 details,
                 Rect::new(
                     target_rect.x + 10.0,
-                    target_rect.y + 32.0,
+                    target_rect.y + 47.0,
                     target_rect.w - 20.0,
                     20.0,
                 ),
@@ -709,7 +809,7 @@ impl AsciiApp {
             if let Some((hp, max)) = summary.health {
                 draw_rectangle(
                     target_rect.x + 10.0,
-                    target_rect.bottom() - 18.0,
+                    target_rect.bottom() - 7.0,
                     target_rect.w - 20.0,
                     5.0,
                     theme.surface(),

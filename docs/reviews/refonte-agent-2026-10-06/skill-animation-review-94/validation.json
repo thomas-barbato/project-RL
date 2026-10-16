@@ -1,0 +1,209 @@
+{
+  "method": "Native Macroquad capture; lossless per-frame packaging. Browser rendering not inspected.",
+  "scenes": 8,
+  "native_tile": 64,
+  "frames": 120,
+  "fps": 24,
+  "preview_removed_on_cast": true,
+  "wall_excludes_target": true,
+  "no_stacking": true,
+  "status_survives_clock_only_wait": true,
+  "status_ends_on_turn_or_recall": true,
+  "taunt_damage": 0,
+  "icon_rgba_size": [
+    32,
+    32
+  ],
+  "icon_alpha_bounds": [
+    5,
+    6,
+    27,
+    26
+  ],
+  "icon_sha256": "7639a104ffda57908eb060518fffb11f73a6b405c36e6863cb5c2d4cd5a9d565",
+  "standalone_animation_ms": 5000,
+  "standalone_decoded_frames": 15,
+  "standalone_animation_matches_native_pixels": true,
+  "checks": [
+    {
+      "variant": "D66-TAUNT-A01-DROITE",
+      "lossless_pixels": true,
+      "sha256": "6212cdb804e631bd9bfd2d099fa9fd980631bda19f1b82ba228384284fe2ccd2",
+      "bytes": 198972,
+      "frame_sha256": [
+        "eae011a320ba068396e907c688be8261096fdcc5fc8c6ef57533cfb3d8c60e14",
+        "37c212664a5287742aea75a2158c03324dc34f8b316da955829fa0b7e5ccf79a",
+        "18b2b1c37e15b77424003542aed2c21c8f887ca0ea7656efb0a1f25c05407e13",
+        "2b810362ba2c6d41c61aa94a1e1bf5e1d5c2fb28ec5daba2b47f282ba9d7777c",
+        "0375edbd92d3c31076b6524c6bff1657a7c361c52a88f5fa746b78212bec705b",
+        "279b482e84403ac8cbbb45b7d32d50d4249e7c6a343c1d84e1c894c016f4081d",
+        "4f1d014f9ee5cb31c379b0c33b5cf21b1b54487ca1e5ba34ab7d4f08a20604e8",
+        "734d93569b53b656e30bba7067f9dbed80ec1abded0aef79c4f3958b71144fbd",
+        "5661ad6a93fd2e5242b348b09a45a16dd4383e60b23a359d0edb1e475e5fc518",
+        "842a66d12cb5dbf7339e614d69278c6dd93774fc9f6a5953b677c175ccf48698",
+        "d3db738d89ec2264a1b2c5cdb70cb99e682b1a1f3b3940ad0d2125bcd125567f",
+        "1d1da1a1ccc63ac9f61522f691be54d635ea8776798794d8686517906566de4d",
+        "14e5dba11ea8dc7360b977a79d9c200dbe2e5d338d9445e44dd09b953fab8f36",
+        "f20717a42531cc46840519b9a5c14f33e70ef7c5bb610655168c15f2224a698b"
+      ]
+    },
+    {
+      "variant": "D66-TAUNT-A01-GAUCHE",
+      "lossless_pixels": true,
+      "sha256": "1f2fcda059f0cb18938771237b023c6f039485f48aaf3959fe32c165b6d17532",
+      "bytes": 198076,
+      "frame_sha256": [
+        "3f40e115b4f060947d0d0532a5e0e6fb35e5e334317dbe8c1791fb86fff13c09",
+        "5a92a94d10bc29408538086caaf9799e47c4e93dc531270504c335a9b7fe3f50",
+        "75e200b7aa49c11a8c4cf3587310667b67e8f1932c54d9adf95ccc39494075c1",
+        "700245fd19393fe5a920a1d8073e770fb0970053df8fe8a64a01ec04b84b95fe",
+        "c18fe9e4dadcc6e3d01f125ef83bb0a1f45a99746c434b26d567a9d8d88d73a6",
+        "c4001bdf32681d0ba68f863cae2388f164951b0adbffc2bd4b4c226da375501e",
+        "f2e9b69e010ebd40e8e34e2791a0bbd10f7a87f8675d9e9d6ca9c0163b22eeca",
+        "3f9bfe276d12fefa037aafcfe351f01572f771edfd59f73751b1811fabb1777b",
+        "463867f5c6ca6809fb6e9c43e41ab9855979743ab53e5771d900ad4776fa1a8d",
+        "16800cafaecb718c67b3361ea640ab878a938cc262c33fa6be28c5e1fdff6547",
+        "9b899099b63cb45fd5e8fd68aaecf0ab4adf3188456b687189286d2763841403",
+        "38586f951c093f8d9a8231a3c419134a865edbd40e1b08d34459c88437c89cfb",
+        "2023884662b52716f35844fa2d144700239ee02b45cb8685624648b414790703",
+        "0ec21ff08e875cbd80a06897be49cb15961e57a24bab1a71a8e1af64e3797e99"
+      ]
+    },
+    {
+      "variant": "D66-TAUNT-A01-HAUT",
+      "lossless_pixels": true,
+      "sha256": "fd2c1e2826fd4260a597782feabfb93f40007822694b6387a87f1db6a34605ed",
+      "bytes": 210032,
+      "frame_sha256": [
+        "0a49dabb8b8799419d952da74585102b2171aadbd7b2e806a066f7edaffedbd6",
+        "083c201e9650fed41449faf01701bd343b1bacce65f5b9b4f648a56780ff0ba3",
+        "1957db6e868ed7d8bcb69039e430c8aa5e46a3ce6b7569b66d222965741216bf",
+        "835c2e765f261bec83816b2f9212ad267807f8cc630b3f1bee4692b1fca4a0ba",
+        "640db9533a79d3f8fb29759af8491207c49190ee63f84234e71c3b9c23abc86e",
+        "055357d500e197b5257464133a959576f0f5cee1e7d21187ba8181c8eaa5b950",
+        "3db3cbb3678a2d4809c78c98f1980fa920ea62f4aebcca176543a83d78c1dc00",
+        "e3c5094fa4000e75b0177e1dcb7e3db4de14fb50e3544e7b7e56bbab719950b5",
+        "c5c294dd41fadfd27d4199cc92e4ba816803b8d59f33b53551512f49b1cd2588",
+        "f6e488a201d17e953f6183c67aa3752ac3a4c26b015863ea281e04aac6c0f491",
+        "f033e53de1d96c6c075e29978013110817a9a8f6b34add70c3afb4775880c5d9",
+        "6e0775a0b01f546e4d48511c3736968405aee20999e1a253aaf46bb8240ac54f",
+        "b4a59e4b04594311d241a1c4b06c5d991de38e637669b04af311f4f7e8c12706",
+        "6e5e1c884a1a2f9f5954dd1d0271071f65b5dfb11c846304b797fdfcc98327d5"
+      ]
+    },
+    {
+      "variant": "D66-TAUNT-A01-BAS",
+      "lossless_pixels": true,
+      "sha256": "a808571398fbc0fd7791b567a366e1a364683b076b8374647f5c669b30cd68ff",
+      "bytes": 210828,
+      "frame_sha256": [
+        "50f19b9ea80f4d7481a9409b2417c9a3dc560612b33373ac5aad003332a2d4db",
+        "d1d5faedec6d5db7d443844cd224706160798bbccf6995d4ec3fb5bff5f2a3c5",
+        "25e90a2676264d4f35a097bb0007f1f549800368cf9c89e506abaf87901d175f",
+        "ec28a546021fcc38bc5d9a80af44695bc62a6148d94b54f8369e899dea5d1e5d",
+        "1eb6fc274f53040b1c0012391901d36883f3efaca2c3e84a10e1879398a0d1f7",
+        "d1493ea3751a8a330d411693306fd75e4b133907c4909df55b4550138bf42e62",
+        "24f6bc5f80fb1fb191b0235a37c86b02423c345aa5923d1ca96462ef21847b08",
+        "73b84ecccf90a0114873046e6d4e87f40f7acb536bfd13edcecf095804384820",
+        "57242d9708b38c37db3f4d48cd338d7037c38c32f2aeac88032aeb532660b202",
+        "36d33a735447865f340ad9670c274cf81f921bb3bfa522c7e5900990bfcb601a",
+        "bf90a167b21126dc2d92de5237b5093f6c4cf8b04e5f046a23adebd97613da74",
+        "63f4b0d7d6b16cc355b24a2c4721ed4f9e4dff932acc76822129325c7dd57269",
+        "3b692fb9a15c636cb10f61d5e5a576058ecdd9bc3ce31de2daf3aac69118a4df",
+        "0f83a5c18df13116f6f423b8b813599b2d0e759dd82c6fc8a189b5c069686ec7"
+      ]
+    },
+    {
+      "variant": "D66-TAUNT-A01-CLOISON",
+      "lossless_pixels": true,
+      "sha256": "34dde50a92e0c4e65d4a3a23c73fed1ec9b2160e62b5b9eba4b77908ada9f10d",
+      "bytes": 153000,
+      "frame_sha256": [
+        "e73cab1e0d8361941d1c7959604cb850c8134abbfa0265f4b691ca0a0eebaccb",
+        "f2ec2a5b88d7e5a84a9fe86e4cb8b28b803f692aae926c8d51b2350472e4a29f",
+        "99aa8095dc0a2c9545a90f268dc0761c909332dd8a6177f193a022bbdb05e118",
+        "3a4ba43ec36646a9ff468910ffe1a5beff94a32507022542465923dafe76620f",
+        "03f6c5544696048f282bc4b1a730dd8cdf671e4b1d36f3079a61030005c48a44",
+        "78e45c9c76c94870e6312d6c7fbe34664ddd60649ae7b335f2485ab046006f58",
+        "c06a38f1497d93346616dc437ce819ad7670ca1ad13772ba888f533e6b31bc08",
+        "70d6443add2f0cea806712609aacb0362b022170bdf321577ca26bac50b2efd9",
+        "818c278f3782a463ef798821072732a91a3ab78ef2c7044e5d789f860ce8bca8",
+        "a69bab8222b17204dd16a3eac1e3bfe74e6554273e3ded04cd66d7700344b7ec",
+        "ade2d21bb2dff4b4485b1f246a20ffda5b84a2574f75953dce5b935a3fdc700f",
+        "5a5b167559df6369692aad1e7cb9ec3587ef6c38fce0f1f079e74e11cefa5b21",
+        "ffabde97bea342f7d28696727524453ca78d24897274a4075691eb1edfa0e530",
+        "5f267baa5c400025d5b6f26831c904808979c0d675d6af4fa6fa021c0ad480de"
+      ]
+    },
+    {
+      "variant": "D66-TAUNT-A01-DEUX_GARDIENS",
+      "lossless_pixels": true,
+      "sha256": "7cf563b26bcd17774a31ed6a20f521fb07e1225687e603a220311d38161e9138",
+      "bytes": 419462,
+      "frame_sha256": [
+        "3bda8efd471569b64805c438920a4bb0a84cbafc9dc6ce0e0df9d7b23a09f7c6",
+        "e4514e52f56452b9aa9bcabf3f7298cb686e0067f954c7b1cc6e3bb5effbaea1",
+        "ae55dd3cdaf44f392ad49f9a40abc2af0d130b0cafd7ff14c6ec6bff27fb525f",
+        "9fefe485a5c3c9f34a48e7ce0dbd60996f32ac953dcb10db68f82939ab8991be",
+        "89b0d839779fcded719f0aa291cee24f8b64d6c4c90894f948fa75d12d30d43a",
+        "1f6475ea72545698b1362eb3b07eca1feb8109177c382a0a484090ad6b43b640",
+        "60ba9a3f0aa9c264035c3435244ecf6308e0b1b01229f57ac70b08410bdec4fa",
+        "889fc29e7bfbb56d139fbfad26d7ec4a3b9d5d02cea8f652765214bc4d5298aa",
+        "310d1644fc20280e64f23e24829e15bacefec7b7ce5e7ff9fdb001f2011c06ba",
+        "627d43e7a794db243df6eeac9801ef506195ecabdc4d6d2b37512d5ab260ebc5",
+        "23ed3be699bac5e986a11f88a727957d546f55e220501f1c18c1c1e0cfaf823f",
+        "617e1a6361c73186df130937cb5e8e279ae963e94d21768f638805408fdf6602",
+        "1ac35932994c4566d48980297d5b23f10a0a54cbd4b5bee613bc1522056267c6",
+        "dbee476f87050fa73f92493e975a6620ffca92f570f2b335d0afd2a788fbd2f6"
+      ]
+    },
+    {
+      "variant": "D66-TAUNT-A01-RAPPEL",
+      "lossless_pixels": true,
+      "sha256": "5ae5e4a080c8711893d94c5437e6654d79bf15d0a997a27a0b888a3f450fb70d",
+      "bytes": 209966,
+      "frame_sha256": [
+        "0a49dabb8b8799419d952da74585102b2171aadbd7b2e806a066f7edaffedbd6",
+        "083c201e9650fed41449faf01701bd343b1bacce65f5b9b4f648a56780ff0ba3",
+        "1957db6e868ed7d8bcb69039e430c8aa5e46a3ce6b7569b66d222965741216bf",
+        "835c2e765f261bec83816b2f9212ad267807f8cc630b3f1bee4692b1fca4a0ba",
+        "640db9533a79d3f8fb29759af8491207c49190ee63f84234e71c3b9c23abc86e",
+        "055357d500e197b5257464133a959576f0f5cee1e7d21187ba8181c8eaa5b950",
+        "3db3cbb3678a2d4809c78c98f1980fa920ea62f4aebcca176543a83d78c1dc00",
+        "e3c5094fa4000e75b0177e1dcb7e3db4de14fb50e3544e7b7e56bbab719950b5",
+        "c5c294dd41fadfd27d4199cc92e4ba816803b8d59f33b53551512f49b1cd2588",
+        "f6e488a201d17e953f6183c67aa3752ac3a4c26b015863ea281e04aac6c0f491",
+        "f033e53de1d96c6c075e29978013110817a9a8f6b34add70c3afb4775880c5d9",
+        "6e0775a0b01f546e4d48511c3736968405aee20999e1a253aaf46bb8240ac54f",
+        "b4a59e4b04594311d241a1c4b06c5d991de38e637669b04af311f4f7e8c12706",
+        "1a6ba52fba475140ae9abcd0adfe4c66c3d7b0404b0f536c054a520b9d1d2acd"
+      ]
+    },
+    {
+      "variant": "D66-TAUNT-A01-ATTENTE",
+      "lossless_pixels": true,
+      "sha256": "ae595486954cef7c3629ebd1c0b4c5c667f62933d2f07666a92f2403cbf26381",
+      "bytes": 207102,
+      "frame_sha256": [
+        "0a49dabb8b8799419d952da74585102b2171aadbd7b2e806a066f7edaffedbd6",
+        "083c201e9650fed41449faf01701bd343b1bacce65f5b9b4f648a56780ff0ba3",
+        "1957db6e868ed7d8bcb69039e430c8aa5e46a3ce6b7569b66d222965741216bf",
+        "835c2e765f261bec83816b2f9212ad267807f8cc630b3f1bee4692b1fca4a0ba",
+        "640db9533a79d3f8fb29759af8491207c49190ee63f84234e71c3b9c23abc86e",
+        "055357d500e197b5257464133a959576f0f5cee1e7d21187ba8181c8eaa5b950",
+        "3db3cbb3678a2d4809c78c98f1980fa920ea62f4aebcca176543a83d78c1dc00",
+        "e3c5094fa4000e75b0177e1dcb7e3db4de14fb50e3544e7b7e56bbab719950b5",
+        "c5c294dd41fadfd27d4199cc92e4ba816803b8d59f33b53551512f49b1cd2588",
+        "f6e488a201d17e953f6183c67aa3752ac3a4c26b015863ea281e04aac6c0f491",
+        "f033e53de1d96c6c075e29978013110817a9a8f6b34add70c3afb4775880c5d9",
+        "6e0775a0b01f546e4d48511c3736968405aee20999e1a253aaf46bb8240ac54f",
+        "b4a59e4b04594311d241a1c4b06c5d991de38e637669b04af311f4f7e8c12706"
+      ]
+    }
+  ],
+  "body_size_candidate": "D66-SIZE01",
+  "body_height": 64,
+  "body_width": 80,
+  "previous_simulation_timelines_unchanged": true,
+  "status_icon_unchanged": true
+}

@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-06",
+  "skill_id": "ME04",
+  "previous_title": "Poussée brutale",
+  "accepted_title": "Repousser",
+  "user_request": "\"Poussée brutale\" doit être renommée \"Repousser\".\n\nJ'aimerais que l'on rajoute qu'il doit y avoir un bonus de dégats si la cible qui est repoussée touche un autre monstre (et si elle touche un autre monstre alors ce monstre aussi prend des dégats, 25% des dégats que l'attaque à provoquée sur la cible) ou bien un mur",
+  "clarifications": [
+    {
+      "question": "Quel bonus de dégâts veux-tu pour la cible repoussée lorsqu’elle heurte un mur ou un autre monstre ?",
+      "answer": "25 % des dégâts de l’attaque initiale"
+    },
+    {
+      "question": "Les 25 % infligés à l’autre monstre doivent-ils être calculés à partir des dégâts réellement subis par la cible repoussée, ou des dégâts de l’attaque avant ses défenses ?",
+      "answer": "Dégâts réellement subis par la cible repoussée"
+    },
+    {
+      "question": "Pour les dégâts de collision sur la cible repoussée et le monstre percuté, je prends 25 % des dégâts réellement infligés par le coup initial : faut-il appliquer ce montant directement, ou le réduire à nouveau par l’armure et les résistances de chaque victime ?",
+      "answer": "Appliquer directement les 25 %"
+    }
+  ],
+  "accepted_mechanics": {
+    "triggers": [
+      "wall collision",
+      "collision with another monster"
+    ],
+    "damage_reference": "actual damage inflicted by initial hit, before collision bonus",
+    "extra_damage_to_pushed_target_percent": 25,
+    "damage_to_collided_monster_percent": 25,
+    "application": "direct; no second armor or resistance reduction"
+  },
+  "baseline_current_next_values": "retain_previous_proposal; not newly approved by this request",
+  "remaining_unshown_details": [
+    "fractional rounding",
+    "collision if the initial hit kills the pushed target",
+    "immovable target cases",
+    "precise grid collision and other occupied cells"
+  ],
+  "new_functional_copy_and_layout": "pending_user_review",
+  "visual_render": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

@@ -6,6 +6,26 @@ campagne, ni une quête, ni une nouvelle partie sauvegardable.
 
 ## Utilisation
 
+### Revue des portées, zones et vision de la refonte
+
+Le prototype `--apercu-laboratoire-competences --lot-portees-zones-vision`
+permet de vérifier les nouveaux paliers du catalogue en cases natives de
+64 px. Tab change de compétence, Page haut/bas change le rang appris,
+B change le bonus d'équipement, V compare les visions de huit et douze
+cases, M change le décor et R la direction. Le clic place le centre et
+Entrée teste le placement. ZQSD déplace le joueur ; les flèches déplacent
+la caméra. Aucun dégât, tour de campagne ou sauvegarde n'est produit.
+
+La version navigateur propose les mêmes géométries avec choix direct
+de compétence et ciblage libre :
+`artifacts/refonte-agent-2026-10-06/skill-spatial-review-01/index.html`.
+Le rayon de vision douze est un candidat à valider avant intégration ;
+la campagne conserve son rayon actuel. Les effets de combat de la refonte
+restent à raccorder selon leurs validations. Cette revue distincte ne
+modifie pas les commandes du laboratoire général décrites ci-dessous.
+
+### Laboratoire général
+
 - **Tab** parcourt les éléments interactifs visibles, du plus proche au plus éloigné : personnages (y compris les PNJ de service), objets au sol, portes, consoles, installations et passages. Un clic gauche sélectionne les mêmes éléments ; un second clic sur le même élément le désélectionne. Le sol ordinaire et les murs ne font pas partie du cycle. Sélectionner ne consomme aucun tour.
 - Le repère sur la carte et le panneau de cible indiquent l'élément sélectionné. **E** permet d'aller interagir ou ramasser. **F** attaque une cible attaquable même si la souris est déplacée ailleurs, sans choisir un autre ennemi à la place d'un élément non attaquable. Tab et le clic gauche quittent aussi le curseur de case X. Sans cible verrouillée, F conserve l'action sur la case survolée.
 - Les attaques manquées affichent **RATÉ** au-dessus de la cible ; si le calcul indique que son esquive a fait échouer l'attaque, le message est **ESQUIVE**, pour le joueur comme pour les ennemis. Ces messages restent deux secondes ; les résultats identiques d'une rafale sont regroupés. Aucun jet de dé ni coût supplémentaire n'est ajouté.
@@ -430,3 +450,59 @@ et `--ui-cold-arsenal-rocket-blast-smoke` montrent deux phases de l'explosion.
 L'explosion partage un seul centre entre ses cases visibles : boule de feu,
 onde de choc, éclats puis fumée. Ces animations ne modifient ni la zone de
 dégâts ni les deux tours d'attente de la grenade.
+
+### Refonte : grenades et vision courante
+
+`--apercu-laboratoire-competences --lot-grenades-portee` ouvre le lot
+ANIM-S33 côte à côte : Lancer de grenade et le même lancer amélioré par
+Portée de lancer. Espace confirme, N passe un tour, R réinitialise,
+W change de scène et D tourne la direction. Le projectile et l'explosion
+se terminent rapidement ; l'attente ne passe aucun tour. Quatre scènes
+montrent les distances, une cloison, un trajet bloqué et la protection du
+joueur. Les dégâts affichés sont des valeurs préparées pour la revue.
+
+Le fichier `skill-animation-review-72/cote-a-cote.html` joue directement
+les captures animées dans le navigateur. Il fournit aussi des boutons
+Prévisualiser, Lancer et Tour suivant, sans demander d'exécuter un script.
+Les 32 variantes possèdent chacune un GIF. Les animations de ce lot restent
+à valider avant leur raccordement au combat réel.
+
+La vision joueur de douze cases, validée en revue ZONE-VISION02, est celle
+des nouvelles parties et du laboratoire courant (génération 147).
+Les générations anciennes conservent huit cases pour leur compatibilité.
+La détection ordinaire des PNJ reste à huit cases et leurs profils propres
+ne changent pas. La revue spatiale conserve la comparaison historique 8 / 12.
+
+`--apercu-laboratoire-competences --lot-grenades-degressives` propose la
+révision AOE-FALLOFF01 : un carré de 3×3, vingt-quatre dégâts au centre et
+douze sur les huit cases voisines. Les mêmes touches contrôlent les quatre
+scènes et directions. Ce profil numérique est réservé au prototype avant
+validation ; l'entrée `--lot-grenades-portee` conserve sa revue précédente.
+`skill-animation-review-73/cote-a-cote.html` montre aussi un schéma interactif
+des couches de dégâts pour les zones plus grandes. Aucun catalogue, règle
+de campagne ni sauvegarde n'est changé par cet essai.
+
+AOE-FALLOFF01 est ensuite validé. Les deux entrées de revue des grenades
+utilisent désormais le carré et le profil commun 100 % / 50 % ; ajouter
+`--historique-grenades-uniformes` permet de revoir le profil initial.
+Les explosions initiales des mines, y compris la comparaison étendue,
+suivent le même calcul. Les dégâts de poison attaché, les sols et les
+durées/chances de Gel ou de Brûlure conservent leurs règles en attendant
+la revue de leur adaptation. Les images historiques ne sont pas remplacées.
+
+`--lot-portees-zones-vision` affiche aussi les pourcentages conservés par
+case pour les applications centrées du catalogue. L'entrée de Pulsation
+occulte se centre sur le lanceur. Les actifs achetables une fois restent
+limités à un rang appris dans les commandes du navigateur.
+
+### Grenades utilitaires et puissance — ANIM-S34
+
+`--apercu-laboratoire-competences --lot-grenades-utilitaires` ouvre les
+candidats SG01-A01, SG02-A01 et SG04-A01. Espace lance, N passe un tour,
+P alterne entre les variantes utilitaires et la comparaison de dégâts,
+W change le décor, D la direction et R réinitialise la scène.
+
+La galerie animée `skill-animation-review-74/cote-a-cote.html` propose
+aussi la lecture manuelle et l'expiration explicite de l'aveuglement.
+Elle affiche directement les deux panneaux et utilise les captures
+natives du laboratoire. Ces rendus attendent la validation du joueur.

@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-08",
+  "id": "BM02",
+  "review_id": "BM02",
+  "revision": 2,
+  "title": "Faim occulte",
+  "branch": "Buffs de mêlée",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-88.json",
+  "source_skill_block_sha256": "3e0269845bdc1f9104501423b043ec5d4eb33d51820fec5c7d0e6db8ef5ee93c",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "currently_transformed": false,
+    "equipped_and_active_weapon_type": "melee",
+    "other_modifiers": false,
+    "attributes": "current actual stats affect HP removed by melee attacks;life return percent depends on rank"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "life_return_percent_of_actual_HP_removed_exact": "40",
+    "life_return_percent_display": 40,
+    "maximum_healing_percent_max_HP_per_turn": 10,
+    "duration_turns": 4,
+    "energy_cost": 13,
+    "cooldown_turns": 12
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "life_return_percent_of_actual_HP_removed_exact": "43",
+    "life_return_percent_display": 43,
+    "maximum_healing_percent_max_HP_per_turn": 10,
+    "duration_turns": 4,
+    "energy_cost": 13,
+    "cooldown_turns": 12
+  },
+  "formulas_proposed": {
+    "life_return_percent": "min(100,10+3*(effective_rank-1))",
+    "maximum_healing_this_skill_per_turn": "floor(max_HP*10/100)",
+    "life_return_amount": "min(missing_HP,actual_eligible_HP_removed,remaining_this_skill_turn_heal_budget,ceil(actual_eligible_HP_removed*life_return_percent/100))",
+    "duration_turns": 4,
+    "energy_cost": "10+floor((effective_rank-1)/3)",
+    "cooldown_turns": 12,
+    "full_curves_defaults_cap100_rounding_snapshot_and_modifier_order": "unshown_pending_review"
+  },
+  "conditions_proposed": {
+    "requires_equipped_and_active_melee_weapon": "accepted_common_weapon_requirement applied;inactive equipment insufficient",
+    "human_form_required_to_cast": true,
+    "blocked_by_Silence": true,
+    "successful_primary_melee_hits_only": true,
+    "actual_HP_removed_after_defenses": true,
+    "direct_damage_added_to_primary_hit_included": true,
+    "indirect_damage_and_reflection_excluded": true,
+    "heal_capped_to_missing_HP": true,
+    "automatic_secondary_attacks_and_zones_excluded": "unshown_existing_proposal_pending_review",
+    "heal_rounded_once_and_capped_to_HP_removed": "unshown_existing_proposal_pending_review",
+    "equipment_life_leech_stacking_and_natural_transform_attack_compatibility": "unshown_pending_review",
+    "buff_in_player_status_bar": "existing_buff_HUD_rule_applies;native_pending",
+    "shared_heal_limit_all_targets_and_hits_this_skill_per_turn": true,
+    "per_turn_cap_does_not_limit_unrelated_healing_sources": "no_global_heal_cap_introduced;stacking_cases_pending"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "proposed_pending_explicit_user_review",
+  "numeric_rules_approval": "proposed_current40_next43_percent_life_return_per_turn_cap10percent_max_HP_duration4_energy13_CD12_and_reference_rank1_10percent_rank10_37percent_pending_explicit_review;unshown_curves_pending",
+  "detailed_conditions_approval": "previous_shown_conditions_and_new_shared_per_turn_heal_cap_proposed_pending_user_review;common_active_melee_weapon_rule_preserved",
+  "visual_intention_approval": "catalogue_dark_drops_to_attack_arm_direction_preserved;small_brief_drops_at_heal_proposed_pending_individual_review",
+  "visual_approval": "per_skill_native_animation_pending_review",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "no_fictitious_total_weapon_damage_variance": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "life_return_percent_display"
+    ]
+  },
+  "player_copy_markdown": "**BM02 · Faim occulte — Rang 11 · Actif**\n\n*Votre arme s’abreuve de la vitalité de vos ennemis et vous en restitue une part.*\n\n**Effets actuels**\n\n- Vie rendue : **40 % des PV réellement retirés par vos frappes principales de mêlée**.\n- Soin maximal par tour : **10 % de vos PV maximum**.\n- Durée : **4 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Vie rendue : **43 %**.\n\n**Coût : 13 énergie · Recharge : 12 tours.**\n\nLa limite de soin par tour est commune à toutes les cibles touchées par cette compétence. Le soin ne dépasse pas vos PV manquants.\n\nLes dégâts directs ajoutés à la frappe sont inclus ; les dégâts indirects et les dégâts renvoyés sont exclus.\n\nArme de mêlée équipée et active requise. Forme humaine requise pour lancer le buff ; Silence empêche son utilisation.",
+  "player_copy_sha256": "d402c38cb8deb0004b96b48f51e105dbf674444d9894dd3fad71fc2236db320e",
+  "visual_copy_markdown": "**Visuel proposé :** de petites gouttes sombres remontent brièvement de la cible vers votre bras au moment du soin.",
+  "visual_copy_sha256": "713b21236f4eee170586d21035a3d32d089a6a28f5a22ce8358741f3e8031b94",
+  "current_turn_shown_copy_markdown": "Pour situer la progression proposée : **10 % de vie rendue au rang 1**, puis **37 % au rang 10**.\n\n**BM02 · Faim occulte — Rang 11 · Actif**\n\n*Votre arme s’abreuve de la vitalité de vos ennemis et vous en restitue une part.*\n\n**Effets actuels**\n\n- Vie rendue : **40 % des PV réellement retirés par vos frappes principales de mêlée**.\n- Soin maximal par tour : **10 % de vos PV maximum**.\n- Durée : **4 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Vie rendue : **43 %**.\n\n**Coût : 13 énergie · Recharge : 12 tours.**\n\nLa limite de soin par tour est commune à toutes les cibles touchées par cette compétence. Le soin ne dépasse pas vos PV manquants.\n\nLes dégâts directs ajoutés à la frappe sont inclus ; les dégâts indirects et les dégâts renvoyés sont exclus.\n\nArme de mêlée équipée et active requise. Forme humaine requise pour lancer le buff ; Silence empêche son utilisation.\n\n**Visuel proposé :** de petites gouttes sombres remontent brièvement de la cible vers votre bras au moment du soin.",
+  "current_turn_shown_copy_sha256": "08ba6e74d22d3c3d26eefcd15f511299869fed9ff058aa44f24aa1e904568a4d",
+  "unshown_cases_pending": [
+    "full_curves_default_cost_cap100_internal_rounding_snapshot_and_modifier_order",
+    "shared_turn_heal_budget_reset_and_cooldown_start_timing",
+    "primary_hit_multi_target_multi_hit_dual_wield_and_secondary_attack_classification",
+    "life_leech_stacking_with_equipment_forms_OC05_and_other_buffs",
+    "overkill_zero_damage_absorption_and_heal_trigger_order",
+    "buff_weapon_swap_reapplication_map_change_and_refusal_atomicity",
+    "native_drops_heal_feedback_and_buff_icon"
+  ],
+  "runtime_integration": "not_integrated",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM02-01.json",
+  "previous_card_sha256": "57f52bdde359f0cdb23877e3cceb7a38eec6c3639b1761bcd6405e68cfd2857c",
+  "redesign_direction_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-progression-and-branch-healing-decisions.json",
+  "reference_progression_proposal": {
+    "effective_rank1_life_return_percent": 10,
+    "effective_rank10_life_return_percent": 37,
+    "status": "shown_comparison_proposed_pending_review"
+  },
+  "reference_progression_copy_markdown": "Pour situer la progression proposée : **10 % de vie rendue au rang 1**, puis **37 % au rang 10**.",
+  "reference_progression_copy_sha256": "e17b00cf4ecbf9b65062a89cd59698377f5ec8db5aa900b1b0e6ed19c1a03eec",
+  "review_status": "revised_numeric_proposal_pending;general_progression_healing_principles_accepted_only"
+}

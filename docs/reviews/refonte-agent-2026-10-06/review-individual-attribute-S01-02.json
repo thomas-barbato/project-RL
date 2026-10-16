@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-08",
+  "review_id": "S01-ATTR02",
+  "attribute_id": "S01",
+  "title": "Force",
+  "revision": 2,
+  "status": "proposed_pending_explicit_review",
+  "prior_proposal": "docs/reviews/refonte-agent-2026-10-06/review-individual-attribute-S01-01.json",
+  "prior_proposal_sha256": "507fb4a330ceebe9d6703b053ae6efd8a7e8fd52ec1f6365c8106567a91b0b57",
+  "model_proposal": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-02.json",
+  "model_proposal_sha256": "449d4d200adb5fd39028eff5d8ca673fd240b05c3de08b96511eaf313c5d1b82",
+  "name_approval": "six_attribute_names_already_accepted",
+  "RP_approval": "no_new_RP_presented_this_turn;previous_RP_pending",
+  "numeric_rule_approval": "one_percentage_point_per_Force_point_reference5_and_additive_weapon_skill_bonus_proposed_pending_review",
+  "scope_approval": "melee_attacks_and_melee_skills_and_physical_transformation_attacks_proposed_pending_review",
+  "shown_values": {
+    "skill_weapon_damage_percent": 150,
+    "Force10_bonus_percent": 5,
+    "Force10_total_weapon_damage_percent": 155,
+    "Force15_bonus_percent": 10,
+    "Force15_total_weapon_damage_percent": 160,
+    "actual_relative_gain_percent_approx": 3.2
+  },
+  "runtime_integration": "not_integrated"
+}

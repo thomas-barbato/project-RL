@@ -1,0 +1,106 @@
+{
+  "protected_files_unchanged": 37189,
+  "controls": [
+    {
+      "variant": "GEL-A05",
+      "solid_walls_clear": true,
+      "turn_state_stable_while_waiting": true,
+      "removed_status_leaves_no_frost": true
+    },
+    {
+      "variant": "GEL-A05-BRULURE",
+      "solid_walls_clear": true,
+      "turn_state_stable_while_waiting": true,
+      "removed_status_leaves_no_frost": true
+    },
+    {
+      "variant": "FR06-A03-HAUT",
+      "solid_walls_clear": true,
+      "turn_state_stable_while_waiting": true,
+      "removed_status_leaves_no_frost": true
+    },
+    {
+      "variant": "FR06-A03-DROITE",
+      "solid_walls_clear": true,
+      "turn_state_stable_while_waiting": true,
+      "removed_status_leaves_no_frost": true
+    },
+    {
+      "variant": "FR06-A03-GAUCHE",
+      "solid_walls_clear": true,
+      "turn_state_stable_while_waiting": true,
+      "removed_status_leaves_no_frost": true
+    },
+    {
+      "variant": "FR06-A03-BAS",
+      "solid_walls_clear": true,
+      "turn_state_stable_while_waiting": true,
+      "removed_status_leaves_no_frost": true
+    },
+    {
+      "variant": "FR06-A03-CLOISON",
+      "solid_walls_clear": true,
+      "turn_state_stable_while_waiting": true,
+      "removed_status_leaves_no_frost": true
+    },
+    {
+      "variant": "FR06-A03-OBSTACLE",
+      "solid_walls_clear": true,
+      "turn_state_stable_while_waiting": true,
+      "removed_status_leaves_no_frost": true
+    },
+    {
+      "variant": "FR06-A03-UNIQUE",
+      "solid_walls_clear": true,
+      "turn_state_stable_while_waiting": true,
+      "removed_status_leaves_no_frost": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "GEL-A05-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 65,
+      "frames": 65,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "GEL-A05-BRULURE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 57,
+      "frames": 57,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FR06-A03-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 38,
+      "frames": 38,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FR06-A03-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 38,
+      "frames": 38,
+      "duration_ms": 4000,
+      "loop": 0
+    }
+  ],
+  "resampling_of_native_capture": false
+}

@@ -1,0 +1,859 @@
+{
+  "review_id": "SKILLS-UI01",
+  "status": "awaiting_visual_review",
+  "count": 94,
+  "icon_native_sizes": [
+    64,
+    32,
+    24
+  ],
+  "source_curves_sha256": "44ff8b1f8df86320562f82a00529b5e92c3e9118dd0a89bb051e7b2100e50bdb",
+  "sources": [
+    {
+      "id": "A01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-A01-02.json",
+        "reference_sha256": "c44c71c9fe4d19517f38a0b57a011c644485fcf019083a92b29f7823c8b5fec0"
+      },
+      "rp_sha256": "cc019dac434df649560206a54dc8bb22904e7b0938f3bb5d883e73856f696b71",
+      "icon_sha256": "ba6d84c7b16206158a87581c5faa2412aa97c1b0ac27a6170c752a42c27decac"
+    },
+    {
+      "id": "A02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-A02-02.json",
+        "reference_sha256": "a91ccc02161acbabb34265b35304e4ca6bf57e95c1b947a7aa91a5581477a429"
+      },
+      "rp_sha256": "82cc3887fbaf03fe48e81edf28cc9afb9ae31fbaf018c18e911d47d2dce5eff1",
+      "icon_sha256": "889c496be52579985b4c7b50c02ddb39908c9d02e2c45146ac5cbea27aedd638"
+    },
+    {
+      "id": "A03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-A03-02.json",
+        "reference_sha256": "44ff4066802c80fa20b0b4d026a8e1e5af16a929eeaebbf278c90117c1c62417"
+      },
+      "rp_sha256": "92aad063fe8ddbf93cf3b45925741b95928034ff9ab081b02c60cb9e708df0d8",
+      "icon_sha256": "cb48cbe1999514dcd8d17b885d21f2455a38e12674e6e34a2a17f5bbeddc593b"
+    },
+    {
+      "id": "AF02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-AF02-02.json",
+        "reference_sha256": "6c54d96b9c911f58609c4178d96f70666f565562899ed3b229f88b26c289bb4d"
+      },
+      "rp_sha256": "c732f4edffe2156bb747170a5000a3228d3c1320e0d1989e839f942088357443",
+      "icon_sha256": "2bf5a567e0b3dbfb9a7e96e1c0460c7a89f3803d36e8027dcc0f5e09dc66b118"
+    },
+    {
+      "id": "AF03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-AF03-02.json",
+        "reference_sha256": "e71fb0c2eef3a9ebe043ca3eaae79facf5d935f7d3918b174e250e68377f5ce3"
+      },
+      "rp_sha256": "dc4e0516685f536a8a410c54d02eed186e61c22fa4daa21ecb2b1b0cdbfa88c3",
+      "icon_sha256": "84a2170ea201d8243961914a5f7188bf9a053f5b989bf8a0adec3c8a43728c72"
+    },
+    {
+      "id": "AF04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-AF04-02.json",
+        "reference_sha256": "936f30977ca616a0dd035c9262f8779cbc861faff68a8d6d6d8d4160aac2be1b"
+      },
+      "rp_sha256": "e515f0ac81f9046b7c756b0dd0b5521a79b0ed5f48120f9601f273c0157c030a",
+      "icon_sha256": "4252447e640a29da0151475cd99eb8ec263cdf858ea402c06b2512ce630a1ce9"
+    },
+    {
+      "id": "AF05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-AF05-03.json",
+        "reference_sha256": "4f2ab6a7bbd832b6a76214828f92ff93f935de7845d96f4dce6f780eb44a190c"
+      },
+      "rp_sha256": "368e234f7bc65d13c90cb6f7e9879d8b74543ea655c9b85e273cfcb7aecef675",
+      "icon_sha256": "9268a90a4e55abb831ae75e2f72023fa136aff7d9bc8e977837a39308614965f"
+    },
+    {
+      "id": "AF06",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-AF06-03.json",
+        "reference_sha256": "fe38fafe9a41e602f00a58a9ad8b5b5c954aee6ae676b2e48ca1656b52898bdb"
+      },
+      "rp_sha256": "8fa5d59d5ee128ae7d5f6ab4a74d5edf4bac060713a147b969f50305954538bb",
+      "icon_sha256": "1e7c87649b6993fd81aeebb36acb8f854daa6de2a7f141ebd5ecb3f797c9ed0a"
+    },
+    {
+      "id": "B01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-skill-progression-B01-PROG01-01.json",
+        "reference_sha256": "c9810a785e11c9042c336c40cf45344913b0bd44d2bf637a1d2ebf2f989774b7"
+      },
+      "rp_sha256": "e7c431d9fe18b6fb1c58c65fb86fbea465ef0f406a347745ae72fa60729dad42",
+      "icon_sha256": "98ed35a772cf7afd3aa81e951c00449a5ff7998a41142b908b34dbcad48f4892"
+    },
+    {
+      "id": "B02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-B02-02.json",
+        "reference_sha256": "f6280c7053ecf91b1ec1f4394cc8d715926b9b39d1c2c531ecb9c0f7be256b80"
+      },
+      "rp_sha256": "a0217937ec0a15085be1c870ed9498b7e60022fc67df08e72380ce2ad490a6b4",
+      "icon_sha256": "3f234d3be66254796b59f698c6792e592adfcd823feb27d620b5e273ed04e503"
+    },
+    {
+      "id": "B03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-B03-02.json",
+        "reference_sha256": "3da7809f70bb3138bb6e03b9dc7fdfcf20e38448880bff5eebe6eb871359a3f7"
+      },
+      "rp_sha256": "721494b2da7d7781759afadb4f1be8c517427fceb7169c65becfb24dea36bc99",
+      "icon_sha256": "8f1c24b3e384784dbfe9f5ab89c1ce5070c7b589eff322880cc878640912aebc"
+    },
+    {
+      "id": "BD04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BD04-02.json",
+        "reference_sha256": "123269e7ce3dd865d69425eb8fc8f6b81ae1773ba57f7121695766a92d33ab57"
+      },
+      "rp_sha256": "8f8b7e179e2d37a9b09f61033d58448460d842b1a63e102fc26b7dae8338b82e",
+      "icon_sha256": "b334e540345c306ae641322080dcb6e3d35ed3a18b28f72ff4630959c286365c"
+    },
+    {
+      "id": "BD06",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BD06-04.json",
+        "reference_sha256": "e092f202f113801b2435bb3fa93943f26e5472aa32beb9e9757b3eb1275a0f51"
+      },
+      "rp_sha256": "1831c2520b437daa3109ebc9cd4101c3344277b2348a4608cbba713a98cb6283",
+      "icon_sha256": "7e1f7b5f79a6fc6edbba8d307386185a6ae260361107981d15daf60f45c3e073"
+    },
+    {
+      "id": "BM01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM01-02.json",
+        "reference_sha256": "b06bc90f91a7d81e42ef767b610ba553ca8a17bdaa993059cfd634a52e72191f"
+      },
+      "rp_sha256": "50fd0eb34c7ae3c9f12517a674aae9c48b21bdcd813da100937f8f13e7ec5948",
+      "icon_sha256": "caa7d966c8d1b4e21b7826a7f4dab3cac97580f2fe379426c9b041bbc32ebcdb"
+    },
+    {
+      "id": "BM02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM02-03.json",
+        "reference_sha256": "594ae865654fa5583951be84aa1edca577f26008e34ce0a2e907b2ff011abaee"
+      },
+      "rp_sha256": "cc0418402ae661074bf8a784e2316a66855f196057d9f61b6e3e2a7cc94dfe3e",
+      "icon_sha256": "ed2543e43626add83c2f5da385362a781acad11a878ebadfb63593d52ce4856d"
+    },
+    {
+      "id": "BM03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM03-05.json",
+        "reference_sha256": "7b7d5880a40dd8bf3b10c98eb9b02b06f166749cec03b59edabe896b5a73f263"
+      },
+      "rp_sha256": "676debf16a9e0cbbfd54d703c1524899d7b39ea870e9a9400226af9e5a3220bf",
+      "icon_sha256": "b3561de493dfc40956e91d0c50ab4d2e675da01aa752aae21700eb4950bd5075"
+    },
+    {
+      "id": "BM05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM05-02.json",
+        "reference_sha256": "5f043bd5dd97452ee7ae2debd41a59753a758dec31d408194a7605fb5e57ac8c"
+      },
+      "rp_sha256": "258292334050f332926c8ef5adba06d4376d81d0c4dc9ef39d678ed0b9db8f56",
+      "icon_sha256": "72f822e7afef09e49ba2a499a6021991a7ed800c43f18b6d1913480c62145967"
+    },
+    {
+      "id": "D56",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-D56-04.json",
+        "reference_sha256": "13ab492c5ff095594aa6ae32f501885ce59a9fcac0f9e52a9d0d3e25bc7c4adf"
+      },
+      "rp_sha256": "cf8c8f98c2bdd5245aad57e28bc15642e1472605a2bb01ad1182dac28675a21f",
+      "icon_sha256": "963408e528a2d7f5a1ac00b2c57f68f8c47d95430bcb4b5404a6e3e51628bec5"
+    },
+    {
+      "id": "D57",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-D57-02.json",
+        "reference_sha256": "b4ac8e8a9232755debfa1ed463fa8a2134f063092338e34fb168bcdd786c54a9"
+      },
+      "rp_sha256": "235414cfa78773721a119b11d058acdde5cdd32ae85ec7c19fe603a841d870df",
+      "icon_sha256": "5a5afe91e849990c97a304275c8a3b57bc4ae527dca94a82d0f5484c762bbb15"
+    },
+    {
+      "id": "D58",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-D58-02.json",
+        "reference_sha256": "c1f36067ed1d67d192831803a86811d6a6de35cffa445239a9b13917871809cd"
+      },
+      "rp_sha256": "1ab7d05f757da0f92fdf7b3f402eb1623fec1f9740122e4f11e4f9b30b7bcfb4",
+      "icon_sha256": "12b3c973737e96b09e8e3e983e49dbd48a28718bcd10b9e7bc47ded48437070c"
+    },
+    {
+      "id": "D59",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-D59-02.json",
+        "reference_sha256": "05ef64098c6d7a896f9e7e1cb9eb6501da1c26f3a64eccdddca36799d397eb5b"
+      },
+      "rp_sha256": "7c32348ce7867fe80ce0362edb329e77be5efd6642f8afa78877d34420adf2fa",
+      "icon_sha256": "8f48a33ef9b4e9191d88ac7301833cb4adb3f69846e1d5d9f9eb19e648df60e9"
+    },
+    {
+      "id": "D66",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-D66-02.json",
+        "reference_sha256": "5f7b4c5d920b49e2cde3aabc0e94ef53a3d1f7701c7c72dd2191180c9f78b3f2"
+      },
+      "rp_sha256": "bfcf7bf42d2dcecde09dd5bf729634f11e313fe5bf9e296a76584f1988dffd94",
+      "icon_sha256": "6e7a11b1fa92617df37c52681d9faa02dd0099da70183dcbe2afb352f5a9fec9"
+    },
+    {
+      "id": "DI01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI01-02.json",
+        "reference_sha256": "4eea2e600f8611a6fabc571c2234b16a41bbc1a83062e9605b748907a5bfb3c1"
+      },
+      "rp_sha256": "3ce0b69d134dcee4cee00d3e6929e246835a14950dd3427a34a09f04bc760f2a",
+      "icon_sha256": "b35685c5e96674ab0562433bd1fb0601dcf17ec0a5603d63896f448b479aed13"
+    },
+    {
+      "id": "DI02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI02-03.json",
+        "reference_sha256": "ff322f5e3a440fbafc5de1d6fce40565343de24f498c4a134fd0022f4a3bebf7"
+      },
+      "rp_sha256": "bcfede4d6acedaf3ee8d3d37c71f855247bbb5591c4b13d96a1208d0ef4b7b6a",
+      "icon_sha256": "a9baebf31c2ff90cf34688ee61b81595194bf43b2b5c68f882a8630b386fa740"
+    },
+    {
+      "id": "DI03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI03-02.json",
+        "reference_sha256": "060dea1854133727302c461e5baff6a8521cd702aa9294c12b302ee9ffd715ac"
+      },
+      "rp_sha256": "69237fdc08f49031bfed2dee2d4616c7951bc9f668b5f41d84ef49a9781b0317",
+      "icon_sha256": "93cb5c80e3a438c728c49b4ecea6ca71fbd97f0797cc2ccbf65a5c29abe48bbc"
+    },
+    {
+      "id": "DI04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI04-03.json",
+        "reference_sha256": "e8f51f616ec79db3b343c258334c54e36f427602ea5e140e2e247f4adcc95d96"
+      },
+      "rp_sha256": "1e402cbe9489c42faaf80dc9bc760fe54188642d4f7eba8efee649889ecc4060",
+      "icon_sha256": "7385f059cc2b77c2ee607731f6736f1c42593081401417d705007208b01a7c7a"
+    },
+    {
+      "id": "DI05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI05-02.json",
+        "reference_sha256": "ba65abeb3a7e0e61d9b47700136e7be250463ed6f23c828cb89ad78dfa3561d2"
+      },
+      "rp_sha256": "185f5a2e3f39b3e9bf717ef2bbfa654877f7a2d700120947914d407aacfc0e0e",
+      "icon_sha256": "496f12bc99e6e055a4d4f0e3062763046b20346266d705371484486742af76c4"
+    },
+    {
+      "id": "DI07",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI07-02.json",
+        "reference_sha256": "b27466edb9943af166a39f38a2a998598946624d0e3e2b96e9f361ddf9243eed"
+      },
+      "rp_sha256": "da3795fc1cd8e2ff08e54062842eee788147a78a922f90408131f83dad6bdfae",
+      "icon_sha256": "68df96f7edcd42dcb60d89b0fac29d28f5032a9c78c0d5523ec8f7cfccd2ab25"
+    },
+    {
+      "id": "DP01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DP01-03.json",
+        "reference_sha256": "0616262d50b8714bedbcdbeeb8d9c78a1c9b0d212cf5b2c3d93e5b875b0328c1"
+      },
+      "rp_sha256": "dd418a8c78864e0a14e1aad1ba8d22f68f7d3522555730c39d1c1dca33f24bfa",
+      "icon_sha256": "27a21a091d2e8d94062cea448040ba8e20f5f5192887a2ecfa853873999a6977"
+    },
+    {
+      "id": "DP02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DP02-03.json",
+        "reference_sha256": "1bafac26a5f2c4637778d5280ba0e7817396d0648596bf5d761752f22a021053"
+      },
+      "rp_sha256": "83a702bf022f8c5a9b90dfc063454cca1e056b7047baffafdb2f5ac6795fd117",
+      "icon_sha256": "62d5bc7a989895a09f47c6b9da5cb85aaa63748a52272cdbe0b73420cd70c3cb"
+    },
+    {
+      "id": "DR01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DR01-02.json",
+        "reference_sha256": "beeff863ced45e37ea2dc16b618bf3dcef12bf5d580f0ad57d149af4ce31ae4d"
+      },
+      "rp_sha256": "cbb9626d2ea4ee9666e6b71ffdb1804cad1999ccf30918a4f36ac24abb57d247",
+      "icon_sha256": "d4fc1b437a5effbdc9671b277346b07e01af5e64c528fe0df92b71d7885421f0"
+    },
+    {
+      "id": "ES03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ES03-02.json",
+        "reference_sha256": "cfc06d1a72c112920503ca6e1093b7691793943524551313ecece64ea6b89d74"
+      },
+      "rp_sha256": "4087045c2a13ef63035dec8d5dc1de475d1b0ed440450ac299d4d1a817ffb6e8",
+      "icon_sha256": "b4524ba1f8903212827c947222dd6f8999e9c126cf8f95cc8d75a0501aa8b462"
+    },
+    {
+      "id": "ES05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ES05-02.json",
+        "reference_sha256": "44b5130754f3d4099a6b49ac5940b8be730eacaa089c758f093a4fda26e24303"
+      },
+      "rp_sha256": "38b1543955d3f67225d6da7edceec96f17c76e9d0c644338b4c6d8432ee7db98",
+      "icon_sha256": "3426e010f654b05225ab5dd43122cc3624603da7b2187cb779efee6ce01fe748"
+    },
+    {
+      "id": "ES06",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ES06-02.json",
+        "reference_sha256": "7315fb26d61c4abc116cf933a22c1567672e7e178a70ce08e4c665fe5ee31721"
+      },
+      "rp_sha256": "8b8cddc1e2cbb6cd108536a6d0a0f539da7042155bf67bc9a40637f97c93bdef",
+      "icon_sha256": "6ce6c35ef6585ce80847e8dd1276cab3580048bad7efe5362dcce778b8060dcd"
+    },
+    {
+      "id": "FE01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE01-02.json",
+        "reference_sha256": "c3c343998541309d456d7c6be730b95afdba0872104db3612f135e0a5d2c708a"
+      },
+      "rp_sha256": "6fbec60e45d2271ccc00157c3f4fd04e385c2857752ce1e7b254f6d1467c5fbb",
+      "icon_sha256": "45f3cf94ea4af6023a752d38e5750f9881ca3ccfb3c5b07ae42f8cba62180e8f"
+    },
+    {
+      "id": "FE02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE02-05.json",
+        "reference_sha256": "f58fabfe1984e6e6ae63513eb3d8af0df03cd238dfe5330b52fbd80c03ec63fa"
+      },
+      "rp_sha256": "3d58e2cdc3cde8b556a3ffb4dc151db0522f562cfdb48bddde97a05caf632856",
+      "icon_sha256": "94e03ef873fad9dabc3a4ea7c7764b960935f816d791bd1331d5912b14f5f1c1"
+    },
+    {
+      "id": "FE03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE03-04.json",
+        "reference_sha256": "c8aaad03594bb4e88fe77db27d2607f94577ddf7c0de8eb56fc37cdf9eedb885"
+      },
+      "rp_sha256": "756c02de493d20e00b774850b5dc439497eb20249b22a0617c3be72947d998d1",
+      "icon_sha256": "599847bb92c66c9637388c6eb3d4fb57799c596b4cd9305c66b6df459170e894"
+    },
+    {
+      "id": "FE04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE04-03.json",
+        "reference_sha256": "dd06dcb8636f3aad75c881bbcbb352f2d5cb7a326cff0924c4b2093018ff5cf8"
+      },
+      "rp_sha256": "c5f1d0bd1c83e7c1e520eb4267694fbe6448f5c2d522a788f721bd3c76d8241f",
+      "icon_sha256": "3af055c8c754f7c8803683e76f2e54437a6dcb4402243630760605bbcc346c98"
+    },
+    {
+      "id": "FE05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE05-03.json",
+        "reference_sha256": "e3fce2aa8e8c4a9c2be553c6a725211d655cebbe2e274dd1f186875473e7b5a5"
+      },
+      "rp_sha256": "dfc75d2ffecf63352f3d0baaec9b82a21ddb0b6494c5b41856a17019a9d05bda",
+      "icon_sha256": "4adbcd404755af9ae8ec8b71ecf6bce19819fe190214519376b94b18c5e7eec1"
+    },
+    {
+      "id": "FE06",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE06-02.json",
+        "reference_sha256": "e88817564873cdea3cb79ad45d7950ab5631dad0689073042b4efdc6d442fa1e"
+      },
+      "rp_sha256": "7f3d1bfb951706454a93605ad4f404f78aeeb01ad969a93a3c64255f3b9b2d6b",
+      "icon_sha256": "8d5e3cd46eaeb247bc1f6051b48c84077d516dc0baf242c15d0b1dc99a268895"
+    },
+    {
+      "id": "FR01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR01-06.json",
+        "reference_sha256": "d71d9cd63afadbf5803cd57ec88a95c6d62f2946cbd7f61c06d85dde950f7929"
+      },
+      "rp_sha256": "d60c595d55c8deb134146681a6f95e4c7c7a2023defd013f90020f861c1d6087",
+      "icon_sha256": "d8a57599e8a6f599eea0fdfd2d1fb7128ba7d0f293da9a092cf206602f96560c"
+    },
+    {
+      "id": "FR02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR02-03.json",
+        "reference_sha256": "c019aa83de48084469a3c5936339aac029e4927b0e0e2fb26579be2a6da960e8"
+      },
+      "rp_sha256": "960ac248efec97a4d17331e418c75ebde8da30ef9241f44c6cd505323a454343",
+      "icon_sha256": "f57a9878578e69efa5f283943740e3afc07a53921edddbf9250d88ba47b43718"
+    },
+    {
+      "id": "FR03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR03-04.json",
+        "reference_sha256": "96d6a3562b1d6fdcee166e1ead0c8678bdabc4593a01ee4edec9957d0675b5ed"
+      },
+      "rp_sha256": "ca5eada392619caa9dd9a9f642dfe31d4d1d2d8920256d3b25b260bdbbebf7e6",
+      "icon_sha256": "aecc219525312d4064bbc4ec3659a776e0fb5167285e144128caeb0515e70452"
+    },
+    {
+      "id": "FR04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR04-04.json",
+        "reference_sha256": "ae8356dbb0b71a6e979d45c26384447ff1e86afebc2caf2bef7a1ddfc9542e82"
+      },
+      "rp_sha256": "62bb3ecef216f97d2e83adbb6ce6694aed1f79ba5dc165fab2abec24379dac98",
+      "icon_sha256": "6d138ec1b75e5166d5fe7251f749a7125b1d7289b0344e319e435c0705ee512b"
+    },
+    {
+      "id": "FR05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR05-02.json",
+        "reference_sha256": "9e4d9da3e9fb2ee93be7d3096f4733a600b322f426333116cf152b169ce5ebe2"
+      },
+      "rp_sha256": "6b4d2ca544f8115fba43a34c68c757d2ab95a72bdbb662fac1261fb8822802c1",
+      "icon_sha256": "4d675594058dfe11d938f1cf132993c2e44f56d8559ef65df110398af9341a5f"
+    },
+    {
+      "id": "FR06",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR06-03.json",
+        "reference_sha256": "1621a83b4355d938cb4e0e100719c7397e981228e08e2da8273ee49167865edc"
+      },
+      "rp_sha256": "585ddf7aca85ce2cb78bc2270343980161f824de9bae9b907a91bb3f2841a00e",
+      "icon_sha256": "8dafb227936c8dad1d391a628be3f380a1b74c2e7c8d30746a853f62feb39b92"
+    },
+    {
+      "id": "HL01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HL01-03.json",
+        "reference_sha256": "ec5625be84c5017f7bfb0b7f5303227ff1e65675e31b853a5d0e5dc6b4dba402"
+      },
+      "rp_sha256": "7d90ffd0efec8e9687911e5e15e886d9beeadaeee3f7b96c4ce7e3ab3438251b",
+      "icon_sha256": "639ab30f43c2c5e37e233bb1624f31e6453494d16f508f56a8cb076d417c5d64"
+    },
+    {
+      "id": "HL02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HL02-03.json",
+        "reference_sha256": "bb336ef32ffcb16394e378f9eba43e996a085166580d7517ccac95f3ed687364"
+      },
+      "rp_sha256": "f012cb8c5fb7648972f2992c34761f4fe446fd9762d5438cb5a11e804a922120",
+      "icon_sha256": "c08d8c6242e3db4b222703dc53a14f6d847278a066675ddbef6ee43c0e03783c"
+    },
+    {
+      "id": "HL03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HL03-02.json",
+        "reference_sha256": "7ddd2881bb1c2222b7993febf197ba4ca9b3842f32b08bf5eb252bc504b6d6fb"
+      },
+      "rp_sha256": "dd7e738dbbd2ea076273eb573627b6a7e576ef86c61dec8a0433bac1fd2a1782",
+      "icon_sha256": "f0ab04f2ea88b450cd051253072e97dfea3c8ad1275ffa18e63f072f39ae0283"
+    },
+    {
+      "id": "HL04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HL04-02.json",
+        "reference_sha256": "74c52beca41f036f366a344ea4e2634dc5b071ac5f60f14af92d3dffb362c76e"
+      },
+      "rp_sha256": "c5104a26d07a22afc101518858bb5ccc87d6a9699e822a3d0523ec64975c21c8",
+      "icon_sha256": "a25484e40ea386cd5916e54f57ce748e103062cb9f11e54ec22882c46f088046"
+    },
+    {
+      "id": "HL05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HL05-02.json",
+        "reference_sha256": "295e71f3f654f1eba76aace2ba5adae9d56d3cb4c91b448c14ed05f895e6d072"
+      },
+      "rp_sha256": "1f25a1e0e4d1095f2e25dbc8bdfb61572ff3a1fc6e074eaf03987783a50f48e8",
+      "icon_sha256": "0ae460e050e31b501089295d6baaa86e7c8b3db61261719e918fa1d44416348f"
+    },
+    {
+      "id": "HL06",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HL06-02.json",
+        "reference_sha256": "d10dba5713d2cc2fc3d15c04e2cf623fa16bc1f2d1689f9d690843e7675669ea"
+      },
+      "rp_sha256": "a75e78ffd1d741d4f919208444ce2889bc1816cb41fcf6bce7396b9cfde8fded",
+      "icon_sha256": "be5650a040a6f13cb23488b2040d6d966594868ca1c6dd8d8cbfeba3a8a35a33"
+    },
+    {
+      "id": "HY04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY04-02.json",
+        "reference_sha256": "3e243f0adcd1db25c2de52875e134cfe49ff8b93ac56f5d2b5607c2c703ef623"
+      },
+      "rp_sha256": "363e051468c30a73a04ce19fa63e08cbc91082dd85c2a05e4076b7eda1953876",
+      "icon_sha256": "2db4d41570ef45edc93ff82367822855856cc7f3315de4fd3c70f40fea5b8ce4"
+    },
+    {
+      "id": "HY05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY05-03.json",
+        "reference_sha256": "5da9b657a869bd1c66a99a95f37210494177fed8b9a5496087c6ac873d396d76"
+      },
+      "rp_sha256": "49ee58e9df276639806e7cf1e36fddc18ed250b66a02a8c27948df844b876c82",
+      "icon_sha256": "90dbab3fe34613a554b10519c48142d6856e18ce2c2b2bec3bb57c7368236a3f"
+    },
+    {
+      "id": "HY06",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY06-03.json",
+        "reference_sha256": "bb516e6b65550aef3aa18b5c041e14fcd902de53013e034cb2034f258515745e"
+      },
+      "rp_sha256": "568df39631943e6278c114eb393bb8141db0d50b311401b6025461b5db2d7d4f",
+      "icon_sha256": "6cf6eb7ca3360bcb80259ab3d3d31349a91a42181aeb1062d2da775f18f4b3d2"
+    },
+    {
+      "id": "HY07",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY07-04.json",
+        "reference_sha256": "819567153aeaeabf068efd4e2f571d00bd342b41c1a89158808c3c0781f27ade"
+      },
+      "rp_sha256": "1ce14f1953c5493839a5372587de884378618799642591acc9d1e67cd8a51785",
+      "icon_sha256": "b48baa983036f3a660e1a4acfde477dfa638910dca114c48dc90b40a68a9d54e"
+    },
+    {
+      "id": "M01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M01-06.json",
+        "reference_sha256": "d8920ac601bd94e23a84168e4b5c4566105bab80a01648d1b1bd3eaaae15be65"
+      },
+      "rp_sha256": "262260dd7161ca7404969f912f6277097e734b1a2561a0af5e2f3bea4b20d0b5",
+      "icon_sha256": "3714f41efbbcc2a8f673ee8eed106d6c1586b8a26c95c5a415addf1c6867cf6e"
+    },
+    {
+      "id": "M02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M02-02.json",
+        "reference_sha256": "51a131177d20fbae97064689943525113672d7f5b33790573e61b54dcde5b588"
+      },
+      "rp_sha256": "74c0092424a49dad662da28fbe8cf146a341eba94b5b60e48c8461be6b15c235",
+      "icon_sha256": "417ca033f426b88b51df30473d5fd60943f8252d6153566bcf179051044cb809"
+    },
+    {
+      "id": "M03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M03-02.json",
+        "reference_sha256": "d570edbaf4e2efeb576caf001be538bd77088203c5ce63f04a530a16060b5379"
+      },
+      "rp_sha256": "45ed7075806b887f7a6035c84d2b5e8a0a07170a69bfb0e75cecf706b110c550",
+      "icon_sha256": "df71304938a92d16f5c4e5bc61fbd8499b458c776232ad1ee6bfff63832b6b12"
+    },
+    {
+      "id": "ME02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME02-03.json",
+        "reference_sha256": "e9c6364d990a68612bebbff92bec7aa4d7dfbaeca3342afa78c11842b07c2c37"
+      },
+      "rp_sha256": "f691fd5041b22418c8623219b2cb7f185faa78f8066294fd14e6ff4c4967eff1",
+      "icon_sha256": "81022f14bb8b812156cd1a5c3e3a6a6db35855454f72d8450a4b89b2720c58e7"
+    },
+    {
+      "id": "ME03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME03-03.json",
+        "reference_sha256": "2897ac34d28393e44b8825f8957c0d656918de1181898aceaf9a57de82a08048"
+      },
+      "rp_sha256": "eeb4e7d159f04899eebfeb2065a6785121e6e16df1fbf4c2f177377211a2f4a4",
+      "icon_sha256": "ec828b879409041db30782ebf6f1393350ccb5ca7f2e4baec33d335da8ec9c13"
+    },
+    {
+      "id": "ME04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME04-03.json",
+        "reference_sha256": "67376eb9c578ed5e7e71c4235bab640b0d5b845d3cf4296f27a363d3b32748b4"
+      },
+      "rp_sha256": "ffe00237e74027fc8274ce6289c9f1ac33ff31e532cd1892e0554ced5f2d8148",
+      "icon_sha256": "3b5d34421e6a209b143132e89fe5da423e4e1b22ce39c278e06cc30854681e5e"
+    },
+    {
+      "id": "ME05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME05-02.json",
+        "reference_sha256": "ed0e9a70b9dbcbc4b200a295db1c7556b3198fba2584b3696a416d1af1b24763"
+      },
+      "rp_sha256": "1bca75f0a925d84807dd8091fbf19990b60477b82359037f2449b8e7701e9d84",
+      "icon_sha256": "25cd63b65dcf420fcd22455a1cd146682163fcf35f02a5e1dcffe58d39a9b9b2"
+    },
+    {
+      "id": "ME06",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME06-04.json",
+        "reference_sha256": "c29b34e84e5869ac482952e9c67a4f24cca2249a6f5359b2308bace1957a9530"
+      },
+      "rp_sha256": "e41ff62b3f694a2b724a4ead0819e03aebaf24a22e0638f382ffedc9ebd0ad1b",
+      "icon_sha256": "aaa93759b0eb6a5a4bc32c84e7ade213721d8dc965df55e3e3fde8585286591a"
+    },
+    {
+      "id": "O02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-O02-02.json",
+        "reference_sha256": "19d821626143003f2523aafe7c4fa4b5ce1d647665929780bef4a0827f09e8c5"
+      },
+      "rp_sha256": "c375acfa7eb99b422b7c6d8222adf5124a95216b5b23d8a18694e4a82e43b203",
+      "icon_sha256": "50b3e106e5aa4c310e11aed11a233388233a42a1fdcceba07655b8b1bd1cb4b2"
+    },
+    {
+      "id": "O03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-O03-02.json",
+        "reference_sha256": "cd7b7fa348aa74a5b55b50b2594df5219b72a7d0018723fcdbcc24d267601ee1"
+      },
+      "rp_sha256": "bf21f2d66392f659448e2d8ff0b3200b9035e9bf65b248f6dacd67ba79a5a7cb",
+      "icon_sha256": "781b258bd4766377c73a8f106a2699324369a4f5fab7fcc9f2c280f3f546d6ac"
+    },
+    {
+      "id": "OC04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC04-06.json",
+        "reference_sha256": "c271d8078a82c8f386cc5cf93db5d5070818d780107fa796560ae7f986386495"
+      },
+      "rp_sha256": "b0a9ec775957517f85fc3a62ea8a88623719c460ecbec7a050c4a5426bec31b0",
+      "icon_sha256": "3733b5f3c90995126fe6e19de81d00f3fa3d0ae80f4f5a6b0b74374bcf1d3ebb"
+    },
+    {
+      "id": "OC05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC05-02.json",
+        "reference_sha256": "14f4f648b546f13ce8b921673637a490958b407447bd567d7560f18a141c3d5b"
+      },
+      "rp_sha256": "58a72dfac43c1400a097e014342f69a2aa9e54459994383fe0a86e01895b47d6",
+      "icon_sha256": "bc61f7ab3c6ace71bce02fb7435fcf6a53e2619af99c421918869680b328638d"
+    },
+    {
+      "id": "OC07",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC07-02.json",
+        "reference_sha256": "d1d6ac3e4e7b43b1cf8b13d45b3d8c99099f91906b717b465c5636510ef769a1"
+      },
+      "rp_sha256": "c123c5c86d6b91234bd0fa2d93b0af7e9e14f27e970c0f7e2e6341ed8322ba31",
+      "icon_sha256": "7853bfdbe580b3172337bcb7445e1aaf90b11e0b391bc9f0dd91e79e8c0b3cac"
+    },
+    {
+      "id": "SF00",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF00-11.json",
+        "reference_sha256": "af430381e8dc392ad37cb327e91e074ccc249457172a72868a0cfb98dc5aa13e"
+      },
+      "rp_sha256": "f93756be5f2fa900f17852091c4d655e3e01f1d0d6366d4c44fd56110f0d6d6d",
+      "icon_sha256": "2e55d31ea241cc56e4be28fce752802edab90e11dfa9c87da38b49a820455640"
+    },
+    {
+      "id": "SF01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF01-04.json",
+        "reference_sha256": "b5b6a6bb542fa107f1046fc11dd64c9d017133bf409002978e6d7eb174996cac"
+      },
+      "rp_sha256": "b606244c1d8c146f91a1adac2a0524c61f87b85925a8a4f3b7fe79571c6b1640",
+      "icon_sha256": "5e7751760cdd2875cd24dbcc1c48065f75ff0e124524047f715aae738dd24912"
+    },
+    {
+      "id": "SF02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF02-02.json",
+        "reference_sha256": "09ca80d72d747710fb95b2073fac217c87fbc9f054d58e3d802c00f53dffc564"
+      },
+      "rp_sha256": "1575adb409a866a1f84b7b0788a822dfd6ea8a1d43bc03e111ff59d6a4379053",
+      "icon_sha256": "6825702f9ef67487f44e80f647ff80919e410797ff848c632d2eaa92211f6ed0"
+    },
+    {
+      "id": "SG00",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG00-02.json",
+        "reference_sha256": "01186b326cc84fc0ce07c65ca0bcbc7b1e7e5654ef636cccf4015820c7610093"
+      },
+      "rp_sha256": "c91eb8785c29b884fd123ab928ce2dfd167c280dc364c3ecdd7b9e2ef266c462",
+      "icon_sha256": "eb33e8fad274ad5bb0e448b99cc70faf80d220ab7d6196528960fbb812b49c16"
+    },
+    {
+      "id": "SG01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG01-02.json",
+        "reference_sha256": "ebac5d78bbebdbd460d1bb95d1b769a0f84fdc1b4ee9bb1be51796f208dc27aa"
+      },
+      "rp_sha256": "9cbea4b2a8a6970bbacd2b7f9b3b8130d6147521e74fb966e37952d39577169e",
+      "icon_sha256": "405e21d0b94e4427897a2823a576a5a40691ed59eefcb61df84b1d08ed300aaa"
+    },
+    {
+      "id": "SG02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG02-02.json",
+        "reference_sha256": "71ce68cf98933bae4cefe5459cfbc0d60ef9b4bd84aeb2fb55e2e0284b06a645"
+      },
+      "rp_sha256": "26e4bde5a8014e12e94a04d947ce5f5724334aeb5864203b6e466c968330e764",
+      "icon_sha256": "d8a376607b5275d4b7d288e3d4b17c96b3d1357f936b4913019355da269bb21b"
+    },
+    {
+      "id": "SG03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG03-02.json",
+        "reference_sha256": "e611f69639688dca4d92d1ae95a9074c6e79ab007534e293577cadf6ddb09dc9"
+      },
+      "rp_sha256": "db98140a713684fbd107b410ca334135be00f490035780d112db672691dda7f6",
+      "icon_sha256": "eb80eac92005e664916af436d7f21af15f95576035bacac493ede6ed1eeebfdb"
+    },
+    {
+      "id": "SG04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG04-02.json",
+        "reference_sha256": "ca45202a2263bb771c80f76d69435ce1b71c5fcd8b0abfcc4f75154420e12f40"
+      },
+      "rp_sha256": "2dd8f5aac59638d37c5fc5ab9cccd22f8862cd1fb4724d657917e4fffec1217c",
+      "icon_sha256": "a6a51855aadc63388d0dee04685deeb3724bb891a988ad7e60bf7b887f414b0f"
+    },
+    {
+      "id": "SM00",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM00-02.json",
+        "reference_sha256": "fe9a39d758b8022e9a5f9bd43726135e7c7c3bc4783f7fb1fa4ea3261e2c6010"
+      },
+      "rp_sha256": "1f5bd8f03aed0161fc8881b5493fb469d957751411dc30ef2cc8b95a12694f89",
+      "icon_sha256": "623ba810a8ac6de03379ef597bbd845f1ad22f1b0304467b72b3674d6e1c36f4"
+    },
+    {
+      "id": "SM01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM01-02.json",
+        "reference_sha256": "c30182e65b0183ba04b965f177422d8cb200bd71c15912cc0be7af12c8698521"
+      },
+      "rp_sha256": "73acfe0c91a6d10c3b1041a637632155e0ffcb715815fd66d20ad343159417e8",
+      "icon_sha256": "4af57fc3ef6c36c3c010122f0acfb483ac12b55b3d5790d32cf851257c0bfff3"
+    },
+    {
+      "id": "SM02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM02-07.json",
+        "reference_sha256": "19ac71a41b9800cf3e9a8032c69a3162a6447321fe7d5ff7c23764cfca31cc3b"
+      },
+      "rp_sha256": "cb561cbcc4b5a20b46b686a9f51a218eb6f13270f64b87f1232da751a0de915f",
+      "icon_sha256": "a65e3ebc5493f2f7ab59a31c101c4dd1a542218916e595928a29e8fe2e5bab24"
+    },
+    {
+      "id": "SM03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM03-02.json",
+        "reference_sha256": "ab4238b4b849b27189d5d6cb29586685e704a6f5c3fb5d36d3778ec7462d3d65"
+      },
+      "rp_sha256": "15a22f09e00d209cd1a930ae3b030abea3d65f272726763ea6f4af1ac512a138",
+      "icon_sha256": "3f20bbc6293a34d02ca251b0db3de439235a1f7895a220e8ea7bea71130896e0"
+    },
+    {
+      "id": "SM04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM04-02.json",
+        "reference_sha256": "d0aa714e9224f930b49546ff5ad04872b06aae7f6c75f0784dc788841a23a2ac"
+      },
+      "rp_sha256": "d80dee66469f592b11e9e877ec8b59a5e22593af1f488ab487f7712ca4c60871",
+      "icon_sha256": "8932ecdce7511876b9f3ed210829165c536043fb312cb9a02fab0602f488b5d8"
+    },
+    {
+      "id": "SM05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM05-02.json",
+        "reference_sha256": "e716e16a175875afc369bc91273f3fb868fe990f7fd0d49dd10073220aa650b6"
+      },
+      "rp_sha256": "441719fa59ffb9d1f25920a99b2534a310c58799433e01b582fd9f43c4ff5aa6",
+      "icon_sha256": "ff9f850770e3cfeb75d07ebcb50194b12bda9aa15ea61b7eb7fbdad87405c71d"
+    },
+    {
+      "id": "SU03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU03-04.json",
+        "reference_sha256": "527ee5dc9243eafc1aca108d73796c8c272d2290a3a3fe717ff6a1e074b13851"
+      },
+      "rp_sha256": "60be0c7a57d453254676bd847279f3179cf3c8f988554144226f2aefad4ab0b2",
+      "icon_sha256": "e5e33b6fe1583f3287914b82e8bf73780f55d0a58dd19294a7d3a0eeaf2162f1"
+    },
+    {
+      "id": "SU04",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU04-02.json",
+        "reference_sha256": "abb3be61f8ac40e55e2b4146f524b4022f6289d7f1816412078ba5eb58113d79"
+      },
+      "rp_sha256": "ebfa83f274bb536f83a0d1d09f97678f501a199692893f546c724b05ad5099c1",
+      "icon_sha256": "ade7b551cf05a0dfb3c25852b89f3f87ccc0b1b17434494af2ac60ebd3653b2f"
+    },
+    {
+      "id": "SU05",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU05-04.json",
+        "reference_sha256": "8f036779479d46b75526439b2008d37f361603e3e37347192585ad0b46874ade"
+      },
+      "rp_sha256": "657c1fa9d66d0c03451775b84067610bd8e312c9fbbf26887414efe358016731",
+      "icon_sha256": "18909430d23857df35b7e32b04acf8ccf9930feec796f32731f76cd32aacc04f"
+    },
+    {
+      "id": "SU06",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU06-02.json",
+        "reference_sha256": "953311c646521991b61a80c5a0c19801fe70a24b68db5974121476fa959db279"
+      },
+      "rp_sha256": "d169a2fd0814e886c1f70a87b924d2c50082da0642aefb4b8127674b224f35d3",
+      "icon_sha256": "86409b636b6bdd1ca23304a76a123d858e6d80f4bd87a35dcbeb822c9f29da7f"
+    },
+    {
+      "id": "T01",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T01-02.json",
+        "reference_sha256": "7fdc1158e8260e33056b7bd1c88b32b5f00350808c7cdef3450aa8ba8cc823f4"
+      },
+      "rp_sha256": "bed2501f46abee9a0e0e7f9698f1cfd0ddcfcfd3d29e34439c5e350d91b3cf77",
+      "icon_sha256": "1339087ab5af3e2d2efdd239257dd92f2d32d76c639fc88a20fc2f205dbdc50a"
+    },
+    {
+      "id": "T02",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T02-02.json",
+        "reference_sha256": "bd9bf05bc4e2eebffb2c3ad593a0a0a18ff945cc44bd206c05e234811f4221c8"
+      },
+      "rp_sha256": "4ca2b832992365068e0789b0022e967cf9a7b6974861ece402b5478f87a8ac71",
+      "icon_sha256": "8b259fc49ecf1d2ad361e36ce421cda7ed6d6d0ce3662300129939e49361f6e3"
+    },
+    {
+      "id": "T03",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T03-02.json",
+        "reference_sha256": "067b2948fc7b3ac5592b7ae451015a881900ef097c5c8fe47d0acbb121b0b1a6"
+      },
+      "rp_sha256": "04f13f70b901a2b3475890846bef25e8552b1e32b457548725baa6d0d9ffdfd0",
+      "icon_sha256": "63ac0447c258757eb8b4c39f8adb11a63338d184ec46f26367c69986e289fc18"
+    },
+    {
+      "id": "TR61",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-TR61-04.json",
+        "reference_sha256": "35fa84b1cd42838405ca7b0c185ccf20b763a5a12ce10a9dc83bca1acf03e23c"
+      },
+      "rp_sha256": "d57bb68f52132fd69da07a3c9123f6857bdaccf2c12128ab8dfb2eddf7f391de",
+      "icon_sha256": "f2a27a9d6ceac1a95bb488287a1aeadb01a5d35c068a376360d1fbe3b56040e5"
+    },
+    {
+      "id": "TR63",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-TR63-02.json",
+        "reference_sha256": "faea19436918403f92a6edf3656a8fa2a1172cdf5226f2a58fa6c814ca6a5359"
+      },
+      "rp_sha256": "5f3568395a984e1d4f345491b0583b7542444364e3148a639bbc92a186716539",
+      "icon_sha256": "de9bd10d23eedbd255db598f5daa73678a1d041af1569a1061167d64750629b1"
+    },
+    {
+      "id": "TR64",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-TR64-02.json",
+        "reference_sha256": "a95e8afdbea998f061afa8cf5ef8572adf1fc337b6620f51ffdc4bf8c24bfcb7"
+      },
+      "rp_sha256": "4ac526069ade5abcf6b556941f8d27a29b3f024654561b9d4e55de0eb4e122d7",
+      "icon_sha256": "5f34766a6b9c1b5df7c53f031a768cc3a48dacad33ee7669e96039b8c3f49c2c"
+    },
+    {
+      "id": "TR65",
+      "source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-TR65-02.json",
+        "reference_sha256": "3a7082ed6e9170d0130b26cf13bb2cfc9edaa21e9339dcae2e567682c44d8a62"
+      },
+      "rp_sha256": "63c170850dfabc44b1b244eb3851fd825c29bda249a688fa9423c6558c6dba7a",
+      "icon_sha256": "dfd97a8b06ed21c511a2a533131b1c7271e51e63f2d09cb6aaccfb23dbb9bd50"
+    }
+  ]
+}

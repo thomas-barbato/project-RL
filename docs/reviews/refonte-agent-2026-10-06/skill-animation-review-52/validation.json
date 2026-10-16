@@ -1,0 +1,55 @@
+{
+  "batch": "ANIM-S23",
+  "date": "2026-10-13",
+  "visual_status": "visually_approved",
+  "campaign_integration": false,
+  "compile": "cargo build --locked: passed on final renderer",
+  "targeted_tests": "114 laboratory tests passed on initial implementation; final six aim/recovery tests passed after damage-type detail and untimed-menu corpse repair.",
+  "format": "cargo fmt --all -- --check: passed",
+  "diff_check": "Scoped git diff --check: passed",
+  "native_capture": {
+    "tile": 64,
+    "world": [
+      576,
+      576
+    ],
+    "gpu_readback": [
+      640,
+      720
+    ],
+    "views": 27,
+    "frames_per_view": 128,
+    "fps": 24,
+    "readbacks_with_controls": 4050,
+    "lossless_png_verified_before_raw_removal": true,
+    "resampling_of_native_capture": false,
+    "menu_repair": "Two views recaptured and losslessly encoded (300 readbacks), substituted after correction; remaining25 views pixel-verified unchanged."
+  },
+  "animations": 28,
+  "checked": [
+    "charges stay bounded, no idle gain, movement clears, untimed menu preserves",
+    "missing-energy limit and excluded kill sources",
+    "three-action recovery interval in prepared scenes",
+    "four directions and existing body/weapon geometry",
+    "world VFX and recoil stop at walls; HUD transfer separate",
+    "direct browser comparison and local controller checks reported separately"
+  ],
+  "rule_scope": "Approved BD04-02 and BD06-04 values retained; prepared timing, damage20 and energy100 do not define a campaign precision, damage, variance, rounding, full-energy cooldown or kill-attribution rule.",
+  "temporary_actors": "Existing monster32 drawings enlarged64; adaptation after animations.",
+  "excluded_draft": "native-feedback-draft and native-menu-draft are unpresented intermediate captures; exclude both from visual acceptance.",
+  "full_engine_suite_or_release_build": "Not run for this isolated animation review.",
+  "browser_runtime": "Not automated; native GPU captures visually inspected and offline controls checked.",
+  "browser_controller": {
+    "controller": "passed",
+    "all_local_frame_paths": true,
+    "manual_stages_do_not_show_future_actions": true,
+    "quiet_pause_preview": true,
+    "passive_charges_and_resource_limits": true,
+    "exclusions": true,
+    "responsive_comparison_scaled_hover_native_and_fullscreen": true,
+    "browser_runtime": "Not automated; offline controller and native captures checked."
+  },
+  "gif_palette": "Eight directional GIF phases checked at native scale; color-error bounds passed.",
+  "acceptance": "visual-acceptance-01.json",
+  "visual_approval": "BD04-A01 and BD06-A01 accepted."
+}

@@ -1,0 +1,139 @@
+{
+  "date": "2026-10-06",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/barriere-epine-rename-and-reflection-request-decisions.json",
+  "latest_decisions_sha256": "695715b323b4704bcad1cd1c472e73257e33a128a29e2431cb2c580f44d2eb5a",
+  "runtime_integration": "not_integrated",
+  "batch_revision": 4,
+  "document": "docs/REVUE_SURVIE_AGENT_LOT_04.md",
+  "document_sha256": "261a1edbaeeca619559c2cf4da9312ad8f8dc862a05959a638471c636d082b6d",
+  "blocks": [
+    {
+      "id": "B03",
+      "title": "Vitalité améliorée",
+      "block_sha256": "27c943b632025647f35fd6b5b3d39972b00c8067c83f5093acfd2539b41cbc2b",
+      "text_sha256": "fcf89ec7d4713791069e545edbe278e118bd1ca8a931699feff26eb34e6dc76a",
+      "mechanic_sha256": "27713f21734189df8a5a1fbd8104baf397d480c9a5399f502d5ecf1fd564c306",
+      "revision": 4,
+      "name_approval": "explicit_user_rename",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "displayed_individual_current_next_description_accepted",
+      "numeric_rules_approval": "displayed_current_next_values_and_no_healing_condition_accepted; unshown_formulas_and_conditions_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "accepted_visible_effect_examples": {
+        "1": {
+          "max_hp_percent": 10
+        },
+        "10": {
+          "max_hp_percent": 28
+        },
+        "12": {
+          "max_hp_percent": 32
+        }
+      },
+      "previous_block_manifest": "docs/reviews/refonte-agent-2026-10-06/review-lot-01-revision-04.json",
+      "reference_rename_only": "B03 now named Vitalité améliorée; effects unchanged",
+      "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-B03-02.json"
+    },
+    {
+      "id": "B02",
+      "title": "Égide occulte",
+      "block_sha256": "37eeadd9e29056ea22d1f68a93b95f1641aa2d5dafea6178a658de90905cb205",
+      "text_sha256": "869f4a555428f68dd5deaf9448065a5a9a85eb17d66b1c7f3308caf87d9c3c4e",
+      "mechanic_sha256": "6bacc5ef60b8f2e5c3e67015ae8a9547c2496e2d5a6684c0164e019d80c1f862",
+      "revision": 4,
+      "name_approval": "accepted_as_presented",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "displayed_individual_current_next_description_accepted",
+      "numeric_rules_approval": "displayed_current_next_reduction_duration_cost_cooldown_accepted; unshown_formulas_and_conditions_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "accepted_visible_effect_examples": {
+        "1": {
+          "direct_damage_reduction_display_percent": 25
+        },
+        "10": {
+          "direct_damage_reduction_display_percent": 48.7
+        },
+        "12": {
+          "direct_damage_reduction_display_percent": 51.2
+        }
+      },
+      "previous_block_manifest": "docs/reviews/refonte-agent-2026-10-06/review-lot-01-revision-04.json",
+      "presented_conditions_approval": "direct_damage_reduction_and_persistent_damage_exclusion_accepted",
+      "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-B02-02.json"
+    },
+    {
+      "id": "SU03",
+      "title": "Barrière d’épine",
+      "block_sha256": "24e19f3c6ccafb7b9e971ceb964107b939a7e2e7f65da74708cdbf45330a2c08",
+      "text_sha256": "93e7dce3fb9dd21cb9c939914b530c424518793f058ec1514f7f3a5cb67c315e",
+      "mechanic_sha256": "dffdaa4d400e6268c6d70d1aeaa2640f21d562290b0b3d9d4d8f96fa1a71930b",
+      "revision": 3,
+      "name_approval": "explicit_user_rename",
+      "catalogue_effect_approval": "reflection direction requested by user; bleeding exclusion explicit; exact conditions pending",
+      "text_approval": "new_reflection_roleplay_and_functional_copy_pending_individual_user_review",
+      "numeric_rules_approval": "previous_absorption_values_superseded; new_reflection_values_pending_user_review",
+      "visual_intention_approval": "previous_absorption_intention_superseded; new_reflection_intention_pending_review",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "reference_rename_only": "B03 now named Vitalité améliorée; effects unchanged",
+      "role": "active",
+      "role_approval": "temporary active buff proposed_pending_user_review",
+      "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU03-02.json"
+    },
+    {
+      "id": "SU04",
+      "title": "Réparation canalisée",
+      "block_sha256": "fddd8ae01ab520a3e5ea246173dd3c760ba4ce73be41df8692acdff04981c1aa",
+      "text_sha256": "c2dfc6815b6802bc872f117e886f93d4ab0702b10d319166d9e249d7f56e67b5",
+      "mechanic_sha256": "164850a588c6261621f7a658cca27bb4da91e67950ab063f2424db6839d832ba",
+      "revision": 1,
+      "name_approval": "accepted_as_presented",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "pending_individual_user_review",
+      "numeric_rules_approval": "new_details_pending_user_review",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "SU05",
+      "title": "Purgation",
+      "block_sha256": "9611368c9a4cc15359bc8d64c672bd35fb8b5322369f80870a32ed38520a843b",
+      "text_sha256": "8cef83b13ad85f0802c32a3e05444eec32e81391fdee44e322ebf203ed7a63ec",
+      "mechanic_sha256": "cb411f5caf9e174ea7937eb958a92b8873e1d22249a0d56f5ec4896781876755",
+      "revision": 1,
+      "name_approval": "accepted_as_presented",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "pending_individual_user_review",
+      "numeric_rules_approval": "new_details_pending_user_review",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "SU06",
+      "title": "Dernier sursaut",
+      "block_sha256": "2697eab9199b1f0bede474dba785f504291876c8cf904b0cf33fe8eb52bed116",
+      "text_sha256": "7267dd0760051e56dcb8bfb49cd56230997a85cb95de78e4f2aca0bceeb9f0ba",
+      "mechanic_sha256": "e1cbc241283cd48afc4ad2134f4e57f580abdac72d75be60a2c7158237293273",
+      "revision": 1,
+      "name_approval": "accepted_as_presented",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "pending_individual_user_review",
+      "numeric_rules_approval": "new_details_pending_user_review",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated"
+    }
+  ],
+  "calculation_examples": "docs/reviews/refonte-agent-2026-10-06/survival-description-examples.json",
+  "calculation_examples_sha256": "5f1e1bfc0080c88c3947938335cbfbd74f323412af261aef96cb65b8983d4cf4",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-03.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-survival-revision-03.md",
+  "historical_calculation_examples_status": "SU03 absorption examples are superseded; retained for history. Other examples unchanged.",
+  "current_SU03_calculation_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU03-02.json"
+}

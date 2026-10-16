@@ -1,0 +1,32 @@
+--- before-ui.rs
++++ src/agent_skill_window.rs
+@@ -664,20 +664,6 @@
+             UiTheme.muted(),
+         );
+         y = draw_wrapped_text(&skill.roleplay, x, y + 42.0, width, 16, 15, UiTheme.text());
+-        if catalogue()
+-            .art
+-            .get(&skill.id)
+-            .is_some_and(|entry| entry.contains_key("illustration"))
+-        {
+-            let side = 192.0_f32.min(width);
+-            art(
+-                &skill.id,
+-                "illustration",
+-                Rect::new(x + (width - side) * 0.5, y + 10.0 - offset, side, side),
+-                Some(pane),
+-            );
+-            y += side + 28.0;
+-        }
+         if let Some(required) = skill
+             .requires
+             .as_ref()
+@@ -790,7 +776,7 @@
+                 .values()
+                 .filter(|a| a.contains_key("compact"))
+                 .count(),
+-            75
++            76
+         );
+         assert_eq!(
+             data.art

@@ -58,16 +58,17 @@ impl HitRules {
             self.neutral_attribute,
         );
         let coordination_bonus = attribute_delta(coordination, self.neutral_attribute)
-            * i32::from(self.accuracy_per_coordination);
+            * i64::from(self.accuracy_per_coordination);
         let (base, perception_bonus) = match delivery {
             AttackDelivery::Melee => (self.melee_base_accuracy, 0),
             AttackDelivery::Ranged => (
                 self.ranged_base_accuracy,
                 attribute_delta(perception, self.neutral_attribute)
-                    * i32::from(self.ranged_accuracy_per_perception),
+                    * i64::from(self.ranged_accuracy_per_perception),
             ),
         };
-        i32::from(base) + coordination_bonus + perception_bonus + i32::from(modifier)
+        (i64::from(base) + coordination_bonus + perception_bonus + i64::from(modifier))
+            .clamp(i64::from(i32::MIN), i64::from(i32::MAX)) as i32
     }
 
     pub fn evasion(self, attributes: Option<PrimaryAttributes>, modifier: i16) -> i32 {
@@ -76,11 +77,11 @@ impl HitRules {
             PrimaryAttribute::Coordination,
             self.neutral_attribute,
         );
-        (i32::from(self.base_evasion)
+        (i64::from(self.base_evasion)
             + attribute_delta(coordination, self.neutral_attribute)
-                * i32::from(self.evasion_per_coordination)
-            + i32::from(modifier))
-        .max(0)
+                * i64::from(self.evasion_per_coordination)
+            + i64::from(modifier))
+        .clamp(0, i64::from(i32::MAX)) as i32
     }
 
     pub fn hit_chance(
@@ -92,12 +93,12 @@ impl HitRules {
         evasion_modifier: i16,
         context_modifier: i16,
     ) -> u8 {
-        let raw = self.accuracy(delivery, attacker_attributes, accuracy_modifier)
-            - self.evasion(defender_attributes, evasion_modifier)
-            + i32::from(context_modifier);
+        let raw = i64::from(self.accuracy(delivery, attacker_attributes, accuracy_modifier))
+            - i64::from(self.evasion(defender_attributes, evasion_modifier))
+            + i64::from(context_modifier);
         raw.clamp(
-            i32::from(self.minimum_hit_chance),
-            i32::from(self.maximum_hit_chance),
+            i64::from(self.minimum_hit_chance),
+            i64::from(self.maximum_hit_chance),
         ) as u8
     }
 }
@@ -122,12 +123,12 @@ fn attribute_value(
     attributes: Option<PrimaryAttributes>,
     attribute: PrimaryAttribute,
     neutral: u8,
-) -> u8 {
-    attributes.map_or(neutral, |values| values.value(attribute))
+) -> u16 {
+    attributes.map_or(u16::from(neutral), |values| values.value(attribute))
 }
 
-fn attribute_delta(value: u8, neutral: u8) -> i32 {
-    i32::from(value) - i32::from(neutral)
+fn attribute_delta(value: u16, neutral: u8) -> i64 {
+    i64::from(value) - i64::from(neutral)
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -163,7 +164,7 @@ impl Error for HitRulesError {}
 mod tests {
     use super::*;
 
-    fn attributes(coordination: u8, perception: u8) -> PrimaryAttributes {
+    fn attributes(coordination: u16, perception: u16) -> PrimaryAttributes {
         PrimaryAttributes::new(5, coordination, 5, perception, 5)
     }
 

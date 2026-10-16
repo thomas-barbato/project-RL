@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ15",
+  "revision": 3,
+  "title": "Repositionner",
+  "status": "shown_Repositionner_command_storage_replacement_zero_energy_cooldown6_per_drone_accepted;source_outside_vision_and_range_confirmed;native_and_unshown_details_pending",
+  "previous_proposal": "docs/reviews/refonte-agent-2026-10-06/review-drone-recall-command-PETS-EQ15-02.json",
+  "previous_proposal_sha256": "9dfdb35270c14fab93a1a82cb98a4b9f658c6acbf637b27e830e010d87ea2acf",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-49.json",
+  "current_attribute_model_sha256": "6481f83ac499fa45616d579d7c60d180b2f497141d23ed66c8f0b0a6c41b761f",
+  "explicit_direction": "docs/reviews/refonte-agent-2026-10-06/drone-repositioning-direction-decisions.json",
+  "explicit_direction_sha256": "ebfc7ba0b54e09f6ae55247e6db86872f62780273920617c1e314a783411d73e",
+  "shown_copy_markdown": "**PETS-EQ15 · Repositionner — proposition révisée**\n\nJe propose de remplacer le rangement par rappel par un bouton **« Repositionner »** dans la fenêtre **Familiers**.\n\n- Vous choisissez un drone déployé sur votre carte, puis une **case adjacente libre, praticable et visible**.\n- Le même drone est téléporté sur cette case, même s’il est coincé ou hors de votre champ de vision.\n- Il conserve **ses PV, son énergie, son équipement, son chargement, ses buffs et ses débuffs**. Ses autres recharges restent inchangées.\n- Si aucune case adjacente ne convient, l’action est indisponible.\n\n**Coût proposé : 0 énergie · Recharge : 6 tours par drone.**\n\nCette recharge limiterait les sauvetages répétés en combat. Le drone resterait sur la carte ; il n’y aurait plus d’étape de rangement ni de mise en pause de ses effets.\n\n**Ce remplacement et ses paramètres restent à valider.**",
+  "shown_copy_sha256": "0d68d8c1067335f296e84c8f186b516fbd4888d7266d5cdeb1dec52f80787951",
+  "already_requested_direction": {
+    "reposition_function": "user_suggests_teleport_same_drone_to_cell_adjacent_to_player_to_unblock_terrain_or_passage",
+    "reuse_cooldown": "user_requires_a_reuse_cooldown_to_limit_repeated_rescue;duration_and_per_drone_vs_shared_scope_not_chosen"
+  },
+  "dependencies": {
+    "accepted_lifecycle": "docs/reviews/refonte-agent-2026-10-06/review-drone-deployment-resources-PETS-EQ14-02.json",
+    "accepted_lifecycle_sha256": "f91644351803553afb64058707a02c704b5233bb460c817410e5ff34816f64a4",
+    "position_exchange_skill": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY04-02.json",
+    "position_exchange_skill_sha256": "3e243f0adcd1db25c2de52875e134cfe49ff8b93ac56f5d2b5607c2c703ef623",
+    "Mule_collection": "docs/reviews/refonte-agent-2026-10-06/review-mule-loot-collection-PETS-EQ16-02.json",
+    "Mule_collection_sha256": "1338ca4d45bd5ccc6b4deb3b99a05bfbf64f30963f041f99f7dff95b1669bd53"
+  },
+  "scope_audit": {
+    "accepted_rule_revision": "Only the manual offmap recall/storage and recall-to-redeployment branch of PETS_EQ14 is replaced. New-drone full reserves after destruction, real-item drops and familiar stat rules remain accepted and unchanged. Historical receipts are retained.",
+    "prior_recall_conditions": "unaccepted_revision1_source_adjacency_visibility_and_storage_conditions_superseded_by_accepted_revision2_rules",
+    "unreviewed_effect_pause": "PETS_EQ17_draft_was_never_accepted_and_is_withdrawn;no_status_pause_granted",
+    "position_exchange": "HY04_exchange_of_player_and_drone_positions_is_unchanged;new_command_moves_drone_only_toward_player",
+    "Mule": "real_cargo_and_player_FOV_collection_rule_preserved;replanning_or_cancelling_active_collection_on_reposition_not_decided",
+    "cooldown_request": "presence_requested_by_user;cost0_and_cooldown6_per_drone_now_explicitly_accepted",
+    "visual": "teleport_function_requested;no_new_sprite_pixel_effect_destination_highlight_font_or_icon_created"
+  },
+  "unshown_cases_pending": [
+    "command_agent_action_budget_and_exact_phase_cooldown_tick_order",
+    "active_orders_follow_attack_or_Mule_collection_replanning_after_teleport",
+    "destination_item_piles_corpses_mines_zones_and_on_arrival_effects",
+    "same_turn_drone_death_control_status_or_source_map_change_and_atomic_refusals",
+    "native_adjacent_destination_selection_disabled_tooltip_and_teleport_preview",
+    "layer_transition_drone_persistence_without_manual_storage_and_save_format"
+  ],
+  "player_copy_approval": "actual_final_shown_copy_and_Repositionner_label_accepted",
+  "mechanical_approval": "shown_reposition_rules_and_cost0_cooldown6_per_drone_accepted;outside_vision_or_range_source_explicitly_confirmed",
+  "visual_intention_approval": "teleport_same_drone_to_selected_adjacent_cell_direction_accepted",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/drone-repositioning-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "7978b520533186827492a522f6ba57f0e34531ac8fab33a93f09b97879c418e1",
+  "proposed_copy_markdown": "Oui, une commande pour **replacer un drone près de vous** serait plus utile pour le débloquer.\n\n**PETS-EQ15 · Repositionner — proposition révisée**\n\nJe propose de remplacer le rangement par rappel par un bouton **« Repositionner »** dans la fenêtre **Familiers**.\n\n- Vous choisissez un drone déployé sur votre carte, puis une **case adjacente libre, praticable et visible**.\n- Le même drone est téléporté sur cette case, même s’il est coincé ou hors de votre champ de vision.\n- Il conserve **ses PV, son énergie, son équipement, son chargement, ses buffs et ses débuffs**. Ses autres recharges restent inchangées.\n- Si aucune case adjacente ne convient, l’action est indisponible.\n\n**Coût proposé : 0 énergie · Recharge : 6 tours par drone.**\n\nCela permettrait de le débloquer tout en limitant les sauvetages répétés en combat. Le drone resterait sur la carte ; il n’y aurait plus d’étape de rangement ni de mise en pause de ses effets.\n\n**Ce remplacement et ses paramètres restent à valider.**",
+  "proposed_copy_sha256": "2c065cb17d24b7bd70fca353ffa0e0fb805c35ee041bafaccb45702eb8964944",
+  "accepted_shown_rules": {
+    "scope": "five_existing_deployed_controlled_drones;not_raised_allies_or_new_monster_control",
+    "control": "Repositionner_button_per_drone_in_existing_planned_Familiers_window;replace_Rappeler_storage_control",
+    "source": "same_living_deployed_drone_on_current_player_map;source_need_not_be_adjacent_visible_or_path_connected_to_player;no_source_distance_limit",
+    "destination": "player_selects_one_of_eight_adjacent_cells_that_is_actor_free_walkable_and_visible_to_player",
+    "movement": "teleport_only_drone_to_selected_cell_without_moving_player_or_changing_actor_identity",
+    "preserved_state": "preserve_current_HP_energy_equipped_items_Mule_cargo_and_existing_temporary_buffs_debuffs;no_intrinsic_heal_refill_purge_or_duration_reset",
+    "other_cooldowns": "preserve_existing_invocation_and_actor_skill_remaining_cooldowns;reposition_own_timer_is_separate",
+    "energy_cost": 0,
+    "reposition_cooldown_turns": 6,
+    "cooldown_scope": "per_drone",
+    "destination_unavailable": "disable_action_if_no_legal_adjacent_cell;no_successful_teleport_or_cooldown_start_for_failed_choice",
+    "storage_replacement": "manual_offmap_recall_storage_and_recall_then_resummon_step_replaced_by_Repositionner;actors_remain_active_on_map_with_normal_status_progression",
+    "invocation_after_destruction": "accepted_new_actor_full_HP_energy_and_real_item_drops_preserved;no_resurrection_of_destroyed_actor",
+    "scope_boundary": "ordinary_command_scheduler_budget_exact_cooldown_start_deployed_order_behavior_and_native_teleport_rendering_still_pending",
+    "source_visibility_and_distance": "explicit_latest_user_clarification:button_usable_when_drone_outside_player_field_of_view_or_range;current_map_scope_retained;arrival_cell_visibility_still_required"
+  },
+  "source_visibility_and_distance_clarification": "ce bouton serait accessible aussi en cas de drone hors du champ de vision du joueur (donc hors de portée)"
+}

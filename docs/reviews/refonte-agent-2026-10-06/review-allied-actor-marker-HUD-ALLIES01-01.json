@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-07",
+  "review_id": "HUD-ALLIES01",
+  "revision": 1,
+  "request_reference": "docs/reviews/refonte-agent-2026-10-06/necromancy-and-allied-familiar-direction-decisions.json",
+  "request_reference_sha256": "3d196ac35dd5969479a63653c6d2beaccf21f6e455d61b234c08df68908024f3",
+  "scope": [
+    "deployed_allied_drones",
+    "OC07_reanimated_allies"
+  ],
+  "proposed_visual_direction": {
+    "symbol": "◆",
+    "shape": "small_diamond",
+    "color": "cyan",
+    "position": "above_visible_allied_actor",
+    "animation": "fixed",
+    "independent_of_health_bar_visibility": true,
+    "uses_color_and_shape": true
+  },
+  "proposed_hover_copy": {
+    "drone": "Allié — drone",
+    "reanimated_monster": "Allié — réanimé"
+  },
+  "visibility_scope": "Only actors already visible by existing approved perception rules; marker does not grant vision or expose hidden actors or statistics.",
+  "request_approval": "explicit_user_request",
+  "exact_direction_approval": "proposed_pending_explicit_user_review",
+  "tooltip_copy_approval": "proposed_pending_explicit_user_review",
+  "native_dimensions_placement_pixels": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

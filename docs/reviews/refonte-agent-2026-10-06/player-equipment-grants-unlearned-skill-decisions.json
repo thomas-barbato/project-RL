@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-09",
+  "review_id": "GEAR-SK00",
+  "source": "direct_user_instruction",
+  "user_reply": "parfait :) . \n\nUn petit ajout concernant les objets qui donnent des bonus de compétences : \n\nMeme si le joueur n'a pas débloqué la compétence de lui meme concernée par l'objet, \nLa compétence devra être utilisable .\n\nEnsuite on continue",
+  "accepted_explicit_rule": "player_can_use_skill_targeted_by_eligible_equipment_skill_bonus_even_without_having_personally_unlocked_or_learned_it",
+  "scope": "player_and_equipment_skill_bonus;not_automatic_extension_to_familiar_unknown_skills",
+  "existing_context": "learned_ranks_and_effective_equipment_ranks_are_distinct;equipment_can_raise_effective_rank_beyond10;boosted_rank_color_and_weapon_requirements_remain_accepted",
+  "details_to_review": [
+    "zero_learned_rank_plus_equipment_bonus_example_and_passive_effect_availability",
+    "loss_of_last_gear_bonus_and_persistence_of_ongoing_effects_or_familiars",
+    "secondary_purchase_prerequisite_vs_gear_granted_use",
+    "cooldown_persistence_across_removing_and_reequipping_granting_item",
+    "bonus_affix_scope_specific_skill_branch_or_all_skills_and_native_UI"
+  ],
+  "approval_scope": "The direct player rule is accepted as an instruction; no extra point investment, prerequisite changes, familiar abilities or new affix families are approved by inference.",
+  "player_copy_approval": "user_rule_record_only;assistant_game_tooltip_copy_not_presented",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

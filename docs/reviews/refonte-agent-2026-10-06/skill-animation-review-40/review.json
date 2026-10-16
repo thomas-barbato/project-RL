@@ -1,0 +1,60 @@
+{
+  "batch": "ANIM-S14",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 29,
+      "id": "M01-GRIFFE",
+      "name": "Griffe",
+      "variant": "M01-GRIFFE-A01",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 30,
+      "id": "M01-LACERATION",
+      "name": "Lacération",
+      "variant": "M01-LACERATION-A01",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 31,
+      "id": "M01-BOND",
+      "name": "Bond",
+      "variant": "M01-BOND-A01",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 32,
+      "id": "TR61-COUP",
+      "name": "Coup lourd",
+      "variant": "TR61-COUP-A01",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 33,
+      "id": "TR61-ECRASEMENT",
+      "name": "Écrasement",
+      "variant": "TR61-ECRASEMENT-A01",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 34,
+      "id": "TR61-ONDE",
+      "name": "Onde de choc",
+      "variant": "TR61-ONDE-A01",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "approved_bodies": "M01-BODY01 and TR61-BODY01, unchanged from accepted review39",
+  "visuals": "Rapid painted four-claw sweeps, heavy ivory/slate impact fragments, compact two-cell leap, radial ground shock. Blood sprays on physical wounds; small falling drops on bleeding targets, orbiting ivory marker while stunned.",
+  "rules_retained": "Known footprints and durations only:3 front cells for Laceration;2-cell clear path for Bond;1-cell contact hits and1-cell shock radius. Prepared successes show3-turn Bleeding and1-turn Stun, with cooldowns0/3/3/0/4/4. No damage/RNG/energy calculation.",
+  "scope": "Isolated debug visual fixture, no campaign integration, HP, stats, loot, equipment, real AI, saves or extra leap damage. Native bodies stay frontal. Movement is logically applied immediately; drawing finishes a compact cosmetic leap.",
+  "acceptance": "visual-acceptance-01.json"
+}

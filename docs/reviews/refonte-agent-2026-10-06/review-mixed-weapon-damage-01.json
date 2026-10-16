@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-09",
+  "review_id": "D02-MIX01",
+  "stable_rule_id": "D02",
+  "revision": 1,
+  "title": "Dégâts physiques et élémentaires",
+  "status": "mixed_damage_sampling_critical_sharing_attribute_mapping_protection_rounding_and_display_proposed_pending_explicit_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-19.json",
+  "current_attribute_model_sha256": "1c72999e816f290f13807de8a02fce0da50d53c2e1c8632816499c28350f0289",
+  "shown_copy_markdown": "La **variance corrigée est validée**, y compris le tirage uniforme et le tirage indépendant pour chaque victime d’une explosion.\n\n**D02 · Dégâts physiques et élémentaires — proposition**\n\nUne attaque peut combiner plusieurs types de dégâts.\n\n**Exemple de fiche, bonus déjà inclus**\n\n- Dégâts physiques : **20–30**.\n- Dégâts de froid : **5–10**.\n- Dégâts totaux : **25–40**, avant les défenses et hors critique.\n\n**Calcul proposé**\n\n- Chaque type de dégâts possède sa plage et son propre tirage indépendant.\n- Un seul jet de critique par coup sur une cible : en cas de critique, toutes ses composantes de dégâts directs sont doublées.\n- L’armure s’applique une seule fois au total des dégâts physiques. Chaque résistance s’applique aux dégâts de son élément.\n- Les résultats sont additionnés, puis le total est arrondi à l’entier inférieur.\n\n**Effet des attributs**\n\nJe propose que le bonus de **Force en mêlée**, ou de **Perception pour le tir et les armes lourdes à distance**, renforce toutes les composantes de dégâts directs de l’arme, physiques comme élémentaires. La **Volonté** renforce les sorts.\n\n**Exemple de dégâts infligés**\n\nUn coup tire **24 dégâts physiques + 8 dégâts de froid**. La cible possède **6 armure** et **50 % de résistance au froid** :\n\n- Coup normal : **18 physiques + 4 froid = 22 dégâts**.\n- Coup critique : **42 physiques + 8 froid = 50 dégâts**.\n\nLes valeurs de cet exemple sont fictives. **Ces règles pour les dégâts mixtes restent à valider.**",
+  "shown_copy_sha256": "6791db4a411ea6e223782cfb81260fcc90fe6e160da2199ccc57c3953fd6bb60",
+  "new_proposed_rules": {
+    "component_distribution": "separate_minimum_maximum_and_independent_uniform_integer_base_draw_per_direct_weapon_damage_family",
+    "critical_sharing": "one_critical_decision_per_impact_on_one_target_shared_by_all_eligible_direct_damage_components;accepted_2x_before_defenses",
+    "physical_protection": "aggregate_physical_subtypes_then_apply_armor_once_with_floor_zero",
+    "elemental_protection": "apply_current_effective_corresponding_resistance_to_each_elemental_damage_family",
+    "rounding": "sum_protected_components_then_floor_total_once;no_intermediate_component_floor",
+    "attribute_mapping": "accepted_melee_Force_or_ranged_including_heavy_Perception_damage_bonus_applies_to_all_direct_weapon_components;Volonte_bonus_applies_to_spells_not_automatically_to_elemental_weapon_components",
+    "tooltip": "show_damage_family_minimum_maximum_and_total_minimum_maximum_before_target_defenses_and_excluding_critical;applicable_current_bonuses_already_included"
+  },
+  "scope": "player_weapon_attacks_and_weapon_skills;other_source_and_transformed_mapping_pending",
+  "shown_examples": {
+    "tooltip": {
+      "physical_minimum": 20,
+      "physical_maximum": 30,
+      "cold_minimum": 5,
+      "cold_maximum": 10,
+      "total_minimum": 25,
+      "total_maximum": 40,
+      "bonuses_already_included": true,
+      "noncritical_and_predefense": true,
+      "actual_equipment_balance": "none;fictional_example"
+    },
+    "impact": {
+      "rolled_physical": 24,
+      "rolled_cold": 8,
+      "armor": 6,
+      "cold_resistance_percent": 50,
+      "normal_protected_physical": 18,
+      "normal_protected_cold": 4,
+      "normal_total": 22,
+      "critical_protected_physical": 42,
+      "critical_protected_cold": 8,
+      "critical_total": 50
+    }
+  },
+  "accepted_dependencies": {
+    "critical": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-critical-hits-02.json",
+    "critical_sha256": "8e2978d7eda6e226169a762aa4fe3e77152de69236cb273a57cf484ee2ce9067",
+    "resistances": "docs/reviews/refonte-agent-2026-10-06/review-resistance-system-04.json",
+    "resistances_sha256": "8eefe5062f23f68cde76b3b8b7db55016a3fce5aeafdc45d83bc9238f95af279",
+    "weapon_variance": "docs/reviews/refonte-agent-2026-10-06/review-weapon-damage-variance-03.json",
+    "weapon_variance_sha256": "c91ee9ca2aa1798000720b4acd791129f6aaffa3347b78f9e31e67723ae6c368"
+  },
+  "unshown_cases_pending": [
+    "flat_elemental_affix_ranges_and_quality_or_level_mapping",
+    "skill_added_damage_vs_weapon_component_conversion_modifier_stacking_and_rounding",
+    "multiple_active_weapons_transformation_snapshot_and_natural_attack_mapping",
+    "nonweapon_spells_drones_NPC_secondary_and_periodic_component_variance",
+    "RNG_draw_order_hit_miss_outcomes_and_replay",
+    "weapon_or_skill_status_chance_eligibility_not_created_by_elemental_damage_alone",
+    "native_tooltip_layout_damage_colors_and_feedback",
+    "all_other_unshown_cases"
+  ],
+  "player_copy_approval": "pending_explicit_review",
+  "numeric_and_scope_approval": "pending_explicit_review",
+  "new_native_visuals_proposed": false,
+  "runtime_integration": "not_integrated"
+}

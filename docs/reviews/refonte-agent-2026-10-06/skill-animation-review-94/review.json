@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S47",
+  "status": "body_size_taunt_animation_and_marker_visually_accepted_pending_campaign_integration",
+  "candidates": [
+    {
+      "number": 101,
+      "id": "D66",
+      "variant": "D66-TAUNT-A01",
+      "title": "Provocation du Gardien"
+    },
+    {
+      "number": 103,
+      "id": "D66",
+      "variant": "D66-TAUNT-I01",
+      "title": "Marqueur de provocation"
+    },
+    {
+      "number": 104,
+      "id": "D66",
+      "variant": "D66-SIZE01",
+      "title": "Gardien haut de 64 px"
+    }
+  ],
+  "user_request": "il faudra donc faire un visuel pour le taunt et une petite icone au dessus de la tete des monstres qui sont taunt",
+  "mechanical_direction_acceptance": "../drone-army-and-guardian-taunt-acceptance-01.json",
+  "simultaneous_taunt_acceptance": "../guardian-simultaneous-taunts-acceptance-01.json",
+  "visual_intent": "Brief outlined copper impulse behind actors, then a small upright red-orange exclamation with inward chevrons on a transparent canvas over each affected monster. No damage-reduction shield, permanent area fill or stacked badges.",
+  "native_tile": 64,
+  "status_icon_canvas": 32,
+  "scenes": 8,
+  "controls": "Automatic demonstration or manual cast and turn progression. Waiting without a turn does not expire the status.",
+  "fixtures_not_balance_acceptance": {
+    "radius_cells": 2,
+    "duration_turns": 2,
+    "nearest_selection": "Squared direct distance; stable fixture source index on a tie. Campaign metric and tie implementation still pending.",
+    "enemies": "Stationary visual actors; no campaign AI attacks simulated.",
+    "recall": "First turn in the recall example; manual native recall also available."
+  },
+  "preserved": [
+    "Accepted D66-BODY02 body",
+    "Frontal actor poses",
+    "Shared harmful-status recoil",
+    "No blood without a physical wound",
+    "Current skill catalogue and campaign rules"
+  ],
+  "previous_O03_visual_status": "still_pending_separate_approval",
+  "campaign_integration": false,
+  "active_asset_integration": false,
+  "size_revision": {
+    "reference": "gardien-size01/review.json",
+    "user_request": "est-ce que par hasard, on pourrait faire en sorte que la hauteur du drone gardien fasse la hauteur de la case ? pour le rendre plus massif",
+    "status": "visual_accepted_pending_campaign_integration",
+    "acceptance": "gardien-size01/visual-acceptance-01.json",
+    "body_height": 64,
+    "body_width": 80,
+    "preserve_aspect_ratio": true,
+    "preserve_simulation_and_taunt_effect": true
+  },
+  "visual_acceptance": "../skill-animation-review-103/visual-acceptance-01.json"
+}

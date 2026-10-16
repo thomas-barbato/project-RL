@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/cooldown-acceptance-and-complete-design-decisions.json",
+  "latest_decisions_sha256": "65e8c73b5956f2876aa22af1b905a64f4cea6e2d6395535e10f855b7e1881726",
+  "text_approval": "pending_user_review",
+  "visual_approval": "pending_preview_and_user_review",
+  "batch_revision": 6,
+  "document": "docs/REVUE_ARBRES_COMPETENCES_AGENT.md",
+  "document_sha256": "b51d81ae2eb9eb3d4d8ea26aefb82a444ab64e5fc530902edf63749ab7d67e68",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-trees-05.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-trees-revision-05.md",
+  "status": "adapted_tier_proposal_completed_pending_later_user_review",
+  "accepted_requirements": {
+    "specialized_branch_count": 14,
+    "branch_names": [
+      "Mêlée",
+      "Survie",
+      "Drones",
+      "Affaiblissements",
+      "Attaques à distance",
+      "Esquive",
+      "Feu",
+      "Froid",
+      "Foudre",
+      "Énergie occulte",
+      "Transformations",
+      "Pouvoirs hybrides",
+      "Buffs de mêlée",
+      "Buffs à distance"
+    ],
+    "catalogue_before_final_counts_and_tiers": true,
+    "distinct_gameplay_and_visual_for_each_candidate": true,
+    "diablo_two_skill_inspiration_requested": true,
+    "unlock_by_points_invested_in_branch": true,
+    "all_tier_choices_learnable": true,
+    "all_classes_can_access_all_branches": true,
+    "learned_rank_cap": 10,
+    "cost_per_rank": 1,
+    "catalogue_counts": {
+      "branches": 14,
+      "normal_branch_skills": 6,
+      "drone_skills": 8,
+      "total_skills": 86
+    },
+    "three_part_description": [
+      "roleplay description",
+      "default numeric effects",
+      "current numeric values"
+    ]
+  },
+  "historical_grid_under_reconsideration": {
+    "grid_scope": "each_specialized_branch",
+    "minimum_tier_rows_per_branch": 4,
+    "skill_options_per_tier": 3,
+    "minimum_distinct_skills_per_branch": 12,
+    "all_three_options_learnable_with_points": true,
+    "unlock_by_points_invested_in_branch": true,
+    "choose_thresholds_after_branch_catalog": true
+  },
+  "current_numeric_proposal_document": "docs/CADRAGE_COMPETENCES_AGENT_COMPLET.md",
+  "tier_proposal_approval": "pending_later_user_review"
+}

@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S46",
+  "status": "guardian_effect_superseded_O03_no_dedicated_animation",
+  "campaign_integration": false,
+  "native_tile": 64,
+  "candidates": [
+    {
+      "number": 101,
+      "id": "D66",
+      "variant": "D66-A01",
+      "title": "Invocation du Gardien"
+    },
+    {
+      "number": 102,
+      "id": "O03",
+      "variant": "O03-A01",
+      "title": "Algorithmes de combat améliorés"
+    }
+  ],
+  "effective_rank": 1,
+  "scenes": 26,
+  "frames": 144,
+  "capture_fps": 24,
+  "scenario_ids": [
+    "COMBAT",
+    "TRAQUEUR",
+    "ARTILLEUR",
+    "HORS_PORTEE",
+    "CLOISON",
+    "MACHINE",
+    "SOUTIEN",
+    "ATTENTE",
+    "ENERGIE",
+    "EXISTANT"
+  ],
+  "prepared_values": {
+    "guardian_energy": 14,
+    "guardian_cooldown": 6,
+    "protection_percent": 5,
+    "protection_radius": 2,
+    "passive_bonus_percent": 25,
+    "guardian_hit_fixture": 12,
+    "passive_base_fixture": 20,
+    "passive_hit_fixture": 25,
+    "incoming_hit_fixture": 20,
+    "protected_hit_fixture": 19,
+    "enemy_hp_fixture": 160,
+    "ally_hp_fixture": 120
+  },
+  "accepted_mechanics": [
+    "../drone-persistence-acceptance-decisions.json",
+    "../drone-deployment-resources-acceptance-decisions.json",
+    "../drone-first-action-acceptance-decisions.json",
+    "../drone-combat-order-costs-acceptance-decisions.json",
+    "../direct-drone-damage-bonus-acceptance-decisions.json",
+    "../gardien-acceptance-and-skill-tooltip-format-decisions.json",
+    "../combat-algorithms-name-and-roleplay-acceptance-decisions.json"
+  ],
+  "preview_copy": [
+    "Déploie un Gardien qui frappe au contact et protège le joueur et ses drones proches, y compris lui-même. Au rang 1 : réduction de 5 %, rayon de 2 cases, coût de 14 énergie et recharge de 6 tours. Une cloison ou un allié trop éloigné coupe la protection. Un seul Gardien peut être présent.",
+    "Renforce les attaques des drones armés. Au rang 1 : +25 % de dégâts, sans coût ni recharge. Une courte impulsion dans leurs circuits accompagne chaque attaque. L’Éclaireur et la Mule restent sans attaque."
+  ],
+  "source": "src/agent_skill_lab_review/fire_painted/drone_guardian.rs",
+  "catalogue_sha256": "459b572632cd0bdba78a8120fe1b3244b52199bb8f23bc0bd3ea9c7d246facfb",
+  "scope": "Isolated rank-one animated fixtures using visually accepted D66-BODY02, D66-C03 and D58-PAL02. Guardian shield segments persist on protected bodies and react to hits; circuit pulses appear on armed-drone attacks. Damage12/20/25/19 and HP160/120 are illustrative, not native attack statistics or balancing. Clear axis-aligned protection and out-of-range/occlusion cases do not define a diagonal metric. No new AI, priorities, native weapon variance, drone energy costs or campaign scheduling. Existing Scout/Mule32 geometry retained until deferred bestiary work. No save, corpse or active catalogue integration.",
+  "native_lab": "--apercu-laboratoire-competences --lot-gardien-algorithmes",
+  "preview": "../apercu-animations.html?lot=93",
+  "preview_published": true,
+  "remaining_unshown": 9,
+  "still_unshown": [
+    "DP01",
+    "DP02",
+    "DR01",
+    "DI01",
+    "DI02",
+    "DI03",
+    "DI04",
+    "DI05",
+    "DI07"
+  ],
+  "pending_separately": "B03 mechanics and review90 visual acceptance. Native64 bestiary redraw deferred until animations complete.",
+  "previous_accepted_review": "../skill-animation-review-92/visual-acceptance-01.json",
+  "temporary_capture_policy": "Reuse the HTML and remove intermediate native atlases, QA and logs after lossless compact verification.",
+  "body_review": "gardien-body02/review.json",
+  "palette_revision": "traqueur-palette02",
+  "latest_user_feedback": [
+    "non il va falloir redessiner un peu ce dernier drone la , je sais pas , ca va pas :)",
+    "est-ce qu’on pourrait aussi mette les pates du drone traqueur en blanc os ? (enfin la meme couleur que sa tête"
+  ],
+  "source_sha256": "eff8a05775522f8a0894e22528796594928b7f4a35d35874fb4d980b00837619",
+  "palette_review": "traqueur-palette02/review.json",
+  "current_preview_type": "animated native laboratory, two scenes side by side",
+  "animation_preview_published": true,
+  "body_palette_acceptance": "body-palette-acceptance-01.json",
+  "latest_visual_reply": "oui c'est beaucoup mieux :D",
+  "playback_bytes": 12173154,
+  "inline_animation": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-93/gardien-protection-64.webp",
+  "inline_passive_animation": "algorithmes-combat-64.webp",
+  "cleanup": "cleanup.json",
+  "verification": {
+    "debug_build": true,
+    "targeted_tests_passed": 3,
+    "format_check": true,
+    "diff_check": true,
+    "native_visual_QA": true,
+    "native_lossless_scene_count": 26,
+    "viewer_controller": "10 scenarios, 4 directions and 3 manual turns; offline mock DOM, no browser render claim.",
+    "inline_native_frames_pixel_verified_per_skill": 144,
+    "wall_revision_24_other_playbacks_byte_preserved": true,
+    "body_palette_acceptance_preserved": true,
+    "temporary_capture_cleanup_complete": true,
+    "campaign_integration": false
+  },
+  "latest_feedback": "Guardian design reaffirmed; user questions protection and proposes area taunt plus multiple same-model drones. Discussion pending, no new animation or mechanic acceptance inferred.",
+  "mechanics_discussion": "../drone-army-and-guardian-taunt-discussion-01.json",
+  "mechanics_direction_acceptance": "../drone-army-and-guardian-taunt-acceptance-01.json",
+  "next_mechanics_review": "../drone-army-review-01/proposal.json",
+  "candidate_status": {
+    "D66-A01": "Historical reduction shield superseded by accepted area-taunt direction; new taunt animation required.",
+    "O03-A01": "No dedicated animation required by the player; the circuit is removed."
+  },
+  "required_visual_revision": [
+    "D66-TAUNT01"
+  ],
+  "O03_visual_decision": "../skill-animation-review-104/no-circuit-decision.json"
+}

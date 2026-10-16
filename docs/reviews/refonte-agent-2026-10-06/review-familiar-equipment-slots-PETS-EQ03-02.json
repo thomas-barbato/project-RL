@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ03",
+  "revision": 2,
+  "title": "Emplacements des familiers",
+  "status": "shown_familiar_equipment_slots_single_weapon_activation_torso_armor_and_shared_loot_accepted;unshown_cases_pending",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-35.json",
+  "current_attribute_model_sha256": "ec9a09a9951ff69ebcfdc21875ff45ed9ccc0686a274b533e699282bc75d0a75",
+  "shown_copy_markdown": "Les **compléments sur l’équipement des familiers sont validés**.\n\n**PETS-EQ03 · Emplacements des familiers — proposition**\n\nJe propose une fiche simple pour commencer.\n\n**Traqueur, Artilleur, Gardien et monstres ressuscités**\n\n- **1 emplacement d’arme**, compatible avec leur vocation.\n- **1 emplacement d’armure de torse**, compatible avec le familier.\n\nUne arme compatible à une ou deux mains occupe l’unique emplacement d’arme et devient son arme active.\n\n**Éclaireur et Mule**\n\n- **1 emplacement d’armure de torse**.\n\nCes deux drones conservent leur rôle sans attaque.\n\nLes armes et armures viennent du **même loot que celui du joueur**, avec les conditions de niveau et de compatibilité validées.\n\nLe rangement de la Mule reste distinct : son sac transporte les objets, ses emplacements servent à l’équiper.\n\n**Ces emplacements restent à valider.**",
+  "shown_copy_sha256": "6bce8392a3e0c03a2165cbf5ef090e278285e2388ca0e4c302905c5d2061fe34",
+  "new_proposed_rules": {
+    "scope": "existing_drone_models_D56_D57_D58_D59_D66_and_raised_monsters;future_familiars_require_separate_role_compatibility_review",
+    "combat_familiars": [
+      "D58",
+      "D59",
+      "D66",
+      "raised_monsters"
+    ],
+    "combat_slots": {
+      "weapon": 1,
+      "torso_armor": 1
+    },
+    "utility_models": [
+      "D56",
+      "D57"
+    ],
+    "utility_slots": {
+      "weapon": 0,
+      "torso_armor": 1
+    },
+    "weapon_activation": "the_single_compatible_equipped_weapon_becomes_active;one_or_two_handed_weapon_uses_the_same_single_weapon_slot;no_second_inactive_slot_or_dual_wield_added",
+    "armor_scope": "one_compatible_torso_armor_item;no_head_hands_feet_accessory_slot_in_this_proposal",
+    "loot_source": "existing_player_loot_items_with_accepted_required_level_and_familiar_compatibility;no_new_drone_only_item_catalogue_or_item_model_created",
+    "Mule_storage": "cargo_storage_separate_from_equipment;equipping_is_not_storing_an_item_in_cargo;cargo_capacity_or_extra_storage_for_other_pets_not_defined",
+    "noncombat_models": "Eclaireur_Mule_no_attack_preserved"
+  },
+  "dependencies": {
+    "equipment_complements": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-PETS-EQ01-03.json",
+    "equipment_complements_sha256": "8f3a02daa23df9637fda5a92fd91a3f7267c538d70be8610442ee92994abc7a5",
+    "weapon_base": "docs/reviews/refonte-agent-2026-10-06/review-familiar-weapon-damage-base-PETS-EQ02-02.json",
+    "weapon_base_sha256": "0b1faee1634503b5f634f2f15222e24a993be39ada644e92e951e6d3e8c79fea",
+    "art_direction": "docs/DIRECTION_ARTISTIQUE_TILES.md",
+    "art_direction_sha256": "e9a0b1299a5484cb01ce13b5ae5c35604c94ed53b72ea93a99073e5435031f6d"
+  },
+  "scope_audit": {
+    "accepted_compatibility": "item_level_and_combat_type_conditions_preserved;exact_allowed_weapon_and_armor_families_still_pending",
+    "roles": "existing_combat_or_utility_roles_preserved;does_not_give_Eclaireur_or_Mule_a_weapon_attack",
+    "player_equipment": "player_slots_and_weapon_groups_unchanged;proposal_is_familiar_only",
+    "handedness": "logical_slot_count_only;weapon_families_range_ammunition_modes_and_hand_attachment_visuals_not_approved",
+    "visual": "art_direction_read;no_sprite_equipment_body_layer_native_icon_or_window_layout_created"
+  },
+  "unshown_cases_pending": [
+    "exact_allowed_weapon_and_torso_armor_families_by_model_type_and_minimum_level_including_utility_drone_armor_eligibility",
+    "future_familiar_slots_and_combat_roles",
+    "armor_stat_requirement_base_and_equipment_protection_combination",
+    "native_attack_damage_ranges_and_equipped_weapon_modes_ammunition_reload_range_and_AI",
+    "equipment_affix_skill_bonus_status_proc_eligibility_and_OC07_power_with_supplied_items",
+    "HP_energy_current_adjustments_on_equipment_level_owner_attributes_and_invocation_rank",
+    "item_transfer_and_equip_distance_cost_timing_and_combat_rules",
+    "raised_origin_gear_and_loot_snapshot_without_duplicate_objects",
+    "recall_redeployment_layer_save_and_invalid_ground_cell_behavior",
+    "native_equipment_rendering_body_layers_and_window_layout"
+  ],
+  "player_copy_approval": "explicit_user_acceptance_of_shown_copy",
+  "mechanical_approval": "shown_slot_counts_scope_single_weapon_activation_and_shared_loot_accepted;unshown_cases_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-slots-PETS-EQ03-01.json",
+  "source_proposal_sha256": "aabc5a52054a7465bff059480526ad3b3922a2ca72823f509fff6eec952467f3",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/familiar-equipment-slot-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "5147702113adc5811da4726c5ade5e4e2da17ae69328f14f71cb1e725809d27a",
+  "accepted_shown_rules": {
+    "scope": "existing_drone_models_D56_D57_D58_D59_D66_and_raised_monsters;future_familiars_require_separate_role_compatibility_review",
+    "combat_familiars": [
+      "D58",
+      "D59",
+      "D66",
+      "raised_monsters"
+    ],
+    "combat_slots": {
+      "weapon": 1,
+      "torso_armor": 1
+    },
+    "utility_models": [
+      "D56",
+      "D57"
+    ],
+    "utility_slots": {
+      "weapon": 0,
+      "torso_armor": 1
+    },
+    "weapon_activation": "the_single_compatible_equipped_weapon_becomes_active;one_or_two_handed_weapon_uses_the_same_single_weapon_slot;no_second_inactive_slot_or_dual_wield_added",
+    "armor_scope": "one_compatible_torso_armor_item;no_head_hands_feet_accessory_slot_in_this_proposal",
+    "loot_source": "existing_player_loot_items_with_accepted_required_level_and_familiar_compatibility;no_new_drone_only_item_catalogue_or_item_model_created",
+    "Mule_storage": "cargo_storage_separate_from_equipment;equipping_is_not_storing_an_item_in_cargo;cargo_capacity_or_extra_storage_for_other_pets_not_defined",
+    "noncombat_models": "Eclaireur_Mule_no_attack_preserved"
+  }
+}

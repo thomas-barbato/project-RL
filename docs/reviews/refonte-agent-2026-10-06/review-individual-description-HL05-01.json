@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-08",
+  "id": "HL05",
+  "title": "Déflagration élargie",
+  "revision": 1,
+  "player_copy_markdown": "**HL05 · Déflagration élargie — Rang 11 · Passif**\n\n*Vos explosions libèrent un souffle plus vaste qui balaie les rangs ennemis.*\n\n**Effets actuels**\n\n- Rayon d’explosion avec l’arme active : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Rayon d’explosion avec l’arme active : **5 cases**.\n\nS’applique aux explosions des armes lourdes à distance et des compétences qui les utilisent.\n\nLes murs arrêtent la propagation.",
+  "player_copy_sha256": "70d5ae1aceca8f0c880aca98ef7df5cb5600ac43b94812be2ee4cc4e9855b14f",
+  "current_turn_shown_copy_markdown": "Maîtrise des armes lourdes est validée. Pour cette fiche, le lance-roquettes d’exemple possède un **rayon de base de 1 case**.\n\n**HL05 · Déflagration élargie — Rang 11 · Passif**\n\n*Vos explosions libèrent un souffle plus vaste qui balaie les rangs ennemis.*\n\n**Effets actuels**\n\n- Rayon d’explosion avec l’arme active : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Rayon d’explosion avec l’arme active : **5 cases**.\n\nS’applique aux explosions des armes lourdes à distance et des compétences qui les utilisent.\n\nLes murs arrêtent la propagation.\n\n**Visuel proposé :** Icône d’une explosion entourée d’un cercle ; aperçus et explosions ajustés au rayon agrandi.",
+  "current_turn_shown_copy_sha256": "2abeac755adbd2be7a5808dfac2c5a3affa66cfd2ab79fb30a6736e16175c3e5",
+  "source_catalogue_acceptance": "docs/reviews/refonte-agent-2026-10-06/heavy-weapon-catalogue-acceptance-decisions.json",
+  "source_catalogue_acceptance_sha256": "53045807aa43ce3dd3e25938a2acf3f6ec2dcbdc15e150a11e9b3560499ee40a",
+  "prior_skill_acceptance": "docs/reviews/refonte-agent-2026-10-06/heavy-weapon-mastery-description-acceptance-decisions.json",
+  "prior_skill_acceptance_sha256": "0bec8d96f6261c67cbc4399c3dc1cc04d417569c66c3f2c4ce14795a261cafe4",
+  "name_approval": "accepted_catalogue_AR_HL02_ACCEPT01",
+  "roleplay_text_approval": "proposed_pending_explicit_review",
+  "numeric_rules_approval": "shown_current11_radius4_next12_radius5_proposed_pending_review",
+  "detailed_conditions_approval": "shown_heavy_explosion_and_weapon_skill_scope_and_wall_block_proposed;unshown_cases_pending",
+  "current_profile_status": "illustrative_active_heavy_launcher_radius1;not_new_weapon_stats_or_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "active_eligible_heavy_explosive_weapon": true,
+    "native_weapon_explosion_radius_cells": 1,
+    "native_reference": "core:lance_roquettes_radius1;illustrative_not_user_save",
+    "other_radius_modifiers": false,
+    "equipment_attributes_and_other_modifiers": "held_fixed;no_new_attribute_radius_formula_defined"
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "added_radius_cells": 3,
+    "active_weapon_explosion_radius_cells": 4
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "added_radius_cells": 4,
+    "active_weapon_explosion_radius_cells": 5
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "equipment_attributes_active_weapon_and_other_modifiers": "unchanged",
+    "only_changed_display_values": [
+      "active_weapon_explosion_radius_cells"
+    ]
+  },
+  "formulas_proposed_not_approved": {
+    "added_radius_cells": "0_if_unlearned;else_1_plus_floor(effective_rank/4)",
+    "effective_explosion_radius_cells": "native_weapon_radius + added_radius;only_eligible_existing_heavy_explosions",
+    "progression_note": "discrete_case_increments;not_learning_unlock_tiers;full_rank_curve_not_yet_presented",
+    "no_unshown_global_radius_cap_added": true
+  },
+  "scope_direction": {
+    "eligible": "heavy_ranged_weapons_that_have_native_explosions;all_explosion_damage_types;not_item_mass_or_damage_type_alone",
+    "compatible_skills": "weapon_explosion_components_of_heavy_weapon_skills",
+    "non_explosive_heavy_weapon": "no_new_explosion_created_by_this_passive",
+    "separate_targeting_or_control_footprints": "existing_HL02_stun_radius1_and_HL03_fixed_targeting_zone_radius2_preserved;only_explosion_radius_is_modified",
+    "damage_modifier": "this_passive_adds_no_damage_multiplier;HL04_SG04_previous_scopes_preserved",
+    "indirect_ground_clouds_and_secondary_tree_mines_grenades": "not_implicitly_reclassified_as_heavy_weapon_explosions"
+  },
+  "shown_conditions": {
+    "heavy_ranged_explosions_and_using_skills": true,
+    "walls_stop_explosion_propagation": true,
+    "active_weapon_radius_used_for_display": true
+  },
+  "previous_rules_preserved": {
+    "all_learned_passives_active": true,
+    "all_classes_no_tiers_one_point_per_rank_cap10_gear_above10": true,
+    "self_damage": "SELF_DMG01_player_protected;allied_actor_damage_eligibility_separate",
+    "preview": "known_terrain_and_observed_actors_only;no_hidden_enemy_or_terrain_reveal",
+    "radial_metric": "existing_Euclidean_zone_direction;precise_cells_and_corners_pending"
+  },
+  "unshown_cases_pending": [
+    "full_rank1_to10_and_bonus_rank_radius_curve",
+    "precise_walls_doors_corners_large_actor_footprints_and_map_clipping",
+    "weapon_radius_modifiers_and_order",
+    "snapshot_or_live_radius_for_delayed_projectiles",
+    "compatibility_with_future_explosive_heavy_models_and_other_skill_components",
+    "allied_actor_damage_eligibility",
+    "unseen_actual_victims_and_known_only_preview_behavior",
+    "larger_native_explosion_animation_readability_palette_and_icon_pixels",
+    "all_other_unshown_cases"
+  ],
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "no_table": true,
+    "no_player_formula": true,
+    "only_changes_in_next_rank": true,
+    "learned_plus_gear_breakdown_omitted": true,
+    "no_unchanged_damage_cost_duration_or_single_salvo_line_added": true,
+    "rank_color": "existing_equipment_bonus_color_direction;native_pending"
+  },
+  "visual_proposal": "Icône d’une explosion entourée d’un cercle ; aperçus et explosions ajustés au rayon agrandi.",
+  "visual_intention_approval": "new_icon_and_larger_preview_explosion_direction_proposed;native_pending",
+  "native_visual_approval": "pending_not_created",
+  "runtime_integration": "not_integrated",
+  "checks": {
+    "current_added_radius": 3,
+    "current_total_radius": 4,
+    "next_added_radius": 4,
+    "next_total_radius": 5,
+    "next_learned_rank": 10
+  }
+}

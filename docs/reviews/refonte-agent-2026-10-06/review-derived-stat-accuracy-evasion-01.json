@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-08",
+  "review_id": "S02-HIT01",
+  "related_attribute_id": "S02",
+  "revision": 1,
+  "title": "Précision et esquive",
+  "status": "proposed_pending_explicit_review",
+  "accepted_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-09.json",
+  "accepted_attribute_model_sha256": "cded80d39d234acd1a5cb0390eeeac0a82d2d1e5b87cb0fa2ed010c3ff23980e",
+  "shown_copy_markdown": "La règle de récupération au niveau est validée. Passons à la **précision et à l’esquive**.\n\n**S02 · Précision et esquive**\n\n*Votre agilité vous aide à toucher vos cibles et à éviter leurs attaques.*\n\n**Base proposée — Agilité 5**\n\n- Précision : **100**.\n- Esquive : **25**.\n- Chaque point d’Agilité : **+2 en précision et +2 en esquive**, déjà validé.\n\n**Calcul proposé**\n\nChance de toucher : **précision ÷ (précision + esquive adverse) × 100**, limitée entre **5 % et 95 %**.\n\n**Exemple actuel — Agilité 10**\n\nContre un adversaire ayant **100 en précision et 25 en esquive**, sans autres bonus :\n\n- Votre précision : **110**.\n- Votre esquive : **35**.\n- Chance de toucher : **81,5 %**.\n- Chance d’éviter son attaque : **25,9 %**.\n\n**Avec cinq points supplémentaires — Agilité 15**\n\n- Votre précision : **120**.\n- Votre esquive : **45**.\n- Chance de toucher : **82,8 %**.\n- Chance d’éviter son attaque : **31 %**.\n\nCe calcul concerne les attaques d’armes et les attaques physiques des transformations. Les valeurs de l’adversaire sont un exemple ; les monstres auront leurs propres statistiques.",
+  "shown_copy_sha256": "a014c69262996f2d4f3d903a2a87fcefd3b110c19807542fcdf734a05b65ff99",
+  "already_accepted_rules": {
+    "accuracy_units_per_Agilite_point": 2,
+    "evasion_units_per_Agilite_point": 2
+  },
+  "new_proposed_rules": {
+    "base_accuracy_at_Agilite5": 100,
+    "base_evasion_at_Agilite5": 25,
+    "probability_formula": "clamp(100*attacker_accuracy/(attacker_accuracy+target_evasion),5,95)",
+    "minimum_hit_chance_percent": 5,
+    "maximum_hit_chance_percent": 95,
+    "scope": "weapon_attacks_and_physical_transformation_attacks"
+  },
+  "shown_examples": [
+    {
+      "Agilite": 10,
+      "accuracy": 110,
+      "evasion": 35,
+      "target_accuracy": 100,
+      "target_evasion": 25,
+      "shown_hit_chance_percent": 81.5,
+      "shown_avoid_chance_percent": 25.9
+    },
+    {
+      "Agilite": 15,
+      "accuracy": 120,
+      "evasion": 45,
+      "target_accuracy": 100,
+      "target_evasion": 25,
+      "shown_hit_chance_percent": 82.8,
+      "shown_avoid_chance_percent": 31
+    }
+  ],
+  "example_scope": "before_gear_class_implant_skill_or_status_modifiers;target100_accuracy25_evasion_is_illustrative_not_a_global_monster_default;five_free_attribute_points_are_not_required_to_be_spent_in_Agilite",
+  "RP_approval": "proposed_pending_review",
+  "numeric_and_scope_approval": "reference_values_formula_limits_and_weapon_physical_transformation_scope_pending",
+  "previous_marking_modifier": "already_accepted_relative_accuracy_bonus_preserved;no_extra_damage_or_new_flat_hit_bonus",
+  "unshown_cases_pending": [
+    "nonpositive_or_very_low_accuracy_and_evasion_bounds",
+    "weapon_and_skill_accuracy_modifiers_stacking",
+    "melee_and_ranged_evasion_conditions_and_exceptions",
+    "area_damage_and_unavoidable_attack_eligibility",
+    "turn_order_and_snapshot_timing",
+    "NPC_attribute_scaling_by_level_role_and_importance",
+    "exact_probability_sampling_and_display_rounding_rules",
+    "all_other_unshown_cases"
+  ],
+  "new_visuals_proposed": false,
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,380 @@
+{
+  "native_views": 20,
+  "native_tile_size": 64,
+  "resampled": false,
+  "protected_files_unchanged": 26743,
+  "checks": [
+    {
+      "variant": "SM00-A01-HAUT",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM00-A01-DROITE",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM00-A01-GAUCHE",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM00-A01-BAS",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM00-A01-ATTENTE",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM00-A01-CLOISON",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM00-A01-CAPACITE",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM00-A01-RANG-12",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM00-A01-ENNEMI-ARMEMENT",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM00-A01-COUCHE",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM01-A01-HAUT",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM01-A01-DROITE",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM01-A01-GAUCHE",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM01-A01-BAS",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM01-A01-ATTENTE",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM01-A01-CLOISON",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM01-A01-CAPACITE",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM01-A01-RANG-12",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM01-A01-ENNEMI-ARMEMENT",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    },
+    {
+      "variant": "SM01-A01-COUCHE",
+      "walls_clear": true,
+      "arming_and_manual_turns": true,
+      "single_explosion": true,
+      "capacity_and_player_protection": true,
+      "led_blinks_before_and_after_arming": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "SM00-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A01-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A01-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A01-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A01-ATTENTE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 14,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A01-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A01-CAPACITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 39,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A01-RANG-12-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A01-ENNEMI-ARMEMENT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 30,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A01-COUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 17,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM01-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM01-A01-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM01-A01-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM01-A01-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM01-A01-ATTENTE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 14,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM01-A01-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM01-A01-CAPACITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 40,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM01-A01-RANG-12-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM01-A01-ENNEMI-ARMEMENT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 30,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM01-A01-COUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 17,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "mines-ouverture-64.gif",
+      "native_size": [
+        640,
+        720
+      ],
+      "duration_ms": 13330,
+      "distinct_frames": 76,
+      "palette": "96 neutral, 96 warm, 64 green"
+    }
+  ]
+}

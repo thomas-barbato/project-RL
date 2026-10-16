@@ -1,0 +1,8 @@
+=== 81 · HL04-C02 ===
+Use case: precise-object-edit.
+Asset type: compact skill icon for a grim cyberpunk roguelike, Maîtrise des armes lourdes.
+Input image: image 1 is the EDIT TARGET, the existing skill icon. Preserve its existing dark painted style and gun drawing.
+Primary request: Change ONLY the large upward CHEVRON floating above the gun into one literal arithmetic PLUS SIGN "+". The plus is centered above the gun in exactly the existing symbol area. It has a strong simple cross shape: one thick straight horizontal bar and one thick straight vertical bar of equal length, joined at a right angle. Four equal arms, balanced width. It must unmistakably read as a real plus at 24 and 32 pixels.
+Plus appearance: weathered bone-white steel/paint, subdued dark-red shadow on its lower edge. Match the original mature hand-painted coarse finish while keeping the shape simple and solid; enough broad pale area for clear contrast on black.
+Invariants: Do not redraw, move, resize, rotate, recolor or alter ANY part of the gun. Preserve its silhouette, muzzle, receiver, stock, magazine, trigger grip, textures, highlights and exact position. Preserve the entire area below the old chevron. Preserve the square canvas, crop, opaque pure black background and current composition. Do not add glow, circle, outline box, arrows, second symbol, any other mark or text. The old chevron must disappear fully; only one plus sign replaces it.
+Output: one corrected square icon, same drawing everywhere except the symbol area. No comparison panel, frame, labels, numbers, UI or watermark.

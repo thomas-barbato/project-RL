@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-06",
+  "id": "SU05",
+  "title": "Purge",
+  "revision": 2,
+  "player_copy_markdown": "**Purge — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Vous chassez les poisons et les effets néfastes de votre corps.*\n\nRetire automatiquement l’effet néfaste compatible le plus récent.\n\n**Effet actuel**\n\n- Effets néfastes retirés : **1**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nAucun changement d’effet à ce rang avec le barème provisoire.\n\n**Coût : 8 énergie · Recharge : 6 tours.**\n\nPeut retirer le poison, la brûlure, le ralentissement et l’aveuglement. Les malus d’équipement et d’implant sont exclus.\n\nNe rend pas de vie et ne protège pas contre une nouvelle application de ces effets.",
+  "player_copy_sha256": "7a8cbd854002351faf2e56a9eb52bae08e5781d2cd31f2b5629a8577172097d4",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-08.json",
+  "source_skill_block_sha256": "5ff56cd1b94e33758f4ef984144b9b8b19f0dd66ec5546b80d5db8b5063af8d3",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/regeneration-rename-and-acceptance-decisions.json",
+  "review_start_decisions_sha256": "d0fdbc3fa442438601a6f98b1f15d1f39c7187a9285922aeb069224c8d21a8ee",
+  "name_approval": "explicit_user_rename",
+  "catalogue_effect_approval": "automatic_most_recent_compatible_effect_direction_requested; single_removal_interpretation_shown_for_review",
+  "roleplay_text_approval": "exact_user_supplied_replacement",
+  "functional_description_approval": "pending_user_review",
+  "current_next_effect_copy_approval": "pending_user_review",
+  "numeric_rules_approval": "pending_user_review",
+  "formulas": {
+    "energy_cost": "ceil(10 * (1 - 0.4 * (effective_rank - 1) / (effective_rank + 9)))"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_cost_or_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_cleansed_statuses": 1,
+    "energy_cost_exact_before_ceil": {
+      "numerator": 8,
+      "denominator": 1
+    },
+    "energy_cost": 8,
+    "cooldown_turns": 6,
+    "direct_healing": 0,
+    "temporary_immunity": false
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "maximum_cleansed_statuses": 1,
+    "energy_cost_exact_before_ceil": {
+      "numerator": 166,
+      "denominator": 21
+    },
+    "energy_cost": 8,
+    "cooldown_turns": 6,
+    "direct_healing": 0,
+    "temporary_immunity": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [],
+    "no_effect_change_notice_shown": true,
+    "unchanged_values_omitted": [
+      "maximum_cleansed_statuses",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "presented_conditions": "Automatic removal of one most recent compatible harmful effect; poison, burn, slow and blindness eligible in proposal; equipment and implant penalties excluded; no healing or immunity in proposal.",
+  "unshown_conditions_approval": "Full-rank energy formula, all other effect compatibility, refusal without compatible effects, action-blocking effects, ties/simultaneous application and whether a refresh changes recency remain pending.",
+  "active_weapon_requirement": "none; cleansing is not a weapon attack",
+  "visual_intention_approval": "accepted_as_presented",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Requested name and exact roleplay preserved.",
+    "Player selection and rank-scaled removal count superseded.",
+    "Single removal explicitly displayed; energy 8 and cooldown 6 retained as proposals.",
+    "Rank 11 to 12 has no changed applicable numeric effect under provisional energy curve.",
+    "No ordinary execution-time reminder or formula in player copy."
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU05-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/purge-rename-roleplay-and-recent-effect-decisions.json",
+  "latest_decisions_sha256": "fe708187d17c8132f59f783419ae4e25edd0fc8e4a8bb4fb7b15d6b7d9db9ec9",
+  "removal_rule": {
+    "count": 1,
+    "priority": "most recent compatible harmful effect",
+    "player_selection": false,
+    "count_status": "singular user wording interpreted; revised card pending review"
+  }
+}

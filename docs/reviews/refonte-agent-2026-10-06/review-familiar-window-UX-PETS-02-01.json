@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-07",
+  "review_id": "UX-PETS-02",
+  "revision": 1,
+  "request_reference": "docs/reviews/refonte-agent-2026-10-06/necromancy-and-allied-familiar-direction-decisions.json",
+  "request_reference_sha256": "3d196ac35dd5969479a63653c6d2beaccf21f6e455d61b234c08df68908024f3",
+  "extends_review_id": "UX-PETS-01",
+  "preserved_accepted_direction": {
+    "single_window": true,
+    "movable": true,
+    "collapsible": true,
+    "scrollable_pet_list": true,
+    "one_row_per_pet": true
+  },
+  "requested_extension": {
+    "include_drones": true,
+    "include_reanimated_monsters": true,
+    "reanimated_monsters_remain_autonomous": true,
+    "no_reanimated_combat_order_buttons": true
+  },
+  "proposed_title": "Familiers",
+  "proposed_common_row_information": [
+    "portrait",
+    "name",
+    "current_and_maximum_HP",
+    "remaining_turns_only_for_temporary_reanimated_monsters"
+  ],
+  "drone_commands": "Preserve previously approved drone controls; no new controls for autonomous reanimated monsters.",
+  "optional_common_destruction_action": {
+    "button_copy": "Détruire",
+    "scope": [
+      "drones",
+      "reanimated_monsters"
+    ],
+    "approval": "proposed_pending_explicit_user_review",
+    "mule_inventory_proposal": "Drop all carried equipment on the mule current cell when manually destroyed.",
+    "mule_inventory_approval": "proposed_pending_explicit_user_review",
+    "cost_timing_cooldown_rewards_and_cleanup": "not_yet_defined;no_explosion_or_new_damage_effect_inferred"
+  },
+  "allied_marker_reference": "docs/reviews/refonte-agent-2026-10-06/review-allied-actor-marker-HUD-ALLIES01-01.json",
+  "allied_marker_sha256": "05666a5b8eccd43c568c9470f0ef5eb0f106613a9901c0c5d62dd0c7326893fc",
+  "reanimated_cap": 5,
+  "existing_drone_cap": 5,
+  "one_drone_per_model_preserved": true,
+  "new_combined_cap_inferred": false,
+  "title_and_row_copy_approval": "proposed_pending_explicit_user_review",
+  "exact_icons_layout_native_rendering": "pending_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

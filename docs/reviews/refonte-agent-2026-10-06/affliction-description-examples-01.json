@@ -1,0 +1,941 @@
+{
+  "status": "passed_for_design_calculations_not_game_runtime",
+  "sample_count": 42,
+  "checks": [
+    "all five current active tables agree with independently specified duration, energy, cooldown and power",
+    "displayed reference, current reduction and one-transmission examples retain exact fractions",
+    "Intelligence adds duration at its stated thresholds and retains application power beyond the duration cap",
+    "ranks 1 through 2000 remain monotonic, below percentage limits, and cannot extend a transmitted remaining duration"
+  ],
+  "samples": [
+    {
+      "id": "O02",
+      "effective_rank": 1,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 3,
+        "energy": 8,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 100,
+        "chance_against_resistance_25_percent": {
+          "numerator": 80,
+          "denominator": 1,
+          "display": 80.0
+        },
+        "direct_damage_reduction_percent": {
+          "numerator": 15,
+          "denominator": 1,
+          "display": 15.0
+        }
+      }
+    },
+    {
+      "id": "O02",
+      "effective_rank": 5,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 3,
+        "energy": 9,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 120,
+        "chance_against_resistance_25_percent": {
+          "numerator": 2400,
+          "denominator": 29,
+          "display": 82.759
+        },
+        "direct_damage_reduction_percent": {
+          "numerator": 25,
+          "denominator": 1,
+          "display": 25.0
+        }
+      }
+    },
+    {
+      "id": "O02",
+      "effective_rank": 10,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 4,
+        "energy": 11,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 145,
+        "chance_against_resistance_25_percent": {
+          "numerator": 1450,
+          "denominator": 17,
+          "display": 85.294
+        },
+        "direct_damage_reduction_percent": {
+          "numerator": 600,
+          "denominator": 19,
+          "display": 31.579
+        }
+      }
+    },
+    {
+      "id": "O02",
+      "effective_rank": 12,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 5,
+        "energy": 11,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 155,
+        "chance_against_resistance_25_percent": {
+          "numerator": 775,
+          "denominator": 9,
+          "display": 86.111
+        },
+        "direct_damage_reduction_percent": {
+          "numerator": 100,
+          "denominator": 3,
+          "display": 33.333
+        }
+      }
+    },
+    {
+      "id": "O02",
+      "effective_rank": 100,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 22,
+        "energy": 41,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 595,
+        "chance_against_resistance_25_percent": {
+          "numerator": 95,
+          "denominator": 1,
+          "display": 95.0
+        },
+        "direct_damage_reduction_percent": {
+          "numerator": 5100,
+          "denominator": 109,
+          "display": 46.789
+        }
+      }
+    },
+    {
+      "id": "O02",
+      "effective_rank": 1000,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 202,
+        "energy": 341,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 5095,
+        "chance_against_resistance_25_percent": {
+          "numerator": 95,
+          "denominator": 1,
+          "display": 95.0
+        },
+        "direct_damage_reduction_percent": {
+          "numerator": 50100,
+          "denominator": 1009,
+          "display": 49.653
+        }
+      }
+    },
+    {
+      "id": "AF02",
+      "effective_rank": 1,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 3,
+        "energy": 9,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 100,
+        "chance_against_resistance_25_percent": {
+          "numerator": 80,
+          "denominator": 1,
+          "display": 80.0
+        },
+        "armor_reduction_percent": {
+          "numerator": 20,
+          "denominator": 1,
+          "display": 20.0
+        }
+      }
+    },
+    {
+      "id": "AF02",
+      "effective_rank": 5,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 3,
+        "energy": 10,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 120,
+        "chance_against_resistance_25_percent": {
+          "numerator": 2400,
+          "denominator": 29,
+          "display": 82.759
+        },
+        "armor_reduction_percent": {
+          "numerator": 220,
+          "denominator": 7,
+          "display": 31.429
+        }
+      }
+    },
+    {
+      "id": "AF02",
+      "effective_rank": 10,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 4,
+        "energy": 12,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 145,
+        "chance_against_resistance_25_percent": {
+          "numerator": 1450,
+          "denominator": 17,
+          "display": 85.294
+        },
+        "armor_reduction_percent": {
+          "numerator": 740,
+          "denominator": 19,
+          "display": 38.947
+        }
+      }
+    },
+    {
+      "id": "AF02",
+      "effective_rank": 12,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 5,
+        "energy": 12,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 155,
+        "chance_against_resistance_25_percent": {
+          "numerator": 775,
+          "denominator": 9,
+          "display": 86.111
+        },
+        "armor_reduction_percent": {
+          "numerator": 860,
+          "denominator": 21,
+          "display": 40.952
+        }
+      }
+    },
+    {
+      "id": "AF02",
+      "effective_rank": 100,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 22,
+        "energy": 42,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 595,
+        "chance_against_resistance_25_percent": {
+          "numerator": 95,
+          "denominator": 1,
+          "display": 95.0
+        },
+        "armor_reduction_percent": {
+          "numerator": 6140,
+          "denominator": 109,
+          "display": 56.33
+        }
+      }
+    },
+    {
+      "id": "AF02",
+      "effective_rank": 1000,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 202,
+        "energy": 342,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 5095,
+        "chance_against_resistance_25_percent": {
+          "numerator": 95,
+          "denominator": 1,
+          "display": 95.0
+        },
+        "armor_reduction_percent": {
+          "numerator": 60140,
+          "denominator": 1009,
+          "display": 59.604
+        }
+      }
+    },
+    {
+      "id": "AF03",
+      "effective_rank": 1,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 2,
+        "energy": 12,
+        "cooldown_turns": 8,
+        "target_range_cells": 5,
+        "application_power": 100,
+        "chance_against_resistance_25_percent": {
+          "numerator": 80,
+          "denominator": 1,
+          "display": 80.0
+        },
+        "new_active_skill_activations_blocked": true
+      }
+    },
+    {
+      "id": "AF03",
+      "effective_rank": 5,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 2,
+        "energy": 13,
+        "cooldown_turns": 8,
+        "target_range_cells": 5,
+        "application_power": 120,
+        "chance_against_resistance_25_percent": {
+          "numerator": 2400,
+          "denominator": 29,
+          "display": 82.759
+        },
+        "new_active_skill_activations_blocked": true
+      }
+    },
+    {
+      "id": "AF03",
+      "effective_rank": 10,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 3,
+        "energy": 15,
+        "cooldown_turns": 8,
+        "target_range_cells": 5,
+        "application_power": 145,
+        "chance_against_resistance_25_percent": {
+          "numerator": 1450,
+          "denominator": 17,
+          "display": 85.294
+        },
+        "new_active_skill_activations_blocked": true
+      }
+    },
+    {
+      "id": "AF03",
+      "effective_rank": 12,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 4,
+        "energy": 15,
+        "cooldown_turns": 8,
+        "target_range_cells": 5,
+        "application_power": 155,
+        "chance_against_resistance_25_percent": {
+          "numerator": 775,
+          "denominator": 9,
+          "display": 86.111
+        },
+        "new_active_skill_activations_blocked": true
+      }
+    },
+    {
+      "id": "AF03",
+      "effective_rank": 100,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 21,
+        "energy": 45,
+        "cooldown_turns": 8,
+        "target_range_cells": 5,
+        "application_power": 595,
+        "chance_against_resistance_25_percent": {
+          "numerator": 95,
+          "denominator": 1,
+          "display": 95.0
+        },
+        "new_active_skill_activations_blocked": true
+      }
+    },
+    {
+      "id": "AF03",
+      "effective_rank": 1000,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 201,
+        "energy": 345,
+        "cooldown_turns": 8,
+        "target_range_cells": 5,
+        "application_power": 5095,
+        "chance_against_resistance_25_percent": {
+          "numerator": 95,
+          "denominator": 1,
+          "display": 95.0
+        },
+        "new_active_skill_activations_blocked": true
+      }
+    },
+    {
+      "id": "AF04",
+      "effective_rank": 1,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 3,
+        "energy": 10,
+        "cooldown_turns": 6,
+        "target_range_cells": 5,
+        "application_power": 100,
+        "chance_against_resistance_25_percent": {
+          "numerator": 80,
+          "denominator": 1,
+          "display": 80.0
+        },
+        "health_restoration_allowed": 0
+      }
+    },
+    {
+      "id": "AF04",
+      "effective_rank": 5,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 4,
+        "energy": 11,
+        "cooldown_turns": 6,
+        "target_range_cells": 5,
+        "application_power": 120,
+        "chance_against_resistance_25_percent": {
+          "numerator": 2400,
+          "denominator": 29,
+          "display": 82.759
+        },
+        "health_restoration_allowed": 0
+      }
+    },
+    {
+      "id": "AF04",
+      "effective_rank": 10,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 5,
+        "energy": 13,
+        "cooldown_turns": 6,
+        "target_range_cells": 5,
+        "application_power": 145,
+        "chance_against_resistance_25_percent": {
+          "numerator": 1450,
+          "denominator": 17,
+          "display": 85.294
+        },
+        "health_restoration_allowed": 0
+      }
+    },
+    {
+      "id": "AF04",
+      "effective_rank": 12,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 5,
+        "energy": 13,
+        "cooldown_turns": 6,
+        "target_range_cells": 5,
+        "application_power": 155,
+        "chance_against_resistance_25_percent": {
+          "numerator": 775,
+          "denominator": 9,
+          "display": 86.111
+        },
+        "health_restoration_allowed": 0
+      }
+    },
+    {
+      "id": "AF04",
+      "effective_rank": 100,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 27,
+        "energy": 43,
+        "cooldown_turns": 6,
+        "target_range_cells": 5,
+        "application_power": 595,
+        "chance_against_resistance_25_percent": {
+          "numerator": 95,
+          "denominator": 1,
+          "display": 95.0
+        },
+        "health_restoration_allowed": 0
+      }
+    },
+    {
+      "id": "AF04",
+      "effective_rank": 1000,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 252,
+        "energy": 343,
+        "cooldown_turns": 6,
+        "target_range_cells": 5,
+        "application_power": 5095,
+        "chance_against_resistance_25_percent": {
+          "numerator": 95,
+          "denominator": 1,
+          "display": 95.0
+        },
+        "health_restoration_allowed": 0
+      }
+    },
+    {
+      "id": "AF05",
+      "effective_rank": 1,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 2,
+        "energy": 10,
+        "cooldown_turns": 7,
+        "target_range_cells": 5,
+        "application_power": 100,
+        "chance_against_resistance_25_percent": {
+          "numerator": 80,
+          "denominator": 1,
+          "display": 80.0
+        },
+        "false_position_radius_cells": 3,
+        "receiving_damage_ends_effect": true
+      }
+    },
+    {
+      "id": "AF05",
+      "effective_rank": 5,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 2,
+        "energy": 11,
+        "cooldown_turns": 7,
+        "target_range_cells": 5,
+        "application_power": 120,
+        "chance_against_resistance_25_percent": {
+          "numerator": 2400,
+          "denominator": 29,
+          "display": 82.759
+        },
+        "false_position_radius_cells": 3,
+        "receiving_damage_ends_effect": true
+      }
+    },
+    {
+      "id": "AF05",
+      "effective_rank": 10,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 3,
+        "energy": 13,
+        "cooldown_turns": 7,
+        "target_range_cells": 5,
+        "application_power": 145,
+        "chance_against_resistance_25_percent": {
+          "numerator": 1450,
+          "denominator": 17,
+          "display": 85.294
+        },
+        "false_position_radius_cells": 3,
+        "receiving_damage_ends_effect": true
+      }
+    },
+    {
+      "id": "AF05",
+      "effective_rank": 12,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 4,
+        "energy": 13,
+        "cooldown_turns": 7,
+        "target_range_cells": 5,
+        "application_power": 155,
+        "chance_against_resistance_25_percent": {
+          "numerator": 775,
+          "denominator": 9,
+          "display": 86.111
+        },
+        "false_position_radius_cells": 3,
+        "receiving_damage_ends_effect": true
+      }
+    },
+    {
+      "id": "AF05",
+      "effective_rank": 100,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 21,
+        "energy": 43,
+        "cooldown_turns": 7,
+        "target_range_cells": 5,
+        "application_power": 595,
+        "chance_against_resistance_25_percent": {
+          "numerator": 95,
+          "denominator": 1,
+          "display": 95.0
+        },
+        "false_position_radius_cells": 3,
+        "receiving_damage_ends_effect": true
+      }
+    },
+    {
+      "id": "AF05",
+      "effective_rank": 1000,
+      "intelligence": 5,
+      "values": {
+        "duration_turns": 201,
+        "energy": 343,
+        "cooldown_turns": 7,
+        "target_range_cells": 5,
+        "application_power": 5095,
+        "chance_against_resistance_25_percent": {
+          "numerator": 95,
+          "denominator": 1,
+          "display": 95.0
+        },
+        "false_position_radius_cells": 3,
+        "receiving_damage_ends_effect": true
+      }
+    },
+    {
+      "id": "AF06",
+      "effective_rank": 1,
+      "intelligence": 5,
+      "values": {
+        "retention_fraction": {
+          "numerator": 1,
+          "denominator": 2,
+          "display": 0.5
+        },
+        "radius_cells": 2,
+        "maximum_new_targets_per_death": 1,
+        "energy": 0,
+        "cooldown_turns": 0,
+        "inherited_seals_can_spread": false,
+        "full_duration_interference_example": {
+          "source_remaining_turns": 3,
+          "duration_turns": 1,
+          "direct_damage_reduction_percent": {
+            "numerator": 15,
+            "denominator": 2,
+            "display": 7.5
+          },
+          "application_power": 50,
+          "chance_against_resistance_25_percent": {
+            "numerator": 200,
+            "denominator": 3,
+            "display": 66.667
+          }
+        }
+      }
+    },
+    {
+      "id": "AF06",
+      "effective_rank": 5,
+      "intelligence": 5,
+      "values": {
+        "retention_fraction": {
+          "numerator": 43,
+          "denominator": 70,
+          "display": 0.614
+        },
+        "radius_cells": 2,
+        "maximum_new_targets_per_death": 1,
+        "energy": 0,
+        "cooldown_turns": 0,
+        "inherited_seals_can_spread": false,
+        "full_duration_interference_example": {
+          "source_remaining_turns": 3,
+          "duration_turns": 1,
+          "direct_damage_reduction_percent": {
+            "numerator": 215,
+            "denominator": 14,
+            "display": 15.357
+          },
+          "application_power": 73,
+          "chance_against_resistance_25_percent": {
+            "numerator": 3650,
+            "denominator": 49,
+            "display": 74.49
+          }
+        }
+      }
+    },
+    {
+      "id": "AF06",
+      "effective_rank": 10,
+      "intelligence": 5,
+      "values": {
+        "retention_fraction": {
+          "numerator": 131,
+          "denominator": 190,
+          "display": 0.689
+        },
+        "radius_cells": 3,
+        "maximum_new_targets_per_death": 1,
+        "energy": 0,
+        "cooldown_turns": 0,
+        "inherited_seals_can_spread": false,
+        "full_duration_interference_example": {
+          "source_remaining_turns": 4,
+          "duration_turns": 2,
+          "direct_damage_reduction_percent": {
+            "numerator": 7860,
+            "denominator": 361,
+            "display": 21.773
+          },
+          "application_power": 99,
+          "chance_against_resistance_25_percent": {
+            "numerator": 2475,
+            "denominator": 31,
+            "display": 79.839
+          }
+        }
+      }
+    },
+    {
+      "id": "AF06",
+      "effective_rank": 12,
+      "intelligence": 5,
+      "values": {
+        "retention_fraction": {
+          "numerator": 149,
+          "denominator": 210,
+          "display": 0.71
+        },
+        "radius_cells": 4,
+        "maximum_new_targets_per_death": 1,
+        "energy": 0,
+        "cooldown_turns": 0,
+        "inherited_seals_can_spread": false,
+        "full_duration_interference_example": {
+          "source_remaining_turns": 5,
+          "duration_turns": 3,
+          "direct_damage_reduction_percent": {
+            "numerator": 1490,
+            "denominator": 63,
+            "display": 23.651
+          },
+          "application_power": 109,
+          "chance_against_resistance_25_percent": {
+            "numerator": 5450,
+            "denominator": 67,
+            "display": 81.343
+          }
+        }
+      }
+    },
+    {
+      "id": "AF06",
+      "effective_rank": 100,
+      "intelligence": 5,
+      "values": {
+        "retention_fraction": {
+          "numerator": 941,
+          "denominator": 1090,
+          "display": 0.863
+        },
+        "radius_cells": 4,
+        "maximum_new_targets_per_death": 1,
+        "energy": 0,
+        "cooldown_turns": 0,
+        "inherited_seals_can_spread": false,
+        "full_duration_interference_example": {
+          "source_remaining_turns": 22,
+          "duration_turns": 18,
+          "direct_damage_reduction_percent": {
+            "numerator": 479910,
+            "denominator": 11881,
+            "display": 40.393
+          },
+          "application_power": 513,
+          "chance_against_resistance_25_percent": {
+            "numerator": 95,
+            "denominator": 1,
+            "display": 95.0
+          }
+        }
+      }
+    },
+    {
+      "id": "AF06",
+      "effective_rank": 1000,
+      "intelligence": 5,
+      "values": {
+        "retention_fraction": {
+          "numerator": 9041,
+          "denominator": 10090,
+          "display": 0.896
+        },
+        "radius_cells": 4,
+        "maximum_new_targets_per_death": 1,
+        "energy": 0,
+        "cooldown_turns": 0,
+        "inherited_seals_can_spread": false,
+        "full_duration_interference_example": {
+          "source_remaining_turns": 202,
+          "duration_turns": 180,
+          "direct_damage_reduction_percent": {
+            "numerator": 45295410,
+            "denominator": 1018081,
+            "display": 44.491
+          },
+          "application_power": 4565,
+          "chance_against_resistance_25_percent": {
+            "numerator": 95,
+            "denominator": 1,
+            "display": 95.0
+          }
+        }
+      }
+    },
+    {
+      "id": "O02",
+      "learned_rank": 10,
+      "equipment_bonus": 2,
+      "effective_rank": 12,
+      "intelligence": 25,
+      "values": {
+        "duration_turns": 6,
+        "energy": 11,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 195,
+        "chance_against_resistance_25_percent": {
+          "numerator": 975,
+          "denominator": 11,
+          "display": 88.636
+        },
+        "direct_damage_reduction_percent": {
+          "numerator": 100,
+          "denominator": 3,
+          "display": 33.333
+        }
+      }
+    },
+    {
+      "id": "AF02",
+      "learned_rank": 10,
+      "equipment_bonus": 2,
+      "effective_rank": 12,
+      "intelligence": 25,
+      "values": {
+        "duration_turns": 6,
+        "energy": 12,
+        "cooldown_turns": 5,
+        "target_range_cells": 5,
+        "application_power": 195,
+        "chance_against_resistance_25_percent": {
+          "numerator": 975,
+          "denominator": 11,
+          "display": 88.636
+        },
+        "armor_reduction_percent": {
+          "numerator": 860,
+          "denominator": 21,
+          "display": 40.952
+        }
+      }
+    },
+    {
+      "id": "AF03",
+      "learned_rank": 10,
+      "equipment_bonus": 2,
+      "effective_rank": 12,
+      "intelligence": 25,
+      "values": {
+        "duration_turns": 5,
+        "energy": 15,
+        "cooldown_turns": 8,
+        "target_range_cells": 5,
+        "application_power": 195,
+        "chance_against_resistance_25_percent": {
+          "numerator": 975,
+          "denominator": 11,
+          "display": 88.636
+        },
+        "new_active_skill_activations_blocked": true
+      }
+    },
+    {
+      "id": "AF04",
+      "learned_rank": 10,
+      "equipment_bonus": 2,
+      "effective_rank": 12,
+      "intelligence": 25,
+      "values": {
+        "duration_turns": 6,
+        "energy": 13,
+        "cooldown_turns": 6,
+        "target_range_cells": 5,
+        "application_power": 195,
+        "chance_against_resistance_25_percent": {
+          "numerator": 975,
+          "denominator": 11,
+          "display": 88.636
+        },
+        "health_restoration_allowed": 0
+      }
+    },
+    {
+      "id": "AF05",
+      "learned_rank": 10,
+      "equipment_bonus": 2,
+      "effective_rank": 12,
+      "intelligence": 25,
+      "values": {
+        "duration_turns": 5,
+        "energy": 13,
+        "cooldown_turns": 7,
+        "target_range_cells": 5,
+        "application_power": 195,
+        "chance_against_resistance_25_percent": {
+          "numerator": 975,
+          "denominator": 11,
+          "display": 88.636
+        },
+        "false_position_radius_cells": 3,
+        "receiving_damage_ends_effect": true
+      }
+    },
+    {
+      "id": "AF06",
+      "learned_rank": 10,
+      "equipment_bonus": 2,
+      "effective_rank": 12,
+      "intelligence": 25,
+      "values": {
+        "retention_fraction": {
+          "numerator": 149,
+          "denominator": 210,
+          "display": 0.71
+        },
+        "radius_cells": 4,
+        "maximum_new_targets_per_death": 1,
+        "energy": 0,
+        "cooldown_turns": 0,
+        "inherited_seals_can_spread": false,
+        "full_duration_interference_example": {
+          "source_remaining_turns": 6,
+          "duration_turns": 4,
+          "direct_damage_reduction_percent": {
+            "numerator": 1490,
+            "denominator": 63,
+            "display": 23.651
+          },
+          "application_power": 138,
+          "chance_against_resistance_25_percent": {
+            "numerator": 13800,
+            "denominator": 163,
+            "display": 84.663
+          }
+        }
+      }
+    }
+  ]
+}

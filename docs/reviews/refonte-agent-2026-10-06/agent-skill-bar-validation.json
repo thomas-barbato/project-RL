@@ -1,0 +1,63 @@
+{
+  "review": "AGENT-BAR01",
+  "build": "cargo build --locked: passed",
+  "format": "cargo fmt --all --check: passed",
+  "diff_check": "git diff --check -- src: passed",
+  "tests": {
+    "engine": 851,
+    "agent_and_lab": 196,
+    "controls": 21,
+    "weapon_keys_and_azerty": 2
+  },
+  "native_viewports": [
+    [
+      1280,
+      800
+    ],
+    [
+      960,
+      540
+    ]
+  ],
+  "native_checked": [
+    "skill tree bar",
+    "world bar",
+    "quick menu",
+    "two actual A01 casts on consecutive actions",
+    "preview hidden after confirmation"
+  ],
+  "playable_new_effects": [
+    "A01"
+  ],
+  "equipment_skill_sources": "authoring mechanism ready; no new items or random affixes authored",
+  "cleanup": {
+    "status": "blocked_by_automatic_approval_review",
+    "files": 249,
+    "bytes": 149163052,
+    "removed_files": 0
+  },
+  "preview_bytes": 261248,
+  "user_saves_changed": false,
+  "latest_change": {
+    "review": "AGENT-BAR02",
+    "targeted_tests_passed": 6,
+    "native_weapon_cycle": [
+      1,
+      2,
+      3,
+      1
+    ],
+    "native_switch_viewport": [
+      1280,
+      800
+    ],
+    "time_or_resource_spent": false,
+    "tree_has_switch": false,
+    "small_panel_layout_tested": true,
+    "invalid_later_capture_frames_excluded": true,
+    "weapon_switch_side": "left",
+    "weapon_switch_icon": "circular_arrow",
+    "slot_number_visible": false,
+    "native_review": "weapon_switch_only"
+  }
+}

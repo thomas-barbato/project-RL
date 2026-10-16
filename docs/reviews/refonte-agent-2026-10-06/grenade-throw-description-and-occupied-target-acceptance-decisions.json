@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SG00-ACCEPT01",
+  "skill_id": "SG00",
+  "user_response": "ok on valide :) à noter que si un ennemis se trouve sur la case ca n'est pas un probleme :)",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG00-01.json",
+  "reviewed_description_sha256": "2591e1326b75b6b85e158c806c114ee223c8198a9aac0afe05b885e611a82f66",
+  "accepted_player_copy": "**SG00 · Lancer de grenade — Rang 1 · Actif**\n\n*Vous lancez une grenade au milieu des ennemis pour semer le chaos.*\n\n**Effets actuels**\n\n- Variante disponible : **Explosive**.\n- Dégâts physiques : **8**, avant défenses.\n- Portée de lancer : **4 cases**.\n- Rayon de l’explosion : **1 case**.\n- Coût : **8 énergie**.\n- Recharge : **2 tours**.\n\nChoisissez une case visible et à portée. Les murs bloquent la trajectoire.\n\nLes variantes aveuglante et sonore deviennent sélectionnables avec leurs passifs. Le lancer ne consomme aucun objet d’inventaire.\n\nVous êtes protégé des dégâts de vos grenades. Vos alliés peuvent être touchés.\n\n**Achat unique : 1 point de compétence.**",
+  "accepted_current_values": {
+    "available_variant": "Explosive",
+    "physical_damage_before_defenses": 8,
+    "throw_range_cells": 4,
+    "explosion_radius_cells": 1,
+    "energy_cost": 8,
+    "cooldown_turns": 2
+  },
+  "accepted_next_values": null,
+  "accepted_displayed_conditions": [
+    "unique_purchase_one_skill_point",
+    "energy_only_no_inventory_consumable",
+    "currently_visible_target_in_range",
+    "walls_block_throw_trajectory",
+    "player_self_damage_protection",
+    "allies_can_be_harmed",
+    "SG01_SG02_unlock_selectable_variants"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** une petite grenade métallique projetée vers la case choisie, puis une brève explosion avec des éclats. La trajectoire et les cases touchées sont prévisualisées avant confirmation.",
+  "explicit_clarification": {
+    "review_id": "SG00-TARGET01",
+    "enemy_on_target_cell_allowed": true,
+    "player_copy": "Choisissez une case visible et à portée, même occupée par un ennemi. Les murs bloquent la trajectoire.",
+    "scope": "enemy_occupancy_is_not_a_refusal_condition;other_throw_interception_geometry_remains_pending"
+  },
+  "accepted_revision": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG00-02.json",
+  "accepted_revision_sha256": "01186b326cc84fc0ce07c65ca0bcbc7b1e7e5654ef636cccf4015820c7610093",
+  "approval_scope": "displayed_RP_rank1_values_conditions_and_visual_direction_accepted_plus_explicit_enemy_occupied_target_clarification;balance_later;unshown_cases_and_native_pending",
+  "unshown_cases_pending": [
+    "full_attribute_damage_scaling_resistances_and_real_monster_statistics",
+    "range_metric_diagonals_low_obstacles_actor_interception_and_throw_arc",
+    "wall_clipped_explosion_geometry_and_visibility_boundaries",
+    "ordinary_hit_evasion_or_damage_checks_for_explosion",
+    "friendly_damage_attribution_and_player_non_damage_status_cases",
+    "atomic_cancel_refusal_resources_time_rng_and_cooldown_phases",
+    "SG01_SG02_variant_cost_damage_and_special_effect_details",
+    "native_grenade_flight_palette_area_preview_rank_display_and_action_cooldown_UI"
+  ],
+  "native_visuals": "pending_native_review",
+  "runtime_integration": "not_integrated"
+}

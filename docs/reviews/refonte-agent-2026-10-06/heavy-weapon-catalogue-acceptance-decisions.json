@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-08",
+  "review_id": "AR-HL02-ACCEPT01",
+  "user_instruction": "oui ca me semble bien :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-heavy-weapon-tree-proposal-01.json",
+  "source_proposal_sha256": "c4d8f943da054de1a66461251a13a6d307680328d5efe1c5d2e986f24b8a8bd7",
+  "accepted_catalogue_count": 6,
+  "accepted_candidates": [
+    {
+      "id": "HL01",
+      "title": "Barrage",
+      "kind": "active",
+      "effect_direction": "Enchaîne plusieurs tirs vers des cases choisies pour couvrir un groupe d’ennemis."
+    },
+    {
+      "id": "HL02",
+      "title": "Impact assommant",
+      "kind": "active",
+      "effect_direction": "Un tir qui peut assommer les ennemis autour de son impact."
+    },
+    {
+      "id": "HL03",
+      "title": "Pilonnage",
+      "kind": "active",
+      "effect_direction": "Bombarde automatiquement une zone pendant plusieurs tours. Bouger, attaquer autrement ou utiliser une autre compétence l’interrompt."
+    },
+    {
+      "id": "HL04",
+      "title": "Maîtrise des armes lourdes",
+      "kind": "passive",
+      "effect_direction": "Augmente les dégâts des armes lourdes et des compétences qui les utilisent."
+    },
+    {
+      "id": "HL05",
+      "title": "Déflagration élargie",
+      "kind": "passive",
+      "effect_direction": "Agrandit la zone d’explosion des armes lourdes explosives et de leurs compétences compatibles."
+    },
+    {
+      "id": "HL06",
+      "title": "Drain d’impact",
+      "kind": "active",
+      "effect_direction": "Une partie des dégâts directs infligés à la cible principale vous rend des PV. Soin plafonné et recharge longue."
+    }
+  ],
+  "accepted_scope": "shown_names_kinds_and_broad_effect_directions_plus_heavy_weapon_equipped_and_active_and_area_preview_before_confirmation",
+  "scope_family_reference": "docs/reviews/refonte-agent-2026-10-06/heavy-weapon-family-scope-decisions.json",
+  "scope_family_reference_sha256": "2dc312b53ec811e14f088cee3a4b62e934f4a70f80b73b1655153aa9fc302f8c",
+  "not_approved_by_this_acceptance": [
+    "individual_RP_tooltip",
+    "exact_coefficients_costs_ranges_durations_cooldowns",
+    "unshown_detailed_cases",
+    "individual_visual_directions_and_native_pixels",
+    "new_weapon_models_or_stats"
+  ],
+  "existing_primary_candidates_preserved": 72,
+  "accepted_primary_catalogue_total": 78,
+  "accepted_branch_total": 14,
+  "runtime_integration": "not_integrated"
+}

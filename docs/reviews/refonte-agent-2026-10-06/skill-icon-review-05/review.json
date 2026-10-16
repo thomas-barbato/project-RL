@@ -1,0 +1,372 @@
+{
+  "review_id": "SKILLS-IC05",
+  "date": "2026-10-10",
+  "status": "revision_requested_for_four_candidates",
+  "revision_required_ids": [
+    "B03",
+    "O03",
+    "T03",
+    "FE01"
+  ],
+  "unchanged_pending_review_ids": [],
+  "feedback_reference": "artifacts/refonte-agent-2026-10-06/skill-icon-review-06/feedback.json",
+  "scope": "New icon drawings only. No active asset, skill copy, mechanics, monster identity or UI behavior changes.",
+  "generation_tool": "image_gen.imagegen",
+  "generation_strategy": "One independent tool call and one source master per skill.",
+  "candidate_count": 8,
+  "candidates": [
+    {
+      "number": 1,
+      "id": "B03",
+      "title": "Vitalité améliorée",
+      "kind": "passive",
+      "branch": "Survie",
+      "roleplay": "Votre corps renforcé supporte davantage de blessures avant de céder.",
+      "skill_source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-B03-02.json",
+        "reference_sha256": "3da7809f70bb3138bb6e03b9dc7fdfcf20e38448880bff5eebe6eb871359a3f7"
+      },
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/B03.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-05/B03-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "929648a3ee0a0ea87791f5be11378e6b693b6f616b22831596bd44f15248519b"
+      },
+      "files": {
+        "24": {
+          "file": "B03-24.png",
+          "sha256": "d4cfe109ad1d4543a84c946f9871aee44dc3dba130bd13802b21fe8bfab0d0cd"
+        },
+        "32": {
+          "file": "B03-32.png",
+          "sha256": "62b50f213973a3da3494db95719042ae0ffd7f820276c7df184626c62ff206c0"
+        },
+        "64": {
+          "file": "B03-64.png",
+          "sha256": "406e649a4489df956baf0861a542938d01730f64bb4f2ee46f7451a9226d991b"
+        },
+        "128": {
+          "file": "B03-128.png",
+          "sha256": "a337ceaa9e40c423a6c739623013cccfff9cb8f6f1956f8e9dd6ebf245858ffb"
+        },
+        "192": {
+          "file": "B03-192.png",
+          "sha256": "c7289fa3bb177490feab6dbbe7273c042978c313fe913cb38f671a90d42e3ad8"
+        }
+      }
+    },
+    {
+      "number": 2,
+      "id": "O03",
+      "title": "Algorithmes de combat améliorés",
+      "kind": "passive",
+      "branch": "Drones",
+      "roleplay": "Vos drones exploitent des algorithmes de combat plus performants pour rendre leurs attaques plus destructrices.",
+      "skill_source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-O03-02.json",
+        "reference_sha256": "cd7b7fa348aa74a5b55b50b2594df5219b72a7d0018723fcdbcc24d267601ee1"
+      },
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/O03.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-05/O03-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "57f76e053341c7f33f4d703a74008b3077bc1dcf62e9746cb674ab6b07bfc171"
+      },
+      "files": {
+        "24": {
+          "file": "O03-24.png",
+          "sha256": "e3dad45d48475b74c3af1a4bc26142aeafceb7e752754a127e55a69d38f55e9a"
+        },
+        "32": {
+          "file": "O03-32.png",
+          "sha256": "6cbec81ca1be6b2fde7e6415ff2a30c302b062e2cbf13c809b182925df1cfd4d"
+        },
+        "64": {
+          "file": "O03-64.png",
+          "sha256": "18f2e55165a16bcf20677a45516cb7fa80529c7a52d2bab9b3593d0831fc6428"
+        },
+        "128": {
+          "file": "O03-128.png",
+          "sha256": "cef061dedf1c27a2781f00f25328e2d26cc4401cd836cd152f430449d8a947e7"
+        },
+        "192": {
+          "file": "O03-192.png",
+          "sha256": "de4ba8206805c9bf7e446bef31de9a7d38d35336be8d922ed00d83a591628210"
+        }
+      }
+    },
+    {
+      "number": 3,
+      "id": "T01",
+      "title": "Marquage balistique",
+      "kind": "active",
+      "branch": "Buffs à distance",
+      "roleplay": "Vous désignez les failles de votre cible pour guider vos tirs.",
+      "skill_source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T01-02.json",
+        "reference_sha256": "7fdc1158e8260e33056b7bd1c88b32b5f00350808c7cdef3450aa8ba8cc823f4"
+      },
+      "visual_status": "accepted",
+      "prompt": "prompts/T01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/T01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "7b1c42a0d38e3dcc504a3232d08ce2b68f065a9deb9d54536411df982c6ca1fc"
+      },
+      "files": {
+        "24": {
+          "file": "T01-24.png",
+          "sha256": "c65954f60ba97d0f75c08a5624970d64f56d6aa45c8f5ea3a4472f4d8a1e581b"
+        },
+        "32": {
+          "file": "T01-32.png",
+          "sha256": "520b923a0dd651124221b9907900ab439db9728359dfcb01b1dccb33ae6d11bf"
+        },
+        "64": {
+          "file": "T01-64.png",
+          "sha256": "d59dc3b0242829f25e1323178d383ee3800158cfc0bfa08ca11ba761ad6e109c"
+        },
+        "128": {
+          "file": "T01-128.png",
+          "sha256": "7bb24a94a65be157ee807c30c638a988f8c057274799d94d9d55fa8e110d0757"
+        },
+        "192": {
+          "file": "T01-192.png",
+          "sha256": "0e5b70be8f4501b7c16b883d7d90d29aa67076c949718238a8f401f743430fd8"
+        }
+      },
+      "acceptance_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-08/visual-acceptance-01.json"
+    },
+    {
+      "number": 4,
+      "id": "T03",
+      "title": "Maîtrise des attaques à distance",
+      "kind": "passive",
+      "branch": "Buffs à distance",
+      "roleplay": "Vous exploitez chaque ouverture pour frapper vos proies avec une violence accrue.",
+      "skill_source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T03-02.json",
+        "reference_sha256": "067b2948fc7b3ac5592b7ae451015a881900ef097c5c8fe47d0acbb121b0b1a6"
+      },
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/T03.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-05/T03-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "111de492c69f1c3b752bb197eee59da40de70cf870836bfbe8ea2c42238682db"
+      },
+      "files": {
+        "24": {
+          "file": "T03-24.png",
+          "sha256": "75c821e1d6af93a9c6380d8961594e6e68dc150df6589a5ad64db0bc0bb7881c"
+        },
+        "32": {
+          "file": "T03-32.png",
+          "sha256": "3a981792ead25f4712d3e3eb9bdfa77449d50346da2e9ed97afbefcbaf0f50c4"
+        },
+        "64": {
+          "file": "T03-64.png",
+          "sha256": "2e850e6d0772388b592966f908991ccda2c704df9ca02c6abd12a6303e687a14"
+        },
+        "128": {
+          "file": "T03-128.png",
+          "sha256": "1561e87f4793fec30dfc03b7888d0c362d827261ff916e0906bb8a07d4435900"
+        },
+        "192": {
+          "file": "T03-192.png",
+          "sha256": "8184f4560dfda8aeb98bf240d6fc942046d63a579774032358aa3bf59feef691"
+        }
+      }
+    },
+    {
+      "number": 5,
+      "id": "A03",
+      "title": "Canalisation",
+      "kind": "passive",
+      "branch": "Énergie occulte",
+      "roleplay": "Vos implants canalisent les forces occultes avec moins de pertes.",
+      "skill_source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-A03-02.json",
+        "reference_sha256": "44ff4066802c80fa20b0b4d026a8e1e5af16a929eeaebbf278c90117c1c62417"
+      },
+      "visual_status": "accepted",
+      "prompt": "prompts/A03.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/A03-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "512a7f2a0f45d689afaa38e974e54dc220a0fd395d592bc003f49db3319dca45"
+      },
+      "files": {
+        "24": {
+          "file": "A03-24.png",
+          "sha256": "18bdf28a115761969c291af44e5db52553989b12464c291f37f4797b0224a12e"
+        },
+        "32": {
+          "file": "A03-32.png",
+          "sha256": "b6fb82f8c559077638e6c79231aab6a97b2c3d36c1a7338cd415ff30b9e6c0e7"
+        },
+        "64": {
+          "file": "A03-64.png",
+          "sha256": "9d6bc8fe48fa64dbfbfff85ea9437a8ba7efbfa0d3e9957410f03ec7d28f7447"
+        },
+        "128": {
+          "file": "A03-128.png",
+          "sha256": "612584a23a880da7f05c26767cb687cd6a4b3bc8f369adce998f7b1044da6904"
+        },
+        "192": {
+          "file": "A03-192.png",
+          "sha256": "5583745698e12316a2026610ca66d40dbb62bd09971dda33f0b4d9e0bd7bdc3e"
+        }
+      },
+      "acceptance_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-08/visual-acceptance-01.json"
+    },
+    {
+      "number": 6,
+      "id": "FE01",
+      "title": "Braise",
+      "kind": "active",
+      "branch": "Feu",
+      "roleplay": "Vous projetez une braise incandescente qui s’accroche à votre cible et la consume.",
+      "skill_source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE01-02.json",
+        "reference_sha256": "c3c343998541309d456d7c6be730b95afdba0872104db3612f135e0a5d2c708a"
+      },
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/FE01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-05/FE01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "f93dc64cd9d5ceac020c90f596732baec476007f4242416a56395c233f8abe14"
+      },
+      "files": {
+        "24": {
+          "file": "FE01-24.png",
+          "sha256": "528f29f9a8b1cb302adbeb5b26e546d916f79451ff2cb02c1190e49fca86b966"
+        },
+        "32": {
+          "file": "FE01-32.png",
+          "sha256": "1fece74e4453d46ad618d8ae81415de402bcbfc61671e29d519805191b9f1cda"
+        },
+        "64": {
+          "file": "FE01-64.png",
+          "sha256": "286487cf2d4fd900fafbafcd131c45a033bd03b64de4c48bcbe6ee23bb0860c6"
+        },
+        "128": {
+          "file": "FE01-128.png",
+          "sha256": "5590050be4387f678fb24073a5edf3cf332ac8cdc166ea346b496d4b3acb0092"
+        },
+        "192": {
+          "file": "FE01-192.png",
+          "sha256": "fed182386c0ab4cac353b5d0eb24f971940426bb6ec20fcaa0cf5778c2459944"
+        }
+      }
+    },
+    {
+      "number": 7,
+      "id": "M01",
+      "title": "Mue prédatrice",
+      "kind": "active",
+      "branch": "Transformations",
+      "roleplay": "Vous vous métamorphosez en une bête sauvage, animée par un instinct de prédateur.",
+      "skill_source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M01-06.json",
+        "reference_sha256": "d8920ac601bd94e23a84168e4b5c4566105bab80a01648d1b1bd3eaaae15be65"
+      },
+      "visual_status": "accepted",
+      "prompt": "prompts/M01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/M01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "147645b805366a195a6a02a702c4cde3d7e8ad6de3378d65a0f01016ebdd12b4"
+      },
+      "files": {
+        "24": {
+          "file": "M01-24.png",
+          "sha256": "bd97b9826aca82d003aece9c7c1431232ded75cdc4315b3b7d53711c4a53a616"
+        },
+        "32": {
+          "file": "M01-32.png",
+          "sha256": "29990a65fe3a9a4d4b9f9b54146fa55cc7ef0889afcf54b1de72798abd5c2851"
+        },
+        "64": {
+          "file": "M01-64.png",
+          "sha256": "4f3c37ec537fb8baccf073259742371f40b80a78569112a0304e006f346a67ba"
+        },
+        "128": {
+          "file": "M01-128.png",
+          "sha256": "ba21f5e5adbe84f9577a85626e8da7efd85ae01730d72117f9d5e1eb235d9039"
+        },
+        "192": {
+          "file": "M01-192.png",
+          "sha256": "6a139c376988a6946f0b6bd5a2a814cdc9e8fcfb38f19091025a2d5ed191872e"
+        }
+      },
+      "acceptance_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-08/visual-acceptance-01.json"
+    },
+    {
+      "number": 8,
+      "id": "M03",
+      "title": "Puissance métamorphe",
+      "kind": "passive",
+      "branch": "Transformations",
+      "roleplay": "L’énergie occulte imprègne votre corps métamorphosé et amplifie la violence de vos attaques.",
+      "skill_source": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M03-02.json",
+        "reference_sha256": "d570edbaf4e2efeb576caf001be538bd77088203c5ce63f04a530a16060b5379"
+      },
+      "visual_status": "accepted",
+      "prompt": "prompts/M03.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/M03-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "8317e69b256038805db94cad76983d373af46e707735d3d6a8960a5572402830"
+      },
+      "files": {
+        "24": {
+          "file": "M03-24.png",
+          "sha256": "b272dc6f36995e8f4c5171657fe31329cad9e30b5937fbae83e2273a44daf9ad"
+        },
+        "32": {
+          "file": "M03-32.png",
+          "sha256": "53a84cd3eab173537f673c51c0df39fc7f6081896d4ad2a1ad2f370280117d10"
+        },
+        "64": {
+          "file": "M03-64.png",
+          "sha256": "9846951f70803338cd50806532f10eab10caaa6f14de396ac2622ee03b80d9f8"
+        },
+        "128": {
+          "file": "M03-128.png",
+          "sha256": "b4ae197a984a9e7bff50f0a728a2e304c06cf2214dfba4ed5de02d15e6de25d5"
+        },
+        "192": {
+          "file": "M03-192.png",
+          "sha256": "daeeffb775e7c604cd73ddbd505c57ba3bffaf704ad9af9ad692cd7146dc85df"
+        }
+      },
+      "acceptance_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-08/visual-acceptance-01.json"
+    }
+  ],
+  "accepted_prior_icon_ids": [
+    "B01",
+    "ME04",
+    "SU04",
+    "FE05",
+    "FR03",
+    "BM02",
+    "D59",
+    "SF00"
+  ],
+  "accepted_prior_hashes_preserved": true,
+  "approval_ledger": "docs/reviews/refonte-agent-2026-10-06/skill-icon-acceptance.json",
+  "packaging": "Masters copied unchanged; Lanczos3 reductions. SVG used only to lay out the review board."
+}

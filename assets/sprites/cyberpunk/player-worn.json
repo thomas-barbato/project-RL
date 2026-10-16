@@ -1,0 +1,414 @@
+{
+  "version": 4,
+  "body_count": 3,
+  "body_variants": 16,
+  "base_hands_start": 48,
+  "worn_start": 101,
+  "worn_count": 32,
+  "worn_classes": 3,
+  "right_grip": [
+    24,
+    20
+  ],
+  "feet_baseline": 31,
+  "two_handed_grips": [
+    [
+      13,
+      16
+    ],
+    [
+      21,
+      14
+    ]
+  ],
+  "raised_grip": [
+    24,
+    8
+  ],
+  "sources": {
+    "classes-visages-v4.png": "5aed10ba2d43fc88209628f52bb3ffde2056a12bb803c4a03544591b2d489b28",
+    "corps-portes.png": "4f4f514da740f298b38f44859b3989ec8df3f8acdc92679b8a3724770d52162e",
+    "tetes-portees.png": "4310e4f4ed7652aa8e4c099d1f79f38fd9df573f287c7c1ad47e4853025599dc",
+    "mains-portees.png": "20cf456d7bcbb949e468a8c5273f7b6615bd87ec37fcdf6f92605eaabd5f5833",
+    "pieds-portes.png": "6bbbdf6a99767cdff564f2a6a857e577934b3175a8a2d23159f9a0a8cc16cdde"
+  },
+  "ranged_sources": {
+    "classes-deux-mains.png": "04f7fff041a2e2881799b9dd683f5ea9bcb41bb68539404ea56490bcd4a231ab",
+    "classes-main-levee.png": "b2795535758e3f12f95e3a06b62fe70b6e1368b3dca3d7fe177b51c95d5344ff",
+    "corps-two-handed.png": "06c0680b2cde73ffcac55196acc084b8de03ef33b1a517a9c77afcddba00e1f6",
+    "corps-raised.png": "fff236010ee298eb255ae6a1d62a298b01b7ed2a929c011b9bab1843ef2f7e73",
+    "gants-tir.png": "8fc276119331ecc3fff32f4e8ab95c223357fe497f0d9126ffe528883081be74",
+    "gants-deux-mains.png": "ea052ba8cdc1b97fe460ad8a15432086c931d5526dacded7c51a084c8c9819a6",
+    "pistolet-reference.png": "be89ac53aef1797a131494b5995190f848a23c51058e3737b7139cccdaf849ff"
+  },
+  "corrected_sources": {
+    "corps-two-handed-sans-mains.png": "2b45bff2ee5209df362cd33d7f3f1cd9d52731da62e04eb32ba42960e2f7a275",
+    "corps-raised-sans-mains.png": "a34ee2115e89acd161165d288db1338aca027b0c0843da7202f3a8694daa8137",
+    "corps-raised-avant-bras-court.png": "6b9551dfc0a2db80a3264a04195ea25af5cfc67a552f246663efda1b8013512b"
+  },
+  "ranged_layering": "complete clothing and wrists behind weapon; isolated fingers in front",
+  "ranged_back_hands": {
+    "body_start": 51,
+    "worn_start": 96,
+    "per_class": 6
+  },
+  "wrist_positions": {
+    "two-handed": [
+      [
+        [
+          12.0,
+          16.5
+        ],
+        [
+          20.75,
+          16.5
+        ]
+      ],
+      [
+        [
+          12.0,
+          16.5
+        ],
+        [
+          20.5,
+          16.25
+        ]
+      ],
+      [
+        [
+          12.0,
+          16.5
+        ],
+        [
+          20.5,
+          16.5
+        ]
+      ],
+      [
+        [
+          12.0,
+          16.25
+        ],
+        [
+          20.5,
+          16.25
+        ]
+      ],
+      [
+        [
+          12.0,
+          14.75
+        ],
+        [
+          20.25,
+          14.75
+        ]
+      ],
+      [
+        [
+          11.75,
+          15.0
+        ],
+        [
+          20.75,
+          15.0
+        ]
+      ],
+      [
+        [
+          12.0,
+          15.0
+        ],
+        [
+          20.25,
+          14.75
+        ]
+      ],
+      [
+        [
+          12.0,
+          15.0
+        ],
+        [
+          20.5,
+          15.25
+        ]
+      ],
+      [
+        [
+          11.5,
+          14.75
+        ],
+        [
+          20.5,
+          14.75
+        ]
+      ],
+      [
+        [
+          11.75,
+          14.75
+        ],
+        [
+          20.75,
+          15.0
+        ]
+      ],
+      [
+        [
+          11.5,
+          16.0
+        ],
+        [
+          20.75,
+          15.75
+        ]
+      ],
+      [
+        [
+          11.5,
+          16.0
+        ],
+        [
+          21.0,
+          15.75
+        ]
+      ],
+      [
+        [
+          11.5,
+          15.0
+        ],
+        [
+          20.75,
+          15.0
+        ]
+      ],
+      [
+        [
+          11.5,
+          15.0
+        ],
+        [
+          21.0,
+          15.0
+        ]
+      ]
+    ],
+    "raised": [
+      [
+        [
+          8.5,
+          19.5
+        ],
+        [
+          23.25,
+          11.0
+        ]
+      ],
+      [
+        [
+          8.25,
+          19.5
+        ],
+        [
+          23.25,
+          10.75
+        ]
+      ],
+      [
+        [
+          8.25,
+          19.5
+        ],
+        [
+          23.5,
+          10.75
+        ]
+      ],
+      [
+        [
+          8.25,
+          19.5
+        ],
+        [
+          23.5,
+          11.0
+        ]
+      ],
+      [
+        [
+          8.5,
+          19.25
+        ],
+        [
+          23.25,
+          11.0
+        ]
+      ],
+      [
+        [
+          8.25,
+          19.5
+        ],
+        [
+          23.5,
+          11.0
+        ]
+      ],
+      [
+        [
+          8.25,
+          19.25
+        ],
+        [
+          23.25,
+          11.0
+        ]
+      ],
+      [
+        [
+          8.25,
+          19.25
+        ],
+        [
+          23.25,
+          11.0
+        ]
+      ],
+      [
+        [
+          8.5,
+          18.0
+        ],
+        [
+          23.0,
+          10.25
+        ]
+      ],
+      [
+        [
+          8.75,
+          18.0
+        ],
+        [
+          23.0,
+          10.25
+        ]
+      ],
+      [
+        [
+          8.0,
+          19.0
+        ],
+        [
+          23.5,
+          11.0
+        ]
+      ],
+      [
+        [
+          8.0,
+          19.25
+        ],
+        [
+          23.5,
+          11.0
+        ]
+      ],
+      [
+        [
+          8.0,
+          19.0
+        ],
+        [
+          23.5,
+          11.0
+        ]
+      ],
+      [
+        [
+          8.0,
+          19.0
+        ],
+        [
+          23.5,
+          11.0
+        ]
+      ]
+    ]
+  },
+  "base_wrist_positions": {
+    "two-handed": [
+      [
+        [
+          11.0,
+          16.75
+        ],
+        [
+          21.0,
+          16.75
+        ]
+      ],
+      [
+        [
+          11.0,
+          16.75
+        ],
+        [
+          21.0,
+          16.75
+        ]
+      ],
+      [
+        [
+          11.0,
+          16.75
+        ],
+        [
+          21.0,
+          16.75
+        ]
+      ]
+    ],
+    "raised": [
+      [
+        [
+          9.5,
+          17.0
+        ],
+        [
+          22.0,
+          8.5
+        ]
+      ],
+      [
+        [
+          9.25,
+          16.75
+        ],
+        [
+          22.0,
+          8.5
+        ]
+      ],
+      [
+        [
+          9.25,
+          16.75
+        ],
+        [
+          22.0,
+          8.5
+        ]
+      ]
+    ]
+  },
+  "anatomy_sources": {
+    "torses-deux-mains-compacts.png": "a6e82df67d65cde7d320889a371e5223cfd330d8e111632815431509eccafdbe",
+    "torses-bras-leve-compacts.png": "61331a08d11d4d2a23e219705898eaafb4a9d6122354e38034cdc445090c203d",
+    "classes-deux-mains-compactes.png": "5371d938cae1049e0aaf45dc91215c5d7ccbba75d596ca07830100e2432e3a3a",
+    "classes-bras-leve-compactes.png": "5ef7e12eb46785c11dbdcb0788466d6255af65591e71a82b6d39e4e9804bd37a",
+    "mains-pistolet-profil.png": "81f91457075f7b237790d12064225bfd536a60972552f764aac4aacdf8c358dd"
+  }
+}

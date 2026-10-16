@@ -1,0 +1,321 @@
+{
+  "date": "2026-10-10",
+  "review_id": "EQUIP-SERIES01",
+  "revision": 4,
+  "status": "series_plan_accepted;heavy_machinegun_family_including_gatlings;art_reviews_in_progress",
+  "authority": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/caster-shield-heavy-expansion-directions-01.json",
+    "reference_sha256": "463e682fbf175117b92c0daf4fb85998db0464114c6f788e0ce705d98c3d7ae6"
+  },
+  "box_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/equipped-ammunition-box-direction-decisions-01.json",
+    "reference_sha256": "079c4eef65613d89fba598759ccdb7e1ded739cf540cdbbf2af76d7ebe1ea47b"
+  },
+  "source_weapon_bank": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-silhouette-review-03/review-weapon-silhouettes-WEAPON-SIL01-03.json",
+    "reference_sha256": "e51d2c67a4cd92b2d88405d39ecd89b4711c357aaa989204383774c30e934868"
+  },
+  "count_basis": "six_model_series_observed_in_pistols_SMG_and_existing_launcher_series;family_counts_not_uniform;additional_existing_base_models_retained",
+  "observed_existing_families": [
+    {
+      "index": 0,
+      "name": "Couteau",
+      "models": 12
+    },
+    {
+      "index": 1,
+      "name": "Épée",
+      "models": 1
+    },
+    {
+      "index": 2,
+      "name": "Épée à deux mains",
+      "models": 6
+    },
+    {
+      "index": 3,
+      "name": "Hache",
+      "models": 7
+    },
+    {
+      "index": 4,
+      "name": "Matraque",
+      "models": 4
+    },
+    {
+      "index": 5,
+      "name": "Arme d’hast",
+      "models": 7
+    },
+    {
+      "index": 6,
+      "name": "Pistolet",
+      "models": 6
+    },
+    {
+      "index": 7,
+      "name": "Pistolet mitrailleur",
+      "models": 6
+    },
+    {
+      "index": 8,
+      "name": "Fusil d’assaut",
+      "models": 7
+    },
+    {
+      "index": 9,
+      "name": "Fusil à pompe",
+      "models": 7
+    },
+    {
+      "index": 10,
+      "name": "Mitrailleuse",
+      "models": 7
+    },
+    {
+      "index": 11,
+      "name": "Fusil à énergie",
+      "models": 6
+    },
+    {
+      "index": 12,
+      "name": "Lance-flammes",
+      "models": 7
+    },
+    {
+      "index": 13,
+      "name": "Lance-grenades",
+      "models": 7
+    },
+    {
+      "index": 14,
+      "name": "Lance-roquettes",
+      "models": 7
+    },
+    {
+      "index": 15,
+      "name": "Lance-aiguilles",
+      "models": 1
+    },
+    {
+      "index": 16,
+      "name": "Marteau",
+      "models": 3
+    },
+    {
+      "index": 17,
+      "name": "Fusil de précision",
+      "models": 12
+    }
+  ],
+  "series": [
+    {
+      "family_id": "caster:focalizer",
+      "family_label": "Focaliseurs occultes",
+      "target_models_in_series": 6,
+      "stable_candidate_ids": [
+        "EQ-F01",
+        "EQ-F02",
+        "EQ-F03",
+        "EQ-F04",
+        "EQ-F05",
+        "EQ-F06"
+      ],
+      "existing_series_ids_to_preserve": [],
+      "additional_existing_base_ids_to_preserve": [],
+      "item_names_RP_stats": "not_proposed_yet;require_displayed_review",
+      "model_art": "pending_numbered_native_review;different_readable_models_with_stable_attachment_points"
+    },
+    {
+      "family_id": "caster:channeling_shaft",
+      "family_label": "Hampes de canalisation",
+      "target_models_in_series": 6,
+      "stable_candidate_ids": [
+        "EQ-H01",
+        "EQ-H02",
+        "EQ-H03",
+        "EQ-H04",
+        "EQ-H05",
+        "EQ-H06"
+      ],
+      "existing_series_ids_to_preserve": [],
+      "additional_existing_base_ids_to_preserve": [],
+      "item_names_RP_stats": "not_proposed_yet;require_displayed_review",
+      "model_art": "pending_numbered_native_review;different_readable_models_with_stable_attachment_points"
+    },
+    {
+      "family_id": "defense:shield",
+      "family_label": "Boucliers",
+      "target_models_in_series": 6,
+      "stable_candidate_ids": [
+        "EQ-S01",
+        "EQ-S02",
+        "EQ-S03",
+        "EQ-S04",
+        "EQ-S05",
+        "EQ-S06"
+      ],
+      "existing_series_ids_to_preserve": [],
+      "additional_existing_base_ids_to_preserve": [],
+      "item_names_RP_stats": "not_proposed_yet;require_displayed_review",
+      "model_art": "pending_numbered_native_review;different_readable_models_with_stable_attachment_points",
+      "held_orientation": "flat_visible_face",
+      "pivot_direction": "geometric_center_on_equipping_hand",
+      "occlusion_direction": "full_hand_and_partial_forearm_hidden_by_shield_face",
+      "layer_direction": "shield_in_front_of_body_hand_and_forearm;no_hand_or_finger_overlay_above_shield"
+    },
+    {
+      "family_id": "heavy:flamethrower",
+      "family_label": "Lance-flammes",
+      "target_models_in_series": 6,
+      "stable_candidate_ids": [
+        "EQ-LF01",
+        "EQ-LF02",
+        "EQ-LF03",
+        "EQ-LF04",
+        "EQ-LF05",
+        "EQ-LF06"
+      ],
+      "existing_series_ids_to_preserve": [
+        "core:modele_derven_f80",
+        "core:modele_karn_f60",
+        "core:modele_korgan_f100",
+        "core:modele_torak_f30",
+        "core:modele_vardek_f120",
+        "core:modele_varek_f10"
+      ],
+      "additional_existing_base_ids_to_preserve": [
+        "core:flamethrower"
+      ],
+      "item_names_RP_stats": "not_proposed_yet;require_displayed_review",
+      "model_art": "pending_numbered_native_review;different_readable_models_with_stable_attachment_points",
+      "held_orientation": "predominantly_horizontal",
+      "grip_direction": "two_distinct_main_and_support_grips;forearms_follow_each_silhouette_attachments;fixed_body_anatomy"
+    },
+    {
+      "family_id": "heavy:rocket_launcher",
+      "family_label": "Lance-roquettes",
+      "target_models_in_series": 6,
+      "stable_candidate_ids": [
+        "EQ-LR01",
+        "EQ-LR02",
+        "EQ-LR03",
+        "EQ-LR04",
+        "EQ-LR05",
+        "EQ-LR06"
+      ],
+      "existing_series_ids_to_preserve": [
+        "core:modele_bravan_lr12",
+        "core:modele_dorek_lr16",
+        "core:modele_karsen_lr20",
+        "core:modele_karvek_lr6",
+        "core:modele_ordan_lr9",
+        "core:modele_torven_lr2"
+      ],
+      "additional_existing_base_ids_to_preserve": [
+        "core:lance_roquettes"
+      ],
+      "item_names_RP_stats": "not_proposed_yet;require_displayed_review",
+      "model_art": "pending_numbered_native_review;different_readable_models_with_stable_attachment_points",
+      "held_orientation": "predominantly_horizontal",
+      "grip_direction": "two_distinct_main_and_support_grips;forearms_follow_each_silhouette_attachments;fixed_body_anatomy"
+    },
+    {
+      "family_id": "heavy:machine_gun",
+      "family_label": "Mitrailleuses lourdes",
+      "target_models_in_series": 6,
+      "stable_candidate_ids": [
+        "EQ-GA01",
+        "EQ-GA02",
+        "EQ-GA03",
+        "EQ-GA04",
+        "EQ-GA05",
+        "EQ-GA06"
+      ],
+      "existing_series_ids_to_preserve": [],
+      "additional_existing_base_ids_to_preserve": [],
+      "item_names_RP_stats": "not_proposed_yet;require_displayed_review",
+      "model_art": "pending_numbered_native_review;different_readable_models_with_stable_attachment_points",
+      "held_orientation": "predominantly_horizontal",
+      "grip_direction": "two_distinct_main_and_support_grips;forearms_follow_each_silhouette_attachments;fixed_body_anatomy",
+      "previous_family_id": "heavy:gatling",
+      "model_scope": "varied_heavy_machinegun_models_including_gatlings"
+    },
+    {
+      "family_id": "heavy:plasma_launcher",
+      "family_label": "Lance-plasma",
+      "target_models_in_series": 6,
+      "stable_candidate_ids": [
+        "EQ-LP01",
+        "EQ-LP02",
+        "EQ-LP03",
+        "EQ-LP04",
+        "EQ-LP05",
+        "EQ-LP06"
+      ],
+      "existing_series_ids_to_preserve": [],
+      "additional_existing_base_ids_to_preserve": [],
+      "item_names_RP_stats": "not_proposed_yet;require_displayed_review",
+      "model_art": "pending_numbered_native_review;different_readable_models_with_stable_attachment_points",
+      "held_orientation": "predominantly_horizontal",
+      "grip_direction": "two_distinct_main_and_support_grips;forearms_follow_each_silhouette_attachments;fixed_body_anatomy"
+    },
+    {
+      "family_id": "heavy:grenade_launcher",
+      "family_label": "Lance-grenades",
+      "target_models_in_series": 6,
+      "stable_candidate_ids": [
+        "EQ-LG01",
+        "EQ-LG02",
+        "EQ-LG03",
+        "EQ-LG04",
+        "EQ-LG05",
+        "EQ-LG06"
+      ],
+      "existing_series_ids_to_preserve": [
+        "core:modele_darsen_lg6",
+        "core:modele_korven_lg9",
+        "core:modele_merdan_lg12",
+        "core:modele_rovak_lg3",
+        "core:modele_torvik_lg16",
+        "core:modele_valrek_lg20"
+      ],
+      "additional_existing_base_ids_to_preserve": [
+        "core:lance_grenades"
+      ],
+      "item_names_RP_stats": "not_proposed_yet;require_displayed_review",
+      "model_art": "pending_numbered_native_review;different_readable_models_with_stable_attachment_points",
+      "held_orientation": "predominantly_horizontal",
+      "grip_direction": "two_distinct_main_and_support_grips;forearms_follow_each_silhouette_attachments;fixed_body_anatomy"
+    }
+  ],
+  "total_series_models_to_create_or_review": 48,
+  "box_models": "separate_production_batch;normal_and_magical_direction_accepted;model_count_not_yet_fixed",
+  "existing_art_boundary": "113_existing_weapons_have_approved_common_family_held_layers;new_series_and_distinct_model_geometry_need_own_native_review",
+  "new_heavy_identity": "Heavy machinegun series includes gatlings;existing machinegun and energy-rifle IDs and statistics remain preserved until their content review.",
+  "required_review_views": "numbered_ground_inventory_icons;held_on_all_five_fixed_bodies;left_right_for_one_hand;two_grips_for_two_hands;focalizer_plus_shield_and_melee_plus_shield;native32_and_integer_zoom_on_multiple_floors",
+  "accepted_visual_invariants": "native32_fixed_body;separate_weapons_arms_fingers_material_maps;no_extra_forearm_for_one_hand;weapon_palette_independent_of_armor;no_pink;overflow_without_larger_collision",
+  "pixel_approval": "shield_review_revision7_accepted_separately;focalizers_revision1_pending;other_new_art_pending",
+  "count_status": "accepted_six_models_per_family_as_displayed;additional_existing_base_models_preserved",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipment-series-EQUIP-SERIES01-03.json",
+    "reference_sha256": "6979765e1db73564139b07ad5301e1368115b936c67a1ddc34d4ce3287ded0bd"
+  },
+  "accepted_heavy_orientation": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/heavy-horizontal-pose-directions-01.json",
+    "reference_sha256": "362ea53f5d3beeee50a9bd17410f300462f11253ced8ade4862d08981a5ee18d"
+  },
+  "accepted_shield_orientation": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/shield-flat-hand-centered-direction-01.json",
+    "reference_sha256": "7bbe4c4176bb445a049a8a270541980f658e13a817041dd0261d409dea528b3c"
+  },
+  "heavy_machinegun_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/heavy-machinegun-family-direction-01.json",
+    "reference_sha256": "9fc102e7eb8ab74854b990743b1fbaa0fd782216a40fd6b955d4d77854ae9705"
+  },
+  "current_shield_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/shield-visual-acceptance-01.json",
+    "reference_sha256": "db848c8b2a38299c42567d8bc9a72979115eeaeae6c1a5bbdc2b0acaf4e3cbcd"
+  }
+}

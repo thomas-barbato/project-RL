@@ -42,6 +42,7 @@ pub struct CharacterClassDefinition {
     starting_weapons: Vec<WeaponId>,
     starting_items: Vec<ClassStartingItem>,
     starting_equipment: Vec<Option<WeaponId>>,
+    agent_start: Option<crate::agent_class::AgentClassStart>,
 }
 
 impl CharacterClassDefinition {
@@ -66,7 +67,17 @@ impl CharacterClassDefinition {
             return Err(CharacterClassDefinitionError::EmptyDescriptionKey);
         }
         recommended_attributes
-            .validate_for_creation(PrimaryAttributeRules::default())
+            .validate_for_creation(PrimaryAttributeRules {
+                creation_total: if recommended_attributes
+                    .value(crate::stats::PrimaryAttribute::Willpower)
+                    > 0
+                {
+                    34
+                } else {
+                    28
+                },
+                ..PrimaryAttributeRules::default()
+            })
             .map_err(CharacterClassDefinitionError::InvalidRecommendedAttributes)?;
 
         let mut weapons = BTreeSet::new();
@@ -107,11 +118,19 @@ impl CharacterClassDefinition {
             starting_weapons,
             starting_items,
             starting_equipment,
+            agent_start: None,
         })
     }
 
     pub const fn id(&self) -> &CharacterClassId {
         &self.id
+    }
+    pub fn with_agent_start(mut self, start: crate::agent_class::AgentClassStart) -> Self {
+        self.agent_start = Some(start);
+        self
+    }
+    pub fn agent_start(&self) -> Option<&crate::agent_class::AgentClassStart> {
+        self.agent_start.as_ref()
     }
 
     pub fn name_key(&self) -> &str {
@@ -167,6 +186,16 @@ impl CharacterClassDefinition {
         rules: &mut GameRules,
         attributes: PrimaryAttributes,
     ) -> Result<(), CharacterClassApplicationError> {
+        if self
+            .recommended_attributes
+            .value(crate::stats::PrimaryAttribute::Willpower)
+            > 0
+        {
+            rules.primary_attribute_rules.creation_total = 34;
+            if attributes != self.recommended_attributes {
+                return Err(CharacterClassApplicationError::FixedStartingAttributes);
+            }
+        }
         attributes
             .validate_for_creation(rules.primary_attribute_rules)
             .map_err(CharacterClassApplicationError::InvalidAttributes)?;
@@ -180,6 +209,28 @@ impl CharacterClassDefinition {
         }
 
         rules.player_starting_attributes = attributes;
+        rules.agent_class_start = self.agent_start.clone();
+        if let Some(start) = &self.agent_start {
+            rules.progression.starting_skill_points = 0;
+            rules.player_hit_points_per_level = 2;
+            rules.player_full_heal_on_level_up = true;
+            rules.player_energy_capacity = start.maximum_energy(attributes, 1, 0);
+            rules.player_starting_energy = rules.player_energy_capacity;
+            let physical = rules
+                .physical_rules
+                .get_or_insert(crate::stats::PhysicalRules::default());
+            physical.hit_points.hit_points_per_resilience = 4;
+            physical.hit_points.neutral_attribute = 5;
+            let body = rules
+                .player_body_profile
+                .get_or_insert(crate::stats::BodyProfile::new(30, 0).expect("positive agent HP"));
+            body.base_hit_points = 30;
+            body.material_bonus = 0;
+            body.base_armor = start.armor;
+            crate::skills::agent::install_status_definitions(&mut rules.statuses);
+            rules.player_drone_expires_without_energy = false;
+            rules.player_companion_limit = Some(5);
+        }
         rules.player_starting_weapons = self.starting_weapons.clone();
         rules.player_starting_items = self
             .starting_items
@@ -271,7 +322,28 @@ impl CharacterClassCatalog {
     }
 
     pub fn iter(&self) -> impl Iterator<Item = (&CharacterClassId, &CharacterClassDefinition)> {
-        self.definitions.iter()
+        const ORDER: [&str; 5] = [
+            "core:bastion",
+            "core:technomancien",
+            "core:traqueur",
+            "core:arcaniste",
+            "core:metamorphe",
+        ];
+        let agents = self.definitions.values().any(|d| d.agent_start.is_some());
+        let mut definitions: Vec<_> = self
+            .definitions
+            .iter()
+            .filter(|(id, _)| {
+                !agents || !matches!(id.as_str(), "core:breche" | "core:vigie" | "core:creuset")
+            })
+            .collect();
+        definitions.sort_by_key(|(id, _)| {
+            ORDER
+                .iter()
+                .position(|name| *name == id.as_str())
+                .unwrap_or(ORDER.len())
+        });
+        definitions.into_iter()
     }
 
     pub fn is_empty(&self) -> bool {
@@ -296,6 +368,7 @@ impl Error for CharacterClassCatalogError {}
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum CharacterClassApplicationError {
+    FixedStartingAttributes,
     InvalidAttributes(crate::stats::PrimaryAttributesError),
     InvalidDefinition(CharacterClassDefinitionError),
     TooManyEquipmentChannels { actual: usize, maximum: usize },
@@ -304,6 +377,10 @@ pub enum CharacterClassApplicationError {
 impl Display for CharacterClassApplicationError {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::FixedStartingAttributes => write!(
+                formatter,
+                "this class requires its fixed starting attributes"
+            ),
             Self::InvalidAttributes(error) => {
                 write!(formatter, "invalid starting attributes: {error}")
             }

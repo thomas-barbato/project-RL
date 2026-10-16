@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-06",
+  "user_statement": "ok j'accepte :)",
+  "reviewed_round": "t1-and-merged-guardian",
+  "accepted": 2,
+  "decisions": [
+    {
+      "number": 59,
+      "review_id": "visual-proposal:059",
+      "name": "Artilleur",
+      "status": "accepted-art",
+      "scope": [
+        "living",
+        "corpse"
+      ],
+      "sources": {
+        "source": {
+          "path": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/059-r4.png",
+          "sha256": "1a15e7cdec95120dd0e13eb73f89cdb904821396bfb9e02d23cb44b1cddbdf9b"
+        },
+        "living": {
+          "path": "../../../assets/sprites/bestiary/tiles/059-living-32.png",
+          "sha256": "914e9917df6448b2a1b40190354a21a5a291088ac62cabbcc26a49a525ac5b62"
+        },
+        "corpse": {
+          "path": "../../../assets/sprites/bestiary/tiles/059-corpse-32.png",
+          "sha256": "81658d444deb5a0410fa089b68e257df13f23ada543e05c55ddcaae3c7409be4"
+        }
+      }
+    },
+    {
+      "number": 66,
+      "review_id": "visual-proposal:066",
+      "name": "Gardien",
+      "status": "accepted-art",
+      "scope": [
+        "living",
+        "corpse"
+      ],
+      "sources": {
+        "source": {
+          "path": "../../../assets/source-art/allies-transformations-proposition-2026-10-06/sources/066-r2.png",
+          "sha256": "62b43ece2347d3e5e8f29fd9ecc0e7fe76158f309cc45a0534632397aad03bf9"
+        },
+        "living": {
+          "path": "../../../assets/sprites/bestiary/tiles/066-living-32.png",
+          "sha256": "a3d200696497051ca82a3cf278b0aabbb95e8b95b6341c049cf559c5b2a9502e"
+        },
+        "corpse": {
+          "path": "../../../assets/sprites/bestiary/tiles/066-corpse-32.png",
+          "sha256": "f93d7ef9cdd56cc47b671daa72ba1b445c19bf4da40a6d925ca2892567c830d0"
+        }
+      }
+    }
+  ],
+  "accepted_merge": {
+    "retired_number": 60,
+    "retained_number": 66,
+    "shield_removed": true
+  },
+  "review_capture": {
+    "path": "../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/review/59-66-propositions-r3.png",
+    "sha256": "f90b2dcb4fbdf1089e4a06b5527df8f694417acacf73a0eb3af59b215f98785f"
+  },
+  "scope": "Current 59 and 66 living sprites and dry wrecks; merger of 60 into 66. No gameplay, talent or statistics changes inferred.",
+  "integration_status": "accepted art; not integrated"
+}

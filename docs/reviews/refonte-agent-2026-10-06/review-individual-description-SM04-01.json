@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-08",
+  "id": "SM04",
+  "review_id": "SM04",
+  "revision": 1,
+  "title": "Explosion étendue",
+  "branch": "Mines",
+  "kind": "secondary_passive",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-117.json",
+  "source_skill_manifest_sha256": "c626a9ed935c29fb8de582e166ff20d48330f3f1e380ce7eeec7ae0a0074a1da",
+  "source_skill_block_sha256": "0add27ea9100f5fe5bd7fd347560338e336022b7001b060dfabec2b77db24a8b",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "SM00_learned_rank": 1,
+    "SM00_base_radius_cells": 1,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "explosion_radius_cells": 4
+  },
+  "next_values_proposal": {
+    "explosion_radius_cells": 4
+  },
+  "formula_proposed": "SM00_base_radius+ceil(effective_rank/4);base1;current11=4,next12=4;full_curve_and_equipment_bonus_continuation_unshown_pending",
+  "conditions_proposed": {
+    "SM00_prerequisite": true,
+    "automatic_learned_passive": true,
+    "all_fire_poison_and_cold_mine_variants": true,
+    "SM05_ground_zone_uses_same_radius_when_learned": true,
+    "radial_Euclidean_area": "proposed",
+    "walls_block_area_propagation": true,
+    "map_boundaries_clip_area": true,
+    "preview_does_not_reveal_unknown_actors_or_terrain": "proposed_existing_visibility_rules_preserved",
+    "no_change_to_base_damage_status_strength_arming_cost_or_cooldown": true,
+    "no_new_activation_or_timed_buff": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [],
+    "unchanged_marker": "Rayon inchangé à ce rang.",
+    "not_global_radius_cap_marker": true,
+    "not_learned_rank_cap_marker": true
+  },
+  "name_approval": "existing_secondary_catalogue_name_preserved",
+  "roleplay_text_approval": "new_individual_RP_pending_explicit_review",
+  "numeric_rules_approval": "displayed_current11_next12_radius4_proposed_pending_review;full_curve_and_future_bonus_radius_pending",
+  "detailed_conditions_approval": "active_prerequisite_and_area_increase_previously_confirmed;displayed_variants_SM05_shared_area_and_wall_block_pending_review;unshown_geometry_cases_pending",
+  "visual_intention_approval": "updated_placement_and_hover_area_preview_proposed_pending_review;existing_preview_direction_preserved",
+  "visual_approval": "native_UI_and_area_animation_pending_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**SM04 · Explosion étendue — Rang 11 · Passif**\n\n*Vous amplifiez le souffle de vos mines pour atteindre les ennemis plus éloignés.*\n\n**Effets actuels**\n\n- Rayon de l’explosion : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nRayon inchangé à ce rang.\n\nNécessite **Pose de mine** apprise. S’applique aux mines de feu, de poison et de glace, ainsi qu’aux zones laissées par **Résidu persistant**.\n\nLes murs arrêtent la propagation.",
+  "player_copy_sha256": "fea0c9a27719af30911409041c5fea176021765c7d46bc0d98debd83176707e6",
+  "visual_copy_markdown": "**Affichage proposé :** l’aperçu avant la pose et le rayon affiché au survol de la mine montrent la zone agrandie, en tenant compte des murs.",
+  "visual_copy_sha256": "e24ab748c2fde5e9b890ee04d4aea36ef421b7236bb566595e0d9630a311cacc",
+  "current_turn_shown_copy_markdown": "**SM04 · Explosion étendue — Rang 11 · Passif**\n\n*Vous amplifiez le souffle de vos mines pour atteindre les ennemis plus éloignés.*\n\n**Effets actuels**\n\n- Rayon de l’explosion : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nRayon inchangé à ce rang.\n\nNécessite **Pose de mine** apprise. S’applique aux mines de feu, de poison et de glace, ainsi qu’aux zones laissées par **Résidu persistant**.\n\nLes murs arrêtent la propagation.\n\n**Affichage proposé :** l’aperçu avant la pose et le rayon affiché au survol de la mine montrent la zone agrandie, en tenant compte des murs.",
+  "current_turn_shown_copy_sha256": "4cdb48a67e359187137144b1a9f5ada6d8c4b1d62ee9f97eb6580f6ac8c05b7b",
+  "unshown_cases_pending": [
+    "full_rank1_to10_and_equipment_bonus_curve",
+    "precise_radial_cells_diagonals_wall_corners_doors_and_obstacles",
+    "SM05_ground_zone_propagation_and_application_details",
+    "attribute_or_equipment_radius_modifiers_and_snapshot_time",
+    "friendly_damage_or_Gel_eligibility_preserved_from_separate_SM00_SM03_reviews",
+    "unknown_cell_preview_and_multi_element_hover_inspection",
+    "native_preview_palette_bonus_rank_color_and_larger_explosion_readability"
+  ]
+}

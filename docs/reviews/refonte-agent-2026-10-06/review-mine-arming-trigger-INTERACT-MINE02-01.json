@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-MINE02",
+  "revision": 1,
+  "title": "Armement et déclenchement des mines",
+  "status": "proposed_awaiting_user_review;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-zone-entry-exit-INTERACT-ZONE04-02.json",
+      "reference_sha256": "019f70cae8505c03023ded7c2b8a1adbe4f91975d9913d08ab5ea976811f5053"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-turn-resolution-INTERACT-TURN01-02.json",
+      "reference_sha256": "7b4840eacad218e900580fd1e8f3a2440f0abafa64f534f6c570efc3a80856af"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-placement-power-INTERACT-MINE01-02.json",
+      "reference_sha256": "9012648dcda4dd0e6e48a6d6cf2bd9b075af1504d34b736a47bcc859efc53f65"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM00-02.json",
+      "reference_sha256": "fe9a39d758b8022e9a5f9bd43726135e7c7c3bc4783f7fb1fa4ea3261e2c6010"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-timer-accounting-INTERACT-TIME01-03.json",
+      "reference_sha256": "fbd196b6934e34796e4378fab24370dcecee522a5aaa72a7feea9f5c774c58d3"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/own-spell-self-damage-protection-decisions.json",
+      "reference_sha256": "9ee4943a2307c8b4b562d82856751acfb4619bc4876d71e1705cbd8b1fe18140"
+    }
+  ],
+  "scope": "SM00_existing_one_turn_arming_phase_and_hostile_contact_trigger;not_new_placement_permission_or_damage_values",
+  "already_accepted": "one_turn_arming;armed_mine_hostile_contact;SM00_visible_accessible_own_or_adjacent_cell_without_enemy_or_other_mine;blinking_red_armed_light;stored_placement_power;immediate_persistent_start_at_actual_explosion",
+  "proposed_rule": {
+    "arming": "ordinary_one_turn_placement_action_mine_unarmed_during_that_turn_actor_responses;arm_at_end_of_that_turn_after_one_reference_turn_elapsed_in_end_phase_before_recovery;no_zero_time_UI_or_refused_action_progress",
+    "prearming_contact": "hostile_entering_unarmed_mine_cell_does_not_trigger;on_arming_check_current_living_hostile_occupant_and_explode_if_present;hostile_that_already_left_does_not_trigger",
+    "armed_contact": "living_hostile_entering_armed_mine_cell_triggers_immediate_explosion_including_forced_movement;player_familiars_and_other_nonhostiles_do_not_trigger",
+    "consumption": "remove_triggered_mine_before_resolving_its_explosion;one_detonation_and_no_later_retrigger_of_same_mine",
+    "effects": "explosion_damage_and_statuses_immediate_under_accepted_current_target_defenses_and_stored_mine_power;eligible_residue_zone_created_and_first_effect_immediate;no_duplicate_automatic_creation_turn_zone_effect",
+    "preserved": "existing_damage_and_status_values;one_mine_per_cell_capacity_cleanup;per_victim_sampling;SELF_DMG01_player_immunity_and_per_skill_ally_damage_rules;red_armed_light_blinks_without_new_native_rendering",
+    "placement": "existing_SM00_enemy_occupied_cell_refusal_preserved;enemy_at_arming_case_is_later_arrival_not_permission_to_place_under_enemy",
+    "scope_boundary": "no_new_chain_detonation_or_remote_trigger_rule;simultaneous_multi_mine_arming_death_proc_ties_geometry_large_footprints_and_native_feedback_not_defined"
+  },
+  "shown_copy_markdown": "INTERACT-MINE02 · Armement et déclenchement des mines — proposition\n\n- Une mine reste inactive pendant le tour de pose. Elle s'arme à la fin de ce tour, une fois son délai de 1 tour écoulé.\n- Un ennemi qui passe dessus avant l'armement ne la déclenche pas. S'il occupe encore sa case au moment de l'armement, elle explose alors. S'il est déjà reparti, elle reste posée et armée.\n- Une fois armée, elle explose dès qu'un ennemi entre sur sa case, y compris par un déplacement forcé. Le joueur et ses familiers ne la déclenchent pas.\n- L'explosion consomme la mine une seule fois. Ses dégâts et statuts sont résolus immédiatement ; un éventuel résidu persistant commence aussi dès cette explosion, suivant les règles validées.\n\nLe voyant rouge clignote une fois la mine armée, comme validé. Les règles de pose, les valeurs fixées à la pose et les protections propres à chaque cible restent conservées. La pose sur une case déjà occupée par un ennemi reste refusée selon la fiche SM00 ; le cas ci-dessus concerne un ennemi arrivant après la pose.\n\nCe décompte d'armement et ces précisions de déclenchement restent proposés, en attente de validation.",
+  "shown_copy_sha256": "a86847cff52f77719075fc00c86a84ca2ef022c1932175aba0b6c1c84a5aa55a",
+  "not_resolved_here": [
+    "simultaneous_multi_mine_and_area_death_proc_ties",
+    "explosion_geometry_and_large_actor_footprints",
+    "other_mines_response_to_explosion",
+    "native_arming_and_explosion_feedback"
+  ],
+  "mechanic_approval": "pending_user_review",
+  "text_approval": "design_explanation_pending;no_new_individual_RP_name_or_error_copy",
+  "visual_approval": "existing_blinking_armed_light_direction_preserved;no_new_native_rendering",
+  "runtime_integration": "not_integrated"
+}

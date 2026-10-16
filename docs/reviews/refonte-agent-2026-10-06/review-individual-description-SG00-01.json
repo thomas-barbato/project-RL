@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-08",
+  "id": "SG00",
+  "review_id": "SG00",
+  "revision": 1,
+  "title": "Lancer de grenade",
+  "branch": "Grenades",
+  "kind": "secondary_active_single_purchase",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-119.json",
+  "source_skill_manifest_sha256": "a80c874ca0a49c50b48967d76b16be439e8cae9e19dad41617c7a302b26226ad",
+  "source_skill_block_sha256": "a943872948a1e7e213a98fa5fa79af7cf022b840d1dbfc7b34c919d910f776a2",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 1,
+    "effective_rank": 1,
+    "single_purchase": true,
+    "intelligence": 10,
+    "M_technique_exact": "11/10",
+    "all_grenade_passives_absent": true,
+    "other_modifiers": false
+  },
+  "current_values_proposal": {
+    "available_variant": "Explosive",
+    "physical_damage_before_defenses": 8,
+    "throw_range_cells": 4,
+    "explosion_radius_cells": 1,
+    "energy_cost": 8,
+    "cooldown_turns": 2
+  },
+  "default_values_proposal": {
+    "available_variant": "Explosive",
+    "physical_damage_before_defenses": 8,
+    "throw_range_cells": 4,
+    "explosion_radius_cells": 1,
+    "energy_cost": 8,
+    "cooldown_turns": 2
+  },
+  "next_rank_preview": null,
+  "purchase": {
+    "skill_point_cost": 1,
+    "single_purchase": true,
+    "no_second_learned_rank": true
+  },
+  "formulas_proposed": {
+    "physical_damage_before_defenses": "floor(8*M_technique);rank_constant_for_unique_active",
+    "M_technique": "1+0.02*(Intelligence-5)",
+    "range_cells": 4,
+    "radius_cells": 1,
+    "energy_cost": 8,
+    "cooldown_turns": 2
+  },
+  "calculation_evidence": {
+    "physical_damage_before_floor": "44/5",
+    "physical_damage_final": 8,
+    "all_grenade_passives_absent": true,
+    "no_weapon_damage_or_variance_used": true
+  },
+  "conditions_proposed": {
+    "energy_only_no_inventory_consumable": true,
+    "target_currently_visible_in_range": true,
+    "walls_block_throw_trajectory": true,
+    "target_cell_may_contain_enemy_or_be_empty": "proposed",
+    "ordinary_action_with_resolution_at_impact_no_extra_turn_delay": "proposed_not_repeated_in_player_copy",
+    "explosion_radial_area": "proposed_Euclidean_wall_clipped",
+    "player_self_damage_immunity": true,
+    "allies_can_be_harmed": "proposed_pending_review",
+    "no_weapon_requirement": true,
+    "blinding_variant_requires_SG01": true,
+    "sound_variant_requires_SG02": true,
+    "no_poison_cold_cloud_or_radius_passive_added_to_grenades": true,
+    "utility_variants_no_explosive_damage": "existing_proposal_to_review_in_SG01_SG02",
+    "cancelled_or_refused_throw": "no_energy_time_or_RNG_consumption_proposed_unshown",
+    "all_variant_real_area_previews": "previously_confirmed_direction;variant_specific_shapes_to_review",
+    "while_transformed": "common_form_action_restrictions_preserved"
+  },
+  "name_approval": "existing_secondary_catalogue_name_preserved",
+  "roleplay_text_approval": "new_individual_RP_pending_explicit_review",
+  "numeric_rules_approval": "displayed_unique_active_rank1_physical8_range4_radius1_energy8_cooldown2_proposed_pending_review;unshown_scaling_and_real_stat_balance_pending",
+  "detailed_conditions_approval": "single_purchase_energy_only_associated_variants_and_preview_previously_confirmed;displayed_visible_target_wall_block_allied_damage_and_other_conditions_pending_review",
+  "visual_intention_approval": "metallic_grenade_flight_brief_fragment_explosion_trajectory_and_area_preview_proposed_pending_review",
+  "visual_approval": "native_tile_animation_and_UI_pending_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**SG00 · Lancer de grenade — Rang 1 · Actif**\n\n*Vous lancez une grenade au milieu des ennemis pour semer le chaos.*\n\n**Effets actuels**\n\n- Variante disponible : **Explosive**.\n- Dégâts physiques : **8**, avant défenses.\n- Portée de lancer : **4 cases**.\n- Rayon de l’explosion : **1 case**.\n- Coût : **8 énergie**.\n- Recharge : **2 tours**.\n\nChoisissez une case visible et à portée. Les murs bloquent la trajectoire.\n\nLes variantes aveuglante et sonore deviennent sélectionnables avec leurs passifs. Le lancer ne consomme aucun objet d’inventaire.\n\nVous êtes protégé des dégâts de vos grenades. Vos alliés peuvent être touchés.\n\n**Achat unique : 1 point de compétence.**",
+  "player_copy_sha256": "bcf72a40c211e3dca9deb7125ba8cfee90f1dee05700ec49c21d79ec8a11fae9",
+  "visual_copy_markdown": "**Visuel proposé :** une petite grenade métallique projetée vers la case choisie, puis une brève explosion avec des éclats. La trajectoire et les cases touchées sont prévisualisées avant confirmation.",
+  "visual_copy_sha256": "75771c45e8d44675e9e9fd5bade3cdf52cfbfc2d674d185181ffc0c30382dbf4",
+  "current_turn_shown_copy_markdown": "**SG00 · Lancer de grenade — Rang 1 · Actif**\n\n*Vous lancez une grenade au milieu des ennemis pour semer le chaos.*\n\n**Effets actuels**\n\n- Variante disponible : **Explosive**.\n- Dégâts physiques : **8**, avant défenses.\n- Portée de lancer : **4 cases**.\n- Rayon de l’explosion : **1 case**.\n- Coût : **8 énergie**.\n- Recharge : **2 tours**.\n\nChoisissez une case visible et à portée. Les murs bloquent la trajectoire.\n\nLes variantes aveuglante et sonore deviennent sélectionnables avec leurs passifs. Le lancer ne consomme aucun objet d’inventaire.\n\nVous êtes protégé des dégâts de vos grenades. Vos alliés peuvent être touchés.\n\n**Achat unique : 1 point de compétence.**\n\n**Visuel proposé :** une petite grenade métallique projetée vers la case choisie, puis une brève explosion avec des éclats. La trajectoire et les cases touchées sont prévisualisées avant confirmation.",
+  "current_turn_shown_copy_sha256": "1ff8e401d02348df9c8b45410c20e7953a813506914d61a04512ce6e66ebc34c",
+  "unshown_cases_pending": [
+    "full_attribute_damage_scaling_resistances_and_real_monster_statistics",
+    "range_metric_diagonals_low_obstacles_actor_interception_and_throw_arc",
+    "wall_clipped_explosion_geometry_and_visibility_boundaries",
+    "ordinary_hit_evasion_or_damage_checks_for_explosion",
+    "friendly_damage_attribution_and_player_non_damage_status_cases",
+    "atomic_cancel_refusal_resources_time_rng_and_cooldown_phases",
+    "SG01_SG02_variant_cost_damage_and_special_effect_details",
+    "native_grenade_flight_palette_area_preview_rank_display_and_action_cooldown_UI"
+  ]
+}

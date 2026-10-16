@@ -1,0 +1,248 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/class-drone-corrections.json",
+  "latest_decisions_sha256": "a423c8439c4ec7334febad12bc330ef48477cfbe5fb7a075f8a518e0d5a2154f",
+  "status": "proposal_arithmetic_verified_not_runtime_tests",
+  "supersedes_for_changed_skills": "docs/reviews/refonte-agent-2026-10-06/attribute-and-skill-examples.json",
+  "rows": [
+    {
+      "effective_level": 1,
+      "D56": {
+        "base_hp": 16,
+        "vision": 4,
+        "duration": 8,
+        "energy": 10
+      },
+      "D57": {
+        "base_hp": 28,
+        "capacity": 40,
+        "duration": 10,
+        "energy": 10
+      },
+      "D58": {
+        "base_hp": 22,
+        "base_damage": 5,
+        "duration": 8,
+        "energy": 12
+      },
+      "D59_O01": {
+        "base_hp": 20,
+        "base_damage": 4,
+        "duration": 8,
+        "energy": 12
+      },
+      "D66": {
+        "base_hp": 30,
+        "base_damage": 3,
+        "protection_percent": 5.0,
+        "duration": 8,
+        "energy": 14
+      },
+      "DP01": {
+        "added_turns": 2,
+        "artillery_duration_with_same_rank": 10
+      },
+      "DP02": {
+        "damage_reduction_percent": 10.0
+      },
+      "O03": {
+        "drone_damage_bonus_percent": 25
+      },
+      "T01": {
+        "accuracy_bonus_percent": 15,
+        "activation_turns": 0,
+        "reference_hit_chance_percent": 82.1,
+        "duration": 4,
+        "energy": 6
+      },
+      "T03": {
+        "personal_ranged_damage_bonus_percent": 10,
+        "requires_previous_movement": false
+      },
+      "M03": {
+        "personal_transformed_damage_bonus_percent": 10,
+        "human_form_bonus": 0
+      }
+    },
+    {
+      "effective_level": 10,
+      "D56": {
+        "base_hp": 43,
+        "vision": 7,
+        "duration": 11,
+        "energy": 13
+      },
+      "D57": {
+        "base_hp": 64,
+        "capacity": 112,
+        "duration": 13,
+        "energy": 13
+      },
+      "D58": {
+        "base_hp": 58,
+        "base_damage": 23,
+        "duration": 11,
+        "energy": 15
+      },
+      "D59_O01": {
+        "base_hp": 56,
+        "base_damage": 13,
+        "duration": 11,
+        "energy": 15
+      },
+      "D66": {
+        "base_hp": 75,
+        "base_damage": 12,
+        "protection_percent": 16.8,
+        "duration": 11,
+        "energy": 17
+      },
+      "DP01": {
+        "added_turns": 11,
+        "artillery_duration_with_same_rank": 22
+      },
+      "DP02": {
+        "damage_reduction_percent": 28.9
+      },
+      "O03": {
+        "drone_damage_bonus_percent": 43
+      },
+      "T01": {
+        "accuracy_bonus_percent": 33,
+        "activation_turns": 0,
+        "reference_hit_chance_percent": 84.2,
+        "duration": 5,
+        "energy": 9
+      },
+      "T03": {
+        "personal_ranged_damage_bonus_percent": 28,
+        "requires_previous_movement": false
+      },
+      "M03": {
+        "personal_transformed_damage_bonus_percent": 28,
+        "human_form_bonus": 0
+      }
+    },
+    {
+      "effective_level": 12,
+      "D56": {
+        "base_hp": 49,
+        "vision": 7,
+        "duration": 11,
+        "energy": 13
+      },
+      "D57": {
+        "base_hp": 72,
+        "capacity": 128,
+        "duration": 13,
+        "energy": 13
+      },
+      "D58": {
+        "base_hp": 66,
+        "base_damage": 27,
+        "duration": 11,
+        "energy": 15
+      },
+      "D59_O01": {
+        "base_hp": 64,
+        "base_damage": 15,
+        "duration": 11,
+        "energy": 15
+      },
+      "D66": {
+        "base_hp": 85,
+        "base_damage": 14,
+        "protection_percent": 18.1,
+        "duration": 11,
+        "energy": 17
+      },
+      "DP01": {
+        "added_turns": 13,
+        "artillery_duration_with_same_rank": 24
+      },
+      "DP02": {
+        "damage_reduction_percent": 31.0
+      },
+      "O03": {
+        "drone_damage_bonus_percent": 47
+      },
+      "T01": {
+        "accuracy_bonus_percent": 37,
+        "activation_turns": 0,
+        "reference_hit_chance_percent": 84.6,
+        "duration": 6,
+        "energy": 9
+      },
+      "T03": {
+        "personal_ranged_damage_bonus_percent": 32,
+        "requires_previous_movement": false
+      },
+      "M03": {
+        "personal_transformed_damage_bonus_percent": 32,
+        "human_form_bonus": 0
+      }
+    },
+    {
+      "effective_level": 100,
+      "D56": {
+        "base_hp": 313,
+        "vision": 8,
+        "duration": 41,
+        "energy": 43
+      },
+      "D57": {
+        "base_hp": 424,
+        "capacity": 832,
+        "duration": 43,
+        "energy": 43
+      },
+      "D58": {
+        "base_hp": 418,
+        "base_damage": 203,
+        "duration": 41,
+        "energy": 45
+      },
+      "D59_O01": {
+        "base_hp": 416,
+        "base_damage": 103,
+        "duration": 41,
+        "energy": 45
+      },
+      "D66": {
+        "base_hp": 525,
+        "base_damage": 102,
+        "protection_percent": 27.7,
+        "duration": 41,
+        "energy": 47
+      },
+      "DP01": {
+        "added_turns": 101,
+        "artillery_duration_with_same_rank": 142
+      },
+      "DP02": {
+        "damage_reduction_percent": 46.3
+      },
+      "O03": {
+        "drone_damage_bonus_percent": 223
+      },
+      "T01": {
+        "accuracy_bonus_percent": 213,
+        "activation_turns": 0,
+        "reference_hit_chance_percent": 92.6,
+        "duration": 23,
+        "energy": 39
+      },
+      "T03": {
+        "personal_ranged_damage_bonus_percent": 208,
+        "requires_previous_movement": false
+      },
+      "M03": {
+        "personal_transformed_damage_bonus_percent": 208,
+        "human_form_bonus": 0
+      }
+    }
+  ],
+  "verified": "HP, armed-drone damage and cargo capacity improve through effective rank 10000; bounded reductions stay below their limits",
+  "combat_balance": "not_playtested"
+}

@@ -1,0 +1,369 @@
+{
+  "review_id": "SKILLS-IC09",
+  "date": "2026-10-10",
+  "status": "revision_requested",
+  "source_review": "SKILLS-IC08",
+  "scope": "Four new illustrated melee skill icons and four independent compact counterparts. Names, texts, mechanics and active UI remain unchanged.",
+  "generation_tool": "image_gen.imagegen",
+  "generation_strategy": "One separate image_gen call per illustrated icon and one per compact counterpart.",
+  "feedback": {
+    "review_id": "SKILLS-IC09",
+    "date": "2026-10-10",
+    "continuation_request": "ok on continue :)",
+    "skill_ids": [
+      "ME02",
+      "ME03",
+      "ME05",
+      "ME06"
+    ],
+    "direction": "Continue the approved illustrated comic style and the separately approved compact style with four unillustrated melee skills.",
+    "readability_goals": "Separate open sweep, armor penetration, forward movement and full circular sweep.",
+    "approval_scope": "New icon drawings only; current skill names, texts and mechanics are preserved. Illustrations and compact drawings await separate visual review."
+  },
+  "candidates": [
+    {
+      "number": 9,
+      "id": "ME02",
+      "variant": "ME02-v1",
+      "kind": "illustrated",
+      "title": "Fauchage",
+      "visual_status": "revision_requested",
+      "prompt": "prompts/ME02-v1.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-09/ME02-v1-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "9d5b053dbb21a32596997557da69bfd3081d2a250dbe9035a5aa0621affb2c08"
+      },
+      "files": {
+        "24": {
+          "file": "ME02-v1-24.png",
+          "sha256": "b21b172d64fb1f94730a265ab0b74d2d413b0677f68d5da42548d6b57b792e63"
+        },
+        "32": {
+          "file": "ME02-v1-32.png",
+          "sha256": "3845cc9caf8748cc74c3c35a015703adff73dc55df09d7d2f9b4a579b89aff29"
+        },
+        "64": {
+          "file": "ME02-v1-64.png",
+          "sha256": "b76870dbda6670241de17da481c3fffe208e81029c3dd2d4b4a6648e2acacb51"
+        },
+        "128": {
+          "file": "ME02-v1-128.png",
+          "sha256": "ffb65bc375456e1c3a92126790133200e5c614dea19d9cbf7c29842d69a15cba"
+        },
+        "192": {
+          "file": "ME02-v1-192.png",
+          "sha256": "28f74e172b4a7104439cab0d9daef35b1f8fd3b9f35931578bf4fc0d2df1e764"
+        }
+      }
+    },
+    {
+      "number": 10,
+      "id": "ME03",
+      "variant": "ME03-v1",
+      "kind": "illustrated",
+      "title": "Percée",
+      "visual_status": "revision_requested",
+      "prompt": "prompts/ME03-v1.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-09/ME03-v1-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "3c51efe76a46e6047cff611c8cb7388ffea58e8188bfab2f24dc94a47205e0d4"
+      },
+      "files": {
+        "24": {
+          "file": "ME03-v1-24.png",
+          "sha256": "8dc645657e47d4b12a4ea22242c216b82c9272e93a895f42f3bd35fd189108f9"
+        },
+        "32": {
+          "file": "ME03-v1-32.png",
+          "sha256": "dff0cd39ed149f96dff5858c25ac05d1b856da118eecc616456abba17f038347"
+        },
+        "64": {
+          "file": "ME03-v1-64.png",
+          "sha256": "4a6aff5aac2c2e9188530d4a19579c2dd50bbf9d8e2b2c144619f78265f08ae2"
+        },
+        "128": {
+          "file": "ME03-v1-128.png",
+          "sha256": "33cf65695ce4e16f82f128381c3b675e28750a500789173951c9746b4709b5f7"
+        },
+        "192": {
+          "file": "ME03-v1-192.png",
+          "sha256": "a58f562170e1406953d4640c3b5ba05e4e638d248f2b4564da33d72d241eaf96"
+        }
+      }
+    },
+    {
+      "number": 11,
+      "id": "ME05",
+      "variant": "ME05-v1",
+      "kind": "illustrated",
+      "title": "Charge",
+      "visual_status": "revision_requested",
+      "prompt": "prompts/ME05-v1.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-09/ME05-v1-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "7fe2b1fe4d3b1263bd2cee4405315aae447fd80476001db530d51ee49400c879"
+      },
+      "files": {
+        "24": {
+          "file": "ME05-v1-24.png",
+          "sha256": "352454ed822fab46d725d9181cff24ce447b31a141cdb8f75082881c5a4a7036"
+        },
+        "32": {
+          "file": "ME05-v1-32.png",
+          "sha256": "86a956557be484b9d07a425f381bf9564dc938a0a9c961e1c481a6fd07f3a2f8"
+        },
+        "64": {
+          "file": "ME05-v1-64.png",
+          "sha256": "062fa56c9956bb688706ae3dae91077eee43db4a259f1d54f674e1deead93fc3"
+        },
+        "128": {
+          "file": "ME05-v1-128.png",
+          "sha256": "14ee76e873c32ff746e2d0d7b103a3d0397bed1b7cc6d1ecbea86e14ca465bab"
+        },
+        "192": {
+          "file": "ME05-v1-192.png",
+          "sha256": "ed66fd6ca3e0966c16ce065b48bcd749a546fc70baf57a117e9b5a258f8aeae8"
+        }
+      }
+    },
+    {
+      "number": 12,
+      "id": "ME06",
+      "variant": "ME06-v1",
+      "kind": "illustrated",
+      "title": "Tourbillon",
+      "visual_status": "revision_requested",
+      "prompt": "prompts/ME06-v1.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-09/ME06-v1-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "b3f9e2331bf047f9a22a998fb2b5500e539f67415c78367b2e305a0f7f59e7ff"
+      },
+      "files": {
+        "24": {
+          "file": "ME06-v1-24.png",
+          "sha256": "26a2b4d8378462597c3fd6371935478498550b9cd772cf7f6ef24570e646a8f5"
+        },
+        "32": {
+          "file": "ME06-v1-32.png",
+          "sha256": "a5094125a2e7ae12fcd911e18c75b9a2ed8ecf233d4b68ca50f56c5f40cf19a8"
+        },
+        "64": {
+          "file": "ME06-v1-64.png",
+          "sha256": "f90d53a640d548e61e890b8d275e91063fcbb16ac0288302f030635d1038b540"
+        },
+        "128": {
+          "file": "ME06-v1-128.png",
+          "sha256": "04651a9740cbabf88aaa466e5a3d4d59f0c40854b03390e126f844de64beb7f5"
+        },
+        "192": {
+          "file": "ME06-v1-192.png",
+          "sha256": "06f1f9d442af7a09640e6e7556ba4b561169d499b15e31ae3b272666bd492c4f"
+        }
+      }
+    },
+    {
+      "number": 9,
+      "id": "ME02",
+      "variant": "ME02-C01",
+      "kind": "compact",
+      "title": "Fauchage",
+      "visual_status": "revision_requested",
+      "prompt": "prompts/ME02-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-09/ME02-C01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "f2137884a80fad59c982a64e2722ae1b255bf0dd092667cc0a80dede2b468c4a"
+      },
+      "files": {
+        "24": {
+          "file": "ME02-C01-24.png",
+          "sha256": "c0df7746c558c7faed90619e84b443256e1dfa5a048978e0029cdb56c696cacc"
+        },
+        "32": {
+          "file": "ME02-C01-32.png",
+          "sha256": "205c4e6eb82e977cab167129e59f68f0d07e41eda68a0c55faf84afed9c36136"
+        },
+        "64": {
+          "file": "ME02-C01-64.png",
+          "sha256": "1e5958cb15795bd446ea518aa3e78a22ffc090789afcc2ebee23c1ccdebeeb9c"
+        },
+        "128": {
+          "file": "ME02-C01-128.png",
+          "sha256": "fca01fd52386423b6deae1f0f302e6b25e797339bb1ad8bb706b2019184ccd4d"
+        },
+        "192": {
+          "file": "ME02-C01-192.png",
+          "sha256": "e245ee0d67b3665aa53b3310bd3c532d25f56322d4bc9fcd37d63441d7e3cd7b"
+        }
+      }
+    },
+    {
+      "number": 10,
+      "id": "ME03",
+      "variant": "ME03-C01",
+      "kind": "compact",
+      "title": "Percée",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/ME03-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/ME03-C01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "2a72efa14652d425af8f3be6137cf33a7955e1e0b3ff8fdadb09c33241eb08ea"
+      },
+      "files": {
+        "24": {
+          "file": "ME03-C01-24.png",
+          "sha256": "b9eb234fd158774f3a6c279df89c6fe86c408c761cd2781e61782afa23a8050b"
+        },
+        "32": {
+          "file": "ME03-C01-32.png",
+          "sha256": "53abf0299d3b39509cc00b3fdc45561ed6942557dc6fd18a9271e6d9241fa745"
+        },
+        "64": {
+          "file": "ME03-C01-64.png",
+          "sha256": "d6c3c03295deb61cc02be447a4ad44725f7632014c567e8acacf01d96ca6c96e"
+        },
+        "128": {
+          "file": "ME03-C01-128.png",
+          "sha256": "8a55f04a1434cc01d81676308fb89c0609f906a0aff636e35e9c304476c75040"
+        },
+        "192": {
+          "file": "ME03-C01-192.png",
+          "sha256": "6f030f1252244b991c9a6382fb99997a3c7b5c5b97f04d9d1533bbca3eff86e1"
+        }
+      }
+    },
+    {
+      "number": 11,
+      "id": "ME05",
+      "variant": "ME05-C01",
+      "kind": "compact",
+      "title": "Charge",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/ME05-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/ME05-C01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "5db0d1ead6f150010b099747c380fb26c6938f0b20deabe094de146deb1230f1"
+      },
+      "files": {
+        "24": {
+          "file": "ME05-C01-24.png",
+          "sha256": "d6d3783ebb566c80c931e0b1788911e85d7d300355ebd752a7cc64435fc7277e"
+        },
+        "32": {
+          "file": "ME05-C01-32.png",
+          "sha256": "2b506292acd05175566162040a0a671258d4dacd544ab62454c863d212ff214e"
+        },
+        "64": {
+          "file": "ME05-C01-64.png",
+          "sha256": "bb34748d20ebaeb1ff27e3201bc492cc591ac6676be12b045a2364330322fb5b"
+        },
+        "128": {
+          "file": "ME05-C01-128.png",
+          "sha256": "39be4d70c57248399f7b02f967c01b0648aff2b304bd0886716987dc84571fb5"
+        },
+        "192": {
+          "file": "ME05-C01-192.png",
+          "sha256": "7b289e6322712d21143e133cc271775912a2201d65e8c5fb9da2da521f610090"
+        }
+      }
+    },
+    {
+      "number": 12,
+      "id": "ME06",
+      "variant": "ME06-C01",
+      "kind": "compact",
+      "title": "Tourbillon",
+      "visual_status": "awaiting_visual_review",
+      "prompt": "prompts/ME06-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/ME06-C01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "12fedb8cd8f1cf66034b0a8356c6aab5f68aaa63554f855ca83f4ce38353f777"
+      },
+      "files": {
+        "24": {
+          "file": "ME06-C01-24.png",
+          "sha256": "16ebbf7e829a14cdcf5800f14d96aa28a17c932634569daff231079d255580ee"
+        },
+        "32": {
+          "file": "ME06-C01-32.png",
+          "sha256": "ef8426d31c1eaae209b16a35a99ce9da05366756cdc24ccf65050db757f93448"
+        },
+        "64": {
+          "file": "ME06-C01-64.png",
+          "sha256": "6fbfae8ed8042e7b8a47f6951bec887389e8ea2690252cd6b5a162041b9c4239"
+        },
+        "128": {
+          "file": "ME06-C01-128.png",
+          "sha256": "e28afc8d40c9a71bc69f2e25ff8a15bb373866a7a8cc6b12b7de55fd2cd600c2"
+        },
+        "192": {
+          "file": "ME06-C01-192.png",
+          "sha256": "7ad6384809452b984335253a7fb424cd965ce0a23c50e7eda52b6d099123efbc"
+        }
+      }
+    }
+  ],
+  "approval_groups": {
+    "illustrated": "revision_requested",
+    "compact": "revision_requested_for_ME02_only"
+  },
+  "unchanged_pending_review": [],
+  "preserved_previous_image_hashes": true,
+  "preserved_accepted_image_hashes": true,
+  "accepted_icon_count": 16,
+  "accepted_compact_icon_count": 8,
+  "packaging": "Source masters copied unchanged; preserved exports copied exactly; new compact Lanczos3 reductions; SVG layout only for review.",
+  "followup_review": "SKILLS-IC10",
+  "revision_requests": [
+    {
+      "id": "ME02",
+      "kind": "illustrated",
+      "from": "ME02-v1",
+      "to": "ME02-v3",
+      "request": "Correct blade cutting-edge orientation, replace the looping wind with one open sweep, simplify the background enemies."
+    },
+    {
+      "id": "ME03",
+      "kind": "illustrated",
+      "from": "ME03-v1",
+      "to": "ME03-v2",
+      "request": "Make the single-target armor-piercing thrust immediately understandable."
+    },
+    {
+      "id": "ME05",
+      "kind": "illustrated",
+      "from": "ME05-v1",
+      "to": "ME05-v2",
+      "request": "Restore the complete visible free arm, preserving the charging attack."
+    },
+    {
+      "id": "ME06",
+      "kind": "illustrated",
+      "from": "ME06-v1",
+      "to": "ME06-v2",
+      "request": "Correct both arms and use a two-handed sword grip."
+    },
+    {
+      "id": "ME02",
+      "kind": "compact",
+      "from": "ME02-C01",
+      "to": "ME02-C02",
+      "request": "Replace the dagger-looking silhouette with an unmistakable long sword."
+    }
+  ]
+}

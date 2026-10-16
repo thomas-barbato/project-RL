@@ -1,0 +1,21 @@
+Interface intégrée — 4 octobre 2026
+
+L'inventaire normal utilise la silhouette approuvée et les instances réelles d'équipement. Les sept slots affichent les illustrations du modèle équipé. Les détails s'affichent au survol du sac et des slots, ou pendant la navigation au clavier. La molette permet de lire les fiches longues ; F4 conserve la fiche complète et la comparaison.
+
+La silhouette n'a pas de barre d'arme. Le slot Mains pointe sur la main. Les commandes d'armes utilisent Arme primaire, Arme secondaire et Arme de secours.
+
+Les cadres du HUD et les commandes de l'inventaire reprennent l'habillage terminal. Les jauges et les règles de jeu sont conservées. Les lignes de balayage du HUD sont désactivées en contraste élevé.
+
+Validation :
+- cargo test --locked --bin project-rl inventory_ -- --quiet : 16 tests réussis.
+- cargo test --locked --bin project-rl combat_visuals -- --quiet : 5 tests réussis.
+- cargo test --locked --bin project-rl borrowed_recovery_snapshot_preserves_legacy_bytes_and_fingerprints -- --quiet : 1 test réussi.
+- cargo check --locked --all-targets : réussi.
+- cargo build --locked et cargo build --locked --release : réussis.
+- cargo fmt --all --check et git diff --check : réussis.
+- Captures natives du véritable inventaire : sans tooltip, survol d'une armure équipée, survol du sac en 960 × 540 et interface à 150 %. Capture du HUD dans le jeu. Codes de sortie 0 et inspection des images effectuée.
+- --ui-cold-performance : réussi. 120 images par scène ; résultats complets dans performance/timings.json. Ce diagnostic de débogage ne mesure ni un gain avant/après contrôlé ni les FPS en jeu.
+
+La suite entière du client n'a pas été répétée après cette intégration. Son passage précédent contenait des échecs déjà signalés ; tous n'ont pas été diagnostiqués. Le détail est conservé dans ../RELECTURE.txt. Les succès ciblés ci-dessus ne signifient donc pas que toute la suite est verte.
+
+Aucun commit ni envoi distant effectué.

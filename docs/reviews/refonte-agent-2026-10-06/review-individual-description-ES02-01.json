@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-07",
+  "id": "ES02",
+  "title": "Roulade",
+  "revision": 1,
+  "player_copy_markdown": "**ES02 · Roulade — Rang 11**\n\n*Vous plongez au ras du sol et roulez à l’écart des attaques.*\n\n**Effet actuel**\n\n- Déplacement : jusqu’à **2 cases**.\n- Bonus d’esquive : **+30**.\n- Durée du bonus : **1 tour**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus d’esquive : **+32**.\n\n**Coût : 9 énergie · Recharge : 4 tours.**\n\nLe trajet doit être en ligne droite, sur des cases libres, connues et franchissables. Les obstacles et les créatures bloquent le passage.\n\nLe bonus s’ajoute à votre esquive habituelle et s’applique aux réactions provoquées pendant la roulade. Les dangers du terrain restent actifs.",
+  "player_copy_sha256": "8f0e888f271483225ee26b7b3adf9b79fedaba81b9c30f9dd4494c64dcbd7104",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-12.json",
+  "source_skill_block_sha256": "8a9eef88a7fa176a88d2ce728ef23322141c4e0f42f4ab372ea43da0984c719c",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/spectral-step-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "a37a16ee246ef157435bba1d2b50fd76d34d77320fa3293278ed0a72febefdf7",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08; path_reaction_and_terrain_danger_conditions_retained",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "proposed_pending_individual_user_review",
+  "current_profile_status": "illustrative_not_a_user_save; ordinary dodge total and hit probabilities not fixed here",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "agility": 10,
+    "ordinary_dodge_total": null,
+    "other_skill_implant_or_cost_modifiers": false,
+    "attribute_and_equipment_dodge": "ordinary contributions retained and added to skill bonus; not multiplied by this skill"
+  },
+  "formulas": {
+    "maximum_movement_cells": 2,
+    "dodge_bonus_points": "10 + 2 * (effective_rank - 1)",
+    "duration_turns": 1,
+    "energy_cost": "6 + floor((effective_rank - 1)/3)",
+    "cooldown_turns": 4
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "maximum_movement_cells": 2,
+    "dodge_bonus_points": 30,
+    "duration_turns": 1,
+    "energy_cost": 9,
+    "cooldown_turns": 4
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "maximum_movement_cells": 2,
+    "dodge_bonus_points": 32,
+    "duration_turns": 1,
+    "energy_cost": 9,
+    "cooldown_turns": 4
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "dodge_bonus_points"
+    ],
+    "unchanged_effects_omitted": [
+      "maximum_movement_cells",
+      "duration_turns",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "movement_power_not_a_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no_heavy_weapon_exclusion_added_to_this_movement_skill"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true
+  },
+  "movement_conditions": {
+    "maximum_cells": 2,
+    "path": "straight line; every traversed tile free, known and passable",
+    "walls_obstacles_actors_or_forbidden_corners_crossed": false,
+    "dodge_bonus_applied_before_path": true,
+    "ordinary_reactions_and_terrain_dangers_retained_each_tile": true,
+    "dodge_bonus_unit": "flat dodge score points, not percentage points of avoidance chance",
+    "invulnerability_granted": false,
+    "free_attack_added": false,
+    "precise_one_turn_protection_expiry": "pending_review"
+  },
+  "status_ui_dependency": {
+    "scope": "existing player buff/debuff bar direction; exact icon, tooltip and turn accounting still pending native review"
+  },
+  "unshown_rules_approval": "Full rank curves, ordinary dodge/hit bounds, precise one-turn protection expiry, diagonal/corner movement cases, reactions at each tile, interrupted path handling, recast/stacking with Pas spectral and other dodge buffs, resource atomicity and attribute/implant interactions remain pending where not already accepted. No forced attack, wall/actor traversal, invulnerability, fixed avoidance percentage, incompatible-weapon lock or heavy-weapon exclusion introduced.",
+  "visual_intention_approval": "existing_catalogue_low_two_step_movement_and_short_ground_trace_direction_accepted_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable ES02 catalogue role/name; RP and compact current/next card proposed for individual acceptance.",
+    "Effective rank 11 gives +30 dodge; next effective rank 12 gives +32; both duration one turn, cost 9 energy, cooldown 4 and at most two tiles.",
+    "Learned 9 to 10 with gear +2 unchanged; one point and learned cap respected.",
+    "Next block only changed dodge bonus; no table/player formula/learned-equipment breakdown/ordinary timing reminder.",
+    "Straight path through known free passable tiles; reactions and terrain dangers retained; dodge bonus available during path.",
+    "Agility and equipment retain ordinary dodge contributions; no fixed avoidance percent or invulnerability.",
+    "No native visual or gameplay integration; retired DI06 remains removed and primary catalogue stays 85."
+  ]
+}

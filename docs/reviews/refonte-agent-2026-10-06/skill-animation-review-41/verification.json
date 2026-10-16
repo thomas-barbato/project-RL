@@ -1,0 +1,233 @@
+{
+  "protected_files_unchanged": 81509,
+  "controls": [
+    {
+      "variant": "TR63-A01-HAUT",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR64-A01-HAUT",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR63-A01-DROITE",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR64-A01-DROITE",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR63-A01-GAUCHE",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR64-A01-GAUCHE",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR63-A01-BAS",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR64-A01-BAS",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR63-A01-MUR",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR64-A01-MUR",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR63-A01-ATTENTE",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR64-A01-ATTENTE",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR63-A01-RENOUVELLEMENT",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    },
+    {
+      "variant": "TR64-A01-RENOUVELLEMENT",
+      "walls_clear": true,
+      "entry_finishes_while_form_persists": true,
+      "timers_require_explicit_turns": true,
+      "renewal_or_expiry_checked": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "TR63-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "frames": 50,
+      "loop": 0,
+      "palette": "64 background +64 green +64 red +64 violet, common across frames",
+      "peak_colour_mean_max_channel_error": 7.33,
+      "peak_colour_p95_max_channel_error": 22
+    },
+    {
+      "file": "TR64-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "frames": 50,
+      "loop": 0,
+      "palette": "64 background +64 green +64 red +64 violet, common across frames",
+      "peak_colour_mean_max_channel_error": 14.23,
+      "peak_colour_p95_max_channel_error": 40
+    },
+    {
+      "file": "TR63-A01-MUR-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "frames": 50,
+      "loop": 0,
+      "palette": "64 background +64 green +64 red +64 violet, common across frames",
+      "peak_colour_mean_max_channel_error": 7.1,
+      "peak_colour_p95_max_channel_error": 22
+    },
+    {
+      "file": "TR64-A01-MUR-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "frames": 50,
+      "loop": 0,
+      "palette": "64 background +64 green +64 red +64 violet, common across frames",
+      "peak_colour_mean_max_channel_error": 14.2,
+      "peak_colour_p95_max_channel_error": 38
+    },
+    {
+      "file": "TR63-A01-RENOUVELLEMENT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 44,
+      "frames": 58,
+      "loop": 0,
+      "palette": "64 background +64 green +64 red +64 violet, common across frames",
+      "peak_colour_mean_max_channel_error": 6.88,
+      "peak_colour_p95_max_channel_error": 20
+    },
+    {
+      "file": "TR64-A01-RENOUVELLEMENT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 44,
+      "frames": 58,
+      "loop": 0,
+      "palette": "64 background +64 green +64 red +64 violet, common across frames",
+      "peak_colour_mean_max_channel_error": 12.26,
+      "peak_colour_p95_max_channel_error": 33
+    },
+    {
+      "file": "transformations-haut-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "frames": 50,
+      "loop": 0,
+      "palette": "64 background +64 green +64 red +64 violet, common across frames",
+      "peak_colour_mean_max_channel_error": 12.15,
+      "peak_colour_p95_max_channel_error": 40
+    },
+    {
+      "file": "transformations-mur-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 50,
+      "frames": 50,
+      "loop": 0,
+      "palette": "64 background +64 green +64 red +64 violet, common across frames",
+      "peak_colour_mean_max_channel_error": 12.24,
+      "peak_colour_p95_max_channel_error": 38
+    },
+    {
+      "file": "transformations-renouvellement-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "duration_ms": 7500,
+      "distinct_frames": 44,
+      "frames": 58,
+      "loop": 0,
+      "palette": "64 background +64 green +64 red +64 violet, common across frames",
+      "peak_colour_mean_max_channel_error": 10.41,
+      "peak_colour_p95_max_channel_error": 28
+    }
+  ],
+  "resampling_of_native_capture": false,
+  "native_body_sources": "Direct64 px PNGs from new high-resolution drawings; the 192px views are explicit nearest-neighbour inspection zooms only."
+}

@@ -1,0 +1,12 @@
+{
+  "review_id": "MINE-VFX-HANDOFF01",
+  "date": "2026-10-14",
+  "user_reply": "le feu aussi si possible :) . En faite ce qu'il faudrait donc : L'explosion que tu as déssiné , puis une fois l'animation disparue ca laisse place par exemple au sol glacé, au nuage de gaz, au sol enflammé ...",
+  "accepted_direction": "Améliorer également l'explosion Feu. Avec SM05, l'explosion brève se dissipe puis le résidu correspondant devient le principal rendu visible : sol enflammé, gaz toxique ou sol gelé.",
+  "conditional_SM05_requirement_preserved": true,
+  "mechanical_start_preserved": "Les premières applications restent immédiates à la création du résidu, selon INTERACT-TIME01. Le relais visuel ne crée pas de délai mécanique.",
+  "existing_duration_radius_damage_status_and_obstacle_rules_preserved": true,
+  "native_new_visual_approval_inferred": false,
+  "campaign_integration": false,
+  "next_residue_review": "Présenter les trois résidus et la transition après l'explosion dans le lot SM05."
+}

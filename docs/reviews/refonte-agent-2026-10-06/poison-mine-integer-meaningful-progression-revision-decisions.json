@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SM02-PROG02",
+  "related_review_id": "DAMAGE-INT01",
+  "user_instruction": "euh , d'accord mais bon, ca va pas être super que les dégats passent de 3.30 à 3.41 , déjà parce qu'on veut pas de dégats en float, et surtout parce que c'est ridiculement faible en terme de gain",
+  "source_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM02-05.json",
+  "source_description_sha256": "450ba0f15282f353bb8c04ad9bec5a1ecaa6848a4187f3964a91f82601494585",
+  "explicit_user_requirements": {
+    "displayed_and_inflicted_damage_integer": true,
+    "fractional_negligible_per_rank_gains_rejected": true,
+    "meaningful_skill_point_progression_required": true
+  },
+  "requirements_approval": "explicit_user_instruction;new_numeric_curve_not_yet_accepted",
+  "proposed_revision": {
+    "poison_base_damage_per_turn_at_effective_rank1": 6,
+    "additional_poison_base_damage_per_turn_per_effective_rank": 2,
+    "same_variant_bonus_applies_once_to_explosion_and_poison": true,
+    "example_technique_ratio_numerator": 11,
+    "example_technique_ratio_denominator": 10,
+    "integer_damage_evaluation": "integer_multiplication_then_single_integer_division;no_float_damage_or_fractional_carry"
+  },
+  "proposed_example": {
+    "effective_rank11_poison_damage_per_turn": 42,
+    "effective_rank12_poison_damage_per_turn": 47,
+    "poison_duration_both_examples": 5,
+    "gain_per_turn": 5,
+    "gain_over_full_duration": 25
+  },
+  "numeric_revision_approval": "pending_explicit_user_review;rank11_and_rank12_values_shown;full_curve_not_shown",
+  "preserved_accepted_scope": "name_RP_plus50_to55_percent_variant_bonus_19_to20_explosion_five_turn_duration_prerequisite_persistence_and_green_explosion_direction;native_pending",
+  "old_low_damage_progression": "rejected_as_meaningless;old_accepted_card_archived_for_history_only;no_runtime_integration",
+  "global_integer_rule_scope": "damage_amounts_only;does_not_change_percent_chances_or_other_non_damage_statistics",
+  "runtime_integration": "not_integrated"
+}

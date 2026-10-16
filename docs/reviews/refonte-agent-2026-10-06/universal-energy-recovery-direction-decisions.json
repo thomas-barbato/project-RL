@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08",
+  "review_id": "BD06-UNIVERSAL01",
+  "skill_id": "BD06",
+  "current_catalogue_title": "Récupération balistique",
+  "user_instructions": [
+    "il faudrait plutot le rendre \"universel\" que ce soit pour les attaques de mélée, de sort, ou avec des armes lourdes ou lourdes à disntance.",
+    "parcontre à nouveau on est dans des pourcentages pas tres interessants...",
+    "non ca revient à faire 1% par points... met donc 2 % par points ."
+  ],
+  "approval": "explicit_user_universal_player_attack_scope_request;explicit_2_percentage_points_per_rank_rule",
+  "accepted_attack_style_direction": [
+    "melee_weapons",
+    "ranged_weapons",
+    "spells",
+    "heavy_melee_and_ranged_weapons"
+  ],
+  "numeric_review_id": "BD06-PROG01",
+  "accepted_progression_rule": "energy_recovery_percent=2*effective_rank;2_percentage_points_per_rank;gear_effective_rank_rule_preserved",
+  "calculated_current_next_under_rule": {
+    "effective_rank11": 22,
+    "effective_rank12": 24
+  },
+  "superseded_intermediate_discussion": "35_then38_percent;not_saved_as_current_card_before_user_2_percent_per_rank_instruction",
+  "new_roleplay_name_placement_other_conditions_and_visual_detail_approval": "pending_individual_user_review",
+  "unrequested_kill_source_expansions": "familiar_reflection_counter_and_indirect_attribution_not_approved_by_attack_style_request",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BD06-01.json",
+  "previous_card_sha256": "9166fe6cf7d9e399a9c31672f3be41347440f7d0ab8a73dd702c68409cdfcbc7",
+  "runtime_integration": "not_integrated"
+}

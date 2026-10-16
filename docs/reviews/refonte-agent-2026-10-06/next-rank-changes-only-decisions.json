@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-06",
+  "user_request": "le saignement ne changeant pas de 10% par niveau, il n'est pas necessaire de l'ajouter au \"prochain range\" .",
+  "skill_id": "ME06",
+  "accepted_editorial_rule": "Show only values that change between current and next learnable rank in the next-rank block; keep unchanged effects in the current block or shared information.",
+  "applied_copy_changes": [
+    "Remove unchanged bleeding percentage and duration from next-rank block.",
+    "Remove unchanged adjacent area from next-rank block."
+  ],
+  "mechanical_values": "unchanged; this correction is editorial and does not approve unrelated pending skill rules",
+  "previous_individual_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME06-02.json",
+  "visual_render": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

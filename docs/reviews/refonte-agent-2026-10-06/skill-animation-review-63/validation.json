@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-14",
+  "build": "cargo build --locked passed",
+  "format": "cargo fmt --all -- --check passed",
+  "diff_whitespace": "targeted git diff --check passed",
+  "native_views": 7,
+  "native_frames": 1319,
+  "native_tile_size": 64,
+  "conversion": "pixel-identical RGBA-to-PNG, no resampling",
+  "protected_files_unchanged": 31373,
+  "prepared_timelines": "arming only on manual turn; hostile contact and presence at arming, one explosion, player protected, exact old/new mechanics equivalence passed",
+  "blink": {
+    "LED_position_on_mine_verified": true,
+    "off_frame": 44,
+    "on_frame": 54,
+    "changed_lens_pixels": 36,
+    "clock_only_not_turn_advance": true,
+    "both_before_arming": true
+  },
+  "gif_color_checks": [
+    {
+      "variant": "SM00-A02-HAUT",
+      "frame": 116,
+      "timestamp_ms": 4830,
+      "effect_pixels": 9465,
+      "mean_color_error": 10.06
+    },
+    {
+      "variant": "SM00-A02-DROITE",
+      "frame": 116,
+      "timestamp_ms": 4830,
+      "effect_pixels": 9871,
+      "mean_color_error": 11.31
+    },
+    {
+      "variant": "SM00-A02-GAUCHE",
+      "frame": 116,
+      "timestamp_ms": 4830,
+      "effect_pixels": 10054,
+      "mean_color_error": 10.21
+    },
+    {
+      "variant": "SM00-A02-BAS",
+      "frame": 116,
+      "timestamp_ms": 4830,
+      "effect_pixels": 9714,
+      "mean_color_error": 12.09
+    },
+    {
+      "variant": "SM00-A02-CLOISON",
+      "frame": 116,
+      "timestamp_ms": 4830,
+      "effect_pixels": 7203,
+      "mean_color_error": 10.81
+    },
+    {
+      "variant": "SM00-A02-ENNEMI-ARMEMENT",
+      "frame": 68,
+      "timestamp_ms": 2830,
+      "effect_pixels": 9465,
+      "mean_color_error": 11.88
+    }
+  ],
+  "controller": {
+    "mode": "offline DOM/Image harness; no browser screenshot",
+    "scenarios": 7,
+    "loaded_image_references": 824,
+    "two_canvases": 2,
+    "original_and_revised_mechanics_identical": "passed",
+    "single_impact_without_idle_replay": "passed",
+    "scaled_hover": "passed",
+    "wall_and_player_protection": "passed",
+    "arming_and_presence": "passed",
+    "static_links": "passed",
+    "controller_syntax": "passed"
+  },
+  "native_visual_checks": "Revised fire impact, walls and unchanged mine/LED inspected",
+  "full_suite": "not run; isolated debug visual fixture",
+  "campaign_integration": false
+}

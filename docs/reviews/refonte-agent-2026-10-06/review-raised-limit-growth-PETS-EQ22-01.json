@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ22",
+  "revision": 1,
+  "title": "Réanimation — nombre de relevés",
+  "status": "OC07_raised_limit5_up_to_effective_rank10_plus_one_per_rank_beyond10_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-54.json",
+  "current_attribute_model_sha256": "ca3fc7f5086a47a994fb1e9abd975f15efbad05751c03cc7b4b9fac8bf838aee",
+  "explicit_direction": "docs/reviews/refonte-agent-2026-10-06/waiting-familiar-control-acceptance-and-raised-limit-direction-decisions.json",
+  "explicit_direction_sha256": "c458a9e2e9d53d36595430bb1e1d2a42d11a2343461c6a4db53af9612b54d60c",
+  "accepted_waiting_controls": "docs/reviews/refonte-agent-2026-10-06/review-waiting-familiar-controls-PETS-EQ21-02.json",
+  "accepted_waiting_controls_sha256": "e814b84986b68b33bbf0e5c2ecc3cdbcf1b0b3534cb05a696a934fb8dc3c37e9",
+  "historical_skill_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC07-02.json",
+  "historical_skill_card_sha256": "d1d6ac3e4e7b43b1cf8b13d45b3d8c99099f91906b717b465c5636510ef769a1",
+  "shown_copy_markdown": "**PETS-EQ22 · Réanimation — nombre de relevés**\n\nJe propose **un relevé supplémentaire par rang effectif au-delà de 10**, bonus d’équipement compris :\n\n- **Rangs 1 à 10 : 5 relevés maximum.**\n- **Rang 11 : 6 relevés maximum.**\n- **Rang 12 : 7 relevés maximum.**\n- **Rang 13 : 8 relevés maximum**, puis la progression continue sans nouveau plafond fixe.\n\nLes relevés **présents sur la carte ou en attente d’arrivée** comptent dans ce maximum. Ils restent autonomes.\n\nCette progression chiffrée reste à valider.",
+  "shown_copy_sha256": "296aafda54f32c0b5150869b1a58507472a428554a39a706747e66433790c12d",
+  "already_requested_direction": {
+    "review_id": "OC07-LIMIT-DIRECTION01",
+    "source": "latest_direct_user_request",
+    "skill": "OC07 Réanimation",
+    "requested_change": "fixed_five_raised_limit_should_no_longer_apply_above_skill_rank10",
+    "rank_context": "learned_cap10_and_equipment_effective_rank_above10_already_accepted;proposal_uses_effective_rank_without_increasing_learned_cap",
+    "rationale": "more_autonomous_raised_allies_compensates_for_lack_of_direct_control",
+    "scope": "raised_monsters_only;no_change_to_five_drones_one_per_model",
+    "undecided": "user_has_not_chosen_unlimited_count_at_rank11_vs_progressively_increasing_limit_or_exact_rate"
+  },
+  "new_proposed_rules": {
+    "scope": "OC07_Reanimation_simultaneous_raised_allies_only;no_drone_or_other_future_pet_cap_change",
+    "rank": "effective_OC07_rank_including_current_eligible_equipment_bonus;learned_rank_cap10_unchanged",
+    "limit_formula": "5 + max(0, effective_rank - 10)",
+    "rank1_to10_limit": 5,
+    "rank11_limit": 6,
+    "rank12_limit": 7,
+    "rank13_limit": 8,
+    "above10_growth": "one_additional_allowed_raised_per_effective_rank_above10;no_new_fixed_upper_raised_count_cap",
+    "counted_actors": "all_living_raised_allies_on_current_map_or_in_pending_arrival_state_count_together_toward_this_limit;dead_expired_removed_actors_do_not_count",
+    "behavior": "autonomous_enemy_only_actions_remain_unchanged;no_new_direct_combat_order_controls",
+    "preserved_skill_effects": "all_previous_OC07_power_duration_mark_range_cost_cooldown_identity_items_and_drops_preserved",
+    "scope_boundary": "loss_of_rank_bonus_below_existing_count_overcapacity_and_exact_birth_or_oldest_replacement_timing_pending"
+  },
+  "scope_audit": {
+    "interpretation": "user_requested_lifting_fixed_five_above10;progressive_plus_one_is_assistant_proposal_not_user_chosen_value;unlimited_count_at_rank11_not_inferred",
+    "rank_cap": "only_effective_rank_uses_equipment_beyond10;no_eleventh_learned_skill_point_created",
+    "existing_caps": "historical_cap5_receipts_retained_as_history;new_formula_not_activated_until_approval",
+    "UI": "integer_count_values_proposed;no_new_native_window_animation_or_marker",
+    "other_effects": "no_new_HP_damage_or_duration_formula_implied_by_capacity_change"
+  },
+  "unshown_cases_pending": [
+    "effective_rank_falls_and_existing_raised_count_exceeds_new_limit",
+    "preexisting_mark_trigger_when_current_count_is_at_or_above_current_limit",
+    "oldest_replacement_event_when_oldest_raised_is_waiting_and_real_item_drop_cell",
+    "map_arrival_priority_and_further_transition_of_waiting_queue",
+    "native_count_display_and_full_rank_skill_tooltip"
+  ],
+  "player_copy_approval": "shown_capacity_copy_pending_explicit_review",
+  "mechanical_approval": "user_requests_above10_limit_revision;shown_plus_one_curve_and_examples_pending",
+  "visual_intention_approval": "integer_capacity_display_direction_proposed;native_not_presented",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

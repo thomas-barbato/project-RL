@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SELF-DMG01",
+  "user_direction": "globalement j’aimerais que le joueur ne puisse pas se blesser avec ses propres sorts, c’est un rogue like et donc le joueur n’a qu’une vie, ca serait dur d’en plus activer le dégats envers soit meme (sauf si c’est un skill particulier qui blesse un peu le joueur en echange de quelque chose d’autre, évidement)",
+  "approval": "explicit_user_requirement",
+  "accepted_rule": {
+    "review_id": "SELF-DMG01",
+    "approval": "explicit_user_requirement",
+    "own_spell_damage_can_harm_caster": false,
+    "scope": [
+      "own spells",
+      "own spell explosions",
+      "own persistent spell zones",
+      "own generated damage-over-time",
+      "own mine and grenade power damage"
+    ],
+    "health_sacrifice_exception": "Only an explicitly designed and separately reviewed skill exchanging player HP for a stated benefit.",
+    "current_health_sacrifice_skills_implicitly_created": false,
+    "other_allies_friendly_damage_rules": "unchanged by the general player-only direction; per-skill agreements remain",
+    "HY07_hostiles_only_rule": "preserved explicit answer; other familiars and allies excluded",
+    "enemy_damage_and_unrelated_environmental_hazards": "not protected by this own-spell rule",
+    "non_damage_status_friendly_effects_and_reflection_source_attribution": "unshown cases pending individual review",
+    "runtime_integration": "not_integrated",
+    "decisions": "docs/reviews/refonte-agent-2026-10-06/own-spell-self-damage-protection-decisions.json"
+  },
+  "supersedes_only_self_damage_part_of_previous_acceptances_or_proposals": true,
+  "directly_amended_rule_block_ids": [
+    "FE03",
+    "FE04",
+    "A02",
+    "SM00"
+  ],
+  "scope_is_global_not_limited_to_amended_blocks": true,
+  "all_existing_RP_names_values_cooldowns_and_visual_approval_preserved": true,
+  "historical_reviews_retained_without_rewriting": true,
+  "new_own_damage_exception_requires_individual_text_and_mechanic_review": true,
+  "HY07_card_name_RP_numbers_conditions_and_visuals_still_pending": true,
+  "runtime_integration": "not_integrated"
+}

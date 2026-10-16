@@ -260,6 +260,7 @@ mod tests {
             title: String::new(),
             decor: SectorDecor::default(),
             remembered: std::collections::BTreeMap::new(),
+            combat_residue: Default::default(),
         };
         for (x, kind) in [(0, Decor::TransitSign), (1, Decor::ShopSign)] {
             view.remembered.insert(

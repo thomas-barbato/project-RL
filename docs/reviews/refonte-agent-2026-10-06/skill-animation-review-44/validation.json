@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-13",
+  "batch": "ANIM-S17",
+  "build_locked_debug": "passed",
+  "animation_lab_tests": {
+    "passed": 88,
+    "failed": 0
+  },
+  "format_check": "passed",
+  "diff_check": "passed",
+  "native_views": 7,
+  "animations": 10,
+  "native_frames_losslessly_encoded": 1428,
+  "cropped_frames": 1260,
+  "capture_resampling": false,
+  "wall_clipping_and_explicit_turn_checks": "passed",
+  "four_directions": "captured and checked",
+  "entry_return_renewal": "captured and checked",
+  "direct_native_body_size": [
+    64,
+    64
+  ],
+  "opaque_cyan_pixels_in_body": 0,
+  "drawing_tool": "Built-in imagegen",
+  "prompts": [
+    "imagegen-abysse-body02-prompt.txt",
+    "imagegen-abysse-fx-prompt.txt"
+  ],
+  "protected_old_files_unchanged": 115630,
+  "review43_approval_receipt_unchanged": true,
+  "gif_palette": {
+    "samples": 10,
+    "max_mean_purple_error": 7.37,
+    "max_p95_purple_error": 27
+  },
+  "gallery_controller": {
+    "syntax": "passed",
+    "controller": "passed",
+    "all_frames_exist": true,
+    "explicit_twenty_two_turns_to_expiry": true,
+    "waiting_does_not_advance_turns": true,
+    "renewal_timeline_matches_native": true,
+    "pause_freezes_clock": true,
+    "inputs_disabled_during_loading": true,
+    "browser_validation": "Not performed: file protocol blocked by browser automation policy. Native captures and offline controller verified."
+  },
+  "local_links": {
+    "checked": 10,
+    "missing": 0
+  },
+  "visual_approval": "TR65-BODY02 and TR65-A01 visually approved.",
+  "campaign_integration": false,
+  "own_actions": "Allonge, Fente abyssale and Pas d’ombre not shown in this body/transition lot.",
+  "not_run": [
+    "Full engine suite",
+    "Release build",
+    "Browser rendering (file protocol blocked); native GPU and offline controller checked."
+  ],
+  "acceptance": "visual-acceptance-01.json"
+}

@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-15",
+  "debug_build": "cargo build --locked --bin project-rl: passed",
+  "targeted_tests": {
+    "filter": "drone_repairs",
+    "passed": 3,
+    "failed": 0,
+    "suite_scope": "Targeted prototype tests only; no claim of full-suite execution."
+  },
+  "format_check": "cargo fmt --all --check: passed",
+  "scoped_diff_check": true,
+  "native_scenes_inspected": [
+    "DP01 HAUT",
+    "DR01 HAUT"
+  ],
+  "browser_rendering_checked": false,
+  "current_catalogue_and_accepted_sources_preserved": true,
+  "previous_pending_previews_preserved": true,
+  "source_sha256": {
+    "src/agent_skill_lab_review/fire_painted/drone_repairs.rs": "39174c7e1a90292c0b10e4cc803574bc80b448b672b7512028fc0db53aa9af83",
+    "tools/art/package_drone_repairs_review.py": "123f02fb912fc2d7d7fc7534290a62db78a40bab096133099e0fafe3ab7aac24",
+    "tools/art/drone_repairs_review_template.html": "db6c2464727602ba725eb87d9ece1b45eedd746e685d73af1e785d87b5f4134e",
+    "tools/art/verify_drone_repairs_viewer.cjs": "f06d076385a9d77be4ccdce497bd6a80814e91f065b0ba24519929e93dca7787"
+  }
+}

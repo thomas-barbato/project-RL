@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-06",
+  "id": "ME02",
+  "title": "Fauchage",
+  "revision": 3,
+  "player_copy_markdown": "**Fauchage — Rang 12**\n10 rangs appris + 2 grâce à l’équipement.\n\n*Vous dessinez un large arc avec votre arme pour faucher les ennemis devant vous.*\n\nBalayez les **trois cases adjacentes devant vous** pour frapper les ennemis qui s’y trouvent.\n\n**Progression**\nLe coup inflige **80 % des dégâts de votre attaque de mêlée** au rang 1. Chaque rang supplémentaire ajoute **5 points à ce pourcentage**.\nLe coût commence à **8 énergie**, puis augmente de **1 tous les 4 rangs supplémentaires**.\n\n**Valeurs actuelles**\n**135 % des dégâts de votre attaque de mêlée par cible.** Avec votre équipement et vos attributs : **30 dégâts par cible avant ses défenses**.\n\n**Coût : 10 énergie.**\n**Recharge : 3 tours.**",
+  "player_copy_sha256": "a499552370b0fe0276529c4a4dd0679d8e512bec13f72062f6289bc2985bd14e",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-08.json",
+  "preceding_user_message": "parfait, on continue",
+  "approval_scope_of_preceding_message": "continue the individual review; preserves the already explicitly chosen B01 sentence and editorial rule; does not approve the forthcoming ME02 copy",
+  "previous_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-melee-02.json",
+  "previous_skill_block_sha256": "f94a8c99bf22380001a24bf57e9800041a376c7f5b40172ac32d597c135ab3bd",
+  "roleplay_text_approval": "explicit_user_validation",
+  "functional_description_approval": "explicit_user_validation",
+  "simplified_progression_copy_approval": "explicit_user_validation",
+  "numeric_rules_approval": "displayed_values_and_simplified_damage_and_energy_progressions_accepted_provisional_balance; unshown_details_and_global_attribute_coefficients_pending",
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "strength": 10,
+    "agility": 10,
+    "reference_attack_damage": 20,
+    "strength_factor": "1.1",
+    "agility_factor": "1.025",
+    "other_damage_or_cost_modifiers": false
+  },
+  "default_values": {
+    "rank": 1,
+    "damage_percent_per_target": 80,
+    "energy_cost": 8,
+    "cooldown_turns": 3,
+    "sector_adjacent_cells": 3
+  },
+  "current_values": {
+    "rank": 12,
+    "damage_percent_per_target": 135,
+    "damage_per_target_before_defenses": 30,
+    "energy_cost": 10,
+    "cooldown_turns": 3,
+    "sector_adjacent_cells": 3
+  },
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "reference source document hash matched",
+    "effective rank 12 damage and energy recalculated using exact fractions",
+    "ordinary execution time omitted; cooldown preserved"
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME02-02.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/active-ranged-weapon-compatibility-decisions.json",
+  "latest_decisions_sha256": "ef42d359ebe7bc3eac68f9da112f8b50835873ea5d84addf15145a9942abde81",
+  "name_approval": "explicit_user_rename",
+  "active_weapon_requirement": {
+    "type": "melee",
+    "equipped_and_active": true,
+    "approval": "explicit_user_requirement",
+    "incompatible_active_weapon": "unavailable",
+    "warning": "Nécessite une arme de mêlée active.",
+    "warning_approval": "presented_and_accepted_with_user_generalization",
+    "additional_damage_label": "Dégâts : indisponibles",
+    "additional_damage_label_approval": "pending_user_review"
+  }
+}

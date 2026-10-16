@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-15",
+  "review_id": "ANIM-S44-ACCEPT01",
+  "user_reply": "tres bien je valide :)",
+  "approved": [
+    {
+      "number": 97,
+      "id": "D56",
+      "variant": "D56-A01",
+      "title": "Invocation de l’Éclaireur"
+    },
+    {
+      "number": 98,
+      "id": "D57",
+      "variant": "D57-A01",
+      "title": "Invocation de la Mule"
+    }
+  ],
+  "scope": "Visual approval of the twenty-two native 64 px tile preview scenes: short technical arrival, continued drone presence, Scout shared-vision reveal, Mule movement then pickup with one floating actual item name, and prepared deployment refusals. Existing drone models are reused. Rank-one catalogue values and previously accepted mechanics remain unchanged; this approval adds no new stat formula, command scheduling or campaign integration.",
+  "campaign_integration": false,
+  "accepted_mechanics": [
+    "../drone-persistence-acceptance-decisions.json",
+    "../drone-deployment-resources-acceptance-decisions.json",
+    "../drone-first-action-acceptance-decisions.json",
+    "../mule-loot-collection-acceptance-decisions.json"
+  ],
+  "remaining_unshown": 13,
+  "source_sha256": "504192f2da33876bc25cc5dc8483563ad9f03361ab6d867f3d76fcc31f579686",
+  "accepted_atlas_sha256": {
+    "D56-A01-DROITE": "b917956b295bd8be8bb3f68a686fbd1356f8921b9398610e7b45c0d19c70e80d",
+    "D56-A01-GAUCHE": "8892de55c80a45f5a23a9d5945bab59e99b1d3adb09b68114813558b569cbe54",
+    "D56-A01-HAUT": "358de819dcb575d2f0b47c4b0c1fb8dd82c2fbc7e64aff37d295c129b1d93073",
+    "D56-A01-BAS": "11d850328ac78476797a069098d088902522f7c58b0a1b76322051b702b99bb4",
+    "D56-A01-ATTENTE": "358de819dcb575d2f0b47c4b0c1fb8dd82c2fbc7e64aff37d295c129b1d93073",
+    "D56-A01-MUR": "926739b914d17eb44878046013c98ca4c0f52e50a0ae70476b489cf88a078633",
+    "D56-A01-OCCUPEE": "aefd8b52e70a5b8967c24bc5e590aab9583682de25ef52d4f6bec58f53e0f208",
+    "D56-A01-ENERGIE": "cce2cd3df7730be46b439fd86cbef0870dfebfdc8e3e152c19a792687a738941",
+    "D56-A01-EXISTANT": "24fa722f1939071f98e61814f0f20b78d6861b0509ab4f71f8aa5a7d69bfb083",
+    "D56-A01-COLLECTE": "8b4c77fd88536c07da107acc572baeca1b6888f07173fc794392256ebaf59a04",
+    "D56-A01-CACHE": "0e57774c45131e1bd47f464d1413513364b3cdf27e3287607a2320f2b8baff41",
+    "D57-A01-DROITE": "e6f05a705c1b7da7a2b5d89c3a2f4e3c05c8d6e5239d9f96b7a29d00ebc48244",
+    "D57-A01-GAUCHE": "426f234ca5d178347ef9de9b6cd3413885b5bf0a09d175fcdb01b9aebcba37d9",
+    "D57-A01-HAUT": "753133142497c5c424dc49fc5170c7830ab30af0052c7fa3751a911012ad17ef",
+    "D57-A01-BAS": "df003398f85b74182a73882806ffb623b83e21fc4729e864d68dc8c28d723b26",
+    "D57-A01-ATTENTE": "753133142497c5c424dc49fc5170c7830ab30af0052c7fa3751a911012ad17ef",
+    "D57-A01-MUR": "926739b914d17eb44878046013c98ca4c0f52e50a0ae70476b489cf88a078633",
+    "D57-A01-OCCUPEE": "aefd8b52e70a5b8967c24bc5e590aab9583682de25ef52d4f6bec58f53e0f208",
+    "D57-A01-ENERGIE": "cce2cd3df7730be46b439fd86cbef0870dfebfdc8e3e152c19a792687a738941",
+    "D57-A01-EXISTANT": "8635419ffdc4cd07b3f2c4947a8a3d6fb88a2552473cadcafb6bd75e2d09b781",
+    "D57-A01-COLLECTE": "32cc937f8baae445b2df5ecc7b7e33a34b75284eaed6efa5b16c10b46a1e7960",
+    "D57-A01-CACHE": "e6c6851d727b022e9870c3258dbae4a96c81bd7bc0faab9b1270b876d357975f"
+  },
+  "preview_copy_sha256": [
+    "c0fce97652827b4b41d3e6de2e66f682a2e8ceeaeaef5defbd5042704dfea537",
+    "2d15a1a3002df63d83a6506ae764061d031613dcea17aadb27f4c9e13263938d"
+  ],
+  "excluded_from_approval": [
+    "Unshown drone attacks and other remaining skills.",
+    "New native 64 px body drawings; existing 32 px drone models were reused.",
+    "Full campaign AI, target-analysis action costs, inventory integration and first-action scheduling.",
+    "Review 90 visual approval is not inferred from approval of review 91.",
+    "B03 Vitalite amelioree mechanics, still pending."
+  ],
+  "cleanup": {
+    "status": "complete",
+    "receipt": "cleanup.json",
+    "removed_bytes": 63252881
+  }
+}

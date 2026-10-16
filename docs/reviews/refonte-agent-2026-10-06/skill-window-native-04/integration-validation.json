@@ -1,0 +1,468 @@
+{
+  "review_id": "SKILLS-NATIVE04",
+  "approval_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-17/visual-acceptance-01.json",
+  "integrated_compact_count": 30,
+  "total_compact_count": 31,
+  "illustration_count": 16,
+  "reviewed_exports_verified": 150,
+  "protected_files_preserved": 103,
+  "skills_and_labels_unchanged": true,
+  "runtime_images_match_accepted_64px_exports": true,
+  "mechanics_and_save_data_unchanged": true,
+  "status": "integrated",
+  "accepted_export_hashes_verified": 236,
+  "packaged_asset_hashes_verified": 47,
+  "all_previous_accepted_exports_preserved": true,
+  "format": "passed",
+  "diff_whitespace": "passed",
+  "tests": {
+    "command": "cargo test --locked agent_skill_window::tests",
+    "passed": 3,
+    "failed": 0
+  },
+  "debug_build": "passed",
+  "release_build": "passed",
+  "release_warnings": 4,
+  "native_captures": [
+    {
+      "skill": "B03",
+      "variant": "B03-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/B03-960/cold-start.png",
+      "sha256": "548961da6ab227c523847b962f9c35ccd5faecb019f08158e228dac05f09e4b6",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 4.288
+    },
+    {
+      "skill": "O03",
+      "variant": "O03-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/O03-960/cold-start.png",
+      "sha256": "b81a3daccd3424da969020b7c863379b7154465bda00a2e5a0698ca5e961de7b",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 6.058
+    },
+    {
+      "skill": "T01",
+      "variant": "T01-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/T01-960/cold-start.png",
+      "sha256": "aea9d8d218eb81578ba865caba31e7f39d503485b2c596099c171182f5e4b716",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 3.926
+    },
+    {
+      "skill": "T03",
+      "variant": "T03-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/T03-960/cold-start.png",
+      "sha256": "190a8cdf20866b3ba542f62bde9017fbef9be12bfa1b06db7c38b3394a347c61",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 4.447
+    },
+    {
+      "skill": "A03",
+      "variant": "A03-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/A03-960/cold-start.png",
+      "sha256": "b191240f0b6911df8597ae9ad9667546741f8722f54fe8ad9cd5cae3d1df35b1",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 6.01
+    },
+    {
+      "skill": "FE01",
+      "variant": "FE01-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/FE01-960/cold-start.png",
+      "sha256": "ea1b1b2901c1a8bcc624d11833bfe12d03652d6a7275387d1c699ba7d7959517",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 3.332
+    },
+    {
+      "skill": "M01",
+      "variant": "M01-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/M01-960/cold-start.png",
+      "sha256": "fcc0d1e0ee09291133cdad648f8f91eb4a94a4320cdf2ee390800454924a3403",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 4.487
+    },
+    {
+      "skill": "M03",
+      "variant": "M03-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/M03-960/cold-start.png",
+      "sha256": "3d41a1e0382130114c6885ee69f892557f69b0cd94baea346ae9a027c9fc1cd5",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 6.114
+    },
+    {
+      "skill": "ME02",
+      "variant": "ME02-C03",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/ME02-960/cold-start.png",
+      "sha256": "01134667a21c811d76d8886764d3273192e91f490b9f38f975cf930f778dac5c",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 3.617
+    },
+    {
+      "skill": "ME03",
+      "variant": "ME03-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/ME03-960/cold-start.png",
+      "sha256": "470de6fea35b5203f90dd6ac08b47d9f3b6922a96ac5fe3e2db9d5c5745b11d4",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 6.404
+    },
+    {
+      "skill": "ME05",
+      "variant": "ME05-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/ME05-960/cold-start.png",
+      "sha256": "e759c7904206d204290c27ac1c3116246b8d7a1f163202693350ca7c6cbb4d53",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 3.102
+    },
+    {
+      "skill": "ME06",
+      "variant": "ME06-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/ME06-960/cold-start.png",
+      "sha256": "3b6e398e2c46b38beaaae4f1023507b6b9832ffd14cfe30f7a5e995d2dba2820",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 6.492
+    },
+    {
+      "skill": "ME04",
+      "variant": "ME04-C03",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/ME04-960/cold-start.png",
+      "sha256": "2829ed00ef16da5337e1ea45d987c64445a757f553ef039e3f8ce2809d95a5f6",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 3.669
+    },
+    {
+      "skill": "SU04",
+      "variant": "SU04-C03",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/SU04-960/cold-start.png",
+      "sha256": "297698a81e1eade84d9805fc01a5a21c9ce31377d52776e96b2676480e475eb1",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 4.006
+    },
+    {
+      "skill": "D59",
+      "variant": "D59-C04",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/D59-960/cold-start.png",
+      "sha256": "d24627021e3ca2c39ef42ed6549ca78e4443770ef572073bf46a9166958fa83e",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 3.92
+    },
+    {
+      "skill": "FR03",
+      "variant": "FR03-C03",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/FR03-960/cold-start.png",
+      "sha256": "8adf67248b22914eb08e7aa155a05483bf8c5f0a0d591d6185ea5cd00b87b5e4",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 9.655
+    },
+    {
+      "skill": "BM02",
+      "variant": "BM02-C03",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/BM02-960/cold-start.png",
+      "sha256": "d93b17640b760dc73a91851137c4b7c516c8fa294e194a322bea4f3ccf57fdae",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 4.912
+    },
+    {
+      "skill": "SF00",
+      "variant": "SF00-C04",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/SF00-960/cold-start.png",
+      "sha256": "da12fcf08d5d89561225a7ed1173a9fee7a6e34ad6aae689d8ded254483ec2b4",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 3.065
+    },
+    {
+      "skill": "D57",
+      "variant": "D57-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/D57-960/cold-start.png",
+      "sha256": "2ea8a3e6897350648c7bf17c160181a88570153d728a40bed91bbd710ae1431e",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 4.209
+    },
+    {
+      "skill": "D58",
+      "variant": "D58-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/D58-960/cold-start.png",
+      "sha256": "1c8f9db40bca2b8395be286bdd660219604bcd44edfe460063fc9a1ca4e50f9f",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 6.173
+    },
+    {
+      "skill": "D66",
+      "variant": "D66-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/D66-960/cold-start.png",
+      "sha256": "c1a384f4acf49f44fda40ced349e2e65668bc3ad4e16db9805f9fd8edaa30825",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 4.912
+    },
+    {
+      "skill": "DP01",
+      "variant": "DP01-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/DP01-960/cold-start.png",
+      "sha256": "0a057de43cee306cc7df821432bb0d06dfb7f926404c646247d99653d7cf0916",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 5.97
+    },
+    {
+      "skill": "DR01",
+      "variant": "DR01-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/DR01-960/cold-start.png",
+      "sha256": "e581f8a4e77f0bbaac46eb22a9a3bc0aed27bcff90aa151380685520d84cd6e4",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 5.77
+    },
+    {
+      "skill": "DP02",
+      "variant": "DP02-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/DP02-960/cold-start.png",
+      "sha256": "b8c24211b4bca244126f4cd912ec8dd8876124cc7fc277f23073241482c8fc54",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 4.923
+    },
+    {
+      "skill": "HY07",
+      "variant": "HY07-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/HY07-960/cold-start.png",
+      "sha256": "f80d258af937c5b0189d5185ec438c4af97137fde77c44ea43da9d9486a93863",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 7.485
+    },
+    {
+      "skill": "O02",
+      "variant": "O02-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/O02-960/cold-start.png",
+      "sha256": "bbcc287145e603b07a61dfac7ff46bf776be44cd33a0f1e922f3a03d96de032f",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 5.898
+    },
+    {
+      "skill": "AF02",
+      "variant": "AF02-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/AF02-960/cold-start.png",
+      "sha256": "07d501d20410b035d8119cff094b6c2859d8c185622ee1e96e0d142827eda0d9",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 4.895
+    },
+    {
+      "skill": "AF03",
+      "variant": "AF03-C03",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/AF03-960/cold-start.png",
+      "sha256": "3e1d10710a2d9fc6aaf983ac62f1138c2fa71ae242c9d3bc27a4a398c1467bc3",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 5.382
+    },
+    {
+      "skill": "AF04",
+      "variant": "AF04-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/AF04-960/cold-start.png",
+      "sha256": "ae0efe243b36a7b22d8744ebd2bd2aa11a2667bf46e9d6f8492d4037a7603f55",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 4.29
+    },
+    {
+      "skill": "AF05",
+      "variant": "AF05-C02",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-04/AF05-960/cold-start.png",
+      "sha256": "be3a1ce6937e7448d2e9d436443cad1eba6ab94516301eea00078ac6f9371fd3",
+      "process_exit": 0,
+      "dimensions": [
+        960,
+        540
+      ],
+      "selected_icon_matches_accepted_source": true,
+      "match_error": 3.132
+    }
+  ],
+  "native_capture_count": 30,
+  "all_selected_icons_visually_checked_at_64px": true,
+  "whole_window_inspection": [
+    "B03",
+    "ME02",
+    "D59",
+    "AF03"
+  ],
+  "browser_validation": {
+    "artilleur": {
+      "documentWidth": 1108,
+      "image": {
+        "display": [
+          960,
+          540
+        ],
+        "loaded": true,
+        "natural": [
+          960,
+          540
+        ],
+        "src": "D59-960/cold-start.png"
+      },
+      "options": 30,
+      "selected": "D59",
+      "title": "Compétences · icônes sombres intégrées",
+      "viewport": {
+        "height": 884,
+        "width": 1108
+      }
+    },
+    "silence": {
+      "display": [
+        960,
+        540
+      ],
+      "loaded": true,
+      "natural": [
+        960,
+        540
+      ],
+      "no_horizontal_overflow": true,
+      "options": 30,
+      "selected": "AF03"
+    },
+    "proofs": [
+      "browser-proof-artilleur.png",
+      "browser-proof-silence.png"
+    ]
+  }
+}

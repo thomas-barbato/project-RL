@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SF01-COST02",
+  "related_review_id": "SF00-COST03",
+  "user_instruction": "ben du coup non, ca ne sert à rien de monter le passif 10 si c'est juste pour gagner 1 point d'energie, non .\n\n1 point d'energie = niveau 10 de la compétence passive.",
+  "confirmed_requirements": {
+    "rank10_energy_per_stealth_step": 1,
+    "base2_to_floor1_over10_ranks_rejected_as_insufficient": true,
+    "useful_passive_progression_required": true,
+    "no_free_steps_with_equipment": "prior_SF01-ENERGY01_preserved"
+  },
+  "proposed_numbers_not_accepted": {
+    "energy_per_step_without_SF01": 11,
+    "energy_saved_per_effective_rank": 1,
+    "effective_rank1_cost": 10,
+    "effective_rank5_cost": 6,
+    "effective_rank9_cost": 2,
+    "effective_rank10_cost": 1,
+    "minimum_with_equipment_bonus_ranks": 1
+  },
+  "proposed_formula": "max(1,11-SF01_effective_rank);rank0_without_passive=11",
+  "cost_curve_proposal": [
+    {
+      "effective_rank": 0,
+      "energy_per_successful_step": 11
+    },
+    {
+      "effective_rank": 1,
+      "energy_per_successful_step": 10
+    },
+    {
+      "effective_rank": 2,
+      "energy_per_successful_step": 9
+    },
+    {
+      "effective_rank": 3,
+      "energy_per_successful_step": 8
+    },
+    {
+      "effective_rank": 4,
+      "energy_per_successful_step": 7
+    },
+    {
+      "effective_rank": 5,
+      "energy_per_successful_step": 6
+    },
+    {
+      "effective_rank": 6,
+      "energy_per_successful_step": 5
+    },
+    {
+      "effective_rank": 7,
+      "energy_per_successful_step": 4
+    },
+    {
+      "effective_rank": 8,
+      "energy_per_successful_step": 3
+    },
+    {
+      "effective_rank": 9,
+      "energy_per_successful_step": 2
+    },
+    {
+      "effective_rank": 10,
+      "energy_per_successful_step": 1
+    },
+    {
+      "effective_rank": 11,
+      "energy_per_successful_step": 1
+    },
+    {
+      "effective_rank": 12,
+      "energy_per_successful_step": 1
+    }
+  ],
+  "base_cost_approval": "new11_proposed_pending_explicit_user_review;not_inferred_from_rank10_target",
+  "linear_curve_approval": "one_energy_per_rank_proposed_pending_explicit_user_review",
+  "preserved_approved_scope": [
+    "SF01_rank10_cost1_and_minimum1_with_equipment",
+    "one_skill_point_per_passive_rank",
+    "ten_learned_rank_cap",
+    "SF00_single_purchase",
+    "SF00_and_SF01_approved_RP",
+    "SF02_approved_detection_rules"
+  ],
+  "other_SF00_numbers_conditions_and_visuals": "remain_pending;no_approval_inferred_from_cost_feedback",
+  "prior_base2_proposal": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF00-04.json",
+  "prior_base2_proposal_sha256": "56271d4f4d4cb778f6e1df24919f536002a847ee3a9e615f63489e686e284060",
+  "prior_accepted_SF01_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF01-02.json",
+  "prior_accepted_SF01_description_sha256": "144e75f3800cb1b83af0dd07f377e1271a2ea5b366474d346dc3549fb9b37959",
+  "proposed_full_cards": {
+    "SF00": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF00-05.json",
+    "SF01": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF01-03.json",
+    "full_cards_shown_this_turn": false
+  },
+  "current_turn_shown_copy_markdown": "Le coût atteint **1 énergie par pas au rang 10 du passif**.\n\nJe propose une baisse d’**1 énergie par pas pour chaque rang investi** :\n\n- Sans le passif : **11 énergie par pas**.\n- Rang 1 : **10 énergie par pas**.\n- Rang 5 : **6 énergie par pas**.\n- Rang 9 : **2 énergie par pas**.\n- Rang 10 : **1 énergie par pas**.\n\nLe coût reste au minimum de **1 énergie**, même avec les bonus d’équipement.",
+  "current_turn_shown_copy_sha256": "89efcf5164dd277a2d9f216f2b1959a62cc208f9187108dd6e3b766a5d1182da",
+  "approval_scope": "user_rejects_weak_gain_and_reconfirms_rank10_cost1;new_base11_linear_curve_shown_as_proposal_only;not_integrated",
+  "runtime_integration": "not_integrated"
+}

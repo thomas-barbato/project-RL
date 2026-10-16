@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-09",
+  "review_id": "DRONE-STAT04-ACCEPT01",
+  "user_reply": "parfait :) je valide",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-drone-invocation-rank-bonuses-01.json",
+  "source_proposal_sha256": "77de3141d7033b88d8cb9c7bd2d33833453b2500e0ea28e2a1d7823e45c9bbb0",
+  "accepted_shown_copy_markdown": "Le **cumul des attributs du drone et des bonus de l’agent est validé**.\n\n**DRONE-STAT04 · Rangs d’invocation — proposition**\n\nChaque compétence d’invocation de drone améliore **uniquement le modèle correspondant**.\n\nChaque rang après le premier apporte :\n\n- **+10 % de PV maximum**.\n- **+10 % de dégâts**, pour les drones armés.\n\nCes pourcentages s’ajoutent aux autres bonus compatibles. Le rang 1 apporte **+0 %** ; le rang 10, **+90 %**.\n\n**Effet actuel — rang 11**\n\n- Bonus de PV maximum : **+100 %**.\n- Bonus de dégâts : **+100 %**, si le drone est armé.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus de PV maximum : **+110 %**.\n- Bonus de dégâts : **+110 %**, si le drone est armé.\n\n**Exemple avec les mêmes autres bonus**\n\nTraqueur niveau 20 : **Force 66**, **148 PV de base** ; agent avec **Intelligence 25** ; Algorithmes de combat améliorés au **rang 11**. Attaque de base fictive : **20 dégâts**.\n\n- Invocation rang 11 : **325 PV maximum · 65 dégâts affichés**.\n- Invocation rang 12 : **340 PV maximum · 67 dégâts affichés**.\n\nLes dégâts sont indiqués avant les défenses ; les autres bonus sont exclus de cet exemple.\n\nLes bonus d’équipement prolongent cette progression au-delà de 10. Les effets spécifiques de reconnaissance, de transport et de protection restent traités séparément.\n\n**Cette progression des bonus d’invocation reste à valider.**",
+  "accepted_shown_copy_sha256": "ff57affe0dd207219f27b2ec7b48b1d6cbeb34f39f81736df1299e26cbb04f05",
+  "accepted_shown_rules": {
+    "scope": "existing_drone_invocations_D56_D57_D58_D59_D66;not_raised_monster_spell_OC07",
+    "model_scope": "each_invocation_effective_rank_affects_only_its_corresponding_drone_model",
+    "effective_rank_minimum_shown": 1,
+    "maximum_HP_bonus_percent": "10*(effective_invocation_rank-1)",
+    "armed_direct_damage_bonus_percent": "10*(effective_invocation_rank-1)",
+    "armed_eligibility": [
+      "D58",
+      "D59",
+      "D66"
+    ],
+    "HP_all_current_models": true,
+    "damage_pool": "add_rank_bonus_percentage_points_to_accepted_pool_with_own_matching_attack_attribute_owner_Intelligence_and_other_eligible_drone_damage_bonuses",
+    "HP_pool": "add_rank_HP_bonus_percentage_points_to_accepted_HP_pool_after_own_level_Vitalite_base_and_compatible_flat_HP_bonuses;floor_final_maximum_once",
+    "learned_and_equipment_ranks": "learned_cap10_and_cost1_per_rank_retained;equipment_increases_effective_rank_and_linear_bonus_beyond10",
+    "shown_curve_references": {
+      "rank1": 0,
+      "rank10": 90,
+      "rank11": 100,
+      "rank12": 110
+    },
+    "current_next": "current_learned_rank9_effective11_and_next_learned10_effective12_hold_equipment_bonus2_and_other_modifiers_constant;no_rank_breakdown_line_in_player_copy",
+    "non_damage_effects": "reconnaissance_transport_Gardien_protection_costs_cooldowns_and_other_source_card_parameters_not_revised_by_this_bonus_curve"
+  },
+  "accepted_examples": {
+    "scope": "D58_level20_profile_and_accepted_owner_mapping_with_fictional_native_base20;other_damage_or_HP_bonuses_excluded;no_new_weapon_or_attack_variance",
+    "drone_model": "D58",
+    "level": 20,
+    "own_Force": 66,
+    "own_Force_damage_bonus_percent": 61,
+    "base_maximum_HP": 148,
+    "owner_Intelligence": 25,
+    "owner_Intelligence_damage_and_HP_bonus_percent": 20,
+    "O03_rank": 11,
+    "O03_damage_bonus_percent": 45,
+    "fictional_base_damage": 20,
+    "current_rank11": {
+      "rank_bonus_percent": 100,
+      "combined_damage_bonus_percent": 226,
+      "exact_predefense_damage": {
+        "numerator": 326,
+        "denominator": 5
+      },
+      "integer_damage_readout": 65,
+      "combined_HP_bonus_percent": 120,
+      "exact_maximum_HP": {
+        "numerator": 1628,
+        "denominator": 5
+      },
+      "integer_maximum_HP": 325
+    },
+    "next_rank12": {
+      "rank_bonus_percent": 110,
+      "combined_damage_bonus_percent": 236,
+      "exact_predefense_damage": {
+        "numerator": 336,
+        "denominator": 5
+      },
+      "integer_damage_readout": 67,
+      "combined_HP_bonus_percent": 130,
+      "exact_maximum_HP": {
+        "numerator": 1702,
+        "denominator": 5
+      },
+      "integer_maximum_HP": 340
+    }
+  },
+  "approval_scope": "Per_drone_invocation_model additive_HP_and_armed_damage_bonus10_percentage_points_per_rank_after1, rank1_0_rank10_90_rank11_100_rank12_110, effective_equipment_ranks_beyond10, compatible_bonus_pool_and_current_next_325HP65damage_to340HP67damage accepted. Other specific_drone_effects, native_attack_base, gear_slots_resources_and_PETS_EQ01_complements_not_inferred.",
+  "unshown_cases_pending": [
+    "native_drone_attack_base_and_equipped_weapon_replacement_or_addition_variance_and_modes",
+    "own_accuracy_evasion_critical_baselines_and_attack_defense_pipeline",
+    "HP_energy_current_adjustments_on_level_rank_equipment_and_owner_attribute_changes",
+    "spawn_recall_resummoning_and_preserved_wounds_or_new_deployment_state",
+    "modifier_update_timing_and_owner_snapshot_rules",
+    "drone_energy_base_regeneration_and_action_costs",
+    "reconnaissance_transport_and_Gardien_specific_full_rank_curves",
+    "PETS_EQ01_equipment_complements_and_slot_family_lifecycle_rules",
+    "future_drone_models_and_all_other_unshown_cases",
+    "native_skill_tooltip_animations_and_stat_sheet"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

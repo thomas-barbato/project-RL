@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-13",
+  "build": {
+    "command": "cargo build --locked",
+    "exit_code": 0
+  },
+  "targeted_tests": {
+    "command": "cargo test --locked agent_skill_lab_review",
+    "passed": 64,
+    "failed": 0
+  },
+  "format": {
+    "command": "cargo fmt --all -- --check",
+    "exit_code": 0
+  },
+  "diff_check": {
+    "command": "git diff --check",
+    "exit_code": 0
+  },
+  "native_render": {
+    "views": 14,
+    "animations": 9,
+    "protected_files_unchanged": 67811,
+    "pixel_controls": "passed"
+  },
+  "drawing_workflow": "Built-in imagegen edits with exact prompts; equal-cell crop and uniform atlas packing; exact old skull cell preserved. Mild opt-in exposure and native draw placement. No Python repainting.",
+  "invariants": {
+    "timelines_identical_to_review37": true,
+    "actors_and_terrain_identical": true,
+    "ivory_ally_marker_identical": true,
+    "native_drawings_changed_only": true,
+    "comparison_limit": "Only the known floating name antialias rectangle is excluded at frames 17-33."
+  },
+  "gallery_controller": "Passed offline VM checks for frames, loading, pause, version selector, quiet persistence and thirteen explicit turns to expiry.",
+  "gallery_links": {
+    "checked": 10,
+    "missing": 0
+  },
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Native captures and offline controller verified.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "OC04-A03 and OC07-A03 visually approved.",
+  "retained_trials": [
+    "native-curvature-trial",
+    "native-thickness-trial",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-38/prison-source-curvature-trial.png"
+  ],
+  "fixture_scope": "Debug-only prepared visuals; no actual combat, HP, damage, healing, loot, XP, AI, RNG, skill/stat rule, save or familiar UI changes.",
+  "acceptance": "visual-acceptance-01.json"
+}

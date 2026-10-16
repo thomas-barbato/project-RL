@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-08",
+  "revision": 8,
+  "review_ids": [
+    "SKILL-PROG01",
+    "SKILL-HEAL01",
+    "SKILL-HEAL01-SCOPE02"
+  ],
+  "decision_reference": "docs/reviews/refonte-agent-2026-10-06/skill-progression-and-branch-healing-decisions.json",
+  "direction_approval": "explicit_user_confirmation",
+  "primary_branch_coverage": [
+    {
+      "branch": "Mêlée",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Survie",
+      "existing_healing_candidates": [
+        "SU04"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Drones",
+      "existing_healing_candidates": [
+        "DP01"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending",
+      "requested_active_robot_repair": "DR01_previously_requested;target_eligibility_and_active_details_pending"
+    },
+    {
+      "branch": "Affaiblissements",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Attaques à distance",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Esquive",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Feu",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Froid",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Énergie occulte",
+      "existing_healing_candidates": [
+        "OC05"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Transformations",
+      "existing_healing_candidates": [
+        "TR64"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Pouvoirs hybrides",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Buffs de mêlée",
+      "existing_healing_candidates": [
+        "BM02"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Buffs à distance",
+      "existing_healing_candidates": [],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    },
+    {
+      "branch": "Armes lourdes",
+      "existing_healing_candidates": [
+        "HL06"
+      ],
+      "new_candidates_proposed": [],
+      "review_status": "existing_heal_inventory_only;no_requirement_to_add_a_heal_to_each_branch;main_tree_qualification_pending"
+    }
+  ],
+  "future_heavy_weapon_tree": "existing_heavy_tree_has_accepted_HL06_displayed_heal_card;curves_and_cases_pending",
+  "secondary_tree_healing_targets_and_qualification": "specific application pending branch review",
+  "progression_review_scope": "whole catalogue including previously approved skills; quantitative changes must be individually reapproved",
+  "sequence": [
+    "clarify_main_tree_grouping",
+    "check_existing_heals_for_chosen_main_trees",
+    "propose_only_genuinely_missing_heals_and_preserve_DR01_request",
+    "review_weak_progression_full_curves_unshown_cases_then_native_runtime_attributes_balance"
+  ],
+  "catalogue_counts_unchanged": {
+    "skills": 78,
+    "branches": 14
+  },
+  "new_gameplay_skill_ids_created": "unaccepted_draft_IDs_withdrawn;DR01_existing_request_preserved;no_runtime_IDs_created",
+  "runtime_integration": "not_integrated",
+  "previous_review": "docs/reviews/refonte-agent-2026-10-06/review-skill-progression-and-branch-healing-07.json",
+  "previous_review_sha256": "b3b5cb8a47d94ad8f9726aeab669928f766af8e9a6b30a8c08bcf934983fffbd",
+  "catalogue_count_revision_reason": "existing_heavy_tree_added_earlier;no_new_healing_catalogue_accepted_here",
+  "primary_manifest_before_this_turn": "docs/reviews/refonte-agent-2026-10-06/review-primary-catalogue-170.json",
+  "primary_manifest_before_this_turn_sha256": "95e83e9076205da12d470554fe6933f9c72ef91a5bb6f52960696a6fe6f5a359",
+  "primary_branch_count": 14,
+  "existing_primary_candidates": 78,
+  "existing_first_pass_cards_remaining": 0,
+  "proposed_candidates": 0,
+  "new_catalogue_proposal": "docs/reviews/refonte-agent-2026-10-06/review-branch-healing-complements-02.json",
+  "new_catalogue_proposal_sha256": "ebe0a6a5ac351ad0188dfc85076877441e9fd5a53c1c2c909918995fc863e086",
+  "missing_heals_not_implemented": "coverage_review_pending_main_tree_grouping;no_per_branch_additions_required",
+  "native_animations_runtime_and_balance": "following_phases_not_started_here",
+  "scope_correction": "docs/reviews/refonte-agent-2026-10-06/healing-main-tree-scope-correction-decisions.json",
+  "scope_correction_sha256": "b4231ef8550306885be12da0e5777550612ed1dcba7690fd32eb9ee34f798a7c",
+  "healing_scope": "main_trees_only;exact_grouping_pending_clarification"
+}

@@ -1,0 +1,122 @@
+{
+  "protected_files_unchanged": 32518,
+  "controls": [
+    {
+      "variant": "FR06-A01-HAUT",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "visible_gel_consumed": true,
+      "hidden_source_excluded": true,
+      "contacts_do_not_chain_or_repeat": true,
+      "instant_burst_ends_without_a_turn": true,
+      "waiting_preserves_cooldown": true
+    },
+    {
+      "variant": "FR06-A01-DROITE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "visible_gel_consumed": true,
+      "hidden_source_excluded": true,
+      "contacts_do_not_chain_or_repeat": true,
+      "instant_burst_ends_without_a_turn": true,
+      "waiting_preserves_cooldown": true
+    },
+    {
+      "variant": "FR06-A01-GAUCHE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "visible_gel_consumed": true,
+      "hidden_source_excluded": true,
+      "contacts_do_not_chain_or_repeat": true,
+      "instant_burst_ends_without_a_turn": true,
+      "waiting_preserves_cooldown": true
+    },
+    {
+      "variant": "FR06-A01-BAS",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "visible_gel_consumed": true,
+      "hidden_source_excluded": true,
+      "contacts_do_not_chain_or_repeat": true,
+      "instant_burst_ends_without_a_turn": true,
+      "waiting_preserves_cooldown": true
+    },
+    {
+      "variant": "FR06-A01-CLOISON",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "visible_gel_consumed": true,
+      "hidden_source_excluded": true,
+      "contacts_do_not_chain_or_repeat": true,
+      "instant_burst_ends_without_a_turn": true,
+      "waiting_preserves_cooldown": true
+    },
+    {
+      "variant": "FR06-A01-OBSTACLE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "visible_gel_consumed": true,
+      "hidden_source_excluded": true,
+      "contacts_do_not_chain_or_repeat": true,
+      "instant_burst_ends_without_a_turn": true,
+      "waiting_preserves_cooldown": true
+    },
+    {
+      "variant": "FR06-A01-UNIQUE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "visible_gel_consumed": true,
+      "hidden_source_excluded": true,
+      "contacts_do_not_chain_or_repeat": true,
+      "instant_burst_ends_without_a_turn": true,
+      "waiting_preserves_cooldown": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "FR06-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 23,
+      "frames": 23,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FR06-A01-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 23,
+      "frames": 23,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FR06-A01-OBSTACLE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 23,
+      "frames": 23,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FR06-A01-UNIQUE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 23,
+      "frames": 23,
+      "duration_ms": 4000,
+      "loop": 0
+    }
+  ],
+  "resampling_of_native_capture": false
+}

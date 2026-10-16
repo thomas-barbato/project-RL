@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-08",
+  "id": "HY06",
+  "review_id": "HY06-ALLY01",
+  "user_instruction": "A noter que si le joueur controle un monstre et si ce joueur a aussi des pets (ressucités / drones) et bien ces pets ne devront pas attaquer le monstre dominé.",
+  "approval": "explicit_user_directive",
+  "accepted_rule": "while domination is active, player drones and resurrected allies recognize the dominated monster as allied and do not select or retain it as an attack target",
+  "scope": [
+    "controlled player drones",
+    "player resurrected monsters"
+  ],
+  "during_domination": "attack target allegiance re-evaluated on successful domination; pet stops targeting this monster",
+  "after_end": "existing return-to-hostile rule retained; ordinary pet target selection applies",
+  "player_manual_attacks_other_damage_sources_area_collateral_and_already_in_flight_effects": "not newly decided; specific cases pending",
+  "no_change_to": "HP statistics skills duration chance energy cooldown and accepted overhead symbol",
+  "new_player_facing_copy": "none_added;accepted_HY06_tooltip_kept_byte_identical",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY06-02.json",
+  "previous_card_sha256": "844c04ad1c969d4d5e60f4371ebb74a5448ebdd920c65fe6d5df2026c0ef42a8",
+  "runtime_integration": "not_integrated"
+}

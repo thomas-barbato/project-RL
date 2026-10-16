@@ -1,0 +1,13 @@
+{
+  "build": { "command": "cargo build --locked", "exit_code": 0 },
+  "targeted_tests": { "command": "cargo test --locked agent_skill_lab_review", "passed": 49, "failed": 0 },
+  "format": { "command": "cargo fmt --all -- --check", "exit_code": 0 },
+  "diff_check": { "command": "git diff --check", "exit_code": 0 },
+  "native_render": { "views": 14, "animations": 10, "protected_files_unchanged": 40330, "pixel_controls": "passed" },
+  "blocked_bolt": "No animation expected when its target is inaccessible. Static refusal preview kept separately; excluded from the animated VFX export checks.",
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Native renders and offline controller verified.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "pending"
+}

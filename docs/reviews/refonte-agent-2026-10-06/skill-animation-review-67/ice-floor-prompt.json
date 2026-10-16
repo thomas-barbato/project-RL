@@ -1,0 +1,9 @@
+{
+  "tool": "built-in imagegen",
+  "intent": "new frozen-ground source",
+  "prompt": "Use case: stylized-concept. Asset type: transparent game VFX sprite sheet for Project RL, a dark serious cyberpunk occult roguelike with painted comic-book characters. Create a 1024x1024 transparent RGBA sheet containing exactly FOUR independent frozen-ground patches in a precise 2x2 grid, one fully inside each 512x512 quadrant, all roughly square and occupying 90% of their quadrant with a small transparent margin. Each patch is a FLAT ground surface viewed from above, thin ice spread on existing ground: natural interconnected translucent pale steel-blue ice, milky white frost veins, branching hairline cracks, a few broad irregular curved plates with polished cold reflections and scattered frost along irregular edges. The four patches have noticeably different crack and frost patterns but matching palette and thickness. Painted dark-comic style with controlled dark contour accents and broad readable icy white-blue shapes so this reads unmistakably as frozen floor when reduced to 64px. Transparent gaps allow the real terrain to show through. No square blue background wash, no solid background, no terrain/stone backdrop, no standing crystals, no wall, no geometric triangles, no characters, no effects floating above ground, no text, labels, arrows or borders. Keep flat perspective; these are overlays on 64px ground cells and will cover a connected 3x3 area.",
+  "source": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-67/ice-floor-source.png",
+  "alpha": "preserved",
+  "render": "Four 627px quadrant sources drawn directly onto native64 terrain; not an enlarged32px sprite.",
+  "status": "awaiting_visual_review"
+}

@@ -93,6 +93,14 @@ impl DroneProfile {
         self.sensor_radius
     }
 
+    pub(crate) fn set_agent_sensor_radius(&mut self, radius: u16) {
+        self.sensor_radius = radius.max(1);
+    }
+
+    pub(crate) fn set_agent_cargo_capacity(&mut self, capacity: u32) {
+        self.capabilities.manipulator_capacity_grams = Some(capacity);
+    }
+
     pub const fn bandwidth_required(&self) -> u16 {
         self.bandwidth_required
     }
@@ -238,12 +246,29 @@ pub enum DroneCollectionPhase {
 /// Physical cargo currently carried by a drone. It remains attached to the
 /// drone actor until an adjacent hand-off succeeds; collection never writes
 /// directly into the remote controller's inventory.
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct DroneCargo {
     item: ItemId,
     quantity: u16,
     owner: Option<SocialGroupId>,
     mass_grams: u32,
+    #[serde(default)]
+    palette: Option<crate::entity::EquipmentPalette>,
+}
+
+impl std::fmt::Debug for DroneCargo {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut debug = f.debug_struct("DroneCargo");
+        debug
+            .field("item", &self.item)
+            .field("quantity", &self.quantity)
+            .field("owner", &self.owner)
+            .field("mass_grams", &self.mass_grams);
+        if let Some(palette) = self.palette {
+            debug.field("palette", &palette);
+        }
+        debug.finish()
+    }
 }
 
 impl DroneCargo {
@@ -258,6 +283,7 @@ impl DroneCargo {
             quantity,
             owner,
             mass_grams,
+            palette: None,
         }
     }
 
@@ -275,6 +301,18 @@ impl DroneCargo {
 
     pub const fn mass_grams(&self) -> u32 {
         self.mass_grams
+    }
+
+    pub(crate) fn retain_palette(
+        mut self,
+        palette: Option<crate::entity::EquipmentPalette>,
+    ) -> Self {
+        self.palette = palette;
+        self
+    }
+
+    pub(crate) const fn color_variant(&self) -> Option<crate::entity::EquipmentPalette> {
+        self.palette
     }
 }
 
@@ -504,6 +542,10 @@ impl DroneState {
         self.link_active.replace(active)
     }
 
+    pub(crate) fn profile_mut(&mut self) -> &mut DroneProfile {
+        &mut self.profile
+    }
+
     pub const fn profile(&self) -> &DroneProfile {
         &self.profile
     }
@@ -534,6 +576,13 @@ impl DroneState {
 
     pub fn spend_energy(&mut self, amount: u16) -> Result<(), EnergySpendError> {
         self.energy.spend(amount)
+    }
+
+    pub(crate) fn refresh_agent_energy_capacity(&mut self, maximum: u16, level_gain: bool) {
+        self.energy.set_capacity(maximum);
+        if level_gain {
+            self.energy.restore(maximum);
+        }
     }
 
     pub const fn last_confirmed_position(&self) -> GridPos {

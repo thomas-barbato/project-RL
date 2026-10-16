@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-09",
+  "review_id": "GEAR-SK02",
+  "revision": 1,
+  "title": "Retirer l’objet après utilisation",
+  "status": "ongoing_cast_effect_rank_preservation_toggle_channel_stop_and_existing_familiar_rank1_fallback_after_grant_loss_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-56.json",
+  "current_attribute_model_sha256": "8418a04bcb2855eddd8a3d18cdd3ef95316937384e0db46e11e4c92ffc9b4499",
+  "accepted_gear_access": "docs/reviews/refonte-agent-2026-10-06/review-equipment-granted-skills-GEAR-SK01-02.json",
+  "accepted_gear_access_sha256": "59a9b43d1be513fa5e7a939881b9f29691af188278005bce39f05ec1e6694f7b",
+  "accepted_familiar_updates": "docs/reviews/refonte-agent-2026-10-06/review-familiar-stat-updates-PETS-EQ13-02.json",
+  "accepted_familiar_updates_sha256": "74435f8a5b27b55805b598012f6c3f1532295034de2a0c5c0561ff4919491c01",
+  "shown_copy_markdown": "**GEAR-SK02 · Retirer l’objet après utilisation**\n\nJe propose ces règles lorsque vous perdez un bonus de compétence :\n\n- Les **buffs, débuffs, zones, mines et transformations déjà déclenchés** conservent leur rang de lancement et poursuivent leur durée ou leur fonctionnement normal.\n- **Furtivité et Souffle de feu s’arrêtent** si le retrait de l’objet vous fait perdre tout accès à la compétence.\n- Les **familiers déjà créés restent présents**. Leurs bonus d’invocation suivent votre rang actuel ; si vous perdez tout accès au sort, ils utilisent la puissance du **rang 1**, sans vous rendre la compétence utilisable.\n- Les **marques de Réanimation déjà posées restent jusqu’à la mort de leur cible**. Elles peuvent encore la relever, avec le rang alors disponible et un minimum de calcul de **1** si vous n’avez plus accès au sort.\n- Ces changements **ne soignent pas les familiers**, ne remplissent pas leur énergie et ne réinitialisent ni leur durée restante ni leurs recharges.\n\nCes précisions restent à valider.",
+  "shown_copy_sha256": "656dfa2fbd6309cf455f37fa8951b6907fd35b71afebbeb9d8d7b9b713a96ce4",
+  "already_accepted_rules": "last_equipment_grant_loss_blocks_new_player_activations_and_removes_granted_passive;no_recharge_reset;existing_familiar_HP_damage_update_current_rank_without_heal_and_raised_birth_duration_snapshot",
+  "new_proposed_rules": {
+    "scope": "player_skill_equipment_rank_loss_after_skill_effect_has_already_been_created;not_new_affix_family_or_familiar_unknown_skill_grant",
+    "ordinary_active_effects": "already_created_non_channel_temporary_buffs_debuffs_zones_mines_and_transformations_keep_the_active_skill_rank_used_at_creation_and_ordinary_remaining_lifetime_or_trigger_rules;item_loss_does_not_cancel_reset_extend_or_relaunch_effect",
+    "snapshot_boundary": "preserve_effect_skill_rank_only;not_a_new_snapshot_of_all_owner_attributes_equipment_defenses_or_target_resistances;gear_granted_passive_modifiers_still_stop_under_GEAR_SK01",
+    "ongoing_mode_exceptions": "Furtivite_toggle_and_Souffle_de_feu_ongoing_attack_stop_if_effective_available_skill_rank_is_zero_after_last_grant_loss;ordinary_energy_movement_weapon_attack_or_other_skill_end_conditions_unchanged",
+    "existing_familiar_identity": "living_drones_and_raised_allies_remain_same_actor_with_real_equipment_and_Mule_cargo_after_grant_loss;no_forced_death_destruction_or_new_birth",
+    "existing_familiar_rank": "continue_existing_rank_based_invocation_bonus_updates_using_max1_current_effective_skill_rank_for_already_present_familiar_if_access_is_lost;fallback_does_not_grant_learned_rank_or_new_cast_permission",
+    "familiar_modifier_scope": "accepted_HP_damage_and_model_specific_existing_invocation_bonus_calculations_use_rank1_fallback_on_loss_of_all_access;no_new_energy_base_or_rank_effect_curve_defined",
+    "Reanimation_marks": "preexisting_mark_remains_until_original_target_death_and_can_complete_reanimation_despite_lost_player_cast_access;rank_for_result_uses_current_eligible_rank_with_minimum_calculation_rank1_if_zero;current_simultaneous_limit_rules_apply",
+    "reserves_timers": "gear_rank_loss_does_not_heal_refill_or_reset_familiar_lifetime_or_cooldowns;ordinary_preserve_absolute_current_and_clamp_to_reduced_maximum_rules_remain;true_level_gain_restore_exception_unchanged",
+    "scope_boundary": "overcapacity_on_rank_loss_exact_modifier_read_time_and_other_stat_snapshots_mine_passive_payloads_and_event_order_pending"
+  },
+  "scope_audit": {
+    "dynamic_familiars": "PETS_EQ13_current_rank_HP_damage_recalculation_preserved;rank0_fallback_for_new_equipment_only_access_case_explicitly_proposed",
+    "active_effects": "cast_rank_preservation_for_non_channel_effects_is_new_proposal;does_not_approve_all_launch_stat_snapshotting",
+    "toggle_channel": "specific_Furtivite_and_Souffle_de_feu_exceptions_shown;not_a_new_player_hold_button_or_channel_command",
+    "Mule_items": "existing_real_cargo_never_deleted_by_item_grant_loss;accepted_Mule_overcapacity_rules_retained",
+    "raised_marks": "existing_mark_until_death_direction_preserved;rank1_completion_after_cast_access_loss_explicitly_proposed",
+    "passives": "loss_of_gear_granted_passive_effect_under_GEAR_SK01_remains_accepted;no_hidden_global_passive_persistence_override",
+    "limits": "raised_or_mine_limit_reduction_and_excess_existing_objects_not_decided_here",
+    "native_visual": "no_new_icon_sprite_animation_or_native_effect_render_created"
+  },
+  "unshown_cases_pending": [
+    "raised_and_mine_count_above_current_capacity_after_rank_bonus_loss",
+    "exact_modifier_snapshot_attributes_passive_payloads_vs_current_active_skill_rank_on_created_effect",
+    "specific_drone_Mule_capacity_Gardien_protection_or_other_rank_effect_update_timing",
+    "transformation_equipment_changes_HP_ratio_and_held_weapon_payload_interactions",
+    "Reanimation_target_death_mark_trigger_rank_read_and_oldest_replacement_order",
+    "Furtivite_or_Souffle_de_feu_stop_timing_when_gear_change_coincides_with_turn_events",
+    "native_ongoing_status_and_item_loss_feedback"
+  ],
+  "player_copy_approval": "shown_copy_pending_explicit_review",
+  "mechanical_approval": "shown_ongoing_effect_rank_preservation_toggle_channel_stop_familiar_rank1_fallback_and_mark_completion_pending",
+  "visual_intention_approval": "no_new_visual_effect_proposed;native_feedback_not_presented",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "OC07",
+    "HUD-ALLIES01",
+    "UX-PETS-02"
+  ],
+  "answered_questions": [
+    {
+      "question": "Le monstre relevé doit-il conserver ses statistiques et ses compétences de combat d’origine ?",
+      "answer": "Oui, avec une puissance réglable par le rang du sort"
+    },
+    {
+      "question": "Combien de monstres relevés ce sort doit-il permettre d’avoir simultanément ?",
+      "answer": "Cinq maximum"
+    },
+    {
+      "question": "La marque posée sur l’ennemi vivant doit-elle durer jusqu’à sa mort, ou expirer après quelques tours ?",
+      "answer": "Jusqu’à sa mort"
+    }
+  ],
+  "ally_marker_request": "il faudrait un signe visuel pour expliquer que ces monstres ressucités sont des alliés (pareil pour les drones)",
+  "familiar_window_request": "on pourrait aussi ajouter ces monstres à la fenetre de controle des drones qu'on a prévu ? (enfin on va pas l'appeler ainsi, on va l'appeler la fenetre des familiers je pense ? Evidement ces monstres ressucités n'auront pas de boutons de controle (sauf peut-être un bouton de destruction, qu'il faudrait aussi ajouter aux drones) .",
+  "confirmed_necromancy_details": {
+    "retains_original_stats": true,
+    "retains_original_combat_skills": true,
+    "power_depends_on_skill_rank": true,
+    "max_simultaneous_reanimated_monsters": 5,
+    "mark_expires_after_turns": false,
+    "mark_remains_until_target_death": true
+  },
+  "confirmed_interface_requests": {
+    "ally_visual_sign_for_drones_and_reanimated_monsters": true,
+    "include_reanimated_monsters_in_common_pet_window": true,
+    "reanimated_monsters_have_no_combat_control_buttons": true
+  },
+  "suggested_by_user_pending_exact_review": {
+    "window_title": "Familiers",
+    "destruction_button_for_drones_and_reanimated_monsters": true
+  },
+  "approval_scope": "Explicit concept answers and interface requests only. Exact title, marker shape/color/placement/tooltips, row content, destruction action and mule inventory behavior remain proposals for user review.",
+  "original_pet_window_direction": "docs/reviews/refonte-agent-2026-10-06/pet-control-window-direction-acceptance-decisions.json",
+  "original_pet_window_direction_sha256": "d69143f22136e65452206830fb99587f9929d2a23895ca6e233f08a80e04d439",
+  "runtime_integration": "not_integrated"
+}

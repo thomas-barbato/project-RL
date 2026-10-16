@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-08",
+  "review_ids": [
+    "M03"
+  ],
+  "user_acceptance": "ok je valide",
+  "acceptance_context": "explicit_agreement_to_last_shown_full_M03_01_card_and_visual_direction",
+  "accepted_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M03-01.json",
+  "accepted_review_sha256": "32fb91360bfefcd3663cf861d50cc867a04b01baf8f87fbf2865e63077152eee",
+  "accepted_player_copy_sha256": "08ff4bc70779780cd0c71af043fb2e34cae89587526cce7a25fb965f8f133bca",
+  "accepted_visual_direction_copy_sha256": "28bda015e16d6704c56260fbaac8e04c1e7633f5eabb7c5625d0c43041d9338c",
+  "accepted_roleplay_text": "L’énergie occulte imprègne votre corps métamorphosé et amplifie la violence de vos attaques.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "damage_bonus_while_transformed_percent": 30
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "damage_bonus_while_transformed_percent": 32
+  },
+  "accepted_scope": [
+    "displayed_RP_current30_percent_next32_percent",
+    "player_physical_and_magical_damage_only_while_transformed",
+    "familiar_damage_excluded",
+    "brief_form_mark_pulse_visual_direction"
+  ],
+  "prior_rank1_10_percent_approval_preserved": true,
+  "not_accepted_by_this_reply": [
+    "unshown_full_rank_curve_and_stacking_order",
+    "damage_components_defense_and_resistance_application_order",
+    "periodic_snapshot_form_gating_derived_bleed_and_double_multiplier_avoidance",
+    "Cuirasse_reserve_reflection_and_other_special_damage_cases",
+    "exact_native_pulse_pixels_and_timing"
+  ],
+  "runtime_integration": "not_integrated"
+}

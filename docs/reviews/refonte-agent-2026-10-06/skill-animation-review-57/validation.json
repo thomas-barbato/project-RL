@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-14",
+  "build": "cargo build --locked passed",
+  "format": "cargo fmt --all -- --check passed",
+  "diff_whitespace": "git diff --check passed (existing CRLF notices only)",
+  "native_views": 27,
+  "native_frames": 3996,
+  "native_tile_size": 64,
+  "native_conversion": "pixel-identical RGBA to PNG; no resizing",
+  "protected_files_unchanged": 10139,
+  "native_visual_checks": "Large blast, wall clipping and green heal inspected at native size; timeline/refusal/idle/delay/HP limits verified by packaging.",
+  "controller": "Offline DOM/Image harness:17 scenarios,781 image references, manual turns and controls passed. No browser screenshot.",
+  "gif_color_checks": [
+    {
+      "id": "HL05",
+      "direction": "HAUT",
+      "effect_pixels": 57788,
+      "mean_color_error": 2.92
+    },
+    {
+      "id": "HL05",
+      "direction": "DROITE",
+      "effect_pixels": 58928,
+      "mean_color_error": 2.86
+    },
+    {
+      "id": "HL05",
+      "direction": "GAUCHE",
+      "effect_pixels": 57844,
+      "mean_color_error": 2.96
+    },
+    {
+      "id": "HL05",
+      "direction": "BAS",
+      "effect_pixels": 59595,
+      "mean_color_error": 2.98
+    },
+    {
+      "id": "HL06",
+      "direction": "HAUT",
+      "effect_pixels": 18421,
+      "mean_color_error": 4.97
+    },
+    {
+      "id": "HL06",
+      "direction": "DROITE",
+      "effect_pixels": 18434,
+      "mean_color_error": 4.86
+    },
+    {
+      "id": "HL06",
+      "direction": "GAUCHE",
+      "effect_pixels": 18464,
+      "mean_color_error": 4.81
+    },
+    {
+      "id": "HL06",
+      "direction": "BAS",
+      "effect_pixels": 18602,
+      "mean_color_error": 4.88
+    }
+  ],
+  "full_suite": "not_run; changes isolated to debug visual laboratory",
+  "campaign_integration": false
+}

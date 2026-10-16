@@ -1,0 +1,30 @@
+Use case: stylized-concept.
+Asset type: production sprite sheet of HELD weapon layers for an industrial futuristic roguelike with Dungeon Crawl Stone Soup readability.
+Input image 1: approved weapon families reference, retain their clear silhouettes and expressive original colors.
+Input image 2: approved hand/grip art reference, use its simple chunky pixel style, but DO NOT draw ANY hands, arms or characters.
+Output a 6 columns x 3 rows transparent sprite sheet, 18 equally spaced weapon layers, each in its own square cell with ample empty margins. Crisp coarse pixel art designed to look good at 32 to 40 native pixels. Black single-pixel-equivalent outlines, flat broad masses, no fine texture, no text, no labels, no grid, absolutely no ground or shadow or fog.
+
+Row 1 left-to-right (pointed weapons held straight up, grips at lower end; axe blade points outward to viewer RIGHT):
+1 short ivory knife, tiny red handle, no oversized guard
+2 long single-hand ivory sword, straight blade centered on small crossguard, red handle
+3 huge two-handed steel slab sword, diagonal lower left handle to upper right blade, teal long handle with two grips
+4 heavy two-handed industrial axe, straight vertical haft, ivory-steel axe head on upper right, orange handle long enough for two grips
+5 guardless black-steel violet baton, straight upright
+6 long one-handed spear upright, small pale spear tip, yellow grip.
+
+Row 2 left-to-right:
+7 compact blue pistol held with barrel STRAIGHT UP, L-shaped grip extends to LEFT at lower end, no hands
+8 compact violet submachine gun held with barrel STRAIGHT UP, recognizably more bulky than pistol, grip at bottom
+9 red assault rifle, diagonal stock lower LEFT to barrel upper RIGHT (~30 degrees above horizontal), pistol grip at middle lower side and forward support grip under barrel
+10 copper pump shotgun, same diagonal orientation, stock left lower end and fore-end pump right
+11 yellow heavy machine gun, same diagonal orientation, chunky long receiver and magazine, two grips
+12 teal energy rifle, same orientation, broad steel muzzle, two grips.
+
+Row 3 left-to-right:
+13 orange-and-blue flame gun, same diagonal orientation, heavy nozzle to RIGHT, stock/tank LEFT and two grips
+14 violet grenade launcher same diagonal orientation, wide muzzle RIGHT, handle and front support
+15 blue-and-yellow rocket launcher same diagonal orientation, thick long tube, nozzle RIGHT, two lower grips
+16 olive-green needle rifle same diagonal orientation, narrow long barrel and two grips
+17 heavy one-hand brutal steel war hammer upright, large steel horizontal head centered on straight short purple handle, no guard
+18 pale-and-blue long precision rifle same diagonal orientation, long slim steel barrel to RIGHT and two grips.
+Every cell contains ONLY ONE detached weapon, complete, not cropped, same coherent simplified pixel art. Preserve the expressive original palettes and industrial violence of references. Do not add hands, anatomy, armor or decoration. True alpha transparency.

@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-08",
+  "id": "SF00",
+  "review_id": "SF00",
+  "revision": 8,
+  "title": "Furtivité",
+  "branch": "Furtivité",
+  "kind": "secondary_unique_active",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-128.json",
+  "source_skill_manifest_sha256": "f7ff3153a84f9042b7b1dc1ec0e5977698ee353ad18018a229d28f27e7d9d57d",
+  "source_skill_block_sha256": "01554d218d94276298ad2daa30d0f5ec5d5ba6bb52f32a3af53ca62d1c0d81f3",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 1,
+    "equipment_bonus_rank": 0,
+    "effective_rank": 1,
+    "agility": 10,
+    "SF01_learned_rank": 0,
+    "SF02_learned_rank": 0,
+    "example_enemy_ordinary_visual_range_cells": 8
+  },
+  "purchase": {
+    "skill_point_cost": 1,
+    "purchase_once": true,
+    "next_rank_available": false,
+    "associated_passives_require_SF00": true
+  },
+  "current_values_proposal": {
+    "energy_per_successful_step": 11,
+    "energy_while_stationary": 0,
+    "activation_energy_cost": 0,
+    "cooldown_turns": 0,
+    "visual_detection_range_factor_exact": "1/4",
+    "visual_detection_range_reduction_display_percent": 75,
+    "step_noise_reduction_percent": 50,
+    "minimum_visual_detection_range_cells": 1,
+    "example_enemy_visual_detection_range_cells": 2
+  },
+  "formulas_proposed": {
+    "visual_detection_range_factor": "1/4_for_current_Agility10_example;full_attribute_curve_pending_recalibration",
+    "whole_percent_display_rounding": "current75_exact;general_rounding_pending",
+    "step_noise_multiplier": 0.5
+  },
+  "conditions_proposed": {
+    "offensive_attacks_spells_mines_grenades_end_mode": true,
+    "healing_and_menu_consultation_preserve_mode": true,
+    "real_vision_and_hearing_obstacles_preserved": true,
+    "last_known_position_memory_preserved": true,
+    "status_icon_no_artificial_expiry_timer": true,
+    "positive_energy_insufficient_for_effective_step_cost": "pending_review"
+  },
+  "name_approval": "existing_secondary_catalogue_name_preserved",
+  "roleplay_text_approval": "exact_user_supplied_replacement_accepted",
+  "numeric_rules_approval": "base11_explicitly_accepted_under_SF01-COST02-ACCEPT01;other_detection_numbers_remain_pending",
+  "detailed_conditions_approval": "zero_energy_attempted_movement_cancels_stealth_and_same_step_continues_normally_explicitly_authorized_under_SF00-ENERGY02_and_MOVE01;other_conditions_pending",
+  "visual_intention_approval": "transparency_and_status_icon_proposed_pending_review",
+  "visual_approval": "native_prototype_pending_user_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**SF00 · Furtivité — Rang 1 · Actif**\n\n*Vous brouillez votre silhouette et étouffez le bruit de vos pas pour vous glisser dans les ennemis.*\n\n**Effets actuels**\n\n- Coût : **11 énergie par pas** ; **0 à l’arrêt**.\n- Distance de repérage : **2 cases**.\n- Activation : **0 énergie**. Recharge : **aucune**.\n- Durée : **jusqu’à désactivation ou interruption**.\n\nAttaquer, utiliser un sort offensif, poser une mine ou lancer une grenade met fin à la furtivité. Les soins et la consultation des menus la conservent.\n\nSans énergie, tenter de vous déplacer met fin à la furtivité. Vous effectuez alors votre pas à découvert. Un ennemi peut encore vous repérer à une case de distance ; la furtivité ne lui fait pas oublier votre dernière position connue.\n\n**Achat unique : 1 point de compétence.** Économie de mouvement furtif et Discrétion renforcée améliorent ensuite ce mode.",
+  "player_copy_sha256": "d0f91c05ec170711f9a30e5b617e6f72a990b9d0089a23e5ad5d66c7f8697c4f",
+  "visual_copy_markdown": "**Visuel proposé :** votre personnage devient légèrement transparent, avec son équipement toujours lisible. Une icône indique la furtivité dans votre barre de statuts.",
+  "visual_copy_sha256": "700aa259c12fce3d6c94a6d9a46a064c31e50fa76d252163a25def50afe61524",
+  "unshown_cases_pending": [
+    "recalibrated_agility_curve_and_final_cell_radius_rounding",
+    "activation_exit_action_resource_and_turn_order",
+    "familiar_perception_and_skill_silence_interactions",
+    "exact_step_noise_attenuation_and_detection_AI",
+    "native_transparency_icon_palette_and_hover_copy",
+    "retained_step_noise50_percent_unapproved;player_hearing_distance_display_to_review_using_real_sound_propagation",
+    "positive_energy_below_effective_stealth_step_cost"
+  ],
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF00-07.json",
+  "previous_description_sha256": "cf57bde558356900a956040f9b04292f6d55ff87f02da45649a7d4979f579625",
+  "revision_decisions": "docs/reviews/refonte-agent-2026-10-06/stealth-no-energy-movement-continuation-decisions.json",
+  "revision_decisions_sha256": "f06a36c7941d7d1dd25f647499209e69c1970e9394be006578672bdaa4011fa0",
+  "detection_display_approval": "cell_counts_only_explicit_user_request;ordinary_range_comparison_omitted;numeric_example_pending_review",
+  "cell_only_display_decisions": "docs/reviews/refonte-agent-2026-10-06/stealth-detection-cell-only-display-decisions.json",
+  "cell_only_display_decisions_sha256": "f076b08774deda93b869051f0a7e04afd121833b4547e639faecbc23f03f76b2",
+  "detection_label_decisions": "docs/reviews/refonte-agent-2026-10-06/stealth-detection-label-reformulation-decisions.json",
+  "detection_label_decisions_sha256": "52d7aa1573c2b9f9f2d2a6f516e1b8011ff749e7b62625b8bb9251e4d975ddc7",
+  "detection_label_approval": "exact_user_label_Distance_de_repérage;no_visual_qualifier",
+  "cost_revision": {
+    "review_id": "SF00-COST03",
+    "old_energy_per_successful_step": 2,
+    "status": "explicitly_accepted_under_SF01-COST02-ACCEPT01",
+    "new_energy_per_successful_step": 11
+  },
+  "full_card_shown_this_turn": false,
+  "current_turn_shown_copy_markdown": "« Sans énergie, tenter de vous déplacer met fin à la furtivité. Vous effectuez alors votre pas à découvert. »",
+  "current_turn_shown_copy_sha256": "8233ee7593860039ec4e6ef1c511e294ab0a12d6cd1b645c76d04dd29f0b52e4",
+  "accepted_cost_revision": "docs/reviews/refonte-agent-2026-10-06/review-stealth-step-cost-revision-02.json",
+  "accepted_cost_revision_sha256": "b552b5b3092119e42984849f420ea181fc949ef5ffc1f3f432742d4bff51be07",
+  "conditions_requested": {
+    "zero_energy_attempted_movement_cancels_stealth": true,
+    "same_attempted_step_continues_normally_outside_stealth": true
+  },
+  "changed_rule_copy_approval": "proposed_short_paraphrase_pending_explicit_review",
+  "prepared_full_copy_markdown": "**SF00 · Furtivité — Rang 1 · Actif**\n\n*Vous brouillez votre silhouette et étouffez le bruit de vos pas pour vous glisser dans les ennemis.*\n\n**Effets actuels**\n\n- Coût : **11 énergie par pas** ; **0 à l’arrêt**.\n- Distance de repérage : **2 cases**.\n- Activation : **0 énergie**. Recharge : **aucune**.\n- Durée : **jusqu’à désactivation ou interruption**.\n\nAttaquer, utiliser un sort offensif, poser une mine ou lancer une grenade met fin à la furtivité. Les soins et la consultation des menus la conservent.\n\nSans énergie, tenter de vous déplacer met fin à la furtivité. Vous effectuez alors votre pas à découvert. Un ennemi peut encore vous repérer à une case de distance ; la furtivité ne lui fait pas oublier votre dernière position connue.\n\n**Achat unique : 1 point de compétence.** Économie de mouvement furtif et Discrétion renforcée améliorent ensuite ce mode.\n\n**Visuel proposé :** votre personnage devient légèrement transparent, avec son équipement toujours lisible. Une icône indique la furtivité dans votre barre de statuts.",
+  "prepared_full_copy_sha256": "437ab7cc91207efed6f842dee3bdbb878470bf458d88caaee1cfc0b32e9cfa00"
+}

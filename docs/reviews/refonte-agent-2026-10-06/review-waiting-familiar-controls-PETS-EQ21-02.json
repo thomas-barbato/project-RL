@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ21",
+  "revision": 2,
+  "title": "Familiers en attente — boutons et limites",
+  "status": "waiting_controls_and_limit_accounting_accepted;user_requests_raised_limit_exceed_five_above_rank10_exact_values_pending",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-53.json",
+  "current_attribute_model_sha256": "931ed53657cfb79c72f6474f0d4968b00620c9b3236af62c656df4651dce650f",
+  "accepted_waiting_state": "docs/reviews/refonte-agent-2026-10-06/review-pending-familiar-arrival-PETS-EQ19-02.json",
+  "accepted_waiting_state_sha256": "7cbd30778e89df139eab9da2d47c6e958ef16d2110e293381cabd93d282aace7",
+  "accepted_reposition_orders": "docs/reviews/refonte-agent-2026-10-06/review-reposition-drone-orders-PETS-EQ20-02.json",
+  "accepted_reposition_orders_sha256": "cda8f775a189e2b2070c4c3d3f08b4974fc443aa1562d6e27b2aeb22a8485ea5",
+  "shown_copy_markdown": "**PETS-EQ21 · Familiers en attente — boutons et limites**\n\nJe propose ces règles dans la fenêtre **Familiers** :\n\n- Vous pouvez toujours **consulter leur fiche, leur équipement et le chargement de la Mule**.\n- Les actions qui demandent leur présence sur la carte sont **grisées** : ordres d’attaque, **Repositionner**, **Ramasser**, équiper ou retirer un objet et transferts d’objets. Leur tooltip indique : **« Disponible après l’arrivée du familier. »**\n- Le bouton **« Destruire » reste disponible**. Ses objets équipés et son éventuel chargement tombent alors sur la case actuelle du joueur.\n- Un **drone en attente réserve toujours la place de son modèle** : vous ne pouvez pas en invoquer un second exemplaire.\n- Un **monstre relevé en attente compte toujours parmi les cinq relevés maximum**.\n- À leur arrivée, les boutons redeviennent disponibles **selon leurs conditions habituelles**, notamment la portée et la recharge restante.\n\nCes précisions restent à valider.",
+  "shown_copy_sha256": "e9b94c505e74fd0f20e3f7a9ff7bfbfbee8badfc56e53ea1972fa8cd63ab493a",
+  "already_accepted_direction": "waiting_actors_stay_listed_with_En_attente_d’arrivée_and_have_no_map_actions_vision_protection_or_passive_regeneration;ordinary_effects_cooldowns_and_raised_lifetime_continue;death_or_expiry_actual_item_drop_on_player_cell",
+  "scope_audit": {
+    "new_rules": "waiting_control_availability_inspection_tooltip_voluntary_destroy_and_limit_accounting_accepted;above10_raised_limit_numbers_not_accepted",
+    "inventory": "inspection_does_not_move_items_or_activate_stored_item_bonuses;existing_deployed_transfer_requirements_preserved",
+    "destruction": "already_planned_pet_destroy_function_extended_to_pending_actor;player_cell_drop_is_shown_extension_of_PETS_EQ19_terminal_item_rule",
+    "limits": "separate_drone_five_model_limit_preserved;waiting_raised_count_toward_current_Reanimation_limit;user_amends_fixed_five_above_rank10",
+    "raised_controls": "autonomous_raised_actors_gain_no_attack_or_reposition_buttons;only_existing_destroy_and_inspection_controls_apply",
+    "native_visual": "grey_state_and_existing_button_visibility_direction_proposed;no_new_icon_sprite_or_native_window_created"
+  },
+  "unshown_cases_pending": [
+    "voluntary_destroy_command_action_cost_and_exact_simultaneous_effect_drop_order",
+    "waiting_familiar_arrival_priority_and_placement_metric",
+    "another_player_map_transition_while_same_actors_still_wait",
+    "oldest_raised_replacement_if_oldest_actor_is_pending_and_exact_item_drop_location",
+    "native_window_layout_disabled_icon_and_hover_reason_presentation",
+    "save_restore_atomicity_and_new_future_pet_types",
+    "OC07_above10_limit_progression_or_unlimited_count_and_rank_drop_overcapacity_rules"
+  ],
+  "player_copy_approval": "shown_copy_and_disabled_reason_accepted_except_fixed_five_above10_is_amended_by_user",
+  "mechanical_approval": "shown_waiting_controls_inspection_voluntary_destroy_and_current_limit_accounting_accepted;raised_above10_limit_direction_requested_exact_values_pending",
+  "visual_intention_approval": "disabled_buttons_and_tooltip_direction_accepted;native_not_presented",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-waiting-familiar-controls-PETS-EQ21-01.json",
+  "source_proposal_sha256": "56774fdc22d806f02436e92305ccf4b0d00b50ca7bdb917b3bb2b3dbccc6690b",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/waiting-familiar-control-acceptance-and-raised-limit-direction-decisions.json",
+  "acceptance_decisions_sha256": "c458a9e2e9d53d36595430bb1e1d2a42d11a2343461c6a4db53af9612b54d60c",
+  "accepted_shown_rules": {
+    "scope": "existing_drone_and_autonomous_raised_actors_in_automatic_pending_arrival_after_map_transition;not_general_manual_pet_storage",
+    "inspection": "allow_free_nonmutating_view_of_existing_actor_sheet_worn_equipment_and_Mule_real_cargo_while_waiting",
+    "disabled_controls": "grey_disable_existing_controls_that_need_actor_map_presence:drone_attack_order_Repositionner_Mule_Ramasser_and_worn_equipment_or_cargo_transfers;raised_do_not_gain_any_attack_order_buttons",
+    "disabled_reason": "Disponible après l’arrivée du familier.",
+    "voluntary_destruction": "existing_Destruire_control_remains_available_while_waiting;remove_same_pending_actor_and_deposit_only_its_real_worn_equipment_and_Mule_cargo_on_current_player_cell;no_new_reward_or_duplicate_items",
+    "drone_limit": "waiting_living_drone_still_occupies_its_model_slot_within_existing_five_model_limit;do_not_allow_second_same_model_invocation_while_pending",
+    "raised_limit": "waiting_living_raised_ally_counts_toward_current_OC07_Reanimation_limit;historical_five_limit_baseline_retained_up_to_rank10;user_requests_exceeding_five_above10;exact_above10_progression_or_complete_limit_removal_pending",
+    "arrival_controls": "after_same_actor_placement_restore_available_controls_only_if_other_existing_range_visibility_cooldown_and_target_conditions_allow;do_not_reset_timers_or_grant_a_new_action",
+    "scope_boundary": "exact_voluntary_destruction_action_cost_queue_order_simultaneous_arrival_events_native_window_layout_and_raised_above10_limit_curve_still_pending"
+  },
+  "accepted_raised_limit_direction": {
+    "review_id": "OC07-LIMIT-DIRECTION01",
+    "source": "latest_direct_user_request",
+    "skill": "OC07 Réanimation",
+    "requested_change": "fixed_five_raised_limit_should_no_longer_apply_above_skill_rank10",
+    "rank_context": "learned_cap10_and_equipment_effective_rank_above10_already_accepted;proposal_uses_effective_rank_without_increasing_learned_cap",
+    "rationale": "more_autonomous_raised_allies_compensates_for_lack_of_direct_control",
+    "scope": "raised_monsters_only;no_change_to_five_drones_one_per_model",
+    "undecided": "user_has_not_chosen_unlimited_count_at_rank11_vs_progressively_increasing_limit_or_exact_rate"
+  }
+}

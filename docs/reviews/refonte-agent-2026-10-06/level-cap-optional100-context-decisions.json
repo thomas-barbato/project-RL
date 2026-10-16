@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-08",
+  "review_id": "P01-LEVEL01",
+  "user_instruction": "en vérité, je ne vise pas réellement de niveau maximum (car le joueur n'a qu'une vie et finalement peu de moyen de se soigner), mais bon, si nous devions en fixer un, ca serait 100.",
+  "accepted_current_rule": {
+    "character_level_cap": null,
+    "attribute_points_per_level": 5
+  },
+  "conditional_future_level_cap": 100,
+  "conditional_status": "user_preference_if_a_cap_is_later_introduced;not_an_active_cap",
+  "design_context": "single_life_and_limited_healing;100_may_be_used_as_an_upper_balance_reference;no_claim_that_players_will_reach100_or_that_levels_above100_are_forbidden",
+  "previous_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-04.json",
+  "previous_model_sha256": "e3ee3a6e5ede9762f4e05b17d207d92a14590ce184b33efb7350c48b90af5561",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,44 @@
+{
+  "build": "cargo build --locked: passed",
+  "tests": "cargo test --locked agent_skill_lab_review: 22 passed",
+  "format": "cargo fmt --all -- --check: passed",
+  "whitespace": "git diff --check: passed",
+  "python": "packaging and native controls: passed",
+  "javascript": "node --check gallery-script.js: passed",
+  "gallery_frames": 480,
+  "new_views": 4,
+  "native_tile_size": 64,
+  "capture_method": "Fixed native 1280x720 Macroquad render target; no resampling",
+  "protected_files_unchanged": 7847,
+  "controls": [
+    {
+      "variant": "FE03-A03-LIBRE",
+      "walls_and_protected_targets_unchanged": true,
+      "preview_before_cast_only": true,
+      "explicit_turn_lifecycle": true,
+      "burn_attached_after_exit": true
+    },
+    {
+      "variant": "FE04-A03-LIBRE",
+      "walls_and_protected_targets_unchanged": true,
+      "preview_before_cast_only": true,
+      "explicit_turn_lifecycle": true,
+      "burn_attached_after_exit": false
+    },
+    {
+      "variant": "FE03-A03-CLOISON",
+      "walls_and_protected_targets_unchanged": true,
+      "preview_before_cast_only": true,
+      "explicit_turn_lifecycle": true,
+      "burn_attached_after_exit": true
+    },
+    {
+      "variant": "FE04-A03-CLOISON",
+      "walls_and_protected_targets_unchanged": true,
+      "preview_before_cast_only": true,
+      "explicit_turn_lifecycle": true,
+      "burn_attached_after_exit": false
+    }
+  ],
+  "scope": "Debug visual prototype. Full engine suite and campaign integration not performed. New rendering and LAB-S05 await user review."
+}

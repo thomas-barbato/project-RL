@@ -1,0 +1,43 @@
+{
+  "status": "revision_requested",
+  "batch": "ANIM-S01",
+  "workflow": "Animated numbered batches, explicit approval after each preview.",
+  "user_instruction": "oui on va faire comme les images de compétences, sauf que là ca sera pour les animations (et que donc ca sera animé)",
+  "batch_choice": "Valider par lots après chaque aperçu",
+  "candidates": [
+    {
+      "number": 1,
+      "skill_id": "ME02",
+      "variant": "ME02-A01",
+      "name": "Fauchage",
+      "status": "revision_requested",
+      "description": "Un arc de lame court traverse les trois cases devant l’agent."
+    },
+    {
+      "number": 2,
+      "skill_id": "FE01",
+      "variant": "FE01-A01",
+      "name": "Braise",
+      "status": "revision_requested",
+      "description": "Une braise file vers la cible ; un point incandescent reste sur elle."
+    },
+    {
+      "number": 3,
+      "skill_id": "FR01",
+      "variant": "FR01-A01",
+      "name": "Aiguille de givre",
+      "status": "revision_requested",
+      "description": "Une aiguille de glace frappe la cible ; le givre immobilise ses pieds."
+    }
+  ],
+  "laboratory_ui_candidate": {
+    "variant": "LAB-S01",
+    "status": "awaiting_separate_review"
+  },
+  "scope": "Debug-only native visual prototype; combat damage and real character progression not connected.",
+  "timing": "Visual real time is separate from turns and status/cooldown timers.",
+  "freeze_preview": "Gel is deliberately shown; this preview does not change the accepted chance of applying it.",
+  "unchanged": "Accepted skill icons, actor art, catalogue parameters, campaign and saves.",
+  "feedback": "il va falloir des animations globalement beaucoup plus marquées que ca (et penses les pour des cases en 64 px, à terme le 32 px va disparaitre) . il faut que ca en mette pleins les yeux :)",
+  "next_review": "skill-animation-review-02"
+}

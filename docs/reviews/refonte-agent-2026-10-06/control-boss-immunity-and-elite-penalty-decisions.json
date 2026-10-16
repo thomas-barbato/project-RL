@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-07",
+  "review_id": "CTRL01",
+  "user_message": "A noter que ce sort ne fonctionnera pas sur les boss et un malus de chance de réussite sur les elites . (ce point concernera toutes les compétences de controle.)",
+  "clarification_answers": {
+    "elite_penalty": "−25 % de la chance calculée",
+    "mixed_damage_control_attack": "Oui, les dégâts restent applicables"
+  },
+  "accepted_requirements": {
+    "scope": "all control skills and control components",
+    "boss_control_immunity": true,
+    "elite_control_chance_multiplier": 0.75,
+    "mixed_attack_damage_keeps_ordinary_rules": true
+  },
+  "approval_scope": "Explicit common rule: boss immune to control; elite final calculated control success chance multiplied by 0.75, not minus 25 percentage points. For mixed attacks only control is affected, ordinary damage remains applicable. No guaranteed damage, automatic attack hit or defense bypass inferred.",
+  "AF05": "Confirmed control skill; targets normal/elite/boss follow the common exceptions.",
+  "unshown_rules": "Classification of other skills/control components, elite/boss taxonomy, controls without an existing success roll, repeated zone/tick rolls, random draw/turn/resource policy for immune targets, rounding and exact interactions with minimum/maximum chance rules remain separately reviewable.",
+  "copy_approval": "Global exact UI labels and revised skill tooltip still to present.",
+  "visual_approval": "No icon, badge, animation or native UI rendering approved.",
+  "runtime_integration": "not_integrated"
+}

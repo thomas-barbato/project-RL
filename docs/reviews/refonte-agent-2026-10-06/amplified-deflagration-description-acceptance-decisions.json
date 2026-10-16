@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-08",
+  "review_id": "HL05-ACCEPT01",
+  "rename_review_id": "HL05-NAME01",
+  "user_instructions": [
+    "En terme de nom \"déflagration amplifiée\" serait mieux.",
+    "et je valide"
+  ],
+  "previous_title": "Déflagration élargie",
+  "accepted_title": "Déflagration amplifiée",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HL05-01.json",
+  "source_card_sha256": "e5647c983598aa585dec6cc7d78906bf369efc8730211de87c1921ee408adf43",
+  "accepted_scope": "requested_title_and_full_shown_RP_current11_radius4_next12_radius5_active_weapon_example_base1_heavy_ranged_weapon_and_compatible_skill_explosions_wall_propagation_block",
+  "accepted_visual_direction": "explosion_icon_with_circle_enlarged_target_previews_and_explosion_animation;native_pixels_pending",
+  "unshown_rules_pending": [
+    "full_rank1_to10_and_bonus_rank_radius_curve",
+    "precise_walls_doors_corners_large_actor_footprints_and_map_clipping",
+    "weapon_radius_modifiers_and_order",
+    "snapshot_or_live_radius_for_delayed_projectiles",
+    "compatibility_with_future_explosive_heavy_models_and_other_skill_components",
+    "allied_actor_damage_eligibility",
+    "unseen_actual_victims_and_known_only_preview_behavior",
+    "larger_native_explosion_animation_readability_palette_and_icon_pixels",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "pending_not_created",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-07",
+  "review_id": "FR04",
+  "preview_review_id": "FR04-PREV01",
+  "user_request": "je pense que pour rendre cette compétence utilisable, il faudrait une preview de la position de départ autour du personnage et on devra pouvoir la changer de position avant le lancement du sort. \n\nSynthetise ma demande",
+  "presented_synthesis": "Pour Vague de froid, tu souhaites une étape de placement avant le lancement : un aperçu montre la bande de départ autour du personnage ; le joueur peut modifier son emplacement autour de lui et voir l’aperçu se déplacer ; une fois le placement confirmé, la vague part de la position choisie et avance dans la direction correspondante.",
+  "user_synthesis_approval": "parfait :) ca te semble bien ?",
+  "presented_visual_and_confirmation_proposal": "Je proposerais que l’aperçu montre la largeur de la bande et une flèche indiquant sa direction. Le joueur pourrait ajuster tranquillement son placement ; seule la confirmation lancerait le sort et dépenserait l’énergie.",
+  "user_proposal_approval": "oui parfait :)",
+  "latest_user_message": "oui parfait :)",
+  "accepted_rules": {
+    "starting_band_preview_around_character": true,
+    "starting_band_position_adjustable_before_launch": true,
+    "preview_updates_with_placement": true,
+    "shows_band_width": true,
+    "shows_direction_arrow": true,
+    "confirmation_launches_from_selected_band_in_corresponding_direction": true,
+    "adjusting_preview_spends_energy": false,
+    "energy_spent_on_confirmation_launch": true
+  },
+  "approval_scope": "Preview placement and displayed width/direction indication accepted;confirmation starts spell and spends energy. This is a scoped UX/visual-intention acceptance,not explicit approval of full skill numeric card or native rendering.",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR04-02.json",
+  "previous_description_sha256": "a5a9244713210dd79eed8b0d035598ed13c5e93042ba7bfcfb6dd902c83839cb",
+  "redesign_decisions": "docs/reviews/refonte-agent-2026-10-06/frost-wave-redesign-decisions.json",
+  "redesign_decisions_sha256": "1b05c950e068ec2c269707d821f8e4a7d2e4c2d62741073fd82221739768bbac",
+  "pending_skill_review": "Name,RP,new exact tooltip wording,current/next damage/Gel values,width3/range5,full curves and spell visual rendering retain pending review status.",
+  "unshown_preview_details": "Exact positions/diagonal rasterization,controls,colors/opacity/arrow pixels,blocked or invalid selection handling,unknown terrain,full path preview,cancellation,state/RNG/time/cooldown bookkeeping and resource failure cases remain unshown.",
+  "native_visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

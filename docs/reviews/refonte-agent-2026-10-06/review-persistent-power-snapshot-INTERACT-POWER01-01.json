@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-POWER01",
+  "revision": 1,
+  "title": "Puissance des effets persistants après un changement de personnage",
+  "status": "proposed_awaiting_user_review;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/current-level-skill-power-numeric-acceptance-decisions.json",
+      "reference_sha256": "a38807770bb59fa708d0d743549cae0e187a6843836c0421fe7dc74f33177fb4"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/last-status-cast-power-acceptance-decisions.json",
+      "reference_sha256": "70bc644096b85e9dd7f8504f614cf5f897529c69b6d95e1a03074285be655357"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/interaction-and-priority-user-decisions.json",
+      "reference_sha256": "fa4a7f5c25928fca2da5de20a7a7cc3e438f00afacec7aa3d9f19b564c2a7692"
+    }
+  ],
+  "scope": "caster_power_parameters_of_skill_generated_statuses_and_spell_ground_zones_already_applied;familiar_actor_statistics_not_changed",
+  "proposed_rule": "calculate_caster_level_effective_rank_and_compatible_offensive_or_buff_power_at_cast_or_application;existing_effect_keeps_that_power_until_reapplication_or_expiry",
+  "level_stat_equipment_change": "affects_future_casts;does_not_retroactively_raise_or_lower_power_of_an_existing_effect",
+  "target_defenses": "current_target_armor_or_corresponding_resistance_is_still_used_at_each_new_eligible_impact_or_periodic_tick;do_not_snapshot_target_defenses",
+  "reapplication": "uses_new_cast_values_and_restarts_duration_under_accepted_latest_cast_power_rule",
+  "existing_cleanup": "accepted_effect_loss_or_invoked_element_rank_decrease_cleanup_still_removes_affected_elements_when_required;power_snapshot_does_not_protect_them_from_cleanup",
+  "familiar_exception": "existing_drone_level_attributes_gear_and_rank_updates_and_raised_origin_statistics_follow_current_accepted_PETS_rules;no_new_freezing_of_actor_statistics",
+  "illustrative_example": {
+    "existing_Burn_source_power_per_turn": 12,
+    "after_caster_gains_level_or_changes_weapon_or_gear": "existing_source_power_stays12;actual_suffered_damage_still_depends_on_current_target_resistance",
+    "new_successful_Burn_application_source_power_per_turn": 18,
+    "result": "new_Burn_uses18_and_restarts_duration",
+    "example_status": "illustrative_values_only;not_Braise_balance_entries"
+  },
+  "not_resolved_here": [
+    "simultaneous_multi_source_tick_order_and_last_cast_provenance_for_overlapping_zones",
+    "mine_variant_or_capacity_passive_rank_loss_and_non_actor_invocation_classification",
+    "predeath_marks_creating_future_raised_actors_and_birth_parameter_sampling",
+    "unshown_attribute_control_duration_or_healing_mappings"
+  ],
+  "text_approval": "proposal_only;no_new_RP_or_skill_name",
+  "mechanic_approval": "pending_user_review",
+  "visual_approval": "no_new_visual_proposed",
+  "runtime_integration": "not_integrated"
+}

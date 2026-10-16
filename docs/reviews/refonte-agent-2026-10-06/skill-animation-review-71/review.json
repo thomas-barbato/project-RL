@@ -1,0 +1,28 @@
+{
+  "review_id": "SM04-ANIM01",
+  "date": "2026-10-14",
+  "status": "awaiting_visual_review",
+  "number": 72,
+  "skill": "SM04",
+  "profiles": {
+    "base_radius": 1,
+    "effective_rank11_radius": 4
+  },
+  "types": [
+    "FEU",
+    "POISON",
+    "FROID"
+  ],
+  "cases": [
+    "HAUT",
+    "CLOISON"
+  ],
+  "references": [
+    "review-individual-description-SM04-02.json",
+    "mine-square-footprint-direction-decisions.json",
+    "skill-animation-review-69/visual-acceptance-01.json"
+  ],
+  "scope": "Paired native64 preview, enlarged burst and full residue, armed-mine hover and complete wall shielding. Approved drawings reused; no new timed buff or active skill.",
+  "geometry": "Square within radius, reachable floor; these prepared open/complete-wall cases do not define unshown corner/door rules.",
+  "campaign_integration": false
+}

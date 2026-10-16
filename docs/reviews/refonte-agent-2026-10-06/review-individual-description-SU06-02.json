@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-06",
+  "id": "SU06",
+  "title": "Dernier sursaut",
+  "revision": 2,
+  "player_copy_markdown": "**Dernier sursaut — Rang 11**\nPassif · 9 rangs appris + 2 grâce à l’équipement.\n\n*Vos systèmes d’urgence vous maintiennent en vie lorsque votre corps devrait céder.*\n\nUn coup direct normalement fatal vous laisse en vie, si le passif est disponible.\n\n**Effet actuel**\n\n- Vie restante après déclenchement : **1 PV**.\n- Recharge : **65 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Recharge : **64 tours**.\n\n**Déclenchement automatique · Aucun coût d’énergie.**\n\nLes dégâts persistants ne déclenchent pas ce passif. Les coups suivants peuvent vous tuer.",
+  "player_copy_sha256": "a639eef3d005416d1735187c97f1788e231cc41b48622823c14dca4e307dc7e1",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-11.json",
+  "source_skill_block_sha256": "8e312ffefc0893b5bd594d79a17360dea65b058b0c317acb01f3483dab7135cf",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/purge-wording-confirmation-decisions.json",
+  "review_start_decisions_sha256": "54d910f839ff4c28933dad0c0f775f7f081479b2843f1b9d2a7e444ea3dc103a",
+  "name_approval": "accepted_as_presented",
+  "catalogue_effect_approval": "accepted_as_presented",
+  "roleplay_text_approval": "displayed_individual_description_explicitly_accepted",
+  "functional_description_approval": "displayed_individual_description_explicitly_accepted",
+  "current_next_effect_copy_approval": "displayed_individual_description_explicitly_accepted",
+  "numeric_rules_approval": "displayed_1_HP_automatic_trigger_energy_0_cooldown_65_and_64_and_persistent_exclusion_accepted; unshown_formulas_and_conditions_pending",
+  "formulas": {
+    "cooldown_turns": "ceil(30 + 700 / (effective_rank + 9)); proposed"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "hp_after_fatal_direct_hit": 1,
+    "cooldown_exact_before_ceil": {
+      "numerator": 65,
+      "denominator": 1
+    },
+    "cooldown_turns": 65,
+    "energy_cost": 0,
+    "trigger": "automatic_if_available"
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "hp_after_fatal_direct_hit": 1,
+    "cooldown_exact_before_ceil": {
+      "numerator": 190,
+      "denominator": 3
+    },
+    "cooldown_turns": 64,
+    "energy_cost": 0,
+    "trigger": "automatic_if_available"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "cooldown_turns"
+    ],
+    "unchanged_effects_omitted": [
+      "hp_after_fatal_direct_hit",
+      "energy_cost",
+      "automatic_trigger"
+    ]
+  },
+  "presented_conditions": "Automatic trigger on otherwise fatal direct damage only, if available; leaves 1 HP, costs no energy, excludes persistent damage, offers no protection against subsequent hits.",
+  "unshown_conditions_approval": "Full-rank cooldown formula, order after other protections, availability on learning, behavior at already 1 HP, timer start/end order, cooldown across gear changes and mixed damage classification remain pending.",
+  "active_weapon_requirement": "none; passive survival effect is not a weapon attack",
+  "visual_intention_approval": "accepted_as_presented",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Exact fractions and rounded cooldown verified: rank 11 = 65 turns; rank 12 = 64 turns.",
+    "Current/next equipment and modifiers fixed; learned cap 10 respected.",
+    "Only changing cooldown displayed in next-rank block.",
+    "No table, formula or ordinary action-time reminder in player copy.",
+    "Explicit user validation recorded; player copy and values unchanged."
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU06-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/dernier-sursaut-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "5dfe080b411026dd130c200b43b57f54c338b4b577059affde82450bf950e57c"
+}

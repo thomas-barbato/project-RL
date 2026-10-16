@@ -1,0 +1,48 @@
+{
+  "protected_files_unchanged": 9355,
+  "resampling": false,
+  "controls": {
+    "one_turn_held_despite_real_time": true,
+    "animated_while_waiting": true,
+    "ends_at_next_turn": true,
+    "burn_continues_for_remaining_turns": true,
+    "no_flames_on_walls": true,
+    "final_effects_expired": true
+  },
+  "animations": [
+    {
+      "file": "FE04-A04-TEMOIN-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 47,
+      "frames": 64,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE04-A05-TOUR-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 46,
+      "frames": 58,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "maintien-par-tours-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 55,
+      "frames": 64,
+      "duration_ms": 6000,
+      "loop": 0
+    }
+  ],
+  "timeline": "native/timeline.json"
+}

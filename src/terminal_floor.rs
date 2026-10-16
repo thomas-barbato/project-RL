@@ -1,4 +1,4 @@
-//! Continuous, world-anchored floor grain. Generated once; no simulation RNG.
+//! Cached materials on existing floor surfaces; no simulation RNG.
 use macroquad::prelude::*;
 use project_rl::world::GridPos;
 
@@ -159,6 +159,16 @@ fn noise(x: i32, y: i32, spacing: i32, seed: u32) -> f32 {
 }
 
 fn pixel(surface: Surface, x: i32, y: i32) -> [u8; 4] {
+    let reviewed = match surface {
+        Surface::Street | Surface::Lane => Some(0),
+        Surface::Concrete | Surface::Sidewalk => Some(1),
+        Surface::Deck => Some(2),
+        Surface::Rubble => Some(3),
+        _ => None,
+    };
+    if let Some(family) = reviewed {
+        return super::terminal_materials::floor_pixel(family, x, y);
+    }
     let seed = (surface as u32 + 1) * 139;
     let broad = noise(x, y, 64, seed) - 0.5;
     let wear = noise(x, y, 16, seed + 1) - 0.5;
@@ -166,42 +176,13 @@ fn pixel(surface: Surface, x: i32, y: i32) -> [u8; 4] {
     let mut shade = broad * 12.0 + wear * 8.0 + grain * 5.0;
     let mut tint = [0.0; 3];
     match surface {
-        Surface::Deck => {
-            // Sparse brushed scratches, with no plate border at cell edges.
-            if hash(x / 16, y, seed + 3) > 0.988 && grain > -0.15 {
-                shade += 9.0;
-            }
-        }
-        Surface::Street
+        // These surfaces already returned a reviewed texture sample above.
+        Surface::Deck
+        | Surface::Street
         | Surface::Lane
         | Surface::Concrete
         | Surface::Sidewalk
-        | Surface::Rubble => {
-            if matches!(surface, Surface::Street | Surface::Lane) {
-                shade += grain * 6.0;
-            }
-            if grain > 0.485 {
-                shade += 10.0;
-            }
-            // Broken, irregular fractures continue across cells. A second
-            // field interrupts their branches instead of making closed loops.
-            if matches!(
-                surface,
-                Surface::Concrete | Surface::Sidewalk | Surface::Rubble
-            ) && (noise(x, y, 64, seed + 4) + (noise(x, y, 16, seed + 5) - 0.5) * 0.22 - 0.5)
-                .abs()
-                < 0.005
-                && noise(x, y, 32, seed + 6) > 0.52
-            {
-                shade -= 13.0;
-            }
-            if matches!(surface, Surface::Sidewalk) {
-                shade += wear * 7.0;
-                if grain < -0.47 {
-                    shade -= 8.0;
-                }
-            }
-        }
+        | Surface::Rubble => {}
         Surface::Grate => {
             let slot = y % 8;
             shade += if slot == 0 {
@@ -213,6 +194,9 @@ fn pixel(surface: Surface, x: i32, y: i32) -> [u8; 4] {
             };
             if x % 64 == 0 {
                 shade += 4.0;
+            }
+            if y % 8 >= 3 && y % 8 <= 5 && x % 16 >= 3 && x % 16 <= 12 {
+                shade -= 6.0;
             }
         }
         Surface::Gravel => {

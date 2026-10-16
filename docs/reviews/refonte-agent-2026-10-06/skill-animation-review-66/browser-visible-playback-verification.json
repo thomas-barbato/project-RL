@@ -1,0 +1,45 @@
+{
+  "browser": "Edge Chromium headless",
+  "url_scheme": "file",
+  "page_errors": [],
+  "automatic_placement_to_contact": "passed",
+  "replay": "passed",
+  "paused_native_explosion_capture": {
+    "turn": 3,
+    "elapsed": 170,
+    "status": "Démonstration automatique · Mines de poison : mine consommée · Empoisonné 5/5/5 · énergie 90 · explosions 1 · Mines de glace : mine consommée · Gel 5/5/5 · énergie 90 · explosions 1",
+    "canvases": [
+      {
+        "id": "SM02",
+        "frame": 116,
+        "explosions": 1,
+        "expected_native_png": "frames/SM02-A04-HAUT/116.png",
+        "browser_png": "browser-canvas-SM02.png"
+      },
+      {
+        "id": "SM03",
+        "frame": 116,
+        "explosions": 1,
+        "expected_native_png": "frames/SM03-A04-HAUT/116.png",
+        "browser_png": "browser-canvas-SM03.png"
+      }
+    ]
+  },
+  "idle_preserves_damage_and_status_turns": "passed",
+  "quiet_scene_and_arming_contact": "Not included in this targeted readability review",
+  "wall_protection": "passed",
+  "index_and_comparison_pages": "passed",
+  "screenshot": "browser-visible-explosion.png",
+  "native_pixel_checks": [
+    {
+      "id": "SM02",
+      "frame": 116,
+      "native_pixels_identical": true
+    },
+    {
+      "id": "SM03",
+      "frame": 116,
+      "native_pixels_identical": true
+    }
+  ]
+}

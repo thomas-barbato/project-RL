@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-08",
+  "review_id": "S02-ATTR01",
+  "attribute_id": "S02",
+  "title": "Agilité",
+  "revision": 1,
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/attribute-model-perception-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "e18f863af6beadd00595d37d05a27234625da8d2c83f3fed90f208b7409fa288",
+  "model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-04.json",
+  "model_sha256": "e3ee3a6e5ede9762f4e05b17d207d92a14590ce184b33efb7350c48b90af5561",
+  "numeric_and_shown_scope_approval": "accepted_by_return_to_original_STAT-MODEL02",
+  "accepted_coefficients": {
+    "accuracy_units_per_point": 2,
+    "evasion_units_per_point": 2,
+    "attribute_damage_bonus": "none;additional_ranged_bonus_requested_in_previous_turn_retracted_by_current_instruction;old_general_physical_bonus_superseded"
+  },
+  "name_approval": "six_attribute_names_already_accepted",
+  "RP_and_other_cases": "previous_or_unshown_details_remain_pending;no_new_player_copy_presented",
+  "runtime_integration": "not_integrated"
+}

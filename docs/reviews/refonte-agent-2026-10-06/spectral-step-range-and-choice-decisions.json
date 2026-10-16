@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-15",
+  "review_id": "SPECTRAL-RANGE01",
+  "skill_id": "T02",
+  "title": "Pas spectral",
+  "user_message": "il faudra l'augmenter un peu je pense :) (le doubler en faite) mais que le joueur ait le choix (s'il ne veut pas par exemple bouger de 4 cases alors que son rang lui permet, il peut -tant qu'il dépasse pas les 4 cases-",
+  "numeric_approval": "Explicit user request: double the existing entire movement-distance progression, preserving its three-rank cadence.",
+  "targeting_approval": "The distance is a maximum, not a mandatory full-length movement. The player chooses a legal arrival tile at any shorter positive distance within that maximum.",
+  "maximum_movement_cells_by_effective_rank": {"1": 2, "4": 4, "7": 6, "10": 8, "11": 8, "13": 10, "16": 12, "20": 14},
+  "preserved": ["Dodge bonus", "Duration", "Energy cost per use", "Cooldown", "Equipment rank bonuses", "Walls and obstacles block movement", "Existing visual style"],
+  "movement_is_not_teleportation": true,
+  "campaign_integration": "Deferred with the rest of the catalogue effects, as previously requested; catalogue and laboratory targeting reflect this rule.",
+  "previous_range_source": "skill-spatial-review-01/progressions.json",
+  "previous_visual_approval": "skill-animation-review-81/visual-acceptance-01.json"
+}

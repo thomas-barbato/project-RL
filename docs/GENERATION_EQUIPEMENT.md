@@ -1,6 +1,12 @@
 # Génération d'équipement
 
-2 octobre 2026. Génération de monde 141. Équilibrage provisoire.
+5 octobre 2026. Génération de monde 146. Équilibrage provisoire.
+
+La génération 145 ajoute les palettes cosmétiques persistantes. La génération
+146 ajoute douze pistolets et PM à une main aux récompenses, caches et boutiques.
+Leurs modèles, prix et fonctionnement sont décrits dans
+[Pistolets et PM](PISTOLETS_ET_PM.md). Les sections ci-dessous décrivent les
+étapes historiques ; les parties anciennes conservent leurs règles.
 
 ## Récompense aléatoire à chaque mort hostile : génération 141
 
@@ -149,12 +155,12 @@ Ces six modèles occupent le même emplacement, sans créer de nouveaux slots.
 
 | Palier | Modèle | Protection | Malus d'esquive |
 |---|---|---|---|
-| P1 | Brigandine Cognefer | 2 | 5 |
-| P2 | Plastron Bastion | 3 | 5 |
+| P1 | Tenue Cognefer | 2 | 5 |
+| P2 | Armure Bastion | 3 | 5 |
 | P3 | Armure Cerbère | 4 | 5 |
 | P4 | Carapace Chrysalide | 5 | 5 |
-| P5 | Manteau de mue | 6 | 5 |
-| P6 | Combinaison Fantôme | 7 | 5 |
+| P5 | Robe de mue | 6 | 5 |
+| P6 | Tenue Fantôme | 7 | 5 |
 
 Seule la protection progresse entre modèles de cette famille. Le malus est fixe,
 s'applique uniquement lorsque l'armure est équipée et ne ralentit pas les déplacements.
@@ -366,12 +372,12 @@ l'instant ; elles utilisent le dernier palier si elles sont générées en diagn
 
 | Couche de référence | Palier | Couteau | Fusil | Veste |
 |---|---|---|---|---|
-| Surface | P1 | Couteau de camp | Fusil de patrouille | Veste matelassée |
-| 1 | P2 | Couteau de sapeur | Fusil de guetteur | Veste de veille |
-| 2 | P3 | Couteau céramique | Fusil à induction | Veste à fibres croisées |
-| 3 | P4 | Couteau de chitine | Fusil de parallaxe | Veste de membranes |
-| 4 | P5 | Couteau à dent vivante | Fusil à nerf tendu | Veste de peau seconde |
-| 5 | P6 | Couteau du dernier seuil | Fusil de l'horizon fendu | Veste de la seconde ombre |
+| Surface | P1 | Couteau de camp | Fusil de patrouille | Tenue d’aviateur |
+| 1 | P2 | Couteau de sapeur | Fusil de guetteur | Tenue du technicien |
+| 2 | P3 | Couteau céramique | Fusil à induction | Tenue du nomade |
+| 3 | P4 | Couteau de chitine | Fusil de parallaxe | Tenue de membranes |
+| 4 | P5 | Couteau à dent vivante | Fusil à nerf tendu | Combinaison Peau-Seconde |
+| 5 | P6 | Couteau du dernier seuil | Fusil de l'horizon fendu | Robe de la Seconde Ombre |
 
 Les couteaux restent au contact, avec une progression de précision/pénétration.
 Les fusils restent à tir unique et munitions limitées : les modèles de guet,

@@ -1,0 +1,25 @@
+{
+  "batch": "ANIM-S17",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 43,
+      "id": "TR65",
+      "name": "Abysse",
+      "variant": "TR65-A01",
+      "body_variant": "TR65-BODY02",
+      "body_status": "visually_approved",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "revision": "Body02 replaces cyan limbs with organic purple flesh and weathered ivory ridges following the user request. Body01 cyan trial retained, not proposed for integration.",
+  "visuals": "Single eye, elongated purple limbs, ivory organic ridges; thick purple-black shadow curls enter .38s, return .30s and renew without human intermediate.",
+  "rules_retained": "Previously agreed rank11 example:22 turns, cooldown10, cost17 energy. Timers advance only on explicit turns. Renewal on turn10 restores22. No HP restoration or own-action cooldown reset.",
+  "scope": "Body and transition prototype only; no Allonge/Fente/Pas d’ombre yet. No new stats, HP, energy, AI, damage, loot, save or campaign integration.",
+  "excluded_trials": [
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-44/cyan-trial-source.png"
+  ],
+  "acceptance": "visual-acceptance-01.json"
+}

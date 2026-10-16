@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-TIME01-DIRECTION01",
+  "source": "direct_user_instruction_during_timer_review",
+  "user_messages": [
+    "en vérité je suis pas fan du fait qu'un effet persistant commence au tour d'apres.",
+    "je préfèrerais que ca commence directement des l'utilisation de la compétence."
+  ],
+  "accepted_rule": "persistent_effects_start_immediately_when_skill_actually_applies_effect;remove_default_next_turn_delay_for_first_application",
+  "interpretation_boundary": "effect_cannot_apply_before_existing_explicit_delayed_trigger;mine_arming_and_delayed_attacks_remain;no_extra_damage_number_or_complete_tick_refresh_rule_approved",
+  "replaced_pending_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-timer-accounting-INTERACT-TIME01-01.json",
+    "reference_sha256": "ac8d1ccd21230a5b1ec79576a4b8055691b10c1218016c494ed8d0435e23586c"
+  },
+  "approval": "explicit_user_requested_first_application_direction",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,49 @@
+{
+  "batch": "ANIM-S06-A07",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 13,
+      "skill_id": "FE05",
+      "variant": "FE05-A07",
+      "status": "visually_approved"
+    },
+    {
+      "number": 14,
+      "skill_id": "FE06",
+      "variant": "FE06-A03",
+      "status": "visually_approved"
+    }
+  ],
+  "visual_revision": {
+    "projectile_size_pixels": 96,
+    "projectile_opacity": 0.9,
+    "blast_size_pixels": 320,
+    "blast_initial_opacity": 0.95,
+    "blast_sequential_drawings": 6,
+    "blast_ping_pong_removed": true,
+    "combustion_plume_scales": [
+      0.52,
+      0.42
+    ],
+    "combustion_opacity": 0.65,
+    "combustion_corona_removed": true,
+    "fade_out_seconds": 0.16,
+    "fireball_flight_seconds": 0.35,
+    "previous_flight_seconds": 0.5,
+    "blast_seconds": 0.55,
+    "combustion_seconds": 0.6
+  },
+  "fireball": "The projectile travels once and explodes on the first monster or wall. Six newly drawn sequential samples show flash, outward burst, detached flames and fading embers. It never loops back into a round orb. Transparency supports the end of the burst; the early flash is strong.",
+  "combustion": "Two small translucent flames close onto the burning target; no circular explosion. The brief shock ends automatically. The old Burn is consumed; a prepared success may create a new attached Burn.",
+  "timing": "Instant-hit art ends in real time. Burn and cooldowns only decrease with explicit turns. Native montage passes turns at 3, 4 and 5 seconds; interactive idle loops only attached Burn after the impact.",
+  "scope": "Isolated visual fixture: no campaign integration, damage, RNG or balance changes. Final combat geometry/collision is a separate implementation.",
+  "art": "Exact approved assets inherited from review 20 via review 21. Only fireball flight duration changes; blast, Combustion and Burn cadence remain unchanged.",
+  "approval": "../skill-animation-review-20/visual-acceptance-01.json",
+  "revision_scope": "Only FE05 pre-impact movement speed. The rest of the shown lot is already approved.",
+  "directions": "Four cardinal directions, full cloison and monster interception.",
+  "blood": "Pure Fire contains no blood.",
+  "accepted_temporal_policy": "The latest user clarification distinguishes instantaneous hits from persistent effects. The previously accepted FE04-A05 turn-based display is preserved.",
+  "acceptance": "visual-acceptance-01.json"
+}

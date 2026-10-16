@@ -1,0 +1,199 @@
+{
+  "date": "2026-10-15",
+  "review_id": "AF06-A02-ACCEPT01",
+  "status": "visually_accepted_pending_campaign_integration",
+  "user_reply": "je valide , c'est tres bien :D",
+  "accepted_visual": {
+    "number": 96,
+    "id": "AF06",
+    "variant": "AF06-A02",
+    "title": "Contagion"
+  },
+  "current_contagion_visual_reference": "AF06-A02",
+  "supersedes_visual_presentation_of": "AF06-A01",
+  "previous_A01_approval_preserved": true,
+  "prior_acceptance": "../skill-animation-review-101/visual-acceptance-01.json",
+  "source": {
+    "path": "src/agent_skill_lab_review/fire_painted/contagion_tentacles.rs",
+    "sha256": "b5aa78fadcbb34a1319872a2d073f9f31d41119558c7de108ee0cb1dd0887faf"
+  },
+  "source_art": {
+    "path": "../../../../assets/animations/agent/skill-animation-review-102/AF06-TENTACLE02-source.png",
+    "sha256": "1f731505ca67e6411e903e9c97e7ead84e96e311aae136f91af8f1ad41a6a8b9"
+  },
+  "prompt": {
+    "path": "imagegen-prompt.txt",
+    "sha256": "a1fb9eeb0f9daf8fe53ca0f9586ebe9994bdeb2fe50ee9d7e684906ca9d0e6c1"
+  },
+  "review_sha256_before_status_update": "f57df3357e0c203b26fb63d1eba3f9fff6d99229e499778f1fb06aa6ee7a3d89",
+  "validation_sha256": "e4efbdeda766375dde932fd3475a3dec95bc0614b6ac2b0a3594d2d3974437cf",
+  "implementation_verification_sha256": "44dcc5006976c26d51d524b82afd8660c1ba080d7c21ec6dff12a749f4788de7",
+  "atlas_exports": [
+    {
+      "variant": "AF06-A02-DROITE",
+      "path": "AF06-A02-DROITE.webp",
+      "sha256": "f41d8424c856ca4593d440d6952cbe542bff1cc2789e1fe56d68768ba490c05d",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 244384
+    },
+    {
+      "variant": "AF06-A02-GAUCHE",
+      "path": "AF06-A02-GAUCHE.webp",
+      "sha256": "a620f2e00814f22217f0bd0db2fa463ff001af6ba0a442e66913c32d90bc60ef",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 247186
+    },
+    {
+      "variant": "AF06-A02-HAUT",
+      "path": "AF06-A02-HAUT.webp",
+      "sha256": "ac6d687dada58b96c90e8998bfc0fb890b81f8638d3468ab3ec1ad56adb6bd72",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 235484
+    },
+    {
+      "variant": "AF06-A02-BAS",
+      "path": "AF06-A02-BAS.webp",
+      "sha256": "f3819982df097f5f2902c8c6000a42cc134c2f59b498fbbc07c0743357f0711f",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 234182
+    },
+    {
+      "variant": "AF06-A02-JOUEUR",
+      "path": "AF06-A02-JOUEUR.webp",
+      "sha256": "f9f8d17f387a255d9db7efe3efd4f48a6a01da2279a71b3bcc6ad367c18fce2d",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 120180
+    },
+    {
+      "variant": "AF06-A02-ATTENTE",
+      "path": "AF06-A02-ATTENTE.webp",
+      "sha256": "ebfe8f254976c805c4b58fe9d909ba45893d9ed33f4652c970762aa8a817cd01",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 223394
+    },
+    {
+      "variant": "AF06-A02-MUR",
+      "path": "AF06-A02-MUR.webp",
+      "sha256": "8a79b7fcc4f8e3f488ab44ec130e897a02ed98a73aa5a5ba2aad9e9078dde48c",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": true,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 161444
+    },
+    {
+      "variant": "AF06-A02-RESISTE",
+      "path": "AF06-A02-RESISTE.webp",
+      "sha256": "ec8bcd8b1956ea948619a99e402c2da6a1f326138c691efece380fb37c548b7e",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 244830
+    },
+    {
+      "variant": "AF06-A02-DEPLACEMENT",
+      "path": "AF06-A02-DEPLACEMENT.webp",
+      "sha256": "706d5c9d770952735216341028754e797e2696a373924d69421134590ee9cffa",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 229338
+    },
+    {
+      "variant": "AF06-A02-DEGATS",
+      "path": "AF06-A02-DEGATS.webp",
+      "sha256": "772121028852af4e26d36ff7882ef1072454cd2f0e1aedcf2616e96c05acd0e4",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": false,
+      "prepared_damage_label_edge_differences": [
+        {
+          "frame": 49,
+          "bbox": [
+            237,
+            100,
+            243,
+            101
+          ]
+        },
+        {
+          "frame": 50,
+          "bbox": [
+            238,
+            103,
+            244,
+            104
+          ]
+        },
+        {
+          "frame": 51,
+          "bbox": [
+            239,
+            107,
+            244,
+            108
+          ]
+        }
+      ],
+      "bytes": 390320
+    },
+    {
+      "variant": "AF06-A02-CHAINE",
+      "path": "AF06-A02-CHAINE.webp",
+      "sha256": "34c9f28fcade6478b2c20bb6fd3903bf1d4514e72e4bb854d3d2b12eea974b54",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 185826
+    }
+  ],
+  "standalone_animation": {
+    "path": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-102/AF06-A02-organic-native-64.webp",
+    "sha256": "b9d1dc74b4f171acaae07f202c8e7aece7403352407eae6d55de7d68c724113f"
+  },
+  "native_tile": 64,
+  "native_scenarios": 11,
+  "directions": 4,
+  "visual_scope": [
+    "Painted organic tendrils reach every actual recipient from the corpse",
+    "Brief contact and retraction; stationary inherited-status markers appear at contact",
+    "Shared harmful-effect reaction aligned to visual contact",
+    "Terrain mask clips tendrils at obstacles; no tendrils on excluded or resisting victims"
+  ],
+  "original_mechanics_preserved": true,
+  "protected_files_verified": 75,
+  "campaign_integration": false,
+  "unrelated_visual_or_numeric_approvals_inferred": false
+}

@@ -1,0 +1,13 @@
+{
+  "id": "core:agent_dose_soin",
+  "name_key": "item.agent_dose_soin.name",
+  "description_key": "item.agent_dose_soin.name",
+  "maximum_stack": 1,
+  "kind": "consumable",
+  "effects": [
+    {
+      "type": "restore_integrity",
+      "amount": 12
+    }
+  ]
+}

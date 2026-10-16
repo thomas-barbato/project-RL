@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ13",
+  "revision": 1,
+  "title": "Évolution des familiers déjà présents",
+  "status": "dynamic_drone_level_and_owner_bonus_updates_drone_level_gain_restore_and_raised_power_updates_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-44.json",
+  "current_attribute_model_sha256": "035c78b7d342b46ae3591e99ab3878e61ec9758dfcbefc8bd2afa1e112628c8e",
+  "shown_copy_markdown": "Le **profil conservé par les ressuscités est validé**. À leur relèvement, leurs **PV et leur énergie sont au maximum**, comme demandé.\n\n**PETS-EQ13 · Évolution des familiers déjà présents — proposition**\n\n**Drones**\n\n- Ils suivent votre niveau, y compris lorsqu’ils sont déjà déployés.\n- Quand vous gagnez un niveau, leurs **PV et leur énergie sont restaurés au maximum**, comme les vôtres.\n- Leur puissance est recalculée quand le rang de leur invocation ou votre Intelligence change.\n\n**Ressuscités**\n\n- Ils conservent leur niveau d’origine.\n- Leur puissance est recalculée quand le rang effectif de Réanimation change.\n- Leur durée reste celle fixée au relèvement : ces changements ne prolongent pas leur présence.\n\n**Changements de bonus**\n\nModifier un rang, un attribut ou un équipement **ne restaure pas les jauges**. Si un maximum augmente, la réserve actuelle reste identique ; s’il baisse sous cette réserve, elle est ramenée au nouveau maximum.\n\n**Exemple fictif — hors gain de niveau**\n\n- Avant un bonus : **70 / 100 PV**.\n- Après un bonus augmentant le maximum : **70 / 130 PV**.\n- Si le maximum descend ensuite à 60 : **60 / 60 PV**.\n\n**Ces règles de mise à jour restent à valider.**",
+  "shown_copy_sha256": "9730dd2af49ec66a71be6a0007549fe06f762e6aef03fa3540a3b3ac8db9cef4",
+  "new_proposed_rules": {
+    "scope": "already_deployed_existing_drones_and_OC07_raised_allies;not_future_familiar_models_or_spawn_recall_rules",
+    "drone_level": "already_deployed_drones_track_current_player_level_and_automatic_accepted_per_model_attribute_growth",
+    "drone_level_gain_reserves": "on_player_level_gain_update_drone_level_and_final_maximums_then_restore_current_HP_and_energy_to_final_maximums",
+    "drone_owner_updates": "recalculate_accepted_model_invocation_rank_and_agent_Intelligence_HP_damage_bonuses_when_inputs_change_including_owner_gear_or_attribute_changes;no_spawn_only_snapshot_for_these_inputs",
+    "raised_level": "retain_original_monster_level;player_level_gain_is_not_raised_level_gain_or_refill",
+    "raised_power": "recalculate_accepted_OC07_HP_damage_power_using_current_effective_rank_when_rank_changes_including_agent_equipment_rank_bonuses;no_new_power_curve_or_unapproved_owner_attribute_factor",
+    "raised_duration": "fix_total_duration_at_birth_and_continue_existing_remaining_timer;rank_or_bonus_updates_do_not_extend_or_restart_it",
+    "bonus_update_current_reserves": "rank_attribute_or_equipment_change_does_not_restore_HP_or_energy;preserve_absolute_current_when_maximum_increases;clamp_current_to_new_maximum_when_lower",
+    "exception": "actual_drone_level_gain_restores_after_final_stat_update;independent_attribute_or_gear_update_is_not_level_gain",
+    "other_rules": "normal_damage_healing_and_energy_restoration_sources_continue_under_their_accepted_rules"
+  },
+  "shown_examples": {
+    "scope": "fictional_HP_sequence_for_bonus_updates_only;not_actual_actor_profile",
+    "before": {
+      "current_HP": 70,
+      "maximum_HP": 100
+    },
+    "after_increase": {
+      "current_HP": 70,
+      "maximum_HP": 130
+    },
+    "after_decrease": {
+      "current_HP": 60,
+      "maximum_HP": 60
+    }
+  },
+  "dependencies": {
+    "drone_growth": "docs/reviews/refonte-agent-2026-10-06/drone-attribute-growth-acceptance-decisions.json",
+    "drone_growth_sha256": "c01a6a9da72473b164a37170adc4541dc9a4f605b12cd4d955d162e2b0dc0286",
+    "drone_attribute_mapping": "docs/reviews/refonte-agent-2026-10-06/drone-owner-and-actor-attribute-mapping-acceptance-decisions.json",
+    "drone_attribute_mapping_sha256": "d4f8c568c617ddfa5a3c7c3a62ed7a9812099fe7df5cffb6adc0ee2769f76359",
+    "drone_invocation_rank": "docs/reviews/refonte-agent-2026-10-06/drone-invocation-rank-bonus-acceptance-decisions.json",
+    "drone_invocation_rank_sha256": "1b8572b43bab9281c48769c7797338a1a82cf9745d6def458384e29a9c5478f3",
+    "equipment_current_reserves": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-bonuses-PETS-EQ04-02.json",
+    "equipment_current_reserves_sha256": "5ceb4f70dc8edef336507b9eeeef58990bc74f6b42095fa9818ac4b4b420b66e",
+    "raised_origin_profile": "docs/reviews/refonte-agent-2026-10-06/review-raised-origin-profile-PETS-EQ11-02.json",
+    "raised_origin_profile_sha256": "f0d49ae272697181302cc8344b2c05b3ea9a33fd00aa4b489abf7498f1326496",
+    "raised_power": "docs/reviews/refonte-agent-2026-10-06/review-raised-power-and-equipment-PETS-EQ10-02.json",
+    "raised_power_sha256": "7fa105cfa8f8525b3442874e7f2213f03f0fbc56fa4dab05dcca9c827371cec2",
+    "raised_birth_reserves": "docs/reviews/refonte-agent-2026-10-06/review-raised-starting-resources-PETS-EQ12-01.json",
+    "raised_birth_reserves_sha256": "3ff957b92a39e80c1098115e9c889b7a048da4fc35ca9da42b21ff40c697911d"
+  },
+  "scope_audit": {
+    "restoration": "drone_player_level_gain_restore_explicitly_proposed;earlier_own_stat_growth_acceptance_did_not_infer_restoration",
+    "raised_birth": "full_HP_energy_at_birth_already_fixed_by_direct_instruction_PETS_EQ12;ongoing_updates_not_birth",
+    "snapshot": "dynamic_HP_damage_updates_proposed_only_for_accepted_modifiers;raised_original_profile_and_duration_remain_birth_snapshots",
+    "Mule": "existing_dynamic_capacity_and_overcapacity_rules_preserved;no_cargo_loss_or_new_deposit_exception",
+    "pending_energy_baselines": "restoration_means_calculated_maximum;no_new_energy_formula_cost_or_regeneration_profile",
+    "native_visual": "no_icon_stat_sheet_equipment_tile_or_animation_created"
+  },
+  "unshown_cases_pending": [
+    "drone_first_spawn_recall_redeployment_death_and_replacement_resource_state",
+    "raised_original_skill_cooldown_state_and_first_action_timing",
+    "ordered_atomic_updates_when_multiple_level_rank_item_changes_coincide",
+    "actual_familiar_energy_baselines_regeneration_and_costs",
+    "full_rank_curves_and_familiar_skill_item_bonus_mapping",
+    "native_familiar_resource_and_power_tooltip_layout"
+  ],
+  "player_copy_approval": "pending_explicit_review",
+  "mechanical_approval": "shown_dynamic_updates_drone_level_gain_restore_and_raised_duration_snapshot_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

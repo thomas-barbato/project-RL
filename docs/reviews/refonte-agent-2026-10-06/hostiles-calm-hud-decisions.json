@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "user_request": "je veux bien que l'on fasse cette notion de calme mais alors il faudrait indiquer sur l'UX s'il y a des hostiles dans la zone et si le jeu est en phase de combat ou de calme",
+  "user_scope_reply": "1 et si on place sa souris sur le status d'hostile repéré, ca met en surbrillance tous les hostiles visibles",
+  "accepted_requirements": {
+    "calm_concept_requires_visible_ux": true,
+    "show_currently_observed_hostiles": true,
+    "omniscient_map_enemy_count": false,
+    "show_combat_or_calm_phase": true,
+    "hover_hostile_status_highlights_all_visible_hostiles": true
+  },
+  "approval_scope": "requested interface capabilities; not approval of prior DP01 text, percentages, delay or new shared phase rules",
+  "pending_proposals": [
+    "exact player labels",
+    "numeric visible-hostile counter",
+    "three-phase presentation with three-turn countdown",
+    "shared agent and deployed-drone phase",
+    "same phase for energy and Maintenance",
+    "incoming misses and persistent damage reset common calm",
+    "initial phase and layer-transition rules",
+    "keyboard and touch equivalents",
+    "colors, corner highlights and HUD placement",
+    "native gameplay rendering"
+  ],
+  "prototype": "C:/Users/User/.codex/visualizations/2026/10/06/01a11010-433f-7fc2-ac29-ffb696dec5ea/hostiles-et-calme.html",
+  "prototype_sha256": "2c844d9fa3a3a03adf2563af4339f9aa8d6c76a4ed5a260482c1d252137f05d9",
+  "prototype_checks": "docs/reviews/refonte-agent-2026-10-06/hostiles-calm-preview-checks.json",
+  "prototype_checks_sha256": "8a8d3cfd32a9b286925fc92eb00bab3306eda6643e2e4ea1553d865bb4fc4f09",
+  "cadrage_document": "docs/REFONTE_AGENT_CRYOGENISE.md",
+  "cadrage_sha256": "27a3bcee6462967a3974078916be520c631b968ae069ebc0f7c0f46509cfb64d",
+  "previous_cadrage_snapshot": "docs/reviews/refonte-agent-2026-10-06/cadrage-before-combat-phase-hud.md",
+  "previous_cadrage_sha256": "dc32c86e4ccb392e73fec202c1c00fcab2c688ad4f92e119d6c6ac3198a51e38",
+  "test_menu_timing": "after all skills and animations; this HUD preview is not that menu"
+}

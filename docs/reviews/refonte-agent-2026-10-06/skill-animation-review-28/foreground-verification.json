@@ -1,0 +1,20 @@
+{
+  "checks": [
+    {
+      "actor": "player",
+      "head_clear": true,
+      "torso_frost_visible": true,
+      "leg_frost_visible": true
+    },
+    {
+      "actor": "enemy",
+      "head_clear": true,
+      "torso_frost_visible": true,
+      "leg_frost_visible": true
+    }
+  ],
+  "rear_opacity": 0.26,
+  "front_opacity": 0.7,
+  "upper_quarter_excluded_from_front": true,
+  "only_bottom_quarter_behind": true
+}

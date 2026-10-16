@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SM04-ACCEPT01",
+  "skill_id": "SM04",
+  "user_response": "ok :) je valide :)",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM04-01.json",
+  "reviewed_description_sha256": "1c411499ba682ab4d3cf935dc942b52761d9c626629fa3783b5b24b439ecec46",
+  "accepted_player_copy": "**SM04 · Explosion étendue — Rang 11 · Passif**\n\n*Vous amplifiez le souffle de vos mines pour atteindre les ennemis plus éloignés.*\n\n**Effets actuels**\n\n- Rayon de l’explosion : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nRayon inchangé à ce rang.\n\nNécessite **Pose de mine** apprise. S’applique aux mines de feu, de poison et de glace, ainsi qu’aux zones laissées par **Résidu persistant**.\n\nLes murs arrêtent la propagation.",
+  "accepted_current_values": {
+    "explosion_radius_cells": 4
+  },
+  "accepted_next_values": {
+    "explosion_radius_cells": 4
+  },
+  "accepted_displayed_conditions": [
+    "SM00_learned_prerequisite",
+    "all_fire_poison_and_cold_mines",
+    "SM05_zones_use_same_radius",
+    "walls_block_propagation",
+    "unchanged_next_rank_radius_marker"
+  ],
+  "accepted_visual_direction": "**Affichage proposé :** l’aperçu avant la pose et le rayon affiché au survol de la mine montrent la zone agrandie, en tenant compte des murs.",
+  "approval_scope": "displayed_RP_values_conditions_marker_and_preview_direction;unshown_curve_geometry_and_native_UI_pending",
+  "unshown_cases_pending": [
+    "full_rank1_to10_and_equipment_bonus_curve",
+    "precise_radial_cells_diagonals_wall_corners_doors_and_obstacles",
+    "SM05_ground_zone_propagation_and_application_details",
+    "attribute_or_equipment_radius_modifiers_and_snapshot_time",
+    "friendly_damage_or_Gel_eligibility_preserved_from_separate_SM00_SM03_reviews",
+    "unknown_cell_preview_and_multi_element_hover_inspection",
+    "native_preview_palette_bonus_rank_color_and_larger_explosion_readability"
+  ],
+  "native_visuals": "pending_native_review",
+  "runtime_integration": "not_integrated"
+}

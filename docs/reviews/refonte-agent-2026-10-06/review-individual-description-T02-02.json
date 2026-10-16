@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-07",
+  "id": "T02",
+  "title": "Pas spectral",
+  "revision": 2,
+  "preparation_authorization_user_message": "ok :) on peut continuer :)",
+  "player_copy_markdown": "**T02 · Pas spectral — Rang 11**\n\n*Votre silhouette se trouble tandis que vous vous écartez du danger.*\n\n**Effet actuel**\n\n- Déplacement : **1 case**.\n- Bonus d’esquive : **+45**.\n- Durée du bonus : **4 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus d’esquive : **+48**.\n\n**Coût : 11 énergie · Recharge : 6 tours.**\n\nChoisissez une case adjacente libre, connue et franchissable. Les murs et les obstacles bloquent le déplacement.\n\nLe bonus s’ajoute à votre esquive habituelle et s’applique aux réactions provoquées par ce déplacement.",
+  "player_copy_sha256": "b0553f2194df309c66ef62d1e6199a905c13a751b8c1a4fdc63ef0f8db4f1c78",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-12.json",
+  "source_skill_block_sha256": "6c4a3dcbf1c72aeece635184d6e2612dfc470f4a1c77fdd0a6450beea0fefe45",
+  "earlier_numeric_proposal_document": "docs/REVUE_COMPETENCES_AGENT_LOT_02.md#t02-pas-spectral",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "displayed_individual_roleplay_explicitly_accepted",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08; targeting_and_reaction_conditions_retained",
+  "current_next_effect_copy_approval": "accepted_as_presented",
+  "numeric_rules_approval": "displayed_current_next_values_accepted_as_provisional_balance; unshown_full_curves_pending",
+  "detailed_conditions_approval": "displayed_adjacent_free_known_passable_destination_and_additive_dodge_available_for_movement_reactions_accepted; other_cases_pending",
+  "current_profile_status": "illustrative_not_a_user_save; ordinary dodge total and hit probabilities not fixed here",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "agility": 10,
+    "ordinary_dodge_total": null,
+    "other_skill_implant_or_cost_modifiers": false,
+    "attribute_and_equipment_dodge": "ordinary contributions retained and added to skill bonus; not multiplied by this skill"
+  },
+  "formulas": {
+    "movement_cells": 1,
+    "dodge_bonus_points": "15 + 3 * (effective_rank - 1)",
+    "duration_turns": "2 + floor((effective_rank - 1)/5)",
+    "energy_cost": "8 + floor((effective_rank - 1)/3)",
+    "cooldown_turns": 6
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "movement_cells": 1,
+    "dodge_bonus_points": 45,
+    "duration_turns": 4,
+    "energy_cost": 11,
+    "cooldown_turns": 6
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "movement_cells": 1,
+    "dodge_bonus_points": 48,
+    "duration_turns": 4,
+    "energy_cost": 11,
+    "cooldown_turns": 6
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "dodge_bonus_points"
+    ],
+    "unchanged_effects_omitted": [
+      "movement_cells",
+      "duration_turns",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "movement_power_not_a_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no_heavy_weapon_exclusion_added_to_this_movement_skill"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true
+  },
+  "movement_conditions": {
+    "destination": "adjacent free known passable tile under ordinary movement rules",
+    "walls_or_obstacles_crossed": false,
+    "dodge_bonus_applied_before_movement_reactions": true,
+    "movement_reactions_preserved": true,
+    "dodge_bonus_unit": "flat dodge score points, not percentage points of avoidance chance",
+    "invulnerability_granted": false,
+    "free_attack_added": false,
+    "recast_stacking": "existing proposed rule: replace previous application, not stack; precise refresh/payment cases not shown pending"
+  },
+  "status_ui_dependency": {
+    "scope": "existing player buff/debuff bar direction; exact icon, tooltip and turn accounting still pending native review"
+  },
+  "unshown_rules_approval": "Full rank curves, ordinary dodge/hit bounds, exact duration/turn counting, diagonal/corner movement cases, recast stacking/refresh and resource atomicity, attribute/implant combinations and magic cost reductions remain pending where not already accepted. No teleport through walls, forced enemy miss, attack, percentage dodge chance, incompatible-weapon lock or heavy-weapon exclusion introduced.",
+  "visual_intention_approval": "existing_catalogue_displaced_silhouette_and_lingering_outline_direction_accepted_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable T02, retained catalogue role; displayed RP, current/next values and conditions explicitly accepted.",
+    "Effective rank 11: +45 dodge score for 4 turns; next effective rank 12: +48 dodge score; both cost 11 energy, cooldown 6, movement one tile.",
+    "Learned 9 to 10 with equipment +2 unchanged; one point; next purchase respects learned cap.",
+    "Only dodge bonus changes in next-rank display; no learned/equipment breakdown, table, formula or ordinary timing reminder.",
+    "Agility and equipment continue contributing ordinary dodge; skill bonus is added, not a fixed avoidance percentage.",
+    "Movement reacts normally with dodge bonus available before reactions; no wall/obstacle traversal or invulnerability.",
+    "No runtime integration or new native visual; retired DI06 remains removed and catalogue count remains 85."
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T02-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/spectral-step-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "a37a16ee246ef157435bba1d2b50fd76d34d77320fa3293278ed0a72febefdf7"
+}

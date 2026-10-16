@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "CTRL-EL01",
+    "DENS01"
+  ],
+  "user_requests": [
+    "tres bien, on continue :) .\n\nHum j'aimerais faire une modification sur \"l'immunité\" des boss aux effets de feu / de froid :\n\nIl faut supprimer cette immunité mais grandir encore le malus de chance d'effet :)\n\nJe vais t'expliquer pourquoi je fais ca :\n\nEn faite, j'ai envie que notre rogue like ait une densité de combat que l'ont retrouve dans les hack'n slash (beaucoup d'ennemis differents, avec des stats etc) je pense que ca ferait un beau défis pour le joueur tout en restant mortel .",
+    "gel et brulure, le poison lui n'aura aucun malus ."
+  ],
+  "accepted_requirements": {
+    "boss_generic_Gel_immunity_removed": true,
+    "bosses_can_receive_Gel_and_Burn": true,
+    "boss_probability_penalty_scope": [
+      "Gel",
+      "Brûlure"
+    ],
+    "other_control_boss_immunity_preserved": true,
+    "Poison_importance_probability_penalty": false,
+    "combat_density_direction": "many different enemies with individual stats;dense challenging combat while remaining deadly"
+  },
+  "baseline_clarification": "CTRL01 formerly made bosses immune to Gel as a control;Burn already had no generic boss immunity. Requested exception removes Gel immunity and adds a boss-specific chance penalty to both statuses. It does not assert a prior Fire damage immunity.",
+  "boss_chance_multiplier_proposal": "1/2",
+  "boss_relative_probability_penalty_percent_proposal": 50,
+  "boss_numeric_penalty_approval": "pending_explicit_user_review;scope reply does not choose50 or75",
+  "pending_question": "Exact relative probability penalty for Gel and Burn against bosses;50% suggested,75% alternative offered.",
+  "application_proposal": {
+    "formula": "final calculated eligible normal-target status chance*1/2;one boss importance multiplier only",
+    "boss_elite_penalties_stacked": false,
+    "zone_exposure_probability_capped_before_boss_modifier": true,
+    "zone_formula": "min(100,base*exposure_turn_count)*1/2",
+    "damage_and_status_duration_reduced_by_this_modifier": false,
+    "ordinary_target_and_existing_elite_Gel_rules_preserved": true,
+    "new_elite_Burn_probability_penalty_created": false,
+    "Braise_ordinary_target_guaranteed_Burn_preserved": true,
+    "Braise_boss_Burn_success_chance_percent_proposal": 50,
+    "Braise_boss_only_success_check": "proposed by applying new boss modifier to existing100% baseline;ordinary specific effect retained",
+    "Poison_importance_multiplier": "1;no boss/elite probability reduction created",
+    "Poison_existing_resistance_and_other_ordinary_rules_preserved": true,
+    "reciprocal_successful_Burn_Gel_replacement_preserved": true,
+    "rounding_proposal": "nearest tenth after exact fraction and importance multiplier;exact half ties upward",
+    "simultaneous_statuses_role_taxonomy_source_compatibility_and_immune_target_resource_order": "unshown_pending_review"
+  },
+  "illustrative_profile": "same Willpower10,effective11/12 and occult resistance25 for ordinary/elite/boss variants;not an actual boss or all-target promise",
+  "examples": {
+    "FR01_rank11": {
+      "ordinary_Gel_chance_percent": 77.8,
+      "elite_Gel_chance_percent": 58.4,
+      "boss_Gel_chance_percent_proposal": 38.9,
+      "boss_exact_chance_percent": "1440/37"
+    },
+    "FR01_rank12": {
+      "ordinary_Gel_chance_percent": 82.5,
+      "elite_Gel_chance_percent": 61.9,
+      "boss_Gel_chance_percent_proposal": 41.3,
+      "boss_exact_chance_percent": "165/4"
+    },
+    "FE05_rank11": {
+      "ordinary_Burn_chance_percent": 60,
+      "boss_Burn_chance_percent_proposal": 30
+    },
+    "FE01": {
+      "ordinary_Burn_chance_percent": 100,
+      "boss_Burn_chance_percent_proposal": 50
+    },
+    "FE03_rank11_zone": {
+      "ordinary_exposure_chances_percent": [
+        45,
+        90,
+        100,
+        100,
+        100
+      ],
+      "boss_exposure_chances_percent_proposal": [
+        22.5,
+        45,
+        50,
+        50,
+        50
+      ]
+    }
+  },
+  "numeric_review_copy_markdown": "**CTRL-EL01 — Malus proposé contre les boss**\n\n- Gel et Brûlure : **−50 % de la chance calculée**.\n- Aiguille de givre, rang 11 : **38,9 %** de Gel sur le boss d’exemple.\n- Boule de feu, rang 11 : **30 %** de Brûlure.\n- Braise : **50 %** de Brûlure.\n- Poison : **aucun malus lié à l’importance de la cible** ; résistances ordinaires conservées.",
+  "density_scope": "qualitative design direction only;enemy count per map/wave,spawn rates,aggro,roles/stat distributions,loot scaling,monster abilities and performance budgets not fixed;no runtime spawn change",
+  "frequency_acceptance": "docs/reviews/refonte-agent-2026-10-06/elemental-status-frequency-acceptance-decisions.json",
+  "frequency_acceptance_sha256": "83707c5e54b74ccc31615cdcaa7693cdd26e0a0e5890b549d710c48d6116a640",
+  "previous_control_decisions": "docs/reviews/refonte-agent-2026-10-06/control-boss-immunity-and-elite-penalty-decisions.json",
+  "previous_control_decisions_sha256": "139e1615bfedbc7a4ad3df16d614e39d3616fcff387f6bdcc2b96c82cb85c145",
+  "copy_approval": "new boss labels/copy proposed;other control/Poison wording not implicitly all approved",
+  "visual_approval": "no new rendering proposed or approved",
+  "runtime_integration": "not_integrated",
+  "numeric_review_copy_sha256": "8c462d86c6f20cdf362eed57ab5b91ebfcefe75d421059b8369e4ad3134d2244"
+}

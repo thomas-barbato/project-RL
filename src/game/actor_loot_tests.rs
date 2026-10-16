@@ -150,7 +150,7 @@ fn monster_rewards_resume_keeps_next_draw_and_rejected_commands_are_atomic() {
     kill_for_reward(&mut original);
     original.drain_events();
     let bytes = original.recovery_snapshot_bytes().unwrap();
-    assert!(bytes.starts_with(b"RLWS\x0b"));
+    assert!(bytes.starts_with(b"RLWS\x0f"));
     let mut restored =
         WorldState::from_recovery_snapshot_bytes(&bytes, original.rules().clone()).unwrap();
     assert_eq!(format!("{original:?}"), format!("{restored:?}"));

@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-CMD01",
+  "revision": 2,
+  "title": "Commandes de familiers : coût en actions",
+  "status": "shown_familiar_command_costs_and_no_damage_destruction_explicitly_accepted;other_orders_and_phase_cases_pending;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-recall-command-PETS-EQ15-03.json",
+      "reference_sha256": "63c5827ac9459bc2ccb73aed14e833a448c1d2f0dbea5bf32c62515805f90fcd"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mule-loot-collection-PETS-EQ16-02.json",
+      "reference_sha256": "1338ca4d45bd5ccc6b4deb3b99a05bfbf64f30963f041f99f7dff95b1669bd53"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-waiting-familiar-controls-PETS-EQ21-02.json",
+      "reference_sha256": "e814b84986b68b33bbf0e5c2ecc3cdbcf1b0b3534cb05a696a934fb8dc3c37e9"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-window-UX-PETS-02-03.json",
+      "reference_sha256": "25f5f49902cc790bdcd104cf4c2b56c52b26f3f61f20b4fe8e19c72a709ff3ce"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-transfers-PETS-EQ05-02.json",
+      "reference_sha256": "ddf5ee2af6b8bf6beab36f66fc05fd10f0e434fcee1c1aace54cadb6ebeed388"
+    }
+  ],
+  "scope": "agent_action_cost_for_existing_Repositionner_Destroy_Mule_Ramasser_and_Arrêter_controls;not_general_drone_combat_orders_or_new_ability",
+  "already_accepted": "Repositionner_cost0_energy_cooldown6_per_drone_and_current_map_conditions;Mule_collection_cost0_no_own_cooldown_and_own_movement_pickup_turns;Destroy_available_for_waiting_and_deployed_familiars_with_real_item_drops;inspection_free;equipment_transfers_keep_their_accepted_costs",
+  "shown_copy_markdown": "INTERACT-CMD01 · Commandes de familiers — proposition\n\nJe propose un coût de 1 action du joueur et 0 énergie pour chacune de ces commandes, en combat comme au calme :\n\n- Repositionner : déplace le drone selon les conditions validées. Recharge conservée : 6 tours par drone.\n- Détruire : supprime le familier choisi. Ses objets tombent sur sa case, ou sur celle du joueur s'il attend son arrivée. Cette commande ne provoque pas d'explosion.\n- Ramasser : donne l'ordre de collecte à la Mule. Elle continue ensuite sur ses propres tours.\n- Arrêter : interrompt la collecte de la Mule et lui fait reprendre votre suivi.\n\nOuvrir la fenêtre Familiers, consulter une fiche ou préparer un choix reste gratuit. Une commande impossible ne consomme ni action ni énergie et ne lance aucune recharge.\n\nDétruire ne réinitialise pas la recharge de la compétence d'invocation. Ces coûts de commandes restent à valider.",
+  "shown_copy_sha256": "42127c38b8001b1f073deac7d14acf54e0b535bef7d50fadbddbffa4ba5a5014",
+  "not_resolved_here": [
+    "other_drone_combat_order_action_costs",
+    "exact_actor_phase_order_after_committed_command",
+    "native_command_tooltip_layout_disabled_reasons_and_confirmation_feedback"
+  ],
+  "mechanic_approval": "accepted_as_displayed",
+  "text_approval": "design_explanation_accepted;existing_command_names_retained",
+  "visual_approval": "no_new_native_art_animation_or_window_layout_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-command-action-costs-INTERACT-CMD01-01.json",
+    "reference_sha256": "922f88a4ad7947af9f0aa0e65f9c4c359a23ff9eda216379f876d7a348964c6c"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/familiar-command-action-costs-acceptance-decisions.json",
+    "reference_sha256": "0847029fb1c08d8ab173b82566c34ba0ba4d05fa7304ce40289a0279ac3a9620"
+  },
+  "accepted_rule": {
+    "Repositionner": {
+      "agent_actions": 1,
+      "energy": 0,
+      "cooldown_turns_per_drone": 6
+    },
+    "Destroy": {
+      "agent_actions": 1,
+      "energy": 0,
+      "own_cooldown_turns": 0,
+      "result": "remove_selected_existing_familiar;real_equipment_and_Mule_cargo_drop_on_actor_cell_or_player_current_cell_if_pending;no_explosion_or_damage;no_invocation_cooldown_reset"
+    },
+    "Mule_Ramasser": {
+      "agent_actions": 1,
+      "energy": 0,
+      "own_cooldown_turns": 0,
+      "result": "start_accepted_collection_order;Mule_uses_ordinary_own_turns_no_extra_agent_actions_per_pickup"
+    },
+    "Mule_Arrêter": {
+      "agent_actions": 1,
+      "energy": 0,
+      "own_cooldown_turns": 0,
+      "result": "cancel_current_collection_order_and_resume_follow"
+    },
+    "phase": "valid_commands_allowed_in_combat_accalmie_or_calme_under_existing_presence_conditions",
+    "inspection_or_selection": "opening_existing_window_sheet_or_noncommitting_target_selection_consumes_no_action_energy_or_cooldown",
+    "refusal": "invalid_command_changes_no_actor_order_items_energy_turn_or_cooldown;no_new_UI_error_copy_defined",
+    "existing_invocation": "Destroy_does_not_reset_invocation_remaining_cooldown;new_invocation_keeps_existing_requirements_and_new_actor_full_reserves",
+    "scope_boundary": "no_new_range_gate_for_Destroy;other_drone_orders_exact_scheduler_and_native_interface_feedback_pending"
+  }
+}

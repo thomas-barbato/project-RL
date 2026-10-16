@@ -1,0 +1,20 @@
+{
+  "cards": 18,
+  "images": 99,
+  "missing": [],
+  "native32": true,
+  "date": "2026-10-06",
+  "url": "http://127.0.0.1:8769/galerie-allies-transformations.html",
+  "checks": [
+    "All 18 cards and 99 presentation images loaded",
+    "Native reference images rendered at 32x32",
+    "Drones family contains 56,57,58,59,60,66",
+    "Enemy wreck family contains 21,22,23,24,42,43",
+    "Search 60 and 66 verified",
+    "Native zoom and x3 verified",
+    "Neutral, game, light and dark background controls verified",
+    "Four native scenes loaded; background changes preserve scene view"
+  ],
+  "capture": "review/capture-rempart-r3.png",
+  "status": "passed; awaiting user opinion; no game integration"
+}

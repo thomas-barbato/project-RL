@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "FE02",
+  "previous_title": "Souffle de fournaise",
+  "title": "Souffle de feu",
+  "user_message": "je pense que \"maintenir\" va etre complexe à utiliser, à la place on pourrait faire plutot :\n\nBen l'effet continue dans sa durée normale tant que le joueur ne bouge pas ou ne cherche pas à attaquer avec ses armes ou utiliser une autre compétence.\n\nAussi, on peut renommer la compétence en \"Souffle de feu\"",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE02-01.json",
+  "previous_description_sha256": "aee5b8d48fe93db5f3e9f99ccd0c471ca9e55aebb276875f6b909c8098bcf42b",
+  "previous_player_copy_sha256": "a82fb9944f81294f1dff9601b6b69dded67fa455c2d00a5cfdecd376f164b03e",
+  "approval_scope": "Explicit requested rename and replacement of manual maintenance by automatic continuation during normal duration while player does not move, attack with weapons or use another skill. This is a redesign request, not acceptance of prior full RP/current-next/numeric/visual card. Revised duration, per-turn costs and detailed conditions are shown in FE02-02 for review.",
+  "accepted_requests": {
+    "stable_id_preserved": true,
+    "new_name": "Souffle de feu",
+    "manual_maintenance_command_removed_for_FE02": true,
+    "automatic_continuation_during_duration": true,
+    "requested_interruptions": [
+      "movement",
+      "attempt to attack with weapons",
+      "use another skill"
+    ]
+  },
+  "damage_received_interruption": "prior HP-loss interruption omitted under requested continuation rule; no-damage-interruption consequence explicitly shown in revised pending card",
+  "unchanged_numeric_anchors": "28 to30 damage, cone90 degrees/range5, three total damage resolutions, eight energy per resolution, cooldown6 retained from pending proposal; revised as per-turn damage/duration/cost for review",
+  "additional_proposals_pending_review": [
+    "duration three turns including initial resolution",
+    "eight energy per damaging turn",
+    "received damage does not end effect",
+    "stop if energy is insufficient",
+    "precise cancellation on refused versus executed attempts and preview inputs",
+    "exact order of automatic pulses and interrupts"
+  ],
+  "scope": "FE02 only; other manual channel skills not silently changed",
+  "roleplay_text_approval": "not accepted by this redesign request",
+  "numeric_rules_approval": "not accepted by this redesign request",
+  "visual_approval": "existing catalogue direction only; native preview/timing pending",
+  "runtime_integration": "not_integrated"
+}

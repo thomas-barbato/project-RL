@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ02",
+  "revision": 1,
+  "title": "Armes des familiers",
+  "status": "native_attack_fallback_equipped_active_weapon_base_replacement_and_component_variance_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-33.json",
+  "current_attribute_model_sha256": "443a6af102d614170daab4fc6fb3cf0a2e5ad6e552341223a462d270b910f5b5",
+  "shown_copy_markdown": "La **progression des rangs d’invocation est validée**.\n\n**PETS-EQ02 · Armes des familiers — proposition**\n\n**Sans arme confiée**\n\nLe familier utilise son attaque d’origine. Pour un drone de combat, il s’agit de son arme intégrée, avec une plage de dégâts adaptée à son modèle et à son niveau.\n\n**Avec une arme compatible équipée et active**\n\n- La plage de dégâts de cette arme **remplace la base de son attaque ordinaire**.\n- Les attributs du familier et les bonus compatibles s’appliquent ensuite **une seule fois**.\n- Ses autres compétences gardent leur fonctionnement propre.\n- Retirer l’arme lui rend son attaque d’origine.\n\nPour les drones, les bonus d’invocation, d’Intelligence de l’agent et d’Algorithmes de combat améliorés restent applicables aux attaques compatibles.\n\n**Exemple fictif, avant les bonus**\n\n- Attaque intégrée : **10–15 dégâts**.\n- Arme confiée : **20–30 dégâts**.\n- Base utilisée avec cette arme : **20–30 dégâts**.\n\nLes dégâts de chaque type sont tirés séparément entre leur minimum et leur maximum, avec une chance égale pour chaque entier.\n\nL’attaque d’origine fournit une base de combat ; elle ne crée pas un objet récupérable. Les armes réellement confiées au familier conservent la règle de dépôt au sol à sa mort ou à la fin d’une résurrection.\n\nL’Éclaireur et la Mule restent sans attaque. Les emplacements, les munitions et les modes d’attaque seront définis ensuite.\n\n**Ces règles de remplacement et de variance restent à valider.**",
+  "shown_copy_sha256": "4b852b50c3b38027d0d006ecb1a0b4d2d5720dec92678a44fd48341b8126c0d9",
+  "new_proposed_rules": {
+    "scope": "familiar_ordinary_attacks_of_drones_and_raised_monsters_with_compatible_active_equipped_weapons;future_familiar_models_require_own_approved_slots_and_functions",
+    "native_fallback": "use_original_native_attack_without_player_supplied_active_weapon",
+    "drone_native_base": "integrated_weapon_damage_range_depends_on_drone_model_and_own_player_matched_level;actual_ranges_and_curve_not_proposed",
+    "equipped_weapon_base": "replace_ordinary_attack_base_range_with_compatible_equipped_active_weapon_range;do_not_add_native_damage_base_and_equipped_weapon_base",
+    "post_base_modifiers": "apply_own_actor_attributes_and_compatible_modifiers_once_to_selected_base_under_accepted_actor_drone_rules;exact_raised_power_modifier_mapping_remains_pending",
+    "other_skills": "preserve_separate_skill_conditions_and_mechanics;no_automatic_replacement_of_spell_damage_or_other_power_base_by_weapon_range",
+    "weapon_removal": "return_to_original_native_attack",
+    "drone_specific_bonuses": "accepted_invocation_rank_owner_Intelligence_and_O03_bonuses_apply_to_compatible_native_or_equipped_drone_attacks;not_implicitly_extended_to_raised_or_non_drone_familiars",
+    "damage_variance": "each_damage_type_independently_samples_an_inclusive_uniform_integer_from_its_base_minimum_to_maximum;exact_multi_projectile_hit_grouping_and_RNG_timing_pending",
+    "native_object_generation": "original_native_attack_is_combat_profile_not_new_recoverable_inventory_item;do_not_materialize_free_native_weapon_on_spawn_death_or_resurrection",
+    "supplied_weapon_lifecycle": "real_weapons_transferred_to_familiar_keep_item_identity_and_ground_drop_on_death_or_raised_expiry_direction",
+    "noncombat_models": "Eclaireur_Mule_do_not_gain_attacks_from_equipment",
+    "not_fixed_here": "slot_counts_ammunition_storage_or_consumption_attack_modes_ranges_projectile_counts_reload_or_action_timing"
+  },
+  "shown_examples": {
+    "scope": "fictional_base_range_only_before_attributes_and_other_modifiers;no_actual_drone_weapon_or_item_curve",
+    "native_base_min": 10,
+    "native_base_max": 15,
+    "supplied_weapon_min": 20,
+    "supplied_weapon_max": 30,
+    "selected_base_min": 20,
+    "selected_base_max": 30
+  },
+  "dependencies": {
+    "rank_bonuses": "docs/reviews/refonte-agent-2026-10-06/review-drone-invocation-rank-bonuses-02.json",
+    "rank_bonuses_sha256": "58d1bcc70e7ddda3cfb92c80e1f7bc3a9d0a1dce884e86bd00c547641a66340c",
+    "mapping": "docs/reviews/refonte-agent-2026-10-06/review-drone-owner-and-actor-attribute-mapping-02.json",
+    "mapping_sha256": "fce33ec0e1a72b98cd93f8a786ce90148dcce8f6ebadf9deba4d977881071f0c",
+    "familiar_direction": "docs/reviews/refonte-agent-2026-10-06/familiar-equipment-level-type-expiry-and-drone-level-decisions.json",
+    "familiar_direction_sha256": "4a54b262874a60aafc8f1a180cf1528ae340479b351d747bc2e6caecdee22d18",
+    "prior_equipment_proposal": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-PETS-EQ01-01.json",
+    "prior_equipment_proposal_sha256": "0d879104dbab7acb65c5916a3a97bf41504651bb5e0c3ebcab7df95e8b89fd2c",
+    "variance": "docs/reviews/refonte-agent-2026-10-06/review-weapon-damage-variance-03.json",
+    "variance_sha256": "c91ee9ca2aa1798000720b4acd791129f6aaffa3347b78f9e31e67723ae6c368"
+  },
+  "scope_audit": {
+    "level_and_type": "accepted_familiar_level_and_combat_type_axes_preserved;PETS_EQ01_exact_minimum_requirement_slots_and_complements_still_pending",
+    "weapon_variance": "D01_D02_agent_weapon_sampling_directions_are_reference;extension_to_familiar_attack_components_explicitly_proposed_here",
+    "raised_origin": "original_monster_stat_skill_and_level_directions_not_replaced_by_owner_copy;original_loot_or_gear_ownership_snapshot_not_defined",
+    "rank_benefit": "drone_rank_additive_bonus_remains_useful_with_equipped_weapon;no_second_native_damage_addition",
+    "visual": "no_new_weapon_body_layers_sprite_equipment_candidate_or_native_UI_created"
+  },
+  "unshown_cases_pending": [
+    "actual_native_ranges_by_model_and_level_and_balance_with_loot",
+    "slot_counts_and_type_level_item_family_requirements_PETS_EQ01_complements",
+    "weapon_mode_range_ammunition_energy_consumption_reload_multihit_and_AI",
+    "own_familiar_accuracy_critical_profiles_and_attack_defense_pipeline",
+    "mixed_components_secondary_status_proc_and_special_affix_eligibility",
+    "raised_OC07_power_percent_mapping_to_new_weapon_and_original_gear_loot_snapshots",
+    "item_transfer_equip_timing_distance_lifecycle_recall_and_save_persistence",
+    "multi_projectile_per_target_explosion_sampling_and_RNG_order",
+    "native_equipment_visual_layers_tooltips_and_all_other_unshown_cases"
+  ],
+  "player_copy_approval": "pending_explicit_review",
+  "numeric_and_scope_approval": "replacement_variance_native_profile_and_example_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

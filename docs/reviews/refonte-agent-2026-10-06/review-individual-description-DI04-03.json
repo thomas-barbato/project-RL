@@ -1,0 +1,205 @@
+{
+  "date": "2026-10-07",
+  "id": "DI04",
+  "title": "Tir de précision",
+  "previous_title": "Ricochet",
+  "revision": 3,
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI04-02.json",
+  "player_copy_markdown": "**DI04 · Tir de précision — Rang 11**\n\n*Vous ajustez votre visée et cherchez la faille dans la protection de votre cible.*\n\n**Effet actuel**\n\n- Projectiles tirés : **1**, sur une seule cible.\n- Dégâts hors critique : **20–24** (**100 %** de l’attaque).\n- Précision : **130 % de votre précision habituelle**.\n- Armure ignorée : **40 %** pour ce tir.\n- Chance de coup critique : **20 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Précision : **132 % de votre précision habituelle**.\n- Armure ignorée : **41 %**.\n- Chance de coup critique : **20,5 %**.\n\n**Coût : 11 énergie + 1 munition · Recharge : 4 tours.**\n**Portée : 6 cases.**\n\nLa cible doit être visible et le trajet dégagé. Le bonus de critique concerne uniquement ce tir.\n\nDégâts indiqués avant les défenses de la cible.\n\n**Nécessite une arme à distance active. Armes lourdes exclues.**",
+  "player_copy_sha256": "e20d5bec9522275acd2d872d0cc38fe10d90105039ad869ddb9e27cc4a3d62d7",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-08.json",
+  "source_skill_block_sha256": "d562816dcd0d96b73967f5932607d92b46388c4c3c98f5d8e4f887aab7422893",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/precision-shot-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "d968f51c740b9612b10988a5b076df1a2274faf48b8de43c0872b6b47a5a7fec",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "explicit_full_revised_card_user_acceptance",
+  "critical_chance_direction_approval": "explicit_user_addition_requested",
+  "replacement_direction_approval": "full_displayed_replacement_explicitly_accepted",
+  "roleplay_text_approval": "displayed_replacement_roleplay_explicitly_accepted",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "accepted_as_presented",
+  "numeric_rules_approval": "displayed_current_next_values_accepted_as_provisional_balance; unshown_full_curves_pending",
+  "detailed_conditions_approval": "displayed_single_projectile_visible_target_clear_path_and_shot_only_armor_bypass_critical_conditions_accepted; unshown_rules_pending",
+  "current_profile_status": "illustrative_not_a_user_save; weapon damage/range and ordinary critical chance are comparison inputs, not universal rules",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "perception": 10,
+    "agility": 10,
+    "reference_weapon_min_damage_before_attributes": 18,
+    "reference_weapon_max_damage_before_attributes": 22,
+    "range_status": "illustrative ordinary active weapon range 6; no bounce or extra range",
+    "ranged_attribute_multiplier_exact": {
+      "numerator": 451,
+      "denominator": 400
+    },
+    "active_compatible_ranged_weapon": true,
+    "other_damage_or_cost_modifiers": false,
+    "reference_damage_basis": "one projectile before attributes",
+    "active_weapon_range_cells": 6,
+    "active_weapon_is_heavy": false,
+    "ordinary_critical_chance_percent": 5,
+    "ordinary_critical_chance_status": "fictional comparison only, not a global rule or an attribute-derived value"
+  },
+  "formulas": {
+    "damage_percent": 100,
+    "noncritical_damage": "floor(base projectile damage * ranged attribute multiplier), once at end",
+    "accuracy_multiplier_percent": "110 + 2 * (effective_rank - 1)",
+    "armor_ignored_percent": "20 + 40 * (effective_rank - 1)/(effective_rank + 9)",
+    "critical_chance_bonus_percentage_points": "5 + 20 * (effective_rank - 1)/(effective_rank + 9); bounded below 25 points beyond learned cap; full curve pending",
+    "illustrative_critical_chance_percent": "fictional ordinary 5% + skill bonus; general critical caps/stacking/target eligibility remain pending",
+    "energy_cost": "8 + floor((effective_rank - 1)/3)",
+    "projectile_count": 1,
+    "maximum_targets": 1,
+    "ammunition_cost": 1,
+    "cooldown_turns": 4,
+    "range": "ordinary compatible active weapon range"
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "projectile_count": 1,
+    "maximum_targets": 1,
+    "damage_percent": 100,
+    "damage_min_noncritical_before_defenses": 20,
+    "damage_max_noncritical_before_defenses": 24,
+    "damage_min_exact_before_rounding": {
+      "numerator": 4059,
+      "denominator": 200
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 4961,
+      "denominator": 200
+    },
+    "accuracy_multiplier_percent": 130,
+    "armor_ignored_percent_exact": {
+      "numerator": 40,
+      "denominator": 1
+    },
+    "armor_ignored_percent_display": 40.0,
+    "critical_chance_bonus_percentage_points_exact": {
+      "numerator": 15,
+      "denominator": 1
+    },
+    "critical_chance_bonus_percentage_points_display": 15.0,
+    "ordinary_critical_chance_percent_illustrative": 5,
+    "critical_chance_percent_exact_for_illustrative_profile": {
+      "numerator": 20,
+      "denominator": 1
+    },
+    "critical_chance_percent_display": 20.0,
+    "energy_cost": 11,
+    "ammunition_cost": 1,
+    "cooldown_turns": 4,
+    "range_cells": 6
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "projectile_count": 1,
+    "maximum_targets": 1,
+    "damage_percent": 100,
+    "damage_min_noncritical_before_defenses": 20,
+    "damage_max_noncritical_before_defenses": 24,
+    "damage_min_exact_before_rounding": {
+      "numerator": 4059,
+      "denominator": 200
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 4961,
+      "denominator": 200
+    },
+    "accuracy_multiplier_percent": 132,
+    "armor_ignored_percent_exact": {
+      "numerator": 860,
+      "denominator": 21
+    },
+    "armor_ignored_percent_display": 41.0,
+    "critical_chance_bonus_percentage_points_exact": {
+      "numerator": 325,
+      "denominator": 21
+    },
+    "critical_chance_bonus_percentage_points_display": 15.5,
+    "ordinary_critical_chance_percent_illustrative": 5,
+    "critical_chance_percent_exact_for_illustrative_profile": {
+      "numerator": 430,
+      "denominator": 21
+    },
+    "critical_chance_percent_display": 20.5,
+    "energy_cost": 11,
+    "ammunition_cost": 1,
+    "cooldown_turns": 4,
+    "range_cells": 6
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_weapon_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "accuracy_multiplier_percent",
+      "armor_ignored_percent_display",
+      "critical_chance_percent_display"
+    ],
+    "unchanged_effects_omitted": [
+      "projectile_count",
+      "maximum_targets",
+      "damage_percent",
+      "damage_min_noncritical_before_defenses",
+      "damage_max_noncritical_before_defenses",
+      "energy_cost",
+      "ammunition_cost",
+      "cooldown_turns",
+      "range_cells"
+    ]
+  },
+  "active_weapon_requirement": {
+    "type": "ranged",
+    "equipped_and_active_required": true,
+    "approval": "explicit_user_requirement",
+    "incompatible_warning": "Nécessite une arme à distance active.",
+    "warning_approval": "accepted_as_presented",
+    "excluded_category": "heavy_ranged_weapon",
+    "heavy_exclusion_approval": "explicit_AR-HL01_user_confirmation",
+    "heavy_exclusion_copy": "Armes lourdes exclues.",
+    "heavy_exclusion_copy_approval": "accepted_as_presented_in_full_revised_card"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true
+  },
+  "critical_rules_dependency": {
+    "status": "general_critical_rules_pending_user_review",
+    "skill_id": "DI04",
+    "ordinary_critical_chance": "No universal value fixed; 5% is fictional example only.",
+    "critical_damage_multiplier": null,
+    "cap_stacking_eligibility_and_order": "pending_review"
+  },
+  "superseded_mechanics": [
+    "Wall-face selection and angular path.",
+    "One rebound and shared two-segment range.",
+    "80% post-bounce accuracy penalty.",
+    "Old 150/156% post-bounce damage."
+  ],
+  "unshown_rules_approval": "All new full curves, exact accuracy and defense resolution, supported ordinary weapon families, armor/resistance distinctions, affix/attribute stacking, resource/refusal behavior and random damage distribution remain pending where not already accepted. Ordinary critical chance, critical damage multiplier and order, eligible damage/targets, caps and stacking require general review. A fractional armor bypass applies only to this shot; no persistent armor reduction, bonus critical damage, auto-hit, native-burst duplication or wall bounce introduced.",
+  "visual_intention_approval": "old_wall_bounce_intention_superseded_in_amended_candidate; new_intention_not_created_pending_review",
+  "visual_approval": "pending_new_intention_and_native_animation_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Only stable DI04 revised; current source document and block hashes verified.",
+    "Noncritical damage 20-24 from 18-22 base and exact attribute multiplier 451/400, unchanged in next preview.",
+    "Rank 11 accuracy 130%, armor bypass 40%, critical bonus 15 points; rank 12 accuracy 132%, armor bypass 860/21=40.952...%, critical bonus 325/21=15.476... points.",
+    "Declared fictional ordinary critical chance 5% produces 20% then 430/21=20.476...%, displayed 20.5%; no universal baseline or critical damage multiplier created.",
+    "Learned 9 to 10 with gear +2, same weapon/range/attributes and ordinary critical comparison value; next block changes only three rows.",
+    "Armor and critical bonus formulas continue beyond learned cap with diminishing returns; whole curves remain proposed.",
+    "One RP paragraph; no table/player formula/rank breakdown/ordinary timing reminder.",
+    "Full displayed name/RP/current-next values and conditions accepted; general critical rules, unshown curves and new visual still pending; no runtime integration."
+  ]
+}

@@ -302,12 +302,12 @@ mod tests {
             .instance();
         assert_eq!(
             app.execute_command(GameCommand::EquipWeapon {
-                slot: 0,
+                slot: 2,
                 item: shotgun
             }),
             CommandOutcome::Applied
         );
-        app.active_weapon_slot = 0;
+        app.select_weapon_slot(2);
         app.begin_attack_aim(None);
         assert!(app.attack_aim.is_some());
         let fire = InputFrame {

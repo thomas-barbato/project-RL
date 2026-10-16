@@ -1,0 +1,54 @@
+{
+  "batch": "ANIM-S34-REV02",
+  "date": "2026-10-14",
+  "status": "approved",
+  "candidates": [
+    {
+      "number": 75,
+      "id": "SG01",
+      "variant": "SG01-A02"
+    },
+    {
+      "number": 76,
+      "id": "SG02",
+      "variant": "SG02-A02"
+    },
+    {
+      "number": 78,
+      "id": "SG04",
+      "variant": "SG04-A02"
+    }
+  ],
+  "campaign_integration": false,
+  "new_rules": false,
+  "prepared_responses": true,
+  "source_drawings_reused": [
+    {
+      "path": "../../../../assets/animations/agent/skill-icon-review-53/SG01-C02-master.png",
+      "sha256": "c7b85d46c0c4d4b237eca91ab53647718679b4d08bc36fbb014a65054897138a"
+    },
+    {
+      "path": "../../../../assets/animations/agent/skill-icon-review-53/SG02-C02-master.png",
+      "sha256": "4df1f81bb98ba7cd0ff4efaa3589806477173caa263820d831be5a63cc1c00cc"
+    },
+    {
+      "path": "../../../../assets/animations/agent/skill-animation-review-72/grenade-source.png",
+      "sha256": "87c66c4f417c29eff9d0fa52727da29e26d3d967e7dc1ce2da96c9e0080011d0"
+    },
+    {
+      "path": "../../../../assets/animations/agent/skill-animation-review-72/fragment-burst-source.png",
+      "sha256": "ba09d719bda956bba1c80e23446d6cc0758396aff2c68b805c12a7e420089ad0"
+    }
+  ],
+  "player_self_blindness": "not_decided",
+  "probability_and_campaign_AI": "not_simulated",
+  "reference_mechanics_only": "SG00-A03; projectile also revised",
+  "grenade_rendering": "Simplified RGBA source sprites, 18 native pixels tall, original shapes and colors preserved.",
+  "status_symbol": "Almond eye, visible pupil, red diagonal bar; runtime code-native glyph, SVG reference.",
+  "generation": "generation.json",
+  "same_gameplay_timelines": 48,
+  "previous_gallery_preserved": "../skill-animation-review-74/cote-a-cote.html",
+  "visual_approved": true,
+  "acceptance": "visual-acceptance-01.json",
+  "reference_projectile_visual_approved": true
+}

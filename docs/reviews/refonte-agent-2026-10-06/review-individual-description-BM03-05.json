@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-08",
+  "id": "BM03",
+  "review_id": "BM03",
+  "revision": 5,
+  "title": "Tempo offensif",
+  "branch": "Buffs de mêlée",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-134.json",
+  "source_skill_manifest_sha256": "a8f51ae56a03c54118be964c2b40513761ac83992107a4b2458078bba194ae79",
+  "source_skill_block_sha256": "17c18efd69d70750abb4f175db9919c924edf91ca0f364aab7d5c264d6f0023b",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "equipped_and_active_weapon_type": "melee",
+    "other_modifiers": false,
+    "charges": "preview_shows_per_charge_and_maximum_not_a_live_three_charge_state"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "damage_bonus_percent_per_charge": 25,
+    "maximum_charges": 3,
+    "maximum_damage_bonus_percent": 75
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "damage_bonus_percent_per_charge": 27,
+    "maximum_charges": 3,
+    "maximum_damage_bonus_percent": 81
+  },
+  "formulas_proposed": {
+    "damage_bonus_percent_per_charge": "5+2*(effective_rank-1)",
+    "maximum_charges": 3,
+    "damage_bonus_percent": "charges*(5+2*(effective_rank-1))",
+    "status": "new_meaningful_progression_proposal_pending_review;full_curves_and_damage_application_pending"
+  },
+  "conditions_proposed": {
+    "primary_melee_hit_removing_HP_adds_one_charge": "for_subsequent_hits;multi_hit_action_resolution_unshown_pending",
+    "maximum_charges": 3,
+    "miss_resets_series": true,
+    "movement_resets_series": true,
+    "other_action_advancing_time_resets_series": true,
+    "menus_and_marking_without_turn_passage_preserve_series": true,
+    "equipment_bonus_does_not_create_charge": true,
+    "charge_reaches_maximum_on_third_eligible_hit": "maximum_bonus_on_following_hit;shown_rules_derive_this_sequence;explicit_examples_unshown"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "shown_RP_explicitly_accepted_under_BM03-ACCEPT01",
+  "numeric_rules_approval": "shown25_to27_percent_per_charge_three_charge_cap75_to81_percent_maximum_explicitly_accepted_as_provisional_balance;unshown_curve_pending",
+  "detailed_conditions_approval": "shown_primary_melee_HP_damage_charge_for_following_hits_miss_move_other_time_action_resets_and_no_time_menu_mark_preservation_explicitly_accepted;unshown_cases_pending",
+  "visual_intention_approval": "explicit_approval_of_status_icon_charge_counter_hover_bonus_total_including_parenthetical_bonus;native_pending",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "shown_card_accepted;unshown_curve_cases_and_native_pending",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "no_fictitious_total_weapon_damage_variance": true,
+    "damage_display": "percent_modifier_only;total_active_weapon_damage_range_not_invented"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "damage_bonus_percent_per_charge",
+      "maximum_damage_bonus_percent"
+    ]
+  },
+  "player_copy_markdown": "**BM03 · Tempo offensif — Rang 11 · Passif**\n\n*Vos coups s’enchaînent avec une violence croissante.*\n\n**Effets actuels**\n\n- Bonus de dégâts par charge : **+25 %**.\n- Charges maximales : **3**.\n- Bonus de dégâts maximal : **+75 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus de dégâts par charge : **+27 %**.\n- Bonus de dégâts maximal : **+81 %**.\n\nChaque frappe principale de mêlée qui retire des PV ajoute une charge pour les coups suivants.\n\nUn coup manqué, un déplacement ou une autre action qui fait avancer le temps rompt la série. Les menus et le marquage sans passage de tour la conservent.",
+  "player_copy_sha256": "34145ddf494dacc5d7594111e7a87fd8191b50dd5cd328e2f6fe8e539842dbfe",
+  "visual_copy_markdown": "**Affichage proposé :** Tempo offensif apparaît dans la barre des buffs et debuffs du joueur, avec un compteur de charges sur l’icône et le bonus actuel au survol. Au-dessus de la cible : **145 (+45)** signifie 145 dégâts au total, dont 45 dus au bonus.",
+  "visual_copy_sha256": "9ab22fdfa77dc01316d4c3c5930b8a1bd38b1bb651e9ad38dc6dbe6fd09b03aa",
+  "unshown_cases_pending": [
+    "full_curve_rounding_and_damage_modifier_order;displayed_rank1_and_rank10_references_pending_user_review",
+    "damage_bonus_eligibility_for_added_elements_weapon_skills_secondary_hits_and_transformed_attacks",
+    "multi_target_multi_hit_and_dual_wield_charge_and_miss_resolution",
+    "zero_HP_damage_absorption_and_charge_trigger_order",
+    "NPC_reactions_damage_taken_immobilization_weapon_swap_map_change_and_no_time_actions",
+    "status_icon_exact_charges_placement_tooltip_palette_zero_charge_visibility_multi_hit_mixed_bonus_attribution_and_native_prototype"
+  ],
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM03-04.json",
+  "previous_card_sha256": "4e2ef491320d0e7b037c325e589409093ae036a90143152bc18fe4e8fb7f289c",
+  "visual_direction_decisions": "docs/reviews/refonte-agent-2026-10-06/tempo-offensive-status-bar-and-bonus-feedback-decisions.json",
+  "superseded_visual_copy_markdown": "**Visuel envisagé :** des repères s’ajoutent près de la poignée, jusqu’à trois, et la traînée de l’arme s’accentue.",
+  "status_display_direction": {
+    "primary_location": "player_buff_debuff_bar",
+    "charges_on_icon": "explicit_last_synthesis_accepted",
+    "name_and_current_bonus_on_hover": "explicit_last_synthesis_accepted",
+    "remaining_turns": "only_for_timed_status;BM03_series_has_no_new_duration",
+    "icon_lifetime_and_zero_charge_cases": "pending_native_review",
+    "all_affecting_player_statuses": "explicit_request_and_confirmation_HUD01-ALL01"
+  },
+  "floating_bonus_display_proposal": {
+    "format": "total (+bonus)",
+    "example": "145 (+45)",
+    "bonus_is_included_in_total": true,
+    "native_render_and_exact_damage_attribution": "pending_review",
+    "no_new_damage": "display_only",
+    "format_and_inclusive_example_approval": "explicit_last_synthesis_accepted"
+  },
+  "display_acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/status-bar-general-and-tempo-feedback-acceptance-decisions.json",
+  "revision_decisions": "docs/reviews/refonte-agent-2026-10-06/review-tempo-offensive-meaningful-progression-revision-01.json",
+  "revision_decisions_sha256": "9565123d6c6777a666c9347cfa98f2a03cd365b0cec9faf2fe98e7974a7bddc2",
+  "full_card_shown_this_turn": false,
+  "visual_direction_reshown_this_turn": false,
+  "prior_reference_progression_proposal": {
+    "effective_rank1_maximum_damage_bonus_percent": 15,
+    "effective_rank10_maximum_damage_bonus_percent": 42,
+    "status": "rank1_and_rank10_maximums_shown_in_commentary_pending_user_review"
+  },
+  "reference_progression_proposal": {
+    "effective_rank1_maximum_damage_bonus_percent": 15,
+    "effective_rank10_maximum_damage_bonus_percent": 69,
+    "status": "prepared_new_curve_references_not_shown;pending_user_review"
+  },
+  "prior_reference_progression_copy_markdown": "Le passif augmente les dégâts des frappes suivantes, jusqu’à trois charges. Je conserve une progression de +15 % maximum au rang 1 à +42 % au rang 10 ; cette fiche reste une proposition à valider.",
+  "prior_reference_progression_copy_sha256": "e7b2f8a2db2701489dde27b7167262ff6da926af364a882a654ebc888a999792",
+  "prepared_reference_progression_copy_markdown": "Nouvelle courbe proposée : quinze pour cent au maximum au rang un, soixante-neuf au rang dix ; références préparées et non montrées.",
+  "prepared_reference_progression_copy_sha256": "fc61c3f8748228dc9cc173c390fe49cbb49173422b7add581b595a1fb1a048b3",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/tempo-offensive-description-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "399e3c1c0734cbfe7cbb1c7df4515f923d4e10bb0e41d74a1444702a6696b80a",
+  "accepted_full_card_copy_markdown": "Passons à **Tempo offensif**. Son affichage dans la barre des buffs est déjà validé ; voici la proposition pour ses règles et ses chiffres.\n\n**BM03 · Tempo offensif — Rang 11 · Passif**\n\n*Vos coups s’enchaînent avec une violence croissante.*\n\n**Effets actuels**\n\n- Bonus de dégâts par charge : **+25 %**.\n- Charges maximales : **3**.\n- Bonus de dégâts maximal : **+75 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus de dégâts par charge : **+27 %**.\n- Bonus de dégâts maximal : **+81 %**.\n\nChaque frappe principale de mêlée qui retire des PV ajoute une charge pour les coups suivants.\n\nUn coup manqué, un déplacement ou une autre action qui fait avancer le temps rompt la série. Les menus et le marquage sans passage de tour la conservent.",
+  "accepted_full_card_copy_sha256": "087e07abd6222ddc68ef620fb08081583d4db001193936a60e728a4c10c9fea2"
+}

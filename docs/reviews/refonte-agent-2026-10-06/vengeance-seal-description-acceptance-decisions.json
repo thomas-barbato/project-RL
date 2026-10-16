@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-08",
+  "review_id": "BM05-ACCEPT01",
+  "skill_id": "BM05",
+  "title": "Sceau de vindicte",
+  "user_answer": "parfait :) je valide",
+  "approval": "explicit_full_displayed_individual_card_acceptance",
+  "accepted_roleplay": "Un sceau vengeur retourne une part de la magie ennemie contre ses auteurs.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "direct_magic_damage_reflected_percent": 40,
+    "duration_turns": 6,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "direct_magic_damage_reflected_percent": 43,
+    "duration_turns": 6,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "accepted_conditions": [
+    "return direct magical damage actually suffered after protections to author",
+    "poison and all indirect damage excluded including bleeding and persistent effects",
+    "human form required to cast",
+    "Silence blocks use"
+  ],
+  "accepted_visual_direction": "original spell_or_magical_projectile visibly returns to author;buff_icon_shows_remaining_duration",
+  "accepted_copy_sha256": "072ab353bcb59e95f877a29342474dd9a631f49ef20a426a788fbe9697ff438a",
+  "accepted_visual_copy_sha256": "6b10e4c723e575d2afa468c9c9a96192d5948fea3b9f47d2001fc2126a2ed6e5",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM05-01.json",
+  "source_card_sha256": "89c25c1691075034d41c4a4bdae80376467ce657fa44a5eab8c9486a84e55f70",
+  "unshown_full_curves_defaults_cap100_rounding_author_recipient_defenses_lethal_mixed_and_clock_cases": "pending_review",
+  "native_render": "pending_prototype_review",
+  "runtime_integration": "not_integrated"
+}

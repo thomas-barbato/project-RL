@@ -1,0 +1,26 @@
+{
+  "batch": "ANIM-GEL01",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 20,
+      "id": "GEL",
+      "variant": "GEL-A04",
+      "name": "Gel",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 19,
+      "id": "FR06",
+      "variant": "FR06-A02",
+      "name": "Explosion cristalline avec Gel animé",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "effect": "Translucent ice surrounds the whole actor with a slow six-frame shimmer. Actor body and equipment drawings are preserved.",
+  "timing": "Visual loop continues while status is present. Only explicit turns reduce Gel. Removal or crystalline consumption stops the attached effect immediately.",
+  "examples": "Frozen player and enemy, ordinary enemy without frost, expiry, replacement by Burn, crystalline consumption, four directions and walls.",
+  "scope": "Isolated debug visual fixture. No new status rules, damage, action denial, AI, RNG, saves or campaign integration.",
+  "retained": "All earlier review artifacts, approved Fire, Mur and Blizzard art, catalogue and actor artwork."
+}

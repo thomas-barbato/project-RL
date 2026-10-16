@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S38",
+  "status": "visual_candidates_accepted",
+  "approval": "visual-acceptance-01.json",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 85,
+      "id": "ES06",
+      "variant": "ES06-A01",
+      "title": "Réflexes balistiques"
+    },
+    {
+      "number": 86,
+      "id": "T02",
+      "variant": "T02-A01",
+      "title": "Pas spectral"
+    }
+  ],
+  "effective_rank": 1,
+  "rules": "Current catalogue. Prepared hit and miss examples; no new dodge chance, immunity, reflection, AI or damage formula.",
+  "native_tile": 64,
+  "rendering": "Existing native-64 player and held equipment preserved. Short lateral dodge and blue afterimage; spectral step with a faint silhouette outline while its timed bonus remains.",
+  "scenes": 14,
+  "prepared_damage": {
+    "amount": 12,
+    "type": "physical",
+    "purpose": "display example only, not balance"
+  },
+  "preview": "../apercu-animations.html?lot=81",
+  "native_lab": "--apercu-laboratoire-competences --lot-pas-reflexes",
+  "source": "src/agent_skill_lab_review/fire_painted/dodge_step.rs",
+  "remaining_unshown": 25,
+  "temporary_capture_policy": "Remove native capture PNGs and browser proof images after verification. Reuse apercu-animations.html; preserve sources, code and approval records.",
+  "previous_acceptance": "../skill-animation-review-80/visual-acceptance-01.json",
+  "verification": {
+    "native_capture_exit": 0,
+    "final_debug_build": true,
+    "browser_views": 14,
+    "pixel_equality": true,
+    "format_check": true,
+    "wall_face_corrected": true,
+    "unchanged_other_views": 13
+  },
+  "source_sha256": "241353865fa745c9f5e10800207102b997af2d4560b5bef3db38fe80f3fb2dfd",
+  "playback_bytes": 3209020
+}

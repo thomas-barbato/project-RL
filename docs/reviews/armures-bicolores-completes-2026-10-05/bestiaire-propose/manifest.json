@@ -1,0 +1,3261 @@
+[
+  {
+    "number": 1,
+    "review_id": "proposal:001",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Monstrueux",
+    "name": "Écorché",
+    "name_status": "provisoire",
+    "description": "Eyeless hunched humanoid; huge ivory shoulders, small sunken head, thick crimson forearms, dark purple belly, two short digitigrade legs; empty clawed hands.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      30
+    ],
+    "source": "sources/001.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/001-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/001-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        721,
+        642
+      ],
+      "native_bounds": [
+        1,
+        4,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        791,
+        349
+      ],
+      "native_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 23,
+    "packaging_version": 2,
+    "source_sha256": "ae8befa722fcacff44c9e133dcb69dee9b18d44273aae6e33e1f35b5ccc9f09c"
+  },
+  {
+    "number": 2,
+    "review_id": "proposal:002",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Monstrueux",
+    "name": "Gueulard",
+    "name_status": "provisoire",
+    "description": "Squat broad orange-to-rust beast on two legs with a single enormous vertical ivory-toothed mouth replacing its head, dark blue heavy forearms, no eyes.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      28
+    ],
+    "source": "sources/002.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/002-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/002-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        776,
+        665
+      ],
+      "native_bounds": [
+        1,
+        5,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        833,
+        347
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "f43fb622caaecb11608811fd55f391dfc5ce17bff9aade34fc02e4ea7b42e612"
+  },
+  {
+    "number": 3,
+    "review_id": "proposal:003",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Monstrueux",
+    "name": "Rampant",
+    "name_status": "provisoire",
+    "description": "Long low six-limbed flesh crawler, pale mint ribbed carapace and substantial purple soft belly; hooked front claws and small eyeless snout. Side three-quarter view.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      19
+    ],
+    "source": "sources/003.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/003-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/003-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        818,
+        540
+      ],
+      "native_bounds": [
+        1,
+        12,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        804,
+        336
+      ],
+      "native_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 23,
+    "packaging_version": 2,
+    "source_sha256": "552b56a5d8f0ac86bfd5b0b236b7197be8f3f7bd3427ff299d9e3832e6751763"
+  },
+  {
+    "number": 4,
+    "review_id": "proposal:004",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Monstrueux",
+    "name": "Crâne-fendu",
+    "name_status": "provisoire",
+    "description": "Lean asymmetric charcoal mutant, clearly split ivory skull, one oversized blue claw arm, one short crimson arm, two thin legs; clear negative spaces.",
+    "tile_size": 32,
+    "maximum": [
+      25,
+      30
+    ],
+    "source": "sources/004.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/004-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/004-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        665,
+        682
+      ],
+      "native_bounds": [
+        3,
+        5,
+        28,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        860,
+        266
+      ],
+      "native_bounds": [
+        1,
+        22,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 21,
+    "corpse_colors": 22,
+    "packaging_version": 2,
+    "source_sha256": "a04389a4b253166c29df4bbde016a1d81770e7acd9a31241a0013c45be549f48"
+  },
+  {
+    "number": 5,
+    "review_id": "proposal:005",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Lovecraftien",
+    "name": "Œil des caves",
+    "name_status": "provisoire",
+    "description": "Radial floating fleshy eye creature; one large ivory eyeball with purple iris, four thick turquoise dangling tentacles with pale inner surfaces. Transparent gaps between tentacles.",
+    "tile_size": 32,
+    "maximum": [
+      29,
+      27
+    ],
+    "source": "sources/005.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/005-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/005-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        758,
+        723
+      ],
+      "native_bounds": [
+        2,
+        4,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        802,
+        362
+      ],
+      "native_bounds": [
+        1,
+        17,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 22,
+    "corpse_colors": 23,
+    "packaging_version": 2,
+    "source_sha256": "bac57db0621d4c3300bb2eaa45d7809c717f1266e87207a471858d885c545938"
+  },
+  {
+    "number": 6,
+    "review_id": "proposal:006",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Lovecraftien",
+    "name": "Noueur",
+    "name_status": "provisoire",
+    "description": "Headless creature made of three thick interlaced ochre and deep violet fleshy ribbons around one large EMPTY transparent central cavity; thick lower loops contact the ground.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      27
+    ],
+    "source": "sources/006.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/006-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/006-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        665,
+        694
+      ],
+      "native_bounds": [
+        3,
+        4,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        817,
+        402
+      ],
+      "native_bounds": [
+        2,
+        16,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 22,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "33351520d38069c7cac45e594755f8aae31c1c336610deb6d6a08972d236b9dc"
+  },
+  {
+    "number": 7,
+    "review_id": "proposal:007",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Lovecraftien",
+    "name": "Porte-bouche",
+    "name_status": "provisoire",
+    "description": "Upright cyan pear-shaped creature on two sprawling purple fleshy leg-fins; its stomach is one huge vertical ivory-toothed black maw, small stalk head without face.",
+    "tile_size": 32,
+    "maximum": [
+      26,
+      30
+    ],
+    "source": "sources/007.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/007-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/007-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        707,
+        749
+      ],
+      "native_bounds": [
+        3,
+        3,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        804,
+        333
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 22,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "fe1993e89c98a326555f5d1a258ee7fa2b556b1d2c05af4655408d6966872533"
+  },
+  {
+    "number": 8,
+    "review_id": "proposal:008",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Lovecraftien",
+    "name": "Nageur du vide",
+    "name_status": "provisoire",
+    "description": "Compact dark blue hovering fish-like monster, a split ivory beak, broad orange membranous fins and three trailing purple thick appendages; side three-quarter view, no halo.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      23
+    ],
+    "source": "sources/008.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/008-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/008-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        748,
+        652
+      ],
+      "native_bounds": [
+        3,
+        8,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        846,
+        389
+      ],
+      "native_bounds": [
+        1,
+        17,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "7d184810d40969d5112c8399c52babfa6f861f0c8cf4e5006a1e9bbd10c0d185"
+  },
+  {
+    "number": 9,
+    "review_id": "proposal:009",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Humains et possédés",
+    "name": "Pillard",
+    "name_status": "provisoire",
+    "description": "Human full height front view, mustard hood with visible face, dark teal vest, ochre sleeves, plum trousers, short metal club held correctly down in right hand. Boots and head separated.",
+    "tile_size": 32,
+    "maximum": [
+      24,
+      30
+    ],
+    "source": "sources/009.png",
+    "living": "../../../../assets/source-art/bestiaire-proposition-2026-10-05/tiles/009-vivant.png",
+    "corpse": "../../../../assets/source-art/bestiaire-proposition-2026-10-05/tiles/009-cadavre.png",
+    "can_equip": true,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        500,
+        736
+      ],
+      "native_bounds": [
+        6,
+        1,
+        26,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        832,
+        291
+      ],
+      "native_bounds": [
+        2,
+        21,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 23,
+    "packaging_version": 2,
+    "source_sha256": "6b75292314ae4a6ba672e372a746142859ab4d2bf6cf109fa677c9704a688aa8"
+  },
+  {
+    "number": 10,
+    "review_id": "proposal:010",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Humains et possédés",
+    "name": "Fusilier",
+    "name_status": "provisoire",
+    "description": "Human front view, angular blue helmet with narrow dark opening, large ivory tactical vest, blue trousers and sleeves, charcoal rifle held horizontally across chest in BOTH hands.",
+    "tile_size": 32,
+    "maximum": [
+      29,
+      30
+    ],
+    "source": "sources/010.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/010-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/010-corpse-32.png",
+    "can_equip": true,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        527,
+        761
+      ],
+      "native_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        775,
+        306
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 20,
+    "corpse_colors": 22,
+    "packaging_version": 2,
+    "source_sha256": "dffb4776173d910753da99c276368c9fac23254b68fb6d01f8caaf2c8e457573"
+  },
+  {
+    "number": 11,
+    "review_id": "proposal:011",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Humains et possédés",
+    "name": "Possédé",
+    "name_status": "provisoire",
+    "description": "Possessed human with pale gray skin, bent neck, tiny white eyes, large crimson torn jacket and dark turquoise trousers, empty bent hands, slight stoop. Same human height.",
+    "tile_size": 32,
+    "maximum": [
+      24,
+      30
+    ],
+    "source": "sources/011.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/011-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/011-corpse-32.png",
+    "can_equip": true,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        458,
+        721
+      ],
+      "native_bounds": [
+        6,
+        1,
+        25,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        791,
+        277
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "ab266582eddd7280f8c2206492d72a5050f4c8611fe1f357dabc6fe01ed0492b"
+  },
+  {
+    "number": 12,
+    "review_id": "proposal:012",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Humains et possédés",
+    "name": "Fanatique",
+    "name_status": "provisoire",
+    "description": "Human in deep violet hooded long coat with large ivory front panel and covered face; heavy short rusty cleaver held by proper handle in one hand, other hand empty. Industrial cult style.",
+    "tile_size": 32,
+    "maximum": [
+      25,
+      30
+    ],
+    "source": "sources/012.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/012-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/012-corpse-32.png",
+    "can_equip": true,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        540,
+        720
+      ],
+      "native_bounds": [
+        5,
+        1,
+        27,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        762,
+        304
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 21,
+    "packaging_version": 2,
+    "source_sha256": "b44934457f43474cda14d6ef468defa36627004345581fcf9090bbc23c680dda"
+  },
+  {
+    "number": 13,
+    "review_id": "proposal:013",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Humains robotisés",
+    "name": "Greffé",
+    "name_status": "provisoire",
+    "description": "Human face exposed on one side, one ivory plate over the other half, one cobalt mechanical shoulder and arm, broad brick red work vest, navy legs. Bare other arm, no weapons.",
+    "tile_size": 32,
+    "maximum": [
+      25,
+      30
+    ],
+    "source": "sources/013.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/013-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/013-corpse-32.png",
+    "can_equip": true,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        527,
+        745
+      ],
+      "native_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        831,
+        319
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 23,
+    "packaging_version": 2,
+    "source_sha256": "65df3cd2c19c8058f57044436b0d07029a18811e07722b7012481c27866229a5"
+  },
+  {
+    "number": 14,
+    "review_id": "proposal:014",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Humains robotisés",
+    "name": "Mâchoire d’acier",
+    "name_status": "provisoire",
+    "description": "Bald human with oversized dark steel lower jaw, purple armored torso, wide ochre belt and trousers, two mechanical shins; clawed metal hand clearly attached to wrist.",
+    "tile_size": 32,
+    "maximum": [
+      26,
+      30
+    ],
+    "source": "sources/014-r2.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/014-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/014-corpse-32.png",
+    "can_equip": true,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "revision": 2,
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        597,
+        730
+      ],
+      "native_bounds": [
+        3,
+        1,
+        28,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        831,
+        343
+      ],
+      "native_bounds": [
+        2,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 20,
+    "corpse_colors": 21,
+    "packaging_version": 2,
+    "source_sha256": "4837677488b6fec77d9b9946c5ca0a1ea37889d68d7a5ac7559052a81ac011b0"
+  },
+  {
+    "number": 15,
+    "review_id": "proposal:015",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Humains robotisés",
+    "name": "Porte-sonde",
+    "name_status": "provisoire",
+    "description": "Human wearing ivory long technician coat with substantial teal sleeves and trousers; one compact blue cranial apparatus, one steel telescopic forearm ending in thick blunt medical probe.",
+    "tile_size": 32,
+    "maximum": [
+      26,
+      30
+    ],
+    "source": "sources/015.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/015-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/015-corpse-32.png",
+    "can_equip": true,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        458,
+        705
+      ],
+      "native_bounds": [
+        6,
+        1,
+        25,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        805,
+        277
+      ],
+      "native_bounds": [
+        1,
+        21,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "21e7c534d5e73ba8742b3953675e0b7983e1abd89f11c80bae857f76c4f378ef"
+  },
+  {
+    "number": 16,
+    "review_id": "proposal:016",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Humains robotisés",
+    "name": "Marcheur soudé",
+    "name_status": "provisoire",
+    "description": "Human upper torso in mustard industrial chest shell and burgundy sleeves, clearly organic head; lower body replaced by TWO thick gunmetal articulated legs and broad cobalt feet.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      30
+    ],
+    "source": "sources/016-r3.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/016-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/016-corpse-32.png",
+    "can_equip": true,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "revision": 3,
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        487,
+        694
+      ],
+      "native_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        806,
+        293
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "801cf9b9c7a259f33634b8ddefe333fc79c498542a86e4767e192faf6c2430fa",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 21,
+    "corpse_colors": 23
+  },
+  {
+    "number": 17,
+    "review_id": "proposal:017",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Démons et mages",
+    "name": "Cornu",
+    "name_status": "provisoire",
+    "description": "Stocky organic demon with broad dark crimson torso and calves, two large curved ivory horns, substantial blue loincloth and forearms, blunt claw hands, NO armor or weapon.",
+    "tile_size": 32,
+    "maximum": [
+      29,
+      30
+    ],
+    "source": "sources/017.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/017-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/017-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        651,
+        735
+      ],
+      "native_bounds": [
+        2,
+        1,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        818,
+        333
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "bd0b10cd57385b83a1a881768c4673f950cf657cf292ef2b4e1296ff2f62a729"
+  },
+  {
+    "number": 18,
+    "review_id": "proposal:018",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Démons et mages",
+    "name": "Mage des cendres",
+    "name_status": "provisoire",
+    "description": "Thin horned mage in charcoal long robe with broad violet inner panel, pale skull-like face and small crimson horns; short dark-metal staff with ONE chunky orange ember at top held in hand.",
+    "tile_size": 32,
+    "maximum": [
+      27,
+      30
+    ],
+    "source": "sources/018.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/018-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/018-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        598,
+        693
+      ],
+      "native_bounds": [
+        3,
+        1,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        805,
+        320
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 21,
+    "corpse_colors": 22,
+    "packaging_version": 2,
+    "source_sha256": "74f28b4c8300211cfbe6d8cc44c29234f5ce68d742559ee876fd2a8aa0a26fae"
+  },
+  {
+    "number": 19,
+    "review_id": "proposal:019",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Démons et mages",
+    "name": "Sorcière du sang",
+    "name_status": "provisoire",
+    "description": "Demonic feminine silhouette with sweeping teal horns, crimson heavy robe and broad ivory center panel, one pale claw hand raised and one lowered; no particle effects or magic halos.",
+    "tile_size": 32,
+    "maximum": [
+      27,
+      30
+    ],
+    "source": "sources/019.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/019-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/019-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        597,
+        845
+      ],
+      "native_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        833,
+        345
+      ],
+      "native_bounds": [
+        2,
+        19,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "ff382d725f527bc817d9886cefc4a3b4e6cb8ff5cb1b27e4f677dc0a895884b7"
+  },
+  {
+    "number": 20,
+    "review_id": "proposal:020",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Démons et mages",
+    "name": "Dévoreur",
+    "name_status": "provisoire",
+    "description": "Four-legged muscular purple demon, massive ivory bony head, broad copper back plates, large blunt teeth and thick short tail, low predatory three-quarter side posture.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      24
+    ],
+    "source": "sources/020.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/020-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/020-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        778,
+        609
+      ],
+      "native_bounds": [
+        1,
+        8,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        826,
+        376
+      ],
+      "native_bounds": [
+        1,
+        17,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 23,
+    "packaging_version": 2,
+    "source_sha256": "7b9c9a5ea281192a690f6ac6b5da45fa6a25e790ab5909799e01ece8efc3f507"
+  },
+  {
+    "number": 21,
+    "review_id": "proposal:021",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Robots et androïdes",
+    "name": "Broyeur",
+    "name_status": "provisoire",
+    "description": "Compact ochre industrial robot supported by TWO black continuous caterpillar tracks; large rectangular blue body with a single ivory vertical central panel; two short attached crusher arms.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      25
+    ],
+    "source": "sources/021.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/021-living-32.png",
+    "corpse": "../../../../assets/source-art/bestiaire-proposition-2026-10-05/tiles/021-cadavre.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        777,
+        567
+      ],
+      "native_bounds": [
+        1,
+        9,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        815,
+        361
+      ],
+      "native_bounds": [
+        2,
+        18,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 22,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "959899ec0eba98b1af7cbb542df34dfdd9740a5953942529a9f175e65a74d6bb"
+  },
+  {
+    "number": 22,
+    "review_id": "proposal:022",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Robots et androïdes",
+    "name": "Veilleur",
+    "name_status": "provisoire",
+    "description": "Four-legged low gunmetal security robot with clearly separate supports, cobalt squat body, one large ivory round sensor on front and red lens. No floating guns.",
+    "tile_size": 32,
+    "maximum": [
+      29,
+      24
+    ],
+    "source": "sources/022.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/022-living-32.png",
+    "corpse": "../../../../assets/source-art/bestiaire-proposition-2026-10-05/tiles/022-cadavre.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        762,
+        528
+      ],
+      "native_bounds": [
+        1,
+        11,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        818,
+        320
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "5bd1b943c82c45dc5b21c5bd9c38038fd9e800ff7291a2fe5ee1917e347f44e3"
+  },
+  {
+    "number": 23,
+    "review_id": "proposal:023",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Robots et androïdes",
+    "name": "Androïde",
+    "name_status": "provisoire",
+    "description": "Front-facing human-height angular robot, cobalt chest and limbs, ivory face and large ivory pelvis plates, dark charcoal joints, one short squared metal hand each side. No visor helmet.",
+    "tile_size": 32,
+    "maximum": [
+      23,
+      30
+    ],
+    "source": "sources/023.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/023-living-32.png",
+    "corpse": "../../../../assets/source-art/bestiaire-proposition-2026-10-05/tiles/023-cadavre.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        514,
+        793
+      ],
+      "native_bounds": [
+        6,
+        1,
+        25,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        804,
+        321
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 23,
+    "packaging_version": 2,
+    "source_sha256": "a22339fb45c25d7f3eba6cb2dd9076a3b9ac9756de26b3fb1d923e8866bed202"
+  },
+  {
+    "number": 24,
+    "review_id": "proposal:024",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Robots et androïdes",
+    "name": "Araignée d’acier",
+    "name_status": "provisoire",
+    "description": "Six-legged low mechanical spider, deep violet armored round body with TWO broad ivory plates, copper hinge joints, one small orange central eye; all six legs distinct.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      20
+    ],
+    "source": "sources/024.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/024-living-32.png",
+    "corpse": "../../../../assets/source-art/bestiaire-proposition-2026-10-05/tiles/024-cadavre.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        764,
+        554
+      ],
+      "native_bounds": [
+        2,
+        11,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        818,
+        361
+      ],
+      "native_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 23,
+    "packaging_version": 2,
+    "source_sha256": "097b13dfe836182bced2261b0b43e1ef68affcc2bc3415d001cfd5f2cf43bffa"
+  },
+  {
+    "number": 25,
+    "review_id": "proposal:025",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Robots-démons",
+    "name": "Cornu de fer",
+    "name_status": "provisoire",
+    "description": "Organic crimson demon head with two unequal ivory horns, broad deep teal mechanical torso, one large exposed crimson fleshy arm and one dark steel clamp arm, armored boots.",
+    "tile_size": 32,
+    "maximum": [
+      29,
+      30
+    ],
+    "source": "sources/025.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/025-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/025-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        750,
+        776
+      ],
+      "native_bounds": [
+        1,
+        1,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        791,
+        332
+      ],
+      "native_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 20,
+    "corpse_colors": 21,
+    "packaging_version": 2,
+    "source_sha256": "ed1deaad490094e79901ab9e039c3bc0616f3011050b1b3928685ad94af3f53b"
+  },
+  {
+    "number": 26,
+    "review_id": "proposal:026",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Robots-démons",
+    "name": "Prêcheur bionique",
+    "name_status": "provisoire",
+    "description": "Thin horned ivory demonic face above burgundy long robe with LARGE turquoise chest harness; one mechanical black forearm and a thick bent steel spine behind neck, clear human scale.",
+    "tile_size": 32,
+    "maximum": [
+      26,
+      30
+    ],
+    "source": "sources/026.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/026-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/026-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        527,
+        748
+      ],
+      "native_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        929,
+        319
+      ],
+      "native_bounds": [
+        1,
+        21,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "a09d2a359bdbf3fa035477961f900e6cf99d36a544bc03430526c732390d0f98"
+  },
+  {
+    "number": 27,
+    "review_id": "proposal:027",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Robots-démons",
+    "name": "Gueule mécanique",
+    "name_status": "provisoire",
+    "description": "Low four-legged organic purple monster with copper machine jaws, large ivory armored back shell and two organic plus two mechanical thick legs; unmistakable hybrid body.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      24
+    ],
+    "source": "sources/027.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/027-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/027-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        790,
+        596
+      ],
+      "native_bounds": [
+        1,
+        8,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        845,
+        376
+      ],
+      "native_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 21,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "80d9cbdcead7dac0b26a94fa077ce47f94991f5c143330e50f4a8aa5b19ce895"
+  },
+  {
+    "number": 28,
+    "review_id": "proposal:028",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Robots-démons",
+    "name": "Ailé d’acier",
+    "name_status": "provisoire",
+    "description": "Compact red demon torso, two blue steel wings folded upward as broad angular plates with ivory leading edges, two mechanical dark legs and pale claws. No fine feathers or bolts.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      30
+    ],
+    "source": "sources/028.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/028-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/028-corpse-32.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        708,
+        707
+      ],
+      "native_bounds": [
+        1,
+        1,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        805,
+        402
+      ],
+      "native_bounds": [
+        1,
+        16,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 23,
+    "packaging_version": 2,
+    "source_sha256": "76d28372c4032f7b22fcfd2f7472566a3b3d3256da2c981d39ced317df505bc8"
+  },
+  {
+    "number": 29,
+    "review_id": "proposal:029",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Boss · 64 px",
+    "name": "Le Colosse",
+    "name_status": "provisoire",
+    "description": "Giant monstrous hunched biped, enormous ivory armored shoulders and skull, thick deep purple body, huge crimson forearms reaching ground, blunt thick claws. NOT a scaled-up small enemy; native 64 pixel clusters.",
+    "tile_size": 64,
+    "maximum": [
+      59,
+      59
+    ],
+    "source": "sources/029.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/029-living-64.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/029-corpse-64.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        859,
+        807
+      ],
+      "native_bounds": [
+        2,
+        8,
+        61,
+        63
+      ],
+      "foot_anchor": [
+        32,
+        62
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        859,
+        401
+      ],
+      "native_bounds": [
+        1,
+        34,
+        63,
+        63
+      ],
+      "foot_anchor": [
+        32,
+        62
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 23,
+    "packaging_version": 2,
+    "source_sha256": "36f0d7fdd8d9c1f25266c0ac4cb03361072f98233c27234f817c91c0838d8e0a"
+  },
+  {
+    "number": 30,
+    "review_id": "proposal:030",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Boss · 64 px",
+    "name": "Le Démon enchaîné",
+    "name_status": "provisoire",
+    "description": "Huge broad crimson demon with four heavy curled ivory horns, charcoal chest shell and two thick cobalt broken industrial chains attached to wrists, ivory claws, short heavy legs.",
+    "tile_size": 64,
+    "maximum": [
+      59,
+      60
+    ],
+    "source": "sources/030.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/030-living-64.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/030-corpse-64.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        872,
+        850
+      ],
+      "native_bounds": [
+        2,
+        5,
+        61,
+        63
+      ],
+      "foot_anchor": [
+        32,
+        62
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        869,
+        385
+      ],
+      "native_bounds": [
+        1,
+        36,
+        63,
+        63
+      ],
+      "foot_anchor": [
+        32,
+        62
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "c8e86e59928ce98702175d69f82b5bec6d86b17f2a0e3ee7f1deac09f1a4f1a0"
+  },
+  {
+    "number": 31,
+    "review_id": "proposal:031",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Boss · 64 px",
+    "name": "Le Char possédé",
+    "name_status": "provisoire",
+    "description": "Huge TWO-track ochre battle chassis, large central exposed purple demonic maw and ivory teeth, broad teal top shell, one short cannon organically attached at one side. Clear track supports and hybrid identity.",
+    "tile_size": 64,
+    "maximum": [
+      60,
+      49
+    ],
+    "source": "sources/031.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/031-living-64.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/031-corpse-64.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        846,
+        693
+      ],
+      "native_bounds": [
+        2,
+        14,
+        62,
+        63
+      ],
+      "foot_anchor": [
+        32,
+        62
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        860,
+        401
+      ],
+      "native_bounds": [
+        1,
+        34,
+        63,
+        63
+      ],
+      "foot_anchor": [
+        32,
+        62
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 23,
+    "packaging_version": 2,
+    "source_sha256": "23effca81bae37798f0d6e39e4fd01e977383810430cb01fde1900ca336e6216"
+  },
+  {
+    "number": 32,
+    "review_id": "proposal:032",
+    "content_id": null,
+    "status": "proposal",
+    "family": "Boss · 64 px",
+    "name": "La Matrice des yeux",
+    "name_status": "provisoire",
+    "description": "Huge pale ivory three-lobed organic mass with THREE large violet eyes, broad turquoise flesh beneath, six thick purple tentacles touching the floor with transparent negative spaces. No dozens of tiny eyes.",
+    "tile_size": 64,
+    "maximum": [
+      60,
+      57
+    ],
+    "source": "sources/032.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/032-living-64.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/032-corpse-64.png",
+    "can_equip": false,
+    "anchors_status": "review; future equipment compatibility must be authored before integration",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        857,
+        777
+      ],
+      "native_bounds": [
+        2,
+        9,
+        62,
+        63
+      ],
+      "foot_anchor": [
+        32,
+        62
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        858,
+        398
+      ],
+      "native_bounds": [
+        1,
+        34,
+        63,
+        63
+      ],
+      "foot_anchor": [
+        32,
+        62
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 22,
+    "packaging_version": 2,
+    "source_sha256": "cb9c110449e084be46d0bc67c9b497456defcf58d7447d937059f24a8fada3d1"
+  },
+  {
+    "number": 33,
+    "review_id": "existing-art:3",
+    "content_id": "core:rubble_nibbler",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Grignoteur",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 3,
+    "maximum": [
+      20,
+      10
+    ],
+    "source": "sources/033.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/033-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/033-corpse-32.png",
+    "living_sha256": "3421168080a74b51f0f03f29750096cb0cb574dd771036cb4eb3b0022dcf3c5e",
+    "reference": "references/033.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        255,
+        909,
+        1001,
+        1191
+      ],
+      "native_bounds": [
+        6,
+        23,
+        26,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 17,
+    "packaging_version": 2,
+    "source_sha256": "7a866fc78d8175025eaf9fdf65ded3f63914269e00946d9584fa9765a73d02d1"
+  },
+  {
+    "number": 34,
+    "review_id": "existing-art:4",
+    "content_id": "core:friche_biter",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Mordeur des friches",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 4,
+    "maximum": [
+      30,
+      14
+    ],
+    "source": "sources/034.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/034-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/034-corpse-32.png",
+    "living_sha256": "dbfa8e03e15b6c044125a70955ce3a5476351efa6954dbb40962ebe40d94d3ea",
+    "reference": "references/034.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        94,
+        759,
+        1184,
+        1150
+      ],
+      "native_bounds": [
+        2,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 24,
+    "packaging_version": 2,
+    "source_sha256": "4017fd0902769667a6c49a9240793ec01ed736198532544211c0deefcd9782a6"
+  },
+  {
+    "number": 35,
+    "review_id": "existing-art:5",
+    "content_id": "core:bone_breaker",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Brise-os",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 5,
+    "maximum": [
+      30,
+      16
+    ],
+    "source": "sources/035.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/035-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/035-corpse-32.png",
+    "living_sha256": "32a61e9016999456966b2487d3757be9e50b6ca11dcde40b2378e075a9c8cb46",
+    "reference": "references/035.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        117,
+        757,
+        1121,
+        1151
+      ],
+      "native_bounds": [
+        2,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 21,
+    "packaging_version": 2,
+    "source_sha256": "6edaa950cf2824fb7018886a227e5534d4ce5c6b752c9a7b5edbc7edba0d58eb"
+  },
+  {
+    "number": 36,
+    "review_id": "existing-art:6",
+    "content_id": "core:vibration_burrower",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Fouisseur pâle",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 6,
+    "maximum": [
+      23,
+      11
+    ],
+    "source": "sources/036.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/036-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/036-corpse-32.png",
+    "living_sha256": "cd7d53c119d5f9be33a8449063bcb97df6f252167496d14271ed9faa267b1d0a",
+    "reference": "references/036.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        204,
+        747,
+        1051,
+        1166
+      ],
+      "native_bounds": [
+        6,
+        20,
+        27,
+        30
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "0c52595c8dd73c922afff7a381e450a17bae78384006c7ecab8a64522e74e625",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 23
+  },
+  {
+    "number": 37,
+    "review_id": "existing-art:7",
+    "content_id": "core:moss_grazer",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Dos-rond",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 7,
+    "maximum": [
+      27,
+      11
+    ],
+    "source": "sources/037.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/037-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/037-corpse-32.png",
+    "living_sha256": "153ef552bf970018b90db0956ad4c3014736af4981be64001c17b44f8672710e",
+    "reference": "references/037.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        110,
+        801,
+        1145,
+        1192
+      ],
+      "native_bounds": [
+        3,
+        21,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "1b11496e5d5ddc3c87465d289b231c40812fcd5636d6f4de371d27b1616659ef",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 20
+  },
+  {
+    "number": 38,
+    "review_id": "existing-art:8",
+    "content_id": "core:ruin_bat",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Chauve-souris des ruines",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 8,
+    "maximum": [
+      30,
+      12
+    ],
+    "source": "sources/038.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/038-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/038-corpse-32.png",
+    "living_sha256": "852e4a14df7ddf90c753e47d92c5c89c5afba7b076933717c7d7501cfe477bc4",
+    "reference": "references/038.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        147,
+        803,
+        1108,
+        1146
+      ],
+      "native_bounds": [
+        2,
+        20,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "d12444818c674bdda14b2fada46e912a74763b43d4db2f157d633badc8fd48ae",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 22
+  },
+  {
+    "number": 39,
+    "review_id": "existing-art:9",
+    "content_id": "core:armored_worm",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Ver cuirassé",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 9,
+    "maximum": [
+      30,
+      15
+    ],
+    "source": "sources/039.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/039-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/039-corpse-32.png",
+    "living_sha256": "cb916e1ff6b6aceb1512b305d6365ca746d1944a7b742506f6d2eda651a571af",
+    "reference": "references/039.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        117,
+        625,
+        1139,
+        1010
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "d4dc5a50e3b8ad0c2daa0075dc98b7d7d29f19ffd90fc5c170d780a27933f859",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 24
+  },
+  {
+    "number": 40,
+    "review_id": "existing-art:10",
+    "content_id": "core:cave_anemone",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Anémone des caves",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 10,
+    "maximum": [
+      30,
+      13
+    ],
+    "source": "sources/040.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/040-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/040-corpse-32.png",
+    "living_sha256": "fa6e0d72c959b255454eae2ae66b37ec9b2561df946a87cdea3dff4c211f6a39",
+    "reference": "references/040.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        123,
+        800,
+        1132,
+        1191
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "3c355adaeb96b9767122e68c4729d5bb7397cc4c24a0a878cfc0c4697f2fea66",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 24
+  },
+  {
+    "number": 41,
+    "review_id": "existing-art:11",
+    "content_id": "core:fault_howler",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Hurleur des failles",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 11,
+    "maximum": [
+      28,
+      16
+    ],
+    "source": "sources/041.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/041-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/041-corpse-32.png",
+    "living_sha256": "651762f5788aa135d2c1d79559401194f2ab77b3dea13747c1dfff80c66f4096",
+    "reference": "references/041.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        140,
+        664,
+        1139,
+        1150
+      ],
+      "native_bounds": [
+        2,
+        17,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "27d80024f1c12d6dddcaa96914b96dcfa867f82596bd8628cbd7c33e97e8bb74",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 24
+  },
+  {
+    "number": 42,
+    "review_id": "existing-art:12",
+    "content_id": "core:sentinel_projector",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Sentinelle · machine",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 12,
+    "maximum": [
+      29,
+      16
+    ],
+    "source": "sources/042.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/042-living-32.png",
+    "corpse": "../../../../assets/source-art/bestiaire-proposition-2026-10-05/tiles/042-cadavre.png",
+    "living_sha256": "ff6b7aad296bb584a3d259747bac23f91cf6d0e6c9e106a981d3fe89bfab18b3",
+    "reference": "references/042.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        215,
+        766,
+        1065,
+        1100
+      ],
+      "native_bounds": [
+        1,
+        20,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "d10aa0190e373b5ad863b576150977fe81c90fa404148b213401e16e71b217e9",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 21
+  },
+  {
+    "number": 43,
+    "review_id": "existing-art:13",
+    "content_id": "core:riveter",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Riveuse",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 13,
+    "maximum": [
+      28,
+      16
+    ],
+    "source": "sources/043.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/043-living-32.png",
+    "corpse": "../../../../assets/source-art/bestiaire-proposition-2026-10-05/tiles/043-cadavre.png",
+    "living_sha256": "4ae10872fe60a293d3aa3b463f3a539ef7d3cada576ac8ab976d7da9e8e84475",
+    "reference": "references/043.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        160,
+        750,
+        1114,
+        1131
+      ],
+      "native_bounds": [
+        2,
+        20,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "a520de4d9cac80d5af190617f8cfb668dbb81bfe599f98aad1e4c90e0a7c7a34",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 20
+  },
+  {
+    "number": 44,
+    "review_id": "existing-art:14",
+    "content_id": "core:cave_scaled",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Écailleux des cavernes",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 14,
+    "maximum": [
+      29,
+      14
+    ],
+    "source": "sources/044.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/044-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/044-corpse-32.png",
+    "living_sha256": "abd0912e1acc8c7df469f5f644191bcaf6597a017a93afcca2120fdc45e1fedf",
+    "reference": "references/044.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        192,
+        730,
+        1112,
+        1162
+      ],
+      "native_bounds": [
+        2,
+        17,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "2a6a003256e61c81210f363366cddb896edd8e1f667a6582be91b5475c8fb151",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 23
+  },
+  {
+    "number": 45,
+    "review_id": "existing-art:15",
+    "content_id": "core:watcher",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Guetteur",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 15,
+    "maximum": [
+      28,
+      14
+    ],
+    "source": "sources/045.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/045-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/045-corpse-32.png",
+    "living_sha256": "095e9a9ccab55ad95bf16b522a79f25bf766b4c12692db87ba2c6dd4b9054172",
+    "reference": "references/045.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        96,
+        666,
+        1198,
+        1125
+      ],
+      "native_bounds": [
+        2,
+        19,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "4935e8d08c0a32c18382dd2a2a784edaf12c3db7b7cb69323f9e60e30af4540a",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 23
+  },
+  {
+    "number": 46,
+    "review_id": "existing-art:16",
+    "content_id": "core:spectre",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Spectre",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 16,
+    "maximum": [
+      28,
+      14
+    ],
+    "source": "sources/046.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/046-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/046-corpse-32.png",
+    "living_sha256": "340371732f4ea501c76b36e621340489d2f4ded6bf872f46b7064d2db476ea26",
+    "reference": "references/046.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        190,
+        723,
+        1088,
+        1128
+      ],
+      "native_bounds": [
+        2,
+        18,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "407717b691fd0f06e0582d66900dc3ec6fe29a05f5589dbdf4c51adc9c1bf334",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 23
+  },
+  {
+    "number": 47,
+    "review_id": "existing-art:17",
+    "content_id": "core:marsh_spitter",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Cracheur des mares",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 17,
+    "maximum": [
+      30,
+      12
+    ],
+    "source": "sources/047.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/047-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/047-corpse-32.png",
+    "living_sha256": "584e1d4ce4d05abb665afedbf1ad14862a74cf149b2ffaa7902c0aaa5a066714",
+    "reference": "references/047.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        115,
+        785,
+        1198,
+        1165
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "896c52982ebe81cb5456072acf750c1709c39a8c00274bee416ec416c9612694",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 22
+  },
+  {
+    "number": 48,
+    "review_id": "existing-art:18",
+    "content_id": "core:laggard",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Traînard",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 18,
+    "maximum": [
+      30,
+      12
+    ],
+    "source": "sources/048.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/048-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/048-corpse-32.png",
+    "living_sha256": "ef3cd2de70b18065349baa1c115c673981cec6202ac47dd29a1704d6c10ab075",
+    "reference": "references/048.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        118,
+        776,
+        1169,
+        1176
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "2ae7e7d486ebb1ecc1af4d39cbdf6859a7968e70f4b85bb18f4aed6f187a17b9",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 17
+  },
+  {
+    "number": 49,
+    "review_id": "existing-art:19",
+    "content_id": "core:void_maw",
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Gueule du vide",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 19,
+    "maximum": [
+      28,
+      14
+    ],
+    "source": "sources/049.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/049-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/049-corpse-32.png",
+    "living_sha256": "36458e6a631d619180efef4658fd09f67fc568b932c67770fe1beb68bb50a2ba",
+    "reference": "references/049.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        151,
+        807,
+        1118,
+        1159
+      ],
+      "native_bounds": [
+        2,
+        21,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "d9306f08912a03bd79ee3d5adaf1ea8846647db99be0b466f0e45933abeb4742",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 23
+  },
+  {
+    "number": 50,
+    "review_id": "existing-art:20",
+    "content_id": null,
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Humain · mêlée",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 20,
+    "maximum": [
+      30,
+      14
+    ],
+    "source": "sources/050.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/050-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/050-corpse-32.png",
+    "living_sha256": "eab713fcfa9e482702b6add31d42a8cc9ac48a842a23fd089c87b1e47a9c9445",
+    "reference": "references/050.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        111,
+        724,
+        1143,
+        1065
+      ],
+      "native_bounds": [
+        1,
+        21,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "6c00170108741b52739399b5e7312e85b7c9dad5d3c1e9130f8498e10f60da44",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 20
+  },
+  {
+    "number": 51,
+    "review_id": "existing-art:21",
+    "content_id": null,
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Humain · tireur",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 21,
+    "maximum": [
+      30,
+      14
+    ],
+    "source": "sources/051.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/051-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/051-corpse-32.png",
+    "living_sha256": "4ac60c2e5d49010f784039692ace1ca1cbbd07ea7160fe6afe872b3ff223eaf7",
+    "reference": "references/051.png",
+    "corpse_encoding": {
+      "source_bounds": [
+        124,
+        640,
+        1128,
+        990
+      ],
+      "native_bounds": [
+        1,
+        21,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "corpse_includes_blood": true,
+    "packaging_version": 2,
+    "source_sha256": "87825b58a3e35c710856a4178513c335991533d559e22614a451df21b093942b",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 22
+  },
+  {
+    "number": 52,
+    "review_id": "existing-art:22",
+    "content_id": null,
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Humain · garde",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 22,
+    "maximum": [
+      30,
+      14
+    ],
+    "source": "sources/052.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/052-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/052-corpse-32.png",
+    "living_sha256": "f632f35ff5d74cbd9ee982dd42bd613c727f222a5fb0f8adcf73419eb902e7a4",
+    "reference": "references/052.png",
+    "corpse_includes_blood": true,
+    "corpse_encoding": {
+      "source_bounds": [
+        128,
+        637,
+        1130,
+        1015
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "packaging_version": 2,
+    "source_sha256": "3fec3b92a3b30503deb58c3cb5475d0adb3476a6be98a1789960a32ce67ff48c",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 23,
+    "corpse_colors": 21
+  },
+  {
+    "number": 53,
+    "review_id": "existing-art:23",
+    "content_id": null,
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Humain · soigneur",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 23,
+    "maximum": [
+      30,
+      14
+    ],
+    "source": "sources/053.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/053-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/053-corpse-32.png",
+    "living_sha256": "601bf1ef140861aba18fab6d6bea3b06d9e45f28b787bc6cd3591edabccd1080",
+    "reference": "references/053.png",
+    "corpse_includes_blood": true,
+    "corpse_encoding": {
+      "source_bounds": [
+        110,
+        718,
+        1147,
+        1098
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "packaging_version": 2,
+    "source_sha256": "fcc8ca59e7e54df6a1d9ab839ce6b1686b3452f75b258bee8bbd48f00cecf1b4",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 22
+  },
+  {
+    "number": 54,
+    "review_id": "existing-art:24",
+    "content_id": null,
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Humain · porteur",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 24,
+    "maximum": [
+      30,
+      14
+    ],
+    "source": "sources/054.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/054-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/054-corpse-32.png",
+    "living_sha256": "904d198e6658f3497f93440dd5d2cf3be34e93414db178c9a21f7cbdf2ec2fdb",
+    "reference": "references/054.png",
+    "corpse_includes_blood": true,
+    "corpse_encoding": {
+      "source_bounds": [
+        127,
+        624,
+        1127,
+        1067
+      ],
+      "native_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "packaging_version": 2,
+    "source_sha256": "01c3916e54b715e076bb43b12c13215e3a1f6322b2f1b2bc97ac557e21c3face",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 23
+  },
+  {
+    "number": 55,
+    "review_id": "existing-art:25",
+    "content_id": null,
+    "status": "existing-art-corpse-proposal",
+    "family": "Bestiaire existant",
+    "name": "Humain · ferrailleur",
+    "name_status": "existant",
+    "tile_size": 32,
+    "actor_index": 25,
+    "maximum": [
+      30,
+      14
+    ],
+    "source": "sources/055.png",
+    "living": "../../../../assets/sprites/bestiary/tiles/055-living-32.png",
+    "corpse": "../../../../assets/sprites/bestiary/tiles/055-corpse-32.png",
+    "living_sha256": "bb9bc1ed86a573128ad3248e964600fdd0c6026afdda5a9c75b4210d44954deb",
+    "reference": "references/055.png",
+    "corpse_includes_blood": true,
+    "corpse_encoding": {
+      "source_bounds": [
+        206,
+        745,
+        1091,
+        1106
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "packaging_version": 2,
+    "source_sha256": "02d5a4387544423776e5300e0ebb5447608b18d84f17c2ad82255665d3e1763e",
+    "blood_layer_status": "Authored pool included in review composite; separate reusable pool layer is reserved for integration after art approval.",
+    "living_colors": 24,
+    "corpse_colors": 22
+  }
+]

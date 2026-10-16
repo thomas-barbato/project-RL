@@ -1,0 +1,41 @@
+{
+  "review_id": "AOE-FALLOFF01",
+  "date": "2026-10-14",
+  "user_request": "Grenade : explosion de 3x3 et dégâts dégressifs avec la distance à l'épicentre ; examiner cette idée pour les attaques magiques de zone afin de préserver l'intérêt de la mêlée et des tirs physiques.",
+  "square_3x3_requested": true,
+  "numeric_profile_status": "approved",
+  "centre_damage_percent": 100,
+  "outer_edge_damage_percent": 50,
+  "distance": "square_shell_max_abs_dx_abs_dy; corners and cardinal neighbours in the same shell",
+  "intermediate_shells": "linear between centre and full nominal radius; wall clipping never renormalizes the radius",
+  "damage_math_for_review": "floor(base_damage * (2*radius - shell_distance) / (2*radius)); radius zero keeps full damage at the centre",
+  "integer_damage": true,
+  "prepared_grenade": {
+    "centre_damage": 24,
+    "neighbour_damage": 12,
+    "energy": 8,
+    "cooldown_turns": 2
+  },
+  "proposed_general_scope": "Explosive grenades and centred magical damage zones; directional areas, persistent damage and secondary controls require their own reviewed application rule.",
+  "controls_changed": false,
+  "campaign_rules_changed": false,
+  "catalogue_changed": true,
+  "native_lab_flag": "--lot-grenades-degressives",
+  "previous_gallery": "../skill-animation-review-72/cote-a-cote.html",
+  "visual_source_policy": "Reuse grenade and fragmentation source PNGs from review72, blood from accepted review40; no generated bitmap modified.",
+  "balancing_limit": "Damage falloff reduces damage per peripheral victim but does not limit target count. With full occupancy, an 11x11 at 100 centre / 50 edge still totals 77 full-strength single-target impacts. Costs, cooldown, duration and base damage remain necessary balance variables.",
+  "shared_rule_integrated": true,
+  "approval": "visual-and-numeric-acceptance-01.json",
+  "catalogue_bindings": [
+    "SG00",
+    "SM00",
+    "A02",
+    "FE04",
+    "FE05",
+    "FR02",
+    "FR05",
+    "FR06",
+    "HY07",
+    "TR64:pulse"
+  ]
+}

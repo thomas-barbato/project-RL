@@ -1,0 +1,578 @@
+{
+  "review_id": "SKILLS-IC22",
+  "title": "Survie · trois corrections",
+  "date": "2026-10-11",
+  "description": "Égide plus rituelle, véritables épines et Purge visiblement bénéfique. Les propositions 44 et 45 restent à valider.",
+  "generation_mode": "built-in",
+  "status": "partially_requires_revision",
+  "style_references": [
+    {
+      "title": "Vitalité améliorée",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-icon-review-17/B03-C02-32.png"
+    },
+    {
+      "title": "Blindage amélioré",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-icon-review-17/DP02-C02-32.png"
+    }
+  ],
+  "previous_review": {
+    "file": "../skill-icon-review-21/index.html",
+    "title": "Essais précédents"
+  },
+  "candidates": [
+    {
+      "id": "B02",
+      "number": 41,
+      "variant": "B02-C02",
+      "title": "Égide occulte",
+      "branch": "Survie",
+      "kind": "active",
+      "roleplay": "Un sceau protecteur entoure votre corps et amortit les coups reçus.",
+      "visual_status": "requires_revision",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/B02-C02.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-d7c67f49-4259-494e-8c7e-f64f397c7b16.png",
+      "source_sha256": "a12bb55f75cc97b0f94749499abe1f61015def5083914d0eb6a94861ac25aa25",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-22/B02-C02-master.png",
+        "sha256": "a12bb55f75cc97b0f94749499abe1f61015def5083914d0eb6a94861ac25aa25",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "B02-C02-24.png",
+          "sha256": "e48e7d14cafce242c2984a4def3d23671f3f34505bb1cb31578e82db225b50fc",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "B02-C02-32.png",
+          "sha256": "b23a2a4ba832867812808cde07bcae37fef60b57dc629a8c885ddf56ccb0fc27",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "B02-C02-64.png",
+          "sha256": "934c7b2d0ca33fd4398adca1f18cca126c53c4b8ec1c37aea0722424e4c8a30e",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "B02-C02-128.png",
+          "sha256": "33988534755836e83d05f484f4f560dffa65d2f73d77dcc1e0d4d476c1d0f819",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "B02-C02-192.png",
+          "sha256": "6bed30e9af7fc22acaaf5b57172735e7f99682c0003652d230c49006d7cb2d54",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-21/B02-C01-192.png",
+          "sha256": "d6507094e25640c94207476ab6fca1067649cda7f93a5bbafed8f7ba3deaebe7"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/FE01-C02-192.png",
+          "sha256": "6d5ed3db0423a8f6cce76b2ae8f20390dd37a24882cb0e165f30ebcd54a9458f"
+        }
+      ],
+      "feedback_reference": "artifacts/refonte-agent-2026-10-06/skill-icon-review-22/feedback-01.json"
+    },
+    {
+      "id": "SU03",
+      "number": 42,
+      "variant": "SU03-C02",
+      "title": "Barrière d’épine",
+      "branch": "Survie",
+      "kind": "active",
+      "roleplay": "Votre protection se hérisse d’épines occultes qui punissent ceux qui vous frappent au corps à corps.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/SU03-C02.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-537843e9-c49b-48bf-81e1-d94519a9d157.png",
+      "source_sha256": "2d34cd74a0e02e3e26b0b51c57a2605aea3bdd63dd475853acbc06cbd5f02ae3",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-23/SU03-C02-master.png",
+        "sha256": "2d34cd74a0e02e3e26b0b51c57a2605aea3bdd63dd475853acbc06cbd5f02ae3",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "SU03-C02-24.png",
+          "sha256": "726b7f3ad68e276cda8250c58b30be5e90c3ce127789c21907761a1d641435a0",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "SU03-C02-32.png",
+          "sha256": "a78b0d67eb9a95362db71d512f12a607aca7aea4311d1af91d411a23b5b0d921",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "SU03-C02-64.png",
+          "sha256": "7867ca1cf20417b85fff92ae2cf80e518a00e86c180273f7949e0b4e853a8986",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "SU03-C02-128.png",
+          "sha256": "72cb8dbfa59e921a5c656cc755f530ee71db99416315a8ffe26da84d1bbdca90",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "SU03-C02-192.png",
+          "sha256": "872bde6e33a7033d93b892fa962f189ea520a8cbb6e8bd8947c7ba52be399487",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-21/SU03-C01-192.png",
+          "sha256": "e3d9fa2f27a11f7e4f26904c4c81643881e26c5b3387b998181aad5a48741c19"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/FE01-C02-192.png",
+          "sha256": "6d5ed3db0423a8f6cce76b2ae8f20390dd37a24882cb0e165f30ebcd54a9458f"
+        }
+      ]
+    },
+    {
+      "id": "SU05",
+      "number": 43,
+      "variant": "SU05-C02",
+      "title": "Purge",
+      "branch": "Survie",
+      "kind": "active",
+      "roleplay": "Vous chassez les poisons et les effets néfastes de votre corps.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/SU05-C02.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-a8c07afd-7a48-43bd-b81b-1b3755c2e2e4.png",
+      "source_sha256": "c9dae5bcdcdd9ab8c5963f7b326134f950e480cb26d5e423f64bc334c81b6b94",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-23/SU05-C02-master.png",
+        "sha256": "c9dae5bcdcdd9ab8c5963f7b326134f950e480cb26d5e423f64bc334c81b6b94",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "SU05-C02-24.png",
+          "sha256": "dbd6f36eb49f81497f815d208310128d67fda8c4a5e72dd8696141482c33c178",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "SU05-C02-32.png",
+          "sha256": "dce51066a8cf8b0dc9ce93d89bfda14eba4a65e38c36efc10c2730f96b6d568b",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "SU05-C02-64.png",
+          "sha256": "036b842f70ade3ec268a474039ad7c1b31bfd2abf8f16c69dfc1ec5e3624baa6",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "SU05-C02-128.png",
+          "sha256": "3b24c43dc086d34b4ec8931a020c9f72dbec2f3277ba437f8db747a81da7ef6b",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "SU05-C02-192.png",
+          "sha256": "36fd57d96d53aba4009b8fd7d907bd389a6b92efb90476b25a2df6ff3797b448",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-21/SU05-C01-192.png",
+          "sha256": "83c65197af2043a246194d69a8575f95e1a6cd17d70468efc853743644c149e8"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/FE01-C02-192.png",
+          "sha256": "6d5ed3db0423a8f6cce76b2ae8f20390dd37a24882cb0e165f30ebcd54a9458f"
+        }
+      ]
+    },
+    {
+      "id": "SU06",
+      "number": 44,
+      "variant": "SU06-C01",
+      "title": "Dernier sursaut",
+      "branch": "Survie",
+      "kind": "passive",
+      "roleplay": "Vos systèmes d’urgence vous maintiennent en vie lorsque votre corps devrait céder.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/SU06-C01.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-44d95aab-47be-4078-9f5c-b4329f640ef2.png",
+      "source_sha256": "8e389e318b78590fde04c1bd4af7ee9d4560f0db78dea9b7bc4725a6005df2a5",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-23/SU06-C01-master.png",
+        "sha256": "8e389e318b78590fde04c1bd4af7ee9d4560f0db78dea9b7bc4725a6005df2a5",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "SU06-C01-24.png",
+          "sha256": "90531b6cbe902b624bdbc7e6466f1c6461cb21b6c006bc1ed285e03eaed8ff3f",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "SU06-C01-32.png",
+          "sha256": "b520137a20de95664a84d726aadcb9c2776727ce9b4cb3755b797e71f0aca0f0",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "SU06-C01-64.png",
+          "sha256": "fc0ca0b9da6550e61a3b0b263e78ea68a7c1e9e1eaa3afc691f762d6a7c95a48",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "SU06-C01-128.png",
+          "sha256": "17974cf782e79c6378a36ac7c9bfebf0d41f671456a888b8320482eb0eedc417",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "SU06-C01-192.png",
+          "sha256": "f2d09f13a6b7b6ab48cd22358da29411b21065bb199562db25b95d6f5856a73d",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/B03-C02-192.png",
+          "sha256": "2844e70a8a48a4843956ca9a06b59edd93dcbd4a4726e9ce17639153d675618d"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/DP02-C02-192.png",
+          "sha256": "3bc43dbf779af89998d65cf208a7a324701a9d9657f2f45114359fd92addd6b1"
+        }
+      ],
+      "carried_forward_from": "SKILLS-IC21",
+      "no_visual_change": true
+    },
+    {
+      "id": "BD06",
+      "number": 45,
+      "variant": "BD06-C01",
+      "title": "Récupération d’énergie",
+      "branch": "Survie",
+      "kind": "passive",
+      "roleplay": "Chaque ennemi que vous abattez nourrit vos réserves d’énergie et prolonge la chasse.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/BD06-C01.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-69c2719f-5542-4c7a-ac74-34688087f4f1.png",
+      "source_sha256": "d55ec082037369885d8665cfb707504b273ebc5bfd2a019ef7858af4813e7049",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-23/BD06-C01-master.png",
+        "sha256": "d55ec082037369885d8665cfb707504b273ebc5bfd2a019ef7858af4813e7049",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "BD06-C01-24.png",
+          "sha256": "5ef584e7d3b06b99c7d9be233dc5c47bf2c07863d2ca4715113007bce5b45863",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "BD06-C01-32.png",
+          "sha256": "8f73e5e1e75b651f476d3172dcc5d1d3b8d138baf3813edff0e73418acfbac03",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "BD06-C01-64.png",
+          "sha256": "90f4f2fd71c90ad29d9fb322868d11a7521d445e8f54d892bc20b56672884af6",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "BD06-C01-128.png",
+          "sha256": "d86ab68ff01e3a8bfd810e20c7b0b382db87bc83b24e34ed843aa89cf34573a3",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "BD06-C01-192.png",
+          "sha256": "3d97c90ec4c4b60dfc187e7789f63dfb6d873d129dd42f716f8bb1c1fcfca70d",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/B03-C02-192.png",
+          "sha256": "2844e70a8a48a4843956ca9a06b59edd93dcbd4a4726e9ce17639153d675618d"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/DP02-C02-192.png",
+          "sha256": "3bc43dbf779af89998d65cf208a7a324701a9d9657f2f45114359fd92addd6b1"
+        }
+      ],
+      "carried_forward_from": "SKILLS-IC21",
+      "no_visual_change": true
+    }
+  ],
+  "protected_hashes": [
+    {
+      "file": "assets/skills/agent/A03-compact.png",
+      "sha256": "d37193de59e564c9907ed16d5febb56424d65fcc5097e4ce5fb4dcd41b0a46c6"
+    },
+    {
+      "file": "assets/skills/agent/A03-illustration.png",
+      "sha256": "5583745698e12316a2026610ca66d40dbb62bd09971dda33f0b4d9e0bd7bdc3e"
+    },
+    {
+      "file": "assets/skills/agent/AF02-compact.png",
+      "sha256": "a81658fdfd61c5aa8b4a615f6b240c69ae1b2d2c380cb0158ae5d6e519a82dac"
+    },
+    {
+      "file": "assets/skills/agent/AF03-compact.png",
+      "sha256": "094682804aac356ef23dec91d1499a7169bc4d8ff1804f203dca80e1495ff135"
+    },
+    {
+      "file": "assets/skills/agent/AF04-compact.png",
+      "sha256": "0f9c803363fe473532da669bd51cecaa6a7ac80feecc8815140fdbf512f1636b"
+    },
+    {
+      "file": "assets/skills/agent/AF05-compact.png",
+      "sha256": "a8d5dd7140048df0c59813ef36e34bfd2bcfd6fbeea8e1f790960d2bb7daa233"
+    },
+    {
+      "file": "assets/skills/agent/B01-illustration.png",
+      "sha256": "2ba69010e33526675639d47d6c730f7ad1b5de548dc2f5e3243219c36b644a33"
+    },
+    {
+      "file": "assets/skills/agent/B03-compact.png",
+      "sha256": "fe03b345514568df50133246c98c9c53d50b46f5aeff04e3dc249d2c85ea5092"
+    },
+    {
+      "file": "assets/skills/agent/B03-illustration.png",
+      "sha256": "614d4dee2c88d7893f7778a2beeb0d904f508cee32c1741bd97dc2db9460849c"
+    },
+    {
+      "file": "assets/skills/agent/BM02-compact.png",
+      "sha256": "8001906983c8da126d0e59ffb660b352b21c1532768837d7fcadaea9678cec11"
+    },
+    {
+      "file": "assets/skills/agent/BM02-illustration.png",
+      "sha256": "69cf7e8176be6d3739ccb76325accc4e6ba3b2953d366af127a8254a6796a24b"
+    },
+    {
+      "file": "assets/skills/agent/catalogue.json",
+      "sha256": "b70393604b370bad40b18253efc5ba47ff4d92095d409dc787d9282b7456f443"
+    },
+    {
+      "file": "assets/skills/agent/D56-compact.png",
+      "sha256": "54ef69b44e9a1ea63871f9fe6b82df73a84d213aca2e7d85cdad8ddf0ec29ba9"
+    },
+    {
+      "file": "assets/skills/agent/D57-compact.png",
+      "sha256": "e89ed543dc0c50d220b0beb569b43660c8f4dfbe997b07f9c4c207fec8c0cc2e"
+    },
+    {
+      "file": "assets/skills/agent/D58-compact.png",
+      "sha256": "75e1bba54d9f031b28f8306db93ffa3ed2ccd9eb47480952218c0cf64d3882ed"
+    },
+    {
+      "file": "assets/skills/agent/D59-compact.png",
+      "sha256": "79399dce4495293c558671531b77da469f67e1df4b7fa853bb0f3ce5aa500f84"
+    },
+    {
+      "file": "assets/skills/agent/D59-illustration.png",
+      "sha256": "1ea7634e2367f137fa5a9cefabdc176be760f10dcdd19bc197cedcd9d38e917f"
+    },
+    {
+      "file": "assets/skills/agent/D66-compact.png",
+      "sha256": "7618e5357cb117b422339ad17db0f0beaa1e3559c1486b4d75bb386064d202cf"
+    },
+    {
+      "file": "assets/skills/agent/DI01-compact.png",
+      "sha256": "8628fb41500430c59efc83db98340b4eaccd327d4a2d279159d1a75509951dcd"
+    },
+    {
+      "file": "assets/skills/agent/DI02-compact.png",
+      "sha256": "7729dfe3242f0282d997cf05740c793e6548db49a65d4cf69b663ca59b3a3e5e"
+    },
+    {
+      "file": "assets/skills/agent/DI03-compact.png",
+      "sha256": "5027cc176f0f3922090d3887f0210d4026a89e306c5cc9bda14195d536f41455"
+    },
+    {
+      "file": "assets/skills/agent/DI04-compact.png",
+      "sha256": "a53ebdbada781cf0082420a8c06a94a60ef199843630ef462154138ede7d87cb"
+    },
+    {
+      "file": "assets/skills/agent/DI05-compact.png",
+      "sha256": "cd9bb83a65504b9807c8df4533a7f6a74cf3d4b76ce5af4c4b1be03effe93126"
+    },
+    {
+      "file": "assets/skills/agent/DI07-compact.png",
+      "sha256": "b117c2675b27c25aa80560aa782e9cf4a0cd2683da2dd5931824017ea6a9461c"
+    },
+    {
+      "file": "assets/skills/agent/DP01-compact.png",
+      "sha256": "c305030b5125ae989424d70b880cc3efd8dbdb0f7f9cf6d68c6916fcb54ad643"
+    },
+    {
+      "file": "assets/skills/agent/DP02-compact.png",
+      "sha256": "62332bbdc8219adc0990ef4dde0940619f85e6d8ab2da972577f292caa49b653"
+    },
+    {
+      "file": "assets/skills/agent/DR01-compact.png",
+      "sha256": "18e620e89d87da2075c4a437bbae3790a5fa70b9df42f1845858f0bd8c299f4d"
+    },
+    {
+      "file": "assets/skills/agent/FE01-compact.png",
+      "sha256": "c6d969ea5f6191870d928aa4a79d84bbfd1c8bbe1e1b198efc7f726858afc6ee"
+    },
+    {
+      "file": "assets/skills/agent/FE01-illustration.png",
+      "sha256": "bf75d01f3b80e70ee6f06b510601ac3162f7047ee6dccba528657f2d2a5a22b0"
+    },
+    {
+      "file": "assets/skills/agent/FE05-illustration.png",
+      "sha256": "9ae15e20dc75200cc42ad727ee646798307389683afa20cc0442d90f97e748a8"
+    },
+    {
+      "file": "assets/skills/agent/FR03-compact.png",
+      "sha256": "b92bfef56362261acb66f97d684501af352cf3b826cc98c6c716164fc020696a"
+    },
+    {
+      "file": "assets/skills/agent/FR03-illustration.png",
+      "sha256": "231928d6de6faed720bfdd612f9c200b8d96282842f4fc398546963bb2c800cc"
+    },
+    {
+      "file": "assets/skills/agent/HY07-compact.png",
+      "sha256": "e2ac0ca895ecd677076b734e4683c957961428596570182af207c2720ee5bb8d"
+    },
+    {
+      "file": "assets/skills/agent/M01-compact.png",
+      "sha256": "5c7b9642379d12361ef4ce59ec53057f3a8a6fa011dd238ca4628d312a1c6ee1"
+    },
+    {
+      "file": "assets/skills/agent/M01-illustration.png",
+      "sha256": "6a139c376988a6946f0b6bd5a2a814cdc9e8fcfb38f19091025a2d5ed191872e"
+    },
+    {
+      "file": "assets/skills/agent/M03-compact.png",
+      "sha256": "b32562370832d21586c813735cf1b2094d8b2e15f731a41fb35633d8a7c85c28"
+    },
+    {
+      "file": "assets/skills/agent/M03-illustration.png",
+      "sha256": "daeeffb775e7c604cd73ddbd505c57ba3bffaf704ad9af9ad692cd7146dc85df"
+    },
+    {
+      "file": "assets/skills/agent/manifest.json",
+      "sha256": "ce7649f0fb0289b6c2550a55e4535244a2efa9b40673ed1d4d017826c06b1a89"
+    },
+    {
+      "file": "assets/skills/agent/ME02-compact.png",
+      "sha256": "58356d5b157d6a8f0a05baba5940ed1f63d1f49490b48d42cd6522d42ae58ee2"
+    },
+    {
+      "file": "assets/skills/agent/ME03-compact.png",
+      "sha256": "94fc93bf8807a01229576df1babcbc64553238aad58e815afa09e65afcb4c307"
+    },
+    {
+      "file": "assets/skills/agent/ME04-compact.png",
+      "sha256": "e83e22bf0d8ab99f3b76f612a928ab3ba0ffa45aa8e9ea3ee34f80f8edf6b30b"
+    },
+    {
+      "file": "assets/skills/agent/ME04-illustration.png",
+      "sha256": "b244788ac01e16f4399d263ceb403795ffa2c2c59e9cd0d60e6aaa1589a330b4"
+    },
+    {
+      "file": "assets/skills/agent/ME05-compact.png",
+      "sha256": "c31d9c0f11f67a0cc089c7ac99f5c712360f25ab17f843f1bcaae80f1563a0a1"
+    },
+    {
+      "file": "assets/skills/agent/ME06-compact.png",
+      "sha256": "753df0d1c6335f88f3bd9fda15251fa22e05cd025ceaade09dc77d71fe800740"
+    },
+    {
+      "file": "assets/skills/agent/O02-compact.png",
+      "sha256": "caf9d085980476d3b55f981a3bd7d9b14822e91760c584bb2020038b2f0b0c9e"
+    },
+    {
+      "file": "assets/skills/agent/O03-compact.png",
+      "sha256": "514ee6c56ccda56d2a770428d948bc07b3e540f515044b07c300c39fbce0051a"
+    },
+    {
+      "file": "assets/skills/agent/O03-illustration.png",
+      "sha256": "2a70e75bd3b82ba8c19c5360a3d8dce397e6aa7520c80462a75fa9a054370162"
+    },
+    {
+      "file": "assets/skills/agent/SF00-compact.png",
+      "sha256": "efdd472610655e413caae463102b3d7eb8ba1110f8523c5d2d243bd4146c5102"
+    },
+    {
+      "file": "assets/skills/agent/SF00-illustration.png",
+      "sha256": "99cab81ec7f7da9b229ac23093a1f5371ff0dcaee4de106e5ef1cf67111def02"
+    },
+    {
+      "file": "assets/skills/agent/SU04-compact.png",
+      "sha256": "269b0206ca3d061eddf12e16a6153e963e509a6806870b6322f1f7cd26e67ec9"
+    },
+    {
+      "file": "assets/skills/agent/SU04-illustration.png",
+      "sha256": "8c7ebb5714b9ef938dd509080b90b6435f5038fd721d0fee320f65da6cc45154"
+    },
+    {
+      "file": "assets/skills/agent/T01-compact.png",
+      "sha256": "7804db615fa6ef2a0a3dab8cceb46729e592b7dafb5902d22f1114cdf6f6f91f"
+    },
+    {
+      "file": "assets/skills/agent/T01-illustration.png",
+      "sha256": "0e5b70be8f4501b7c16b883d7d90d29aa67076c949718238a8f401f743430fd8"
+    },
+    {
+      "file": "assets/skills/agent/T03-compact.png",
+      "sha256": "53607ef4da1c7b3ce1346635ceb625dd43480d3ab4492be10e94eb8131b82501"
+    },
+    {
+      "file": "assets/skills/agent/T03-illustration.png",
+      "sha256": "408696a7089fe81a4e14854d537859b31833058286e974bfc65371af1cad55fd"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-icon-acceptance.json",
+      "sha256": "dfe27e6bceb9544338d5003554a8c1438df74c22e7c832edd6de1e399ce311e9"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-window-review-05/skills.json",
+      "sha256": "cb23dca3cf283e6eb12faa58e01dc637c78a8309614f213cd86ef12d06ce0ef2"
+    }
+  ],
+  "accepted_export_hashes_preserved": 266,
+  "no_new_approval_inferred": true,
+  "no_runtime_changes": true,
+  "feedback_reference": "artifacts/refonte-agent-2026-10-06/skill-icon-review-22/feedback-01.json"
+}

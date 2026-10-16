@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "ES05",
+  "title": "Traversée de phase",
+  "user_message": "tres bien :)",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ES05-01.json",
+  "previous_description_sha256": "f8c7061325e42f66276be014a9cc0f4f74d665ee28dd311ed8a6b3541f7bd1ac",
+  "accepted_player_copy_sha256": "7e8208998e55a34934050d1527b29ec1c7882fba6d508fcb6b32280d2234f606",
+  "approval_scope": "Full displayed RP, current/next values, costs/cooldown and target/landing/movement-reaction conditions accepted as provisional balance. Unshown full curves, detailed movement/stacking/turn cases and native visuals remain pending.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "movement_cells": 2,
+      "dodge_bonus_points": 30,
+      "duration_turns": 2,
+      "energy_cost": 13,
+      "cooldown_turns": 8
+    },
+    "next": {
+      "effective_rank": 12,
+      "movement_cells": 2,
+      "dodge_bonus_points": 32,
+      "duration_turns": 2,
+      "energy_cost": 13,
+      "cooldown_turns": 8
+    }
+  },
+  "accepted_conditions": [
+    "Visible adjacent enemy; movement to its opposite side, two tiles.",
+    "Landing free, known and passable; walls and closed doors block passage.",
+    "Dodge bonus added to ordinary dodge and available for reactions caused by movement."
+  ],
+  "unshown_rules_approval": "Full rank curves, ordinary dodge/hit bounds, exact diagonal/corner geometry, large actor footprints, landing eligibility, path hazards and reaction ordering, two-turn duration accounting, recast/stacking with other dodge buffs, interrupted movement/refusal atomicity and attribute/implant cost interactions remain pending where not already accepted. No wall teleport, enemy displacement/control, damage, invulnerability, free attack, weapon requirement or hidden actor reveal introduced.",
+  "visual_approval": "existing_catalogue_direction_only; native_preview_and_animation_pending",
+  "runtime_integration": "not_integrated"
+}

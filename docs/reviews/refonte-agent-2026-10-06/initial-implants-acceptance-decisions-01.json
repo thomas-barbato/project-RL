@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-IMPLANT01-ACCEPT01",
+  "user_acceptance": "parfait :)",
+  "question_answered": "Tu valides ces précisions ?",
+  "presented_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-initial-implants-START-IMPLANT01-01.json",
+    "reference_sha256": "879ded3acf410e95e54902f5c8b58187efc7ff46576852eda5568e09cd936df4"
+  },
+  "accepted_displayed_rules": {
+    "Bastion": "agent_armor_plus1;maximum_energy_relative_minus10_percent_after_other_reserve_bonuses",
+    "Technomancien": "all_own_drone_models_maximum_HP_plus15_percent;Interference_Faille_armure_Silence_Rupture_regeneration_Desorientation_plus1_turn_at_cast;Contagion_transmits_remaining_duration_without_extra_turn;own_melee_ranged_heavy_weapon_and_weapon_skill_damage_relative_minus10_percent",
+    "Traqueur": "own_standard_ranged_and_heavy_weapon_and_weapon_skill_damage_plus10_percent;flat_evasion_plus2;own_melee_weapon_and_weapon_skill_damage_relative_minus10_percent",
+    "weapon_scope": "own_weapon_attacks;spells_secondary_mine_and_grenade_skills_intrinsic_transformation_attacks_and_familiars_use_their_respective_bonuses",
+    "Arcaniste": "spell_damage_plus15_percent_including_Decharge_mutagene_and_spell_periodic_damage;already_boosted_damage_derived_effects_do_not_receive_bonus_twice;ordinary_maximum_HP_relative_minus10_percent_after_other_bonuses_then_Colosse_uses_that_maximum",
+    "Metamorphe": "form_duration_plus2_turns_at_activation;human_skill_activation_energy_cost_relative_plus10_percent_including_form_entry;ceil_final_cost;12_becomes14;stealth_rank10_step_cost1_retained;transformed_actions_and_upkeep_excluded",
+    "common": "relative_minus10_percent_applies_to_boosted_value;150_damage_becomes135;implant_replacement_preserves_learned_skills_and_does_not_restore_HP_or_energy"
+  },
+  "scope": "displayed_eligibility_and_calculation_precisions_only;existing_names_class_RP_numbers_skills_and_visuals_retained",
+  "not_implicitly_accepted": "new_implant_item_names_RP_icons_loot_catalogue_or_other_unshown_observable_effects",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,232 @@
+{
+  "protected_files_unchanged": 13135,
+  "resampling_of_native_capture": false,
+  "controls": [
+    {
+      "variant": "FE05-A04-DROITE",
+      "physical_walls_clear": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A03-DROITE",
+      "physical_walls_clear": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE05-A04-GAUCHE",
+      "physical_walls_clear": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A03-GAUCHE",
+      "physical_walls_clear": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE05-A04-HAUT",
+      "physical_walls_clear": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A03-HAUT",
+      "physical_walls_clear": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE05-A04-CLOISON-BAS",
+      "physical_walls_clear": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A03-CLOISON-BAS",
+      "physical_walls_clear": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": false,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE05-A04-INTERCEPTION",
+      "physical_walls_clear": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A03-INTERCEPTION",
+      "physical_walls_clear": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "FE05-A04-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 40,
+      "frames": 57,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE06-A03-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 42,
+      "frames": 60,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE05-A04-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 40,
+      "frames": 57,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE06-A03-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 42,
+      "frames": 60,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE05-A04-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 40,
+      "frames": 57,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE06-A03-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 42,
+      "frames": 60,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE05-A04-CLOISON-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 40,
+      "frames": 57,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE06-A03-CLOISON-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 34,
+      "frames": 34,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE05-A04-INTERCEPTION-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 40,
+      "frames": 57,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE06-A03-INTERCEPTION-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 42,
+      "frames": 60,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "feu-final-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 44,
+      "frames": 61,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "feu-final-cloison-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 44,
+      "frames": 61,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "feu-final-interception-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 44,
+      "frames": 61,
+      "duration_ms": 6000,
+      "loop": 0
+    }
+  ],
+  "source_art_mode": "Reuses image_gen assets; renderer transforms only."
+}

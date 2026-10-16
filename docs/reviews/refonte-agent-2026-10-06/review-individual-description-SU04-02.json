@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-06",
+  "id": "SU04",
+  "title": "Régénération",
+  "revision": 2,
+  "player_copy_markdown": "**Régénération — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Vous immobilisez votre corps tandis que vos systèmes réparent ses blessures.*\n\nLa réparation occupe votre action à chaque tour maintenu.\n\n**Effet actuel**\n\n- Soin par tour : **16 PV** (**12 % des PV maximum**).\n- Durée maximale : **3 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Soin par tour : **17 PV** (**12,4 % des PV maximum**).\n\n**Coût : 6 énergie par tour · Recharge : 8 tours.**\n\nSe déplacer, effectuer une autre action ou perdre de la vie interrompt la réparation. Les ennemis continuent d’agir pendant la canalisation.\n\nVous pouvez l’arrêter entre deux tours. Elle s’arrête aussi lorsque votre vie est pleine.",
+  "player_copy_sha256": "b809e445a670f2fa11e5ec37e7ba43f29317baf2043a75aa3a2e47f40111ff33",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-07.json",
+  "source_skill_block_sha256": "98a241665310f8370a0697988211efbb70e5cb59f9fc60c12842b1b442100472",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/barriere-epine-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "e6f9e8c4cef3854591638b346756dec6433103b474e5131f5712ceac63679acf",
+  "name_approval": "explicit_user_rename",
+  "catalogue_effect_approval": "accepted_as_presented",
+  "roleplay_text_approval": "displayed_individual_description_explicitly_accepted",
+  "functional_description_approval": "displayed_individual_description_explicitly_accepted",
+  "current_next_effect_copy_approval": "displayed_individual_description_explicitly_accepted",
+  "numeric_rules_approval": "displayed_current_next_healing_duration_energy_cooldown_and_channel_conditions_accepted; unshown_formulas_and_edge_cases_pending",
+  "formulas": {
+    "heal_percent_max_hp_per_turn": "4 + 16 * (effective_rank - 1) / (effective_rank + 9)",
+    "energy_per_turn": "4 + floor((effective_rank - 1) / 4)",
+    "healed_hp_rounding": "ceil before missing-HP clamp; proposed"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "max_hp": 130,
+    "other_healing_cost_duration_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "max_hp": 130,
+    "heal_percent_exact": {
+      "numerator": 12,
+      "denominator": 1
+    },
+    "heal_percent_display": 12.0,
+    "healed_hp_per_turn": 16,
+    "maximum_channel_turns": 3,
+    "energy_per_turn": 6,
+    "cooldown_turns": 8
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "max_hp": 130,
+    "heal_percent_exact": {
+      "numerator": 260,
+      "denominator": 21
+    },
+    "heal_percent_display": 12.4,
+    "healed_hp_per_turn": 17,
+    "maximum_channel_turns": 3,
+    "energy_per_turn": 6,
+    "cooldown_turns": 8
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "heal_per_turn"
+    ],
+    "unchanged_effects_omitted": [
+      "duration",
+      "energy_per_turn",
+      "cooldown",
+      "max_hp"
+    ]
+  },
+  "presented_conditions": "Action dedicated each maintained turn; movement, another action or actual HP loss interrupts; enemies keep acting; player may stop between turns; full HP ends channel.",
+  "unshown_rules_approval": "Full-rank formulas, rounding, cooldown launch timing, full-HP refusal, resource refusal, absorbed-hit non-interruption, parameter snapshot and other edge cases remain pending.",
+  "active_weapon_requirement": "none; healing is not a weapon attack",
+  "visual_intention_approval": "accepted_as_presented",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Exact fractions verified at ranks 11 and 12; max HP fixed at 130.",
+    "Only changing healing value displayed in next-rank block.",
+    "Channel action requirement explicitly stated as abnormal duration; no ordinary execution-time reminder.",
+    "Explicit requested rename preserves SU04 identity and all displayed values and conditions."
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU04-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/regeneration-rename-and-acceptance-decisions.json",
+  "latest_decisions_sha256": "d0fdbc3fa442438601a6f98b1f15d1f39c7187a9285922aeb069224c8d21a8ee"
+}

@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-THREE-ACCEPT01",
+  "user_acceptance": "Je valide :)",
+  "shown_cards": {
+    "START-T01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-traqueur-START-T01-01.json",
+      "reference_sha256": "5da2d1eb988cf13f5ca79d0da9206a7e14679a1e588bc3ad222d5e2c44678a94"
+    },
+    "START-A01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-arcaniste-START-A01-01.json",
+      "reference_sha256": "ee7b40882143efd1db6dab817da1e2907b8a9e8830df3d5f72f3432afcce0384"
+    },
+    "START-M01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-metamorphe-START-M01-01.json",
+      "reference_sha256": "a399812edbae94e5c78597a10906971af1bc7bd55e6ffe906aa3a2c9b800b218"
+    }
+  },
+  "approved_scope": "displayed_Traqueur_Arcaniste_Metamorphe_RP_fixed_attributes_rank1_gifts_implant_numbers_reserves_skill_summary_and_equipment_direction",
+  "unshown_not_implicitly_approved": [
+    "specific_start_weapon_and_armor_values",
+    "consumable_counts_values_names_and_icons",
+    "native_equipped_preview",
+    "unshown_implant_classification_and_penalty_pipeline",
+    "unshown_skill_or_visual_cases"
+  ],
+  "prior_numeric_authority": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/class-start-delegation-decisions.json",
+    "reference_sha256": "74e874981b767dc8c47b101f283a344a5f9fb67c3ac85307bb7e76018dbc696d"
+  },
+  "runtime_integration": "not_integrated"
+}

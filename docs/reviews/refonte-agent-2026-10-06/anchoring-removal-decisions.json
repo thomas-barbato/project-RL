@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-08",
+  "review_id": "BM04-REMOVE01",
+  "skill_id": "BM04",
+  "title": "Ancrage",
+  "user_instruction": "Ancrage je pense qu'on peut le supprimer.",
+  "approval": "explicit_user_removal_request",
+  "scope": "remove_BM04_from_current_primary_catalogue_rule_blocks_and_future_visual_work;no_replacement",
+  "stable_id_reused": false,
+  "replacement_skill_id": null,
+  "numeric_RP_native_acceptance": "none_inferred_for_removed_skill",
+  "archived_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM04-01.json",
+  "archived_card_sha256": "055c61dbfcb6b00b2ec8d78023abc706999a72e0ce3ebad9867978169b851c28",
+  "previous_rule_block_sha256": "1d0bb0b134bcb806ad7e4ca66d06827bd747a4804bb3034ce031a2731e6a158e",
+  "counts_after": {
+    "primary_skills": 75,
+    "primary_branches": 13,
+    "current_complete_rule_blocks": 63,
+    "new_primary_rule_blocks": 49,
+    "secondary_rule_blocks": 14
+  },
+  "other_status_and_skill_rules": "preserved;HUD01-ALL01_all_current_player_status_icons_confirmed",
+  "runtime_integration": "proposal_removal_only;no_BM04_runtime_implementation_removed"
+}

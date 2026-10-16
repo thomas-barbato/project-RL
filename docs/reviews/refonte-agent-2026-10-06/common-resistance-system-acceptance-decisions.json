@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-09",
+  "review_id": "RESIST-LOT03-ACCEPT01",
+  "user_reply": "je valide :)",
+  "source_batch": "docs/reviews/refonte-agent-2026-10-06/review-resistance-system-03.json",
+  "source_batch_sha256": "16a1db1bd3f516d31705506768b8a1427329377d4084596001229498a582bffb",
+  "accepted_shown_copy_markdown": "Le calcul du **Gel est validé**. Pour terminer ce bloc, voici les règles communes que je propose.\n\n**R01 · Résistances aux dégâts**\n\n*Vos protections atténuent les dégâts. Vos faiblesses les amplifient.*\n\n- Types : **feu, froid, électricité, poison et dégâts occultes**.\n- Base hors bonus : **0 %**.\n- Limites : **−50 % à +75 %**, pour le joueur et les monstres.\n- Bonus additionnés, puis malus soustraits, avant d’appliquer les limites.\n\n**100 dégâts avec 40 % de résistance → 60 dégâts subis.**\n**100 dégâts avec −25 % de résistance → 125 dégâts subis.**\n\nLe surplus reste utile contre les malus : **90 % de bonus − 25 % de malus → 65 % effectifs**.\n\n**R02 · Armure**\n\n*Votre blindage absorbe une partie des impacts.*\n\n- **1 point d’armure retire 1 dégât physique**.\n- Application **une seule fois par impact**, sur sa partie physique.\n- Une partie physique entièrement absorbée inflige **0 dégât**.\n\n**40 dégâts physiques contre 12 armure → 28 dégâts subis.**\n\n**R03 · Effets persistants et arrondis**\n\n- La résistance actuelle est utilisée à chaque nouveau coup ou tour de dégâts persistants.\n- Un saignement calculé sur les dégâts réellement subis ne passe pas une deuxième fois dans l’armure.\n- Dégâts ordinaires arrondis **à l’entier inférieur après les protections**.\n- Une faiblesse au froid augmente aussi la chance de Gel, limitée à **100 % avant le malus d’élite ou de boss**.\n\n**R05 · Affichage**\n\nLes résistances effectives apparaissent dans la fiche du personnage et dans l’analyse détaillée accessible avec l’Éclaireur. Les modifications temporaires restent consultables dans les barres de buffs et de debuffs.\n\nExemple de valeur affichée : **Résistance au froid : 40 %**.\n\n**Ces règles communes restent à valider.**",
+  "accepted_shown_copy_sha256": "cb0109fadd770a50aa024d834de255650dedff3f7701de0988cee9ea7f92af1e",
+  "accepted_rules": {
+    "R01": {
+      "damage_families": [
+        "Fire",
+        "Cold",
+        "Electrical",
+        "Poison",
+        "Occult_damage"
+      ],
+      "base_resistance_percent_before_bonuses": 0,
+      "minimum_effective_resistance_percent": -50,
+      "maximum_effective_resistance_percent": 75,
+      "scope": "player_and_monsters;individual_monster_profiles_not_created",
+      "stacking": "sum_bonuses_then_subtract_maluses_then_clamp;retain_surplus_before_maluses",
+      "damage_formula": "ordinary_damage_before_resistance*(100-effective_resistance)/100",
+      "RP": "Vos protections atténuent les dégâts. Vos faiblesses les amplifient."
+    },
+    "R02": {
+      "armor_points_to_physical_damage_removed": 1,
+      "armor_applications_per_impact": 1,
+      "scope": "physical_part_of_a_single_impact",
+      "physical_damage_floor": 0,
+      "RP": "Votre blindage absorbe une partie des impacts."
+    },
+    "R03": {
+      "resistance_evaluation_time": "current_resistance_at_each_new_ordinary_impact_or_periodic_damage_tick",
+      "net_damage_based_bleeding": "no_second_armor_application",
+      "ordinary_damage_rounding": "floor_after_applicable_protections",
+      "negative_Cold_resistance_Gel": "increases_Gel_probability_under_accepted_linear_formula",
+      "Gel_chance_upper_bound_before_importance_percent": 100,
+      "Gel_importance_modifier": "existing_applicable_elite_or_boss_multiplier_after_cap"
+    },
+    "R05": {
+      "current_effective_resistances": "shown_in_player_statistics_and_detailed_target_analysis_accessible_with_scout",
+      "temporary_modifications": "existing_buff_debuff_bars",
+      "shown_example_copy": "Résistance au froid : 40 %",
+      "native_layout_colors_and_assets": "not_presented_or_approved"
+    }
+  },
+  "accepted_examples": [
+    {
+      "raw_damage": 100,
+      "resistance_percent": 40,
+      "suffered_damage": 60
+    },
+    {
+      "raw_damage": 100,
+      "resistance_percent": -25,
+      "suffered_damage": 125
+    },
+    {
+      "raw_resistance_bonus_percent": 90,
+      "malus_percentage_points": 25,
+      "effective_resistance_percent": 65
+    },
+    {
+      "raw_physical_damage": 40,
+      "effective_armor": 12,
+      "suffered_physical_damage": 28
+    }
+  ],
+  "approval_scope": "Explicit acceptance of the shown common R01/R02/R03/R05 RP,numeric rules,examples and UI direction;previous_Gel_formula_occult_controls_and_skill_exceptions_preserved.",
+  "unshown_cases_pending": [
+    "full_resistance_modifier_affix_values_probabilities_and_item_family_eligibility",
+    "individual_enemy_drone_and_raised_monster_base_resistance_profiles",
+    "specialized_resistance_penetration_and_resistance_reduction_effects_with_floor_overcap_ordering",
+    "source_death_transformation_or_layer_transition_behavior_of_temporary_resistance_modifiers",
+    "damage_component_allocation_for_multiple_physical_subtypes_and_projectile_impacts",
+    "absorption_shields_critical_bonus_damage_and_other_generic_defense_stacking_cases",
+    "non_Tourbillon_bleed_sources_flat_true_damage_and_other_indirect_effect_eligibility",
+    "BM05_reflected_damage_recipient_defenses_mixed_attack_classification_and_source_attribution",
+    "innate_status_eligibility_by_creature_nature_and_explicit_future_skill_exceptions",
+    "exact_ordinary_DoT_tick_timing_status_refresh_snapshot_and_simultaneous_effect_ordering",
+    "NPC_control_power_and_resistance_scaling_and_compatibility_with_existing_accepted_skill_chances",
+    "native_statistics_tooltips_icons_analysis_panels_and_damage_colors",
+    "all_other_unshown_cases",
+    "Gel_zone_order_rank_curve_reconciliation_and_replacement_of_previous_target_occult_resistance_factor;shown_negative_Cold_cap100_now_accepted"
+  ],
+  "native_visual_approval": "not_presented;UI_direction_does_not_approve_native_rendering",
+  "runtime_integration": "not_integrated"
+}

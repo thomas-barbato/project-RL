@@ -1,0 +1,16 @@
+{
+  "tool": "built-in image_gen",
+  "candidate": "107 / D58-BODY01",
+  "prompt": "Use case: stylized-concept. Create one redrawn, high-resolution transparent game-character source for Project RL, candidate 107 / D58-BODY01, the existing Traqueur companion drone.\nReference image 1 is the CURRENT LIVING TRAQUEUR and is the authority for its identity, pose, silhouette and palette. It is an old 32px drawing enlarged to64; do not copy its blocky pixels. Reconstruct the same character with clear, deliberate illustrated forms. Reference image 2 is STYLE ONLY, the accepted Guardian: match its serious crisp black ink outlines, hard-edged cel shading, strongly separated industrial materials and restrained graphic-novel finish. Do not copy its humanoid anatomy or orange palette.\nPreserve the Traqueur as a compact forward-leaning mechanical QUADRUPED facing toward image left, in the same slight three-quarter side view as reference1, not a standing biped and not a front-facing tank. Its long narrow pointed skull-shaped SENSOR HEAD is a bone-white armored casing around a dark recessed face, attached low in front of an arched armored back. The upper shell/back is muted military olive green; the frame and articulated joints are dark graphite. Exactly FOUR recognizably connected, bent mechanical legs support the body, spread with negative spaces so their feet can be read at native game size. The leg armor is BONE WHITE / ivory, the SAME MATERIAL AND COLOR as the head, with graphite joints and small dark steel claw feet. Keep the upper shell, head, leg roots and feet mechanically coherent. No organic tissue or actual exposed skeleton. Maintain its recognizable hunched animal-like stalking silhouette and compact size relative to the Guardian. It fights in melee, no ranged weapon.\nDraw this as a NEW detailed-but-readable 64px-ready illustration from scratch, not a smooth filter or tracing over chunky pixel squares: broad legible shapes, clean ink silhouette, a few large metal panels with simple highlights, readable knees, small purposeful wear, no micro-rivets or dense cable noise. At the final direct64 reduction the robot should occupy about 56-60 pixels wide and 48-50 pixels high; do not make the legs long or the body towering. All four legs, the head and every foot fully visible. Light from upper left, serious dark futuristic industrial design, not cute or toy-like.\nOne full-body single character only on genuine RGBA TRANSPARENT background, no ground or contact shadow (rendered separately), no backdrop, frame, labels, text, corpse or alternate pose. No purple, pink, cyan, orange armor, blue lights, wheels, tracks, humanoid hands, guns, missile launchers, shields, antennas, wings, tail or additional limbs. Preserve the specified graphite/military olive/bone-white palette and left-facing pose.",
+  "references": [
+    {
+      "path": "../../../../assets/animations/agent/skill-animation-review-93/traqueur-palette02/D58-PAL02-native64.png",
+      "role": "identity, pose, silhouette and palette"
+    },
+    {
+      "path": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-93/gardien-body02/D66-BODY02-source.png",
+      "role": "illustration style only"
+    }
+  ],
+  "transparent_background": true
+}

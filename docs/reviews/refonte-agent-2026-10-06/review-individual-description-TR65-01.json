@@ -1,0 +1,210 @@
+{
+  "date": "2026-10-07",
+  "id": "TR65",
+  "review_id": "TR65",
+  "revision": 1,
+  "title": "Abysse",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-70.json",
+  "source_skill_block_sha256": "29297b2b26f3e81746956192b7d183dd0ac686342fce17e0c1600524fd17e824",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "Force": 10,
+    "Agilité": 10,
+    "Volonté": 10,
+    "melee_multiplier_exact": "451/400",
+    "melee_multiplier_display": 1.1275,
+    "other_passive_implant_or_cost_modifiers": false,
+    "elemental_equipment_effects_in_numeric_example": false,
+    "natural_damage_basis_in_numeric_example": true,
+    "raw_weapon_damage_inheritance": "not_decided_by_source_selection;example_uses_natural_base",
+    "weapon_damage_type_effect_source": "active_weapon_group_immediately_before_transformation"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "duration_turns": 22,
+    "reach_attack_damage": 45,
+    "reach_attack_range_cells": 2,
+    "reach_attack_energy_cost": 0,
+    "line_strike_damage_per_target": 60,
+    "line_strike_length_cells": 4,
+    "line_strike_energy_cost": 6,
+    "line_strike_cooldown_turns": 4,
+    "shadow_step_range_cells": 3,
+    "shadow_step_energy_cost": 5,
+    "shadow_step_cooldown_turns": 3,
+    "transform_energy_cost": 17,
+    "transform_cooldown_turns": 10
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "duration_turns": 23,
+    "reach_attack_damage": 48,
+    "reach_attack_range_cells": 2,
+    "reach_attack_energy_cost": 0,
+    "line_strike_damage_per_target": 65,
+    "line_strike_length_cells": 4,
+    "line_strike_energy_cost": 6,
+    "line_strike_cooldown_turns": 4,
+    "shadow_step_range_cells": 3,
+    "shadow_step_energy_cost": 5,
+    "shadow_step_cooldown_turns": 3,
+    "transform_energy_cost": 17,
+    "transform_cooldown_turns": 10
+  },
+  "formulas_proposed": {
+    "reach_attack_damage": "floor((10+3*(effective_rank-1))*melee_multiplier)",
+    "line_strike_damage_per_target": "floor((14+4*(effective_rank-1))*melee_multiplier)",
+    "duration": "12+(effective_rank-1)+min(3,floor(max(0,Volonté-5)/20))",
+    "transform_energy": "14+floor((effective_rank-1)/3)",
+    "rank_curve_approval": "unshown_full_curves_defaults_and_scaling_pending"
+  },
+  "natural_actions_proposed": {
+    "Allonge": {
+      "role": "ordinary_physical_natural_reach_attack",
+      "energy_cost": 0,
+      "range_cells": 2,
+      "opaque_obstacles_block": true,
+      "blocked_by_Silence": false,
+      "separate_skill_purchase": false
+    },
+    "Fente abyssale": {
+      "review_id": "TR65-A03",
+      "role": "physical_natural_line_attack_hitting_aligned_hostiles",
+      "length_cells": 4,
+      "origin": "player;line_in_chosen_direction",
+      "player_displacement": false,
+      "opaque_obstacles_block": true,
+      "actors_do_not_stop_line": true,
+      "hostile_targets_only": true,
+      "energy_cost": 6,
+      "cooldown_turns": 4,
+      "blocked_by_Silence": false,
+      "separate_skill_purchase": false,
+      "boss_eligible": true
+    },
+    "Pas d’ombre": {
+      "role": "short_magic_repositioning_to_visible_empty_shadow_cell",
+      "range_cells": 3,
+      "destination": "free_currently_visible_cell_adjacent_to_opaque_wall_or_obstacle",
+      "shadow_definition": "terrain_adjacency_only;no_new_lighting_system",
+      "can_cross_intermediate_obstacles": true,
+      "damage": false,
+      "energy_cost": 5,
+      "cooldown_turns": 3,
+      "blocked_by_Silence": true,
+      "separate_skill_purchase": false
+    }
+  },
+  "common_rule_decisions": "docs/reviews/refonte-agent-2026-10-06/transformation-actions-equipment-and-power-decisions.json",
+  "equipment_and_weapon_rules_proposed": {
+    "equipment_retained": true,
+    "armor_attribute_and_skill_bonuses_preserved": true,
+    "ordinary_weapons_unavailable_in_form": true,
+    "weapon_requiring_techniques_unavailable_in_form": true,
+    "historical_Frappe_de_rupture_using_Griffe_exception": "superseded_unapproved_proposal;common_active_weapon_requirement_preserved",
+    "return_restores_equipment_and_normal_appearance": true,
+    "all_equipment_statistics_and_learned_passives_preserved": true,
+    "weapon_damage_type_effects_transmitted": true,
+    "weapon_effect_source": "group_of_weapons_active_immediately_before_transformation",
+    "stored_weapons_excluded_as_effect_source": true,
+    "allowed_learned_active_exception": "M02 Décharge mutagène",
+    "other_learned_actives_available": false,
+    "intrinsic_form_actions_available": true,
+    "M02_original_prolongation_role_preserved": true,
+    "rule_approval": "explicit_user_requests_and_weapon_source_answer;exact_new_numeric_and_technical_cases_pending"
+  },
+  "same_form_renewal_proposal": {
+    "review_id": "TRANS-RENEW01",
+    "approval": "displayed_cooldown_start_renew_same_form_pay_energy_restore_duration_no_heal_and_action_cooldown_preservation_explicitly_accepted;unshown_reserve_M02_budget_and_sampling_cases_pending",
+    "cooldown_starts_on_activation": true,
+    "same_active_form_can_be_renewed_when_its_cooldown_is_ready": true,
+    "renewal_pays_current_form_energy_cost": true,
+    "renewal_resets_remaining_duration_to_current_full_duration": true,
+    "renewal_preserves_HP_percentage_and_grants_no_healing": true,
+    "renewal_preserves_intrinsic_action_cooldowns_and_accumulated_form_reserve": true,
+    "renewal_does_not_reset_M02_extension_budget_for_same_continuous_form": true,
+    "new_form_switch": "existing_human_return_rule_retained;not_general_permission_to_cast_other_learned_actives",
+    "equipment_type_effect_source": "original_pre_form_active_weapon_group_preserved;exact_parameter_resampling_cases_pending",
+    "accepted_scope": [
+      "transformation_cooldown_starts_on_activation",
+      "renew_same_active_form_once_cooldown_is_ready",
+      "pay_current_form_energy_and_restore_full_current_duration",
+      "renewal_does_not_heal",
+      "intrinsic_action_cooldowns_preserved"
+    ],
+    "unshown_cases_pending": [
+      "form_reserve_preservation",
+      "M02_extension_budget_on_renewal",
+      "HP_rounding_changed_equipment_parameter_sampling_and_exact_tick_order"
+    ],
+    "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/predatory-molt-autonomy-and-renewal-acceptance-decisions.json"
+  },
+  "autonomy_review": "docs/reviews/refonte-agent-2026-10-06/review-transformation-autonomy-05.json",
+  "named_action_role_acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/predatory-molt-autonomy-and-renewal-acceptance-decisions.json",
+  "name_approval": "existing_Abysse_name_preserved;65_is_art_reference_not_player_skill_name",
+  "roleplay_text_approval": "proposed_pending_explicit_user_review",
+  "numeric_rules_approval": "all_displayed_TR65_current_next_values_proposed_pending_explicit_review",
+  "detailed_conditions_approval": "named_three_action_roles_and_displayed_shared_renewal_previously_accepted;TR65_line_shadow_destination_obstacle_crossing_and_Silence_conditions_pending",
+  "visual_intention_approval": "existing_drawing65_preserved;new_action_and_targeting_preview_direction_proposed_pending_review",
+  "visual_approval": "existing_art_bank_accepted;per_skill_native_animation_pending_review",
+  "original_art_reference": {
+    "reference_number": 65,
+    "name": "Abysse",
+    "new_character_image_created": false
+  },
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_natural_attack": true,
+    "natural_actions_included_with_form_purchase": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "duration_turns",
+      "reach_attack_damage",
+      "line_strike_damage_per_target"
+    ]
+  },
+  "player_copy_markdown": "**TR65 · Abysse — Rang 11 · Actif**\n\n*Vous vous métamorphosez en une créature des abysses, dont les membres s’étirent et la silhouette se fond dans les ombres.*\n\n**Effets actuels**\n\n- Durée de la transformation : **22 tours**.\n- Allonge : **45 dégâts**, portée **2 cases**.\n- Fente abyssale : **60 dégâts par ennemi**, sur une ligne de **4 cases devant vous**.\n- Pas d’ombre : déplacement jusqu’à **3 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Durée de la transformation : **23 tours**.\n- Allonge : **48 dégâts**.\n- Fente abyssale : **65 dégâts par ennemi**.\n\n**Transformation : 17 énergie · Recharge : 10 tours.**\n\n**Fente abyssale : 6 énergie · Recharge : 4 tours.**\n\n**Pas d’ombre : 5 énergie · Recharge : 3 tours.**\n\nAllonge ne coûte pas d’énergie. Allonge et Fente abyssale sont arrêtées par les murs et les obstacles qui bloquent la vue. Fente abyssale frappe les ennemis alignés dans la direction choisie, sans vous déplacer.\n\nPas d’ombre franchit les obstacles, mais sa destination doit être libre, visible et située à côté d’un mur ou d’un obstacle qui bloque la vue. Ce déplacement n’inflige pas de dégâts.\n\nSilence bloque Pas d’ombre, mais laisse Allonge et Fente abyssale disponibles.\n\nUne fois la recharge terminée, renouveler la forme coûte **17 énergie** et rétablit sa durée complète, sans soin ni remise à zéro des recharges de vos actions.\n\nVos statistiques d’équipement et vos passifs restent actifs. Vos attaques reprennent les effets de type de dégâts des armes actives avant la transformation.\n\nPendant la transformation : actions propres à la forme, renouvellement de la forme active et **Décharge mutagène** disponibles.\n\nDégâts affichés avant les défenses de la cible.",
+  "player_copy_sha256": "77f7a1210cbd2df17c71d3908988e504684ac393e2697939a0ccdd693a474adc",
+  "visual_copy_markdown": "**Visuel proposé :** la forme reprend le dessin 65 existant. Allonge étire brièvement un membre vers la cible. Fente abyssale trace une lacération sombre le long des cases frappées, avec un aperçu de la ligne avant lancement. Pas d’ombre indique les destinations possibles avant validation, puis laisse une ombre résiduelle à votre ancienne position.",
+  "visual_copy_sha256": "a0f66aed37b33c3ec54876ccc24c82d9df4080941f2348eaf98a85a7418faf35",
+  "current_turn_shown_copy_markdown": "**TR65 · Abysse — Rang 11 · Actif**\n\n*Vous vous métamorphosez en une créature des abysses, dont les membres s’étirent et la silhouette se fond dans les ombres.*\n\n**Effets actuels**\n\n- Durée de la transformation : **22 tours**.\n- Allonge : **45 dégâts**, portée **2 cases**.\n- Fente abyssale : **60 dégâts par ennemi**, sur une ligne de **4 cases devant vous**.\n- Pas d’ombre : déplacement jusqu’à **3 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Durée de la transformation : **23 tours**.\n- Allonge : **48 dégâts**.\n- Fente abyssale : **65 dégâts par ennemi**.\n\n**Transformation : 17 énergie · Recharge : 10 tours.**\n\n**Fente abyssale : 6 énergie · Recharge : 4 tours.**\n\n**Pas d’ombre : 5 énergie · Recharge : 3 tours.**\n\nAllonge ne coûte pas d’énergie. Allonge et Fente abyssale sont arrêtées par les murs et les obstacles qui bloquent la vue. Fente abyssale frappe les ennemis alignés dans la direction choisie, sans vous déplacer.\n\nPas d’ombre franchit les obstacles, mais sa destination doit être libre, visible et située à côté d’un mur ou d’un obstacle qui bloque la vue. Ce déplacement n’inflige pas de dégâts.\n\nSilence bloque Pas d’ombre, mais laisse Allonge et Fente abyssale disponibles.\n\nUne fois la recharge terminée, renouveler la forme coûte **17 énergie** et rétablit sa durée complète, sans soin ni remise à zéro des recharges de vos actions.\n\nVos statistiques d’équipement et vos passifs restent actifs. Vos attaques reprennent les effets de type de dégâts des armes actives avant la transformation.\n\nPendant la transformation : actions propres à la forme, renouvellement de la forme active et **Décharge mutagène** disponibles.\n\nDégâts affichés avant les défenses de la cible.\n\n**Visuel proposé :** la forme reprend le dessin 65 existant. Allonge étire brièvement un membre vers la cible. Fente abyssale trace une lacération sombre le long des cases frappées, avec un aperçu de la ligne avant lancement. Pas d’ombre indique les destinations possibles avant validation, puis laisse une ombre résiduelle à votre ancienne position.",
+  "current_turn_shown_copy_sha256": "d52f9013b63326376bfd13921ec2fe7b4acc2184fe43892b85b5babeba58d5b1",
+  "preview_proposal": {
+    "review_ids": [
+      "TR65-A03-V01",
+      "TR65-SHADOW-V01"
+    ],
+    "line_preview_stops_at_opaque_obstacles": true,
+    "shadow_preview_eligible_known_currently_visible_destinations_only": true,
+    "no_reveal_of_hidden_terrain_or_actors": true,
+    "native_render_pending": true
+  },
+  "unshown_cases_pending": [
+    "full_rank_curves_default_rank1_values_and_exact_rank_above10_scaling",
+    "accuracy_criticals_line_hit_order_damage_components_defenses_and_equipment_procs",
+    "line_directions_diagonals_large_footprints_actor_visibility_and_friendly_actor_cases",
+    "shadow_range_metric_diagonal_adjacency_occupied_large_footprints_and_transparent_obstacles",
+    "Silence_compatibility_for_form_entry_renewal_and_M02",
+    "M02_extension_budget_and_equipment_parameter_sampling_on_renewal",
+    "raw_weapon_damage_other_affixes_and_dual_wield_stacking",
+    "rejected_casts_energy_turn_and_RNG_atomicity",
+    "native_form_transition_reach_line_shadow_step_and_preview_frames"
+  ],
+  "runtime_integration": "not_integrated",
+  "autonomy_review_sha256": "6009990eaf6944ca38eb104399397263f4811ddaa1299b07721dfcb2720ec937"
+}

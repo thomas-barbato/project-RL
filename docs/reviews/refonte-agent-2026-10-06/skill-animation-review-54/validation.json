@@ -1,0 +1,57 @@
+{
+  "batch": "ANIM-S24",
+  "date": "2026-10-14",
+  "visual_status": "awaiting_visual_review",
+  "campaign_integration": false,
+  "compile": "cargo build --locked: passed",
+  "targeted_tests": "Six shot_buffs tests passed on the target-icon renderer.",
+  "format": "cargo fmt --all -- --check: passed",
+  "diff_check": "Scoped git diff --check: passed",
+  "native_capture": {
+    "tile": 64,
+    "world": [
+      576,
+      576
+    ],
+    "gpu_readback": [
+      640,
+      720
+    ],
+    "views": 25,
+    "new_mark_views": 15,
+    "unchanged_mastery_views": 10,
+    "frames_per_view": 160,
+    "fps": 24,
+    "new_readbacks_with_controls": 2760,
+    "resampling_of_native_capture": false,
+    "PNG_pixels_identical_to_native_readbacks": true
+  },
+  "animations": 26,
+  "checked": [
+    "target-head icon remains while mark is active",
+    "same icon follows cosmetic target reaction",
+    "icon disappears on next shot, even a miss, and on expiry",
+    "replacement shows icon only on new marked target",
+    "hidden, blocked and refused cast scenes have no mark icon",
+    "existing lifetime, costs, damage and T03 visuals preserved"
+  ],
+  "full_engine_suite_or_release_build": "Not run for this isolated review.",
+  "browser_runtime": "Not automated; native captures visually inspected and offline controls checked separately.",
+  "rule_scope": "Existing accepted cards retained. Fixed hits20/28/60 and precision snapshot1.35 establish no actual combat accuracy roll, equipment damage range or variance, defense, real AI, perception, or action resolution order.",
+  "excluded_draft": "Gallery53 and its earlier draft remain separate preserved references; only T01-A02 is revised.",
+  "pending": "Real precision/damage formulas, mage/form/heavy weapon eligibility, multi-target bursts, actual analysis UI and dense combat integration.",
+  "revision": "T01-A02",
+  "browser_controller": {
+    "controller": "passed",
+    "all_local_frame_paths": true,
+    "no_future_actions_or_idle_turns": true,
+    "mark_duration_consumption_miss_burst_replacement_and_expiry": true,
+    "atomic_cast_refusals": true,
+    "permanent_mastery_and_exclusions": true,
+    "responsive_comparison_scaled_hover_native_and_fullscreen": true,
+    "browser_runtime": "Not automated; native GPU captures and offline controls checked."
+  },
+  "pixel_check": "Four directions: absent before cast and after consumed shot, present while marked; native target-head region and GIF colors checked.",
+  "prior_references_unchanged": 16313,
+  "unchanged_mastery_GIFs": 10
+}

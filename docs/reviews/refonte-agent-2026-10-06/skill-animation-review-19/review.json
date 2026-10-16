@@ -1,0 +1,45 @@
+{
+  "batch": "ANIM-S06-A04",
+  "status": "fireball_explosion_drawing_revision_requested",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 13,
+      "skill_id": "FE05",
+      "variant": "FE05-A04",
+      "status": "visual_revision_requested"
+    },
+    {
+      "number": 14,
+      "skill_id": "FE06",
+      "variant": "FE06-A03",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "visual_revision": {
+    "projectile_size_pixels": 96,
+    "projectile_opacity": 0.9,
+    "blast_size_pixels": 352,
+    "blast_opacity": 0.52,
+    "combustion_plume_scales": [
+      0.52,
+      0.42
+    ],
+    "combustion_opacity": 0.65,
+    "combustion_corona_removed": true,
+    "fade_out_seconds": 0.16,
+    "fireball_flight_seconds": 0.65,
+    "blast_seconds": 0.55,
+    "combustion_seconds": 0.6
+  },
+  "fireball": "The projectile travels once and explodes on the first monster or wall. The blast ends automatically. It creates no persistent damage zone.",
+  "combustion": "Two small translucent flames close onto the burning target; no circular explosion. The brief shock ends automatically. The old Burn is consumed; a prepared success may create a new attached Burn.",
+  "timing": "Instant-hit art ends in real time. Burn and cooldowns only decrease with explicit turns. Native montage passes turns at 3, 4 and 5 seconds; interactive idle loops only attached Burn after the impact.",
+  "scope": "Isolated visual fixture: no campaign integration, damage, RNG or balance changes. Final combat geometry/collision is a separate implementation.",
+  "art": "Reuses the existing image_gen source sheet and accepted painted Burn. Scale/alpha/composition changes only. Characters, masks and approved persistent effects unchanged.",
+  "directions": "Four cardinal directions, full cloison and monster interception.",
+  "blood": "Pure Fire contains no blood.",
+  "accepted_temporal_policy": "The latest user clarification distinguishes instantaneous hits from persistent effects. The previously accepted FE04-A05 turn-based display is preserved.",
+  "next_review": "skill-animation-review-20",
+  "feedback": "The user requests a real outward impact explosion, not the same exploded fire orb made uniformly transparent. Transparency should serve the dissipation."
+}

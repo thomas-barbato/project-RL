@@ -1,0 +1,142 @@
+{
+  "date": "2026-10-07",
+  "id": "OC05",
+  "title": "Rayon vorace",
+  "revision": 2,
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-55.json",
+  "source_skill_block_sha256": "7060c4671a35b1e06ad85898a368c8dd94bd3998cbf8849d6c38b9a6e90cada4",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/voracious-ray-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "71456c4ffad77b515a266948abeb3ea69ddfc981885919609a84f0fbe2e56c8d",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "name_approval": "accepted_existing_catalogue_name_preserved",
+  "roleplay_text_approval": "displayed_black_magic_RP_explicitly_accepted",
+  "numeric_rules_approval": "displayed_current_next_values_duration_range_cost_cooldown_accepted_as_provisional_balance;unshown_curves_and_rounding_pending",
+  "detailed_conditions_approval": "displayed_visible_unobstructed_enemy_automatic_wait_ticks_move_weapon_other_skill_stop_received_damage_noninterruption_target_energy_stop_actual_HP_leech_and_missing_HP_cap_accepted;unshown_cases_pending",
+  "visual_intention_approval": "displayed_black_red_veined_filament_inbound_dark_red_drain_pulses_and_break_on_end_accepted;native_pixels_pending",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "formulas": {
+    "damage_per_resolution": "floor((6+2*(effective_rank-1))*magic_multiplier)",
+    "life_leech_percent": "10+15*(effective_rank-1)/(effective_rank+9)",
+    "life_leech_heal": "min(missing_HP,HP_actually_removed,ceil(HP_actually_removed*life_leech_percent/100))",
+    "maximum_resolutions": 3,
+    "range_cells": 5,
+    "energy_per_resolution": "4+floor((effective_rank-1)/4)",
+    "cooldown_turns": 6
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "damage_per_turn": 6,
+    "life_leech_percent": 10,
+    "maximum_duration_turns": 3,
+    "range_cells": 5,
+    "energy_per_turn": 4,
+    "cooldown_turns": 6,
+    "approval": "unshown_curve_pending"
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "damage_per_turn": 28,
+    "life_leech_percent": 17.5,
+    "life_leech_percent_exact": "35/2",
+    "maximum_duration_turns": 3,
+    "range_cells": 5,
+    "energy_per_turn": 6,
+    "cooldown_turns": 6
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "damage_per_turn": 30,
+    "life_leech_percent": 17.9,
+    "life_leech_percent_exact": "125/7",
+    "maximum_duration_turns": 3,
+    "range_cells": 5,
+    "energy_per_turn": 6,
+    "cooldown_turns": 6
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "damage_per_turn",
+      "life_leech_percent"
+    ]
+  },
+  "effect_conditions": {
+    "damage_type": "occult",
+    "target": "hostile visible at range with unobstructed path",
+    "damage_display": "before_target_defenses",
+    "life_leech_basis": "actual_HP_removed_after_defenses_capped_at_missing_HP_and_HP_removed",
+    "life_leech_rounding": "ceil_proposed_unshown",
+    "obstacle_decoy_and_zero_HP_removal_heal": false,
+    "new_status_or_damage_variance_or_hidden_reveal": false
+  },
+  "channel_conditions": {
+    "automatic_continuation_approval": "explicitly_accepted_OC05_displayed_automatic_wait_channel_and_received_damage_noninterruption",
+    "initial_resolution_included_in_maximum": true,
+    "maximum_resolutions": 3,
+    "followup_resolution": "one_per_following_game_turn_when_waiting",
+    "automatic_game_turn_advance": false,
+    "manual_maintain_action": false,
+    "move_weapon_attack_other_skill_interrupt": true,
+    "received_HP_loss_interrupts": false,
+    "insufficient_energy_stops": true,
+    "target_death_loss_of_visibility_or_range_or_clear_path_stops": true,
+    "other_inventory_pet_item_natural_attack_and_refused_action_cases": "pending"
+  },
+  "branch_style_dependency": {
+    "review_id": "OC-NOIR01",
+    "decisions": "docs/reviews/refonte-agent-2026-10-06/occult-black-magic-direction-decisions.json",
+    "sha256": "a5da55c41707b156279ca7f9ebc789ef1f7e3fe0e05834dcc9b38e4f50abacee",
+    "requested_direction": "black_magic",
+    "exact_other_skill_revisions": "not yet proposed or approved"
+  },
+  "unshown_rules_approval": "Full rank/attribute/leech/cost curves and rounding,hit chance,visibility union/LOS/range/corners/large footprints,initial/followup timing,tick/defense/heal/interruption order,cooldown start/count,refusal/energy accounting,inventory/pet/item/natural attacks,modifiers/stacking and map interactions remain pending;no hidden reveal,status,general spell variance or HP cost added. Automatic continuation and HP-loss noninterruption explicitly accepted for OC05 only.",
+  "player_copy_markdown": "**OC05 · Rayon vorace — Rang 11 · Actif**\n\n*Un lien de ténèbres s’agrippe à votre cible et dévore sa vitalité pour nourrir la vôtre.*\n\n**Effets actuels**\n\n- Dégâts occultes : **28 par tour**.\n- Vol de vie : **17,5 % des PV retirés**.\n- Durée maximale : **3 tours**.\n- Portée : **5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts occultes : **30 par tour**.\n- Vol de vie : **17,9 % des PV retirés**.\n\n**Coût : 6 énergie par tour · Recharge : 6 tours.**\n\nCiblez un ennemi visible, sans obstacle entre vous et lui.\n\nLe rayon se poursuit automatiquement lorsque vous attendez. Vous déplacer, attaquer avec une arme ou utiliser une autre compétence l’interrompt. Les dégâts reçus ne l’interrompent pas.\n\nIl cesse si vous perdez la cible ou manquez d’énergie.\n\nLe soin dépend des PV réellement retirés, sans dépasser vos PV manquants. Dégâts affichés avant les défenses de la cible.",
+  "player_copy_sha256": "e44cbef1781cfdedac02842b7c83bdddd2855aea9dbcb2ed8e21a0c44737edb3",
+  "visual_copy_markdown": "**Visuel proposé :** un fil noir veiné de rouge relie votre personnage à sa cible. Des pulsations rouge sombre remontent vers vous à chaque drain ; le fil se rompt lorsque le sort cesse.",
+  "visual_copy_sha256": "1e6cf24f5678631f5c31b549d277a6ab06d5e6173c65d5531e6938fad27a48ca",
+  "current_turn_shown_copy_markdown": "**OC05 · Rayon vorace — Rang 11 · Actif**\n\n*Un lien de ténèbres s’agrippe à votre cible et dévore sa vitalité pour nourrir la vôtre.*\n\n**Effets actuels**\n\n- Dégâts occultes : **28 par tour**.\n- Vol de vie : **17,5 % des PV retirés**.\n- Durée maximale : **3 tours**.\n- Portée : **5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts occultes : **30 par tour**.\n- Vol de vie : **17,9 % des PV retirés**.\n\n**Coût : 6 énergie par tour · Recharge : 6 tours.**\n\nCiblez un ennemi visible, sans obstacle entre vous et lui.\n\nLe rayon se poursuit automatiquement lorsque vous attendez. Vous déplacer, attaquer avec une arme ou utiliser une autre compétence l’interrompt. Les dégâts reçus ne l’interrompent pas.\n\nIl cesse si vous perdez la cible ou manquez d’énergie.\n\nLe soin dépend des PV réellement retirés, sans dépasser vos PV manquants. Dégâts affichés avant les défenses de la cible.\n\n**Visuel proposé :** un fil noir veiné de rouge relie votre personnage à sa cible. Des pulsations rouge sombre remontent vers vous à chaque drain ; le fil se rompt lorsque le sort cesse.",
+  "current_turn_shown_copy_sha256": "5848be044888f7d717fa4d800871120e4e8ebc216e31ef72e6f8245d9b60ef25",
+  "checks": [
+    "Stable OC05 name and life-leech role retained;new RP/dark-red filament visual pending.",
+    "Learned9 then10,gear+2,Willpower10;effective11/12;no other passive or implant assumed.",
+    "Damage28/30;leech35/2 then125/7 percent displayed17.5/17.9;duration3 range5 cost6 and CD6 unchanged.",
+    "Automatic continuation and received-damage noninterruption replace historical unapproved manual-maintain and HP-loss interruption proposals for this skill;FE02 approval not copied.",
+    "Only damage and leech shown at next rank;all new copy/numbers/conditions/native pixels pending. Runtime not integrated.",
+    "Full displayed OC05 card explicitly accepted;automatic continuation/noninterruption accepted for OC05 only;native pixels,full curves,rounding and unshown cases remain pending."
+  ],
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC05-01.json",
+  "previous_description_sha256": "36bb8f3f5897632c7cd4fa9adf2fc3f2004a0e739a5a24006aec423089ff2867",
+  "accepted_shown_copy_markdown": "**OC05 · Rayon vorace — Rang 11 · Actif**\n\n*Un lien de ténèbres s’agrippe à votre cible et dévore sa vitalité pour nourrir la vôtre.*\n\n**Effets actuels**\n\n- Dégâts occultes : **28 par tour**.\n- Vol de vie : **17,5 % des PV retirés**.\n- Durée maximale : **3 tours**.\n- Portée : **5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts occultes : **30 par tour**.\n- Vol de vie : **17,9 % des PV retirés**.\n\n**Coût : 6 énergie par tour · Recharge : 6 tours.**\n\nCiblez un ennemi visible, sans obstacle entre vous et lui.\n\nLe rayon se poursuit automatiquement lorsque vous attendez. Vous déplacer, attaquer avec une arme ou utiliser une autre compétence l’interrompt. Les dégâts reçus ne l’interrompent pas.\n\nIl cesse si vous perdez la cible ou manquez d’énergie.\n\nLe soin dépend des PV réellement retirés, sans dépasser vos PV manquants. Dégâts affichés avant les défenses de la cible.\n\n**Visuel proposé :** un fil noir veiné de rouge relie votre personnage à sa cible. Des pulsations rouge sombre remontent vers vous à chaque drain ; le fil se rompt lorsque le sort cesse.",
+  "accepted_shown_copy_sha256": "5848be044888f7d717fa4d800871120e4e8ebc216e31ef72e6f8245d9b60ef25",
+  "latest_acceptance_scope": "Displayed black-magic RP,damage28/30 per turn,leech17.5/17.9 percent of actual HP removed,duration3,range5,cost6 energy per turn/CD6,visible unobstructed enemy target,automatic continuation while waiting,move/weapon attack/other skill interruption,no interruption by received damage,loss of target/energy stop,heal capped by missing HP,damage before target defenses;displayed black red-veined filament,inbound dark-red drain pulses and rupture on ending accepted as visual direction. Native pixels,full curves,rounding and unshown cases remain pending.",
+  "next_review_skill_id": "OC06"
+}

@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/primary-catalogue-and-ui-decisions.json",
+  "latest_decisions_sha256": "63a1ec34b1c0c1b6cef7d39f09f17d608157ed58d09bb4e9780bc8f3b8d11646",
+  "text_approval": "pending_user_review",
+  "visual_approval": "pending_preview_and_user_review",
+  "batch_revision": 1,
+  "document": "docs/REVUE_INTERFACE_EFFETS_AGENT.md",
+  "document_sha256": "519c922ceb1b82a232c2b550aab4cde9fd210a6f38d81cfd5465944fe1a35f13",
+  "blocks": [
+    {
+      "date": "2026-10-06",
+      "runtime_integration": "not_integrated",
+      "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/primary-catalogue-and-ui-decisions.json",
+      "latest_decisions_sha256": "63a1ec34b1c0c1b6cef7d39f09f17d608157ed58d09bb4e9780bc8f3b8d11646",
+      "text_approval": "pending_user_review",
+      "visual_approval": "pending_preview_and_user_review",
+      "id": "HUD01",
+      "role": "interface",
+      "revision": 1,
+      "title": "Icônes de buffs et debuffs",
+      "block_sha256": "b54f18731b61514ae239d133075ff456113de49a816ebc1038723b08bd341f72",
+      "text_sha256": "de11982c5044a1dddda018eebbc4e255fe3d846fd63b6665014922684768069e",
+      "mechanic_sha256": "3af586a188571de0f6bfda5e38799c2b415b77a7148971829a4aea237eed7432",
+      "mechanic_approval": "requested_structure_and_specific_effects_accepted_other_details_pending"
+    }
+  ],
+  "accepted_requirements": {
+    "buff_and_debuff_icons_for_player": true,
+    "mouse_hover_information": [
+      "name",
+      "effect",
+      "remaining_turns"
+    ],
+    "implementation_timing": "later",
+    "top_right_location": "suggestion_pending_layout_review"
+  }
+}

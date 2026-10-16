@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-06",
+  "user_messages": [
+    "je trouve qu'il y a trop de texte dans la progression de facon globale. Il faudrait quelque chose d'un peu plus numérique et avec moins de texte.\n\nAussi, à noter dans les dégats affichés, c'est que je compte à ce que les armes aient une variance dans le dégats.",
+    "en faite ce qu'on pourrait faire pour la progression générale c'est dire :\npar exemple :\nEffet : chance de saignement : 5%\nprochain niveau : chance de saignement : 7.5%\nBref quelque chose de synthetique mais clair, comme dans diablo 2 :)"
+  ],
+  "accepted_requirements": {
+    "presentation": "short numeric current effect and next learnable rank blocks; no tables",
+    "progression_formulas": "replaced in player copy by evaluated current and next values",
+    "weapon_variance": "weapon damage varies; display current skill damage as a minimum-maximum range using the active weapon and applicable modifiers"
+  },
+  "bleeding_example_scope": "illustrates presentation only; no new skill or bleeding progression approved",
+  "superseded_proposal": "base value plus per rank formula lines prepared during the interrupted turn",
+  "interrupted_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/description-format-interrupted-variance-proposal.md",
+  "interrupted_document_snapshot_sha256": "66fcb7e298dd21c8c37a8740d9ab4a4ff67394e6443cb04fa04338f0e9c3743e",
+  "existing_learned_cap": 10,
+  "gear_ranks_above_cap": "preserved",
+  "next_rank_preview": "add one learned rank while keeping gear and other conditions fixed; do not offer an eleventh learned rank",
+  "illustrative_weapon_range": {
+    "minimum": 18,
+    "maximum": 22,
+    "status": "example_only_not_a_weapon_balance_rule"
+  },
+  "variance_amplitude_distribution_and_exceptions": "not_defined; pending_later_review",
+  "new_ME03_copy_and_current_next_values": "pending_user_review",
+  "native_visual_render": "pending_user_review",
+  "runtime_integration": "not_integrated"
+}

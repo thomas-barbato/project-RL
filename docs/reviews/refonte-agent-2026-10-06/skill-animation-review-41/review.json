@@ -1,0 +1,33 @@
+{
+  "batch": "ANIM-S15",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 35,
+      "id": "TR63",
+      "name": "Cuirassé",
+      "variant": "TR63-A01",
+      "body_variant": "TR63-BODY01",
+      "existing_body_reference": 63,
+      "visual_status": "visually_approved",
+      "body_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 36,
+      "id": "TR64",
+      "name": "Possédé",
+      "variant": "TR64-A01",
+      "body_variant": "TR64-BODY01",
+      "existing_body_reference": 64,
+      "visual_status": "visually_approved",
+      "body_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "visuals": "Emerald/ivory chitin plates assemble around Cuirasse; crimson ribbons with visible purple edges accompany Possede. New direct64px bodies preserve reference63/64 identities. Entry0.38s, return0.30s.",
+  "rules_retained": "Both forms last22 turns in the previously approved rank11 example, cooldown10. Transformation active at launch; renewal after cooldown resets22 without human flash. Previously agreed17/19 energy costs retained; fixture does not resolve energy or HP.",
+  "scope": "Only appearance and entry/return/renewal. No own attacks yet, real combat, HP/stats, reserve, healing, AI, loot, inventory or saves. No campaign integration or existing bank replacement.",
+  "acceptance": "visual-acceptance-01.json"
+}

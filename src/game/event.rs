@@ -113,6 +113,11 @@ pub enum TechniqueEffectFailure {
 /// Facts emitted by the simulation for rendering, audio, logs and tests.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum GameEvent {
+    /// Accepted guardian impulse; status instances own all targeting and duration.
+    AgentGuardianTaunted {
+        entity: EntityId,
+        origin: GridPos,
+    },
     MaintainedEnergyChanged {
         technique: crate::skills::TechniqueId,
         amount: u16,
@@ -517,6 +522,37 @@ pub enum GameEvent {
         user: EntityId,
         slot: u8,
         target: GridPos,
+    },
+    /// Reviewed weapon-skill presentation; does not drive attack simulation.
+    AgentWeaponSkillUsed {
+        entity: EntityId,
+        skill: String,
+        origin: GridPos,
+        target: GridPos,
+    },
+    /// One accepted explosion; per-victim impacts retain independent critical results.
+    AgentAreaSpellCast {
+        entity: EntityId,
+        skill: String,
+        origin: GridPos,
+        target: GridPos,
+        radius: u16,
+    },
+    /// Reviewed agent spell; rendering may animate the flight without driving simulation.
+    AgentSpellCast {
+        entity: EntityId,
+        victim: EntityId,
+        skill: String,
+        origin: GridPos,
+        target: GridPos,
+        critical: bool,
+    },
+    /// Reanimation changes the runtime entity ID, while keeping the same creature.
+    /// Clients transfer its existing presentation before processing the death event.
+    AgentReanimated {
+        original: EntityId,
+        raised: EntityId,
+        at: GridPos,
     },
     /// Presentation of an equipment push; the ordinary forced-movement event
     /// separately reports its outcome. No extra attack or damage is implied.

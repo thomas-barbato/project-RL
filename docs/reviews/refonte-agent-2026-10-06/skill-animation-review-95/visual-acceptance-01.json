@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-15",
+  "review_id": "ANIM-S48-ACCEPT01",
+  "user_reply": "parfait c'est tres bien :)",
+  "approved": [
+    {
+      "number": 105,
+      "id": "DP01",
+      "variant": "DP01-A01",
+      "title": "Maintenance des drones"
+    },
+    {
+      "number": 106,
+      "id": "DR01",
+      "variant": "DR01-A01",
+      "title": "Réparation ciblée"
+    }
+  ],
+  "scope": "Visual acceptance of the two shown blue repair animations and their prepared native-size laboratory cases. No new statistical balancing or campaign integration inferred.",
+  "accepted_atlas_sha256": {
+    "DP01-DROITE.webp": "a798561ec33914a07c2f929760278794e305fc4545b257163c9454590860f959",
+    "DP01-GAUCHE.webp": "ed5eaee40ec0ae4e2c35661ea7d906f6984d134a3145430b2648cb9c356e7a03",
+    "DP01-HAUT.webp": "265895095cf418d92a2192ca0ced48bc343d816d3a75432d143b43316f0ddec0",
+    "DP01-BAS.webp": "dd705f6b94c50acf86cb037caf261ddb499c61ba3c7f41c7ab553c52e9ca8aea",
+    "DP01-HOSTILE.webp": "c94b497cdac5d1c3b0dd103100fdf00d57d44a66d12ffece7ed6432438d3063f",
+    "DP01-PLAFOND.webp": "224fbcdaaf43970cece7d95c3c705cf799d2ac62fd20c87ef8b2bfb88fb7645c",
+    "DP01-CLOISON.webp": "725cebb3078a258b4811c16f65be3a38922b1e38c1366cc3041c1a716c9a8382",
+    "DP01-RAPPELE.webp": "47375d0a0073c741014f472547cf5f29f73aa691fbf776b389cb0d136b34d942",
+    "DP01-DETRUIT.webp": "47375d0a0073c741014f472547cf5f29f73aa691fbf776b389cb0d136b34d942",
+    "DP01-ENERGIE.webp": "265895095cf418d92a2192ca0ced48bc343d816d3a75432d143b43316f0ddec0",
+    "DP01-ATTENTE.webp": "308a7a29415f3dab8aa9a084e502dc176c5ba8b48cbc7aab20b2b1ff738c2bf0",
+    "DR01-DROITE.webp": "b45655f4a041d6d003e1d6cac5395170663e68ffe41387fca5c6be45df7f0ddc",
+    "DR01-GAUCHE.webp": "66c4166cdb59962ed8401ede2349a35f38874c1cacbc9c05910db14691e62cb5",
+    "DR01-HAUT.webp": "49887f3dd789378b228f8439a1e5b02e620a46d5959894570c2c8b92b9319ac8",
+    "DR01-BAS.webp": "db324a01fe66d9d96db90e7cdab69f0900b6f9cb88257588934f1ecd5035718c",
+    "DR01-HOSTILE.webp": "f378ac92e127676cc8aeed6e5cfd880ee03b6c7d8cc480a60da956514bf0a2ee",
+    "DR01-PLAFOND.webp": "136b66bb3a133b35712cd4893ba939248abe74fe04fa266b5d0adff978e7f2ad",
+    "DR01-CLOISON.webp": "8e9bdf30d9e66d3cae9ae8f09e951e0ef30915dd489da36ae265b909881e2530",
+    "DR01-RAPPELE.webp": "47375d0a0073c741014f472547cf5f29f73aa691fbf776b389cb0d136b34d942",
+    "DR01-DETRUIT.webp": "47375d0a0073c741014f472547cf5f29f73aa691fbf776b389cb0d136b34d942",
+    "DR01-ENERGIE.webp": "308a7a29415f3dab8aa9a084e502dc176c5ba8b48cbc7aab20b2b1ff738c2bf0",
+    "DR01-ATTENTE.webp": "49887f3dd789378b228f8439a1e5b02e620a46d5959894570c2c8b92b9319ac8"
+  },
+  "accepted_inline_sha256": {
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-95/DP01-repair-blue-64.webp": "b27d040b69619bdeec6b557fcca80cc326598195f5378d7c0941b641d02c5b39",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-95/DR01-repair-blue-64.webp": "410531a75a1c5b29d326f9ab9163507caaaf3e83c59d4fac6ac9103d2ad09a68"
+  },
+  "source_sha256": "39174c7e1a90292c0b10e4cc803574bc80b448b672b7512028fc0db53aa9af83",
+  "review_manifest_sha256_at_acceptance": "a8e5108e6628dff5385c2c6e22f962e070f1718640d0192a48844446caca3b0c",
+  "not_newly_approved": [
+    "Illustrative drone HP totals or starting wounds",
+    "Unshown maintenance progression, rounding, timing or resource policies",
+    "D66-TAUNT-A01",
+    "D66-TAUNT-I01",
+    "O03-A01",
+    "Review90 visuals",
+    "B03 mechanics"
+  ],
+  "DP02_policy_preserved": "Permanent passive, no world animation; existing icon reserved for future pets window.",
+  "campaign_integration": false,
+  "active_assets_changed": false
+}

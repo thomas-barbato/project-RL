@@ -1,0 +1,34 @@
+{
+  "build": "cargo build --locked: passed",
+  "tests": "cargo test --locked agent_skill_lab_review: 19 passed",
+  "format": "cargo fmt --all -- --check: passed",
+  "whitespace": "git diff --check: passed",
+  "python": "packaging and native controls: passed",
+  "javascript": "node --check gallery-script.js: passed",
+  "gallery_frames": 360,
+  "new_views": 4,
+  "comparison": "A07 left, A08 right; both at native size",
+  "native_tile_size": 64,
+  "protected_files_unchanged": 7387,
+  "other_masks": [
+    {
+      "case": "CLOISON",
+      "mask_pixels_unchanged": true
+    },
+    {
+      "case": "OBSTACLE",
+      "mask_pixels_unchanged": true
+    },
+    {
+      "case": "LONG",
+      "mask_pixels_unchanged": true
+    },
+    {
+      "case": "LONG-CLOISON",
+      "mask_pixels_unchanged": true
+    }
+  ],
+  "preview_and_burn": "Same-phase native frames identical to A07",
+  "scope": "Debug prototype; approved visuals. Full engine suite and campaign integration not performed.",
+  "visual_acceptance": "User approved the animation and common art rules on 2026-10-12."
+}

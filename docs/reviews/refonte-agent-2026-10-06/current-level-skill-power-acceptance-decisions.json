@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-09",
+  "review_id": "SKILL-LEVEL01",
+  "user_concern": "Free skill access must still permit useful low-level and high-level damage without minimum character-level unlocks.",
+  "accepted_proposal": "Keep free learning and ten learned ranks. Nonweapon damage powers receive a base power that follows the caster's current level; skill rank improves effectiveness, while accepted attributes and equipment retain their separate contributions. Weapon actions keep active-weapon damage as their evolving base.",
+  "first_user_acceptance": "d'accord :) ca me semble bien",
+  "clarification_presented": "Le niveau auquel on apprend Braise n'aurait aucune influence. Sa puissance dépendrait du niveau actuel du personnage et du rang actuel de Braise. Deux personnages au niveau 40 avec Braise au rang 10, les mêmes attributs et le même équipement obtiennent les mêmes effets et dégâts, même si l'un a appris Braise au niveau 2 et l'autre au niveau 40.",
+  "clarification_user_acceptance": "d'accord :) ca me semble bien",
+  "approved_rules": {
+    "learning_access": "no_character_level_or_branch_investment_unlock_thresholds_restored",
+    "current_level": "use_current_caster_level_for_new_activations;never_acquisition_level_or_highest_learning_level",
+    "learning_history": "identical_current_level_effective_skill_rank_attributes_equipment_and_other_conditions_produce_identical_results",
+    "rank": "rank1_can_remain_usable_late;at_same_character_profile_invested_ranks_give_meaningfully_better_effectiveness",
+    "rank_caps": "learned_cap10;equipment_can_raise_effective_rank_beyond10;secondary_active_purchase_once_preserved",
+    "weapon_actions": "active_weapon_native_damage_remains_base;do_not_add_a_second_caster_level_damage_multiplier",
+    "nonweapon_damage": "level_growth_for_magical_and_other_nonweapon_damage_powers_including_mines_and_form_native_attacks",
+    "attributes_and_equipment": "existing_mappings_and_compatible_modifier_pipeline_preserved",
+    "monster_statistics": "own_level_and_statistics_retained;no_automatic_enemy_matching_to_player_inferred"
+  },
+  "approval_boundary": "The general current-level model and acquisition-history invariance are explicitly accepted. No exact level-growth coefficient, individual new damage value, weapon variance, new status, new range, new art or final balance has been individually accepted in this exchange.",
+  "remaining_numeric_work": "prepare_level_curve_reference_as_separate_provisional_proposal;complete_skill_rank_curves_under_existing_SKILL_RANK_DELEGATE01_authority",
+  "persistent_effect_update_boundary": "whether_existing_zones_marks_buffs_or_periodic_effects_recompute_after_a_caster_level_change_is_not_resolved_by_learning_history_clarification",
+  "runtime_integration": "not_integrated"
+}

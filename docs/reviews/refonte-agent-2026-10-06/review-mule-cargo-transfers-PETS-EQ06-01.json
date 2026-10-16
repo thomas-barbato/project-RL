@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ06",
+  "revision": 1,
+  "title": "Sac de la Mule",
+  "status": "Mule_cargo_storage_eligibility_action_cost_proximity_and_Transport_display_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-38.json",
+  "current_attribute_model_sha256": "b6e0e7e14d81ed16a1d522a24badcc35d60fe7a4244053611585b5c29b920dd0",
+  "shown_copy_markdown": "Les **conditions et coûts des échanges d’équipement sont validés**.\n\n**PETS-EQ06 · Sac de la Mule — proposition**\n\nDans sa fiche, un bloc **« Transport »** affiche les objets stockés et la **charge actuelle / maximale, en kg**.\n\n**Stockage**\n\nTout objet transportable de votre inventaire peut y être rangé. Les conditions de niveau et de type de combat concernent l’équipement porté, pas les objets stockés.\n\nUn objet rangé dans le sac **n’accorde aucun bonus** à la Mule ni à l’agent.\n\n**Déposer ou reprendre un objet**\n\n- Mule **déployée, adjacente et visible par l’agent**.\n- Transfert possible **en combat comme au calme**.\n- Coût : **1 action · 0 énergie**.\n\nSi le dépôt dépasse la capacité de la Mule, ou si votre inventaire ne peut pas accueillir l’objet repris, le transfert est refusé : l’objet reste à sa place et aucune action n’est consommée.\n\n**Règles conservées**\n\nLe chargement reste conservé lors d’un rappel ou d’un changement de couche. À la destruction de la Mule, **tout son chargement tombe sur sa case**, avec les objets déjà présents.\n\n**Les règles de stockage, les coûts et le bloc « Transport » restent à valider.**",
+  "shown_copy_sha256": "09958268d08f6a7c095e64dc31e262ff2a9668e3949f338c2e07a9e75915cdcd",
+  "new_proposed_rules": {
+    "scope": "existing_Mule_D57_real_cargo_storage_and_transfers_between_player_inventory_and_Mule_cargo;no_general_familiar_cargo_added",
+    "interface": "Transport block_in_Mule_selected_sheet_lists_real_stored_objects_and_current_over_maximum_cargo_weight_in_kg",
+    "storage_eligibility": "any_transportable_object_from_player_inventory;equipment_minimum_level_and_combat_type_requirements_do_not_restrict_storage",
+    "stored_item_modifiers": "stored_unequipped_objects_grant_no_stat_or_skill_bonus_to_Mule_or_agent",
+    "presence": "Mule_currently_deployed_on_same_map",
+    "proximity": "one_of_eight_immediately_neighboring_agent_cells",
+    "visibility": "Mule_visible_by_agent_under_same_proposed_transfer_predicate_as_accepted_PETS_EQ05",
+    "phase": "combat_accalmie_or_calme_allowed",
+    "deposit_cost": {
+      "agent_actions": 1,
+      "energy": 0
+    },
+    "withdraw_cost": {
+      "agent_actions": 1,
+      "energy": 0
+    },
+    "capacity_check": "deposit_must_fit_current_Mule_cargo_capacity;withdrawal_must_fit_final_agent_inventory_capacity",
+    "refusal": "overcapacity_or_full_receiving_inventory_causes_no_item_movement_and_no_agent_action_consumption",
+    "object_identity": "transfer_real_existing_object_between_containers_without_duplication_or_creating_loot",
+    "not_defined": "item_mass_catalogue_full_cargo_capacity_rank_curve_Intelligence_factor_equipment_cargo_weight_interactions_multi_item_quantity_controls_and_direct_ground_or_pet_transfers"
+  },
+  "preserved_accepted_rules": {
+    "Mule_equipment": "separate_torso_armor_slot_under_PETS_EQ03;cargo_is_not_worn_equipment",
+    "lifetime": "unlimited_activity_and_no_attack",
+    "recall_and_layer": "real_cargo_retained_on_recall_and_layer_transition",
+    "destruction": "all_cargo_deposits_on_Mule_current_cell_preserving_existing_ground_objects",
+    "inspection": "opening_sheets_and_viewing_contents_no_action_under_PETS_EQ05",
+    "capacity_snapshots": "accepted_D57_illustrative_rank11_132kg_rank12_140.8kg_historical_under_fixed_owner_Intelligence10;no_new_full_curve_or_Intelligence_cargo_coefficient_inferred_here"
+  },
+  "dependencies": {
+    "equipment_transfers": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-transfers-PETS-EQ05-02.json",
+    "equipment_transfers_sha256": "ddf5ee2af6b8bf6beab36f66fc05fd10f0e434fcee1c1aace54cadb6ebeed388",
+    "Mule_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-D57-02.json",
+    "Mule_card_sha256": "b4ac8e8a9232755debfa1ed463fa8a2134f063092338e34fb168bcdd786c54a9",
+    "Mule_receipt": "docs/reviews/refonte-agent-2026-10-06/mule-description-acceptance-decisions.json",
+    "Mule_receipt_sha256": "32755e026bd24b6418a7e8cd902334d937f3b724f9d94dc56b2c927943327ca0",
+    "equipment_slots": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-slots-PETS-EQ03-02.json",
+    "equipment_slots_sha256": "54e7c2c2a8e2a09ce2b45abe4616d972c58c01b68fa26b81faaea43b017045fb"
+  },
+  "scope_audit": {
+    "old_Mule_stats": "historical_HP_and_Intelligence2percent_snapshot_not_restored;current_actor_HP_rules_preserved;cargo_numeric_curve_separate_pending_review",
+    "storage_vs_equipment": "new_cargo_eligibility_and_zero_stored_modifiers_explicitly_proposed;no_new_equipment_slot",
+    "other_pets": "no_other_familiar_transport_inventory_created",
+    "scheduler": "one_agent_action_transfer_cost_only;NPC_AI_turn_order_and_commands_not_redefined",
+    "native_UI": "label_Transport_and_display_function_proposed;no_layout_pixels_icons_or_sprite_created"
+  },
+  "unshown_cases_pending": [
+    "full_Mule_cargo_capacity_rank_curve_and_owner_Intelligence_factor_under_current_attribute_model",
+    "masses_for_all_real_item_families_and_rounding_display",
+    "equipped_Mule_torso_armor_weight_inside_or_outside_cargo_limit",
+    "dynamic_capacity_decrease_overloaded_cargo_movement_and_storage_restrictions",
+    "multi_item_transfer_stack_quantities_selection_buttons_and_cost",
+    "direct_cargo_to_equipment_ground_or_other_familiar_transfers",
+    "visibility_diagonal_corner_and_disabled_actor_checks",
+    "recall_command_cost_redeployment_save_layer_and_invalid_drop_cells",
+    "native_Transport_block_layout_labels_for_refusals_and_item_tooltips"
+  ],
+  "player_copy_approval": "pending_explicit_review",
+  "mechanical_approval": "shown_storage_eligibility_no_stored_bonuses_transfer_conditions_cost_and_capacity_refusal_pending",
+  "native_visual_approval": "Transport_label_and_function_pending;native_layout_not_presented",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "ES03",
+  "title": "Leurre holographique",
+  "user_message": "oui c'est ca, à noter que en terme de visibilité, j'aimerais que ce double soit legerement transparent",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ES03-01.json",
+  "previous_description_sha256": "e953125299e3c12fd6537d0bce06613aec53a860d6c82b1629cf68f6a9e4c8e5",
+  "accepted_player_copy_sha256": "3bf7129e3f4a43cba0c4908521e0c58bd53277ad85d718f5f05c759e323f1ed8",
+  "approval_scope": "Full displayed RP, current/next numeric values, placement, single-impact destruction and diversion conditions accepted as provisional balance. ES03 control classification, normal 100%, elite 75% and boss immunity accepted as displayed. Slightly transparent double explicitly requested; exact opacity/native render remains pending.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 8,
+      "duration_turns": 4,
+      "maximum_simultaneous_lures": 1,
+      "impacts_to_destroy": 1,
+      "normal_enemy_diversion_chance_percent_if_lure_seen": 100,
+      "elite_diversion_chance_percent_if_lure_seen": 75,
+      "boss_diversion_chance_percent": 0,
+      "energy_cost": 10,
+      "cooldown_turns": 6,
+      "placement_range_cells": 3
+    },
+    "next": {
+      "effective_rank": 9,
+      "duration_turns": 5,
+      "maximum_simultaneous_lures": 1,
+      "impacts_to_destroy": 1,
+      "normal_enemy_diversion_chance_percent_if_lure_seen": 100,
+      "elite_diversion_chance_percent_if_lure_seen": 75,
+      "boss_diversion_chance_percent": 0,
+      "energy_cost": 10,
+      "cooldown_turns": 6,
+      "placement_range_cells": 3
+    }
+  },
+  "accepted_conditions": [
+    "Free visible placement tile, within three cells; lure does not block passage.",
+    "One active lure; first impact destroys it.",
+    "Enemy must see lure for diversion; normal 100%, elite 75%, bosses ignore.",
+    "Agent offensive action against a diverted enemy restores agent as its target."
+  ],
+  "accepted_visual_direction": {
+    "double": "slightly transparent",
+    "approval": "explicit_user_requirement",
+    "opacity_percent": null,
+    "pixel_composition_animation_and_native_readability": "pending_visual_review",
+    "gameplay_visibility_rules_changed": false
+  },
+  "still_pending": "Full rank curves and intermediate unchanged ranks, exact test/retry frequency, target priority edge cases, offensive-source and impact definitions, loss of visibility, placement geometry, resource/recast atomicity and native render.",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ07",
+  "revision": 1,
+  "title": "Force et capacité de la Mule",
+  "status": "Mule_Force_growth_profile_and_own_Force_invocation_rank_carrying_capacity_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-39.json",
+  "current_attribute_model_sha256": "726ac23f775c9ab8a3322f0c6d23224f1f53ce48ef4773a19ed1aa755a3790ed",
+  "shown_copy_markdown": "Le **sac de la Mule et ses transferts sont validés**. Son profil actuel garde sa Force à **5**, sans progression ; je propose de l’orienter vers le portage.\n\n**PETS-EQ07 · Force et capacité de la Mule — proposition**\n\n**Attributs de départ**\n\n- **Force : 7 · Agilité : 5 · Vitalité : 9**.\n- Autres attributs : **5**.\n\n**À chaque niveau gagné**\n\n- **+2 Force · +3 Vitalité**.\n\n**Capacité de transport**\n\n- Base : **40 kg**.\n- Force au-dessus de 5 : **+2 kg par point**.\n- Rang d’invocation après le premier : **+8 kg par rang**.\n\nLa Force utilisée est celle de la Mule, **bonus d’équipement compris**. La capacité dépend de cette Force et du rang d’invocation ; l’Intelligence de l’agent conserve ses bonus de PV et de dégâts aux drones.\n\n**Exemples, sans bonus de Force d’équipement**\n\n- Mule niveau 1, invocation rang 1 : **Force 7 · 44 kg**.\n- Mule niveau 20, invocation rang 11 : **Force 45 · 200 kg**.\n- Prochain rang — 12 · 1 point de compétence : **208 kg**.\n\n**Ce profil et ces valeurs restent à valider.**",
+  "shown_copy_sha256": "2205f5200e93241dd3ecaac250ccb1e6f65760ed98cacc0f36db3c1efb41037d",
+  "explicit_user_direction": "docs/reviews/refonte-agent-2026-10-06/mule-cargo-acceptance-and-strength-direction-decisions.json",
+  "explicit_user_direction_sha256": "e5d8ac370e32059e5aec08afc0a87bff880be4b969879a3d8030455b40845c1f",
+  "new_proposed_rules": {
+    "scope": "Mule_D57_only;no_player_or_other_actor_cargo_kg_rule_created",
+    "level1_attributes": {
+      "Force": 7,
+      "Agilite": 5,
+      "Vitalite": 9,
+      "Perception": 5,
+      "Intelligence": 5,
+      "Volonte": 5
+    },
+    "per_level_growth": {
+      "Force": 2,
+      "Agilite": 0,
+      "Vitalite": 3,
+      "Perception": 0,
+      "Intelligence": 0,
+      "Volonte": 0
+    },
+    "level1_attribute_total": 36,
+    "per_level_attribute_total": 5,
+    "own_level": "current_player_level_under_existing_drone_level_rules;invocation_history_does_not_reduce_profile",
+    "profile_at_level": "level1_attribute+(player_level-1)*per_level_growth",
+    "cargo_capacity_kg": "40+2*(effective_Mule_Force-5)+8*(effective_agent_Mule_invocation_rank-1)",
+    "reference_Force": 5,
+    "base_capacity_kg": 40,
+    "kg_per_own_Force_point_above_reference": 2,
+    "kg_per_effective_invocation_rank_after1": 8,
+    "equipment_Force": "eligible_worn_Mule_equipment_Force_included;stored_item_Force_bonuses_inactive_under_PETS_EQ06",
+    "owner_Intelligence": "does_not_modify_cargo_in_new_proposed_curve;accepted_drone_HP_damage_bonus_preserved",
+    "rank": "learned_cap10_and_equipment_effective_ranks_beyond10_preserved;cargo_adds8kg_per_effective_rank_after1",
+    "capacity_units": "shown_values_exact_integer_kg;no_item_mass_catalogue_or_fractional_weight_rounding_rule_defined",
+    "no_attack": "Mule_remains_unarmed_and_does_not_gain_melee_actions_from_higher_Force"
+  },
+  "shown_examples": {
+    "level1_rank1": {
+      "level": 1,
+      "effective_invocation_rank": 1,
+      "Force": 7,
+      "capacity_kg": 44
+    },
+    "level20_rank11": {
+      "level": 20,
+      "effective_invocation_rank": 11,
+      "Force": 45,
+      "capacity_kg": 200
+    },
+    "level20_next_rank12": {
+      "level": 20,
+      "effective_invocation_rank": 12,
+      "Force": 45,
+      "capacity_kg": 208
+    },
+    "current_next_context": {
+      "current_learned_rank": 9,
+      "equipment_invocation_bonus_rank": 2,
+      "next_learned_rank": 10,
+      "same_level_and_other_modifiers": true,
+      "skill_point_cost": 1,
+      "no_learned_and_equipment_breakdown_in_shown_copy": true
+    },
+    "without_equipment_Force_bonus": true
+  },
+  "proposed_revisions_pending": {
+    "D57_attribute_profile": {
+      "source": "docs/reviews/refonte-agent-2026-10-06/review-drone-attribute-profiles-02.json",
+      "source_sha256": "c2fcf0cd81117a7dd0df4b60a4ab6b60f90b3e835e4588e4d827a670c9853a4c",
+      "historical_profile": {
+        "name": "Mule",
+        "level1_attributes": {
+          "Force": 5,
+          "Agilite": 7,
+          "Vitalite": 9,
+          "Perception": 5,
+          "Intelligence": 5,
+          "Volonte": 5
+        },
+        "per_level_growth": {
+          "Force": 0,
+          "Agilite": 2,
+          "Vitalite": 3,
+          "Perception": 0,
+          "Intelligence": 0,
+          "Volonte": 0
+        },
+        "can_attack": false
+      },
+      "revision": "move_level1_Agilite2_to_Force_and_per_level_Agilite2_to_Force;Vitalite_and_other_attributes_unchanged",
+      "approval": "pending;other_drone_profiles_not_revised"
+    },
+    "D57_capacity_snapshots": {
+      "source": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-D57-02.json",
+      "source_sha256": "b4ac8e8a9232755debfa1ed463fa8a2134f063092338e34fb168bcdd786c54a9",
+      "historical_values": "132kg_rank11_140.8kg_rank12_at_owner_Intelligence10",
+      "proposed_current_rule": "own_Mule_Force_and_invocation_rank_without_owner_Intelligence_multiplier;new_examples_have_explicit_own_level",
+      "approval": "pending;would_supersede_old_capacity_examples_for_new_refonte_if_accepted;other_D57_cost_cooldown_and_lifecycle_rules_preserved"
+    }
+  },
+  "scope_audit": {
+    "intent_vs_values": "user_requested_more_Mule_Force;did_not_approve_these_numerical_values_yet",
+    "no_false_zero_capacity_claim": "prior_capacity_did_not_require_Force_and_already_had_rank_based_base;this_is_new_explicit_Force_cargo_mapping",
+    "budgets": "level1_budget36_and_level_growth5_preserved;all_other_drone_profiles_preserved",
+    "HP": "Vitalite_profile_unchanged;no_HP_current_refill_or_new_resource_rule",
+    "owner_bonuses": "Intelligence_HP_and_armed_drone_damage_coefficients_preserved;new_curve_only_changes_Mule_cargo",
+    "old_cards": "historical_receipts_kept;no_accepted_profile_overwritten_until_explicit_new_review",
+    "visual": "no_body_equipment_asset_native_sheet_or_animation_created",
+    "examples": "no_worn_Mule_Force_bonus;effective_invocation_rank11_and12_include_constant_agent_equipment_rank_bonus2_and_learned9_to10;rank1_reference_has_no_invocation_rank_bonus"
+  },
+  "unshown_cases_pending": [
+    "minimum_Force_bounds_negative_modifiers_and_negative_capacity_clamps",
+    "cargo_capacity_bonuses_other_than_Force_or_rank_and_percent_combination",
+    "dynamic_capacity_decrease_overloaded_Mule_behavior_and_item_safety",
+    "worn_Mule_armor_weight_inside_or_outside_cargo_limit",
+    "item_masses_and_fractional_weight_display_rounding",
+    "multi_item_quantities_transfers_recall_saves_layer_and_drop_cases",
+    "native_attribute_and_capacity_tooltips_and_body_equipment_rendering"
+  ],
+  "player_copy_approval": "pending_explicit_review",
+  "mechanical_approval": "Mule_start_Force7_Agilite5_Vitalite9_growthForce2_Vitalite3_and_cargo40_plus2perForce_above5_plus8perrank_after1_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

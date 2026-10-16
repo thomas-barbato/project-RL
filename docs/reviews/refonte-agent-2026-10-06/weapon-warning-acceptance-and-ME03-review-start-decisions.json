@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-06",
+  "user_message": "ok on continue :)",
+  "accepted_presented_requirements": {
+    "weapon_skill_types": "active melee weapon for melee weapon skills; active ranged weapon for ranged weapon skills",
+    "incompatible_weapon": "action unavailable; description states required type",
+    "inactive_equipped_weapon": "insufficient"
+  },
+  "accepted_presented_labels": [
+    "Nécessite une arme de mêlée active.",
+    "Nécessite une arme à distance active."
+  ],
+  "unshown_unavailable_damage_label": "pending_user_review",
+  "next_skill_review": "ME03",
+  "approval_scope": "previously displayed weapon requirements and warning labels, plus continuation; does not approve the upcoming ME03 description",
+  "native_visual_render": "pending_user_review",
+  "runtime_integration": "not_integrated"
+}

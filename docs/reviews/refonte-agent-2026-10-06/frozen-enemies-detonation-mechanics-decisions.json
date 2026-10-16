@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-07",
+  "review_id": "FR06",
+  "redesign_review_id": "FR06-DET01",
+  "direction_decisions": "docs/reviews/refonte-agent-2026-10-06/frozen-enemies-detonation-direction-decisions.json",
+  "direction_decisions_sha256": "19457124bd65ab4be8b82555e6b36bf4d4a45e68c8bf5e4adb6047dbdece6d4c",
+  "question": "Quand les monstres gelés explosent, quel effet souhaites-tu ?",
+  "user_answer": "Dégâts sur chaque monstre gelé et autour de lui, puis son Gel disparaît",
+  "accepted_requested_mechanics": [
+    "active attack on all visible frozen hostile monsters",
+    "each qualifying monster takes detonation damage",
+    "damage also affects surrounding enemies",
+    "each exploding monster loses its Gel after detonation",
+    "damage mechanic,not automatic instant death"
+  ],
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR06-01.json",
+  "previous_description_sha256": "03b028ce95744a88006266c0bcedd70f675096ba0401eada3eb724c24c371b1a",
+  "pending_new_proposal": "RP,44/47 center and22/23 nearby cold damage,radius1,energy20,cooldown8,initial frozen visible pool snapshot,overlap stacking,hostile-only collateral,no new Gel from this spell and detonation visual direction remain for explicit review.",
+  "prior_passive_scope": "Superseded FR06 rear-shard passive/direct-hit trigger/four-target cap/free energy/one-proc/Gel chance fields are historical and not reused for the active detonation.",
+  "other_rules": "Existing boss Gel eligibility,elite/boss status modifiers,reciprocal Burn/Gel,observed-actor rules,other skill approvals,learned10/gear bonuses preserved.",
+  "native_visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

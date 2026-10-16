@@ -1,0 +1,42 @@
+{
+  "review_id": "ACTOR-RES01-INTEGRATION01",
+  "native64_cells": 576,
+  "outfits": 12,
+  "display_sizes": [
+    32,
+    64
+  ],
+  "legacy32_review_cells_unchanged": 576,
+  "held_layers_and_geometry": "preserved",
+  "cache_keys_include_resolution": true,
+  "graphics_tests_passed": 10,
+  "previous_graphics_bank_tests_passed": 25,
+  "updated_flat_agents_tests_passed": 3,
+  "debug_build": "passed",
+  "cold_runtime_captures": {
+    "agent-world-bastion-cell32": {
+      "capture": "integration-captures/agent-world-bastion-cell32/cold-start.png",
+      "sha256": "9d855cdb06da7aeada5c891ad36138cf74ec19a66f10ee23d1664fa0f399777d"
+    },
+    "agent-world-bastion-cell64": {
+      "capture": "integration-captures/agent-world-bastion-cell64/cold-start.png",
+      "sha256": "45b9d1dd846194cb2eb43f67f43084045adc22948300f703f34814288fb1eed3"
+    },
+    "agent-world-arcaniste-cell64": {
+      "capture": "integration-captures/agent-world-arcaniste-cell64/cold-start.png",
+      "sha256": "91a9cd822b8ab8b9e96b794a24e163cc0d073d64e751e35cc52dbce9807489c4"
+    },
+    "agent-inventory-metamorphe-cell64": {
+      "capture": "integration-captures/agent-inventory-metamorphe-cell64/cold-start.png",
+      "sha256": "26e91a5f7af62beec0b97d11caf26db65dafd22fdc419b4f4ef68f3bcea39bc4"
+    }
+  },
+  "npc_native64_redraws": "not part of the accepted outfit exports",
+  "release_build": "passed",
+  "all_targets_check": "passed",
+  "format_and_diff_checks": "passed",
+  "release_binary": {
+    "path": "target/release/project-rl.exe",
+    "sha256": "75c4eb92fb3b7860461855689d863fd81cb49531383976633148f4f112eed20e"
+  }
+}

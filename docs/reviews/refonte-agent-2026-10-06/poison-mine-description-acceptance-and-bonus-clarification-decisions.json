@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SM02-ACCEPT01",
+  "user_acceptance": "parfait :)",
+  "user_followup": "Parfait mais j'ai une question : Si j'ai un bonu de dégats des mines de poison, pourquoi les dégats d'empoisonnement ne sont pas modifiés aussi ?",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM02-04.json",
+  "source_proposal_sha256": "a9cbcfc560cdfebf1b95d37d79b99fcd4490b94301548495b31f3519ffcd230c",
+  "accepted_scope": "shown_RP_current_and_next_values_as_provisional_balance_prerequisite_Poisoned_persists_after_departure_and_green_explosion_direction;unshown_rules_and_native_pending",
+  "numeric_balance_status": "shown_values_accepted_as_provisional;earlier_weak_Poisoned_damage_feedback_and_later_statistical_rebalance_preserved",
+  "clarification_review_id": "SM02-BONUS01",
+  "clarification": "existing_proposed_formula_applies_the_variant_bonus_once_to_explosion_and_Poisoned_periodic_damage;floor_rounding_masks_the_gain_at_the_shown_ranks",
+  "verified_calculations": [
+    {
+      "effective_rank": 11,
+      "variant_bonus_percent": 50,
+      "poison_per_turn_exact_before_final_rounding": "33/10",
+      "poison_per_turn_decimal": 3.3,
+      "poison_per_turn_after_floor": 3
+    },
+    {
+      "effective_rank": 12,
+      "variant_bonus_percent": 55,
+      "poison_per_turn_exact_before_final_rounding": "341/100",
+      "poison_per_turn_decimal": 3.41,
+      "poison_per_turn_after_floor": 3
+    }
+  ],
+  "new_mechanics_or_numbers_added": false,
+  "unshown_rules": "full_curve_attribute_scaling_final_rounding_choice_cloud_stacking_and_other_cases_remain_pending;no_new_global_rule_inferred",
+  "native_visual_approval": "pending",
+  "runtime_integration": "not_integrated"
+}

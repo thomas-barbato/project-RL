@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-12",
+  "user_reply": "ok parfait :) je valide :)",
+  "preceding_question": "c'est tres jolis, est-ce que le blizzard dure plusieurs tours ?",
+  "accepted": {
+    "number": 18,
+    "skill_id": "FR05",
+    "variant": "FR05-A01",
+    "status": "visually_approved",
+    "native_tile_size": 64
+  },
+  "timing_confirmation": {
+    "duration_at_rank_1_turns": 3,
+    "duration_at_rank_11_turns": 5,
+    "prepared_impacts_per_application_at_rank_11": 4,
+    "initial_preparation_complete_turns": 1,
+    "duration_and_new_impacts_advance_only_with_game_turns": true,
+    "snowfall_remains_visually_animated_between_actions": true
+  },
+  "scope": "Blizzard artwork, animation and the duration/timing explanation shown immediately before this approval. Catalogue values are confirmed, not changed. Prepared hits do not approve damage numbers, RNG, final geometry, real AI or campaign integration.",
+  "other_candidates": "Vague de froid FR04-A01 and the separately pending reused Gel visual retain their prior review status; the Blizzard-focused confirmation does not infer their approval.",
+  "artifact_hashes": {
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-25/storm-source.png": "98463d132841108f08b0c40ec924566b43ef541490402d01067d244bcfcabf4b",
+    "../../../../assets/animations/agent/skill-animation-review-25/storm-atlas.png": "6c5d5358c77fb729224dfb87e45e464784539e09ea5f06712776dd6df4b82f17",
+    "imagegen-storm-prompt.txt": "bec8c42f15c0943de71475f8283fe7caa301bf4cdbaf24a979736df667fe178f",
+    "drawing-pack.json": "df476223fb0b1176206073c3a6a41bf584469572364cbe718b23df186904bb4d",
+    "render-source.rs": "f269be60e60f241dfddd2469aff3820c749311837fab7fa3be668886ebe612b2",
+    "clip-source.rs": "eb67041760cc2a960e4c22c815e3a5c47b23d79de22ed20c91dd5967ac96e624",
+    "gallery-script.js": "0c2bb285b6c604644cc7bbf8edaa1252687dd70c2e8213e750331bb54b277381",
+    "index.html": "8e162eba5589a2f4fcc7fdaa2cef84a27733c6eb363a0c053a65b9d2131164fb",
+    "verification.json": "013f9444b51838f631e795619c1908290e881d9794745ebe4aa1747f924e316a",
+    "gallery-controller-verification.json": "a2d62f64949120f66d0f36c92c8ba474ae0e4ce74540d93b56502c6ba9b8fb39",
+    "native/capture.json": "f915f6e0584093e0dcbe90a9471b38cb351032ed997d244868529bef4ab62fa3",
+    "tempetes-froid-64.gif": "9e53016e2db4d928e0525b84752dbf7189b6f8eb13747e16e510c706e15fcaa4",
+    "tempetes-obstacles-64.gif": "8a3035aeed1fad7ff02d8633164c2c5f1c4f441bf864ed79de986a8add586e2e",
+    "tempetes-cloison-64.gif": "1edc49226a70ca3993658bb019297c9d4ea7e91f85107ac384eb0e8291e1346a",
+    "FR05-A01-CLOISON-64.gif": "ce9176b09805fcba1afb0c124479a623e014605b352a0a1998266be779638037",
+    "FR05-A01-HAUT-64.gif": "68fc7194bc5283cb5db82c953e0ddbb0a4a2b66a1c4b3940926d732b69d9e639",
+    "FR05-A01-OBSTACLES-64.gif": "4147e8fb0dbb61094e17e00eef0736582a7004c4f7a1cf5281f09aa66493eb63",
+    "FR05-A01-PLACEMENT-DROITE-64.gif": "68fc7194bc5283cb5db82c953e0ddbb0a4a2b66a1c4b3940926d732b69d9e639"
+  }
+}

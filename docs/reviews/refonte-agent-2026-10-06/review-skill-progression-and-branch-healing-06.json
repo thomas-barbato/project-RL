@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-08",
+  "revision": 6,
+  "review_ids": [
+    "SKILL-PROG01",
+    "SKILL-HEAL01"
+  ],
+  "decision_reference": "docs/reviews/refonte-agent-2026-10-06/skill-progression-and-branch-healing-decisions.json",
+  "direction_approval": "explicit_user_confirmation",
+  "primary_branch_coverage": [
+    {
+      "branch": "Mêlée",
+      "existing_healing_candidates": [],
+      "review_status": "healing_option_to_propose_and_validate",
+      "new_skill_id": null
+    },
+    {
+      "branch": "Survie",
+      "existing_healing_candidates": [
+        "SU04"
+      ],
+      "review_status": "verify_target_limits_frequency_and_branch_fit",
+      "new_skill_id": null
+    },
+    {
+      "branch": "Drones",
+      "existing_healing_candidates": [
+        "DP01"
+      ],
+      "review_status": "verify_target_limits_frequency_and_branch_fit",
+      "new_skill_id": null
+    },
+    {
+      "branch": "Affaiblissements",
+      "existing_healing_candidates": [],
+      "review_status": "healing_option_to_propose_and_validate",
+      "new_skill_id": null
+    },
+    {
+      "branch": "Attaques à distance",
+      "existing_healing_candidates": [],
+      "review_status": "healing_option_to_propose_and_validate",
+      "new_skill_id": null
+    },
+    {
+      "branch": "Esquive",
+      "existing_healing_candidates": [],
+      "review_status": "healing_option_to_propose_and_validate",
+      "new_skill_id": null
+    },
+    {
+      "branch": "Feu",
+      "existing_healing_candidates": [],
+      "review_status": "healing_option_to_propose_and_validate",
+      "new_skill_id": null
+    },
+    {
+      "branch": "Froid",
+      "existing_healing_candidates": [],
+      "review_status": "healing_option_to_propose_and_validate",
+      "new_skill_id": null
+    },
+    {
+      "branch": "Énergie occulte",
+      "existing_healing_candidates": [
+        "OC05"
+      ],
+      "review_status": "verify_target_limits_frequency_and_branch_fit",
+      "new_skill_id": null
+    },
+    {
+      "branch": "Transformations",
+      "existing_healing_candidates": [
+        "TR64"
+      ],
+      "review_status": "verify_target_limits_frequency_and_branch_fit",
+      "new_skill_id": null
+    },
+    {
+      "branch": "Pouvoirs hybrides",
+      "existing_healing_candidates": [],
+      "review_status": "healing_option_to_propose_and_validate",
+      "new_skill_id": null
+    },
+    {
+      "branch": "Buffs de mêlée",
+      "existing_healing_candidates": [
+        "BM02"
+      ],
+      "review_status": "BM02_Faim_vampirique_displayed_healing_card_accepted;full_curves_cases_native_pending",
+      "new_skill_id": null,
+      "approved_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM02-03.json"
+    },
+    {
+      "branch": "Buffs à distance",
+      "existing_healing_candidates": [],
+      "review_status": "healing_option_to_propose_and_validate",
+      "new_skill_id": null
+    }
+  ],
+  "future_heavy_weapon_tree": "include healing option when AR-HL01 catalogue is proposed;no skill added here",
+  "secondary_tree_healing_targets_and_qualification": "specific application pending branch review",
+  "progression_review_scope": "whole catalogue including previously approved skills; quantitative changes must be individually reapproved",
+  "sequence": [
+    "BM02 displayed revised healing card accepted; continue remaining skill and branch healing reviews",
+    "apply rewarding progression and healing principle while reviewing remaining cards",
+    "review weak progression in earlier approved cards and propose missing branch heals before runtime integration"
+  ],
+  "catalogue_counts_unchanged": {
+    "skills": 72,
+    "branches": 13
+  },
+  "new_gameplay_skill_ids_created": false,
+  "runtime_integration": "not_integrated",
+  "previous_review": "docs/reviews/refonte-agent-2026-10-06/review-skill-progression-and-branch-healing-05.json",
+  "previous_review_sha256": "6661fba16db7caafa231cd19795ae95c41c851ea76720609ff9e4846217b2781",
+  "catalogue_count_revision_reason": "BD05 removed by user;no healing skill added;BD06 remains energy recovery proposal"
+}

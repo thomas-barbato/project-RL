@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ15",
+  "revision": 1,
+  "title": "Commande de rappel",
+  "status": "adjacent_owner_visible_same_map_drone_recall_zero_energy_no_own_cooldown_and_button_copy_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-46.json",
+  "current_attribute_model_sha256": "03151ea0107382ea0eb00a0d278efa5724bcea746b3205a5a2cf566bece1b97b",
+  "shown_copy_markdown": "Les **règles de déploiement et de conservation des drones sont validées**.\n\n**PETS-EQ15 · Commande de rappel — proposition**\n\nDans la fenêtre **Familiers**, chaque drone possède un bouton **« Rappeler »**.\n\n**Conditions**\n\n- Drone déployé sur votre carte.\n- Sur l’une des **8 cases adjacentes** à votre personnage.\n- Visible directement par votre personnage.\n- Disponible en **Combat, Accalmie et Calme**.\n\n**Coût : 0 énergie · Aucune recharge propre.**\n\nLe rappel conserve la recharge restante de l’invocation : rappeler le drone ne permet pas de le redéployer avant sa fin.\n\nUne fois rappelé, le drone quitte la carte et cesse d’y agir. L’Éclaireur ne fournit plus de vision.\n\n**Bouton indisponible**\n\nLe survol indique la raison : **« Drone trop éloigné »**, **« Drone hors de vue »** ou **« Drone déjà rappelé »**.\n\n**Ces conditions et ces textes restent à valider.**",
+  "shown_copy_sha256": "94760457046448128fca656530e3789627e89e98ce0ef77093ddb18dc3755e69",
+  "new_proposed_rules": {
+    "scope": "recall_existing_deployed_controlled_drones_from_Familiers_window;not_raised_or_future_familiar_types",
+    "control": "Rappeler_button_on_each_drone_row_in_existing_Familiers_window",
+    "same_map": "drone_must_be_deployed_alive_on_current_agent_map",
+    "proximity": "one_of_eight_grid_adjacent_cells_to_agent_including_diagonals;no_other_map_or_remote_recall",
+    "visibility": "agent_directly_observes_drone_cell;shared_Scout_vision_alone_does_not_satisfy_requirement",
+    "allowed_phases": [
+      "Combat",
+      "Accalmie",
+      "Calme"
+    ],
+    "energy_cost": 0,
+    "own_recall_cooldown_turns": 0,
+    "command_application": "ordinary_command_at_activation_under_general_action_rule;no_delayed_path_return_or_new_extra_turn_rule",
+    "invocation_cooldown": "preserve_remaining_invocation_cooldown;redeployment_requires_its_expiry_under_accepted_skill_rules",
+    "recalled_map_presence": "remove_drone_actor_from_map_without_destroying_identity_or_items;no_further_map_actions",
+    "Scout_vision": "recalled_Scout_stops_contributing_active_shared_vision;explored_cell_memory_not_erased",
+    "disabled_control": "unavailable_when_recall_conditions_not_met;hover_reason_is_applicable_message",
+    "disabled_copy": [
+      "Drone trop éloigné",
+      "Drone hors de vue",
+      "Drone déjà rappelé"
+    ],
+    "recall_lifecycle": "preserve_accepted_actor_reserves_equipment_Mule_cargo_and_no_refill",
+    "scope_boundary": "native_button_layout_icon_animation_precise_scheduler_phase_and_temporary_effect_handling_not_created"
+  },
+  "dependencies": {
+    "drone_lifecycle": "docs/reviews/refonte-agent-2026-10-06/review-drone-deployment-resources-PETS-EQ14-02.json",
+    "drone_lifecycle_sha256": "f91644351803553afb64058707a02c704b5233bb460c817410e5ff34816f64a4",
+    "familiar_equipment": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-PETS-EQ01-03.json",
+    "familiar_equipment_sha256": "8f3a02daa23df9637fda5a92fd91a3f7267c538d70be8610442ee92994abc7a5",
+    "nearby_equipment_transfers": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-transfers-PETS-EQ05-02.json",
+    "nearby_equipment_transfers_sha256": "ddf5ee2af6b8bf6beab36f66fc05fd10f0e434fcee1c1aace54cadb6ebeed388"
+  },
+  "scope_audit": {
+    "time_copy": "no_ordinary_immediate_trigger_or_one_turn_restatement_in_shown_copy;no_delayed_command_added",
+    "prior_recall": "retained_actor_and_no_heal_rules_preserved;new_distance_visibility_energy_and_own_cooldown_conditions_explicitly_proposed",
+    "phase": "recall_does_not_reset_shared_Combat_Accalmie_Calme_phase_or_create_a_heal",
+    "vision": "stop_only_Scout_current_view_contribution;accepted_exploration_memory_and_agent_view_remain",
+    "raised": "no_recall_button_created_for_autonomous_raised_allies;accepted_equipment_and_destruction_controls_preserved",
+    "visual": "Rappeler_label_and_disabled_tooltip_direction_proposed;native_icon_pixel_layout_and_recall_animation_not_presented",
+    "buffs": "ongoing_effects_previously_applied_by_drone_not_cancelled_by_inference;separate_review_pending"
+  },
+  "unshown_cases_pending": [
+    "precise_recall_scheduler_budget_and_phase_relative_to_enemy_and_drone_actions",
+    "recalled_drone_temporary_effects_DOT_energy_regeneration_and_skill_cooldowns",
+    "death_between_command_validation_and_resolution_and_atomic_refusals",
+    "transitions_cross_map_recall_and_owner_death_save_cleanup",
+    "post_recall_Gardien_existing_buffs_and_summoning_constraints",
+    "multiple_failed_conditions_tooltip_priority_keyboard_cursor_accessibility",
+    "native_Familiers_button_icon_and_animation"
+  ],
+  "player_copy_approval": "pending_explicit_review",
+  "mechanical_approval": "shown_eight_adjacent_owner_visible_same_map_conditions_zero_energy_no_own_cooldown_and_invocation_cooldown_preservation_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

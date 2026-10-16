@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SM02-POISON01",
+  "skill_id": "SM02",
+  "user_response": "le poison doit quand meme avoir un effet \"empoisonné\" qui dure plusieurs tours . Je ne sais plus ce que c'est moi \"Résidu persistant\"",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM02-01.json",
+  "reviewed_description_sha256": "544fe605eba778c45d0108f08f45a7a15a8650b1301fa2257a3cd9d6f1a37769",
+  "explicit_status_direction": {
+    "poison_mine_explosion_applies_Poisoned": true,
+    "Poisoned_lasts_several_turns": true,
+    "Poisoned_requires_SM05": false,
+    "target_status_distinct_from_ground_zone": true
+  },
+  "superseded_dependency": "old_SM02_periodic_poison_requires_SM05_and_no_poison_status_claim;only_ground_zone_still_requires_SM05",
+  "SM05_existing_role_preserved": {
+    "poison_mine": "poison_cloud",
+    "fire_mine": "fire_zone",
+    "cold_mine": "immobilizing_cold_zone",
+    "points_increase_ground_zone_duration": true
+  },
+  "existing_proposal_numbers_and_text": "not_accepted_by_this_correction;retained_pending_in_revised_card",
+  "new_status_damage_duration_stacking_and_application_rules": "proposed_pending_explicit_review",
+  "native_visuals": "pending_native_review",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-09",
+  "review_id": "D06-HEAL01-ACCEPT01",
+  "user_reply": "oui :) je valide",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-player-healing-and-drain-01.json",
+  "source_proposal_sha256": "3466682bbe0fce242f4d4a009733dd854b5d8d5a3e6d89eded70d2b5b9dcdaa6",
+  "accepted_shown_copy_markdown": "Le **format des dégâts est validé**, avec un détail entier dont la somme correspond au total.\n\n**D06 · Soins et drain de vie — proposition**\n\n**Soins du joueur**\n\n- Quantité de soin arrondie à l’entier supérieur, puis limitée aux **PV manquants** et au plafond éventuel de la compétence.\n- Un plafond exprimé en pourcentage des PV maximum est arrondi à l’entier inférieur.\n- Les limites déjà définies **par tour ou par utilisation** restent applicables.\n\n**Exemples**\n\n- Avec **130 PV maximum**, Régénération au rang 11 rend **16 PV par tour**, pour ses **12 %** déjà validés.\n- Un plafond de **10 %** avec **135 PV maximum** autorise **13 PV** de soin.\n- S’il ne vous manque que **4 PV**, le soin rend au maximum **4 PV**.\n\n**Drain de vie**\n\nLe drain se calcule sur les **PV réellement retirés**, après les protections et dans la limite des PV restants de la cible.\n\nUne attaque inflige **40 dégâts** à un ennemi qui possède encore **12 PV** : avec un drain fictif de **25 %**, vous récupérez **3 PV**, avant vos limites de soin.\n\nSi la cible ne perd aucun PV, le drain ne rend aucune vie. Il ne peut pas rendre plus de PV qu’il n’en a retiré.\n\n**Attributs**\n\nLes soins fondés sur vos PV maximum bénéficient de la Vitalité. Les drains bénéficient des attributs qui renforcent les dégâts concernés. Ces attributs ne multiplient pas une deuxième fois le pourcentage de soin ou de drain.\n\n**Ces règles communes de soin restent à valider.**",
+  "accepted_shown_copy_sha256": "736edbdf5f22dc375513a2981e0c86d8272cc86141c5d01d2b126fdea8f3b28f",
+  "accepted_shown_rules": {
+    "scope": "player_healing_and_life_drain;drone_repair_fractional_rules_preserved_separately",
+    "heal_rounding": "ceiling_once_per_heal_resolution_before_missing_HP_and_remaining_skill_budget_clamps",
+    "percent_maximum_HP_budget_rounding": "floor_current_maximum_HP_times_skill_limit_percentage_over100",
+    "maximum_restore": "minimum_of_rounded_heal_current_missing_HP_and_applicable_remaining_skill_turn_or_cast_budget",
+    "skill_budget_scope": "existing_per_turn_per_use_and_primary_target_rules_preserved;no_new_global_heal_cap",
+    "drain_basis": "eligible_actual_target_HP_removed_after_all_protections_limited_to_target_HP_remaining_before_damage;overkill_and_absorption_do_not_generate_drain",
+    "drain_upper_bound": "healing_from_one_drain_resolution_cannot_exceed_eligible_actual_HP_removed",
+    "zero_HP_loss": "zero_drain_healing",
+    "attribute_percentage_mapping": "maximum_HP_based_heal_and_caps_benefit_from_maximum_HP_changes;drain_benefits_from_damage_attribute_through_actual_HP_loss;no_second_attribute_multiplier_on_heal_or_drain_percentage",
+    "already_accepted_skill_values": "no_change_to_RP_names_percentages_costs_cooldowns_durations_or_target_eligibility"
+  },
+  "accepted_examples": {
+    "regeneration": {
+      "maximum_HP": 130,
+      "already_accepted_SU04_rank11_heal_percent": 12,
+      "heal_per_turn_after_ceiling": 16
+    },
+    "skill_cap": {
+      "maximum_HP": 135,
+      "illustrative_cap_percent": 10,
+      "integer_heal_budget": 13
+    },
+    "missing_HP_limit": {
+      "missing_HP": 4,
+      "maximum_actual_heal": 4
+    },
+    "drain": {
+      "postprotection_damage": 40,
+      "target_remaining_HP": 12,
+      "actual_HP_removed": 12,
+      "illustrative_drain_percent": 25,
+      "before_player_missing_HP_and_skill_cap_heal": 3
+    }
+  },
+  "approval_scope": "Explicit acceptance of shown player heal ceiling, percent skill budget floor, missing_HP and existing per_turn_per_use limits, actual_HP_removed drain basis including overkill bound, zero_loss outcome, drain cannot restore more than HP removed and no second attribute multiplication of percentages;drone repair remains distinct.",
+  "unshown_cases_pending": [
+    "multi_target_multi_hit_order_cast_budget_reset_and_heal_resolution_grouping",
+    "multiple_life_leech_sources_equipment_and_skill_cap_interactions",
+    "delayed_explosion_heal_snapshot_HP_full_cast_refusal_and_affiliation_change",
+    "percent_limit_recalculation_on_maximum_HP_change_and_buff_snapshot_rules",
+    "flat_player_heal_attribute_mapping_and_future_bonus_to_healing_affixes",
+    "special_heal_absorption_modifiers_and_death_or_last_sursaut_event_order",
+    "drone_repair_integer_fraction_timing_and_active_DR01_details",
+    "floating_damage_overkill_readout_separate_from_actual_HP_loss_based_drain",
+    "native_heal_numbers_and_all_other_unshown_cases"
+  ],
+  "native_visual_approval": "not_presented;no_native_heal_feedback_approved",
+  "runtime_integration": "not_integrated"
+}

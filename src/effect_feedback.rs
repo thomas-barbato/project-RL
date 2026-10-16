@@ -17,6 +17,7 @@ pub(super) fn weapon_bonus_label(bonus: project_rl::entity::MagicItemModifiers) 
                     PrimaryAttribute::Resilience => "Résilience",
                     PrimaryAttribute::Perception => "Perception",
                     PrimaryAttribute::Processing => "Traitement",
+                    PrimaryAttribute::Willpower => "Volonté",
                 }
             ));
         }
@@ -252,6 +253,10 @@ impl AsciiApp {
             .and_then(|id| self.game.actors().get(id))
         {
             effects.extend(actor.statuses().filter_map(|status| {
+                // Brûlure now uses the approved body-attached painted flame layers.
+                if status.definition.as_str() == "core:burning" {
+                    return None;
+                }
                 self.visual_cues
                     .sustains_status(&status.definition)
                     .then(|| {
@@ -442,6 +447,11 @@ impl AsciiApp {
             .statuses()
             .filter(|status| status.remaining_turns.is_some())
         {
+            // Dedicated reviewed icons are drawn from the live actor. A generic
+            // timer at the same position would cover the centre of that icon.
+            if crate::combat_visuals::has_agent_status_icon(status.definition.as_str()) {
+                continue;
+            }
             if let Some(threshold) = self.fracture_threshold(&status.definition) {
                 badges.push(TerminalEffectBadge::Fracture {
                     charges: status.stacks,

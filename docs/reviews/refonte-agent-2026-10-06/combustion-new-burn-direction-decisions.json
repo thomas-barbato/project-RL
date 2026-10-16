@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "FE06",
+    "FE06-REBURN01"
+  ],
+  "skill_id": "FE06",
+  "title": "Combustion",
+  "clarification_question": "Combustion transforme la brûlure restante en dégâts, puis la supprime. Souhaites-tu qu’elle reste une exception à la règle de la branche Feu, ou qu’elle puisse provoquer une nouvelle brûlure après ce choc ?",
+  "user_answer": "Elle peut provoquer une nouvelle brûlure après le choc.",
+  "approval_scope": "Explicit answer requests the possibility of a fresh burn after the shock consumes the former burn. It does not approve the newRP,chance,new-burn values,current-next conversion figures,preview target example or conditional visual direction,which remain proposed for individual review.",
+  "accepted_direction": {
+    "consume_existing_burn": true,
+    "new_burn_possible_after_shock": true,
+    "new_burn_guaranteed": false
+  },
+  "numerical_proposals_pending_review": {
+    "current_conversion_percent": 140,
+    "next_conversion_percent": 144,
+    "current_shock_fire_damage_in_example": 54,
+    "next_shock_fire_damage_in_example": 56,
+    "example_original_burn_damage_per_turn": 13,
+    "example_original_burn_remaining_turns": 3,
+    "current_fresh_burn_chance_percent": 20,
+    "next_fresh_burn_chance_percent": 21,
+    "fresh_burn_damage_per_turn": 4,
+    "fresh_burn_duration_turns": 3,
+    "range_cells": 5,
+    "energy_cost": 9,
+    "cooldown_turns": 3
+  },
+  "burn_consumption_calculation": "Remaining old-burn damage counted before target defenses;already included Willpower is not multiplied again;shock resolved as fire. Full exact modifier/defense ordering pending where unshown.",
+  "conditions_proposed_pending_review": [
+    "visible target with own eligible burn",
+    "old burn removed then shock",
+    "fresh burn starts next complete turn if successful",
+    "own fresh burn applications do not stack"
+  ],
+  "EL_STAT01_preserved": "FE06 has its own chance;existing accepted specific burn effects preserved",
+  "EL_ZONE01_applies_to_FE06": false,
+  "new_visual_direction": "old flame-tightening/flash direction retained;conditional fresh flames after shock proposed separately",
+  "roleplay_text_approval": "proposed pending review",
+  "numeric_rules_approval": "proposed pending review",
+  "native_visual_approval": "pending native preview and user review",
+  "runtime_integration": "not_integrated"
+}

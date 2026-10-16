@@ -95,7 +95,9 @@ impl StealthRules {
         let perception = observer
             .unwrap_or_else(|| PrimaryAttributes::new(5, 5, 5, 5, 5))
             .value(PrimaryAttribute::Perception);
-        let attribute = i16::from(perception).saturating_sub(5);
+        let attribute = i16::try_from(perception)
+            .unwrap_or(i16::MAX)
+            .saturating_sub(5);
         let distance_penalty = distance
             .saturating_sub(self.distance_penalty_start)
             .saturating_mul(u16::try_from(self.distance_penalty_per_cell).unwrap_or(u16::MAX));
@@ -116,7 +118,9 @@ impl StealthRules {
         let coordination = target
             .unwrap_or_else(|| PrimaryAttributes::new(5, 5, 5, 5, 5))
             .value(PrimaryAttribute::Coordination);
-        let attribute = i16::from(coordination).saturating_sub(5);
+        let attribute = i16::try_from(coordination)
+            .unwrap_or(i16::MAX)
+            .saturating_sub(5);
         self.base_concealment_difficulty
             .saturating_add(attribute.saturating_mul(self.coordination_points_per_attribute))
             .saturating_add(occultation)

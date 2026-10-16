@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ12-DECISION01",
+  "source": "direct_user_instruction",
+  "user_reply": "pv et energie rechargé au maximum.",
+  "question_context": "Assistant stated next review concerns raised monster HP and energy at the moment of reanimation.",
+  "accepted_rules": {
+    "scope": "OC07_raised_monster_current_HP_and_energy_at_birth;not_drone_spawn_recall_or_power_update",
+    "birth_HP": "current_HP_equals_final_calculated_maximum_HP_after_accepted_origin_profile_and_Reanimation_power",
+    "birth_energy": "current_energy_equals_final_calculated_maximum_energy_under_accepted_profile_rules",
+    "source_current_reserves": "do_not_carry_dead_enemy_zero_HP_or_depleted_current_energy",
+    "later_item_changes": "preserve_PETS_EQ04_no_refill_on_equipment_updates_and_clamp_on_lower_maximum",
+    "scope_boundary": "no_decision_on_original_skill_cooldowns_energy_regeneration_costs_drone_spawn_or_later_rank_level_changes"
+  },
+  "approval_scope": "User directly chooses full current HP and energy at reanimation. This fixes starting current reserves only, using their calculated maximums; no new energy baseline or cooldown reset implied.",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

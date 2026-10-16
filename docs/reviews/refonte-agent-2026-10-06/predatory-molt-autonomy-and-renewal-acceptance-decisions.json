@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "M01-AUTO01",
+    "TRANS-RENEW01",
+    "TRANS-AUTO01"
+  ],
+  "user_acceptance": "tres bien alors on continue:)",
+  "acceptance_context": "agreement_to_last_shown_M01_05_card_visual_direction_and_five_form_named_action_outline",
+  "accepted_M01_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M01-05.json",
+  "accepted_M01_review_sha256": "7dd1a409952cbd052939209418e74881ef43604839b7eec0a11a05edb29d627e",
+  "accepted_M01_current_values": {
+    "effective_rank": 11,
+    "duration_turns": 22,
+    "claw_reach_cells": 1,
+    "leap_maximum_cells": 2,
+    "leap_energy_cost": 4,
+    "leap_cooldown_turns": 3,
+    "energy_cost": 15,
+    "cooldown_turns": 10,
+    "claw_damage": 45,
+    "damage_type_in_unmodified_example": "kinetic",
+    "claw_bleed_chance_percent": 50,
+    "bleed_percent_of_actual_initial_claw_damage_per_turn": 10,
+    "bleed_duration_turns": 3,
+    "laceration_damage_per_target": 45,
+    "laceration_cells": 3,
+    "laceration_bleed_chance_percent": 50,
+    "laceration_energy_cost": 6,
+    "laceration_cooldown_turns": 3
+  },
+  "accepted_M01_next_values": {
+    "effective_rank": 12,
+    "duration_turns": 23,
+    "claw_reach_cells": 1,
+    "leap_maximum_cells": 2,
+    "leap_energy_cost": 4,
+    "leap_cooldown_turns": 3,
+    "energy_cost": 15,
+    "cooldown_turns": 10,
+    "claw_damage": 48,
+    "damage_type_in_unmodified_example": "kinetic",
+    "claw_bleed_chance_percent": 53,
+    "bleed_percent_of_actual_initial_claw_damage_per_turn": 10,
+    "bleed_duration_turns": 3,
+    "laceration_damage_per_target": 48,
+    "laceration_cells": 3,
+    "laceration_bleed_chance_percent": 53,
+    "laceration_energy_cost": 6,
+    "laceration_cooldown_turns": 3
+  },
+  "accepted_M01_scope": [
+    "unchanged_RP_Griffe_Bond_and_equipment_rules",
+    "duration22_current23_next",
+    "Lacération45_current48_next_damage_per_enemy_on_three_adjacent_frontal_cells",
+    "Griffe_and_Lacération_bleed50_current53_next_percent;10_percent_actual_hit_damage_per_turn_for3_turns",
+    "Lacération_energy6_cooldown3",
+    "frontal_claw_arc_and_three_cell_preview_visual_direction;native_pixels_not_approved"
+  ],
+  "accepted_shared_renewal_scope": [
+    "transformation_cooldown_starts_on_activation",
+    "renew_same_active_form_once_cooldown_is_ready",
+    "pay_current_form_energy_and_restore_full_current_duration",
+    "renewal_does_not_heal",
+    "intrinsic_action_cooldowns_preserved"
+  ],
+  "unshown_renewal_cases_pending": [
+    "form_reserve_preservation",
+    "M02_extension_budget_on_renewal",
+    "HP_rounding_changed_equipment_parameter_sampling_and_exact_tick_order"
+  ],
+  "accepted_other_form_outline": {
+    "TR61": {
+      "actions": [
+        "Coup lourd",
+        "Onde de choc",
+        "Écrasement"
+      ],
+      "scope": "names_and_qualitative_roles_as_last_shown;not_unshown_numbers_conditions_or_visuals"
+    },
+    "TR63": {
+      "actions": [
+        "Heurt",
+        "Décharge de plaques",
+        "Fermeture des plaques"
+      ],
+      "scope": "names_and_qualitative_roles_as_last_shown;not_unshown_numbers_conditions_or_visuals"
+    },
+    "TR64": {
+      "actions": [
+        "Trait corporel",
+        "Pulsation occulte",
+        "Drain organique"
+      ],
+      "scope": "names_and_qualitative_roles_as_last_shown;not_unshown_numbers_conditions_or_visuals"
+    },
+    "TR65": {
+      "actions": [
+        "Allonge",
+        "Fente abyssale",
+        "Pas d’ombre"
+      ],
+      "scope": "names_and_qualitative_roles_as_last_shown;not_unshown_numbers_conditions_or_visuals"
+    }
+  },
+  "runtime_integration": "not_integrated"
+}

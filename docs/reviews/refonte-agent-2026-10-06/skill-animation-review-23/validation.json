@@ -1,0 +1,26 @@
+{
+  "build": {
+    "command": "cargo build --locked",
+    "exit_code": 0
+  },
+  "targeted_tests": {
+    "command": "cargo test --locked agent_skill_lab_review",
+    "passed": 32,
+    "failed": 0
+  },
+  "format": {
+    "command": "cargo fmt --all -- --check",
+    "exit_code": 0
+  },
+  "diff_check": {
+    "command": "git diff --check",
+    "exit_code": 0
+  },
+  "capture": {
+    "mode": "debug hidden native Macroquad",
+    "fixture_views": 10,
+    "status": "passed"
+  },
+  "campaign_integration": false,
+  "visual_approval": "pending"
+}

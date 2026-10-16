@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-06",
+  "user_message": "\"Portez un coup de mêlée renforcé contre une cible à portée. Le coup se déclenche immédiatement et consomme un tour.\" doit devenir \"Portez un coup de mêlée brutal contre une cible à portée.\"\n\nNouvelle regle: on ne parle que du fait que ca consomme \"un tour\" (enfin de la consommation de temps) que si c'est une action qui ne s'applique pas des qu'elle est activée , c'est ce qui est \"anormal\" qui doit être relevé .",
+  "preceding_user_presentation_requirement": "Montre moi plutot le texte que tu mettrais en jeu, texte descriptif , formule simplifiée (pour que ca reste à portée des joueurs) et valeur actuelle du skill .\nJe ne veux pas de \"tableau\" :)",
+  "copy_decisions": {
+    "B01": {
+      "functional_description": "Portez un coup de mêlée brutal contre une cible à portée.",
+      "text_approval": "explicit_user_replacement",
+      "roleplay_text": "preserve_previous_approval",
+      "numeric_rules": "unchanged_no_additional_approval",
+      "visual_render": "unchanged_pending_native_review"
+    },
+    "CD01": {
+      "presentation": "descriptive_text_simplified_formula_and_current_values_without_table",
+      "approval": "explicit_user_request"
+    },
+    "CD04": {
+      "execution_time_mention": "only_if_action_does_not_apply_upon_activation",
+      "ordinary_immediate_action_copy": "omit_immediate_resolution_and_one_turn_reminders",
+      "effect_durations_and_cooldowns": "preserve_existing_display_requirements",
+      "approval": "explicit_user_rule"
+    }
+  },
+  "gameplay_rules_changed": false,
+  "runtime_integration": "not_integrated",
+  "approval_scope": "specified_functional_sentence_and_editorial_rules_only; previously approved material retains its approval"
+}

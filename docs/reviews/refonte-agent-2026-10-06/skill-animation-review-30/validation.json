@@ -1,0 +1,14 @@
+{
+  "build": { "command": "cargo build --locked", "exit_code": 0 },
+  "targeted_tests": { "command": "cargo test --locked agent_skill_lab_review", "passed": 49, "failed": 0 },
+  "format": { "command": "cargo fmt --all -- --check", "exit_code": 0 },
+  "diff_check": { "command": "git diff --check", "exit_code": 0 },
+  "native_render": { "views": 14, "animations": 10, "comparison": true, "protected_files_unchanged": 42837, "pixel_controls": "passed" },
+  "revision": "Effect shader violet highlights only. Previous raster sources and alpha unchanged, prepared timelines identical.",
+  "comparison_limit": "Tiny antialias variations in transient skill-name text are excluded within its known rectangle during frames 17-33. Actor bodies, terrain and all later frames match exactly.",
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Native captures and offline gallery palette controller validated.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "pending"
+}

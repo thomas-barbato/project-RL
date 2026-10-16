@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "user_reply": "oui ok tu peux continuer :)",
+  "approval_scope": "the immediately presented persistence proposal, not unshown roleplay, numbers or rendered effects",
+  "accepted_rules": {
+    "unlimited_activity_models": [
+      "D56",
+      "D57",
+      "D58",
+      "D59",
+      "D66"
+    ],
+    "drones_can_be_destroyed_at_zero_hp": true,
+    "maximum_active": 5,
+    "maximum_per_model": 1,
+    "deployment_energy": true,
+    "per_turn_upkeep_energy": false,
+    "recall_and_layer_transition_preserve_hp_and_cargo": true,
+    "no_free_heal_on_redeployment": true,
+    "mule_destruction_drops_real_cargo": true,
+    "DP01_name": "Maintenance des drones",
+    "DP01_role": "progressive drone repair outside combat"
+  },
+  "pending_review": [
+    "new DP01 roleplay text",
+    "repair percentages and rank curve",
+    "three calm turns and exact eligibility",
+    "fractional repair handling and recall/transition counters",
+    "new repair visual intention and native render",
+    "other previously unapproved drone numbers and texts",
+    "command costs and interface"
+  ],
+  "original_proposal_snapshot": "docs/reviews/refonte-agent-2026-10-06/drone-persistence-proposal-revision-01.md",
+  "original_proposal_sha256": "89e3e8d4d1ae4388960c8f41c27fd372b5c9223771d75ab83c7ba58949e35f73",
+  "cadrage_document": "docs/REFONTE_AGENT_CRYOGENISE.md",
+  "cadrage_sha256": "dc32c86e4ccb392e73fec202c1c00fcab2c688ad4f92e119d6c6ac3198a51e38",
+  "test_menu_timing": "after all skills and animations"
+}

@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-POWER01-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-power-snapshot-INTERACT-POWER01-01.json",
+    "reference_sha256": "a85d25b1bede8e9e523cb7972dedaef03d41e67dcf20483695777d56d924eed3"
+  },
+  "user_acceptance": "oui :)",
+  "displayed_proposal": "Un statut ou une zone déjà active conserve la puissance calculée au lancement. Gagner un niveau ou modifier ses attributs ou son équipement affecte les prochains lancements. Réappliquer le statut utilise les nouvelles valeurs et redémarre la durée. Les résistances de la cible restent prises en compte à chaque dégât. Les familiers gardent leurs règles d'évolution déjà validées.",
+  "approved_rules": {
+    "existing_caster_power": "retained_from_launch_for_applied_skill_statuses_and_spell_ground_zones",
+    "caster_level_attribute_equipment_change": "changes_future_casts;does_not_retroactively_modify_existing_effect_power",
+    "reapplication": "new_cast_power_replaces_previous_and_duration_restarts_under_INTERACT_STATUS02",
+    "target_defenses": "current_eligible_target_defenses_still_applied_to_each_damage_event",
+    "familiars": "existing_accepted_actor_statistics_updates_unchanged"
+  },
+  "shown_example": {
+    "existing_Burn_before_resistance_damage_per_turn": 12,
+    "after_caster_level_gain": 12,
+    "after_new_successful_cast_with_power18": 18,
+    "duration_after_reapplication": "restarted",
+    "values_are_illustrative_not_actual_Braise_entries": true
+  },
+  "approval_boundary": "shown_power_snapshot_and_reapplication_rule_only;simultaneous_source_order_mine_dependency_cleanup_and_future_raised_birth_sampling_not_newly_approved",
+  "prior_required_cleanup": "accepted_effect_loss_and_invocation_rank_decrease_cleanup_remain_applicable",
+  "runtime_integration": "not_integrated"
+}

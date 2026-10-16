@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S41-REV02",
+  "status": "superseded_visual_revision_requested",
+  "campaign_integration": false,
+  "native_tile": 64,
+  "candidates": [
+    {
+      "number": 91,
+      "id": "O02",
+      "variant": "O02-A02",
+      "title": "Interférence"
+    },
+    {
+      "number": 92,
+      "id": "AF02",
+      "variant": "AF02-A02",
+      "title": "Faille d’armure"
+    }
+  ],
+  "effective_rank": 1,
+  "accepted_mechanics": "../afflictions-area-acceptance-01.json",
+  "prepared_values": {
+    "zone_width_cells": 3,
+    "casting_range_cells": 5,
+    "duration_turns": 3,
+    "cooldown_turns": 5,
+    "O02_energy": 8,
+    "AF02_energy": 9,
+    "O02_direct_damage_reduction_percent": 15,
+    "AF02_physical_armor_reduction_percent": 20
+  },
+  "scope": "Group application and individual actor-bound duration; no campaign commands or save mutations. Prepared individual resistance result, without RNG or a new resistance formula. Area preview uses shared obstacle geometry. The group decoration can overhang on free floor but is clipped by walls and their line-of-sight shadow. The effects are not ground hazards. Current power/energy/duration baseline retained.",
+  "scenes": 18,
+  "cases": [
+    "four group directions",
+    "player receiving",
+    "real-time waiting",
+    "closed-corner obstacles",
+    "individual resistance",
+    "victim leaves, newcomer enters"
+  ],
+  "preview": "../apercu-animations.html?lot=87",
+  "native_lab": "--apercu-laboratoire-competences --lot-affaiblissements-zone",
+  "source": "src/agent_skill_lab_review/fire_painted/afflictions_area.rs",
+  "source_sha256": "f833b12d2e9c84ce12c6bc6cc36671ddc5c1885c3549f431f38ccd85234cf21d",
+  "shared_art_source": "src/agent_skill_lab_review/fire_painted/afflictions_opening.rs",
+  "shared_art_source_sha256": "9d04af3a5ebcb9d3ba7beec63364fe3be3a0a8154839164739ce21bb9f0cc41e",
+  "catalogue_sha256": "459b572632cd0bdba78a8120fe1b3244b52199bb8f23bc0bd3ea9c7d246facfb",
+  "supersedes": "../skill-animation-review-86/review.json",
+  "remaining_unshown": 19,
+  "branch_followup": [
+    "AF03",
+    "AF04",
+    "AF05",
+    "AF06"
+  ],
+  "pending_separately": "B03 Vitalité améliorée mechanics.",
+  "verification": {
+    "debug_build": true,
+    "targeted_tests_passed": 4,
+    "viewer_controller": "Final mock-DOM controller checks passed for six scenarios and four directions; no browser rendering claimed.",
+    "browser_rendering": "Not attempted: file-page browser access remains blocked by policy. Local native rendering and mock-DOM controller checks are used.",
+    "format_check": true,
+    "scoped_diff_check": true,
+    "lossless_native_pixel_verification": true,
+    "native_visual_QA": true,
+    "previous_accepted_art_preserved": true,
+    "native_centre_selection": "Implemented; pure geometry and atomic-refusal checks passed. No native mouse automation claim."
+  },
+  "temporary_capture_policy": "Reuse same HTML; delete native captures and QA screenshots after lossless packaging. Old point-target playback can be removed after the revised playback is verified; retain shared source artwork and review records.",
+  "playback_bytes": 0,
+  "cleanup": "cleanup.json",
+  "launcher": "ouvrir-laboratoire.cmd",
+  "superseded_by": "../skill-animation-review-88/review.json",
+  "historical_playback_bytes": 5850870,
+  "playback_removed_after_verified_revision88": true
+}

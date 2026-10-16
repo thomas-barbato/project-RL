@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-PETS01-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-first-action-arrival-INTERACT-PETS01-01.json",
+    "reference_sha256": "d702ec9978ff558617df1a358791a9af3cf9aec0741d779c384732d68c73f185"
+  },
+  "user_acceptance": "ok on continue :) .",
+  "displayed_acceptance_anchor": "La première action des drones pendant leur tour d’invocation reste une proposition à valider.",
+  "preceding_displayed_explanation": "Un drone pouvant agir dès son invocation donnerait aussi un intérêt immédiat à son déploiement.",
+  "approved_rule": {
+    "new_drone": "successful_ordinary_invocation_allows_living_and_otherwise_eligible_new_drone_to_act_in_that_reference_turn_familiar_phase;no_extra_out_of_phase_action_or_actor_budget_reset"
+  },
+  "approval_boundary": "displayed_new_drone_first_action_in_normal_familiar_phase_only;full_unshown_zone_arrival_and_phase_details_not_inferred_accepted",
+  "preserved": "already_accepted_raised_first_action_next_birth_turn;normal_actor_speeds_budgets_and_conditions;familiars_before_enemies",
+  "runtime_integration": "not_integrated"
+}

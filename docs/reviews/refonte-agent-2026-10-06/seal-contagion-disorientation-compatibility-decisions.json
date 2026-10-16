@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "AF06",
+  "title": "Contagion de sceau",
+  "question": "Avec sa nouvelle mécanique, veux-tu que Désorientation puisse aussi être transmise par Contagion de sceau ? La liste actuelle comprend Interférence, Faille d’armure, Silence et Rupture de régénération.",
+  "user_answer": "Oui, ajouter Désorientation",
+  "accepted_compatibility": [
+    "O02",
+    "AF02",
+    "AF03",
+    "AF04",
+    "AF05"
+  ],
+  "accepted_scope": "Explicit addition of redesigned AF05 to AF06 compatibility list; existing four effects preserved. Does not by itself approve numerical scaling, targeting details, fatal-damage ordering, new copy or animation.",
+  "fatal_damage_ordering_proposal": "For death caused by damage, a directly applied compatible effect active immediately before fatal damage may be selected for transmission; thus AF05 can propagate despite interruption by that fatal damage. A previous nonfatal hit that removed AF05 does not leave a transmissible effect. Proposed exception remains pending displayed-tooltip review.",
+  "control_scope": "Any transmitted control retains CTRL01 boss immunity and elite 0.75 calculated-chance multiplier; no bypass by passive propagation.",
+  "visual_approval": "pending_separate_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

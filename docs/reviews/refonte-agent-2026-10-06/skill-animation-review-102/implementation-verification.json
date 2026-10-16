@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-15",
+  "source": "src/agent_skill_lab_review/fire_painted/contagion_tentacles.rs",
+  "source_sha256": "b5aa78fadcbb34a1319872a2d073f9f31d41119558c7de108ee0cb1dd0887faf",
+  "targeted_tests": 6,
+  "targeted_tests_passed": 6,
+  "debug_build": "passed",
+  "format_check": "passed",
+  "scoped_whitespace_check": "passed",
+  "full_suite_run": false,
+  "campaign_effects_integrated": false,
+  "mechanical_timeline_equality": "eleven scenes match accepted A01 exactly",
+  "terrain_mask": "all wall pixels match reference throughout wall scenario",
+  "native_raster_difference": "three prepared damage-text edge rows differ by five to six pixels; inspected and recorded, no native image altered"
+}

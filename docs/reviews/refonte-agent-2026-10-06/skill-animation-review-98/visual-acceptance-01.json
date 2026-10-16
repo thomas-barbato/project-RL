@@ -1,0 +1,268 @@
+{
+  "date": "2026-10-15",
+  "review_id": "ANIM-S49-ACCEPT01",
+  "user_reply": "je valide :)",
+  "accepted_visuals": [
+    {
+      "number": 109,
+      "id": "DI01",
+      "variant": "DI01-A01",
+      "title": "Tir perforant"
+    },
+    {
+      "number": 110,
+      "id": "DI02",
+      "variant": "DI02-A01",
+      "title": "Feu nourri"
+    }
+  ],
+  "source": "src/agent_skill_lab_review/fire_painted/ranged_opening.rs",
+  "source_sha256": "1a8943d02a6017101d9e1601dfc61c05e4be4733b83b529594527ac730d9e28e",
+  "review_sha256": "e3c37f6d560c64c32a32cde949ed8e8331df2a00ca1bcd3c12a5d3561faa0595",
+  "validation_sha256": "b31c663df841b761c24dfc24d1c99a8f7b43331abca2585874af88f1299cf80d",
+  "atlas_exports": [
+    {
+      "variant": "DI01-A01-HAUT",
+      "path": "DI01-HAUT.webp",
+      "sha256": "9a3945da0b4d219072eb3ed0e9d49a7a2c216e912cdd521d39bbeeff34bff40e",
+      "bytes": 148838,
+      "lossless_pixels": true,
+      "unique_frames": 28
+    },
+    {
+      "variant": "DI01-A01-DROITE",
+      "path": "DI01-DROITE.webp",
+      "sha256": "69c9ed59ffcdb16cc8eda451350f920b4fcd589102543867b5e70a68d0ee9977",
+      "bytes": 144190,
+      "lossless_pixels": true,
+      "unique_frames": 28
+    },
+    {
+      "variant": "DI01-A01-GAUCHE",
+      "path": "DI01-GAUCHE.webp",
+      "sha256": "436c866069f71daf58fdc816bac757b947777a8384a89e8d633b2f0f7a8458f3",
+      "bytes": 155218,
+      "lossless_pixels": true,
+      "unique_frames": 28
+    },
+    {
+      "variant": "DI01-A01-BAS",
+      "path": "DI01-BAS.webp",
+      "sha256": "5e983048d24dd8c8d28abe1f5fc480f4abffc4b46d31a9e66c0f3420a30384f9",
+      "bytes": 147216,
+      "lossless_pixels": true,
+      "unique_frames": 28
+    },
+    {
+      "variant": "DI01-A01-CLOISON",
+      "path": "DI01-CLOISON.webp",
+      "sha256": "cd19b7e2d3c1b949ce057ae3bc93caddf09f77818ef87019ddf3c68cdbcc6439",
+      "bytes": 96406,
+      "lossless_pixels": true,
+      "unique_frames": 27
+    },
+    {
+      "variant": "DI01-A01-MACHINE",
+      "path": "DI01-MACHINE.webp",
+      "sha256": "f08d90ccafae5930267decbd74bc33563e24784d260ed0ec04ba092c4a18b6fd",
+      "bytes": 129328,
+      "lossless_pixels": true,
+      "unique_frames": 28
+    },
+    {
+      "variant": "DI01-A01-MANQUE",
+      "path": "DI01-MANQUE.webp",
+      "sha256": "87f02d22f96e589869853a5e9b78e541f755d0450377bee281208ab6dec657f0",
+      "bytes": 175340,
+      "lossless_pixels": true,
+      "unique_frames": 28
+    },
+    {
+      "variant": "DI01-A01-ALLIE",
+      "path": "DI01-ALLIE.webp",
+      "sha256": "0eda84a70d72eb263fc7b422c7fb5f4aed38547da3c55e37d9d5f7e7c98106cf",
+      "bytes": 189942,
+      "lossless_pixels": true,
+      "unique_frames": 28
+    },
+    {
+      "variant": "DI01-A01-MAXIMUM",
+      "path": "DI01-MAXIMUM.webp",
+      "sha256": "b9145ae3dd6b9c0ab58afd7b8e706a9071f76abe6e9f59e1f9fc733c74a0c136",
+      "bytes": 169412,
+      "lossless_pixels": true,
+      "unique_frames": 28
+    },
+    {
+      "variant": "DI01-A01-RAFALE",
+      "path": "DI01-RAFALE.webp",
+      "sha256": "9a3945da0b4d219072eb3ed0e9d49a7a2c216e912cdd521d39bbeeff34bff40e",
+      "bytes": 148838,
+      "lossless_pixels": true,
+      "unique_frames": 28
+    },
+    {
+      "variant": "DI01-A01-MUNITIONS",
+      "path": "DI01-MUNITIONS.webp",
+      "sha256": "a0b651b4b1f1dd08078025dd05b216411e69549c7819090716845bd743f7013d",
+      "bytes": 18306,
+      "lossless_pixels": true,
+      "unique_frames": 1
+    },
+    {
+      "variant": "DI01-A01-ENERGIE",
+      "path": "DI01-ENERGIE.webp",
+      "sha256": "a0b651b4b1f1dd08078025dd05b216411e69549c7819090716845bd743f7013d",
+      "bytes": 18306,
+      "lossless_pixels": true,
+      "unique_frames": 1
+    },
+    {
+      "variant": "DI01-A01-MELEE",
+      "path": "DI01-MELEE.webp",
+      "sha256": "304826a5607d01e887e128769c7f7f4c6c2801531ed054f414cd65971ec63cb6",
+      "bytes": 18096,
+      "lossless_pixels": true,
+      "unique_frames": 1
+    },
+    {
+      "variant": "DI01-A01-ATTENTE",
+      "path": "DI01-ATTENTE.webp",
+      "sha256": "9a3945da0b4d219072eb3ed0e9d49a7a2c216e912cdd521d39bbeeff34bff40e",
+      "bytes": 148838,
+      "lossless_pixels": true,
+      "unique_frames": 28
+    },
+    {
+      "variant": "DI02-A01-HAUT",
+      "path": "DI02-HAUT.webp",
+      "sha256": "707ac78f73f234a9dff6b22eccce43d11e9108fbdef180020e400a5bcebdfeab",
+      "bytes": 131530,
+      "lossless_pixels": true,
+      "unique_frames": 34
+    },
+    {
+      "variant": "DI02-A01-DROITE",
+      "path": "DI02-DROITE.webp",
+      "sha256": "60dd4e8e2d5ac8db1aed34d2d62729a49d03e14a783522a4e1539076f21ba361",
+      "bytes": 129502,
+      "lossless_pixels": true,
+      "unique_frames": 34
+    },
+    {
+      "variant": "DI02-A01-GAUCHE",
+      "path": "DI02-GAUCHE.webp",
+      "sha256": "92f4da623fa67d688ea1558cd928c38182c3453bf84510ad58c68de218dda0be",
+      "bytes": 133868,
+      "lossless_pixels": true,
+      "unique_frames": 34
+    },
+    {
+      "variant": "DI02-A01-BAS",
+      "path": "DI02-BAS.webp",
+      "sha256": "730cbf0abd066f6227433a1a45903259682da072a298c8dd44c5a543a000fc8c",
+      "bytes": 130090,
+      "lossless_pixels": true,
+      "unique_frames": 34
+    },
+    {
+      "variant": "DI02-A01-CLOISON",
+      "path": "DI02-CLOISON.webp",
+      "sha256": "826ace6e23d88c0b91ff1d0ced7abf91c4a5f39535c6272723e4411a0744686d",
+      "bytes": 17292,
+      "lossless_pixels": true,
+      "unique_frames": 1
+    },
+    {
+      "variant": "DI02-A01-MACHINE",
+      "path": "DI02-MACHINE.webp",
+      "sha256": "dfe94eabae55ef7ecae622b04774c547bb94dc68eccbca1e0a4a2590050c9746",
+      "bytes": 113750,
+      "lossless_pixels": true,
+      "unique_frames": 34
+    },
+    {
+      "variant": "DI02-A01-MANQUE",
+      "path": "DI02-MANQUE.webp",
+      "sha256": "8e4bc5614e510a34ecdcba9eda35f0295e5eb54d47ea948d4f07a1cdb97538a7",
+      "bytes": 140456,
+      "lossless_pixels": true,
+      "unique_frames": 34
+    },
+    {
+      "variant": "DI02-A01-ALLIE",
+      "path": "DI02-ALLIE.webp",
+      "sha256": "707ac78f73f234a9dff6b22eccce43d11e9108fbdef180020e400a5bcebdfeab",
+      "bytes": 131530,
+      "lossless_pixels": true,
+      "unique_frames": 34
+    },
+    {
+      "variant": "DI02-A01-MAXIMUM",
+      "path": "DI02-MAXIMUM.webp",
+      "sha256": "707ac78f73f234a9dff6b22eccce43d11e9108fbdef180020e400a5bcebdfeab",
+      "bytes": 131530,
+      "lossless_pixels": true,
+      "unique_frames": 34
+    },
+    {
+      "variant": "DI02-A01-RAFALE",
+      "path": "DI02-RAFALE.webp",
+      "sha256": "de64511f4dc9277f0c0e9d98aeaac3a9f0d0c6816409d465f352b86d0adbabf0",
+      "bytes": 178644,
+      "lossless_pixels": true,
+      "unique_frames": 39
+    },
+    {
+      "variant": "DI02-A01-MUNITIONS",
+      "path": "DI02-MUNITIONS.webp",
+      "sha256": "df60a757c5b2430d47ca88898e5e419aceb5adf3e48d708739f4b42a00451cd2",
+      "bytes": 17718,
+      "lossless_pixels": true,
+      "unique_frames": 1
+    },
+    {
+      "variant": "DI02-A01-ENERGIE",
+      "path": "DI02-ENERGIE.webp",
+      "sha256": "df60a757c5b2430d47ca88898e5e419aceb5adf3e48d708739f4b42a00451cd2",
+      "bytes": 17718,
+      "lossless_pixels": true,
+      "unique_frames": 1
+    },
+    {
+      "variant": "DI02-A01-MELEE",
+      "path": "DI02-MELEE.webp",
+      "sha256": "a1aa02cb2a5d1d7510bbee2bdc588e60fb3107b0b8449c897acb9ec020c96ebf",
+      "bytes": 17552,
+      "lossless_pixels": true,
+      "unique_frames": 1
+    },
+    {
+      "variant": "DI02-A01-ATTENTE",
+      "path": "DI02-ATTENTE.webp",
+      "sha256": "707ac78f73f234a9dff6b22eccce43d11e9108fbdef180020e400a5bcebdfeab",
+      "bytes": 131530,
+      "lossless_pixels": true,
+      "unique_frames": 34
+    }
+  ],
+  "standalone_animations": [
+    {
+      "path": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-98/DI01-physical-shots-64.webp",
+      "sha256": "20a2cb237b7d679b71836d1c4025deedf8d463a890bb387aadebe8b16dae9cae"
+    },
+    {
+      "path": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-98/DI02-physical-shots-64.webp",
+      "sha256": "89111b7e89ad2b8e0b705dac7d5f1aaf50bedf15ba8e8a168466e2a22d747b94"
+    }
+  ],
+  "scope": "Presented finite animations and their native prepared scenes. No new whole progression, RNG, critical/defence, early-death or campaign rule inferred.",
+  "campaign_integration": false,
+  "separate_pending_preserved": [
+    "D66 taunt animation and marker",
+    "O03 animation",
+    "AF05/AF06 review90",
+    "B03 mechanics",
+    "Control capacity and taunt numbers"
+  ]
+}

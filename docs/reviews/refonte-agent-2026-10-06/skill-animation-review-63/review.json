@@ -1,0 +1,18 @@
+{
+  "batch": "ANIM-S30-REV02",
+  "date": "2026-10-14",
+  "status": "awaiting_visual_review",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 68,
+      "id": "SM00",
+      "name": "Pose de mine — explosion de feu révisée",
+      "variant": "SM00-A02",
+      "previous_accepted": "SM00-A01"
+    }
+  ],
+  "scope": "Explosion visual only. Same mine, redLED, prepared13fire, radius1, cost10, arming1, cooldown1, player immunity and turns. Source draw and brief180px/.44s/.88alpha explosion await review. No newBurn or terrainresidue.",
+  "preserved_reference": "review60 original Fire frames/GIF copied pixel-identically; timeline exact match.",
+  "residue_policy": "WithSM05, residual terrain takes visual relay after burst; fireground/gas/frozenground fixed. Mechanical immediate first application remains. DedicatedSM05 preview follows this explosion review."
+}

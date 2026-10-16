@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-06",
+  "batch_revision": 3,
+  "document": "docs/REVUE_ARBRES_COMPETENCES_AGENT.md",
+  "document_sha256": "dbd0ec39736c5bb635507a76b330f8f611ae7ba35b379eb745b5fa72973d05bc",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/secondary-skill-decisions.json",
+  "latest_decisions_sha256": "b37c16c0f13e55744fd77f67f15a694b85fe39e5fa84e8e50dc3ed7e2618a9b2",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-trees-02.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-trees-revision-02.md",
+  "status": "specialized_branch_scope_shape_and_nonexclusive_learning_accepted_catalog_pending",
+  "accepted_requirements": {
+    "grid_scope": "each_specialized_branch",
+    "minimum_tier_rows_per_branch": 4,
+    "skill_options_per_tier": 3,
+    "minimum_distinct_skills_per_branch": 12,
+    "all_three_options_learnable_with_points": true,
+    "unlock_by_points_invested_in_branch": true,
+    "choose_thresholds_after_branch_catalog": true
+  },
+  "text_approval": "pending_user_review",
+  "visual_approval": "pending_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "change": "Add secondary-tree exception and link; accepted primary structure unchanged"
+}

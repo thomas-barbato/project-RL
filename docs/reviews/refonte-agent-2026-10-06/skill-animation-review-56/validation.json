@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-14",
+  "build": "cargo build --locked passed after final numeric layout repair",
+  "targeted_tests": "heavy_followup and heavy_opening: 12 passed, 0 failed; subsequent changes only adjust HUD text and floating-number positions",
+  "format": "cargo fmt --all -- --check passed",
+  "native_views": 24,
+  "native_frames": 4464,
+  "native_tile_size": 64,
+  "native_readback_conversion": "pixel-identical; channel views copied byte-identically; final mastery area and staggered readouts recaptured",
+  "protected_files_unchanged": 4370,
+  "controller": "offline DOM/Image harness: 17 scenarios, manual turns, idle and scaled hover passed; no browser screenshot",
+  "gif_effect_colors": [
+    {
+      "id": "HL03",
+      "direction": "HAUT",
+      "effect_pixels": 13849,
+      "mean_color_error": 8.07
+    },
+    {
+      "id": "HL03",
+      "direction": "DROITE",
+      "effect_pixels": 13704,
+      "mean_color_error": 8.19
+    },
+    {
+      "id": "HL03",
+      "direction": "GAUCHE",
+      "effect_pixels": 13812,
+      "mean_color_error": 7.95
+    },
+    {
+      "id": "HL03",
+      "direction": "BAS",
+      "effect_pixels": 13820,
+      "mean_color_error": 9.39
+    },
+    {
+      "id": "HL04",
+      "direction": "HAUT",
+      "effect_pixels": 12484,
+      "mean_color_error": 10.17
+    },
+    {
+      "id": "HL04",
+      "direction": "DROITE",
+      "effect_pixels": 12417,
+      "mean_color_error": 11.15
+    },
+    {
+      "id": "HL04",
+      "direction": "GAUCHE",
+      "effect_pixels": 12265,
+      "mean_color_error": 10.89
+    },
+    {
+      "id": "HL04",
+      "direction": "BAS",
+      "effect_pixels": 12467,
+      "mean_color_error": 10.16
+    }
+  ],
+  "campaign_integration": false
+}

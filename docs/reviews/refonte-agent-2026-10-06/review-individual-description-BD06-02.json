@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-08",
+  "id": "BD06",
+  "review_id": "BD06",
+  "revision": 2,
+  "title": "Récupération d’énergie",
+  "branch": "Buffs à distance",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-102.json",
+  "source_skill_manifest_sha256": "912243bcd80b04d82afa36b185cc534406f85d3a19cda718ca15cd6f61f2e4ef",
+  "source_skill_block_sha256": "2e65e66ac9641b2f727842404252f419a2fab2df1189d869b4d29f4c272be5ab",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "maximum_energy_recovered_per_eligible_kill_percent": 22,
+    "minimum_interval_between_gains_turns": 3
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "maximum_energy_recovered_per_eligible_kill_percent": 24,
+    "minimum_interval_between_gains_turns": 3
+  },
+  "formulas_proposed": {
+    "maximum_energy_recovered_per_eligible_kill_percent": "2*effective_rank;explicit_user_rule",
+    "gain_in_energy_points": "min(missing_energy,energy_max*recovery_percent/100);rounding_unshown_pending_review",
+    "minimum_interval_between_gains_turns": 3,
+    "full_curve_defaults_rounding_and_clock_order": "unshown_pending_review"
+  },
+  "prior_unapproved_curve": "2+(effective_rank-1),giving12_then13;rejected_as_uninteresting_and_archived",
+  "conditions_proposed": {
+    "familiar_kills_reflections_and_automatic_counters_excluded": true,
+    "decoys_and_obstacles_not_eligible_enemy_kills": true,
+    "recovery_limited_to_missing_energy": true,
+    "no_timed_buff_or_new_command_created": true,
+    "own_melee_ranged_spell_and_heavy_weapon_attacks_can_trigger": true,
+    "own_transformed_attacks_can_trigger": "proposed_under_universal_scope;displayed_for_review"
+  },
+  "name_approval": "new_name_proposed_pending_explicit_user_review;current_name_preserved_in_catalogue",
+  "roleplay_text_approval": "revised_universal_RP_proposed_pending_individual_user_review",
+  "numeric_rules_approval": "2_percentage_points_per_rank_explicit_user_rule;calculated_current22_next24;interval3_pending_individual_review",
+  "detailed_conditions_approval": "universal_attack_style_direction_requested;displayed_transformed_attack_and_kill_exclusion_details_pending_review",
+  "visual_intention_approval": "catalogue_spark_to_energy_gauge_preserved;gain_feedback_proposed",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "pending_individual_user_review",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "no_fictitious_energy_points_without_energy_maximum": true,
+    "no_artificial_status_duration": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "maximum_energy_recovered_per_eligible_kill_percent"
+    ]
+  },
+  "player_copy_markdown": "**BD06 · Récupération d’énergie — Rang 11 · Passif**\n\n*Chaque ennemi que vous abattez nourrit vos réserves et prolonge la chasse.*\n\n**Effets actuels**\n\n- Énergie récupérée par élimination : **22 % de l’énergie maximale**.\n- Intervalle entre deux gains : **3 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Énergie récupérée par élimination : **24 % de l’énergie maximale**.\n\nVos attaques de mêlée, tirs, sorts, armes lourdes et attaques de transformation peuvent déclencher cet effet. Les éliminations de vos familiers, les renvois et les ripostes automatiques sont exclus. Détruire un leurre ou un obstacle ne rend pas d’énergie.\n\nLa récupération ne dépasse pas l’énergie manquante.",
+  "player_copy_sha256": "cbafd684d97a6aacea3232425045adced7080f32261e6321cb890e39858cecf0",
+  "visual_copy_markdown": "**Visuel proposé :** une étincelle remonte depuis la cible vaincue vers votre jauge d’énergie. Le gain apparaît brièvement près de la jauge.",
+  "visual_copy_sha256": "f7c0fb59c3f66ce3edba8d6164c74086ad42ee50cfbbf9d5cd4b8c4444a06c6c",
+  "current_turn_shown_copy_markdown": "**BD06 · Récupération d’énergie — Rang 11 · Passif**\n\n*Chaque ennemi que vous abattez nourrit vos réserves et prolonge la chasse.*\n\n**Effets actuels**\n\n- Énergie récupérée par élimination : **22 % de l’énergie maximale**.\n- Intervalle entre deux gains : **3 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Énergie récupérée par élimination : **24 % de l’énergie maximale**.\n\nVos attaques de mêlée, tirs, sorts, armes lourdes et attaques de transformation peuvent déclencher cet effet. Les éliminations de vos familiers, les renvois et les ripostes automatiques sont exclus. Détruire un leurre ou un obstacle ne rend pas d’énergie.\n\nLa récupération ne dépasse pas l’énergie manquante.\n\n**Visuel proposé :** une étincelle remonte depuis la cible vaincue vers votre jauge d’énergie. Le gain apparaît brièvement près de la jauge.",
+  "current_turn_shown_copy_sha256": "3cc60a8ceb232099ac5d7dfab4ebcb3d856e90e159226aebe86a81d247ce0565",
+  "unshown_cases_pending": [
+    "full_curve_defaults_caps_rounding_and_resource_snapshot",
+    "multi_kill_same_action_first_proc_full_energy_and_cooldown_boundary",
+    "persistent_zone_and_damage_over_time_attribution_and_automatic_secondary_attacks",
+    "environmental_kills_and_exact_familiar_reflection_counter_source_attribution",
+    "native_spark_visibility_gauge_gain_copy_and_feedback_stacking"
+  ],
+  "current_catalogue_title": "Récupération balistique",
+  "proposed_branch": "Survie",
+  "current_catalogue_branch": "Buffs à distance",
+  "branch_move_approval": "Survie_proposed_pending_explicit_user_review;not_applied_to_catalogue",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BD06-01.json",
+  "previous_description_sha256": "9166fe6cf7d9e399a9c31672f3be41347440f7d0ab8a73dd702c68409cdfcbc7",
+  "direction_decisions": "docs/reviews/refonte-agent-2026-10-06/universal-energy-recovery-direction-decisions.json",
+  "direction_decisions_sha256": "1370538b091d005ca4eb20cc577cb6ce424595bd72fe50c7973d3a2b4267555c",
+  "accepted_progression_review_id": "BD06-PROG01"
+}

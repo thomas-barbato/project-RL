@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-15",
+  "build": "cargo build --locked --bin project-rl passed",
+  "format": "cargo fmt --all --check passed",
+  "diff": "scoped git diff --check passed",
+  "native_capture": "Two 576x576 scenes; changed region [68,274,124,322], Scout only",
+  "preserved_files_verified": 20,
+  "current_page_paths_exist": true,
+  "visual_status": "Candidate 108 awaiting user approval",
+  "campaign_integration": false,
+  "raw_capture_cleanup_complete": true,
+  "new_pycache_created": false,
+  "review_total_bytes": 1153570
+}

@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-06",
+  "id": "ME02",
+  "title": "Balayage",
+  "revision": 1,
+  "player_copy_markdown": "**Balayage — Rang 12**\n10 rangs appris + 2 grâce à l’équipement.\n\n*Vous dessinez un large arc avec votre arme pour faucher les ennemis devant vous.*\n\nBalayez les **trois cases adjacentes devant vous** pour frapper les ennemis qui s’y trouvent.\n\n**Progression**\nLe coup inflige **80 % des dégâts de votre attaque de mêlée** au rang 1. Chaque rang supplémentaire ajoute **5 points à ce pourcentage**.\nLe coût commence à **8 énergie**, puis augmente de **1 tous les 4 rangs supplémentaires**.\n\n**Valeurs actuelles**\n**135 % des dégâts de votre attaque de mêlée par cible.** Avec votre équipement et vos attributs : **30 dégâts par cible avant ses défenses**.\n\n**Coût : 10 énergie.**\n**Recharge : 3 tours.**",
+  "player_copy_sha256": "2f3230255b108b5873796f0b670f0f63c640b2675983cb8a3d750240a7155670",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-07.json",
+  "preceding_user_message": "parfait, on continue",
+  "approval_scope_of_preceding_message": "continue the individual review; preserves the already explicitly chosen B01 sentence and editorial rule; does not approve the forthcoming ME02 copy",
+  "previous_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-melee-02.json",
+  "previous_skill_block_sha256": "f94a8c99bf22380001a24bf57e9800041a376c7f5b40172ac32d597c135ab3bd",
+  "roleplay_text_approval": "preserve_previously_accepted_text",
+  "functional_description_approval": "pending_user_review",
+  "simplified_progression_copy_approval": "pending_user_review",
+  "numeric_rules_approval": "existing_displayed_rank_1_and_12_values_retained; previously_unshown_progression_formulas_remain_proposed",
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "strength": 10,
+    "agility": 10,
+    "reference_attack_damage": 20,
+    "strength_factor": "1.1",
+    "agility_factor": "1.025",
+    "other_damage_or_cost_modifiers": false
+  },
+  "default_values": {
+    "rank": 1,
+    "damage_percent_per_target": 80,
+    "energy_cost": 8,
+    "cooldown_turns": 3,
+    "sector_adjacent_cells": 3
+  },
+  "current_values": {
+    "rank": 12,
+    "damage_percent_per_target": 135,
+    "damage_per_target_before_defenses": 30,
+    "energy_cost": 10,
+    "cooldown_turns": 3,
+    "sector_adjacent_cells": 3
+  },
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "reference source document hash matched",
+    "effective rank 12 damage and energy recalculated using exact fractions",
+    "ordinary execution time omitted; cooldown preserved"
+  ]
+}

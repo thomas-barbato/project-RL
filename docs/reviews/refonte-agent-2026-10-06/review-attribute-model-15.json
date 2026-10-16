@@ -1,0 +1,190 @@
+{
+  "date": "2026-10-09",
+  "review_id": "STAT-MODEL15",
+  "status": "accepted_core_elemental_associations_and_shown_Gel_formula_preserved;remaining_common_resistance_rules_pending",
+  "previous_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-14.json",
+  "previous_model_sha256": "95676274df17eb76b23e26a0b95d1a943051822547aafd42060258f330174b81",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-02.json",
+  "source_proposal_sha256": "449d4d200adb5fd39028eff5d8ca673fd240b05c3de08b96511eaf313c5d1b82",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/attribute-model-perception-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "e18f863af6beadd00595d37d05a27234625da8d2c83f3fed90f208b7409fa288",
+  "accepted_coefficients": {
+    "S01": {
+      "melee_weapon_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "includes_melee_weapon_skills": true,
+      "previous_physical_transformation_scope": "preserved_by_general_agreement;exact_components_unreviewed"
+    },
+    "S02": {
+      "accuracy_units_per_point": 2,
+      "evasion_units_per_point": 2,
+      "attribute_damage_bonus": "none;additional_ranged_bonus_requested_in_previous_turn_retracted_by_current_instruction;old_general_physical_bonus_superseded"
+    },
+    "S03": {
+      "maximum_HP_per_point": 4
+    },
+    "S04": {
+      "ranged_weapon_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "scope": "ranged_weapon_attacks_and_their_skills_including_ranged_heavy_weapons"
+    },
+    "S05": {
+      "drone_damage_percentage_points_per_attribute_point": 1,
+      "drone_maximum_HP_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "maximum_energy_per_point": 2
+    },
+    "S06": {
+      "spell_damage_percentage_points_per_attribute_point": 1,
+      "reference_attribute": 5,
+      "maximum_energy_per_point": 2,
+      "magical_transformed_attacks_included": true,
+      "occult_resistance_units_per_attribute_point": 2,
+      "occult_resistance_reference_attribute": 5
+    }
+  },
+  "accepted_constraints": {
+    "attribute_points_per_level": 5,
+    "character_level_cap": null
+  },
+  "accepted_stacking": "attribute and applicable weapon-skill damage bonuses are additive; previously shown example150% with Force10 is155%, Force15 is160%; other stacking cases remain unreviewed",
+  "resolved_clarification": {
+    "review_id": "S04-MAPPING01",
+    "question": "Le bonus de dégâts à distance de l’Agilité remplace-t-il celui proposé pour la Perception, ou souhaites-tu que les deux se cumulent ?",
+    "answer": "en faite non je vais accepter ta proposition avec perception.",
+    "status": "resolved_by_user_return_to_original_model;no_Agilite_ranged_damage_bonus_and_no_double_attribute_bonus"
+  },
+  "pending_clarification": null,
+  "balance_context": "Current_character_level_cap_none;100_is_user_conditional_preference_if_a_cap_is_later_introduced_and_upper_balance_reference;not_a_cap_or_expected_playthrough_level;single_life_and_limited_healing",
+  "unshown_cases_pending": [
+    "maximum_decrease_clamping_and_other_unshown_reserve_interactions;energy_regeneration_tick_order_and_special_interactions",
+    "other modifiers and gear/class/passive stacking",
+    "unshown_accuracy_evasion_edges_and_other_control_probability_rules",
+    "other_unshown_vision_interactions;fixed_player_base_radius8_and_no_Perception_radius_growth_accepted",
+    "control potency and duration",
+    "transformation duration",
+    "physical versus elemental attack components",
+    "drone base and rank scaling and HP modifier ordering",
+    "healing and indirect/reflected damage scaling",
+    "rounding and weapon damage variance",
+    "all other unshown details",
+    "remaining_R01_R05_common_limits_stacking_armor_DoT_rounding_UI_and_unshown_Gel_edges_pending;shown_Gel_Cold_formula_accepted"
+  ],
+  "runtime_integration": "not_integrated",
+  "level_context_decisions": "docs/reviews/refonte-agent-2026-10-06/level-cap-optional100-context-decisions.json",
+  "level_context_decisions_sha256": "4244228b906ca8cb63c79c8dc0b6057519bfca872a9161da603cbbe104281fee",
+  "accepted_derived_stats": {
+    "HP01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-HP01-02.json",
+      "reference_sha256": "d5d98b3775e77ba92d1b979cda9c35a3d0edcb4f47aee1816b1185749be77887",
+      "accepted_rules": {
+        "base_maximum_HP_at_level1_Vitalite5": 30,
+        "automatic_maximum_HP_gain_per_level_after_level1": 2,
+        "maximum_HP_per_Vitalite_point": 4
+      }
+    },
+    "E01": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-E01-02.json",
+      "reference_sha256": "b328fb9688deb721ab5245dee508b2a9a940735468b389194f7bc141c3d7011a",
+      "accepted_rules": {
+        "base_maximum_energy_at_level1_Intelligence5_Volonte5": 30,
+        "automatic_maximum_energy_gain_per_level_after_level1": 2,
+        "maximum_energy_per_Intelligence_point": 2,
+        "maximum_energy_per_Volonte_point": 2
+      }
+    },
+    "E01-REG": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-energy-regeneration-E01-02.json",
+      "reference_sha256": "420e1020cc964535dade37ae37ff14113af9794310e54981ba45d51e3b6ece4f",
+      "accepted_rules": {
+        "combat_and_accalmie_percent_of_maximum_energy_per_turn": 1,
+        "combat_and_accalmie_minimum_energy_per_turn": 1,
+        "calm_percent_of_maximum_energy_per_turn": 3,
+        "calm_minimum_energy_per_turn": 3,
+        "rounding": "ceiling_before_missing_energy_limit",
+        "cannot_overfill": true,
+        "menus_or_realtime_wait_regenerate_energy": false
+      }
+    },
+    "S02-HIT": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-accuracy-evasion-02.json",
+      "reference_sha256": "393616f746489ff1c4cc505d7a945ee06782ef335b958b77df5afda2c0fb9af3",
+      "accepted_rules": {
+        "base_accuracy_at_Agilite5": 100,
+        "base_evasion_at_Agilite5": 25,
+        "probability_formula": "clamp(100*attacker_accuracy/(attacker_accuracy+target_evasion),5,95)",
+        "minimum_hit_chance_percent": 5,
+        "maximum_hit_chance_percent": 95,
+        "scope": "weapon_attacks_and_physical_transformation_attacks"
+      }
+    },
+    "S04-VISION": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-perception-vision-03.json",
+      "reference_sha256": "5f28b7daff1cfde2a8698315a551024eba2bc032156f697bbccbe56f7b1355af",
+      "accepted_rules": {
+        "fixed_player_base_vision_radius_cells": 8,
+        "Perception_does_not_increase_player_base_vision_radius": true
+      }
+    },
+    "S06-RESIST": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-occult-resistance-02.json",
+      "reference_sha256": "5e2d068636b68790afab5eaf458168f08960d9e022de417b7eb4359e321c4261",
+      "accepted_rules": {
+        "base_occult_resistance_at_Volonte5": 25,
+        "occult_resistance_units_per_Volonte_point": 2,
+        "minimum_occult_resistance": 1,
+        "occult_resistance_formula": "max(1,25+2*(Volonte-5))",
+        "hostile_effect_success_chance_formula": "clamp(100*hostile_power/(hostile_power+occult_resistance),5,95)",
+        "minimum_hostile_effect_success_percent": 5,
+        "maximum_hostile_effect_success_percent": 95,
+        "scope": "player_application_resistance_to_occult_controls_and_curses;examples_Silence_and_Desorientation",
+        "damage_and_Gel_Burn_Poison_rules": "unchanged;not_implicitly_scaled_by_this_new_occult_resistance"
+      }
+    },
+    "R03-GEL": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/freeze-elemental-chance-formula-acceptance-decisions.json",
+      "reference_sha256": "fbefb43b47922ef0cdc964199d3f20e382a46c9ebc76bec5ab5af28da6dddf04",
+      "accepted_rules": {
+        "Gel_Cold_resistance_formula_as_shown": "chance_before_Cold_resistance*(100-Cold_resistance)/100",
+        "Gel_duration": "unchanged",
+        "boss_importance_multiplier": "previous_accepted1/2_after_the_shown_Cold_modifier",
+        "elemental_associations": "Burn_Fire_Poison_Poison_Gel_Cold_preserved",
+        "occult_controls": "accepted_S06_occult_resistance_scope_preserved"
+      },
+      "accepted_examples": [
+        {
+          "chance_before_Cold_resistance_percent": 80,
+          "Cold_resistance_percent": 40,
+          "ordinary_Gel_chance_percent": 48,
+          "boss_Gel_chance_percent": 24,
+          "duration": "unchanged"
+        }
+      ]
+    }
+  },
+  "latest_derived_stat_acceptance": "docs/reviews/refonte-agent-2026-10-06/occult-resistance-acceptance-and-full-resistance-review-request-decisions.json",
+  "latest_derived_stat_acceptance_sha256": "039b3d05d9a0addc335e0e71a6a2e579b5d47dcfb228f16c19b0fa30a974ebc6",
+  "accepted_progression_reserves": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-current-reserves-on-progression-02.json",
+    "reference_sha256": "4977465f395a22813f03d5702347e9bd2888f8eb5b185025251689e4419c82b9",
+    "accepted_rules": {
+      "level_gain": "apply_level_gains_and_updated_maximums_then_fully_restore_current_HP_and_energy_to_their_maximums",
+      "attribute_point_investment": "update_affected_maximums_without_restoring_current_HP_or_energy",
+      "equipment_equip_or_remove": "recalculate_affected_maximums_without_healing_or_energy_restoration"
+    }
+  },
+  "latest_progression_acceptance": "docs/reviews/refonte-agent-2026-10-06/level-full-restoration-and-no-stat-equipment-refill-decisions.json",
+  "latest_progression_acceptance_sha256": "b1ce41154e7b73f38f5b30d1d151d5bb741710b7a9ade15e0a07bcbffbcc2318",
+  "latest_attribute_feedback": "docs/reviews/refonte-agent-2026-10-06/perception-vision-growth-reservation-and-withdrawal-decisions.json",
+  "latest_attribute_feedback_sha256": "c6b6c59620618e500d9425fe5f690cc96e090618566425f4e45956dff62b1dab",
+  "Perception_vision_growth_status": "withdrawn_unaccepted_proposal;fixed_base8_accepted_without_attribute_radius_growth",
+  "latest_resistance_feedback": "docs/reviews/refonte-agent-2026-10-06/freeze-elemental-chance-formula-acceptance-decisions.json",
+  "latest_resistance_feedback_sha256": "fbefb43b47922ef0cdc964199d3f20e382a46c9ebc76bec5ab5af28da6dddf04",
+  "accepted_elemental_status_resistance_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/radiation-placeholder-withdrawal-and-elemental-status-resistance-decisions.json",
+    "reference_sha256": "6a4a54be839e5de3101ef3cf11138225b205470edb62d75934866274321d7096",
+    "Burn_damage": "Fire_resistance",
+    "Poison_damage": "Poison_resistance",
+    "Gel": "Cold_resistance_affects_cold_damage_and_Gel_chance;duration_unchanged;numeric_curve_pending"
+  }
+}

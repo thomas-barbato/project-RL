@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-09",
+  "review_id": "WEAPON-SIL01-DIRECTION01",
+  "user_messages": [
+    "oui c'est mieux, maintenant on peut adapter toutes les armes du jeu aux silhouettes :) (et si tu peux aussi refaire la couleur de ce pistolet (plutot gris clair)",
+    "je sais qu'on a créé pleins d'arme de couleurs differentes (et d'armures de la meme facon) on devrait surement eviter le rose (et supprimer les armures / armes roses )",
+    "Un gris neutre",
+    "et bien-sur il faudra faire la meme chose (adapter les armes) pour toutes les armes :) mais je crois pas que ca sera un probleme grace aux regles mises en place :)"
+  ],
+  "accepted_diagonal_pistol_orientation": {
+    "candidate": "START-VIS01-2",
+    "source_proposal": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-06.json",
+      "reference_sha256": "4f5384c7efedfb7d62b3b73fda9229732ad1aff03d3606221be627a3fb91ad99"
+    },
+    "user_acceptance": "oui c'est mieux"
+  },
+  "accepted_directions": {
+    "weapon_coverage": "all_existing_and_future_weapons_use_compatible_family_layers_and_silhouette_attachments;new_shapes_reviewed_when_added",
+    "pistol_material": "light_gray;approved_arm_glove_and_diagonal_orientation_preserved",
+    "existing_pink_equipment": "neutral_gray_replaces_Pink_cosmetic_variant;models_ids_stats_bonuses_preserved",
+    "violet": "distinct_existing_violet_palette_preserved"
+  },
+  "prepared_weapon_review": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-silhouette-review-03/review-weapon-silhouettes-WEAPON-SIL01-03.json",
+    "reference_sha256": "e51d2c67a4cd92b2d88405d39ecd89b4711c357aaa989204383774c30e934868"
+  },
+  "presentation": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-silhouette-review-03/weapon-silhouette-review-presentation-02.json",
+    "reference_sha256": "e96de0a1a0a677c0a8f6f20d0ef0e3c8a5e342977a163eba8db963707c1fdbec"
+  },
+  "approval_boundary": "accepted_directions_and_prior_pistol_orientation_only;new_shown_gray_materials_family_rigs_and_Traqueur_unarmed_layer_require_explicit_visual_review",
+  "mechanical_changes": "none",
+  "runtime_integration": "not_integrated"
+}

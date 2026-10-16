@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "DI04",
+  "title": "Tir de précision",
+  "previous_title": "Ricochet",
+  "user_message": "oui ca me va :)",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI04-02.json",
+  "previous_description_sha256": "e54c5873aea7481199021d49cccb294fb89a4a57f76930523a8fa8224abeb6f7",
+  "accepted_player_copy_sha256": "e20d5bec9522275acd2d872d0cc38fe10d90105039ad869ddb9e27cc4a3d62d7",
+  "approval_scope": "Full displayed replacement name, RP, current/next values and conditions accepted as provisional balance. Critical bonus for this shot only accepted. Declared ordinary 5% critical chance remains fictional, not a global default. Full curves, critical damage multiplier/general rules, unshown mechanics and new native rendering remain pending.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "projectile_count": 1,
+      "maximum_targets": 1,
+      "damage_percent": 100,
+      "damage_min_noncritical_before_defenses": 20,
+      "damage_max_noncritical_before_defenses": 24,
+      "damage_min_exact_before_rounding": {
+        "numerator": 4059,
+        "denominator": 200
+      },
+      "damage_max_exact_before_rounding": {
+        "numerator": 4961,
+        "denominator": 200
+      },
+      "accuracy_multiplier_percent": 130,
+      "armor_ignored_percent_exact": {
+        "numerator": 40,
+        "denominator": 1
+      },
+      "armor_ignored_percent_display": 40.0,
+      "critical_chance_bonus_percentage_points_exact": {
+        "numerator": 15,
+        "denominator": 1
+      },
+      "critical_chance_bonus_percentage_points_display": 15.0,
+      "ordinary_critical_chance_percent_illustrative": 5,
+      "critical_chance_percent_exact_for_illustrative_profile": {
+        "numerator": 20,
+        "denominator": 1
+      },
+      "critical_chance_percent_display": 20.0,
+      "energy_cost": 11,
+      "ammunition_cost": 1,
+      "cooldown_turns": 4,
+      "range_cells": 6
+    },
+    "next": {
+      "effective_rank": 12,
+      "projectile_count": 1,
+      "maximum_targets": 1,
+      "damage_percent": 100,
+      "damage_min_noncritical_before_defenses": 20,
+      "damage_max_noncritical_before_defenses": 24,
+      "damage_min_exact_before_rounding": {
+        "numerator": 4059,
+        "denominator": 200
+      },
+      "damage_max_exact_before_rounding": {
+        "numerator": 4961,
+        "denominator": 200
+      },
+      "accuracy_multiplier_percent": 132,
+      "armor_ignored_percent_exact": {
+        "numerator": 860,
+        "denominator": 21
+      },
+      "armor_ignored_percent_display": 41.0,
+      "critical_chance_bonus_percentage_points_exact": {
+        "numerator": 325,
+        "denominator": 21
+      },
+      "critical_chance_bonus_percentage_points_display": 15.5,
+      "ordinary_critical_chance_percent_illustrative": 5,
+      "critical_chance_percent_exact_for_illustrative_profile": {
+        "numerator": 430,
+        "denominator": 21
+      },
+      "critical_chance_percent_display": 20.5,
+      "energy_cost": 11,
+      "ammunition_cost": 1,
+      "cooldown_turns": 4,
+      "range_cells": 6
+    }
+  },
+  "accepted_conditions": [
+    "One projectile on one visible target with clear path.",
+    "Active equipped ordinary ranged weapon; heavy weapons excluded.",
+    "Armor bypass and critical bonus apply to this shot.",
+    "Noncritical damage displayed before target defenses."
+  ],
+  "accepted_heavy_weapon_warning": "Armes lourdes exclues.",
+  "general_critical_rules_approval": "still_pending; no multiplier, baseline, caps or stacking accepted by skill example",
+  "visual_approval": "new_visual_intention_and_native_animation_pending_review",
+  "runtime_integration": "not_integrated"
+}

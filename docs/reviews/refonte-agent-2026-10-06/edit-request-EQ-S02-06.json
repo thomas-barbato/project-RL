@@ -1,0 +1,13 @@
+{
+  "review_id": "SHIELD-VIS01",
+  "candidate": "EQ-S02",
+  "revision": 6,
+  "mode": "built-in imagegen precise-object-edit",
+  "source_path": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-88476826-45e4-4ff8-bc8f-5e9f0efc63d2.png",
+  "edit_reference": "../../../assets/source-art/refonte-agent-2026-10-06/shield-review-05/sources/EQ-S02.png",
+  "prompt": "Use case: precise-object-edit. Image 1 is the edit target, EQ-S02 pixel shield.\nStrengthen ONLY the silver border of the entire lower half, including the SHORT VERTICAL SECTIONS JUST BELOW THE HORIZONTAL DARK CROSSBAR. Current lower vertical silver strips are too skinny and disappear at native 11x15 sprite scale, separating the diagonal lower band from the central brace. Make these lower side strips much broader, extending inward, and join them continuously into the diagonal band and bottom cap with the SAME generous block width as the upper silver rim. A broad continuous silver U-shaped frame must enclose the lower olive face, from immediately below the dark crossbar all the way to the bottom. Steel must read clearly at least one to two full pixels wide in the tiny 11x15 sprite; avoid skinny strips and corner-only connections. Broaden the lower rim on the inside; preserve a solid dark external outline everywhere.\nKEEP UNCHANGED: complete upper half, olive-green face, dark central horizontal brace, overall clipped hexagonal industrial silhouette and proportions, thick black outer border, flat front orientation, coarse square pixel art. Transparent background. No new detail or ornaments; no glow, gold, medieval shape, text, hands or character. Same steel appearance above and below; lower half has matching sturdy frame thickness.",
+  "feedback": [
+    "Lower silver frame too thin and upper/lower construction inconsistent",
+    "First pass broadened the lower diagonals; this pass also broadens lower vertical connections."
+  ]
+}

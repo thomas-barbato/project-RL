@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ11",
+  "revision": 2,
+  "title": "Ce que conserve le ressuscité",
+  "status": "shown_original_intrinsic_profile_old_equipment_bonus_exclusion_and_predeath_temporary_effect_reset_accepted;unshown_cases_pending",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-43.json",
+  "current_attribute_model_sha256": "540b218237be7213ce739b84a053346da2f10d1841dc45d980b27c3f269625cf",
+  "shown_copy_markdown": "Le **calcul de puissance de Réanimation est validé**.\n\n**PETS-EQ11 · Ce que conserve le ressuscité — proposition**\n\n**Profil conservé**\n\n- Son **niveau d’origine**.\n- Ses **six attributs propres**, hors bonus d’équipement.\n- Ses statistiques naturelles et ses compétences d’origine.\n- Son attaque d’origine, disponible même sans arme confiée.\n\n**Équipement et effets temporaires**\n\nLes bonus des objets portés par l’ennemi ne sont pas recopiés. Seuls les objets réellement confiés au familier lui apportent des bonus d’équipement.\n\nSes anciens buffs et débuffs prennent fin au relèvement : il ne conserve pas, par exemple, le Poison ou le Gel qui l’affectait avant sa mort.\n\n**Exemple fictif — Force**\n\n- Avant sa mort : **15 propres + 5 d’équipement = 20**.\n- Au relèvement, sans équipement confié : **15**.\n- Avec une armure confiée donnant +3 Force : **18**.\n\nOn applique ensuite la puissance de Réanimation selon l’ordre validé.\n\n**Ces règles de reprise du profil restent à valider.**",
+  "shown_copy_sha256": "1e6bc66f7092409ed43d4049a5db0dae46143565d3655e92ca1bb198d43155cf",
+  "new_proposed_rules": {
+    "scope": "OC07_raised_actor_origin_profile_at_reanimation;not_player_or_drone_stat_reset",
+    "origin_level": "retain_actual_original_monster_level;do_not_copy_owner_level_or_reset_to_level1",
+    "origin_attributes": "retain_six_original_intrinsic_attributes_excluding_original_equipment_bonuses",
+    "origin_permanent_profile": "retain_original_natural_statistics_and_original_combat_skills_including_intrinsic_permanent_model_or_spawn_profile_variations;do_not_reroll_monster_template",
+    "native_attack": "preserve_original_native_attack_profile_available_without_supplied_item;do_not_create_recoverable_native_inventory_weapon",
+    "old_equipment_modifiers": "do_not_copy_item_bonuses_from_original_enemy_equipment_into_raised_intrinsic_profile;supplied_slots_start_empty_under_PETS_EQ09",
+    "new_equipment_modifiers": "apply_only_real_compatible_items_supplied_to_familiar_under_accepted_slot_transfer_and_bonus_rules",
+    "predeath_temporary_effects": "do_not_copy_original_enemy_temporary_buffs_or_debuffs_on_relèvement_including_Poison_or_Gel;new_raised_duration_and_alliance_are_not_predeath_effects",
+    "power_order": "apply_accepted_PETS_EQ10_power_after_own_attributes_and_compatible_supplied_equipment;do_not_scale_attributes_with_power",
+    "current_reserve_state": "maximum_calculation_only;HP_and_energy_current_at_birth_not_defined"
+  },
+  "shown_examples": {
+    "scope": "fictional_Force_values_only;no_actual_monster_or_armor_created",
+    "original_intrinsic_Force": 15,
+    "original_equipment_Force_bonus": 5,
+    "original_total_Force": 20,
+    "raised_no_supplied_equipment_Force": 15,
+    "new_supplied_armor_Force_bonus": 3,
+    "raised_with_supplied_armor_Force": 18
+  },
+  "dependencies": {
+    "raised_items": "docs/reviews/refonte-agent-2026-10-06/review-raised-equipment-and-rewards-PETS-EQ09-02.json",
+    "raised_items_sha256": "bcc003bdd6d747dbb6413bd7c2eba9992d590899ea1b8287b153a99773b9f3dd",
+    "raised_power": "docs/reviews/refonte-agent-2026-10-06/review-raised-power-and-equipment-PETS-EQ10-02.json",
+    "raised_power_sha256": "7fa105cfa8f8525b3442874e7f2213f03f0fbc56fa4dab05dcca9c827371cec2",
+    "native_attack": "docs/reviews/refonte-agent-2026-10-06/review-familiar-weapon-damage-base-PETS-EQ02-02.json",
+    "native_attack_sha256": "0b1faee1634503b5f634f2f15222e24a993be39ada644e92e951e6d3e8c79fea",
+    "Reanimation": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC07-02.json",
+    "Reanimation_sha256": "d1d6ac3e4e7b43b1cf8b13d45b3d8c99099f91906b717b465c5636510ef769a1"
+  },
+  "scope_audit": {
+    "earlier_original_stats": "exact_old_equipment_and_temporary_effect_snapshot_was_pending_in_OC07_and_PETS_EQ09;proposed_clarification_preserves_level_and_intrinsic_combat_profile",
+    "item_identity": "normal_enemy_loot_remains_ground;no_native_item_created_or_recovered_by_reanimation",
+    "native_attack_vs_item_affixes": "native_attack_profile_preserved;old_item_stat_bonus_exclusion_proposed;concrete_original_weapon_model_damage_type_and_affix_mapping_still_pending",
+    "temporary_effects": "reset_only_at_birth;later_allied_buffs_and_debuffs_are_not_removed_by_this_rule",
+    "future_resources": "no_full_HP_energy_refill_cooldown_reset_or_duration_change_created",
+    "native_visual": "no_equipment_tile_marker_tooltip_layout_or_animation_created"
+  },
+  "unshown_cases_pending": [
+    "current_HP_energy_at_birth_and_original_skill_cooldown_state",
+    "source_snapshot_at_mark_or_death_and_update_timing_for_owner_rank_changes",
+    "concrete_monster_native_weapon_damage_components_affixes_and_persistent_passive_mapping",
+    "elite_eligibility_and_repeat_reanimation_of_already_raised_actor",
+    "ongoing_external_zone_reapplication_after_reanimation_and_cleanup_event_order",
+    "native_stat_sheet_equipment_layout_and_actual_monster_profiles"
+  ],
+  "player_copy_approval": "explicit_user_acceptance_of_shown_copy",
+  "mechanical_approval": "shown_original_profile_item_bonus_exclusion_and_predeath_status_reset_accepted;unshown_cases_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-raised-origin-profile-PETS-EQ11-01.json",
+  "source_proposal_sha256": "6e0b545f455169569853a29293e946ec2c5965ad8f27b97d2fe4241f7cff6bc9",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/raised-origin-profile-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "c772ef0963c7eee5faca96f3da970cfbe73b00b3dd42c4c30be00bcbd154276a",
+  "accepted_shown_rules": {
+    "scope": "OC07_raised_actor_origin_profile_at_reanimation;not_player_or_drone_stat_reset",
+    "origin_level": "retain_actual_original_monster_level;do_not_copy_owner_level_or_reset_to_level1",
+    "origin_attributes": "retain_six_original_intrinsic_attributes_excluding_original_equipment_bonuses",
+    "origin_permanent_profile": "retain_original_natural_statistics_and_original_combat_skills_including_intrinsic_permanent_model_or_spawn_profile_variations;do_not_reroll_monster_template",
+    "native_attack": "preserve_original_native_attack_profile_available_without_supplied_item;do_not_create_recoverable_native_inventory_weapon",
+    "old_equipment_modifiers": "do_not_copy_item_bonuses_from_original_enemy_equipment_into_raised_intrinsic_profile;supplied_slots_start_empty_under_PETS_EQ09",
+    "new_equipment_modifiers": "apply_only_real_compatible_items_supplied_to_familiar_under_accepted_slot_transfer_and_bonus_rules",
+    "predeath_temporary_effects": "do_not_copy_original_enemy_temporary_buffs_or_debuffs_on_relèvement_including_Poison_or_Gel;new_raised_duration_and_alliance_are_not_predeath_effects",
+    "power_order": "apply_accepted_PETS_EQ10_power_after_own_attributes_and_compatible_supplied_equipment;do_not_scale_attributes_with_power",
+    "current_reserve_state": "maximum_calculation_only;HP_and_energy_current_at_birth_not_defined"
+  },
+  "accepted_shown_examples": {
+    "scope": "fictional_Force_values_only;no_actual_monster_or_armor_created",
+    "original_intrinsic_Force": 15,
+    "original_equipment_Force_bonus": 5,
+    "original_total_Force": 20,
+    "raised_no_supplied_equipment_Force": 15,
+    "new_supplied_armor_Force_bonus": 3,
+    "raised_with_supplied_armor_Force": 18
+  }
+}

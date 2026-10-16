@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-06",
+  "skill_id": "SU05",
+  "user_message": "Renommer \"Purge\"\n\n\"Vous chassez les poisons et les influences hostiles qui entravent votre corps.\" devrait etre reformulé ainsi :\n\n\"Vous chassez les poisons et les effets néfastes de votre corps.\"\n\nEn terme de fonctionnement je préfèrerais qu'on supprime l'effet nefaste le plus récent.",
+  "accepted_title": "Purge",
+  "previous_title": "Purgation",
+  "accepted_roleplay": "Vous chassez les poisons et les effets néfastes de votre corps.",
+  "mechanical_direction": "Automatic removal of the most recent compatible harmful effect, replacing player selection.",
+  "removal_count_interpretation": "One effect per use follows the singular user wording; explicitly shown for review in the revised card.",
+  "superseded_proposals": [
+    "player selection of effects",
+    "up to 3 removals at ranks 11 and 12",
+    "rank-scaled removal count"
+  ],
+  "previous_presentation": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU05-01.json",
+  "numeric_rules_approval": "No blanket approval of cost, cooldown or progression; existing cost and cooldown retained as proposals.",
+  "unshown_conditions": "Tie handling, ordering within simultaneous applications, effect refresh/reapplication recency and additional compatibility remain pending.",
+  "stable_content_id_preserved": true,
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

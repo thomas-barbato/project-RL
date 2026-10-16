@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "FE03",
+  "title": "Mur de feu",
+  "user_message": "okay je valide :)",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE03-01.json",
+  "previous_description_sha256": "37ad9a979a56d60ad4504c82eb26d128780726c9668adcc92c85df758e0cd611",
+  "accepted_player_copy_sha256": "999768d3a53cb5793e49907f6758db3c9abbc589b4366364deaded8681fc7afc",
+  "approval_scope": "Full displayed RP, current/next damage, length/duration/range, one active wall, energy/cooldown and placement, obstacle interruption, passability, entry/standing damage cap, caster/allied damage and replacement conditions accepted as provisional balance. Unshown curves, initial tick/geometry/vision/overlap cases and native visuals remain pending.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "fire_damage_per_target_per_turn": 27,
+      "maximum_wall_length_cells": 7,
+      "duration_turns": 5,
+      "placement_range_cells": 4,
+      "maximum_active_walls": 1,
+      "energy_cost": 15,
+      "cooldown_turns": 8
+    },
+    "next": {
+      "effective_rank": 12,
+      "fire_damage_per_target_per_turn": 29,
+      "maximum_wall_length_cells": 7,
+      "duration_turns": 5,
+      "placement_range_cells": 4,
+      "maximum_active_walls": 1,
+      "energy_cost": 15,
+      "cooldown_turns": 8
+    }
+  },
+  "accepted_conditions": [
+    "Placement on visible passable terrain; obstacles interrupt line.",
+    "Flames remain traversable; entry or standing causes damage at most once per target per turn for this effect.",
+    "Caster and allies may be hurt; damage displayed before defenses.",
+    "One active wall for FE03; new wall replaces previous. No approval transferred to other persistent creations."
+  ],
+  "unshown_rules_approval": "Full rank curves, line endpoints/orientation and diagonal/corner/range geometry, occupied cells and large actors, initial damage to actors on created tiles, first/last periodic tick and duration/reaction order, multiple-author and overlapping zones, vision and preview behavior, damage/defense and skill/implant/cost modifiers remain pending where not already accepted. No movement barrier, persistent after-exit burn status, general spell damage variance, new control, boss fire immunity or hidden actor reveal introduced.",
+  "visual_approval": "existing catalogue direction only; native preview pending",
+  "runtime_integration": "not_integrated"
+}

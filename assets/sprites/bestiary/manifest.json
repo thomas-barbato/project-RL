@@ -1,0 +1,3072 @@
+{
+  "version": 1,
+  "native_tile": 32,
+  "atlas_columns": 16,
+  "authorization_date": "2026-10-06",
+  "entries": [
+    {
+      "number": 1,
+      "art_id": "rl-art:001",
+      "name": "Écorché",
+      "name_status": "provisoire",
+      "family": "Monstrueux",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 0,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/001.png",
+      "source_sha256": "ae8befa722fcacff44c9e133dcb69dee9b18d44273aae6e33e1f35b5ccc9f09c",
+      "living": "tiles/001-living-32.png",
+      "living_sha256": "ca77479b38de617a44af7b7d86704489bdff2976dc8d5e7900e54f1279e4f0bc",
+      "living_bounds": [
+        1,
+        4,
+        31,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        23
+      ],
+      "corpse": "tiles/001-corpse-32.png",
+      "corpse_sha256": "c6d852420bcf9459195a94f3f1317cd48f09540a22d0f6431d22405cc9d696f2",
+      "corpse_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 2,
+      "art_id": "rl-art:002",
+      "name": "Gueulard",
+      "name_status": "provisoire",
+      "family": "Monstrueux",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 1,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/002.png",
+      "source_sha256": "f43fb622caaecb11608811fd55f391dfc5ce17bff9aade34fc02e4ea7b42e612",
+      "living": "tiles/002-living-32.png",
+      "living_sha256": "87f8978eccd06b2cb00f070fbb645dee1d5f369239d930d6caffc5aa301cfad4",
+      "living_bounds": [
+        1,
+        5,
+        31,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        23
+      ],
+      "corpse": "tiles/002-corpse-32.png",
+      "corpse_sha256": "1dd869bc8e47f7d514fc3022039c42a23bf78c94555a2db6f87d58458a29292e",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 3,
+      "art_id": "rl-art:003",
+      "name": "Rampant",
+      "name_status": "provisoire",
+      "family": "Monstrueux",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 2,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/003.png",
+      "source_sha256": "552b56a5d8f0ac86bfd5b0b236b7197be8f3f7bd3427ff299d9e3832e6751763",
+      "living": "tiles/003-living-32.png",
+      "living_sha256": "82db8a2c48ae35f38808eb4c386f964825c8220196641b6872745caeb1e36068",
+      "living_bounds": [
+        1,
+        12,
+        30,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        23
+      ],
+      "corpse": "tiles/003-corpse-32.png",
+      "corpse_sha256": "2040fe74185f2b7a44a5b6880b086919fffd8e0a5063b31061748265ea099cda",
+      "corpse_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 4,
+      "art_id": "rl-art:004",
+      "name": "Crâne-fendu",
+      "name_status": "provisoire",
+      "family": "Monstrueux",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 3,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/004.png",
+      "source_sha256": "a04389a4b253166c29df4bbde016a1d81770e7acd9a31241a0013c45be549f48",
+      "living": "tiles/004-living-32.png",
+      "living_sha256": "881a1299f87ed8ca71c1e0ee3c66b7b318d139bcebcd91f10b9a3641e3baa533",
+      "living_bounds": [
+        3,
+        5,
+        28,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        20
+      ],
+      "corpse": "tiles/004-corpse-32.png",
+      "corpse_sha256": "6503d34969790b3508b784b5167a9bf6dbc3436eedfd1c1abfe5dd22f778c69c",
+      "corpse_bounds": [
+        1,
+        22,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 5,
+      "art_id": "rl-art:005",
+      "name": "Œil des caves",
+      "name_status": "provisoire",
+      "family": "Lovecraftien",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 4,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/005.png",
+      "source_sha256": "bac57db0621d4c3300bb2eaa45d7809c717f1266e87207a471858d885c545938",
+      "living": "tiles/005-living-32.png",
+      "living_sha256": "44b85e612454bf6f493ae3521b897bc6c2084f3d5332cf94960fa1699229b7a1",
+      "living_bounds": [
+        2,
+        4,
+        30,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        22
+      ],
+      "corpse": "tiles/005-corpse-32.png",
+      "corpse_sha256": "52c27b8e1842f27989593d3ac040c005663a6f98d76a43bc802deae187c265bc",
+      "corpse_bounds": [
+        1,
+        17,
+        30,
+        31
+      ],
+      "corpse_shadow_contact": [
+        15,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 6,
+      "art_id": "rl-art:006",
+      "name": "Noueur",
+      "name_status": "provisoire",
+      "family": "Lovecraftien",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 5,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/006.png",
+      "source_sha256": "33351520d38069c7cac45e594755f8aae31c1c336610deb6d6a08972d236b9dc",
+      "living": "tiles/006-living-32.png",
+      "living_sha256": "4d9e0eac49b94b47dd21a8d75050b1c1fe59e7c486bdc26dffb1819fe57ad568",
+      "living_bounds": [
+        3,
+        4,
+        29,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/006-corpse-32.png",
+      "corpse_sha256": "4a589935cc4bf54ce9b26c2b51b9671ac50b3c1f0a081b308d60672d7975bc3c",
+      "corpse_bounds": [
+        2,
+        16,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 7,
+      "art_id": "rl-art:007",
+      "name": "Porte-bouche",
+      "name_status": "provisoire",
+      "family": "Lovecraftien",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 6,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/007.png",
+      "source_sha256": "fe1993e89c98a326555f5d1a258ee7fa2b556b1d2c05af4655408d6966872533",
+      "living": "tiles/007-living-32.png",
+      "living_sha256": "bdcf0b1d9487902dd1ed085d21427ac8b2146d5b41506e00a8a1e4bc42ebdd92",
+      "living_bounds": [
+        3,
+        3,
+        29,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/007-corpse-32.png",
+      "corpse_sha256": "4b180717578c7f872159c905bc3111d9afa66670a60943356f1d0839872299e1",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 8,
+      "art_id": "rl-art:008",
+      "name": "Nageur du vide",
+      "name_status": "provisoire",
+      "family": "Lovecraftien",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 7,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/008.png",
+      "source_sha256": "7d184810d40969d5112c8399c52babfa6f861f0c8cf4e5006a1e9bbd10c0d185",
+      "living": "tiles/008-living-32.png",
+      "living_sha256": "a7a49a43fe3ac99e63f8e7377b42bbc2c1be0ba8a3929d770dc7ea6be227a3e2",
+      "living_bounds": [
+        3,
+        8,
+        29,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/008-corpse-32.png",
+      "corpse_sha256": "9c6a915220d513103d7b814a19706d40a15961f72f6168cc952c6262e2df82ef",
+      "corpse_bounds": [
+        1,
+        17,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 9,
+      "art_id": "rl-art:009",
+      "name": "Pillard",
+      "name_status": "nom conservé",
+      "family": "Pillard à reprendre",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 8,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/009.png",
+      "source_sha256": "015edb8574c29fbd3ecbf7c141b203d3272f8c455513a523ab1f14557d844e3a",
+      "living": "tiles/009-living-32.png",
+      "living_sha256": "3579e4ceec7ffcd9489639adf98ce3b7c565c9cefa8d4504930f2408ac4a236c",
+      "living_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        16
+      ],
+      "corpse": "tiles/009-corpse-32.png",
+      "corpse_sha256": "c82bf550c019a3bbf98769f35e6bede26ecc4943d061af38724f702dffec3177",
+      "corpse_bounds": [
+        2,
+        21,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 10,
+      "art_id": "rl-art:010",
+      "name": "Fusilier",
+      "name_status": "provisoire",
+      "family": "Humains et possédés",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 9,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/010.png",
+      "source_sha256": "dffb4776173d910753da99c276368c9fac23254b68fb6d01f8caaf2c8e457573",
+      "living": "tiles/010-living-32.png",
+      "living_sha256": "089c40f82b88b796b2f7a389be2efde149cabfa1e7f2b367366e113094507479",
+      "living_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        16
+      ],
+      "corpse": "tiles/010-corpse-32.png",
+      "corpse_sha256": "0f9bfe1000ade43d5eeda5264a2f527bf4e2f03ed0b5d7833b0be60f516b4eb3",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 11,
+      "art_id": "rl-art:011",
+      "name": "Possédé",
+      "name_status": "provisoire",
+      "family": "Humains et possédés",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 10,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/011.png",
+      "source_sha256": "ab266582eddd7280f8c2206492d72a5050f4c8611fe1f357dabc6fe01ed0492b",
+      "living": "tiles/011-living-32.png",
+      "living_sha256": "f0404b98c7fad8afac67fb1e75ac4c400b72bbb3a14f51e1356a60ad0cba9131",
+      "living_bounds": [
+        6,
+        1,
+        25,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        15
+      ],
+      "corpse": "tiles/011-corpse-32.png",
+      "corpse_sha256": "12803c23f93a2d43c5956e3718573e13a8e2eb977ab19711fa5b1124a27e0bda",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 12,
+      "art_id": "rl-art:012",
+      "name": "Fanatique",
+      "name_status": "provisoire",
+      "family": "Humains et possédés",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 11,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/012.png",
+      "source_sha256": "b44934457f43474cda14d6ef468defa36627004345581fcf9090bbc23c680dda",
+      "living": "tiles/012-living-32.png",
+      "living_sha256": "3630e7593658025297a0c0b5ee1d054ce0103c8b380b83aabda7d25167851f29",
+      "living_bounds": [
+        5,
+        1,
+        27,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        17
+      ],
+      "corpse": "tiles/012-corpse-32.png",
+      "corpse_sha256": "d054b4a95255d28028d9499dd983e9bf6c7c5ccc3240d936354b1a33467dbb3c",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 13,
+      "art_id": "rl-art:013",
+      "name": "Greffé",
+      "name_status": "provisoire",
+      "family": "Humains robotisés",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 12,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/013.png",
+      "source_sha256": "65df3cd2c19c8058f57044436b0d07029a18811e07722b7012481c27866229a5",
+      "living": "tiles/013-living-32.png",
+      "living_sha256": "e1c192b74037a50b2cfe44d93bca0f031b91fcd2423986ed448ddf68ec22d091",
+      "living_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        16
+      ],
+      "corpse": "tiles/013-corpse-32.png",
+      "corpse_sha256": "a8034d5863cfa10f79da7e1ed947ea69eeadcee4788805f5d8f4dcb3b2225f22",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 14,
+      "art_id": "rl-art:014",
+      "name": "Mâchoire d’acier",
+      "name_status": "provisoire",
+      "family": "Humains robotisés",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 13,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/014-r2.png",
+      "source_sha256": "4837677488b6fec77d9b9946c5ca0a1ea37889d68d7a5ac7559052a81ac011b0",
+      "living": "tiles/014-living-32.png",
+      "living_sha256": "144ab40a1667ec9c5857e517e8bca6629e8eda021abaff9d4cff2e70aaab4db7",
+      "living_bounds": [
+        3,
+        1,
+        28,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        20
+      ],
+      "corpse": "tiles/014-corpse-32.png",
+      "corpse_sha256": "3df15d211ee294a1f915c56b65c933877012377b94908fdf7c45ac8713668148",
+      "corpse_bounds": [
+        2,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 15,
+      "art_id": "rl-art:015",
+      "name": "Porte-sonde",
+      "name_status": "provisoire",
+      "family": "Humains robotisés",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 14,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/015.png",
+      "source_sha256": "21e7c534d5e73ba8742b3953675e0b7983e1abd89f11c80bae857f76c4f378ef",
+      "living": "tiles/015-living-32.png",
+      "living_sha256": "bfdca383b087b1d2d9d60a8a92a53da7fafc8cc1eed7bc06bbbb4d81e4dc27be",
+      "living_bounds": [
+        6,
+        1,
+        25,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        15
+      ],
+      "corpse": "tiles/015-corpse-32.png",
+      "corpse_sha256": "8eaa9ad4bb4d0b9b885fe23b7e0fe9c45455e898199b9f364b53feacadc0c96f",
+      "corpse_bounds": [
+        1,
+        21,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 16,
+      "art_id": "rl-art:016",
+      "name": "Marcheur soudé",
+      "name_status": "provisoire",
+      "family": "Humains robotisés",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 15,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/016-r3.png",
+      "source_sha256": "801cf9b9c7a259f33634b8ddefe333fc79c498542a86e4767e192faf6c2430fa",
+      "living": "tiles/016-living-32.png",
+      "living_sha256": "fb7a64f1cdecdcf7f7b12c59e35efcb6111c9a77751e15200593681f772c68e4",
+      "living_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        16
+      ],
+      "corpse": "tiles/016-corpse-32.png",
+      "corpse_sha256": "9c21a6e8a788a573c6d2bc95fc9323a8e586d42ca1bbc7ecb7ea511f0500e34b",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 17,
+      "art_id": "rl-art:017",
+      "name": "Cornu",
+      "name_status": "provisoire",
+      "family": "Démons et mages",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 16,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/017.png",
+      "source_sha256": "bd0b10cd57385b83a1a881768c4673f950cf657cf292ef2b4e1296ff2f62a729",
+      "living": "tiles/017-living-32.png",
+      "living_sha256": "b7eccfefdb591bbdf660866b4b98847c6ec01dd6e822e27f236dd1608cb6036a",
+      "living_bounds": [
+        2,
+        1,
+        29,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        21
+      ],
+      "corpse": "tiles/017-corpse-32.png",
+      "corpse_sha256": "2f204f5e992bba4f4f0da0baa86a93c78292d01f841b08ffa150200649bc8c36",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 18,
+      "art_id": "rl-art:018",
+      "name": "Mage des cendres",
+      "name_status": "provisoire",
+      "family": "Démons et mages",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 17,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/018.png",
+      "source_sha256": "74f28b4c8300211cfbe6d8cc44c29234f5ce68d742559ee876fd2a8aa0a26fae",
+      "living": "tiles/018-living-32.png",
+      "living_sha256": "cc3ee2d4c4b4850d39ce379cca12dd4f7211afbfd5c876f1b0eaee4afb0460a3",
+      "living_bounds": [
+        3,
+        1,
+        29,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/018-corpse-32.png",
+      "corpse_sha256": "afd3e9067d035e05dc7360fc9124d795a07610a9dce1f6a47d3dd5f9f97596cd",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 19,
+      "art_id": "rl-art:019",
+      "name": "Sorcière du sang",
+      "name_status": "provisoire",
+      "family": "Démons et mages",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 18,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/019.png",
+      "source_sha256": "ff382d725f527bc817d9886cefc4a3b4e6cb8ff5cb1b27e4f677dc0a895884b7",
+      "living": "tiles/019-living-32.png",
+      "living_sha256": "449ab4c21b4ba1cf039203c08009a2a39277ee45d9369999fd2ecfdf46d65212",
+      "living_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        16
+      ],
+      "corpse": "tiles/019-corpse-32.png",
+      "corpse_sha256": "d04e931d6c2d0659c14812cf43d1a31e0828b0fa1f714c7f80199dd635a7a43a",
+      "corpse_bounds": [
+        2,
+        19,
+        30,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        27
+      ]
+    },
+    {
+      "number": 20,
+      "art_id": "rl-art:020",
+      "name": "Dévoreur",
+      "name_status": "provisoire",
+      "family": "Démons et mages",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 19,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/020.png",
+      "source_sha256": "7b9c9a5ea281192a690f6ac6b5da45fa6a25e790ab5909799e01ece8efc3f507",
+      "living": "tiles/020-living-32.png",
+      "living_sha256": "ddf16e28b5f1b8346df75818b554e51e7b062359560042d0d52bb1d04529f3fc",
+      "living_bounds": [
+        1,
+        8,
+        31,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        23
+      ],
+      "corpse": "tiles/020-corpse-32.png",
+      "corpse_sha256": "17f5aca619657fbbd2cb350228bb7d88c2f4a5fde55922a1abf2d5eabd7697a1",
+      "corpse_bounds": [
+        1,
+        17,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 21,
+      "art_id": "rl-art:021",
+      "name": "Broyeur",
+      "name_status": "nom conservé",
+      "family": "Machines ennemies — épaves",
+      "usage": "enemy-machine",
+      "tile_size": 32,
+      "atlas_index": 20,
+      "atlas_columns": 16,
+      "bleeds": false,
+      "corpse_includes_blood": false,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/021-r2.png",
+      "source_sha256": "86814949dade029e92b9e7772483bb7785d72764c73858c13772759a355b6e4e",
+      "living": "tiles/021-living-32.png",
+      "living_sha256": "6e2b436413882d0881d32a4c06d36af092e0a258263e8d2fd413aa60192290bf",
+      "living_bounds": [
+        1,
+        9,
+        31,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        23
+      ],
+      "corpse": "tiles/021-corpse-32.png",
+      "corpse_sha256": "dc6f5518b7d41539639cf00fb0e1ef4c8bde22bba52355138541a957c3910f52",
+      "corpse_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 22,
+      "art_id": "rl-art:022",
+      "name": "Veilleur",
+      "name_status": "nom conservé",
+      "family": "Machines ennemies — épaves",
+      "usage": "enemy-machine",
+      "tile_size": 32,
+      "atlas_index": 21,
+      "atlas_columns": 16,
+      "bleeds": false,
+      "corpse_includes_blood": false,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/022-r2.png",
+      "source_sha256": "7a2fc24779dfdd08dd399e6648568627fd0b5a7afdc80d1f90177d1ec454a2df",
+      "living": "tiles/022-living-32.png",
+      "living_sha256": "418c9ba3345475cf65c63290d5a0baf4d4e98685f41b2761f0d1dcf57140b675",
+      "living_bounds": [
+        1,
+        11,
+        30,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        23
+      ],
+      "corpse": "tiles/022-corpse-32.png",
+      "corpse_sha256": "1d56325ce3929f87a1a35f249890d87404841a25dd98d0ea8568e2aa2b51ba67",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 23,
+      "art_id": "rl-art:023",
+      "name": "Androïde",
+      "name_status": "nom conservé",
+      "family": "Machines ennemies — épaves",
+      "usage": "enemy-machine",
+      "tile_size": 32,
+      "atlas_index": 22,
+      "atlas_columns": 16,
+      "bleeds": false,
+      "corpse_includes_blood": false,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/023-r2.png",
+      "source_sha256": "d26e56a3cc7e0633cc5574ec20f1bd2a4da5eba3f084fb2e531f544b6a3490e2",
+      "living": "tiles/023-living-32.png",
+      "living_sha256": "b2e8660fa92f92f6b673f11c7b1d6671c3bc9f694fe988a972fd91aa73340fd6",
+      "living_bounds": [
+        6,
+        1,
+        25,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        15
+      ],
+      "corpse": "tiles/023-corpse-32.png",
+      "corpse_sha256": "1b5de882aaa4d4e325ed3be3730f3bf6127001829077255f2b45a80deffe2adb",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 24,
+      "art_id": "rl-art:024",
+      "name": "Araignée d’acier",
+      "name_status": "nom conservé",
+      "family": "Machines ennemies — épaves",
+      "usage": "enemy-machine",
+      "tile_size": 32,
+      "atlas_index": 23,
+      "atlas_columns": 16,
+      "bleeds": false,
+      "corpse_includes_blood": false,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/024-r2.png",
+      "source_sha256": "518b1740a9f9205de984b2b03064d27a89f820797453849a92e384e73a8460ba",
+      "living": "tiles/024-living-32.png",
+      "living_sha256": "54225d8e465da7d535d547bc375c7b7ce195c152e3b2ef78e694d9b975351dd9",
+      "living_bounds": [
+        2,
+        11,
+        30,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        22
+      ],
+      "corpse": "tiles/024-corpse-32.png",
+      "corpse_sha256": "8f9e458677c0a56eda1c260f97db31988d93c282eec5e76d381f7536d920001d",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 25,
+      "art_id": "rl-art:025",
+      "name": "Cornu de fer",
+      "name_status": "provisoire",
+      "family": "Robots-démons",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 24,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/025.png",
+      "source_sha256": "ed1deaad490094e79901ab9e039c3bc0616f3011050b1b3928685ad94af3f53b",
+      "living": "tiles/025-living-32.png",
+      "living_sha256": "b1cad322277ec7695f563ddb43a93825219e6f3b62d22c6c13c0d0fd0d949449",
+      "living_bounds": [
+        1,
+        1,
+        30,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        23
+      ],
+      "corpse": "tiles/025-corpse-32.png",
+      "corpse_sha256": "2ff12ac04f1b01a4eb8fbb82c57dbb06b9c38223356699aec091cd885a1dd4f8",
+      "corpse_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 26,
+      "art_id": "rl-art:026",
+      "name": "Prêcheur bionique",
+      "name_status": "provisoire",
+      "family": "Robots-démons",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 25,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/026.png",
+      "source_sha256": "a09d2a359bdbf3fa035477961f900e6cf99d36a544bc03430526c732390d0f98",
+      "living": "tiles/026-living-32.png",
+      "living_sha256": "f887d20c539007a625a420cc2744c08fc388479001fe2351a572b341b50d66d9",
+      "living_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        16
+      ],
+      "corpse": "tiles/026-corpse-32.png",
+      "corpse_sha256": "b1c6725a74632148cff9b6d894e4c1849150956448a672d2a852dfb92eaf8c19",
+      "corpse_bounds": [
+        1,
+        21,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 27,
+      "art_id": "rl-art:027",
+      "name": "Gueule mécanique",
+      "name_status": "provisoire",
+      "family": "Robots-démons",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 26,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/027.png",
+      "source_sha256": "80d9cbdcead7dac0b26a94fa077ce47f94991f5c143330e50f4a8aa5b19ce895",
+      "living": "tiles/027-living-32.png",
+      "living_sha256": "ff97ea42bf1700b904586165e44e94a0005baff4ce896cfa89faec6abe52f4ba",
+      "living_bounds": [
+        1,
+        8,
+        31,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        23
+      ],
+      "corpse": "tiles/027-corpse-32.png",
+      "corpse_sha256": "01ef59ff2a0b8ccaf13d7837993daa9bcb96d6fa662543b47bb7f596ebf15636",
+      "corpse_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 28,
+      "art_id": "rl-art:028",
+      "name": "Ailé d’acier",
+      "name_status": "provisoire",
+      "family": "Robots-démons",
+      "usage": "enemy",
+      "tile_size": 32,
+      "atlas_index": 27,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/028.png",
+      "source_sha256": "76d28372c4032f7b22fcfd2f7472566a3b3d3256da2c981d39ced317df505bc8",
+      "living": "tiles/028-living-32.png",
+      "living_sha256": "db57666136d8bf598f0f55388fb4a19107dcc19126635e994d918efb8e8bcc29",
+      "living_bounds": [
+        1,
+        1,
+        31,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        23
+      ],
+      "corpse": "tiles/028-corpse-32.png",
+      "corpse_sha256": "02e605e0a5ce159104e88bab8145e2dee0ea235eb148d69b9a0a659757f68013",
+      "corpse_bounds": [
+        1,
+        16,
+        30,
+        31
+      ],
+      "corpse_shadow_contact": [
+        15,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 29,
+      "art_id": "rl-art:029",
+      "name": "Le Colosse",
+      "name_status": "provisoire",
+      "family": "Boss · 64 px",
+      "usage": "enemy",
+      "tile_size": 64,
+      "atlas_index": 0,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/029.png",
+      "source_sha256": "36f0d7fdd8d9c1f25266c0ac4cb03361072f98233c27234f817c91c0838d8e0a",
+      "living": "tiles/029-living-64.png",
+      "living_sha256": "65862c67acb2f95884f076f461c2b4e45cdd638f1aefe0fa01d960726c6344e6",
+      "living_bounds": [
+        2,
+        8,
+        61,
+        63
+      ],
+      "living_shadow_contact": [
+        31,
+        63,
+        46
+      ],
+      "corpse": "tiles/029-corpse-64.png",
+      "corpse_sha256": "e17085e44a8ed5eb3049628fb2ec1dfd43b981b447daaf2692069be34fb25da1",
+      "corpse_bounds": [
+        1,
+        34,
+        63,
+        63
+      ],
+      "corpse_shadow_contact": [
+        32,
+        62,
+        59
+      ]
+    },
+    {
+      "number": 30,
+      "art_id": "rl-art:030",
+      "name": "Le Démon enchaîné",
+      "name_status": "provisoire",
+      "family": "Boss · 64 px",
+      "usage": "enemy",
+      "tile_size": 64,
+      "atlas_index": 1,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/030.png",
+      "source_sha256": "c8e86e59928ce98702175d69f82b5bec6d86b17f2a0e3ee7f1deac09f1a4f1a0",
+      "living": "tiles/030-living-64.png",
+      "living_sha256": "116f738e63a80d50f55a90160fcbc97fc8b119a168c7fd3d03d28ef4f12c6da1",
+      "living_bounds": [
+        2,
+        5,
+        61,
+        63
+      ],
+      "living_shadow_contact": [
+        31,
+        63,
+        46
+      ],
+      "corpse": "tiles/030-corpse-64.png",
+      "corpse_sha256": "ca57925cdd263d326ea1af7d92ecfbbb96e73cb26828269ddb77d7be5fe08f73",
+      "corpse_bounds": [
+        1,
+        36,
+        63,
+        63
+      ],
+      "corpse_shadow_contact": [
+        32,
+        62,
+        59
+      ]
+    },
+    {
+      "number": 31,
+      "art_id": "rl-art:031",
+      "name": "Le Char possédé",
+      "name_status": "provisoire",
+      "family": "Boss · 64 px",
+      "usage": "enemy",
+      "tile_size": 64,
+      "atlas_index": 2,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/031.png",
+      "source_sha256": "23effca81bae37798f0d6e39e4fd01e977383810430cb01fde1900ca336e6216",
+      "living": "tiles/031-living-64.png",
+      "living_sha256": "c65a27b041465378000432e0cd945d02b844a45ab1fee2a36e89c994751f40a3",
+      "living_bounds": [
+        2,
+        14,
+        62,
+        63
+      ],
+      "living_shadow_contact": [
+        32,
+        63,
+        47
+      ],
+      "corpse": "tiles/031-corpse-64.png",
+      "corpse_sha256": "e0e7c510f476ee59e34ec727c4d774a3164fdf544715a23e90d464728a1af570",
+      "corpse_bounds": [
+        1,
+        34,
+        63,
+        63
+      ],
+      "corpse_shadow_contact": [
+        32,
+        62,
+        59
+      ]
+    },
+    {
+      "number": 32,
+      "art_id": "rl-art:032",
+      "name": "La Matrice des yeux",
+      "name_status": "provisoire",
+      "family": "Boss · 64 px",
+      "usage": "enemy",
+      "tile_size": 64,
+      "atlas_index": 3,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/032.png",
+      "source_sha256": "cb9c110449e084be46d0bc67c9b497456defcf58d7447d937059f24a8fada3d1",
+      "living": "tiles/032-living-64.png",
+      "living_sha256": "f0e2b365a74f3239e7fc078cecb030890a262d146072e07530b4754c8204bfc8",
+      "living_bounds": [
+        2,
+        9,
+        62,
+        63
+      ],
+      "living_shadow_contact": [
+        32,
+        63,
+        47
+      ],
+      "corpse": "tiles/032-corpse-64.png",
+      "corpse_sha256": "495e5f29504c0a95160b60a990a681a5bfd999f3b7e0038a20a5dcc467293672",
+      "corpse_bounds": [
+        1,
+        34,
+        63,
+        63
+      ],
+      "corpse_shadow_contact": [
+        32,
+        62,
+        59
+      ]
+    },
+    {
+      "number": 33,
+      "art_id": "rl-art:033",
+      "name": "Grignoteur",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 28,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:rubble_nibbler",
+      "legacy_actor_index": 3,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/033.png",
+      "source_sha256": "7a866fc78d8175025eaf9fdf65ded3f63914269e00946d9584fa9765a73d02d1",
+      "living": "tiles/033-living-32.png",
+      "living_sha256": "3421168080a74b51f0f03f29750096cb0cb574dd771036cb4eb3b0022dcf3c5e",
+      "living_bounds": [
+        6,
+        19,
+        26,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/033-corpse-32.png",
+      "corpse_sha256": "bd954320d241bf362e4269f008813d5bfe379eba9589b8ef8a270c42f3bd46b2",
+      "corpse_bounds": [
+        6,
+        23,
+        26,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        19
+      ]
+    },
+    {
+      "number": 34,
+      "art_id": "rl-art:034",
+      "name": "Mordeur des friches",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 29,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:friche_biter",
+      "legacy_actor_index": 4,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/034.png",
+      "source_sha256": "4017fd0902769667a6c49a9240793ec01ed736198532544211c0deefcd9782a6",
+      "living": "tiles/034-living-32.png",
+      "living_sha256": "dbfa8e03e15b6c044125a70955ce3a5476351efa6954dbb40962ebe40d94d3ea",
+      "living_bounds": [
+        1,
+        10,
+        30,
+        32
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        20
+      ],
+      "corpse": "tiles/034-corpse-32.png",
+      "corpse_sha256": "e542633858a1627840997a3d0f5c247ba4ba427d79a6bb1c10b32ef90e635427",
+      "corpse_bounds": [
+        2,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 35,
+      "art_id": "rl-art:035",
+      "name": "Brise-os",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 30,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:bone_breaker",
+      "legacy_actor_index": 5,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/035.png",
+      "source_sha256": "6edaa950cf2824fb7018886a227e5534d4ce5c6b752c9a7b5edbc7edba0d58eb",
+      "living": "tiles/035-living-32.png",
+      "living_sha256": "32a61e9016999456966b2487d3757be9e50b6ca11dcde40b2378e075a9c8cb46",
+      "living_bounds": [
+        1,
+        6,
+        31,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/035-corpse-32.png",
+      "corpse_sha256": "6adb4007dbaa9ff6163a93902ed8ec31994c521f5c60c67653eabf9964bb51f0",
+      "corpse_bounds": [
+        2,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 36,
+      "art_id": "rl-art:036",
+      "name": "Fouisseur pâle",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 31,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:vibration_burrower",
+      "legacy_actor_index": 6,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/036.png",
+      "source_sha256": "0c52595c8dd73c922afff7a381e450a17bae78384006c7ecab8a64522e74e625",
+      "living": "tiles/036-living-32.png",
+      "living_sha256": "cd7d53c119d5f9be33a8449063bcb97df6f252167496d14271ed9faa267b1d0a",
+      "living_bounds": [
+        4,
+        15,
+        27,
+        32
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        20
+      ],
+      "corpse": "tiles/036-corpse-32.png",
+      "corpse_sha256": "9062bc975c1df6255bb74ba44b741c94f85b0d8de5b9dcdc0b1dc8898652b9e5",
+      "corpse_bounds": [
+        6,
+        20,
+        27,
+        30
+      ],
+      "corpse_shadow_contact": [
+        16,
+        29,
+        20
+      ]
+    },
+    {
+      "number": 37,
+      "art_id": "rl-art:037",
+      "name": "Dos-rond",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 32,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:moss_grazer",
+      "legacy_actor_index": 7,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/037.png",
+      "source_sha256": "1b11496e5d5ddc3c87465d289b231c40812fcd5636d6f4de371d27b1616659ef",
+      "living": "tiles/037-living-32.png",
+      "living_sha256": "153ef552bf970018b90db0956ad4c3014736af4981be64001c17b44f8672710e",
+      "living_bounds": [
+        2,
+        16,
+        29,
+        32
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        20
+      ],
+      "corpse": "tiles/037-corpse-32.png",
+      "corpse_sha256": "a86c13aab5cdbdc62e0d8b864f2ec6310a5860ae9855600fdb0c06d1663a7730",
+      "corpse_bounds": [
+        3,
+        21,
+        29,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        25
+      ]
+    },
+    {
+      "number": 38,
+      "art_id": "rl-art:038",
+      "name": "Chauve-souris des ruines",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 33,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:ruin_bat",
+      "legacy_actor_index": 8,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/038.png",
+      "source_sha256": "d12444818c674bdda14b2fada46e912a74763b43d4db2f157d633badc8fd48ae",
+      "living": "tiles/038-living-32.png",
+      "living_sha256": "852e4a14df7ddf90c753e47d92c5c89c5afba7b076933717c7d7501cfe477bc4",
+      "living_bounds": [
+        1,
+        12,
+        30,
+        32
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        20
+      ],
+      "corpse": "tiles/038-corpse-32.png",
+      "corpse_sha256": "fdb52e2edea5dab4313393e3028cf052e4dc10aff99dc4cf5acd2d651d3f5cf2",
+      "corpse_bounds": [
+        2,
+        20,
+        30,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        27
+      ]
+    },
+    {
+      "number": 39,
+      "art_id": "rl-art:039",
+      "name": "Ver cuirassé",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 34,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:armored_worm",
+      "legacy_actor_index": 9,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/039.png",
+      "source_sha256": "d4dc5a50e3b8ad0c2daa0075dc98b7d7d29f19ffd90fc5c170d780a27933f859",
+      "living": "tiles/039-living-32.png",
+      "living_sha256": "cb916e1ff6b6aceb1512b305d6365ca746d1944a7b742506f6d2eda651a571af",
+      "living_bounds": [
+        4,
+        7,
+        28,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/039-corpse-32.png",
+      "corpse_sha256": "88fc2aeef8ebf0a2f30f439671eefd91cc04596c2464f24cb1458f25cb8c4c7b",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 40,
+      "art_id": "rl-art:040",
+      "name": "Anémone des caves",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 35,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:cave_anemone",
+      "legacy_actor_index": 10,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/040.png",
+      "source_sha256": "3c355adaeb96b9767122e68c4729d5bb7397cc4c24a0a878cfc0c4697f2fea66",
+      "living": "tiles/040-living-32.png",
+      "living_sha256": "fa6e0d72c959b255454eae2ae66b37ec9b2561df946a87cdea3dff4c211f6a39",
+      "living_bounds": [
+        2,
+        10,
+        29,
+        32
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        20
+      ],
+      "corpse": "tiles/040-corpse-32.png",
+      "corpse_sha256": "738edb5824dadec8f4746d9e54d2d499886a91b5bd573c32085313fcc0c67897",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 41,
+      "art_id": "rl-art:041",
+      "name": "Hurleur des failles",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 36,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:fault_howler",
+      "legacy_actor_index": 11,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/041.png",
+      "source_sha256": "27d80024f1c12d6dddcaa96914b96dcfa867f82596bd8628cbd7c33e97e8bb74",
+      "living": "tiles/041-living-32.png",
+      "living_sha256": "651762f5788aa135d2c1d79559401194f2ab77b3dea13747c1dfff80c66f4096",
+      "living_bounds": [
+        2,
+        5,
+        30,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/041-corpse-32.png",
+      "corpse_sha256": "3df064ba5fd93e1a0cad0b120755eb4e0bb2f7236ceb78daaa51a6db4f1e85b3",
+      "corpse_bounds": [
+        2,
+        17,
+        30,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        27
+      ]
+    },
+    {
+      "number": 42,
+      "art_id": "rl-art:042",
+      "name": "Sentinelle · machine",
+      "name_status": "nom conservé",
+      "family": "Machines ennemies — épaves",
+      "usage": "enemy-machine",
+      "tile_size": 32,
+      "atlas_index": 37,
+      "atlas_columns": 16,
+      "bleeds": false,
+      "corpse_includes_blood": false,
+      "content_id": "core:sentinel_projector",
+      "legacy_actor_index": 12,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/042-r2.png",
+      "source_sha256": "ea710e4fe045a1089b01462336a24ec0fdfd554de7270bd4f116e60228e0f6ef",
+      "living": "tiles/042-living-32.png",
+      "living_sha256": "ff6b7aad296bb584a3d259747bac23f91cf6d0e6c9e106a981d3fe89bfab18b3",
+      "living_bounds": [
+        2,
+        3,
+        30,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/042-corpse-32.png",
+      "corpse_sha256": "2ce05ec165f57cff04a9a10bdee07fca1ec51ec40ab72b098d907885445e66eb",
+      "corpse_bounds": [
+        1,
+        21,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 43,
+      "art_id": "rl-art:043",
+      "name": "Riveuse",
+      "name_status": "nom conservé",
+      "family": "Machines ennemies — épaves",
+      "usage": "enemy-machine",
+      "tile_size": 32,
+      "atlas_index": 38,
+      "atlas_columns": 16,
+      "bleeds": false,
+      "corpse_includes_blood": false,
+      "content_id": "core:riveter",
+      "legacy_actor_index": 13,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/043-r2.png",
+      "source_sha256": "54b29cd5557048a0c2ae28665c4adede15b972d8a92216ba892ccc8711e2febe",
+      "living": "tiles/043-living-32.png",
+      "living_sha256": "4ae10872fe60a293d3aa3b463f3a539ef7d3cada576ac8ab976d7da9e8e84475",
+      "living_bounds": [
+        4,
+        11,
+        28,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/043-corpse-32.png",
+      "corpse_sha256": "d1156dec785ef6cc20c029d9696e3565ee59750c3fcf6cfbba812c34978e0854",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 44,
+      "art_id": "rl-art:044",
+      "name": "Écailleux des cavernes",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 39,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:cave_scaled",
+      "legacy_actor_index": 14,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/044.png",
+      "source_sha256": "2a6a003256e61c81210f363366cddb896edd8e1f667a6582be91b5475c8fb151",
+      "living": "tiles/044-living-32.png",
+      "living_sha256": "abd0912e1acc8c7df469f5f644191bcaf6597a017a93afcca2120fdc45e1fedf",
+      "living_bounds": [
+        5,
+        10,
+        27,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/044-corpse-32.png",
+      "corpse_sha256": "70e6a5829cd39a33203020968fc811620fad497767580da9e8ce2fbd8368b35c",
+      "corpse_bounds": [
+        2,
+        17,
+        29,
+        31
+      ],
+      "corpse_shadow_contact": [
+        15,
+        30,
+        26
+      ]
+    },
+    {
+      "number": 45,
+      "art_id": "rl-art:045",
+      "name": "Guetteur",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 40,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:watcher",
+      "legacy_actor_index": 15,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/045.png",
+      "source_sha256": "4935e8d08c0a32c18382dd2a2a784edaf12c3db7b7cb69323f9e60e30af4540a",
+      "living": "tiles/045-living-32.png",
+      "living_sha256": "095e9a9ccab55ad95bf16b522a79f25bf766b4c12692db87ba2c6dd4b9054172",
+      "living_bounds": [
+        3,
+        6,
+        29,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/045-corpse-32.png",
+      "corpse_sha256": "d38bc6fa43de2de52ed08598649ff38eab398448c64cf9cf81642a268f2f4866",
+      "corpse_bounds": [
+        2,
+        19,
+        30,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        27
+      ]
+    },
+    {
+      "number": 46,
+      "art_id": "rl-art:046",
+      "name": "Spectre",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 41,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:spectre",
+      "legacy_actor_index": 16,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/046.png",
+      "source_sha256": "407717b691fd0f06e0582d66900dc3ec6fe29a05f5589dbdf4c51adc9c1bf334",
+      "living": "tiles/046-living-32.png",
+      "living_sha256": "340371732f4ea501c76b36e621340489d2f4ded6bf872f46b7064d2db476ea26",
+      "living_bounds": [
+        4,
+        8,
+        28,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/046-corpse-32.png",
+      "corpse_sha256": "9d5775998167de39a41787e0e87eb5c82c445bb7b62258e20f74cc64a03b3e4b",
+      "corpse_bounds": [
+        2,
+        18,
+        30,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        27
+      ]
+    },
+    {
+      "number": 47,
+      "art_id": "rl-art:047",
+      "name": "Cracheur des mares",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 42,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:marsh_spitter",
+      "legacy_actor_index": 17,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/047.png",
+      "source_sha256": "896c52982ebe81cb5456072acf750c1709c39a8c00274bee416ec416c9612694",
+      "living": "tiles/047-living-32.png",
+      "living_sha256": "584e1d4ce4d05abb665afedbf1ad14862a74cf149b2ffaa7902c0aaa5a066714",
+      "living_bounds": [
+        1,
+        14,
+        31,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/047-corpse-32.png",
+      "corpse_sha256": "0f8f430a0a254c3c0f90e21921f1c39c0d92d6d1bbbfa889338c672bb3d5cedc",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 48,
+      "art_id": "rl-art:048",
+      "name": "Traînard",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 43,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:laggard",
+      "legacy_actor_index": 18,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/048.png",
+      "source_sha256": "2ae7e7d486ebb1ecc1af4d39cbdf6859a7968e70f4b85bb18f4aed6f187a17b9",
+      "living": "tiles/048-living-32.png",
+      "living_sha256": "ef3cd2de70b18065349baa1c115c673981cec6202ac47dd29a1704d6c10ab075",
+      "living_bounds": [
+        2,
+        12,
+        30,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/048-corpse-32.png",
+      "corpse_sha256": "a3354f18964521b4743880937908c2f6e23acd6000a8434b4cd141e652fc7b81",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 49,
+      "art_id": "rl-art:049",
+      "name": "Gueule du vide",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 44,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": "core:void_maw",
+      "legacy_actor_index": 19,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/049.png",
+      "source_sha256": "d9306f08912a03bd79ee3d5adaf1ea8846647db99be0b466f0e45933abeb4742",
+      "living": "tiles/049-living-32.png",
+      "living_sha256": "36458e6a631d619180efef4658fd09f67fc568b932c67770fe1beb68bb50a2ba",
+      "living_bounds": [
+        2,
+        6,
+        30,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/049-corpse-32.png",
+      "corpse_sha256": "6aa406c3d2481438bd887a62c3227a9fab11dbacbbf2aecad86c28a01fea0da6",
+      "corpse_bounds": [
+        2,
+        21,
+        30,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        27
+      ]
+    },
+    {
+      "number": 50,
+      "art_id": "rl-art:050",
+      "name": "Humain · mêlée",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 45,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": 20,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/050.png",
+      "source_sha256": "6c00170108741b52739399b5e7312e85b7c9dad5d3c1e9130f8498e10f60da44",
+      "living": "tiles/050-living-32.png",
+      "living_sha256": "eab713fcfa9e482702b6add31d42a8cc9ac48a842a23fd089c87b1e47a9c9445",
+      "living_bounds": [
+        4,
+        2,
+        27,
+        32
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        20
+      ],
+      "corpse": "tiles/050-corpse-32.png",
+      "corpse_sha256": "8c0ac76d1b41efc8e6873ef6ddb87caa4687477f1f4b5e1a62fad7cd77730824",
+      "corpse_bounds": [
+        1,
+        21,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 51,
+      "art_id": "rl-art:051",
+      "name": "Humain · tireur",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 46,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": 21,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/051.png",
+      "source_sha256": "87825b58a3e35c710856a4178513c335991533d559e22614a451df21b093942b",
+      "living": "tiles/051-living-32.png",
+      "living_sha256": "4ac60c2e5d49010f784039692ace1ca1cbbd07ea7160fe6afe872b3ff223eaf7",
+      "living_bounds": [
+        5,
+        2,
+        26,
+        32
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        20
+      ],
+      "corpse": "tiles/051-corpse-32.png",
+      "corpse_sha256": "8c8272a61c366780c3d5d5f683b746e217512f0a19e2c4d8e60e37767399d6a1",
+      "corpse_bounds": [
+        1,
+        21,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 52,
+      "art_id": "rl-art:052",
+      "name": "Humain · garde",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 47,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": 22,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/052.png",
+      "source_sha256": "3fec3b92a3b30503deb58c3cb5475d0adb3476a6be98a1789960a32ce67ff48c",
+      "living": "tiles/052-living-32.png",
+      "living_sha256": "f632f35ff5d74cbd9ee982dd42bd613c727f222a5fb0f8adcf73419eb902e7a4",
+      "living_bounds": [
+        4,
+        2,
+        28,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/052-corpse-32.png",
+      "corpse_sha256": "dcc92f3f77ce200a396519eee1876e6df2917a1a7d0bcd401c9c163460f01539",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 53,
+      "art_id": "rl-art:053",
+      "name": "Humain · soigneur",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 48,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": 23,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/053.png",
+      "source_sha256": "fcc8ca59e7e54df6a1d9ab839ce6b1686b3452f75b258bee8bbd48f00cecf1b4",
+      "living": "tiles/053-living-32.png",
+      "living_sha256": "601bf1ef140861aba18fab6d6bea3b06d9e45f28b787bc6cd3591edabccd1080",
+      "living_bounds": [
+        5,
+        2,
+        26,
+        32
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        20
+      ],
+      "corpse": "tiles/053-corpse-32.png",
+      "corpse_sha256": "89560f460254f2562bb06f9e1da39d138571926f7b942be3b1892865e690f145",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 54,
+      "art_id": "rl-art:054",
+      "name": "Humain · porteur",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 49,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": 24,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/054.png",
+      "source_sha256": "01c3916e54b715e076bb43b12c13215e3a1f6322b2f1b2bc97ac557e21c3face",
+      "living": "tiles/054-living-32.png",
+      "living_sha256": "904d198e6658f3497f93440dd5d2cf3be34e93414db178c9a21f7cbdf2ec2fdb",
+      "living_bounds": [
+        4,
+        2,
+        27,
+        32
+      ],
+      "living_shadow_contact": [
+        15,
+        31,
+        20
+      ],
+      "corpse": "tiles/054-corpse-32.png",
+      "corpse_sha256": "d158b8546f6e566a6182c1e6b4c692b463421dcb381e6362da13c52a2a439448",
+      "corpse_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 55,
+      "art_id": "rl-art:055",
+      "name": "Humain · ferrailleur",
+      "name_status": "existant",
+      "family": "Bestiaire existant",
+      "usage": "existing-actor",
+      "tile_size": 32,
+      "atlas_index": 50,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": 25,
+      "status": "integrated-visual",
+      "gameplay_status": "existing actor unchanged",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/bestiaire-proposition-2026-10-05",
+      "source": "sources/055.png",
+      "source_sha256": "02d5a4387544423776e5300e0ebb5447608b18d84f17c2ad82255665d3e1763e",
+      "living": "tiles/055-living-32.png",
+      "living_sha256": "bb9bc1ed86a573128ad3248e964600fdd0c6026afdda5a9c75b4210d44954deb",
+      "living_bounds": [
+        5,
+        2,
+        27,
+        32
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/055-corpse-32.png",
+      "corpse_sha256": "bcaf62da9e83973f7196bb08ff63fc6a4a71dc60494e0f424f500fec664ca5ec",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 56,
+      "art_id": "rl-art:056",
+      "name": "Éclaireur",
+      "name_status": "provisoire",
+      "family": "Drones du joueur",
+      "usage": "player-companion",
+      "tile_size": 32,
+      "atlas_index": 51,
+      "atlas_columns": 16,
+      "bleeds": false,
+      "corpse_includes_blood": false,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/056-r2.png",
+      "source_sha256": "e2e60b2b3269069b068edda7ae857c19a351782d5c94d4ee782ae8e5dded8f14",
+      "living": "tiles/056-living-32.png",
+      "living_sha256": "ddf5be81d47ddba7d75bab7d36a4ab13051744f60552f83a07b8c824d3593e29",
+      "living_bounds": [
+        2,
+        10,
+        30,
+        25
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        22
+      ],
+      "corpse": "tiles/056-corpse-32.png",
+      "corpse_sha256": "6153963e1e53b3414e4c2068810bcd418c2fe375edca78eef8bf497353875a59",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 57,
+      "art_id": "rl-art:057",
+      "name": "Mule",
+      "name_status": "provisoire",
+      "family": "Drones du joueur",
+      "usage": "player-companion",
+      "tile_size": 32,
+      "atlas_index": 52,
+      "atlas_columns": 16,
+      "bleeds": false,
+      "corpse_includes_blood": false,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/057-r2.png",
+      "source_sha256": "ffda5bc3f70abfebbee2c09fdb3e5b2103c39bfa6e9edcd16a862838802d0c75",
+      "living": "tiles/057-living-32.png",
+      "living_sha256": "0664e18c95292603f855af32b0a0a3ad155bbb1adc0c48bb5886670712bea200",
+      "living_bounds": [
+        1,
+        10,
+        31,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        23
+      ],
+      "corpse": "tiles/057-corpse-32.png",
+      "corpse_sha256": "89aec772b7b4df4534bd1c156305f23df77db100d750a4d3672a1cb1ca94075e",
+      "corpse_bounds": [
+        3,
+        17,
+        29,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        25
+      ]
+    },
+    {
+      "number": 58,
+      "art_id": "rl-art:058",
+      "name": "Traqueur",
+      "name_status": "provisoire",
+      "family": "Drones du joueur",
+      "usage": "player-companion",
+      "tile_size": 32,
+      "atlas_index": 53,
+      "atlas_columns": 16,
+      "bleeds": false,
+      "corpse_includes_blood": false,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/058-r2.png",
+      "source_sha256": "284360aa61b4b7d94dcc328d099cf16271f05e70f06ba3e0a8730de7395271b5",
+      "living": "tiles/058-living-32.png",
+      "living_sha256": "d56130cf890b2a38954c8473f9df77e67eef316b1931ce9fb505d0510b7da265",
+      "living_bounds": [
+        2,
+        7,
+        30,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        22
+      ],
+      "corpse": "tiles/058-corpse-32.png",
+      "corpse_sha256": "0b1a86f75983b67cfd01846c8e97fceab9eb70d45ad13d72312a5519fe663db6",
+      "corpse_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 59,
+      "art_id": "rl-art:059",
+      "name": "Artilleur",
+      "name_status": "provisoire",
+      "family": "Drones du joueur",
+      "usage": "player-companion",
+      "tile_size": 32,
+      "atlas_index": 54,
+      "atlas_columns": 16,
+      "bleeds": false,
+      "corpse_includes_blood": false,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/059-r4.png",
+      "source_sha256": "1a15e7cdec95120dd0e13eb73f89cdb904821396bfb9e02d23cb44b1cddbdf9b",
+      "living": "tiles/059-living-32.png",
+      "living_sha256": "914e9917df6448b2a1b40190354a21a5a291088ac62cabbcc26a49a525ac5b62",
+      "living_bounds": [
+        1,
+        10,
+        31,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        23
+      ],
+      "corpse": "tiles/059-corpse-32.png",
+      "corpse_sha256": "81658d444deb5a0410fa089b68e257df13f23ada543e05c55ddcaae3c7409be4",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 61,
+      "art_id": "rl-art:061",
+      "name": "Colosse biomécanique",
+      "name_status": "provisoire",
+      "family": "Transformations du joueur",
+      "usage": "player-transformation",
+      "tile_size": 32,
+      "atlas_index": 55,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/061.png",
+      "source_sha256": "6b9ecf1519cd7ac86044f7ca459edd9bd96d874b17ddfa4ccf6ce134ebe9ef3c",
+      "living": "tiles/061-living-32.png",
+      "living_sha256": "dffdf9ed294f31dd1a21d319f9abab1a342778536df517d7a19c44b04e040a61",
+      "living_bounds": [
+        1,
+        1,
+        31,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        23
+      ],
+      "corpse": "tiles/061-corpse-32.png",
+      "corpse_sha256": "c97151825dbeaaa64e26399fc9b8803290b7fd3573ee46fb2fe4a43933c86710",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 62,
+      "art_id": "rl-art:062",
+      "name": "Prédateur",
+      "name_status": "provisoire",
+      "family": "Transformations du joueur",
+      "usage": "player-transformation",
+      "tile_size": 32,
+      "atlas_index": 56,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/062.png",
+      "source_sha256": "c8d4ed323256a5189d939d9837f5e7790f4199ce0f0025cb8952863f70e6f2a4",
+      "living": "tiles/062-living-32.png",
+      "living_sha256": "151f9b0df2d49266e70d52ddb0fdd989bee8454542a3e749d01c891ea0654296",
+      "living_bounds": [
+        2,
+        1,
+        30,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        22
+      ],
+      "corpse": "tiles/062-corpse-32.png",
+      "corpse_sha256": "64aa91a77f749515cd9531082abc36f1edd7e13e623e56b2831e1dfae0eba3f7",
+      "corpse_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 63,
+      "art_id": "rl-art:063",
+      "name": "Cuirassé",
+      "name_status": "provisoire",
+      "family": "Transformations du joueur",
+      "usage": "player-transformation",
+      "tile_size": 32,
+      "atlas_index": 57,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/063.png",
+      "source_sha256": "b15a2f862c3930f4511b03cc1df278a0326dc9e015593572f51aa3ff21b9376b",
+      "living": "tiles/063-living-32.png",
+      "living_sha256": "195c52f1ba5cbc8958f298d1c03c907ced7fc5a0dfeebe2115cae726d7809a09",
+      "living_bounds": [
+        2,
+        2,
+        30,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        22
+      ],
+      "corpse": "tiles/063-corpse-32.png",
+      "corpse_sha256": "72b89a387238af1e5d0b46744c72d78716f2c3f9756a9ba011b4f5fff27be8a6",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 64,
+      "art_id": "rl-art:064",
+      "name": "Possédé",
+      "name_status": "provisoire",
+      "family": "Transformations du joueur",
+      "usage": "player-transformation",
+      "tile_size": 32,
+      "atlas_index": 58,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/064.png",
+      "source_sha256": "3a5277eb1a207886c6a8daa8473664d066ea854e375fb839e886fa723f7a6af2",
+      "living": "tiles/064-living-32.png",
+      "living_sha256": "7d9deaf5fd9c1d009c31d0812ac4520ebc348dbb98ed29b1b7f116c8a32dfff0",
+      "living_bounds": [
+        2,
+        4,
+        30,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        22
+      ],
+      "corpse": "tiles/064-corpse-32.png",
+      "corpse_sha256": "83203632354d3160ee3898e35bf901a92a17a54fcf37b18bbbe3094f6a25e05b",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 65,
+      "art_id": "rl-art:065",
+      "name": "Abysse",
+      "name_status": "provisoire",
+      "family": "Transformations du joueur",
+      "usage": "player-transformation",
+      "tile_size": 32,
+      "atlas_index": 59,
+      "atlas_columns": 16,
+      "bleeds": true,
+      "corpse_includes_blood": true,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/065.png",
+      "source_sha256": "223f40cdc49f4003db05d9214fc9064bb9db70975e701c1179e7e69aa9761e3b",
+      "living": "tiles/065-living-32.png",
+      "living_sha256": "a1465e45535bb6194e5fb4c995983a0667f16df5727b0a1925ef980a01b7a9cc",
+      "living_bounds": [
+        3,
+        1,
+        29,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        20
+      ],
+      "corpse": "tiles/065-corpse-32.png",
+      "corpse_sha256": "22fc648bef854d9b78fcd8fb058d83031c0d605a1eb0311725e394a680e59431",
+      "corpse_bounds": [
+        1,
+        17,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    },
+    {
+      "number": 66,
+      "art_id": "rl-art:066",
+      "name": "Gardien",
+      "name_status": "provisoire",
+      "family": "Drones du joueur",
+      "usage": "player-companion",
+      "tile_size": 32,
+      "atlas_index": 60,
+      "atlas_columns": 16,
+      "bleeds": false,
+      "corpse_includes_blood": false,
+      "content_id": null,
+      "legacy_actor_index": null,
+      "status": "integrated-visual",
+      "gameplay_status": "visual resource; gameplay not defined",
+      "approval": "integration-authorization.json",
+      "source_review": "artifacts/allies-transformations-proposition-2026-10-06",
+      "source": "sources/066-r2.png",
+      "source_sha256": "62b43ece2347d3e5e8f29fd9ecc0e7fe76158f309cc45a0534632397aad03bf9",
+      "living": "tiles/066-living-32.png",
+      "living_sha256": "a3d200696497051ca82a3cf278b0aabbb95e8b95b6341c049cf559c5b2a9502e",
+      "living_bounds": [
+        2,
+        2,
+        30,
+        31
+      ],
+      "living_shadow_contact": [
+        16,
+        31,
+        22
+      ],
+      "corpse": "tiles/066-corpse-32.png",
+      "corpse_sha256": "f93d7ef9cdd56cc47b671daa72ba1b445c19bf4da40a6d925ca2892567c830d0",
+      "corpse_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "corpse_shadow_contact": [
+        16,
+        30,
+        28
+      ]
+    }
+  ],
+  "retired_numbers": [
+    60
+  ],
+  "review_aliases": {
+    "60": 66
+  },
+  "bosses": "64 by 64 native images; visual footprint only",
+  "corpse_layer": "below loot; native authored blood or dry wreck",
+  "simulation": "No species, stats, collisions, encounters or talents added"
+}

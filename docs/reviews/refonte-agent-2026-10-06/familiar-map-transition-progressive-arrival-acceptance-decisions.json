@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ18-ACCEPT01",
+  "user_messages": [
+    "ca me va :)",
+    "ca me va :) sauf pour cette partie : \"Si aucune disposition ne permet d’accueillir tous vos familiers, **le passage reste indisponible** et vous restez sur la carte actuelle.\" A la place on pourrait faire passer le joueur et à chaque fois qu'il bouge si une nouvelle place se libere alors on ajoute l'un des pets qui n'avaient pas pu entrer :) .\n\nSynthetise ma remarque",
+    "c'est ca, ca me semble mieux comme regle :)"
+  ],
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-familiar-map-transitions-PETS-EQ18-01.json",
+  "source_proposal_sha256": "cb5e496b8fc8f1303f820fc4470784b563b83c79944c45b5edcfcd9daf2ade0e",
+  "accepted_shown_copy_markdown": "**Le manque de place pour les familiers ne bloque plus le passage du joueur.**\n\nLes familiers qui peuvent être placés arrivent avec lui. Les autres restent en attente : **à chaque déplacement du joueur, si une place se libère, un familier supplémentaire rejoint la carte**, jusqu’à l’arrivée de tous.\n\nLes autres règles proposées restent validées.",
+  "accepted_shown_copy_sha256": "d9fca0d85a73c0e74440354e90ef28f8867db73797e4d36e2dc825600a14131d",
+  "accepted_original_copy_blocks": "Original PETS_EQ18 title, descent/refuge/bonus portal entry and return scope, first four rule bullets and no new invocation/no familiar transfer energy cost accepted; the player explicitly excepted the fifth arrival-blocking bullet.",
+  "rejected_original_copy_markdown": "- Si aucune disposition ne permet d’accueillir tous vos familiers, **le passage reste indisponible** et vous restez sur la carte actuelle.",
+  "rejected_original_copy_sha256": "3b43a00cfddd9f53fe9c682ce60d3b61d0fe69e16c6ff6f451cfcd1c3fad6cd7",
+  "accepted_shown_rules": {
+    "scope": "player_map_changes_on_descent_refuge_entry_and_demonic_bonus_portal_entry_or_return;same_map_movement_and_Repositionner_command_not_changed",
+    "source_familiars": "all_currently_living_controlled_drones_and_autonomous_raised_allies_on_departure_map;source_distance_visibility_and_path_to_player_do_not_gate_transfer;unrelated_dominated_enemies_not_inferred_as_familiars",
+    "identity": "transfer_same_actor_and_real_items_without_new_invocation_spawn_loot_copy_or_recovery_of_destroyed_expired_actors",
+    "arrival": "place_familiars_that_fit_on_distinct_free_walkable_cells_near_player_on_destination_map;unplaced_familiars_wait_for_progressive_arrival;precise_metric_and_order_not_shown",
+    "reserves": "preserve_current_HP_and_energy;no_refill_heal_or_effect_purge_granted_by_transfer;ordinary_actual_game_turn_effects_still_apply",
+    "equipment_cargo": "retain_real_worn_items_and_Mule_cargo_on_same_actor;no_forced_ground_or_player_inventory_transfer_and_no_item_duplication",
+    "statuses": "preserve_current_buffs_and_debuffs_with_remaining_duration;normal_actual_game_turn_ticks_continue_without_reset_or_extra_transition_pause",
+    "raised_lifetime": "preserve_existing_remaining_lifetime_without_new_birth_or_refresh;normal_actual_game_turn_count_applies",
+    "cooldowns": "retain_actor_and_owner_invocation_cooldowns_including_Repositionner_remaining_six_turn_per_drone_timer;no_reset_or_new_reposition_cooldown_from_automatic_map_transfer",
+    "old_orders": "cancel_departure_map_attack_targets_and_Mule_ground_collection_order;resume_ordinary_player_follow_behavior_without_granting_raised_control_buttons",
+    "arrival_unavailable": "insufficient_familiar_arrival_cells_do_not_block_player_transition;retain_unplaced_same_actors_and_real_items_in_pending_arrival_state_without_deletion_or_duplication",
+    "invocation_cost": "no_new_invocation_and_no_energy_cost_for_familiar_transfer;normal_transition_action_budget_not_defined_here",
+    "scope_boundary": "native_scene_precise_event_order_placement_metric_hazards_queue_order_and_waiting_state_interactions_still_pending",
+    "arrival_retry": "after_each_actual_player_movement_if_a_new_valid_arrival_cell_is_available_place_one_waiting_familiar;continue_until_all_have_arrived;no_multi_familiar_retry_per_step_inferred",
+    "waiting_state_interactions": "time_effects_death_expiry_item_drop_destination_visibility_protection_healing_and_next_transition_handling_not_explicitly_reviewed_for_new_pending_arrival_state"
+  },
+  "approval_scope": "Player passage is not blocked by missing familiar placement cells. Familiars that fit arrive with the player; remaining familiars await placement, and each player movement releasing a place permits one additional familiar to arrive. Other shown PETS_EQ18 rules are accepted: all living drones and raised follow across covered map transitions regardless of source distance or visibility, same actor/item identity, current reserves/equipment/cargo/effects/cooldowns and raised remaining lifetime preserved, old-map combat and collection orders cancelled, ordinary follow resumed, no new invocation or transfer energy cost. Native rendering and unshown pending-state interactions are not approved.",
+  "correction_status": "later_explicit_exception_and_confirmed_synthesis_take_precedence_over_initial_unqualified_reply;original_all_or_nothing_passage_refusal_not_accepted",
+  "unshown_cases_pending": [
+    "precise_placement_metric_order_tie_breaks_and_arrival_cell_generation",
+    "ordinary_map_transition_action_cost_and_effect_lifetime_tick_order_before_or_after_placement",
+    "status_expiry_or_death_during_transition_and_exact_terminal_real_item_drop_cell",
+    "arrival_hazards_mines_zones_barriers_and_recomputed_visibility",
+    "portal_phase_counter_handling_and_save_transaction_atomicity",
+    "future_familiar_types_and_temporarily_dominated_actor_lifecycle",
+    "native_arrival_feedback_and_blocked_transition_reason_copy",
+    "pending_arrival_status_tick_DoT_healing_vision_protection_action_and_cooldown_behavior",
+    "pending_arrival_death_expiry_and_real_equipment_cargo_drop_cell",
+    "queue_order_and_pending_familiars_following_a_further_map_transition"
+  ],
+  "player_copy_approval": "original_shown_blocks_except_rejected_bullet_and_confirmed_synthesis_accepted",
+  "mechanical_approval": "shown_map_transfer_rules_accepted_with_user_progressive_arrival_replacement;waiting_interactions_pending",
+  "visual_intention_approval": "near_player_arrival_and_one_waiting_familiar_added_per_movement_when_place_frees_direction_accepted;native_not_presented",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

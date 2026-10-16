@@ -1,0 +1,58 @@
+{
+  "burns": [
+    {
+      "id": 2,
+      "power": {
+        "applied_on_turn": 0,
+        "base_damage": 1,
+        "denominator": 1000,
+        "numerator": 1180
+      },
+      "turns": 3
+    },
+    {
+      "id": 4,
+      "power": {
+        "applied_on_turn": 0,
+        "base_damage": 1,
+        "denominator": 1000,
+        "numerator": 1180
+      },
+      "turns": 3
+    }
+  ],
+  "caster_unharmed": true,
+  "cells": 29,
+  "hover_without_click": true,
+  "impact": [
+    5,
+    4
+  ],
+  "keyboard_not_overridden_by_stationary_mouse": true,
+  "left_click_confirms": true,
+  "preview_free": true,
+  "preview_hidden_after_confirmation": true,
+  "review": "AGENT-PLAY05",
+  "saves_untouched": true,
+  "skill": "FE05",
+  "targeting_review": "AGENT-AIM02",
+  "tile_pixels": 64,
+  "turns": 1,
+  "victims": 3,
+  "viewport": [
+    1280,
+    800
+  ],
+  "general_integration": {
+    "review": "AGENT-ALL01",
+    "catalogue": 94,
+    "active": 68,
+    "passive": 26,
+    "engine_passed": 945,
+    "agent_ui_passed": 224,
+    "lab_passed": 39,
+    "native_frames": 5,
+    "global_suite_green": false,
+    "details": "validation.json#general_integration"
+  }
+}

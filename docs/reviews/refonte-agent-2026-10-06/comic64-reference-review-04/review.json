@@ -1,0 +1,139 @@
+{
+  "review_id": "BD64-REFERENCE04",
+  "date": "2026-10-10",
+  "reference": {
+    "path": "docs/reviews/refonte-agent-2026-10-06/comic-style-reference-03.json",
+    "binary_sha256": "a066f28425e5e69c69821bd1f91574a04f5841c7c68fd9bbe87ad57c61c24c33"
+  },
+  "request": "Proceed with original BD-STYLE01 and 64px display if needed.",
+  "status": "reference review; no new drawings or art integration",
+  "characters": [
+    {
+      "id": "BD-C01",
+      "number": 1,
+      "name": "Bastion",
+      "gear": "Lame et bouclier",
+      "source32": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-tile32.png",
+      "display64": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-display64.png",
+      "master": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+      "original": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-tile32.png",
+        "binary_sha256": "5601a4c3f223330be4443ba95ff947214ee2f6886a523c0e9815a86e5bb05273"
+      },
+      "output": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-display64.png",
+        "binary_sha256": "8c8a0dfe96bcb3217d2fc9c2c1a62559901402a0e972f802e3abb04226dc9a37"
+      },
+      "changed_source_pixels": 0,
+      "enlargement": "Each original RGBA pixel repeated exactly 2x2; no other treatment."
+    },
+    {
+      "id": "BD-C02",
+      "number": 2,
+      "name": "Technomancien",
+      "gear": "Pistolet",
+      "source32": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C02-tile32.png",
+      "display64": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C02-display64.png",
+      "master": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C02-comic-master.png",
+      "original": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C02-tile32.png",
+        "binary_sha256": "b83a40f3082856302f37cfc045522596a6e8213e7a2d169946be8ce27aceaa3b"
+      },
+      "output": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C02-display64.png",
+        "binary_sha256": "9f05e44d32c65de123debc871f76410df32d90fddaf046dcb35e8a651fb18f6a"
+      },
+      "changed_source_pixels": 0,
+      "enlargement": "Each original RGBA pixel repeated exactly 2x2; no other treatment."
+    },
+    {
+      "id": "BD-C03",
+      "number": 3,
+      "name": "Traqueur",
+      "gear": "Fusil de précision",
+      "source32": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C03-tile32.png",
+      "display64": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C03-display64.png",
+      "master": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C03-comic-master.png",
+      "original": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C03-tile32.png",
+        "binary_sha256": "4e2ef0653da5fee45757af2a154c816de4899ec56717436ed254307a4acde2fc"
+      },
+      "output": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C03-display64.png",
+        "binary_sha256": "187791ac8145927f47f93983720d86b18dafad24d616d365ec9fdff033464dbd"
+      },
+      "changed_source_pixels": 0,
+      "enlargement": "Each original RGBA pixel repeated exactly 2x2; no other treatment."
+    },
+    {
+      "id": "BD-C04",
+      "number": 4,
+      "name": "Arcaniste",
+      "gear": "Hampe de canalisation",
+      "source32": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C04-tile32.png",
+      "display64": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C04-display64.png",
+      "master": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C04-comic-master.png",
+      "original": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C04-tile32.png",
+        "binary_sha256": "23967b55a912766c8de46d9ceb3cc1526f1acaad39e9e608bf1def0d5a2291de"
+      },
+      "output": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C04-display64.png",
+        "binary_sha256": "80491ca94f62e2576c039d4d49544517e745bdd5bd0daf6d5568e8af60764c21"
+      },
+      "changed_source_pixels": 0,
+      "enlargement": "Each original RGBA pixel repeated exactly 2x2; no other treatment."
+    },
+    {
+      "id": "BD-C05",
+      "number": 5,
+      "name": "Métamorphe",
+      "gear": "Couteau et focaliseur",
+      "source32": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C05-tile32.png",
+      "display64": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C05-display64.png",
+      "master": "../../../../assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C05-comic-master.png",
+      "original": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C05-tile32.png",
+        "binary_sha256": "04a6400cdf5daa771d5dcfd73972112df40d98afd923bf6ff3f38a2963bff594"
+      },
+      "output": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C05-display64.png",
+        "binary_sha256": "0fa0a309ef6edc0ccf82965059fd0d7fa921d97c61230f5aeca8b89bcd8443fe"
+      },
+      "changed_source_pixels": 0,
+      "enlargement": "Each original RGBA pixel repeated exactly 2x2; no other treatment."
+    }
+  ],
+  "board": {
+    "path": "artifacts/refonte-agent-2026-10-06/comic64-reference-review-04/reference-32-64-board.png",
+    "binary_sha256": "54e9392c09e91fb35380929690d7629b0302a65a5f9fd362c0f963b8cb2589ea"
+  },
+  "scene": {
+    "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/five-characters-at-64.png",
+    "binary_sha256": "75b9acdcd1a5961833626c4a2898d2c5431d9b8bf13d6973a4cdadcd62c04b7f"
+  },
+  "gallery": {
+    "path": "artifacts/refonte-agent-2026-10-06/comic64-reference-review-04/index.html",
+    "binary_sha256": "44bd5b6fd1f5b8908f146a060bbc1a21463279e78dccd4c105db548ed9f20f73"
+  },
+  "qa": {
+    "original_reference_files_verified": 15,
+    "doubled_rgba_pixels_verified": 81920,
+    "active_art_assets_unchanged": 8,
+    "changed_source_pixels": 0,
+    "anatomy_pose_attachment_and_layer_changes": 0
+  },
+  "limits": [
+    "Complete equipped reference drawings, not interchangeable equipment layers.",
+    "Scene is an art preview on existing terrain, not a gameplay capture.",
+    "Other catalogue equipment has not been repaired by this review."
+  ],
+  "generator": {
+    "path": "tools/archive/refonte-agent-2026-10-06/build_comic64_reference_04.py",
+    "binary_sha256": "2387cbf008f829cc432372a5e03bd29efdfd090d6fb86db34ac570b055958260"
+  },
+  "template": {
+    "path": "artifacts/refonte-agent-2026-10-06/comic64_reference_template_04.html",
+    "binary_sha256": "44bd5b6fd1f5b8908f146a060bbc1a21463279e78dccd4c105db548ed9f20f73"
+  }
+}

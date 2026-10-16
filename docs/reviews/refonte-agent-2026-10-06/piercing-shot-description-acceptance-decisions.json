@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "DI01",
+  "title": "Tir perforant",
+  "user_message": "oui je valide :)",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI01-01.json",
+  "previous_description_sha256": "472d1adb2ddc9911662076e08d3b172cd49e20e2f066bbdae4285312db7baa1e",
+  "accepted_player_copy_sha256": "67bbc11de135f1f0fb32b0fecb0e318b128bb660787dc4d4de58b083c813f232",
+  "approval_scope": "Full displayed roleplay, current and next values and displayed conditions accepted as provisional balance. Illustrative weapon 18-22 base damage, Perception 10, Agility 10 preserved. Universal weapon variance, full curves and unshown mechanics remain pending. Native rendering was not shown or approved.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "damage_percent_first_target": 170,
+      "damage_min_before_defenses": 34,
+      "damage_max_before_defenses": 42,
+      "damage_min_exact_before_rounding": {
+        "numerator": 69003,
+        "denominator": 2000
+      },
+      "damage_max_exact_before_rounding": {
+        "numerator": 84337,
+        "denominator": 2000
+      },
+      "maximum_targets": 4,
+      "damage_retained_per_traversal_percent": 75,
+      "energy_cost": 11,
+      "ammunition_cost": 1,
+      "cooldown_turns": 4,
+      "range": "ordinary range of the active compatible weapon"
+    },
+    "next": {
+      "effective_rank": 12,
+      "damage_percent_first_target": 176,
+      "damage_min_before_defenses": 35,
+      "damage_max_before_defenses": 43,
+      "damage_min_exact_before_rounding": {
+        "numerator": 44649,
+        "denominator": 1250
+      },
+      "damage_max_exact_before_rounding": {
+        "numerator": 54571,
+        "denominator": 1250
+      },
+      "maximum_targets": 4,
+      "damage_retained_per_traversal_percent": 75,
+      "energy_cost": 11,
+      "ammunition_cost": 1,
+      "cooldown_turns": 4,
+      "range": "ordinary range of the active compatible weapon"
+    }
+  },
+  "accepted_conditions": [
+    "Active equipped ranged weapon required.",
+    "Ordinary active-weapon range.",
+    "Walls stop the shot.",
+    "Allies on trajectory may be hit.",
+    "Damage shown before target defenses."
+  ],
+  "visual_approval": "pending_native_animation_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

@@ -87,6 +87,7 @@ impl EquipmentProfile {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ItemEffect {
     RestoreIntegrity { amount: u16 },
+    RestoreEnergy { amount: u16 },
 }
 
 #[derive(Clone, PartialEq, Eq)]
@@ -152,10 +153,13 @@ impl ItemDefinition {
         if matches!(kind, ItemKind::Armor) && !effects.is_empty() {
             return Err(ItemDefinitionError::ArmorWithConsumableEffects);
         }
-        if effects
-            .iter()
-            .any(|effect| matches!(effect, ItemEffect::RestoreIntegrity { amount: 0 }))
-        {
+        if effects.iter().any(|effect| {
+            matches!(
+                effect,
+                ItemEffect::RestoreIntegrity { amount: 0 }
+                    | ItemEffect::RestoreEnergy { amount: 0 }
+            )
+        }) {
             return Err(ItemDefinitionError::ZeroEffectAmount);
         }
         Ok(Self {

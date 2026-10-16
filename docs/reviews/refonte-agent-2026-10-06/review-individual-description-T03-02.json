@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-08",
+  "id": "T03",
+  "review_id": "T03",
+  "revision": 2,
+  "title": "Maîtrise des attaques à distance",
+  "branch": "Buffs à distance",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-97.json",
+  "source_skill_manifest_sha256": "94e9d8d3e78726608c6a050a76e40401c434efcb3c73bdb7cbe3d2820f20279c",
+  "source_skill_block_sha256": "8144fd494f1a8646082c97dd39318ffd6d8fa2378988d40085c5677afcef3fd2",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "ranged_attack_damage_bonus_percent": 40
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "ranged_attack_damage_bonus_percent": 43
+  },
+  "formulas_proposed": {
+    "ranged_attack_damage_bonus_percent": "10+3*(effective_rank-1)",
+    "full_curve_modifier_order_and_rounding": "unshown_pending_review"
+  },
+  "prior_curve": "10+2*(effective_rank-1);unapproved_progression_revised_in_proposal_under_SKILL_PROG01",
+  "previously_accepted_rules": {
+    "rank1_damage_bonus_percent": 10,
+    "permanent_independent_of_movement": true
+  },
+  "conditions_proposed": {
+    "own_ranged_weapons_and_attack_skills": true,
+    "ranged_classified_spells_and_transformation_attacks_included": true,
+    "melee_and_drone_attacks_excluded": true,
+    "heavy_weapon_eligibility": "unshown_pending_future_heavy_weapon_tree_review",
+    "passive_not_a_timed_status": "no_buff_duration_or_new_status_command_created;HUD01_ALL01_preserved_for_actual_statuses"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "displayed_roleplay_explicitly_accepted",
+  "numeric_rules_approval": "displayed_current40_next43_explicitly_accepted;unshown_full_curve_pending",
+  "detailed_conditions_approval": "displayed_permanent_ranged_scope_and_exclusions_accepted;unshown_cases_pending",
+  "visual_intention_approval": "displayed_brighter_inner_projectile_or_emission_direction_accepted;native_pending",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "displayed_card_explicitly_accepted;unshown_cases_and_native_pending",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "only_changed_next_values": true,
+    "no_fictitious_weapon_damage_range": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "ranged_attack_damage_bonus_percent"
+    ]
+  },
+  "player_copy_markdown": "**T03 · Maîtrise des attaques à distance — Rang 11 · Passif**\n\n*Vous exploitez chaque ouverture pour frapper vos proies avec une violence accrue.*\n\n**Effet actuel**\n\n- Dégâts des armes et compétences d’attaque à distance : **+40 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts des armes et compétences d’attaque à distance : **+43 %**.\n\nBonus permanent. S’applique aussi aux sorts et aux attaques de transformation classés à distance. Les attaques de mêlée et celles des drones sont exclues.",
+  "player_copy_sha256": "965e679eeb503b6f27339c1100aea7541ee7b2ab3026a9430551fa1c50a9c995",
+  "visual_copy_markdown": "**Visuel proposé :** un trait plus vif traverse brièvement le projectile ou l’émission de votre attaque.",
+  "visual_copy_sha256": "a46e61757be373b935b5188818d223494360651f473e79eaa5ec9677977f2c6f",
+  "current_turn_shown_copy_markdown": "**T03 · Maîtrise des attaques à distance — Rang 11 · Passif**\n\n*Vous exploitez chaque ouverture pour frapper vos proies avec une violence accrue.*\n\n**Effet actuel**\n\n- Dégâts des armes et compétences d’attaque à distance : **+40 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts des armes et compétences d’attaque à distance : **+43 %**.\n\nBonus permanent. S’applique aussi aux sorts et aux attaques de transformation classés à distance. Les attaques de mêlée et celles des drones sont exclues.\n\n**Visuel proposé :** un trait plus vif traverse brièvement le projectile ou l’émission de votre attaque.",
+  "current_turn_shown_copy_sha256": "c42b82e506a174e2acc5edd52a5ea811106754fa94cf0b5c4659196425ab4a23",
+  "unshown_cases_pending": [
+    "full_curves_defaults_rounding_and_modifier_order",
+    "exact_ranged_classification_persistent_effects_heavy_weapons_secondary_attacks_and_summons",
+    "native_emission_palette_duration_visibility_and_collision_feedback"
+  ],
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/ranged-mastery-description-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "3e743b3c1060a000e753ad6e4189f1926f6859ba76ced67471ddff069c88e7f5",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T03-01.json",
+  "previous_description_sha256": "527dac1bab285b65c60444c91c9262d76bb9ea5366861998e3d9f8787c253120"
+}

@@ -1,0 +1,295 @@
+{
+  "views": 48,
+  "tile": 64,
+  "directions": 4,
+  "checks": [
+    {
+      "variant": "SG01-A01-C0-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG01-A01-C0-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG01-A01-C0-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG01-A01-C0-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG01-A01-C1-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG01-A01-C1-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG01-A01-C1-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG01-A01-C1-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG01-A01-C2-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG01-A01-C2-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG01-A01-C2-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG01-A01-C2-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG02-A01-C0-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG02-A01-C0-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG02-A01-C0-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG02-A01-C0-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG02-A01-C1-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG02-A01-C1-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG02-A01-C1-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG02-A01-C1-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG02-A01-C2-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG02-A01-C2-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG02-A01-C2-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG02-A01-C2-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG04-A01-C0-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG04-A01-C0-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG04-A01-C0-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG04-A01-C0-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG04-A01-C1-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG04-A01-C1-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG04-A01-C1-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG04-A01-C1-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG04-A01-C2-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG04-A01-C2-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG04-A01-C2-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG04-A01-C2-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG00-A02-C0-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG00-A02-C0-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG00-A02-C0-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG00-A02-C0-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG00-A02-C1-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG00-A02-C1-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG00-A02-C1-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG00-A02-C1-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": false
+    },
+    {
+      "variant": "SG00-A02-C2-DROITE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG00-A02-C2-GAUCHE",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG00-A02-C2-HAUT",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    },
+    {
+      "variant": "SG00-A02-C2-BAS",
+      "walls_clip_effect": true,
+      "idle_does_not_advance_turn": true,
+      "invalid_cast_atomic": true
+    }
+  ]
+}

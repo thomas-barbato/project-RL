@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-08",
+  "id": "SG03",
+  "review_id": "SG03",
+  "revision": 1,
+  "title": "Portée de lancer",
+  "branch": "Grenades",
+  "kind": "secondary_passive",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-122.json",
+  "source_skill_manifest_sha256": "e448e944c9fccfa01d5a438bee5ecd37db79025b81840990d2b6c23bf991ae20",
+  "source_skill_block_sha256": "dd3fc4f1a4e0714c3f9700a937a7836e237256b6b4610e091d54d0449bb2938e",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 7,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 9,
+    "SG00_learned_rank": 1,
+    "SG00_base_throw_range_cells": 4,
+    "other_grenade_passives": false,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 8,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 10,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "throw_range_bonus_cells": 3,
+    "total_throw_range_cells": 7
+  },
+  "next_values_proposal": {
+    "throw_range_bonus_cells": 4,
+    "total_throw_range_cells": 8
+  },
+  "default_values_proposal": {
+    "throw_range_bonus_cells": 1,
+    "total_throw_range_cells": 5
+  },
+  "formulas_proposed": {
+    "throw_range_bonus_cells": "1+floor((effective_rank-1)/3)",
+    "total_throw_range_cells": "SG00_base_throw_range4+throw_range_bonus",
+    "scaling_status": "existing_unapproved_step_curve_preserved;no_rebalance_introduced"
+  },
+  "calculation_evidence": {
+    "current_effective_rank": 9,
+    "current_bonus": "1+floor(8/3)=3",
+    "next_effective_rank": 10,
+    "next_bonus": "1+floor(9/3)=4",
+    "current_total": "4+3=7",
+    "next_total": "4+4=8"
+  },
+  "example_profile_choice": {
+    "reason": "show_existing_curve_at_a_rank_with_a_range_gain",
+    "older_global_example_current12_bonus4": "historical_unapproved_profile_only;curve_preserved",
+    "unchanged_equipment_in_comparison": true
+  },
+  "conditions_proposed": {
+    "SG00_prerequisite": true,
+    "automatic_learned_passive": true,
+    "all_SG00_explosive_blinding_and_sound_variants": true,
+    "weapon_grenade_launcher_range_affected": false,
+    "SG02_sound_field_range_affected": false,
+    "explosive_and_blinding_effect_radius_affected": false,
+    "target_currently_visible_in_range": true,
+    "walls_block_throw_trajectory": true,
+    "enemy_on_target_cell_allowed": "SG00-TARGET01_preserved",
+    "no_weapon_requirement": true,
+    "no_new_activation_energy_cost_cooldown_or_timed_player_buff": true,
+    "unknown_target_or_terrain_preview": "existing_visibility_rules_preserved",
+    "equipment_bonus_ranks_above10": "existing_common_rule_preserved;unshown_full_range_curve_pending"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "throw_range_bonus_cells",
+      "total_throw_range_cells"
+    ],
+    "no_formula_or_learned_and_bonus_breakdown_in_player_copy": true
+  },
+  "throw_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG00-02.json",
+  "throw_reference_sha256": "01186b326cc84fc0ce07c65ca0bcbc7b1e7e5654ef636cccf4015820c7610093",
+  "sound_lure_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG02-02.json",
+  "sound_lure_reference_sha256": "71ce68cf98933bae4cefe5459cfbc0d60ef9b4bd84aeb2fb55e2e0284b06a645",
+  "balance_reference": "docs/reviews/refonte-agent-2026-10-06/later-statistics-and-diablo-inspired-balance-direction-decisions.json",
+  "name_approval": "existing_secondary_catalogue_name_preserved",
+  "roleplay_text_approval": "new_individual_RP_pending_explicit_review",
+  "numeric_rules_approval": "displayed_rank9_bonus3_total7_next10_bonus4_total8_proposed_pending_review;unshown_full_curve_pending",
+  "detailed_conditions_approval": "active_prerequisite_and_throw_range_increase_previously_confirmed;displayed_all_variants_range_exclusions_and_conditions_proposed_pending_review",
+  "visual_intention_approval": "expanded_throw_preview_with_trajectory_and_chosen_variant_area_proposed_pending_review;native_pending",
+  "visual_approval": "native_throw_targeting_preview_and_UI_pending_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**SG03 · Portée de lancer — Rang 9 · Passif**\n\n*Vous projetez vos grenades au-delà des premières lignes ennemies.*\n\n**Effets actuels**\n\n- Bonus de portée : **+3 cases**.\n- Portée totale de lancer : **7 cases**.\n\n**Prochain rang — 10 · 1 point de compétence**\n\n- Bonus de portée : **+4 cases**.\n- Portée totale de lancer : **8 cases**.\n\nNécessite **Lancer de grenade** apprise. S’applique à toutes ses variantes.\n\nNe modifie ni la portée sonore de **Leurre**, ni celle des armes lance-grenades. La case visée doit être visible et les murs bloquent toujours le lancer.",
+  "player_copy_sha256": "ff0a11a1a159243c38eb63d059cddcabb3786a736aa93205d44bc2f6e71573d4",
+  "visual_copy_markdown": "**Affichage proposé :** la prévisualisation du lancer s’étend jusqu’à la nouvelle portée, avec la trajectoire et les cases d’effet de la variante choisie.",
+  "visual_copy_sha256": "f0f37f49861c57fb8dc15e51c947ba78172995d6907ab16c28ac1bd57ec7a03b",
+  "current_turn_shown_copy_markdown": "**SG03 · Portée de lancer — Rang 9 · Passif**\n\n*Vous projetez vos grenades au-delà des premières lignes ennemies.*\n\n**Effets actuels**\n\n- Bonus de portée : **+3 cases**.\n- Portée totale de lancer : **7 cases**.\n\n**Prochain rang — 10 · 1 point de compétence**\n\n- Bonus de portée : **+4 cases**.\n- Portée totale de lancer : **8 cases**.\n\nNécessite **Lancer de grenade** apprise. S’applique à toutes ses variantes.\n\nNe modifie ni la portée sonore de **Leurre**, ni celle des armes lance-grenades. La case visée doit être visible et les murs bloquent toujours le lancer.\n\n**Affichage proposé :** la prévisualisation du lancer s’étend jusqu’à la nouvelle portée, avec la trajectoire et les cases d’effet de la variante choisie.",
+  "current_turn_shown_copy_sha256": "110585ef82b18d7aa003deabcb959c7a22d540a88566a0c8bfabaff4e26eb4ba",
+  "unshown_cases_pending": [
+    "rank1_to10_step_curve_ranks_with_no_immediate_range_gain_and_equipment_bonus_continuation",
+    "range_metric_diagonals_obstacles_and_actor_interception",
+    "scout_shared_vision_remote_target_eligibility_and_wall_clipped_preview",
+    "other_attribute_or_equipment_range_modifiers_and_snapshot_timing",
+    "native_longer_throw_preview_trajectory_flight_and_bonus_rank_color"
+  ]
+}

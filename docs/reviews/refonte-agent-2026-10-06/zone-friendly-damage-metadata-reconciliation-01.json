@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-09",
+  "review_id": "ZONE04-SCOPE01",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-zone-entry-exit-INTERACT-ZONE04-01.json",
+    "reference_sha256": "df993511a338b5f0fcb3f793e6c61de459cf616f434198362ca479b8d105d86d"
+  },
+  "canonical_user_rule": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/own-spell-self-damage-protection-decisions.json",
+    "reference_sha256": "9ee4943a2307c8b4b562d82856751acfb4619bc4876d71e1705cbd8b1fe18140"
+  },
+  "historical_mine_card": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM00-02.json",
+    "reference_sha256": "fe9a39d758b8022e9a5f9bd43726135e7c7c3bc4783f7fb1fa4ea3261e2c6010"
+  },
+  "finding": "ZONE04_metadata_and_review_note_overstated_general_ally_immunity;SELF_DMG01_is_player_only_and_keeps_per_skill_ally_rules;shown_final_ZONE04_proposal_did_not_request_change_to_ally_damage",
+  "correction": "preserve_SELF_DMG01_player_only_immunity_from_own_damage;familiar_and_other_ally_eligibility_remains_per_skill_under_existing_approvals;no_general_ally_immunity_created",
+  "new_user_visible_rule": false,
+  "approval_boundary": "documentation_scope_correction_to_existing_explicit_SELF_DMG01_and_individual_skill_approvals;no_new_friendly_damage_rule_or_user_approval_inferred",
+  "runtime_integration": "not_integrated"
+}

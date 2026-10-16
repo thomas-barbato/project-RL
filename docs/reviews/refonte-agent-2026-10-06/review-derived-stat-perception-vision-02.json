@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-08",
+  "review_id": "S04-VISION02",
+  "related_attribute_id": "S04",
+  "revision": 2,
+  "title": "Vision de base fixe",
+  "status": "fixed_base_vision_proposed_pending_explicit_review;previous_growth_proposal_withdrawn",
+  "previous_proposal": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-perception-vision-01.json",
+  "previous_proposal_sha256": "c3dfd7cc1694a76ca3c493d050e634ae550a392dc75a19bc744512e9634a581a",
+  "feedback_decisions": "docs/reviews/refonte-agent-2026-10-06/perception-vision-growth-reservation-and-withdrawal-decisions.json",
+  "feedback_decisions_sha256": "c6b6c59620618e500d9425fe5f690cc96e090618566425f4e45956dff62b1dab",
+  "accepted_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-11.json",
+  "accepted_attribute_model_sha256": "94754934d8a059ae8c1357c5f5dae9ba635630305fa8e157f7a948d68ee2aa31",
+  "shown_copy_markdown": "Je retire donc la proposition d’augmentation de la vision par la Perception.\n\nJe propose de conserver une **portée de vision de base fixe de 8 cases**, indépendante de cet attribut.\n\nLa **Perception garde son bonus de dégâts à distance déjà validé** :\n\n- Perception 10 : **+5 %**.\n- Perception 15 : **+10 %**.\n- Progression : **+1 point de pourcentage par point de Perception**, référence 5.\n\nElle conserve ainsi un intérêt pour les armes à distance et les armes lourdes. **Seule la vision de base fixe à 8 cases reste à valider.**",
+  "shown_copy_sha256": "8739f4c3b682a9d20f596f0371844c9b5259da4fa9c5ff79a23965943efd4817",
+  "new_proposed_rules": {
+    "fixed_player_base_vision_radius_cells": 8,
+    "Perception_does_not_increase_player_base_vision_radius": true
+  },
+  "already_accepted_rules": {
+    "ranged_weapon_damage_percentage_points_per_Perception_point": 1,
+    "reference_Perception": 5,
+    "includes_heavy_ranged_weapons": true
+  },
+  "shown_damage_examples": [
+    {
+      "Perception": 10,
+      "ranged_weapon_damage_bonus_percent": 5
+    },
+    {
+      "Perception": 15,
+      "ranged_weapon_damage_bonus_percent": 10
+    }
+  ],
+  "previous_vision_RP": "withdrawn;no_new_RP_presented",
+  "scope": "player_base_radius_only;does_not_revoke_accepted_drone_shared_vision_or_existing_skill_requirements",
+  "no_new_secondary_Perception_bonus_proposed": true,
+  "unshown_cases_pending": [
+    "existing_FOV_metric_obstacles_and_boundary_rules",
+    "drone_shared_vision_and_observation_interactions",
+    "lighting_and_vision_status_modifiers",
+    "other_equipment_or_skill_vision_effects_and_limits",
+    "native_rendering_and_range_previews",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

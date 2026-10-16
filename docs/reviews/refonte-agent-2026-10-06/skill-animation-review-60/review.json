@@ -1,0 +1,31 @@
+{
+  "batch": "ANIM-S30",
+  "date": "2026-10-14",
+  "status": "awaiting_visual_review",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 68,
+      "id": "SM00",
+      "name": "Pose de mine",
+      "variant": "SM00-A01"
+    },
+    {
+      "number": 69,
+      "id": "SM01",
+      "name": "Réseau de mines",
+      "variant": "SM01-A01"
+    }
+  ],
+  "approved_cards": [
+    "review-individual-description-SM00-02.json",
+    "review-individual-description-SM01-02.json",
+    "mine-arming-trigger-acceptance-decisions.json"
+  ],
+  "new_user_direction": "Centre LED blinks once placed, explicitly requested during this batch; arming still requires1turn. Supersedes the old visual direction only-once-armed.",
+  "mechanics": "Accepted illustrative mine13fire before defenses, radius1, placement1, energy10, cooldown1, arming1. Capacity1 withoutSM01;5 at effective11/12. Consumption once, hostile arrival after placement and presence on arming triggers. Oldest replacement after valid placement, layer cleanup, protected player. No new bonus progression.",
+  "visuals": "New illustrated steel ground mine matching acceptedSM00 icon. Central red lens blinks from placement, .75s cycle with7/18 duty. Small placement label; accepted6stage fire burst164px/.42s and .90opacity. No blood or newBurn/residue. Shared victim recoil, total13andfire split. Bright preplacement preview clears on confirmation; hover displays radius and native tooltip. Capacity updates the mine HUD without timed buff.",
+  "prepared_numbers": "EnemyHP100 becomes87 once per eligible victim; playerHP100 preserved in blast. Only card sample13, no defenses/variance or full attribute curve. Historical armed mines supplied only in capacity scene; no prior movement/placement timeline inferred.",
+  "scope": "Isolated debug native scenes; no campaignGameState, save, AI, RNG, loot or full resource/targeting resolver. Radius1 cardinal fixture is an example, not a universal diagonal/corner/large-footprint convention. Enemy32 art temporarily enlarged64, to adapt after animations.",
+  "pending": "Full rank curve above12, resistance/damage/snapshot order, geometry/doors/diagonals/large footprints, familiar and allied damage eligibility, simultaneous arming/chains, rejected-placement atomicity, mixed-types/elemental and residue passives, gear rank reductions, layered inspection, actual battlefield integration. Mine art, blink period, burst and hover/capacity presentation await approval."
+}

@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "DI02",
+  "title": "Feu nourri",
+  "user_message": "ca me va :)",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI02-02.json",
+  "previous_description_sha256": "878b5363dc981bd7b071b3274876684a7c726c221faf7440cca678a1913c6dbd",
+  "accepted_player_copy_sha256": "fe4863076e66c9e5dfed9a0f1f21e3abd9bfdf84a866b66dcf2128b516a966d0",
+  "approval_scope": "Full revised displayed RP, current/next values and conditions accepted as provisional balance. Accepted two fixed native firing sequences and illustrative single-shot/burst projectile-ammunition examples preserved. Full-rank curves, unseen mechanics and native rendering remain pending.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "projectile_count": 2,
+      "damage_percent_per_projectile": 90,
+      "damage_min_per_projectile_before_defenses": 18,
+      "damage_max_per_projectile_before_defenses": 22,
+      "damage_min_exact_before_rounding": {
+        "numerator": 36531,
+        "denominator": 2000
+      },
+      "damage_max_exact_before_rounding": {
+        "numerator": 44649,
+        "denominator": 2000
+      },
+      "accuracy_multiplier_percent": 90,
+      "ammunition_cost": 2,
+      "energy_cost": 13,
+      "cooldown_turns": 4,
+      "range": "ordinary range of the active compatible weapon",
+      "sequence_count": 2,
+      "native_projectiles_per_sequence": 1
+    },
+    "next": {
+      "effective_rank": 12,
+      "projectile_count": 2,
+      "damage_percent_per_projectile": 93,
+      "damage_min_per_projectile_before_defenses": 18,
+      "damage_max_per_projectile_before_defenses": 23,
+      "damage_min_exact_before_rounding": {
+        "numerator": 377487,
+        "denominator": 20000
+      },
+      "damage_max_exact_before_rounding": {
+        "numerator": 461373,
+        "denominator": 20000
+      },
+      "accuracy_multiplier_percent": 90,
+      "ammunition_cost": 2,
+      "energy_cost": 13,
+      "cooldown_turns": 4,
+      "range": "ordinary range of the active compatible weapon",
+      "sequence_count": 2,
+      "native_projectiles_per_sequence": 1
+    }
+  },
+  "accepted_conditions": [
+    "Equipped and active ranged weapon.",
+    "Range follows active weapon.",
+    "Each projectile can hit or miss.",
+    "Damage displayed before target defenses.",
+    "Same target and native firing mode: two sequences, independent of skill rank.",
+    "Single-shot mode gives 2 projectiles/munitions; three-shot burst gives 6."
+  ],
+  "visual_approval": "pending_native_animation_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

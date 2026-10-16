@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-ZONE03",
+  "revision": 1,
+  "title": "Réapplication d'un statut par une zone ancienne",
+  "status": "proposed_awaiting_user_review;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-overlapping-zone-status-INTERACT-ZONE02-02.json",
+      "reference_sha256": "adf11cd5575d75041363667c4b177cbe22b22bfdff1fa18db2273af66a411408"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/last-status-cast-power-acceptance-decisions.json",
+      "reference_sha256": "70bc644096b85e9dd7f8504f614cf5f897529c69b6d95e1a03074285be655357"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-power-snapshot-INTERACT-POWER01-02.json",
+      "reference_sha256": "9d7c2be630dfec22019a53a944c53046278d4fa0d65af5cbbb391ced05256e77"
+    }
+  ],
+  "scope": "only_one_older_zone_successfully_reapplies_same_status_after_a_newer_spell_application",
+  "proposed_rule": "latest_successful_status_reapplication_uses_reapplying_source_stored_power_and_restarts_duration_even_if_that_zone_was_created_before_the_spell_that_applied_the_previous_status",
+  "ordering_clarification": "zone_creation_order_sorts_multiple_zone_applications_during_same_turn;it_does_not_give_a_permanent_priority_to_a_newer_spell_against_future_successful_old_zone_refreshes",
+  "successful_old_zone_refresh": "replace_previous_power_with_zone_launch_power_even_if_lower;restart_duration",
+  "failed_old_zone_attempt": "retain_existing_status_power;no_refresh_from_failed_attempt;ordinary_remaining_duration_continues",
+  "target_defenses": "existing_current_resistances_importance_and_control_conditions_still_apply",
+  "zone_source_stats": "stored_zone_launch_power;no_recalculation_from_current_caster_level_attributes_or_equipment",
+  "illustrative_example": {
+    "old_zone_Burn_power_per_turn": 8,
+    "later_direct_spell_applies_Burn_power_per_turn": 18,
+    "following_turn_old_zone_only_successful_reapplication": true,
+    "resulting_Burn_power_per_turn": 8,
+    "duration": "restarted",
+    "if_old_zone_attempt_fails": "previous_power18_continues_with_ordinary_remaining_duration",
+    "values_are_fictional_before_target_defenses": true
+  },
+  "not_resolved_here": [
+    "full_turn_scheduler_damage_status_casualty_order_and_multi_caster_credit",
+    "non_actor_invocation_cleanup_dependencies_and_native_visuals"
+  ],
+  "mechanic_approval": "pending_user_review",
+  "visual_approval": "no_new_native_visual_proposed",
+  "runtime_integration": "not_integrated"
+}

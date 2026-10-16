@@ -1,0 +1,772 @@
+[
+  {
+    "number": 9,
+    "review_id": "visual-proposal:009",
+    "name": "Pillard",
+    "name_status": "nom conservé",
+    "family": "Pillard à reprendre",
+    "status": "awaiting-art-review",
+    "usage": "enemy",
+    "content_id": null,
+    "description": "Near-front human scavenger in a solid industrial teal helmet and amber respirator, broad amber work jacket over teal armored vest, navy work trousers and steel-toed boots. Two ordinary human arms and two legs, matching the current human player height. Hold ONE short heavy steel impact baton in the right hand, straight shaft, thick blunt end, absolutely no sword guard. Left hand empty. Thick utility belt, only one broad chest pocket. NO hood, cloak, robe, medieval helmet, leather jerkin or fantasy ornament.",
+    "tile_size": 32,
+    "maximum": [
+      27,
+      30
+    ],
+    "flying": false,
+    "source": "sources/009.png",
+    "living": "../../../../../assets/sprites/bestiary/tiles/009-living-32.png",
+    "corpse": "../../../../../assets/sprites/bestiary/tiles/009-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        527,
+        736
+      ],
+      "native_bounds": [
+        5,
+        1,
+        26,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        848,
+        291
+      ],
+      "native_bounds": [
+        2,
+        21,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "015edb8574c29fbd3ecbf7c141b203d3272f8c455513a523ab1f14557d844e3a",
+    "review_description": "Casque, respirateur et tenue de travail industrielle ; la capuche médiévale disparaît.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 56,
+    "review_id": "visual-proposal:056",
+    "name": "Éclaireur",
+    "name_status": "provisoire",
+    "family": "Drones du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-companion",
+    "content_id": null,
+    "description": "Compact airborne inspection drone: large ivory oval central shell with cyan underside and a broad dark rectangular front sensor. Exactly TWO short side lift pods attached by thick cyan horizontal struts. No exposed thin rotors, no wings, no legs, no manipulator arms, no separate props. Distinct horizontal silhouette, floating body with open transparent space beneath.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      18
+    ],
+    "flying": true,
+    "source": "sources/056.png",
+    "living": "../../../../../assets/sprites/bestiary/tiles/056-living-32.png",
+    "corpse": "../../../../../assets/source-art/allies-transformations-proposition-2026-10-06/revisions/r1/tiles/056-cadavre.png",
+    "inactive_label": "Hors service",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        776,
+        404
+      ],
+      "native_bounds": [
+        2,
+        10,
+        30,
+        25
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "hover, six native pixels above ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        826,
+        319
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "9af5923ae9c5166644d26c7a44dca5fc164c55d8990e56f819e3a91be1561be0",
+    "review_description": "Coque volante compacte, deux nacelles latérales et un large capteur.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 57,
+    "review_id": "visual-proposal:057",
+    "name": "Mule",
+    "name_status": "provisoire",
+    "family": "Drones du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-companion",
+    "content_id": null,
+    "description": "Low industrial supply robot, blocky burnt orange hull, broad ivory cargo block on top, exactly TWO thick dark caterpillar tracks visible left and right. Exactly ONE short articulated grabbing arm at front, its claw attached to its wrist. No cannon, no legs, no medieval cart. Front three-quarter view. Cargo block is a large readable shape, not many tiny crates.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      24
+    ],
+    "flying": false,
+    "source": "sources/057.png",
+    "living": "../../../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/references/057-vivant-r1.png",
+    "corpse": "../../../../../assets/source-art/allies-transformations-proposition-2026-10-06/revisions/r1/tiles/057-cadavre.png",
+    "inactive_label": "Hors service",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        789,
+        691
+      ],
+      "native_bounds": [
+        2,
+        7,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        790,
+        430
+      ],
+      "native_bounds": [
+        3,
+        17,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "c330f5067783f15c1e51cdcb8f05d81f1cf342ed4103c1cc2e39984793880b80",
+    "review_description": "Châssis chenillé bas, bloc de chargement et bras à pince.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 58,
+    "review_id": "visual-proposal:058",
+    "name": "Traqueur",
+    "name_status": "provisoire",
+    "family": "Drones du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-companion",
+    "content_id": null,
+    "description": "Mechanical dog-like quadruped with a wedge-shaped ivory head, broad purple back, charcoal joints and cyan lower legs. Exactly FOUR sturdy articulated legs and no other limbs. One large dark visor at front, no tail or antenna. Low forward-leaning broad silhouette, three-quarter view; distinguish head from torso with a clear short neck.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      24
+    ],
+    "flying": false,
+    "source": "sources/058.png",
+    "living": "../../../../../assets/sprites/bestiary/tiles/058-living-32.png",
+    "corpse": "../../../../../assets/source-art/allies-transformations-proposition-2026-10-06/revisions/r1/tiles/058-cadavre.png",
+    "inactive_label": "Hors service",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        735,
+        636
+      ],
+      "native_bounds": [
+        2,
+        7,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        817,
+        361
+      ],
+      "native_bounds": [
+        2,
+        18,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "04153467963c4d9c235109425b8f49caa391613c3c42f4e535e06c9de2bf0934",
+    "review_description": "Quadrupède mécanique : tête en coin et quatre pattes articulées.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 59,
+    "review_id": "visual-proposal:059",
+    "name": "Atelier",
+    "name_status": "provisoire",
+    "family": "Drones du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-companion",
+    "content_id": null,
+    "description": "Compact upright industrial maintenance robot with a lime green barrel torso, broad violet lower chassis, ivory squarish sensor head. Exactly THREE short wheeled supports in a triangular arrangement, wheels large and clearly attached. Exactly TWO short articulated tool arms attached to shoulders: one steel pincer and one blunt dark welding nozzle. No hand-held weapon, no sparks, no smoke. Distinct three-legged machine silhouette.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      27
+    ],
+    "flying": false,
+    "source": "sources/059.png",
+    "living": "../../../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/references/059-vivant-r1.png",
+    "corpse": "../../../../../assets/source-art/allies-transformations-proposition-2026-10-06/revisions/r1/tiles/059-cadavre.png",
+    "inactive_label": "Hors service",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        737,
+        761
+      ],
+      "native_bounds": [
+        3,
+        4,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        766,
+        324
+      ],
+      "native_bounds": [
+        1,
+        18,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "4c02b8e31dfe63f22f8f58de6a7ec3a26020a74a8b74df0a602fcac920dbcb61",
+    "review_description": "Machine d’atelier : trois appuis à roues et deux bras-outils.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 60,
+    "review_id": "visual-proposal:060",
+    "name": "Rempart",
+    "name_status": "provisoire",
+    "family": "Drones du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-companion",
+    "content_id": null,
+    "description": "Upright heavy humanoid security robot, broad cobalt torso and shoulders, ivory limbs and front armor, charcoal joints, small red horizontal sensor in a blunt square head. Exactly TWO arms and TWO short thick legs. A broad shield-like cobalt plate is integrated into the left forearm and a chunky fist on right arm, no detached shield or gun. Broad upper body, human-sized height, flat feet, no horns.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      30
+    ],
+    "flying": false,
+    "source": "sources/060.png",
+    "living": "../../../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/references/060-vivant-r1.png",
+    "corpse": "../../../../../assets/source-art/allies-transformations-proposition-2026-10-06/revisions/r1/tiles/060-cadavre.png",
+    "inactive_label": "Hors service",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        736,
+        778
+      ],
+      "native_bounds": [
+        2,
+        1,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        833,
+        305
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "c18df5eee9f40f81bf0f23443ff49b47a753fdd19e6b94a2d00e63d67d143d22",
+    "review_description": "Robot humanoïde massif avec plaque de protection intégrée au bras.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 61,
+    "review_id": "visual-proposal:061",
+    "name": "Colosse biomécanique",
+    "name_status": "provisoire",
+    "family": "Transformations du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-transformation",
+    "content_id": null,
+    "description": "Player transformation, near-front full humanoid body with exactly TWO arms and TWO legs. Large ivory bony plates over crimson muscle, dark blue joints, very broad squared shoulders and short powerful forearms, small recessed helmet-like head. Thick fists empty; two short broad feet. Brutal biomechanical silhouette without a held weapon, no horns, no exposed organs, no floating particles. Keep body about same thirty-pixel height as human reference, just bulkier.",
+    "tile_size": 32,
+    "maximum": [
+      30,
+      30
+    ],
+    "flying": false,
+    "source": "sources/061.png",
+    "living": "../../../../../assets/sprites/bestiary/tiles/061-living-32.png",
+    "corpse": "../../../../../assets/sprites/bestiary/tiles/061-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        786,
+        788
+      ],
+      "native_bounds": [
+        1,
+        1,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        835,
+        346
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "6b9ecf1519cd7ac86044f7ca459edd9bd96d874b17ddfa4ccf6ce134ebe9ef3c",
+    "review_description": "Corps biomécanique massif : plaques ivoire et muscles rouges.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 62,
+    "review_id": "visual-proposal:062",
+    "name": "Prédateur",
+    "name_status": "provisoire",
+    "family": "Transformations du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-transformation",
+    "content_id": null,
+    "description": "Player transformation, lean upright predatory humanoid, near-front slight three-quarter stance. Steel-blue elongated angular head and chest, broad copper-orange shoulder and thigh masses, charcoal waist. Exactly TWO bent claw arms and TWO digitigrade legs, connected anatomy. Three large hooked fingers on each empty hand, claws point outward. Distinct taller narrow predator silhouette, no extra tails, wings, carried weapons or spikes scattered everywhere. Thirty-pixel height.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      30
+    ],
+    "flying": false,
+    "source": "sources/062.png",
+    "living": "../../../../../assets/sprites/bestiary/tiles/062-living-32.png",
+    "corpse": "../../../../../assets/sprites/bestiary/tiles/062-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        791,
+        839
+      ],
+      "native_bounds": [
+        2,
+        1,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        825,
+        299
+      ],
+      "native_bounds": [
+        1,
+        20,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "c8d4ed323256a5189d939d9837f5e7790f4199ce0f0025cb8952863f70e6f2a4",
+    "review_description": "Forme élancée : tête angulaire, jambes pliées et grandes griffes.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 63,
+    "review_id": "visual-proposal:063",
+    "name": "Cuirassé",
+    "name_status": "provisoire",
+    "family": "Transformations du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-transformation",
+    "content_id": null,
+    "description": "Player transformation into upright chitinous humanoid, near-front. Broad emerald shell plates on shoulders and chest, ivory abdominal segments, violet joints and boots. Exactly TWO arms, TWO legs and one broad armored insect-like head, tiny paired mandibles. Heavy folded forearms end in attached broad pincers, both empty. Human-like standing posture with wide feet. No additional insect legs, no wings, no carried blades or shields. Distinct layered carapace, not a recolor of biomechanical brute. Thirty-pixel height.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      30
+    ],
+    "flying": false,
+    "source": "sources/063.png",
+    "living": "../../../../../assets/sprites/bestiary/tiles/063-living-32.png",
+    "corpse": "../../../../../assets/sprites/bestiary/tiles/063-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        776,
+        814
+      ],
+      "native_bounds": [
+        2,
+        2,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        900,
+        360
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "b15a2f862c3930f4511b03cc1df278a0326dc9e015593572f51aa3ff21b9376b",
+    "review_description": "Corps cuirassé : carapace verte, ventre segmenté et deux pinces.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 64,
+    "review_id": "visual-proposal:064",
+    "name": "Possédé",
+    "name_status": "provisoire",
+    "family": "Transformations du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-transformation",
+    "content_id": null,
+    "description": "Player transformation into near-front demonic humanoid, exactly TWO arms and TWO legs. Crimson upper torso and bent thick arms, broad violet hip and thigh masses, ivory face and exactly TWO short curved horns pointing outward. Angular shoulders with one large blunt protrusion per side. Strong empty claw hands, planted broad feet. Small recognizable face, no robe, staff, fire, weapons, armor crest or medieval clothing. Human-sized thirty-pixel height.",
+    "tile_size": 32,
+    "maximum": [
+      28,
+      30
+    ],
+    "flying": false,
+    "source": "sources/064.png",
+    "living": "../../../../../assets/sprites/bestiary/tiles/064-living-32.png",
+    "corpse": "../../../../../assets/sprites/bestiary/tiles/064-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        750,
+        735
+      ],
+      "native_bounds": [
+        2,
+        4,
+        30,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        804,
+        319
+      ],
+      "native_bounds": [
+        1,
+        19,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "3a5277eb1a207886c6a8daa8473664d066ea854e375fb839e886fa723f7a6af2",
+    "review_description": "Forme démoniaque : deux cornes, épaules angulaires et mains griffues.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  },
+  {
+    "number": 65,
+    "review_id": "visual-proposal:065",
+    "name": "Abysse",
+    "name_status": "provisoire",
+    "family": "Transformations du joueur",
+    "status": "awaiting-art-review",
+    "usage": "player-transformation",
+    "content_id": null,
+    "description": "Player transformation into upright lovecraftian humanoid, near-front. Deep violet head and torso framing a single broad ivory eye, bright teal thick forearms and lower legs, charcoal hollow oval aperture at chest center with TRUE transparency inside. Exactly TWO main arms and TWO planted legs. Exactly TWO short thick purple folded tendrils connected behind shoulders, no thin filaments, no more appendages. Empty hands. Compact readable thirty-pixel silhouette, no robe, equipment, glow or smoke.",
+    "tile_size": 32,
+    "maximum": [
+      29,
+      30
+    ],
+    "flying": false,
+    "source": "sources/065.png",
+    "living": "../../../../../assets/sprites/bestiary/tiles/065-living-32.png",
+    "corpse": "../../../../../assets/sprites/bestiary/tiles/065-corpse-32.png",
+    "inactive_label": "Cadavre",
+    "corpse_includes_blood": true,
+    "gameplay_status": "visual proposal only; stats, skills and behaviors not defined",
+    "equipment_status": "not yet authored; empty transformation hands and integrated robot tools",
+    "living_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        710,
+        823
+      ],
+      "native_bounds": [
+        3,
+        1,
+        29,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24,
+      "contact_kind": "feet or supports on ground baseline"
+    },
+    "corpse_encoding": {
+      "source_bounds": [
+        0,
+        0,
+        834,
+        376
+      ],
+      "native_bounds": [
+        1,
+        17,
+        31,
+        31
+      ],
+      "foot_anchor": [
+        16,
+        30
+      ],
+      "resampling": "nearest",
+      "alpha": "binary cutoff 128",
+      "palette_limit": 24
+    },
+    "source_sha256": "223f40cdc49f4003db05d9214fc9064bb9db70975e701c1179e7e69aa9761e3b",
+    "review_description": "Forme abyssale : œil unique, cavité du torse et deux vrilles arrière.",
+    "blood_layer_status": "pool included in review composite; independent reusable layer reserved for later integration"
+  }
+]

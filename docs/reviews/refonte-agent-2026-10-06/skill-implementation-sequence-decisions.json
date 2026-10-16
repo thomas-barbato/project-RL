@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SKILLS-IMPLEMENT01",
+  "user_direction": "Des qu’on aura terminé la définition des compétences, on les mettra en jeu (l’équilibrage viendra plus tard), l’ajout des attributs qui auront des effets sur les compétences entre autre, nous ferons les animations des sorts.",
+  "accepted_sequence": [
+    "complete definitions and reviews of retained skills",
+    "integrate retained approved skills and character attributes with their effects on skills and derived statistics",
+    "produce spell and skill animations with prototype/native visual review",
+    "balance progressively afterward"
+  ],
+  "six_attributes_preserved": [
+    "Force",
+    "Agilité",
+    "Vitalité",
+    "Perception",
+    "Intelligence",
+    "Volonté"
+  ],
+  "functional_checks_during_implementation": true,
+  "balance_is_deferred_not_finalized": true,
+  "review_rules_preserved": "Existing distinct approval of player text, numeric mechanics and visual/native render still applies; no unknown effect or numeric curve is implicitly approved by the sequence.",
+  "test_character_menu_timing": "existing request after all skills and animations remains deferred",
+  "runtime_implementation_started_this_turn": false
+}

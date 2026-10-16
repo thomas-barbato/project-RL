@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "FE03",
+    "FE03-BURN01"
+  ],
+  "skill_id": "FE03",
+  "title": "Mur de feu",
+  "requirements_reference": "docs/reviews/refonte-agent-2026-10-06/elemental-status-and-emanation-redesign-decisions.json",
+  "requirements_reference_sha256": "1455a5b1f4ec31f3dcdc0fcaa8d40e34a1c1664a764100cf0b6fd6d1dcdec548",
+  "accepted_base_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE03-02.json",
+  "accepted_base_description_sha256": "fefc9f8a099448d5a5e3d97e1fd7e3a10ab3caa8442f5e9741de43dbddfeae4b",
+  "scope": "Prepare requested Feu/EL-ZONE01 status extension;accepted base name/RP/damage/length/duration/range/wall limit/cost/cooldown and placement/traversability/self-allied damage/replacement conditions preserved.",
+  "status_proposals_pending_review": {
+    "current_exposure_chances_percent": [
+      25,
+      50,
+      75,
+      100,
+      100
+    ],
+    "next_exposure_chances_percent": [
+      26,
+      52,
+      78,
+      100,
+      100
+    ],
+    "burn_fire_damage_per_turn": 4,
+    "burn_duration_turns": 3,
+    "maximum_burn_attempts_per_target_per_turn": 1,
+    "exit_resets_exposure": "EL-ZONE01 accepted",
+    "first_burn_tick": "next complete turn after application",
+    "burn_persists_after_leaving_wall": true,
+    "own_burn_applications_stack": false
+  },
+  "visual_direction_proposal": "small flames remain on burned targets after leaving wall until status ends",
+  "numeric_rules_approval": "new status values and conditions proposed pending individual review;accepted base values retained",
+  "native_visual_approval": "pending native preview and user review",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-08",
+  "id": "BM02",
+  "review_id": "BM02",
+  "revision": 1,
+  "title": "Faim occulte",
+  "branch": "Buffs de mêlée",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-87.json",
+  "source_skill_block_sha256": "564bb770471be3bcdcd82b3a96c04cc9078fd4d8b0d7d1ba03aedd70a3e06776",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "currently_transformed": false,
+    "equipped_and_active_weapon_type": "melee",
+    "other_modifiers": false,
+    "attributes": "current actual stats affect HP removed by melee attacks;life return percent depends on rank"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "life_return_percent_of_actual_HP_removed_exact": "25/2",
+    "life_return_percent_display": 12.5,
+    "duration_turns": 6,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "life_return_percent_of_actual_HP_removed_exact": "90/7",
+    "life_return_percent_display": 12.9,
+    "duration_turns": 6,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "formulas_proposed": {
+    "life_return_percent": "5+15*(effective_rank-1)/(effective_rank+9)",
+    "life_return_amount": "min(missing_HP,actual_eligible_HP_removed,ceil(actual_eligible_HP_removed*life_return_percent/100))",
+    "duration_turns": "4+floor((effective_rank-1)/5)",
+    "energy_cost": "10+floor((effective_rank-1)/3)",
+    "cooldown_turns": 8,
+    "full_curves_defaults_rounding_and_modifier_order": "unshown_pending_review"
+  },
+  "conditions_proposed": {
+    "requires_equipped_and_active_melee_weapon": "accepted_common_weapon_requirement applied;inactive equipment insufficient",
+    "human_form_required_to_cast": true,
+    "blocked_by_Silence": true,
+    "successful_primary_melee_hits_only": true,
+    "actual_HP_removed_after_defenses": true,
+    "direct_damage_added_to_primary_hit_included": true,
+    "indirect_damage_and_reflection_excluded": true,
+    "heal_capped_to_missing_HP": true,
+    "automatic_secondary_attacks_and_zones_excluded": "unshown_existing_proposal_pending_review",
+    "heal_rounded_once_and_capped_to_HP_removed": "unshown_existing_proposal_pending_review",
+    "equipment_life_leech_stacking_and_natural_transform_attack_compatibility": "unshown_pending_review",
+    "buff_in_player_status_bar": "existing_buff_HUD_rule_applies;native_pending"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "proposed_pending_explicit_user_review",
+  "numeric_rules_approval": "displayed_life_return12_5_next12_9_percent_duration6_energy13_CD8_proposed_pending_review;unshown_curves_pending",
+  "detailed_conditions_approval": "displayed_primary_melee_actual_HP_direct_added_damage_missing_HP_cap_no_indirect_or_reflection_human_Silence_proposed_pending_review;common_active_melee_requirement_already_accepted",
+  "visual_intention_approval": "catalogue_dark_drops_to_attack_arm_direction_preserved;small_brief_drops_at_heal_proposed_pending_individual_review",
+  "visual_approval": "per_skill_native_animation_pending_review",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "no_fictitious_total_weapon_damage_variance": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "life_return_percent_display"
+    ]
+  },
+  "player_copy_markdown": "**BM02 · Faim occulte — Rang 11 · Actif**\n\n*Votre arme s’abreuve de la vitalité de vos ennemis et vous en restitue une part.*\n\n**Effets actuels**\n\n- Vie rendue : **12,5 % des PV réellement retirés par vos frappes principales de mêlée**.\n- Durée : **6 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Vie rendue : **12,9 %**.\n\n**Coût : 13 énergie · Recharge : 8 tours.**\n\nLe soin ne dépasse pas vos PV manquants. Les dégâts directs ajoutés à la frappe sont inclus ; les dégâts indirects et les dégâts renvoyés sont exclus.\n\nArme de mêlée équipée et active requise. Forme humaine requise pour lancer le buff ; Silence empêche son utilisation.",
+  "player_copy_sha256": "4919ce9e19d89de9a95c5f3640b254c6b76ffcb4dd76b6e0ac9234f1fc2a8fd7",
+  "visual_copy_markdown": "**Visuel proposé :** de petites gouttes sombres remontent brièvement de la cible vers votre bras au moment du soin.",
+  "visual_copy_sha256": "713b21236f4eee170586d21035a3d32d089a6a28f5a22ce8358741f3e8031b94",
+  "current_turn_shown_copy_markdown": "**BM02 · Faim occulte — Rang 11 · Actif**\n\n*Votre arme s’abreuve de la vitalité de vos ennemis et vous en restitue une part.*\n\n**Effets actuels**\n\n- Vie rendue : **12,5 % des PV réellement retirés par vos frappes principales de mêlée**.\n- Durée : **6 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Vie rendue : **12,9 %**.\n\n**Coût : 13 énergie · Recharge : 8 tours.**\n\nLe soin ne dépasse pas vos PV manquants. Les dégâts directs ajoutés à la frappe sont inclus ; les dégâts indirects et les dégâts renvoyés sont exclus.\n\nArme de mêlée équipée et active requise. Forme humaine requise pour lancer le buff ; Silence empêche son utilisation.\n\n**Visuel proposé :** de petites gouttes sombres remontent brièvement de la cible vers votre bras au moment du soin.",
+  "current_turn_shown_copy_sha256": "4daea2d6833410f17bdf4c8fba82ba4ee1654e4ee0ada595d786f025523e39ed",
+  "unshown_cases_pending": [
+    "full_rank_curves_defaults_rounding_and_modifier_order",
+    "buff_snapshot_swap_refresh_duration_and_cooldown",
+    "primary_hits_multi_target_multi_hit_dual_wield_and_secondary_attack_classification",
+    "life_leech_stacking_with_equipment_forms_OC05_and_other_buffs",
+    "overkill_zero_damage_absorption_eligibility_and_heal_trigger_order",
+    "refusal_resources_time_RNG_and_map_change_rules",
+    "native_drops_heal_feedback_and_buff_icon"
+  ],
+  "runtime_integration": "not_integrated"
+}

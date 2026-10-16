@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-08",
+  "id": "HY03",
+  "review_id": "HY03-UTILITY01",
+  "user_acceptance": "ok on va faire ca :)",
+  "accepted_direction": {
+    "remove_relay_damage_bonus": true,
+    "chosen_spell_keeps_ordinary_damage": true,
+    "progression_utility": "improve drone relay distance or reduce relay energy surcharge"
+  },
+  "proposed_revision_to_review": {
+    "current_rank11_drone_distance": 6,
+    "current_rank11_extra_energy": 5,
+    "next_rank12_extra_energy": 4,
+    "relay_cooldown_turns": 6,
+    "distance_and_surcharge_curves": "unshown proposed working curves; not approved by accepting the direction"
+  },
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY03-01.json",
+  "previous_card_sha256": "e061ee181345438801298d6106164f9d158b3a7210f779b969a8a04d2b94652d",
+  "retired_damage_bonus_current_next": [
+    30,
+    33
+  ],
+  "old_damage_bonus_curve": "100+3*(effective_rank-1);retired",
+  "RP_compatibility_conditions_and_violet_filament_status": "pending individual card review; no implicit full-card acceptance",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,223 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-GEAR01",
+  "revision": 2,
+  "status": "shown_starting_gear_text_and_numbers_accepted;native_equipped_review_separate",
+  "source_profile_batch": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-starts-START-ALL01-02.json",
+    "reference_sha256": "04e27d6bbc3e9d021bef302f9337b01b3b8e94db307c9189df557f631ba06347"
+  },
+  "class_approval": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/class-three-core-starts-acceptance-decisions.json",
+    "reference_sha256": "40e43fbd4989e77add69828b4c8555c22e8c3df90492c673921350b3f9360deb"
+  },
+  "ammunition_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/universal-ammunition-and-matter-removal-decisions.json",
+    "reference_sha256": "aee8578f5b4dc465e68f2308e13e81dcc19ac1df64a4b3b9cb75f54ac8d29760"
+  },
+  "consumable_effects": "consumed_on_use;restores_12_HP_or_energy_up_to_current_maximum;does_not_change_maximum",
+  "equipment_scope": "common_level1_start_entries_no_affixes;own_draft_IDs_preserve_existing_models;no_general_weapon_level_damage_curve_created",
+  "preserved_variance": "accepted_inclusive_integer_uniform_weapon_draw;explicit_weapon_ranges_only;no_new_spell_or_transformation_variance",
+  "current_damage_preview_scope": "raw_weapon_ranges_identified_as_base;B01_current_range_uses_active_hachette_Force7_and_accepted_additive_skill_pool",
+  "unshown_item_copy": "item_roleplay_tooltip_descriptions_not_authored_in_this_lot;shown_names_numeric_effects_and_grant_RP_presented",
+  "visual_scope": "existing_approved_class_silhouettes_preserved;equipped_compositions_and_consumable_ammo_icons_pending_native_review",
+  "player_copy_markdown": "**START-GEAR01 · Matériel de départ — proposition**\n\n*L’organisation vous remet un équipement standard et quelques réserves pour votre première mission.*\n\nMatériel commun de **niveau 1**. Les plages ci-dessous sont les dégâts de base des armes ; vos attributs, compétences et implants s’appliquent ensuite.\n\n**Bastion**\n\n- Hachette : **6–10 dégâts physiques**, portée **1 case**, précision **−12**.\n- Tenue d’assaut : **3 points d’armure**, **−5 points d’esquive**.\n- Avec son implant, le Bastion commence à **4 points d’armure**. Frappe de rupture affiche **8–14 dégâts physiques** avec cette hachette, avant les défenses et les coups critiques.\n\n**Technomancien**\n\n- Pistolet : **3–5 dégâts physiques**, portée **5 cases**, précision **+5**.\n- Tenue technique : **2 points d’armure**.\n- **40 munitions** communes.\n\n**Traqueur**\n\n- Fusil de patrouille : **3–5 dégâts physiques**, portée **7 cases**, précision **+5**.\n- Tenue de traque : **1 point d’armure**.\n- **40 munitions** communes.\n\n**Arcaniste**\n\n- Couteau : **2–4 dégâts physiques**, portée **1 case**, précision **+10**.\n- Tenue rituelle : **1 point d’armure**.\n\n**Métamorphe**\n\n- Couteau : **2–4 dégâts physiques**, portée **1 case**, précision **+10**.\n- Tenue métamorphe : **2 points d’armure**.\n\n**Réserves communes aux cinq classes**\n\n- **2 Doses de soin** : chacune restaure **12 PV**.\n- **1 Cellule d’énergie** : restaure **12 énergie**.\n\nCes objets sont consommés à l’utilisation ; la récupération reste limitée à votre maximum.\n\nLe pistolet et le fusil de départ consomment **1 munition par projectile**. Les armes lourdes utiliseront le même type de munition ; leur consommation sera définie avec leurs modèles. Les compétences de mines et de grenades conservent leurs coûts en énergie validés.\n\nCes tenues ne modifient pas les réserves de PV et d’énergie déjà validées. L’aperçu équipé de chaque classe sera présenté à taille native.",
+  "player_copy_sha256": "eb4f1b349d0c5b4cd665671a8956734b16e99a0a09973be5327dd6702b89bdf0",
+  "mechanic_approval": "shown_values_accepted",
+  "text_approval": "displayed_item_names_grant_RP_and_numeric_copy_accepted",
+  "visual_approval": "native_equipped_previews_pending;no_new_pixels_integrated",
+  "runtime_integration": "not_integrated",
+  "accepted_loadouts": [
+    {
+      "review_id": "START-GEAR01-B",
+      "class": "Bastion",
+      "active_weapon": {
+        "draft_id": "start:hachette",
+        "display_name": "Hachette",
+        "level": 1,
+        "damage_minimum": 6,
+        "damage_maximum": 10,
+        "damage_family": "physical",
+        "physical_subtype": "kinetic",
+        "range_cells": 1,
+        "accuracy_modifier": -12,
+        "reference_model": "core:melee_hachette",
+        "reference_content": {
+          "reference": "content/core/weapons/melee_hachette.json5",
+          "reference_sha256": "022d2a8c51daa3c1da7ecb436829753c13e227be778d03894d67d5bf21b9035e"
+        }
+      },
+      "armor": {
+        "draft_id": "start:tenue_assaut",
+        "display_name": "Tenue d’assaut",
+        "armor": 3,
+        "evasion_penalty": 5,
+        "other_stat_or_skill_bonus": null,
+        "art_assignment": "approved_class_silhouette_only;new_equipped_preview_not_approved"
+      },
+      "starting_ammunition_quantity": 0,
+      "ammunition_type": "universal_for_ranged_weapons_including_heavy",
+      "derived_B01_preview": {
+        "effective_rank": 1,
+        "Force": 7,
+        "skill_extra_percent": 40,
+        "Force_bonus_percent": 2,
+        "damage_minimum": 8,
+        "damage_maximum": 14,
+        "ordinary_total_armor": 4,
+        "noncritical_before_defenses": true
+      }
+    },
+    {
+      "review_id": "START-GEAR01-O",
+      "class": "Technomancien",
+      "active_weapon": {
+        "draft_id": "start:pistolet",
+        "display_name": "Pistolet",
+        "level": 1,
+        "damage_minimum": 3,
+        "damage_maximum": 5,
+        "damage_family": "physical",
+        "physical_subtype": "piercing",
+        "range_cells": 5,
+        "accuracy_modifier": 5,
+        "reference_model": "core:modele_cogneur_p01",
+        "reference_content": {
+          "reference": "content/core/weapons/modele_cogneur_p01.json5",
+          "reference_sha256": "62f483906a5430b461f44f87acf28af2a0ad5dd695344a5246768bf0d799263a"
+        }
+      },
+      "armor": {
+        "draft_id": "start:tenue_technique",
+        "display_name": "Tenue technique",
+        "armor": 2,
+        "evasion_penalty": 0,
+        "other_stat_or_skill_bonus": null,
+        "art_assignment": "approved_class_silhouette_only;new_equipped_preview_not_approved"
+      },
+      "starting_ammunition_quantity": 40,
+      "ammunition_type": "universal_for_ranged_weapons_including_heavy"
+    },
+    {
+      "review_id": "START-GEAR01-T",
+      "class": "Traqueur",
+      "active_weapon": {
+        "draft_id": "start:fusil",
+        "display_name": "Fusil de patrouille",
+        "level": 1,
+        "damage_minimum": 3,
+        "damage_maximum": 5,
+        "damage_family": "physical",
+        "physical_subtype": "piercing",
+        "range_cells": 7,
+        "accuracy_modifier": 5,
+        "reference_model": "core:fusil_de_patrouille",
+        "reference_content": {
+          "reference": "content/core/weapons/fusil_de_patrouille.json5",
+          "reference_sha256": "8aa49c0055e6abdfdd86c403f9228988c0a6de9d374b9419cf7f094779410bbd"
+        }
+      },
+      "armor": {
+        "draft_id": "start:tenue_traque",
+        "display_name": "Tenue de traque",
+        "armor": 1,
+        "evasion_penalty": 0,
+        "other_stat_or_skill_bonus": null,
+        "art_assignment": "approved_class_silhouette_only;new_equipped_preview_not_approved"
+      },
+      "starting_ammunition_quantity": 40,
+      "ammunition_type": "universal_for_ranged_weapons_including_heavy"
+    },
+    {
+      "review_id": "START-GEAR01-A",
+      "class": "Arcaniste",
+      "active_weapon": {
+        "draft_id": "start:couteau",
+        "display_name": "Couteau",
+        "level": 1,
+        "damage_minimum": 2,
+        "damage_maximum": 4,
+        "damage_family": "physical",
+        "physical_subtype": "piercing",
+        "range_cells": 1,
+        "accuracy_modifier": 10,
+        "reference_model": "core:melee_couteau_de_camp",
+        "reference_content": {
+          "reference": "content/core/weapons/melee_couteau_de_camp.json5",
+          "reference_sha256": "99b6ec2990c1b8084a600d4ec587b56f179cecf17755608d2d4836eeebd1deba"
+        }
+      },
+      "armor": {
+        "draft_id": "start:tenue_rituelle",
+        "display_name": "Tenue rituelle",
+        "armor": 1,
+        "evasion_penalty": 0,
+        "other_stat_or_skill_bonus": null,
+        "art_assignment": "approved_class_silhouette_only;new_equipped_preview_not_approved"
+      },
+      "starting_ammunition_quantity": 0,
+      "ammunition_type": "universal_for_ranged_weapons_including_heavy"
+    },
+    {
+      "review_id": "START-GEAR01-M",
+      "class": "Métamorphe",
+      "active_weapon": {
+        "draft_id": "start:couteau",
+        "display_name": "Couteau",
+        "level": 1,
+        "damage_minimum": 2,
+        "damage_maximum": 4,
+        "damage_family": "physical",
+        "physical_subtype": "piercing",
+        "range_cells": 1,
+        "accuracy_modifier": 10,
+        "reference_model": "core:melee_couteau_de_camp",
+        "reference_content": {
+          "reference": "content/core/weapons/melee_couteau_de_camp.json5",
+          "reference_sha256": "99b6ec2990c1b8084a600d4ec587b56f179cecf17755608d2d4836eeebd1deba"
+        }
+      },
+      "armor": {
+        "draft_id": "start:tenue_metamorphe",
+        "display_name": "Tenue métamorphe",
+        "armor": 2,
+        "evasion_penalty": 0,
+        "other_stat_or_skill_bonus": null,
+        "art_assignment": "approved_class_silhouette_only;new_equipped_preview_not_approved"
+      },
+      "starting_ammunition_quantity": 0,
+      "ammunition_type": "universal_for_ranged_weapons_including_heavy"
+    }
+  ],
+  "accepted_common_consumables": [
+    {
+      "draft_id": "start:dose_soin",
+      "display_name": "Dose de soin",
+      "quantity": 2,
+      "restores_HP": 12
+    },
+    {
+      "draft_id": "start:cellule_energie",
+      "display_name": "Cellule d’énergie",
+      "quantity": 1,
+      "restores_energy": 12
+    }
+  ],
+  "accepted_start_weapon_ammo_cost": {
+    "start:pistolet": 1,
+    "start:fusil": 1,
+    "unit": "per_projectile"
+  },
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-starting-equipment-START-GEAR01-01.json",
+    "reference_sha256": "817cad3814d1764b5c97e240692b5005d09dd513102804da00d955a38cc566ce"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/starting-equipment-acceptance-decisions.json",
+    "reference_sha256": "67117d9351d3052af0befe671fc2545a7e4547dfe8a90552292d3ca1dde6b576"
+  },
+  "pending_equipped_class_visual_review": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-01.json",
+    "reference_sha256": "9fb29c449b4d2b8e4c07c2d03398f5e0ced5ffdba30990b607c4ff42a8ccfe07"
+  }
+}

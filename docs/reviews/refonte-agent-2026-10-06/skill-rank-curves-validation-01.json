@@ -1,0 +1,7098 @@
+{
+  "date": "2026-10-09",
+  "review_id": "SKILL-RANKS01-CHECK01",
+  "scope": "design_arithmetic_and_coverage;not_game_engine_tests_or_playtest",
+  "curves": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/skill-rank-curves-provisional-01.json",
+    "reference_sha256": "0c71329071893c5e49d057ab31469c663beee9efb5ddc7d12db5903da5f99e27"
+  },
+  "total_skills_checked": 94,
+  "primary": 79,
+  "secondary": 14,
+  "repair_complement": 1,
+  "constraints": "source identity coverage_no_removed_Foudre_content_positive_integer_costs_when_required_legal_probabilities_monotonic_curves_and_explicit_user_caps_checked",
+  "rank_snapshots": "1_to20_then30_50_100;formula_supports_positive_integer_equipment_rank_beyond10",
+  "current_level_checks": "level1_identity_monotone_tentative_growth_and_learning_history_invariance;same_current_level_rank_attributes_and_equipment_yield_identical_damage",
+  "level_coefficient_status": "tentative_reference_only;direction_accepted;not_final_balance_or_runtime",
+  "learned_transition_details": [
+    {
+      "skill_id": "A01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "A02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_occult_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_occult_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_occult_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_occult_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_occult_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_occult_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_occult_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_occult_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_occult_damage_per_target"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "A03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "magical_energy_cost_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "magical_energy_cost_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "magical_energy_cost_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "magical_energy_cost_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "magical_energy_cost_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "magical_energy_cost_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "magical_energy_cost_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "magical_energy_cost_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "magical_energy_cost_reduction_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "AF02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "application_power_rank_base",
+            "physical_armor_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base",
+            "physical_armor_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "application_power_rank_base",
+            "physical_armor_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base",
+            "physical_armor_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "application_power_rank_base",
+            "physical_armor_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base",
+            "physical_armor_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "application_power_rank_base",
+            "physical_armor_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base",
+            "physical_armor_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "application_power_rank_base",
+            "physical_armor_reduction_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "AF03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "AF04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "AF05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "AF06",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "transmitted_potency_retained_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "transmitted_potency_retained_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "transmitted_potency_retained_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "transmitted_potency_retained_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "transmitted_potency_retained_percent",
+            "range_from_victim_cells"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "transmitted_potency_retained_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "transmitted_potency_retained_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "transmitted_potency_retained_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "transmitted_potency_retained_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "B01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "B02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "direct_damage_reduction_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "B03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "maximum_HP_bonus_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "BD04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "accuracy_bonus_percent_per_stationary_turn"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "accuracy_bonus_percent_per_stationary_turn"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "accuracy_bonus_percent_per_stationary_turn"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "accuracy_bonus_percent_per_stationary_turn"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "accuracy_bonus_percent_per_stationary_turn"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "accuracy_bonus_percent_per_stationary_turn"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "accuracy_bonus_percent_per_stationary_turn"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "accuracy_bonus_percent_per_stationary_turn"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "accuracy_bonus_percent_per_stationary_turn"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "BD06",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "energy_return_percent_of_maximum"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "energy_return_percent_of_maximum"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "energy_return_percent_of_maximum"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "energy_return_percent_of_maximum"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "energy_return_percent_of_maximum"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "energy_return_percent_of_maximum"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "energy_return_percent_of_maximum"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "energy_return_percent_of_maximum"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "energy_return_percent_of_maximum"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "BM01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_added_fire_damage"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_added_fire_damage"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_added_fire_damage"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_added_fire_damage"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_added_fire_damage",
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_added_fire_damage"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_added_fire_damage"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_added_fire_damage"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_added_fire_damage"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "BM02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "life_return_percent_of_actual_eligible_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "life_return_percent_of_actual_eligible_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "life_return_percent_of_actual_eligible_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "life_return_percent_of_actual_eligible_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "life_return_percent_of_actual_eligible_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "life_return_percent_of_actual_eligible_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "life_return_percent_of_actual_eligible_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "life_return_percent_of_actual_eligible_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "life_return_percent_of_actual_eligible_HP_removed"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "BM03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_bonus_percent_per_charge"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_bonus_percent_per_charge"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_bonus_percent_per_charge"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_bonus_percent_per_charge"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_bonus_percent_per_charge"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_bonus_percent_per_charge"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_bonus_percent_per_charge"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_bonus_percent_per_charge"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_bonus_percent_per_charge"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "BM05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "reflected_direct_magic_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "reflected_direct_magic_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "reflected_direct_magic_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "reflected_direct_magic_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "reflected_direct_magic_damage_percent",
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "reflected_direct_magic_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "reflected_direct_magic_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "reflected_direct_magic_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "reflected_direct_magic_damage_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "D56",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "vision_radius_cells"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "vision_radius_cells"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "vision_radius_cells"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "D57",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "cargo_rank_bonus_kg"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "cargo_rank_bonus_kg"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "cargo_rank_bonus_kg"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "cargo_rank_bonus_kg"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "cargo_rank_bonus_kg"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "cargo_rank_bonus_kg"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "cargo_rank_bonus_kg"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "cargo_rank_bonus_kg"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "cargo_rank_bonus_kg"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "D58",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "D59",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "D66",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent",
+            "protection_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent",
+            "protection_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent",
+            "protection_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent",
+            "protection_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent",
+            "protection_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent",
+            "protection_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent",
+            "protection_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent",
+            "protection_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "maximum_HP_rank_bonus_percent",
+            "damage_rank_bonus_percent",
+            "protection_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "DI01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "maximum_targets"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "DI02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_per_projectile_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_per_projectile_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_per_projectile_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_per_projectile_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_per_projectile_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_per_projectile_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_per_projectile_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_per_projectile_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_per_projectile_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "DI03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "range_skill_limit_cells"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "maximum_targets"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "range_skill_limit_cells"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "DI04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "accuracy_bonus_percent",
+            "armor_ignored_percent",
+            "critical_chance_bonus_points"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "accuracy_bonus_percent",
+            "armor_ignored_percent",
+            "critical_chance_bonus_points"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "accuracy_bonus_percent",
+            "armor_ignored_percent",
+            "critical_chance_bonus_points"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "accuracy_bonus_percent",
+            "armor_ignored_percent",
+            "critical_chance_bonus_points"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "accuracy_bonus_percent",
+            "armor_ignored_percent",
+            "critical_chance_bonus_points"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "accuracy_bonus_percent",
+            "armor_ignored_percent",
+            "critical_chance_bonus_points"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "accuracy_bonus_percent",
+            "armor_ignored_percent",
+            "critical_chance_bonus_points"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "accuracy_bonus_percent",
+            "armor_ignored_percent",
+            "critical_chance_bonus_points"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "accuracy_bonus_percent",
+            "armor_ignored_percent",
+            "critical_chance_bonus_points"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "DI05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "maximum_pull_cells"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "DI07",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "DP01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "repair_percent_of_drone_maximum_HP"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "repair_percent_of_drone_maximum_HP"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "repair_percent_of_drone_maximum_HP"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "repair_percent_of_drone_maximum_HP"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "repair_percent_of_drone_maximum_HP"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "repair_percent_of_drone_maximum_HP"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "repair_percent_of_drone_maximum_HP"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "repair_percent_of_drone_maximum_HP"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "repair_percent_of_drone_maximum_HP"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "DP02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "incoming_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "incoming_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "incoming_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "incoming_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "incoming_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "incoming_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "incoming_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "incoming_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "incoming_damage_reduction_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "DR01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_robot_heal_HP"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_robot_heal_HP"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_robot_heal_HP"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_robot_heal_HP"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_robot_heal_HP"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_robot_heal_HP"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_robot_heal_HP"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_robot_heal_HP"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_robot_heal_HP"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "ES03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "duration_turns"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "ES05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "ES06",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "projectile_evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "projectile_evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "projectile_evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "projectile_evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "projectile_evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "projectile_evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "projectile_evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "projectile_evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "projectile_evasion_bonus_units"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FE01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_fire_damage",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_fire_damage",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_fire_damage",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_fire_damage",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_fire_damage",
+            "raw_burn_damage_per_turn",
+            "burn_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_fire_damage",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_fire_damage",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_fire_damage",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_fire_damage",
+            "raw_burn_damage_per_turn"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FE02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent",
+            "cone_range_cells"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FE03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent",
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent",
+            "maximum_wall_length_cells"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent",
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_fire_damage_per_target_per_turn",
+            "raw_burn_damage_per_turn",
+            "burn_chance_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FE04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_center_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_center_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_center_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_center_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_center_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_center_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_center_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_center_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_center_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FE05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_explosion_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_explosion_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_explosion_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_explosion_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_explosion_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_explosion_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_explosion_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_explosion_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_explosion_fire_damage",
+            "burn_chance_percent",
+            "raw_burn_damage_per_turn"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FE06",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "remaining_burn_conversion_percent",
+            "fresh_burn_chance_percent",
+            "raw_fresh_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "remaining_burn_conversion_percent",
+            "fresh_burn_chance_percent",
+            "raw_fresh_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "remaining_burn_conversion_percent",
+            "fresh_burn_chance_percent",
+            "raw_fresh_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "remaining_burn_conversion_percent",
+            "fresh_burn_chance_percent",
+            "raw_fresh_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "remaining_burn_conversion_percent",
+            "fresh_burn_chance_percent",
+            "raw_fresh_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "remaining_burn_conversion_percent",
+            "fresh_burn_chance_percent",
+            "raw_fresh_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "remaining_burn_conversion_percent",
+            "fresh_burn_chance_percent",
+            "raw_fresh_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "remaining_burn_conversion_percent",
+            "fresh_burn_chance_percent",
+            "raw_fresh_burn_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "remaining_burn_conversion_percent",
+            "fresh_burn_chance_percent",
+            "raw_fresh_burn_damage_per_turn"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FR01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_cold_damage",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_cold_damage",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_cold_damage",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_cold_damage",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_cold_damage",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_cold_damage",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_cold_damage",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_cold_damage",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_cold_damage",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FR02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base",
+            "freeze_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FR03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_HP_per_block",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_HP_per_block",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_HP_per_block",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_HP_per_block",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_HP_per_block",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base",
+            "maximum_wall_length_cells",
+            "wall_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_HP_per_block",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_HP_per_block",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_HP_per_block",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_HP_per_block",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FR04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_cold_damage_per_target",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FR05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_cold_damage_per_impact",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_cold_damage_per_impact",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_cold_damage_per_impact",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_cold_damage_per_impact",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_cold_damage_per_impact",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base",
+            "impacts_per_turn",
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_cold_damage_per_impact",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_cold_damage_per_impact",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_cold_damage_per_impact",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_cold_damage_per_impact",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "FR06",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_cold_damage_on_frozen_source"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_cold_damage_on_frozen_source"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_cold_damage_on_frozen_source"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_cold_damage_on_frozen_source"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_cold_damage_on_frozen_source"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_cold_damage_on_frozen_source"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_cold_damage_on_frozen_source"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_cold_damage_on_frozen_source"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_cold_damage_on_frozen_source"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "HL01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "HL02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "ordinary_stun_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "ordinary_stun_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "ordinary_stun_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "ordinary_stun_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "ordinary_stun_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "ordinary_stun_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "ordinary_stun_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "ordinary_stun_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "ordinary_stun_chance_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "HL03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "HL04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "heavy_weapon_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "heavy_weapon_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "heavy_weapon_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "heavy_weapon_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "heavy_weapon_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "heavy_weapon_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "heavy_weapon_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "heavy_weapon_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "heavy_weapon_damage_bonus_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "HL05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "added_explosion_radius_cells"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "added_explosion_radius_cells"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": []
+        }
+      ],
+      "discrete_only": true,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "HL06",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed",
+            "heal_cap_percent_of_player_maximum_HP_per_use"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed",
+            "heal_cap_percent_of_player_maximum_HP_per_use"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed",
+            "heal_cap_percent_of_player_maximum_HP_per_use"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed",
+            "heal_cap_percent_of_player_maximum_HP_per_use"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed",
+            "heal_cap_percent_of_player_maximum_HP_per_use"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed",
+            "heal_cap_percent_of_player_maximum_HP_per_use"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed",
+            "heal_cap_percent_of_player_maximum_HP_per_use"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed",
+            "heal_cap_percent_of_player_maximum_HP_per_use"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "life_return_percent_of_actual_primary_HP_removed",
+            "heal_cap_percent_of_player_maximum_HP_per_use"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "HY04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "cooldown_turns",
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "maximum_drone_distance_cells",
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "cooldown_turns",
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "maximum_drone_distance_cells",
+            "cooldown_turns",
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "cooldown_turns",
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "maximum_drone_distance_cells",
+            "energy"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "HY05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_occult_damage",
+            "energy_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_occult_damage",
+            "energy_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_occult_damage",
+            "energy_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_occult_damage",
+            "energy_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_occult_damage",
+            "energy_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_occult_damage",
+            "energy_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_occult_damage",
+            "energy_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_occult_damage",
+            "energy_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_occult_damage",
+            "energy_return_percent_of_actual_HP_removed"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "HY06",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "application_power_rank_base"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "HY07",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_fire_explosion_damage"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_fire_explosion_damage"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_fire_explosion_damage"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_fire_explosion_damage"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_fire_explosion_damage"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_fire_explosion_damage"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_fire_explosion_damage"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_fire_explosion_damage"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_fire_explosion_damage"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "M01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_claw_damage",
+            "raw_laceration_damage_per_target",
+            "bleed_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_claw_damage",
+            "raw_laceration_damage_per_target",
+            "bleed_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_claw_damage",
+            "raw_laceration_damage_per_target",
+            "bleed_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_claw_damage",
+            "raw_laceration_damage_per_target",
+            "bleed_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_claw_damage",
+            "raw_laceration_damage_per_target",
+            "bleed_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_claw_damage",
+            "raw_laceration_damage_per_target",
+            "bleed_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_claw_damage",
+            "raw_laceration_damage_per_target",
+            "bleed_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_claw_damage",
+            "raw_laceration_damage_per_target",
+            "bleed_chance_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_claw_damage",
+            "raw_laceration_damage_per_target",
+            "bleed_chance_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "M02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_occult_damage",
+            "maximum_added_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_occult_damage"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "M03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "transformed_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "transformed_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "transformed_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "transformed_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "transformed_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "transformed_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "transformed_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "transformed_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "transformed_damage_bonus_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "ME02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "ME03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "armor_ignored_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "armor_ignored_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "armor_ignored_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "armor_ignored_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "armor_ignored_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "armor_ignored_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "armor_ignored_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "armor_ignored_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "armor_ignored_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "ME04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "push_cells"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "ME05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "maximum_target_distance_cells"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent",
+            "maximum_target_distance_cells"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "ME06",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "damage_coefficient_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "O02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "application_power_rank_base",
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base",
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "application_power_rank_base",
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base",
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "application_power_rank_base",
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base",
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "application_power_rank_base",
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_rank_turns",
+            "application_power_rank_base",
+            "direct_damage_reduction_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "application_power_rank_base",
+            "direct_damage_reduction_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "O03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "drone_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "drone_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "drone_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "drone_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "drone_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "drone_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "drone_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "drone_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "drone_damage_bonus_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "OC04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_HP_per_ritual_segment"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_HP_per_ritual_segment"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_HP_per_ritual_segment"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_HP_per_ritual_segment"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_HP_per_ritual_segment",
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_HP_per_ritual_segment"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_HP_per_ritual_segment"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_HP_per_ritual_segment"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_HP_per_ritual_segment"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "OC05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "raw_occult_damage_per_resolution",
+            "life_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "raw_occult_damage_per_resolution",
+            "life_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "raw_occult_damage_per_resolution",
+            "life_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "raw_occult_damage_per_resolution",
+            "life_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "raw_occult_damage_per_resolution",
+            "life_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "raw_occult_damage_per_resolution",
+            "life_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "raw_occult_damage_per_resolution",
+            "life_return_percent_of_actual_HP_removed"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "raw_occult_damage_per_resolution"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "raw_occult_damage_per_resolution"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "OC07",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "origin_HP_and_damage_power_rank_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "origin_HP_and_damage_power_rank_percent",
+            "raised_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "origin_HP_and_damage_power_rank_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "origin_HP_and_damage_power_rank_percent",
+            "raised_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "origin_HP_and_damage_power_rank_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "origin_HP_and_damage_power_rank_percent",
+            "raised_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "origin_HP_and_damage_power_rank_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "origin_HP_and_damage_power_rank_percent",
+            "raised_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "origin_HP_and_damage_power_rank_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SF00",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": []
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": true
+    },
+    {
+      "skill_id": "SF01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "energy_per_successful_stealth_step"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "energy_per_successful_stealth_step"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "energy_per_successful_stealth_step"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "energy_per_successful_stealth_step"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "energy_per_successful_stealth_step"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "energy_per_successful_stealth_step"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "energy_per_successful_stealth_step"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "energy_per_successful_stealth_step"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "energy_per_successful_stealth_step"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SF02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "detection_range_multiplier"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "detection_range_multiplier"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "detection_range_multiplier"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "detection_range_multiplier"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "detection_range_multiplier"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "detection_range_multiplier"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "detection_range_multiplier"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "detection_range_multiplier"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "detection_range_multiplier"
+          ]
+        }
+      ],
+      "discrete_only": true,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SG00",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": []
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": true
+    },
+    {
+      "skill_id": "SG01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "blindness_duration_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "blindness_duration_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "blindness_duration_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "blindness_duration_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "blindness_duration_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "blindness_duration_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "blindness_duration_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "blindness_duration_turns",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "blindness_duration_turns",
+            "application_power_rank_base"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SG02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "open_terrain_sound_reach_cells"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "open_terrain_sound_reach_cells"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "open_terrain_sound_reach_cells"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "open_terrain_sound_reach_cells"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "open_terrain_sound_reach_cells"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "open_terrain_sound_reach_cells"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "open_terrain_sound_reach_cells"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "open_terrain_sound_reach_cells"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "open_terrain_sound_reach_cells"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SG03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "throw_range_bonus_cells"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "throw_range_bonus_cells"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "throw_range_bonus_cells"
+          ]
+        }
+      ],
+      "discrete_only": true,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SG04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "grenade_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "grenade_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "grenade_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "grenade_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "grenade_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "grenade_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "grenade_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "grenade_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "grenade_damage_bonus_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SM00",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": []
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": true
+    },
+    {
+      "skill_id": "SM01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "maximum_simultaneous_mines"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "maximum_simultaneous_mines"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "maximum_simultaneous_mines"
+          ]
+        }
+      ],
+      "discrete_only": true,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SM02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "raw_poison_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "raw_poison_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "raw_poison_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "raw_poison_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "raw_poison_damage_per_turn",
+            "poison_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "raw_poison_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "raw_poison_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "raw_poison_damage_per_turn"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "raw_poison_damage_per_turn"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SM03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "freeze_duration_turns",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "variant_damage_bonus_percent",
+            "freeze_skill_chance_factor_percent",
+            "application_power_rank_base"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SM04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "added_explosion_radius_cells"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": []
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "added_explosion_radius_cells"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": []
+        }
+      ],
+      "discrete_only": true,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SM05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "zone_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "zone_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "zone_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "zone_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "zone_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "zone_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "zone_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "zone_duration_turns"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "zone_duration_turns"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SU03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "reflected_direct_melee_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "reflected_direct_melee_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "reflected_direct_melee_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "reflected_direct_melee_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "reflected_direct_melee_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "reflected_direct_melee_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "reflected_direct_melee_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "reflected_direct_melee_damage_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "reflected_direct_melee_damage_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SU04",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "heal_percent_of_max_HP_per_turn"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "heal_percent_of_max_HP_per_turn"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "heal_percent_of_max_HP_per_turn"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "heal_percent_of_max_HP_per_turn"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "heal_percent_of_max_HP_per_turn"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "heal_percent_of_max_HP_per_turn"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "heal_percent_of_max_HP_per_turn"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "heal_percent_of_max_HP_per_turn"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "heal_percent_of_max_HP_per_turn"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SU05",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "maximum_cleansed_statuses",
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "energy"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "energy"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "SU06",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "cooldown_turns"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "cooldown_turns"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "cooldown_turns"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "cooldown_turns"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "cooldown_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "cooldown_turns"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "cooldown_turns"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "cooldown_turns"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "cooldown_turns"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "T01",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "accuracy_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "accuracy_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "accuracy_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "accuracy_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "accuracy_bonus_percent",
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "accuracy_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "accuracy_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "accuracy_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "accuracy_bonus_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "T02",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "evasion_bonus_units",
+            "duration_turns"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "evasion_bonus_units"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "T03",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "ranged_attack_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "ranged_attack_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "ranged_attack_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "ranged_attack_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "ranged_attack_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "ranged_attack_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "ranged_attack_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "ranged_attack_damage_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "ranged_attack_damage_bonus_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "TR61",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heavy_strike_damage",
+            "raw_shockwave_damage",
+            "crushing_armor_bypass_percent",
+            "stun_chance_percent",
+            "armor_bonus_percent",
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heavy_strike_damage",
+            "raw_shockwave_damage",
+            "crushing_armor_bypass_percent",
+            "stun_chance_percent",
+            "armor_bonus_percent",
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heavy_strike_damage",
+            "raw_shockwave_damage",
+            "crushing_armor_bypass_percent",
+            "stun_chance_percent",
+            "armor_bonus_percent",
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heavy_strike_damage",
+            "raw_shockwave_damage",
+            "crushing_armor_bypass_percent",
+            "stun_chance_percent",
+            "armor_bonus_percent",
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heavy_strike_damage",
+            "raw_shockwave_damage",
+            "crushing_armor_bypass_percent",
+            "stun_chance_percent",
+            "armor_bonus_percent",
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heavy_strike_damage",
+            "raw_shockwave_damage",
+            "crushing_armor_bypass_percent",
+            "stun_chance_percent",
+            "armor_bonus_percent",
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heavy_strike_damage",
+            "raw_shockwave_damage",
+            "crushing_armor_bypass_percent",
+            "stun_chance_percent",
+            "armor_bonus_percent",
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heavy_strike_damage",
+            "raw_shockwave_damage",
+            "crushing_armor_bypass_percent",
+            "stun_chance_percent",
+            "armor_bonus_percent",
+            "maximum_HP_bonus_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heavy_strike_damage",
+            "raw_shockwave_damage",
+            "crushing_armor_bypass_percent",
+            "stun_chance_percent",
+            "armor_bonus_percent",
+            "maximum_HP_bonus_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "TR63",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heurt_damage",
+            "direct_damage_reduction_percent",
+            "reserve_cap_percent_of_maximum_HP",
+            "raw_discharge_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heurt_damage",
+            "direct_damage_reduction_percent",
+            "reserve_cap_percent_of_maximum_HP",
+            "raw_discharge_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heurt_damage",
+            "direct_damage_reduction_percent",
+            "reserve_cap_percent_of_maximum_HP",
+            "raw_discharge_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heurt_damage",
+            "direct_damage_reduction_percent",
+            "reserve_cap_percent_of_maximum_HP",
+            "raw_discharge_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heurt_damage",
+            "direct_damage_reduction_percent",
+            "reserve_cap_percent_of_maximum_HP",
+            "raw_discharge_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heurt_damage",
+            "direct_damage_reduction_percent",
+            "reserve_cap_percent_of_maximum_HP",
+            "raw_discharge_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heurt_damage",
+            "direct_damage_reduction_percent",
+            "reserve_cap_percent_of_maximum_HP",
+            "raw_discharge_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heurt_damage",
+            "direct_damage_reduction_percent",
+            "reserve_cap_percent_of_maximum_HP",
+            "raw_discharge_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_heurt_damage",
+            "direct_damage_reduction_percent",
+            "reserve_cap_percent_of_maximum_HP",
+            "raw_discharge_damage_per_target"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "TR64",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_corporeal_bolt_damage",
+            "raw_pulse_damage_per_target",
+            "raw_drain_damage",
+            "drain_life_return_percent"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_corporeal_bolt_damage",
+            "raw_pulse_damage_per_target",
+            "raw_drain_damage",
+            "drain_life_return_percent"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_corporeal_bolt_damage",
+            "raw_pulse_damage_per_target",
+            "raw_drain_damage",
+            "drain_life_return_percent"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_corporeal_bolt_damage",
+            "raw_pulse_damage_per_target",
+            "raw_drain_damage",
+            "drain_life_return_percent"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_corporeal_bolt_damage",
+            "raw_pulse_damage_per_target",
+            "raw_drain_damage",
+            "drain_life_return_percent"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_corporeal_bolt_damage",
+            "raw_pulse_damage_per_target",
+            "raw_drain_damage",
+            "drain_life_return_percent"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_corporeal_bolt_damage",
+            "raw_pulse_damage_per_target",
+            "raw_drain_damage",
+            "drain_life_return_percent"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_corporeal_bolt_damage",
+            "raw_pulse_damage_per_target",
+            "raw_drain_damage",
+            "drain_life_return_percent"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_corporeal_bolt_damage",
+            "raw_pulse_damage_per_target",
+            "raw_drain_damage",
+            "drain_life_return_percent"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    },
+    {
+      "skill_id": "TR65",
+      "learned_transitions": [
+        {
+          "from_rank": 1,
+          "to_rank": 2,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_reach_attack_damage",
+            "raw_line_strike_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 2,
+          "to_rank": 3,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_reach_attack_damage",
+            "raw_line_strike_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 3,
+          "to_rank": 4,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_reach_attack_damage",
+            "raw_line_strike_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 4,
+          "to_rank": 5,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_reach_attack_damage",
+            "raw_line_strike_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 5,
+          "to_rank": 6,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_reach_attack_damage",
+            "raw_line_strike_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 6,
+          "to_rank": 7,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_reach_attack_damage",
+            "raw_line_strike_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 7,
+          "to_rank": 8,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_reach_attack_damage",
+            "raw_line_strike_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 8,
+          "to_rank": 9,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_reach_attack_damage",
+            "raw_line_strike_damage_per_target"
+          ]
+        },
+        {
+          "from_rank": 9,
+          "to_rank": 10,
+          "improved_fields": [
+            "duration_rank_turns",
+            "raw_reach_attack_damage",
+            "raw_line_strike_damage_per_target"
+          ]
+        }
+      ],
+      "discrete_only": false,
+      "once_purchased": false
+    }
+  ],
+  "runtime_integration": "not_integrated"
+}

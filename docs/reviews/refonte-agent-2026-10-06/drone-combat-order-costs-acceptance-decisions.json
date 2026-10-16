@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-CMD02-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-drone-combat-order-costs-INTERACT-CMD02-01.json",
+    "reference_sha256": "84748d826502dc64f1d4ec7716995f3d3c3eac588b58c52621f7cd810d2f031d"
+  },
+  "user_acceptance": "oui ca me va :)",
+  "approved_rule": {
+    "mode_selection": {
+      "modes": [
+        "Suivre",
+        "Défensif",
+        "Agressif",
+        "Passif"
+      ],
+      "player_actions": 0,
+      "energy": 0,
+      "own_cooldown_turns": 0
+    },
+    "target_order": {
+      "scope": "chosen_attack_capable_drone_and_currently_observed_hostile_under_existing_targeting_conditions",
+      "player_actions": 0,
+      "energy": 0,
+      "own_cooldown_turns": 0
+    },
+    "execution": "store_new_accepted_order;execute_when_drone_normally_eligible_in_familiar_phase;no_immediate_forced_action_or_extra_action_budget_or_recharge_reset",
+    "multiple_orders": "player_can_configure_multiple_drone_rows_before_next_time_advancing_action;orders_alone_advance_no_turn_effect_timer_cooldown_enemy_phase_or_regeneration",
+    "eligibility": "preserve_existing_presence_current_hostile_observation_actual_drone_vision_attack_and_model_role_conditions;no_attack_granted_to_noncombat_model;pending_familiar_map_commands_remain_disabled",
+    "refusal": "invalid_order_preserves_previous_order_and_consumes_no_time_energy_cooldown_or_RNG",
+    "preserved_commands": "Repositionner_Destroy_Mule_Ramasser_Mule_Arreter_keep_accepted_CMD01_one_player_action_and_other_costs_conditions",
+    "preserved_AI": "same_mode_meanings_target_rules_and_natural_actor_budgets;no_new_pursuit_range_target_persistence_or_AI_priority",
+    "raised": "autonomous_without_combat_order_buttons;inspection_and_Destroy_preserved",
+    "scope_boundary": "no_new_skill_ability_button_mode_name_native_layout_animation_or_player_facing_error_copy",
+    "Mule_collection": "combat_mode_selection_does_not_cancel_existing_Mule_collection;stopping_collection_uses_existing_one_action_Arreter_command"
+  },
+  "approval_boundary": "displayed_free_mode_and_target_orders_normal_phase_execution_no_extra_actions_Mule_collection_separation_accepted;new_AI_ranges_and_native_feedback_not_approved",
+  "runtime_integration": "not_integrated"
+}

@@ -235,6 +235,10 @@ impl EquipmentLootCatalog {
         self.bases.iter()
     }
 
+    pub fn family(&self, item: &ItemId) -> Option<&ContentId> {
+        self.bases.get(item).map(|base| &base.family)
+    }
+
     /// Roll properties on the advertised model, without drawing a new base.
     /// Better progression improves values only; property weights stay intact.
     pub fn enchant_base(

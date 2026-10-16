@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SG04-ACCEPT01",
+  "skill_id": "SG04",
+  "user_response": "parfait :)",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG04-01.json",
+  "reviewed_description_sha256": "6822af09b902a15e50f3c294561f661ae8206b845e7fe8b87ecd09414649f4a5",
+  "accepted_player_copy": "**SG04 · Puissance des grenades — Rang 11 · Passif**\n\n*Vous renforcez vos explosifs pour frapper plus durement les ennemis.*\n\n**Effets actuels**\n\n- Bonus aux dégâts des grenades et des lance-grenades : **+110 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus aux dégâts des grenades et des lance-grenades : **+120 %**.\n\nNécessite **Lancer de grenade** apprise. S’applique aux grenades explosives lancées et aux attaques des armes lance-grenades, avant les défenses.\n\nN’ajoute aucun dégât aux variantes **Aveuglante** et **Leurre**.",
+  "accepted_current_values": {
+    "grenade_and_grenade_launcher_damage_bonus_percent": 110
+  },
+  "accepted_next_values": {
+    "grenade_and_grenade_launcher_damage_bonus_percent": 120
+  },
+  "accepted_displayed_conditions": [
+    "SG00_learned_prerequisite",
+    "explosive_grenades_and_player_weapon_grenade_launcher_attacks",
+    "bonus_before_defenses",
+    "no_added_damage_for_blinding_or_Leurre_variants"
+  ],
+  "accepted_visual_direction": "**Affichage proposé :** les dégâts affichés dans les fiches et au-dessus des cibles prennent en compte ce bonus.",
+  "accepted_revision": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG04-02.json",
+  "accepted_revision_sha256": "ca45202a2263bb771c80f76d69435ce1b71c5fcd8b0abfcc4f75154420e12f40",
+  "approval_scope": "displayed_RP_current_next_values_conditions_and_display_direction_explicitly_accepted;unshown_curve_components_stacking_rounding_heavy_tree_and_native_pending",
+  "unshown_cases_pending": [
+    "full_rank1_to10_curve_and_equipment_bonus_continuation",
+    "additive_or_multiplicative_stacking_with_weapon_stats_and_other_skill_bonuses",
+    "single_or_component_damage_rounding_and_minimum_weapon_variance",
+    "elemental_status_ground_damage_and_secondary_explosion_eligibility",
+    "future_heavy_weapon_tree_grenade_launcher_and_action_tags",
+    "native_damage_numbers_tooltip_updates_bonus_rank_color_and_no_damage_utility_feedback"
+  ],
+  "native_visuals": "pending_native_review",
+  "runtime_integration": "not_integrated",
+  "next_review": {
+    "skill_id": "SF00",
+    "existing_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF00-04.json",
+    "scope": "resubmit_existing_consolidated_base_card;no_new_rule_or_text_change;associated_SF01_SF02_approvals_preserved"
+  }
+}

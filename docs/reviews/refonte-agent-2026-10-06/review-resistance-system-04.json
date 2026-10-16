@@ -1,0 +1,297 @@
+{
+  "date": "2026-10-09",
+  "review_id": "RESIST-LOT04",
+  "component_review_ids": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05"
+  ],
+  "status": "shown_common_resistance_texts_values_examples_and_UI_direction_accepted;unshown_cases_and_native_runtime_pending",
+  "user_request_decisions": "docs/reviews/refonte-agent-2026-10-06/occult-resistance-acceptance-and-full-resistance-review-request-decisions.json",
+  "user_request_decisions_sha256": "039b3d05d9a0addc335e0e71a6a2e579b5d47dcfb228f16c19b0fa30a974ebc6",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-15.json",
+  "current_attribute_model_sha256": "e7caa8b9c82e5ca4779224d68606cc31cd1d80ca1e75a67811aac5aa071adae0",
+  "shown_copy_markdown": "Le calcul du **Gel est validé**. Pour terminer ce bloc, voici les règles communes que je propose.\n\n**R01 · Résistances aux dégâts**\n\n*Vos protections atténuent les dégâts. Vos faiblesses les amplifient.*\n\n- Types : **feu, froid, électricité, poison et dégâts occultes**.\n- Base hors bonus : **0 %**.\n- Limites : **−50 % à +75 %**, pour le joueur et les monstres.\n- Bonus additionnés, puis malus soustraits, avant d’appliquer les limites.\n\n**100 dégâts avec 40 % de résistance → 60 dégâts subis.**\n**100 dégâts avec −25 % de résistance → 125 dégâts subis.**\n\nLe surplus reste utile contre les malus : **90 % de bonus − 25 % de malus → 65 % effectifs**.\n\n**R02 · Armure**\n\n*Votre blindage absorbe une partie des impacts.*\n\n- **1 point d’armure retire 1 dégât physique**.\n- Application **une seule fois par impact**, sur sa partie physique.\n- Une partie physique entièrement absorbée inflige **0 dégât**.\n\n**40 dégâts physiques contre 12 armure → 28 dégâts subis.**\n\n**R03 · Effets persistants et arrondis**\n\n- La résistance actuelle est utilisée à chaque nouveau coup ou tour de dégâts persistants.\n- Un saignement calculé sur les dégâts réellement subis ne passe pas une deuxième fois dans l’armure.\n- Dégâts ordinaires arrondis **à l’entier inférieur après les protections**.\n- Une faiblesse au froid augmente aussi la chance de Gel, limitée à **100 % avant le malus d’élite ou de boss**.\n\n**R05 · Affichage**\n\nLes résistances effectives apparaissent dans la fiche du personnage et dans l’analyse détaillée accessible avec l’Éclaireur. Les modifications temporaires restent consultables dans les barres de buffs et de debuffs.\n\nExemple de valeur affichée : **Résistance au froid : 40 %**.\n\n**Ces règles communes restent à valider.**",
+  "shown_copy_sha256": "cb0109fadd770a50aa024d834de255650dedff3f7701de0988cee9ea7f92af1e",
+  "proposed_and_preserved_rules": {
+    "R01": {
+      "damage_resistance_labels": [
+        "Résistance au feu",
+        "Résistance au froid",
+        "Résistance à l’électricité",
+        "Résistance au poison",
+        "Résistance aux dégâts occultes"
+      ],
+      "base_percentage_before_bonuses": 0,
+      "effective_minimum_percent": -50,
+      "effective_maximum_percent": 75,
+      "source_stacking": "additive_percentage_points_for_equipment_implants_passives_buffs;subtract_maluses_before_single_clamp",
+      "surplus_over_cap": "retain_raw_sum_for_malus_calculation_before_clamping_effective_resistance",
+      "scope": "player_and_monster_damage_resistances;individual_monster_profiles_not_created",
+      "formula": "effective_resistance=clamp(sum(bonuses)-sum(maluses),-50,75);damage=raw_damage*(100-effective_resistance)/100",
+      "attribute_and_level_growth": "none_new;all_existing_accepted_attribute_rules_preserved",
+      "new_loot_roll_weights_and_affix_values": "not_defined_by_this_batch",
+      "Radiation_status": "withdrawn_unaccepted_damage_family_proposal;no_playable_source_found;runtime_type_not_removed"
+    },
+    "R02": {
+      "scope": "physical_part_of_a_single_impact;melee_hits_bullets_physical_blast",
+      "formula": "physical_remaining=max(0,total_physical_damage-effective_armor)",
+      "applications_per_impact": 1,
+      "full_absorption_possible": true,
+      "mixed_damage": "physical_armor_and_matching_specialized_resistance_applied_to_respective_components",
+      "existing_piercing_armor_break_and_penetration_agreements": "preserved;no_new_percent_penetration_curve_or_attribute_armor_bonus"
+    },
+    "R03": {
+      "ordinary_periodic_damage": "apply_matching_damage_resistance_on_each_tick;includes_Burn_and_Poison",
+      "periodic_fraction_of_already_suffered_damage": "do_not_apply_target_defenses_again;Tourbillon_bleed_example",
+      "resistance_changes_affect": "future_ordinary_impacts_and_ticks_at_delivery_time;do_not_retroactively_rewrite_past_damage_or_precomputed_net_damage",
+      "application_probability_and_duration": "Burn_and_Poison_damage_resistance_association_does_not_create_new_probability_or_duration_modifiers;Cold_resistance_Gel_chance_direction_accepted;Gel_duration_unchanged",
+      "integer_damage_rounding": "floor_after_applicable_defenses_for_the_resolved_component;no_floating_point_damage_shown_or_inflicted",
+      "no_new_general_minimum_one_damage": "zero_after_floor_or_armor_absorption_possible",
+      "global_skill_attack_variance_and_damage_bonus_stacking": "not_redefined",
+      "accepted_elemental_associations": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/radiation-placeholder-withdrawal-and-elemental-status-resistance-decisions.json",
+        "reference_sha256": "6a4a54be839e5de3101ef3cf11138225b205470edb62d75934866274321d7096",
+        "Burn_damage": "Fire_resistance",
+        "Poison_damage": "Poison_resistance",
+        "Gel": "Cold_resistance_affects_cold_damage_and_Gel_chance;duration_unchanged;numeric_curve_pending"
+      },
+      "new_Gel_probability_proposal": {
+        "review_id": "R03-GEL02",
+        "status": "shown_linear_Cold_formula_and_example48_ordinary24_boss_accepted;unshown_caps_rank_curve_and_zone_order_pending",
+        "formula": "clamp(chance_before_Cold_resistance*(100-effective_Cold_resistance)/100,0,100)*applicable_importance_multiplier",
+        "chance_before_Cold_resistance": "determined_by_the_skill_and_its_existing_applicable_modifiers;replacement_of_old_target_occult_resistance_factor_requires_skill_specific_reconciliation",
+        "relative_modifier_only": "one_final_Gel_roll;no_extra_defense_roll",
+        "skill_specific_occult_defense_factor": "proposed_replacement_by_elemental_Cold_defense_for_Gel;do_not_apply_both_as_target_defenses",
+        "caps_and_source_stacking": "R01_damage_resistance_limits_still_proposed;no_additional_global95_cap_on_existing_Gel_skills",
+        "zone_exposure": "existing_exposure_growth_and_reset_retained;exact_Gel_Cold_factor_order_in_zone_examples_pending",
+        "illustrative_examples": [
+          {
+            "chance_before_Cold_resistance_percent": 80,
+            "Cold_resistance_percent": 40,
+            "ordinary_Gel_chance_percent": 48,
+            "boss_Gel_chance_percent": 24,
+            "duration": "unchanged"
+          }
+        ],
+        "profiles": "illustrative_not_an_existing_skill_card_or_enemy_profile;new_rank_values_not_implicitly_accepted"
+      },
+      "accepted_shown_Gel_math": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/freeze-elemental-chance-formula-acceptance-decisions.json",
+        "reference_sha256": "fbefb43b47922ef0cdc964199d3f20e382a46c9ebc76bec5ab5af28da6dddf04"
+      },
+      "new_Gel_negative_resistance_probability_bounds_proposal": {
+        "review_id": "R03-GEL03",
+        "status": "shown_negative_Cold_Gel_increase_and_cap100_before_importance_accepted;unshown_zone_order_pending",
+        "negative_Cold_resistance": "increases_Gel_application_probability_using_the_accepted_linear_modifier",
+        "chance_cap_percent_before_importance": 100,
+        "elite_or_boss_multiplier": "existing_applicable_importance_multiplier_after_chance_cap;no_new_importance_multiplier",
+        "zone_exposure_order": "unshown_exact_order_and_new_sequences_pending"
+      }
+    },
+    "R04": {
+      "accepted_player_occult_resistance": "preserve_S06_RESIST01_as_accepted;distinct_from_percent_occult_damage_resistance",
+      "accepted_generic_controls": "elite_calculated_chance_times3/4;boss_immune_except_Gel",
+      "accepted_Gel_and_Burn_boss_exception": "calculated_chance_times1/2;no_generic_immunity;damage_and_duration_unchanged_by_importance_multiplier",
+      "accepted_Poison_importance_rule": "no_elite_or_boss_probability_penalty;ordinary_poison_damage_resistance_preserved",
+      "existing_skill_probability_calculations": "non_Gel_probabilities_preserved;Gel_elemental_resistance_direction_accepted;exact_new_Gel_probability_math_and_affected_card_values_pending_review;no_second_defense_roll",
+      "elemental_statuses_and_zone_exposure_rules": "preserved;no_new_global95_percent_cap_on_existing_skill_or_zone_chances",
+      "elite_Burn": "no_new_elite_Burn_penalty_created_by_this_batch",
+      "boss_and_elite_importance_modifiers": "apply_existing_applicable_importance_once;do_not_stack_boss_and_elite_multipliers"
+    },
+    "R05": {
+      "accepted_ME04_collision": "direct_quarter_of_actual_initial_hit_damage;no_additional_defenses",
+      "accepted_SU03_reflection": "accepted_actual_damage_basis_and_direct_application_preserved",
+      "accepted_SELF_DMG01": "player_own_spell_and_power_damage_protection_preserved;no_new_HP_sacrifice_skill;other_allies_follow_individual_agreements",
+      "stat_display": "current_damage_resistances_in_player_statistics_and_detailed_target_analysis",
+      "detailed_target_analysis": "existing_scout_access_condition_preserved;status_effect_values_still_visible_without_scout",
+      "temporary_modifiers": "existing_buff_debuff_icon_requirements_preserved",
+      "native_layout_colors_and_animations": "not_presented_or_approved"
+    }
+  },
+  "approval_by_component": {
+    "R01": "shown_RP_five_families_base0_limits_minus50_plus75_stacking_overcap_and_examples_accepted;unshown_affixes_and_profiles_pending",
+    "R02": "shown_RP_flat_armor_once_per_physical_impact_zero_floor_and_example_accepted;unshown_component_allocation_pending",
+    "R03": "shown_current_resistance_per_impact_tick_no_double_armor_on_net_damage_bleed_floor_and_Gel_negative_cap100_accepted;unshown_zone_order_rank_values_and_other_cases_pending",
+    "R04": "previous_accepted_occult_and_importance_rules_preserved;unshown_cases_pending",
+    "R05": "shown_current_stat_label_detailed_analysis_access_and_temporary_status_direction_accepted;native_pending"
+  },
+  "illustrative_examples": [
+    {
+      "raw_damage": 100,
+      "resistance_percent": 40,
+      "suffered_damage": 60
+    },
+    {
+      "raw_damage": 100,
+      "resistance_percent": 75,
+      "suffered_damage": 25
+    },
+    {
+      "raw_damage": 100,
+      "resistance_percent": -25,
+      "suffered_damage": 125
+    },
+    {
+      "raw_resistance_bonus_percent": 90,
+      "malus_percentage_points": 25,
+      "effective_resistance_percent": 65
+    },
+    {
+      "raw_physical_damage": 20,
+      "raw_cold_damage": 20,
+      "effective_armor": 5,
+      "cold_resistance_percent": 50,
+      "suffered_physical_damage": 15,
+      "suffered_cold_damage": 10,
+      "suffered_total": 25
+    },
+    {
+      "raw_physical_damage": 40,
+      "effective_armor": 12,
+      "suffered_physical_damage": 28
+    }
+  ],
+  "accepted_rule_references": [
+    {
+      "kind": "generic_controls",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/control-boss-immunity-and-elite-penalty-decisions.json",
+      "reference_sha256": "139e1615bfedbc7a4ad3df16d614e39d3616fcff387f6bdcc2b96c82cb85c145"
+    },
+    {
+      "kind": "boss_elemental_exception",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/boss-elemental-status-acceptance-decisions.json",
+      "reference_sha256": "6000f8846790c04d15bf3569f52673f5c34036cb173f43982d723bccc8faeb6c"
+    },
+    {
+      "kind": "own_spell_protection",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/own-spell-self-damage-protection-decisions.json",
+      "reference_sha256": "9ee4943a2307c8b4b562d82856751acfb4619bc4876d71e1705cbd8b1fe18140"
+    },
+    {
+      "kind": "collision",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME04-03.json",
+      "reference_sha256": "67376eb9c578ed5e7e71c4235bab640b0d5b845d3cf4296f27a363d3b32748b4"
+    },
+    {
+      "kind": "direct_reflection",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU03-04.json",
+      "reference_sha256": "527ee5dc9243eafc1aca108d73796c8c272d2290a3a3fe717ff6a1e074b13851"
+    },
+    {
+      "kind": "magic_reflection_unshown_cases",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM05-02.json",
+      "reference_sha256": "5f043bd5dd97452ee7ae2debd41a59753a758dec31d408194a7605fb5e57ac8c"
+    },
+    {
+      "kind": "bleed",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME06-04.json",
+      "reference_sha256": "c29b34e84e5869ac482952e9c67a4f24cca2249a6f5359b2308bace1957a9530"
+    }
+  ],
+  "read_only_runtime_evidence": {
+    "damage_types": "src/combat/damage.rs contains Kinetic Piercing Explosive Thermal Electrical Chemical Radiation Corruption;current ArmorRules distinguishes physical impact and specialized percentage defenses",
+    "legacy_status_resistance": "src/stats/stability.rs still uses old Resilience;not_adopted_into_the_new_six_attribute_model",
+    "migration": "Cold_and_new_display_labels_backend_mapping_and_existing_content_migration_require_later_integration;no_enum_or_content_changed",
+    "Radiation": "declaration_loader_UI_and_test_coverage_only;no_playable_damage_source_found;old_claim_of_existing_radiation_content_corrected",
+    "Electrical": "existing_runtime_damage_sources_preserved;no_lightning_skill_branch_restored"
+  },
+  "unshown_cases_pending": [
+    "full_resistance_modifier_affix_values_probabilities_and_item_family_eligibility",
+    "individual_enemy_drone_and_raised_monster_base_resistance_profiles",
+    "specialized_resistance_penetration_and_resistance_reduction_effects_with_floor_overcap_ordering",
+    "source_death_transformation_or_layer_transition_behavior_of_temporary_resistance_modifiers",
+    "damage_component_allocation_for_multiple_physical_subtypes_and_projectile_impacts",
+    "absorption_shields_critical_bonus_damage_and_other_generic_defense_stacking_cases",
+    "non_Tourbillon_bleed_sources_flat_true_damage_and_other_indirect_effect_eligibility",
+    "BM05_reflected_damage_recipient_defenses_mixed_attack_classification_and_source_attribution",
+    "innate_status_eligibility_by_creature_nature_and_explicit_future_skill_exceptions",
+    "exact_ordinary_DoT_tick_timing_status_refresh_snapshot_and_simultaneous_effect_ordering",
+    "NPC_control_power_and_resistance_scaling_and_compatibility_with_existing_accepted_skill_chances",
+    "native_statistics_tooltips_icons_analysis_panels_and_damage_colors",
+    "all_other_unshown_cases",
+    "Gel_zone_order_rank_curve_reconciliation_and_replacement_of_previous_target_occult_resistance_factor;shown_negative_Cold_cap100_now_accepted"
+  ],
+  "new_native_visuals_created": false,
+  "runtime_integration": "not_integrated",
+  "revision": 4,
+  "previous_batch": "docs/reviews/refonte-agent-2026-10-06/review-resistance-system-03.json",
+  "previous_batch_sha256": "16a1db1bd3f516d31705506768b8a1427329377d4084596001229498a582bffb",
+  "latest_feedback": "docs/reviews/refonte-agent-2026-10-06/common-resistance-system-acceptance-decisions.json",
+  "latest_feedback_sha256": "b420384467efaf95c472751d15970b8ac95cd12b416c8756e17b32a29167eda2",
+  "accepted_Gel_formula_and_examples": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/freeze-elemental-chance-formula-acceptance-decisions.json",
+    "reference_sha256": "fbefb43b47922ef0cdc964199d3f20e382a46c9ebc76bec5ab5af28da6dddf04"
+  },
+  "current_shown_pending_parts": [
+    "R01_RP_five_families_base0_limits_minus50_plus75_sum_then_clamp_overcap_and_examples",
+    "R02_RP_flat_armor_once_per_physical_impact_zero_floor_and_example",
+    "R03_current_resistance_each_ordinary_impact_or_tick_no_double_armor_on_net_damage_bleed_floor_and_Gel_negative_resistance_cap100",
+    "R05_stat_and_detailed_analysis_access_and_current_label_direction"
+  ],
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/common-resistance-system-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "b420384467efaf95c472751d15970b8ac95cd12b416c8756e17b32a29167eda2",
+  "accepted_rules": {
+    "R01": {
+      "damage_families": [
+        "Fire",
+        "Cold",
+        "Electrical",
+        "Poison",
+        "Occult_damage"
+      ],
+      "base_resistance_percent_before_bonuses": 0,
+      "minimum_effective_resistance_percent": -50,
+      "maximum_effective_resistance_percent": 75,
+      "scope": "player_and_monsters;individual_monster_profiles_not_created",
+      "stacking": "sum_bonuses_then_subtract_maluses_then_clamp;retain_surplus_before_maluses",
+      "damage_formula": "ordinary_damage_before_resistance*(100-effective_resistance)/100",
+      "RP": "Vos protections atténuent les dégâts. Vos faiblesses les amplifient."
+    },
+    "R02": {
+      "armor_points_to_physical_damage_removed": 1,
+      "armor_applications_per_impact": 1,
+      "scope": "physical_part_of_a_single_impact",
+      "physical_damage_floor": 0,
+      "RP": "Votre blindage absorbe une partie des impacts."
+    },
+    "R03": {
+      "resistance_evaluation_time": "current_resistance_at_each_new_ordinary_impact_or_periodic_damage_tick",
+      "net_damage_based_bleeding": "no_second_armor_application",
+      "ordinary_damage_rounding": "floor_after_applicable_protections",
+      "negative_Cold_resistance_Gel": "increases_Gel_probability_under_accepted_linear_formula",
+      "Gel_chance_upper_bound_before_importance_percent": 100,
+      "Gel_importance_modifier": "existing_applicable_elite_or_boss_multiplier_after_cap"
+    },
+    "R05": {
+      "current_effective_resistances": "shown_in_player_statistics_and_detailed_target_analysis_accessible_with_scout",
+      "temporary_modifications": "existing_buff_debuff_bars",
+      "shown_example_copy": "Résistance au froid : 40 %",
+      "native_layout_colors_and_assets": "not_presented_or_approved"
+    }
+  },
+  "accepted_examples": [
+    {
+      "raw_damage": 100,
+      "resistance_percent": 40,
+      "suffered_damage": 60
+    },
+    {
+      "raw_damage": 100,
+      "resistance_percent": -25,
+      "suffered_damage": 125
+    },
+    {
+      "raw_resistance_bonus_percent": 90,
+      "malus_percentage_points": 25,
+      "effective_resistance_percent": 65
+    },
+    {
+      "raw_physical_damage": 40,
+      "effective_armor": 12,
+      "suffered_physical_damage": 28
+    }
+  ]
+}

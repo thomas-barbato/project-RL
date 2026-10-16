@@ -1,0 +1,366 @@
+{
+  "review_id": "SKILLS-IC08",
+  "date": "2026-10-10",
+  "status": "accepted",
+  "source_review": "SKILLS-IC05",
+  "scope": "Four pending IC05 illustrations copied exactly and four new compact counterpart proposals. No active assets, gameplay, skill copy or status applicability changes.",
+  "generation_tool": "image_gen.imagegen",
+  "generation_strategy": "Illustrations and exports copied unchanged from IC05. One separate image_gen call per new compact counterpart.",
+  "feedback": {
+    "review_id": "SKILLS-IC08",
+    "date": "2026-10-10",
+    "source_review": "SKILLS-IC05",
+    "continuation_request": "ok on continue",
+    "illustrated_ids": [
+      "T01",
+      "A03",
+      "M01",
+      "M03"
+    ],
+    "illustrated_direction": "Existing IC05 illustrations copied exactly for continued review; no redesign or approval inferred.",
+    "compact_direction": "Four new compact counterparts following the separately approved simple style from IC06. Each remains an independent visual proposal.",
+    "approval_scope": "Drawings only; no gameplay, skill text or status applicability changes."
+  },
+  "candidates": [
+    {
+      "number": 3,
+      "id": "T01",
+      "variant": "T01",
+      "kind": "illustrated",
+      "title": "Marquage balistique",
+      "visual_status": "accepted",
+      "prompt": "prompts/T01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/T01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "7b1c42a0d38e3dcc504a3232d08ce2b68f065a9deb9d54536411df982c6ca1fc"
+      },
+      "files": {
+        "24": {
+          "file": "T01-24.png",
+          "sha256": "c65954f60ba97d0f75c08a5624970d64f56d6aa45c8f5ea3a4472f4d8a1e581b"
+        },
+        "32": {
+          "file": "T01-32.png",
+          "sha256": "520b923a0dd651124221b9907900ab439db9728359dfcb01b1dccb33ae6d11bf"
+        },
+        "64": {
+          "file": "T01-64.png",
+          "sha256": "d59dc3b0242829f25e1323178d383ee3800158cfc0bfa08ca11ba761ad6e109c"
+        },
+        "128": {
+          "file": "T01-128.png",
+          "sha256": "7bb24a94a65be157ee807c30c638a988f8c057274799d94d9d55fa8e110d0757"
+        },
+        "192": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/T01-192.png",
+          "sha256": "0e5b70be8f4501b7c16b883d7d90d29aa67076c949718238a8f401f743430fd8"
+        }
+      },
+      "user_approval": "ok on continue :)",
+      "approval_date": "2026-10-10"
+    },
+    {
+      "number": 5,
+      "id": "A03",
+      "variant": "A03",
+      "kind": "illustrated",
+      "title": "Canalisation",
+      "visual_status": "accepted",
+      "prompt": "prompts/A03.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/A03-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "512a7f2a0f45d689afaa38e974e54dc220a0fd395d592bc003f49db3319dca45"
+      },
+      "files": {
+        "24": {
+          "file": "A03-24.png",
+          "sha256": "18bdf28a115761969c291af44e5db52553989b12464c291f37f4797b0224a12e"
+        },
+        "32": {
+          "file": "A03-32.png",
+          "sha256": "b6fb82f8c559077638e6c79231aab6a97b2c3d36c1a7338cd415ff30b9e6c0e7"
+        },
+        "64": {
+          "file": "A03-64.png",
+          "sha256": "9d6bc8fe48fa64dbfbfff85ea9437a8ba7efbfa0d3e9957410f03ec7d28f7447"
+        },
+        "128": {
+          "file": "A03-128.png",
+          "sha256": "612584a23a880da7f05c26767cb687cd6a4b3bc8f369adce998f7b1044da6904"
+        },
+        "192": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/A03-192.png",
+          "sha256": "5583745698e12316a2026610ca66d40dbb62bd09971dda33f0b4d9e0bd7bdc3e"
+        }
+      },
+      "user_approval": "ok on continue :)",
+      "approval_date": "2026-10-10"
+    },
+    {
+      "number": 7,
+      "id": "M01",
+      "variant": "M01",
+      "kind": "illustrated",
+      "title": "Mue prédatrice",
+      "visual_status": "accepted",
+      "prompt": "prompts/M01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/M01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "147645b805366a195a6a02a702c4cde3d7e8ad6de3378d65a0f01016ebdd12b4"
+      },
+      "files": {
+        "24": {
+          "file": "M01-24.png",
+          "sha256": "bd97b9826aca82d003aece9c7c1431232ded75cdc4315b3b7d53711c4a53a616"
+        },
+        "32": {
+          "file": "M01-32.png",
+          "sha256": "29990a65fe3a9a4d4b9f9b54146fa55cc7ef0889afcf54b1de72798abd5c2851"
+        },
+        "64": {
+          "file": "M01-64.png",
+          "sha256": "4f3c37ec537fb8baccf073259742371f40b80a78569112a0304e006f346a67ba"
+        },
+        "128": {
+          "file": "M01-128.png",
+          "sha256": "ba21f5e5adbe84f9577a85626e8da7efd85ae01730d72117f9d5e1eb235d9039"
+        },
+        "192": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/M01-192.png",
+          "sha256": "6a139c376988a6946f0b6bd5a2a814cdc9e8fcfb38f19091025a2d5ed191872e"
+        }
+      },
+      "user_approval": "ok on continue :)",
+      "approval_date": "2026-10-10"
+    },
+    {
+      "number": 8,
+      "id": "M03",
+      "variant": "M03",
+      "kind": "illustrated",
+      "title": "Puissance métamorphe",
+      "visual_status": "accepted",
+      "prompt": "prompts/M03.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/M03-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "8317e69b256038805db94cad76983d373af46e707735d3d6a8960a5572402830"
+      },
+      "files": {
+        "24": {
+          "file": "M03-24.png",
+          "sha256": "b272dc6f36995e8f4c5171657fe31329cad9e30b5937fbae83e2273a44daf9ad"
+        },
+        "32": {
+          "file": "M03-32.png",
+          "sha256": "53a84cd3eab173537f673c51c0df39fc7f6081896d4ad2a1ad2f370280117d10"
+        },
+        "64": {
+          "file": "M03-64.png",
+          "sha256": "9846951f70803338cd50806532f10eab10caaa6f14de396ac2622ee03b80d9f8"
+        },
+        "128": {
+          "file": "M03-128.png",
+          "sha256": "b4ae197a984a9e7bff50f0a728a2e304c06cf2214dfba4ed5de02d15e6de25d5"
+        },
+        "192": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-08/M03-192.png",
+          "sha256": "daeeffb775e7c604cd73ddbd505c57ba3bffaf704ad9af9ad692cd7146dc85df"
+        }
+      },
+      "user_approval": "ok on continue :)",
+      "approval_date": "2026-10-10"
+    },
+    {
+      "number": 3,
+      "id": "T01",
+      "variant": "T01-C01",
+      "kind": "compact",
+      "title": "Marquage balistique",
+      "visual_status": "accepted",
+      "prompt": "prompts/T01-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/T01-C01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "0c8d0f6a218354183f6fd562026371e3b512e7dcc31ccd104505b6edbdaa6b8d"
+      },
+      "files": {
+        "24": {
+          "file": "T01-C01-24.png",
+          "sha256": "eb407dd68633d15d19555a5304df920301e17e67d846ea81f7c29902c94592e7"
+        },
+        "32": {
+          "file": "T01-C01-32.png",
+          "sha256": "58cfa8948d9e2eb73654d306354d1edb14adc3f8409073e05a6a67a433d70668"
+        },
+        "64": {
+          "file": "T01-C01-64.png",
+          "sha256": "fa71345b7694f4bb1efd878cb7f832a9afe94609634ae1e81963d86bb1aa36b6"
+        },
+        "128": {
+          "file": "T01-C01-128.png",
+          "sha256": "cb0259515640075b21947989a5fe108700f0bb49312df76366852f72ee93cdf1"
+        },
+        "192": {
+          "file": "T01-C01-192.png",
+          "sha256": "23bcbe3fd8216b19a99a924283ea37bafc853e6fb37368bd89010f6541c272bd"
+        }
+      },
+      "user_approval": "ok on continue :)",
+      "approval_date": "2026-10-10"
+    },
+    {
+      "number": 5,
+      "id": "A03",
+      "variant": "A03-C01",
+      "kind": "compact",
+      "title": "Canalisation",
+      "visual_status": "accepted",
+      "prompt": "prompts/A03-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/A03-C01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "dcc9c59730aba7ff8ef4fcaf3a14b2eb1918f8e00d1f711921a73c82a58e707a"
+      },
+      "files": {
+        "24": {
+          "file": "A03-C01-24.png",
+          "sha256": "41f709972e74c3458b94d4c55a67ba13b473a4d707f82da8cc6ae0d52a72ec6c"
+        },
+        "32": {
+          "file": "A03-C01-32.png",
+          "sha256": "54bdd0f0c1430fab786067587eedd9730641a316d5aacc31dce33660df752f47"
+        },
+        "64": {
+          "file": "A03-C01-64.png",
+          "sha256": "f3333fe5f1c5740cc40af97f32ae3b2df190017319d300103619ff0e9db1982d"
+        },
+        "128": {
+          "file": "A03-C01-128.png",
+          "sha256": "3ff56e7dea67b99e8119fa8e1285f3d0c098ac024f9231c28627232afd4447ff"
+        },
+        "192": {
+          "file": "A03-C01-192.png",
+          "sha256": "611406fc90c6cf733b5ba812a946ffefffc5cffd59c8465d6bf7971e0e131e80"
+        }
+      },
+      "user_approval": "ok on continue :)",
+      "approval_date": "2026-10-10"
+    },
+    {
+      "number": 7,
+      "id": "M01",
+      "variant": "M01-C01",
+      "kind": "compact",
+      "title": "Mue prédatrice",
+      "visual_status": "accepted",
+      "prompt": "prompts/M01-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/M01-C01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "c834836aeebd304407e1e153b83baa86e5504b5d852fe8235af2547f6598d8f0"
+      },
+      "files": {
+        "24": {
+          "file": "M01-C01-24.png",
+          "sha256": "dd1093ea2c58b4caf6c89977d8021b3e276430f03bd6972c840172d6629c158d"
+        },
+        "32": {
+          "file": "M01-C01-32.png",
+          "sha256": "7c815dde41984b6089e6f9ec5aa5dd7fdf3de5ba1f2ab5fdb53d8d412d522680"
+        },
+        "64": {
+          "file": "M01-C01-64.png",
+          "sha256": "42db01f571cf9893c17f70cd5e1145c5b9df5cb270bb2e49e0d582c108dea014"
+        },
+        "128": {
+          "file": "M01-C01-128.png",
+          "sha256": "5a130756165a3aca0e5c66f6488b1e2f1e8b92513eda3fe1213bd1af35428c12"
+        },
+        "192": {
+          "file": "M01-C01-192.png",
+          "sha256": "f470cd6ed4c23620aff21f17cc66b59372f0a2cc3857471938db17f9d4abd8d1"
+        }
+      },
+      "user_approval": "ok on continue :)",
+      "approval_date": "2026-10-10"
+    },
+    {
+      "number": 8,
+      "id": "M03",
+      "variant": "M03-C01",
+      "kind": "compact",
+      "title": "Puissance métamorphe",
+      "visual_status": "accepted",
+      "prompt": "prompts/M03-C01.txt",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "c2604531e02d735854696a52353e55968466f15f9ea3a7a3f7d61a25f934d81e"
+      },
+      "files": {
+        "24": {
+          "file": "M03-C01-24.png",
+          "sha256": "b4e4eb19f1cbf5f1912a6b1db71eedeb89acbd7584230628f6501dac373f4f4c"
+        },
+        "32": {
+          "file": "M03-C01-32.png",
+          "sha256": "0b2667b4701262c015e170aa7e1da3a185d925c510694ff5ad456b25d7db1b39"
+        },
+        "64": {
+          "file": "M03-C01-64.png",
+          "sha256": "99e7d50e0a6c2aa863ce6861d8b7af0e1bf5d6cf2a679d834af93809be581828"
+        },
+        "128": {
+          "file": "M03-C01-128.png",
+          "sha256": "cae3f66f2bd73d0d21432032a1d406e8fdc42adae88fd4f222ebbdbe95577d4c"
+        },
+        "192": {
+          "file": "M03-C01-192.png",
+          "sha256": "c1f33f477f5af585eec24997da4909e62e13616c3c18622d6a564537bda8d901"
+        }
+      },
+      "user_approval": "ok on continue :)",
+      "approval_date": "2026-10-10"
+    }
+  ],
+  "approval_groups": {
+    "illustrated": "accepted",
+    "compact": "accepted"
+  },
+  "unchanged_pending_review": [],
+  "preserved_previous_image_hashes": true,
+  "preserved_accepted_image_hashes": true,
+  "accepted_icon_count": 12,
+  "accepted_compact_icon_count": 4,
+  "packaging": "Source masters copied unchanged; preserved exports copied exactly; new compact Lanczos3 reductions; SVG layout only for review.",
+  "visual_acceptance": {
+    "review_id": "SKILLS-IC08-ACCEPT01",
+    "date": "2026-10-10",
+    "user_approval": "ok on continue :)",
+    "accepted_illustrated": [
+      "T01",
+      "A03",
+      "M01",
+      "M03"
+    ],
+    "accepted_compact": [
+      "T01-C01",
+      "A03-C01",
+      "M01-C01",
+      "M03-C01"
+    ],
+    "scope": "Approval of the eight drawings presented on IC08 in the current visual-review context. No gameplay, skill copy, status applicability or active UI changes."
+  }
+}

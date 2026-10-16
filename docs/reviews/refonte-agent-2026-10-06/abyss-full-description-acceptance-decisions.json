@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "TR65",
+    "TR65-A03",
+    "TR65-A03-V01",
+    "TR65-SHADOW-V01",
+    "TRANS-DUR01"
+  ],
+  "user_acceptance": "je valide :)",
+  "acceptance_context": "explicit_agreement_to_last_shown_full_TR65_01_card_and_visual_direction",
+  "accepted_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-TR65-01.json",
+  "accepted_review_sha256": "ccc2882116b8d10d67508e8dfd906f5604ca37e6d55f78f071fff68460aa4a4f",
+  "accepted_player_copy_sha256": "77f7a1210cbd2df17c71d3908988e504684ac393e2697939a0ccdd693a474adc",
+  "accepted_visual_direction_copy_sha256": "a0f66aed37b33c3ec54876ccc24c82d9df4080941f2348eaf98a85a7418faf35",
+  "accepted_roleplay_text": "Vous vous métamorphosez en une créature des abysses, dont les membres s’étirent et la silhouette se fond dans les ombres.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "duration_turns": 22,
+    "reach_attack_damage": 45,
+    "reach_attack_range_cells": 2,
+    "reach_attack_energy_cost": 0,
+    "line_strike_damage_per_target": 60,
+    "line_strike_length_cells": 4,
+    "line_strike_energy_cost": 6,
+    "line_strike_cooldown_turns": 4,
+    "shadow_step_range_cells": 3,
+    "shadow_step_energy_cost": 5,
+    "shadow_step_cooldown_turns": 3,
+    "transform_energy_cost": 17,
+    "transform_cooldown_turns": 10
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "duration_turns": 23,
+    "reach_attack_damage": 48,
+    "reach_attack_range_cells": 2,
+    "reach_attack_energy_cost": 0,
+    "line_strike_damage_per_target": 65,
+    "line_strike_length_cells": 4,
+    "line_strike_energy_cost": 6,
+    "line_strike_cooldown_turns": 4,
+    "shadow_step_range_cells": 3,
+    "shadow_step_energy_cost": 5,
+    "shadow_step_cooldown_turns": 3,
+    "transform_energy_cost": 17,
+    "transform_cooldown_turns": 10
+  },
+  "accepted_scope": [
+    "displayed_RP_current_next_values_costs_durations_and_cooldowns",
+    "Allonge_no_energy",
+    "Allonge_and_Fente_stopped_by_walls_and_opaque_obstacles",
+    "Fente_hits_aligned_enemies_in_chosen_direction_without_player_movement",
+    "Pas_d_ombre_crosses_obstacles_to_free_visible_destination_adjacent_to_opaque_wall_or_obstacle;no_damage",
+    "Silence_blocks_Pas_d_ombre_but_leaves_Allonge_and_Fente_available",
+    "same_form_renewal_restores_duration_without_heal_or_action_cooldown_reset",
+    "equipment_stats_passives_and_pre_form_active_weapon_damage_type_effects_as_shown",
+    "three_intrinsic_actions_and_M02_available_under_common_form_rules",
+    "shown_extended_limb_dark_line_laceration_line_preview_eligible_shadow_destination_preview_and_residual_shadow_direction"
+  ],
+  "not_accepted_by_this_reply": [
+    "unshown_full_rank_curves_default_rank1_values",
+    "accuracy_criticals_hit_order_damage_components_and_equipment_proc_details",
+    "line_diagonals_range_metrics_actor_visibility_friendly_actors_and_large_footprints",
+    "shadow_diagonal_adjacency_transparent_obstacles_occupied_destination_and_large_footprints",
+    "Silence_compatibility_for_form_entry_renewal_and_M02",
+    "M02_extension_budget_and_equipment_parameter_sampling_on_renewal",
+    "raw_weapon_base_damage_other_affixes_dual_wield_stacking_and_exact_native_pixels"
+  ],
+  "runtime_integration": "not_integrated"
+}

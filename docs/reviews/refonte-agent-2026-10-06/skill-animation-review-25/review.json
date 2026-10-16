@@ -1,0 +1,32 @@
+{
+  "batch": "ANIM-S08",
+  "status": "blizzard_approved_wave_pending",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 17,
+      "skill_id": "FR04",
+      "variant": "FR04-A01",
+      "name": "Vague de froid",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 18,
+      "skill_id": "FR05",
+      "variant": "FR05-A01",
+      "name": "Blizzard",
+      "status": "visually_approved",
+      "acceptance": "blizzard-acceptance-01.json",
+      "shown_timing_status": "confirmed"
+    }
+  ],
+  "wave": "One broad icy front across three cells, chosen adjacent to the caster. First contact at launch; subsequent movement one cell per explicit turn, maximum five. A .18-second interpolation is visual only. Blocked lanes never return. No lingering cold zone.",
+  "blizzard": "Airy downward sleet. Visual formation starts on cast; the previously approved explicit one-turn delay before first hits remains. Four prepared distinct legal impact cells per application at rank 11. Five applications over five active turns. Visual snowfall loops without producing more impacts.",
+  "timing": "Real time controls only moving drawings. Cooldowns, Gel, wave movement, impact applications and zone expiry only advance with explicit turns. No extra real-time damage ticks.",
+  "freeze": "Reuse the unchanged attached-foot Gel candidate from review 23, without inferring new approval. Prepared successful Gel removes initial Burn. No blood in pure Frost.",
+  "preview": "Blinking cyan footprint disappears on cast. Wave shows only its adjacent starting band with an arrow; no full-travel preview is added. Native lab lets the band turn around the same caster before launch.",
+  "geometry": "Open scenes in four cardinal orientations, partial obstacles, separate full-cloison cases and a starting-band placement on the right. Physics cells are prepared fixtures; final campaign targeting and large-actor rules remain separate.",
+  "scope": "Isolated debug visual proposal: no GameState, campaign, saves, damage, RNG or real AI. Hits/Gel are prepared examples; no balancing claims.",
+  "unchanged": "Catalogue, approved wall FR03-A02, all previous reviews and actor/equipment artwork.",
+  "blizzard_acceptance": "blizzard-acceptance-01.json"
+}

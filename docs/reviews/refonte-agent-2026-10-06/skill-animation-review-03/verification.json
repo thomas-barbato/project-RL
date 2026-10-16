@@ -1,0 +1,117 @@
+{
+  "status": "awaiting_visual_review",
+  "accepted_files_unchanged": 261,
+  "source": "Macroquad native framebuffer",
+  "native_capture": "native/capture.json",
+  "resampling": false,
+  "animations": [
+    {
+      "file": "B01-A01-64.gif",
+      "native_size": [
+        448,
+        320
+      ],
+      "distinct_frames": 56,
+      "frames": 56,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "B01-A01-64-slow.gif",
+      "native_size": [
+        448,
+        320
+      ],
+      "distinct_frames": 56,
+      "frames": 56,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "ME03-A01-64.gif",
+      "native_size": [
+        448,
+        320
+      ],
+      "distinct_frames": 56,
+      "frames": 56,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "ME03-A01-64-slow.gif",
+      "native_size": [
+        448,
+        320
+      ],
+      "distinct_frames": 56,
+      "frames": 56,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "ME04-A01-MUR-64.gif",
+      "native_size": [
+        448,
+        320
+      ],
+      "distinct_frames": 72,
+      "frames": 72,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "ME04-A01-MUR-64-slow.gif",
+      "native_size": [
+        448,
+        320
+      ],
+      "distinct_frames": 72,
+      "frames": 72,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "ME04-A01-CIBLE-64.gif",
+      "native_size": [
+        448,
+        320
+      ],
+      "distinct_frames": 72,
+      "frames": 72,
+      "duration_ms": 3000,
+      "loop": 0
+    },
+    {
+      "file": "ME04-A01-CIBLE-64-slow.gif",
+      "native_size": [
+        448,
+        320
+      ],
+      "distinct_frames": 72,
+      "frames": 72,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "animations-lot-02.gif",
+      "native_size": [
+        988,
+        866
+      ],
+      "distinct_frames": 72,
+      "frames": 72,
+      "duration_ms": 3000,
+      "loop": 0
+    }
+  ],
+  "validation": {
+    "targeted_lab_tests": 4,
+    "result": "passed",
+    "locked_debug_build": "passed",
+    "format_check": "passed",
+    "gallery_js_syntax": "passed",
+    "native_stderr": "empty",
+    "full_suite": "not_run_for_this_visual_prototype"
+  }
+}

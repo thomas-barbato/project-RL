@@ -1,0 +1,207 @@
+{
+  "date": "2026-10-09",
+  "review_id": "RESIST-LOT02",
+  "component_review_ids": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05"
+  ],
+  "status": "elemental_associations_and_Gel_direction_accepted;Radiation_withdrawn;new_Gel_math_and_remaining_batch_rules_pending",
+  "user_request_decisions": "docs/reviews/refonte-agent-2026-10-06/occult-resistance-acceptance-and-full-resistance-review-request-decisions.json",
+  "user_request_decisions_sha256": "039b3d05d9a0addc335e0e71a6a2e579b5d47dcfb228f16c19b0fa30a974ebc6",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-14.json",
+  "current_attribute_model_sha256": "95676274df17eb76b23e26a0b95d1a943051822547aafd42060258f330174b81",
+  "shown_copy_markdown": "Tu as raison pour les **radiations** : ce type existe dans le moteur, mais je n’ai trouvé aucun contenu de jeu qui inflige ces dégâts. Je le retire donc de la proposition.\n\nJe corrige les associations :\n\n- **Brûlure → résistance au feu**, pour ses dégâts à chaque tour.\n- **Empoisonné → résistance au poison**, pour ses dégâts à chaque tour.\n- **Gel → résistance au froid**, pour les dégâts du sort et, selon ton choix, la **chance d’être gelé**. Sa durée reste inchangée.\n\nLa résistance occulte conserve son rôle contre les malédictions et les contrôles occultes.\n\nPour le Gel, je propose ce calcul simple : **chance de Gel × (100 − résistance au froid) ÷ 100**.\n\nExemple avec **80 % de chance avant résistance** et **40 % de résistance au froid** :\n\n- Chance de Gel : **48 %**.\n- Sur un boss, avec le malus déjà validé : **24 %**.\n- Si le Gel s’applique, sa durée reste celle de la compétence.\n\n**Les associations sont notées ; ce calcul chiffré reste à valider.**",
+  "shown_copy_sha256": "b586f31cf9ddb8b07924692bcda121c93d759084a0c1e7fd203e67ac0f339dde",
+  "proposed_and_preserved_rules": {
+    "R01": {
+      "damage_resistance_labels": [
+        "Résistance au feu",
+        "Résistance au froid",
+        "Résistance à l’électricité",
+        "Résistance au poison",
+        "Résistance aux dégâts occultes"
+      ],
+      "base_percentage_before_bonuses": 0,
+      "effective_minimum_percent": -50,
+      "effective_maximum_percent": 75,
+      "source_stacking": "additive_percentage_points_for_equipment_implants_passives_buffs;subtract_maluses_before_single_clamp",
+      "surplus_over_cap": "retain_raw_sum_for_malus_calculation_before_clamping_effective_resistance",
+      "scope": "player_and_monster_damage_resistances;individual_monster_profiles_not_created",
+      "formula": "effective_resistance=clamp(sum(bonuses)-sum(maluses),-50,75);damage=raw_damage*(100-effective_resistance)/100",
+      "attribute_and_level_growth": "none_new;all_existing_accepted_attribute_rules_preserved",
+      "new_loot_roll_weights_and_affix_values": "not_defined_by_this_batch",
+      "Radiation_status": "withdrawn_unaccepted_damage_family_proposal;no_playable_source_found;runtime_type_not_removed"
+    },
+    "R02": {
+      "scope": "physical_part_of_a_single_impact;melee_hits_bullets_physical_blast",
+      "formula": "physical_remaining=max(0,total_physical_damage-effective_armor)",
+      "applications_per_impact": 1,
+      "full_absorption_possible": true,
+      "mixed_damage": "physical_armor_and_matching_specialized_resistance_applied_to_respective_components",
+      "existing_piercing_armor_break_and_penetration_agreements": "preserved;no_new_percent_penetration_curve_or_attribute_armor_bonus"
+    },
+    "R03": {
+      "ordinary_periodic_damage": "apply_matching_damage_resistance_on_each_tick;includes_Burn_and_Poison",
+      "periodic_fraction_of_already_suffered_damage": "do_not_apply_target_defenses_again;Tourbillon_bleed_example",
+      "resistance_changes_affect": "future_ordinary_impacts_and_ticks_at_delivery_time;do_not_retroactively_rewrite_past_damage_or_precomputed_net_damage",
+      "application_probability_and_duration": "Burn_and_Poison_damage_resistance_association_does_not_create_new_probability_or_duration_modifiers;Cold_resistance_Gel_chance_direction_accepted;Gel_duration_unchanged",
+      "integer_damage_rounding": "floor_after_applicable_defenses_for_the_resolved_component;no_floating_point_damage_shown_or_inflicted",
+      "no_new_general_minimum_one_damage": "zero_after_floor_or_armor_absorption_possible",
+      "global_skill_attack_variance_and_damage_bonus_stacking": "not_redefined",
+      "accepted_elemental_associations": {
+        "reference": "docs/reviews/refonte-agent-2026-10-06/radiation-placeholder-withdrawal-and-elemental-status-resistance-decisions.json",
+        "reference_sha256": "6a4a54be839e5de3101ef3cf11138225b205470edb62d75934866274321d7096",
+        "Burn_damage": "Fire_resistance",
+        "Poison_damage": "Poison_resistance",
+        "Gel": "Cold_resistance_affects_cold_damage_and_Gel_chance;duration_unchanged;numeric_curve_pending"
+      },
+      "new_Gel_probability_proposal": {
+        "review_id": "R03-GEL02",
+        "status": "numeric_formula_and_examples_proposed_pending_explicit_review",
+        "formula": "clamp(chance_before_Cold_resistance*(100-effective_Cold_resistance)/100,0,100)*applicable_importance_multiplier",
+        "chance_before_Cold_resistance": "determined_by_the_skill_and_its_existing_applicable_modifiers;replacement_of_old_target_occult_resistance_factor_requires_skill_specific_reconciliation",
+        "relative_modifier_only": "one_final_Gel_roll;no_extra_defense_roll",
+        "skill_specific_occult_defense_factor": "proposed_replacement_by_elemental_Cold_defense_for_Gel;do_not_apply_both_as_target_defenses",
+        "caps_and_source_stacking": "R01_damage_resistance_limits_still_proposed;no_additional_global95_cap_on_existing_Gel_skills",
+        "zone_exposure": "existing_exposure_growth_and_reset_retained;exact_Gel_Cold_factor_order_in_zone_examples_pending",
+        "illustrative_examples": [
+          {
+            "chance_before_Cold_resistance_percent": 80,
+            "Cold_resistance_percent": 40,
+            "ordinary_Gel_chance_percent": 48,
+            "boss_Gel_chance_percent": 24,
+            "duration": "unchanged"
+          }
+        ],
+        "profiles": "illustrative_not_an_existing_skill_card_or_enemy_profile;new_rank_values_not_implicitly_accepted"
+      }
+    },
+    "R04": {
+      "accepted_player_occult_resistance": "preserve_S06_RESIST01_as_accepted;distinct_from_percent_occult_damage_resistance",
+      "accepted_generic_controls": "elite_calculated_chance_times3/4;boss_immune_except_Gel",
+      "accepted_Gel_and_Burn_boss_exception": "calculated_chance_times1/2;no_generic_immunity;damage_and_duration_unchanged_by_importance_multiplier",
+      "accepted_Poison_importance_rule": "no_elite_or_boss_probability_penalty;ordinary_poison_damage_resistance_preserved",
+      "existing_skill_probability_calculations": "non_Gel_probabilities_preserved;Gel_elemental_resistance_direction_accepted;exact_new_Gel_probability_math_and_affected_card_values_pending_review;no_second_defense_roll",
+      "elemental_statuses_and_zone_exposure_rules": "preserved;no_new_global95_percent_cap_on_existing_skill_or_zone_chances",
+      "elite_Burn": "no_new_elite_Burn_penalty_created_by_this_batch",
+      "boss_and_elite_importance_modifiers": "apply_existing_applicable_importance_once;do_not_stack_boss_and_elite_multipliers"
+    },
+    "R05": {
+      "accepted_ME04_collision": "direct_quarter_of_actual_initial_hit_damage;no_additional_defenses",
+      "accepted_SU03_reflection": "accepted_actual_damage_basis_and_direct_application_preserved",
+      "accepted_SELF_DMG01": "player_own_spell_and_power_damage_protection_preserved;no_new_HP_sacrifice_skill;other_allies_follow_individual_agreements",
+      "stat_display": "current_damage_resistances_in_player_statistics_and_detailed_target_analysis",
+      "detailed_target_analysis": "existing_scout_access_condition_preserved;status_effect_values_still_visible_without_scout",
+      "temporary_modifiers": "existing_buff_debuff_icon_requirements_preserved",
+      "native_layout_colors_and_animations": "not_presented_or_approved"
+    }
+  },
+  "approval_by_component": {
+    "R01": "Radiation_unaccepted_proposal_withdrawn;other_R01_values_and_RP_still_pending",
+    "R02": "new_texts_or_mechanical_rules_pending;previous_agreements_preserved",
+    "R03": "Burn_Fire_Poison_Poison_and_Gel_Cold_associations_accepted;Cold_reduces_Gel_chance_not_duration_accepted;new_numeric_formula_and_other_unaccepted_DoT_details_pending",
+    "R04": "previous_importance_and_occult_rules_preserved;new_Gel_elemental_probability_order_pending",
+    "R05": "new_texts_or_mechanical_rules_pending;previous_agreements_preserved"
+  },
+  "illustrative_examples": [
+    {
+      "raw_damage": 100,
+      "resistance_percent": 40,
+      "suffered_damage": 60
+    },
+    {
+      "raw_damage": 100,
+      "resistance_percent": 75,
+      "suffered_damage": 25
+    },
+    {
+      "raw_damage": 100,
+      "resistance_percent": -25,
+      "suffered_damage": 125
+    },
+    {
+      "raw_resistance_bonus_percent": 90,
+      "malus_percentage_points": 25,
+      "effective_resistance_percent": 65
+    },
+    {
+      "raw_physical_damage": 20,
+      "raw_cold_damage": 20,
+      "effective_armor": 5,
+      "cold_resistance_percent": 50,
+      "suffered_physical_damage": 15,
+      "suffered_cold_damage": 10,
+      "suffered_total": 25
+    }
+  ],
+  "accepted_rule_references": [
+    {
+      "kind": "generic_controls",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/control-boss-immunity-and-elite-penalty-decisions.json",
+      "reference_sha256": "139e1615bfedbc7a4ad3df16d614e39d3616fcff387f6bdcc2b96c82cb85c145"
+    },
+    {
+      "kind": "boss_elemental_exception",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/boss-elemental-status-acceptance-decisions.json",
+      "reference_sha256": "6000f8846790c04d15bf3569f52673f5c34036cb173f43982d723bccc8faeb6c"
+    },
+    {
+      "kind": "own_spell_protection",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/own-spell-self-damage-protection-decisions.json",
+      "reference_sha256": "9ee4943a2307c8b4b562d82856751acfb4619bc4876d71e1705cbd8b1fe18140"
+    },
+    {
+      "kind": "collision",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME04-03.json",
+      "reference_sha256": "67376eb9c578ed5e7e71c4235bab640b0d5b845d3cf4296f27a363d3b32748b4"
+    },
+    {
+      "kind": "direct_reflection",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU03-04.json",
+      "reference_sha256": "527ee5dc9243eafc1aca108d73796c8c272d2290a3a3fe717ff6a1e074b13851"
+    },
+    {
+      "kind": "magic_reflection_unshown_cases",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM05-02.json",
+      "reference_sha256": "5f043bd5dd97452ee7ae2debd41a59753a758dec31d408194a7605fb5e57ac8c"
+    },
+    {
+      "kind": "bleed",
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME06-04.json",
+      "reference_sha256": "c29b34e84e5869ac482952e9c67a4f24cca2249a6f5359b2308bace1957a9530"
+    }
+  ],
+  "read_only_runtime_evidence": {
+    "damage_types": "src/combat/damage.rs contains Kinetic Piercing Explosive Thermal Electrical Chemical Radiation Corruption;current ArmorRules distinguishes physical impact and specialized percentage defenses",
+    "legacy_status_resistance": "src/stats/stability.rs still uses old Resilience;not_adopted_into_the_new_six_attribute_model",
+    "migration": "Cold_and_new_display_labels_backend_mapping_and_existing_content_migration_require_later_integration;no_enum_or_content_changed",
+    "Radiation": "declaration_loader_UI_and_test_coverage_only;no_playable_damage_source_found;old_claim_of_existing_radiation_content_corrected",
+    "Electrical": "existing_runtime_damage_sources_preserved;no_lightning_skill_branch_restored"
+  },
+  "unshown_cases_pending": [
+    "full_resistance_modifier_affix_values_probabilities_and_item_family_eligibility",
+    "individual_enemy_drone_and_raised_monster_base_resistance_profiles",
+    "specialized_resistance_penetration_and_resistance_reduction_effects_with_floor_overcap_ordering",
+    "source_death_transformation_or_layer_transition_behavior_of_temporary_resistance_modifiers",
+    "damage_component_allocation_for_multiple_physical_subtypes_and_projectile_impacts",
+    "absorption_shields_critical_bonus_damage_and_other_generic_defense_stacking_cases",
+    "non_Tourbillon_bleed_sources_flat_true_damage_and_other_indirect_effect_eligibility",
+    "BM05_reflected_damage_recipient_defenses_mixed_attack_classification_and_source_attribution",
+    "innate_status_eligibility_by_creature_nature_and_explicit_future_skill_exceptions",
+    "exact_ordinary_DoT_tick_timing_status_refresh_snapshot_and_simultaneous_effect_ordering",
+    "NPC_control_power_and_resistance_scaling_and_compatibility_with_existing_accepted_skill_chances",
+    "native_statistics_tooltips_icons_analysis_panels_and_damage_colors",
+    "all_other_unshown_cases",
+    "Gel_Cold_chance_formula_examples_rank_curve_reconciliation_and_replacement_of_previous_target_occult_resistance_factor"
+  ],
+  "new_native_visuals_created": false,
+  "runtime_integration": "not_integrated",
+  "revision": 2,
+  "previous_batch": "docs/reviews/refonte-agent-2026-10-06/review-resistance-system-01.json",
+  "previous_batch_sha256": "97d9cc455f5acec2757e5cd50f3de26657be71d7b5c308722599eb5656b7e585",
+  "latest_feedback": "docs/reviews/refonte-agent-2026-10-06/radiation-placeholder-withdrawal-and-elemental-status-resistance-decisions.json",
+  "latest_feedback_sha256": "6a4a54be839e5de3101ef3cf11138225b205470edb62d75934866274321d7096"
+}

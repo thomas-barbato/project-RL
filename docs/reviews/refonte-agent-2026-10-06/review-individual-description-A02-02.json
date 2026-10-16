@@ -1,0 +1,137 @@
+{
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "date": "2026-10-07",
+  "id": "A02",
+  "title": "Déflagration occulte",
+  "revision": 2,
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-48.json",
+  "source_existing_proposal": "docs/REVUE_COMPETENCES_AGENT_LOT_02.md#a02-déflagration-occulte",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/occult-deflagration-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "4cbacf61a3b6e2b1c6d48ea770e11959e3d3c567df8b978bcc0203f92f00a03b",
+  "name_approval": "accepted_existing_catalogue_name_preserved",
+  "roleplay_text_approval": "accepted_as_displayed",
+  "functional_description_approval": "paragraph_omitted_by_global_CD08;displayed_necessary_center_preview_friendly_damage_and_walls_conditions_accepted",
+  "current_next_effect_copy_approval": "accepted_as_displayed",
+  "numeric_rules_approval": "displayed_occult_damage28_then30_zone3x3_range4_cost13_CD4_accepted;full_curves_unshown_pending",
+  "detailed_conditions_approval": "displayed_visible_unobstructed_center_preview_cells_and_observed_actors_friendly_damage_including_drones_and_walls_stop_explosion_accepted;unshown_cases_pending",
+  "attribute_scaling_approval": "displayed_Willpower10_example_accepted;full_curves_unshown_pending",
+  "current_profile_status": "illustrative caster,not user save or forced Arcanist start;damage before each target defenses;no other learned passive or initial implant assumed",
+  "formulas": {
+    "occult_damage_per_target_before_defenses": "floor((6+2*(effective_rank-1))*magic_multiplier)",
+    "magic_multiplier": "1+0.02*(Willpower-5)",
+    "zone": "3x3 cells centered on chosen case",
+    "range_cells": 4,
+    "energy_cost": "10+floor((effective_rank-1)/3)",
+    "cooldown_turns": 4
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "occult_damage_per_target_before_defenses": 28,
+    "zone_width_cells": 3,
+    "zone_height_cells": 3,
+    "range_cells": 4,
+    "energy_cost": 13,
+    "cooldown_turns": 4
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "occult_damage_per_target_before_defenses": 30,
+    "zone_width_cells": 3,
+    "zone_height_cells": 3,
+    "range_cells": 4,
+    "energy_cost": 13,
+    "cooldown_turns": 4
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "occult_damage_per_target_before_defenses": 6,
+    "zone_width_cells": 3,
+    "zone_height_cells": 3,
+    "range_cells": 4,
+    "energy_cost": 10,
+    "cooldown_turns": 4,
+    "approval": "unshown_curve_pending"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "occult_damage_per_target_before_defenses"
+    ],
+    "unchanged_effects_omitted": [
+      "zone_width_cells",
+      "zone_height_cells",
+      "range_cells",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "area_occult_spell_not_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy exclusion added"
+  },
+  "effect_conditions": {
+    "type": "active_magic_attack",
+    "target_center": "chosen visible case within range with unobstructed line of sight",
+    "zone": "3x3 cells centered on chosen case",
+    "affected_actors": "actors in zone;player and allies including drones can be hit",
+    "walls_block_effect_from_center": true,
+    "preview_shows_affected_cells_and_already_observed_actors": true,
+    "preview_reveals_hidden_actors_or_stats": false,
+    "displayed_damage": "before_each_targets_defenses",
+    "creates_extra_debuff_or_control": false,
+    "creates_persistent_ground_zone": false,
+    "terrain_burning_or_destruction": "existing_unshown_proposal_retained_pending_review",
+    "starting_Arcanist_active_skill_fixed_to_A02": false
+  },
+  "control_and_elemental_scope": "No new control,debuff,Burn,Gel or poison added;no control-importance chance multiplier or Fire/Cold balance coefficient automatically extended. Foudre branch remains removed.",
+  "zone_exposure_scope": "Single area burst,not persistent zone;EL-ZONE01 not applied.",
+  "unshown_rules_approval": "Full rank/attribute/energy curves,equipment/other passive/implant stacking,exact center line of sight and wall-corner/cell geometry,large actor multi-cell damage,visibility union of player/drones,unknown terrain and hidden actors versus preview/affected cells,ordinary occult defense details,stat snapshots/damage order/other effects,target failure time-energy-RNG-cooldown behavior and absorption interactions,terrain and map transitions remain pending. No extra approval of old lot02 terrain/other rules inferred from this card.",
+  "visual_intention_approval": "displayed_ground_seal_then_angular_fragments_direction_accepted;native_pixels_pending",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**A02 · Déflagration occulte — Rang 11 · Actif**\n\n*Vous faites éclater un sceau et libérez l’énergie occulte qu’il renferme.*\n\n**Effets actuels**\n\n- Dégâts occultes par cible : **28**.\n- Zone : **3 × 3 cases**.\n- Portée : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts occultes par cible : **30**.\n\n**Coût : 13 énergie · Recharge : 4 tours.**\n\nCiblez une case visible, sans obstacle entre vous et elle. L’aperçu montre les cases touchées et les acteurs déjà repérés.\n\nL’explosion peut aussi toucher votre personnage et vos alliés, drones compris. Les murs arrêtent l’explosion.\n\nDégâts affichés avant les défenses de chaque cible.",
+  "player_copy_sha256": "95dec36bf3030532354dbfc4ee24ddde8a6735109cb81b7950d30d8cfc3435d9",
+  "visual_copy_markdown": "**Visuel proposé :** un sceau apparaît au sol, puis éclate en fragments anguleux.",
+  "visual_copy_sha256": "4ebca0723d54dbc824fdf96e7a0daf7150d3d7044bf665291f646563a927aa9a",
+  "checks": [
+    "Same learned9/10,gear+2,Willpower10 and other modifiers;effective11/12 and one point within learnedcap10.",
+    "Damage floor26*1.1=28,current;floor28*1.1=30,next;zone3x3,range4,cost13,CD4 unchanged.",
+    "Next shows changed damage only;no learned/equipment breakdown line or ordinary action timing.",
+    "Visible unobstructed center,preview limited to observed actors,friendly damage including drones and walls blocking burst shown for review.",
+    "Magic area spell,not weapon attack;no weapon variance,extra control/status,persistent zone or hidden stat reveal introduced.",
+    "Arcanist starting spell not fixed;no Canalisation or initial class implant assumed.",
+    "Displayed RP,numbers,center/preview/friendly-damage/wall conditions and visual direction accepted;unshown curves/cases/native pixels pending;runtime not integrated."
+  ],
+  "source_skill_block_sha256": "e09b7a6e461e5a4b73e7f4af70df8810b851e71c406415547ef3eac6f914d5e0",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-A02-01.json",
+  "previous_description_sha256": "c0d2c0836ccf29aed05d8e8ba7ba06fa170859a425d00d57b9dff2967d8bad21"
+}

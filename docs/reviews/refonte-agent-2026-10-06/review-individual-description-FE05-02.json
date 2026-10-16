@@ -1,0 +1,171 @@
+{
+  "date": "2026-10-07",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "target_status_visibility_dependency": {
+    "review_id": "HUD06",
+    "reference": "docs/reviews/refonte-agent-2026-10-06/target-status-analysis-visibility-decisions.json",
+    "sha256": "d1e57c5798ede4cbfa9a715cf1db628415a8c4784b630bbbcf1bba709cf628b1",
+    "burn_status_values_visible_without_recon_drone": true,
+    "native_rendering": "pending"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "id": "FE05",
+  "title": "Boule de feu",
+  "revision": 2,
+  "previous_title": "Foyer vorace",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE05-01.json",
+  "previous_description_sha256": "b18de4f37f91c5ac9c1bf76c5012112bc4e4d07496cb0d7ade5b97a40ca2a813",
+  "player_copy_markdown": "**FE05 · Boule de feu — Rang 11**\n\n*Vous projetez une boule de feu qui éclate en une déflagration dévorante.*\n\n**Effets actuels**\n\n- Dégâts de feu : **63 par cible**.\n- Rayon de l’explosion : **3 cases**.\n- Portée : **6 cases**.\n- Chance de brûlure : **35 % par cible touchée**.\n- Brûlure : **5 dégâts de feu par tour pendant 3 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de feu : **68 par cible**.\n- Chance de brûlure : **37 % par cible touchée**.\n\n**Coût : 21 énergie · Recharge : 8 tours.**\n\nLa boule explose sur la case visée ou au premier obstacle ou personnage rencontré. Les murs bloquent la propagation de l’explosion ; les alliés peuvent être touchés.\n\nLa brûlure commence au prochain tour complet ; ses applications ne se cumulent pas.\n\nDégâts affichés avant les défenses des cibles.",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-25.json",
+  "source_skill_block_sha256": "4b1087983c5eb0191daa3615c6c06822826d7d4fc5396d1b7f6a81da025c043b",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/fireball-replacement-proposal-decisions.json",
+  "latest_decisions_sha256": "1e34a997474ea38132eb9eb2829a05e1182bb4219954a645ff8438f887980d3b",
+  "name_approval": "suggested_by_user_in_conditional_redesign;proposed_replacement_pending_final_review",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph omitted by globalCD08;impact,walls,allies,burn conditions retained",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "replacement_values_proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "projectile_and_explosion_conditions_proposed_pending_individual_user_review",
+  "current_profile_status": "illustrative not a user save;existing Willpower scaling proposal;before target defenses",
+  "attribute_scaling_approval": "shownFE05 profile pending individual review;full curves remain pending",
+  "formulas": {
+    "explosion_fire_damage_per_target": "floor((18+4*(effective_rank-1))*magic_multiplier)",
+    "explosion_radius_cells": 3,
+    "range_cells": 6,
+    "burn_chance_percent": "min(100,max(0,15+2*(effective_rank-1)))",
+    "burn_fire_damage_per_turn": "floor((1+0.4*(effective_rank-1))*magic_multiplier)",
+    "burn_duration_turns": 3,
+    "energy_cost": "18+floor((effective_rank-1)/3)",
+    "cooldown_turns": 8,
+    "magic_multiplier": "1+0.02*(Willpower-5)",
+    "rounding": "damage floored once at end",
+    "distance_weighting": "uniform damage in admissible explosion zone;FE04 falloff not transferred"
+  },
+  "weapon_compatibility": {
+    "scope": "magical projectile with area explosion;not a weapon attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy weapon exclusion added to spell"
+  },
+  "effect_conditions": {
+    "target": "visible aimed tile within6 cells;precise eligibility and projectile path pending",
+    "detonation": "aimed tile or first blocking obstacle/actor encountered",
+    "damage_type": "fire",
+    "damage_display": "before target defenses",
+    "walls_block_blast_propagation": true,
+    "allies_can_be_hit": true,
+    "caster_damage_eligibility": "unshown pending review",
+    "uniform_damage_in_explosion_radius": "proposal pending review;no FE04 falloff inherited",
+    "burn_first_tick": "next complete turn after impact",
+    "own_FE05_burn_applications_stack": false,
+    "cross_skill_burn_priority_and_refresh": "pending;accepted Braise and FE04 rules preserved",
+    "persistent_ground_zone_created": false,
+    "growth_on_death_created": false,
+    "EL_ZONE01_exposure_chance_applies": false,
+    "foyer_duration_or_limit_retained": false,
+    "burn_is_control": false,
+    "new_control_created": false,
+    "terrain_destruction_created": false,
+    "new_hidden_actor_reveal_created": false
+  },
+  "zone_exposure_dependency": {
+    "review_id": "EL-ZONE01",
+    "reference": "docs/reviews/refonte-agent-2026-10-06/elemental-status-and-emanation-redesign-decisions.json",
+    "sha256": "1455a5b1f4ec31f3dcdc0fcaa8d40e34a1c1664a764100cf0b6fd6d1dcdec548",
+    "applies_to_FE05": false,
+    "reason": "one blast and target burn status;no persistent ground zone",
+    "other_persistent_spell_zones": "accepted increasing probability and exit reset preserved"
+  },
+  "unshown_rules_approval": "Full rank/attribute curves,aimed tile eligibility,projectile path and corner/wall/actor collisions,impact on a wall and blast accessibility,large actor footprints,caster damage eligibility,hit/resistance/critical/modifier order,burn replacement/refresh and cross-skill stacking,exact tick/turn order and layer changes remain pending where not already accepted. All new fireball values and conditions are proposals. Existing FE04 and Braise approvals and EL-ZONE01 exposure rules preserved. No continuing foyer,death growth,terrain destruction,control or general spell variance introduced.",
+  "visual_copy_markdown": "**Visuel proposé :** une boule incandescente suivie d’une courte traînée de flammes, puis une large déflagration circulaire.",
+  "visual_intention_approval": "new_direction_proposed_pending_user_review;old_foyer_direction_not_carried_over",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_sha256": "af0c2cfb1812cd0bb7b129f2333396ac5c3a0cddeda1161900b766b728a295e5",
+  "visual_copy_sha256": "81de754fae4dd7ea79d9eb4ce2fac2253fbe7d37328093e12c43e70aa8820620",
+  "current_values": {
+    "effective_rank": 11,
+    "explosion_fire_damage_per_target": 63,
+    "explosion_radius_cells": 3,
+    "range_cells": 6,
+    "burn_chance_percent": 35,
+    "burn_fire_damage_per_turn": 5,
+    "burn_duration_turns": 3,
+    "energy_cost": 21,
+    "cooldown_turns": 8
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "explosion_fire_damage_per_target": 68,
+    "explosion_radius_cells": 3,
+    "range_cells": 6,
+    "burn_chance_percent": 37,
+    "burn_fire_damage_per_turn": 5,
+    "burn_duration_turns": 3,
+    "energy_cost": 21,
+    "cooldown_turns": 8
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "explosion_fire_damage_per_target": 18,
+    "explosion_radius_cells": 3,
+    "range_cells": 6,
+    "burn_chance_percent": 15,
+    "burn_fire_damage_per_turn": 1,
+    "burn_duration_turns": 3,
+    "energy_cost": 18,
+    "cooldown_turns": 8,
+    "willpower": 5,
+    "approval": "unshown full curve pending"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "explosion_fire_damage_per_target",
+      "burn_chance_percent"
+    ],
+    "unchanged_effects_omitted": [
+      "explosion_radius_cells",
+      "range_cells",
+      "burn_fire_damage_per_turn",
+      "burn_duration_turns",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "checks": [
+    "StableFE05 slot retained as proposed replacement;old unaccepted foyer card preserved historically.",
+    "Rank11 Willpower10: floor58*1.1=63;next12 floor62*1.1=68;damage uniform within radius3 proposal.",
+    "Burn chance35 to37%;burn5 per-turn for3 turns unchanged;range6,energy21,cooldown8 unchanged.",
+    "Same learned9 to10 and gear+2,Willpower10 and other modifiers,one point within cap10;no rank breakdown in copy.",
+    "Impact,target walls and allied damage,burn next-turn/own nonstacking shown;caster and exact collision rules pending.",
+    "No persistent zone/exposure/death growth/foyer limit carried over;EL-ZONE01 remains for other applicable spells.",
+    "New ball/trail/large blast visual direction presented separately and pending;no prior visual approval inferred.",
+    "No player table/formula/ordinary execution reminder/weapon variance;FE04 remains unchanged;no runtime integration."
+  ]
+}

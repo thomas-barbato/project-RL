@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-07",
+  "review_id": "OC07",
+  "id": "OC07",
+  "working_title": "Réanimation posthume",
+  "name_approval": "proposed_working_title_not_presented_or_accepted",
+  "branch": "Énergie occulte",
+  "status": "concept_requested;not_in_retained_catalogue",
+  "user_request": "peut-être qu'on pourrait ajouter un sort qui ressucite un monstre, incontrolable qui le fait attaquer les autres monstre aux alentours pendant une durée précise.",
+  "confirmed_concept": {
+    "target": "mark_living_enemy",
+    "trigger": "marked_enemy_death",
+    "reanimated_actor": "autonomous_no_player_orders",
+    "targets": "player_enemies_only",
+    "player_and_allies_attacked": false,
+    "temporary_reanimation": true
+  },
+  "answered_questions": [
+    {
+      "question": "Quand tu dis « incontrôlable », le monstre ressuscité doit-il attaquer uniquement les autres monstres, sans recevoir d’ordres, ou peut-il aussi attaquer le joueur et ses alliés ?",
+      "answer": "Autonome, attaque uniquement les ennemis du joueur"
+    },
+    {
+      "question": "Ce sort doit-il relever le cadavre d’un monstre déjà tué sur la carte, ou s’appliquer à un ennemi vivant pour qu’il se relève après sa mort ?",
+      "answer": "Marquer un ennemi vivant pour qu’il se relève à sa mort"
+    }
+  ],
+  "pending_questions": [
+    "retain_original_stats_and_combat_skills_or_only_ordinary_attacks",
+    "maximum_simultaneous_reanimated_monsters",
+    "mark_lasts_until_death_or_expires_after_turns"
+  ],
+  "not_yet_defined": [
+    "revived_duration",
+    "rank_scaling_and_stats",
+    "mark_and_reanimation_target_eligibility_and_boss_elite_rules",
+    "cost_cooldown_range",
+    "corpse_loot_XP_and_repeat_reanimation",
+    "revived_death_or_expiry_cleanup",
+    "map_transition_and_NPC_behavior_details",
+    "player_copy_and_visual_direction"
+  ],
+  "related_removed_skill": "OC06",
+  "removal_decisions": "docs/reviews/refonte-agent-2026-10-06/dimensional-rupture-removal-decisions.json",
+  "removal_decisions_sha256": "e144979d846f810281c47ed4e7c8d21d3d89c772a36f0d140861239fd786e2ae",
+  "numeric_rules_approval": "pending",
+  "roleplay_text_approval": "not_created",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

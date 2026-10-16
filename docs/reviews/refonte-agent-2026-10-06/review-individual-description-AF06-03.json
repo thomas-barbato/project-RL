@@ -1,0 +1,152 @@
+{
+  "date": "2026-10-07",
+  "id": "AF06",
+  "title": "Contagion",
+  "revision": 3,
+  "player_copy_markdown": "**Contagion — Rang 11**\n\n*À la mort de son porteur, l’un des affaiblissements ou effets de contrôle quitte sa dépouille et se transmet à l’ennemi le plus proche.*\n\n**Effet actuel**\n\n- Ennemis visés par mort : **1, le plus proche visible**.\n- Portée depuis la victime : **4 cases**.\n- Durée restante conservée : **70 %** (minimum **1 tour**).\n- Puissance d’application conservée : **70 %**.\n- Réductions de dégâts ou d’armure conservées : **70 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Durée restante conservée : **71 %**.\n- Puissance d’application conservée : **71 %**.\n- Réductions de dégâts ou d’armure conservées : **71 %**.\n\n**Passif · Aucun coût ni recharge.**\n\nCompatibles : Interférence, Faille d’armure, Silence, Rupture de régénération et Désorientation.\n\nSeul l’effet compatible le plus récent est transmis. Un effet transmis ne se propage pas à nouveau.\n\nDésorientation peut être transmise si elle était encore active juste avant les dégâts mortels.\n\nLes contrôles transmis respectent l’immunité des boss et le malus des élites.",
+  "player_copy_sha256": "73f38f934967d2db2312167a3d8cf76e8d8046c144cee5024cda0a6549df2b77",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-affliction-descriptions-10.json",
+  "source_skill_block_sha256": "f37d93dab67a8ff16e7ba1b2a4eb77a4d225487b6f161b6d2acebfc062be3cf5",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/disorientation-revised-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "94e3e9df6735e2d5df14cc03f6669f400ac1e35fa4bc32cbcb888e9091f2e061",
+  "compatibility_decisions": "docs/reviews/refonte-agent-2026-10-06/seal-contagion-disorientation-compatibility-decisions.json",
+  "compatibility_decisions_sha256": "287d393e8a6ac41dfe978e749290d0052d0ecd6e619c190beb7de1737d5fce38",
+  "name_approval": "explicit_user_rename_confirmed",
+  "catalogue_effect_approval": "accepted_death_transmission_direction_with_explicit_AF05_addition",
+  "roleplay_text_approval": "final_user_roleplay_explicitly_confirmed",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "pending_individual_user_review",
+  "numeric_rules_approval": "previous_reference_current_table_baseline_preserved; displayed_70_71_percent_range_4_and_minimum_duration_pending_individual_review",
+  "compatibility_approval": "five_effect_list_explicitly_accepted",
+  "fatal_damage_ordering_approval": "proposed_pre_fatal_damage_snapshot_pending_user_review",
+  "formulas": {
+    "retained_factor": "0.5 + 0.4 * (effective_rank - 1) / (effective_rank + 9); full curve proposed",
+    "range_from_victim_cells": "min(4, 2 + floor((effective_rank - 1) / 5)); full curve proposed",
+    "transmitted_duration": "floor(remaining duration * retained factor), minimum 1 turn and never above source remaining duration; full rounding/timing details pending",
+    "transmitted_application_power": "max(1, floor(source power * retained factor)); source proposal",
+    "transmitted_reduction": "source damage/armor reduction * retained factor; source proposal",
+    "binary_control_and_heal_block": "effect behavior preserved, duration and application power attenuated; proposed",
+    "display_rounding": "exact retained fractions, nearest tenth displayed; proposed"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_retention_range_modifiers": false,
+    "source_effect_and_target": "Not fixed; tooltip shows passive retention rather than inventing a final transmission success chance."
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "new_targets_per_death": 1,
+    "range_from_victim_cells": 4,
+    "retained_factor_exact": {
+      "numerator": 7,
+      "denominator": 10
+    },
+    "retained_percent_exact": {
+      "numerator": 70,
+      "denominator": 1
+    },
+    "retained_duration_percent_display": 70.0,
+    "retained_application_power_percent_display": 70.0,
+    "retained_damage_armor_reduction_percent_display": 70.0,
+    "minimum_transmitted_duration_turns": 1,
+    "energy_cost": 0,
+    "cooldown_turns": 0,
+    "compatible_skill_ids": [
+      "O02",
+      "AF02",
+      "AF03",
+      "AF04",
+      "AF05"
+    ],
+    "most_recent_compatible_effect_selected": true,
+    "propagation_from_transmitted_effect": false
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "new_targets_per_death": 1,
+    "range_from_victim_cells": 4,
+    "retained_factor_exact": {
+      "numerator": 149,
+      "denominator": 210
+    },
+    "retained_percent_exact": {
+      "numerator": 1490,
+      "denominator": 21
+    },
+    "retained_duration_percent_display": 71.0,
+    "retained_application_power_percent_display": 71.0,
+    "retained_damage_armor_reduction_percent_display": 71.0,
+    "minimum_transmitted_duration_turns": 1,
+    "energy_cost": 0,
+    "cooldown_turns": 0,
+    "compatible_skill_ids": [
+      "O02",
+      "AF02",
+      "AF03",
+      "AF04",
+      "AF05"
+    ],
+    "most_recent_compatible_effect_selected": true,
+    "propagation_from_transmitted_effect": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "retained_duration_percent_display",
+      "retained_application_power_percent_display",
+      "retained_damage_armor_reduction_percent_display"
+    ],
+    "unchanged_effects_omitted": [
+      "new_targets_per_death",
+      "range_from_victim_cells",
+      "minimum_transmitted_duration_turns",
+      "energy_cost",
+      "cooldown_turns",
+      "compatible_skill_ids",
+      "transmission_selection_and_no_chain_rules"
+    ]
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true
+  },
+  "presented_conditions": "At death of affected enemy transmit most recent compatible effect to closest visible enemy within 4 cells. One target, five compatible effects, at least one duration turn, no retransmission from transferred effect. Proposed AF05 fatal-damage snapshot exception displayed. Transmitted controls retain CTRL01 immunity/elite penalty.",
+  "unshown_rules_approval": "Full-rank curves, exact duration/power rounding and clocks, line of sight from victim, same-status exclusion, distance/ties, no-candidate and resistance failure behavior, damage/death timing beyond displayed exception, attribution, direct-versus-propagated tagging, repeated status application and control target eligibility remain pending where not previously presented/accepted.",
+  "common_control_decisions": "docs/reviews/refonte-agent-2026-10-06/control-boss-immunity-and-elite-penalty-decisions.json",
+  "active_weapon_requirement": "none; passive independent of active weapon",
+  "visual_intention_approval": "accepted_catalogue_intention_only",
+  "visual_approval": "pending_native_animation_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Rank 11 retained factor 7/10, displayed 70%; rank 12 factor 149/210, exact percent 1490/21=70.952... displayed 71%.",
+    "Range remains 4 and one recipient; no cost/cooldown; only three changed percentages in next block.",
+    "Learned 9 -> 10 with fixed gear +2 and unchanged other conditions; learned cap respected.",
+    "No fictive transmission chance: it depends on inherited effect power and actual recipient, not solely AF06 rank.",
+    "Explicit fifth compatibility AF05 included; fatal-damage ordering separated as proposed until this tooltip is approved.",
+    "Single final user roleplay paragraph; no duplicated function, table, formula, rank breakdown or ordinary action-time reminder.",
+    "No chain propagation or boss/elite control bypass; no runtime/visual integration.",
+    "Only title and RP replaced; ennemi singular/apostrophes/final period normalized. Numeric values, approval statuses, compatibility and proposed fatal-damage ordering unchanged.",
+    "Latest validation followed name and RP only; all numeric, fatal-damage ordering, unshown mechanics and native-rendering statuses preserved."
+  ],
+  "previous_title": "Contagion de sceau",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-AF06-02.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/contagion-wording-confirmation-decisions.json",
+  "latest_decisions_sha256": "1ded89acc21c002f5baf728cdf13c69d9b124bb0aff0941138c9edfd4dc3e6c9"
+}

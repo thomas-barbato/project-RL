@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-CONTAGION02",
+  "revision": 2,
+  "title": "Contagion : durée du Gel entretenu par une zone",
+  "status": "zone_only_Gel_transfer_duration_explicitly_accepted;other_unshown_cases_pending;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-contagion-transfer-rules-INTERACT-CONTAGION01-02.json",
+      "reference_sha256": "7af65ee222447fcb464b2e93154c5d1bd61750c7fe757c541663a2a66f4c32e5"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-contagion-compatibility-AF06-COMPAT02-01.json",
+      "reference_sha256": "a4779416502120c2cd21681fb0bd5250dc08839518b90e6c212ec4980bdf81f1"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM05-02.json",
+      "reference_sha256": "e716e16a175875afc369bc91273f3fb868fe990f7fd0d49dd10073220aa650b6"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-residue-access-loss-INTERACT-RANK05-02.json",
+      "reference_sha256": "64e357edfbab7d869cf7a8635db1106afe9277059e61e14dff522196d14aa9c3"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/skill-rank-curves-provisional-02.json",
+      "reference_sha256": "44ff8b1f8df86320562f82a00529b5e92c3e9118dd0a89bb051e7b2100e50bdb"
+    }
+  ],
+  "scope": "only_transfer_lifetime_for_selected_Gel_solely_maintained_by_a_still_active_owned_zone;ordinary_timed_Gel_unchanged",
+  "example": {
+    "Contagion_effective_rank": 11,
+    "retained_percent": 80,
+    "remaining_zone_turns": 8,
+    "capped_reference_turns": 5,
+    "transmitted_Gel_turns": 4,
+    "scope": "illustrates_proposed_duration_binding;not_chance_damage_or_final_balance"
+  },
+  "shown_copy_markdown": "INTERACT-CONTAGION02 · Gel entretenu par une zone — proposition\n\nSi Contagion transmet un Gel uniquement entretenu par une zone :\n\n- La nouvelle cible peut être gelée même hors de la zone. Ses déplacements sont bloqués ; elle peut toujours attaquer et utiliser ses compétences.\n- La durée de référence correspond au temps restant de la zone, limité à 5 tours. Contagion réduit ensuite cette durée selon son taux de conservation, arrondie à l'entier inférieur, avec un minimum de 1 tour si la transmission réussit.\n- Ce Gel a ensuite son propre compte à rebours. La disparition de la zone d'origine ne le retire pas. Une Brûlure réussie le supprime, comme les autres Gels.\n\nExemple avec Contagion au rang effectif 11 : conservation de 80 %. S'il reste 8 tours à la zone, la durée de référence est limitée à 5 : le Gel transmis dure 4 tours.\n\nLa zone reste en place. Les résistances, les malus des élites et des boss, ainsi que l'interdiction de retransmettre un effet reçu par Contagion sont conservés.\n\nCette durée de référence plafonnée et son autonomie restent proposées, en attente de validation.",
+  "shown_copy_sha256": "aafad40a77d9c92689b6c83ded9567755b5ec6e909ca04d18ae9b2dfeacbf564",
+  "not_resolved_here": [
+    "multiple_Gel_source_provenance_and_latest_successful_source_reconciliation",
+    "complete_turn_phase_order",
+    "unshown_other_status_retention_bindings",
+    "modified_individual_tooltip_and_native_feedback"
+  ],
+  "mechanic_approval": "accepted_as_displayed",
+  "text_approval": "shown_design_explanation_accepted;individual_skill_copy_not_newly_approved",
+  "visual_approval": "no_new_native_rendering_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-contagion-zone-gel-INTERACT-CONTAGION02-01.json",
+    "reference_sha256": "c1bde2f742975a7204b13c9228556cd375c4a8131f9e83f377d26e28ec9a289a"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/contagion-zone-gel-acceptance-decisions.json",
+    "reference_sha256": "1c61719aa800d4d288c2e5c8e66bdcbed001e7cca645befc95fefb832c1f4e44"
+  },
+  "accepted_rule": {
+    "eligibility": "accepted_INTERACT_CONTAGION01_selection;source_Gel_still_active_in_prefatal_snapshot_and_solely_maintained_by_selected_source_zone",
+    "reference_duration": "min(remaining_source_zone_turns_at_transfer,5);source_zone_must_still_be_active_with_positive_remaining_time",
+    "transmitted_duration": "min(remaining_source_zone_turns,max(1,floor(reference_duration*current_AF06_retained_percent/100)))_on_success",
+    "duration_basis": "new_five_turn_cap_for_zone_only_transfer_proposed;AF06_current_provisional_retention_curve_unchanged",
+    "recipient": "Gel_can_apply_outside_zone;blocks_movement_not_attacks_or_other_actions;existing_current_defenses_and_importance_chance_modifiers_preserved",
+    "independent_lifetime": "successful_transferred_Gel_has_own_timer;original_zone_expiry_or_removal_does_not_cancel_this_received_status;successful_Burn_removes_Gel_as_already_accepted",
+    "preserved": "zone_not_moved_or_copied;one_status_per_death;received_Contagion_instance_cannot_be_retransmitted;direct_Gel_and_source_zone_only_Gel_exit_rules_unchanged"
+  }
+}

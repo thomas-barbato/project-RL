@@ -1,0 +1,32 @@
+{
+  "batch": "ANIM-S12",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 25,
+      "id": "OC04",
+      "variant": "OC04-A03",
+      "name": "Prison sigillaire",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 26,
+      "id": "OC07",
+      "variant": "OC07-A03",
+      "name": "Réanimation",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "prison": "Eight independent blood glyph segments around a free central tile. Rapid .30-second cosmetic tracing, persistent red marks; one prepared segment breaks and disappears, leaving a breach; scripted enemy exits through it.",
+  "reanimation": "Blood seal persists under a marked enemy until the prepared death. Red resurrection surge and a short corpse/living-sprite blend, then an ivory skull marker identifies the raised ally. Scripted movement and one bump suggest an autonomous ordinary attack.",
+  "timing": "Manual turns only: prison four turns at rank 11; resurrection eleven turns from birth at the prepared death on turn 2. Quiet scene passes no turns automatically and keeps the mark/circle visible.",
+  "scope": "Debug-only visual fixture, not real combat/AI. No actual segment damage, healing, loot, XP, skill/stat changes, RNG, inventory, familiar window, save or campaign integration. Existing living/corpse actor artwork retained.",
+  "feedback": "est-ce que tu peux refaire un peu l'effet du sang ? pour qu'il soit un peu plus... je sais pas ... jolis ?",
+  "revision": "New fluid crimson blood drawings; corrected circular assembly and narrow radial layering retain thickness. Separate floor seal and rising liquid ribbons, exact old ivory skull. Opt-in 1.5 exposure retains painted colours and shadows.",
+  "retained": "Eight independent segments, free centre, exact old ivory skull marker, actors, terrain, placement and original prepared timelines. New palette belongs only to these prototype drawings; previous occult effects and rules unchanged.",
+  "previous_approval": "Previous ritual variants remain awaiting review; no approval inferred.",
+  "acceptance": "visual-acceptance-01.json"
+}

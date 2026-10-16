@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-15",
+  "review_ids": [
+    "D66-TAUNT01",
+    "DRONE-ARMY01"
+  ],
+  "status": "discussion_only_no_mechanical_approval_inferred",
+  "user_request": "je valide le design meme si je suis perplex quant à la protection offerte par le gardien, peut-être qu’on devrait faire à la place un taunt de zone qui provoquerait les monstres. Je pense aussi que l’on pourrait ne pas limiter le nombre des drones actifs par type, sauf le drone eclaireur qui lui resterait à 1, pour permettre au joueur de se faire sa petite armée de pets et un style autonome. Qu’en penses-tu ?",
+  "explicit_visual_approval": "Guardian design reaffirmed; body/palette acceptance ANIM-S46-BODY-ACCEPT01 remains valid. No new approval inferred for Guardian shield effects, O03 animation or unshown mechanics.",
+  "guardian_idea": {
+    "status": "proposed_by_user_under_discussion",
+    "replace": "D66 proximity damage-reduction protection",
+    "with": "area provocation drawing nearby hostile attention toward the Guardian",
+    "damage_reduction_and_taunt_not_implicitly_combined": true,
+    "pending": [
+      "trigger",
+      "radius",
+      "duration",
+      "cooldown",
+      "eligible targets",
+      "multiple Guardian interactions",
+      "native visual feedback"
+    ]
+  },
+  "army_idea": {
+    "status": "proposed_by_user_under_discussion",
+    "direction": "Multiple simultaneous drones of each model; Scout D56 remains at one. Autonomous pet-army playstyle.",
+    "pending": [
+      "global active limit or control capacity",
+      "growth",
+      "deployment and command UX",
+      "ally passage",
+      "AI and performance"
+    ]
+  },
+  "assistant_recommendation_for_review": {
+    "guardian": "Replace reduction aura with area provocation, respect obstacles and reachable targeting, keep enemies able to act and prevent repeated target swapping between Guardians. No numerical rules chosen.",
+    "army": "Remove one-per-model restriction except Scout, but retain a growing shared control capacity. Persistent drones with energy regeneration can otherwise accumulate indefinitely despite summon costs and cooldowns. Add group orders and clear passages for the player. No capacity or cost numbers chosen."
+  },
+  "preserved_until_explicit_replacement": "Existing accepted persistence, no per-turn upkeep, HP/cargo retention and deployment rules remain recorded. This discussion does not silently rewrite the previously accepted five-total/one-per-model rule.",
+  "campaign_integration": false,
+  "code_or_active_assets_changed": false
+}

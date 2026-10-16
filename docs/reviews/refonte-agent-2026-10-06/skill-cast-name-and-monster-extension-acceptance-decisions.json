@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-07",
+  "review_id": "HUD07",
+  "user_message": "oui ca me va parfaitement , les monstres aussi quand ils auront des compétences à lancer auront cette regle.\n\nJe la valide :)",
+  "previous_proposal": "docs/reviews/refonte-agent-2026-10-06/review-skill-cast-name-HUD07-01.json",
+  "previous_proposal_sha256": "38aebc0a134cd4009562807df19e1f0aef61919af987ca8058866b7649b67f47",
+  "shown_copy_markdown": "Pour toutes tes compétences actives : le nom exact au-dessus de la tête du personnage, dès le lancement réussi ; léger mouvement vers le haut puis effacement après environ une seconde ; un seul affichage par lancement, même pour les rafales, sorts canalisés ou effets persistants ; place distincte des dégâts et statuts flottants. Inclut invocations, transformations, mines et grenades.",
+  "accepted_displayed_behavior": {
+    "exact_skill_name_above_caster_head": true,
+    "successful_cast": true,
+    "duration_seconds_about": 1,
+    "slight_upward_drift_then_fade": true,
+    "once_per_cast_including_bursts_channels_and_persistent_effects": true,
+    "readable_separate_placement_from_damage_and_status_text": true,
+    "all_player_active_skills_including_summons_transformations_mines_grenades": true
+  },
+  "explicit_monster_extension": {
+    "monsters_with_their_own_castable_skills": true,
+    "same_display_behavior": true,
+    "anchor": "above_casting_monster_head",
+    "visibility": "preserve_existing_actor_visibility;no_hidden_actor_or_skill_source_reveal",
+    "faction_scope": "all_casting_monsters_including_reanimated_allies_using_their_original_skills"
+  },
+  "approval_scope": "Displayed name,successful-cast trigger,about1second upward drift/fade,one label per cast and readability accepted;explicit extension to future monster skills. Exact native fonts/colors/pixels/lanes and unshown actor cases remain pending.",
+  "monster_skill_catalogue": "Still defined separately by role,level and importance;no player skill reuse or new monster ability inferred.",
+  "runtime_integration": "not_integrated"
+}

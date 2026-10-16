@@ -1,0 +1,554 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-VIS01",
+  "revision": 4,
+  "status": "downward_pistol_and_red_robe_palette_proposed;not_integrated",
+  "previous_visual_review_path": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-03.json",
+  "changed_candidate_numbers": [
+    2,
+    4
+  ],
+  "unchanged_candidate_numbers": [
+    1,
+    3,
+    5
+  ],
+  "candidates": [
+    {
+      "review_id": "START-VIS01-1",
+      "number": 1,
+      "class": "Bastion",
+      "body_atlas_index": 9,
+      "starting_weapon": "start:hachette",
+      "reference_model": "core:melee_hachette",
+      "weapon_family_index": 3,
+      "weapon_hold": "MeleeTwoHanded",
+      "palette": "Original",
+      "static_idle_pose": 0,
+      "native_image": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/classe-equipee-1-START-VIS01-01.png",
+        "binary_sha256": "43605ffceb28867827ee118dd49e9ed949ac426dfbf6d7c4b5cf193f222bc8a4",
+        "dimensions": [
+          48,
+          48
+        ]
+      },
+      "body_scale": "32px_no_resize",
+      "fixed_body_pixels_checked_outside_declared_hand_cut_and_layer_occlusion": 698,
+      "fixed_body_pixel_changes": 0,
+      "grips": [
+        {
+          "position": [
+            26,
+            27
+          ],
+          "finger_weapon_contacts": 15
+        },
+        {
+          "position": [
+            26,
+            23
+          ],
+          "finger_weapon_contacts": 17
+        }
+      ],
+      "new_detached_fragments": 0,
+      "visual_approval": "unchanged_previous_candidate;no_new_approval_inferred",
+      "item_native_icon_index": 67
+    },
+    {
+      "review_id": "START-VIS01-2",
+      "number": 2,
+      "class": "Technomancien",
+      "body_atlas_index": 2,
+      "starting_weapon": "start:pistolet",
+      "reference_model": "core:modele_cogneur_p01",
+      "weapon_family_index": 6,
+      "previous_image": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/classe-equipee-2-START-VIS01-02.png",
+        "binary_sha256": "c753bb21d0273bdfb0dfa05ca1a4ad792b0d46ba06ee7360eac447c119a9d5b1",
+        "dimensions": [
+          48,
+          48
+        ]
+      },
+      "native_image": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/classe-equipee-2-START-VIS01-04.png",
+        "binary_sha256": "bcf5931a8ed5d18bb5d1ce231b9a96b3d03036e57b3cdbe3a80252a1fb0d2177",
+        "dimensions": [
+          48,
+          48
+        ]
+      },
+      "composition": {
+        "native_glove_anchor": [
+          25,
+          19
+        ],
+        "canvas_glove_anchor": [
+          33,
+          27
+        ],
+        "transformed_weapon_anchor": [
+          35,
+          25
+        ],
+        "weapon_translation": [
+          -2,
+          2
+        ],
+        "handle_glove_overlap_pixels": 13,
+        "handle_glove_overlap_coordinates": [
+          [
+            31,
+            25
+          ],
+          [
+            32,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            31,
+            26
+          ],
+          [
+            32,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            31,
+            27
+          ],
+          [
+            32,
+            27
+          ],
+          [
+            33,
+            27
+          ],
+          [
+            34,
+            27
+          ],
+          [
+            32,
+            28
+          ],
+          [
+            33,
+            28
+          ]
+        ],
+        "composition_body_pixel_changes": 0,
+        "added_forearm_or_finger_pixels": 0,
+        "clipped_weapon_pixels": 0,
+        "draw_order": [
+          "weapon",
+          "entire_body_and_original_glove"
+        ],
+        "original_body_pixel_changes": 0,
+        "source_weapon_anchor": [
+          35,
+          22
+        ],
+        "orientation": "muzzle_down;original_lowered_arm_and_glove_preserved",
+        "weapon_transform": "reflect_Y_on_48px_canvas;align_transformed_handle_to_original_glove",
+        "source_weapon_color_or_pixel_count_changes": 0,
+        "placed_weapon_bounds": [
+          31,
+          25,
+          40,
+          41
+        ]
+      },
+      "visual_approval": "downward_pistol_orientation_pending;prior_body_and_black_glove_acceptance_preserved",
+      "body_size": [
+        32,
+        32
+      ],
+      "canvas_size": [
+        48,
+        48
+      ],
+      "source_weapon_pixel_or_palette_edits": 0
+    },
+    {
+      "review_id": "START-VIS01-3",
+      "number": 3,
+      "class": "Traqueur",
+      "body_atlas_index": 1,
+      "starting_weapon": "start:fusil",
+      "reference_model": "core:fusil_de_patrouille",
+      "weapon_family_index": 17,
+      "weapon_hold": "TwoHanded",
+      "native_image": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/classe-equipee-3-START-VIS01-03.png",
+        "binary_sha256": "6f30efa73313a9aa7266a383ecbb9eca3d8ab57d2f49252cf9b484f8f48595ee",
+        "dimensions": [
+          48,
+          48
+        ]
+      },
+      "body_scale": "32px_no_resize",
+      "visual_approval": "shown_revision3_accepted_by_user_je_valide;unchanged_in_revision4",
+      "item_native_icon_index": 38,
+      "body_size": [
+        32,
+        32
+      ],
+      "canvas_size": [
+        48,
+        48
+      ],
+      "previous_image": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/classe-equipee-3-START-VIS01-01.png",
+        "binary_sha256": "7db8f08cbf135dc508151f8a4e48071e720a5aa2b286e4acc2340271fc20bda6",
+        "dimensions": [
+          48,
+          48
+        ]
+      },
+      "composition_kind": "generated_equipped_pose_prototype;separate_fixed_body_arm_weapon_layers_required_before_active_integration",
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/traqueur-equipped-dark-gloves-source-04.png",
+        "binary_sha256": "b27efa9c5325a8c9c484ec055705f8c7a9f8b22d5b7ab8d25763a88f37777bf0"
+      },
+      "conditioning": {
+        "sampled_square": [
+          44,
+          44
+        ],
+        "canvas_offset": [
+          3,
+          0
+        ],
+        "filter": "nearest",
+        "solid_alpha_threshold": 128,
+        "maximum_opaque_colors": 12,
+        "native_opaque_colors": 12,
+        "native_bounds": [
+          14,
+          10,
+          44,
+          39
+        ],
+        "dither": "none",
+        "anatomy_pixel_identity_with_prior_body": "not_claimed;new_simplified_body_proposal"
+      },
+      "independent_palette": {
+        "body": "blue_and_ivory",
+        "rifle": "steel_and_anthracite",
+        "future_instance_cosmetics": "existing_independent_weapon_and_armor_palette_rule_preserved"
+      },
+      "supporting_unarmed_body": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/traqueur-body-native32-01.png",
+        "binary_sha256": "b4f31b8b939f89541de8a9f9b9cc8338d3334f0eb792d0ad0cf30686990c2032",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "supporting_weapon_only": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/traqueur-rifle-steel-native48-01.png",
+        "binary_sha256": "9089bb4a9dd8dae198ef3b86bc2b96f409862a9d6b1bbd71b3d497a0e6961e77",
+        "dimensions": [
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "review_id": "START-VIS01-4",
+      "number": 4,
+      "class": "Arcaniste",
+      "body_atlas_index": 11,
+      "starting_weapon": "start:couteau",
+      "reference_model": "core:melee_couteau_de_camp",
+      "weapon_family_index": 0,
+      "previous_image": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/classe-equipee-4-START-VIS01-02.png",
+        "binary_sha256": "3568a25a4f3a2078f1b0ba7c34c92982c22d39025485e8c8bae83307c6b4670e",
+        "dimensions": [
+          48,
+          48
+        ]
+      },
+      "native_image": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/classe-equipee-4-START-VIS01-04.png",
+        "binary_sha256": "876cc54c3b52fb35cad9148bb407fbee382b3e33f42d3ccd6d33d7d0d3a7eeeb",
+        "dimensions": [
+          48,
+          48
+        ]
+      },
+      "composition": {
+        "native_glove_anchor": [
+          25,
+          19
+        ],
+        "canvas_glove_anchor": [
+          33,
+          27
+        ],
+        "transformed_weapon_anchor": [
+          35,
+          29
+        ],
+        "weapon_translation": [
+          -2,
+          -2
+        ],
+        "handle_glove_overlap_pixels": 10,
+        "handle_glove_overlap_coordinates": [
+          [
+            31,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            31,
+            26
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            32,
+            27
+          ],
+          [
+            33,
+            27
+          ],
+          [
+            34,
+            27
+          ],
+          [
+            32,
+            28
+          ],
+          [
+            33,
+            28
+          ]
+        ],
+        "composition_body_pixel_changes": 0,
+        "added_forearm_or_finger_pixels": 0,
+        "clipped_weapon_pixels": 0,
+        "draw_order": [
+          "weapon",
+          "entire_body_and_original_glove"
+        ]
+      },
+      "visual_approval": "red_robe_primary_material_pending;prior_shape_and_knife_grip_acceptance_preserved",
+      "body_size": [
+        32,
+        32
+      ],
+      "canvas_size": [
+        48,
+        48
+      ],
+      "source_weapon_pixel_or_palette_edits": 0,
+      "material_palette_proposal": {
+        "primary_material": "existing_Red_ramp",
+        "red_ramp": [
+          [
+            101,
+            30,
+            56
+          ],
+          [
+            215,
+            71,
+            91
+          ],
+          [
+            255,
+            154,
+            139
+          ]
+        ],
+        "changed_primary_material_pixels": 186,
+        "geometry_changes": 0,
+        "secondary_ivory_and_protected_pixel_changes": 0,
+        "weapon_palette_changes": 0,
+        "selection": "authored_material_label1_only;label2_ivory_and_label0_unchanged",
+        "scope": "review_prototype;existing_full_Red_palette_also_changes_secondary_material_so_not_a_runtime_capture"
+      }
+    },
+    {
+      "review_id": "START-VIS01-5",
+      "number": 5,
+      "class": "Métamorphe",
+      "body_atlas_index": 5,
+      "starting_weapon": "start:couteau",
+      "reference_model": "core:melee_couteau_de_camp",
+      "weapon_family_index": 0,
+      "previous_image": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/classe-equipee-5-START-VIS01-01.png",
+        "binary_sha256": "6e39147f8de8b89924cec14aa7c1ed801d709fa3a0b20b8083a14dd0073f92a1",
+        "dimensions": [
+          48,
+          48
+        ]
+      },
+      "native_image": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/classe-equipee-5-START-VIS01-02.png",
+        "binary_sha256": "4b28ec3f5468a415cc60ba350e8b2eb1059fd0813bfaa4bd043606e58b2314b0",
+        "dimensions": [
+          48,
+          48
+        ]
+      },
+      "composition": {
+        "native_glove_anchor": [
+          25,
+          19
+        ],
+        "canvas_glove_anchor": [
+          33,
+          27
+        ],
+        "source_weapon_anchor": [
+          35,
+          29
+        ],
+        "weapon_translation": [
+          -2,
+          -2
+        ],
+        "handle_glove_overlap_pixels": 11,
+        "handle_glove_overlap_coordinates": [
+          [
+            31,
+            26
+          ],
+          [
+            32,
+            25
+          ],
+          [
+            32,
+            26
+          ],
+          [
+            32,
+            27
+          ],
+          [
+            32,
+            28
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            27
+          ],
+          [
+            33,
+            28
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            27
+          ]
+        ],
+        "original_body_pixel_changes": 0,
+        "added_forearm_or_finger_pixels": 0,
+        "clipped_weapon_pixels": 0,
+        "draw_order": [
+          "weapon",
+          "entire_original_body_and_glove"
+        ]
+      },
+      "visual_approval": "shown_revision3_accepted_by_user_je_valide;unchanged_in_revision4",
+      "body_size": [
+        32,
+        32
+      ],
+      "canvas_size": [
+        48,
+        48
+      ],
+      "source_weapon_pixel_or_palette_edits": 0
+    }
+  ],
+  "board": {
+    "path": "assets/source-art/refonte-agent-2026-10-06/classes-equipees-START-VIS01-review-04.png",
+    "binary_sha256": "9ca906eeae38a335ad5afdf6232fe94870e03d20e8f0b1df05a09816aabbfca1",
+    "dimensions": [
+      740,
+      540
+    ]
+  },
+  "native_scene": {
+    "path": "assets/source-art/refonte-agent-2026-10-06/classes-equipees-START-VIS01-scene-native-04.png",
+    "binary_sha256": "65566d43d738f111e0bc02ca90e5a7a1589c6d1ff8cc695543f504aab0d0cdc5",
+    "dimensions": [
+      576,
+      384
+    ]
+  },
+  "method": "existing_code_native_layer_transform_and_authored_material_map_palette_selection;no_new_art_painting",
+  "source_asset_checks": [
+    {
+      "path": "assets/sprites/cyberpunk/crawl-bodies-32.png",
+      "binary_sha256": "d75ccf7ed06e50c12fd30ce00ead5691d9af46cf3ac298a1d6482031ff1c2fd2"
+    },
+    {
+      "path": "assets/sprites/cyberpunk/crawl-body-materials-32.png",
+      "binary_sha256": "e59b0e974c98a7a20041fa31ecadee677c5a2fcf6cea7d063950f028a08337b5"
+    },
+    {
+      "path": "assets/sprites/cyberpunk/crawl-weapons-48.png",
+      "binary_sha256": "31c9cd922a20d38da5ea3c4bf36b01c16ca80b1f1912049c77559036c629835f"
+    },
+    {
+      "path": "assets/sprites/cyberpunk/terrain-materials-32.png",
+      "binary_sha256": "8ec656b5bc509efcf781b90eae35d4bba877e3980a905cbaa45888101a0af356"
+    },
+    {
+      "path": "assets/sprites/cyberpunk/manifest.json",
+      "binary_sha256": "a22ab20ccb551073a3fa38d955c73dc2cc3f5b6f744e20fa8728760897a689d0"
+    }
+  ],
+  "active_source_asset_changes": 0,
+  "mechanical_changes": "none",
+  "visual_approval": "new_downward_orientation2_and_red_primary_material4_pending_explicit_review",
+  "approval_scope": "prior_acceptance_of_shown_revision3_compositions_is_preserved_except_pistol_orientation2_and_new_robe_palette4;unchanged1_and_unshown_weapon_configurations_not_inferred_approved",
+  "runtime_integration": "not_integrated"
+}

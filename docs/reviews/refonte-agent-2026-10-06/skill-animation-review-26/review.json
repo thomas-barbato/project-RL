@@ -1,0 +1,18 @@
+{
+  "batch": "ANIM-S09",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "candidate": {
+    "number": 19,
+    "skill_id": "FR06",
+    "variant": "FR06-A01",
+    "name": "Explosion cristalline",
+    "status": "awaiting_visual_review"
+  },
+  "effect": "Six chronological shatter drawings expand then disappear in .42 seconds; no looping burst, no sphere, no blood. Multiple sources detonate together, with a readable open centre and unchanged bodies in front.",
+  "sources": "Prepared snapshot of all visible frozen hostiles. Their Gel is consumed. Nearby unfrozen actors are contacted without becoming new sources and without receiving new Gel. A prepared hidden frozen actor remains excluded and undrawn.",
+  "geometry": "Local radius-one cardinal footprints are prepared examples, not final diagonal/corner geometry. Multiple local explosions may contact one neighbour. All physical walls clip the drawing; a full cloison protects the far room.",
+  "timing": "Animation ends by real time. Waiting does not advance cooldowns or repeat contacts. Explicit turns alone reduce cooldown and remaining statuses.",
+  "scope": "Isolated debug visual fixture. No GameState, damage, death, RNG, actual FOV/AI, save changes or campaign integration. Visible prepared actors survive at their places.",
+  "retained": "Approved Blizzard and Mur de glace, pending Vague/Nova/Gel reviews, skill catalogue and actor/equipment artwork."
+}

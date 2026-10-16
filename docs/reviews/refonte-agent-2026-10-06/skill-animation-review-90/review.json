@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S43",
+  "status": "visually_accepted_pending_campaign_integration",
+  "campaign_integration": false,
+  "native_tile": 64,
+  "candidates": [
+    {
+      "number": 95,
+      "id": "AF05",
+      "variant": "AF05-A01",
+      "title": "DÃ©sorientation"
+    },
+    {
+      "number": 96,
+      "id": "AF06",
+      "variant": "AF06-A01",
+      "title": "Contagion"
+    }
+  ],
+  "effective_rank": 1,
+  "accepted_mechanics": "../afflictions-area-acceptance-01.json",
+  "marker_presentation_reference": "../skill-animation-review-88/visual-acceptance-01.json",
+  "marker": {
+    "size_px": 24,
+    "duration_text_px": 14,
+    "transparent_backdrop": true,
+    "source_icon_files_unchanged": true
+  },
+  "prepared_values": {
+    "AF05": {
+      "energy": 10,
+      "duration": 2,
+      "cooldown": 7,
+      "zone_width": 3,
+      "casting_range": 5
+    },
+    "AF06": {
+      "energy": 0,
+      "duration": 3,
+      "cooldown": 0,
+      "zone_width": 5,
+      "retention_percent": 50
+    }
+  },
+  "contagion_source": {
+    "id": "AF04",
+    "rank": 7,
+    "remaining_duration": 6,
+    "directly_applied": true,
+    "most_recent_compatible": true,
+    "binary_behavior_retained": true,
+    "recipient_application_results": "prepared; no RNG or resistance formula added"
+  },
+  "contagion_compatible_statuses_preserved": [
+    "O02",
+    "AF02",
+    "AF03",
+    "AF04",
+    "AF05",
+    "Poison",
+    "Burn",
+    "Bleeding",
+    "Freeze"
+  ],
+  "preview_copy": [
+    "Les ennemis touchÃ©s attaquent la cible la plus proche, alliÃ©e ou ennemie. Les boss sont immunisÃ©s ; des dÃ©gÃ¢ts mettent fin Ã  cet effet. Au rang 1 : carrÃ© de 3 Ã— 3 cases, durÃ©e maximale de 2 tours. CoÃ»t : 10 Ã©nergie. Recharge : 7 tours.",
+    "Passif : Ã  la mort dâ€™un ennemi maudit, transmet son effet compatible le plus rÃ©cent aux ennemis proches, sans propagation en chaÃ®ne. Au rang 1 : carrÃ© de 5 Ã— 5 cases et conservation de 50 %. Exemple : une Rupture avec 6 tours restants est transmise pour 3 tours. Aucun coÃ»t ni recharge."
+  ],
+  "common_note": "Les marqueurs reprennent la prÃ©sentation validÃ©e : 24 px, sans fond, avec la durÃ©e Ã  cÃ´tÃ©. Ã€ gauche, DÃ©sorientation est lancÃ©e dans la zone prÃ©visualisÃ©e. Ã€ droite, Contagion se dÃ©clenche Ã  la mort de la victime au centre ; les petites icÃ´nes rejoignent les nouveaux porteurs et affichent lâ€™effet transmis.",
+  "detail_note": "Â« DÃ©gÃ¢ts Â» inflige 10 dÃ©gÃ¢ts physiques de dÃ©monstration aprÃ¨s un tour : DÃ©sorientation cesse, la Rupture reste active. Â« Mort sans retransmission Â» fait mourir un porteur aprÃ¨s un tour ; lâ€™ennemi proche de lui, hors de la zone initiale, ne reÃ§oit rien. Les PV, dÃ©gÃ¢ts et morts de ces scÃ¨nes sont des situations prÃ©parÃ©es pour lâ€™aperÃ§u.",
+  "before_phase": "Avant lancement : zone de DÃ©sorientation Ã  gauche ; victime dÃ©jÃ  maudite et Contagion passive Ã  droite.",
+  "start_action_label": "Lancer / dÃ©clencher la mort",
+  "preview": "../apercu-animations.html?lot=90",
+  "native_lab": "--apercu-laboratoire-competences --lot-desorientation-contagion",
+  "source": "src/agent_skill_lab_review/fire_painted/afflictions_area.rs",
+  "scenes": 22,
+  "scenario_ids": [
+    "GROUPE",
+    "RESISTE",
+    "MUR",
+    "DEPLACEMENT",
+    "JOUEUR",
+    "ATTENTE",
+    "DEGATS",
+    "CHAINE"
+  ],
+  "scope": "Native animation review and prepared lifecycle scenarios only. Contagion illustrates the already accepted multi-recipient spread using a directly applied AF04 source with six remaining turns; its inherited binary effect lasts three turns, cannot retransmit and costs no energy. All nine previously accepted compatible statuses remain unchanged; this lot illustrates only AF04. No campaign AI, healing command, random resistance calculation, save or catalogue mutation.",
+  "remaining_unshown": 15,
+  "still_unshown": [
+    "D56",
+    "D57",
+    "D58",
+    "D59",
+    "D66",
+    "O03",
+    "DP01",
+    "DP02",
+    "DR01",
+    "DI01",
+    "DI02",
+    "DI03",
+    "DI04",
+    "DI05",
+    "DI07"
+  ],
+  "pending_separately": "B03 VitalitÃ© amÃ©liorÃ©e mechanics.",
+  "temporary_capture_policy": "Reuse same HTML; remove temporary native captures, QA images and superseded playback after verification; retain original icons, code and review receipts.",
+  "launcher": "ouvrir-laboratoire.cmd",
+  "source_sha256": "aabb705c6c726cd7da66fcac810c9e6339db3d062e118cdb4f1cb6e86c4393be",
+  "catalogue_sha256": "459b572632cd0bdba78a8120fe1b3244b52199bb8f23bc0bd3ea9c7d246facfb",
+  "playback_bytes": 1930054,
+  "cleanup": "cleanup.json",
+  "verification": {
+    "debug_build": true,
+    "targeted_tests_passed": 6,
+    "format_check": true,
+    "scoped_diff_check": true,
+    "native_visual_QA": true,
+    "lossless_native_pixel_verification": true,
+    "native_marker_transparency": "marker-transparency.json",
+    "damage_label_position_repair": "damage-label-repair.json",
+    "individual_resistance_and_prepared_immunity": true,
+    "damage_interrupts_disorientation": true,
+    "reduced_actor_bound_contagion_duration": true,
+    "no_passive_energy_cost_or_cooldown": true,
+    "no_retransmission_from_inherited_effect": true,
+    "previous_accepted_art_and_catalogue_preserved": true,
+    "viewer_controller": "Eight scenarios, four directions and manual turns; offline mock DOM; no browser rendering claim."
+  },
+  "visual_acceptance": "../skill-animation-review-101/visual-acceptance-01.json",
+  "status_correction": "Prior approval confirmed by user; reopening was unnecessary."
+}

@@ -1,0 +1,117 @@
+{
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "date": "2026-10-07",
+  "id": "A03",
+  "title": "Canalisation",
+  "revision": 2,
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-49.json",
+  "source_existing_proposal": "docs/REVUE_COMPETENCES_AGENT_LOT_02.md#a03-canalisation",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/channeling-passive-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "dbf5c6b7f8643d86ba422bd2c1c7948a92358a1d2c3381071839f1370763101e",
+  "name_approval": "accepted_existing_catalogue_name_preserved",
+  "roleplay_text_approval": "accepted_as_displayed",
+  "functional_description_approval": "paragraph_omitted_by_global_CD08;displayed_magic_scope_rounding_minimum_and_passive_clarification_accepted",
+  "current_next_effect_copy_approval": "accepted_as_displayed",
+  "numeric_rules_approval": "rank1_20%_previously_confirmed;displayed_current35%_then35.7%_minimum1_energy_accepted;full_curve_unshown_pending",
+  "detailed_conditions_approval": "displayed_magic_transformations_and_hybrids_final_ceiling_and_paid_power_minimum1_accepted;automatic_learned_passive_without_activation_energy_or_cooldown_clarification_accepted;unshown_cases_pending",
+  "attribute_scaling_approval": "no_new_attribute_scaling_proposed;percentage_is_rank_based",
+  "current_profile_status": "illustrative passive learned9+gear2,effective11;rank-based percentage independent of Willpower;no other cost modifier assumed",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false,
+    "attribute_multiplier_applied_to_passive_percent": false
+  },
+  "formulas": {
+    "magic_energy_cost_reduction_percent": "20+30*(effective_rank-1)/(effective_rank+9)",
+    "final_magic_energy_cost": "ceil(base_magic_cost*(1-reduction_percent/100)*other_applicable_cost_multipliers),once after combining modifiers;positive payable cost minimum1;separate zero-cost exceptions preserved",
+    "display_rounding": "one decimal,half-up;exact internal fraction retained for proposal"
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "magic_energy_cost_reduction_percent": 35.0,
+    "minimum_positive_magic_energy_cost": 1,
+    "final_energy_cost_rounding": "ceiling_after_all_applicable_modifiers"
+  },
+  "exact_current_percent": "35",
+  "next_values": {
+    "effective_rank": 12,
+    "magic_energy_cost_reduction_percent": 35.7,
+    "minimum_positive_magic_energy_cost": 1,
+    "final_energy_cost_rounding": "ceiling_after_all_applicable_modifiers"
+  },
+  "exact_next_percent": "250/7",
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "magic_energy_cost_reduction_percent": 20,
+    "approval": "initial20%_previously_confirmed;other_unshown_conditions_pending"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "magic_energy_cost_reduction_percent"
+    ],
+    "unchanged_effects_omitted": [
+      "minimum_positive_magic_energy_cost",
+      "final_energy_cost_rounding"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "passive_magic_energy_cost_reduction",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy exclusion added"
+  },
+  "effect_conditions": {
+    "type": "learned_passive",
+    "always_enabled_when_learned": true,
+    "scope": "magic powers,including magical transformations and hybrid powers",
+    "percentage_scales_with_effective_rank": true,
+    "percentage_scales_with_attributes": false,
+    "all_applicable_modifiers_combined_before_one_final_energy_ceiling": true,
+    "positive_paid_power_minimum_energy": 1,
+    "pure_technology_deployment_or_ammunition_or_action_time_reduced": false,
+    "separate_free_stealth_step_at_rank10_exception_preserved": true,
+    "active_activation_cost_or_cooldown_added": false,
+    "hidden_actor_or_stat_reveal_created": false
+  },
+  "unshown_rules_approval": "Full rank/equipment-bonus curve beyond displayed11/12,exact classification of each skill or hybrid component,stacking order and other implant/skill cost modifiers,zero-cost/refund/energy-drain exceptions,per-step/channel/tick application,cost timing/stat snapshots and transitions remain pending. Prior pure-tech/ammo/time exclusions and free stealth-step proposal preserved without extending this shown approval to unrelated mechanics.",
+  "visual_intention_approval": "displayed_impulse_towards_implants_on_magic_energy_payment_direction_accepted;native_pixels_pending",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**A03 · Canalisation — Rang 11 · Passif**\n\n*Vos implants canalisent les forces occultes avec moins de pertes.*\n\n**Effet actuel**\n\n- Réduction du coût en énergie des pouvoirs magiques : **35 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Réduction du coût en énergie des pouvoirs magiques : **35,7 %**.\n\nS’applique aussi aux transformations et aux pouvoirs hybrides de nature magique.\n\nLe coût final est arrondi à l’entier supérieur, avec un minimum de **1 énergie** pour un pouvoir payant.",
+  "player_copy_sha256": "e42428dabd72c7033e810cf9a52acf99f6605f717737ef3c8aa57d046eba6ed0",
+  "visual_copy_markdown": "**Visuel proposé :** une brève impulsion se resserre vers vos implants lorsque vous dépensez de l’énergie pour un pouvoir magique.",
+  "visual_copy_sha256": "efbd8e1046a552110ea8be24b3debe698950756c0a91c9760a3cd8244857978e",
+  "checks": [
+    "Same learned9/10,gear+2 and other modifiers;effective11/12 and one point within learnedcap10.",
+    "Exact current35%,next250/7%=35.714...% displays35.7%;no Willpower multiplier applied.",
+    "Rank1_20% confirmed previously;full unshown curve remains pending.",
+    "Next shows changed percentage only;no learned/equipment breakdown line,no ordinary timing or active cost/CD added.",
+    "Magic transformations and hybrid powers explicitly in scope;final rounding and positive paid minimum1 shown for review;independent zero-cost stealth-step exception retained.",
+    "Displayed RP,numbers,magic scope,rounding/minimum and visual direction accepted,plus explicit automatic-passive clarification;unshown curves/cases/native art pending;runtime not integrated."
+  ],
+  "source_skill_block_sha256": "201dc236c8fe406bc0a5e48d67b5cfe5604913ac9f2067fff446db5553a63a7e",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-A03-01.json",
+  "previous_description_sha256": "78e9ed8a42e9985c7e91a5a4cdea5cb3bdc4f123f675910cab01726700073ea5",
+  "passive_clarification_approval": "User explicitly accepted automatic learned passive,no activation,no energy expense,no recharge;original tooltip unchanged."
+}

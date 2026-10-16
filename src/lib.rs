@@ -5,6 +5,7 @@
 
 #[cfg(debug_assertions)]
 pub mod action_profile;
+pub mod agent_class;
 pub mod ai;
 pub mod character_class;
 pub mod combat;

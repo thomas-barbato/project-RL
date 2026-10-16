@@ -1,0 +1,31 @@
+{
+  "batch": "ANIM-S27",
+  "date": "2026-10-14",
+  "status": "awaiting_visual_review",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 63,
+      "id": "HL05",
+      "name": "Déflagration amplifiée",
+      "variant": "HL05-A01"
+    },
+    {
+      "number": 64,
+      "id": "HL06",
+      "name": "Drain d’impact",
+      "variant": "HL06-A01"
+    }
+  ],
+  "approved_cards": [
+    "review-individual-description-HL05-02.json",
+    "review-individual-description-HL06-02.json"
+  ],
+  "mechanics": "Rank11: explosive heavy weapon radius+3 (sample1 becomes4), no extra damage and no new explosion on nonexplosive weapons. Drain: damage200%, life return60% of actual primary HP removed, shared per-use cap15% maxHP, limited by missingHP, energy16, cooldown10. Delayed explosion heals when it resolves.",
+  "visuals": "Accepted50px steel rocket and0.20s flight. Same painted burst scaled478px for enlarged radius,134px for Drain;0.42s burst. Physical blood, shared recoil, visible blinking preview removed on launch. New brief outlined green pulse on player and+X PV at heal. No temporary buff for either skill.",
+  "prepared_numbers": "Primary ordinary sample20; Drain40, or10 actually removed from low-HP primary, or20 after prepared protection. Player maxHP100, initial50/97/100, heals15/3/0/6/12. Adjacent victims give no life return. No final stats, variance, rounding, damage curve or armor approved by these examples.",
+  "scope": "Independent prepared scenes, fixed victims and events. No campaign GameState, save, AI, RNG, loot or actual targeting/resource resolver. FullHP case demonstrates zero return, not final cast eligibility. One-turn delayed scene is an example, not a general heavy-weapon delay rule. Missing ammo-box uses later accepted equipment direction; no matter/ammo resource counter.",
+  "pending": "Real weapon-family native sequences, damage types/defenses, per-use burst heal budget, exact rounding/event/snapshot/cooldown order, fullHP cast legality, affiliation changes, ground effects and familiar eligibility remain separate.",
+  "temporary_actors": "Existing enemy32 artwork temporarily enlarged64; bestiary adaptation after animations.",
+  "passive_scope": "Heavy weapon explosions only; no extension of stun radius or fixed Déluge targeting area, no automatic explosion for a heavy machine gun."
+}

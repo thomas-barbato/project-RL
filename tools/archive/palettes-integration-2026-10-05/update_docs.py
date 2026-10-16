@@ -1,0 +1,13 @@
+from pathlib import Path
+ROOT = Path(__file__).resolve().parents[2]
+path = ROOT / "assets/sprites/cyberpunk/README.md"
+text = path.read_text(encoding="utf-8")
+text = text.replace("Les nouvelles parties (génération 144)", "Les nouvelles parties depuis la génération 144")
+text = text.replace("La prise des pistolets et le style des armes de tir feront l'objet de la retouche suivante, avec la référence fournie par l'utilisateur.", "Les dessins de tir et les mains ont été repris avec la référence fournie par l'utilisateur ; sources et prompts dans `artifacts/palettes-integration-2026-10-05`.")
+text += "\n## Armes de tir et palettes intégrées\n\nLes banques `ranged-families-32.png` et `ranged-families-128.png` remplacent visuellement les illustrations et icônes des huit familles des 61 armes de tir existantes. Deux autres cellules sont des références de pistolet et de pistolet mitrailleur. Les modèles gardent leurs noms, identifiants et statistiques ; aucun pistolet n'est ajouté au butin. Reproduction et contrôle : `python tools/art/build_ranged_families.py` puis `--check`.\n\nLa génération 145 attribue aux nouvelles instances d'armes et d'armures une palette cosmétique : origine, rouge, bleu, violet, turquoise, jaune ou rose. Un flux aléatoire distinct des statistiques et du combat tire la couleur une seule fois. La couleur persiste au ramassage, équipement, dépôt, amélioration, vente/rachat, transport par drone, voyage et reprise. Les parties antérieures gardent la palette d'origine et leurs règles historiques. La rareté et sa couleur de nom restent distinctes.\n\nLe rendu met en cache les tissus et peintures recolorés. Armes droite et gauche et tenue ont des palettes indépendantes ; contours, métal exposé et alpha sont conservés. Le torse choisit toujours une tenue complète : les casques, gants et bottes sont colorés individuellement dans leurs illustrations d'inventaire, sans ajout de calques portés. Les corps restent à 30 pixels. Les nouvelles sources de fusil et les trois poses de pistolet sont dans `artifacts/palettes-integration-2026-10-05`, avec prompts imagegen intégré ; le conditionnement reste crop/alpha/resize nearest.\n"
+path.write_text(text, encoding="utf-8")
+path = ROOT / "artifacts/palettes-equipement-propositions-2026-10-05/README.md"
+text = path.read_text(encoding="utf-8")
+title, rest = text.split("\n", 1)
+text = title + "\n\nMise à jour : cette revue préparatoire est archivée. Les variantes ont depuis été intégrées aux nouvelles parties (génération 145). Voir [l'intégration et sa validation](../palettes-integration-2026-10-05/VALIDATION.md). Les constats de préservation ci-dessous décrivent l'étape de proposition.\n" + rest
+path.write_text(text, encoding="utf-8")

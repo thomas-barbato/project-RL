@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S37",
+  "status": "visual_candidates_accepted",
+  "approval": "visual-acceptance-01.json",
+  "campaign_integration": false,
+  "candidates": [
+    {"number": 83, "id": "ES03", "variant": "ES03-A01", "title": "Leurre holographique"},
+    {"number": 84, "id": "ES05", "variant": "ES05-A01", "title": "Traversée de phase"}
+  ],
+  "effective_rank": 1,
+  "rules": "Current catalogue and previously accepted placement/adjacency conditions; illustrative fixtures, no AI implementation or rule expansion.",
+  "native_tile": 64,
+  "rendering": "Existing native-64 player and held equipment composed without source pixel edits; blue alpha-scanned decoy and purple horizontal phase fragments.",
+  "scenes": 14,
+  "preview": "../apercu-animations.html?lot=80",
+  "native_lab": "--apercu-laboratoire-competences --lot-esquive",
+  "source": "src/agent_skill_lab_review/fire_painted/evasion.rs",
+  "remaining_unshown": 27,
+  "temporary_capture_policy": "Remove PNG atlases and verification screenshots after validation; keep compact WebP playback, code, metadata and previous acceptance records.",
+  "previous_acceptance": "../skill-animation-review-79/visual-acceptance-01.json"
+}

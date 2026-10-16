@@ -1,0 +1,48 @@
+{
+  "review_id": "SM05-ANIM05-GEL-RESTORE",
+  "date": "2026-10-14",
+  "status": "visually_approved",
+  "candidate_number": 73,
+  "skill": "SM05",
+  "variants": [
+    "FEU",
+    "POISON",
+    "FROID"
+  ],
+  "new_visuals": "Restores existing accepted GEL-A05 rendering; snow/ice ground, Fire and Poison retained.",
+  "references": [
+    "mine-residue-snow-ice-direction-decisions.json",
+    "mine-residue-natural-motion-direction-decisions.json",
+    "mine-square-footprint-direction-decisions.json",
+    "mine-residue-full-zone-marker-direction-decisions.json",
+    "mine-residue-elemental-ground-visual-direction-decisions.json",
+    "mine-residue-visual-handoff-direction-decisions.json",
+    "persistent-immediate-application-count-acceptance-decisions.json",
+    "review-individual-description-SM05-02.json",
+    "skill-animation-review-28/visual-acceptance-01.json"
+  ],
+  "duration": 13,
+  "radius_fixture": 1,
+  "SM04_in_fixture": false,
+  "geometry": "Square3x3 in open floor, clipped by obstacles",
+  "damage_prepared": {
+    "ground_fire": 3,
+    "ground_poison": 4,
+    "explosions": [
+      13,
+      19,
+      16
+    ],
+    "poison_status": 42
+  },
+  "first_application": "Immediate; counts among13; replaces historical delay under INTERACT-TIME01.",
+  "source_assets_reused": true,
+  "native_visual_approval": true,
+  "browser_frames": "Lossless full-native PNG hardlinks; canvas crops native576 view without scaling",
+  "campaign_integration": false,
+  "pending": "Full resolver, AI, status aggregation and resistances; SM04 extended footprint remains a separate review.",
+  "gel_status_visual_approval": "Existing GEL-A05 approval, review28",
+  "new_drawing": false,
+  "visual_approval_date": "2026-10-14",
+  "visual_acceptance": "visual-acceptance-01.json"
+}

@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-06",
+  "url": "http://127.0.0.1:8769/galerie-allies-transformations.html",
+  "status": "passed",
+  "preview_only": true,
+  "full_catalog": {
+    "cards": 17,
+    "images": 94,
+    "missing": [],
+    "names": [
+      "56 · Éclaireur",
+      "57 · Mule",
+      "58 · Traqueur",
+      "59 · Artilleur",
+      "66 · Gardien",
+      "61 · Colosse biomécanique",
+      "62 · Prédateur",
+      "63 · Cuirassé",
+      "64 · Possédé",
+      "65 · Abysse",
+      "09 · Pillard",
+      "21 · Broyeur",
+      "22 · Veilleur",
+      "23 · Androïde",
+      "24 · Araignée d’acier",
+      "42 · Sentinelle · machine",
+      "43 · Riveuse"
+    ],
+    "native32": true
+  },
+  "drone_names": [
+    "56 · Éclaireur",
+    "57 · Mule",
+    "58 · Traqueur",
+    "59 · Artilleur",
+    "66 · Gardien"
+  ],
+  "changed_candidates": [
+    59,
+    66
+  ],
+  "retired_candidates": [
+    60
+  ],
+  "guardian_count": 1,
+  "search_60_result": [
+    "66 · Gardien"
+  ],
+  "captures": [
+    "review/capture-59-t1-r4.png",
+    "review/capture-66-sans-bouclier.png"
+  ],
+  "checks": [
+    "All 94 gallery images loaded",
+    "Native rows render at 32 by 32 CSS pixels",
+    "59 and 66 inspected with game-floor background",
+    "Five current drone models, with a single guardian",
+    "Search 60 resolves to merged guardian 66"
+  ],
+  "engine_validation": "Not applicable: review artifacts only"
+}

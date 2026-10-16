@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-07",
+  "review_id": "A02",
+  "title": "Déflagration occulte",
+  "user_message": "Ca me va :)",
+  "approval_status": "accepted_as_displayed",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-A02-01.json",
+  "previous_description_sha256": "c0d2c0836ccf29aed05d8e8ba7ba06fa170859a425d00d57b9dff2967d8bad21",
+  "accepted_player_copy_sha256": "95dec36bf3030532354dbfc4ee24ddde8a6735109cb81b7950d30d8cfc3435d9",
+  "accepted_visual_copy_sha256": "4ebca0723d54dbc824fdf96e7a0daf7150d3d7044bf665291f646563a927aa9a",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "occult_damage_per_target_before_defenses": 28,
+    "zone_width_cells": 3,
+    "zone_height_cells": 3,
+    "range_cells": 4,
+    "energy_cost": 13,
+    "cooldown_turns": 4
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "occult_damage_per_target_before_defenses": 30,
+    "zone_width_cells": 3,
+    "zone_height_cells": 3,
+    "range_cells": 4,
+    "energy_cost": 13,
+    "cooldown_turns": 4
+  },
+  "approval_scope": "Displayed RP,occult damage28/30 per target,zone3x3,range4,cost13/CD4,chosen visible unobstructed case,preview of affected cells and already observed actors,friendly damage on player/allies including drones,walls stop explosion;damage before each targets defenses. Displayed ground seal then angular fragments accepted as visual direction.",
+  "accepted_visual_direction": "**Visuel proposé :** un sceau apparaît au sol, puis éclate en fragments anguleux.",
+  "unshown_rules_approval": "Full rank/attribute/energy curves,equipment/other passive/implant stacking,exact center line of sight and wall-corner/cell geometry,large actor multi-cell damage,visibility union of player/drones,unknown terrain and hidden actors versus preview/affected cells,ordinary occult defense details,stat snapshots/damage order/other effects,target failure time-energy-RNG-cooldown behavior and absorption interactions,terrain and map transitions remain pending. No extra approval of old lot02 terrain/other rules inferred from this card.",
+  "native_visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

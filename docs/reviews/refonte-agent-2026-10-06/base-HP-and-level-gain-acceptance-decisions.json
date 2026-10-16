@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-08",
+  "review_id": "HP01-ACCEPT01",
+  "user_instruction": "oui :) ca me va",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-HP01-01.json",
+  "source_card_sha256": "5128399506ed212e31858582b55ecadebe07cb0c617343e33bd2ad35e8c3e86e",
+  "accepted_shown_copy_markdown": "On garde **aucun plafond actuellement** ; **100 reste le plafond éventuel** si nous décidons d’en instaurer un.\n\nPassons aux **PV de base et à leur progression**. Je propose de reprendre les valeurs du brouillon :\n\n**HP01 · Points de vie**\n\n*Votre vitalité détermine les blessures que vous pouvez encaisser.*\n\n**Base proposée**\n\n- Niveau 1, Vitalité 5 : **30 PV maximum**.\n- Gain automatique par niveau : **+2 PV maximum**.\n- Chaque point de Vitalité : **+4 PV maximum**, déjà validé.\n\n**Exemple actuel — Niveau 10, Vitalité 10**\n\n- PV maximum : **68**.\n\n**Au niveau 11**\n\n- Sans dépenser les nouveaux points : **70 PV maximum**.\n- Avec les cinq points investis en Vitalité : **90 PV maximum**.\n\nCes exemples sont calculés avant les bonus de PV des équipements, implants et passifs. **Les 30 PV de base et les +2 PV automatiques par niveau sont les nouvelles valeurs à valider.**",
+  "accepted_shown_copy_sha256": "a053d81e03f55745e3693beb9c323c8d2ad9995cf79f39a61c8ebde0673ed62f",
+  "accepted_rules": {
+    "base_maximum_HP_at_level1_Vitalite5": 30,
+    "automatic_maximum_HP_gain_per_level_after_level1": 2,
+    "maximum_HP_per_Vitalite_point": 4
+  },
+  "accepted_shown_examples": [
+    {
+      "level": 10,
+      "Vitalite": 10,
+      "maximum_HP": 68
+    },
+    {
+      "level": 11,
+      "Vitalite": 10,
+      "maximum_HP": 70
+    },
+    {
+      "level": 11,
+      "Vitalite": 15,
+      "maximum_HP": 90
+    }
+  ],
+  "accepted_example_scope": "before_equipment_implant_and_passive_HP_bonuses",
+  "RP_approval": "shown_HP01_RP_accepted",
+  "accepted_level_context": "no_current_cap;100_only_conditional_future_cap_if_introduced",
+  "unshown_cases_pending": [
+    "current_HP_when_maximum_changes_or_level_is_gained",
+    "equipment_implant_and_passive_HP_bonus_order",
+    "temporary_transformation_HP_and_return_rules_except_already_accepted_percentage_preservation",
+    "minimum_attribute_and_HP_bounds",
+    "rounding_of_percentage_HP_bonuses",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "none_presented",
+  "runtime_integration": "not_integrated"
+}

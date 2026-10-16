@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ16-DIRECTION01",
+  "source": "direct_user_requests_and_visibility_correction",
+  "user_messages": [
+    "j'aimerais aussi qu'on ajoute un bouton d'action à la mule qui servirait alors à ramasser les loots dans son champ de vision :)",
+    "à chaque fois qu'il ramasse quelque chose, ca devra etre marqué au dessus de lui dans un message flottant (le nom de l'objet)",
+    "en faite ca devrait plutot être dans le champ de vision du joueur, sinon le drone cesserait de fonctionner"
+  ],
+  "accepted_explicit_directions": {
+    "Mule_action_button": "add_Mule_loot_collection_control_to_planned_Familiers_window",
+    "loot_visibility_source": "player_field_of_view;latest_user_correction_replaces_initial_Mule_field_of_view_request",
+    "pickup_feedback": "every_actual_Mule_ground_item_pickup_generates_floating_message_above_Mule_with_item_name"
+  },
+  "superseded_request_part": "initial_Mule_own_field_of_view_scope_replaced_by_player_field_of_view;not_an_accepted_old_runtime_rule",
+  "approval_scope": "Button function, player-FOV loot scope and per-item floating-name visual direction explicitly requested. Label, autonomous movement/pickup timing, energy/cooldown, cancellation and rendered typography still require proposal review. No acceptance of pending PETS_EQ15 recall conditions inferred.",
+  "native_visual_approval": "floating_item_name_above_Mule_direction_explicitly_requested;native_pixels_timing_stacking_and_typography_pending",
+  "runtime_integration": "not_integrated"
+}

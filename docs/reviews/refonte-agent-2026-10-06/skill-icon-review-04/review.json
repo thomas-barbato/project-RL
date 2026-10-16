@@ -1,0 +1,257 @@
+{
+  "review_id": "SKILLS-IC04",
+  "date": "2026-10-10",
+  "status": "accepted",
+  "user_approval": "ca me va :)",
+  "approval_date": "2026-10-10",
+  "skill_id": "D59",
+  "user_feedback": "Concernant le drone, le feu de son canon n'englobe pas son canon et il y a des artefacte jaune sur le s2 armes",
+  "scope": "Right muzzle flash geometry and yellow artifacts on both weapons only. Barrels retain their image-right direction. No gameplay or skill copy changes.",
+  "generation_tool": "image_gen.imagegen",
+  "prompt": "prompt-D59.txt",
+  "candidates": [
+    {
+      "id": "D59-v3",
+      "title": "Version précédente",
+      "status": "revision_required",
+      "files": {
+        "24": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-04/D59-v3-24.png",
+          "sha256": "b7645b7befd0e2b9018a1f86ad98943dffde35cae03f53240d6a60bfdd37adee"
+        },
+        "32": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-04/D59-v3-32.png",
+          "sha256": "5149540c5ea1afa4d2f58451d02e9d6370850c1ded95b00230dfa8cc8366fbca"
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-04/D59-v3-64.png",
+          "sha256": "6e23cecaafb27032c06f99be7deec560f8acfe2f86e19e7649a32a36ca15eb39"
+        },
+        "128": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-04/D59-v3-128.png",
+          "sha256": "5d6e1c31b4a9123bf9b1a6b9eb1bc69cfd3ad9f69ab98ec3e499cb466add0faf"
+        },
+        "192": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-04/D59-v3-192.png",
+          "sha256": "8cb5621538f6dacff2d864a1930405969a5c38a12e48065a86d0a5a1b8a2a83d"
+        }
+      }
+    },
+    {
+      "id": "D59-v4",
+      "title": "Flamme et métal corrigés",
+      "status": "accepted",
+      "files": {
+        "24": {
+          "file": "D59-v4-24.png",
+          "sha256": "9a53fa67c398e80a6c95c791dd091408249536696cea650cda156d4fe730c1c8"
+        },
+        "32": {
+          "file": "D59-v4-32.png",
+          "sha256": "1e873941777b975f6ddeffd728a04625014a457eda1480eed847a05923dffff7"
+        },
+        "64": {
+          "file": "D59-v4-64.png",
+          "sha256": "e2369fe930dc4abf76cc3742ec926fdffec177b9b5a3a84218eab5a3f8c9e7f9"
+        },
+        "128": {
+          "file": "D59-v4-128.png",
+          "sha256": "bf83891f6a55d05ff3b373483ab28740126f9627d68076415e034c515045a0ed"
+        },
+        "192": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-04/D59-v4-192.png",
+          "sha256": "1ea7634e2367f137fa5a9cefabdc176be760f10dcdd19bc197cedcd9d38e917f"
+        }
+      },
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-04/D59-v4-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "d96667e92d2dd230849c93089b4beab35fff2f5db4e6a495768e1b7b842ffbe2"
+      }
+    }
+  ],
+  "accepted_unchanged": [
+    "B01",
+    "ME04",
+    "SU04",
+    "FE05",
+    "FR03",
+    "BM02",
+    "SF00-v2"
+  ],
+  "SF00": {
+    "status": "accepted",
+    "candidate": "SF00-v2",
+    "user_approval": "je valide la furtivité aussi.",
+    "approval_date": "2026-10-10",
+    "source_review": "SKILLS-IC03",
+    "files": {
+      "24": {
+        "file": "SF00-v2-24.png",
+        "sha256": "70ba576d29eba8a72f92c86d006433a7a1cc89735b343d894ac0f96188328352"
+      },
+      "32": {
+        "file": "SF00-v2-32.png",
+        "sha256": "2269b8f8e5ba7c0b90e3be274a11e5647e479e06da3cae253ede3d11869fb274"
+      },
+      "64": {
+        "file": "SF00-v2-64.png",
+        "sha256": "75ff6ab3337504d66ed572ddbc6e533cd273b830b31092f6e540b7e27b283dbe"
+      },
+      "128": {
+        "file": "SF00-v2-128.png",
+        "sha256": "ad6536a293b864ab6af8d4e0d754074be32a1111d98ee5a832056880119d58fd"
+      },
+      "192": {
+        "file": "SF00-v2-192.png",
+        "sha256": "99cab81ec7f7da9b229ac23093a1f5371ff0dcaee4de106e5ef1cf67111def02"
+      }
+    },
+    "master": {
+      "file": "SF00-v2-master.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "1239d49ad99779dcbd1e0e4356c93018dfe350e2fe9ea79fe6695bfd03aaa6da"
+    }
+  },
+  "accepted_source_assets": {
+    "B01": {
+      "24": {
+        "file": "B01-24.png",
+        "sha256": "a6da09bd9d84a8bda0443b4996d81b0e556875f2d07e321c51a41f15a3b3989c"
+      },
+      "32": {
+        "file": "B01-32.png",
+        "sha256": "d0679a045edb3f9f4943159fbac70651ae2ba2c8217771a7d7a7ed01a56ac99a"
+      },
+      "64": {
+        "file": "B01-64.png",
+        "sha256": "b50a837eafefba11b261a0e8976c9009f5ea7a91b7d7681a5c3b82acf661e80b"
+      },
+      "128": {
+        "file": "B01-128.png",
+        "sha256": "9ecdda69f00d38d5b1de403d7ffb21d87e096e3d21560bf3d12e0838dad766c2"
+      },
+      "192": {
+        "file": "B01-192.png",
+        "sha256": "2ba69010e33526675639d47d6c730f7ad1b5de548dc2f5e3243219c36b644a33"
+      }
+    },
+    "ME04": {
+      "24": {
+        "file": "ME04-24.png",
+        "sha256": "e22e36271de24017010b0d290b0404dcbbea7c691e823e410d1356d2fe993114"
+      },
+      "32": {
+        "file": "ME04-32.png",
+        "sha256": "c627cda27088ba0def4f41ca64b929c9a47494827cec7d68386e31831b5e1a5e"
+      },
+      "64": {
+        "file": "ME04-64.png",
+        "sha256": "e4df0f3c62a5fd004043e80cec83ce6a179332abe7a7749d4894e4a9c1318607"
+      },
+      "128": {
+        "file": "ME04-128.png",
+        "sha256": "c2c39a29fb0d4172f339e44a783b8d9c2214556a8c286f0941ac67169a0bb790"
+      },
+      "192": {
+        "file": "ME04-192.png",
+        "sha256": "b244788ac01e16f4399d263ceb403795ffa2c2c59e9cd0d60e6aaa1589a330b4"
+      }
+    },
+    "SU04": {
+      "24": {
+        "file": "SU04-24.png",
+        "sha256": "0b3f03587d16331bd7d0485fb8234b22492a517111a1ca3316bfe04085285596"
+      },
+      "32": {
+        "file": "SU04-32.png",
+        "sha256": "8862c7532bdd82a39dbec1daf339c042be76c7457d9db5818bbb879451989058"
+      },
+      "64": {
+        "file": "SU04-64.png",
+        "sha256": "cc9b0b784d8294707cc7c01b1b02086e1ced9ff313d74d09f69d1c0d2044c4c8"
+      },
+      "128": {
+        "file": "SU04-128.png",
+        "sha256": "eabd8ff70a358c72139d2b202e4c00f6b3a15f0dee7394ef59e053e90bb5d025"
+      },
+      "192": {
+        "file": "SU04-192.png",
+        "sha256": "8c7ebb5714b9ef938dd509080b90b6435f5038fd721d0fee320f65da6cc45154"
+      }
+    },
+    "FE05": {
+      "24": {
+        "file": "FE05-24.png",
+        "sha256": "3fa89215f984d9655caeb45521ce4fb744f7ce3abc4b6ff9c5711024ca98d1a2"
+      },
+      "32": {
+        "file": "FE05-32.png",
+        "sha256": "44b646629fbf6c93d4c4f5263cbafd709596f6ecece03b390ed06f2950064bc8"
+      },
+      "64": {
+        "file": "FE05-64.png",
+        "sha256": "8ae7656ddb43225a07c0a422d5b467a2d7e669e72744c6bcd1248ef4ae1f7402"
+      },
+      "128": {
+        "file": "FE05-128.png",
+        "sha256": "62efe19f1043b87a84de54488e116443cd66a10b8b732dbd42ccfcc0707e0e9b"
+      },
+      "192": {
+        "file": "FE05-192.png",
+        "sha256": "9ae15e20dc75200cc42ad727ee646798307389683afa20cc0442d90f97e748a8"
+      }
+    },
+    "FR03": {
+      "24": {
+        "file": "FR03-24.png",
+        "sha256": "4df7f16a9a92b4978fc0b4c3e6310aee18d9b819a563aac9fa32659d6cb28754"
+      },
+      "32": {
+        "file": "FR03-32.png",
+        "sha256": "072632d5b29f4f7ab60a50611318804ac67e5d9d686075902ca289b53ac67426"
+      },
+      "64": {
+        "file": "FR03-64.png",
+        "sha256": "b2f79109d01398e5e3f2c5a1268f351fc7a621f27258ca1f4a54f7b7fe6b306e"
+      },
+      "128": {
+        "file": "FR03-128.png",
+        "sha256": "09e6270844d63699453c0f9e587fe3671366c2ea4b5c821ca496b4d6bfdb59f8"
+      },
+      "192": {
+        "file": "FR03-192.png",
+        "sha256": "231928d6de6faed720bfdd612f9c200b8d96282842f4fc398546963bb2c800cc"
+      }
+    },
+    "BM02": {
+      "24": {
+        "file": "BM02-24.png",
+        "sha256": "e3938d1657bb68f696463c558be13fd9fc1b898b1ce59a4164ddf84a605a3ccf"
+      },
+      "32": {
+        "file": "BM02-32.png",
+        "sha256": "86ed1e8e75b1a3a902261145510fef37c8339b2aed91e328b961e544e0cebf74"
+      },
+      "64": {
+        "file": "BM02-64.png",
+        "sha256": "01d711876546b2d3f32bca8d141c31a3ef07d33934c40fc4fe09df79ee0dba24"
+      },
+      "128": {
+        "file": "BM02-128.png",
+        "sha256": "62cda742bbce88463d23c776f554a3c0c60eb84bae95d4bfbc941bb4847e5dd0"
+      },
+      "192": {
+        "file": "BM02-192.png",
+        "sha256": "69cf7e8176be6d3739ccb76325accc4e6ba3b2953d366af127a8254a6796a24b"
+      }
+    }
+  },
+  "verification": {
+    "previous_candidate_hashes_preserved": true,
+    "seven_accepted_icons_preserved": true
+  },
+  "packaging": "Source copied unchanged; Lanczos3 size exports. No semantic edits during packaging."
+}

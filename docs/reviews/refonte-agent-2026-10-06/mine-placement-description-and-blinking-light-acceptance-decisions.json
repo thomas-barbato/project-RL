@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SM00-ACCEPT01",
+  "visual_revision_id": "SM00-BLINK01",
+  "skill_id": "SM00",
+  "user_response": "on pourrait meme faire en sorte que le voyant rouge clignotte :) . Je valide",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM00-01.json",
+  "reviewed_description_sha256": "1c2a88092441877554fdbd4cad565a51f35eba0b3d4fd7e2b206f440b08074f4",
+  "accepted_player_copy": "**SM00 · Pose de mine — Rang 1 · Actif**\n\n*Vous déposez une charge piégée qui explose au passage d’un ennemi.*\n\n**Effets actuels**\n\n- Dégâts de feu : **13**, avant résistances.\n- Rayon de l’explosion : **1 case**.\n- Portée de pose : **1 case**.\n- Armement : **1 tour après la pose**.\n- Mines simultanées : **1**.\n- Coût : **10 énergie**.\n- Recharge : **1 tour**.\n\nPose sur votre case ou une case adjacente accessible et visible, sans ennemi ni autre mine.\n\nÀ la limite de capacité, une nouvelle pose remplace la mine la plus ancienne. Changer de couche supprime vos mines.\n\nVous êtes protégé des dégâts de vos mines. Vos familiers peuvent être touchés.\n\n**Achat unique : 1 point de compétence.**",
+  "accepted_current_values": {
+    "fire_damage_before_defenses": 13,
+    "explosion_radius_cells": 1,
+    "placement_range_cells": 1,
+    "arming_delay_turns": 1,
+    "maximum_simultaneous_mines": 1,
+    "energy_cost": 10,
+    "cooldown_turns": 1
+  },
+  "accepted_displayed_conditions": [
+    "own_or_adjacent_accessible_visible_cell_without_enemy_or_other_mine",
+    "oldest_mine_replacement_at_capacity",
+    "layer_change_removes_mines",
+    "player_self_damage_immunity",
+    "familiars_can_be_touched"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** une petite mine métallique dont le voyant rouge clignote une fois armée, puis une brève explosion de feu.\n\nLes cases touchées sont prévisualisées avant la pose. Après la pose, le survol ou le curseur montre le rayon ; si la case contient plusieurs éléments, le petit menu d’inspection permet de choisir la mine.",
+  "armed_red_light_blink": "explicit_user_request;replaces_continuous_light_direction",
+  "blink_timing": "armed_state_preserved;cosmetic_animation;exact_cadence_and_native_render_pending",
+  "unshown_cases_pending": [
+    "full_damage_attribute_scaling_resistances_and_snapshot_time",
+    "arming_phase_order_and_hostile_already_present_at_arming",
+    "explosion_metrics_diagonals_walls_and_large_actor_footprints",
+    "familiar_damage_attribution_and_other_allied_actor_eligibility",
+    "cleanup_for_same_layer_portals_zones_and_persistent_residue",
+    "rejected_placement_rng_energy_time_and_atomic_oldest_mine_replacement",
+    "variants_and_status_application_to_review_with_associated_passives",
+    "native_mine_armed_feedback_preview_palette_and_overlap_inspection"
+  ],
+  "native_tile_and_animation": "pending_native_review",
+  "runtime_integration": "not_integrated"
+}

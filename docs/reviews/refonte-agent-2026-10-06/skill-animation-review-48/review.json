@@ -1,0 +1,29 @@
+{
+  "batch": "ANIM-S19",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 47,
+      "id": "M02",
+      "name": "Décharge mutagène",
+      "variant": "M02-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 48,
+      "id": "HY07",
+      "name": "Autodestruction",
+      "variant": "HY07-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "scope": "Prepared visual fixtures only. No real damage, HP, energy, AI, attributes, loot, saves or campaign combat integration.",
+  "rules_retained": "M02 displayed range3/cost9/cooldown2, form extension2 within shared4-turn cap only for actual HP removal. HY07 combat drones58/59/66 only, range6/radius2/cost6/cooldown4, enemies only, walls block. Silence prevents both; HY07 needs human form.",
+  "visuals": "Green organic projectile and brief hit; short green form pulse on extension. Red drone core, fire and steel fragments; no new poison/burning/bleeding status.",
+  "temporary_actors": "Monsters and drones use their existing32px drawings scaled to64. Player requested adaptation and extensive bestiary creation after skills/animations.",
+  "acceptance": "visual-acceptance-01.json",
+  "accepted_date": "2026-10-13"
+}

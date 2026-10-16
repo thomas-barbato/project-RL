@@ -1,0 +1,49 @@
+{
+  "browser": "Edge Chromium",
+  "views": 14,
+  "schemes": [
+    "file: playback and controls",
+    "localhost: exact native RGB equality"
+  ],
+  "checks": [
+    {
+      "scenario": "IMPACT",
+      "direction": 0,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "IMPACT",
+      "direction": 1,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "IMPACT",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "IMPACT",
+      "direction": 3,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "DUREE",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "ATTENTE",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "OBSTACLE",
+      "direction": 2,
+      "pixel_equality": true
+    }
+  ],
+  "manual_idle_stable": true,
+  "blocked_no_consumption": true,
+  "expiry_and_first_impact": true,
+  "errors": []
+}

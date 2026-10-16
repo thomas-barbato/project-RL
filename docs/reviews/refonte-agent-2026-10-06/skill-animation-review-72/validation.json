@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-14",
+  "debug_build": "passed",
+  "locked_all_targets_check": "passed",
+  "format_check": "passed",
+  "scoped_diff_check": "passed",
+  "targeted_tests": {
+    "player_vision_and_legacy_suspension": 2,
+    "grenade_review_states": 3
+  },
+  "native_readback_frames": 3424,
+  "views": 32,
+  "directions": 4,
+  "scenes": 4,
+  "browser": "Edge Chromium headless, direct file gallery",
+  "browser_errors": [],
+  "browser_native_pixel_identical_samples": 12,
+  "wall_clipping": "passed in all 32 native views",
+  "idle_counters": "passed",
+  "refused_attack_atomic": "passed",
+  "visual_inspection": [
+    "browser-impact.png",
+    "browser-projectile.png",
+    "browser-wall-0.png",
+    "browser-self-0.png"
+  ],
+  "accepted_review69_and_dependencies_preserved": 8261,
+  "new_grenade_visual_status": "awaiting_explicit_user_approval",
+  "new_grenade_campaign_integration": false,
+  "vision12_integration": "../skill-spatial-review-01/vision-acceptance-01.json"
+}

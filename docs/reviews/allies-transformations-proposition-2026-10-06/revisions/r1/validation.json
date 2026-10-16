@@ -1,0 +1,286 @@
+{
+  "candidates": 11,
+  "numbers": [
+    9,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65
+  ],
+  "native_tiles": 22,
+  "active_files_checked": 765,
+  "active_files_changed": [],
+  "checks": [
+    {
+      "number": 9,
+      "kind": "living",
+      "colors": 22,
+      "bounds": [
+        5,
+        1,
+        26,
+        31
+      ]
+    },
+    {
+      "number": 9,
+      "kind": "corpse",
+      "colors": 22,
+      "bounds": [
+        2,
+        21,
+        31,
+        31
+      ]
+    },
+    {
+      "number": 56,
+      "kind": "living",
+      "colors": 21,
+      "bounds": [
+        2,
+        10,
+        30,
+        25
+      ]
+    },
+    {
+      "number": 56,
+      "kind": "corpse",
+      "colors": 23,
+      "bounds": [
+        1,
+        19,
+        31,
+        31
+      ]
+    },
+    {
+      "number": 57,
+      "kind": "living",
+      "colors": 22,
+      "bounds": [
+        2,
+        7,
+        29,
+        31
+      ]
+    },
+    {
+      "number": 57,
+      "kind": "corpse",
+      "colors": 23,
+      "bounds": [
+        3,
+        17,
+        29,
+        31
+      ]
+    },
+    {
+      "number": 58,
+      "kind": "living",
+      "colors": 22,
+      "bounds": [
+        2,
+        7,
+        30,
+        31
+      ]
+    },
+    {
+      "number": 58,
+      "kind": "corpse",
+      "colors": 24,
+      "bounds": [
+        2,
+        18,
+        31,
+        31
+      ]
+    },
+    {
+      "number": 59,
+      "kind": "living",
+      "colors": 22,
+      "bounds": [
+        3,
+        4,
+        29,
+        31
+      ]
+    },
+    {
+      "number": 59,
+      "kind": "corpse",
+      "colors": 21,
+      "bounds": [
+        1,
+        18,
+        31,
+        31
+      ]
+    },
+    {
+      "number": 60,
+      "kind": "living",
+      "colors": 22,
+      "bounds": [
+        2,
+        1,
+        30,
+        31
+      ]
+    },
+    {
+      "number": 60,
+      "kind": "corpse",
+      "colors": 23,
+      "bounds": [
+        1,
+        20,
+        31,
+        31
+      ]
+    },
+    {
+      "number": 61,
+      "kind": "living",
+      "colors": 23,
+      "bounds": [
+        1,
+        1,
+        31,
+        31
+      ]
+    },
+    {
+      "number": 61,
+      "kind": "corpse",
+      "colors": 23,
+      "bounds": [
+        1,
+        19,
+        31,
+        31
+      ]
+    },
+    {
+      "number": 62,
+      "kind": "living",
+      "colors": 23,
+      "bounds": [
+        2,
+        1,
+        30,
+        31
+      ]
+    },
+    {
+      "number": 62,
+      "kind": "corpse",
+      "colors": 23,
+      "bounds": [
+        1,
+        20,
+        31,
+        31
+      ]
+    },
+    {
+      "number": 63,
+      "kind": "living",
+      "colors": 24,
+      "bounds": [
+        2,
+        2,
+        30,
+        31
+      ]
+    },
+    {
+      "number": 63,
+      "kind": "corpse",
+      "colors": 22,
+      "bounds": [
+        1,
+        19,
+        31,
+        31
+      ]
+    },
+    {
+      "number": 64,
+      "kind": "living",
+      "colors": 24,
+      "bounds": [
+        2,
+        4,
+        30,
+        31
+      ]
+    },
+    {
+      "number": 64,
+      "kind": "corpse",
+      "colors": 23,
+      "bounds": [
+        1,
+        19,
+        31,
+        31
+      ]
+    },
+    {
+      "number": 65,
+      "kind": "living",
+      "colors": 21,
+      "bounds": [
+        3,
+        1,
+        29,
+        31
+      ]
+    },
+    {
+      "number": 65,
+      "kind": "corpse",
+      "colors": 21,
+      "bounds": [
+        1,
+        17,
+        31,
+        31
+      ]
+    }
+  ],
+  "scenes": [
+    "../../../../../assets/source-art/allies-transformations-proposition-2026-10-06/revisions/r1/review/scene-09.png",
+    "../../../../../assets/source-art/armures-bicolores-completes-2026-10-05/allies-transformations-proposes/review/scene-56-60.png",
+    "../../../../../assets/source-art/allies-transformations-proposition-2026-10-06/revisions/r1/review/scene-61-65.png"
+  ],
+  "preview_only": true,
+  "engine_tests": "not run; no production changes",
+  "review_status": "awaiting opinion",
+  "browser_validation": {
+    "loaded_cards": 11,
+    "loaded_dom_images": 60,
+    "missing_images": 0,
+    "native_references_32px": true,
+    "family_filters": "passed: 5 drones and 5 transformations",
+    "search": "passed: number 65 selects Abysse",
+    "zoom": "passed: 32px at 1x and 96px at 3x",
+    "backgrounds": "passed: light, dark and game floor",
+    "scene_toggle": "passed, preserved after background change",
+    "proofs": [
+      "review/capture-drones-natifs.png",
+      "review/capture-abysse-galerie.png"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-08",
+  "review_id": "S04-VISION-ACCEPTED03",
+  "related_attribute_id": "S04",
+  "revision": 3,
+  "title": "Vision de base fixe",
+  "status": "fixed_player_base_radius8_and_no_Perception_radius_growth_accepted;unshown_cases_pending",
+  "previous_proposal": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-perception-vision-01.json",
+  "previous_proposal_sha256": "c3dfd7cc1694a76ca3c493d050e634ae550a392dc75a19bc744512e9634a581a",
+  "feedback_decisions": "docs/reviews/refonte-agent-2026-10-06/perception-vision-growth-reservation-and-withdrawal-decisions.json",
+  "feedback_decisions_sha256": "c6b6c59620618e500d9425fe5f690cc96e090618566425f4e45956dff62b1dab",
+  "accepted_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-11.json",
+  "accepted_attribute_model_sha256": "94754934d8a059ae8c1357c5f5dae9ba635630305fa8e157f7a948d68ee2aa31",
+  "shown_copy_markdown": "Je retire donc la proposition d’augmentation de la vision par la Perception.\n\nJe propose une **portée de vision de base fixe de 8 cases**, indépendante de cet attribut.\n\nLa **Perception garde son bonus de dégâts à distance déjà validé** :\n\n- Perception 10 : **+5 %**.\n- Perception 15 : **+10 %**.\n- Progression : **+1 point de pourcentage par point**, référence 5.\n\nElle conserve ainsi un intérêt pour les armes à distance et les armes lourdes. **La portée de base fixe de 8 cases reste à valider.**",
+  "shown_copy_sha256": "2b68b67ffc40d35c42f7c0a0b7d2017a6fa9328a60381844a612db7bccfa2dab",
+  "new_proposed_rules": {
+    "fixed_player_base_vision_radius_cells": 8,
+    "Perception_does_not_increase_player_base_vision_radius": true
+  },
+  "already_accepted_rules": {
+    "ranged_weapon_damage_percentage_points_per_Perception_point": 1,
+    "reference_Perception": 5,
+    "includes_heavy_ranged_weapons": true
+  },
+  "shown_damage_examples": [
+    {
+      "Perception": 10,
+      "ranged_weapon_damage_bonus_percent": 5
+    },
+    {
+      "Perception": 15,
+      "ranged_weapon_damage_bonus_percent": 10
+    }
+  ],
+  "previous_vision_RP": "withdrawn;no_new_RP_presented",
+  "scope": "player_base_radius_only;does_not_revoke_accepted_drone_shared_vision_or_existing_skill_requirements",
+  "no_new_secondary_Perception_bonus_proposed": true,
+  "unshown_cases_pending": [
+    "existing_FOV_metric_obstacles_and_boundary_rules",
+    "drone_shared_vision_and_observation_interactions",
+    "lighting_and_vision_status_modifiers",
+    "other_equipment_or_skill_vision_effects_and_limits",
+    "native_rendering_and_range_previews",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-perception-vision-02.json",
+  "previous_card_sha256": "d3c7160cbaed736905c00c2c9b8ab7331ef015a04513288eacbb64cd2e55dd43",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/fixed-base-vision8-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "b093f8871a1e049283bc0710f1f480c653d945b869e820d0ae44ae02babaf094",
+  "accepted_rules": {
+    "fixed_player_base_vision_radius_cells": 8,
+    "Perception_does_not_increase_player_base_vision_radius": true
+  },
+  "numeric_and_scope_approval": "fixed_player_base_radius8_independent_of_Perception_accepted;shared_drone_vision_preserved"
+}

@@ -1,0 +1,150 @@
+{
+  "date": "2026-10-07",
+  "id": "AF05",
+  "title": "Désorientation",
+  "revision": 2,
+  "player_copy_markdown": "**Désorientation — Rang 11**\n\n*Vous brouillez le discernement de votre cible. Elle frappe sans distinguer ses alliés de ses ennemis.*\n\n**Effet actuel**\n\n- Cible attaquée : **la plus proche, alliée ou ennemie**.\n- Attaques utilisées : **attaques ordinaires et compétences offensives**.\n- Durée maximale : **4 tours**.\n- Portée : **5 cases**.\n- Chance d’application : **86,5 %**.\n- Chance contre une élite : **64,9 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Chance d’application : **86,8 %**.\n- Chance contre une élite : **65,1 %**.\n\n**Coût : 13 énergie · Recharge : 7 tours.**\n\nCible : un hostile visible en ligne de vue.\n\nLes boss sont immunisés. L’effet cesse dès que la cible subit des dégâts.",
+  "player_copy_sha256": "c4102862bcd1eb3b0dd80b91893b40ccbf29f07f1797ec12c27846a5298c3cb0",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-affliction-descriptions-07.json",
+  "source_skill_block_sha256": "44b3e14dfc99e3e37f6615f831b195885673673140f8f34e7a72c071926942e3",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/regeneration-rupture-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "50558f9f7bbe7e62117d2ecaea95885c0bf8352a11e8dba77f82c8b1af123a91",
+  "name_approval": "accepted_catalogue_name",
+  "catalogue_effect_approval": "explicit_user_closest_target_ignoring_allegiance_and_attack_types_and_damage_interrupt_accepted",
+  "roleplay_text_approval": "new_roleplay_pending_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "revised_copy_pending_user_review",
+  "numeric_rules_approval": "duration_cost_range_and_base_chance_retained_as_revised_effect_proposal; common_elite_0_75_multiplier_and_boss_immunity_explicitly_accepted; displayed_elite_examples_pending_review",
+  "formulas": {
+    "duration_turns": "2 + floor((effective_rank - 1) / 5) + min(3, floor(max(0, Intelligence - 5) / 20)); source proposal; maximum duration subject to early end",
+    "energy_cost": "10 + floor((effective_rank - 1) / 3); source proposal",
+    "application_power": "max(1, 100 + 5 * (effective_rank - 1) + 2 * (Intelligence - 5)); source proposal",
+    "application_chance_percent": "clamp(100 * power / (power + max(1, occult_resistance)), 5, 95); source proposal",
+    "display_rounding": "Exact fractions, nearest tenth displayed; source proposal",
+    "elite_application_chance_percent": "calculated_normal_application_chance * 3 / 4; multiplier explicitly accepted, sample display rounding proposed",
+    "boss_application_chance_percent": "0; explicit boss control immunity overrides success minimum"
+  },
+  "current_profile_status": "illustrative_character_and_target_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "intelligence": 10,
+    "target_occult_resistance": 25,
+    "other_duration_application_reduction_range_cost_modifiers": false,
+    "O00_implant_duration_bonus": 0,
+    "A03_energy_discount": 0
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "duration_turns": 4,
+    "range_cells": 5,
+    "application_power": 160,
+    "target_occult_resistance": 25,
+    "application_chance_percent_exact": {
+      "numerator": 3200,
+      "denominator": 37
+    },
+    "application_chance_percent_display": 86.5,
+    "energy_cost": 13,
+    "cooldown_turns": 7,
+    "duration_is_maximum": true,
+    "receiving_any_damage_ends_effect": true,
+    "attack_target_selection": "closest_target_regardless_of_ally_enemy_allegiance",
+    "ordinary_attacks_and_offensive_skills_allowed": true,
+    "boss_control_immunity": true,
+    "boss_application_chance_percent": 0,
+    "elite_application_chance_multiplier": 0.75,
+    "elite_application_chance_percent_exact": {
+      "numerator": 2400,
+      "denominator": 37
+    },
+    "elite_application_chance_percent_display": 64.9
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "duration_turns": 4,
+    "range_cells": 5,
+    "application_power": 165,
+    "target_occult_resistance": 25,
+    "application_chance_percent_exact": {
+      "numerator": 1650,
+      "denominator": 19
+    },
+    "application_chance_percent_display": 86.8,
+    "energy_cost": 13,
+    "cooldown_turns": 7,
+    "duration_is_maximum": true,
+    "receiving_any_damage_ends_effect": true,
+    "attack_target_selection": "closest_target_regardless_of_ally_enemy_allegiance",
+    "ordinary_attacks_and_offensive_skills_allowed": true,
+    "boss_control_immunity": true,
+    "boss_application_chance_percent": 0,
+    "elite_application_chance_multiplier": 0.75,
+    "elite_application_chance_percent_exact": {
+      "numerator": 2475,
+      "denominator": 38
+    },
+    "elite_application_chance_percent_display": 65.1
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_target_resistance_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "application_chance_percent_display",
+      "elite_application_chance_percent_display"
+    ],
+    "unchanged_effects_omitted": [
+      "attack_target_selection",
+      "ordinary_attacks_and_offensive_skills_allowed",
+      "duration_turns",
+      "range_cells",
+      "energy_cost",
+      "cooldown_turns",
+      "receiving_any_damage_ends_effect",
+      "boss_control_immunity"
+    ]
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "target_specific_chance": "Illustrative target resistance 25 disclosed outside tooltip; real displayed chance depends on target.",
+    "exact_chance_ui_when_observation_access_limited": "pending_separate_interface_review; no hidden target information policy changed"
+  },
+  "presented_conditions": "One hostile visible in line of sight within 5 cells; closest target attacked regardless of allegiance using ordinary attacks and offensive skills; received damage ends effect; boss immune, elite normal calculated success chance multiplied by 0.75. Normal/elite examples use the same fixed Intelligence 10 and target occult resistance 25.",
+  "unshown_rules_approval": "Full-rank curves, base resistance formula, exact turn ordering, modifier/snapshot timing, reapplication, exact candidate visibility/eligibility, nearest-distance metric and ties, selection cadence, behavior without legal target/attack, use of monster resources/cooldowns, other control interactions, resisted-attempt expenditure, immune-target action availability and restricted-observation chance display remain pending where not previously presented/accepted. No false position, ranged ban or old path interruption retained.",
+  "active_weapon_requirement": "none; techno-occult weakening is not a weapon-based attack",
+  "visual_intention_approval": "former_false_position_visual_superseded; new_render_to_propose",
+  "visual_approval": "pending_native_animation_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "False-position selection/range/search/ranged ban/path-interruption removed; stable skill ID AF05 retained.",
+    "Explicit user answers preserve ordinary attacks plus offensive skills and interruption on received damage.",
+    "Existing sample numbers retained as a proposal: ranks 11/12, Intelligence 10, duration 4, range 5, energy 13, cooldown 7.",
+    "Normal exact chances 3200/37 -> 1650/19%, displayed 86.5 -> 86.8%.",
+    "Elite chance calculated from unrounded normal chance times 3/4: 2400/37 -> 2475/38%, displayed 64.9 -> 65.1%. Boss immunity yields 0, irrespective of base minimum.",
+    "Learned 9 -> 10 and fixed gear +2; other conditions fixed; next block contains only normal/elite changing chances.",
+    "Global mixed-attack rule preserves ordinary damage; no guaranteed hit, extra damage or defense bypass inferred.",
+    "Single new roleplay paragraph proposed; no duplicated functional paragraph, rank breakdown, table/formula or ordinary-action timing in tooltip.",
+    "HUD06 applied-status analysis access preserved. New copy, balance samples and native visuals await review; no runtime integration."
+  ],
+  "target_status_analysis_requirement": "docs/reviews/refonte-agent-2026-10-06/target-status-analysis-visibility-decisions.json",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-AF05-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/disorientation-nearest-target-redesign-decisions.json",
+  "latest_decisions_sha256": "69668d1cceb2e1002f4170873673ab2cfd99a662c770a3f1460de90dbfb2e753",
+  "common_control_decisions": "docs/reviews/refonte-agent-2026-10-06/control-boss-immunity-and-elite-penalty-decisions.json",
+  "common_control_decisions_sha256": "139e1615bfedbc7a4ad3df16d614e39d3616fcff387f6bdcc2b96c82cb85c145"
+}

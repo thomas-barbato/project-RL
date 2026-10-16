@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "FE01",
+  "previous_title": "Braise perçante",
+  "title": "Braise",
+  "user_message": "Renommer \"Braise\" , je valide :)",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE01-01.json",
+  "previous_description_sha256": "48044b79385bf7afe4e6b7a59aaae4be1087cb452d49be2d9092e5a53c6e194f",
+  "previous_player_copy_sha256": "57d92a81327368e1c73132b0f5f63b4362bc6be574d442f11980b9953989e464",
+  "accepted_player_copy_sha256": "ee6ce11b622f965ae73f5b224c4f24b8ea613842142d10bdc3ad1b78f06d1564",
+  "approval_scope": "Explicit rename to Braise; full displayed RP, current/next damage and burn values, range, energy/cooldown and target/defense/delayed-burn/nonstacking conditions accepted as provisional balance. Only the heading name changes in the accepted card. Unshown curves, detailed hit/turn/stacking cases and native visuals remain pending.",
+  "stable_id_preserved": true,
+  "rename_changes_mechanics": false,
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "direct_fire_damage": 41,
+      "burn_fire_damage_per_turn": 13,
+      "burn_duration_turns": 5,
+      "range_cells": 5,
+      "energy_cost": 11,
+      "cooldown_turns": 3
+    },
+    "next": {
+      "effective_rank": 12,
+      "direct_fire_damage": 45,
+      "burn_fire_damage_per_turn": 14,
+      "burn_duration_turns": 5,
+      "range_cells": 5,
+      "energy_cost": 11,
+      "cooldown_turns": 3
+    }
+  },
+  "accepted_conditions": [
+    "One visible enemy with clear path; damage shown before target defenses.",
+    "Burn starts on next complete turn; same-agent applications of this burn do not stack."
+  ],
+  "unshown_rules_approval": "Full rank curves, spell hit probability, projectile/actor collision and path geometry, damage/defense order and burn snapshot versus dynamic modifiers, exact tick/duration accounting, refresh/stronger-weaker reapplication, multiple authors, stacking with other fire effects, purge/resistance/critical/skill synergies and cost modifiers remain pending where not already accepted. No universal spell damage variance, active weapon damage multiplier, automatic hit, additional control, boss burn immunity or multi-target piercing introduced.",
+  "visual_approval": "existing_catalogue_direction_only; native_preview_and_animation_pending",
+  "runtime_integration": "not_integrated"
+}

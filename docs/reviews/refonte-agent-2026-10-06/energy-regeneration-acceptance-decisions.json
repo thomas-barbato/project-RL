@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-08",
+  "review_id": "E01-REG-ACCEPT01",
+  "user_instruction": "oui ca me va :)",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-energy-regeneration-E01-01.json",
+  "source_card_sha256": "3743f26cacefd3e630de37e609dbbb587b2d3650c02fd0a9241ef0c1cec080e7",
+  "accepted_shown_copy_markdown": "La **capacité d’énergie est validée**. Voici la proposition pour sa récupération.\n\n**E01 · Récupération d’énergie**\n\n*Votre réserve se reconstitue lentement, puis plus rapidement lorsque le calme revient.*\n\n**Effets proposés**\n\n- Combat et accalmie : **1 % de l’énergie maximale par tour**, minimum **1 point**.\n- Calme : **3 % de l’énergie maximale par tour**, minimum **3 points**.\n- Récupération arrondie à l’entier supérieur, limitée à l’énergie manquante.\n\n**Avec une réserve maximale de 68**\n\n- Combat et accalmie : **+1 énergie par tour**.\n- Calme : **+3 énergie par tour**.\n\n**Avec une réserve maximale de 300**\n\n- Combat et accalmie : **+3 énergie par tour**.\n- Calme : **+9 énergie par tour**.\n\nLe retour au calme conserve le décompte de **trois tours déjà validé**. Ouvrir un menu ou attendre en temps réel ne rend pas d’énergie.",
+  "accepted_shown_copy_sha256": "39f0b9b29c40f05ca588e42d368286994f0b54a6395607705ff1294d279f9f90",
+  "accepted_rules": {
+    "combat_and_accalmie_percent_of_maximum_energy_per_turn": 1,
+    "combat_and_accalmie_minimum_energy_per_turn": 1,
+    "calm_percent_of_maximum_energy_per_turn": 3,
+    "calm_minimum_energy_per_turn": 3,
+    "rounding": "ceiling_before_missing_energy_limit",
+    "cannot_overfill": true,
+    "menus_or_realtime_wait_regenerate_energy": false
+  },
+  "accepted_shown_examples": [
+    {
+      "maximum_energy": 68,
+      "combat_and_accalmie_recovery_per_turn": 1,
+      "calm_recovery_per_turn": 3
+    },
+    {
+      "maximum_energy": 300,
+      "combat_and_accalmie_recovery_per_turn": 3,
+      "calm_recovery_per_turn": 9
+    }
+  ],
+  "RP_approval": "shown_energy_recovery_RP_accepted",
+  "phase_scope": "three_turn_return_to_calm_and_shared_Combat_Accalmie_Calme_already_accepted;unshown_phase_rules_keep_prior_review_status",
+  "unshown_cases_pending": [
+    "exact_tick_order_with_phase_recalculation_and_costs",
+    "first_calm_tick_timing_and_combat_reset_conditions_not_already_shown",
+    "ongoing_costs_stealth_and_channelled_skill_interactions",
+    "max_energy_snapshot_and_capacity_change_during_tick",
+    "partial_actions_and_different_action_time_costs",
+    "modifiers_and_overlapping_recovery_effects",
+    "new_game_and_layer_transition_phase_rules_not_previously_accepted",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "none_presented",
+  "runtime_integration": "not_integrated"
+}

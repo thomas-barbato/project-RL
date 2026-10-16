@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-08",
+  "review_id": "HL03-ACCEPT01",
+  "rename_review_id": "HL03-NAME01",
+  "user_instruction": "On va renommer la compétence \"Déluge d'acier\" .\n\nEn dehors de ça je valide :)",
+  "previous_title": "Pilonnage",
+  "accepted_title": "Déluge d’acier",
+  "name_normalization": "typographic_apostrophe_only;unchanged_wording",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HL03-01.json",
+  "source_card_sha256": "5a0a96177398e745317e5e4915f9f5201360f99e209bd8ba89b06318c6526911",
+  "accepted_scope": "full_shown_RP_current41_50_230percent_next43_52_240percent_fixed_circle_target_zone_radius2_native_sequence1_per_turn_observed_enemy_max4_turns_range7_explosion1_cost8_energy_and5_matter_per_turn_CD8_after_end_or_interruption;automatic_continuation_move_other_attack_other_skill_interrupt;no_observed_enemy_or_unpayable_shot_stop;HP_damage_does_not_interrupt;native_delay_and_range_preserved;before_defenses_active_equipped_heavy_weapon",
+  "accepted_visual_direction": "chosen_zone_contour_successive_native_weapon_impacts_player_status_icon_remaining_turns;icon_and_cast_label_use_new_name",
+  "unshown_rules_pending": [
+    "full_damage_curve",
+    "heavy_attribute_formulas",
+    "precise_start_turn_and_subsequent_turn_tick_order",
+    "initial_zone_no_legal_target_refusal",
+    "zone_center_and_footprint_LOS_walls_range_clipping",
+    "selection_order_or_user_priority_each_tick",
+    "target_changes_during_native_sequence",
+    "consumables_equipment_swap_and_other_actions_not_listed",
+    "insufficient_partial_energy_or_supply_atomicity_heat_and_resource_order",
+    "cooldown_boundary_count_early_interruption_and_delayed_projectiles_after_channel_end",
+    "damage_components_precision_resistance_affixes_and_native_future_modes",
+    "SG04_HL04_HL05_and_common_buff_modifier_order",
+    "allied_actor_damage_eligibility",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "pending_not_created",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ09",
+  "revision": 2,
+  "title": "Réanimation et objets",
+  "status": "shown_raised_native_profile_empty_supplied_gear_slots_terminal_item_identity_and_no_duplicate_rewards_accepted;unshown_cases_pending",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-41.json",
+  "current_attribute_model_sha256": "377657fd5a962f774696ca168edd1400c60fed7bf91edf64a7e8ba35ee557655",
+  "shown_copy_markdown": "Les **règles de charge et de surcharge de la Mule sont validées**.\n\n**PETS-EQ09 · Réanimation et objets — proposition**\n\n**Au relèvement**\n\nLe ressuscité conserve son profil de combat et ses compétences d’origine, avec la puissance donnée par Réanimation. Ses emplacements **Arme** et **Armure de torse** commencent vides : ses capacités d’origine ne créent pas d’objets récupérables.\n\nLe butin tombé lors de la mort de l’ennemi reste au sol. Vous pouvez ensuite lui confier de vrais objets selon les règles d’équipement validées.\n\n**À la fin du familier**\n\nSon équipement confié tombe **sur sa case** :\n\n- à sa mort ;\n- à la fin de la réanimation ;\n- lors d’une destruction volontaire ;\n- lorsqu’un nouveau réanimé le remplace à la limite de cinq.\n\n**Récompenses**\n\nLa mort initiale de l’ennemi accorde ses récompenses habituelles. La mort ou la disparition de sa version ressuscitée ne donne **ni XP ni nouveau butin** ; les objets confiés sont simplement restitués au sol.\n\n**Ces règles d’objets et de récompenses restent à valider.**",
+  "shown_copy_sha256": "cbc306dbb8f14925464076b98ea75f94f20e8b281729bf4ee523a706db050018",
+  "new_proposed_rules": {
+    "scope": "allied_raised_monsters_from_OC07_Reanimation;not_living_monster_rewards_rebalance_or_new_drone_item_rule",
+    "combat_origin": "preserve_original_monster_combat_profile_and_skills_under_accepted_OC07_power;exact_intrinsic_vs_equipment_stat_snapshot_and_modifier_order_not_defined",
+    "initial_supplied_gear_slots": {
+      "weapon": null,
+      "torso_armor": null
+    },
+    "native_equipment_objects": "native_combat_capabilities_do_not_materialize_new_recoverable_inventory_items_on_reanimation",
+    "first_death_loot": "normal_enemy_initial_death_loot_remains_on_ground;reanimation_does_not_automatically_take_or_duplicate_these_items",
+    "supplied_equipment": "transfer_real_items_under_accepted_equipment_level_type_slot_cost_and_identity_rules",
+    "terminal_drop_events": [
+      "allied_raised_death",
+      "reanimation_duration_end",
+      "voluntary_destruction",
+      "replacement_by_new_raised_ally_at_cap5"
+    ],
+    "terminal_drop": "drop_real_supplied_equipped_items_on_raised_familiar_current_cell_preserving_existing_objects",
+    "initial_enemy_rewards": "first_enemy_death_uses_usual_enemy_reward_rules;no_XP_or_loot_amount_probability_or_eligibility_changed",
+    "raised_ally_terminal_rewards": "no_XP_and_no_new_loot_generation_on_allied_raised_death_expiry_destruction_or_cap_replacement;real_supplied_gear_drop_is_item_return_not_new_reward",
+    "item_identity": "same_real_item_returns_on_terminal_drop;no_copy_or_recreation"
+  },
+  "dependencies": {
+    "Reanimation": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC07-02.json",
+    "Reanimation_sha256": "d1d6ac3e4e7b43b1cf8b13d45b3d8c99099f91906b717b465c5636510ef769a1",
+    "equipment_slots": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-slots-PETS-EQ03-02.json",
+    "equipment_slots_sha256": "54e7c2c2a8e2a09ce2b45abe4616d972c58c01b68fa26b81faaea43b017045fb",
+    "equipment_complements": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-PETS-EQ01-03.json",
+    "equipment_complements_sha256": "8f3a02daa23df9637fda5a92fd91a3f7267c538d70be8610442ee92994abc7a5",
+    "native_weapon_profile": "docs/reviews/refonte-agent-2026-10-06/review-familiar-weapon-damage-base-PETS-EQ02-02.json",
+    "native_weapon_profile_sha256": "0b1faee1634503b5f634f2f15222e24a993be39ada644e92e951e6d3e8c79fea"
+  },
+  "scope_audit": {
+    "earlier_drops": "death_expiry_and_voluntary_destruction_supplied_gear_direction_preserved;cap_replacement_terminal_drop_explicitly_proposed",
+    "original_equipment": "empty_supplied_slots_and_no_generated_recoverable_items_explicitly_proposed;does_not_change_original_enemy_visual_body_or_carried_weapon_loot_catalogue",
+    "origin_stats": "exact_snapshot_including_original_equipment_and_temporary_modifiers_remains_pending;do_not_subtract_or_double_add_original_modifiers_by_inference",
+    "power_scaling": "accepted_rank11_100percent_rank12_105percent_HP_damage_and_other_OC07_parameters_preserved;new_supplied_gear_math_pending",
+    "allies": "autonomous_enemy_only_attacks_familiar_window_and_cap5_not_revised",
+    "native_visual": "logical_gear_slots_only;no_new_resurrection_body_corpse_weapon_layer_marker_or_animation_created"
+  },
+  "unshown_cases_pending": [
+    "origin_actor_intrinsic_stats_equipment_and_temporary_effect_snapshot_rules",
+    "OC07_power_multiplier_order_with_own_attributes_supplied_weapon_armor_and_bonuses",
+    "whether_initial_death_credit_reward_and_reanimation_occurrence_order_use_existing_engine_hooks",
+    "XP_credit_for_enemies_killed_by_raised_allies_under_future_reward_design",
+    "resurrection_attempt_refusals_eligibility_and_terminal_event_order",
+    "dead_actor_cell_invalid_drop_layer_recall_save_and_terminal_item_transfer_atomicity",
+    "exact_native_equipment_visible_body_layout_slots_tooltips_and_item_families"
+  ],
+  "player_copy_approval": "explicit_user_acceptance_of_shown_copy",
+  "mechanical_approval": "shown_empty_supplied_slots_native_profile_real_item_lifecycle_and_no_duplicate_raised_rewards_accepted;unshown_cases_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-raised-equipment-and-rewards-PETS-EQ09-01.json",
+  "source_proposal_sha256": "28c3bf6266e57bfe6894ffe2c96ecf7e7623a63f901de751080095ebb28b2fb7",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/raised-equipment-and-reward-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "24cd1a3108445b62faa21c4484545c0a5b9cd17e9479abe08b5e6b66c72da5b9",
+  "accepted_shown_rules": {
+    "scope": "allied_raised_monsters_from_OC07_Reanimation;not_living_monster_rewards_rebalance_or_new_drone_item_rule",
+    "combat_origin": "preserve_original_monster_combat_profile_and_skills_under_accepted_OC07_power;exact_intrinsic_vs_equipment_stat_snapshot_and_modifier_order_not_defined",
+    "initial_supplied_gear_slots": {
+      "weapon": null,
+      "torso_armor": null
+    },
+    "native_equipment_objects": "native_combat_capabilities_do_not_materialize_new_recoverable_inventory_items_on_reanimation",
+    "first_death_loot": "normal_enemy_initial_death_loot_remains_on_ground;reanimation_does_not_automatically_take_or_duplicate_these_items",
+    "supplied_equipment": "transfer_real_items_under_accepted_equipment_level_type_slot_cost_and_identity_rules",
+    "terminal_drop_events": [
+      "allied_raised_death",
+      "reanimation_duration_end",
+      "voluntary_destruction",
+      "replacement_by_new_raised_ally_at_cap5"
+    ],
+    "terminal_drop": "drop_real_supplied_equipped_items_on_raised_familiar_current_cell_preserving_existing_objects",
+    "initial_enemy_rewards": "first_enemy_death_uses_usual_enemy_reward_rules;no_XP_or_loot_amount_probability_or_eligibility_changed",
+    "raised_ally_terminal_rewards": "no_XP_and_no_new_loot_generation_on_allied_raised_death_expiry_destruction_or_cap_replacement;real_supplied_gear_drop_is_item_return_not_new_reward",
+    "item_identity": "same_real_item_returns_on_terminal_drop;no_copy_or_recreation"
+  }
+}

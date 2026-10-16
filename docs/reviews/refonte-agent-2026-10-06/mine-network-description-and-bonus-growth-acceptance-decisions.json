@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SM01-ACCEPT01",
+  "growth_revision_id": "SM01-GROW01",
+  "skill_id": "SM01",
+  "user_response": "c'est au niveau 10 qu'il doit y avoir 5 mines :) , ensuite ca continue en montant encore plus haut . Mais sinon je valide.",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM01-01.json",
+  "reviewed_description_sha256": "5ba48a99fa1f826367a2539a6a589eb77d32eeae322b4b6a542729182fbb3eb8",
+  "accepted_player_copy": "**SM01 · Réseau de mines — Rang 11 · Passif**\n\n*Vos implants coordonnent plusieurs charges pour transformer le terrain en champ de mines.*\n\n**Effets actuels**\n\n- Mines simultanées : **5**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nCapacité inchangée à ce rang.\n\nUne mine par case. À la limite de capacité, une nouvelle pose remplace la mine la plus ancienne.\n\nNécessite **Pose de mine** apprise.",
+  "accepted_current_values": {
+    "maximum_simultaneous_mines": 5
+  },
+  "accepted_next_values": {
+    "maximum_simultaneous_mines": 5
+  },
+  "explicit_capacity_direction": {
+    "effective_rank10_maximum_simultaneous_mines": 5,
+    "equipment_bonus_ranks_continue_capacity_growth_above10": true,
+    "global_capacity_cap5": false,
+    "learned_rank_cap10_preserved": true
+  },
+  "accepted_displayed_conditions": [
+    "SM00_learned_prerequisite",
+    "one_mine_per_cell",
+    "oldest_mine_replaced_at_capacity",
+    "unchanged_current11_next12_capacity_marker"
+  ],
+  "accepted_visual_direction": "**Affichage proposé :** la capacité actualisée apparaît dans la fiche de Pose de mine.",
+  "unshown_curve_status": "rank10_five_and_growth_above10_explicitly_accepted;exact_rank1_to9_curve_and_growth_cadence_beyond12_still_proposed;rank13_six_not_previously_shown_to_user",
+  "unshown_cases_pending": [
+    "full_learned_rank1_to10_curve_and_equipment_bonus_continuation_beyond12",
+    "counting_armed_unarmed_mines_and_persistent_zones",
+    "atomic_oldest_mine_replacement_for_refused_placement",
+    "oldest_mine_cleanup_explosion_and_energy_refund_cases",
+    "equipment_change_while_more_mines_than_new_capacity_exist",
+    "native_rank_bonus_color_and_SM00_capacity_refresh"
+  ],
+  "native_UI": "pending_native_review",
+  "runtime_integration": "not_integrated"
+}

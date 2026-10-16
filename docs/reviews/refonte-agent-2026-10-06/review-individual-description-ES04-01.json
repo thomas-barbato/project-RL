@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-07",
+  "id": "ES04",
+  "title": "Riposte d'esquive",
+  "revision": 1,
+  "player_copy_markdown": "**ES04 · Riposte d’esquive — Rang 11 · Passif**\n\n*Vous laissez passer l’attaque et frappez dans l’ouverture qu’elle expose.*\n\n**Effet actuel**\n\n- Dégâts de riposte : **20–24** (**100 %** de l’attaque de mêlée).\n- Intervalle minimal entre deux ripostes : **2 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de riposte : **21–25** (**104 %** de l’attaque de mêlée).\n\n**Coût : aucun.**\n\nAprès une attaque esquivée, la riposte vise son auteur s’il est visible et à portée. Elle utilise votre précision habituelle et peut manquer.\n\nElle ne déclenche pas d’autres attaques automatiques.\n\nDégâts indiqués avant les défenses de la cible.\n\n**Nécessite une arme de mêlée active ou une attaque naturelle de mêlée compatible.**",
+  "player_copy_sha256": "4dedeaa9e2620e1adefa5422938493323d77f14389dfd117d1ff17b7bc866c84",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-15.json",
+  "source_skill_block_sha256": "f70b0770667fafa7a3996fb7682f431fa23f2273cbdfbd3b4d8bd5b39f89382f",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/holographic-decoy-acceptance-and-transparency-decisions.json",
+  "latest_decisions_sha256": "f288b2e247d7a093ef76ca7e433c63c096297ff05b6ae5e01712afdb5e09318d",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08; passive_trigger_and_precision_conditions_retained",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "proposed_pending_individual_user_review",
+  "current_profile_status": "illustrative_not_a_user_save; active melee weapon base damage/range are comparison inputs, not universal weapon rules",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "strength": 10,
+    "agility": 10,
+    "reference_weapon_min_damage_before_attributes": 18,
+    "reference_weapon_max_damage_before_attributes": 22,
+    "melee_attribute_multiplier_exact": {
+      "numerator": 451,
+      "denominator": 400
+    },
+    "active_compatible_melee_weapon": true,
+    "active_melee_weapon_range_cells": 1,
+    "other_damage_or_cost_modifiers": false
+  },
+  "formulas": {
+    "damage_percent_of_melee_attack": "60 + 4 * (effective_rank - 1)",
+    "damage": "floor(base melee damage * melee attribute multiplier * damage percent / 100), once at end",
+    "minimum_interval_between_ripostes_turns": 2,
+    "energy_cost": 0,
+    "manual_action_cost": 0,
+    "ammunition_cost": 0
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "damage_percent_of_melee_attack": 100,
+    "damage_min_before_defenses": 20,
+    "damage_max_before_defenses": 24,
+    "damage_min_exact_before_rounding": {
+      "numerator": 4059,
+      "denominator": 200
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 4961,
+      "denominator": 200
+    },
+    "minimum_interval_between_ripostes_turns": 2,
+    "energy_cost": 0,
+    "manual_action_cost": 0,
+    "ammunition_cost": 0,
+    "active_melee_weapon_range_cells_illustrative": 1
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "damage_percent_of_melee_attack": 104,
+    "damage_min_before_defenses": 21,
+    "damage_max_before_defenses": 25,
+    "damage_min_exact_before_rounding": {
+      "numerator": 52767,
+      "denominator": 2500
+    },
+    "damage_max_exact_before_rounding": {
+      "numerator": 64493,
+      "denominator": 2500
+    },
+    "minimum_interval_between_ripostes_turns": 2,
+    "energy_cost": 0,
+    "manual_action_cost": 0,
+    "ammunition_cost": 0,
+    "active_melee_weapon_range_cells_illustrative": 1
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "damage_percent_of_melee_attack",
+      "damage_min_before_defenses",
+      "damage_max_before_defenses"
+    ],
+    "unchanged_effects_omitted": [
+      "minimum_interval_between_ripostes_turns",
+      "energy_cost",
+      "manual_action_cost",
+      "ammunition_cost",
+      "active_melee_weapon_range_cells_illustrative"
+    ]
+  },
+  "passive_conditions": {
+    "actual_successful_dodge_required": true,
+    "armor_absorption_does_not_count_as_dodge": true,
+    "riposte_target": "dodged attacker; visible and in range",
+    "ordinary_melee_accuracy_check": true,
+    "automatic_no_manual_activation": true,
+    "extra_automatic_attacks_triggered": false,
+    "global_no_secondary_attack_chain_preserved": true,
+    "weapon_requirement": "active equipped melee weapon or compatible natural melee attack; passive condition individually proposed, not inferred from active-only global rule",
+    "warning_copy": "Nécessite une arme de mêlée active ou une attaque naturelle de mêlée compatible.",
+    "warning_copy_approval": "proposed_pending_individual_user_review",
+    "natural_attack_families_and_damage_range": "not fixed here; example is active physical melee weapon only"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true
+  },
+  "unshown_rules_approval": "Full rank curves, compatible natural melee attack families/variance, active passive weapon requirement, eligibility of dodged projectile/area/spell attacks, multiple attackers and reaction ordering, precise two-turn interval start/expiry, failed riposte handling, critical eligibility/general rules, equipment/attribute stacking and secondary effect resolution remain pending where not already accepted. No equipped inactive weapon auto-swap, teleport, ranged riposte, guaranteed hit, new control effect or automatic attack chain introduced.",
+  "visual_intention_approval": "existing_catalogue_return_chevron_then_counter_hit_direction_accepted_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable ES04 passive role/name; RP/current-next damage and activation conditions proposed for individual review.",
+    "Illustrative 18-22 melee base, Force/Agility 10 and exact multiplier 451/400 gives 20-24 at 100%, next 21-25 at 104%, floor once at end.",
+    "Learned 9 to 10 with equipment +2 unchanged; one point; active melee weapon and range unchanged.",
+    "Next block only changed damage; interval remains two turns and passive costs zero energy/manual action/ammo.",
+    "Actual dodge triggers against visible in-range attacker, ordinary accuracy and no secondary attack chain; passive weapon/natural attack condition explicitly pending individual review.",
+    "No table/player formula/rank breakdown/ordinary timing reminder; no native art or runtime integration."
+  ]
+}

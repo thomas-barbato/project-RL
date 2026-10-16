@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-08",
+  "review_id": "HP01-ACCEPTED02",
+  "stat_id": "HP01",
+  "related_attribute_id": "S03",
+  "title": "Points de vie",
+  "revision": 2,
+  "status": "shown_RP_base_and_level_gain_and_examples_accepted;unshown_cases_pending",
+  "source_draft": "docs/REVUE_TEXTES_EFFETS_AGENT.md;historical_S03_formula_30_plus4_times_Vitalite_minus5_plus2_times_level_minus1",
+  "accepted_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-05.json",
+  "accepted_attribute_model_sha256": "5ad4686a72f015d3f401cd08483976ca863e3fa02a5a9a22f4dd9dc7a3855990",
+  "shown_copy_markdown": "On garde **aucun plafond actuellement** ; **100 reste le plafond éventuel** si nous décidons d’en instaurer un.\n\nPassons aux **PV de base et à leur progression**. Je propose de reprendre les valeurs du brouillon :\n\n**HP01 · Points de vie**\n\n*Votre vitalité détermine les blessures que vous pouvez encaisser.*\n\n**Base proposée**\n\n- Niveau 1, Vitalité 5 : **30 PV maximum**.\n- Gain automatique par niveau : **+2 PV maximum**.\n- Chaque point de Vitalité : **+4 PV maximum**, déjà validé.\n\n**Exemple actuel — Niveau 10, Vitalité 10**\n\n- PV maximum : **68**.\n\n**Au niveau 11**\n\n- Sans dépenser les nouveaux points : **70 PV maximum**.\n- Avec les cinq points investis en Vitalité : **90 PV maximum**.\n\nCes exemples sont calculés avant les bonus de PV des équipements, implants et passifs. **Les 30 PV de base et les +2 PV automatiques par niveau sont les nouvelles valeurs à valider.**",
+  "shown_copy_sha256": "a053d81e03f55745e3693beb9c323c8d2ad9995cf79f39a61c8ebde0673ed62f",
+  "already_accepted_rule": {
+    "maximum_HP_per_Vitalite_point": 4
+  },
+  "new_proposed_rules": {
+    "base_maximum_HP_at_level1_Vitalite5": 30,
+    "automatic_maximum_HP_gain_per_level_after_level1": 2
+  },
+  "formula_proposed_before_other_HP_bonuses": "30 + 4*(Vitalite-5) + 2*(level-1)",
+  "shown_examples": [
+    {
+      "level": 10,
+      "Vitalite": 10,
+      "maximum_HP": 68
+    },
+    {
+      "level": 11,
+      "Vitalite": 10,
+      "maximum_HP": 70
+    },
+    {
+      "level": 11,
+      "Vitalite": 15,
+      "maximum_HP": 90
+    }
+  ],
+  "example_profile": "before_equipment_implant_and_passive_HP_bonuses;five_level_attribute_points_are_free_and_need_not_be_assigned_to_Vitalite",
+  "RP_approval": "shown_RP_accepted",
+  "numeric_approval": "30_base_at_level1_Vitalite5_and2_per_level_accepted;4_per_Vitalite_previously_accepted",
+  "unshown_cases_pending": [
+    "current_HP_when_maximum_changes_or_level_is_gained",
+    "equipment_implant_and_passive_HP_bonus_order",
+    "temporary_transformation_HP_and_return_rules_except_already_accepted_percentage_preservation",
+    "minimum_attribute_and_HP_bounds",
+    "rounding_of_percentage_HP_bonuses",
+    "all_other_unshown_cases"
+  ],
+  "level_cap": null,
+  "new_visuals_proposed": false,
+  "runtime_integration": "not_integrated",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-HP01-01.json",
+  "previous_card_sha256": "5128399506ed212e31858582b55ecadebe07cb0c617343e33bd2ad35e8c3e86e",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/base-HP-and-level-gain-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "06fa8fcfbe1bef549b4b83ddda467be45e1e0562f58567f1a8334c48b0840468",
+  "accepted_rules": {
+    "base_maximum_HP_at_level1_Vitalite5": 30,
+    "automatic_maximum_HP_gain_per_level_after_level1": 2,
+    "maximum_HP_per_Vitalite_point": 4
+  }
+}

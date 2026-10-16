@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-09",
+  "review_id": "WEAPON-SIL01-ACCEPT01",
+  "user_acceptance": "oui je valide :)",
+  "question_answered": "Tu valides ces rendus gris et les nouvelles prises présentées dans la galerie, y compris la base du Traqueur ?",
+  "accepted_bank": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-silhouette-review-03/review-weapon-silhouettes-WEAPON-SIL01-03.json",
+    "reference_sha256": "e51d2c67a4cd92b2d88405d39ecd89b4711c357aaa989204383774c30e934868"
+  },
+  "accepted_presentation": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-silhouette-review-03/weapon-silhouette-review-presentation-02.json",
+    "reference_sha256": "e96de0a1a0a677c0a8f6f20d0ef0e3c8a5e342977a163eba8db963707c1fdbec"
+  },
+  "accepted_start_compositions": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-07.json",
+    "reference_sha256": "fa05008c8b1006661965453cfca352c7047bc74da40bd2c0aa2cf62ba02f244b"
+  },
+  "approved_visual_scope": {
+    "models": 113,
+    "families": 18,
+    "silhouettes": 5,
+    "configurations": 375,
+    "parts": "fixed_native_bodies_including_Traqueur_unarmed_layer;family_weapon_hand_attachments;two_hand_forearms;left_right_and_dual_compositions",
+    "materials": "light_gray_pistol;steel_anthracite_rifle;neutral_gray_replacing_Pink_equipment_palette;accepted_red_robe_and_other_unchanged_parts_preserved"
+  },
+  "active_visual_manifest": {
+    "reference": "assets/sprites/cyberpunk/agent-rigs/manifest.json",
+    "reference_sha256": "85f7165a3d9ce2eaa27fd066bccf184115b695171e9f091a4c44ff28cb97573a"
+  },
+  "approved_visual_integration": "authorized_and_installed_in_graphics_pipeline;validation_report_under_artifacts/weapon-integration-2026-10-09",
+  "gameplay_scope": "no_change_to_class_catalog_ids_starting_stats_skills_equipment_model_ids_bonuses_collisions_turns_or_rng;remaining_refonte_systems_separate"
+}

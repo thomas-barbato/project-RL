@@ -1,0 +1,28 @@
+{
+  "batch": "AOE-FALLOFF01",
+  "date": "2026-10-14",
+  "status": "approved",
+  "candidates": [
+    {
+      "number": 74,
+      "id": "SG00",
+      "variant": "SG00-A02"
+    },
+    {
+      "number": 77,
+      "id": "SG03",
+      "variant": "SG03-A02"
+    }
+  ],
+  "square_requested": true,
+  "numeric_profile_approved": true,
+  "campaign_integration": false,
+  "source_drawings_unchanged": "../skill-animation-review-72/generation.json",
+  "prepared_damage": {
+    "centre": 24,
+    "eight_neighbours": 12
+  },
+  "visual_approved": true,
+  "acceptance": "visual-and-numeric-acceptance-01.json",
+  "shared_rule_integrated": true
+}

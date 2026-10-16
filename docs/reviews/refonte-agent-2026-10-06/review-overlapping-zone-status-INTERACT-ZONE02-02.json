@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-ZONE02",
+  "revision": 2,
+  "title": "Zones superposées : dégâts et statuts",
+  "status": "displayed_zone_damage_independent_status_rolls_and_same_turn_order_explicitly_accepted;other_cases_pending;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/interaction-and-priority-user-decisions.json",
+      "reference_sha256": "fa4a7f5c25928fca2da5de20a7a7cc3e438f00afacec7aa3d9f19b564c2a7692"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/last-status-cast-power-acceptance-decisions.json",
+      "reference_sha256": "70bc644096b85e9dd7f8504f614cf5f897529c69b6d95e1a03074285be655357"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-power-snapshot-INTERACT-POWER01-02.json",
+      "reference_sha256": "9d7c2be630dfec22019a53a944c53046278d4fa0d65af5cbbb391ced05256e77"
+    }
+  ],
+  "scope": "multiple_persistent_spell_ground_zones_affecting_same_target_during_same_turn",
+  "already_accepted": [
+    "overlapping_zone_effects_apply_cumulatively",
+    "same_status_reapplication_restarts_duration_and_latest_cast_sets_power_even_if_lower",
+    "each_zone_keeps_its_launch_caster_power",
+    "exposure_chance_increases_with_consecutive_turns_inside_zone_and_resets_on_exit",
+    "Gel_Burn_successful_mutual_replacement_and_current_defense_and_importance_rules"
+  ],
+  "illustrative_example": {
+    "older_fire_zone_damage": 20,
+    "newer_fire_zone_damage": 30,
+    "total_zone_damage_before_defenses": 50,
+    "older_successful_Burn_power_per_turn": 8,
+    "newer_successful_Burn_power_per_turn": 5,
+    "resulting_unique_Burn_power_per_turn": 5,
+    "not_added_Burn_power": 13,
+    "both_status_applications_successful_same_turn": true,
+    "numbers_are_fictional_not_skill_balance_entries": true
+  },
+  "not_resolved_here": [
+    "old_zone_only_refresh_when_a_newer_existing_status_is_not_reapplied_this_turn",
+    "full_turn_scheduler_damage_status_and_casualty_order",
+    "multi_caster_kill_credit_and_effect_loss_provenance",
+    "native_status_and_multi_zone_preview_rendering"
+  ],
+  "mechanic_approval": "accepted_as_displayed",
+  "visual_approval": "no_new_native_visual_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-overlapping-zone-status-INTERACT-ZONE02-01.json",
+    "reference_sha256": "90c097aef75fcd55bbf30a62200876aa3e378a8634a817503e8707217af176f4"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/overlapping-zone-status-acceptance-decisions.json",
+    "reference_sha256": "82249173a592046a0e5ce226583c29155116007b57970b4c80863a0690829fef"
+  },
+  "accepted_details": {
+    "zone_damage": "each_zone_deals_its_own_eligible_damage;all_zone_damage_contributions_apply;existing_per_impact_rounding_and_target_defenses_retained",
+    "status_chance": "each_zone_attempts_its_own_status_application_with_its_own_consecutive_exposure_counter;do_not_sum_percentage_chances_into_one_roll",
+    "same_status_instance": "one_current_status_per_kind_on_target;multiple_same_kind_zone_applications_refresh_and_replace_power_instead_of_adding_periodic_status_power",
+    "same_turn_application_order": "resolve_zone_status_applications_in_cast_creation_order_oldest_to_newest;latest_successful_application_in_that_turn_sets_status_power_and_restarts_duration",
+    "newer_attempt_fails": "unsuccessful_status_application_does_not_replace_or_refresh_status;other_zone_damage_still_applies",
+    "exposure_on_exit": "reset_counter_only_for_zone_that_target_exits;other_zone_exposure_continues_while_target_remains_inside",
+    "opposed_statuses": "preserve_successful_Gel_Burn_mutual_removal_under_same_application_order"
+  }
+}

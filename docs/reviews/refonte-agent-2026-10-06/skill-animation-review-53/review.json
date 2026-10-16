@@ -1,0 +1,32 @@
+{
+  "batch": "ANIM-S24",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 57,
+      "id": "T01",
+      "name": "Marquage balistique",
+      "variant": "T01-A01"
+    },
+    {
+      "number": 58,
+      "id": "T03",
+      "name": "Maîtrise des attaques à distance",
+      "variant": "T03-A01"
+    }
+  ],
+  "approved_cards": [
+    "review-individual-description-T01-02.json",
+    "review-individual-description-T03-02.json"
+  ],
+  "approved_values": "T01 precision multiplier1.35, max6turns, range6, energy9, cooldown3; instant mark consumes no turn. T03 permanent ranged damage+40%, excludes own melee and drone attacks.",
+  "visuals": "Converging red reticle, player buff and target-analysis status icon with timer, name above caster; mark disappears when shot is launched even on miss. Brighter projectile core and inclusive total/bonus/physical component; no timed mastery buff. Physical blood and shared recoil. Shared negative reaction also applies when the mark is placed, including the later-miss case.",
+  "prepared_numbers": "Base20 gives28(+8) for mastery; prepared burst three20 hits gives60. Fixed contacts and precision multiplier snapshot135% establish no actual accuracy roll, equipment range/variance, monster HP, damage curve or real combat ordering.",
+  "scope": "Independent prepared panels. Reapplying after three prepared turns replaces the marked target; no actual targeting/AI/FOV/campaign resolver. Target analysis strip is a visual status fixture, not a new full analysis interface.",
+  "pending": "Actual precision and damage defenses, real weapon spread/variance, mage/form attack eligibility and heavy weapon scope, multi-target burst, real perception/targeting, rounding and dense combat integration remain separate.",
+  "temporary_actors": "Existing enemy and drone32 art enlarged64; adaptation after animations.",
+  "excluded_draft": "native-mark-reaction-draft is an unpresented initial capture, superseded by the common mark-application reaction; exclude it from acceptance.",
+  "date": "2026-10-14"
+}

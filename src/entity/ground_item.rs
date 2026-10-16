@@ -29,6 +29,8 @@ pub struct GroundItem {
     owner: Option<SocialGroupId>,
     #[serde(default)]
     magic_modifiers: Option<super::MagicItemModifiers>,
+    #[serde(default)]
+    palette: Option<super::EquipmentPalette>,
 }
 
 impl Debug for GroundItem {
@@ -43,11 +45,22 @@ impl Debug for GroundItem {
         if let Some(bonus) = &self.magic_modifiers {
             item.field("magic_modifiers", bonus);
         }
+        if let Some(palette) = self.palette {
+            item.field("palette", &palette);
+        }
         item.finish()
     }
 }
 
 impl GroundItem {
+    pub fn palette(&self) -> super::EquipmentPalette {
+        self.palette.unwrap_or_default()
+    }
+
+    pub(crate) const fn color_variant(&self) -> Option<super::EquipmentPalette> {
+        self.palette
+    }
+
     pub const fn position(&self) -> GridPos {
         self.position
     }
@@ -137,6 +150,26 @@ impl GroundItemRegistry {
         self.insert_at(position, item, quantity, None, None)
     }
 
+    /// A destroyed carrier drops the exact cargo stack even when loot already occupies its cell.
+    pub(crate) fn spawn_cargo_remains(
+        &mut self,
+        position: GridPos,
+        cargo: &crate::drone::DroneCargo,
+    ) -> Result<GroundItemId, GroundItemRegistryError> {
+        if cargo.quantity() == 0 {
+            return Err(GroundItemRegistryError::ZeroQuantity);
+        }
+        let id = self.insert_at(
+            position,
+            cargo.item().clone(),
+            cargo.quantity(),
+            cargo.owner().cloned(),
+            None,
+        )?;
+        self.retain_palette(id, cargo.color_variant());
+        Ok(id)
+    }
+
     fn insert_at(
         &mut self,
         position: GridPos,
@@ -159,6 +192,7 @@ impl GroundItemRegistry {
                 quantity,
                 owner,
                 magic_modifiers,
+                palette: None,
             },
         );
         Ok(id)
@@ -175,6 +209,20 @@ impl GroundItemRegistry {
     ) {
         if let Some(item) = self.items.get_mut(&id) {
             item.magic_modifiers = Some(modifiers);
+        }
+    }
+
+    pub fn set_palette(&mut self, id: GroundItemId, palette: super::EquipmentPalette) {
+        self.retain_palette(id, Some(palette));
+    }
+
+    pub(crate) fn retain_palette(
+        &mut self,
+        id: GroundItemId,
+        palette: Option<super::EquipmentPalette>,
+    ) {
+        if let Some(item) = self.items.get_mut(&id) {
+            item.palette = palette;
         }
     }
 
@@ -226,6 +274,7 @@ impl GroundItemRegistry {
             quantity,
             owner: item.owner.clone(),
             magic_modifiers: item.magic_modifiers.clone(),
+            palette: item.palette,
         };
         item.quantity -= quantity;
         if item.quantity == 0 {

@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-08",
+  "review_id": "HUD08",
+  "user_instruction": "ca risque visuellement d'être trop complexe / illisible, donc je pense que tout ce qui fait changer le type d'element en terme de dégats doit juste changer la couleur des dégats affichés au dessus de la cible (et dans les logs avec marqué que c'est des dégats de feu)",
+  "approval": "explicit_user_general_element_modifier_visual_directive",
+  "accepted_scope": "effects adding elemental damage or changing attack damage element, including applicable weapon buffs and equipment modifiers",
+  "accepted_display": [
+    "damage numbers above target colored according to damage element",
+    "combat log explicitly identifies elemental damage type such as fire"
+  ],
+  "accepted_BM01_visual_revision": "fire damage number color and explicit fire type in log replace decorative weapon flame overlay",
+  "old_element_modifier_decorative_overlay": "retired_for_scope_of_rule",
+  "damage_rules_amounts_added_vs_converted_status_chances_duration_cost_and_cooldown": "not_changed_by_visual_directive",
+  "exact_element_palette_mixed_components_total_vs_split_layout_log_wording_and_native_render": "not_specified_pending_review",
+  "other_spell_projectile_zone_and_status_visual_rules": "not_implicitly_replaced_by_damage_modifier_display_directive;per_skill_reviews_preserved",
+  "runtime_integration": "not_integrated"
+}

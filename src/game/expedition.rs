@@ -44,7 +44,7 @@ use super::{
 
 const MAX_WORLD_SNAPSHOT_BYTES: usize = 12 * 1024 * 1024;
 // Binary snapshots are caches; older layouts must use verified command replay.
-const WORLD_SNAPSHOT_HEADER: &[u8] = b"RLWS\x0b";
+const WORLD_SNAPSHOT_HEADER: &[u8] = b"RLWS\x0f";
 
 #[path = "facility_interactions.rs"]
 mod facility_interactions;
@@ -210,6 +210,7 @@ pub struct TradeOfferView {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct TradeResaleView {
+    pub palette: crate::entity::EquipmentPalette,
     pub listing: u64,
     pub item: ItemId,
     pub price: u32,
@@ -225,6 +226,7 @@ pub struct TradeGambleView {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct TradeSellView {
+    pub palette: crate::entity::EquipmentPalette,
     pub instance: ItemInstanceId,
     pub item: ItemId,
     pub quantity: u16,
@@ -241,13 +243,15 @@ struct MerchantOfferState {
     maximum_stack: u16,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
 struct MerchantResaleState {
     listing: u64,
     item: ItemId,
     price: u32,
     maximum_stack: u16,
     magic_modifiers: Option<MagicItemModifiers>,
+    #[serde(default)]
+    palette: Option<crate::entity::EquipmentPalette>,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -679,6 +683,8 @@ struct ZoneState {
     intrusion: IntrusionState,
     electronic_warfare: ElectronicWarfareState,
     threat_sources: Vec<ThreatSourceState>,
+    #[serde(default, with = "super::game_state::agent_runtime::codec")]
+    agent_runtime: super::game_state::agent_runtime::AgentRuntime,
 }
 
 impl Debug for ZoneState {
@@ -706,6 +712,9 @@ impl Debug for ZoneState {
         }
         if !self.threat_sources.is_empty() {
             state.field("threat_sources", &self.threat_sources);
+        }
+        if !self.agent_runtime.is_empty() {
+            state.field("agent_runtime", &self.agent_runtime);
         }
         state.finish()
     }
@@ -835,16 +844,37 @@ impl WorldState {
         if bytes.len() > MAX_WORLD_SNAPSHOT_BYTES {
             return Err("Instantané moteur trop volumineux.".to_owned());
         }
-        let snapshot: WorldStateSnapshot = bincode::DefaultOptions::new()
-            .with_fixint_encoding()
-            .with_limit(MAX_WORLD_SNAPSHOT_BYTES as u64)
-            .reject_trailing_bytes()
-            .deserialize(
-                bytes
-                    .strip_prefix(WORLD_SNAPSHOT_HEADER)
-                    .ok_or("Ancien format d'instantané : reprise par le journal requise.")?,
-            )
-            .map_err(|error| format!("Instantané moteur incompatible : {error}"))?;
+        let legacy = bytes.starts_with(b"RLWS\x0c");
+        let payload = bytes
+            .strip_prefix(WORLD_SNAPSHOT_HEADER)
+            .or_else(|| bytes.strip_prefix(b"RLWS\x0e"))
+            .or_else(|| bytes.strip_prefix(b"RLWS\x0d"))
+            .or_else(|| bytes.strip_prefix(b"RLWS\x0c"))
+            .ok_or("Ancien format d'instantané : reprise par le journal requise.")?;
+        let decode = || {
+            bincode::DefaultOptions::new()
+                .with_fixint_encoding()
+                .with_limit(MAX_WORLD_SNAPSHOT_BYTES as u64)
+                .reject_trailing_bytes()
+                .deserialize(payload)
+        };
+        let decode_version = || {
+            if legacy {
+                crate::status::with_legacy_status_encoding(|| {
+                    crate::stats::with_legacy_attribute_encoding(decode)
+                })
+            } else if bytes.starts_with(b"RLWS\x0d") {
+                crate::status::with_legacy_status_encoding(decode)
+            } else {
+                decode()
+            }
+        };
+        let snapshot: WorldStateSnapshot = if bytes.starts_with(WORLD_SNAPSHOT_HEADER) {
+            decode_version()
+        } else {
+            super::game_state::agent_runtime::with_legacy_encoding(decode_version)
+        }
+        .map_err(|error| format!("Instantané moteur incompatible : {error}"))?;
         let world = Self {
             active: GameState::from_snapshot(snapshot.active, rules),
             narrative: snapshot.narrative,
@@ -1250,6 +1280,7 @@ impl WorldState {
                 .resale
                 .iter()
                 .map(|listing| TradeResaleView {
+                    palette: listing.palette.unwrap_or_default(),
                     listing: listing.listing,
                     item: listing.item.clone(),
                     price: listing.price,
@@ -1280,6 +1311,7 @@ impl WorldState {
                     merchant
                         .sale_quote(entry.item(), self.active.rules())
                         .map(|(price, _, _)| TradeSellView {
+                            palette: entry.palette(),
                             instance: entry.instance(),
                             item: entry.item().clone(),
                             quantity: entry.quantity(),
@@ -2921,6 +2953,7 @@ impl WorldState {
             ground: probe.ground_items,
             traces: MovementTraceMap::default(),
             ground_effects: GroundEffectMap::default(),
+            agent_runtime: Default::default(),
             explosive_devices: ExplosiveDeviceMap::default(),
             intrusion: IntrusionState::default(),
             electronic_warfare: ElectronicWarfareState::default(),
@@ -3874,6 +3907,7 @@ impl WorldState {
             price: resale_price,
             maximum_stack,
             magic_modifiers,
+            palette: entry.color_variant(),
         });
         next_merchant.next_listing = next_listing;
         next_merchant.credits = next_merchant_credits;
@@ -3933,14 +3967,17 @@ impl WorldState {
         let added = if let Some(modifiers) = entry.magic_modifiers.clone() {
             next_inventory
                 .add_magic(entry.item.clone(), None, modifiers)
-                .map(|_| ())
+                .map(|instance| vec![instance])
         } else {
-            next_inventory
-                .add(entry.item.clone(), 1, entry.maximum_stack)
-                .map(|_| ())
+            next_inventory.add(entry.item.clone(), 1, entry.maximum_stack)
         };
-        if added.is_err() {
+        let Ok(added) = added else {
             return reject(CommandRejection::InventoryCannotFitItem);
+        };
+        for instance in added {
+            next_inventory
+                .retain_palette(instance, entry.palette)
+                .expect("newly added resale instance");
         }
         let mut next_merchant = previous_merchant.clone();
         next_merchant.resale.remove(index);
@@ -4097,6 +4134,7 @@ impl WorldState {
                         },
                     ));
                     self.active.complete_turn();
+                    self.active.assign_equipment_palettes();
                     Some(CommandOutcome::Applied)
                 }
                 Ok(None) => reject(CommandRejection::NoMaterialForDepot),
@@ -4124,6 +4162,7 @@ impl WorldState {
                 }));
             self.record_data_record_quest_progress(&record);
             self.active.complete_turn();
+            self.active.assign_equipment_palettes();
             return Some(CommandOutcome::Applied);
         }
         let facility = self
@@ -4141,6 +4180,7 @@ impl WorldState {
                     },
                 ));
                 self.active.complete_turn();
+                self.active.assign_equipment_palettes();
                 Some(CommandOutcome::Applied)
             }
             Ok(None) => reject(CommandRejection::NoMaterialForDepot),
@@ -4408,6 +4448,15 @@ impl WorldState {
             .actors
             .iter()
             .filter_map(|(entity, actor)| {
+                if self
+                    .active
+                    .agent_runtime
+                    .support
+                    .raised
+                    .contains_key(&entity)
+                {
+                    return Some(entity);
+                }
                 let drone = actor.drone()?;
                 let controller = match drone.order() {
                     DroneOrder::Escort { controller, .. } => controller,
@@ -4460,6 +4509,7 @@ impl WorldState {
             .remove(&link.destination)
             .expect("checked zone");
         self.active.end_local_maintained_effects_for_travel();
+        self.active.end_agent_zone_effects();
         let from = self
             .current
             .replace(link.destination.clone())
@@ -4505,11 +4555,8 @@ impl WorldState {
             {
                 drone.confirm_position(destination, self.active.turn);
             }
-            self.active.events.push(GameEvent::EntityMoved {
-                entity,
-                from: origin,
-                to: destination,
-            });
+            self.active
+                .record_agent_movement(entity, origin, destination);
             self.active
                 .resolve_status_trigger_for(entity, StatusTrigger::Movement);
         }
@@ -4520,6 +4567,7 @@ impl WorldState {
             arrival,
             self.active.rules.player_field_of_view,
         );
+        self.active.extend_agent_scout_visibility();
         self.active.events.push(GameEvent::ZoneChanged {
             from,
             to: link.destination.clone(),
@@ -4531,6 +4579,7 @@ impl WorldState {
         });
         self.record_exploration_quest_progress(&link.destination);
         self.active.complete_turn();
+        self.active.assign_equipment_palettes();
         CommandOutcome::Applied
     }
 }
@@ -4790,6 +4839,7 @@ impl GameState {
         std::mem::swap(&mut self.ground_items, &mut zone.ground);
         std::mem::swap(&mut self.movement_traces, &mut zone.traces);
         std::mem::swap(&mut self.ground_effects, &mut zone.ground_effects);
+        std::mem::swap(&mut self.agent_runtime.magic, &mut zone.agent_runtime.magic);
         std::mem::swap(&mut self.explosive_devices, &mut zone.explosive_devices);
         std::mem::swap(&mut self.intrusion, &mut zone.intrusion);
         std::mem::swap(&mut self.electronic_warfare, &mut zone.electronic_warfare);
@@ -5013,6 +5063,7 @@ impl GameState {
                 let _ = self.move_ai_entity(id, *direction);
             }
         }
+        self.process_agent_magic_turn();
         self.resolve_status_trigger(StatusTrigger::TurnEnd);
         self.resolve_explosive_devices();
         self.resolve_ground_effects();
@@ -7648,6 +7699,12 @@ mod tests {
             .player_inventory_mut()
             .add_magic(armor.clone(), None, bonus.clone())
             .unwrap();
+        world.active.rules.equipment_color_variants = true;
+        world
+            .active
+            .player_inventory_mut()
+            .set_palette(instance, crate::entity::EquipmentPalette::Violet)
+            .unwrap();
         assert_eq!(
             world.process_player_command(GameCommand::SellItem {
                 merchant,
@@ -7664,6 +7721,7 @@ mod tests {
         };
         assert_eq!(resale.len(), 1);
         assert_eq!(resale[0].magic_modifiers, Some(bonus.clone()));
+        assert_eq!(resale[0].palette, crate::entity::EquipmentPalette::Violet);
         let listing = resale[0].listing;
         assert_eq!(
             world.process_player_command(GameCommand::BuyResaleItem { merchant, listing }),
@@ -7675,6 +7733,7 @@ mod tests {
             .find(|entry| entry.item() == &armor)
             .unwrap();
         assert_eq!(bought.magic_modifiers(), Some(bonus));
+        assert_eq!(bought.palette(), crate::entity::EquipmentPalette::Violet);
         assert_ne!(bought.instance(), instance);
     }
 
@@ -9782,5 +9841,88 @@ mod tests {
                 .iter()
                 .any(|e| matches!(e, GameEvent::ExperienceAwarded { .. }))
         );
+    }
+    #[test]
+    fn agent_magic_inactive_zone_state_is_fingerprinted_and_survives_recovery() {
+        let mut world = world();
+        let content = crate::content::ContentLoader::load(
+            &[std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content")],
+            &semver::Version::new(0, 1, 0),
+        )
+        .unwrap();
+        world.active.rules.agent_class_start = content
+            .character_classes()
+            .get(&"core:arcaniste".parse().unwrap())
+            .unwrap()
+            .agent_start()
+            .cloned();
+        world
+            .active
+            .rules
+            .agent_class_start
+            .as_mut()
+            .unwrap()
+            .skills = vec!["FR03".into()];
+        crate::skills::agent::install_status_definitions(&mut world.active.rules.statuses);
+        world.active = GameState::new_with_rules(
+            world.active.map().clone(),
+            GridPos::new(1, 1),
+            42,
+            world.active.rules.clone(),
+        )
+        .unwrap();
+        assert_eq!(
+            world.process_player_command(GameCommand::UseTechniqueAt {
+                technique: crate::skills::agent::technique("FR03"),
+                target: GridPos::new(4, 3),
+                weapon_slot: 0,
+            }),
+            CommandOutcome::Applied
+        );
+        outward(&mut world);
+        world.drain_events();
+        assert!(
+            !world
+                .inactive
+                .get(&id("a"))
+                .unwrap()
+                .agent_runtime
+                .magic
+                .barriers
+                .is_empty()
+        );
+        let before = format!("{world:?}");
+        let bytes = world.recovery_snapshot_bytes().unwrap();
+        let restored =
+            WorldState::from_recovery_snapshot_bytes(&bytes, world.rules().clone()).unwrap();
+        assert_eq!(before, format!("{restored:?}"));
+        for barrier in world
+            .inactive
+            .get_mut(&id("a"))
+            .unwrap()
+            .agent_runtime
+            .magic
+            .barriers
+            .values_mut()
+        {
+            barrier.expires_at += 1;
+        }
+        assert_ne!(before, format!("{world:?}"));
+    }
+}
+
+impl Debug for MerchantResaleState {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut state = formatter.debug_struct("MerchantResaleState");
+        state
+            .field("listing", &self.listing)
+            .field("item", &self.item)
+            .field("price", &self.price)
+            .field("maximum_stack", &self.maximum_stack)
+            .field("magic_modifiers", &self.magic_modifiers);
+        if let Some(palette) = self.palette {
+            state.field("palette", &palette);
+        }
+        state.finish()
     }
 }

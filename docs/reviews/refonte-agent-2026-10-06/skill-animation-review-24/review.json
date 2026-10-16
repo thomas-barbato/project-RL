@@ -1,0 +1,38 @@
+{
+  "batch": "ANIM-S07-A02",
+  "status": "wall_visually_approved_other_candidates_pending",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 15,
+      "skill_id": "FR02",
+      "variant": "FR02-A01",
+      "name": "Nova de givre",
+      "status": "unchanged_from_previous_review_not_newly_approved"
+    },
+    {
+      "number": 16,
+      "skill_id": "FR03",
+      "variant": "FR03-A02",
+      "name": "Mur de glace",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "nova": "One fast expanding ice wave, 0.45 seconds, centred on the caster. Floor spill is allowed; full solid walls clip it. No persistent floor zone. Prepared successful Gel is attached to targets only.",
+  "wall": "Three joined irregular block models, 76 px drawing width with a shared ground base. Differently shaped ridges and cracks. Continuous 0.22 second rise, independent 0.30 second collapse per block. Same cells, wall lifetime, Gel and prepared combat fixture.",
+  "gel_candidate": {
+    "variant": "GEL-A03",
+    "status": "awaiting_visual_review",
+    "description": "Small translucent ice facets around the feet, behind and in front of the unchanged body. Upper body stays readable. The previous FR01 visual is not replaced."
+  },
+  "timing": "Animation clock never advances turns, cooldowns, Gel or wall duration. Nova ends once; the wall/Gel remain until explicit turns. At rank 11 the fixture uses catalogue Gel=4, wall=5 and contact Gel=2 turns.",
+  "scope": "Debug-only visual fixture. No campaign, GameState, damage, RNG, real AI or save changes. Freeze success and block destruction are prepared examples, not balance claims. Final combat targeting/geometry is separate.",
+  "preview": "Blinking cyan cells disappear upon cast. Four cardinal orientations and solid-cloison case.",
+  "blood": "No blood for pure Frost. Prepared initial Burn is removed by successful Gel.",
+  "unchanged": "Previously approved icons, catalogue, actor bodies/equipment, fire drawings and reviews.",
+  "revision_scope": "Only Mur de glace. Nova and attached Gel retain their previous images, positions and timing.",
+  "user_feedback": "au pire sinon, vu que y'aura surement plus que 3 blocs :) tu n'as qu'à faire des blocs qui ne sont pas identiques :)",
+  "previous": "../skill-animation-review-23/index.html",
+  "wall_acceptance": "visual-acceptance-01.json"
+}

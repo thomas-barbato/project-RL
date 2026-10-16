@@ -1,0 +1,175 @@
+{
+  "browser": "Edge Chromium",
+  "errors": [],
+  "all_three_types_and_wall": "passed",
+  "armed_mine_hover": "passed",
+  "idle_never_advances_turns": "passed",
+  "preview_removed": "passed",
+  "expiry_clear": "passed",
+  "captures": [
+    {
+      "label": "FEU-burst",
+      "samples": [
+        {
+          "profile": "R1",
+          "frame": 92,
+          "expected_native_png": "frames/SM04-A01-FEU-R1-HAUT/092.png",
+          "browser_png": "browser-FEU-burst-R1.png"
+        },
+        {
+          "profile": "R4",
+          "frame": 92,
+          "expected_native_png": "frames/SM04-A01-FEU-R4-HAUT/092.png",
+          "browser_png": "browser-FEU-burst-R4.png"
+        }
+      ]
+    },
+    {
+      "label": "FEU-residue",
+      "samples": [
+        {
+          "profile": "R1",
+          "frame": 124,
+          "expected_native_png": "frames/SM04-A01-FEU-R1-HAUT/124.png",
+          "browser_png": "browser-FEU-residue-R1.png"
+        },
+        {
+          "profile": "R4",
+          "frame": 124,
+          "expected_native_png": "frames/SM04-A01-FEU-R4-HAUT/124.png",
+          "browser_png": "browser-FEU-residue-R4.png"
+        }
+      ]
+    },
+    {
+      "label": "POISON-burst",
+      "samples": [
+        {
+          "profile": "R1",
+          "frame": 92,
+          "expected_native_png": "frames/SM04-A01-POISON-R1-HAUT/092.png",
+          "browser_png": "browser-POISON-burst-R1.png"
+        },
+        {
+          "profile": "R4",
+          "frame": 92,
+          "expected_native_png": "frames/SM04-A01-POISON-R4-HAUT/092.png",
+          "browser_png": "browser-POISON-burst-R4.png"
+        }
+      ]
+    },
+    {
+      "label": "POISON-residue",
+      "samples": [
+        {
+          "profile": "R1",
+          "frame": 124,
+          "expected_native_png": "frames/SM04-A01-POISON-R1-HAUT/124.png",
+          "browser_png": "browser-POISON-residue-R1.png"
+        },
+        {
+          "profile": "R4",
+          "frame": 124,
+          "expected_native_png": "frames/SM04-A01-POISON-R4-HAUT/124.png",
+          "browser_png": "browser-POISON-residue-R4.png"
+        }
+      ]
+    },
+    {
+      "label": "FROID-burst",
+      "samples": [
+        {
+          "profile": "R1",
+          "frame": 92,
+          "expected_native_png": "frames/SM04-A01-FROID-R1-HAUT/092.png",
+          "browser_png": "browser-FROID-burst-R1.png"
+        },
+        {
+          "profile": "R4",
+          "frame": 92,
+          "expected_native_png": "frames/SM04-A01-FROID-R4-HAUT/092.png",
+          "browser_png": "browser-FROID-burst-R4.png"
+        }
+      ]
+    },
+    {
+      "label": "FROID-residue",
+      "samples": [
+        {
+          "profile": "R1",
+          "frame": 124,
+          "expected_native_png": "frames/SM04-A01-FROID-R1-HAUT/124.png",
+          "browser_png": "browser-FROID-residue-R1.png"
+        },
+        {
+          "profile": "R4",
+          "frame": 124,
+          "expected_native_png": "frames/SM04-A01-FROID-R4-HAUT/124.png",
+          "browser_png": "browser-FROID-residue-R4.png"
+        }
+      ]
+    }
+  ],
+  "native_pixel_checks": [
+    {
+      "capture": "FEU-burst",
+      "profile": "R1",
+      "pixels_identical": true
+    },
+    {
+      "capture": "FEU-burst",
+      "profile": "R4",
+      "pixels_identical": true
+    },
+    {
+      "capture": "FEU-residue",
+      "profile": "R1",
+      "pixels_identical": true
+    },
+    {
+      "capture": "FEU-residue",
+      "profile": "R4",
+      "pixels_identical": true
+    },
+    {
+      "capture": "POISON-burst",
+      "profile": "R1",
+      "pixels_identical": true
+    },
+    {
+      "capture": "POISON-burst",
+      "profile": "R4",
+      "pixels_identical": true
+    },
+    {
+      "capture": "POISON-residue",
+      "profile": "R1",
+      "pixels_identical": true
+    },
+    {
+      "capture": "POISON-residue",
+      "profile": "R4",
+      "pixels_identical": true
+    },
+    {
+      "capture": "FROID-burst",
+      "profile": "R1",
+      "pixels_identical": true
+    },
+    {
+      "capture": "FROID-burst",
+      "profile": "R4",
+      "pixels_identical": true
+    },
+    {
+      "capture": "FROID-residue",
+      "profile": "R1",
+      "pixels_identical": true
+    },
+    {
+      "capture": "FROID-residue",
+      "profile": "R4",
+      "pixels_identical": true
+    }
+  ]
+}

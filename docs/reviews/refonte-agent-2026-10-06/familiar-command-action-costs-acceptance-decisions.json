@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-CMD01-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-command-action-costs-INTERACT-CMD01-01.json",
+    "reference_sha256": "922f88a4ad7947af9f0aa0e65f9c4c359a23ff9eda216379f876d7a348964c6c"
+  },
+  "user_acceptance": "parfait :)",
+  "approved_rule": {
+    "Repositionner": {
+      "agent_actions": 1,
+      "energy": 0,
+      "cooldown_turns_per_drone": 6
+    },
+    "Destroy": {
+      "agent_actions": 1,
+      "energy": 0,
+      "own_cooldown_turns": 0,
+      "result": "remove_selected_existing_familiar;real_equipment_and_Mule_cargo_drop_on_actor_cell_or_player_current_cell_if_pending;no_explosion_or_damage;no_invocation_cooldown_reset"
+    },
+    "Mule_Ramasser": {
+      "agent_actions": 1,
+      "energy": 0,
+      "own_cooldown_turns": 0,
+      "result": "start_accepted_collection_order;Mule_uses_ordinary_own_turns_no_extra_agent_actions_per_pickup"
+    },
+    "Mule_Arrêter": {
+      "agent_actions": 1,
+      "energy": 0,
+      "own_cooldown_turns": 0,
+      "result": "cancel_current_collection_order_and_resume_follow"
+    },
+    "phase": "valid_commands_allowed_in_combat_accalmie_or_calme_under_existing_presence_conditions",
+    "inspection_or_selection": "opening_existing_window_sheet_or_noncommitting_target_selection_consumes_no_action_energy_or_cooldown",
+    "refusal": "invalid_command_changes_no_actor_order_items_energy_turn_or_cooldown;no_new_UI_error_copy_defined",
+    "existing_invocation": "Destroy_does_not_reset_invocation_remaining_cooldown;new_invocation_keeps_existing_requirements_and_new_actor_full_reserves",
+    "scope_boundary": "no_new_range_gate_for_Destroy;other_drone_orders_exact_scheduler_and_native_interface_feedback_pending"
+  },
+  "shown_explanation": "Repositionner, Détruire, Ramasser et Arrêter coûtent chacune 1 action du joueur et 0 énergie, en combat comme au calme. Repositionner conserve sa recharge de 6 tours par drone. Détruire supprime le familier sans explosion et dépose ses objets sur sa case, ou sur celle du joueur s'il attend son arrivée. Ramasser lance la collecte sur les propres tours de la Mule ; Arrêter l'interrompt et rétablit le suivi. Détruire, Ramasser et Arrêter n'ont pas de recharge propre. Détruire ne réinitialise pas la recharge d'invocation. Consulter les fiches et préparer un choix reste gratuit ; une commande impossible ne consomme rien.",
+  "approval_boundary": "displayed_command_costs_cooldowns_destruct_without_explosion_inspection_and_refusal;no_new_other_drone_combat_order_cost_native_layout_or_exact_actor_phase_order",
+  "runtime_integration": "not_integrated"
+}

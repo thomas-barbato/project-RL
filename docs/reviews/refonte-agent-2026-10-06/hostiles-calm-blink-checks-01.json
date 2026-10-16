@@ -1,0 +1,24 @@
+{
+  "status": "passed_in_preview_not_game_runtime",
+  "animation_duration_seconds": 1.4,
+  "opacity_bounds": [
+    0.6,
+    1
+  ],
+  "sampled_opacity_minimum": 0.608695,
+  "sampled_opacity_maximum": 0.998886,
+  "verified": [
+    "gentle opacity pulse",
+    "visible markers throughout pulse",
+    "synchronized hostile markers",
+    "actor glyphs unchanged",
+    "no turn advancement",
+    "stops on mouse leave",
+    "reduced motion remains static",
+    "hidden targets not highlighted",
+    "simulation JavaScript unchanged",
+    "no runtime errors"
+  ],
+  "engine_integration": false,
+  "user_approval": "new_animation_pending_preview_review"
+}

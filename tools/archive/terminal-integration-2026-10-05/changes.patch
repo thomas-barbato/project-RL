@@ -1,0 +1,2648 @@
+--- before/ascii_app.rs
++++ src/ascii_app.rs
+@@ -3195,9 +3195,10 @@
+         }
+         if scene.starts_with("terminal-inventory-live") || scene == "terminal-hud-live" {
+             app.prepare_cyberpunk_diagnostic(scene)?;
+-            if scene.ends_with("hands") {
++            if scene.contains("-hands") {
+                 app.select_weapon_slot(0);
+             }
++            let before = app.game.recovery_snapshot_bytes()?;
+             let (width, height, scale) = size.unwrap_or((1280.0, 800.0, 100));
+             app.graphics.active.ui_scale_percent = scale;
+             request_new_screen_size(width, height);
+@@ -3235,12 +3236,52 @@
+                 next_frame().await;
+             }
+             app.draw();
+-            crate::ui_capture::framebuffer()?.export_png(
++            let image = crate::ui_capture::framebuffer()?;
++            image.export_png(
+                 output
+                     .join("cold-start.png")
+                     .to_str()
+                     .ok_or("Chemin non UTF-8")?,
+             );
++            let commands_readable = (0..10).all(|i| {
++                crate::ui_capture::text_is_visible(
++                    &image,
++                    crate::terminal_chrome::command_rect(app.ui_width(), app.ui_height(), i),
++                    app.ui_scale(),
++                )
++            });
++            let inventory = scene.starts_with("terminal-inventory-live");
++            let gauges = if inventory {
++                app.inventory_resource_gauges()
++            } else {
++                app.resource_gauges()
++            };
++            let resources: Vec<_> = gauges
++                .iter()
++                .map(|g| {
++                    serde_json::json!({
++                        "label": g.label, "value": g.value, "ratio": g.ratio,
++                        "reserved_ratio": g.reserved_ratio,
++                        "color": [g.color.r, g.color.g, g.color.b],
++                    })
++                })
++                .collect();
++            let unchanged = before == app.game.recovery_snapshot_bytes()?;
++            let validation = serde_json::json!({
++                "scene": scene, "state_unchanged": unchanged, "theme": app.graphics.active.interface_theme,
++                "commands_readable": (!inventory).then_some(commands_readable),
++                "hud_energy": app.ux.hud_energy.get().map(|r| [r.x, r.y, r.w, r.h]),
++                "hud_points": app.ux.hud_points.get().map(|r| [r.x, r.y, r.w, r.h]),
++                "resources": resources,
++            });
++            std::fs::write(
++                output.join("terminal-validation.json"),
++                serde_json::to_vec_pretty(&validation).map_err(|e| e.to_string())?,
++            )
++            .map_err(|e| e.to_string())?;
++            if !unchanged || (!inventory && !commands_readable) {
++                return Err(format!("Échec de validation terminal : {validation}"));
++            }
+             return Ok(());
+         }
+         if matches!(
+@@ -6868,7 +6909,7 @@
+ 
+         let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
+         if self.game.player_technique_preparation().is_none() {
+-            let journal_button = quest_journal_button_rect(height);
++            let journal_button = quest_journal_button_rect(width, height);
+             let journal_hovered = input
+                 .pointer
+                 .is_some_and(|point| journal_button.contains(point.into()));
+@@ -6907,7 +6948,7 @@
+         let wait_button = if self.game.player_technique_preparation().is_some() {
+             preparation_continue_rect(width, height)
+         } else {
+-            wait_turn_rect(height)
++            wait_turn_rect(width, height)
+         };
+         let wait_hovered = input
+             .pointer
+@@ -7265,9 +7306,6 @@
+             self.draw_objective_panel();
+             self.draw_companion_bar();
+             self.draw_footer();
+-            if !self.inventory_open {
+-                self.draw_terminal_hud_frame();
+-            }
+         }
+         if self.legend_open {
+             self.draw_help();
+@@ -17586,7 +17624,7 @@
+             );
+         } else {
+             let wait_binding = self.controls.label(Action::Wait);
+-            let wait_button = wait_turn_rect(self.ui_height());
++            let wait_button = wait_turn_rect(self.ui_width(), self.ui_height());
+             let wait_hovered = self.menu_focus.hovered == Some(WAIT_ACTION_FOCUS);
+             draw_wait_action_button(
+                 wait_button,
+@@ -17594,7 +17632,7 @@
+                 wait_hovered,
+                 self.hud_action_hover[0],
+             );
+-            let journal_button = quest_journal_button_rect(self.ui_height());
++            let journal_button = quest_journal_button_rect(self.ui_width(), self.ui_height());
+             let journal_count = self.game.quest_journal().len();
+             let journal_label = if journal_count == 0 {
+                 "Quêtes".to_owned()
+@@ -17613,9 +17651,10 @@
+ 
+         for (index, (message, objective)) in self.footer_lines().into_iter().enumerate() {
+             let y = self.ui_height() - 42.0 + index as f32 * 20.0;
++            crate::terminal_chrome::heading(">", 22.0, y, 14, UiTheme.accent());
+             draw_wrapped_text(
+                 &message,
+-                20.0,
++                40.0,
+                 y,
+                 self.ui_width() - 40.0,
+                 1,
+@@ -18672,8 +18711,8 @@
+         let top = 30.0;
+         let width = (self.ui_width() - margin * 2.0).max(620.0);
+         let height = (self.ui_height() - top * 2.0).max(400.0);
+-        let cyan = Color::from_rgba(125, 224, 178, 255);
+-        let muted = Color::from_rgba(90, 143, 119, 255);
++        let cyan = UiTheme.accent();
++        let muted = UiTheme.muted();
+         let amber = cyan;
+         let inventory = self.game.player_inventory();
+         let entries = self.inventory_entries();
+@@ -18687,17 +18726,24 @@
+             self.inventory_scroll,
+         );
+         let left_width = layout.left_width;
+-        let separator = Color::from_rgba(43, 76, 84, 255);
++        let separator = crate::terminal_chrome::tint(0.32);
+ 
+         draw_rectangle(
+             0.0,
+             0.0,
+             self.ui_width(),
+             self.ui_height(),
+-            Color::from_rgba(0, 2, 4, 210),
+-        );
+-        draw_rectangle(margin, top, width, height, Color::from_rgba(4, 10, 9, 255));
+-        draw_rectangle_lines(margin, top, width, height, 1.0, muted);
++            Color::from_rgba(0, 2, 4, 255),
++        );
++        draw_rectangle(margin, top, width, height, crate::terminal_chrome::ink());
++        draw_rectangle(
++            margin + 1.0,
++            top + 1.0,
++            width - 2.0,
++            57.0,
++            crate::terminal_chrome::tint(0.085),
++        );
++        crate::terminal_chrome::bezel(Rect::new(margin, top, width, height));
+         draw_line(
+             margin + left_width,
+             top + 58.0,
+@@ -24103,53 +24149,16 @@
+     }
+ }
+ 
+-fn draw_status_bar(rect: Rect, label: &str, value: &str, ratio: f32, icon: UiIcon, color: Color) {
+-    draw_ui_icon(icon, Rect::new(rect.x, rect.y + 2.0, 16.0, 16.0), color);
+-    let mut value_size = 13_u16;
+-    let maximum_value_width = (rect.w * 0.38).max(34.0);
+-    while value_size > 10 && measure_text_bold(value, value_size).width > maximum_value_width {
+-        value_size -= 1;
+-    }
+-    let value_width = measure_text_bold(value, value_size)
+-        .width
+-        .min(maximum_value_width);
+-    draw_wrapped_text(
+-        label,
+-        rect.x + 23.0,
+-        rect.y + 15.0,
+-        (rect.w - 31.0 - value_width).max(24.0),
+-        1,
+-        13,
+-        UiTheme.muted(),
+-    );
+-    draw_text_bold(
+-        value,
+-        rect.x + rect.w - value_width,
+-        rect.y + 15.0,
+-        f32::from(value_size),
+-        color,
+-    );
+-    let bar = Rect::new(rect.x, rect.y + (rect.h - 8.0).min(26.0), rect.w, 5.0);
+-    draw_rectangle(
+-        bar.x,
+-        bar.y,
+-        bar.w,
+-        bar.h,
+-        Color::new(0.09, 0.17, 0.19, 1.0),
+-    );
+-    draw_rectangle(bar.x, bar.y, bar.w * ratio.clamp(0.0, 1.0), bar.h, color);
+-}
+-
+ fn preparation_continue_rect(width: f32, height: f32) -> Rect {
+     Rect::new((width - 294.0).max(20.0), height - 101.0, 274.0, 38.0)
+ }
+ 
+-fn wait_turn_rect(height: f32) -> Rect {
+-    Rect::new(20.0, height - 97.0, 174.0, 30.0)
++fn wait_turn_rect(width: f32, height: f32) -> Rect {
++    crate::terminal_chrome::command_rect(width, height, 0)
+ }
+ 
+-fn quest_journal_button_rect(height: f32) -> Rect {
+-    Rect::new(204.0, height - 97.0, 174.0, 30.0)
++fn quest_journal_button_rect(width: f32, height: f32) -> Rect {
++    crate::terminal_chrome::command_rect(width, height, 1)
+ }
+ 
+ fn quest_status_presentation(status: QuestStatus) -> (&'static str, Color) {
+@@ -24181,52 +24190,10 @@
+     rect: Rect,
+     label: &str,
+     binding: &str,
+-    icon: UiIcon,
++    _icon: UiIcon,
+     hover_strength: f32,
+ ) {
+-    UiTheme.hud_action(rect, hover_strength);
+-    let hover = hover_strength.clamp(0.0, 1.0);
+-    let base = UiTheme.text();
+-    let accent = UiTheme.accent();
+-    let color = Color::new(
+-        base.r + (accent.r - base.r) * hover,
+-        base.g + (accent.g - base.g) * hover,
+-        base.b + (accent.b - base.b) * hover,
+-        1.0,
+-    );
+-    draw_ui_icon(
+-        icon,
+-        Rect::new(rect.x + 9.0, rect.y + 7.0, 16.0, 16.0),
+-        UiTheme.accent(),
+-    );
+-    let binding = binding.to_uppercase();
+-    let key_width = (measure_text_bold(&binding, 11).width + 12.0).max(29.0);
+-    let key = Rect::new(
+-        rect.x + rect.w - key_width - 7.0,
+-        rect.y + 5.0,
+-        key_width,
+-        20.0,
+-    );
+-    draw_rectangle(
+-        key.x,
+-        key.y,
+-        key.w,
+-        key.h,
+-        Color::new(0.025, 0.065, 0.075, 0.98),
+-    );
+-    draw_text_bold_centered(&binding, key, 11, UiTheme.accent());
+-    let label_width = (key.x - rect.x - 39.0).max(20.0);
+-    let mut font_size = 14_u16;
+-    while font_size > 12 && measure_text_bold(label, font_size).width > label_width {
+-        font_size -= 1;
+-    }
+-    draw_text_bold(
+-        label,
+-        rect.x + 31.0,
+-        rect.y + 20.0,
+-        f32::from(font_size),
+-        color,
+-    );
++    crate::terminal_chrome::command(rect, label, binding, hover_strength > 0.0);
+ }
+ 
+ fn physical_damage_total(damage: DamageImpact) -> u16 {
+@@ -26614,7 +26581,7 @@
+         let position_before = app.game.player_position();
+         let turn_before = app.game.turn();
+ 
+-        app.update_input(&rect_pointer(wait_turn_rect(800.0), 0.0));
++        app.update_input(&rect_pointer(wait_turn_rect(1280.0, 800.0), 0.0));
+ 
+         assert_eq!(app.game.turn(), turn_before + 1);
+         assert_eq!(app.game.player_position(), position_before);
+@@ -29807,7 +29774,7 @@
+         app.update_input(&input("Escape"));
+         assert!(!app.quest_journal_open);
+ 
+-        app.update_input(&rect_pointer(quest_journal_button_rect(800.0), 0.0));
++        app.update_input(&rect_pointer(quest_journal_button_rect(1280.0, 800.0), 0.0));
+         assert!(app.quest_journal_open);
+         let layout = QuestJournalLayout::new(1280.0, 800.0, 0, 1);
+         app.update_input(&rect_pointer(layout.rows[0].1, 0.0));
+--- before/hud_resources.rs
++++ src/hud_resources.rs
+@@ -70,16 +70,15 @@
+             physical.h / scale,
+         );
+         self.ux.hud_objective.set(Some(panel));
+-        UiTheme.hud_chip(panel);
++        crate::terminal_chrome::module(panel, "07 / OBJECTIF");
+         let x = panel.x + 12.0;
+         let width = panel.w - 24.0;
+-        draw_text_bold("OBJECTIF", x, panel.y + 22.0, 13.0, UiTheme.accent());
+         draw_wrapped_text(
+             &self
+                 .objective_panel_text()
+                 .unwrap_or_else(|| "Aucun objectif suivi.".into()),
+             x,
+-            panel.y + 46.0,
++            panel.y + 49.0,
+             width,
+             4,
+             15,
+@@ -248,21 +247,15 @@
+ 
+     fn draw_defense_values(&self, rect: Rect, compact: bool) {
+         let theme = UiTheme;
+-        theme.hud_chip(rect);
+-        crate::ui_theme::draw_text_in_rect(
+-            "DÉFENSES",
+-            Rect::new(rect.x + 10.0, rect.y + 7.0, rect.w - 20.0, 16.0),
+-            12,
+-            theme.muted(),
+-        );
++        crate::terminal_chrome::module(rect, "03 / DÉFENSES");
+         let values = self.player_defense_values();
+         let columns = if compact { 3 } else { 1 };
+         let rows = values.len().div_ceil(columns);
+-        let pitch = ((rect.h - 30.0) / rows as f32).min(24.0);
++        let pitch = ((rect.h - 32.0) / rows as f32).min(24.0);
+         let width = (rect.w - 20.0) / columns as f32;
+         for (i, (label, value)) in values.iter().enumerate() {
+             let x = rect.x + 10.0 + (i % columns) as f32 * width;
+-            let y = rect.y + 27.0 + (i / columns) as f32 * pitch;
++            let y = rect.y + 30.0 + (i / columns) as f32 * pitch;
+             crate::ui_theme::draw_text_in_rect(
+                 label,
+                 Rect::new(x, y, width - 44.0, pitch - 2.0),
+@@ -366,28 +359,11 @@
+                 },
+             });
+         }
+-        if let Some(heat) = self.game.player_heat().filter(|_| {
+-            !self.game.rules().maintained_energy_reservations
+-                || !self.overclock_resource_lines().is_empty()
+-        }) {
+-            gauges.push(ResourceGauge {
+-                reserved_ratio: 0.0,
+-                companion_slots: None,
+-                label: "Chaleur",
+-                value: format!(
+-                    "{} / {} critique",
+-                    heat.current(),
+-                    heat.critical_threshold()
+-                ),
+-                ratio: normalized_ratio(heat.current(), heat.critical_threshold()),
+-                color: if heat.current() >= heat.critical_threshold() {
+-                    theme.danger()
+-                } else if heat.current() >= heat.alert_threshold() {
+-                    theme.attention()
+-                } else {
+-                    theme.muted()
+-                },
+-            });
++        if (!self.game.rules().maintained_energy_reservations
++            || !self.overclock_resource_lines().is_empty())
++            && let Some(gauge) = self.heat_resource_gauge()
++        {
++            gauges.push(gauge);
+         }
+         if let Some(maximum) = self.game.rules().player_companion_limit {
+             let count = self.game.player_companion_count();
+@@ -403,24 +379,86 @@
+         gauges
+     }
+ 
++    pub(super) fn heat_resource_gauge(&self) -> Option<ResourceGauge> {
++        let heat = self.game.player_heat()?;
++        Some(ResourceGauge {
++            label: "Chaleur",
++            value: format!(
++                "{} / {} critique",
++                heat.current(),
++                heat.critical_threshold()
++            ),
++            ratio: normalized_ratio(heat.current(), heat.critical_threshold()),
++            color: if heat.current() >= heat.critical_threshold() {
++                UiTheme.danger()
++            } else if heat.current() >= heat.alert_threshold() {
++                UiTheme.attention()
++            } else {
++                UiTheme.muted()
++            },
++            reserved_ratio: 0.0,
++            companion_slots: None,
++        })
++    }
++
++    pub(super) fn experience_resource_gauge(&self) -> ResourceGauge {
++        let progression = self.game.player_progression();
++        let level = progression.level();
++        let curve = &self.game.rules().progression.curve;
++        let next = curve.next_threshold_after(level);
++        let previous = if level > 1 {
++            curve.next_threshold_after(level - 1).unwrap_or(0)
++        } else {
++            0
++        };
++        ResourceGauge {
++            label: "Expérience",
++            value: next.map_or_else(
++                || format!("Niveau {level} · MAX"),
++                |next| {
++                    format!(
++                        "Niveau {level} · {} / {}",
++                        progression.experience().saturating_sub(previous),
++                        next.saturating_sub(previous)
++                    )
++                },
++            ),
++            ratio: next.map_or(1.0, |next| {
++                progression.experience().saturating_sub(previous) as f32
++                    / next.saturating_sub(previous).max(1) as f32
++            }),
++            color: UiTheme.accent(),
++            reserved_ratio: 0.0,
++            companion_slots: None,
++        }
++    }
++
+     pub(super) fn compact_resource_rects(width: f32, count: usize) -> Vec<Rect> {
+         let gap = 6.0;
+         let w = (width - 24.0 - gap * count.saturating_sub(1) as f32) / count.max(1) as f32;
+         (0..count)
+-            .map(|i| Rect::new(12.0 + i as f32 * (w + gap), 7.0, w, 56.0))
++            .map(|i| Rect::new(12.0 + i as f32 * (w + gap), 7.0, w, 66.0))
+             .collect()
+     }
+ 
+     pub(super) fn draw_resource_gauge(rect: Rect, gauge: &ResourceGauge) {
+-        crate::ui_theme::draw_text_in_rect(
+-            gauge.label,
+-            Rect::new(rect.x, rect.y, rect.w, 16.0),
+-            14,
+-            UiTheme.text(),
+-        );
++        let compact = rect.h < 36.0;
++        if !compact {
++            crate::ui_theme::draw_text_in_rect(
++                gauge.label,
++                Rect::new(rect.x, rect.y, rect.w, 16.0),
++                14,
++                UiTheme.text(),
++            );
++        }
+         crate::ui_theme::draw_text_in_rect(
+             &gauge.value,
+-            Rect::new(rect.x, rect.y + 17.0, rect.w, 15.0),
++            Rect::new(
++                rect.x,
++                rect.y + if compact { 0.0 } else { 17.0 },
++                rect.w,
++                15.0,
++            ),
+             13,
+             gauge.color,
+         );
+@@ -458,6 +496,7 @@
+             bar.h,
+             gauge.color,
+         );
++        crate::terminal_chrome::segment(bar, 20);
+         let reserved_width = bar.w * gauge.reserved_ratio.clamp(0.0, 1.0);
+         if reserved_width > 0.0 {
+             let left = bar.right() - reserved_width;
+@@ -527,79 +566,112 @@
+     }
+ 
+     pub(super) fn draw_resource_sidebar(&self, panel: Rect) {
+-        let theme = UiTheme;
+-        theme.hud_panel(panel);
+-        let x = panel.x + 14.0;
+-        let width = panel.w - 28.0;
+-        let mut y = panel.y + 12.0;
+-        for gauge in self.resource_gauges() {
+-            self.draw_hud_resource_gauge(Rect::new(x, y, width, 38.0), &gauge);
+-            y += 44.0;
+-        }
+-        draw_text_bold("Arme en main", x, y + 14.0, 14.0, theme.muted());
++        use crate::terminal_chrome::{button, module};
++        let gauges = self.resource_gauges();
++        let weapon_h = if panel.h < 640.0 { 80.0 } else { 94.0 };
++        let progression_h = 92.0;
++        let pitch = ((panel.h - weapon_h - progression_h - 24.0 - 145.0 - 41.0)
++            / gauges.len().max(1) as f32)
++            .clamp(38.0, 46.0);
++        let state = Rect::new(
++            panel.x,
++            panel.y,
++            panel.w,
++            41.0 + pitch * gauges.len() as f32,
++        );
++        module(state, "01 / ÉTAT DU PERSONNAGE");
++        for (i, gauge) in gauges.iter().enumerate() {
++            self.draw_hud_resource_gauge(
++                Rect::new(
++                    panel.x + 13.0,
++                    panel.y + 38.0 + i as f32 * pitch,
++                    panel.w - 26.0,
++                    38.0,
++                ),
++                gauge,
++            );
++        }
++        let weapon = Rect::new(panel.x, state.bottom() + 8.0, panel.w, weapon_h);
++        module(weapon, "02 / ARME ACTIVE");
+         let bottom = draw_wrapped_text(
+             &self.active_weapon_hud_label(),
+-            x,
+-            y + 37.0,
+-            width,
++            weapon.x + 13.0,
++            weapon.y + 48.0,
++            weapon.w - 26.0,
+             2,
+-            16,
+-            theme.text(),
++            15,
++            UiTheme.text(),
+         );
+         crate::ui_theme::draw_text_in_rect(
+             self.active_weapon_hud_cost(),
+-            Rect::new(x, bottom, width, 17.0),
++            Rect::new(
++                weapon.x + 13.0,
++                bottom,
++                weapon.w - 26.0,
++                (weapon.bottom() - bottom - 5.0).max(12.0),
++            ),
+             12,
+-            theme.muted(),
+-        );
+-        let defense_top = bottom + 29.0;
+-        self.draw_defense_values(
+-            Rect::new(x, defense_top, width, panel.bottom() - 108.0 - defense_top),
+-            false,
+-        );
+-        let progression = self.game.player_progression();
+-        let available = progression.unspent_skill_points();
+-        let points = Rect::new(x, panel.bottom() - 88.0, width, 32.0);
+-        theme.button(
+-            points,
+-            &format!(
+-                "{available} point{} de compétence",
+-                if available > 1 { "s" } else { "" }
+-            ),
+-            self.menu_focus.hovered == Some(50_020),
+-            false,
+-            true,
+-            if available > 0 {
+-                ButtonTone::Primary
+-            } else {
+-                ButtonTone::Secondary
+-            },
++            UiTheme.muted(),
++        );
++        let progress = Rect::new(
++            panel.x,
++            panel.bottom() - progression_h,
++            panel.w,
++            progression_h,
++        );
++        let defenses = Rect::new(
++            panel.x,
++            weapon.bottom() + 8.0,
++            panel.w,
++            progress.y - weapon.bottom() - 16.0,
++        );
++        module(defenses, "03 / DÉFENSES");
++        let values = self.player_defense_values();
++        let row_h = ((defenses.h - 36.0) / values.len() as f32).min(20.0);
++        let size = if row_h < 14.0 { 11 } else { 13 };
++        for (i, (label, value)) in values.iter().enumerate() {
++            let y = defenses.y + 33.0 + i as f32 * row_h;
++            crate::ui_theme::draw_text_in_rect(
++                label,
++                Rect::new(defenses.x + 13.0, y, defenses.w - 77.0, row_h),
++                size,
++                UiTheme.text(),
++            );
++            crate::ui_theme::draw_text_in_rect(
++                value,
++                Rect::new(defenses.right() - 59.0, y, 46.0, row_h),
++                size,
++                UiTheme.accent(),
++            );
++        }
++        module(progress, "04 / PROGRESSION");
++        Self::draw_resource_gauge(
++            Rect::new(
++                progress.x + 13.0,
++                progress.y + 34.0,
++                progress.w - 26.0,
++                27.0,
++            ),
++            &self.experience_resource_gauge(),
++        );
++        let points = Rect::new(
++            progress.x + 13.0,
++            progress.bottom() - 28.0,
++            progress.w - 26.0,
++            22.0,
++        );
++        button(points, self.menu_focus.hovered == Some(50_020), false, true);
++        crate::ui_theme::draw_text_in_rect(
++            format!(
++                "{} point(s) · Compétences [{}]",
++                self.game.player_progression().unspent_skill_points(),
++                self.controls.label(Action::Skills)
++            ),
++            Rect::new(points.x + 4.0, points.y, points.w - 8.0, points.h),
++            12,
++            UiTheme.accent(),
+         );
+         self.ux.hud_points.set(Some(points));
+-        let level = progression.level();
+-        let curve = &self.game.rules().progression.curve;
+-        let next = curve.next_threshold_after(level);
+-        let previous = curve
+-            .cumulative_thresholds()
+-            .get(usize::from(level.saturating_sub(2)))
+-            .copied()
+-            .filter(|_| level > 1)
+-            .unwrap_or(0);
+-        let ratio = next.map_or(1.0, |next| {
+-            progression.experience().saturating_sub(previous) as f32
+-                / next.saturating_sub(previous).max(1) as f32
+-        });
+-        draw_status_bar(
+-            Rect::new(x, panel.bottom() - 43.0, width, 31.0),
+-            &format!("XP · niveau {level}"),
+-            &next.map_or_else(
+-                || "MAX".to_owned(),
+-                |next| format!("{}/{next}", progression.experience()),
+-            ),
+-            ratio,
+-            UiIcon::Level,
+-            theme.accent(),
+-        );
+     }
+ 
+     pub(super) fn draw_compact_resource_header(&self) {
+@@ -609,15 +681,26 @@
+             .into_iter()
+             .zip(&gauges)
+         {
+-            theme.hud_panel(rect);
++            crate::terminal_chrome::module(
++                rect,
++                &format!(
++                    "{:02} / {}",
++                    gauges
++                        .iter()
++                        .position(|g| g.label == gauge.label)
++                        .unwrap_or(0)
++                        + 1,
++                    gauge.label.to_uppercase()
++                ),
++            );
+             self.draw_hud_resource_gauge(
+-                Rect::new(rect.x + 9.0, rect.y + 6.0, rect.w - 18.0, 43.0),
++                Rect::new(rect.x + 9.0, rect.y + 33.0, rect.w - 18.0, 27.0),
+                 gauge,
+             );
+         }
+-        let points = Rect::new(12.0, 69.0, (self.ui_width() * 0.34).min(290.0), 30.0);
++        let points = Rect::new(12.0, 79.0, (self.ui_width() * 0.34).min(290.0), 30.0);
+         let progression = self.game.player_progression();
+-        theme.button(
++        inventory_terminal::terminal_button(
+             points,
+             &format!(
+                 "Niv. {} · {} point(s) [{}]",
+@@ -628,7 +711,6 @@
+             self.menu_focus.hovered == Some(50_020),
+             false,
+             true,
+-            ButtonTone::Secondary,
+         );
+         self.ux.hud_points.set(Some(points));
+         let weapon = Rect::new(
+@@ -637,7 +719,7 @@
+             self.ui_width() - points.right() - 20.0,
+             points.h,
+         );
+-        theme.hud_chip(weapon);
++        crate::terminal_chrome::button(weapon, false, false, true);
+         let cost = self.active_weapon_hud_cost();
+         let name = self.active_weapon_hud_label();
+         crate::ui_theme::draw_text_in_rect(
+@@ -656,20 +738,20 @@
+             theme.text(),
+         );
+         let defense_width = (self.ui_width() - 30.0) * 0.66;
+-        self.draw_defense_values(Rect::new(12.0, 105.0, defense_width, 88.0), true);
++        self.draw_defense_values(Rect::new(12.0, 115.0, defense_width, 78.0), true);
+         let target_rect = Rect::new(
+             18.0 + defense_width,
+-            105.0,
++            115.0,
+             self.ui_width() - defense_width - 30.0,
+-            88.0,
+-        );
+-        theme.hud_panel(target_rect);
++            78.0,
++        );
++        crate::terminal_chrome::module(target_rect, "06 / CIBLE");
+         let summary = self.terminal_target_summary();
+         crate::ui_theme::draw_text_in_rect(
+             summary.as_ref().map_or("Aucune cible", |s| s.name.as_str()),
+             Rect::new(
+                 target_rect.x + 10.0,
+-                target_rect.y + 8.0,
++                target_rect.y + 29.0,
+                 target_rect.w - 20.0,
+                 20.0,
+             ),
+@@ -699,7 +781,7 @@
+                 details,
+                 Rect::new(
+                     target_rect.x + 10.0,
+-                    target_rect.y + 32.0,
++                    target_rect.y + 47.0,
+                     target_rect.w - 20.0,
+                     20.0,
+                 ),
+@@ -709,7 +791,7 @@
+             if let Some((hp, max)) = summary.health {
+                 draw_rectangle(
+                     target_rect.x + 10.0,
+-                    target_rect.bottom() - 18.0,
++                    target_rect.bottom() - 7.0,
+                     target_rect.w - 20.0,
+                     5.0,
+                     theme.surface(),
+--- before/inventory_terminal.rs
++++ src/inventory_terminal.rs
+@@ -1,9 +1,15 @@
+ //! Equipped slots and contextual item details in the ordinary inventory.
+ use super::*;
+ 
+-const PHOSPHOR: Color = Color::new(0.49, 0.88, 0.70, 1.0);
+-const DIM: Color = Color::new(0.30, 0.51, 0.43, 1.0);
+-const INK: Color = Color::new(0.025, 0.050, 0.042, 1.0);
++fn phosphor() -> Color {
++    UiTheme.accent()
++}
++fn dim() -> Color {
++    UiTheme.muted()
++}
++fn ink() -> Color {
++    crate::terminal_chrome::ink()
++}
+ const SLOT_LABELS: [&str; 7] = [
+     "TÊTE",
+     "CORPS",
+@@ -92,30 +98,8 @@
+ }
+ 
+ pub(super) fn terminal_button(rect: Rect, label: &str, focused: bool, active: bool, enabled: bool) {
+-    draw_rectangle(
+-        rect.x,
+-        rect.y,
+-        rect.w,
+-        rect.h,
+-        if focused || active {
+-            Color::new(0.065, 0.12, 0.095, 1.0)
+-        } else {
+-            INK
+-        },
+-    );
+-    draw_rectangle_lines(
+-        rect.x,
+-        rect.y,
+-        rect.w,
+-        rect.h,
+-        1.0,
+-        if enabled && (focused || active) {
+-            PHOSPHOR
+-        } else {
+-            DIM
+-        },
+-    );
+-    let color = if enabled { PHOSPHOR } else { DIM };
++    crate::terminal_chrome::button(rect, focused, active, enabled);
++    let color = if enabled { phosphor() } else { dim() };
+     if measure_text_bold(label, 14).width > rect.w - 8.0
+         && let Some((title, binding)) = label.rsplit_once(" [")
+     {
+@@ -142,33 +126,6 @@
+ }
+ 
+ impl AsciiApp {
+-    pub(super) fn draw_terminal_hud_frame(&self) {
+-        let scale = self.ui_scale();
+-        for panel in crate::terminal_view::terminal_frame_panels(self.terminal_bounds(), scale)
+-            .into_iter()
+-            .flatten()
+-        {
+-            let rect = Rect::new(
+-                panel.x / scale,
+-                panel.y / scale,
+-                panel.w / scale,
+-                panel.h / scale,
+-            );
+-            draw_rectangle_lines(rect.x, rect.y, rect.w, rect.h, 1.0, PHOSPHOR);
+-        }
+-        if !self.graphics.active.high_contrast {
+-            for y in (0..self.ui_height() as usize).step_by(4) {
+-                draw_line(
+-                    0.0,
+-                    y as f32,
+-                    self.ui_width(),
+-                    y as f32,
+-                    1.0,
+-                    Color::new(0.02, 0.05, 0.035, 0.06),
+-                );
+-            }
+-        }
+-    }
+     pub(super) fn preview_selected_inventory_item(&mut self) {
+         self.ux.inventory_keyboard_preview = true;
+         self.ux.inventory_tooltip = self
+@@ -287,21 +244,14 @@
+             .and_then(|id| self.character_classes.get(id))
+             .and_then(|class| self.texts.resolve(DISPLAY_LOCALE, class.name_key()))
+             .unwrap_or("Personnage");
+-        crate::ui_theme::draw_text_in_rect(
+-            format!("PERSONNAGE / {}", class.to_uppercase()),
+-            Rect::new(
+-                equipment.panel.x + 6.0,
+-                equipment.panel.y - 2.0,
+-                equipment.panel.w - 12.0,
+-                30.0,
+-            ),
+-            17,
+-            PHOSPHOR,
++        crate::terminal_chrome::module(
++            equipment.panel,
++            &format!("02 / PERSONNAGE / {}", class.to_uppercase()),
+         );
+         crate::game_art::draw_terminal_wireframe(
+             equipment.silhouette,
+             self.front_player_visual(),
+-            PHOSPHOR,
++            phosphor(),
+         );
+         for (index, rect) in equipment.slots.iter().copied().enumerate() {
+             let instance = self.inventory_slot_instance(index);
+@@ -313,9 +263,9 @@
+                 rect.w,
+                 rect.h,
+                 if hovered {
+-                    Color::new(0.065, 0.12, 0.095, 1.0)
++                    UiTheme.surface_selected()
+                 } else {
+-                    INK
++                    ink()
+                 },
+             );
+             draw_rectangle_lines(
+@@ -324,7 +274,7 @@
+                 rect.w,
+                 rect.h,
+                 1.0,
+-                if hovered { PHOSPHOR } else { DIM },
++                if hovered { phosphor() } else { dim() },
+             );
+             let side = (rect.h - 25.0).min(56.0);
+             let image = Rect::new(rect.x + (rect.w - side) * 0.5, rect.y + 3.0, side, side);
+@@ -334,10 +284,10 @@
+                     entry.item().as_str(),
+                     entry.palette(),
+                 ) {
+-                    draw_inventory_glyph(image, self.inventory_glyph(entry), PHOSPHOR);
++                    draw_inventory_glyph(image, self.inventory_glyph(entry), phosphor());
+                 }
+             } else {
+-                crate::ui_theme::draw_text_bold_centered("Vide", image, 12, DIM);
++                crate::ui_theme::draw_text_bold_centered("Vide", image, 12, dim());
+             }
+             crate::ui_theme::draw_text_in_rect(
+                 if index < 4 {
+@@ -347,7 +297,7 @@
+                 },
+                 Rect::new(rect.x + 5.0, rect.bottom() - 23.0, rect.w - 10.0, 20.0),
+                 14,
+-                PHOSPHOR,
++                phosphor(),
+             );
+             if index >= 4 && self.weapon_configuration_active(index - 4) {
+                 draw_rectangle(
+@@ -355,7 +305,7 @@
+                     rect.bottom() - 2.0,
+                     rect.w - 4.0,
+                     2.0,
+-                    PHOSPHOR,
++                    phosphor(),
+                 );
+             }
+             if index < 4 {
+@@ -373,16 +323,16 @@
+                     rect.y + rect.h * 0.47,
+                 );
+                 let elbow = (start.x + target.x) * 0.5;
+-                draw_line(start.x, start.y, elbow, start.y, 1.0, DIM);
+-                draw_line(elbow, start.y, elbow, target.y, 1.0, DIM);
+-                draw_line(elbow, target.y, target.x, target.y, 1.0, DIM);
+-                draw_circle(target.x, target.y, 2.0, PHOSPHOR);
++                draw_line(start.x, start.y, elbow, start.y, 1.0, dim());
++                draw_line(elbow, start.y, elbow, target.y, 1.0, dim());
++                draw_line(elbow, target.y, target.x, target.y, 1.0, dim());
++                draw_circle(target.x, target.y, 2.0, phosphor());
+             }
+             if index >= 4 && self.game.rules().uses_weapon_hands() {
+                 let line_color = if self.weapon_configuration_active(index - 4) {
+-                    PHOSPHOR
++                    phosphor()
+                 } else {
+-                    DIM
++                    dim()
+                 };
+                 let point = |x: f32, y: f32| {
+                     vec2(
+@@ -414,81 +364,41 @@
+         }
+     }
+ 
++    pub(super) fn inventory_resource_gauges(&self) -> Vec<hud_resources::ResourceGauge> {
++        let mut gauges: Vec<_> = self
++            .resource_gauges()
++            .into_iter()
++            .filter(|g| matches!(g.label, "PV" | "Énergie"))
++            .collect();
++        if let Some(heat) = self.heat_resource_gauge() {
++            gauges.push(heat);
++        }
++        gauges.push(self.experience_resource_gauge());
++        gauges
++    }
++
+     pub(super) fn draw_inventory_gauges(&self, panel: Rect) {
+-        let x = panel.x + 12.0;
+-        let w = panel.w - 24.0;
+-        draw_text_bold("ÉTAT DU PERSONNAGE", x, panel.y + 24.0, 17.0, PHOSPHOR);
+-        let actor = self.game.actors().get(self.game.player_id());
+-        let energy = self.game.player_energy();
+-        let progression = self.game.player_progression();
+-        let level = progression.level();
+-        let previous = if level > 1 {
+-            self.rules
+-                .progression
+-                .curve
+-                .next_threshold_after(level - 1)
+-                .unwrap_or(0)
+-        } else {
+-            0
+-        };
+-        let next = self.rules.progression.curve.next_threshold_after(level);
+-        let mut gauges = vec![
+-            (
+-                "PV",
+-                actor.map_or(0, |a| u64::from(a.integrity())),
+-                actor.map_or(1, |a| u64::from(a.maximum_integrity())),
++        let state = Rect::new(panel.x + 8.0, panel.y, panel.w - 16.0, 235.0);
++        crate::terminal_chrome::module(state, "03 / ÉTAT DU PERSONNAGE");
++        for (i, gauge) in self.inventory_resource_gauges().iter().enumerate() {
++            Self::draw_resource_gauge(
++                Rect::new(
++                    panel.x + 20.0,
++                    panel.y + 39.0 + i as f32 * 42.0,
++                    panel.w - 40.0,
++                    38.0,
++                ),
++                gauge,
++            );
++        }
++        crate::ui_theme::draw_text_in_rect(
++            format!(
++                "{} points de compétence",
++                self.game.player_progression().unspent_skill_points()
+             ),
+-            (
+-                "ÉNERGIE",
+-                u64::from(energy.available()),
+-                u64::from(energy.capacity()),
+-            ),
+-        ];
+-        if let Some(heat) = self.game.player_heat() {
+-            gauges.push((
+-                "CHALEUR",
+-                u64::from(heat.current()),
+-                u64::from(heat.critical_threshold()),
+-            ));
+-        }
+-        gauges.push((
+-            "EXPÉRIENCE",
+-            progression.experience().saturating_sub(previous),
+-            next.map_or(1, |n| n.saturating_sub(previous)),
+-        ));
+-        for (row, (label, value, maximum)) in gauges.into_iter().enumerate() {
+-            let y = panel.y + 57.0 + row as f32 * 42.0;
+-            draw_text(label, x, y, 14.0, DIM);
+-            let value_label = if label == "EXPÉRIENCE" && next.is_none() {
+-                "MAX".to_owned()
+-            } else {
+-                format!("{value} / {maximum}")
+-            };
+-            draw_text(
+-                value_label.clone(),
+-                x + w - measure_text(&value_label, None, 14, 1.0).width,
+-                y,
+-                14.0,
+-                PHOSPHOR,
+-            );
+-            draw_rectangle(x, y + 7.0, w, 5.0, Color::new(0.10, 0.17, 0.13, 1.0));
+-            draw_rectangle(
+-                x,
+-                y + 7.0,
+-                w * (value as f64 / maximum.max(1) as f64).clamp(0.0, 1.0) as f32,
+-                5.0,
+-                PHOSPHOR,
+-            );
+-        }
+-        draw_text(
+-            format!(
+-                "Niveau {level} · {} points de compétence",
+-                progression.unspent_skill_points()
+-            ),
+-            x,
+-            panel.y + 224.0,
+-            13.0,
+-            DIM,
++            Rect::new(panel.x + 20.0, panel.y + 211.0, panel.w - 40.0, 18.0),
++            13,
++            dim(),
+         );
+     }
+ 
+@@ -500,8 +410,8 @@
+             return;
+         };
+         let rect = Self::inventory_tooltip_rect(layout, self.ui_width(), self.ui_height());
+-        draw_rectangle(rect.x, rect.y, rect.w, rect.h, INK);
+-        draw_rectangle_lines(rect.x, rect.y, rect.w, rect.h, 1.0, PHOSPHOR);
++        draw_rectangle(rect.x, rect.y, rect.w, rect.h, ink());
++        crate::terminal_chrome::bezel(rect);
+         let glyph = Rect::new(rect.right() - 55.0, rect.y + 8.0, 46.0, 46.0);
+         crate::game_art::draw_item_variant(glyph, entry.item().as_str(), entry.palette());
+         let title = self.inventory_entry_name(entry);
+@@ -527,12 +437,12 @@
+             rect.right() - 8.0,
+             body.y - 8.0,
+             1.0,
+-            DIM,
++            dim(),
+         );
+         crate::ui_theme::begin_text_pane(body, self.ux.inventory_tooltip_scroll.offset);
+         let mut y = body.y + 17.0;
+         for line in self.inventory_item_lines(instance) {
+-            y = draw_wrapped_text(&line, body.x, y, body.w - 5.0, 40, 15, PHOSPHOR) + 8.0;
++            y = draw_wrapped_text(&line, body.x, y, body.w - 5.0, 40, 15, UiTheme.text()) + 8.0;
+         }
+         crate::ui_theme::end_text_pane();
+         let scroll = &self.ux.inventory_tooltip_scroll;
+@@ -541,13 +451,13 @@
+         if maximum > 0.0 {
+             let track = Rect::new(body.right() - 3.0, body.y, 2.0, body.h);
+             let thumb = (track.h * body.h / (maximum + body.h)).max(20.0);
+-            draw_rectangle(track.x, track.y, track.w, track.h, DIM);
++            draw_rectangle(track.x, track.y, track.w, track.h, dim());
+             draw_rectangle(
+                 track.x,
+                 track.y + (track.h - thumb) * scroll.offset.min(maximum) / maximum,
+                 track.w,
+                 thumb,
+-                PHOSPHOR,
++                phosphor(),
+             );
+         }
+         crate::ui_theme::draw_text_in_rect(
+@@ -557,7 +467,7 @@
+             ),
+             Rect::new(rect.x + 8.0, rect.bottom() - 24.0, rect.w - 16.0, 20.0),
+             12,
+-            DIM,
++            dim(),
+         );
+     }
+ }
+@@ -574,6 +484,37 @@
+         app.controls = Controls::preset(controls::Layout::Qwerty, controls::KeySemantics::Physical);
+         app.inventory_open = true;
+         app
++    }
++
++    #[test]
++    fn inventory_gauges_keep_resource_colors_and_follow_all_interface_themes() {
++        let app = fixture();
++        let before = suspension::fingerprint(&app.game);
++        for theme in graphics::InterfaceTheme::ALL {
++            crate::ui_theme::set_interface_theme(theme);
++            let inventory = app.inventory_resource_gauges();
++            let hud = app.resource_gauges();
++            for label in ["PV", "Énergie"] {
++                let a = inventory.iter().find(|g| g.label == label).unwrap();
++                let b = hud.iter().find(|g| g.label == label).unwrap();
++                assert_eq!(
++                    (a.value.as_str(), a.ratio, a.reserved_ratio, a.color),
++                    (b.value.as_str(), b.ratio, b.reserved_ratio, b.color)
++                );
++            }
++            assert_eq!(inventory[0].color, UiTheme.success());
++            assert_eq!(inventory[1].color, Color::from_rgba(109, 186, 255, 255));
++            assert_eq!(inventory.last().unwrap().color, UiTheme.accent());
++            if let Some(heat) = app.heat_resource_gauge() {
++                let actual = inventory.iter().find(|g| g.label == "Chaleur").unwrap();
++                assert_eq!(
++                    (actual.value.as_str(), actual.ratio, actual.color),
++                    (heat.value.as_str(), heat.ratio, heat.color)
++                );
++            }
++            assert_eq!(suspension::fingerprint(&app.game), before);
++        }
++        crate::ui_theme::set_interface_theme(graphics::InterfaceTheme::default());
+     }
+ 
+     fn layout(app: &AsciiApp, width: f32, height: f32) -> InventoryLayout {
+--- before/main.rs
++++ src/main.rs
+@@ -7,6 +7,7 @@
+ mod pause_menu;
+ mod surface_layout;
+ mod suspension;
++mod terminal_chrome;
+ mod terminal_view;
+ mod test_expedition;
+ mod test_regional;
+@@ -40,6 +41,7 @@
+     if let Err(error) = ui_theme::initialize_fonts() {
+         eprintln!("[UI] Police embarquée indisponible, police de secours utilisée : {error}");
+     }
++    terminal_chrome::prepare_text();
+     terminal_view::initialize_player_art();
+     game_art::prewarm();
+     #[cfg(debug_assertions)]
+--- before/terminal_console_capture.rs
++++ src/terminal_console_capture.rs
+@@ -1,598 +1,10 @@
+-//! Review-only terminal chrome, fed by the same live HUD values and known map.
+-//! The ordinary HUD is deliberately not routed through this proposal.
++//! Diagnostic scenes use the production terminal and idle renderers.
+ use super::*;
+-
+-fn tint(alpha: f32) -> Color {
+-    let c = UiTheme.accent();
+-    Color::new(c.r, c.g, c.b, alpha)
+-}
+-
+-fn heading(text: &str, x: f32, y: f32, size: u16, color: Color) {
+-    // Fixed character spacing evokes a terminal while retaining our French font.
+-    let advance = f32::from(size) * 0.62;
+-    for (i, ch) in text.chars().enumerate() {
+-        draw_text_bold(
+-            ch.to_string(),
+-            x + i as f32 * advance,
+-            y,
+-            f32::from(size),
+-            color,
+-        );
+-    }
+-}
+-
+-fn bezel(rect: Rect) {
+-    draw_rectangle_lines(rect.x, rect.y, rect.w, rect.h, 1.0, tint(0.32));
+-    for (x, sx) in [(rect.x, 1.0), (rect.right(), -1.0)] {
+-        for (y, sy) in [(rect.y, 1.0), (rect.bottom(), -1.0)] {
+-            draw_line(x, y, x + sx * 12.0, y, 2.0, tint(0.9));
+-            draw_line(x, y, x, y + sy * 9.0, 2.0, tint(0.9));
+-        }
+-    }
+-}
+-
+-fn module(rect: Rect, label: &str) {
+-    let accent = UiTheme.accent();
+-    let ink = Color::new(
+-        0.017 + accent.r * 0.025,
+-        0.022 + accent.g * 0.025,
+-        0.029 + accent.b * 0.025,
+-        1.0,
+-    );
+-    draw_rectangle(rect.x, rect.y, rect.w, rect.h, ink);
+-    draw_rectangle(rect.x + 1.0, rect.y + 1.0, rect.w - 2.0, 26.0, tint(0.085));
+-    draw_line(
+-        rect.x + 1.0,
+-        rect.y + 27.0,
+-        rect.right() - 1.0,
+-        rect.y + 27.0,
+-        1.0,
+-        tint(0.35),
+-    );
+-    heading(label, rect.x + 10.0, rect.y + 18.0, 13, UiTheme.accent());
+-    bezel(rect);
+-}
+-
+-fn segment(bar: Rect, divisions: usize) {
+-    for i in 1..divisions {
+-        let x = (bar.x + bar.w * i as f32 / divisions as f32).round();
+-        draw_line(
+-            x,
+-            bar.y,
+-            x,
+-            bar.bottom(),
+-            1.0,
+-            Color::from_rgba(8, 12, 16, 255),
+-        );
+-    }
+-}
++use crate::terminal_chrome::{heading, module};
+ 
+ impl AsciiApp {
+     pub(super) fn draw_terminal_console_proposal(&self) {
+         self.draw();
+-        // Keep the corrected end-screen precedence, even in a diagnostic.
+-        if self.game.status() != RunStatus::Active {
+-            return;
+-        }
+-        set_camera(&graphics::ui_camera(self.ui_width(), self.ui_height()));
+-        let scale = self.ui_scale();
+-        let logical = |r: Rect| Rect::new(r.x / scale, r.y / scale, r.w / scale, r.h / scale);
+-        let [left, header, right] =
+-            crate::terminal_view::terminal_frame_panels(self.terminal_bounds(), scale)
+-                .map(|r| r.map(logical));
+-        if let (Some(left), Some(right)) = (left, right) {
+-            self.draw_console_resources(left);
+-            self.draw_console_sensors(right);
+-        } else {
+-            self.draw_console_compact();
+-        }
+-        if let Some(header) = header {
+-            if left.is_none() {
+-                self.draw_console_compact_right(header);
+-            }
+-            draw_rectangle(
+-                header.x - 1.0,
+-                header.y - 1.0,
+-                header.w + 2.0,
+-                header.h + 2.0,
+-                Color::from_rgba(7, 10, 15, 255),
+-            );
+-            let name = self.terminal.console_review_title();
+-            crate::ui_theme::draw_text_in_rect(
+-                crate::terminal_view::player_location_name(name),
+-                Rect::new(
+-                    header.x + 12.0,
+-                    header.y + 2.0,
+-                    header.w - 182.0,
+-                    header.h - 4.0,
+-                ),
+-                16,
+-                UiTheme.accent(),
+-            );
+-            let protected = self
+-                .game
+-                .player_position()
+-                .is_some_and(|pos| self.game.map().is_protected(pos));
+-            heading(
+-                if protected {
+-                    "PROTECTION LOCALE"
+-                } else {
+-                    "ZONE HOSTILE"
+-                },
+-                header.right() - 158.0,
+-                header.y + 20.0,
+-                13,
+-                if protected {
+-                    UiTheme.accent()
+-                } else {
+-                    UiTheme.attention()
+-                },
+-            );
+-            bezel(header);
+-            // A thin bezel outside the map: no scanline or tint over tile art.
+-            let bottom = self.terminal_bounds().bottom() / scale - 29.0;
+-            let world = Rect::new(
+-                header.x,
+-                header.bottom() + 10.0,
+-                header.w,
+-                (bottom - header.bottom() - 17.0).max(40.0),
+-            );
+-            bezel(world);
+-            let pos = self.game.player_position().unwrap_or(GridPos::new(0, 0));
+-            let footer = Rect::new(header.x, bottom, header.w, 23.0);
+-            draw_rectangle(
+-                footer.x,
+-                footer.y,
+-                footer.w,
+-                footer.h,
+-                Color::from_rgba(6, 9, 13, 255),
+-            );
+-            heading(
+-                &format!(
+-                    "TOUR {:04}  /  X {:02}  Y {:02}",
+-                    self.game.turn(),
+-                    pos.x,
+-                    pos.y
+-                ),
+-                footer.x + 10.0,
+-                footer.y + 16.0,
+-                12,
+-                tint(0.9),
+-            );
+-            draw_line(footer.x, footer.y, footer.right(), footer.y, 1.0, tint(0.3));
+-        }
+-        self.draw_console_commands();
+-        set_default_camera();
+-    }
+-
+-    fn draw_console_resources(&self, panel: Rect) {
+-        draw_rectangle(
+-            panel.x - 1.0,
+-            panel.y - 1.0,
+-            panel.w + 2.0,
+-            panel.h + 2.0,
+-            Color::from_rgba(5, 8, 12, 255),
+-        );
+-        let resources = Rect::new(panel.x, panel.y, panel.w, 235.0);
+-        module(resources, "01 / ÉTAT DU PERSONNAGE");
+-        for (i, gauge) in self.resource_gauges().iter().enumerate() {
+-            let rect = Rect::new(
+-                panel.x + 13.0,
+-                panel.y + 36.0 + i as f32 * 46.0,
+-                panel.w - 26.0,
+-                38.0,
+-            );
+-            Self::draw_resource_gauge(rect, gauge);
+-            if gauge.companion_slots.is_none() {
+-                segment(Rect::new(rect.x, rect.bottom() - 7.0, rect.w, 7.0), 20);
+-            }
+-        }
+-        let weapon = Rect::new(panel.x, resources.bottom() + 8.0, panel.w, 94.0);
+-        module(weapon, "02 / ARMEMENT ACTIF");
+-        draw_wrapped_text(
+-            &self.active_weapon_hud_label(),
+-            weapon.x + 13.0,
+-            weapon.y + 48.0,
+-            weapon.w - 26.0,
+-            2,
+-            16,
+-            UiTheme.text(),
+-        );
+-        crate::ui_theme::draw_text_in_rect(
+-            self.active_weapon_hud_cost(),
+-            Rect::new(
+-                weapon.x + 13.0,
+-                weapon.bottom() - 23.0,
+-                weapon.w - 26.0,
+-                18.0,
+-            ),
+-            12,
+-            UiTheme.muted(),
+-        );
+-        let defenses = Rect::new(panel.x, weapon.bottom() + 8.0, panel.w, 228.0);
+-        module(defenses, "03 / DÉFENSES");
+-        for (i, (label, value)) in self.player_defense_values().iter().enumerate() {
+-            let y = defenses.y + 40.0 + i as f32 * 20.0;
+-            if i % 2 == 0 {
+-                draw_rectangle(
+-                    defenses.x + 8.0,
+-                    y - 12.0,
+-                    defenses.w - 16.0,
+-                    19.0,
+-                    tint(0.025),
+-                );
+-            }
+-            draw_text(label, defenses.x + 13.0, y, 13.0, UiTheme.text());
+-            crate::ui_theme::draw_text_in_rect(
+-                value,
+-                Rect::new(defenses.right() - 57.0, y - 13.0, 45.0, 18.0),
+-                13,
+-                UiTheme.accent(),
+-            );
+-        }
+-        let progress = Rect::new(
+-            panel.x,
+-            defenses.bottom() + 8.0,
+-            panel.w,
+-            panel.bottom() - defenses.bottom() - 8.0,
+-        );
+-        module(progress, "04 / PROGRESSION");
+-        let p = self.game.player_progression();
+-        draw_text(
+-            format!("Niveau {}   ·   {} XP", p.level(), p.experience()),
+-            progress.x + 13.0,
+-            progress.y + 47.0,
+-            14.0,
+-            UiTheme.text(),
+-        );
+-        let curve = &self.game.rules().progression.curve;
+-        let previous = curve
+-            .cumulative_thresholds()
+-            .get(usize::from(p.level().saturating_sub(2)))
+-            .copied()
+-            .filter(|_| p.level() > 1)
+-            .unwrap_or(0);
+-        let ratio = curve.next_threshold_after(p.level()).map_or(1.0, |next| {
+-            p.experience().saturating_sub(previous) as f32
+-                / next.saturating_sub(previous).max(1) as f32
+-        });
+-        let bar = Rect::new(progress.x + 13.0, progress.y + 53.0, progress.w - 26.0, 5.0);
+-        draw_rectangle(bar.x, bar.y, bar.w, bar.h, tint(0.12));
+-        draw_rectangle(
+-            bar.x,
+-            bar.y,
+-            bar.w * ratio.clamp(0.0, 1.0),
+-            bar.h,
+-            UiTheme.accent(),
+-        );
+-        segment(bar, 20);
+-        let button = Rect::new(
+-            progress.x + 10.0,
+-            progress.bottom() - 31.0,
+-            progress.w - 20.0,
+-            23.0,
+-        );
+-        draw_rectangle(button.x, button.y, button.w, button.h, tint(0.12));
+-        draw_rectangle_lines(button.x, button.y, button.w, button.h, 1.0, tint(0.6));
+-        crate::ui_theme::draw_text_in_rect(
+-            format!(
+-                "{} points disponibles [{}]",
+-                p.unspent_skill_points(),
+-                self.controls.label(Action::Skills)
+-            ),
+-            Rect::new(
+-                button.x + 7.0,
+-                button.y + 1.0,
+-                button.w - 14.0,
+-                button.h - 2.0,
+-            ),
+-            13,
+-            UiTheme.accent(),
+-        );
+-    }
+-
+-    fn draw_console_sensors(&self, panel: Rect) {
+-        draw_rectangle(
+-            panel.x - 1.0,
+-            panel.y - 1.0,
+-            panel.w + 2.0,
+-            panel.h + 2.0,
+-            Color::from_rgba(5, 8, 12, 255),
+-        );
+-        let sensors = Rect::new(panel.x, panel.y, panel.w, 283.0);
+-        module(sensors, "05 / CAPTEURS");
+-        let map = Rect::new(panel.x + 12.0, panel.y + 40.0, panel.w - 24.0, 154.0);
+-        let mut cache = self.tactical_projection.borrow_mut();
+-        let tactical = cache.projection(&self.game, self.npc_vision_overlay_open);
+-        let counts = self.terminal.draw_console_review_scope(
+-            &self.game,
+-            map,
+-            &tactical.vision,
+-            &tactical.sounds,
+-            |pos| {
+-                self.glyph_at(pos)
+-                    .map(|(symbol, ..)| (symbol, self.is_selected_target_at(pos)))
+-            },
+-        );
+-        bezel(map);
+-        heading(
+-            "CONTACTS EN VUE",
+-            panel.x + 13.0,
+-            map.bottom() + 23.0,
+-            12,
+-            UiTheme.accent(),
+-        );
+-        for (i, label) in ["Hostiles", "Neutres", "Objets"].iter().enumerate() {
+-            let x = panel.x + 13.0 + i as f32 * (panel.w - 26.0) / 3.0;
+-            draw_text_bold(
+-                counts[i].to_string(),
+-                x,
+-                map.bottom() + 49.0,
+-                21.0,
+-                if i == 0 && counts[i] > 0 {
+-                    UiTheme.attention()
+-                } else {
+-                    UiTheme.text()
+-                },
+-            );
+-            draw_text(label, x, map.bottom() + 70.0, 12.0, UiTheme.muted());
+-        }
+-        let target = Rect::new(panel.x, sensors.bottom() + 8.0, panel.w, 192.0);
+-        module(target, "06 / INSPECTION");
+-        if let Some(summary) = self.terminal_target_summary() {
+-            if let Some(visual) = summary.visual {
+-                crate::game_art::draw_portrait(
+-                    Rect::new(target.right() - 106.0, target.y + 36.0, 96.0, 96.0),
+-                    visual,
+-                );
+-            }
+-            draw_wrapped_text(
+-                &summary.name,
+-                target.x + 13.0,
+-                target.y + 51.0,
+-                target.w - 124.0,
+-                3,
+-                15,
+-                UiTheme.text(),
+-            );
+-            draw_text(
+-                format!("À {} cases", summary.distance),
+-                target.x + 13.0,
+-                target.y + 115.0,
+-                13.0,
+-                UiTheme.muted(),
+-            );
+-            if let Some((hp, max)) = summary.health {
+-                draw_text(
+-                    format!("PV {hp} / {max}"),
+-                    target.x + 13.0,
+-                    target.y + 138.0,
+-                    14.0,
+-                    UiTheme.success(),
+-                );
+-                let bar = Rect::new(target.x + 13.0, target.y + 145.0, target.w - 26.0, 5.0);
+-                draw_rectangle(bar.x, bar.y, bar.w, bar.h, tint(0.12));
+-                draw_rectangle(
+-                    bar.x,
+-                    bar.y,
+-                    bar.w * (f32::from(hp) / f32::from(max.max(1))).clamp(0.0, 1.0),
+-                    bar.h,
+-                    UiTheme.success(),
+-                );
+-                segment(bar, 16);
+-            }
+-            draw_wrapped_text(
+-                summary
+-                    .interaction
+-                    .as_deref()
+-                    .unwrap_or(&summary.visible_state),
+-                target.x + 13.0,
+-                target.bottom() - 31.0,
+-                target.w - 26.0,
+-                2,
+-                13,
+-                UiTheme.accent(),
+-            );
+-        } else {
+-            draw_text(
+-                "Survolez ou sélectionnez une cible.",
+-                target.x + 13.0,
+-                target.y + 51.0,
+-                13.0,
+-                UiTheme.muted(),
+-            );
+-        }
+-        let objective = Rect::new(
+-            panel.x,
+-            target.bottom() + 8.0,
+-            panel.w,
+-            panel.bottom() - target.bottom() - 8.0,
+-        );
+-        module(objective, "07 / OBJECTIF");
+-        draw_wrapped_text(
+-            &self
+-                .objective_panel_text()
+-                .unwrap_or_else(|| "Aucun objectif suivi.".to_owned()),
+-            objective.x + 13.0,
+-            objective.y + 51.0,
+-            objective.w - 26.0,
+-            4,
+-            15,
+-            UiTheme.text(),
+-        );
+-        heading(
+-            &format!("JOURNAL [{}]", self.controls.label(Action::QuestJournal)),
+-            objective.x + 13.0,
+-            objective.bottom() - 15.0,
+-            12,
+-            UiTheme.accent(),
+-        );
+-    }
+-
+-    fn draw_console_compact(&self) {
+-        draw_rectangle(
+-            10.0,
+-            0.0,
+-            self.ui_width() - 20.0,
+-            196.0,
+-            Color::from_rgba(5, 8, 12, 255),
+-        );
+-        let gauges = self.resource_gauges();
+-        let width = (self.ui_width() - 36.0) / gauges.len() as f32;
+-        for (i, gauge) in gauges.iter().enumerate() {
+-            let panel = Rect::new(12.0 + i as f32 * (width + 4.0), 8.0, width, 76.0);
+-            module(
+-                panel,
+-                &format!("0{} / {}", i + 1, gauge.label.to_uppercase()),
+-            );
+-            let rect = Rect::new(panel.x + 10.0, panel.y + 29.0, panel.w - 20.0, 38.0);
+-            Self::draw_resource_gauge(rect, gauge);
+-            if gauge.companion_slots.is_none() {
+-                segment(Rect::new(rect.x, rect.bottom() - 7.0, rect.w, 7.0), 16);
+-            }
+-        }
+-        let weapon = Rect::new(12.0, 92.0, self.ui_width() * 0.45, 102.0);
+-        module(weapon, "ARMEMENT / PROGRESSION");
+-        draw_text(
+-            self.active_weapon_hud_label(),
+-            weapon.x + 12.0,
+-            weapon.y + 49.0,
+-            15.0,
+-            UiTheme.text(),
+-        );
+-        draw_text(
+-            self.active_weapon_hud_cost(),
+-            weapon.x + 12.0,
+-            weapon.y + 70.0,
+-            12.0,
+-            UiTheme.muted(),
+-        );
+-        draw_text(
+-            format!(
+-                "Niveau {} · {} points [{}]",
+-                self.game.player_progression().level(),
+-                self.game.player_progression().unspent_skill_points(),
+-                self.controls.label(Action::Skills)
+-            ),
+-            weapon.x + 12.0,
+-            weapon.y + 90.0,
+-            12.0,
+-            UiTheme.accent(),
+-        );
+-        let defenses = Rect::new(
+-            weapon.right() + 8.0,
+-            92.0,
+-            self.ui_width() - weapon.right() - 20.0,
+-            102.0,
+-        );
+-        module(defenses, "DÉFENSES");
+-        for (i, (label, value)) in self.player_defense_values().iter().enumerate() {
+-            let x = defenses.x + 10.0 + (i % 3) as f32 * (defenses.w - 20.0) / 3.0;
+-            let y = defenses.y + 45.0 + (i / 3) as f32 * 23.0;
+-            draw_text(format!("{label} {value}"), x, y, 11.0, UiTheme.text());
+-        }
+-    }
+-
+-    fn draw_console_compact_right(&self, header: Rect) {
+-        let x = header.right() + 12.0;
+-        let w = (self.ui_width() - x - 28.0).max(80.0);
+-        let objective = Rect::new(x, header.y + 3.0, w, 144.0);
+-        module(objective, "OBJECTIF");
+-        draw_wrapped_text(
+-            &self
+-                .objective_panel_text()
+-                .unwrap_or_else(|| "Aucun objectif suivi.".to_owned()),
+-            x + 12.0,
+-            objective.y + 48.0,
+-            w - 24.0,
+-            3,
+-            14,
+-            UiTheme.text(),
+-        );
+-        heading(
+-            &format!("JOURNAL [{}]", self.controls.label(Action::QuestJournal)),
+-            x + 12.0,
+-            objective.bottom() - 14.0,
+-            11,
+-            UiTheme.accent(),
+-        );
+-        let target = Rect::new(x, objective.bottom() + 8.0, w, 72.0);
+-        module(target, "INSPECTION");
+-        if let Some(summary) = self.terminal_target_summary() {
+-            if let Some(visual) = summary.visual {
+-                crate::game_art::draw_portrait(
+-                    Rect::new(target.right() - 44.0, target.y + 31.0, 32.0, 32.0),
+-                    visual,
+-                );
+-            }
+-            crate::ui_theme::draw_text_in_rect(
+-                summary.name,
+-                Rect::new(target.x + 12.0, target.y + 32.0, w - 64.0, 25.0),
+-                13,
+-                UiTheme.text(),
+-            );
+-        }
+-    }
+-
+-    fn draw_console_commands(&self) {
+-        let h = self.ui_height();
+-        let w = self.ui_width();
+-        draw_rectangle(
+-            12.0,
+-            h - 99.0,
+-            w - 24.0,
+-            99.0,
+-            Color::from_rgba(5, 8, 12, 255),
+-        );
+-        let commands = [
+-            ("Attendre", Action::Wait),
+-            ("Quêtes", Action::QuestJournal),
+-            ("Interagir", Action::Interact),
+-            ("Attaquer", Action::Attack),
+-            ("Techniques", Action::QuickTechniques),
+-            ("Inventaire", Action::Inventory),
+-            ("Examiner", Action::Inspect),
+-            ("Historique", Action::EventHistory),
+-            ("Aide", Action::Legend),
+-        ];
+-        let width = (w - 42.0) / (commands.len() + 1) as f32;
+-        for (i, (label, key)) in commands
+-            .iter()
+-            .map(|(label, action)| (*label, self.controls.label(*action)))
+-            .chain(std::iter::once(("Menu", "Esc".to_owned())))
+-            .enumerate()
+-        {
+-            let rect = Rect::new(20.0 + i as f32 * (width + 2.0), h - 94.0, width, 36.0);
+-            draw_rectangle(rect.x, rect.y, rect.w, rect.h, tint(0.055));
+-            bezel(rect);
+-            draw_text(
+-                label,
+-                rect.x + 8.0,
+-                rect.y + 14.0,
+-                if w < 1000.0 { 11.0 } else { 13.0 },
+-                UiTheme.text(),
+-            );
+-            heading(
+-                &format!("[{key}]"),
+-                rect.x + 8.0,
+-                rect.y + 28.0,
+-                10,
+-                UiTheme.accent(),
+-            );
+-        }
+-        for (i, (line, _)) in self.footer_lines().into_iter().enumerate() {
+-            heading(">", 22.0, h - 33.0 + i as f32 * 20.0, 14, UiTheme.accent());
+-            crate::ui_theme::draw_text_in_rect(
+-                line,
+-                Rect::new(40.0, h - 48.0 + i as f32 * 20.0, w - 60.0, 20.0),
+-                13,
+-                if i == 0 {
+-                    UiTheme.accent()
+-                } else {
+-                    UiTheme.muted()
+-                },
+-            );
+-        }
+     }
+ 
+     pub(super) fn draw_idle_integration_review(&self, phase: f64, reduced: bool) {
+--- before/terminal_view.rs
++++ src/terminal_view.rs
+@@ -4,9 +4,9 @@
+ use std::collections::{BTreeMap, BTreeSet};
+ 
+ use crate::ui_theme::{
+-    UiIcon, UiTheme, draw_text as draw_ui_text, draw_text_bold as draw_ui_text_bold,
+-    draw_text_bold_centered as draw_ui_text_bold_centered, draw_ui_icon,
+-    measure_text as measure_ui_text, measure_text_bold as measure_ui_text_bold,
++    UiTheme, draw_text as draw_ui_text, draw_text_bold as draw_ui_text_bold,
++    draw_text_bold_centered as draw_ui_text_bold_centered, measure_text as measure_ui_text,
++    measure_text_bold as measure_ui_text_bold,
+ };
+ 
+ pub(crate) fn player_location_name(name: &str) -> String {
+@@ -873,12 +873,28 @@
+         } else {
+             "ZONE HOSTILE"
+         };
+-        let safety_width = measure_ui_text_bold(safety_label, 16).width + 24.0;
+-        let title_width = if layout.header.w > 560.0 {
+-            (layout.header.w - safety_width) * 0.5 - 16.0
+-        } else {
+-            layout.header.w
++        // Terminal chrome lives in logical UI pixels, independently of native map tiles.
++        set_camera(&crate::graphics::ui_camera(
++            screen_width() / ui_scale,
++            screen_height() / ui_scale,
++        ));
++        let logical = |r: Rect| {
++            Rect::new(
++                r.x / ui_scale,
++                r.y / ui_scale,
++                r.w / ui_scale,
++                r.h / ui_scale,
++            )
+         };
++        let header = logical(layout.header);
++        draw_rectangle(
++            header.x,
++            header.y,
++            header.w,
++            header.h,
++            crate::terminal_chrome::ink(),
++        );
++        let safety_width = measure_ui_text_bold(safety_label, 12).width + 24.0;
+         let title = if self.title == TestSector::NAME
+             || self.title.eq_ignore_ascii_case("ville de départ / friches")
+         {
+@@ -887,46 +903,39 @@
+             &self.title
+         };
+         draw_bounded_text(
+-            title,
+-            layout.header.x,
+-            layout.header.y + 23.0,
+-            title_width,
+-            18,
++            &player_location_name(title),
++            header.x + 10.0,
++            header.y + 21.0,
++            (header.w - safety_width - 20.0).max(60.0),
++            16,
+             cyan,
+         );
+-        if layout.header.w > 560.0 {
+-            let safety_chip = Rect::new(
+-                layout.header.x + (layout.header.w - safety_width) * 0.5,
+-                layout.header.y + (layout.header.h - 28.0) * 0.5,
+-                safety_width,
+-                28.0,
+-            );
+-            UiTheme.hud_chip(safety_chip);
+-            draw_ui_text_bold_centered(
+-                safety_label,
+-                safety_chip,
+-                16,
+-                if protected { cyan } else { ORANGE },
+-            );
+-        }
+-        if let (Some(signal), Some(signal_rect)) = (navigation_signal, layout.route) {
+-            UiTheme.hud_chip(signal_rect);
+-            draw_ui_text_bold(
+-                "ITINÉRAIRE",
+-                signal_rect.x + 10.0,
+-                signal_rect.y + 19.0,
+-                13.0,
+-                muted,
+-            );
++        draw_ui_text_bold_centered(
++            safety_label,
++            Rect::new(
++                header.right() - safety_width,
++                header.y + 1.0,
++                safety_width - 8.0,
++                header.h - 2.0,
++            ),
++            12,
++            if protected { cyan } else { UiTheme.attention() },
++        );
++        crate::terminal_chrome::bezel(header);
++        if let (Some(signal), Some(route)) = (navigation_signal, layout.route) {
++            let route = logical(route);
++            crate::terminal_chrome::button(route, false, false, true);
++            draw_ui_text_bold("ITINÉRAIRE", route.x + 10.0, route.y + 19.0, 12.0, muted);
+             draw_bounded_text(
+                 signal,
+-                signal_rect.x + 94.0,
+-                signal_rect.y + 19.0,
+-                signal_rect.w - 104.0,
+-                15,
+-                UiTheme.accent(),
++                route.x + 92.0,
++                route.y + 19.0,
++                route.w - 102.0,
++                14,
++                cyan,
+             );
+         }
++        set_default_camera();
+         let (sidebar, camera) = terminal_grid_camera(
+             game,
+             bounds,
+@@ -1538,15 +1547,54 @@
+         } else {
+             description
+         };
+-        let description = if sidebar { description } else { description };
++        set_camera(&crate::graphics::ui_camera(
++            screen_width() / ui_scale,
++            screen_height() / ui_scale,
++        ));
++        let world = logical(layout.map);
++        crate::terminal_chrome::bezel(Rect::new(
++            world.x - 2.0,
++            world.y - 2.0,
++            world.w + 4.0,
++            world.h + 4.0,
++        ));
++        let footer = logical(layout.footer);
++        draw_rectangle(
++            footer.x,
++            footer.y,
++            footer.w,
++            footer.h,
++            crate::terminal_chrome::ink(),
++        );
++        draw_line(
++            footer.x,
++            footer.y,
++            footer.right(),
++            footer.y,
++            1.0,
++            crate::terminal_chrome::tint(0.32),
++        );
++        let prefix = if footer.w > 430.0 {
++            format!(
++                "TOUR {:04} / X {:02} Y {:02}",
++                game.turn(),
++                focus.x,
++                focus.y
++            )
++        } else {
++            format!("TOUR {:04}", game.turn())
++        };
++        let prefix_w = prefix.chars().count() as f32 * 12.0 * 0.62 + 16.0;
++        crate::terminal_chrome::heading(&prefix, footer.x + 6.0, footer.y + 16.0, 12, cyan);
+         draw_bounded_text(
+             &description,
+-            layout.footer.x,
+-            layout.footer.y + 17.0,
+-            layout.footer.w,
+-            16,
++            footer.x + prefix_w,
++            footer.y + 16.0,
++            footer.w - prefix_w - 6.0,
++            12,
+             muted,
+         );
++        set_default_camera();
+         if sidebar {
+             self.draw_sidebar(
+                 game,
+@@ -1566,88 +1614,21 @@
+                 observation_label,
+                 &sensor_contacts,
+                 layout.objective,
++                ui_scale,
+             );
+         } else if let Some(target) = target_summary.filter(|target| target.visual.is_some())
+             && let Some(panel) = compact_preview_panel(bounds, ui_scale, layout.objective)
+         {
+-            draw_compact_preview(panel, target);
++            set_camera(&crate::graphics::ui_camera(
++                screen_width() / ui_scale,
++                screen_height() / ui_scale,
++            ));
++            draw_compact_preview(logical(panel), target);
++            set_default_camera();
+         }
+         if legend_open {
+             draw_legend_overlay(game, bounds, legend_label);
+         }
+-    }
+-
+-    #[cfg(debug_assertions)]
+-    pub(crate) fn console_review_title(&self) -> &str {
+-        if self.title == TestSector::NAME
+-            || self.title.eq_ignore_ascii_case("ville de départ / friches")
+-        {
+-            "Mégapole de surface"
+-        } else {
+-            &self.title
+-        }
+-    }
+-
+-    #[cfg(debug_assertions)]
+-    pub(crate) fn draw_console_review_scope(
+-        &self,
+-        game: &WorldState,
+-        area: Rect,
+-        fields: &[ActorObservationField],
+-        sounds: &[TerminalSoundField],
+-        glyph: impl Fn(GridPos) -> Option<(char, bool)>,
+-    ) -> [usize; 3] {
+-        let mut counts = [0; 3];
+-        let contacts: Vec<_> = game
+-            .player_visibility()
+-            .visible_positions()
+-            .filter_map(|position| {
+-                let (symbol, selected) = glyph(position)?;
+-                let kind = sensor_contact_kind(symbol);
+-                match kind {
+-                    SensorContactKind::Hostile => counts[0] += 1,
+-                    SensorContactKind::Service | SensorContactKind::Neutral => counts[1] += 1,
+-                    SensorContactKind::Unknown => {}
+-                }
+-                counts[2] += usize::from(matches!(symbol, ')' | '!' | '='));
+-                (kind != SensorContactKind::Unknown).then_some(SensorContact {
+-                    position,
+-                    kind,
+-                    selected,
+-                    alerted: false,
+-                })
+-            })
+-            .collect();
+-        let (min, max) = remembered_bounds(
+-            &self.remembered,
+-            game.player_position(),
+-            game.map().width(),
+-            game.map().height(),
+-        );
+-        let width = (max.x - min.x + 1).max(1) as f32;
+-        let height = (max.y - min.y + 1).max(1) as f32;
+-        let pixel = (area.w / width)
+-            .min(area.h / height)
+-            .floor()
+-            .clamp(1.0, 12.0);
+-        let origin = vec2(
+-            area.x + (area.w - width * pixel) * 0.5,
+-            area.y + (area.h - height * pixel) * 0.5,
+-        );
+-        draw_sensor_scope(
+-            area,
+-            &self.remembered,
+-            game,
+-            min,
+-            max,
+-            pixel,
+-            origin,
+-            fields,
+-            sounds,
+-            &contacts,
+-            true,
+-        );
+-        counts
+     }
+ 
+     fn draw_sidebar(
+@@ -1662,6 +1643,7 @@
+         observation_label: &str,
+         sensor_contacts: &[SensorContact],
+         objective: Rect,
++        ui_scale: f32,
+     ) {
+         let (
+             visible_hostiles,
+@@ -1674,14 +1656,29 @@
+         let bright = UiTheme.text();
+         let muted = UiTheme.muted();
+         let cyan = UiTheme.accent();
+-        UiTheme.hud_panel(panel);
+-        let rect = Rect::new(
+-            panel.x + 16.0,
+-            panel.y + 16.0,
+-            panel.w - 32.0,
+-            objective.y - panel.y - 32.0,
+-        );
+-        draw_ui_text_bold("CAPTEURS", rect.x, rect.y + 18.0, 18.0, bright);
++        set_camera(&crate::graphics::ui_camera(
++            screen_width() / ui_scale,
++            screen_height() / ui_scale,
++        ));
++        let logical = |r: Rect| {
++            Rect::new(
++                r.x / ui_scale,
++                r.y / ui_scale,
++                r.w / ui_scale,
++                r.h / ui_scale,
++            )
++        };
++        let panel = logical(panel);
++        let objective = logical(objective);
++        let available = objective.y - panel.y - 16.0;
++        let sensors = Rect::new(panel.x, panel.y, panel.w, (available * 0.60).min(283.0));
++        let inspection = Rect::new(
++            panel.x,
++            sensors.bottom() + 8.0,
++            panel.w,
++            objective.y - sensors.bottom() - 16.0,
++        );
++        crate::terminal_chrome::module(sensors, "05 / CAPTEURS");
+         let extra_lines = [
+             visible_local_alerts,
+             visible_security_alarms,
+@@ -1692,12 +1689,10 @@
+         .count()
+             + usize::from(tactical_overlay_open);
+         let map_area = Rect::new(
+-            rect.x,
+-            rect.y + 34.0,
+-            rect.w,
+-            (rect.h * 0.28)
+-                .clamp(100.0, 230.0)
+-                .min((rect.h - 360.0 - extra_lines as f32 * 23.0).max(60.0)),
++            sensors.x + 12.0,
++            sensors.y + 40.0,
++            sensors.w - 24.0,
++            (sensors.h - 129.0 - extra_lines as f32 * 18.0).clamp(60.0, 154.0),
+         );
+         let (known_min, known_max) = remembered_bounds(
+             &self.remembered,
+@@ -1711,11 +1706,9 @@
+             .min(map_area.h / known_height)
+             .floor()
+             .clamp(1.0, 12.0);
+-        let map_width = known_width * pixel;
+-        let map_height = known_height * pixel;
+         let origin = vec2(
+-            map_area.x + (map_area.w - map_width) * 0.5,
+-            map_area.y + (map_area.h - map_height) * 0.5,
++            map_area.x + (map_area.w - known_width * pixel) * 0.5,
++            map_area.y + (map_area.h - known_height * pixel) * 0.5,
+         );
+         draw_sensor_scope(
+             map_area,
+@@ -1728,28 +1721,23 @@
+             observation_fields,
+             sound_fields,
+             sensor_contacts,
+-            false,
+-        );
+-        let mut y = map_area.bottom() + 36.0;
+-        UiTheme.hud_chip(Rect::new(rect.x, y - 21.0, rect.w, 29.0));
+-        draw_ui_icon(UiIcon::All, Rect::new(rect.x, y - 15.0, 16.0, 16.0), cyan);
+-        draw_ui_text_bold("EN VUE", rect.x + 24.0, y, 16.0, bright);
+-        y += 31.0;
+-        for (index, (count, label)) in [
+-            (visible_hostiles, "Hostiles"),
+-            (visible_neutrals, "Neutres"),
+-            (visible_items, "Objets"),
++            true,
++        );
++        let y = map_area.bottom() + 25.0;
++        for (i, (count, label, color)) in [
++            (visible_hostiles, "Hostiles", UiTheme.danger()),
++            (visible_neutrals, "Neutres", cyan),
++            (visible_items, "Objets", UiTheme.attention()),
+         ]
+         .into_iter()
+         .enumerate()
+         {
+-            let x = rect.x + index as f32 * rect.w / 3.0;
+-            draw_ui_text_bold(count.to_string(), x, y, 20.0, bright);
+-            draw_ui_text(label, x, y + 20.0, 14.0, muted);
+-        }
+-        y += 20.0;
+-        let alert = Color::from_rgba(255, 175, 83, 255);
+-        for line in [
++            let x = map_area.x + i as f32 * map_area.w / 3.0;
++            draw_ui_text_bold(count.to_string(), x, y, 20.0, color);
++            draw_ui_text(label, x, y + 18.0, 13.0, muted);
++        }
++        let mut y = map_area.bottom() + 63.0;
++        for (count, label) in [
+             (visible_local_alerts, "Alertes locales"),
+             (visible_security_alarms, "Alarmes réseau"),
+             (visible_security_lockdowns, "Verrouillages"),
+@@ -1757,52 +1745,47 @@
+         .into_iter()
+         .filter(|(count, _)| *count > 0)
+         {
+-            y += 23.0;
+             draw_bounded_text(
+-                &format!("{} {}", line.1, line.0),
+-                rect.x,
++                &format!("{label} {count}"),
++                map_area.x,
+                 y,
+-                rect.w,
+-                14,
+-                alert,
++                map_area.w,
++                12,
++                UiTheme.attention(),
+             );
+-        }
+-
++            y += 18.0;
++        }
+         if tactical_overlay_open {
+-            y += 23.0;
+             draw_bounded_text(
+                 &format!("{observation_label} · Vision / bruit"),
+-                rect.x,
++                map_area.x,
+                 y,
+-                rect.w,
+-                14,
++                map_area.w,
++                12,
+                 cyan,
+             );
+         }
+-
+-        y += 44.0;
+-        UiTheme.hud_chip(Rect::new(rect.x, y - 21.0, rect.w, 29.0));
+-        draw_ui_icon(
+-            UiIcon::Target,
+-            Rect::new(rect.x, y - 15.0, 16.0, 16.0),
+-            cyan,
+-        );
+-        draw_ui_text_bold("CIBLE", rect.x + 24.0, y, 16.0, bright);
+-        y += 34.0;
++        crate::terminal_chrome::module(inspection, "06 / INSPECTION");
++        let rect = Rect::new(
++            inspection.x + 12.0,
++            inspection.y + 34.0,
++            inspection.w - 24.0,
++            inspection.h - 42.0,
++        );
+         if let Some(target) = target {
+             let portrait = target.visual.map(|visual| {
+-                let side = if target.analysis.is_some() {
++                let side = if target.analysis.is_some() || inspection.h < 180.0 {
+                     64.0
+                 } else {
+-                    (rect.w * 0.42).clamp(72.0, 112.0)
++                    96.0
+                 };
+-                let image = Rect::new(rect.right() - side, y - 16.0, side, side);
++                let image = Rect::new(rect.right() - side, rect.y + 3.0, side, side);
+                 crate::game_art::draw_portrait(image, visual);
+                 image
+             });
+-            let width = portrait.map_or(rect.w, |image| image.x - rect.x - 8.0);
+-            y = draw_wrapped_lines(&target.name, rect.x, y, width, 17, 3, bright);
+-            y += 5.0;
++            let width = portrait.map_or(rect.w, |p| p.x - rect.x - 8.0);
++            let mut y =
++                draw_wrapped_lines(&target.name, rect.x, rect.y + 16.0, width, 15, 3, bright);
+             draw_bounded_text(
+                 &format!(
+                     "À {} case{}",
+@@ -1810,72 +1793,86 @@
+                     if target.distance > 1 { "s" } else { "" }
+                 ),
+                 rect.x,
+-                y,
++                y + 3.0,
+                 width,
+-                16,
++                13,
+                 muted,
+             );
+-            y += 32.0;
++            y += 23.0;
+             if let Some(image) = portrait {
+-                y = y.max(image.bottom() + 18.0);
++                y = y.max(image.bottom() + 16.0);
+             }
+             if let Some((hp, maximum)) = target.health {
+                 draw_hud_progress(
+-                    Rect::new(rect.x, y - 8.0, rect.w, 7.0),
++                    Rect::new(rect.x, y - 6.0, rect.w, 6.0),
+                     hp,
+                     maximum,
+                     UiTheme.success(),
+                 );
+-                y += 22.0;
+-            }
++                crate::terminal_chrome::segment(Rect::new(rect.x, y - 6.0, rect.w, 6.0), 20);
++                y += 15.0;
++            }
++            let remaining_lines = |y: f32| ((rect.bottom() - y) / 18.0).floor().max(0.0) as usize;
+             if let Some(action) = &target.interaction {
+-                y = draw_wrapped_lines(action, rect.x, y, rect.w, 16, 3, cyan);
+-            } else if let Some(analysis) = &target.analysis {
+-                draw_ui_text_bold(
+-                    format!("PV {} / {}", analysis.integrity, analysis.maximum_integrity),
++                y = draw_wrapped_lines(
++                    action,
+                     rect.x,
+                     y,
+-                    17.0,
+-                    bright,
++                    rect.w,
++                    13,
++                    remaining_lines(y).min(3),
++                    cyan,
+                 );
+-                y += 28.0;
+-                draw_ui_text(
+-                    format!("Armure {}", analysis.armor),
+-                    rect.x,
+-                    y,
+-                    16.0,
+-                    bright,
+-                );
+-                y += 24.0;
+-                let lines = ((rect.bottom() - y) / 20.0).floor().max(0.0) as usize;
++            } else if let Some(analysis) = &target.analysis {
++                if remaining_lines(y) > 0 {
++                    draw_bounded_text(
++                        &format!(
++                            "PV {} / {} · Armure {}",
++                            analysis.integrity, analysis.maximum_integrity, analysis.armor
++                        ),
++                        rect.x,
++                        y,
++                        rect.w,
++                        13,
++                        bright,
++                    );
++                    y += 18.0;
++                }
+                 y = draw_wrapped_lines(
+                     &analysis.resistances,
+                     rect.x,
+                     y,
+                     rect.w,
+-                    15,
+-                    lines.min(3),
++                    12,
++                    remaining_lines(y).min(3),
+                     muted,
+                 );
+             } else {
+                 y = draw_wrapped_lines(
+-                    "Analysez cette cible pour connaître ses défenses.",
++                    "Analysez la cible pour connaître ses défenses.",
+                     rect.x,
+                     y,
+                     rect.w,
+-                    15,
+-                    2,
++                    12,
++                    remaining_lines(y).min(2),
+                     muted,
+                 );
+             }
+-            y += 20.0;
+-            let lines = ((rect.bottom() - y) / 21.0).floor().max(0.0) as usize;
+-            if lines > 0 && target.visible_state != "Aucun état visible" {
+-                draw_wrapped_lines(&target.visible_state, rect.x, y, rect.w, 16, lines, cyan);
++            if target.visible_state != "Aucun état visible" && remaining_lines(y) > 0 {
++                draw_wrapped_lines(
++                    &target.visible_state,
++                    rect.x,
++                    y + 3.0,
++                    rect.w,
++                    12,
++                    remaining_lines(y),
++                    cyan,
++                );
+             }
+         } else {
+-            draw_ui_text("Aucune cible sélectionnée", rect.x, y, 15.0, muted);
+-        }
++            draw_ui_text("Survolez une cible", rect.x, rect.y + 16.0, 14.0, muted);
++        }
++        set_default_camera();
+     }
+ }
+ 
+@@ -1896,19 +1893,12 @@
+     let Some(visual) = target.visual else {
+         return;
+     };
+-    UiTheme.hud_panel(panel);
++    crate::terminal_chrome::module(panel, "06 / INSPECTION");
+     if panel.h < 160.0 {
+-        let side = (panel.h - 16.0).clamp(32.0, 96.0);
++        let side = (panel.h - 36.0).clamp(12.0, 96.0);
+         crate::game_art::draw_portrait(
+-            Rect::new(panel.right() - side - 8.0, panel.y + 8.0, side, side),
++            Rect::new(panel.right() - side - 8.0, panel.y + 30.0, side, side),
+             visual,
+-        );
+-        draw_ui_text_bold(
+-            "CIBLE",
+-            panel.x + 10.0,
+-            panel.y + 20.0,
+-            14.0,
+-            UiTheme.text(),
+         );
+         draw_wrapped_lines(
+             &target.name,
+@@ -1921,13 +1911,6 @@
+         );
+         return;
+     }
+-    draw_ui_text_bold(
+-        "CIBLE",
+-        panel.x + 12.0,
+-        panel.y + 22.0,
+-        16.0,
+-        UiTheme.text(),
+-    );
+     let side = (panel.h - 76.0).min(128.0).min(panel.w - 24.0).max(48.0);
+     crate::game_art::draw_portrait(
+         Rect::new(panel.x + (panel.w - side) * 0.5, panel.y + 30.0, side, side),
+@@ -3479,15 +3462,6 @@
+         .then(|| Rect::new(bounds.x + 8.0, bounds.y + 8.0, width, height))
+ }
+ 
+-pub(crate) fn terminal_frame_panels(bounds: Rect, ui_scale: f32) -> [Option<Rect>; 3] {
+-    let layout = terminal_ui_layout(bounds, ui_scale, false);
+-    [
+-        terminal_status_panel(bounds, ui_scale),
+-        Some(layout.header),
+-        layout.sidebar,
+-    ]
+-}
+-
+ fn terminal_ui_layout(
+     bounds: Rect,
+     ui_scale: f32,
+@@ -3515,10 +3489,10 @@
+         },
+         |panel| {
+             Rect::new(
+-                panel.x + 16.0,
+-                panel.bottom() - 16.0 - 144.0 * ui_scale,
+-                panel.w - 32.0,
+-                144.0 * ui_scale,
++                panel.x,
++                panel.bottom() - (panel.h * 0.27).clamp(144.0 * ui_scale, 182.0 * ui_scale),
++                panel.w,
++                (panel.h * 0.27).clamp(144.0 * ui_scale, 182.0 * ui_scale),
+             )
+         },
+     );
+--- before/ux.rs
++++ src/ux.rs
+@@ -1065,8 +1065,6 @@
+         width: f32,
+         height: f32,
+     ) -> Vec<(Rect, Option<Action>, &'static str, UiIcon)> {
+-        let start = quest_journal_button_rect(height).right() + 8.0;
+-        let stride = (width - start - 12.0) / 8.0;
+         [
+             (Some(Action::Interact), "Interagir", UiIcon::Interact),
+             (Some(Action::Attack), "Attaquer", UiIcon::Attack),
+@@ -1085,7 +1083,7 @@
+         .enumerate()
+         .map(|(i, (a, l, icon))| {
+             (
+-                Rect::new(start + i as f32 * stride, height - 94.0, stride - 4.0, 34.0),
++                crate::terminal_chrome::command_rect(width, height, i + 2),
+                 a,
+                 l,
+                 icon,
+@@ -1113,49 +1111,14 @@
+                 ButtonTone::Secondary,
+             );
+         }
+-        for (index, (rect, action, label, icon)) in
++        for (index, (rect, action, label, _icon)) in
+             Self::hud_shortcuts(self.ui_width(), self.ui_height())
+                 .into_iter()
+                 .enumerate()
+         {
+             let hovered = self.menu_focus.hovered == Some(50_000 + index);
+-            UiTheme.hud_action(rect, if hovered { 1.0 } else { 0.0 });
+             let key = action.map_or_else(|| "Esc".to_owned(), |a| self.controls.label(a));
+-            draw_ui_icon(
+-                icon,
+-                Rect::new(rect.x + 7.0, rect.y + 10.0, 15.0, 15.0),
+-                UiTheme.accent(),
+-            );
+-            if rect.w >= 100.0 {
+-                draw_wrapped_text(
+-                    label,
+-                    rect.x + 28.0,
+-                    rect.y + 14.0,
+-                    rect.w - 34.0,
+-                    1,
+-                    12,
+-                    UiTheme.text(),
+-                );
+-                draw_wrapped_text(
+-                    &key,
+-                    rect.x + 28.0,
+-                    rect.y + 28.0,
+-                    rect.w - 34.0,
+-                    1,
+-                    11,
+-                    UiTheme.accent(),
+-                );
+-            } else {
+-                draw_wrapped_text(
+-                    &key,
+-                    rect.x + 27.0,
+-                    rect.y + 23.0,
+-                    rect.w - 32.0,
+-                    1,
+-                    13,
+-                    UiTheme.text(),
+-                );
+-            }
++            crate::terminal_chrome::command(rect, label, &key, hovered);
+             if hovered {
+                 draw_text_bold(
+                     label,
+--- /dev/null
++++ src/terminal_chrome.rs
+@@ -0,0 +1,145 @@
++//! Shared terminal presentation. Colors always resolve the player's active theme.
++use crate::ui_theme::{self, UiTheme};
++use macroquad::prelude::*;
++
++/// Fill the two existing font atlases before the first rendered frame. Preparing
++/// labels one at a time during inventory opening otherwise repeatedly uploads
++/// an atlas that is still being used by the world/HUD from the same frame.
++pub(crate) fn prepare_text() {
++    const GLYPHS: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ÀÂÄÇÉÈÊËÎÏÔÖÙÛÜàâäçéèêëîïôöùûüœŒ·…%+-/:()[]'’";
++    for size in [12, 13, 14, 15, 20, 22] {
++        let _ = ui_theme::measure_text(GLYPHS, None, size, 1.0);
++    }
++    for size in [12, 13, 14, 17] {
++        let _ = ui_theme::measure_text_bold(GLYPHS, size);
++    }
++}
++
++pub(crate) fn tint(alpha: f32) -> Color {
++    let c = UiTheme.accent();
++    Color::new(c.r, c.g, c.b, alpha)
++}
++
++pub(crate) fn ink() -> Color {
++    let c = UiTheme.accent();
++    Color::new(
++        0.017 + c.r * 0.025,
++        0.022 + c.g * 0.025,
++        0.029 + c.b * 0.025,
++        1.0,
++    )
++}
++
++pub(crate) fn heading(text: &str, x: f32, y: f32, size: u16, color: Color) {
++    // Prepare every glyph together. Uploading the full font atlas between each
++    // previously unseen letter stalls the first inventory opening.
++    let _ = ui_theme::measure_text_bold(text, size);
++    let advance = f32::from(size) * 0.62;
++    for (i, ch) in text.chars().enumerate() {
++        ui_theme::draw_text_bold(
++            ch.to_string(),
++            x + i as f32 * advance,
++            y,
++            f32::from(size),
++            color,
++        );
++    }
++}
++
++pub(crate) fn bezel(rect: Rect) {
++    draw_rectangle_lines(rect.x, rect.y, rect.w, rect.h, 1.0, tint(0.32));
++    for (x, sx) in [(rect.x, 1.0), (rect.right(), -1.0)] {
++        for (y, sy) in [(rect.y, 1.0), (rect.bottom(), -1.0)] {
++            draw_line(
++                x,
++                y,
++                x + sx * 12.0_f32.min(rect.w * 0.25),
++                y,
++                2.0,
++                tint(0.9),
++            );
++            draw_line(x, y, x, y + sy * 9.0_f32.min(rect.h * 0.25), 2.0, tint(0.9));
++        }
++    }
++}
++
++pub(crate) fn module(rect: Rect, label: &str) {
++    draw_rectangle(rect.x, rect.y, rect.w, rect.h, ink());
++    draw_rectangle(rect.x + 1.0, rect.y + 1.0, rect.w - 2.0, 26.0, tint(0.085));
++    draw_line(
++        rect.x + 1.0,
++        rect.y + 27.0,
++        rect.right() - 1.0,
++        rect.y + 27.0,
++        1.0,
++        tint(0.35),
++    );
++    // Fit translated headings in narrow modules without crossing their frame.
++    let size = ((rect.w - 20.0) / (label.chars().count().max(1) as f32 * 0.62))
++        .floor()
++        .clamp(10.0, 13.0) as u16;
++    let capacity = ((rect.w - 20.0) / (f32::from(size) * 0.62)).floor() as usize;
++    let label = if label.chars().count() > capacity {
++        label
++            .chars()
++            .take(capacity.saturating_sub(1))
++            .chain(['…'])
++            .collect::<String>()
++    } else {
++        label.to_owned()
++    };
++    heading(&label, rect.x + 10.0, rect.y + 18.0, size, UiTheme.accent());
++    bezel(rect);
++}
++
++pub(crate) fn segment(bar: Rect, divisions: usize) {
++    for i in 1..divisions {
++        let x = (bar.x + bar.w * i as f32 / divisions as f32).round();
++        draw_line(x, bar.y, x, bar.bottom(), 1.0, ink());
++    }
++}
++
++pub(crate) fn button(rect: Rect, focused: bool, active: bool, enabled: bool) {
++    draw_rectangle(rect.x, rect.y, rect.w, rect.h, ink());
++    if enabled && (focused || active) {
++        draw_rectangle(
++            rect.x + 1.0,
++            rect.y + 1.0,
++            rect.w - 2.0,
++            rect.h - 2.0,
++            tint(0.13),
++        );
++    }
++    bezel(rect);
++    if !enabled {
++        draw_rectangle(
++            rect.x,
++            rect.y,
++            rect.w,
++            rect.h,
++            Color::new(0.0, 0.0, 0.0, 0.35),
++        );
++    }
++}
++
++pub(crate) fn command_rect(width: f32, height: f32, index: usize) -> Rect {
++    let gap = 4.0;
++    let w = (width - 40.0 - gap * 9.0) / 10.0;
++    Rect::new(20.0 + index as f32 * (w + gap), height - 94.0, w, 36.0)
++}
++
++pub(crate) fn command(rect: Rect, label: &str, binding: &str, focused: bool) {
++    button(rect, focused, false, true);
++    ui_theme::draw_text_in_rect(
++        label,
++        Rect::new(rect.x + 7.0, rect.y + 1.0, rect.w - 14.0, 17.0),
++        if rect.w < 80.0 { 12 } else { 13 },
++        UiTheme.text(),
++    );
++    ui_theme::draw_text_in_rect(
++        format!("[{binding}]"),
++        Rect::new(rect.x + 7.0, rect.y + 17.0, rect.w - 14.0, 17.0),
++        12,
++        UiTheme.accent(),
++    );
++}

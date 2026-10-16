@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-15",
+  "review_id": "D58-RES64-01-ACCEPT01",
+  "user_reply": "tres bien, je valide :)",
+  "approved": {
+    "number": 107,
+    "id": "D58",
+    "body": "D58-BODY01",
+    "logical_tile": [
+      64,
+      64
+    ],
+    "body_size": [
+      68,
+      50
+    ],
+    "canvas": [
+      128,
+      128
+    ]
+  },
+  "scope": "Explicit visual acceptance of the shown redrawn Traqueur, its direct-resolution export and native composition. Retains quadruped identity, graphite/military olive palette and bone-white head and leg armor.",
+  "accepted_asset_sha256": {
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-96/D58-BODY01-source.png": "537f8827294932aaa4c35dd3be2753ead29b043c3f9ea9e04fe79931a9ef7ce2",
+    "../../../../assets/animations/agent/skill-animation-review-96/D58-BODY01-native128.png": "68fabdd3698f9b9171af34b4bad7f71e9d11bf7df7688508249e2c01cdef9644",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-96/scene-after.png": "bf43cf9b6fd0eb79060c0fd3c410c40511db30a59e5f372ab51cf7d724405d9d",
+    "prompt.json": "8843a38459d51423c51fc47125429c7eff521be32476aeeb4a57f636428db46f"
+  },
+  "shown_review_context_sha256": {
+    "D58-BODY01-comparison-native.png": "37497ec6b5dc9678748205a64bd05da2c737248f880759d7e59195d9720328ee",
+    "D58-BODY01-comparison-zoom4.png": "8593b1edabb37378648e4b5428f5cc1df47888de42c8970d2cf3a7ac9eeea6db",
+    "scene-before.png": "88fdfacc27ebc1e7656cb53bbbab13ac2d7545198e75930ff1f7a7832b9f4f3d"
+  },
+  "source_review_sha256_at_acceptance": "1ba273d0e825c9ec1fa57297e838a9f77c75612fb7fc195207e283eb51a29356",
+  "approved_for_upcoming_previews": true,
+  "not_approved_by_this_reply": [
+    "New skill icon or corpse drawing",
+    "Unshown animations or mechanical changes",
+    "Campaign AI, balancing or save integration"
+  ],
+  "campaign_integration": false,
+  "active_assets_changed": false
+}

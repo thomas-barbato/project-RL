@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-RANK02-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-invoked-creation-scope-INTERACT-RANK02-01.json",
+    "reference_sha256": "8dc2fe5784ae9fe85d9b32ee39f30bfe13b1af32fadc78650acadc294faad1f2"
+  },
+  "user_acceptance": "oui ca me va :)",
+  "shown_explanation": "Créations invoquées : drones, monstres relevés, mines, zones, murs de glace, segments du cercle rituel et leurres persistants. Seules les créations de la compétence dont le rang effectif baisse disparaissent, même si elle reste apprise. Les objets portés par les familiers supprimés tombent au sol. Perdre +1 Mur de glace supprime les murs ; perdre un rang de Blindage amélioré conserve les drones avec une protection réduite. Les buffs, débuffs et transformations gardent leurs règles de durée et de perte d'accès.",
+  "approved_classification": {
+    "included": [
+      "drone_actors",
+      "raised_allied_actors",
+      "placed_mines",
+      "spell_ground_zones",
+      "ice_wall_and_bloody_ritual_segments",
+      "persistent_map_decoys"
+    ],
+    "creator_identity": "active_skill_that_created_actor_or_persistent_map_element_of_this_player;supporting_passive_bonus_is_not_its_creator",
+    "ordinary_noninvoked_effects": "attached_buffs_debuffs_and_player_transformations_follow_existing_learned_effect_persistence_and_final_equipment_grant_loss_rules;not_reclassified_as_invoked_map_creations",
+    "damage_passive_or_drone_armor_passive_rank_loss": "does_not_destroy_drones_created_by_other_skills;current_applicable_passive_modifiers_follow_existing_actor_stat_rules",
+    "zone_derived_statuses": "zone_removal_does_not_by_itself_reclassify_attached_status_as_ground_creation;existing_status_persistence_and_final_access_loss_rules_remain_applicable"
+  },
+  "approval_boundary": "shown_invoked_creation_classification_and_creator_vs_supporting_passive_distinction;capacity_variant_predeath_mark_delayed_job_and_event_order_cases_not_newly_approved",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-07",
+  "id": "A01",
+  "title": "Trait arcanique",
+  "revision": 1,
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-46.json",
+  "source_existing_proposal": "docs/REVUE_COMPETENCES_AGENT_LOT_02.md#A01-Trait-arcanique",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/lightning-branch-removal-decisions.json",
+  "latest_decisions_sha256": "b226c2a4a378483156b3c1c930327859640d5070c6ad107b258bd5075560de6e",
+  "name_approval": "accepted_existing_catalogue_name_preserved",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_global_CD08;necessary_visible_hostile_line_of_sight_no_weapon_accuracy_conditions_proposed",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "displayed_damage41_then45_range5_cost9_CD2_proposed;full_curves_unshown_pending",
+  "detailed_conditions_approval": "displayed_visible_hostile_without_obstacle_and_weapon_accuracy_not_used_proposed;other_defenses_and_unshown_cases_pending",
+  "attribute_scaling_approval": "displayed_Willpower10_example_and_full_curves_pending",
+  "current_profile_status": "illustrative caster,not user save or forced Arcanist start;damage before target defenses;no other learned passive or initial implant assumed",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "formulas": {
+    "occult_damage_before_defenses": "floor((8+3*(effective_rank-1))*magic_multiplier)",
+    "magic_multiplier": "1+0.02*(Willpower-5)",
+    "range_cells": 5,
+    "energy_cost": "6+floor((effective_rank-1)/3)",
+    "cooldown_turns": 2
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "occult_damage_before_defenses": 41,
+    "range_cells": 5,
+    "energy_cost": 9,
+    "cooldown_turns": 2
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "occult_damage_before_defenses": 45,
+    "range_cells": 5,
+    "energy_cost": 9,
+    "cooldown_turns": 2
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "occult_damage_before_defenses": 8,
+    "range_cells": 5,
+    "energy_cost": 6,
+    "cooldown_turns": 2,
+    "approval": "unshown_curve_pending"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "occult_damage_before_defenses"
+    ],
+    "unchanged_effects_omitted": [
+      "range_cells",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "direct_occult_spell_not_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy exclusion added"
+  },
+  "effect_conditions": {
+    "type": "active_magic_attack",
+    "target": "one visible hostile within range and line of sight",
+    "weapon_accuracy_roll_used": false,
+    "active_weapon_damage_used": false,
+    "ordinary_occult_defenses_apply": true,
+    "displayed_damage": "before_target_defenses",
+    "creates_extra_debuff_or_control": false,
+    "creates_persistent_ground_zone": false,
+    "hidden_actor_or_stat_reveal_created": false,
+    "starting_Arcanist_active_skill_fixed_to_A01": false
+  },
+  "control_and_elemental_scope": "No new control,debuff,Burn,Gel or poison proposed;no control-importance chance multiplier or Fire/Cold balance coefficient automatically extended. Foudre branch remains removed.",
+  "zone_exposure_scope": "Direct single-target spell,not persistent zone;EL-ZONE01 not applied.",
+  "unshown_rules_approval": "Full rank/attribute/energy curves,equipment/other passive/implant stacking,exact line of sight and corner/large-footprint geometry,visibility union of player/drones,other actors on projectile path,ordinary occult resistance/defense details,stat snapshots and damage ordering,preview,target failure costs/time/RNG/cooldown behavior and absorption interactions,map transitions and other effects remain pending. Earlier A01 lot02 no-target refusal proposal is retained historically,not additionally approved by this displayed card.",
+  "visual_intention_approval": "existing_catalogue_short_violet_trait_and_black_impact_node_direction_preserved;exact_current_wording_proposed_pending_review",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**A01 · Trait arcanique — Rang 11 · Actif**\n\n*Vous condensez l’énergie occulte en un trait qui frappe votre ennemi.*\n\n**Effets actuels**\n\n- Dégâts occultes : **41**.\n- Portée : **5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts occultes : **45**.\n\n**Coût : 9 énergie · Recharge : 2 tours.**\n\nNécessite une cible hostile visible, sans obstacle entre vous et elle. La précision de votre arme n’intervient pas.\n\nDégâts affichés avant les défenses de la cible.",
+  "player_copy_sha256": "5adea8a77e7fd65ebb813f3427e33ce7578492a3af2b4ca0a4d1391905183663",
+  "visual_copy_markdown": "**Visuel proposé :** un trait violet court frappe la cible, avec un nœud noir au centre de l’impact.",
+  "visual_copy_sha256": "8bc077bbaf28dbb1a10f290c08940bba1c9d04639369abfa6210d397a9142e44",
+  "checks": [
+    "Same learned9/10,gear+2,Willpower10 and other modifiers;effective11/12 and one point within learnedcap10.",
+    "Damage floor38*1.1=41,current;floor41*1.1=45,next;range5,cost9,CD2 unchanged.",
+    "Next block shows changed damage only;no learned/equipment breakdown line or ordinary action timing.",
+    "Magic spell,not weapon attack;no weapon variance,weapon requirement,extra debuff/control or hidden reveal introduced.",
+    "Arcanist starting spell not fixed;no Canalisation or initial class implant assumed for illustrative profile.",
+    "Exact player RP,numbers,conditions and visual wording pending;native art and runtime not integrated."
+  ],
+  "source_skill_block_sha256": "c6da0f4fbf592a7a401eb1b4d4c7562db379e44b7da6ede2041c2bb5d35cc956"
+}

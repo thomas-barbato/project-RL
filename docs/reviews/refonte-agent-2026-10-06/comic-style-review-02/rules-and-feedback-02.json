@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-10",
+  "review_id": "BD-STYLE01-RULES02",
+  "style_quality": "accepted_by_user;does_not_accept_new_anatomy_equipment_geometry_or_whole_game_migration",
+  "user_feedback": [
+    "en terme de qualité ca me va, mais en terme de aille sur 32 px, les dessins sont encore plus petits qu’avant",
+    "tu peux meme les rendre un peu plus grand , enfin tu dois profiter des 32 px :) et n’oublie pas que l’affichage des armes peut déborder :)",
+    "est-ce que tu respectes les regles mises en places pour la création de personnage et le placement de l’équipement ? car la seule chose qui doit changer par rapport à ca c’est le style de dessin"
+  ],
+  "invariants": {
+    "logical_tile": [
+      32,
+      32
+    ],
+    "use_body_tile_fully": true,
+    "equipment_overflow_allowed": true,
+    "never_scale_body_to_whole_equipment_bounds": true,
+    "fixed_body_between_equipment_configurations": true,
+    "separate_equipment_arm_hand_layers": true,
+    "reuse_approved_hand_elbow_and_two_handed_grips": true,
+    "weapon_axis_follows_forearm": true,
+    "shield_center_on_hand_covers_hand_and_forearm": true,
+    "armor_and_weapon_palettes_independent": true,
+    "content_ids_and_gameplay_unchanged": true
+  },
+  "current_trial_audit": {
+    "revision_01": "complete_equipped_illustrations;not_a_validated_modular_layer_bank",
+    "revision_02_sources": "provisional_design_studies;changed_proportions;set_aside_after_user_clarification",
+    "technical_conformance": "not_certified;do_not_integrate_or_represent_as_approved_rig_replacement",
+    "native_coverage_measurements": [
+      {
+        "review_id": "BD-C01",
+        "approved_equipped_opaque_pixels": 584,
+        "first_comic_trial_opaque_pixels": 429,
+        "ratio": 0.735,
+        "measurement_scope": "complete_equipped_frame;not_a_body_only_anatomical_measurement"
+      },
+      {
+        "review_id": "BD-C02",
+        "approved_equipped_opaque_pixels": 426,
+        "first_comic_trial_opaque_pixels": 305,
+        "ratio": 0.716,
+        "measurement_scope": "complete_equipped_frame;not_a_body_only_anatomical_measurement"
+      },
+      {
+        "review_id": "BD-C03",
+        "approved_equipped_opaque_pixels": 402,
+        "first_comic_trial_opaque_pixels": 303,
+        "ratio": 0.754,
+        "measurement_scope": "complete_equipped_frame;not_a_body_only_anatomical_measurement"
+      },
+      {
+        "review_id": "BD-C04",
+        "approved_equipped_opaque_pixels": 457,
+        "first_comic_trial_opaque_pixels": 292,
+        "ratio": 0.639,
+        "measurement_scope": "complete_equipped_frame;not_a_body_only_anatomical_measurement"
+      },
+      {
+        "review_id": "BD-C05",
+        "approved_equipped_opaque_pixels": 498,
+        "first_comic_trial_opaque_pixels": 276,
+        "ratio": 0.554,
+        "measurement_scope": "complete_equipped_frame;not_a_body_only_anatomical_measurement"
+      }
+    ]
+  },
+  "runtime_art_changes": 0,
+  "active_rig_files_verified": 8,
+  "next_review_basis": "approved_body_and_attachment_coordinates;drawing_style_only;numbered_native_32px_comparisons"
+}

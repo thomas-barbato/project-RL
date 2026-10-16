@@ -304,12 +304,12 @@ La distinction légère/lourde est une orientation de budget, pas un bonus d'esq
 
 | Palier | Nom proposé | Nature |
 |---|---|---|
-| P1 | Veste matelassée | Fabriqué |
-| P2 | Veste de veille | Fabriqué |
-| P3 | Veste à fibres croisées | Fabriqué |
-| P4 | Veste de membranes | Organique |
-| P5 | Veste de peau seconde | Vivant |
-| P6 | Veste de la seconde ombre | Étrange |
+| P1 | Tenue d’aviateur | Fabriqué |
+| P2 | Tenue du technicien | Fabriqué |
+| P3 | Tenue du nomade | Fabriqué |
+| P4 | Tenue de membranes | Organique |
+| P5 | Combinaison Peau-Seconde | Vivant |
+| P6 | Robe de la Seconde Ombre | Étrange |
 
 ### 14. Plastrons
 

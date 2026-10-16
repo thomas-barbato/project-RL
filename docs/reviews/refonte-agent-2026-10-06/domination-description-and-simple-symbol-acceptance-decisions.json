@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-08",
+  "id": "HY06",
+  "review_id": "HY06-ACCEPT01",
+  "user_answer": "je pense qu'on va faire bien plus simple que ca en terme de visuel, un symbole occulte  qui reste au dessus de la tête du monstre (le temps que l'effet dur) . Je valide le reste.",
+  "approval": "explicit_user_full_nonvisual_card_acceptance_and_user_supplied_replacement_visual_direction",
+  "accepted_title": "Lien de domination",
+  "accepted_RP": "Vous mêlez signaux parasites et volonté occulte pour soumettre un ennemi et le retourner contre les siens.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "duration_turns": 4,
+    "maximum_controlled_enemies": 1,
+    "range_cells": 4,
+    "application_chance_percent_display": 87.2,
+    "elite_application_chance_percent_display": 65.4,
+    "energy_cost": 19,
+    "cooldown_turns": 10,
+    "boss_application_chance_percent": 0
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "duration_turns": 4,
+    "maximum_controlled_enemies": 1,
+    "range_cells": 4,
+    "application_chance_percent_display": 87.5,
+    "elite_application_chance_percent_display": 65.6,
+    "energy_cost": 19,
+    "cooldown_turns": 10,
+    "boss_application_chance_percent": 0
+  },
+  "accepted_shown_conditions": [
+    "enemy converted into one autonomous ally attacking player enemies",
+    "current HP statistics and combat skills preserved",
+    "received damage does not break domination",
+    "expiry returns target to hostile",
+    "new successful domination replaces previous",
+    "map change breaks link",
+    "boss immunity and elite chance multiplier three quarters",
+    "visible enemy within range and clear path",
+    "human form required and Silence blocks use"
+  ],
+  "accepted_visual_direction": "un symbole occulte qui reste au-dessus de la tête du monstre pendant toute la durée de l’effet",
+  "superseded_visual_direction": "glyph collar and control line to player retired without transfer",
+  "symbol_shape_colour_pixel_size_animation_and_head_name_layout": "not_specified_pending_native_prototype_review",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY06-01.json",
+  "previous_card_sha256": "014503c36d1c8e6a10dee012bb54c5d2c524e090290a3a21900c1bdab81bd776",
+  "accepted_player_copy_sha256": "1961c28a83816c7495daceba8156e50e6ec6c287bc55d575522aeaaff8ecd410",
+  "unshown_full_curves_formula_rounding_and_cases": "pending_individual_review",
+  "native_animation_approval": "pending_prototype_user_review",
+  "runtime_integration": "not_integrated",
+  "accepted_shown_profile": {
+    "effective_rank": 11,
+    "Intelligence": 10,
+    "Volonté": 10,
+    "target_occult_resistance": 25
+  },
+  "reference_calculation_profile_not_newly_approved": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "Intelligence": 10,
+    "Volonté": 10,
+    "target_occult_resistance": 25,
+    "currently_transformed": false,
+    "other_modifiers": false
+  }
+}

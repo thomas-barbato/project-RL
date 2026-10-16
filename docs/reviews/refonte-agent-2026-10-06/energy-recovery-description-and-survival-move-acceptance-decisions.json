@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-08",
+  "review_id": "BD06-ACCEPT01",
+  "skill_id": "BD06",
+  "user_response": "ok je valide",
+  "review_basis": "approval_of_current_card_after_user_only_roleplay_amendment;previously_requested_universal_scope_and2_percentage_points_per_rank_preserved",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BD06-03.json",
+  "reviewed_description_sha256": "7472a0a7b5280b598a0cce95482ab50acde2460cf6f33e1b9e86d3733b9e8471",
+  "accepted_title": "Récupération d’énergie",
+  "accepted_branch": "Survie",
+  "previous_title": "Récupération balistique",
+  "previous_branch": "Buffs à distance",
+  "stable_skill_id_preserved": true,
+  "accepted_roleplay": "Chaque ennemi que vous abattez nourrit vos réserves d’énergie et prolonge la chasse.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "maximum_energy_recovered_per_eligible_kill_percent": 22,
+    "minimum_interval_between_gains_turns": 3
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "maximum_energy_recovered_per_eligible_kill_percent": 24,
+    "minimum_interval_between_gains_turns": 3
+  },
+  "accepted_progression": "2_percentage_points_of_maximum_energy_per_effective_rank",
+  "accepted_displayed_conditions": {
+    "familiar_kills_reflections_and_automatic_counters_excluded": true,
+    "decoys_and_obstacles_not_eligible_enemy_kills": true,
+    "recovery_limited_to_missing_energy": true,
+    "no_timed_buff_or_new_command_created": true,
+    "own_melee_ranged_spell_and_heavy_weapon_attacks_can_trigger": true,
+    "own_transformed_attacks_can_trigger": "proposed_under_universal_scope;displayed_for_review"
+  },
+  "accepted_visual_intention": "**Visuel proposé :** une étincelle remonte depuis la cible vaincue vers votre jauge d’énergie. Le gain apparaît brièvement près de la jauge.",
+  "unshown_cases_pending": [
+    "full_curve_defaults_caps_rounding_and_resource_snapshot",
+    "multi_kill_same_action_first_proc_full_energy_and_cooldown_boundary",
+    "persistent_zone_and_damage_over_time_attribution_and_automatic_secondary_attacks",
+    "environmental_kills_and_exact_familiar_reflection_counter_source_attribution",
+    "native_spark_visibility_gauge_gain_copy_and_feedback_stacking"
+  ],
+  "native_visual_approval": "pending_prototype_review",
+  "runtime_integration": "not_integrated"
+}

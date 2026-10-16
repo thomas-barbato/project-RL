@@ -35,6 +35,25 @@ impl GameState {
             .as_ref()
             .and_then(|id| self.rules.weapons.get(id))
             .and_then(WeaponDefinition::launcher)
+            .map(|launcher| self.agent_heavy_launcher(prepared.attacker, launcher))
+    }
+
+    pub(super) fn agent_heavy_launcher(
+        &self,
+        attacker: EntityId,
+        mut launcher: Launcher,
+    ) -> Launcher {
+        if attacker == self.player && self.rules.agent_class_start.is_some() {
+            let rank = self.player_agent_skill_rank("HL05");
+            if rank > 0 {
+                launcher.radius = launcher.radius.saturating_add(
+                    crate::skills::agent::definition("HL05")
+                        .unwrap()
+                        .value("added_explosion_radius_cells", rank),
+                );
+            }
+        }
+        launcher
     }
 
     fn sustained_streak(&self, weapon: &WeaponId, origin: GridPos) -> u16 {
@@ -97,8 +116,40 @@ impl GameState {
             .as_ref()
             .and_then(|id| self.rules.weapons.get(id));
         let burst = definition.and_then(WeaponDefinition::burst);
-        let launcher = definition.and_then(WeaponDefinition::launcher);
+        let launcher = definition
+            .and_then(WeaponDefinition::launcher)
+            .map(|launcher| self.agent_heavy_launcher(prepared.attacker, launcher));
         self.spend_prepared_attack_usage(&prepared, 1)?;
+        if let Some(context) = prepared
+            .agent_weapon
+            .as_ref()
+            .filter(|c| c.skill.starts_with("HL"))
+        {
+            if let Some(launcher) = launcher {
+                self.events.push(GameEvent::AgentAreaSpellCast {
+                    entity: prepared.attacker,
+                    skill: format!(
+                        "{}{}",
+                        context.skill,
+                        if launcher.delay_turns > 0 {
+                            "-FLIGHT"
+                        } else {
+                            ""
+                        }
+                    ),
+                    origin: prepared.origin,
+                    target: prepared.target_at,
+                    radius: launcher.radius,
+                });
+            } else {
+                self.events.push(GameEvent::AgentWeaponSkillUsed {
+                    entity: prepared.attacker,
+                    skill: format!("{}-BULLET", context.skill),
+                    origin: prepared.origin,
+                    target: prepared.target_at,
+                });
+            }
+        }
         if let Some(launcher) = launcher {
             if launcher.delay_turns > 0 {
                 // Direct contact and the later blast are different events. The
@@ -110,10 +161,27 @@ impl GameState {
                     .clone()
                     .expect("launcher has an authored weapon");
                 let facing = facing_toward(prepared.origin, at);
+                let agent_payload =
+                    (source == self.player && self.rules.agent_class_start.is_some()).then(|| {
+                        let blast_attack = prepared
+                            .attack
+                            .with_damage(DamageImpact::single(launcher.damage));
+                        super::agent_weapon_effects::AgentDelayedWeaponImpact {
+                            context: prepared.agent_weapon.clone(),
+                            attack: blast_attack,
+                            damage: self
+                                .resolved_attack_damage_or_error(source, blast_attack)
+                                .expect("existing source"),
+                            origin: prepared.origin,
+                            source,
+                        }
+                    });
                 prepared.affected_cells = vec![AttackAreaCell {
                     position: at,
                     step: 0,
                 }];
+                // The skill's stun and drain belong to the blast, not contact.
+                prepared.agent_weapon = None;
                 self.resolve_prepared_attack(prepared, ActionOrigin::Normal)?;
                 let device = self
                     .explosive_devices
@@ -134,6 +202,12 @@ impl GameState {
                         )],
                     )
                     .expect("validated launcher payload");
+                if let Some(payload) = agent_payload {
+                    self.agent_runtime_mut()
+                        .weapon
+                        .pending_explosions
+                        .insert(device, payload);
+                }
                 self.events.push(GameEvent::ExplosiveDeployed {
                     entity: source,
                     device,
@@ -149,15 +223,29 @@ impl GameState {
                 .iter()
                 .any(|cell| cell.position == prepared.origin);
             let source = prepared.attacker;
+            if source == self.player && self.rules.agent_class_start.is_some() {
+                prepared.attack = prepared
+                    .attack
+                    .with_damage(DamageImpact::single(launcher.damage));
+            }
             let self_damage = self.resolved_attack_damage_or_error(source, prepared.attack)?;
+            let stun_context = prepared.agent_weapon.clone();
+            let impact = prepared.target_at;
             self.resolve_prepared_attack(prepared, ActionOrigin::Normal)?;
+            self.agent_impact_stun(source, impact, stun_context.as_ref());
             if self_hit && self.actors.get(source).is_some_and(Actor::is_alive) {
                 let _ = self.apply_damage_impact_to(Some(source), source, self_damage);
             }
             return Ok(());
         }
         if let Some(burst) = burst {
-            return self.resolve_native_burst(prepared, burst);
+            let source = prepared.attacker;
+            let at = prepared.target_at;
+            let context = prepared.agent_weapon.clone();
+            if self.resolve_native_burst(prepared, burst)? {
+                self.agent_impact_stun(source, at, context.as_ref());
+            }
+            return Ok(());
         }
         self.resolve_prepared_attack(prepared, ActionOrigin::Normal)?;
         Ok(())
@@ -167,7 +255,7 @@ impl GameState {
         &mut self,
         prepared: PreparedAttack,
         burst: BurstFire,
-    ) -> Result<(), AttackError> {
+    ) -> Result<bool, AttackError> {
         let mut effects_used = false;
         let siphons: Vec<_> = prepared
             .weapon_effects
@@ -272,6 +360,6 @@ impl GameState {
                 });
             }
         }
-        Ok(())
+        Ok(effects_used)
     }
 }

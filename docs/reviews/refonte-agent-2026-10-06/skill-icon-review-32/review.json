@@ -1,0 +1,738 @@
+{
+  "review_id": "SKILLS-IC32",
+  "title": "Énergie occulte · icônes sombres",
+  "date": "2026-10-11",
+  "description": "Trait arcanique, Déflagration occulte, Ponction spirituelle, Prison sigillaire, Rayon vorace et Réanimation. Six propositions de magie noire ; Canalisation conserve son dessin validé.",
+  "generation_mode": "built-in",
+  "status": "accepted_with_one_revision_requested",
+  "style_references": [
+    {
+      "title": "Égide occulte",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-icon-review-23/B02-C03-32.png"
+    },
+    {
+      "title": "Canalisation",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-icon-review-17/A03-C02-32.png"
+    }
+  ],
+  "previous_review": {
+    "file": "../skill-window-native-10/index.html?skill=FR05",
+    "title": "Froid validé · fenêtre du jeu"
+  },
+  "candidates": [
+    {
+      "id": "A01",
+      "number": 59,
+      "variant": "A01-C01",
+      "title": "Trait arcanique",
+      "branch": "Énergie occulte",
+      "kind": "active",
+      "roleplay": "Vous condensez l’énergie occulte en un trait qui frappe votre ennemi.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/A01-C01.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-fb51084a-e776-4614-b16d-dd5deb151a4f.png",
+      "source_sha256": "c88af536f95af2924e9f7bf61b2a6ca3cf95124af59288e84842e63a148a4869",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/A01-C01-master.png",
+        "sha256": "c88af536f95af2924e9f7bf61b2a6ca3cf95124af59288e84842e63a148a4869",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "A01-C01-24.png",
+          "sha256": "10877114e0f1883be5af49a62136ce5b5e3ebf972836ccd8f0740e9a55be48ee",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "A01-C01-32.png",
+          "sha256": "30246175d6ce7038e630f3b82108b3c58c8a8e3e361ff38af3a2071ee4de33f9",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/A01-C01-64.png",
+          "sha256": "162b5526f9c33610b808bd350c97881dc57ccb48e78a028e57ddae7952b8b0a0",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "A01-C01-128.png",
+          "sha256": "9a43edb03e99cd03ed93511155d217d7f015ab48f05ee44309ccb7e190344746",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "A01-C01-192.png",
+          "sha256": "9a6760c90833091abfac5906a1d1b9f2233dcea66beae8e8343807b2249dd49d",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-23/B02-C03-192.png",
+          "sha256": "89884155017a626d3d2c914f052d7d355c231dbff2d11f8cbcfc9d408e808d67"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/AF02-C02-192.png",
+          "sha256": "244f3da2c038d28ccc4c22173e0d109b00b816829154b55d73d472ea66e0015a"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/A03-C02-192.png",
+          "sha256": "1adba4dc540e94320a5abfa9e7c37a18386a122841b033f05e2da2e5bf2b2497"
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "number": 60,
+      "variant": "A02-C01",
+      "title": "Déflagration occulte",
+      "branch": "Énergie occulte",
+      "kind": "active",
+      "roleplay": "Vous faites éclater un sceau et libérez l’énergie occulte qu’il renferme.",
+      "visual_status": "revision_requested",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/A02-C01.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-1d936bc5-452c-4eff-9892-89e0d07ee913.png",
+      "source_sha256": "437c82a63e39378a473162a3c01cfcdf287dd64ab0fbac730830abfaf508f6f8",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/A02-C01-master.png",
+        "sha256": "437c82a63e39378a473162a3c01cfcdf287dd64ab0fbac730830abfaf508f6f8",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "A02-C01-24.png",
+          "sha256": "fe26d9a8f05f7d77fa9fc5a25bc3c9289b15fc4feac0f17ccb1275477ea0a913",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "A02-C01-32.png",
+          "sha256": "d3fa899b9a15cb25d557d1b85d0d2b1652089d4cc59de8a9f5d84a7053668cab",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "A02-C01-64.png",
+          "sha256": "11dd4799a1a5448cded3286ca7e4e1f0cebc72bb2326f5e558a0c51e72dc5d24",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "A02-C01-128.png",
+          "sha256": "1108b9464298e94b3ef94c8a9193beced19b5e73eb2fd54383ac7be1e7865d65",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "A02-C01-192.png",
+          "sha256": "b949ff71633c7231eb11a8e804cb9352023267820cc8cdfe096687bb0a444878",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-23/B02-C03-192.png",
+          "sha256": "89884155017a626d3d2c914f052d7d355c231dbff2d11f8cbcfc9d408e808d67"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/AF02-C02-192.png",
+          "sha256": "244f3da2c038d28ccc4c22173e0d109b00b816829154b55d73d472ea66e0015a"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/A03-C02-192.png",
+          "sha256": "1adba4dc540e94320a5abfa9e7c37a18386a122841b033f05e2da2e5bf2b2497"
+        }
+      ],
+      "correction_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-32/visual-acceptance-02.json"
+    },
+    {
+      "id": "HY05",
+      "number": 61,
+      "variant": "HY05-C01",
+      "title": "Ponction spirituelle",
+      "branch": "Énergie occulte",
+      "kind": "active",
+      "roleplay": "Vous arrachez à votre cible une essence obscure qui nourrit vos pouvoirs.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/HY05-C01.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-9ff7767e-4f5d-47e4-9b37-4c996b6339c9.png",
+      "source_sha256": "1deae8650f958e7ce2f4128e875769a309f43a6a45b3ea575cf36e3526d5e827",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/HY05-C01-master.png",
+        "sha256": "1deae8650f958e7ce2f4128e875769a309f43a6a45b3ea575cf36e3526d5e827",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "HY05-C01-24.png",
+          "sha256": "b9de46a26b8e46cd72f55e8baa08c1462c2dec1dbe3637b7a0f4e3df3c96661e",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "HY05-C01-32.png",
+          "sha256": "93d2084b9488965a4f1c5c78abc8abfd4adc85d27f469b896845d9afa4f26779",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/HY05-C01-64.png",
+          "sha256": "096b021cc293f961503872c650269b09493e1775ccaa6b472d6508e97b7c07ee",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "HY05-C01-128.png",
+          "sha256": "696d4445f75bacf7ff4a2ab89e29be443656f2057792ac0dfbeb64ac3ce7aa64",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "HY05-C01-192.png",
+          "sha256": "d531434f6991a8ddf54d2ded9536fe672ab283466c0308fed5d74265718c1a91",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-23/B02-C03-192.png",
+          "sha256": "89884155017a626d3d2c914f052d7d355c231dbff2d11f8cbcfc9d408e808d67"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/AF02-C02-192.png",
+          "sha256": "244f3da2c038d28ccc4c22173e0d109b00b816829154b55d73d472ea66e0015a"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/A03-C02-192.png",
+          "sha256": "1adba4dc540e94320a5abfa9e7c37a18386a122841b033f05e2da2e5bf2b2497"
+        }
+      ]
+    },
+    {
+      "id": "OC04",
+      "number": 62,
+      "variant": "OC04-C01",
+      "title": "Prison sigillaire",
+      "branch": "Énergie occulte",
+      "kind": "active",
+      "roleplay": "Un cercle de sang se referme autour de votre cible et l’enferme dans ses sceaux impies.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/OC04-C01.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-60a1f684-b911-479c-a686-b660526523e5.png",
+      "source_sha256": "04b6342e1fe57a4001a3198cc9a4501800497518d856b9e0bf9a1d283b336f59",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/OC04-C01-master.png",
+        "sha256": "04b6342e1fe57a4001a3198cc9a4501800497518d856b9e0bf9a1d283b336f59",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "OC04-C01-24.png",
+          "sha256": "90f5f1612fffc4560bdf95d36d9cbe42166da2cf4af6ba3f76e8769f6f70005d",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "OC04-C01-32.png",
+          "sha256": "5c3a07c0683e61aadd8106e3ce3ef60e946ef75f6771c11307ee24df89a9b02f",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/OC04-C01-64.png",
+          "sha256": "b6ccd33e5c265c63ea6189be4a44a4af1a041a97f5a1fead56a88911e2a4472c",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "OC04-C01-128.png",
+          "sha256": "03d496cf988d9679a3d8ad17105da83e554e1fae338bc0e54503c1a3d6c289f3",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "OC04-C01-192.png",
+          "sha256": "cd5f30535e952ec6f1c84adbbf233d16278199dcebd44a9eedc1714936ac98d4",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-23/B02-C03-192.png",
+          "sha256": "89884155017a626d3d2c914f052d7d355c231dbff2d11f8cbcfc9d408e808d67"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/AF02-C02-192.png",
+          "sha256": "244f3da2c038d28ccc4c22173e0d109b00b816829154b55d73d472ea66e0015a"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/A03-C02-192.png",
+          "sha256": "1adba4dc540e94320a5abfa9e7c37a18386a122841b033f05e2da2e5bf2b2497"
+        }
+      ]
+    },
+    {
+      "id": "OC05",
+      "number": 63,
+      "variant": "OC05-C01",
+      "title": "Rayon vorace",
+      "branch": "Énergie occulte",
+      "kind": "active",
+      "roleplay": "Un lien de ténèbres s’agrippe à votre cible et dévore sa vitalité pour nourrir la vôtre.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/OC05-C01.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-78c10158-f6ce-4202-b71e-8e02daeb123e.png",
+      "source_sha256": "c84eaa3b589d146b60d1b90e16254ec5edc726a68faa9ad39c75271f06663d04",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/OC05-C01-master.png",
+        "sha256": "c84eaa3b589d146b60d1b90e16254ec5edc726a68faa9ad39c75271f06663d04",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "OC05-C01-24.png",
+          "sha256": "1464445415eaa53ce233a3238cc78a7ffcdf142b7a047ad10649d064505b3565",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "OC05-C01-32.png",
+          "sha256": "a8ae220d706bbc2d1a97afd5899b919f9106d4ea033316f93e94b4fd50a4358a",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/OC05-C01-64.png",
+          "sha256": "2cbe72066ed2320603eaa8a20c73bdeb65443e3c5d21bad6a66e780191cbc3b8",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "OC05-C01-128.png",
+          "sha256": "6862419541725596de2f5f42cb6db886eafb53192f1ec9ad02c20b1137cec2e8",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "OC05-C01-192.png",
+          "sha256": "373ae1b3632c0ce6ab7807da603186c206e18930b30a5a1bbcab63f011b3bb69",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-23/B02-C03-192.png",
+          "sha256": "89884155017a626d3d2c914f052d7d355c231dbff2d11f8cbcfc9d408e808d67"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/AF02-C02-192.png",
+          "sha256": "244f3da2c038d28ccc4c22173e0d109b00b816829154b55d73d472ea66e0015a"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/A03-C02-192.png",
+          "sha256": "1adba4dc540e94320a5abfa9e7c37a18386a122841b033f05e2da2e5bf2b2497"
+        }
+      ]
+    },
+    {
+      "id": "OC07",
+      "number": 64,
+      "variant": "OC07-C01",
+      "title": "Réanimation",
+      "branch": "Énergie occulte",
+      "kind": "active",
+      "roleplay": "Un sceau impie s’accroche à votre cible. À sa mort, sa dépouille se relève pour traquer vos ennemis.",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/OC07-C01.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-d6a828d7-f516-448e-a589-49c9faf239e0.png",
+      "source_sha256": "d0bb29d79af7e03a39f02ec6a5de34a57397292c99eb64953e75f31638c11675",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/OC07-C01-master.png",
+        "sha256": "d0bb29d79af7e03a39f02ec6a5de34a57397292c99eb64953e75f31638c11675",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "OC07-C01-24.png",
+          "sha256": "ac3fb64c371c22c9c03c472b98267e74c3eb7af3ff17980eddc480a40f42a7f1",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "OC07-C01-32.png",
+          "sha256": "c8f07b2d0e7b924a4a9f8263d888ea6f27f9914b89d2221850a3594220285713",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-32/OC07-C01-64.png",
+          "sha256": "bb1f1765ad359f1a16003ddc847d3e4a6e84aea27d7745f57dfb40ba5d8b36e2",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "OC07-C01-128.png",
+          "sha256": "b79b98440a73a7a86cf021251d05cbe646547188f6875732ab209413f38cf6d2",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "OC07-C01-192.png",
+          "sha256": "f8e122d5f862b0ab554e6b85e72f8873e58eb4ca70a386f696828934f69ec50a",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-23/B02-C03-192.png",
+          "sha256": "89884155017a626d3d2c914f052d7d355c231dbff2d11f8cbcfc9d408e808d67"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/AF02-C02-192.png",
+          "sha256": "244f3da2c038d28ccc4c22173e0d109b00b816829154b55d73d472ea66e0015a"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-17/A03-C02-192.png",
+          "sha256": "1adba4dc540e94320a5abfa9e7c37a18386a122841b033f05e2da2e5bf2b2497"
+        }
+      ]
+    }
+  ],
+  "protected_hashes": [
+    {
+      "file": "assets/skills/agent/A03-compact.png",
+      "sha256": "d37193de59e564c9907ed16d5febb56424d65fcc5097e4ce5fb4dcd41b0a46c6"
+    },
+    {
+      "file": "assets/skills/agent/A03-illustration.png",
+      "sha256": "5583745698e12316a2026610ca66d40dbb62bd09971dda33f0b4d9e0bd7bdc3e"
+    },
+    {
+      "file": "assets/skills/agent/AF02-compact.png",
+      "sha256": "a81658fdfd61c5aa8b4a615f6b240c69ae1b2d2c380cb0158ae5d6e519a82dac"
+    },
+    {
+      "file": "assets/skills/agent/AF03-compact.png",
+      "sha256": "094682804aac356ef23dec91d1499a7169bc4d8ff1804f203dca80e1495ff135"
+    },
+    {
+      "file": "assets/skills/agent/AF04-compact.png",
+      "sha256": "0f9c803363fe473532da669bd51cecaa6a7ac80feecc8815140fdbf512f1636b"
+    },
+    {
+      "file": "assets/skills/agent/AF05-compact.png",
+      "sha256": "a8d5dd7140048df0c59813ef36e34bfd2bcfd6fbeea8e1f790960d2bb7daa233"
+    },
+    {
+      "file": "assets/skills/agent/B01-illustration.png",
+      "sha256": "2ba69010e33526675639d47d6c730f7ad1b5de548dc2f5e3243219c36b644a33"
+    },
+    {
+      "file": "assets/skills/agent/B02-compact.png",
+      "sha256": "4a83ebbb454129d5be6254083f8c72cea9aeac17801b0fc02a394222aa080c85"
+    },
+    {
+      "file": "assets/skills/agent/B03-compact.png",
+      "sha256": "fe03b345514568df50133246c98c9c53d50b46f5aeff04e3dc249d2c85ea5092"
+    },
+    {
+      "file": "assets/skills/agent/B03-illustration.png",
+      "sha256": "614d4dee2c88d7893f7778a2beeb0d904f508cee32c1741bd97dc2db9460849c"
+    },
+    {
+      "file": "assets/skills/agent/BD06-compact.png",
+      "sha256": "90f4f2fd71c90ad29d9fb322868d11a7521d445e8f54d892bc20b56672884af6"
+    },
+    {
+      "file": "assets/skills/agent/BM02-compact.png",
+      "sha256": "8001906983c8da126d0e59ffb660b352b21c1532768837d7fcadaea9678cec11"
+    },
+    {
+      "file": "assets/skills/agent/BM02-illustration.png",
+      "sha256": "69cf7e8176be6d3739ccb76325accc4e6ba3b2953d366af127a8254a6796a24b"
+    },
+    {
+      "file": "assets/skills/agent/catalogue.json",
+      "sha256": "88f87f5deb86fa0527d3d0c2a59361841324a0e0a709926608f69e150554beec"
+    },
+    {
+      "file": "assets/skills/agent/D56-compact.png",
+      "sha256": "54ef69b44e9a1ea63871f9fe6b82df73a84d213aca2e7d85cdad8ddf0ec29ba9"
+    },
+    {
+      "file": "assets/skills/agent/D57-compact.png",
+      "sha256": "e89ed543dc0c50d220b0beb569b43660c8f4dfbe997b07f9c4c207fec8c0cc2e"
+    },
+    {
+      "file": "assets/skills/agent/D58-compact.png",
+      "sha256": "75e1bba54d9f031b28f8306db93ffa3ed2ccd9eb47480952218c0cf64d3882ed"
+    },
+    {
+      "file": "assets/skills/agent/D59-compact.png",
+      "sha256": "79399dce4495293c558671531b77da469f67e1df4b7fa853bb0f3ce5aa500f84"
+    },
+    {
+      "file": "assets/skills/agent/D59-illustration.png",
+      "sha256": "1ea7634e2367f137fa5a9cefabdc176be760f10dcdd19bc197cedcd9d38e917f"
+    },
+    {
+      "file": "assets/skills/agent/D66-compact.png",
+      "sha256": "7618e5357cb117b422339ad17db0f0beaa1e3559c1486b4d75bb386064d202cf"
+    },
+    {
+      "file": "assets/skills/agent/DI01-compact.png",
+      "sha256": "8628fb41500430c59efc83db98340b4eaccd327d4a2d279159d1a75509951dcd"
+    },
+    {
+      "file": "assets/skills/agent/DI02-compact.png",
+      "sha256": "7729dfe3242f0282d997cf05740c793e6548db49a65d4cf69b663ca59b3a3e5e"
+    },
+    {
+      "file": "assets/skills/agent/DI03-compact.png",
+      "sha256": "5027cc176f0f3922090d3887f0210d4026a89e306c5cc9bda14195d536f41455"
+    },
+    {
+      "file": "assets/skills/agent/DI04-compact.png",
+      "sha256": "a53ebdbada781cf0082420a8c06a94a60ef199843630ef462154138ede7d87cb"
+    },
+    {
+      "file": "assets/skills/agent/DI05-compact.png",
+      "sha256": "cd9bb83a65504b9807c8df4533a7f6a74cf3d4b76ce5af4c4b1be03effe93126"
+    },
+    {
+      "file": "assets/skills/agent/DI07-compact.png",
+      "sha256": "b117c2675b27c25aa80560aa782e9cf4a0cd2683da2dd5931824017ea6a9461c"
+    },
+    {
+      "file": "assets/skills/agent/DP01-compact.png",
+      "sha256": "c305030b5125ae989424d70b880cc3efd8dbdb0f7f9cf6d68c6916fcb54ad643"
+    },
+    {
+      "file": "assets/skills/agent/DP02-compact.png",
+      "sha256": "62332bbdc8219adc0990ef4dde0940619f85e6d8ab2da972577f292caa49b653"
+    },
+    {
+      "file": "assets/skills/agent/DR01-compact.png",
+      "sha256": "18e620e89d87da2075c4a437bbae3790a5fa70b9df42f1845858f0bd8c299f4d"
+    },
+    {
+      "file": "assets/skills/agent/ES03-compact.png",
+      "sha256": "c0c0e55dfb51a2352884d4a46c0c469829f506d626167f8fd8f1d925f7c3af99"
+    },
+    {
+      "file": "assets/skills/agent/ES05-compact.png",
+      "sha256": "a1af2deb51142441f999e5a886deb0d2c8d3ed194193dd27b1b1e994084cb19c"
+    },
+    {
+      "file": "assets/skills/agent/ES06-compact.png",
+      "sha256": "fb4c46f1296d963b92a60af3a147cb3a59b1cfa41cd9916de23f436dd9d68213"
+    },
+    {
+      "file": "assets/skills/agent/FE01-compact.png",
+      "sha256": "c6d969ea5f6191870d928aa4a79d84bbfd1c8bbe1e1b198efc7f726858afc6ee"
+    },
+    {
+      "file": "assets/skills/agent/FE01-illustration.png",
+      "sha256": "bf75d01f3b80e70ee6f06b510601ac3162f7047ee6dccba528657f2d2a5a22b0"
+    },
+    {
+      "file": "assets/skills/agent/FE02-compact.png",
+      "sha256": "5e3d5b70f344b93e0e28136038c265f38573ba1d562e63974ee00bee771ff17b"
+    },
+    {
+      "file": "assets/skills/agent/FE03-compact.png",
+      "sha256": "5d7a2edab0a4e2007aa2c15ec062565e359ea664e0485a82d2cc33366ff973fd"
+    },
+    {
+      "file": "assets/skills/agent/FE04-compact.png",
+      "sha256": "42c26d985dded663de172cc99c696eadbc7d2bcfd1a049d564e08c6049f41b4b"
+    },
+    {
+      "file": "assets/skills/agent/FE05-compact.png",
+      "sha256": "76950f863092019cccb32feacf0c19386ed076ee3a562041b8ebcc47f4fe9b66"
+    },
+    {
+      "file": "assets/skills/agent/FE05-illustration.png",
+      "sha256": "9ae15e20dc75200cc42ad727ee646798307389683afa20cc0442d90f97e748a8"
+    },
+    {
+      "file": "assets/skills/agent/FE06-compact.png",
+      "sha256": "50c5f375182586c148d312face98aa2c3ebf69eb0a48d60fd97b6a40974c4473"
+    },
+    {
+      "file": "assets/skills/agent/FR01-compact.png",
+      "sha256": "4439cf4e89b963e337c5dc2f8999b399f193f587d31e4ce1fdfeed6cfb7fbea5"
+    },
+    {
+      "file": "assets/skills/agent/FR02-compact.png",
+      "sha256": "80f7ed77337f5550e1dc1bf680a398cf8ff79e8ba29f409d09ba348f667f0cc2"
+    },
+    {
+      "file": "assets/skills/agent/FR03-compact.png",
+      "sha256": "b92bfef56362261acb66f97d684501af352cf3b826cc98c6c716164fc020696a"
+    },
+    {
+      "file": "assets/skills/agent/FR03-illustration.png",
+      "sha256": "231928d6de6faed720bfdd612f9c200b8d96282842f4fc398546963bb2c800cc"
+    },
+    {
+      "file": "assets/skills/agent/FR04-compact.png",
+      "sha256": "f5c2c27510f5e5d58e51a68bb2f65b3ec46de92c21470ae8248ce2e322c4cc0a"
+    },
+    {
+      "file": "assets/skills/agent/FR05-compact.png",
+      "sha256": "535bf634c021ea1bee18f7c3d7e9579c44bd15f42dcc58f26f106ca13d2e37aa"
+    },
+    {
+      "file": "assets/skills/agent/FR06-compact.png",
+      "sha256": "22f7eeafdd05565fa23066b4a1d7e43ead08f5912ea9fe057e679466e6edeed9"
+    },
+    {
+      "file": "assets/skills/agent/HY07-compact.png",
+      "sha256": "e2ac0ca895ecd677076b734e4683c957961428596570182af207c2720ee5bb8d"
+    },
+    {
+      "file": "assets/skills/agent/M01-compact.png",
+      "sha256": "5c7b9642379d12361ef4ce59ec53057f3a8a6fa011dd238ca4628d312a1c6ee1"
+    },
+    {
+      "file": "assets/skills/agent/M01-illustration.png",
+      "sha256": "6a139c376988a6946f0b6bd5a2a814cdc9e8fcfb38f19091025a2d5ed191872e"
+    },
+    {
+      "file": "assets/skills/agent/M03-compact.png",
+      "sha256": "b32562370832d21586c813735cf1b2094d8b2e15f731a41fb35633d8a7c85c28"
+    },
+    {
+      "file": "assets/skills/agent/M03-illustration.png",
+      "sha256": "daeeffb775e7c604cd73ddbd505c57ba3bffaf704ad9af9ad692cd7146dc85df"
+    },
+    {
+      "file": "assets/skills/agent/manifest.json",
+      "sha256": "99c18d3bdd7782acf0bf396b8c67e1b195dcac7273bc91c883116a96054d7d79"
+    },
+    {
+      "file": "assets/skills/agent/ME02-compact.png",
+      "sha256": "58356d5b157d6a8f0a05baba5940ed1f63d1f49490b48d42cd6522d42ae58ee2"
+    },
+    {
+      "file": "assets/skills/agent/ME03-compact.png",
+      "sha256": "94fc93bf8807a01229576df1babcbc64553238aad58e815afa09e65afcb4c307"
+    },
+    {
+      "file": "assets/skills/agent/ME04-compact.png",
+      "sha256": "e83e22bf0d8ab99f3b76f612a928ab3ba0ffa45aa8e9ea3ee34f80f8edf6b30b"
+    },
+    {
+      "file": "assets/skills/agent/ME04-illustration.png",
+      "sha256": "b244788ac01e16f4399d263ceb403795ffa2c2c59e9cd0d60e6aaa1589a330b4"
+    },
+    {
+      "file": "assets/skills/agent/ME05-compact.png",
+      "sha256": "c31d9c0f11f67a0cc089c7ac99f5c712360f25ab17f843f1bcaae80f1563a0a1"
+    },
+    {
+      "file": "assets/skills/agent/ME06-compact.png",
+      "sha256": "753df0d1c6335f88f3bd9fda15251fa22e05cd025ceaade09dc77d71fe800740"
+    },
+    {
+      "file": "assets/skills/agent/O02-compact.png",
+      "sha256": "caf9d085980476d3b55f981a3bd7d9b14822e91760c584bb2020038b2f0b0c9e"
+    },
+    {
+      "file": "assets/skills/agent/O03-compact.png",
+      "sha256": "514ee6c56ccda56d2a770428d948bc07b3e540f515044b07c300c39fbce0051a"
+    },
+    {
+      "file": "assets/skills/agent/O03-illustration.png",
+      "sha256": "2a70e75bd3b82ba8c19c5360a3d8dce397e6aa7520c80462a75fa9a054370162"
+    },
+    {
+      "file": "assets/skills/agent/SF00-compact.png",
+      "sha256": "efdd472610655e413caae463102b3d7eb8ba1110f8523c5d2d243bd4146c5102"
+    },
+    {
+      "file": "assets/skills/agent/SF00-illustration.png",
+      "sha256": "99cab81ec7f7da9b229ac23093a1f5371ff0dcaee4de106e5ef1cf67111def02"
+    },
+    {
+      "file": "assets/skills/agent/SU03-compact.png",
+      "sha256": "7867ca1cf20417b85fff92ae2cf80e518a00e86c180273f7949e0b4e853a8986"
+    },
+    {
+      "file": "assets/skills/agent/SU04-compact.png",
+      "sha256": "269b0206ca3d061eddf12e16a6153e963e509a6806870b6322f1f7cd26e67ec9"
+    },
+    {
+      "file": "assets/skills/agent/SU04-illustration.png",
+      "sha256": "8c7ebb5714b9ef938dd509080b90b6435f5038fd721d0fee320f65da6cc45154"
+    },
+    {
+      "file": "assets/skills/agent/SU05-compact.png",
+      "sha256": "036b842f70ade3ec268a474039ad7c1b31bfd2abf8f16c69dfc1ec5e3624baa6"
+    },
+    {
+      "file": "assets/skills/agent/SU06-compact.png",
+      "sha256": "fc0ca0b9da6550e61a3b0b263e78ea68a7c1e9e1eaa3afc691f762d6a7c95a48"
+    },
+    {
+      "file": "assets/skills/agent/T01-compact.png",
+      "sha256": "7804db615fa6ef2a0a3dab8cceb46729e592b7dafb5902d22f1114cdf6f6f91f"
+    },
+    {
+      "file": "assets/skills/agent/T01-illustration.png",
+      "sha256": "0e5b70be8f4501b7c16b883d7d90d29aa67076c949718238a8f401f743430fd8"
+    },
+    {
+      "file": "assets/skills/agent/T02-compact.png",
+      "sha256": "6525df776569afff66c53f8ed69af9aa59b086b07feae2ee26df44541424090e"
+    },
+    {
+      "file": "assets/skills/agent/T03-compact.png",
+      "sha256": "53607ef4da1c7b3ce1346635ceb625dd43480d3ab4492be10e94eb8131b82501"
+    },
+    {
+      "file": "assets/skills/agent/T03-illustration.png",
+      "sha256": "408696a7089fe81a4e14854d537859b31833058286e974bfc65371af1cad55fd"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-icon-acceptance.json",
+      "sha256": "da67eb5deeb8ff80524ec5a7974192164747889416c14ff0fa5e7a7d7b330385"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-window-review-05/skills.json",
+      "sha256": "cb23dca3cf283e6eb12faa58e01dc637c78a8309614f213cd86ef12d06ce0ef2"
+    }
+  ],
+  "accepted_export_hashes_preserved": 361,
+  "no_new_approval_inferred": false,
+  "no_runtime_changes": true,
+  "acceptance_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-32/visual-acceptance-01.json",
+  "correction_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-32/visual-acceptance-02.json"
+}

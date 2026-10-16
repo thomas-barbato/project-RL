@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ10-ACCEPT01",
+  "user_reply": "parfait :) oui",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-raised-power-and-equipment-PETS-EQ10-01.json",
+  "source_proposal_sha256": "16f715f7d29dd6d2416628d4040d755cac3dc30da09e2cd222cb024f31eca5c6",
+  "accepted_shown_copy_markdown": "La **gestion des objets et des récompenses des ressuscités est validée**.\n\n**PETS-EQ10 · Puissance et équipement des ressuscités — proposition**\n\nPour calculer leurs PV maximum et leurs dégâts :\n\n- On calcule les valeurs avec **leurs attributs et les bonus compatibles de leur équipement**.\n- On applique ensuite **une seule fois la puissance de Réanimation**.\n\nUne arme confiée remplace la base de leur attaque ordinaire, comme validé. Les dégâts sont calculés avant les défenses de la cible.\n\nLa puissance de Réanimation concerne **les PV maximum et les dégâts**. L’armure, les résistances, la précision, l’esquive et l’énergie gardent leur calcul habituel.\n\n**Exemple fictif**\n\nAprès les attributs et l’équipement, avant Réanimation : **200 PV maximum · 40–60 dégâts**.\n\n**Effet actuel — Réanimation rang 11**\n\n- Puissance : **100 %**.\n- Résultat : **200 PV maximum · 40–60 dégâts**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Puissance : **105 %**.\n- Résultat : **210 PV maximum · 42–63 dégâts**.\n\nL’exemple conserve le même équipement et les mêmes attributs.\n\n**Cet ordre de calcul reste à valider.**",
+  "accepted_shown_copy_sha256": "0ea160b25f97b762d1f8c58df287beb9801c3ec99adc7ea68c4afff7036ca5ed",
+  "accepted_shown_rules": {
+    "scope": "OC07_raised_allies_maximum_HP_and_attack_power_damage_values_with_compatible_supplied_equipment;not_drone_invocation_bonus_pool",
+    "own_statistics": "calculate_from_original_combat_profile_with_own_attributes_and_compatible_supplied_equipment_under_existing_common_stat_rules;exact_original_snapshot_still_pending",
+    "supplied_weapon": "replace_ordinary_attack_base_under_PETS_EQ02;do_not_sum_native_and_supplied_weapon_bases",
+    "power_order": "after_own_attributes_and_compatible_equipment_modifiers_apply_OC07_power_percent_as_one_relative_multiplier_to_maximum_HP_and_damage",
+    "power_application_count": 1,
+    "maximum_HP_rounding": "preserve_intermediate_fractions_and_floor_final_maximum_once_under_common_rules",
+    "damage_order": "power_multiplier_before_target_defenses;integer_predefense_readout_under_common_rules;do_not_invent_new_critical_or_defense_profiles",
+    "power_scope_exclusions": "armor_resistances_accuracy_evasion_and_energy_are_not_scaled_by_OC07_HP_damage_power_factor",
+    "power_references": {
+      "effective_rank11_percent": 100,
+      "effective_rank12_percent": 105
+    },
+    "current_next": "hold_own_attributes_equipment_and_other_modifiers_fixed;learned9_plus_equipment2_to_learned10_plus_same_equipment2;no_rank_breakdown_in_player_copy",
+    "unresolved": "original_equipment_or_temporary_effect_snapshot_current_reserve_state_power_update_timing_and_individual_damage_category_mapping_not_defined"
+  },
+  "accepted_shown_examples": {
+    "scope": "fictional_values_after_attributes_and_equipment_before_Reanimation_power_and_target_defenses;no_item_or_monster_profile_created",
+    "base_maximum_HP_after_modifiers": 200,
+    "base_damage_min_after_modifiers": 40,
+    "base_damage_max_after_modifiers": 60,
+    "rank11": {
+      "power_percent": 100,
+      "maximum_HP": 200,
+      "damage_min": 40,
+      "damage_max": 60
+    },
+    "rank12": {
+      "power_percent": 105,
+      "maximum_HP": 210,
+      "damage_min": 42,
+      "damage_max": 63
+    }
+  },
+  "approval_scope": "Shown own attributes and compatible supplied equipment calculated first, then one relative OC07 power factor for maximum HP and damage before target defenses accepted. Other statistics keep common calculations. The unchanged rank11 100percent and rank12 105percent factors and fictional 200HP/40-60 to 210HP/42-63 example accepted. Exact original snapshot, current resources, full power curve and unshown interactions remain pending.",
+  "unshown_cases_pending": [
+    "original_intrinsic_equipment_and_temporary_stat_snapshot_to_avoid_duplicate_modifiers",
+    "full_OC07_power_curve_and_skill_rank_bonus_eligibility",
+    "HP_energy_current_state_at_birth_level_rank_equipment_and_owner_changes",
+    "power_dynamic_vs_spawn_snapshot_update_and_resurrection_expiry_timing",
+    "damage_type_and_periodic_derived_reflected_collision_critical_and_status_proc_interactions",
+    "native_stat_tooltip_equipment_layout_and_concrete_monster_profiles"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

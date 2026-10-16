@@ -1,0 +1,251 @@
+{
+  "protected_files_unchanged": 24871,
+  "resampling_of_native_capture": false,
+  "controls": [
+    {
+      "variant": "FR02-A01-HAUT",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends_on_cast": true,
+      "waiting_does_not_advance_turns": true,
+      "instant_nova_ends": true,
+      "gel_and_wall_hold_until_turns": true,
+      "prepared_melee_break_opens_gap": true,
+      "frozen_actor_attacks_without_moving": true,
+      "final_effects_expire": true
+    },
+    {
+      "variant": "FR03-A02-HAUT",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends_on_cast": true,
+      "waiting_does_not_advance_turns": true,
+      "instant_nova_ends": true,
+      "gel_and_wall_hold_until_turns": true,
+      "prepared_melee_break_opens_gap": true,
+      "frozen_actor_attacks_without_moving": true,
+      "final_effects_expire": true
+    },
+    {
+      "variant": "FR02-A01-DROITE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends_on_cast": true,
+      "waiting_does_not_advance_turns": true,
+      "instant_nova_ends": true,
+      "gel_and_wall_hold_until_turns": true,
+      "prepared_melee_break_opens_gap": true,
+      "frozen_actor_attacks_without_moving": true,
+      "final_effects_expire": true
+    },
+    {
+      "variant": "FR03-A02-DROITE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends_on_cast": true,
+      "waiting_does_not_advance_turns": true,
+      "instant_nova_ends": true,
+      "gel_and_wall_hold_until_turns": true,
+      "prepared_melee_break_opens_gap": true,
+      "frozen_actor_attacks_without_moving": true,
+      "final_effects_expire": true
+    },
+    {
+      "variant": "FR02-A01-GAUCHE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends_on_cast": true,
+      "waiting_does_not_advance_turns": true,
+      "instant_nova_ends": true,
+      "gel_and_wall_hold_until_turns": true,
+      "prepared_melee_break_opens_gap": true,
+      "frozen_actor_attacks_without_moving": true,
+      "final_effects_expire": true
+    },
+    {
+      "variant": "FR03-A02-GAUCHE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends_on_cast": true,
+      "waiting_does_not_advance_turns": true,
+      "instant_nova_ends": true,
+      "gel_and_wall_hold_until_turns": true,
+      "prepared_melee_break_opens_gap": true,
+      "frozen_actor_attacks_without_moving": true,
+      "final_effects_expire": true
+    },
+    {
+      "variant": "FR02-A01-BAS",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends_on_cast": true,
+      "waiting_does_not_advance_turns": true,
+      "instant_nova_ends": true,
+      "gel_and_wall_hold_until_turns": true,
+      "prepared_melee_break_opens_gap": true,
+      "frozen_actor_attacks_without_moving": true,
+      "final_effects_expire": true
+    },
+    {
+      "variant": "FR03-A02-BAS",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends_on_cast": true,
+      "waiting_does_not_advance_turns": true,
+      "instant_nova_ends": true,
+      "gel_and_wall_hold_until_turns": true,
+      "prepared_melee_break_opens_gap": true,
+      "frozen_actor_attacks_without_moving": true,
+      "final_effects_expire": true
+    },
+    {
+      "variant": "FR02-A01-CLOISON",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends_on_cast": true,
+      "waiting_does_not_advance_turns": true,
+      "instant_nova_ends": true,
+      "gel_and_wall_hold_until_turns": true,
+      "prepared_melee_break_opens_gap": true,
+      "frozen_actor_attacks_without_moving": true,
+      "final_effects_expire": true
+    },
+    {
+      "variant": "FR03-A02-CLOISON",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends_on_cast": true,
+      "waiting_does_not_advance_turns": true,
+      "instant_nova_ends": true,
+      "gel_and_wall_hold_until_turns": true,
+      "prepared_melee_break_opens_gap": true,
+      "frozen_actor_attacks_without_moving": true,
+      "final_effects_expire": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "FR02-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 28,
+      "frames": 28,
+      "duration_ms": 7000,
+      "loop": 0
+    },
+    {
+      "file": "FR03-A02-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 66,
+      "frames": 72,
+      "duration_ms": 7000,
+      "loop": 0
+    },
+    {
+      "file": "FR02-A01-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 28,
+      "frames": 28,
+      "duration_ms": 7000,
+      "loop": 0
+    },
+    {
+      "file": "FR03-A02-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 66,
+      "frames": 72,
+      "duration_ms": 7000,
+      "loop": 0
+    },
+    {
+      "file": "FR02-A01-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 28,
+      "frames": 28,
+      "duration_ms": 7000,
+      "loop": 0
+    },
+    {
+      "file": "FR03-A02-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 66,
+      "frames": 72,
+      "duration_ms": 7000,
+      "loop": 0
+    },
+    {
+      "file": "FR02-A01-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 28,
+      "frames": 28,
+      "duration_ms": 7000,
+      "loop": 0
+    },
+    {
+      "file": "FR03-A02-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 66,
+      "frames": 72,
+      "duration_ms": 7000,
+      "loop": 0
+    },
+    {
+      "file": "FR02-A01-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 28,
+      "frames": 28,
+      "duration_ms": 7000,
+      "loop": 0
+    },
+    {
+      "file": "FR03-A02-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 66,
+      "frames": 72,
+      "duration_ms": 7000,
+      "loop": 0
+    },
+    {
+      "file": "froid-ouverture-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 66,
+      "frames": 72,
+      "duration_ms": 7000,
+      "loop": 0
+    },
+    {
+      "file": "froid-cloison-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 66,
+      "frames": 72,
+      "duration_ms": 7000,
+      "loop": 0
+    }
+  ],
+  "source_art_mode": "Built-in imagegen, two six-cell alpha sheets; equal-cell mechanical atlas packing."
+}

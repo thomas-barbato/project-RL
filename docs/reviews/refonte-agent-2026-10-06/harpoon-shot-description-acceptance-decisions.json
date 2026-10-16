@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "DI05",
+  "title": "Tir de harpon",
+  "user_message": "oui ca me va",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI05-01.json",
+  "previous_description_sha256": "7a92d5cfbaed901c9919eaf20631d195e781ef6081cf426f0f6fe87a01038595",
+  "accepted_player_copy_sha256": "d0b470930fc290ea7c6342e66f26d188faeef03b28fbbb7e3cfc9eba8f85c3ba",
+  "approval_scope": "Full displayed RP, current/next numeric values, costs/range/cooldown and conditions accepted as provisional balance. Conditional traction after a successful shot: ordinary mobile enemy 100%, mobile elite 75%; bosses and anchored targets do not move, attack damage preserved. Unshown full curves, exact path/roll order, classification and native rendering remain pending.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "damage_percent": 140,
+      "damage_min_before_defenses": 28,
+      "damage_max_before_defenses": 34,
+      "damage_min_exact_before_rounding": {
+        "numerator": 28413,
+        "denominator": 1000
+      },
+      "damage_max_exact_before_rounding": {
+        "numerator": 34727,
+        "denominator": 1000
+      },
+      "maximum_pull_cells": 3,
+      "normal_mobile_target_pull_chance_percent_after_successful_shot": 100,
+      "elite_mobile_target_pull_chance_percent_after_successful_shot": 75,
+      "boss_pull_chance_percent": 0,
+      "energy_cost": 13,
+      "ammunition_cost": 1,
+      "cooldown_turns": 6,
+      "range_cells": 6
+    },
+    "next": {
+      "effective_rank": 12,
+      "damage_percent": 144,
+      "damage_min_before_defenses": 29,
+      "damage_max_before_defenses": 35,
+      "damage_min_exact_before_rounding": {
+        "numerator": 36531,
+        "denominator": 1250
+      },
+      "damage_max_exact_before_rounding": {
+        "numerator": 44649,
+        "denominator": 1250
+      },
+      "maximum_pull_cells": 3,
+      "normal_mobile_target_pull_chance_percent_after_successful_shot": 100,
+      "elite_mobile_target_pull_chance_percent_after_successful_shot": 75,
+      "boss_pull_chance_percent": 0,
+      "energy_cost": 13,
+      "ammunition_cost": 1,
+      "cooldown_turns": 6,
+      "range_cells": 6
+    }
+  },
+  "accepted_conditions": [
+    "Target visible and shot path clear.",
+    "Obstacles and occupied cells stop traction.",
+    "Bosses and anchored targets do not move, shot damage remains applicable.",
+    "Damage before target defenses.",
+    "Equipped and active ordinary ranged weapon; heavy weapons excluded."
+  ],
+  "control_rules_reference": "docs/reviews/refonte-agent-2026-10-06/control-boss-immunity-and-elite-penalty-decisions.json",
+  "general_control_rule_approval": "Existing CTRL01 retained; DI05 conditional baseline and displayed 100/75% application accepted.",
+  "unshown_rules_approval": "Full curves, exact pull path/ties/diagonals, anchored target taxonomy, success draw order and extra elite roll timing, ordinary shot hit/defense/critical resolution, supported ordinary weapon families, damage distribution, resource refusal/payment, affix and attribute stacking remain pending where not already accepted. No shared STR/INT control formula, status duration, or Repousser collision damage invented.",
+  "visual_approval": "existing_catalogue_direction_only; native_preview_and_animation_pending",
+  "runtime_integration": "not_integrated"
+}

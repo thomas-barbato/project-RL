@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-VIS01-FEEDBACK03",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-05.json",
+    "reference_sha256": "7da947a843409a0111c90a50b5b91525b22a7eb733e5e8f7c5757fc02c668a28"
+  },
+  "user_feedback": [
+    "elle suit pas vraiment l'orientation du bras et de la main, c'est à dire que l'arme doit etre dans la meme direction que la bras :) mais si tu n'y arrive pas alors ca n'est pas grave comme ca c'est déjà bien.",
+    "ca n'est pas grave si ca dépasse des 30px , un peu comme les armes à deux mains :)"
+  ],
+  "requested_direction": "weapon_axis_continues_original_forearm_and_hand_direction;weapon_overflow_allowed",
+  "fallback": "previous_vertical_downward_proposal_acceptable_if_alignment_cannot_be_achieved;not_used_as_approval_of_unshown_diagonal_candidate",
+  "native_reference": "established32px_body_tile;48px_weapon_composition_canvas;unchanged_collision_and_body_size",
+  "revised_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-06.json",
+    "reference_sha256": "4f5384c7efedfb7d62b3b73fda9229732ad1aff03d3606221be627a3fb91ad99"
+  },
+  "preserved_red_robe_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/red-robe-visual-acceptance-decisions-01.json",
+    "reference_sha256": "3550788f81bacb62d9d3d1a08832eaee6513caaab3f8cfa0e8e11fa19f0f258b"
+  },
+  "approval_boundary": "only_new_pistol_orientation2_pending;accepted_red_robe_and_prior_unchanged_visual_parts_preserved",
+  "mechanical_changes": "none",
+  "runtime_integration": "not_integrated"
+}

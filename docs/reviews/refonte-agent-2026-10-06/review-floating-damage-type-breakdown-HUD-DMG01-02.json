@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-09",
+  "review_id": "HUD-DMG01",
+  "revision": 2,
+  "title": "Dégâts totaux et détail par type",
+  "status": "shown_damage_format_example_integer_sum_and_type_color_direction_explicitly_accepted;exact_apportionment_and_native_details_pending",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-23.json",
+  "current_attribute_model_sha256": "df8f355623ebb8a04a4d1d56863dfd858177f964e0e3dee2ccd608081e15898b",
+  "accepted_direction": "docs/reviews/refonte-agent-2026-10-06/floating-total-and-type-icon-damage-direction-decisions.json",
+  "accepted_direction_sha256": "c5f8af4d268e136437241024ba2828678572568627e6e9fcc5f6dcc47a3914f0",
+  "shown_copy_markdown": "Les **protections sont validées**, et ton format d’affichage est noté pour le joueur comme pour les monstres.\n\n**HUD-DMG01 · Dégâts affichés**\n\n**75 (⚔ 60 · ❄ 15)**\n\nDans cet exemple : **75 dégâts au total**, dont **60 physiques** et **15 de froid**, après les protections.\n\n- Le **total** apparaît en premier.\n- Le détail entre parenthèses montre chaque type de dégâts avec sa **petite icône**.\n- Chaque composante garde la **couleur de son type**, selon la direction déjà validée.\n\nJe propose que les composantes affichées soient entières et que **leur somme corresponde toujours au total**, sans modifier les dégâts calculés.\n\nLes symboles ci-dessus illustrent le format ; les icônes finales et leur lisibilité en jeu seront présentées lors du travail sur l’interface.",
+  "shown_copy_sha256": "68653afa803c3155cebcbd3e68ee5c34f82828ed2910ae3c5cf923cfabc80007",
+  "accepted_user_direction": {
+    "targets": "floating_damage_above_player_and_monsters",
+    "format": "total_damage_first_then_parenthesized_split_by_damage_type_with_small_icon_for_each_type",
+    "native_icons_palette_and_animation": "not_presented_or_approved;no_new_assets_created",
+    "damage_mechanics": "format_instruction_only;does_not_change_damage_amounts_or_protection_order"
+  },
+  "display_proposals": {
+    "values": "damage_after_applicable_protections",
+    "format_example": "75 (⚔ 60 · ❄ 15)",
+    "example_types": {
+      "physical": 60,
+      "cold": 15
+    },
+    "example_total": 75,
+    "integers": "display_integer_components_with_sum_equal_to_already_computed_integer_total;do_not_change_damage_calculation",
+    "icons": "Unicode_symbols_are_explanatory_placeholders_not_native_asset_candidates",
+    "element_colors": "prior_HUD08_type_color_direction_preserved;no_exact_palette_created"
+  },
+  "example_source": "docs/reviews/refonte-agent-2026-10-06/review-incoming-percent-protections-02.json",
+  "example_source_sha256": "6bb052d604533760966e10bc1481a883a78025cc46cf988826d81c67e3f38081",
+  "example_calculation": {
+    "protected_physical_before_percent": 80,
+    "protected_cold_before_percent": 20,
+    "percent_protection": 25,
+    "physical_after_protection": 60,
+    "cold_after_protection": 15,
+    "total": 75
+  },
+  "unshown_cases_pending": [
+    "exact_integer_component_display_apportionment_algorithm_and_ties",
+    "HP_overkill_vs_actual_HP_loss_absorption_and_last_sursaut_readout",
+    "zero_damage_and_zero_component_display",
+    "critical_marker_total_color_and_font_sizes",
+    "native_icon_art_palette_spacing_lifetime_motion_overlap_and_combat_density",
+    "per_impact_vs_action_or_periodic_tick_grouping_and_visibility",
+    "Tempo_offensif_existing_bonus_part_feedback_coexistence_without_double_count",
+    "logs_exact_wording_type_labels_and_all_other_unshown_cases"
+  ],
+  "player_copy_approval": "explicit_user_acceptance_of_shown_copy",
+  "numeric_and_scope_approval": "shown_postprotection_example_and_integer_sum_consistency_accepted;exact_algorithm_pending",
+  "native_visual_approval": "not_presented;no_pixels_or_runtime_created",
+  "runtime_integration": "not_integrated",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-floating-damage-type-breakdown-HUD-DMG01-01.json",
+  "source_proposal_sha256": "fb75b97bcc003987dde8ab1954a0eac609d9a744c0d0aacdbd70bb9ce7615000",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/floating-damage-type-breakdown-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "07f55360e18432775051bb7e30fabdce203ce975e612d0c4eb0a0a7873d2ea91",
+  "accepted_shown_rules": {
+    "targets": "floating_damage_above_player_and_monsters",
+    "format": "total_damage_first_then_parenthesized_per_damage_type_amount_with_small_type_icon",
+    "values": "after_applicable_protections",
+    "integer_components": "display_integer_components_with_sum_equal_to_computed_integer_total_without_changing_damage_mechanics",
+    "element_colors": "accepted_HUD08_type_color_direction_preserved",
+    "shown_example": "75 (⚔ 60 · ❄ 15);symbols_are_illustrative_placeholders_not_native_asset_approval"
+  }
+}

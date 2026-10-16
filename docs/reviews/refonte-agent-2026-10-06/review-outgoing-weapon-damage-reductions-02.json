@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-09",
+  "review_id": "D04-DOWN01",
+  "stable_rule_id": "D04",
+  "revision": 2,
+  "title": "Affaiblissements des dégâts",
+  "status": "shown_outgoing_weapon_reduction_copy_order_successive_stacking_and_examples_explicitly_accepted;unshown_cases_pending",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-21.json",
+  "current_attribute_model_sha256": "3e43752fe3fee2eb01e5dc44b5d33935b567b30a48d6a29c36b5241acbef92b5",
+  "shown_copy_markdown": "Le **cumul additif est validé**, avec des bonus pouvant dépasser **+100 %**, sans plafond général.\n\n**D04 · Affaiblissements des dégâts — proposition**\n\nUn affaiblissement réduisant les dégâts infligés s’applique au résultat obtenu après les bonus et le critique éventuel, avant l’armure et les résistances de la victime.\n\n**Exemple fictif, hors critique et avant les défenses**\n\n- Arme : **20–30 dégâts**.\n- Bonus total : **+100 %** → **40–60 dégâts**.\n- Affaiblissement : **−25 % de dégâts infligés** → **30–45 dégâts**.\n\nLe bonus reste présent : l’affaiblissement réduit les dégâts obtenus de **25 %** pendant son effet.\n\n**Plusieurs affaiblissements distincts**\n\nJe propose de les appliquer successivement. Avec une seconde réduction de **20 %** :\n\n**40–60 → 30–45 → 24–36 dégâts.**\n\nCela représente une réduction totale de **40 %**.\n\nChaque réduction générale affecte toutes les composantes directes concernées. Une réduction réservée au froid affecte uniquement les dégâts de froid.\n\nLes dégâts restent au minimum à **0**, avec l’arrondi final déjà validé. Les valeurs de cet exemple ne fixent aucun nouveau sort.\n\n**Ce fonctionnement reste à valider.**",
+  "shown_copy_sha256": "c30df2bd8a194d20ea7c3555c3dce5f221efe6ccf47b55c26e2727e2fb6d6c9d",
+  "shown_examples": {
+    "weapon_minimum": 20,
+    "weapon_maximum": 30,
+    "accepted_bonus_percent": 100,
+    "boosted_minimum": 40,
+    "boosted_maximum": 60,
+    "first_reduction_percent": 25,
+    "after_first_minimum": 30,
+    "after_first_maximum": 45,
+    "second_reduction_percent": 20,
+    "after_second_minimum": 24,
+    "after_second_maximum": 36,
+    "combined_reduction_percent": 40,
+    "example_scope": "fictional_noncritical_predefense;no_new_skill_or_actual_loot"
+  },
+  "prior_scope_audit": {
+    "O02_source": "docs/REVUE_AFFAIBLISSEMENTS_AGENT_LOT_06.md",
+    "O02_source_lines": "100-104",
+    "O02_rule": "outgoing_direct_damage_reduced_before_victim_defenses;existing_skill_card_not_changed",
+    "incoming_defensive_reductions": "existing_separate_after_armor_and_resistance_direction_in_complete_design_not_reordered_by_this_outgoing_scope"
+  },
+  "unshown_cases_pending": [
+    "actual_debuff_skill_values_and_status_eligibility_not_created",
+    "same_effect_reapplication_duration_and_source_stacking",
+    "negative_or_over100_reduction_values_and_special_exceptions",
+    "flat_negative_affixes_or_negative_attribute_damage_coefficients_not_defined_here",
+    "NPC_drone_familiar_spell_transformation_secondary_and_periodic_source_mapping",
+    "incoming_defensive_percent_reduction_order_absorption_and_reflected_damage",
+    "native_status_tooltips_and_all_other_unshown_cases"
+  ],
+  "player_copy_approval": "explicit_user_acceptance_of_shown_copy",
+  "numeric_and_scope_approval": "shown_rules_and_examples_accepted;other_cases_pending",
+  "new_native_visuals_proposed": false,
+  "runtime_integration": "not_integrated",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-outgoing-weapon-damage-reductions-01.json",
+  "source_proposal_sha256": "e0836ee804b3ea37f3789df6bf170995453f1eeaf05026a289d1d938d7b118ea",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/outgoing-weapon-damage-reductions-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "d7885aa74606309c53415943487a4c9d5609cb458ad18369c68e600ba2f3a7fc",
+  "accepted_shown_rules": {
+    "scope": "outgoing_damage_reduction_statuses_on_direct_player_weapon_attacks_and_weapon_skills;not_incoming_defensive_reductions_or_all_other_stat_maluses",
+    "order": "accepted_weapon_flat_bonus_plus_additive_positive_percent_pool_then_shared_critical_then_outgoing_reduction_then_target_armor_and_elemental_resistances_then_final_total_floor",
+    "single_reduction": "multiply_current_boosted_damage_by_1_minus_reduction_percentage_over100;not_subtract_percentage_points_from_positive_bonus_pool",
+    "distinct_reductions": "apply_successive_multipliers;no_intermediate_rounding",
+    "family_eligibility": "each_general_outgoing_reduction_affects_all_eligible_direct_components;family_specific_reduction_affects_only_that_family",
+    "damage_lower_bound": 0,
+    "same_effect_reapplication": "not_defined_by_this_distinct_effect_proposal;existing_individual_skill_rules_preserved",
+    "stat_damage_bonus_cap": "accepted_no_general_upper_cap_preserved"
+  },
+  "original_proposed_rules": {
+    "scope": "outgoing_damage_reduction_statuses_on_direct_player_weapon_attacks_and_weapon_skills;not_incoming_defensive_reductions_or_all_other_stat_maluses",
+    "order": "accepted_weapon_flat_bonus_plus_additive_positive_percent_pool_then_shared_critical_then_outgoing_reduction_then_target_armor_and_elemental_resistances_then_final_total_floor",
+    "single_reduction": "multiply_current_boosted_damage_by_1_minus_reduction_percentage_over100;not_subtract_percentage_points_from_positive_bonus_pool",
+    "distinct_reductions": "apply_successive_multipliers;no_intermediate_rounding",
+    "family_eligibility": "each_general_outgoing_reduction_affects_all_eligible_direct_components;family_specific_reduction_affects_only_that_family",
+    "damage_lower_bound": 0,
+    "same_effect_reapplication": "not_defined_by_this_distinct_effect_proposal;existing_individual_skill_rules_preserved",
+    "stat_damage_bonus_cap": "accepted_no_general_upper_cap_preserved"
+  }
+}

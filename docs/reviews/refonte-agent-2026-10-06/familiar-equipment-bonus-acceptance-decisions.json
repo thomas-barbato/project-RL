@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ04-ACCEPT01",
+  "user_reply": "parfait :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-bonuses-PETS-EQ04-01.json",
+  "source_proposal_sha256": "fed5eb409e5353bf95194f731a5724a23faefc67d04790e082bd11f9b43eb043",
+  "accepted_shown_copy_markdown": "Les **emplacements des familiers sont validés**.\n\n**PETS-EQ04 · Bonus d’équipement des familiers — proposition**\n\n**Attributs et statistiques**\n\nLes bonus compatibles d’attributs, de PV, d’énergie, d’armure, de résistances et de dégâts améliorent le familier qui porte l’objet, selon les règles communes de calcul.\n\nPour un drone, un bonus d’Intelligence porté augmente sa propre réserve d’énergie. Le bonus d’invocation reste lié à l’Intelligence de l’agent.\n\n**Bonus de compétences**\n\n- Ils augmentent le rang d’une compétence que le familier **possède déjà**, si le bonus est compatible.\n- Le rang effectif peut dépasser **10** grâce à ces objets.\n- Ils n’apprennent aucune nouvelle compétence et n’augmentent pas les compétences de l’agent.\n- Un bonus incompatible est indiqué **« Bonus inactif »** dans la fiche de l’objet consultée pour ce familier.\n\n**PV et énergie actuels**\n\nChanger d’équipement modifie les maximums sans restaurer les jauges. Si un maximum baisse sous la valeur actuelle, celle-ci est ramenée au nouveau maximum.\n\n**Exemple isolé, sans bonus en pourcentage**\n\n- Avant : **70 / 100 PV**.\n- Équipement donnant **+15 PV maximum** : **70 / 115 PV**.\n- Après retrait : **70 / 100 PV**.\n\n**Ces règles restent à valider.**",
+  "accepted_shown_copy_sha256": "0d11f407fb5ed460c2248e27eed47f43b6844349dd25e141bb0ca211a84f3d43",
+  "accepted_shown_rules": {
+    "scope": "equipped_items_of_existing_drones_and_raised_familiars;no_new_item_affix_or_monster_skill_catalogue_created",
+    "stat_bonus_recipient": "wearing_familiar_receives_eligible_attribute_maximum_HP_energy_armor_resistance_and_damage_bonuses_under_common_approved_stat_calculations;no_personal_owner_bonus_transfer",
+    "drone_own_Intelligence": "affects_own_energy_under_DRONE_STAT03;agent_Intelligence_remains_the_source_of_invocation_damage_and_HP_bonus;no_second_invocation_multiplier_from_drone_Intelligence",
+    "skill_bonus_eligibility": "only_explicitly_compatible_skill_already_possessed_by_wearing_familiar_receives_effective_rank_bonus",
+    "effective_skill_rank": "compatible_equipment_bonus_can_raise_effective_familiar_skill_rank_above10;no_learned_rank_cap_or_pet_skill_point_system_defined",
+    "skill_acquisition": "equipment_rank_bonus_does_not_grant_or_learn_a_new_skill",
+    "owner_skills": "familiar_worn_skill_bonus_does_not_raise_agent_skill_or_invocation_rank",
+    "incompatible_bonus_display": "Bonus inactif label_in_item_sheet_in_selected_familiar_context;underlying_item_bonus_preserved_when_ineligible",
+    "equipment_current_maximum_increase": "keep_existing_absolute_current_HP_and_energy_when_equipment_increases_maximum;no_restore",
+    "equipment_current_maximum_decrease": "current_equals_minimum_of_previous_current_and_new_maximum;no_restore_on_reequip",
+    "maximum_calculation": "compatible_equipment_attributes_feed_own_base_and_flat_and_percent_reserve_modifiers_follow_shared_accepted_order;exact_unapproved_familiar_energy_baseline_not_defined_here",
+    "scope_boundary": "no_decision_on_level_gain_full_restore_pet_spawn_recall_rank_purchase_owner_change_or_modifier_snapshot_timing"
+  },
+  "accepted_examples": {
+    "scope": "fictional_isolated_maximum_HP_item_example_without_percent_modifiers;no_actual_affix_created",
+    "before_current_HP": 70,
+    "before_maximum_HP": 100,
+    "flat_maximum_HP_item_bonus": 15,
+    "equipped_current_HP": 70,
+    "equipped_maximum_HP": 115,
+    "removed_current_HP": 70,
+    "removed_maximum_HP": 100
+  },
+  "approval_scope": "Shown eligible stat bonuses benefit familiar wearer under shared calculations; drone own Intelligence feeds own energy while agent Intelligence feeds invocation bonuses; compatible skill bonuses improve only existing familiar skill, can exceed effective rank10, do not grant new skill or improve owner skills; incompatible bonus labelled Bonus inactif in familiar item context; equipment changes preserve absolute current reserves and clamp on decrease without refill; isolated70/100 to70/115 to70/100 HP example accepted. Unshown curves, affixes, procs, timing and native UI remain pending.",
+  "unshown_cases_pending": [
+    "concrete_familiar_skill_affix_compatibility_and_full_effective_rank_curves_beyond10",
+    "exact_item_family_role_level_requirements_and_utility_model_armor_compatibility",
+    "armor_base_and_equipment_protection_calculation_and_accuracy_critical_profiles",
+    "equipment_on_hit_status_procs_triggered_effects_auras_and_all_drone_bonus_item_scope",
+    "raised_OC07_power_interaction_with_weapon_armor_attributes_and_skill_ranks",
+    "familiar_energy_baseline_regeneration_costs_and_action_modes",
+    "current_reserves_on_level_rank_owner_change_spawn_recall_and_snapshot_timing",
+    "item_transfer_distance_costs_timing_and_combat_conditions",
+    "raised_origin_gear_loot_identity_without_duplicate_generation",
+    "save_layer_transition_recall_disappearance_and_drop_cases",
+    "native_equipment_item_sheet_tooltip_skill_rank_color_and_body_layers"
+  ],
+  "native_visual_approval": "label_and_context_function_accepted;native_tooltip_layout_or_color_not_presented",
+  "runtime_integration": "not_integrated"
+}

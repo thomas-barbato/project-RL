@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-14",
+  "approval": "../skill-animation-review-73/visual-and-numeric-acceptance-01.json",
+  "shared_rule": "src/skills/area_damage.rs",
+  "catalogue_bindings": [
+    "SG00",
+    "SM00",
+    "A02",
+    "FE04",
+    "FE05",
+    "FR02",
+    "FR05",
+    "FR06",
+    "HY07",
+    "TR64"
+  ],
+  "changed_parameter_removals": {
+    "FE04": "maximum_edge_reduction_percent",
+    "FR06": "splash_percent_of_source_damage"
+  },
+  "all_other_existing_parameters_preserved": true,
+  "roleplay_names_icons_and_skill_ids_preserved": true,
+  "debug_build": "passed",
+  "locked_all_targets_check": "passed",
+  "format_check": "passed",
+  "scoped_diff_check": "passed",
+  "targeted_tests": {
+    "integer_spatial_damage_and_defense_pipeline": 6,
+    "catalogue_and_animation_lab": 146
+  },
+  "stale_nova_test_corrected": "Previous expectation excluded a fifth victim already within the accepted rank-11 radius. No Gel mechanic changed.",
+  "native_geometry_fixtures": 1152,
+  "browser_retention_values": 12530,
+  "native_skill_window_captures": [
+    "window-SG00/cold-start.png",
+    "window-FE04/cold-start.png",
+    "window-FR06/cold-start.png"
+  ],
+  "approved_review73_images_and_gifs_preserved": 4024,
+  "review69_and_dependencies_preserved": 8261,
+  "browser_errors": [],
+  "save_schema_and_existing_save_files_changed": false,
+  "campaign_refonte_actions": "To be connected during the already scheduled combat skill integration after animation reviews.",
+  "pending_adaptations": [
+    "directional damage",
+    "persistent status and ground damage"
+  ],
+  "remaining_unshown_animations": 36,
+  "catalogue_sha256": "b43bc47ad6ebef24a1c36a12f694cb27798084f4f6e309067f5e35922b7513ca"
+}

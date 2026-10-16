@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-ZONE04",
+  "revision": 2,
+  "title": "Entrer et sortir d'une zone persistante",
+  "status": "zone_entry_exit_explicitly_accepted;friendly_damage_metadata_reconciled_to_existing_scope;other_cases_pending;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-turn-resolution-INTERACT-TURN01-02.json",
+      "reference_sha256": "7b4840eacad218e900580fd1e8f3a2440f0abafa64f534f6c570efc3a80856af"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-timer-accounting-INTERACT-TIME01-03.json",
+      "reference_sha256": "fbd196b6934e34796e4378fab24370dcecee522a5aaa72a7feea9f5c774c58d3"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-status-reapplication-INTERACT-TIME02-02.json",
+      "reference_sha256": "735cb5cca559c9c0cc4c3ba45e68209a7784e5b3a6e7ecde1b8a4945b50ea730"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-overlapping-zone-status-INTERACT-ZONE02-02.json",
+      "reference_sha256": "adf11cd5575d75041363667c4b177cbe22b22bfdff1fa18db2273af66a411408"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-old-zone-status-refresh-INTERACT-ZONE03-02.json",
+      "reference_sha256": "7f8e8a98a68480505a3cf6e4d05df31f1f346b3c93d50dba9ae31694dc1383ba"
+    }
+  ],
+  "scope": "ordinary_persistent_ground_zone_entry_and_once_per_target_zone_reference_turn_application;not_mines_or_blocking_object_collisions",
+  "already_accepted": "immediate_creation_effect;per_zone_consecutive_exposure_and_exit_reset;independent_overlapping_zones_oldest_to_newest;latest_successful_actor_status_power;SELF_DMG01_player_only_and_existing_per_skill_ally_damage_rules",
+  "shown_example": {
+    "illustrative_not_skill_parameters": true,
+    "base_chance_percent": 10,
+    "entry_exposure1_percent": 10,
+    "next_continuous_turn_exposure2_percent": 20,
+    "after_exit_first_eligible_attempt_percent": 10,
+    "same_turn_reentry_after_used_budget": "no_new_attempt"
+  },
+  "shown_copy_markdown": "INTERACT-ZONE04 · Entrer et sortir d'une zone persistante — proposition\n\n- Entrer dans une zone déclenche son effet sur la cible dès l'arrivée, si cette zone ne l'a pas déjà affectée ce tour.\n- Chaque zone produit au maximum une application de son effet par cible et par tour. Se déplacer à l'intérieur, ou sortir puis revenir pendant le même tour, ne donne pas de dégâts ni de jet de statut supplémentaires de cette zone.\n- Rester dans la zone permet une nouvelle application au tour suivant. Pour les chances de statut, l'entrée compte comme la première exposition ; le cumul augmente une seule fois par tour passé dans cette zone, puis repart de zéro à la sortie.\n- En sortant, la cible cesse de subir les prochaines applications de cette zone. Poison, Brûlure et les autres statuts ayant leur propre durée continuent jusqu'à leur fin normale. Un Gel uniquement entretenu par la zone cesse à la sortie.\n\nExemple avec une chance de base de 10 % : premier jet à 10 %, jet du tour suivant à 20 % si la cible est restée dans la zone. Après une sortie, le premier jet suivant reprend à 10 %. Un retour pendant un tour déjà affecté ne donne pas un nouveau jet.\n\nSi plusieurs zones se superposent, chacune garde sa propre application et son propre cumul ; elles sont traitées de la plus ancienne à la plus récente. Les dégâts de statut distincts restent soumis au décompte déjà validé. Les protections contre les dégâts de vos propres sorts restent conservées.\n\nCes règles d'entrée et de cadence restent proposées, en attente de validation.",
+  "shown_copy_sha256": "d5845593ecd25ff9926bb47fe97fc336d2985bad32609131ffb7f92768160c62",
+  "not_resolved_here": [
+    "mine_arming_and_entry_trigger_phase",
+    "multiple_zone_only_Gel_source_provenance",
+    "initial_actor_creation_or_pending_familiar_placement_vs_zone_entry",
+    "simultaneous_multi_target_death_proc_ties",
+    "native_feedback"
+  ],
+  "mechanic_approval": "accepted_as_displayed;no_unshown_global_ally_immunity",
+  "text_approval": "shown_design_explanation_accepted;individual_skill_copy_not_newly_approved",
+  "visual_approval": "no_new_native_rendering_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-zone-entry-exit-INTERACT-ZONE04-01.json",
+    "reference_sha256": "df993511a338b5f0fcb3f793e6c61de459cf616f434198362ca479b8d105d86d"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/zone-entry-exit-acceptance-decisions.json",
+    "reference_sha256": "e681ee0892f3823a32a42d002205b6b5428b03394c85e02f17a6cfe4aa46c920"
+  },
+  "accepted_rule": {
+    "entry": "apply_eligible_zone_effect_immediately_on_entering_zone_if_zone_has_not_already_applied_to_target_in_current_reference_turn",
+    "application_budget": "at_most_one_own_zone_effect_application_and_status_attempt_per_zone_instance_target_and_reference_turn;creation_entry_and_automatic_phase_share_same_budget",
+    "same_turn_movement": "movement_within_zone_or_exit_reentry_does_not_grant_additional_own_zone_damage_or_status_attempt_if_budget_already_used",
+    "following_turn": "eligible_target_still_inside_can_receive_next_ordinary_zone_application_at_accepted_periodic_phase",
+    "exposure": "first_entry_application_is_exposure1;at_most_one_increment_per_zone_target_reference_turn_while_continuously_inside;exit_resets_only_exited_zone_counter;reentry_when_budget_used_has_no_attempt_or_increment_until_next_eligible_turn_at_exposure1",
+    "exit": "stop_future_effects_of_exited_zone;do_not_undo_resolved_damage;independently_timed_actor_statuses_keep_remaining_timer;Gel_solely_maintained_by_exited_zone_ends_under_existing_rule",
+    "overlap": "each_zone_own_budget_and_exposure;eligible_same_event_zones_oldest_to_newest;latest_successful_same_kind_status_replaces_power_and_duration_as_accepted",
+    "actor_periodic_status": "zone_application_budget_is_separate_from_actor_Poison_Burn_Bleed_accounting;existing_zone_refresh_of_present_status_has_no_extra_immediate_status_damage;new_status_first_application_and_no_same_turn_automatic_repeat_preserved",
+    "friendly_damage": "preserve_SELF_DMG01_player_only_immunity_from_own_damage;familiar_and_other_ally_eligibility_remains_per_skill_under_existing_approvals;no_general_ally_immunity_created",
+    "scope_boundary": "no_new_damage_chance_duration_numbers;no_mine_arming_or_entry_trigger_rule;multiple_source_zone_only_Gel_provenance_and_new_actor_placement_cases_pending"
+  },
+  "scope_reconciliation": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/zone-friendly-damage-metadata-reconciliation-01.json",
+    "reference_sha256": "ab441613144a2d9f3a4c878526377574f357f7b019532d3ce04867ef45d34794"
+  }
+}

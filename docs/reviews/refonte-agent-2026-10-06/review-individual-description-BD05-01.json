@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-08",
+  "id": "BD05",
+  "review_id": "BD05",
+  "revision": 1,
+  "title": "Écran tactique",
+  "branch": "Buffs à distance",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-100.json",
+  "source_skill_manifest_sha256": "bd3d23dbe5f474d8c9efafdc7ba21addc9a85742a0eb785ec281b633030dee36",
+  "source_skill_block_sha256": "a7881e01f3d3ec36d473afcaa4c1907a59c8d1dfddae59727e8d40a295fc294a",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "currently_transformed": false,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "intercepted_projectiles": 1,
+    "returned_projectile_damage_percent": 70,
+    "maximum_buff_duration_turns": 5,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "intercepted_projectiles": 1,
+    "returned_projectile_damage_percent": 73,
+    "maximum_buff_duration_turns": 5,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "formulas_proposed": {
+    "returned_projectile_damage_percent": "40+3*(effective_rank-1)",
+    "duration_turns": "3+floor((effective_rank-1)/5)",
+    "energy_cost": "10+floor((effective_rank-1)/3)",
+    "cooldown_turns": 8,
+    "full_curve_defaults_caps_rounding_and_clock_order": "unshown_pending_review"
+  },
+  "prior_unapproved_curve": "40+40*(effective_rank-1)/(effective_rank+9);archived_in_favor_of_more_rewarding_proposal_under_SKILL_PROG01",
+  "conditions_proposed": {
+    "one_weapon_projectile_that_would_hit_after_normal_accuracy_check_is_fully_intercepted": true,
+    "damage_base_is_incoming_shot_damage_before_player_protections": true,
+    "already_evaded_shots_do_not_consume_buff": true,
+    "return_requires_observed_shooter_and_clear_legal_path": true,
+    "neutralize_if_return_is_impossible": true,
+    "returned_shot_has_normal_accuracy_check_and_recipient_defenses": true,
+    "beams_explosions_and_spells_excluded": true,
+    "human_form_required": true,
+    "blocked_by_Silence": true,
+    "buff_icon_shows_remaining_duration": "HUD01-ALL01;native_pending",
+    "removed_BD03_dependency": "no_mirror_volley_reference_or_effect_restored",
+    "no_recursive_return_or_automatic_counter": "preserved_unshown_pending_review"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "new_RP_pending_individual_user_review",
+  "numeric_rules_approval": "one_projectile_current70_next73_duration5_energy13_CD8_proposed_pending_review",
+  "detailed_conditions_approval": "displayed_interception_and_return_conditions_proposed_pending_review",
+  "visual_intention_approval": "catalogue_inclined_screen_and_changed_trajectory_preserved;buff_icon_details_proposed",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "pending_individual_user_review",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "no_fictitious_incoming_shot_damage_range": true,
+    "own_weapon_damage_requirement": "not_applicable;defensive_buff_uses_incoming_enemy_projectile"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "returned_projectile_damage_percent"
+    ]
+  },
+  "player_copy_markdown": "**BD05 · Écran tactique — Rang 11 · Actif**\n\n*Un écran d’énergie détourne le prochain tir ennemi et le retourne contre son auteur.*\n\n**Effets actuels**\n\n- Projectiles arrêtés : **1**.\n- Dégâts du projectile renvoyé : **70 % des dégâts du tir ennemi**, avant vos protections.\n- Durée maximale du buff : **5 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts du projectile renvoyé : **73 % des dégâts du tir ennemi**.\n\n**Coût : 13 énergie · Recharge : 8 tours.**\n\nIntercepte un projectile d’arme sans explosion qui vous aurait touché. Un tir déjà esquivé ne consomme pas le buff.\n\nLe projectile repart vers son tireur s’il est visible et qu’aucun obstacle ne bloque le retour. Sinon, il est neutralisé. Le tir renvoyé peut manquer et reste soumis aux défenses de sa cible.\n\nRayons, explosions et sorts exclus. Forme humaine requise ; Silence empêche son utilisation.",
+  "player_copy_sha256": "c83803913de965910bbf97736eb2f156b9acd977666bad76c5dd173dd04f12fa",
+  "visual_copy_markdown": "**Visuel proposé :** un écran incliné dévie visiblement le projectile vers son tireur. Une icône dans la barre des buffs indique la durée restante d’Écran tactique.",
+  "visual_copy_sha256": "1374ea98961893a5ccdd899d194b897de699e1896954299e1b86e0e0cd5298ec",
+  "current_turn_shown_copy_markdown": "**BD05 · Écran tactique — Rang 11 · Actif**\n\n*Un écran d’énergie détourne le prochain tir ennemi et le retourne contre son auteur.*\n\n**Effets actuels**\n\n- Projectiles arrêtés : **1**.\n- Dégâts du projectile renvoyé : **70 % des dégâts du tir ennemi**, avant vos protections.\n- Durée maximale du buff : **5 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts du projectile renvoyé : **73 % des dégâts du tir ennemi**.\n\n**Coût : 13 énergie · Recharge : 8 tours.**\n\nIntercepte un projectile d’arme sans explosion qui vous aurait touché. Un tir déjà esquivé ne consomme pas le buff.\n\nLe projectile repart vers son tireur s’il est visible et qu’aucun obstacle ne bloque le retour. Sinon, il est neutralisé. Le tir renvoyé peut manquer et reste soumis aux défenses de sa cible.\n\nRayons, explosions et sorts exclus. Forme humaine requise ; Silence empêche son utilisation.\n\n**Visuel proposé :** un écran incliné dévie visiblement le projectile vers son tireur. Une icône dans la barre des buffs indique la durée restante d’Écran tactique.",
+  "current_turn_shown_copy_sha256": "5f9e55d2fc89de9a9115acc3a15d83a7cb21062e1809ff7aa7f41b3d9bf35bb9",
+  "unshown_cases_pending": [
+    "full_curve_defaults_caps_rounding_and_snapshot",
+    "projectile_eligibility_critical_elemental_mixed_damage_piercing_and_multishot",
+    "ordering_with_other_barriers_and_reflection_buffs",
+    "counter_recursion_source_attribution_kill_XP_loot_and_ally_collateral",
+    "buff_reapplication_expiry_map_change_visibility_and_refusal_atomicity",
+    "native_screen_trajectory_visibility_and_buff_icon"
+  ]
+}

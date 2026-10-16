@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-09",
+  "review_id": "DRONE-STAT03-ACCEPT01",
+  "user_reply": "ok :) on continue :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-drone-owner-and-actor-attribute-mapping-01.json",
+  "source_proposal_sha256": "92d296e512bea5335cbbea5d23f4d1d716991e839e700197aac4b0408831e38f",
+  "accepted_shown_copy_markdown": "Les **profils d’attributs des cinq drones sont validés**.\n\n**DRONE-STAT03 · Attributs du drone et bonus de l’agent — proposition**\n\n**Les attributs du drone**\n\n- **Force** : dégâts de ses attaques de mêlée.\n- **Perception** : dégâts de ses attaques physiques à distance.\n- **Volonté** : dégâts de ses pouvoirs magiques.\n- Ses autres caractéristiques utilisent également **ses propres attributs**, selon les règles communes.\n\n**L’Intelligence de l’agent**\n\nElle conserve le bonus prévu : **+1 % de dégâts et de PV maximum des drones par point au-dessus de 5**.\n\nL’Intelligence du drone alimenterait sa propre réserve d’énergie ; le bonus d’invocateur proviendrait uniquement de celle de l’agent.\n\nLes bonus de dégâts compatibles du drone et de l’invocateur **s’additionnent dans le même cumul**.\n\nPour ses PV maximum : **base issue de son niveau et de sa Vitalité → bonus fixes → pourcentages compatibles additionnés → arrondi à l’entier inférieur**.\n\n**Exemple isolé, sans bonus de rang d’invocation ni équipement**\n\n- Traqueur niveau 20, **Force 66** : **+61 % de dégâts de mêlée**.\n- Agent, **Intelligence 25** : **+20 %**.\n- Algorithmes de combat améliorés, rang 11 : **+45 %**.\n\n**Bonus total : +126 %.**\nUne attaque de base fictive de **20 dégâts** affiche **45 dégâts**, avant les défenses.\n\nSes **148 PV de base** deviennent **177 PV maximum** avec le seul bonus d’Intelligence de l’agent.\n\n**Ces origines de bonus et leur cumul restent à valider.**",
+  "accepted_shown_copy_sha256": "a4be3ea6d13c961260b8edcee345f88be94dd1ca3e2375a7e500f20d62ed5df1",
+  "accepted_shown_rules": {
+    "scope": "controlled_drones_with_own_actor_profiles;no_implicit_extension_of_owner_Intelligence_to_raised_or_future_non_drone_familiars",
+    "own_damage_attributes": {
+      "melee": "own_drone_Force",
+      "physical_ranged": "own_drone_Perception",
+      "magical_powers": "own_drone_Volonte"
+    },
+    "own_damage_coefficients": "preserve_common_one_percentage_point_per_corresponding_own_attribute_point_above_reference5;own_Force_and_Perception_cover_eligible_direct_weapon_components;Volonte_for_magical_powers_not_automatic_elemental_weapon_reclassification",
+    "own_other_statistics": "derive_from_drone_own_attributes_under_common_actor_rules;no_copy_of_player_attributes_or_personal_equipment",
+    "owner_Intelligence": "one_percentage_point_drone_damage_and_maximum_HP_bonus_per_agent_Intelligence_point_above_reference5",
+    "own_Intelligence": "contributes_to_own_energy_under_common_attribute_rules;does_not_add_the_owner_summoning_damage_and_HP_bonus_a_second_time_from_own_Intelligence",
+    "damage_pool": "add_eligible_own_attack_attribute_bonus_owner_Intelligence_bonus_and_other_compatible_drone_damage_percentage_points_in_one_pool;actual_invocation_rank_bonus_values_remain_pending",
+    "maximum_HP_modifier_order": "accepted_own_level_and_Vitalite_base_plus_compatible_flat_HP_modifiers_then_one_additive_compatible_percent_pool_including_owner_Intelligence_then_floor_final_maximum_once",
+    "damage_readout": "integer_predefense_readout_floor;preserve_exact_intermediate_fractions_for_later_damage_defenses_and_final_ordinary_damage_floor;no_intermediate_mechanical_damage_rounding_introduced"
+  },
+  "accepted_examples": {
+    "scope": "isolated_damage_bonus_pool_and_maximum_HP_examples;native_base20_fictional;invocation_rank_and_equipment_bonuses_omitted;no_new_attack_item_or_damage_variance",
+    "drone_model": "D58",
+    "level": 20,
+    "own_Force": 66,
+    "own_Force_damage_bonus_percent": 61,
+    "own_Vitalite": 25,
+    "base_maximum_HP": 148,
+    "owner_Intelligence": 25,
+    "owner_Intelligence_damage_and_HP_bonus_percent": 20,
+    "O03_rank": 11,
+    "O03_damage_bonus_percent": 45,
+    "total_damage_bonus_percent": 126,
+    "fictional_attack_base_damage": 20,
+    "exact_predefense_damage": {
+      "numerator": 226,
+      "denominator": 5
+    },
+    "integer_predefense_damage_readout": 45,
+    "exact_maximum_HP_before_floor": {
+      "numerator": 888,
+      "denominator": 5
+    },
+    "maximum_HP_after_owner_bonus_floor": 177
+  },
+  "approval_scope": "Displayed own_drone_attribute_damage_mapping, owner_Intelligence_single_damage_and_HP_bonus, own_Intelligence_energy_role, additive_compatible_damage_pool, own_level_Vitalite_HP_base_then_flat_then_additive_percent_then_floor, isolated45_damage_and177_HP examples accepted. Actual invocation_rank_curves, weapon_base, current_resources and PETS_EQ01 complements not inferred.",
+  "unshown_cases_pending": [
+    "actual_invocation_rank_bonus_curves_and_native_or_equipped_attack_base",
+    "drone_accuracy_evasion_critical_baselines_and_attack_defense_pipeline",
+    "own_Force_vs_Perception_mixed_components_native_weapon_family_mapping_and_gear_affix_eligibility",
+    "owner_bonus_dynamic_timing_vs_spawn_snapshots",
+    "own_maximum_energy_base_regeneration_and_actions_energy_costs",
+    "current_HP_or_energy_on_player_level_gain_equipment_recall_and_resummoning",
+    "PETS_EQ01_complements_and_all_slot_family_lifecycle_rules",
+    "Mule_capacity_Eclaireur_vision_and_non_damage_power_rules",
+    "exact_native_tooltips_stat_sheet_and_all_other_unshown_cases"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,376 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/attribute-usefulness-decisions.json",
+  "latest_decisions_sha256": "1c988f144f52cb6a5609cc40e499c81c97a460b9c9b754b93ac2cee682e3666f",
+  "status": "proposal_calculations_not_runtime_tests",
+  "attribute_examples": [
+    {
+      "attribute_before": 5,
+      "attribute_after": 10,
+      "force_melee_damage_bonus_percent": [
+        0,
+        10
+      ],
+      "agility_physical_damage_bonus_percent": [
+        0.0,
+        2.5
+      ],
+      "agility_accuracy_and_evasion_modifier": [
+        0,
+        10
+      ],
+      "vitality_max_hp_before_percentage_bonuses_at_level_10": [
+        48,
+        68
+      ],
+      "perception_ranged_weapon_damage_bonus_percent": [
+        0,
+        10
+      ],
+      "perception_vision_distance": [
+        8,
+        8
+      ],
+      "intelligence_drone_hp_and_damage_bonus_percent": [
+        0,
+        10
+      ],
+      "willpower_spell_damage_bonus_percent": [
+        0,
+        10
+      ],
+      "independent_max_energy_gain_from_five_intelligence_or_willpower_points": 10
+    },
+    {
+      "attribute_before": 100,
+      "attribute_after": 105,
+      "force_melee_damage_bonus_percent": [
+        190,
+        200
+      ],
+      "agility_physical_damage_bonus_percent": [
+        47.5,
+        50.0
+      ],
+      "agility_accuracy_and_evasion_modifier": [
+        190,
+        200
+      ],
+      "vitality_max_hp_before_percentage_bonuses_at_level_10": [
+        428,
+        448
+      ],
+      "perception_ranged_weapon_damage_bonus_percent": [
+        190,
+        200
+      ],
+      "perception_vision_distance": [
+        16,
+        16
+      ],
+      "intelligence_drone_hp_and_damage_bonus_percent": [
+        190,
+        200
+      ],
+      "willpower_spell_damage_bonus_percent": [
+        190,
+        200
+      ],
+      "independent_max_energy_gain_from_five_intelligence_or_willpower_points": 10
+    },
+    {
+      "attribute_before": 200,
+      "attribute_after": 205,
+      "force_melee_damage_bonus_percent": [
+        390,
+        400
+      ],
+      "agility_physical_damage_bonus_percent": [
+        97.5,
+        100.0
+      ],
+      "agility_accuracy_and_evasion_modifier": [
+        390,
+        400
+      ],
+      "vitality_max_hp_before_percentage_bonuses_at_level_10": [
+        828,
+        848
+      ],
+      "perception_ranged_weapon_damage_bonus_percent": [
+        390,
+        400
+      ],
+      "perception_vision_distance": [
+        16,
+        16
+      ],
+      "intelligence_drone_hp_and_damage_bonus_percent": [
+        390,
+        400
+      ],
+      "willpower_spell_damage_bonus_percent": [
+        390,
+        400
+      ],
+      "independent_max_energy_gain_from_five_intelligence_or_willpower_points": 10
+    },
+    {
+      "attribute_before": 1000,
+      "attribute_after": 1005,
+      "force_melee_damage_bonus_percent": [
+        1990,
+        2000
+      ],
+      "agility_physical_damage_bonus_percent": [
+        497.5,
+        500.0
+      ],
+      "agility_accuracy_and_evasion_modifier": [
+        1990,
+        2000
+      ],
+      "vitality_max_hp_before_percentage_bonuses_at_level_10": [
+        4028,
+        4048
+      ],
+      "perception_ranged_weapon_damage_bonus_percent": [
+        1990,
+        2000
+      ],
+      "perception_vision_distance": [
+        16,
+        16
+      ],
+      "intelligence_drone_hp_and_damage_bonus_percent": [
+        1990,
+        2000
+      ],
+      "willpower_spell_damage_bonus_percent": [
+        1990,
+        2000
+      ],
+      "independent_max_energy_gain_from_five_intelligence_or_willpower_points": 10
+    }
+  ],
+  "skill_examples": [
+    {
+      "effective_level": 1,
+      "O01": {
+        "base_hp": 20,
+        "base_damage": 4,
+        "base_duration": 8,
+        "base_energy_cost": 12
+      },
+      "O02": {
+        "damage_reduction_percent_display": 15.0,
+        "base_duration": 3,
+        "base_energy_cost": 8
+      },
+      "O03": {
+        "drone_damage_bonus_percent": 25
+      },
+      "T01": {
+        "damage_bonus_percent": 40,
+        "mark_duration": 4,
+        "base_energy_cost": 6
+      },
+      "T02": {
+        "evasion_bonus": 15,
+        "duration": 2,
+        "base_energy_cost": 8
+      },
+      "T03": {
+        "ranged_damage_bonus_percent": 10
+      },
+      "A01": {
+        "base_damage": 8,
+        "base_energy_cost": 6
+      },
+      "A02": {
+        "base_damage": 6,
+        "base_energy_cost": 10
+      },
+      "A03": {
+        "magic_cost_reduction_percent_display": 20.0,
+        "A01_energy_cost_with_same_level_passive_only": 5
+      },
+      "M01": {
+        "base_claw_damage": 8,
+        "base_duration": 6,
+        "base_energy_cost": 12
+      },
+      "M02": {
+        "base_damage": 7,
+        "base_energy_cost": 6
+      },
+      "M03": {
+        "direct_damage_reduction_percent_display": 5.0
+      }
+    },
+    {
+      "effective_level": 10,
+      "O01": {
+        "base_hp": 56,
+        "base_damage": 13,
+        "base_duration": 11,
+        "base_energy_cost": 15
+      },
+      "O02": {
+        "damage_reduction_percent_display": 31.6,
+        "base_duration": 4,
+        "base_energy_cost": 11
+      },
+      "O03": {
+        "drone_damage_bonus_percent": 43
+      },
+      "T01": {
+        "damage_bonus_percent": 130,
+        "mark_duration": 5,
+        "base_energy_cost": 9
+      },
+      "T02": {
+        "evasion_bonus": 42,
+        "duration": 3,
+        "base_energy_cost": 11
+      },
+      "T03": {
+        "ranged_damage_bonus_percent": 28
+      },
+      "A01": {
+        "base_damage": 35,
+        "base_energy_cost": 9
+      },
+      "A02": {
+        "base_damage": 24,
+        "base_energy_cost": 13
+      },
+      "A03": {
+        "magic_cost_reduction_percent_display": 34.2,
+        "A01_energy_cost_with_same_level_passive_only": 6
+      },
+      "M01": {
+        "base_claw_damage": 26,
+        "base_duration": 9,
+        "base_energy_cost": 15
+      },
+      "M02": {
+        "base_damage": 25,
+        "base_energy_cost": 9
+      },
+      "M03": {
+        "direct_damage_reduction_percent_display": 12.1
+      }
+    },
+    {
+      "effective_level": 12,
+      "O01": {
+        "base_hp": 64,
+        "base_damage": 15,
+        "base_duration": 11,
+        "base_energy_cost": 15
+      },
+      "O02": {
+        "damage_reduction_percent_display": 33.3,
+        "base_duration": 5,
+        "base_energy_cost": 11
+      },
+      "O03": {
+        "drone_damage_bonus_percent": 47
+      },
+      "T01": {
+        "damage_bonus_percent": 150,
+        "mark_duration": 6,
+        "base_energy_cost": 9
+      },
+      "T02": {
+        "evasion_bonus": 48,
+        "duration": 4,
+        "base_energy_cost": 11
+      },
+      "T03": {
+        "ranged_damage_bonus_percent": 32
+      },
+      "A01": {
+        "base_damage": 41,
+        "base_energy_cost": 9
+      },
+      "A02": {
+        "base_damage": 28,
+        "base_energy_cost": 13
+      },
+      "A03": {
+        "magic_cost_reduction_percent_display": 35.7,
+        "A01_energy_cost_with_same_level_passive_only": 6
+      },
+      "M01": {
+        "base_claw_damage": 30,
+        "base_duration": 9,
+        "base_energy_cost": 15
+      },
+      "M02": {
+        "base_damage": 29,
+        "base_energy_cost": 9
+      },
+      "M03": {
+        "direct_damage_reduction_percent_display": 12.9
+      }
+    },
+    {
+      "effective_level": 100,
+      "O01": {
+        "base_hp": 416,
+        "base_damage": 103,
+        "base_duration": 41,
+        "base_energy_cost": 45
+      },
+      "O02": {
+        "damage_reduction_percent_display": 46.8,
+        "base_duration": 22,
+        "base_energy_cost": 41
+      },
+      "O03": {
+        "drone_damage_bonus_percent": 223
+      },
+      "T01": {
+        "damage_bonus_percent": 1030,
+        "mark_duration": 23,
+        "base_energy_cost": 39
+      },
+      "T02": {
+        "evasion_bonus": 312,
+        "duration": 21,
+        "base_energy_cost": 41
+      },
+      "T03": {
+        "ranged_damage_bonus_percent": 208
+      },
+      "A01": {
+        "base_damage": 305,
+        "base_energy_cost": 39
+      },
+      "A02": {
+        "base_damage": 204,
+        "base_energy_cost": 43
+      },
+      "A03": {
+        "magic_cost_reduction_percent_display": 47.2,
+        "A01_energy_cost_with_same_level_passive_only": 21
+      },
+      "M01": {
+        "base_claw_damage": 206,
+        "base_duration": 39,
+        "base_energy_cost": 45
+      },
+      "M02": {
+        "base_damage": 205,
+        "base_energy_cost": 39
+      },
+      "M03": {
+        "direct_damage_reduction_percent_display": 18.6
+      }
+    }
+  ],
+  "combat_balance": "not_playtested"
+}

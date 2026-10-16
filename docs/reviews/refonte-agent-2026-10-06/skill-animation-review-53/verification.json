@@ -1,0 +1,468 @@
+{
+  "native_views": 25,
+  "controls": [
+    {
+      "variant": "T01-A01-HAUT",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": true,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-DROITE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": true,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-GAUCHE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": true,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-BAS",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": true,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-ATTENTE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": true,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-CLOISON",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-CACHE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-SURVOL",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": true,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-MELEE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-SILENCE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-TRANSFORME",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-MANQUE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": true,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-RAFALE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": true,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-EXPIRATION",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": true,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T01-A01-REMPLACEMENT",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": true,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T03-A01-HAUT",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T03-A01-DROITE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T03-A01-GAUCHE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T03-A01-BAS",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T03-A01-ATTENTE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T03-A01-CLOISON",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T03-A01-CACHE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T03-A01-SURVOL",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T03-A01-MELEE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    },
+    {
+      "variant": "T03-A01-DRONE",
+      "world_walls_clear": true,
+      "mark_cast_refusals_or_consume_expiry_checked": true,
+      "mark_applies_shared_negative_reaction": false,
+      "no_idle_timer_advance_or_replayed_hit": true,
+      "mastery_no_timed_status": true,
+      "damage_totals_include_bonus": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "T01-A01-HAUT-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 29
+    },
+    {
+      "file": "T01-A01-DROITE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 29
+    },
+    {
+      "file": "T01-A01-GAUCHE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 29
+    },
+    {
+      "file": "T01-A01-BAS-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 29
+    },
+    {
+      "file": "T01-A01-ATTENTE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 11
+    },
+    {
+      "file": "T01-A01-CLOISON-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 1
+    },
+    {
+      "file": "T01-A01-CACHE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 1
+    },
+    {
+      "file": "T01-A01-SURVOL-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 29
+    },
+    {
+      "file": "T01-A01-MELEE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 1
+    },
+    {
+      "file": "T01-A01-SILENCE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 1
+    },
+    {
+      "file": "T01-A01-TRANSFORME-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 1
+    },
+    {
+      "file": "T01-A01-MANQUE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 29
+    },
+    {
+      "file": "T01-A01-RAFALE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 29
+    },
+    {
+      "file": "T01-A01-EXPIRATION-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 28
+    },
+    {
+      "file": "T01-A01-REMPLACEMENT-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 25
+    },
+    {
+      "file": "T03-A01-HAUT-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 19
+    },
+    {
+      "file": "T03-A01-DROITE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 19
+    },
+    {
+      "file": "T03-A01-GAUCHE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 19
+    },
+    {
+      "file": "T03-A01-BAS-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 19
+    },
+    {
+      "file": "T03-A01-ATTENTE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 19
+    },
+    {
+      "file": "T03-A01-CLOISON-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 1
+    },
+    {
+      "file": "T03-A01-CACHE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 1
+    },
+    {
+      "file": "T03-A01-SURVOL-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 19
+    },
+    {
+      "file": "T03-A01-MELEE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 19
+    },
+    {
+      "file": "T03-A01-DRONE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 19
+    },
+    {
+      "file": "marquage-maitrise-64.gif",
+      "size": [
+        640,
+        720
+      ],
+      "duration_ms": 13330,
+      "distinct_frames": 143
+    }
+  ],
+  "protected_files_unchanged": 7607,
+  "resampling_of_native_capture": false
+}

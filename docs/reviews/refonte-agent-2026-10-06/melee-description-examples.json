@@ -1,0 +1,386 @@
+{
+  "date": "2026-10-06",
+  "status": "proposed_design_calculations_not_engine_tests",
+  "default_reference": {
+    "effective_rank": 1,
+    "force": 5,
+    "agility": 5
+  },
+  "current_example": {
+    "learned_rank": 10,
+    "equipment_rank_bonus": 2,
+    "effective_rank": 12,
+    "force": 10,
+    "agility": 10,
+    "damage_attribute_multiplier": 1.1275,
+    "attribute_coefficients_approval": "pending_user_review",
+    "actual_user_save": false
+  },
+  "both_profiles": {
+    "weapon_damage": 20,
+    "weapon_range": 1,
+    "other_cost_or_damage_modifiers": false
+  },
+  "rows": [
+    {
+      "id": "B01",
+      "samples": [
+        {
+          "effective_rank": 1,
+          "damage_percent": 140,
+          "extra_damage_percent": 40,
+          "energy": 6,
+          "cooldown_turns": 3,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 5,
+          "damage_percent": 180,
+          "extra_damage_percent": 80,
+          "energy": 7,
+          "cooldown_turns": 3,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 10,
+          "damage_percent": 230,
+          "extra_damage_percent": 130,
+          "energy": 9,
+          "cooldown_turns": 3,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 12,
+          "damage_percent": 250,
+          "extra_damage_percent": 150,
+          "energy": 9,
+          "cooldown_turns": 3,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 100,
+          "damage_percent": 1130,
+          "extra_damage_percent": 1030,
+          "energy": 39,
+          "cooldown_turns": 3,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 1000,
+          "damage_percent": 10130,
+          "extra_damage_percent": 10030,
+          "energy": 339,
+          "cooldown_turns": 3,
+          "target_limit": 1
+        }
+      ],
+      "default_damage_before_defenses": 28,
+      "current_example_damage_before_defenses": 56
+    },
+    {
+      "id": "ME02",
+      "samples": [
+        {
+          "effective_rank": 1,
+          "damage_percent": 80,
+          "energy": 8,
+          "cooldown_turns": 3,
+          "adjacent_cells": 3,
+          "target_limit": 3
+        },
+        {
+          "effective_rank": 5,
+          "damage_percent": 100,
+          "energy": 9,
+          "cooldown_turns": 3,
+          "adjacent_cells": 3,
+          "target_limit": 3
+        },
+        {
+          "effective_rank": 10,
+          "damage_percent": 125,
+          "energy": 10,
+          "cooldown_turns": 3,
+          "adjacent_cells": 3,
+          "target_limit": 3
+        },
+        {
+          "effective_rank": 12,
+          "damage_percent": 135,
+          "energy": 10,
+          "cooldown_turns": 3,
+          "adjacent_cells": 3,
+          "target_limit": 3
+        },
+        {
+          "effective_rank": 100,
+          "damage_percent": 575,
+          "energy": 32,
+          "cooldown_turns": 3,
+          "adjacent_cells": 3,
+          "target_limit": 3
+        },
+        {
+          "effective_rank": 1000,
+          "damage_percent": 5075,
+          "energy": 257,
+          "cooldown_turns": 3,
+          "adjacent_cells": 3,
+          "target_limit": 3
+        }
+      ],
+      "default_damage_before_defenses": 16,
+      "current_example_damage_before_defenses": 30
+    },
+    {
+      "id": "ME03",
+      "samples": [
+        {
+          "effective_rank": 1,
+          "damage_percent": 100,
+          "energy": 8,
+          "cooldown_turns": 4,
+          "armor_ignored_percent": {
+            "numerator": 20,
+            "denominator": 1,
+            "display": 20.0
+          },
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 5,
+          "damage_percent": 132,
+          "energy": 9,
+          "cooldown_turns": 4,
+          "armor_ignored_percent": {
+            "numerator": 35,
+            "denominator": 1,
+            "display": 35.0
+          },
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 10,
+          "damage_percent": 172,
+          "energy": 11,
+          "cooldown_turns": 4,
+          "armor_ignored_percent": {
+            "numerator": 320,
+            "denominator": 7,
+            "display": 45.7
+          },
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 12,
+          "damage_percent": 188,
+          "energy": 11,
+          "cooldown_turns": 4,
+          "armor_ignored_percent": {
+            "numerator": 1120,
+            "denominator": 23,
+            "display": 48.7
+          },
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 100,
+          "damage_percent": 892,
+          "energy": 41,
+          "cooldown_turns": 4,
+          "armor_ignored_percent": {
+            "numerator": 2720,
+            "denominator": 37,
+            "display": 73.5
+          },
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 1000,
+          "damage_percent": 8092,
+          "energy": 341,
+          "cooldown_turns": 4,
+          "armor_ignored_percent": {
+            "numerator": 26720,
+            "denominator": 337,
+            "display": 79.3
+          },
+          "target_limit": 1
+        }
+      ],
+      "default_damage_before_defenses": 20,
+      "current_example_damage_before_defenses": 42
+    },
+    {
+      "id": "ME04",
+      "samples": [
+        {
+          "effective_rank": 1,
+          "damage_percent": 90,
+          "energy": 7,
+          "cooldown_turns": 3,
+          "push_max_cells": 1,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 5,
+          "damage_percent": 114,
+          "energy": 8,
+          "cooldown_turns": 3,
+          "push_max_cells": 1,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 10,
+          "damage_percent": 144,
+          "energy": 9,
+          "cooldown_turns": 3,
+          "push_max_cells": 2,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 12,
+          "damage_percent": 156,
+          "energy": 9,
+          "cooldown_turns": 3,
+          "push_max_cells": 3,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 100,
+          "damage_percent": 684,
+          "energy": 31,
+          "cooldown_turns": 3,
+          "push_max_cells": 3,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 1000,
+          "damage_percent": 6084,
+          "energy": 256,
+          "cooldown_turns": 3,
+          "push_max_cells": 3,
+          "target_limit": 1
+        }
+      ],
+      "default_damage_before_defenses": 18,
+      "current_example_damage_before_defenses": 35
+    },
+    {
+      "id": "ME05",
+      "samples": [
+        {
+          "effective_rank": 1,
+          "damage_percent": 110,
+          "energy": 10,
+          "cooldown_turns": 5,
+          "target_max_distance": 3,
+          "target_min_distance": 2,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 5,
+          "damage_percent": 142,
+          "energy": 11,
+          "cooldown_turns": 5,
+          "target_max_distance": 4,
+          "target_min_distance": 2,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 10,
+          "damage_percent": 182,
+          "energy": 13,
+          "cooldown_turns": 5,
+          "target_max_distance": 5,
+          "target_min_distance": 2,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 12,
+          "damage_percent": 198,
+          "energy": 13,
+          "cooldown_turns": 5,
+          "target_max_distance": 5,
+          "target_min_distance": 2,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 100,
+          "damage_percent": 902,
+          "energy": 43,
+          "cooldown_turns": 5,
+          "target_max_distance": 6,
+          "target_min_distance": 2,
+          "target_limit": 1
+        },
+        {
+          "effective_rank": 1000,
+          "damage_percent": 8102,
+          "energy": 343,
+          "cooldown_turns": 5,
+          "target_max_distance": 6,
+          "target_min_distance": 2,
+          "target_limit": 1
+        }
+      ],
+      "default_damage_before_defenses": 22,
+      "current_example_damage_before_defenses": 44
+    },
+    {
+      "id": "ME06",
+      "samples": [
+        {
+          "effective_rank": 1,
+          "damage_percent": 60,
+          "energy": 12,
+          "cooldown_turns": 6,
+          "adjacent_cells": 8,
+          "target_limit": 8
+        },
+        {
+          "effective_rank": 5,
+          "damage_percent": 80,
+          "energy": 13,
+          "cooldown_turns": 6,
+          "adjacent_cells": 8,
+          "target_limit": 8
+        },
+        {
+          "effective_rank": 10,
+          "damage_percent": 105,
+          "energy": 15,
+          "cooldown_turns": 6,
+          "adjacent_cells": 8,
+          "target_limit": 8
+        },
+        {
+          "effective_rank": 12,
+          "damage_percent": 115,
+          "energy": 15,
+          "cooldown_turns": 6,
+          "adjacent_cells": 8,
+          "target_limit": 8
+        },
+        {
+          "effective_rank": 100,
+          "damage_percent": 555,
+          "energy": 45,
+          "cooldown_turns": 6,
+          "adjacent_cells": 8,
+          "target_limit": 8
+        },
+        {
+          "effective_rank": 1000,
+          "damage_percent": 5055,
+          "energy": 345,
+          "cooldown_turns": 6,
+          "adjacent_cells": 8,
+          "target_limit": 8
+        }
+      ],
+      "default_damage_before_defenses": 12,
+      "current_example_damage_before_defenses": 25
+    }
+  ]
+}

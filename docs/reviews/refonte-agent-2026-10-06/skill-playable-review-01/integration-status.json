@@ -1,0 +1,142 @@
+{
+  "review": "AGENT-ALL01",
+  "date": "2026-10-16",
+  "catalogue_total": 94,
+  "active_total": 68,
+  "executable_active_count": 68,
+  "executable_active": [
+    "A01",
+    "A02",
+    "AF02",
+    "AF03",
+    "AF04",
+    "AF05",
+    "B01",
+    "B02",
+    "BM01",
+    "BM02",
+    "BM05",
+    "D56",
+    "D57",
+    "D58",
+    "D59",
+    "D66",
+    "DI01",
+    "DI02",
+    "DI03",
+    "DI04",
+    "DI05",
+    "DI07",
+    "DR01",
+    "ES03",
+    "ES05",
+    "FE01",
+    "FE02",
+    "FE03",
+    "FE04",
+    "FE05",
+    "FE06",
+    "FR01",
+    "FR02",
+    "FR03",
+    "FR04",
+    "FR05",
+    "FR06",
+    "HL01",
+    "HL02",
+    "HL03",
+    "HL06",
+    "HY04",
+    "HY05",
+    "HY06",
+    "HY07",
+    "M01",
+    "M02",
+    "ME02",
+    "ME03",
+    "ME04",
+    "ME05",
+    "ME06",
+    "O02",
+    "OC04",
+    "OC05",
+    "OC07",
+    "SF00",
+    "SG00",
+    "SM00",
+    "SU03",
+    "SU04",
+    "SU05",
+    "T01",
+    "T02",
+    "TR61",
+    "TR63",
+    "TR64",
+    "TR65"
+  ],
+  "pending_active": [],
+  "pending_active_count": 0,
+  "ui_entry_points": [
+    "skill_tree_use",
+    "hotbar_mouse_and_key",
+    "world_context_skill"
+  ],
+  "notes": [
+    "Approved artwork, text and mechanics retain their separate acceptance scope.",
+    "No Git commit, staging, push or history rewrite.",
+    "Automatic approval review blocked deletion of current diagnostic captures and logs. No deletion workaround or retry."
+  ],
+  "targeting": {
+    "review": "AGENT-AIM02",
+    "hover_without_click": true,
+    "keyboard_priority_until_mouse_moves": true,
+    "left_click_confirms": true,
+    "explicit_confirmation": true
+  },
+  "passive_total": 26,
+  "validation": "targeted_checks_passed_global_suite_not_green",
+  "decisions": {
+    "HL01-ZONE01": {
+      "selection": "5x5_cursor_centered",
+      "user_approved": true
+    },
+    "SF00-DETECTION01": {
+      "base_detection_ratio": [
+        1,
+        4
+      ],
+      "SF02_ratio_per_rank": [
+        4,
+        5
+      ],
+      "minimum_cells": 1,
+      "insufficient_step_energy": "exit_stealth_then_normal_step",
+      "user_approved_for_first_tests": true
+    }
+  },
+  "laboratory": {
+    "argument": "--laboratoire-competences",
+    "learned_catalogue_rank": 1,
+    "skill_points": 1000,
+    "isolated_session": true
+  },
+  "cleanup": {
+    "status": "blocked_by_automatic_approval_review",
+    "files_removed": 0,
+    "targeted_files": 19,
+    "targeted_bytes": 2242372,
+    "reason": "blocked by policy; no more specific reason supplied",
+    "retried": false,
+    "source_assets_preserved": true,
+    "game_binary_preserved": true
+  },
+  "latest_repairs": {
+    "review": "AGENT-FIX02",
+    "status": "verified_targeted_repairs",
+    "blizzard_decision": "FR05-HITS02",
+    "engine_passed": 949,
+    "agent_ui_passed": 231,
+    "context_passed": 53,
+    "global_historical_suite_not_rerun": true
+  }
+}

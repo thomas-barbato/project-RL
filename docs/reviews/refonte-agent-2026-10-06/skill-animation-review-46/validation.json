@@ -1,0 +1,28 @@
+{
+  "native_gpu_capture": "passed",
+  "capture_size": [
+    1280,
+    720
+  ],
+  "lossless_native_encoding": true,
+  "native_body_size": [
+    64,
+    64
+  ],
+  "no_32px_intermediate": true,
+  "native_silhouette_iou": 0.97906,
+  "violet_pixels_in_body": 0,
+  "Abysse_approved_artifacts_unchanged": 6253,
+  "local_links": {
+    "checked": 7,
+    "missing": 0
+  },
+  "build_locked_debug": "passed",
+  "visual_status": "awaiting player approval",
+  "campaign_integration": false,
+  "not_run": [
+    "Full engine suite",
+    "Release build",
+    "Browser rendering; native GPU readback inspected."
+  ]
+}

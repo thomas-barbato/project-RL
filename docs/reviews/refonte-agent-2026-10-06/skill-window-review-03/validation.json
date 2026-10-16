@@ -1,0 +1,55 @@
+{
+  "review_id": "SKILLS-UI03",
+  "status": "awaiting_layout_review",
+  "prototype_only": true,
+  "large": {
+    "allImagesLoaded": true,
+    "cardOverflow": false,
+    "detailHeaderWidth": 48,
+    "horizontalOverflow": false,
+    "illustrationWidth": 192,
+    "shell": 1229,
+    "statusWidths": [
+      32,
+      32
+    ],
+    "treeIcons": [
+      {
+        "source": 64,
+        "src": "../skill-icon-review-11/FE01-C01-64.png",
+        "width": 64
+      },
+      {
+        "source": 64,
+        "src": "../skill-icon-review-12/FE05-C02-64.png",
+        "width": 64
+      }
+    ],
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    }
+  },
+  "small": {
+    "cardOverflow": false,
+    "horizontalOverflow": false,
+    "illustrationWidth": 192,
+    "imagesLoaded": true,
+    "shellWidth": 960,
+    "treeIconWidths": [
+      64,
+      64,
+      64,
+      64,
+      64,
+      64
+    ],
+    "viewportWidth": 1280
+  },
+  "checks": {
+    "skill_data_unchanged": true,
+    "approved_export_hashes_preserved": 121,
+    "script_syntax": true,
+    "gameplay_changed": false
+  }
+}

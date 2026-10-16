@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-08",
+  "id": "SG04",
+  "review_id": "SG04",
+  "revision": 1,
+  "title": "Puissance des grenades",
+  "branch": "Grenades",
+  "kind": "secondary_passive",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-123.json",
+  "source_skill_manifest_sha256": "dd1979dab67b046c5d18c12fb4ebb09d5decf13fcaf329da72ba2b6d2d7e5e9f",
+  "source_skill_block_sha256": "f6bdf470061477458eec93fd20c759cd4a26b74409205b18e9643ba150c84124",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "SG00_learned_rank": 1,
+    "other_modifiers": false,
+    "active_weapon_profile": "not_specified;no_weapon_damage_range_invented",
+    "attributes": "no_new_attribute_multiplier_added_to_passive_bonus"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "grenade_and_grenade_launcher_damage_bonus_percent": 110
+  },
+  "next_values_proposal": {
+    "grenade_and_grenade_launcher_damage_bonus_percent": 120
+  },
+  "default_values_proposal": {
+    "grenade_and_grenade_launcher_damage_bonus_percent": 10
+  },
+  "formula_proposed": "10*effective_rank percent;current11=110;next12=120;existing_unapproved_linear_curve_preserved",
+  "calculation_evidence": {
+    "current_bonus": "10*11=110",
+    "next_bonus": "10*12=120",
+    "no_damage_example_or_weapon_variance_invented": true
+  },
+  "conditions_proposed": {
+    "SG00_prerequisite": true,
+    "automatic_learned_passive": true,
+    "explosive_variant_of_SG00": true,
+    "player_grenade_launcher_attacks": true,
+    "bonus_applied_before_defenses": true,
+    "only_existing_grenade_attack_damage_increased": true,
+    "blinding_and_sound_variants_do_not_gain_damage": true,
+    "weapon_grenade_launcher_ammunition_and_ordinary_attack_attributes_preserved": true,
+    "no_weapon_requirement_to_learn_passive": true,
+    "existing_SG00_and_weapon_attack_requirements_preserved": true,
+    "range_radius_status_chance_duration_and_loudness_not_modified_by_this_bonus": true,
+    "damage_component_rounding_and_other_bonus_stacking": "pending_review",
+    "status_damage_ground_cloud_and_secondary_explosion_eligibility": "pending_review;no_new_damage_source_inferred",
+    "no_new_activation_energy_cost_cooldown_or_timed_player_buff": true,
+    "equipment_bonus_above10": "common_effective_rank_rule_preserved;unshown_full_bonus_curve_pending"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "grenade_and_grenade_launcher_damage_bonus_percent"
+    ],
+    "no_formula_or_learned_and_bonus_breakdown_in_player_copy": true
+  },
+  "throw_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG00-02.json",
+  "throw_reference_sha256": "01186b326cc84fc0ce07c65ca0bcbc7b1e7e5654ef636cccf4015820c7610093",
+  "blinding_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG01-02.json",
+  "blinding_reference_sha256": "ebac5d78bbebdbd460d1bb95d1b769a0f84fdc1b4ee9bb1be51796f208dc27aa",
+  "sound_lure_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG02-02.json",
+  "sound_lure_reference_sha256": "71ce68cf98933bae4cefe5459cfbc0d60ef9b4bd84aeb2fb55e2e0284b06a645",
+  "balance_reference": "docs/reviews/refonte-agent-2026-10-06/later-statistics-and-diablo-inspired-balance-direction-decisions.json",
+  "name_approval": "existing_secondary_catalogue_name_preserved",
+  "roleplay_text_approval": "new_individual_RP_pending_explicit_review",
+  "numeric_rules_approval": "displayed_current11_bonus110_next12_bonus120_proposed_pending_review;unshown_full_curve_and_real_stat_balance_pending",
+  "detailed_conditions_approval": "active_prerequisite_grenade_and_weapon_launcher_damage_scope_previously_confirmed;displayed_pre_defense_bonus_and_no_damage_for_utilities_proposed_pending_review;rounding_and_stacking_pending",
+  "visual_intention_approval": "bonus_reflected_in_skill_tooltip_and_floating_damage_numbers_proposed_pending_review;existing_feedback_direction_preserved",
+  "visual_approval": "native_tooltip_damage_feedback_and_UI_pending_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**SG04 · Puissance des grenades — Rang 11 · Passif**\n\n*Vous renforcez vos explosifs pour frapper plus durement les ennemis.*\n\n**Effets actuels**\n\n- Bonus aux dégâts des grenades et des lance-grenades : **+110 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus aux dégâts des grenades et des lance-grenades : **+120 %**.\n\nNécessite **Lancer de grenade** apprise. S’applique aux grenades explosives lancées et aux attaques des armes lance-grenades, avant les défenses.\n\nN’ajoute aucun dégât aux variantes **Aveuglante** et **Leurre**.",
+  "player_copy_sha256": "4290c45a75d775e8da1b1bceba69aed39b0900784a46ef4fab068ed8a9ecf715",
+  "visual_copy_markdown": "**Affichage proposé :** les dégâts affichés dans les fiches et au-dessus des cibles prennent en compte ce bonus.",
+  "visual_copy_sha256": "f891b1a5f51e77c31b40c8e1e14cd80b5ec91497be82090f3a6da6aabcfa2d81",
+  "current_turn_shown_copy_markdown": "**SG04 · Puissance des grenades — Rang 11 · Passif**\n\n*Vous renforcez vos explosifs pour frapper plus durement les ennemis.*\n\n**Effets actuels**\n\n- Bonus aux dégâts des grenades et des lance-grenades : **+110 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus aux dégâts des grenades et des lance-grenades : **+120 %**.\n\nNécessite **Lancer de grenade** apprise. S’applique aux grenades explosives lancées et aux attaques des armes lance-grenades, avant les défenses.\n\nN’ajoute aucun dégât aux variantes **Aveuglante** et **Leurre**.\n\n**Affichage proposé :** les dégâts affichés dans les fiches et au-dessus des cibles prennent en compte ce bonus.",
+  "current_turn_shown_copy_sha256": "773fbfa671eea9e40b477a4a428d5c2ed1fba0a46b7e02bfd387bce65b1f84fe",
+  "unshown_cases_pending": [
+    "full_rank1_to10_curve_and_equipment_bonus_continuation",
+    "additive_or_multiplicative_stacking_with_weapon_stats_and_other_skill_bonuses",
+    "single_or_component_damage_rounding_and_minimum_weapon_variance",
+    "elemental_status_ground_damage_and_secondary_explosion_eligibility",
+    "future_heavy_weapon_tree_grenade_launcher_and_action_tags",
+    "native_damage_numbers_tooltip_updates_bonus_rank_color_and_no_damage_utility_feedback"
+  ]
+}

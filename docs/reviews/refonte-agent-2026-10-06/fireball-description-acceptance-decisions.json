@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "FE05",
+    "FE05-REWORK01"
+  ],
+  "skill_id": "FE05",
+  "title": "Boule de feu",
+  "user_message": "tres bien :)",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE05-02.json",
+  "previous_description_sha256": "a199b0b22917a0c01842eff0f8dabe30b324f6bc10d797090e1d4c8e30d1d2f9",
+  "accepted_player_copy_sha256": "af0c2cfb1812cd0bb7b129f2333396ac5c3a0cddeda1161900b766b728a295e5",
+  "accepted_visual_copy_sha256": "81de754fae4dd7ea79d9eb4ce2fac2253fbe7d37328093e12c43e70aa8820620",
+  "approval_scope": "Explicit positive response accepts the displayed replacement of Foyer vorace by Boule de feu in stableFE05,its name and RP,current-next damage/burn values,radius/range/cost/cooldown,shown impact/wall/ally and burn-start/nonstacking conditions as provisional balance. Separately displayed fiery ball/trail/large circular blast visual direction accepted. Native pixels/animation timings and unshown curves/geometry/details remain pending.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "explosion_fire_damage_per_target": 63,
+      "explosion_radius_cells": 3,
+      "range_cells": 6,
+      "burn_chance_percent": 35,
+      "burn_fire_damage_per_turn": 5,
+      "burn_duration_turns": 3,
+      "energy_cost": 21,
+      "cooldown_turns": 8
+    },
+    "next": {
+      "effective_rank": 12,
+      "explosion_fire_damage_per_target": 68,
+      "explosion_radius_cells": 3,
+      "range_cells": 6,
+      "burn_chance_percent": 37,
+      "burn_fire_damage_per_turn": 5,
+      "burn_duration_turns": 3,
+      "energy_cost": 21,
+      "cooldown_turns": 8
+    }
+  },
+  "accepted_conditions": [
+    "Boule de feu replaces Foyer vorace inFE05;no ongoing foyer,growth on death or per-turn exposure for this single blast.",
+    "Explosion occurs on aimed tile or first obstacle/actor encountered;walls block blast propagation;allies may be hit.",
+    "Burn begins next complete turn;own FE05 burn applications do not stack;damage displayed before target defenses."
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** une boule incandescente suivie d’une courte traînée de flammes, puis une large déflagration circulaire.",
+  "unshown_rules_approval": "Full rank/attribute curves,precise target eligibility and projectile path,corner collisions,wall impact and blast accessibility,large actor footprints,caster damage eligibility,hit/resistance/critical/modifier order,burn replacement/refresh and cross-skill stacking,exact tick/turn order and layer changes remain pending where not previously accepted. Native animation,tiles,marker/preview and effect-icon rendering remain pending. Existing FE04/Braise and EL-ZONE01 approvals preserved.",
+  "native_visual_approval": "pending native preview and user review",
+  "runtime_integration": "not_integrated"
+}

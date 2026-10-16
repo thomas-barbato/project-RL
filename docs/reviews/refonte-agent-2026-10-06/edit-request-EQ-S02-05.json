@@ -1,0 +1,13 @@
+{
+  "review_id": "SHIELD-VIS01",
+  "candidate": "EQ-S02",
+  "revision": 5,
+  "mode": "built-in imagegen precise-object-edit",
+  "source_path": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-6cff39cd-f221-43cd-b54d-5cdc9792df92.png",
+  "edit_reference": "../../../assets/source-art/refonte-agent-2026-10-06/shield-review-04/sources/EQ-S02.png",
+  "prompt": "Use case: precise-object-edit.\nAsset: EQ-S02 shield sprite for a dark futuristic roguelike, transparent PNG.\nImage 1 is the EDIT TARGET. Fix only the shield's LOWER SILVER FRAME: it is much thinner and more fragile than the upper frame. Rebuild the complete lower-half silver edging with the SAME broad block thickness, steel material, continuous stepped construction and contrast as the upper edging. The lower left and right diagonals and bottom cap must be solid broad silver blocks, not a thin chain of tiny corner-touching squares. At the final 11 x 15 held-sprite size, the lower steel band must remain visibly substantial, approximately two pixels wide, matching the top, while the outer black boundary stays clearly readable.\nPreserve: same overall shield silhouette and proportions; clipped industrial hexagon shape; olive-green upper and lower face panels; dark horizontal central brace; upper half's existing shapes; thick near-black outer contour surrounding the steel. Keep the lower green panel recognizable inside the reinforced frame. Extend steel inward rather than erasing the black external outline.\nStyle: coarse crisp square pixel art, few broad flat tones, simple industrial metal. The upper and lower halves should visibly belong to the same shield. No delicate thin bevels, gold, copper, ornaments, medieval additions, shine glow or extra parts. Single isolated front-facing shield only. Transparent background; no text, labels, floor, hand or character.",
+  "feedback": [
+    "le EQ 02 a les bordures du bas illisibles, la partie argentée est trop fine",
+    "y'a une énorme différence entre la partie haute et la partie basse du bouclier"
+  ]
+}

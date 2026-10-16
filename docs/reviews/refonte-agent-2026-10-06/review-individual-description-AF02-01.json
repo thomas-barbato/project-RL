@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-07",
+  "id": "AF02",
+  "title": "Faille d’armure",
+  "revision": 1,
+  "player_copy_markdown": "**Faille d’armure — Rang 11**\n\n*Un sceau se glisse dans les failles de sa protection. Métal, carapace ou peau durcie cèdent plus facilement sous vos coups.*\n\n**Effet actuel**\n\n- Réduction de l’armure physique : **40 %**.\n- Durée : **5 tours**.\n- Portée : **5 cases**.\n- Chance d’application sur la cible : **86,5 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Réduction de l’armure physique : **41 %**.\n- Chance d’application sur la cible : **86,8 %**.\n\n**Coût : 12 énergie · Recharge : 5 tours.**\n\nCible : un hostile visible en ligne de vue.\n\nRéduit aussi l’armure naturelle. Les résistances élémentaires et occultes restent inchangées.",
+  "player_copy_sha256": "a18f225888cbafc77d0b6d9ca599be7258eccbd3a4be4b72ef469f1659acdc6d",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-affliction-descriptions-03.json",
+  "source_skill_block_sha256": "406a72498d0ed1dab9b5452ad4b40e68d005d8919f84dffd37beb3d2dbacd6bf",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/interference-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "0c8bbcfc1e1e99b95adb86e17ad9750fee5a891d8c8772ac6d8b3e73a95454f6",
+  "name_approval": "accepted_catalogue_name",
+  "catalogue_effect_approval": "accepted_as_presented",
+  "roleplay_text_approval": "previous_roleplay_preserved; individual_current_tooltip_review_pending",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "pending_individual_user_review",
+  "numeric_rules_approval": "previous_reference_current_table_baseline_preserved; new_40_41_percent_and_target_chance_preview_pending_individual_review",
+  "formulas": {
+    "duration_turns": "3 + floor((effective_rank - 1) / 5) + min(3, floor(max(0, Intelligence - 5) / 20)); source proposal",
+    "energy_cost": "9 + floor((effective_rank - 1) / 3); source proposal",
+    "application_power": "max(1, 100 + 5 * (effective_rank - 1) + 2 * (Intelligence - 5)); source proposal",
+    "application_chance_percent": "clamp(100 * power / (power + max(1, occult_resistance)), 5, 95); source proposal",
+    "display_rounding": "Exact fractions, nearest tenth displayed; source proposal",
+    "physical_armor_reduction_percent": "20 + 40 * (effective_rank - 1) / (effective_rank + 9); proposed full curve"
+  },
+  "current_profile_status": "illustrative_character_and_target_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "intelligence": 10,
+    "target_occult_resistance": 25,
+    "other_duration_application_reduction_range_cost_modifiers": false,
+    "O00_implant_duration_bonus": 0,
+    "A03_energy_discount": 0
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "duration_turns": 5,
+    "range_cells": 5,
+    "application_power": 160,
+    "target_occult_resistance": 25,
+    "application_chance_percent_exact": {
+      "numerator": 3200,
+      "denominator": 37
+    },
+    "application_chance_percent_display": 86.5,
+    "energy_cost": 12,
+    "cooldown_turns": 5,
+    "physical_armor_reduction_percent_exact": {
+      "numerator": 40,
+      "denominator": 1
+    },
+    "physical_armor_reduction_percent_display": 40.0
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "duration_turns": 5,
+    "range_cells": 5,
+    "application_power": 165,
+    "target_occult_resistance": 25,
+    "application_chance_percent_exact": {
+      "numerator": 1650,
+      "denominator": 19
+    },
+    "application_chance_percent_display": 86.8,
+    "energy_cost": 12,
+    "cooldown_turns": 5,
+    "physical_armor_reduction_percent_exact": {
+      "numerator": 860,
+      "denominator": 21
+    },
+    "physical_armor_reduction_percent_display": 41.0
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_target_resistance_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "physical_armor_reduction_percent_display",
+      "application_chance_percent_display"
+    ],
+    "unchanged_effects_omitted": [
+      "duration_turns",
+      "range_cells",
+      "energy_cost",
+      "cooldown_turns",
+      "target_types"
+    ]
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "target_specific_chance": "Illustrative target resistance 25 disclosed outside tooltip; real displayed chance depends on target.",
+    "exact_chance_ui_when_observation_access_limited": "pending_separate_interface_review; no hidden target information policy changed"
+  },
+  "presented_conditions": "One hostile visible in player line of sight within 5 cells; reduces physical armor including natural armor; elemental and occult resistances unchanged. Chance shown for fixed example resistance 25. Source all-target-nature direction preserved.",
+  "unshown_rules_approval": "Full-rank curves, resistance formula, exact turn ordering, modifier/snapshot timing, reapplication, armor reduction versus penetration, fractional armor handling, distinct protective effects, zero-armor target behavior, resisted-attempt expenditure and restricted-observation chance display remain pending where not previously presented/accepted.",
+  "active_weapon_requirement": "none; techno-occult weakening is not a weapon-based attack",
+  "visual_intention_approval": "accepted_catalogue_intention_only",
+  "visual_approval": "pending_native_animation_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Exact armor reduction: rank 11 = 40%; rank 12 = 860/21%=40.952... displayed 41%.",
+    "Intelligence 10 gives power 160 -> 165, against resistance 25 chance 3200/37 -> 1650/19%, displayed 86.5 -> 86.8%.",
+    "Duration 5, range 5, energy 12 and cooldown 5 unchanged; next block only changing reduction and chance.",
+    "Learned 9 -> 10 with fixed gear +2 and target resistance 25; learned cap respected.",
+    "Source roleplay wording preserved, wrapped as one paragraph; natural armor and unchanged elemental/occult resistances preserved.",
+    "No duplicated functional paragraph, rank breakdown, table/formula or ordinary action-time reminder.",
+    "Example is illustrative, not a player save. HUD06 explicit no-drone status-value requirement does not authorize other hidden target information."
+  ],
+  "target_status_analysis_requirement": "docs/reviews/refonte-agent-2026-10-06/target-status-analysis-visibility-decisions.json"
+}

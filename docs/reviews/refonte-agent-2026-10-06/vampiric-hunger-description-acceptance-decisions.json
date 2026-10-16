@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-08",
+  "id": "BM02",
+  "review_id": "BM02-ACCEPT01",
+  "user_answer": "Renomme la compétence \"Faim vampirique\" et c'est validé :)",
+  "approval": "explicit_user_full_displayed_card_acceptance_with_requested_name_change",
+  "stable_skill_id": "BM02",
+  "previous_title": "Faim occulte",
+  "accepted_title": "Faim vampirique",
+  "accepted_RP": "Votre arme s’abreuve de la vitalité de vos ennemis et vous en restitue une part.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "life_return_percent_display": 40,
+    "maximum_healing_percent_max_HP_per_turn": 10,
+    "duration_turns": 4,
+    "energy_cost": 13,
+    "cooldown_turns": 12
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "life_return_percent_display": 43,
+    "maximum_healing_percent_max_HP_per_turn": 10,
+    "duration_turns": 4,
+    "energy_cost": 13,
+    "cooldown_turns": 12
+  },
+  "accepted_reference_progression": {
+    "effective_rank1_life_return_percent": 10,
+    "effective_rank10_life_return_percent": 37
+  },
+  "accepted_conditions": [
+    "primary melee actual HP removed determines life return",
+    "shared maximum ten percent of maximum HP healed by this skill per turn across all targets",
+    "healing limited to missing HP",
+    "direct damage added to hit included",
+    "indirect and reflected damage excluded",
+    "equipped active melee weapon required",
+    "human form required to cast",
+    "Silence blocks use"
+  ],
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM02-02.json",
+  "previous_card_sha256": "ef4fb5b96e691e78db3c59b246ef9dfce2902abcb897c6f19cfd1ee83231b2f8",
+  "accepted_copy_except_title_sha256": "d402c38cb8deb0004b96b48f51e105dbf674444d9894dd3fad71fc2236db320e",
+  "previous_dark_drop_visual": "accepted_in_original_card_then_superseded_by_user_vampire_jaw_request",
+  "current_visual_decisions": "docs/reviews/refonte-agent-2026-10-06/vampiric-hunger-vampire-jaw-visual-decisions.json",
+  "unshown_full_curves_cost_default_cap100_rounding_clock_order_and_cases": "pending_individual_review",
+  "native_animation_approval": "pending_prototype_review",
+  "runtime_integration": "not_integrated"
+}

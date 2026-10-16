@@ -1,0 +1,528 @@
+{
+  "date": "2026-10-10",
+  "review_id": "BD-STYLE01",
+  "revision": 1,
+  "request": "A trial board of characters and weapons in comic-book style; global migration conditional on user liking the trial.",
+  "source_references": {
+    "reference": "artifacts/refonte-agent-2026-10-06/comic-style-review-01/references.json",
+    "reference_sha256": "0237f5778a7f1408307caa135a085190e44ba3f54024ffe2737a47b87cf52646"
+  },
+  "prompts": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/comic-style-review-01/prompts.json",
+    "reference_sha256": "57ae2b2825ae633e80c40837b3205c62bdcbd176a8f36b79fa5551cd5305d1cb"
+  },
+  "generator": {
+    "path": "tools/archive/refonte-agent-2026-10-06/build_comic_style_trial_01.py",
+    "binary_sha256": "40e9587e2e3edf5f8e8b318999301cc2c1e53c77a7981b3091f8c7c5260d0163"
+  },
+  "template": {
+    "path": "artifacts/refonte-agent-2026-10-06/comic_style_gallery_template_01.html",
+    "binary_sha256": "f35b711c4c463373f16292875bac21ee33db287e2c4615145944e2426f318077"
+  },
+  "source_active_rig": {
+    "reference": "assets/sprites/cyberpunk/agent-rigs/manifest.json",
+    "reference_sha256": "85f7165a3d9ce2eaa27fd066bccf184115b695171e9f091a4c44ff28cb97573a"
+  },
+  "accepted_shafts": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/shaft-visual-acceptance-01.json",
+    "reference_sha256": "14612015e3b1a3834184113d6b3d796f23b7c640cb255d51a71065fa3285d7fc"
+  },
+  "candidates": [
+    {
+      "review_id": "BD-C01",
+      "class_number": 1,
+      "class_name": "Bastion",
+      "equipment_description": "Lame et bouclier",
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/sources/BD-C01.png",
+        "binary_sha256": "d2509c19c272dd347884eaccdce6c4268b42beec186cd55338b8255a7d57a3be"
+      },
+      "comic_master": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+        "binary_sha256": "b2309124fde55808415378da561f5f26b0d7936688edefa257a8f938c58d4e2b",
+        "dimensions": [
+          795,
+          1132
+        ]
+      },
+      "native_tiles": {
+        "30": {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/BD-C01-tile30.png",
+          "binary_sha256": "ee2af0c71fbf5cf4819e11b6385d300f925ebb8bed2559aa009c86d0a2d3c540",
+          "dimensions": [
+            60,
+            60
+          ]
+        },
+        "32": {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-tile32.png",
+          "binary_sha256": "5601a4c3f223330be4443ba95ff947214ee2f6886a523c0e9815a86e5bb05273",
+          "dimensions": [
+            64,
+            64
+          ]
+        }
+      },
+      "current_reference": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/reference-C1-native64.png",
+        "binary_sha256": "e5b93534152ac2a1e0c47033f8415b89804eff8cc213fd7b760922bfb472a885"
+      },
+      "horizontal_mirror_of_complete_generated_study": false,
+      "normalization": [
+        {
+          "tile_pixels": 30,
+          "body_target_height": 28.125,
+          "source_body_top": 203,
+          "source_body_bottom": 1201,
+          "source_body_center_x": 640,
+          "source_crop": [
+            243,
+            70,
+            1038,
+            1202
+          ],
+          "scale": 0.02717935871743487,
+          "offset": [
+            19,
+            13
+          ],
+          "canvas": [
+            60,
+            60
+          ],
+          "clipped_equipment_pixels": 0,
+          "sampling": "LANCZOS;antialiased_comic_contours_preserved;no_palette_reduction"
+        },
+        {
+          "tile_pixels": 32,
+          "body_target_height": 30.0,
+          "source_body_top": 203,
+          "source_body_bottom": 1201,
+          "source_body_center_x": 640,
+          "source_crop": [
+            243,
+            70,
+            1038,
+            1202
+          ],
+          "scale": 0.02905811623246493,
+          "offset": [
+            20,
+            14
+          ],
+          "canvas": [
+            64,
+            64
+          ],
+          "clipped_equipment_pixels": 0,
+          "sampling": "LANCZOS;antialiased_comic_contours_preserved;no_palette_reduction"
+        }
+      ],
+      "approval": "pending_user_style_and_pixels_review",
+      "layer_readiness": "complete_equipped_study;not_a_body_weapon_arm_layer_bank"
+    },
+    {
+      "review_id": "BD-C02",
+      "class_number": 2,
+      "class_name": "Technomancien",
+      "equipment_description": "Pistolet",
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/sources/BD-C02.png",
+        "binary_sha256": "73d81148e516ee51fc572693f247d22249fedcb9d8f6661da43cab56d910482f"
+      },
+      "comic_master": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C02-comic-master.png",
+        "binary_sha256": "626dbfd3f18780b9307e2df964bbd3c0d1f38cdf7fa13787e39c1229dbe84dab",
+        "dimensions": [
+          796,
+          1135
+        ]
+      },
+      "native_tiles": {
+        "30": {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/BD-C02-tile30.png",
+          "binary_sha256": "e255c4efa81a7a6442b04ee4a82ac83d24c7a8856efcf3da6cdfdf8138303180",
+          "dimensions": [
+            60,
+            60
+          ]
+        },
+        "32": {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C02-tile32.png",
+          "binary_sha256": "b83a40f3082856302f37cfc045522596a6e8213e7a2d169946be8ce27aceaa3b",
+          "dimensions": [
+            64,
+            64
+          ]
+        }
+      },
+      "current_reference": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/C2-Lnone-R06.png",
+        "binary_sha256": "e4bc5b0ab2ecad931a497bceebf4ec53be3d2720f7e2614ed57a375cd4e5384f"
+      },
+      "horizontal_mirror_of_complete_generated_study": true,
+      "normalization": [
+        {
+          "tile_pixels": 30,
+          "body_target_height": 28.125,
+          "source_body_top": 87,
+          "source_body_bottom": 1221,
+          "source_body_center_x": 603,
+          "source_crop": [
+            248,
+            87,
+            1044,
+            1222
+          ],
+          "scale": 0.023919753086419752,
+          "offset": [
+            22,
+            17
+          ],
+          "canvas": [
+            60,
+            60
+          ],
+          "clipped_equipment_pixels": 0,
+          "sampling": "LANCZOS;antialiased_comic_contours_preserved;no_palette_reduction"
+        },
+        {
+          "tile_pixels": 32,
+          "body_target_height": 30.0,
+          "source_body_top": 87,
+          "source_body_bottom": 1221,
+          "source_body_center_x": 603,
+          "source_crop": [
+            248,
+            87,
+            1044,
+            1222
+          ],
+          "scale": 0.025573192239858905,
+          "offset": [
+            23,
+            18
+          ],
+          "canvas": [
+            64,
+            64
+          ],
+          "clipped_equipment_pixels": 0,
+          "sampling": "LANCZOS;antialiased_comic_contours_preserved;no_palette_reduction"
+        }
+      ],
+      "approval": "pending_user_style_and_pixels_review",
+      "layer_readiness": "complete_equipped_study;not_a_body_weapon_arm_layer_bank"
+    },
+    {
+      "review_id": "BD-C03",
+      "class_number": 3,
+      "class_name": "Traqueur",
+      "equipment_description": "Fusil de précision",
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/sources/BD-C03.png",
+        "binary_sha256": "4d164153950ab68991f17468d7ffae6a24446588acc06d821fe2517e73b6668d"
+      },
+      "comic_master": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C03-comic-master.png",
+        "binary_sha256": "b489ac6824979d23a91bdb7b17abd09d2886a8acdbe537497b4c45ca41f3aa2f",
+        "dimensions": [
+          997,
+          1104
+        ]
+      },
+      "native_tiles": {
+        "30": {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/BD-C03-tile30.png",
+          "binary_sha256": "d50f6f43322d5caae6ed01db80c53a2f443ad7a43665c3271b1ea55ed7d5525e",
+          "dimensions": [
+            60,
+            60
+          ]
+        },
+        "32": {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C03-tile32.png",
+          "binary_sha256": "4e2ef0653da5fee45757af2a154c816de4899ec56717436ed254307a4acde2fc",
+          "dimensions": [
+            64,
+            64
+          ]
+        }
+      },
+      "current_reference": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/C3-Lnone-R17.png",
+        "binary_sha256": "de3645f7b516f6dbe8654a0af0e0c60bbd9d37d1f62e290a6d57702f24ff385f"
+      },
+      "horizontal_mirror_of_complete_generated_study": false,
+      "normalization": [
+        {
+          "tile_pixels": 30,
+          "body_target_height": 28.125,
+          "source_body_top": 100,
+          "source_body_bottom": 1203,
+          "source_body_center_x": 590,
+          "source_crop": [
+            207,
+            100,
+            1204,
+            1204
+          ],
+          "scale": 0.024592021758839528,
+          "offset": [
+            21,
+            17
+          ],
+          "canvas": [
+            60,
+            60
+          ],
+          "clipped_equipment_pixels": 0,
+          "sampling": "LANCZOS;antialiased_comic_contours_preserved;no_palette_reduction"
+        },
+        {
+          "tile_pixels": 32,
+          "body_target_height": 30.0,
+          "source_body_top": 100,
+          "source_body_bottom": 1203,
+          "source_body_center_x": 590,
+          "source_crop": [
+            207,
+            100,
+            1204,
+            1204
+          ],
+          "scale": 0.02629193109700816,
+          "offset": [
+            22,
+            18
+          ],
+          "canvas": [
+            64,
+            64
+          ],
+          "clipped_equipment_pixels": 0,
+          "sampling": "LANCZOS;antialiased_comic_contours_preserved;no_palette_reduction"
+        }
+      ],
+      "approval": "pending_user_style_and_pixels_review",
+      "layer_readiness": "complete_equipped_study;not_a_body_weapon_arm_layer_bank"
+    },
+    {
+      "review_id": "BD-C04",
+      "class_number": 4,
+      "class_name": "Arcaniste",
+      "equipment_description": "Hampe de canalisation",
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/sources/BD-C04.png",
+        "binary_sha256": "bbfb838368afd4d38c2207548d10d50006e1dafbdfc2e5062751e58dabd20943"
+      },
+      "comic_master": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C04-comic-master.png",
+        "binary_sha256": "6a4b6531ad56895a48ade3424d948d88707dbf13ed127751eef57fb6e2b9306d",
+        "dimensions": [
+          838,
+          1209
+        ]
+      },
+      "native_tiles": {
+        "30": {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/BD-C04-tile30.png",
+          "binary_sha256": "aff62e5265d36ee27f42ec826e27eb894750364337c8f66c1ef3807bc443b71f",
+          "dimensions": [
+            60,
+            60
+          ]
+        },
+        "32": {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C04-tile32.png",
+          "binary_sha256": "23967b55a912766c8de46d9ceb3cc1526f1acaad39e9e608bf1def0d5a2291de",
+          "dimensions": [
+            64,
+            64
+          ]
+        }
+      },
+      "current_reference": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/reference-C4-native64.png",
+        "binary_sha256": "e93496a2527cf7319c18e1b0f24fe93f249efaf8e0ee2fede2511dc2e5338cc2"
+      },
+      "horizontal_mirror_of_complete_generated_study": false,
+      "normalization": [
+        {
+          "tile_pixels": 30,
+          "body_target_height": 28.125,
+          "source_body_top": 136,
+          "source_body_bottom": 1249,
+          "source_body_center_x": 630,
+          "source_crop": [
+            332,
+            41,
+            1170,
+            1250
+          ],
+          "scale": 0.02437106918238994,
+          "offset": [
+            23,
+            15
+          ],
+          "canvas": [
+            60,
+            60
+          ],
+          "clipped_equipment_pixels": 0,
+          "sampling": "LANCZOS;antialiased_comic_contours_preserved;no_palette_reduction"
+        },
+        {
+          "tile_pixels": 32,
+          "body_target_height": 30.0,
+          "source_body_top": 136,
+          "source_body_bottom": 1249,
+          "source_body_center_x": 630,
+          "source_crop": [
+            332,
+            41,
+            1170,
+            1250
+          ],
+          "scale": 0.02605570530098832,
+          "offset": [
+            24,
+            16
+          ],
+          "canvas": [
+            64,
+            64
+          ],
+          "clipped_equipment_pixels": 0,
+          "sampling": "LANCZOS;antialiased_comic_contours_preserved;no_palette_reduction"
+        }
+      ],
+      "approval": "pending_user_style_and_pixels_review",
+      "layer_readiness": "complete_equipped_study;not_a_body_weapon_arm_layer_bank"
+    },
+    {
+      "review_id": "BD-C05",
+      "class_number": 5,
+      "class_name": "Métamorphe",
+      "equipment_description": "Couteau et focaliseur",
+      "source": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/sources/BD-C05.png",
+        "binary_sha256": "cd5b4564a7fc43b2e462a0e52b322b412f27979415e670f929021dec0769f0df"
+      },
+      "comic_master": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C05-comic-master.png",
+        "binary_sha256": "ae31cf16e3cc5e26517f6bfada3f6df25299ce91320744d692ad6bd5d0bb47aa",
+        "dimensions": [
+          771,
+          1111
+        ]
+      },
+      "native_tiles": {
+        "30": {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/BD-C05-tile30.png",
+          "binary_sha256": "ebbb6118641e41776d386bc93151a4d420145e1b16be15a5d603800341ebe755",
+          "dimensions": [
+            60,
+            60
+          ]
+        },
+        "32": {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C05-tile32.png",
+          "binary_sha256": "04a6400cdf5daa771d5dcfd73972112df40d98afd923bf6ff3f38a2963bff594",
+          "dimensions": [
+            64,
+            64
+          ]
+        }
+      },
+      "current_reference": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/reference-C5-native64.png",
+        "binary_sha256": "2a77256ef89915a8726ec933a1180b9c36ac7ab930d88a3f27a50d9509a49930"
+      },
+      "horizontal_mirror_of_complete_generated_study": false,
+      "normalization": [
+        {
+          "tile_pixels": 30,
+          "body_target_height": 28.125,
+          "source_body_top": 84,
+          "source_body_bottom": 1194,
+          "source_body_center_x": 650,
+          "source_crop": [
+            306,
+            84,
+            1077,
+            1195
+          ],
+          "scale": 0.024436936936936937,
+          "offset": [
+            22,
+            17
+          ],
+          "canvas": [
+            60,
+            60
+          ],
+          "clipped_equipment_pixels": 0,
+          "sampling": "LANCZOS;antialiased_comic_contours_preserved;no_palette_reduction"
+        },
+        {
+          "tile_pixels": 32,
+          "body_target_height": 30.0,
+          "source_body_top": 84,
+          "source_body_bottom": 1194,
+          "source_body_center_x": 650,
+          "source_crop": [
+            306,
+            84,
+            1077,
+            1195
+          ],
+          "scale": 0.026126126126126126,
+          "offset": [
+            23,
+            18
+          ],
+          "canvas": [
+            64,
+            64
+          ],
+          "clipped_equipment_pixels": 0,
+          "sampling": "LANCZOS;antialiased_comic_contours_preserved;no_palette_reduction"
+        }
+      ],
+      "approval": "pending_user_style_and_pixels_review",
+      "layer_readiness": "complete_equipped_study;not_a_body_weapon_arm_layer_bank"
+    }
+  ],
+  "board": {
+    "path": "artifacts/refonte-agent-2026-10-06/comic-style-review-01/comic-style-board-01.png",
+    "binary_sha256": "898aea50d4aa85f761f7431d7602ba87ba690f07438d1d25c6e3187b560aa89d",
+    "dimensions": [
+      1500,
+      1070
+    ]
+  },
+  "native_zoom": {
+    "path": "assets/source-art/refonte-agent-2026-10-06/comic-style-review-01/comic-style-native-zoom-01.png",
+    "binary_sha256": "dc6a356976d7a8c51740c312dca7425a450b9ed681b804b83bf2524d8fe6597a",
+    "dimensions": [
+      1500,
+      690
+    ]
+  },
+  "gallery": {
+    "path": "artifacts/refonte-agent-2026-10-06/comic-style-review-01/comic-style-gallery-01.html",
+    "binary_sha256": "6a97192e860a6491c98f43a99d885feff5f0a8bd672a1f5aa570a0ff443468fa"
+  },
+  "approval": "pending_style_and_new_pixels;not_a_global_migration_authorization",
+  "mechanical_changes": "none",
+  "runtime_integration": "none;complete_equipped_style_studies_only",
+  "qa": {
+    "characters": 5,
+    "native_variants": 10,
+    "clipped_equipment_pixels": 0,
+    "transparent_sources": true,
+    "normalization": "Scale from body landmarks rather than whole equipment bounds; native32 uses approximately30px body height.",
+    "active_art_asset_changes": 0
+  }
+}

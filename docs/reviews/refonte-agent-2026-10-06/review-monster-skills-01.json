@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-06",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/catalogue-acceptance-and-description-decisions.json",
+  "latest_decisions_sha256": "56f2ea69e629c6b898ef9675f0afbffae0ba3f0db2bf83999b574e3a99ae22a3",
+  "runtime_integration": "not_integrated",
+  "batch_revision": 1,
+  "document": "docs/REVUE_COMPETENCES_MONSTRES_AGENT.md",
+  "document_sha256": "323008520390a2ca74cb9611aa11dd9a71bb32e10995b820d9a13e02a9dfd8af",
+  "blocks": [
+    {
+      "id": "MC01",
+      "title": "Catalogue propre",
+      "revision": 1,
+      "block_sha256": "dc8f0dab54720dc4d612d80cf574f114f290e0afa87fd993b0a3543e5efd9f64",
+      "mechanic_approval": "explicit_user_requirements_recorded_proposed_details_pending",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "MC02",
+      "title": "Nombre de compétences utilisables",
+      "revision": 1,
+      "block_sha256": "ba7c6d6b014b84acd2bfcd2be300ad5bf185d6fb0bfc66f5e3f5345f956d60cf",
+      "mechanic_approval": "explicit_user_requirements_recorded_proposed_details_pending",
+      "runtime_integration": "not_integrated"
+    }
+  ],
+  "accepted_requirements": {
+    "own_skills": true,
+    "usable_skill_count_depends_on": [
+      "role",
+      "level",
+      "importance"
+    ],
+    "importance_definition": "to_be_defined_later_by_user",
+    "numeric_budget_and_catalogue": "not_defined"
+  }
+}

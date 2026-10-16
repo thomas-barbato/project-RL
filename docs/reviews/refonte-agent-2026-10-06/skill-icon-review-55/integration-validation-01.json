@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-14",
+  "build": "cargo build --locked passed",
+  "targeted_tests": "shot_buffs: 6 passed, 0 failed",
+  "format": "cargo fmt --all -- --check passed",
+  "diff_check": "git diff --check passed",
+  "native_tree": "Default bank rendering without preview flag is pixel-identical to approved capture.",
+  "accepted_artifacts_preserved": 2806,
+  "scope": "Icon and native laboratory overhead marker integration; no campaign combat resolver integration."
+}

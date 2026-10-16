@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-07",
+  "review_id": "EL-FREQ01",
+  "user_message": "tres bien, on continue :) .\n\nHum j'aimerais faire une modification sur \"l'immunité\" des boss aux effets de feu / de froid :\n\nIl faut supprimer cette immunité mais grandir encore le malus de chance d'effet :)\n\nJe vais t'expliquer pourquoi je fais ca :\n\nEn faite, j'ai envie que notre rogue like ait une densité de combat que l'ont retrouve dans les hack'n slash (beaucoup d'ennemis differents, avec des stats etc) je pense que ca ferait un beau défis pour le joueur tout en restant mortel .",
+  "previous_proposal": "docs/reviews/refonte-agent-2026-10-06/elemental-status-frequency-rebalance-proposal.json",
+  "previous_proposal_sha256": "4ea03fa6c4d2b192a0724f967b7d81bc2e0ece58d90839e0152c4453c173d56d",
+  "accepted_FR01_delta_sha256": "cd10c1676c10e042697197d9f1de325fff9df40e9efb85eec4dfa0629cc23509",
+  "accepted_Fire_delta_sha256": "91ed35395ff27db0d04a03e45db21e9ddef76a09dc2cac34184c0d61f9529c05",
+  "accepted_FR01_probabilities": {
+    "proposed_skill_factor_curve": "min(100,max(0,40+5*(effective_rank-1)))",
+    "current_effective_rank": 11,
+    "current_skill_factor_percent": 90,
+    "next_effective_rank": 12,
+    "next_skill_factor_percent": 95,
+    "current_final_Gel_chance_percent": 77.8,
+    "current_elite_Gel_chance_percent": 58.4,
+    "next_final_Gel_chance_percent": 82.5,
+    "next_elite_Gel_chance_percent": 61.9,
+    "target_example_resistance": 25,
+    "willpower": 10,
+    "resistance_factor_preserved": true,
+    "single_Gel_test_preserved": true,
+    "full_curve_approval": "unshown_pending_review"
+  },
+  "accepted_Fire_chances": [
+    {
+      "id": "FE02",
+      "title": "Souffle de feu",
+      "accepted_baseline": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE02-05.json",
+      "accepted_baseline_sha256": "f58fabfe1984e6e6ae63513eb3d8af0df03cd238dfe5330b52fbd80c03ec63fa",
+      "full_curve_approval": "unshown_pending_review",
+      "current_effective_rank": 11,
+      "next_effective_rank": 12,
+      "current_base_chance_percent": 40,
+      "next_base_chance_percent": 43,
+      "unchanged_damage_potency_duration_cost_cooldown_and_other_conditions": true,
+      "resistance_and_application_order": "existing accepted/unshown status retained;no new resistance formula introduced",
+      "current_exposure_chances_percent": [
+        40,
+        80,
+        100
+      ],
+      "next_exposure_chances_percent": [
+        43,
+        86,
+        100
+      ],
+      "exposure_rules": "same per-roll consecutive exposure growth,exit reset,attempt policy and ceiling;no constant-roll cumulative probability substitution"
+    },
+    {
+      "id": "FE03",
+      "title": "Mur de feu",
+      "accepted_baseline": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE03-04.json",
+      "accepted_baseline_sha256": "c8aaad03594bb4e88fe77db27d2607f94577ddf7c0de8eb56fc37cdf9eedb885",
+      "full_curve_approval": "unshown_pending_review",
+      "current_effective_rank": 11,
+      "next_effective_rank": 12,
+      "current_base_chance_percent": 45,
+      "next_base_chance_percent": 48,
+      "unchanged_damage_potency_duration_cost_cooldown_and_other_conditions": true,
+      "resistance_and_application_order": "existing accepted/unshown status retained;no new resistance formula introduced",
+      "current_exposure_chances_percent": [
+        45,
+        90,
+        100,
+        100,
+        100
+      ],
+      "next_exposure_chances_percent": [
+        48,
+        96,
+        100,
+        100,
+        100
+      ],
+      "exposure_rules": "same per-roll consecutive exposure growth,exit reset,attempt policy and ceiling;no constant-roll cumulative probability substitution"
+    },
+    {
+      "id": "FE04",
+      "title": "Émanation soudaine",
+      "accepted_baseline": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE04-03.json",
+      "accepted_baseline_sha256": "dd06dcb8636f3aad75c881bbcbb352f2d5cb7a326cff0924c4b2093018ff5cf8",
+      "full_curve_approval": "unshown_pending_review",
+      "current_effective_rank": 11,
+      "next_effective_rank": 12,
+      "current_base_chance_percent": 65,
+      "next_base_chance_percent": 68,
+      "unchanged_damage_potency_duration_cost_cooldown_and_other_conditions": true,
+      "resistance_and_application_order": "existing accepted/unshown status retained;no new resistance formula introduced"
+    },
+    {
+      "id": "FE05",
+      "title": "Boule de feu",
+      "accepted_baseline": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE05-03.json",
+      "accepted_baseline_sha256": "e3fce2aa8e8c4a9c2be553c6a725211d655cebbe2e274dd1f186875473e7b5a5",
+      "full_curve_approval": "unshown_pending_review",
+      "current_effective_rank": 11,
+      "next_effective_rank": 12,
+      "current_base_chance_percent": 60,
+      "next_base_chance_percent": 63,
+      "unchanged_damage_potency_duration_cost_cooldown_and_other_conditions": true,
+      "resistance_and_application_order": "existing accepted/unshown status retained;no new resistance formula introduced"
+    },
+    {
+      "id": "FE06",
+      "title": "Combustion",
+      "accepted_baseline": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE06-02.json",
+      "accepted_baseline_sha256": "e88817564873cdea3cb79ad45d7950ab5631dad0689073042b4efdc6d442fa1e",
+      "full_curve_approval": "unshown_pending_review",
+      "current_effective_rank": 11,
+      "next_effective_rank": 12,
+      "current_base_chance_percent": 65,
+      "next_base_chance_percent": 68,
+      "unchanged_damage_potency_duration_cost_cooldown_and_other_conditions": true,
+      "resistance_and_application_order": "existing accepted/unshown status retained;no new resistance formula introduced"
+    }
+  ],
+  "approval_scope": "Explicit positive response accepts displayed FR01 ordinary/elite current-next Gel chances and five displayed Fire current-next Burn chance revisions. New boss exception is a separately requested change with numeric penalty still proposed. Approval does not cover undisplayed curves or FR01 RP/damage/cost/visual parts previously pending.",
+  "full_curves_approval": "unshown_pending_review",
+  "native_visual_approval": "pending;no new rendering approved",
+  "runtime_integration": "not_integrated"
+}

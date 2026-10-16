@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ20",
+  "revision": 2,
+  "title": "Repositionner — reprise du suivi",
+  "status": "shown_reposition_explicit_order_cancellation_and_resume_follow_accepted;native_and_unshown_rules_pending",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-52.json",
+  "current_attribute_model_sha256": "66c80a8d4c00c2ee1e1410682d3708a0d00c1480c2fd00d045264fec95cca988",
+  "accepted_reposition_command": "docs/reviews/refonte-agent-2026-10-06/review-drone-recall-command-PETS-EQ15-03.json",
+  "accepted_reposition_command_sha256": "63c5827ac9459bc2ccb73aed14e833a448c1d2f0dbea5bf32c62515805f90fcd",
+  "accepted_Mule_collection": "docs/reviews/refonte-agent-2026-10-06/review-mule-loot-collection-PETS-EQ16-02.json",
+  "accepted_Mule_collection_sha256": "1338ca4d45bd5ccc6b4deb3b99a05bfbf64f30963f041f99f7dff95b1669bd53",
+  "shown_copy_markdown": "**PETS-EQ20 · Repositionner — reprise du suivi**\n\nJe propose qu’après son repositionnement :\n\n- **L’ordre donné au drone est annulé**, puis il reprend votre suivi. Un ordre d’attaque ne le renvoie donc pas vers sa précédente cible.\n- Pour la Mule, **le ramassage s’arrête** et son bouton redevient **« Ramasser »**. Vous pouvez relancer la collecte avec un nouvel ordre.\n- Les réactions automatiques de combat du drone restent inchangées.\n\nCela permet d’utiliser le repositionnement pour dégager un drone et interrompre sa poursuite ou sa collecte.\n\nCes précisions restent à valider.",
+  "shown_copy_sha256": "8543a368a285e621140aaa248d5f5b77d482802d9f1443651ff6fbc91472b6e1",
+  "already_accepted_direction": "Repositionner_moves_same_living_deployed_drone_on_current_map_without_source_visibility_or_range_limit_to_selected_free_walkable_visible_adjacent_cell;zero_energy_six_turn_cooldown_per_drone_and_state_preservation_unchanged",
+  "scope_audit": {
+    "new_rules": "post_successful_teleport_current_order_cancellation_and_Mule_collection_reset_now_explicitly_accepted",
+    "Mule": "accepted_player_FOV_physical_collection_real_item_transfers_capacity_movement_pickup_timing_and_floating_names_unchanged",
+    "automatic_AI": "preserve_existing_reactions_only;no_new_threat_distance_target_priority_or_attack_frequency_defined",
+    "reposition_parameters": "accepted_zero_energy_and_six_turn_per_drone_cooldown_not_resubmitted_or_modified",
+    "map_transfer": "accepted_departure_map_order_cancellation_separate_from_this_same_map_reposition_case",
+    "native_visual": "existing_button_labels_reused;no_native_window_icon_or_teleport_animation_created"
+  },
+  "unshown_cases_pending": [
+    "agent_action_budget_and_exact_cooldown_start_tick_order",
+    "same_turn_automatic_drone_attack_follow_movement_or_Mule_collection_scheduling",
+    "arrival_item_piles_corpses_mines_persistent_zones_and_on_arrival_effects",
+    "manual_order_disable_conditions_for_pending_arrival_and_further_map_transitions",
+    "native_destination_selector_and_success_failure_feedback"
+  ],
+  "player_copy_approval": "shown_copy_accepted",
+  "mechanical_approval": "shown_successful_reposition_order_cancellation_Mule_collect_reset_and_follow_accepted",
+  "visual_intention_approval": "return_Mule_control_to_Ramasser_direction_accepted;native_not_presented",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-reposition-drone-orders-PETS-EQ20-01.json",
+  "source_proposal_sha256": "c15afe3040d256187a7210797fb850698b6a388dad3db58c3523e2cb9ba32d20",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/reposition-drone-order-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "962833df0b4ab2858441a71e97e62d57001f229e057d52c51aaab48ddac97fa4",
+  "accepted_shown_rules": {
+    "scope": "only_successful_Repositionner_command_on_existing_drone;not_HY04_player_drone_position_exchange_or_automatic_map_transfer",
+    "explicit_orders": "cancel_existing_player_designated_attack_or_other_explicit_drone_current_order_after_successful_teleport_and_resume_ordinary_player_follow_mode",
+    "Mule_collection": "cancel_active_Mule_ground_collection_task_and_old_loot_path_after_successful_reposition;Ramasser_control_replaces_Arrêter;new_collection_requires_user_to_issue_Ramasser_again",
+    "automatic_combat": "ordinary_existing_autonomous_combat_reactions_remain_available;order_cancellation_is_not_a_new_passive_noncombat_mode_or_extra_attack",
+    "failed_reposition": "if_reposition_is_cancelled_or_has_no_valid_destination_preserve_existing_order;no_successful_teleport_or_reposition_cooldown_start",
+    "preserved_state": "accepted_HP_energy_real_equipment_Mule_cargo_buffs_debuffs_and_other_remaining_cooldowns_preserved;only_explicit_order_changes",
+    "scope_boundary": "agent_action_budget_exact_cooldown_tick_order_arrival_hazards_and_native_selector_feedback_still_pending"
+  }
+}

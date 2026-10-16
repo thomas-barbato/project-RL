@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-08",
+  "review_id": "BD03-REMOVE01",
+  "skill_id": "BD03",
+  "title": "Salve miroir",
+  "user_instruction": "je sais pas trop si c'est vraiment utile comme compétence, je pense que tu peux la supprimer",
+  "approval": "explicit_user_removal_request",
+  "replacement_skill_id": null,
+  "scope": "remove_BD03_rules_texts_and_visual_intentions_without_replacement_or_transfer",
+  "stable_id_reused": false,
+  "visual_work_status": "removed_from_active_scope",
+  "archived_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BD03-01.json",
+  "archived_card_sha256": "1e2260da55eba12b73cd8e02d3583656b03064881191746982f85b25de77133a",
+  "counts_after": {
+    "primary_skills": 73,
+    "primary_branches": 13,
+    "current_complete_rule_blocks": 61,
+    "new_primary_rule_blocks": 47,
+    "secondary_rule_blocks": 14
+  },
+  "other_status_rules": "HUD01-ALL01_confirmed_icons_preserved",
+  "runtime_integration": "proposal_removal_only;not_implemented_in_runtime"
+}

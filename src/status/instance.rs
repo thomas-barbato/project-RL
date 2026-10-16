@@ -4,12 +4,107 @@ use crate::entity::EntityId;
 
 use super::{StatusDefinition, StatusId, StatusStacking};
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+/// Caster power is sampled on application; target defenses stay live at each tick.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct StatusPower {
+    pub base_damage: u16,
+    pub numerator: u64,
+    pub denominator: u64,
+    pub applied_on_turn: u64,
+}
+
+#[derive(Clone, PartialEq, Eq)]
 pub struct StatusInstance {
     pub definition: StatusId,
     pub stacks: u16,
     pub remaining_turns: Option<u16>,
     pub source: Option<EntityId>,
+    pub power: Option<StatusPower>,
+}
+thread_local! { static LEGACY_STATUS_ENCODING: std::cell::Cell<bool> = const { std::cell::Cell::new(false) }; }
+pub(crate) fn with_legacy_status_encoding<T>(operation: impl FnOnce() -> T) -> T {
+    struct Reset(bool);
+    impl Drop for Reset {
+        fn drop(&mut self) {
+            LEGACY_STATUS_ENCODING.set(self.0);
+        }
+    }
+    let _reset = Reset(LEGACY_STATUS_ENCODING.replace(true));
+    crate::game::game_state::agent_runtime::with_legacy_encoding(operation)
+}
+#[derive(serde::Serialize, serde::Deserialize)]
+struct LegacyInstance {
+    definition: StatusId,
+    stacks: u16,
+    remaining_turns: Option<u16>,
+    source: Option<EntityId>,
+}
+#[derive(serde::Serialize, serde::Deserialize)]
+struct PoweredInstance {
+    definition: StatusId,
+    stacks: u16,
+    remaining_turns: Option<u16>,
+    source: Option<EntityId>,
+    #[serde(default)]
+    power: Option<StatusPower>,
+}
+impl serde::Serialize for StatusInstance {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        if LEGACY_STATUS_ENCODING.get() && !serializer.is_human_readable() {
+            LegacyInstance {
+                definition: self.definition.clone(),
+                stacks: self.stacks,
+                remaining_turns: self.remaining_turns,
+                source: self.source,
+            }
+            .serialize(serializer)
+        } else {
+            PoweredInstance {
+                definition: self.definition.clone(),
+                stacks: self.stacks,
+                remaining_turns: self.remaining_turns,
+                source: self.source,
+                power: self.power,
+            }
+            .serialize(serializer)
+        }
+    }
+}
+impl<'de> serde::Deserialize<'de> for StatusInstance {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        if LEGACY_STATUS_ENCODING.get() && !deserializer.is_human_readable() {
+            let s = LegacyInstance::deserialize(deserializer)?;
+            Ok(Self {
+                definition: s.definition,
+                stacks: s.stacks,
+                remaining_turns: s.remaining_turns,
+                source: s.source,
+                power: None,
+            })
+        } else {
+            let s = PoweredInstance::deserialize(deserializer)?;
+            Ok(Self {
+                definition: s.definition,
+                stacks: s.stacks,
+                remaining_turns: s.remaining_turns,
+                source: s.source,
+                power: s.power,
+            })
+        }
+    }
+}
+impl std::fmt::Debug for StatusInstance {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut s = f.debug_struct("StatusInstance");
+        s.field("definition", &self.definition)
+            .field("stacks", &self.stacks)
+            .field("remaining_turns", &self.remaining_turns)
+            .field("source", &self.source);
+        if let Some(power) = self.power {
+            s.field("power", &power);
+        }
+        s.finish()
+    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -43,6 +138,18 @@ impl StatusSet {
         self.instances.values()
     }
 
+    pub(crate) fn set_duration(&mut self, id: &StatusId, duration: u16) {
+        if let Some(instance) = self.instances.get_mut(id) {
+            instance.remaining_turns = Some(duration);
+        }
+    }
+    pub(crate) fn set_power(&mut self, id: &StatusId, power: StatusPower, duration: u16) {
+        if let Some(instance) = self.instances.get_mut(id) {
+            instance.power = Some(power);
+            instance.remaining_turns = Some(duration);
+        }
+    }
+
     pub(crate) fn remove(&mut self, id: &StatusId) -> bool {
         self.instances.remove(id).is_some()
     }
@@ -63,6 +170,7 @@ impl StatusSet {
                     stacks: initial_stacks,
                     remaining_turns: definition.duration_turns(),
                     source,
+                    power: None,
                 });
                 return StatusApplyOutcome {
                     previous_stacks: 0,
@@ -104,6 +212,9 @@ impl StatusSet {
             }
         };
 
+        if kind != StatusApplyKind::Ignored {
+            instance.power = None;
+        }
         StatusApplyOutcome {
             previous_stacks,
             stacks: instance.stacks,

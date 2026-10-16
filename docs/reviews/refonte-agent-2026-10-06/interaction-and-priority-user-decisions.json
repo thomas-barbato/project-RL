@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT01",
+  "user_rule_feedback_exact": "Lorsqu'on réapplique un même status son timer est remis à 0. , lorsque plusieurs zones se superpose leurs effets aussi. Quand il y a une baisse de rang tous les elements invoqués sont supprimés (et si certains portaient du loot alors le loot se retrouve par terre)",
+  "scope_clarification_exact": "uniquement les éléments invoqués par cette compétence",
+  "source_readiness_inventory": "docs/reviews/refonte-agent-2026-10-06/review-implementation-readiness-01.json",
+  "source_readiness_inventory_sha256": "1d691306b0f387b21ef35c439c46a60de46c439163becbb83d32f804b03c5c1b",
+  "accepted_explicit_rules": {
+    "INTERACT-STATUS01": {
+      "rule": "reapplying_the_same_status_restarts_its_duration_from_the_beginning",
+      "timer_meaning": "elapsed_timer_reset_to_zero;not_instant_expiry",
+      "unshown": "power_refresh_source_merging_and_new_duration_calculation_when_reapplied_at_different_rank_pending"
+    },
+    "INTERACT-ZONE01": {
+      "rule": "effects_of_overlapping_zones_apply_cumulatively",
+      "preserved": "same_status_reapplication_restarts_its_timer;no_new_status_strength_or_global_DOT_stacking_formula_implied",
+      "unshown": "multi_source_status_merging_tick_order_exposure_accounting_and_native_preview_pending"
+    },
+    "INTERACT-RANK01": {
+      "rule": "when_a_skill_rank_decreases_remove_all_elements_invoked_by_that_skill_only",
+      "condition": "any_rank_decrease;not_only_when_new_capacity_is_exceeded_or_skill_access_is_lost",
+      "provenance": "only_affected_skill_created_elements_of_that_player;other_skill_invocations_are_retained",
+      "items": "actual_worn_and_carried_loot_is_deposited_on_ground_using_existing_actor_cell_or_current_player_cell_when_waiting_rule",
+      "learning": "applies_even_if_the_affected_invocation_remains_personally_learned_or_usable_at_lower_rank",
+      "prior_rule_revision": "supersedes_existing_familiar_persistence_and_dynamic_lower_rank_recalculation_on_rank_decrease;higher_rank_updates_and_other_personally_learned_ordinary_effect_rules_retained",
+      "unshown": "classification_of_non_actor_invoked_creations_passive_capacity_bonus_loss_cross_skill_dependency_and_cleanup_event_order_pending"
+    }
+  },
+  "accepted_work_priorities": {
+    "skill_progressions": "complete_ranks1_to10_and_equipment_bonus_continuation;new_or_revised_values_still_require_review",
+    "class_starts": "finalize_starts_after_progressions_and_interactions",
+    "loot_direction": "Diablo2_reference_for_number_of_effects_bonus_types_object_families_and_rarity_colors_adapted_to_cyberpunk_demonic_aesthetic;no_actual_new_affix_or_weight_or_rarity_formula_approved",
+    "bestiary": "current_monster_miniboss_boss_catalogue_is_incomplete;develop_progressively",
+    "detailed_campaign": "can_wait",
+    "native_UI_and_animations": "priority_and_joint_design_with_user;existing_distinct_review_and_art_procedure_preserved",
+    "sequence": "complete_progressions_and_interactions_then_lock_class_starts_and_first_playable_mission_with_incremental_implementation",
+    "test_menu": "prior_explicit_after_all_skills_and_animations_timing_unchanged"
+  },
+  "approval_scope": "Direct user status reapplication, overlapping zone effect, per-skill rank decrease cleanup and ground loot rules plus explicit priority steering recorded. No new skill progression numbers, loot system parameters, monster powers, campaign canon or native assets approved.",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,105 @@
+{
+  "status": "awaiting_visual_review",
+  "protected_files_unchanged": 1034,
+  "native_capture": "native/capture.json",
+  "scene_resampling": false,
+  "source": "Native Macroquad framebuffer, actual shader mask, unchanged drawn atlases",
+  "occlusion_checks": [
+    {
+      "variant": "FE02-A03-COULOIR",
+      "blocked_cells_without_any_changed_pixel": 40,
+      "protected_targets": [
+        "D"
+      ],
+      "control_frame": 60,
+      "gpu_mask_verified": true
+    },
+    {
+      "variant": "FE02-A03-CLOISON",
+      "blocked_cells_without_any_changed_pixel": 40,
+      "protected_targets": [
+        "B",
+        "C"
+      ],
+      "control_frame": 60,
+      "gpu_mask_verified": true
+    },
+    {
+      "variant": "FE02-A03-OBSTACLE",
+      "blocked_cells_without_any_changed_pixel": 33,
+      "protected_targets": [
+        "C"
+      ],
+      "control_frame": 60,
+      "gpu_mask_verified": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "FE02-A03-COULOIR-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 61,
+      "frames": 61,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A03-COULOIR-64-slow.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 61,
+      "frames": 61,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A03-CLOISON-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 61,
+      "frames": 61,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A03-CLOISON-64-slow.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 61,
+      "frames": 61,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A03-OBSTACLE-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 61,
+      "frames": 61,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A03-OBSTACLE-64-slow.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 61,
+      "frames": 61,
+      "duration_ms": 8000,
+      "loop": 0
+    }
+  ]
+}

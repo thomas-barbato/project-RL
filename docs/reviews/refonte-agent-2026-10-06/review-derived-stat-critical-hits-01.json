@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-09",
+  "review_id": "C01-CRIT01",
+  "revision": 1,
+  "title": "Coups critiques",
+  "status": "RP_reference_chance_multiplier_stacking_scope_order_and_examples_proposed_pending_explicit_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-16.json",
+  "current_attribute_model_sha256": "eeb6cb512f2639073d7cb52bd255bc76747728ae787965e7340186d38308d1f6",
+  "shown_copy_markdown": "Les règles communes des **résistances sont validées**. Passons aux critiques.\n\n**C01 · Coups critiques — proposition**\n\n*Vous exploitez une ouverture pour infliger une blessure dévastatrice.*\n\n**Valeurs de base pour l’agent**\n\n- Chance de critique : **5 %**.\n- Dégâts critiques : **200 % des dégâts directs**, avant l’armure et les résistances.\n- Les bonus de chance s’additionnent en points de pourcentage, avec une chance finale entre **0 % et 100 %**.\n\n**Exemple**\n\nUne attaque infligeant **40 dégâts physiques**, contre **12 armure** :\n\n- Coup normal : **28 dégâts subis**.\n- Coup critique : **80 avant armure → 68 dégâts subis**.\n\n**Attaques concernées**\n\nMêlée, tir, armes lourdes, sorts infligeant des dégâts directs et attaques des transformations. Une attaque manquée ne peut pas devenir critique.\n\nPour une rafale ou une attaque de zone, chaque impact sur une cible possède son propre jet de critique.\n\nLes dégâts persistants, les renvois et les collisions ne font pas de jet de critique supplémentaire. Un saignement ou une collision calculé sur les dégâts réels du coup profite déjà de l’augmentation du coup initial.\n\nLe critique ne modifie pas la chance ni la durée des statuts.\n\n**Tir de précision — rang 11**\n\nAvec la base proposée de **5 %** et son bonus déjà validé de **15 points**, ce tir atteint **20 % de chance de critique**, sans autres bonus.\n\n**Ces règles de critique restent à valider.**",
+  "shown_copy_sha256": "39ff92f57621532870bb158ea272fd2fc090f0346d70ba63a58c78e1cf35da89",
+  "new_proposed_rules": {
+    "agent_base_critical_chance_percent": 5,
+    "ordinary_direct_critical_damage_multiplier": 2,
+    "critical_damage_percent_of_noncritical_predefense_damage": 200,
+    "critical_chance_stacking": "add_percentage_point_modifiers_then_clamp0_100",
+    "critical_chance_minimum_percent": 0,
+    "critical_chance_maximum_percent": 100,
+    "damage_order": "apply_critical_multiplier_before_armor_resistances_and_final_ordinary_damage_floor;no_extra_armor_bypass",
+    "eligible_player_actions": [
+      "melee_direct_damage",
+      "ranged_direct_damage",
+      "heavy_weapon_direct_damage",
+      "direct_damage_spells",
+      "transformed_direct_attacks"
+    ],
+    "missed_attack": "cannot_critical;no_new_hit_roll_for_automatic_spell_or_area_damage",
+    "multihit_and_area_sampling": "independent_critical_decision_for_each_impact_on_each_target",
+    "no_independent_critical_roll": [
+      "periodic_damage",
+      "reflected_damage",
+      "collision_damage"
+    ],
+    "actual_initial_damage_derivatives": "existing_bleed_and_collision_calculations_include_actual_critical_initial_damage;no_second_critical_multiplier",
+    "status_probability_and_duration": "not_modified_by_critical",
+    "attribute_or_level_critical_growth": "none_created;existing_accepted_attribute_coefficients_preserved",
+    "familiars_and_monsters": "own_chances_and_profile_eligibility_not_defined_by_agent_base5;no_silent_inheritance_of_agent_gear_critical_stats"
+  },
+  "already_accepted_dependency": {
+    "skill_id": "DI04",
+    "title": "Tir de précision",
+    "rank11_critical_chance_bonus_percentage_points": 15,
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI04-03.json",
+    "reference_sha256": "e8f51f616ec79db3b343c258334c54e36f427602ea5e140e2e247f4adcc95d96",
+    "previous_5_percent_status": "previous_fictional_comparison_only;new_global_agent_base5_is_explicitly_proposed_here",
+    "existing_card_values_and_conditions": "preserved;not_rewritten;new_general_critical_rules_require_current_review"
+  },
+  "shown_examples": {
+    "physical_attack": {
+      "predefense_noncritical_damage": 40,
+      "armor": 12,
+      "normal_suffered_damage": 28,
+      "critical_predefense_damage": 80,
+      "critical_suffered_damage": 68
+    },
+    "DI04_rank11": {
+      "proposed_agent_base_chance_percent": 5,
+      "already_accepted_bonus_percentage_points": 15,
+      "shown_final_chance_percent": 20
+    }
+  },
+  "RP_approval": "pending_explicit_review",
+  "numeric_and_scope_approval": "pending_explicit_review",
+  "unshown_cases_pending": [
+    "critical_chance_loot_affix_values_weights_and_item_family_scopes",
+    "critical_damage_bonus_affixes_if_later_proposed;none_created_here",
+    "familiars_and_NPC_critical_profiles_and_source_stat_mapping",
+    "weapon_variance_sampling_and_precise_generic_damage_modifier_stacking",
+    "mixed_damage_component_sharing_of_one_critical_result_and_indirect_secondary_eligibility",
+    "exact_impact_definition_for_burst_beams_waves_channeling_and_persistent_zone_direct_hits",
+    "RNG_draw_order_sampling_precision_and_replay",
+    "overkill_actual_HP_loss_absorption_and_secondary_effect_snapshot",
+    "native_critical_damage_feedback_and_statistics_tooltips",
+    "all_other_unshown_cases"
+  ],
+  "new_native_visuals_proposed": false,
+  "runtime_integration": "not_integrated"
+}

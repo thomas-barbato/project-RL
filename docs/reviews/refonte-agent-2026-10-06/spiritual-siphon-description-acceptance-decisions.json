@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-08",
+  "id": "HY05",
+  "review_id": "HY05-ACCEPT01",
+  "user_answer": "ca me va :) oui.",
+  "approval": "explicit_user_acceptance_of_preceding_full_displayed_card_and_visual_direction",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY05-02.json",
+  "previous_card_sha256": "e15758231b91e8093d92f48bace962d73e743eb94d922351ef230b30a3994bbc",
+  "accepted_title": "Ponction spirituelle",
+  "accepted_branch": "Énergie occulte",
+  "accepted_RP": "Vous arrachez à votre cible une essence obscure qui nourrit vos pouvoirs.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "occult_damage_before_defenses": 33,
+    "energy_recovery_percent_of_actual_HP_removed": 50,
+    "range_cells": 5,
+    "energy_cost": 2,
+    "cooldown_turns": 6
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "occult_damage_before_defenses": 35,
+    "energy_recovery_percent_of_actual_HP_removed": 52.5,
+    "range_cells": 5,
+    "energy_cost": 2,
+    "cooldown_turns": 6
+  },
+  "accepted_shown_profile": {
+    "effective_rank": 11,
+    "Volonté": 10,
+    "next_effective_rank": 12,
+    "next_purchase_cost": 1
+  },
+  "accepted_shown_conditions": [
+    "enemy visible in range with clear path",
+    "energy recovery based on actual HP removed",
+    "recovery capped to missing energy",
+    "human form required",
+    "Silence blocks use"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** l’ombre de la cible se contracte brièvement, puis des éclats rouge sombre sont aspirés vers vous.",
+  "accepted_player_copy_sha256": "66431a995a0a8f4d69f89d51db16b7a551cd82e8e9a842cc04f91898c6948d5a",
+  "accepted_shown_copy_sha256": "3ff04392eb520dfd8b0bbe18293bc7609d3c54cf43a7ed03af6b05a64aa25aab",
+  "unshown_full_curves_default_cap75_rounding_order_and_cases": "pending_individual_review",
+  "native_animation_approval": "pending_prototype_user_review",
+  "runtime_integration": "not_integrated"
+}

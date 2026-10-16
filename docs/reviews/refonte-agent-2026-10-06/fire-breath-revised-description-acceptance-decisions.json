@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "FE02",
+  "title": "Souffle de feu",
+  "user_message": "oui ca me va :)",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE02-02.json",
+  "previous_description_sha256": "f519158d32df84ee95d7b9fb82c6ca22730a6fda09fc1554c73452c56cfa1ad8",
+  "accepted_player_copy_sha256": "5dd1639baee0b208d132fdc468d31e07421d99e0ed5087550f9dcf61be3e67f9",
+  "previous_redesign_decisions": "docs/reviews/refonte-agent-2026-10-06/fire-breath-rename-and-automatic-channel-decisions.json",
+  "approval_scope": "Full displayed revised RP, current/next per-turn damage, cone, duration, per-turn energy/cooldown and automatic continuation, movement/weapon attack/other skill interruption, received-damage noninterruption, insufficient-energy stop, walls and allied target conditions accepted as provisional balance. Exact turn/reaction order and unshown full curves or other cases remain pending. Native visuals not accepted.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "fire_damage_per_target_per_turn": 28,
+      "cone_range_cells": 5,
+      "cone_angle_degrees": 90,
+      "duration_turns": 3,
+      "energy_per_turn": 8,
+      "cooldown_turns": 6
+    },
+    "next": {
+      "effective_rank": 12,
+      "fire_damage_per_target_per_turn": 30,
+      "cone_range_cells": 5,
+      "cone_angle_degrees": 90,
+      "duration_turns": 3,
+      "energy_per_turn": 8,
+      "cooldown_turns": 6
+    }
+  },
+  "accepted_conditions": [
+    "Effect continues automatically; moving, attacking with a weapon or using another skill ends it.",
+    "Received damage does not interrupt the effect; insufficient energy ends it.",
+    "Walls stop flames; allies in cone may be hit; damage displayed before defenses."
+  ],
+  "unshown_rules_approval": "Full rank curves, spell hit/defense order, exact cone/corner/footprint geometry, direction changes, cooldown start/count, initial-versus-followup turn/reaction ordering, valid/refused attack or skill cancellation, inventory/pet/item/natural-attack interactions, energy-insufficiency atomicity and damage/cost modifiers remain pending where not already accepted. Automatic continuation is specific to FE02. No automatic advance of game turns, manual maintenance command, preparation delay, persistent burn, general spell variance, hidden actor reveal or global change to other channel skills introduced.",
+  "scope": "FE02 only; other channel skills not changed",
+  "visual_approval": "existing catalogue direction only; native preview/timing pending",
+  "runtime_integration": "not_integrated"
+}

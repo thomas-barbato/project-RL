@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ03-ACCEPT01",
+  "user_reply": "parfait :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-slots-PETS-EQ03-01.json",
+  "source_proposal_sha256": "aabc5a52054a7465bff059480526ad3b3922a2ca72823f509fff6eec952467f3",
+  "accepted_shown_copy_markdown": "Les **compléments sur l’équipement des familiers sont validés**.\n\n**PETS-EQ03 · Emplacements des familiers — proposition**\n\nJe propose une fiche simple pour commencer.\n\n**Traqueur, Artilleur, Gardien et monstres ressuscités**\n\n- **1 emplacement d’arme**, compatible avec leur vocation.\n- **1 emplacement d’armure de torse**, compatible avec le familier.\n\nUne arme compatible à une ou deux mains occupe l’unique emplacement d’arme et devient son arme active.\n\n**Éclaireur et Mule**\n\n- **1 emplacement d’armure de torse**.\n\nCes deux drones conservent leur rôle sans attaque.\n\nLes armes et armures viennent du **même loot que celui du joueur**, avec les conditions de niveau et de compatibilité validées.\n\nLe rangement de la Mule reste distinct : son sac transporte les objets, ses emplacements servent à l’équiper.\n\n**Ces emplacements restent à valider.**",
+  "accepted_shown_copy_sha256": "6bce8392a3e0c03a2165cbf5ef090e278285e2388ca0e4c302905c5d2061fe34",
+  "accepted_shown_rules": {
+    "scope": "existing_drone_models_D56_D57_D58_D59_D66_and_raised_monsters;future_familiars_require_separate_role_compatibility_review",
+    "combat_familiars": [
+      "D58",
+      "D59",
+      "D66",
+      "raised_monsters"
+    ],
+    "combat_slots": {
+      "weapon": 1,
+      "torso_armor": 1
+    },
+    "utility_models": [
+      "D56",
+      "D57"
+    ],
+    "utility_slots": {
+      "weapon": 0,
+      "torso_armor": 1
+    },
+    "weapon_activation": "the_single_compatible_equipped_weapon_becomes_active;one_or_two_handed_weapon_uses_the_same_single_weapon_slot;no_second_inactive_slot_or_dual_wield_added",
+    "armor_scope": "one_compatible_torso_armor_item;no_head_hands_feet_accessory_slot_in_this_proposal",
+    "loot_source": "existing_player_loot_items_with_accepted_required_level_and_familiar_compatibility;no_new_drone_only_item_catalogue_or_item_model_created",
+    "Mule_storage": "cargo_storage_separate_from_equipment;equipping_is_not_storing_an_item_in_cargo;cargo_capacity_or_extra_storage_for_other_pets_not_defined",
+    "noncombat_models": "Eclaireur_Mule_no_attack_preserved"
+  },
+  "approval_scope": "Shown one weapon plus one compatible torso armor slot for D58/D59/D66 and raised monsters, one torso armor and no weapon for D56/D57, single compatible one-or-two-handed equipped weapon active, shared player loot subject to required level and compatibility, Mule cargo separate from equipment accepted. Native visual layers and slot layout not approved; exact families and other unshown rules pending.",
+  "unshown_cases_pending": [
+    "exact_allowed_weapon_and_torso_armor_families_by_model_type_and_minimum_level_including_utility_drone_armor_eligibility",
+    "future_familiar_slots_and_combat_roles",
+    "armor_stat_requirement_base_and_equipment_protection_combination",
+    "native_attack_damage_ranges_and_equipped_weapon_modes_ammunition_reload_range_and_AI",
+    "equipment_affix_skill_bonus_status_proc_eligibility_and_OC07_power_with_supplied_items",
+    "HP_energy_current_adjustments_on_equipment_level_owner_attributes_and_invocation_rank",
+    "item_transfer_and_equip_distance_cost_timing_and_combat_rules",
+    "raised_origin_gear_and_loot_snapshot_without_duplicate_objects",
+    "recall_redeployment_layer_save_and_invalid_ground_cell_behavior",
+    "native_equipment_rendering_body_layers_and_window_layout"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

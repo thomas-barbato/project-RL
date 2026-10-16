@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-06",
+  "id": "B02",
+  "title": "Égide occulte",
+  "revision": 1,
+  "player_copy_markdown": "**Égide occulte — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Un sceau protecteur entoure votre corps et amortit les coups reçus.*\n\nRéduit les dégâts directs reçus. Les dégâts persistants ne sont pas réduits.\n\n**Effet actuel**\n- Réduction des dégâts directs : **50 %**.\n- Durée : **4 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n- Réduction des dégâts directs : **51,2 %**.\n\n**Coût : 13 énergie · Recharge : 8 tours.**",
+  "player_copy_sha256": "64ba5baf99c867ede29fc5bb9ce4268268ab62b4fe59b33e4e43c91f11e31fdb",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/vitalite-amelioree-rename-and-acceptance-decisions.json",
+  "review_start_decisions_sha256": "01e76855272bc7cc86af006c9cc13732dcafe8a09eaaab148cff59def0acf621",
+  "previous_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-02.json",
+  "previous_skill_block_sha256": "f31bcd78eae791e9eefdbcd08e5ca30989f79f5a3cae5aea9b106f027f011757",
+  "name_approval": "preserve_previous_approval",
+  "roleplay_text_approval": "pending_individual_user_review; exact existing proposal preserved",
+  "functional_description_approval": "pending_user_review",
+  "current_next_effect_copy_approval": "pending_user_review",
+  "numeric_rules_approval": "previously displayed rank 1 10 and 12 reduction values preserved; rank 11 current-next card, duration and cost/cooldown pending",
+  "formulas": {
+    "direct_damage_reduction_percent": "25 + 50 * (effective_rank - 1) / (effective_rank + 9)",
+    "energy_cost": "10 + floor((effective_rank - 1) / 3)"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_duration_cost_or_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "direct_damage_reduction_percent_exact": {
+      "numerator": 50,
+      "denominator": 1
+    },
+    "direct_damage_reduction_percent_display": 50.0,
+    "duration_turns": 4,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "direct_damage_reduction_percent_exact": {
+      "numerator": 1075,
+      "denominator": 21
+    },
+    "direct_damage_reduction_percent_display": 51.2,
+    "duration_turns": 4,
+    "energy_cost": 13,
+    "cooldown_turns": 8
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "direct_damage_reduction_percent"
+    ],
+    "unchanged_effects_omitted": [
+      "duration_turns",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "presented_conditions_approval": "direct damage reduction and exclusion of persistent damage presented for individual review",
+  "unshown_conditions_approval": "protection order, stacking, recast refusal and launch-time parameter snapshot remain pending",
+  "active_weapon_requirement": "not required; this protective magic is not a weapon attack",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "current and next reductions calculated with exact fractions; displayed 50 and 51.2 percent",
+    "energy cost 13, duration 4 and cooldown 8 preserved",
+    "existing proposed roleplay preserved exactly; no table or ordinary execution-time reminder",
+    "only changed reduction value shown in next-rank block; learned cap respected"
+  ]
+}

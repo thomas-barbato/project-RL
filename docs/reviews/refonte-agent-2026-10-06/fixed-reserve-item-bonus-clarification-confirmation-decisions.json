@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-09",
+  "review_id": "J01-FLAT01-CONFIRM01",
+  "user_question": "tu as bien pris en compte que certains objets pourront potentiellement donner des statistiques fixes? par exemple +15 HP , +4 energie ?",
+  "assistant_clarification_markdown": "Oui :) Les objets pourront donner des **bonus fixes**, comme **+15 PV maximum** ou **+4 énergie maximum**.\n\nCes valeurs s’ajoutent **avant les bonus en pourcentage**, selon la règle validée. Par exemple :\n\n- **100 PV maximum + 15** → **115 PV maximum**.\n- **30 énergie maximum + 4** → **34 énergie maximum**.\n\nÉquiper ces objets augmente les maximums **sans remplir les jauges actuelles**.",
+  "user_reply": "ok parfait on continue :)",
+  "accepted_scope": "fixed_item_maximum_HP_and_energy_bonus_support_and_prepercentage_addition_confirmed;no_refill_on_equip_retained;example_amounts_do_not_define_actual_generated_affixes",
+  "already_accepted_reference": "docs/reviews/refonte-agent-2026-10-06/review-maximum-reserve-modifiers-02.json",
+  "already_accepted_reference_sha256": "aac0706bb48ccfc090d644e5bc6eed8cea663bf72e621cbdbc554e9cd0b5f32a",
+  "unshown_cases_pending": [
+    "actual_affix_catalogue_values_weights_item_level_and_eligibility",
+    "other_flat_stat_bonuses_and_attribute_modifier_order"
+  ],
+  "runtime_integration": "not_integrated"
+}

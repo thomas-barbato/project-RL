@@ -69,9 +69,15 @@ actions! {
     Multiple, "Analyse multiple", "M", GAME;
     Corrosion, "Essai : corrosion", "H", GAME;
     Pulse, "Essai : impulsion", "G", GAME;
-    Slot1, "Canal 1 : sélectionner / équiper", "Key1", GAME | INVENTORY;
-    Slot2, "Canal 2 : sélectionner / équiper", "Key2", GAME | INVENTORY;
-    Slot3, "Canal 3 : sélectionner / équiper", "Key3", GAME | INVENTORY;
+    Slot1, "Canal 1 : sélectionner / équiper", "Key7", GAME | INVENTORY;
+    Slot2, "Canal 2 : sélectionner / équiper", "Key8", GAME | INVENTORY;
+    Slot3, "Canal 3 : sélectionner / équiper", "Key9", GAME | INVENTORY;
+    Skill1, "Compétence 1", "Key1", GAME;
+    Skill2, "Compétence 2", "Key2", GAME;
+    Skill3, "Compétence 3", "Key3", GAME;
+    Skill4, "Compétence 4", "Key4", GAME;
+    Skill5, "Compétence 5", "Key5", GAME;
+    Skill6, "Compétence 6", "Key6", GAME;
     MenuUp, "Menus / dossier : ligne précédente", "Up", INVENTORY | SKILLS | REPORT | SETTINGS;
     MenuDown, "Menus / dossier : ligne suivante", "Down", INVENTORY | SKILLS | REPORT | SETTINGS;
     MenuLeft, "Valeur / discipline précédente", "Left", SKILLS | SETTINGS;
@@ -329,7 +335,7 @@ impl Controls {
             })
             .collect();
         Self {
-            version: 3,
+            version: 4,
             layout,
             semantics,
             bindings,
@@ -384,7 +390,7 @@ impl Controls {
         Ok(())
     }
     fn validate(&self) -> Result<(), String> {
-        if self.version != 3 {
+        if self.version != 4 {
             return Err("Version des commandes incompatible.".to_owned());
         }
         if self.bindings.len() != Action::ALL.len() {
@@ -426,11 +432,26 @@ impl Controls {
         if migrate_use {
             document["version"] = serde_json::json!(3);
         }
+        let migrate_skill_bar = document["version"] == 3;
+        if migrate_skill_bar {
+            document["version"] = serde_json::json!(4);
+        }
         let mut result: Self =
             serde_json::from_value(document).map_err(|error| error.to_string())?;
         // Only migrate the old default; keep custom bindings and any conflict.
         if migrate_use && result.bindings.get(&Action::Use) == Some(&Binding::key("U")) {
             let _ = result.rebind(Action::Use, Binding::key("E"));
+        }
+        if migrate_skill_bar {
+            for (action, old, new) in [
+                (Action::Slot1, "Key1", "Key7"),
+                (Action::Slot2, "Key2", "Key8"),
+                (Action::Slot3, "Key3", "Key9"),
+            ] {
+                if result.bindings.get(&action) == Some(&Binding::key(old)) {
+                    let _ = result.rebind(action, Binding::key(new));
+                }
+            }
         }
         // Add actions introduced after a user's file was saved without resetting
         // custom bindings. Prefer each new default, then the first free key.
@@ -451,6 +472,12 @@ impl Controls {
             Action::Laboratory,
             Action::AimGround,
             Action::WorldActions,
+            Action::Skill1,
+            Action::Skill2,
+            Action::Skill3,
+            Action::Skill4,
+            Action::Skill5,
+            Action::Skill6,
         ] {
             if result.bindings.contains_key(&action) {
                 continue;
@@ -530,6 +557,8 @@ pub struct InputFrame {
     pub pause: bool,
     pub pointer: Option<(f32, f32)>,
     pub viewport: Option<(f32, f32)>,
+    /// Scale used by transform_input; pointer and viewport are logical UI units.
+    pub ui_scale: Option<f32>,
     pub wheel_y: f32,
     /// Drag state only; never injected into pressed/held action bindings.
     pub mouse_left_down: bool,
@@ -564,6 +593,7 @@ impl InputFrame {
             pause: keys.contains(&KeyCode::Escape),
             pointer: Some(mouse_position()),
             viewport: Some((screen_width(), screen_height())),
+            ui_scale: None,
             wheel_y: mouse_wheel().1,
             mouse_left_down: is_mouse_button_down(MouseButton::Left),
         }
@@ -714,6 +744,35 @@ mod tests {
     use super::*;
 
     #[test]
+    fn skill_bar_migrates_old_weapon_defaults_and_keeps_personal_bindings() {
+        let preset = Controls::preset(Layout::Qwerty, KeySemantics::Physical);
+        let mut old = serde_json::to_value(preset).unwrap();
+        old["version"] = 3.into();
+        for i in 1..=6 {
+            old["bindings"]
+                .as_object_mut()
+                .unwrap()
+                .remove(&format!("skill{i}"));
+        }
+        for i in 1..=3 {
+            old["bindings"][format!("slot{i}")] =
+                serde_json::json!({"type":"key","value":format!("Key{i}")});
+        }
+        let migrated = Controls::decode(&old.to_string()).unwrap();
+        assert_eq!(migrated.binding(Action::Slot1), &Binding::key("Key7"));
+        assert_eq!(migrated.binding(Action::Slot3), &Binding::key("Key9"));
+        assert_eq!(migrated.binding(Action::Skill1), &Binding::key("Key1"));
+        assert_eq!(migrated.binding(Action::Skill6), &Binding::key("Key6"));
+        old["bindings"]["slot1"] = serde_json::json!({"type":"key","value":"Kp1"});
+        assert_eq!(
+            Controls::decode(&old.to_string())
+                .unwrap()
+                .binding(Action::Slot1),
+            &Binding::key("Kp1")
+        );
+    }
+
+    #[test]
     fn equip_uses_e_and_legacy_profiles_preserve_personal_bindings() {
         for layout in [Layout::Azerty, Layout::Qwerty] {
             let controls = Controls::preset(layout, KeySemantics::Physical);
@@ -728,7 +787,7 @@ mod tests {
             document["bindings"]["use"] = serde_json::json!({"type":"key", "value":"U"});
             let migrated = Controls::decode(&document.to_string()).unwrap();
             assert_eq!(migrated.binding(Action::Use), &Binding::key("E"));
-            assert_eq!(migrated.version, 3);
+            assert_eq!(migrated.version, 4);
 
             document["bindings"]["drop"] = serde_json::json!({"type":"key", "value":"E"});
             let migrated = Controls::decode(&document.to_string()).unwrap();

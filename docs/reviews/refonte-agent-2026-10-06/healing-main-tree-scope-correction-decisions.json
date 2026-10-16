@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SKILL-HEAL01-SCOPE02",
+  "user_instruction": "attend, toutes les branches n'ont pas besoin d'avoir un soin tu sais . juste les principales",
+  "accepted_scope_correction": "healing_requirement_applies_only_to_main_trees;not_each_specialized_branch",
+  "exact_main_tree_grouping": "clarification_pending;no_new_grouping_accepted",
+  "clarification_proposed_groups": [
+    "Mêlée/Survie",
+    "Drones/Affaiblissements",
+    "Tir/Esquive",
+    "Magie (Feu/Froid/Occulte)",
+    "Transformations/Hybrides",
+    "Armes lourdes"
+  ],
+  "clarification_alternative": "only_five_class_style_groups_excluding_new_heavy_tree_from_requirement",
+  "withdrawn_working_draft": "docs/reviews/refonte-agent-2026-10-06/review-branch-healing-complements-01.json",
+  "withdrawn_working_draft_sha256": "bf878a7f7921dcacf6577a806b5dcab9351662470dcf570e6d3443ee17b0aec7",
+  "draft_scope": "nine_role_proposals_prepared_but_not_presented_in_final_or_accepted;no_compulsory_new_skill_catalogue_after_correction",
+  "existing_accepted_heals": "preserved_including_HL06;no_skill_removed_or_revised",
+  "prior_requested_robot_active": "DR01_request_preserved_separately_from_per_branch_healing_requirement",
+  "progression_requirement": "SKILL_PROG01_meaningful_progression_preserved",
+  "secondary_tree_heal_requirement": "no_new_requirement_inferred",
+  "runtime_integration": "not_integrated"
+}

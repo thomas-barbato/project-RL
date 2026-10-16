@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-CONTAGION02-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-contagion-zone-gel-INTERACT-CONTAGION02-01.json",
+    "reference_sha256": "c1bde2f742975a7204b13c9228556cd375c4a8131f9e83f377d26e28ec9a289a"
+  },
+  "user_acceptance": "parfait :)",
+  "shown_explanation": "INTERACT-CONTAGION02 · Gel entretenu par une zone — proposition\n\nSi Contagion transmet un Gel uniquement entretenu par une zone :\n\n- La nouvelle cible peut être gelée même hors de la zone. Ses déplacements sont bloqués ; elle peut toujours attaquer et utiliser ses compétences.\n- La durée de référence correspond au temps restant de la zone, limité à 5 tours. Contagion réduit ensuite cette durée selon son taux de conservation, arrondie à l'entier inférieur, avec un minimum de 1 tour si la transmission réussit.\n- Ce Gel a ensuite son propre compte à rebours. La disparition de la zone d'origine ne le retire pas. Une Brûlure réussie le supprime, comme les autres Gels.\n\nExemple avec Contagion au rang effectif 11 : conservation de 80 %. S'il reste 8 tours à la zone, la durée de référence est limitée à 5 : le Gel transmis dure 4 tours.\n\nLa zone reste en place. Les résistances, les malus des élites et des boss, ainsi que l'interdiction de retransmettre un effet reçu par Contagion sont conservés.\n\nCette durée de référence plafonnée et son autonomie restent proposées, en attente de validation.",
+  "approved_rule": {
+    "eligibility": "accepted_INTERACT_CONTAGION01_selection;source_Gel_still_active_in_prefatal_snapshot_and_solely_maintained_by_selected_source_zone",
+    "reference_duration": "min(remaining_source_zone_turns_at_transfer,5);source_zone_must_still_be_active_with_positive_remaining_time",
+    "transmitted_duration": "min(remaining_source_zone_turns,max(1,floor(reference_duration*current_AF06_retained_percent/100)))_on_success",
+    "duration_basis": "new_five_turn_cap_for_zone_only_transfer_proposed;AF06_current_provisional_retention_curve_unchanged",
+    "recipient": "Gel_can_apply_outside_zone;blocks_movement_not_attacks_or_other_actions;existing_current_defenses_and_importance_chance_modifiers_preserved",
+    "independent_lifetime": "successful_transferred_Gel_has_own_timer;original_zone_expiry_or_removal_does_not_cancel_this_received_status;successful_Burn_removes_Gel_as_already_accepted",
+    "preserved": "zone_not_moved_or_copied;one_status_per_death;received_Contagion_instance_cannot_be_retransmitted;direct_Gel_and_source_zone_only_Gel_exit_rules_unchanged"
+  },
+  "approval_boundary": "shown_zone_only_Gel_reference_cap5_retained_duration_floor_min1_and_independence_accepted;multiple_source_merging_unshown_other_retention_bindings_or_native_art_not_approved",
+  "runtime_integration": "not_integrated"
+}

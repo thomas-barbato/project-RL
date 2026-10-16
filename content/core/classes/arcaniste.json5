@@ -1,0 +1,57 @@
+{
+  "id": "core:arcaniste",
+  "name_key": "class.arcaniste.name",
+  "role_key": "class.arcaniste.role",
+  "description_key": "class.arcaniste.description",
+  "recommended_attributes": {
+    "power": 4,
+    "coordination": 5,
+    "resilience": 6,
+    "perception": 6,
+    "processing": 5,
+    "willpower": 8
+  },
+  "starting_weapons": [
+    "core:melee_couteau_de_camp"
+  ],
+  "starting_items": [
+    {
+      "item": "core:tenue_rituelle",
+      "quantity": 1
+    },
+    {
+      "item": "core:agent_dose_soin",
+      "quantity": 2
+    },
+    {
+      "item": "core:agent_cellule_energie",
+      "quantity": 1
+    }
+  ],
+  "starting_equipment": [
+    "core:melee_couteau_de_camp",
+    null,
+    null
+  ],
+  "agent_start": {
+    "maximum_hp_percent": 90,
+    "maximum_energy_percent": 100,
+    "weapon_damage_percent": 100,
+    "melee_damage_percent": 100,
+    "ranged_damage_percent": 100,
+    "spell_damage_percent": 115,
+    "magic_energy_percent": 80,
+    "drone_hp_percent": 100,
+    "drone_damage_percent": 100,
+    "transformed_damage_percent": 100,
+    "human_skill_energy_percent": 100,
+    "armor": 0,
+    "evasion": 0,
+    "transformation_duration_bonus": 0,
+    "weakening_duration_bonus": 0,
+    "skills": [
+      "FE01",
+      "A03"
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "status": "awaiting_visual_review",
+  "protected_files_unchanged": 272,
+  "native_capture": "native/capture.json",
+  "source": "Macroquad native framebuffer with drawn sprite frames",
+  "scene_resampling": false,
+  "animations": [
+    {
+      "file": "FE02-A02-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 68,
+      "frames": 68,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE02-A02-64-slow.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 68,
+      "frames": 68,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "FE03-A02-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 63,
+      "frames": 79,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE03-A02-64-slow.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 63,
+      "frames": 79,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "FE04-A02-64.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 60,
+      "frames": 80,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE04-A02-64-slow.gif",
+      "native_size": [
+        448,
+        448
+      ],
+      "distinct_frames": 60,
+      "frames": 80,
+      "duration_ms": 8000,
+      "loop": 0
+    }
+  ],
+  "checks": {
+    "cargo_build_locked": "passed",
+    "targeted_agent_skill_lab_review_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "cargo_fmt_check": "passed",
+    "git_diff_check_touched_files": "passed",
+    "python_compile": "passed",
+    "gallery_javascript_syntax": "passed",
+    "native_stderr_empty": true,
+    "full_suite_run": false
+  },
+  "visual_inspection": [
+    "Native FE02-A02 frame 020, actor and enemy visibility",
+    "Native FE03-A02 frame 065, flame and exiting target",
+    "Native FE04-A02 frame 035, upward jets"
+  ]
+}

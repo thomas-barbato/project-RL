@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-08",
+  "id": "HY05",
+  "review_id": "HY05",
+  "revision": 1,
+  "title": "Siphon technique",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-82.json",
+  "source_skill_block_sha256": "01aba9e22d14096fd46b0b4c172bf3d4ee6ea1c6a72a7782cd45e907dacba762",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "currently_transformed": false,
+    "other_passive_implant_or_cost_modifiers": false,
+    "max_energy": "current player maximum; displayed percent scales to it dynamically"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "max_dispelled_buffs": 3,
+    "energy_recovery_percent_exact": "10",
+    "energy_recovery_percent_display": 10,
+    "range_cells": 4,
+    "energy_cost": 9,
+    "cooldown_turns": 6
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "max_dispelled_buffs": 3,
+    "energy_recovery_percent_exact": "215/21",
+    "energy_recovery_percent_display": 10.2,
+    "range_cells": 4,
+    "energy_cost": 9,
+    "cooldown_turns": 6
+  },
+  "formulas_proposed": {
+    "max_dispelled_buffs": "min(3,1+floor((effective_rank-1)/5))",
+    "energy_recovery_percent": "5+10*(effective_rank-1)/(effective_rank+9)",
+    "energy_recovery_amount": "min(missing_energy,ceil(max_energy*energy_recovery_percent/100))",
+    "energy_cost": "6+floor((effective_rank-1)/3)",
+    "range_cells": 4,
+    "cooldown_turns": 6,
+    "full_curves_defaults_rounding_and_modifier_order": "unshown_pending_review"
+  },
+  "conditions_proposed": {
+    "visible_hostile_in_range_and_clear_path": true,
+    "temporary_dispellable_buffs_only": true,
+    "selection": "newest eligible buffs up to limit;proposed",
+    "permanent_traits_passives_and_equipment_not_removed": "unshown_existing_scope_pending_review",
+    "energy_gain_once_per_cast_not_per_buff": true,
+    "energy_gain_capped_to_missing_reserve": true,
+    "no_eligible_buff_action_disabled": true,
+    "human_form_required": true,
+    "blocked_by_Silence": true,
+    "no_damage_control_or_global_boss_immunity_implicitly_added": true,
+    "energy_cost_payment_order_and_no_cost_refusal_atomicity": "unshown_existing_proposals_pending_review"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "proposed_pending_explicit_user_review",
+  "numeric_rules_approval": "displayed_current3_buffs_10percent_next10_2percent_range4_energy9_CD6_proposed_pending_review;unshown_curves_pending",
+  "detailed_conditions_approval": "displayed_newest_temporary_dispellable_buffs_visible_clear_path_gain_once_capped_no_eligible_buff_disabled_human_and_Silence_proposed_pending_review",
+  "visual_intention_approval": "catalogue_fragment_transfer_direction_preserved;buff_marks_to_implants_shown_detail_proposed_pending_review",
+  "visual_approval": "per_skill_native_animation_pending_review",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "energy_recovery_percent"
+    ]
+  },
+  "player_copy_markdown": "**HY05 · Siphon technique — Rang 11 · Actif**\n\n*Vous arrachez les renforcements d’un ennemi et recyclez leur énergie dans vos implants.*\n\n**Effets actuels**\n\n- Renforcements dissipés : **3 maximum**.\n- Énergie récupérée : **10 % de votre énergie maximale**.\n- Portée : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Énergie récupérée : **10,2 % de votre énergie maximale**.\n\n**Coût : 9 énergie · Recharge : 6 tours.**\n\nRetire les renforcements temporaires dissipables les plus récents d’un ennemi visible, à portée et avec un trajet dégagé.\n\nLe gain d’énergie est accordé une seule fois par utilisation et reste limité à votre réserve manquante.\n\nSans renforcement dissipable, la compétence est indisponible.\n\nForme humaine requise. Silence empêche son utilisation.",
+  "player_copy_sha256": "caf144cc63759b1a51f86d16021764d835f57d95822ade6369824de9f1293a23",
+  "visual_copy_markdown": "**Visuel proposé :** les marques des renforcements se détachent de l’ennemi en fragments, puis rejoignent les implants de votre personnage.",
+  "visual_copy_sha256": "8bc1cd005bfa3b2120d351d2e6c5c5c99512d5e545e02f194ce5a3110bbaec48",
+  "current_turn_shown_copy_markdown": "**HY05 · Siphon technique — Rang 11 · Actif**\n\n*Vous arrachez les renforcements d’un ennemi et recyclez leur énergie dans vos implants.*\n\n**Effets actuels**\n\n- Renforcements dissipés : **3 maximum**.\n- Énergie récupérée : **10 % de votre énergie maximale**.\n- Portée : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Énergie récupérée : **10,2 % de votre énergie maximale**.\n\n**Coût : 9 énergie · Recharge : 6 tours.**\n\nRetire les renforcements temporaires dissipables les plus récents d’un ennemi visible, à portée et avec un trajet dégagé.\n\nLe gain d’énergie est accordé une seule fois par utilisation et reste limité à votre réserve manquante.\n\nSans renforcement dissipable, la compétence est indisponible.\n\nForme humaine requise. Silence empêche son utilisation.\n\n**Visuel proposé :** les marques des renforcements se détachent de l’ennemi en fragments, puis rejoignent les implants de votre personnage.",
+  "current_turn_shown_copy_sha256": "fef783b3304e0ae63cfefb2606ef774fbae46b1c96a42008776433c450e62d93",
+  "unshown_cases_pending": [
+    "full_rank_curves_defaults_maximums_rounding_and_modifier_order",
+    "same_time_buff_application_tie_order_and_disappearing_targets",
+    "eligible_buff_tags_boss_and_elite_buff_design_without_global_control_classification",
+    "max_energy_snapshot_capped_recovery_and_payment_order",
+    "observation_union_line_of_effect_geometry_and_large_footprints",
+    "cooldown_start_counting_cast_refusals_and_time_energy_RNG_atomicity",
+    "buff_removal_triggers_loot_XP_and_passive_attribution",
+    "native_buff_fragments_implant_transfer_and_status_bar_updates"
+  ],
+  "runtime_integration": "not_integrated"
+}

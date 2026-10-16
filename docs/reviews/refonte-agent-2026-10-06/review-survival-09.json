@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-06",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/purge-growing-limit-decisions.json",
+  "latest_decisions_sha256": "1361b79e2680aaa2862d0587a7d01ec32e55b6308c500501a1472f5f82df3a95",
+  "runtime_integration": "not_integrated",
+  "batch_revision": 9,
+  "document": "docs/REVUE_SURVIE_AGENT_LOT_04.md",
+  "document_sha256": "6df7b670b9dc4a3ea63b62c3f8d0c0260d5b0559fb4e9862812461b1616e2ce0",
+  "blocks": [
+    {
+      "id": "B03",
+      "title": "Vitalité améliorée",
+      "block_sha256": "27c943b632025647f35fd6b5b3d39972b00c8067c83f5093acfd2539b41cbc2b",
+      "text_sha256": "fcf89ec7d4713791069e545edbe278e118bd1ca8a931699feff26eb34e6dc76a",
+      "mechanic_sha256": "27713f21734189df8a5a1fbd8104baf397d480c9a5399f502d5ecf1fd564c306",
+      "revision": 4,
+      "name_approval": "explicit_user_rename",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "displayed_individual_current_next_description_accepted",
+      "numeric_rules_approval": "displayed_current_next_values_and_no_healing_condition_accepted; unshown_formulas_and_conditions_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "accepted_visible_effect_examples": {
+        "1": {
+          "max_hp_percent": 10
+        },
+        "10": {
+          "max_hp_percent": 28
+        },
+        "12": {
+          "max_hp_percent": 32
+        }
+      },
+      "previous_block_manifest": "docs/reviews/refonte-agent-2026-10-06/review-lot-01-revision-04.json",
+      "reference_rename_only": "B03 now named Vitalité améliorée; effects unchanged",
+      "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-B03-02.json"
+    },
+    {
+      "id": "B02",
+      "title": "Égide occulte",
+      "block_sha256": "37eeadd9e29056ea22d1f68a93b95f1641aa2d5dafea6178a658de90905cb205",
+      "text_sha256": "869f4a555428f68dd5deaf9448065a5a9a85eb17d66b1c7f3308caf87d9c3c4e",
+      "mechanic_sha256": "6bacc5ef60b8f2e5c3e67015ae8a9547c2496e2d5a6684c0164e019d80c1f862",
+      "revision": 4,
+      "name_approval": "accepted_as_presented",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "displayed_individual_current_next_description_accepted",
+      "numeric_rules_approval": "displayed_current_next_reduction_duration_cost_cooldown_accepted; unshown_formulas_and_conditions_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "accepted_visible_effect_examples": {
+        "1": {
+          "direct_damage_reduction_display_percent": 25
+        },
+        "10": {
+          "direct_damage_reduction_display_percent": 48.7
+        },
+        "12": {
+          "direct_damage_reduction_display_percent": 51.2
+        }
+      },
+      "previous_block_manifest": "docs/reviews/refonte-agent-2026-10-06/review-lot-01-revision-04.json",
+      "presented_conditions_approval": "direct_damage_reduction_and_persistent_damage_exclusion_accepted",
+      "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-B02-02.json"
+    },
+    {
+      "id": "SU03",
+      "title": "Barrière d’épine",
+      "block_sha256": "8e6e2e86962f04d5f61d5c61ec4af9af3b76ba7b1a426ac2f58408f72161b889",
+      "text_sha256": "781713cecff780bcb0d0f8fe91a8df0d384fab4b0732fd66f0140eefc3353d33",
+      "mechanic_sha256": "7521c84469ea0254dbb689384fe87b37bb5b6095545c5daadad752dc55574d47",
+      "revision": 5,
+      "name_approval": "explicit_user_rename",
+      "catalogue_effect_approval": "displayed_melee_reflection_reference_application_exclusions_and_anti_chain_conditions_accepted",
+      "text_approval": "displayed_individual_current_next_description_accepted",
+      "numeric_rules_approval": "displayed_current_next_percentages_duration_cost_cooldown_and_reflection_conditions_accepted; unshown_formulas_and_conditions_pending",
+      "visual_intention_approval": "previous_absorption_intention_superseded; new_reflection_intention_pending_review",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "role": "active",
+      "role_approval": "active_temporary_buff_explicitly_accepted",
+      "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU03-04.json"
+    },
+    {
+      "id": "SU04",
+      "title": "Régénération",
+      "block_sha256": "98a241665310f8370a0697988211efbb70e5cb59f9fc60c12842b1b442100472",
+      "text_sha256": "c2dfc6815b6802bc872f117e886f93d4ab0702b10d319166d9e249d7f56e67b5",
+      "mechanic_sha256": "159826748bda55e59f540442e418562d8fbc961578450621c92ca641f5557485",
+      "revision": 2,
+      "name_approval": "explicit_user_rename",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "displayed_individual_current_next_description_accepted",
+      "numeric_rules_approval": "displayed_current_next_healing_duration_energy_cooldown_and_channel_conditions_accepted; unshown_formulas_and_conditions_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU04-02.json"
+    },
+    {
+      "id": "SU05",
+      "title": "Purge",
+      "block_sha256": "e5254c97a7a5ce969d190d54142eb3a786417b9663d146ad1b964caa04b56e18",
+      "text_sha256": "03ce9cdcb81e23cd7a3c93a96acf1e8dd8c5394e4f55ef93d6ac395dc51a0569",
+      "mechanic_sha256": "74e3d783298f680685ab0ed23e99a093e3f6cb21f546f70ac770d39b446adc4a",
+      "revision": 3,
+      "name_approval": "explicit_user_rename",
+      "catalogue_effect_approval": "rank_growing_maximum_and_most_recent_first_automatic_removal_direction_requested",
+      "text_approval": "exact_roleplay_requested; revised_functional_and_current_next_copy_pending_user_review",
+      "numeric_rules_approval": "rank_growing_direction_accepted; exact_thresholds_cost_and_cooldown_pending",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU05-03.json"
+    },
+    {
+      "id": "SU06",
+      "title": "Dernier sursaut",
+      "block_sha256": "2697eab9199b1f0bede474dba785f504291876c8cf904b0cf33fe8eb52bed116",
+      "text_sha256": "7267dd0760051e56dcb8bfb49cd56230997a85cb95de78e4f2aca0bceeb9f0ba",
+      "mechanic_sha256": "e1cbc241283cd48afc4ad2134f4e57f580abdac72d75be60a2c7158237293273",
+      "revision": 1,
+      "name_approval": "accepted_as_presented",
+      "catalogue_effect_approval": "accepted_as_presented",
+      "text_approval": "pending_individual_user_review",
+      "numeric_rules_approval": "new_details_pending_user_review",
+      "visual_intention_approval": "accepted_as_presented",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated"
+    }
+  ],
+  "calculation_examples": "docs/reviews/refonte-agent-2026-10-06/survival-description-examples.json",
+  "calculation_examples_sha256": "5f1e1bfc0080c88c3947938335cbfbd74f323412af261aef96cb65b8983d4cf4",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-08.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-survival-revision-08.md",
+  "historical_calculation_examples_status": "SU03 absorption examples superseded. SU05 old count/cost calculations remain numerically applicable as proposals; manual selection superseded by most-recent-first priority.",
+  "current_SU03_calculation_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU03-04.json",
+  "current_SU05_calculation_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SU05-03.json"
+}

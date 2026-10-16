@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-09",
+  "review_id": "SKILL-LEVEL01-STATUS02-CHECK01",
+  "scope": "review_reference_integrity_and_arithmetic;not_engine_or_balance_tests",
+  "files_checked": [
+    "current-level-skill-power-numeric-acceptance-decisions.json",
+    "last-status-cast-power-acceptance-decisions.json",
+    "review-current-level-skill-power-02.json",
+    "skill-rank-curves-provisional-02.json",
+    "skill-rank-curves-validation-02.json",
+    "review-persistent-power-snapshot-INTERACT-POWER01-01.json",
+    "review-implementation-readiness-04.json",
+    "review-attribute-model-62.json",
+    "review-primary-catalogue-234.json",
+    "review-complete-skill-design-209.json",
+    "remaining-individual-skill-review-counts-103.json"
+  ],
+  "hash_references_checked": 1124,
+  "hash_errors": [],
+  "Braise_level11_without_bonuses": {
+    "1": 16,
+    "10": 70
+  },
+  "rank_curves_94_parameters": "unchanged",
+  "other_accepted_rules_catalogues_caps_and_existing_overrides": "preserved",
+  "level_coefficient": "accepted_initial_provisional_curve",
+  "latest_status_cast_power": "accepted_even_if_lower;duration_restart_preserved",
+  "persistent_effect_snapshot": "proposal_only;not_accepted_or_runtime_integrated",
+  "runtime_integration": "not_integrated"
+}

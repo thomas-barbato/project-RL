@@ -1,0 +1,21 @@
+{
+  "build": {
+    "command": "cargo build --locked",
+    "exit_code": 0
+  },
+  "tests": {
+    "command": "cargo test --locked agent_skill_lab_review",
+    "passed": 37,
+    "failed": 0
+  },
+  "format": {
+    "command": "cargo fmt --all -- --check",
+    "exit_code": 0
+  },
+  "diff_check": {
+    "command": "git diff --check",
+    "exit_code": 0
+  },
+  "campaign_integration": false,
+  "visual_approval": "pending"
+}

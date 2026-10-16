@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-13",
+  "build": {
+    "command": "cargo build --locked",
+    "exit_code": 0
+  },
+  "targeted_tests": {
+    "command": "cargo test --locked agent_skill_lab_review",
+    "passed": 55,
+    "failed": 0
+  },
+  "format": {
+    "command": "cargo fmt --all -- --check",
+    "exit_code": 0
+  },
+  "diff_check": {
+    "command": "git diff --check",
+    "exit_code": 0
+  },
+  "native_render": {
+    "views": 16,
+    "animations": 9,
+    "additional_comparison": true,
+    "protected_files_unchanged": 57716,
+    "pixel_controls": "passed"
+  },
+  "revision": "HY05-A03: larger initial shadow and a dense cosmetic stream of moving essence drawings. OC05-A02: broad layered black/red/purple filament and a stronger returning pulse. No extra resolutions, contacts or gameplay effects.",
+  "native_intensity_example": {
+    "siphon_visible_pixels_previous": 883,
+    "siphon_visible_pixels_new": 4228,
+    "ray_visible_pixels_previous": 2451,
+    "ray_visible_pixels_new": 9813
+  },
+  "retained": "Source PNGs and alpha match exactly. Prepared timelines match exactly. Actor and terrain controls match, excluding only transient floating skill-name antialias differences in the known rectangle during frames 17-33. Targeting, timings, walls, counters and interruptions are preserved.",
+  "gallery_controller": "Both intensity profiles load valid frames. Explicit-turn loops, interruptions, pause and loading controls passed offline VM checks.",
+  "gallery_links": {
+    "checked": 9,
+    "missing": 0
+  },
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Native captures and offline controller verified.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "approved",
+  "acceptance": "visual-acceptance-01.json"
+}

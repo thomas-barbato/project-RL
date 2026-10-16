@@ -1,0 +1,570 @@
+{
+  "review_id": "SKILLS-IC15",
+  "date": "2026-10-11",
+  "status": "awaiting_visual_review",
+  "title": "Affaiblissements",
+  "description": "Six compactes : Interférence, Faille d’armure, Silence, Rupture de régénération, Désorientation et Contagion.",
+  "scope": "Six new compact drawings only; no skill copy, gameplay, illustration or runtime change.",
+  "style_reference_review": "SKILLS-IC11",
+  "candidates": [
+    {
+      "id": "O02",
+      "number": 29,
+      "variant": "O02-C01",
+      "title": "Interférence",
+      "branch": "Affaiblissements",
+      "kind": "active",
+      "roleplay": "Vous mêlez parasites électroniques et murmures occultes. Les attaques de la cible perdent de leur puissance.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/O02-C01.txt",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11010-433f-7fc2-ac29-ffb696dec5ea\\exec-8024d29f-b1d4-431f-b836-0df1eff0c49b.png",
+      "source_sha256": "56d0fc5cbdf80506f7da9af1a35436b9755e6ef1615011e552da1a932a742773",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-15/O02-C01-master.png",
+        "sha256": "56d0fc5cbdf80506f7da9af1a35436b9755e6ef1615011e552da1a932a742773",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "O02-C01-24.png",
+          "sha256": "972372161fc459aa89af5f303b22b2bf46c339d9ad613ead0a8ad3d821d31693",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "O02-C01-32.png",
+          "sha256": "0afb9a50a30fcd1038f49685074ae088a158fda8750bd1401c2c828a7ccc3995",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "O02-C01-64.png",
+          "sha256": "87133d82beeeaf0637cb9d8ec9f147801aac734c87e9ab7d03456d031f956e45",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "O02-C01-128.png",
+          "sha256": "188521b4147f480ed990f3c6ede03242a6dc896cc4d70792001c32b7bc846182",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "O02-C01-192.png",
+          "sha256": "720ead273e6bb8ee35bad297bc218a795da10f10603faa3aaa80fb496ec6076f",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/FE01-C01-192.png",
+          "sha256": "a5d5c30145a24fe0be4f05aff988e328d3a57771938147bd91d9719fb0a70204"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/B03-C01-192.png",
+          "sha256": "29ed2b5b52984ec5facbe851e123fca6d9a245d633d01bfdb8e2f77586c205a4"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-192.png",
+          "sha256": "c1f33f477f5af585eec24997da4909e62e13616c3c18622d6a564537bda8d901"
+        }
+      ]
+    },
+    {
+      "id": "AF02",
+      "number": 30,
+      "variant": "AF02-C01",
+      "title": "Faille d'armure",
+      "branch": "Affaiblissements",
+      "kind": "active",
+      "roleplay": "Un sceau occulte s’insinue dans les failles de l’armure de votre cible. Une rouille surnaturelle la ronge et fragilise sa protection.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/AF02-C01.txt",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11010-433f-7fc2-ac29-ffb696dec5ea\\exec-b5c727e1-9ee5-4c88-815b-a307a7a0ffd6.png",
+      "source_sha256": "357c4f43ab5cac58df6edfdd8381cf3f21c4693de14f4ce942607f8edee887cc",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-15/AF02-C01-master.png",
+        "sha256": "357c4f43ab5cac58df6edfdd8381cf3f21c4693de14f4ce942607f8edee887cc",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "AF02-C01-24.png",
+          "sha256": "41fcc505afed4c75c390b50356db1311e4f0c52eb66819693e006206a752338f",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "AF02-C01-32.png",
+          "sha256": "88bd7fefdf145a62366758eef2e3acf415fed03465b7668030326e1c45bc9e02",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "AF02-C01-64.png",
+          "sha256": "467ec32b1584c0a9b8fbce5e8824b5b627df734bcb5d515bd3f22c4d7a427202",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "AF02-C01-128.png",
+          "sha256": "d6c72f0666388d4cc2d46ff2181fcec7d2e99ed2797c4096e9c9bcf43d6f729a",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "AF02-C01-192.png",
+          "sha256": "b3bce383d4f775364d5776e80da128e3bfe85ffc07baf7b96bd50f9a41dd979e",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/FE01-C01-192.png",
+          "sha256": "a5d5c30145a24fe0be4f05aff988e328d3a57771938147bd91d9719fb0a70204"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/B03-C01-192.png",
+          "sha256": "29ed2b5b52984ec5facbe851e123fca6d9a245d633d01bfdb8e2f77586c205a4"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-192.png",
+          "sha256": "c1f33f477f5af585eec24997da4909e62e13616c3c18622d6a564537bda8d901"
+        }
+      ]
+    },
+    {
+      "id": "AF03",
+      "number": 31,
+      "variant": "AF03-C01",
+      "title": "Silence",
+      "branch": "Affaiblissements",
+      "kind": "active",
+      "roleplay": "Vous étouffez les signaux et les incantations de votre cible, la réduisant au silence.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/AF03-C01.txt",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11010-433f-7fc2-ac29-ffb696dec5ea\\exec-6f895a4f-24f3-493f-bf62-771a54fc84c4.png",
+      "source_sha256": "ef0741ecdcd15cb7f0a5b50967c58402354a2e74363a0be9775a87b969866d9c",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-15/AF03-C01-master.png",
+        "sha256": "ef0741ecdcd15cb7f0a5b50967c58402354a2e74363a0be9775a87b969866d9c",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "AF03-C01-24.png",
+          "sha256": "5f0706e51a17629d483cb3fbe964b8937bf52578b108732a7ed240bb72fbbc14",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "AF03-C01-32.png",
+          "sha256": "73ff345e9bce221f25ecdaedbe04c9a869262dba42db05436edcd74bec0ebbc2",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "AF03-C01-64.png",
+          "sha256": "a2aa08e272c4b321055ade875d19cdc85eaa63d8ca05d1b1c0a8331c02c4d5ab",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "AF03-C01-128.png",
+          "sha256": "2d197171068338b9173effe4be4e217ef772cf45f7d2b7809138aa9d43053f25",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "AF03-C01-192.png",
+          "sha256": "6639276b2dd022ec5b578e294269ea85ff74c1976360fe28f5b9b8d81d967f9b",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/FE01-C01-192.png",
+          "sha256": "a5d5c30145a24fe0be4f05aff988e328d3a57771938147bd91d9719fb0a70204"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/B03-C01-192.png",
+          "sha256": "29ed2b5b52984ec5facbe851e123fca6d9a245d633d01bfdb8e2f77586c205a4"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-192.png",
+          "sha256": "c1f33f477f5af585eec24997da4909e62e13616c3c18622d6a564537bda8d901"
+        }
+      ]
+    },
+    {
+      "id": "AF04",
+      "number": 32,
+      "variant": "AF04-C01",
+      "title": "Rupture de régénération",
+      "branch": "Affaiblissements",
+      "kind": "active",
+      "roleplay": "Une trame occulte entrave les chairs et les circuits. Les blessures restent ouvertes, les réparations n’aboutissent plus.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/AF04-C01.txt",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11010-433f-7fc2-ac29-ffb696dec5ea\\exec-3a5a2fbc-9985-4ee7-b18a-e4bebb28fa07.png",
+      "source_sha256": "66a1f9c1475b189082fb3c595e25074706c16722f27a7c6060f2c28eadf91822",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-15/AF04-C01-master.png",
+        "sha256": "66a1f9c1475b189082fb3c595e25074706c16722f27a7c6060f2c28eadf91822",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "AF04-C01-24.png",
+          "sha256": "de4c9c172a2ff8ff45aff592514c44b59abc7469b6f3b7ccfa0c28674f7ebf82",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "AF04-C01-32.png",
+          "sha256": "80e5200f4a96ede161b89f4462a79499737b5904da0b06c41f372dea98b17b5b",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "AF04-C01-64.png",
+          "sha256": "860e3e4490890d4f39bdd8c77ccfa4f001ec97ef41a45812e579cc0b067a1e95",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "AF04-C01-128.png",
+          "sha256": "7166227d221888fcddd27f57f3d13ef5eb9c8bd8f5d185e42059c2619467053a",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "AF04-C01-192.png",
+          "sha256": "a614db1793b45eafacd404197066d7e0a249acf891dc6a2164d1e4e31afc15d1",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/FE01-C01-192.png",
+          "sha256": "a5d5c30145a24fe0be4f05aff988e328d3a57771938147bd91d9719fb0a70204"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/B03-C01-192.png",
+          "sha256": "29ed2b5b52984ec5facbe851e123fca6d9a245d633d01bfdb8e2f77586c205a4"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-192.png",
+          "sha256": "c1f33f477f5af585eec24997da4909e62e13616c3c18622d6a564537bda8d901"
+        }
+      ]
+    },
+    {
+      "id": "AF05",
+      "number": 33,
+      "variant": "AF05-C01",
+      "title": "Désorientation",
+      "branch": "Affaiblissements",
+      "kind": "active",
+      "roleplay": "Vous brouillez le discernement de votre cible. Elle frappe sans distinguer ses alliés de ses ennemis.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/AF05-C01.txt",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11010-433f-7fc2-ac29-ffb696dec5ea\\exec-d98e41b7-d0ff-47a5-b489-08ee9f46a363.png",
+      "source_sha256": "b5b19cda99cc21b417f2e86621c10284797b65b0bf9680eb0e93f47c9a9aed95",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-15/AF05-C01-master.png",
+        "sha256": "b5b19cda99cc21b417f2e86621c10284797b65b0bf9680eb0e93f47c9a9aed95",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "AF05-C01-24.png",
+          "sha256": "70b2f94bb7520303478a3b8f205da4d24d69b12644d1c2674b071a7166d67504",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "AF05-C01-32.png",
+          "sha256": "b677c9ce92bd62a46cd7bfdeb37ee519cfa5b8af19bc1e2df6992ab7d739901e",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "AF05-C01-64.png",
+          "sha256": "7de8f72114f866a4d159d73ba48d0aadd747adb2050148ad6ad0319e3d4fafba",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "AF05-C01-128.png",
+          "sha256": "8d4381ec39a9cb26cc8bc72d02ba0be171b3b19d60d38b1c4eec80e24104ec80",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "AF05-C01-192.png",
+          "sha256": "5c8e52052a88dc003df3bd93d159f2558eadfc488853c9c02c650adc7762482f",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/FE01-C01-192.png",
+          "sha256": "a5d5c30145a24fe0be4f05aff988e328d3a57771938147bd91d9719fb0a70204"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/B03-C01-192.png",
+          "sha256": "29ed2b5b52984ec5facbe851e123fca6d9a245d633d01bfdb8e2f77586c205a4"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-192.png",
+          "sha256": "c1f33f477f5af585eec24997da4909e62e13616c3c18622d6a564537bda8d901"
+        }
+      ]
+    },
+    {
+      "id": "AF06",
+      "number": 34,
+      "variant": "AF06-C01",
+      "title": "Contagion",
+      "branch": "Affaiblissements",
+      "kind": "passive",
+      "roleplay": "À la mort de son porteur, l’un des affaiblissements ou effets de contrôle quitte sa dépouille et se transmet à l’ennemi le plus proche.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/AF06-C01.txt",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11010-433f-7fc2-ac29-ffb696dec5ea\\exec-2a4f39ed-1a0f-4578-b87a-56d8a10b5542.png",
+      "source_sha256": "c47d3485b0a404b8496773123f26bb847f0b56e4843becbc8e3536298a572fa0",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-15/AF06-C01-master.png",
+        "sha256": "c47d3485b0a404b8496773123f26bb847f0b56e4843becbc8e3536298a572fa0",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "AF06-C01-24.png",
+          "sha256": "1b730a40ef12dad8fac56bce66c74e4f7c19ed94743f017a21b4a137f6b20a90",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "AF06-C01-32.png",
+          "sha256": "fded2b63de4251467256891f2b82bbd44f76f5f0c7af9c7837c6712f9ad44a28",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "AF06-C01-64.png",
+          "sha256": "1d1f3ed522be077eed4c26492422c7f82d2dfc072a1a2c0bb051b4842f1bb4aa",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "AF06-C01-128.png",
+          "sha256": "d2183eb9919301aafe31296d3dee0abfb2bb3c4176c0bf76e815d4c3ce12e803",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "AF06-C01-192.png",
+          "sha256": "5a797adf5f0893a3cb2cca69d76a1970acc07db69e78ea0e8c6f8d0f78a599da",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/FE01-C01-192.png",
+          "sha256": "a5d5c30145a24fe0be4f05aff988e328d3a57771938147bd91d9719fb0a70204"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/B03-C01-192.png",
+          "sha256": "29ed2b5b52984ec5facbe851e123fca6d9a245d633d01bfdb8e2f77586c205a4"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-192.png",
+          "sha256": "c1f33f477f5af585eec24997da4909e62e13616c3c18622d6a564537bda8d901"
+        }
+      ]
+    }
+  ],
+  "protected_hashes": [
+    {
+      "file": "assets/skills/agent/A03-compact.png",
+      "sha256": "f3333fe5f1c5740cc40af97f32ae3b2df190017319d300103619ff0e9db1982d"
+    },
+    {
+      "file": "assets/skills/agent/A03-illustration.png",
+      "sha256": "5583745698e12316a2026610ca66d40dbb62bd09971dda33f0b4d9e0bd7bdc3e"
+    },
+    {
+      "file": "assets/skills/agent/B01-illustration.png",
+      "sha256": "2ba69010e33526675639d47d6c730f7ad1b5de548dc2f5e3243219c36b644a33"
+    },
+    {
+      "file": "assets/skills/agent/B03-compact.png",
+      "sha256": "00d8a2546bb732cc696d984a2782c55bc52ff6b11ef390c010a6c4eed9fc5b6e"
+    },
+    {
+      "file": "assets/skills/agent/B03-illustration.png",
+      "sha256": "614d4dee2c88d7893f7778a2beeb0d904f508cee32c1741bd97dc2db9460849c"
+    },
+    {
+      "file": "assets/skills/agent/BM02-illustration.png",
+      "sha256": "69cf7e8176be6d3739ccb76325accc4e6ba3b2953d366af127a8254a6796a24b"
+    },
+    {
+      "file": "assets/skills/agent/catalogue.json",
+      "sha256": "eb89b6120990f2466fa7a4dd344073957ec65e37bd7964d1028e01a22ac3830c"
+    },
+    {
+      "file": "assets/skills/agent/D56-compact.png",
+      "sha256": "54ef69b44e9a1ea63871f9fe6b82df73a84d213aca2e7d85cdad8ddf0ec29ba9"
+    },
+    {
+      "file": "assets/skills/agent/D57-compact.png",
+      "sha256": "731075cc16f237e1250bb22355beb8f12e5bc46662d33510a4b97b3f8e8be510"
+    },
+    {
+      "file": "assets/skills/agent/D58-compact.png",
+      "sha256": "e44aab1710ef24b260abd3c35cad00c4d609e9ee92b7a5e1d3d3c0ff4801170c"
+    },
+    {
+      "file": "assets/skills/agent/D59-compact.png",
+      "sha256": "111da6f58ead7d83b89cfbb588dbff99df7ac5d75b4264386fe097acd4e925c2"
+    },
+    {
+      "file": "assets/skills/agent/D59-illustration.png",
+      "sha256": "1ea7634e2367f137fa5a9cefabdc176be760f10dcdd19bc197cedcd9d38e917f"
+    },
+    {
+      "file": "assets/skills/agent/D66-compact.png",
+      "sha256": "88bac94bc3a13c8f0160b743567e886e4e164a8262e8319e5f8fdf98f8492094"
+    },
+    {
+      "file": "assets/skills/agent/DP01-compact.png",
+      "sha256": "32e2d1ee4ff2655e47a12e8338d375df2cfdd27b2bf974ccf6f1691df5bb83f6"
+    },
+    {
+      "file": "assets/skills/agent/DP02-compact.png",
+      "sha256": "1873f34146b4d63f9c173ea2b79058f65d2ad75c51ced1bb257f20876ec5a796"
+    },
+    {
+      "file": "assets/skills/agent/DR01-compact.png",
+      "sha256": "80fcdd4b80e6516b9c75ce8cfa7af2df83d8ee883fcd93fbe5de90acf8f09c14"
+    },
+    {
+      "file": "assets/skills/agent/FE01-compact.png",
+      "sha256": "258cc5678da7608e2a86c089026645ba4073c18cfa522a9518f76240537235aa"
+    },
+    {
+      "file": "assets/skills/agent/FE01-illustration.png",
+      "sha256": "bf75d01f3b80e70ee6f06b510601ac3162f7047ee6dccba528657f2d2a5a22b0"
+    },
+    {
+      "file": "assets/skills/agent/FE05-illustration.png",
+      "sha256": "9ae15e20dc75200cc42ad727ee646798307389683afa20cc0442d90f97e748a8"
+    },
+    {
+      "file": "assets/skills/agent/FR03-illustration.png",
+      "sha256": "231928d6de6faed720bfdd612f9c200b8d96282842f4fc398546963bb2c800cc"
+    },
+    {
+      "file": "assets/skills/agent/HY07-compact.png",
+      "sha256": "1534ec2c1bfed3a17d3b9c1517f9c8d87f34d6a52388152af19cf8266ba04baa"
+    },
+    {
+      "file": "assets/skills/agent/M01-compact.png",
+      "sha256": "42db01f571cf9893c17f70cd5e1145c5b9df5cb270bb2e49e0d582c108dea014"
+    },
+    {
+      "file": "assets/skills/agent/M01-illustration.png",
+      "sha256": "6a139c376988a6946f0b6bd5a2a814cdc9e8fcfb38f19091025a2d5ed191872e"
+    },
+    {
+      "file": "assets/skills/agent/M03-compact.png",
+      "sha256": "99e7d50e0a6c2aa863ce6861d8b7af0e1bf5d6cf2a679d834af93809be581828"
+    },
+    {
+      "file": "assets/skills/agent/M03-illustration.png",
+      "sha256": "daeeffb775e7c604cd73ddbd505c57ba3bffaf704ad9af9ad692cd7146dc85df"
+    },
+    {
+      "file": "assets/skills/agent/manifest.json",
+      "sha256": "37a0644ef71fb87de4f5f569848f921a64ad415cc89043faa3ba4c614f1ecc01"
+    },
+    {
+      "file": "assets/skills/agent/ME04-illustration.png",
+      "sha256": "b244788ac01e16f4399d263ceb403795ffa2c2c59e9cd0d60e6aaa1589a330b4"
+    },
+    {
+      "file": "assets/skills/agent/O03-compact.png",
+      "sha256": "ee324a4c3114e171d009c10545fbfdae1ee567c14c745f4b8625117ad773c156"
+    },
+    {
+      "file": "assets/skills/agent/O03-illustration.png",
+      "sha256": "2a70e75bd3b82ba8c19c5360a3d8dce397e6aa7520c80462a75fa9a054370162"
+    },
+    {
+      "file": "assets/skills/agent/SF00-compact.png",
+      "sha256": "81645c4c01e6cdc7a14cc643ddfc166dceb56da5a5284bd61f29af12c9fa317a"
+    },
+    {
+      "file": "assets/skills/agent/SF00-illustration.png",
+      "sha256": "99cab81ec7f7da9b229ac23093a1f5371ff0dcaee4de106e5ef1cf67111def02"
+    },
+    {
+      "file": "assets/skills/agent/SU04-illustration.png",
+      "sha256": "8c7ebb5714b9ef938dd509080b90b6435f5038fd721d0fee320f65da6cc45154"
+    },
+    {
+      "file": "assets/skills/agent/T01-compact.png",
+      "sha256": "fa71345b7694f4bb1efd878cb7f832a9afe94609634ae1e81963d86bb1aa36b6"
+    },
+    {
+      "file": "assets/skills/agent/T01-illustration.png",
+      "sha256": "0e5b70be8f4501b7c16b883d7d90d29aa67076c949718238a8f401f743430fd8"
+    },
+    {
+      "file": "assets/skills/agent/T03-compact.png",
+      "sha256": "ebd3f0ad07fba5fa4af87f6dad4bbb6fb5943edf43eacef7c4c31a496603bf0e"
+    },
+    {
+      "file": "assets/skills/agent/T03-illustration.png",
+      "sha256": "408696a7089fe81a4e14854d537859b31833058286e974bfc65371af1cad55fd"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-icon-acceptance.json",
+      "sha256": "7205d66f587dac489fc0df40164ca98d12df2996937692ab7e92db9d8ea22851"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-window-review-05/skills.json",
+      "sha256": "cb23dca3cf283e6eb12faa58e01dc637c78a8309614f213cd86ef12d06ce0ef2"
+    }
+  ],
+  "accepted_export_hashes_preserved": 171,
+  "no_new_approval_inferred": true,
+  "no_runtime_changes": true
+}

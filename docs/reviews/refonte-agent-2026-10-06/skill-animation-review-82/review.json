@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S39",
+  "status": "visual_candidates_pending_user_review",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 87,
+      "id": "B03",
+      "variant": "B03-A01",
+      "title": "Vitalité améliorée"
+    },
+    {
+      "number": 88,
+      "id": "SU06",
+      "variant": "SU06-A01",
+      "title": "Dernier sursaut"
+    }
+  ],
+  "effective_rank": 11,
+  "rules": "Current catalogue; illustrative outcomes, no new balancing, mitigation order, status eligibility or death/corpse system.",
+  "native_tile": 64,
+  "rendering": "Existing native-64 body, held equipment and accepted compact icons. Maximum-HP bar extension without healing; short gold contour and heart pulse for the prepared emergency save.",
+  "scenes": 16,
+  "prepared_values": {
+    "base_maximum_HP": 100,
+    "vitality_initial_HP": 60,
+    "vitality_maximum_HP": 150,
+    "survival_initial_HP": 20,
+    "first_incoming_hit": 30,
+    "second_incoming_hit": 5,
+    "survival_HP_after_save": 1,
+    "survival_cooldown_turns": 60,
+    "unavailable_scene_initial_cooldown": 3
+  },
+  "preview": "../apercu-animations.html?lot=82",
+  "native_lab": "--apercu-laboratoire-competences --lot-passifs-survie",
+  "source": "src/agent_skill_lab_review/fire_painted/survival_passives.rs",
+  "remaining_unshown": 23,
+  "temporary_capture_policy": "Remove PNG captures and browser proof images after verification; reuse the viewer and retain sources, code, compact playback and review records.",
+  "previous_acceptance": "../skill-animation-review-81/visual-acceptance-01.json",
+  "preserved_spectral_step_decision": "../spectral-step-range-and-choice-decisions.json",
+  "verification": {
+    "final_debug_build": true,
+    "native_capture_exit": 0,
+    "browser_views": 16,
+    "pixel_equality": true,
+    "manual_turns": true,
+    "maximum_HP_without_healing": true,
+    "persistent_damage_excluded": true,
+    "second_hit_can_kill": true,
+    "floating_heart_background_removed": true,
+    "format_check": true
+  },
+  "source_sha256": "69505acb74e7024648c7b2fa9a5f493d3f23d15c9f861fd028efa3ab6ac84b50",
+  "catalogue_sha256": "bf176f625980f6c6ec53e8943fc0195b351a7e69ff880554fb2379317483c2ac",
+  "playback_bytes": 6755664
+}

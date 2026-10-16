@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-07",
+  "review_id": "FR02",
+  "title": "Nova de givre",
+  "user_message": "tres bien :)",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR02-02.json",
+  "previous_description_sha256": "8c03f2ba5d171734536c00d905477046919de509f92c4a26d1e056867e3d2f8b",
+  "accepted_player_copy_sha256": "2fb52f5f7fdf37d249b943fe2ef668c82bc334ad1aaee0933f00ed9b3eefe8ec",
+  "accepted_visual_copy_sha256": "62d7e7a4474bf323fe741354590d245ae3df29cf6cbab69731cc7d38d6029913",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "cold_damage_per_target": 26,
+    "freeze_duration_turns": 4,
+    "radius_cells": 2,
+    "control_power": 160,
+    "skill_freeze_chance_factor_percent": 80,
+    "freeze_success_chance_percent": 69.2,
+    "elite_freeze_success_chance_percent": 51.9,
+    "boss_freeze_success_chance_percent": 34.6,
+    "energy_cost": 13,
+    "cooldown_turns": 6
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "cold_damage_per_target": 28,
+    "freeze_duration_turns": 4,
+    "radius_cells": 2,
+    "control_power": 165,
+    "skill_freeze_chance_factor_percent": 85,
+    "freeze_success_chance_percent": 73.8,
+    "elite_freeze_success_chance_percent": 55.4,
+    "boss_freeze_success_chance_percent": 36.9,
+    "energy_cost": 13,
+    "cooldown_turns": 6
+  },
+  "approval_scope": "Explicit positive reply accepts displayed RP,current/next values,cost/cooldown,walls stop wave,hostile-only independent Gel chance,movement-only Gel and reciprocal successful status replacement. Separately displayed expanding ice ring,ice at feet and extinction of replaced Burn accepted as visual direction. Unshown full curves/conditions and native pixels remain pending.",
+  "accepted_visual_direction": "**Visuel proposé :** un anneau givré s’élargit depuis votre personnage ; la glace apparaît aux pieds des cibles gelées et les flammes d’une Brûlure remplacée s’éteignent.",
+  "unshown_rules_approval": "Full rank/attribute curves,precise geometry/occlusion/large actors,damage/status order/dead targets,resistance bounds,forced/special movements,stacking/refresh/timer and hidden actor cases retain pending status.",
+  "native_visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

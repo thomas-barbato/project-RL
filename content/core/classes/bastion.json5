@@ -1,0 +1,57 @@
+{
+  "id": "core:bastion",
+  "name_key": "class.bastion.name",
+  "role_key": "class.bastion.role",
+  "description_key": "class.bastion.description",
+  "recommended_attributes": {
+    "power": 7,
+    "coordination": 5,
+    "resilience": 7,
+    "perception": 5,
+    "processing": 4,
+    "willpower": 6
+  },
+  "starting_weapons": [
+    "core:melee_hachette"
+  ],
+  "starting_items": [
+    {
+      "item": "core:tenue_assaut",
+      "quantity": 1
+    },
+    {
+      "item": "core:agent_dose_soin",
+      "quantity": 2
+    },
+    {
+      "item": "core:agent_cellule_energie",
+      "quantity": 1
+    }
+  ],
+  "starting_equipment": [
+    "core:melee_hachette",
+    null,
+    null
+  ],
+  "agent_start": {
+    "maximum_hp_percent": 110,
+    "maximum_energy_percent": 90,
+    "weapon_damage_percent": 100,
+    "melee_damage_percent": 100,
+    "ranged_damage_percent": 100,
+    "spell_damage_percent": 100,
+    "magic_energy_percent": 100,
+    "drone_hp_percent": 100,
+    "drone_damage_percent": 100,
+    "transformed_damage_percent": 100,
+    "human_skill_energy_percent": 100,
+    "armor": 1,
+    "evasion": 0,
+    "transformation_duration_bonus": 0,
+    "weakening_duration_bonus": 0,
+    "skills": [
+      "B01",
+      "B03"
+    ]
+  }
+}

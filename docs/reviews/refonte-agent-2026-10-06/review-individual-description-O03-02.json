@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-07",
+  "id": "O03",
+  "title": "Algorithmes de combat améliorés",
+  "revision": 2,
+  "player_copy_markdown": "**Algorithmes de combat améliorés — Rang 11**\n\n*Vos drones exploitent des algorithmes de combat plus performants pour rendre leurs attaques plus destructrices.*\n\n**Effet actuel**\n\n- Bonus de dégâts des drones armés : **+45 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus de dégâts des drones armés : **+47 %**.\n\n**Passif · Aucun coût ni recharge.**\n\nConcerne le drone Traqueur, l’Artilleur et le Gardien.",
+  "player_copy_sha256": "e27c07209ff806e0eeffb3ab7be5a2645d71b263c92b5dcf5e617f03ae79b976",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-14.json",
+  "source_skill_block_sha256": "728ced59d243094e0f2429ccfd4f143add4d7e97ad78126758992e53cc2c0825",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/improved-armoring-wording-confirmation-decisions.json",
+  "review_start_decisions_sha256": "33093b7f669fefcd25c9238b7c38418958bcc46b133e2900cf3bf2ed65888b1b",
+  "name_approval": "explicit_user_algorithmic_name_accepted",
+  "catalogue_effect_approval": "armed_drone_damage_bonus_role_and_initial_25_percent_accepted",
+  "roleplay_text_approval": "explicit_user_algorithmic_roleplay_accepted",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "pending_individual_user_review",
+  "numeric_rules_approval": "displayed_45_47_percent_and_conditions_proposed_pending_individual_review",
+  "accepted_initial_effect": "+25% damage for armed drones at rank 1",
+  "formulas": {
+    "drone_damage_bonus_percent": "25 + 2 * (effective_rank - 1); proposed full-rank curve",
+    "combination": "Source proposal multiplies drone base damage with current Intelligence and Link factors before target defenses; one final damage rounding. Full coefficients/order pending."
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_modifiers_to_Link_percentage": false,
+    "drone_damage_or_Intelligence_values": "Not needed to display bonus percentage; no fictive final damage total shown."
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "drone_damage_bonus_percent": 45,
+    "affects_armed_controlled_drones": true,
+    "eligible_current_models": [
+      "D58",
+      "D59",
+      "D66"
+    ],
+    "energy_cost": 0,
+    "cooldown_turns": 0
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "drone_damage_bonus_percent": 47,
+    "affects_armed_controlled_drones": true,
+    "eligible_current_models": [
+      "D58",
+      "D59",
+      "D66"
+    ],
+    "energy_cost": 0,
+    "cooldown_turns": 0
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_passive_ranks_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "drone_damage_bonus_percent"
+    ],
+    "unchanged_effects_omitted": [
+      "armed_drone_eligibility",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "effective_rank_visible": true,
+    "tree_icon_and_boosted_level_color_direction": "CD07; native render pending"
+  },
+  "presented_conditions": "Applies to armed drones: current models Traqueur D58, Artilleur D59 and Gardien D66; passive with no energy or cooldown.",
+  "unshown_rules_approval": "Full-rank curve, dynamic modifier timing, Intelligence combination, damage classification, final rounding and future armed-drone eligibility remain separately pending.",
+  "active_weapon_requirement": "none; drone passive independent of active player weapon",
+  "visual_intention_approval": "accepted_catalogue_intention_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Rank 11: 25 + 2 * 10 = 45%; next effective rank 12: 25 + 2 * 11 = 47%.",
+    "Learned 9 -> 10 with fixed equipment bonus +2, within cap; only changing bonus displayed in next-rank block.",
+    "Initial rank-1 +25% approval preserved; no new independent drone passive created.",
+    "No damage invented for unarmed Eclaireur/Mule or player attacks.",
+    "Single roleplay paragraph; no duplicate function, rank breakdown, table or formula.",
+    "Source document unchanged; all proposed copy/values await individual review.",
+    "Algorithmic name and exact roleplay accepted; current/next numbers and conditions unchanged with existing pending status. No new AI or targeting rules."
+  ],
+  "previous_title": "Lien renforcé",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-O03-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/combat-algorithms-name-and-roleplay-acceptance-decisions.json",
+  "latest_decisions_sha256": "fe83acba2aff31b120536be569afa0713a6262fca43c9fa0c1ddad268bfe4e2e"
+}

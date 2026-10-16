@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-06",
+  "user_messages": [
+    "plus je lis les descriptif roleplay , plus je me demande si le texte qui suit et qui explique la compétence est vraiment utile ? \n\nEn tout cas je valide... Je pense cependant qu'on ne va garder que le texte roleplay .\n\nSynthetise ma demande",
+    "oui c'est ca :) , car ca me semble en faite juste repeter la meme chose et donc ne pas être utile"
+  ],
+  "accepted_presentation": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DP01-02.json",
+  "accepted_presentation_sha256": "8dadabd773f8da095237095561e79f118324712dcc8edc45bce71eae1ec1d848",
+  "accepted_original_player_copy_sha256": "3535091a9b9aa5be30b4365b467738a66e8b10085059f232e2f66627c1019361",
+  "skill_id": "DP01",
+  "title": "Maintenance des drones",
+  "skill_approval_scope": "Displayed RP and numeric/condition copy accepted: 7/7.5% max HP repair per calm turn at effective ranks 11/12, no cost/cooldown, three full quiet turns then repair on next turn, interruption by detected hostile/attack/damage affecting player or drone, deployed drones only, no revival. Redundant functional paragraph removed by explicit global editorial correction.",
+  "unshown_rules": "Full-rank curve, fractional carry/reset, exact phase event order, start/recall/layer counters and dynamic modifier timing remain pending.",
+  "description_format": {
+    "review_id": "CD08",
+    "single_roleplay_paragraph": true,
+    "remove_following_redundant_functional_description": true,
+    "retain_current_effects": true,
+    "retain_next_changed_effects": true,
+    "retain_costs_durations_and_cooldowns": true,
+    "retain_necessary_conditions_and_weapon_warnings": true,
+    "global_for_all_skill_tooltips_and_future_review_copy": true,
+    "gameplay_rules_unchanged": true
+  },
+  "next_skill_review": "DR01",
+  "visual_approval": "No new native visuals approved; separate review pending.",
+  "runtime_integration": "not_integrated"
+}

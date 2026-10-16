@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-13",
+  "build": {
+    "command": "cargo build --locked",
+    "exit_code": 0
+  },
+  "targeted_tests": {
+    "command": "cargo test --locked agent_skill_lab_review",
+    "passed": 49,
+    "failed": 0
+  },
+  "format": {
+    "command": "cargo fmt --all -- --check",
+    "exit_code": 0
+  },
+  "diff_check": {
+    "command": "git diff --check",
+    "exit_code": 0
+  },
+  "native_render": {
+    "views": 14,
+    "animations": 10,
+    "comparison": true,
+    "protected_files_unchanged": 47855,
+    "pixel_controls": "passed"
+  },
+  "revision": "Vivid saturated purple replaces colored violet facets, including highlights, without pastel or near-white lifting. Effect shader only; source drawings, alpha, sizes, positions and timelines preserved.",
+  "comparison_limit": "Known transient skill-name rectangle excluded for minor font edge raster differences during frames 17-33. Actor bodies, terrain and later frames match.",
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Native captures and offline palette controller verified.",
+  "gallery_links": {
+    "checked": 9,
+    "missing": 0
+  },
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "icon_changes": false,
+  "visual_approval": "pending",
+  "palette_approval": "reference_retained",
+  "palette_acceptance": "palette-acceptance-01.json"
+}

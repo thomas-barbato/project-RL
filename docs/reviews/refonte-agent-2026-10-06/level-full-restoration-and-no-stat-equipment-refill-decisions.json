@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-08",
+  "review_id": "P01-CURRENT-ACCEPT01",
+  "user_instructions": [
+    "quand on monte de niveau les PV et l'energie sont restaurés (apres l'ajout des points gagnés sur ce niveau). Et quand on monte les statistiques non, quand on équipe / retire un équipement qui donnait des bonus non plus  .\n\nSynthetise ma réponse",
+    "oui voila :)"
+  ],
+  "confirmed_synthesis_markdown": "- **Montée de niveau** : les gains du niveau sont appliqués, puis les **PV et l’énergie sont entièrement restaurés jusqu’à leurs nouveaux maximums**.\n- **Points investis dans les attributs** : les maximums concernés augmentent, sans restaurer les PV ou l’énergie actuels.\n- **Équipement ajouté ou retiré** : les maximums sont recalculés, sans soin ni récupération d’énergie.",
+  "confirmed_synthesis_sha256": "a8a332b99b638729904d2a8d799b644650b3fcc9ce33f3451d3a6e048f0bace2",
+  "superseded_proposal": "docs/reviews/refonte-agent-2026-10-06/review-current-reserves-on-progression-01.json",
+  "superseded_proposal_sha256": "147e5c52024d5cc327b7730a9008fc0accb140333b754749e483f0698e120c68",
+  "accepted_rules": {
+    "level_gain": "apply_level_gains_and_updated_maximums_then_fully_restore_current_HP_and_energy_to_their_maximums",
+    "attribute_point_investment": "update_affected_maximums_without_restoring_current_HP_or_energy",
+    "equipment_equip_or_remove": "recalculate_affected_maximums_without_healing_or_energy_restoration"
+  },
+  "superseded_rules": [
+    "preserve_missing_HP_and_energy_on_level_gain",
+    "increase_current_HP_or_energy_by_maximum_gain_when_attribute_points_are_invested"
+  ],
+  "earlier_accepted_rules_preserved": [
+    "HP_and_energy_maximum_coefficients",
+    "B03_maximum_HP_increase_without_healing",
+    "Colosse_HP_percentage_preservation"
+  ],
+  "unshown_cases_pending": [
+    "maximum_decrease_clamping",
+    "exact_level_and_attribute_allocation_UI_order",
+    "multiple_simultaneous_level_gains",
+    "death_resolution_and_level_gain_priority",
+    "temporary_buffs_and_other_passive_maximum_changes_except_existing_accepted_rules",
+    "creation_current_HP_and_energy",
+    "all_other_unshown_cases"
+  ],
+  "runtime_integration": "not_integrated"
+}

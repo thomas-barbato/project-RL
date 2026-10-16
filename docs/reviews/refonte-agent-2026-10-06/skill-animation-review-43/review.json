@@ -1,0 +1,109 @@
+{
+  "batch": "ANIM-REACTION01",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 37,
+      "id": "TR63-HEURT",
+      "name": "Heurt",
+      "variant": "TR63-HEURT-A02",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 38,
+      "id": "TR63-DECHARGE",
+      "name": "Décharge de plaques",
+      "variant": "TR63-DECHARGE-A02",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 39,
+      "id": "TR63-FERMETURE",
+      "name": "Fermeture des plaques",
+      "variant": "TR63-FERMETURE-A02",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 40,
+      "id": "TR64-TRAIT",
+      "name": "Trait corporel",
+      "variant": "TR64-TRAIT-A02",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 41,
+      "id": "TR64-PULSATION",
+      "name": "Pulsation occulte",
+      "variant": "TR64-PULSATION-A02",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 42,
+      "id": "TR64-DRAIN",
+      "name": "Drain organique",
+      "variant": "TR64-DRAIN-A02",
+      "status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "approved_bodies": "TR63-BODY01 and TR64-BODY01 retained; new temporary closed-plates variant for Fermeture only.",
+  "excluded_trials": [
+    "native-before-wall-mask/**",
+    "native-before-control-mask/**",
+    "control-correction/**",
+    "controls-before-wall-mask/**",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-43/reaction-phase-check.png",
+    "correction-difference.png"
+  ],
+  "visuals": "Physical Heurt and radial chitin discharge; visible armour closure with28px plate badge for3 turns; swift red-black corporeal dart; organic radial pulse; thick single blood-coloured return filament for Drain.",
+  "rules_retained": "Contact1 cell, discharge radius1, pulse radius2, Trait/Drain targets within4 cells. Closure3 turns; cooldowns0/4/6/0/4/4. Reserve consumption and permitted movement/strike events prepared. Silence case applies only to Possede; blocks Pulse/Drain but not Trait.",
+  "scope": "The lab captures do not resolve actual damage, HP, energy, AI, loot or saves. Shared existing in-game status/damage feedback is connected, without implementing new refonte combat abilities.",
+  "common_reaction": {
+    "id": "ANIM-REACTION01",
+    "reuses_existing_game_recoil": true,
+    "duration_seconds": 0.18,
+    "peak_cell_fraction": 0.17,
+    "cases": [
+      {
+        "id": "RX01-DMG-M",
+        "variant": "RX01-DMG-M-R01",
+        "who": "Monstre",
+        "label": "Dégâts"
+      },
+      {
+        "id": "RX01-DMG-J",
+        "variant": "RX01-DMG-J-R01",
+        "who": "Joueur",
+        "label": "Dégâts"
+      },
+      {
+        "id": "RX01-STATUS-M",
+        "variant": "RX01-STATUS-M-R01",
+        "who": "Monstre",
+        "label": "Effet négatif sans dégâts"
+      },
+      {
+        "id": "RX01-STATUS-J",
+        "variant": "RX01-STATUS-J-R01",
+        "who": "Joueur",
+        "label": "Effet négatif sans dégâts"
+      }
+    ],
+    "scope": "Shared damage/status feedback in the game; six revised lab compositions and four prepared isolated cases. No newly implemented refonte combat abilities."
+  },
+  "approval_retained": {
+    "user_reply": "d'accord, il faut donc mettre en place cette regle :) en tout cas visuellement j'approuve ces deux compétences",
+    "forms": [
+      "TR63-BODY01 / TR63-A01",
+      "TR64-BODY01 / TR64-A01"
+    ],
+    "own_actions_not_implicitly_approved": true
+  },
+  "acceptance": "visual-acceptance-01.json"
+}

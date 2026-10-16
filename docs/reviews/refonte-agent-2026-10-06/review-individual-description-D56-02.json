@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-06",
+  "id": "D56",
+  "title": "Invocation de l'Éclaireur",
+  "revision": 2,
+  "player_copy_markdown": "**Invocation de l’Éclaireur — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Votre éclaireur balaie les environs et vous transmet ce qu’il voit.*\n\nDéploie un drone de reconnaissance qui partage sa vision avec vous.\n\n**Effet actuel**\n\n- Vie maximale du drone : **50 PV**.\n- Rayon de vision : **7 cases**.\n- Observation : **niveau, PV, résistances et loot de la cible**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Vie maximale du drone : **53 PV**.\n\n**Coût : 13 énergie · Recharge : 6 tours.**\n\nUn seul Éclaireur peut être déployé à la fois. Ce drone n’attaque pas.\n\nL’observation fonctionne si la cible est visible par vous **ou** par l’Éclaireur.",
+  "player_copy_sha256": "1b611952b0e0d2556af0c45d291d4d8cdcd1e7f0671331c82bd481cdaee44d9a",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-04.json",
+  "source_skill_block_sha256": "804458099ce039354e765c2675b1811a7ba46ca8ddd855118787449d22455752",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/pet-control-window-direction-acceptance-decisions.json",
+  "review_start_decisions_sha256": "d69143f22136e65452206830fb99587f9929d2a23895ca6e233f08a80e04d439",
+  "name_approval": "accepted_catalogue_name",
+  "catalogue_effect_approval": "first_accessible_drone_and_detailed_observation_OR_visibility_directions_requested",
+  "roleplay_text_approval": "original_displayed_roleplay_accepted_unchanged",
+  "functional_description_approval": "original_functional_sentence_accepted; observation_effect_and_visibility_wording_pending_review",
+  "current_next_effect_copy_approval": "unchanged_numeric_copy_accepted; added_observation_wording_pending_review",
+  "numeric_rules_approval": "displayed_HP_50_53_vision_7_energy_13_cooldown_6_accepted; unshown_formulas_pending",
+  "formulas": {
+    "base_hp": "16 + 3 * (effective_rank - 1)",
+    "vision_radius_cells": "min(8, 4 + floor((effective_rank - 1) / 3))",
+    "energy_cost": "10 + floor((effective_rank - 1) / 3)",
+    "intelligence_factor": "1 + (Intelligence - 5) / 50; proposed",
+    "hp_rounding": "floor once after modifiers; proposed"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "intelligence": 10,
+    "other_drone_hp_vision_cost_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_hp": 50,
+    "maximum_hp_exact_before_floor": {
+      "numerator": 253,
+      "denominator": 5
+    },
+    "vision_radius_cells": 7,
+    "energy_cost": 13,
+    "cooldown_turns": 6,
+    "activity_duration": "unlimited",
+    "can_attack": false
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "maximum_hp": 53,
+    "maximum_hp_exact_before_floor": {
+      "numerator": 539,
+      "denominator": 10
+    },
+    "vision_radius_cells": 7,
+    "energy_cost": 13,
+    "cooldown_turns": 6,
+    "activity_duration": "unlimited",
+    "can_attack": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_passive_ranks_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "maximum_hp"
+    ],
+    "unchanged_effects_omitted": [
+      "vision_radius_cells",
+      "energy_cost",
+      "cooldown_turns",
+      "unlimited_activity",
+      "no_attack",
+      "detailed_observation"
+    ]
+  },
+  "presented_conditions": "Reconnaissance drone shares its vision with player, only one Éclaireur active, cannot attack.",
+  "accepted_existing_rules": "Unlimited duration and one drone per model; unlimited activity line omitted from player copy per user wording preference.",
+  "unshown_conditions_approval": "Full-rank formulas, Intelligence scaling, HP rounding, vision cap, placement/controls, observation time/energy, deployed-drone requirement, data caching and exact loot data remain pending. OR visibility and requested information categories accepted.",
+  "active_weapon_requirement": "none; reconnaissance invocation is not a player weapon attack",
+  "visual_intention_approval": "accepted_as_presented",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Exact HP fractions verified with fixed Intelligence 10: 50 -> 53 PV.",
+    "Vision remains 7; deployment energy 13 and cooldown 6 unchanged.",
+    "Only HP appears in next-rank block; learned rank cap respected.",
+    "No unlimited-duration line, ordinary action-time reminder or formula in player copy.",
+    "Accepted target visibility is OR; new observation added only to current/shared effects, not next-rank changes. Previously accepted numeric values unchanged."
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-D56-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/eclaireur-observation-and-first-drone-decisions.json",
+  "latest_decisions_sha256": "38aa186763f1155e295910c544d592d45e9436e5c043156151a9ef2bbdd8ccf8",
+  "observation_rules": {
+    "target_visibility": "player OR Éclaireur",
+    "displayed_detailed_fields": [
+      "level",
+      "HP",
+      "resistances",
+      "loot"
+    ],
+    "direction_approval": "explicitly_requested_and_OR_cases_confirmed",
+    "copy_approval": "new_wording_pending_user_review",
+    "action_cost_and_availability": "not_yet_defined"
+  }
+}

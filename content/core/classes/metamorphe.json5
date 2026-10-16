@@ -1,0 +1,57 @@
+{
+  "id": "core:metamorphe",
+  "name_key": "class.metamorphe.name",
+  "role_key": "class.metamorphe.role",
+  "description_key": "class.metamorphe.description",
+  "recommended_attributes": {
+    "power": 6,
+    "coordination": 6,
+    "resilience": 6,
+    "perception": 5,
+    "processing": 4,
+    "willpower": 7
+  },
+  "starting_weapons": [
+    "core:melee_couteau_de_camp"
+  ],
+  "starting_items": [
+    {
+      "item": "core:tenue_metamorphe",
+      "quantity": 1
+    },
+    {
+      "item": "core:agent_dose_soin",
+      "quantity": 2
+    },
+    {
+      "item": "core:agent_cellule_energie",
+      "quantity": 1
+    }
+  ],
+  "starting_equipment": [
+    "core:melee_couteau_de_camp",
+    null,
+    null
+  ],
+  "agent_start": {
+    "maximum_hp_percent": 100,
+    "maximum_energy_percent": 100,
+    "weapon_damage_percent": 100,
+    "melee_damage_percent": 100,
+    "ranged_damage_percent": 100,
+    "spell_damage_percent": 100,
+    "magic_energy_percent": 100,
+    "drone_hp_percent": 100,
+    "drone_damage_percent": 100,
+    "transformed_damage_percent": 110,
+    "human_skill_energy_percent": 110,
+    "armor": 0,
+    "evasion": 0,
+    "transformation_duration_bonus": 2,
+    "weakening_duration_bonus": 0,
+    "skills": [
+      "M01",
+      "M03"
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "review_id": "SKILLS-IC07",
+  "date": "2026-10-10",
+  "status": "accepted",
+  "source_review": "SKILLS-IC06",
+  "scope": "B03 illustrated outer armor replaced by bare shoulders and arms; heart and organic chest retained. All seven IC06 accepted drawings stay unchanged.",
+  "generation_tool": "image_gen.imagegen",
+  "prompt": "prompt-B03-v3.txt",
+  "source": "C:\\Users\\User\\.codex\\generated_images\\01a11010-433f-7fc2-ac29-ffb696dec5ea\\exec-e31a62ca-7841-4c9b-bcf8-115692fa4433.png",
+  "feedback": {
+    "date": "2026-10-10",
+    "source_review": "SKILLS-IC06",
+    "user_message": "1 - Dans la version \"non compacte\" peut-être qu’on devrait retirer la partie \"armurée\" :) pour que le corps soient \"nue\" dans le sens ou l’ont voit ses bras au lieu de l’armure. Je valide le reste",
+    "revision_required": [
+      "B03-v2"
+    ],
+    "accepted_illustrated": [
+      "O03-v2",
+      "T03-v2",
+      "FE01-v2"
+    ],
+    "accepted_compact": [
+      "B03-C01",
+      "O03-C01",
+      "T03-C01",
+      "FE01-C01"
+    ],
+    "unchanged_pending_review": [
+      "T01",
+      "A03",
+      "M01",
+      "M03"
+    ],
+    "scope": "Approval applies only to the other seven drawings shown in IC06; unchanged IC05 candidates remain pending. No gameplay, copy, or status applicability approval implied."
+  },
+  "candidates": [
+    {
+      "number": 1,
+      "id": "B03",
+      "variant": "B03-v3",
+      "kind": "illustrated",
+      "title": "Vitalité améliorée",
+      "visual_status": "accepted",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-07/B03-v3-master.png",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "d5ecfdb6de1d9bfbd63b0834fff8c3af5a4771f31f550a09cafbeabff7f9d36e"
+      },
+      "files": {
+        "24": {
+          "file": "B03-v3-24.png",
+          "sha256": "ab3cd60d5a69dd5fbc3ef0858513f55fb663243d109f491f2f171dc7e5993365"
+        },
+        "32": {
+          "file": "B03-v3-32.png",
+          "sha256": "dbcc051fb493df0e5d2c5035564adb1e21d2221be88866c88adb0f2de5ba562a"
+        },
+        "64": {
+          "file": "B03-v3-64.png",
+          "sha256": "d26c5707f0f80b4346e4ffd503374e3a280be06c81a0fa6d0530e4abf84c4e06"
+        },
+        "128": {
+          "file": "B03-v3-128.png",
+          "sha256": "efdbc82beb601500e4c417811b7f6f45b392dcf5f224609e362451c991c1a5bd"
+        },
+        "192": {
+          "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-07/B03-v3-192.png",
+          "sha256": "614d4dee2c88d7893f7778a2beeb0d904f508cee32c1741bd97dc2db9460849c"
+        },
+        "256": {
+          "file": "B03-v3-256.png",
+          "sha256": "03268ac5f8a8e4a85ac29e69c92b4a635350bd8654bf04d5298d68decfe5c5e8"
+        }
+      },
+      "user_approval": "bon je valide mais je pense qu'à terme on changera completement l'aspect de cette compétence",
+      "approval_date": "2026-10-10",
+      "future_visual_revision_note": "Current illustration accepted for now; the user expects its appearance to be completely redesigned later. That future redesign requires a separate visual review."
+    }
+  ],
+  "accepted_preserved": 15,
+  "packaging": "Unmodified generated master; Lanczos3 reductions; review composition only.",
+  "visual_acceptance": {
+    "review_id": "SKILLS-IC07-ACCEPT01",
+    "date": "2026-10-10",
+    "skill_id": "B03",
+    "variant": "B03-v3",
+    "visual_status": "accepted",
+    "user_approval": "bon je valide mais je pense qu'à terme on changera completement l'aspect de cette compétence",
+    "future_visual_revision_note": "Current illustration accepted for now; the user expects its appearance to be completely redesigned later. That future redesign requires a separate visual review.",
+    "scope": "Exact current icon illustration only; no gameplay, skill copy or window-layout approval implied."
+  }
+}

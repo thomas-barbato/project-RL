@@ -81,7 +81,7 @@ fn weighted_rarity_matches_approved_rates_and_keeps_properties_distinct() {
 fn real_bases_generate_distinct_persistent_instances_without_changing_definitions() {
     let content = content();
     let catalogue = content.loot().equipment();
-    assert_eq!(catalogue.iter().count(), 128);
+    assert_eq!(catalogue.iter().count(), 140);
     let before = format!("{:?}{:?}", content.weapons(), content.items());
     let mut a = GameRng::from_seed(17);
     let mut b = a;
@@ -167,7 +167,7 @@ fn real_bases_generate_distinct_persistent_instances_without_changing_definition
             whites += 1;
         }
     }
-    assert_eq!(models.len(), 128);
+    assert_eq!(models.len(), 140);
     assert!(whites > magical && magical > 400 && effects > 5);
     assert_eq!(a.state(), b.state());
     assert_eq!(
@@ -531,7 +531,7 @@ fn adding_models_does_not_make_their_family_more_frequent() {
             .entry(catalogue.bases[&item.item].family.clone())
             .or_default() += 1;
     }
-    assert_eq!(counts.len(), 18);
+    assert_eq!(counts.len(), 20);
     assert!(
         counts.values().all(|count| (240..430).contains(count)),
         "{counts:?}"

@@ -1,0 +1,53 @@
+{
+  "candidate": "100 / D59-BODY02 and D59-C05",
+  "status": "awaiting_native_and_icon_visual_review",
+  "feedback_on_large_drawing": "beaucoup mieux, il faudra donc retravailler l’icone de la skill qui va avec .",
+  "tool": "built-in image_gen",
+  "prompt": "prompt.json",
+  "source_dimensions": [
+    1447,
+    1087
+  ],
+  "source_rgba": true,
+  "framing_bounds_alpha8": [
+    29,
+    87,
+    1418,
+    1000
+  ],
+  "direct_export": "High resolution RGBA source ->64px without a32px intermediate. Compact32 is an independent export from the same source. No recolor or additional painted details.",
+  "body_dimensions": [
+    64,
+    64
+  ],
+  "body_opaque_height": [
+    3,
+    24,
+    61,
+    62
+  ],
+  "icon_dimensions": [
+    64,
+    64
+  ],
+  "compact32_dimensions": [
+    32,
+    32
+  ],
+  "same_body_and_icon_source": true,
+  "context_method": "Prepared composition on existing native64 floor/player capture from accepted review91. Not a runtime integration screenshot of the new body.",
+  "game_assets_modified": false,
+  "new_corpse_drawn": false,
+  "attacks_presented": false,
+  "files": {
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body02/D59-BODY02-context64.png": "c083638626366175595f386d0cf177ad9abec2168e8626755067599a2d4d76b2",
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body02/D59-BODY02-native64.png": "b7bd5d8be2ba80de524e4ca1f15488cc5c5047b50db68fcc7f0d1ebf16e9753c",
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body02/D59-BODY02-review.png": "fd5223007dbd1431ff6a23e91162d4e381b3bc2ca4be61c4f7c40713b00188df",
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body02/D59-BODY02-source.png": "e3677c103ead18cfb38d75b84df0be7b5db5eb99a92f57a89b149335ee38afc6",
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body02/D59-C05-compact32.png": "fe96815dd6fe5a64bb9db05d41027cf962087bd9f1919ca017a4f393958be161",
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body02/D59-C05-compact64.png": "d254442b8db5829441c3ba82ad3f7515432ce364e9cd6910213e4fa84d525c60",
+    "prompt.json": "6cd15f688660ac8e2398704e608d4134ff5c1cbd10214da68c28e8b815c7ac69"
+  },
+  "previous_active_icon_variant": "D59-C04",
+  "icon_variant": "D59-C05"
+}

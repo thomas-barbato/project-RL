@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-15",
+  "candidate": "108 / D56-BODY01-SIZE02",
+  "build": "cargo build --locked --bin project-rl passed",
+  "format": "cargo fmt --all --check passed",
+  "diff": "scoped git diff --check passed",
+  "native_capture": "Two native 576x576 scenes; before matches the actual first proposal pixel for pixel. Only Scout body changes.",
+  "status": "visual_proposal_not_accepted",
+  "preserved_files_verified": 20,
+  "campaign_or_accepted_animations_changed": false,
+  "cleanup_complete": true,
+  "pycache_created": false
+}

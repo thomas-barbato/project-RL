@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-REANIM04",
+  "revision": 2,
+  "title": "Marques de Réanimation : carte et disparition du lanceur",
+  "status": "pending_reanimation_mark_map_and_owner_cleanup_explicitly_accepted;remaining_turn_and_future_NPC_cases_pending;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-reapplications-INTERACT-REANIM03-02.json",
+      "reference_sha256": "b143e2f0c420306e2e3750e3e14d56fec94a399b6658d5d816ba68900c3890d5"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-and-birth-INTERACT-REANIM01-02.json",
+      "reference_sha256": "35eec1b1baf1ccc125e83ecfe24c3d1893b3a7ee8f3519aa083d14c9b4231385"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-map-transitions-PETS-EQ18-02.json",
+      "reference_sha256": "ac4c9ba5df30cdd674cf65b01232899705c676d80cd6cfe62a73470a84816c75"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-pending-familiar-arrival-PETS-EQ19-02.json",
+      "reference_sha256": "7cbd30778e89df139eab9da2d47c6e958ef16d2110e293381cabd93d282aace7"
+    }
+  ],
+  "scope": "pending_OC07_marks_before_target_death_when_owner_leaves_current_map_dies_or_is_removed;existing_raised_actor_transfer_not_changed",
+  "already_accepted": "mark_until_target_death_unless_accepted_rank_loss_or_source_replacement_cleanup;living_familiars_transfer_with_current_state_and_remaining_lifetime;no_new_birth_or_refill_on_transfer",
+  "shown_copy_markdown": "Pour les marques de Réanimation encore en attente, je propose :\n\n- Sur la même carte, s'éloigner ou perdre la cible de vue ne supprime pas la marque.\n- Changer de carte annule vos marques laissées sur la carte quittée : descente, refuge ou portail démoniaque, à l'aller comme au retour. Revenir ne restaure pas ces marques.\n- Si le lanceur meurt ou est supprimé, ses marques en attente sont annulées. Ce cas concernerait aussi un autre lanceur si ce pouvoir lui est attribué plus tard.\n\nCette règle concerne les marques avant la mort de leur cible. Les familiers déjà relevés gardent leurs règles validées de passage entre cartes, avec leur durée restante.",
+  "shown_copy_sha256": "a5a603f5e14d8bed1f449a11ceaca3184925a64f9a6b3783d64d92ed12f15f9c",
+  "not_resolved_here": [
+    "target_changes_map_without_owner",
+    "existing_nonplayer_raised_after_owner_death_if_future_monster_has_ability",
+    "exact_transition_death_and_birth_same_event_order",
+    "native_marker_removal_and_inspection_feedback"
+  ],
+  "mechanic_approval": "accepted_as_displayed",
+  "text_approval": "design_explanation_accepted;no_new_skill_RP_name_or_UI_error_copy",
+  "visual_approval": "no_new_native_art_or_animation_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-map-and-owner-loss-INTERACT-REANIM04-01.json",
+    "reference_sha256": "1014501d1d760abf020561a62c6b139e5b17c74125680abc63ca2352315a2ce0"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/reanimation-mark-map-and-owner-loss-acceptance-decisions.json",
+    "reference_sha256": "ae1ce1b71e939bda1a422267cf5f1bd0b11c079bbab6d63346f3317dd8026f6a"
+  },
+  "accepted_rule": {
+    "same_map": "normal_owner_distance_changes_or_loss_of_target_visibility_do_not_cancel_pending_mark_on_same_map",
+    "owner_map_change": "on_successful_owner_map_departure_cancel_own_pending_OC07_marks_on_departure_map;includes_descent_refuge_entry_and_demonic_bonus_portal_entry_or_return",
+    "return": "returning_to_departure_map_does_not_restore_cancelled_marks;ordinary_new_cast_can_mark_eligible_target_again",
+    "owner_death_or_removal": "cancel_pending_marks_when_actual_owner_dies_or_is_removed_from_simulation;does_not_mean_invisibility_or_temporary_inability_to_cast",
+    "source_selection": "only_marks_whose_current_owner_is_affected;do_not_restore_older_replaced_marks_or_remove_other_caster_marks",
+    "existing_raised_map_transfer": "preserve_accepted_same_actor_familiar_transfer_waiting_arrival_current_reserves_real_items_and_remaining_lifetime",
+    "scope_boundary": "marks_only;no_new_NPC_skill_assignment_player_respawn_or_rule_for_existing_NPC_raised_after_owner_death"
+  }
+}

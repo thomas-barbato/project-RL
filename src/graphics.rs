@@ -24,9 +24,10 @@ const RESOLUTIONS: &[[u32; 2]] = &[
     [1920, 1080],
 ];
 const UI_SCALES: &[u16] = &[75, 100, 125, 150, 175, 200];
-const CELL_SIZES: &[u16] = &[16, 20, 24, 32, 40, 48];
+const CELL_SIZES: &[u16] = &[32, 64];
+const LEGACY_CELL_SIZES: &[u16] = &[16, 20, 24, 40, 48];
 fn default_cell_size() -> u16 {
-    20
+    32
 }
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -117,7 +118,10 @@ impl GraphicsSettings {
     }
 
     fn decode(source: &str) -> Result<Self, String> {
-        let settings: Self = serde_json::from_str(source).map_err(|e| e.to_string())?;
+        let mut settings: Self = serde_json::from_str(source).map_err(|e| e.to_string())?;
+        if LEGACY_CELL_SIZES.contains(&settings.world_cell_px) {
+            settings.world_cell_px = if settings.world_cell_px >= 48 { 64 } else { 32 };
+        }
         settings.validate()?;
         Ok(settings)
     }
@@ -180,6 +184,7 @@ impl GraphicsSettings {
         if let Some((width, height)) = input.viewport {
             let scale = self.ui_scale(width, height);
             input.viewport = Some((width / scale, height / scale));
+            input.ui_scale = Some(scale);
             input.pointer = input.pointer.map(|(x, y)| (x / scale, y / scale));
         }
         input
@@ -433,13 +438,30 @@ mod tests {
         document.as_object_mut().unwrap().remove("interface_theme");
         document["ui_scale_percent"] = serde_json::json!(150);
         let mut settings = GraphicsSettings::decode(&document.to_string()).unwrap();
-        assert_eq!(settings.world_cell_px, 20);
+        assert_eq!(settings.world_cell_px, 32);
         assert_eq!(settings.interface_theme, InterfaceTheme::Violet);
         assert!(!settings.high_contrast);
         assert!(!settings.reduced_motion);
         settings.cycle(4, true);
-        assert_eq!(settings.world_cell_px, 24);
+        assert_eq!(settings.world_cell_px, 64);
         assert_eq!(settings.ui_scale_percent, 150);
+        settings.cycle(4, true);
+        assert_eq!(settings.world_cell_px, 32);
+        settings.cycle(4, true);
+        assert_eq!(settings.world_cell_px, 64);
+        assert_eq!(settings.ui_scale_percent, 150);
+        assert_eq!(
+            GraphicsSettings::decode(&serde_json::to_string(&settings).unwrap()).unwrap(),
+            settings
+        );
+        settings.cycle(4, false);
+        assert_eq!(settings.world_cell_px, 32);
+        for size in LEGACY_CELL_SIZES {
+            document["world_cell_px"] = serde_json::json!(size);
+            let migrated = GraphicsSettings::decode(&document.to_string()).unwrap();
+            assert_eq!(migrated.world_cell_px, if *size >= 48 { 64 } else { 32 });
+            assert_eq!(migrated.ui_scale_percent, 150);
+        }
         document["world_cell_px"] = serde_json::json!(1);
         assert!(GraphicsSettings::decode(&document.to_string()).is_err());
     }

@@ -229,6 +229,11 @@ impl Actor {
         self
     }
 
+    pub(crate) fn replace_attacks(&mut self, attacks: impl IntoIterator<Item = AttackProfile>) {
+        self.attacks.clear();
+        self.attacks.extend(attacks);
+    }
+
     pub fn with_abilities(mut self, abilities: impl IntoIterator<Item = AbilityProfile>) -> Self {
         self.abilities.extend(abilities);
         self
@@ -295,6 +300,10 @@ impl Actor {
     pub const fn with_primary_attributes(mut self, attributes: PrimaryAttributes) -> Self {
         self.primary_attributes = Some(attributes);
         self
+    }
+
+    pub(crate) fn set_primary_attributes(&mut self, attributes: PrimaryAttributes) {
+        self.primary_attributes = Some(attributes);
     }
 
     pub const fn with_body_profile(mut self, profile: BodyProfile) -> Self {
@@ -772,6 +781,34 @@ impl Actor {
         self.statuses.apply(definition, stacks, source)
     }
 
+    pub(crate) fn into_agent_raised(mut self, percent: u16) -> Self {
+        let maximum =
+            (u32::from(self.maximum_integrity) * u32::from(percent) / 100).clamp(1, 65535) as u16;
+        self.maximum_integrity = maximum;
+        self.integrity = maximum;
+        self.attacks = self
+            .attacks
+            .into_iter()
+            .map(|attack| attack.with_damage_output_percentage(percent))
+            .collect();
+        self.player_relation = crate::social::PlayerRelation::Allied;
+        self.defeat_reward = None;
+        self.equipped_weapon = None;
+        self.statuses = Default::default();
+        self
+    }
+    pub(crate) fn set_status_duration(&mut self, id: &StatusId, duration: u16) {
+        self.statuses.set_duration(id, duration);
+    }
+    pub(crate) fn set_status_power(
+        &mut self,
+        id: &StatusId,
+        power: crate::status::StatusPower,
+        duration: u16,
+    ) {
+        self.statuses.set_power(id, power, duration);
+    }
+
     pub(crate) fn remove_status(&mut self, id: &StatusId) -> bool {
         self.statuses.remove(id)
     }
@@ -791,6 +828,13 @@ impl Actor {
     }
 
     pub(crate) fn restore_integrity(&mut self, amount: u16) -> u16 {
+        if self
+            .statuses
+            .get(&"agent:regeneration_break".parse().expect("stable status"))
+            .is_some()
+        {
+            return 0;
+        }
         let missing = self.maximum_integrity.saturating_sub(self.integrity);
         let restored = amount.min(missing);
         self.integrity += restored;

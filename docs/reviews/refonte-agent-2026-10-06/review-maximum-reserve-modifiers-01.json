@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-09",
+  "review_id": "J01-MAX01",
+  "stable_rule_id": "J01",
+  "revision": 1,
+  "title": "Bonus de PV et d’énergie maximum",
+  "status": "ordinary_reserve_bonus_order_percent_pool_final_floor_current_clamp_and_classification_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-25.json",
+  "current_attribute_model_sha256": "592244ab65eed2a74aeb5bc13417f0f093ba3dff297f936483c21c13aae65def",
+  "shown_copy_markdown": "Les **règles de soin et de drain sont validées**.\n\n**J01 · Bonus de PV et d’énergie maximum — proposition**\n\nPour les jauges ordinaires du personnage :\n\n- La base reste celle calculée avec le **niveau et les attributs**, selon les règles validées.\n- Les **bonus fixes** sont ajoutés à cette base.\n- Les **bonus compatibles en pourcentage s’additionnent**, puis s’appliquent au résultat.\n- Le maximum final est arrondi à l’entier inférieur.\n\n**Exemple fictif**\n\n- Base : **100 PV**.\n- Bonus fixe : **+20 PV** → **120 PV**.\n- Bonus en pourcentage : **+10 % et +15 %** → **+25 %**.\n\n**Maximum final : 150 PV.**\n\nLe même principe s’applique aux bonus d’énergie maximum.\n\n**Quand le maximum change**\n\n- Vous avez **80/100 PV** ; le maximum passe à **150** → **80/150 PV**.\n- Vous avez **120/150 PV** ; le maximum redescend à **100** → **100/100 PV**.\n\nMême règle pour l’énergie. Si vous rééquipez ensuite le bonus, la jauge ne se remplit pas.\n\nCes ajustements de jauge ne comptent pas comme une blessure ou une dépense d’énergie.\n\nLa **montée de niveau** conserve sa restauration complète déjà validée. Le **Colosse** conserve sa règle particulière de pourcentage de vie lors de l’entrée et de la sortie de transformation.\n\n**Ce cumul des bonus et le plafonnement des jauges restent à valider.**",
+  "shown_copy_sha256": "ba01ef37c8471ad08a53db992f029b59a7b564a41bb8b851fff1dd1d0fdb5a89",
+  "new_proposed_rules": {
+    "scope": "ordinary_player_maximum_HP_and_energy_modifiers;transformation_specific_maximum_HP_layer_and_ratio_rules_not_redefined",
+    "base": "accepted_level_and_attribute_derived_maximum_before_ordinary_item_passive_and_buff_modifiers",
+    "flat_bonus_order": "sum_compatible_flat_reserve_bonuses_and_add_to_base_before_percentage_bonuses",
+    "percent_bonus_order": "sum_compatible_percentage_point_reserve_bonuses_apply_once_to_base_plus_flat_bonuses",
+    "rounding": "floor_final_maximum_once",
+    "increase_current_resource": "no_restore_or_heal;keep_existing_absolute_current_amount",
+    "decrease_current_resource": "current_becomes_minimum_of_old_current_and_new_maximum",
+    "reequip": "does_not_restore_lost_current_resource_after_prior_maximum_clamp",
+    "clamp_event_classification": "maximum_recalculation_and_current_clamp_are_not_damage_or_energy_spending_events",
+    "exceptions": "accepted_level_gain_full_restoration_and_Colosse_transformation_current_HP_ratio_preservation_retained"
+  },
+  "shown_examples": {
+    "maximum_calculation": {
+      "base_maximum_HP": 100,
+      "flat_bonus_HP": 20,
+      "percent_bonuses": [
+        10,
+        15
+      ],
+      "combined_percent_bonus": 25,
+      "after_flat": 120,
+      "final_maximum_HP": 150
+    },
+    "maximum_increase": {
+      "old_current": 80,
+      "old_maximum": 100,
+      "new_maximum": 150,
+      "new_current": 80
+    },
+    "maximum_decrease": {
+      "old_current": 120,
+      "old_maximum": 150,
+      "new_maximum": 100,
+      "new_current": 100
+    },
+    "scope": "fictional_numbers;no_new_loot_affix_values_or_skill_bonuses_created"
+  },
+  "accepted_dependencies": {
+    "progression": "docs/reviews/refonte-agent-2026-10-06/review-current-reserves-on-progression-02.json",
+    "progression_sha256": "4977465f395a22813f03d5702347e9bd2888f8eb5b185025251689e4419c82b9",
+    "B03": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-B03-02.json",
+    "B03_sha256": "3da7809f70bb3138bb6e03b9dc7fdfcf20e38448880bff5eebe6eb871359a3f7"
+  },
+  "scope_audit": {
+    "ordinary_HP_bonus_direction": "docs/REVUE_TEXTES_EFFETS_AGENT.md:508-518 proposes flat_then_additive_percent_then_floor and no_free_heal;new_common_card explicitly reviews energy extension and clamping semantics",
+    "Colosse": "accepted_ratio_and_specific_form_HP_behavior_preserved;form_bonus_not_silently_moved_into_ordinary_pool",
+    "existing_individual_cards": "not_rewritten;displayed_B03_and_other_skill_values_retained"
+  },
+  "unshown_cases_pending": [
+    "minimum_legal_maximum_HP_energy_and_negative_modifier_bounds",
+    "ordinary_percent_bonus_caps_if_any_and_item_family_eligibility",
+    "all_actual_flat_percent_affix_values_generation_weights_and_class_implant_parameters",
+    "transformation_specific_HP_modifier_order_and_in_form_equipment_changes",
+    "simultaneous_multiple_level_gain_and_effect_expiry_order",
+    "percent_heal_budget_snapshot_or_dynamic_behavior_when_maximum_changes",
+    "reserve_current_recalculation_floating_feedback_and_status_events_other_than_damage",
+    "NPC_drone_familiar_maximum_modifiers_and_all_other_unshown_cases"
+  ],
+  "player_copy_approval": "pending_explicit_review",
+  "numeric_and_scope_approval": "pending_explicit_review",
+  "new_native_visuals_proposed": false,
+  "runtime_integration": "not_integrated"
+}

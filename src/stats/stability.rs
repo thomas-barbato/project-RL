@@ -38,7 +38,7 @@ impl StabilityRules {
     }
 
     pub fn stability(self, attributes: Option<PrimaryAttributes>, explicit_modifier: i16) -> u16 {
-        let resilience = attributes.map_or(self.neutral_resilience, |values| {
+        let resilience = attributes.map_or(u16::from(self.neutral_resilience), |values| {
             values.value(PrimaryAttribute::Resilience)
         });
         let delta = i32::from(resilience) - i32::from(self.neutral_resilience);

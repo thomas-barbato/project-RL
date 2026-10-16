@@ -15,12 +15,12 @@ fn reinforced_armor_models_keep_names_tradeoff_and_only_protection_progresses() 
     )
     .unwrap();
     let names = [
-        "Brigandine Cognefer",
-        "Plastron Bastion",
+        "Tenue Cognefer",
+        "Armure Bastion",
         "Armure Cerbère",
         "Carapace Chrysalide",
-        "Manteau de mue",
-        "Combinaison Fantôme",
+        "Robe de mue",
+        "Tenue Fantôme",
     ];
     let mut profiles = Vec::new();
     for (index, id) in armor_model_ids().iter().enumerate() {

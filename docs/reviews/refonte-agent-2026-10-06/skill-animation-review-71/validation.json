@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-14",
+  "build": "cargo build --locked passed",
+  "format": "cargo fmt --all -- --check passed",
+  "whitespace": "targeted git diff --check passed",
+  "targeted_geometry_tests": "2 passed",
+  "native_readbacks": 1626,
+  "native_encoding_lossless": true,
+  "browser_native_matches": 12,
+  "gallery": "12 native64 profiles; paired radius1/radius4 for Fire/Poison/Cold, open/full-wall; hover and expiry",
+  "prior_files_preserved": 25762,
+  "campaign_integration": false,
+  "full_suite": "Not run; isolated debug visual review",
+  "new_native_readbacks": 1626,
+  "reused_radius4_readbacks": 1626,
+  "effective_native_readbacks": 3252,
+  "legacy_preservation": "96 samples preserve actors, effects and fixed HUD;76 are fully exact; compact warmup changes anti-aliasing in floating damage glyphs only",
+  "current_review": 71
+}

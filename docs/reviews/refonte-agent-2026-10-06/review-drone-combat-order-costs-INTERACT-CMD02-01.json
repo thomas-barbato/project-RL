@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-CMD02",
+  "revision": 1,
+  "title": "Ordres de combat des drones",
+  "status": "proposed_awaiting_user_review;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-command-action-costs-INTERACT-CMD01-02.json",
+      "reference_sha256": "4fa027430bcadd15a53effa64ce453df95b9e413e3f92c873f258f5e4713e43c"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-reposition-drone-orders-PETS-EQ20-02.json",
+      "reference_sha256": "cda8f775a189e2b2070c4c3d3f08b4974fc443aa1562d6e27b2aeb22a8485ea5"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-window-UX-PETS-02-03.json",
+      "reference_sha256": "25f5f49902cc790bdcd104cf4c2b56c52b26f3f61f20b4fe8e19c72a709ff3ce"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-waiting-familiar-controls-PETS-EQ21-02.json",
+      "reference_sha256": "e814b84986b68b33bbf0e5c2ecc3cdbcf1b0b3534cb05a696a934fb8dc3c37e9"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-first-action-arrival-INTERACT-PETS01-02.json",
+      "reference_sha256": "963e508e02b23e1b9144d9fb840ca5f5c49bce469e51ed3d3279d4ab8d85da25"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-zone-arrival-INTERACT-PETS02-02.json",
+      "reference_sha256": "62e1bb841cf61771e0f0d3cda97b73bebee0f7a2e43ba1235c034ecd312aabe6"
+    }
+  ],
+  "scope": "basic_existing_drone_mode_selection_and_explicit_target_order_costs_per_drone;not_new_abilities_or_AI_engagement_distances",
+  "existing_runtime_evidence": {
+    "mode_labels": "src/ascii_app.rs:companion_behavior_label;Suivre_Defensif_Agressif_Passif",
+    "mode_change_time": "src/game/game_state.rs:process_player_command_SetCompanionBehavior_returns_AppliedWithoutTime",
+    "approved_window_direction": "one_row_and_existing_controls_per_drone;raised_autonomous"
+  },
+  "proposed_rule": {
+    "mode_selection": {
+      "modes": [
+        "Suivre",
+        "Défensif",
+        "Agressif",
+        "Passif"
+      ],
+      "player_actions": 0,
+      "energy": 0,
+      "own_cooldown_turns": 0
+    },
+    "target_order": {
+      "scope": "chosen_attack_capable_drone_and_currently_observed_hostile_under_existing_targeting_conditions",
+      "player_actions": 0,
+      "energy": 0,
+      "own_cooldown_turns": 0
+    },
+    "execution": "store_new_accepted_order;execute_when_drone_normally_eligible_in_familiar_phase;no_immediate_forced_action_or_extra_action_budget_or_recharge_reset",
+    "multiple_orders": "player_can_configure_multiple_drone_rows_before_next_time_advancing_action;orders_alone_advance_no_turn_effect_timer_cooldown_enemy_phase_or_regeneration",
+    "eligibility": "preserve_existing_presence_current_hostile_observation_actual_drone_vision_attack_and_model_role_conditions;no_attack_granted_to_noncombat_model;pending_familiar_map_commands_remain_disabled",
+    "refusal": "invalid_order_preserves_previous_order_and_consumes_no_time_energy_cooldown_or_RNG",
+    "preserved_commands": "Repositionner_Destroy_Mule_Ramasser_Mule_Arreter_keep_accepted_CMD01_one_player_action_and_other_costs_conditions",
+    "preserved_AI": "same_mode_meanings_target_rules_and_natural_actor_budgets;no_new_pursuit_range_target_persistence_or_AI_priority",
+    "raised": "autonomous_without_combat_order_buttons;inspection_and_Destroy_preserved",
+    "scope_boundary": "no_new_skill_ability_button_mode_name_native_layout_animation_or_player_facing_error_copy",
+    "Mule_collection": "combat_mode_selection_does_not_cancel_existing_Mule_collection;stopping_collection_uses_existing_one_action_Arreter_command"
+  },
+  "shown_copy_markdown": "INTERACT-CMD02 · Ordres de combat des drones — proposition\n\n- Changer le mode d'un drone — Suivre, Défensif, Agressif ou Passif : 0 tour, 0 énergie, aucune recharge propre.\n- Désigner une cible à un drone capable d'attaquer : 0 tour, 0 énergie, aucune recharge propre. Les conditions habituelles de présence, de visibilité et d'attaque restent applicables.\n\nLe nouvel ordre est enregistré, puis le drone l'exécute pendant sa prochaine phase normale. Donner ou modifier un ordre ne lui accorde pas d'attaque ou de déplacement supplémentaire et ne réinitialise pas ses recharges.\n\nVous pouvez donc préparer les ordres de plusieurs drones avant votre prochaine action. Une commande impossible est refusée gratuitement, sans modifier l'ordre précédent. Un familier en attente conserve les commandes grisées déjà validées.\n\nExemple : vous désignez le même ennemi à deux drones, puis vous attaquez. Les drones appliquent chacun leur ordre lorsqu'ils peuvent agir pendant la phase des familiers.\n\nRepositionner, Détruire, Ramasser et Arrêter conservent leur coût accepté d'une action du joueur et leurs autres conditions. Changer un mode de combat ne met pas fin à la collecte de la Mule : son interruption passe par Arrêter. Les ressuscités restent autonomes.\n\nCes coûts restent proposés, en attente de validation.",
+  "shown_copy_sha256": "ff82175b4152d47701dff176a0fc31727443cdb5bb1d3618dd03f2b0bcfe0a0e",
+  "shown_example": "two_drones_configured_to_same_valid_enemy_before_player_attack;each_acts_only_in_its_normal_eligible_familiar_phase",
+  "mechanic_approval": "pending_user_review",
+  "text_approval": "design_explanation_pending;existing_command_labels_retained",
+  "visual_approval": "no_new_native_rendering_proposed",
+  "runtime_integration": "not_integrated"
+}

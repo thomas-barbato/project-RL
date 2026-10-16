@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-REANIM03",
+  "revision": 2,
+  "title": "Marque unique et réapplication de Réanimation",
+  "status": "unique_reanimation_marks_and_reapplication_explicitly_accepted;owner_map_and_phase_cases_pending;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-and-birth-INTERACT-REANIM01-02.json",
+      "reference_sha256": "35eec1b1baf1ccc125e83ecfe24c3d1893b3a7ee8f3519aa083d14c9b4231385"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-cooldowns-and-first-action-INTERACT-REANIM02-02.json",
+      "reference_sha256": "49e633a48d1898e340125034abd82384d4d3d25b77cdc4a848f37f624a770c94"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC07-02.json",
+      "reference_sha256": "d1d6ac3e4e7b43b1cf8b13d45b3d8c99099f91906b717b465c5636510ef769a1"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-raised-equipment-and-rewards-PETS-EQ09-02.json",
+      "reference_sha256": "bcc003bdd6d747dbb6413bd7c2eba9992d590899ea1b8287b153a99773b9f3dd"
+    }
+  ],
+  "scope": "unique_OC07_mark_ownership_reapplication_and_already_raised_target_eligibility;does_not_grant_ability_to_monsters",
+  "already_accepted": "mark_until_target_death;birth_uses_mark_owner_current_rank;bosses_excluded;ordinary_cast_energy_range_and_cooldown_conditions;no_new_XP_or_loot_from_raised_disappearance",
+  "shown_copy_markdown": "Pour les marques de Réanimation, je propose :\n\n- Un ennemi ne peut porter qu'une seule marque de Réanimation.\n- S'il porte déjà votre marque, le lancement est refusé sans dépenser d'énergie, faire passer de tour ou modifier la recharge.\n- Si un autre lanceur dispose un jour de ce pouvoir, sa dernière marque posée avec succès remplace la précédente. La cible ne produit qu'un seul ressuscité, pour le propriétaire de la marque restante.\n- Un monstre déjà ressuscité ne peut pas recevoir une nouvelle marque de Réanimation.\n\nLe rang utilisé au relèvement reste celui du propriétaire de la marque, selon la règle validée. Cette proposition n'attribue pas le pouvoir à un nouveau monstre et ne définit aucun nouveau texte de refus dans l'interface.",
+  "shown_copy_sha256": "fe85f947da2caf85cb6085838d84446625f2001f248aa6c3688ab26d4229f3aa",
+  "not_resolved_here": [
+    "mark_owner_dies_or_becomes_unavailable_before_target_death",
+    "same_turn_multiple_death_and_oldest_replacement_order",
+    "cross_layer_mark_cleanup_and_target_return",
+    "native_mark_owner_analysis_and_refusal_feedback"
+  ],
+  "mechanic_approval": "accepted_as_displayed",
+  "text_approval": "design_explanation_accepted;no_new_skill_RP_name_or_UI_error_copy",
+  "visual_approval": "no_new_native_art_or_animation_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-reapplications-INTERACT-REANIM03-01.json",
+    "reference_sha256": "3853d1b2b410bc480bef73f08573b122a1aaa825d06dc7f25a36dee72ef3c94d"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/reanimation-mark-reapplications-acceptance-decisions.json",
+    "reference_sha256": "416c9c7096589d4008dac1416467c9426bb0ec7e46b82b9aff40f80d6df065d9"
+  },
+  "accepted_rule": {
+    "unique_mark": "one_live_OC07_mark_per_target;one_target_death_can_produce_at_most_one_raised_from_that_mark",
+    "same_owner_reapplication": "target_already_marked_by_same_caster_is_invalid;refuse_without_energy_spend_elapsed_turn_or_cooldown_change;existing_mark_retained",
+    "other_owner": "if_other_caster_has_this_ability_latest_successful_valid_mark_replaces_previous_mark_and_owner;failed_or_refused_cast_does_not_replace_it",
+    "birth_owner": "remaining_mark_owner_receives_single_raised_using_accepted_current_rank_birth_rule;does_not_create_one_actor_for_each_historical_caster",
+    "raised_target": "actor_already_created_by_reanimation_is_not_eligible_for_new_OC07_mark_even_if_currently_hostile;no_chain_reanimation_of_that_actor",
+    "replaced_source": "previous_mark_is_not_restored_when_replacement_is_lost;prior_cast_costs_are_not_refunded",
+    "scope_boundary": "no_new_NPC_skill_assignment_faction_rule_or_UI_error_message;other_status_kinds_keep_existing_reapplication_rules"
+  }
+}

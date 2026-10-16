@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-08",
+  "id": "BM06",
+  "review_id": "BM06",
+  "revision": 1,
+  "title": "Protection offensive",
+  "branch": "Buffs de mêlée",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-94.json",
+  "source_skill_manifest_sha256": "4153411aeeec59a897c95cc1408c8a551f65fd8e74507f84514b8989cef57385",
+  "source_skill_block_sha256": "fc4ad6c038e4553adc96738b4578a7069e3fb82fcd9ba7ee5dd3ba036936e59b",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_modifiers": false,
+    "maximum_HP": "actual_character_maximum_HP_including_attributes_and_equipment;no_fictitious_HP_total_assumed"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "shield_added_percent_maximum_HP_per_eligible_hit": 7,
+    "maximum_shield_percent_maximum_HP": 21,
+    "duration_turns_after_last_eligible_hit": 2,
+    "maximum_shield_additions_per_turn": 1
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "shield_added_percent_maximum_HP_per_eligible_hit": 7.5,
+    "maximum_shield_percent_maximum_HP": 22.5,
+    "duration_turns_after_last_eligible_hit": 2,
+    "maximum_shield_additions_per_turn": 1
+  },
+  "formulas_proposed": {
+    "shield_added_percent_maximum_HP": "2+0.5*(effective_rank-1)",
+    "maximum_shield_percent_maximum_HP": "3*(2+0.5*(effective_rank-1))",
+    "maximum_shield_additions_per_turn": 1,
+    "duration_turns_after_last_eligible_hit": 2,
+    "old_fixed_fifteen_percent_cap": "superseded_unapproved_proposal;new_cap_tracks_three_contributions",
+    "shield_addition_and_cap_amounts": "computed_from_current_maximum_HP;rounding_snapshot_modifier_order_unshown_pending",
+    "status": "revised_growth_and_scaling_cap_proposed_under_SKILL_PROG01;full_curves_defaults_pending"
+  },
+  "conditions_proposed": {
+    "primary_melee_hit_removing_HP_from_enemy_required": true,
+    "one_shield_addition_per_turn_even_multi_target_attack": true,
+    "damage_consumes_remaining_shield": true,
+    "subsequent_eligible_hits_restore_shield_up_to_cap": true,
+    "refresh_duration_after_last_eligible_hit": "shown_duration_condition;exact_resolution_order_unshown_pending",
+    "maximum_HP_change": "new_maximum_can_clamp_shield_but_does_not_fill_it_free;existing_internal_condition_unshown_pending",
+    "shield_is_not_HP_healing": true,
+    "status_bar": "small_icon_shows_current_protection_and_remaining_turns_under_confirmed_HUD01-ALL01;exact_native_pending"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "current7_max21_next7_5_max22_5_duration2_one_addition_per_turn_proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "displayed_primary_melee_enemy_HP_damage_consumption_and_refill_proposed_pending_review",
+  "visual_intention_approval": "catalogue_protective_half_arc_direction_preserved;brief_after_hit_and_amount_duration_icon_copy_proposed;general_status_icon_required",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "pending_individual_user_review",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "no_fictitious_weapon_damage_variance": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "shield_added_percent_maximum_HP_per_eligible_hit",
+      "maximum_shield_percent_maximum_HP"
+    ]
+  },
+  "player_copy_markdown": "**BM06 · Protection offensive — Rang 11 · Passif**\n\n*Vos frappes dressent autour de vous une barrière qui encaisse les coups.*\n\n**Effets actuels**\n\n- Bouclier ajouté par frappe : **7 % de vos PV maximum**.\n- Bouclier maximal : **21 % de vos PV maximum**.\n- Durée après la dernière frappe admissible : **2 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bouclier ajouté par frappe : **7,5 % de vos PV maximum**.\n- Bouclier maximal : **22,5 % de vos PV maximum**.\n\nChaque frappe principale de mêlée qui retire des PV à un ennemi renforce le bouclier, à raison d’un renforcement maximum par tour.\n\nLes dégâts subis consomment le bouclier ; vos frappes suivantes peuvent le reconstituer dans sa limite.",
+  "player_copy_sha256": "ed2a525765fa6a6b35efa5e2156079af202d9708f079137bed1df63b87f6c2a9",
+  "visual_copy_markdown": "**Visuel proposé :** un bref demi-arc protecteur se forme devant vous après une frappe. L’icône du buff montre le bouclier restant et sa durée.",
+  "visual_copy_sha256": "710ae86bda97e76ad26062eaabe7db661032cb1e13bd478bfae9000572c833a3",
+  "current_turn_shown_copy_markdown": "**BM06 · Protection offensive — Rang 11 · Passif**\n\n*Vos frappes dressent autour de vous une barrière qui encaisse les coups.*\n\n**Effets actuels**\n\n- Bouclier ajouté par frappe : **7 % de vos PV maximum**.\n- Bouclier maximal : **21 % de vos PV maximum**.\n- Durée après la dernière frappe admissible : **2 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bouclier ajouté par frappe : **7,5 % de vos PV maximum**.\n- Bouclier maximal : **22,5 % de vos PV maximum**.\n\nChaque frappe principale de mêlée qui retire des PV à un ennemi renforce le bouclier, à raison d’un renforcement maximum par tour.\n\nLes dégâts subis consomment le bouclier ; vos frappes suivantes peuvent le reconstituer dans sa limite.\n\n**Visuel proposé :** un bref demi-arc protecteur se forme devant vous après une frappe. L’icône du buff montre le bouclier restant et sa durée.",
+  "current_turn_shown_copy_sha256": "793b6ea8dd83669a7f44174e0f1a20f87c10a0b752dcbeea3faf7c19ba99c351",
+  "unshown_cases_pending": [
+    "full_curves_defaults_high_equipment_ranks_rounding_snapshot_and_modifier_order",
+    "shield_consumption_damage_types_indirect_damage_poison_and_other_absorption_order",
+    "multi_hit_multi_target_dual_wield_zero_damage_overkill_and_reaction_turn_identity",
+    "shield_refresh_expiry_and_one_addition_per_turn_clock_boundary",
+    "weapon_skills_natural_transformed_attacks_weapon_swap_and_map_change",
+    "maximum_HP_changes_and_other_shield_sources_stack_limits",
+    "native_half_arc_icon_number_tooltip_timing_palette_and_visibility"
+  ]
+}

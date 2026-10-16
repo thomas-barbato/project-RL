@@ -1,0 +1,14 @@
+{
+  "build": { "command": "cargo build --locked", "exit_code": 0 },
+  "targeted_tests": { "command": "cargo test --locked agent_skill_lab_review", "passed": 49, "failed": 0 },
+  "format": { "command": "cargo fmt --all -- --check", "exit_code": 0 },
+  "diff_check": { "command": "git diff --check", "exit_code": 0 },
+  "native_render": { "views": 14, "animations": 10, "comparison": true, "protected_files_unchanged": 45348, "pixel_controls": "passed" },
+  "revision": "Pale lavender covers broader colored violet facets; tips approach white. Shader color only; sources, alpha, dimensions, positions and timelines preserved.",
+  "comparison_limit": "Known transient skill-name rectangle excluded for minor font edge raster differences during frames 17-33. Actor bodies, terrain and later frames match.",
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Native captures and offline palette controller verified.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "pending"
+}

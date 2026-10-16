@@ -1,0 +1,49 @@
+{
+  "candidate": "100 / D59-BODY03",
+  "icon": "D59-C06",
+  "scope": "Tracked running gear replaces wheels; upper silhouette, colors, two barrels and frontal pose retained. Isolated preview only.",
+  "status": "visually_accepted",
+  "tool": "built-in image_gen",
+  "prompt": "prompt.json",
+  "source_size": [
+    1446,
+    1087
+  ],
+  "framing_bounds_alpha8": [
+    25,
+    83,
+    1418,
+    1008
+  ],
+  "direct64": "High resolution source directly to64, no intermediate32. Only framing and resampling; no procedural redraw or recoloring.",
+  "native_tile": 64,
+  "body_bottom": 62,
+  "body_width": 58,
+  "barrel_centres_native64": [
+    [
+      13,
+      35
+    ],
+    [
+      51,
+      35
+    ]
+  ],
+  "compact_sizes": [
+    64,
+    32
+  ],
+  "same_body_and_icon_source": true,
+  "user_latest_reply": "je valide :)",
+  "reply_scope": "Approval received during preparation after the track request; confirms the requested direction, no acceptance inferred for unshown native animation, effects or numbers.",
+  "live_assets_modified": false,
+  "files": {
+    "../../../../../assets/animations/agent/skill-animation-review-92/artilleur-body03/D59-BODY03-native64.png": "6f570942b9fb19772b1600187b249ac2958e665e40c53b006f39051b3930cec8",
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body03/D59-BODY03-source.png": "12e6fb0d60549b76d600a55c6af3200d511e129769c2fee05c0fde8807c3fa98",
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body03/D59-C06-compact32.png": "de88b509625fb6a7e1989235efa06aacf4c1832558f983bfd9d148c59850ef0c",
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body03/D59-C06-compact64.png": "d8305245bc86938a1766d0677a3ae50ae66b4bbc8d2f26dd389fee221b1b3491",
+    "prompt.json": "78a89ecdc19e138fb42700775c1aa4e41643556f7f18044dcdc1e8918ce03558"
+  },
+  "visual_acceptance": "../visual-acceptance-01.json",
+  "visual_acceptance_reply": "parfait :)"
+}

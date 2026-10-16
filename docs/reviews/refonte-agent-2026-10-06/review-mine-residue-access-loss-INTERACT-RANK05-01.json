@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-RANK05",
+  "revision": 1,
+  "title": "Perte de passif après l'explosion d'une mine",
+  "status": "proposed_awaiting_user_review;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-variant-access-loss-INTERACT-RANK04-01.json",
+      "reference_sha256": "7af3daa1a02a35496ee4f764180ffa89c5282bdd4e82ee9982b41b146730cfdb"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM05-02.json",
+      "reference_sha256": "e716e16a175875afc369bc91273f3fb868fe990f7fd0d49dd10073220aa650b6"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-power-snapshot-INTERACT-POWER01-02.json",
+      "reference_sha256": "9d7c2be630dfec22019a53a944c53046278d4fa0d65af5cbbb391ced05256e77"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-invoked-creation-scope-INTERACT-RANK02-02.json",
+      "reference_sha256": "5084d9e1336229bdf283545959f5134cd86efd74fae0b7a39e75370051dc8a09"
+    }
+  ],
+  "scope": "SM00_created_residue_zones_when_supporting_variant_or_residue_passive_becomes_unavailable;not_partial_rank_loss_or_other_skills",
+  "proposed_rule": {
+    "SM02_access_loss": "remove_own_SM00_poison_residue_zones_depending_on_SM02",
+    "SM03_access_loss": "remove_own_SM00_cold_residue_zones_depending_on_SM03",
+    "SM05_access_loss": "remove_all_own_SM00_residue_zones_depending_on_SM05",
+    "independent_explosion_status": "already_applied_explosion_Poisoned_or_Gel_instances_keep_ordinary_remaining_duration_and_existing_reapplication_removal_rules",
+    "zone_only_Gel": "Gel_maintained_only_by_removed_zone_ends_under_existing_zone_Gel_lifetime_rule",
+    "cleanup": "no_new_explosion_damage_or_energy_refund;do_not_remove_other_skill_zones_or_other_caster_zones",
+    "no_restore": "does_not_restore_a_previous_status_instance_already_overwritten_by_later_successful_reapplication"
+  },
+  "shown_copy_markdown": "Pour les mines qui ont déjà explosé, je propose que perdre le passif nécessaire supprime aussi les zones concernées : nuages de poison si Mines de poison devient indisponible, zones de glace si Mines de glace devient indisponible, et toutes les zones laissées par vos mines si Résidu persistant devient indisponible.\n\nLes statuts déjà appliqués par l'explosion, comme Empoisonnement ou Gel, continuent jusqu'à leur fin normale. Le Gel maintenu uniquement par une zone supprimée prend fin avec elle.\n\nCette suppression ne produit pas de nouvelle explosion ni de remboursement d'énergie. Elle concerne les zones de vos mines, sans supprimer les zones provenant d'autres sorts.",
+  "shown_copy_sha256": "f9c658582e8da3e7b9fd0b8f88f33bf3247c985921802b14dfe18c2b58e2cdc5",
+  "not_resolved_here": [
+    "partial_supporting_passive_rank_loss_while_still_available",
+    "lost_SM04_radius_passive",
+    "merged_multi_source_Gel_provenance_and_full_turn_scheduler",
+    "predeath_resurrection_marks_and_birth_sampling",
+    "native_removal_feedback"
+  ],
+  "mechanic_approval": "pending_user_review",
+  "text_approval": "design_explanation_pending;no_new_skill_RP_or_name",
+  "visual_approval": "no_new_native_art_or_animation_proposed",
+  "runtime_integration": "not_integrated"
+}

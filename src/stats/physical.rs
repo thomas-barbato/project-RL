@@ -42,11 +42,11 @@ impl ImpactRules {
         attributes: Option<PrimaryAttributes>,
         impact_modifier: i16,
     ) -> u16 {
-        let power = attributes.map_or(self.neutral_attribute, |values| {
+        let power = attributes.map_or(u16::from(self.neutral_attribute), |values| {
             values.value(PrimaryAttribute::Power)
         });
-        let raw = i32::from(power) * i32::from(self.impact_per_power) + i32::from(impact_modifier);
-        raw.clamp(0, i32::from(u16::MAX)) as u16
+        let raw = i64::from(power) * i64::from(self.impact_per_power) + i64::from(impact_modifier);
+        raw.clamp(0, i64::from(u16::MAX)) as u16
     }
 
     pub fn resolve_melee_damage(
@@ -124,17 +124,17 @@ impl HitPointRules {
         material_bonus: i16,
         state_modifier: i16,
     ) -> u16 {
-        let resilience = attributes.map_or(self.neutral_attribute, |values| {
+        let resilience = attributes.map_or(u16::from(self.neutral_attribute), |values| {
             values.value(PrimaryAttribute::Resilience)
         });
-        let resilience_delta = i32::from(resilience) - i32::from(self.neutral_attribute);
-        let raw = i32::from(body_base)
-            + resilience_delta * i32::from(self.hit_points_per_resilience)
-            + i32::from(material_bonus)
-            + i32::from(state_modifier);
+        let resilience_delta = i64::from(resilience) - i64::from(self.neutral_attribute);
+        let raw = i64::from(body_base)
+            + resilience_delta * i64::from(self.hit_points_per_resilience)
+            + i64::from(material_bonus)
+            + i64::from(state_modifier);
         raw.clamp(
-            i32::from(self.minimum_maximum_hit_points),
-            i32::from(u16::MAX),
+            i64::from(self.minimum_maximum_hit_points),
+            i64::from(u16::MAX),
         ) as u16
     }
 
@@ -379,11 +379,11 @@ impl Error for PhysicalRulesError {}
 mod tests {
     use super::*;
 
-    fn with_power(power: u8) -> Option<PrimaryAttributes> {
+    fn with_power(power: u16) -> Option<PrimaryAttributes> {
         Some(PrimaryAttributes::new(power, 5, 5, 5, 5))
     }
 
-    fn with_resilience(resilience: u8) -> Option<PrimaryAttributes> {
+    fn with_resilience(resilience: u16) -> Option<PrimaryAttributes> {
         Some(PrimaryAttributes::new(5, 5, resilience, 5, 5))
     }
 
@@ -507,13 +507,13 @@ mod tests {
         };
 
         assert_eq!(
-            impact_rules.available_impact(with_power(u8::MAX), i16::MAX),
+            impact_rules.available_impact(with_power(u16::MAX), i16::MAX),
             u16::MAX
         );
         assert_eq!(
             hit_point_rules.maximum_hit_points(
                 u16::MAX,
-                with_resilience(u8::MAX),
+                with_resilience(u16::MAX),
                 i16::MAX,
                 i16::MAX,
             ),

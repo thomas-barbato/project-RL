@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-08",
+  "review_id": "P01-CURRENT01",
+  "revision": 1,
+  "title": "PV et énergie lors de la progression",
+  "status": "proposed_pending_explicit_review",
+  "accepted_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-08.json",
+  "accepted_attribute_model_sha256": "7b4ec252c58e5975d6d986832fa17d66e285d0ae27df3c90f888ef0fb872a51f",
+  "previous_no_heal_passive_decisions": "docs/reviews/refonte-agent-2026-10-06/vitalite-amelioree-rename-and-acceptance-decisions.json",
+  "previous_no_heal_passive_decisions_sha256": "01e76855272bc7cc86af006c9cc13732dcafe8a09eaaab148cff59def0acf621",
+  "previous_Colosse_decisions": "docs/reviews/refonte-agent-2026-10-06/colossus-area-stun-defense-and-hp-decisions.json",
+  "previous_Colosse_decisions_sha256": "8780413d5a83c4dc25d5d74479474ca129fde32389e7de6c82ba7c7bc26da25e",
+  "shown_copy_markdown": "La **récupération d’énergie est validée**. Il reste à préciser l’effet des gains de maximum sur les quantités actuelles.\n\n**P01 · PV et énergie lors de la progression**\n\n**Règle proposée**\n\nQuand un niveau ou des points d’attribut investis augmentent votre maximum, **votre quantité actuelle augmente du même montant**. Le nombre de points manquants reste identique.\n\n**Exemple — PV**\n\n- Avant : **40 / 68 PV**.\n- Après le passage au niveau suivant : **42 / 70 PV**.\n- Avec les cinq nouveaux points investis en Vitalité : **62 / 90 PV**.\n\n**Exemple — Énergie**\n\n- Avant : **20 / 68 énergie**.\n- Après le passage au niveau suivant : **22 / 70 énergie**.\n- Avec les cinq nouveaux points répartis entre Intelligence et Volonté : **32 / 80 énergie**.\n\nExemples avant toute autre récupération ou dépense, sans bonus de maximum.\n\n**Équipements, implants, passifs et buffs**\n\n- Un bonus de maximum conserve la quantité actuelle.\n- Si le maximum diminue, la quantité actuelle est plafonnée au nouveau maximum.\n\nLe **Colosse** conserve sa règle déjà validée : maintien du pourcentage de vie à la transformation et au retour.",
+  "shown_copy_sha256": "11f09003f2833385e487cdf7f683563364362ded692eeb4618759fcfee64a2f0",
+  "new_proposed_rules": {
+    "positive_permanent_level_or_invested_attribute_maximum_gain": "add_actual_maximum_gain_to_current_amount;preserve_absolute_missing_amount",
+    "equipment_implant_passive_or_buff_maximum_increase": "keep_current_amount",
+    "maximum_decrease": "clamp_current_amount_to_new_maximum"
+  },
+  "accepted_exceptions_preserved": {
+    "B03_maximum_bonus_without_healing": true,
+    "Colosse_HP_percentage_on_entry_and_exit": true
+  },
+  "revises_unaccepted_historical_draft": "old_P01_general_no_current_HP_or_energy_gain_on_level_or_stat_increase_is_replaced_by_this_new_proposal_for_permanent_progression_only",
+  "shown_examples": {
+    "HP": [
+      {
+        "current": 40,
+        "maximum": 68
+      },
+      {
+        "current": 42,
+        "maximum": 70
+      },
+      {
+        "current": 62,
+        "maximum": 90
+      }
+    ],
+    "energy": [
+      {
+        "current": 20,
+        "maximum": 68
+      },
+      {
+        "current": 22,
+        "maximum": 70
+      },
+      {
+        "current": 32,
+        "maximum": 80
+      }
+    ]
+  },
+  "example_context": "level10_to11;Vitalite10_to15_for_HP;Intelligence10_and_Volonte10_with_five_total_new_points_for_energy;before_any_other_recovery_or_spend;no_maximum_bonus",
+  "unshown_cases_pending": [
+    "exact_integer_maximum_change_with_other_modifiers_and_multiple_simultaneous_sources",
+    "death_resolution_and_level_gain_order",
+    "creation_current_HP_and_energy",
+    "temporary_attribute_bonuses_and_status_loss",
+    "skill_points_spent_while_transformed_and_transformation_exit_combination",
+    "refunds_respec_and_decreased_invested_attributes",
+    "refresh_labels_and_native_feedback",
+    "all_other_unshown_cases"
+  ],
+  "new_visuals_proposed": false,
+  "runtime_integration": "not_integrated"
+}

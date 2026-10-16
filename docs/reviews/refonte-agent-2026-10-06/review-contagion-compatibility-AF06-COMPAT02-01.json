@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-09",
+  "review_id": "AF06-COMPAT02",
+  "revision": 1,
+  "skill_id": "AF06",
+  "title": "Contagion",
+  "status": "expanded_compatibility_and_one_effect_per_death_explicitly_accepted;other_transfer_rules_pending;not_runtime_integrated",
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/contagion-expanded-status-compatibility-user-decisions.json",
+    "reference_sha256": "1496c2e645363c42499be679b2f7281162c1d5edc2f75401b310d7286b874957"
+  },
+  "existing_card": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-AF06-03.json",
+    "reference_sha256": "fe38fafe9a41e602f00a58a9ad8b5b5c954aee6ae676b2e48ca1656b52898bdb"
+  },
+  "provisional_rank_curves": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/skill-rank-curves-provisional-02.json",
+    "reference_sha256": "44ff8b1f8df86320562f82a00529b5e92c3e9118dd0a89bb051e7b2100e50bdb"
+  },
+  "accepted_rule": {
+    "compatible_statuses": [
+      "Interférence",
+      "Faille d’armure",
+      "Silence",
+      "Rupture de régénération",
+      "Désorientation",
+      "Poison",
+      "Brûlure",
+      "Saignement",
+      "Gel"
+    ],
+    "added_statuses": [
+      "Poison",
+      "Brûlure",
+      "Saignement",
+      "Gel"
+    ],
+    "effects_transmitted_per_death": 1,
+    "existing_name_RP_rank_curves_and_other_approvals": "preserved"
+  },
+  "mechanic_approval": "expanded_status_list_and_single_effect_per_death_accepted",
+  "text_approval": "no_new_RP_or_individual_tooltip_copy_presented",
+  "visual_approval": "no_new_native_rendering",
+  "not_resolved_here": [
+    "source_selection_targeting_and_transmission_failure",
+    "no_chain_transmission",
+    "persistent_first_application_on_transfer",
+    "zone_only_Gel_transfer_lifetime",
+    "exact_phase_order"
+  ],
+  "runtime_integration": "not_integrated"
+}

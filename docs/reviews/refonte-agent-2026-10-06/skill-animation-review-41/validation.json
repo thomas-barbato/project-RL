@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-13",
+  "build": {
+    "command": "cargo build --locked",
+    "exit_code": 0
+  },
+  "targeted_tests": {
+    "command": "cargo test --locked agent_skill_lab_review",
+    "passed": 77,
+    "failed": 0
+  },
+  "format": {
+    "command": "cargo fmt --all -- --check",
+    "exit_code": 0
+  },
+  "diff_check": {
+    "command": "git diff --check",
+    "exit_code": 0
+  },
+  "native_render": {
+    "views": 14,
+    "animations": 9,
+    "protected_files_unchanged": 81509,
+    "pixel_controls": "passed",
+    "resampling": false
+  },
+  "direct_64px_bodies": "Two new high-resolution comic drawings normalized directly to64px. No32px intermediate. Existing body bank and approved renderers preserved.",
+  "opaque_yellow_pixels_on_native_skull": 0,
+  "gif_colour_encoding": {
+    "common_palette": "64 background,64 green,64 red,64 violet; absent chromatic band uses general samples",
+    "animations_checked": 9,
+    "peak_mean_max_channel_error_range": [
+      6.88,
+      14.23
+    ],
+    "peak_p95_max_channel_error_range": [
+      20,
+      40
+    ],
+    "native_png_frames_unchanged": true
+  },
+  "visual_inspection": "Native entry peak and completed form, native64px body sprites, numbered inspection board and decoded paired GIF inspected.",
+  "gallery_controller": "Offline VM passed22 explicit turns to expiry, waiting, renewal, pause and loading controls.",
+  "gallery_links": {
+    "checked": 14,
+    "missing": 0
+  },
+  "browser_validation": "Not performed: file protocol blocked. Native captures and offline controller verified.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "TR63-BODY01, TR64-BODY01, TR63-A01 and TR64-A01 visually approved.",
+  "fixture_scope": "Bodies, entry/return/renewal and prepared turn counters only. No own attacks yet, HP, energy, reserve, stats, healing, damage, RNG, AI, inventory, loot or save changes.",
+  "acceptance": "visual-acceptance-01.json"
+}

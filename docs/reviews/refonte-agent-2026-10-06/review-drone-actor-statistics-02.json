@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-09",
+  "review_id": "DRONE-STAT01",
+  "revision": 2,
+  "title": "Statistiques des drones",
+  "status": "shown_drone_growth5_and_automatic_model_allocation_accepted;exact_profiles_rank_bonuses_and_other_cases_pending",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-29.json",
+  "current_attribute_model_sha256": "cbcf0f8cfeb793f7adba16ee9edea60fa4fcd24dab3d133d57b333e182a6a2fe",
+  "direction_decisions": "docs/reviews/refonte-agent-2026-10-06/drone-level-own-attributes-and-shared-stat-rules-decisions.json",
+  "direction_decisions_sha256": "28fb09d327ebf8c4350a21fe0fd96d8b87d43b0ae53748d95a9f51616dba1e7b",
+  "shown_copy_markdown": "D’accord, **chaque modèle aura ses propres attributs**, avec le même niveau que le joueur.\n\n**DRONE-STAT01 · Statistiques des drones**\n\n- **Niveau du drone = niveau du joueur**, quel que soit le rang de l’invocation.\n- Chaque modèle possède ses propres **Force, Agilité, Vitalité, Perception, Intelligence et Volonté**.\n- Ses statistiques suivent les **mêmes règles de calcul que celles du joueur et des monstres**, avec des valeurs propres à son modèle.\n- Son équipement et les bonus compatibles modifient ses statistiques.\n- Le rang d’invocation reste une **amélioration supplémentaire**, distincte de son niveau.\n\n**Exemple**\n\nJoueur niveau **20** :\n\n- Invocation au rang **1** → drone niveau **20**.\n- Invocation au rang **10** → drone toujours niveau **20**, avec les améliorations apportées par les rangs investis.\n\nLes anciennes valeurs de PV et de dégâts devront donc être recalculées sur cette nouvelle base.\n\n**Progression proposée**\n\nÀ chaque niveau gagné, les **5 points d’attributs** du drone seraient répartis **automatiquement selon son modèle** : davantage de Force pour un drone de mêlée, de Perception pour un tireur, de Vitalité pour un protecteur.\n\nLes répartitions exactes et les bonus des rangs seront présentés séparément. **Cette répartition automatique reste à valider.**",
+  "shown_copy_sha256": "376d59d5aca6bac395e396d93c0fa02df7b5b2292b2b1bfff92c2e843501f302",
+  "already_accepted_rules": {
+    "scope": "all_drone_models_including_noncombat_models",
+    "level": "always_current_player_level_regardless_of_learned_or_equipment_effective_invocation_rank",
+    "base_statistics": "own_actor_statistics_progressing_at_shared_player_level_under_common_player_and_monster_stat_calculation_rules;not_equipment_requirement_only",
+    "attributes": "own_six_attribute_profile_per_drone_model;not_copy_of_player_allocated_or_equipment_attributes",
+    "invocation_rank": "distinct_from_drone_level;existing_invocation_power_improvement_direction_retained_but_new_exact_bonus_formula_pending",
+    "preserved_functions": "existing_armed_models_and_no_attack_for_Eclaireur_Mule_retained"
+  },
+  "new_proposed_rules": {
+    "drone_attribute_growth_points_per_gained_level": 5,
+    "allocation": "automatically_distribute_points_according_to_per_model_profile",
+    "allocation_orientation": {
+      "melee": "prefer_Force",
+      "physical_ranged": "prefer_Perception",
+      "protective": "prefer_Vitalite"
+    },
+    "exact_distribution": "not_proposed;review_separately",
+    "rank_bonus_curve": "not_proposed;preserve_useful_investment_direction_review_separately"
+  },
+  "shown_examples": {
+    "player_level": 20,
+    "invocation_rank1_drone_level": 20,
+    "invocation_rank10_drone_level": 20,
+    "scope": "illustrative_level_only;no_actual_drone_HP_damage_or_attribute_values_defined"
+  },
+  "preserved_rules": {
+    "equipment": "user_level_and_combat_type_compatibility_direction_and_ground_drop_on_death_or_raised_expiry_retained;PETS_EQ01_other_complements_remain_pending",
+    "D08": "flat_then_additive_compatible_damage_bonus_pool_preserved;rank_only_native_damage_base_overridden_by_explicit_new_direction",
+    "noncombat_models": "Eclaireur_Mule_do_not_gain_attack_from_own_stat_profile",
+    "caps": "five_drones_one_per_model_and_five_raised_monsters_not_changed",
+    "player": "no_change_to_player_attribute_model_or_approved_skill_values"
+  },
+  "unshown_cases_pending": [
+    "exact_six_attribute_starts_and_growth_per_model",
+    "exact_native_attack_and_equipped_weapon_base_and_invocation_rank_improvement",
+    "owner_Intelligence_bonus_vs_drone_own_attributes_and_double_scaling_prevention",
+    "current_HP_energy_and_healing_on_player_level_gain_or_attribute_equipment_updates",
+    "drone_energy_usage_regeneration_critical_base_profiles_and_other_actor_rules",
+    "PETS_EQ01_equipment_complements_and_native_UI",
+    "per_level_attribute_point_distribution_sums_and_spawn_at_high_player_level",
+    "Force_Perception_Volonte_and_owner_Intelligence_exact_damage_pool_mapping",
+    "exact_common_core_base_values_vs_per_model_values_for_HP_energy_accuracy_evasion_resistance_and_crit",
+    "native_stat_sheet_copy_icons_and_actor_equipment_body_layers"
+  ],
+  "player_copy_approval": "explicit_user_acceptance_of_shown_copy",
+  "mechanical_approval": "shown_growth5_and_automatic_allocation_accepted;exact_profiles_and_other_unshown_cases_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-drone-actor-statistics-01.json",
+  "source_proposal_sha256": "5cb3c04e5c0a87ce516e4a7b504615d3f59633ebad8cf27d8348007e2bf7b1bf",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/drone-attribute-growth-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "c01a6a9da72473b164a37170adc4541dc9a4f605b12cd4d955d162e2b0dc0286",
+  "accepted_shown_rules": {
+    "drone_attribute_growth_points_per_gained_level": 5,
+    "allocation": "automatically_distribute_points_according_to_per_model_profile",
+    "allocation_orientation": {
+      "melee": "prefer_Force",
+      "physical_ranged": "prefer_Perception",
+      "protective": "prefer_Vitalite"
+    },
+    "exact_distribution": "not_proposed;review_separately",
+    "rank_bonus_curve": "not_proposed;preserve_useful_investment_direction_review_separately"
+  }
+}

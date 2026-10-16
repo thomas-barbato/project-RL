@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ08",
+  "revision": 1,
+  "title": "Charge et dépassement de capacité",
+  "status": "Mule_cargo_weight_accounting_and_safe_overcapacity_movement_and_deposit_restrictions_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-40.json",
+  "current_attribute_model_sha256": "9916d1d22b4c0d845968f520749aee50708d420df4e7da32fdc21c8d56216270",
+  "shown_copy_markdown": "La **Force et la capacité de transport de la Mule sont validées**.\n\n**PETS-EQ08 · Charge et dépassement de capacité — proposition**\n\n**Poids comptabilisé**\n\nSeuls les objets rangés dans le sac comptent dans la charge affichée. Son armure portée utilise son emplacement d’équipement et ne réduit pas la capacité du sac.\n\n**Si la capacité baisse sous la charge transportée**\n\n- La Mule **conserve tous les objets**.\n- Elle **continue de vous suivre**, sans pénalité de déplacement.\n- Les nouveaux dépôts sont refusés tant qu’elle dépasse sa capacité.\n- Vous pouvez reprendre des objets, même si un premier retrait ne suffit pas à revenir sous la limite, à condition que votre inventaire puisse les accueillir.\n\nDans le bloc **« Transport »**, la mention **« Surchargée »** accompagne la charge actuelle et la capacité maximale.\n\n**Exemple**\n\nAvec **180 kg** stockés, une capacité qui passe de **200 à 160 kg** donne l’affichage **180 / 160 kg · Surchargée**. Les objets restent dans le sac ; retirer **20 kg** ramène la charge à **160 / 160 kg** et retire cette mention.\n\nLes retraits conservent le coût validé : **1 action · 0 énergie par objet**.\n\n**Ces règles de poids et de surcharge restent à valider.**",
+  "shown_copy_sha256": "0cbbd94cf6ab47c527f7a7e41bf0ca13d02f6bd58a61c43470532dcea26c327c",
+  "new_proposed_rules": {
+    "scope": "existing_Mule_D57_cargo_weight_and_dynamic_capacity_decrease;no_player_or_other_actor_encumbrance_rule_created",
+    "cargo_weight": "sum_weights_of_objects_stored_in_Mule_cargo_only",
+    "worn_equipment_weight": "worn_Mule_torso_armor_does_not_count_against_cargo_capacity_or_reduce_it;stored_armor_counts_like_other_cargo",
+    "overcapacity_predicate": "stored_cargo_weight>current_Mule_capacity",
+    "items_on_capacity_decrease": "preserve_all_stored_objects_no_automatic_drop_or_destruction",
+    "movement": "Mule_continues_following_agent_with_no_overcapacity_movement_penalty",
+    "deposit": "refuse_new_cargo_deposits_while_overcapacity;normal_final_capacity_check_remains_under_accepted_PETS_EQ06",
+    "withdrawal": "allow_each_legal_object_withdrawal_to_agent_inventory_even_if_remaining_Mule_cargo_still_exceeds_capacity;accepted_receiving_inventory_check_and_cost_preserved",
+    "status_display": "Surchargée label_in_Transport_block_alongside_actual_weight_over_current_maximum_when_predicate_true",
+    "equal_capacity": "weight_equal_to_capacity_is_not_overcapacity;label_removed;new_deposits_still_need_to_fit",
+    "existing_transfer_cost": {
+      "agent_actions_per_object": 1,
+      "energy": 0
+    },
+    "numeric_scope": "example_only_fictional_capacity_change;does_not_create_Force_curse_equipment_affix_or_mass_catalogue"
+  },
+  "shown_examples": {
+    "stored_weight_kg": 180,
+    "old_capacity_kg": 200,
+    "new_capacity_kg": 160,
+    "overcapacity_kg": 20,
+    "display": "180 / 160 kg · Surchargée",
+    "withdrawn_total_weight_kg": 20,
+    "final_weight_kg": 160,
+    "final_capacity_kg": 160,
+    "final_overcapacity": false,
+    "withdrawn_total_is_not_one_batch_action": "one_or_more_real_objects_under_existing_per_object_cost;no_batch_transfer_added"
+  },
+  "dependencies": {
+    "capacity": "docs/reviews/refonte-agent-2026-10-06/review-mule-strength-and-carrying-PETS-EQ07-02.json",
+    "capacity_sha256": "8c3301628db11145f457c73f18b65f4f6e657d7b38d7d8580bfb0209eae4b147",
+    "cargo": "docs/reviews/refonte-agent-2026-10-06/review-mule-cargo-transfers-PETS-EQ06-02.json",
+    "cargo_sha256": "55800bf793fa7bf3e7a482f399ce9782a3d85227c420028435fd265d50b4aa98",
+    "equipment_bonuses": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-bonuses-PETS-EQ04-02.json",
+    "equipment_bonuses_sha256": "5ceb4f70dc8edef336507b9eeeef58990bc74f6b42095fa9818ac4b4b420b66e"
+  },
+  "scope_audit": {
+    "strict_limit": "ordinary_deposits_cannot_exceed_current_capacity;temporary_existing_overcapacity_only_after_capacity_drop_explicitly_allowed",
+    "cargo_and_equipment": "worn_equipment_and_storage_accounting_distinction_explicitly_proposed",
+    "capacity_growth": "increased_capacity_recalculates_overcapacity_predicate_without_moving_or_creating_items",
+    "actor_stats": "Force_profile_cargo_curve_and_all_existing_HP_energy_rules_not_revised",
+    "visual": "label_and_display_function_only;no_native_color_icon_status_bar_or_animation_created"
+  },
+  "unshown_cases_pending": [
+    "item_mass_catalogue_and_fractional_weight_display_rounding",
+    "minimum_Force_and_capacity_bounds_under_negative_modifiers",
+    "other_flat_or_percent_cargo_capacity_bonuses_and_combination",
+    "multi_object_or_stack_quantity_transfer_controls_and_costs",
+    "direct_ground_pet_or_equipment_to_cargo_transfers",
+    "recall_redeployment_layer_save_and_invalid_drop_cells",
+    "native_Transport_layout_status_label_refusal_copy_and_tooltips"
+  ],
+  "player_copy_approval": "pending_explicit_review",
+  "mechanical_approval": "shown_cargo_only_weight_retained_items_unpenalized_movement_withdrawal_and_deposit_rules_pending",
+  "native_visual_approval": "Surchargée_label_and_display_function_pending;native_layout_not_presented",
+  "runtime_integration": "not_integrated"
+}

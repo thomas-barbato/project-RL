@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-09",
+  "review_id": "D01-VAR-FEEDBACK01",
+  "user_message": "je dirais que le tirage doit dépendre du niveau de l'arme :) \n\nPar exemple, il est logique qu'une arme de bas niveau ait une petite variance (par exemple une dague qui fait 1-3 dégats) mais une une arme qu'on trouve à haut niveau devra avoir une variance plus grande que ca . Enfin en réalité tout dépend des HP des monstres à ce moment là je dirais (et du joueur) .\n\nJe pense que pour les explosions, le tirage doit se faire pour chaque victimes .",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-weapon-damage-variance-01.json",
+  "source_proposal_sha256": "b81d4702a5d688067f46b09e91c42c00eae7000050b2234cf872d01e9c1a8d59",
+  "accepted_user_directions": {
+    "weapon_damage_range": "minimum_and_maximum_depend_on_weapon_level_and_model;larger_absolute_damage_span_at_high_weapon_levels_as_balance_direction",
+    "balance_context": "weapon_damage_and_variance_to_be_balanced_against_monster_and_player_HP_at_the_relevant_progression_stage;no_fixed_universal_curve",
+    "low_level_dagger_1_3": "user_illustration_of_small_low_level_range;no_real_item_balance_entry_created",
+    "explosion_sampling": "independent_base_damage_draw_for_each_victim_of_the_same_explosion",
+    "level_dependency_scope": "range_boundaries_and_amplitude;no_level_biased_probability_distribution_or_automatic_leveling_of_equipped_items_inferred"
+  },
+  "superseded_unaccepted_rule": "one_shared_base_damage_draw_for_all_victims_of_one_explosion",
+  "approval_scope": "Direct user instruction on level-dependent weapon range and independent explosion victim draws;not blanket acceptance of the rest of D01-VAR01 or revised player copy.",
+  "other_previous_proposal_parts": "uniform_integer_sampling_and_other_unaccepted_parts_retained_as_proposals;previous_accepted_critical_and_tooltip_rules_preserved",
+  "unshown_cases_pending": [
+    "exact_definition_and_source_of_weapon_level",
+    "actual_weapon_model_ranges_and_HP_balance",
+    "range_growth_curve_if_one_is_later_proposed",
+    "uniform_integer_distribution_still_pending_explicit_general_acceptance",
+    "other_unshown_damage_cases_and_native_rendering"
+  ],
+  "runtime_integration": "not_integrated"
+}

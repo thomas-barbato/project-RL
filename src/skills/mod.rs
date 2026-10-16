@@ -679,6 +679,26 @@ pub enum TechniqueAction {
 }
 
 impl TechniqueAction {
+    pub const fn required_weapon_delivery(self) -> Option<AttackDelivery> {
+        match self {
+            Self::WeaponAttack {
+                required_delivery, ..
+            }
+            | Self::WeaponComponentAttack {
+                required_delivery, ..
+            } => Some(required_delivery),
+            Self::WeaponVolley { .. }
+            | Self::WeaponBarrage { .. }
+            | Self::PrepareRangedOverwatch { .. } => Some(AttackDelivery::Ranged),
+            Self::ChargeAttack { .. }
+            | Self::Breakthrough { .. }
+            | Self::PrepareMeleeParry { .. }
+            | Self::PrepareMeleeInterception
+            | Self::PrepareControllingMeleeInterception { .. } => Some(AttackDelivery::Melee),
+            _ => None,
+        }
+    }
+
     pub const fn is_explosive_action(self) -> bool {
         matches!(
             self,
@@ -1939,7 +1959,7 @@ impl TechniqueDefinition {
     ) -> Option<TechniqueAttributeRequirement> {
         self.minimum_attributes().find(|requirement| {
             attributes.map_or(0, |values| values.value(requirement.attribute()))
-                < requirement.minimum()
+                < u16::from(requirement.minimum())
         })
     }
 
@@ -3922,3 +3942,6 @@ mod tests {
         );
     }
 }
+pub mod agent;
+pub mod area_damage;
+pub mod spatial;

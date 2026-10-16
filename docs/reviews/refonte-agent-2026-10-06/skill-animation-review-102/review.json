@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-15",
+  "review_id": "AF06-TENTACLE02",
+  "status": "visually_accepted_pending_campaign_integration",
+  "candidate": {
+    "number": 96,
+    "id": "AF06",
+    "variant": "AF06-A02",
+    "title": "Contagion"
+  },
+  "reference_accepted": "96/AF06-A01",
+  "reference_acceptance": "../skill-animation-review-101/visual-acceptance-01.json",
+  "source": "src/agent_skill_lab_review/fire_painted/contagion_tentacles.rs",
+  "native_lab": "--apercu-laboratoire-competences --lot-contagion-tentacules",
+  "native_tile": 64,
+  "original_mechanics_preserved": true,
+  "native_scenarios": 11,
+  "visual_changes": [
+    "Painted organic tendrils reach every actual recipient from the corpse",
+    "Brief contact and retraction; stationary inherited-status markers appear at contact",
+    "Shared harmful-effect reaction aligned to visual contact",
+    "Terrain mask clips tendrils at obstacles; no tendrils on excluded or resisting victims"
+  ],
+  "timing_fixture_seconds": {
+    "contact": 0.22,
+    "total_visual": 0.72
+  },
+  "new_damage_or_status": false,
+  "active_catalogue_or_campaign_changed": false,
+  "imagegen_source": "../../../../assets/animations/agent/skill-animation-review-102/AF06-TENTACLE02-source.png",
+  "imagegen_source_sha256": "1f731505ca67e6411e903e9c97e7ead84e96e311aae136f91af8f1ad41a6a8b9",
+  "prompt": "imagegen-prompt.txt",
+  "generator": "built-in imagegen",
+  "source_pixels_unedited": true,
+  "imagegen_alpha_sampling_box": [
+    20,
+    222,
+    2083,
+    514
+  ],
+  "approval_scope": "Revised Contagion visuals explicitly accepted. AF05-A01 and AF06-A01 remain accepted; campaign integration is separate.",
+  "visual_acceptance": "visual-acceptance-01.json",
+  "current_contagion_reference": "AF06-A02"
+}

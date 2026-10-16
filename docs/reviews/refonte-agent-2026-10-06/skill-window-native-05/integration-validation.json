@@ -1,0 +1,37 @@
+{
+  "review_id": "SKILLS-NATIVE05",
+  "approval_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-18/visual-acceptance-01.json",
+  "integrated_variant": "DI05-C01",
+  "integrated_compact_count": 1,
+  "total_compact_count": 32,
+  "illustration_count": 16,
+  "protected_files_preserved": 283,
+  "reviewed_exports_verified": 5,
+  "skills_and_labels_unchanged": true,
+  "runtime_image_matches_accepted_64px_export": true,
+  "rejected_drawings_not_integrated": true,
+  "mechanics_and_save_data_unchanged": true,
+  "targeted_tests": {
+    "command": "cargo test --locked agent_skill_window::tests",
+    "passed": 3,
+    "failed": 0
+  },
+  "debug_build_passed": true,
+  "native_capture": {
+    "skill": "DI05",
+    "variant": "DI05-C01",
+    "capture": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\refonte-agent-2026-10-06\\skill-window-native-05\\DI05-960\\cold-start.png",
+    "dimensions": [
+      960,
+      540
+    ],
+    "native_icon": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-native-05/DI05-native-icon.png",
+    "match_error": 3.871,
+    "native_icon_position": [
+      367,
+      270
+    ],
+    "accepted_source_match": true
+  },
+  "format_check_passed": true
+}

@@ -1,0 +1,12 @@
+{
+  "review_id": "AGENT-MIXED01",
+  "status": "requested_and_clarified_by_user",
+  "request": "Une arme de mêlée à une main et une arme à distance à une main donnent accès aux compétences des deux types et aux deux attaques ordinaires.",
+  "ordinary_attack_choice": "Automatique selon la distance : mêlée au contact, tir plus loin (recommandé).",
+  "active_set": "both_one_hand_weapons_or_the_two_hand_weapon",
+  "skill_weapon": "matching_type_in_active_set",
+  "one_weapon_per_ordinary_action": true,
+  "inactive_weapons_eligible": false,
+  "changes_to_damage_cost_or_learned_ranks": false,
+  "new_catalogue_effects": "continue_integration_by_batches"
+}

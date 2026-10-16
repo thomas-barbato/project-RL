@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-08",
+  "scope": "remaining_secondary_cards_after_SG04_acceptance_resubmitting_pending_SF00_then_SM02;BM03_parts_separate",
+  "primary_cards": [],
+  "secondary_cards": [
+    {
+      "id": "SF00",
+      "title": "Furtivité"
+    },
+    {
+      "id": "SM02",
+      "title": "Mines de poison"
+    }
+  ],
+  "remaining_first_pass_primary": 0,
+  "remaining_first_pass_secondary": 2,
+  "remaining_first_pass_total": 2,
+  "additional_work_not_quantified": [
+    "planned_heavy_weapon_tree",
+    "missing_branch_healing_options",
+    "earlier_pending_or_revised_card_parts_and_progression_review"
+  ],
+  "native_animations_runtime_and_balance": "separate_following_phases;not_counted_as_skill_cards",
+  "previous_count": "docs/reviews/refonte-agent-2026-10-06/remaining-individual-skill-review-counts-19.json",
+  "accepted_skill_this_turn": "SG04",
+  "next_review_skill": "SF00",
+  "pending_prior_secondary_card_parts": [
+    "SF00",
+    "SM02"
+  ],
+  "accepted_skill_title": "Puissance des grenades",
+  "pending_prior_primary_card_parts": [
+    "BM03"
+  ]
+}

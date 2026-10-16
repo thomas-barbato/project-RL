@@ -1,0 +1,29 @@
+{
+  "batch": "ANIM-S11",
+  "status": "ray_approved_siphon_revision_requested",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 23,
+      "id": "HY05",
+      "variant": "HY05-A01",
+      "name": "Ponction spirituelle",
+      "status": "revision_requested",
+      "next_variant": "HY05-A02"
+    },
+    {
+      "number": 24,
+      "id": "OC05",
+      "variant": "OC05-A01",
+      "name": "Rayon vorace",
+      "status": "visually_approved",
+      "acceptance": "ray-acceptance-01.json"
+    }
+  ],
+  "spirit": "Brief shadow contraction below the target, then red essence shards travel toward the caster once. Full .48-second cosmetic sequence.",
+  "ray": "Persistent black filament with red veins and saturated purple edge facets. Red pulse toward the caster only on each prepared drain; brief .12-second fade when the link breaks.",
+  "timing": "One siphon; maximum three prepared ray resolutions including launch. Only explicit turns add drains or reduce cooldowns; waiting keeps the filament animated without repeating gameplay.",
+  "palette_reference": "ANIM-S10-COLOR03; retain the separately accepted crimson fragments for drains.",
+  "scope": "Isolated debug fixture, no actual HP, energy, damage, healing, RNG, real AI/FOV, status, save or campaign changes. Numeric curves and targeting contracts are preserved.",
+  "ray_acceptance": "ray-acceptance-01.json"
+}

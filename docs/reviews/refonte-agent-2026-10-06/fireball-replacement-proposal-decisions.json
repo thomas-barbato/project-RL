@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "FE05",
+    "FE05-REWORK01"
+  ],
+  "skill_id": "FE05",
+  "user_message": "Je ne vois pas trop l'interet réel de cette compétence, peut-être qu'on devrait faire une compétence boule de feu qui provoquera une enorme explosion de feu de zone :)",
+  "previous_title": "Foyer vorace",
+  "proposed_title": "Boule de feu",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE05-01.json",
+  "previous_description_sha256": "b18de4f37f91c5ac9c1bf76c5012112bc4e4d07496cb0d7ade5b97a40ca2a813",
+  "previous_player_copy_sha256": "eb9fa66f123df963bc48894c2581a365e3d301a316b105aebf2e8ed7056f94b7",
+  "approval_scope": "User questions usefulness of Foyer vorace and suggests a fireball causing a very large fire area explosion. Replacement is prepared for review in the sameFE05 slot; this is not acceptance of the former foyer card or the new name/RP/numerical/rule/native-visual card.",
+  "proposal_direction": {
+    "stable_id": "FE05",
+    "replacement_under_review": true,
+    "new_role": "projectile causing a large fire explosion",
+    "counts_unchanged": true
+  },
+  "retired_proposal_profile": {
+    "title": "Foyer vorace",
+    "ongoing_foyer_damage": true,
+    "growth_on_hostile_death": true,
+    "persistent_area_duration": true,
+    "foyer_limit_and_replacement": true,
+    "per_turn_burn_exposure_for_FE05": true,
+    "historical_artifacts_preserved": true
+  },
+  "new_card_proposals_pending_review": {
+    "radius_cells": 3,
+    "range_cells": 6,
+    "current_fire_damage_per_target": 63,
+    "next_fire_damage_per_target": 68,
+    "current_burn_chance_percent": 35,
+    "next_burn_chance_percent": 37,
+    "burn_damage_per_turn": 5,
+    "burn_duration_turns": 3,
+    "energy_cost": 21,
+    "cooldown_turns": 8,
+    "impact": "aimed tile or first blocking terrain/actor encountered",
+    "walls_block_explosion": true,
+    "allies_can_be_hit": true,
+    "burn_first_tick": "next complete turn after impact",
+    "own_burn_applications_stack": false,
+    "visual": "bright fiery sphere with a short flame trail, then a large expanding fiery detonation"
+  },
+  "FE04_preserved": "accepted Émanation soudaine card unchanged;small marked delayed explosion keeps its existing rules",
+  "EL_STAT01_preserved": "per-skill burn chances;already accepted Braise and FE04 specific burn rules preserved",
+  "EL_ZONE01_preserved": "growing chance/reset for persistent spell zones unchanged;single fireball impact is not a persistent ground zone",
+  "new_FE05_name_approval": "suggested by user;replacement and displayed name remain pending final review",
+  "roleplay_text_approval": "proposed pending review",
+  "numeric_rules_approval": "proposed pending review",
+  "visual_direction_approval": "new proposed direction pending review;old foyer pulse direction does not validate this one",
+  "native_visual_approval": "pending native preview and user review",
+  "runtime_integration": "not_integrated"
+}

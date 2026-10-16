@@ -1,0 +1,22 @@
+Validation de l'aperçu des icônes industrielles — 2026-10-04
+
+- 16 grilles RGBA de 32 x 32 ; correspondances définies pour les 150 objets
+  des catalogues équipement et ressources, sans variante d'affixe.
+- Build PNG/SVG : build-jupiter-icons.cjs, export de 16 icônes.
+- Les illustrations d'inventaire et de cible sont chargées depuis leurs
+  sources d'origine pour les 150 modèles.
+- Contrôle dans le navigateur : 149 sélections via les listes et sélection
+  des munitions via leur icône. Identifiant de cible, nom, illustration
+  source et quatre lignes d'inventaire corrects dans chaque cas.
+- Les 32 pièces d'armure partagent une icône, selon le dernier retour utilisateur.
+  Après regroupement, 32 sélections vérifiées avec la cible exacte et le
+  pictogramme commun armor-32.png.
+- Les cases gardent un fond transparent au survol et au focus, pour que
+  la cible reste visible sur le plateau.
+- 16 cartes d'icônes visibles dans la galerie, chacune présentée sur les
+  quatre sols (64 comparaisons au total).
+- Inspection visuelle à taille réelle sur le plateau et sur la planche
+  icones-industrielles-16.png. Personnages, monstres et ombres conservés.
+
+Cette validation porte sur la proposition isolée dans l'aperçu. Le style
+reste à approuver avant intégration au jeu.

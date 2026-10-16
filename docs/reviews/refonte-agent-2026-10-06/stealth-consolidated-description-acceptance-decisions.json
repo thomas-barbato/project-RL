@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SF00-ACCEPT01",
+  "user_instruction": "oui c'est ca :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF00-10.json",
+  "source_proposal_sha256": "7cce60c1c4d2dc28e2883f0cb9f6f6df2ec2a2ca3c5bdbba38f17381b7f06da1",
+  "accepted_scope": "shown_full_RP_current_values_base11_step_cost_zero_stationary_activation0_no_cooldown_detection2_cells_in_current_example_until_deactivation_or_interruption_purchase_once1_point_and_shown_conditions",
+  "accepted_conditions": "offensive_attack_spell_mine_grenade_end_mode;healing_and_menus_preserve;zero_energy_attempted_move_ends_mode;one_cell_minimum_detection;last_known_position_memory_preserved;associated_passives_improve_mode",
+  "prior_same_attempted_step_rule": "continues_normally_outside_stealth_accepted_under_MOVE01;omitted_from_player_copy_at_user_request",
+  "visual_direction_approval": "shown_slightly_transparent_player_readable_equipment_and_status_icon_explicitly_accepted",
+  "native_visual_approval": "pending;no_exact_opacity_palette_icon_or_tile_pixels_approved",
+  "unshown_rules_pending": [
+    "positive_energy_below_effective_step_cost",
+    "full_agility_and_per_enemy_detection_curve",
+    "step_noise50_percent_not_shown",
+    "exact_action_resource_and_regeneration_order",
+    "other_unshown_cases"
+  ],
+  "runtime_integration": "not_integrated"
+}

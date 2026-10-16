@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-15",
+  "batch": "ANIM-S41",
+  "status": "targeting_revision_requested; point_target_visuals_unaccepted",
+  "campaign_integration": false,
+  "native_tile": 64,
+  "candidates": [
+    {
+      "number": 91,
+      "id": "O02",
+      "variant": "O02-A01",
+      "title": "Interférence"
+    },
+    {
+      "number": 92,
+      "id": "AF02",
+      "variant": "AF02-A01",
+      "title": "Faille d’armure"
+    }
+  ],
+  "effective_rank": 1,
+  "prepared_values": {
+    "duration_turns": 3,
+    "cooldown_turns": 5,
+    "O02_energy": 8,
+    "O02_direct_damage_reduction_percent": 15,
+    "AF02_energy": 9,
+    "AF02_armor_reduction_percent": 20,
+    "target_HP": 100,
+    "application_damage": 0
+  },
+  "scope": "Isolated visual application/lifetime fixtures, not full combat. Current rank-one catalogue values without duration modifiers. Positive and resisted outcomes are prepared, with no new chance formula or RNG. Resisted expenditure is illustrative and does not settle any pending failure expenditure policy. No damage, healing, blood or physical displacement at application. Target and status are fully known in these review scenes; observation/disclosure rules are unchanged.",
+  "visuals": "Existing accepted compact icons and occult impact atlas; proposed discontinuous electronic arcs, rust fractures/flakes, overhead status badge and turn count. Shared recoil on a successfully affected player or monster. The actor silhouette and weapons are retained. Native downward view HUD leaves the target fully visible.",
+  "scenes": 16,
+  "preview": "../apercu-animations.html?lot=86",
+  "native_lab": "--apercu-laboratoire-competences --lot-affaiblissements-ouverture",
+  "source": "src/agent_skill_lab_review/fire_painted/afflictions_opening.rs",
+  "source_sha256": "91d98c39e3eb44d41d351ddea2467c5c6ee08980615af1dd052edf719be1e56a",
+  "remaining_unshown": 19,
+  "pending_separately": "B03 Vitalité améliorée mechanics, then revised preview.",
+  "previous_acceptance": "../skill-animation-review-85/visual-acceptance-01.json",
+  "temporary_capture_policy": "Reuse the same HTML; delete native PNG captures and proof screenshots after verification. Keep source assets, compact playback and review records.",
+  "verification": {
+    "debug_build": true,
+    "targeted_turn_lifetime_and_atomic_refusal_test": true,
+    "format_check": true,
+    "viewer_controller": "Final offline mock DOM controller checks passed; no browser rendering claimed.",
+    "browser_rendering": "Not attempted: existing browser policy blocks file pages. Native rendering and local lossless verification are used; user refreshes manually.",
+    "scoped_diff_check": true,
+    "lossless_native_pixel_verification": true,
+    "final_native_HUD_and_effects_inspected": true,
+    "previous_accepted_art_preserved": true
+  },
+  "playback_bytes": 0,
+  "cleanup": "cleanup.json",
+  "targeting_revision": "../afflictions-area-revision-01.json",
+  "visual_approval": "not_inferred_from_request_to_convert_branch_to_area",
+  "superseded_by": "../skill-animation-review-87/review.json",
+  "playback_status": "Superseded point-target playback removed; shared artwork and source remain available.",
+  "previous_playback_bytes": 7988224,
+  "playback_cleanup": "../skill-animation-review-87/superseded-playback-cleanup.json"
+}

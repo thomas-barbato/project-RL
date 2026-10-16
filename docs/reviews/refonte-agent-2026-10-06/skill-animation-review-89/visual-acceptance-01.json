@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-15",
+  "review_id": "ANIM-S42-ACCEPT01",
+  "user_reply": "ok je valide :)",
+  "approved": [
+    {
+      "number": 93,
+      "id": "AF03",
+      "variant": "AF03-A01",
+      "title": "Silence"
+    },
+    {
+      "number": 94,
+      "id": "AF04",
+      "variant": "AF04-A01",
+      "title": "Rupture de régénération"
+    }
+  ],
+  "scope": "Visual approval of Silence and Regeneration Rupture in the eighteen native 64 px scenes of review 89: 24 px transparent overhead icons, 14 px remaining-duration counters, shared harmful-effect recoil, no body animation or cast flash. Existing rank-one catalogue values and previously approved area mechanics are retained; this approval introduces no new numeric formula or campaign integration.",
+  "campaign_integration": false,
+  "accepted_mechanics": "../afflictions-area-acceptance-01.json",
+  "remaining_unshown": 17,
+  "source_sha256": "246a594f2e5e518fd304a61ff8aa13497a312c414081b5f892e07c058c97dadf",
+  "accepted_atlas_sha256": {
+    "AF03-A01-DROITE": "490b0105eb6e242f394510a50e79207492479c43cdc0454016130e03e07b725e",
+    "AF03-A01-GAUCHE": "05deb26f222f4261ef5fb9f88aef627d74aadd9c62fbf37a2d68dc2a6b00e0ec",
+    "AF03-A01-HAUT": "bcd20800eb73cfe0b7902c96d0b888493a5fd4193fa6f6b0ebb8c2f4f09c53b3",
+    "AF03-A01-BAS": "78812c46fdc8aa7129f588b91a8f56a98e647966b4818459a8bb98a3d81e0731",
+    "AF03-A01-JOUEUR": "7f38b91480b719eea6bf3a51219196abce1bd0edcec08eacc3a7193a1fbe4cca",
+    "AF03-A01-ATTENTE": "45eed45664e52ca3df33d5ee235c6621bf05391bc49d2d7950210db6c7dafc39",
+    "AF03-A01-MUR": "29510bb9095fadef32b1dce569b1f0fc868c7a850994294258135680c31056c1",
+    "AF03-A01-RESISTE": "e49a4632284fac36941786a5d521ad8671aa8857a0043e3d61e6760991475d62",
+    "AF03-A01-DEPLACEMENT": "e42c8f925e3bc3413aeecbfa0a99e01dd5f470280db033b446e3e61d13b814ce",
+    "AF04-A01-DROITE": "40cba33d7afebf65c33d41bb12ad3e7b7f32162aecca3deae6d3671e2db95761",
+    "AF04-A01-GAUCHE": "c4d0211c42d2da1314fe2e1b8ac632ca6e441d87b58c2b3465e17301c6181e10",
+    "AF04-A01-HAUT": "6b9a1b45963fba25a991c1f9bcc4825fda53220ce4e6fa0b1a6f223fa5079503",
+    "AF04-A01-BAS": "57ba8640cfa8c033eb38d1655596a025b23319f9b9b582b185b6ea1a5d461fa0",
+    "AF04-A01-JOUEUR": "c11f7d5e2387132668aab5a1db7d08a7a6eae9b6cda50fed42f8c5a0541d9653",
+    "AF04-A01-ATTENTE": "6e6de99288fbc33c2e6b1c1021f7a8d295dd6114b1c275688243f8312b538c6c",
+    "AF04-A01-MUR": "e5894969cca2c26e4f86e20e3c539877e6a4a439a0e9b539e48fef8d878ec6fb",
+    "AF04-A01-RESISTE": "66a502f4fa199eb0135151d8753d67eafd5bee4899baa3e6ce49db7c67ae7fe3",
+    "AF04-A01-DEPLACEMENT": "6ead7ed25b8e24f676808101df71cd1ccb3d91c8994cfc37d5203e3104c3537a"
+  },
+  "preview_copy_sha256": [
+    "3c6498487621d9acff64918a4fc23fed3b7e18437a2ac3327eb51256c65b8862",
+    "38a8d135a505d901a3a382a838b5480ddf72f5a89c6588c790b7f9298cb50169"
+  ],
+  "excluded_from_approval": [
+    "Unshown visuals for AF05 Desorientation and AF06 Contagion.",
+    "B03 Vitalite amelioree mechanics, still under discussion."
+  ],
+  "cleanup": {
+    "status": "complete",
+    "receipt": "cleanup.json",
+    "removed_bytes": 62107272
+  }
+}

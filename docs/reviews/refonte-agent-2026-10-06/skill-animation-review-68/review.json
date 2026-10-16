@@ -1,0 +1,43 @@
+{
+  "review_id": "SM05-ANIM04-SNOW",
+  "date": "2026-10-14",
+  "status": "awaiting_visual_review",
+  "candidate_number": 73,
+  "skill": "SM05",
+  "variants": [
+    "FEU",
+    "POISON",
+    "FROID"
+  ],
+  "new_visuals": "No uniform colour wash; independent gas states and motion per cell retained from A03; cold uses one continuous painted snow/frost/ice coating instead of repeated patches.",
+  "references": [
+    "mine-residue-snow-ice-direction-decisions.json",
+    "mine-residue-natural-motion-direction-decisions.json",
+    "mine-square-footprint-direction-decisions.json",
+    "mine-residue-full-zone-marker-direction-decisions.json",
+    "mine-residue-elemental-ground-visual-direction-decisions.json",
+    "mine-residue-visual-handoff-direction-decisions.json",
+    "persistent-immediate-application-count-acceptance-decisions.json",
+    "review-individual-description-SM05-02.json"
+  ],
+  "duration": 13,
+  "radius_fixture": 1,
+  "SM04_in_fixture": false,
+  "geometry": "Square3x3 in open floor, clipped by obstacles",
+  "damage_prepared": {
+    "ground_fire": 3,
+    "ground_poison": 4,
+    "explosions": [
+      13,
+      19,
+      16
+    ],
+    "poison_status": 42
+  },
+  "first_application": "Immediate; counts among13; replaces historical delay under INTERACT-TIME01.",
+  "source_assets_reused": "Burst and status assets only; new frozen-ground source",
+  "native_visual_approval": false,
+  "browser_frames": "Lossless full-native PNG hardlinks; canvas crops native576 view without scaling",
+  "campaign_integration": false,
+  "pending": "Full resolver, AI, status aggregation and resistances; SM04 extended footprint remains a separate review."
+}

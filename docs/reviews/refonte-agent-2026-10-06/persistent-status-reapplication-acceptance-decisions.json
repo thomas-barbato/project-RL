@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-TIME02-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-status-reapplication-INTERACT-TIME02-01.json",
+    "reference_sha256": "4fb72996278e1b0c29234c5fb33b49a9426373c52638c8018724505e0e8b1668"
+  },
+  "user_acceptance": "parfait on continue",
+  "shown_explanation": "INTERACT-TIME02 · Réappliquer un effet persistant — proposition\n\n- Une nouvelle attaque ou un nouveau lancement qui réussit à réappliquer Poison, Brûlure ou Saignement produit les dégâts du statut immédiatement, avec la nouvelle puissance. Sa durée repart entièrement.\n- Cette application compte comme la première de la durée renouvelée. Le même statut ne reçoit pas ensuite une seconde application automatique pendant ce tour.\n- Une zone déjà présente qui entretient automatiquement ce statut renouvelle sa durée et sa puissance selon les règles validées, sans ajouter un dégât immédiat à chaque rafraîchissement. Son application périodique normale reste conservée.\n\nLes dégâts propres à chaque zone continuent de se cumuler. Une application échouée ne modifie pas le statut présent.\n\nExemple fictif : un poison inflige 6 dégâts par application. Une nouvelle attaque le réapplique avec une puissance de 10 : elle provoque 10 dégâts de poison immédiatement, puis l'effet poursuit ses applications avec cette puissance.\n\nCes précisions restent à valider.",
+  "approved_rule": {
+    "new_attack_or_cast": "successful_new_attack_or_new_cast_reapplying_existing_Poison_Burn_or_Bleed_replaces_power_restarts_full_duration_and_deals_first_periodic_damage_immediately;includes_new_attack_actual_delayed_impact_or_mine_explosion_not_preparation",
+    "new_attack_count": "immediate_damage_counts_as_first_of_renewed_number_of_applications;do_not_add_an_extra_damage_tick_to_that_renewed_total",
+    "automatic_damage_after_immediate": "no_additional_automatic_same_kind_actor_periodic_damage_later_in_same_reference_turn_after_this_immediate_application;previously_resolved_damage_not_reversed",
+    "existing_zone_refresh": "automatic_successful_refresh_of_already_present_status_from_existing_zone_restarts_duration_and_sets_zone_stored_power_under_existing_rules;refresh_does_not_itself_deal_extra_immediate_actor_status_damage;normal_single_kind_periodic_application_retained_if_not_already_resolved_or_replaced_by_immediate_application_this_turn",
+    "zone_damage": "each_independent_zone_keeps_its_own_damage_and_status_attempt_in_accepted_oldest_to_newest_order;do_not_merge_or_suppress_zone_damage_due_to_actor_status_tick_accounting",
+    "failed_application": "does_not_refresh_replace_or_cause_immediate_actor_status_damage;attack_or_zone_direct_damage_keeps_its_existing_rule",
+    "new_status_from_existing_zone": "if_kind_was_not_present_apply_accepted_TIME01_immediate_first_application_rule;TIME02_refresh_exception_is_for_already_present_status_only",
+    "scope_boundary": "no_extra_action_or_energy_cost_no_new_damage_numbers_no_general_buff_or_control_pulse_and_no_duplicate_status_instances;complete_phase_order_and_Contagion_transfer_cadence_not_defined"
+  },
+  "approval_boundary": "new_attack_or_cast_immediate_status_reapplication_and_automatic_existing_zone_refresh_rules;Contagion_transfers_and_complete_phase_order_not_newly_approved",
+  "runtime_integration": "not_integrated"
+}

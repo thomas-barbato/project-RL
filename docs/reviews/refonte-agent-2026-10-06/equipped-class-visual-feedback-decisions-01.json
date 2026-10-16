@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-VIS01-FEEDBACK01",
+  "reviewed_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-01.json",
+    "reference_sha256": "9fb29c449b4d2b8e4c07c2d03398f5e0ced5ffdba30990b607c4ff42a8ccfe07"
+  },
+  "user_feedback": [
+    "non le pistolet ca va pas , le pistolet du technomancien est mal tenu . Et en vrai meme les armes de mélée à une main j'ai l'impression que tu ajoutes un avant bras au bras du personnage là ou il tien son arme... et donc au lieu de faire simplement une boule noire en guise de main avec une lame, ben ca fait une forme blanche bizarre...",
+    "et c'est pareil pour le technomancien",
+    "aussi je trouve que le traqueur (et son fils) sont trop détaillés... ce qui fait que en version 30px on voit rien.",
+    "aussi je sais pas pourquoi tu tiens à ce que les personnages aient la meme couleur d'armure que d'arme mais bon ..."
+  ],
+  "reading_of_typo": "son_fils_understood_as_son_fusil_from_the_weapon_preview_context;no_new_character_created",
+  "requested_corrections": [
+    "Technomancien_pistol_grip",
+    "no_extra_one_hand_forearm_or_pale_hand;simple_original_black_glove",
+    "simplify_Traqueur_body_and_rifle_for_native_readability",
+    "do_not_impose_matching_weapon_and_armor_palettes"
+  ],
+  "visual_rejection_scope": "candidate2_pistol_and_one_hand_melee_compositions4_5;candidate3_native_detail;no_acceptance_of_other_candidates_inferred",
+  "preserved": "accepted_START_GEAR01_numbers_names_and_consumables;class_attributes_skills_implants_reserves;heavy_family_series_request;existing_independent_palette_rule",
+  "revised_candidates": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipped-classes-START-VIS01-03.json",
+    "reference_sha256": "9362168dbe2540a0f5fbdb2d9582bbc602b9f37e6d6200a34cdec7ab62fbf36b"
+  },
+  "visual_approval": "revisions_pending_explicit_user_review",
+  "runtime_integration": "not_integrated"
+}

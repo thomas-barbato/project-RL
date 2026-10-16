@@ -1,0 +1,504 @@
+{
+  "review": "AGENT-PLAY05",
+  "date": "2026-10-16",
+  "status": "verified_current_lot",
+  "checks": {
+    "format": "cargo fmt --all --check passed",
+    "debug_all_targets": "cargo check --locked --all-targets --quiet passed without warnings",
+    "release_binary_check": "cargo check --locked --release --bin project-rl --quiet passed without warnings; release executable not built",
+    "debug_build": "cargo build --locked --quiet passed without warnings",
+    "engine_tests": {
+      "passed": 874,
+      "failed": 0
+    },
+    "targeted_binary_tests": {
+      "agent_ui": 25,
+      "world_context": 53,
+      "combat_visuals": 12,
+      "all_passed": true
+    },
+    "native_capture_exit_codes": {
+      "FE05": 0
+    },
+    "native_checks": {
+      "burns": [
+        {
+          "id": 2,
+          "power": {
+            "applied_on_turn": 0,
+            "base_damage": 1,
+            "denominator": 1000,
+            "numerator": 1180
+          },
+          "turns": 3
+        },
+        {
+          "id": 4,
+          "power": {
+            "applied_on_turn": 0,
+            "base_damage": 1,
+            "denominator": 1000,
+            "numerator": 1180
+          },
+          "turns": 3
+        }
+      ],
+      "caster_unharmed": true,
+      "cells": 29,
+      "hover_without_click": true,
+      "impact": [
+        5,
+        4
+      ],
+      "keyboard_not_overridden_by_stationary_mouse": true,
+      "left_click_confirms": true,
+      "preview_free": true,
+      "preview_hidden_after_confirmation": true,
+      "review": "AGENT-PLAY05",
+      "saves_untouched": true,
+      "skill": "FE05",
+      "targeting_review": "AGENT-AIM02",
+      "tile_pixels": 64,
+      "turns": 1,
+      "victims": 3,
+      "viewport": [
+        1280,
+        800
+      ]
+    },
+    "current_animation": {
+      "path": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-playable-review-01/trait-arcanique.webp",
+      "bytes": 854620,
+      "frames": 24,
+      "viewport": [
+        1280,
+        800
+      ],
+      "sha256": "be48bc1d7b6f81dd99fb559dfbb9fe0ae298703be60a4a8f6f1613aaa1b6bec7"
+    },
+    "html_local_references": "all_exist",
+    "current_capture_did_not_write_campaign_save": true,
+    "legacy_status_recovery_versions_tested": [
+      12,
+      13
+    ],
+    "current_recovery_version": 14,
+    "full_binary_test_suite": "not_run; targeted suites used",
+    "git_commit_and_push": "not_requested_not_performed",
+    "cleanup": {
+      "status": "blocked_by_automatic_approval_review",
+      "files_removed": 0,
+      "temporary_bytes": 170638540,
+      "targeted_files": 304,
+      "attempted_this_lot": false,
+      "new_cmd_launchers": 0
+    }
+  },
+  "targeting": {
+    "review": "AGENT-AIM02",
+    "status": "verified",
+    "date": "2026-10-16",
+    "tested_connected_skills": [
+      "A01",
+      "A02",
+      "B01",
+      "D58",
+      "D59",
+      "D66",
+      "FE05"
+    ],
+    "tests": {
+      "aim_input": 8,
+      "agent_ui": 25,
+      "world_context": 53,
+      "area_aiming": 2,
+      "total_passed": 88,
+      "failed": 0
+    },
+    "left_click_confirms": true,
+    "invalid_click_free": true,
+    "held_button_repeats": false,
+    "opening_skill_does_not_cast": true,
+    "keyboard_and_hud_confirmation_preserved": true,
+    "debug_build": "passed without warnings",
+    "format": "passed",
+    "diff_check": "passed",
+    "native_capture_exit_code": 0,
+    "native_capture_stderr_bytes": 0,
+    "native_checks": {
+      "burns": [
+        {
+          "id": 2,
+          "power": {
+            "applied_on_turn": 0,
+            "base_damage": 1,
+            "denominator": 1000,
+            "numerator": 1180
+          },
+          "turns": 3
+        },
+        {
+          "id": 4,
+          "power": {
+            "applied_on_turn": 0,
+            "base_damage": 1,
+            "denominator": 1000,
+            "numerator": 1180
+          },
+          "turns": 3
+        }
+      ],
+      "caster_unharmed": true,
+      "cells": 29,
+      "hover_without_click": true,
+      "impact": [
+        5,
+        4
+      ],
+      "keyboard_not_overridden_by_stationary_mouse": true,
+      "left_click_confirms": true,
+      "preview_free": true,
+      "preview_hidden_after_confirmation": true,
+      "review": "AGENT-PLAY05",
+      "saves_untouched": true,
+      "skill": "FE05",
+      "targeting_review": "AGENT-AIM02",
+      "tile_pixels": 64,
+      "turns": 1,
+      "victims": 3,
+      "viewport": [
+        1280,
+        800
+      ]
+    },
+    "tile_sizes_tested": [
+      32,
+      64
+    ],
+    "ui_scales_tested": [
+      75,
+      100,
+      150
+    ],
+    "viewports_tested": [
+      [
+        960,
+        540
+      ],
+      [
+        1280,
+        800
+      ],
+      [
+        3840,
+        2160
+      ]
+    ],
+    "full_engine_and_binary_suites": "not rerun for this client input change; engine validation above belongs to AGENT-PLAY05"
+  },
+  "general_integration": {
+    "review": "AGENT-ALL01",
+    "date": "2026-10-16",
+    "status": "targeted_validation_passed_global_suite_not_green",
+    "catalogue": {
+      "total": 94,
+      "active": 68,
+      "passive": 26,
+      "active_pending": 0
+    },
+    "engine_tests": {
+      "passed": 945,
+      "failed": 0
+    },
+    "targeted_ui_tests": {
+      "passed": 224,
+      "failed": 0,
+      "filter": "agent_"
+    },
+    "old_agent_v14_migration_tests": {
+      "passed": 4,
+      "failed": 0,
+      "included_in_ui_tests": true
+    },
+    "format": "cargo fmt --all --check passed",
+    "diff_check": "git diff --check passed",
+    "debug_build": "cargo build --locked --bin project-rl --quiet passed without warnings",
+    "release_binary_check": "cargo check --locked --release --bin project-rl --quiet passed without warnings; release executable not built",
+    "last_full_suite": {
+      "engine_passed": 944,
+      "binary_passed": 856,
+      "binary_failed": 37,
+      "binary_ignored": 15,
+      "failures": [
+        "ascii_app::city_feedback_tests::monster_reward_current_client_uses_new_pool_and_legacy_runs_keep_the_old_rules",
+        "ascii_app::cyberpunk_capture::tests::approved_art_covers_every_loaded_core_item_and_weapon",
+        "ascii_app::effects_lab::tests::lab_parallax_keyboard_fire_chains_without_movement_or_waiting",
+        "ascii_app::effects_lab::tests::sustained_burning_follows_its_bearer_without_leaving_false_ground_fire",
+        "ascii_app::effects_lab::tests::sustained_statuses_coexist_and_stop_with_their_actual_status",
+        "ascii_app::equipment_commerce::tests::shops_cover_every_layer_with_white_stock_and_current_tier_gambles",
+        "ascii_app::equipment_generation::tests::accessory_models_preserve_version_133",
+        "ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134",
+        "ascii_app::equipment_generation::tests::firearm_models_preserve_version_129",
+        "ascii_app::equipment_generation::tests::improvement_preserves_version_135",
+        "ascii_app::equipment_generation::tests::melee_models_preserve_version_130",
+        "ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132",
+        "ascii_app::equipment_generation::tests::sword_models_preserve_version_131",
+        "ascii_app::equipment_generation::tests::version_105_keeps_its_exact_catalogues_draws_and_resume",
+        "ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume",
+        "ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume",
+        "ascii_app::equipment_generation::tests::weapon_families_preserve_version_127",
+        "ascii_app::generated_survival_tests::generated_survival_records_every_map_and_mobile_contact_without_retry",
+        "ascii_app::level_health_tests::level_health_legacy_rules_fingerprint",
+        "ascii_app::one_hand_firearms::tests::one_hand_firearms_historical_saves_keep_the_pre_change_fingerprints",
+        "ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot",
+        "ascii_app::playable_trial::tests::playable_trial_keeps_normal_character_creation",
+        "ascii_app::surface_density::tests::version_108_surface_fingerprint",
+        "ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together",
+        "ascii_app::tests::expedition_round_trip_replays_every_zone_and_its_visual_memory",
+        "ascii_app::tests::exploration_objective_uses_real_travel_progress_in_the_global_journal",
+        "ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay",
+        "ascii_app::tests::interactions_use_the_binding_and_replay_door_console_and_remembered_states",
+        "ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention",
+        "ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints",
+        "ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble",
+        "ascii_app::tests::suspension_replays_the_complete_run_and_is_consumed_only_once",
+        "ascii_app::tests::ux_inventory_hover_and_readers_never_equip_or_spend_a_turn",
+        "ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click",
+        "ascii_app::tests::ux_personalized_attributes_survive_back_and_forward",
+        "ascii_app::tests::ux_resource_gauges_follow_heat_bandwidth_and_energy_after_real_actions",
+        "ascii_app::weapon_supplies_app::tests::creuset_creation_keeps_ammunition_and_confirms_flamethrower_preview"
+      ],
+      "stale_expectations_verified_in_HEAD": [
+        "ascii_app::city_feedback_tests::monster_reward_current_client_uses_new_pool_and_legacy_runs_keep_the_old_rules",
+        "ascii_app::cyberpunk_capture::tests::approved_art_covers_every_loaded_core_item_and_weapon",
+        "ascii_app::equipment_commerce::tests::shops_cover_every_layer_with_white_stock_and_current_tier_gambles"
+      ],
+      "lab_expectations_updated_after_full_run": [
+        "ascii_app::effects_lab::tests::lab_parallax_keyboard_fire_chains_without_movement_or_waiting",
+        "ascii_app::effects_lab::tests::sustained_burning_follows_its_bearer_without_leaving_false_ground_fire",
+        "ascii_app::effects_lab::tests::sustained_statuses_coexist_and_stop_with_their_actual_status"
+      ],
+      "other_failures_not_attributed_to_a_baseline": [
+        "ascii_app::equipment_generation::tests::accessory_models_preserve_version_133",
+        "ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134",
+        "ascii_app::equipment_generation::tests::firearm_models_preserve_version_129",
+        "ascii_app::equipment_generation::tests::improvement_preserves_version_135",
+        "ascii_app::equipment_generation::tests::melee_models_preserve_version_130",
+        "ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132",
+        "ascii_app::equipment_generation::tests::sword_models_preserve_version_131",
+        "ascii_app::equipment_generation::tests::version_105_keeps_its_exact_catalogues_draws_and_resume",
+        "ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume",
+        "ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume",
+        "ascii_app::equipment_generation::tests::weapon_families_preserve_version_127",
+        "ascii_app::generated_survival_tests::generated_survival_records_every_map_and_mobile_contact_without_retry",
+        "ascii_app::level_health_tests::level_health_legacy_rules_fingerprint",
+        "ascii_app::one_hand_firearms::tests::one_hand_firearms_historical_saves_keep_the_pre_change_fingerprints",
+        "ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot",
+        "ascii_app::playable_trial::tests::playable_trial_keeps_normal_character_creation",
+        "ascii_app::surface_density::tests::version_108_surface_fingerprint",
+        "ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together",
+        "ascii_app::tests::expedition_round_trip_replays_every_zone_and_its_visual_memory",
+        "ascii_app::tests::exploration_objective_uses_real_travel_progress_in_the_global_journal",
+        "ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay",
+        "ascii_app::tests::interactions_use_the_binding_and_replay_door_console_and_remembered_states",
+        "ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention",
+        "ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints",
+        "ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble",
+        "ascii_app::tests::suspension_replays_the_complete_run_and_is_consumed_only_once",
+        "ascii_app::tests::ux_inventory_hover_and_readers_never_equip_or_spend_a_turn",
+        "ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click",
+        "ascii_app::tests::ux_personalized_attributes_survive_back_and_forward",
+        "ascii_app::tests::ux_resource_gauges_follow_heat_bandwidth_and_energy_after_real_actions",
+        "ascii_app::weapon_supplies_app::tests::creuset_creation_keeps_ammunition_and_confirms_flamethrower_preview"
+      ],
+      "note": "No golden fingerprints were changed to hide failures. The full historical suite is not green.",
+      "remaining_failures_after_targeted_lab_fixes": 34
+    },
+    "recovery": {
+      "current_engine_version": 15,
+      "legacy_engine_versions_tested": [
+        12,
+        13,
+        14
+      ],
+      "old_agent_cache_migration": "Exact old rules and complete saved state must match; only an RLWS14 engine cache may cross the old build boundary. Modified rules, state hashes, missing snapshots and other engine headers are refused. User input is not modified."
+    },
+    "git": "no_commit_no_stage_no_push",
+    "cleanup": {
+      "current_run": {
+        "status": "blocked_by_automatic_approval_review",
+        "files_removed": 0,
+        "targeted_files": 19,
+        "targeted_bytes": 2242372,
+        "reason": "blocked by policy; no more specific reason supplied",
+        "retried": false,
+        "source_assets_preserved": true,
+        "game_binary_preserved": true
+      },
+      "older_policy_blocked_targets": "not_retried"
+    },
+    "laboratory_tests": {
+      "passed": 39,
+      "failed": 0,
+      "filter": "effects_lab::tests",
+      "note": "Includes the three previously failing lab expectations adapted to the current control binding and body-attached painted burn."
+    },
+    "debug_binary_bytes": 116580352,
+    "native_checks": {
+      "catalogue_count": 94,
+      "diagnostic": "agent-catalogue-playable",
+      "disposable_laboratory": true,
+      "frames": [
+        "competences-variantes.png",
+        "mine-led.png",
+        "magie-gel.png",
+        "transformation.png",
+        "drones-furtivite.png"
+      ],
+      "frozen_targets": 3,
+      "game_save_untouched": true,
+      "hotbar": [
+        "FE02",
+        "FR02",
+        "M01",
+        "SM00",
+        "D58",
+        "SG00"
+      ],
+      "learned": 94,
+      "real_mines": 1,
+      "support_visuals": {
+        "hologram": "Some(AgentHologram(Player { body: 6, palettes: [Original, Original, Original], weapon: Some(93), equipment: [None, None, None, None], hands: Some([None, None]) }))",
+        "mule": "Some(Bestiary { number: 57, corpse: false })",
+        "player_opacity": 0.5600000023841858,
+        "scout": "Some(DroneScout)",
+        "stealth": true,
+        "turns": 4
+      },
+      "tile_pixels": 64,
+      "turns": 3,
+      "viewport": [
+        1280,
+        800
+      ]
+    },
+    "native_capture": {
+      "process_exit": 0,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0,
+      "frames_reviewed": 5,
+      "final_hologram_sensor_counts": {
+        "hostile": 11,
+        "neutral": 3
+      },
+      "campaign_save_untouched": true
+    }
+  },
+  "regression_repairs": {
+    "review": "AGENT-FIX02",
+    "date": "2026-10-16",
+    "status": "verified_targeted_repairs",
+    "accepted_change": "FR05-HITS02",
+    "engine_tests": {
+      "passed": 949,
+      "failed": 0
+    },
+    "agent_ui_tests": {
+      "passed": 231,
+      "failed": 0
+    },
+    "blizzard_live_lab_traces": [
+      "real laboratory FR05 rank 10 impact turn 1: damage=[(EntityId(3), 17), (EntityId(4), 17), (EntityId(5), 12), (EntityId(6), 17), (EntityId(8), 17)], frozen=[EntityId(3), EntityId(5), EntityId(8)]",
+      "real laboratory FR05 rank 10 impact turn 2: damage=[(EntityId(3), 17), (EntityId(4), 17), (EntityId(7), 14)], frozen=[EntityId(3), EntityId(4), EntityId(7)]",
+      "real laboratory FR05 rank 10 impact turn 3: damage=[(EntityId(2), 14), (EntityId(3), 17), (EntityId(5), 12), (EntityId(6), 17), (EntityId(7), 14)], frozen=[EntityId(2), EntityId(3), EntityId(5), EntityId(6), EntityId(7)]",
+      "real laboratory FR05 rank 10 impact turn 4: damage=[(EntityId(2), 14)], frozen=[EntityId(2)]"
+    ],
+    "damage_when_freeze_fails": "verified; both dedicated engine regression and real lab first impact turn",
+    "reanimation": [
+      "persistent accepted mark and rise art connected",
+      "original creature glyph and facing retained across new entity ID",
+      "accepted HP share retained after body initialization",
+      "ally attacks and persists for its duration",
+      "automatic target acquisition excludes player companions and allied actors; explicit targeting retained"
+    ],
+    "status_icons": "dedicated icons no longer covered by generic Timed badges; other badges use separate row",
+    "contagion": "unchanged passive; not assignable to active hotbar by approved design",
+    "native": {
+      "catalogue_count": 94,
+      "diagnostic": "agent-catalogue-playable",
+      "disposable_laboratory": true,
+      "frames": [
+        "competences-variantes.png",
+        "mine-led.png",
+        "magie-gel.png",
+        "transformation.png",
+        "drones-furtivite.png",
+        "statuts-reanimation.png"
+      ],
+      "frozen_targets": 3,
+      "game_save_untouched": true,
+      "hotbar": [
+        "FE02",
+        "FR02",
+        "M01",
+        "SM00",
+        "D58",
+        "SG00"
+      ],
+      "learned": 94,
+      "real_mines": 1,
+      "status_regression": {
+        "curse_icons": 3,
+        "generic_timer_on_cursed_targets": false,
+        "marked": true,
+        "raised": true,
+        "same_creature_glyph": true
+      },
+      "support_visuals": {
+        "hologram": "Some(AgentHologram(Player { body: 6, palettes: [Original, Original, Original], weapon: Some(93), equipment: [None, None, None, None], hands: Some([None, None]) }))",
+        "mule": "Some(Bestiary { number: 57, corpse: false })",
+        "player_opacity": 0.5600000023841858,
+        "scout": "Some(DroneScout)",
+        "stealth": true,
+        "turns": 4
+      },
+      "tile_pixels": 64,
+      "turns": 3,
+      "viewport": [
+        1280,
+        800
+      ]
+    },
+    "native_status_image_reviewed": true,
+    "native_stderr_bytes": 0,
+    "format": "passed",
+    "diff_check": "passed",
+    "global_historical_suite": "not rerun; previous unresolved failures retained in general_integration.last_full_suite",
+    "git": "no_commit_no_stage_no_push",
+    "cleanup": {
+      "status": "blocked_by_automatic_approval_review",
+      "files_removed": 0,
+      "reason": "blocked by policy; no further reason supplied",
+      "retry_or_workaround_attempted": false,
+      "targets": [
+        "artifacts/agent-regression-engine.log",
+        "artifacts/agent-regression-ui.log",
+        "artifacts/agent-regression-context.log",
+        "artifacts/agent-regression-build.log",
+        "artifacts/agent-regression-release.log",
+        "artifacts/agent-integration-check/statuts-reanimation.png"
+      ],
+      "targeted_bytes": 435413,
+      "source_assets_preserved": true,
+      "older_policy_blocked_targets_not_retried": true
+    },
+    "context_tests": {
+      "passed": 53,
+      "failed": 0
+    },
+    "debug_build": "cargo build --locked --bin project-rl --quiet passed without warnings",
+    "release_check": "cargo check --locked --release --bin project-rl --quiet passed without warnings; no release executable built",
+    "debug_binary_bytes": 117094912,
+    "native_exit_code": 0
+  }
+}

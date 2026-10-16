@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-09",
+  "review_id": "HUD-DMG01-ACCEPT01",
+  "user_reply": "parfait :) on contiue",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-floating-damage-type-breakdown-HUD-DMG01-01.json",
+  "source_proposal_sha256": "fb75b97bcc003987dde8ab1954a0eac609d9a744c0d0aacdbd70bb9ce7615000",
+  "accepted_shown_copy_markdown": "Les **protections sont validées**, et ton format d’affichage est noté pour le joueur comme pour les monstres.\n\n**HUD-DMG01 · Dégâts affichés**\n\n**75 (⚔ 60 · ❄ 15)**\n\nDans cet exemple : **75 dégâts au total**, dont **60 physiques** et **15 de froid**, après les protections.\n\n- Le **total** apparaît en premier.\n- Le détail entre parenthèses montre chaque type de dégâts avec sa **petite icône**.\n- Chaque composante garde la **couleur de son type**, selon la direction déjà validée.\n\nJe propose que les composantes affichées soient entières et que **leur somme corresponde toujours au total**, sans modifier les dégâts calculés.\n\nLes symboles ci-dessus illustrent le format ; les icônes finales et leur lisibilité en jeu seront présentées lors du travail sur l’interface.",
+  "accepted_shown_copy_sha256": "68653afa803c3155cebcbd3e68ee5c34f82828ed2910ae3c5cf923cfabc80007",
+  "accepted_shown_rules": {
+    "targets": "floating_damage_above_player_and_monsters",
+    "format": "total_damage_first_then_parenthesized_per_damage_type_amount_with_small_type_icon",
+    "values": "after_applicable_protections",
+    "integer_components": "display_integer_components_with_sum_equal_to_computed_integer_total_without_changing_damage_mechanics",
+    "element_colors": "accepted_HUD08_type_color_direction_preserved",
+    "shown_example": "75 (⚔ 60 · ❄ 15);symbols_are_illustrative_placeholders_not_native_asset_approval"
+  },
+  "accepted_example": {
+    "physical": 60,
+    "cold": 15
+  },
+  "approval_scope": "Explicit acceptance of displayed format, postprotection example, type colors and integer component sum consistency;native artwork and exact integer apportionment implementation unshown.",
+  "unshown_cases_pending": [
+    "exact_integer_component_display_apportionment_algorithm_and_ties",
+    "HP_overkill_vs_actual_HP_loss_absorption_and_last_sursaut_readout",
+    "zero_damage_and_zero_component_display",
+    "critical_marker_total_color_and_font_sizes",
+    "native_icon_art_palette_spacing_lifetime_motion_overlap_and_combat_density",
+    "per_impact_vs_action_or_periodic_tick_grouping_and_visibility",
+    "Tempo_offensif_existing_bonus_part_feedback_coexistence_without_double_count",
+    "logs_exact_wording_type_labels_and_all_other_unshown_cases"
+  ],
+  "native_visual_approval": "native_icons_and_layout_not_presented_or_approved;Unicode_example_only",
+  "runtime_integration": "not_integrated"
+}

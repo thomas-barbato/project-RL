@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "DI03",
+  "title": "Volée",
+  "user_message": "Je valide :) .",
+  "confirmation_context": "The same user message adds access/heavy-tree decisions, confirmed separately by Oui parfait :).",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-DI03-01.json",
+  "previous_description_sha256": "c6ced0e745b0641eeac962ddcc1e03c8ebafdbc25c0f7e8fc67e2886946da12e",
+  "accepted_player_copy_sha256": "e043128325a9dd17ec8ee3292105c655b96f90e728ae6819b759d62f4d29c7cb",
+  "approval_scope": "Full displayed RP, current/next values and displayed cone, target selection, wall block, range and costs accepted as provisional balance. Unshown curves, geometric tie/visibility rules and native previews remain pending. Heavy weapon exclusion follows the separate global decision.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "maximum_targets": 5,
+      "projectiles_per_target": 1,
+      "damage_percent_per_target": 130,
+      "damage_min_per_target_before_defenses": 26,
+      "damage_max_per_target_before_defenses": 32,
+      "damage_min_exact_before_rounding": {
+        "numerator": 52767,
+        "denominator": 2000
+      },
+      "damage_max_exact_before_rounding": {
+        "numerator": 64493,
+        "denominator": 2000
+      },
+      "skill_range_cap_cells": 5,
+      "active_weapon_range_cells": 6,
+      "effective_range_cells": 5,
+      "cone_angle_degrees": 90,
+      "ammunition_per_selected_target": 1,
+      "maximum_ammunition_cost": 5,
+      "energy_cost": 15,
+      "cooldown_turns": 6
+    },
+    "next": {
+      "effective_rank": 12,
+      "maximum_targets": 5,
+      "projectiles_per_target": 1,
+      "damage_percent_per_target": 135,
+      "damage_min_per_target_before_defenses": 27,
+      "damage_max_per_target_before_defenses": 33,
+      "damage_min_exact_before_rounding": {
+        "numerator": 109593,
+        "denominator": 4000
+      },
+      "damage_max_exact_before_rounding": {
+        "numerator": 133947,
+        "denominator": 4000
+      },
+      "skill_range_cap_cells": 5,
+      "active_weapon_range_cells": 6,
+      "effective_range_cells": 5,
+      "cone_angle_degrees": 90,
+      "ammunition_per_selected_target": 1,
+      "maximum_ammunition_cost": 5,
+      "energy_cost": 15,
+      "cooldown_turns": 6
+    }
+  },
+  "accepted_conditions": [
+    "Equipped active ranged weapon.",
+    "One projectile per selected target.",
+    "Closest visible enemies in cone prioritized; walls block shots.",
+    "Damage before defenses."
+  ],
+  "visual_approval": "pending_native_animation_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

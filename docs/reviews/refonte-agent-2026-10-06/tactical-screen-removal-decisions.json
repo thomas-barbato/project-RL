@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-08",
+  "review_id": "BD05-REMOVE01",
+  "skill_id": "BD05",
+  "title": "Écran tactique",
+  "user_instruction": "ok on supprime",
+  "approval": "explicit_user_removal_request",
+  "replacement_skill_id": null,
+  "stable_id_reused": false,
+  "scope": "remove_whole_BD05_skill_rules_texts_and_visuals_without_replacement_or_transfer",
+  "informal_multi_turn_redesign_created": false,
+  "visual_work_status": "removed_from_active_scope",
+  "archived_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BD05-01.json",
+  "archived_card_sha256": "3e9fb53889f9f2d012a405c6c8662a601765a1da5bbbce4914621e10528527c6",
+  "counts_after": {
+    "primary_skills": 72,
+    "primary_branches": 13,
+    "current_complete_rule_blocks": 60,
+    "new_primary_rule_blocks": 46,
+    "secondary_rule_blocks": 14
+  },
+  "runtime_integration": "proposal_removal_only;not_implemented_in_runtime"
+}

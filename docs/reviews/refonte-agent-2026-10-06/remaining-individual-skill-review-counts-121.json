@@ -1,0 +1,423 @@
+{
+  "date": "2026-10-09",
+  "scope": "shown_skill_first_pass_count_only;not_a_full_parameter_or_native_approval_certificate",
+  "primary_cards": [],
+  "secondary_cards": [],
+  "remaining_first_pass_primary": 0,
+  "remaining_first_pass_secondary": 0,
+  "remaining_first_pass_total": 0,
+  "additional_work_not_quantified": [
+    "unshown_attribute_rules_and_derived_stats",
+    "partial_non_numeric_receipt_reconciliation_and_remaining_persistent_effect_interactions",
+    "DR01_catalogue_allocation_preserving_accepted_card",
+    "native_visual_runtime_attributes_and_balance"
+  ],
+  "native_animations_runtime_and_balance": "separate_following_phases;not_counted_as_skill_cards",
+  "previous_count": "docs/reviews/refonte-agent-2026-10-06/remaining-individual-skill-review-counts-120.json",
+  "accepted_skill_this_turn": "DI07",
+  "next_review_skill": null,
+  "pending_prior_secondary_card_parts": [],
+  "accepted_skill_title": "Tir vampirique",
+  "pending_prior_primary_card_parts": [],
+  "pending_secondary_card_revisions": [],
+  "latest_feedback": "user_accepts_Contagion_transfer_rules;zone_only_Gel_duration_proposed",
+  "pending_new_catalogue_proposals": [],
+  "new_heavy_candidate_count_proposed": 0,
+  "accepted_catalogue_this_turn": "AR-HL02",
+  "accepted_heavy_candidate_count": 6,
+  "current_card_pending": null,
+  "new_healing_catalogue_candidates_proposed": 0,
+  "first_pass_completion_is_not_full_design_or_runtime_completion": true,
+  "pending_healing_scope_clarification": false,
+  "new_individual_healing_cards_pending": [],
+  "new_individual_healing_card_count": 0,
+  "next_review_attribute": null,
+  "validation_audit": "docs/reviews/refonte-agent-2026-10-06/review-skill-approval-reconciliation-01.json",
+  "validation_audit_sha256": "c752358621b8d493b3617d51fde25d4822b32143a25737d50a58250b5de7f6f9",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-80.json",
+  "current_attribute_model_sha256": "b9a0c25e9c3f7e51d7f12999bbb32bc568fe81bd70f10312cf9f1803f2ad4144",
+  "pending_attribute_clarification": null,
+  "resolved_attribute_clarification": {
+    "review_id": "S04-MAPPING01",
+    "question": "Le bonus de dégâts à distance de l’Agilité remplace-t-il celui proposé pour la Perception, ou souhaites-tu que les deux se cumulent ?",
+    "answer": "en faite non je vais accepter ta proposition avec perception.",
+    "status": "resolved_by_user_return_to_original_model;no_Agilite_ranged_damage_bonus_and_no_double_attribute_bonus"
+  },
+  "next_review_derived_stat": null,
+  "pending_derived_stat": null,
+  "pending_derived_stat_sha256": null,
+  "latest_derived_stat_acceptance": "docs/reviews/refonte-agent-2026-10-06/drone-invocation-rank-bonus-acceptance-decisions.json",
+  "latest_derived_stat_acceptance_sha256": "1b8572b43bab9281c48769c7797338a1a82cf9745d6def458384e29a9c5478f3",
+  "latest_resistance_feedback": "docs/reviews/refonte-agent-2026-10-06/common-resistance-system-acceptance-decisions.json",
+  "latest_resistance_feedback_sha256": "b420384467efaf95c472751d15970b8ac95cd12b416c8756e17b32a29167eda2",
+  "accepted_critical_rules_decisions": "docs/reviews/refonte-agent-2026-10-06/critical-hit-rules-acceptance-decisions.json",
+  "accepted_critical_rules_decisions_sha256": "b6e63da318b5379c3affcb26437a792d8385e73fcae05273241bb9d4708f02e0",
+  "latest_weapon_variance_feedback": "docs/reviews/refonte-agent-2026-10-06/revised-weapon-variance-acceptance-decisions.json",
+  "latest_weapon_variance_feedback_sha256": "85be1a5ab46ea6a6b3b8f000e868d73274148d1e0b281f9f7eb9e5f3c823529a",
+  "latest_interface_direction": "docs/reviews/refonte-agent-2026-10-06/floating-total-and-type-icon-damage-direction-decisions.json",
+  "latest_interface_direction_sha256": "c5f8af4d268e136437241024ba2828678572568627e6e9fcc5f6dcc47a3914f0",
+  "latest_interface_acceptance": "docs/reviews/refonte-agent-2026-10-06/floating-damage-type-breakdown-acceptance-decisions.json",
+  "latest_interface_acceptance_sha256": "07f55360e18432775051bb7e30fabdce203ce975e612d0c4eb0a0a7873d2ea91",
+  "next_review_familiar_equipment": null,
+  "pending_familiar_equipment": null,
+  "pending_familiar_equipment_sha256": null,
+  "deferred_stat_review": "status_strength_source_merging_tick_order_non_actor_invocation_classification_passive_capacity_dependencies_and_other_unshown_cases",
+  "pending_familiar_weapon_damage_base": null,
+  "pending_familiar_weapon_damage_base_sha256": null,
+  "latest_familiar_weapon_damage_acceptance": "docs/reviews/refonte-agent-2026-10-06/familiar-weapon-damage-base-acceptance-decisions.json",
+  "latest_familiar_weapon_damage_acceptance_sha256": "d7da064266e7ba41c595cb84bfbbb2897978b5e28bb9438b5cb58bb9caf1c2db",
+  "previous_pending_familiar_equipment": "docs/reviews/refonte-agent-2026-10-06/review-recalled-drone-effects-PETS-EQ17-01.json",
+  "previous_pending_familiar_equipment_sha256": "fefd4030489e96a192ac269457d763e8918b91d4355ef6d070fa81bd53a24dc7",
+  "latest_familiar_equipment_acceptance": "docs/reviews/refonte-agent-2026-10-06/raised-limit-growth-acceptance-decisions.json",
+  "latest_familiar_equipment_acceptance_sha256": "9b64c5ffe9eef6d2443007a3108318ea11bcb19372e94b684aafc550ea2112ad",
+  "latest_familiar_resource_decision": "docs/reviews/refonte-agent-2026-10-06/raised-starting-resources-user-decisions.json",
+  "latest_familiar_resource_decision_sha256": "56edf5140e14e84daeb2c54829d574d777a5d3820ec065a84a317cae2599f0eb",
+  "latest_familiar_resource_acceptance": "docs/reviews/refonte-agent-2026-10-06/drone-deployment-resources-acceptance-decisions.json",
+  "latest_familiar_resource_acceptance_sha256": "b0415bd138ddb4743866f4b6f98504d893ba10c901cdd09d4cc8bd5ea5a810b5",
+  "pending_familiar_equipment_reviews": [],
+  "latest_familiar_command_direction": "docs/reviews/refonte-agent-2026-10-06/drone-repositioning-direction-decisions.json",
+  "latest_familiar_command_direction_sha256": "ebfc7ba0b54e09f6ae55247e6db86872f62780273920617c1e314a783411d73e",
+  "latest_familiar_command_acceptance": "docs/reviews/refonte-agent-2026-10-06/reposition-drone-order-acceptance-decisions.json",
+  "latest_familiar_command_acceptance_sha256": "962833df0b4ab2858441a71e97e62d57001f229e057d52c51aaab48ddac97fa4",
+  "latest_familiar_terminology_clarification": "docs/reviews/refonte-agent-2026-10-06/drone-redeployment-terminology-clarification.json",
+  "latest_familiar_terminology_clarification_sha256": "2b8fc87205fa5d835ed6c6bb6cd66fc4371f03381ebd20e2956a1fb860378ffe",
+  "withdrawn_familiar_effect_draft": "docs/reviews/refonte-agent-2026-10-06/review-recalled-drone-effects-PETS-EQ17-02.json",
+  "withdrawn_familiar_effect_draft_sha256": "ceb46554c87d450ba7728fe51c8b2d2ee7b94943190e614a61465ffad6a0ccad",
+  "next_review_kind": "contagion_zone_gel_INTERACT_CONTAGION02",
+  "accepted_drone_repositioning_decisions": "docs/reviews/refonte-agent-2026-10-06/drone-repositioning-acceptance-decisions.json",
+  "accepted_drone_repositioning_decisions_sha256": "7978b520533186827492a522f6ba57f0e34531ac8fab33a93f09b97879c418e1",
+  "latest_familiar_transition_acceptance": "docs/reviews/refonte-agent-2026-10-06/familiar-map-transition-progressive-arrival-acceptance-decisions.json",
+  "latest_familiar_transition_acceptance_sha256": "fd5f0376698ce6eb404f2069f0e699295935ccdce4c55fa822aa1b0321101bc5",
+  "accepted_familiar_map_transition_decisions": "docs/reviews/refonte-agent-2026-10-06/familiar-map-transition-progressive-arrival-acceptance-decisions.json",
+  "accepted_familiar_map_transition_decisions_sha256": "fd5f0376698ce6eb404f2069f0e699295935ccdce4c55fa822aa1b0321101bc5",
+  "latest_familiar_waiting_state_acceptance": "docs/reviews/refonte-agent-2026-10-06/pending-familiar-arrival-acceptance-decisions.json",
+  "latest_familiar_waiting_state_acceptance_sha256": "a66a8c5ea3cbed497cdf16b9a93a3bcc9b407733ea926dbb1d890d71b2990d48",
+  "accepted_pending_familiar_arrival_decisions": "docs/reviews/refonte-agent-2026-10-06/pending-familiar-arrival-acceptance-decisions.json",
+  "accepted_pending_familiar_arrival_decisions_sha256": "a66a8c5ea3cbed497cdf16b9a93a3bcc9b407733ea926dbb1d890d71b2990d48",
+  "accepted_reposition_drone_order_decisions": "docs/reviews/refonte-agent-2026-10-06/reposition-drone-order-acceptance-decisions.json",
+  "accepted_reposition_drone_order_decisions_sha256": "962833df0b4ab2858441a71e97e62d57001f229e057d52c51aaab48ddac97fa4",
+  "latest_familiar_control_acceptance": "docs/reviews/refonte-agent-2026-10-06/waiting-familiar-control-acceptance-and-raised-limit-direction-decisions.json",
+  "latest_familiar_control_acceptance_sha256": "c458a9e2e9d53d36595430bb1e1d2a42d11a2343461c6a4db53af9612b54d60c",
+  "accepted_waiting_familiar_control_decisions": "docs/reviews/refonte-agent-2026-10-06/waiting-familiar-control-acceptance-and-raised-limit-direction-decisions.json",
+  "accepted_waiting_familiar_control_decisions_sha256": "c458a9e2e9d53d36595430bb1e1d2a42d11a2343461c6a4db53af9612b54d60c",
+  "accepted_raised_limit_above10_direction_decisions": "docs/reviews/refonte-agent-2026-10-06/waiting-familiar-control-acceptance-and-raised-limit-direction-decisions.json",
+  "accepted_raised_limit_above10_direction_decisions_sha256": "c458a9e2e9d53d36595430bb1e1d2a42d11a2343461c6a4db53af9612b54d60c",
+  "next_review_equipment_skill": null,
+  "pending_equipment_skill_review": null,
+  "latest_raised_limit_acceptance": "docs/reviews/refonte-agent-2026-10-06/raised-limit-growth-acceptance-decisions.json",
+  "latest_raised_limit_acceptance_sha256": "9b64c5ffe9eef6d2443007a3108318ea11bcb19372e94b684aafc550ea2112ad",
+  "accepted_raised_limit_growth_decisions": "docs/reviews/refonte-agent-2026-10-06/raised-limit-growth-acceptance-decisions.json",
+  "accepted_raised_limit_growth_decisions_sha256": "9b64c5ffe9eef6d2443007a3108318ea11bcb19372e94b684aafc550ea2112ad",
+  "accepted_player_equipment_granted_skill_direction_decisions": "docs/reviews/refonte-agent-2026-10-06/player-equipment-grants-unlearned-skill-decisions.json",
+  "accepted_player_equipment_granted_skill_direction_decisions_sha256": "b4e621980ca48fb65eb27dbb6e684874a782268ab6fe7551fa6950c70137838d",
+  "latest_equipment_skill_direction": "docs/reviews/refonte-agent-2026-10-06/player-equipment-grants-unlearned-skill-decisions.json",
+  "latest_equipment_skill_direction_sha256": "b4e621980ca48fb65eb27dbb6e684874a782268ab6fe7551fa6950c70137838d",
+  "latest_equipment_skill_acceptance": "docs/reviews/refonte-agent-2026-10-06/equipment-grant-loss-effects-acceptance-decisions.json",
+  "latest_equipment_skill_acceptance_sha256": "71080c52263bc031a5718649ac5eeb7a7e60a8651852c02996591fce6f3b977c",
+  "accepted_player_equipment_granted_skill_rule_decisions": "docs/reviews/refonte-agent-2026-10-06/equipment-granted-skill-acceptance-decisions.json",
+  "accepted_player_equipment_granted_skill_rule_decisions_sha256": "1e78872861336b564093a3a906ac96807d968a752629ee3a0f9e47eb0302dcd7",
+  "latest_equipment_skill_feedback": "docs/reviews/refonte-agent-2026-10-06/equipment-grant-loss-learned-condition-decisions.json",
+  "latest_equipment_skill_feedback_sha256": "f48f8a70a5c8b8a6e8318b3b648570add3e82aeb8d863cfe5c66910a09ed4fdc",
+  "accepted_equipment_effect_loss_condition_decisions": "docs/reviews/refonte-agent-2026-10-06/equipment-grant-loss-learned-condition-decisions.json",
+  "accepted_equipment_effect_loss_condition_decisions_sha256": "f48f8a70a5c8b8a6e8318b3b648570add3e82aeb8d863cfe5c66910a09ed4fdc",
+  "accepted_equipment_effect_loss_rules_decisions": "docs/reviews/refonte-agent-2026-10-06/equipment-grant-loss-effects-acceptance-decisions.json",
+  "accepted_equipment_effect_loss_rules_decisions_sha256": "71080c52263bc031a5718649ac5eeb7a7e60a8651852c02996591fce6f3b977c",
+  "implementation_readiness_audit": "docs/reviews/refonte-agent-2026-10-06/review-implementation-readiness-22.json",
+  "implementation_readiness_audit_sha256": "ea497a8ec0b22be7710000d658ada9b2f8753caceef75116cbfe6d61bae7f858",
+  "accepted_user_interaction_decisions": "docs/reviews/refonte-agent-2026-10-06/interaction-and-priority-user-decisions.json",
+  "accepted_user_interaction_decisions_sha256": "fa4a7f5c25928fca2da5de20a7a7cc3e438f00afacec7aa3d9f19b564c2a7692",
+  "accepted_refonte_work_priority_decisions": "docs/reviews/refonte-agent-2026-10-06/interaction-and-priority-user-decisions.json",
+  "accepted_refonte_work_priority_decisions_sha256": "fa4a7f5c25928fca2da5de20a7a7cc3e438f00afacec7aa3d9f19b564c2a7692",
+  "pending_skill_progression": null,
+  "skill_progression_review_scope": "rank_curves_completed_under_delegation_and_initial_level_coefficient_accepted;non_numeric_cases_and_later_balance_separate;first_pass_count0_unchanged",
+  "previous_pending_skill_progression": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-skill-progression-B01-PROG01-01.json",
+    "reference_sha256": "c9810a785e11c9042c336c40cf45344913b0bd44d2bf637a1d2ebf2f989774b7",
+    "review_id": "B01-PROG01",
+    "skill_id": "B01",
+    "revision": 1,
+    "status": "awaiting_user_review_of_complete_progression_and_updated_example"
+  },
+  "completed_skill_rank_curves": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/skill-rank-curves-provisional-02.json",
+    "reference_sha256": "44ff8b1f8df86320562f82a00529b5e92c3e9118dd0a89bb051e7b2100e50bdb"
+  },
+  "skill_rank_curve_validation": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/skill-rank-curves-validation-02.json",
+    "reference_sha256": "1c8729a88c3f53df1b495031e048bd8118a266d5c27352c249592d5286a16ace"
+  },
+  "skill_rank_numeric_authority": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/skill-rank-balancing-delegation-decisions.json",
+    "reference_sha256": "338cdf80df3485de23601d40d857fd47bba5479991c8cdfa1479d0afe9a8058a"
+  },
+  "current_level_power_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/current-level-skill-power-acceptance-decisions.json",
+    "reference_sha256": "3902f002092bd83b46e252582aefe978cdb5b285b234ba2db1421be79f58d103"
+  },
+  "pending_level_power_coefficient": null,
+  "runtime_integration": "not_integrated",
+  "previous_count_sha256": "9c547889ad300e3d234be71881b870b671f359ee5e400ec4bbc57a75f01a1b2e",
+  "completed_rank_curve_counts": {
+    "primary": 79,
+    "secondary": 14,
+    "accepted_repair_complement": 1,
+    "total": 94
+  },
+  "previous_pending_level_power_coefficient": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-current-level-skill-power-01.json",
+    "reference_sha256": "1ffd2dec39a412fcaf1cce70bf621349cdb24f485f4815c31e87ed97c273c1a0"
+  },
+  "level_power_numeric_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/current-level-skill-power-numeric-acceptance-decisions.json",
+    "reference_sha256": "a38807770bb59fa708d0d743549cae0e187a6843836c0421fe7dc74f33177fb4"
+  },
+  "current_level_power_numeric_profile": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-current-level-skill-power-02.json",
+    "reference_sha256": "2f726bc55e4fa77079582abc7e6f518bc4d805c78cc8a36e6f56e9d5a7316933"
+  },
+  "latest_status_power_decision": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/last-status-cast-power-acceptance-decisions.json",
+    "reference_sha256": "70bc644096b85e9dd7f8504f614cf5f897529c69b6d95e1a03074285be655357"
+  },
+  "pending_persistent_power_snapshot": null,
+  "previous_pending_persistent_power_snapshot": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-power-snapshot-INTERACT-POWER01-01.json",
+    "reference_sha256": "a85d25b1bede8e9e523cb7972dedaef03d41e67dcf20483695777d56d924eed3"
+  },
+  "accepted_persistent_effect_power": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-power-snapshot-INTERACT-POWER01-02.json",
+    "reference_sha256": "9d7c2be630dfec22019a53a944c53046278d4fa0d65af5cbbb391ced05256e77"
+  },
+  "latest_persistent_power_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/persistent-effect-power-acceptance-decisions.json",
+    "reference_sha256": "fe72ed1eadd735a64625bd6953b442313f5afd7e5d09dae6db7329e1be130afd"
+  },
+  "pending_overlapping_zone_status": null,
+  "previous_pending_overlapping_zone_status": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-overlapping-zone-status-INTERACT-ZONE02-01.json",
+    "reference_sha256": "90c097aef75fcd55bbf30a62200876aa3e378a8634a817503e8707217af176f4"
+  },
+  "accepted_overlapping_zone_status_rules": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-overlapping-zone-status-INTERACT-ZONE02-02.json",
+    "reference_sha256": "adf11cd5575d75041363667c4b177cbe22b22bfdff1fa18db2273af66a411408"
+  },
+  "latest_overlapping_zone_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/overlapping-zone-status-acceptance-decisions.json",
+    "reference_sha256": "82249173a592046a0e5ce226583c29155116007b57970b4c80863a0690829fef"
+  },
+  "pending_old_zone_status_refresh": null,
+  "previous_pending_old_zone_status_refresh": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-old-zone-status-refresh-INTERACT-ZONE03-01.json",
+    "reference_sha256": "55d63838fdc80c8ea0eb393b23982a64f61d668a101da17721e4bc564e8a865b"
+  },
+  "accepted_old_zone_status_refresh": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-old-zone-status-refresh-INTERACT-ZONE03-02.json",
+    "reference_sha256": "7f8e8a98a68480505a3cf6e4d05df31f1f346b3c93d50dba9ae31694dc1383ba"
+  },
+  "latest_old_zone_refresh_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/old-zone-status-refresh-acceptance-decisions.json",
+    "reference_sha256": "64a50a81240de54d5999bc6822856a53c1588dc429f82ef76d9ae4cd308f4f43"
+  },
+  "pending_invoked_creation_scope": null,
+  "previous_pending_invoked_creation_scope": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-invoked-creation-scope-INTERACT-RANK02-01.json",
+    "reference_sha256": "8dc2fe5784ae9fe85d9b32ee39f30bfe13b1af32fadc78650acadc294faad1f2"
+  },
+  "accepted_invoked_creation_scope": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-invoked-creation-scope-INTERACT-RANK02-02.json",
+    "reference_sha256": "5084d9e1336229bdf283545959f5134cd86efd74fae0b7a39e75370051dc8a09"
+  },
+  "latest_creation_scope_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/invoked-creation-scope-acceptance-decisions.json",
+    "reference_sha256": "b1fce4009dff93aaf27e037912edcab55654ba95d8c66927ff291d265b1db7bf"
+  },
+  "pending_mine_passive_capacity_loss": null,
+  "previous_pending_mine_passive_capacity_loss": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-passive-capacity-loss-INTERACT-RANK03-01.json",
+    "reference_sha256": "b3e43a22302be18b53e4134a7770e0183575a06195a12c6891340962cfcd5869"
+  },
+  "accepted_mine_passive_capacity_loss": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-passive-capacity-loss-INTERACT-RANK03-02.json",
+    "reference_sha256": "4ebd3acc532f567e5c162d015c34c6a417917347f667b55abb3d004fedba8784"
+  },
+  "accepted_mine_variant_access_loss": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-variant-access-loss-INTERACT-RANK04-01.json",
+    "reference_sha256": "7af3daa1a02a35496ee4f764180ffa89c5282bdd4e82ee9982b41b146730cfdb"
+  },
+  "latest_mine_capacity_and_variant_decisions": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/mine-capacity-and-variant-loss-acceptance-decisions.json",
+    "reference_sha256": "6ab886656b9b26e5a0a473a154fafe83ee56adea509cde3959f10bcfbe8f6141"
+  },
+  "pending_mine_residue_access_loss": null,
+  "previous_pending_mine_residue_access_loss": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-residue-access-loss-INTERACT-RANK05-01.json",
+    "reference_sha256": "f92029ac59b6750b2e1c7a821eefebf4432c962f5f68e0e4a5321318d3af9947"
+  },
+  "accepted_mine_residue_access_loss": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-residue-access-loss-INTERACT-RANK05-02.json",
+    "reference_sha256": "64e357edfbab7d869cf7a8635db1106afe9277059e61e14dff522196d14aa9c3"
+  },
+  "latest_mine_residue_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/mine-residue-access-loss-acceptance-decisions.json",
+    "reference_sha256": "0a7ef13368297a36e9b07b343305507d69d54421e5a9be3e409b79df2098eeef"
+  },
+  "pending_mine_passive_dependency_rank_loss": null,
+  "previous_pending_mine_passive_dependency_rank_loss": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-passive-rank-dependencies-INTERACT-RANK06-01.json",
+    "reference_sha256": "e69290181503c8c72b60b2631509b64363d19c0505d3ab56a7aed08b34b4f155"
+  },
+  "accepted_mine_passive_dependency_rank_loss": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-passive-rank-dependencies-INTERACT-RANK06-02.json",
+    "reference_sha256": "57cc2644818d7c2a17df9b03540298165cac1f198813c40176bf06212ddefccb"
+  },
+  "latest_mine_passive_dependency_rank_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/mine-passive-rank-dependencies-acceptance-decisions.json",
+    "reference_sha256": "80de1547ff6015c937aeee8b699aae2937c24ea0b7c396da9fe849afce09b79d"
+  },
+  "pending_mine_placement_power": null,
+  "previous_pending_mine_placement_power": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-placement-power-INTERACT-MINE01-01.json",
+    "reference_sha256": "5e39bf840dbe6b15ac659d9d83884312fd820b1a12e5568d7f973ec581838941"
+  },
+  "accepted_mine_placement_power": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-placement-power-INTERACT-MINE01-02.json",
+    "reference_sha256": "9012648dcda4dd0e6e48a6d6cf2bd9b075af1504d34b736a47bcc859efc53f65"
+  },
+  "latest_mine_placement_power_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/mine-placement-power-acceptance-decisions.json",
+    "reference_sha256": "3d1a105360b8511deb492ece59ae02e056dfc56f6831fee0d2afff0156eb2e3e"
+  },
+  "pending_reanimation_mark_and_birth": null,
+  "previous_pending_reanimation_mark_and_birth": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-and-birth-INTERACT-REANIM01-01.json",
+    "reference_sha256": "020b457e9e1f333e1d41e1169c3fdd237632baef50cf49490932f7b76ab6d20c"
+  },
+  "accepted_reanimation_mark_and_birth": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-and-birth-INTERACT-REANIM01-02.json",
+    "reference_sha256": "35eec1b1baf1ccc125e83ecfe24c3d1893b3a7ee8f3519aa083d14c9b4231385"
+  },
+  "latest_reanimation_mark_and_birth_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/reanimation-mark-and-birth-acceptance-decisions.json",
+    "reference_sha256": "40c2ef735bb7a5ff5d7f61deff9d9f4367c68f882c43d895b5502f34faca4863"
+  },
+  "pending_reanimation_cooldowns_and_first_action": null,
+  "previous_pending_reanimation_cooldowns_and_first_action": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-cooldowns-and-first-action-INTERACT-REANIM02-01.json",
+    "reference_sha256": "4123676d071a314193ca71772e3bec2dbefefebb7c2e3c547aea613728b34cef"
+  },
+  "accepted_reanimation_cooldowns_and_first_action": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-cooldowns-and-first-action-INTERACT-REANIM02-02.json",
+    "reference_sha256": "49e633a48d1898e340125034abd82384d4d3d25b77cdc4a848f37f624a770c94"
+  },
+  "latest_reanimation_cooldowns_and_first_action_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/reanimation-cooldowns-and-first-action-acceptance-decisions.json",
+    "reference_sha256": "c46801baeb9d002fbce072381e46a47361a314dba7966a0aa75a5c320d31638b"
+  },
+  "pending_reanimation_mark_reapplications": null,
+  "previous_pending_reanimation_mark_reapplications": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-reapplications-INTERACT-REANIM03-01.json",
+    "reference_sha256": "3853d1b2b410bc480bef73f08573b122a1aaa825d06dc7f25a36dee72ef3c94d"
+  },
+  "accepted_reanimation_mark_reapplications": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-reapplications-INTERACT-REANIM03-02.json",
+    "reference_sha256": "b143e2f0c420306e2e3750e3e14d56fec94a399b6658d5d816ba68900c3890d5"
+  },
+  "latest_reanimation_mark_reapplications_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/reanimation-mark-reapplications-acceptance-decisions.json",
+    "reference_sha256": "416c9c7096589d4008dac1416467c9426bb0ec7e46b82b9aff40f80d6df065d9"
+  },
+  "pending_reanimation_mark_map_and_owner_loss": null,
+  "previous_pending_reanimation_mark_map_and_owner_loss": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-map-and-owner-loss-INTERACT-REANIM04-01.json",
+    "reference_sha256": "1014501d1d760abf020561a62c6b139e5b17c74125680abc63ca2352315a2ce0"
+  },
+  "accepted_reanimation_mark_map_and_owner_loss": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-mark-map-and-owner-loss-INTERACT-REANIM04-02.json",
+    "reference_sha256": "4c37cfa1cccf1123d369baf6b85de24564073369c0cb06a611ff88a3f0c78629"
+  },
+  "latest_reanimation_mark_map_and_owner_loss_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/reanimation-mark-map-and-owner-loss-acceptance-decisions.json",
+    "reference_sha256": "ae1ce1b71e939bda1a422267cf5f1bd0b11c079bbab6d63346f3317dd8026f6a"
+  },
+  "pending_familiar_command_action_costs": null,
+  "previous_pending_familiar_command_action_costs": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-command-action-costs-INTERACT-CMD01-01.json",
+    "reference_sha256": "922f88a4ad7947af9f0aa0e65f9c4c359a23ff9eda216379f876d7a348964c6c"
+  },
+  "accepted_familiar_command_action_costs": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-command-action-costs-INTERACT-CMD01-02.json",
+    "reference_sha256": "4fa027430bcadd15a53effa64ce453df95b9e413e3f92c873f258f5e4713e43c"
+  },
+  "latest_familiar_command_action_cost_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/familiar-command-action-costs-acceptance-decisions.json",
+    "reference_sha256": "0847029fb1c08d8ab173b82566c34ba0ba4d05fa7304ce40289a0279ac3a9620"
+  },
+  "pending_familiar_arrival_priority": null,
+  "previous_pending_familiar_arrival_priority": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-arrival-priority-INTERACT-ARRIVAL01-01.json",
+    "reference_sha256": "cf524a392b4cecf41d9f80581e608ab8de0e08c18dc18096cd6a902b74a8d363"
+  },
+  "accepted_familiar_arrival_priority": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-arrival-priority-INTERACT-ARRIVAL01-02.json",
+    "reference_sha256": "51ad8fd72fd8a79ded59088f0fadde42cbfd1cf017a04e855b981eb60134dd2c"
+  },
+  "latest_familiar_arrival_priority_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/familiar-arrival-priority-acceptance-decisions.json",
+    "reference_sha256": "53ea223174b80412e9eeb64cb0e3cf23c5ce58f5fad49e2e81a34e191dad9a0f"
+  },
+  "pending_timer_accounting": null,
+  "previous_pending_timer_accounting": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-timer-accounting-INTERACT-TIME01-02.json",
+    "reference_sha256": "bbdd042db0586dbb4b7705b7d7ce33dfbf6d694b8c0a306f048db65245d001d5"
+  },
+  "accepted_persistent_effect_immediate_start": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/persistent-effect-immediate-start-user-decisions.json",
+    "reference_sha256": "758252b58135b4451cc64daf27c65f4f159d161f1c0d8e13466662c3876ab52c"
+  },
+  "accepted_immediate_persistent_application_count": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-timer-accounting-INTERACT-TIME01-03.json",
+    "reference_sha256": "fbd196b6934e34796e4378fab24370dcecee522a5aaa72a7feea9f5c774c58d3"
+  },
+  "latest_immediate_application_count_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/persistent-immediate-application-count-acceptance-decisions.json",
+    "reference_sha256": "4d53c7203b545bd6da7fde1e5501b77a6a579deb6724346880d28343bafb2b9b"
+  },
+  "pending_persistent_status_reapplication": null,
+  "previous_pending_persistent_status_reapplication": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-status-reapplication-INTERACT-TIME02-01.json",
+    "reference_sha256": "4fb72996278e1b0c29234c5fb33b49a9426373c52638c8018724505e0e8b1668"
+  },
+  "accepted_persistent_status_reapplication": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-status-reapplication-INTERACT-TIME02-02.json",
+    "reference_sha256": "735cb5cca559c9c0cc4c3ba45e68209a7784e5b3a6e7ecde1b8a4945b50ea730"
+  },
+  "latest_persistent_status_reapplication_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/persistent-status-reapplication-acceptance-decisions.json",
+    "reference_sha256": "bbafb932282694c01ee649ad1a93ffa35515346ef3900bb2f3ca9c2ed63110e8"
+  },
+  "accepted_contagion_expanded_status_compatibility": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-contagion-compatibility-AF06-COMPAT02-01.json",
+    "reference_sha256": "a4779416502120c2cd21681fb0bd5250dc08839518b90e6c212ec4980bdf81f1"
+  },
+  "latest_contagion_compatibility_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/contagion-expanded-status-compatibility-user-decisions.json",
+    "reference_sha256": "1496c2e645363c42499be679b2f7281162c1d5edc2f75401b310d7286b874957"
+  },
+  "pending_contagion_transfer_rules": null,
+  "previous_pending_contagion_transfer_rules": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-contagion-transfer-rules-INTERACT-CONTAGION01-01.json",
+    "reference_sha256": "10dddef2549044b76b1d6aae6107c79f7f3de771b5d2a90993dc34509a900fa3"
+  },
+  "accepted_contagion_transfer_rules": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-contagion-transfer-rules-INTERACT-CONTAGION01-02.json",
+    "reference_sha256": "7af65ee222447fcb464b2e93154c5d1bd61750c7fe757c541663a2a66f4c32e5"
+  },
+  "latest_contagion_transfer_acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/contagion-transfer-rules-acceptance-decisions.json",
+    "reference_sha256": "9dd0ac2490543d13320c303ccc115bd59f725a8fbf3a20444273f3a70d4e6b4a"
+  },
+  "pending_contagion_zone_gel": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-contagion-zone-gel-INTERACT-CONTAGION02-01.json",
+    "reference_sha256": "c1bde2f742975a7204b13c9228556cd375c4a8131f9e83f377d26e28ec9a289a"
+  }
+}

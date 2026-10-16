@@ -1,0 +1,528 @@
+{
+  "native_views": 27,
+  "controls": [
+    {
+      "variant": "M02-A01-HAUT",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "M02-A01-DROITE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "M02-A01-GAUCHE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "M02-A01-BAS",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "M02-A01-CLOISON",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": false
+    },
+    {
+      "variant": "M02-A01-SILENCE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": false
+    },
+    {
+      "variant": "M02-A01-ATTENTE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "M02-A01-PREDATEUR",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "M02-A01-COLOSSE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "M02-A01-CUIRASSE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "M02-A01-POSSEDE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "M02-A01-ABYSSE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "M02-A01-SANS-PV",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "M02-A01-PLAFOND",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "HY07-A01-HAUT",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "HY07-A01-DROITE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "HY07-A01-GAUCHE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "HY07-A01-BAS",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "HY07-A01-CLOISON",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "HY07-A01-SILENCE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": false
+    },
+    {
+      "variant": "HY07-A01-ATTENTE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "HY07-A01-ARTILLEUR",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "HY07-A01-GARDIEN",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": true
+    },
+    {
+      "variant": "HY07-A01-ECLAIREUR",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": false
+    },
+    {
+      "variant": "HY07-A01-MULE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": false
+    },
+    {
+      "variant": "HY07-A01-CACHE",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": false
+    },
+    {
+      "variant": "HY07-A01-TRANSFORME",
+      "walls_clear": true,
+      "instant_vfx_end_before_frame35": true,
+      "timers_require_explicit_turns": true,
+      "permitted": false
+    }
+  ],
+  "animations": [
+    {
+      "file": "M02-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 21,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 8.68,
+      "green_p95_error": 18
+    },
+    {
+      "file": "M02-A01-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 21,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 8.82,
+      "green_p95_error": 18
+    },
+    {
+      "file": "M02-A01-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 21,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 8.74,
+      "green_p95_error": 18
+    },
+    {
+      "file": "M02-A01-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 21,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 8.7,
+      "green_p95_error": 17
+    },
+    {
+      "file": "M02-A01-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 1,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames"
+    },
+    {
+      "file": "M02-A01-SILENCE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 1,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames"
+    },
+    {
+      "file": "M02-A01-ATTENTE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 19,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 8.83,
+      "green_p95_error": 19
+    },
+    {
+      "file": "M02-A01-PREDATEUR-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 9.15,
+      "green_p95_error": 19
+    },
+    {
+      "file": "M02-A01-COLOSSE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 8.54,
+      "green_p95_error": 18
+    },
+    {
+      "file": "M02-A01-CUIRASSE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 11.52,
+      "green_p95_error": 33
+    },
+    {
+      "file": "M02-A01-POSSEDE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 8.83,
+      "green_p95_error": 19
+    },
+    {
+      "file": "M02-A01-ABYSSE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 8.66,
+      "green_p95_error": 19
+    },
+    {
+      "file": "M02-A01-SANS-PV-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 8.81,
+      "green_p95_error": 18
+    },
+    {
+      "file": "M02-A01-PLAFOND-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 8.85,
+      "green_p95_error": 18
+    },
+    {
+      "file": "HY07-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 3.22,
+      "green_p95_error": 8
+    },
+    {
+      "file": "HY07-A01-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 0.92,
+      "green_p95_error": 1
+    },
+    {
+      "file": "HY07-A01-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 1.77,
+      "green_p95_error": 9
+    },
+    {
+      "file": "HY07-A01-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 3.43,
+      "green_p95_error": 3
+    },
+    {
+      "file": "HY07-A01-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 3.22,
+      "green_p95_error": 8
+    },
+    {
+      "file": "HY07-A01-SILENCE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 1,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 0.0,
+      "green_p95_error": 0
+    },
+    {
+      "file": "HY07-A01-ATTENTE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 19,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 3.22,
+      "green_p95_error": 8
+    },
+    {
+      "file": "HY07-A01-ARTILLEUR-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 3.22,
+      "green_p95_error": 8
+    },
+    {
+      "file": "HY07-A01-GARDIEN-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 22,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 3.22,
+      "green_p95_error": 8
+    },
+    {
+      "file": "HY07-A01-ECLAIREUR-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 1,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 0.0,
+      "green_p95_error": 0
+    },
+    {
+      "file": "HY07-A01-MULE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 1,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 0.0,
+      "green_p95_error": 0
+    },
+    {
+      "file": "HY07-A01-CACHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 1,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 0.0,
+      "green_p95_error": 0
+    },
+    {
+      "file": "HY07-A01-TRANSFORME-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 4000,
+      "distinct_frames": 1,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames",
+      "green_mean_error": 0.0,
+      "green_p95_error": 0
+    },
+    {
+      "file": "hybrides-64.gif",
+      "native_size": [
+        640,
+        720
+      ],
+      "duration_ms": 8000,
+      "distinct_frames": 44,
+      "palette": "94 neutral +2 text +96 green +64 red; shared across frames"
+    }
+  ],
+  "protected_files_unchanged": 6264,
+  "resampling_of_native_capture": false
+}

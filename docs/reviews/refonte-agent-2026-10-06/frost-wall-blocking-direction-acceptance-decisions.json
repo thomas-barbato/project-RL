@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-07",
+  "review_id": "FR03",
+  "blocking_review_id": "FR03-BLOCK01",
+  "contact_review_id": "FR03-GEL01",
+  "user_messages": [
+    "mur de glace doit completement bloquer les ennemis (ils ne peuvent pas le traverser)",
+    "cette idée me semble tres bien"
+  ],
+  "presented_contact_direction": "Je propose que Mur de glace gèle les hostiles qui le frappent au contact. Cela lui donnerait un effet défensif en plus de sa barrière : chaque bloc resterait destructible, et un coup qui le brise pourrait encore geler son attaquant.",
+  "accepted_blocking_rule": "Enemies cannot traverse a cell occupied by an existing wall block.",
+  "contact_direction_approval": "positive user approval retained for the principle of defensive contact Gel;individual numeric values and exact cases have not been displayed and remain pending",
+  "does_not_imply": "Not an approval of indestructibility,forced/special movement handling,complete card text,current/next numeric values,contact attempt limit,new wall replacement or contact visual rendering.",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR03-01.json",
+  "previous_description_sha256": "cf5f521f8644ef1fab251d4e8cbb97f46b2023102289d4fba6613e064ad28489",
+  "previous_nova_acceptance": "docs/reviews/refonte-agent-2026-10-06/frost-nova-description-acceptance-decisions.json",
+  "previous_nova_acceptance_sha256": "a84a89632827f7d1900a62f837b61623d3f35dbc126930431873df4b853fb235",
+  "native_visual_approval": "pending_native_review",
+  "runtime_integration": "not_integrated"
+}

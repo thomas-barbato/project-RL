@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-07",
+  "id": "DP02",
+  "title": "Blindage des drones",
+  "revision": 1,
+  "player_copy_markdown": "**Blindage des drones — Rang 11**\n\n*Des renforts protègent vos drones et limitent les dégâts qu’ils subissent.*\n\n**Effet actuel**\n\n- Réduction des dégâts subis par vos drones : **30 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Réduction des dégâts subis par vos drones : **31 %**.\n\n**Passif · Aucun coût ni recharge.**\n\nS’applique à tous vos drones, aux dégâts directs et persistants. La protection du Gardien s’applique ensuite aux dégâts restants.",
+  "player_copy_sha256": "f9f0a48932e72c8d571f61d036128b5daaa1bc4ba9a57275dba4e60d73712ad3",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-12.json",
+  "source_skill_block_sha256": "7b0ac35988b41644f7c9fb5d666943d689a8669a3d4a13dab9ef046d8fa42b5e",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/targeted-repair-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "91b9e3f57f4f657b6cd59894238adacf3cc6331961c3c964a14add828d271aed",
+  "name_approval": "accepted_catalogue_name",
+  "catalogue_effect_approval": "accepted_as_presented",
+  "roleplay_text_approval": "pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08",
+  "current_next_effect_copy_approval": "pending_individual_user_review",
+  "numeric_rules_approval": "displayed_30_31_percent_and_conditions_proposed_pending_individual_review",
+  "formulas": {
+    "damage_reduction_percent": "10 + 40 * (effective_rank - 1) / (effective_rank + 9); proposed, strictly below 50%",
+    "damage_combination": "Applies after ordinary drone protections; Gardien protection then multiplies remaining damage. Full order/rounding pending.",
+    "display_rounding": "Exact fractional percentage internally; nearest tenth shown with trailing zero omitted; proposed."
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_modifiers_to_Blindage_percentage": false,
+    "Gardien_and_other_protections": "Not included in this skill percentage; no fictive combined total displayed."
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "damage_reduction_percent_exact": {
+      "numerator": 30,
+      "denominator": 1
+    },
+    "damage_reduction_percent_display": 30.0,
+    "affects_all_controlled_drones": true,
+    "affects_direct_damage": true,
+    "affects_persistent_damage": true,
+    "energy_cost": 0,
+    "cooldown_turns": 0
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "damage_reduction_percent_exact": {
+      "numerator": 650,
+      "denominator": 21
+    },
+    "damage_reduction_percent_display": 31.0,
+    "affects_all_controlled_drones": true,
+    "affects_direct_damage": true,
+    "affects_persistent_damage": true,
+    "energy_cost": 0,
+    "cooldown_turns": 0
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_passive_ranks_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "damage_reduction_percent_display"
+    ],
+    "unchanged_effects_omitted": [
+      "all_drones",
+      "direct_and_persistent_damage",
+      "energy_cost",
+      "cooldown_turns",
+      "Gardien_combination"
+    ]
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "effective_rank_visible": true,
+    "tree_icon_and_boosted_level_color_direction": "CD07; native render pending"
+  },
+  "presented_conditions": "All controlled drones; reduces direct and persistent damage. Gardien protection applies successively to remaining damage, rather than adding percentages.",
+  "unshown_rules_approval": "Full-rank curve, damage event classification and order, integer/percentage rounding, dynamic modifier timing, deployment/destruction boundaries and other protection interactions remain separately pending.",
+  "active_weapon_requirement": "none; drone passive independent of active player weapon",
+  "visual_intention_approval": "accepted_catalogue_intention_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Exact current reduction at rank 11 is 30%; rank 12 is 650/21%, displayed as 31%.",
+    "Same equipment bonus +2; learned ranks 9 -> 10 and effective ranks 11 -> 12 respect learned cap.",
+    "No Intelligence multiplier on this protection percentage invented.",
+    "Only changing reduction in next-rank block; no total protection fabricated without a fixed Gardien profile.",
+    "Single roleplay paragraph; no duplicate functional paragraph, learned/bonus line, table or formula.",
+    "Source remains below 50% for finite effective ranks; full curve/rounding pending review.",
+    "No gameplay, artwork or native animation integrated."
+  ]
+}

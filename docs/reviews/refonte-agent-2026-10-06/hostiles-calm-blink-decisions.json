@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "user_reply": "parfait , on pourrait peut-être rajouter un leger clignotement",
+  "accepted_presented_scope": [
+    "visible-hostile count and hover highlight",
+    "displayed schematic labels and corner markers",
+    "shared agent and drone phase for energy and Maintenance",
+    "Combat, Accalmie and Calme with three quiet turns"
+  ],
+  "requested_addition": "slight blinking; interpreted as pulsing hostile corner markers while highlighted",
+  "proposed_animation": {
+    "cycle_seconds": 1.4,
+    "minimum_opacity": 0.6,
+    "maximum_opacity": 1.0,
+    "actor_sprites_animated": false,
+    "reduced_motion": "static full-opacity markers",
+    "consumes_turns": false
+  },
+  "animation_approval": "pending_updated_preview_review",
+  "native_game_render_approval": "pending_native_review",
+  "unshown_rules_and_DP01_percentages": "retain_previous_pending_status",
+  "prototype": "C:/Users/User/.codex/visualizations/2026/10/06/01a11010-433f-7fc2-ac29-ffb696dec5ea/hostiles-et-calme.html",
+  "prototype_sha256": "e7401e2315d16550d5bb37dc568ff40cecd0e87e98d147a5d0ddf1420329e475",
+  "previous_prototype_snapshot": "artifacts/refonte-agent-2026-10-06/hostiles-et-calme-revision-01.html",
+  "previous_prototype_sha256": "2c844d9fa3a3a03adf2563af4339f9aa8d6c76a4ed5a260482c1d252137f05d9",
+  "prototype_checks": "docs/reviews/refonte-agent-2026-10-06/hostiles-calm-blink-checks-01.json",
+  "prototype_checks_sha256": "77116b0141a0bfd5ad3eeb434667b796f0a99329d6bf79fd35029f0da8f5dded",
+  "prior_hud_decisions": "docs/reviews/refonte-agent-2026-10-06/hostiles-calm-hud-decisions.json"
+}

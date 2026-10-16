@@ -23,6 +23,17 @@ use bincode::Options;
 use macroquad::prelude::*;
 use project_rl::ai::{AiProfile, PursuitLifecycle};
 use project_rl::character_class::{CharacterClassCatalog, CharacterClassId};
+#[cfg(all(test, debug_assertions))]
+#[path = "agent_resume_compat_tests.rs"]
+mod agent_resume_compat_tests;
+#[path = "agent_skill_bar.rs"]
+mod agent_skill_bar;
+#[cfg(any(debug_assertions, test))]
+#[path = "agent_spell_trial.rs"]
+mod agent_spell_trial;
+#[cfg(test)]
+#[path = "attack_aim_input_tests.rs"]
+mod attack_aim_input_tests;
 use project_rl::combat::{
     ArmorProfile, ArmorRules, AttackArea, AttackDelivery, AttackProfile, DamageImpact, DamageRules,
     DamageType, HitRules, MeleeImpactProfile,
@@ -83,12 +94,18 @@ use serde::{Deserialize, Serialize};
 
 use crate::visual_effects::VisualCuePlayer;
 
+#[path = "agent_skill_window.rs"]
+mod agent_skill_window;
 #[path = "effect_feedback.rs"]
 mod effect_feedback;
 #[path = "effects_lab.rs"]
 mod effects_lab;
+#[path = "end_screen_app.rs"]
+mod end_screen_app;
 #[path = "equipment_affix_names.rs"]
 mod equipment_affix_names;
+#[path = "inventory_terminal.rs"]
+mod inventory_terminal;
 #[cfg(debug_assertions)]
 #[path = "performance_capture.rs"]
 mod performance_capture;
@@ -96,6 +113,8 @@ mod performance_capture;
 mod recovery_worker;
 #[path = "ux.rs"]
 mod ux;
+#[path = "weapon_hands_app.rs"]
+mod weapon_hands_app;
 #[path = "world_context.rs"]
 mod world_context;
 
@@ -225,6 +244,8 @@ mod equipment_commerce;
 mod equipment_generation;
 #[path = "equipment_upgrade_app.rs"]
 mod equipment_upgrade_app;
+#[path = "one_hand_firearms.rs"]
+mod one_hand_firearms;
 #[path = "surface_density.rs"]
 mod surface_density;
 const SURFACE_DENSITY_GENERATION_VERSION: u8 = CARRIED_WEAPON_GENERATION_VERSION + 1;
@@ -263,7 +284,73 @@ const CITY_LIFE_AND_LOOT_GENERATION_VERSION: u8 = CITY_DECOR_GENERATION_VERSION 
 const MONSTER_REWARDS_GENERATION_VERSION: u8 = CITY_LIFE_AND_LOOT_GENERATION_VERSION + 1;
 const IRREVERSIBLE_LAYERS_GENERATION_VERSION: u8 = MONSTER_REWARDS_GENERATION_VERSION + 1;
 const INSTALLATION_INTERACTIONS_GENERATION_VERSION: u8 = IRREVERSIBLE_LAYERS_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = INSTALLATION_INTERACTIONS_GENERATION_VERSION;
+const WEAPON_HANDS_GENERATION_VERSION: u8 = INSTALLATION_INTERACTIONS_GENERATION_VERSION + 1;
+const EQUIPMENT_COLORS_GENERATION_VERSION: u8 = WEAPON_HANDS_GENERATION_VERSION + 1;
+const ONE_HAND_FIREARMS_GENERATION_VERSION: u8 = EQUIPMENT_COLORS_GENERATION_VERSION + 1;
+const PLAYER_VISION_GENERATION_VERSION: u8 = ONE_HAND_FIREARMS_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = PLAYER_VISION_GENERATION_VERSION;
+
+#[cfg(test)]
+mod player_vision_revision_tests {
+    use super::*;
+    use project_rl::world::Map;
+
+    #[test]
+    fn accepted_player_vision_is_twelve_without_increasing_ordinary_npc_sight() {
+        let (current, _, _, _) = ascii_game_content().unwrap();
+        assert_eq!(current.player_field_of_view.radius, 12);
+        assert_eq!(current.ordinary_actor_field_of_view.unwrap().radius, 8);
+        let rules = GameRules {
+            player_field_of_view: current.player_field_of_view,
+            ordinary_actor_field_of_view: current.ordinary_actor_field_of_view,
+            ..Default::default()
+        };
+        let map = Map::from_ascii(&vec!["..............................."; 25].join("\n")).unwrap();
+        let mut game = GameState::new_with_rules(map, GridPos::new(12, 12), 42, rules).unwrap();
+        assert!(game.player_visibility().is_visible(GridPos::new(24, 12)));
+        assert!(!game.player_visibility().is_visible(GridPos::new(25, 12)));
+        let npc = game
+            .spawn_actor(
+                Actor::new(GridPos::new(10, 12), 10)
+                    .unwrap()
+                    .with_ai(AiProfile::idle()),
+            )
+            .unwrap();
+        let fields = game.actor_observation_fields();
+        assert_eq!(
+            fields
+                .iter()
+                .find(|field| field.observer() == npc)
+                .unwrap()
+                .radius(),
+            8
+        );
+    }
+
+    #[test]
+    fn previous_generations_keep_their_rules_and_suspensions_reload() {
+        let (current, texts, loot, expeditions) = ascii_game_content().unwrap();
+        let previous_version = ONE_HAND_FIREARMS_GENERATION_VERSION;
+        let legacy_rules = rules_for_generation_version(current.clone(), previous_version);
+        assert_eq!(legacy_rules.player_field_of_view.radius, 8);
+        assert!(legacy_rules.ordinary_actor_field_of_view.is_none());
+        assert!(!format!("{legacy_rules:?}").contains("ordinary_actor_field_of_view"));
+        let app = AsciiApp::from_seed_version(
+            INITIAL_SEED,
+            current.clone(),
+            texts.clone(),
+            loot.clone(),
+            expeditions.clone(),
+            previous_version,
+        )
+        .unwrap();
+        let saved = app.suspension().unwrap();
+        let restored =
+            AsciiApp::restore_suspension(&saved, current, texts, loot, expeditions).unwrap();
+        assert_eq!(restored.game.rules().player_field_of_view.radius, 8);
+        assert_eq!(suspension::fingerprint(&restored.game), saved.state);
+    }
+}
 #[path = "bestiary_batch_app.rs"]
 mod bestiary_batch;
 #[path = "cave_anemone_app.rs"]
@@ -274,9 +361,20 @@ mod city_feedback_tests;
 #[cfg(test)]
 #[path = "combat_balance_app.rs"]
 mod combat_balance_tests;
+#[path = "combat_visuals_app.rs"]
+mod combat_visuals_app;
+#[cfg(debug_assertions)]
+#[path = "combat_visuals_capture.rs"]
+mod combat_visuals_capture;
 #[cfg(test)]
 #[path = "continuous_expedition_tests.rs"]
 mod continuous_expedition_tests;
+#[cfg(debug_assertions)]
+#[path = "crawl_art_capture.rs"]
+mod crawl_art_capture;
+#[cfg(debug_assertions)]
+#[path = "cyberpunk_capture.rs"]
+mod cyberpunk_capture;
 #[path = "deep_encounters_app.rs"]
 mod deep_encounters;
 #[cfg(test)]
@@ -335,6 +433,9 @@ mod tactical_reading_capture;
 #[cfg(debug_assertions)]
 #[path = "tactical_reading_proposal.rs"]
 mod tactical_reading_proposal;
+#[cfg(debug_assertions)]
+#[path = "terminal_console_capture.rs"]
+mod terminal_console_capture;
 const _: () = assert!(CURRENT_GENERATION_VERSION == suspension::MAX_GENERATION_VERSION);
 
 #[path = "arsenal_app.rs"]
@@ -375,6 +476,7 @@ struct ComponentSelection {
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum FloatingMessageTone {
+    Repair,
     Damage,
     Recovery,
     Status,
@@ -392,7 +494,7 @@ impl FloatingMessageTone {
             Self::Alert => 2.0,
             Self::Miss | Self::Evasion => 2.0,
             Self::Status => 1.8,
-            Self::Damage | Self::Recovery | Self::Information => 1.35,
+            Self::Damage | Self::Recovery | Self::Repair | Self::Information => 1.35,
         }
     }
 
@@ -401,12 +503,13 @@ impl FloatingMessageTone {
             Self::Progression => 22.0,
             Self::Alert => 19.0,
             Self::Miss | Self::Evasion => 20.0,
-            Self::Damage | Self::Recovery | Self::Status | Self::Information => 17.0,
+            Self::Damage | Self::Recovery | Self::Repair | Self::Status | Self::Information => 17.0,
         }
     }
 
     fn color(self) -> Color {
         match self {
+            Self::Repair => Color::from_rgba(86, 161, 255, 255),
             Self::Damage => Color::from_rgba(255, 113, 91, 255),
             Self::Recovery => Color::from_rgba(111, 232, 145, 255),
             Self::Status => Color::from_rgba(255, 174, 74, 255),
@@ -455,6 +558,7 @@ enum CharacterCreationStage {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum MenuNavigationContext {
     Reader(u8),
+    End,
     Screen(MenuScreen),
     Creation(CharacterCreationStage),
     Context,
@@ -584,26 +688,6 @@ struct InventoryLayout {
     maximum_first: usize,
 }
 
-/// Dedicated, non-overlapping lanes for feedback, the item name and its glyph.
-/// The first bonus stays close to the title even on short windows.
-struct InventoryDetailHeader {
-    message: Rect,
-    title: Rect,
-    glyph: Rect,
-    bonus_y: f32,
-}
-
-impl InventoryDetailHeader {
-    fn new(left: f32, right: f32, top: f32) -> Self {
-        Self {
-            message: Rect::new(left, top + 72.0, right - left - 20.0, 18.0),
-            title: Rect::new(left, top + 95.0, right - left - 70.0, 29.0),
-            glyph: Rect::new(right - 56.0, top + 95.0, 36.0, 36.0),
-            bonus_y: top + 149.0,
-        }
-    }
-}
-
 impl InventoryLayout {
     #[cfg(test)]
     fn new(width: f32, height: f32, selection: usize, count: usize) -> Self {
@@ -634,9 +718,9 @@ impl InventoryLayout {
         let panel_width = (width - margin * 2.0).max(620.0);
         let panel_height = (height - top * 2.0).max(400.0);
         let (left_width, stats_width) = if panel_width >= 1080.0 && panel_height >= 620.0 {
-            (panel_width * 0.36, Some((panel_width * 0.215).max(250.0)))
+            (panel_width * 0.28, Some((panel_width * 0.215).max(250.0)))
         } else {
-            (panel_width * 0.43, None)
+            ((panel_width * 0.36).max(260.0), None)
         };
         let list = Rect::new(
             margin + 10.0,
@@ -1035,7 +1119,8 @@ impl TechniqueQuickMenuLayout {
 }
 
 struct CharacterLayout {
-    attribute_rows: [Rect; 5],
+    attribute_rows: [Rect; 6],
+    attribute_increases: [Rect; 6],
     actions: [Rect; 3],
 }
 
@@ -1078,7 +1163,7 @@ impl CharacterLayout {
         let panel_width = (width - margin * 2.0).max(620.0);
         let panel_height = (height - top * 2.0).max(400.0);
         let left_width = panel_width * 0.48;
-        let attribute_stride = ((panel_height - 255.0) / 5.0).clamp(29.0, 42.0);
+        let attribute_stride = ((panel_height - 255.0) / 6.0).clamp(24.0, 42.0);
         let attribute_rows = std::array::from_fn(|index| {
             Rect::new(
                 margin + 14.0,
@@ -1096,8 +1181,11 @@ impl CharacterLayout {
                 31.0,
             )
         });
+        let attribute_increases =
+            attribute_rows.map(|row| Rect::new(row.right() - 27.0, row.y, 25.0, row.h));
         Self {
             attribute_rows,
+            attribute_increases,
             actions,
         }
     }
@@ -1453,6 +1541,7 @@ pub struct AsciiApp {
     attack_aim_pointer: Option<(f32, f32)>,
     component_selection: Option<ComponentSelection>,
     visual_cues: VisualCuePlayer,
+    combat_motion: crate::combat_visuals::CombatMotion,
     floating_messages: Vec<FloatingMessage>,
     trace_cells: BTreeMap<GridPos, Direction>,
     traces_visible_until: f64,
@@ -1557,6 +1646,7 @@ impl AsciiApp {
         }
         let now = get_time();
         self.visual_cues.prune(now);
+        self.combat_motion.prune(now);
         if self.resume_requested {
             self.poll_resume_request(now);
             return;
@@ -3164,11 +3254,262 @@ impl AsciiApp {
             ("-cell32", 32),
             ("-cell40", 40),
             ("-cell48", 48),
+            ("-cell64", 64),
         ]
         .into_iter()
         .find_map(|(suffix, cell)| scene.strip_suffix(suffix).map(|base| (base, cell)))
         .unwrap_or((scene, GraphicsSettings::default().world_cell_px));
         app.graphics.active.world_cell_px = cell_size;
+        if scene.starts_with("one-hand-firearms-") {
+            app.prepare_one_hand_firearms_diagnostic(scene)?;
+            request_new_screen_size(1280.0, 800.0);
+            for _ in 0..5 {
+                app.draw();
+                next_frame().await;
+            }
+            app.draw();
+            crate::ui_capture::framebuffer()?.export_png(
+                output
+                    .join("cold-start.png")
+                    .to_str()
+                    .ok_or("Chemin non UTF-8")?,
+            );
+            return Ok(());
+        }
+        if scene.starts_with("terminal-inventory-live") || scene == "terminal-hud-live" {
+            app.prepare_cyberpunk_diagnostic(scene)?;
+            if scene.contains("-hands") {
+                app.select_weapon_slot(0);
+            }
+            if scene.contains("-transmog") {
+                let id: ItemId = "core:veste_de_la_seconde_ombre".parse().unwrap();
+                app.game.grant_player_item_for_diagnostic(id.clone(), 1)?;
+                let look = app
+                    .game
+                    .player_inventory()
+                    .iter()
+                    .find(|entry| entry.item() == &id)
+                    .ok_or("Diagnostic torso missing")?
+                    .instance();
+                app.select_inventory_instance(look);
+                if !scene.ends_with("-empty") {
+                    app.update_inventory_body_appearance(look);
+                    if app.game.player_equipment().body_appearance() != Some(look) {
+                        return Err("Diagnostic appearance selection refused".into());
+                    }
+                }
+            }
+            let before = app.game.recovery_snapshot_bytes()?;
+            let (width, height, scale) = size.unwrap_or((1280.0, 800.0, 100));
+            app.graphics.active.ui_scale_percent = scale;
+            request_new_screen_size(width, height);
+            for _ in 0..4 {
+                next_frame().await;
+            }
+            if scene.starts_with("terminal-inventory-live") {
+                app.inventory_open = true;
+                let (w, h) = (app.ui_width(), app.ui_height());
+                let layout = InventoryLayout::with_scroll(
+                    w,
+                    h,
+                    0,
+                    app.inventory_entries().len(),
+                    app.inventory_equipped_count(),
+                    None,
+                );
+                let equipment = inventory_terminal::EquipmentLayout::new(&layout, w, h)
+                    .for_hands(app.game.rules().uses_weapon_hands());
+                let pointer = if scene.contains("-transmog") && !scene.ends_with("-empty") {
+                    Some(equipment.slots[inventory_terminal::BODY_APPEARANCE_INDEX].center())
+                } else if scene.ends_with("equipped") {
+                    Some(equipment.slots[1].center())
+                } else if scene.ends_with("bag") {
+                    layout.rows.first().map(|(_, row)| row.center())
+                } else {
+                    None
+                };
+                app.update_inventory(&InputFrame {
+                    pointer: pointer.map(|p| (p.x, p.y)),
+                    viewport: Some((w, h)),
+                    ..Default::default()
+                });
+            }
+            for _ in 0..5 {
+                app.draw();
+                next_frame().await;
+            }
+            app.draw();
+            let image = crate::ui_capture::framebuffer()?;
+            image.export_png(
+                output
+                    .join("cold-start.png")
+                    .to_str()
+                    .ok_or("Chemin non UTF-8")?,
+            );
+            let commands_readable = (0..10).all(|i| {
+                crate::ui_capture::text_is_visible(
+                    &image,
+                    crate::terminal_chrome::command_rect(app.ui_width(), app.ui_height(), i),
+                    app.ui_scale(),
+                )
+            });
+            let inventory = scene.starts_with("terminal-inventory-live");
+            let gauges = if inventory {
+                app.inventory_resource_gauges()
+            } else {
+                app.resource_gauges()
+            };
+            let resources: Vec<_> = gauges
+                .iter()
+                .map(|g| {
+                    serde_json::json!({
+                        "label": g.label, "value": g.value, "ratio": g.ratio,
+                        "reserved_ratio": g.reserved_ratio,
+                        "color": [g.color.r, g.color.g, g.color.b],
+                    })
+                })
+                .collect();
+            let unchanged = before == app.game.recovery_snapshot_bytes()?;
+            let validation = serde_json::json!({
+                "scene": scene, "state_unchanged": unchanged, "theme": app.graphics.active.interface_theme,
+                "commands_readable": (!inventory).then_some(commands_readable),
+                "hud_energy": app.ux.hud_energy.get().map(|r| [r.x, r.y, r.w, r.h]),
+                "hud_points": app.ux.hud_points.get().map(|r| [r.x, r.y, r.w, r.h]),
+                "resources": resources,
+                "body_appearance": app.game.player_equipment().body_appearance().map(|item|item.get()),
+                "visible_body_item": app.game.player_visible_body_item().map(|item|item.get()),
+                "real_body_item": app.inventory_slot_instance(1).map(|item|item.get()),
+            });
+            std::fs::write(
+                output.join("terminal-validation.json"),
+                serde_json::to_vec_pretty(&validation).map_err(|e| e.to_string())?,
+            )
+            .map_err(|e| e.to_string())?;
+            if !unchanged || (!inventory && !commands_readable) {
+                return Err(format!("Échec de validation terminal : {validation}"));
+            }
+            if inventory && scene.contains("-transmog") {
+                app.inventory_open = false;
+                for _ in 0..3 {
+                    app.draw();
+                    next_frame().await;
+                }
+                app.draw();
+                crate::ui_capture::framebuffer()?.export_png(
+                    output
+                        .join("world.png")
+                        .to_str()
+                        .ok_or("Chemin non UTF-8")?,
+                );
+                if before != app.game.recovery_snapshot_bytes()? {
+                    return Err("Appearance world preview changed game state".into());
+                }
+            }
+            return Ok(());
+        }
+        if matches!(
+            scene,
+            "combat-review"
+                | "crawl-agents"
+                | "crawl-weapons"
+                | "crawl-outfits"
+                | "crawl-palettes-1"
+                | "crawl-palettes-2"
+                | "crawl-bestiary"
+                | "crawl-bank-1"
+                | "crawl-bank-2"
+                | "crawl-bank-3"
+                | "crawl-bank-4"
+                | "crawl-grips-one-1"
+                | "crawl-grips-one-2"
+                | "crawl-grips-two-1"
+                | "crawl-grips-two-2"
+                | "crawl-grips-dual"
+                | "player-cuffs-review"
+                | "player-outfits-review"
+                | "equipment-palettes-review"
+                | "terminal-inventory-proposal"
+                | "terminal-hud-proposal"
+                | "terminal-console-proposal"
+                | "crawl-idle"
+                | "crawl-idle-reduced"
+        ) {
+            app.prepare_cyberpunk_diagnostic(scene)?;
+            let before = app.game.recovery_snapshot_bytes()?;
+            let (width, height, scale) = size.unwrap_or((1280.0, 800.0, 100));
+            app.graphics.active.ui_scale_percent = scale;
+            request_new_screen_size(width, height);
+            for _ in 0..3 {
+                next_frame().await;
+            }
+            app.draw_combat_proposal(scene, 0.0);
+            if scene.starts_with("crawl-idle") {
+                app.draw_combat_proposal(scene, 1.5);
+            }
+            if scene == "terminal-console-proposal" {
+                // Warm both breathing poses of the actual perceived actors.
+                // A short capture can otherwise cross the first pose change.
+                for time in [0.0, 1.5] {
+                    let rect = Rect::new(-100.0, -100.0, 32.0, 32.0);
+                    crate::game_art::draw_world_animated(
+                        rect,
+                        app.front_player_visual(),
+                        1.0,
+                        Some(time),
+                    );
+                    for (entity, actor) in app.game.actors().iter() {
+                        if app.game.player_visibility().is_visible(actor.position())
+                            && let Some(visual) = app.front_actor_visual(entity)
+                        {
+                            crate::game_art::draw_world_animated(rect, visual, 1.0, Some(time));
+                        }
+                    }
+                }
+            }
+            let warm_cache = crate::game_art::cache_stats();
+            for frame in 0..8 {
+                app.draw_combat_proposal(
+                    scene,
+                    if scene.starts_with("crawl-idle") {
+                        frame as f64 * 1.5
+                    } else {
+                        frame as f64 * 0.03
+                    },
+                );
+                crate::ui_capture::framebuffer()?.export_png(
+                    output
+                        .join(format!("frame-{frame:02}.png"))
+                        .to_str()
+                        .ok_or("Chemin non UTF-8")?,
+                );
+                next_frame().await;
+            }
+            app.draw_combat_proposal(scene, 0.05);
+            crate::ui_capture::framebuffer()?.export_png(
+                output
+                    .join("cold-start.png")
+                    .to_str()
+                    .ok_or("Chemin non UTF-8")?,
+            );
+            if app.game.recovery_snapshot_bytes()? != before {
+                return Err("Le rendu de revue a modifié la partie".into());
+            }
+            std::fs::write(
+                output.join("art-validation.json"),
+                serde_json::to_vec_pretty(&serde_json::json!({
+                    "scene": scene, "native_tile": 32, "body_height": 30,
+                    "weapon_models": crate::game_art::HELD_WEAPON_COUNT,
+                    "weapon_families": crate::game_art::WEAPON_FAMILY_COUNT,
+                    "state_unchanged_after_render": true,
+                    "cache_after_warmup": warm_cache,
+                    "cache_after_repeated_frames": crate::game_art::cache_stats(),
+                    "no_new_textures_after_warmup": warm_cache == crate::game_art::cache_stats()
+                }))
+                .map_err(|e| e.to_string())?,
+            )
+            .map_err(|e| e.to_string())?;
+            return Ok(());
+        }
         if scene == "player-art" {
             request_new_screen_size(1280.0, 620.0);
             for _ in 0..3 {
@@ -3323,6 +3664,17 @@ impl AsciiApp {
             }
             "ux-end" => {
                 app.prepare_end_diagnostic()?;
+            }
+            "ux-death" | "ux-death-history" => {
+                app.prepare_death_diagnostic()?;
+                // Reproduce a gameplay panel that was open when death occurred.
+                app.inventory_open = true;
+                app.legend_open = true;
+                app.ux.resources_open = true;
+                app.update_input(&InputFrame::default());
+                if scene == "ux-death-history" {
+                    app.ux.history_open = true;
+                }
             }
             "ux-history" => {
                 for i in 0..20 {
@@ -3757,6 +4109,41 @@ impl AsciiApp {
             "enemy-loot" | "enemy-loot-inventory" => {
                 app.prepare_enemy_loot_diagnostic(scene.ends_with("inventory"))?
             }
+            "cyberpunk"
+            | "cyberpunk-inventory"
+            | "cyberpunk-armour"
+            | "cyberpunk-actor"
+            | "cyberpunk-scale" => {
+                app.prepare_cyberpunk_diagnostic(scene)?;
+            }
+            "cyberpunk-city" | "cyberpunk-city-plaza" => {
+                app.menu = MenuScreen::Hidden;
+                app.character_creation = None;
+                if scene.ends_with("plaza") {
+                    app.walk_fixture_to(app.home_position(GridPos::new(65, 21)))?;
+                }
+            }
+            "cyberpunk-class-breche"
+            | "cyberpunk-class-vigie"
+            | "cyberpunk-class-creuset"
+            | "cyberpunk-class-creuset-ranged" => {
+                app.menu = MenuScreen::Hidden;
+                app.character_creation = None;
+                let class = if scene.contains("vigie") {
+                    "core:vigie"
+                } else if scene.contains("creuset") {
+                    "core:creuset"
+                } else {
+                    "core:breche"
+                };
+                app.character_class = Some(
+                    class
+                        .parse()
+                        .map_err(|e| format!("Diagnostic class: {e}"))?,
+                );
+                app.active_weapon_slot = if scene.ends_with("ranged") { 2 } else { 0 };
+                app.graphics.active.world_cell_px = 32;
+            }
             "monster-rewards" => app.prepare_monster_reward_diagnostic()?,
             "vision-circle"
             | "vision-circle-memory"
@@ -4061,6 +4448,84 @@ impl AsciiApp {
                 app.character_open = true;
             }
             "character-creation" => app.begin_character_creation_with_seed(false, app.seed)?,
+            scene
+                if scene.starts_with("agent-class-")
+                    || scene.starts_with("agent-inventory-")
+                    || scene.starts_with("agent-world-")
+                    || scene.starts_with("agent-skills-") =>
+            {
+                let inventory = scene.starts_with("agent-inventory-");
+                let world = scene.starts_with("agent-world-");
+                let skill_scene = scene.starts_with("agent-skills-");
+                let small = skill_scene && scene.ends_with("-960");
+                let class_scene = if small {
+                    scene.strip_suffix("-960").unwrap()
+                } else {
+                    scene
+                };
+                let slug = class_scene
+                    .strip_prefix("agent-inventory-")
+                    .or_else(|| scene.strip_prefix("agent-class-"))
+                    .or_else(|| scene.strip_prefix("agent-world-"))
+                    .or_else(|| class_scene.strip_prefix("agent-skills-"))
+                    .unwrap();
+                app.begin_character_creation_with_seed(false, app.seed)?;
+                let index = app
+                    .character_classes
+                    .iter()
+                    .position(|(id, _)| id.as_str() == format!("core:{slug}"))
+                    .ok_or("Unknown agent capture class")?;
+                let attributes = app
+                    .character_classes
+                    .iter()
+                    .nth(index)
+                    .unwrap()
+                    .1
+                    .recommended_attributes();
+                let creation = app.character_creation.as_mut().unwrap();
+                creation.selected_class = index;
+                creation.attributes = attributes;
+                if inventory || world || skill_scene {
+                    let creation = app.character_creation.take().unwrap();
+                    app.rebuild_run_with_character_class(&creation)?;
+                    app.inventory_open = inventory;
+                    if skill_scene {
+                        app.open_agent_skill_window();
+                        if let Some(skill) = std::env::args().find_map(|arg| {
+                            arg.strip_prefix("--capture-agent-skill=")
+                                .map(str::to_owned)
+                        }) {
+                            app.select_agent_skill_for_capture(&skill)?;
+                        }
+                        if std::env::args().any(|arg| arg == "--capture-progression") {
+                            // Diagnostic only: exercise the regular allocation controls with
+                            // earned points, without altering a campaign or its save files.
+                            let mut state: serde_json::Value = serde_json::from_str(
+                                &app.game
+                                    .export_player_progression()
+                                    .map_err(|e| e.to_string())?,
+                            )
+                            .map_err(|e| e.to_string())?;
+                            state["level"] = 3.into();
+                            state["experience"] =
+                                app.game.rules().progression.curve.cumulative_thresholds()[1]
+                                    .into();
+                            state["skill_points_earned"] = 2.into();
+                            state["unspent_skill_points"] = 2.into();
+                            app.game
+                                .restore_player_progression(&state.to_string())
+                                .map_err(|e| e.to_string())?;
+                            if std::env::args().any(|arg| arg == "--capture-character") {
+                                app.skills_open = false;
+                                app.character_open = true;
+                            }
+                        }
+                        if small {
+                            request_new_screen_size(960.0, 540.0);
+                        }
+                    }
+                }
+            }
             "character-attributes" => {
                 app.begin_character_creation_with_seed(false, app.seed)?;
                 if let Some(creation) = &mut app.character_creation {
@@ -4880,9 +5345,34 @@ impl AsciiApp {
         if contrast {
             app.graphics.active.high_contrast = true;
         }
+        let before_art = scene
+            .starts_with("cyberpunk")
+            .then(|| app.game.recovery_snapshot_bytes())
+            .transpose()?;
         for _ in 0..3 {
             app.draw();
             next_frame().await;
+        }
+        if let Some(before) = before_art {
+            if app.game.recovery_snapshot_bytes()? != before {
+                return Err("Le rendu des nouveaux sprites a modifié la partie".into());
+            }
+            std::fs::write(
+                output.join("art-validation.json"),
+                serde_json::to_vec_pretty(&serde_json::json!({
+                    "scene": scene, "viewport": [screen_width(), screen_height()],
+                    "world_cell_px": app.graphics.active.world_cell_px,
+                    "state_unchanged_after_render": true,
+                    "normal_world_generation": scene.starts_with("cyberpunk-city") || scene.starts_with("cyberpunk-class"),
+                    "map_size": [app.game.map().width(), app.game.map().height()],
+                    "ground_stacks": app.game.ground_items().iter().count(),
+                    "player_visual": format!("{:?}", app.front_player_visual()),
+                    "item_models": crate::game_art::ITEM_COUNT, "weapon_families": crate::game_art::WEAPON_FAMILY_COUNT,
+                    "front_actor_appearances": crate::game_art::ACTOR_COUNT
+                }))
+                .map_err(|e| e.to_string())?,
+            )
+            .map_err(|e| e.to_string())?;
         }
         if scene == "ux-symbols-bottom" {
             app.ux.help_scroll.offset = app.ux.help_scroll.maximum.get();
@@ -6073,7 +6563,9 @@ impl AsciiApp {
     }
 
     fn update_input_at(&mut self, input: &InputFrame, captured_at: Option<f64>) {
+        self.sync_agent_skill_bar();
         self.update_crash_recovery();
+        self.close_finished_run_overlays();
         if !self.inventory_open || !input.mouse_left_down {
             self.inventory_scroll_drag = None;
         }
@@ -6165,6 +6657,9 @@ impl AsciiApp {
         if self.menu != MenuScreen::Hidden {
             return Some(MenuNavigationContext::Screen(self.menu));
         }
+        if self.game.status() != RunStatus::Active {
+            return Some(MenuNavigationContext::End);
+        }
         if self.installation_menu.is_some()
             || self.world_context.is_some()
             || self.context_menu.is_some()
@@ -6205,6 +6700,9 @@ impl AsciiApp {
     }
 
     fn dispatch_input_at(&mut self, input: &InputFrame, captured_at: Option<f64>) {
+        if input.pause {
+            self.ux.skill_drag = None;
+        }
         // A successful save freezes the snapshot until the application exits.
         // In particular, input captured alongside an OS close cannot take a turn.
         if self.quit_requested {
@@ -6221,6 +6719,9 @@ impl AsciiApp {
         }
         if self.world_cursor.is_some() {
             self.update_world_cursor(input, captured_at.unwrap_or(0.0));
+            return;
+        }
+        if self.route_agent_skill_bar(input, self.skills_open) {
             return;
         }
         if !input.pause
@@ -6350,6 +6851,23 @@ impl AsciiApp {
             self.update_history(input);
             return;
         }
+        if self.game.status() != RunStatus::Active {
+            if self.controls.pressed(Action::Restart, input) {
+                if self.test_lab {
+                    if let Err(error) = self.reset_test_lab() {
+                        self.push_log(error);
+                    }
+                } else {
+                    self.restart_current_profile();
+                }
+            } else if self.controls.pressed(Action::EventHistory, input) {
+                self.ux.history_open = true;
+                self.ux.history_scroll.offset = 0.0;
+            } else {
+                self.update_end_screen(input);
+            }
+            return;
+        }
         if self.context_menu.is_some() {
             self.update_context_menu(input);
             return;
@@ -6455,7 +6973,27 @@ impl AsciiApp {
             self.menu_focus.hovered = hovered_attribute
                 .or_else(|| hovered_action.map(|index| PrimaryAttribute::ALL.len() + index));
             let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
-            if self.controls.pressed(Action::MenuUp, input) {
+            let increment = input.pointer.and_then(|p| {
+                layout
+                    .attribute_increases
+                    .iter()
+                    .position(|r| r.contains(p.into()))
+            });
+            if self.game.rules().agent_class_start.is_some()
+                && (clicked && increment.is_some()
+                    || self.controls.pressed(Action::MenuRight, input))
+            {
+                let index = if clicked {
+                    increment.unwrap_or(self.character_attribute_selection)
+                } else {
+                    self.character_attribute_selection
+                };
+                self.character_attribute_selection = index;
+                let attribute = PrimaryAttribute::ALL[index];
+                if self.game.can_allocate_attribute(attribute) {
+                    self.execute_command(GameCommand::AllocateAttribute { attribute });
+                }
+            } else if self.controls.pressed(Action::MenuUp, input) {
                 self.character_attribute_selection =
                     self.character_attribute_selection.saturating_sub(1);
             } else if self.controls.pressed(Action::MenuDown, input) {
@@ -6474,6 +7012,10 @@ impl AsciiApp {
             } else if self.controls.pressed(Action::Skills, input)
                 || clicked && hovered_action == Some(1)
             {
+                if self.uses_agent_skill_window() {
+                    self.open_agent_skill_window();
+                    return;
+                }
                 self.character_open = false;
                 self.skills_open = true;
                 self.level_up_notice = None;
@@ -6513,6 +7055,15 @@ impl AsciiApp {
             return;
         }
         if self.controls.pressed(Action::Skills, input) {
+            if self.uses_agent_skill_window() {
+                if self.skills_open {
+                    self.skills_open = false;
+                    self.level_up_notice = None;
+                } else {
+                    self.open_agent_skill_window();
+                }
+                return;
+            }
             self.skills_open = !self.skills_open;
             if !self.skills_open {
                 self.level_up_notice = None;
@@ -6602,14 +7153,9 @@ impl AsciiApp {
             return;
         }
 
-        if self.game.status() != RunStatus::Active {
-            self.update_end_screen(input);
-            return;
-        }
-
         let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
         if self.game.player_technique_preparation().is_none() {
-            let journal_button = quest_journal_button_rect(height);
+            let journal_button = quest_journal_button_rect(width, height);
             let journal_hovered = input
                 .pointer
                 .is_some_and(|point| journal_button.contains(point.into()));
@@ -6648,7 +7194,7 @@ impl AsciiApp {
         let wait_button = if self.game.player_technique_preparation().is_some() {
             preparation_continue_rect(width, height)
         } else {
-            wait_turn_rect(height)
+            wait_turn_rect(width, height)
         };
         let wait_hovered = input
             .pointer
@@ -6689,7 +7235,11 @@ impl AsciiApp {
         }
 
         if self.controls.pressed(Action::QuickTechniques, input) {
-            self.open_technique_menu();
+            if self.uses_agent_skill_window() {
+                self.open_agent_skill_window();
+            } else {
+                self.open_technique_menu();
+            }
             return;
         }
 
@@ -6840,6 +7390,21 @@ impl AsciiApp {
             return;
         }
 
+        if self.game.status() != RunStatus::Active && self.character_creation.is_none() {
+            set_camera(&graphics::ui_camera(self.ui_width(), self.ui_height()));
+            self.draw_end_message();
+            if self.ux.history_open {
+                self.draw_history();
+            }
+            if self.menu == MenuScreen::Controls {
+                self.draw_options();
+            } else if self.menu != MenuScreen::Hidden {
+                self.draw_menu();
+            }
+            set_default_camera();
+            return;
+        }
+
         let resolved_attack_preview = self.attack_aim.map(|aim| self.aimed_attack_preview(aim));
         let resolved_attack_footprint = self.attack_aim.map(|aim| self.aimed_attack_footprint(aim));
         let attack_preview = self.attack_aim.map(|aim| TerminalAttackPreview {
@@ -6859,10 +7424,25 @@ impl AsciiApp {
             .actors()
             .iter()
             .filter_map(|(entity, actor)| {
-                self.npc_appearance(entity, actor)
-                    .map(|appearance| (actor.position(), appearance))
+                self.npc_appearance(entity, actor).map(|appearance| {
+                    (
+                        actor.position(),
+                        (appearance, self.front_actor_visual(entity)),
+                    )
+                })
             })
             .collect();
+        let mut ground_art = BTreeMap::new();
+        for (_, stack) in self.game.ground_items().iter() {
+            if self.game.player_visibility().is_visible(stack.position())
+                && let Some(art) = crate::game_art::item(stack.item().as_str())
+            {
+                ground_art
+                    .entry(stack.position())
+                    .or_insert(crate::game_art::Visual::ColoredItem(art, stack.palette()));
+            }
+        }
+        let player_art = self.front_player_visual();
         let target_summary = self.terminal_target_summary();
         let mut tactical_cache = self.tactical_projection.borrow_mut();
         let tactical = tactical_cache.projection(&self.game, self.npc_vision_overlay_open);
@@ -6873,6 +7453,8 @@ impl AsciiApp {
                 ui_scale: self.ui_scale(),
                 cell_size: self.graphics.active.world_cell_px,
                 reduced_motion: self.graphics.active.reduced_motion,
+                combat_motion: &self.combat_motion,
+                combat_time: effect_time,
                 player_appearance: self.player_appearance(),
                 interact_label: &self.controls.label(Action::Interact),
                 interaction_focus: self.interaction_choice().0,
@@ -6911,8 +7493,18 @@ impl AsciiApp {
                         let alert = self.visible_alert_at(position).map(|(kind, _)| kind);
                         TerminalOverlay {
                             symbol: glyph,
+                            visual: match glyph {
+                                '@' => Some(player_art),
+                                ')' | '!' | '=' => ground_art.get(&position).copied(),
+                                's' => None,
+                                _ => npc_appearances.get(&position).and_then(|(_, art)| *art),
+                            },
                             npc_appearance: (glyph != 's')
-                                .then(|| npc_appearances.get(&position).copied())
+                                .then(|| {
+                                    npc_appearances
+                                        .get(&position)
+                                        .map(|(appearance, _)| *appearance)
+                                })
                                 .flatten(),
                             color: if alert.is_some() {
                                 Color::from_rgba(255, 175, 83, 255)
@@ -6964,7 +7556,7 @@ impl AsciiApp {
             self.draw_objective_panel();
             self.draw_companion_bar();
             self.draw_footer();
-            self.draw_end_message();
+            self.draw_agent_skill_bar(false);
         }
         if self.legend_open {
             self.draw_help();
@@ -9495,7 +10087,10 @@ impl AsciiApp {
     }
 
     fn terminal_bounds(&self) -> Rect {
-        let ui_scale = self.ui_scale();
+        self.terminal_bounds_for(screen_width(), screen_height(), self.ui_scale())
+    }
+
+    fn terminal_bounds_for(&self, width: f32, height: f32, ui_scale: f32) -> Rect {
         let companion_height = if self.has_controlled_companion() {
             64.0 * ui_scale
         } else {
@@ -9503,9 +10098,9 @@ impl AsciiApp {
         };
         let has_alert = self.visible_alert_summary().is_some();
         let wide_top = if has_alert { 76.0 } else { 7.0 };
-        let expanded_height = screen_height() - (wide_top + 104.0) * ui_scale - companion_height;
+        let expanded_height = height - (wide_top + 104.0) * ui_scale - companion_height;
         let wide_hud = terminal_status_panel(
-            Rect::new(20.0, 7.0 * ui_scale, screen_width() - 40.0, expanded_height),
+            Rect::new(20.0, 7.0 * ui_scale, width - 40.0, expanded_height),
             ui_scale,
         )
         .is_some();
@@ -9517,8 +10112,8 @@ impl AsciiApp {
         Rect::new(
             20.0,
             top,
-            screen_width() - 40.0,
-            (screen_height() - top - 104.0 * ui_scale - companion_height).max(100.0),
+            width - 40.0,
+            (height - top - 104.0 * ui_scale - companion_height).max(100.0),
         )
     }
 
@@ -9750,6 +10345,8 @@ impl AsciiApp {
             regional_worlds
         };
         let loot = loot_for_generation_version(&loot, &rules.items, version);
+        let original_weapon_slots = rules.player_weapon_slots.clone();
+        let original_starting_equipment = rules.player_starting_equipment.clone();
         let rules = rules_for_generation_version(rules, version);
         let mut app = if version >= 5 {
             Self::from_seed_base(
@@ -9773,6 +10370,12 @@ impl AsciiApp {
             )?
         };
         app.generation_version = version;
+        // Keep the content template for historical replay; the live game owns
+        // the versioned hand layout. This also preserves class loadout priorities.
+        if version >= WEAPON_HANDS_GENERATION_VERSION {
+            app.rules.player_weapon_slots = original_weapon_slots;
+            app.rules.player_starting_equipment = original_starting_equipment;
+        }
         app.enable_expedition()?;
         if version >= REGIONAL_TRAVEL_GENERATION_VERSION {
             app.enable_regional_world()?;
@@ -10592,6 +11195,17 @@ impl AsciiApp {
             skill_availability_cache.insert(discipline.clone(), availability);
         }
         let terminal = TerminalView::new(sector.decor, game.map(), game.player_visibility());
+        let active_weapon_slot = game
+            .rules()
+            .player_starting_weapons
+            .iter()
+            .find_map(|id| {
+                (0..game.rules().player_weapon_slots.len()).find(|&slot| {
+                    game.equipped_player_weapon(slot as u8)
+                        .is_some_and(|w| w.id() == id)
+                })
+            })
+            .unwrap_or(0) as u8;
 
         Ok(Self {
             test_lab: false,
@@ -10635,6 +11249,7 @@ impl AsciiApp {
             attack_aim_pointer: None,
             component_selection: None,
             visual_cues: VisualCuePlayer::with_catalog(ascii_visual_cue_catalog()?),
+            combat_motion: crate::combat_visuals::CombatMotion::default(),
             floating_messages: Vec::new(),
             trace_cells: BTreeMap::new(),
             traces_visible_until: 0.0,
@@ -10655,7 +11270,7 @@ impl AsciiApp {
                         .to_owned(),
                 ]
             },
-            active_weapon_slot: 0,
+            active_weapon_slot,
             inventory_open: false,
             inventory_selection: 0,
             inventory_scroll: None,
@@ -10737,12 +11352,26 @@ impl AsciiApp {
 
         if visibility.is_visible(position) {
             if self.game.player_position() == Some(position) {
-                return Some(('@', Color::from_rgba(99, 242, 210, 255), None, None));
+                let mut color = Color::from_rgba(99, 242, 210, 255);
+                if self.game.agent_stealth_active() {
+                    color.a = 0.56;
+                }
+                return Some(('@', color, None, None));
             }
             if self.security_alarm_remaining_at(position).is_some() {
                 return Some(('s', Color::from_rgba(255, 175, 83, 255), None, None));
             }
             if let Some(entity) = self.game.actors().entity_at(position) {
+                // Spell barriers have their own approved world animation.
+                // Keep their actor for targeting and collision, without a body tile.
+                if self.game.actors().get(entity).is_some_and(|actor| {
+                    actor
+                        .tags()
+                        .iter()
+                        .any(|tag| tag.as_str() == "agent:spell_barrier")
+                }) {
+                    return Some(('\0', WHITE, None, None));
+                }
                 let role = self.game.active_worker_role(entity);
                 let merchant = self.game.active_merchant(entity);
                 let artisan = self.game.active_artisan(entity);
@@ -11836,11 +12465,25 @@ impl AsciiApp {
             self.push_log("Le passage ne mène nulle part pour le moment.".to_owned());
         }
         let moved = matches!(command, GameCommand::Move(_));
+        let used_weapon_slot = match &command {
+            GameCommand::Attack { slot, .. } | GameCommand::AttackAt { slot, .. } => Some(*slot),
+            GameCommand::UseTechnique { weapon_slot, .. } => *weapon_slot,
+            GameCommand::UseTechniqueAt { weapon_slot, .. }
+            | GameCommand::UseTechniqueOnComponent { weapon_slot, .. } => Some(*weapon_slot),
+            _ => None,
+        };
         let interacted = matches!(command, GameCommand::Interact { .. } | GameCommand::PickUp);
         let recorded = RecordedCommand::record(&command);
         let previous_zone = self.game.current_zone().map(|zone| zone.id.clone());
         let outcome = self.game.process_player_command(command);
         if !matches!(outcome, CommandOutcome::Rejected(_)) {
+            if self.game.rules().uses_weapon_hands()
+                && self.active_weapon_slot < 2
+                && let Some(slot) = used_weapon_slot.filter(|slot| *slot < 2)
+            {
+                self.active_weapon_slot = slot;
+            }
+            self.sync_agent_skill_bar();
             self.tactical_projection.borrow_mut().invalidate();
             self.ux.moved |= moved;
             self.ux.interacted |= interacted;
@@ -11864,6 +12507,7 @@ impl AsciiApp {
                 self.refresh_zone_title();
                 self.selected_target = None;
                 self.visual_cues.clear_world();
+                self.combat_motion.clear();
                 self.selected_world_cell = None;
                 self.ux.recent_damage.clear();
                 self.trace_cells.clear();
@@ -11909,10 +12553,30 @@ impl AsciiApp {
         let mut missed_hits: BTreeMap<(GridPos, bool), u16> = BTreeMap::new();
         let mut guarded_impacts = std::collections::BTreeSet::new();
         let events = self.game.drain_events();
+        // The simulation allocates a new identity for a raised creature.
+        // Transfer its existing presentation before EntityDied removes the old keys.
+        for event in &events {
+            if let GameEvent::AgentReanimated {
+                original, raised, ..
+            } = event
+            {
+                if let Some(glyph) = self.actor_glyphs.get(original).copied() {
+                    self.actor_glyphs.insert(*raised, glyph);
+                }
+                if let Some(art) = self.npc_art.get(original).copied() {
+                    self.npc_art.insert(*raised, art);
+                }
+            }
+        }
+        if !events.is_empty() {
+            self.combat_motion.begin_event_batch();
+        }
+        let mut combat_origins = BTreeMap::new();
         if !events.is_empty() {
             self.tactical_projection.borrow_mut().invalidate();
         }
         for event in events {
+            self.capture_combat_visual(&event, &mut combat_origins, visual_time);
             self.update_npc_art(&event);
             if let GameEvent::DamageApplied { target, amount, .. }
             | GameEvent::DamageImpactApplied { target, amount, .. } = &event
@@ -13021,6 +13685,9 @@ impl AsciiApp {
                     observed_on_turn,
                     ..
                 } => {
+                    if project_rl::skills::agent::from_technique(&technique).is_some() {
+                        continue;
+                    }
                     if matches!(
                         self.game
                             .rules()
@@ -13961,6 +14628,7 @@ impl AsciiApp {
                         ("CHM", DamageType::Chemical),
                         ("RAD", DamageType::Radiation),
                         ("COR", DamageType::Corruption),
+                        ("FRD", DamageType::Cold),
                     ]
                     .into_iter()
                     .filter_map(|(label, damage_type)| {
@@ -14542,6 +15210,7 @@ impl AsciiApp {
                         ("THR", DamageType::Thermal),
                         ("ELE", DamageType::Electrical),
                         ("CHM", DamageType::Chemical),
+                        ("FRD", DamageType::Cold),
                     ]
                     .into_iter()
                     .filter_map(|(label, damage_type)| {
@@ -14688,9 +15357,9 @@ impl AsciiApp {
                             if stacks > 1 { format!("{} ×{stacks}", status_display_name(&status)) } else { status_display_name(&status) },
                             position,
                             FloatingMessageTone::Status,
-                            visual_time,
+                            self.combat_motion.impact_time(target,visual_time),
                         );
-                        if !self.visual_cues.sustains_status(&status) {
+                        if status.as_str()!="core:burning" && !self.visual_cues.sustains_status(&status) {
                             self.visual_cues.play(
                                 VisualCue::point(status, position),
                                 replay_time.unwrap_or_else(get_time),
@@ -14963,6 +15632,7 @@ impl AsciiApp {
                     }
                 }
                 GameEvent::AllyHealed { medic, target, amount } => {
+                    if medic==self.game.player_id()&&self.game.actors().get(target).is_some_and(|a|a.drone().is_some()||a.electronic_system().is_some()){continue;}
                     if let Some(at) = self.game.actors().get(target).map(Actor::position)
                         && self.game.player_visibility().is_visible(at)
                         && self.game.actors().get(medic).is_some_and(|actor| self.game.player_visibility().is_visible(actor.position()))
@@ -14976,14 +15646,15 @@ impl AsciiApp {
                         && (entity == self.game.player_id()
                             || self.game.player_visibility().is_visible(position))
                     {
-                        self.visual_cues.play(
+                        let repair=self.game.actors().get(entity).is_some_and(|a|a.drone().is_some()||a.electronic_system().is_some());
+                        if !repair {self.visual_cues.play(
                             VisualCue::point(visual_cue_id("core:integrity_restored"), position),
                             visual_time,
-                        );
+                        );}
                         self.push_floating_message(
                             format!("+{amount} PV"),
                             position,
-                            FloatingMessageTone::Recovery,
+                            if repair{FloatingMessageTone::Repair}else{FloatingMessageTone::Recovery},
                             visual_time,
                         );
                         self.push_log(format!("PV +{amount}"));
@@ -15031,7 +15702,7 @@ impl AsciiApp {
                 },
                 at,
                 FloatingMessageTone::Damage,
-                visual_time,
+                self.combat_motion.impact_time(target, visual_time),
             );
         }
         for ((at, evaded), count) in missed_hits {
@@ -15063,6 +15734,7 @@ impl AsciiApp {
         }
     }
 
+    #[cfg(debug_assertions)]
     fn open_level_up_screen(&mut self, notice: LevelUpNotice) {
         self.attack_aim = None;
         self.attack_aim_technique = None;
@@ -15129,6 +15801,9 @@ impl AsciiApp {
         let tactical = tactical_cache.projection(&self.game, self.npc_vision_overlay_open);
         let mut occupied_labels = Vec::new();
         for message in &self.floating_messages {
+            if now < message.started_at {
+                continue;
+            }
             let elapsed = (now - message.started_at).max(0.0);
             let lifetime = message.tone.lifetime();
             if elapsed >= lifetime || !self.game.player_visibility().is_visible(message.at) {
@@ -15316,6 +15991,146 @@ impl AsciiApp {
         })
     }
 
+    fn front_player_visual(&self) -> crate::game_art::Visual {
+        if self.game.player_agent_form_closure_active() {
+            return crate::game_art::Visual::AgentForm(5);
+        }
+        if let Some(index) = self.game.player_agent_form().and_then(|id| match id {
+            "M01" => Some(0),
+            "TR61" => Some(1),
+            "TR63" => Some(2),
+            "TR64" => Some(3),
+            "TR65" => Some(4),
+            _ => None,
+        }) {
+            return crate::game_art::Visual::AgentForm(index);
+        }
+        let mut visual = crate::game_art::wear(
+            crate::game_art::player(
+                self.character_class.as_ref().map(|id| id.as_str()),
+                self.player_appearance().pose,
+                self.game
+                    .equipped_player_weapon(self.active_weapon_slot)
+                    .map(|weapon| weapon.id().as_str()),
+            ),
+            self.game
+                .player_equipment()
+                .iter()
+                .filter_map(|(slot, instance)| {
+                    self.game
+                        .player_inventory()
+                        .get(instance)
+                        .map(|entry| (slot.to_string(), entry.item().to_string()))
+                }),
+        );
+        if let Some(entry) = self
+            .game
+            .player_visible_body_item()
+            .and_then(|item| self.game.player_inventory().get(item))
+        {
+            visual = crate::game_art::wear(
+                visual,
+                [("core:body_armor".to_owned(), entry.item().to_string())],
+            );
+        }
+        if self.game.rules().uses_weapon_hands() && self.active_weapon_slot < 2 {
+            if let crate::game_art::Visual::Player { hands, .. } = &mut visual {
+                *hands = Some(std::array::from_fn(|slot| {
+                    self.game
+                        .equipped_player_weapon(slot as u8)
+                        .and_then(|weapon| crate::game_art::held_weapon(weapon.id().as_str()))
+                }));
+            }
+        }
+        if let crate::game_art::Visual::Player { palettes, .. } = &mut visual {
+            let inventory = self.game.player_inventory();
+            let equipment = self.game.player_equipment();
+            let entry_for_slot = |slot: &project_rl::content::ContentId| {
+                equipment
+                    .equipped(slot)
+                    .and_then(|instance| inventory.get(instance))
+            };
+            palettes[0] = self
+                .game
+                .player_visible_body_item()
+                .and_then(|item| inventory.get(item))
+                .map(|entry| entry.palette())
+                .unwrap_or_default();
+            let weapon_color = |slot: usize| {
+                self.game
+                    .rules()
+                    .player_weapon_slots
+                    .get(slot)
+                    .and_then(entry_for_slot)
+                    .map(|entry| entry.palette())
+                    .unwrap_or_default()
+            };
+            if self.game.rules().uses_weapon_hands() && self.active_weapon_slot < 2 {
+                palettes[1] = weapon_color(1);
+                palettes[2] = weapon_color(0);
+            } else {
+                palettes[1] = weapon_color(self.active_weapon_slot as usize);
+                palettes[2] = palettes[1];
+            }
+        }
+        visual
+    }
+
+    fn front_actor_visual(&self, entity: EntityId) -> Option<crate::game_art::Visual> {
+        if self.game.actors().get(entity).is_some_and(|actor| {
+            actor
+                .tags()
+                .iter()
+                .any(|tag| tag.as_str() == "agent:spell_barrier")
+        }) {
+            return None;
+        }
+        if self.game.agent_is_hologram(entity) {
+            return crate::game_art::hologram(self.front_player_visual());
+        }
+        if let Some(visual) = self
+            .game
+            .actors()
+            .get(entity)
+            .and_then(Actor::drone)
+            .and_then(|d| {
+                crate::game_art::agent_drone_visual(d.profile().visual_profile().as_str())
+            })
+        {
+            return Some(visual);
+        }
+        let symbol = if let Some(role) = self.game.active_worker_role(entity) {
+            match role {
+                WorkerRole::Retriever => 'c',
+                WorkerRole::Technician => 'm',
+            }
+        } else if self.game.active_clinic(entity) {
+            'h'
+        } else if self.game.active_artisan(entity) {
+            'm'
+        } else if self.game.active_merchant(entity)
+            || self.game.active_resident(entity)
+            || self
+                .game
+                .current_zone()
+                .is_some_and(|zone| self.game.narrative_name_key_in(&zone.id, entity).is_some())
+        {
+            'i'
+        } else {
+            self.hostile_glyph(entity)
+        };
+        crate::game_art::actor_for_symbol(symbol).map(|visual| {
+            crate::game_art::arm_actor(
+                visual,
+                self.game
+                    .actors()
+                    .get(entity)
+                    .and_then(|actor| actor.equipped_weapon())
+                    .map(|weapon| weapon.item().as_str()),
+            )
+        })
+    }
+
     fn update_npc_art(&mut self, event: &GameEvent) {
         let visibility = self.game.player_visibility();
         let (entity, from, to, slot, perceived) = match *event {
@@ -15372,21 +16187,49 @@ impl AsciiApp {
 
     fn select_weapon_slot(&mut self, slot: u8) {
         let Some(weapon) = self.game.equipped_player_weapon(slot) else {
-            self.push_log(format!("L'emplacement d'arme {} est vide.", slot + 1));
+            self.push_log(format!(
+                "{} : emplacement vide.",
+                self.hand_slot_label(usize::from(slot))
+            ));
             return;
         };
         let name = self
             .equipped_instance_name(slot)
             .unwrap_or_else(|| self.item_name(weapon.id()));
         self.active_weapon_slot = slot;
-        self.push_log(format!("ACTIVE [{}] {name}", slot + 1));
+        self.push_log(format!(
+            "ACTIVE [{}] {name} · {}",
+            slot + 1,
+            if self.game.rules().uses_weapon_hands() && slot < 2 {
+                "Configuration à une main"
+            } else {
+                "Configuration à deux mains"
+            }
+        ));
     }
 
     fn weapon_command(&mut self, pointer: Option<(f32, f32)>) -> Option<GameCommand> {
-        let Some(weapon) = self
-            .game
-            .resolved_equipped_player_weapon(self.active_weapon_slot)
-        else {
+        if let Some(technique) = self.game.agent_form_default_technique() {
+            if let Some(target) = self
+                .selected_visible_cell()
+                .filter(|at| self.game.agent_form_action_preview(&technique, *at).is_ok())
+            {
+                return Some(GameCommand::UseTechniqueAt {
+                    technique,
+                    target,
+                    weapon_slot: self.active_weapon_slot,
+                });
+            }
+            self.begin_attack_aim_at(None, pointer, Some(technique));
+            return None;
+        }
+        let slot = self
+            .selected_visible_cell()
+            .map_or(self.active_weapon_slot, |at| {
+                self.game
+                    .player_default_attack_slot(self.active_weapon_slot, at)
+            });
+        let Some(weapon) = self.game.resolved_equipped_player_weapon(slot) else {
             self.push_log(format!(
                 "L'emplacement d'arme actif {} est vide.",
                 self.active_weapon_slot + 1
@@ -15411,20 +16254,27 @@ impl AsciiApp {
                     .is_some_and(|actor| self.game.player_visibility().is_visible(actor.position()))
             })
         {
-            return Some(GameCommand::Attack {
-                slot: self.active_weapon_slot,
-                target,
-            });
+            return Some(GameCommand::Attack { slot, target });
         }
         if weapon.requires_area_aim() {
             self.begin_attack_aim(pointer);
             return None;
         }
         let target = self.ensure_visible_target()?;
-        Some(GameCommand::Attack {
-            slot: self.active_weapon_slot,
-            target,
-        })
+        let slot = self.game.actors().get(target).map_or(slot, |actor| {
+            self.game
+                .player_default_attack_slot(self.active_weapon_slot, actor.position())
+        });
+        if slot != self.active_weapon_slot
+            && self
+                .game
+                .resolved_equipped_player_weapon(slot)
+                .is_some_and(|weapon| weapon.requires_area_aim())
+        {
+            self.begin_attack_aim(pointer);
+            return None;
+        }
+        Some(GameCommand::Attack { slot, target })
     }
 
     fn begin_attack_aim(&mut self, pointer: Option<(f32, f32)>) {
@@ -15432,10 +16282,14 @@ impl AsciiApp {
     }
 
     fn begin_pointer_attack_aim(&mut self, target: GridPos, pointer: Option<(f32, f32)>) -> bool {
-        let Some(weapon) = self
+        if let Some(technique) = self.game.agent_form_default_technique() {
+            self.begin_attack_aim_at(Some(target), pointer, Some(technique));
+            return self.attack_aim.is_some();
+        }
+        let slot = self
             .game
-            .resolved_equipped_player_weapon(self.active_weapon_slot)
-        else {
+            .player_default_attack_slot(self.active_weapon_slot, target);
+        let Some(weapon) = self.game.resolved_equipped_player_weapon(slot) else {
             return false;
         };
         if !weapon.requires_area_aim() {
@@ -15449,6 +16303,15 @@ impl AsciiApp {
     }
 
     fn begin_technique_attack_aim(&mut self, technique: TechniqueId) {
+        if project_rl::skills::agent::from_technique(&technique)
+            .is_some_and(|s| self.game.agent_skill_is_self_targeted(&s.id))
+        {
+            if let Some(command) = self.technique_command(technique) {
+                self.execute_command(command);
+                self.capture_events();
+            }
+            return;
+        }
         self.begin_attack_aim_at(None, None, Some(technique));
     }
 
@@ -15475,12 +16338,43 @@ impl AsciiApp {
         let Some(origin) = self.game.player_position() else {
             return;
         };
-        let slot = self.active_weapon_slot;
         let selected = self.selected_visible_cell();
-        let range = self
-            .game
-            .equipped_player_weapon(slot)
-            .map_or(1, |weapon| weapon.attack().range());
+        let slot = technique.as_ref().map_or_else(
+            || {
+                requested
+                    .or(selected)
+                    .map_or(self.active_weapon_slot, |at| {
+                        self.game
+                            .player_default_attack_slot(self.active_weapon_slot, at)
+                    })
+            },
+            |id| {
+                self.game
+                    .player_weapon_slot_for_technique(self.active_weapon_slot, id)
+            },
+        );
+        let range = technique
+            .as_ref()
+            .and_then(|id| self.game.agent_form_action_profile(id))
+            .map(|p| p.range)
+            .unwrap_or_else(|| {
+                technique
+                    .as_ref()
+                    .and_then(project_rl::skills::agent::from_technique)
+                    .and_then(|skill| {
+                        self.game
+                            .agent_skill_ready_with_weapon(&skill.id, slot)
+                            .ok()
+                    })
+                    .map_or_else(
+                        || {
+                            self.game
+                                .equipped_player_weapon(slot)
+                                .map_or(1, |weapon| weapon.attack().range())
+                        },
+                        |profile| profile.range,
+                    )
+            });
         let requested = requested.filter(|position| {
             *position != origin && self.game.player_visibility().is_visible(*position)
         });
@@ -15515,16 +16409,40 @@ impl AsciiApp {
                         .then_some(position)
                 })
             })
+            .or_else(|| {
+                technique
+                    .as_ref()
+                    .filter(|t| {
+                        project_rl::skills::agent::from_technique(t)
+                            .is_some_and(|s| matches!(s.id.as_str(), "D58" | "D59" | "D66"))
+                    })
+                    .and_then(|id| {
+                        origin
+                            .cardinal_neighbors()
+                            .into_iter()
+                            .chain([
+                                GridPos::new(origin.x - 1, origin.y - 1),
+                                GridPos::new(origin.x + 1, origin.y - 1),
+                                GridPos::new(origin.x - 1, origin.y + 1),
+                                GridPos::new(origin.x + 1, origin.y + 1),
+                            ])
+                            .find(|p| {
+                                self.game
+                                    .player_weapon_technique_preview(id, slot, *p)
+                                    .is_ok()
+                            })
+                    })
+            })
             .unwrap_or_else(|| origin.step(self.facing));
         self.attack_aim = Some(AttackAim { slot, cursor });
         self.select_world_target(Some(cursor));
         self.attack_aim_technique = technique;
         self.attack_aim_pointer = pointer;
         self.push_log(if self.attack_aim_technique.is_some() {
-            "VISÉE DE TECHNIQUE · CLIC POUR CIBLER · ATTAQUER POUR CONFIRMER · ÉCHAP POUR ANNULER"
+            "VISÉE DE TECHNIQUE · SOURIS / CLAVIER POUR CIBLER · CLIC GAUCHE OU ATTAQUER POUR CONFIRMER · ÉCHAP POUR ANNULER"
                 .to_owned()
         } else {
-            "VISÉE DE ZONE · CLIC POUR CIBLER · ATTAQUER POUR CONFIRMER · ÉCHAP POUR ANNULER"
+            "VISÉE DE ZONE · SOURIS / CLAVIER POUR CIBLER · CLIC GAUCHE OU ATTAQUER POUR CONFIRMER · ÉCHAP POUR ANNULER"
                 .to_owned()
         });
     }
@@ -15544,6 +16462,11 @@ impl AsciiApp {
             self.cycle_target();
             if let Some(position) = self.selected_visible_cell() {
                 aim.cursor = position;
+            }
+            if self.attack_aim_technique.is_none() {
+                aim.slot = self
+                    .game
+                    .player_default_attack_slot(self.active_weapon_slot, aim.cursor);
             }
             self.keyboard_target_pointer = input.pointer;
             self.attack_aim = Some(aim);
@@ -15570,8 +16493,8 @@ impl AsciiApp {
         }
 
         let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
-        // A world click only changes selection. Moving the pointer toward the
-        // HUD must not drag the selected cell along, nor may a second click fire.
+        // The most recent input owns aiming. A stationary mouse must not undo
+        // keyboard movement; hovering HUD controls keeps the last world cell.
         let confirm_hovered = input.viewport.is_some_and(|(width, height)| {
             input.pointer.is_some_and(|pointer| {
                 Self::attack_aim_confirm_rect(width, height).contains(pointer.into())
@@ -15580,37 +16503,35 @@ impl AsciiApp {
         if confirm_hovered {
             self.menu_focus.hovered = Some(50_040);
         }
-        let clicked_cell = if clicked && !confirm_hovered {
-            self.attack_pointer_cell(input)
-                .filter(|position| self.game.player_visibility().is_visible(*position))
-        } else {
-            None
-        };
+        let hovered_cell =
+            if !confirm_hovered && (clicked || input.pointer != self.attack_aim_pointer) {
+                self.attack_pointer_cell(input)
+                    .filter(|position| self.game.player_visibility().is_visible(*position))
+            } else {
+                None
+            };
         self.attack_aim_pointer = input.pointer;
-        if !keyboard_moved && let Some(position) = clicked_cell {
-            if self.attack_aim_technique.is_none()
-                && aim.cursor == position
-                && self.selected_visible_cell() == Some(position)
-            {
-                self.select_world_target(None);
-                self.attack_aim = None;
-                self.attack_aim_pointer = None;
-                self.push_log("Cible désélectionnée.".to_owned());
-                return;
-            }
+        if (!keyboard_moved || clicked)
+            && let Some(position) = hovered_cell
+        {
             aim.cursor = position;
         }
-        if keyboard_moved || clicked_cell.is_some() {
+        if keyboard_moved || hovered_cell.is_some() {
             self.select_world_target(Some(aim.cursor));
             self.keyboard_target_pointer = input.pointer;
         }
+        if self.attack_aim_technique.is_none() {
+            aim.slot = self
+                .game
+                .player_default_attack_slot(self.active_weapon_slot, aim.cursor);
+        }
         self.attack_aim = Some(aim);
 
-        // HUD actions are forwarded without pointer coordinates, including
-        // when Attack was rebound to MouseLeft. Actual map clicks never fire.
+        // A map click confirms its visible cell. Clicking outside the map must
+        // never fire at the last cursor, even if Attack is bound to MouseLeft.
         let confirmed = (self.controls.pressed(Action::Attack, input)
             && (!clicked || input.pointer.is_none()))
-            || (clicked && confirm_hovered);
+            || (clicked && (confirm_hovered || hovered_cell.is_some()));
         if !confirmed {
             return;
         }
@@ -15681,10 +16602,19 @@ impl AsciiApp {
 
     fn attack_pointer_cell(&self, input: &InputFrame) -> Option<GridPos> {
         let pointer = input.pointer?;
-        let scale = self.ui_scale();
+        let (bounds, scale) = input.viewport.map_or_else(
+            || (self.terminal_bounds(), self.ui_scale()),
+            |(width, height)| {
+                let scale = input.ui_scale.unwrap_or(1.0);
+                (
+                    self.terminal_bounds_for(width * scale, height * scale, scale),
+                    scale,
+                )
+            },
+        );
         self.terminal.hit_test(
             &self.game,
-            self.terminal_bounds(),
+            bounds,
             scale,
             self.graphics.active.world_cell_px,
             self.navigation_signal_summary().is_some(),
@@ -15723,7 +16653,16 @@ impl AsciiApp {
             .selected_target
             .is_some_and(|selected| targets.contains(&selected));
         if !selected_is_visible {
-            self.selected_target = targets.first().copied();
+            // An explicit visible target remains intentional, including allies.
+            // Automatic acquisition must never redirect the next attack to a pet.
+            self.selected_target = targets.into_iter().find(|target| {
+                !self.game.is_player_controlled_companion(*target)
+                    && self
+                        .game
+                        .actors()
+                        .get(*target)
+                        .is_some_and(|actor| actor.player_relation() != PlayerRelation::Allied)
+            });
         }
 
         let Some(target) = self.selected_target else {
@@ -15758,7 +16697,48 @@ impl AsciiApp {
     }
 
     fn technique_command(&mut self, technique: TechniqueId) -> Option<GameCommand> {
+        if self.game.agent_form_action_profile(&technique).is_some()
+            || technique.as_str() == "agent:form_return"
+        {
+            if let Some(reason) = self.quick_technique_status(&technique).1 {
+                self.push_log(reason);
+                return None;
+            }
+            if technique.as_str() == "agent:form_return" {
+                return self
+                    .game
+                    .player_position()
+                    .map(|target| GameCommand::UseTechniqueAt {
+                        technique,
+                        target,
+                        weapon_slot: self.active_weapon_slot,
+                    });
+            }
+            self.begin_technique_attack_aim(technique);
+            return None;
+        }
+        if let Some(skill) = project_rl::skills::agent::from_technique(&technique) {
+            if let Some(reason) = self.quick_technique_status(&technique).1 {
+                self.push_log(reason);
+                return None;
+            }
+            if self.game.agent_skill_is_self_targeted(&skill.id) {
+                return self
+                    .game
+                    .player_position()
+                    .map(|target| GameCommand::UseTechniqueAt {
+                        technique,
+                        target,
+                        weapon_slot: self.active_weapon_slot,
+                    });
+            }
+            self.begin_technique_attack_aim(technique);
+            return None;
+        }
         let action = self.game.rules().skills.technique(&technique)?.action()?;
+        let slot = self
+            .game
+            .player_weapon_slot_for_technique(self.active_weapon_slot, &technique);
         if action.is_drone_action() {
             return self.drone_technique_command(technique, action);
         }
@@ -15772,9 +16752,7 @@ impl AsciiApp {
             return self.electronic_warfare_technique_command(technique, action);
         }
         if matches!(action, TechniqueAction::WeaponComponentAttack { .. }) {
-            let candidates = self
-                .game
-                .player_weapon_technique_targets(&technique, self.active_weapon_slot);
+            let candidates = self.game.player_weapon_technique_targets(&technique, slot);
             let target = self
                 .selected_target
                 .filter(|target| candidates.contains(target))
@@ -15797,7 +16775,7 @@ impl AsciiApp {
                         .map(|component| component.profile().id().clone())
                         .collect(),
                     selected: 0,
-                    weapon_slot: self.active_weapon_slot,
+                    weapon_slot: slot,
                 });
                 self.push_log(
                     "TIR LOCALISÉ · CHOISIR UN COMPOSANT · CONFIRMER OU ÉCHAP".to_owned(),
@@ -15816,7 +16794,7 @@ impl AsciiApp {
                 technique,
                 target,
                 component: component_id,
-                weapon_slot: self.active_weapon_slot,
+                weapon_slot: slot,
             });
         }
         if matches!(
@@ -15841,15 +16819,15 @@ impl AsciiApp {
                 maximum_targets, ..
             } => (usize::from(maximum_targets), None),
             TechniqueAction::WeaponAttack { .. } | TechniqueAction::AmbushAttack { .. } => {
-                (1, Some(self.active_weapon_slot))
+                (1, Some(slot))
             }
             TechniqueAction::ChargeAttack { .. } | TechniqueAction::Breakthrough { .. } => {
-                (1, Some(self.active_weapon_slot))
+                (1, Some(slot))
             }
             TechniqueAction::ExtractAlly { .. } => (1, None),
             TechniqueAction::WeaponVolley {
                 maximum_targets, ..
-            } => (usize::from(maximum_targets), Some(self.active_weapon_slot)),
+            } => (usize::from(maximum_targets), Some(slot)),
             _ => (0, None),
         };
         let maximum_target_separation = match action {
@@ -16698,7 +17676,8 @@ impl AsciiApp {
                     } else {
                         ""
                     },
-                    slot + 1
+                    self.controls
+                        .label([Action::Slot1, Action::Slot2, Action::Slot3][slot])
                 )
             })
             .collect::<Vec<_>>()
@@ -16708,12 +17687,18 @@ impl AsciiApp {
     fn terminal_target_summary(&self) -> Option<TerminalTargetSummary> {
         let at = self.selected_visible_cell()?;
         if self.selected_target.is_none() || self.context_npc_at(at) {
-            return crate::terminal_view::interactive_target_summary(
+            let mut summary = crate::terminal_view::interactive_target_summary(
                 &self.game,
                 at,
                 self.interaction_display_name(at),
                 &self.controls.label(Action::Interact),
-            );
+            )?;
+            if summary.visual.is_none()
+                && let Some(entity) = self.game.actors().entity_at(at)
+            {
+                summary.visual = self.front_actor_visual(entity);
+            }
+            return Some(summary);
         }
         self.terminal_target_summary_for(self.selected_target?)
     }
@@ -16842,6 +17827,7 @@ impl AsciiApp {
                 ("CHM", DamageType::Chemical),
                 ("RAD", DamageType::Radiation),
                 ("COR", DamageType::Corruption),
+                ("FRD", DamageType::Cold),
             ]
             .into_iter()
             .filter_map(|(label, damage_type)| {
@@ -16865,6 +17851,7 @@ impl AsciiApp {
         });
         Some(TerminalTargetSummary {
             name,
+            visual: self.front_actor_visual(target),
             distance: grid_distance(observer, actor.position()),
             visible_state,
             analysis,
@@ -17054,7 +18041,10 @@ impl AsciiApp {
                     } else {
                         UiTheme.success()
                     },
-                    "Clic : sélectionner".to_owned(),
+                    format!(
+                        "Clic gauche ou {} : attaquer",
+                        self.controls.label(Action::Attack)
+                    ),
                 ),
                 Err(reason) => (
                     "ZONE INVALIDE".to_owned(),
@@ -17103,7 +18093,7 @@ impl AsciiApp {
             );
             draw_text(
                 format!(
-                    "Visée : {} {} {} {} ou clic · Échap : annuler",
+                    "Visée : {} {} {} {} ou souris · Échap : annuler",
                     self.controls.label(Action::MoveNorth),
                     self.controls.label(Action::MoveWest),
                     self.controls.label(Action::MoveSouth),
@@ -17150,7 +18140,7 @@ impl AsciiApp {
             );
         } else {
             let wait_binding = self.controls.label(Action::Wait);
-            let wait_button = wait_turn_rect(self.ui_height());
+            let wait_button = wait_turn_rect(self.ui_width(), self.ui_height());
             let wait_hovered = self.menu_focus.hovered == Some(WAIT_ACTION_FOCUS);
             draw_wait_action_button(
                 wait_button,
@@ -17158,7 +18148,7 @@ impl AsciiApp {
                 wait_hovered,
                 self.hud_action_hover[0],
             );
-            let journal_button = quest_journal_button_rect(self.ui_height());
+            let journal_button = quest_journal_button_rect(self.ui_width(), self.ui_height());
             let journal_count = self.game.quest_journal().len();
             let journal_label = if journal_count == 0 {
                 "Quêtes".to_owned()
@@ -17177,9 +18167,10 @@ impl AsciiApp {
 
         for (index, (message, objective)) in self.footer_lines().into_iter().enumerate() {
             let y = self.ui_height() - 42.0 + index as f32 * 20.0;
+            crate::terminal_chrome::heading(">", 22.0, y, 14, UiTheme.accent());
             draw_wrapped_text(
                 &message,
-                20.0,
+                40.0,
                 y,
                 self.ui_width() - 40.0,
                 1,
@@ -17218,6 +18209,20 @@ impl AsciiApp {
     }
 
     fn technique_name(&self, id: &TechniqueId) -> String {
+        if id.as_str() == "agent:form_return" {
+            return "Reprendre forme humaine".into();
+        }
+        if let Some(action) = self
+            .game
+            .player_agent_form_actions()
+            .into_iter()
+            .find(|a| &a.technique == id)
+        {
+            return action.title.into();
+        }
+        if let Some(skill) = project_rl::skills::agent::from_technique(id) {
+            return skill.title.clone();
+        }
         self.game
             .rules()
             .skills
@@ -17314,6 +18319,9 @@ impl AsciiApp {
     }
 
     fn equipment_slot_name(&self, id: &ContentId) -> String {
+        if id.as_str() == project_rl::entity::BODY_APPEARANCE_SLOT {
+            return "Transmogrification".to_owned();
+        }
         self.texts
             .resolve(DISPLAY_LOCALE, &format!("equipment_slot.{id}"))
             .map(str::to_owned)
@@ -17452,13 +18460,17 @@ impl AsciiApp {
             .position(|candidate| candidate == slot)
         {
             return Some(format!(
-                "{} · {}",
-                if index == usize::from(self.active_weapon_slot) {
-                    "EN MAIN"
+                "{}{}",
+                self.hand_slot_label(index),
+                if self.weapon_configuration_active(index) {
+                    if self.game.rules().uses_weapon_hands() {
+                        " · actif"
+                    } else {
+                        " · en main"
+                    }
                 } else {
-                    "ÉQUIPÉ"
-                },
-                index + 1
+                    ""
+                }
             ));
         }
         Some(format!(
@@ -17484,6 +18496,10 @@ impl AsciiApp {
     }
 
     fn clamp_skill_selection(&mut self) {
+        if self.uses_agent_skill_window() {
+            self.clamp_agent_skill_selection();
+            return;
+        }
         let discipline_count = self.skill_disciplines_cache.len();
         self.skill_discipline_selection = self
             .skill_discipline_selection
@@ -17495,6 +18511,29 @@ impl AsciiApp {
     }
 
     fn active_learned_techniques(&self) -> Vec<TechniqueId> {
+        if let Some(form) = self.game.player_agent_form() {
+            let mut actions: Vec<_> = self
+                .game
+                .player_agent_form_actions()
+                .into_iter()
+                .map(|a| a.technique)
+                .collect();
+            actions.push(project_rl::skills::agent::technique(form));
+            if self.game.player_agent_skill_rank("M02") > 0 {
+                actions.push(project_rl::skills::agent::technique("M02"));
+            }
+            actions.push("agent:form_return".parse().unwrap());
+            return actions;
+        }
+        if self.uses_agent_skill_window() && self.game.rules().agent_class_start.is_some() {
+            return project_rl::skills::agent::definitions()
+                .iter()
+                .filter(|skill| {
+                    skill.kind == "active" && self.game.player_agent_skill_rank(&skill.id) > 0
+                })
+                .map(|skill| project_rl::skills::agent::technique(&skill.id))
+                .collect();
+        }
         self.game
             .rules()
             .skills
@@ -17507,6 +18546,10 @@ impl AsciiApp {
     }
 
     fn open_technique_menu(&mut self) {
+        if self.uses_agent_skill_window() && self.game.rules().agent_class_start.is_none() {
+            self.open_agent_skill_window();
+            return;
+        }
         let techniques = self.active_learned_techniques();
         self.technique_menu_selection = self
             .technique_menu_selection
@@ -17639,6 +18682,12 @@ impl AsciiApp {
         }
         if self.controls.pressed(Action::Inspect, input) || clicked && hovered_action == Some(1) {
             let id = &techniques[self.technique_menu_selection];
+            if let Some(skill) = project_rl::skills::agent::from_technique(id) {
+                self.open_agent_skill_window();
+                self.select_agent_skill_for_capture(&skill.id)
+                    .expect("quick menu catalogue entry");
+                return;
+            }
             if let Some(d) = self.game.rules().skills.technique(id) {
                 self.ux.item_card = Some((
                     self.technique_name(id),
@@ -17667,6 +18716,10 @@ impl AsciiApp {
     }
 
     fn update_skills(&mut self, input: &InputFrame) {
+        if self.uses_agent_skill_window() {
+            self.update_agent_skills(input);
+            return;
+        }
         let discipline_count = self.game.rules().skills.disciplines().count();
         if discipline_count == 0 {
             return;
@@ -17876,10 +18929,24 @@ impl AsciiApp {
             self.inventory_scroll,
         );
         let details = Rect::new(32.0 + layout.left_width + 12.0, 47.0, 145.0, 31.0);
+        if self.update_inventory_tooltip(input, &layout) {
+            return;
+        }
         if self.controls.pressed(Action::Inspect, input)
             || input.pressed.contains(&controls::Binding::MouseLeft)
                 && input.pointer.is_some_and(|p| details.contains(p.into()))
         {
+            if let Some(instance) = self.ux.inventory_tooltip {
+                if !self
+                    .inventory_entries()
+                    .iter()
+                    .any(|entry| entry.instance() == instance)
+                {
+                    self.inventory_filter = InventoryFilter::All;
+                    self.inventory_scroll = None;
+                }
+                self.select_inventory_instance(instance);
+            }
             self.open_inventory_card();
             return;
         }
@@ -17920,6 +18987,14 @@ impl AsciiApp {
             .inventory_entries()
             .get(self.inventory_selection)
             .map(|entry| entry.instance());
+        if clicked
+            && self.ux.inventory_tooltip.is_some()
+            && input.pointer.is_some_and(|pointer| {
+                Self::inventory_tooltip_rect(&layout, width, height).contains(pointer.into())
+            })
+        {
+            return;
+        }
         let filter_index = if clicked { hovered_filter } else { None }.or_else(|| {
             self.controls
                 .pressed(Action::InventoryFilter, input)
@@ -17966,6 +19041,53 @@ impl AsciiApp {
             self.inventory_open = false;
             self.character_open = true;
             self.menu_focus.reset();
+            return;
+        }
+        if clicked && let Some(pointer) = input.pointer {
+            let equipment = inventory_terminal::EquipmentLayout::new(&layout, width, height);
+            if equipment.hit(pointer) == Some(inventory_terminal::BODY_APPEARANCE_INDEX) {
+                let current = self.game.player_equipment().body_appearance();
+                let selected = self
+                    .inventory_entries()
+                    .get(self.inventory_selection)
+                    .map(|entry| entry.instance())
+                    .filter(|item| self.inventory_item_is_torso(*item));
+                let item = if equipment.appearance_clear().contains(pointer.into()) {
+                    current
+                } else {
+                    selected.or(current)
+                };
+                if let Some(item) = item {
+                    self.update_inventory_body_appearance(item);
+                }
+                return;
+            }
+        }
+        if clicked
+            && let Some((index, instance)) = input
+                .pointer
+                .and_then(|pointer| {
+                    inventory_terminal::EquipmentLayout::new(&layout, width, height)
+                        .for_hands(self.game.rules().uses_weapon_hands())
+                        .hit(pointer)
+                })
+                .and_then(|index| {
+                    self.inventory_slot_instance(index)
+                        .map(|instance| (index, instance))
+                })
+        {
+            if index >= 4 {
+                self.select_weapon_slot((index - 4) as u8);
+            }
+            if !self
+                .inventory_entries()
+                .iter()
+                .any(|entry| entry.instance() == instance)
+            {
+                self.inventory_filter = InventoryFilter::All;
+                self.inventory_scroll = None;
+            }
+            self.select_inventory_instance(instance);
             return;
         }
         if count == 0 {
@@ -18017,11 +19139,13 @@ impl AsciiApp {
         if self.controls.pressed(Action::MenuUp, input) {
             self.inventory_scroll = None;
             self.inventory_selection = self.inventory_selection.saturating_sub(1);
+            self.preview_selected_inventory_item();
             return;
         }
         if self.controls.pressed(Action::MenuDown, input) {
             self.inventory_scroll = None;
             self.inventory_selection = (self.inventory_selection + 1).min(count - 1);
+            self.preview_selected_inventory_item();
             return;
         }
 
@@ -18109,6 +19233,12 @@ impl AsciiApp {
             self.select_inventory_instance(item);
             return;
         }
+        if self.inventory_item_is_torso(item)
+            && (self.controls.pressed(Action::Slot2, input) || mouse_action == Some(1))
+        {
+            self.update_inventory_body_appearance(item);
+            return;
+        }
         if self.controls.pressed(Action::Use, input) || mouse_action == Some(3) {
             let item_name = self
                 .game
@@ -18146,7 +19276,10 @@ impl AsciiApp {
             == Some(item)
         {
             self.active_weapon_slot = slot;
-            self.inventory_message = format!("Emplacement d'arme {} maintenant actif.", slot + 1);
+            self.inventory_message = format!(
+                "{} : configuration active.",
+                self.hand_slot_label(usize::from(slot))
+            );
             return;
         }
         let item_name = self
@@ -18160,8 +19293,8 @@ impl AsciiApp {
             CommandOutcome::Applied | CommandOutcome::AppliedWithoutTime => {
                 self.active_weapon_slot = slot;
                 self.inventory_message = format!(
-                    "{item_name} équipé et actif sur l'emplacement d'arme {}.",
-                    slot + 1
+                    "{item_name} équipé · {} : configuration active.",
+                    self.hand_slot_label(usize::from(slot))
                 );
             }
             CommandOutcome::Rejected(reason) => {
@@ -18178,11 +19311,9 @@ impl AsciiApp {
         let top = 30.0;
         let width = (self.ui_width() - margin * 2.0).max(620.0);
         let height = (self.ui_height() - top * 2.0).max(400.0);
-        let theme = UiTheme;
-        let cyan = Color::from_rgba(99, 242, 210, 255);
-        let muted = Color::from_rgba(155, 180, 191, 255);
-        let text = Color::from_rgba(231, 240, 244, 255);
-        let amber = UiTheme.accent();
+        let cyan = UiTheme.accent();
+        let muted = UiTheme.muted();
+        let amber = cyan;
         let inventory = self.game.player_inventory();
         let entries = self.inventory_entries();
         let equipped_count = self.inventory_equipped_count();
@@ -18195,19 +19326,24 @@ impl AsciiApp {
             self.inventory_scroll,
         );
         let left_width = layout.left_width;
-        let detail_right = layout.stats_panel.map_or(margin + width, |stats| stats.x);
-        let detail_x = margin + left_width + 24.0;
-        let detail_header = InventoryDetailHeader::new(detail_x, detail_right, top);
-        let separator = Color::from_rgba(43, 76, 84, 255);
+        let separator = crate::terminal_chrome::tint(0.32);
 
         draw_rectangle(
             0.0,
             0.0,
             self.ui_width(),
             self.ui_height(),
-            Color::from_rgba(0, 2, 4, 210),
+            Color::from_rgba(0, 2, 4, 255),
         );
-        theme.panel(Rect::new(margin, top, width, height));
+        draw_rectangle(margin, top, width, height, crate::terminal_chrome::ink());
+        draw_rectangle(
+            margin + 1.0,
+            top + 1.0,
+            width - 2.0,
+            57.0,
+            crate::terminal_chrome::tint(0.085),
+        );
+        crate::terminal_chrome::bezel(Rect::new(margin, top, width, height));
         draw_line(
             margin + left_width,
             top + 58.0,
@@ -18246,7 +19382,7 @@ impl AsciiApp {
         crate::ui_theme::draw_text_in_rect(
             "INVENTAIRE ET ÉQUIPEMENT",
             Rect::new(margin + 20.0, top + 13.0, left_width - 20.0, 32.0),
-            25,
+            22,
             cyan,
         );
         let capacity = format!("{:02}/{:02} places", inventory.len(), inventory.capacity());
@@ -18266,29 +19402,22 @@ impl AsciiApp {
         );
 
         for (index, (rect, filter)) in layout.filters.iter().zip(InventoryFilter::ALL).enumerate() {
-            theme.button_with_icon(
+            inventory_terminal::terminal_button(
                 *rect,
                 filter.label(),
-                inventory_filter_icon(filter),
-                ButtonState::new(
-                    self.menu_focus.hovered == Some(entries.len() + 6 + index),
-                    filter == self.inventory_filter,
-                    true,
-                    ButtonTone::Secondary,
-                ),
+                self.menu_focus.hovered == Some(entries.len() + 6 + index),
+                filter == self.inventory_filter,
+                true,
             );
         }
-        theme.button_with_icon(
+        inventory_terminal::terminal_button(
             layout.sort,
             &format!("Tri : {}", self.inventory_sort.label()),
-            UiIcon::Sort,
-            ButtonState::new(
-                self.menu_focus.hovered == Some(entries.len() + 11),
-                false,
-                true,
-                ButtonTone::Secondary,
-            ),
+            self.menu_focus.hovered == Some(entries.len() + 11),
+            false,
+            true,
         );
+
         draw_text(
             format!(
                 "{} · Catégorie   {} · Tri",
@@ -18331,9 +19460,11 @@ impl AsciiApp {
                 .game
                 .rules()
                 .player_weapon_slots
-                .get(usize::from(self.active_weapon_slot))
-                .is_some_and(|slot| {
-                    self.game.player_equipment().slot_of(entry.instance()) == Some(slot)
+                .iter()
+                .enumerate()
+                .any(|(index, slot)| {
+                    self.weapon_configuration_active(index)
+                        && self.game.player_equipment().slot_of(entry.instance()) == Some(slot)
                 });
             let status_color = if active {
                 amber
@@ -18342,15 +19473,14 @@ impl AsciiApp {
             } else {
                 muted
             };
-            draw_inventory_glyph(
-                Rect::new(row.x + 7.0, row.y + 9.0, 27.0, 27.0),
-                self.inventory_glyph(entry),
-                status_color,
-            );
+            let image = Rect::new(row.x + 4.0, row.y + 4.0, 40.0, 40.0);
+            if !crate::game_art::draw_item_variant(image, entry.item().as_str(), entry.palette()) {
+                draw_inventory_glyph(image, self.inventory_glyph(entry), status_color);
+            }
             let name = self.inventory_entry_name(entry);
             draw_text(
-                fit_inventory_label(&name, row.w - 49.0, 20, false),
-                row.x + 42.0,
+                fit_inventory_label(&name, row.w - 57.0, 20, false),
+                row.x + 50.0,
                 row.y + 21.0,
                 20.0,
                 equipment_affix_names::rarity_color(entry.magic_modifiers().as_ref()),
@@ -18365,8 +19495,8 @@ impl AsciiApp {
                 {
                     return self.equipment_slot_name(profile.slot()).to_uppercase();
                 }
-                if self.game.rules().weapons.get(entry.item()).is_some() {
-                    "ARME".to_owned()
+                if let Some(weapon) = self.game.rules().weapons.get(entry.item()) {
+                    self.weapon_category_label(weapon)
                 } else {
                     self.game
                         .rules()
@@ -18397,7 +19527,7 @@ impl AsciiApp {
             if entry.quantity() > 1 {
                 classification.push_str(&format!(" · x{}", entry.quantity()));
             }
-            let status_x = row.x + 42.0;
+            let status_x = row.x + 50.0;
             let label_x = if equipped_label.is_some() {
                 draw_ui_icon(
                     if active {
@@ -18439,372 +19569,29 @@ impl AsciiApp {
         );
 
         let selected = entries.get(self.inventory_selection).copied();
-        if let Some(entry) = selected {
-            let resolved_weapon = self.game.player_item_weapon(entry.instance());
-            let weapon = resolved_weapon.as_ref();
-            let item_definition = self.game.rules().items.get(entry.item());
-            let title = self.inventory_entry_name(entry);
-            let title_width = detail_header.title.w;
-            let title_size = (18..=27)
-                .rev()
-                .find(|size| measure_text_bold(&title, *size).width <= title_width)
-                .unwrap_or(18);
-            draw_text_bold(
-                fit_inventory_label(&title, title_width, title_size, true),
-                detail_x,
-                detail_header.title.bottom() - 7.0,
-                f32::from(title_size),
-                equipment_affix_names::rarity_color(entry.magic_modifiers().as_ref()),
-            );
-            draw_inventory_glyph(detail_header.glyph, self.inventory_glyph(entry), cyan);
-            let content_width = detail_right - detail_x - 20.0;
-            let compact_detail = height < 600.0;
-            let bonus_start = detail_header.bonus_y;
-            let bonus_gap = if compact_detail { 24.0 } else { 26.0 };
-            let mut bonus_lines = entry
-                .magic_modifiers()
-                .map(equipment_affix_names::affix_detail_lines)
-                .unwrap_or_default();
-            if bonus_lines.is_empty() {
-                if let Some(label) = entry
-                    .magic_modifiers()
-                    .map(effect_feedback::weapon_bonus_label)
-                    .filter(|label| !label.is_empty())
-                {
-                    bonus_lines = label.split(" · ").map(str::to_owned).collect();
-                }
-            }
-            let bonus_bottom = if bonus_lines.is_empty() {
-                let label = if weapon.is_some()
-                    || item_definition.is_some_and(|item| item.kind() == ItemKind::Armor)
-                {
-                    "Aucun bonus d’attribut"
-                } else if item_definition.is_some_and(|item| item.kind() == ItemKind::Consumable) {
-                    "Consommable"
-                } else {
-                    "Matériau"
-                };
-                draw_text(label, detail_x, bonus_start, 17.0, muted);
-                bonus_start
-            } else {
-                let columns = if compact_detail && bonus_lines.len() > 3 {
-                    2
-                } else {
-                    1
-                };
-                let column_width = content_width / columns as f32;
-                let bonus_size = if columns == 2 { 16 } else { 20 };
-                for (index, line) in bonus_lines.iter().enumerate() {
-                    draw_text_bold(
-                        fit_inventory_label(line, column_width - 8.0, bonus_size, true),
-                        detail_x + (index % columns) as f32 * column_width,
-                        bonus_start + (index / columns) as f32 * bonus_gap,
-                        f32::from(bonus_size),
-                        Color::from_rgba(158, 255, 219, 255),
-                    );
-                }
-                bonus_start + (bonus_lines.len().saturating_sub(1) / columns) as f32 * bonus_gap
-            };
-            let mut rows = Vec::new();
-            if let Some(weapon) = weapon {
-                let attack = self
-                    .game
-                    .player_item_attack_profile(entry.instance())
-                    .unwrap_or_else(|| weapon.attack());
-                let authored_damage = attack.damage();
-                let damage = self
-                    .game
-                    .resolved_attack_damage(self.game.player_id(), attack)
-                    .unwrap_or(authored_damage);
-                let damage_label = attack.melee_impact().map_or_else(
-                    || damage.raw_total().to_string(),
-                    |impact| {
-                        format!(
-                            "{} (base {} · max. {})",
-                            damage.raw_total(),
-                            physical_damage_total(authored_damage),
-                            impact.material_cap
-                        )
-                    },
-                );
-                let area = if let Some(launcher) = weapon.launcher() {
-                    format!(
-                        "Explosion · rayon {} · {}",
-                        launcher.radius,
-                        if launcher.delay_turns == 0 {
-                            "à l’impact".into()
-                        } else {
-                            format!("{} tours", launcher.delay_turns)
-                        }
-                    )
-                } else {
-                    match attack.area() {
-                        AttackArea::Single => "Cible unique".to_owned(),
-                        AttackArea::Adjacent => "Cases voisines".to_owned(),
-                        AttackArea::Pulse(pulse) => format!("Onde · rayon {}", pulse.radius()),
-                        AttackArea::Cone(cone) => format!(
-                            "Cône · largeur 1 à {}",
-                            cone.maximum_half_width()
-                                .saturating_mul(2)
-                                .saturating_add(1)
-                        ),
-                    }
-                };
-                rows.extend([
-                    (
-                        "Dégâts",
-                        format!("{damage_label} · {}", damage_component_types_label(damage)),
-                    ),
-                    (
-                        "Maniement",
-                        format!(
-                            "{:+} précision · {} pénétration",
-                            attack.accuracy_modifier(),
-                            format_damage_penetration(damage)
-                        ),
-                    ),
-                    (
-                        "Portée",
-                        format!(
-                            "{} case{} · {}",
-                            attack.range(),
-                            if attack.range() > 1 { "s" } else { "" },
-                            if attack.requires_line_of_sight() {
-                                "vue requise"
-                            } else {
-                                "sans ligne de vue"
-                            }
-                        ),
-                    ),
-                    ("Zone", area),
-                ]);
-                if !weapon.distance_damage_percentages().is_empty() {
-                    rows.push(("Distance", weapon_distance_damage_label(weapon, damage)));
-                }
-                if let Some(burst) = weapon.burst() {
-                    rows.push((
-                        "Rafale",
-                        format!(
-                            "{} balles · {} dégâts chacune",
-                            burst.shots,
-                            damage.raw_total()
-                        ),
-                    ));
-                    if burst.sustained_accuracy > 0 {
-                        rows.push((
-                            "Tir soutenu",
-                            format!(
-                                "+{} précision par rafale · max. +{}",
-                                burst.sustained_accuracy,
-                                burst.sustained_accuracy * 3
-                            ),
-                        ));
-                        rows.push(("Chaleur", format!("+{} par rafale", burst.heat)));
-                    }
-                }
-                if let Some(launcher) = weapon
-                    .launcher()
-                    .filter(|launcher| launcher.delay_turns > 0)
-                {
-                    rows.push((
-                        "Explosion",
-                        format!(
-                            "{} dégâts · après {} tours",
-                            launcher.damage.amount, launcher.delay_turns
-                        ),
-                    ));
-                }
-                if let Some(supply) = self
-                    .game
-                    .weapon_supply(weapon.id())
-                    .and_then(|_| self.weapon_supply_label(weapon.id()))
-                {
-                    rows.push(("Coût du tir", supply));
-                }
-            } else if let Some(definition) = item_definition {
-                if let Some(equipment) = definition.equipment() {
-                    let magic = entry.magic_modifiers();
-                    rows.push((
-                        "Armure",
-                        magic
-                            .as_ref()
-                            .filter(|bonus| bonus.armor_bonus() > 0)
-                            .map_or_else(
-                                || format!("+{}", equipment.armor()),
-                                |bonus| {
-                                    format!(
-                                        "+{} (base {} + bonus {})",
-                                        equipment.armor().saturating_add(bonus.armor_bonus()),
-                                        equipment.armor(),
-                                        bonus.armor_bonus()
-                                    )
-                                },
-                            ),
-                    ));
-                    rows.push((
-                        "Emplacement",
-                        self.equipment_slot_name(equipment.slot()).to_owned(),
-                    ));
-                    if equipment.evasion_penalty() > 0 {
-                        rows.push(("Esquive", format!("-{}", equipment.evasion_penalty())));
-                    }
-                    if let Some(bonus) = magic
-                        .as_ref()
-                        .filter(|bonus| bonus.mass_reduction_percent() > 0)
-                    {
-                        rows.push((
-                            "Allègement",
-                            format!("Masse −{} %", bonus.mass_reduction_percent()),
-                        ));
-                    }
-                    rows.push((
-                        "Bonus",
-                        magic
-                            .as_ref()
-                            .map_or(0, project_rl::entity::MagicItemModifiers::bonus_count)
-                            .to_string(),
-                    ));
-                } else {
-                    rows.push(("Pile maximale", definition.maximum_stack().to_string()));
-                }
-                rows.push(("Quantité", entry.quantity().to_string()));
-                for effect in definition.effects() {
-                    let ItemEffect::RestoreIntegrity { amount } = effect;
-                    rows.push(("Restaure", format!("{amount} PV")));
-                }
-            }
-            if let Some(owner) = entry.owner() {
-                rows.push((
-                    "Propriété",
-                    if self.game.player_may_take_property_of(owner) {
-                        "Attribué · autorisé"
-                    } else {
-                        "Attribué · non autorisé"
-                    }
-                    .to_owned(),
-                ));
-            }
-            let row_gap = if compact_detail { 24.0 } else { 36.0 };
-            let mut row_y = bonus_bottom + if compact_detail { 34.0 } else { 38.0 };
-            let value_x = detail_x + 132.0;
-            for (label, value) in &rows {
-                draw_text(*label, detail_x, row_y, 17.0, muted);
-                let next_y = draw_wrapped_text(
-                    value,
-                    value_x,
-                    row_y,
-                    (detail_right - value_x - 20.0).max(80.0),
-                    2,
-                    18,
-                    text,
-                );
-                row_y = next_y + row_gap - 23.0;
-            }
-            if let Some(weapon) = weapon {
-                let modifiers = entry.magic_modifiers();
-                let effect_affix = modifiers
-                    .as_ref()
-                    .and_then(|bonus| bonus.effect_affix())
-                    .and_then(|id| self.game.rules().weapons.effect_affix(id));
-                let description = self
-                    .texts
-                    .resolve(
-                        DISPLAY_LOCALE,
-                        effect_affix
-                            .map_or(weapon.description_key(), |effect| effect.description_key()),
-                    )
-                    .unwrap_or("");
-                let limits = self.weapon_effect_limits(weapon);
-                let mut description_y = row_y + if compact_detail { 8.0 } else { 12.0 };
-                if !weapon.effects().is_empty() {
-                    draw_text_bold("Effet spécial", detail_x, description_y, 17.0, cyan);
-                    description_y += if compact_detail { 22.0 } else { 26.0 };
-                }
-                let bottom = top + height - 62.0;
-                let lines = if description_y <= bottom {
-                    ((bottom - description_y) / 23.0).floor() as usize + 1
-                } else {
-                    0
-                };
-                let reserved = usize::from(!limits.is_empty()).min(lines);
-                let next_y = draw_wrapped_text(
-                    description,
-                    detail_x,
-                    description_y,
-                    content_width,
-                    lines.saturating_sub(reserved),
-                    18,
-                    text,
-                );
-                draw_wrapped_text(
-                    &limits,
-                    detail_x,
-                    next_y + 3.0,
-                    content_width,
-                    reserved,
-                    15,
-                    muted,
-                );
-            }
-        }
-
-        if selected.is_none() && self.inventory_filter == InventoryFilter::Armor {
-            draw_text_bold(
-                "AUCUNE ARMURE TRANSPORTÉE",
-                detail_x,
-                detail_header.title.bottom() - 7.0,
-                24.0,
-                amber,
-            );
-            draw_inventory_glyph(
-                Rect::new(detail_x, top + 140.0, 48.0, 48.0),
-                InventoryGlyph::Armor,
-                muted,
-            );
-            let guidance = if self.generation_version < ARMOR_EQUIPMENT_GENERATION_VERSION {
-                "Cette partie suspendue conserve ses anciennes règles. Commencez une nouvelle partie pour activer les armures équipables."
-            } else {
-                "BRÈCHE commence avec un plastron rapiécé dans son sac. Sinon, fouillez les caches à l'extérieur de la ville ; les protections plus solides deviennent plus fréquentes en profondeur."
-            };
-            draw_wrapped_text(
-                guidance,
-                detail_x,
-                top + 222.0,
-                detail_right - detail_x - 24.0,
-                4,
-                17,
-                text,
-            );
-        }
-
-        UiTheme.button(
+        let equipment =
+            inventory_terminal::EquipmentLayout::new(&layout, self.ui_width(), self.ui_height())
+                .for_hands(self.game.rules().uses_weapon_hands());
+        self.draw_inventory_equipment(&equipment);
+        inventory_terminal::terminal_button(
             Rect::new(32.0 + layout.left_width + 12.0, 47.0, 145.0, 31.0),
             "Détails / comparer",
             false,
             false,
             !entries.is_empty(),
-            ButtonTone::Secondary,
         );
-        if layout.stats_panel.is_none() {
-            UiTheme.button(
-                layout.character_details.unwrap(),
+        if let Some(panel) = layout.stats_panel {
+            self.draw_inventory_gauges(panel);
+        }
+        if let Some(button) = layout.character_details {
+            inventory_terminal::terminal_button(
+                button,
                 &format!("Personnage [{}]", self.controls.label(Action::Character)),
-                false,
+                self.menu_focus.hovered == Some(entries.len() + 12),
                 false,
                 true,
-                ButtonTone::Secondary,
             );
         }
-        if let Some(stats_panel) = layout.stats_panel {
-            self.draw_inventory_character_summary(
-                stats_panel,
-                layout
-                    .character_details
-                    .expect("a stats panel has a button"),
-                entries.len() + 12,
-            );
-        }
-
         if let Some((track, thumb)) = layout.scrollbar(entries.len()) {
             draw_rectangle(track.x, track.y, track.w, track.h, UiTheme.surface_raised());
             draw_rectangle(thumb.x, thumb.y, thumb.w, thumb.h, cyan);
@@ -18831,23 +19618,41 @@ impl AsciiApp {
                 (
                     if index == 0 {
                         format!("Équiper [{}]", self.controls.label(Action::Use))
+                    } else if index == 1
+                        && selected
+                            .is_some_and(|entry| self.inventory_item_is_torso(entry.instance()))
+                    {
+                        format!(
+                            "Transmogrification [{}]",
+                            self.controls.label(Action::Slot2)
+                        )
                     } else {
                         String::new()
                     },
-                    index == 0,
+                    index == 0
+                        || index == 1
+                            && selected.is_some_and(|entry| {
+                                self.inventory_item_is_torso(entry.instance())
+                            }),
                 )
             } else {
                 let action = [Action::Slot1, Action::Slot2, Action::Slot3][index];
                 (
                     format!(
                         "{} [{}]",
-                        self.equipped_instance_name(index as u8)
-                            .map_or("Équiper · vide".to_owned(), |name| format!(
-                                "Remplacer {name}"
-                            )),
+                        self.hand_slot_label(index),
                         self.controls.label(action)
                     ),
-                    selected_is_weapon,
+                    selected_is_weapon
+                        && selected.is_some_and(|entry| {
+                            self.game
+                                .rules()
+                                .weapons
+                                .get(entry.item())
+                                .is_some_and(|weapon| {
+                                    self.game.rules().weapon_fits_slot(weapon, index)
+                                })
+                        }),
                 )
             }
         });
@@ -18872,242 +19677,48 @@ impl AsciiApp {
             {
                 continue;
             }
-            let icon = match index {
-                0..=2 => UiIcon::Equip,
-                3 => UiIcon::Use,
-                4 => UiIcon::Drop,
-                _ => UiIcon::Cancel,
-            };
-            theme.button_with_icon(
+            inventory_terminal::terminal_button(
                 *rect,
                 label,
-                icon,
-                ButtonState::new(
-                    self.menu_focus.hovered == Some(entries.len() + index),
-                    false,
-                    *enabled,
-                    ButtonTone::Secondary,
-                ),
+                self.menu_focus.hovered == Some(entries.len() + index),
+                false,
+                *enabled,
             );
         }
         if !self.inventory_message.is_empty() {
-            draw_wrapped_text(
+            let left = margin + left_width + 12.0;
+            let right = layout.stats_panel.map_or(margin + width, |stats| stats.x);
+            crate::ui_theme::draw_text_in_rect(
                 &self.inventory_message,
-                detail_header.message.x,
-                detail_header.message.y + 14.0,
-                detail_header.message.w,
-                1,
-                15,
-                amber,
+                Rect::new(left, top + height - 79.0, right - left - 12.0, 22.0),
+                14,
+                cyan,
             );
         }
+        self.draw_inventory_tooltip(&layout);
     }
 
-    fn draw_inventory_character_summary(
+    fn class_creation_visual(
         &self,
-        panel: Rect,
-        details_button: Rect,
-        focus_index: usize,
-    ) {
-        let theme = UiTheme;
-        let card = Rect::new(panel.x + 8.0, panel.y, panel.w - 16.0, panel.h);
-        theme.card(card, false);
-        let x = card.x + 13.0;
-        let right = card.x + card.w - 13.0;
-
-        draw_text_bold("PERSONNAGE", x, card.y + 27.0, 18.0, theme.accent());
-        let progression = self.game.player_progression();
-        let level = format!("NV {}", progression.level());
-        draw_text_bold(
-            &level,
-            right - measure_text_bold(&level, 16).width,
-            card.y + 27.0,
-            16.0,
-            theme.focus(),
-        );
-        let class_name = self
-            .character_class
-            .as_ref()
-            .and_then(|id| self.character_classes.get(id))
-            .and_then(|class| self.texts.resolve(DISPLAY_LOCALE, class.name_key()))
-            .unwrap_or("Restauration antérieure");
-        draw_wrapped_text(
-            class_name,
-            x,
-            card.y + 52.0,
-            card.w - 26.0,
-            1,
-            14,
-            theme.text(),
-        );
-        draw_line(
-            x,
-            card.y + 68.0,
-            right,
-            card.y + 68.0,
-            1.0,
-            Color::from_rgba(43, 76, 84, 255),
-        );
-
-        draw_text_bold("PRIMAIRES", x, card.y + 91.0, 14.0, theme.muted());
-        let attributes = self.game.player_effective_primary_attributes();
-        for (index, attribute) in PrimaryAttribute::ALL.into_iter().enumerate() {
-            let y = card.y + 117.0 + index as f32 * 25.0;
-            draw_text(primary_attribute_label(attribute), x, y, 15.0, theme.text());
-            if let Some(attributes) = attributes {
-                let value = attributes.value(attribute);
-                let bonus = self.game.player_attribute_bonus(attribute);
-                if bonus == 0 {
-                    draw_attribute_meter(
-                        right - 91.0,
-                        y - 5.0,
-                        61.0,
-                        value,
-                        self.rules.primary_attribute_rules.absolute_minimum,
-                        self.rules.primary_attribute_rules.absolute_maximum,
-                        theme.accent(),
-                    );
-                }
-                let value = if bonus == 0 {
-                    value.to_string()
-                } else {
-                    format!("{value} (+{bonus})")
-                };
-                draw_text_bold(
-                    &value,
-                    right - measure_text_bold(&value, 17).width,
-                    y,
-                    17.0,
-                    theme.focus(),
-                );
-            } else {
-                draw_text("--", right - 18.0, y, 15.0, theme.muted());
-            }
+        class: &project_rl::character_class::CharacterClassDefinition,
+    ) -> crate::game_art::Visual {
+        let mut visual =
+            crate::game_art::player(Some(class.id().as_str()), PlayerWeaponPose::Unarmed, None);
+        if let crate::game_art::Visual::Player { weapon, hands, .. } = &mut visual {
+            *weapon = class
+                .starting_weapons()
+                .first()
+                .and_then(|id| crate::game_art::held_weapon(id.as_str()));
+            *hands = class
+                .starting_weapons()
+                .first()
+                .and_then(|id| self.rules.weapons.get(id))
+                .and_then(|definition| {
+                    (self.rules.weapon_hands(definition) == project_rl::game::WeaponHands::One)
+                        .then_some([*weapon, None])
+                });
         }
-
-        draw_text_bold("SECONDAIRES", x, card.y + 258.0, 14.0, theme.muted());
-        let actor = self.game.actors().get(self.game.player_id());
-        let integrity = actor.map_or_else(
-            || "--".to_owned(),
-            |actor| format!("{} / {}", actor.integrity(), actor.maximum_integrity()),
-        );
-        let armor = self
-            .game
-            .actor_armor_profile(self.game.player_id())
-            .map_or_else(
-                || "--".to_owned(),
-                |armor| armor.after_fragilization().to_string(),
-            );
-        for (index, (label, value)) in [
-            ("PV", integrity),
-            ("Armure", armor),
-            (
-                "Énergie",
-                format!(
-                    "{} / {}",
-                    self.game.player_energy().available(),
-                    self.game.player_energy().capacity()
-                ),
-            ),
-            ("Expérience", progression.experience().to_string()),
-            (
-                "Points comp.",
-                progression.unspent_skill_points().to_string(),
-            ),
-        ]
-        .into_iter()
-        .enumerate()
-        {
-            draw_summary_metric(
-                x,
-                right,
-                card.y + 283.0 + index as f32 * 25.0,
-                label,
-                &value,
-            );
-        }
-
-        let active_weapon = self.game.equipped_player_weapon(self.active_weapon_slot);
-        let hit_chance = active_weapon
-            .zip(self.rules.hit_rules)
-            .map(|(weapon, rules)| {
-                let attack = self
-                    .game
-                    .equipped_player_weapon_item(self.active_weapon_slot)
-                    .and_then(|item| self.game.player_item_attack_profile(item))
-                    .unwrap_or_else(|| weapon.attack());
-                rules.hit_chance(
-                    attack.delivery(),
-                    attributes,
-                    attack.accuracy_modifier(),
-                    None,
-                    0,
-                    0,
-                )
-            });
-        let evasion = self
-            .rules
-            .hit_rules
-            .map(|rules| rules.evasion(attributes, 0));
-        let damage = active_weapon.and_then(|weapon| {
-            self.game
-                .resolved_attack_damage(self.game.player_id(), weapon.attack())
-        });
-        let impact = active_weapon
-            .and_then(|weapon| weapon.attack().melee_impact())
-            .zip(self.rules.physical_rules)
-            .map(|(profile, rules)| {
-                let weapon = active_weapon.expect("paired weapon remains present");
-                let resolved = rules.impact.resolve_melee_damage(
-                    attributes,
-                    profile.impact_modifier,
-                    profile.material_cap,
-                    physical_damage_total(weapon.attack().damage()),
-                );
-                format!("{} / {}", resolved.available, resolved.used)
-            });
-        draw_text_bold("COMBAT ACTIF", x, card.y + 427.0, 14.0, theme.muted());
-        for (index, (label, value)) in [
-            (
-                "Touche",
-                hit_chance.map_or_else(|| "--".to_owned(), |chance| format!("{chance} %")),
-            ),
-            (
-                "Esquive",
-                evasion.map_or_else(|| "--".to_owned(), |value| value.to_string()),
-            ),
-            (
-                "Dégâts",
-                damage.map_or_else(|| "--".to_owned(), format_damage_impact),
-            ),
-            ("Impact", impact.unwrap_or_else(|| "--".to_owned())),
-        ]
-        .into_iter()
-        .enumerate()
-        {
-            draw_summary_metric(
-                x,
-                right,
-                card.y + 452.0 + index as f32 * 25.0,
-                label,
-                &value,
-            );
-        }
-
-        theme.button_with_icon(
-            details_button,
-            &format!(
-                "Fiche détaillée · {}",
-                self.controls.label(Action::Character)
-            ),
-            UiIcon::Character,
-            ButtonState::new(
-                self.menu_focus.hovered == Some(focus_index),
-                false,
-                true,
-                ButtonTone::Secondary,
-            ),
-        );
+        visual
     }
 
     fn draw_character_creation(&self) {
@@ -19122,9 +19733,15 @@ impl AsciiApp {
         let detail_x = panel.x + left_width + 24.0;
         let detail_width = panel.w - left_width - 48.0;
         let rules = self.rules.primary_attribute_rules;
-        let remaining = rules
-            .creation_total
-            .saturating_sub(creation.attributes.total());
+        let remaining = if classes
+            .get(creation.selected_class)
+            .is_some_and(|(_, c)| c.agent_start().is_some())
+        {
+            34
+        } else {
+            u32::from(rules.creation_total)
+        }
+        .saturating_sub(creation.attributes.total());
         let customizing = creation.stage == CharacterCreationStage::Attributes;
         draw_rectangle(
             0.0,
@@ -19138,7 +19755,7 @@ impl AsciiApp {
             if customizing {
                 "Personnaliser les attributs"
             } else {
-                "Choisir votre profil"
+                "Choisir votre classe"
             },
             panel.x + 24.0,
             panel.y + 40.0,
@@ -19162,11 +19779,9 @@ impl AsciiApp {
         if !customizing {
             for (index, ((_, class), row)) in classes.iter().zip(&layout.class_rows).enumerate() {
                 theme.card(*row, index == creation.selected_class);
-                let icon = [UiIcon::Attack, UiIcon::Techniques, UiIcon::Armor][index % 3];
-                draw_ui_icon(
-                    icon,
-                    Rect::new(row.x + 14.0, row.y + 15.0, 24.0, 24.0),
-                    theme.accent(),
+                crate::game_art::draw_portrait(
+                    Rect::new(row.x + 2.0, row.y + (row.h - 64.0) * 0.5, 64.0, 64.0),
+                    self.class_creation_visual(class),
                 );
                 let name = self
                     .texts
@@ -19176,12 +19791,12 @@ impl AsciiApp {
                     .texts
                     .resolve(DISPLAY_LOCALE, class.role_key())
                     .unwrap_or("");
-                draw_text_bold(name, row.x + 50.0, row.y + 25.0, 20.0, theme.text());
+                draw_text_bold(name, row.x + 72.0, row.y + 25.0, 20.0, theme.text());
                 draw_wrapped_text(
                     role,
-                    row.x + 50.0,
+                    row.x + 72.0,
                     row.y + 46.0,
-                    row.w - 62.0,
+                    row.w - 84.0,
                     1,
                     14,
                     theme.muted(),
@@ -19224,13 +19839,13 @@ impl AsciiApp {
                         layout.attribute_minus[index],
                         "−",
                         CharacterCreationHover::AttributeMinus(index),
-                        value > rules.creation_minimum,
+                        value > u16::from(rules.creation_minimum),
                     ),
                     (
                         layout.attribute_plus[index],
                         "+",
                         CharacterCreationHover::AttributePlus(index),
-                        value < rules.creation_maximum && remaining > 0,
+                        value < u16::from(rules.creation_maximum) && remaining > 0,
                     ),
                 ] {
                     theme.button(
@@ -19307,10 +19922,14 @@ impl AsciiApp {
                     description,
                     detail_x,
                     panel.y + 143.0,
-                    detail_width,
+                    (detail_width - 192.0).max(100.0),
                     4,
                     16,
                     theme.text(),
+                );
+                crate::game_art::draw_portrait(
+                    Rect::new(panel.right() - 210.0, panel.y + 104.0, 192.0, 192.0),
+                    self.class_creation_visual(class),
                 );
                 let equipment = class
                     .starting_weapons()
@@ -19324,14 +19943,14 @@ impl AsciiApp {
                 draw_text_bold(
                     "Équipement de départ",
                     detail_x,
-                    y + 26.0,
+                    (y + 26.0).max(panel.y + 304.0),
                     16.0,
                     theme.muted(),
                 );
                 let y = draw_wrapped_text(
                     &equipment,
                     detail_x,
-                    y + 49.0,
+                    (y + 49.0).max(panel.y + 327.0),
                     detail_width,
                     3,
                     15,
@@ -19353,21 +19972,23 @@ impl AsciiApp {
                 );
             }
         }
-        theme.button(
-            layout.preset,
-            &if customizing {
-                "Rétablir le profil recommandé".to_owned()
-            } else {
-                format!(
-                    "Personnaliser les attributs [{}]",
-                    self.controls.label(Action::InventoryFilter)
-                )
-            },
-            creation.hovered == Some(CharacterCreationHover::Preset),
-            false,
-            true,
-            ButtonTone::Secondary,
-        );
+        if selected.is_none_or(|class| class.agent_start().is_none()) {
+            theme.button(
+                layout.preset,
+                &if customizing {
+                    "Rétablir le profil recommandé".to_owned()
+                } else {
+                    format!(
+                        "Personnaliser les attributs [{}]",
+                        self.controls.label(Action::InventoryFilter)
+                    )
+                },
+                creation.hovered == Some(CharacterCreationHover::Preset),
+                false,
+                true,
+                ButtonTone::Secondary,
+            );
+        }
         theme.button(
             layout.cancel,
             if customizing {
@@ -19382,11 +20003,7 @@ impl AsciiApp {
         );
         theme.button(
             layout.continue_button,
-            if customizing {
-                "Commencer la partie"
-            } else {
-                "Commencer avec ce profil"
-            },
+            "Commencer la partie",
             creation.hovered == Some(CharacterCreationHover::Continue),
             false,
             remaining == 0,
@@ -19543,6 +20160,20 @@ impl AsciiApp {
             16.0,
             theme.muted(),
         );
+        let allocating = self.game.rules().agent_class_start.is_some();
+        if allocating {
+            let label = format!(
+                "{} POINTS DISPONIBLES",
+                self.game.unspent_attribute_points()
+            );
+            draw_text(
+                &label,
+                margin + left_width - 20.0 - measure_text(&label, None, 12, 1.0).width,
+                top + 205.0,
+                12.0,
+                theme.focus(),
+            );
+        }
         let attributes = self.game.player_effective_primary_attributes();
         for (index, attribute) in PrimaryAttribute::ALL.into_iter().enumerate() {
             let row = layout.attribute_rows[index];
@@ -19581,12 +20212,24 @@ impl AsciiApp {
             );
             draw_text_bold(
                 &value_label,
-                row.x + row.w - 10.0 - measure_text_bold(&value_label, 20).width,
+                row.x + row.w
+                    - if allocating { 36.0 } else { 10.0 }
+                    - measure_text_bold(&value_label, 20).width,
                 row.y + row.h * 0.72,
                 20.0,
                 theme.focus(),
             );
-            if bonus == 0 {
+            if allocating {
+                theme.button(
+                    layout.attribute_increases[index],
+                    "+",
+                    false,
+                    false,
+                    self.game.can_allocate_attribute(attribute),
+                    ButtonTone::Secondary,
+                );
+            }
+            if bonus == 0 && !allocating {
                 draw_attribute_meter(
                     row.x + row.w * 0.48,
                     row.y + row.h * 0.5,
@@ -19803,6 +20446,10 @@ impl AsciiApp {
     }
 
     fn draw_skills(&self) {
+        if self.uses_agent_skill_window() {
+            self.draw_agent_skills();
+            return;
+        }
         let margin = 32.0;
         let top = 30.0;
         let width = (self.ui_width() - margin * 2.0).max(620.0);
@@ -20582,11 +21229,17 @@ impl AsciiApp {
                     self.open_menu(MenuScreen::Main);
                     return;
                 }
-                let customize = self.controls.pressed(Action::InventoryFilter, input)
-                    || clicked
-                        && input
-                            .pointer
-                            .is_some_and(|p| layout.preset.contains(p.into()));
+                let fixed = self
+                    .character_classes
+                    .iter()
+                    .nth(creation.selected_class)
+                    .is_some_and(|(_, c)| c.agent_start().is_some());
+                let customize = !fixed
+                    && (self.controls.pressed(Action::InventoryFilter, input)
+                        || clicked
+                            && input
+                                .pointer
+                                .is_some_and(|p| layout.preset.contains(p.into())));
                 if customize {
                     creation.stage = CharacterCreationStage::Attributes;
                     creation.message.clear();
@@ -20597,7 +21250,11 @@ impl AsciiApp {
                             .is_some_and(|p| layout.continue_button.contains(p.into()))
                 {
                     if creation.attributes.total()
-                        != self.rules.primary_attribute_rules.creation_total
+                        != if fixed {
+                            34
+                        } else {
+                            u32::from(self.rules.primary_attribute_rules.creation_total)
+                        }
                     {
                         creation.stage = CharacterCreationStage::Attributes;
                         creation.message =
@@ -20677,7 +21334,7 @@ impl AsciiApp {
                             }));
                     if start
                         && creation.attributes.total()
-                            != self.rules.primary_attribute_rules.creation_total
+                            != u32::from(self.rules.primary_attribute_rules.creation_total)
                     {
                         creation.message =
                             "Répartissez les points restants pour commencer.".to_owned();
@@ -20703,7 +21360,7 @@ impl AsciiApp {
         let rules = self.rules.primary_attribute_rules;
         let current = creation.attributes.value(attribute);
         let next = if delta < 0 {
-            if current <= rules.creation_minimum {
+            if current <= u16::from(rules.creation_minimum) {
                 creation.message = format!(
                     "{} ne peut pas descendre sous {}.",
                     primary_attribute_label(attribute),
@@ -20713,7 +21370,7 @@ impl AsciiApp {
             }
             current - 1
         } else {
-            if current >= rules.creation_maximum {
+            if current >= u16::from(rules.creation_maximum) {
                 creation.message = format!(
                     "{} ne peut pas dépasser {} à la création.",
                     primary_attribute_label(attribute),
@@ -20721,7 +21378,7 @@ impl AsciiApp {
                 );
                 return;
             }
-            if creation.attributes.total() >= rules.creation_total {
+            if creation.attributes.total() >= u32::from(rules.creation_total) {
                 creation.message = "Retirez d'abord un point à un autre attribut.".to_owned();
                 return;
             }
@@ -20741,10 +21398,6 @@ impl AsciiApp {
             .nth(creation.selected_class)
             .map(|(id, definition)| (id.clone(), definition.clone()))
             .ok_or("Protocole de restauration sélectionné introuvable.")?;
-        creation
-            .attributes
-            .validate_for_creation(self.rules.primary_attribute_rules)
-            .map_err(|error| format!("Répartition incomplète : {error}"))?;
         let mut rules = self.rules.clone();
         definition
             .apply_to_rules(&mut rules, creation.attributes)
@@ -20760,13 +21413,7 @@ impl AsciiApp {
             self.expeditions.clone(),
         )?;
         fresh.character_class = Some(class_id);
-        fresh.active_weapon_slot = fresh
-            .game
-            .rules()
-            .player_starting_equipment
-            .iter()
-            .position(Option::is_some)
-            .unwrap_or(0) as u8;
+        fresh.active_weapon_slot = fresh.preferred_starting_weapon_slot();
         self.poll_crash_recovery_worker(true);
         if !creation.replace_suspension && self.has_resume_data() {
             return Err(
@@ -20854,13 +21501,7 @@ impl AsciiApp {
                     return;
                 }
                 next_run.character_class = self.character_class.clone();
-                next_run.active_weapon_slot = next_run
-                    .game
-                    .rules()
-                    .player_starting_equipment
-                    .iter()
-                    .position(Option::is_some)
-                    .unwrap_or(0) as u8;
+                next_run.active_weapon_slot = next_run.preferred_starting_weapon_slot();
                 next_run.controls = self.controls.clone();
                 next_run.controls_path = self.controls_path.clone();
                 next_run.options_message = self.options_message.clone();
@@ -21765,6 +22406,7 @@ impl AsciiApp {
         );
     }
 
+    #[cfg(debug_assertions)]
     fn resume_loading_panel(&self) -> Rect {
         let width = self.ui_width();
         let height = self.ui_height();
@@ -21802,14 +22444,25 @@ impl AsciiApp {
         if bytes.len() > MAX_APP_RECOVERY_SNAPSHOT_BYTES {
             return Err("Instantané de reprise trop volumineux.".to_owned());
         }
-        let snapshot: AppRecoverySnapshot = bincode::DefaultOptions::new()
+        let mut reader = std::io::Cursor::new(bytes.as_slice());
+        let mut snapshot: AppRecoverySnapshot = bincode::DefaultOptions::new()
             .with_fixint_encoding()
             .with_limit(MAX_APP_RECOVERY_SNAPSHOT_BYTES as u64)
-            .reject_trailing_bytes()
-            .deserialize(&bytes)
+            .allow_trailing_bytes()
+            .deserialize_from(&mut reader)
             .map_err(|error| format!("Instantané de reprise incompatible : {error}"))?;
         if snapshot.presentation_fingerprint != suspension::fingerprint(&snapshot.presentation) {
             return Err("Mémoire visuelle de reprise altérée.".to_owned());
+        }
+        let tail = &bytes[reader.position() as usize..];
+        if !tail.is_empty() {
+            let combat: recovery_worker::CombatRecoveryTail = bincode::DefaultOptions::new()
+                .with_fixint_encoding()
+                .with_limit(MAX_APP_RECOVERY_SNAPSHOT_BYTES as u64)
+                .reject_trailing_bytes()
+                .deserialize(tail)
+                .map_err(|error| format!("Traces de combat de reprise illisibles : {error}"))?;
+            combat.restore(&mut snapshot.presentation)?;
         }
         let game = WorldState::from_recovery_snapshot_bytes(&snapshot.engine, rules)?;
         Ok(DecodedAppRecoverySnapshot {
@@ -21837,11 +22490,12 @@ impl AsciiApp {
             world_rules: None,
             seed: self.seed,
             character_class: self.character_class.as_ref().map(ToString::to_string),
-            starting_attributes: self
-                .character_class
-                .as_ref()
-                .and_then(|_| self.game.player_primary_attributes())
-                .map(PrimaryAttributes::values),
+            starting_attributes: self.character_class.as_ref().map(|_| {
+                self.rules
+                    .player_starting_attributes
+                    .values()
+                    .map(|value| u8::try_from(value).expect("fixed starting distribution"))
+            }),
             recovery: None,
             commands,
             state: 0,
@@ -21851,6 +22505,11 @@ impl AsciiApp {
             log: self.log.clone(),
             observed_events: self.ux.history.clone(),
             tracked_quest: self.ux.tracked_quest.as_ref().map(ToString::to_string),
+            agent_skill_bar: if self.ux.skill_bar.iter().any(Option::is_some) {
+                self.ux.skill_bar.to_vec()
+            } else {
+                Vec::new()
+            },
         };
         Ok(saved)
     }
@@ -21898,18 +22557,37 @@ impl AsciiApp {
             let values = saved
                 .starting_attributes
                 .ok_or("Attributs du protocole absents de la suspension.")?;
-            let attributes =
+            let values = values.map(u16::from);
+            let mut attributes =
                 PrimaryAttributes::new(values[0], values[1], values[2], values[3], values[4]);
             let catalog = ascii_character_class_catalog()?;
             let definition = catalog
                 .get(class_id)
                 .ok_or("Le protocole enregistré n'est plus disponible ; suspension conservée.")?;
+            // Starting distributions are fixed; the sixth value is part of the
+            // class definition. Existing five-value save metadata stays readable.
+            if definition.agent_start().is_some() {
+                attributes = attributes.with_willpower(
+                    definition
+                        .recommended_attributes()
+                        .value(PrimaryAttribute::Willpower),
+                );
+            }
             definition
                 .apply_to_rules(&mut rules, attributes)
                 .map_err(|error| format!("Protocole enregistré incompatible : {error}"))?;
             weapon_supplies_app::ensure_class_weapon_supplies(&mut rules, saved.version);
         }
-        if saved.rules != rules_fingerprint_for_version(&rules, saved.version) {
+        let current_rules_match =
+            saved.rules == rules_fingerprint_for_version(&rules, saved.version);
+        let legacy_agent_rules_match =
+            !current_rules_match && rules.agent_class_start.is_some() && {
+                let mut candidate = rules.clone();
+                candidate.statuses =
+                    project_rl::skills::agent::legacy_v14_status_definitions(&candidate.statuses);
+                saved.rules == rules_fingerprint_for_version(&candidate, saved.version)
+            };
+        if !current_rules_match && !legacy_agent_rules_match {
             return Err("Les règles ou les mods ont changé ; suspension conservée.".to_owned());
         }
         let compatible_loot = loot_for_generation_version(&loot, &rules.items, saved.version);
@@ -21944,12 +22622,49 @@ impl AsciiApp {
             )?
         };
         let mut restored_from_snapshot = false;
-        if saved.build == env!("PROJECT_RL_BUILD_FINGERPRINT")
-            && let Some(snapshot) = saved
+        let snapshot_rules = if saved.version >= WEAPON_HANDS_GENERATION_VERSION {
+            restored.game.rules().clone()
+        } else {
+            restored.rules.clone()
+        };
+        // Only the exact agent catalogue delta above can open an old-build
+        // cache. The full legacy state is checked before installing additions.
+        fn has_agent_v14_engine(source: &str) -> bool {
+            if source.len() > MAX_APP_RECOVERY_SNAPSHOT_BYTES.saturating_mul(2) {
+                return false;
+            }
+            let Ok(bytes) = base64::engine::general_purpose::STANDARD.decode(source) else {
+                return false;
+            };
+            if bytes.len() > MAX_APP_RECOVERY_SNAPSHOT_BYTES {
+                return false;
+            }
+            let Ok(snapshot) = bincode::DefaultOptions::new()
+                .with_fixint_encoding()
+                .with_limit(MAX_APP_RECOVERY_SNAPSHOT_BYTES as u64)
+                .allow_trailing_bytes()
+                .deserialize::<AppRecoverySnapshot>(&bytes)
+            else {
+                return false;
+            };
+            snapshot.engine.starts_with(b"RLWS\x0e")
+        }
+        let verification_rules = if legacy_agent_rules_match {
+            let mut candidate = snapshot_rules.clone();
+            candidate.statuses =
+                project_rl::skills::agent::legacy_v14_status_definitions(&candidate.statuses);
+            candidate
+        } else {
+            snapshot_rules.clone()
+        };
+        if (saved.build == env!("PROJECT_RL_BUILD_FINGERPRINT") || legacy_agent_rules_match)
+            && let Some(snapshot_source) = saved
                 .recovery
                 .as_ref()
                 .and_then(RecoveryPayload::snapshot_state)
-            && let Ok(snapshot) = Self::decode_recovery_snapshot(snapshot, restored.rules.clone())
+            && (!legacy_agent_rules_match || has_agent_v14_engine(snapshot_source))
+            && let Ok(mut snapshot) =
+                Self::decode_recovery_snapshot(snapshot_source, verification_rules)
         {
             let state = if saved.version == 1 {
                 suspension::fingerprint(snapshot.game.active_game())
@@ -21957,6 +22672,14 @@ impl AsciiApp {
                 suspension::fingerprint(&snapshot.game)
             };
             if snapshot.game.status() == RunStatus::Active && state == saved.state {
+                if legacy_agent_rules_match {
+                    // Engine bytes carry no rules. This round-trip changes only
+                    // the verified catalogue, without replay, refresh or RNG use.
+                    snapshot.game = WorldState::from_recovery_snapshot_bytes(
+                        &snapshot.game.recovery_snapshot_bytes()?,
+                        snapshot_rules.clone(),
+                    )?;
+                }
                 restored.game = snapshot.game;
                 restored.terminal = snapshot.presentation.terminal;
                 restored.zone_views = snapshot.presentation.zone_views;
@@ -21971,6 +22694,12 @@ impl AsciiApp {
         }
 
         if !restored_from_snapshot {
+            if legacy_agent_rules_match {
+                return Err(
+                    "L'état reconstruit ne correspond pas à la suspension ; fichier conservé."
+                        .to_owned(),
+                );
+            }
             for (index, recorded) in saved.commands.iter().enumerate() {
                 let command = recorded.command(&restored.game)?;
                 if let CommandOutcome::Rejected(error) = restored.execute_command(command) {
@@ -22007,6 +22736,12 @@ impl AsciiApp {
             );
         }
         restored.observation_report = saved.report.clone();
+        for (index, id) in saved.agent_skill_bar.iter().take(6).enumerate() {
+            restored.ux.skill_bar[index] = id
+                .as_ref()
+                .filter(|id| restored.can_assign_agent_skill(id))
+                .cloned();
+        }
         restored.log = saved.log.clone();
         if !saved.observed_events.is_empty() {
             restored.ux.history = saved
@@ -22071,6 +22806,7 @@ impl AsciiApp {
         Ok(())
     }
 
+    #[cfg(any(debug_assertions, test))]
     fn finish_resume_request(&mut self) {
         if !std::mem::take(&mut self.resume_requested) {
             return;
@@ -22158,6 +22894,7 @@ impl AsciiApp {
         self.menu_message = "Reprise impossible : la sauvegarde ne peut pas être chargée. Elle a été conservée intacte.".to_owned();
     }
 
+    #[cfg(any(debug_assertions, test))]
     fn resume_run(&mut self) -> Result<(), String> {
         self.poll_crash_recovery_worker(true);
         let (saved, source) = Self::read_resume_candidate_from(&self.suspension_path)?;
@@ -23130,6 +23867,22 @@ const fn prototype_enemy_base_armor(index: usize, generation_version: u8) -> u16
 }
 
 fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules {
+    if version < PLAYER_VISION_GENERATION_VERSION {
+        rules.player_field_of_view.radius = 8;
+        rules.ordinary_actor_field_of_view = None;
+    }
+    if version < ONE_HAND_FIREARMS_GENERATION_VERSION {
+        let excluded = one_hand_firearms::model_ids();
+        for id in &excluded {
+            rules.weapons = rules.weapons.without_id(id);
+        }
+        if let Some(catalog) = &mut rules.monster_equipment_loot {
+            *catalog = catalog.without_items(&excluded);
+        }
+        if let Some(upgrade) = &mut rules.equipment_upgrade {
+            upgrade.catalog = upgrade.catalog.without_items(&excluded);
+        }
+    }
     rules.irreversible_layer_travel = version >= IRREVERSIBLE_LAYERS_GENERATION_VERSION;
     if let Some(stealth) = &mut rules.stealth_rules {
         stealth.circular_sound_fields = version >= INSTALLATION_INTERACTIONS_GENERATION_VERSION;
@@ -23144,6 +23897,7 @@ fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules 
             .without_id(&"core:unstable_fragment".parse().unwrap());
     }
     rules.weighted_equipment_bonuses = version >= BONUS_RARITY_GENERATION_VERSION;
+    rules.equipment_color_variants = version >= EQUIPMENT_COLORS_GENERATION_VERSION;
     if version < ACCESSORY_MODELS_GENERATION_VERSION {
         for id in equipment_generation::accessory_model_ids() {
             rules.items = rules.items.without_id(&id);
@@ -23589,6 +24343,9 @@ fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules 
         rules.weapons = rules.weapons.without_id(&flamethrower);
         rules.statuses = rules.statuses.without_id(&burning);
     }
+    if version >= WEAPON_HANDS_GENERATION_VERSION {
+        rules.enable_weapon_hands();
+    }
     rules
 }
 
@@ -23605,6 +24362,9 @@ fn loot_for_generation_version(
     compatible
         .equipment_mut()
         .set_weighted_bonus_counts(version >= BONUS_RARITY_GENERATION_VERSION);
+    if version < ONE_HAND_FIREARMS_GENERATION_VERSION {
+        compatible = compatible.without_items(&one_hand_firearms::model_ids());
+    }
     if version < EQUIPMENT_UPGRADE_GENERATION_VERSION {
         compatible = compatible.without_items(&["core:unstable_fragment".parse().unwrap()]);
     }
@@ -23759,6 +24519,11 @@ fn ascii_game_content() -> Result<(GameRules, TextCatalog, LootCatalog, Expediti
     let expeditions = loaded.expeditions().clone();
     let (statuses, weapons, items, skills) = loaded.into_registries();
     let mut rules = GameRules {
+        player_field_of_view: project_rl::world::FieldOfViewRules {
+            radius: 12,
+            ..Default::default()
+        },
+        ordinary_actor_field_of_view: Some(project_rl::world::FieldOfViewRules::default()),
         damage: DamageRules::specialized(),
         armor_rules: Some(ArmorRules::default()),
         hit_rules: Some(HitRules::default()),
@@ -24022,6 +24787,23 @@ fn status_display_name(id: &project_rl::content::ContentId) -> String {
         "core:bleeding" => "SAIGNEMENT".to_owned(),
         "core:poisoned" => "POISON".to_owned(),
         "lab:fracture_mark" => "MARQUAGE".to_owned(),
+        "agent:provoked" => "Provoqué".to_owned(),
+        "agent:frozen" => "Gel".to_owned(),
+        "agent:mine_frozen" => "Gel".to_owned(),
+        "agent:aegis" => "Égide occulte".to_owned(),
+        "agent:thorns" => "Barrière d’épine".to_owned(),
+        "agent:regeneration" => "Régénération".to_owned(),
+        "agent:armor_breach" => "Faille d’armure".to_owned(),
+        "agent:silence" => "Silence".to_owned(),
+        "agent:regeneration_break" => "Rupture de régénération".to_owned(),
+        "agent:disorientation" => "Désorientation".to_owned(),
+        "agent:interference" => "Interférence".to_owned(),
+        "agent:domination" => "Lien de domination".to_owned(),
+        "agent:spectral_step" => "Pas spectral".to_owned(),
+        "agent:phase_traversal" => "Traversée de phase".to_owned(),
+        "agent:stunned" => "Étourdissement".to_owned(),
+        "agent:blind" => "Aveuglement".to_owned(),
+
         "core:corroded" => "CORROSION".to_owned(),
         "core:armor_fragilized" => "ARMURE FRAGILISÉE".to_owned(),
         "core:locomotion_hindered" => "ENTRAVE".to_owned(),
@@ -24086,16 +24868,18 @@ const fn damage_type_label(damage_type: DamageType) -> &'static str {
         DamageType::Chemical => "Chimique",
         DamageType::Radiation => "Radiation",
         DamageType::Corruption => "Corruption",
+        DamageType::Cold => "Froid",
     }
 }
 
 const fn primary_attribute_label(attribute: PrimaryAttribute) -> &'static str {
     match attribute {
-        PrimaryAttribute::Power => "PUISSANCE",
-        PrimaryAttribute::Coordination => "COORDINATION",
-        PrimaryAttribute::Resilience => "RÉSILIENCE",
+        PrimaryAttribute::Power => "FORCE",
+        PrimaryAttribute::Coordination => "AGILITÉ",
+        PrimaryAttribute::Resilience => "VITALITÉ",
         PrimaryAttribute::Perception => "PERCEPTION",
-        PrimaryAttribute::Processing => "TRAITEMENT",
+        PrimaryAttribute::Processing => "INTELLIGENCE",
+        PrimaryAttribute::Willpower => "VOLONTÉ",
     }
 }
 
@@ -24116,6 +24900,7 @@ const fn primary_attribute_description(attribute: PrimaryAttribute) -> &'static 
         PrimaryAttribute::Processing => {
             "Améliore l’efficacité de vos intrusions et votre résistance aux attaques logicielles. Facilite l’analyse des informations disponibles. N’augmente pas votre réserve d’énergie."
         }
+        PrimaryAttribute::Willpower => "Magie et transformations.",
     }
 }
 
@@ -24150,53 +24935,16 @@ fn normalized_ratio(value: u16, maximum: u16) -> f32 {
     }
 }
 
-fn draw_status_bar(rect: Rect, label: &str, value: &str, ratio: f32, icon: UiIcon, color: Color) {
-    draw_ui_icon(icon, Rect::new(rect.x, rect.y + 2.0, 16.0, 16.0), color);
-    let mut value_size = 13_u16;
-    let maximum_value_width = (rect.w * 0.38).max(34.0);
-    while value_size > 10 && measure_text_bold(value, value_size).width > maximum_value_width {
-        value_size -= 1;
-    }
-    let value_width = measure_text_bold(value, value_size)
-        .width
-        .min(maximum_value_width);
-    draw_wrapped_text(
-        label,
-        rect.x + 23.0,
-        rect.y + 15.0,
-        (rect.w - 31.0 - value_width).max(24.0),
-        1,
-        13,
-        UiTheme.muted(),
-    );
-    draw_text_bold(
-        value,
-        rect.x + rect.w - value_width,
-        rect.y + 15.0,
-        f32::from(value_size),
-        color,
-    );
-    let bar = Rect::new(rect.x, rect.y + (rect.h - 8.0).min(26.0), rect.w, 5.0);
-    draw_rectangle(
-        bar.x,
-        bar.y,
-        bar.w,
-        bar.h,
-        Color::new(0.09, 0.17, 0.19, 1.0),
-    );
-    draw_rectangle(bar.x, bar.y, bar.w * ratio.clamp(0.0, 1.0), bar.h, color);
-}
-
 fn preparation_continue_rect(width: f32, height: f32) -> Rect {
     Rect::new((width - 294.0).max(20.0), height - 101.0, 274.0, 38.0)
 }
 
-fn wait_turn_rect(height: f32) -> Rect {
-    Rect::new(20.0, height - 97.0, 174.0, 30.0)
+fn wait_turn_rect(width: f32, height: f32) -> Rect {
+    crate::terminal_chrome::command_rect(width, height, 0)
 }
 
-fn quest_journal_button_rect(height: f32) -> Rect {
-    Rect::new(204.0, height - 97.0, 174.0, 30.0)
+fn quest_journal_button_rect(width: f32, height: f32) -> Rect {
+    crate::terminal_chrome::command_rect(width, height, 1)
 }
 
 fn quest_status_presentation(status: QuestStatus) -> (&'static str, Color) {
@@ -24228,52 +24976,10 @@ fn draw_footer_action_button(
     rect: Rect,
     label: &str,
     binding: &str,
-    icon: UiIcon,
+    _icon: UiIcon,
     hover_strength: f32,
 ) {
-    UiTheme.hud_action(rect, hover_strength);
-    let hover = hover_strength.clamp(0.0, 1.0);
-    let base = UiTheme.text();
-    let accent = UiTheme.accent();
-    let color = Color::new(
-        base.r + (accent.r - base.r) * hover,
-        base.g + (accent.g - base.g) * hover,
-        base.b + (accent.b - base.b) * hover,
-        1.0,
-    );
-    draw_ui_icon(
-        icon,
-        Rect::new(rect.x + 9.0, rect.y + 7.0, 16.0, 16.0),
-        UiTheme.accent(),
-    );
-    let binding = binding.to_uppercase();
-    let key_width = (measure_text_bold(&binding, 11).width + 12.0).max(29.0);
-    let key = Rect::new(
-        rect.x + rect.w - key_width - 7.0,
-        rect.y + 5.0,
-        key_width,
-        20.0,
-    );
-    draw_rectangle(
-        key.x,
-        key.y,
-        key.w,
-        key.h,
-        Color::new(0.025, 0.065, 0.075, 0.98),
-    );
-    draw_text_bold_centered(&binding, key, 11, UiTheme.accent());
-    let label_width = (key.x - rect.x - 39.0).max(20.0);
-    let mut font_size = 14_u16;
-    while font_size > 12 && measure_text_bold(label, font_size).width > label_width {
-        font_size -= 1;
-    }
-    draw_text_bold(
-        label,
-        rect.x + 31.0,
-        rect.y + 20.0,
-        f32::from(font_size),
-        color,
-    );
+    crate::terminal_chrome::command(rect, label, binding, hover_strength > 0.0);
 }
 
 fn physical_damage_total(damage: DamageImpact) -> u16 {
@@ -24335,7 +25041,7 @@ fn draw_attribute_meter(
     x: f32,
     y: f32,
     width: f32,
-    value: u8,
+    value: u16,
     minimum: u8,
     maximum: u8,
     accent: Color,
@@ -24343,7 +25049,8 @@ fn draw_attribute_meter(
     let segments = usize::from(maximum.saturating_sub(minimum).saturating_add(1)).max(1);
     let gap = 2.0;
     let segment_width = (width - gap * segments.saturating_sub(1) as f32) / segments as f32;
-    let filled = usize::from(value.saturating_sub(minimum).saturating_add(1)).min(segments);
+    let filled =
+        usize::from(value.saturating_sub(u16::from(minimum)).saturating_add(1)).min(segments);
     for index in 0..segments {
         draw_rectangle(
             x + index as f32 * (segment_width + gap),
@@ -24357,20 +25064,6 @@ fn draw_attribute_meter(
             },
         );
     }
-}
-
-fn draw_summary_metric(x: f32, right: f32, y: f32, label: &str, value: &str) {
-    draw_text(label, x, y, 14.0, UiTheme.muted());
-    let available = (right - x) * 0.54;
-    draw_wrapped_text(
-        value,
-        right - available,
-        y,
-        available,
-        1,
-        15,
-        UiTheme.text(),
-    );
 }
 
 const fn technique_kind_label(kind: TechniqueKind) -> &'static str {
@@ -24391,6 +25084,15 @@ const fn inventory_category_order(category: InventoryFilter) -> u8 {
         InventoryFilter::Materials => 3,
         InventoryFilter::All => 4,
     }
+}
+
+fn weapon_slot_label(index: usize) -> String {
+    ["Arme primaire", "Arme secondaire", "Arme de secours"]
+        .get(index)
+        .map_or_else(
+            || format!("Arme {}", index + 1),
+            |label| (*label).to_owned(),
+        )
 }
 
 fn draw_inventory_glyph(rect: Rect, glyph: InventoryGlyph, color: Color) {
@@ -24489,16 +25191,6 @@ const fn menu_button_icon(menu: MenuScreen, index: usize) -> UiIcon {
         (MenuScreen::ConfirmAbandon, 1) => UiIcon::Abandon,
         (MenuScreen::ConfirmNewRun, 1) => UiIcon::Add,
         _ => UiIcon::Menu,
-    }
-}
-
-const fn inventory_filter_icon(filter: InventoryFilter) -> UiIcon {
-    match filter {
-        InventoryFilter::All => UiIcon::All,
-        InventoryFilter::Weapons => UiIcon::Weapon,
-        InventoryFilter::Armor => UiIcon::Armor,
-        InventoryFilter::Consumables => UiIcon::Consumable,
-        InventoryFilter::Materials => UiIcon::Material,
     }
 }
 
@@ -24615,6 +25307,12 @@ fn command_rejection_message(reason: CommandRejection) -> &'static str {
         CommandRejection::MissingEquipmentSlot(_) => "Emplacement d'équipement inconnu.",
         CommandRejection::UnknownInventoryItem(_) => "Cet objet n'est plus disponible.",
         CommandRejection::ItemIsNotWeapon(_) => "Cet objet n'est pas une arme.",
+        CommandRejection::WeaponIncompatibleWithHands { slot: 2, .. } => {
+            "Cette arme se porte dans une main. Choisissez main gauche ou main droite."
+        }
+        CommandRejection::WeaponIncompatibleWithHands { .. } => {
+            "Cette arme nécessite l'emplacement Deux mains."
+        }
         CommandRejection::ItemAlreadyEquippedInSlot { .. } => {
             "Arme déjà équipée sur cet emplacement."
         }
@@ -24637,7 +25335,9 @@ fn command_rejection_message(reason: CommandRejection) -> &'static str {
         CommandRejection::AbilityNoLineOfSight(_) => "Aucune ligne de vue pour cette compétence.",
         CommandRejection::AbilityTargetHasNoActor(_) => "Aucun acteur sur la cible.",
         CommandRejection::AbilityUnknownStatusDefinition => "Données de compétence indisponibles.",
-        CommandRejection::TechniqueLearning(_) => "Cette technique ne peut pas être apprise.",
+        CommandRejection::TechniqueLearning(_) | CommandRejection::AgentProgressionUnavailable => {
+            "Cette technique ne peut pas être apprise."
+        }
         CommandRejection::InsufficientSkillPoints { .. } => "Points de compétence insuffisants.",
         CommandRejection::UnknownTechnique(_) => "Données de la technique indisponibles.",
         CommandRejection::TechniqueNotLearned(_) => {
@@ -25115,7 +25815,7 @@ fn read_movement_command(
             && !game.is_player_controlled_companion(target)
         {
             return Some(GameCommand::Attack {
-                slot: attack_slot,
+                slot: game.player_default_attack_slot(attack_slot, destination),
                 target,
             });
         }
@@ -26670,7 +27370,7 @@ mod tests {
         let position_before = app.game.player_position();
         let turn_before = app.game.turn();
 
-        app.update_input(&rect_pointer(wait_turn_rect(800.0), 0.0));
+        app.update_input(&rect_pointer(wait_turn_rect(1280.0, 800.0), 0.0));
 
         assert_eq!(app.game.turn(), turn_before + 1);
         assert_eq!(app.game.player_position(), position_before);
@@ -26939,7 +27639,7 @@ mod tests {
         app.update_input_at(&held_menu_key("Tab", true), Some(7.0));
         assert_eq!(
             app.character_creation.as_ref().unwrap().stage,
-            CharacterCreationStage::Attributes
+            CharacterCreationStage::Protocol
         );
         app.update_input_at(&held_menu_key("Tab", false), Some(8.0));
         assert!(app.character_creation.is_some());
@@ -26975,9 +27675,9 @@ mod tests {
         );
         app.update_input_at(&input("Escape"), Some(11.0));
         app.update_input_at(&input("I"), Some(12.0));
-        app.update_input_at(&held_menu_key("Key2", true), Some(13.0));
+        app.update_input_at(&held_menu_key("Key8", true), Some(13.0));
         let after_equip = (suspension::fingerprint(&app.game), app.history.len());
-        app.update_input_at(&held_menu_key("Key2", false), Some(14.0));
+        app.update_input_at(&held_menu_key("Key8", false), Some(14.0));
         assert_eq!(
             (suspension::fingerprint(&app.game), app.history.len()),
             after_equip
@@ -27430,32 +28130,32 @@ mod tests {
             Some(CharacterCreationStage::Protocol)
         );
 
-        app.update_input(&input("Down")); // BRÈCHE -> CREUSET
+        app.update_input(&input("Down")); // Bastion -> Technomancien.
         app.update_input(&input("Tab"));
-        app.update_input(&input("Left")); // Puissance 4 -> 3, one point freed.
-        app.update_input(&input("Down"));
-        app.update_input(&input("Right")); // Coordination 5 -> 6.
+        assert_eq!(
+            app.character_creation.as_ref().unwrap().stage,
+            CharacterCreationStage::Protocol
+        );
         app.update_input(&input("Enter"));
 
         assert!(app.character_creation.is_none());
         assert_eq!(
             app.character_class.as_ref().map(ContentId::as_str),
-            Some("core:creuset")
+            Some("core:technomancien")
         );
         assert_eq!(
             app.game.player_primary_attributes(),
-            Some(PrimaryAttributes::new(3, 6, 7, 5, 7))
+            Some(PrimaryAttributes::new(4, 5, 5, 6, 8).with_willpower(6))
         );
         assert_eq!(app.game.turn(), 0);
-        assert!(app.game.equipped_player_weapon(0).is_none());
         assert!(app.game.equipped_player_weapon(1).is_none());
         assert_eq!(
             app.game
-                .equipped_player_weapon(2)
+                .equipped_player_weapon(0)
                 .map(|weapon| weapon.id().as_str()),
-            Some("core:flamethrower")
+            Some("core:modele_cogneur_p01")
         );
-        assert_eq!(app.active_weapon_slot, 2);
+        assert_eq!(app.active_weapon_slot, 0);
     }
 
     #[test]
@@ -27948,6 +28648,68 @@ mod tests {
     }
 
     #[test]
+    fn agent_skills_u_and_k_open_one_catalogue_without_spending_points_or_time() {
+        for slug in [
+            "bastion",
+            "technomancien",
+            "traqueur",
+            "arcaniste",
+            "metamorphe",
+        ] {
+            let mut app = app_with_test_controls();
+            app.begin_character_creation_with_seed(false, app.seed)
+                .unwrap();
+            let index = app
+                .character_classes
+                .iter()
+                .position(|(id, _)| id.as_str() == format!("core:{slug}"))
+                .unwrap();
+            let attributes = app
+                .character_classes
+                .iter()
+                .nth(index)
+                .unwrap()
+                .1
+                .recommended_attributes();
+            let creation = app.character_creation.as_mut().unwrap();
+            creation.selected_class = index;
+            creation.attributes = attributes;
+            let creation = app.character_creation.take().unwrap();
+            app.rebuild_run_with_character_class(&creation).unwrap();
+            let before = suspension::fingerprint(&app.game);
+            let history = app.history.len();
+            app.update_input(&input("U"));
+            assert!(app.skills_open);
+            assert!(!app.technique_menu_open);
+            assert_eq!(app.game.player_skills().agent_skills().count(), 2);
+            // Navigation remains a reader; Learn and Use now execute their
+            // real commands and are covered by the command-path tests.
+            app.select_agent_skill_for_capture("FE01").unwrap();
+            for key in ["Right", "Down", "PageDown", "Left", "Up"] {
+                app.update_input(&input(key));
+            }
+            assert!(app.skills_open);
+            assert_eq!(suspension::fingerprint(&app.game), before);
+            assert_eq!(app.history.len(), history);
+            app.update_input(&input("U"));
+            assert!(!app.skills_open);
+            let skills_key = app.controls.binding(Action::Skills).clone();
+            app.update_input(&InputFrame {
+                pressed: [skills_key.clone()].into(),
+                ..Default::default()
+            });
+            assert!(app.skills_open);
+            assert!(!app.technique_menu_open);
+            app.update_input(&InputFrame {
+                pressed: [skills_key].into(),
+                ..Default::default()
+            });
+            assert!(!app.skills_open);
+            assert_eq!(suspension::fingerprint(&app.game), before);
+        }
+    }
+
+    #[test]
     fn skills_layout_keeps_navigation_list_and_description_in_distinct_panels() {
         let overlaps = |left: Rect, right: Rect| {
             left.x < right.x + right.w
@@ -27996,28 +28758,6 @@ mod tests {
             assert!(layout.filters[4].x + layout.filters[4].w <= right_edge + f32::EPSILON);
             assert!(layout.filters[4].w > layout.filters[0].w);
             assert!(layout.filters[2].w > layout.filters[1].w);
-        }
-    }
-
-    #[test]
-    fn inventory_feedback_has_padding_and_never_overlaps_title_or_glyph() {
-        for (width, height) in [
-            (700.0, 480.0),
-            (960.0, 540.0),
-            (1280.0, 800.0),
-            (1536.0, 864.0),
-        ] {
-            let layout = InventoryLayout::new(width, height, 0, 20);
-            let left = 32.0 + layout.left_width + 24.0;
-            let right = layout.stats_panel.map_or(width - 32.0, |panel| panel.x);
-            let header = InventoryDetailHeader::new(left, right, 30.0);
-            assert!(header.message.y - (30.0 + 58.0) >= 14.0);
-            assert!(header.message.right() <= right - 20.0);
-            assert!(header.message.bottom() + 5.0 <= header.title.y);
-            assert!(!header.message.overlaps(&header.glyph));
-            assert!(header.title.right() + 14.0 <= header.glyph.x);
-            assert!(header.bonus_y - 18.0 >= header.glyph.bottom());
-            assert!(header.title.w >= 240.0);
         }
     }
 
@@ -28164,8 +28904,8 @@ mod tests {
             .unwrap();
         {
             let creation = app.character_creation.as_mut().unwrap();
-            creation.selected_class = 2; // VIGIE in stable content-ID order.
-            creation.stage = CharacterCreationStage::Attributes;
+            creation.selected_class = 2; // Traqueur in reviewed class order.
+            creation.stage = CharacterCreationStage::Protocol;
             creation.attributes = app
                 .character_classes
                 .iter()
@@ -28178,8 +28918,8 @@ mod tests {
         app.rebuild_run_with_character_class(&creation).unwrap();
         apply(&mut app, GameCommand::Wait);
         let saved = app.suspension().unwrap();
-        assert_eq!(saved.character_class.as_deref(), Some("core:vigie"));
-        assert_eq!(saved.starting_attributes, Some([4, 8, 4, 8, 4]));
+        assert_eq!(saved.character_class.as_deref(), Some("core:traqueur"));
+        assert_eq!(saved.starting_attributes, Some([4, 8, 5, 7, 4]));
 
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let restored =
@@ -28187,14 +28927,14 @@ mod tests {
         assert_eq!(restored.character_class, app.character_class);
         assert_eq!(
             restored.game.player_primary_attributes(),
-            Some(PrimaryAttributes::new(4, 8, 4, 8, 4))
+            Some(PrimaryAttributes::new(4, 8, 5, 7, 4).with_willpower(6))
         );
         assert_eq!(
             restored
                 .game
-                .equipped_player_weapon(1)
+                .equipped_player_weapon(2)
                 .map(|weapon| weapon.id().as_str()),
-            Some("core:needle_launcher")
+            Some("core:fusil_de_patrouille")
         );
         assert_eq!(
             suspension::fingerprint(&restored.game),
@@ -28400,6 +29140,11 @@ mod tests {
     fn breche_armor_can_be_equipped_by_click_and_survives_replay() {
         let mut app = app_with_test_controls();
         let breche: CharacterClassId = "core:breche".parse().unwrap();
+        // Historical loadouts stay available by ID for replay, while new runs
+        // offer only the five agents. Keep this legacy click fixture isolated.
+        let legacy = app.character_classes.get(&breche).unwrap().clone();
+        app.character_classes = CharacterClassCatalog::default();
+        app.character_classes.register(legacy).unwrap();
         let (selected_class, attributes) = app
             .character_classes
             .iter()
@@ -29885,7 +30630,7 @@ mod tests {
         app.update_input(&input("Escape"));
         assert!(!app.quest_journal_open);
 
-        app.update_input(&rect_pointer(quest_journal_button_rect(800.0), 0.0));
+        app.update_input(&rect_pointer(quest_journal_button_rect(1280.0, 800.0), 0.0));
         assert!(app.quest_journal_open);
         let layout = QuestJournalLayout::new(1280.0, 800.0, 0, 1);
         app.update_input(&rect_pointer(layout.rows[0].1, 0.0));
@@ -35465,12 +36210,12 @@ mod tests {
         }
         assert!(app.controls.pressed(Action::Multiple, &input("Semicolon")));
         assert!(!app.controls.pressed(Action::Multiple, &input("M")));
-        assert_eq!(pressed_weapon_slot(&app.controls, &input("Key1")), Some(0));
+        assert_eq!(pressed_weapon_slot(&app.controls, &input("Key7")), Some(0));
         assert_eq!(pressed_weapon_slot(&app.controls, &input("Kp1")), None);
         app.controls
             .rebind(Action::Slot1, Binding::key("Kp1"))
             .unwrap();
-        assert_eq!(pressed_weapon_slot(&app.controls, &input("Key1")), None);
+        assert_eq!(pressed_weapon_slot(&app.controls, &input("Key7")), None);
         assert_eq!(pressed_weapon_slot(&app.controls, &input("Kp1")), Some(0));
     }
 
@@ -35486,15 +36231,18 @@ mod tests {
             Some("core:flamethrower")
         );
         let channels = app.combat_channels_label();
-        assert!(channels.contains("[3] Lance-flammes industriel"));
-        assert!(channels.starts_with(">[1]"));
+        assert!(channels.contains(&format!(
+            "[{}] Lance-flammes industriel",
+            app.controls.label(Action::Slot3)
+        )));
+        assert!(channels.starts_with(&format!(">[{}]", app.controls.label(Action::Slot1))));
 
-        app.update_input(&input("Key3"));
+        app.update_input(&input("Key9"));
         assert_eq!(app.active_weapon_slot, 2);
-        assert!(
-            app.combat_channels_label()
-                .contains(">[3] Lance-flammes industriel")
-        );
+        assert!(app.combat_channels_label().contains(&format!(
+            ">[{}] Lance-flammes industriel",
+            app.controls.label(Action::Slot3)
+        )));
         assert!(
             app.log
                 .iter()

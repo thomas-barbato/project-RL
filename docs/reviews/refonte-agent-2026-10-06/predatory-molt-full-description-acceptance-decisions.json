@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-07",
+  "review_id": "M01-FULL01",
+  "skill_id": "M01",
+  "title": "Mue prédatrice",
+  "user_acceptance": "parfait on continue (je valide mue prédatrice)",
+  "accepted_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M01-03.json",
+  "accepted_description_sha256": "a71475668c2c474a383186c054ed04a459ecd6d3ac426cf2b9cef688f8a8ccca",
+  "accepted_roleplay_text": "Vous vous métamorphosez en une bête sauvage, animée par un instinct de prédateur.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "duration_turns": 9,
+    "claw_reach_cells": 1,
+    "leap_maximum_cells": 2,
+    "leap_energy_cost": 4,
+    "leap_cooldown_turns": 3,
+    "energy_cost": 15,
+    "cooldown_turns": 10,
+    "claw_damage": 45,
+    "damage_type_in_unmodified_example": "kinetic",
+    "claw_bleed_chance_percent": 50,
+    "bleed_percent_of_actual_initial_claw_damage_per_turn": 10,
+    "bleed_duration_turns": 3
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "duration_turns": 9,
+    "claw_reach_cells": 1,
+    "leap_maximum_cells": 2,
+    "leap_energy_cost": 4,
+    "leap_cooldown_turns": 3,
+    "energy_cost": 15,
+    "cooldown_turns": 10,
+    "claw_damage": 48,
+    "damage_type_in_unmodified_example": "kinetic",
+    "claw_bleed_chance_percent": 53,
+    "bleed_percent_of_actual_initial_claw_damage_per_turn": 10,
+    "bleed_duration_turns": 3
+  },
+  "accepted_scope": [
+    "revised_roleplay_text",
+    "displayed_current_and_next_rank_values_as_provisional_balance",
+    "displayed_zero_energy_Griffe_free_passable_Bond_path_conditions",
+    "displayed_equipment_statistics_learned_passives_and_pre_form_active_weapon_damage_type_effects",
+    "displayed_intrinsic_actions_plus_M02_exception",
+    "displayed_predator62_short_claw_marks_and_compact_leap_visual_direction"
+  ],
+  "not_accepted_by_this_statement": [
+    "unshown_full_curves_defaults_rounding_and_other_technical_conditions",
+    "exact_native_animation_frames_and_new_art",
+    "unshown_bleed_stacking_tick_order_eligibility_and_defense_rules"
+  ],
+  "common_transformations_decisions": "docs/reviews/refonte-agent-2026-10-06/transformation-actions-equipment-and-power-decisions.json",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-08",
+  "review_ids": [
+    "HY02-REMOVE01",
+    "HY07-PROPOSAL01"
+  ],
+  "user_message": "On supprime cette compétence, ca me semble trop puissant. Parcontre, tu pourrais faire un skill d’autodestruction, qui ferait que on choisit un drone qui explosera et provoquera des dégats de zone.",
+  "removed_skill_id": "HY02",
+  "removed_title": "Fusion défensive",
+  "removal_approval": "explicit_user_request;old_absorption_and_shell_visual_removed_from_active_scope",
+  "previous_candidate": {
+    "id": "HY02",
+    "title": "Fusion défensive",
+    "role": "active",
+    "effect_proposal": "Sacrifie un drone de combat contrôlé pour créer une protection absorbante sur l'agent.",
+    "visual_proposal": "Drone se décomposant en segments qui assemblent une coque sur le joueur.",
+    "row_sha256": "766bc56c10444c03ff00b1d6bf6080f88d761d48b951f51e488affb5e1c8206a",
+    "text_approval": "final_description_pending_individual_user_review",
+    "mechanic_approval": "displayed_catalogue_effect_accepted_unshown_details_pending",
+    "visual_approval": "pending_preview_and_user_review",
+    "runtime_integration": "not_integrated",
+    "name_approval": "accepted_as_presented",
+    "visual_intention_approval": "accepted_as_presented",
+    "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY02-01.json",
+    "roleplay_text_approval": "proposed_pending_explicit_user_review",
+    "current_next_numeric_conditions_approval": "all_displayed_HY02_current_next_capacity43_to44_percent42.5_to43.3_duration5_range4_energy11_cooldown8_proposed_pending_review",
+    "new_visual_direction_approval": "drone_fragments_assembling_shell_and_capacity_cracks_proposed_pending_review"
+  },
+  "previous_complete_metadata": {
+    "id": "HY02",
+    "title": "Fusion défensive",
+    "block_sha256": "c74091d0f49d7bee78a08671db4d68b7b62ceda91befb6c3e2f70c79acfe7031",
+    "text_sha256": "a9cd63238d1aaae3dd68069be81ce8437225dce5c90224364af1c54d7e8473d1",
+    "mechanic_sha256": "93fef8062aee34775c7de57f3e3efff9663e5f1951995ea21f812a9e7def13fa",
+    "revision": 2,
+    "roleplay_copy_created": true,
+    "name_approval": "existing_catalogue_or_secondary_name_preserved",
+    "numeric_rules_approval": "all_displayed_HY02_current_next_capacity43_to44_percent42.5_to43.3_duration5_range4_energy11_cooldown8_proposed_pending_review",
+    "detailed_conditions_approval": "sacrifice_for_absorption_role_previously_accepted;shown_eligible_models_damage_scope_single_shield_and_availability_pending_review",
+    "visual_approval": "pending_native_review",
+    "runtime_integration": "not_integrated",
+    "roleplay_text_approval": "proposed_pending_explicit_user_review",
+    "visual_intention_approval": "drone_fragments_assembling_shell_and_capacity_cracks_proposed_pending_review",
+    "individual_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY02-01.json"
+  },
+  "previous_complete_block_markdown": "Type : actif. Rôle retenu : sacrifie un drone de combat contrôlé pour créer une protection absorbante sur l’agent.\n\n> Vous démantelez l’un de vos drones de combat pour assembler ses fragments en une carapace protectrice.\n\n**Fiche individuelle proposée :** rang effectif 11, drone sélectionné à 100 PV actuels, sans autre modificateur. Absorption 43 dégâts, issue de 42,5 % des PV actuels du drone avec arrondi supérieur ; durée cinq tours, portée quatre cases ; onze énergie/recharge huit tours. Au prochain rang effectif 12 : absorption 44 dégâts, issue de 43,3 % des mêmes PV actuels. Autres valeurs inchangées. Rang appris neuf puis dix pour un point, même équipement +2 et drone. Fiche [HY02-01](../artifacts/refonte-agent-2026-10-06/review-individual-description-HY02-01.json), en attente de validation.\n\n**Conditions proposées :** sacrifice d’un Traqueur D58, Artilleur D59 ou Gardien D66 contrôlé, visible et à portée, qui détruit le drone. Éclaireur et Mule inéligibles. La protection absorbe les dégâts directs et indirects après les défenses jusqu’à épuisement ou expiration. Une seule protection propre à Fusion, sans nouveau lancer tant qu’elle persiste. Forme humaine requise pour lancer ; Silence bloque le sort. Le maintien d’une protection déjà posée lors d’une transformation ultérieure reste à revoir.\n\n**Courbes de travail non montrées :** n est le rang effectif ; pourcentage = 25 + 35(n − 1)/(n + 9), capacité = ceil(PV actuels du drone × pourcentage/100), durée = 3 + floor((n − 1)/5), énergie = 8 + floor((n − 1)/3). Courbes et valeurs par défaut, cumuls avec d’autres défenses, ordre des absorptions et dégâts de statuts, sacrifices/récompenses/remboursements, nettoyage du familier, visibilité, arrondis, compteurs et changements de forme/carte restent à revoir. Les 100 PV sont une référence fictive et ne définissent pas les statistiques des drones.\n\n**Direction visuelle proposée :** fragments du drone assemblant une coque autour du corps, puis fissures de la coque selon l’absorption dépensée. Aucun rendu natif créé.",
+  "previous_individual_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY02-01.json",
+  "previous_individual_review_sha256": "80217add8b40f626d2a8d60506c2722001c8b8fe43d62a62c7c5477242cbd411",
+  "old_id_reserved_and_not_reused": true,
+  "replacement_skill_id": null,
+  "requested_new_skill_candidate_id": "HY07",
+  "requested_new_skill_name": "Autodestruction",
+  "requested_new_skill_status": "candidate_for_individual_review;not_retained_in_active_catalogue_yet",
+  "explicit_user_answers": {
+    "eligible_models": "Seulement Traqueur, Artilleur et Gardien",
+    "blast_targets": "Ennemis uniquement"
+  },
+  "accepted_new_direction": {
+    "select_one_controlled_combat_drone": true,
+    "drone_explodes_and_is_destroyed": true,
+    "area_damage": true,
+    "eligible_drone_ids": [
+      "D58",
+      "D59",
+      "D66"
+    ],
+    "hostiles_only": true,
+    "player_other_familiars_and_allies_not_damaged_by_blast": true
+  },
+  "new_name_RP_numbers_and_visuals": "proposed_pending_individual_review",
+  "catalogue_before": 77,
+  "catalogue_after_removal": 76,
+  "requested_candidate_not_counted_yet": true,
+  "branch_count": 13,
+  "runtime_integration": "not_integrated"
+}

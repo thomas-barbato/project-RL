@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-07",
+  "review_id": "IA-BARRIERE01",
+  "user_message": "il faudra aussi ajouté les comportement AI pour les sorts qui bloquent la progression des monstres (comme par exemple mur de glace) pour qu'ils l'attaque :) .",
+  "approved_common_behavior": {
+    "review_id": "IA-BARRIERE01",
+    "approval": "explicit_user_request",
+    "scope": "destructible movement-blocking obstacles created by spells",
+    "current_skill_ids": [
+      "FR03",
+      "OC04"
+    ],
+    "future_spell_barriers": "applies when their approved definition blocks movement and permits destruction",
+    "inherited_behavior_review_id": "OC04-IA01",
+    "prefer_existing_reachable_passage_to_target": true,
+    "attack_accessible_blocking_part_if_no_passage": true,
+    "resume_movement_after_opening": true,
+    "per_part_destruction": "preserve each barrier existing rules;no entire-barrier collapse inferred",
+    "exact_path_cost_segment_selection_attack_compatibility_and_special_cases": "pending_review",
+    "runtime_integration": "not_integrated"
+  },
+  "previous_behavior_decisions": "docs/reviews/refonte-agent-2026-10-06/ritual-prison-npc-behavior-acceptance-decisions.json",
+  "previous_behavior_decisions_sha256": "9d0649df3b10a86b1bb31912073382e0e466ef8dd1472564fe600e51b2dfe5d2",
+  "source_descriptions": {
+    "FR03": {
+      "path": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR03-03.json",
+      "sha256": "d541ea2814d0e9aab8f6e57d2bd8f114956d9985e7cb0861342872b40dcb83f5"
+    },
+    "OC04": {
+      "path": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC04-04.json",
+      "sha256": "4a44beab1f14921e0c37894a633a9a853c6b78d9960416db346429017483885f"
+    }
+  },
+  "FR03_melee_contact_Gel": "preserved including contact that destroys the block;one attempt per attacker per turn and existing importance/status rules unchanged",
+  "numeric_roleplay_and_visual_changes": false,
+  "movement_statuses_and_non_destructible_obstacles": "no attackable object or destructibility added",
+  "traversable_damage_zones": "no movement-barrier conversion or new destruction behavior",
+  "native_visual_approval": "unchanged",
+  "runtime_integration": "not_integrated"
+}

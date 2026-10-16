@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-08",
+  "id": "BD03",
+  "review_id": "BD03",
+  "revision": 1,
+  "title": "Salve miroir",
+  "branch": "Buffs à distance",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-98.json",
+  "source_skill_manifest_sha256": "4c56fbaa878792429a9306fd05008f2067984c865b5024b1c768ffc98a7ef064",
+  "source_skill_block_sha256": "f63f6cce1e68995a9ee5bcd7ae2b718f4447f9435a66bb4205246b58f6453f52",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "equipped_and_active_weapon_type": "none;damage_range_not_available",
+    "currently_transformed": false,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "secondary_projectile_damage_percent": 80,
+    "maximum_buff_duration_turns": 5,
+    "maximum_extra_projectiles": 1,
+    "extra_ammunition_when_eligible_secondary_target": 1,
+    "energy_cost": 11,
+    "cooldown_turns": 6,
+    "weapon_damage_min_max": null
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "secondary_projectile_damage_percent": 83,
+    "maximum_buff_duration_turns": 5,
+    "maximum_extra_projectiles": 1,
+    "extra_ammunition_when_eligible_secondary_target": 1,
+    "energy_cost": 11,
+    "cooldown_turns": 6,
+    "weapon_damage_min_max": null
+  },
+  "formulas_proposed": {
+    "secondary_projectile_damage_percent": "50+3*(effective_rank-1)",
+    "duration_turns": "3+floor((effective_rank-1)/5)",
+    "energy_cost": "8+floor((effective_rank-1)/3)",
+    "cooldown_turns": 6,
+    "actual_min_max_display": "derive_from_active_weapon_damage_variance_and_current_applicable_modifiers;unavailable_in_this_no_weapon_example",
+    "full_curves_rounding_modifier_order_and_sampling": "unshown_pending_review"
+  },
+  "conditions_proposed": {
+    "next_weapon_shot_consumes_buff_even_without_secondary_target": true,
+    "one_other_observed_hostile_within_weapon_range_and_clear_shot": true,
+    "one_extra_projectile_per_native_burst_based_on_first_primary_projectile": true,
+    "damage_base_before_target_defenses": true,
+    "extra_ammunition_only_if_secondary_target_eligible": true,
+    "grenades_and_area_attacks_excluded": true,
+    "requires_equipped_and_active_ranged_weapon": true,
+    "human_form_required": true,
+    "blocked_by_Silence": true,
+    "buff_icon_shows_remaining_duration": "HUD01-ALL01;native_pending",
+    "no_extra_attack_chains": "preserved_unshown_pending_review"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "new_RP_pending_individual_user_review",
+  "numeric_rules_approval": "current80_next83_duration5_one_extra_projectile_ammo1_energy11_CD6_proposed_pending_review",
+  "detailed_conditions_approval": "displayed_conditions_proposed_pending_review;unshown_cases_pending",
+  "visual_intention_approval": "catalogue_spectral_weapon_echo_preserved;displayed_buff_icon_direction_proposed",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "pending_individual_user_review",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "no_fictitious_weapon_damage_range": true,
+    "wrong_or_missing_active_weapon_requirement_shown": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "secondary_projectile_damage_percent"
+    ]
+  },
+  "player_copy_markdown": "**BD03 · Salve miroir — Rang 11 · Actif**\n\n*Un reflet spectral de votre arme accompagne votre tir et frappe une seconde proie.*\n\n**Effets actuels**\n\n- Dégâts du tir supplémentaire : **80 % des dégâts d’un projectile**, avant les défenses.\n- Projectiles supplémentaires : **1**.\n- Durée maximale du buff : **5 tours**.\n- Munition supplémentaire : **1**, si une seconde cible est admissible.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts du tir supplémentaire : **83 % des dégâts d’un projectile**.\n\n**Coût : 11 énergie · Recharge : 6 tours.**\n\nVotre prochain tir consomme le buff. Le projectile supplémentaire vise un autre ennemi visible, à portée et sans obstacle. Une rafale produit un seul projectile supplémentaire, basé sur son premier projectile.\n\nGrenades et attaques de zone exclues.\n\nArme à distance équipée et active requise pour utiliser la compétence et afficher ses dégâts minimum–maximum. Forme humaine requise ; Silence empêche son utilisation.",
+  "player_copy_sha256": "bae1647ec494b41666e74d3f5944512e3b7693491f5ede75ce2026712b0e27cf",
+  "visual_copy_markdown": "**Visuel proposé :** une petite silhouette spectrale de votre arme apparaît brièvement et tire vers la seconde cible. Une icône dans la barre des buffs indique la durée restante de Salve miroir.",
+  "visual_copy_sha256": "ad7e193a60c0edf78e89e5dbe6d141bd02a6d77dd6cf9f8e62efbb87c6682775",
+  "current_turn_shown_copy_markdown": "**BD03 · Salve miroir — Rang 11 · Actif**\n\n*Un reflet spectral de votre arme accompagne votre tir et frappe une seconde proie.*\n\n**Effets actuels**\n\n- Dégâts du tir supplémentaire : **80 % des dégâts d’un projectile**, avant les défenses.\n- Projectiles supplémentaires : **1**.\n- Durée maximale du buff : **5 tours**.\n- Munition supplémentaire : **1**, si une seconde cible est admissible.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts du tir supplémentaire : **83 % des dégâts d’un projectile**.\n\n**Coût : 11 énergie · Recharge : 6 tours.**\n\nVotre prochain tir consomme le buff. Le projectile supplémentaire vise un autre ennemi visible, à portée et sans obstacle. Une rafale produit un seul projectile supplémentaire, basé sur son premier projectile.\n\nGrenades et attaques de zone exclues.\n\nArme à distance équipée et active requise pour utiliser la compétence et afficher ses dégâts minimum–maximum. Forme humaine requise ; Silence empêche son utilisation.\n\n**Visuel proposé :** une petite silhouette spectrale de votre arme apparaît brièvement et tire vers la seconde cible. Une icône dans la barre des buffs indique la durée restante de Salve miroir.",
+  "current_turn_shown_copy_sha256": "8dc7a22e9bf4723c30a0220b3ecec19d07c0711024b9d1bca8c5050096f6513a",
+  "unshown_cases_pending": [
+    "full_curves_defaults_rounding_modifier_order_and_buff_snapshot",
+    "actual_equipped_weapon_variance_and_calculated_min_max_preview",
+    "secondary_target_selection_accuracy_critical_and_primary_miss_cases",
+    "heavy_weapons_beams_multi_projectiles_and_nonstandard_ammunition",
+    "ammunition_precheck_atomic_refusal_buff_replacement_and_consumption_order",
+    "no_recursive_mirror_or_other_automatic_attack_chains",
+    "native_spectral_weapon_echo_visibility_and_buff_icon"
+  ]
+}

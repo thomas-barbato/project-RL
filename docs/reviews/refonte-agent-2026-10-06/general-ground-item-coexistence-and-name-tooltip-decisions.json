@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-07",
+  "review_id": "UX-SOL-01",
+  "user_message": "non, tous les objets doivent pouvoir se stacker sur une case, si je veux supprimer de mon inventaire plusieurs objets, je ne dois pas avoir à changer de case :) parcontre, en posant la souris (ou le curseur) sur la case et bien il doit y avoir un tooltip montrant les noms des objets présents.",
+  "accepted_general_rule": {
+    "scope": "all_ground_items_and_ordinary_drops;not_only_mule_or_monster_death_loot",
+    "multiple_objects_on_same_cell": true,
+    "player_can_drop_multiple_inventory_items_without_moving": true,
+    "existing_items_on_cell_preserved": true,
+    "distinct_equipment_identity_quantity_properties_and_bonuses_preserved": true
+  },
+  "accepted_tooltip_requirement": {
+    "trigger": [
+      "mouse_hover_cell",
+      "game_cursor_on_cell"
+    ],
+    "content": "names_of_all_ground_items_present_on_that_cell",
+    "all_existing_item_visibility_rules_preserved": true
+  },
+  "meaning_of_stack": "Multiple ground objects coexist on the same cell. Automatic quantity merging or equipment merging is not specified by this request.",
+  "existing_shared_cell_selector_preserved": "SP02 access to other known contents, including mines and actors, remains in place; the object-name list must be available without hiding other existing information.",
+  "related_mule_rule": "UX-MULE-01 remains accepted as one application of this general rule.",
+  "prior_scope_correction": "Broadens the earlier mule-focused description to all ground objects and ordinary player deposits.",
+  "pending_review": [
+    "exact_tooltip_native_layout_and_visuals",
+    "large_object_list_presentation",
+    "exact_pickup_selection_and_quantity_merging_interactions"
+  ],
+  "runtime_integration": "not_integrated"
+}

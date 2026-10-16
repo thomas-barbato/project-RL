@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-09",
+  "review_id": "DRONE-STAT02-ACCEPT01",
+  "user_reply": "ca me va :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-drone-attribute-profiles-01.json",
+  "source_proposal_sha256": "0d520291d2e3ace2b65092cb178c3ae966a84c366f485f454fda7f94cc0c2582",
+  "accepted_shown_copy_markdown": "La **progression automatique de 5 points par niveau est validée**.\n\n**DRONE-STAT02 · Profils d’attributs proposés**\n\nChaque drone commencerait avec **36 points d’attributs au niveau 1**. Les attributs non cités ci-dessous valent **5** au départ.\n\n**Éclaireur — mobilité**\n\n- Départ : **Agilité 9 · Vitalité 7**.\n- Par niveau : **+3 Agilité · +2 Vitalité**.\n\n**Mule — survie**\n\n- Départ : **Agilité 7 · Vitalité 9**.\n- Par niveau : **+2 Agilité · +3 Vitalité**.\n\n**Traqueur — mêlée**\n\n- Départ : **Force 9 · Agilité 6 · Vitalité 6**.\n- Par niveau : **+3 Force · +1 Agilité · +1 Vitalité**.\n\n**Artilleur — distance physique**\n\n- Départ : **Perception 9 · Agilité 6 · Vitalité 6**.\n- Par niveau : **+3 Perception · +1 Agilité · +1 Vitalité**.\n\n**Gardien — protection et mêlée**\n\n- Départ : **Force 7 · Vitalité 9**.\n- Par niveau : **+1 Force · +1 Agilité · +3 Vitalité**.\n\nUn drone invoqué tard reçoit directement les attributs correspondant au niveau du joueur.\n\n**Exemple au niveau 20**\n\nAvec le calcul des PV déjà retenu, avant équipement, bonus d’invocation et bonus du joueur :\n\n- Traqueur : **Vitalité 25 → 148 PV maximum**.\n- Gardien : **Vitalité 66 → 312 PV maximum**.\n\nCes profils conservent les fonctions des drones : l’Éclaireur et la Mule restent sans attaque. **Les valeurs de départ, les répartitions et leur application dès l’invocation restent à valider.**",
+  "accepted_shown_copy_sha256": "c1f7763021ebd3bf77d0cd246757459d9ca29bdc5e53e13837437ee6051e67bf",
+  "accepted_shown_rules": {
+    "level1_attribute_total_per_model": 36,
+    "unspecified_level1_attributes": 5,
+    "profiles": {
+      "D56": {
+        "name": "Éclaireur",
+        "level1_attributes": {
+          "Force": 5,
+          "Agilite": 9,
+          "Vitalite": 7,
+          "Perception": 5,
+          "Intelligence": 5,
+          "Volonte": 5
+        },
+        "per_level_growth": {
+          "Force": 0,
+          "Agilite": 3,
+          "Vitalite": 2,
+          "Perception": 0,
+          "Intelligence": 0,
+          "Volonte": 0
+        },
+        "can_attack": false
+      },
+      "D57": {
+        "name": "Mule",
+        "level1_attributes": {
+          "Force": 5,
+          "Agilite": 7,
+          "Vitalite": 9,
+          "Perception": 5,
+          "Intelligence": 5,
+          "Volonte": 5
+        },
+        "per_level_growth": {
+          "Force": 0,
+          "Agilite": 2,
+          "Vitalite": 3,
+          "Perception": 0,
+          "Intelligence": 0,
+          "Volonte": 0
+        },
+        "can_attack": false
+      },
+      "D58": {
+        "name": "Traqueur",
+        "level1_attributes": {
+          "Force": 9,
+          "Agilite": 6,
+          "Vitalite": 6,
+          "Perception": 5,
+          "Intelligence": 5,
+          "Volonte": 5
+        },
+        "per_level_growth": {
+          "Force": 3,
+          "Agilite": 1,
+          "Vitalite": 1,
+          "Perception": 0,
+          "Intelligence": 0,
+          "Volonte": 0
+        },
+        "can_attack": true
+      },
+      "D59": {
+        "name": "Artilleur",
+        "level1_attributes": {
+          "Force": 5,
+          "Agilite": 6,
+          "Vitalite": 6,
+          "Perception": 9,
+          "Intelligence": 5,
+          "Volonte": 5
+        },
+        "per_level_growth": {
+          "Force": 0,
+          "Agilite": 1,
+          "Vitalite": 1,
+          "Perception": 3,
+          "Intelligence": 0,
+          "Volonte": 0
+        },
+        "can_attack": true
+      },
+      "D66": {
+        "name": "Gardien",
+        "level1_attributes": {
+          "Force": 7,
+          "Agilite": 5,
+          "Vitalite": 9,
+          "Perception": 5,
+          "Intelligence": 5,
+          "Volonte": 5
+        },
+        "per_level_growth": {
+          "Force": 1,
+          "Agilite": 1,
+          "Vitalite": 3,
+          "Perception": 0,
+          "Intelligence": 0,
+          "Volonte": 0
+        },
+        "can_attack": true
+      }
+    },
+    "profile_at_any_level": "level1_attribute_value+(current_player_level-1)*model_per_level_attribute_growth",
+    "late_invocation": "assign_full_profile_corresponding_to_current_player_level_immediately;invocation_history_does_not_change_base_profile",
+    "shown_HP_base": "apply_shared_player_base_HP_formula30+4*(drone_Vitalite-5)+2*(drone_level-1)_before_equipment_rank_and_owner_modifiers",
+    "other_stats": "own_attribute_growth_does_not_change_vision_cargo_capacity_or_add_unarmed_drone_attacks_by_extension"
+  },
+  "accepted_examples": {
+    "level": 20,
+    "D58": {
+      "Vitalite": 25,
+      "maximum_HP_before_other_modifiers": 148
+    },
+    "D66": {
+      "Vitalite": 66,
+      "maximum_HP_before_other_modifiers": 312
+    },
+    "scope": "proposed_derived_drone_profiles;not_a_player_save_or_balanced_monster_profile"
+  },
+  "approval_scope": "Displayed level1_budget36, unspecified_attributes5, all_five_model_starts_and_growth5_distributions, immediate_current_player_level_profile_on_late_invocation and shared_HP_base_examples148_312 accepted. No new rank_curve_owner_bonus_mapping_equipment_slot_or_current_resource_rule inferred.",
+  "unshown_cases_pending": [
+    "exact_rank_bonuses_and_equipped_weapon_damage_base_and_modes",
+    "owner_Intelligence_vs_drone_own_Force_Perception_Volonte_bonus_order_and_double_scaling_prevention",
+    "current_HP_energy_on_player_level_gain_spawn_recall_and_redeployment",
+    "energy_usage_regeneration_accuracy_evasion_and_critical_base_profiles",
+    "native_stat_sheet_copy_equipment_and_actor_visuals",
+    "PETS_EQ01_equipment_complements_slot_and_item_family_rules",
+    "Mule_capacity_Eclaireur_vision_and_other_non_damage_rank_profiles",
+    "full_balance_with_enemy_profiles_loot_and_player_stats",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

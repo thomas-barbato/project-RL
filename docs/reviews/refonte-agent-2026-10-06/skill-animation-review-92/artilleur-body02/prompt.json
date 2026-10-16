@@ -1,0 +1,18 @@
+{
+  "tool": "built-in image_gen",
+  "use_case": "style-transfer",
+  "candidate": "D59-BODY02",
+  "prompt": "Use case: style-transfer. Asset type: a single proposed replacement body for the existing Project RL Artilleur companion drone, candidate D59-BODY02, for direct 64-pixel game tiles.\nInput image 1 (tiny 32px drone) is the IDENTITY / ROLE reference, not a style or pixelation reference. Input image 2 (green armored human) is ONLY the inked comic rendering style reference; do not make a humanoid or copy its outfit.\nRedraw the Artilleur as a compact low ground combat drone with a broad central armored turret, two sturdy side wheels/short armored wheel pods, and two clearly separated short gun barrels mounted symmetrically on the left and right of the turret. It is a small industrial cyberpunk machine, not a flying drone, not a human robot. Preserve its recognizable dark steel / silver plating and restrained dark red panels. Front-facing symmetrical neutral master pose, no side-facing character. Show enough top surface to read the metal planes. Both weapons must have consistent perspective and identical aligned barrel axes. Clear black openings at the barrel ends.\nStyle: serious dark comic-book game art matching reference2, clean dark ink contour, bold readable metal planes, 2-3 broad shaded values per material, bright restrained silver edge highlights, very simple purposeful detail. Crisp and attractive at native64px, authored from this large clean source, never enlarged 32px pixel art. Large separated mechanical masses, no tiny greebles, no gradients/noisy texture, no cute cartoon face. Neutral metal tones and small dark red accents, no cyan, purple, pink or magical glow.\nComposition: one complete isolated drone centered, fully contained with transparent margin on every side, wheels all visible, symmetrical front view, no text, no border, no labels, no ground tile, no background, no painted shadow, no extra item, no firing or motion effects. Genuine transparent RGBA background. This is the BODY only for visual review; keep it sharp and readable rather than over-detailed.",
+  "references": [
+    {
+      "path": "assets/sprites/bestiary/tiles/059-living-32.png",
+      "role": "existing identity reference"
+    },
+    {
+      "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C02-comic-master.png",
+      "role": "inked comic rendering style only"
+    }
+  ],
+  "generated_source": "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-92/artilleur-body02/D59-BODY02-source.png",
+  "icon_derivation": "Use the same approved-direction drawing for both native body and matching compact icon; no separate AI redesign that changes the silhouette."
+}

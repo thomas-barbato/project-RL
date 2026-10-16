@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "user_statement": "5 points d'attributs par niveau (sans limite réelle) ; 1 point de compétences. Les compétences devront pouvoir être upgradées 10 fois (chaque nouveau niveau dans une compétences coutent 1 point) sachant que les objets équipés pourraient aussi augmenter des compétences et dépasser le cap de 10 (avec le calcule adapté) comme dans diablo 2 [...] Au départ les classes ont un passif et une compétence active déjà apprise (la toute premiere) [...] Je préfèrerais donc que ce soit plutot comme commencer avec 10% de vie en plus.",
+  "accepted_requirements": {
+    "attribute_points_per_level": 5,
+    "attribute_gameplay_cap": null,
+    "skill_points_per_level": 1,
+    "cost_per_learned_skill_level": 1,
+    "learned_skill_level_cap": 10,
+    "equipment_can_exceed_learned_cap": true,
+    "skill_bonuses_in_equipment_loot": true,
+    "starting_active_skills": 1,
+    "starting_active_is_first_in_class": true,
+    "starting_passive_skills": 1,
+    "bastion_passive_initial_max_hp_percent": 10,
+    "bastion_passive_replaces_interrupt_resistance": true,
+    "boosted_skill_level_uses_different_display_color": true
+  },
+  "interpretations_presented_for_review": {
+    "starting_skills_have_learned_level": 1,
+    "starting_level_counts_toward_cap": true,
+    "upgrades_from_starter_to_cap": 9
+  },
+  "pending_details": [
+    "Attribute contributions and bounded derived values",
+    "Skill formulas for learned and effective levels",
+    "Loot bonus scopes, values, eligible items and probabilities",
+    "Removal of duplicated Bastion implant HP bonus",
+    "Exact color and preview of boosted skill level",
+    "All revised player-facing wording and visual effects"
+  ],
+  "additional_user_statement": "l'affichage du niveau d'une compétence devra avoir une couleur differente si elle est sujet à un bonus"
+}

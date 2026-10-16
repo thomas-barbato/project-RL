@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-06",
+  "user_statement": "Tres bien ca me va, est-ce que ces personnages ont suivis les memes regles que les précédent personnage ? celles qui viennent du jeu dungeon crawl stone soup",
+  "accepted": {
+    "class_names": [
+      "Bastion",
+      "Opérateur",
+      "Traqueur",
+      "Arcaniste",
+      "Métamorphe"
+    ],
+    "visual_candidate_numbers": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "bonus_malus_directions": true,
+    "starting_active_skills": 2,
+    "starting_passive_skills": 1
+  },
+  "review": "../../../assets/source-art/refonte-agent-2026-10-06/classes-tenues-review.png",
+  "subsequent_decisions": "progression-decisions.json",
+  "superseded_fields": [
+    "accepted.starting_active_skills"
+  ],
+  "visuals": "Exact copies of previously accepted native sprites; no new drawing or changed source pixels.",
+  "balance_values": "Initial proposals to test; no claim of tested balance.",
+  "runtime_integration": "Not implemented yet."
+}

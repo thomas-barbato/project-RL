@@ -1,0 +1,137 @@
+{
+  "date": "2026-10-07",
+  "id": "FE04",
+  "title": "Éruption",
+  "revision": 1,
+  "player_copy_markdown": "**FE04 · Éruption — Rang 11**\n\n*Vous tracez des fissures incandescentes d’où jaillira une gerbe de flammes.*\n\n**Effets actuels**\n\n- Dégâts de feu : **59 par cible**.\n- Rayon de l’explosion : **1 case**.\n- Portée : **5 cases**.\n- Délai avant explosion : **1 tour complet**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de feu : **63 par cible**.\n\n**Coût : 15 énergie · Recharge : 6 tours.**\n\nVisez une case visible à portée. La zone est marquée avant l’explosion ; ses occupants peuvent en sortir.\n\nLes murs bloquent la propagation des flammes. Les alliés présents dans la zone peuvent aussi être touchés. Dégâts affichés avant les défenses des cibles.",
+  "player_copy_sha256": "3501fcdc075499f576c83cc3e15c45f3b4f9dbce3ca4d5f762fc03f0e560b20e",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-22.json",
+  "source_skill_block_sha256": "ac40891d3ad05088ca06d09e6f59ec71c6566541e34d771f4a5f48b8b1fc5cd3",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/fire-wall-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "9e51fae8125f408ae7b4933be4982d4c40c193edf906f11e828abfbb73496786",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_global_CD08; targeting_announced_delayed_zone_obstacle_and_ally_conditions_retained",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "proposed_pending_individual_user_review",
+  "current_profile_status": "illustrative_not_a_user_save; existing Willpower scaling proposal used; damage before target defenses",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "attribute_scaling_approval": "shown FE04 profile subject to individual review; unshown full attribute curves not silently accepted",
+  "formulas": {
+    "explosion_fire_damage_per_target": "floor((14 + 4 * (effective_rank - 1)) * magic_multiplier)",
+    "magic_multiplier": "1 + 0.02 * (Willpower - 5)",
+    "explosion_radius_cells": 1,
+    "range_cells": 5,
+    "explosion_delay_complete_turns": 1,
+    "energy_cost": "12 + floor((effective_rank - 1)/3)",
+    "cooldown_turns": 6
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "explosion_fire_damage_per_target": 59,
+    "explosion_radius_cells": 1,
+    "range_cells": 5,
+    "explosion_delay_complete_turns": 1,
+    "energy_cost": 15,
+    "cooldown_turns": 6
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "explosion_fire_damage_per_target": 63,
+    "explosion_radius_cells": 1,
+    "range_cells": 5,
+    "explosion_delay_complete_turns": 1,
+    "energy_cost": 15,
+    "cooldown_turns": 6
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "explosion_fire_damage_per_target": 14,
+    "explosion_radius_cells": 1,
+    "range_cells": 5,
+    "explosion_delay_complete_turns": 1,
+    "energy_cost": 12,
+    "cooldown_turns": 6,
+    "approval": "unshown full curve remains pending"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "explosion_fire_damage_per_target"
+    ],
+    "unchanged_effects_omitted": [
+      "explosion_radius_cells",
+      "range_cells",
+      "explosion_delay_complete_turns",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "magic_delayed_area_explosion_not_a_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy weapon exclusion added to spell"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "exceptional_explosion_delay_shown": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "effect_conditions": {
+    "target": "visible center tile within five cells; exact passability/occupancy eligibility pending",
+    "marker_announces_zone_before_explosion": true,
+    "actors_can_leave_zone_before_explosion": true,
+    "explosion_after_one_complete_turn_proposal": true,
+    "manual_followup_or_maintenance_required": false,
+    "damage_type": "fire",
+    "damage_display": "before target defenses",
+    "walls_block_blast_propagation": true,
+    "allies_can_be_hit": true,
+    "caster_damage_eligibility": "not shown pending review; no immunity or self damage invented",
+    "radius_metric_source": "global Euclidean radial-zone proposal; exact occupied cells and wall/corner occlusion still pending",
+    "explosion_exact_order_with_actor_reactions": "unshown pending review",
+    "multiple_marker_refusal_replacement_or_stacking": "unshown pending review",
+    "terrain_destruction_created": false,
+    "persistent_burn_status_created": false,
+    "control_effect_created": false,
+    "hidden_actor_reveal_created": false
+  },
+  "unshown_rules_approval": "Full rank curves, center eligibility/passability/occupancy, radial and wall/corner/large-actor geometry, exact one-complete-turn scheduling relative to movement and enemy reactions, caster damage eligibility, marker multiplicity, interrupted cast and empty-zone payment, hit/defense/critical/modifier order and layer changes remain pending where not already accepted. No terrain destruction, persistent burning zone/status, manual maintenance, new control, general spell variance or hidden actor reveal introduced.",
+  "visual_intention_approval": "existing_catalogue_luminous_ground_fissures_then_upward_fire_jets_direction_accepted_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable FE04 existing delayed Fire explosion skill; RP/current-next/delay/zone conditions proposed for review.",
+    "Willpower10 M=11/10: rank11 floor54*1.1=59, next12 floor58*1.1=63.",
+    "Both radius1 range5 delay1 complete turn energy15 cooldown6; next only changed damage.",
+    "Learned9 to10 with gear+2 unchanged, one point within cap, same attributes/modifiers.",
+    "Delay explicitly displayed as unusual timing; no ordinary consumes-one-turn or immediate-effect reminder.",
+    "Visible marked zone, occupants may leave, walls block blast, allies may be hurt; caster eligibility not silently decided.",
+    "No table/player formula/rank breakdown/weapon requirement/general spell variance;83 skills and71 blocks retained;no runtime/native visual integration."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SF00-ENERGY02-COPY01",
+  "user_instruction": "modifie le pour que ca devienne plutot : Sans énergie, tenter de vous déplacer met fin à la furtivité.",
+  "source_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF00-08.json",
+  "source_description_sha256": "517bbd52b83f9b28574f1d1e03e80438299b77c82a97c1ff7b15128a9d858f0e",
+  "accepted_player_sentence": "Sans énergie, tenter de vous déplacer met fin à la furtivité.",
+  "accepted_player_sentence_sha256": "924985ab87d59214bbf4658e7166609e873bc7b7cce5cd113eb190c1ab7627d6",
+  "text_approval": "exact_user_replacement_explicitly_authorized",
+  "removed_player_sentence": "Vous effectuez alors votre pas à découvert.",
+  "scope": "player_copy_only",
+  "mechanical_rules": "unchanged;zero_energy_attempted_move_cancels_stealth_and_same_step_continues_normally_as_approved_under_MOVE01",
+  "other_card_parts": "existing_review_status_preserved;no_full_card_approval_inferred",
+  "runtime_integration": "not_integrated"
+}

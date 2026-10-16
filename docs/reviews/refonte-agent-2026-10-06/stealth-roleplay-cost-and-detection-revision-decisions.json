@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SF00-REVISE01",
+  "skill_id": "SF00",
+  "accepted_roleplay": "Vous brouillez votre silhouette et étouffez le bruit de vos pas pour vous glisser dans les ennemis.",
+  "roleplay_approval": "exact_user_supplied_replacement",
+  "requested_directions": {
+    "lower_energy_cost": true,
+    "detection_reduction": "75_percent_or_greater_suggested_by_user"
+  },
+  "revised_values_proposed": {
+    "energy_per_step": 2,
+    "visual_detection_range_reduction_percent": 75
+  },
+  "cost2_approval": "new_proposal_pending_explicit_review",
+  "detection75_approval": "implements_user_requested_example;exact_revised_card_pending_review",
+  "unchanged_parts": "not_approved_by_this_revision_request",
+  "dependent_SF01": "old_base10_examples_and_integer_ceiling_curve_superseded;new_curve_pending_individual_review;zero_at_rank10_preserved",
+  "attribute_scaling": "current_Agility10_example75_percent;full_curve_to_recalibrate_before_runtime",
+  "accepted_display_direction": "SF00-CELLS01;user_requests_detection_in_cell_counts_instead_of_percent",
+  "current_visual_detection_example": {
+    "ordinary_enemy_vision_cells": 8,
+    "stealth_detection_cells": 2
+  },
+  "display_scope": "distance_depends_on_each_enemy_vision;no_universal2_cell_radius_invented",
+  "runtime_integration": "not_integrated"
+}

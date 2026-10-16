@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "TRANS-LOCK01",
+    "TRANS-EQ01",
+    "TRANS-PWR01"
+  ],
+  "runtime_integration": "not_integrated",
+  "user_requests": {
+    "form_power_and_bleeding": "vu que le joueur ne peut pas utiliser d’autres compétences pendant qu’il est transformé (mais il garde les statistiques de son équipement), j’aimerais quand meme rendre ses attaques un peu plus percutantes, par exemple en offrant une possibilité de saignement",
+    "damage_type_effects": "si ses équipements changent le type de dégats qu’il fait, par exemple s’il est équipé d’une épée qui fait des dégats de froid, ca devra aussi etre repercuté ses ses propres dégats meme transformé",
+    "all_forms_attractive": "Il faut rendre cette transformation (et en faite toutes) assez séduisante pour qu’un joueur veuille s’en servir",
+    "weapon_source_answer": "Armes actives avant la transformation (recommandé)",
+    "M02_exception": "laisse la possibilité de lancer décharge mutagène, j’avais oublié son existence désolé."
+  },
+  "accepted_rules": {
+    "TRANS-LOCK01": {
+      "intrinsic_form_actions_available": true,
+      "learned_active_exceptions": [
+        "M02"
+      ],
+      "M02_title": "Décharge mutagène",
+      "M02_original_role": "hit_a_target;successful_hit_while_transformed_may_prolong_form_with_total_limit",
+      "other_learned_actives_available": false,
+      "all_learned_passives_remain_active": true,
+      "M02_existing_body_sha256": "a0a991d5df446461cdfb69887b06939461028743fc75270fb598df35eaf6ff6a",
+      "M02_numbers_or_description_newly_accepted": false
+    },
+    "TRANS-EQ01": {
+      "equipment_statistics_retained": true,
+      "damage_type_effects_transmitted_to_transformed_attacks": true,
+      "weapon_effect_source": "weapons_active_immediately_before_transformation",
+      "all_equipped_stored_weapons_used": false,
+      "effect_semantics": "preserve_actual_equipment_conversion_or_additive_typed_effect;no_unrequested_conversion_ratio_or_automatic_status_proc",
+      "raw_weapon_damage_inheritance_and_sampling_timing": "pending_exact_review"
+    },
+    "TRANS-PWR01": {
+      "all_forms_should_have_attractive_distinct_strengths": true,
+      "M01_stronger_attack_and_bleed_direction_requested": true,
+      "uniform_numeric_boost_all_forms_approved": false
+    }
+  },
+  "proposed_M01_revision": {
+    "review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M01-02.json",
+    "shown_damage_current_next": [
+      45,
+      48
+    ],
+    "shown_bleed_chance_current_next_percent": [
+      50,
+      53
+    ],
+    "shown_bleed_actual_initial_damage_percent_per_turn": 10,
+    "shown_bleed_duration_turns": 3,
+    "approval": "pending_explicit_user_review"
+  },
+  "superseded_proposals": [
+    "blanket_exclusion_of_weapon_damage_type_effects_from_natural_attacks",
+    "all_weaponless_learned_actives_available_in_forms",
+    "temporary_commentary_suggestion_to_redesign_M02_due_to_all_other_actives_exclusion"
+  ],
+  "historical_documents": "old_review_cards_lot02_and_calculation_artifacts_preserved;current_common_rules_and_M01_02_take_precedence",
+  "visuals": "no_new_native_image_or_animation_created;M01_claw_and_leap_direction_still_pending;bleed_animation_not_added_in_this_revision"
+}

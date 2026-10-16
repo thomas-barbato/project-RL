@@ -1,0 +1,37 @@
+{
+  "batch": "ANIM-S18",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 44,
+      "id": "TR65-ALLONGE",
+      "name": "Allonge",
+      "variant": "TR65-ALLONGE-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 45,
+      "id": "TR65-FENTE",
+      "name": "Fente abyssale",
+      "variant": "TR65-FENTE-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 46,
+      "id": "TR65-PAS",
+      "name": "Pas d’ombre",
+      "variant": "TR65-PAS-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "approved_body": "TR65-BODY02 / review44, unchanged",
+  "visuals": "Extending purple/ivory forearm, dark jagged line laceration, rapid shadow disappearance/reappearance with residual former silhouette.",
+  "rules_retained": "Previously shown2/4/3-cell ranges, cooldown0/4/3 and cost0/6/5. Silence blocks only shadow step. Prepared visibility, free destination adjacent to opaque obstacle; no new diagonal/metric rule.",
+  "reaction": "Shared game hit_reaction_offset on actual prepared struck targets, .18s/17%tile. Blood on physical wounds, no new Bleeding status. Shadow step causes no damage.",
+  "scope": "Visual fixture only: no real damage, HP, energy, AI, loot, equipment, attributes, save or campaign combat implementation.",
+  "acceptance": "visual-acceptance-01.json"
+}

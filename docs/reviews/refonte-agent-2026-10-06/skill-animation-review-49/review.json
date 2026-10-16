@@ -1,0 +1,30 @@
+{
+  "batch": "ANIM-S20",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 49,
+      "id": "HY04",
+      "name": "Échange de position",
+      "variant": "HY04-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 50,
+      "id": "HY06",
+      "name": "Lien de domination",
+      "variant": "HY06-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "scope": "Prepared visuals only, no campaign combat, health, energy, cargo, RNG, AI or save integration.",
+  "visuals": "Two dark fragment clouds and rapid fade/reformation on exchanged cells; a persistent upright purple occult symbol above the dominated target; common victim recoil.",
+  "retained_values": "HY04 range6/cost8/cooldown6. HY06 range4/cost19/cooldown10/duration4/maxone ally; no new chance calculation.",
+  "prepared_cases": "Swap legal-destination and boss-immunity UI fixtures do not establish global distance, intermediate obstacle traversal, failed-cast costs, action ordering or monster AI. Existing pet target list switches alliance in the fixture only.",
+  "temporary_actors": "Monsters and drones still use their existing32px drawings scaled to64; adaptation scheduled after skills/animations.",
+  "acceptance": "visual-acceptance-01.json",
+  "accepted_date": "2026-10-13"
+}

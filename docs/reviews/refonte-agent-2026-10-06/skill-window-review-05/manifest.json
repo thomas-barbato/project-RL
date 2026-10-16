@@ -1,0 +1,286 @@
+{
+  "review_id": "SKILLS-UI05",
+  "date": "2026-10-11",
+  "status": "awaiting_layout_review",
+  "source_review": "SKILLS-UI04",
+  "scope": "Skill names and active/passive labels centered on the icon, independently of the adjacent rank. No title underlining or hover/selection title highlighting. Other layout, art and gameplay unchanged; review prototype only.",
+  "tree_icon_display_px": 64,
+  "tree_icon_source_px": 64,
+  "detail_header_display_px": 48,
+  "status_icon_display_px": 32,
+  "illustration_size_px": 192,
+  "skill_data_sha256": "cb23dca3cf283e6eb12faa58e01dc637c78a8309614f213cd86ef12d06ce0ef2",
+  "accepted_export_hashes_preserved": 121,
+  "art_map": {
+    "B03": {
+      "compact": "../skill-icon-review-11/B03-C01-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/B03-C01-24.png",
+        "32": "../skill-icon-review-11/B03-C01-32.png",
+        "64": "../skill-icon-review-11/B03-C01-64.png"
+      },
+      "illustration": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-05/illustrations/B03-v3.png",
+      "compact_status": "accepted",
+      "illustration_status": "accepted",
+      "compact_sha256": "fdd3e7c4bd7046a14918d61dbbce93b8de7aadba93299390225ff7fb84948321",
+      "illustration_sha256": "03268ac5f8a8e4a85ac29e69c92b4a635350bd8654bf04d5298d68decfe5c5e8"
+    },
+    "O03": {
+      "compact": "../skill-icon-review-11/O03-C01-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/O03-C01-24.png",
+        "32": "../skill-icon-review-11/O03-C01-32.png",
+        "64": "../skill-icon-review-11/O03-C01-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/O03-illustration.png",
+      "compact_status": "accepted",
+      "illustration_status": "accepted",
+      "compact_sha256": "171be66d6124ddd59e6506be9877601c3e0875a0e0b51f6f79163c7223c69dba",
+      "illustration_sha256": "2a70e75bd3b82ba8c19c5360a3d8dce397e6aa7520c80462a75fa9a054370162"
+    },
+    "T01": {
+      "compact": "../skill-icon-review-11/T01-C01-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/T01-C01-24.png",
+        "32": "../skill-icon-review-11/T01-C01-32.png",
+        "64": "../skill-icon-review-11/T01-C01-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/T01-illustration.png",
+      "compact_status": "accepted",
+      "illustration_status": "accepted",
+      "compact_sha256": "58cfa8948d9e2eb73654d306354d1edb14adc3f8409073e05a6a67a433d70668",
+      "illustration_sha256": "0e5b70be8f4501b7c16b883d7d90d29aa67076c949718238a8f401f743430fd8"
+    },
+    "T03": {
+      "compact": "../skill-icon-review-11/T03-C01-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/T03-C01-24.png",
+        "32": "../skill-icon-review-11/T03-C01-32.png",
+        "64": "../skill-icon-review-11/T03-C01-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/T03-illustration.png",
+      "compact_status": "accepted",
+      "illustration_status": "accepted",
+      "compact_sha256": "9569477a55a0baa3bd077796b81b8756bb61d74902f69c720e8464d88d29093c",
+      "illustration_sha256": "408696a7089fe81a4e14854d537859b31833058286e974bfc65371af1cad55fd"
+    },
+    "A03": {
+      "compact": "../skill-icon-review-11/A03-C01-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/A03-C01-24.png",
+        "32": "../skill-icon-review-11/A03-C01-32.png",
+        "64": "../skill-icon-review-11/A03-C01-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/A03-illustration.png",
+      "compact_status": "accepted",
+      "illustration_status": "accepted",
+      "compact_sha256": "54bdd0f0c1430fab786067587eedd9730641a316d5aacc31dce33660df752f47",
+      "illustration_sha256": "5583745698e12316a2026610ca66d40dbb62bd09971dda33f0b4d9e0bd7bdc3e"
+    },
+    "FE01": {
+      "compact": "../skill-icon-review-11/FE01-C01-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/FE01-C01-24.png",
+        "32": "../skill-icon-review-11/FE01-C01-32.png",
+        "64": "../skill-icon-review-11/FE01-C01-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/FE01-illustration.png",
+      "compact_status": "accepted",
+      "illustration_status": "accepted",
+      "compact_sha256": "279fd0bd7e8d5acd882c61d649b3c379a8ebe79edc2dd34b970705ba60e9f012",
+      "illustration_sha256": "bf75d01f3b80e70ee6f06b510601ac3162f7047ee6dccba528657f2d2a5a22b0"
+    },
+    "M01": {
+      "compact": "../skill-icon-review-11/M01-C01-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/M01-C01-24.png",
+        "32": "../skill-icon-review-11/M01-C01-32.png",
+        "64": "../skill-icon-review-11/M01-C01-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/M01-illustration.png",
+      "compact_status": "accepted",
+      "illustration_status": "accepted",
+      "compact_sha256": "7c815dde41984b6089e6f9ec5aa5dd7fdf3de5ba1f2ab5fdb53d8d412d522680",
+      "illustration_sha256": "6a139c376988a6946f0b6bd5a2a814cdc9e8fcfb38f19091025a2d5ed191872e"
+    },
+    "M03": {
+      "compact": "../skill-icon-review-11/M03-C01-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/M03-C01-24.png",
+        "32": "../skill-icon-review-11/M03-C01-32.png",
+        "64": "../skill-icon-review-11/M03-C01-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/M03-illustration.png",
+      "compact_status": "accepted",
+      "illustration_status": "accepted",
+      "compact_sha256": "0b2667b4701262c015e170aa7e1da3a185d925c510694ff5ad456b25d7db1b39",
+      "illustration_sha256": "daeeffb775e7c604cd73ddbd505c57ba3bffaf704ad9af9ad692cd7146dc85df"
+    },
+    "ME02": {
+      "compact": "../skill-icon-review-11/ME02-C02-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/ME02-C02-24.png",
+        "32": "../skill-icon-review-11/ME02-C02-32.png",
+        "64": "../skill-icon-review-11/ME02-C02-64.png"
+      },
+      "illustration": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-05/illustrations/ME02-v3.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "awaiting_visual_review",
+      "compact_sha256": "d6969bbe1d003c05e78d27eede320776b3e94d266cb900eb7815a3abb0ea487e",
+      "illustration_sha256": "9ecea91724d3ed3d096d99ca5a6263b4a904d8ab022a13e534245d21278220f1"
+    },
+    "ME03": {
+      "compact": "../skill-icon-review-11/ME03-C01-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/ME03-C01-24.png",
+        "32": "../skill-icon-review-11/ME03-C01-32.png",
+        "64": "../skill-icon-review-11/ME03-C01-64.png"
+      },
+      "illustration": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-05/illustrations/ME03-v2.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "awaiting_visual_review",
+      "compact_sha256": "53abf0299d3b39509cc00b3fdc45561ed6942557dc6fd18a9271e6d9241fa745",
+      "illustration_sha256": "4be1c02d54e3e54f3d1c0d9f5f1deff7510edb8b2b75e5a7795e05f315b8b2d1"
+    },
+    "ME05": {
+      "compact": "../skill-icon-review-11/ME05-C01-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/ME05-C01-24.png",
+        "32": "../skill-icon-review-11/ME05-C01-32.png",
+        "64": "../skill-icon-review-11/ME05-C01-64.png"
+      },
+      "illustration": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-05/illustrations/ME05-v2.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "awaiting_visual_review",
+      "compact_sha256": "2b506292acd05175566162040a0a671258d4dacd544ab62454c863d212ff214e",
+      "illustration_sha256": "b6c8c8222b14b1fb52c93dbed22601a01cd2deaa5e5d29f7252791041b8babb0"
+    },
+    "ME06": {
+      "compact": "../skill-icon-review-11/ME06-C01-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-11/ME06-C01-24.png",
+        "32": "../skill-icon-review-11/ME06-C01-32.png",
+        "64": "../skill-icon-review-11/ME06-C01-64.png"
+      },
+      "illustration": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-window-review-05/illustrations/ME06-v2.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "awaiting_visual_review",
+      "compact_sha256": "ef8426d31c1eaae209b16a35a99ce9da05366756cdc24ccf65050db757f93448",
+      "illustration_sha256": "2d40c04b5188a8564a066d09b3b0090568ea46dd1d6e86c510a9e9e1985e9376"
+    },
+    "B01": {
+      "compact": "../skill-icon-review-12/B01-C02-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-12/B01-C02-24.png",
+        "32": "../skill-icon-review-12/B01-C02-32.png",
+        "64": "../skill-icon-review-12/B01-C02-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/B01-illustration.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "accepted",
+      "compact_sha256": "9b6f91165077dbc10249e09cda938059d9f9c9fa2dfe332ad1deec1c57e29d7e",
+      "illustration_sha256": "2ba69010e33526675639d47d6c730f7ad1b5de548dc2f5e3243219c36b644a33"
+    },
+    "ME04": {
+      "compact": "../skill-icon-review-12/ME04-C02-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-12/ME04-C02-24.png",
+        "32": "../skill-icon-review-12/ME04-C02-32.png",
+        "64": "../skill-icon-review-12/ME04-C02-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/ME04-illustration.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "accepted",
+      "compact_sha256": "bccbdc6e4aa2a9dab555b57781a2b4077da5b3e6e47de51afc81c47e24447f2d",
+      "illustration_sha256": "b244788ac01e16f4399d263ceb403795ffa2c2c59e9cd0d60e6aaa1589a330b4"
+    },
+    "SU04": {
+      "compact": "../skill-icon-review-12/SU04-C02-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-12/SU04-C02-24.png",
+        "32": "../skill-icon-review-12/SU04-C02-32.png",
+        "64": "../skill-icon-review-12/SU04-C02-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/SU04-illustration.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "accepted",
+      "compact_sha256": "05d0b09b9cd80914362d5e3dd8b2018dce429f9e63af9c7610b388edd1ef3910",
+      "illustration_sha256": "8c7ebb5714b9ef938dd509080b90b6435f5038fd721d0fee320f65da6cc45154"
+    },
+    "D59": {
+      "compact": "../skill-icon-review-12/D59-C02-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-12/D59-C02-24.png",
+        "32": "../skill-icon-review-12/D59-C02-32.png",
+        "64": "../skill-icon-review-12/D59-C02-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/D59-illustration.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "accepted",
+      "compact_sha256": "dc151c1bd0039db0cf3acc467514648244fc709abecc141454577cfde5fe0231",
+      "illustration_sha256": "1ea7634e2367f137fa5a9cefabdc176be760f10dcdd19bc197cedcd9d38e917f"
+    },
+    "FE05": {
+      "compact": "../skill-icon-review-12/FE05-C02-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-12/FE05-C02-24.png",
+        "32": "../skill-icon-review-12/FE05-C02-32.png",
+        "64": "../skill-icon-review-12/FE05-C02-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/FE05-illustration.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "accepted",
+      "compact_sha256": "ad54898c5b5538992a3d392b32a88c3cd01811e820e6ef3b14302c72ef6e248b",
+      "illustration_sha256": "9ae15e20dc75200cc42ad727ee646798307389683afa20cc0442d90f97e748a8"
+    },
+    "FR03": {
+      "compact": "../skill-icon-review-12/FR03-C02-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-12/FR03-C02-24.png",
+        "32": "../skill-icon-review-12/FR03-C02-32.png",
+        "64": "../skill-icon-review-12/FR03-C02-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/FR03-illustration.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "accepted",
+      "compact_sha256": "b065691fb77cadd519b80bcca19ba9bbd516dcf2e01cc63768e776575c6a5074",
+      "illustration_sha256": "231928d6de6faed720bfdd612f9c200b8d96282842f4fc398546963bb2c800cc"
+    },
+    "BM02": {
+      "compact": "../skill-icon-review-12/BM02-C02-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-12/BM02-C02-24.png",
+        "32": "../skill-icon-review-12/BM02-C02-32.png",
+        "64": "../skill-icon-review-12/BM02-C02-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/BM02-illustration.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "accepted",
+      "compact_sha256": "05b6f5064de93f40c400ca8b23af271dfce35e5608f54de6c31da5cb3238cafe",
+      "illustration_sha256": "69cf7e8176be6d3739ccb76325accc4e6ba3b2953d366af127a8254a6796a24b"
+    },
+    "SF00": {
+      "compact": "../skill-icon-review-12/SF00-C02-32.png",
+      "compactFiles": {
+        "24": "../skill-icon-review-12/SF00-C02-24.png",
+        "32": "../skill-icon-review-12/SF00-C02-32.png",
+        "64": "../skill-icon-review-12/SF00-C02-64.png"
+      },
+      "illustration": "../../../../assets/skills/agent/SF00-illustration.png",
+      "compact_status": "awaiting_visual_review",
+      "illustration_status": "accepted",
+      "compact_sha256": "5b385a1fce76aafc15e011088235c1b2f9dbc065a31dbbe135a10030c61a5898",
+      "illustration_sha256": "99cab81ec7f7da9b229ac23093a1f5371ff0dcaee4de106e5ef1cf67111def02"
+    }
+  },
+  "requested_changes": [
+    "Center skill names under the image",
+    "Remove title highlighting and underlining"
+  ],
+  "icon_rank_gap_px": 6,
+  "title_kind_gap_px": 2,
+  "keyboard_focus_preserved": true,
+  "selection_marker": "No title highlighting; selected skill shown in detail pane",
+  "art_map_sha256": "6106d55e811a3b8bc3d7f7ebb4414660f7c67bddbfad4fe7f072ebcd5de788a0",
+  "title_alignment": "Centered on the 64px icon; rank excluded from layout width"
+}

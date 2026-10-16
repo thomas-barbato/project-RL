@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-06",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/gardien-acceptance-and-skill-tooltip-format-decisions.json",
+  "latest_decisions_sha256": "9b9fc104ada593937e83823966425923d1180655ef8305afa1bea3a96324be66",
+  "runtime_integration": "not_integrated",
+  "batch_revision": 13,
+  "document": "docs/REVUE_DESCRIPTIFS_COMPETENCES_AGENT.md",
+  "document_sha256": "d669db10fef6720871ddae1bbc52794b077a45ffdc1f2801bdff0badeee9526f",
+  "blocks": [
+    {
+      "id": "CD01",
+      "title": "Trois parties sur chaque fiche",
+      "revision": 3,
+      "block_sha256": "b1114d5ce0133faba8b353e6c410094a7d453539d5f1177031d08a89e4e42f1d",
+      "mechanic_approval": "explicit_user_requirements_recorded_proposed_details_pending",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "CD02",
+      "title": "Référence et résultat actuel",
+      "revision": 4,
+      "block_sha256": "2cae591486bbf7acf064ea659301f968ccdcf9d215d38a6598987b2a0146a0c5",
+      "mechanic_approval": "explicit_user_requirements_recorded_proposed_details_pending",
+      "runtime_integration": "not_integrated",
+      "next_rank_copy_approval": "explicit_user_correction_only_changed_values_in_next_rank_block"
+    },
+    {
+      "id": "CD03",
+      "title": "Validation individuelle",
+      "revision": 7,
+      "block_sha256": "9f65b20c0808b9c20ee17ea123bf61184f5580a316ee3131459fffbd4e9c77f4",
+      "mechanic_approval": "explicit_user_requirements_recorded_proposed_details_pending",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "CD04",
+      "title": "Mentionner les temps particuliers",
+      "revision": 1,
+      "block_sha256": "5167f5f39b14000a6ce4f9d0496644c98c80f535e273348d5066e34ee5736757",
+      "text_sha256": "0ad51798c887a0c3f7fdf0c1897186198c4302431f25b9051a3c3d93a408c501",
+      "copy_approval": "explicit_user_timing_rule_and_exact_B01_functional_sentence",
+      "mechanic_approval": "editorial_rule_only_gameplay_unchanged",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "CD05",
+      "title": "Signaler une arme active incompatible",
+      "revision": 2,
+      "block_sha256": "0ca7537f9a1df68042ae430832d4a4087b670a804cf3729f7bbea90cd6834270",
+      "text_sha256": "3cdd28379b1744f108cec87360f8a86366931d15c4360b2d7b06404a8ee75bea",
+      "mechanic_approval": "explicit_user_weapon_type_and_active_weapon_requirement",
+      "melee_warning_approval": "presented_and_accepted_with_user_generalization",
+      "additional_copy_approval": "unavailable_damage_label_pending_user_review",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "ranged_warning_approval": "presented_and_accepted_before_continuation"
+    },
+    {
+      "id": "CD06",
+      "title": "Effet actuel et prochain rang avec plage de dégâts",
+      "revision": 4,
+      "block_sha256": "b2bdd9dc14960119d149dbfc4116a76e1070eab20d97a93df63b9c1037210330",
+      "mechanic_sha256": "b2bdd9dc14960119d149dbfc4116a76e1070eab20d97a93df63b9c1037210330",
+      "copy_requirement_approval": "explicit_user_current_next_effect_comparison_and_weapon_damage_variance",
+      "specific_presentation_approval": "displayed_ME03_current_next_copy_accepted",
+      "previous_interrupted_block_snapshot": "docs/reviews/refonte-agent-2026-10-06/description-format-interrupted-variance-proposal.md",
+      "numeric_variance_amplitude_approval": "illustrative_only_not_approved_as_weapon_balance",
+      "visual_approval": "pending_native_preview_and_user_review",
+      "runtime_integration": "not_integrated",
+      "accepted_example_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME03-03.json",
+      "next_rank_copy_approval": "explicit_user_correction_only_changed_values_in_next_rank_block"
+    },
+    {
+      "id": "CD07",
+      "title": "Tooltips des arbres de compétences",
+      "revision": 1,
+      "block_sha256": "bf7dda009d5526349f1b9fc798d6fef2d91898db466056b305a9c1ec6f227285",
+      "mechanic_approval": "explicit_user_tooltip_icon_level_color_and_rank_breakdown_omission_requirements; gameplay_unchanged",
+      "visual_approval": "specific_icons_layout_and_native_render_pending_user_review",
+      "runtime_integration": "not_integrated"
+    }
+  ],
+  "accepted_requirements": {
+    "user_requirement": "Descriptive roleplay text followed by short numeric current effect and next learnable rank blocks.",
+    "required_parts": [
+      "roleplay description",
+      "current numeric effects",
+      "next learnable rank numeric effects"
+    ],
+    "each_final_description_requires_user_review": true,
+    "default_reference_definition": "rank 1 before other bonuses, as displayed in the accepted first review",
+    "presentation": "short current/next effect blocks without tables or progression formulas",
+    "execution_time_copy": "only mention when an action does not apply upon activation",
+    "ordinary_action_copy": "no immediate execution or one turn reminder",
+    "effect_duration_and_cooldown_display": "preserved",
+    "active_weapon_compatibility": {
+      "scope": "weapon_based_active_skills",
+      "melee": "active_melee_weapon",
+      "ranged": "active_ranged_weapon",
+      "incompatibility": "show_required_type_and_make_action_unavailable"
+    },
+    "original_user_requirement": "Texte descrptif roleplay, effets chiffrés de ce que fais la compétence par defaut et affiche aussi la valeur actuelle",
+    "damage_display": "minimum-maximum range from active compatible weapon and applicable modifiers",
+    "next_preview": "one learned rank added, same equipment and other conditions, learned cap 10 respected",
+    "next_rank_display": "only values that change; unchanged effects remain in current block or shared information",
+    "skill_tree_tooltips": {
+      "review_id": "CD07",
+      "skill_tree_shows_icon_and_effective_level": true,
+      "boosted_level_different_color": true,
+      "existing_boosted_color_family": "cyan",
+      "descriptions_mainly_in_tooltips": true,
+      "omit_learned_and_equipment_rank_breakdown_in_tooltip": true,
+      "omit_from_future_player_copy_examples": true,
+      "internal_learned_bonus_effective_ranks_remain_distinct": true,
+      "current_and_next_values_use_effective_rank": true,
+      "existing_numeric_rules_unchanged": true
+    }
+  },
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-description-format-revision-12.md",
+  "first_melee_review": "docs/REVUE_MELEE_AGENT_LOT_03.md",
+  "survival_review": "docs/REVUE_SURVIE_AGENT_LOT_04.md",
+  "drone_review": "docs/REVUE_DRONES_AGENT_LOT_05.md",
+  "afflictions_review": "docs/REVUE_AFFAIBLISSEMENTS_AGENT_LOT_06.md",
+  "complete_design_document": "docs/CADRAGE_COMPETENCES_AGENT_COMPLET.md",
+  "next_stage": "individual descriptions in progress"
+}

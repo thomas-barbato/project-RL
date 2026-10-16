@@ -1,0 +1,30 @@
+{
+  "batch": "ANIM-S28",
+  "date": "2026-10-14",
+  "status": "awaiting_visual_review",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 65,
+      "id": "SF00",
+      "name": "Furtivité",
+      "variant": "SF00-A01"
+    },
+    {
+      "number": 66,
+      "id": "SF01",
+      "name": "Économie de mouvement furtif",
+      "variant": "SF01-A01"
+    }
+  ],
+  "approved_cards": [
+    "review-individual-description-SF00-11.json",
+    "review-individual-description-SF01-04.json"
+  ],
+  "mechanics": "SF00 purchased once; step cost11 without economy, activation0, stationary0 and cooldown0. SF01 rank10 cost1, rank9 cost2, effective12 remains1. Mode persists through idle, menu and healing; offense ends it. At zero energy, attempted movement ends the mode and the same step proceeds normally.",
+  "visuals": "Original player and weapon layers unchanged; smooth0.24s transition to56% opacity, short outlined steel-blue scan, fast0.12s movement. Persistent32px SF00 status icon without countdown; energy feedback above player and status tooltip. SF01 changes cost and permanent numeric panel without an extra timed buff.",
+  "prepared_profiles": "SF00 without economy versus SF01 learned10; cases rank9 and effective12. Energy100, zero or exactly3 payable steps; no regeneration. Fixed monsters are visual context. Healing+5 is a supplied review event, not a new healing skill.",
+  "scope": "Independent fixtures; no GameState, perception AI, sound propagation, save, loot or RNG mutation. Scene directions change positions while bodies stay frontal. Tooltip uses the accepted two-cell detection example without creating vision cones or erasing NPC memory. Both profiles own SF00.",
+  "pending": "Positive insufficient energy, zero energy combined with blocked movement, real turn/resource/regeneration ordering, mode exit action ordering, silence/transformation/gear interactions and detection curves/sounds/memory remain separate. Offensive scene removes camouflage without executing an attack.",
+  "temporary_actors": "Existing enemy32 art temporarily enlarged64; adaptation after animations."
+}

@@ -1,0 +1,90 @@
+{
+  "controls": [
+    {
+      "variant": "A01-A03-HAUT",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A02-A03-HAUT",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A01-A03-DROITE",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A02-A03-DROITE",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A01-A03-GAUCHE",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A02-A03-GAUCHE",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A01-A03-BAS",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A02-A03-BAS",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A01-A03-OBSTACLE",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A02-A03-OBSTACLE",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A01-A03-CLOISON",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A02-A03-CLOISON",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A01-A03-PROCHE",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    },
+    {
+      "variant": "A02-A03-PROCHE",
+      "timeline_identical": true,
+      "actors_and_terrain_identical": true,
+      "source_textures_and_alpha_identical": true
+    }
+  ],
+  "change": "Effect shader color only; alpha, timings, positions and source drawings unchanged.",
+  "comparison_limit": "Tiny antialias differences in the transient skill-name text are excluded only within its known rectangle during frames 17-33. Actor bodies, terrain and all later frames match exactly."
+}

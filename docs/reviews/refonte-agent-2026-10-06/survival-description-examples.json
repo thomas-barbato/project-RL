@@ -1,0 +1,463 @@
+{
+  "date": "2026-10-06",
+  "status": "proposed_design_calculations_not_engine_tests",
+  "default_max_hp": 100,
+  "current_max_hp_before_Endurance": 100,
+  "current_max_hp": 132,
+  "current_learned_rank": 10,
+  "current_equipment_rank_bonus": 2,
+  "current_effective_rank": 12,
+  "actual_user_save": false,
+  "rows": [
+    {
+      "id": "B03",
+      "rank_samples_with_100_max_hp": [
+        {
+          "effective_rank": 1,
+          "maximum_hp_bonus_percent": 10,
+          "maximum_hp_with_base_100": 110,
+          "energy": 0
+        },
+        {
+          "effective_rank": 5,
+          "maximum_hp_bonus_percent": 18,
+          "maximum_hp_with_base_100": 118,
+          "energy": 0
+        },
+        {
+          "effective_rank": 10,
+          "maximum_hp_bonus_percent": 28,
+          "maximum_hp_with_base_100": 128,
+          "energy": 0
+        },
+        {
+          "effective_rank": 12,
+          "maximum_hp_bonus_percent": 32,
+          "maximum_hp_with_base_100": 132,
+          "energy": 0
+        },
+        {
+          "effective_rank": 100,
+          "maximum_hp_bonus_percent": 208,
+          "maximum_hp_with_base_100": 308,
+          "energy": 0
+        },
+        {
+          "effective_rank": 1000,
+          "maximum_hp_bonus_percent": 2008,
+          "maximum_hp_with_base_100": 2108,
+          "energy": 0
+        }
+      ],
+      "default": {
+        "maximum_hp_bonus_percent": 10,
+        "maximum_hp_with_base_100": 110,
+        "energy": 0
+      },
+      "current_example": {
+        "maximum_hp_bonus_percent": 32,
+        "maximum_hp_with_base_100": 132,
+        "energy": 0
+      }
+    },
+    {
+      "id": "B02",
+      "rank_samples_with_100_max_hp": [
+        {
+          "effective_rank": 1,
+          "direct_reduction_percent": {
+            "numerator": 25,
+            "denominator": 1,
+            "display": 25.0
+          },
+          "energy": 10,
+          "duration_turns": 4,
+          "cooldown_turns": 8
+        },
+        {
+          "effective_rank": 5,
+          "direct_reduction_percent": {
+            "numerator": 275,
+            "denominator": 7,
+            "display": 39.3
+          },
+          "energy": 11,
+          "duration_turns": 4,
+          "cooldown_turns": 8
+        },
+        {
+          "effective_rank": 10,
+          "direct_reduction_percent": {
+            "numerator": 925,
+            "denominator": 19,
+            "display": 48.7
+          },
+          "energy": 13,
+          "duration_turns": 4,
+          "cooldown_turns": 8
+        },
+        {
+          "effective_rank": 12,
+          "direct_reduction_percent": {
+            "numerator": 1075,
+            "denominator": 21,
+            "display": 51.2
+          },
+          "energy": 13,
+          "duration_turns": 4,
+          "cooldown_turns": 8
+        },
+        {
+          "effective_rank": 100,
+          "direct_reduction_percent": {
+            "numerator": 7675,
+            "denominator": 109,
+            "display": 70.4
+          },
+          "energy": 43,
+          "duration_turns": 4,
+          "cooldown_turns": 8
+        },
+        {
+          "effective_rank": 1000,
+          "direct_reduction_percent": {
+            "numerator": 75175,
+            "denominator": 1009,
+            "display": 74.5
+          },
+          "energy": 343,
+          "duration_turns": 4,
+          "cooldown_turns": 8
+        }
+      ],
+      "default": {
+        "direct_reduction_percent": {
+          "numerator": 25,
+          "denominator": 1,
+          "display": 25.0
+        },
+        "energy": 10,
+        "duration_turns": 4,
+        "cooldown_turns": 8
+      },
+      "current_example": {
+        "direct_reduction_percent": {
+          "numerator": 1075,
+          "denominator": 21,
+          "display": 51.2
+        },
+        "energy": 13,
+        "duration_turns": 4,
+        "cooldown_turns": 8
+      }
+    },
+    {
+      "id": "SU03",
+      "rank_samples_with_100_max_hp": [
+        {
+          "effective_rank": 1,
+          "absorption_percent_max_hp": {
+            "numerator": 5,
+            "denominator": 1,
+            "display": 5.0
+          },
+          "absorbed_hp": 5,
+          "calm_turns": 4,
+          "energy": 0
+        },
+        {
+          "effective_rank": 5,
+          "absorption_percent_max_hp": {
+            "numerator": 55,
+            "denominator": 6,
+            "display": 9.2
+          },
+          "absorbed_hp": 10,
+          "calm_turns": 4,
+          "energy": 0
+        },
+        {
+          "effective_rank": 10,
+          "absorption_percent_max_hp": {
+            "numerator": 370,
+            "denominator": 29,
+            "display": 12.8
+          },
+          "absorbed_hp": 13,
+          "calm_turns": 4,
+          "energy": 0
+        },
+        {
+          "effective_rank": 12,
+          "absorption_percent_max_hp": {
+            "numerator": 430,
+            "denominator": 31,
+            "display": 13.9
+          },
+          "absorbed_hp": 14,
+          "calm_turns": 4,
+          "energy": 0
+        },
+        {
+          "effective_rank": 100,
+          "absorption_percent_max_hp": {
+            "numerator": 3070,
+            "denominator": 119,
+            "display": 25.8
+          },
+          "absorbed_hp": 26,
+          "calm_turns": 4,
+          "energy": 0
+        },
+        {
+          "effective_rank": 1000,
+          "absorption_percent_max_hp": {
+            "numerator": 30070,
+            "denominator": 1019,
+            "display": 29.5
+          },
+          "absorbed_hp": 30,
+          "calm_turns": 4,
+          "energy": 0
+        }
+      ],
+      "default": {
+        "absorption_percent_max_hp": {
+          "numerator": 5,
+          "denominator": 1,
+          "display": 5.0
+        },
+        "absorbed_hp": 5,
+        "calm_turns": 4,
+        "energy": 0
+      },
+      "current_example": {
+        "absorption_percent_max_hp": {
+          "numerator": 430,
+          "denominator": 31,
+          "display": 13.9
+        },
+        "absorbed_hp": 19,
+        "calm_turns": 4,
+        "energy": 0
+      }
+    },
+    {
+      "id": "SU04",
+      "rank_samples_with_100_max_hp": [
+        {
+          "effective_rank": 1,
+          "heal_percent_max_hp_per_turn": {
+            "numerator": 4,
+            "denominator": 1,
+            "display": 4.0
+          },
+          "healed_hp_per_turn": 4,
+          "maximum_channel_turns": 3,
+          "max_total_healed_hp": 12,
+          "energy_per_turn": 4,
+          "max_total_energy": 12,
+          "cooldown_turns": 8
+        },
+        {
+          "effective_rank": 5,
+          "heal_percent_max_hp_per_turn": {
+            "numerator": 60,
+            "denominator": 7,
+            "display": 8.6
+          },
+          "healed_hp_per_turn": 9,
+          "maximum_channel_turns": 3,
+          "max_total_healed_hp": 27,
+          "energy_per_turn": 5,
+          "max_total_energy": 15,
+          "cooldown_turns": 8
+        },
+        {
+          "effective_rank": 10,
+          "heal_percent_max_hp_per_turn": {
+            "numerator": 220,
+            "denominator": 19,
+            "display": 11.6
+          },
+          "healed_hp_per_turn": 12,
+          "maximum_channel_turns": 3,
+          "max_total_healed_hp": 36,
+          "energy_per_turn": 6,
+          "max_total_energy": 18,
+          "cooldown_turns": 8
+        },
+        {
+          "effective_rank": 12,
+          "heal_percent_max_hp_per_turn": {
+            "numerator": 260,
+            "denominator": 21,
+            "display": 12.4
+          },
+          "healed_hp_per_turn": 13,
+          "maximum_channel_turns": 3,
+          "max_total_healed_hp": 39,
+          "energy_per_turn": 6,
+          "max_total_energy": 18,
+          "cooldown_turns": 8
+        },
+        {
+          "effective_rank": 100,
+          "heal_percent_max_hp_per_turn": {
+            "numerator": 2020,
+            "denominator": 109,
+            "display": 18.5
+          },
+          "healed_hp_per_turn": 19,
+          "maximum_channel_turns": 3,
+          "max_total_healed_hp": 57,
+          "energy_per_turn": 28,
+          "max_total_energy": 84,
+          "cooldown_turns": 8
+        },
+        {
+          "effective_rank": 1000,
+          "heal_percent_max_hp_per_turn": {
+            "numerator": 20020,
+            "denominator": 1009,
+            "display": 19.8
+          },
+          "healed_hp_per_turn": 20,
+          "maximum_channel_turns": 3,
+          "max_total_healed_hp": 60,
+          "energy_per_turn": 253,
+          "max_total_energy": 759,
+          "cooldown_turns": 8
+        }
+      ],
+      "default": {
+        "heal_percent_max_hp_per_turn": {
+          "numerator": 4,
+          "denominator": 1,
+          "display": 4.0
+        },
+        "healed_hp_per_turn": 4,
+        "maximum_channel_turns": 3,
+        "max_total_healed_hp": 12,
+        "energy_per_turn": 4,
+        "max_total_energy": 12,
+        "cooldown_turns": 8
+      },
+      "current_example": {
+        "heal_percent_max_hp_per_turn": {
+          "numerator": 260,
+          "denominator": 21,
+          "display": 12.4
+        },
+        "healed_hp_per_turn": 17,
+        "maximum_channel_turns": 3,
+        "max_total_healed_hp": 51,
+        "energy_per_turn": 6,
+        "max_total_energy": 18,
+        "cooldown_turns": 8
+      }
+    },
+    {
+      "id": "SU05",
+      "rank_samples_with_100_max_hp": [
+        {
+          "effective_rank": 1,
+          "maximum_cleansed_statuses": 1,
+          "energy": 10,
+          "cooldown_turns": 6
+        },
+        {
+          "effective_rank": 5,
+          "maximum_cleansed_statuses": 1,
+          "energy": 9,
+          "cooldown_turns": 6
+        },
+        {
+          "effective_rank": 10,
+          "maximum_cleansed_statuses": 2,
+          "energy": 9,
+          "cooldown_turns": 6
+        },
+        {
+          "effective_rank": 12,
+          "maximum_cleansed_statuses": 3,
+          "energy": 8,
+          "cooldown_turns": 6
+        },
+        {
+          "effective_rank": 100,
+          "maximum_cleansed_statuses": 20,
+          "energy": 7,
+          "cooldown_turns": 6
+        },
+        {
+          "effective_rank": 1000,
+          "maximum_cleansed_statuses": 200,
+          "energy": 7,
+          "cooldown_turns": 6
+        }
+      ],
+      "default": {
+        "maximum_cleansed_statuses": 1,
+        "energy": 10,
+        "cooldown_turns": 6
+      },
+      "current_example": {
+        "maximum_cleansed_statuses": 3,
+        "energy": 8,
+        "cooldown_turns": 6
+      }
+    },
+    {
+      "id": "SU06",
+      "rank_samples_with_100_max_hp": [
+        {
+          "effective_rank": 1,
+          "surviving_hp": 1,
+          "cooldown_turns": 100,
+          "energy": 0
+        },
+        {
+          "effective_rank": 5,
+          "surviving_hp": 1,
+          "cooldown_turns": 80,
+          "energy": 0
+        },
+        {
+          "effective_rank": 10,
+          "surviving_hp": 1,
+          "cooldown_turns": 67,
+          "energy": 0
+        },
+        {
+          "effective_rank": 12,
+          "surviving_hp": 1,
+          "cooldown_turns": 64,
+          "energy": 0
+        },
+        {
+          "effective_rank": 100,
+          "surviving_hp": 1,
+          "cooldown_turns": 37,
+          "energy": 0
+        },
+        {
+          "effective_rank": 1000,
+          "surviving_hp": 1,
+          "cooldown_turns": 31,
+          "energy": 0
+        }
+      ],
+      "default": {
+        "surviving_hp": 1,
+        "cooldown_turns": 100,
+        "energy": 0
+      },
+      "current_example": {
+        "surviving_hp": 1,
+        "cooldown_turns": 64,
+        "energy": 0
+      }
+    }
+  ]
+}

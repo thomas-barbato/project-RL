@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-RANK06",
+  "revision": 2,
+  "title": "Baisse du rang d'un passif utilisé par une mine",
+  "status": "mine_passive_dependency_rank_loss_explicitly_accepted;power_sampling_and_other_cases_pending;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-variant-access-loss-INTERACT-RANK04-01.json",
+      "reference_sha256": "7af3daa1a02a35496ee4f764180ffa89c5282bdd4e82ee9982b41b146730cfdb"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-residue-access-loss-INTERACT-RANK05-02.json",
+      "reference_sha256": "64e357edfbab7d869cf7a8635db1106afe9277059e61e14dff522196d14aa9c3"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-passive-capacity-loss-INTERACT-RANK03-02.json",
+      "reference_sha256": "4ebd3acc532f567e5c162d015c34c6a417917347f667b55abb3d004fedba8784"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM04-02.json",
+      "reference_sha256": "d0aa714e9224f930b49546ff5ad04872b06aae7f6c75f0784dc788841a23a2ac"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-invoked-creation-scope-INTERACT-RANK02-02.json",
+      "reference_sha256": "5084d9e1336229bdf283545959f5134cd86efd74fae0b7a39e75370051dc8a09"
+    }
+  ],
+  "scope": "any_effective_rank_decrease_of_SM02_SM03_SM04_or_SM05_affecting_own_SM00_mine_or_residue_creation_that_used_this_passive;creator_identity_not_changed",
+  "already_accepted": "SM02_SM03_SM05_unavailability_removes_dependent_mines_and_residue_zones_without_base_conversion;SM01_capacity_only_removes_oldest_excess;SM00_creator_rank_loss_removes_all_its_own_creations",
+  "shown_example": {
+    "affected_passive": "SM02",
+    "old_effective_rank": 12,
+    "new_effective_rank": 10,
+    "passive_still_available": true,
+    "remove": [
+      "own_poison_mines",
+      "own_poison_residue_zones"
+    ],
+    "retain_under_this_single_passive_change": [
+      "own_fire_mines",
+      "own_cold_mines"
+    ],
+    "numbers_are_rank_illustration_not_new_damage_balance": true
+  },
+  "shown_copy_markdown": "Pour terminer les règles des passifs de mines, je propose de supprimer les créations concernées à chaque baisse de leur rang effectif, même si le passif reste disponible :\n\n- Mines de poison : mines et nuages de poison.\n- Mines de glace : mines et zones de glace.\n- Résidu persistant : mines configurées pour laisser une zone et zones déjà créées.\n- Explosion étendue : mines et zones utilisant son rayon amélioré.\n\nExemple : Mines de poison passe du rang 12 au rang 10 ; vos mines et nuages de poison existants disparaissent. Vos mines de feu ou de glace ne sont pas concernées par cette seule baisse.\n\nLa suppression ne provoque aucune explosion ni remboursement d'énergie. Réseau de mines garde sa règle validée : seule la capacité change et les mines en trop disparaissent. Les statuts déjà appliqués suivent les règles de durée précédemment validées.",
+  "shown_copy_sha256": "0c65231f74ef6c738a5d30aead78e84270860c3ad9cf00b321adade5319130e5",
+  "not_resolved_here": [
+    "mine_power_sampling_on_rank_increase_or_caster_level_attribute_change",
+    "merged_multi_source_Gel_provenance",
+    "predeath_resurrection_mark_cleanup_and_birth_sampling",
+    "full_turn_and_equipment_transaction_event_order",
+    "native_removal_feedback"
+  ],
+  "mechanic_approval": "accepted_as_displayed",
+  "text_approval": "design_explanation_accepted;no_new_skill_RP_or_name",
+  "visual_approval": "no_new_native_art_or_animation_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-passive-rank-dependencies-INTERACT-RANK06-01.json",
+    "reference_sha256": "e69290181503c8c72b60b2631509b64363d19c0505d3ab56a7aed08b34b4f155"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/mine-passive-rank-dependencies-acceptance-decisions.json",
+    "reference_sha256": "80de1547ff6015c937aeee8b699aae2937c24ea0b7c396da9fe849afce09b79d"
+  },
+  "accepted_rule": {
+    "condition": "any_effective_rank_decrease_even_if_passive_remains_learned_or_gear_available;not_conditioned_on_complete_access_loss_or_actual_numeric_breakpoint_change",
+    "SM02": "remove_own_SM00_poison_mines_and_poison_residue_zones_that_used_SM02",
+    "SM03": "remove_own_SM00_cold_mines_and_cold_residue_zones_that_used_SM03",
+    "SM05": "remove_own_SM00_mines_configured_with_persistent_residue_and_own_existing_residue_zones_that_used_SM05",
+    "SM04": "remove_own_SM00_mines_and_residue_zones_that_used_SM04_radius_modifier;includes_final_SM04_access_loss",
+    "selection": "only_creations_using_affected_passive;unrelated_mines_zones_other_skills_and_other_casters_retained",
+    "cleanup": "no_explosion_new_damage_or_energy_refund;never_convert_removed_mine_to_base_variant",
+    "statuses": "preserve_accepted_explosion_status_remaining_duration_and_removed_zone_only_Gel_expiry_rules;no_global_target_status_purge",
+    "SM01_exception": "capacity_passive_keeps_accepted_new_limit_and_oldest_excess_only_rule",
+    "creator_rule": "SM00_remains_creator;its_own_rank_loss_still_removes_all_own_creations_even_when_a_passive_is_unchanged"
+  }
+}

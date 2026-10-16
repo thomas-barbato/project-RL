@@ -1,0 +1,25 @@
+{
+  "batch": "ANIM-S12",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 25,
+      "id": "OC04",
+      "variant": "OC04-A01",
+      "name": "Prison sigillaire",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 26,
+      "id": "OC07",
+      "variant": "OC07-A01",
+      "name": "Réanimation",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "prison": "Eight independent blood glyph segments around a free central tile. Rapid .30-second cosmetic tracing, persistent red marks; one prepared segment breaks and disappears, leaving a breach; scripted enemy exits through it.",
+  "reanimation": "Blood seal persists under a marked enemy until the prepared death. Red resurrection surge and a short corpse/living-sprite blend, then an ivory skull marker identifies the raised ally. Scripted movement and one bump suggest an autonomous ordinary attack.",
+  "timing": "Manual turns only: prison four turns at rank 11; resurrection eleven turns from birth at the prepared death on turn 2. Quiet scene passes no turns automatically and keeps the mark/circle visible.",
+  "scope": "Debug-only visual fixture, not real combat/AI. No actual segment damage, healing, loot, XP, skill/stat changes, RNG, inventory, familiar window, save or campaign integration. Existing living/corpse actor artwork retained."
+}

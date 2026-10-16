@@ -9,12 +9,12 @@ Les PNG ont été produits avec le générateur d'images intégré lors des essa
 | `terrain-and-objects-source.png` | `atlas-source.png` et `PROMPT.txt` |
 | `walls-source.png` | `walls-correction-source.png` et `WALLS-PROMPT.txt` |
 | `furniture-source.png` | `furniture-source.png` et `FURNITURE-PROMPT.txt` |
-| `floors-borderless-source-v2.png` | Édition des 10 sols sans bordure ; prompt dans `artifacts/sols-sans-contours-2026-10-01/PROMPT.txt`. |
-| `walls-and-corners-source-v4.png` | Lot commun : mur horizontal, mur vertical et quatre coins. Générateur intégré ; `artifacts/quatre-coins-2026-10-01/COHERENT-WALLS-PROMPT.txt`. |
-| `wall-corner-nw-source-v3.png` | Coin haut gauche ; `artifacts/quatre-coins-2026-10-01/PROMPT-nw.txt`. |
-| `wall-corner-ne-source-v3.png` | Coin haut droit ; `artifacts/quatre-coins-2026-10-01/PROMPT-ne.txt`. |
-| `wall-corner-sw-source-v3.png` | Coin bas gauche ; `artifacts/quatre-coins-2026-10-01/PROMPT-sw.txt`. |
-| `wall-corner-se-source-v3.png` | Coin bas droit ; `artifacts/quatre-coins-2026-10-01/PROMPT-se.txt`. |
+| `floors-borderless-source-v2.png` | Édition des 10 sols sans bordure ; prompt dans `docs/reviews/sols-sans-contours-2026-10-01/PROMPT.txt`. |
+| `walls-and-corners-source-v4.png` | Lot commun : mur horizontal, mur vertical et quatre coins. Générateur intégré ; `docs/reviews/quatre-coins-2026-10-01/COHERENT-WALLS-PROMPT.txt`. |
+| `wall-corner-nw-source-v3.png` | Coin haut gauche ; `docs/reviews/quatre-coins-2026-10-01/PROMPT-nw.txt`. |
+| `wall-corner-ne-source-v3.png` | Coin haut droit ; `docs/reviews/quatre-coins-2026-10-01/PROMPT-ne.txt`. |
+| `wall-corner-sw-source-v3.png` | Coin bas gauche ; `docs/reviews/quatre-coins-2026-10-01/PROMPT-sw.txt`. |
+| `wall-corner-se-source-v3.png` | Coin bas droit ; `docs/reviews/quatre-coins-2026-10-01/PROMPT-se.txt`. |
 
 Le renderer lit les cellules des planches à 64 × 64 pixels, sans agrandir les anciens échantillons à 32 pixels. Il normalise les silhouettes des murs et des portes pour leur donner des raccords communs. Les PNG sources restent inchangés.
 

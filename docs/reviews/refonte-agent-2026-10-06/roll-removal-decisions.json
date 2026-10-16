@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-07",
+  "review_id": "ES02",
+  "title": "Roulade",
+  "user_message": "on va supprimer cette compétence , elle ressemble trop à pas spectrale et je pense qu'en terme d'animation ca va être chiant.",
+  "decision": "removed_from_active_primary_skill_catalogue_without_replacement",
+  "approval": "explicit_user_removal_request",
+  "reason": "Too similar to Pas spectral; rolling animation considered unnecessarily difficult by user.",
+  "previous_individual_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ES02-01.json",
+  "previous_individual_description_sha256": "b7a14be9fb8aa160964a90ec6c42fd7af39567836ee2ef1c0cb79691c661f03f",
+  "previous_player_copy_sha256": "8f0e888f271483225ee26b7b3adf9b79fedaba81b9c30f9dd4494c64dcbd7104",
+  "replacement_skill_id": null,
+  "stable_id_reused": false,
+  "primary_catalogue_before": 85,
+  "primary_catalogue_after": 84,
+  "dodge_branch_before": 6,
+  "dodge_branch_after": 5,
+  "preserved_skill": "T02 Pas spectral; name, accepted copy and mechanics unchanged; no Roulade values transferred.",
+  "history": "Prior proposal retained in immutable artifacts only; no active skill node, effect or animation task for ES02.",
+  "scope": "Design catalogue and associated rule/tree documents only; no gameplay feature or art creation.",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-15",
+  "review_ids": [
+    "DRONE-ARMY01-NUM01",
+    "D66-TAUNT01-NUM01"
+  ],
+  "status": "proposed_not_accepted",
+  "accepted_direction": "../drone-army-and-guardian-taunt-acceptance-01.json",
+  "campaign_integration": false,
+  "control_capacity": {
+    "base": 4,
+    "additional_capacity_per_learned_ranks": {
+      "gain": 1,
+      "every": 5
+    },
+    "counted_branch": "Drones",
+    "counted_skill_ids": [
+      "D56",
+      "D57",
+      "D58",
+      "D59",
+      "D66",
+      "DP01",
+      "DP02",
+      "DR01",
+      "O03"
+    ],
+    "count_learned_ranks_including_starter_ranks": true,
+    "count_equipment_bonus_ranks": false,
+    "capacity_per_deployed_drone": 1,
+    "scout_D56_maximum": 1,
+    "other_model_limit": "D58/D59/D66 share total control capacity; D56 and D57 each have one active maximum",
+    "examples": [
+      {
+        "total_learned_ranks": 1,
+        "maximum_deployed": 4
+      },
+      {
+        "total_learned_ranks": 10,
+        "maximum_deployed": 6
+      },
+      {
+        "total_learned_ranks": 20,
+        "maximum_deployed": 8
+      },
+      {
+        "total_learned_ranks": 40,
+        "maximum_deployed": 12
+      },
+      {
+        "total_learned_ranks": 90,
+        "maximum_deployed": 22
+      }
+    ],
+    "mule_D57_maximum": 1,
+    "per_model_exception_acceptance": "../mule-single-active-acceptance-01.json"
+  },
+  "guardian_rank1_trial": {
+    "shape": "5x5 square centered on the Guardian, filtered by actual line of sight and obstacles",
+    "radius_cells": 2,
+    "duration_turns": 2,
+    "internal_cooldown_turns": 4,
+    "trigger": "Automatically in the normal familiar phase when a valid nearby hostile is not already provoked.",
+    "action_budget": "The provocation replaces this Guardian attack for that phase; no extra attack/action.",
+    "existing_taunt": "A target already provoked keeps its current Guardian; another Guardian does not replace or refresh it.",
+    "status_label_proposed": "Provoqué",
+    "invocation_energy_preserved": 14,
+    "invocation_cooldown_turns_preserved": 6,
+    "attack_role_preserved": "contact attack in other ordinary eligible phases"
+  },
+  "proposed_visual_direction": {
+    "status": "not_yet_shown_or_accepted",
+    "intent": "Short outward pulse from the Guardian, followed by a small transparent-background provocation icon over affected enemies. No remaining protective brackets or reduction halo.",
+    "body": "D66-BODY02, already accepted",
+    "icon": "Exact provocation symbol still to propose"
+  },
+  "deferred_details": [
+    "Full-rank taunt progression; no new curve inferred",
+    "Hostile target validity, death, expiry, sight loss, boss/resistance rules",
+    "Exact placement rejection and existing over-capacity save handling",
+    "Recall/redeployment capacity accounting and per-instance identity",
+    "Group orders interface and automatic passage action costs"
+  ],
+  "scope": "Concrete trial proposal only. Existing game catalogue and combat remain unchanged until review and the planned integration phase.",
+  "simultaneous_guardian_taunts": {
+    "reference": "../guardian-simultaneous-taunts-proposal-01.json",
+    "review_id": "D66-TAUNT-MULTI01",
+    "status": "presented_rules_accepted_implementation_details_pending",
+    "acceptance": "../guardian-simultaneous-taunts-acceptance-01.json"
+  }
+}

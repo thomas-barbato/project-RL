@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "FE02",
+    "FE02-BURN01"
+  ],
+  "skill_id": "FE02",
+  "title": "Souffle de feu",
+  "requirements_reference": "docs/reviews/refonte-agent-2026-10-06/elemental-status-and-emanation-redesign-decisions.json",
+  "requirements_reference_sha256": "1455a5b1f4ec31f3dcdc0fcaa8d40e34a1c1664a764100cf0b6fd6d1dcdec548",
+  "scope": "Prepare requested Feu status addition;accepted FE02 base name/RP/direct damage/channel/duration/cost/cooldown preserved. No new individual numeric approval inferred from branch request.",
+  "accepted_base_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE02-03.json",
+  "accepted_base_description_sha256": "40dd067a535a42b843c6d64ccb643c5f258da175f0bac7de238b921650e59400",
+  "status_proposals_pending_review": {
+    "current_exposure_turn_chances_percent": [
+      15,
+      30,
+      45
+    ],
+    "next_exposure_turn_chances_percent": [
+      16,
+      32,
+      48
+    ],
+    "burn_fire_damage_per_turn": 5,
+    "burn_duration_turns": 3,
+    "exposure_reset_on_exit": "EL-ZONE01 accepted",
+    "first_burn_tick": "next complete turn after application",
+    "burn_survives_end_of_breath": true,
+    "own_burn_applications_stack": false
+  },
+  "cone_exposure_scope": "proposed use of EL-ZONE01 for a cone active across several turns;exact turn/target/direction tracking pending",
+  "visual_direction_proposal": "small flames persist on burned targets after the breath ends,for the active burn duration",
+  "numeric_rules_approval": "status numbers proposed pending individual review;accepted base values retained",
+  "visual_direction_approval": "new target burn indication proposed pending review;existing cone direction retained",
+  "runtime_integration": "not_integrated"
+}

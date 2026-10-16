@@ -62,6 +62,7 @@ pub(super) fn current_model_ids() -> Vec<ItemId> {
         .chain(sword_model_ids())
         .chain(armor_model_ids())
         .chain(accessory_model_ids())
+        .chain(one_hand_firearms::model_ids())
         .collect()
 }
 
@@ -427,6 +428,7 @@ mod tests {
                 .all(|item| BASE_IDS.contains(&item.item().as_str())
                     || DEEP_BASE_IDS.contains(&item.item().as_str())
                     || firearm_model_ids().contains(item.item())
+                    || one_hand_firearms::model_ids().contains(item.item())
                     || melee_model_ids().contains(item.item())
                     || sword_model_ids().contains(item.item())
                     || armor_model_ids().contains(item.item())

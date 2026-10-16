@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-T01",
+  "revision": 2,
+  "title": "Traqueur — départ proposé",
+  "status": "displayed_class_core_accepted;equipment_values_and_native_review_separate",
+  "source_batch": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-starts-START-ALL01-01.json",
+    "reference_sha256": "0c7423689245985626b2d55636b2541c6867952ec16feee3d0f83ab56b568afc"
+  },
+  "authority": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/class-start-delegation-decisions.json",
+    "reference_sha256": "74e874981b767dc8c47b101f283a344a5f9fb67c3ac85307bb7e76018dbc696d"
+  },
+  "player_copy_markdown": "**START-T01 · Traqueur — proposition**\n\n*Vous traquez vos cibles à distance et échappez à leurs ripostes.*\n\nForce **4** · Agilité **8** · Vitalité **5** · Perception **7** · Intelligence **4** · Volonté **6**.\n\n- **Marquage balistique — rang 1 :** précision **×1,15** contre la cible marquée ; durée maximale **4 tours** ; portée **6 cases** ; **6 énergie** ; recharge **3 tours**. Votre prochaine attaque à distance contre cette cible consomme la marque. Arme à distance équipée et active requise.\n- **Maîtrise des attaques à distance — rang 1 :** **+10 % de dégâts des armes et compétences d’attaque à distance**.\n- **Implant :** **+10 % de dégâts des armes à distance**, **+2 points d’esquive** ; **−10 % de dégâts des armes de mêlée**.\n- **Départ : 30 / 30 PV · 30 / 30 énergie.** Matériel prévu : fusil et tenue légère.",
+  "player_copy_sha256": "7cb66ec3a181afe78fc6903ad20cc0ac9d5d9358659835da01aec84b076a13ac",
+  "copy_scope": "character_creation_start_summary;not_a_replacement_for_full_skill_current_next_rank_tooltips",
+  "existing_skill_rules": "preserve_current_approved_skill_cards_and_global_interaction_overrides;no_new_cost_curve_status_or_visual_created",
+  "equipment_scope": "weapon_and_clothing_role_only;exact_START_ALL01_equipment_values_remain_separate",
+  "mechanic_approval": "accepted_as_displayed",
+  "text_approval": "shown_class_RP_and_displayed_copy_accepted;skill_receipts_preserved",
+  "visual_approval": "existing_class_silhouette_assignment_preserved;native_equipped_preview_pending",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-start-traqueur-START-T01-01.json",
+    "reference_sha256": "5da2d1eb988cf13f5ca79d0da9206a7e14679a1e588bc3ad222d5e2c44678a94"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/class-three-core-starts-acceptance-decisions.json",
+    "reference_sha256": "40e43fbd4989e77add69828b4c8555c22e8c3df90492c673921350b3f9360deb"
+  },
+  "accepted_core_profile": {
+    "roleplay": "Vous traquez vos cibles à distance et échappez à leurs ripostes.",
+    "starting_level": 1,
+    "attributes": {
+      "Force": 4,
+      "Agilité": 8,
+      "Vitalité": 5,
+      "Perception": 7,
+      "Intelligence": 4,
+      "Volonté": 6
+    },
+    "fixed_start_attribute_budget": 34,
+    "learned_start_skills": [
+      {
+        "skill_id": "T01",
+        "learned_rank": 1,
+        "kind": "active"
+      },
+      {
+        "skill_id": "T03",
+        "learned_rank": 1,
+        "kind": "passive"
+      }
+    ],
+    "initial_implant_pair": {
+      "replacement": "found_implant_replaces_entire_pair;learned_skills_retained",
+      "resource_changes": "ordinary_maximum_change_keeps_absolute_current_resource_then_clamps;no_heal",
+      "ranged_weapon_damage_bonus_percent": 10,
+      "flat_evasion_bonus": 2,
+      "melee_weapon_damage_penalty_percent": 10
+    },
+    "derived_level1_reserves": {
+      "base_maximum_HP": 30,
+      "maximum_HP": 30,
+      "current_HP": 30,
+      "base_maximum_energy": 30,
+      "maximum_energy": 30,
+      "current_energy": 30,
+      "equipment_HP_or_energy_bonuses": 0
+    }
+  }
+}

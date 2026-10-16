@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-13",
+  "rule": "ANIM-REACTION01",
+  "shared_game_feedback": "connected to actual damage and harmful StatusApplied events",
+  "source_independent": true,
+  "gameplay_snapshot_unchanged_after_feedback": true,
+  "positive_ignored_blocked_and_hidden_targets": "no new reaction",
+  "existing_damage_recoil_curve_retained": {
+    "duration_seconds": 0.18,
+    "peak_cell_fraction": 0.17
+  },
+  "build_locked_debug": "passed",
+  "focused_tests": {
+    "combat_visuals": 5,
+    "actual_status_feedback": 3,
+    "animation_lab": 87,
+    "total": 95,
+    "failures": 0
+  },
+  "format_check": "passed",
+  "diff_check": "passed",
+  "native_views": 64,
+  "native_control_views": 1344,
+  "animations": 22,
+  "final_native_readbacks_losslessly_encoded": 3744,
+  "resampling_of_native_capture": false,
+  "old_review_files_unchanged": 97247,
+  "wall_and_turn_checks": "passed",
+  "both_common_contacts_and_return_to_rest": "passed",
+  "gif_palette": {
+    "main_samples": 29,
+    "main_maximum_p95": 31,
+    "common_cases": [
+      {
+        "view": "DMG-M",
+        "mean": 4.84,
+        "p95": 23
+      },
+      {
+        "view": "DMG-J",
+        "mean": 6.32,
+        "p95": 25
+      },
+      {
+        "view": "STATUS-M",
+        "mean": 4.84,
+        "p95": 23
+      },
+      {
+        "view": "STATUS-J",
+        "mean": 6.32,
+        "p95": 25
+      }
+    ]
+  },
+  "gallery": {
+    "syntax": "passed",
+    "controller": "passed",
+    "six_native_views_loaded": true,
+    "common_reaction_views_loaded": true,
+    "native_canvas_count": 10,
+    "explicit_three_turn_sequence": true,
+    "waiting_does_not_advance_turns": true,
+    "pause_freezes_clock": true,
+    "inputs_disabled_during_loading": true,
+    "browser_validation": "Not performed: file protocol blocked. Native captures and offline controller verified."
+  },
+  "local_links": {
+    "checked": 20,
+    "missing": 0
+  },
+  "approved_forms_retained": [
+    "TR63-BODY01/TR63-A01",
+    "TR64-BODY01/TR64-A01"
+  ],
+  "new_compositions": "Six A02 actions and shown common reactions visually approved.",
+  "new_refonte_combat_abilities_integrated": false,
+  "not_run": [
+    "Full engine suite",
+    "Release build",
+    "Browser rendering: protocol access was blocked; native GPU and offline controller verified."
+  ],
+  "acceptance": "visual-acceptance-01.json"
+}

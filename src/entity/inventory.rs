@@ -313,7 +313,11 @@ impl MagicItemModifiers {
         self.named_affixes
     }
     pub const fn attribute_bonus(&self, attribute: crate::stats::PrimaryAttribute) -> u8 {
-        self.attribute_bonuses[attribute as usize]
+        if matches!(attribute, crate::stats::PrimaryAttribute::Willpower) {
+            0
+        } else {
+            self.attribute_bonuses[attribute as usize]
+        }
     }
     pub const fn accuracy_bonus(&self) -> u16 {
         self.accuracy_bonus
@@ -361,6 +365,8 @@ pub struct InventoryEntry {
     quantity: u16,
     owner: Option<SocialGroupId>,
     magic_modifiers: Option<MagicItemModifiers>,
+    #[serde(default)]
+    palette: Option<super::EquipmentPalette>,
 }
 
 impl Debug for InventoryEntry {
@@ -376,11 +382,22 @@ impl Debug for InventoryEntry {
         if let Some(modifiers) = &self.magic_modifiers {
             entry.field("magic_modifiers", &modifiers);
         }
+        if let Some(palette) = self.palette {
+            entry.field("palette", &palette);
+        }
         entry.finish()
     }
 }
 
 impl InventoryEntry {
+    pub fn palette(&self) -> super::EquipmentPalette {
+        self.palette.unwrap_or_default()
+    }
+
+    pub(crate) const fn color_variant(&self) -> Option<super::EquipmentPalette> {
+        self.palette
+    }
+
     pub const fn instance(&self) -> ItemInstanceId {
         self.instance
     }
@@ -453,6 +470,28 @@ impl Inventory {
             Some(bonus) => bonus.with_effect_affix(effect),
             None => MagicItemModifiers::effect_only(effect),
         });
+        Ok(())
+    }
+
+    pub fn set_palette(
+        &mut self,
+        instance: ItemInstanceId,
+        palette: super::EquipmentPalette,
+    ) -> Result<(), InventoryError> {
+        self.retain_palette(instance, Some(palette))
+    }
+
+    pub(crate) fn retain_palette(
+        &mut self,
+        instance: ItemInstanceId,
+        palette: Option<super::EquipmentPalette>,
+    ) -> Result<(), InventoryError> {
+        let entry = self
+            .entries
+            .iter_mut()
+            .find(|entry| entry.instance == instance)
+            .ok_or(InventoryError::UnknownInstance(instance))?;
+        entry.palette = palette;
         Ok(())
     }
 
@@ -545,6 +584,7 @@ impl Inventory {
                 quantity: stacked,
                 owner: owner.clone(),
                 magic_modifiers: None,
+                palette: None,
             });
             affected.push(instance);
             remaining -= stacked;
@@ -576,6 +616,7 @@ impl Inventory {
             quantity: 1,
             owner,
             magic_modifiers: Some(modifiers),
+            palette: None,
         });
         Ok(instance)
     }

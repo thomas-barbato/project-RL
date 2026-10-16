@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ19-ACCEPT01",
+  "user_reply": "parfait :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-pending-familiar-arrival-PETS-EQ19-01.json",
+  "source_proposal_sha256": "e753a3cca3fd72ceb1cadbe9d6b697bcd0e1c63962303d542013375298bd25de",
+  "accepted_shown_copy_markdown": "**PETS-EQ19 · Familiers en attente d’arrivée**\n\nPour les familiers qui attendent une place, je propose ceci :\n\n- Ils restent dans la fenêtre **Familiers**, avec la mention **« En attente d’arrivée »**.\n- Pendant l’attente, ils **ne combattent pas, ne ramassent rien et ne vous apportent ni vision ni protection**.\n- Leurs **buffs, débuffs, recharges et durée de résurrection continuent de s’écouler** à chaque tour de jeu. Les dégâts persistants, comme le poison, continuent aussi.\n- Ils ne profitent d’aucune **régénération de PV ou d’énergie** pendant l’attente.\n- Si un familier meurt ou si sa résurrection expire avant son arrivée, **son équipement et son éventuel chargement tombent sur la case actuelle du joueur**.\n\nIl conserve ainsi son état réel jusqu’à son arrivée, sans soin ni prolongation de sa résurrection.\n\nCes précisions restent à valider.",
+  "accepted_shown_copy_sha256": "55e2844568fcaef7ce77b9237af48b40e68164adee6d78083a8c2bc7735efe75",
+  "accepted_shown_rules": {
+    "scope": "only_same_owned_drone_or_raised_actor_waiting_for_arrival_due_to_map_transition_overflow;not_manual_offmap_recall_or_new_general_storage",
+    "window": "retain_waiting_actor_row_in_planned_Familiers_window_with_text_En_attente_d’arrivée;native_row_layout_not_reviewed",
+    "map_actions": "waiting_actor_has_no_map_position_or_combat_movement_collection_action;no_extra_actor_turns_generated",
+    "observations_protection": "waiting_actor_grants_no_shared_Scout_vision_or_on_map_Gardien_protection_while_unplaced",
+    "timers": "normal_actual_game_turns_tick_waiting_buffs_debuffs_raised_remaining_lifetime_and_actor_cooldowns;no_reset_pause_or_elapsed_menu_wall_time_tick",
+    "persistent_damage": "existing_periodic_damage_effects_continue_on_waiting_actor_with_ordinary_accepted_damage_rules;no_new_damage_type_or_scaling",
+    "reserve_recovery": "no_HP_healing_Maintenance_or_energy_regeneration_for_waiting_actor;current_reserves_preserved_except_actual_ongoing_damage_or_preexisting_ordinary_stat_clamping;true_player_level_gain_full_restore_rule_not_revised_here",
+    "terminal_items": "death_or_raised_expiry_before_placement_removes_pending_actor_and_deposits_only_its_existing_real_worn_equipment_and_Mule_cargo_on_players_current_cell;coexist_with_all_ground_items;no_duplicate_reward_generation",
+    "alive_arrival": "place_same_surviving_actor_with_current_state_when_accepted_progressive_arrival_rule_allows;no_new_invocation_or_birth_refill",
+    "scope_boundary": "FIFO_or_other_queue_order_same_turn_death_level_gain_vs_placement_order_destroy_or_reposition_controls_and_further_map_change_pending"
+  },
+  "approval_scope": "Shown En attente d’arrivée familiar window status, no map combat/collection/vision/protection while waiting, ordinary turn progression of buffs/debuffs/cooldowns and raised lifetime, continuing periodic damage, no passive HP or energy regeneration, same-actor placement without refill, and terminal real equipment/cargo drop on current player cell accepted. Existing true-level-gain restoration remains unchanged. Native window layout, queue order, controls and unshown concurrent event details not approved.",
+  "unshown_cases_pending": [
+    "pending_arrival_order_and_valid_arrival_cell_selection",
+    "concurrent_effect_tick_death_expiry_level_gain_and_successful_step_placement_order",
+    "pending_familiar_controls_destroy_equipment_transfer_and_Repositionner_enablement",
+    "further_player_map_transition_while_familiars_still_wait_and_portal_return_identity",
+    "death_and_expiry_feedback_when_actor_has_no_visible_map_tile",
+    "atomic_real_item_drop_and_save_restore_of_pending_queue",
+    "native_window_layout_and_status_feedback"
+  ],
+  "player_copy_approval": "shown_copy_and_En_attente_d’arrivée_label_accepted",
+  "mechanical_approval": "shown_pending_arrival_activity_timers_periodic_damage_no_regeneration_and_terminal_item_drop_accepted",
+  "visual_intention_approval": "waiting_row_and_status_text_direction_accepted;native_rendering_not_presented",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,39 @@
+{
+  "batch": "ANIM-TR64-COLOR02",
+  "candidate": 36,
+  "variant": "TR64-BODY05",
+  "status": "visually_approved",
+  "tool": "Built-in imagegen",
+  "user_request": "est-ce que tu peux faire plutot les muscles en rouge et les tendons couleurs chaire ?",
+  "palette": "Red muscle bellies, flesh-coloured tendons, ivory bones, red eyes.",
+  "previous_trial": "TR64-BODY04 remains unapproved; preserved in review46.",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "source_bounds": [
+    201,
+    8,
+    1047,
+    1241
+  ],
+  "native_size": [
+    64,
+    64
+  ],
+  "native_occupied_slot": [
+    42,
+    62
+  ],
+  "native_silhouette_iou_to_BODY04": 0.99246,
+  "no_32px_intermediate": true,
+  "source_sha256": "696f4e06249c764ca8d61019912f44cad79247ce1ed1b7ef198cb7ae9daeb79f",
+  "postprocessing": "Alpha-bound crop and direct resize only; layout labels outside artwork.",
+  "campaign_integration": false,
+  "mechanics_or_animation_changes": false,
+  "verification": "Alpha and native size checked; native comparison visually reviewed. No runtime change.",
+  "body_status": "visually_approved",
+  "acceptance": "visual-acceptance-01.json",
+  "accepted_date": "2026-10-13",
+  "canonical_body_reference": "TR64-BODY05 / skill-animation-review-47"
+}

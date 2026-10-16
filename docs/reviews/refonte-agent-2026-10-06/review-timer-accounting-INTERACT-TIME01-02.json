@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-TIME01",
+  "revision": 2,
+  "title": "Durées et recharges : décompte en tours",
+  "status": "immediate_persistent_start_requested_by_user;application_count_proposed;buff_and_cooldown_examples_deferred;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-cooldowns-and-first-action-INTERACT-REANIM02-02.json",
+      "reference_sha256": "49e633a48d1898e340125034abd82384d4d3d25b77cdc4a848f37f624a770c94"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-overlapping-zone-status-INTERACT-ZONE02-02.json",
+      "reference_sha256": "adf11cd5575d75041363667c4b177cbe22b22bfdff1fa18db2273af66a411408"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-old-zone-status-refresh-INTERACT-ZONE03-02.json",
+      "reference_sha256": "7f8e8a98a68480505a3cf6e4d05df31f1f346b3c93d50dba9ae31694dc1383ba"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE01-02.json",
+      "reference_sha256": "c3c343998541309d456d7c6be730b95afdba0872104db3612f135e0a5d2c708a"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM05-02.json",
+      "reference_sha256": "e716e16a175875afc369bc91273f3fb868fe990f7fd0d49dd10073220aa650b6"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/last-status-cast-power-acceptance-decisions.json",
+      "reference_sha256": "70bc644096b85e9dd7f8504f614cf5f897529c69b6d95e1a03074285be655357"
+    }
+  ],
+  "scope": "first_application_and_number_of_applications_for_new_persistent_effects;ordinary_buff_and_cooldown_accounting_examples_from_revision1_not_presented_or_accepted",
+  "already_accepted": "timers_follow_actual_game_time_not_menus;remaining_cooldown_controls_same_button_and_shortcut_rule;status_reapplication_restarts_duration_latest_successful_power_wins;explicit_delays_and_familiar_lifetimes_preserved",
+  "proposed_rule": {
+    "first_application_count": "immediate_first_application_counts_as_first_of_existing_announced_number;does_not_add_a_bonus_damage_tick",
+    "following_applications": "remaining_applications_once_per_subsequent_reference_game_turn_while_effect_exists_under_normal_conditions",
+    "same_turn_automatic_pass": "same_new_effect_does_not_get_second_automatic_periodic_application_from_end_of_its_creation_turn;independent_overlapping_zones_keep_own_applications",
+    "illustration": "three_announced_Poison_applications_at_application_turn_then_next_turn_then_second_following_turn;not_a_new_skill_duration_or_damage_value",
+    "preserved": "accepted_damage_power_target_defenses_last_successful_status_power_full_duration_refresh_Gel_Burn_replacement_overlap_and_rank_loss_cleanup;no_new_player_self_damage",
+    "scope_boundary": "already_active_status_reapplication_immediate_damage_vs_refresh_and_exact_phase_order_pending;no_buff_cooldown_familiar_lifetime_or_channel_timing_change_approved_here"
+  },
+  "shown_examples": {
+    "values_are_illustrative_not_new_skill_parameters": true,
+    "Poison_three_applications": {
+      "relative_game_turns": [
+        0,
+        1,
+        2
+      ],
+      "total_applications": 3,
+      "first_turn_automatic_extra_application": false
+    }
+  },
+  "shown_copy_markdown": "Les effets persistants commencent dès leur application, comme vous le demandez.\n\n- Poison, Brûlure et Saignement : premiers dégâts dès que l'effet est appliqué.\n- Zone persistante : première application dès sa création.\n- Pour une mine ou une attaque à déclenchement différé, l'effet commence à l'explosion ou à l'impact.\n\nPour le décompte, je propose que cette première application compte dans le total annoncé, sans seconde application automatique pendant le même tour.\n\nExemple : un poison prévu pour 3 applications infligerait ses dégâts immédiatement, puis au tour suivant, puis au deuxième tour suivant. Cela conserve son total de dégâts et avance sa première application.\n\nCe décompte reste à valider. Les nouveaux lancements sur un statut déjà présent et l'ordre complet des effets du tour seront précisés séparément.",
+  "shown_copy_sha256": "026cb5ebb31dc16bf47aaf205dff21203e2d063fec142f1714b52f596f6fee68",
+  "not_resolved_here": [
+    "ordinary_buff_and_cooldown_timer_accounting_from_unshown_revision1_draft",
+    "already_active_periodic_status_reapplication_vs_immediate_damage_and_scheduled_tick",
+    "complete_phase_order_and_exact_duration_expiry_of_persistent_zones",
+    "modified_individual_skill_player_copy_and_native_feedback"
+  ],
+  "mechanic_approval": "immediate_first_application_direction_explicitly_requested;application_count_and_same_turn_automatic_repeat_pending_user_review",
+  "text_approval": "new_design_explanation_pending;individual_skill_copy_not_newly_approved",
+  "visual_approval": "no_new_native_art_animation_or_UI_layout_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-timer-accounting-INTERACT-TIME01-01.json",
+    "reference_sha256": "ac8d1ccd21230a5b1ec79576a4b8055691b10c1218016c494ed8d0435e23586c"
+  },
+  "immediate_start_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/persistent-effect-immediate-start-user-decisions.json",
+    "reference_sha256": "758252b58135b4451cc64daf27c65f4f159d161f1c0d8e13466662c3876ab52c"
+  },
+  "deferred_buff_and_cooldown_draft": {
+    "source": {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-timer-accounting-INTERACT-TIME01-01.json",
+      "reference_sha256": "ac8d1ccd21230a5b1ec79576a4b8055691b10c1218016c494ed8d0435e23586c"
+    },
+    "approval": "not_presented_as_final_proposal_and_not_accepted",
+    "note": "user_steering_addresses_persistent_effect_start;do_not_activate_revision1_buff_or_cooldown_convention"
+  },
+  "accepted_direction": {
+    "initial_actor_status": "newly_applied_Poison_Burn_and_Bleed_have_immediate_first_damage",
+    "persistent_ground_zone": "first_effect_from_actual_zone_creation_instead_of_default_next_turn_delay",
+    "existing_delayed_trigger": "mine_arming_preparation_and_delayed_impact_kept;persistent_effect_starts_at_actual_explosion_or_impact_not_at_preparation_start"
+  }
+}

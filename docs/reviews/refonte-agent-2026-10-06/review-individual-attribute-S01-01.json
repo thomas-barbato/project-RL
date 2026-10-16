@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-08",
+  "review_id": "S01-ATTR01",
+  "attribute_id": "S01",
+  "title": "Force",
+  "revision": 1,
+  "player_copy_markdown": "**S01 · Force**\n\n*Renforce vos attaques de mêlée.*\n\n**Effet proposé**\n\n- Progression du bonus : **2 points de pourcentage par point de Force**.\n- Référence à Force 5 : **0 %**. À Force 4 : **−2 %**.\n\n**Exemple actuel — Force 10**\n\n- Dégâts de mêlée et attaques physiques des transformations : **+10 %**.\n\n**Avec 1 point supplémentaire — Force 11**\n\n- Dégâts de mêlée et attaques physiques des transformations : **+12 %**.\n\nLe bonus s’applique aussi aux compétences de mêlée et continue de progresser sans plafond.",
+  "player_copy_sha256": "509ecf400c05d0724f49802fc97621b13a747fd26cb35947724bb7301c2cc85a",
+  "current_turn_shown_copy_markdown": "**Tir vampirique** est validé. Pour préparer l’intégration, passons aux effets des attributs, en commençant par **Force**.\n\n**S01 · Force**\n\n*Renforce vos attaques de mêlée.*\n\n**Effet proposé**\n\n- Progression du bonus : **2 points de pourcentage par point de Force**.\n- Référence à Force 5 : **0 %**. À Force 4 : **−2 %**.\n\n**Exemple actuel — Force 10**\n\n- Dégâts de mêlée et attaques physiques des transformations : **+10 %**.\n\n**Avec 1 point supplémentaire — Force 11**\n\n- Dégâts de mêlée et attaques physiques des transformations : **+12 %**.\n\nLe bonus s’applique aussi aux compétences de mêlée et continue de progresser sans plafond.",
+  "current_turn_shown_copy_sha256": "22ae659598a08e8ef44ba61a57f1dd1dcbe64822456f261777bb9080b7608849",
+  "source_attribute_draft_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-text-effects-before-attribute-S01-01.md",
+  "source_attribute_draft_snapshot_sha256": "345056ebc5b2bdf1d8227dfb7ce7f9b058e1dd4fae815f4b0f98d466d5d59c02",
+  "prior_attribute_requirement": "docs/reviews/refonte-agent-2026-10-06/attribute-usefulness-decisions.json",
+  "prior_attribute_requirement_sha256": "1c988f144f52cb6a5609cc40e499c81c97a460b9c9b754b93ac2cee682e3666f",
+  "prior_skill_acceptance": "docs/reviews/refonte-agent-2026-10-06/vampiric-shot-description-acceptance-decisions.json",
+  "prior_skill_acceptance_sha256": "d7032f849daa14ff5414b3e22305b8b1b5e50c8b91b2da92a65fe31078afbc79",
+  "name_approval": "six_attribute_names_already_accepted",
+  "RP_approval": "proposed_pending_explicit_review",
+  "numeric_rule_approval": "linear_bonus_variation_two_percentage_points_per_Force_point_reference5_current10_next11_no_cap_proposed_pending_review",
+  "scope_approval": "ordinary_melee_and_melee_skills_and_physical_transformation_attacks_proposed;unshown_components_pending",
+  "formula_proposed": "damage_multiplier = 1 + 0.02*(Force-5)",
+  "shown_values": {
+    "Force4_bonus_percent": -2,
+    "Force5_bonus_percent": 0,
+    "Force10_bonus_percent": 10,
+    "Force11_bonus_percent": 12
+  },
+  "example_profile": "illustrative_Force10_then11_one_attribute_point;class_not_changed;gear_and_other_stats_held_fixed",
+  "unshown_cases_pending": [
+    "modifier_order_and_interaction_with_Agilite_and_skill_bonuses",
+    "physical_vs_elemental_gear_components_and_transformed_attack_components",
+    "rounding_and_damage_variance_distribution",
+    "heavy_weapon_attribute_mapping",
+    "equipment_strength_requirements_weight_handling_or_other_force_functions",
+    "attribute_snapshot_timing_and_temporary_stat_effects",
+    "all_other_unshown_cases"
+  ],
+  "no_attribute_visual_or_new_weapon_variance_proposed": true,
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,31 @@
+{
+  "review": "FR05-HITS02",
+  "date": "2026-10-16",
+  "status": "accepted_by_user",
+  "skill": "FR05",
+  "title": "Blizzard",
+  "decision": {
+    "selection": "independent_roll_for_each_eligible_cell_each_impact_turn",
+    "impact_chance_percent": 50,
+    "global_victim_quota": null,
+    "damage_on_successful_impact": true,
+    "freeze_roll_separate_from_damage": true,
+    "unoccupied_cells_also_rolled": true,
+    "preview_does_not_roll_or_spend": true
+  },
+  "unchanged": [
+    "warning_turn",
+    "duration_progression",
+    "damage_profile",
+    "area_damage_falloff",
+    "freeze_profile",
+    "energy_cost",
+    "area_progression",
+    "range_progression",
+    "obstacle_and_protected_cell_rules",
+    "self_damage_immunity"
+  ],
+  "approved_player_text": "Chance d’impact par case : 50 %",
+  "explicit_user_reply": "Oui, 50 % par case et par tour.",
+  "supersedes": "Fixed impacts_per_turn sampling for the playable FR05 skill; historical scripted reviews keep their old parameter for reproducibility."
+}

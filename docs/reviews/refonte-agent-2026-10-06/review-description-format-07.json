@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-06",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/description-timing-and-wording-decisions.json",
+  "latest_decisions_sha256": "6e14977d82d4237ab4f73f53d0365f2e60c592416457c83031185177b5685f1d",
+  "runtime_integration": "not_integrated",
+  "batch_revision": 7,
+  "document": "docs/REVUE_DESCRIPTIFS_COMPETENCES_AGENT.md",
+  "document_sha256": "e05b75f858638e75076ba647720c6d02b0ce2e61a57b9418c4992f10c4758c8c",
+  "blocks": [
+    {
+      "id": "CD01",
+      "title": "Trois parties sur chaque fiche",
+      "revision": 2,
+      "block_sha256": "d3cb63515cb1edb708516a44737e6e54617b661b0fae9a359064340ffaf1881f",
+      "mechanic_approval": "explicit_user_requirements_recorded_proposed_details_pending",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "CD02",
+      "title": "Référence et résultat actuel",
+      "revision": 2,
+      "block_sha256": "bfa90dcca88db43b6e86464e8f50aaaf3be3d4ef9dc6ec51563630666d39b465",
+      "mechanic_approval": "explicit_user_requirements_recorded_proposed_details_pending",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "CD03",
+      "title": "Validation individuelle",
+      "revision": 7,
+      "block_sha256": "9f65b20c0808b9c20ee17ea123bf61184f5580a316ee3131459fffbd4e9c77f4",
+      "mechanic_approval": "explicit_user_requirements_recorded_proposed_details_pending",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "CD04",
+      "title": "Mentionner les temps particuliers",
+      "revision": 1,
+      "block_sha256": "5167f5f39b14000a6ce4f9d0496644c98c80f535e273348d5066e34ee5736757",
+      "text_sha256": "0ad51798c887a0c3f7fdf0c1897186198c4302431f25b9051a3c3d93a408c501",
+      "copy_approval": "explicit_user_timing_rule_and_exact_B01_functional_sentence",
+      "mechanic_approval": "editorial_rule_only_gameplay_unchanged",
+      "runtime_integration": "not_integrated"
+    }
+  ],
+  "accepted_requirements": {
+    "user_requirement": "Texte descrptif roleplay, effets chiffrés de ce que fais la compétence par defaut et affiche aussi la valeur actuelle",
+    "required_parts": [
+      "roleplay description",
+      "default numeric effects",
+      "current numeric values"
+    ],
+    "each_final_description_requires_user_review": true,
+    "default_reference_definition": "rank 1 before other bonuses, as displayed in the accepted first review",
+    "presentation": "descriptive text, simplified formula and current values without tables",
+    "execution_time_copy": "only mention when an action does not apply upon activation",
+    "ordinary_action_copy": "no immediate execution or one turn reminder",
+    "effect_duration_and_cooldown_display": "preserved"
+  },
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-description-format-06.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-description-format-revision-06.md",
+  "first_melee_review": "docs/REVUE_MELEE_AGENT_LOT_03.md",
+  "survival_review": "docs/REVUE_SURVIE_AGENT_LOT_04.md",
+  "drone_review": "docs/REVUE_DRONES_AGENT_LOT_05.md",
+  "afflictions_review": "docs/REVUE_AFFAIBLISSEMENTS_AGENT_LOT_06.md",
+  "complete_design_document": "docs/CADRAGE_COMPETENCES_AGENT_COMPLET.md",
+  "next_stage": "individual descriptions in progress"
+}

@@ -6,4 +6,5 @@ pub use definition::{
     StatusEffectPrimitive, StatusFamilyId, StatusHook, StatusId, StatusIdError, StatusModifier,
     StatusStacking, StatusTransition, StatusTrigger,
 };
-pub use instance::{StatusApplyKind, StatusApplyOutcome, StatusInstance, StatusSet};
+pub(crate) use instance::with_legacy_status_encoding;
+pub use instance::{StatusApplyKind, StatusApplyOutcome, StatusInstance, StatusPower, StatusSet};

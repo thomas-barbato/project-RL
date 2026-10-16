@@ -1,0 +1,20 @@
+{
+  "build": "cargo build --locked: passed",
+  "tests": "cargo test --locked agent_skill_lab_review: 14 passed",
+  "format": "cargo fmt --all -- --check: passed",
+  "whitespace": "git diff --check: passed; line-ending warnings only",
+  "python": "overlay packaging completed successfully",
+  "javascript": "node --check gallery-script.js: passed",
+  "gallery_frames": 1080,
+  "gallery_canvas_size": [
+    448,
+    448
+  ],
+  "native_tile_size": 64,
+  "native_views": 12,
+  "animations": 15,
+  "protected_files_unchanged": 3831,
+  "solid_wall_pixels": "Unchanged against same-phase control in every solid cell of twelve views",
+  "targeting_preview": "Bright/dim phases checked in all twelve views",
+  "scope": "Debug prototype only. Full engine suite and campaign integration are outside this visual review. Awaiting user visual approval."
+}

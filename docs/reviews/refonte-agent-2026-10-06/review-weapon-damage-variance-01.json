@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-09",
+  "review_id": "D01-VAR01",
+  "revision": 1,
+  "title": "Variance des armes",
+  "status": "shown_distribution_sampling_scope_and_example_proposed_pending_explicit_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-17.json",
+  "current_attribute_model_sha256": "6f878ae99b7de37e0321c68d8eb8807352dfe875499bf7244bf3d701ecbb5be7",
+  "shown_copy_markdown": "Les règles des **coups critiques sont validées**. Passons aux dégâts variables des armes.\n\n**D01 · Variance des armes — proposition**\n\n**Sur la fiche d’une arme**\n\n**Dégâts : 20–30**\n\nChaque modèle possède ses propres dégâts minimum et maximum. Cette plage est un exemple ; les valeurs seront réglées arme par arme.\n\n**Tirage des dégâts de base**\n\n- Chaque valeur entière de la plage a la même chance d’être tirée : ici, de **20 à 30 inclus**.\n- Un tirage par coup de mêlée ou projectile. Dans une rafale, chaque projectile a son propre tirage.\n- Une explosion utilise le même tirage de base pour toutes ses victimes. Les différences liées à leur position, les critiques et leurs défenses s’appliquent ensuite séparément.\n- Un critique double les dégâts obtenus avant les protections ; il ne force pas le maximum de la plage.\n\nCes règles concernent les armes de mêlée, de tir et les armes lourdes, ainsi que leurs compétences.\n\n**Dans la fiche d’une compétence**\n\nAvec l’arme fictive **20–30**, une technique à **150 %** et **Force 10**, le coefficient déjà validé devient **155 %** :\n\n**Dégâts : 31–46**\n\nCette plage indique les dégâts ordinaires avant les défenses de la cible. Elle se recalcule avec l’arme active et les bonus actuels. Les dégâts infligés restent des nombres entiers, arrondis après les protections.\n\n**Le fonctionnement de cette variance reste à valider.**",
+  "shown_copy_sha256": "13e14856aee3a264ebb49da19e78b7a3cac8e55042ba3fe8f73df2847e27fcdc",
+  "previous_accepted_range_requirements": "docs/reviews/refonte-agent-2026-10-06/current-next-rank-and-weapon-range-decisions.json",
+  "previous_accepted_range_requirements_sha256": "ab7c04c64a648abd042f937c3d14d5e714e9c943c8dde76a3de6719c0d382323",
+  "new_proposed_rules": {
+    "weapon_model_amplitude": "explicit_minimum_and_maximum_per_model;no_universal_plus_minus_coefficient_created;individual_model_values_pending_review",
+    "base_damage_distribution": "uniform_integer_inclusive_minimum_maximum;sampling_before_damage_modifiers",
+    "sampling_scope": "one_base_draw_per_melee_hit_or_projectile;each_burst_projectile_has_own_draw",
+    "weapon_explosion": "one_shared_base_draw_for_victims_of_one_explosion;applicable_position_modifiers_independent_target_critical_and_target_defenses_afterward",
+    "critical": "accepted_double_damage_before_defenses_applies_to_rolled_damage;no_automatic_maximum_roll",
+    "eligible_weapons": "melee_ranged_and_heavy_weapon_attacks_and_their_skills",
+    "tooltip": "minimum_maximum_noncritical_predefense_damage_using_active_compatible_weapon_and_current_applicable_modifiers;no_damage_sampling_on_consultation",
+    "rounding": "existing_final_ordinary_damage_floor_after_protections_preserved;display_predefense_endpoints_as_integers_without_truncating_internal_damage_before_defenses"
+  },
+  "shown_example": {
+    "fictional_weapon_minimum": 20,
+    "fictional_weapon_maximum": 30,
+    "weapon_balance_approval": "example_only",
+    "skill_damage_percent": 150,
+    "Force": 10,
+    "accepted_Force_bonus_percentage_points": 5,
+    "total_damage_percent": 155,
+    "displayed_noncritical_predefense_minimum": 31,
+    "displayed_noncritical_predefense_maximum": 46
+  },
+  "unshown_cases_pending": [
+    "individual_weapon_model_ranges_loot_quality_and_flat_damage_affix_bounds",
+    "mixed_damage_component_sampling_and_allocation",
+    "multiple_active_weapons_and_natural_or_transformed_attack_range_mapping",
+    "melee_sweeps_and_other_non_projectile_multi_target_attack_sampling",
+    "spell_drone_monster_and_secondary_skill_damage_variance;none_automatically_added_here",
+    "RNG_draw_order_misses_replay_and_special_weapon_exceptions",
+    "remaining_modifier_stacking_critical_display_and_absorption_cases",
+    "native_tooltip_layout_and_visual_feedback",
+    "all_other_unshown_cases"
+  ],
+  "player_copy_approval": "pending_explicit_review",
+  "numeric_and_scope_approval": "pending_explicit_review",
+  "new_native_visuals_proposed": false,
+  "runtime_integration": "not_integrated"
+}

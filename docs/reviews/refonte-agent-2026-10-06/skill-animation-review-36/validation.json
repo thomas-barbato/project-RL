@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-13",
+  "build": { "command": "cargo build --locked", "exit_code": 0 },
+  "targeted_tests": { "command": "cargo test --locked agent_skill_lab_review", "passed": 64, "failed": 0 },
+  "format": { "command": "cargo fmt --all -- --check", "exit_code": 0 },
+  "diff_check": { "command": "git diff --check", "exit_code": 0 },
+  "native_render": { "views": 14, "animations": 8, "protected_files_unchanged": 61394, "pixel_controls": "passed" },
+  "drawing_workflow": "Two built-in imagegen sheets. Source PNGs and exact prompts saved in this review. Equal-cell cropping and uniform resampling only; source alpha preserved. Existing living and corpse artwork retained.",
+  "prison_controls": "Eight independent segments with free centre; one scripted break leaves seven, followed by exit through the breach. Four explicit turns expire the circle. Blocked perimeter refuses placement. Quiet waiting preserves all eight segments and duration.",
+  "reanimation_controls": "Mark remains until the prepared death, then disappears at birth of the ally. Full eleven-turn lifetime begins at birth. Ivory skull follows the ally and disappears at expiry. Quiet waiting does not kill or expire the marked target.",
+  "fixture_scope": "Scripted positions and events only. No actual segment HP, damage, AI, healing, loot, XP, new numerical resurrection rule, familiars UI, save or campaign integration.",
+  "replay_guard": "Replaying requires resetting the prepared scene; the native menu cannot remark the existing ally. This guard does not affect the captured one-launch sequences.",
+  "gallery_controller": "Passed offline VM checks for loading, pause, complete-circle waiting loops and thirteen explicit turns to expiry.",
+  "gallery_links": { "checked": 8, "missing": 0 },
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Native captures and offline controller verified.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "OC04-A01 and OC07-A01 pending, including the ivory ally marker"
+}

@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ16-ACCEPT01",
+  "user_reply": "parfait on continue",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-mule-loot-collection-PETS-EQ16-01.json",
+  "source_proposal_sha256": "6d6b8c4c4291a2d5910c92584bc65263037ea8d54682b5753de3309dcd5c5e0d",
+  "accepted_shown_copy_markdown": "**PETS-EQ16 · Mule — Ramasser**\n\nDans la fenêtre **Familiers**, la Mule aura un bouton **« Ramasser »**. Elle cherchera les loots dans **le champ de vision actuel du joueur**.\n\nÀ chaque objet réellement ramassé, **son nom apparaîtra au-dessus de la Mule dans un message flottant**.\n\n**Fonctionnement proposé**\n\n- Elle se déplace vers le loot accessible le plus proche, en restant dans votre champ de vision.\n- Elle range les objets dans **son sac**, dans la limite de sa capacité. Ceux qui ne tiennent pas restent au sol.\n- Les déplacements et le ramassage utilisent ses propres tours : **1 case par tour**, puis **1 tour par case pour ramasser les objets qui tiennent dans son sac**. Vous pouvez continuer à agir pendant sa collecte.\n- Quand aucun loot visible et accessible ne peut être stocké, elle reprend votre suivi.\n- Pendant la collecte, le bouton devient **« Arrêter »** pour interrompre l’ordre et reprendre le suivi.\n\n**Coût proposé : 0 énergie · Aucune recharge propre.**\n\n**Les modalités de ramassage restent à valider.**",
+  "accepted_shown_copy_sha256": "b9b3dbf076f54c974156b44524da5de2bc3bf5b8a85b4955c6199ae837159113",
+  "accepted_shown_rules": {
+    "scope": "existing_deployed_Mule_D57_real_transportable_ground_loot_collection_command;not_new_learned_skill_or_general_familiar_inventory",
+    "interface": "Ramasser_control_on_Mule_row_in_planned_Familiers_window;while_collecting_same_control_label_Arrêter",
+    "target_visibility": "only_loot_currently_in_player_field_of_view;reevaluate_as_player_moves;not_Mule_private_sight_or_remembered_hidden_loot",
+    "path_visibility": "collection_paths_and_target_cells_stay_in_current_player_field_of_view;only_reachable_visible_loot_candidates",
+    "target_choice": "nearest_currently_visible_reachable_ground_loot_that_can_fit_cargo;exact_tie_and_item_priority_not_defined",
+    "physical_pickup": "move_to_real_ground_item_cell_before_real_item_transfer;no_remote_teleport_pickup",
+    "movement": "one_grid_cell_per_Mule_reference_turn_using_ordinary_Mule_action",
+    "pickup_action": "one_Mule_reference_turn_to_collect_transportable_objects_that_fit_from_its_current_ground_cell;not_one_extra_agent_action_per_item",
+    "capacity": "obey_current_accepted_Mule_cargo_capacity;leave_nonfitting_items_on_ground;stored_objects_grant_no_modifiers",
+    "objects": "transfer_existing_item_identity_ground_to_Mule_cargo_without_duplicate_or_loot_generation;equipment_eligibility_not_required_for_storage",
+    "pickup_feedback": "one_floating_item_name_event_at_Mule_location_per_actual_item_transfer;no_message_for_unmoved_item",
+    "completion": "when_no_visible_accessible_candidate_fits_or_user_stops_collection_clear_order_and_resume_ordinary_follow_behavior",
+    "energy_cost": 0,
+    "own_cooldown_turns": 0,
+    "scope_boundary": "command_start_stop_agent_action_budget_and_exact_phase_native_layout_and_feedback_animation_pending"
+  },
+  "already_requested_direction": {
+    "Mule_action_button": "add_Mule_loot_collection_control_to_planned_Familiers_window",
+    "loot_visibility_source": "player_field_of_view;latest_user_correction_replaces_initial_Mule_field_of_view_request",
+    "pickup_feedback": "every_actual_Mule_ground_item_pickup_generates_floating_message_above_Mule_with_item_name"
+  },
+  "approval_scope": "Shown Ramasser/Arrêter controls and autonomous Mule collection of nearest accessible loot in current player field of view, visible paths, real ground-to-cargo transfer with accepted capacity, one cell movement per Mule turn and one Mule turn per cell pickup, ongoing player actions, resume follow on completion/cancellation, zero energy and no own cooldown accepted. Floating actual item name per pickup direction confirmed; native rendered messages/window not reviewed. Pending PETS_EQ15 recall conditions are not accepted by this reply to PETS_EQ16.",
+  "unshown_cases_pending": [
+    "command_start_stop_agent_action_cost_and_combat_conditions",
+    "exact_loot_type_exclusions_stack_quantities_and_item_priority_when_not_all_fit",
+    "path_replanning_occupied_cells_lost_visibility_and_interruption_while_Mule_outside_current_player_view",
+    "multiple_pickup_message_order_duration_overlap_and_render_visibility",
+    "field_of_view_interaction_with_shared_Scout_view",
+    "recall_destruction_layer_transition_and_save_of_active_collection_order",
+    "native_Familiers_button_layout_icon_and_item_float_preview"
+  ],
+  "visual_intention_approval": "floating_actual_item_name_above_Mule_on_each_pickup_explicitly_requested_and_shown_direction_accepted",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

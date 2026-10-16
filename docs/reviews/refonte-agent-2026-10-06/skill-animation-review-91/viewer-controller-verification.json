@@ -1,0 +1,15 @@
+{
+  "method": "Offline mock-DOM controller checks; native rendering verified separately.",
+  "scenarios": 8,
+  "directions": 4,
+  "atomic_refusals": true,
+  "persistent_deployment": true,
+  "untimed_wait_keeps_cooldown": true,
+  "one_mule_pickup_without_duplication": true,
+  "hidden_loot_not_collected": true,
+  "scout_does_not_collect": true,
+  "scout_shares_vision_but_mule_does_not": true,
+  "native_canvas": 576,
+  "atlas_paths_exist": true,
+  "draw_calls": 292
+}

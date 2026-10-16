@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-14",
+  "build": "cargo build --locked passed after final detection-label correction",
+  "format": "cargo fmt --all -- --check passed",
+  "diff_whitespace": "targeted git diff --check passed",
+  "native_views": 24,
+  "native_frames": 4512,
+  "native_tile_size": 64,
+  "conversion": "pixel-identical RGBA to PNG; no resampling",
+  "protected_files_unchanged": 20448,
+  "native_visual_checks": "Prepared physical and fire impacts, bonus damage, retained cloak appearance and detection labels inspected.",
+  "cloak_preservation": "Same accepted player crop byte-identical to review58.",
+  "prepared_timeline_checks": "Initiating attack retains bonus after stealth exit; ordinary followup unboosted; reactivation, ranks11/12, step and conditional distance values passed.",
+  "controller": {
+    "mode": "offline DOM/Image harness; no browser screenshot",
+    "scenarios": 12,
+    "loaded_image_references": 2670,
+    "two_canvases": 2,
+    "first_bonus_then_normal": "passed",
+    "reactivation": "passed",
+    "idle_does_not_replay_impacts": "passed",
+    "scaled_bonus_and_detection_hover": "passed",
+    "icon_expiry": "passed",
+    "weapon_melee_and_spell_prepared_cases": "passed",
+    "rank11_rank12_and_movement": "passed",
+    "wall_fixture_unavailable": "passed",
+    "static_links": "passed",
+    "controller_syntax": "passed"
+  },
+  "gif_color_checks": [
+    {
+      "id": "SF00",
+      "case": "HAUT",
+      "frame": 68,
+      "gif_timestamp_ms": 2830,
+      "effect_pixels": 2762,
+      "mean_color_error": 9.36
+    },
+    {
+      "id": "SF00",
+      "case": "DROITE",
+      "frame": 68,
+      "gif_timestamp_ms": 2830,
+      "effect_pixels": 2827,
+      "mean_color_error": 9.47
+    },
+    {
+      "id": "SF00",
+      "case": "GAUCHE",
+      "frame": 68,
+      "gif_timestamp_ms": 2830,
+      "effect_pixels": 2875,
+      "mean_color_error": 9.39
+    },
+    {
+      "id": "SF00",
+      "case": "BAS",
+      "frame": 68,
+      "gif_timestamp_ms": 2830,
+      "effect_pixels": 2801,
+      "mean_color_error": 9.36
+    },
+    {
+      "id": "SF00",
+      "case": "SORT",
+      "frame": 76,
+      "gif_timestamp_ms": 3170,
+      "effect_pixels": 4166,
+      "mean_color_error": 12.51
+    },
+    {
+      "id": "SF00",
+      "case": "MELEE",
+      "frame": 68,
+      "gif_timestamp_ms": 2830,
+      "effect_pixels": 2797,
+      "mean_color_error": 9.54
+    },
+    {
+      "id": "SF02",
+      "case": "HAUT",
+      "frame": 68,
+      "gif_timestamp_ms": 2830,
+      "effect_pixels": 2762,
+      "mean_color_error": 9.11
+    },
+    {
+      "id": "SF02",
+      "case": "DROITE",
+      "frame": 68,
+      "gif_timestamp_ms": 2830,
+      "effect_pixels": 2827,
+      "mean_color_error": 9.37
+    },
+    {
+      "id": "SF02",
+      "case": "GAUCHE",
+      "frame": 68,
+      "gif_timestamp_ms": 2830,
+      "effect_pixels": 2875,
+      "mean_color_error": 9.33
+    },
+    {
+      "id": "SF02",
+      "case": "BAS",
+      "frame": 68,
+      "gif_timestamp_ms": 2830,
+      "effect_pixels": 2801,
+      "mean_color_error": 9.21
+    },
+    {
+      "id": "SF02",
+      "case": "SORT",
+      "frame": 76,
+      "gif_timestamp_ms": 3170,
+      "effect_pixels": 4166,
+      "mean_color_error": 12.19
+    },
+    {
+      "id": "SF02",
+      "case": "MELEE",
+      "frame": 68,
+      "gif_timestamp_ms": 2830,
+      "effect_pixels": 2797,
+      "mean_color_error": 9.42
+    }
+  ],
+  "excluded_drafts": [
+    "native-label-draft"
+  ],
+  "full_suite": "not_run; isolated debug visual fixtures",
+  "campaign_integration": false
+}

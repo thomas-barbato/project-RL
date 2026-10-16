@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-09",
+  "review_ids": [
+    "R01-RAD01",
+    "R03-ELEMENT01",
+    "R03-GEL01"
+  ],
+  "user_message": "radiation ? Ah je n’avais pas pensé à ça mais on a rien en rapport avec ca non ?\n\nLes dégats persistants sont liés aux résistances élémentaires qui sont liées (brulure = feu, poison = poison, gel = glace ...)",
+  "source_batch": "docs/reviews/refonte-agent-2026-10-06/review-resistance-system-01.json",
+  "source_batch_sha256": "97d9cc455f5acec2757e5cd50f3de26657be71d7b5c308722599eb5656b7e585",
+  "radiation_finding": {
+    "search_scope": [
+      "src/**/*.rs",
+      "content/**/*.json5",
+      "content/**/*.json",
+      "docs/**/*.md"
+    ],
+    "runtime_declarations_and_UI_exist": true,
+    "playable_radiation_damage_source_found": false,
+    "evidence": [
+      {
+        "reference": "src/combat/damage.rs",
+        "reference_sha256": "2ff890a8595c10c9dd835044f732f0847203ad4fd4947614994b1e1ba2d0bbf7"
+      },
+      {
+        "reference": "docs/STATISTIQUES_ET_COMPETENCES.md",
+        "reference_sha256": "3c3dfa0caf7059c18c08cc025fcdf8c39b5a7d18a2581c207ab0d22bbcc8d658"
+      },
+      {
+        "reference": "docs/RAPPORT_SYSTEME_STATISTIQUES_COMPETENCES.md",
+        "reference_sha256": "56fcfe1504c27ac4cb19d040ad6fd785a402b327d7106f7cffb14782b8dd70e0"
+      }
+    ],
+    "correction": "Previous assistant wording confused a declared damage type with existing playable content. Radiation is withdrawn from the unaccepted resistance proposal;runtime declarations and UI are not deleted."
+  },
+  "explicit_user_direction": {
+    "Burn_periodic_damage_resistance": "Fire",
+    "Poison_periodic_damage_resistance": "Poison",
+    "Freeze_corresponding_elemental_resistance": "Cold"
+  },
+  "resolved_clarification": {
+    "review_id": "R03-GEL01",
+    "question": "Pour le Gel, qui immobilise sans infliger de dégâts lui-même, comment la résistance au froid doit-elle agir ? Je propose qu’elle réduise les dégâts de froid et la chance de Gel, en conservant sa durée lorsqu’il s’applique.",
+    "answer": "Dégâts de froid et chance de Gel (recommandé)"
+  },
+  "accepted_Gel_direction": {
+    "Cold_resistance_reduces_cold_damage": true,
+    "Cold_resistance_reduces_Gel_application_chance": true,
+    "Cold_resistance_reduces_Gel_duration": false,
+    "Gel_itself_deals_periodic_damage": "none_created;existing_movement_only_immobilization_preserved"
+  },
+  "not_accepted_by_this_feedback": [
+    "whole_RESIST_LOT01_RP_limits_armor_rounding_UI_and_other_unshown_parameters",
+    "specific_numeric_Gel_chance_scaling_formula_or_examples",
+    "extra_Fire_or_Poison_application_probability_modifier",
+    "replacement_math_for_existing_Gel_tooltip_rank_attribute_and_target_profiles",
+    "removal_of_runtime_Radiation_type_or_other_source_content"
+  ],
+  "already_accepted_preserved": "six_attribute_coefficients_occult_resistance_scope_Gel_Burn_reciprocal_replacement_boss_and_elite_modifiers_zone_exposure_and_other_skill_agreements",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,142 @@
+{
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "date": "2026-10-07",
+  "id": "OC04",
+  "title": "Prison sigillaire",
+  "revision": 1,
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-49.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/channeling-passive-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "dbf5c6b7f8643d86ba422bd2c1c7948a92358a1d2c3381071839f1370763101e",
+  "name_approval": "accepted_existing_catalogue_name_preserved",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_global_CD08;necessary_center_ring_placement_and_destructible_movement_obstacles_conditions_proposed",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "displayed_pillar_HP33_then35_eight_pillars_total3x3_center1_duration4_range4_cost17_CD10_proposed;full_curves_unshown_pending",
+  "detailed_conditions_approval": "displayed_visible_center_eight_visible_free_walkable_ring_cells_center_actor_allowed_and_separately_destructible_movement_obstacles_proposed;unshown_cases_pending",
+  "attribute_scaling_approval": "displayed_Willpower10_example_and_full_curves_pending",
+  "current_profile_status": "illustrative caster,not user save;Willpower scales each pillars maximum HP;no other passive or initial implant assumed",
+  "formulas": {
+    "HP_per_pillar": "floor((10+2*(effective_rank-1))*magic_multiplier)",
+    "magic_multiplier": "1+0.02*(Willpower-5)",
+    "duration_turns": "2+floor((effective_rank-1)/5)",
+    "pillar_count": 8,
+    "geometry": "eight perimeter cells of total3x3 footprint;central1 cell has no pillar",
+    "center_range_cells": 4,
+    "energy_cost": "14+floor((effective_rank-1)/3)",
+    "cooldown_turns": 10
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "HP_per_pillar": 33,
+    "pillar_count": 8,
+    "total_footprint_width_cells": 3,
+    "total_footprint_height_cells": 3,
+    "center_cells_without_pillar": 1,
+    "duration_turns": 4,
+    "center_range_cells": 4,
+    "energy_cost": 17,
+    "cooldown_turns": 10
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "HP_per_pillar": 35,
+    "pillar_count": 8,
+    "total_footprint_width_cells": 3,
+    "total_footprint_height_cells": 3,
+    "center_cells_without_pillar": 1,
+    "duration_turns": 4,
+    "center_range_cells": 4,
+    "energy_cost": 17,
+    "cooldown_turns": 10
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "HP_per_pillar": 10,
+    "pillar_count": 8,
+    "duration_turns": 2,
+    "center_range_cells": 4,
+    "energy_cost": 14,
+    "cooldown_turns": 10,
+    "approval": "unshown_curve_pending"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "HP_per_pillar"
+    ],
+    "unchanged_effects_omitted": [
+      "pillar_count",
+      "total_footprint_width_cells",
+      "total_footprint_height_cells",
+      "center_cells_without_pillar",
+      "duration_turns",
+      "center_range_cells",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "magic_terrain_obstacle_creation_not_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy exclusion added"
+  },
+  "geometry_review_note": "Clarifies earlier ambiguous perimeter wording:proposed total3x3 footprint,8 perimeter pillars,one central cell without pillar;not a3x3 interior plus another ring.",
+  "effect_conditions": {
+    "type": "active_magic_terrain_creation",
+    "center": "chosen visible case within range",
+    "all_eight_perimeter_cells_required": "visible,free,walkable",
+    "center_may_contain_actor": true,
+    "pillars_block_movement": true,
+    "pillars_separately_destructible": true,
+    "no_actor_moved_on_creation": "prior_unshown_proposal_retained_pending_review",
+    "expiry_or_destruction_extra_damage_XP_loot": "prior_no_damage_XP_or_loot_proposal_retained_pending_review",
+    "creates_control_status_or_status_chance_roll": false,
+    "hidden_actor_or_stat_reveal_created": false
+  },
+  "control_and_elemental_scope": "Destructible movement obstacles proposed,not a new control status or success roll. Existing CTRL01/Gel/Burn rules unchanged;boss/elite terrain interaction,forced movement and special traversal remain unshown pending review. No new damage,elemental status or Fire/Cold balance coefficient added. Foudre remains removed.",
+  "unshown_rules_approval": "Full rank/attribute/energy curves,exact visibility union and casting line of sight/corners,center/ring placement preview and input,partial-placement refusal accounting,large actors and geometry,boss/elite and special traversal,projectile and spell transmission,obstacle damage defenses,targeting and AI destruction priorities,expiry timing/stat snapshots/multiple prisons/map transitions,XP/loot/extra damage at destruction or expiry and other environment effects remain pending.",
+  "visual_intention_approval": "existing_catalogue_thin_pillars_linked_by_glyphs_with_visible_interior_direction_preserved;exact_current_wording_proposed_pending_review",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**OC04 · Prison sigillaire — Rang 11 · Actif**\n\n*Des piliers occultes surgissent autour de votre cible et referment leur enceinte.*\n\n**Effets actuels**\n\n- PV par pilier : **33**.\n- Piliers : **8**.\n- Enceinte : **3 × 3 cases**, avec une case centrale sans pilier.\n- Durée : **4 tours**.\n- Portée : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- PV par pilier : **35**.\n\n**Coût : 17 énergie · Recharge : 10 tours.**\n\nChoisissez une case centrale visible. Les huit cases autour doivent être visibles, libres et praticables.\n\nLe centre peut être occupé par un acteur. Les piliers bloquent les déplacements et peuvent être détruits séparément.",
+  "player_copy_sha256": "6015e8657f69b2589c92179a8a10f6d7417873946733af6a202dd36b2e4f297e",
+  "visual_copy_markdown": "**Visuel proposé :** huit piliers minces reliés par des glyphes entourent le centre, qui reste visible.",
+  "visual_copy_sha256": "4c2a1974c98fe36e4dd3ca4b883888af0755daacf3ee71c56ea12ca416b2b47b",
+  "checks": [
+    "Stable OC04 existing catalogue name Prison sigillaire preserved.",
+    "Same learned9/10,gear+2,Willpower10;effective11/12 and one point within learnedcap10.",
+    "Per-pillar HP floor30*1.1=33,current;floor32*1.1=35,next;duration4,range4,cost17,CD10 unchanged.",
+    "Eight pillars are total3x3 perimeter around one center without pillar;center actor allowed,ring visible/free/walkable required.",
+    "Only changed pillar HP shown next;no weapon variance,hidden reveal,damage or new control/status added.",
+    "Player RP,numbers,geometry/placement/movement/destructibility and visual wording pending;unshown cases/curves/native art pending;runtime not integrated."
+  ],
+  "source_skill_block_sha256": "d7dfd51ff3cbae6788cec783091a605667a675f2c88efb02fcbc7dc834c80283"
+}

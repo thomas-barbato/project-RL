@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-06",
+  "id": "ME05",
+  "title": "Charge",
+  "revision": 2,
+  "player_copy_markdown": "**Charge — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Vous foncez sur votre cible, arme en avant, et frappez au contact.*\n\nChargez en ligne droite vers une cible visible, puis frappez au contact. Le trajet doit être libre.\n\n**Effet actuel**\n- Dégâts : **38–47** (**190 %** de l’attaque).\n- Portée de la charge : **2–5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n- Dégâts : **40–49** (**198 %** de l’attaque).\n- Portée de la charge : **2–5 cases**.\n\nDégâts indiqués avant les défenses de la cible.\n\n**Coût : 13 énergie · Recharge : 5 tours.**\n**Nécessite une arme de mêlée active.**",
+  "player_copy_sha256": "777555f07eab62ef77a092e9a6e24ee561c5abb6162b1e2be34b9ba41ea6cbce",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-11.json",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/repousser-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "44777d7a121c297abe35774388cc9043f3bedbdb1a5b61c7838260ab3ab0cdde",
+  "previous_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-melee-07.json",
+  "previous_skill_block_sha256": "573f011580ea3839f0e1be55c053943a3072a65b671cf1f4e9c3d77dd4c17697",
+  "name_approval": "preserve_previous_approval",
+  "roleplay_text_approval": "preserve_previously_accepted_text_exactly",
+  "functional_description_approval": "explicit_user_validation",
+  "current_next_effect_copy_approval": "explicit_user_validation",
+  "numeric_rules_approval": "displayed_current_next_values_accepted_provisional_balance; unshown_formulas_pending",
+  "formulas": {
+    "damage_percent": "110 + 8 * (effective_rank - 1)",
+    "maximum_target_distance_cells": "min(6, 3 + floor((effective_rank - 1) / 4))",
+    "energy": "10 + floor((effective_rank - 1) / 3)"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "strength": 10,
+    "agility": 10,
+    "reference_melee_attack_min_damage": 18,
+    "reference_melee_attack_max_damage": 22,
+    "range_status": "illustrative_only",
+    "strength_factor": "1.1",
+    "agility_factor": "1.025",
+    "active_compatible_melee_weapon": true,
+    "weapon_range_cells": 1,
+    "other_damage_or_cost_modifiers": false
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "damage_percent": 190,
+    "damage_min_before_defenses": 38,
+    "damage_max_before_defenses": 47,
+    "minimum_target_distance_cells": 2,
+    "maximum_target_distance_cells": 5,
+    "energy_cost": 13,
+    "cooldown_turns": 5
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "damage_percent": 198,
+    "damage_min_before_defenses": 40,
+    "damage_max_before_defenses": 49,
+    "minimum_target_distance_cells": 2,
+    "maximum_target_distance_cells": 5,
+    "energy_cost": 13,
+    "cooldown_turns": 5
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_weapon_attributes_and_other_modifiers": true,
+    "can_purchase_with_sufficient_points": true,
+    "learned_cap_respected": true
+  },
+  "active_weapon_requirement": {
+    "type": "melee",
+    "approval": "explicit_user_requirement",
+    "incompatible_warning": "Nécessite une arme de mêlée active.",
+    "warning_approval": "accepted_as_presented"
+  },
+  "presented_conditions_approval": "displayed_visible_target_free_straight_path_and_target_range_accepted; other_unshown_conditions_pending",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "current and next damage bounds calculated using exact fractions",
+    "charge target distances, energy and cooldown checked",
+    "previously accepted roleplay preserved exactly",
+    "learned cap respected; no table, progression formula or ordinary execution time reminder"
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME05-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/charge-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "4eaac9304e709346a281f42b7b8a88a602d0667eeac0d97c3d48586bff0adbd3"
+}

@@ -1,0 +1,43 @@
+{
+  "batch": "ANIM-S04",
+  "status": "style_revision_requested",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A01",
+      "name": "Souffle de feu",
+      "description": "Un torrent de flammes en cône, avec turbulence, braises et flammes sur les cibles.",
+      "status": "style_revision_requested"
+    },
+    {
+      "number": 11,
+      "skill_id": "FE03",
+      "variant": "FE03-A01",
+      "name": "Mur de feu",
+      "description": "Un rideau traversable de flammes, fumée et braises. Une cible quitte le mur et reste brûlée.",
+      "status": "style_revision_requested"
+    },
+    {
+      "number": 12,
+      "skill_id": "FE04",
+      "variant": "FE04-A01",
+      "name": "Émanation soudaine",
+      "description": "Des fissures annoncent la zone. Après un tour, une gerbe de feu jaillit du sol.",
+      "status": "style_revision_requested"
+    }
+  ],
+  "scope": "Isolated native visual proposals. No GameState, RNG rolls, damage calculations or campaign integration.",
+  "breath": "90-degree cone, five-cell reach, already active on launch. The 3-turn duration is not measured in animation seconds.",
+  "wall": "Five cells, passable. A scripted target exits the wall; the demonstrated successful burn remains on it.",
+  "eruption": "Radius-one cross and incandescent ground fissures, then upward jets. The capture scripts a +1-turn event at 0.85 seconds solely for review; the interactive lab waits for +1 turn.",
+  "blood_policy": "ANIM-BLOOD01: fire uses flames, smoke and embers. No blood or new Bleeding mechanic.",
+  "laboratory_ui_candidate": {
+    "variant": "LAB-S04",
+    "status": "awaiting_separate_review"
+  },
+  "unchanged": "All accepted actors, icons, catalogue rules and previous animated GIFs.",
+  "style_feedback": "The user finds the flames inconsistent with the character art; requests drawn-frame prototypes before setting a common animation style.",
+  "next_review": "skill-animation-review-06: ANIM-STYLE01, FE02-A02 / FE03-A02 / FE04-A02"
+}

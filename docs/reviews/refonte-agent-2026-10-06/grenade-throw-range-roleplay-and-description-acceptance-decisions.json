@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SG03-ACCEPT01",
+  "skill_id": "SG03",
+  "user_response": "Reformulation du texte rp : \"Vous projetez vos grenades avec plus d'efficacité.\" puis validation",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG03-01.json",
+  "reviewed_description_sha256": "a55c53771280bbd1260d4849ca23e3246cf070b3c3e361ecc639d92d327370c0",
+  "accepted_player_copy": "**SG03 · Portée de lancer — Rang 9 · Passif**\n\n*Vous projetez vos grenades avec plus d'efficacité.*\n\n**Effets actuels**\n\n- Bonus de portée : **+3 cases**.\n- Portée totale de lancer : **7 cases**.\n\n**Prochain rang — 10 · 1 point de compétence**\n\n- Bonus de portée : **+4 cases**.\n- Portée totale de lancer : **8 cases**.\n\nNécessite **Lancer de grenade** apprise. S’applique à toutes ses variantes.\n\nNe modifie ni la portée sonore de **Leurre**, ni celle des armes lance-grenades. La case visée doit être visible et les murs bloquent toujours le lancer.",
+  "accepted_current_values": {
+    "throw_range_bonus_cells": 3,
+    "total_throw_range_cells": 7
+  },
+  "accepted_next_values": {
+    "throw_range_bonus_cells": 4,
+    "total_throw_range_cells": 8
+  },
+  "accepted_displayed_conditions": [
+    "SG00_learned_prerequisite",
+    "all_SG00_variants",
+    "sound_reach_of_Leurre_unaffected",
+    "weapon_grenade_launcher_range_unaffected",
+    "currently_visible_target",
+    "walls_block_throw_trajectory"
+  ],
+  "accepted_visual_direction": "**Affichage proposé :** la prévisualisation du lancer s’étend jusqu’à la nouvelle portée, avec la trajectoire et les cases d’effet de la variante choisie.",
+  "explicit_roleplay_replacement": {
+    "review_id": "SG03-RP01",
+    "old_RP": "Vous projetez vos grenades au-delà des premières lignes ennemies.",
+    "new_RP": "Vous projetez vos grenades avec plus d'efficacité.",
+    "approval": "exact_user_text_and_validation"
+  },
+  "accepted_revision": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG03-02.json",
+  "accepted_revision_sha256": "e611f69639688dca4d92d1ae95a9074c6e79ab007534e293577cadf6ddb09dc9",
+  "approval_scope": "displayed_RP_current_next_values_conditions_and_preview_direction_explicitly_accepted_with_exact_user_replacement;full_curve_and_unshown_cases_native_pending",
+  "unshown_cases_pending": [
+    "rank1_to10_step_curve_ranks_with_no_immediate_range_gain_and_equipment_bonus_continuation",
+    "range_metric_diagonals_obstacles_and_actor_interception",
+    "scout_shared_vision_remote_target_eligibility_and_wall_clipped_preview",
+    "other_attribute_or_equipment_range_modifiers_and_snapshot_timing",
+    "native_longer_throw_preview_trajectory_flight_and_bonus_rank_color"
+  ],
+  "native_visuals": "pending_native_review",
+  "runtime_integration": "not_integrated"
+}

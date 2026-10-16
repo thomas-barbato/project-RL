@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-07",
+  "review_id": "OC04",
+  "user_message": "ok on peut continuer",
+  "source_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC04-05.json",
+  "source_description_sha256": "c3fb33dbd5efd84d87dd67d9458b5ddf2b5d995788ac32291e9dee245d8f7bbf",
+  "shown_assistant_copy_markdown": "**OC04 · Prison sigillaire — Rang 11 · Actif**\n\n*Un cercle de sang se referme autour de votre cible et l’enferme dans ses sceaux impies.*\n\n**Effets actuels**\n\n- PV par segment rituel : **33**.\n- Segments : **8**.\n- Enceinte : **3 × 3 cases**, avec une case centrale sans barrière.\n- Durée : **4 tours**.\n- Portée : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- PV par segment rituel : **35**.\n\n**Coût : 17 énergie · Recharge : 10 tours.**\n\nChoisissez une case centrale visible. Les huit cases autour doivent être visibles, libres et praticables.\n\nLe centre peut être occupé par un acteur. Chaque segment bloque le passage sur sa case et peut être brisé séparément.\n\n**Comportement déjà validé :** les monstres utilisent une brèche accessible ou attaquent un segment pour ouvrir un passage. Les autres segments restent en place.\n\n**Visuel proposé :** un cercle sanglant tracé au sol, composé de huit segments de sceaux rouge sombre. Un segment s’efface lorsqu’il est détruit.",
+  "shown_assistant_copy_sha256": "e59d7df3a41d710a7eddff53d8054e7ae3e69558b179562ef8fbc9ab564afe47",
+  "approval_scope": "Displayed blood-circle RP,33/35 HP per segment,eight segments,total3x3 with central free cell,duration4,range4,cost17/CD10,visible center and visible free passable perimeter,center may contain actor,independent segment blockage/destruction,already accepted NPC use of breach or segment attack,remaining circle preserved,and displayed dark-red ground blood seals with destroyed segment erasure accepted. Native pixels and unshown cases remain pending.",
+  "numeric_rules_approval": "displayed_current_next_values_accepted_as_provisional_balance;full_curves_and_unshown_parameters_pending",
+  "roleplay_text_approval": "displayed_blood_circle_RP_explicitly_accepted",
+  "visual_intention_approval": "displayed_dark_red_ground_blood_seals_and_segment_erasure_accepted;native_pixels_pending",
+  "unshown_rules_approval": "Full rank/attribute/energy curves,exact visibility union and casting line of sight/corners,center/ring placement preview and input,partial-placement refusal accounting,large actors and geometry,boss/elite and special traversal,projectile and spell transmission,ritual-segment targeting and damage defenses,precise AI segment selection and path evaluation,expiry timing/stat snapshots/multiple prisons/map transitions,XP/loot/extra damage at destruction or expiry and other environment effects remain pending.",
+  "runtime_integration": "not_integrated",
+  "next_review_skill_id": "OC05"
+}

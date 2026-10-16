@@ -1,0 +1,33 @@
+{
+  "review_id": "CLASS-MENU01-INTEGRATION",
+  "validated_on": "2026-10-10",
+  "library_tests": {"passed": 823, "failed": 0},
+  "client_targeted_tests": {
+    "passed": 7,
+    "failed": 0,
+    "coverage": [
+      "class selection and restored fixed attributes",
+      "menu input transitions",
+      "torso determines complete outfit",
+      "legacy armor inventory and replay",
+      "exact accepted compositions and individual weapon model layers"
+    ],
+    "full_client_suite_rerun": false
+  },
+  "checks": {
+    "cargo_check_locked_all_targets": "passed",
+    "cargo_fmt_check": "passed",
+    "git_diff_check_cr_at_eol": "passed",
+    "debug_build": "passed",
+    "release_build": "passed with four compiler warnings"
+  },
+  "native_captures": {
+    "directory": "menu-images-02",
+    "classes": ["bastion", "technomancien", "traqueur", "arcaniste", "metamorphe"],
+    "small_window": "arcaniste-small, 960x540",
+    "character_sheet": "six attributes and full starting HP/energy",
+    "layout_review": "no text overlap observed; five class thumbnails and enlarged selected portrait"
+  },
+  "source_art_preservation": "2704 approved reference files verified unchanged; runtime exact-composition tests passed",
+  "remaining_scope": "See integration-scope.json. New skills are recorded as starting ranks but their combat execution and skill trees are not implemented by this step."
+}

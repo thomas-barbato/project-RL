@@ -1,0 +1,543 @@
+{
+  "review_id": "SKILLS-IC19",
+  "title": "Compétences de tir · révisions",
+  "date": "2026-10-11",
+  "status": "requires_targeted_revision",
+  "description": "Cinq icônes reprises selon tes indications. Le Tir de harpon (39), validé, reste inchangé.",
+  "generation_mode": "built-in",
+  "style_references": [
+    {
+      "title": "Harpon validé · 39",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-icon-review-18/DI05-C01-32.png"
+    },
+    {
+      "title": "Maîtrise du tir",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-icon-review-17/T03-C02-32.png"
+    }
+  ],
+  "previous_review": {
+    "file": "../skill-icon-review-18/index.html",
+    "title": "Série précédente · seul le Harpon est validé"
+  },
+  "candidates": [
+    {
+      "id": "DI01",
+      "number": 35,
+      "variant": "DI01-C02",
+      "title": "Tir perforant",
+      "branch": "Attaques à distance",
+      "kind": "active",
+      "roleplay": "Vous déchaînez un tir puissant qui transperce les ennemis sur sa trajectoire.",
+      "visual_status": "requires_revision",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/DI01-C02.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-6c2cda7d-9694-44db-82da-90310ee2d42e.png",
+      "source_sha256": "04c9a1cc13f61f4969ee2c129714526142c391db16f172807d98bd533f75200c",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-19/DI01-C02-master.png",
+        "sha256": "04c9a1cc13f61f4969ee2c129714526142c391db16f172807d98bd533f75200c",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "DI01-C02-24.png",
+          "sha256": "a203ad61d254b239dccabaed294a8a9451a55e4731971e53a02378abfe1f545c",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "DI01-C02-32.png",
+          "sha256": "c23e8ba7a6c98febbb81f0831894d48a18a08177d793341fb9e24df00efa6ddf",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "DI01-C02-64.png",
+          "sha256": "9c8c5442e850d7df1cccde49f14acc64187a589d509f9a601cf93a02095138d1",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "DI01-C02-128.png",
+          "sha256": "c93fd379668a3acaec5b18fd29c957524734c1248180a82ad50321ac8f7cc724",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "DI01-C02-192.png",
+          "sha256": "745a595db829762eb44182a0f1255cd29ae5eafbe3f67a62cecf5f47d21bacf0",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-18/DI01-C01-192.png",
+          "sha256": "f8546ef396d2355992e6f2c0b2dfe14a205044b89ec6382db8b566f7c8986776"
+        }
+      ],
+      "feedback_reference": "feedback-01.json"
+    },
+    {
+      "id": "DI02",
+      "number": 36,
+      "variant": "DI02-C02",
+      "title": "Feu nourri",
+      "branch": "Attaques à distance",
+      "kind": "active",
+      "roleplay": "Vous concentrez votre feu sur une seule cible et l’accablez de tirs.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/DI02-C02.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-4ed8adfd-93e9-44a0-ae79-5e47770d1af0.png",
+      "source_sha256": "30c20e77a9ef627d7b874c2c59ad87cc39cf294add27547f26a0fb3639fecadf",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-20/DI02-C02-master.png",
+        "sha256": "30c20e77a9ef627d7b874c2c59ad87cc39cf294add27547f26a0fb3639fecadf",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "DI02-C02-24.png",
+          "sha256": "9ef673a334602c421509b73355e10c3fb6ce5edea96ff8fefdadf9e7741b122d",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "DI02-C02-32.png",
+          "sha256": "04ab963065616d000c4dd447b2a45a3897b9c5bef450f05d4d2b1bcdbe182880",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "DI02-C02-64.png",
+          "sha256": "7729dfe3242f0282d997cf05740c793e6548db49a65d4cf69b663ca59b3a3e5e",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "DI02-C02-128.png",
+          "sha256": "c3307c07d1538d4d502ae0ef41d7a488323a879ce15c03ee9e413ad89415cbf5",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "DI02-C02-192.png",
+          "sha256": "03826550e48b5dd0f842cb8babab23968ab79165717eb7f4fd4d66b1beee13d8",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-18/DI02-C01-192.png",
+          "sha256": "ede9742944821232b6545c66c7a7121d789ef6f1fd13fab157b3dc83c6ac3afa"
+        }
+      ]
+    },
+    {
+      "id": "DI03",
+      "number": 37,
+      "variant": "DI03-C02",
+      "title": "Volée",
+      "branch": "Attaques à distance",
+      "kind": "active",
+      "roleplay": "Vous ouvrez le feu en éventail sur les ennemis qui vous font face.",
+      "visual_status": "requires_revision",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/DI03-C02.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-6e74adb4-24e0-4123-8980-8ba474cfcc20.png",
+      "source_sha256": "f9cf1a0e76c7383a5b03f467636640703824b86553d29b650535e0624f21fe2f",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-19/DI03-C02-master.png",
+        "sha256": "f9cf1a0e76c7383a5b03f467636640703824b86553d29b650535e0624f21fe2f",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "DI03-C02-24.png",
+          "sha256": "7d023a1fbcf14de227f2ff99de7724d7bc2b95cc4f2c6ead8293f89fd9d2d27d",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "DI03-C02-32.png",
+          "sha256": "eee6b44b177d6db922eaf8dba707f888b7aa3a8d843b262ff1eabb3cf3650756",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "DI03-C02-64.png",
+          "sha256": "503b24d6d4fb9f1bebef209c7c2378cbac407d245f012b64fe81c95ffa7bc5f6",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "DI03-C02-128.png",
+          "sha256": "715b2ce3bd6fd508b6b3b56e65974514768bd37339ae936cf05c60059df0ae73",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "DI03-C02-192.png",
+          "sha256": "6bae3aa5ef8baad465294290a00c6399e66fd63b46883701447622a2f38c0acd",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-18/DI03-C01-192.png",
+          "sha256": "085198679d2d87a5ccc8c2d1be5d506ddcfe7e794f5c51810cd26e8a916c139a"
+        }
+      ],
+      "feedback_reference": "feedback-01.json"
+    },
+    {
+      "id": "DI04",
+      "number": 38,
+      "variant": "DI04-C03",
+      "title": "Tir de précision",
+      "branch": "Attaques à distance",
+      "kind": "active",
+      "roleplay": "Vous ajustez votre visée et cherchez la faille dans la protection de votre cible.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/DI04-C03.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-fa61a60f-35fc-41ac-9e15-2de642d24a3f.png",
+      "source_sha256": "10572ed30efdca8f5d0afdcaa1cee50e61598bd53505905cb0926885ee8da6a7",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-20/DI04-C03-master.png",
+        "sha256": "10572ed30efdca8f5d0afdcaa1cee50e61598bd53505905cb0926885ee8da6a7",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "DI04-C03-24.png",
+          "sha256": "6432ffa94388892b5e3703c9f1708b48b98b050d184e0e5151668970401ba92a",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "DI04-C03-32.png",
+          "sha256": "a5a85efbd3d1f1366e77e5e74c974c0046910d21fe05ca21fc1b6fe5ac928207",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "DI04-C03-64.png",
+          "sha256": "a53ebdbada781cf0082420a8c06a94a60ef199843630ef462154138ede7d87cb",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "DI04-C03-128.png",
+          "sha256": "28daca7c12d5d68f75adaaa6d545212e891586b599c24ce8790696bc73964ba4",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "DI04-C03-192.png",
+          "sha256": "f93d30e30c314722898a9fd24a0d9227334d66b432341d50742ed2b5a35c76fc",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-b07fe35c-9f5a-4b07-942c-afed3d7967c7.png",
+          "sha256": "37ac1589a621b3335f65717f803ea0fec8486a08a8e068071b4e232216795d72"
+        }
+      ]
+    },
+    {
+      "id": "DI07",
+      "number": 40,
+      "variant": "DI07-C02",
+      "title": "Tir vampirique",
+      "branch": "Attaques à distance",
+      "kind": "active",
+      "roleplay": "Votre tir puise dans la vitalité de sa cible pour refermer vos blessures.",
+      "visual_status": "awaiting_visual_review",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "prompt": "prompts/DI07-C02.txt",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-d86b08d4-47b7-42e1-9d30-09be5e744a02.png",
+      "source_sha256": "69e21dca5849703aad07fe47e17bc50002bd188360d8966e67eaed16d2fb2bca",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-20/DI07-C02-master.png",
+        "sha256": "69e21dca5849703aad07fe47e17bc50002bd188360d8966e67eaed16d2fb2bca",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "DI07-C02-24.png",
+          "sha256": "9ce6ca78e934857f9debe0cb53ca92f4c2e9d6b019dc9a42e5d4959d5c712819",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "DI07-C02-32.png",
+          "sha256": "bb6b01d5f0fedb4c7618ed67feda2daf055b5ec200122b37260a926fb60788d8",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "DI07-C02-64.png",
+          "sha256": "b117c2675b27c25aa80560aa782e9cf4a0cd2683da2dd5931824017ea6a9461c",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "DI07-C02-128.png",
+          "sha256": "9528727fd1954b67522558d06c533af913c8e3af3ec48365330108270707e8a2",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "DI07-C02-192.png",
+          "sha256": "f43d50784d2579903e77072a20db8eebda1291002e2c7a4e49e48f5b25fc0c2b",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-18/DI07-C01-192.png",
+          "sha256": "695e3f650e02d0bbb219860df3da304dfba2082a63d10b49a98e35ecde3229e6"
+        }
+      ]
+    }
+  ],
+  "input_image_roles": "Each first supplied image is an edit target; rejected drafts are not accepted style references.",
+  "intermediate_precision_revision": {
+    "variant": "DI04-C02",
+    "number": 38,
+    "visual_status": "requires_revision",
+    "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-b07fe35c-9f5a-4b07-942c-afed3d7967c7.png",
+    "prompt": "precision-generation-plan.json",
+    "feedback": "Keep the skull; remove the bullet and make the sight red."
+  },
+  "protected_hashes": [
+    {
+      "file": "assets/skills/agent/A03-compact.png",
+      "sha256": "d37193de59e564c9907ed16d5febb56424d65fcc5097e4ce5fb4dcd41b0a46c6"
+    },
+    {
+      "file": "assets/skills/agent/A03-illustration.png",
+      "sha256": "5583745698e12316a2026610ca66d40dbb62bd09971dda33f0b4d9e0bd7bdc3e"
+    },
+    {
+      "file": "assets/skills/agent/AF02-compact.png",
+      "sha256": "a81658fdfd61c5aa8b4a615f6b240c69ae1b2d2c380cb0158ae5d6e519a82dac"
+    },
+    {
+      "file": "assets/skills/agent/AF03-compact.png",
+      "sha256": "094682804aac356ef23dec91d1499a7169bc4d8ff1804f203dca80e1495ff135"
+    },
+    {
+      "file": "assets/skills/agent/AF04-compact.png",
+      "sha256": "0f9c803363fe473532da669bd51cecaa6a7ac80feecc8815140fdbf512f1636b"
+    },
+    {
+      "file": "assets/skills/agent/AF05-compact.png",
+      "sha256": "a8d5dd7140048df0c59813ef36e34bfd2bcfd6fbeea8e1f790960d2bb7daa233"
+    },
+    {
+      "file": "assets/skills/agent/B01-illustration.png",
+      "sha256": "2ba69010e33526675639d47d6c730f7ad1b5de548dc2f5e3243219c36b644a33"
+    },
+    {
+      "file": "assets/skills/agent/B03-compact.png",
+      "sha256": "fe03b345514568df50133246c98c9c53d50b46f5aeff04e3dc249d2c85ea5092"
+    },
+    {
+      "file": "assets/skills/agent/B03-illustration.png",
+      "sha256": "614d4dee2c88d7893f7778a2beeb0d904f508cee32c1741bd97dc2db9460849c"
+    },
+    {
+      "file": "assets/skills/agent/BM02-compact.png",
+      "sha256": "8001906983c8da126d0e59ffb660b352b21c1532768837d7fcadaea9678cec11"
+    },
+    {
+      "file": "assets/skills/agent/BM02-illustration.png",
+      "sha256": "69cf7e8176be6d3739ccb76325accc4e6ba3b2953d366af127a8254a6796a24b"
+    },
+    {
+      "file": "assets/skills/agent/catalogue.json",
+      "sha256": "6f2bdcaf354f0113f045b6b9c0678d80bac63a8bd4c187408bc98ec186ac66ac"
+    },
+    {
+      "file": "assets/skills/agent/D56-compact.png",
+      "sha256": "54ef69b44e9a1ea63871f9fe6b82df73a84d213aca2e7d85cdad8ddf0ec29ba9"
+    },
+    {
+      "file": "assets/skills/agent/D57-compact.png",
+      "sha256": "e89ed543dc0c50d220b0beb569b43660c8f4dfbe997b07f9c4c207fec8c0cc2e"
+    },
+    {
+      "file": "assets/skills/agent/D58-compact.png",
+      "sha256": "75e1bba54d9f031b28f8306db93ffa3ed2ccd9eb47480952218c0cf64d3882ed"
+    },
+    {
+      "file": "assets/skills/agent/D59-compact.png",
+      "sha256": "79399dce4495293c558671531b77da469f67e1df4b7fa853bb0f3ce5aa500f84"
+    },
+    {
+      "file": "assets/skills/agent/D59-illustration.png",
+      "sha256": "1ea7634e2367f137fa5a9cefabdc176be760f10dcdd19bc197cedcd9d38e917f"
+    },
+    {
+      "file": "assets/skills/agent/D66-compact.png",
+      "sha256": "7618e5357cb117b422339ad17db0f0beaa1e3559c1486b4d75bb386064d202cf"
+    },
+    {
+      "file": "assets/skills/agent/DI05-compact.png",
+      "sha256": "cd9bb83a65504b9807c8df4533a7f6a74cf3d4b76ce5af4c4b1be03effe93126"
+    },
+    {
+      "file": "assets/skills/agent/DP01-compact.png",
+      "sha256": "c305030b5125ae989424d70b880cc3efd8dbdb0f7f9cf6d68c6916fcb54ad643"
+    },
+    {
+      "file": "assets/skills/agent/DP02-compact.png",
+      "sha256": "62332bbdc8219adc0990ef4dde0940619f85e6d8ab2da972577f292caa49b653"
+    },
+    {
+      "file": "assets/skills/agent/DR01-compact.png",
+      "sha256": "18e620e89d87da2075c4a437bbae3790a5fa70b9df42f1845858f0bd8c299f4d"
+    },
+    {
+      "file": "assets/skills/agent/FE01-compact.png",
+      "sha256": "c6d969ea5f6191870d928aa4a79d84bbfd1c8bbe1e1b198efc7f726858afc6ee"
+    },
+    {
+      "file": "assets/skills/agent/FE01-illustration.png",
+      "sha256": "bf75d01f3b80e70ee6f06b510601ac3162f7047ee6dccba528657f2d2a5a22b0"
+    },
+    {
+      "file": "assets/skills/agent/FE05-illustration.png",
+      "sha256": "9ae15e20dc75200cc42ad727ee646798307389683afa20cc0442d90f97e748a8"
+    },
+    {
+      "file": "assets/skills/agent/FR03-compact.png",
+      "sha256": "b92bfef56362261acb66f97d684501af352cf3b826cc98c6c716164fc020696a"
+    },
+    {
+      "file": "assets/skills/agent/FR03-illustration.png",
+      "sha256": "231928d6de6faed720bfdd612f9c200b8d96282842f4fc398546963bb2c800cc"
+    },
+    {
+      "file": "assets/skills/agent/HY07-compact.png",
+      "sha256": "e2ac0ca895ecd677076b734e4683c957961428596570182af207c2720ee5bb8d"
+    },
+    {
+      "file": "assets/skills/agent/M01-compact.png",
+      "sha256": "5c7b9642379d12361ef4ce59ec53057f3a8a6fa011dd238ca4628d312a1c6ee1"
+    },
+    {
+      "file": "assets/skills/agent/M01-illustration.png",
+      "sha256": "6a139c376988a6946f0b6bd5a2a814cdc9e8fcfb38f19091025a2d5ed191872e"
+    },
+    {
+      "file": "assets/skills/agent/M03-compact.png",
+      "sha256": "b32562370832d21586c813735cf1b2094d8b2e15f731a41fb35633d8a7c85c28"
+    },
+    {
+      "file": "assets/skills/agent/M03-illustration.png",
+      "sha256": "daeeffb775e7c604cd73ddbd505c57ba3bffaf704ad9af9ad692cd7146dc85df"
+    },
+    {
+      "file": "assets/skills/agent/manifest.json",
+      "sha256": "d6197cff259a7c5bba76985eed5bf436c74e84de90f5a7f3c06fe4310c545daf"
+    },
+    {
+      "file": "assets/skills/agent/ME02-compact.png",
+      "sha256": "58356d5b157d6a8f0a05baba5940ed1f63d1f49490b48d42cd6522d42ae58ee2"
+    },
+    {
+      "file": "assets/skills/agent/ME03-compact.png",
+      "sha256": "94fc93bf8807a01229576df1babcbc64553238aad58e815afa09e65afcb4c307"
+    },
+    {
+      "file": "assets/skills/agent/ME04-compact.png",
+      "sha256": "e83e22bf0d8ab99f3b76f612a928ab3ba0ffa45aa8e9ea3ee34f80f8edf6b30b"
+    },
+    {
+      "file": "assets/skills/agent/ME04-illustration.png",
+      "sha256": "b244788ac01e16f4399d263ceb403795ffa2c2c59e9cd0d60e6aaa1589a330b4"
+    },
+    {
+      "file": "assets/skills/agent/ME05-compact.png",
+      "sha256": "c31d9c0f11f67a0cc089c7ac99f5c712360f25ab17f843f1bcaae80f1563a0a1"
+    },
+    {
+      "file": "assets/skills/agent/ME06-compact.png",
+      "sha256": "753df0d1c6335f88f3bd9fda15251fa22e05cd025ceaade09dc77d71fe800740"
+    },
+    {
+      "file": "assets/skills/agent/O02-compact.png",
+      "sha256": "caf9d085980476d3b55f981a3bd7d9b14822e91760c584bb2020038b2f0b0c9e"
+    },
+    {
+      "file": "assets/skills/agent/O03-compact.png",
+      "sha256": "514ee6c56ccda56d2a770428d948bc07b3e540f515044b07c300c39fbce0051a"
+    },
+    {
+      "file": "assets/skills/agent/O03-illustration.png",
+      "sha256": "2a70e75bd3b82ba8c19c5360a3d8dce397e6aa7520c80462a75fa9a054370162"
+    },
+    {
+      "file": "assets/skills/agent/SF00-compact.png",
+      "sha256": "efdd472610655e413caae463102b3d7eb8ba1110f8523c5d2d243bd4146c5102"
+    },
+    {
+      "file": "assets/skills/agent/SF00-illustration.png",
+      "sha256": "99cab81ec7f7da9b229ac23093a1f5371ff0dcaee4de106e5ef1cf67111def02"
+    },
+    {
+      "file": "assets/skills/agent/SU04-compact.png",
+      "sha256": "269b0206ca3d061eddf12e16a6153e963e509a6806870b6322f1f7cd26e67ec9"
+    },
+    {
+      "file": "assets/skills/agent/SU04-illustration.png",
+      "sha256": "8c7ebb5714b9ef938dd509080b90b6435f5038fd721d0fee320f65da6cc45154"
+    },
+    {
+      "file": "assets/skills/agent/T01-compact.png",
+      "sha256": "7804db615fa6ef2a0a3dab8cceb46729e592b7dafb5902d22f1114cdf6f6f91f"
+    },
+    {
+      "file": "assets/skills/agent/T01-illustration.png",
+      "sha256": "0e5b70be8f4501b7c16b883d7d90d29aa67076c949718238a8f401f743430fd8"
+    },
+    {
+      "file": "assets/skills/agent/T03-compact.png",
+      "sha256": "53607ef4da1c7b3ce1346635ceb625dd43480d3ab4492be10e94eb8131b82501"
+    },
+    {
+      "file": "assets/skills/agent/T03-illustration.png",
+      "sha256": "408696a7089fe81a4e14854d537859b31833058286e974bfc65371af1cad55fd"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-icon-acceptance.json",
+      "sha256": "819a7b726831db0179ac3f579e4f95b6e9f3308112ce689788be518e9f3a7eb7"
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/skill-window-review-05/skills.json",
+      "sha256": "cb23dca3cf283e6eb12faa58e01dc637c78a8309614f213cd86ef12d06ce0ef2"
+    }
+  ],
+  "accepted_export_hashes_preserved": 241,
+  "no_new_approval_inferred": true,
+  "no_runtime_changes": true
+}

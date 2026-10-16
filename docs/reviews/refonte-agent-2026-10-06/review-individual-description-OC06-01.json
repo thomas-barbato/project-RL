@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-07",
+  "id": "OC06",
+  "title": "Rupture dimensionnelle",
+  "revision": 1,
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-55.json",
+  "source_skill_block_sha256": "832d4c445db24c2f7b105cc6d3a16641bbc4ae305157781428314da84bcb7e71",
+  "previous_numeric_proposal_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-54.json",
+  "previous_numeric_proposal_block_sha256": "38a9bc8721d88afffb03378dafe06898df74ae950a96eac806eb63b775b8cb26",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/voracious-ray-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "71456c4ffad77b515a266948abeb3ea69ddfc981885919609a84f0fbe2e56c8d",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false,
+    "duration_scaled_by_willpower": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "name_approval": "accepted_existing_catalogue_name_preserved",
+  "roleplay_text_approval": "new_black_magic_pact_RP_proposed_pending_individual_review",
+  "numeric_rules_approval": "proposed_duration13_then14_separation6_placement5_one_pair_energy19_CD10_pending_individual_review",
+  "detailed_conditions_approval": "proposed_visible_free_passable_endpoints_entry_to_other_allies_hostiles_blocked_exit_refusal_new_pair_replaces_previous_same_map_pending_review",
+  "visual_intention_approval": "black_fissures_blood_seals_common_motif_and_transit_shadow_proposed_pending_review",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "formulas": {
+    "duration_turns": "3+(effective_rank-1)",
+    "maximum_separation_cells": "min(6,4+floor((effective_rank-1)/5))",
+    "endpoint_placement_range_cells": 5,
+    "maximum_active_pairs": 1,
+    "energy_cost": "16+floor((effective_rank-1)/3)",
+    "cooldown_turns": 10
+  },
+  "duration_redesign": {
+    "approval": "proposed_pending_individual_review",
+    "previous_duration_formula": "3+floor((effective_rank-1)/5)",
+    "new_duration_formula": "3+(effective_rank-1)",
+    "reason": "each purchased rank extends duration rather than current11_next12 identical effects",
+    "other_numeric_formulas_unchanged": true,
+    "willpower_scaling_added": false,
+    "review_id": "OC06-DUREE01"
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "duration_turns": 3,
+    "maximum_separation_cells": 4,
+    "endpoint_placement_range_cells": 5,
+    "maximum_active_pairs": 1,
+    "energy_cost": 16,
+    "cooldown_turns": 10,
+    "approval": "unshown_curve_pending"
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "duration_turns": 13,
+    "maximum_separation_cells": 6,
+    "endpoint_placement_range_cells": 5,
+    "maximum_active_pairs": 1,
+    "energy_cost": 19,
+    "cooldown_turns": 10
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "duration_turns": 14,
+    "maximum_separation_cells": 6,
+    "endpoint_placement_range_cells": 5,
+    "maximum_active_pairs": 1,
+    "energy_cost": 19,
+    "cooldown_turns": 10
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "duration_turns"
+    ]
+  },
+  "effect_conditions": {
+    "type": "active_magic_same_map_pair_link",
+    "endpoints": "two currently visible free passable cells within per-endpoint placement range and pair separation",
+    "enter_one_transports_to_other": true,
+    "allies_and_hostiles_can_use": true,
+    "blocked_exit_refuses_traversal": true,
+    "maximum_active_pairs": 1,
+    "new_pair_replaces_previous": true,
+    "bonus_map_generation_or_layer_change": false,
+    "damage_control_status_HP_cost_spell_variance_or_hidden_reveal_added": false
+  },
+  "branch_style_dependency": {
+    "review_id": "OC-NOIR01",
+    "decisions": "docs/reviews/refonte-agent-2026-10-06/occult-black-magic-direction-decisions.json",
+    "sha256": "a5da55c41707b156279ca7f9ebc789ef1f7e3fe0e05834dcc9b38e4f50abacee",
+    "requested_direction": "black_magic",
+    "exact_other_skill_revisions": "not yet proposed or approved"
+  },
+  "unshown_rules_approval": "Full curves,distance metric/corners,vision union/LOS,large footprints,endpoints becoming blocked,NPC perception/pathfinding/priorities,boss/elite/forced movement,reactions,movement/expiry order,re-entry/loops,refusal resource/time/RNG accounting,endpoint effects,map transitions and other interactions remain pending. No HP cost,damage,status,general spell variance,hidden reveal or bonus-map generation introduced.",
+  "player_copy_markdown": "**OC06 · Rupture dimensionnelle — Rang 11 · Actif**\n\n*Vous ouvrez deux failles dans le voile du monde, reliées par un même pacte obscur.*\n\n**Effets actuels**\n\n- Durée de la liaison : **13 tours**.\n- Distance maximale entre les passages : **6 cases**.\n- Portée de placement : **5 cases**.\n- Liaison active : **1 paire de passages**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Durée de la liaison : **14 tours**.\n\n**Coût : 19 énergie · Recharge : 10 tours.**\n\nChoisissez deux cases visibles, libres et franchissables. Entrer dans un passage vous transporte à l’autre.\n\nVos alliés et vos ennemis peuvent aussi emprunter la liaison. Si la sortie est bloquée, la traversée est impossible.\n\nUne nouvelle liaison remplace la précédente. Les deux passages restent dans la carte actuelle.",
+  "player_copy_sha256": "23e3db837767fd6b2ce171e954f9334af852c611d87a52168adb2aaab415c19f",
+  "visual_copy_markdown": "**Visuel proposé :** deux fissures noires bordées de sceaux sanglants portent le même motif. Une ombre glisse d’une faille à l’autre lorsqu’un personnage la traverse.",
+  "visual_copy_sha256": "36ae6e9f8cad34c54121b3f45d5eff474745b5f82212e16b0ba2709ef754cf78",
+  "current_turn_shown_copy_markdown": "**OC06 · Rupture dimensionnelle — Rang 11 · Actif**\n\n*Vous ouvrez deux failles dans le voile du monde, reliées par un même pacte obscur.*\n\n**Effets actuels**\n\n- Durée de la liaison : **13 tours**.\n- Distance maximale entre les passages : **6 cases**.\n- Portée de placement : **5 cases**.\n- Liaison active : **1 paire de passages**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Durée de la liaison : **14 tours**.\n\n**Coût : 19 énergie · Recharge : 10 tours.**\n\nChoisissez deux cases visibles, libres et franchissables. Entrer dans un passage vous transporte à l’autre.\n\nVos alliés et vos ennemis peuvent aussi emprunter la liaison. Si la sortie est bloquée, la traversée est impossible.\n\nUne nouvelle liaison remplace la précédente. Les deux passages restent dans la carte actuelle.\n\n**Visuel proposé :** deux fissures noires bordées de sceaux sanglants portent le même motif. Une ombre glisse d’une faille à l’autre lorsqu’un personnage la traverse.",
+  "current_turn_shown_copy_sha256": "43e086a55e904535a564f85af5fd4462b347a2e7536e5e1795563b37655833e2",
+  "checks": [
+    "Stable OC06 name and same-map link role retained;black-magic RP/visuals pending.",
+    "Learned9 then10,gear+2,other attributes/modifiers unchanged;effective11/12;Willpower not applied to link duration.",
+    "New duration13/14 explicitly proposed replacing historical unapproved duration5/5;default duration3 preserved and other numeric formulas unchanged.",
+    "Two free visible passable endpoints,allies/hostiles use,blocked exit refusal,new pair replacement and one-pair limit pending exact review.",
+    "Next displays duration only;no ordinary action timing,weapon variance,HP cost,control or bonus-map generation added. Native pixels and runtime not integrated."
+  ]
+}

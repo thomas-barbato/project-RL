@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-07",
+  "review_id": "FO01",
+  "title": "Chaîne conductrice",
+  "user_message": "oui ca me va :)",
+  "approval_status": "accepted_as_displayed",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FO01-01.json",
+  "previous_description_sha256": "ca7fb5784310809d473c2170e5034e003de024634e4580f9d8f34b56a95112c6",
+  "accepted_player_copy_sha256": "68bc55bddcd5dc12214a996675831880e37bb116fd81ba281fec2b1b8418251a",
+  "accepted_visual_copy_sha256": "9437a993647a7e34cd2faa17c2956f8040f213c3504dd4066c5f13e1225620d7",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "lightning_damage_first_arc": 44,
+    "lightning_damage_by_target_order": [
+      44,
+      35,
+      28,
+      22,
+      18
+    ],
+    "maximum_target_count_including_initial": 5,
+    "damage_retained_per_jump_percent": 80,
+    "maximum_jump_distance_cells": 2,
+    "initial_range_cells": 5,
+    "energy_cost": 13,
+    "cooldown_turns": 4
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "lightning_damage_first_arc": 47,
+    "lightning_damage_by_target_order": [
+      47,
+      37,
+      30,
+      24,
+      19
+    ],
+    "maximum_target_count_including_initial": 5,
+    "damage_retained_per_jump_percent": 80,
+    "maximum_jump_distance_cells": 2,
+    "initial_range_cells": 5,
+    "energy_cost": 13,
+    "cooldown_turns": 4
+  },
+  "approval_scope": "Displayed RP,lightning damage chain44/35/28/22/18 then47/37/30/24/19,five targets including first,range5,jump2,cost13/CD4,chosen first visible hostile then nearest eligible visible hostile,no wall between successive targets,no actor hit twice,stop without next eligible target;damage before defenses. Displayed broken arcs connecting targets in jump order accepted as visual direction.",
+  "accepted_visual_direction": "**Visuel proposé :** des arcs brisés relient les cibles dans l’ordre des sauts.",
+  "unshown_rules_approval": "Full rank/attribute/energy/target-count curves,exact range geometry and diagonals,visibility union of player/drones,first-target line of sight and corner behavior,nearest-distance metric/tie order/large actors,death and chain ordering/stat snapshots/defense packets,aiming preview,no-target or failed cast time-energy-RNG-cooldown behavior,map transitions and other interactions remain pending.",
+  "native_visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

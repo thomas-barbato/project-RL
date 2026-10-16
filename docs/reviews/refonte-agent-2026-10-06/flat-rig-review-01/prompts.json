@@ -1,0 +1,64 @@
+{
+  "mode": "builtin_imagegen",
+  "review_only": true,
+  "requests": [
+    {
+      "id": "BD-FLAT01-C01",
+      "path": "../../../../assets/source-art/refonte-agent-2026-10-06/comic-catalogue-review-03/sources/BD-FRONT01.png",
+      "prompt": "Use case: precise-object-edit. Edit target: the supplied frontal ivory Bastion character. Create the CANONICAL FLAT FRONT BODY AND INDEPENDENT-HANDS POSE for our comic-style tile game. Keep the exact original front-facing helmet, ivory armor panels, black underlayer, belt, legs and boots. Flat orthographic front view, no three-quarter perspective, no sideways twist. ONLY change both arms below the shoulder pads. Use a symmetrical relaxed dual-sidearm ready pose: upper arms descend outward; elbows at waist height; both forearms extend horizontally outwards, toward the left and right sides of the image. Both empty black gloves are closed around vertical invisible handles, with their wrists and visible knuckles at the same height. At 1280 square framing keep head top at y=90, boots bottom at y=1190, body center x=640, shoulder joints near (425,380) and (855,380), elbows near (380,620) and (900,620), and fist centres near (255,620) and (1025,620). Arms must be natural lengths, no added forearms. Empty hands: no weapons, handles, objects, shield, muzzle or props. Front-facing broad chest and shoulders at equal depth; feet point forward. Preserve the original crisp black comic contours, ivory/charcoal colors and simple large cel-shaded shapes. Full body, transparent background, no floor, no shadow, no lettering, no framing marks. This is a faithful pose correction of the same outfit, not an armor redesign."
+    },
+    {
+      "id": "BD-FLAT01-C04-independent",
+      "refs": [
+        "../../../../assets/source-art/refonte-agent-2026-10-06/flat-rig-review-02/sources/BD-FLAT01-C01-independent.png",
+        "../../../../assets/source-art/refonte-agent-2026-10-06/comic-catalogue-review-03/sources/BD-C04-unarmed.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image 1 is the STRICT ANATOMICAL POSE AND SCALE TEMPLATE: frontal ivory armored figure with both empty fists extended horizontally outward at waist height. Image 2 is the OUTFIT IDENTITY TO REDRAW: the vivid red hooded Arcaniste robe, black faceted mask, black shoulder pads and gloves, silver chest plate, black belt, dark legs and boots. Redraw the Arcaniste outfit from image 2 on exactly the front-facing body structure and stance of image 1. Full orthographic front view, shoulders at equal depth, chest, hood, mask and feet facing the viewer directly. Match image 1's top of head, bottom of boots, height, shoulder joints, elbow joints, wrist and both gripping fist locations. In the 1280 square canvas the reference has head top around y=90 and feet bottom around1190; shoulder centers around (425,380),(855,380), elbows around (380,560),(900,560), hands around (200,570),(1060,570). Preserve the compact same-length limbs of image1; the sleeves cover this common skeleton rather than change its pose. Both closed black gloves grip empty vertical space, fists at equal waist height, forearms horizontal outward. Keep the robe's vivid bright red color and long angular hem from image2, its exact hood/mask identity, silver chest plate, shoulders, belt, gloves and boots, faithfully rotated to frontal, not redesigned. Crisp black comic outlines, bold flat colors, simple cel shading, readable large masses. No ivory armor. No weapons, no shield, no props, no extra limbs, no three-quarter view, no oblique camera, no floor, no glow, no text, no shadow. Transparent background. This is the same existing red Arcaniste robe on the shared frontal gabarit, not a new design."
+    },
+    {
+      "id": "BD-FLAT01-C01-rifle",
+      "refs": [
+        "../../../../assets/source-art/refonte-agent-2026-10-06/flat-rig-review-02/sources/BD-FLAT01-C01-independent.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit target: the supplied FRONT-facing ivory Bastion. Change ONLY BOTH ARMS below the fixed shoulder pads to a compact rifle holding pose: one empty gripping black glove near x=500,y=570 and the other near x=785,y=555. The future rifle points horizontally to viewer-right across the lower chest. Keep a natural elbow bend, main rear hand around an invisible vertical grip, front support hand around empty horizontal foregrip space. Preserve EXACTLY the frontal head, helmet, fixed shoulder pads, torso panels, belt, hips, legs and boots, their original position, proportions, colors and canvas framing. Do not rotate the body to three quarters. Front-facing body and feet at equal depth. Arms must keep normal original lengths, no extra forearms. Full body including feet, original 1280-square framing with top y around90 and bottom1190. Empty hands only: no weapons, no objects, no guide lines or handles. Same clean comic ink outlines, ivory/black palette and broad cel shading. Actual transparent background, no floor, no shadow, no caption. Only the arm pose changes."
+    },
+    {
+      "id": "BD-FLAT01-C01-heavy",
+      "refs": [
+        "../../../../assets/source-art/refonte-agent-2026-10-06/flat-rig-review-02/sources/BD-FLAT01-C01-independent.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit target: the supplied FRONT-facing ivory Bastion. Change ONLY BOTH ARMS below the fixed shoulder pads to a heavy weapon carrying pose: both elbows low near waist, empty black gloved hands near x=455,y=670 and x=925,y=670 at exactly the same height. Both wrists support a future horizontal heavy gun across the waist, one near rear handle and the other near front support. Natural upper arm/forearm lengths. Preserve EXACTLY the frontal head, helmet, fixed shoulder pads, torso panels, belt, hips, legs and boots, their original position, proportions, colors and canvas framing. Do not rotate the body to three quarters. Front-facing body and feet at equal depth. Arms must keep normal original lengths, no extra forearms. Full body including feet, original 1280-square framing with top y around90 and bottom1190. Empty hands only: no weapons, no objects, no guide lines or handles. Same clean comic ink outlines, ivory/black palette and broad cel shading. Actual transparent background, no floor, no shadow, no caption. Only the arm pose changes."
+    },
+    {
+      "id": "BD-FLAT01-C01-pole",
+      "refs": [
+        "../../../../assets/source-art/refonte-agent-2026-10-06/flat-rig-review-02/sources/BD-FLAT01-C01-independent.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit target: the supplied FRONT-facing ivory Bastion. Change ONLY BOTH ARMS below the fixed shoulder pads to a two-handed melee/pole holding pose: both elbows naturally bent, one empty black glove near x=555,y=695 and the other near x=725,y=535, centered in front of the abdomen/chest around an invisible diagonal shaft going up to the viewer-right. Both hands close around empty shaft space, no visible shaft. Preserve EXACTLY the frontal head, helmet, fixed shoulder pads, torso panels, belt, hips, legs and boots, their original position, proportions, colors and canvas framing. Do not rotate the body to three quarters. Front-facing body and feet at equal depth. Arms must keep normal original lengths, no extra forearms. Full body including feet, original 1280-square framing with top y around90 and bottom1190. Empty hands only: no weapons, no objects, no guide lines or handles. Same clean comic ink outlines, ivory/black palette and broad cel shading. Actual transparent background, no floor, no shadow, no caption. Only the arm pose changes."
+    },
+    {
+      "id": "BD-FLAT01-C04-rifle",
+      "refs": [
+        "../../../../assets/source-art/refonte-agent-2026-10-06/flat-rig-review-02/sources/BD-FLAT01-C01-rifle.png",
+        "../../../../assets/source-art/refonte-agent-2026-10-06/flat-rig-review-02/sources/BD-FLAT01-C04-independent.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is the exact common frontal BODY AND ARM-POSE TEMPLATE, image2 is the exact RED ROBE OUTFIT IDENTITY. Put the robe of image2 on precisely the anatomical structure and arm pose of image1. Keep the exact same scale, occupied height, top of hood/head at y90, bottom of feet at y1190, 1280square canvas, shoulders, elbows, wrists, hands, frontal hips and forward-facing feet as image1. The arm pose is a rifle hold, with one empty glove near the center of the lower chest and the other extended outward to viewer-right at the same level, ready to hold the foregrip of a horizontal rifle. Copy these joint and grip locations from image1 exactly rather than inventing a new pose. Keep the SAME front-facing red hood, black faceted mask, black shoulder pads, silver chest plate, belt, long vivid-red angular robe, black gloves and boots from image2. Change only the arms of that red robe, not fixed head/torso/legs/feet. Sleeves follow image1's bone lengths and hand positions with readable clean edges. No ivory outfit pieces. Same crisp black comic outlines, bright red flat colors and simple cel shading. No weapon, no objects or handles, no guides, no shadow, no floor, no caption, no glow. Full body with actual transparent background. No perspective, no three-quarter view, no side-facing chest or boots. Same outfit in a second shared arm pose."
+    },
+    {
+      "id": "BD-FLAT01-C04-heavy",
+      "refs": [
+        "../../../../assets/source-art/refonte-agent-2026-10-06/flat-rig-review-02/sources/BD-FLAT01-C01-heavy.png",
+        "../../../../assets/source-art/refonte-agent-2026-10-06/flat-rig-review-02/sources/BD-FLAT01-C04-independent.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is the exact common frontal BODY AND ARM-POSE TEMPLATE, image2 is the exact RED ROBE OUTFIT IDENTITY. Put the robe of image2 on precisely the anatomical structure and arm pose of image1. Keep the exact same scale, occupied height, top of hood/head at y90, bottom of feet at y1190, 1280square canvas, shoulders, elbows, wrists, hands, frontal hips and forward-facing feet as image1. The arm pose is a low heavy weapon hold, with both empty gloved fists in front of the waist at equal height. Copy these joint and grip locations from image1 exactly rather than inventing a new pose. Keep the SAME front-facing red hood, black faceted mask, black shoulder pads, silver chest plate, belt, long vivid-red angular robe, black gloves and boots from image2. Change only the arms of that red robe, not fixed head/torso/legs/feet. Sleeves follow image1's bone lengths and hand positions with readable clean edges. No ivory outfit pieces. Same crisp black comic outlines, bright red flat colors and simple cel shading. No weapon, no objects or handles, no guides, no shadow, no floor, no caption, no glow. Full body with actual transparent background. No perspective, no three-quarter view, no side-facing chest or boots. Same outfit in a second shared arm pose."
+    },
+    {
+      "id": "BD-FLAT01-C04-pole",
+      "refs": [
+        "../../../../assets/source-art/refonte-agent-2026-10-06/flat-rig-review-01/sources/BD-FLAT01-C01-pole.png",
+        "../../../../assets/source-art/refonte-agent-2026-10-06/flat-rig-review-02/sources/BD-FLAT01-C04-independent.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is the exact common frontal BODY AND ARM-POSE TEMPLATE, image2 is the exact RED ROBE OUTFIT IDENTITY. Put the robe of image2 on precisely the anatomical structure and arm pose of image1. Keep the exact same scale, occupied height, top of hood/head at y90, bottom of feet at y1190, 1280square canvas, shoulders, elbows, wrists, hands, frontal hips and forward-facing feet as image1. The arm pose is a diagonal two-handed pole hold with one empty glove in front of the lower abdomen and the other raised near the chest on viewer-right. Copy these joint and grip locations from image1 exactly rather than inventing a new pose. Keep the SAME front-facing red hood, black faceted mask, black shoulder pads, silver chest plate, belt, long vivid-red angular robe, black gloves and boots from image2. Change only the arms of that red robe, not fixed head/torso/legs/feet. Sleeves follow image1's bone lengths and hand positions with readable clean edges. No ivory outfit pieces. Same crisp black comic outlines, bright red flat colors and simple cel shading. No weapon, no objects or handles, no guides, no shadow, no floor, no caption, no glow. Full body with actual transparent background. No perspective, no three-quarter view, no side-facing chest or boots. Same outfit in a second shared arm pose."
+    }
+  ]
+}

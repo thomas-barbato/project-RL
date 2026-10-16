@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-09",
+  "review_id": "WEAPON-SIL01-REVIEW",
+  "weapon_bank": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-silhouette-review-02/review-weapon-silhouettes-WEAPON-SIL01-02.json",
+    "reference_sha256": "4e216b6455490471a62ece08426aca6de951747e80396636a808b2d6c6f033e9"
+  },
+  "native_sheets": [
+    {
+      "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/families-native-page-1.png",
+      "binary_sha256": "72e234caf411aafe6fd0f5ee2df80f992e7a3e3948fbd03ed02eed26d6968ac5",
+      "dimensions": [
+        710,
+        680
+      ]
+    },
+    {
+      "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/families-native-page-2.png",
+      "binary_sha256": "b556f4b8c04d4f33e1253cf6d8359b001c47d1bf5e271751184119449a55f27e",
+      "dimensions": [
+        710,
+        680
+      ]
+    },
+    {
+      "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-02/families-native-page-3.png",
+      "binary_sha256": "c75ddd02a7910d922b3134bccbee52ae8080da744d5fb12b948fd77497fb51b9",
+      "dimensions": [
+        710,
+        680
+      ]
+    }
+  ],
+  "light_gray_pistol": {
+    "path": "artifacts/refonte-agent-2026-10-06/weapon-silhouette-review-02/pistol-light-gray-comparison.png",
+    "binary_sha256": "66a5abe17c2806c3f91f99274c7901f53b20e2ed3a178ea110d75c1ae3075606",
+    "dimensions": [
+      640,
+      440
+    ]
+  },
+  "neutral_gray_replacement": {
+    "path": "artifacts/refonte-agent-2026-10-06/weapon-silhouette-review-02/pink-to-neutral-gray-comparison-02.png",
+    "binary_sha256": "0f9a9b5f5ceb5841a0270255bd0440a20cde8443f1c5dbcfe6eee910aba8f0e2",
+    "dimensions": [
+      640,
+      390
+    ]
+  },
+  "gallery": {
+    "reference": "artifacts/refonte-agent-2026-10-06/weapon-silhouette-review-02/weapon-silhouette-gallery-02.html",
+    "reference_sha256": "683756a4664e05cc00f3d82837066fe988041abb06f1aeca41590a6d2bca2d91"
+  },
+  "proposed_palette_code_patch": {
+    "reference": "tools/archive/refonte-agent-2026-10-06/weapon-silhouette-review-02/replace-pink-with-gray-proposed.patch",
+    "reference_sha256": "ab0cfc13e44363d97c796ef7d21e3d25d7ef6708a80ed21824d9e698b6088c09"
+  },
+  "palette_code_patch_sources": [
+    {
+      "path": "src/entity/equipment_palette.rs",
+      "current_content_sha256": "f5e98d8b7bb7b0bb0289e6e2773aa7cf846b86fc890d63de66ae0a42a50cb9a1"
+    },
+    {
+      "path": "src/game_art_palette.rs",
+      "current_content_sha256": "374b9f95311eeea9815e15a970f91afd4cd72f791c02afb31e6885044b7e1b99"
+    },
+    {
+      "path": "src/game/equipment_colors.rs",
+      "current_content_sha256": "54961828ad9186da48741d24e4992abd41088f4ab5d8c47da54edf4f94062778"
+    },
+    {
+      "path": "src/game_art_worn.rs",
+      "current_content_sha256": "fcf9f6738ba0b43fc965c5bc65998246484fbc3cc10c6f0c1a84bf020e85a39b"
+    },
+    {
+      "path": "src/game/game_state.rs",
+      "current_content_sha256": "5b4a2aeaf23786a777e3b9f18612be92421536e287de0f8879e9d164d6ef2d95"
+    }
+  ],
+  "palette_patch_scope": "replace_Pink_variant_with_Gray_at_same_enum_index;serde_alias_reads_legacy_Pink;ALL_length7_and_rng_draw_count_unchanged;secondary_Gray_neutral",
+  "code_patch_validation": "prepared_only;not_applied_or_compiled;visual_gray_review_required",
+  "orientation_acceptance": "user_oui_c_est_mieux_accepts_prior_diagonal_pistol_orientation;gray_material_new_pending",
+  "gray_direction_acceptance": "user_requests_light_gray_pistol;rose_items_become_neutral_gray;exact_shown_palette_pending_visual_review",
+  "traqueur_layer_scope": "unarmed_layer_prepared_from_existing_supporting_source;requires_review_as_part_of_new_family_compositions",
+  "mechanical_changes": "none",
+  "active_asset_or_code_changes": 0,
+  "runtime_integration": "not_integrated",
+  "revision": 2,
+  "previous_presentation": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/weapon-silhouette-review-02/weapon-silhouette-review-presentation-01.json",
+    "reference_sha256": "2bf54ebcc8d34cba16fc121fc660221cabca7cac47f10a1a4c41b040cf659fe5"
+  },
+  "gallery_integer_zooms": "native64;desktop192=3x;small_screen128=2x"
+}

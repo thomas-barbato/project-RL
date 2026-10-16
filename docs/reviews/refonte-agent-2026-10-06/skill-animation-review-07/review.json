@@ -1,0 +1,45 @@
+{
+  "batch": "ANIM-OCC01",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "user_instruction": "ok il faut tester pour voir ce qui se passe dans un couloir ou quand il y a un obstacle devant",
+  "candidates": [
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A03-COULOIR",
+      "name": "Souffle de feu · couloir",
+      "description": "Couloir d’une case débouchant sur une pièce. A, B et C sont exposés ; D reste protégé par l’angle du mur.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A03-CLOISON",
+      "name": "Souffle de feu · cloison devant",
+      "description": "A est devant la cloison. B et C sont derrière : ni le souffle ni les flammes de brûlure ne les atteignent.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A03-OBSTACLE",
+      "name": "Souffle de feu · obstacle partiel",
+      "description": "Les flammes passent de part et d’autre de l’obstacle vers A et B. C est protégé dans son ombre.",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "scope": "Isolated debug visual review. No campaign, GameState, damage, RNG, save or balance changes.",
+  "source_art": "Exact unchanged ANIM-STYLE01 flame and cone atlases. GPU clipping only; no repainting or new generated art.",
+  "fixture_geometry": "Forward 90-degree cell cone, depth five at effective rank 11. Walkable cells with the engine has_line_of_sight, closed corners blocked. Exact cone geometry is proposed, not canonized.",
+  "mask": "Same affected-cell list for targeting preview, cone clip and demonstrated burned targets. The origin cell only contains the emitter. Nearest cell mask with a two-pixel inward fade; no flame on blocked cells.",
+  "presentation": "The first 0.7 seconds show targeting; the remaining 3.3 seconds show the launched spell. This is an edited review sequence, not a new preparation delay or world-turn advancement.",
+  "targets": "Laboratory targets are all visible for comparison, including protected ones. This does not grant hidden-actor reveal in the game. Successful burns are demonstration fixtures only.",
+  "blood_policy": "Fire without blood. Characters and equipment unchanged.",
+  "rule_acceptance": "Walls already stop FE02. Exact discretization, clipping appearance and laboratory UI still await review.",
+  "style_rule": "Universal drawn animation style remains pending explicit acceptance.",
+  "laboratory_ui_candidate": {
+    "variant": "LAB-OCC01",
+    "status": "awaiting_separate_review"
+  }
+}

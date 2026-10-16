@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-08",
+  "review_id": "T03-ACCEPT01",
+  "skill_id": "T03",
+  "title": "Maîtrise des attaques à distance",
+  "user_answer": "oui ca me va :)",
+  "approval": "explicit_full_displayed_individual_card_acceptance",
+  "accepted_roleplay": "Vous exploitez chaque ouverture pour frapper vos proies avec une violence accrue.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "ranged_attack_damage_bonus_percent": 40
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "ranged_attack_damage_bonus_percent": 43
+  },
+  "accepted_conditions": [
+    "permanent bonus",
+    "own ranged weapons and attack skills",
+    "ranged-classified spells and transformation attacks included",
+    "melee attacks and drone attacks excluded"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** un trait plus vif traverse brièvement le projectile ou l’émission de votre attaque.",
+  "accepted_copy_sha256": "965e679eeb503b6f27339c1100aea7541ee7b2ab3026a9430551fa1c50a9c995",
+  "accepted_visual_copy_sha256": "a46e61757be373b935b5188818d223494360651f473e79eaa5ec9677977f2c6f",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-T03-01.json",
+  "source_card_sha256": "527dac1bab285b65c60444c91c9262d76bb9ea5366861998e3d9f8787c253120",
+  "rank1_damage_bonus_percent": "10;previously_accepted_preserved",
+  "unshown_cases_pending": [
+    "full_curves_defaults_rounding_and_modifier_order",
+    "exact_ranged_classification_persistent_effects_heavy_weapons_secondary_attacks_and_summons",
+    "native_emission_palette_duration_visibility_and_collision_feedback"
+  ],
+  "unshown_full_curve_and_modifier_order": "pending_review",
+  "native_render": "pending_prototype_review",
+  "runtime_integration": "not_integrated"
+}

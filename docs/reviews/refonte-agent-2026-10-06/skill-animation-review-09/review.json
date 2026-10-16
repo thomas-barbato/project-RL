@@ -1,0 +1,70 @@
+{
+  "batch": "ANIM-PART01",
+  "status": "rejected_by_user",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A05-COULOIR-DROITE",
+      "name": "Souffle · couloir · droite",
+      "description": "Petites flammes complètes animées, orientées sur des trajets arrondis. Les murs et les cibles protégées restent préservés.",
+      "status": "rejected_by_user"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A05-COULOIR-GAUCHE",
+      "name": "Souffle · couloir · gauche",
+      "description": "Petites flammes complètes animées, orientées sur des trajets arrondis. Les murs et les cibles protégées restent préservés.",
+      "status": "rejected_by_user"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A05-CLOISON-DROITE",
+      "name": "Souffle · cloison · droite",
+      "description": "Petites flammes complètes animées, orientées sur des trajets arrondis. Les murs et les cibles protégées restent préservés.",
+      "status": "rejected_by_user"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A05-CLOISON-GAUCHE",
+      "name": "Souffle · cloison · gauche",
+      "description": "Petites flammes complètes animées, orientées sur des trajets arrondis. Les murs et les cibles protégées restent préservés.",
+      "status": "rejected_by_user"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A05-OBSTACLE-DROITE",
+      "name": "Souffle · obstacle · droite",
+      "description": "Petites flammes complètes animées, orientées sur des trajets arrondis. Les murs et les cibles protégées restent préservés.",
+      "status": "rejected_by_user"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A05-OBSTACLE-GAUCHE",
+      "name": "Souffle · obstacle · gauche",
+      "description": "Petites flammes complètes animées, orientées sur des trajets arrondis. Les murs et les cibles protégées restent préservés.",
+      "status": "rejected_by_user"
+    }
+  ],
+  "user_direction": "Test the proposed modular animated flames. All animations must support aiming left and right regardless of the character pose.",
+  "source_art": "New transparent eight-frame small flame fragment generated with built-in image_gen. Approved red-robed character is the comic style reference; older flame is the palette reference.",
+  "construction": "Complete animated fragments, moving on cached short paths with rounded corners. Ordinary texture draws; no whole-cone image, shader deformation, opacity field or per-affected-cell clipping.",
+  "obstacles": "Conservative circular bounds contain the entire alpha sprite in every orientation. Fragments fit the physical free space, fade near each stream endpoint and never cross solid walls.",
+  "routing_scope": "Visual fixture routing only, guided by the unchanged preview footprint. No gameplay propagation around a blocking wall or changed damage.",
+  "direction": "World positions, maps, footprints and target flags mirror left/right. Texture orientation follows each path. The frontal character art and equipment are not flipped or redrawn.",
+  "timing": "The montage previews targeting for 0.7 seconds, then displays the cast. Flame populations are visually prefilled on launch; no extra skill preparation or progressive damage is introduced. Playback never advances turns.",
+  "scope": "Isolated debug proposal. No campaign, damage calculation, RNG, save, balance or icon changes.",
+  "laboratory_ui_candidate": {
+    "variant": "LAB-PART01",
+    "status": "awaiting_separate_review"
+  },
+  "fallback": "ANIM-OCC02 remains intact and retained as fallback, without acceptance implied.",
+  "blood_policy": "Fire remains without blood.",
+  "feedback": "User rejects the modular attempt and selects a large complete overlay ignoring terrain, with stronger blinking targeting preview."
+}

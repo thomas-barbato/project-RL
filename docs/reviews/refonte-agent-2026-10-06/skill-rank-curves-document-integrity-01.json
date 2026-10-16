@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-09",
+  "review_id": "SKILL-RANKS01-DOC-CHECK01",
+  "scope": "versioned_design_manifest_integrity_coverage_and_preserved_rules;not_runtime_or_balance_tests",
+  "files_checked": [
+    "skill-rank-balancing-delegation-decisions.json",
+    "current-level-skill-power-acceptance-decisions.json",
+    "review-current-level-skill-power-01.json",
+    "skill-rank-curves-provisional-01.json",
+    "skill-rank-curves-validation-01.json",
+    "review-implementation-readiness-03.json",
+    "review-attribute-model-61.json",
+    "review-primary-catalogue-233.json",
+    "review-complete-skill-design-208.json",
+    "remaining-individual-skill-review-counts-102.json"
+  ],
+  "hash_references_checked": 1087,
+  "hash_errors": [],
+  "coverage": {
+    "branches": 14,
+    "primary": 79,
+    "secondary": 14,
+    "repair_complement": 1,
+    "total": 94
+  },
+  "level_bound_damage_skill_count": 28,
+  "source_accepted_fields_and_previous_active_overrides": "unchanged",
+  "rank_caps_and_secondary_prerequisite": "preserved",
+  "removed_skill_and_Foudre_reintroduction": false,
+  "current_level_direction": "explicitly_accepted",
+  "exact_level_coefficient": "separate_proposed_reference;not_silently_approved",
+  "rank_arithmetic_report": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/skill-rank-curves-validation-01.json",
+    "reference_sha256": "5e745d45c1524e5708fff32bc7851a790b23695a6d1a68cf3ac56f4687e2457a"
+  },
+  "runtime_integration": "not_integrated"
+}

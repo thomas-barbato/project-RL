@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-08",
+  "id": "BM03",
+  "review_id": "BM03",
+  "revision": 1,
+  "title": "Tempo offensif",
+  "branch": "Buffs de mêlée",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-90.json",
+  "source_skill_manifest_sha256": "04192eb1dc6641af7b106f29116a05ce450d295b90457db97e481df0f8866a3b",
+  "source_skill_block_sha256": "c85c50e1a01d20a8f25c295e7f849a2aa4932666845955eb045a23bb5c9a70c4",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "equipped_and_active_weapon_type": "melee",
+    "other_modifiers": false,
+    "charges": "preview_shows_per_charge_and_maximum_not_a_live_three_charge_state"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "damage_bonus_percent_per_charge": 15,
+    "maximum_charges": 3,
+    "maximum_damage_bonus_percent": 45
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "damage_bonus_percent_per_charge": 16,
+    "maximum_charges": 3,
+    "maximum_damage_bonus_percent": 48
+  },
+  "formulas_proposed": {
+    "damage_bonus_percent_per_charge": "5+(effective_rank-1)",
+    "maximum_charges": 3,
+    "damage_bonus_percent": "charges*(5+effective_rank-1)",
+    "status": "existing_unapproved_curve_preserved;full_curves_and_damage_application_pending_review"
+  },
+  "conditions_proposed": {
+    "primary_melee_hit_removing_HP_adds_one_charge": "for_subsequent_hits;multi_hit_action_resolution_unshown_pending",
+    "maximum_charges": 3,
+    "miss_resets_series": true,
+    "movement_resets_series": true,
+    "other_action_advancing_time_resets_series": true,
+    "menus_and_marking_without_turn_passage_preserve_series": true,
+    "equipment_bonus_does_not_create_charge": true,
+    "charge_reaches_maximum_on_third_eligible_hit": "maximum_bonus_on_following_hit;shown_rules_derive_this_sequence;explicit_examples_unshown"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "displayed_current_next_values_proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "displayed_hit_charge_and_reset_conditions_proposed_pending_individual_user_review",
+  "visual_intention_approval": "existing_catalogue_direction_preserved;three_charge_application_to_review",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "pending_individual_user_review",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "no_fictitious_total_weapon_damage_variance": true,
+    "damage_display": "percent_modifier_only;total_active_weapon_damage_range_not_invented"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "damage_bonus_percent_per_charge",
+      "maximum_damage_bonus_percent"
+    ]
+  },
+  "player_copy_markdown": "**BM03 · Tempo offensif — Rang 11 · Passif**\n\n*Vos coups s’enchaînent avec une violence croissante.*\n\n**Effets actuels**\n\n- Bonus de dégâts par charge : **+15 %**.\n- Charges maximales : **3**.\n- Bonus de dégâts maximal : **+45 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus de dégâts par charge : **+16 %**.\n- Bonus de dégâts maximal : **+48 %**.\n\nChaque frappe principale de mêlée qui retire des PV ajoute une charge pour les coups suivants.\n\nUn coup manqué, un déplacement ou une autre action qui fait avancer le temps rompt la série. Les menus et le marquage sans passage de tour la conservent.",
+  "player_copy_sha256": "eba5ac0a2240aa77e867bc1c4488d2e92924cd365f8a686642e5f371ec9f2970",
+  "visual_copy_markdown": "**Visuel envisagé :** des repères s’ajoutent près de la poignée, jusqu’à trois, et la traînée de l’arme s’accentue.",
+  "visual_copy_sha256": "7bbf56a4317a2333a7bad439e52bd9bb90343912210dc30154ae823efd4d47f5",
+  "current_turn_shown_copy_markdown": "**BM03 · Tempo offensif — Rang 11 · Passif**\n\n*Vos coups s’enchaînent avec une violence croissante.*\n\n**Effets actuels**\n\n- Bonus de dégâts par charge : **+15 %**.\n- Charges maximales : **3**.\n- Bonus de dégâts maximal : **+45 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus de dégâts par charge : **+16 %**.\n- Bonus de dégâts maximal : **+48 %**.\n\nChaque frappe principale de mêlée qui retire des PV ajoute une charge pour les coups suivants.\n\nUn coup manqué, un déplacement ou une autre action qui fait avancer le temps rompt la série. Les menus et le marquage sans passage de tour la conservent.\n\n**Visuel envisagé :** des repères s’ajoutent près de la poignée, jusqu’à trois, et la traînée de l’arme s’accentue.",
+  "current_turn_shown_copy_sha256": "3f0f9a74f9bf34d69b0fbd70dd2bba869910b17ee2f0d906424ba620288c8f8a",
+  "unshown_cases_pending": [
+    "full_curve_rounding_and_damage_modifier_order;displayed_rank1_and_rank10_references_pending_user_review",
+    "damage_bonus_eligibility_for_added_elements_weapon_skills_secondary_hits_and_transformed_attacks",
+    "multi_target_multi_hit_and_dual_wield_charge_and_miss_resolution",
+    "zero_HP_damage_absorption_and_charge_trigger_order",
+    "NPC_reactions_damage_taken_immobilization_weapon_swap_map_change_and_no_time_actions",
+    "HUD_charges_exact_markers_trail_palette_visibility_and_native_prototype"
+  ],
+  "reference_progression_proposal": {
+    "effective_rank1_maximum_damage_bonus_percent": 15,
+    "effective_rank10_maximum_damage_bonus_percent": 42,
+    "status": "rank1_and_rank10_maximums_shown_in_commentary_pending_user_review"
+  },
+  "reference_progression_copy_markdown": "Le passif augmente les dégâts des frappes suivantes, jusqu’à trois charges. Je conserve une progression de +15 % maximum au rang 1 à +42 % au rang 10 ; cette fiche reste une proposition à valider.",
+  "reference_progression_copy_sha256": "e7b2f8a2db2701489dde27b7167262ff6da926af364a882a654ebc888a999792"
+}

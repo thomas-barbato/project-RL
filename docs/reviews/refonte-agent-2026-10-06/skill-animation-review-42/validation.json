@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-13",
+  "batch": "ANIM-S16",
+  "status": "technical_checks_passed_awaiting_visual_approval",
+  "previous_lot": "ANIM-S15 approved; receipt review41/visual-acceptance-01.json",
+  "candidates": [
+    {
+      "number": 37,
+      "id": "TR63-HEURT",
+      "name": "Heurt",
+      "variant": "TR63-HEURT-A01",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 38,
+      "id": "TR63-DECHARGE",
+      "name": "Décharge de plaques",
+      "variant": "TR63-DECHARGE-A01",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 39,
+      "id": "TR63-FERMETURE",
+      "name": "Fermeture des plaques",
+      "variant": "TR63-FERMETURE-A01",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 40,
+      "id": "TR64-TRAIT",
+      "name": "Trait corporel",
+      "variant": "TR64-TRAIT-A01",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 41,
+      "id": "TR64-PULSATION",
+      "name": "Pulsation occulte",
+      "variant": "TR64-PULSATION-A01",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 42,
+      "id": "TR64-DRAIN",
+      "name": "Drain organique",
+      "variant": "TR64-DRAIN-A01",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "rust": {
+    "locked_debug_build": "passed",
+    "targeted_lab_tests": 82,
+    "targeted_failures": 0,
+    "format_check": "passed",
+    "diff_check": "passed"
+  },
+  "native": {
+    "views": 60,
+    "scenarios": 10,
+    "frames_per_view": 96,
+    "fps": 24,
+    "tile_size": 64,
+    "gifs": 19,
+    "rgba_to_png_pixel_identical": true,
+    "resampling_of_capture": false,
+    "control_samples": 1260,
+    "walls_and_turn_checks": "passed",
+    "correction_receipts": [
+      "capture-correction.json",
+      "capture-correction-02.json"
+    ],
+    "correction_manifest_unchanged": true
+  },
+  "protected_previous_files_unchanged": 85520,
+  "gallery": {
+    "syntax": "passed",
+    "controller": "passed",
+    "six_native_views_loaded": true,
+    "explicit_three_turn_sequence": true,
+    "waiting_does_not_advance_turns": true,
+    "pause_freezes_clock": true,
+    "inputs_disabled_during_loading": true,
+    "browser_validation": "Not performed: file protocol blocked. Native captures and offline controller verified."
+  },
+  "local_links": {
+    "checked": 19,
+    "missing": 0
+  },
+  "gif_palette": {
+    "samples": 29,
+    "status": "passed",
+    "maximum_mean_error": 12.73,
+    "maximum_p95_error": 31
+  },
+  "visual_inspection": "Native open/closed bodies and action frames; decoded GIF phases at native scale inspected. User approval remains pending.",
+  "campaign_integration": false,
+  "actual_combat_stats_resources_or_healing": false,
+  "not_run": [
+    "Full engine test suite",
+    "Release build",
+    "Browser render validation; protocol access was blocked. Native GPU captures and offline controller verified."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SM03-ACCEPT01",
+  "skill_id": "SM03",
+  "user_response": "tres bien :)",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM03-01.json",
+  "reviewed_description_sha256": "8e0209a18e8d682a4a2f8e0e153c2a0836b72bb239f3e71742aae8d4dc179f2c",
+  "accepted_player_copy": "**SM03 · Mines de glace — Rang 11 · Passif**\n\n*Vos mines éclatent dans un souffle de givre qui glace vos ennemis.*\n\n**Effets actuels**\n\n- Type de mine débloqué : **Glace**.\n- Bonus aux dégâts des mines de glace : **+50 %**.\n- Dégâts à l’explosion : **16 de froid**, avant résistances.\n- Gel : **5 tours**.\n- Chance de Gel : **69,2 % · Élites : 51,9 % · Boss : 34,6 %**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus aux dégâts des mines de glace : **+55 %**.\n- Dégâts à l’explosion : **17 de froid**.\n- Chance de Gel : **73,8 % · Élites : 55,4 % · Boss : 36,9 %**.\n\nNécessite **Pose de mine** apprise. L’explosion peut appliquer Gel sans **Résidu persistant**.\n\nLe Gel bloque les déplacements ; la cible peut toujours attaquer et utiliser ses autres actions. Un Gel appliqué supprime sa Brûlure ; une Brûlure appliquée supprime son Gel.\n\nLes chances de Gel dépendent des résistances de chaque cible.",
+  "accepted_current_values": {
+    "mine_type_unlocked": "Glace",
+    "cold_variant_damage_bonus_percent": 50,
+    "cold_damage_before_defenses": 16,
+    "freeze_duration_turns": 5,
+    "freeze_success_chance_percent": 69.2,
+    "elite_freeze_success_chance_percent": 51.9,
+    "boss_freeze_success_chance_percent": 34.6
+  },
+  "accepted_next_values": {
+    "mine_type_unlocked": "Glace",
+    "cold_variant_damage_bonus_percent": 55,
+    "cold_damage_before_defenses": 17,
+    "freeze_duration_turns": 5,
+    "freeze_success_chance_percent": 73.8,
+    "elite_freeze_success_chance_percent": 55.4,
+    "boss_freeze_success_chance_percent": 36.9
+  },
+  "accepted_displayed_conditions": [
+    "SM00_learned_prerequisite",
+    "explosion_applies_chance_based_Gel_independent_of_SM05",
+    "movement_only_Gel_preserves_attacks_and_other_actions",
+    "successful_Gel_and_Burn_reciprocally_replace_each_other",
+    "per_target_resistance_changes_Gel_chance"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** une brève explosion bleu pâle, avec des éclats de glace. Le voyant rouge de la mine conserve son clignotement lorsqu’elle est armée.",
+  "approval_scope": "displayed_RP_numbers_conditions_and_visual_direction;provisional_balance_preserved;unshown_curves_and_native_pixels_not_approved",
+  "unshown_cases_pending": [
+    "full_rank1_to10_and_equipment_bonus_curves",
+    "cold_base10_damage_balance_with_real_monster_statistics",
+    "Intelligence_control_scaling_and_other_target_resistances",
+    "arming_snapshot_phase_order_and_roll_timing",
+    "Gel_reapplication_refresh_and_persistent_SM05_zone_interactions",
+    "familiar_and_other_allied_Gel_eligibility",
+    "other_mine_bonus_stacking_and_unknown_target_chance_preview",
+    "native_explosion_palette_ice_shards_status_icons_and_SM00_updated_variant_values"
+  ],
+  "native_visuals": "pending_native_review",
+  "runtime_integration": "not_integrated"
+}

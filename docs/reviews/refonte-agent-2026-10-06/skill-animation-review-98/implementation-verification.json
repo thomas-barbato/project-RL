@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-15",
+  "review": "ANIM-S49",
+  "status": "ready_for_user_visual_review",
+  "targeted_tests": {
+    "filter": "ranged_opening",
+    "passed": 3,
+    "failed": 0
+  },
+  "build": "cargo build --locked --bin project-rl passed",
+  "format": "cargo fmt --all --check passed",
+  "diff": "scoped git diff --check passed",
+  "native_scenes": 28,
+  "offline_controller_checks": "viewer-controller-verification.json",
+  "native_visual_qa": "Default shots, wall face stop, mechanical sparks, target cap and six-shot burst inspected at native pixel size.",
+  "source_sha256": "1a8943d02a6017101d9e1601dfc61c05e4be4733b83b529594527ac730d9e28e",
+  "protected_files_verified": 27,
+  "raw_capture_bytes_removed_across_both_passes": 378461731,
+  "auxiliary_bytes_removed": 805422,
+  "campaign_assets_rules_rng_or_saves_changed": false,
+  "mule_rule_receipt": "../mule-single-active-acceptance-01.json",
+  "scout_acceptance": "../skill-animation-review-97/visual-acceptance-01.json",
+  "new_pycache_created": false,
+  "remaining_never_shown": [
+    "DI03",
+    "DI04",
+    "DI05",
+    "DI07"
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-06",
+  "id": "ME06",
+  "title": "Tourbillon",
+  "revision": 2,
+  "player_copy_markdown": "**Tourbillon — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Vous pivotez au milieu des ennemis et frappez tout autour de vous.*\n\nFrappez les ennemis adjacents autour de vous, sans vous déplacer. Les ennemis touchés saignent.\n\n**Effet actuel**\n- Dégâts par cible : **22–27** (**110 %** de l’attaque).\n- Saignement : **10 % des dégâts du coup par tour**, pendant **3 tours**.\n- Zone : **8 cases adjacentes** autour de vous.\n\n**Prochain rang — 12 · 1 point de compétence**\n- Dégâts par cible : **23–28** (**115 %** de l’attaque).\n- Saignement : **10 % des dégâts du coup par tour**, pendant **3 tours**.\n- Zone : **8 cases adjacentes** autour de vous.\n\nLes dégâts du coup sont indiqués avant les défenses. Le saignement utilise les dégâts réellement subis par la cible.\n\nLe saignement ne se cumule pas : une nouvelle application renouvelle sa durée.\n\n**Coût : 15 énergie · Recharge : 6 tours.**\n**Nécessite une arme de mêlée active.**",
+  "player_copy_sha256": "f0d7de003ed10bd40e68980be49d5202a8bf9d5846e04776ef678ff540b88957",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-11.json",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/charge-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "4eaac9304e709346a281f42b7b8a88a602d0667eeac0d97c3d48586bff0adbd3",
+  "previous_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-melee-08.json",
+  "previous_skill_block_sha256": "42f772d582977f72d4cc8eceba63c65252295340ffb5a83dd28da760f761ee15",
+  "name_approval": "preserve_previous_approval",
+  "roleplay_text_approval": "preserve_previously_accepted_text_exactly",
+  "functional_description_approval": "new_bleeding_copy_pending_user_review",
+  "current_next_effect_copy_approval": "revised_bleeding_card_pending_user_review",
+  "numeric_rules_approval": "previously_displayed_rank_1_and_12_reference_values_preserved; new_current_next_ranges_and_unshown_formulas_pending",
+  "formulas": {
+    "damage_percent_per_target": "60 + 5 * (effective_rank - 1)",
+    "energy": "12 + floor((effective_rank - 1) / 3)"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "strength": 10,
+    "agility": 10,
+    "reference_melee_attack_min_damage": 18,
+    "reference_melee_attack_max_damage": 22,
+    "range_status": "illustrative_only",
+    "strength_factor": "1.1",
+    "agility_factor": "1.025",
+    "active_compatible_melee_weapon": true,
+    "weapon_range_cells": 1,
+    "other_damage_or_cost_modifiers": false
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "damage_percent_per_target": 110,
+    "damage_min_per_target_before_defenses": 22,
+    "damage_max_per_target_before_defenses": 27,
+    "adjacent_cells": 8,
+    "maximum_targets": 8,
+    "energy_cost": 15,
+    "cooldown_turns": 6,
+    "bleeding_chance_percent_on_successful_hit": 100,
+    "bleeding_damage_per_turn_percent_of_actual_initial_hit_damage": 10,
+    "bleeding_duration_turns": 3
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "damage_percent_per_target": 115,
+    "damage_min_per_target_before_defenses": 23,
+    "damage_max_per_target_before_defenses": 28,
+    "adjacent_cells": 8,
+    "maximum_targets": 8,
+    "energy_cost": 15,
+    "cooldown_turns": 6,
+    "bleeding_chance_percent_on_successful_hit": 100,
+    "bleeding_damage_per_turn_percent_of_actual_initial_hit_damage": 10,
+    "bleeding_duration_turns": 3
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_weapon_attributes_and_other_modifiers": true,
+    "can_purchase_with_sufficient_points": true,
+    "learned_cap_respected": true
+  },
+  "active_weapon_requirement": {
+    "type": "melee",
+    "approval": "explicit_user_requirement",
+    "incompatible_warning": "Nécessite une arme de mêlée active.",
+    "warning_approval": "accepted_as_presented"
+  },
+  "presented_conditions_approval": "adjacent 8-cell area and stationary strike presented for individual review; other unshown conditions remain pending",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "current and next per-target damage ranges calculated using exact fractions",
+    "fixed adjacent zone and energy/cooldown checked",
+    "previously accepted roleplay preserved exactly",
+    "learned cap respected; no table, progression formula or ordinary execution time reminder",
+    "unchanged current and next hit values rechecked with exact fractions",
+    "bleeding uses actual initial hit damage; no target-dependent net range invented",
+    "new numerical and stacking proposals remain pending review"
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME06-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/tourbillon-bleeding-request-decisions.json",
+  "latest_decisions_sha256": "1831a514466b791b196a36456e6ea54766b890230cd42ee790e323e82970cc83",
+  "bleeding_request_approval": "explicit_user_request_for_light_bleeding",
+  "bleeding_numeric_rules_approval": "10_percent_actual_hit_damage_per_turn_for_3_turns_and_refresh_rule_pending_user_review",
+  "bleeding_rules": {
+    "application": "on each enemy successfully hit by Tourbillon",
+    "chance_percent_on_successful_hit": 100,
+    "damage_per_turn_percent_of_actual_initial_hit_damage": 10,
+    "duration_turns": 3,
+    "stacking": "no stacking from repeated Tourbillon; refresh duration",
+    "rank_scaling": "fixed percentage and duration; damage scales with the actual initial hit",
+    "approval": "new exact numbers, stacking rule and wording pending explicit user review",
+    "scope": "Tourbillon only; does not replace the global bleeding rules of other skills"
+  },
+  "bleeding_unshown_details_pending": [
+    "fractional damage rounding",
+    "tick timing within turns",
+    "interaction with other bleeding sources",
+    "damage defenses and bleeding immunity cases"
+  ],
+  "bleeding_arithmetic_checks": [
+    {
+      "actual_initial_hit_damage": 20,
+      "damage_per_turn": 2,
+      "duration_turns": 3,
+      "total_damage": 6
+    },
+    {
+      "actual_initial_hit_damage": 40,
+      "damage_per_turn": 4,
+      "duration_turns": 3,
+      "total_damage": 12
+    }
+  ]
+}

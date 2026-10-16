@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-09",
+  "review_id": "SKILL-LEVEL01-NUM01-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-current-level-skill-power-01.json",
+    "reference_sha256": "1ffd2dec39a412fcaf1cce70bf621349cdb24f485f4815c31e87ed97c273c1a0"
+  },
+  "presented_coefficient": "+10 % des dégâts de base du premier niveau par niveau gagné, avec une croissance linéaire",
+  "presented_level40_Braise": {
+    "rank1_fire_damage": 39,
+    "rank10_fire_damage": 171,
+    "without_bonuses_before_defenses": true
+  },
+  "user_example_question": "d'accord, et s'il est niveau 11 à combien seront les dégats ?",
+  "presented_level11_Braise": {
+    "rank1_fire_damage": 16,
+    "rank10_fire_damage": 70,
+    "without_attribute_or_equipment_bonuses_noncritical_before_defenses": true
+  },
+  "user_acceptance": "d'accord, on continue",
+  "accepted_numeric_rule": "1 + (current_caster_level - 1) / 10;linear_growth_from_level1_base;never_acquisition_level",
+  "approval_scope": "initial_provisional_common_damage_growth_coefficient_and_shown_Braise_examples;existing_learning_rank_caps_attributes_equipment_and_damage_pipeline_preserved",
+  "approval_boundary": "not_final_player_monster_balance_or_native_visual_approval;existing_persistent_effect_update_timing_not_resolved_by_this_acceptance",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,69 @@
+{
+  "browser": "Edge Chromium",
+  "views": 8,
+  "presentations": [
+    "rear_halo"
+  ],
+  "obsolete_variant_absent": true,
+  "schemes": [
+    "file: playback and controls",
+    "localhost: exact native RGB equality"
+  ],
+  "checks": [
+    {
+      "presentation": "rear_halo",
+      "scenario": "DIRECT",
+      "direction": 0,
+      "pixel_equality": true
+    },
+    {
+      "presentation": "rear_halo",
+      "scenario": "DIRECT",
+      "direction": 1,
+      "pixel_equality": true
+    },
+    {
+      "presentation": "rear_halo",
+      "scenario": "DIRECT",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "presentation": "rear_halo",
+      "scenario": "DIRECT",
+      "direction": 3,
+      "pixel_equality": true
+    },
+    {
+      "presentation": "rear_halo",
+      "scenario": "ATTENTE",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "presentation": "rear_halo",
+      "scenario": "PERSISTANT",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "presentation": "rear_halo",
+      "scenario": "RECHARGE",
+      "direction": 2,
+      "pixel_equality": true
+    },
+    {
+      "presentation": "rear_halo",
+      "scenario": "SECOND",
+      "direction": 2,
+      "pixel_equality": true
+    }
+  ],
+  "icons_native_32_and_64": true,
+  "manual_idle_stable": true,
+  "prepared_mechanics_unchanged": true,
+  "no_persistent_save": true,
+  "no_second_save": true,
+  "no_energy_cost": true,
+  "errors": []
+}

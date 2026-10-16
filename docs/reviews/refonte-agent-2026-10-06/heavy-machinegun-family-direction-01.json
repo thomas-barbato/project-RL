@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-10",
+  "review_id": "HEAVY-MG01",
+  "user_direction": "On va transformer Gatlings en mitrailleuses lourdes, dont des gatlings, pour varier les modèles.",
+  "family_label": "Mitrailleuses lourdes",
+  "family_id": "heavy:machine_gun",
+  "previous_family_id": "heavy:gatling",
+  "models": "six planned candidates;gatlings are one possible construction among heavy machineguns",
+  "stable_candidate_ids": [
+    "EQ-GA01",
+    "EQ-GA02",
+    "EQ-GA03",
+    "EQ-GA04",
+    "EQ-GA05",
+    "EQ-GA06"
+  ],
+  "candidate_id_note": "Keep already-issued review IDs even though the family label changes.",
+  "held_orientation": "predominantly_horizontal",
+  "grips": "main_and_support_grips",
+  "existing_machinegun_ids_and_stats": "preserved;this direction does not silently replace or reclassify existing content",
+  "pixels_RP_stats": "not_proposed_here",
+  "previous_series": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-equipment-series-EQUIP-SERIES01-03.json",
+    "reference_sha256": "6979765e1db73564139b07ad5301e1368115b936c67a1ddc34d4ce3287ded0bd"
+  }
+}

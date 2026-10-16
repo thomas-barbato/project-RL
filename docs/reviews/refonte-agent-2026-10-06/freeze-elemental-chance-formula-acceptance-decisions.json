@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-09",
+  "review_id": "R03-GEL02-ACCEPT01",
+  "user_reply": "ok on continue",
+  "approval_context": "Positive confirmation of the last presented R03-GEL02 formula and its ordinary/boss examples;does not silently accept the earlier complete R01-R05 batch.",
+  "source_batch": "docs/reviews/refonte-agent-2026-10-06/review-resistance-system-02.json",
+  "source_batch_sha256": "6fe6e09d97f51e095577166bf09c113441a57243fd5712a2063a56d6e21ca9e0",
+  "accepted_shown_copy_markdown": "Tu as raison pour les **radiations** : ce type existe dans le moteur, mais je n’ai trouvé aucun contenu de jeu qui inflige ces dégâts. Je le retire donc de la proposition.\n\nJe corrige les associations :\n\n- **Brûlure → résistance au feu**, pour ses dégâts à chaque tour.\n- **Empoisonné → résistance au poison**, pour ses dégâts à chaque tour.\n- **Gel → résistance au froid**, pour les dégâts du sort et, selon ton choix, la **chance d’être gelé**. Sa durée reste inchangée.\n\nLa résistance occulte conserve son rôle contre les malédictions et les contrôles occultes.\n\nPour le Gel, je propose ce calcul simple : **chance de Gel × (100 − résistance au froid) ÷ 100**.\n\nExemple avec **80 % de chance avant résistance** et **40 % de résistance au froid** :\n\n- Chance de Gel : **48 %**.\n- Sur un boss, avec le malus déjà validé : **24 %**.\n- Si le Gel s’applique, sa durée reste celle de la compétence.\n\n**Les associations sont notées ; ce calcul chiffré reste à valider.**",
+  "accepted_shown_copy_sha256": "b586f31cf9ddb8b07924692bcda121c93d759084a0c1e7fd203e67ac0f339dde",
+  "accepted_rules": {
+    "Gel_Cold_resistance_formula_as_shown": "chance_before_Cold_resistance*(100-Cold_resistance)/100",
+    "Gel_duration": "unchanged",
+    "boss_importance_multiplier": "previous_accepted1/2_after_the_shown_Cold_modifier",
+    "elemental_associations": "Burn_Fire_Poison_Poison_Gel_Cold_preserved",
+    "occult_controls": "accepted_S06_occult_resistance_scope_preserved"
+  },
+  "accepted_examples": [
+    {
+      "chance_before_Cold_resistance_percent": 80,
+      "Cold_resistance_percent": 40,
+      "ordinary_Gel_chance_percent": 48,
+      "boss_Gel_chance_percent": 24,
+      "duration": "unchanged"
+    }
+  ],
+  "unshown_cases_pending": [
+    "negative_Cold_resistance_and_probability_caps",
+    "replacement_of_previous_target_occult_factor_and_affected_skill_rank_values",
+    "zone_exposure_ordering_and_new_zone_examples",
+    "remaining_R01_R05_limits_armor_rounding_and_UI_proposal",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

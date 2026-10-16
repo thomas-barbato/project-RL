@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "TR61-STUN01",
+    "TR61-DEF01",
+    "TR61-HP01"
+  ],
+  "skill_id": "TR61",
+  "title": "Colosse biomécanique",
+  "user_request": "Un repoussement pour un joueur purement corps à corps serait dommage (ca forcerait à bouger) , par contre s'il peut assommer (avoir une chance d'assommer) de zone, ainsi qu'un bonus de défense et de HP, ca serait bien .",
+  "accepted_requested_direction": {
+    "replace_shockwave_push_with_area_stun_chance": true,
+    "bonus_defense_during_form": true,
+    "bonus_HP_during_form": true
+  },
+  "hp_model_question": "Pour les PV du Colosse, je propose d’augmenter temporairement les PV actuels et maximum dans la même proportion, puis de conserver ce pourcentage de vie au retour à la forme humaine. Cela évite de se soigner gratuitement en répétant la transformation. Cette règle te convient-elle ?",
+  "hp_model_answer": "Oui, conserver le pourcentage de vie",
+  "accepted_hp_model": {
+    "temporary_current_and_max_HP_increase_same_proportion": true,
+    "preserve_HP_percentage_when_leaving_form": true,
+    "free_heal_from_repeating_transformation": false,
+    "exact_rounding_equipment_changes_death_and_other_cases": "pending_individual_review"
+  },
+  "proposed_values": {
+    "armor_bonus_percent_current_next": [
+      30,
+      32
+    ],
+    "max_HP_bonus_percent_current_next": [
+      40,
+      42
+    ],
+    "stun_chance_percent_current_next": [
+      50,
+      53
+    ],
+    "elite_stun_chance_percent_current_next_display": [
+      37.5,
+      39.8
+    ],
+    "boss_stun_chance_percent": 0,
+    "stun_duration_turns": 1,
+    "stun_prevents_movement_and_all_actions": true,
+    "damage_duration_costs_cooldowns_and_movement_penalty": "retained_from_pending_TR61_01_proposal",
+    "approval": "numeric_values_and_exact_defense_implementation_as_armor_proposed_pending_explicit_user_review"
+  },
+  "control_importance_rules": "normal_calculated_chance;elite_times0.75;boss_immune_to_stun;damage_preserved",
+  "previous_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-TR61-01.json",
+  "revised_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-TR61-02.json",
+  "M01_changes": false,
+  "runtime_integration": "not_integrated"
+}

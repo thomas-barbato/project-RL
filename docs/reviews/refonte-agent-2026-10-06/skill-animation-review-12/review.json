@@ -1,0 +1,51 @@
+{
+  "batch": "ANIM-OVER03",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A08-COULOIR-DROITE",
+      "name": "Couloir puis pièce · droite",
+      "description": "À la sortie du couloir, les flammes retrouvent leur dessin ample sur le sol libre. Les murs continuent à les arrêter.",
+      "status": "visually_approved"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A08-COULOIR-GAUCHE",
+      "name": "Couloir puis pièce · gauche",
+      "description": "À la sortie du couloir, les flammes retrouvent leur dessin ample sur le sol libre. Les murs continuent à les arrêter.",
+      "status": "visually_approved"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A08-COULOIR-HAUT",
+      "name": "Couloir puis pièce · haut",
+      "description": "À la sortie du couloir, les flammes retrouvent leur dessin ample sur le sol libre. Les murs continuent à les arrêter.",
+      "status": "visually_approved"
+    },
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A08-COULOIR-BAS",
+      "name": "Couloir puis pièce · bas",
+      "description": "À la sortie du couloir, les flammes retrouvent leur dessin ample sur le sol libre. Les murs continuent à les arrêter.",
+      "status": "visually_approved"
+    }
+  ],
+  "user_request": "At the end of a corridor leading to open space, retain the drawn shape even with a little overflow past cell borders instead of a geometrically cut cone.",
+  "rendering": "The existing painted cone remains unchanged. A corridor opening that the original emitter can reach provides an additional visual visibility origin at its free entrance. In the room, the original drawn flame shapes can spread past gameplay-cell edges; rays from the opening still stop on physical walls.",
+  "scope": "Visual mask change only in the debug review. No image generation, source deformation, gameplay propagation, range, damage, status chance, icon, actor, save or balance changes.",
+  "unchanged": "Targeting disappears on cast; Burn remains attached to affected bodies and keeps its independent montage lifetime. Full walls and other fixtures keep their previous masking.",
+  "timing": "Review montage only, with the same targeting/breath/Burn phases as A07; no game turns advance.",
+  "laboratory_ui_candidate": {
+    "variant": "LAB-OVER03",
+    "status": "awaiting_separate_review"
+  },
+  "comparison": "A07 left, A08 right; both same native 64px terrain, actor positions and phase.",
+  "approval_receipt": "visual-acceptance-01.json",
+  "common_art_rules_accepted": true
+}

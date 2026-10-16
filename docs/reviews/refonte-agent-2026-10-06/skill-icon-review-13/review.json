@@ -1,0 +1,161 @@
+{
+  "review_id": "SKILLS-IC13",
+  "date": "2026-10-11",
+  "status": "accepted",
+  "feedback": "Le joueur n'aime pas les compactes du drone Artilleur et de Furtivité dans SKILLS-IC12.",
+  "scope": "Two replacement compact proposals only; stable review numbers 16 and 20. No integration or approval inferred for any other IC12 candidate.",
+  "candidates": [
+    {
+      "id": "D59",
+      "number": 16,
+      "title": "Invocation de l’Artilleur",
+      "variant": "D59-C03",
+      "previous_variant": "D59-C02",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-93ec04a2-bbe6-45e8-b075-39ca7c19bbf3.png",
+      "refs": [
+        "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/FE01-C01-192.png",
+        "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/B03-C01-192.png",
+        "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-192.png"
+      ],
+      "prompt": "prompts/D59-C03.txt",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "source_sha256": "83e7f69b6720703758291d432a10e38d196ef4f763ed463c504c329b0496238c",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-13/D59-C03-master.png",
+        "sha256": "83e7f69b6720703758291d432a10e38d196ef4f763ed463c504c329b0496238c",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "D59-C03-24.png",
+          "sha256": "bb668bed97892dcba26f89ce889066d92b506aec9517adb505b3ee306ffea64e",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "D59-C03-32.png",
+          "sha256": "ed8304a2dfac2adbc2e1a6bbcdc390bcf91adb75944d0de2ed13148f3a66541d",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "D59-C03-64.png",
+          "sha256": "111da6f58ead7d83b89cfbb588dbff99df7ac5d75b4264386fe097acd4e925c2",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "D59-C03-128.png",
+          "sha256": "78507fd4a4ae2687cbfd3977ce7ada25deaaa6bb19cadd3a99dfdac463c4b121",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "D59-C03-192.png",
+          "sha256": "fcc7635e1db9114ef33778db8494bee3b57a644a5cc59f082bb7c160579d2b30",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "style_reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/FE01-C01-192.png",
+          "sha256": "a5d5c30145a24fe0be4f05aff988e328d3a57771938147bd91d9719fb0a70204"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/B03-C01-192.png",
+          "sha256": "29ed2b5b52984ec5facbe851e123fca6d9a245d633d01bfdb8e2f77586c205a4"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-192.png",
+          "sha256": "c1f33f477f5af585eec24997da4909e62e13616c3c18622d6a564537bda8d901"
+        }
+      ],
+      "acceptance_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-13/visual-acceptance-01.json"
+    },
+    {
+      "id": "SF00",
+      "number": 20,
+      "title": "Furtivité",
+      "variant": "SF00-C03",
+      "previous_variant": "SF00-C02",
+      "source": "C:/Users/User/.codex/generated_images/01a11010-433f-7fc2-ac29-ffb696dec5ea/exec-760fc00a-36cf-4a25-8404-f58bfb535afd.png",
+      "refs": [
+        "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/FE01-C01-192.png",
+        "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/B03-C01-192.png",
+        "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-192.png"
+      ],
+      "prompt": "prompts/SF00-C03.txt",
+      "visual_status": "accepted",
+      "generation_tool": "image_gen.imagegen",
+      "generation_mode": "built-in",
+      "source_sha256": "17966ce20d413532abfad4254639c898d72651fcfe4cd9ae49e0f880f2335dc2",
+      "master": {
+        "file": "../../../../assets/source-art/refonte-agent-2026-10-06/skill-icon-review-13/SF00-C03-master.png",
+        "sha256": "17966ce20d413532abfad4254639c898d72651fcfe4cd9ae49e0f880f2335dc2",
+        "width": 1254,
+        "height": 1254
+      },
+      "files": {
+        "24": {
+          "file": "SF00-C03-24.png",
+          "sha256": "26a9f690b4ca6d1919012ed200f3e550c50fa596416dece07179e785f91d7984",
+          "width": 24,
+          "height": 24
+        },
+        "32": {
+          "file": "SF00-C03-32.png",
+          "sha256": "9ef232c9562271536465f97df8eb2fd87071c6cff3b4f6da7a139415a061d836",
+          "width": 32,
+          "height": 32
+        },
+        "64": {
+          "file": "SF00-C03-64.png",
+          "sha256": "81645c4c01e6cdc7a14cc643ddfc166dceb56da5a5284bd61f29af12c9fa317a",
+          "width": 64,
+          "height": 64
+        },
+        "128": {
+          "file": "SF00-C03-128.png",
+          "sha256": "f01eda2ce636b7b5ae97dc5e7037e8f29fb28833fe5e4062a27ef4014ce10b1a",
+          "width": 128,
+          "height": 128
+        },
+        "192": {
+          "file": "SF00-C03-192.png",
+          "sha256": "8c5fce0e04736f326c8645c451f08cb6091e7f406d7c948b4ee38bdec7b88d8c",
+          "width": 192,
+          "height": 192
+        }
+      },
+      "style_reference_hashes": [
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/FE01-C01-192.png",
+          "sha256": "a5d5c30145a24fe0be4f05aff988e328d3a57771938147bd91d9719fb0a70204"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/B03-C01-192.png",
+          "sha256": "29ed2b5b52984ec5facbe851e123fca6d9a245d633d01bfdb8e2f77586c205a4"
+        },
+        {
+          "file": "C:/Users/User/Desktop/project-RL/artifacts/refonte-agent-2026-10-06/skill-icon-review-11/M03-C01-192.png",
+          "sha256": "c1f33f477f5af585eec24997da4909e62e13616c3c18622d6a564537bda8d901"
+        }
+      ],
+      "acceptance_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-13/visual-acceptance-01.json"
+    }
+  ],
+  "accepted_export_hashes_preserved": 121,
+  "protected_files_preserved": 89,
+  "no_new_approval_inferred": true,
+  "acceptance_reference": "docs/reviews/refonte-agent-2026-10-06/skill-icon-review-13/visual-acceptance-01.json",
+  "accepted_compact": [
+    "D59-C03",
+    "SF00-C03"
+  ],
+  "no_gameplay_changes": true,
+  "native_integration_reference": "docs/reviews/refonte-agent-2026-10-06/skill-window-native-02/integration-validation.json"
+}

@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ01",
+  "revision": 1,
+  "title": "Équipement des familiers",
+  "status": "explicit_level_type_expiry_and_drone_level_directions_recorded;shown_equipment_compatibility_and_lifecycle_complements_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-28.json",
+  "current_attribute_model_sha256": "6e195770af81c63c2427eb49762c4989ba47fd468965af703a72f04ace49cdfa",
+  "direction_decisions": "docs/reviews/refonte-agent-2026-10-06/familiar-equipment-level-type-expiry-and-drone-level-decisions.json",
+  "direction_decisions_sha256": "4a54b262874a60aafc8f1a180cf1528ae340479b351d747bc2e6caecdee22d18",
+  "shown_copy_markdown": "Oui, équiper les familiers donnerait une utilité supplémentaire au loot et permettrait de personnaliser leur rôle.\n\n**PETS-EQ01 · Équipement des familiers**\n\n**Règles retenues**\n\n- La compatibilité dépend du **niveau du familier** et de son type : **mêlée, distance physique ou distance magique**.\n- Le **niveau des drones suit celui du joueur**. Le rang d’invocation et l’Intelligence continuent à renforcer leur puissance.\n- À la mort d’un familier ou à la fin d’une résurrection, **les objets portés tombent au sol**.\n\n**Compléments proposés**\n\n- Chaque objet indique son **niveau minimum requis** et les **types de familiers compatibles**. Le familier doit satisfaire les deux conditions.\n- Les ressuscités conservent le **niveau du monstre d’origine**.\n- Les bonus des objets équipés s’appliquent au **familier qui les porte**, selon les effets compatibles.\n- Les objets tombent **sur sa case**, avec ceux déjà présents. Une destruction volontaire les dépose aussi ; un rappel de drone conserve son équipement.\n- Un bouton **« Équipement »** dans la fenêtre **« Familiers »** ouvre sa fiche. La Mule conserve en plus son rôle de transport.\n\nL’Éclaireur et la Mule restent sans attaque. Les emplacements et familles d’objets autorisés seront définis pour chaque type.\n\nLe calcul d’une arme équipée devra conserver l’intérêt du rang d’invocation. **Ces compléments restent à valider avant de fixer les emplacements et les formules.**",
+  "shown_copy_sha256": "b472903aa019dcd0d3c644ae9f63891bd6c95a53879ecdd0b02f63fe30038d4b",
+  "already_accepted_directions": {
+    "familiar_equipment": "design_direction_for_equipping_drones_raised_monsters_and_possible_future_familiars_with_compatible_weapons_and_armor_confirmed_by_follow_up_constraints;exact_slots_catalogue_and_mechanics_pending",
+    "compatibility_axes": "familiar_level_and_combat_type",
+    "combat_types": [
+      "melee",
+      "physical_ranged",
+      "magical_ranged"
+    ],
+    "death": "items_worn_by_familiar_fall_to_ground",
+    "raised_lifetime_end": "items_fall_to_ground_when_resurrection_expires",
+    "drone_equipment_level": "follows_player_level",
+    "drone_power": "invocation_rank_Intelligence_and_existing_applicable_modifiers_retained;equipment_level_does_not_create_an_extra_automatic_damage_HP_level_formula"
+  },
+  "new_proposed_rules": {
+    "item_compatibility": "item_minimum_required_level<=familiar_level_AND_familiar_combat_type_in_item_compatible_types",
+    "type_categories": [
+      "melee",
+      "physical_ranged",
+      "magical_ranged"
+    ],
+    "raised_level": "retain_origin_monster_level",
+    "item_bonus_recipient": "equipped_item_eligible_effects_apply_to_wearing_familiar;no_automatic_owner_bonus_transfer",
+    "ground_location": "all_worn_items_deposit_on_familiar_current_cell_preserving_existing_objects_and_item_properties",
+    "voluntary_destruction": "also_deposit_worn_items_on_current_cell",
+    "drone_recall": "retain_worn_equipment",
+    "interface_entry": "Equipement_button_on_existing_Familiers_window_opens_selected_familiar_equipment_sheet",
+    "Mule": "cargo_transport_role_retained_in_addition_to_familiar_equipment;no_new_all_familiar_cargo_capacity_defined",
+    "noncombat_drones": "Eclaireur_Mule_remain_without_attack;compatible_slot_and_family_sets_to_review",
+    "rank_relevance": "equipped_weapon_calculation_must_preserve_usefulness_of_invocation_rank;exact_formula_not_proposed_here"
+  },
+  "preserved_existing_rules": {
+    "window": "same_movable_collapsible_scrollable_Familiers_window_one_row_per_familiar;raised_monsters_remain_autonomous",
+    "caps": "existing_five_drones_one_per_model_and_five_raised_monsters_not_changed",
+    "ground": "all_objects_can_coexist_on_same_cell_mouse_or_cursor_tooltip_lists_visible_item_names",
+    "D08": "accepted_native_invocation_damage_bonus_pool_retained;new_equipped_weapon_replacement_vs_addition_not_inferred",
+    "raised_stats": "accepted_origin_statistics_and_skills_with_OC07_power_scaling_not_replaced_by_a_new_gear_formula"
+  },
+  "dependencies": {
+    "window": "docs/reviews/refonte-agent-2026-10-06/review-familiar-window-UX-PETS-02-03.json",
+    "window_sha256": "25f5f49902cc790bdcd104cf4c2b56c52b26f3f61f20b4fe8e19c72a709ff3ce",
+    "ground": "docs/reviews/refonte-agent-2026-10-06/general-ground-item-coexistence-tooltip-acceptance-decisions.json",
+    "ground_sha256": "ef26db4476d1f7702ae00ee144a7684c6f6d098cd6298acfe2c9d4a3bc7cef9e",
+    "Mule": "docs/reviews/refonte-agent-2026-10-06/mule-description-acceptance-decisions.json",
+    "Mule_sha256": "32755e026bd24b6418a7e8cd902334d937f3b724f9d94dc56b2c927943327ca0",
+    "OC07": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC07-02.json",
+    "OC07_sha256": "d1d6ac3e4e7b43b1cf8b13d45b3d8c99099f91906b717b465c5636510ef769a1",
+    "D08": "docs/reviews/refonte-agent-2026-10-06/review-direct-drone-damage-bonuses-02.json",
+    "D08_sha256": "4109314c2da333a254103d53121b9d5886c3a7c8b5e75241a8cd86412e045752"
+  },
+  "unshown_cases_pending": [
+    "slot_counts_and_exact_compatible_item_families_per_familiar_model_and_type",
+    "armor_requirements_and_shared_classification_of_player_vs_familiar_items",
+    "equipment_storage_vs_non_Mule_cargo_capacity",
+    "whether_equipped_weapon_replaces_augments_or_scales_native_attack_and_its_rank_bonus",
+    "weapon_native_modes_ammunition_energy_costs_ranges_reload_and_pet_AI",
+    "equipment_stat_affix_status_proc_skill_bonus_eligibility_and_summoner_bonus_interactions",
+    "pet_maximum_HP_adjustment_equipment_no_refill_rules_and_modifier_timing",
+    "item_transfer_distance_actions_costs_and_equip_during_combat",
+    "raised_origin_equipment_original_loot_ownership_and_no_duplicate_item_generation",
+    "recall_redeployment_saves_layer_transitions_disappearance_and_invalid_drop_cells",
+    "equipment_body_visual_layers_native_icons_inventory_layout_and_item_comparison",
+    "all_other_unshown_cases"
+  ],
+  "player_copy_approval": "new_shown_complements_and_button_copy_pending_explicit_review",
+  "mechanical_approval": "explicit_user_directions_only;new_shown_complements_pending",
+  "native_visual_approval": "not_presented;no_worn_item_sprite_or_native_UI_approved",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "FE06",
+    "FE06-REBURN01"
+  ],
+  "skill_id": "FE06",
+  "title": "Combustion",
+  "user_message": "oui ca me va, on peut continuer",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE06-01.json",
+  "previous_description_sha256": "da0c70b486e0fe5f5b9dd06ee7adc919007f22c069c5a87f50b0215938eb66aa",
+  "accepted_player_copy_sha256": "a16edd14968231f0696fe5b2c8c34836ddc603454356672b3f552b101a3d8d1e",
+  "accepted_visual_copy_sha256": "8b7a80b2c8089f30bff5822b34b076784d5c68e91390292b835af3ad620cd617",
+  "accepted_example_context_sha256": "8c584124818e3e1a4ec67292b370caa3186c3189226e440334654861fcf7b2a1",
+  "approval_scope": "Full displayed RP,current-next conversion and contextual target damage,fresh burn values,range/cost/cooldown and visible-own-burn consumption,new-burn timing/nonstacking conditions accepted as provisional balance. Target example39 remaining burn damage produces54 then56;not fixed damage against all targets. Separately displayed tightening/flash/conditional fresh flame return direction accepted;native visuals and unshown rules pending.",
+  "accepted_values": {
+    "current": {
+      "effective_rank": 11,
+      "conversion_percent": 140,
+      "shock_fire_damage_for_selected_target": 54,
+      "fresh_burn_chance_percent": 20,
+      "fresh_burn_fire_damage_per_turn": 4,
+      "fresh_burn_duration_turns": 3,
+      "range_cells": 5,
+      "energy_cost": 9,
+      "cooldown_turns": 3
+    },
+    "next": {
+      "effective_rank": 12,
+      "conversion_percent": 144,
+      "shock_fire_damage_for_selected_target": 56,
+      "fresh_burn_chance_percent": 21,
+      "fresh_burn_fire_damage_per_turn": 4,
+      "fresh_burn_duration_turns": 3,
+      "range_cells": 5,
+      "energy_cost": 9,
+      "cooldown_turns": 3
+    }
+  },
+  "accepted_target_example": {
+    "source_skill": "FE01 Braise",
+    "fire_damage_per_turn_before_defenses": 13,
+    "remaining_turns": 3,
+    "remaining_damage_before_defenses": 39,
+    "owner": "player",
+    "own_burn_eligible": true,
+    "profile_is_fictional": true
+  },
+  "accepted_conditions": [
+    "Visible target bearing own burn required.",
+    "Existing burn removed;fresh burn possible20% then21%,4 fire damage per turn for3 turns.",
+    "Fresh burn starts next complete turn and does not stack with itself.",
+    "Damage shown before defenses;target example unchanged across previews."
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** les flammes se resserrent sur la cible et éclatent en un flash. Elles reprennent si une nouvelle brûlure est appliquée.",
+  "unshown_rules_approval": "Full rank/attribute curves,remaining real burn fractions,selection/priority among multiple eligible burns,hit/resistance/critical/modifier and shock order,dead target handling,fresh-burn replacement/refresh and cross-skill stacking,exact first/last ticks/layer changes and no-target damage copy remain pending where not previously accepted. Current target example is fictional and frozen between previews;not guaranteed damage against every target. No foreign-burn or ground-zone consumption,no persistent zone/control or general spell variance introduced.",
+  "native_visual_approval": "pending native preview and user review",
+  "runtime_integration": "not_integrated"
+}

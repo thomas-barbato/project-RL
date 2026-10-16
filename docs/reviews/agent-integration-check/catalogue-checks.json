@@ -1,0 +1,46 @@
+{
+  "catalogue_count": 94,
+  "diagnostic": "agent-catalogue-playable",
+  "disposable_laboratory": true,
+  "frames": [
+    "competences-variantes.png",
+    "mine-led.png",
+    "magie-gel.png",
+    "transformation.png",
+    "drones-furtivite.png",
+    "statuts-reanimation.png"
+  ],
+  "frozen_targets": 3,
+  "game_save_untouched": true,
+  "hotbar": [
+    "FE02",
+    "FR02",
+    "M01",
+    "SM00",
+    "D58",
+    "SG00"
+  ],
+  "learned": 94,
+  "real_mines": 1,
+  "status_regression": {
+    "curse_icons": 3,
+    "generic_timer_on_cursed_targets": false,
+    "marked": true,
+    "raised": true,
+    "same_creature_glyph": true
+  },
+  "support_visuals": {
+    "hologram": "Some(AgentHologram(Player { body: 6, palettes: [Original, Original, Original], weapon: Some(93), equipment: [None, None, None, None], hands: Some([None, None]) }))",
+    "mule": "Some(Bestiary { number: 57, corpse: false })",
+    "player_opacity": 0.5600000023841858,
+    "scout": "Some(DroneScout)",
+    "stealth": true,
+    "turns": 4
+  },
+  "tile_pixels": 64,
+  "turns": 3,
+  "viewport": [
+    1280,
+    800
+  ]
+}

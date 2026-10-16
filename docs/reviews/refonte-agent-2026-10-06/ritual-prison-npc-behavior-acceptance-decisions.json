@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-07",
+  "review_id": "OC04-IA01",
+  "skill_id": "OC04",
+  "title": "Prison sigillaire",
+  "user_message": "d’accord il faudra faire ca :)",
+  "source_assistant_copy_markdown": "**Oui, c’est l’idée**, mais il faudra ajouter ce comportement à l’IA : rendre les segments destructibles ne suffit pas à lui faire comprendre qu’elle peut les attaquer.\n\nJe propose cette logique :\n\n- Le PNJ utilise une brèche existante si elle lui permet de rejoindre sa cible.\n- S’il est bloqué, il attaque un segment accessible pour ouvrir un passage.\n- Une fois le segment détruit, il reprend son déplacement.\n\n**Un seul segment détruit suffit à créer une sortie** ; le reste du cercle demeure en place. Ce comportement reste une proposition à valider.",
+  "source_assistant_copy_sha256": "484fadda99d3da6a45d054bc7f40bea6a5c14abd6d8def47376afa42a9542e6c",
+  "approved_npc_behavior": {
+    "review_id": "OC04-IA01",
+    "skill_id": "OC04",
+    "approval": "explicit_user_acceptance",
+    "prefer_existing_reachable_breach_to_target": true,
+    "attack_accessible_segment_when_blocked": true,
+    "resume_movement_after_segment_destruction": true,
+    "one_segment_opens_passage_without_destroying_remaining_circle": true,
+    "precise_segment_selection_path_costs_attack_defenses_and_special_cases": "pending_review",
+    "runtime_integration": "not_integrated"
+  },
+  "scope": "NPC response to destructible prison segments and local breach;no numeric,RP,native visual or unshown targeting rule approval inferred",
+  "source_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC04-03.json",
+  "source_description_sha256": "846ffe9f1c765d2fcad6e3e7419cf822bf8890f5a784ae4974261e6d02829465",
+  "numeric_rules_approval": "unchanged_pending",
+  "roleplay_text_approval": "unchanged_pending",
+  "native_visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

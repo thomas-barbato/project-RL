@@ -1,0 +1,24 @@
+{
+  "build": "cargo build --locked passed",
+  "format": "cargo fmt --all -- --check passed",
+  "geometry_tests": "2 passed: all corners included, wall shields its other side",
+  "native_views": 6,
+  "native_readbacks": 3222,
+  "lossless_RGBA_encoding": true,
+  "geometry": "Square3x3, all4corners, shared preview and damage area",
+  "browser": "Edge file scheme passed",
+  "native_pixel_checks": [
+    {
+      "id": "SM02",
+      "frame": 116,
+      "native_pixels_identical": true
+    },
+    {
+      "id": "SM03",
+      "frame": 116,
+      "native_pixels_identical": true
+    }
+  ],
+  "campaign_integration": false,
+  "full_suite": "Not run; targeted geometry and isolated visual review"
+}

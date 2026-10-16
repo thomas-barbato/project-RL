@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-12",
+  "review": "ANIM-S05-CADENCE01",
+  "user_reply": "d'accord je valide :)",
+  "user_clarification": "L'animation doit durée tant que le tour (si la compétence ne dure qu'un tour) n'est pas passé",
+  "accepted": [
+    {
+      "number": 11,
+      "skill_id": "FE03",
+      "variant": "FE03-A04-LIBRE",
+      "status": "cadence_and_drawing_approved",
+      "file": "FE03-A04-LIBRE-64.gif",
+      "sha256": "1ac3d0f7faff7038d39e1d1b031aaa0737a65f8bda928ba7b9f4de99637298db",
+      "accepted_parts": [
+        "drawing",
+        "eight_drawn_frames_per_second",
+        "attached_burn_drawing"
+      ]
+    },
+    {
+      "number": 12,
+      "skill_id": "FE04",
+      "variant": "FE04-A04-LIBRE",
+      "status": "cadence_and_drawing_approved",
+      "file": "FE04-A04-LIBRE-64.gif",
+      "sha256": "8565ef103a6f288d9b3a0be67bd97f1f8ea1378a89cab1f703cd2a8d9c0d4cba",
+      "accepted_parts": [
+        "drawing",
+        "eight_drawn_frames_per_second",
+        "attached_burn_drawing"
+      ]
+    },
+    {
+      "number": 11,
+      "skill_id": "FE03",
+      "variant": "FE03-A04-CLOISON",
+      "status": "cadence_and_drawing_approved",
+      "file": "FE03-A04-CLOISON-64.gif",
+      "sha256": "6bc7622753e5700fb4184cc145ede9e455f234373a4f4a466758a06bfb5ce788",
+      "accepted_parts": [
+        "drawing",
+        "eight_drawn_frames_per_second",
+        "attached_burn_drawing"
+      ]
+    },
+    {
+      "number": 12,
+      "skill_id": "FE04",
+      "variant": "FE04-A04-CLOISON",
+      "status": "cadence_and_drawing_approved",
+      "file": "FE04-A04-CLOISON-64.gif",
+      "sha256": "dddca4742382c9419001f9a35e05ee62ea96a40caf7521c51ee6380632806882",
+      "accepted_parts": [
+        "drawing",
+        "eight_drawn_frames_per_second",
+        "attached_burn_drawing"
+      ]
+    }
+  ],
+  "scope": "Drawing and slower cadence accepted. Automatic lifetime in seconds must be replaced by turn-driven visual persistence. No campaign integration or damage changes.",
+  "artifact_hashes": {
+    "FE03-A04-CLOISON-64.gif": "6bc7622753e5700fb4184cc145ede9e455f234373a4f4a466758a06bfb5ce788",
+    "FE03-A04-LIBRE-64.gif": "1ac3d0f7faff7038d39e1d1b031aaa0737a65f8bda928ba7b9f4de99637298db",
+    "FE03-comparaison-64.gif": "8763ee1a1ad34f8f4708add861afa939d823a8b6e98ddb87b7900c3cc7a27697",
+    "FE04-A04-CLOISON-64.gif": "dddca4742382c9419001f9a35e05ee62ea96a40caf7521c51ee6380632806882",
+    "FE04-A04-LIBRE-64.gif": "8565ef103a6f288d9b3a0be67bd97f1f8ea1378a89cab1f703cd2a8d9c0d4cba",
+    "FE04-comparaison-64.gif": "47ae87a8d97a847d98c203064c40c3c1e53e477b0b218c0457f7594833ea9d8a",
+    "render-parent-source.rs": "375dcd79112c1d7d07f8ea3693907f85bdbcad9a5853624d1334e1126d7113ef",
+    "render-source.rs": "bb1467cc109b9897f588b47ab913c6127d477d6cdfbd1750059313e1ba41f9bb"
+  }
+}

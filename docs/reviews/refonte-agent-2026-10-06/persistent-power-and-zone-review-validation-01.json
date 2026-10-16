@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-POWER01-ZONE02-CHECK01",
+  "scope": "design_reference_integrity_and_illustrative_arithmetic;not_engine_or_balance_tests",
+  "files_checked": [
+    "persistent-effect-power-acceptance-decisions.json",
+    "review-persistent-power-snapshot-INTERACT-POWER01-02.json",
+    "review-overlapping-zone-status-INTERACT-ZONE02-01.json",
+    "review-implementation-readiness-05.json",
+    "review-attribute-model-63.json",
+    "review-primary-catalogue-235.json",
+    "review-complete-skill-design-210.json",
+    "remaining-individual-skill-review-counts-104.json"
+  ],
+  "hash_references_checked": 947,
+  "hash_errors": [],
+  "previous_accepted_rules_catalogues_rank_curves_and_other_active_overrides": "preserved",
+  "power_snapshot": "explicitly_accepted_as_displayed",
+  "zone_order_and_independent_status_rolls": "proposal_only;not_approved_or_runtime_integrated",
+  "zone_example_total_predefense_damage": 50,
+  "zone_example_latest_successful_Burn_power": 5,
+  "runtime_integration": "not_integrated"
+}

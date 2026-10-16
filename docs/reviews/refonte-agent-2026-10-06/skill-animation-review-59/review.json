@@ -1,0 +1,36 @@
+{
+  "batch": "ANIM-S29",
+  "date": "2026-10-14",
+  "status": "awaiting_visual_review",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 65,
+      "id": "SF00",
+      "name": "Furtivité — attaque sournoise",
+      "variant": "SF00-A02",
+      "revision_of_accepted": "SF00-A01"
+    },
+    {
+      "number": 67,
+      "id": "SF02",
+      "name": "Discrétion renforcée",
+      "variant": "SF02-A01"
+    }
+  ],
+  "approved_cards": [
+    "review-individual-description-SF00-13.json",
+    "review-individual-description-SF02-02.json"
+  ],
+  "mechanics": "SF00 direct attack bonus5% per effective rank, rank10=50%, rank11=55%, rank12=60%; weapons and spells. The initiating attack retains its bonus while stealth ends; later attack receives no bonus until stealth is active again. SF02 rank11 conditional detection example1cell instead of2; no timed buff. Both prepared profiles own SF01 rank10 with1energy step.",
+  "visuals": "Exact accepted cloak scan and opacity reused. Physical impacts use accepted steel streak, melee cut and blood; fire example uses accepted projectile/burst assets without blood. Shared target recoil, total damage with bonus and per-type icon; SF00 icon clears on offensive launch. SF02 updates conditional tooltip and permanent numeric panel without extra timed buff.",
+  "prepared_numbers": "Base20. Rank10 first impact30(+10), normal20, recloaked impact30(+10). Rank11 shows31(+11), rank12 shows32(+12). No critical, armor, variance or other damage modifier. TargetHP100 stays positive. Damage examples do not define real weapon or spell stats.",
+  "scope": "Isolated prepared actions. No campaign GameState, AI, real perception/hearing/memory, RNG, save or loot. Fire scene only illustrates a direct magical hit using accepted artwork; it does not implement the full FE05 area, burn, cost or cooldown. Wall attack is unavailable in the fixture, not a general failed-action rule. No hidden terrain or actors are revealed.",
+  "pending": "Full native sequences, bursts, areas, channels and delayed impacts; critical/modifier/defense order; rejected attack consumption; indirect status definitions; transformation/familiar/equipment snapshot interactions; SF02 perception metrics, attribute curves, sound and memory still need real integration.",
+  "temporary_actors": "Existing enemy32 art temporarily enlarged64; adaptation after animations.",
+  "excluded_drafts": [
+    "native-label-draft"
+  ],
+  "draft_note": "Only native/ and its packaged frames are the candidate; the old-label capture is unpresented and excluded.",
+  "preserved_approvals": "Review58 camouflage and SF01 remain frozen; SF00-SNEAK01-ACCEPT01 numeric approval is preserved. New bonus presentation and SF02 numeric UI await visual approval."
+}

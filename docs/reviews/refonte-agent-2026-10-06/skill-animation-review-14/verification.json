@@ -1,0 +1,132 @@
+{
+  "status": "awaiting_visual_review",
+  "protected_files_unchanged": 8602,
+  "native_tile_size": 64,
+  "resampling": false,
+  "controls": [
+    {
+      "variant": "FE03-A04-LIBRE",
+      "same_turn_events_and_footprint": true,
+      "same_actor_positions_and_labels": true,
+      "same_preview_and_final_state": true,
+      "walls_and_protected_targets_unchanged": true,
+      "flame_frames_changed": true,
+      "antialiased_marker_pixel_differences_between_captures": {
+        "24": 0,
+        "40": 14,
+        "84": 0,
+        "119": 0
+      }
+    },
+    {
+      "variant": "FE04-A04-LIBRE",
+      "same_turn_events_and_footprint": true,
+      "same_actor_positions_and_labels": true,
+      "same_preview_and_final_state": true,
+      "walls_and_protected_targets_unchanged": true,
+      "flame_frames_changed": true,
+      "antialiased_marker_pixel_differences_between_captures": {
+        "24": 0,
+        "40": 23,
+        "84": 0,
+        "119": 0
+      }
+    },
+    {
+      "variant": "FE03-A04-CLOISON",
+      "same_turn_events_and_footprint": true,
+      "same_actor_positions_and_labels": true,
+      "same_preview_and_final_state": true,
+      "walls_and_protected_targets_unchanged": true,
+      "flame_frames_changed": true,
+      "antialiased_marker_pixel_differences_between_captures": {
+        "24": 0,
+        "40": 11,
+        "84": 0,
+        "119": 0
+      }
+    },
+    {
+      "variant": "FE04-A04-CLOISON",
+      "same_turn_events_and_footprint": true,
+      "same_actor_positions_and_labels": true,
+      "same_preview_and_final_state": true,
+      "walls_and_protected_targets_unchanged": true,
+      "flame_frames_changed": true,
+      "antialiased_marker_pixel_differences_between_captures": {
+        "24": 0,
+        "40": 18,
+        "84": 0,
+        "119": 0
+      }
+    }
+  ],
+  "animations": [
+    {
+      "file": "FE03-A04-LIBRE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 63,
+      "frames": 64,
+      "duration_ms": 5000,
+      "loop": 0
+    },
+    {
+      "file": "FE04-A04-LIBRE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 45,
+      "frames": 45,
+      "duration_ms": 5000,
+      "loop": 0
+    },
+    {
+      "file": "FE03-A04-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 63,
+      "frames": 64,
+      "duration_ms": 5000,
+      "loop": 0
+    },
+    {
+      "file": "FE04-A04-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 45,
+      "frames": 45,
+      "duration_ms": 5000,
+      "loop": 0
+    },
+    {
+      "file": "FE03-comparaison-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 82,
+      "frames": 82,
+      "duration_ms": 5000,
+      "loop": 0
+    },
+    {
+      "file": "FE04-comparaison-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 50,
+      "frames": 50,
+      "duration_ms": 5000,
+      "loop": 0
+    }
+  ]
+}

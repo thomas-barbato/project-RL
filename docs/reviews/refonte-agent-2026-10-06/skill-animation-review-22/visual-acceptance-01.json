@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-12",
+  "user_reply": "ok je valide :)",
+  "accepted": {
+    "number": 13,
+    "skill_id": "FE05",
+    "variant": "FE05-A07",
+    "status": "visually_approved",
+    "flight_seconds": 0.35
+  },
+  "retained_approval": "../skill-animation-review-20/visual-acceptance-01.json",
+  "scope": "Final fireball pre-impact movement speed shown in review 22. The approved projectile, explosion, walls and Burn are preserved. No new skill numbers, damage rules or campaign integration.",
+  "temporal_policy": "Instantaneous impact ends automatically; Burn and cooldowns remain driven by game turns.",
+  "art_direction": "ANIM-RAPIDE01: fast activation and short readable impacts for active skills.",
+  "artifact_hashes": {
+    "render-source.rs": "9ad47f5a04e71e0da1b8a09afce493349d995ad38241ec8351f2da296bc189ea",
+    "clip-source.rs": "eb67041760cc2a960e4c22c815e3a5c47b23d79de22ed20c91dd5967ac96e624",
+    "gallery-script.js": "d7045ba7d5802c77ae20d57e7e5efcb550b8e65d953988a630ca6a2ec2e0a001",
+    "verification.json": "523764605644359c485ac76761cda4ac427d5f4bf84a57f8ef2f47b424f1f7c6",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-22/burst-atlas.png": "373c6dd5831e9d5f4e6728e51a84ddf8e197aca1fd557cd2aebc954d67d31efa",
+    "../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-22/projectile-atlas.png": "5f02965b8c3fae95b76a4a88d80a336ad53492dc85ba662aa192163ed873c01b",
+    "FE05-A07-CLOISON-BAS-64.gif": "328cf382a2a672621cfe559005682abebac03496389da0c8ebb5049a31fcb220",
+    "FE05-A07-DROITE-64.gif": "18c4fdf85e5a19e6565ad951b15fd789139767022ac14e456f28becaea181c79",
+    "FE05-A07-GAUCHE-64.gif": "c4cb1817a4f1f421124566a36b6b82936bb27b3dfef0ea8c559555cc9d5c6d62",
+    "FE05-A07-HAUT-64.gif": "8208b0a353962a2226ca1ab7d633e3c189e33a7e6771adad88f8837c35fcb305",
+    "FE05-A07-INTERCEPTION-64.gif": "262ba0d77ad042ec49a30ded99558659f11d6df8f8bdc9a9d8ce6954c184051d",
+    "vitesse-boule-de-feu-64.gif": "3bbd7f23207a4f1a4f2f9794551c23fba555e005a934eea83790985fcf71b068",
+    "vitesse-boule-de-feu-cloison-64.gif": "c1581548247e6aafd0796db4dc31b2763732b1316a325477f77b839b0821f728",
+    "vitesse-boule-de-feu-interception-64.gif": "9d67fc8f23a36cd6aa645954fab3245d8ff06d902604defd81eb2f1031b0ef42"
+  }
+}

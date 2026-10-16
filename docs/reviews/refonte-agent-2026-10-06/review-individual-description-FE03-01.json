@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-07",
+  "id": "FE03",
+  "title": "Mur de feu",
+  "revision": 1,
+  "player_copy_markdown": "**FE03 · Mur de feu — Rang 11**\n\n*Vous faites jaillir un rideau de flammes qui dévore ceux qui le traversent.*\n\n**Effets actuels**\n\n- Dégâts de feu : **27 par cible et par tour**.\n- Longueur maximale : **7 cases**.\n- Durée : **5 tours**.\n- Portée de placement : **4 cases**.\n- Murs actifs : **1**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de feu : **29 par cible et par tour**.\n\n**Coût : 15 énergie · Recharge : 8 tours.**\n\nPlacez le mur sur des cases visibles et franchissables. Les obstacles interrompent sa ligne.\n\nLes flammes restent franchissables. Elles blessent à l’entrée ou lorsqu’on y reste, une seule fois par cible et par tour. Elles peuvent aussi vous blesser, ainsi que vos alliés.\n\nUn nouveau mur remplace le précédent. Dégâts affichés avant les défenses des cibles.",
+  "player_copy_sha256": "999768d3a53cb5793e49907f6758db3c9abbc589b4366364deaded8681fc7afc",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-21.json",
+  "source_skill_block_sha256": "fcfe1ad00ab89e2d3eb59b91182db88fd6561ecbfc513b65293dcf847e0cabe2",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/fire-breath-revised-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "85437871dd4fe2b9561e40c587439d5b73aee605aa0087332a9abeaba5b95b46",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_global_CD08; placement_traversal_damage_actor_and_replacement_conditions_retained",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "proposed_pending_individual_user_review",
+  "current_profile_status": "illustrative_not_a_user_save; existing Willpower scaling proposal used; damage before target defenses",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "attribute_scaling_approval": "shown FE03 profile subject to individual review; full unshown attribute curves not silently accepted",
+  "formulas": {
+    "fire_damage_per_target_per_turn": "floor((5 + 2 * (effective_rank - 1)) * magic_multiplier)",
+    "magic_multiplier": "1 + 0.02 * (Willpower - 5)",
+    "maximum_wall_length_cells": "min(7, 3 + 2 * floor((effective_rank - 1)/5))",
+    "duration_turns": "3 + floor((effective_rank - 1)/4)",
+    "placement_range_cells": 4,
+    "maximum_active_walls": 1,
+    "energy_cost": "12 + floor((effective_rank - 1)/3)",
+    "cooldown_turns": 8
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "fire_damage_per_target_per_turn": 27,
+    "maximum_wall_length_cells": 7,
+    "duration_turns": 5,
+    "placement_range_cells": 4,
+    "maximum_active_walls": 1,
+    "energy_cost": 15,
+    "cooldown_turns": 8
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "fire_damage_per_target_per_turn": 29,
+    "maximum_wall_length_cells": 7,
+    "duration_turns": 5,
+    "placement_range_cells": 4,
+    "maximum_active_walls": 1,
+    "energy_cost": 15,
+    "cooldown_turns": 8
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "fire_damage_per_target_per_turn": 5,
+    "maximum_wall_length_cells": 3,
+    "duration_turns": 3,
+    "placement_range_cells": 4,
+    "maximum_active_walls": 1,
+    "energy_cost": 12,
+    "cooldown_turns": 8,
+    "approval": "unshown full curve remains pending"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "fire_damage_per_target_per_turn"
+    ],
+    "unchanged_effects_omitted": [
+      "maximum_wall_length_cells",
+      "duration_turns",
+      "placement_range_cells",
+      "maximum_active_walls",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "magic_persistent_ground_zone_not_a_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy weapon exclusion added to spell"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "effect_conditions": {
+    "placement": "visible passable terrain tiles; exact endpoints/range geometry pending",
+    "obstacles_interrupt_line": true,
+    "wall_blocks_actor_movement": false,
+    "damage_type": "fire",
+    "damage_display": "before target defenses",
+    "damage_triggers": [
+      "enter wall flames",
+      "spend a turn within wall flames"
+    ],
+    "maximum_damage_resolutions_per_actor_per_game_turn_for_this_effect": 1,
+    "caster_and_allies_can_be_hit": true,
+    "maximum_active_walls_per_caster_proposal": 1,
+    "new_wall_replaces_previous_proposal": true,
+    "active_wall_limit_source": "existing global proposal for persistent creations, now shown individually for review",
+    "initial_damage_to_actor_already_present": "unshown pending review",
+    "overlap_with_other_fire_zones_and_authors": "unshown pending review",
+    "vision_blocking": "unshown pending review; not inferred from movement passability",
+    "persistent_target_burn_after_leaving_created": false,
+    "control_effect_created": false,
+    "occupied_terrain_large_actor_and_hidden_target_cases": "unshown pending review; no free-cell-only rule or reveal added"
+  },
+  "unshown_rules_approval": "Full rank curves, line endpoints/orientation and diagonal/corner/range geometry, occupied cells and large actors, initial damage to actors on created tiles, first/last periodic tick and duration/reaction order, multiple-author and overlapping zones, vision and preview behavior, damage/defense and skill/implant/cost modifiers remain pending where not already accepted. No movement barrier, persistent after-exit burn status, general spell damage variance, new control, boss fire immunity or hidden actor reveal introduced.",
+  "visual_intention_approval": "existing_catalogue_vertical_flame_band_interrupted_by_obstacles_direction_accepted_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable FE03 existing Fire wall skill; RP/current-next/placement/passability/damage/replacement card proposed for review.",
+    "Willpower10 M=11/10: rank11 floor25*1.1=27 and next12 floor27*1.1=29.",
+    "Both length7, duration5, placement4, one active wall, energy15, cooldown8; only damage in next block.",
+    "Learned9 to10 and gear+2 unchanged, one point within cap; same attributes/modifiers.",
+    "Visible passable placement with obstacle interruptions; flames traversable and harm caster/allies, entry or standing at most once per target per turn.",
+    "One active wall and replacement taken from global persistent-creation proposal and now shown individually, not silently approved.",
+    "No player table/formula/rank breakdown/ordinary timing, weapon requirement or spell variance.",
+    "83 primary skills and71 blocks retained; no runtime or native visual integration."
+  ]
+}

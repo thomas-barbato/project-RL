@@ -1,0 +1,52 @@
+{
+  "review_id": "SKILLS-UI02",
+  "date": "2026-10-10",
+  "status": "layout_accepted",
+  "prototype_only": true,
+  "browser": {
+    "measured_width_px": 568,
+    "horizontal_overflow": false,
+    "all_66_images_loaded": true,
+    "compact_interactive_sizes_px": [
+      32,
+      32,
+      32,
+      32,
+      32
+    ],
+    "illustration_size_px": [
+      192,
+      192
+    ],
+    "illustration_center_offset_px": 0,
+    "illustration_below_roleplay": true,
+    "illustration_inside_detail_scroll": true,
+    "gallery_cards": 20,
+    "gallery_native_sizes_px": [
+      64,
+      32,
+      24
+    ],
+    "gallery_horizontal_overflow": false,
+    "skill_switch_verified": [
+      "FE01",
+      "BM02"
+    ],
+    "screenshot": "browser-review.jpg"
+  },
+  "viewport_attempt": {
+    "requested_width_px": 1280,
+    "measured_width_px": 568,
+    "override_reset": true,
+    "desktop_width_not_validated": true
+  },
+  "checks": {
+    "script_syntax": true,
+    "copied_skill_data_identical": true,
+    "accepted_export_hashes_preserved": 121,
+    "gameplay_changed": false
+  },
+  "individual_visual_approval": "The eight new compact drawings and four pending melee pairs remain pending; this prototype does not record new acceptance.",
+  "layout_acceptance": "SKILLS-UI02-ACCEPT01",
+  "layout_acceptance_reference": "visual-acceptance-01.json"
+}

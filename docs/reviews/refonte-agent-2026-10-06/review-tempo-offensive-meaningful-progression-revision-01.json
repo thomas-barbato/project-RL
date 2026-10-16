@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-08",
+  "review_id": "BM03-PROG02",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM03-03.json",
+  "source_proposal_sha256": "b4984a2d57a1f6fd90df1f40e110a00c14e3b16ed48fbdd14037b9a8d6d41993",
+  "reason": "pending_numeric_card_revised_to_follow_accepted_meaningful_skill_point_progression_direction",
+  "proposed_curve": "damage_bonus_percent_per_charge=5+2*(effective_rank-1);maximum_charges3",
+  "proposed_shown_values": {
+    "rank11_bonus_per_charge_percent": 25,
+    "rank11_maximum_percent": 75,
+    "rank12_bonus_per_charge_percent": 27,
+    "rank12_maximum_percent": 81
+  },
+  "numeric_approval": "proposed_pending_explicit_user_review",
+  "prior_RP_and_charge_reset_rules": "unchanged_pending_review",
+  "visual_direction": "already_accepted_charge_status_icon_hover_and_included_bonus_feedback_preserved;no_new_visual_or_native_approval",
+  "runtime_integration": "not_integrated"
+}

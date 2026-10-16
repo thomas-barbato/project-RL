@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-09",
+  "review_id": "GEAR-SK02-ACCEPT01",
+  "user_reply": "parfait, je valide, que reste t-il a définir avant d'implementer tout le travail qu'on fait depuis plusieurs jours ?",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-equipment-grant-loss-effects-GEAR-SK02-02.json",
+  "source_proposal_sha256": "ee9960bccf9bbde4a8c835b5be6658967d2ccb5558124396650e6466dca81b67",
+  "accepted_shown_copy_markdown": "**GEAR-SK02 · Retrait de l’objet — règle corrigée**\n\n**Vous avez appris la compétence :** les effets déjà lancés continuent selon les règles proposées. Les familiers restent présents, avec une puissance recalculée selon votre rang actuel.\n\n**Vous n’avez aucun rang appris :** si vous perdez le dernier bonus qui vous donnait accès à la compétence, ses effets en cours prennent fin : buffs, débuffs, zones, mines, transformations et marques issus de cette compétence.\n\n**Pour les familiers obtenus uniquement grâce à l’objet**, je propose qu’ils disparaissent aussi lorsque leur invocation n’est plus accessible. Leur équipement et le chargement de la Mule sont déposés **sur leur case**, ou **sur celle du joueur s’ils attendent leur arrivée**.\n\nIl n’y a donc **aucun maintien artificiel au rang 1** pour une compétence jamais apprise.\n\nCette application aux effets et aux familiers reste à valider.",
+  "accepted_shown_copy_sha256": "9afb737ae8812f5e5648e08c85ddb487825015d4cfc4d4ffd383faa1b588f453",
+  "accepted_shown_rules": {
+    "scope": "ongoing_effects_and_skill_created_familiars_from_affected_player_skill_on_equipment_rank_bonus_loss;not_all_pet_types_or_item_loot_deletion",
+    "learned_condition": "actual_learned_rank_at_least1_preserves_approved_previous_GEAR_SK02_persistence_branch;ordinary_created_effects_keep_creation_skill_rank_and_remaining_lifetime_while_existing_familiar_power_updates_current_real_rank",
+    "no_learning_zero_access": "if_actual_learned_rank_is_zero_and_all_eligible_equipment_grants_for_affected_skill_are_lost_end_that_gear_only_skill_sourced_ongoing_buffs_debuffs_zones_mines_transformations_and_Reanimation_marks",
+    "source_cleanup": "remove_only_effect_instances_from_affected_skill_and_player_source;do_not_remove_unrelated_statuses_or_other_casters_effects;removing_mines_does_not_trigger_new_explosion_or_refund_energy",
+    "gear_only_familiar_removal": "if_affected_invocation_has_no_learned_rank_and_no_remaining_equipment_access_remove_its_existing_living_created_familiars_including_waiting_ones;no_rank1_fallback_no_new_attack_or_damage_reward_or_actor_birth",
+    "real_items": "return_existing_real_worn_equipment_and_Mule_cargo_to_same_actor_cell_if_placed_or_current_player_cell_if_waiting;preserve_coexisting_ground_objects_and_identity;never_duplicate_or_delete_contents",
+    "zero_rank_reanimation": "cancel_preexisting_gear_only_Reanimation_marks_when_final_grant_lost;they_do_not_create_a_new_raised_at_rank1;already_raised_gear_only_actors_follow_removal_rule",
+    "preserved_progress": "already_inflicted_damage_not_reversed;no_heal_refill_cooldown_reset_or_energy_refund_from_cleanup;personally_learned_transformation_end_HP_ratio_rules_and_familiar_stat_clamping_preserved",
+    "scope_boundary": "shown_final_grant_loss_cleanup_and_familiar_removal_real_item_drop_accepted;partial_grant_loss_multi_source_merging_event_order_and_native_render_pending"
+  },
+  "approval_scope": "Explicit acceptance of shown revised GEAR-SK02 copy and mechanics: personally learned skill effect persistence, current rank familiar power, end of gear-only skill effects when final eligible grant lost, removal of gear-only familiars and return of real gear and Mule cargo to their cell or current player cell when pending. No artificial unlearned rank1 fallback. No new animation or other unshown case approved.",
+  "preserved_rules": "GEAR-SK01 access and purchase conditions, cooldown persistence, PETS-EQ13 dynamic familiar HP/damage and no-refill except true level gain, usual transformation return HP ratio and real item coexistence rules",
+  "unshown_cases_pending": [
+    "partial_bonus_loss_when_zero_learned_rank_but_other_equipment_bonus_still_grants_access",
+    "actual_multiple_source_buff_debuff_status_provenance_and_merged_effect_cleanup",
+    "lower_rank_but_personally_learned_skill_mine_or_raised_overcapacity",
+    "transition_back_from_gear_only_transformation_and_current_HP_ratio_event_order",
+    "same_turn_cleanup_oldest_replacement_mark_death_and_equipment_or_ground_item_transactions",
+    "model_specific_familiar_bonus_recalculation_timing_when_actual_learned_rank_remains",
+    "native_removal_feedback_and_corpse_or_marker_presentation"
+  ],
+  "player_copy_approval": "shown_revision2_copy_accepted",
+  "mechanical_approval": "shown_revision2_cleanup_and_familiar_drop_rules_accepted",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

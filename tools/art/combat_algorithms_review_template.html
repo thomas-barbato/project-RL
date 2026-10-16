@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project RL · Algorithmes de combat améliorés</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101519;color:#ece5db}body{margin:0;padding:24px;max-width:1240px;margin-inline:auto}h1{font-size:27px;margin:0 0 8px}h2{font-size:19px;margin:0 0 8px}p{line-height:1.5}.note{color:#b8b9b3;font-size:14px}.controls,.choices{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0}button,select{font:inherit;color:inherit;background:#252b2e;border:1px solid #68655d;border-radius:5px;padding:8px 11px}button{cursor:pointer}button:disabled{opacity:.4}.scroll{overflow:auto;max-width:100%}.pair{display:grid;grid-template-columns:576px 576px;gap:24px;width:max-content}.panel{width:576px}.panel canvas,.native{display:block;width:576px;height:576px;image-rendering:pixelated}.status{min-height:50px;color:#e5bd8b;font-size:14px;line-height:1.5}.markers{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.sample{padding:12px;background:#293035}.sample.light{background:#bbb9af}.sample img{display:block;width:32px;height:32px;image-rendering:pixelated}details{margin-top:20px}a{color:#e6b583}.notice{border-left:3px solid #aa8156;padding-left:12px}select{max-width:100%}
+</style></head><body>
+<h1>102 · Algorithmes de combat améliorés</h1>
+<p>Un bref éclair de circuits bleus accompagne les attaques renforcées des drones armés.</p>
+<p class="note">O03-A01 · Rendu à examiner · Cases natives de 64 px. Les dessins et tailles des drones sont déjà validés.</p>
+<div class="controls"><label>Orientation des drones armés <select id="direction"><option value="2">Haut</option><option value="0">Droite</option><option value="1">Gauche</option><option value="3">Bas</option></select></label><button id="mode">Passer en contrôle manuel</button><button id="action">Observer les attaques</button><button id="turn">Passer un tour</button><button id="replay">Rejouer</button><button id="pause">Pause</button></div>
+<p id="loading" class="note">Chargement des deux scènes…</p>
+<div class="scroll"><main class="pair">
+<article class="panel"><h2>Première situation</h2><div class="choices"><label>Scène <select id="case0"><option value="COMBAT">Gardien</option><option value="TRAQUEUR" selected>Traqueur</option><option value="ARTILLEUR">Artilleur</option><option value="CLOISON">Cloison</option><option value="MACHINE">Cible mécanique</option><option value="SOUTIEN">Éclaireur et Mule</option><option value="ATTENTE">Attente sans tour</option></select></label></div><canvas id="stage0" width="576" height="576"></canvas><p id="status0" class="status"></p></article>
+<article class="panel"><h2>Deuxième situation</h2><div class="choices"><label>Scène <select id="case1"><option value="COMBAT">Gardien</option><option value="TRAQUEUR">Traqueur</option><option value="ARTILLEUR" selected>Artilleur</option><option value="CLOISON">Cloison</option><option value="MACHINE">Cible mécanique</option><option value="SOUTIEN">Éclaireur et Mule</option><option value="ATTENTE">Attente sans tour</option></select></label></div><canvas id="stage1" width="576" height="576"></canvas><p id="status1" class="status"></p></article>
+</main></div>
+<p class="note">Deux fenêtres à taille réelle. Fais défiler horizontalement si nécessaire. Les essais particuliers sont présentés vers le haut.</p>
+<p>Le passif reste toujours actif une fois appris. Il ne demande aucune activation, ne coûte pas d’énergie et n’a pas de recharge. Le bouton « Observer les attaques » sert uniquement à lancer la démonstration.</p>
+<p>L’impulsion bleue apparaît brièvement à chaque attaque, puis disparaît. Le temps qui passe seul ne déclenche aucune nouvelle attaque. L’Éclaireur et la Mule restent sans attaque ; une cloison bloque le tir. Les impacts gardent la réaction et le sang déjà validés ; la cible mécanique produit des étincelles.</p>
+<p class="notice note">Au rang 1, le bonus accepté est de +25 %. Les 20 dégâts de base deviennent ici 25 : ce sont des valeurs de démonstration, avant les défenses de la cible. Elles ne fixent pas les dégâts natifs des drones. Cette page examine le rendu ; l’intégration au combat de campagne vient ensuite.</p>
+<details><summary>Lecture animée complète à taille réelle</summary><div class="scroll"><img class="native" src="skill-animation-review-104/O03-ARTILLEUR-native-64.webp" width="576" height="576" alt="Algorithmes : attaque de l’Artilleur, à taille native"></div></details>
+<script>
+const ENTRIES=__ENTRIES__;
+const $=id=>document.getElementById(id),ctx=[0,1].map(i=>$('stage'+i).getContext('2d')),images=new Map();
+ctx.forEach(c=>c.imageSmoothingEnabled=false);
+let selected=[],atlases=[],ready=false,revision=0,frame=0,elapsed=0,previous=null,manual=false,paused=false,launched=false,manualTurn=0;
+function state(i){const e=selected[i];return e.states[e.state_indices[Math.min(e.frames-1,Math.floor(frameFor(i)))]];}
+function frameFor(i){return selected[i].case==='ATTENTE'&&manual&&launched?Math.min(frame,selected[i].turn_frames[0]-1):frame;}
+function refresh(){
+ if(!ready)return;
+ $('mode').textContent=manual?'Reprendre la démonstration automatique':'Passer en contrôle manuel';
+ $('action').disabled=!manual||launched;
+ $('turn').disabled=!manual||!launched||manualTurn>=3||selected.every(e=>e.case==='ATTENTE');
+ $('pause').textContent=paused?'Reprendre':'Pause';
+ for(let i=0;i<2;i++){
+  const s=state(i);
+  $('status'+i).textContent=!s.launched?'Passif appris · Attaque de démonstration en attente.':selected[i].case==='SOUTIEN'?'Éclaireur et Mule : aucune attaque ajoutée.':selected[i].case==='CLOISON'?'La cloison bloque l’attaque · Aucun impact.':`Bonus : +${s.passive_bonus_percent} % · Cible : ${s.enemy_hp}/160 PV · ${s.impacts} impact(s) · Tour ${s.turn}`;
+ }
+}
+function reset(){frame=0;elapsed=0;previous=null;launched=false;manualTurn=0;refresh();}
+async function select(){
+ const token=++revision;ready=false;$('loading').hidden=false;
+ const next=[0,1].map(i=>{const c=$('case'+i).value,d=['COMBAT','TRAQUEUR','ARTILLEUR'].includes(c)?Number($('direction').value):2;return ENTRIES.find(e=>e.case===c&&e.direction===d);});
+ try{
+  const loaded=await Promise.all(next.map(e=>{
+   if(!e)throw Error('Scène indisponible.');
+   if(!images.has(e.atlas))images.set(e.atlas,new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=()=>reject(Error('Chargement impossible : '+e.atlas));im.src=e.atlas;}));
+   return images.get(e.atlas);
+  }));
+  if(token!==revision)return;selected=next;atlases=loaded;ready=true;$('loading').hidden=true;reset();
+ }catch(error){if(token===revision)$('loading').textContent=error.message;}
+}
+function tick(now){
+ const dt=previous===null?0:Math.min(Math.max((now-previous)/1000,0),.1);previous=now;
+ if(ready){
+  if(!paused){elapsed+=dt;if(!manual)frame=Math.floor(elapsed*24)%144;else if(launched){const stop=[47,71,95,143][manualTurn];frame=Math.min(stop,frame+dt*24);}}
+  for(let i=0;i<2;i++){const e=selected[i],idx=e.indices[Math.floor(frameFor(i))],x=(idx%e.columns)*576,y=Math.floor(idx/e.columns)*576;ctx[i].clearRect(0,0,576,576);ctx[i].drawImage(atlases[i],x,y,576,576,0,0,576,576);}
+  refresh();
+ }
+ requestAnimationFrame(tick);
+}
+$('case0').onchange=select;$('case1').onchange=select;$('direction').onchange=select;
+$('mode').onclick=()=>{manual=!manual;reset();};$('replay').onclick=reset;$('pause').onclick=()=>{paused=!paused;refresh();};
+$('action').onclick=()=>{if(!ready||!manual||launched)return;launched=true;frame=12;refresh();};
+$('turn').onclick=()=>{if(!ready||!manual||!launched||manualTurn>=3||selected.every(e=>e.case==='ATTENTE'))return;frame=[48,72,96][manualTurn++];refresh();};
+window.combatAlgorithmsReview={isReady:()=>ready,state,entries:()=>selected,frame:()=>Math.floor(frame),frameFor};
+select();requestAnimationFrame(tick);
+</script></body></html>

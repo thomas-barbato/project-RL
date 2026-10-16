@@ -1,0 +1,198 @@
+ M README.md
+ M artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/locales/fr.json5
+ M artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/locales/fr_armor_models.json5
+ M artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/locales/fr_equipment.json5
+ M docs/reviews/sprites-cyberpunk-crawl-review-2026-10-04/README.txt
+ M artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/locales/fr.json5
+ M artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/locales/fr_armor_models.json5
+ M artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/locales/fr_equipment.json5
+ M artifacts/ux-modernisation-2026-09-28/baseline-project/docs/CATALOGUE_BASES_EQUIPEMENT.md
+ M artifacts/ux-modernisation-2026-09-28/baseline-project/docs/GENERATION_EQUIPEMENT.md
+ M artifacts/ux-modernisation-2026-09-28/baseline-project/docs/catalogues/equipements.json
+ M content/core/locales/fr.json5
+ M content/core/locales/fr_armor_models.json5
+ M content/core/locales/fr_equipment.json5
+ M docs/CATALOGUE_BASES_EQUIPEMENT.md
+ M docs/GENERATION_EQUIPEMENT.md
+ M docs/catalogues/equipements.json
+ M src/armor_models_tests.rs
+ M src/arsenal_app.rs
+ M src/ascii_app.rs
+ M src/drone.rs
+ M src/effects_lab.rs
+ M src/entity/ground_item.rs
+ M src/entity/inventory.rs
+ M src/entity/mod.rs
+ M src/equipment_commerce.rs
+ M src/equipment_generation.rs
+ M src/firearm_models_tests.rs
+ M src/game/actor_loot_tests.rs
+ M src/game/expedition.rs
+ M src/game/game_state.rs
+ M src/game/mod.rs
+ M src/game/rules.rs
+ M src/graphics.rs
+ M src/loot/equipment.rs
+ M src/loot/equipment_tests.rs
+ M src/main.rs
+ M src/recovery_worker.rs
+ M src/suspension.rs
+ M src/terminal_art.rs
+ M src/terminal_floor.rs
+ M src/terminal_scenery.rs
+ M src/terminal_view.rs
+ M src/ux.rs
+ M src/weapon_families_app.rs
+?? AGENTS.md
+?? artifacts/armures-bicolores-completes-2026-10-05/
+?? artifacts/armures-corps-commun-2026-10-05/
+?? artifacts/audit-sprites-2026-10-05/
+?? artifacts/combat-visuel-2026-10-04/
+?? artifacts/crawl-integration-2026-10-05/
+?? artifacts/crawl-methode-2026-10-05/
+?? artifacts/cyberpunk-integration-2026-10-04/
+?? artifacts/decors-integration-2026-10-04/
+?? artifacts/decors-reference-32-2026-10-04/
+?? artifacts/epee-longue-brutale-propositions-2026-10-05/
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/assets/sprites/cyberpunk/
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/equipment_loot/one_hand_firearms.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/locales/fr_one_hand_firearms.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_cogneur_p01.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_cogneur_p02.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_cogneur_p03.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_cogneur_p04.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_cogneur_p05.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_cogneur_p06.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_crache_fer_pm01.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_crache_fer_pm02.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_crache_fer_pm03.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_crache_fer_pm04.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_crache_fer_pm05.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/visuals/modele_crache_fer_pm06.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_cogneur_p01.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_cogneur_p02.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_cogneur_p03.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_cogneur_p04.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_cogneur_p05.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_cogneur_p06.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_crache_fer_pm01.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_crache_fer_pm02.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_crache_fer_pm03.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_crache_fer_pm04.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_crache_fer_pm05.json5
+?? artifacts/interieur-aleatoire-2026-10-02/compat-baseline/content/core/weapons/modele_crache_fer_pm06.json5
+?? artifacts/joueur-anatomie-2026-10-04/
+?? artifacts/joueur-armes-integrees-2026-10-05/
+?? artifacts/joueur-calques-corriges-2026-10-04/
+?? artifacts/joueur-equipe-2026-10-04/
+?? artifacts/joueur-hache-brutale-2026-10-05/
+?? artifacts/joueur-quatre-prises-2026-10-05/
+?? artifacts/joueur-tenues-completes-2026-10-04/
+?? artifacts/joueur-tir-deux-mains-2026-10-04/
+?? artifacts/lisibilite-bicolore-2026-10-05/
+?? artifacts/lisibilite-sprites-2026-10-05/
+?? artifacts/melee-brutale-propositions-2026-10-05/
+?? artifacts/melee-futuriste-propositions-2026-10-05/
+?? artifacts/palettes-equipement-propositions-2026-10-05/
+?? artifacts/palettes-integration-2026-10-05/
+?? artifacts/personnages-echelle-32-2026-10-04/
+?? artifacts/pistolets-pm-integration-2026-10-05/
+?? artifacts/prises-audit-2026-10-05/
+?? docs/reviews/sprites-cyberpunk-crawl-review-2026-10-04/JUPITER-ETUDE.md
+?? docs/reviews/sprites-cyberpunk-crawl-review-2026-10-04/VALIDATION-ICONES-JUPITER.txt
+?? artifacts/sprites-cyberpunk-crawl-review-2026-10-04/apercu-icones-jupiter-plateau.jpg
+?? artifacts/sprites-cyberpunk-crawl-review-2026-10-04/apercu-icones-jupiter.html
+?? artifacts/sprites-cyberpunk-crawl-review-2026-10-04/apercu-icones.html
+?? tools/archive/sprites-cyberpunk-crawl-review-2026-10-04/build-ground-icons.cjs
+?? tools/archive/sprites-cyberpunk-crawl-review-2026-10-04/build-jupiter-icons.cjs
+?? tools/archive/sprites-cyberpunk-crawl-review-2026-10-04/ground-icons-jupiter-v1.js
+?? artifacts/sprites-cyberpunk-crawl-review-2026-10-04/ground-icons-jupiter/
+?? tools/archive/sprites-cyberpunk-crawl-review-2026-10-04/ground-icons.js
+?? artifacts/sprites-cyberpunk-crawl-review-2026-10-04/ground-icons/
+?? assets/source-art/sprites-cyberpunk-crawl-review-2026-10-04/icones-industrielles-16.png
+?? assets/source-art/sprites-cyberpunk-crawl-review-2026-10-04/icones-industrielles-19.png
+?? assets/source-art/sprites-cyberpunk-crawl-review-2026-10-04/icones-proposees-19.png
+?? tools/archive/sprites-cyberpunk-crawl-review-2026-10-04/icons-preview.js
+?? tools/archive/sprites-cyberpunk-crawl-review-2026-10-04/render-icons-review.py
+?? tools/archive/sprites-cyberpunk-crawl-review-2026-10-04/render-jupiter-icons-review.py
+?? artifacts/terminal-console-proposition-2026-10-05/
+?? artifacts/terminal-integration-2026-10-05/
+?? artifacts/tir-brutal-propositions-2026-10-05/
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/assets/sprites/cyberpunk/
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/equipment_loot/one_hand_firearms.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/locales/fr_one_hand_firearms.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_cogneur_p01.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_cogneur_p02.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_cogneur_p03.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_cogneur_p04.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_cogneur_p05.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_cogneur_p06.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_crache_fer_pm01.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_crache_fer_pm02.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_crache_fer_pm03.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_crache_fer_pm04.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_crache_fer_pm05.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/visuals/modele_crache_fer_pm06.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_cogneur_p01.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_cogneur_p02.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_cogneur_p03.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_cogneur_p04.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_cogneur_p05.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_cogneur_p06.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_crache_fer_pm01.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_crache_fer_pm02.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_crache_fer_pm03.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_crache_fer_pm04.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_crache_fer_pm05.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/content/core/weapons/modele_crache_fer_pm06.json5
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/docs/DIRECTION_ARTISTIQUE_TILES.md
+?? artifacts/ux-modernisation-2026-09-28/baseline-project/docs/PISTOLETS_ET_PM.md
+?? assets/sprites/cyberpunk/
+?? content/core/equipment_loot/one_hand_firearms.json5
+?? content/core/locales/fr_one_hand_firearms.json5
+?? content/core/visuals/modele_cogneur_p01.json5
+?? content/core/visuals/modele_cogneur_p02.json5
+?? content/core/visuals/modele_cogneur_p03.json5
+?? content/core/visuals/modele_cogneur_p04.json5
+?? content/core/visuals/modele_cogneur_p05.json5
+?? content/core/visuals/modele_cogneur_p06.json5
+?? content/core/visuals/modele_crache_fer_pm01.json5
+?? content/core/visuals/modele_crache_fer_pm02.json5
+?? content/core/visuals/modele_crache_fer_pm03.json5
+?? content/core/visuals/modele_crache_fer_pm04.json5
+?? content/core/visuals/modele_crache_fer_pm05.json5
+?? content/core/visuals/modele_crache_fer_pm06.json5
+?? content/core/weapons/modele_cogneur_p01.json5
+?? content/core/weapons/modele_cogneur_p02.json5
+?? content/core/weapons/modele_cogneur_p03.json5
+?? content/core/weapons/modele_cogneur_p04.json5
+?? content/core/weapons/modele_cogneur_p05.json5
+?? content/core/weapons/modele_cogneur_p06.json5
+?? content/core/weapons/modele_crache_fer_pm01.json5
+?? content/core/weapons/modele_crache_fer_pm02.json5
+?? content/core/weapons/modele_crache_fer_pm03.json5
+?? content/core/weapons/modele_crache_fer_pm04.json5
+?? content/core/weapons/modele_crache_fer_pm05.json5
+?? content/core/weapons/modele_crache_fer_pm06.json5
+?? docs/DIRECTION_ARTISTIQUE_TILES.md
+?? docs/PISTOLETS_ET_PM.md
+?? src/combat_visuals.rs
+?? src/combat_visuals_app.rs
+?? src/combat_visuals_capture.rs
+?? src/crawl_art_capture.rs
+?? src/cyberpunk_capture.rs
+?? src/end_screen_app.rs
+?? src/entity/equipment_palette.rs
+?? src/game/equipment_colors.rs
+?? src/game/weapon_hands.rs
+?? src/game_art.rs
+?? src/game_art_catalog.rs
+?? src/game_art_palette.rs
+?? src/game_art_player.rs
+?? src/game_art_worn.rs
+?? src/inventory_terminal.rs
+?? src/one_hand_firearms.rs
+?? src/terminal_console_capture.rs
+?? src/terminal_materials.rs
+?? src/weapon_hands_app.rs
+?? tools/art/

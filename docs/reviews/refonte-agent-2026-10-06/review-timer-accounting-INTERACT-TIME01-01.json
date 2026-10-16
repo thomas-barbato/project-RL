@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-TIME01",
+  "revision": 1,
+  "title": "Durées et recharges : décompte en tours",
+  "status": "proposed_awaiting_user_review;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-cooldowns-and-first-action-INTERACT-REANIM02-02.json",
+      "reference_sha256": "49e633a48d1898e340125034abd82384d4d3d25b77cdc4a848f37f624a770c94"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-overlapping-zone-status-INTERACT-ZONE02-02.json",
+      "reference_sha256": "adf11cd5575d75041363667c4b177cbe22b22bfdff1fa18db2273af66a411408"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-old-zone-status-refresh-INTERACT-ZONE03-02.json",
+      "reference_sha256": "7f8e8a98a68480505a3cf6e4d05df31f1f346b3c93d50dba9ae31694dc1383ba"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE01-02.json",
+      "reference_sha256": "c3c343998541309d456d7c6be730b95afdba0872104db3612f135e0a5d2c708a"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SM05-02.json",
+      "reference_sha256": "e716e16a175875afc369bc91273f3fb868fe990f7fd0d49dd10073220aa650b6"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/last-status-cast-power-acceptance-decisions.json",
+      "reference_sha256": "70bc644096b85e9dd7f8504f614cf5f897529c69b6d95e1a03074285be655357"
+    }
+  ],
+  "scope": "ordinary_timed_buffs_newly_started_skill_cooldowns_and_actor_Poison_Burn_Bleed_periodic_ticks;not_complete_actor_scheduler_or_zone_cadence",
+  "already_accepted": "timers_follow_actual_game_time_not_menus;remaining_cooldown_controls_same_button_and_shortcut_rule;status_reapplication_restarts_duration_latest_successful_power_wins;explicit_delays_and_familiar_lifetimes_preserved",
+  "proposed_rule": {
+    "ordinary_timed_buff": "activation_turn_counts_as_first_active_turn;effect_applies_before_enemy_responses;decrement_after_covering_that_turn;durationN_yields_N_active_turns_including_activation_turn",
+    "new_skill_cooldown": "begins_at_successful_activation_and_counts_elapsed_game_time_of_activation_action;one_ordinary_turn_action_reduces_new_cooldownN_to_max(0,N-1)_by_turn_end",
+    "actor_Poison_Burn_Bleed": "first_periodic_tick_from_game_turn_after_new_application;do_not_consume_periodic_duration_before_first_eligible_tick;durationN_yields_N_ticks_if_not_removed_consumed_or_reapplied",
+    "status_refresh": "restart_accepted_full_duration_and_replace_power_under_existing_rules;refresh_itself_adds_no_instant_periodic_damage;no_extra_same_kind_periodic_damage_tick_from_refresh",
+    "game_time": "opening_UI_hover_target_selection_cancellation_refused_action_and_wall_clock_wait_do_not_advance_timers;actual_actions_consume_reference_game_time_under_existing_rules",
+    "scope_boundary": "no_new_skill_duration_cooldown_or_damage_numbers;no_healing_channel_or_zone_tick_cadence_change;no_reset_of_inherited_raised_cooldowns_or_new_familiar_lifetime_extension"
+  },
+  "shown_examples": {
+    "values_are_illustrative_not_new_skill_parameters": true,
+    "buff_duration3": {
+      "active_turns": [
+        "activation",
+        "next",
+        "following"
+      ],
+      "remaining_after_activation_turn": 2
+    },
+    "skill_cooldown3": {
+      "remaining_after_activation_turn": 2,
+      "additional_full_turns_until_ready": 2
+    },
+    "periodic_duration3": {
+      "first_damage": "following_turn",
+      "ticks_if_untouched": 3
+    }
+  },
+  "shown_copy_markdown": "INTERACT-TIME01 · Durées et recharges — proposition\n\nJe propose que le tour d'activation compte dans la durée des buffs et dans la recharge.\n\n- Buff de 3 tours : il agit pendant le tour où vous le lancez, puis pendant les 2 suivants. À la fin du tour de lancement, son icône affiche donc 2 tours restants.\n- Recharge de 3 tours : à la fin du tour de lancement, il reste 2 tours. Après 2 autres tours de jeu, la compétence redevient utilisable si ses autres conditions sont remplies.\n- Poison, Brûlure et Saignement : le premier dégât périodique arrive au tour suivant l'application. Une durée de 3 tours donne 3 applications de dégâts, si l'effet reste présent jusqu'au bout. Réappliquer le statut rétablit sa durée, sans ajouter de dégât périodique immédiat.\n\nLes menus, survols et choix annulés ne font avancer aucun compteur. Les exemples à 3 tours expliquent le décompte ; ils ne changent pas les durées ou recharges chiffrées des compétences. Les délais spécifiques, canalisations et règles de durée des familiers restent conservés. Cette convention reste à valider.",
+  "shown_copy_sha256": "fc70d4e7e08f1b8b2d35d9133635aabfefa891c27d2028216cc29bc0b9b9a48b",
+  "not_resolved_here": [
+    "complete_phase_order_of_player_familiars_enemies_zones_periodic_damage_death_expiry_and_arrival",
+    "already_active_periodic_status_refresh_vs_scheduled_tick_within_same_turn",
+    "source_provenance_and_zone_only_Gel_lifetime_merging",
+    "native_timer_animation_and_feedback"
+  ],
+  "mechanic_approval": "pending_user_review",
+  "text_approval": "design_explanation_pending;no_new_skill_RP_name_or_UI_error_copy",
+  "visual_approval": "no_new_native_art_animation_or_UI_layout_proposed",
+  "runtime_integration": "not_integrated"
+}

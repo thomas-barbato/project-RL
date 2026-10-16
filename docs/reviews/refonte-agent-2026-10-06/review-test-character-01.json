@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-06",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/melee-acceptance-survival-and-test-decisions.json",
+  "latest_decisions_sha256": "acd8e45652e01c4a414dee255cb38445dd7fe98685019ccc0a0d981341a9820d",
+  "runtime_integration": "not_integrated",
+  "batch_revision": 1,
+  "document": "docs/REVUE_PERSONNAGE_TEST_AGENT.md",
+  "document_sha256": "d96fa4ca278ddf4faa2f72c6b607171be395cb393c1a3ee2775a40671c672a3d",
+  "blocks": [
+    {
+      "id": "TEST01",
+      "title": "Menu de configuration",
+      "revision": 1,
+      "block_sha256": "6b2f337410a5d19d54c9a9fa8d7e60d6016d28c50b2e7aee6aec4cc6d9578665",
+      "requirement_approval": "explicit_user_requirement_recorded_details_pending"
+    },
+    {
+      "id": "TEST02",
+      "title": "Respécialisation et progression répétables",
+      "revision": 1,
+      "block_sha256": "402f2a6b44c65170ca72ae565a3302a52228b30ce88e6d5ccff7e544975856f2",
+      "requirement_approval": "explicit_user_requirement_recorded_details_pending"
+    },
+    {
+      "id": "TEST03",
+      "title": "Travail différé",
+      "revision": 1,
+      "block_sha256": "3a0e501d04c5787b5d48fcea34a6009931aa5c3611af6ce0b4ef54eaeb16bb6a",
+      "requirement_approval": "explicit_user_requirement_recorded_details_pending"
+    }
+  ],
+  "accepted_requirements": {
+    "configuration": "menu",
+    "repeatable_respecialization": true,
+    "level_gains_at_will": true,
+    "location": "test room",
+    "implementation": "explicitly_deferred_until_all_skills_and_animations_implemented"
+  },
+  "implementation_status": "explicitly_deferred_by_user"
+}

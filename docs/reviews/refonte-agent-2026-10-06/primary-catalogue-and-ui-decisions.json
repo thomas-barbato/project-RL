@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "user_primary_reply": "14 branches ; 12 compétences est peut-être beaucoup ; chacune différente avec son effet visuel ; faire une liste puis décider ; inspiration Diablo 2",
+  "accepted_primary_requirements": {
+    "specialized_branch_count": 14,
+    "branch_names": ["Mêlée", "Survie", "Drones", "Affaiblissements", "Attaques à distance", "Esquive", "Feu", "Froid", "Foudre", "Énergie occulte", "Transformations", "Pouvoirs hybrides", "Buffs de mêlée", "Buffs à distance"],
+    "catalogue_before_final_counts_and_tiers": true,
+    "distinct_gameplay_and_visual_for_each_candidate": true,
+    "diablo_two_skill_inspiration_requested": true,
+    "unlock_by_points_invested_in_branch": true,
+    "all_tier_choices_learnable": true,
+    "all_classes_can_access_all_branches": true,
+    "learned_rank_cap": 10,
+    "cost_per_rank": 1
+  },
+  "previous_grid_status": "Four rows of three and the minimum twelve per branch are under reconsideration; do not impose them on this first catalogue",
+  "proposed_catalogue_counts": {
+    "normal_branch_candidates": 6,
+    "drone_candidates": 8,
+    "total_candidates": 86,
+    "approval": "pending_user_selection"
+  },
+  "accepted_ui_requirements": {
+    "shared_mine_cell_tooltip": {
+      "mouse_and_game_cursor": true,
+      "opens_when_mine_and_other_inspection_targets_share_cell": true,
+      "user_chooses_information_target": true,
+      "replaces_automatic_actor_or_object_priority": true
+    },
+    "future_effect_panel": {
+      "buff_and_debuff_icons_for_player": true,
+      "mouse_hover_information": ["name", "effect", "remaining_turns"],
+      "implementation_timing": "later",
+      "top_right_location": "suggestion_pending_layout_review"
+    }
+  },
+  "pending": [
+    "Selection, names and effects of catalogue candidates",
+    "Final counts and tier grid",
+    "Costs, durations, progression curves, limits and stat interactions",
+    "Native previews of all new visual effects",
+    "Exact shared-cell tooltip controls and rendering",
+    "Future HUD layout and icons",
+    "Previously unanswered secondary equipment-cap and stealth-exit questions"
+  ]
+}

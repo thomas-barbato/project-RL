@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-15",
+  "review_id": "ANIM-S50",
+  "status": "visually_accepted_pending_campaign_integration",
+  "candidates": [
+    {
+      "number": 111,
+      "id": "DI03",
+      "variant": "DI03-A01",
+      "title": "VolÃ©e"
+    },
+    {
+      "number": 112,
+      "id": "DI04",
+      "variant": "DI04-A01",
+      "title": "Tir de prÃ©cision"
+    }
+  ],
+  "native_tile": 64,
+  "native_lab": "--apercu-laboratoire-competences --lot-volee-precision",
+  "source": "src/agent_skill_lab_review/fire_painted/ranged_fan_precision.rs",
+  "source_texts": [
+    "review-individual-description-DI03-02.json",
+    "review-individual-description-DI04-03.json"
+  ],
+  "scope": "Prepared visual fixtures, not campaign effects or new balance approval.",
+  "fixture_rules": [
+    "DI03:90-degree cone, one projectile per selected target, five nearest eligible targets at effective rank11",
+    "DI04:one visible target, short red reticle, one fast finite shot, heavy weapons excluded in accepted specification",
+    "Current accepted spatial growth gives the example weapon9 cells and the volley cone6 cells; supersedes old card range example",
+    "Fixed sample impacts, no RNG, no new weapon variance, critical multiplier or tie policy",
+    "Blinking preview removed on launch; shared hit reaction and physical blood only on living targets"
+  ],
+  "fixture_hit_values": {
+    "DI03_per_target": 29,
+    "DI04_noncritical": 22,
+    "maximum_target_hp": 240
+  },
+  "not_new_rules": [
+    "Prepared misses do not establish an accuracy probability or guaranteed hit",
+    "No target dies during the demonstration; early-death rules remain pending",
+    "Cosmetic flight and brief reticle do not add a preparation turn",
+    "A volley does not inherit magical area damage falloff"
+  ],
+  "active_catalogue_assets_campaign_rng_or_saves_changed": false,
+  "pending_separate": [
+    "D66 taunt animation and marker",
+    "O03 animation",
+    "AF05/AF06 review90",
+    "B03 mechanics",
+    "Control capacity and taunt numbers"
+  ],
+  "visual_acceptance": "visual-acceptance-01.json"
+}

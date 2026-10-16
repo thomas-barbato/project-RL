@@ -1,0 +1,104 @@
+{
+  "status": "awaiting_visual_review",
+  "protected_files_unchanged": 7847,
+  "native_capture": "native/capture.json",
+  "resampling": false,
+  "controls": [
+    {
+      "variant": "FE03-A03-LIBRE",
+      "walls_and_protected_targets_unchanged": true,
+      "preview_before_cast_only": true,
+      "explicit_turn_lifecycle": true,
+      "burn_attached_after_exit": true
+    },
+    {
+      "variant": "FE04-A03-LIBRE",
+      "walls_and_protected_targets_unchanged": true,
+      "preview_before_cast_only": true,
+      "explicit_turn_lifecycle": true,
+      "burn_attached_after_exit": false
+    },
+    {
+      "variant": "FE03-A03-CLOISON",
+      "walls_and_protected_targets_unchanged": true,
+      "preview_before_cast_only": true,
+      "explicit_turn_lifecycle": true,
+      "burn_attached_after_exit": true
+    },
+    {
+      "variant": "FE04-A03-CLOISON",
+      "walls_and_protected_targets_unchanged": true,
+      "preview_before_cast_only": true,
+      "explicit_turn_lifecycle": true,
+      "burn_attached_after_exit": false
+    }
+  ],
+  "animations": [
+    {
+      "file": "FE03-A03-LIBRE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 68,
+      "frames": 78,
+      "duration_ms": 5000,
+      "loop": 0
+    },
+    {
+      "file": "FE04-A03-LIBRE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 47,
+      "frames": 48,
+      "duration_ms": 5000,
+      "loop": 0
+    },
+    {
+      "file": "FE03-A03-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 68,
+      "frames": 78,
+      "duration_ms": 5000,
+      "loop": 0
+    },
+    {
+      "file": "FE04-A03-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 47,
+      "frames": 48,
+      "duration_ms": 5000,
+      "loop": 0
+    },
+    {
+      "file": "zones-ouvertes-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 74,
+      "frames": 78,
+      "duration_ms": 5000,
+      "loop": 0
+    },
+    {
+      "file": "zones-cloison-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 74,
+      "frames": 78,
+      "duration_ms": 5000,
+      "loop": 0
+    }
+  ]
+}

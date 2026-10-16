@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-08",
+  "id": "SF01",
+  "review_id": "SF01",
+  "revision": 4,
+  "title": "Économie de mouvement furtif",
+  "branch": "Furtivité",
+  "kind": "secondary_passive",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-126.json",
+  "source_skill_manifest_sha256": "9d0bc6b173a5747ee98e8cc230d10ee11d966b8099c9b6dabfc48ea11e38a316",
+  "source_skill_block_sha256": "b521ce203c1a76bdc0f5e73c1c811b736ea8040cbafc96994f199bd1922de391",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 0,
+    "effective_rank": 9,
+    "SF00_learned_rank": 1,
+    "other_modifiers": false,
+    "SF00_base_energy_per_step": 11
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 0,
+    "effective_rank": 10,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values": {
+    "energy_per_successful_stealth_step": 2
+  },
+  "next_values": {
+    "energy_per_successful_stealth_step": 1
+  },
+  "unchanged_value_display": {
+    "only_changed_values_in_next_block": true,
+    "changed_effects": [
+      "energy_per_successful_stealth_step"
+    ],
+    "no_plateau_marker_in_this_comparison": true
+  },
+  "confirmed_numeric_basis": {
+    "effective_rank10_step_energy": 1,
+    "minimum_including_equipment_bonus_ranks": 1,
+    "purchase_skill_points_per_rank": 1
+  },
+  "accepted_energy_floor_decisions": "docs/reviews/refonte-agent-2026-10-06/stealth-energy-floor-revision-decisions.json",
+  "accepted_energy_floor_decisions_sha256": "a056376af6d8b1ae52800ec3e43fd005e1ab005a15bf800e86633c91b47d339b",
+  "conditions": {
+    "SF00_prerequisite": true,
+    "learned_passive_works_automatically": true,
+    "no_activation_or_timed_buff_created": true,
+    "applies_to_stealth_steps_only": true
+  },
+  "name_approval": "existing_secondary_catalogue_name_preserved",
+  "roleplay_text_approval": "displayed_individual_RP_explicitly_accepted",
+  "numeric_rules_approval": "base11_one_energy_saved_per_effective_rank_current9_cost2_next10_cost1_and_floor1_explicitly_accepted_under_SF01-COST02-ACCEPT01",
+  "detailed_conditions_approval": "displayed_SF00_prerequisite_accepted;previously_confirmed_passive_rules_preserved;unshown_cases_pending",
+  "visual_intention_approval": "displayed_updated_SF00_cost_direction_accepted;native_UI_pending",
+  "visual_approval": "native_UI_preview_pending_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**SF01 · Économie de mouvement furtif — Rang 9 · Passif**\n\n*Vos implants ajustent votre camouflage pour limiter l’énergie consommée à chaque pas.*\n\n**Effets actuels**\n\n- Énergie par pas en furtivité : **2 points**.\n\n**Prochain rang — 10 · 1 point de compétence**\n\n- Énergie par pas en furtivité : **1 point**.\n\nNécessite **Furtivité** apprise.",
+  "player_copy_sha256": "4bb1e6fccb8ee943d6dcd37d374b38b232e4e4743459dce6589a73381533753d",
+  "visual_copy_markdown": "**Affichage proposé :** le coût actualisé apparaît dans la fiche de Furtivité.",
+  "visual_copy_sha256": "eae3cf5ba4df85db377f44a949cafb0e6773a53b34a7bbca37a78a746625480d",
+  "unshown_cases_pending": [
+    "SF00_resource_spend_and_regeneration_order",
+    "other_energy_modifiers_stacking_and_rounding",
+    "native_skill_rank_bonus_color_and_SF00_numeric_refresh"
+  ],
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF01-03.json",
+  "previous_description_sha256": "47333f3564c06337087b7277219b05c32cc60b7da5af3c1b0b5a97e108f732f2",
+  "prior_acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/stealth-economy-description-acceptance-decisions.json",
+  "prior_acceptance_decisions_sha256": "838ccc90f8dda549b4c322940fe39b0d7a92eea528a91de23e7aeb884f8d70e6",
+  "revision_decisions": "docs/reviews/refonte-agent-2026-10-06/stealth-step-cost-progression-acceptance-decisions.json",
+  "revision_decisions_sha256": "43101ed64a423334233acbee2ea27c7164f7a04b4fb61003776a46fe85b9e4e4",
+  "full_card_shown_this_turn": false,
+  "prepared_full_copy_markdown": "**SF01 · Économie de mouvement furtif — Rang 9 · Passif**\n\n*Vos implants ajustent votre camouflage pour limiter l’énergie consommée à chaque pas.*\n\n**Effets actuels**\n\n- Énergie par pas en furtivité : **2 points**.\n\n**Prochain rang — 10 · 1 point de compétence**\n\n- Énergie par pas en furtivité : **1 point**.\n\nNécessite **Furtivité** apprise.\n\n**Affichage proposé :** le coût actualisé apparaît dans la fiche de Furtivité.",
+  "prepared_full_copy_sha256": "24b96b57d1bdcad2f1b8231bce0c30b8fa5ac7f9fff53e46a6cb03533b929ae9",
+  "formula_accepted": "max(1,11-effective_rank);no_SF01=11;rank9=2;rank10=1;bonus_ranks_never_zero",
+  "accepted_cost_revision": "docs/reviews/refonte-agent-2026-10-06/review-stealth-step-cost-revision-02.json",
+  "accepted_cost_revision_sha256": "b552b5b3092119e42984849f420ea181fc949ef5ffc1f3f432742d4bff51be07",
+  "consolidation_scope": "previously_accepted_RP_conditions_and_UI_direction_plus_explicitly_accepted_cost_rule;prepared_full_card_not_represented_this_turn"
+}

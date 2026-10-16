@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-07",
+  "id": "ES06",
+  "title": "Réflexes balistiques",
+  "revision": 1,
+  "player_copy_markdown": "**ES06 · Réflexes balistiques — Passif · Rang 11**\n\n*Vous anticipez les trajectoires et vous écartez des projectiles avant l’impact.*\n\n**Effet actuel**\n\n- Bonus d’esquive contre les projectiles : **+42**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Bonus d’esquive contre les projectiles : **+45**.\n\nCe bonus s’ajoute à votre esquive habituelle contre les projectiles soumis à un jet de précision.",
+  "player_copy_sha256": "d320ef5339b1a620ab41ce455755733ee8fe960302656f4fa48ae87a94217ca9",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-17.json",
+  "source_skill_block_sha256": "6a06ca7d92782407e44f7ae188ca01dc6c91364983f31e24d46343c51ea9572e",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/phase-traversal-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "236299b12402444fbf4c94931fb47c78dd1c08e715a784dd19dbe0d03b310d78",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08; projectile_accuracy_check_scope_retained",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "proposed_pending_individual_user_review",
+  "current_profile_status": "illustrative_not_a_user_save; additive dodge score bonus, not a fixed avoidance chance",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "agility": 10,
+    "ordinary_dodge_total": null,
+    "other_skill_implant_or_cost_modifiers": false,
+    "attribute_and_equipment_dodge": "ordinary contributions retained and added to skill bonus"
+  },
+  "formulas": {
+    "projectile_dodge_bonus_points": "12 + 3 * (effective_rank - 1)"
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "projectile_dodge_bonus_points": 42
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "projectile_dodge_bonus_points": 45
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "projectile_dodge_bonus_points"
+    ],
+    "unchanged_effects_omitted": []
+  },
+  "passive_conditions": {
+    "all_learned_passives_active": true,
+    "energy_cost": 0,
+    "cooldown_turns": null,
+    "duration_limit": null,
+    "eligible_attack": "projectile attack resolved using an accuracy/hit check",
+    "unit": "flat dodge score points, not percentage points of avoidance chance",
+    "bonus_added_to_ordinary_dodge": true,
+    "projectile_taxonomy": "physical and magical categories not silently restricted or expanded; exact eligibility pending",
+    "melee_dodge_or_area_damage_reduction_created": false,
+    "new_evasion_check_for_automatic_effect_created": false,
+    "projectile_reflection_created": false
+  },
+  "weapon_compatibility": {
+    "scope": "defensive_passive_not_a_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy weapon exclusion added"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "unlimited_duration_reminder_omitted": true,
+    "no_cost_or_cooldown_reminder_for_passive": true
+  },
+  "unshown_rules_approval": "Full rank curves, ordinary dodge/hit bounds, physical/magical projectile taxonomy, pellets/rays/multiple-hit and area component eligibility, additive stacking with other dodge effects and attribute/implant/equipment interactions remain pending where not already accepted. No automatic miss, invulnerability, projectile reflection, area damage resistance or new hit check for automatic effects introduced.",
+  "visual_intention_approval": "existing_catalogue_brief_visual_dodge_at_avoided_projectile_direction_accepted_only; no physical_deflection_or_reflection_mechanic",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable ES06 existing passive; RP/current-next and hit-check scope proposed for individual review.",
+    "Effective rank 11: 12 + 3*10 = 42; next 12: 12 + 3*11 = 45.",
+    "Learned 9 to 10, equipment +2 unchanged, one point, learned cap respected; same attributes/modifiers.",
+    "Additive ordinary dodge contributions preserved; no fixed dodge percentage, active weapon lock or heavy exclusion.",
+    "No table, player formula, rank breakdown, execution timing, unlimited duration or passive cooldown reminders.",
+    "83 primary skills, Esquive four, DI06/ES02/ES04 retired; no native visual/runtime integration."
+  ]
+}

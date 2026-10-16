@@ -1,0 +1,36 @@
+{
+  "batch": "ANIM-S26",
+  "date": "2026-10-14",
+  "status": "awaiting_visual_review",
+  "campaign_integration": false,
+  "candidates": [
+    {
+      "number": 61,
+      "id": "HL03",
+      "name": "Déluge d’acier",
+      "variant": "HL03-A01"
+    },
+    {
+      "number": 62,
+      "id": "HL04",
+      "name": "Maîtrise des armes lourdes",
+      "variant": "HL04-A01"
+    }
+  ],
+  "approved_cards": [
+    "review-individual-description-HL03-02.json",
+    "review-individual-description-HL04-02.json"
+  ],
+  "mechanics": "Rank11: Déluge weapon damage230%, fixed aim circle radius2, one native sequence per turn for up to4turns, cost8energy per fire, cooldown8after end or interruption. Movement, other attack/skill, missing observed target or inability to pay stop it; HP damage does not. Mastery permanently adds110% to heavy weapon damage, including explosions and weapon skills.",
+  "visuals": "Accepted50px steel rocket, fast0.20s flight, same134px burst and physical blood. New fixed amber aim-zone boundary during the channel,32px player status icon and remaining turns. Shared target/player recoil. Mastery uses the same ordinary heavy shot and numerical bonus with no timed buff or separate cast; adjacent damage readouts are staggered vertically for readability.",
+  "prepared_numbers": "Base20 becomes42(+22) with mastery, or remains20 with the prepared light/melee weapon. Déluge uses46 per blast, including overlaps; floating values show the individual new impact, while timeline totals accumulate. Caster HP100to95 in the received-hit fixture.",
+  "scope": "Independent prepared scenes. Channel target sequence and turn events are fixed for visual review; they do not define final AI/target priority, initial cost/tick order, cooldown boundary or actual combat resolver. Interruption scenes show channel removal, without executing a replacement attack or skill. Missing-box refusal follows later equipment direction; no matter/ammo counter introduced.",
+  "pending": "Actual stats/weapon variance/defenses, heavy-skill modifier stacking, future heavy family native modes, delayed hits after interruption, missing-target causality and edge cases remain separate. Passive applicability to another owner/familiar is not specified by this review.",
+  "temporary_actors": "Existing32px enemies enlarged64; adaptation after animations.",
+  "excluded_drafts": [
+    "native-preview-draft",
+    "native-mastery-preview-draft",
+    "native-label-layout-draft"
+  ],
+  "draft_note": "Drafts are unpresented; final mastery area preview, readable numeric label and staggered hit values in native/ are the candidate. Channel views copied byte-identically from the initial readback."
+}

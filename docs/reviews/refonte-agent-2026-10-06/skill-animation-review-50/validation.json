@@ -1,0 +1,50 @@
+{
+  "batch": "ANIM-S21",
+  "date": "2026-10-13",
+  "visual_status": "visually_approved",
+  "campaign_integration": false,
+  "compile": "cargo build --locked: passed",
+  "targeted_tests": "cargo test --locked --bin project-rl agent_skill_lab_review: 105 passed, 0 failed",
+  "format": "cargo fmt --all -- --check: passed",
+  "diff_check": "Scoped git diff --check: passed",
+  "native_capture": {
+    "tile": 64,
+    "world": [
+      576,
+      576
+    ],
+    "gpu_readback": [
+      640,
+      720
+    ],
+    "views": 22,
+    "frames_per_view": 128,
+    "fps": 24,
+    "readbacks_with_control_frames": 3190,
+    "lossless_png_verified_before_raw_removal": true,
+    "resampling_of_native_capture": false
+  },
+  "animations": 23,
+  "checks": [
+    "four directions preserve actor pose and equipment",
+    "common victim recoil and physical wound blood",
+    "brief jaw ends, healing number follows after mouth clears",
+    "no weapon flame layer and no implicit Burn status",
+    "buff icon expires only with explicit turns",
+    "quiet waiting never replays strike or healing",
+    "colored integer damage components and healing use prepared fixtures",
+    "world VFX respect wall mask; neutral cast-name HUD excluded from wall pixel comparison",
+    "launch preview disappears on confirmation",
+    "visible target and active melee weapon refusal fixtures",
+    "GIF palette preserves purple actor colors",
+    "5662 previous approved or reused files remain byte-identical"
+  ],
+  "browser_validation": "Not performed; native GPU images visually inspected, local gallery controller and frame paths checked offline.",
+  "rule_scope": "Previously accepted BM01-02 and BM02-03 values retained. No combat, variance, HP, healing, resources, RNG, saves or balance integration.",
+  "pending_trigger_cases": "Miss, absorption, zero healing, full health and exhausted per-turn healing budget.",
+  "temporary_actors": "Old enemy32px art enlarged to64; adaptation planned after animations.",
+  "source_art": "Built-in imagegen; source and prompt saved in this review folder. Only mechanical crop/resize/atlas packing and GIF encoding.",
+  "full_engine_suite_or_release_build": "Not run for this isolated review lot.",
+  "acceptance": "visual-acceptance-01.json",
+  "visual_approval": "BM01-A01 and BM02-A01 accepted."
+}

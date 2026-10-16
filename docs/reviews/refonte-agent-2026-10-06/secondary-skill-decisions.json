@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "user_clarifications": {
+    "purchase": "Mêmes points, tous les passifs accessibles immédiatement",
+    "consumption": "Énergie uniquement",
+    "grenades": "Conserver uniquement les listes exactes pour chaque actif ; grenades plus utilitaires",
+    "ice_zone": "Ils ne peuvent plus se déplacer, mais peuvent agir",
+    "aim_preview": "Avant pose ou lancer, afficher le rayon d'action pour tous les types",
+    "sound_grenade": "Rayon plus grand que les autres grenades ; attirer les monstres au centre",
+    "placed_mine_preview": "Souris ou curseur du jeu sur une case contenant une mine et rien d'autre : afficher son rayon"
+  },
+  "accepted_requirements": {
+    "shared_level_skill_points": true,
+    "active_purchase_once_cost": 1,
+    "passive_learned_rank_cap": 10,
+    "cost_per_passive_rank": 1,
+    "passives_accessible_without_associated_active": true,
+    "secondary_tier_thresholds": false,
+    "secondary_minimum_twelve_skills": false,
+    "active_purchase_does_not_follow_from_passive_purchase": true,
+    "mine_and_thrown_grenade_consume_energy_only": true,
+    "stealth": {
+      "active_mode": true,
+      "step_energy_reduction_passive": true,
+      "zero_step_energy_at_rank_ten": true,
+      "npc_detection_zone_reduction_passive": true,
+      "almost_undetectable_at_rank_ten": true
+    },
+    "mines": {
+      "default_damage_type": "fire",
+      "arming_delay_turns": 1,
+      "one_mine_per_cell": true,
+      "capacity_passive": true,
+      "simultaneous_mines_at_rank_ten": 5,
+      "over_capacity_replaces_oldest": true,
+      "layer_transition_removes_all_player_mines": true,
+      "damage_type_passives": ["poison", "cold"],
+      "choose_unlocked_type_before_placement": true,
+      "area_increase_passive": true,
+      "persistent_zone_passive": true,
+      "persistent_duration_increases_with_investment": true,
+      "persistent_types": {"poison": "poison_cloud", "cold": "movement_immobilization_actions_allowed", "fire": "fire_zone"}
+    },
+    "grenades": {
+      "variants": ["explosive", "blinding", "sound"],
+      "passives": ["blinding_duration", "sound_volume_and_reach", "throw_distance", "grenade_and_launcher_damage"],
+      "extra_poison_cold_area_cloud_passives": false,
+      "sound_destination": "impact_center",
+      "sound_reach_larger_than_other_grenade_variants": true
+    },
+    "previews": {
+      "before_mine_placement": true,
+      "before_grenade_throw": true,
+      "all_types": true,
+      "placed_mine_mouse_hover": true,
+      "placed_mine_game_cursor": true,
+      "placed_mine_requires_no_other_inspection_target_on_cell": true
+    }
+  },
+  "pending_questions": [
+    "Equipment bonuses for secondary passives and whether they may allow more than five mines",
+    "Actions that terminate stealth"
+  ],
+  "proposals_pending_review": [
+    "Exact names and player-facing text",
+    "Secondary skill growth formulas and base energy, damage, radius, ranges and durations",
+    "Detection channels, stealth insufficient-energy behavior and interaction with regeneration",
+    "Mine placement and trigger conditions, zones, overlap, allies and transitions inside a layer",
+    "Grenade detonation timing and attraction priority",
+    "Snapshot mine parameters at placement",
+    "Inspection priority, observation limits and exact preview rendering",
+    "Attribute and other skill interactions"
+  ],
+  "review_document": "docs/REVUE_COMPETENCES_SECONDAIRES_AGENT.md"
+}

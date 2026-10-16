@@ -1,0 +1,175 @@
+{
+  "protected_files_unchanged": 9812,
+  "resampling_of_native_capture": false,
+  "controls": [
+    {
+      "variant": "FE05-A01-DROITE",
+      "physical_walls_clear": true,
+      "animated_until_explicit_turn": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A01-DROITE",
+      "physical_walls_clear": true,
+      "animated_until_explicit_turn": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE05-A01-GAUCHE",
+      "physical_walls_clear": true,
+      "animated_until_explicit_turn": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A01-GAUCHE",
+      "physical_walls_clear": true,
+      "animated_until_explicit_turn": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE05-A01-HAUT",
+      "physical_walls_clear": true,
+      "animated_until_explicit_turn": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A01-HAUT",
+      "physical_walls_clear": true,
+      "animated_until_explicit_turn": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE05-A01-CLOISON-BAS",
+      "physical_walls_clear": true,
+      "animated_until_explicit_turn": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A01-CLOISON-BAS",
+      "physical_walls_clear": true,
+      "animated_until_explicit_turn": true,
+      "burn_after_impact": false,
+      "final_effects_expired": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "FE05-A01-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 49,
+      "frames": 49,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE06-A01-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 53,
+      "frames": 53,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE05-A01-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 49,
+      "frames": 49,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE06-A01-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 53,
+      "frames": 53,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE05-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 49,
+      "frames": 49,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE06-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 53,
+      "frames": 53,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE05-A01-CLOISON-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 49,
+      "frames": 49,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "FE06-A01-CLOISON-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 45,
+      "frames": 45,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "feu-final-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 53,
+      "frames": 53,
+      "duration_ms": 4000,
+      "loop": 0
+    },
+    {
+      "file": "feu-final-cloison-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 53,
+      "frames": 53,
+      "duration_ms": 4000,
+      "loop": 0
+    }
+  ],
+  "source_art_mode": "Built-in image_gen; prompt and source sheet saved locally."
+}

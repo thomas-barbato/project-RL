@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-08",
+  "id": "BM01",
+  "review_id": "BM01-ACCEPT01",
+  "user_answer": "mais sinon je valide :)",
+  "approval": "explicit_user_full_card_acceptance_except_old_visual_replaced_by_prior_user_elemental_feedback_directive",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BM01-01.json",
+  "previous_card_sha256": "c0536ba8e7a951f48c1f7766af9235d88180534917d684c44006356cfe0b2753",
+  "accepted_title": "Lame incendiaire",
+  "accepted_RP": "Vous enveloppez votre arme de flammes qui mordent vos ennemis à chaque coup.",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "added_fire_damage_per_successful_primary_melee_hit": 14,
+    "duration_turns": 6,
+    "energy_cost": 11,
+    "cooldown_turns": 6
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "added_fire_damage_per_successful_primary_melee_hit": 15,
+    "duration_turns": 6,
+    "energy_cost": 11,
+    "cooldown_turns": 6
+  },
+  "accepted_shown_profile": {
+    "effective_rank": 11,
+    "Volonté": 10,
+    "active_weapon": "melee",
+    "next_effective_rank": 12,
+    "next_skill_point_cost": 1
+  },
+  "accepted_conditions": [
+    "additional fire per successful primary hit before target resistance",
+    "equipped and active melee weapon required",
+    "human form required to cast",
+    "Silence blocks use",
+    "compatible melee skills also receive added fire",
+    "no Brulure caused by this buff"
+  ],
+  "accepted_player_copy_sha256": "d86535c3dba77735b5bf14a5acf2eab956fb883756c0d64c7689eb72322e5e81",
+  "accepted_visual_direction_reference": "docs/reviews/refonte-agent-2026-10-06/elemental-damage-text-feedback-decisions.json",
+  "superseded_visual": "persistent decorative flame overlay on weapon retired",
+  "unshown_full_curves_defaults_rounding_and_cases": "pending",
+  "native_animation_approval": "pending_prototype_review",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,32 @@
+{
+  "batch": "ANIM-S21",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 51,
+      "id": "BM01",
+      "name": "Lame incendiaire",
+      "variant": "BM01-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    },
+    {
+      "number": 52,
+      "id": "BM02",
+      "name": "Faim vampirique",
+      "variant": "BM02-A01",
+      "visual_status": "visually_approved",
+      "acceptance": "visual-acceptance-01.json"
+    }
+  ],
+  "campaign_integration": false,
+  "visuals": "Persistent compact buff icons with turn timers and tooltips; colored damage components without weapon flame overlays; brief vampire jaw on each prepared successful strike, common recoil and physical wound blood.",
+  "approved_card_values": "BM01 rank11 +14fire/duration6/cost11/CD6. BM02 rank11 life40%/sharedlimit10%maxHP/duration4/cost13/CD12.",
+  "fixture_numbers": "20 physical HP removed by a prepared melee strike, target has no armor/resistance in this fixture. BM01 displays34 (20physical+14fire); BM02 displays+8HP for40% of20, chosen missingHP/turnbudget sufficient. Not actual weapon/monster stats, no variance, rounding, overkill or healing solver introduced.",
+  "pending_cases": "Miss, fully absorbed hit, full health, exhausted heal cap, multi-hit/dual-wield and transformed natural attack trigger details remain separately pending.",
+  "turn_fixture": "First strike atframe24, explicit turn1 at52 then second strike53. Remaining turns explicit52/76/88/100/112/124. Casting/strike action resolution order not established by fixture playback.",
+  "temporary_actors": "Existing enemy32px art enlarged to64; bestiary adaptation scheduled after animations.",
+  "acceptance": "visual-acceptance-01.json",
+  "accepted_date": "2026-10-13"
+}

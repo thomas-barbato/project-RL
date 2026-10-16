@@ -404,6 +404,13 @@ impl AttackProfile {
         self.range
     }
 
+    /// Runtime targeting override used by reviewed techniques. The source
+    /// weapon and its serialized definition remain unchanged.
+    pub const fn with_range(mut self, range: u16) -> Self {
+        self.range = range;
+        self
+    }
+
     pub const fn distance_metric(self) -> DistanceMetric {
         self.distance_metric
     }

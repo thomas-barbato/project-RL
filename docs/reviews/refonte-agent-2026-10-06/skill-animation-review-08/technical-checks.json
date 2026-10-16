@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-12",
+  "scope": "Debug-only visual proposal, pending acceptance; no campaign/combat changes and no full-suite claim.",
+  "cargo_build_locked": "passed",
+  "cargo_test_locked_agent_skill_lab_review": {
+    "passed": 11,
+    "failed": 0
+  },
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "python_syntax": "passed",
+  "gallery_javascript_syntax": "passed",
+  "native_capture": {
+    "scenarios": 3,
+    "frames_per_scenario": 120,
+    "tile": 64,
+    "framebuffer": [
+      512,
+      512
+    ],
+    "stderr_empty": true
+  },
+  "occlusion_evidence": [
+    {
+      "variant": "FE02-A04-COULOIR",
+      "solid_wall_cells_unchanged": 32,
+      "protected_target_centres_unchanged": [
+        "D"
+      ],
+      "targeting_preview_identical": true
+    },
+    {
+      "variant": "FE02-A04-CLOISON",
+      "solid_wall_cells_unchanged": 29,
+      "protected_target_centres_unchanged": [
+        "B",
+        "C"
+      ],
+      "targeting_preview_identical": true
+    },
+    {
+      "variant": "FE02-A04-OBSTACLE",
+      "solid_wall_cells_unchanged": 25,
+      "protected_target_centres_unchanged": [
+        "C"
+      ],
+      "targeting_preview_identical": true
+    }
+  ],
+  "protected_files_unchanged": 1781,
+  "targeting_preview": "Pixel-identical to the preceding proposal in all three scenarios at frame 10; same maps, affected-cell lists and target flags.",
+  "visual_method": "Rounded overlapping density kernels, physical wall constraints, texture movement along surface normals; decorative edges can cross free tile borders.",
+  "material_limit": "Stylized visual current, not a full fluid simulation. No new damage propagation or extra range.",
+  "visual_review": "pending explicit player acceptance",
+  "drafts": "native-ray-draft and native-round-draft retained; final native directory contains the submitted round-current captures."
+}

@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-06",
+  "skill_id": "SU03",
+  "user_request": "J'aimerais que la barrière réactive (qui sera renommée \"barrière d'épine\") pourrait plutot être un buff qui sert à renvoyer une portion des dégats subits à celui (ou ceux) qui l'attaque ?",
+  "user_followup": "ca ne renverra pas les dégats spéciaux, comme les dégats de saignement.",
+  "previous_title": "Barrière réactive",
+  "accepted_title": "Barrière d’épine",
+  "accepted_scope": [
+    "exact requested rename; stable SU03 identity preserved",
+    "replace old absorption direction with a buff that returns a portion of received damage to each corresponding attacker",
+    "bleeding damage explicitly excluded from reflection"
+  ],
+  "previous_absorption_proposal": "superseded; no automatic barrier reformation or old damage-free delay retained",
+  "proposed_active_buff": {
+    "role": "active temporary buff; proposed, not yet explicitly approved",
+    "scope": "direct attacks: melee, ranged and direct spells; each attack returns its own portion to its author",
+    "damage_reference": "actual HP lost after the player protections",
+    "reflection_percent_current_rank_11": 30,
+    "reflection_percent_next_rank_12_display": 31,
+    "duration_turns": 5,
+    "energy_cost_current_and_next": 15,
+    "cooldown_turns": 10,
+    "damage_application": "direct to attacker, without another defense reduction; proposed",
+    "persistent_damage_exclusions_proposed": [
+      "poison",
+      "burns",
+      "persistent zones"
+    ],
+    "damage_received": "unchanged by reflection buff itself",
+    "no_reflection_chain": "reflection does not trigger another reflection; proposed",
+    "approval": "exact new wording, numbers and conditions require individual user review"
+  },
+  "scope_of_special_damage_term": "bleeding explicitly excluded; proposed poison/burn/persistent-zone exclusions do not settle all unspecified special damage cases",
+  "catalogue_overlap": {
+    "skill_id": "BM05",
+    "title": "Sceau de vindicte",
+    "issue": "existing melee-only reflection; replacement or differentiation asked asynchronously",
+    "status": "awaiting_optional_user_direction; BM05 unchanged"
+  },
+  "additional_details_pending": [
+    "fractional reflection rounding",
+    "direct magical/elemental special cases",
+    "source attribution for environmental damage",
+    "lethal hit ordering",
+    "attacker death and eligibility",
+    "other reflected damage and automatic secondary effect interactions",
+    "snapshot timing and recast/stacking rules"
+  ],
+  "visual_intention": "previous absorption visual intention superseded; new reflection rendering pending review",
+  "runtime_integration": "not_integrated"
+}

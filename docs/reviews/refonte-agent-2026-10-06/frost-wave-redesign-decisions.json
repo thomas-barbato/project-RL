@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-07",
+  "review_id": "FR04",
+  "redesign_review_id": "FR04-VAGUE01",
+  "user_message": "ca m'a l'air super mais ca ressemble trop à diablo 2 (ca risque de se voir) \n\nHum ... On pourrait faire une sorte de vague de froid, elle partirait du joueur , et avancerait de une case par tour, à chaque fois qu'elle touche un monstre elle fait des dégats + chance de gel .",
+  "shape_question": "Quelle forme souhaites-tu pour la vague de froid ?",
+  "shape_answer": "Une bande large qui avance dans une direction choisie",
+  "requested_mechanics": [
+    "replace orb and secondary shards with cold wave",
+    "wave starts at player",
+    "advances one cell per turn",
+    "damage and Gel chance for each hit monster",
+    "wide band traveling in chosen direction"
+  ],
+  "superseded_current_proposal": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR04-01.json",
+  "superseded_current_proposal_sha256": "496f5a189e6468073807cd9a1ebba4fd5abf529edd80c02f56808907ddd4d6b8",
+  "prior_catalogue_direction": "previous FR04 orb/shards direction superseded at user request;stable ID retained,not a second skill",
+  "pending_new_proposal_scope": "Name Vague de froid,RP,width3/travel5/front thickness,initial neighboring band on activation,autonomous progression,piercing,wall occlusion,hostile-only targets,one hit per hostile per turn,no lingering ground zone,current/next damage/Gel values/cost/cooldown and visual direction remain for explicit review.",
+  "other_accepted_skills_and_global_rules": "preserved;no broader freeze,control,zone or balance rule modified",
+  "native_visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

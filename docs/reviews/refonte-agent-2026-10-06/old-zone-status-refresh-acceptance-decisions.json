@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-ZONE03-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-old-zone-status-refresh-INTERACT-ZONE03-01.json",
+    "reference_sha256": "55d63838fdc80c8ea0eb393b23982a64f61d668a101da17721e4bc564e8a865b"
+  },
+  "user_clarification_request": "je suis pas sur de comprendre, peux tu etre plus clair ?",
+  "clarification_presented": "Une zone encore active peut remplacer une Brûlure appliquée par un sort plus récent, même par une Brûlure plus faible. Une zone créée avec8 applique sa Brûlure, un autre sort applique18, puis la zone réapplique avec succès au tour suivant :8 remplace18 et la durée est renouvelée. Chaque réapplication réussie remplace le statut existant, avec la puissance de la zone calculée à sa création.",
+  "user_acceptance": "d'accord ca me va .",
+  "approved_rule": "latest_successful_reapplication_uses_reapplying_zone_stored_power_even_if_zone_is_older_than_previous_spell_source;duration_restarts",
+  "failed_attempt": "existing_power_and_ordinary_remaining_duration_continue_without_refresh",
+  "shown_example": {
+    "zone_power": 8,
+    "later_spell_power": 18,
+    "after_successful_old_zone_reapplication": 8,
+    "duration": "renewed",
+    "values_are_fictional_before_resistances": true
+  },
+  "approval_boundary": "old_zone_reapplication_case_as_clarified;full_turn_scheduler_multi_caster_credit_and_native_visuals_not_newly_approved",
+  "runtime_integration": "not_integrated"
+}

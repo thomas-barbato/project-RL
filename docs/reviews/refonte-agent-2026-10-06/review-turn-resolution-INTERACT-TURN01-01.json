@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-TURN01",
+  "revision": 1,
+  "title": "Ordre de résolution d'un tour",
+  "status": "proposed_awaiting_user_review;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-buff-cooldown-accounting-INTERACT-TIME03-02.json",
+      "reference_sha256": "acf0bb22e9b94c3bf3834ba485edfc5775841f3a758f3461433b12fc358e816a"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-timer-accounting-INTERACT-TIME01-03.json",
+      "reference_sha256": "fbd196b6934e34796e4378fab24370dcecee522a5aaa72a7feea9f5c774c58d3"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-persistent-status-reapplication-INTERACT-TIME02-02.json",
+      "reference_sha256": "735cb5cca559c9c0cc4c3ba45e68209a7784e5b3a6e7ecde1b8a4945b50ea730"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-overlapping-zone-status-INTERACT-ZONE02-02.json",
+      "reference_sha256": "adf11cd5575d75041363667c4b177cbe22b22bfdff1fa18db2273af66a411408"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-contagion-transfer-rules-INTERACT-CONTAGION01-02.json",
+      "reference_sha256": "7af65ee222447fcb464b2e93154c5d1bd61750c7fe757c541663a2a66f4c32e5"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-cooldowns-and-first-action-INTERACT-REANIM02-02.json",
+      "reference_sha256": "49e633a48d1898e340125034abd82384d4d3d25b77cdc4a848f37f624a770c94"
+    }
+  ],
+  "scope": "core_phase_order_for_ordinary_reference_game_turn_and_death_before_next_actor_action;not_new_actor_action_budgets_or_specific_entry_hazards",
+  "current_code_observation": {
+    "path": "src/game/game_state.rs",
+    "functions": [
+      "complete_turn",
+      "resolve_ai_turn"
+    ],
+    "drone_before_enemy_order": "observed_and_preserved_in_proposal",
+    "runtime_change": "none"
+  },
+  "proposed_rule": {
+    "phase1_player": "resolve_player_action_and_its_immediate_effects_with_existing_reaction_trigger_timing;first_persistent_damage_and_new_zone_creation_effect_immediate_under_accepted_rules",
+    "phase2_environment": "eligible_existing_ground_zone_applications_oldest_to_newest_then_actor_Poison_Burn_Bleed_ordinary_periodic_applications;skip_new_effect_automatic_repeat_as_accepted_TIME01_TIME02;automatic_zone_refresh_does_not_add_extra_status_damage",
+    "phase3_actors": "eligible_familiars_then_living_enemies;preserve_actor_speeds_delays_action_budgets_and_existing_first_action_rules;new_raised_actor_cannot_act_on_birth_turn",
+    "phase4_end": "advance_elapsed_duration_and_cooldown_counters;expire_effects_after_their_last_covered_turn;then_recovery_per_existing_accepted_rules_without_reviving_dead_actors",
+    "phase5_presentation": "update_perception_threat_phase_and_shared_remaining_counters_after_resolved_events",
+    "death_priority": "at_each_fatal_damage_resolve_death_and_applicable_real_item_drops_rewards_Contagion_and_reanimation_before_continuing_to_next_event_or_actor;dead_actor_has_no_later_scheduled_action",
+    "terminal_HP": "HP_reaching_zero_is_terminal_for_actor_before_any_later_recovery;no_end_turn_regeneration_rescue;existing_explicit_reanimation_of_marked_enemy_is_separate",
+    "scope_boundary": "preserve_immediate_reactions_and_explicit_trigger_delays;not_a_new_all_actors_one_action_rule;no_zone_entry_or_mine_arming_timing_proposal_no_simultaneous_multi_target_death_proc_tie_order_no_extra_familiar_action"
+  },
+  "shown_example": {
+    "illustrative_not_balance_values": true,
+    "enemy_HP": 6,
+    "due_Poison_damage": 8,
+    "result": "death_in_periodic_phase_before_familiar_and_enemy_actions;no_enemy_attack"
+  },
+  "shown_copy_markdown": "INTERACT-TURN01 · Ordre de résolution d'un tour — proposition\n\nPour un tour ordinaire, je propose cet ordre :\n\n1. Votre action et ses effets immédiats : attaque, sort, premiers dégâts persistants ou création d'une zone, suivant les règles validées.\n2. Les zones déjà actives, de la plus ancienne à la plus récente, puis les dégâts périodiques de Poison, Brûlure et Saignement. Les effets ayant déjà produit leur première application ce tour ne reçoivent pas une application automatique supplémentaire.\n3. Les familiers pouvant agir, puis les ennemis encore vivants. Un ressuscité commence toujours à agir au tour suivant son relèvement.\n4. La fin du tour : diminution des durées et recharges, expiration des effets arrivés à leur terme et récupération prévue par les règles déjà validées.\n5. Mise à jour des hostiles repérés, de la phase Combat/Calme et des compteurs affichés.\n\nChaque mort est résolue dès les dégâts mortels, avant de poursuivre : objets au sol, récompenses et effets de mort applicables, dont Contagion et le relèvement. Une cible morte ne joue pas son action prévue. Une récupération ultérieure ne sauve pas un personnage dont les PV sont déjà tombés à zéro.\n\nExemple : un monstre possède 6 PV et doit subir 8 dégâts de poison ce tour. Il meurt avant les actions des familiers et des ennemis ; il ne peut pas attaquer ensuite. Ces nombres illustrent l'ordre, sans fixer de statistiques.\n\nLes réactions et déclenchements immédiats déjà prévus conservent leur moment propre. Cet ordre n'ajoute aucune action aux familiers et ne modifie pas leurs vitesses ni leurs délais. Les détails d'entrée dans une zone, des mines et des événements simultanés restent à préciser.\n\nCet ordre reste proposé, en attente de validation.",
+  "shown_copy_sha256": "e481e07dee81068ace65d4472cd70fad14befb9d5ff231d08fffcad4ac39973b",
+  "not_resolved_here": [
+    "zone_entry_and_exit_vs_automatic_damage_and_exposure",
+    "mine_arming_and_entry_trigger_phase",
+    "simultaneous_multi_target_death_trigger_ties",
+    "new_drone_first_action_where_unshown",
+    "pending_familiar_placement_vs_entry_hazards",
+    "fractional_display_rounding",
+    "native_feedback"
+  ],
+  "mechanic_approval": "pending_user_review",
+  "text_approval": "design_explanation_pending;no_new_individual_RP_name_or_error_copy",
+  "visual_approval": "no_new_native_rendering_proposed",
+  "runtime_integration": "not_integrated"
+}

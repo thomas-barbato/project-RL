@@ -1,0 +1,161 @@
+{
+  "method": "Native Macroquad frames; lossless encoded pixels, complete mechanical timeline equality with accepted A01, and exact wall/post-animation pixel checks. No browser rendering claim.",
+  "new_scenes": 11,
+  "comparison_scenes": 22,
+  "native_tile": 64,
+  "fps": 24,
+  "frames": 112,
+  "directions": 4,
+  "preserved_files": 75,
+  "checks": [
+    {
+      "variant": "AF06-A02-DROITE",
+      "path": "AF06-A02-DROITE.webp",
+      "sha256": "f41d8424c856ca4593d440d6952cbe542bff1cc2789e1fe56d68768ba490c05d",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 244384
+    },
+    {
+      "variant": "AF06-A02-GAUCHE",
+      "path": "AF06-A02-GAUCHE.webp",
+      "sha256": "a620f2e00814f22217f0bd0db2fa463ff001af6ba0a442e66913c32d90bc60ef",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 247186
+    },
+    {
+      "variant": "AF06-A02-HAUT",
+      "path": "AF06-A02-HAUT.webp",
+      "sha256": "ac6d687dada58b96c90e8998bfc0fb890b81f8638d3468ab3ec1ad56adb6bd72",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 235484
+    },
+    {
+      "variant": "AF06-A02-BAS",
+      "path": "AF06-A02-BAS.webp",
+      "sha256": "f3819982df097f5f2902c8c6000a42cc134c2f59b498fbbc07c0743357f0711f",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 234182
+    },
+    {
+      "variant": "AF06-A02-JOUEUR",
+      "path": "AF06-A02-JOUEUR.webp",
+      "sha256": "f9f8d17f387a255d9db7efe3efd4f48a6a01da2279a71b3bcc6ad367c18fce2d",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 120180
+    },
+    {
+      "variant": "AF06-A02-ATTENTE",
+      "path": "AF06-A02-ATTENTE.webp",
+      "sha256": "ebfe8f254976c805c4b58fe9d909ba45893d9ed33f4652c970762aa8a817cd01",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 223394
+    },
+    {
+      "variant": "AF06-A02-MUR",
+      "path": "AF06-A02-MUR.webp",
+      "sha256": "8a79b7fcc4f8e3f488ab44ec130e897a02ed98a73aa5a5ba2aad9e9078dde48c",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": true,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 161444
+    },
+    {
+      "variant": "AF06-A02-RESISTE",
+      "path": "AF06-A02-RESISTE.webp",
+      "sha256": "ec8bcd8b1956ea948619a99e402c2da6a1f326138c691efece380fb37c548b7e",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 244830
+    },
+    {
+      "variant": "AF06-A02-DEPLACEMENT",
+      "path": "AF06-A02-DEPLACEMENT.webp",
+      "sha256": "706d5c9d770952735216341028754e797e2696a373924d69421134590ee9cffa",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 229338
+    },
+    {
+      "variant": "AF06-A02-DEGATS",
+      "path": "AF06-A02-DEGATS.webp",
+      "sha256": "772121028852af4e26d36ff7882ef1072454cd2f0e1aedcf2616e96c05acd0e4",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": false,
+      "prepared_damage_label_edge_differences": [
+        {
+          "frame": 49,
+          "bbox": [
+            237,
+            100,
+            243,
+            101
+          ]
+        },
+        {
+          "frame": 50,
+          "bbox": [
+            238,
+            103,
+            244,
+            104
+          ]
+        },
+        {
+          "frame": 51,
+          "bbox": [
+            239,
+            107,
+            244,
+            108
+          ]
+        }
+      ],
+      "bytes": 390320
+    },
+    {
+      "variant": "AF06-A02-CHAINE",
+      "path": "AF06-A02-CHAINE.webp",
+      "sha256": "34c9f28fcade6478b2c20bb6fd3903bf1d4514e72e4bb854d3d2b12eea974b54",
+      "lossless_pixels": true,
+      "mechanical_timeline_identical": true,
+      "wall_pixels_unchanged": false,
+      "post_animation_pixels_identical": true,
+      "prepared_damage_label_edge_differences": [],
+      "bytes": 185826
+    }
+  ]
+}

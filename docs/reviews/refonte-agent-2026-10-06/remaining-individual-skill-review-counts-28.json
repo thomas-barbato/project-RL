@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-08",
+  "scope": "pending_SF00_card_parts;SM02_revision_accepted;BM03_revised_card_pending",
+  "primary_cards": [],
+  "secondary_cards": [
+    {
+      "id": "SF00",
+      "title": "Furtivité"
+    }
+  ],
+  "remaining_first_pass_primary": 0,
+  "remaining_first_pass_secondary": 1,
+  "remaining_first_pass_total": 1,
+  "additional_work_not_quantified": [
+    "planned_heavy_weapon_tree",
+    "missing_branch_healing_options",
+    "earlier_pending_or_revised_card_parts_and_progression_review"
+  ],
+  "native_animations_runtime_and_balance": "separate_following_phases;not_counted_as_skill_cards",
+  "previous_count": "docs/reviews/refonte-agent-2026-10-06/remaining-individual-skill-review-counts-27.json",
+  "accepted_skill_this_turn": "SM02-PROG02",
+  "next_review_skill": "BM03",
+  "pending_prior_secondary_card_parts": [
+    "SF00"
+  ],
+  "accepted_skill_title": "Mines de poison",
+  "pending_prior_primary_card_parts": [
+    "BM03"
+  ],
+  "pending_secondary_card_revisions": [],
+  "latest_feedback": "SM02_integer_progression_shown_values_accepted_as_provisional;later_rebalance_confirmed;BM03_revised_numeric_card_proposed"
+}

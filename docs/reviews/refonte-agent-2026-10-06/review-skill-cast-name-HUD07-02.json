@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-07",
+  "review_id": "HUD07",
+  "revision": 2,
+  "user_request": "quand le joueur utilise une compétence, son nom soit marquée au dessus de ta tete (j'ai envie que ce soit fun)",
+  "requested_direction": "Display the used skill name above the player and above monsters casting their own skills.",
+  "request_approval": "explicit_user_request",
+  "exact_behavior_approval": "displayed_successful_cast_name_1second_upward_fade_once_per_cast_readability_explicitly_accepted;unshown_details_pending",
+  "native_visual_approval": "pending_preview_and_user_review",
+  "reused_copy_examples": [
+    "Réanimation",
+    "Braise"
+  ],
+  "existing_code_observation": {
+    "path": "src/ascii_app.rs",
+    "path_sha256": "df6914acfa1b90faa3eb94e34bb2d497e164657e4a62e8cd52581e6a8e0148b7",
+    "helper": "push_floating_message",
+    "observation": "Existing floating-message helper tracks origin position,tone/lifetime and lanes. Suitable infrastructure to examine later;actual skill-name coverage and native layout not validated here."
+  },
+  "runtime_integration": "not_integrated",
+  "previous_proposal": "docs/reviews/refonte-agent-2026-10-06/review-skill-cast-name-HUD07-01.json",
+  "previous_proposal_sha256": "38aebc0a134cd4009562807df19e1f0aef61919af987ca8058866b7649b67f47",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-cast-name-and-monster-extension-acceptance-decisions.json",
+  "latest_decisions_sha256": "1ef695f374b3a1b8dad99c7701cc90d1585cedcbdd52d53679aa3171fe34cd59",
+  "monster_extension_approval": "explicit_user_request_and_validation",
+  "accepted_behavior": {
+    "scope": "successful_player_active_skill_casts_and_monster_own_skill_casts",
+    "text": "exact_current_approved_skill_name",
+    "anchor": "above_visible_caster_head",
+    "appearance": "successful_cast_commit_after_target_or_placement_confirmation",
+    "delayed_effects": "label_at_cast;no_repeat_at_later_effect_resolution",
+    "display_duration_seconds": 1,
+    "motion": "slight_upward_drift_then_fade",
+    "one_label_per_cast": true,
+    "periodic_channel_ticks_and_burst_projectiles_do_not_repeat": true,
+    "rejected_casts_do_not_display_label": true,
+    "automatic_passives_do_not_display_cast_label": true,
+    "readability": "separate placement from damage_and_status_floating_text;exact_native_lanes_pending",
+    "gameplay_time_cost_or_cooldown_change": false,
+    "drone_cast_name_extension": "not_defined_by_this_monster_request",
+    "existing_actor_visibility_preserved": true,
+    "monster_faction_does_not_change_scope": true
+  },
+  "unshown_rules_pending": [
+    "precise_native_fonts_colors_size_lanes_and_many_simultaneous_names",
+    "special_cases_for_autonomous_reanimated_actor_drone_or_other_companion_casts",
+    "exact_handling_of_hidden_or_newly_visible_casters_without_reveal",
+    "reduced_motion_presentation_and_edge_of_viewport_layout"
+  ]
+}

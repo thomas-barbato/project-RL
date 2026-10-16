@@ -18,9 +18,13 @@ const MAX_PLAYER_PROGRESSION_SAVE_BYTES: usize = 1024 * 1024;
 pub struct RestoredPlayerProgression {
     run: RunProgression,
     skills: SkillProgressionState,
+    attributes: Option<crate::stats::PrimaryAttributes>,
 }
 
 impl RestoredPlayerProgression {
+    pub const fn attributes(&self) -> Option<crate::stats::PrimaryAttributes> {
+        self.attributes
+    }
     pub const fn run(&self) -> &RunProgression {
         &self.run
     }
@@ -38,12 +42,27 @@ pub fn encode_player_progression(
     run: &RunProgression,
     skills: &SkillProgressionState,
 ) -> Result<String, PlayerProgressionSaveError> {
+    encode_player_progression_with_agent_state(run, skills, None, None)
+}
+
+pub(crate) fn encode_player_progression_with_agent_state(
+    run: &RunProgression,
+    skills: &SkillProgressionState,
+    grants: Option<&[String]>,
+    attributes: Option<crate::stats::PrimaryAttributes>,
+) -> Result<String, PlayerProgressionSaveError> {
     let document = PlayerProgressionDocument {
+        agent_granted_skills: grants.map(<[String]>::to_vec),
+        attributes,
         schema_version: PLAYER_PROGRESSION_SAVE_VERSION,
         experience: run.experience(),
         level: run.level(),
         skill_points_earned: run.skill_points_earned(),
         unspent_skill_points: run.unspent_skill_points(),
+        agent_ranks: skills
+            .agent_skills()
+            .map(|(id, rank)| (id.to_owned(), rank))
+            .collect(),
         claimed_one_time_rewards: run
             .claimed_one_time_rewards()
             .map(|key| key.as_str().to_owned())
@@ -120,13 +139,16 @@ pub fn decode_player_progression(
             Ok((discipline, choices))
         })
         .collect::<Result<Vec<_>, PlayerProgressionSaveError>>()?;
-    let skills = SkillProgressionState::from_ordered_choices(
+    let mut skills = SkillProgressionState::from_ordered_choices(
         entries,
         skill_catalog,
         system_features,
         skill_rules,
     )
     .map_err(|error| PlayerProgressionSaveError::Skills(Box::new(error)))?;
+    skills
+        .restore_agent_ranks(document.agent_ranks)
+        .map_err(PlayerProgressionSaveError::Syntax)?;
     let spent_skill_points = skills.disciplines().fold(0_u32, |total, (_, choices)| {
         let discipline_cost = (1..=choices.len()).fold(0_u32, |cost, choice_number| {
             cost.saturating_add(u32::from(
@@ -137,6 +159,24 @@ pub fn decode_player_progression(
         });
         total.saturating_add(discipline_cost)
     });
+    let grants = document
+        .agent_granted_skills
+        .unwrap_or_else(|| skills.agent_skills().map(|(id, _)| id.to_owned()).collect());
+    let unique_grants: std::collections::BTreeSet<_> = grants.iter().collect();
+    if unique_grants.len() != grants.len()
+        || grants.iter().any(|id| skills.agent_skill_rank(id) == 0)
+    {
+        return Err(PlayerProgressionSaveError::Syntax(
+            "invalid initial agent skill grants".to_owned(),
+        ));
+    }
+    let spent_skill_points = spent_skill_points.saturating_add(
+        skills
+            .agent_skills()
+            .map(|(_, rank)| u32::from(rank))
+            .sum::<u32>()
+            .saturating_sub(grants.len() as u32),
+    );
     let accounted_skill_points = run
         .unspent_skill_points()
         .saturating_add(spent_skill_points);
@@ -148,7 +188,11 @@ pub fn decode_player_progression(
         });
     }
 
-    Ok(RestoredPlayerProgression { run, skills })
+    Ok(RestoredPlayerProgression {
+        run,
+        skills,
+        attributes: document.attributes,
+    })
 }
 
 fn parse_content_id(value: String) -> Result<ContentId, PlayerProgressionSaveError> {
@@ -165,6 +209,10 @@ fn parse_content_id(value: String) -> Result<ContentId, PlayerProgressionSaveErr
 #[derive(Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 struct PlayerProgressionDocument {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    agent_granted_skills: Option<Vec<String>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    attributes: Option<crate::stats::PrimaryAttributes>,
     schema_version: u16,
     experience: u64,
     level: u16,
@@ -172,6 +220,8 @@ struct PlayerProgressionDocument {
     unspent_skill_points: u32,
     claimed_one_time_rewards: Vec<String>,
     disciplines: Vec<SavedDisciplineProgression>,
+    #[serde(default, skip_serializing_if = "std::collections::BTreeMap::is_empty")]
+    agent_ranks: std::collections::BTreeMap<String, u8>,
 }
 
 #[derive(Serialize, Deserialize)]

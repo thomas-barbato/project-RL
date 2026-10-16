@@ -1,0 +1,45 @@
+{
+  "browser": "Edge Chromium headless",
+  "url_scheme": "file",
+  "page_errors": [],
+  "automatic_placement_to_contact": "passed",
+  "replay": "passed",
+  "paused_native_explosion_capture": {
+    "turn": 3,
+    "elapsed": 170,
+    "status": "DÃ©monstration automatique Â· Feu Â· version prÃ©cÃ©dente : 0/1 mines Â· mine retirÃ©e Â· Ã©nergie 90 Â· explosions 1 Â· Feu Â· explosion rÃ©visÃ©e : 0/1 mines Â· mine retirÃ©e Â· Ã©nergie 90 Â· explosions 1",
+    "canvases": [
+      {
+        "id": "SM00",
+        "frame": 116,
+        "explosions": 1,
+        "expected_native_png": "frames/SM00-A01-HAUT/116.png",
+        "browser_png": "browser-canvas-SM00.png"
+      },
+      {
+        "id": "SM01",
+        "frame": 116,
+        "explosions": 1,
+        "expected_native_png": "frames/SM00-A02-HAUT/116.png",
+        "browser_png": "browser-canvas-SM01.png"
+      }
+    ]
+  },
+  "idle_preserves_damage_and_status_turns": "passed",
+  "quiet_scene_and_arming_contact": "passed",
+  "wall_protection": "passed",
+  "index_and_comparison_pages": "passed",
+  "screenshot": "browser-visible-explosion.png",
+  "browser_native_pixel_checks": [
+    {
+      "id": "SM00",
+      "frame": 116,
+      "pixels_equal_native": true
+    },
+    {
+      "id": "SM01",
+      "frame": 116,
+      "pixels_equal_native": true
+    }
+  ]
+}

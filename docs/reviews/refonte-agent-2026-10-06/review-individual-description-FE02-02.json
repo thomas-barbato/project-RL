@@ -1,0 +1,162 @@
+{
+  "date": "2026-10-07",
+  "id": "FE02",
+  "title": "Souffle de feu",
+  "revision": 2,
+  "player_copy_markdown": "**FE02 · Souffle de feu — Rang 11**\n\n*Vous déchaînez un torrent de flammes devant vous.*\n\n**Effets actuels**\n\n- Dégâts de feu : **28 par cible et par tour**.\n- Zone : **cône de 90° sur 5 cases**.\n- Durée : **3 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de feu : **30 par cible et par tour**.\n\n**Coût : 8 énergie par tour · Recharge : 6 tours.**\n\nLe souffle se poursuit automatiquement. Vous déplacer, attaquer avec une arme ou utiliser une autre compétence y met fin.\n\nLes dégâts reçus ne l’interrompent pas. Il cesse si vous n’avez plus assez d’énergie.\n\nLes murs arrêtent les flammes. Les alliés dans le cône peuvent être touchés. Dégâts affichés avant les défenses des cibles.",
+  "player_copy_sha256": "5dd1639baee0b208d132fdc468d31e07421d99e0ed5087550f9dcf61be3e67f9",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-20.json",
+  "source_skill_block_sha256": "db944e39e206d25fd1e220dcf73d9abd2c3bde5b71db1669af6180fd9c07f079",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/fire-breath-rename-and-automatic-channel-decisions.json",
+  "latest_decisions_sha256": "c196e93344dc0c25f4e7c4cc5b988dfef775e55675b5d87c75ce46339494c37a",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "explicit_user_rename",
+  "roleplay_text_approval": "unchanged_roleplay_still_proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_global_CD08; automatic_continuation_interruptions_energy_and_cone_conditions_retained",
+  "current_next_effect_copy_approval": "revised_per_turn_card_proposed_pending_individual_user_review",
+  "numeric_rules_approval": "revised_duration_damage_per_turn_and_cost_per_turn_proposed_pending_individual_user_review",
+  "detailed_conditions_approval": "automatic_continuation_and_move_weapon_attack_other_skill_interruptions_requested; damage_noninterruption_energy_stop_and_exact_cases_proposed_pending_review",
+  "current_profile_status": "illustrative_not_a_user_save; existing Willpower scaling proposal used; damage before target defenses",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "attribute_scaling_approval": "shown FE02 profile subject to individual review; unshown full attribute curves not silently accepted",
+  "formulas": {
+    "fire_damage_per_target_per_turn": "floor((6 + 2 * (effective_rank - 1)) * magic_multiplier)",
+    "magic_multiplier": "1 + 0.02 * (Willpower - 5)",
+    "cone_range_cells": "min(5, 3 + floor((effective_rank - 1)/5))",
+    "cone_angle_degrees": 90,
+    "duration_turns": 3,
+    "energy_per_turn": "6 + floor((effective_rank - 1)/4)",
+    "cooldown_turns": 6
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "fire_damage_per_target_per_turn": 28,
+    "cone_range_cells": 5,
+    "cone_angle_degrees": 90,
+    "duration_turns": 3,
+    "energy_per_turn": 8,
+    "cooldown_turns": 6
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "fire_damage_per_target_per_turn": 30,
+    "cone_range_cells": 5,
+    "cone_angle_degrees": 90,
+    "duration_turns": 3,
+    "energy_per_turn": 8,
+    "cooldown_turns": 6
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "fire_damage_per_target_per_turn": 6,
+    "cone_range_cells": 3,
+    "cone_angle_degrees": 90,
+    "duration_turns": 3,
+    "energy_per_turn": 6,
+    "cooldown_turns": 6,
+    "approval": "unshown full curve remains pending"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "fire_damage_per_target_per_turn"
+    ],
+    "unchanged_effects_omitted": [
+      "cone_range_cells",
+      "cone_angle_degrees",
+      "duration_turns",
+      "energy_per_turn",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "magic_cone_not_a_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy weapon exclusion added to spell"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true,
+    "effect_duration_and_automatic_continuation_shown": true
+  },
+  "channel_conditions": {
+    "automatic_continuation_requested": true,
+    "manual_maintenance": false,
+    "maintenance_action_label": null,
+    "initial_activation": "initial damage resolution on ordinary cast activation; no preparation delay added",
+    "duration_turns_proposal": 3,
+    "duration_includes_initial_resolution_proposal": true,
+    "maximum_damage_resolutions_proposal": 3,
+    "additional_automatic_resolutions_proposal": 2,
+    "one_resolution_per_game_turn": true,
+    "advance_game_turns_without_player_action": false,
+    "energy_paid_per_resolution_proposal": 8,
+    "maximum_total_energy_proposal": 24,
+    "interruption_triggers": [
+      "movement",
+      "weapon attack",
+      "other skill use"
+    ],
+    "HP_loss_interrupts": false,
+    "HP_loss_noninterruption_approval": "shown revised consequence of requested interruption list pending individual review",
+    "energy_insufficient_stops_effect_proposal": true,
+    "free_resolution_without_energy": false,
+    "every_other_action_interrupts": false,
+    "cooldown_blocks_ongoing_effect": false,
+    "interrupt_attempt_refusal_and_preview_semantics": "unshown pending review; no preview cancellation or refusal mutation silently authorized",
+    "orientation_other_item_and_natural_attack_cases": "unshown pending review",
+    "cooldown_start_and_exact_turn_order": "unshown pending review"
+  },
+  "effect_conditions": {
+    "damage_type": "fire",
+    "damage_scope": "each affected target per game turn, maximum three resolutions including initial proposed",
+    "zone": "forward cone, range five, angle ninety degrees",
+    "walls_stop_flames": true,
+    "allies_can_be_hit": true,
+    "damage_display": "before target defenses",
+    "persistent_burn_status_created": false,
+    "hit_probability_or_automatic_hit_rule": "not chosen in card; full hit model pending",
+    "cone_exact_geometry_corner_and_actor_footprint_rules": "unshown pending review",
+    "hidden_actor_reveal_created": false,
+    "control_effect_created": false
+  },
+  "unshown_rules_approval": "Full rank curves, spell hit/defense order, exact cone/corner/footprint geometry, direction changes, cooldown start/count, initial-versus-followup turn/reaction ordering, valid/refused attack or skill cancellation, inventory/pet/item/natural-attack interactions, energy-insufficiency atomicity and damage/cost modifiers remain pending where not already accepted. Automatic continuation is specific to FE02. No automatic advance of game turns, manual maintenance command, preparation delay, persistent burn, general spell variance, hidden actor reveal or global change to other channel skills introduced.",
+  "visual_intention_approval": "existing_catalogue_layered_flame_tongues_before_hands_direction_accepted_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable FE02 explicitly renamed Souffle de feu; manual Maintenir retired for this skill, automatic continuation requested.",
+    "Unchanged RP and revised current/next numeric/condition copy remain pending; redesign request does not accept unshown/full card.",
+    "Willpower10 M=11/10: current rank11 damage28 and next12 damage30, now per target per turn.",
+    "Both proposed durations3, range5, angle90, energy8 per turn, cooldown6; only damage in next block.",
+    "Learned9 to10 and gear+2 unchanged, one point within cap; no tooltip breakdown or formula.",
+    "Move/weapon attack/other skill stop automatic effect; no HP-loss interruption and energy-insufficiency stop explicitly shown for review.",
+    "Automatic effect ticks do not themselves advance turns; no global change to other channel skills.",
+    "83 primary skills and71 blocks unchanged; native visual pending, no runtime integration."
+  ],
+  "previous_title": "Souffle de fournaise",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE02-01.json"
+}

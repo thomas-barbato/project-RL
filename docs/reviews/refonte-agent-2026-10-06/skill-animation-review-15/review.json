@@ -1,0 +1,17 @@
+{
+  "batch": "ANIM-S05-TOURS01",
+  "status": "visually_approved",
+  "candidate": {
+    "number": 12,
+    "skill_id": "FE04",
+    "variant": "FE04-A05-TOUR"
+  },
+  "accepted_parts": "Review 14 drawing and slower cadence remain accepted.",
+  "requested_change": "Visual effect stays animated until its game turn passes. Waiting in real time does not remove it.",
+  "presentation": "Left is the earlier 0.8-second fade; right holds the same drawings until turn 2. Explicit turn 1 starts the eruption after its existing preparation. Turn 2 ends the large effect; attached Burn then continues for its remaining turns.",
+  "scope": "Debug visual presence only. No damage repetition, extra duration of a gameplay effect, cooldown change, actor redraw or campaign integration.",
+  "native_tile_size": 64,
+  "flame_texture_fps": 8,
+  "browser": "Manual +1-turn button. Starts during active eruption, so waiting indefinitely demonstrates persistence. Native laboratory supports manual launch, preparation, all four directions, obstacles and turns.",
+  "acceptance": "visual-acceptance-01.json"
+}

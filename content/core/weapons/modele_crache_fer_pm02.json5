@@ -1,0 +1,24 @@
+{
+  "id": "core:modele_crache_fer_pm02",
+  "name_key": "equipment.modele_crache_fer_pm02.name",
+  "description_key": "equipment.submachine_guns.description",
+  "mass_grams": 1800,
+  "attack": {
+    "range": 4,
+    "distance_metric": "euclidean",
+    "requires_line_of_sight": true,
+    "accuracy_modifier": -10,
+    "damage": {
+      "amount": 3,
+      "damage_type": "piercing",
+      "penetration": 0
+    }
+  },
+  "supply": {
+    "kind": "matter",
+    "amount": 3
+  },
+  "burst": {
+    "shots": 3
+  }
+}

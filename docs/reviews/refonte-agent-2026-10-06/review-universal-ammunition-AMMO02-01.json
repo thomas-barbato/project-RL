@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-09",
+  "review_id": "AMMO02",
+  "revision": 1,
+  "status": "proposal_pending_explicit_review",
+  "accepted_direction": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/universal-ammunition-and-matter-removal-decisions.json",
+    "reference_sha256": "aee8578f5b4dc465e68f2308e13e81dcc19ac1df64a4b3b9cb75f54ac8d29760"
+  },
+  "accepted_start_stock_and_costs": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-starting-equipment-START-GEAR01-02.json",
+    "reference_sha256": "38a12d0f1473ec2662ddc94e3476ba85b3a0fabbe330a28906e1b53b85b5d095"
+  },
+  "scope": "agent_shared_reserve_and_immediate_weapon_attack_consumption_only",
+  "player_copy_markdown": "**AMMO02 · Réserve et consommation des munitions — proposition**\n\n**Munitions**\n*Des charges standardisées pour alimenter vos armes à distance.*\n\n- Toutes vos armes à distance puisent dans la même réserve d’inventaire, armes lourdes comprises.\n- Le tir utilise directement cette réserve, sans chargeur ni action de rechargement.\n- Une rafale de 3 projectiles à 1 munition chacun coûte 3 munitions, même si les tirs ratent leur cible.\n- Une explosion consomme les munitions du projectile lancé, quel que soit le nombre d’ennemis touchés. Les rebonds et effets secondaires d’un projectile ne consomment pas de munition supplémentaire.\n- Chaque arme affiche son coût par projectile ; les coûts des armes lourdes seront fixés avec leurs modèles.\n- Une compétence qui fait tirer votre arme paie son coût en énergie et les munitions des projectiles tirés. Les sorts, les compétences de mines et de grenades conservent leurs coûts en énergie.\n\nSi la réserve ne suffit pas pour l’attaque immédiate complète, elle est refusée : aucun projectile ne part et aucun tour, aucune énergie ou munition n’est consommé.\n\n**Affichage proposé**\n\n`Munitions : 40`\n\n`Coût en munitions : 3`\n\n`Munitions insuffisantes : 3 requises, 2 disponibles.`\n\nLes départs validés sont conservés : Technomancien et Traqueur, 40 munitions chacun ; leurs armes de départ utilisent 1 munition par projectile.\n",
+  "player_copy_sha256": "ea5491862505c956abef52d349cf3724adf7dc65ef8c1fabec5798822e25f3bd",
+  "proposed_rules": {
+    "item_name": "Munitions",
+    "item_RP": "Des charges standardisées pour alimenter vos armes à distance.",
+    "shared_reserve": "one_real_inventory_item_type_shared_by_all_agent_ranged_weapons_including_heavy;no_model_specific_hidden_counter",
+    "magazines": "no_magazine_or_reload_action;current_ammunition_capacity_does_not_create_separate_refonte_reserve",
+    "cost": "sum_actual_primary_projectiles_of_immediate_attack_times_each_applicable_weapon_model_cost;consume_for_misses;no_victim_multiplier_for_AoE",
+    "secondary_effects": "no_extra_charge_for_existing_primary_projectile_ricochets_or_secondary_impacts",
+    "weapon_skills": "pay_defined_skill_energy_plus_primary_weapon_projectile_ammunition;no_new_skill_energy_cost_created",
+    "atomic_refusal": "preflight_whole_immediate_attack;insufficient_ammo_means_no_projectile_no_turn_no_energy_ammo_or_rng_consumption",
+    "heavy_costs": "same_item_type;actual_per_model_costs_still_to_be_presented"
+  },
+  "illustrative_examples": [
+    {
+      "id": "burst",
+      "projectiles": 3,
+      "cost_per_projectile": 1,
+      "required": 3
+    },
+    {
+      "id": "AoE",
+      "projectiles": 1,
+      "illustrative_model_cost": 4,
+      "victims": 8,
+      "required": 4,
+      "real_heavy_cost_approved": false
+    },
+    {
+      "id": "refusal",
+      "required": 3,
+      "available": 2,
+      "remaining": 2,
+      "shots_fired": 0
+    }
+  ],
+  "preserved": "START_GEAR01_40_each_for_Technomancien_Traqueur_and1_per_projectile_for_start_pistol_rifle;energy_only_spells_secondary_mine_and_grenade_skills",
+  "still_to_define": [
+    "weight_and_stack_presentation",
+    "loot_and_shop_supply_amounts",
+    "all_remaining_weapon_model_costs",
+    "familiars_and_monsters_supply",
+    "ammunition_reservation_for_delayed_or_multi_turn_attacks",
+    "native_icon"
+  ],
+  "approval_boundary": "only_copy_and_rules_explicitly_presented_in_chat_can_be_accepted;unshown_details_not_approved_by_link",
+  "text_approval": "pending",
+  "mechanic_approval": "pending",
+  "visual_approval": "no_new_icon_or_art_proposed",
+  "runtime_integration": "not_integrated"
+}

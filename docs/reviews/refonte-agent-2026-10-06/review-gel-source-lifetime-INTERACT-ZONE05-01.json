@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-ZONE05",
+  "revision": 1,
+  "title": "Plusieurs sources de Gel : source et durée",
+  "status": "proposed_awaiting_user_review;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/last-status-cast-power-acceptance-decisions.json",
+      "reference_sha256": "70bc644096b85e9dd7f8504f614cf5f897529c69b6d95e1a03074285be655357"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-overlapping-zone-status-INTERACT-ZONE02-02.json",
+      "reference_sha256": "adf11cd5575d75041363667c4b177cbe22b22bfdff1fa18db2273af66a411408"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-old-zone-status-refresh-INTERACT-ZONE03-02.json",
+      "reference_sha256": "7f8e8a98a68480505a3cf6e4d05df31f1f346b3c93d50dba9ae31694dc1383ba"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-zone-entry-exit-INTERACT-ZONE04-02.json",
+      "reference_sha256": "019f70cae8505c03023ded7c2b8a1adbe4f91975d9913d08ab5ea976811f5053"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-residue-access-loss-INTERACT-RANK05-02.json",
+      "reference_sha256": "64e357edfbab7d869cf7a8635db1106afe9277059e61e14dff522196d14aa9c3"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-contagion-zone-gel-INTERACT-CONTAGION02-02.json",
+      "reference_sha256": "733df619161bc664311c2c519281ab245d42a14fbdd31570718d512c2807f80a"
+    }
+  ],
+  "scope": "single_current_Gel_instance_source_and_lifetime_when_timed_and_zone_only_sources_replace_each_other;not_new_chance_or_duration_numbers",
+  "already_accepted": "one_status_per_kind;latest_successful_power_even_if_weaker;failed_attempt_no_refresh;zone_only_Gel_ends_on_source_exit_or_removal;no_restore_overwritten_status;Gel_Burn_mutual_successful_removal",
+  "proposed_rule": {
+    "one_current_instance": "one_current_Gel_per_actor;latest_successful_application_replaces_current_power_source_and_lifetime_mode_not_parallel_hidden_Gel_components",
+    "timed_mode": "incoming_independently_timed_Gel_restarts_with_that_application_full_accepted_duration;zone_exit_or_unrelated_zone_removal_does_not_cancel_it",
+    "zone_mode": "incoming_zone_only_Gel_depends_on_that_successful_source_zone;exit_or_removal_of_that_source_ends_current_Gel_even_if_other_cold_zone_remains",
+    "later_success": "later_successful_zone_application_can_replace_timed_Gel_with_own_zone_bound_Gel;later_successful_timed_application_can_replace_zone_bound_Gel_with_independent_timer",
+    "no_restore": "when_current_Gel_ends_do_not_restore_older_overwritten_Gel_or_hidden_timer;remaining_zone_can_regel_only_by_new_successful_attempt_at_its_next_eligible_application",
+    "failure": "failed_application_preserves_current_Gel_source_power_and_lifetime_without_refresh",
+    "opposition": "successful_Burn_removes_current_Gel;successful_Gel_removes_Burn_as_already_accepted;no_restoration_of_overwritten_opposed_status",
+    "Contagion": "use_current_selected_Gel_source_for_accepted_transfer_rule;zone_only_source_remaining_time_reference_from_current_source;successful_received_Gel_has_independent_timer_and_cannot_be_retransmitted;later_replacement_keeps_the_incoming_application_origin_and_its_own_accepted_eligibility_rules",
+    "preserved": "existing_chances_resistances_importance_modifiers;per_zone_exposure_and_application_budget;oldest_to_newest_same_event_zone_order;creator_rank_loss_cleanup_scopes",
+    "scope_boundary": "no_new_damage_or_status_numbers_no_extra_automatic_status_roll_on_source_loss_no_hidden_Gel_stack_or_union_of_zone_lifetimes;no_new_native_feedback"
+  },
+  "shown_example": {
+    "two_overlapping_zones": [
+      "A",
+      "B"
+    ],
+    "applications": [
+      "A_success",
+      "B_success"
+    ],
+    "current_Gel_source": "B",
+    "B_removed": "current_Gel_ends;A_requires_new_eligible_successful_attempt"
+  },
+  "shown_copy_markdown": "INTERACT-ZONE05 · Plusieurs sources de Gel — proposition\n\n- Une cible porte un seul Gel. La dernière application réussie remplace sa puissance, sa durée ou sa condition de maintien, ainsi que sa source. Une tentative échouée ne change rien au Gel présent.\n- Si ce Gel dépend d'une zone, sortir de cette zone ou la voir disparaître met fin à ce Gel. Une autre zone de glace encore présente devra réussir une nouvelle application pour geler à nouveau la cible.\n- Si le Gel possède sa propre durée, quitter une zone ne le retire pas. Une application ultérieure réussie par une zone peut cependant le remplacer par son Gel dépendant de cette zone.\n- Un ancien Gel déjà remplacé ne revient pas automatiquement quand le nouveau prend fin. Une Brûlure réussie supprime toujours le Gel actif.\n\nExemple : deux zones A et B se superposent. A réussit à geler un monstre, puis B réussit à son tour : le Gel dépend désormais de B. Si B disparaît, ce Gel prend fin ; A devra réussir une nouvelle application pour regeler le monstre.\n\nLes Gels temporaires transmis par Contagion conservent leur durée indépendante et leur interdiction de retransmission. Les chances, résistances et malus des élites et des boss restent conservés.\n\nCette gestion de la source et de la durée du Gel reste proposée, en attente de validation.",
+  "shown_copy_sha256": "1dc19f3418d98f187e5fe44fc7b0b3edaec9c43db91ceec8e7d9cf6dffc2edd4",
+  "not_resolved_here": [
+    "initial_actor_creation_or_pending_arrival_zone_hazards",
+    "simultaneous_death_proc_ties",
+    "native_source_duration_inspection_feedback"
+  ],
+  "mechanic_approval": "pending_user_review",
+  "text_approval": "design_explanation_pending;no_new_individual_RP_name_or_error_copy",
+  "visual_approval": "no_new_native_rendering_proposed",
+  "runtime_integration": "not_integrated"
+}

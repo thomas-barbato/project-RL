@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-08",
+  "review_id": "E01-REG-ACCEPTED02",
+  "stat_id": "E01",
+  "title": "Récupération d’énergie",
+  "revision": 2,
+  "status": "shown_RP_rates_minimums_rounding_and_examples_accepted;unshown_cases_pending",
+  "accepted_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-07.json",
+  "accepted_attribute_model_sha256": "4a1d217e98d7a9f04a04d0469f27448502affe625c52b75996e4156713256c82",
+  "prior_shared_phase_decisions": "docs/reviews/refonte-agent-2026-10-06/hostiles-calm-blink-decisions.json",
+  "prior_shared_phase_decisions_sha256": "d43e870a766869cecd0567583ef2e5cba1caa45af7751cad826368b5df1d2126",
+  "already_accepted_phase_scope": "schematic_Combat_Accalmie_Calme_shared_by_agent_and_drones_for_energy_and_Maintenance;three_quiet_turn_countdown;unshown_phase_conditions_keep_prior_status",
+  "shown_copy_markdown": "La **capacité d’énergie est validée**. Voici la proposition pour sa récupération.\n\n**E01 · Récupération d’énergie**\n\n*Votre réserve se reconstitue lentement, puis plus rapidement lorsque le calme revient.*\n\n**Effets proposés**\n\n- Combat et accalmie : **1 % de l’énergie maximale par tour**, minimum **1 point**.\n- Calme : **3 % de l’énergie maximale par tour**, minimum **3 points**.\n- Récupération arrondie à l’entier supérieur, limitée à l’énergie manquante.\n\n**Avec une réserve maximale de 68**\n\n- Combat et accalmie : **+1 énergie par tour**.\n- Calme : **+3 énergie par tour**.\n\n**Avec une réserve maximale de 300**\n\n- Combat et accalmie : **+3 énergie par tour**.\n- Calme : **+9 énergie par tour**.\n\nLe retour au calme conserve le décompte de **trois tours déjà validé**. Ouvrir un menu ou attendre en temps réel ne rend pas d’énergie.",
+  "shown_copy_sha256": "39f0b9b29c40f05ca588e42d368286994f0b54a6395607705ff1294d279f9f90",
+  "proposed_rules": {
+    "combat_and_accalmie_percent_of_maximum_energy_per_turn": 1,
+    "combat_and_accalmie_minimum_energy_per_turn": 1,
+    "calm_percent_of_maximum_energy_per_turn": 3,
+    "calm_minimum_energy_per_turn": 3,
+    "rounding": "ceiling_before_missing_energy_limit",
+    "cannot_overfill": true,
+    "menus_or_realtime_wait_regenerate_energy": false
+  },
+  "shown_examples": [
+    {
+      "maximum_energy": 68,
+      "combat_and_accalmie_recovery_per_turn": 1,
+      "calm_recovery_per_turn": 3
+    },
+    {
+      "maximum_energy": 300,
+      "combat_and_accalmie_recovery_per_turn": 3,
+      "calm_recovery_per_turn": 9
+    }
+  ],
+  "RP_approval": "shown_RP_accepted",
+  "numeric_approval": "shown_percentages_minimums_ceiling_missing_energy_limit_and_examples_accepted",
+  "unshown_cases_pending": [
+    "exact_tick_order_with_phase_recalculation_and_costs",
+    "first_calm_tick_timing_and_combat_reset_conditions_not_already_shown",
+    "ongoing_costs_stealth_and_channelled_skill_interactions",
+    "max_energy_snapshot_and_capacity_change_during_tick",
+    "partial_actions_and_different_action_time_costs",
+    "modifiers_and_overlapping_recovery_effects",
+    "new_game_and_layer_transition_phase_rules_not_previously_accepted",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "none_presented;existing_HUD_requirements_preserved",
+  "runtime_integration": "not_integrated",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-energy-regeneration-E01-01.json",
+  "previous_card_sha256": "3743f26cacefd3e630de37e609dbbb587b2d3650c02fd0a9241ef0c1cec080e7",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/energy-regeneration-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "ed7548f4160910d6a82a567e10385b7a40aa9ee10426faa7527ee1c54db17acc",
+  "accepted_rules": {
+    "combat_and_accalmie_percent_of_maximum_energy_per_turn": 1,
+    "combat_and_accalmie_minimum_energy_per_turn": 1,
+    "calm_percent_of_maximum_energy_per_turn": 3,
+    "calm_minimum_energy_per_turn": 3,
+    "rounding": "ceiling_before_missing_energy_limit",
+    "cannot_overfill": true,
+    "menus_or_realtime_wait_regenerate_energy": false
+  }
+}

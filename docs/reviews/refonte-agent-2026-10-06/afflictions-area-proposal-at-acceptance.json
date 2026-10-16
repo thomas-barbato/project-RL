@@ -1,0 +1,144 @@
+{
+  "date": "2026-10-15",
+  "review_id": "AFFLICTIONS-ZONE01",
+  "status": "branch_direction_requested; detailed_proposal_pending_review",
+  "user_request": "Rendre les compétences de la branche Affaiblissements de zone, dans l’esprit de malédictions lancées sur des groupes, et revoir toute la branche.",
+  "confirmed_scope": {
+    "branch": "Affaiblissements",
+    "active_skill_ids": [
+      "O02",
+      "AF02",
+      "AF03",
+      "AF04",
+      "AF05"
+    ],
+    "passive_to_revisit": "AF06",
+    "conversion_to_area_requested": true
+  },
+  "proposed_common_rules": {
+    "targeting": "Choose a visible, reachable cell within casting range, including an empty centre. The preview shows the exact affected cells using the existing shared obstacle geometry.",
+    "area_shape": "square",
+    "radius_cells_rank_component": {
+      "kind": "stepped",
+      "base": 1,
+      "every_ranks": 3,
+      "gain_per_step": 1,
+      "rank_offset": 0
+    },
+    "examples": [
+      {
+        "effective_rank": 1,
+        "width_cells": 3,
+        "casting_range_cells": 5
+      },
+      {
+        "effective_rank": 4,
+        "width_cells": 5,
+        "casting_range_cells": 6
+      },
+      {
+        "effective_rank": 7,
+        "width_cells": 7,
+        "casting_range_cells": 7
+      },
+      {
+        "effective_rank": 10,
+        "width_cells": 9,
+        "casting_range_cells": 8
+      },
+      {
+        "effective_rank": 13,
+        "width_cells": 11,
+        "casting_range_cells": 9
+      }
+    ],
+    "range": "Retain the existing growing casting-range curve; this is distinct from the curse area radius.",
+    "recipients": "All eligible hostiles relative to the caster inside the legal area; no automatic curse on the caster or allies.",
+    "application": "Resolve application and existing resistance/immunity independently for each victim; one resistant victim does not prevent the others being affected. No new resistance formula.",
+    "effect_binding": "Apply once at casting, then attach status and remaining duration to each affected actor, including if it leaves the original area. Not a persistent hazardous ground zone; later entrants do not acquire the curse automatically.",
+    "potency": "Retain each curse effect; the existing damage falloff does not attenuate these non-damaging status applications. Any separate status attenuation remains a distinct future proposal.",
+    "reapplication": "Preserve the accepted last-application potency and duration refresh rules for the same status; no new stacking/exclusivity rule between different curses.",
+    "visuals": "Brief group application animation, shared harmful-effect recoil on successful victims, existing compact icon and duration above each affected actor. Remove targeting preview on confirmation.",
+    "numbers_not_changed": "Other potency, energy, duration and cooldown parameters remain the current baseline for this proposal; no silent balance adjustment."
+  },
+  "active_revisions": [
+    {
+      "id": "O02",
+      "title": "Interférence",
+      "kind": "active",
+      "proposed_change": "Ciblage individuel remplacé par une malédiction de zone.",
+      "effect_preserved": "Réduire les dégâts directs des ennemis touchés."
+    },
+    {
+      "id": "AF02",
+      "title": "Faille d'armure",
+      "kind": "active",
+      "proposed_change": "Ciblage individuel remplacé par une malédiction de zone.",
+      "effect_preserved": "Réduire leur armure physique, naturelle comprise."
+    },
+    {
+      "id": "AF03",
+      "title": "Silence",
+      "kind": "active",
+      "proposed_change": "Ciblage individuel remplacé par une malédiction de zone.",
+      "effect_preserved": "Les réduire au silence selon les restrictions existantes."
+    },
+    {
+      "id": "AF04",
+      "title": "Rupture de régénération",
+      "kind": "active",
+      "proposed_change": "Ciblage individuel remplacé par une malédiction de zone.",
+      "effect_preserved": "Bloquer leur régénération selon les règles existantes."
+    },
+    {
+      "id": "AF05",
+      "title": "Désorientation",
+      "kind": "active",
+      "proposed_change": "Ciblage individuel remplacé par une malédiction de zone.",
+      "effect_preserved": "Les désorienter selon les restrictions existantes."
+    }
+  ],
+  "contagion_proposal": {
+    "id": "AF06",
+    "title": "Contagion",
+    "kind": "passive",
+    "change": "At the death of a cursed enemy, transmit its most recent compatible effect to eligible enemies in an area around the corpse, instead of only the nearest enemy.",
+    "area_shape": "square",
+    "radius": "Use the existing range_from_victim_cells progression as the proposed area radius: 2 cells at rank 1, 3 at rank 6, 4 at rank 11 and beyond (cap 4).",
+    "examples": [
+      {
+        "effective_rank": 1,
+        "width_cells": 5
+      },
+      {
+        "effective_rank": 6,
+        "width_cells": 7
+      },
+      {
+        "effective_rank": 11,
+        "width_cells": 9
+      }
+    ],
+    "preserved": "Existing inherited-effect weakening, remaining-duration limits, five-effect compatibility, eligible-recipient observation rules and control immunities; no retransmission from a transmitted effect. No active command, energy cost or cooldown added.",
+    "approval": "Proposed only; changing number of recipients and shape is not inferred to be accepted from the general branch instruction."
+  },
+  "copy_and_visual_review": {
+    "current_tooltips": "Not changed. Final pluralized player copy and current/next values will be reviewed with the new area renderings.",
+    "current_preview": "skill-animation-review-86 remains an unaccepted point-target visual reference, superseded for targeting only. The arc/rust drawings and markers are neither approved nor rejected by this instruction.",
+    "new_area_previews": "Prepare revised candidates 91/O02-A02 and 92/AF02-A02 first after the common behavior is confirmed; continue other branch skills by lots.",
+    "campaign_integration": false,
+    "approval_separation": [
+      "requested area direction",
+      "proposed detailed mechanics and area sizes",
+      "revised player copy",
+      "native visual renderings"
+    ]
+  },
+  "catalogue_sha256_unchanged": "bf176f625980f6c6ec53e8943fc0195b351a7e69ff880554fb2379317483c2ac",
+  "related_reviews": [
+    "affliction-activation-acceptance-decisions.json",
+    "review-individual-description-AF06-03.json",
+    "skill-animation-review-86/review.json",
+    "skill-animation-review-85/visual-acceptance-01.json"
+  ]
+}

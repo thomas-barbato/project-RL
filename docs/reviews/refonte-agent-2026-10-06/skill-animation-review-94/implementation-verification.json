@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-15",
+  "checks": {
+    "native_debug_capture_completed": true,
+    "targeted_tests_passed": 2,
+    "targeted_tests_failed": 0,
+    "format_check_passed": true,
+    "browser_rendering_checked": false,
+    "active_catalogue_unchanged": true,
+    "accepted_guardian_body_unchanged": true,
+    "pending_O03_animation_preserved": true,
+    "proposal_snapshot_preserved": true,
+    "numeric_parameters_still_pending": true,
+    "html_image_paths_exist": true,
+    "size_export_height64": true,
+    "unchanged_simulation_timelines": true,
+    "unchanged_status_icon": true,
+    "targeted_tests_reexecuted_for_size_change": false
+  },
+  "preserved_sha256": {
+    "assets/skills/agent/catalogue.json": "459b572632cd0bdba78a8120fe1b3244b52199bb8f23bc0bd3ea9c7d246facfb",
+    "assets/animations/agent/skill-animation-review-93/gardien-body02/D66-BODY02-native64.png": "343ac378ea0e34beb7892f2df833e0547fe9adf8ecb59e79ca526dbf0bc70ad0",
+    "artifacts/refonte-agent-2026-10-06/skill-animation-review-93/algorithmes-combat-64.webp": "aa70f21047a9c026b4887d078171a4e3f32f0b89b57504241bb3788b5225cfca",
+    "docs/reviews/refonte-agent-2026-10-06/guardian-simultaneous-taunts-proposal-01.json": "1a8be4c0167c6a67003710bde729a34c5a153b59bb08dd3a95ded9a6484ec84b"
+  },
+  "source_sha256": {
+    "src/agent_skill_lab_review/fire_painted/guardian_taunt.rs": "564edc4429df2430f030b3260df9be581608a9f57a893be39d67a4d09b722cea",
+    "tools/art/package_guardian_taunt_review.py": "e31a3f69354cc975fe27babaa964cdc30fd4e48332c9005eb8f9ce79167bb926",
+    "tools/art/guardian_taunt_review_template.html": "67830fb896e3d3ecb265db44f83b2f8a9d6283576d4e8674306b6d6b4fdba5df",
+    "tools/art/verify_guardian_taunt_viewer.cjs": "4bcf2a640bdbe89010e2d5a6c1224997d645240400de62748d4c20ead6966205"
+  },
+  "targeted_tests_scope": "Two previously passing taunt tests; size revision leaves the simulation unchanged, verified against all eight captured timelines. Native debug build and captures repeated for the size change."
+}

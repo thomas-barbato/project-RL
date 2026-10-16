@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-06",
+  "id": "SU03",
+  "title": "Barrière réactive",
+  "revision": 1,
+  "player_copy_markdown": "**Barrière réactive — Rang 11**\nPassif permanent · 9 rangs appris + 2 grâce à l’équipement.\n\n*Après une accalmie, vos protections se reforment pour encaisser le prochain coup.*\n\nLa barrière absorbe le prochain coup direct dans la limite de sa capacité, puis disparaît.\n\n**Effet actuel**\n- Absorption du prochain coup direct : **18 dégâts maximum** (**13,3 % des PV maximum**).\n- Délai de reformation : **4 tours sans subir de dégâts**.\n\n**Prochain rang — 12 · 1 point de compétence**\n- Absorption du prochain coup direct : **19 dégâts maximum** (**13,9 % des PV maximum**).\n\nLes dégâts persistants retardent sa reformation, mais ne consomment pas une barrière déjà prête. Elle peut se reformer pendant un combat.",
+  "player_copy_sha256": "bbe77c8e9b1ce51e77b03616d7574f1e966aefed63aaad57247db0402dc40452",
+  "example_context": "Illustrative character retains 130 maximum HP at both preview ranks; only SU03 gains one learned rank. Vitalité améliorée stays at rank 11.",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/egide-occulte-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "cbcc9109a2437ead687c848ffc11fa3047b5c55a6cb0666d55c3c6b37d893924",
+  "previous_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-03.json",
+  "previous_skill_block_sha256": "6f27d2fe253466f99e866437a2abc73e7ebfb59a65a94841e5b4238a38653024",
+  "name_approval": "preserve_previous_approval",
+  "roleplay_text_approval": "pending_individual_user_review; exact existing proposal preserved",
+  "functional_description_approval": "pending_user_review",
+  "current_next_effect_copy_approval": "pending_user_review",
+  "numeric_rules_approval": "new current-next absorption values and damage-free reformation delay pending individual user review",
+  "formulas": {
+    "absorption_percent_maximum_HP": "5 + 25 * (effective_rank - 1) / (effective_rank + 19)",
+    "maximum_absorbed_damage": "ceil(maximum_HP * absorption_percent_maximum_HP / 100)"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_hp": 130,
+    "vitalite_amelioree_effective_rank": 11,
+    "maximum_hp_before_vitalite_amelioree": 100,
+    "other_absorption_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "absorption_percent_maximum_HP_exact": {
+      "numerator": 40,
+      "denominator": 3
+    },
+    "absorption_percent_maximum_HP_display": 13.3,
+    "maximum_hp": 130,
+    "maximum_absorbed_damage": 18,
+    "reformation_damage_free_turns": 4,
+    "passive_permanent": true
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "absorption_percent_maximum_HP_exact": {
+      "numerator": 430,
+      "denominator": 31
+    },
+    "absorption_percent_maximum_HP_display": 13.9,
+    "maximum_hp": 130,
+    "maximum_absorbed_damage": 19,
+    "reformation_damage_free_turns": 4,
+    "passive_permanent": true
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_maximum_HP_equipment_attributes_and_other_skill_ranks": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "absorption_percent_maximum_HP",
+      "maximum_absorbed_damage"
+    ],
+    "unchanged_effects_omitted": [
+      "maximum_hp",
+      "reformation_damage_free_turns"
+    ]
+  },
+  "presented_conditions_approval": "proposed permanent passive, one direct hit consumes barrier, four damage-free turns restore it; persistent damage delays reformation without consuming a ready barrier; can reform during combat",
+  "global_calm_phase_requirement": "none; its four-turn damage-free delay is separate from HUD Combat/Accalmie/Calme",
+  "unshown_conditions_approval": "initial readiness, protection order, fully absorbed hit reset, zero-damage hit handling, reformation counters on gear/HP changes and drone exclusions remain pending",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "exact percentage and capacity fractions evaluated before display rounding",
+    "130 maximum HP preserved between previews; other passive not upgraded implicitly",
+    "18 to 19 damage capacity verified with proposed ceiling rule",
+    "existing proposed roleplay preserved; no table or progression formula in player copy",
+    "unchanged reformation delay omitted from next-rank block; learned cap respected"
+  ]
+}

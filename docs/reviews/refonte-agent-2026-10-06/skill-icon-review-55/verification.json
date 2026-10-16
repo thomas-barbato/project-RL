@@ -1,0 +1,110 @@
+{
+  "protected_bank_files_unchanged": 112,
+  "center_transparent_at_all_sizes": true,
+  "native_tree_capture_size": [
+    960,
+    540
+  ],
+  "native_world_tile_size": 64,
+  "native_capture_resampled": false,
+  "mark_lifetimes": [
+    {
+      "variant": "T01-A03-HAUT",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-DROITE",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-GAUCHE",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-BAS",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-ATTENTE",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-CLOISON",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-CACHE",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-SURVOL",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-MELEE",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-SILENCE",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-TRANSFORME",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-MANQUE",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-RAFALE",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-EXPIRATION",
+      "status_lifetime_checked": true
+    },
+    {
+      "variant": "T01-A03-REMPLACEMENT",
+      "status_lifetime_checked": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "T01-A03-HAUT-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 29
+    },
+    {
+      "file": "T01-A03-DROITE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 29
+    },
+    {
+      "file": "T01-A03-GAUCHE-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 29
+    },
+    {
+      "file": "T01-A03-BAS-64.gif",
+      "size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 29
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "FR01-REWORK01",
+    "EL-STAT01",
+    "EL-GEL01",
+    "EL-BAL01"
+  ],
+  "user_requests": [
+    {
+      "message": "en faite je sais pas comment va fonctionner véritablement le ralentissement, de fait c'est un jeu case par case. Peut-être que \"gel\" empecherait la cible gelée de bouger durant les 5 tours , sauf s'il subit en plus le status de brulure qui supprimerait l'etat de gel.\n\nSynthetise ce que je te demande",
+      "scope": "FR01 replace slowdown with five-turn movement lock;Burn application removes existing Freeze"
+    },
+    {
+      "message": "oui et globalement le status de gel touchera tous les sorts de glace :) , comme brulure tous les sorts de feu.\n\nA noter que les sorts de glace doivent faire un peu moins de dégats que les sorts de feu (logique , empecher les monstres de bouger est fort dans un jeu comme un rogue like)",
+      "scope": "explicit acceptance of synthesis;all cold spells can apply Freeze,all Fire spells Burn;cold damage slightly lower than comparable fire spells"
+    },
+    {
+      "message": "J'ai changé d'avis, une cible qui a brulure peut-être gelée mais ca supprime la brulure. Ca me semble plus juste et fun.",
+      "scope": "explicit revision of burning-target immunity;Freeze can replace existing Burn"
+    }
+  ],
+  "previous_clarification": {
+    "question": "Si une cible brûle déjà lorsqu’un sort de glace la touche, doit-elle rester impossible à geler tant que la Brûlure dure, ou peut-elle être gelée jusqu’à l’application d’une nouvelle Brûlure ?",
+    "answer": "Impossible à geler tant qu’elle brûle",
+    "status": "explicitly_superseded_by_latest_user_request;not_active_rule"
+  },
+  "accepted_requirements": {
+    "FR01_slowdown_removed": true,
+    "FR01_freeze_duration_turns": 5,
+    "Freeze_blocks_movement_but_allows_attacks_and_other_actions": true,
+    "all_cold_spells_Freeze_direction": true,
+    "all_fire_spells_Burn_direction_reconfirmed": true,
+    "status_chances_individual_per_skill_preserved": true,
+    "successful_Burn_application_removes_existing_Freeze": true,
+    "successful_Freeze_application_removes_existing_Burn": true,
+    "burning_target_can_receive_Freeze": true,
+    "burning_target_Freeze_immunity": false,
+    "cold_damage_slightly_lower_than_comparable_fire_spells": true,
+    "boss_control_immunity_elite_chance_multiplier_and_ordinary_damage_rules_preserved": true
+  },
+  "approval_scope": "Accepted requested FR01 replacement by five-turn Freeze and shared movement-only Freeze,all cold/fire status direction and reciprocal replacement on successful status application. Latest user correction revokes burning-target Freeze immunity. No guaranteed Freeze on every cold hit or guaranteed new Burn replaces specific accepted fire behavior. Exact revised FR01 RP/damage/chances/costs/full curves and visual rendering remain pending.",
+  "duration_scope": "Five turns explicitly requested for FR01;no five-turn global duration imposed on other cold skills.",
+  "damage_balance_scope": "Qualitative direction only;compare similar rank,attributes,target count,area,duration and other utility. No universal cold reduction percentage approved;FR01 current35/next38 and85% raw equivalent fire scaling will be a new proposal.",
+  "status_application_scope": "Replacement occurs when the new status applies successfully;raw elemental damage alone does not constitute a status application. Existing immunities/resistance checks remain applicable. Simultaneous applications/order,failed applications resource policy and special source compatibility remain to review.",
+  "secondary_and_weapon_scope": "No cold/fire status automatically added to elemental weapons,mines,grenades or other branches;compatibility with existing secondary Freeze to review explicitly.",
+  "nonattacking_cold_scope": "FR03 wall and FR06 passive triggers still need individual presentation;no automatic new damage/status proc invented.",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FR01-01.json",
+  "previous_description_sha256": "769bd66452d76797aec95ff9f318c82f55413992a4c5602836b8298b237306f6",
+  "previous_description_status": "slowdown-plus-conditional-two-turn-freeze model superseded;historical artifact preserved",
+  "global_control_reference": "docs/reviews/refonte-agent-2026-10-06/control-boss-immunity-and-elite-penalty-decisions.json",
+  "global_control_reference_sha256": "139e1615bfedbc7a4ad3df16d614e39d3616fcff387f6bdcc2b96c82cb85c145",
+  "elemental_status_reference": "docs/reviews/refonte-agent-2026-10-06/elemental-status-and-emanation-redesign-decisions.json",
+  "elemental_status_reference_sha256": "1455a5b1f4ec31f3dcdc0fcaa8d40e34a1c1664a764100cf0b6fd6d1dcdec548",
+  "target_status_reference": "docs/reviews/refonte-agent-2026-10-06/target-status-analysis-visibility-decisions.json",
+  "target_status_reference_sha256": "d1e57c5798ede4cbfa9a715cf1db628415a8c4784b630bbbcf1bba709cf628b1",
+  "native_visual_approval": "pending;mechanical replacement does not approve exact disappearance/appearance animation",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,34 @@
+{
+  "candidate": "101 / D66-BODY02",
+  "status": "visually_accepted",
+  "icon": "D66-C03",
+  "tool": "built-in image_gen",
+  "prompt": "prompt.json",
+  "source_size": [
+    1354,
+    1161
+  ],
+  "framing_bounds_alpha8": [
+    16,
+    54,
+    1337,
+    1110
+  ],
+  "native_tile": 64,
+  "body_width": 60,
+  "body_height": 48,
+  "body_bottom": 62,
+  "source_to64": "Direct high resolution to64, no32 intermediate; framing/resampling only.",
+  "same_body_and_icon_source": true,
+  "live_assets_modified": false,
+  "mechanics_changed": false,
+  "files": {
+    "../../../../../assets/animations/agent/skill-animation-review-93/gardien-body02/D66-BODY02-native64.png": "343ac378ea0e34beb7892f2df833e0547fe9adf8ecb59e79ca526dbf0bc70ad0",
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-93/gardien-body02/D66-BODY02-source.png": "e07cb6872d63531cd79f5fb2f5d65563f56e212a7945caea49568fc3fe50286d",
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-93/gardien-body02/D66-C03-compact32.png": "22096fc611570810fff7ade2b56136b9c35ac88d406d8c370a7135d7bc542dbf",
+    "../../../../../assets/source-art/refonte-agent-2026-10-06/skill-animation-review-93/gardien-body02/D66-C03-compact64.png": "357220d0df341b724173ad257d7d099286af413f6a2e75c6123a58cea89e49b0",
+    "prompt.json": "55caed15429634cd5cad2e7cc83ab9990087563b41131309f345154cdd5febca"
+  },
+  "visual_acceptance": "../body-palette-acceptance-01.json",
+  "visual_acceptance_reply": "oui c'est beaucoup mieux :D"
+}

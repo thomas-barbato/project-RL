@@ -1,0 +1,19 @@
+{
+  "cargo_build_locked": "passed",
+  "targeted_tests": {
+    "passed": 28,
+    "failed": 0
+  },
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "gallery_controller_checks": {
+    "waiting_does_not_advance_turns": true,
+    "projectile_plays_once": true,
+    "impact_held_until_next_turn": true,
+    "five_scenarios_load": true,
+    "lazy_loaded_pair_only": true
+  },
+  "gallery_frame_links": 960,
+  "protected_files_unchanged": 11040,
+  "scope": "Isolated visual review; no campaign integration or damage calculations."
+}

@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SG01-ACCEPT01",
+  "skill_id": "SG01",
+  "user_response": "oui ca me va :)",
+  "reviewed_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG01-01.json",
+  "reviewed_description_sha256": "3beb022068f8110483b213e80f7ce2d0e77b710e54d35f7cd38e233a2f0d078f",
+  "accepted_player_copy": "**SG01 · Grenade aveuglante — Rang 11 · Passif**\n\n*Un éclair brutal trouble la vue et sature les capteurs de vos ennemis.*\n\n**Effets actuels**\n\n- Précision des cibles : **−30 %**.\n- Durée de l’aveuglement : **12 tours**.\n- Chance d’aveuglement : **86,5 % · Élites : 64,9 %**.\n- Portée de lancer : **4 cases**.\n- Rayon d’effet : **1 case**.\n- Coût de la variante : **8 énergie**.\n- Recharge : **2 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Durée de l’aveuglement : **13 tours**.\n- Chance d’aveuglement : **86,8 % · Élites : 65,1 %**.\n\nNécessite **Lancer de grenade** apprise. Débloque la variante aveuglante dès le premier rang.\n\nAucun dégât. Sans effet sur les boss. Vos alliés peuvent être aveuglés.\n\nLa réduction s’applique à la valeur de précision. Les chances d’aveuglement dépendent des résistances de chaque cible.",
+  "accepted_current_values": {
+    "variant_unlocked": "Aveuglante",
+    "target_accuracy_reduction_percent": 30,
+    "target_accuracy_retained_percent": 70,
+    "blindness_duration_turns": 12,
+    "blindness_success_chance_percent": 86.5,
+    "elite_blindness_success_chance_percent": 64.9,
+    "boss_blindness_success_chance_percent": 0,
+    "damage": 0,
+    "throw_range_cells": 4,
+    "effect_radius_cells": 1,
+    "variant_energy_cost": 8,
+    "variant_cooldown_turns": 2
+  },
+  "accepted_next_values": {
+    "variant_unlocked": "Aveuglante",
+    "target_accuracy_reduction_percent": 30,
+    "target_accuracy_retained_percent": 70,
+    "blindness_duration_turns": 13,
+    "blindness_success_chance_percent": 86.8,
+    "elite_blindness_success_chance_percent": 65.1,
+    "boss_blindness_success_chance_percent": 0,
+    "damage": 0,
+    "throw_range_cells": 4,
+    "effect_radius_cells": 1,
+    "variant_energy_cost": 8,
+    "variant_cooldown_turns": 2
+  },
+  "accepted_displayed_conditions": [
+    "SG00_learned_prerequisite",
+    "rank1_opens_blinding_variant",
+    "no_damage",
+    "relative_accuracy_stat_reduction",
+    "control_classification_with_boss_immunity_and_elite_penalty",
+    "allies_can_be_blinded",
+    "success_depends_on_target_resistance"
+  ],
+  "accepted_visual_direction": "**Visuel proposé :** un bref éclat blanc dans la zone prévisualisée, puis une icône d’aveuglement dans la barre de statuts des cibles touchées, avec l’effet et les tours restants accessibles par l’analyse.",
+  "accepted_revision": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SG01-02.json",
+  "accepted_revision_sha256": "ebac5d78bbebdbd460d1bb95d1b769a0f84fdc1b4ee9bb1be51796f208dc27aa",
+  "approval_scope": "displayed_RP_current_next_numbers_conditions_and_visual_direction_explicitly_accepted;unshown_curves_player_own_blindness_and_native_pending",
+  "unshown_cases_pending": [
+    "full_rank_curves_and_Intelligence_control_scaling",
+    "real_target_resistances_and_control_resistance_model",
+    "player_own_blindness_eligibility_and_allied_control_resistance_model",
+    "multiple_blindness_strength_duration_refresh_and_accuracy_floor",
+    "wall_clipped_area_diagonals_doors_and_unknown_target_preview",
+    "target_effect_first_duration_decrement_and_throw_cooldown_phases",
+    "native_flash_palette_grenade_flight_status_icon_and_action_variant_selection"
+  ],
+  "native_visuals": "pending_native_review",
+  "runtime_integration": "not_integrated"
+}

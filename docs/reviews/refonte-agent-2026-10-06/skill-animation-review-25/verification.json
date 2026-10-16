@@ -1,0 +1,270 @@
+{
+  "protected_files_unchanged": 27530,
+  "controls": [
+    {
+      "variant": "FR04-A01-HAUT",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR05-A01-HAUT",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR04-A01-DROITE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR05-A01-DROITE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR04-A01-GAUCHE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR05-A01-GAUCHE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR04-A01-BAS",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR05-A01-BAS",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR04-A01-OBSTACLES",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR05-A01-OBSTACLES",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR04-A01-CLOISON",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR05-A01-CLOISON",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR04-A01-PLACEMENT-DROITE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FR05-A01-PLACEMENT-DROITE",
+      "solid_walls_clear": true,
+      "preview_blinks_and_ends": true,
+      "real_time_preserves_turn_state": true,
+      "wave_movement_and_storm_applications_turn_driven": true,
+      "explicit_blizzard_delay_preserved": true,
+      "prepared_hits_distinct": true,
+      "final_effects_expired": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "FR04-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 71,
+      "frames": 71,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "FR05-A01-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 83,
+      "frames": 83,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "FR04-A01-OBSTACLES-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 70,
+      "frames": 70,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "FR05-A01-OBSTACLES-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 83,
+      "frames": 83,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "FR04-A01-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 45,
+      "frames": 45,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "FR05-A01-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 83,
+      "frames": 83,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "FR04-A01-PLACEMENT-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 61,
+      "frames": 61,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "FR05-A01-PLACEMENT-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 83,
+      "frames": 83,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "tempetes-froid-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 91,
+      "frames": 91,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "tempetes-obstacles-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 91,
+      "frames": 91,
+      "duration_ms": 8000,
+      "loop": 0
+    },
+    {
+      "file": "tempetes-cloison-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 87,
+      "frames": 87,
+      "duration_ms": 8000,
+      "loop": 0
+    }
+  ],
+  "resampling_of_native_capture": false,
+  "scope": "Prepared visual fixtures, not campaign damage or AI validation."
+}

@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-06",
+  "id": "ME04",
+  "title": "Poussée brutale",
+  "revision": 1,
+  "player_copy_markdown": "**Poussée brutale — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Vous frappez pour chasser votre adversaire de votre chemin.*\n\nFrappez une cible en mêlée pour la repousser. Un obstacle ou une case occupée arrête son recul.\n\n**Effet actuel**\n- Dégâts : **30–37** (**150 %** de l’attaque).\n- Recul : jusqu’à **3 cases** après une touche.\n\n**Prochain rang — 12 · 1 point de compétence**\n- Dégâts : **31–38** (**156 %** de l’attaque).\n- Recul : jusqu’à **3 cases** après une touche.\n\nDégâts indiqués avant les défenses de la cible.\n\n**Coût : 9 énergie · Recharge : 3 tours · Portée : 1 case.**\n**Nécessite une arme de mêlée active.**",
+  "player_copy_sha256": "32dbd50bf972281bd8e82ec3ee4d8de9457e924f0e8bc5ee24bd78a4e6e3c7cf",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-11.json",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/percee-current-next-acceptance-decisions.json",
+  "review_start_decisions_sha256": "0f1f41d4109329213953891714ccf4a4474ce2e3ebb25167e775e7a13fb29803",
+  "previous_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-melee-05.json",
+  "previous_skill_block_sha256": "83d464b1a93b5f50e78bc7b1b4dd07eefb015ace47bae507b279e104e0892605",
+  "name_approval": "preserve_previous_approval",
+  "roleplay_text_approval": "preserve_previously_accepted_text_exactly",
+  "functional_description_approval": "pending_user_review",
+  "current_next_effect_copy_approval": "pending_user_review",
+  "numeric_rules_approval": "existing_rank_1_and_12_values_retained; new_current_next_range_values_and_unshown_formulas_pending",
+  "formulas": {
+    "damage_percent": "90 + 6 * (effective_rank - 1)",
+    "maximum_push_cells": "min(3, 1 + floor((effective_rank - 1) / 5))",
+    "energy": "7 + floor((effective_rank - 1) / 4)"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "strength": 10,
+    "agility": 10,
+    "reference_melee_attack_min_damage": 18,
+    "reference_melee_attack_max_damage": 22,
+    "range_status": "illustrative_only",
+    "strength_factor": "1.1",
+    "agility_factor": "1.025",
+    "active_compatible_melee_weapon": true,
+    "weapon_range_cells": 1,
+    "other_damage_or_cost_modifiers": false
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "damage_percent": 150,
+    "damage_min_before_defenses": 30,
+    "damage_max_before_defenses": 37,
+    "maximum_push_cells": 3,
+    "energy_cost": 9,
+    "cooldown_turns": 3,
+    "range_cells": 1
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "damage_percent": 156,
+    "damage_min_before_defenses": 31,
+    "damage_max_before_defenses": 38,
+    "maximum_push_cells": 3,
+    "energy_cost": 9,
+    "cooldown_turns": 3,
+    "range_cells": 1
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_weapon_attributes_and_other_modifiers": true,
+    "can_purchase_with_sufficient_points": true,
+    "learned_cap_respected": true
+  },
+  "active_weapon_requirement": {
+    "type": "melee",
+    "approval": "explicit_user_requirement",
+    "incompatible_warning": "Nécessite une arme de mêlée active.",
+    "warning_approval": "accepted_as_presented"
+  },
+  "push_conditions_approval": "presented_hit_requirement_and_obstacle_or_occupied_cell_stop_pending_user_review; other_unshown_details_pending",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "damage ranges at effective ranks 11 and 12 calculated using exact fractions",
+    "energy and bounded push distance calculated",
+    "roleplay preserved exactly",
+    "learned rank cap respected; no table or ordinary execution time reminder"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-06",
+  "user_messages": [
+    "si le personnage a une arme à distance d'équipé et d'activé actuellement, ca devrait être marqué que cette compétence ne concerne que les armes de mélée.",
+    "oui globalement les compétences actives d'arme à distance demandent une arme à distance d'activé et pour les compétences actives de mélée , elles demandent une arme de mélée d'activée ."
+  ],
+  "scope": "all_weapon_based_active_skills",
+  "accepted_requirements": {
+    "melee_weapon_skills": "require_equipped_and_active_melee_weapon",
+    "ranged_weapon_skills": "require_equipped_and_active_ranged_weapon",
+    "incompatible_active_weapon": "show_required_weapon_type_and_make_action_unavailable",
+    "inactive_equipped_weapon": "does_not_satisfy_requirement"
+  },
+  "accepted_presented_melee_warning": "Nécessite une arme de mêlée active.",
+  "proposed_ranged_warning": "Nécessite une arme à distance active.",
+  "proposed_additional_presentation": {
+    "keep_description_inspectable": true,
+    "unavailable_damage_label": "Dégâts : indisponibles",
+    "damage_value": "do_not_use_incompatible_weapon_damage_or_a_stale_value_from_another_weapon"
+  },
+  "additional_copy_approval": "ranged_warning_and_unavailable_damage_label_pending_presentation_and_user_review",
+  "superseded_proposal": "using a natural transformation attack for the main melee weapon techniques without an active melee weapon",
+  "form_own_actions": "separate_existing_review_preserved",
+  "numeric_parameters": "unchanged",
+  "visual_render": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,65 @@
+{
+  "review_id": "ARMOR-FLAT05",
+  "filter_checks": [
+    {
+      "filter": "starters",
+      "count": 5,
+      "expected": 5,
+      "passed": true
+    },
+    {
+      "filter": "progression",
+      "count": 3,
+      "expected": 3,
+      "passed": true
+    },
+    {
+      "filter": "current",
+      "count": 14,
+      "expected": 14,
+      "passed": true
+    },
+    {
+      "filter": "new",
+      "count": 14,
+      "expected": 14,
+      "passed": true
+    },
+    {
+      "filter": "new_mage",
+      "count": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "filter": "new_combat",
+      "count": 5,
+      "expected": 5,
+      "passed": true
+    },
+    {
+      "filter": "metamorphe_replacement",
+      "count": 3,
+      "expected": 3,
+      "passed": true
+    },
+    {
+      "filter": "current_piece",
+      "count": 18,
+      "expected": 18,
+      "passed": true
+    },
+    {
+      "filter": "everything",
+      "count": 46,
+      "expected": 46,
+      "passed": true
+    }
+  ],
+  "equipment_previews": [
+    "Deux pistolets-mitrailleurs",
+    "Lance à deux mains",
+    "Sans arme"
+  ],
+  "ui_read_from_browser": true
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-08",
+  "review_id": "S04-VISION-FEEDBACK01",
+  "user_instruction": "je suis pas super fan ... on risque d'avoir tres vite toute la visibilité sur la map",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-perception-vision-01.json",
+  "source_proposal_sha256": "c3dfd7cc1694a76ca3c493d050e634ae550a392dc75a19bc744512e9634a581a",
+  "feedback_scope": "user_reservation_against_Perception_based_growth_of_vision_due_to_excessive_map_visibility;not_approval_of_any_replacement",
+  "assistant_response": "withdraw_unaccepted_S04_VISION01_vision_growth_curve_and_16_cell_cap;prepare_fixed_base_vision_alternative_for_review",
+  "withdrawn_parts": [
+    "extra_vision_radius_per10_Perception_points",
+    "vision_growth_up_to16_cells",
+    "RP_suggesting_Perception_reveals_threats_further_away"
+  ],
+  "preserved_accepted_rules": "Perception_ranged_weapon_damage_bonus_1_percentage_point_per_point_reference5_including_heavy_ranged_weapons;all_other_accepted_attribute_and_skill_rules",
+  "fixed_base8_approval": "not_accepted;new_proposal_pending",
+  "no_new_detection_accuracy_critical_or_hearing_effect_accepted": true,
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-08",
+  "review_id": "E01-CAP-ACCEPT01",
+  "user_instruction": "oui je valide",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-E01-01.json",
+  "source_card_sha256": "ca54f14710ee436a5d99185c00038bff8565b5129df26710c1a0980e77cb58c6",
+  "accepted_shown_copy_markdown": "Les **PV de base et leur progression sont validés**. Passons à la capacité d’énergie.\n\n**E01 · Énergie**\n\n*Votre réserve alimente vos pouvoirs technologiques et occultes.*\n\n**Base proposée**\n\n- Niveau 1, Intelligence 5 et Volonté 5 : **30 énergie maximum**.\n- Gain automatique par niveau : **+2 énergie maximum**.\n- Chaque point d’Intelligence : **+2 énergie maximum**, déjà validé.\n- Chaque point de Volonté : **+2 énergie maximum**, déjà validé.\n\n**Exemple actuel — Niveau 10, Intelligence 10, Volonté 10**\n\n- Énergie maximum : **68**.\n\n**Au niveau 11**\n\n- Sans dépenser les nouveaux points : **70 énergie maximum**.\n- Avec les cinq points répartis entre Intelligence et Volonté : **80 énergie maximum**.\n\nCes exemples sont calculés avant les bonus d’équipements, implants et passifs. **Les 30 points de base et les +2 automatiques par niveau sont les nouvelles valeurs à valider.**",
+  "accepted_shown_copy_sha256": "1599a31228168c08d069dc1f5e2afe77a9e9c1136cb893decba15e2e7cc290be",
+  "accepted_rules": {
+    "base_maximum_energy_at_level1_Intelligence5_Volonte5": 30,
+    "automatic_maximum_energy_gain_per_level_after_level1": 2,
+    "maximum_energy_per_Intelligence_point": 2,
+    "maximum_energy_per_Volonte_point": 2
+  },
+  "accepted_shown_examples": [
+    {
+      "level": 10,
+      "Intelligence": 10,
+      "Volonte": 10,
+      "maximum_energy": 68
+    },
+    {
+      "level": 11,
+      "Intelligence": 10,
+      "Volonte": 10,
+      "maximum_energy": 70
+    },
+    {
+      "level": 11,
+      "five_new_points_split_between_Intelligence_and_Volonte": true,
+      "combined_Intelligence_and_Volonte": 25,
+      "maximum_energy": 80
+    }
+  ],
+  "accepted_example_scope": "before_equipment_implant_and_passive_bonuses;five_level_points_are_free;third_example_assigns_exactly_five_total_points_across_Intelligence_and_Volonte",
+  "RP_approval": "shown_E01_capacity_RP_accepted",
+  "unshown_cases_pending": [
+    "current_energy_on_creation_level_gain_and_maximum_changes",
+    "regeneration_rates_phase_and_tick_order",
+    "equipment_implant_and_passive_bonus_order",
+    "minimum_attribute_and_energy_bounds",
+    "rounding_of_percentage_energy_bonuses",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "none_presented",
+  "runtime_integration": "not_integrated"
+}

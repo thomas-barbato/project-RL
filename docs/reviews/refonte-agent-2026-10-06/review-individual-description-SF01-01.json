@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-08",
+  "id": "SF01",
+  "review_id": "SF01",
+  "revision": 1,
+  "title": "Économie de mouvement furtif",
+  "branch": "Furtivité",
+  "kind": "secondary_passive",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-109.json",
+  "source_skill_manifest_sha256": "b4a60663ae14e1741e054a19a44559ff420a05a7793abfa0ab2fd79d29ad56b7",
+  "source_skill_block_sha256": "0188c60a699c9ef0bc550dbf03ad679d7c09c7ce134c075af6008e5da552e5d8",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "SF00_learned_rank": 1,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values": {
+    "energy_per_successful_stealth_step": 1
+  },
+  "next_values": {
+    "energy_per_successful_stealth_step": 1
+  },
+  "unchanged_value_display": {
+    "only_changed_values_in_next_block": true,
+    "changed_effects": [],
+    "plateau_marker": "Coût minimal déjà atteint.",
+    "not_learned_cap_marker": true
+  },
+  "confirmed_numeric_basis": {
+    "effective_rank10_step_energy": 1,
+    "minimum_including_equipment_bonus_ranks": 1,
+    "purchase_skill_points_per_rank": 1
+  },
+  "accepted_energy_floor_decisions": "docs/reviews/refonte-agent-2026-10-06/stealth-energy-floor-revision-decisions.json",
+  "accepted_energy_floor_decisions_sha256": "a056376af6d8b1ae52800ec3e43fd005e1ab005a15bf800e86633c91b47d339b",
+  "conditions": {
+    "SF00_prerequisite": true,
+    "learned_passive_works_automatically": true,
+    "no_activation_or_timed_buff_created": true,
+    "applies_to_stealth_steps_only": true
+  },
+  "name_approval": "existing_secondary_catalogue_name_preserved",
+  "roleplay_text_approval": "new_individual_roleplay_pending_explicit_review",
+  "numeric_rules_approval": "rank10_energy1_and_minimum1_explicit_user_rule;current11_next12_energy1_follow_validated_floor;intermediate_curve_pending",
+  "detailed_conditions_approval": "active_prerequisite_and_automatic_learned_passive_previously_confirmed;unshown_cases_pending",
+  "visual_intention_approval": "updated_SF00_cost_display_proposed_for_review",
+  "visual_approval": "native_UI_preview_pending_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**SF01 · Économie de mouvement furtif — Rang 11 · Passif**\n\n*Vos implants ajustent votre camouflage pour limiter l’énergie consommée à chaque pas.*\n\n**Effets actuels**\n\n- Énergie par pas en furtivité : **1 point**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nCoût minimal déjà atteint.\n\nNécessite **Furtivité** apprise.",
+  "player_copy_sha256": "e88e356db9a426a1c2f8553958318d99e3c4ee2583ba4cc172bb1c0fbc315dad",
+  "visual_copy_markdown": "**Affichage proposé :** le coût actualisé apparaît dans la fiche de Furtivité.",
+  "visual_copy_sha256": "eae3cf5ba4df85db377f44a949cafb0e6773a53b34a7bbca37a78a746625480d",
+  "current_turn_shown_copy_markdown": "**SF01 · Économie de mouvement furtif — Rang 11 · Passif**\n\n*Vos implants ajustent votre camouflage pour limiter l’énergie consommée à chaque pas.*\n\n**Effets actuels**\n\n- Énergie par pas en furtivité : **1 point**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nCoût minimal déjà atteint.\n\nNécessite **Furtivité** apprise.\n\n**Affichage proposé :** le coût actualisé apparaît dans la fiche de Furtivité.",
+  "current_turn_shown_copy_sha256": "7075f87da74a3f76d6cb333c099ec03e4a64c2d3f433841a1d597d57adbdc3de",
+  "unshown_cases_pending": [
+    "cost_curve_effective_ranks1_to9_and_rounding",
+    "pending_SF00_base2_cost_and_resource_regeneration_order",
+    "preview_without_current_equipment_bonus_and_all_other_energy_modifiers",
+    "native_skill_rank_bonus_color_and_SF00_numeric_refresh"
+  ]
+}

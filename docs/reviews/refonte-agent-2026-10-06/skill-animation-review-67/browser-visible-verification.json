@@ -1,0 +1,96 @@
+{
+  "browser": "Edge Chromium headless",
+  "scheme": "file",
+  "errors": [],
+  "automatic_explosion_then_entry": "passed",
+  "all_three_types": "passed",
+  "manual_13_application_expiry": "passed",
+  "idle_does_not_advance_turns": "passed",
+  "player_and_wall_protection": "passed",
+  "replay_and_expiry_shortcut": "passed",
+  "captures": [
+    {
+      "capture": "feu-poison",
+      "samples": [
+        {
+          "type": "FEU",
+          "frame": 164,
+          "expected_native_png": "frames/SM05-A03-FEU-HAUT/164.png",
+          "browser_png": "browser-feu-poison-FEU.png"
+        },
+        {
+          "type": "POISON",
+          "frame": 164,
+          "expected_native_png": "frames/SM05-A03-POISON-HAUT/164.png",
+          "browser_png": "browser-feu-poison-POISON.png"
+        }
+      ]
+    },
+    {
+      "capture": "feu-froid",
+      "samples": [
+        {
+          "type": "FEU",
+          "frame": 164,
+          "expected_native_png": "frames/SM05-A03-FEU-HAUT/164.png",
+          "browser_png": "browser-feu-froid-FEU.png"
+        },
+        {
+          "type": "FROID",
+          "frame": 164,
+          "expected_native_png": "frames/SM05-A03-FROID-HAUT/164.png",
+          "browser_png": "browser-feu-froid-FROID.png"
+        }
+      ]
+    },
+    {
+      "capture": "cloison",
+      "samples": [
+        {
+          "type": "FEU",
+          "frame": 164,
+          "expected_native_png": "frames/SM05-A03-FEU-CLOISON/164.png",
+          "browser_png": "browser-cloison-FEU.png"
+        },
+        {
+          "type": "FROID",
+          "frame": 164,
+          "expected_native_png": "frames/SM05-A03-FROID-CLOISON/164.png",
+          "browser_png": "browser-cloison-FROID.png"
+        }
+      ]
+    }
+  ],
+  "native_pixel_checks": [
+    {
+      "capture": "feu-poison",
+      "type": "FEU",
+      "native_pixels_identical": true
+    },
+    {
+      "capture": "feu-poison",
+      "type": "POISON",
+      "native_pixels_identical": true
+    },
+    {
+      "capture": "feu-froid",
+      "type": "FEU",
+      "native_pixels_identical": true
+    },
+    {
+      "capture": "feu-froid",
+      "type": "FROID",
+      "native_pixels_identical": true
+    },
+    {
+      "capture": "cloison",
+      "type": "FEU",
+      "native_pixels_identical": true
+    },
+    {
+      "capture": "cloison",
+      "type": "FROID",
+      "native_pixels_identical": true
+    }
+  ]
+}

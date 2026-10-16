@@ -1,0 +1,33 @@
+{
+  "batch": "ANIM-S03",
+  "status": "visually_approved",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 8,
+      "skill_id": "ME05",
+      "variant": "ME05-A01",
+      "name": "Charge",
+      "description": "Une ruée jusqu’au contact, avec traînée basse, impact et blessure sanglante.",
+      "status": "visually_approved"
+    },
+    {
+      "number": 9,
+      "skill_id": "ME06",
+      "variant": "ME06-A01",
+      "name": "Tourbillon",
+      "description": "Un croissant de lame fait le tour de l’agent, frappe les huit voisins et laisse les blessures saigner.",
+      "status": "visually_approved"
+    }
+  ],
+  "scope": "Independent visual fixtures; no GameState, damage calculations or campaign integration.",
+  "charge_example": "Visible target four cells away; the agent ends in the adjacent free cell and makes one hit.",
+  "whirl_example": "Eight adjacent flesh targets; their hit presentation is staggered along the arc, within one action.",
+  "bleed_preview": "The accepted 3-turn Bleeding status is shown; frame time does not reduce its turn timer.",
+  "laboratory_ui_candidate": {
+    "variant": "LAB-S03",
+    "status": "awaiting_separate_review"
+  },
+  "unchanged": "Previously accepted icons, actor art, catalogue parameters and animation GIFs.",
+  "visual_acceptance": "visual-acceptance-01.json"
+}

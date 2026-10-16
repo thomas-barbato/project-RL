@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-09",
+  "review_id": "DRONE-STAT01-DIRECTION01",
+  "stable_rule_id": "DRONE-STAT01",
+  "user_instruction": "de facon générale le drone (quel que soit le nombre de points qu'on a investis dedans) aura le level du joueur (et donc les statistiques de base du joueur) les drones devront donc avoir leurs propres statistiques (qui suivront les memes regles que le joueur et les monstres) .",
+  "clarification": {
+    "question": "Par « statistiques de base du joueur », veux-tu que chaque modèle de drone ait sa propre répartition des six attributs, ou qu’il copie les six attributs du joueur hors équipement ? Je recommande un profil propre à chaque modèle, au même niveau que le joueur.",
+    "options": [
+      "Attributs propres à chaque modèle",
+      "Copie des attributs du joueur hors équipement"
+    ],
+    "answer": "Attributs propres à chaque modèle"
+  },
+  "accepted_explicit_rules": {
+    "scope": "all_drone_models_including_noncombat_models",
+    "level": "always_current_player_level_regardless_of_learned_or_equipment_effective_invocation_rank",
+    "base_statistics": "own_actor_statistics_progressing_at_shared_player_level_under_common_player_and_monster_stat_calculation_rules;not_equipment_requirement_only",
+    "attributes": "own_six_attribute_profile_per_drone_model;not_copy_of_player_allocated_or_equipment_attributes",
+    "invocation_rank": "distinct_from_drone_level;existing_invocation_power_improvement_direction_retained_but_new_exact_bonus_formula_pending",
+    "preserved_functions": "existing_armed_models_and_no_attack_for_Eclaireur_Mule_retained"
+  },
+  "superseded_rules": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/familiar-equipment-level-type-expiry-and-drone-level-decisions.json",
+      "path": "accepted_explicit_directions.drone_power",
+      "superseded_part": "equipment_level_does_not_create_an_extra_automatic_damage_HP_level_formula",
+      "replacement": "player_level_also_drives_drone_own_base_actor_statistics;exact_per_model_progression_and_current_resource_behavior_pending"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-direct-drone-damage-bonuses-02.json",
+      "path": "accepted_shown_rules.rank_base",
+      "superseded_part": "base_drone_damage_is_supplied_only_by_current_invocation_rank",
+      "replacement": "base_derived_from_drone_own_level_attributes_and_eligible_equipment;rank_is_separate_improvement_with_formula_pending"
+    }
+  ],
+  "other_D08_rules": "compatible_flat_then_additive_percentage_pool_Intelligence_coefficient1_percent_eligible_passives_and_element_matching_retained;old_fictional_damage_example_is_not_a_new_drone_stat_profile",
+  "approval_scope": "Explicit level_and_own_attribute_profile_direction_only. Common calculation rules do not fix every model base value, attribute_growth_distribution, healing_on_owner_level_gain, resource_tick_behavior, critical_base_profile, rank_bonus_curve or double_counting of owner_vs_drone_attribute_modifiers. PETS_EQ01 complements not accepted by this clarification.",
+  "dependencies": {
+    "previous_familiar_direction": "docs/reviews/refonte-agent-2026-10-06/familiar-equipment-level-type-expiry-and-drone-level-decisions.json",
+    "previous_familiar_direction_sha256": "4a54b262874a60aafc8f1a180cf1528ae340479b351d747bc2e6caecdee22d18",
+    "D08": "docs/reviews/refonte-agent-2026-10-06/review-direct-drone-damage-bonuses-02.json",
+    "D08_sha256": "4109314c2da333a254103d53121b9d5886c3a7c8b5e75241a8cd86412e045752",
+    "previous_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-28.json",
+    "previous_model_sha256": "6e195770af81c63c2427eb49762c4989ba47fd468965af703a72f04ace49cdfa"
+  },
+  "unshown_cases_pending": [
+    "exact_six_attribute_starts_and_growth_per_model",
+    "automatic_vs_manual_level_attribute_allocation_and_number_of_points_for_drone_growth",
+    "exact_native_attack_and_equipped_weapon_base_and_invocation_rank_improvement",
+    "owner_Intelligence_bonus_vs_drone_own_attributes_and_double_scaling_prevention",
+    "current_HP_energy_and_healing_on_player_level_gain_or_attribute_equipment_updates",
+    "drone_energy_usage_regeneration_critical_base_profiles_and_other_actor_rules",
+    "PETS_EQ01_equipment_complements_and_native_UI"
+  ],
+  "runtime_integration": "not_integrated"
+}

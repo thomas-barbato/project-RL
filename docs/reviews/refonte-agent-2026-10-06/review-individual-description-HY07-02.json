@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-08",
+  "id": "HY07",
+  "review_id": "HY07",
+  "revision": 2,
+  "title": "Autodestruction",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-76.json",
+  "source_skill_block_sha256": null,
+  "new_candidate_source_decisions": "docs/reviews/refonte-agent-2026-10-06/fusion-defense-removal-and-drone-self-destruct-direction-decisions.json",
+  "new_candidate_source_decisions_sha256": "614e0c3dd2211c7470fbef36a331204c7f114a6e2c2512fd0fc3c4e8890cf1d4",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "catalogue_status": "retained_after_explicit_revised_card_acceptance",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "Intelligence": 10,
+    "technique_multiplier_exact": "11/10",
+    "currently_transformed": false,
+    "other_passive_implant_or_cost_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "fire_damage_per_target": 57,
+    "blast_radius_cells": 2,
+    "command_range_cells": 6,
+    "energy_cost": 6,
+    "cooldown_turns": 4
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "fire_damage_per_target": 61,
+    "blast_radius_cells": 2,
+    "command_range_cells": 6,
+    "energy_cost": 6,
+    "cooldown_turns": 4
+  },
+  "formulas_proposed": {
+    "fire_damage_per_target": "floor((12+4*(effective_rank-1))*technique_multiplier*applicable_damage_modifiers)",
+    "full_rank_curve_defaults_damage_modifiers_and_rounding": "unshown_pending_review"
+  },
+  "accepted_user_direction": {
+    "select_one_controlled_combat_drone": true,
+    "drone_explodes_and_is_destroyed": true,
+    "area_damage": true,
+    "eligible_drone_ids": [
+      "D58",
+      "D59",
+      "D66"
+    ],
+    "hostiles_only": true,
+    "player_other_familiars_and_allies_not_damaged_by_blast": true
+  },
+  "command_and_blast_conditions_proposed": {
+    "controlled_visible_drone_within_command_range": true,
+    "eligible_drone_ids": [
+      "D58",
+      "D59",
+      "D66"
+    ],
+    "center": "selected_drone_current_cell",
+    "drone_destroyed": true,
+    "hostiles_only": "explicit_user_answer",
+    "opaque_walls_block_blast": true,
+    "only_one_drone_sacrificed_per_cast": true,
+    "blast_does_not_damage_player_or_other_allies": true,
+    "damage_type": "fire_proposed_pending_review",
+    "no_new_persistent_fire_or_Burn_status_implicitly_added": true,
+    "damage_source_rank_and_Intelligence": "proposed_numeric_basis;other_drone_attack_passive_interactions_pending",
+    "form_human_required": true,
+    "blocked_by_Silence": true
+  },
+  "preview_proposed": {
+    "review_id": "HY07-PREVIEW01",
+    "blast_cells_shown_around_selected_drone_before_confirmation": true,
+    "no_reveal_of_hidden_cells_or_actors": true,
+    "native_render_pending_review": true
+  },
+  "name_approval": "explicit_revised_card_user_acceptance",
+  "roleplay_text_approval": "user_supplied_replacement_explicitly_accepted;coeur_spelling_normalized",
+  "numeric_rules_approval": "displayed_current57_next61_fire_damage_radius2_range6_energy6_cooldown4_explicitly_accepted;unshown_curves_defaults_pending",
+  "detailed_conditions_approval": "displayed_models_control_visibility_sacrifice_hostile_only_wall_blocking_preview_human_form_Silence_and_before_defenses_explicitly_accepted;unshown_cases_pending",
+  "visual_intention_approval": "displayed_reactor_red_pulse_fire_fragments_and_area_preview_direction_explicitly_accepted;native_pixels_pending",
+  "visual_approval": "per_skill_native_animation_pending_review",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "fire_damage_per_target"
+    ]
+  },
+  "player_copy_markdown": "**HY07 · Autodestruction — Rang 11 · Actif**\n\n*Vous surchargez le cœur d’un drone de combat de votre choix et le réduisez en une gerbe de feu.*\n\n**Effets actuels**\n\n- Dégâts de feu par ennemi : **57**.\n- Rayon de l’explosion : **2 cases autour du drone**.\n- Portée de la commande : **6 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de feu par ennemi : **61**.\n\n**Coût : 6 énergie · Recharge : 4 tours.**\n\nChoisissez un Traqueur, un Artilleur ou un Gardien contrôlé et visible. Le drone explose sur sa case et est détruit. L’explosion touche uniquement les ennemis et ne traverse pas les murs.\n\nLe rayon de l’explosion apparaît autour du drone avant confirmation.\n\nForme humaine requise. Silence empêche son utilisation.\n\nDégâts affichés avant les défenses de chaque cible.",
+  "player_copy_sha256": "652eb7c9347611beede874a7fd65d2aecfcf0536e3514ade298eb54e536a17f6",
+  "visual_copy_markdown": "**Visuel proposé :** le cœur du drone rougit brièvement, puis une explosion de feu et de fragments se propage autour de sa position. Les cases concernées sont indiquées avant confirmation.",
+  "visual_copy_sha256": "fd02fa385b486ac4f90c2d6959c16398b5588f8cebdbda70c5f04491ac095cb6",
+  "current_turn_shown_copy_markdown": "**HY07 · Autodestruction — Rang 11 · Actif**\n\n*Vous surchargez le cœur d’un drone de combat de votre choix et le réduisez en une gerbe de feu.*\n\n**Effets actuels**\n\n- Dégâts de feu par ennemi : **57**.\n- Rayon de l’explosion : **2 cases autour du drone**.\n- Portée de la commande : **6 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de feu par ennemi : **61**.\n\n**Coût : 6 énergie · Recharge : 4 tours.**\n\nChoisissez un Traqueur, un Artilleur ou un Gardien contrôlé et visible. Le drone explose sur sa case et est détruit. L’explosion touche uniquement les ennemis et ne traverse pas les murs.\n\nLe rayon de l’explosion apparaît autour du drone avant confirmation.\n\nForme humaine requise. Silence empêche son utilisation.\n\nDégâts affichés avant les défenses de chaque cible.\n\n**Visuel proposé :** le cœur du drone rougit brièvement, puis une explosion de feu et de fragments se propage autour de sa position. Les cases concernées sont indiquées avant confirmation.",
+  "current_turn_shown_copy_sha256": "ffe5fcc8c08eaea4514e4ee2fb8239f4ff984b3118032e1f94456ce6782c1663",
+  "unshown_cases_pending": [
+    "full_rank_curve_default_rank1_damage_and_damage_modifier_order",
+    "drone_attack_passive_damage_attribution_and_loot_XP_sacrifice_cases",
+    "blast_metric_diagonals_line_of_effect_actor_visibility_and_large_footprints",
+    "destruction_redeploy_cooldown_control_window_and_ground_item_cleanup",
+    "explosion_noise_incidents_and_hidden_target_feedback",
+    "rejected_casts_energy_turn_and_RNG_atomicity",
+    "native_reactor_explosion_fragment_preview_and_drone_removal_frames"
+  ],
+  "runtime_integration": "not_integrated",
+  "previous_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY07-01.json",
+  "previous_review_sha256": "2c1da991fa5a8e37b78ef131807ea4137936a61e1fd9248468ec6e5c33f276a7",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/drone-self-destruct-roleplay-and-description-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "343579dbbe3ffc61affc1323b47250bb48ec17c00ccc77f22d9634e68aa49a9f",
+  "own_spell_self_damage_protection": {
+    "review_id": "SELF-DMG01",
+    "approval": "explicit_general_user_requirement",
+    "HY07_hostiles_only_preserved": true
+  }
+}

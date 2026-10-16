@@ -1,0 +1,25 @@
+{
+  "build": "cargo build --locked passed",
+  "format": "cargo fmt --all -- --check passed",
+  "native_readbacks": 3222,
+  "native_pixel_preserving_encoding": true,
+  "cases": 3,
+  "native_views": 6,
+  "timelines_identical_to_review62": true,
+  "only_feedback_regions_changed": 42,
+  "browser": "Edge file scheme passed",
+  "browser_native_pixel_checks": [
+    {
+      "id": "SM02",
+      "frame": 116,
+      "native_pixels_identical": true
+    },
+    {
+      "id": "SM03",
+      "frame": 116,
+      "native_pixels_identical": true
+    }
+  ],
+  "campaign_integration": false,
+  "full_suite": "Not run; isolated visual review"
+}

@@ -1,0 +1,41 @@
+{
+  "batch": "ANIM-STYLE01",
+  "status": "awaiting_visual_review",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 10,
+      "skill_id": "FE02",
+      "variant": "FE02-A02",
+      "name": "Souffle de feu",
+      "description": "Un torrent dessiné en masses orange et jaunes, aux contours irréguliers.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 11,
+      "skill_id": "FE03",
+      "variant": "FE03-A02",
+      "name": "Mur de feu",
+      "description": "Des flammes dessinées forment un rideau traversable. La brûlure reste visible après la sortie.",
+      "status": "awaiting_visual_review"
+    },
+    {
+      "number": 12,
+      "skill_id": "FE04",
+      "variant": "FE04-A02",
+      "name": "Émanation soudaine",
+      "description": "Des fissures annoncent la zone, puis des gerbes dessinées jaillissent après un tour.",
+      "status": "awaiting_visual_review"
+    }
+  ],
+  "method": "Two transparent eight-frame sprite sheets generated with built-in image_gen using the accepted red-robed character as style reference. Fixed-anchor slicing and native export; no sprite morphing.",
+  "scope": "Isolated native visual proposal; no campaign integration or mechanical changes.",
+  "style_rule": "Not established. The user requested an animated proposal before deciding whether to apply this style to all animations.",
+  "frame_animation": "12 distinct drawn frames per second. Cone frame zero is the first visual frame; frames one through seven loop. Visual playback never advances world turns.",
+  "delay": "FE04 still waits one complete game turn. Its capture includes an explicitly labelled scripted +1-turn event.",
+  "blood_policy": "Fire remains without blood. Actors and equipment are unchanged.",
+  "laboratory_ui_candidate": {
+    "variant": "LAB-STYLE01",
+    "status": "awaiting_separate_review"
+  }
+}

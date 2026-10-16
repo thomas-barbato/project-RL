@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-06",
+  "id": "ME03",
+  "title": "Percée",
+  "revision": 1,
+  "player_copy_markdown": "**Percée — Rang 12**\n10 rangs appris + 2 grâce à l’équipement.\n\n*Vous visez une faille dans l'armure et y concentrez votre frappe.*\n\nPortez un coup de mêlée qui ignore une partie de l’armure de la cible.\n\n**Progression**\nLes dégâts commencent à **100 % de votre attaque de mêlée**. Chaque rang supplémentaire ajoute **8 points à ce pourcentage**.\nL’armure ignorée commence à **20 %** et augmente à chaque rang, avec des gains progressivement plus faibles, sans atteindre **80 %**.\nLe coût commence à **8 énergie**, puis augmente de **1 tous les 3 rangs supplémentaires**.\n\n**Valeurs actuelles**\n**188 % des dégâts de votre attaque de mêlée**, soit **42 dégâts avant les défenses de la cible**.\n**48,7 % de son armure ignorée pour ce coup.**\n\n**Coût : 11 énergie.**\n**Recharge : 4 tours.**\n**Portée : celle de votre attaque de mêlée.**\n**Nécessite une arme de mêlée active.**",
+  "player_copy_sha256": "5ee877b428f0ecbe9343a30efbb4ee4ce0ef7a40699c38dda3e80b62b6fb787e",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-09.json",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/weapon-warning-acceptance-and-ME03-review-start-decisions.json",
+  "review_start_decisions_sha256": "34d7180a8807a4a06f40dbebf1363a3e261b9189097bf3022fb957caae4df56d",
+  "previous_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-melee-04.json",
+  "previous_skill_block_sha256": "fd6a529edbcd06907e7381c7a1da0541890c925a1c7146234631e9ae5a2b49f0",
+  "name_approval": "preserve_previous_approval",
+  "roleplay_text_approval": "preserve_previously_accepted_text_exactly",
+  "functional_description_approval": "pending_user_review",
+  "simplified_progression_copy_approval": "pending_user_review",
+  "numeric_rules_approval": "existing_displayed_rank_1_and_12_values_retained; unshown_formulas_remain_proposed",
+  "armor_progression_presentation": "describe diminishing gains without exposing a new linear formula; original exact progression preserved",
+  "formulas": {
+    "damage_percent": "100 + 8 * (effective_rank - 1)",
+    "armor_ignored_percent": "20 + 60 * (effective_rank - 1) / (effective_rank + 11)",
+    "energy": "8 + floor((effective_rank - 1) / 3)"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "strength": 10,
+    "agility": 10,
+    "reference_melee_attack_damage": 20,
+    "strength_factor": "1.1",
+    "agility_factor": "1.025",
+    "active_compatible_melee_weapon": true,
+    "other_damage_or_cost_modifiers": false
+  },
+  "default_values": {
+    "rank": 1,
+    "damage_percent": 100,
+    "damage_before_defenses": 20,
+    "armor_ignored_percent": 20,
+    "energy_cost": 8,
+    "cooldown_turns": 4
+  },
+  "current_values": {
+    "rank": 12,
+    "damage_percent": 188,
+    "damage_before_defenses": 42,
+    "armor_ignored_percent_display": 48.7,
+    "armor_ignored_percent_exact": {
+      "numerator": 1120,
+      "denominator": 23
+    },
+    "energy_cost": 11,
+    "cooldown_turns": 4
+  },
+  "target": "one target at melee weapon attack range",
+  "active_weapon_requirement": {
+    "type": "melee",
+    "approval": "explicit_user_requirement",
+    "incompatible_warning": "Nécessite une arme de mêlée active.",
+    "warning_approval": "accepted_as_presented"
+  },
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "source document hash matched",
+    "rank 12 damage, armor penetration and energy recalculated using exact fractions",
+    "previously accepted roleplay retained exactly",
+    "no table or ordinary execution time reminder"
+  ]
+}

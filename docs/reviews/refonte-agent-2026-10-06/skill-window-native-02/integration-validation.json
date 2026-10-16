@@ -1,0 +1,61 @@
+{
+  "review_id": "SKILLS-IC13-NATIVE01",
+  "status": "integrated",
+  "accepted_compacts": [
+    "D59-C03",
+    "SF00-C03"
+  ],
+  "accepted_compact_count": 10,
+  "accepted_illustration_count": 16,
+  "accepted_export_hashes_verified": 131,
+  "packaged_asset_hashes_verified": 26,
+  "previous_assets_unchanged": 24,
+  "skills_labels_and_previous_art_entries_unchanged": true,
+  "other_pending_IC12_compacts_not_integrated": true,
+  "tests": {
+    "command": "cargo test --locked --bin project-rl agent_skill -- --nocapture",
+    "passed": 4,
+    "failed": 0
+  },
+  "validation": {
+    "format": "passed",
+    "diff_whitespace": "passed",
+    "debug_build": "passed",
+    "release_build": "passed",
+    "release_warnings": "4 pre-existing warnings"
+  },
+  "captures": [
+    {
+      "skill": "D59",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-02/artilleur-960/cold-start.png",
+      "sha256": "a6f8796d8fd9b9599e2d25bc61b254b346b7985ac6febee307b86a9d51b088e7",
+      "dimensions": [
+        960,
+        540
+      ],
+      "process_exit": 0,
+      "visual_inspection": "passed"
+    },
+    {
+      "skill": "SF00",
+      "file": "artifacts/refonte-agent-2026-10-06/skill-window-native-02/furtivite-960/cold-start.png",
+      "sha256": "c24d50ea98a5652fe36a21479ed403bfdb2d9e474fbca78823a8f4b839bee671",
+      "dimensions": [
+        960,
+        540
+      ],
+      "process_exit": 0,
+      "visual_inspection": "passed"
+    }
+  ],
+  "builds": {
+    "debug": {
+      "file": "target/debug/project-rl.exe",
+      "sha256": "8565a2e93488088c844d2f6accafc1ceec46e3fbec8db6266062a57867aec0a0"
+    },
+    "release": {
+      "file": "target/release/project-rl.exe",
+      "sha256": "b059f8f3464162057c72def5be1cbcf87908bcd6f03b00d5c67b877b8c085509"
+    }
+  }
+}

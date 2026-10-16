@@ -1,0 +1,57 @@
+{
+  "id": "core:technomancien",
+  "name_key": "class.technomancien.name",
+  "role_key": "class.technomancien.role",
+  "description_key": "class.technomancien.description",
+  "recommended_attributes": {
+    "power": 4,
+    "coordination": 5,
+    "resilience": 5,
+    "perception": 6,
+    "processing": 8,
+    "willpower": 6
+  },
+  "starting_weapons": [
+    "core:modele_cogneur_p01"
+  ],
+  "starting_items": [
+    {
+      "item": "core:tenue_technique",
+      "quantity": 1
+    },
+    {
+      "item": "core:agent_dose_soin",
+      "quantity": 2
+    },
+    {
+      "item": "core:agent_cellule_energie",
+      "quantity": 1
+    }
+  ],
+  "starting_equipment": [
+    "core:modele_cogneur_p01",
+    null,
+    null
+  ],
+  "agent_start": {
+    "maximum_hp_percent": 100,
+    "maximum_energy_percent": 100,
+    "weapon_damage_percent": 90,
+    "melee_damage_percent": 100,
+    "ranged_damage_percent": 100,
+    "spell_damage_percent": 100,
+    "magic_energy_percent": 100,
+    "drone_hp_percent": 115,
+    "drone_damage_percent": 125,
+    "transformed_damage_percent": 100,
+    "human_skill_energy_percent": 100,
+    "armor": 0,
+    "evasion": 0,
+    "transformation_duration_bonus": 0,
+    "weakening_duration_bonus": 1,
+    "skills": [
+      "D59",
+      "O03"
+    ]
+  }
+}

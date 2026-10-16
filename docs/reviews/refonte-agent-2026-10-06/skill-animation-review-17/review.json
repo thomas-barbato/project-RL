@@ -1,0 +1,33 @@
+{
+  "batch": "ANIM-S06-A02",
+  "status": "visual_revision_requested",
+  "native_tile_size": 64,
+  "candidates": [
+    {
+      "number": 13,
+      "skill_id": "FE05",
+      "variant": "FE05-A02",
+      "status": "visual_revision_requested"
+    },
+    {
+      "number": 14,
+      "skill_id": "FE06",
+      "variant": "FE06-A01",
+      "status": "visual_revision_requested"
+    }
+  ],
+  "fireball": "The drawn fireball travels once from the caster, hits the first monster or wall in its path, then explodes at that collision point. Projectile flight and rise are visual motion only; the impact stays animated until the next explicit turn.",
+  "combustion": "Existing flames close onto the single burning target, then a concentrated flare. Its previous Burn is consumed. The prepared success/no-success cases show whether attached Burn returns after the shock.",
+  "timing": "One-turn visual impacts loop while waiting. Burn and cooldowns decrease only with explicit turns. Gallery buttons control turns; native montage uses scripted turn events at 2.5/3.0/3.5 seconds.",
+  "scope": "Isolated visual fixture. No damage, RNG, campaign integration, balance changes or new permanent skill text. Circular radius-three footprint and wall-contact scene illustrate the approved art policy; final combat geometry and collision resolution are not implemented here.",
+  "art": "Built-in image_gen source sheet, exact prompt saved in imagegen-prompt.txt. Transparent crop/resize/packing only; earlier sources and characters untouched. Eight drawn samples per second via the four-frame ping-pong sequence.",
+  "directions": "Right, left, up and down, with a full cloison in the down-facing example. NPCs and caster stay front-facing.",
+  "blood": "Pure Fire effects contain no blood.",
+  "laboratory": "Manual turns, disabled skills during cooldown, combustion requires Burn, configurable prepared new-Burn success and four directions. Native laboratory is an isolated review fixture.",
+  "feedback": {
+    "user_request": "euh ... ni l'explosion, ni la combustion... c'est \"trop\" et meme la boule de feu est un peu trop grosse :D",
+    "additional_request": "tu peux surement jouer avec la transparence aussi, faut pas hésiter :D",
+    "requested_parts": "Smaller projectile, less dominant and more translucent explosion, targeted combustion without a circular corona. Preserve trajectory, collision, mechanical footprint, cadence and turn-driven presence."
+  },
+  "next_review": "skill-animation-review-18"
+}

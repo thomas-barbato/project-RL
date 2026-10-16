@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-09",
+  "review_id": "AMMO-UNIVERSAL01",
+  "question": "Pour les tirs ordinaires, veux-tu conserver la matière utilisée actuellement comme réserve de munitions, ou passer à des munitions ramassables par famille d’arme ? L’énergie des compétences reste une réserve séparée.",
+  "user_answer": "Non en faite, on va supprimer \"la matière\" et mettre les mêmes munitions pour toutes les armes à distance (lourde ou non).",
+  "accepted_direction": {
+    "remove_weapon_matter_resource_and_its_player_facing_identity": true,
+    "all_ranged_weapon_families_share_one_ammunition_type": true,
+    "includes_heavy_ranged_weapons": true
+  },
+  "preserved": "common_power_energy_and_accepted_energy_only_mine_and_grenade_skills;ordinary_weapon_supply_not_automatically_converted_to_energy",
+  "source_observation": "current_weapon_supplies.rs_uses_weapon_matter_inventory_stacks;equipment_upgrade.rs_uses_separate_credit_and_fragment_costs",
+  "scope_correction": "prior_commentary_implied_upgrade_matter_use;verified_upgrade_credit_fragment_costs_are_distinct;no_new_currency_or_removal_of_all_crafting_items_inferred",
+  "not_fixed_by_direction": [
+    "per_model_ammunition_costs_and_burst_accounting",
+    "starting_stock_quantity",
+    "weight_stack_limits_pickup_and_loot_rates",
+    "reload_magazine_rules",
+    "familiar_and_monster_ammunition_management",
+    "exact_UI_item_and_log_copy_or_native_icon"
+  ],
+  "implementation_scope": "future_refonte_replaces_weapon_matter_item_supply_events_refusals_LOOT_and_UI_bindings;old_history_and_runtime_files_not_edited_in_this_design_step",
+  "runtime_integration": "not_integrated"
+}

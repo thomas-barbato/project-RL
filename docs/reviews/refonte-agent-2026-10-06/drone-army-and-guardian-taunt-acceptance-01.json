@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-15",
+  "review_id": "DRONE-ARMY01-ACCEPT01",
+  "related_review_id": "D66-TAUNT01-ACCEPT01",
+  "user_reply": "oui tout à fait :) on va faire ca :)",
+  "source_discussion": "drone-army-and-guardian-taunt-discussion-01.json",
+  "source_discussion_sha256": "7514f58a9c42ce40ceef9bd824e7d04df81e4fb3126025160d91b71f5a252aa0",
+  "approval_scope": "Directions actually presented in the preceding reply; no unshown numerical values, visual effects or implementation details.",
+  "accepted_directions": {
+    "D66": "Automatic temporary area provocation replaces proximity damage reduction. Nearby enemies target the Guardian while remaining able to fight. Obstacles are respected. Multiple Guardians must not cause continual target swapping.",
+    "army": "Multiple simultaneous units of D57/D58/D59/D66, with D56 Scout limited to one. Shared total control capacity grows with investment in the Drones branch. Autonomous summoner playstyle.",
+    "group_orders": "Support commands for groups to avoid per-drone micromanagement; exact interface to review.",
+    "passage": "Drones make way for the player; exact movement and action-budget rules to review."
+  },
+  "supersedes": [
+    {
+      "reference": "drone-persistence-acceptance-decisions.json",
+      "fields": [
+        "accepted_rules.maximum_active=5",
+        "accepted_rules.maximum_per_model=1 except D56"
+      ]
+    },
+    {
+      "reference": "gardien-acceptance-and-skill-tooltip-format-decisions.json",
+      "scope": "D66 damage-reduction aura role and its protection-specific numbers only; other accepted parts remain applicable."
+    }
+  ],
+  "preserved": [
+    "All content IDs and model identities",
+    "D66-BODY02/D66-C03 and D58-PAL02 visual acceptance",
+    "Drone persistence, destruction, HP/cargo retention and no free recall heal",
+    "Deployment costs/cooldowns pending explicit later revisions",
+    "No new attack or extra action granted to Scout/Mule",
+    "O03 damage-passive role and its existing approved values"
+  ],
+  "pending": [
+    "Control capacity baseline and progression",
+    "Control cost per unit and equipment interaction",
+    "Taunt geometry, radius, duration, internal cooldown and action replacement",
+    "Taunt eligibility, repeated applications, target stability and expiry",
+    "Group selection and orders UI",
+    "Passage/avoidance and action budgets",
+    "Native taunt animation and status icon",
+    "Save compatibility, actor instances and campaign integration"
+  ],
+  "animation_approval": "No approval inferred for D66-A01 reduction shield, O03-A01 circuit animation or new taunt feedback.",
+  "campaign_integration": false,
+  "active_assets_or_combat_changed": false
+}

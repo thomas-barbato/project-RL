@@ -16,9 +16,42 @@ use crate::stats::{PrimaryAttribute, PrimaryAttributes};
 #[derive(Clone, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct SkillProgressionState {
     choices: BTreeMap<DisciplineId, Vec<TechniqueId>>,
+    #[serde(default)]
+    agent_ranks: BTreeMap<String, u8>,
 }
 
 impl SkillProgressionState {
+    pub fn seed_agent_skills(&mut self, skills: &[String]) {
+        for id in skills {
+            self.agent_ranks.entry(id.clone()).or_insert(1);
+        }
+    }
+    pub fn agent_skill_rank(&self, id: &str) -> u8 {
+        self.agent_ranks.get(id).copied().unwrap_or(0)
+    }
+    pub(crate) fn set_agent_skill_rank(&mut self, id: &str, rank: u8) {
+        self.agent_ranks.insert(id.to_owned(), rank);
+    }
+    pub fn agent_skills(&self) -> impl Iterator<Item = (&str, u8)> {
+        self.agent_ranks
+            .iter()
+            .map(|(id, rank)| (id.as_str(), *rank))
+    }
+    pub(crate) fn restore_agent_ranks(
+        &mut self,
+        ranks: BTreeMap<String, u8>,
+    ) -> Result<(), String> {
+        if ranks.iter().any(|(id, rank)| {
+            id.is_empty()
+                || id.len() > 48
+                || !id.bytes().all(|c| c.is_ascii_alphanumeric() || c == b'_')
+                || !(1..=10).contains(rank)
+        }) {
+            return Err("invalid agent skill ranks".to_owned());
+        }
+        self.agent_ranks = ranks;
+        Ok(())
+    }
     pub fn from_ordered_choices(
         entries: impl IntoIterator<Item = (DisciplineId, Vec<TechniqueId>)>,
         catalog: &SkillCatalog,
@@ -38,7 +71,10 @@ impl SkillProgressionState {
                 )));
             }
         }
-        let state = Self { choices };
+        let state = Self {
+            choices,
+            agent_ranks: BTreeMap::new(),
+        };
         state.validate(catalog, features, rules)?;
         Ok(state)
     }
@@ -281,7 +317,7 @@ pub enum TechniqueLearningError {
         technique: Box<TechniqueId>,
         attribute: PrimaryAttribute,
         required: u8,
-        current: u8,
+        current: u16,
     },
     MissingPrerequisite {
         technique: Box<TechniqueId>,

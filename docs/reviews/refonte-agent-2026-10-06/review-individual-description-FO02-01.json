@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-07",
+  "id": "FO02",
+  "title": "Champ statique",
+  "revision": 1,
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-44.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/conductive-chain-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "a188e57a543af0b330d162526f541f304bdb428702e4ae2426ce4c4b734a374f",
+  "name_approval": "accepted_existing_catalogue_name_preserved",
+  "roleplay_text_approval": "proposed_pending_individual_user_review",
+  "functional_description_approval": "paragraph_omitted_by_global_CD08;necessary_HP_floor_walls_and_resistance_conditions_proposed",
+  "current_next_effect_copy_approval": "proposed_pending_individual_user_review",
+  "numeric_rules_approval": "displayed_current_HP_percent35.8_then36.4_floor50_radius2_cost15_CD6_proposed;full_curves_unshown_pending",
+  "detailed_conditions_approval": "displayed_hostiles_in_caster_radius50%_max_HP_floor_no_damage_below_floor_walls_stop_pulse_and_lightning_resistance_proposed;unshown_cases_pending",
+  "attribute_scaling_approval": "displayed_Willpower10_example_and_full_curves_pending",
+  "current_profile_status": "illustrative caster,not user save;percentage before target lightning resistance;no fixed target HP assumed",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "formulas": {
+    "current_HP_loss_percent_before_lightning_resistance": "(20+25*(effective_rank-1)/(effective_rank+9))*magic_multiplier",
+    "magic_multiplier": "1+0.02*(Willpower-5)",
+    "display_rounding": "one decimal,half-up;exact internal fraction retained for proposal",
+    "minimum_remaining_HP_percent_of_target_maximum": 50,
+    "radius_cells": 2,
+    "energy_cost": "12+floor((effective_rank-1)/3)",
+    "cooldown_turns": 6,
+    "HP_loss_calculation_status": "Exact integer rounding,lightning resistance order and clamp bounds are not shown and remain pending;damage must not heal or lower target below50%maxHP via this spell alone."
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "current_HP_loss_percent_before_lightning_resistance": 35.8,
+    "minimum_remaining_HP_percent_of_target_maximum": 50,
+    "radius_cells": 2,
+    "energy_cost": 15,
+    "cooldown_turns": 6
+  },
+  "exact_current_percent": "143/4",
+  "next_values": {
+    "effective_rank": 12,
+    "current_HP_loss_percent_before_lightning_resistance": 36.4,
+    "minimum_remaining_HP_percent_of_target_maximum": 50,
+    "radius_cells": 2,
+    "energy_cost": 15,
+    "cooldown_turns": 6
+  },
+  "exact_next_percent": "1529/42",
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "current_HP_loss_percent_before_lightning_resistance": 20,
+    "minimum_remaining_HP_percent_of_target_maximum": 50,
+    "radius_cells": 2,
+    "energy_cost": 12,
+    "cooldown_turns": 6,
+    "approval": "unshown_curve_pending"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "current_HP_loss_percent_before_lightning_resistance"
+    ],
+    "unchanged_effects_omitted": [
+      "minimum_remaining_HP_percent_of_target_maximum",
+      "radius_cells",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "magic_current_HP_damage_pulse_not_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy exclusion added"
+  },
+  "effect_conditions": {
+    "type": "active_magic_attack",
+    "targets": "hostiles within caster-centered radius",
+    "radius_cells": 2,
+    "damage_type": "lightning",
+    "base_damage_scales_from_each_targets_current_HP": true,
+    "HP_floor_percent_of_target_maximum": 50,
+    "no_damage_when_target_at_or_below_floor": true,
+    "damage_never_heals_target": true,
+    "lightning_resistance_reduces_damage": true,
+    "walls_block_pulse": "proposed_for_FO02_individual_review",
+    "floor_scope": "this spell alone;not other distinct effects in same turn",
+    "creates_control_or_other_status": false,
+    "creates_persistent_ground_zone": false,
+    "hidden_actor_or_stat_reveal_created": false,
+    "visibility_eligibility_and_exact_geometry": "unshown_pending_review"
+  },
+  "control_and_elemental_scope": "No control or elemental status added;no elite/boss chance penalty or special boss damage multiplier automatically applied to this lightning pulse. Other target defenses remain subject to review.",
+  "zone_exposure_scope": "Single pulse,not persistent zone;no EL-ZONE01 growing status chance.",
+  "unshown_rules_approval": "Full rank/attribute/energy curves,percentage bounds,integer HP rounding and exact lightning-resistance/HP-floor order,odd maximum HP,negative resistance/absorption,exact radius geometry and diagonals/wall corners/large footprints/visibility eligibility,stat snapshots/death triggers/other effects in same turn,preview/no-target or failed cast time-energy-RNG-cooldown behavior,map transitions and other interactions remain pending.",
+  "visual_intention_approval": "existing_catalogue_brief_discharge_circle_and_inner_flash_direction_preserved;exact_current_wording_proposed_pending_review",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "player_copy_markdown": "**FO02 · Champ statique — Rang 11 · Actif**\n\n*Vous libérez une décharge qui ronge la vitalité des ennemis proches.*\n\n**Effets actuels**\n\n- Dégâts de foudre : **35,8 % des PV actuels de chaque cible**.\n- PV minimum laissés par ce sort : **50 % des PV maximum de la cible**.\n- Rayon autour de vous : **2 cases**.\n- Cibles : **tous les hostiles dans le rayon**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de foudre : **36,4 % des PV actuels de chaque cible**.\n\n**Coût : 15 énergie · Recharge : 6 tours.**\n\nUne cible à 50 % de ses PV maximum ou moins ne subit aucun dégât de ce sort. Les murs arrêtent la décharge.\n\nLes résistances à la foudre réduisent ces dégâts.",
+  "player_copy_sha256": "00805aa577512e23fa659afe10cc1ab55ae941d447164f4793f180ca8812216c",
+  "visual_copy_markdown": "**Visuel proposé :** un cercle de décharge très bref vous entoure, avec un flash à l’intérieur des cibles touchées.",
+  "visual_copy_sha256": "c317bea20ab91f75b5bbc12f464f733a81a718ec05da4f2d08c6bb55dcb64deb",
+  "checks": [
+    "Same learned9/10,gear+2,Willpower10;effective11/12 and one point within learnedcap10.",
+    "Exact current143/4%=35.75% displays35.8%;next1529/42%=36.404...% displays36.4%.",
+    "Each target uses its current HP,not maximum HP,for proposed damage;maxHP only sets50%remaining floor.",
+    "Radius2,cost15,CD6 unchanged;next only percentage.",
+    "Walls limiting pulse newly shown for review;no new control/status,zone,weapon variance or hidden stat reveal.",
+    "RP,numbers,conditions and exact visual wording pending;unshown curves/cases and native art pending;runtime not integrated."
+  ],
+  "source_skill_block_sha256": "18444209db64450daa27188b34a1bd805d5d339569fe05d7964ddcfee5cbad69"
+}

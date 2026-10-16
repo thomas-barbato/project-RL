@@ -1,0 +1,192 @@
+{
+  "date": "2026-10-07",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false,
+    "existing_burn_example": {
+      "source_skill": "FE01 Braise",
+      "fire_damage_per_turn_before_defenses": 13,
+      "remaining_turns": 3,
+      "remaining_damage_before_defenses": 39,
+      "owner": "player",
+      "own_burn_eligible": true,
+      "profile_is_fictional": true
+    },
+    "willpower_for_shock": "already included in existing burn;not multiplied again"
+  },
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "target_status_visibility_dependency": {
+    "review_id": "HUD06",
+    "reference": "docs/reviews/refonte-agent-2026-10-06/target-status-analysis-visibility-decisions.json",
+    "sha256": "d1e57c5798ede4cbfa9a715cf1db628415a8c4784b630bbbcf1bba709cf628b1",
+    "burn_status_values_visible_without_recon_drone": true,
+    "native_rendering": "pending"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "id": "FE06",
+  "title": "Combustion",
+  "revision": 2,
+  "player_copy_markdown": "**FE06 · Combustion — Rang 11**\n\n*Vous concentrez les flammes qui rongent votre cible en un embrasement brutal.*\n\n**Effets actuels**\n\n- Conversion de la brûlure restante : **140 %**.\n- Dégâts sur cette cible : **54 dégâts de feu**.\n- Chance d’une nouvelle brûlure : **20 %**.\n- Nouvelle brûlure : **4 dégâts de feu par tour pendant 3 tours**.\n- Portée : **5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Conversion de la brûlure restante : **144 %**.\n- Dégâts sur cette cible : **56 dégâts de feu**.\n- Chance d’une nouvelle brûlure : **21 %**.\n\n**Coût : 9 énergie · Recharge : 3 tours.**\n\nNécessite une cible visible portant une brûlure que vous avez appliquée. La brûlure actuelle est supprimée. Une éventuelle nouvelle brûlure commence au prochain tour complet et ne se cumule pas avec elle-même.\n\nDégâts affichés avant les défenses des cibles.",
+  "example_context_markdown": "Pour l’exemple, la cible porte une brûlure de **13 dégâts de feu par tour**, avec **3 tours restants**.",
+  "example_context_status": "review illustration outside actual tooltip;not fixed damage for every target",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-27.json",
+  "source_skill_block_sha256": "1603745fc7cf0761205580e0d6e3f55dd3b036d0607fe7fb4ce5287c99b3babd",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/combustion-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "840251030d3ce5877d4fc667ca178a451db1baf0c052f2e7796acd2a5822337b",
+  "name_approval": "accepted_existing_catalogue_name",
+  "roleplay_text_approval": "displayed_RP_explicitly_accepted",
+  "functional_description_approval": "paragraph omitted by globalCD08;own-burn targeting and consumption/new-burn timing conditions retained",
+  "current_next_effect_copy_approval": "displayed_current_next_and_target_example_accepted_as_provisional_balance",
+  "numeric_rules_approval": "displayed_conversion_contextual_damage_fresh_burn_values_range_cost_cooldown_accepted_as_provisional_balance;unshown_curves_pending",
+  "detailed_conditions_approval": "displayed_own_burn_target_consumption_fresh_burn_start_and_nonstacking_accepted;unshown_details_pending",
+  "current_profile_status": "illustrative agent and target;same target burn kept for preview;shock before target defenses",
+  "attribute_scaling_approval": "existing-burn Willpower not applied twice;new burn uses current Willpower;full curves pending",
+  "formulas": {
+    "conversion_percent": "100+4*(effective_rank-1)",
+    "shock_fire_damage": "floor(remaining_own_burn_damage_before_defenses*conversion_percent/100)",
+    "remaining_burn_example": "13*3=39 before target defenses;example only",
+    "fresh_burn_chance_percent": "min(100,max(0,10+(effective_rank-1)))",
+    "fresh_burn_fire_damage_per_turn": "floor((1+0.3*(effective_rank-1))*magic_multiplier)",
+    "fresh_burn_duration_turns": 3,
+    "range_cells": 5,
+    "energy_cost": "6+floor((effective_rank-1)/3)",
+    "cooldown_turns": 3,
+    "magic_multiplier": "1+0.02*(Willpower-5)",
+    "shock_extra_magic_multiplier": false,
+    "rounding": "once at end per damage value"
+  },
+  "weapon_compatibility": {
+    "scope": "magic consuming target status;not weapon attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy weapon exclusion added to spell"
+  },
+  "effect_conditions": {
+    "target": "visible target within5 cells bearing eligible player-applied burn",
+    "foreign_burn_or_ground_zone_consumed": false,
+    "no_eligible_burn": "refusal without cost/time/RNG under common rules",
+    "old_burn_removed_before_shock": true,
+    "old_burn_future_ticks_continue": false,
+    "fresh_burn_possible_after_shock": "explicit user requirement;displayed new probability values accepted",
+    "fresh_burn_guaranteed": false,
+    "fresh_burn_first_tick": "next complete turn after application",
+    "own_fresh_burn_applications_stack": false,
+    "target_dead_at_shock": "unshown pending review;no revival or post-death status invented",
+    "damage_type": "fire",
+    "damage_display": "before target defenses",
+    "shock_reapplies_willpower": false,
+    "current_and_next_preview_same_target_remaining_burn": true,
+    "multiple_eligible_burn_selection_priority": "pending review",
+    "fresh_burn_refresh_replacement_and_cross_skill_stacking": "pending review",
+    "persistent_ground_zone_created": false,
+    "EL_ZONE01_exposure_applies": false,
+    "burn_is_control": false,
+    "boss_burn_immunity_inferred": false,
+    "new_hidden_actor_reveal_created": false
+  },
+  "dynamic_damage_preview": {
+    "source": "selected eligible target own burn damage and remaining duration",
+    "changes_with_selected_target_or_remaining_turns": true,
+    "same_target_kept_between_current_next": true,
+    "no_target_preview": "requirement message;exact copy pending review",
+    "known_status_values_without_drone": "HUD06 accepted;other target statistics remain restricted"
+  },
+  "zone_exposure_dependency": {
+    "review_id": "EL-ZONE01",
+    "reference": "docs/reviews/refonte-agent-2026-10-06/elemental-status-and-emanation-redesign-decisions.json",
+    "sha256": "1455a5b1f4ec31f3dcdc0fcaa8d40e34a1c1664a764100cf0b6fd6d1dcdec548",
+    "applies_to_FE06": false,
+    "other_persistent_spell_zones": "accepted increasing chance and exit reset retained"
+  },
+  "unshown_rules_approval": "Full rank/attribute curves,remaining real burn fractions,selection/priority among multiple eligible burns,hit/resistance/critical/modifier and shock order,dead target handling,fresh-burn replacement/refresh and cross-skill stacking,exact first/last ticks/layer changes and no-target damage copy remain pending where not previously accepted. Current target example is fictional and frozen between previews;not guaranteed damage against every target. No foreign-burn or ground-zone consumption,no persistent zone/control or general spell variance introduced.",
+  "visual_copy_markdown": "**Visuel proposé :** les flammes se resserrent sur la cible et éclatent en un flash. Elles reprennent si une nouvelle brûlure est appliquée.",
+  "visual_intention_approval": "displayed_tightening_flash_and_conditional_flame_return_direction_accepted;native_preview_pending",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "current_values": {
+    "effective_rank": 11,
+    "conversion_percent": 140,
+    "shock_fire_damage_for_selected_target": 54,
+    "fresh_burn_chance_percent": 20,
+    "fresh_burn_fire_damage_per_turn": 4,
+    "fresh_burn_duration_turns": 3,
+    "range_cells": 5,
+    "energy_cost": 9,
+    "cooldown_turns": 3
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "conversion_percent": 144,
+    "shock_fire_damage_for_selected_target": 56,
+    "fresh_burn_chance_percent": 21,
+    "fresh_burn_fire_damage_per_turn": 4,
+    "fresh_burn_duration_turns": 3,
+    "range_cells": 5,
+    "energy_cost": 9,
+    "cooldown_turns": 3
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "conversion_percent": 100,
+    "fresh_burn_chance_percent": 10,
+    "fresh_burn_fire_damage_per_turn": 1,
+    "fresh_burn_duration_turns": 3,
+    "range_cells": 5,
+    "energy_cost": 6,
+    "cooldown_turns": 3,
+    "willpower": 5,
+    "shock_damage": "depends on selected eligible burn",
+    "approval": "unshown full curve pending"
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "conversion_percent",
+      "shock_fire_damage_for_selected_target",
+      "fresh_burn_chance_percent"
+    ],
+    "unchanged_effects_omitted": [
+      "fresh_burn_fire_damage_per_turn",
+      "fresh_burn_duration_turns",
+      "range_cells",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "player_copy_sha256": "a16edd14968231f0696fe5b2c8c34836ddc603454356672b3f552b101a3d8d1e",
+  "visual_copy_sha256": "8b7a80b2c8089f30bff5822b34b076784d5c68e91390292b835af3ad620cd617",
+  "example_context_sha256": "8c584124818e3e1a4ec67292b370caa3186c3189226e440334654861fcf7b2a1",
+  "checks": [
+    "Rank11 converts140% of same13*3=39 burn damage:floor54.6=54;next12 converts144%:floor56.16=56.",
+    "Original burn already includes Willpower;shock does not multiply Willpower again;fresh burn uses M11/10 once.",
+    "Fresh chance20 to21%;fresh burn4/turn for3 turns both;range5,energy9,cooldown3 unchanged and omitted from next.",
+    "Same learned9 to10,gear+2,attributes/modifiers and selected original burn13/turn with3 turns left;one point cap10 respected.",
+    "Per-target calculated damage explicitly contextualized;no universal promise of54 damage for all targets.",
+    "Own burn required/consumed;fresh chance20 then21%,4 damage for3 turns,start next full turn and own nonstacking explicitly accepted;unshown details pending.",
+    "No player table/formula/rank breakdown/ordinary execution reminder/weapon variance;new conditional visual pending;no runtime integration.",
+    "Accepted player/visual/example copy retained byte-for-byte;only approval/source metadata updated."
+  ],
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE06-01.json",
+  "previous_description_sha256": "da0c70b486e0fe5f5b9dd06ee7adc919007f22c069c5a87f50b0215938eb66aa"
+}

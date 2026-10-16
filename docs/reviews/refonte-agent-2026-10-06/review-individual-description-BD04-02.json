@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-08",
+  "id": "BD04",
+  "review_id": "BD04",
+  "revision": 2,
+  "title": "Visée stable",
+  "branch": "Buffs à distance",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-99.json",
+  "source_skill_manifest_sha256": "b7d233f9b3f86330c2c46eee065016710e0db96db0c2b89e4fd9806f2227b2b9",
+  "source_skill_block_sha256": "1aadde8f3e73bc10b120d5ae12c5d4bd2236c56807216cba87d781e6b8317c61",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "relative_precision_bonus_per_stationary_turn_percent": 15,
+    "maximum_relative_precision_bonus_percent": 45,
+    "maximum_stationary_turns": 3
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "relative_precision_bonus_per_stationary_turn_percent": 16,
+    "maximum_relative_precision_bonus_percent": 48,
+    "maximum_stationary_turns": 3
+  },
+  "formulas_proposed": {
+    "relative_precision_bonus_per_stationary_turn_percent": "5+(effective_rank-1)",
+    "precision_multiplier": "1+min(3,stationary_elapsed_turns)*(5+effective_rank-1)/100",
+    "stacking": "additive_percent_of_precision_base;not_exponentiation_or_hit_chance_points",
+    "full_curves_rounding_and_modifier_order": "unshown_pending_review"
+  },
+  "prior_unapproved_curve": "5+(effective_rank-1) absolute_precision_units;changed_to_relative_percent_in_current_proposal",
+  "conditions_proposed": {
+    "own_ranged_attack_precision_only": true,
+    "elapsed_turn_without_position_change_adds_one_stack_including_stationary_attacks_and_other_actions": true,
+    "any_voluntary_forced_or_magic_position_change_clears_stacks": true,
+    "menus_and_actions_without_elapsed_turn_add_no_stacks": true,
+    "maximum_stacks": 3,
+    "not_timed_after_stacking": true,
+    "stack_icon_and_hover_precision_value": "HUD01-ALL01;native_pending"
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "displayed_roleplay_explicitly_accepted",
+  "numeric_rules_approval": "displayed15_max45_next16_max48_three_turn_values_explicitly_accepted;unshown_full_curve_pending",
+  "detailed_conditions_approval": "displayed_relative_ranged_precision_stationary_gain_and_movement_reset_accepted;unshown_cases_pending",
+  "visual_intention_approval": "displayed_tightening_reticle_stack_icon_and_hover_bonus_direction_accepted;native_pending",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "displayed_card_explicitly_accepted;unshown_cases_and_native_pending",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "no_invented_hit_probability": true,
+    "no_artificial_status_duration": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "relative_precision_bonus_per_stationary_turn_percent",
+      "maximum_relative_precision_bonus_percent"
+    ]
+  },
+  "player_copy_markdown": "**BD04 · Visée stable — Rang 11 · Passif**\n\n*Vous stabilisez votre posture et laissez votre viseur se refermer sur votre proie.*\n\n**Effets actuels**\n\n- Précision par tour immobile : **+15 %**.\n- Bonus maximum : **+45 %**, après **3 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Précision par tour immobile : **+16 %**.\n- Bonus maximum : **+48 %**.\n\nCes bonus augmentent la valeur de précision de vos attaques à distance, pas directement leur chance de toucher.\n\nLes attaques et autres actions sans déplacement font progresser le cumul. Tout changement de case, même forcé, le supprime. Les menus et actions sans passage de tour ne le font pas progresser.",
+  "player_copy_sha256": "b92da8ddfe64c954da9246251751b203db7e75d7879692d79e0096726a1984c3",
+  "visual_copy_markdown": "**Visuel proposé :** le viseur se resserre à chaque tour immobile. Une icône dans la barre des buffs affiche le nombre de cumuls ; son tooltip indique le bonus de précision actuel.",
+  "visual_copy_sha256": "49d76bbe01b6f9dfb73953bbc8eed887fb0e4a45f38b51207bd780907bf8736c",
+  "current_turn_shown_copy_markdown": "**BD04 · Visée stable — Rang 11 · Passif**\n\n*Vous stabilisez votre posture et laissez votre viseur se refermer sur votre proie.*\n\n**Effets actuels**\n\n- Précision par tour immobile : **+15 %**.\n- Bonus maximum : **+45 %**, après **3 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Précision par tour immobile : **+16 %**.\n- Bonus maximum : **+48 %**.\n\nCes bonus augmentent la valeur de précision de vos attaques à distance, pas directement leur chance de toucher.\n\nLes attaques et autres actions sans déplacement font progresser le cumul. Tout changement de case, même forcé, le supprime. Les menus et actions sans passage de tour ne le font pas progresser.\n\n**Visuel proposé :** le viseur se resserre à chaque tour immobile. Une icône dans la barre des buffs affiche le nombre de cumuls ; son tooltip indique le bonus de précision actuel.",
+  "current_turn_shown_copy_sha256": "c424b08be16d00fb36667b1f398b2d807b445e4618d4df6d56fc848db8570c0a",
+  "unshown_cases_pending": [
+    "full_curve_defaults_rounding_base_precision_and_modifier_order",
+    "stack_gain_timing_before_or_after_attack_and_wait_rest_turns",
+    "map_changes_teleports_transformation_and_partial_turns",
+    "exact_weapon_spell_form_heavy_weapon_eligibility_and_summon_exclusions",
+    "native_reticle_stack_icon_tooltip_and_visibility"
+  ],
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/steady-aim-description-acceptance-decisions.json",
+  "acceptance_decisions_sha256": "a57b363ea5e9a2c6be1f2b942121aa5b0eb0c69bd7bb160346cd3debb4703124",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-BD04-01.json",
+  "previous_description_sha256": "c24c4210a69938270e0a3dd225ecb89c508e74f96c76797be0a2e6ed397663d0"
+}

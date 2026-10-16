@@ -1,0 +1,36 @@
+{
+  "compared_files": 656,
+  "missing": [],
+  "changed": [
+    "src/armor_models_tests.rs",
+    "src/ascii_app.rs",
+    "src/combat_visuals_app.rs",
+    "src/combat_visuals_capture.rs",
+    "src/cyberpunk_capture.rs",
+    "src/game_art.rs",
+    "src/game_art_catalog.rs",
+    "src/game_art_palette.rs",
+    "src/game_art_player.rs",
+    "src/game_art_worn.rs",
+    "src/one_hand_firearms.rs",
+    "src/terminal_view.rs",
+    "src/weapon_hands_app.rs",
+    "assets/sprites/cyberpunk/actors-128.png",
+    "assets/sprites/cyberpunk/actors-32.png",
+    "assets/sprites/cyberpunk/manifest.json",
+    "tools/art/build_cyberpunk_assets.py",
+    "tools/art/build_player_outfits.py",
+    "tools/art/build_player_worn_assets.py",
+    "tools/art/build_ranged_families.py"
+  ],
+  "unchanged_core_content": true,
+  "unchanged_simulation_loot_and_instances": true,
+  "external_test_name_changes": [
+    "src/armor_models_tests.rs"
+  ],
+  "new_source_files": [
+    "src/crawl_art_capture.rs",
+    "src/end_screen_app.rs",
+    "tools/art/build_crawl_assets.py"
+  ]
+}

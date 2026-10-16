@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-08",
+  "review_id": "P01-CURRENT02",
+  "revision": 2,
+  "title": "PV et énergie lors de la progression",
+  "status": "user_corrected_synthesis_accepted;previous_missing_amount_preservation_proposal_superseded",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-current-reserves-on-progression-01.json",
+  "previous_card_sha256": "147e5c52024d5cc327b7730a9008fc0accb140333b754749e483f0698e120c68",
+  "acceptance_decisions": "docs/reviews/refonte-agent-2026-10-06/level-full-restoration-and-no-stat-equipment-refill-decisions.json",
+  "acceptance_decisions_sha256": "b1ce41154e7b73f38f5b30d1d151d5bb741710b7a9ade15e0a07bcbffbcc2318",
+  "accepted_copy_markdown": "- **Montée de niveau** : les gains du niveau sont appliqués, puis les **PV et l’énergie sont entièrement restaurés jusqu’à leurs nouveaux maximums**.\n- **Points investis dans les attributs** : les maximums concernés augmentent, sans restaurer les PV ou l’énergie actuels.\n- **Équipement ajouté ou retiré** : les maximums sont recalculés, sans soin ni récupération d’énergie.",
+  "accepted_copy_sha256": "a8a332b99b638729904d2a8d799b644650b3fcc9ce33f3451d3a6e048f0bace2",
+  "accepted_rules": {
+    "level_gain": "apply_level_gains_and_updated_maximums_then_fully_restore_current_HP_and_energy_to_their_maximums",
+    "attribute_point_investment": "update_affected_maximums_without_restoring_current_HP_or_energy",
+    "equipment_equip_or_remove": "recalculate_affected_maximums_without_healing_or_energy_restoration"
+  },
+  "unshown_cases_pending": [
+    "maximum_decrease_clamping",
+    "exact_level_and_attribute_allocation_UI_order",
+    "multiple_simultaneous_level_gains",
+    "death_resolution_and_level_gain_priority",
+    "temporary_buffs_and_other_passive_maximum_changes_except_existing_accepted_rules",
+    "creation_current_HP_and_energy",
+    "all_other_unshown_cases"
+  ],
+  "accepted_exceptions_preserved": {
+    "B03_maximum_bonus_without_healing": true,
+    "Colosse_HP_percentage_on_entry_and_exit": true
+  },
+  "previous_examples": "historical_only;40_to42_and20_to22_on_level_gain_and_attribute_delta_current_gains_are_superseded",
+  "runtime_integration": "not_integrated"
+}

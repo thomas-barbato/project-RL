@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-06",
+  "skill_id": "ME02",
+  "user_message": "Balayage devra etre renommé : \"Fauchage\"\n\nJe valide.\n\nparcontre je note que tu affiches les dégats \"avec votre équipement et vos attributs\" est-ce que si le joueur change d'arme qu'il a d'activé actuellement ca modifie aussi cette valeur ?",
+  "previous_title": "Balayage",
+  "accepted_title": "Fauchage",
+  "accepted_presentation": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-ME02-01.json",
+  "accepted_presentation_sha256": "9cfbdce273f357d9d024633d1007a6a73430fc905b5ab003c15beebb4807773b",
+  "approval_scope": "displayed roleplay and functional text, simplified damage and energy progression, displayed default and example values; explicit title replacement",
+  "balance_status": "accepted_working_values; future_balance_changes_require_review",
+  "unshown_detailed_conditions": "remain_pending",
+  "global_attribute_coefficients": "remain_pending; acceptance_of_the_displayed_example_does_not_approve_global_formulas",
+  "visual_render": "pending_native_preview_and_user_review",
+  "active_weapon_question_clarification": {
+    "status": "existing_design_requirement_explained; not_a_new_runtime_change",
+    "basis": "CD02 current values use applicable equipment, attributes and effective skill rank",
+    "behavior": "weapon-based skill damage is recalculated from the currently active compatible weapon and all applicable modifiers; skill rank also changes if a changed item supplies skill ranks"
+  },
+  "runtime_integration": "not_integrated"
+}

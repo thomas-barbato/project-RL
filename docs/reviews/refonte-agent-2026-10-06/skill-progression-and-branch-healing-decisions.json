@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SKILL-PROG01_SKILL-HEAL01",
+  "user_answer": "oui c'est ca :)",
+  "preceding_user_instruction": "pas sur que ces pourcentages vaille la peine de monter la compétence . Globalement investir 10 points dans une compétence pour gagner plus ou moins 10 % de bonus c'est generalement trop peu et tres peu séduisant (en faite dans les jeux vidéos il faut que les effets aient un interets directes, gagner quelques dixièmes de pourcentage ne l'est jamais). Aussi je pense que chaque branche devrait avoir une compétence de soin (que ce soit du drain, de la régénération par tour, du soin direct... jamais surpuissant et jamais spammable)",
+  "accepted_synthesis": [
+    "each invested point should provide perceptible useful improvement; ten learned ranks should meaningfully improve effectiveness; fractions of a percent per rank or roughly ten percent total are generally insufficient; applies to all skills",
+    "at least one healing skill per branch adapted to its identity, such as drain regeneration over turns or direct healing; useful moderate healing with limits preventing repeat spam"
+  ],
+  "approval": "explicit_user_confirmation_of_general_design_principles",
+  "accepted_rules": {
+    "SKILL-PROG01": "meaningful and rewarding skill-rank progression across the catalogue",
+    "SKILL-HEAL01": "at least one moderate nonspammable healing option per branch"
+  },
+  "existing_individually_approved_cards": "preserved until each modified part is presented and explicitly reapproved; new principles do not silently approve revised numbers",
+  "BM02_old_12_5_to_12_9_percent_proposal": "superseded_pending_card_to_redesign;not_approved",
+  "exact_new_scaling_healing_amounts_costs_cooldowns_limits_and_visuals": "pending_individual_reviews",
+  "ten_learned_ranks_one_skill_point_each_and_equipment_effective_ranks_above_ten": "existing_rules_preserved",
+  "healing_targets_active_vs_passive_and_secondary_tree_scope": "to_specify_per_branch_review;no_unstated_restriction_or_new_skill_identity_created",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ15-DIRECTION02",
+  "source": "user_recall_utility_feedback_and_reposition_cooldown_request",
+  "user_messages": [
+    "je sais pas à quoi peut bien servir rappeler, à la limite redéployer pourrait servir à téléporter un drone dans une case adjancente du joueur au cas ou le drone serait coincé dans le décors ou s'il genait la progression.",
+    "on devrait quand meme donner un cooldown pour réutiliser cette action pour éviter qu'un joueur abuse de cette action pour le faire suvivre à des monstres :)"
+  ],
+  "accepted_explicit_directions": {
+    "reposition_function": "user_suggests_teleport_same_drone_to_cell_adjacent_to_player_to_unblock_terrain_or_passage",
+    "reuse_cooldown": "user_requires_a_reuse_cooldown_to_limit_repeated_rescue;duration_and_per_drone_vs_shared_scope_not_chosen"
+  },
+  "approval_scope": "Adjacent drone teleport/unblocking direction and cooldown requirement requested. Assistant-proposed Repositionner label, replacement of previously accepted storage lifecycle, exact cooldown6 per drone, zero energy, source map/visibility and destination conditions remain pending review.",
+  "native_visual_approval": "teleport_direction_suggested;native_effect_not_presented",
+  "runtime_integration": "not_integrated"
+}

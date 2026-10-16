@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-06",
+  "user_message": "je valide, parcontre on va modifier quelque chose :\n\nQuand on fera la fenetre des compétences (avec les arbres de compétences) on est d'accord que ce que tu me montre là, ca sera affiché principalement dans des tooltip, bon , du coup on aura aussi l'icone de la compétence et son niveau, et bien, on affichera le niveau avec une couleur differente tout simplement et dans le tooltip on affichera pas \"9 rangs appris + 2 grâce à l’équipement.\"",
+  "skill_id": "D66",
+  "title": "Invocation du Gardien",
+  "accepted_presentation": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-D66-01.json",
+  "accepted_presentation_sha256": "bdfaae05cb43534b455dff6f77101cf792d843a0e0b6c7bfe78b1b7a65312a3c",
+  "accepted_original_player_copy_sha256": "dd6d8ca213e9cc26fbff7f13b41e082a9f4c8e154736b5f3cf58b5d2a8308d23",
+  "skill_approval_scope": "Displayed roleplay, functional and current/next copy; 88/93 HP, 21/22 kinetic damage, protection 17.5/18.1%, contact range 1, protection radius 2, energy 17, cooldown 6, one Gardien; protection covers player/drones including itself, requires line of sight, reduces direct and persistent damage. Requested rank-breakdown line omitted.",
+  "skill_unshown_rules": "Full-rank formulas, Intelligence/Link coefficients, rounding, cumulative protection order, placement, targeting/accuracy, action timing, parameter snapshots and recall/redeployment remain pending.",
+  "tooltip_format": {
+    "review_id": "CD07",
+    "skill_tree_shows_icon_and_effective_level": true,
+    "boosted_level_different_color": true,
+    "existing_boosted_color_family": "cyan",
+    "descriptions_mainly_in_tooltips": true,
+    "omit_learned_and_equipment_rank_breakdown_in_tooltip": true,
+    "omit_from_future_player_copy_examples": true,
+    "internal_learned_bonus_effective_ranks_remain_distinct": true,
+    "current_and_next_values_use_effective_rank": true,
+    "existing_numeric_rules_unchanged": true
+  },
+  "visual_approval": "Requested structure and existing color direction accepted; specific icons, layout and native render pending review.",
+  "next_skill_review": "DP01",
+  "runtime_integration": "not_integrated"
+}

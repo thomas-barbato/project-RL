@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-TIME03-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-buff-cooldown-accounting-INTERACT-TIME03-01.json",
+    "reference_sha256": "0d6abfe416d3888434ba666e694f7aa35d0dcef4e9b8cc35422980946914a168"
+  },
+  "user_acceptance": "Oui parfait :)",
+  "shown_explanation": "INTERACT-TIME03 · Durées des buffs et recharges — proposition\n\nJe propose que le temps écoulé pendant l'action de lancement compte dans la durée du buff et dans sa recharge.\n\n- Buff de 3 tours : il agit pendant le tour de lancement, y compris les réactions ennemies, puis pendant les 2 tours suivants. Après le tour de lancement, son icône indique 2 tours restants.\n- Recharge de 3 tours : après un lancement qui consomme 1 tour, le menu indique 2 tours restants. Après 2 autres tours de jeu, la compétence redevient utilisable si ses autres conditions sont remplies.\n- Les menus, survols, annulations et actions qui ne font pas avancer le temps ne diminuent aucun compteur.\n\nUne compétence en recharge reste grisée et bloquée, même via un raccourci. À zéro, seul le blocage lié à la recharge disparaît.\n\nLes valeurs de 3 tours illustrent uniquement le décompte. Elles ne changent aucune durée ni recharge de compétence. Les règles déjà validées pour les dégâts persistants, les délais particuliers et les durées des familiers restent conservées.\n\nCette convention reste proposée, en attente de validation.",
+  "approved_rule": {
+    "ordinary_buff": "applies_at_successful_activation_before_enemy_responses;activation_action_elapsed_time_counts_in_duration;duration3_one_turn_cast_covers_activation_turn_and_next_two_turns_then_expires_after_last_covered_turn",
+    "new_skill_cooldown": "starts_at_successful_activation;counts_actual_game_time_elapsed_in_activation_action;cooldownN_after_one_turn_cast_is_max(0,N-1)",
+    "zero_time_actions": "no_decrement_without_actual_game_time;menus_hover_target_selection_cancel_refused_actions_wall_clock_wait_and_zero_time_actions_do_not_advance_counters",
+    "existing_UI": "same_remaining_counter_for_display_button_and_shortcut_block;positive_blocks;zero_removes_only_cooldown_block_other_conditions_still_apply",
+    "preserved": "no_new_duration_or_cooldown_numbers;accepted_immediate_persistent_damage_counting_and_reapplication_unchanged;explicit_delays_channels_and_familiar_lifetimes_unchanged",
+    "scope_boundary": "not_general_debuff_expiry_or_complete_actor_scheduler;fractional_display_rounding_and_native_feedback_not_newly_proposed"
+  },
+  "approval_boundary": "shown_ordinary_buff_and_new_skill_cooldown_elapsed_cast_time_accounting_and_zero_time_actions_accepted;not_full_turn_order_fractional_display_rounding_or_native_feedback",
+  "runtime_integration": "not_integrated"
+}

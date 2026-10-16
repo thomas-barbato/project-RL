@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-08",
+  "review_id": "S04-VISION01",
+  "related_attribute_id": "S04",
+  "revision": 1,
+  "title": "Vision",
+  "status": "proposed_pending_explicit_review",
+  "accepted_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-10.json",
+  "accepted_attribute_model_sha256": "5a9772d58d5e948b1f5936da91abb03548380f777527107131b2195925fd0b2e",
+  "shown_copy_markdown": "La **précision et l’esquive sont validées**. Passons à la vision liée à la Perception.\n\n**S04 · Vision**\n\n*Vous repérez les menaces plus loin autour de vous.*\n\n**Effets proposés**\n\n- Portée de base : **8 cases**.\n- Bonus : **+1 case par tranche de 10 points de Perception au-dessus de 5**.\n- Portée maximale : **16 cases**.\n\n**Exemple actuel — Perception 10**\n\n- Portée de vision : **8 cases**.\n- Bonus de dégâts des armes à distance : **+5 %**, déjà validé.\n\n**Avec cinq points supplémentaires — Perception 15**\n\n- Portée de vision : **9 cases**.\n- Bonus de dégâts des armes à distance : **+10 %**.\n\nLes obstacles continuent à limiter la vision. La portée des armes se calcule séparément.\n\nAu-delà du plafond de vision, la Perception continue à augmenter les dégâts à distance.",
+  "shown_copy_sha256": "f88c4d07e6593e41dbcdb023436e6ac968b3a08a7a6aa25725824d430be9e98d",
+  "already_accepted_rules": {
+    "ranged_weapon_damage_percentage_points_per_Perception_point": 1,
+    "reference_Perception": 5,
+    "includes_heavy_ranged_weapons": true
+  },
+  "new_proposed_rules": {
+    "base_vision_radius_cells": 8,
+    "extra_radius_cells_per10_Perception_points_above5": 1,
+    "maximum_vision_radius_cells": 16,
+    "bonus_only_above_reference": true,
+    "existing_obstacle_limits_apply": true,
+    "weapon_range_is_independent": true
+  },
+  "formula_proposed": "min(16,8+floor(max(0,Perception-5)/10))",
+  "shown_examples": [
+    {
+      "Perception": 10,
+      "vision_radius_cells": 8,
+      "ranged_weapon_damage_bonus_percent": 5
+    },
+    {
+      "Perception": 15,
+      "vision_radius_cells": 9,
+      "ranged_weapon_damage_bonus_percent": 10
+    }
+  ],
+  "RP_approval": "proposed_pending_review",
+  "numeric_and_scope_approval": "base8_extra1_per10_points_above5_and_max16_pending;damage_coefficient_previously_accepted",
+  "historical_lower_vision_proposal": "old_unaccepted_floor_rule_reduced_radius_to7_at_Perception4;current_proposal_uses_base8_with_extra_radius_only_above_reference",
+  "no_new_accuracy_or_hearing_bonus_proposed": true,
+  "unshown_cases_pending": [
+    "radius_metric_and_boundary_cells_under_existing_FOV",
+    "interaction_with_drone_shared_vision_and_observation",
+    "lighting_invisibility_and_status_vision_modifiers",
+    "other_equipment_or_skill_vision_bonuses_and_cap_order",
+    "recalculation_on_attribute_and_equipment_changes",
+    "range_preview_and_native_rendering",
+    "all_other_unshown_cases"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

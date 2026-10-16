@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-07",
+  "review_id": "OC05",
+  "user_message": "Je valide :)",
+  "source_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC05-01.json",
+  "source_description_sha256": "36bb8f3f5897632c7cd4fa9adf2fc3f2004a0e739a5a24006aec423089ff2867",
+  "shown_assistant_copy_markdown": "**OC05 · Rayon vorace — Rang 11 · Actif**\n\n*Un lien de ténèbres s’agrippe à votre cible et dévore sa vitalité pour nourrir la vôtre.*\n\n**Effets actuels**\n\n- Dégâts occultes : **28 par tour**.\n- Vol de vie : **17,5 % des PV retirés**.\n- Durée maximale : **3 tours**.\n- Portée : **5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts occultes : **30 par tour**.\n- Vol de vie : **17,9 % des PV retirés**.\n\n**Coût : 6 énergie par tour · Recharge : 6 tours.**\n\nCiblez un ennemi visible, sans obstacle entre vous et lui.\n\nLe rayon se poursuit automatiquement lorsque vous attendez. Vous déplacer, attaquer avec une arme ou utiliser une autre compétence l’interrompt. Les dégâts reçus ne l’interrompent pas.\n\nIl cesse si vous perdez la cible ou manquez d’énergie.\n\nLe soin dépend des PV réellement retirés, sans dépasser vos PV manquants. Dégâts affichés avant les défenses de la cible.\n\n**Visuel proposé :** un fil noir veiné de rouge relie votre personnage à sa cible. Des pulsations rouge sombre remontent vers vous à chaque drain ; le fil se rompt lorsque le sort cesse.",
+  "shown_assistant_copy_sha256": "5848be044888f7d717fa4d800871120e4e8ebc216e31ef72e6f8245d9b60ef25",
+  "approval_scope": "Displayed black-magic RP,damage28/30 per turn,leech17.5/17.9 percent of actual HP removed,duration3,range5,cost6 energy per turn/CD6,visible unobstructed enemy target,automatic continuation while waiting,move/weapon attack/other skill interruption,no interruption by received damage,loss of target/energy stop,heal capped by missing HP,damage before target defenses;displayed black red-veined filament,inbound dark-red drain pulses and rupture on ending accepted as visual direction. Native pixels,full curves,rounding and unshown cases remain pending.",
+  "numeric_rules_approval": "displayed_current_next_values_duration_range_cost_cooldown_accepted_as_provisional_balance;unshown_curves_and_rounding_pending",
+  "roleplay_text_approval": "displayed_black_magic_RP_explicitly_accepted",
+  "detailed_conditions_approval": "displayed_visible_unobstructed_enemy_automatic_wait_ticks_move_weapon_other_skill_stop_received_damage_noninterruption_target_energy_stop_actual_HP_leech_and_missing_HP_cap_accepted;unshown_cases_pending",
+  "visual_intention_approval": "displayed_black_red_veined_filament_inbound_dark_red_drain_pulses_and_break_on_end_accepted;native_pixels_pending",
+  "unshown_rules_approval": "Full rank/attribute/leech/cost curves and rounding,hit chance,visibility union/LOS/range/corners/large footprints,initial/followup timing,tick/defense/heal/interruption order,cooldown start/count,refusal/energy accounting,inventory/pet/item/natural attacks,modifiers/stacking and map interactions remain pending;no hidden reveal,status,general spell variance or HP cost added. Automatic continuation and HP-loss noninterruption explicitly accepted for OC05 only.",
+  "runtime_integration": "not_integrated",
+  "next_review_skill_id": "OC06"
+}

@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-08",
+  "review_id": "S06-RESIST-ACCEPT01",
+  "user_reply": "oui ok :) ca me va , je te laisse faire les resistances et tu me montrera ensuite :)",
+  "approval_context": "Positive confirmation accepts the last presented S06-RESIST01 card;the continuation authorizes preparing the remaining resistance proposal as a complete batch for subsequent review.",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-derived-stat-occult-resistance-01.json",
+  "source_card_sha256": "f980680a6e50abd65934c200a76861ffba89c48a62d8e3b40dc7014efa0a6961",
+  "accepted_shown_copy_markdown": "La **vision de base fixe à 8 cases** est validée.\n\n**S06 · Résistance occulte — proposition**\n\n*Votre volonté vous protège des malédictions et des entraves occultes.*\n\n**Base — Volonté 5**\n\n- Résistance occulte : **25**.\n- Par point de Volonté : **+2 en résistance occulte**.\n- Résistance minimale : **1**.\n\n**Calcul**\n\nChance de subir l’effet : **puissance adverse ÷ (puissance adverse + résistance) × 100**, limitée entre **5 % et 95 %**.\n\n**Exemple actuel — Volonté 10**\n\nFace à un pouvoir ayant **100 en puissance**, sans autres bonus :\n\n- Résistance occulte : **35**.\n- Chance de résister : **25,9 %**.\n\n**Avec cinq points supplémentaires — Volonté 15**\n\n- Résistance occulte : **45**.\n- Chance de résister : **31 %**.\n\nCette protection concerne l’application des contrôles et malédictions occultes, comme **Silence** ou **Désorientation**. Les dégâts, le Gel, la Brûlure et le Poison conservent leurs règles propres.",
+  "accepted_shown_copy_sha256": "30d86fc72ed8d5df0ad16f6c0988f7e9722053c59b88a1f4d0582019f64e6418",
+  "accepted_rules": {
+    "base_occult_resistance_at_Volonte5": 25,
+    "occult_resistance_units_per_Volonte_point": 2,
+    "minimum_occult_resistance": 1,
+    "occult_resistance_formula": "max(1,25+2*(Volonte-5))",
+    "hostile_effect_success_chance_formula": "clamp(100*hostile_power/(hostile_power+occult_resistance),5,95)",
+    "minimum_hostile_effect_success_percent": 5,
+    "maximum_hostile_effect_success_percent": 95,
+    "scope": "player_application_resistance_to_occult_controls_and_curses;examples_Silence_and_Desorientation",
+    "damage_and_Gel_Burn_Poison_rules": "unchanged;not_implicitly_scaled_by_this_new_occult_resistance"
+  },
+  "accepted_shown_examples": [
+    {
+      "Volonte": 10,
+      "occult_resistance": 35,
+      "hostile_power": 100,
+      "shown_resist_chance_percent": 25.9
+    },
+    {
+      "Volonte": 15,
+      "occult_resistance": 45,
+      "hostile_power": 100,
+      "shown_resist_chance_percent": 31
+    }
+  ],
+  "RP_approval": "last_presented_RP_accepted",
+  "numeric_and_scope_approval": "shown_base25_Volonte5_plus2_per_point_minimum1_opposition_formula_bounds5_95_player_occult_controls_and_curses_scope_and_examples_accepted",
+  "authorization_for_next_work": "prepare_remaining_damage_resistances_armor_and_status_interactions_and_present_the_complete_proposal;not_blanket_approval_of_unshown_values_or_runtime_integration",
+  "unshown_cases_pending": [
+    "exhaustive_effect_eligibility_and_hostile_monster_skill_definitions",
+    "interaction_with_existing_player_skill_application_chances_and_target_occult_resistance",
+    "hostile_power_sources_and_scaling_by_enemy_level_role_importance",
+    "nonpositive_hostile_power_and_other_probability_edges",
+    "gear_class_implant_skill_status_modifier_stacking",
+    "exact_sampling_and_display_rounding_rules",
+    "transformation_control_duration_and_other_attribute_effects",
+    "all_other_unshown_cases"
+  ],
+  "new_visuals_approved": false,
+  "runtime_integration": "not_integrated"
+}

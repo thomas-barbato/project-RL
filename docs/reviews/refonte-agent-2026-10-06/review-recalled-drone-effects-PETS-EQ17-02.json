@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ17",
+  "revision": 2,
+  "title": "Effets et recharges pendant le rappel",
+  "status": "unaccepted_unpresented_effect_pause_draft_withdrawn_in_favor_of_drone_repositioning_proposal",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-48.json",
+  "current_attribute_model_sha256": "68d8cffc2f8f0db1b579eec18945885f8b14f6dd9810f0220eed49a48adc67fa",
+  "shown_copy_markdown": "Le **ramassage de la Mule et les messages flottants sont validés**.\n\n**PETS-EQ17 · Effets et recharges pendant le rappel — proposition**\n\n**Buffs et débuffs du drone**\n\nIls restent présents, avec leur durée restante **mise en pause**. Le Poison ou le Saignement n’infligent aucun dégât pendant le rappel ; leurs effets reprennent au redéploiement.\n\n**PV et énergie**\n\nLe drone rappelé ne reçoit ni soin périodique ni régénération d’énergie. La restauration au gain de niveau reste celle déjà validée.\n\n**Recharges**\n\nLes recharges du drone et de son invocation **continuent de diminuer avec les tours du jeu**. Le rappel ne les remet pas à zéro.\n\n**Exemple fictif**\n\nAvant le rappel : **buff — 3 tours · Poison — 2 tours · recharge — 4 tours**.\n\nAprès 3 tours de jeu : **buff — 3 tours · Poison — 2 tours · recharge — 1 tour**.\n\n**Ces règles de pause des effets restent à valider.**",
+  "shown_copy_sha256": "44fd6c7fe59537938de668d42fb5abf10d7ed3277854478e189ddc8c6f8a96fa",
+  "new_proposed_rules": {
+    "scope": "temporary_buffs_debuffs_periodic_resource_effects_and_existing_cooldowns_of_recalled_existing_drones;not_raised_allies_or_player_effects",
+    "recalled_drone_statuses": "retain_existing_temporary_buffs_and_debuffs_and_pause_their_remaining_durations_while_recalled",
+    "periodic_damage": "do_not_apply_Poison_Saignement_or_other_periodic_status_damage_to_recalled_actor;resume_remaining_status_on_redeployment",
+    "periodic_restoration": "no_periodic_HP_heal_or_energy_regeneration_while_recalled;pause_existing_periodic_restoration_effect_with_its_remaining_duration",
+    "level_gain_exception": "preserve_accepted_PETS_EQ14_full_HP_energy_restore_on_real_player_level_gain_for_recalled_drones",
+    "cooldowns": "existing_drone_skill_and_agent_invocation_remaining_cooldowns_progress_on_actual_reference_game_turns_while_recalled;not_real_time_menus_or_hovers",
+    "cooldown_reset": "recall_does_not_reset_recharge_to_zero_or_grant_new_skill",
+    "redeployment": "same_actor_resumes_retained_statuses_with_paused_remaining_duration;accepted_invocation_cost_and_redeployment_cooldown_start_rules_preserved",
+    "scope_boundary": "precise_status_tick_before_after_recall_buff_stat_modifier_recalculation_and_scheduler_edges_not_defined"
+  },
+  "shown_examples": {
+    "scope": "fictional_status_remaining_turns_and_one_existing_cooldown;not_actual_item_or_skill_effect_created",
+    "before_recall": {
+      "buff_turns_remaining": 3,
+      "Poison_turns_remaining": 2,
+      "cooldown_turns_remaining": 4
+    },
+    "after_game_turns": 3,
+    "after_recall_wait": {
+      "buff_turns_remaining": 3,
+      "Poison_turns_remaining": 2,
+      "cooldown_turns_remaining": 1
+    }
+  },
+  "dependencies": {
+    "drone_lifecycle": "docs/reviews/refonte-agent-2026-10-06/review-drone-deployment-resources-PETS-EQ14-02.json",
+    "drone_lifecycle_sha256": "f91644351803553afb64058707a02c704b5233bb460c817410e5ff34816f64a4",
+    "familiar_updates": "docs/reviews/refonte-agent-2026-10-06/review-familiar-stat-updates-PETS-EQ13-02.json",
+    "familiar_updates_sha256": "74435f8a5b27b55805b598012f6c3f1532295034de2a0c5c0561ff4919491c01"
+  },
+  "scope_audit": {
+    "recall_conditions": "PETS_EQ15_remains_pending;this_proposal_defines_only_recalled_actor_state_and_does_not_accept_proximity_visibility_or_command_cost",
+    "pause_not_purge": "do_not_remove_old_drone_debuffs_or_reset_durations_on_recall;raised_birth_clean_status_rule_not_extended_to_same_recalled_drone",
+    "resource_policy": "no_periodic_restore_while_stored;accepted_level_gain_full_restore_is_explicit_exception;bonus_maximum_updates_keep_accepted_no_refill_and_clamp",
+    "offmap_survival": "suspending_periodic_damage_does_not_create_an_offmap_death_or_new_item_drop_location_rule",
+    "external_effects": "buffs_already_applied_to_player_other_allies_or_ground_zones_not_paused_by_this_drone_status_rule;their_own_lifecycle_remains_separate",
+    "passive_scope": "no_pause_of_owner_learned_passives_or_revision_of_dynamic_permanent_drone_stat_calculations",
+    "skill_profiles": "no_new_drone_skill_cooldown_duration_cost_or_ability_profile_created",
+    "native_visual": "no_status_icon_layout_pause_marker_stat_sheet_or_animation_created"
+  },
+  "unshown_cases_pending": [
+    "same_turn_recall_and_periodic_damage_or_cooldown_tick_order",
+    "temporary_maximum_HP_energy_buffs_and_external_source_removal_while_recalled",
+    "buffs_or_auras_previously_given_by_drone_to_other_actors_or_zones",
+    "first_spawn_drone_own_skill_cooldowns_and_next_action_eligibility",
+    "recall_refusals_death_autodestruction_and_cargo_atomicity",
+    "native_recalled_status_tooltip_and_timer_pause_display"
+  ],
+  "player_copy_approval": "not_finally_presented;withdrawn_draft",
+  "mechanical_approval": "never_accepted;withdrawn_draft",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated",
+  "presentation_state": "historical_draft_only;not_a_live_review",
+  "previous_draft": "docs/reviews/refonte-agent-2026-10-06/review-recalled-drone-effects-PETS-EQ17-01.json",
+  "previous_draft_sha256": "fefd4030489e96a192ac269457d763e8918b91d4355ef6d070fa81bd53a24dc7",
+  "withdrawal_reason": "Pause policy was never presented in final or accepted;user questions offmap recall and proposes adjacent teleport instead. Do not continue this unapproved draft.",
+  "replacement_review_id": "PETS-EQ15",
+  "replacement_revision": 2
+}

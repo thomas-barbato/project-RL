@@ -1,0 +1,143 @@
+{
+  "date": "2026-10-07",
+  "id": "FE01",
+  "title": "Braise",
+  "revision": 2,
+  "player_copy_markdown": "**FE01 · Braise — Rang 11**\n\n*Vous projetez une braise incandescente qui s’accroche à votre cible et la consume.*\n\n**Effets actuels**\n\n- Dégâts de feu : **41**.\n- Brûlure : **13 dégâts de feu par tour pendant 5 tours**.\n- Portée : **5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts de feu : **45**.\n- Brûlure : **14 dégâts de feu par tour**.\n\n**Coût : 11 énergie · Recharge : 3 tours.**\n\nUne seule cible ennemie visible, avec un trajet dégagé. Dégâts affichés avant les défenses de la cible.\n\nLa brûlure commence au prochain tour complet. Vos applications de cette brûlure ne se cumulent pas.",
+  "player_copy_sha256": "ee6ce11b622f965ae73f5b224c4f24b8ea613842142d10bdc3ad1b78f06d1564",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-19.json",
+  "source_skill_block_sha256": "d2e512067d0bfa06b6bc10785e98bcb3badbeb50a6fe198727ee2c86f3ee159d",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/ember-rename-and-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "ccf6fe5e8955ca7f168695498b055a45a890bd92493210d075ec1fad95f70e1e",
+  "common_access_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "common_access_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "name_approval": "explicit_user_rename",
+  "roleplay_text_approval": "displayed_individual_roleplay_explicitly_accepted",
+  "functional_description_approval": "paragraph_omitted_by_accepted_global_editorial_rule_CD08; targeting_defenses_delayed_burn_and_nonstacking_conditions_retained",
+  "current_next_effect_copy_approval": "accepted_as_presented_with_explicit_name_change_only",
+  "numeric_rules_approval": "displayed_current_next_values_accepted_as_provisional_balance; unshown_full_curves_pending",
+  "detailed_conditions_approval": "displayed_single_visible_hostile_clear_path_before_defenses_next_complete_turn_burn_and_same_agent_nonstacking_accepted; other_cases_pending",
+  "current_profile_status": "illustrative_not_a_user_save; existing Willpower scaling proposal used; damage shown before target defenses",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "willpower": 10,
+    "magic_multiplier": "11/10",
+    "other_skill_implant_or_cost_modifiers": false,
+    "active_weapon_damage_used": false
+  },
+  "attribute_reference": "docs/REVUE_TEXTES_EFFETS_AGENT.md#s06-volonté",
+  "attribute_scaling_approval": "displayed FE01 example values at Willpower10 accepted; unshown full attribute curves remain pending",
+  "formulas": {
+    "direct_fire_damage": "floor((8 + 3 * (effective_rank - 1)) * magic_multiplier)",
+    "burn_fire_damage_per_turn": "floor((2 + (effective_rank - 1)) * magic_multiplier)",
+    "burn_duration_turns": "3 + floor((effective_rank - 1)/5)",
+    "magic_multiplier": "1 + 0.02 * (Willpower - 5)",
+    "range_cells": 5,
+    "energy_cost": "8 + floor((effective_rank - 1)/3)",
+    "cooldown_turns": 3
+  },
+  "current_values": {
+    "effective_rank": 11,
+    "direct_fire_damage": 41,
+    "burn_fire_damage_per_turn": 13,
+    "burn_duration_turns": 5,
+    "range_cells": 5,
+    "energy_cost": 11,
+    "cooldown_turns": 3
+  },
+  "next_values": {
+    "effective_rank": 12,
+    "direct_fire_damage": 45,
+    "burn_fire_damage_per_turn": 14,
+    "burn_duration_turns": 5,
+    "range_cells": 5,
+    "energy_cost": 11,
+    "cooldown_turns": 3
+  },
+  "default_values_proposal": {
+    "effective_rank": 1,
+    "willpower": 5,
+    "direct_fire_damage": 8,
+    "burn_fire_damage_per_turn": 2,
+    "burn_duration_turns": 3,
+    "range_cells": 5,
+    "energy_cost": 8,
+    "cooldown_turns": 3,
+    "approval": "unshown full curve remains pending"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "direct_fire_damage",
+      "burn_fire_damage_per_turn"
+    ],
+    "unchanged_effects_omitted": [
+      "burn_duration_turns",
+      "range_cells",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "weapon_compatibility": {
+    "scope": "magic_projectile_not_a_weapon_attack",
+    "weapon_requirement_warning_applicable": false,
+    "AR_HL01_scope": "no heavy weapon exclusion added to spell"
+  },
+  "tooltip_format": {
+    "single_roleplay_paragraph": true,
+    "functional_description_paragraph_omitted": true,
+    "rank_breakdown_line_omitted": true,
+    "ordinary_execution_timing_omitted": true,
+    "delayed_burn_onset_shown": true,
+    "weapon_variance_not_generalized_to_spells": true
+  },
+  "effect_conditions": {
+    "target": "single visible hostile within five cells and clear path",
+    "direct_damage_type": "fire",
+    "burn_damage_type": "fire",
+    "damage_display": "before target defenses",
+    "burn_applied_to_hit_target": true,
+    "burn_first_tick": "next complete turn",
+    "same_agent_burn_stacks": false,
+    "burn_refresh_rule": "unshown pending review",
+    "piercing_multiple_targets_created": false,
+    "control_effect_created": false,
+    "hit_probability_or_automatic_hit_rule": "not chosen in card; full hit model pending",
+    "boss_control_immunity_applied_to_damage_or_burn": false
+  },
+  "status_ui_dependency": {
+    "review_id": "HUD06",
+    "decisions": "docs/reviews/refonte-agent-2026-10-06/target-status-analysis-visibility-decisions.json",
+    "decisions_sha256": "d1e57c5798ede4cbfa9a715cf1db628415a8c4784b630bbbcf1bba709cf628b1",
+    "burn_in_target_buff_debuff_bar": true,
+    "status_values_visible_without_recon_drone": true,
+    "other_target_statistics_unlocked_without_drone": false,
+    "native_icon_and_rendering": "pending user review"
+  },
+  "unshown_rules_approval": "Full rank curves, spell hit probability, projectile/actor collision and path geometry, damage/defense order and burn snapshot versus dynamic modifiers, exact tick/duration accounting, refresh/stronger-weaker reapplication, multiple authors, stacking with other fire effects, purge/resistance/critical/skill synergies and cost modifiers remain pending where not already accepted. No universal spell damage variance, active weapon damage multiplier, automatic hit, additional control, boss burn immunity or multi-target piercing introduced.",
+  "visual_intention_approval": "existing_catalogue_elongated_ember_dark_tail_and_persistent_incandescent_point_direction_accepted_only",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Stable FE01 explicitly renamed Braise; all remaining displayed copy and effects accepted, unchanged.",
+    "Willpower10 M=11/10; rank11 direct41/burn13, next12 direct45/burn14; floor once.",
+    "Both ranks duration5, range5, energy11, cooldown3; next block only changed damage values.",
+    "Learned9 to10, gear+2 unchanged, one point within cap; no tooltip rank breakdown or general spell variance.",
+    "Single visible enemy, clear path, before defenses, next complete turn burn onset and no same-agent stacking accepted.",
+    "HUD06 status values remain visible without recon; native icon/rendering pending.",
+    "83 primary skills, retired skills and access rules preserved; no runtime or native visual integration."
+  ],
+  "previous_title": "Braise perçante",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE01-01.json"
+}

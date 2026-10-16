@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-ARRIVAL01-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-arrival-priority-INTERACT-ARRIVAL01-01.json",
+    "reference_sha256": "cf524a392b4cecf41d9f80581e608ab8de0e08c18dc18096cd6a902b74a8d363"
+  },
+  "user_acceptance": "parfait on peut continuer :)",
+  "shown_explanation": "INTERACT-ARRIVAL01 · Arrivée des familiers — proposition\n\n- Les familiers arrivent du plus ancien au plus récent, selon leur invocation ou leur résurrection, sans priorité particulière pour les drones.\n- Ils apparaissent sur l'une des huit cases voisines du joueur, libre de tout personnage, praticable et visible. Les objets et cadavres au sol n'empêchent pas l'arrivée.\n- Après chaque déplacement réellement effectué, un seul familier en attente arrive si une case convient. Attendre ou attaquer ne déclenche pas cette arrivée.\n- Si vous changez encore de carte avant que tous soient arrivés, tous continuent à vous accompagner. Ceux qui peuvent entrer arrivent ; les autres restent en attente, avec le même ordre de priorité.\n\nLeurs PV, leur énergie, leur équipement, leurs effets, leurs recharges et la durée restante des ressuscités suivent les règles déjà validées. Ces précisions d'arrivée restent à valider.",
+  "approved_rule": {
+    "priority": "oldest_actual_becoming_owned_familiar_first;drone_successful_invocation_or_raised_actual_birth_not_mark_cast;no_drone_vs_raised_type_priority",
+    "arrival_cells": "one_of_eight_immediate_player_neighbor_cells;current_map_walkable_visible_and_unoccupied_by_any_actor;distinct_cells_for_each_placed_familiar;player_cell_not_candidate",
+    "ground_items_and_corpses": "ordinary_ground_item_piles_and_corpses_do_not_by_themselves_block_placement;real_items_remain_on_ground_without_auto_pickup",
+    "map_entry": "place_as_many_existing_surviving_familiars_as_valid_neighbor_cells_allow_in_priority_order;rest_wait_without_blocking_player",
+    "progressive_arrival": "after_each_successful_actual_player_grid_movement_place_at_most_one_waiting_surviving_familiar_when_valid_neighbor_cell_available;no_retry_from_attack_wait_menu_or_refused_movement",
+    "further_map_transition": "carry_all_same_surviving_owned_familiars_including_pending_ones_to_next_destination;apply_same_placement_and_waiting_rules_and_unchanged_acquisition_priority;no_reset_or_new_invocation",
+    "state": "preserve_all_previously_accepted_current_HP_energy_real_equipment_cargo_effect_cooldown_and_raised_remaining_lifetime_rules;ordinary_waiting_death_expiry_cleanup_retained",
+    "scope_boundary": "arrival_does_not_grant_extra_actor_action_or_new_birth;hazard_application_and_exact_turn_phase_still_pending;no_new_UI_copy_or_native_effect"
+  },
+  "approval_boundary": "displayed_acquisition_priority_eight_neighbor_cells_progressive_arrival_and_further_transition;no_new_native_feedback_or_exact_global_turn_order",
+  "runtime_integration": "not_integrated"
+}

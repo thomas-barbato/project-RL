@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-REANIM01",
+  "revision": 1,
+  "title": "Marques de Réanimation et valeurs au relèvement",
+  "status": "proposed_awaiting_user_review;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC07-02.json",
+      "reference_sha256": "d1d6ac3e4e7b43b1cf8b13d45b3d8c99099f91906b717b465c5636510ef769a1"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-raised-origin-profile-PETS-EQ11-02.json",
+      "reference_sha256": "f0d49ae272697181302cc8344b2c05b3ea9a33fd00aa4b489abf7498f1326496"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-raised-starting-resources-PETS-EQ12-01.json",
+      "reference_sha256": "3ff957b92a39e80c1098115e9c889b7a048da4fc35ca9da42b21ff40c697911d"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-stat-updates-PETS-EQ13-02.json",
+      "reference_sha256": "74435f8a5b27b55805b598012f6c3f1532295034de2a0c5c0561ff4919491c01"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-raised-limit-growth-PETS-EQ22-02.json",
+      "reference_sha256": "b58583edfce358c3d5b1e5661c87df15631643a9431ba9487345ca581f3e8ed6"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-invoked-creation-scope-INTERACT-RANK02-02.json",
+      "reference_sha256": "5084d9e1336229bdf283545959f5134cd86efd74fae0b7a39e75370051dc8a09"
+    }
+  ],
+  "scope": "own_OC07_predeath_marks_on_effective_rank_change_and_sampling_of_new_raised_actor;does_not_change_power_coefficients_or_caster_attribute_mapping",
+  "already_accepted": "mark_until_target_death;temporary_autonomous_enemy_only_ally;boss_exclusion;intrinsic_origin_profile_without_old_gear_or_temporary_effects;birth_HP_energy_full;current_rank_power_updates_without_refill;birth_duration_not_extended;rank_loss_removes_existing_own_raised;current_limit_above10_growth",
+  "proposed_rule": {
+    "mark_rank_decrease": "cancel_all_own_pending_OC07_marks_on_any_effective_OC07_rank_decrease_even_when_personally_learned_or_still_available;no_reanimation_when_previously_marked_target_later_dies_unless_marked_again",
+    "mark_rank_increase": "marks_retained;do_not_freeze_birth_power_or_duration_at_mark_cast_rank",
+    "birth_skill_sampling": "calculate_raised_power_and_total_duration_using_current_effective_OC07_rank_when_raised_actor_is_created;other_eligible_inputs_follow_only_existing_accepted_rules",
+    "origin_sampling": "capture_actual_dead_enemy_intrinsic_origin_level_attributes_permanent_profile_and_native_skills_at_death_under_existing_accepted_exclusions;not_original_mark_time_or_rerolled_template",
+    "later_updates": "preserve_existing_accepted_raised_rank_increase_power_updates_no_refill_fixed_birth_duration_and_rank_decrease_removal",
+    "resources": "preserve_accepted_full_final_HP_and_energy_at_birth;no_extra_heal_for_later_gear_or_rank_changes",
+    "source_scope": "only_this_players_OC07_marks_and_created_allies;unrelated_statuses_and_other_casters_marks_unchanged"
+  },
+  "shown_example": {
+    "mark_effective_rank": 8,
+    "birth_effective_rank_after_increase": 10,
+    "birth_parameters": "current_rank10_not_mark_rank8",
+    "if_rank_decreases_before_death": "mark_cancelled_no_birth_from_that_cancelled_mark",
+    "numbers_are_rank_illustration_not_new_balance": true
+  },
+  "shown_copy_markdown": "Pour Réanimation, je propose que toute baisse de son rang effectif annule vos marques en attente, en plus de supprimer les ressuscités déjà présents selon la règle validée.\n\nSi le rang augmente, les marques restent. La puissance et la durée du ressuscité sont calculées avec votre rang actuel au moment du relèvement. Son profil naturel est repris au moment de sa mort, selon les règles déjà validées : niveau, attributs et compétences d'origine, sans ancien équipement ni effets temporaires.\n\nExemple : vous marquez un ennemi au rang 8, puis atteignez le rang 10 avant sa mort ; il se relève avec les valeurs du rang 10. Si le rang baisse avant sa mort, la marque disparaît et ne provoque aucun relèvement.\n\nLe ressuscité commence avec ses PV et son énergie au maximum. Après sa naissance, les augmentations de rang améliorent sa puissance sans prolonger sa durée ni remplir ses jauges ; une baisse de rang le supprime, conformément aux règles déjà validées.",
+  "shown_copy_sha256": "7c00a0f4f6e5399dbb5957d8401c847d396bf94dedc291cdfb7c704dc2e6bf38",
+  "not_resolved_here": [
+    "same_target_multiple_caster_marks_and_mark_reapplication_identity",
+    "death_birth_replacement_and_equipment_transaction_event_order",
+    "original_monster_skill_cooldowns_and_first_raised_action",
+    "concrete_monster_profiles_and_native_marker_feedback"
+  ],
+  "mechanic_approval": "pending_user_review",
+  "text_approval": "design_explanation_pending;no_new_skill_RP_or_name",
+  "visual_approval": "no_new_native_art_or_animation_proposed",
+  "runtime_integration": "not_integrated"
+}

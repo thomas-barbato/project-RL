@@ -1,0 +1,557 @@
+{
+  "version": 1,
+  "review_id": "WEAPON-SIL01",
+  "review_revision": 3,
+  "user_acceptance": "oui je valide :)",
+  "body_bindings": [
+    9,
+    2,
+    1,
+    11,
+    5
+  ],
+  "profiles": [
+    {
+      "number": 1,
+      "class": "Bastion",
+      "body_reference": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-1-native32.png",
+        "binary_sha256": "1c6874905505253d8f39adffb5b0bb0b8d5eb43ddde4c65d7eeaa1e978654089",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "body_source": {
+        "source_atlas_index": 9,
+        "geometry_changes": 0,
+        "palette": "original"
+      },
+      "gloves": {
+        "L": [
+          6,
+          19
+        ],
+        "R": [
+          25,
+          19
+        ]
+      },
+      "elbows": {
+        "L": [
+          8,
+          16
+        ],
+        "R": [
+          22,
+          16
+        ]
+      },
+      "forearm_masks": [
+        [
+          3,
+          17,
+          10,
+          23
+        ],
+        [
+          22,
+          17,
+          30,
+          23
+        ]
+      ],
+      "sleeve_ramp": [
+        [
+          161,
+          151,
+          127
+        ],
+        [
+          217,
+          205,
+          176
+        ],
+        [
+          247,
+          237,
+          208
+        ]
+      ]
+    },
+    {
+      "number": 2,
+      "class": "Technomancien",
+      "body_reference": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-2-native32.png",
+        "binary_sha256": "c327a54abe7722212d3f06b427abe56a54acb0f6605e2595daa7778644bd27c0",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "body_source": {
+        "source_atlas_index": 2,
+        "geometry_changes": 0,
+        "palette": "original"
+      },
+      "gloves": {
+        "L": [
+          6,
+          19
+        ],
+        "R": [
+          25,
+          19
+        ]
+      },
+      "elbows": {
+        "L": [
+          8,
+          16
+        ],
+        "R": [
+          22,
+          16
+        ]
+      },
+      "forearm_masks": [
+        [
+          3,
+          17,
+          10,
+          23
+        ],
+        [
+          22,
+          17,
+          30,
+          23
+        ]
+      ],
+      "sleeve_ramp": [
+        [
+          39,
+          60,
+          104
+        ],
+        [
+          37,
+          105,
+          225
+        ],
+        [
+          37,
+          105,
+          225
+        ]
+      ]
+    },
+    {
+      "number": 3,
+      "class": "Traqueur",
+      "body_reference": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-3-native32.png",
+        "binary_sha256": "37cc4ba091f3f5d44bf565cbfd588d681c90c30462184e35fa123a4829052dcd",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "body_source": {
+        "source": {
+          "path": "assets/source-art/refonte-agent-2026-10-06/traqueur-body-native32-01.png",
+          "binary_sha256": "b4f31b8b939f89541de8a9f9b9cc8338d3334f0eb792d0ad0cf30686990c2032"
+        },
+        "conditioning": "nearest36px_then_crop2_2_34_34;body_stays_fixed_in_all_configurations",
+        "historical_equipped_pose_pixel_identity": "not_claimed;unarmed_layer_candidate_requires_review_alongside_prior_accepted_rifle_pose"
+      },
+      "gloves": {
+        "L": [
+          9,
+          18
+        ],
+        "R": [
+          22,
+          18
+        ]
+      },
+      "elbows": {
+        "L": [
+          10,
+          15
+        ],
+        "R": [
+          22,
+          15
+        ]
+      },
+      "forearm_masks": [
+        [
+          8,
+          16,
+          11,
+          20
+        ],
+        [
+          21,
+          16,
+          25,
+          20
+        ]
+      ],
+      "sleeve_ramp": [
+        [
+          8,
+          36,
+          98
+        ],
+        [
+          0,
+          74,
+          201
+        ],
+        [
+          88,
+          129,
+          181
+        ]
+      ]
+    },
+    {
+      "number": 4,
+      "class": "Arcaniste",
+      "body_reference": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-4-native32.png",
+        "binary_sha256": "951409ff21176ef0ae377b71bde6f2e87a56b4884a9a830502b222123f3448c4",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "body_source": {
+        "source_atlas_index": 11,
+        "geometry_changes": 0,
+        "palette": "accepted_vivid_red_primary_only"
+      },
+      "gloves": {
+        "L": [
+          6,
+          19
+        ],
+        "R": [
+          25,
+          19
+        ]
+      },
+      "elbows": {
+        "L": [
+          8,
+          16
+        ],
+        "R": [
+          22,
+          16
+        ]
+      },
+      "forearm_masks": [
+        [
+          3,
+          17,
+          10,
+          23
+        ],
+        [
+          22,
+          17,
+          30,
+          23
+        ]
+      ],
+      "sleeve_ramp": [
+        [
+          102,
+          10,
+          18
+        ],
+        [
+          195,
+          19,
+          29
+        ],
+        [
+          221,
+          22,
+          32
+        ]
+      ]
+    },
+    {
+      "number": 5,
+      "class": "Métamorphe",
+      "body_reference": {
+        "path": "assets/source-art/refonte-agent-2026-10-06/weapon-silhouette-review-03/body-5-native32.png",
+        "binary_sha256": "778c6768088165bd8a40b3f3c9ed7f0ab575049d656766f39a5cbdf401f56fec",
+        "dimensions": [
+          32,
+          32
+        ]
+      },
+      "body_source": {
+        "source_atlas_index": 5,
+        "geometry_changes": 0,
+        "palette": "original"
+      },
+      "gloves": {
+        "L": [
+          6,
+          19
+        ],
+        "R": [
+          25,
+          19
+        ]
+      },
+      "elbows": {
+        "L": [
+          8,
+          16
+        ],
+        "R": [
+          22,
+          16
+        ]
+      },
+      "forearm_masks": [
+        [
+          3,
+          17,
+          10,
+          23
+        ],
+        [
+          22,
+          17,
+          30,
+          23
+        ]
+      ],
+      "sleeve_ramp": [
+        [
+          48,
+          19,
+          66
+        ],
+        [
+          98,
+          41,
+          140
+        ],
+        [
+          140,
+          72,
+          193
+        ]
+      ]
+    }
+  ],
+  "columns": 16,
+  "layers_per_profile": 25,
+  "side_family_order": [
+    [
+      "R",
+      0
+    ],
+    [
+      "R",
+      1
+    ],
+    [
+      "R",
+      2
+    ],
+    [
+      "R",
+      3
+    ],
+    [
+      "R",
+      4
+    ],
+    [
+      "R",
+      5
+    ],
+    [
+      "R",
+      6
+    ],
+    [
+      "R",
+      7
+    ],
+    [
+      "R",
+      8
+    ],
+    [
+      "R",
+      9
+    ],
+    [
+      "R",
+      10
+    ],
+    [
+      "R",
+      11
+    ],
+    [
+      "R",
+      12
+    ],
+    [
+      "R",
+      13
+    ],
+    [
+      "R",
+      14
+    ],
+    [
+      "R",
+      15
+    ],
+    [
+      "R",
+      16
+    ],
+    [
+      "R",
+      17
+    ],
+    [
+      "L",
+      0
+    ],
+    [
+      "L",
+      1
+    ],
+    [
+      "L",
+      4
+    ],
+    [
+      "L",
+      5
+    ],
+    [
+      "L",
+      6
+    ],
+    [
+      "L",
+      7
+    ],
+    [
+      "L",
+      16
+    ]
+  ],
+  "files": [
+    {
+      "path": "assets/sprites/cyberpunk/agent-rigs/bodies-32.png",
+      "binary_sha256": "dec4dfee81a5a237b95ba97e81410664a5cc7905bdcbcf8a084aab55fa1190ee",
+      "dimensions": [
+        512,
+        32
+      ],
+      "frame_side": 32,
+      "frame_count": 5
+    },
+    {
+      "path": "assets/sprites/cyberpunk/agent-rigs/body-materials-32.png",
+      "binary_sha256": "71ba7a9915490a67f230d31b03d5d8ced9389b99b82585fd9ed5737f1089e64d",
+      "dimensions": [
+        512,
+        32
+      ],
+      "frame_side": 32,
+      "frame_count": 5
+    },
+    {
+      "path": "assets/sprites/cyberpunk/agent-rigs/weapons-64.png",
+      "binary_sha256": "157f11ac198ee4ada8e4349134c70fc4f66f9a64879eb50b4dad849e81e66194",
+      "dimensions": [
+        1024,
+        512
+      ],
+      "frame_side": 64,
+      "frame_count": 125
+    },
+    {
+      "path": "assets/sprites/cyberpunk/agent-rigs/weapon-materials-64.png",
+      "binary_sha256": "ff0f9e9dce4b881b0c7b025d01eaa98fec7d69f093198f9f7ea8277133f77c4a",
+      "dimensions": [
+        1024,
+        512
+      ],
+      "frame_side": 64,
+      "frame_count": 125
+    },
+    {
+      "path": "assets/sprites/cyberpunk/agent-rigs/arms-64.png",
+      "binary_sha256": "a7778444dd0f7249e056799196f099eaab37ccd627e082b81058ef0f75f6cb20",
+      "dimensions": [
+        1024,
+        512
+      ],
+      "frame_side": 64,
+      "frame_count": 125
+    },
+    {
+      "path": "assets/sprites/cyberpunk/agent-rigs/arm-materials-64.png",
+      "binary_sha256": "1e825a312d878cc115183b451f5ad97f9d0f86745d376e45e13e1ef0d6882970",
+      "dimensions": [
+        1024,
+        512
+      ],
+      "frame_side": 64,
+      "frame_count": 125
+    },
+    {
+      "path": "assets/sprites/cyberpunk/agent-rigs/fingers-64.png",
+      "binary_sha256": "aa90c2694444b24eaab1d22113f70181b13dd4d1fd71f10b5b3aeee08ffab48b",
+      "dimensions": [
+        1024,
+        512
+      ],
+      "frame_side": 64,
+      "frame_count": 125
+    },
+    {
+      "path": "assets/sprites/cyberpunk/agent-rigs/families-48.png",
+      "binary_sha256": "f269106ce7a4befd34a8bdf2e4b87fc65301db09dc05873ec413f8e7497ed38d",
+      "dimensions": [
+        768,
+        96
+      ],
+      "frame_side": 48,
+      "frame_count": 18
+    }
+  ],
+  "native_body": [
+    32,
+    32
+  ],
+  "composition_canvas": [
+    64,
+    64
+  ],
+  "approved_configuration_pixel_differences": 0,
+  "model_count": 113,
+  "family_count": 18,
+  "mechanical_changes": "none",
+  "class_gameplay_scope": "graphics_bank_only;existing_class_catalog_ids_and_rules_unchanged"
+}

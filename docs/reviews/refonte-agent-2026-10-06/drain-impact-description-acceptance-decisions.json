@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08",
+  "review_id": "HL06-ACCEPT01",
+  "user_instruction": "oui ca me va",
+  "source_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HL06-01.json",
+  "source_card_sha256": "3b0c9200f1bc2ad294a8fd8a32779cc5018c1d8a45eeeb577cb6f0edb00aaa10",
+  "accepted_shown_copy_markdown": "**Déflagration amplifiée** est validée. Voici **Drain d’impact**, avec le lance-roquettes d’exemple à **18–22 dégâts**.\n\n**HL06 · Drain d’impact — Rang 11 · Actif**\n\n*Votre tir arrache une part de la vitalité de votre cible et la ramène jusqu’à vous.*\n\n**Effets actuels**\n\n- Dégâts par explosion : **36–44** (**200 %** de l’attaque).\n- Vie rendue : **60 % des PV réellement retirés à la cible principale**.\n- Soin maximal par utilisation : **15 % de vos PV maximum**.\n- Portée : **7 cases**. Rayon d’explosion : **1 case**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts par explosion : **37–46** (**210 %** de l’attaque).\n- Vie rendue : **65 %**.\n- Soin maximal par utilisation : **16 % de vos PV maximum**.\n\n**Coût : 16 énergie + 5 matière · Recharge : 10 tours.**\n\nLes dégâts indirects et renvoyés sont exclus. Le soin ne dépasse pas vos PV manquants.\n\nAvec une arme explosive à retardement, le soin lié à l’explosion est reçu lors de l’explosion.\n\nDégâts indiqués avant les défenses. **Nécessite une arme lourde équipée et active.**\n\n**Visuel proposé :** impact habituel de l’arme ; brève impulsion verte sur l’agent et affichage « +X PV » au moment du soin.",
+  "accepted_shown_copy_sha256": "b8da67a2449f3eabf84508ff6c3ece3accdc613ea32c968d6c571860bbb2c7b3",
+  "accepted_scope": "full_shown_RP_current11_damage36_44_200pct_return60pct_cap15pct_maxHP_next12_damage37_46_210pct_return65pct_cap16pct_maxHP_range7_explosion_radius1_energy16_matter5_CD10_same_18_22_illustrative_weapon",
+  "accepted_conditions": "actual_primary_enemy_HP_removed_only;shared_heal_limit_per_use;missing_HP_limit;indirect_and_reflected_damage_excluded;delayed_explosion_heal_at_explosion;damage_before_defenses;active_equipped_heavy_weapon_required",
+  "accepted_visual_direction": "ordinary_weapon_impact;brief_green_agent_impulse;actual_plus_X_PV_at_heal",
+  "unshown_rules_pending": [
+    "full_damage_life_return_and_cap_curves",
+    "heavy_attribute_formulas",
+    "actual_heal_integer_rounding_and_shared_cap_budget_event_order",
+    "native_damage_components_and_accuracy",
+    "primary_enemy_selection_legality_and_LOS",
+    "burst_primary_death_movement_and_supplementary_hits",
+    "delayed_grenade_contact_explosion_budget_and_target_death_or_revival",
+    "monster_affiliation_change_or_dominance_before_delayed_damage",
+    "SG04_HL04_HL05_and_common_bonus_modifier_order",
+    "equipment_snapshot_or_live_behavior_for_delayed_events",
+    "allied_actor_damage_eligibility",
+    "resource_heat_cooldown_atomic_refusal_and_HP_full_cast_behavior",
+    "native_green_impulse_numbers_palette_icon_and_all_other_cases"
+  ],
+  "native_visual_approval": "pending_not_created",
+  "runtime_integration": "not_integrated",
+  "completion_scope": "last_individual_card_in_existing_first_pass;missing_healing_complements_full_curves_unshown_cases_native_animation_and_runtime_remain"
+}

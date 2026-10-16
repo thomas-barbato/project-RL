@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-PETS01",
+  "revision": 2,
+  "title": "Première action et dangers à l'arrivée des familiers",
+  "status": "displayed_drone_first_action_accepted_only;remaining_arrival_details_proposed_under_PETS02;not_runtime_integrated",
+  "dependencies": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-turn-resolution-INTERACT-TURN01-02.json",
+      "reference_sha256": "7b4840eacad218e900580fd1e8f3a2440f0abafa64f534f6c570efc3a80856af"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-zone-entry-exit-INTERACT-ZONE04-02.json",
+      "reference_sha256": "019f70cae8505c03023ded7c2b8a1adbe4f91975d9913d08ab5ea976811f5053"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-reanimation-cooldowns-and-first-action-INTERACT-REANIM02-02.json",
+      "reference_sha256": "49e633a48d1898e340125034abd82384d4d3d25b77cdc4a848f37f624a770c94"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-arrival-priority-INTERACT-ARRIVAL01-02.json",
+      "reference_sha256": "51ad8fd72fd8a79ded59088f0fadde42cbfd1cf017a04e855b981eb60134dd2c"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-pending-familiar-arrival-PETS-EQ19-02.json",
+      "reference_sha256": "7cbd30778e89df139eab9da2d47c6e958ef16d2110e293381cabd93d282aace7"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-command-action-costs-INTERACT-CMD01-02.json",
+      "reference_sha256": "4fa027430bcadd15a53effa64ce453df95b9e413e3f92c873f258f5e4713e43c"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-mine-arming-trigger-INTERACT-MINE02-02.json",
+      "reference_sha256": "93f21aefda5f507372032b1e3289b358ec7d80fa731fee4cfa29863558ba247f"
+    }
+  ],
+  "scope": "new_drone_first_action_and_existing_familiar_arrival_or_reposition_zone_entry;not_new_actor_speeds_budgets_or_new_invocation_tile_permissions",
+  "already_accepted": "raised_first_action_next_birth_turn;familiars_before_enemies;actual_step_progressive_arrival;existing_actor_state_and_recharges_preserved;zone_entry_budget;own_mines_nonhostile_no_trigger;real_items_on_death",
+  "shown_example": {
+    "event": "new_drone_invoked_into_zone_harmful_to_that_drone",
+    "entry": "eligible_zone_effect_first",
+    "if_alive_and_eligible": "normal_familiar_phase_action_before_enemies",
+    "if_dead": "no_action;existing_real_objects_drop_on_drone_cell"
+  },
+  "shown_copy_markdown": "INTERACT-PETS01 · Première action et dangers à l'arrivée des familiers — proposition\n\n- Drone nouvellement invoqué : il peut agir pendant la phase des familiers du tour d'invocation, selon ses capacités et conditions normales.\n- Monstre ressuscité : il commence toujours à agir au tour suivant son relèvement, comme validé.\n- Familier déjà existant qui arrive sur la carte ou est repositionné : il conserve son cycle d'action normal. Cette arrivée ou ce déplacement ne lui accorde pas d'action supplémentaire et ne réinitialise pas ses recharges.\n- Apparition ou arrivée dans une zone persistante : les effets de la zone s'appliquent dès l'arrivée si ce familier est une cible admissible, avec la limite validée d'une application par zone et par cible pendant le même tour. Un repositionnement entièrement à l'intérieur d'une même zone suit la règle normale des déplacements internes.\n\nUn familier en attente arrive après votre déplacement effectué, avant la phase des effets périodiques et les actions des familiers. Les limites de place et l'ordre d'arrivée déjà validés restent conservés. Vos mines ne sont pas déclenchées par vos familiers.\n\nExemple : vous invoquez un drone dans une zone dangereuse pour lui. Il subit d'abord l'effet de cette zone. S'il survit et peut agir, il joue pendant la phase des familiers avant les ennemis. S'il meurt à l'arrivée, il ne joue pas et ses objets réels tombent sur sa case selon la règle validée.\n\nLes règles de cible et de dégâts alliés restent propres à chaque compétence. L'arrivée conserve l'état réel du familier ; les ressources de naissance et les durées des ressuscités gardent leurs règles validées.\n\nCes précisions restent proposées, en attente de validation.",
+  "shown_copy_sha256": "6c16b446725abebb7198108549d204870e4f3a6924fb65b9b696fcb0ad69c3b7",
+  "not_resolved_here": [
+    "other_drone_combat_order_action_costs",
+    "simultaneous_multi_target_death_proc_ties",
+    "native_arrival_and_disabled_action_feedback"
+  ],
+  "mechanic_approval": "partial_acceptance_new_drone_only",
+  "text_approval": "displayed_first_action_explanation_accepted;unshown_full_copy_not_accepted",
+  "visual_approval": "no_new_native_rendering_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-familiar-first-action-arrival-INTERACT-PETS01-01.json",
+    "reference_sha256": "d702ec9978ff558617df1a358791a9af3cf9aec0741d779c384732d68c73f185"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/drone-first-action-acceptance-decisions.json",
+    "reference_sha256": "941d790f7fd157ad632cec6b9054a597f69d9650f4053110412c511a3c1f91a1"
+  },
+  "accepted_rule": {
+    "new_drone": "successful_ordinary_invocation_allows_living_and_otherwise_eligible_new_drone_to_act_in_that_reference_turn_familiar_phase;no_extra_out_of_phase_action_or_actor_budget_reset"
+  },
+  "unapproved_or_already_accepted_reminders_from_source": {
+    "new_raised": "preserve_no_action_on_birth_turn_and_first_normal_action_from_following_reference_turn;no_new_delay_on_later_map_arrival",
+    "existing_actor": "map_arrival_or_Repositionner_preserves_same_actor_remaining_action_cycle_delays_and_eligibility;no_bonus_action_or_cooldown_reset;normal_remaining_actions_if_otherwise_eligible",
+    "progressive_arrival_phase": "after_successful_actual_player_grid_movement_place_one_eligible_waiting_surviving_familiar_under_accepted_priority_and_cell_rules_before_periodic_and_familiar_actor_phases;state_continuity_not_new_birth",
+    "zone_entry": "creation_reanimation_map_arrival_or_reposition_into_zone_counts_as_entry_for_that_actor_if_zone_target_rules_eligible;immediate_effect_under_shared_zone_target_reference_turn_budget;within_same_zone_reposition_follows_existing_internal_movement_rule",
+    "target_and_friendly_rules": "respect_each_zone_target_eligibility_resistance_and_existing_per_skill_ally_damage_rule;no_general_ally_immunity_or_automatic_all_zone_damage_created",
+    "own_mines": "existing_player_SM00_mines_not_triggered_by_nonhostile_familiars;no_change_to_existing_ally_explosion_victim_rules",
+    "death": "if_entry_hazard_kills_familiar_resolve_death_before_any_familiar_action_and_drop_existing_real_equipment_and_cargo_on_placed_actor_cell;no_duplicate_rewards",
+    "preserved": "birth_resource_initialization;living_arrival_no_refill_or_timer_restart;existing_raised_remaining_lifetime;waiting_state_effects_no_map_actions;cell_priority_and_map_transfer_rules",
+    "scope_boundary": "no_new_dangerous_tile_exclusion_or_immunity_no_extra_turn_cost_no_universal_actor_speed_rule_no_new_native_feedback"
+  },
+  "shown_copy_approval_boundary": "historical_prepared_full_copy_retained_as_source;only_displayed_drone_first_action_accepted"
+}

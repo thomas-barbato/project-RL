@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-15",
+  "review_id": "ANIM-S40-ACCEPT01",
+  "user_reply": "parfait je valide",
+  "approved": [
+    {
+      "number": 89,
+      "id": "A03",
+      "variant": "A03-A01",
+      "title": "Canalisation"
+    },
+    {
+      "number": 90,
+      "id": "M03",
+      "variant": "M03-A01",
+      "title": "Puissance métamorphe"
+    }
+  ],
+  "scope": "Visual approval of lot 85 permanent-passive feedback at native 64 px in four directions, including comparisons without the passive, outside its domain and while idle. Existing catalogue values are retained; prepared numerical examples do not define new weapon variance or a balance curve.",
+  "campaign_integration": false,
+  "excluded_from_approval": [
+    "B03 Vitalite amelioree, whose mechanics remain under discussion"
+  ],
+  "remaining_unshown": 21,
+  "source_sha256": "5312beefcdcd03367c2864b06ca95b5a0f5b2fb0151df8a99371733821c57f4c",
+  "accepted_atlas_sha256": {
+    "A03-A01-DROITE": "336192ff55cae7e32c8e137b90c2f6dec05047ec65b17772391736e0345c29a7",
+    "A03-A01-GAUCHE": "cea12aa4849b91168ac507511d2beef354941878bdcbc6972aae7e377d097506",
+    "A03-A01-HAUT": "bb5e8c55ecd3b96ad9bc69cad951c4eef6a58f3c359e8191e527dc1a77e9c067",
+    "A03-A01-BAS": "b7fae0d1f5ce59d2af613d290a1564cd7e07527b9bdbfe188c258df406497823",
+    "A03-A01-SANS": "6cd5c0c765c3ba315196f1f0ca486a2687d87aa3a577ab75f5c877fec192a50f",
+    "A03-A01-HORS": "4e3ab3e3d4a7c305f4cc012156b39d8e12b2b1532ac0e7ed4c3678c2fdb8e730",
+    "A03-A01-ATTENTE": "02c87289be3e850accefe65ab3ac215fdb02fa2f82e3662b6c2e932788365a1b",
+    "M03-A01-DROITE": "484378c2b993cce3f6763600e010c06efc01ecee1179b8ed09b6b30c7ffcd5c2",
+    "M03-A01-GAUCHE": "2d2973e24e2ac0f3ea292fac85252112db059e53e0f48e5bd590e53bccca474a",
+    "M03-A01-HAUT": "337aed04fd6aeb7ada64d006f642bc84dbef72198a6e3f438bfc4517bbadf9fe",
+    "M03-A01-BAS": "bb2164eb51bdc8a3d5935a104e044002285fcb08231a6abdd7b4880a67e56deb",
+    "M03-A01-SANS": "dd95e6ea05bc334c085b2d6011dfbde00a1ef7685e7d227e7803d34794403e0f",
+    "M03-A01-HORS": "5a43b9f95d338d84f648405136462afcbd409ba3b2521d23b0b64733a476cb98",
+    "M03-A01-ATTENTE": "b13e810573bb13cbb1f05f5093fff85831a443ef1922516bcc8cbc5ce8fb1052"
+  },
+  "cleanup": {
+    "status": "complete",
+    "receipt": "cleanup.json",
+    "removed_bytes": 266690669,
+    "kept": "Source assets, code, compact playback and review records."
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ05",
+  "revision": 1,
+  "title": "Donner et récupérer de l’équipement",
+  "status": "familiar_equipment_transfer_proximity_action_cost_atomic_swap_and_capacity_refusal_proposed_pending_review",
+  "current_attribute_model": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-37.json",
+  "current_attribute_model_sha256": "6304143fbec0955b6ef1091aac3b025d8ceba87effc999ff7d16a85a7ea1deba",
+  "shown_copy_markdown": "Les **bonus d’équipement des familiers sont validés**.\n\n**PETS-EQ05 · Donner et récupérer de l’équipement — proposition**\n\n**Conditions**\n\n- Le familier doit être **déployé, adjacent et visible par l’agent** : dans l’une des huit cases voisines.\n- Vous pouvez modifier son équipement **en combat comme au calme**.\n- L’objet à lui donner doit se trouver dans **votre inventaire** et satisfaire les conditions de compatibilité.\n\n**Coût**\n\n- Équiper ou retirer un objet : **1 action · 0 énergie**.\n- Remplacer un objet : **1 seule action · 0 énergie**.\n\n**Remplacement**\n\nLe nouvel objet rejoint son emplacement ; l’ancien retourne dans votre inventaire. Les bonus sont recalculés à partir du nouvel équipement, selon les règles validées.\n\n**Si l’échange est impossible**\n\nSi votre inventaire ne peut pas accueillir les objets après l’échange, l’action est refusée : les objets restent à leur place et aucune action n’est consommée.\n\nOuvrir les fiches et consulter les objets ne consomme aucune action.\n\n**Ces conditions et coûts restent à valider.**",
+  "shown_copy_sha256": "15d9a59da326d523e122a8e7917c06cb9ac106d214ad7f73e574c191c2f4bad7",
+  "new_proposed_rules": {
+    "scope": "player_inventory_to_equipment_or_equipment_to_player_inventory_of_existing_deployed_familiars;Mule_cargo_transfers_not_defined",
+    "familiar_presence": "must_be_currently_deployed_on_same_map",
+    "proximity": "one_of_eight_immediately_neighboring_cells_of_agent",
+    "visibility": "familiar_currently_visible_to_agent;shared_drone_visibility_alone_does_not_satisfy_this_equipment_transfer_condition",
+    "phase": "allowed_in_combat_accalmie_or_calme_subject_to_same_conditions;no_calm_only_requirement",
+    "source_item": "give_real_item_from_agent_inventory;no_automatic_ground_pickup_or_Mule_cargo_lookup",
+    "compatibility": "accepted_item_minimum_level_type_and_slot_requirements_must_be_met",
+    "equip_cost": {
+      "agent_actions": 1,
+      "energy": 0
+    },
+    "unequip_cost": {
+      "agent_actions": 1,
+      "energy": 0
+    },
+    "replace_cost": {
+      "agent_actions": 1,
+      "energy": 0
+    },
+    "swap": "single_atomic_exchange_new_item_to_familiar_slot_old_item_to_agent_inventory;no_two_step_remove_then_equip_cost",
+    "stat_recalculation": "derive_from_final_equipment_state_under_accepted_PETS_EQ04_no_refill_rules;do_not_apply_transient_empty_slot_maximum_clamp_during_atomic_replacement",
+    "capacity": "validate_agent_inventory_capacity_on_final_exchange_state_including_item_removed_and_old_item_returned",
+    "refusal": "if_final_inventory_cannot_hold_objects_refuse_without_item_movement_or_agent_action_consumption",
+    "inspection": "opening_sheets_and_viewing_objects_does_not_consume_an_agent_action",
+    "not_defined": "Mule_cargo_transfer_costs_ground_pickup_direct_pet_to_pet_exchange_recalled_drone_equipment_changes_after_redeployment_and_drop_alternatives"
+  },
+  "dependencies": {
+    "bonuses": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-bonuses-PETS-EQ04-02.json",
+    "bonuses_sha256": "5ceb4f70dc8edef336507b9eeeef58990bc74f6b42095fa9818ac4b4b420b66e",
+    "slots": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-slots-PETS-EQ03-02.json",
+    "slots_sha256": "54e7c2c2a8e2a09ce2b45abe4616d972c58c01b68fa26b81faaea43b017045fb",
+    "complements": "docs/reviews/refonte-agent-2026-10-06/review-familiar-equipment-PETS-EQ01-03.json",
+    "complements_sha256": "8f3a02daa23df9637fda5a92fd91a3f7267c538d70be8610442ee92994abc7a5"
+  },
+  "scope_audit": {
+    "equipment_only": "does_not_define_existing_recall_command_cost_or_override_death_expiry_ground_drop",
+    "Mule": "cargo_capacity_and_cargo_transfer_actions_are_separate_and_still_pending",
+    "ordinary_action_wording": "cost_block_is_review_of_equipment_exchange_rules_not_skill_description;no_added_preparation_or_delay",
+    "actor_scheduler": "one_agent_action_only;exact_other_actor_order_familiar_AI_and_status_tick_timing_not_redefined",
+    "atomic_recalculation": "replacement_is_one_final_equipment_state;no_unshown_transient_removal_step_or_resource_restore",
+    "native_UI": "conditions_function_and_cost_only;no_button_label_native_layout_sprite_or_animation_created"
+  },
+  "unshown_cases_pending": [
+    "visibility_predicate_and_diagonal_corner_visibility_under_current_agent_perception",
+    "unconscious_disabled_busy_or_dying_actor_transfer_conditions",
+    "inventory_weight_slot_or_volume_capacity_details_under_new_item_model",
+    "refusal_labels_disabled_button_feedback_and_input_paths",
+    "Mule_cargo_transfer_and_direct_pet_to_pet_or_ground_transactions",
+    "recall_redeployment_equipment_access_and_current_resource_state",
+    "action_scheduler_order_and_familiar_actions_on_successful_transfer",
+    "exact_item_families_armor_protection_affixes_procs_and_raised_OC07_power",
+    "level_rank_owner_modifier_update_resource_behavior",
+    "native_equipment_item_sheet_tooltips_save_layer_and_drop_edge_cases"
+  ],
+  "player_copy_approval": "pending_explicit_review",
+  "mechanical_approval": "shown_transfer_conditions_costs_swap_and_refusal_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

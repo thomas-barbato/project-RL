@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-08",
+  "id": "HY05",
+  "review_id": "HY05",
+  "revision": 2,
+  "title": "Ponction spirituelle",
+  "branch": "Énergie occulte",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-83.json",
+  "source_skill_block_sha256": "117c1499c44d7140f9ce0c034caaf2c58a7cd53e6741c0e42169124c56daf235",
+  "superseded_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY05-01.json",
+  "superseded_card_sha256": "f130bb9c7a9e1a5743b1c42ed7d64af06beaee882d84d28e16c235575ac0d80d",
+  "redesign_decisions": "docs/reviews/refonte-agent-2026-10-06/spiritual-siphon-redesign-acceptance-decisions.json",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "Volonté": 10,
+    "magic_multiplier_exact": "11/10",
+    "currently_transformed": false,
+    "other_passive_implant_or_cost_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "occult_damage_before_defenses": 33,
+    "energy_recovery_percent_of_actual_HP_removed": 50,
+    "range_cells": 5,
+    "energy_cost": 2,
+    "cooldown_turns": 6
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "occult_damage_before_defenses": 35,
+    "energy_recovery_percent_of_actual_HP_removed": 52.5,
+    "range_cells": 5,
+    "energy_cost": 2,
+    "cooldown_turns": 6
+  },
+  "formulas_proposed": {
+    "damage": "floor((10+2*(effective_rank-1))*M_magie)",
+    "energy_recovery_percent": "min(75,25+2.5*(effective_rank-1))",
+    "energy_recovery_amount": "min(missing_energy_after_cost,ceil(actual_HP_removed*energy_recovery_percent/100))",
+    "energy_cost": 2,
+    "range_cells": 5,
+    "cooldown_turns": 6,
+    "full_curves_defaults_rounding_modifier_order_and_cap75": "unshown_pending_review"
+  },
+  "conditions_proposed": {
+    "visible_hostile_in_range_and_clear_path": true,
+    "human_form_required": true,
+    "blocked_by_Silence": true,
+    "recovery_based_on_actual_HP_removed_after_defenses_and_overkill_clamp": true,
+    "recovery_capped_to_missing_energy": true,
+    "no_enemy_energy_pool_or_buff_required": true,
+    "no_dispel_life_heal_status_or_channel_added": true,
+    "damage_once_and_recovery_once": "single_impact_proposed_distinct_from_OC05_channel",
+    "zero_actual_HP_removed_gives_zero_energy": true,
+    "energy_cost_paid_before_recovery": "unshown_proposed_pending_review",
+    "no_weapon_accuracy_requirement": "unshown_proposed_pending_review"
+  },
+  "name_approval": "Ponction_spirituelle_explicitly_accepted_in_redesign_direction",
+  "branch_approval": "transfer_to_Energie_occulte_explicitly_accepted",
+  "role_approval": "occult_damage_actual_HP_energy_recovery_rank_scaling_no_buff_dependency_explicitly_accepted",
+  "roleplay_text_approval": "proposed_pending_explicit_user_review",
+  "numeric_rules_approval": "displayed_33_next35_damage_50_next52_5_percent_recovery_range5_energy2_CD6_proposed_pending_review;unshown_full_curves_pending",
+  "detailed_conditions_approval": "displayed_visible_enemy_range_clear_path_missing_energy_cap_human_Silence_proposed_pending_review;unshown_cases_pending",
+  "visual_intention_approval": "new_shadow_contraction_inbound_dark_red_fragments_proposed_pending_review",
+  "visual_approval": "per_skill_native_animation_pending_review",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "occult_damage_before_defenses",
+      "energy_recovery_percent_of_actual_HP_removed"
+    ]
+  },
+  "player_copy_markdown": "**HY05 · Ponction spirituelle — Rang 11 · Actif**\n\n*Vous arrachez à votre cible une essence obscure qui nourrit vos pouvoirs.*\n\n**Effets actuels**\n\n- Dégâts occultes : **33**, avant les défenses de la cible.\n- Énergie récupérée : **50 % des PV réellement retirés**.\n- Portée : **5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts occultes : **35**.\n- Énergie récupérée : **52,5 % des PV réellement retirés**.\n\n**Coût : 2 énergie · Recharge : 6 tours.**\n\nL’énergie récupérée ne peut pas dépasser votre réserve manquante.\n\nCible ennemie visible, à portée et avec un trajet dégagé. Forme humaine requise ; Silence empêche son utilisation.",
+  "player_copy_sha256": "66431a995a0a8f4d69f89d51db16b7a551cd82e8e9a842cc04f91898c6948d5a",
+  "visual_copy_markdown": "**Visuel proposé :** l’ombre de la cible se contracte brièvement, puis des éclats rouge sombre sont aspirés vers vous.",
+  "visual_copy_sha256": "90b8ed2264fe8f3192bdc71e5d18e8a03a11c8428f40e2cc2bb36592c72cfad1",
+  "current_turn_shown_copy_markdown": "**HY05 · Ponction spirituelle — Rang 11 · Actif**\n\n*Vous arrachez à votre cible une essence obscure qui nourrit vos pouvoirs.*\n\n**Effets actuels**\n\n- Dégâts occultes : **33**, avant les défenses de la cible.\n- Énergie récupérée : **50 % des PV réellement retirés**.\n- Portée : **5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Dégâts occultes : **35**.\n- Énergie récupérée : **52,5 % des PV réellement retirés**.\n\n**Coût : 2 énergie · Recharge : 6 tours.**\n\nL’énergie récupérée ne peut pas dépasser votre réserve manquante.\n\nCible ennemie visible, à portée et avec un trajet dégagé. Forme humaine requise ; Silence empêche son utilisation.\n\n**Visuel proposé :** l’ombre de la cible se contracte brièvement, puis des éclats rouge sombre sont aspirés vers vous.",
+  "current_turn_shown_copy_sha256": "3ff04392eb520dfd8b0bbe18293bc7609d3c54cf43a7ed03af6b05a64aa25aab",
+  "unshown_cases_pending": [
+    "full_rank_curves_default_values_cap75_rounding_and_modifier_order",
+    "cost_payment_order_refusal_atomicity_time_energy_RNG_and_cooldown_start",
+    "actual_HP_snapshot_overkill_shields_immunity_and_zero_damage",
+    "boss_elite_damage_defenses_no_control_status_added",
+    "observation_union_line_of_effect_geometry_and_large_footprints",
+    "equipment_skill_bonuses_cost_modifiers_and_own_spell_protection",
+    "native_shadow_contraction_fragments_and_resource_feedback"
+  ],
+  "runtime_integration": "not_integrated"
+}

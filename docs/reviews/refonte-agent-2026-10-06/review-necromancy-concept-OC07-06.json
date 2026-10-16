@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-07",
+  "review_id": "OC07",
+  "id": "OC07",
+  "working_title": "Réanimation",
+  "name_approval": "displayed_name_explicitly_accepted",
+  "branch": "Énergie occulte",
+  "status": "retained_catalogue_skill;individual_card_accepted_as_displayed;unshown_details_pending",
+  "user_request": "peut-être qu'on pourrait ajouter un sort qui ressucite un monstre, incontrolable qui le fait attaquer les autres monstre aux alentours pendant une durée précise.",
+  "confirmed_concept": {
+    "target": "mark_living_enemy",
+    "trigger": "marked_enemy_death",
+    "reanimated_actor": "autonomous_no_player_orders",
+    "targets": "player_enemies_only",
+    "player_and_allies_attacked": false,
+    "temporary_reanimation": true,
+    "retains_original_stats": true,
+    "retains_original_combat_skills": true,
+    "power_depends_on_skill_rank": true,
+    "max_simultaneous_reanimated_monsters": 5,
+    "mark_expires_after_turns": false,
+    "mark_remains_until_target_death": true
+  },
+  "answered_questions": [
+    {
+      "question": "Quand tu dis « incontrôlable », le monstre ressuscité doit-il attaquer uniquement les autres monstres, sans recevoir d’ordres, ou peut-il aussi attaquer le joueur et ses alliés ?",
+      "answer": "Autonome, attaque uniquement les ennemis du joueur"
+    },
+    {
+      "question": "Ce sort doit-il relever le cadavre d’un monstre déjà tué sur la carte, ou s’appliquer à un ennemi vivant pour qu’il se relève après sa mort ?",
+      "answer": "Marquer un ennemi vivant pour qu’il se relève à sa mort"
+    },
+    {
+      "question": "Le monstre relevé doit-il conserver ses statistiques et ses compétences de combat d’origine ?",
+      "answer": "Oui, avec une puissance réglable par le rang du sort"
+    },
+    {
+      "question": "Combien de monstres relevés ce sort doit-il permettre d’avoir simultanément ?",
+      "answer": "Cinq maximum"
+    },
+    {
+      "question": "La marque posée sur l’ennemi vivant doit-elle durer jusqu’à sa mort, ou expirer après quelques tours ?",
+      "answer": "Jusqu’à sa mort"
+    }
+  ],
+  "pending_questions": [],
+  "not_yet_defined": [
+    "mark_and_reanimation_target_eligibility_and_boss_elite_rules",
+    "corpse_loot_XP_and_repeat_reanimation",
+    "revived_death_or_expiry_cleanup",
+    "map_transition_and_NPC_behavior_details",
+    "exact_allied_marker_and_familiar_window_rendering",
+    "manual_destruction_timing_cost_rewards_and_cleanup"
+  ],
+  "related_removed_skill": "OC06",
+  "removal_decisions": "docs/reviews/refonte-agent-2026-10-06/dimensional-rupture-removal-decisions.json",
+  "removal_decisions_sha256": "e144979d846f810281c47ed4e7c8d21d3d89c772a36f0d140861239fd786e2ae",
+  "numeric_rules_approval": "displayed100_then105_percent_HP_damage,duration11,range5,cost20,CD8,five_allies_accepted;unshown_full_curves_pending",
+  "roleplay_text_approval": "displayed_RP_explicitly_accepted",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "revision": 6,
+  "previous_proposal": "docs/reviews/refonte-agent-2026-10-06/review-necromancy-concept-OC07-05.json",
+  "previous_proposal_sha256": "bc8966952c3b9d86371b8f0e3535870ac3213cd946e5eb461dfc3aa2ce034056",
+  "core_concept_approval": "explicit_user_answers;full_card_not_yet_presented",
+  "latest_direction_decisions": "docs/reviews/refonte-agent-2026-10-06/familiar-window-and-distinct-allied-marker-decisions.json",
+  "latest_direction_decisions_sha256": "d34c81459be111f56a331ea830381ea60761a0fe7cc5522f5cbebd4f9a204cf5",
+  "allied_marker_proposal": "docs/reviews/refonte-agent-2026-10-06/review-allied-actor-marker-HUD-ALLIES01-02.json",
+  "allied_marker_proposal_sha256": "9efa540e9344b0a8797a5f84c40722ebb0bf4e959b2358997ec9390b36f48d5a",
+  "familiar_window_proposal": "docs/reviews/refonte-agent-2026-10-06/review-familiar-window-UX-PETS-02-03.json",
+  "familiar_window_proposal_sha256": "25f5f49902cc790bdcd104cf4c2b56c52b26f3f61f20b4fe8e19c72a709ff3ce",
+  "requested_allied_marker": "skull_for_reanimated_allies;green_dot_for_drones",
+  "general_ground_item_decisions": "docs/reviews/refonte-agent-2026-10-06/general-ground-item-coexistence-and-name-tooltip-decisions.json",
+  "general_ground_item_decisions_sha256": "d463fd7d3b3ec47afc29d09d0c0e5bf2551e8f4244b44de7549891233aaad677",
+  "individual_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC07-02.json",
+  "individual_card_sha256": "d1d6ac3e4e7b43b1cf8b13d45b3d8c99099f91906b717b465c5636510ef769a1",
+  "latest_ground_item_acceptance": "docs/reviews/refonte-agent-2026-10-06/general-ground-item-coexistence-tooltip-acceptance-decisions.json",
+  "latest_ground_item_acceptance_sha256": "ef26db4476d1f7702ae00ee144a7684c6f6d098cd6298acfe2c9d4a3bc7cef9e",
+  "individual_proposals_pending_review": [
+    "full_rank_attribute_curves_and_unshown_rules",
+    "native_pixels_and_exact_rendering"
+  ],
+  "latest_description_acceptance": "docs/reviews/refonte-agent-2026-10-06/reanimation-description-acceptance-decisions.json",
+  "latest_description_acceptance_sha256": "a31d9e93b848e6c27bac873f5816aba72846c5ee7e46b31928d5fad66daa1961",
+  "visual_direction_approval": "displayed_blood_seal_dark_red_reanimation_pulse_and_previously_chosen_skull_direction_accepted;native_pixels_pending",
+  "accepted_displayed_conditions": {
+    "mark_until_target_death": true,
+    "temporary_autonomous_ally_targets_player_enemies_only": true,
+    "max_reanimated_allies": 5,
+    "maximum_HP_and_damage_scaled_from_original_values": true,
+    "other_stats_and_combat_skills_preserved": true,
+    "visible_enemy_target": true,
+    "bosses_excluded": true,
+    "new_reanimated_ally_replaces_oldest_at_capacity": true
+  },
+  "unshown_rules_pending": [
+    "original_stat_snapshot_and_preexisting_status_or_equipment_details",
+    "HP_at_reanimation_and_rounding_minimums",
+    "full_attribute_and_rank_curves",
+    "damage_scaling_order_and_indirect_skill_effects",
+    "elite_eligibility_and_status_category_interactions",
+    "visibility_union_LOS_and_range_geometry",
+    "mark_count_reapplications_and_multiple_casters",
+    "death_killer_credit_loot_XP_repeat_resurrection_and_expiry_cleanup",
+    "same_turn_multiple_deaths_and_oldest_tiebreaker",
+    "duration_tick_order_cooldown_start_and_rejected_action_accounting",
+    "layer_transition_and_AI_target_selection",
+    "manual_destruction_timing_cost_and_rewards"
+  ]
+}

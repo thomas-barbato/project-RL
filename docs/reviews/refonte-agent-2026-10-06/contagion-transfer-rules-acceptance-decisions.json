@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-09",
+  "review_id": "INTERACT-CONTAGION01-ACCEPT",
+  "source_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-contagion-transfer-rules-INTERACT-CONTAGION01-01.json",
+    "reference_sha256": "10dddef2549044b76b1d6aae6107c79f7f3de771b5d2a90993dc34509a900fa3"
+  },
+  "user_acceptance": "parfait on continue",
+  "shown_explanation": "Contagion couvre désormais les cinq affaiblissements déjà validés, ainsi que Poison, Brûlure, Saignement et Gel. Un seul effet est transmis par mort.\n\nINTERACT-CONTAGION01 · Sélection et transmission — proposition\n\n- Contagion choisit le plus récent de vos effets compatibles directement appliqués, encore actif juste avant les dégâts mortels.\n- Désorientation peut donc être transmise si le coup mortel l'interrompt. Si un coup précédent l'avait déjà supprimée, elle n'est plus disponible.\n- La cible est l'ennemi visible le plus proche à portée, avec un trajet dégagé depuis la victime. Une seule tentative : si la transmission échoue, elle ne cherche pas une autre cible.\n- L'effet transmis s'applique immédiatement, avec la durée et la puissance prévues par Contagion. Poison, Brûlure et Saignement produisent leur premier dégât immédiatement ; cette application compte dans le total transmis, sans autre application automatique ensuite pendant ce tour.\n- Un effet reçu par Contagion ne peut pas être transmis à nouveau.\n\nSi la cible porte déjà le même statut, la nouvelle application réussie le remplace avec sa puissance et sa durée transmises. Les résistances et règles propres à chaque contrôle restent conservées. Les zones restent à leur emplacement : elles ne sont pas transférées.\n\nCes précisions de sélection et de transmission restent à valider. Le cas d'un Gel uniquement maintenu par une zone sera précisé séparément.",
+  "approved_rule": {
+    "source": "one_most_recent_successfully_applied_compatible_effect_owned_and_directly_applied_by_AF06_owner;must_be_active_immediately_before_fatal_damage;received_via_Contagion_instance_not_eligible",
+    "Disorientation_exception": "pre_fatal_damage_active_Disorientation_may_be_selected_even_if_fatal_damage_interrupts_it;effect_previously_removed_by_nonfatal_damage_cannot_be_selected",
+    "recipient": "closest_currently_visible_enemy_within_current_AF06_range_from_victim_and_unblocked_effect_path_from_victim;no_new_exact_distance_metric_or_tie_policy_here",
+    "attempt": "one_recipient_one_transmission_attempt;failed_resistance_or_immunity_does_not_search_next_candidate;no_candidate_means_no_transfer",
+    "application": "successful_transfer_applies_effect_immediately_with_AF06_retained_power_and_duration;new_recipient_current_defenses_and_importance_rules_preserved",
+    "periodic": "transferred_Poison_Burn_Bleed_first_damage_immediate_counted_in_transmitted_application_total;no_later_same_turn_automatic_same_kind_damage",
+    "same_kind": "successful_received_same_kind_effect_replaces_current_power_and_restarts_duration_using_new_transmitted_duration;no_additive_status_instances_or_restoration_of_old_effect",
+    "no_chain": "instance_received_via_Contagion_cannot_be_retransmitted_by_Contagion_at_recipient_death",
+    "zones": "transfer_actor_status_not_zone_or_invocation;source_zone_stays_in_place;zone_only_Gel_without_independent_lifetime_requires_separate_review",
+    "scope_boundary": "no_new_retention_or_damage_numbers_no_new_compatible_status_and_no_new_RP_or_art;complete_phase_order_and_selection_geometry_ties_pending"
+  },
+  "approval_boundary": "source_pre_fatal_selection_recipient_single_attempt_immediate_application_same_kind_replacement_and_no_retransmission_as_shown;zone_only_Gel_lifetime_and_unshown_full_retention_bindings_or_native_art_not_approved",
+  "runtime_integration": "not_integrated"
+}

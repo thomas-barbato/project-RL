@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-08",
+  "review_ids": [
+    "M02",
+    "M02-EXT01"
+  ],
+  "user_request_and_acceptance": "On reformule le texte rp : \"Vous projetez une décharge occulte qui déchire la chaire de votre cible et renforce votre métamorphose.\" et je valide :)",
+  "acceptance_context": "explicit_approval_of_M02_01_displayed_values_conditions_and_visual_direction_with_user_supplied_RP_replacement",
+  "accepted_review_basis": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-M02-01.json",
+  "accepted_review_basis_sha256": "31c23d1ac9307a14b1dfe33bdd554ff1e7109bb18d56b913d3a1b6f2e2a3d432",
+  "accepted_roleplay_text": "Vous projetez une décharge occulte qui déchire la chair de votre cible et renforce votre métamorphose.",
+  "orthographic_normalization": {
+    "user_spelling": "chaire",
+    "saved_spelling": "chair",
+    "reason": "body_flesh;spelling_only_no_semantic_change"
+  },
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "direct_occult_damage": 55,
+    "form_extension_turns_per_eligible_hit": 2,
+    "maximum_added_turns_per_continuous_transformation": 4,
+    "range_cells": 3,
+    "energy_cost": 9,
+    "cooldown_turns": 2
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "direct_occult_damage": 59,
+    "form_extension_turns_per_eligible_hit": 2,
+    "maximum_added_turns_per_continuous_transformation": 4,
+    "range_cells": 3,
+    "energy_cost": 9,
+    "cooldown_turns": 2
+  },
+  "accepted_scope": [
+    "user_supplied_RP_replacement",
+    "shown_human_reference_damage55_current59_next_extension2_cap4_range3_energy9_cooldown2",
+    "visible_hostile_clear_path_actual_HP_removed_required_for_extension",
+    "human_form_damage_only_and_all_five_form_availability",
+    "continuous_extension_counter_not_reset_by_same_form_renewal",
+    "damage_still_applies_after_extension_cap_reached",
+    "Silence_blocks_M02",
+    "shown_dark_organic_projectile_form_mark_pulse_and_duration_display_update_visual_direction"
+  ],
+  "not_accepted_by_this_reply": [
+    "old_RP_superseded",
+    "unshown_full_curves_default_rank1_values_and_6_turn_extension_cap",
+    "exact_damage_modifier_rounding_accuracy_collision_and_defense_cases",
+    "extension_tick_order_partial_remaining_budget_equipment_resampling_and_expiration_boundary",
+    "unshown_counter_reset_via_human_return_and_equipment_change_cases",
+    "native_projectile_form_pulse_and_timer_update_pixels"
+  ],
+  "runtime_integration": "not_integrated"
+}

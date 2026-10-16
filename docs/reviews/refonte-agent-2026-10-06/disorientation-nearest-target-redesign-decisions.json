@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-07",
+  "skill_id": "AF05",
+  "title": "Désorientation",
+  "user_message": "désorientation devrait plutot être une compétence qui fait que la cible attaque la cible la plus proche d’elle qu’elle soit alliée ou non.",
+  "accepted_direction": "Target attacks the closest target, regardless of ally/enemy allegiance; replaces false-position search.",
+  "clarification_answers": {
+    "offensive_actions": "Attaques ordinaires et compétences offensives",
+    "damage_interrupt": "Non, les dégâts interrompent l’effet"
+  },
+  "accepted_mechanics": {
+    "closest_target_ignores_allegiance": true,
+    "ordinary_attacks_and_offensive_skills_allowed": true,
+    "received_damage_interrupts_effect": true
+  },
+  "superseded_rules": [
+    "Player-selected false position and its 3-cell limit",
+    "False-position search and at-destination searching",
+    "Ranged attacks blocked while searching",
+    "Interruption caused by the path to a false position becoming impossible"
+  ],
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-AF05-01.json",
+  "previous_description_sha256": "999ad59b24fcad9e3b7dfba7a69c5f697f03beb0596e83fb78b4365d3a19c02f",
+  "numeric_rules_approval": "Existing numbers retained as a new-mechanic proposal, not newly approved balance.",
+  "copy_approval": "New roleplay and revised current/next tooltip to present for explicit review.",
+  "unshown_rules": "Exact target eligibility and visibility, nearest-distance metric, tie-break, selection refresh cadence, behavior without a legal attack/target, use of own resources/cooldowns and interaction with other control effects remain to review. No free action, AI omniscience or player control inferred.",
+  "AF06_interaction": "Previous exclusion preserved for now; false-position justification withdrawn. Compatibility with redesigned AF05 remains a separate review question.",
+  "visual_approval": "Former false-position visual intention superseded; new native rendering not yet proposed or approved.",
+  "runtime_integration": "not_integrated"
+}

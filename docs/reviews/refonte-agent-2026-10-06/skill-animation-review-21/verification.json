@@ -1,0 +1,197 @@
+{
+  "protected_files_unchanged": 17685,
+  "resampling_of_native_capture": false,
+  "controls": [
+    {
+      "variant": "FE05-A06-DROITE",
+      "physical_walls_clear": true,
+      "quiet_bodies_and_terrain_identical_to_previous_review": true,
+      "comparison_excludes_only_faded_floating_name_rasterization": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A03-DROITE",
+      "physical_walls_clear": true,
+      "quiet_bodies_and_terrain_identical_to_previous_review": true,
+      "comparison_excludes_only_faded_floating_name_rasterization": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE05-A06-GAUCHE",
+      "physical_walls_clear": true,
+      "quiet_bodies_and_terrain_identical_to_previous_review": true,
+      "comparison_excludes_only_faded_floating_name_rasterization": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A03-GAUCHE",
+      "physical_walls_clear": true,
+      "quiet_bodies_and_terrain_identical_to_previous_review": true,
+      "comparison_excludes_only_faded_floating_name_rasterization": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE05-A06-HAUT",
+      "physical_walls_clear": true,
+      "quiet_bodies_and_terrain_identical_to_previous_review": true,
+      "comparison_excludes_only_faded_floating_name_rasterization": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A03-HAUT",
+      "physical_walls_clear": true,
+      "quiet_bodies_and_terrain_identical_to_previous_review": true,
+      "comparison_excludes_only_faded_floating_name_rasterization": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE05-A06-CLOISON-BAS",
+      "physical_walls_clear": true,
+      "quiet_bodies_and_terrain_identical_to_previous_review": true,
+      "comparison_excludes_only_faded_floating_name_rasterization": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A03-CLOISON-BAS",
+      "physical_walls_clear": true,
+      "quiet_bodies_and_terrain_identical_to_previous_review": true,
+      "comparison_excludes_only_faded_floating_name_rasterization": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": false,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE05-A06-INTERCEPTION",
+      "physical_walls_clear": true,
+      "quiet_bodies_and_terrain_identical_to_previous_review": true,
+      "comparison_excludes_only_faded_floating_name_rasterization": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    },
+    {
+      "variant": "FE06-A03-INTERCEPTION",
+      "physical_walls_clear": true,
+      "quiet_bodies_and_terrain_identical_to_previous_review": true,
+      "comparison_excludes_only_faded_floating_name_rasterization": true,
+      "instant_impact_ends_before_first_turn": true,
+      "waiting_preserves_burn_and_cooldowns": true,
+      "burn_after_impact": true,
+      "final_effects_expired": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "FE05-A06-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 38,
+      "frames": 56,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE05-A06-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 38,
+      "frames": 56,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE05-A06-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 38,
+      "frames": 56,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE05-A06-CLOISON-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 38,
+      "frames": 56,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "FE05-A06-INTERCEPTION-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "distinct_frames": 38,
+      "frames": 56,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "vitesse-boule-de-feu-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 40,
+      "frames": 57,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "vitesse-boule-de-feu-cloison-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 40,
+      "frames": 57,
+      "duration_ms": 6000,
+      "loop": 0
+    },
+    {
+      "file": "vitesse-boule-de-feu-interception-64.gif",
+      "native_size": [
+        1232,
+        650
+      ],
+      "distinct_frames": 40,
+      "frames": 57,
+      "duration_ms": 6000,
+      "loop": 0
+    }
+  ],
+  "source_art_mode": "Exact approved review-20 drawings; flight speed only."
+}

@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-13",
+  "build": {
+    "command": "cargo build --locked",
+    "exit_code": 0
+  },
+  "targeted_tests": {
+    "command": "cargo test --locked agent_skill_lab_review",
+    "passed": 55,
+    "failed": 0
+  },
+  "format": {
+    "command": "cargo fmt --all -- --check",
+    "exit_code": 0
+  },
+  "diff_check": {
+    "command": "git diff --check",
+    "exit_code": 0
+  },
+  "native_render": {
+    "views": 16,
+    "animations": 9,
+    "protected_files_unchanged": 50363,
+    "pixel_controls": "passed"
+  },
+  "drawing_workflow": "Built-in imagegen; exact prompts and source PNGs saved in this review. Only equal-cell cropping and uniform resizing for the atlases; source alpha preserved, including peak alpha 254.",
+  "palette": "ANIM-S10-COLOR03 saturated purple for colored facets; previously agreed crimson drain fragments retained.",
+  "timing_controls": "Siphon resolves once and ends in real time. Ray stays animated while waiting, has three prepared resolutions at most, and stops at movement or insufficient energy. No actual healing, energy, damage, RNG, status, AI or gameplay resolution is implemented.",
+  "gallery_controller": "Passed offline VM checks, including persistent waiting loops excluding repeated drain pulses, explicit turns, loading controls, interruptions and pause.",
+  "gallery_links": {
+    "checked": 8,
+    "missing": 0
+  },
+  "browser_validation": "Not performed; file protocol blocked by browser automation policy. Native captures and offline controller verified.",
+  "full_suite": "not run",
+  "release_build": "not run",
+  "campaign_integration": false,
+  "visual_approval": "ray_approved_siphon_revision_requested",
+  "ray_acceptance": "ray-acceptance-01.json"
+}

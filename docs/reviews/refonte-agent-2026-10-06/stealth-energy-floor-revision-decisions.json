@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SF01-ENERGY01",
+  "skill_id": "SF01",
+  "user_instruction": "Okay on garde ces regles, sauf pour le coup en point au rang 10 dans \"Économie de mouvement furtif\" au rang 10 ca coutera 1 point , faut pas que ce soit gratuit :) .",
+  "resource_interpretation": "one_energy_point_per_successful_stealth_step;skill_point_purchase_cost_already_one_per_rank",
+  "accepted_energy_per_step_at_rank10": 1,
+  "accepted_minimum_energy_per_step_including_equipment_bonus_ranks": 1,
+  "equipment_floor_basis": "user_explicitly_forbids_free_stealth_steps",
+  "skill_point_cost_per_learned_rank": 1,
+  "learned_rank_cap": 10,
+  "prerequisite": "SF00",
+  "secondary_active_purchase": "once_for_one_skill_point;preserved",
+  "remaining_rules": "two_passives_preserved;SF02_detection_direction_preserved",
+  "rest_and_activation_cost": "unchanged;step_floor_does_not_add_stationary_upkeep_or_activation_cost",
+  "superseded_rule": "zero_energy_at_rank10;historical_only",
+  "intermediate_costs_rounding_and_base2_proposal": "still_pending_individual_review",
+  "runtime_integration": "not_integrated"
+}

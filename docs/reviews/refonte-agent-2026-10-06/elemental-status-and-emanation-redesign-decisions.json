@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "FE04",
+    "FE04-FALLOFF01",
+    "EL-STAT01",
+    "EL-ZONE01"
+  ],
+  "user_requests": [
+    {
+      "scope": "FE04 falloff and initial rename; Feu/Froid status extension",
+      "message": "On pourrait certainement faire un effet que plus la cible est proche du centre de l’éruption il prend plus de dégats (meme si la difference entre le centre et les bords ne doit pas être élevée) .\n\nJ’aimerais aussi qu’on modifie le nom de la compétence en \"explosion\"\n\n(globalement j’aimerais que toute la branche feu donne des chances de provoquer le status brulure, la branche glace le status gel)"
+    },
+    {
+      "scope": "final FE04 rename superseding intermediate Explosion",
+      "message": "et finalement la skill ne s’appellera pas \"explosion\" mais \"émanation soudaine\""
+    },
+    {
+      "scope": "EL-ZONE01 all persistent spell areas with a status chance",
+      "message": "concernant les sorts de zone qui donnent un status, le % de chance d’avoir le status (gel , brulure ou autre) doit aussi etre cumulé en fonction du nombre de tour passé dans la zone du sort :)"
+    }
+  ],
+  "clarification_answers": [
+    {
+      "question": "Pour les effets déjà validés, comme la brûlure de Braise, veux-tu conserver leur application prévue ou la remplacer par une chance de provoquer le statut ?",
+      "answer": "Conserver les effets spécifiques déjà validés"
+    },
+    {
+      "question": "Les chances de brûlure et de gel doivent-elles être réglées séparément pour chaque compétence, ou avoir une valeur commune à tous les sorts d’une branche ?",
+      "answer": "Une chance différente par compétence"
+    },
+    {
+      "question": "Pour une zone ayant 10 % de chance de brûlure, quel cumul souhaites-tu ?",
+      "answer": "Chance croissante à chaque jet : 10 % au premier tour, 20 % au deuxième, 30 % au troisième…"
+    },
+    {
+      "question": "Si une cible sort de la zone puis y revient, son cumul de chance doit-il repartir de zéro ?",
+      "answer": "Oui, le cumul repart de zéro à la sortie."
+    }
+  ],
+  "skill_id": "FE04",
+  "previous_title": "Éruption",
+  "superseded_intermediate_title": "Explosion",
+  "title": "Émanation soudaine",
+  "previous_description": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE04-01.json",
+  "previous_description_sha256": "0745ec70758dc73a6bbf6ef4c9f1f19b6b12e756513fe18706a4d851541baeef",
+  "previous_player_copy_sha256": "3501fcdc075499f576c83cc3e15c45f3b4f9dbce3ca4d5f762fc03f0e560b20e",
+  "approval_scope": "Explicit final rename, modest center-to-edge falloff direction, per-skill Feu burn/Froid gel status additions preserving specifically accepted effects, and increasing per-roll status chance while staying in persistent spell zones with reset on exit. This redesign does not approve the former or revised full FE04 RP/numeric/visual card.",
+  "accepted_requests": {
+    "FE04_stable_id_preserved": true,
+    "FE04_new_name": "Émanation soudaine",
+    "FE04_center_stronger_than_edge_with_modest_difference": true,
+    "Feu_burn_and_Froid_gel_direction": true,
+    "status_chance_individual_per_skill": true,
+    "specific_existing_effects_preserved": true,
+    "FE01_Braise_burn_not_replaced_with_new_roll": true,
+    "zone_status_probability_increases_per_roll_with_turns_inside": true,
+    "zone_example_base_10_percent_successive_rolls_percent": [
+      10,
+      20,
+      30
+    ],
+    "zone_counter_reset_on_exit": true,
+    "constant_per_turn_chance_with_only_cumulative_probability_displayed": "explicitly_not_selected"
+  },
+  "FE04_additional_proposals_pending_review": {
+    "maximum_edge_raw_power_reduction_percent": 10,
+    "distance_weighting": "linear from center to edge; final floor once after all modifiers",
+    "burn_chance_rank_curve": "min(100,max(0,10+2*(effective_rank-1)))",
+    "burn_damage_rank_curve": "floor((1+0.5*(effective_rank-1))*magic_multiplier)",
+    "burn_duration_turns": 3,
+    "burn_first_tick": "next complete turn after explosion",
+    "own_FE04_burn_applications_stack": false,
+    "full_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE04-02.json"
+  },
+  "EL_STAT01": {
+    "affected_branches": [
+      "Feu",
+      "Froid"
+    ],
+    "affected_skill_ids": [
+      "FE01",
+      "FE02",
+      "FE03",
+      "FE04",
+      "FE05",
+      "FE06",
+      "FR01",
+      "FR02",
+      "FR03",
+      "FR04",
+      "FR05",
+      "FR06"
+    ],
+    "FE01": "accepted specific guaranteed burn preserved; no generic replacement",
+    "FE02_FE03": "approved base cards remain accepted; new burn additions to present separately",
+    "other_skills": "status numeric effects, chances, durations and triggers pending individual review",
+    "nondamaging_or_passive_cold_skills": "explicit trigger review required; no automatic damage or status invented",
+    "automatic_extension_to_weapons_secondary_mines_grenades_or_other_branches": false
+  },
+  "EL_ZONE01": {
+    "scope": "all persistent spell zones that have an applicable status chance; not restricted to Feu/Froid; creates no new status by itself",
+    "accepted_example": "base10%: successive per-roll chances10%,20%,30%; leaving resets to base on reentry",
+    "calculation_proposal": "exposure chance=min(100%,base chance*exposure turn count), then existing control eligibility and elite multiplier for control statuses",
+    "probability_ceiling_percent_proposal": 100,
+    "CTRL01_remains_applicable": true,
+    "boss_control_immunity_bypassed": false,
+    "elite_control_penalty_bypassed": false,
+    "burst_explosion_marker_counts_as_persistent_status_exposure": false,
+    "FE04_gains_persistent_ground_zone": false,
+    "damage_over_time_on_actor_is_ground_zone": false,
+    "secondary_mine_grenade_cloud_compatibility": "separate review; not silently changed",
+    "pending_details": [
+      "exact first test timing",
+      "definition and sampling of exposure turn",
+      "target tracking per zone and caster",
+      "overlapping zones",
+      "repeated application, refreshing and ongoing status",
+      "resistances and probability/modifier order where unshown"
+    ]
+  },
+  "control_dependency": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/control-boss-immunity-and-elite-penalty-decisions.json",
+    "sha256": "139e1615bfedbc7a4ad3df16d614e39d3616fcff387f6bdcc2b96c82cb85c145",
+    "gel": "movement blocked; other actions possible; bosses immune; elite calculated chance multiplied by0.75; damage retained",
+    "burn": "not automatically a control; no implied boss burn immunity"
+  },
+  "target_status_visibility_dependency": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/target-status-analysis-visibility-decisions.json",
+    "sha256": "d1e57c5798ede4cbfa9a715cf1db628415a8c4784b630bbbcf1bba709cf628b1",
+    "effect_values_visible_without_recon_drone": true,
+    "native_icons_and_rendering": "pending review"
+  },
+  "roleplay_text_approval": "FE04 revised RP remains pending individual review",
+  "numeric_rules_approval": "shown new FE04 numbers and unshown status curves remain pending individual review; accepted zone examples and reset preserved",
+  "visual_approval": "existing catalogue direction only; no new native preview accepted",
+  "runtime_integration": "not_integrated"
+}

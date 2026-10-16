@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-10",
+  "review_id": "SHIELD-POSE01",
+  "user_direction": "Concernant les bouclier, ils seront affichés à plat à avec leur centre sur la main du joueur (le bouclier doit donc cacher la main et une partie du bras :) )",
+  "accepted_direction": {
+    "presentation": "flat_visible_face",
+    "pivot": "shield_center_on_equipping_hand",
+    "occlusion": "shield_covers_hand_and_part_of_forearm",
+    "layer_order": "visible_shield_face_in_front_of_hand_and_occluded_forearm;no_finger_overlay_above_shield"
+  },
+  "attachment_reference": {
+    "reference": "assets/sprites/cyberpunk/agent-rigs/manifest.json",
+    "reference_sha256": "85f7165a3d9ce2eaa27fd066bccf184115b695171e9f091a4c44ff28cb97573a"
+  },
+  "existing_hand_anchors_by_silhouette": [
+    {
+      "class": "Bastion",
+      "body_number": 1,
+      "hand_anchors": {
+        "L": [
+          6,
+          19
+        ],
+        "R": [
+          25,
+          19
+        ]
+      }
+    },
+    {
+      "class": "Technomancien",
+      "body_number": 2,
+      "hand_anchors": {
+        "L": [
+          6,
+          19
+        ],
+        "R": [
+          25,
+          19
+        ]
+      }
+    },
+    {
+      "class": "Traqueur",
+      "body_number": 3,
+      "hand_anchors": {
+        "L": [
+          9,
+          18
+        ],
+        "R": [
+          22,
+          18
+        ]
+      }
+    },
+    {
+      "class": "Arcaniste",
+      "body_number": 4,
+      "hand_anchors": {
+        "L": [
+          6,
+          19
+        ],
+        "R": [
+          25,
+          19
+        ]
+      }
+    },
+    {
+      "class": "Métamorphe",
+      "body_number": 5,
+      "hand_anchors": {
+        "L": [
+          6,
+          19
+        ],
+        "R": [
+          25,
+          19
+        ]
+      }
+    }
+  ],
+  "anchor_status": "existing_body_hand_references;exact_shield_geometry_and_pixel_centering_to_be_checked_in_native_review",
+  "preserved": "six_shield_models;caster_and_horizontal_heavy_directions;fixed_body_anatomy_scale_and_collision;other_hand_weapon",
+  "approval_scope": "presentation_and_occlusion_direction_only;no_new_shield_stats_names_RP_or_pixels_approved",
+  "runtime_integration": "not_integrated"
+}

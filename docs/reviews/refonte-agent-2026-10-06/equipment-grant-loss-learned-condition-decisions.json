@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-09",
+  "review_id": "GEAR-SK02-DECISION01",
+  "user_reply": "Je suis d'accord avec ça si le joueur a déjà investis des points de lui meme dans la compétence, s'il ne l'a pas fait alors les bonus disparaissent tout simplement.",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-equipment-grant-loss-effects-GEAR-SK02-01.json",
+  "source_proposal_sha256": "8a1c813ba7ad8cf94856ab0127cbe41c16f12532f3afef4cfd439d6dd9de0a06",
+  "accepted_conditional_rules": {
+    "condition": "player_has_at_least_one_actual_learned_rank_in_affected_skill",
+    "ordinary_active_effects": "source_GEAR_SK02_ordinary_effect_cast_rank_and_remaining_lifetime_preservation_accepted_only_under_learned_condition",
+    "familiars": "existing_familiar_identity_preserved_and_invocation_bonuses_follow_current_real_effective_rank_under_existing_PETS_EQ13_rules;learned_rank_prevents_zero_available_rank",
+    "Reanimation_marks": "marks_from_personally_learned_Reanimation_remain_until_target_death_and_use_current_available_rank_when_completing_effect",
+    "reserves_timers": "no_rank_or_gear_change_refill_heal_duration_or_cooldown_reset;existing_current_value_clamping_and_true_level_gain_exception_preserved"
+  },
+  "accepted_no_learning_direction": "when_player_has_no_personally_learned_rank_the_equipment_bonus_and_its_gear_only_effect_benefits_disappear_on_loss_of_that_source;no_artificial_rank1_persistence",
+  "scope_boundary": "latest_feedback_conditions_previous_proposal_instead_of_unconditionally_accepting_it;exact_familiar_removal_real_item_drop_and_source_effect_cleanup_copy_are_revised_proposals_for_review",
+  "rejected_unlearned_rules": [
+    "retain_equipment_only_ongoing_effect_rank_after_losing_all_access_without_actual_learning",
+    "keep_equipment_only_created_familiar_via_artificial_rank1_after_losing_all_access",
+    "equipment_only_Reanimation_mark_completes_at_artificial_rank1_after_losing_all_access"
+  ],
+  "unresolved_cases": [
+    "meaning_of_partial_bonus_loss_while_other_equipment_bonus_still_grants_access",
+    "exact_cleanup_of_individually_sourced_buffs_debuffs_zones_mines_transformations_and_marks",
+    "equipment_only_summoned_actor_removal_and_real_item_drop_location",
+    "native_cleanup_feedback_and_multiple_source_status_interactions"
+  ],
+  "approval_scope": "Conditional acceptance for actually learned skills is recorded. No blanket approval of prior rank1 fallback is retained. The no-learned-rank disappearance direction is direct user feedback; revised concrete effect cleanup and familiar removal/drop details remain to be presented.",
+  "player_copy_approval": "user_condition_recorded;revised_assistant_copy_pending",
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

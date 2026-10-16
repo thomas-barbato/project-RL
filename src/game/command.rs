@@ -92,6 +92,12 @@ pub enum GameCommand {
     LearnTechnique {
         technique: TechniqueId,
     },
+    LearnAgentSkill {
+        skill: String,
+    },
+    AllocateAttribute {
+        attribute: crate::stats::PrimaryAttribute,
+    },
     UseTechnique {
         technique: TechniqueId,
         targets: Vec<EntityId>,
@@ -132,16 +138,30 @@ pub enum GameCommand {
         target: GridPos,
         action: crate::facility::InstallationAction,
     },
+    SetAgentMineVariant {
+        variant: super::AgentMineVariant,
+    },
+    SetAgentGrenadeVariant {
+        variant: super::AgentGrenadeVariant,
+    },
 }
 
 impl GameCommand {
     /// Whether a successful command starts a normal simulation action. A
     /// rejected command never does; learning between commands is deliberately
     /// timeless and therefore does not refresh reaction availability.
-    pub const fn consumes_time_on_success(&self) -> bool {
+    pub fn consumes_time_on_success(&self) -> bool {
+        if matches!(self, Self::EquipItem { slot, .. } if slot.as_str() == crate::entity::BODY_APPEARANCE_SLOT)
+        {
+            return false;
+        }
         !matches!(
             self,
-            Self::LearnTechnique { .. }
+            Self::SetAgentMineVariant { .. }
+                | Self::SetAgentGrenadeVariant { .. }
+                | Self::LearnTechnique { .. }
+                | Self::LearnAgentSkill { .. }
+                | Self::AllocateAttribute { .. }
                 | Self::SetCompanionBehavior { .. }
                 | Self::AcceptQuest { .. }
                 | Self::ChooseDialogue { .. }

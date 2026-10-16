@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-15",
+  "review_id": "D66-TAUNT-MULTI01",
+  "status": "proposed_for_review_not_integrated",
+  "user_request": "ok, il faudra donc gerer aussi le cas ou plusieurs gardiens qui taunt en meme temps, l’effet que ca produit sur les monstres.",
+  "accepted_requirement": "Handle simultaneous Guardian provocations and their result on each monster; keep previously accepted no-continuous-target-swapping direction.",
+  "proposal": {
+    "one_status_per_monster": "One provocation status with one source Guardian and one remaining duration; no strength, duration or icon stacking.",
+    "already_provoked": "Keep the existing still-valid source Guardian and remaining duration. Incoming taunts neither replace it nor refresh it.",
+    "simultaneous_new_provocations": "Collect eligible Guardian candidates in the same familiar phase before resolving ownership per monster; do not let actor iteration or drawing order choose the winner.",
+    "selection": "Nearest valid Guardian among sources whose effect reaches the monster, respecting obstacles and actual attack/pursuit eligibility.",
+    "ties": "Stable persistent actor identity breaks a remaining distance tie, with no random draw or per-frame reassignment.",
+    "different_monsters": "Resolve each monster separately; several Guardians may win different targets in the same phase.",
+    "source_destroyed_or_recalled": "Remove its provocation; the monster resumes its normal target selection. Another Guardian must actually provoke it to impose a new taunt; no automatic transfer of the old status.",
+    "visual": "One provocation marker per affected monster, no repeated icon stack or target flip from simultaneous pulses."
+  },
+  "remaining_details": [
+    "Exact distance comparison for melee/ranged/immobile actors",
+    "Action/cooldown outcome for a Guardian whose simultaneous attempt wins no target",
+    "Sight loss, path becoming invalid and expiration timing",
+    "Boss and resistance rules",
+    "Native animation and exact icon"
+  ],
+  "numerical_scope": "No capacity, radius, duration or cooldown numbers changed or newly accepted by this follow-up.",
+  "campaign_integration": false,
+  "active_code_or_assets_changed": false
+}

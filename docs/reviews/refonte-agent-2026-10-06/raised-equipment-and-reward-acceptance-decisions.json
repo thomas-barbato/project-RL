@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-09",
+  "review_id": "PETS-EQ09-ACCEPT01",
+  "user_reply": "Okay parfait :)",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-raised-equipment-and-rewards-PETS-EQ09-01.json",
+  "source_proposal_sha256": "28c3bf6266e57bfe6894ffe2c96ecf7e7623a63f901de751080095ebb28b2fb7",
+  "accepted_shown_copy_markdown": "Les **règles de charge et de surcharge de la Mule sont validées**.\n\n**PETS-EQ09 · Réanimation et objets — proposition**\n\n**Au relèvement**\n\nLe ressuscité conserve son profil de combat et ses compétences d’origine, avec la puissance donnée par Réanimation. Ses emplacements **Arme** et **Armure de torse** commencent vides : ses capacités d’origine ne créent pas d’objets récupérables.\n\nLe butin tombé lors de la mort de l’ennemi reste au sol. Vous pouvez ensuite lui confier de vrais objets selon les règles d’équipement validées.\n\n**À la fin du familier**\n\nSon équipement confié tombe **sur sa case** :\n\n- à sa mort ;\n- à la fin de la réanimation ;\n- lors d’une destruction volontaire ;\n- lorsqu’un nouveau réanimé le remplace à la limite de cinq.\n\n**Récompenses**\n\nLa mort initiale de l’ennemi accorde ses récompenses habituelles. La mort ou la disparition de sa version ressuscitée ne donne **ni XP ni nouveau butin** ; les objets confiés sont simplement restitués au sol.\n\n**Ces règles d’objets et de récompenses restent à valider.**",
+  "accepted_shown_copy_sha256": "cbc306dbb8f14925464076b98ea75f94f20e8b281729bf4ee523a706db050018",
+  "accepted_shown_rules": {
+    "scope": "allied_raised_monsters_from_OC07_Reanimation;not_living_monster_rewards_rebalance_or_new_drone_item_rule",
+    "combat_origin": "preserve_original_monster_combat_profile_and_skills_under_accepted_OC07_power;exact_intrinsic_vs_equipment_stat_snapshot_and_modifier_order_not_defined",
+    "initial_supplied_gear_slots": {
+      "weapon": null,
+      "torso_armor": null
+    },
+    "native_equipment_objects": "native_combat_capabilities_do_not_materialize_new_recoverable_inventory_items_on_reanimation",
+    "first_death_loot": "normal_enemy_initial_death_loot_remains_on_ground;reanimation_does_not_automatically_take_or_duplicate_these_items",
+    "supplied_equipment": "transfer_real_items_under_accepted_equipment_level_type_slot_cost_and_identity_rules",
+    "terminal_drop_events": [
+      "allied_raised_death",
+      "reanimation_duration_end",
+      "voluntary_destruction",
+      "replacement_by_new_raised_ally_at_cap5"
+    ],
+    "terminal_drop": "drop_real_supplied_equipped_items_on_raised_familiar_current_cell_preserving_existing_objects",
+    "initial_enemy_rewards": "first_enemy_death_uses_usual_enemy_reward_rules;no_XP_or_loot_amount_probability_or_eligibility_changed",
+    "raised_ally_terminal_rewards": "no_XP_and_no_new_loot_generation_on_allied_raised_death_expiry_destruction_or_cap_replacement;real_supplied_gear_drop_is_item_return_not_new_reward",
+    "item_identity": "same_real_item_returns_on_terminal_drop;no_copy_or_recreation"
+  },
+  "approval_scope": "Shown original combat profile and skills under Reanimation power with empty supplied weapon/torso armor slots and no generated recoverable native item, original enemy death loot left on ground, real supplied equipment under accepted rules, same-cell equipment return on allied death/expiry/voluntary destruction/cap5 replacement, normal first enemy rewards and no XP or newly generated loot from allied raised terminal events accepted. Exact origin stat snapshot and power/gear math remain pending.",
+  "unshown_cases_pending": [
+    "origin_actor_intrinsic_stats_equipment_and_temporary_effect_snapshot_rules",
+    "OC07_power_multiplier_order_with_own_attributes_supplied_weapon_armor_and_bonuses",
+    "whether_initial_death_credit_reward_and_reanimation_occurrence_order_use_existing_engine_hooks",
+    "XP_credit_for_enemies_killed_by_raised_allies_under_future_reward_design",
+    "resurrection_attempt_refusals_eligibility_and_terminal_event_order",
+    "dead_actor_cell_invalid_drop_layer_recall_save_and_terminal_item_transfer_atomicity",
+    "exact_native_equipment_visible_body_layout_slots_tooltips_and_item_families"
+  ],
+  "native_visual_approval": "not_presented",
+  "runtime_integration": "not_integrated"
+}

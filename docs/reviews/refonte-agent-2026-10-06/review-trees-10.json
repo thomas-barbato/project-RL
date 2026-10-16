@@ -1,0 +1,130 @@
+{
+  "date": "2026-10-07",
+  "runtime_integration": "not_integrated",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+  "latest_decisions_sha256": "c5d3a1934039f59fa1363611157e148e5843e266914c2db35cbed708ee9695b9",
+  "text_approval": "pending_user_review",
+  "visual_approval": "pending_preview_and_user_review",
+  "batch_revision": 10,
+  "document": "docs/REVUE_ARBRES_COMPETENCES_AGENT.md",
+  "document_sha256": "778ca8e46cddfa154d523984a0cbffc3d55d7dbdc0f347d41e22c28a48f481c4",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-trees-09.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-trees-revision-09.md",
+  "status": "free_primary_access_and_secondary_active_prerequisite_accepted_heavy_tree_deferred",
+  "accepted_requirements": {
+    "specialized_branch_count": 14,
+    "branch_names": [
+      "Mêlée",
+      "Survie",
+      "Drones",
+      "Affaiblissements",
+      "Attaques à distance",
+      "Esquive",
+      "Feu",
+      "Froid",
+      "Foudre",
+      "Énergie occulte",
+      "Transformations",
+      "Pouvoirs hybrides",
+      "Buffs de mêlée",
+      "Buffs à distance"
+    ],
+    "distinct_gameplay_and_visual_for_each_candidate": true,
+    "diablo_two_skill_inspiration_requested": true,
+    "unlock_by_points_invested_in_branch": false,
+    "all_classes_can_access_all_branches": true,
+    "learned_rank_cap": 10,
+    "cost_per_rank": 1,
+    "catalogue_counts": {
+      "branches": 14,
+      "normal_branch_skills": 6,
+      "drone_skills": 8,
+      "total_skills": 86
+    },
+    "three_part_description": [
+      "roleplay description",
+      "default numeric effects",
+      "current numeric values"
+    ],
+    "stable_skill_renames": {
+      "B03": "Vitalité améliorée"
+    },
+    "reflection_buff_grouping": {
+      "review_id": "AR-BUFFS-01",
+      "tree_label": "Buffs",
+      "group_label": "Protection et renvoi",
+      "skill_ids": [
+        "SU03",
+        "BM05"
+      ]
+    },
+    "skill_tree_tooltips": {
+      "review_id": "CD07",
+      "skill_tree_shows_icon_and_effective_level": true,
+      "boosted_level_different_color": true,
+      "existing_boosted_color_family": "cyan",
+      "descriptions_mainly_in_tooltips": true,
+      "omit_learned_and_equipment_rank_breakdown_in_tooltip": true,
+      "omit_from_future_player_copy_examples": true,
+      "internal_learned_bonus_effective_ranks_remain_distinct": true,
+      "current_and_next_values_use_effective_rank": true,
+      "existing_numeric_rules_unchanged": true
+    },
+    "all_primary_skills_accessible_from_start_with_skill_points": true,
+    "primary_character_level_unlock_thresholds": false,
+    "secondary_active_required_before_associated_passive_purchase": true,
+    "tree_rows_unlock_skills": false,
+    "all_skill_choices_learnable": true,
+    "catalogue_before_final_counts_and_layout": true
+  },
+  "current_numeric_proposal_document": "docs/CADRAGE_COMPETENCES_AGENT_COMPLET.md",
+  "tier_proposal_approval": "superseded_by_explicit_no_unlock_tiers_decision",
+  "full_tree_reallocation_approval": "pending_user_review",
+  "superseded_historical_grid": {
+    "grid_scope": "each_specialized_branch",
+    "minimum_tier_rows_per_branch": 4,
+    "skill_options_per_tier": 3,
+    "minimum_distinct_skills_per_branch": 12,
+    "all_three_options_learnable_with_points": true,
+    "unlock_by_points_invested_in_branch": true,
+    "choose_thresholds_after_branch_catalog": true,
+    "status": "superseded_historical_only_no_current_unlock_effect"
+  },
+  "purchase_rules": {
+    "review_ids": [
+      "AR-ACCESS01",
+      "AR-SEC01"
+    ],
+    "decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json",
+    "primary_tiers": false,
+    "primary_level_unlock_thresholds": false,
+    "primary_branch_point_unlock_thresholds": false,
+    "primary_available_from_start_with_skill_points": true,
+    "secondary_active_required_before_associated_passive": true,
+    "secondary_passive_prerequisites": {
+      "SF01": "SF00",
+      "SF02": "SF00",
+      "SM01": "SM00",
+      "SM02": "SM00",
+      "SM03": "SM00",
+      "SM04": "SM00",
+      "SM05": "SM00",
+      "SG01": "SG00",
+      "SG02": "SG00",
+      "SG03": "SG00",
+      "SG04": "SG00"
+    },
+    "secondary_extra_tiers": false
+  },
+  "planned_heavy_weapon_tree": {
+    "title": "Armes lourdes",
+    "status": "accepted_planned_after_all_current_skill_descriptions_validated",
+    "scope": "existing and future heavy ranged weapons",
+    "excluded_from_existing_tree": "ordinary shooting tree / Attaques à distance",
+    "catalogue_created": false,
+    "count_and_branches": "not decided",
+    "common_buff_and_secondary_launcher_interactions": "not silently reclassified; future compatibility review",
+    "review_id": "AR-HL01",
+    "decisions": "docs/reviews/refonte-agent-2026-10-06/skill-access-and-heavy-weapon-tree-decisions.json"
+  }
+}

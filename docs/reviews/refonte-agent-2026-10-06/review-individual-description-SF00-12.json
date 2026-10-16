@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-14",
+  "id": "SF00",
+  "review_id": "SF00-SNEAK01",
+  "revision": 12,
+  "title": "Furtivité",
+  "branch": "Furtivité",
+  "status": "new_rank_progression_and_updated_copy_prepared_for_review",
+  "runtime_integration": "not_integrated",
+  "previous_card": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF00-11.json",
+  "previous_card_sha256": "af430381e8dc392ad37cb327e91e074ccc249457172a72868a0cfb98dc5aa13e",
+  "accepted_visual_reference": "skill-animation-review-58/visual-acceptance-01.json",
+  "user_requested_change": "An attack launched while stealth is active gains damage and ends stealth.",
+  "confirmed_scope": "All direct attacks: weapons and spells.",
+  "scope_reply": "Toutes les attaques directes : armes et sorts (recommandé)",
+  "confirmed_numeric_anchor": {
+    "effective_rank": 10,
+    "direct_attack_damage_bonus_percent": 50,
+    "improves_above_rank10": true
+  },
+  "numeric_anchor_reply": "cependant les 50% doivent être au rang 10 de la compétence de furtivité (et continuer à s’améliorer au dessus du niveau 10)",
+  "ranked_purchase_revision": {
+    "old_purchase_once": true,
+    "new_ranked_active_direction": "required by the user-requested rank10 bonus; communicated explicitly",
+    "proposed_skill_points_per_learned_rank": 1,
+    "proposed_maximum_learned_rank": 10,
+    "equipment_can_raise_effective_rank_above10": true,
+    "basis": "existing common skill learning/gear rules; active SF00 catalogue remains unchanged pending full revision review"
+  },
+  "progression_proposal": {
+    "bonus_percent_per_effective_rank": 5,
+    "examples": [
+      {
+        "rank": 1,
+        "bonus_percent": 5
+      },
+      {
+        "rank": 9,
+        "bonus_percent": 45
+      },
+      {
+        "rank": 10,
+        "bonus_percent": 50
+      },
+      {
+        "rank": 11,
+        "bonus_percent": 55
+      },
+      {
+        "rank": 12,
+        "bonus_percent": 60
+      }
+    ],
+    "approval": "rank10=50 and continuation above10 confirmed; exact linear slope and other shown values awaiting review",
+    "damage_bonus_cap": "not newly specified; do not impose a hidden50% cap"
+  },
+  "roleplay_text": "Vous brouillez votre silhouette et étouffez le bruit de vos pas pour vous glisser dans les ennemis.",
+  "roleplay_approval": "previous exact user wording retained",
+  "player_copy_markdown": "**SF00 — Furtivité — Rang 10 — Actif**\n\n*Vous brouillez votre silhouette et étouffez le bruit de vos pas pour vous glisser dans les ennemis.*\n\n**Effets actuels**\n\n- Dégâts directs de l’attaque lancée en furtivité : **+50 %**.\n- Distance de repérage : **2 cases**.\n- Énergie par pas : **11** sans Économie de mouvement furtif.\n- Énergie à l’arrêt : **0**.\n\nAttaquer met fin à la furtivité. Le bonus concerne les armes et les sorts, uniquement leurs dégâts directs.\nSans énergie, tenter de vous déplacer met fin à la furtivité.\n\n**Plafond appris atteint : 10 rangs.** Les bonus d’équipement peuvent encore augmenter le rang effectif.\n\n**Activation : 0 énergie · Recharge : 0 tour.**",
+  "updated_copy_approval": "pending presentation; original wording retained except new bonus and ranked progression",
+  "current_profile": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 0,
+    "effective_rank": 10,
+    "agility": 10,
+    "SF01_rank": 0,
+    "SF02_rank": 0,
+    "illustrative": true
+  },
+  "preserved_values": {
+    "energy_per_successful_stealth_step": 11,
+    "stationary_energy": 0,
+    "activation_energy": 0,
+    "cooldown_turns": 0,
+    "example_detection_distance_cells": 2,
+    "duration": "until interruption; no artificial time limit",
+    "SF01_cost_rules": "unchanged",
+    "SF02_detection_rules": "unchanged"
+  },
+  "first_attack_bonus_direction": "The attack initiated while stealth is active receives the bonus; leaving stealth does not remove that bonus from this attack. Later attacks have no bonus until stealth is active again.",
+  "direct_damage_scope": "Arms and spells; no extra return from indirect damage, poison, burning or bleeding ticks, or reflections. Exact classification and modifier order remain to connect to the final resolver.",
+  "unshown_cases_pending": [
+    "exact multiplication/addition order with other damage bonuses and criticals",
+    "native bursts/multiple projectiles/areas and per-component snapshot",
+    "channelled attacks and delayed direct impacts",
+    "rejected attacks without resource or valid target",
+    "equipment rank changes during a pending attack",
+    "offensive non-damage controls and indirect-only skills"
+  ],
+  "new_visual_approval": "not inferred: review58 shows camouflage exit without resolving an attack; accepted cloak appearance is preserved",
+  "player_formula_omitted": true,
+  "balance_approval_inferred": false
+}

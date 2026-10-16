@@ -1,0 +1,123 @@
+{
+  "fresh_native_views": 7,
+  "comparison_views": 14,
+  "tile": 64,
+  "resampled": false,
+  "protected_files_unchanged": 31373,
+  "checks": [
+    {
+      "variant": "SM00-A02-HAUT",
+      "walls_clear": true,
+      "prepared_mechanics_identical_to_accepted_fire": true,
+      "baseline_pixels_preserved": true
+    },
+    {
+      "variant": "SM00-A02-DROITE",
+      "walls_clear": true,
+      "prepared_mechanics_identical_to_accepted_fire": true,
+      "baseline_pixels_preserved": true
+    },
+    {
+      "variant": "SM00-A02-GAUCHE",
+      "walls_clear": true,
+      "prepared_mechanics_identical_to_accepted_fire": true,
+      "baseline_pixels_preserved": true
+    },
+    {
+      "variant": "SM00-A02-BAS",
+      "walls_clear": true,
+      "prepared_mechanics_identical_to_accepted_fire": true,
+      "baseline_pixels_preserved": true
+    },
+    {
+      "variant": "SM00-A02-ATTENTE",
+      "walls_clear": true,
+      "prepared_mechanics_identical_to_accepted_fire": true,
+      "baseline_pixels_preserved": true
+    },
+    {
+      "variant": "SM00-A02-CLOISON",
+      "walls_clear": true,
+      "prepared_mechanics_identical_to_accepted_fire": true,
+      "baseline_pixels_preserved": true
+    },
+    {
+      "variant": "SM00-A02-ENNEMI-ARMEMENT",
+      "walls_clear": true,
+      "prepared_mechanics_identical_to_accepted_fire": true,
+      "baseline_pixels_preserved": true
+    }
+  ],
+  "animations": [
+    {
+      "file": "SM00-A02-HAUT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A02-DROITE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A02-GAUCHE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A02-BAS-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A02-ATTENTE-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 14,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A02-CLOISON-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 38,
+      "palette": "96 neutral, 96 warm, 64 green"
+    },
+    {
+      "file": "SM00-A02-ENNEMI-ARMEMENT-64.gif",
+      "native_size": [
+        576,
+        576
+      ],
+      "duration_ms": 6670,
+      "distinct_frames": 30,
+      "palette": "96 neutral, 96 warm, 64 green"
+    }
+  ]
+}

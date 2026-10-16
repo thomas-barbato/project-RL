@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-08",
+  "id": "HY02",
+  "review_id": "HY02",
+  "revision": 2,
+  "title": "Fusion défensive",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-74.json",
+  "source_skill_block_sha256": "c74091d0f49d7bee78a08671db4d68b7b62ceda91befb6c3e2f70c79acfe7031",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "selected_drone_current_HP": 100,
+    "currently_transformed": false,
+    "other_passive_implant_or_cost_modifiers": false,
+    "selected_drone_HP_fixture_is_example_not_general_drone_HP_rule": true,
+    "Intelligence": 10,
+    "percentage_attribute_scaling": "none;drone_current_HP_and_skill_rank_determine_capacity"
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "absorption_percent_of_sacrificed_drone_current_HP_exact": "85/2",
+    "absorption_percent_of_sacrificed_drone_current_HP_display": 42.5,
+    "selected_drone_current_HP": 100,
+    "absorption_capacity_damage_points": 43,
+    "duration_turns": 5,
+    "drone_range_cells": 4,
+    "energy_cost": 11,
+    "cooldown_turns": 8
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "absorption_percent_of_sacrificed_drone_current_HP_exact": "130/3",
+    "absorption_percent_of_sacrificed_drone_current_HP_display": 43.3,
+    "selected_drone_current_HP": 100,
+    "absorption_capacity_damage_points": 44,
+    "duration_turns": 5,
+    "drone_range_cells": 4,
+    "energy_cost": 11,
+    "cooldown_turns": 8
+  },
+  "formulas_proposed": {
+    "absorption_percent": "25+35*(effective_rank-1)/(effective_rank+9)",
+    "absorption_capacity": "ceil(selected_drone_current_HP*absorption_percent/100)",
+    "duration": "3+floor((effective_rank-1)/5)",
+    "energy": "8+floor((effective_rank-1)/3)",
+    "full_curves_defaults_approval": "unshown_pending_review"
+  },
+  "sacrifice_rules_proposed": {
+    "eligible_drone_ids": [
+      "D58",
+      "D59",
+      "D66"
+    ],
+    "eligible_drone_names": [
+      "Traqueur",
+      "Artilleur",
+      "Gardien"
+    ],
+    "excluded_drone_ids": [
+      "D56",
+      "D57"
+    ],
+    "requires_player_control_visible_drone_and_range": true,
+    "drone_destroyed": true,
+    "no_loot_XP_or_deployment_refund": "unshown_existing_proposal_pending_review",
+    "mule_cargo": "Mule_is_ineligible;no_new_cargo_deposit_rule"
+  },
+  "shield_rules_proposed": {
+    "damage_direct_and_indirect": true,
+    "absorb_after_prior_defenses": true,
+    "expires_on_capacity_exhaustion_or_duration": true,
+    "one_Fusion_shield_only": true,
+    "recast_while_own_shield_active": false,
+    "other_absorption_buff_order_and_stacking": "pending_review"
+  },
+  "availability_proposed": {
+    "human_form_required": true,
+    "blocked_by_Silence": true,
+    "retention_of_existing_shield_when_transforming_later": "not_tranched_by_active_availability;pending_review"
+  },
+  "name_approval": "historical_only_removed_skill",
+  "roleplay_text_approval": "historical_only_removed_skill",
+  "numeric_rules_approval": "retired_not_for_integration",
+  "detailed_conditions_approval": "retired_not_for_integration",
+  "visual_intention_approval": "shell_absorption_and_drone_fragment_effects_removed_from_active_scope",
+  "visual_approval": "retired_no_native_animation_work",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "ordinary_execution_timing_omitted": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "absorption_capacity_damage_points",
+      "absorption_percent_of_sacrificed_drone_current_HP_display"
+    ]
+  },
+  "review_context_markdown": "Exemple avec un drone sélectionné possédant 100 PV actuels.",
+  "review_context_sha256": "41ee50f6127d6040d026cf539a2560e931545154a62c5e031118c2a22dbf3ea7",
+  "player_copy_markdown": "**HY02 · Fusion défensive — Rang 11 · Actif**\n\n*Vous démantelez l’un de vos drones de combat pour assembler ses fragments en une carapace protectrice.*\n\n**Effets actuels**\n\n- Absorption : **43 dégâts**, calculée à partir de **42,5 % des PV actuels du drone**.\n- Durée : **5 tours**.\n- Portée du sacrifice : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Absorption : **44 dégâts**, calculée à partir de **43,3 % des PV actuels du drone**.\n\n**Coût : 11 énergie · Recharge : 8 tours.**\n\nSacrifie un drone Traqueur, Artilleur ou Gardien que vous contrôlez, visible et à portée. Le drone est détruit.\n\nLa protection absorbe les dégâts directs et indirects après vos défenses, jusqu’à épuisement ou à la fin de sa durée. Une seule protection de Fusion défensive à la fois ; la compétence est indisponible tant qu’elle persiste.\n\nForme humaine requise. Silence empêche son utilisation.",
+  "player_copy_sha256": "127e886d6f187d504383878345c181da77412637c848d0d3c46210b45066de83",
+  "visual_copy_markdown": "**Visuel proposé :** le drone se décompose en fragments qui viennent assembler une coque autour de votre corps. La coque se fissure à mesure qu’elle absorbe des dégâts.",
+  "visual_copy_sha256": "64066d0372c21b460c6b167257cddf5d160c117e5b40d6ed5766b4c07c8ebaf6",
+  "current_turn_shown_copy_markdown": "Exemple avec un drone sélectionné possédant 100 PV actuels.\n\n**HY02 · Fusion défensive — Rang 11 · Actif**\n\n*Vous démantelez l’un de vos drones de combat pour assembler ses fragments en une carapace protectrice.*\n\n**Effets actuels**\n\n- Absorption : **43 dégâts**, calculée à partir de **42,5 % des PV actuels du drone**.\n- Durée : **5 tours**.\n- Portée du sacrifice : **4 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Absorption : **44 dégâts**, calculée à partir de **43,3 % des PV actuels du drone**.\n\n**Coût : 11 énergie · Recharge : 8 tours.**\n\nSacrifie un drone Traqueur, Artilleur ou Gardien que vous contrôlez, visible et à portée. Le drone est détruit.\n\nLa protection absorbe les dégâts directs et indirects après vos défenses, jusqu’à épuisement ou à la fin de sa durée. Une seule protection de Fusion défensive à la fois ; la compétence est indisponible tant qu’elle persiste.\n\nForme humaine requise. Silence empêche son utilisation.\n\n**Visuel proposé :** le drone se décompose en fragments qui viennent assembler une coque autour de votre corps. La coque se fissure à mesure qu’elle absorbe des dégâts.",
+  "current_turn_shown_copy_sha256": "c9dae835151bdfc02dc651c0198cbfcddd9526f86c8ee4874f1496d000a6498c",
+  "unshown_cases_pending": [
+    "full_rank_curves_default_rank1_values_and_hp_rounding_order",
+    "other_defenses_absorption_buffs_stacking_order_and_status_damage_tick_cases",
+    "drone_current_HP_sampling_overkill_and_shield_capacity_counter",
+    "sacrifice_rewards_refunds_other_equipment_and_familiar_cleanup",
+    "range_geometry_visibility_drone_large_footprints_and_targeting_preview",
+    "protection_retention_when_later_transformed_or_changing_map",
+    "rejected_casts_energy_turn_and_RNG_atomicity",
+    "native_drone_breakup_shell_and_cracking_frames"
+  ],
+  "runtime_integration": "not_integrated",
+  "status": "removed_by_explicit_user_request",
+  "previous_review": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-HY02-01.json",
+  "previous_review_sha256": "80217add8b40f626d2a8d60506c2722001c8b8fe43d62a62c7c5477242cbd411",
+  "removal_decisions": "docs/reviews/refonte-agent-2026-10-06/fusion-defense-removal-and-drone-self-destruct-direction-decisions.json",
+  "removal_decisions_sha256": "614e0c3dd2211c7470fbef36a331204c7f114a6e2c2512fd0fc3c4e8890cf1d4",
+  "requested_new_candidate_id": "HY07",
+  "stable_id_reused": false,
+  "current_turn_review_scope": "explicit_removal_only;old_copy_preserved_as_historical_reference"
+}

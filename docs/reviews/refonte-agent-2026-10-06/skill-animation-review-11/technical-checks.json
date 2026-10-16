@@ -1,0 +1,16 @@
+{
+  "build": "cargo build --locked: passed",
+  "tests": "cargo test --locked agent_skill_lab_review: 17 passed",
+  "format": "cargo fmt --all -- --check: passed",
+  "whitespace": "git diff --check: passed",
+  "python": "native packaging and all rendering controls: passed",
+  "javascript": "node --check gallery-script.js: passed",
+  "gallery_frames": 1224,
+  "views": 17,
+  "native_tile_size": 64,
+  "capture_method": "Macroquad fixed 1024x1024 render target; no resampling",
+  "protected_files_unchanged": 5218,
+  "full_wall_checks": "no changed pixels in blocked areas against same-phase controls",
+  "status_checks": "visible on affected player/monsters, survives breath, ends at montage status expiry",
+  "scope": "Debug prototype. Full engine suite and campaign integration not performed. Corrected rendering awaits user review."
+}

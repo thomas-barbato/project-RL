@@ -1,0 +1,143 @@
+{
+  "date": "2026-10-09",
+  "review_id": "START-IMPLANT01",
+  "revision": 2,
+  "status": "displayed_implant_precisions_accepted;runtime_pending",
+  "scope": "initial_implant_eligibility_and_calculation_only;accepted_class_values_retained;no_new_item_name_RP_icon_or_runtime_change",
+  "sources": [
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-class-starts-START-ALL01-09.json",
+      "reference_sha256": "549eb4df9864f4a83fa0fd2401f8f2932056343f133173f133b8eadd8d792166"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-attribute-model-99.json",
+      "reference_sha256": "08d0d07dabb554b78cc68cdc9cdac537923a6aaa4bf86925a812aed7dde5ddf9"
+    },
+    {
+      "reference": "docs/reviews/refonte-agent-2026-10-06/review-primary-catalogue-271.json",
+      "reference_sha256": "528a0a57898081de00a5ede1339ceedbf6870ef56b59533c57c434c8a2335460"
+    }
+  ],
+  "unchanged_accepted_values": {
+    "Bastion": {
+      "flat_armor_bonus": 1,
+      "maximum_energy_penalty_percent": 10
+    },
+    "Technomancien": {
+      "drone_maximum_HP_bonus_percent": 15,
+      "techno_occult_weakening_duration_bonus_turns": 1,
+      "weapon_damage_penalty_percent": 10
+    },
+    "Traqueur": {
+      "ranged_weapon_damage_bonus_percent": 10,
+      "flat_evasion_bonus": 2,
+      "melee_weapon_damage_penalty_percent": 10
+    },
+    "Arcaniste": {
+      "magic_damage_bonus_percent": 15,
+      "maximum_HP_penalty_percent": 10
+    },
+    "Métamorphe": {
+      "transformation_duration_bonus_turns": 2,
+      "human_skill_energy_cost_increase_percent": 10
+    }
+  },
+  "proposed_rules": {
+    "START-IMPLANT01-B": {
+      "armor": "existing_flat_physical_armor_stat_plus1",
+      "maximum_energy": "apply_relative0.90_after_ordinary_flat_and_positive_percentage_modifiers;floor_final_maximum_once;existing_absolute_current_energy_and_clamp_rule",
+      "scope": "only_agent;does_not_grant_armor_or_energy_to_familiars"
+    },
+    "START-IMPLANT01-O": {
+      "drone_HP": "add15_percentage_points_to_each_own_drone_compatible_maximum_HP_pool;all_five_models;raised_allies_excluded;existing_current_HP_preservation_and_clamp_no_refill",
+      "weakening_duration": "one_extra_turn_at_new_agent_cast_for_O02_Interference_AF02_Faille_armure_AF03_Silence_AF04_Rupture_regeneration_AF05_Desorientation;existing_success_resistance_and_boss_rules_preserved",
+      "duration_transfer": "Contagion_uses_source_remaining_duration_including_cast_bonus_under_accepted_retention_rule;no_second_plus1_on_transfer;already_active_status_not_retroactively_extended",
+      "weapon_penalty": "relative0.90_on_agent_direct_weapon_attacks_and_weapon_skill_components_including_melee_standard_ranged_and_heavy;all_damage_types_in_compatible_component;critical_then_implant_penalty_then_other_eligible_outgoing_reductions_and_target_protections;no_intermediate_rounding",
+      "excluded_sources": "not_personal_spells_secondary_mines_grenades_familiar_attacks_intrinsic_transformation_attacks_reflections_or_periodic_damage_as_an_independent_bonus;actual_initial_damage_derived_periodic_effects_keep_existing_derivation_and_no_double_scaling"
+    },
+    "START-IMPLANT01-T": {
+      "ranged_bonus": "add10_percentage_points_to_agent_compatible_direct_weapon_damage_pool_for_standard_ranged_and_heavy_weapons_and_their_weapon_skills;does_not_extend_Tir_tree_skill_eligibility_to_heavy_weapons",
+      "evasion": "existing_agent_flat_evasion_stat_plus2",
+      "melee_penalty": "relative0.90_on_agent_direct_melee_weapon_attacks_and_weapon_skills_all_compatible_component_damage_types;same_order_as_O",
+      "excluded_sources": "familiar_attacks_spells_secondary_mines_grenades_intrinsic_transformation_attacks_reflections_and_independent_periodic_damage;derived_periodic_damage_preserves_existing_derivation"
+    },
+    "START-IMPLANT01-A": {
+      "magic_bonus": "add15_percentage_points_once_to_compatible_agent_spell_damage_pool;direct_Fire_Cold_Occult_and_magical_hybrid_skill_damage_including_Decharge_mutagene;eligible_spell_periodic_damage_also_receives_bonus",
+      "periodic_source": "independent_spell_periodic_base_uses_compatible_pool_once;periodic_damage_derived_from_already_boosted_impact_does_not_receive_second_implant_application",
+      "excluded_sources": "elemental_weapon_components_familiar_attacks_secondary_mines_grenades_intrinsic_transformation_attacks_and_reflections;no_heal_energy_drain_status_chance_or_duration_boost",
+      "maximum_HP": "apply_relative0.90_after_ordinary_flat_and_positive_percentage_modifiers_and_before_transformation_specific_HP_layer;floor_final_ordinary_maximum_once;existing_Colosse_ratio_rule_preserved"
+    },
+    "START-IMPLANT01-M": {
+      "duration": "plus2_turns_at_form_entry;no_retroactive_change_to_ongoing_form",
+      "cost": "relative1.10_on_human_skill_activation_energy_cost_including_entry_into_form;apply_after_compatible_cost_modifiers_then_ceil_once;zero_cost_stays_zero",
+      "excluded_costs": "transformed_form_actions_stealth_movement_per_step_periodic_upkeep_weapon_ammunition_and_energy_recovery;accepted_stealth_rank10_base_step_cost1_preserved",
+      "entry_snapshot": "resolve_form_entry_cost_while_still_human_then_enter_form"
+    },
+    "START-IMPLANT01-COMMON": {
+      "damage_and_HP_positive_bonuses": "existing_compatible_additive_positive_percentage_point_pools;no_new_cap",
+      "negative_percentages": "relative0.90_multiplier_to_corresponding_boosted_value_not_subtraction_of10_percentage_points_from_positive_pool",
+      "replacement": "accepted_found_implant_replaces_entire_initial_pair;learned_skills_and_class_identity_retained;no_resource_refill_except_accepted_level_gain",
+      "damage_rounding": "existing_one_final_total_floor_after_target_protections;internal_fractions_preserved;example_values_illustrative_no_weapon_or_affix_created",
+      "copy": "this_review_proposes_only_displayed_explanatory_wording;no_new_named_implant_or_RP_description",
+      "visuals": "none"
+    }
+  },
+  "illustrative_examples": [
+    {
+      "id": "relative_weapon_penalty",
+      "base_damage": 100,
+      "positive_bonus_percent": 50,
+      "before_penalty": 150,
+      "penalty_percent": 10,
+      "after_penalty_before_target_defenses": 135
+    },
+    {
+      "id": "ordinary_reserve_penalty",
+      "base_reserve": 50,
+      "positive_bonus_percent": 20,
+      "before_penalty": 60,
+      "penalty_percent": 10,
+      "final_maximum": 54
+    },
+    {
+      "id": "human_activation_cost",
+      "modified_cost_before_implant": 12,
+      "implant_increase_percent": 10,
+      "exact_cost": 13.2,
+      "final_cost": 14
+    },
+    {
+      "id": "stealth_step_cost_excluded",
+      "accepted_passive_rank": 10,
+      "step_energy_cost": 1,
+      "with_M_implant": 1
+    },
+    {
+      "id": "zero_activation_cost",
+      "modified_cost_before_implant": 0,
+      "with_M_implant": 0
+    }
+  ],
+  "approval_boundary": "only_precisions_explicitly_presented_in_chat_can_be_accepted_by_a_reply;link_or_artifact_presence_does_not_approve_unshown_details;class_item_names_RP_and_visuals_not_proposed",
+  "text_approval": "displayed_explanatory_copy_accepted;no_new_item_name_RP_or_icon",
+  "mechanic_approval": "accepted_displayed_rules_authoritative;original_technical_notes_only_implement_that_scope_and_existing_accepted_global_rules",
+  "visual_approval": "no_new_visual_proposed",
+  "runtime_integration": "not_integrated",
+  "previous_proposal": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/review-initial-implants-START-IMPLANT01-01.json",
+    "reference_sha256": "879ded3acf410e95e54902f5c8b58187efc7ff46576852eda5568e09cd936df4"
+  },
+  "acceptance": {
+    "reference": "docs/reviews/refonte-agent-2026-10-06/initial-implants-acceptance-decisions-01.json",
+    "reference_sha256": "f9b199b8b70dae4c873d72c5da0ba08d4e9c82670209e4434f13ca29a0db427b"
+  },
+  "accepted_displayed_rules": {
+    "Bastion": "agent_armor_plus1;maximum_energy_relative_minus10_percent_after_other_reserve_bonuses",
+    "Technomancien": "all_own_drone_models_maximum_HP_plus15_percent;Interference_Faille_armure_Silence_Rupture_regeneration_Desorientation_plus1_turn_at_cast;Contagion_transmits_remaining_duration_without_extra_turn;own_melee_ranged_heavy_weapon_and_weapon_skill_damage_relative_minus10_percent",
+    "Traqueur": "own_standard_ranged_and_heavy_weapon_and_weapon_skill_damage_plus10_percent;flat_evasion_plus2;own_melee_weapon_and_weapon_skill_damage_relative_minus10_percent",
+    "weapon_scope": "own_weapon_attacks;spells_secondary_mine_and_grenade_skills_intrinsic_transformation_attacks_and_familiars_use_their_respective_bonuses",
+    "Arcaniste": "spell_damage_plus15_percent_including_Decharge_mutagene_and_spell_periodic_damage;already_boosted_damage_derived_effects_do_not_receive_bonus_twice;ordinary_maximum_HP_relative_minus10_percent_after_other_bonuses_then_Colosse_uses_that_maximum",
+    "Metamorphe": "form_duration_plus2_turns_at_activation;human_skill_activation_energy_cost_relative_plus10_percent_including_form_entry;ceil_final_cost;12_becomes14;stealth_rank10_step_cost1_retained;transformed_actions_and_upkeep_excluded",
+    "common": "relative_minus10_percent_applies_to_boosted_value;150_damage_becomes135;implant_replacement_preserves_learned_skills_and_does_not_restore_HP_or_energy"
+  }
+}

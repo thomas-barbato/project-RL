@@ -1,0 +1,142 @@
+{
+  "date": "2026-10-14",
+  "build": "cargo build --locked passed after final clipping argument fix",
+  "format": "cargo fmt --all -- --check passed",
+  "diff_whitespace": "targeted git diff --check passed",
+  "native_views": 24,
+  "native_frames": 4464,
+  "native_tile_size": 64,
+  "conversion": "pixel-identical RGBA to PNG; no resampling",
+  "protected_files_unchanged": 14771,
+  "visual_checks": "Native appearance before/after camouflage, zero-energy normal step and retained mode during menu inspected.",
+  "timeline_checks": "24 scenarios: energy cost, minimum, manual steps, no idle drain, menu/heal preservation, offense and zero-energy cancellation passed.",
+  "controller": {
+    "mode": "offline DOM/Image harness; no browser screenshot",
+    "scenarios": 13,
+    "loaded_image_references": 1632,
+    "two_canvases": 2,
+    "manual_steps_and_energy": "passed",
+    "idle_and_menu": "passed",
+    "zero_energy_step_and_expired_hover": "passed",
+    "scaled_tooltip": "passed",
+    "rank9_and_equipment_floor": "passed",
+    "static_links": "passed",
+    "controller_syntax": "passed"
+  },
+  "gif_color_checks": [
+    {
+      "id": "SF00",
+      "direction": "HAUT",
+      "frame": 20,
+      "effect_pixels": 966,
+      "mean_color_error": 8.47
+    },
+    {
+      "id": "SF00",
+      "direction": "HAUT",
+      "frame": 44,
+      "effect_pixels": 1127,
+      "mean_color_error": 4.39
+    },
+    {
+      "id": "SF00",
+      "direction": "DROITE",
+      "frame": 20,
+      "effect_pixels": 966,
+      "mean_color_error": 8.1
+    },
+    {
+      "id": "SF00",
+      "direction": "DROITE",
+      "frame": 44,
+      "effect_pixels": 1127,
+      "mean_color_error": 4.25
+    },
+    {
+      "id": "SF00",
+      "direction": "GAUCHE",
+      "frame": 20,
+      "effect_pixels": 966,
+      "mean_color_error": 7.85
+    },
+    {
+      "id": "SF00",
+      "direction": "GAUCHE",
+      "frame": 44,
+      "effect_pixels": 1127,
+      "mean_color_error": 4.23
+    },
+    {
+      "id": "SF00",
+      "direction": "BAS",
+      "frame": 20,
+      "effect_pixels": 966,
+      "mean_color_error": 8.11
+    },
+    {
+      "id": "SF00",
+      "direction": "BAS",
+      "frame": 44,
+      "effect_pixels": 1127,
+      "mean_color_error": 4.32
+    },
+    {
+      "id": "SF01",
+      "direction": "HAUT",
+      "frame": 20,
+      "effect_pixels": 966,
+      "mean_color_error": 8.65
+    },
+    {
+      "id": "SF01",
+      "direction": "HAUT",
+      "frame": 44,
+      "effect_pixels": 1127,
+      "mean_color_error": 4.77
+    },
+    {
+      "id": "SF01",
+      "direction": "DROITE",
+      "frame": 20,
+      "effect_pixels": 966,
+      "mean_color_error": 7.89
+    },
+    {
+      "id": "SF01",
+      "direction": "DROITE",
+      "frame": 44,
+      "effect_pixels": 1127,
+      "mean_color_error": 4.58
+    },
+    {
+      "id": "SF01",
+      "direction": "GAUCHE",
+      "frame": 20,
+      "effect_pixels": 966,
+      "mean_color_error": 7.92
+    },
+    {
+      "id": "SF01",
+      "direction": "GAUCHE",
+      "frame": 44,
+      "effect_pixels": 1127,
+      "mean_color_error": 4.52
+    },
+    {
+      "id": "SF01",
+      "direction": "BAS",
+      "frame": 20,
+      "effect_pixels": 966,
+      "mean_color_error": 7.87
+    },
+    {
+      "id": "SF01",
+      "direction": "BAS",
+      "frame": 44,
+      "effect_pixels": 1127,
+      "mean_color_error": 4.53
+    }
+  ],
+  "full_suite": "not_run; isolated debug visual fixture",
+  "campaign_integration": false
+}

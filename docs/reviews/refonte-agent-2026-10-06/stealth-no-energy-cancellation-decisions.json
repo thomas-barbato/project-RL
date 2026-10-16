@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08",
+  "review_id": "SF00-ENERGY02",
+  "user_instruction": "en faite, je dirais que quand le joueur n'a plus d'energie et s'il est caché et qu'il essaye de bouger alors la furtivité est annulée.",
+  "source_proposal": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-SF00-06.json",
+  "source_proposal_sha256": "186ee06030f8324223e98a7dcd4afb5b57ec61856239cf35f3d76483bc905cfb",
+  "explicitly_requested_rule": {
+    "stealth_active": true,
+    "energy_zero": true,
+    "trigger": "attempted_movement",
+    "result": "stealth_cancelled"
+  },
+  "rule_approval": "explicit_user_instruction;zero_energy_attempted_movement_cancels_stealth",
+  "superseded_rule": "insufficient_energy_step_refused_while_preserving_stealth",
+  "pending_choices": {
+    "same_attempted_step_after_cancellation": "asked_user_move_normally_or_stay_in_place;unanswered",
+    "positive_energy_below_effective_step_cost": "not_explicitly_defined_by_zero_energy_request",
+    "resource_turn_and_reaction_order": "pending;no_extra_action_added"
+  },
+  "player_copy_proposed": "**Furtivité — règle modifiée**\n\n« Sans énergie, tenter de vous déplacer met fin à la furtivité. »",
+  "player_copy_proposed_sha256": "29f925fb723d4583f9343aa7f805943bf790c5aa98209b57032031c47f40552a",
+  "changed_copy_approval": "pending_explicit_review",
+  "preserved": {
+    "accepted_base11_and_SF01_cost_curve": "unchanged",
+    "SF00_RP_detection_and_visuals": "unchanged_with_existing_review_status",
+    "other_skills": "unchanged"
+  },
+  "full_SF00_card_approval": "not_inferred_from_single_rule_revision",
+  "runtime_integration": "not_integrated"
+}

@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-07",
+  "review_id": "OC07",
+  "user_message": "Parfait, ca me va :)",
+  "user_full_message": "Parfait, ca me va :)\n\nPetit ajout de regle , enfin tu me dira ce que tu en pense, mais j'aimerais que quand le joueur utilise une compétence, son nom soit marquée au dessus de ta tete (j'ai envie que ce soit fun) .",
+  "displayed_description_reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-OC07-01.json",
+  "displayed_description_sha256": "97c4cdde2832bffa9e1bcac55f6fc653f452d2b706061320751787171ae559f6",
+  "accepted_name": "Réanimation",
+  "accepted_shown_copy_markdown": "**OC07 · Réanimation — Rang 11 · Actif**\n\n*Un sceau impie s’accroche à votre cible. À sa mort, sa dépouille se relève pour traquer vos ennemis.*\n\n**Effets actuels**\n\n- Marque : **jusqu’à la mort de la cible**.\n- PV maximum et dégâts : **100 % des valeurs d’origine**.\n- Durée du monstre réanimé : **11 tours**.\n- Monstres réanimés simultanément : **5 maximum**.\n- Portée : **5 cases**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- PV maximum et dégâts : **105 % des valeurs d’origine**.\n\n**Coût : 20 énergie · Recharge : 8 tours.**\n\nLes autres statistiques et les compétences d’origine sont conservées.\n\nCible : ennemi visible, hors boss.\n\nÀ cinq monstres réanimés, le nouveau remplace le plus ancien.\n\n**Visuel proposé :** un petit sceau de sang apparaît sous la cible marquée. Une brève pulsation rouge sombre accompagne sa réanimation, puis la tête de mort validée signale son alliance.",
+  "accepted_shown_copy_sha256": "24ac8bf9f5ceaadf7d0d76e2d5c15a81c435ad41bfeb257fd7ea7925960fab59",
+  "accepted_current_values": {
+    "effective_rank": 11,
+    "maximum_HP_and_damage_percent": 100,
+    "revived_duration_turns": 11,
+    "maximum_reanimated_allies": 5,
+    "range_cells": 5,
+    "energy_cost": 20,
+    "cooldown_turns": 8
+  },
+  "accepted_next_values": {
+    "effective_rank": 12,
+    "maximum_HP_and_damage_percent": 105,
+    "revived_duration_turns": 11,
+    "maximum_reanimated_allies": 5,
+    "range_cells": 5,
+    "energy_cost": 20,
+    "cooldown_turns": 8
+  },
+  "accepted_displayed_conditions": {
+    "mark_until_target_death": true,
+    "temporary_autonomous_ally_targets_player_enemies_only": true,
+    "max_reanimated_allies": 5,
+    "maximum_HP_and_damage_scaled_from_original_values": true,
+    "other_stats_and_combat_skills_preserved": true,
+    "visible_enemy_target": true,
+    "bosses_excluded": true,
+    "new_reanimated_ally_replaces_oldest_at_capacity": true
+  },
+  "accepted_visual_direction": {
+    "blood_seal_under_marked_target": true,
+    "brief_dark_red_pulse_at_reanimation": true,
+    "previously_chosen_skull_ally_marker_preserved": true
+  },
+  "approval_scope": "Displayed OC07 name,RP,current/next values,conditions and visual direction. Full hidden formulas/curves,rounding,unshown lifecycle/rewards/AI/timing details and native pixels remain pending.",
+  "new_separate_interface_request": {
+    "review_id": "HUD07",
+    "scope": "player_skill_use",
+    "skill_name_above_player_head": true,
+    "exact_animation_timing_scope_and_native_rendering": "new_proposal_pending_explicit_user_review"
+  },
+  "runtime_integration": "not_integrated"
+}

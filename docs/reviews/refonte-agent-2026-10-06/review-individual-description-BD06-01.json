@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-08",
+  "id": "BD06",
+  "review_id": "BD06",
+  "revision": 1,
+  "title": "Récupération balistique",
+  "branch": "Buffs à distance",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-complete-skill-design-101.json",
+  "source_skill_manifest_sha256": "f42b9fa6e47de6333c540cc8326ba5fcace9f1b2379a8a4bfdc38cdabe015546",
+  "source_skill_block_sha256": "05a977dde899203a60d99b056c7d7c23e4ef6406582328456f398fa256de10a9",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-14.json",
+  "current_profile_status": "illustrative_character_not_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_modifiers": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_modifiers": true,
+    "learned_cap_respected": true
+  },
+  "current_values_proposal": {
+    "effective_rank": 11,
+    "maximum_energy_recovered_per_eligible_kill_percent": 12,
+    "minimum_interval_between_gains_turns": 3
+  },
+  "next_values_proposal": {
+    "effective_rank": 12,
+    "maximum_energy_recovered_per_eligible_kill_percent": 13,
+    "minimum_interval_between_gains_turns": 3
+  },
+  "formulas_proposed": {
+    "maximum_energy_recovered_per_eligible_kill_percent": "2+(effective_rank-1)",
+    "gain_in_energy_points": "min(missing_energy,energy_max*recovery_percent/100);rounding_unshown_pending_review",
+    "minimum_interval_between_gains_turns": 3,
+    "full_curve_defaults_rounding_and_clock_order": "unshown_pending_review"
+  },
+  "prior_unapproved_curve": "2+4*(effective_rank-1)/(effective_rank+9);archived_in_favor_of_more_rewarding_proposal_under_SKILL_PROG01",
+  "conditions_proposed": {
+    "own_weapon_shots_and_ranged_attack_skills_can_trigger": true,
+    "familiar_kills_reflections_and_automatic_counters_excluded": true,
+    "decoys_and_obstacles_not_eligible_enemy_kills": true,
+    "recovery_limited_to_missing_energy": true,
+    "no_timed_buff_or_new_command_created": true
+  },
+  "name_approval": "existing_catalogue_name_preserved",
+  "roleplay_text_approval": "new_RP_pending_individual_user_review",
+  "numeric_rules_approval": "current12_next13_percent_max_energy_interval3_proposed_pending_review",
+  "detailed_conditions_approval": "displayed_ranged_kill_scope_exclusions_and_missing_energy_cap_proposed_pending_review",
+  "visual_intention_approval": "catalogue_spark_to_energy_gauge_preserved;gain_feedback_proposed",
+  "visual_approval": "native_prototype_pending_user_review",
+  "review_status": "pending_individual_user_review",
+  "runtime_integration": "not_integrated",
+  "tooltip_format": {
+    "single_RP_paragraph": true,
+    "rank_breakdown_omitted": true,
+    "no_fictitious_energy_points_without_energy_maximum": true,
+    "no_artificial_status_duration": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "maximum_energy_recovered_per_eligible_kill_percent"
+    ]
+  },
+  "player_copy_markdown": "**BD06 · Récupération balistique — Rang 11 · Passif**\n\n*Chaque ennemi abattu à distance nourrit vos réserves et prolonge la chasse.*\n\n**Effets actuels**\n\n- Énergie récupérée par élimination à distance : **12 % de l’énergie maximale**.\n- Intervalle entre deux gains : **3 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Énergie récupérée par élimination à distance : **13 % de l’énergie maximale**.\n\nVos tirs et compétences d’attaque à distance peuvent déclencher cet effet. Les éliminations de vos familiers, les renvois et les ripostes automatiques sont exclus. Détruire un leurre ou un obstacle ne rend pas d’énergie.\n\nLa récupération ne dépasse pas l’énergie manquante.",
+  "player_copy_sha256": "e06a81038191b771317c596c4e6b27a0b2ac895b36325718c06e323c16e3dfcc",
+  "visual_copy_markdown": "**Visuel proposé :** une étincelle remonte depuis la cible vaincue vers votre jauge d’énergie. Le gain apparaît brièvement près de la jauge.",
+  "visual_copy_sha256": "f7c0fb59c3f66ce3edba8d6164c74086ad42ee50cfbbf9d5cd4b8c4444a06c6c",
+  "current_turn_shown_copy_markdown": "**BD06 · Récupération balistique — Rang 11 · Passif**\n\n*Chaque ennemi abattu à distance nourrit vos réserves et prolonge la chasse.*\n\n**Effets actuels**\n\n- Énergie récupérée par élimination à distance : **12 % de l’énergie maximale**.\n- Intervalle entre deux gains : **3 tours**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Énergie récupérée par élimination à distance : **13 % de l’énergie maximale**.\n\nVos tirs et compétences d’attaque à distance peuvent déclencher cet effet. Les éliminations de vos familiers, les renvois et les ripostes automatiques sont exclus. Détruire un leurre ou un obstacle ne rend pas d’énergie.\n\nLa récupération ne dépasse pas l’énergie manquante.\n\n**Visuel proposé :** une étincelle remonte depuis la cible vaincue vers votre jauge d’énergie. Le gain apparaît brièvement près de la jauge.",
+  "current_turn_shown_copy_sha256": "fbbcb68601e98f1ff40c0103dc256a86289fd56d1fd16348daddd4dbd5d46ad7",
+  "unshown_cases_pending": [
+    "full_curve_defaults_caps_rounding_and_resource_snapshot",
+    "multi_kill_same_action_first_proc_full_energy_and_cooldown_boundary",
+    "persistent_zone_damage_over_time_and_ranged_transformation_attack_attribution",
+    "exact_heavy_weapon_spell_projectile_and_environmental_kill_classification",
+    "native_spark_visibility_gauge_gain_copy_and_feedback_stacking"
+  ]
+}

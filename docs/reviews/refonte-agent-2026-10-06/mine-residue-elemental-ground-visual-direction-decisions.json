@@ -1,0 +1,23 @@
+{
+  "review_id": "MINE-VFX-TYPE02",
+  "date": "2026-10-14",
+  "user_reply": "Pour résidu persistant : Sol enflammé pour le feu ; Nuage de gaz / poison pour le poison ; Sol gelé pour le froid.",
+  "accepted_residue_visual_direction": {
+    "feu": "Sol enflammé",
+    "poison": "Nuage de gaz / poison",
+    "froid": "Sol gelé"
+  },
+  "scope": "Précision du rendu de Résidu persistant (SM05). Les trois formes restent fixes sur la zone au sol. Seul le Poison utilise un nuage de gaz ; Feu et Froid représentent le sol affecté.",
+  "preserved": [
+    "Résidu au sol uniquement avec SM05",
+    "Explosion brève adaptée au type de dégâts",
+    "LED correspondant au type, clignotante dès la pose",
+    "Durée, rayon, dégâts, statuts et obstacles selon les règles déjà définies",
+    "Statuts sur les victimes distincts des zones au sol"
+  ],
+  "previous_direction_reference": "mine-explosion-type-and-residue-visual-direction-decisions.json",
+  "new_native_residue_render_approval_inferred": false,
+  "new_numeric_mechanics_created": false,
+  "campaign_integration": false,
+  "next_scope": "Présenter ces trois résidus dans le lot de revue SM05, après les variantes de mines SM02 et SM03 actuellement en préparation."
+}

@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-06",
+  "id": "SU05",
+  "title": "Purgation",
+  "revision": 1,
+  "player_copy_markdown": "**Purgation — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Vous chassez les poisons et les influences hostiles qui entravent votre corps.*\n\nRetire les altérations néfastes de votre choix parmi celles qui peuvent être purgées.\n\n**Effet actuel**\n\n- Altérations retirées : **jusqu’à 3**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\nAucun changement d’effet à ce rang.\n\n**Coût : 8 énergie · Recharge : 6 tours.**\n\nPeut retirer le poison, la brûlure, le ralentissement et l’aveuglement. Les malus d’équipement et d’implant sont exclus.\n\nNe rend pas de vie et ne protège pas contre une nouvelle application de ces effets.",
+  "player_copy_sha256": "52ec7fe13a6e19c875e27a8e539e1815ac44f0e62bc2e3f936bdc75ece557500",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-survival-07.json",
+  "source_skill_block_sha256": "9611368c9a4cc15359bc8d64c672bd35fb8b5322369f80870a32ed38520a843b",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/regeneration-rename-and-acceptance-decisions.json",
+  "review_start_decisions_sha256": "d0fdbc3fa442438601a6f98b1f15d1f39c7187a9285922aeb069224c8d21a8ee",
+  "name_approval": "accepted_as_presented",
+  "catalogue_effect_approval": "accepted_as_presented",
+  "roleplay_text_approval": "pending_user_review",
+  "functional_description_approval": "pending_user_review",
+  "current_next_effect_copy_approval": "pending_user_review",
+  "numeric_rules_approval": "pending_user_review",
+  "formulas": {
+    "maximum_cleansed_statuses": "1 + floor((effective_rank - 1) / 5)",
+    "energy_cost": "ceil(10 * (1 - 0.4 * (effective_rank - 1) / (effective_rank + 9)))"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "other_cost_or_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_cleansed_statuses": 3,
+    "energy_cost_exact_before_ceil": {
+      "numerator": 8,
+      "denominator": 1
+    },
+    "energy_cost": 8,
+    "cooldown_turns": 6,
+    "direct_healing": 0,
+    "temporary_immunity": false
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "maximum_cleansed_statuses": 3,
+    "energy_cost_exact_before_ceil": {
+      "numerator": 166,
+      "denominator": 21
+    },
+    "energy_cost": 8,
+    "cooldown_turns": 6,
+    "direct_healing": 0,
+    "temporary_immunity": false
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [],
+    "no_effect_change_notice_shown": true,
+    "unchanged_values_omitted": [
+      "maximum_cleansed_statuses",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "presented_conditions": "Player chooses compatible harmful effects; poison, burn, slow and blindness eligible; equipment and implant penalties excluded; no healing and no immunity to reapplication.",
+  "unshown_conditions_approval": "Full-rank formulas, all other effect compatibility, refusal without compatible effects and interaction with action-blocking effects remain pending.",
+  "active_weapon_requirement": "none; cleansing is not a weapon attack",
+  "visual_intention_approval": "accepted_as_presented",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Exact energy before rounding checked; both ranks cost 8 energy.",
+    "Rank 11 and 12 both remove up to 3 statuses; unchanged-value plateau openly stated.",
+    "Only changed values appear in next-rank block; no formula or ordinary execution-time reminder."
+  ]
+}

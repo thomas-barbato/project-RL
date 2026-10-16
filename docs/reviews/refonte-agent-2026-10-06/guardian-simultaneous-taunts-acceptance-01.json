@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-15",
+  "review_id": "D66-TAUNT-MULTI01-ACCEPT01",
+  "user_reply": "ok parfait :)",
+  "source_proposal": "guardian-simultaneous-taunts-proposal-01.json",
+  "source_proposal_sha256": "1a8be4c0167c6a67003710bde729a34c5a153b59bb08dd3a95ded9a6484ec84b",
+  "approval_scope": "The four rules shown in the preceding reply and independent resolution per monster; unshown implementation details remain pending.",
+  "accepted_rules": {
+    "already_provoked": "Keep the current Guardian and remaining duration. Another taunt neither changes the target nor refreshes the effect.",
+    "simultaneous_free_target": "Choose the nearest eligible Guardian, with a stable choice in a tie.",
+    "no_stacking": "One provocation and one icon per monster, without cumulative effects.",
+    "source_destroyed_or_recalled": "End that provocation and resume normal targeting.",
+    "independent_monsters": "Resolve each monster separately, allowing several Guardians to attract different enemies."
+  },
+  "still_pending": [
+    "Exact distance metric, stable tie implementation and source eligibility details",
+    "Action and cooldown outcome when a Guardian wins no target",
+    "Sight loss, path failure, expiration timing, bosses and resistances",
+    "Capacity, taunt radius, duration and cooldown numbers",
+    "Native taunt animation and exact status icon",
+    "Campaign integration and save handling"
+  ],
+  "campaign_integration": false,
+  "active_code_or_assets_changed": false
+}

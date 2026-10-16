@@ -1,0 +1,58 @@
+{
+  "browser": "Edge Chromium",
+  "views": 14,
+  "schemes": [
+    "file: controls",
+    "localhost: native pixel equality"
+  ],
+  "checks": [
+    {
+      "scenario": "BONUS",
+      "direction": 0,
+      "views": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "BONUS",
+      "direction": 1,
+      "views": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "BONUS",
+      "direction": 2,
+      "views": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "BONUS",
+      "direction": 3,
+      "views": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "SANS",
+      "direction": 2,
+      "views": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "HORS",
+      "direction": 2,
+      "views": 2,
+      "pixel_equality": true
+    },
+    {
+      "scenario": "ATTENTE",
+      "direction": 2,
+      "views": 2,
+      "pixel_equality": true
+    }
+  ],
+  "manual_idle_stable": true,
+  "permanent_passives": true,
+  "comparisons_and_exclusions": true,
+  "errors": [],
+  "scope": "Viewer controls and timelines verified before the native HUD readability revision; JS unchanged. Final playback losslessly checked against the new native renders in validation.json.",
+  "automatic_user_tab_refresh": "Blocked by file: URL policy; no alternate browser action attempted."
+}

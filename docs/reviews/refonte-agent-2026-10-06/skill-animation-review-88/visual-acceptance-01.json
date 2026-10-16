@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-15",
+  "review_id": "ANIM-S41-REV03-ACCEPT01",
+  "user_reply": "ok je valide :)",
+  "approved": [
+    {
+      "number": 91,
+      "id": "O02",
+      "variant": "O02-A03",
+      "title": "Interférence"
+    },
+    {
+      "number": 92,
+      "id": "AF02",
+      "variant": "AF02-A03",
+      "title": "Faille d’armure"
+    }
+  ],
+  "scope": "Visual approval of the two 24 px transparent overhead markers with adjacent 14 px duration counters, no cast flash or body decoration, and shared harmful-effect recoil. The approved area mechanics remain unchanged. Applies to the eighteen native 64 px preview scenes of review 88.",
+  "campaign_integration": false,
+  "accepted_mechanics": "../afflictions-area-acceptance-01.json",
+  "remaining_unshown": 19,
+  "source_sha256": "a362a0d16aaab8278c20e0a26fc9190374ccf1e7f51902235d512754d08ef850",
+  "accepted_atlas_sha256": {
+    "O02-A03-DROITE": "db5f3d10b1ad46136314634824d6e13597e6269187ff2abd8118d4776fea75c5",
+    "O02-A03-GAUCHE": "b29dd6675f26fa647a0b41458b90524580aa4497c4035e96edcac50a7b247654",
+    "O02-A03-HAUT": "bd6418e4ba2daa3cb6edaed8e93a6d5f3265601b90664d66a1c46a262c924c6f",
+    "O02-A03-BAS": "29dacceb42d66b675adb0e804cdc896e5ce57552311502f04fc48231ff062da5",
+    "O02-A03-JOUEUR": "c079c89d05ce6e04ca3149c3f3c99492457bdd1c0b558daa0674eee23119c03e",
+    "O02-A03-ATTENTE": "a0d9f374ae6ec959d9dfb61137315358002000af96f7c04286e3b65dca93d298",
+    "O02-A03-MUR": "de9b114e4d940f3589ed88047040befb1ec8d6cfff58ef713e4277e5acb26273",
+    "O02-A03-RESISTE": "55bc59639f33ab83832f858f8b75713e3179b3159b8cbeffadb405361bfb66da",
+    "O02-A03-DEPLACEMENT": "1bbaa04eca932e19c4d1b805a9f590d5ef9d718aab2976e89e7d08fff6042e17",
+    "AF02-A03-DROITE": "1cb179651b93567420789e9c2520a01f15b795cbc0281fcbcacff39e4df61f50",
+    "AF02-A03-GAUCHE": "e3c250eef0a94b26a3e51f87d123dcdbab77cdd7e46b314bdf285ae6a8fc5c5e",
+    "AF02-A03-HAUT": "b5b64582be55896702350fca5c0ef9a624800770c756a5e4eef2ca76667524e6",
+    "AF02-A03-BAS": "25e6d8afd704acca6e1302a5faa4d58383ba04a4a36fbf36c558509e4db933ec",
+    "AF02-A03-JOUEUR": "9882f359eb03ae4c88bb646d870d01ab645c2c3f6a05a490b930b5e78f8648de",
+    "AF02-A03-ATTENTE": "6430ed87ccfa426935dea4d706407952dbed581ae925e32fc9a1491ce8dfcc18",
+    "AF02-A03-MUR": "d4cf02ed3afc8068bd79b67f2ecf89d06529b3322ed2eb1365089777293ef3a7",
+    "AF02-A03-RESISTE": "c37738ebde601041747d4ac1ae83bd9f348fcf5100ca4e7107140dd31d9fc9a7",
+    "AF02-A03-DEPLACEMENT": "eb75a6ede6ada27d9eb02f883b6916c1fc566919db5122d1cd135ff6da0de4f6"
+  },
+  "excluded_from_approval": [
+    "Unshown visuals for AF03, AF04, AF05 and AF06.",
+    "B03 Vitalite amelioree mechanics, still under discussion."
+  ],
+  "cleanup": {
+    "status": "complete",
+    "receipt": "cleanup.json",
+    "removed_bytes": 68900505
+  }
+}

@@ -1,0 +1,298 @@
+{
+  "date": "2026-10-06",
+  "runtime_integration": "not_integrated",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/attribute-usefulness-decisions.json",
+  "latest_decisions_sha256": "1c988f144f52cb6a5609cc40e499c81c97a460b9c9b754b93ac2cee682e3666f",
+  "batch_revision": 3,
+  "document": "docs/REVUE_TEXTES_EFFETS_AGENT.md",
+  "document_sha256": "2f7deb0346ae6069e314f9fcdddfe00075e065001aaf54a9dc1d09ca67868f02",
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-lot-01-revision-02.json",
+  "previous_document_snapshot": "docs/reviews/refonte-agent-2026-10-06/review-lot-01-revision-02.md",
+  "status": "prior_visible_proposals_accepted_added_attribute_effects_pending_review",
+  "resolution_conventions_approval": "pending_user_review",
+  "blocks": [
+    {
+      "id": "N01",
+      "title": "Réveil",
+      "revision": 1,
+      "block_sha256": "c768263ac05df077eb3c7510b204d9ad0c0a43e773b62c9384d66997733328c1",
+      "text_sha256": "45190cdfa866641ea51ada14e9e4701138fa9f6787f795f883288370e9b1920d",
+      "mechanic_sha256": null,
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "not_applicable",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "N02",
+      "title": "Briefing",
+      "revision": 1,
+      "block_sha256": "83ed9bc3add1c2f93564b4356ed9c5c4001a7f2ca674e49f315b6a3ec23de259",
+      "text_sha256": "9c2ff8d3c277f8f126d5870048f5e593ad091c075e398af70de481f7a08403a3",
+      "mechanic_sha256": null,
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "not_applicable",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "S01",
+      "title": "Force",
+      "revision": 2,
+      "block_sha256": "2633f3997f0fbb364b76c38be31453ece07e5c2f25ab70684488d022a88295b3",
+      "text_sha256": "7d124e0f832085e5be0d4ed32dd924e1ea534c6ef686904c1ebe6195e0c8f17f",
+      "mechanic_sha256": "7c2d657f901af13a2d98c2e287c47a47b1c678364eeef31e248198ace15755ec",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "S02",
+      "title": "Agilité",
+      "revision": 3,
+      "block_sha256": "d9c44c8cc4c4a56ced5d7d2e0885524201b038c3011047a51a282494c9b9afd5",
+      "text_sha256": "acf1ec09939c1893ae81890160043818d7b4bd4882f242438293f98128fa8ebc",
+      "mechanic_sha256": "4b2513c8fab070f48162e230bc60661ea0c27c0f1d8a75220f7c4b656e2c5990",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "S03",
+      "title": "Vitalité",
+      "revision": 2,
+      "block_sha256": "e4a3960212e1c64134c20bca46ec6421d716b61a5954eb501700d73cbba65e89",
+      "text_sha256": "ef81fc32ed1dfc402f40e054ac57f20da3c5aacd426b2e7e72a0d02726a99cfd",
+      "mechanic_sha256": "25cee1e684ef1242a2ebfff03b9f4bb2057d629ec0f4019ace78ba7aba4bfe27",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "S04",
+      "title": "Perception",
+      "revision": 3,
+      "block_sha256": "6f38587035f4c2009de20d855be04e8b668c8be98707ebfc0721f73a3e0d6f42",
+      "text_sha256": "ba5bf6e876dd9eb8b893286c2c5743aee85688c24c920168753ed08f610bfd79",
+      "mechanic_sha256": "e04d4f95ff2b4a3ea2bc1908778f31eedae63a604b4e0c0a445aaf0b02d5e9e6",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "S05",
+      "title": "Intelligence",
+      "revision": 3,
+      "block_sha256": "9759f54599d565831d9b4ecf90a59fd00dbbe9ef6bea1b8cbf35b7753ad771a1",
+      "text_sha256": "eec303a916265acdb033fee40a1a720f6b9c55538dbffa49ca3b2056157c8875",
+      "mechanic_sha256": "89c784c51e705ff0631eb2aff6a81f3d3ddc42ae91ba4e24ba982eb78a5d1460",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "S06",
+      "title": "Volonté",
+      "revision": 3,
+      "block_sha256": "cdbe170a4d0cc496ecd301915f5532fc85b69e48d5284360d70180c8bd37d285",
+      "text_sha256": "b4a80d7f3bd2070349e2509e8ca7587873f4f10cf03e117ea4a252657df9a88b",
+      "mechanic_sha256": "68b9a031bda8224d64cb4a30f64218d1ec21188cbf600e24bbb5531104a8a2db",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "E01",
+      "title": "Énergie",
+      "revision": 3,
+      "block_sha256": "c4dce18529fb397290647a068bfa7156324cbeab7dc27076e2bd2acf44383d77",
+      "text_sha256": "f67f1eccddc5e33c576f11f0452ff4583ff11d0f93534e7910aae890c9be89d7",
+      "mechanic_sha256": "e6db56f6ea00b570f4193d47da5e7358e3ad595b61a43229b1ae7143072d0668",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "E02",
+      "title": "Récupérer",
+      "revision": 2,
+      "block_sha256": "a5f65c1729690309d768a8223ad791a21f34b4db394a60d7df8e02aa786701aa",
+      "text_sha256": "86a11e2b82e0d8e875a379520cda3cd9f53fb0af32bb829e016f10aa6b362f75",
+      "mechanic_sha256": "df71cf16a861e2207d35d0132c7ea4295785ce8b60d54c639b8875155c893cd8",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "E03",
+      "title": "Recharge énergétique",
+      "revision": 2,
+      "block_sha256": "c8b990aeffa313c98ba145337eb1473d9133f80efd6745afba2d8bc538de6b09",
+      "text_sha256": "f08b3242b68134a0368c34e95cb1480c2b083c93cc9e9146c29ff031a5647a26",
+      "mechanic_sha256": "7b16d26ce35c7bd1531bd34418861d5fe5f8df6854d5f850082eebfdc0b31ee0",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "pending_user_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated"
+    },
+    {
+      "id": "P01",
+      "title": "Gagner un niveau",
+      "revision": 2,
+      "block_sha256": "ef440f81527429a74686c0bdea359a69f3c27b8bd4817c47b966a7a876a8da41",
+      "text_sha256": "c1ce949e805d163d1eb75fa1c818021cf4c9d720b65cb58bfd97f23aea3cd3b6",
+      "mechanic_sha256": "3ed2d92e60cca611c7469ebacae2b2c53558649c6d9549752ab30980ffc0b179",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "user_requirements_recorded_details_pending_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated",
+      "accepted_user_requirements": {
+        "attribute_points_per_level": 5,
+        "attribute_gameplay_cap": null,
+        "skill_points_per_level": 1,
+        "starting_active_skills": 1,
+        "starting_active_is_first_in_class": true,
+        "starting_passive_skills": 1
+      }
+    },
+    {
+      "id": "P02",
+      "revision": 1,
+      "title": "Apprendre et améliorer une compétence",
+      "block_sha256": "eb2827c8d413fb00a573e1fe8593d5480619bd2b473fbec9bad3f1429a052339",
+      "text_sha256": "84ed078b059ad407c7a9bfeec8c9a296fc9135bb20a792945fc76c66bfc5357c",
+      "mechanic_sha256": "e100745a05e31ed085735bb883abc9eee9e9477aecb7be86f21a3dba392cc7a7",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "user_requirements_recorded_details_pending_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "accepted_user_requirements": {
+        "cost_per_learned_skill_level": 1,
+        "learned_skill_level_cap": 10,
+        "equipment_can_exceed_learned_cap": true
+      },
+      "accepted_interpretations": {
+        "starter_learned_level": 1,
+        "starter_upgrades_to_cap": 9
+      }
+    },
+    {
+      "id": "P03",
+      "revision": 2,
+      "title": "Bonus de compétences sur l'équipement",
+      "block_sha256": "88c8931b0769d09343611a1c74c0c95a741526174ce5cfa3ae1619af21b00649",
+      "text_sha256": "2452104cb288ea4052faff68e7f3a5d568f2c017d8f61c5b957e3037fbc52af0",
+      "mechanic_sha256": "2e4adec27bbe41ab772d00da56a3cc89012e7eb07102d65020765bc589ddfd8f",
+      "runtime_integration": "not_integrated",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "user_requirements_recorded_details_pending_review",
+      "visual_approval": "cyan_color_family_accepted_exact_render_pending_preview",
+      "accepted_user_requirements": {
+        "equipment_can_exceed_learned_cap": true,
+        "skill_bonuses_in_equipment_loot": true,
+        "boosted_skill_level_uses_different_display_color": true
+      },
+      "accepted_bonus_scopes": [
+        "specific_skill",
+        "discipline",
+        "all_learned_skills"
+      ]
+    },
+    {
+      "id": "B00",
+      "title": "Implant initial du Bastion",
+      "revision": 3,
+      "block_sha256": "7eafa47d6dee210075822e51638575cfb3bfe83cc7451865ccc98e6717025187",
+      "text_sha256": "9de1ff70ecdff266178711aa07a00578808b841ed001271a2e30a75025279737",
+      "mechanic_sha256": "58f1ccf0476ed8962377c10b79927db4faa28289c7fe7d4de46fb1e60639275d",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "hp_transfer_accepted_remaining_details_pending_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated",
+      "accepted_specific_changes": [
+        "move_initial_hp_bonus_to_passive"
+      ]
+    },
+    {
+      "id": "B01",
+      "title": "Frappe de rupture",
+      "revision": 2,
+      "block_sha256": "2512ffaa91785f7291c6407dd5d84d6f0e06a319cd7f03f5a7fc34310eede8e5",
+      "text_sha256": "a5f6ec10454fad9abbaa177c9cbda9e50b48ab6b16395cda33c8653f3c89c765",
+      "mechanic_sha256": "e61f9e6cd08d501d5d59ec0568e757b8396db6aaa92d7ac485f2dd14834c32ce",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "visible_examples_accepted_remaining_details_pending_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated",
+      "accepted_visible_effect_examples": {
+        "1": {
+          "extra_damage_percent": 40
+        },
+        "10": {
+          "extra_damage_percent": 130
+        },
+        "12": {
+          "extra_damage_percent": 150
+        }
+      }
+    },
+    {
+      "id": "B02",
+      "title": "Égide occulte",
+      "revision": 2,
+      "block_sha256": "a51fb9cba3aac1331b6765de9ab90c2b2b8143d9a4084b5ccceb23cdc2290505",
+      "text_sha256": "e868e579a19eb5c779a8fe7044d8c3ecc15d2521555ee1b2c4558dbabab8a997",
+      "mechanic_sha256": "61aab54c74ecf98a0468461df7735e22e397ef99dcb7ce212a7c4ccc7935384e",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "visible_examples_accepted_remaining_details_pending_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated",
+      "accepted_visible_effect_examples": {
+        "1": {
+          "direct_damage_reduction_display_percent": 25
+        },
+        "10": {
+          "direct_damage_reduction_display_percent": 48.7
+        },
+        "12": {
+          "direct_damage_reduction_display_percent": 51.2
+        }
+      }
+    },
+    {
+      "id": "B03",
+      "title": "Endurance de combat",
+      "revision": 2,
+      "block_sha256": "c322887d45d5d5045cc186bc9c824d4d6b00ec88b7063d54b0b2a877372d7119",
+      "text_sha256": "d44abb9d765b30deb4522e9fbaf1272ddb6b79b6bde94585f1d178a86aa65b1f",
+      "mechanic_sha256": "dc203cf01ed11a3b42b7aba8583f3a46d4c269f8e7f55318bf2e8c7245c9e451",
+      "text_approval": "pending_user_review",
+      "mechanic_approval": "visible_examples_accepted_remaining_details_pending_review",
+      "visual_approval": "not_proposed_in_this_batch",
+      "runtime_integration": "not_integrated",
+      "accepted_user_requirements": {
+        "bastion_passive_initial_max_hp_percent": 10,
+        "bastion_passive_replaces_interrupt_resistance": true
+      },
+      "accepted_visible_effect_examples": {
+        "1": {
+          "max_hp_percent": 10
+        },
+        "10": {
+          "max_hp_percent": 28
+        },
+        "12": {
+          "max_hp_percent": 32
+        }
+      }
+    }
+  ]
+}

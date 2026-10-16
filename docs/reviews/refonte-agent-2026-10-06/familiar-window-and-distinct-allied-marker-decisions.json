@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-07",
+  "review_ids": [
+    "UX-PETS-01",
+    "UX-PETS-02",
+    "HUD-ALLIES01",
+    "UX-MULE-01"
+  ],
+  "user_message": "oui j'espere que tu te souviens que quand nous avons définis les compétences de drone, on avait aussi définis une fenetre de controle des drones. :)\n\n- Concernant le drone \"mule\", les objets qu'il transporte seront transférés sur le sol sur la meme case (ce qui veut dire qu'on devra pouvoir stacker des objets sur une meme case)\n- Pour les reperes sur la carte : Une tête de mort pour les monstres ressucités, et un point vert pour les drones;",
+  "window_continuity": {
+    "existing_window_review_id": "UX-PETS-01",
+    "same_window_extended_by": "UX-PETS-02",
+    "new_separate_window": false,
+    "original_single_movable_collapsible_scrollable_window_preserved": true
+  },
+  "accepted_mule_inventory_rule": {
+    "trigger": "mule_destruction",
+    "deposit": "all_carried_items_on_mule_current_cell",
+    "multiple_distinct_items_may_coexist_on_same_cell": true,
+    "existing_ground_items_preserved": true,
+    "item_identity_quantity_and_equipment_bonuses_preserved": true,
+    "no_nearby_scatter_or_item_loss": true
+  },
+  "requested_marker_direction": {
+    "reanimated_monsters": {
+      "shape": "skull",
+      "color": "not_specified"
+    },
+    "drones": {
+      "shape": "dot",
+      "color": "green"
+    },
+    "shared_cyan_diamond_proposal": "superseded"
+  },
+  "prior_displayed_window_proposal": "docs/reviews/refonte-agent-2026-10-06/review-familiar-window-UX-PETS-02-01.json",
+  "prior_displayed_window_proposal_sha256": "18d84dbd1111794ff9834cde4d9bfecb063a7fbae0b0385ff6b921d2bbbdc2bc",
+  "displayed_window_title_rows_and_button_scope": "affirmative_reply_to_displayed_proposal_with_explicit_mule_and_marker_revisions;unshown_mechanics_pending",
+  "current_code_observation": {
+    "status": "read_only_inspection;no_runtime_validation_this_turn",
+    "registry": "src/entity/ground_item.rs",
+    "registry_sha256": "f022d9a94d9d0d931050c550f5ff09e2e70de1b9764071ca9a53eb984901b05e",
+    "ordinary_placement_rejects_occupied_cells": true,
+    "death_loot_can_coexist_with_other_ground_items": true,
+    "existing_test": "src/game/actor_loot_tests.rs::death_drops_once_without_reroll_on_occupied_tile_and_both_objects_can_be_picked_up",
+    "required_future_integration": "Extend ordinary placement and mule cargo deposit paths; preserve individual item metadata and access to all items."
+  },
+  "approval_scope": "User-selected skull and green dot directions and same-cell mule cargo transfer accepted. Exact icon pixels, skull color, native layout, placement details and unshown destruction/ground-item interactions remain to review.",
+  "native_rendering": "pending_preview_and_user_review",
+  "runtime_integration": "not_integrated"
+}

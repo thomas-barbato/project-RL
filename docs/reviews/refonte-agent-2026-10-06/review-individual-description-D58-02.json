@@ -1,0 +1,121 @@
+{
+  "date": "2026-10-06",
+  "id": "D58",
+  "title": "Invocation du drone Traqueur",
+  "revision": 2,
+  "player_copy_markdown": "**Invocation du drone Traqueur — Rang 11**\n9 rangs appris + 2 grâce à l’équipement.\n\n*Votre traqueur mécanique poursuit sa proie et la frappe au contact.*\n\nDéploie un drone qui poursuit les ennemis et les attaque au contact.\n\n**Effet actuel**\n\n- Vie maximale du drone : **68 PV**.\n- Dégâts cinétiques par attaque : **40**.\n- Portée d’attaque : **1 case**.\n\n**Prochain rang — 12 · 1 point de compétence**\n\n- Vie maximale du drone : **72 PV**.\n- Dégâts cinétiques par attaque : **43**.\n\n**Coût : 15 énergie · Recharge : 6 tours.**\n\nUn seul drone Traqueur peut être déployé à la fois.\n\nLes dégâts affichés sont calculés avant les défenses de la cible.",
+  "player_copy_sha256": "725ee6f81fdee91b12a8501221c11694f9a3fbd75893b69e555f4c36f48fcb60",
+  "format_reference": "docs/reviews/refonte-agent-2026-10-06/review-description-format-12.json",
+  "source_skill_manifest": "docs/reviews/refonte-agent-2026-10-06/review-drone-descriptions-08.json",
+  "source_skill_block_sha256": "80ce6aef0d3ff45ff8ab13e51f711ad9243a5a81c7b4a5c968310ca4697f9220",
+  "review_start_decisions": "docs/reviews/refonte-agent-2026-10-06/mule-description-acceptance-decisions.json",
+  "review_start_decisions_sha256": "32755e026bd24b6418a7e8cd902334d937f3b724f9d94dc56b2c927943327ca0",
+  "name_approval": "accepted_catalogue_name",
+  "catalogue_effect_approval": "accepted_as_presented",
+  "roleplay_text_approval": "displayed_individual_description_explicitly_accepted",
+  "functional_description_approval": "displayed_individual_description_explicitly_accepted",
+  "current_next_effect_copy_approval": "displayed_individual_description_explicitly_accepted",
+  "numeric_rules_approval": "displayed_68_72_HP_40_43_damage_range_1_energy_15_cooldown_6_and_conditions_accepted; unshown_formulas_and_conditions_pending",
+  "formulas": {
+    "base_hp": "22 + 4 * (effective_rank - 1)",
+    "base_kinetic_damage": "5 + 2 * (effective_rank - 1)",
+    "energy_cost": "12 + floor((effective_rank - 1) / 3)",
+    "intelligence_factor": "1 + (Intelligence - 5) / 50; proposed",
+    "link_bonus_percent": "25 + 2 * (Lien_renforce_effective_rank - 1); proposed",
+    "rounding": "floor once after applicable modifiers; proposed"
+  },
+  "current_profile_status": "illustrative_not_a_user_save",
+  "current_profile": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "intelligence": 10,
+    "intelligence_factor": {
+      "numerator": 11,
+      "denominator": 10
+    },
+    "link_effective_rank": 12,
+    "link_damage_bonus_percent": 47,
+    "other_drone_hp_damage_cost_or_cooldown_modifiers": false
+  },
+  "current_values": {
+    "learned_rank": 9,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 11,
+    "maximum_hp": 68,
+    "maximum_hp_exact_before_floor": {
+      "numerator": 341,
+      "denominator": 5
+    },
+    "damage_before_defenses": 40,
+    "damage_exact_before_floor": {
+      "numerator": 1617,
+      "denominator": 40
+    },
+    "damage_type": "kinetic",
+    "attack_range_cells": 1,
+    "activity_duration": "unlimited",
+    "energy_cost": 15,
+    "cooldown_turns": 6
+  },
+  "next_values": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "maximum_hp": 72,
+    "maximum_hp_exact_before_floor": {
+      "numerator": 363,
+      "denominator": 5
+    },
+    "damage_before_defenses": 43,
+    "damage_exact_before_floor": {
+      "numerator": 43659,
+      "denominator": 1000
+    },
+    "damage_type": "kinetic",
+    "attack_range_cells": 1,
+    "activity_duration": "unlimited",
+    "energy_cost": 15,
+    "cooldown_turns": 6
+  },
+  "next_rank_preview": {
+    "learned_rank": 10,
+    "equipment_bonus_rank": 2,
+    "effective_rank": 12,
+    "skill_point_cost": 1,
+    "same_equipment_attributes_passive_ranks_and_other_conditions": true,
+    "learned_cap_respected": true
+  },
+  "next_rank_display": {
+    "only_changed_values": true,
+    "changed_effects": [
+      "maximum_hp",
+      "damage_before_defenses"
+    ],
+    "unchanged_effects_omitted": [
+      "attack_range_cells",
+      "activity_duration",
+      "energy_cost",
+      "cooldown_turns"
+    ]
+  },
+  "accepted_existing_rules": "No expiration; maximum 5 active drones, one per model; shared deployment energy, no per-turn upkeep; persistence rules preserved.",
+  "presented_conditions": "Summons a melee attacking drone which pursues enemies; only one drone Traqueur deployed; displayed damage before target defenses.",
+  "unshown_rules_approval": "Full-rank formulas, Intelligence and Link coefficients across all ranks, rounding, placement constraints, targeting and accuracy, actor action timing, parameter snapshot and recall/redeployment details remain separately pending.",
+  "drone_damage_variance_status": "Existing drone proposal uses fixed damage; no weapon-variance amplitude or distribution introduced by this card.",
+  "active_weapon_requirement": "none; drone invocation is not an attack using the active player weapon",
+  "visual_intention_approval": "accepted_as_presented",
+  "visual_approval": "pending_native_preview_and_user_review",
+  "runtime_integration": "not_integrated",
+  "checks": [
+    "Exact fractions verified at ranks 11 and 12 with fixed Intelligence 10 and Link damage bonus +47%.",
+    "Values: 68 -> 72 HP, 40 -> 43 kinetic damage, energy 15, cooldown 6, range 1.",
+    "Only changing HP and damage displayed in next-rank block; learned cap respected.",
+    "Unlimited activity omitted from player copy; one drone per model preserved.",
+    "No table, formula or ordinary action-time reminder in player copy.",
+    "Explicit user validation recorded; displayed player copy and values preserved unchanged."
+  ],
+  "previous_manifest": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-D58-01.json",
+  "latest_decisions": "docs/reviews/refonte-agent-2026-10-06/traqueur-drone-description-acceptance-decisions.json",
+  "latest_decisions_sha256": "8eb5f7799e8e752d1e4c6d44b8e71a2e38a6eb660b717b3120df01745181419f"
+}
